@@ -1,0 +1,467 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h
+index 60065b96..f6152f92 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h
+@@ -2615,12 +2615,14 @@ SetMailslotInfo(
+ // File Encryption API
+ //
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+ EncryptFileA(
+     _In_ LPCSTR lpFileName
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -2633,6 +2635,7 @@ EncryptFileW(
+ #define EncryptFile  EncryptFileA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -2640,6 +2643,7 @@ DecryptFileA(
+     _In_       LPCSTR lpFileName,
+     _Reserved_ DWORD dwReserved
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -2668,6 +2672,7 @@ DecryptFileW(
+ #define FILE_READ_ONLY                  8
+ #define FILE_DIR_DISALLOWED             9
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -2675,6 +2680,7 @@ FileEncryptionStatusA(
+     _In_  LPCSTR lpFileName,
+     _Out_ LPDWORD  lpStatus
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -6578,6 +6584,7 @@ GetFileBandwidthReservation(
+ // Legacy Event logging APIs
+ //
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6586,6 +6593,7 @@ ClearEventLogA (
+     _In_     HANDLE hEventLog,
+     _In_opt_ LPCSTR lpBackupFileName
+     );
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6600,6 +6608,7 @@ ClearEventLogW (
+ #define ClearEventLog  ClearEventLogA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6608,6 +6617,7 @@ BackupEventLogA (
+     _In_ HANDLE hEventLog,
+     _In_ LPCSTR lpBackupFileName
+     );
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6622,6 +6632,7 @@ BackupEventLogW (
+ #define BackupEventLog  BackupEventLogA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6636,6 +6647,7 @@ CloseEventLog (
+ #pragma region Application Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6650,6 +6662,7 @@ DeregisterEventSource (
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6659,6 +6672,7 @@ NotifyChangeEventLog(
+     _In_ HANDLE  hEvent
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6668,6 +6682,7 @@ GetNumberOfEventLogRecords (
+     _Out_ PDWORD NumberOfRecords
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6677,6 +6692,7 @@ GetOldestEventLogRecord (
+     _Out_ PDWORD OldestRecord
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ HANDLE
+@@ -6685,6 +6701,7 @@ OpenEventLogA (
+     _In_opt_ LPCSTR lpUNCServerName,
+     _In_     LPCSTR lpSourceName
+     );
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ HANDLE
+@@ -6705,6 +6722,7 @@ OpenEventLogW (
+ #pragma region Application Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ HANDLE
+@@ -6713,6 +6731,7 @@ RegisterEventSourceA (
+     _In_opt_ LPCSTR lpUNCServerName,
+     _In_     LPCSTR lpSourceName
+     );
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ HANDLE
+@@ -6733,6 +6752,7 @@ RegisterEventSourceW (
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ HANDLE
+@@ -6741,6 +6761,7 @@ OpenBackupEventLogA (
+     _In_opt_ LPCSTR lpUNCServerName,
+     _In_     LPCSTR lpFileName
+     );
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ HANDLE
+@@ -6755,6 +6776,7 @@ OpenBackupEventLogW (
+ #define OpenBackupEventLog  OpenBackupEventLogA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6768,6 +6790,7 @@ ReadEventLogA (
+     _Out_ DWORD      *pnBytesRead,
+     _Out_ DWORD      *pnMinNumberOfBytesNeeded
+     );
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6793,6 +6816,7 @@ ReadEventLogW (
+ #pragma region Application Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6808,6 +6832,7 @@ ReportEventA (
+     _In_reads_opt_(wNumStrings) LPCSTR *lpStrings,
+     _In_reads_bytes_opt_(dwDataSize) LPVOID lpRawData
+     );
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6843,6 +6868,7 @@ typedef struct _EVENTLOG_FULL_INFORMATION
+ }
+ EVENTLOG_FULL_INFORMATION, *LPEVENTLOG_FULL_INFORMATION;
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINADVAPI
+ BOOL
+@@ -6910,6 +6936,7 @@ OperationEnd (
+ //
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -6932,6 +6959,7 @@ AccessCheckAndAuditAlarmA (
+ 
+ #if(_WIN32_WINNT >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -6957,6 +6985,7 @@ AccessCheckByTypeAndAuditAlarmA (
+ #define AccessCheckByTypeAndAuditAlarm  AccessCheckByTypeAndAuditAlarmA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -6982,6 +7011,7 @@ AccessCheckByTypeResultListAndAuditAlarmA (
+ #define AccessCheckByTypeResultListAndAuditAlarm  AccessCheckByTypeResultListAndAuditAlarmA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7009,6 +7039,7 @@ AccessCheckByTypeResultListAndAuditAlarmByHandleA (
+ #endif
+ #endif //(_WIN32_WINNT >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7030,6 +7061,7 @@ ObjectOpenAuditAlarmA (
+ #define ObjectOpenAuditAlarm  ObjectOpenAuditAlarmA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7045,6 +7077,7 @@ ObjectPrivilegeAuditAlarmA (
+ #define ObjectPrivilegeAuditAlarm  ObjectPrivilegeAuditAlarmA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7057,6 +7090,7 @@ ObjectCloseAuditAlarmA (
+ #define ObjectCloseAuditAlarm  ObjectCloseAuditAlarmA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7069,6 +7103,7 @@ ObjectDeleteAuditAlarmA (
+ #define ObjectDeleteAuditAlarm  ObjectDeleteAuditAlarmA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7084,6 +7119,7 @@ PrivilegedServiceAuditAlarmA (
+ #endif
+ 
+ #if(_WIN32_WINNT >= 0x0601)
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7105,6 +7141,7 @@ AddConditionalAce (
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7117,6 +7154,7 @@ SetFileSecurityA (
+ #define SetFileSecurity  SetFileSecurityA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7259,6 +7297,7 @@ IsBadStringPtrW(
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7271,6 +7310,7 @@ LookupAccountSidA(
+     _Inout_ LPDWORD cchReferencedDomainName,
+     _Out_ PSID_NAME_USE peUse
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7289,6 +7329,7 @@ LookupAccountSidW(
+ #define LookupAccountSid  LookupAccountSidA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7301,6 +7342,7 @@ LookupAccountNameA(
+     _Inout_  LPDWORD cchReferencedDomainName,
+     _Out_    PSID_NAME_USE peUse
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7355,6 +7397,7 @@ LookupAccountNameLocalW(
+ #define LookupAccountNameLocal  LookupAccountNameLocalA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7366,6 +7409,7 @@ LookupAccountSidLocalA(
+     _Inout_ LPDWORD cchReferencedDomainName,
+     _Out_ PSID_NAME_USE peUse
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7413,6 +7457,7 @@ LookupAccountSidLocalW(
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7421,6 +7466,7 @@ LookupPrivilegeValueA(
+     _In_     LPCSTR lpName,
+     _Out_    PLUID   lpLuid
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7435,6 +7481,7 @@ LookupPrivilegeValueW(
+ #define LookupPrivilegeValue  LookupPrivilegeValueA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7444,6 +7491,7 @@ LookupPrivilegeNameA(
+     _Out_writes_to_opt_(*cchName, *cchName + 1) LPSTR lpName,
+     _Inout_  LPDWORD cchName
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7459,6 +7507,7 @@ LookupPrivilegeNameW(
+ #define LookupPrivilegeName  LookupPrivilegeNameA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7469,6 +7518,7 @@ LookupPrivilegeDisplayNameA(
+     _Inout_  LPDWORD cchDisplayName,
+     _Out_    LPDWORD lpLanguageId
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Success_(return != FALSE) BOOL
+ WINAPI
+@@ -7668,6 +7718,7 @@ DnsHostnameToComputerNameW (
+ 
+ #endif // _WIN32_WINNT
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7675,6 +7726,7 @@ GetUserNameA (
+     _Out_writes_to_opt_(*pcbBuffer, *pcbBuffer) LPSTR lpBuffer,
+     _Inout_ LPDWORD pcbBuffer
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7716,6 +7768,7 @@ GetUserNameW (
+ 
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7727,6 +7780,7 @@ LogonUserA (
+     _In_        DWORD dwLogonProvider,
+     _Outptr_ PHANDLE phToken
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7744,6 +7798,7 @@ LogonUserW (
+ #define LogonUser  LogonUserA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7759,6 +7814,7 @@ LogonUserExA (
+     _Out_opt_       LPDWORD pdwProfileLength,
+     _Out_opt_       PQUOTA_LIMITS pQuotaLimits
+     );
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -7800,6 +7856,7 @@ LogonUserExW (
+ #define LOGON_NETCREDENTIALS_ONLY       0x00000002
+ #define LOGON_ZERO_PASSWORD_BUFFER      0x80000000
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Must_inspect_result_ BOOL
+ WINAPI
+@@ -7817,6 +7874,7 @@ CreateProcessWithLogonW(
+     _Out_       LPPROCESS_INFORMATION lpProcessInformation
+       );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ _Must_inspect_result_ BOOL
+ WINAPI

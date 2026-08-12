@@ -1,0 +1,62 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/secext.h b/generation/WinSDK/RecompiledIdlHeaders/shared/secext.h
+index ee18e59f..4ccbe614 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/secext.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/secext.h
+@@ -22,6 +22,9 @@
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -110,6 +113,7 @@ typedef enum
+ } EXTENDED_NAME_FORMAT, * PEXTENDED_NAME_FORMAT ;
+ 
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOLEAN
+ SEC_ENTRY
+@@ -119,6 +123,7 @@ GetUserNameExA(
+     _Inout_ PULONG nSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOLEAN
+ SEC_ENTRY
+@@ -140,6 +145,7 @@ GetUserNameExW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_set_last_error_
+ BOOLEAN
+ SEC_ENTRY
+ GetComputerObjectNameA(
+@@ -147,6 +153,7 @@ GetComputerObjectNameA(
+     _Out_writes_to_opt_(*nSize,*nSize) LPSTR lpNameBuffer,
+     _Inout_ PULONG nSize
+     );
++_Win32_metadata_set_last_error_
+ BOOLEAN
+ SEC_ENTRY
+ GetComputerObjectNameW(
+@@ -161,6 +168,7 @@ GetComputerObjectNameW(
+ #define GetComputerObjectName   GetComputerObjectNameA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOLEAN
+ SEC_ENTRY
+ TranslateNameA(
+@@ -170,6 +178,7 @@ TranslateNameA(
+     _Out_writes_to_opt_(*nSize,*nSize) LPSTR lpTranslatedName,
+     _Inout_ PULONG nSize
+     );
++_Win32_metadata_set_last_error_
+ BOOLEAN
+ SEC_ENTRY
+ TranslateNameW(

@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.h b/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.h
+index 293451ea..7616bc53 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.h
+@@ -35,6 +35,15 @@
+ 
+ #if defined(_MSC_VER) && (_MSC_VER >= 1020)
+ #pragma once
++
++#ifndef __WIN32METADATA_IMAGELIST_CREATION_FLAGS_DECLARED__
++#define __WIN32METADATA_IMAGELIST_CREATION_FLAGS_DECLARED__
++#ifdef WIN32METADATA
++enum class IMAGELIST_CREATION_FLAGS : int;
++#else
++typedef UINT IMAGELIST_CREATION_FLAGS;
++#endif
++#endif
+ #endif
+ 
+ #ifndef DECLSPEC_XFGVIRT
+@@ -785,7 +794,7 @@ EXTERN_C const IID IID_IImageList2;
+             /* [annotation][in] */ 
+             _In_  int cy,
+             /* [annotation][in] */ 
+-            _In_  UINT flags,
++            _In_  IMAGELIST_CREATION_FLAGS flags,
+             /* [annotation][in] */ 
+             _In_  int cInitial,
+             /* [annotation][in] */ 
+@@ -1124,7 +1133,7 @@ EXTERN_C const IID IID_IImageList2;
+             /* [annotation][in] */ 
+             _In_  int cy,
+             /* [annotation][in] */ 
+-            _In_  UINT flags,
++            _In_  IMAGELIST_CREATION_FLAGS flags,
+             /* [annotation][in] */ 
+             _In_  int cInitial,
+             /* [annotation][in] */ 

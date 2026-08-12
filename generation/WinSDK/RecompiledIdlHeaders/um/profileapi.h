@@ -17,6 +17,9 @@
 #include <apisetcconv.h>
 #include <minwindef.h>
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -28,6 +31,7 @@ extern "C" {
 // Performance counter API's
 //
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -35,6 +39,7 @@ QueryPerformanceCounter(
     _Out_ LARGE_INTEGER* lpPerformanceCount
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI

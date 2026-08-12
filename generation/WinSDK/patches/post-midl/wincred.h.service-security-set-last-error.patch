@@ -1,0 +1,268 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincred.h b/generation/WinSDK/RecompiledIdlHeaders/um/wincred.h
+index 7ca59bf0..10cb255c 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wincred.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wincred.h
+@@ -1140,6 +1140,7 @@ typedef DWORD CREDUIWIN_FLAGS;
+ 
+ #define CRED_PRESERVE_CREDENTIAL_BLOB 0x1
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1148,6 +1149,7 @@ CredWriteW (
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1163,6 +1165,7 @@ CredWriteA (
+ #endif // UNICODE
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1173,6 +1176,7 @@ CredReadW (
+     _Out_ PCREDENTIALW *Credential
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1211,6 +1215,7 @@ typedef DWORD CRED_ENUMERATE_FLAGS;
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1221,6 +1226,7 @@ CredEnumerateW (
+     _Outptr_result_buffer_(*Count) PCREDENTIALW **Credential
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1238,6 +1244,7 @@ CredEnumerateA (
+ #endif // UNICODE
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1247,6 +1254,7 @@ CredWriteDomainCredentialsW (
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1271,6 +1279,7 @@ CredWriteDomainCredentialsA (
+ #define CRED_CACHE_TARGET_INFORMATION 0x1
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1281,6 +1290,7 @@ CredReadDomainCredentialsW (
+     _Outptr_result_buffer_(*Count) PCREDENTIALW **Credential
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1298,6 +1308,7 @@ CredReadDomainCredentialsA (
+ #endif // UNICODE
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1307,6 +1318,7 @@ CredDeleteW (
+     _Reserved_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1328,6 +1340,7 @@ CredDeleteA (
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1338,6 +1351,7 @@ CredRenameW (
+     _Reserved_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1367,6 +1381,7 @@ CredRenameA (
+ #define CRED_ALLOW_NAME_RESOLUTION 0x1
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1376,6 +1391,7 @@ CredGetTargetInfoW (
+     _Out_ PCREDENTIAL_TARGET_INFORMATIONW *TargetInfo
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1391,6 +1407,7 @@ CredGetTargetInfoA (
+ #define CredGetTargetInfo CredGetTargetInfoA
+ #endif // UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1400,6 +1417,7 @@ CredMarshalCredentialW(
+     _Out_ LPWSTR *MarshaledCredential
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1415,6 +1433,7 @@ CredMarshalCredentialA(
+ #define CredMarshalCredential CredMarshalCredentialA
+ #endif // UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1424,6 +1443,7 @@ CredUnmarshalCredentialW(
+     _Out_ PVOID *Credential
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1465,6 +1485,7 @@ CredIsMarshaledCredentialA(
+ #define CredIsMarshaledCredential CredIsMarshaledCredentialA
+ #endif // UNICODE
+ 
++_Win32_metadata_set_last_error_
+ CREDUIAPI
+ BOOL
+ WINAPI
+@@ -1480,6 +1501,7 @@ CredUnPackAuthenticationBufferW(
+     _Inout_ DWORD*                                  pcchMaxPassword
+     );
+ 
++_Win32_metadata_set_last_error_
+ CREDUIAPI
+ BOOL
+ WINAPI
+@@ -1501,6 +1523,7 @@ CredUnPackAuthenticationBufferA(
+ #define CredUnPackAuthenticationBuffer CredUnPackAuthenticationBufferA
+ #endif //UNICODE
+ 
++_Win32_metadata_set_last_error_
+ CREDUIAPI
+ BOOL
+ WINAPI
+@@ -1512,6 +1535,7 @@ CredPackAuthenticationBufferW(
+     _Inout_ DWORD*                                  pcbPackedCredentials
+     );
+ 
++_Win32_metadata_set_last_error_
+ CREDUIAPI
+ BOOL
+ WINAPI
+@@ -1535,6 +1559,7 @@ CredPackAuthenticationBufferA(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return)
+ WINADVAPI
+ BOOL
+@@ -1565,6 +1590,7 @@ CredProtectEx(
+     _Out_opt_ CRED_PROTECTION_TYPE*         ProtectionType
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1583,6 +1609,7 @@ CredProtectA(
+ #define CredProtect CredProtectA
+ #endif //UNICODE
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return)
+ WINADVAPI
+ BOOL
+@@ -1611,6 +1638,7 @@ CredUnprotectEx(
+     _Inout_ DWORD*                              pcchMaxChars
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1628,6 +1656,7 @@ CredUnprotectA(
+ #define CredUnprotect CredUnprotectA
+ #endif //UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1636,6 +1665,7 @@ CredIsProtectedW(
+     _Out_ CRED_PROTECTION_TYPE* pProtectionType
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1652,6 +1682,7 @@ CredIsProtectedA(
+ 
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1662,6 +1693,7 @@ CredFindBestCredentialW (
+     _Out_ PCREDENTIALW *Credential
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -1681,6 +1713,7 @@ CredFindBestCredentialA (
+ 
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI

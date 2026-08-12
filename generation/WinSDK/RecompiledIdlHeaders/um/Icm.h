@@ -21,6 +21,9 @@ Revision History:
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Modern Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
@@ -337,6 +340,7 @@ typedef BMFORMAT *PBMFORMAT, *LPBMFORMAT;
 // Callback function definition
 //
 
+_Win32_metadata_canonical_name_(LPBMCALLBACKFN)
 typedef BOOL (WINAPI *PBMCALLBACKFN)(ULONG, ULONG, LPARAM);
 typedef PBMCALLBACKFN LPBMCALLBACKFN;
 

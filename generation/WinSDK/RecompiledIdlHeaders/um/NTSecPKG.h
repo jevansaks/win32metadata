@@ -19,6 +19,9 @@ Revision History:
 #define _NTSECPKG_
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -1591,8 +1594,19 @@ typedef NTSTATUS
 #define NOTIFY_CLASS_DOMAIN_CHANGE      3
 #define NOTIFY_CLASS_REGISTRY_CHANGE    4
 
+#ifdef WIN32METADATA
+enum class SECPKG_PACKAGE_CHANGE_TYPE : int
+{
+    SECPKG_PACKAGE_CHANGE_LOAD = 0,
+    SECPKG_PACKAGE_CHANGE_UNLOAD = 1,
+    SECPKG_PACKAGE_CHANGE_SELECT = 2,
+};
+#else
+typedef ULONG SECPKG_PACKAGE_CHANGE_TYPE;
+#endif
+
 typedef struct _SECPKG_EVENT_PACKAGE_CHANGE {
-    ULONG   ChangeType;
+    SECPKG_PACKAGE_CHANGE_TYPE ChangeType;
     LSA_SEC_HANDLE  PackageId;
     SECURITY_STRING PackageName;
 } SECPKG_EVENT_PACKAGE_CHANGE, * PSECPKG_EVENT_PACKAGE_CHANGE;

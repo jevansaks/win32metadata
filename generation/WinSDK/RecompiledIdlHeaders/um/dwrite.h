@@ -7,6 +7,10 @@
 //
 //----------------------------------------------------------------------------
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef DWRITE_H_INCLUDED
 #define DWRITE_H_INCLUDED
 
@@ -672,6 +676,7 @@ interface IDWriteFontFileStream;
 /// Instead, registration and unregistration of font file loaders with DirectWrite factory should be performed
 /// outside of the font file loader implementation as a separate step.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("727cad4e-d6af-4c9e-8a08-d695b11caa49") IDWriteFontFileLoader : public IUnknown
 {
     /// <summary>
@@ -753,6 +758,7 @@ interface DWRITE_DECLARE_INTERFACE("b2d9f3ec-c9fe-4a11-a2ec-d86208f7c0a2") IDWri
 /// <summary>
 /// The interface for loading font file data.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("6d4865fe-0ab8-4d91-8f62-5dd6be34a3e0") IDWriteFontFileStream : public IUnknown
 {
     /// <summary>
@@ -819,6 +825,7 @@ interface DWRITE_DECLARE_INTERFACE("6d4865fe-0ab8-4d91-8f62-5dd6be34a3e0") IDWri
 /// <summary>
 /// The interface that represents a reference to a font file.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("739d886a-cef5-47dc-8769-1a8b41bebbb0") IDWriteFontFile : public IUnknown
 {
     /// <summary>
@@ -1004,6 +1011,7 @@ struct DWRITE_MATRIX
 /// <summary>
 /// The interface that represents text rendering settings for glyph rasterization and filtering.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("2f0da53a-2add-47cd-82ee-d9ec34688e75") IDWriteRenderingParams : public IUnknown
 {
     /// <summary>
@@ -1044,6 +1052,7 @@ typedef ID2D1SimplifiedGeometrySink IDWriteGeometrySink;
 /// This interface exposes various font data such as metrics, names, and glyph outlines.
 /// It contains font face type, appropriate file references and face identification data.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("5f49804d-7024-4d43-bfa9-d25984f53849") IDWriteFontFace : public IUnknown
 {
     /// <summary>
@@ -1312,6 +1321,7 @@ interface IDWriteFontFileEnumerator;
 /// Instead, registration and unregistration of font file loaders with DirectWrite factory should be performed
 /// outside of the font file loader implementation as a separate step.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("cca920e4-52f0-492b-bfa8-29c72ee0a468") IDWriteFontCollectionLoader : public IUnknown
 {
     /// <summary>
@@ -1338,6 +1348,7 @@ interface DWRITE_DECLARE_INTERFACE("cca920e4-52f0-492b-bfa8-29c72ee0a468") IDWri
 /// The font file enumerator interface encapsulates a collection of font files. The font system uses this interface
 /// to enumerate font files when building a font collection.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("72755049-5ff7-435d-8348-4be97cfa6c7c") IDWriteFontFileEnumerator : public IUnknown
 {
     /// <summary>
@@ -1368,6 +1379,7 @@ interface DWRITE_DECLARE_INTERFACE("72755049-5ff7-435d-8348-4be97cfa6c7c") IDWri
 /// <summary>
 /// Represents a collection of strings indexed by locale name.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("08256209-099a-4b34-b86d-c22b110e7771") IDWriteLocalizedStrings : public IUnknown
 {
     /// <summary>
@@ -1456,6 +1468,7 @@ interface IDWriteFont;
 /// <summary>
 /// The IDWriteFontCollection encapsulates a collection of font families.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("a84cee02-3eea-4eee-a827-87c1a02a0fcc") IDWriteFontCollection : public IUnknown
 {
     /// <summary>
@@ -1509,6 +1522,7 @@ interface DWRITE_DECLARE_INTERFACE("a84cee02-3eea-4eee-a827-87c1a02a0fcc") IDWri
 /// <summary>
 /// The IDWriteFontList interface represents an ordered set of fonts that are part of an IDWriteFontCollection.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("1a0d8438-1d97-4ec1-aef9-a2fb86ed6acb") IDWriteFontList : public IUnknown
 {
     /// <summary>
@@ -1545,6 +1559,7 @@ interface DWRITE_DECLARE_INTERFACE("1a0d8438-1d97-4ec1-aef9-a2fb86ed6acb") IDWri
 /// The IDWriteFontFamily interface represents a set of fonts that share the same design but are differentiated
 /// by weight, stretch, and style.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("da20d8ef-812a-4c43-9802-62ec4abd7add") IDWriteFontFamily : public IDWriteFontList
 {
     /// <summary>
@@ -1596,6 +1611,7 @@ interface DWRITE_DECLARE_INTERFACE("da20d8ef-812a-4c43-9802-62ec4abd7add") IDWri
 /// <summary>
 /// The IDWriteFont interface represents a physical font in a font collection.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("acd16696-8c14-4f5d-877e-fe3fc1d32737") IDWriteFont : public IUnknown
 {
     /// <summary>
@@ -2050,6 +2066,7 @@ interface IDWriteInlineObject;
 /// <remarks>
 /// This object may not be thread-safe and it may carry the state of text format change.
 /// </remarks>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("9c906818-31d7-4fd3-a151-7c5e225db55a") IDWriteTextFormat : public IUnknown
 {
     /// <summary>
@@ -2296,6 +2313,7 @@ interface DWRITE_DECLARE_INTERFACE("9c906818-31d7-4fd3-a151-7c5e225db55a") IDWri
 /// <summary>
 /// Font typography setting.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("55f1112b-1dc2-4b3c-9541-f46894ed85b6") IDWriteTypography : public IUnknown
 {
     /// <summary>
@@ -2545,6 +2563,7 @@ struct DWRITE_SHAPING_GLYPH_PROPERTIES
 /// stop prematurely and return a callback error. Rather than return E_NOTIMPL,
 /// an application should stub the method and return a constant/null and S_OK.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("688e1a58-5094-47c8-adc8-fbcea60ae92b") IDWriteTextAnalysisSource : public IUnknown
 {
     /// <summary>
@@ -2654,6 +2673,7 @@ interface DWRITE_DECLARE_INTERFACE("688e1a58-5094-47c8-adc8-fbcea60ae92b") IDWri
 /// state of the analysis sink, therefore a Set method call on a range
 /// overwrites the previously set analysis result of the same range. 
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("5810cd44-0ca0-4701-b3fa-bec5182ae4f6") IDWriteTextAnalysisSink : public IUnknown
 {
     /// <summary>
@@ -2735,6 +2755,7 @@ interface DWRITE_DECLARE_INTERFACE("5810cd44-0ca0-4701-b3fa-bec5182ae4f6") IDWri
 /// <summary>
 /// Analyzes various text properties for complex script processing.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("b7e6163e-7f46-43b4-84b3-e4e6249c365d") IDWriteTextAnalyzer : public IUnknown
 {
     /// <summary>
@@ -3507,6 +3528,7 @@ interface IDWriteTextRenderer;
 /// The IDWriteInlineObject interface wraps an application defined inline graphic,
 /// allowing DWrite to query metrics as if it was a glyph inline with the text.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("8339FDE3-106F-47ab-8373-1C6295EB10B3") IDWriteInlineObject : public IUnknown
 {
     /// <summary>
@@ -3583,6 +3605,7 @@ interface DWRITE_DECLARE_INTERFACE("8339FDE3-106F-47ab-8373-1C6295EB10B3") IDWri
 /// <summary>
 /// The IDWritePixelSnapping interface defines the pixel snapping properties of a text renderer.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("eaf3a2da-ecf4-4d24-b644-b34f6842024b") IDWritePixelSnapping : public IUnknown
 {
     /// <summary>
@@ -3634,6 +3657,7 @@ interface DWRITE_DECLARE_INTERFACE("eaf3a2da-ecf4-4d24-b644-b34f6842024b") IDWri
 /// callbacks that perform rendering of text, inline objects, and decorations
 /// such as underlines.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("ef8a8135-5cc6-45fe-8825-c5a0724eb819") IDWriteTextRenderer : public IDWritePixelSnapping
 {
     /// <summary>
@@ -3772,6 +3796,7 @@ interface DWRITE_DECLARE_INTERFACE("ef8a8135-5cc6-45fe-8825-c5a0724eb819") IDWri
 ///
 /// All coordinates are in device independent pixels (DIPs).
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("53737037-6d14-410b-9bfe-0b182bb70961") IDWriteTextLayout : public IDWriteTextFormat
 {
     /// <summary>
@@ -4421,6 +4446,7 @@ interface DWRITE_DECLARE_INTERFACE("53737037-6d14-410b-9bfe-0b182bb70961") IDWri
 /// <summary>
 /// Encapsulates a 32-bit device independent bitmap and device context, which can be used for rendering glyphs.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("5e5a32a3-8dff-4773-9ff6-0696eab77267") IDWriteBitmapRenderTarget : public IUnknown
 {
     /// <summary>
@@ -4541,6 +4567,7 @@ interface DWRITE_DECLARE_INTERFACE("5e5a32a3-8dff-4773-9ff6-0696eab77267") IDWri
 /// <summary>
 /// The GDI interop interface provides interoperability with GDI.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("1edd9491-9853-4299-898f-6432983b6f3a") IDWriteGdiInterop : public IUnknown
 {
     /// <summary>
@@ -4643,6 +4670,7 @@ enum DWRITE_TEXTURE_TYPE
 /// <summary>
 /// Interface that encapsulates information used to render a glyph run.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("7d97dbf7-e085-42d4-81e3-6a883bded118") IDWriteGlyphRunAnalysis : public IUnknown
 {
     /// <summary>
@@ -4701,6 +4729,7 @@ interface DWRITE_DECLARE_INTERFACE("7d97dbf7-e085-42d4-81e3-6a883bded118") IDWri
 /// <summary>
 /// The root factory interface for all DWrite objects.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DWRITE_DECLARE_INTERFACE("b859ee5a-d838-4b5b-a2e8-1adc7d93db48") IDWriteFactory : public IUnknown
 {
     /// <summary>
@@ -5120,6 +5149,7 @@ interface DWRITE_DECLARE_INTERFACE("b859ee5a-d838-4b5b-a2e8-1adc7d93db48") IDWri
 /// from the rest of the process components. In such cases, it is recommended to use an isolated factory for the sandboxed
 /// component.
 /// </remarks>
+_Win32_metadata_supported_os_(windows6.1)
 EXTERN_C HRESULT DWRITE_EXPORT DWriteCreateFactory(
     _In_ DWRITE_FACTORY_TYPE factoryType,
     _In_ REFIID iid,

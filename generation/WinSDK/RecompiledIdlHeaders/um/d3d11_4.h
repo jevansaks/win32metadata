@@ -9,8 +9,13 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
+
 #endif
 
 /* verify that the <rpcsal.h> version is high enough to compile this file*/
@@ -2058,6 +2063,7 @@ EXTERN_C const IID IID_ID3D11VideoContext2;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("C4E7374C-6243-4D1B-AE87-52B4F740E261")
     ID3D11VideoContext2 : public ID3D11VideoContext1
     {

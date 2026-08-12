@@ -1,4 +1,7 @@
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 /*++
 
@@ -789,6 +792,7 @@ WNetGetNetworkInformationW(
 //  Error handling.
 //
 
+_Win32_metadata_set_last_error_
 _Check_return_
 DWORD APIENTRY
 WNetGetLastErrorA(
@@ -798,6 +802,7 @@ WNetGetLastErrorA(
     _Out_writes_(nNameBufSize) LPSTR  lpNameBuf,
     _In_ DWORD      nNameBufSize
     );
+_Win32_metadata_set_last_error_
 _Check_return_
 DWORD APIENTRY
 WNetGetLastErrorW(

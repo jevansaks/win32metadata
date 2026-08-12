@@ -15,6 +15,9 @@
 
 #include <apiset.h>
 #include <apisetcconv.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #include <minwindef.h>
 #include <minwinbase.h>
@@ -32,6 +35,7 @@ extern "C" {
 // Token Extension APIs
 //
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 GetAppContainerNamedObjectPath(

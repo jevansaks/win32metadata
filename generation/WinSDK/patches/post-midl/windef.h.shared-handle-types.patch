@@ -1,0 +1,171 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/windef.h b/generation/WinSDK/RecompiledIdlHeaders/shared/windef.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/windef.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/windef.h
+@@ -1,4 +1,5 @@
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ /****************************************************************************
+ *                                                                           *
+@@ -36,8 +37,12 @@ extern "C" {
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+-DECLARE_HANDLE            (HWND);
+-DECLARE_HANDLE            (HHOOK);
++DECLARE_HANDLE            (HWND)
++    _Win32_metadata_also_usable_for_(HANDLE);
++DECLARE_HANDLE            (HHOOK)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(UnhookWindowsHookEx);
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
+ #pragma endregion
+@@ -60,42 +65,94 @@ DECLARE_HANDLE            (HEVENT);
+ 
+ #if !defined(_MAC) || !defined(GDI_INTERNAL)
+ #ifdef STRICT
+-typedef void NEAR* HGDIOBJ;
++typedef void NEAR* HGDIOBJ
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DeleteObject);
+ #else
+-DECLARE_HANDLE(HGDIOBJ);
++DECLARE_HANDLE(HGDIOBJ)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DeleteObject);
+ #endif
+ #endif
+ 
+ #if !defined(_MAC) || !defined(WIN_INTERNAL)
+-DECLARE_HANDLE(HACCEL);
++DECLARE_HANDLE(HACCEL)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DestroyAcceleratorTable);
+ #endif
+ #if !defined(_MAC) || !defined(GDI_INTERNAL)
+-DECLARE_HANDLE(HBITMAP);
+-DECLARE_HANDLE(HBRUSH);
++DECLARE_HANDLE(HBITMAP)
++    _Win32_metadata_also_usable_for_(HGDIOBJ)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DeleteObject);
++DECLARE_HANDLE(HBRUSH)
++    _Win32_metadata_also_usable_for_(HGDIOBJ)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DeleteObject);
+ #endif
+ #if(WINVER >= 0x0400)
+-DECLARE_HANDLE(HCOLORSPACE);
++DECLARE_HANDLE(HCOLORSPACE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DeleteColorSpace);
+ #endif /* WINVER >= 0x0400 */
+ #if !defined(_MAC) || !defined(GDI_INTERNAL)
+-DECLARE_HANDLE(HDC);
++DECLARE_HANDLE(HDC)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0);
+ #endif
+-DECLARE_HANDLE(HGLRC);          // OpenGL
+-DECLARE_HANDLE(HDESK);
+-DECLARE_HANDLE(HENHMETAFILE);
++DECLARE_HANDLE(HGLRC)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(wglDeleteContext);          // OpenGL
++DECLARE_HANDLE(HDESK)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(CloseDesktop);
++DECLARE_HANDLE(HENHMETAFILE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DeleteEnhMetaFile);
+ #if !defined(_MAC) || !defined(GDI_INTERNAL)
+-DECLARE_HANDLE(HFONT);
++DECLARE_HANDLE(HFONT)
++    _Win32_metadata_also_usable_for_(HGDIOBJ)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DeleteObject);
+ #endif
+-DECLARE_HANDLE(HICON);
++DECLARE_HANDLE(HICON)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DestroyIcon);
+ #if !defined(_MAC) || !defined(WIN_INTERNAL)
+-DECLARE_HANDLE(HMENU);
++DECLARE_HANDLE(HMENU)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DestroyMenu);
+ #endif
+ #if !defined(_MAC) || !defined(GDI_INTERNAL)
+-DECLARE_HANDLE(HPALETTE);
+-DECLARE_HANDLE(HPEN);
++DECLARE_HANDLE(HPALETTE)
++    _Win32_metadata_also_usable_for_(HGDIOBJ)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DeleteObject);
++DECLARE_HANDLE(HPEN)
++    _Win32_metadata_also_usable_for_(HGDIOBJ)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DeleteObject);
+ #endif
+ 
+ #if(WINVER >= 0x0400)
+-DECLARE_HANDLE(HWINEVENTHOOK);
++DECLARE_HANDLE(HWINEVENTHOOK)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(UnhookWinEvent);
+ #endif /* WINVER >= 0x0400 */
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
+@@ -107,7 +164,9 @@ DECLARE_HANDLE(HWINEVENTHOOK);
+ #pragma region Application Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
+-DECLARE_HANDLE(HMONITOR);
++DECLARE_HANDLE(HMONITOR)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0);
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
+ #pragma endregion
+@@ -128,9 +187,17 @@ DECLARE_HANDLE(HUMPD);
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #ifndef _MAC
+-typedef HICON HCURSOR;      /* HICONs & HCURSORs are polymorphic */
++typedef HICON HCURSOR
++    _Win32_metadata_also_usable_for_(HICON)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DestroyCursor);      /* HICONs & HCURSORs are polymorphic */
+ #else
+-DECLARE_HANDLE(HCURSOR);    /* HICONs & HCURSORs are not polymorphic */
++DECLARE_HANDLE(HCURSOR)
++    _Win32_metadata_also_usable_for_(HICON)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(DestroyCursor);    /* HICONs & HCURSORs are not polymorphic */
+ #endif
+ 
+ typedef DWORD   COLORREF;
+@@ -277,4 +344,3 @@ typedef enum DPI_HOSTING_BEHAVIOR {
+ #endif
+ 
+ #endif /* _WINDEF_ */
+-

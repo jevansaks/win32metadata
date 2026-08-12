@@ -20,6 +20,9 @@ Abstract:
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -126,6 +129,7 @@ RasSecurityDialogEnd(
 // Will return errors from winerror.h or raserror.h
 //
 
+_Win32_metadata_set_last_error_
 DWORD WINAPI
 RasSecurityDialogSend(
     IN HPORT    hPort,          // RAS handle to port.
@@ -138,6 +142,7 @@ RasSecurityDialogSend(
 // Will return errors from winerror.h or raserror.h
 //
 
+_Win32_metadata_set_last_error_
 DWORD WINAPI
 RasSecurityDialogReceive(
     IN HPORT    hPort,          // RAS handle to port.

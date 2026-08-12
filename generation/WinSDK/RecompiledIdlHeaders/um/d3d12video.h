@@ -9,8 +9,13 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
+
 #endif
 
 /* verify that the <rpcsal.h> version is high enough to compile this file*/
@@ -3102,6 +3107,7 @@ EXTERN_C const IID IID_ID3D12VideoMotionEstimator;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.19041)
     MIDL_INTERFACE("33FDAE0E-098B-428F-87BB-34B695DE08F8")
     ID3D12VideoMotionEstimator : public ID3D12Pageable
     {
@@ -3279,6 +3285,7 @@ EXTERN_C const IID IID_ID3D12VideoMotionVectorHeap;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.19041)
     MIDL_INTERFACE("5BE17987-743A-4061-834B-23D22DAEA505")
     ID3D12VideoMotionVectorHeap : public ID3D12Pageable
     {
@@ -3661,6 +3668,7 @@ EXTERN_C const IID IID_ID3D12VideoEncodeCommandList;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.19041)
     MIDL_INTERFACE("8455293A-0CBD-4831-9B39-FBDBAB724723")
     ID3D12VideoEncodeCommandList : public ID3D12CommandList
     {
@@ -4237,6 +4245,7 @@ EXTERN_C const IID IID_ID3D12VideoDecoder1;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.19041)
     MIDL_INTERFACE("79A2E5FB-CCD2-469A-9FDE-195D10951F7E")
     ID3D12VideoDecoder1 : public ID3D12VideoDecoder
     {
@@ -4738,6 +4747,7 @@ EXTERN_C const IID IID_ID3D12VideoExtensionCommand;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.19041)
     MIDL_INTERFACE("554E41E8-AE8E-4A8C-B7D2-5B4F274A30E4")
     ID3D12VideoExtensionCommand : public ID3D12Pageable
     {

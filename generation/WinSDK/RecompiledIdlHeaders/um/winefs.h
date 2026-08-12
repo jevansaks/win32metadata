@@ -1,4 +1,7 @@
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -398,6 +401,7 @@ FreeEncryptionCertificateHashList(
     _In_    PENCRYPTION_CERTIFICATE_HASH_LIST       pUsers
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI

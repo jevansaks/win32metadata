@@ -10,6 +10,9 @@
 #define _UXTHEME_H_
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -354,6 +357,25 @@ OpenThemeData(
 #define OTD_VALIDBITS           (OTD_FORCE_RECT_SIZING | \
                                  OTD_NONCLIENT)
 
+#ifdef WIN32METADATA
+#pragma push_macro("OTD_FORCE_RECT_SIZING")
+#pragma push_macro("OTD_NONCLIENT")
+#undef OTD_FORCE_RECT_SIZING
+#undef OTD_NONCLIENT
+enum class
+    _Win32_metadata_associated_constant_(OTD_VALIDBITS)
+    [[clang::flag_enum]]
+    OPEN_THEME_DATA_FLAGS : int
+{
+    OTD_FORCE_RECT_SIZING = 0x00000001,
+    OTD_NONCLIENT = 0x00000002,
+};
+#pragma pop_macro("OTD_NONCLIENT")
+#pragma pop_macro("OTD_FORCE_RECT_SIZING")
+#else
+typedef DWORD OPEN_THEME_DATA_FLAGS;
+#endif
+
 THEMEAPI_(HTHEME)
 OpenThemeDataForDpi(
     _In_opt_ HWND hwnd,
@@ -399,7 +421,7 @@ THEMEAPI_(HTHEME)
 OpenThemeDataEx(
     _In_opt_ HWND hwnd,
     _In_ LPCWSTR pszClassList,
-    _In_ DWORD dwFlags
+    _In_ OPEN_THEME_DATA_FLAGS dwFlags
     );
 
 //---------------------------------------------------------------------------
@@ -726,6 +748,54 @@ GetThemeTextMetrics(
 // This option is mutually exclusive with HTTB_SIZINGTEMPLATE, which takes precedence.
 #define HTTB_SYSTEMSIZINGMARGINS    0x00000200
 
+#ifdef WIN32METADATA
+#pragma push_macro("HTTB_BACKGROUNDSEG")
+#pragma push_macro("HTTB_FIXEDBORDER")
+#pragma push_macro("HTTB_CAPTION")
+#pragma push_macro("HTTB_RESIZINGBORDER_LEFT")
+#pragma push_macro("HTTB_RESIZINGBORDER_TOP")
+#pragma push_macro("HTTB_RESIZINGBORDER_RIGHT")
+#pragma push_macro("HTTB_RESIZINGBORDER_BOTTOM")
+#pragma push_macro("HTTB_RESIZINGBORDER")
+#pragma push_macro("HTTB_SIZINGTEMPLATE")
+#pragma push_macro("HTTB_SYSTEMSIZINGMARGINS")
+#undef HTTB_BACKGROUNDSEG
+#undef HTTB_FIXEDBORDER
+#undef HTTB_CAPTION
+#undef HTTB_RESIZINGBORDER_LEFT
+#undef HTTB_RESIZINGBORDER_TOP
+#undef HTTB_RESIZINGBORDER_RIGHT
+#undef HTTB_RESIZINGBORDER_BOTTOM
+#undef HTTB_RESIZINGBORDER
+#undef HTTB_SIZINGTEMPLATE
+#undef HTTB_SYSTEMSIZINGMARGINS
+enum class HIT_TEST_BACKGROUND_OPTIONS : int
+{
+    HTTB_BACKGROUNDSEG = 0x00000000,
+    HTTB_FIXEDBORDER = 0x00000002,
+    HTTB_CAPTION = 0x00000004,
+    HTTB_RESIZINGBORDER_LEFT = 0x00000010,
+    HTTB_RESIZINGBORDER_TOP = 0x00000020,
+    HTTB_RESIZINGBORDER_RIGHT = 0x00000040,
+    HTTB_RESIZINGBORDER_BOTTOM = 0x00000080,
+    HTTB_RESIZINGBORDER = 0x000000f0,
+    HTTB_SIZINGTEMPLATE = 0x00000100,
+    HTTB_SYSTEMSIZINGMARGINS = 0x00000200,
+};
+#pragma pop_macro("HTTB_SYSTEMSIZINGMARGINS")
+#pragma pop_macro("HTTB_SIZINGTEMPLATE")
+#pragma pop_macro("HTTB_RESIZINGBORDER")
+#pragma pop_macro("HTTB_RESIZINGBORDER_BOTTOM")
+#pragma pop_macro("HTTB_RESIZINGBORDER_RIGHT")
+#pragma pop_macro("HTTB_RESIZINGBORDER_TOP")
+#pragma pop_macro("HTTB_RESIZINGBORDER_LEFT")
+#pragma pop_macro("HTTB_CAPTION")
+#pragma pop_macro("HTTB_FIXEDBORDER")
+#pragma pop_macro("HTTB_BACKGROUNDSEG")
+#else
+typedef DWORD HIT_TEST_BACKGROUND_OPTIONS;
+#endif
+
 //-------------------------------------------------------------------------
 //  HitTestThemeBackground()
 //                      - returns a HitTestCode (a subset of the values 
@@ -756,7 +826,7 @@ HitTestThemeBackground(
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ DWORD dwOptions,
+    _In_ HIT_TEST_BACKGROUND_OPTIONS dwOptions,
     _In_ LPCRECT pRect,
     _In_opt_ HRGN hrgn,
     _In_ POINT ptTest,
@@ -1413,11 +1483,23 @@ IsThemeDialogTextureEnabled(
                                  STAP_ALLOW_CONTROLS | \
                                  STAP_ALLOW_WEBCONTENT)
 
+#ifdef WIN32METADATA
+enum class [[clang::flag_enum]] SET_THEME_APP_PROPERTIES_FLAGS : unsigned int
+{
+    ALLOW_NONCLIENT = STAP_ALLOW_NONCLIENT,
+    ALLOW_CONTROLS = STAP_ALLOW_CONTROLS,
+    ALLOW_WEBCONTENT = STAP_ALLOW_WEBCONTENT,
+    VALIDBITS = STAP_VALIDBITS,
+};
+#else
+typedef DWORD SET_THEME_APP_PROPERTIES_FLAGS;
+#endif
+
 //---------------------------------------------------------------------------
 //  GetThemeAppProperties()
 //                      - returns the app property flags that control theming
 //---------------------------------------------------------------------------
-THEMEAPI_(DWORD)
+THEMEAPI_(SET_THEME_APP_PROPERTIES_FLAGS)
 GetThemeAppProperties(
     VOID
     );
@@ -1430,7 +1512,7 @@ GetThemeAppProperties(
 //---------------------------------------------------------------------------
 THEMEAPI_(void)
 SetThemeAppProperties(
-    _In_ DWORD dwFlags
+    _In_ SET_THEME_APP_PROPERTIES_FLAGS dwFlags
     );
 
 //---------------------------------------------------------------------------
@@ -1526,11 +1608,51 @@ EnableTheming(
 #define GBF_VALIDBITS   (GBF_DIRECT | \
                          GBF_COPY)
 
+#ifdef WIN32METADATA
+#pragma push_macro("GBF_DIRECT")
+#pragma push_macro("GBF_COPY")
+#pragma push_macro("GBF_VALIDBITS")
+#undef GBF_DIRECT
+#undef GBF_COPY
+#undef GBF_VALIDBITS
+enum class GET_THEME_BITMAP_FLAGS : int
+{
+    GBF_DIRECT = 0x00000001,
+    GBF_COPY = 0x00000002,
+    GBF_VALIDBITS = 0x00000003,
+};
+#pragma pop_macro("GBF_VALIDBITS")
+#pragma pop_macro("GBF_COPY")
+#pragma pop_macro("GBF_DIRECT")
+#else
+typedef ULONG GET_THEME_BITMAP_FLAGS;
+#endif
+
 #if (NTDDI_VERSION >= NTDDI_VISTA)
 
 #define DTPB_WINDOWDC           0x00000001
 #define DTPB_USECTLCOLORSTATIC  0x00000002
 #define DTPB_USEERASEBKGND      0x00000004
+
+#ifdef WIN32METADATA
+#pragma push_macro("DTPB_WINDOWDC")
+#pragma push_macro("DTPB_USECTLCOLORSTATIC")
+#pragma push_macro("DTPB_USEERASEBKGND")
+#undef DTPB_WINDOWDC
+#undef DTPB_USECTLCOLORSTATIC
+#undef DTPB_USEERASEBKGND
+enum class [[clang::flag_enum]] DRAW_THEME_PARENT_BACKGROUND_FLAGS : int
+{
+    DTPB_WINDOWDC = 0x00000001,
+    DTPB_USECTLCOLORSTATIC = 0x00000002,
+    DTPB_USEERASEBKGND = 0x00000004,
+};
+#pragma pop_macro("DTPB_USEERASEBKGND")
+#pragma pop_macro("DTPB_USECTLCOLORSTATIC")
+#pragma pop_macro("DTPB_WINDOWDC")
+#else
+typedef DWORD DRAW_THEME_PARENT_BACKGROUND_FLAGS;
+#endif
 
 //---------------------------------------------------------------------------
 // DrawThemeParentBackgroundEx()
@@ -1563,7 +1685,7 @@ THEMEAPI
 DrawThemeParentBackgroundEx(
     _In_ HWND hwnd,
     _In_ HDC hdc,
-    _In_ DWORD dwFlags,
+    _In_ DRAW_THEME_PARENT_BACKGROUND_FLAGS dwFlags,
     _In_opt_ const RECT* prc
     );
 
@@ -1710,7 +1832,7 @@ GetThemeBitmap(
     _In_ int iPartId,
     _In_ int iStateId,
     _In_ int iPropId,
-    _In_ ULONG dwFlags,
+    _In_ GET_THEME_BITMAP_FLAGS dwFlags,
     _Out_ HBITMAP* phBitmap
     );
 

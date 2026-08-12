@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/errhandlingapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/errhandlingapi.h
+index bbe0c939..204322cf 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/errhandlingapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/errhandlingapi.h
+@@ -16,6 +16,9 @@
+ #include <apiset.h>
+ #include <apisetcconv.h>
+ #include <minwindef.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -28,6 +31,7 @@ extern "C" {
+ // Typedefs
+ //
+ 
++_Win32_metadata_canonical_name_(LPTOP_LEVEL_EXCEPTION_FILTER)
+ typedef LONG (WINAPI *PTOP_LEVEL_EXCEPTION_FILTER)(
+     _In_ struct _EXCEPTION_POINTERS *ExceptionInfo
+     );

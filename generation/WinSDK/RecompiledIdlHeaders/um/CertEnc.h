@@ -253,7 +253,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray;
         
         virtual HRESULT STDMETHODCALLTYPE Reset( 
             /* [in] */ LONG Count,
-            /* [in] */ LONG StringType) = 0;
+            /* [in] */ CERT_RDN_ATTR_VALUE_TYPE StringType) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE SetValue( 
             /* [in] */ LONG Index,
@@ -352,7 +352,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray;
         HRESULT ( STDMETHODCALLTYPE *Reset )( 
             __RPC__in ICertEncodeStringArray * This,
             /* [in] */ LONG Count,
-            /* [in] */ LONG StringType);
+            /* [in] */ CERT_RDN_ATTR_VALUE_TYPE StringType);
         
         DECLSPEC_XFGVIRT(ICertEncodeStringArray, SetValue)
         HRESULT ( STDMETHODCALLTYPE *SetValue )( 
@@ -546,7 +546,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray2;
         HRESULT ( STDMETHODCALLTYPE *Reset )( 
             __RPC__in ICertEncodeStringArray2 * This,
             /* [in] */ LONG Count,
-            /* [in] */ LONG StringType);
+            /* [in] */ CERT_RDN_ATTR_VALUE_TYPE StringType);
         
         DECLSPEC_XFGVIRT(ICertEncodeStringArray, SetValue)
         HRESULT ( STDMETHODCALLTYPE *SetValue )( 
@@ -1493,7 +1493,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo;
         virtual HRESULT STDMETHODCALLTYPE SetNameEntry( 
             /* [in] */ LONG DistPointIndex,
             /* [in] */ LONG NameIndex,
-            /* [in] */ LONG NameChoice,
+            /* [in] */ CERT_ALT_NAME NameChoice,
             /* [in] */ __RPC__in const BSTR strName) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Encode( 
@@ -1610,7 +1610,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo;
             __RPC__in ICertEncodeCRLDistInfo * This,
             /* [in] */ LONG DistPointIndex,
             /* [in] */ LONG NameIndex,
-            /* [in] */ LONG NameChoice,
+            /* [in] */ CERT_ALT_NAME NameChoice,
             /* [in] */ __RPC__in const BSTR strName);
         
         DECLSPEC_XFGVIRT(ICertEncodeCRLDistInfo, Encode)
@@ -1826,7 +1826,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo2;
             __RPC__in ICertEncodeCRLDistInfo2 * This,
             /* [in] */ LONG DistPointIndex,
             /* [in] */ LONG NameIndex,
-            /* [in] */ LONG NameChoice,
+            /* [in] */ CERT_ALT_NAME NameChoice,
             /* [in] */ __RPC__in const BSTR strName);
         
         DECLSPEC_XFGVIRT(ICertEncodeCRLDistInfo, Encode)
@@ -1973,7 +1973,7 @@ EXTERN_C const IID IID_ICertEncodeAltName;
         
         virtual HRESULT STDMETHODCALLTYPE SetNameEntry( 
             /* [in] */ LONG NameIndex,
-            /* [in] */ LONG NameChoice,
+            /* [in] */ CERT_ALT_NAME NameChoice,
             /* [in] */ __RPC__in const BSTR strName) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Encode( 
@@ -2075,7 +2075,7 @@ EXTERN_C const IID IID_ICertEncodeAltName;
         HRESULT ( STDMETHODCALLTYPE *SetNameEntry )( 
             __RPC__in ICertEncodeAltName * This,
             /* [in] */ LONG NameIndex,
-            /* [in] */ LONG NameChoice,
+            /* [in] */ CERT_ALT_NAME NameChoice,
             /* [in] */ __RPC__in const BSTR strName);
         
         DECLSPEC_XFGVIRT(ICertEncodeAltName, Encode)
@@ -2281,7 +2281,7 @@ EXTERN_C const IID IID_ICertEncodeAltName2;
         HRESULT ( STDMETHODCALLTYPE *SetNameEntry )( 
             __RPC__in ICertEncodeAltName2 * This,
             /* [in] */ LONG NameIndex,
-            /* [in] */ LONG NameChoice,
+            /* [in] */ CERT_ALT_NAME NameChoice,
             /* [in] */ __RPC__in const BSTR strName);
         
         DECLSPEC_XFGVIRT(ICertEncodeAltName, Encode)

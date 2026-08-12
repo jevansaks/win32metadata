@@ -9,8 +9,13 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
+
 #endif
 
 /* verify that the <rpcsal.h> version is high enough to compile this file*/
@@ -308,6 +313,7 @@ EXTERN_C const IID IID_IWICMetadataBlockReader;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("FEAA2A8D-B3F3-43E4-B25C-D1DE990A1AE1")
     IWICMetadataBlockReader : public IUnknown
     {
@@ -438,6 +444,7 @@ EXTERN_C const IID IID_IWICMetadataBlockWriter;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("08FB9676-B444-41E8-8DBE-6A53A542BFF1")
     IWICMetadataBlockWriter : public IWICMetadataBlockReader
     {
@@ -624,6 +631,7 @@ EXTERN_C const IID IID_IWICMetadataReader;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("9204FE99-D8FC-4FD5-A001-9536B067A899")
     IWICMetadataReader : public IUnknown
     {
@@ -796,6 +804,7 @@ EXTERN_C const IID IID_IWICMetadataWriter;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("F7836E16-3BE0-470B-86BB-160D0AECD7DE")
     IWICMetadataWriter : public IWICMetadataReader
     {
@@ -1011,6 +1020,7 @@ EXTERN_C const IID IID_IWICStreamProvider;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("449494BC-B468-4927-96D7-BA90D31AB505")
     IWICStreamProvider : public IUnknown
     {
@@ -1133,6 +1143,7 @@ EXTERN_C const IID IID_IWICPersistStream;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("00675040-6908-45F8-86A3-49C7DFD6D9AD")
     IWICPersistStream : public IPersistStream
     {
@@ -1296,6 +1307,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("ABA958BF-C672-44D1-8D61-CE6DF2E682C2")
     IWICMetadataHandlerInfo : public IWICComponentInfo
     {
@@ -1591,6 +1603,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("EEBF1F5B-07C1-4447-A3AB-22ACAF78A804")
     IWICMetadataReaderInfo : public IWICMetadataHandlerInfo
     {
@@ -1926,6 +1939,7 @@ EXTERN_C const IID IID_IWICMetadataWriterInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("B22E3FBA-3925-4323-B5C1-9EBFC430F236")
     IWICMetadataWriterInfo : public IWICMetadataHandlerInfo
     {
@@ -2218,6 +2232,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("412D0C3A-9650-44FA-AF5B-DD2A06C8E8FB")
     IWICComponentFactory : public IWICImagingFactory
     {
@@ -2757,18 +2772,21 @@ EXTERN_C const IID IID_IWICComponentFactory;
 /* interface __MIDL_itf_wincodecsdk_0000_0010 */
 /* [local] */ 
 
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT WINAPI WICMatchMetadataContent(
     _In_ REFGUID guidContainerFormat,
     _In_opt_  const GUID *pguidVendor,
     _In_  IStream *pIStream,
     _Out_ GUID *pguidMetadataFormat
     );
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT WINAPI WICSerializeMetadataContent(
     _In_ REFGUID guidContainerFormat,
     _In_ IWICMetadataWriter *pIWriter,
     _In_ DWORD dwPersistOptions,
     _In_ IStream *pIStream
     );
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT WINAPI WICGetMetadataContentSize(
     _In_ REFGUID guidContainerFormat,
     _In_ IWICMetadataWriter *pIWriter,

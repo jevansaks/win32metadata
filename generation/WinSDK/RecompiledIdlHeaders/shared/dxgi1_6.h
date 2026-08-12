@@ -9,8 +9,13 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
+
 #endif
 
 /* verify that the <rpcsal.h> version is high enough to compile this file*/
@@ -90,6 +95,7 @@ extern "C"{
 #include <winapifamily.h>
 #pragma region App Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
+_Win32_metadata_supported_os_(windows10.0.17134)
 HRESULT WINAPI DXGIDeclareAdapterRemovalSupport();
 typedef 
 enum DXGI_ADAPTER_FLAG3
@@ -427,6 +433,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("068346e8-aaec-4b84-add7-137f513f77a1")
     IDXGIOutput6 : public IDXGIOutput5
     {
@@ -812,6 +819,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.17134)
     MIDL_INTERFACE("c1b6694f-ff09-44a9-b03c-77900a0a1d17")
     IDXGIFactory6 : public IDXGIFactory5
     {
@@ -1214,6 +1222,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.17763)
     MIDL_INTERFACE("a4966eed-76db-44da-84c1-ee9a7afb20a8")
     IDXGIFactory7 : public IDXGIFactory6
     {

@@ -1,0 +1,47 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h b/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h
+index 2b5e1914..3247ceec 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h
+@@ -7,6 +7,10 @@
+  *
+  ****************************************************************************/
+ 
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef _D3D9_H_
+ #define _D3D9_H_
+ 
+@@ -2625,6 +2629,7 @@ typedef struct IDirect3DSwapChain9Ex *LPDIRECT3DSWAPCHAIN9EX, *PDIRECT3DSWAPCHAI
+ #undef INTERFACE
+ #define INTERFACE IDirect3D9ExOverlayExtension
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DECLARE_INTERFACE_(IDirect3D9ExOverlayExtension, IUnknown)
+ {
+     /*** IUnknown methods ***/
+@@ -2655,6 +2660,7 @@ typedef struct IDirect3D9ExOverlayExtension *LPDIRECT3D9EXOVERLAYEXTENSION, *PDI
+ #undef INTERFACE
+ #define INTERFACE IDirect3DDevice9Video
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DECLARE_INTERFACE_(IDirect3DDevice9Video, IUnknown)
+ {
+     /*** IUnknown methods ***/
+@@ -2692,6 +2698,7 @@ typedef struct IDirect3DDevice9Video *LPDIRECT3DDEVICE9VIDEO, *PDIRECT3DDEVICE9V
+ #undef INTERFACE
+ #define INTERFACE IDirect3DAuthenticatedChannel9
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DECLARE_INTERFACE_(IDirect3DAuthenticatedChannel9, IUnknown)
+ {
+     /*** IUnknown methods ***/
+@@ -2734,6 +2741,7 @@ typedef struct IDirect3DAuthenticatedChannel9 *LPDIRECT3DAUTHENTICATEDCHANNEL9,
+ #undef INTERFACE
+ #define INTERFACE IDirect3DCryptoSession9
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DECLARE_INTERFACE_(IDirect3DCryptoSession9, IUnknown)
+ {
+     /*** IUnknown methods ***/

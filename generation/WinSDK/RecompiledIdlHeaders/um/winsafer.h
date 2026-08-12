@@ -18,6 +18,9 @@ Abstract:
 #define _WINSAFER_H
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -619,6 +622,7 @@ typedef struct _SAFER_URLZONE_IDENTIFICATION
 // enumeration operations.
 //
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL WINAPI
 SaferGetPolicyInformation(
@@ -630,6 +634,7 @@ SaferGetPolicyInformation(
     _Reserved_ LPVOID            lpReserved
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL WINAPI
 SaferSetPolicyInformation(
@@ -644,6 +649,7 @@ SaferSetPolicyInformation(
 // Functions to open or close a handle to a Safer Level.
 //
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL WINAPI
 SaferCreateLevel(
@@ -654,12 +660,14 @@ SaferCreateLevel(
     _Reserved_ LPVOID               lpReserved
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL WINAPI
 SaferCloseLevel(
     _In_ SAFER_LEVEL_HANDLE hLevelHandle
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL WINAPI
 SaferIdentifyLevel(
@@ -669,6 +677,7 @@ SaferIdentifyLevel(
     _In_opt_ LPVOID         lpReserved
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL WINAPI
 SaferComputeTokenFromLevel(
@@ -679,6 +688,7 @@ SaferComputeTokenFromLevel(
     _Inout_opt_ LPVOID      lpReserved
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL WINAPI
 SaferGetLevelInformation(
@@ -689,6 +699,7 @@ SaferGetLevelInformation(
         _Out_ LPDWORD                           lpdwOutBufferSize
         );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL WINAPI
 SaferSetLevelInformation(
@@ -704,6 +715,7 @@ SaferSetLevelInformation(
 // ShellExecute and cmd when a lower trust evaluation result occurs.
 //
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL WINAPI
 SaferRecordEventLogEntry(

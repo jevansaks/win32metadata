@@ -50,6 +50,9 @@ Environments :
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -640,7 +643,9 @@ WINLDAPAPI LDAP * LDAPAPI ldap_sslinit( _In_ PSTR HostName, ULONG PortNumber, in
 //  multi-thread: cldap_open* calls are safe.
 //
 
+_Win32_metadata_set_last_error_
 WINLDAPAPI LDAP * LDAPAPI cldap_openW( _In_ PWSTR HostName, ULONG PortNumber );
+_Win32_metadata_set_last_error_
 WINLDAPAPI LDAP * LDAPAPI cldap_openA( _In_ PSTR HostName, ULONG PortNumber );
 
 
@@ -650,6 +655,7 @@ WINLDAPAPI LDAP * LDAPAPI cldap_openA( _In_ PSTR HostName, ULONG PortNumber );
 
 #else
 
+_Win32_metadata_set_last_error_
 WINLDAPAPI LDAP * LDAPAPI cldap_open( _In_ PSTR HostName, ULONG PortNumber );
 
 #endif
@@ -2505,6 +2511,7 @@ WINLDAPAPI VOID LDAPAPI ldap_set_dbg_routine( DBGPRINT DebugPrintRoutine );
 //
 
 
+_Win32_metadata_set_last_error_
 WINLDAPAPI int LDAPAPI
 LdapUTF8ToUnicode(
     _In_reads_(cchSrc) LPCSTR lpSrcStr,
@@ -2513,6 +2520,7 @@ LdapUTF8ToUnicode(
     int cchDest
     );
 
+_Win32_metadata_set_last_error_
 WINLDAPAPI
 int LDAPAPI
 LdapUnicodeToUTF8(
@@ -2756,6 +2764,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_page_control (
 #define LDAP_PAGED_RESULT_OID_STRING "1.2.840.113556.1.4.319"
 #define LDAP_PAGED_RESULT_OID_STRING_W L"1.2.840.113556.1.4.319"
 
+_Win32_metadata_set_last_error_
 WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_pageW(
         PLDAP           ExternalHandle,
         _In_ const PWSTR    DistinguishedName,
@@ -2770,6 +2779,7 @@ WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_pageW(
         PLDAPSortKeyW  *SortKeys
     );
 
+_Win32_metadata_set_last_error_
 WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_pageA(
         PLDAP           ExternalHandle,
         _In_ const PSTR     DistinguishedName,
@@ -2790,6 +2800,7 @@ WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_pageA(
 
 #else
 
+_Win32_metadata_set_last_error_
 WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_page(
         PLDAP           ExternalHandle,
         const PSTR      DistinguishedName,
@@ -3214,9 +3225,9 @@ typedef ULONG (_cdecl DEREFERENCECONNECTION)(
 typedef struct LdapReferralCallback {
 
     ULONG   SizeOfCallbacks;        // set to sizeof( LDAP_REFERRAL_CALLBACK )
-    QUERYFORCONNECTION *QueryForConnection;
-    NOTIFYOFNEWCONNECTION *NotifyRoutine;
-    DEREFERENCECONNECTION *DereferenceRoutine;
+    QUERYFORCONNECTION *QueryForConnection _Win32_metadata_reduce_pointer_level_;
+    NOTIFYOFNEWCONNECTION *NotifyRoutine _Win32_metadata_reduce_pointer_level_;
+    DEREFERENCECONNECTION *DereferenceRoutine _Win32_metadata_reduce_pointer_level_;
 
 } LDAP_REFERRAL_CALLBACK, *PLDAP_REFERRAL_CALLBACK;
 

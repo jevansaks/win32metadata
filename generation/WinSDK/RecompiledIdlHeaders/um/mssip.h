@@ -277,7 +277,7 @@ typedef struct SIP_INDIRECT_DATA_
 //
 extern BOOL WINAPI CryptSIPGetSignedDataMsg(
                                 IN      SIP_SUBJECTINFO *pSubjectInfo,
-                                OUT     DWORD           *pdwEncodingType,
+                                OUT     CERT_QUERY_ENCODING_TYPE           *pdwEncodingType,
                                 IN      DWORD           dwIndex,
                                 IN OUT  DWORD           *pcbSignedDataMsg,
                                 OUT     BYTE            *pbSignedDataMsg);
@@ -323,7 +323,7 @@ typedef BOOL (WINAPI * pCryptSIPGetSignedDataMsg)(
 //
 extern BOOL WINAPI CryptSIPPutSignedDataMsg(
                                 IN      SIP_SUBJECTINFO *pSubjectInfo,
-                                IN      DWORD           dwEncodingType,
+                                IN      CERT_QUERY_ENCODING_TYPE           dwEncodingType,
                                 OUT     DWORD           *pdwIndex,
                                 IN      DWORD           cbSignedDataMsg,
                                 IN      BYTE            *pbSignedDataMsg);

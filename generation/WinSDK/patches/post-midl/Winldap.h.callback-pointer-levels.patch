@@ -1,0 +1,27 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winldap.h b/generation/WinSDK/RecompiledIdlHeaders/um/Winldap.h
+index 637626b5..92a922ed 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Winldap.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Winldap.h
+@@ -50,6 +50,9 @@ Environments :
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -3214,9 +3217,9 @@ typedef ULONG (_cdecl DEREFERENCECONNECTION)(
+ typedef struct LdapReferralCallback {
+ 
+     ULONG   SizeOfCallbacks;        // set to sizeof( LDAP_REFERRAL_CALLBACK )
+-    QUERYFORCONNECTION *QueryForConnection;
+-    NOTIFYOFNEWCONNECTION *NotifyRoutine;
+-    DEREFERENCECONNECTION *DereferenceRoutine;
++    QUERYFORCONNECTION *QueryForConnection _Win32_metadata_reduce_pointer_level_;
++    NOTIFYOFNEWCONNECTION *NotifyRoutine _Win32_metadata_reduce_pointer_level_;
++    DEREFERENCECONNECTION *DereferenceRoutine _Win32_metadata_reduce_pointer_level_;
+ 
+ } LDAP_REFERRAL_CALLBACK, *PLDAP_REFERRAL_CALLBACK;
+ 

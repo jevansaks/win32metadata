@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RtmV2.h b/generation/WinSDK/RecompiledIdlHeaders/um/RtmV2.h
+index ee4c143d..654cc585 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/RtmV2.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/RtmV2.h
+@@ -21,6 +21,9 @@ Revision History:
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -513,6 +516,7 @@ RTM_EVENT_TYPE, *PRTM_EVENT_TYPE;
+ // new entities registering,
+ // or entities deregistering
+ //
++_Win32_metadata_canonical_name_(RTM_EVENT_CALLBACK)
+ typedef
+ DWORD
+ (WINAPI * _EVENT_CALLBACK) (
+@@ -572,6 +576,7 @@ RTM_ENTITY_METHOD_OUTPUT, *PRTM_ENTITY_METHOD_OUTPUT;
+ //
+ // Common prototype for entity methods
+ //
++_Win32_metadata_canonical_name_(RTM_ENTITY_EXPORT_METHOD)
+ typedef
+ VOID
+ (WINAPI * _ENTITY_METHOD) (

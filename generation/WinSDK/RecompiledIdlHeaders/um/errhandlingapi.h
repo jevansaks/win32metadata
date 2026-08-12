@@ -16,6 +16,9 @@
 #include <apiset.h>
 #include <apisetcconv.h>
 #include <minwindef.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,6 +31,7 @@ extern "C" {
 // Typedefs
 //
 
+_Win32_metadata_canonical_name_(LPTOP_LEVEL_EXCEPTION_FILTER)
 typedef LONG (WINAPI *PTOP_LEVEL_EXCEPTION_FILTER)(
     _In_ struct _EXCEPTION_POINTERS *ExceptionInfo
     );
@@ -88,6 +92,7 @@ GetLastError(
 
 #endif
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 VOID
 WINAPI
@@ -237,6 +242,7 @@ GetThreadErrorMode(
     VOID
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI

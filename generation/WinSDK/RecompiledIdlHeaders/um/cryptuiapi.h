@@ -909,7 +909,7 @@ typedef struct _CRYPTUI_WIZ_IMPORT_SUBJECT_INFO
         HCERTSTORE          hCertStore;
     };
 
-    DWORD                   dwFlags;            //Required if pwszFileName contains a PFX BLOB.
+    CRYPT_KEY_FLAGS                   dwFlags;            //Required if pwszFileName contains a PFX BLOB.
                                                 //Ignored otherwise
                                                 //This is the same flag for PFXImportCertStore
     LPCWSTR                 pwszPassword;       //Required if pwszFileName contains a PFX BLOB.

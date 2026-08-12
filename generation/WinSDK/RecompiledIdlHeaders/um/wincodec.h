@@ -9,8 +9,13 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
+
 #endif
 
 /* verify that the <rpcsal.h> version is high enough to compile this file*/
@@ -1234,6 +1239,7 @@ EXTERN_C const IID IID_IWICPalette;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("00000040-a8f2-4877-ba0a-fd2b6645fb94")
     IWICPalette : public IUnknown
     {
@@ -1462,6 +1468,7 @@ EXTERN_C const IID IID_IWICBitmapSource;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("00000120-a8f2-4877-ba0a-fd2b6645fb94")
     IWICBitmapSource : public IUnknown
     {
@@ -1621,6 +1628,7 @@ EXTERN_C const IID IID_IWICFormatConverter;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("00000301-a8f2-4877-ba0a-fd2b6645fb94")
     IWICFormatConverter : public IWICBitmapSource
     {
@@ -1805,6 +1813,7 @@ EXTERN_C const IID IID_IWICPlanarFormatConverter;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.1)
     MIDL_INTERFACE("BEBEE9CB-83B0-4DCC-8132-B0AAA55EAC96")
     IWICPlanarFormatConverter : public IWICBitmapSource
     {
@@ -1993,6 +2002,7 @@ EXTERN_C const IID IID_IWICBitmapScaler;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("00000302-a8f2-4877-ba0a-fd2b6645fb94")
     IWICBitmapScaler : public IWICBitmapSource
     {
@@ -2148,6 +2158,7 @@ EXTERN_C const IID IID_IWICBitmapClipper;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("E4FBCF03-223D-4e81-9333-D635556DD1B5")
     IWICBitmapClipper : public IWICBitmapSource
     {
@@ -2295,6 +2306,7 @@ EXTERN_C const IID IID_IWICBitmapFlipRotator;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("5009834F-2D6A-41ce-9E1B-17C5AFF7A782")
     IWICBitmapFlipRotator : public IWICBitmapSource
     {
@@ -2622,6 +2634,7 @@ EXTERN_C const IID IID_IWICBitmapLock;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("00000123-a8f2-4877-ba0a-fd2b6645fb94")
     IWICBitmapLock : public IUnknown
     {
@@ -2756,6 +2769,7 @@ EXTERN_C const IID IID_IWICBitmap;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("00000121-a8f2-4877-ba0a-fd2b6645fb94")
     IWICBitmap : public IWICBitmapSource
     {
@@ -2937,6 +2951,7 @@ EXTERN_C const IID IID_IWICColorContext;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("3C613A02-34B2-44ea-9A7C-45AEA9C6FD6D")
     IWICColorContext : public IUnknown
     {
@@ -3101,6 +3116,7 @@ EXTERN_C const IID IID_IWICColorTransform;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("B66F034F-D0E2-40ab-B436-6DE39E321A94")
     IWICColorTransform : public IWICBitmapSource
     {
@@ -3256,6 +3272,7 @@ EXTERN_C const IID IID_IWICFastMetadataEncoder;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("B84E2C09-78C9-4AC4-8BD3-524AE1663A2F")
     IWICFastMetadataEncoder : public IUnknown
     {
@@ -3352,6 +3369,7 @@ EXTERN_C const IID IID_IWICStream;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("135FF860-22B7-4ddf-B0F6-218F4F299A43")
     IWICStream : public IStream
     {
@@ -3621,6 +3639,7 @@ EXTERN_C const IID IID_IWICEnumMetadataItem;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("DC2BB46D-3F07-481E-8625-220C4AEDBB33")
     IWICEnumMetadataItem : public IUnknown
     {
@@ -3755,6 +3774,7 @@ EXTERN_C const IID IID_IWICMetadataQueryReader;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("30989668-E1C9-4597-B395-458EEDB808DF")
     IWICMetadataQueryReader : public IUnknown
     {
@@ -3893,6 +3913,7 @@ EXTERN_C const IID IID_IWICMetadataQueryWriter;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("A721791A-0DEF-4d06-BD91-2118BF1DB10B")
     IWICMetadataQueryWriter : public IWICMetadataQueryReader
     {
@@ -4252,6 +4273,7 @@ EXTERN_C const IID IID_IWICBitmapFrameEncode;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("00000105-a8f2-4877-ba0a-fd2b6645fb94")
     IWICBitmapFrameEncode : public IUnknown
     {
@@ -4493,6 +4515,7 @@ EXTERN_C const IID IID_IWICPlanarBitmapFrameEncode;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.1)
     MIDL_INTERFACE("F928B7B8-2221-40C1-B72E-7E82F1974D1A")
     IWICPlanarBitmapFrameEncode : public IUnknown
     {
@@ -4612,6 +4635,7 @@ EXTERN_C const IID IID_IWICImageEncoder;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("04C75BF8-3CE1-473B-ACC5-3CC4F5E94999")
     IWICImageEncoder : public IUnknown
     {
@@ -4758,6 +4782,7 @@ EXTERN_C const IID IID_IWICBitmapDecoder;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("9EDDE9E7-8DEE-47ea-99DF-E6FAF2ED44BF")
     IWICBitmapDecoder : public IUnknown
     {
@@ -4995,6 +5020,7 @@ EXTERN_C const IID IID_IWICBitmapSourceTransform;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("3B16811B-6A43-4ec9-B713-3D5A0C13B940")
     IWICBitmapSourceTransform : public IUnknown
     {
@@ -5311,6 +5337,7 @@ EXTERN_C const IID IID_IWICPlanarBitmapSourceTransform;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.1)
     MIDL_INTERFACE("3AFF9CCE-BE95-4303-B927-E7D16FF4A613")
     IWICPlanarBitmapSourceTransform : public IUnknown
     {
@@ -5447,6 +5474,7 @@ EXTERN_C const IID IID_IWICBitmapFrameDecode;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("3B16811B-6A43-4ec9-A813-3D930C13B940")
     IWICBitmapFrameDecode : public IWICBitmapSource
     {
@@ -5848,6 +5876,7 @@ EXTERN_C const IID IID_IWICProgressiveLevelControl;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.1)
     MIDL_INTERFACE("DAAC296F-7AA5-4dbf-8D15-225C5976F891")
     IWICProgressiveLevelControl : public IUnknown
     {
@@ -6413,6 +6442,7 @@ EXTERN_C const IID IID_IWICProgressCallback;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.1)
     MIDL_INTERFACE("4776F9CD-9517-45FA-BF24-E89C5EC5C60C")
     IWICProgressCallback : public IUnknown
     {
@@ -6514,6 +6544,7 @@ EXTERN_C const IID IID_IWICBitmapCodecProgressNotification;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("64C1024E-C3CF-4462-8078-88C2B11C46D9")
     IWICBitmapCodecProgressNotification : public IUnknown
     {
@@ -6624,6 +6655,7 @@ EXTERN_C const IID IID_IWICComponentInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("23BC3F0A-698B-4357-886B-F24D50671334")
     IWICComponentInfo : public IUnknown
     {
@@ -6834,6 +6866,7 @@ EXTERN_C const IID IID_IWICFormatConverterInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("9F34FB65-13F4-4f15-BC57-3726B5E53D9F")
     IWICFormatConverterInfo : public IWICComponentInfo
     {
@@ -7031,6 +7064,7 @@ EXTERN_C const IID IID_IWICBitmapCodecInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("E87A44C4-B76E-4c47-8B09-298EB12A2714")
     IWICBitmapCodecInfo : public IWICComponentInfo
     {
@@ -7402,6 +7436,7 @@ EXTERN_C const IID IID_IWICBitmapEncoderInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("94C9B4EE-A09F-4f92-8A1E-4A9BCE7E76FB")
     IWICBitmapEncoderInfo : public IWICBitmapCodecInfo
     {
@@ -7713,6 +7748,7 @@ EXTERN_C const IID IID_IWICBitmapDecoderInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("D8CD007F-D08F-4191-9BFC-236EA7F0E4B5")
     IWICBitmapDecoderInfo : public IWICBitmapCodecInfo
     {
@@ -8081,6 +8117,7 @@ EXTERN_C const IID IID_IWICPixelFormatInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("E8EDA601-3D48-431a-AB44-69059BE88BBE")
     IWICPixelFormatInfo : public IWICComponentInfo
     {
@@ -8321,6 +8358,7 @@ EXTERN_C const IID IID_IWICPixelFormatInfo2;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.1)
     MIDL_INTERFACE("A9DB33A2-AF5F-43C7-B679-74F5984B5AA4")
     IWICPixelFormatInfo2 : public IWICPixelFormatInfo
     {
@@ -8562,6 +8600,7 @@ EXTERN_C const IID IID_IWICImagingFactory;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("ec5ec8a9-c395-4314-9c77-54d7a935ff70")
     IWICImagingFactory : public IUnknown
     {
@@ -9146,6 +9185,7 @@ EXTERN_C const IID IID_IWICImagingFactory2;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("7B816B45-1996-4476-B132-DE9E247C8AF0")
     IWICImagingFactory2 : public IWICImagingFactory
     {
@@ -9957,11 +9997,13 @@ EXTERN_C const IID IID_IWICImagingFactory3;
 /* [local] */ 
 
 #endif
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT WINAPI WICConvertBitmapSource(
      _In_ REFWICPixelFormatGUID dstFormat, // Destination pixel format
      _In_ IWICBitmapSource  *pISrc,    // Source bitmap
      _Outptr_ IWICBitmapSource **ppIDst   // Destination bitmap, a copy or addrefed source
      );
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT WINAPI WICCreateBitmapFromSection(
      _In_ UINT width,
      _In_ UINT height,
@@ -9971,6 +10013,7 @@ HRESULT WINAPI WICCreateBitmapFromSection(
      _In_ UINT offset,
      _Outptr_ IWICBitmap **ppIBitmap
      );
+_Win32_metadata_supported_os_(windows6.1)
 HRESULT WINAPI WICCreateBitmapFromSectionEx(
      _In_ UINT width,
      _In_ UINT height,
@@ -9981,16 +10024,19 @@ HRESULT WINAPI WICCreateBitmapFromSectionEx(
      _In_ WICSectionAccessLevel desiredAccessLevel,
      _Outptr_ IWICBitmap **ppIBitmap
      );
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT WINAPI WICMapGuidToShortName(
     _In_ REFGUID guid,
     _In_ UINT cchName,
     _Inout_updates_opt_(cchName) WCHAR *wzName,
     _Out_ UINT *pcchActual
    );
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT WINAPI WICMapShortNameToGuid(
     _In_ PCWSTR wzName,
     _Out_ GUID *pguid
    );
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT WINAPI WICMapSchemaToName(
     _In_ REFGUID guidMetadataFormat,
     _In_ LPWSTR pwzSchema,
@@ -10178,6 +10224,7 @@ EXTERN_C const IID IID_IWICDevelopRawNotificationCallback;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("95c75a6e-3e8c-4ec2-85a8-aebcc551e59b")
     IWICDevelopRawNotificationCallback : public IUnknown
     {
@@ -10265,6 +10312,7 @@ EXTERN_C const IID IID_IWICDevelopRaw;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("fbec5e44-f7be-4b65-b7f8-c0c81fef026d")
     IWICDevelopRaw : public IWICBitmapFrameDecode
     {
@@ -10963,6 +11011,7 @@ EXTERN_C const IID IID_IWICDdsDecoder;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.1)
     MIDL_INTERFACE("409cd537-8532-40cb-9774-e2feb2df4e9c")
     IWICDdsDecoder : public IUnknown
     {
@@ -11075,6 +11124,7 @@ EXTERN_C const IID IID_IWICDdsEncoder;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.1)
     MIDL_INTERFACE("5cacdb4c-407e-41b3-b936-d0f010cd6732")
     IWICDdsEncoder : public IUnknown
     {
@@ -11210,6 +11260,7 @@ EXTERN_C const IID IID_IWICDdsFrameDecode;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.1)
     MIDL_INTERFACE("3d4c0c61-18a4-41e4-bd80-481a4fc9f464")
     IWICDdsFrameDecode : public IUnknown
     {
@@ -11339,6 +11390,7 @@ EXTERN_C const IID IID_IWICJpegFrameDecode;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("8939F66E-C46A-4c21-A9D1-98B327CE1679")
     IWICJpegFrameDecode : public IUnknown
     {
@@ -11575,6 +11627,7 @@ EXTERN_C const IID IID_IWICJpegFrameEncode;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("2F0C601F-D2C6-468C-ABFA-49495D983ED1")
     IWICJpegFrameEncode : public IUnknown
     {

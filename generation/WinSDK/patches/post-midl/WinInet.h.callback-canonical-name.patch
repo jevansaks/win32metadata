@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinInet.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinInet.h
+index 1b1f8e2d..2c8cbbac 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinInet.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinInet.h
+@@ -15,6 +15,9 @@ Abstract:
+ --*/
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Application Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
+@@ -1410,6 +1413,7 @@ InternetGetLastResponseInfoW(
+ // callback function for InternetSetStatusCallback
+ //
+ 
++_Win32_metadata_canonical_name_(LPINTERNET_STATUS_CALLBACK)
+ typedef
+ VOID
+ (CALLBACK * INTERNET_STATUS_CALLBACK)(

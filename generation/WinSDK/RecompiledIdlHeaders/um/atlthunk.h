@@ -16,6 +16,10 @@ Author:
 
 #pragma once
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -27,12 +31,14 @@ struct AtlThunkData_t; // opaque
 typedef struct AtlThunkData_t AtlThunkData_t;
 #endif
 
+_Win32_metadata_import_library_("Atlthunk.dll")
 AtlThunkData_t*
 __stdcall
 AtlThunk_AllocateData(
     void
     );
 
+_Win32_metadata_import_library_("Atlthunk.dll")
 void
 __stdcall
 AtlThunk_InitData(
@@ -41,12 +47,14 @@ AtlThunk_InitData(
     size_t FirstParameter
     );
 
+_Win32_metadata_import_library_("Atlthunk.dll")
 WNDPROC
 __stdcall
 AtlThunk_DataToCode(
     AtlThunkData_t*
     );
 
+_Win32_metadata_import_library_("Atlthunk.dll")
 void
 __stdcall
 AtlThunk_FreeData(

@@ -373,7 +373,7 @@ Msv1_0SubAuthenticationFilter(
     IN ULONG Flags,
     IN PUSER_ALL_INFORMATION UserAll,
     OUT PULONG WhichFields,
-    OUT PULONG UserFlags,
+    OUT MSV_SUB_AUTHENTICATION_FILTER * UserFlags,
     OUT PBOOLEAN Authoritative,
     OUT PLARGE_INTEGER LogoffTime,
     OUT PLARGE_INTEGER KickoffTime

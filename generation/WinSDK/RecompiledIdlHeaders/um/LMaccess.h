@@ -23,6 +23,9 @@ Notes:
 --*/
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -143,6 +146,7 @@ NetUserModalsSet (
     _Out_opt_ LPDWORD   parm_err OPTIONAL
     );
 
+_Win32_metadata_set_last_error_
 NET_API_STATUS NET_API_FUNCTION
 NetUserChangePassword (
     _In_opt_ IN  LPCWSTR   domainname OPTIONAL,

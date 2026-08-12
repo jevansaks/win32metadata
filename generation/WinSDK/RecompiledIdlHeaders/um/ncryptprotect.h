@@ -502,7 +502,7 @@ SECURITY_STATUS
 WINAPI
 NCryptUnprotectSecret(
     _Out_opt_       NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor,
-     _In_            DWORD                               dwFlags,
+     _In_            NCRYPT_FLAGS                               dwFlags,
     _In_reads_bytes_(cbProtectedBlob)
                     const BYTE                          *pbProtectedBlob,
                     ULONG                               cbProtectedBlob,

@@ -19,6 +19,9 @@ Abstract:
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -74,6 +77,7 @@ typedef PVOID LPSNMP_MGR_SESSION;
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
 
+_Win32_metadata_set_last_error_
 LPSNMP_MGR_SESSION
 SNMP_FUNC_TYPE
 SnmpMgrOpen(
@@ -83,6 +87,7 @@ SnmpMgrOpen(
     IN INT   nRetries                       // Comm time-out/retry count
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 SNMP_FUNC_TYPE
 SnmpMgrCtl(
@@ -101,6 +106,7 @@ SnmpMgrClose(
     IN LPSNMP_MGR_SESSION session           // SNMP session pointer
     );
 
+_Win32_metadata_set_last_error_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpMgrRequest(
@@ -125,6 +131,7 @@ SnmpMgrOidToStr(
     _Outptr_opt_ LPSTR   *string         // OID string representation
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 SNMP_FUNC_TYPE
 SnmpMgrTrapListen(

@@ -9,8 +9,13 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
+
 #endif
 
 /* verify that the <rpcsal.h> version is high enough to compile this file*/
@@ -308,6 +313,7 @@ EXTERN_C const IID IID_ID3D11On12Device1;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.18362)
     MIDL_INTERFACE("bdb64df4-ea2f-4c70-b861-aaab1258bb5d")
     ID3D11On12Device1 : public ID3D11On12Device
     {
@@ -435,6 +441,7 @@ EXTERN_C const IID IID_ID3D11On12Device2;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.19041)
     MIDL_INTERFACE("dc90f331-4740-43fa-866e-67f12cb58223")
     ID3D11On12Device2 : public ID3D11On12Device1
     {

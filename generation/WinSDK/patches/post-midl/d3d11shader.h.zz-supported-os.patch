@@ -1,0 +1,47 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d3d11shader.h b/generation/WinSDK/RecompiledIdlHeaders/um/d3d11shader.h
+index 08885018..d49dfab1 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/d3d11shader.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/d3d11shader.h
+@@ -7,6 +7,10 @@
+ //
+ //////////////////////////////////////////////////////////////////////////////
+ 
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef __D3D11SHADER_H__
+ #define __D3D11SHADER_H__
+ 
+@@ -266,6 +270,7 @@ DEFINE_GUID(IID_ID3D11ShaderReflectionType,
+ #undef INTERFACE
+ #define INTERFACE ID3D11ShaderReflectionType
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DECLARE_INTERFACE(ID3D11ShaderReflectionType)
+ {
+     STDMETHOD(GetDesc)(THIS_ _Out_ D3D11_SHADER_TYPE_DESC *pDesc) PURE;
+@@ -291,6 +296,7 @@ DEFINE_GUID(IID_ID3D11ShaderReflectionVariable,
+ #undef INTERFACE
+ #define INTERFACE ID3D11ShaderReflectionVariable
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DECLARE_INTERFACE(ID3D11ShaderReflectionVariable)
+ {
+     STDMETHOD(GetDesc)(THIS_ _Out_ D3D11_SHADER_VARIABLE_DESC *pDesc) PURE;
+@@ -309,6 +315,7 @@ DEFINE_GUID(IID_ID3D11ShaderReflectionConstantBuffer,
+ #undef INTERFACE
+ #define INTERFACE ID3D11ShaderReflectionConstantBuffer
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DECLARE_INTERFACE(ID3D11ShaderReflectionConstantBuffer)
+ {
+     STDMETHOD(GetDesc)(THIS_ D3D11_SHADER_BUFFER_DESC *pDesc) PURE;
+@@ -330,6 +337,7 @@ DEFINE_GUID(IID_ID3D11ShaderReflection,
+ #undef INTERFACE
+ #define INTERFACE ID3D11ShaderReflection
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DECLARE_INTERFACE_(ID3D11ShaderReflection, IUnknown)
+ {
+     STDMETHOD(QueryInterface)(THIS_ _In_ REFIID iid,

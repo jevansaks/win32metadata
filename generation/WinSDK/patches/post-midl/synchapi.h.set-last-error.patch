@@ -1,0 +1,318 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h
+index e7866bfd..94941a70 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h
+@@ -18,6 +18,9 @@
+ #include <minwindef.h>
+ #include <minwinbase.h>
+ 
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -133,6 +136,7 @@ LeaveCriticalSection(
+     _Inout_ LPCRITICAL_SECTION lpCriticalSection
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Must_inspect_result_
+ BOOL
+@@ -144,6 +148,7 @@ InitializeCriticalSectionAndSpinCount(
+ 
+ #if (_WIN32_WINNT >= 0x0600)
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -223,6 +228,7 @@ InitOnceInitialize(
+     _Out_ PINIT_ONCE InitOnce
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -233,6 +239,7 @@ InitOnceExecuteOnce(
+     _Outptr_opt_result_maybenull_ LPVOID* Context
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -243,6 +250,7 @@ InitOnceBeginInitialize(
+     _Outptr_opt_result_maybenull_ LPVOID* lpContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -295,6 +303,7 @@ WakeAllConditionVariable(
+     _Inout_ PCONDITION_VARIABLE ConditionVariable
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -304,6 +313,7 @@ SleepConditionVariableCS(
+     _In_ DWORD dwMilliseconds
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -316,6 +326,7 @@ SleepConditionVariableSRW(
+ 
+ #endif // (_WIN32_WINNT >= 0x0600)
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -323,6 +334,7 @@ SetEvent(
+     _In_ HANDLE hEvent
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -330,6 +342,7 @@ ResetEvent(
+     _In_ HANDLE hEvent
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -339,6 +352,7 @@ ReleaseSemaphore(
+     _Out_opt_ LPLONG lpPreviousCount
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -346,6 +360,7 @@ ReleaseMutex(
+     _In_ HANDLE hMutex
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -362,6 +377,7 @@ SleepEx(
+     _In_ BOOL bAlertable
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -371,6 +387,7 @@ WaitForSingleObjectEx(
+     _In_ BOOL bAlertable
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -389,6 +406,7 @@ WaitForMultipleObjectsEx(
+ #define MUTEX_MODIFY_STATE  MUTANT_QUERY_STATE
+ #define MUTEX_ALL_ACCESS    MUTANT_ALL_ACCESS
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -399,6 +417,7 @@ CreateMutexA(
+     _In_opt_ LPCSTR lpName
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -415,6 +434,7 @@ CreateMutexW(
+ #define CreateMutex  CreateMutexA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -429,6 +449,7 @@ OpenMutexW(
+ #define OpenMutex  OpenMutexW
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -440,6 +461,7 @@ CreateEventA(
+     _In_opt_ LPCSTR lpName
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -457,6 +479,7 @@ CreateEventW(
+ #define CreateEvent  CreateEventA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -467,6 +490,7 @@ OpenEventA(
+     _In_ LPCSTR lpName
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -483,6 +507,7 @@ OpenEventW(
+ #define OpenEvent  OpenEventA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -507,6 +532,7 @@ VOID
+     _In_     DWORD dwTimerHighValue
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -523,6 +549,7 @@ OpenWaitableTimerW(
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WIN7)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ SetWaitableTimerEx(
+@@ -537,6 +564,7 @@ SetWaitableTimerEx(
+ 
+ #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN7)
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -549,6 +577,7 @@ SetWaitableTimer(
+     _In_ BOOL fResume
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -560,6 +589,7 @@ CancelWaitableTimer(
+ 
+ #define CREATE_MUTEX_INITIAL_OWNER  0x00000001
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -571,6 +601,7 @@ CreateMutexExA(
+     _In_ DWORD dwDesiredAccess
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -591,6 +622,7 @@ CreateMutexExW(
+ #define CREATE_EVENT_MANUAL_RESET   0x00000001
+ #define CREATE_EVENT_INITIAL_SET    0x00000002
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -602,6 +634,7 @@ CreateEventExA(
+     _In_ DWORD dwDesiredAccess
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -619,6 +652,7 @@ CreateEventExW(
+ #define CreateEventEx  CreateEventExA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -641,6 +675,7 @@ CreateSemaphoreExW(
+ #define CREATE_WAITABLE_TIMER_HIGH_RESOLUTION 0x00000002
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -675,6 +710,7 @@ EnterSynchronizationBarrier(
+     _In_ DWORD dwFlags
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ InitializeSynchronizationBarrier(
+@@ -696,6 +732,7 @@ Sleep(
+     _In_ DWORD dwMilliseconds
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ WaitOnAddress(
+@@ -725,6 +762,7 @@ WakeByAddressAll(
+ 
+ #ifndef MIDL_PASS
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -743,6 +781,7 @@ SignalObjectAndWait(
+ #pragma region Application or OneCore Family or Games Partition
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -753,6 +792,7 @@ WaitForMultipleObjects(
+     _In_ DWORD dwMilliseconds
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ HANDLE
+ WINAPI
+@@ -767,6 +807,7 @@ CreateSemaphoreW(
+ #define CreateSemaphore  CreateSemaphoreW
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE

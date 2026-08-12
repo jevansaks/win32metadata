@@ -1,0 +1,13 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SubAuth.h b/generation/WinSDK/RecompiledIdlHeaders/um/SubAuth.h
+index 486a3f475da37f78efdd2535fec998bfccbcda69..c42d0519d73a82508903b8019c46974214226619 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/SubAuth.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/SubAuth.h
+@@ -373,7 +373,7 @@ Msv1_0SubAuthenticationFilter(
+     IN ULONG Flags,
+     IN PUSER_ALL_INFORMATION UserAll,
+     OUT PULONG WhichFields,
+-    OUT PULONG UserFlags,
++    OUT MSV_SUB_AUTHENTICATION_FILTER * UserFlags,
+     OUT PBOOLEAN Authoritative,
+     OUT PLARGE_INTEGER LogoffTime,
+     OUT PLARGE_INTEGER KickoffTime

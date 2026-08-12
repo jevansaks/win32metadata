@@ -19,6 +19,9 @@ Abstract:
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 //////////////////////////////////////////////////////////////////////////////
 //                                                                          //
@@ -1202,6 +1205,7 @@ SendARP(
     _Inout_ PULONG  PhyAddrLen
     );
 
+_Win32_metadata_set_last_error_
 IPHLPAPI_DLL_LINKAGE
 BOOL
 WINAPI

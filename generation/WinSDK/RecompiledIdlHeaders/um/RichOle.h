@@ -3,6 +3,15 @@
 
 #if _MSC_VER > 1000
 #pragma once
+
+#ifndef __WIN32METADATA_RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE_DECLARED__
+#define __WIN32METADATA_RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE_DECLARED__
+#ifdef WIN32METADATA
+enum class RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE : unsigned short;
+#else
+typedef WORD RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE;
+#endif
+#endif
 #endif
 
 /*
@@ -156,7 +165,7 @@ DECLARE_INTERFACE_(IRichEditOleCallback, IUnknown)
 									LPDATAOBJECT FAR * lplpdataobj) PURE;
 	STDMETHOD(GetDragDropEffect) (THIS_ BOOL fDrag, DWORD grfKeyState,
 									LPDWORD pdwEffect) PURE;
-	STDMETHOD(GetContextMenu) (THIS_ WORD seltype, LPOLEOBJECT lpoleobj,
+	STDMETHOD(GetContextMenu) (THIS_ RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE seltype, LPOLEOBJECT lpoleobj,
 									CHARRANGE FAR * lpchrg,
 									HMENU FAR * lphmenu) PURE;
 };

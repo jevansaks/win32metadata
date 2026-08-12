@@ -7,6 +7,10 @@
 //
 //----------------------------------------------------------------------------
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef DWRITE_1_H_INCLUDED
 #define DWRITE_1_H_INCLUDED
 
@@ -1015,6 +1019,7 @@ interface IDWriteRenderingParams1;
 /// <summary>
 /// The root factory interface for all DWrite objects.
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DWRITE_DECLARE_INTERFACE("30572f99-dac6-41db-a16e-0486307e606a") IDWriteFactory1 : public IDWriteFactory
 {
     /// <summary>
@@ -1087,6 +1092,7 @@ interface DWRITE_DECLARE_INTERFACE("30572f99-dac6-41db-a16e-0486307e606a") IDWri
 /// It contains font face type, appropriate file references and face identification data.
 /// Various font data such as metrics, names and glyph outlines is obtained from IDWriteFontFace.
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DWRITE_DECLARE_INTERFACE("a71efdb4-9fdb-4838-ad90-cfc3be8c3daf") IDWriteFontFace1 : public IDWriteFontFace
 {
     /// <summary>
@@ -1345,6 +1351,7 @@ interface DWRITE_DECLARE_INTERFACE("a71efdb4-9fdb-4838-ad90-cfc3be8c3daf") IDWri
 /// <summary>
 /// The IDWriteFont interface represents a physical font in a font collection.
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DWRITE_DECLARE_INTERFACE("acd16696-8c14-4f5d-877e-fe3fc1d32738") IDWriteFont1 : public IDWriteFont
 {
     /// <summary>
@@ -1407,6 +1414,7 @@ interface DWRITE_DECLARE_INTERFACE("acd16696-8c14-4f5d-877e-fe3fc1d32738") IDWri
 /// <summary>
 /// The interface that represents text rendering settings for glyph rasterization and filtering.
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DWRITE_DECLARE_INTERFACE("94413cf4-a6fc-4248-8b50-6674348fcad3") IDWriteRenderingParams1 : public IDWriteRenderingParams
 {
     /// <summary>
@@ -1419,6 +1427,7 @@ interface DWRITE_DECLARE_INTERFACE("94413cf4-a6fc-4248-8b50-6674348fcad3") IDWri
 /// <summary>
 /// Analyzes various text properties for complex script processing.
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DWRITE_DECLARE_INTERFACE("80DAD800-E21F-4E83-96CE-BFCCE500DB7C") IDWriteTextAnalyzer1 : public IDWriteTextAnalyzer
 {
     /// <summary>
@@ -1718,6 +1727,7 @@ interface DWRITE_DECLARE_INTERFACE("80DAD800-E21F-4E83-96CE-BFCCE500DB7C") IDWri
 /// If any of these callbacks returns an error, the analysis functions will
 /// stop prematurely and return a callback error.
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DWRITE_DECLARE_INTERFACE("639CFAD8-0FB4-4B21-A58A-067920120009") IDWriteTextAnalysisSource1 : public IDWriteTextAnalysisSource
 {
     /// <summary>
@@ -1757,6 +1767,7 @@ interface DWRITE_DECLARE_INTERFACE("639CFAD8-0FB4-4B21-A58A-067920120009") IDWri
 /// The interface implemented by the client to receive the
 /// output of the text analyzers.
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DWRITE_DECLARE_INTERFACE("B0D941A0-85E7-4D8B-9FD3-5CED9934482A") IDWriteTextAnalysisSink1 : public IDWriteTextAnalysisSink
 {
     /// <summary>
@@ -1799,6 +1810,7 @@ interface DWRITE_DECLARE_INTERFACE("B0D941A0-85E7-4D8B-9FD3-5CED9934482A") IDWri
 ///
 /// All coordinates are in device independent pixels (DIPs).
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DWRITE_DECLARE_INTERFACE("9064D822-80A7-465C-A986-DF65F78B8FEB") IDWriteTextLayout1 : public IDWriteTextLayout
 {
     /// <summary>
@@ -1896,6 +1908,7 @@ enum DWRITE_TEXT_ANTIALIAS_MODE
 /// <summary>
 /// Encapsulates a 32-bit device independent bitmap and device context, which can be used for rendering glyphs.
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DWRITE_DECLARE_INTERFACE("791e8298-3ef3-4230-9880-c9bdecc42064") IDWriteBitmapRenderTarget1 : public IDWriteBitmapRenderTarget
 {
     /// <summary>

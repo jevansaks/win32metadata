@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h
+index 2a80ff95..9e0d138a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h
+@@ -19,6 +19,9 @@ Environment:
+ #define _WINSVC_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ //
+ // Define API decoration for direct importing of DLL references.
+@@ -1754,6 +1757,7 @@ typedef SC_NOTIFICATION_CALLBACK* PSC_NOTIFICATION_CALLBACK;
+ 
+ typedef struct _SC_NOTIFICATION_REGISTRATION* PSC_NOTIFICATION_REGISTRATION;
+ 
++_Win32_metadata_import_library_("SecHost.dll")
+ WINADVAPI
+ DWORD
+ WINAPI
+@@ -1765,6 +1769,7 @@ SubscribeServiceChangeNotifications (
+     _Out_     PSC_NOTIFICATION_REGISTRATION* pSubscription
+     );
+ 
++_Win32_metadata_import_library_("SecHost.dll")
+ WINADVAPI
+ VOID
+ WINAPI

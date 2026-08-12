@@ -9,6 +9,10 @@
 #ifndef _MINWINBASE_
 #define _MINWINBASE_
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #if     ( _MSC_VER >= 800 )
 #pragma warning(disable:4514)
 #ifndef __WINDOWS_DONT_DISABLE_PRAGMA_PACK_WARNING__
@@ -299,6 +303,7 @@ typedef struct _REASON_CONTEXT {
 #define OUTPUT_DEBUG_STRING_EVENT   8
 #define RIP_EVENT                   9
 
+_Win32_metadata_canonical_name_(LPTHREAD_START_ROUTINE)
 typedef DWORD (WINAPI *PTHREAD_START_ROUTINE)(
     LPVOID lpThreadParameter
     );

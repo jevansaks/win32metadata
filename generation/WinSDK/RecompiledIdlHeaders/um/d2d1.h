@@ -5,6 +5,10 @@
 //
 // File name: D2D1.h
 //---------------------------------------------------------------------------
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifdef _MSC_VER
 #pragma once
 #endif // #ifdef _MSC_VER
@@ -1079,6 +1083,7 @@ EXTERN_C CONST IID IID_ID2D1GdiInteropRenderTarget;
 /// <summary>
 /// The root interface for all resources in D2D.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd90691-12e2-11dc-9fed-001143a055f9") ID2D1Resource  : public IUnknown
 {
     
@@ -1094,6 +1099,7 @@ interface DX_DECLARE_INTERFACE("2cd90691-12e2-11dc-9fed-001143a055f9") ID2D1Reso
 /// <summary>
 /// Represents a producer of pixels that can fill an arbitrary 2D plane.
 /// </summary>
+_Win32_metadata_supported_os_(windows8.0)
 interface DX_DECLARE_INTERFACE("65019f75-8da2-497c-b32c-dfa34e48ede6") ID2D1Image  : public ID2D1Resource
 {
 }; // interface ID2D1Image
@@ -1102,6 +1108,7 @@ interface DX_DECLARE_INTERFACE("65019f75-8da2-497c-b32c-dfa34e48ede6") ID2D1Imag
 /// <summary>
 /// Root bitmap resource, linearly scaled on a draw call.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("a2296057-ea42-4099-983b-539fb6505426") ID2D1Bitmap  : public ID2D1Image
 {
     
@@ -1155,6 +1162,7 @@ interface DX_DECLARE_INTERFACE("a2296057-ea42-4099-983b-539fb6505426") ID2D1Bitm
 /// Represents an collection of gradient stops that can then be the source resource
 /// for either a linear or radial gradient brush.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906a7-12e2-11dc-9fed-001143a055f9") ID2D1GradientStopCollection  : public ID2D1Resource
 {
     
@@ -1187,6 +1195,7 @@ interface DX_DECLARE_INTERFACE("2cd906a7-12e2-11dc-9fed-001143a055f9") ID2D1Grad
 /// <summary>
 /// The root brush interface. All brushes can be used to fill or pen a geometry.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906a8-12e2-11dc-9fed-001143a055f9") ID2D1Brush  : public ID2D1Resource
 {
     
@@ -1225,6 +1234,7 @@ interface DX_DECLARE_INTERFACE("2cd906a8-12e2-11dc-9fed-001143a055f9") ID2D1Brus
 /// <summary>
 /// A bitmap brush allows a bitmap to be used to fill a geometry.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906aa-12e2-11dc-9fed-001143a055f9") ID2D1BitmapBrush  : public ID2D1Brush
 {
     
@@ -1276,6 +1286,7 @@ interface DX_DECLARE_INTERFACE("2cd906aa-12e2-11dc-9fed-001143a055f9") ID2D1Bitm
 /// <summary>
 /// Paints an area with a solid color.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906a9-12e2-11dc-9fed-001143a055f9") ID2D1SolidColorBrush  : public ID2D1Brush
 {
     
@@ -1300,6 +1311,7 @@ interface DX_DECLARE_INTERFACE("2cd906a9-12e2-11dc-9fed-001143a055f9") ID2D1Soli
 /// <summary>
 /// Paints an area with a linear gradient.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906ab-12e2-11dc-9fed-001143a055f9") ID2D1LinearGradientBrush  : public ID2D1Brush
 {
     
@@ -1330,6 +1342,7 @@ interface DX_DECLARE_INTERFACE("2cd906ab-12e2-11dc-9fed-001143a055f9") ID2D1Line
 /// <summary>
 /// Paints an area with a radial gradient.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906ac-12e2-11dc-9fed-001143a055f9") ID2D1RadialGradientBrush  : public ID2D1Brush
 {
     
@@ -1377,6 +1390,7 @@ interface DX_DECLARE_INTERFACE("2cd906ac-12e2-11dc-9fed-001143a055f9") ID2D1Radi
 /// <summary>
 /// Resource interface that holds pen style properties.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd9069d-12e2-11dc-9fed-001143a055f9") ID2D1StrokeStyle  : public ID2D1Resource
 {
     
@@ -1420,6 +1434,7 @@ interface DX_DECLARE_INTERFACE("2cd9069d-12e2-11dc-9fed-001143a055f9") ID2D1Stro
 /// manipulating and measuring geometric shapes. Interfaces that inherit from
 /// ID2D1Geometry define specific shapes.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906a1-12e2-11dc-9fed-001143a055f9") ID2D1Geometry  : public ID2D1Resource
 {
     
@@ -2099,6 +2114,7 @@ interface DX_DECLARE_INTERFACE("2cd906a1-12e2-11dc-9fed-001143a055f9") ID2D1Geom
 /// <summary>
 /// Describes a two-dimensional rectangle.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906a2-12e2-11dc-9fed-001143a055f9") ID2D1RectangleGeometry  : public ID2D1Geometry
 {
     
@@ -2111,6 +2127,7 @@ interface DX_DECLARE_INTERFACE("2cd906a2-12e2-11dc-9fed-001143a055f9") ID2D1Rect
 /// <summary>
 /// Describes a rounded rectangle.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906a3-12e2-11dc-9fed-001143a055f9") ID2D1RoundedRectangleGeometry  : public ID2D1Geometry
 {
     
@@ -2123,6 +2140,7 @@ interface DX_DECLARE_INTERFACE("2cd906a3-12e2-11dc-9fed-001143a055f9") ID2D1Roun
 /// <summary>
 /// Represents an ellipse.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906a4-12e2-11dc-9fed-001143a055f9") ID2D1EllipseGeometry  : public ID2D1Geometry
 {
     
@@ -2135,6 +2153,7 @@ interface DX_DECLARE_INTERFACE("2cd906a4-12e2-11dc-9fed-001143a055f9") ID2D1Elli
 /// <summary>
 /// Represents a composite geometry, composed of other ID2D1Geometry objects.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906a6-12e2-11dc-9fed-001143a055f9") ID2D1GeometryGroup  : public ID2D1Geometry
 {
     
@@ -2154,6 +2173,7 @@ interface DX_DECLARE_INTERFACE("2cd906a6-12e2-11dc-9fed-001143a055f9") ID2D1Geom
 /// <summary>
 /// Represents a geometry that has been transformed.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906bb-12e2-11dc-9fed-001143a055f9") ID2D1TransformedGeometry  : public ID2D1Geometry
 {
     
@@ -2171,6 +2191,7 @@ interface DX_DECLARE_INTERFACE("2cd906bb-12e2-11dc-9fed-001143a055f9") ID2D1Tran
 /// Describes a geometric path that does not contain quadratic bezier curves or
 /// arcs.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd9069e-12e2-11dc-9fed-001143a055f9") ID2D1SimplifiedGeometrySink  : public IUnknown
 {
     
@@ -2210,6 +2231,7 @@ interface DX_DECLARE_INTERFACE("2cd9069e-12e2-11dc-9fed-001143a055f9") ID2D1Simp
 /// Describes a geometric path that can contain lines, arcs, cubic Bezier curves,
 /// and quadratic Bezier curves.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd9069f-12e2-11dc-9fed-001143a055f9") ID2D1GeometrySink  : public ID2D1SimplifiedGeometrySink
 {
     
@@ -2266,6 +2288,7 @@ interface DX_DECLARE_INTERFACE("2cd9069f-12e2-11dc-9fed-001143a055f9") ID2D1Geom
 /// <summary>
 /// Populates an ID2D1Mesh object with triangles.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906c1-12e2-11dc-9fed-001143a055f9") ID2D1TessellationSink  : public IUnknown
 {
     
@@ -2282,6 +2305,7 @@ interface DX_DECLARE_INTERFACE("2cd906c1-12e2-11dc-9fed-001143a055f9") ID2D1Tess
 /// <summary>
 /// Represents a complex shape that may be composed of arcs, curves, and lines.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906a5-12e2-11dc-9fed-001143a055f9") ID2D1PathGeometry  : public ID2D1Geometry
 {
     
@@ -2313,6 +2337,7 @@ interface DX_DECLARE_INTERFACE("2cd906a5-12e2-11dc-9fed-001143a055f9") ID2D1Path
 /// <summary>
 /// Represents a set of vertices that form a list of triangles.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd906c2-12e2-11dc-9fed-001143a055f9") ID2D1Mesh  : public ID2D1Resource
 {
     
@@ -2328,6 +2353,7 @@ interface DX_DECLARE_INTERFACE("2cd906c2-12e2-11dc-9fed-001143a055f9") ID2D1Mesh
 /// <summary>
 /// Represents the backing store required to render a layer.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd9069b-12e2-11dc-9fed-001143a055f9") ID2D1Layer  : public ID2D1Resource
 {
     
@@ -2340,6 +2366,7 @@ interface DX_DECLARE_INTERFACE("2cd9069b-12e2-11dc-9fed-001143a055f9") ID2D1Laye
 /// Represents the drawing state of a render target: the antialiasing mode,
 /// transform, tags, and text-rendering options.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("28506e39-ebf6-46a1-bb47-fd85565ab957") ID2D1DrawingStateBlock  : public ID2D1Resource
 {
     
@@ -2389,6 +2416,7 @@ interface DX_DECLARE_INTERFACE("28506e39-ebf6-46a1-bb47-fd85565ab957") ID2D1Draw
 /// from ID2D1RenderTarget render the drawing commands they receive in different
 /// ways.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1RenderTarget  : public ID2D1Resource
 {
     
@@ -3247,6 +3275,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
 /// Renders to an intermediate texture created by the CreateCompatibleRenderTarget
 /// method.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd90695-12e2-11dc-9fed-001143a055f9") ID2D1BitmapRenderTarget  : public ID2D1RenderTarget
 {
     
@@ -3259,6 +3288,7 @@ interface DX_DECLARE_INTERFACE("2cd90695-12e2-11dc-9fed-001143a055f9") ID2D1Bitm
 /// <summary>
 /// Renders drawing instructions to a window.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("2cd90698-12e2-11dc-9fed-001143a055f9") ID2D1HwndRenderTarget  : public ID2D1RenderTarget
 {
     
@@ -3301,6 +3331,7 @@ interface DX_DECLARE_INTERFACE("2cd90698-12e2-11dc-9fed-001143a055f9") ID2D1Hwnd
 /// <summary>
 /// Provides access to an device context that can accept GDI drawing commands.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("e0db51c3-6f77-4bae-b3d5-e47509b35838") ID2D1GdiInteropRenderTarget  : public IUnknown
 {
     
@@ -3325,6 +3356,7 @@ interface DX_DECLARE_INTERFACE("e0db51c3-6f77-4bae-b3d5-e47509b35838") ID2D1GdiI
 /// <summary>
 /// Issues drawing commands to a GDI device context.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("1c51bc64-de61-46fd-9899-63a5d8f03950") ID2D1DCRenderTarget  : public ID2D1RenderTarget
 {
     
@@ -3338,6 +3370,7 @@ interface DX_DECLARE_INTERFACE("1c51bc64-de61-46fd-9899-63a5d8f03950") ID2D1DCRe
 /// <summary>
 /// The root factory interface for all of D2D's objects.
 /// </summary>
+_Win32_metadata_supported_os_(windows6.1)
 interface DX_DECLARE_INTERFACE("06152247-6f50-465a-9245-118bfd3b6007") ID2D1Factory  : public IUnknown
 {
     
@@ -3664,6 +3697,7 @@ extern "C"
     // also, this must be 'C' callable.
     //
     HRESULT WINAPI
+    _Win32_metadata_supported_os_(windows6.1)
     D2D1CreateFactory(
         _In_ D2D1_FACTORY_TYPE factoryType,
         _In_ REFIID riid,
@@ -3673,6 +3707,7 @@ extern "C"
 
 
     void WINAPI
+    _Win32_metadata_supported_os_(windows6.1)
     D2D1MakeRotateMatrix(
         _In_ FLOAT angle,
         _In_ D2D1_POINT_2F center,
@@ -3680,6 +3715,7 @@ extern "C"
         );
 
     void WINAPI
+    _Win32_metadata_supported_os_(windows6.1)
     D2D1MakeSkewMatrix(
         _In_ FLOAT angleX,
         _In_ FLOAT angleY,
@@ -3688,11 +3724,13 @@ extern "C"
         );
 
     BOOL WINAPI
+    _Win32_metadata_supported_os_(windows6.1)
     D2D1IsMatrixInvertible(
         _In_ CONST D2D1_MATRIX_3X2_F *matrix
         );
 
     BOOL WINAPI
+    _Win32_metadata_supported_os_(windows6.1)
     D2D1InvertMatrix(
         _Inout_ D2D1_MATRIX_3X2_F *matrix
         );
@@ -3714,6 +3752,7 @@ extern "C"
 COM_DECLSPEC_NOTHROW
 inline
 HRESULT
+_Win32_metadata_supported_os_(windows6.1)
 D2D1CreateFactory(
     _In_ D2D1_FACTORY_TYPE factoryType,
     _In_ REFIID riid,

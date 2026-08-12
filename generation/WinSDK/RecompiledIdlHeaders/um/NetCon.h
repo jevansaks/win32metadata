@@ -197,6 +197,9 @@ extern "C"{
 //
 //--------------------------------------------------------------------------
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 #if ( _MSC_VER >= 800 )
@@ -601,9 +604,11 @@ EXTERN_C const IID IID_INetConnection;
 /* [local] */ 
 
 
+_Win32_metadata_import_library_("Netshell.dll")
 STDAPI_(VOID) NcFreeNetconProperties (NETCON_PROPERTIES* pProps);
 
 
+_Win32_metadata_import_library_("Netshell.dll")
 STDAPI_(BOOL) NcIsValidConnectionName (PCWSTR pszwName);
 
 

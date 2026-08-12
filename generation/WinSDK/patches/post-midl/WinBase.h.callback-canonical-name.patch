@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h
+index 9afdd463..60065b96 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h
+@@ -1,6 +1,9 @@
+ //@[contract("ntoskrnl-winbase"), comment("MVI_tracked - https://osgwiki.com/wiki/Microsoft_Virus_Initiative")];
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /************************************************************************
+ *                                                                       *
+@@ -372,6 +375,7 @@ typedef enum FILE_FLUSH_MODE
+ //
+ 
+ #if(_WIN32_WINNT >= 0x0400)
++_Win32_metadata_canonical_name_(LPFIBER_START_ROUTINE)
+ typedef VOID (WINAPI *PFIBER_START_ROUTINE)(
+     LPVOID lpFiberParameter
+     );

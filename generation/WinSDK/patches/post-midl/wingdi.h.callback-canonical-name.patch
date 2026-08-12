@@ -1,0 +1,32 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
+index 9cc979f2..1024f206 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /**************************************************************************
+ *                                                                         *
+@@ -3803,7 +3806,9 @@ typedef struct tagPIXELFORMATDESCRIPTOR
+ #ifdef STRICT
+ 
+ #if !defined(NOTEXTMETRIC)
++_Win32_metadata_canonical_name_(FONTENUMPROCA)
+ typedef int (CALLBACK* OLDFONTENUMPROCA)(CONST LOGFONTA *, CONST TEXTMETRICA *, DWORD, LPARAM);
++_Win32_metadata_canonical_name_(FONTENUMPROCW)
+ typedef int (CALLBACK* OLDFONTENUMPROCW)(CONST LOGFONTW *, CONST TEXTMETRICW *, DWORD, LPARAM);
+ #ifdef UNICODE
+ #define OLDFONTENUMPROC  OLDFONTENUMPROCW
+@@ -3811,7 +3816,9 @@ typedef int (CALLBACK* OLDFONTENUMPROCW)(CONST LOGFONTW *, CONST TEXTMETRICW *,
+ #define OLDFONTENUMPROC  OLDFONTENUMPROCA
+ #endif // !UNICODE
+ #else
++_Win32_metadata_canonical_name_(FONTENUMPROCA)
+ typedef int (CALLBACK* OLDFONTENUMPROCA)(CONST LOGFONTA *, CONST VOID *, DWORD, LPARAM);
++_Win32_metadata_canonical_name_(FONTENUMPROCW)
+ typedef int (CALLBACK* OLDFONTENUMPROCW)(CONST LOGFONTW *, CONST VOID *, DWORD, LPARAM);
+ #ifdef UNICODE
+ #define OLDFONTENUMPROC  OLDFONTENUMPROCW

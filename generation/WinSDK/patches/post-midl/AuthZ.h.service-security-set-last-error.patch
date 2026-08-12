@@ -1,0 +1,270 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AuthZ.h b/generation/WinSDK/RecompiledIdlHeaders/um/AuthZ.h
+index 14d3158e..8eb77f48 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/AuthZ.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/AuthZ.h
+@@ -25,6 +25,9 @@ Revision History:
+ #ifndef __AUTHZ_H__
+ #define __AUTHZ_H__
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -541,6 +544,7 @@ typedef struct _AUTHZ_SECURITY_ATTRIBUTES_INFORMATION {
+ 
+ #define AUTHZ_ACCESS_CHECK_NO_DEEP_COPY_SD 0x00000001
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -557,6 +561,7 @@ AuthzAccessCheck(
+     _Out_opt_ PAUTHZ_ACCESS_CHECK_RESULTS_HANDLE phAccessCheckResults
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -568,6 +573,7 @@ AuthzCachedAccessCheck(
+      _Inout_ PAUTHZ_ACCESS_REPLY               pReply
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -583,6 +589,7 @@ AuthzOpenObjectAudit(
+     _In_     PAUTHZ_ACCESS_REPLY         pReply
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -601,6 +608,7 @@ AuthzFreeHandle(
+         AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION | \
+         AUTHZ_RM_FLAG_NO_CENTRAL_ACCESS_POLICIES)
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -668,6 +676,7 @@ typedef struct _AUTHZ_INIT_INFO
+     PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY    pfnFreeCentralAccessPolicy;
+ } AUTHZ_INIT_INFO, *PAUTHZ_INIT_INFO;
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -679,6 +688,7 @@ AuthzInitializeResourceManagerEx(
+ 
+ 
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -689,6 +699,7 @@ AuthzInitializeRemoteResourceManager(
+ 
+ #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -696,6 +707,7 @@ AuthzFreeResourceManager(
+     _In_ AUTHZ_RESOURCE_MANAGER_HANDLE hAuthzResourceManager
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -709,6 +721,7 @@ AuthzInitializeContextFromToken(
+     _Out_     PAUTHZ_CLIENT_CONTEXT_HANDLE  phAuthzClientContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -722,6 +735,7 @@ AuthzInitializeContextFromSid(
+     _Out_     PAUTHZ_CLIENT_CONTEXT_HANDLE  phAuthzClientContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -737,6 +751,7 @@ AuthzInitializeContextFromAuthzContext(
+ #if(_WIN32_WINNT >= _WIN32_WINNT_WIN8)
+ 
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -748,6 +763,7 @@ AuthzInitializeCompoundContext(
+ 
+ #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -764,6 +780,7 @@ AuthzAddSidsToContext(
+ //  API to modify security attributes in AUTHZ client context.
+ //
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -801,6 +818,7 @@ typedef enum _AUTHZ_CONTEXT_INFORMATION_CLASS
+ } AUTHZ_CONTEXT_INFORMATION_CLASS;
+ 
+ #if(_WIN32_WINNT >= _WIN32_WINNT_WIN8)
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -813,6 +831,7 @@ AuthzModifyClaims(
+     _In_opt_ PAUTHZ_SECURITY_ATTRIBUTES_INFORMATION pClaims
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -825,6 +844,7 @@ AuthzModifySids(
+     _In_opt_ PTOKEN_GROUPS                          pSids
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -838,6 +858,7 @@ AuthzSetAppContainerInformation(
+ 
+ #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -849,6 +870,7 @@ AuthzGetInformationFromContext(
+     _Out_ PVOID                           Buffer
+ );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -872,6 +894,7 @@ AuthzFreeContext(
+                                                   AUTHZ_NO_ALLOC_STRINGS | \
+                                                   AUTHZ_WPD_CATEGORY_FLAG)
+                              
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -887,6 +910,7 @@ AuthzInitializeObjectAccessAuditEvent(
+     ...
+     );
+     
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -917,6 +941,7 @@ typedef enum _AUTHZ_AUDIT_EVENT_INFORMATION_CLASS
+     AuthzAuditEventInfoAdditionalInfo,
+ } AUTHZ_AUDIT_EVENT_INFORMATION_CLASS;
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -991,6 +1016,7 @@ typedef struct _AUTHZ_SOURCE_SCHEMA_REGISTRATION
+ 
+ #define AUTHZ_FLAG_ALLOW_MULTIPLE_SOURCE_INSTANCES 0x1
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL 
+ WINAPI
+@@ -999,6 +1025,7 @@ AuthzInstallSecurityEventSource(
+     _In_ PAUTHZ_SOURCE_SCHEMA_REGISTRATION pRegistration
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -1008,6 +1035,7 @@ AuthzUninstallSecurityEventSource(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -1018,6 +1046,7 @@ AuthzEnumerateSecurityEventSources(
+      _Inout_ PDWORD                            pdwLength
+     );
+     
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -1027,6 +1056,7 @@ AuthzRegisterSecurityEventSource(
+     _Out_ PAUTHZ_SECURITY_EVENT_PROVIDER_HANDLE phEventProvider
+     );
+     
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -1035,6 +1065,7 @@ AuthzUnregisterSecurityEventSource(
+      _Inout_ PAUTHZ_SECURITY_EVENT_PROVIDER_HANDLE phEventProvider
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -1047,6 +1078,7 @@ AuthzReportSecurityEvent(
+     ...    
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -1059,6 +1091,7 @@ AuthzReportSecurityEventFromParams(
+     );
+ 
+ #if(_WIN32_WINNT >= _WIN32_WINNT_WIN8)
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ AUTHZAPI
+ BOOL
+@@ -1069,6 +1102,7 @@ AuthzRegisterCapChangeNotification(
+     _In_opt_ PVOID pCallbackContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI
+@@ -1076,6 +1110,7 @@ AuthzUnregisterCapChangeNotification(
+     _In_ AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE hCapChangeSubscription
+     );
+ 
++_Win32_metadata_set_last_error_
+ AUTHZAPI
+ BOOL
+ WINAPI

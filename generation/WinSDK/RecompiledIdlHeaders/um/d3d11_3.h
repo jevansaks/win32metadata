@@ -9,8 +9,13 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
+
 #endif
 
 /* verify that the <rpcsal.h> version is high enough to compile this file*/
@@ -260,6 +265,7 @@ EXTERN_C const IID IID_ID3D11Texture2D1;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("51218251-1E33-4617-9CCB-4D3A4367E7BB")
     ID3D11Texture2D1 : public ID3D11Texture2D
     {
@@ -502,6 +508,7 @@ EXTERN_C const IID IID_ID3D11Texture3D1;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("0C711683-2853-4846-9BB0-F3E60639E46A")
     ID3D11Texture3D1 : public ID3D11Texture3D
     {
@@ -757,6 +764,7 @@ EXTERN_C const IID IID_ID3D11RasterizerState2;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("6fbd02fb-209f-46c4-b059-2ed15586a6ac")
     ID3D11RasterizerState2 : public ID3D11RasterizerState1
     {
@@ -1165,6 +1173,7 @@ EXTERN_C const IID IID_ID3D11ShaderResourceView1;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("91308b87-9040-411d-8c67-c39253ce3802")
     ID3D11ShaderResourceView1 : public ID3D11ShaderResourceView
     {
@@ -1522,6 +1531,7 @@ EXTERN_C const IID IID_ID3D11RenderTargetView1;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("ffbe2e23-f011-418a-ac56-5ceed7c5b94b")
     ID3D11RenderTargetView1 : public ID3D11RenderTargetView
     {
@@ -1867,6 +1877,7 @@ EXTERN_C const IID IID_ID3D11UnorderedAccessView1;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("7b3b6153-a886-4544-ab37-6537c8500403")
     ID3D11UnorderedAccessView1 : public ID3D11UnorderedAccessView
     {
@@ -2057,6 +2068,7 @@ EXTERN_C const IID IID_ID3D11Query1;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("631b4766-36dc-461d-8db6-c47e13e60916")
     ID3D11Query1 : public ID3D11Query
     {
@@ -6319,6 +6331,7 @@ EXTERN_C const IID IID_ID3D11Device3;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows10.0.10240)
     MIDL_INTERFACE("A05C8C37-D2C6-4732-B3A0-9CE0B0DC9AE6")
     ID3D11Device3 : public ID3D11Device2
     {

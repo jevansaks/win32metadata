@@ -1,4 +1,7 @@
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 /*****************************************************************************\
 *                                                                             *
@@ -600,6 +603,7 @@ WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetW(LPCPROPSHEETHEADERW);
 
 
 
+_Win32_metadata_canonical_name_(LPFNSVADDPROPSHEETPAGE)
 typedef BOOL (CALLBACK *LPFNADDPROPSHEETPAGE)(HPROPSHEETPAGE, LPARAM);
 typedef BOOL (CALLBACK *LPFNADDPROPSHEETPAGES)(LPVOID, LPFNADDPROPSHEETPAGE, LPARAM);
 
