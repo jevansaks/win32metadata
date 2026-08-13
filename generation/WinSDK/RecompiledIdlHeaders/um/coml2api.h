@@ -9,6 +9,10 @@
 //
 //----------------------------------------------------------------------------
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #if !defined(_COML2API_H_)
 #define _COML2API_H_
 
@@ -81,6 +85,7 @@ typedef DWORD STGFMT;
 #define STGFMT_DOCUMENT         0
 
 // Structured storage APIs
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgCreateDocfile(
@@ -90,6 +95,7 @@ StgCreateDocfile(
     _Outptr_ IStorage** ppstgOpen
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgCreateDocfileOnILockBytes(
@@ -99,6 +105,7 @@ StgCreateDocfileOnILockBytes(
     _Outptr_ IStorage** ppstgOpen
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgOpenStorage(
@@ -110,6 +117,7 @@ StgOpenStorage(
     _Outptr_ IStorage** ppstgOpen
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgOpenStorageOnILockBytes(
@@ -121,18 +129,21 @@ StgOpenStorageOnILockBytes(
     _Outptr_ IStorage** ppstgOpen
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgIsStorageFile(
     _In_ _Null_terminated_ const WCHAR* pwcsName
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgIsStorageILockBytes(
     _In_ ILockBytes* plkbyt
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgSetTimes(
@@ -161,6 +172,7 @@ typedef struct tagSTGOPTIONS
 #endif
 } STGOPTIONS;
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgCreateStorageEx(
@@ -174,6 +186,7 @@ StgCreateStorageEx(
     _Outptr_ void** ppObjectOpen
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgOpenStorageEx(
@@ -189,6 +202,7 @@ StgOpenStorageEx(
 
 #ifndef _STGCREATEPROPSTG_DEFINED_
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgCreatePropStg(
@@ -200,6 +214,7 @@ StgCreatePropStg(
     _Outptr_ IPropertyStorage** ppPropStg
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgOpenPropStg(
@@ -210,6 +225,7 @@ StgOpenPropStg(
     _Outptr_ IPropertyStorage** ppPropStg
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 StgCreatePropSetStg(
@@ -220,6 +236,7 @@ StgCreatePropSetStg(
 
 #define CCH_MAX_PROPSTG_NAME    31
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 FmtIdToPropStgName(
@@ -227,6 +244,7 @@ FmtIdToPropStgName(
     _Out_writes_(CCH_MAX_PROPSTG_NAME+1) LPOLESTR oszName
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 PropStgNameToFmtId(
@@ -237,24 +255,28 @@ PropStgNameToFmtId(
 #endif // _STGCREATEPROPSTG_DEFINED_
 
 // Helper functions
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 ReadClassStg(
     _In_ LPSTORAGE pStg,
     _Out_ CLSID  FAR * pclsid
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 WriteClassStg(
     _In_ LPSTORAGE pStg,
     _In_ REFCLSID rclsid
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 ReadClassStm(
     _In_ LPSTREAM pStm,
     _Out_ CLSID  FAR * pclsid
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 WriteClassStm(
     _In_ LPSTREAM pStm,
@@ -262,6 +284,7 @@ WriteClassStm(
     );
 
 // Storage utility APIs
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 GetHGlobalFromILockBytes(
@@ -269,6 +292,7 @@ GetHGlobalFromILockBytes(
     _Out_ HGLOBAL  FAR * phglobal
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 CreateILockBytesOnHGlobal(
@@ -278,6 +302,7 @@ CreateILockBytesOnHGlobal(
     );
 
 // ConvertTo APIs
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 GetConvertStg(
     _In_ LPSTORAGE pStg

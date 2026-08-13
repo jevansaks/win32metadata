@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/powerbase.h b/generation/WinSDK/RecompiledIdlHeaders/um/powerbase.h
+index 6ccde0d6..d305b01d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/powerbase.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/powerbase.h
+@@ -17,6 +17,9 @@
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifdef _CONTRACT_GEN
+ #include <nt.h>
+@@ -58,6 +61,7 @@ CallNtPowerInformation(
+ #undef NTSTATUS
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOLEAN
+ WINAPI
+ GetPwrCapabilities(

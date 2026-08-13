@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h
+index 37c49557990d65a4eee6602a85e07b2a9d8d4f0a..0867069deb290eb7ae56d310d850b61f1476dc91 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h
+@@ -698,10 +698,15 @@ typedef struct _SERVICE_LAUNCH_PROTECTED_INFO {
+ // Handle Types
+ //
+ 
+-DECLARE_HANDLE(SC_HANDLE);
++DECLARE_HANDLE(SC_HANDLE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(CloseServiceHandle);
+ typedef SC_HANDLE   *LPSC_HANDLE;
+ 
+-DECLARE_HANDLE(SERVICE_STATUS_HANDLE);
++DECLARE_HANDLE(SERVICE_STATUS_HANDLE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0);
+ 
+ //
+ // Info levels for QueryServiceStatusEx

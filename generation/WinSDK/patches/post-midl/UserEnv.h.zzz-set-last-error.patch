@@ -1,0 +1,240 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/UserEnv.h b/generation/WinSDK/RecompiledIdlHeaders/um/UserEnv.h
+index dc9d2dad..a7655cdc 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/UserEnv.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/UserEnv.h
+@@ -13,6 +13,9 @@
+ #define _INC_USERENV
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ 
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -70,12 +73,14 @@ extern "C" {
+ #define PI_NOUI         0x00000001      // Prevents displaying of messages
+ #define PI_APPLYPOLICY  0x00000002      // Apply NT4 style policy
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+ LoadUserProfileA(
+     _In_    HANDLE          hToken,
+     _Inout_ LPPROFILEINFOA  lpProfileInfo);
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -104,6 +109,7 @@ LoadUserProfileW(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -130,12 +136,14 @@ UnloadUserProfile(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+ GetProfilesDirectoryA(
+     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
+     _Inout_                         LPDWORD lpcchSize);
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -176,6 +184,7 @@ GetProfilesDirectoryW(
+ #define PT_MANDATORY                 0x00000004      // The loaded profile is mandatory.
+ #define PT_ROAMING_PREEXISTING       0x00000008      // The loaded roaming profile is not a brand new one - it was obtained from roamed location
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -202,6 +211,7 @@ GetProfileType(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -209,6 +219,7 @@ DeleteProfileA (
+     _In_        LPCSTR    lpSidString,
+     _In_opt_    LPCSTR    lpProfilePath,
+     _In_opt_    LPCSTR    lpComputerName);
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -281,12 +292,14 @@ CreateProfile(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+ GetDefaultUserProfileDirectoryA(
+     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
+     _Inout_                         LPDWORD lpcchSize);
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -322,12 +335,14 @@ GetDefaultUserProfileDirectoryW(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+ GetAllUsersProfileDirectoryA(
+     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
+     _Inout_                         LPDWORD lpcchSize);
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -362,6 +377,7 @@ GetAllUsersProfileDirectoryW(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -369,6 +385,7 @@ GetUserProfileDirectoryA(
+     _In_                            HANDLE  hToken,
+     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
+     _Inout_                         LPDWORD lpcchSize);
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -409,6 +426,7 @@ GetUserProfileDirectoryW(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ CreateEnvironmentBlock(
+@@ -429,6 +447,7 @@ CreateEnvironmentBlock(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ DestroyEnvironmentBlock(
+@@ -456,6 +475,7 @@ DestroyEnvironmentBlock(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -464,6 +484,7 @@ ExpandEnvironmentStringsForUserA(
+     _In_                    LPCSTR    lpSrc,
+     _Out_writes_(dwSize)    LPSTR     lpDest,
+     _In_                    DWORD       dwSize);
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -495,6 +516,7 @@ ExpandEnvironmentStringsForUserW(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -522,6 +544,7 @@ RefreshPolicy(
+ #define RP_FORCE            1      // Refresh policies without any optimisations.
+ #define RP_SYNC             2      // Refresh Policy sync; the call does not return till the time policy processing is completed
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -560,6 +583,7 @@ RefreshPolicyEx(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ HANDLE
+ WINAPI
+@@ -586,6 +610,7 @@ EnterCriticalPolicySection(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -621,6 +646,7 @@ LeaveCriticalPolicySection(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -645,6 +671,7 @@ RegisterGPNotification(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -833,6 +860,7 @@ typedef PGROUP_POLICY_OBJECTA PGROUP_POLICY_OBJECT;
+ #define GPO_LIST_FLAG_NO_WMIFILTERS  0x00000004  // Ignore WMI filters when filtering GPO's
+ #define GPO_LIST_FLAG_NO_SECURITYFILTERS 0x00000008 // Ignore security filters
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -843,6 +871,7 @@ GetGPOListA (
+     _In_opt_    LPCSTR    lpComputerName,
+     _In_        DWORD       dwFlags,
+     _Outptr_ PGROUP_POLICY_OBJECTA * pGPOList);
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -878,11 +907,13 @@ GetGPOListW (
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+ FreeGPOListA (
+     _In_        PGROUP_POLICY_OBJECTA   pGPOList);
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+@@ -1172,6 +1203,7 @@ ProcessGroupPolicyCompletedEx(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ USERENVAPI
+ HRESULT 
+ WINAPI

@@ -1,0 +1,34 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h
+index 65dea6474066b71c96ea7a85e6aba854e5749e8b..1cf4ab6df7f9cb491f90b3a984d4602be0d20d64 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h
+@@ -649,6 +649,9 @@ CreateRestrictedToken(
+     _In_ DWORD RestrictedSidCount,
+     _In_reads_opt_(RestrictedSidCount) PSID_AND_ATTRIBUTES SidsToRestrict,
+     _Outptr_ PHANDLE NewTokenHandle
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle)
+     );
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
+@@ -721,6 +724,9 @@ DuplicateToken(
+     _In_ HANDLE ExistingTokenHandle,
+     _In_ SECURITY_IMPERSONATION_LEVEL ImpersonationLevel,
+     _Outptr_ PHANDLE DuplicateTokenHandle
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle)
+     );
+ 
+ _Win32_metadata_set_last_error_
+@@ -734,6 +740,9 @@ DuplicateTokenEx(
+     _In_ SECURITY_IMPERSONATION_LEVEL ImpersonationLevel,
+     _In_ TOKEN_TYPE TokenType,
+     _Outptr_ PHANDLE phNewToken
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle)
+     );
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */

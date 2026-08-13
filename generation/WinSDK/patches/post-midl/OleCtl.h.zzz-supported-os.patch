@@ -1,0 +1,74 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h b/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h
+index 5ca5e7a7..146f0615 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h
+@@ -9,6 +9,10 @@
+ /////////////////////////////////////////////////////////////////////////////
+ 
+ 
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef _OLECTL_H_
+ #define _OLECTL_H_
+ 
+@@ -411,40 +415,50 @@ typedef VARIANT_BOOL OLE_ENABLEDEFAULTBOOL;
+ /////////////////////////////////////////////////////////////////////////////
+ // Self-registration APIs (to be implemented by server DLL)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ STDAPI DllRegisterServer(void);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ STDAPI DllUnregisterServer(void);
+ 
+ 
+ /////////////////////////////////////////////////////////////////////////////
+ // Property frame APIs
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLECTLAPI OleCreatePropertyFrame(HWND hwndOwner, UINT x, UINT y,
+     LPCOLESTR lpszCaption, ULONG cObjects, LPUNKNOWN FAR* ppUnk, ULONG cPages,
+     LPCLSID pPageClsID, LCID lcid, DWORD dwReserved, LPVOID pvReserved);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLECTLAPI OleCreatePropertyFrameIndirect(LPOCPFIPARAMS lpParams);
+ 
+ 
+ /////////////////////////////////////////////////////////////////////////////
+ // Standard type APIs
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLECTLAPI OleTranslateColor(OLE_COLOR clr, HPALETTE hpal,
+     COLORREF* lpcolorref);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLECTLAPI OleCreateFontIndirect(LPFONTDESC lpFontDesc, REFIID riid,
+     LPVOID FAR* lplpvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLECTLAPI OleCreatePictureIndirect(LPPICTDESC lpPictDesc, REFIID riid,
+     BOOL fOwn, LPVOID FAR* lplpvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLECTLAPI OleLoadPicture(LPSTREAM lpstream, LONG lSize, BOOL fRunmode,
+     REFIID riid, LPVOID FAR* lplpvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLECTLAPI OleLoadPictureEx(LPSTREAM lpstream, LONG lSize, BOOL fRunmode,
+     REFIID riid, DWORD xSizeDesired, DWORD ySizeDesired, DWORD dwFlags,
+     LPVOID FAR* lplpvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLECTLAPI OleLoadPicturePath(  _In_ LPOLESTR  szURLorPath,
+ 				  LPUNKNOWN punkCaller,
+ 				  DWORD     dwReserved,
+@@ -461,6 +475,7 @@ WINOLECTLAPI OleLoadPictureFileEx(VARIANT varFileName,
+ WINOLECTLAPI OleSavePictureFile(LPDISPATCH lpdispPicture,
+     BSTR bstrFileName);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLECTLAPI_(HCURSOR) OleIconToCursor(HINSTANCE hinstExe, HICON hIcon);
+ 
+ #define LP_DEFAULT      0x00

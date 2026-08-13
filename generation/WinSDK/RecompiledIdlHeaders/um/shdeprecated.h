@@ -9,6 +9,10 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 501
 #endif
@@ -550,6 +554,7 @@ EXTERN_C const IID IID_IExpDispSupportXP;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("2f0dd58c-f789-4f14-99fb-9293b3c9c212")
     IExpDispSupportXP : public IUnknown
     {
@@ -1645,6 +1650,7 @@ EXTERN_C const IID IID_IBrowserService2;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.0)
     MIDL_INTERFACE("68BD21CC-438B-11d2-A560-00A0C92DBFE8")
     IBrowserService2 : public IBrowserService
     {
@@ -2880,6 +2886,7 @@ EXTERN_C const IID IID_IBrowserService3;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("27D7CE21-762D-48F3-86F3-40E2FD3749C4")
     IBrowserService3 : public IBrowserService2
     {
@@ -3884,6 +3891,7 @@ EXTERN_C const IID IID_IBrowserService4;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("639f1bff-e135-4096-abd8-e0f504d649a4")
     IBrowserService4 : public IBrowserService3
     {
@@ -4903,6 +4911,7 @@ EXTERN_C const IID IID_ITrackShellMenu;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("8278F932-2A3E-11d2-838F-00C04FD918D0")
     ITrackShellMenu : public IShellMenu
     {

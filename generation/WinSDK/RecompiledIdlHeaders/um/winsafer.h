@@ -37,7 +37,9 @@ extern "C" {
 // Opaque datatype for representing handles to Safer objects.
 //
 
-DECLARE_HANDLE(SAFER_LEVEL_HANDLE);
+DECLARE_HANDLE(SAFER_LEVEL_HANDLE)
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 
 
 //
@@ -683,7 +685,10 @@ BOOL WINAPI
 SaferComputeTokenFromLevel(
     _In_ SAFER_LEVEL_HANDLE LevelHandle,
     _In_opt_ HANDLE         InAccessToken,
-    _Out_ PHANDLE           OutAccessToken,
+    _Out_ PHANDLE           OutAccessToken
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(CloseHandle),
     _In_ DWORD              dwFlags,
     _Inout_opt_ LPVOID      lpReserved
     );

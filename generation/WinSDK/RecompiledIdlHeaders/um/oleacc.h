@@ -9,6 +9,10 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
 #endif
@@ -191,15 +195,24 @@ DEFINE_GUID(IIS_ControlAccessible,   0x38c682a6, 0x9731, 0x43f2, 0x9f, 0xae, 0xe
 // MSAA API Prototypes
 //=--------------------------------------------------------------------------=
 
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI_(LRESULT) LresultFromObject(_In_ REFIID riid, _In_ WPARAM wParam, _In_ LPUNKNOWN punk);
+_Win32_metadata_supported_os_(windows5.1.2600)
 STDAPI          ObjectFromLresult(_In_ LRESULT lResult, _In_ REFIID riid, _In_ WPARAM wParam, _Outptr_ void** ppvObject);
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI          WindowFromAccessibleObject(_In_ IAccessible*, _Out_opt_ HWND* phwnd);
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI          AccessibleObjectFromWindow(_In_ HWND hwnd, _In_ DWORD dwId, _In_ REFIID riid, _Outptr_ void **ppvObject);
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI          AccessibleObjectFromEvent(_In_ HWND hwnd, _In_ DWORD dwId, _In_ DWORD dwChildId, _Outptr_ IAccessible** ppacc, _Out_ VARIANT* pvarChild);
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI          AccessibleObjectFromPoint(_In_ POINT ptScreen, _Outptr_ IAccessible ** ppacc, _Out_ VARIANT* pvarChild);
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI          AccessibleChildren (_In_ IAccessible* paccContainer, _In_ LONG iChildStart, _In_ LONG cChildren, _Out_writes_(cChildren) VARIANT* rgvarChildren, _Out_ LONG* pcObtained);
 
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI_(UINT)   GetRoleTextA(_In_ DWORD lRole, _Out_writes_opt_(cchRoleMax) LPSTR lpszRole, _In_ UINT cchRoleMax);
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI_(UINT)   GetRoleTextW(_In_ DWORD lRole, _Out_writes_opt_(cchRoleMax) LPWSTR lpszRole, _In_ UINT cchRoleMax);
 
 #ifdef UNICODE
@@ -208,7 +221,9 @@ STDAPI_(UINT)   GetRoleTextW(_In_ DWORD lRole, _Out_writes_opt_(cchRoleMax) LPWS
 #define GetRoleText     GetRoleTextA
 #endif // UNICODE
 
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI_(UINT)   GetStateTextA(_In_ DWORD lStateBit, _Out_writes_opt_(cchState) LPSTR lpszState, _In_ UINT cchState);
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI_(UINT)   GetStateTextW(_In_ DWORD lStateBit, _Out_writes_opt_(cchState) LPWSTR lpszState, _In_ UINT cchState);
 #ifdef UNICODE
 #define GetStateText    GetStateTextW
@@ -216,11 +231,15 @@ STDAPI_(UINT)   GetStateTextW(_In_ DWORD lStateBit, _Out_writes_opt_(cchState) L
 #define GetStateText    GetStateTextA
 #endif // UNICODE
 
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI_(VOID)   GetOleaccVersionInfo(_Out_ DWORD* pVer, _Out_ DWORD* pBuild);
 
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI          CreateStdAccessibleObject(_In_ HWND hwnd, _In_ LONG idObject, _In_ REFIID riid, _Outptr_ void** ppvObject);
 
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI          CreateStdAccessibleProxyA(_In_ HWND hwnd, _In_ LPCSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _Outptr_ void** ppvObject);
+_Win32_metadata_supported_os_(windows5.0)
 STDAPI          CreateStdAccessibleProxyW(_In_ HWND hwnd, _In_ LPCWSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _Outptr_ void** ppvObject);
 
 #ifdef UNICODE
@@ -235,8 +254,10 @@ STDAPI          CreateStdAccessibleProxyW(_In_ HWND hwnd, _In_ LPCWSTR pClassNam
 #define ANRUS_PRIORITY_AUDIO_ACTIVE_NODUCK 0x0000008
 #define ANRUS_PRIORITY_AUDIO_DYNAMIC_DUCK 0x0000010
 
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI          AccSetRunningUtilityState(_In_ HWND hwndApp, _In_ DWORD dwUtilityStateMask, _In_ DWORD dwUtilityState);
 
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI          AccNotifyTouchInteraction(_In_ HWND hwndApp, _In_ HWND hwndTarget, _In_ POINT ptTarget);
 
 
@@ -582,6 +603,7 @@ EXTERN_C const IID IID_IAccessible;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.0)
     MIDL_INTERFACE("618736e0-3c3d-11cf-810c-00aa00389b71")
     IAccessible : public IDispatch
     {
@@ -1051,6 +1073,7 @@ EXTERN_C const IID IID_IAccessibleHandler;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("03022430-ABC4-11d0-BDE2-00AA001A1953")
     IAccessibleHandler : public IUnknown
     {
@@ -1148,6 +1171,7 @@ EXTERN_C const IID IID_IAccessibleWindowlessSite;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("BF3ABD9C-76DA-4389-9EB6-1427D25ABAB7")
     IAccessibleWindowlessSite : public IUnknown
     {
@@ -1307,6 +1331,7 @@ EXTERN_C const IID IID_IAccIdentity;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.0)
     MIDL_INTERFACE("7852b78d-1cfd-41c1-a615-9c0c85960b5f")
     IAccIdentity : public IUnknown
     {
@@ -1402,6 +1427,7 @@ EXTERN_C const IID IID_IAccPropServer;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("76c0dbbb-15e0-4e7b-b61b-20eeea2001e0")
     IAccPropServer : public IUnknown
     {
@@ -1505,6 +1531,7 @@ EXTERN_C const IID IID_IAccPropServices;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("6e26e776-04f0-495d-80e4-3330352e3169")
     IAccPropServices : public IUnknown
     {
@@ -2065,9 +2092,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
 unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
 void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
 
+_Win32_metadata_supported_os_(windows5.1.2600)
 unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
+_Win32_metadata_supported_os_(windows5.1.2600)
 unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
+_Win32_metadata_supported_os_(windows5.1.2600)
 unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
+_Win32_metadata_supported_os_(windows5.1.2600)
 void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
 
 unsigned long             __RPC_USER  HMENU_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HMENU * ); 
@@ -2080,14 +2111,22 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
 unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
 void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
 
+_Win32_metadata_supported_os_(windows5.1.2600)
 unsigned long             __RPC_USER  LPSAFEARRAY_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in LPSAFEARRAY * ); 
+_Win32_metadata_supported_os_(windows5.1.2600)
 unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in LPSAFEARRAY * ); 
+_Win32_metadata_supported_os_(windows5.1.2600)
 unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
+_Win32_metadata_supported_os_(windows5.1.2600)
 void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
 
+_Win32_metadata_supported_os_(windows5.1.2600)
 unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
+_Win32_metadata_supported_os_(windows5.1.2600)
 unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
+_Win32_metadata_supported_os_(windows5.1.2600)
 unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+_Win32_metadata_supported_os_(windows5.1.2600)
 void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
 
 /* end of Additional Prototypes */

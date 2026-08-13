@@ -322,10 +322,20 @@ typedef BCryptBufferDesc* PNCryptBufferDesc;
 // NCrypt handles
 //
 
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(NCryptFreeObject)
 typedef ULONG_PTR NCRYPT_HANDLE;
+_Win32_metadata_also_usable_for_(NCRYPT_HANDLE)
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(NCryptFreeObject)
 typedef ULONG_PTR NCRYPT_PROV_HANDLE;
+_Win32_metadata_also_usable_for_(NCRYPT_HANDLE)
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(NCryptFreeObject)
 typedef ULONG_PTR NCRYPT_KEY_HANDLE;
+_Win32_metadata_invalid_handle_(0)
 typedef ULONG_PTR NCRYPT_HASH_HANDLE;
+_Win32_metadata_invalid_handle_(0)
 typedef ULONG_PTR NCRYPT_SECRET_HANDLE;
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)

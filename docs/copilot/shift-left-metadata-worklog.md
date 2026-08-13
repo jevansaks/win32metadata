@@ -84,11 +84,20 @@ touch one header, each later patch is generated against the result of earlier pa
 
 Current result:
 
-- 133 post-MIDL patches.
-- 124 tracked header changes, including the annotation vocabulary.
-- All 133 patches apply in lexical order from clean `66fee943`.
+- 254 post-MIDL patches.
+- 225 patched headers, including the annotation vocabulary.
+- All 254 patches apply in lexical order from clean `d154186c`.
 - Patched outputs match the tracked `RecompiledIdlHeaders`.
-- Full three-architecture windows-rs generation succeeds from the patched headers.
+- The initial 133-patch checkpoint passed full three-architecture windows-rs generation.
+- The expanded checkpoint passed clean replay with 225/225 SHA-256 header matches.
+- Sequential x64, arm64, and x86 generation completed in 1,899 seconds and wrote a
+  662-partition winmd.
+- The equivalent parallel run hung after completing x64 and arm64 rather than reporting
+  a metadata diagnostic. windows-rs now accepts `WIN32METADATA_SEQUENTIAL=1` so the
+  bounded validation mode is reproducible without source edits.
+- The first broad logical comparison measured 62.30% weighted identity overlap and
+  72.56% P/Invoke-name coverage. The remaining delta is documented in
+  `docs/copilot/shift-left-winmd-delta.md`.
 
 ## Completed SDK migration batches
 
@@ -108,6 +117,10 @@ Current result:
 | Service/security last-error | 337 declarations across 14 headers. |
 | Networking last-error | 406 annotations covering 407 conditional declarations across 20 headers. |
 | DirectX/graphics supported OS | 408 annotations for 407 names across 35 headers from 413 reviewed entries. |
+| Storage/setup/device/system last-error | 854 declarations across 32 headers; no unresolved declarations. |
+| Multimedia enums | 8 guarded enums, 66 members, 22 direct typings, and 5 associated constants across 8 headers. |
+| Shell/COM/UI supported OS | 3,363 annotations for 3,129 declarations across 69 headers. |
+| Security resource ownership | 30 of 31 candidates migrated across 11 headers, including 17 raw-`HANDLE` producers. |
 
 The five DirectX review exceptions are:
 
@@ -118,6 +131,16 @@ The five DirectX review exceptions are:
 | `IDirect3DDeviceManager9` | Declaration is in `dxva2api.h`. |
 | `DWriteEngine2Events` | Declaration is in `imapi2.h` and is unrelated to DirectWrite. |
 | `DWRITE_MAKE_OPENTYPE_TAG` | Function-like macro; declaration annotations cannot attach to it. It needs guarded constant/macro metadata handling. |
+
+Additional concrete unresolved cases from the second bulk pass:
+
+| Name/category | Resolution needed |
+| --- | --- |
+| `TIMECODE_SAMPLE_FLAGS` | Seven sidecar constants are absent from the current SDK headers. Recover an authoritative declaration/value source before adding a guarded enum. |
+| `PSECURITY_DESCRIPTOR` ownership | Existing typedef is outside the assigned security batch and its invalid-value semantics are ambiguous. Resolve whether ownership belongs on specific producers rather than the pointer typedef. |
+| 616 supported-OS macros | Declaration annotations cannot attach to function-like/object-like macros. Use guarded annotated constants where a constant declaration is possible; otherwise extend the metadata macro representation. |
+| `PixelFormat` supported OS | Alias does not own the underlying declaration. Annotate the owning declaration or add guarded alias metadata. |
+| 78 supported-OS references | The matched header references but does not own the declaration. Move each annotation to the actual owner header. |
 
 ## Corrected generation defects
 
@@ -152,13 +175,15 @@ match declarations by logical identity and compare behavior field-by-field.
 The syntax and consumer behavior are resolved; remaining work is primarily mechanical
 header migration and cumulative equivalence comparison:
 
-1. Complete enum sidecars outside WinUser, Controls/RichEdit, credentials, UxTheme, and
-   crypto/security.
-2. Complete `supportedOS.rsp` outside the DirectX/graphics batch.
+1. Complete enum sidecars outside WinUser, Controls/RichEdit, credentials, UxTheme,
+   crypto/security, and the initial multimedia batch.
+2. Complete `supportedOS.rsp` outside the DirectX/graphics and Shell/COM/UI batches,
+   including owner-header relocation and macro representation.
 3. Complete `WithSetLastError.rsp` outside WinUser, kernel/process/file,
-   service/security, and networking.
-4. Classify and migrate the remaining auto-type candidates. Use genuine typedef
-   annotations or raw-HANDLE producer metadata; reject pseudo handles.
+   service/security, networking, and storage/setup/device/system.
+4. Classify and migrate the remaining auto-type candidates outside the completed shared
+   and security batches. Use genuine typedef annotations or raw-HANDLE producer metadata;
+   reject pseudo handles.
 5. Migrate member remaps, array/count/byte-size/string semantics, COM method metadata,
    native inheritance, struct-size fields, success semantics, agility, and encoding.
 6. Replace remaining scraper remaps/exclusions with corrected or guarded declarations.
@@ -173,6 +198,12 @@ header migration and cumulative equivalence comparison:
 
 - Canonical syntax and solution matrix:
   `docs/copilot/plans/shift-left-annotation-spec.md`
+- Category-by-category proof matrix:
+  `docs/copilot/shift-left-annotation-coverage.md`
+- Representative patch sampling and review strategy:
+  `docs/copilot/shift-left-patch-review-guide.md`
+- Quantified logical winmd comparison:
+  `docs/copilot/shift-left-winmd-delta.md`
 - This decision/progress/assumption log:
   `docs/copilot/shift-left-metadata-worklog.md`
 - SDK patch workflow:

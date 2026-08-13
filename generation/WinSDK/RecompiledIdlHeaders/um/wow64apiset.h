@@ -15,6 +15,9 @@
 
 #include <apiset.h>
 #include <apisetcconv.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 #include <minwindef.h>
 #include <minwinbase.h>
 
@@ -36,6 +39,7 @@ Wow64EnableWow64FsRedirection(
     _In_ BOOLEAN Wow64FsEnableRedirection
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -43,6 +47,7 @@ Wow64DisableWow64FsRedirection(
     _Out_ PVOID* OldValue
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -61,6 +66,7 @@ Wow64RevertWow64FsRedirection(
 
 #if (_WIN32_WINNT >= 0x0501)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -81,6 +87,7 @@ IsWow64Process(
 #if !defined(RC_INVOKED)
 #if _WIN32_WINNT >= 0x0501 || defined(WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 _Success_(return != 0 && return < uSize)
@@ -91,6 +98,7 @@ GetSystemWow64DirectoryA(
     _In_ UINT uSize
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 _Success_(return != 0 && return < uSize)
@@ -129,6 +137,7 @@ Wow64SetThreadDefaultGuestMachine(
 
 #if (_WIN32_WINNT >= 0x0A00)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -148,6 +157,7 @@ IsWow64Process2(
 
 #if (_WIN32_WINNT >= 0x0A00)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 _Success_(return != 0 && return < uSize)
@@ -159,6 +169,7 @@ GetSystemWow64Directory2A(
     _In_ WORD ImageFileMachineType
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 _Success_(return != 0 && return < uSize)
@@ -180,6 +191,7 @@ GetSystemWow64Directory2W(
 
 #if (_WIN32_WINNT >= 0x0A00)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 HRESULT
@@ -193,6 +205,7 @@ IsWow64GuestMachineSupported(
 
 #if (_WIN32_WINNT >= 0x0600)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -201,6 +214,7 @@ Wow64GetThreadContext(
     _Inout_ PWOW64_CONTEXT lpContext
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -209,6 +223,7 @@ Wow64SetThreadContext(
     _In_ CONST WOW64_CONTEXT* lpContext
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 DWORD
 WINAPI

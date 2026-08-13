@@ -17,6 +17,9 @@
 
 #include <apiset.h>
 #include <apisetcconv.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #ifdef _CONTRACT_GEN
 #include <nt.h>
@@ -58,6 +61,7 @@ CallNtPowerInformation(
 #undef NTSTATUS
 #endif
 
+_Win32_metadata_set_last_error_
 BOOLEAN
 WINAPI
 GetPwrCapabilities(

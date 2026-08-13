@@ -1,0 +1,19 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/minschannel.h b/generation/WinSDK/RecompiledIdlHeaders/um/minschannel.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/minschannel.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/minschannel.h
+@@ -79,7 +79,14 @@
+ // typedefs
+ //
+ 
+-typedef unsigned int ALG_ID;
++#ifndef ALGIDDEF
++#define ALGIDDEF
++#ifdef WIN32METADATA
++enum class ALG_ID : int;
++#else
++typedef unsigned int ALG_ID;
++#endif
++#endif
+ 
+ typedef struct _SecPkgCred_SupportedAlgs
+ {

@@ -1,0 +1,2478 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h
+index d0443446..ee848ee2 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h
+@@ -19,6 +19,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -1955,6 +1958,7 @@ typedef PSP_BACKUP_QUEUE_PARAMS_V2 PSP_BACKUP_QUEUE_PARAMS;
+ 
+ #endif // _SPAPI_ERRORS
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -1967,6 +1971,7 @@ SetupGetInfInformationA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -1995,6 +2000,7 @@ SetupGetInfInformationW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2006,6 +2012,7 @@ SetupQueryInfFileInformationA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2024,6 +2031,7 @@ SetupQueryInfFileInformationW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2034,6 +2042,7 @@ SetupQueryInfOriginalFileInformationA(
+     _Out_ PSP_ORIGINAL_FILE_INFO_A OriginalFileInfo
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2051,6 +2060,7 @@ SetupQueryInfOriginalFileInformationW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2063,6 +2073,7 @@ SetupQueryInfVersionInformationA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2084,6 +2095,7 @@ SetupQueryInfVersionInformationW(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2096,6 +2108,7 @@ SetupGetInfDriverStoreLocationA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2114,6 +2127,7 @@ SetupGetInfDriverStoreLocationW(
+ #define SetupGetInfDriverStoreLocation SetupGetInfDriverStoreLocationA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2124,6 +2138,7 @@ SetupGetInfPublishedNameA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2143,6 +2158,7 @@ SetupGetInfPublishedNameW(
+ #endif // _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2154,6 +2170,7 @@ SetupGetInfFileListA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2172,6 +2189,7 @@ SetupGetInfFileListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HINF
+ WINAPI
+@@ -2182,6 +2200,7 @@ SetupOpenInfFileW(
+     _Out_opt_ PUINT ErrorLine
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HINF
+ WINAPI
+@@ -2199,6 +2218,7 @@ SetupOpenInfFileA(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HINF
+ WINAPI
+@@ -2207,6 +2227,7 @@ SetupOpenMasterInf(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2216,6 +2237,7 @@ SetupOpenAppendInfFileW(
+     _Out_opt_ PUINT ErrorLine
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2240,6 +2262,7 @@ SetupCloseInfFile(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2250,6 +2273,7 @@ SetupFindFirstLineA(
+     _Out_ PINFCONTEXT Context
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2267,6 +2291,7 @@ SetupFindFirstLineW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2276,6 +2301,7 @@ SetupFindNextLine(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2285,6 +2311,7 @@ SetupFindNextMatchLineA(
+     _Out_ PINFCONTEXT ContextOut
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2301,6 +2328,7 @@ SetupFindNextMatchLineW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2311,6 +2339,7 @@ SetupGetLineByIndexA(
+     _Out_ PINFCONTEXT Context
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2328,6 +2357,7 @@ SetupGetLineByIndexW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ LONG
+ WINAPI
+@@ -2336,6 +2366,7 @@ SetupGetLineCountA(
+     _In_ PCSTR Section
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ LONG
+ WINAPI
+@@ -2351,6 +2382,7 @@ SetupGetLineCountW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2364,6 +2396,7 @@ SetupGetLineTextA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2384,6 +2417,7 @@ SetupGetLineTextW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ DWORD
+ WINAPI
+@@ -2392,6 +2426,7 @@ SetupGetFieldCount(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2403,6 +2438,7 @@ SetupGetStringFieldA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2421,6 +2457,7 @@ SetupGetStringFieldW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2431,6 +2468,7 @@ SetupGetIntField(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2442,6 +2480,7 @@ SetupGetMultiSzFieldA(
+     _Out_opt_ LPDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2459,6 +2498,7 @@ SetupGetMultiSzFieldW(
+ #define SetupGetMultiSzField SetupGetMultiSzFieldA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -2479,6 +2519,7 @@ SetupGetBinaryField(
+ // must be freed by the export setupapi!MyFree (NT4+ Win95+)
+ // or LocalFree (Win2k+)
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ DWORD
+ WINAPI
+@@ -2490,6 +2531,7 @@ SetupGetFileCompressionInfoA(
+     _Out_ PUINT CompressionType
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ DWORD
+ WINAPI
+@@ -2516,6 +2558,7 @@ SetupGetFileCompressionInfoW(
+ // buffer.
+ //
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2529,6 +2572,7 @@ SetupGetFileCompressionInfoExA(
+     _Out_ PUINT CompressionType
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2559,6 +2603,7 @@ SetupGetFileCompressionInfoExW(
+ #define FILE_COMPRESSION_NTCAB      3
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ DWORD
+ WINAPI
+@@ -2568,6 +2613,7 @@ SetupDecompressOrCopyFileA(
+     _In_opt_ PUINT CompressionType
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ DWORD
+ WINAPI
+@@ -2584,6 +2630,7 @@ SetupDecompressOrCopyFileW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2597,6 +2644,7 @@ SetupGetSourceFileLocationA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2617,6 +2665,7 @@ SetupGetSourceFileLocationW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2629,6 +2678,7 @@ SetupGetSourceFileSizeA(
+     _In_ UINT RoundingFactor
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2648,6 +2698,7 @@ SetupGetSourceFileSizeW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2660,6 +2711,7 @@ SetupGetTargetPathA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2692,6 +2744,7 @@ SetupGetTargetPathW(
+ #define SRCLIST_NOSTRIPPLATFORM 0x00000400
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2701,6 +2754,7 @@ SetupSetSourceListA(
+     _In_ UINT SourceCount
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2717,6 +2771,7 @@ SetupSetSourceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2725,6 +2780,7 @@ SetupCancelTemporarySourceList(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2733,6 +2789,7 @@ SetupAddToSourceListA(
+     _In_ PCSTR Source
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2748,6 +2805,7 @@ SetupAddToSourceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2756,6 +2814,7 @@ SetupRemoveFromSourceListA(
+     _In_ PCSTR Source
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2771,6 +2830,7 @@ SetupRemoveFromSourceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2780,6 +2840,7 @@ SetupQuerySourceListA(
+     _Out_ PUINT Count
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2796,6 +2857,7 @@ SetupQuerySourceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2804,6 +2866,7 @@ SetupFreeSourceListA(
+     _In_ UINT Count
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -2819,6 +2882,7 @@ SetupFreeSourceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -2835,6 +2899,7 @@ SetupPromptForDiskA(
+     _Out_opt_ PDWORD PathRequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -2858,6 +2923,7 @@ SetupPromptForDiskW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -2875,6 +2941,7 @@ SetupCopyErrorA(
+     _Out_opt_ PDWORD PathRequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -2899,6 +2966,7 @@ SetupCopyErrorW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -2911,6 +2979,7 @@ SetupRenameErrorA(
+     _In_ DWORD Style
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -2930,6 +2999,7 @@ SetupRenameErrorW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -2941,6 +3011,7 @@ SetupDeleteErrorA(
+     _In_ DWORD Style
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -2958,6 +3029,7 @@ SetupDeleteErrorW(
+ #define SetupDeleteError SetupDeleteErrorA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -2970,6 +3042,7 @@ SetupBackupErrorA(
+     _In_ DWORD Style
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -3021,6 +3094,7 @@ SetupBackupErrorW(
+ #define DPROMPT_OUTOFMEMORY     4
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3030,6 +3104,7 @@ SetupSetDirectoryIdA(
+     _In_opt_ PCSTR Directory
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3046,6 +3121,7 @@ SetupSetDirectoryIdW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3058,6 +3134,7 @@ SetupSetDirectoryIdExA(
+     _Reserved_ PVOID Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3082,6 +3159,7 @@ SetupSetDirectoryIdExW(
+ #define SETDIRID_NOT_FULL_PATH      0x00000001
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3094,6 +3172,7 @@ SetupGetSourceInfoA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3133,6 +3212,7 @@ SetupGetSourceInfoW(
+ 
+ #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3147,6 +3227,7 @@ SetupInstallFileA(
+     _In_opt_ PVOID Context
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3167,6 +3248,7 @@ SetupInstallFileW(
+ #define SetupInstallFile SetupInstallFileA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3182,6 +3264,7 @@ SetupInstallFileExA(
+     _Out_ PBOOL FileWasInUse
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3271,6 +3354,7 @@ SetupInstallFileExW(
+ #endif //_SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HSPFILEQ
+ WINAPI
+@@ -3285,6 +3369,7 @@ SetupCloseFileQueue(
+     _In_ HSPFILEQ QueueHandle
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3294,6 +3379,7 @@ SetupSetFileQueueAlternatePlatformA(
+     _In_opt_ PCSTR AlternateDefaultCatalogFile
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3310,6 +3396,7 @@ SetupSetFileQueueAlternatePlatformW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3317,6 +3404,7 @@ SetupSetPlatformPathOverrideA(
+     _In_opt_ PCSTR Override
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3331,6 +3419,7 @@ SetupSetPlatformPathOverrideW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3346,6 +3435,7 @@ SetupQueueCopyA(
+     _In_ DWORD CopyStyle
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3368,6 +3458,7 @@ SetupQueueCopyW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3375,6 +3466,7 @@ SetupQueueCopyIndirectA(
+     _In_ PSP_FILE_COPY_PARAMS_A CopyParams
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3389,6 +3481,7 @@ SetupQueueCopyIndirectW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3401,6 +3494,7 @@ SetupQueueDefaultCopyA(
+     _In_ DWORD CopyStyle
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3420,6 +3514,7 @@ SetupQueueDefaultCopyW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3432,6 +3527,7 @@ SetupQueueCopySectionA(
+     _In_ DWORD CopyStyle
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3451,6 +3547,7 @@ SetupQueueCopySectionW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3460,6 +3557,7 @@ SetupQueueDeleteA(
+     _In_opt_ PCSTR PathPart2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3476,6 +3574,7 @@ SetupQueueDeleteW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3486,6 +3585,7 @@ SetupQueueDeleteSectionA(
+     _In_ PCSTR Section
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3503,6 +3603,7 @@ SetupQueueDeleteSectionW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3514,6 +3615,7 @@ SetupQueueRenameA(
+     _In_ PCSTR TargetFilename
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3532,6 +3634,7 @@ SetupQueueRenameW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3542,6 +3645,7 @@ SetupQueueRenameSectionA(
+     _In_ PCSTR Section
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3559,6 +3663,7 @@ SetupQueueRenameSectionW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3569,6 +3674,7 @@ SetupCommitFileQueueA(
+     _In_ PVOID Context
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3586,6 +3692,7 @@ SetupCommitFileQueueW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3598,6 +3705,7 @@ SetupScanFileQueueA(
+     _Out_ PDWORD Result
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3655,6 +3763,7 @@ SetupScanFileQueueW(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3664,6 +3773,7 @@ SetupGetFileQueueCount(
+     _Out_ PUINT NumOperations
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3672,6 +3782,7 @@ SetupGetFileQueueFlags(
+     _Out_ PDWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3719,6 +3830,7 @@ SetupSetFileQueueFlags(
+ #define SPOST_URL   2
+ #define SPOST_MAX   3
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3733,6 +3845,7 @@ SetupCopyOEMInfA(
+     _Out_opt_ PSTR *DestinationInfFileNameComponent
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3795,6 +3908,7 @@ SetupUninstallOEMInfW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3810,6 +3924,7 @@ SetupUninstallNewlyCopiedInfs(
+ //
+ // Disk space list APIs
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HDSKSPC
+ WINAPI
+@@ -3819,6 +3934,7 @@ SetupCreateDiskSpaceListA(
+     _In_ UINT Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HDSKSPC
+ WINAPI
+@@ -3841,6 +3957,7 @@ SetupCreateDiskSpaceListW(
+ #define SPDSL_DISALLOW_NEGATIVE_ADJUST 0x00000002
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HDSKSPC
+ WINAPI
+@@ -3851,6 +3968,7 @@ SetupDuplicateDiskSpaceListA(
+     _In_ UINT Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HDSKSPC
+ WINAPI
+@@ -3868,6 +3986,7 @@ SetupDuplicateDiskSpaceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3876,6 +3995,7 @@ SetupDestroyDiskSpaceList(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3886,6 +4006,7 @@ SetupQueryDrivesInDiskSpaceListA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3903,6 +4024,7 @@ SetupQueryDrivesInDiskSpaceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3914,6 +4036,7 @@ SetupQuerySpaceRequiredOnDriveA(
+     _Reserved_ UINT Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3932,6 +4055,7 @@ SetupQuerySpaceRequiredOnDriveW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3943,6 +4067,7 @@ SetupAdjustDiskSpaceListA(
+     _Reserved_ UINT Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3961,6 +4086,7 @@ SetupAdjustDiskSpaceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3973,6 +4099,7 @@ SetupAddToDiskSpaceListA(
+     _Reserved_ UINT Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -3992,6 +4119,7 @@ SetupAddToDiskSpaceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4005,6 +4133,7 @@ SetupAddSectionToDiskSpaceListA(
+     _Reserved_ UINT Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4025,6 +4154,7 @@ SetupAddSectionToDiskSpaceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4037,6 +4167,7 @@ SetupAddInstallSectionToDiskSpaceListA(
+     _Reserved_ UINT Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4056,6 +4187,7 @@ SetupAddInstallSectionToDiskSpaceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4067,6 +4199,7 @@ SetupRemoveFromDiskSpaceListA(
+     _Reserved_ UINT Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4085,6 +4218,7 @@ SetupRemoveFromDiskSpaceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4098,6 +4232,7 @@ SetupRemoveSectionFromDiskSpaceListA(
+     _Reserved_ UINT Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4118,6 +4253,7 @@ SetupRemoveSectionFromDiskSpaceListW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4130,6 +4266,7 @@ SetupRemoveInstallSectionFromDiskSpaceListA(
+     _Reserved_ UINT Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4153,6 +4290,7 @@ SetupRemoveInstallSectionFromDiskSpaceListW(
+ // Cabinet APIs
+ //
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4163,6 +4301,7 @@ SetupIterateCabinetA(
+     _In_ PVOID Context
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4180,6 +4319,7 @@ SetupIterateCabinetW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ INT
+ WINAPI
+@@ -4197,6 +4337,7 @@ SetupPromptReboot(
+ #define SPFILEQ_REBOOT_IN_PROGRESS  0x00000004
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ PVOID
+ WINAPI
+@@ -4215,6 +4356,7 @@ SetupInitDefaultQueueCallbackEx(
+     _Reserved_ PVOID Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ VOID
+ WINAPI
+@@ -4222,6 +4364,7 @@ SetupTermDefaultQueueCallback(
+     _In_ PVOID Context
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -4232,6 +4375,7 @@ SetupDefaultQueueCallbackA(
+     _In_ UINT_PTR Param2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ UINT
+ WINAPI
+@@ -4409,6 +4553,7 @@ SetupDefaultQueueCallbackW(
+ #define FLG_DELPROPERTY_MULTI_SZ_DELSTRING  ( 0x00000001 )
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4426,6 +4571,7 @@ SetupInstallFromInfSectionA(
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4499,6 +4645,7 @@ SetupInstallFromInfSectionW(
+ 
+ #endif // _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4511,6 +4658,7 @@ SetupInstallFilesFromInfSectionA(
+     _In_ UINT CopyFlags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4646,6 +4794,7 @@ SetupInstallFilesFromInfSectionW(
+ 
+ #endif // _SETUPAPI_VER >= _WIN32_WINNT_WIN10
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4655,6 +4804,7 @@ SetupInstallServicesFromInfSectionA(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4671,6 +4821,7 @@ SetupInstallServicesFromInfSectionW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4684,6 +4835,7 @@ SetupInstallServicesFromInfSectionExA(
+     _Reserved_ PVOID Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4746,6 +4898,7 @@ InstallHinfSectionW(
+ //
+ typedef PVOID HSPFILELOG;
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HSPFILELOG
+ WINAPI
+@@ -4754,6 +4907,7 @@ SetupInitializeFileLogA(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ HSPFILELOG
+ WINAPI
+@@ -4776,6 +4930,7 @@ SetupInitializeFileLogW(
+ #define SPFILELOG_QUERYONLY     0x00000004  // allows non-administrators to read system log
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4784,6 +4939,7 @@ SetupTerminateFileLog(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4799,6 +4955,7 @@ SetupLogFileA(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4826,6 +4983,7 @@ SetupLogFileW(
+ #define SPFILELOG_OEMFILE   0x00000001
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4835,6 +4993,7 @@ SetupRemoveFileLogEntryA(
+     _In_opt_ PCSTR TargetFilename
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4863,6 +5022,7 @@ typedef enum {
+     SetupFileLogMax
+ } SetupFileLogInfo;
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4876,6 +5036,7 @@ SetupQueryFileLogA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4905,6 +5066,7 @@ SetupQueryFileLogW(
+ #define LogSevFatalError            0x00000003
+ #define LogSevMaximum               0x00000004
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4912,6 +5074,7 @@ SetupOpenLog (
+     _In_ BOOL Erase
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -4920,6 +5083,7 @@ SetupLogErrorA (
+     _In_ LogSeverity Severity
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5079,6 +5243,7 @@ SetupGetNonInteractiveMode(
+ // Device Installer APIs
+ //
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HDEVINFO
+@@ -5089,6 +5254,7 @@ SetupDiCreateDeviceInfoList(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HDEVINFO
+@@ -5100,6 +5266,7 @@ SetupDiCreateDeviceInfoListExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HDEVINFO
+@@ -5118,6 +5285,7 @@ SetupDiCreateDeviceInfoListExW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5126,6 +5294,7 @@ SetupDiGetDeviceInfoListClass(
+     _Out_ LPGUID ClassGuid
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5134,6 +5303,7 @@ SetupDiGetDeviceInfoListDetailA(
+     _Out_ PSP_DEVINFO_LIST_DETAIL_DATA_A DeviceInfoSetDetailData
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5155,6 +5325,7 @@ SetupDiGetDeviceInfoListDetailW(
+ #define DICD_GENERATE_ID        0x00000001
+ #define DICD_INHERIT_CLASSDRVS  0x00000002
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5168,6 +5339,7 @@ SetupDiCreateDeviceInfoA(
+     _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5194,6 +5366,7 @@ SetupDiCreateDeviceInfoW(
+ #define DIOD_INHERIT_CLASSDRVS  0x00000002
+ #define DIOD_CANCEL_REMOVE      0x00000004
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5205,6 +5378,7 @@ SetupDiOpenDeviceInfoA(
+     _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5223,6 +5397,7 @@ SetupDiOpenDeviceInfoW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5234,6 +5409,7 @@ SetupDiGetDeviceInstanceIdA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5252,6 +5428,7 @@ SetupDiGetDeviceInstanceIdW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5261,6 +5438,7 @@ SetupDiDeleteDeviceInfo(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5271,6 +5449,7 @@ SetupDiEnumDeviceInfo(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5279,6 +5458,7 @@ SetupDiDestroyDeviceInfoList(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5296,6 +5476,7 @@ SetupDiEnumDeviceInterfaces(
+ #define SetupDiEnumInterfaceDevice SetupDiEnumDeviceInterfaces
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5308,6 +5489,7 @@ SetupDiCreateDeviceInterfaceA(
+     _Out_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5343,6 +5525,7 @@ SetupDiCreateDeviceInterfaceW(
+ //
+ #define DIODI_NO_ADD    0x00000001
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5353,6 +5536,7 @@ SetupDiOpenDeviceInterfaceA(
+     _Out_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5381,6 +5565,7 @@ SetupDiOpenDeviceInterfaceW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5397,6 +5582,7 @@ SetupDiGetDeviceInterfaceAlias(
+ #define SetupDiGetInterfaceDeviceAlias SetupDiGetDeviceInterfaceAlias
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5411,6 +5597,7 @@ SetupDiDeleteDeviceInterfaceData(
+ #define SetupDiDeleteInterfaceDeviceData SetupDiDeleteDeviceInterfaceData
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5424,6 +5611,7 @@ SetupDiRemoveDeviceInterface(
+ //
+ #define SetupDiRemoveInterfaceDevice SetupDiRemoveDeviceInterface
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ _At_((LPSTR)DeviceInterfaceDetailData->DevicePath, _Post_z_)
+ WINSETUPAPI
+@@ -5438,6 +5626,7 @@ SetupDiGetDeviceInterfaceDetailA(
+     _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ _At_((LPWSTR)DeviceInterfaceDetailData->DevicePath, _Post_z_)
+ WINSETUPAPI
+@@ -5473,6 +5662,7 @@ SetupDiGetDeviceInterfaceDetailW(
+ //
+ // Default install handler for DIF_INSTALLINTERFACES.
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5489,6 +5679,7 @@ SetupDiInstallDeviceInterfaces(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5511,6 +5702,7 @@ SetupDiSetDeviceInterfaceDefault(
+ //
+ #define SPRDI_FIND_DUPS        0x00000001
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5533,6 +5725,7 @@ SetupDiRegisterDeviceInfo(
+ #define SPDIT_CLASSDRIVER        0x00000001
+ #define SPDIT_COMPATDRIVER       0x00000002
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5543,6 +5736,7 @@ SetupDiBuildDriverInfoList(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5551,6 +5745,7 @@ SetupDiCancelDriverInfoSearch(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5562,6 +5757,7 @@ SetupDiEnumDriverInfoA(
+     _Out_ PSP_DRVINFO_DATA_A DriverInfoData
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5580,6 +5776,7 @@ SetupDiEnumDriverInfoW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5589,6 +5786,7 @@ SetupDiGetSelectedDriverA(
+     _Out_ PSP_DRVINFO_DATA_A DriverInfoData
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5605,6 +5803,7 @@ SetupDiGetSelectedDriverW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5614,6 +5813,7 @@ SetupDiSetSelectedDriverA(
+     _Inout_opt_ PSP_DRVINFO_DATA_A DriverInfoData
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5629,6 +5829,7 @@ SetupDiSetSelectedDriverW(
+ #define SetupDiSetSelectedDriver SetupDiSetSelectedDriverA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5641,6 +5842,7 @@ SetupDiGetDriverInfoDetailA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5660,6 +5862,7 @@ SetupDiGetDriverInfoDetailW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5686,6 +5889,7 @@ SetupDiDestroyDriverInfoList(
+ #define DIGCF_INTERFACEDEVICE DIGCF_DEVICEINTERFACE
+ 
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HDEVINFO
+@@ -5697,6 +5901,7 @@ SetupDiGetClassDevsA(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HDEVINFO
+@@ -5715,6 +5920,7 @@ SetupDiGetClassDevsW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HDEVINFO
+@@ -5729,6 +5935,7 @@ SetupDiGetClassDevsExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HDEVINFO
+@@ -5750,6 +5957,7 @@ SetupDiGetClassDevsExW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5761,6 +5969,7 @@ SetupDiGetINFClassA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5786,6 +5995,7 @@ SetupDiGetINFClassW(
+ #define DIBCI_NOINSTALLCLASS   0x00000001
+ #define DIBCI_NODISPLAYCLASS   0x00000002
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -5797,6 +6007,7 @@ SetupDiBuildClassInfoList(
+     _Out_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -5810,6 +6021,7 @@ SetupDiBuildClassInfoListExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -5830,6 +6042,7 @@ SetupDiBuildClassInfoListExW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5840,6 +6053,7 @@ SetupDiGetClassDescriptionA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5857,6 +6071,7 @@ SetupDiGetClassDescriptionW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5869,6 +6084,7 @@ SetupDiGetClassDescriptionExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5888,6 +6104,7 @@ SetupDiGetClassDescriptionExW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5901,6 +6118,7 @@ SetupDiCallClassInstaller(
+ //
+ // Default install handler for DIF_SELECTDEVICE
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5913,6 +6131,7 @@ SetupDiSelectDevice(
+ //
+ // Default install handler for DIF_SELECTBESTCOMPATDRV
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5925,6 +6144,7 @@ SetupDiSelectBestCompatDrv(
+ //
+ // Default install handler for DIF_INSTALLDEVICE
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5937,6 +6157,7 @@ SetupDiInstallDevice(
+ //
+ // Default install handler for DIF_INSTALLDEVICEFILES
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5949,6 +6170,7 @@ SetupDiInstallDriverFiles(
+ //
+ // Default install handler for DIF_REGISTER_COINSTALLERS
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5973,6 +6195,7 @@ SetupDiRemoveDevice(
+ //
+ // Default install handler for DIF_UNREMOVE
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5983,6 +6206,7 @@ SetupDiUnremoveDevice(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_WS03
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -5996,6 +6220,7 @@ SetupDiRestartDevices(
+ //
+ // Default install handler for DIF_PROPERTYCHANGE
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6005,6 +6230,7 @@ SetupDiChangeState(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6015,6 +6241,7 @@ SetupDiInstallClassA(
+     _In_opt_ HSPFILEQ FileQueue
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6032,6 +6259,7 @@ SetupDiInstallClassW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6045,6 +6273,7 @@ SetupDiInstallClassExA(
+     _Reserved_ PVOID Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6065,6 +6294,7 @@ SetupDiInstallClassExW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HKEY
+@@ -6081,6 +6311,7 @@ SetupDiOpenClassRegKey(
+ #define DIOCR_INSTALLER   0x00000001    // class installer registry branch
+ #define DIOCR_INTERFACE   0x00000002    // interface class registry branch
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HKEY
+@@ -6093,6 +6324,7 @@ SetupDiOpenClassRegKeyExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HKEY
+@@ -6112,6 +6344,7 @@ SetupDiOpenClassRegKeyExW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HKEY
+@@ -6125,6 +6358,7 @@ SetupDiCreateDeviceInterfaceRegKeyA(
+     _In_opt_ PCSTR InfSectionName
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HKEY
+@@ -6156,6 +6390,7 @@ SetupDiCreateDeviceInterfaceRegKeyW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HKEY
+@@ -6173,6 +6408,7 @@ SetupDiOpenDeviceInterfaceRegKey(
+ #define SetupDiOpenInterfaceDeviceRegKey SetupDiOpenDeviceInterfaceRegKey
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6196,6 +6432,7 @@ SetupDiDeleteDeviceInterfaceRegKey(
+ #define DIREG_DRV       0x00000002          // Open/Create/Delete driver key
+ #define DIREG_BOTH      0x00000004          // Delete both driver and Device key
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HKEY
+@@ -6210,6 +6447,7 @@ SetupDiCreateDevRegKeyA(
+     _In_opt_ PCSTR InfSectionName
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HKEY
+@@ -6231,6 +6469,7 @@ SetupDiCreateDevRegKeyW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ _Check_return_
+ WINSETUPAPI
+ HKEY
+@@ -6245,6 +6484,7 @@ SetupDiOpenDevRegKey(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6256,6 +6496,7 @@ SetupDiDeleteDevRegKey(
+     _In_ DWORD KeyType
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -6267,6 +6508,7 @@ SetupDiGetHwProfileList(
+     _Out_opt_ PDWORD CurrentlyActiveIndex
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -6280,6 +6522,7 @@ SetupDiGetHwProfileListExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -6301,6 +6544,7 @@ SetupDiGetHwProfileListExW(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6313,6 +6557,7 @@ SetupDiGetDevicePropertyKeys(
+     _In_         DWORD            Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ _When_(*PropertyType == DEVPROP_TYPE_STRING, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
+ _When_(*PropertyType == DEVPROP_TYPE_STRING_INDIRECT, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
+@@ -6335,6 +6580,7 @@ SetupDiGetDevicePropertyW(
+ #define SetupDiGetDeviceProperty SetupDiGetDevicePropertyW
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6352,6 +6598,7 @@ SetupDiSetDevicePropertyW(
+ #define SetupDiSetDeviceProperty SetupDiSetDevicePropertyW
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6364,6 +6611,7 @@ SetupDiGetDeviceInterfacePropertyKeys(
+     _In_         DWORD            Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ _When_(*PropertyType == DEVPROP_TYPE_STRING, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
+ _When_(*PropertyType == DEVPROP_TYPE_STRING_INDIRECT, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
+@@ -6386,6 +6634,7 @@ SetupDiGetDeviceInterfacePropertyW(
+ #define SetupDiGetDeviceInterfaceProperty SetupDiGetDeviceInterfacePropertyW
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6410,6 +6659,7 @@ SetupDiSetDeviceInterfacePropertyW(
+ #define DICLASSPROP_INSTALLER   0x00000001    // device setup class property
+ #define DICLASSPROP_INTERFACE   0x00000002    // device interface class property
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6421,6 +6671,7 @@ SetupDiGetClassPropertyKeys(
+     _In_         DWORD            Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6438,6 +6689,7 @@ SetupDiGetClassPropertyKeysExW(
+ #define SetupDiGetClassPropertyKeysEx SetupDiGetClassPropertyKeysExW
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ _When_(*PropertyType == DEVPROP_TYPE_STRING, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
+ _When_(*PropertyType == DEVPROP_TYPE_STRING_INDIRECT, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
+@@ -6459,6 +6711,7 @@ SetupDiGetClassPropertyW(
+ #define SetupDiGetClassProperty SetupDiGetClassPropertyW
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ _When_(*PropertyType == DEVPROP_TYPE_STRING, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
+ _When_(*PropertyType == DEVPROP_TYPE_STRING_INDIRECT, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
+@@ -6482,6 +6735,7 @@ SetupDiGetClassPropertyExW(
+ #define SetupDiGetClassPropertyEx SetupDiGetClassPropertyExW
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6498,6 +6752,7 @@ SetupDiSetClassPropertyW(
+ #define SetupDiSetClassProperty SetupDiSetClassPropertyW
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6588,6 +6843,7 @@ SetupDiSetClassPropertyExW(
+ #define SPCRP_CHARACTERISTICS             (0x0000001B)  // Device Characteristics (R/W)
+ #define SPCRP_MAXIMUM_PROPERTY            (0x0000001C)  // Upper bound on ordinals
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ _When_((*PropertyRegDataType == REG_SZ), _At_((PSTR) PropertyBuffer, _Post_valid_))
+ _When_((*PropertyRegDataType == REG_MULTI_SZ), _At_((PZZSTR) PropertyBuffer, _Post_valid_))
+@@ -6604,6 +6860,7 @@ SetupDiGetDeviceRegistryPropertyA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ _When_((*PropertyRegDataType == REG_SZ), _At_((PWSTR) PropertyBuffer, _Post_valid_))
+ _When_((*PropertyRegDataType == REG_MULTI_SZ), _At_((PZZWSTR) PropertyBuffer, _Post_valid_))
+@@ -6628,6 +6885,7 @@ SetupDiGetDeviceRegistryPropertyW(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -6643,6 +6901,7 @@ SetupDiGetClassRegistryPropertyA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -6666,6 +6925,7 @@ SetupDiGetClassRegistryPropertyW(
+ 
+ #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6677,6 +6937,7 @@ SetupDiSetDeviceRegistryPropertyA(
+     _In_ DWORD PropertyBufferSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6696,6 +6957,7 @@ SetupDiSetDeviceRegistryPropertyW(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6708,6 +6970,7 @@ SetupDiSetClassRegistryPropertyA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6728,6 +6991,7 @@ SetupDiSetClassRegistryPropertyW(
+ 
+ #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6737,6 +7001,7 @@ SetupDiGetDeviceInstallParamsA(
+     _Out_ PSP_DEVINSTALL_PARAMS_A DeviceInstallParams
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6752,6 +7017,7 @@ SetupDiGetDeviceInstallParamsW(
+ #define SetupDiGetDeviceInstallParams SetupDiGetDeviceInstallParamsA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -6764,6 +7030,7 @@ SetupDiGetClassInstallParamsA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -6783,6 +7050,7 @@ SetupDiGetClassInstallParamsW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6792,6 +7060,7 @@ SetupDiSetDeviceInstallParamsA(
+     _In_ PSP_DEVINSTALL_PARAMS_A DeviceInstallParams
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6808,6 +7077,7 @@ SetupDiSetDeviceInstallParamsW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6818,6 +7088,7 @@ SetupDiSetClassInstallParamsA(
+     _In_ DWORD ClassInstallParamsSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6835,6 +7106,7 @@ SetupDiSetClassInstallParamsW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6845,6 +7117,7 @@ SetupDiGetDriverInstallParamsA(
+     _Out_ PSP_DRVINSTALL_PARAMS DriverInstallParams
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6862,6 +7135,7 @@ SetupDiGetDriverInstallParamsW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6872,6 +7146,7 @@ SetupDiSetDriverInstallParamsA(
+     _In_ PSP_DRVINSTALL_PARAMS DriverInstallParams
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6889,6 +7164,7 @@ SetupDiSetDriverInstallParamsW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6900,6 +7176,7 @@ SetupDiLoadClassIcon(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6933,6 +7210,7 @@ SetupDiDrawMiniIcon(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6942,6 +7220,7 @@ SetupDiGetClassBitmapIndex(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6950,6 +7229,7 @@ SetupDiGetClassImageList(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6959,6 +7239,7 @@ SetupDiGetClassImageListExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6975,6 +7256,7 @@ SetupDiGetClassImageListExW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -6985,6 +7267,7 @@ SetupDiGetClassImageIndex(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7006,6 +7289,7 @@ SetupDiDestroyClassImageList(
+ 
+ #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7018,6 +7302,7 @@ SetupDiGetClassDevPropertySheetsA(
+     _In_ DWORD PropertySheetType
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7054,6 +7339,7 @@ SetupDiGetClassDevPropertySheetsW(
+ #define IDI_FORCED_OVL              502
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7063,6 +7349,7 @@ SetupDiAskForOEMDisk(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7073,6 +7360,7 @@ SetupDiSelectOEMDrv(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7083,6 +7371,7 @@ SetupDiClassNameFromGuidA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7100,6 +7389,7 @@ SetupDiClassNameFromGuidW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7112,6 +7402,7 @@ SetupDiClassNameFromGuidExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7130,6 +7421,7 @@ SetupDiClassNameFromGuidExW(
+ #define SetupDiClassNameFromGuidEx SetupDiClassNameFromGuidExA
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -7141,6 +7433,7 @@ SetupDiClassGuidsFromNameA(
+     _Out_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -7159,6 +7452,7 @@ SetupDiClassGuidsFromNameW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -7172,6 +7466,7 @@ SetupDiClassGuidsFromNameExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -7192,6 +7487,7 @@ SetupDiClassGuidsFromNameExW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7202,6 +7498,7 @@ SetupDiGetHwProfileFriendlyNameA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7219,6 +7516,7 @@ SetupDiGetHwProfileFriendlyNameW(
+ #endif
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7231,6 +7529,7 @@ SetupDiGetHwProfileFriendlyNameExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7272,6 +7571,7 @@ SetupDiGetWizardPage(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7281,6 +7581,7 @@ SetupDiGetSelectedDevice(
+     );
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7292,6 +7593,7 @@ SetupDiSetSelectedDevice(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_WS03
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7304,6 +7606,7 @@ SetupDiGetActualModelsSectionA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7325,6 +7628,7 @@ SetupDiGetActualModelsSectionW(
+ #endif // _SETUPAPI_VER >= _WIN32_WINNT_WS03
+ 
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7337,6 +7641,7 @@ SetupDiGetActualSectionToInstallA(
+     _Out_opt_ PSTR *Extension
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7358,6 +7663,7 @@ SetupDiGetActualSectionToInstallW(
+ 
+ #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7372,6 +7678,7 @@ SetupDiGetActualSectionToInstallExA(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7400,6 +7707,7 @@ SetupDiGetActualSectionToInstallExW(
+ //
+ // SetupEnumInfSections is for low-level parsing of an INF
+ //
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7411,6 +7719,7 @@ SetupEnumInfSectionsA (
+     _Out_opt_ UINT *SizeNeeded
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7552,6 +7861,7 @@ SetupVerifyInfFileW(
+ //
+ #define DICUSTOMDEVPROP_MERGE_MULTISZ    0x00000001
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -7567,6 +7877,7 @@ SetupDiGetCustomDevicePropertyA(
+     _Out_opt_ PDWORD RequiredSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL

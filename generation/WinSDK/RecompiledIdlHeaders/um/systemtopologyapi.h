@@ -15,6 +15,9 @@
 
 #include <apiset.h>
 #include <apisetcconv.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 #include <minwindef.h>
 #include <minwinbase.h>
 
@@ -25,6 +28,7 @@ extern "C" {
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI

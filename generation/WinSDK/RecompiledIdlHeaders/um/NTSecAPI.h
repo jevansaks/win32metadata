@@ -1685,7 +1685,10 @@ NTSTATUS
 NTAPI
 LsaRegisterLogonProcess (
     _In_ PLSA_STRING LogonProcessName,
-    _Out_ PHANDLE LsaHandle,
+    _Out_ PHANDLE LsaHandle
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(LsaDeregisterLogonProcess),
     _Out_ PLSA_OPERATIONAL_MODE SecurityMode
     );
 
@@ -1710,7 +1713,10 @@ LsaLogonUser (
     _Out_       PVOID           *ProfileBuffer,
     _Out_       PULONG          ProfileBufferLength,
     _Inout_     PLUID           LogonId,
-    _Out_       PHANDLE         Token,
+    _Out_       PHANDLE         Token
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(CloseHandle),
     _Out_       PQUOTA_LIMITS   Quotas,
     _Out_       PNTSTATUS       SubStatus
     );
@@ -1766,6 +1772,9 @@ NTSTATUS
 NTAPI
 LsaConnectUntrusted (
     _Out_ PHANDLE LsaHandle
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(LsaDeregisterLogonProcess)
     );
 
 __drv_sameIRQL
@@ -2379,6 +2388,9 @@ typedef enum _POLICY_NOTIFICATION_INFORMATION_CLASS {
 // always a pointer type unlike regular handles.
 //
 
+_Win32_metadata_invalid_handle_(-1)
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(LsaClose)
 typedef PVOID LSA_HANDLE, *PLSA_HANDLE;
 
 

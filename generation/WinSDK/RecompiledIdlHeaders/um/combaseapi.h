@@ -9,6 +9,10 @@
 //
 //----------------------------------------------------------------------------
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #include <apiset.h>
 #include <apisetcconv.h>
 
@@ -378,6 +382,7 @@ extern "C++"
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetMalloc(
     _In_ DWORD dwMemContext,
@@ -390,6 +395,7 @@ CoGetMalloc(
 #pragma region Application or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CreateStreamOnHGlobal(
     HGLOBAL hGlobal,
@@ -397,6 +403,7 @@ CreateStreamOnHGlobal(
     _Outptr_ LPSTREAM  FAR * ppstm
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 GetHGlobalFromStream(
     _In_ LPSTREAM pstm,
@@ -405,6 +412,7 @@ GetHGlobalFromStream(
 
 /* init/uninit */
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(void)
 CoUninitialize(
     void
@@ -416,6 +424,7 @@ CoUninitialize(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(DWORD)
 CoGetCurrentProcess(
     void
@@ -430,6 +439,7 @@ CoGetCurrentProcess(
 #pragma region Application or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoInitializeEx(
     _In_opt_ LPVOID pvReserved,
@@ -442,6 +452,7 @@ CoInitializeEx(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 CoGetCallerTID(
     _Out_ LPDWORD lpdwTID
@@ -453,6 +464,7 @@ CoGetCallerTID(
 #pragma region Application or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 CoGetCurrentLogicalThreadId(
     _Out_ GUID* pguid
@@ -468,6 +480,7 @@ CoGetCurrentLogicalThreadId(
 #pragma region Application or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetContextToken(
     _Out_ ULONG_PTR* pToken
@@ -479,6 +492,7 @@ CoGetContextToken(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.1.2600)
 _Check_return_ WINOLEAPI
 CoGetDefaultContext(
     _In_ APTTYPE aptType,
@@ -498,6 +512,7 @@ CoGetDefaultContext(
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
 
+_Win32_metadata_supported_os_(windows6.1)
 _Check_return_ WINOLEAPI
 CoGetApartmentType(
     _Out_ APTTYPE* pAptType,
@@ -560,6 +575,7 @@ CoDecrementMTAUsage(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_supported_os_(windows8.0)
 WINOLEAPI
 CoAllowUnmarshalerCLSID(
     _In_ REFCLSID clsid
@@ -588,6 +604,7 @@ CoAllowUnmarshalerCLSID(
 #pragma region Application or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetObjectContext(
     _In_ REFIID riid,
@@ -602,6 +619,7 @@ CoGetObjectContext(
 
 /* register/revoke/get class objects */
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetClassObject(
     _In_ REFCLSID rclsid,
@@ -617,6 +635,7 @@ CoGetClassObject(
 #pragma region Application or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoRegisterClassObject(
     _In_ REFCLSID rclsid,
@@ -626,16 +645,19 @@ CoRegisterClassObject(
     _Out_ LPDWORD lpdwRegister
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 CoRevokeClassObject(
     _In_ DWORD dwRegister
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoResumeClassObjects(
     void
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoSuspendClassObjects(
     void
@@ -647,22 +669,26 @@ CoSuspendClassObjects(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(ULONG)
 CoAddRefServerProcess(
     void
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(ULONG)
 CoReleaseServerProcess(
     void
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetPSClsid(
     _In_ REFIID riid,
     _Out_ CLSID* pClsid
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoRegisterPSClsid(
     _In_ REFIID riid,
@@ -670,6 +696,7 @@ CoRegisterPSClsid(
     );
 
 // Registering surrogate processes
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoRegisterSurrogate(
     _In_ LPSURROGATE pSurrogate
@@ -683,6 +710,7 @@ CoRegisterSurrogate(
 
 /* marshaling interface pointers */
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetMarshalSizeMax(
     _Out_ ULONG* pulSize,
@@ -693,6 +721,7 @@ CoGetMarshalSizeMax(
     _In_ DWORD mshlflags
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoMarshalInterface(
     _In_ LPSTREAM pStm,
@@ -703,6 +732,7 @@ CoMarshalInterface(
     _In_ DWORD mshlflags
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoUnmarshalInterface(
     _In_ LPSTREAM pStm,
@@ -716,12 +746,14 @@ CoUnmarshalInterface(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 CoMarshalHresult(
     _In_ LPSTREAM pstm,
     _In_ HRESULT hresult
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 CoUnmarshalHresult(
     _In_ LPSTREAM pstm,
@@ -734,11 +766,13 @@ CoUnmarshalHresult(
 #pragma region Application or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoReleaseMarshalData(
     _In_ LPSTREAM pStm
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoDisconnectObject(
     _In_ LPUNKNOWN pUnk,
@@ -751,6 +785,7 @@ CoDisconnectObject(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoLockObjectExternal(
     _In_ LPUNKNOWN pUnk,
@@ -764,6 +799,7 @@ CoLockObjectExternal(
 #pragma region Application or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetStandardMarshal(
     _In_ REFIID riid,
@@ -780,6 +816,7 @@ CoGetStandardMarshal(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetStdMarshalEx(
     _In_ LPUNKNOWN pUnkOuter,
@@ -806,6 +843,7 @@ typedef enum tagSTDMSHLFLAGS
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(BOOL)
 CoIsHandlerConnected(
     _In_ LPUNKNOWN pUnk
@@ -818,6 +856,7 @@ CoIsHandlerConnected(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 // Apartment model inter-thread interface passing helpers
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoMarshalInterThreadInterfaceInStream(
     _In_ REFIID riid,
@@ -825,6 +864,7 @@ CoMarshalInterThreadInterfaceInStream(
     _Outptr_ LPSTREAM* ppStm
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetInterfaceAndReleaseStream(
     _In_ LPSTREAM pStm,
@@ -838,6 +878,7 @@ CoGetInterfaceAndReleaseStream(
 #pragma region Application or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoCreateFreeThreadedMarshaler(
     _In_opt_ LPUNKNOWN punkOuter,
@@ -850,12 +891,14 @@ CoCreateFreeThreadedMarshaler(
 #pragma region Application or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(void)
 CoFreeUnusedLibraries(
     void
     );
 
 #if (_WIN32_WINNT >= 0x0501)
+_Win32_metadata_supported_os_(windows5.1.2600)
 WINOLEAPI_(void)
 CoFreeUnusedLibrariesEx(
     _In_ DWORD dwUnloadDelay,
@@ -872,6 +915,7 @@ CoFreeUnusedLibrariesEx(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows6.0.6000)
 _Check_return_ WINOLEAPI
 CoDisconnectContext(
     DWORD dwTimeout
@@ -890,6 +934,7 @@ CoDisconnectContext(
 
 /* Call Security. */
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoInitializeSecurity(
     _In_opt_ PSECURITY_DESCRIPTOR pSecDesc,
@@ -909,12 +954,14 @@ CoInitializeSecurity(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetCallContext(
     _In_ REFIID riid,
     _Outptr_ void** ppInterface
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoQueryProxyBlanket(
     _In_ IUnknown* pProxy,
@@ -927,6 +974,7 @@ CoQueryProxyBlanket(
     _Out_opt_ DWORD* pCapabilites
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoSetProxyBlanket(
     _In_ IUnknown* pProxy,
@@ -939,12 +987,14 @@ CoSetProxyBlanket(
     _In_ DWORD dwCapabilities
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoCopyProxy(
     _In_ IUnknown* pProxy,
     _Outptr_ IUnknown** ppCopy
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoQueryClientBlanket(
     _Out_opt_ DWORD* pAuthnSvc,
@@ -956,16 +1006,19 @@ CoQueryClientBlanket(
     _Inout_opt_ DWORD* pCapabilities
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoImpersonateClient(
     void
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoRevertToSelf(
     void
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoQueryAuthenticationServices(
     _Out_ DWORD* pcAuthSvc,
@@ -978,6 +1031,7 @@ CoQueryAuthenticationServices(
 #pragma region Application or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoSwitchCallContext(
     _In_opt_ IUnknown* pNewObject,
@@ -1002,6 +1056,7 @@ CoSwitchCallContext(
 
 /* helper for creating instances */
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoCreateInstance(
     _In_ REFCLSID rclsid,
@@ -1020,6 +1075,7 @@ CoCreateInstance(
 // DCOM
 #if (_WIN32_WINNT >= 0x0400) || defined(_WIN32_DCOM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoCreateInstanceEx(
     _In_ REFCLSID Clsid,
@@ -1034,6 +1090,7 @@ CoCreateInstanceEx(
 
 #if (_WIN32_WINNT >= 0x0602)
 
+_Win32_metadata_supported_os_(windows8.0)
 _Check_return_ WINOLEAPI
 CoCreateInstanceFromApp(
     _In_ REFCLSID Clsid,
@@ -1052,6 +1109,7 @@ CoCreateInstanceFromApp(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.1.2600)
 WINOLEAPI
 CoRegisterActivationFilter(
     _In_ IActivationFilter* pActivationFilter
@@ -1067,6 +1125,7 @@ CoRegisterActivationFilter(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetCancelObject(
     _In_ DWORD dwThreadId,
@@ -1074,27 +1133,32 @@ CoGetCancelObject(
     _Outptr_ void** ppUnk
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoSetCancelObject(
     _In_opt_ IUnknown* pUnk
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoCancelCall(
     _In_ DWORD dwThreadId,
     _In_ ULONG ulTimeout
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoTestCancel(
     void
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoEnableCallCancellation(
     _In_opt_ LPVOID pReserved
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoDisableCallCancellation(
     _In_opt_ LPVOID pReserved
@@ -1110,24 +1174,28 @@ CoDisableCallCancellation(
 
 /* other helpers */
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 StringFromCLSID(
     _In_ REFCLSID rclsid,
     _Outptr_ LPOLESTR  FAR * lplpsz
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CLSIDFromString(
     _In_ LPCOLESTR lpsz,
     _Out_ LPCLSID pclsid
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 StringFromIID(
     _In_ REFIID rclsid,
     _Outptr_ LPOLESTR  FAR * lplpsz
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 IIDFromString(
     _In_ LPCOLESTR lpsz,
@@ -1140,12 +1208,14 @@ IIDFromString(
 #pragma region Desktop or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 ProgIDFromCLSID(
     _In_ REFCLSID clsid,
     _Outptr_ LPOLESTR  FAR * lplpszProgID
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CLSIDFromProgID(
     _In_ LPCOLESTR lpszProgID,
@@ -1158,6 +1228,7 @@ CLSIDFromProgID(
 #pragma region Application or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI_(int)
 StringFromGUID2(
     _In_ REFGUID rguid,
@@ -1165,6 +1236,7 @@ StringFromGUID2(
     _In_ int cchMax
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoCreateGuid(
     _Out_ GUID  FAR * pguid
@@ -1174,6 +1246,7 @@ CoCreateGuid(
 
 typedef struct tagPROPVARIANT PROPVARIANT;
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 WINOLEAPI
 PropVariantCopy(
@@ -1181,11 +1254,13 @@ PropVariantCopy(
     _In_ const PROPVARIANT* pvarSrc
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 PropVariantClear(
     _Inout_ PROPVARIANT* pvar
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 FreePropVariantArray(
     _In_ ULONG cVariants,
@@ -1213,6 +1288,7 @@ FreePropVariantArray(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoWaitForMultipleHandles(
     _In_ DWORD dwFlags,
@@ -1266,6 +1342,7 @@ CoWaitForMultipleObjects(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CoGetTreatAsClass(
     _In_ REFCLSID clsidOld,
@@ -1282,6 +1359,7 @@ CoGetTreatAsClass(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.1.2600)
 _Check_return_ WINOLEAPI
 CoInvalidateRemoteMachineBindings(
     _In_ LPOLESTR pszMachineName
@@ -1303,6 +1381,7 @@ enum AgileReferenceOptions
     AGILEREFERENCE_DELAYEDMARSHAL = 1,
 };
 
+_Win32_metadata_supported_os_(windows8.1)
 _Check_return_ WINOLEAPI
 RoGetAgileReference(
     _In_ enum AgileReferenceOptions options,
@@ -1327,24 +1406,29 @@ RoGetAgileReference(
 typedef HRESULT (STDAPICALLTYPE * LPFNGETCLASSOBJECT) (REFCLSID, REFIID, LPVOID *);
 typedef HRESULT (STDAPICALLTYPE * LPFNCANUNLOADNOW)(void);
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_
 STDAPI  DllGetClassObject(_In_ REFCLSID rclsid, _In_ REFIID riid, _Outptr_ LPVOID FAR* ppv);
 
+_Win32_metadata_supported_os_(windows5.0)
 __control_entrypoint(DllExport)
 STDAPI  DllCanUnloadNow(void);
 
 /****** Default Memory Allocation ******************************************/
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(_Ret_opt_ _Post_writable_byte_size_(cb)  __drv_allocatesMem(Mem) _Check_return_ LPVOID)
 CoTaskMemAlloc(
     _In_ SIZE_T cb
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(_Ret_opt_ _Post_writable_byte_size_(cb)  _When_(cb > 0, __drv_allocatesMem(Mem) _Check_return_) LPVOID)
 CoTaskMemRealloc(
     _Pre_maybenull_ __drv_freesMem(Mem) _Post_invalid_ LPVOID pv,
     _In_ SIZE_T cb
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(void)
 CoTaskMemFree(
     _Frees_ptr_opt_ LPVOID pv
@@ -1356,11 +1440,13 @@ CoTaskMemFree(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI
 CoFileTimeNow(
     _Out_ FILETIME  FAR * lpFileTime
     );
 
+_Win32_metadata_supported_os_(windows5.0)
 _Check_return_ WINOLEAPI
 CLSIDFromProgIDEx(
     _In_ LPCOLESTR lpszProgID,

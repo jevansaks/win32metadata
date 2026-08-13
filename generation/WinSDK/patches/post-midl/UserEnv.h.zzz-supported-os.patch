@@ -1,0 +1,347 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/UserEnv.h b/generation/WinSDK/RecompiledIdlHeaders/um/UserEnv.h
+index a7655cdc..676db8e1 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/UserEnv.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/UserEnv.h
+@@ -73,6 +73,7 @@ extern "C" {
+ #define PI_NOUI         0x00000001      // Prevents displaying of messages
+ #define PI_APPLYPOLICY  0x00000002      // Apply NT4 style policy
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -80,6 +81,7 @@ WINAPI
+ LoadUserProfileA(
+     _In_    HANDLE          hToken,
+     _Inout_ LPPROFILEINFOA  lpProfileInfo);
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -109,6 +111,7 @@ LoadUserProfileW(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -136,6 +139,7 @@ UnloadUserProfile(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -143,6 +147,7 @@ WINAPI
+ GetProfilesDirectoryA(
+     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
+     _Inout_                         LPDWORD lpcchSize);
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -184,6 +189,7 @@ GetProfilesDirectoryW(
+ #define PT_MANDATORY                 0x00000004      // The loaded profile is mandatory.
+ #define PT_ROAMING_PREEXISTING       0x00000008      // The loaded roaming profile is not a brand new one - it was obtained from roamed location
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -211,6 +217,7 @@ GetProfileType(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -219,6 +226,7 @@ DeleteProfileA (
+     _In_        LPCSTR    lpSidString,
+     _In_opt_    LPCSTR    lpProfilePath,
+     _In_opt_    LPCSTR    lpComputerName);
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -260,6 +268,7 @@ DeleteProfileW (
+ 
+ #if(WINVER >= 0x0600)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ USERENVAPI
+ HRESULT
+ WINAPI
+@@ -292,6 +301,7 @@ CreateProfile(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -299,6 +309,7 @@ WINAPI
+ GetDefaultUserProfileDirectoryA(
+     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
+     _Inout_                         LPDWORD lpcchSize);
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -335,6 +346,7 @@ GetDefaultUserProfileDirectoryW(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -342,6 +354,7 @@ WINAPI
+ GetAllUsersProfileDirectoryA(
+     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
+     _Inout_                         LPDWORD lpcchSize);
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -377,6 +390,7 @@ GetAllUsersProfileDirectoryW(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -385,6 +399,7 @@ GetUserProfileDirectoryA(
+     _In_                            HANDLE  hToken,
+     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
+     _Inout_                         LPDWORD lpcchSize);
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -426,6 +441,7 @@ GetUserProfileDirectoryW(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+@@ -447,6 +463,7 @@ CreateEnvironmentBlock(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+@@ -475,6 +492,7 @@ DestroyEnvironmentBlock(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -484,6 +502,7 @@ ExpandEnvironmentStringsForUserA(
+     _In_                    LPCSTR    lpSrc,
+     _Out_writes_(dwSize)    LPSTR     lpDest,
+     _In_                    DWORD       dwSize);
++_Win32_metadata_supported_os_(windows5.0)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -516,6 +535,7 @@ ExpandEnvironmentStringsForUserW(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -544,6 +564,7 @@ RefreshPolicy(
+ #define RP_FORCE            1      // Refresh policies without any optimisations.
+ #define RP_SYNC             2      // Refresh Policy sync; the call does not return till the time policy processing is completed
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -583,6 +604,7 @@ RefreshPolicyEx(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ HANDLE
+@@ -610,6 +632,7 @@ EnterCriticalPolicySection(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -646,6 +669,7 @@ LeaveCriticalPolicySection(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -671,6 +695,7 @@ RegisterGPNotification(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -860,6 +885,7 @@ typedef PGROUP_POLICY_OBJECTA PGROUP_POLICY_OBJECT;
+ #define GPO_LIST_FLAG_NO_WMIFILTERS  0x00000004  // Ignore WMI filters when filtering GPO's
+ #define GPO_LIST_FLAG_NO_SECURITYFILTERS 0x00000008 // Ignore security filters
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -871,6 +897,7 @@ GetGPOListA (
+     _In_opt_    LPCSTR    lpComputerName,
+     _In_        DWORD       dwFlags,
+     _Outptr_ PGROUP_POLICY_OBJECTA * pGPOList);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -907,12 +934,14 @@ GetGPOListW (
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+ WINAPI
+ FreeGPOListA (
+     _In_        PGROUP_POLICY_OBJECTA   pGPOList);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ BOOL
+@@ -955,6 +984,7 @@ FreeGPOListW (
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ USERENVAPI
+ DWORD
+ WINAPI
+@@ -964,6 +994,7 @@ GetAppliedGPOListA (
+     _In_opt_    PSID        pSidUser,
+     _In_        GUID        *pGuidExtension,
+     _Outptr_ PGROUP_POLICY_OBJECTA   *ppGPOList);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ USERENVAPI
+ DWORD
+ WINAPI
+@@ -1134,6 +1165,7 @@ typedef DWORD(*PFNGENERATEGROUPPOLICY)(
+ 
+ typedef GUID *REFGPEXTENSIONID;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ USERENVAPI
+ DWORD
+ WINAPI
+@@ -1161,6 +1193,7 @@ ProcessGroupPolicyCompleted(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ USERENVAPI
+ DWORD
+ WINAPI
+@@ -1203,6 +1236,7 @@ ProcessGroupPolicyCompletedEx(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Win32_metadata_set_last_error_
+ USERENVAPI
+ HRESULT 
+@@ -1246,6 +1280,7 @@ RsopAccessCheckByType(
+ 
+ #if(WINVER >= 0x0500)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ USERENVAPI
+ HRESULT 
+ WINAPI
+@@ -1310,6 +1345,7 @@ typedef struct _POLICYSETTINGSTATUSINFO
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ USERENVAPI
+ HRESULT
+ WINAPI
+@@ -1335,6 +1371,7 @@ RsopSetPolicySettingStatus( _In_ DWORD                       dwFlags,
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ USERENVAPI
+ HRESULT
+ WINAPI
+@@ -1424,6 +1461,7 @@ GenerateGPNotification (
+ 
+ #if(WINVER >= 0x0602)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ USERENVAPI
+ HRESULT
+ WINAPI
+@@ -1455,6 +1493,7 @@ CreateAppContainerProfile(
+ 
+ #if(WINVER >= 0x0602)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ USERENVAPI
+ HRESULT
+ WINAPI
+@@ -1483,6 +1522,7 @@ DeleteAppContainerProfile(
+ 
+ #if(WINVER >= 0x0602)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ USERENVAPI
+ HRESULT
+ WINAPI
+@@ -1512,6 +1552,7 @@ GetAppContainerRegistryLocation(
+ 
+ #if(WINVER >= 0x0602)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ USERENVAPI
+ HRESULT
+ WINAPI
+@@ -1540,6 +1581,7 @@ GetAppContainerFolderPath(
+ 
+ #if(WINVER >= 0x0603)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ USERENVAPI
+ HRESULT
+ WINAPI
+@@ -1576,6 +1618,7 @@ DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
+ 
+ #if(WINVER >= 0x0602)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ USERENVAPI
+ HRESULT
+ WINAPI

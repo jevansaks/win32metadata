@@ -9,6 +9,10 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
 #endif
@@ -92,6 +96,7 @@ EXTERN_C const IID IID_IObjectArray;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.1)
     MIDL_INTERFACE("92CA9DCD-5622-4bba-A805-5E9F541BD8C9")
     IObjectArray : public IUnknown
     {
@@ -200,6 +205,7 @@ EXTERN_C const IID IID_IObjectCollection;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.1)
     MIDL_INTERFACE("5632b1a4-e38a-400a-928a-d4cd63230295")
     IObjectCollection : public IObjectArray
     {

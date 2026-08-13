@@ -9,6 +9,10 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
 #endif
@@ -1647,6 +1651,7 @@ EXTERN_C const IID IID_IWebBrowser2;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("D30C1661-CDAF-11d0-8A3E-00C04FC9E26E")
     IWebBrowser2 : public IWebBrowserApp
     {

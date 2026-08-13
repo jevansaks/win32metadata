@@ -15,6 +15,9 @@
 
 #include <apiset.h>
 #include <apisetcconv.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 #include <minwindef.h>
 #include <minwinbase.h>
 
@@ -27,6 +30,7 @@ extern "C" {
 
 #if (_WIN32_WINNT >= 0x0501)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI

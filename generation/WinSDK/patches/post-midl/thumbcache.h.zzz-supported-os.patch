@@ -1,0 +1,55 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/thumbcache.h b/generation/WinSDK/RecompiledIdlHeaders/um/thumbcache.h
+index afa6c2f7..e399a905 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/thumbcache.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/thumbcache.h
+@@ -9,6 +9,10 @@
+ 
+ 
+ /* verify that the <rpcndr.h> version is high enough to compile this file*/
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef __REQUIRED_RPCNDR_H_VERSION__
+ #define __REQUIRED_RPCNDR_H_VERSION__ 500
+ #endif
+@@ -202,6 +206,7 @@ EXTERN_C const IID IID_ISharedBitmap;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("091162a4-bc96-411f-aae8-c5122cd03363")
+     ISharedBitmap : public IUnknown
+     {
+@@ -345,6 +350,7 @@ EXTERN_C const IID IID_IThumbnailCache;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("F676C15D-596A-4ce2-8234-33996F445DB1")
+     IThumbnailCache : public IUnknown
+     {
+@@ -519,6 +525,7 @@ EXTERN_C const IID IID_IThumbnailProvider;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("e357fccd-a995-4576-b01f-234630154e96")
+     IThumbnailProvider : public IUnknown
+     {
+@@ -614,6 +621,7 @@ EXTERN_C const IID IID_IThumbnailSettings;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("F4376F00-BEF5-4d45-80F3-1E023BBF1209")
+     IThumbnailSettings : public IUnknown
+     {
+@@ -701,6 +709,7 @@ EXTERN_C const IID IID_IThumbnailCachePrimer;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("0f03f8fe-2b26-46f0-965a-212aa8d66b76")
+     IThumbnailCachePrimer : public IUnknown
+     {

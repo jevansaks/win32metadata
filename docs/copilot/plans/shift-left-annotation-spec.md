@@ -245,6 +245,24 @@ duplicating the complete scan-derived mapping.
 | documentation mappings | Documentation tooling concern; not required for functional winmd equivalence. |
 | removed legacy APIs | Recover the exact historical declaration from an authoritative SDK and place it in a guarded metadata-only legacy header when compatibility requires it. |
 
+### Macro-only and non-owning declarations
+
+Declaration annotations cannot attach to a preprocessor macro or to a header that merely
+references a declaration owned elsewhere.
+
+- For object-like constant macros, add a guarded annotated constant declaration when the
+  value and native type are authoritative.
+- For function-like macros, preserve the macro for normal compilation and represent
+  functional metadata through a guarded metadata-only function/constant declaration or
+  an explicit annotated-macro construct consumed before Clang declaration traversal.
+- Put supported-OS and ownership annotations on the header that owns the complete
+  declaration, not on aliases or references.
+- Do not synthesize values absent from the current SDK. Recover them from an
+  authoritative released SDK or baseline metadata and record that source.
+- Pointer aliases such as `PSECURITY_DESCRIPTOR` do not automatically own pointed-to
+  memory. Prefer producer-specific return/parameter ownership unless the typedef has
+  universal ownership semantics.
+
 ## Consumer requirements
 
 The windows-rs consumer must:
@@ -259,6 +277,11 @@ The windows-rs consumer must:
 - use annotations only while `WIN32METADATA` is enabled;
 - emit the standard `Windows.Win32.Metadata` attribute types into the generated winmd;
 - generate x86, x64, and arm64 metadata from the same annotated headers.
+
+For large validation runs, windows-rs supports `WIN32METADATA_SEQUENTIAL=1` to process
+architectures serially. This does not change metadata semantics; it avoids a worker-pool
+deadlock observed with the expanded header set and makes architecture failures
+deterministic.
 
 ## Equivalence definition
 

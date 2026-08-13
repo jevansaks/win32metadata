@@ -1,0 +1,12 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Richedit.h b/generation/WinSDK/RecompiledIdlHeaders/um/Richedit.h
+index 8345aed3..e2927e73 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Richedit.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Richedit.h
+@@ -1720,6 +1720,7 @@ typedef struct hyphresult
+ 	WCHAR chHyph;			// Depending on hyphenation type, character added, changed, etc.
+ } HYPHRESULT;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void WINAPI HyphenateProc(_In_ WCHAR *pszWord, LANGID langid, long ichExceed, HYPHRESULT *phyphresult);
+ typedef struct tagHyphenateInfo
+ {

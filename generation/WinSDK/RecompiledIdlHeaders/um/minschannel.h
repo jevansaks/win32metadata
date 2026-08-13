@@ -79,7 +79,14 @@
 // typedefs
 //
 
+#ifndef ALGIDDEF
+#define ALGIDDEF
+#ifdef WIN32METADATA
+enum class ALG_ID : int;
+#else
 typedef unsigned int ALG_ID;
+#endif
+#endif
 
 typedef struct _SecPkgCred_SupportedAlgs
 {

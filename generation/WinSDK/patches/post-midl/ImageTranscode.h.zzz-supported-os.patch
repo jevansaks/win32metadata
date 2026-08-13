@@ -1,0 +1,23 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ImageTranscode.h b/generation/WinSDK/RecompiledIdlHeaders/um/ImageTranscode.h
+index 3c75771c..d438efce 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ImageTranscode.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ImageTranscode.h
+@@ -9,6 +9,10 @@
+ 
+ 
+ /* verify that the <rpcndr.h> version is high enough to compile this file*/
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef __REQUIRED_RPCNDR_H_VERSION__
+ #define __REQUIRED_RPCNDR_H_VERSION__ 501
+ #endif
+@@ -105,6 +109,7 @@ EXTERN_C const IID IID_ITranscodeImage;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("BAE86DDD-DC11-421c-B7AB-CC55D1D65C44")
+     ITranscodeImage : public IUnknown
+     {

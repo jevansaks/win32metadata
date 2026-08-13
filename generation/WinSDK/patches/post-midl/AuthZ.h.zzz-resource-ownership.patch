@@ -1,0 +1,46 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AuthZ.h b/generation/WinSDK/RecompiledIdlHeaders/um/AuthZ.h
+index 8eb77f48a21a59e2e18db998d81a3bb2688a4245..eaa7adf0214de35efc711f9aadf3e99548c475e4 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/AuthZ.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/AuthZ.h
+@@ -61,15 +61,34 @@ extern "C" {
+ #define AUTHZ_REQUIRE_S4U_LOGON  0x4
+ #define AUTHZ_COMPUTE_PRIVILEGES 0x8
+               
+-DECLARE_HANDLE(AUTHZ_ACCESS_CHECK_RESULTS_HANDLE);
+-DECLARE_HANDLE(AUTHZ_CLIENT_CONTEXT_HANDLE);
+-DECLARE_HANDLE(AUTHZ_RESOURCE_MANAGER_HANDLE);
+-DECLARE_HANDLE(AUTHZ_AUDIT_EVENT_HANDLE);
+-DECLARE_HANDLE(AUTHZ_AUDIT_EVENT_TYPE_HANDLE);
+-DECLARE_HANDLE(AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE);
++DECLARE_HANDLE(AUTHZ_ACCESS_CHECK_RESULTS_HANDLE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(AuthzFreeHandle);
++DECLARE_HANDLE(AUTHZ_CLIENT_CONTEXT_HANDLE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(AuthzFreeContext);
++DECLARE_HANDLE(AUTHZ_RESOURCE_MANAGER_HANDLE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(AuthzFreeResourceManager);
++DECLARE_HANDLE(AUTHZ_AUDIT_EVENT_HANDLE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(AuthzFreeAuditEvent);
++DECLARE_HANDLE(AUTHZ_AUDIT_EVENT_TYPE_HANDLE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0);
++DECLARE_HANDLE(AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0);
+ 
+ #if(_WIN32_WINNT >= _WIN32_WINNT_WIN8)
+-DECLARE_HANDLE(AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE);
++DECLARE_HANDLE(AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE)
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(AuthzUnregisterCapChangeNotification);
+ #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
+ 
+ typedef AUTHZ_ACCESS_CHECK_RESULTS_HANDLE    *PAUTHZ_ACCESS_CHECK_RESULTS_HANDLE;

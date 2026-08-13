@@ -6,6 +6,14 @@
 #define _WIN32META_ANNOTATION_(text)
 #endif
 
+#ifndef _Out_retval_
+#define _Out_retval_ _Win32_metadata_out_ _Win32_metadata_retval_
+#endif
+
+#ifndef _COM_Outptr_retval_
+#define _COM_Outptr_retval_ _Win32_metadata_out_ _Win32_metadata_retval_ _Win32_metadata_com_out_ptr_
+#endif
+
 #define _Win32_metadata_set_last_error_ \
     _WIN32META_ANNOTATION_("win32metadata:set_last_error")
 #define _Win32_metadata_import_library_(value) \

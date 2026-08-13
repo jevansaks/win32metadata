@@ -1,0 +1,14 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h b/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
+index 5f6609c9864400ba0bc982d7dfb812a8d908ba89..d78a382c18e444cd87331ff859668651ce0eb4d0 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
+@@ -3387,6 +3387,9 @@ SspiGetCredUIContext(
+    _In_opt_ LUID* LogonId, // use this LogonId, the caller must be localsystem to supply a logon id
+    _Outptr_ PSEC_WINNT_CREDUI_CONTEXT_VECTOR* CredUIContexts,
+    _Out_opt_ HANDLE* TokenHandle
++       _Win32_metadata_invalid_handle_(-1)
++       _Win32_metadata_invalid_handle_(0)
++       _Win32_metadata_raii_free_(CloseHandle)
+    );
+ 
+ SECURITY_STATUS

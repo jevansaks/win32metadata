@@ -698,10 +698,15 @@ typedef struct _SERVICE_LAUNCH_PROTECTED_INFO {
 // Handle Types
 //
 
-DECLARE_HANDLE(SC_HANDLE);
+DECLARE_HANDLE(SC_HANDLE)
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0)
+    _Win32_metadata_raii_free_(CloseServiceHandle);
 typedef SC_HANDLE   *LPSC_HANDLE;
 
-DECLARE_HANDLE(SERVICE_STATUS_HANDLE);
+DECLARE_HANDLE(SERVICE_STATUS_HANDLE)
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 
 //
 // Info levels for QueryServiceStatusEx

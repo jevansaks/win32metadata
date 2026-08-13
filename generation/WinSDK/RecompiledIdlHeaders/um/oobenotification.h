@@ -35,6 +35,9 @@
 #include <ntrtl.h>
 #include <nturtl.h>
 #include <windows.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 #endif // defined(_CONTRACT_GEN)
 
 #ifdef __cplusplus
@@ -52,6 +55,7 @@ VOID
     _In_opt_ PVOID CallbackContext
     );
 
+_Win32_metadata_set_last_error_
 _Check_return_
 _Success_(return != FALSE)
 BOOL
@@ -60,6 +64,7 @@ OOBEComplete(
     _Out_ PBOOL isOOBEComplete
     );
 
+_Win32_metadata_set_last_error_
 _Check_return_
 _Success_(return != FALSE)
 BOOL
@@ -70,6 +75,7 @@ RegisterWaitUntilOOBECompleted(
     _Out_ PVOID* WaitHandle
     );
 
+_Win32_metadata_set_last_error_
 _Check_return_
 _Success_(return != FALSE)
 BOOL

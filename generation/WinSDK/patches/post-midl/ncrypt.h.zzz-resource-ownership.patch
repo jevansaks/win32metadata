@@ -1,0 +1,25 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
+index 931f47a2e7945f4b6fb471ec5eb5861674c1f56f..a053f3ca3b8f3b547808d46f978ac2da5ff26ebe 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
+@@ -322,10 +322,20 @@ typedef BCryptBufferDesc* PNCryptBufferDesc;
+ // NCrypt handles
+ //
+ 
++_Win32_metadata_invalid_handle_(0)
++_Win32_metadata_raii_free_(NCryptFreeObject)
+ typedef ULONG_PTR NCRYPT_HANDLE;
++_Win32_metadata_also_usable_for_(NCRYPT_HANDLE)
++_Win32_metadata_invalid_handle_(0)
++_Win32_metadata_raii_free_(NCryptFreeObject)
+ typedef ULONG_PTR NCRYPT_PROV_HANDLE;
++_Win32_metadata_also_usable_for_(NCRYPT_HANDLE)
++_Win32_metadata_invalid_handle_(0)
++_Win32_metadata_raii_free_(NCryptFreeObject)
+ typedef ULONG_PTR NCRYPT_KEY_HANDLE;
++_Win32_metadata_invalid_handle_(0)
+ typedef ULONG_PTR NCRYPT_HASH_HANDLE;
++_Win32_metadata_invalid_handle_(0)
+ typedef ULONG_PTR NCRYPT_SECRET_HANDLE;
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)

@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cfgmgr32.h b/generation/WinSDK/RecompiledIdlHeaders/um/cfgmgr32.h
+index f78c08c8..bd07aa27 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/cfgmgr32.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/cfgmgr32.h
+@@ -20,6 +20,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family, OneCore Family, or App Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
+@@ -3132,6 +3135,7 @@ CM_Get_Sibling_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_set_last_error_
+ CMAPI
+ WORD
+ WINAPI
+@@ -3139,6 +3143,7 @@ CM_Get_Version(
+     VOID
+     );
+ 
++_Win32_metadata_set_last_error_
+ CMAPI
+ WORD
+ WINAPI
+@@ -4636,6 +4641,7 @@ CM_Set_Class_Registry_PropertyW(
+ #if (WINVER >= _WIN32_WINNT_WIN2K)
+ #define CM_WaitNoPendingInstallEvents CMP_WaitNoPendingInstallEvents
+ 
++_Win32_metadata_set_last_error_
+ DWORD
+ WINAPI
+ CM_WaitNoPendingInstallEvents(

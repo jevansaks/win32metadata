@@ -1,0 +1,110 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothapis.h b/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothapis.h
+index b36ff097..964f60bc 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothapis.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothapis.h
+@@ -5,6 +5,9 @@
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -133,6 +136,7 @@ typedef HANDLE      HBLUETOOTH_RADIO_FIND;
+ //      any other
+ //          Success. The return handle is valid and phRadio points to a valid handle.
+ //
++_Win32_metadata_set_last_error_
+ _Must_inspect_result_
+ _Success_(return != NULL)
+ HBLUETOOTH_RADIO_FIND
+@@ -172,6 +176,7 @@ BluetoothFindFirstRadio(
+ //
+ //          other Win32 errors
+ //
++_Win32_metadata_set_last_error_
+ _Must_inspect_result_
+ _Success_(return)
+ BOOL
+@@ -199,6 +204,7 @@ BluetoothFindNextRadio(
+ //          ERROR_INVALID_HANDLE
+ //              The handle is NULL.
+ //
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ BluetoothFindRadioClose(
+@@ -251,6 +257,7 @@ typedef struct _BLUETOOTH_RADIO_INFO {
+ //
+ //      other Win32 error codes.
+ //
++_Win32_metadata_set_last_error_
+ _Must_inspect_result_
+ DWORD
+ WINAPI
+@@ -418,6 +425,7 @@ typedef HANDLE      HBLUETOOTH_DEVICE_FIND;
+ //      any other value
+ //          Success. The return handle is valid and pbtdi points to valid data.
+ //
++_Win32_metadata_set_last_error_
+ _Must_inspect_result_
+ _Success_(return != NULL)
+ HBLUETOOTH_DEVICE_FIND
+@@ -462,6 +470,7 @@ BluetoothFindFirstDevice(
+ //
+ //          other Win32 errors
+ //
++_Win32_metadata_set_last_error_
+ _Must_inspect_result_
+ BOOL
+ WINAPI
+@@ -488,6 +497,7 @@ BluetoothFindNextDevice(
+ //          ERROR_INVALID_HANDLE
+ //              The handle is NULL.
+ //
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ BluetoothFindDeviceClose(
+@@ -706,6 +716,7 @@ typedef struct _BLUETOOTH_SELECT_DEVICE_PARAMS {
+ //
+ //          other WIN32 errors
+ //
++_Win32_metadata_set_last_error_
+ _Must_inspect_result_
+ BOOL
+ WINAPI
+@@ -761,6 +772,7 @@ BluetoothSelectDevicesFree(
+ //          Failure. The property page was not displayed. Check GetLastError
+ //          for more details.
+ //
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ BluetoothDisplayDeviceProperties(
+@@ -1314,6 +1326,7 @@ typedef BOOL (CALLBACK *PFN_AUTHENTICATION_CALLBACK)(LPVOID pvParam, PBLUETOOTH_
+ //      other Win32 error.
+ //          Failure. The registration handle is invalid.
+ //
++_Win32_metadata_set_last_error_
+ _Must_inspect_result_
+ DWORD
+ WINAPI
+@@ -1407,6 +1420,7 @@ BluetoothRegisterForAuthenticationEx(
+ //
+ //          other Win32 errors.
+ //
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ BluetoothUnregisterAuthentication(
+@@ -1898,6 +1912,7 @@ typedef BOOL (CALLBACK *PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK)(
+ //
+ #define BluetoothEnumAttributes BluetoothSdpEnumAttributes
+ 
++_Win32_metadata_set_last_error_
+ _Must_inspect_result_
+ BOOL
+ WINAPI

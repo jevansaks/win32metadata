@@ -14,6 +14,10 @@
  *
  */
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef _TEXTSERV_H
 #define _TEXTSERV_H
 
@@ -490,6 +494,7 @@ typedef int PROPERTYID;
  *
  *	@base	public | IUnknown 
  */
+_Win32_metadata_supported_os_(windows8.0)
 interface IRicheditUiaOverrides : public IUnknown
 {
 	virtual HRESULT STDMETHODCALLTYPE GetPropertyOverrideValue(
@@ -502,6 +507,7 @@ interface IRicheditUiaOverrides : public IUnknown
 //------------------------------------------------------------------------
 
 // Text Services factory
+_Win32_metadata_supported_os_(windows6.0.6000)
 STDAPI CreateTextServices(
 	IUnknown *punkOuter,
 	ITextHost *pITextHost,

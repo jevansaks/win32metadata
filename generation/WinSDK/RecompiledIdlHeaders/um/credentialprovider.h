@@ -9,6 +9,10 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
 #endif
@@ -472,6 +476,7 @@ EXTERN_C const IID IID_ICredentialProviderCredential;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("63913a93-40c1-481a-818d-4072ff8c70cc")
     ICredentialProviderCredential : public IUnknown
     {
@@ -823,6 +828,7 @@ EXTERN_C const IID IID_IQueryContinueWithStatus;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("9090be5b-502b-41fb-bccc-0049a6c7254b")
     IQueryContinueWithStatus : public IQueryContinue
     {
@@ -918,6 +924,7 @@ EXTERN_C const IID IID_IConnectableCredentialProviderCredential;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("9387928b-ac75-4bf9-8ab2-2b93c4a55290")
     IConnectableCredentialProviderCredential : public ICredentialProviderCredential
     {
@@ -1196,6 +1203,7 @@ EXTERN_C const IID IID_ICredentialProviderCredentialEvents;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("fa6fa76b-66b7-4b11-95f1-86171118e816")
     ICredentialProviderCredentialEvents : public IUnknown
     {
@@ -1485,6 +1493,7 @@ EXTERN_C const IID IID_ICredentialProvider;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("d27c3481-5a1c-45b2-8aaa-c20ebbe8229e")
     ICredentialProvider : public IUnknown
     {
@@ -1683,6 +1692,7 @@ EXTERN_C const IID IID_ICredentialProviderEvents;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("34201e5a-a787-41a3-a5a4-bd6dcf2a854e")
     ICredentialProviderEvents : public IUnknown
     {
@@ -1770,6 +1780,7 @@ EXTERN_C const IID IID_ICredentialProviderFilter;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows6.0.6000)
     MIDL_INTERFACE("a5da53f9-d475-4080-a120-910c4a739880")
     ICredentialProviderFilter : public IUnknown
     {
@@ -1899,6 +1910,7 @@ EXTERN_C const IID IID_ICredentialProviderCredential2;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("fd672c54-40ea-4d6e-9b49-cfb1a7507bd7")
     ICredentialProviderCredential2 : public ICredentialProviderCredential
     {
@@ -2168,6 +2180,7 @@ EXTERN_C const IID IID_ICredentialProviderCredentialWithFieldOptions;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("DBC6FB30-C843-49E3-A645-573E6F39446A")
     ICredentialProviderCredentialWithFieldOptions : public IUnknown
     {
@@ -2259,6 +2272,7 @@ EXTERN_C const IID IID_ICredentialProviderCredentialEvents2;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("B53C00B6-9922-4B78-B1F4-DDFE774DC39B")
     ICredentialProviderCredentialEvents2 : public ICredentialProviderCredentialEvents
     {
@@ -2501,6 +2515,7 @@ EXTERN_C const IID IID_ICredentialProviderUser;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("13793285-3ea6-40fd-b420-15f47da41fbb")
     ICredentialProviderUser : public IUnknown
     {
@@ -2644,6 +2659,7 @@ EXTERN_C const IID IID_ICredentialProviderUserArray;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("90C119AE-0F18-4520-A1F1-114366A40FE8")
     ICredentialProviderUserArray : public IUnknown
     {
@@ -2772,6 +2788,7 @@ EXTERN_C const IID IID_ICredentialProviderSetUserArray;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("095c1484-1c0c-4388-9c6d-500e61bf84bd")
     ICredentialProviderSetUserArray : public IUnknown
     {

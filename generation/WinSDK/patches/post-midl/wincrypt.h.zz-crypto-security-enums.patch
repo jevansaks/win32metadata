@@ -1502,7 +1502,7 @@ index c5a1f165fc446a91ea3129c735103b4238113bb7..91a4ca73d0df103ec7bb18742f713085
 +{
 +    AT_KEYEXCHANGE = 1,
 +    AT_SIGNATURE = 2,
-+    CERT_NCRYPT_KEY_SPEC = uint.MaxValue,
++    CERT_NCRYPT_KEY_SPEC = 0xFFFFFFFFu,
 +};
 +#pragma pop_macro("CERT_NCRYPT_KEY_SPEC")
 +#pragma pop_macro("AT_SIGNATURE")

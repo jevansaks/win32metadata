@@ -1,0 +1,23 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ctxtcall.h b/generation/WinSDK/RecompiledIdlHeaders/um/ctxtcall.h
+index c487381b..bec4fa5d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ctxtcall.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ctxtcall.h
+@@ -9,6 +9,10 @@
+ 
+ 
+ /* verify that the <rpcndr.h> version is high enough to compile this file*/
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef __REQUIRED_RPCNDR_H_VERSION__
+ #define __REQUIRED_RPCNDR_H_VERSION__ 500
+ #endif
+@@ -98,6 +102,7 @@ EXTERN_C const IID IID_IContextCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("000001da-0000-0000-C000-000000000046")
+     IContextCallback : public IUnknown
+     {

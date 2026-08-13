@@ -1,0 +1,39 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shimgdata.h b/generation/WinSDK/RecompiledIdlHeaders/um/shimgdata.h
+index 31053c5b..6f950ce7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/shimgdata.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/shimgdata.h
+@@ -9,6 +9,10 @@
+ 
+ 
+ /* verify that the <rpcndr.h> version is high enough to compile this file*/
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef __REQUIRED_RPCNDR_H_VERSION__
+ #define __REQUIRED_RPCNDR_H_VERSION__ 501
+ #endif
+@@ -135,6 +139,7 @@ EXTERN_C const IID IID_IShellImageDataFactory;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("9be8ed5c-edab-4d75-90f3-bd5bdbb21c82")
+     IShellImageDataFactory : public IUnknown
+     {
+@@ -258,6 +263,7 @@ EXTERN_C const IID IID_IShellImageData;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("bfdeec12-8040-4403-a5ea-9e07dafcf530")
+     IShellImageData : public IUnknown
+     {
+@@ -661,6 +667,7 @@ EXTERN_C const IID IID_IShellImageDataAbort;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("53fb8e58-50c0-4003-b4aa-0c8df28e7f3a")
+     IShellImageDataAbort : public IUnknown
+     {

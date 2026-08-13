@@ -18,6 +18,9 @@
 #include <windows.h>
 #include <winbase.h>
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,6 +29,7 @@ extern "C" {
 #pragma region Desktop Family or OneCore or App Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -33,6 +37,7 @@ ClearCommBreak(
     _In_ HANDLE hFile
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -42,6 +47,7 @@ ClearCommError(
     _Out_opt_ LPCOMSTAT lpStat
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -51,6 +57,7 @@ SetupComm(
     _In_ DWORD dwOutQueue
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -59,6 +66,7 @@ EscapeCommFunction(
     _In_ DWORD dwFunc
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Success_(return != FALSE)
 BOOL
@@ -69,6 +77,7 @@ GetCommConfig(
     _Inout_ LPDWORD lpdwSize
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -77,6 +86,7 @@ GetCommMask(
     _Out_ LPDWORD lpEvtMask
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -85,6 +95,7 @@ GetCommModemStatus(
     _Out_ LPDWORD lpModemStat
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -93,6 +104,7 @@ GetCommProperties(
     _Inout_ LPCOMMPROP lpCommProp
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -101,6 +113,7 @@ GetCommState(
     _Out_ LPDCB lpDCB
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -109,6 +122,7 @@ GetCommTimeouts(
     _Out_ LPCOMMTIMEOUTS lpCommTimeouts
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -117,6 +131,7 @@ PurgeComm(
     _In_ DWORD dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -124,6 +139,7 @@ SetCommBreak(
     _In_ HANDLE hFile
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -133,6 +149,7 @@ SetCommConfig(
     _In_ DWORD dwSize
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -141,6 +158,7 @@ SetCommMask(
     _In_ DWORD dwEvtMask
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -149,6 +167,7 @@ SetCommState(
     _In_ LPDCB lpDCB
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -157,6 +176,7 @@ SetCommTimeouts(
     _In_ LPCOMMTIMEOUTS lpCommTimeouts
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -165,6 +185,7 @@ TransmitCommChar(
     _In_ char cChar
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI

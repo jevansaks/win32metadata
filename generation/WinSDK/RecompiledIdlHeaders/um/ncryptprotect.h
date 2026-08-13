@@ -129,7 +129,9 @@ extern "C" {
 //
 // NCRYPT_DESCRIPTOR_HANDLE
 // 
-DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE );
+DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 
@@ -521,7 +523,9 @@ NCryptUnprotectSecret(
 //
 ---------------------------------------------------------------------------*/
 
-DECLARE_HANDLE( NCRYPT_STREAM_HANDLE );
+DECLARE_HANDLE( NCRYPT_STREAM_HANDLE )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 
 
 /****************************************************************************

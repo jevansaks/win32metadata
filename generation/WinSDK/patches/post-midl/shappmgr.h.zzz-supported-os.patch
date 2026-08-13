@@ -1,0 +1,55 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shappmgr.h b/generation/WinSDK/RecompiledIdlHeaders/um/shappmgr.h
+index 1679c95c..1e9478bd 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/shappmgr.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/shappmgr.h
+@@ -9,6 +9,10 @@
+ 
+ 
+ /* verify that the <rpcndr.h> version is high enough to compile this file*/
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef __REQUIRED_RPCNDR_H_VERSION__
+ #define __REQUIRED_RPCNDR_H_VERSION__ 500
+ #endif
+@@ -189,6 +193,7 @@ EXTERN_C const IID IID_IShellApp;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("A3E14960-935F-11D1-B8B8-006008059382")
+     IShellApp : public IUnknown
+     {
+@@ -347,6 +352,7 @@ EXTERN_C const IID IID_IPublishedApp;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("1BC752E0-9046-11D1-B8B3-006008059382")
+     IPublishedApp : public IShellApp
+     {
+@@ -500,6 +506,7 @@ EXTERN_C const IID IID_IPublishedApp2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("12B81347-1B3A-4A04-AA61-3F768B67FD7E")
+     IPublishedApp2 : public IPublishedApp
+     {
+@@ -661,6 +668,7 @@ EXTERN_C const IID IID_IEnumPublishedApps;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("0B124F8C-91F0-11D1-B8B5-006008059382")
+     IEnumPublishedApps : public IUnknown
+     {
+@@ -757,6 +765,7 @@ EXTERN_C const IID IID_IAppPublisher;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("07250A10-9CF9-11D1-9076-006008059382")
+     IAppPublisher : public IUnknown
+     {

@@ -1,0 +1,40 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h
+index 9d89cc839dcf13988ac0d7f7a6c1af3b9ee47c22..58fa7a0557fdcc7ababd68532755f780e8e8e38b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h
+@@ -479,10 +479,23 @@ typedef struct _BCryptBufferDesc {
+ // Primitive handles
+ //
+ 
++_Win32_metadata_invalid_handle_(0)
+ typedef PVOID BCRYPT_HANDLE;
++_Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
++_Win32_metadata_invalid_handle_(0)
++_Win32_metadata_raii_free_(BCryptCloseAlgorithmProvider)
+ typedef PVOID BCRYPT_ALG_HANDLE;
++_Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
++_Win32_metadata_invalid_handle_(0)
++_Win32_metadata_raii_free_(BCryptDestroyKey)
+ typedef PVOID BCRYPT_KEY_HANDLE;
++_Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
++_Win32_metadata_invalid_handle_(0)
++_Win32_metadata_raii_free_(BCryptDestroyHash)
+ typedef PVOID BCRYPT_HASH_HANDLE;
++_Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
++_Win32_metadata_invalid_handle_(0)
++_Win32_metadata_raii_free_(BCryptDestroySecret)
+ typedef PVOID BCRYPT_SECRET_HANDLE;
+ 
+ //
+@@ -2113,7 +2126,10 @@ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+ BCryptRegisterConfigChangeNotify(
+-    _Out_ HANDLE *phEvent);
++    _Out_ HANDLE *phEvent
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(BCryptUnregisterConfigChangeNotify));
+ #endif
+ 
+ #ifdef KERNEL_MODE_CNG

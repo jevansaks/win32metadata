@@ -9,6 +9,10 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500
 #endif
@@ -184,6 +188,7 @@ EXTERN_C const IID IID_IEnumGUID;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.0)
     MIDL_INTERFACE("0002E000-0000-0000-C000-000000000046")
     IEnumGUID : public IUnknown
     {
@@ -357,6 +362,7 @@ EXTERN_C const IID IID_IEnumCATEGORYINFO;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.0)
     MIDL_INTERFACE("0002E011-0000-0000-C000-000000000046")
     IEnumCATEGORYINFO : public IUnknown
     {
@@ -500,6 +506,7 @@ EXTERN_C const IID IID_ICatRegister;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.0)
     MIDL_INTERFACE("0002E012-0000-0000-C000-000000000046")
     ICatRegister : public IUnknown
     {
@@ -705,6 +712,7 @@ EXTERN_C const IID IID_ICatInformation;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+    _Win32_metadata_supported_os_(windows5.0)
     MIDL_INTERFACE("0002E013-0000-0000-C000-000000000046")
     ICatInformation : public IUnknown
     {

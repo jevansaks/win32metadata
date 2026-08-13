@@ -1,0 +1,94 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h
+index 5228924d..e6ddf022 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h
+@@ -16,6 +16,9 @@ Abstract:
+ #define _INC_NEWDEV
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -37,6 +40,7 @@ extern "C" {
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN2K)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ UpdateDriverForPlugAndPlayDevicesA(
+@@ -47,6 +51,7 @@ UpdateDriverForPlugAndPlayDevicesA(
+     _Out_opt_ PBOOL bRebootRequired
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ UpdateDriverForPlugAndPlayDevicesW(
+@@ -74,6 +79,7 @@ UpdateDriverForPlugAndPlayDevicesW(
+ #define DIIDFLAG_INSTALLCOPYINFDRIVERS  0x00000008      // Install any extra INFs specified via CopyInf directive.
+ #define DIIDFLAG_BITS                   0x0000000F
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ DiInstallDevice(
+@@ -125,6 +131,7 @@ DiInstallDevice(
+ 
+ #endif // (WINVER >= _WIN32_WINNT_WINBLUE)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ DiInstallDriverW(
+@@ -134,6 +141,7 @@ DiInstallDriverW(
+     _Out_opt_ PBOOL NeedReboot
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ DiInstallDriverA(
+@@ -153,6 +161,7 @@ DiInstallDriverA(
+ 
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN7)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ DiUninstallDevice(
+@@ -176,6 +185,7 @@ DiUninstallDevice(
+ #define DIURFLAG_VALID              (DIURFLAG_NO_REMOVE_INF |\
+                                      DIURFLAG_RESERVED      )
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ DiUninstallDriverW(
+@@ -185,6 +195,7 @@ DiUninstallDriverW(
+     _Out_opt_ PBOOL NeedReboot
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ DiUninstallDriverA(
+@@ -203,6 +214,7 @@ DiUninstallDriverA(
+ 
+ 
+ #if (WINVER >= _WIN32_WINNT_LONGHORN)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ DiShowUpdateDevice(
+@@ -221,6 +233,7 @@ DiShowUpdateDevice(
+ #define ROLLBACK_BITS                   0x00000001
+ 
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ DiRollbackDriver(

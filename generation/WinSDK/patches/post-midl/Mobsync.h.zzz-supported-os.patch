@@ -1,0 +1,55 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Mobsync.h b/generation/WinSDK/RecompiledIdlHeaders/um/Mobsync.h
+index 4fb25861..f4b57834 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Mobsync.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Mobsync.h
+@@ -9,6 +9,10 @@
+ 
+ 
+ /* verify that the <rpcndr.h> version is high enough to compile this file*/
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef __REQUIRED_RPCNDR_H_VERSION__
+ #define __REQUIRED_RPCNDR_H_VERSION__ 500
+ #endif
+@@ -199,6 +203,7 @@ EXTERN_C const IID IID_ISyncMgrSynchronizeCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6295DF41-35EE-11d1-8707-00C04FD93327")
+     ISyncMgrSynchronizeCallback : public IUnknown
+     {
+@@ -447,6 +452,7 @@ EXTERN_C const IID IID_ISyncMgrEnumItems;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6295DF2A-35EE-11d1-8707-00C04FD93327")
+     ISyncMgrEnumItems : public IUnknown
+     {
+@@ -622,6 +628,7 @@ EXTERN_C const IID IID_ISyncMgrSynchronize;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6295DF40-35EE-11d1-8707-00C04FD93327")
+     ISyncMgrSynchronize : public IUnknown
+     {
+@@ -879,6 +886,7 @@ EXTERN_C const IID IID_ISyncMgrSynchronizeInvoke;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6295DF2C-35EE-11d1-8707-00C04FD93327")
+     ISyncMgrSynchronizeInvoke : public IUnknown
+     {
+@@ -998,6 +1006,7 @@ EXTERN_C const IID IID_ISyncMgrRegister;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6295DF42-35EE-11d1-8707-00C04FD93327")
+     ISyncMgrRegister : public IUnknown
+     {

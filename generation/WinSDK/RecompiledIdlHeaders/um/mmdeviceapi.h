@@ -33,6 +33,10 @@
 #ifndef __mmdeviceapi_h__
 #define __mmdeviceapi_h__
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
 #endif
@@ -151,6 +155,31 @@ extern "C"{
 #define DEVICE_STATE_NOTPRESENT  0x00000004
 #define DEVICE_STATE_UNPLUGGED   0x00000008
 #define DEVICE_STATEMASK_ALL     0x0000000f
+#ifdef WIN32METADATA
+#pragma push_macro("DEVICE_STATE_ACTIVE")
+#pragma push_macro("DEVICE_STATE_DISABLED")
+#pragma push_macro("DEVICE_STATE_NOTPRESENT")
+#pragma push_macro("DEVICE_STATE_UNPLUGGED")
+#undef DEVICE_STATE_ACTIVE
+#undef DEVICE_STATE_DISABLED
+#undef DEVICE_STATE_NOTPRESENT
+#undef DEVICE_STATE_UNPLUGGED
+enum class
+    _Win32_metadata_associated_constant_(DEVICE_STATEMASK_ALL)
+    DEVICE_STATE : int
+{
+    DEVICE_STATE_ACTIVE = 0x00000001,
+    DEVICE_STATE_DISABLED = 0x00000002,
+    DEVICE_STATE_NOTPRESENT = 0x00000004,
+    DEVICE_STATE_UNPLUGGED = 0x00000008,
+};
+#pragma pop_macro("DEVICE_STATE_UNPLUGGED")
+#pragma pop_macro("DEVICE_STATE_NOTPRESENT")
+#pragma pop_macro("DEVICE_STATE_DISABLED")
+#pragma pop_macro("DEVICE_STATE_ACTIVE")
+#else
+typedef DWORD DEVICE_STATE;
+#endif
 #ifdef DEFINE_PROPERTYKEY
 #undef DEFINE_PROPERTYKEY
 #endif
@@ -277,7 +306,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
             /* [annotation][in] */ 
             _In_  LPCWSTR pwstrDeviceId,
             /* [annotation][in] */ 
-            _In_  DWORD dwNewState) = 0;
+            _In_  DEVICE_STATE dwNewState) = 0;
         
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE OnDeviceAdded( 
             /* [annotation][in] */ 
@@ -332,7 +361,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
             /* [annotation][in] */ 
             _In_  LPCWSTR pwstrDeviceId,
             /* [annotation][in] */ 
-            _In_  DWORD dwNewState);
+            _In_  DEVICE_STATE dwNewState);
         
         DECLSPEC_XFGVIRT(IMMNotificationClient, OnDeviceAdded)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *OnDeviceAdded )( 
@@ -450,7 +479,7 @@ EXTERN_C const IID IID_IMMDevice;
         
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetState( 
             /* [annotation][out] */ 
-            _Out_  DWORD *pdwState) = 0;
+            _Out_  DEVICE_STATE *pdwState) = 0;
         
     };
     
@@ -507,7 +536,7 @@ EXTERN_C const IID IID_IMMDevice;
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *GetState )( 
             IMMDevice * This,
             /* [annotation][out] */ 
-            _Out_  DWORD *pdwState);
+            _Out_  DEVICE_STATE *pdwState);
         
         END_INTERFACE
     } IMMDeviceVtbl;
@@ -765,7 +794,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
             /* [annotation][in] */ 
             _In_  EDataFlow dataFlow,
             /* [annotation][in] */ 
-            _In_  DWORD dwStateMask,
+            _In_  DEVICE_STATE dwStateMask,
             /* [annotation][out] */ 
             _Out_  IMMDeviceCollection **ppDevices) = 0;
         
@@ -822,7 +851,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
             /* [annotation][in] */ 
             _In_  EDataFlow dataFlow,
             /* [annotation][in] */ 
-            _In_  DWORD dwStateMask,
+            _In_  DEVICE_STATE dwStateMask,
             /* [annotation][out] */ 
             _Out_  IMMDeviceCollection **ppDevices);
         
@@ -1571,5 +1600,4 @@ extern RPC_IF_HANDLE __MIDL_itf_mmdeviceapi_0000_0011_v0_0_s_ifspec;
 #endif
 
 #endif
-
 

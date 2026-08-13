@@ -479,10 +479,23 @@ typedef struct _BCryptBufferDesc {
 // Primitive handles
 //
 
+_Win32_metadata_invalid_handle_(0)
 typedef PVOID BCRYPT_HANDLE;
+_Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(BCryptCloseAlgorithmProvider)
 typedef PVOID BCRYPT_ALG_HANDLE;
+_Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(BCryptDestroyKey)
 typedef PVOID BCRYPT_KEY_HANDLE;
+_Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(BCryptDestroyHash)
 typedef PVOID BCRYPT_HASH_HANDLE;
+_Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(BCryptDestroySecret)
 typedef PVOID BCRYPT_SECRET_HANDLE;
 
 //
@@ -2113,7 +2126,10 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptRegisterConfigChangeNotify(
-    _Out_ HANDLE *phEvent);
+    _Out_ HANDLE *phEvent
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptUnregisterConfigChangeNotify));
 #endif
 
 #ifdef KERNEL_MODE_CNG

@@ -1,0 +1,26 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h b/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h
+index 7e75679f1e978226a143dd3b3015bb4bf3d679d0..f4b8dbf298d0334cccfe96f721fc6540863590d3 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h
+@@ -129,7 +129,9 @@ extern "C" {
+ //
+ // NCRYPT_DESCRIPTOR_HANDLE
+ // 
+-DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE );
++DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE )
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0);
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
+@@ -521,7 +523,9 @@ NCryptUnprotectSecret(
+ //
+ ---------------------------------------------------------------------------*/
+ 
+-DECLARE_HANDLE( NCRYPT_STREAM_HANDLE );
++DECLARE_HANDLE( NCRYPT_STREAM_HANDLE )
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0);
+ 
+ 
+ /****************************************************************************

@@ -1,0 +1,39 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.h b/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.h
+index 7616bc53..31a09c9e 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.h
+@@ -9,6 +9,10 @@
+ 
+ 
+ /* verify that the <rpcndr.h> version is high enough to compile this file*/
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef __REQUIRED_RPCNDR_H_VERSION__
+ #define __REQUIRED_RPCNDR_H_VERSION__ 500
+ #endif
+@@ -146,6 +150,7 @@ typedef IMAGEINFO *LPIMAGEINFO;
+ 
+ #endif
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINCOMMCTRLAPI HRESULT WINAPI ImageList_CoCreateInstance(
+          _In_  REFCLSID rclsid,
+      _In_opt_  const IUnknown *punkOuter,
+@@ -172,6 +177,7 @@ EXTERN_C const IID IID_IImageList;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("46EB5926-582E-4017-9FDF-E8998DAA0950")
+     IImageList : public IUnknown
+     {
+@@ -734,6 +740,7 @@ EXTERN_C const IID IID_IImageList2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("192b9d83-50fc-457b-90a0-2b82a8b5dae1")
+     IImageList2 : public IImageList
+     {

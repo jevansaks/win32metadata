@@ -16,6 +16,9 @@
 #ifndef	_FILEHC_H_
 #define	_FILEHC_H_
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -639,6 +642,7 @@ FindSyncContextFromName(
 //
 //	If the name is already present in the cache, this will fail with GetLastError()==ERROR_DUP_NAME !
 //
+_Win32_metadata_set_last_error_
 FILEHC_EXPORT
 BOOL	__stdcall
 AssociateContextWithName(	

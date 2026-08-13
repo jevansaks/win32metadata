@@ -649,6 +649,9 @@ CreateRestrictedToken(
     _In_ DWORD RestrictedSidCount,
     _In_reads_opt_(RestrictedSidCount) PSID_AND_ATTRIBUTES SidsToRestrict,
     _Outptr_ PHANDLE NewTokenHandle
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(CloseHandle)
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
@@ -721,6 +724,9 @@ DuplicateToken(
     _In_ HANDLE ExistingTokenHandle,
     _In_ SECURITY_IMPERSONATION_LEVEL ImpersonationLevel,
     _Outptr_ PHANDLE DuplicateTokenHandle
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(CloseHandle)
     );
 
 _Win32_metadata_set_last_error_
@@ -734,6 +740,9 @@ DuplicateTokenEx(
     _In_ SECURITY_IMPERSONATION_LEVEL ImpersonationLevel,
     _In_ TOKEN_TYPE TokenType,
     _Outptr_ PHANDLE phNewToken
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(CloseHandle)
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */

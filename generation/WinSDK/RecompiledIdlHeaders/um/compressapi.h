@@ -17,6 +17,9 @@ Environment:
 --*/
 
 #include <windef.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 
@@ -69,6 +72,7 @@ typedef enum {
 
 // Compression routines
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CreateCompressor (
@@ -77,6 +81,7 @@ CreateCompressor (
     _Out_ PCOMPRESSOR_HANDLE CompressorHandle
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 SetCompressorInformation (
@@ -86,6 +91,7 @@ SetCompressorInformation (
     _In_ SIZE_T CompressInformationSize
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 QueryCompressorInformation (
@@ -95,6 +101,7 @@ QueryCompressorInformation (
     _In_ SIZE_T CompressInformationSize
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 Compress (
@@ -106,12 +113,14 @@ Compress (
     _Out_ PSIZE_T CompressedDataSize
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 ResetCompressor (
     _In_ COMPRESSOR_HANDLE CompressorHandle
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CloseCompressor (
@@ -120,6 +129,7 @@ CloseCompressor (
 
 // Decompression routines
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CreateDecompressor (
@@ -128,6 +138,7 @@ CreateDecompressor (
     _Out_ PDECOMPRESSOR_HANDLE DecompressorHandle
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 SetDecompressorInformation (
@@ -137,6 +148,7 @@ SetDecompressorInformation (
     _In_ SIZE_T CompressInformationSize
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 QueryDecompressorInformation (
@@ -146,6 +158,7 @@ QueryDecompressorInformation (
     _In_ SIZE_T CompressInformationSize
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 Decompress (
@@ -157,12 +170,14 @@ Decompress (
     _Out_opt_ PSIZE_T UncompressedDataSize
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 ResetDecompressor (
     _In_ DECOMPRESSOR_HANDLE DecompressorHandle
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CloseDecompressor (

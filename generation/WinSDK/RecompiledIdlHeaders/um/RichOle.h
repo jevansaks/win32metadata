@@ -1,3 +1,7 @@
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifndef _RICHOLE_
 #define _RICHOLE_
 
@@ -99,6 +103,7 @@ typedef struct _reobject
 #undef INTERFACE
 #define INTERFACE   IRichEditOle
 
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_(IRichEditOle, IUnknown)
 {
     // *** IUnknown methods ***
@@ -141,6 +146,7 @@ typedef         IRichEditOle FAR * LPRICHEDITOLE;
 #undef INTERFACE
 #define INTERFACE   IRichEditOleCallback
 
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_(IRichEditOleCallback, IUnknown)
 {
     // *** IUnknown methods ***

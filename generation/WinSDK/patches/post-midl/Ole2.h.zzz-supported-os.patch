@@ -1,0 +1,313 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h
+index e899e193..3f192e7a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h
+@@ -1,3 +1,7 @@
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #include <winapifamily.h>
+ 
+ 
+@@ -87,6 +91,7 @@
+     || !ISOLATION_AWARE_ENABLED \
+     || !defined(_OBJBASE_H_) \
+     || !defined(CreateDataAdviseHolder)
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI CreateDataAdviseHolder(_Outptr_ LPDATAADVISEHOLDER FAR* ppDAHolder);
+ #endif
+ 
+@@ -94,29 +99,37 @@ WINOLEAPI CreateDataAdviseHolder(_Outptr_ LPDATAADVISEHOLDER FAR* ppDAHolder);
+ 
+ WINOLEAPI_(DWORD) OleBuildVersion( VOID );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_ WINOLEAPI WriteFmtUserTypeStg (IN LPSTORAGE pstg, IN CLIPFORMAT cf, _In_z_ LPOLESTR lpszUserType);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI ReadFmtUserTypeStg (IN LPSTORAGE pstg, OUT CLIPFORMAT FAR* pcf, _Outptr_opt_result_z_ LPOLESTR FAR* lplpszUserType);
+ 
+ 
+ /* init/term */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_ WINOLEAPI OleInitialize(IN LPVOID pvReserved);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI_(void) OleUninitialize(void);
+ 
+ 
+ /* APIs to query whether (Embedded/Linked) object can be created from
+    the data object */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleQueryLinkFromData(IN LPDATAOBJECT pSrcDataObject);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleQueryCreateFromData(IN LPDATAOBJECT pSrcDataObject);
+ 
+ 
+ /* Object creation APIs */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleCreate(IN REFCLSID rclsid, IN REFIID riid, IN DWORD renderopt,
+                 IN LPFORMATETC pFormatEtc, IN LPOLECLIENTSITE pClientSite,
+                 IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ WINOLEAPI  OleCreateEx(IN REFCLSID rclsid, IN REFIID riid, IN DWORD dwFlags,
+                 IN DWORD renderopt, IN ULONG cFormats, IN DWORD* rgAdvf,
+@@ -124,11 +137,13 @@ WINOLEAPI  OleCreateEx(IN REFCLSID rclsid, IN REFIID riid, IN DWORD dwFlags,
+                 OUT DWORD FAR* rgdwConnection, IN LPOLECLIENTSITE pClientSite,
+                 IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleCreateFromData(IN LPDATAOBJECT pSrcDataObj, IN REFIID riid,
+                 IN DWORD renderopt, IN LPFORMATETC pFormatEtc,
+                 IN LPOLECLIENTSITE pClientSite, IN LPSTORAGE pStg,
+                 OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ WINOLEAPI  OleCreateFromDataEx(IN LPDATAOBJECT pSrcDataObj, IN REFIID riid,
+                 IN DWORD dwFlags, IN DWORD renderopt, IN ULONG cFormats, IN DWORD* rgAdvf,
+@@ -136,11 +151,13 @@ WINOLEAPI  OleCreateFromDataEx(IN LPDATAOBJECT pSrcDataObj, IN REFIID riid,
+                 OUT DWORD FAR* rgdwConnection, IN LPOLECLIENTSITE pClientSite,
+                 IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleCreateLinkFromData(IN LPDATAOBJECT pSrcDataObj, IN REFIID riid,
+                 IN DWORD renderopt, IN LPFORMATETC pFormatEtc,
+                 IN LPOLECLIENTSITE pClientSite, IN LPSTORAGE pStg,
+                 OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ WINOLEAPI  OleCreateLinkFromDataEx(IN LPDATAOBJECT pSrcDataObj, IN REFIID riid,
+                 IN DWORD dwFlags, IN DWORD renderopt, IN ULONG cFormats, IN DWORD* rgAdvf,
+@@ -148,36 +165,43 @@ WINOLEAPI  OleCreateLinkFromDataEx(IN LPDATAOBJECT pSrcDataObj, IN REFIID riid,
+                 OUT IN DWORD FAR* rgdwConnection, IN LPOLECLIENTSITE pClientSite,
+                 IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleCreateStaticFromData(IN LPDATAOBJECT pSrcDataObj, IN REFIID iid,
+                 IN DWORD renderopt, IN LPFORMATETC pFormatEtc,
+                 IN LPOLECLIENTSITE pClientSite, IN LPSTORAGE pStg,
+                 OUT LPVOID FAR* ppvObj);
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleCreateLink(IN LPMONIKER pmkLinkSrc, IN REFIID riid,
+             IN DWORD renderopt, IN LPFORMATETC lpFormatEtc,
+             IN LPOLECLIENTSITE pClientSite, IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleCreateLinkEx(IN LPMONIKER pmkLinkSrc, IN REFIID riid,
+             IN DWORD dwFlags, IN DWORD renderopt, IN ULONG cFormats, IN DWORD* rgAdvf,
+             IN LPFORMATETC rgFormatEtc, IN IAdviseSink FAR* lpAdviseSink,
+             OUT DWORD FAR* rgdwConnection, IN LPOLECLIENTSITE pClientSite,
+             IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleCreateLinkToFile(IN LPCOLESTR lpszFileName, IN REFIID riid,
+             IN DWORD renderopt, IN LPFORMATETC lpFormatEtc,
+             IN LPOLECLIENTSITE pClientSite, IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleCreateLinkToFileEx(IN LPCOLESTR lpszFileName, IN REFIID riid,
+             IN DWORD dwFlags, IN DWORD renderopt, IN ULONG cFormats, IN DWORD* rgAdvf,
+             IN LPFORMATETC rgFormatEtc, IN IAdviseSink FAR* lpAdviseSink,
+             OUT DWORD FAR* rgdwConnection, IN LPOLECLIENTSITE pClientSite,
+             IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleCreateFromFile(IN REFCLSID rclsid, IN LPCOLESTR lpszFileName, IN REFIID riid,
+             IN DWORD renderopt, IN LPFORMATETC lpFormatEtc,
+             IN LPOLECLIENTSITE pClientSite, IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ WINOLEAPI  OleCreateFromFileEx(IN REFCLSID rclsid, IN LPCOLESTR lpszFileName, IN REFIID riid,
+             IN DWORD dwFlags, IN DWORD renderopt, IN ULONG cFormats, IN DWORD* rgAdvf,
+@@ -185,88 +209,119 @@ WINOLEAPI  OleCreateFromFileEx(IN REFCLSID rclsid, IN LPCOLESTR lpszFileName, IN
+             OUT DWORD FAR* rgdwConnection, IN LPOLECLIENTSITE pClientSite,
+             IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleLoad(IN LPSTORAGE pStg, IN REFIID riid, IN LPOLECLIENTSITE pClientSite,
+             OUT LPVOID FAR* ppvObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleSave(_In_ LPPERSISTSTORAGE pPS, _In_ LPSTORAGE pStg, _In_ BOOL fSameAsLoad);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleLoadFromStream( IN LPSTREAM pStm, IN REFIID iidInterface, OUT LPVOID FAR* ppvObj);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleSaveToStream( IN LPPERSISTSTREAM pPStm, IN LPSTREAM pStm );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleSetContainedObject(IN LPUNKNOWN pUnknown, IN BOOL fContained);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleNoteObjectVisible(IN LPUNKNOWN pUnknown, IN BOOL fVisible);
+ 
+ 
+ /* Drag/Drop APIs */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  RegisterDragDrop(IN HWND hwnd, IN LPDROPTARGET pDropTarget);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  RevokeDragDrop(IN HWND hwnd);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  DoDragDrop(IN LPDATAOBJECT pDataObj, IN LPDROPSOURCE pDropSource,
+             IN DWORD dwOKEffects, OUT LPDWORD pdwEffect);
+ 
+ /* Clipboard APIs */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleSetClipboard(IN LPDATAOBJECT pDataObj);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleGetClipboard(_Outptr_ LPDATAOBJECT FAR* ppDataObj);
+ #if (NTDDI_VERSION >= NTDDI_WIN10_RS1)
++_Win32_metadata_supported_os_(windows10.0.10240)
+ WINOLEAPI  OleGetClipboardWithEnterpriseInfo(_Outptr_result_nullonfailure_ IDataObject** dataObject,
+             _Outptr_result_nullonfailure_ PWSTR* dataEnterpriseId,
+             _Outptr_result_nullonfailure_ PWSTR* sourceDescription,
+             _Outptr_result_nullonfailure_ PWSTR* targetDescription,
+             _Outptr_result_nullonfailure_ PWSTR* dataDescription);
+ #endif
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleFlushClipboard(void);   
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI  OleIsCurrentClipboard(IN LPDATAOBJECT pDataObj);   
+ 
+ /* InPlace Editing APIs */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI_(HOLEMENU)   OleCreateMenuDescriptor (IN HMENU hmenuCombined,
+                                 IN LPOLEMENUGROUPWIDTHS lpMenuWidths);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI              OleSetMenuDescriptor (IN HOLEMENU holemenu, IN HWND hwndFrame,
+                                 IN HWND hwndActiveObject,
+                                 IN LPOLEINPLACEFRAME lpFrame,
+                                 IN LPOLEINPLACEACTIVEOBJECT lpActiveObj);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI              OleDestroyMenuDescriptor (IN HOLEMENU holemenu);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI              OleTranslateAccelerator (IN LPOLEINPLACEFRAME lpFrame,
+                             IN LPOLEINPLACEFRAMEINFO lpFrameInfo, IN LPMSG lpmsg);
+ 
+ 
+ /* Helper APIs */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI_(HANDLE) OleDuplicateData (IN HANDLE hSrc, IN CLIPFORMAT cfFormat,
+                         IN UINT uiFlags);
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI          OleDraw (IN LPUNKNOWN pUnknown, IN DWORD dwAspect, IN HDC hdcDraw,
+                     IN LPCRECT lprcBounds);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_ WINOLEAPI          OleRun(IN LPUNKNOWN pUnknown);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI_(BOOL)   OleIsRunning(IN LPOLEOBJECT pObject);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI          OleLockRunning(IN LPUNKNOWN pUnknown, IN BOOL fLock, IN BOOL fLastUnlockCloses);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI_(void)   ReleaseStgMedium(IN LPSTGMEDIUM);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI          CreateOleAdviseHolder(_Out_ LPOLEADVISEHOLDER FAR* ppOAHolder);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI          OleCreateDefaultHandler(IN REFCLSID clsid, IN LPUNKNOWN pUnkOuter,
+                     IN REFIID riid, OUT LPVOID FAR* lplpObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI          OleCreateEmbeddingHelper(IN REFCLSID clsid, IN LPUNKNOWN pUnkOuter,
+                     IN DWORD flags, IN LPCLASSFACTORY pCF,
+                     IN REFIID riid, OUT LPVOID FAR* lplpObj);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI_(BOOL)   IsAccelerator(IN HACCEL hAccel, IN int cAccelEntries, IN LPMSG lpMsg,
+                                         OUT WORD FAR* lpwCmd);
+ /* Icon extraction Helper APIs */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI_(HGLOBAL) OleGetIconOfFile(_In_ LPOLESTR lpszPath, IN BOOL fUseFileAsLabel);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI_(HGLOBAL) OleGetIconOfClass(IN REFCLSID rclsid, _In_opt_ LPOLESTR lpszLabel,
+                                         IN BOOL fUseTypeAsLabel);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI_(HGLOBAL) OleMetafilePictFromIconAndLabel(IN HICON hIcon, _In_ LPOLESTR lpszLabel,
+                                         _In_ LPOLESTR lpszSourceFile, IN UINT iIconIndex);
+ 
+@@ -274,15 +329,19 @@ WINOLEAPI_(HGLOBAL) OleMetafilePictFromIconAndLabel(IN HICON hIcon, _In_ LPOLEST
+ 
+ /* Registration Database Helper APIs */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_ WINOLEAPI                  OleRegGetUserType (IN REFCLSID clsid, IN DWORD dwFormOfType,
+                                         _Outptr_ LPOLESTR FAR* pszUserType);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI                  OleRegGetMiscStatus     (IN REFCLSID clsid, IN DWORD dwAspect,
+                                         OUT DWORD FAR* pdwStatus);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI OleRegEnumFormatEtc(IN REFCLSID clsid, IN DWORD dwDirection,
+                               _Outptr_ LPENUMFORMATETC FAR* ppenum);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI OleRegEnumVerbs (IN REFCLSID clsid, _Outptr_ LPENUMOLEVERB FAR* ppenum);
+ 
+ 
+@@ -313,6 +372,7 @@ typedef HRESULT(STDAPICALLTYPE *OLESTREAMQUERYCONVERTOLELINKCALLBACK)
+     _In_opt_ ULONG      linkUpdatingOption,
+     _In_opt_ PVOID      pvContext);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI OleConvertOLESTREAMToIStorage
+     (IN LPOLESTREAM                lpolestream,
+     OUT LPSTORAGE                   pstg,
+@@ -326,6 +386,7 @@ WINOLEAPI OleConvertOLESTREAMToIStorage2
+     _In_opt_ PVOID                      pvCallbackContext,
+     _In_opt_ OLESTREAMQUERYCONVERTOLELINKCALLBACK pQueryConvertOLELinkCallback);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI OleConvertIStorageToOLESTREAM
+     (IN LPSTORAGE      pstg,
+     OUT LPOLESTREAM     lpolestream);
+@@ -333,13 +394,18 @@ WINOLEAPI OleConvertIStorageToOLESTREAM
+ 
+ /* ConvertTo APIS */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI OleDoAutoConvert(IN LPSTORAGE pStg, OUT LPCLSID pClsidNew);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI OleGetAutoConvert(IN REFCLSID clsidOld, OUT LPCLSID pClsidNew);
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI OleSetAutoConvert(IN REFCLSID clsidOld, IN REFCLSID clsidNew);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI SetConvertStg(IN LPSTORAGE pStg, IN BOOL fConvert);
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI OleConvertIStorageToOLESTREAMEx
+     (IN LPSTORAGE          pstg,
+                                     // Presentation data to OLESTREAM
+@@ -350,6 +416,7 @@ WINOLEAPI OleConvertIStorageToOLESTREAMEx
+      IN LPSTGMEDIUM        pmedium,    //      bits
+      OUT LPOLESTREAM        polestm);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINOLEAPI OleConvertOLESTREAMToIStorageEx
+     (IN LPOLESTREAM        polestm,
+      OUT LPSTORAGE          pstg,

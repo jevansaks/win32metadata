@@ -258,7 +258,7 @@ index 1c332c48..d44b6c38 100644
  	UINT	codepage;		// Code page for translation (CP_ACP for default,
  							//	1200 for Unicode)
  } GETTEXTLENGTHEX;
-@@ -1636,6 +1756,639 @@ typedef struct tagHyphenateInfo
+@@ -1636,6 +1756,642 @@ typedef struct tagHyphenateInfo
  #define GCM_TOUCHMENU		0x4000	// Deprecated: Use GCMF_TOUCHMENU
  #define GCM_MOUSEMENU		0x2000	// Deprecated: Use GCMF_MOUSEMENU
  
@@ -377,6 +377,7 @@ index 1c332c48..d44b6c38 100644
 +#ifdef WIN32METADATA
 +#ifndef __WIN32METADATA_CFE_UNDERLINE_DEFINED__
 +#define __WIN32METADATA_CFE_UNDERLINE_DEFINED__
++#pragma push_macro("CFE_UNDERLINE")
 +#pragma push_macro("CFU_CF1UNDERLINE")
 +#pragma push_macro("CFU_INVERT")
 +#pragma push_macro("CFU_UNDERLINETHICKLONGDASH")
@@ -398,6 +399,7 @@ index 1c332c48..d44b6c38 100644
 +#pragma push_macro("CFU_UNDERLINEWORD")
 +#pragma push_macro("CFU_UNDERLINE")
 +#pragma push_macro("CFU_UNDERLINENONE")
++#undef CFE_UNDERLINE
 +#undef CFU_CF1UNDERLINE
 +#undef CFU_INVERT
 +#undef CFU_UNDERLINETHICKLONGDASH
@@ -466,6 +468,7 @@ index 1c332c48..d44b6c38 100644
 +#pragma pop_macro("CFU_UNDERLINETHICKLONGDASH")
 +#pragma pop_macro("CFU_INVERT")
 +#pragma pop_macro("CFU_CF1UNDERLINE")
++#pragma pop_macro("CFE_UNDERLINE")
 +#endif
 +#endif
 +

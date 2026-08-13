@@ -24,6 +24,9 @@ Revision History:
 #ifndef _SFC_
 #define _SFC_
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -57,6 +60,7 @@ typedef struct _PROTECTED_FILE_DATA {
 } PROTECTED_FILE_DATA, *PPROTECTED_FILE_DATA;
 
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 SfcGetNextProtectedFile(

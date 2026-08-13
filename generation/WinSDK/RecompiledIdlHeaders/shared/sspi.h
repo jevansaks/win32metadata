@@ -3387,6 +3387,9 @@ SspiGetCredUIContext(
    _In_opt_ LUID* LogonId, // use this LogonId, the caller must be localsystem to supply a logon id
    _Outptr_ PSEC_WINNT_CREDUI_CONTEXT_VECTOR* CredUIContexts,
    _Out_opt_ HANDLE* TokenHandle
+       _Win32_metadata_invalid_handle_(-1)
+       _Win32_metadata_invalid_handle_(0)
+       _Win32_metadata_raii_free_(CloseHandle)
    );
 
 SECURITY_STATUS

@@ -1,3 +1,7 @@
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #include <winapifamily.h>
 
 //+-------------------------------------------------------------------------
@@ -30,6 +34,7 @@ typedef VOID* NTPROP;
 
 #include <propidl.h>
 
+_Win32_metadata_supported_os_(windows5.0)
 EXTERN_C
 _Success_(TRUE)  /* Raises status on failure */
 ULONG __stdcall

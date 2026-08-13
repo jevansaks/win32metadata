@@ -1720,6 +1720,7 @@ typedef struct hyphresult
 	WCHAR chHyph;			// Depending on hyphenation type, character added, changed, etc.
 } HYPHRESULT;
 
+_Win32_metadata_supported_os_(windows5.1.2600)
 void WINAPI HyphenateProc(_In_ WCHAR *pszWord, LANGID langid, long ichExceed, HYPHRESULT *phyphresult);
 typedef struct tagHyphenateInfo
 {
@@ -1871,6 +1872,7 @@ enum class
 #ifdef WIN32METADATA
 #ifndef __WIN32METADATA_CFE_UNDERLINE_DEFINED__
 #define __WIN32METADATA_CFE_UNDERLINE_DEFINED__
+#pragma push_macro("CFE_UNDERLINE")
 #pragma push_macro("CFU_CF1UNDERLINE")
 #pragma push_macro("CFU_INVERT")
 #pragma push_macro("CFU_UNDERLINETHICKLONGDASH")
@@ -1892,6 +1894,7 @@ enum class
 #pragma push_macro("CFU_UNDERLINEWORD")
 #pragma push_macro("CFU_UNDERLINE")
 #pragma push_macro("CFU_UNDERLINENONE")
+#undef CFE_UNDERLINE
 #undef CFU_CF1UNDERLINE
 #undef CFU_INVERT
 #undef CFU_UNDERLINETHICKLONGDASH
@@ -1960,6 +1963,7 @@ enum class
 #pragma pop_macro("CFU_UNDERLINETHICKLONGDASH")
 #pragma pop_macro("CFU_INVERT")
 #pragma pop_macro("CFU_CF1UNDERLINE")
+#pragma pop_macro("CFE_UNDERLINE")
 #endif
 #endif
 

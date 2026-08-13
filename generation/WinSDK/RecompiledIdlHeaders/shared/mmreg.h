@@ -1,4 +1,7 @@
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 //*@@@+++@@@@******************************************************************
 //
@@ -3054,10 +3057,16 @@ typedef MPEG1WAVEFORMAT FAR            *LPMPEG1WAVEFORMAT;
 
 // WAVE_FORMAT_MPEGLAYER3 format sructure
 //
+#ifdef WIN32METADATA
+enum class MPEGLAYER3WAVEFORMAT_FLAGS : int;
+#else
+typedef DWORD MPEGLAYER3WAVEFORMAT_FLAGS;
+#endif
+
 typedef struct mpeglayer3waveformat_tag {
   WAVEFORMATEX  wfx;
   WORD          wID;
-  DWORD         fdwFlags;
+  MPEGLAYER3WAVEFORMAT_FLAGS fdwFlags;
   WORD          nBlockSize;
   WORD          nFramesPerBlock;
   WORD          nCodecDelay;
@@ -3076,6 +3085,24 @@ typedef MPEGLAYER3WAVEFORMAT FAR     *LPMPEGLAYER3WAVEFORMAT;
 #define MPEGLAYER3_FLAG_PADDING_ISO      0x00000000
 #define MPEGLAYER3_FLAG_PADDING_ON       0x00000001
 #define MPEGLAYER3_FLAG_PADDING_OFF      0x00000002
+
+#ifdef WIN32METADATA
+#pragma push_macro("MPEGLAYER3_FLAG_PADDING_ISO")
+#pragma push_macro("MPEGLAYER3_FLAG_PADDING_ON")
+#pragma push_macro("MPEGLAYER3_FLAG_PADDING_OFF")
+#undef MPEGLAYER3_FLAG_PADDING_ISO
+#undef MPEGLAYER3_FLAG_PADDING_ON
+#undef MPEGLAYER3_FLAG_PADDING_OFF
+enum class MPEGLAYER3WAVEFORMAT_FLAGS : int
+{
+    MPEGLAYER3_FLAG_PADDING_ISO = 0,
+    MPEGLAYER3_FLAG_PADDING_ON = 1,
+    MPEGLAYER3_FLAG_PADDING_OFF = 2,
+};
+#pragma pop_macro("MPEGLAYER3_FLAG_PADDING_OFF")
+#pragma pop_macro("MPEGLAYER3_FLAG_PADDING_ON")
+#pragma pop_macro("MPEGLAYER3_FLAG_PADDING_ISO")
+#endif
 
 /* ==========================================================================
 
@@ -3810,5 +3837,4 @@ typedef struct {
 cpp_quote("#endif /* 0 */")
 
 #endif /* __midl */
-
 

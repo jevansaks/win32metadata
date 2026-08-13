@@ -1,0 +1,419 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl.h b/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl.h
+index d6233cbe..706ba24e 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl.h
+@@ -9,6 +9,10 @@
+ 
+ 
+ /* verify that the <rpcndr.h> version is high enough to compile this file*/
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifndef __REQUIRED_RPCNDR_H_VERSION__
+ #define __REQUIRED_RPCNDR_H_VERSION__ 500
+ #endif
+@@ -795,6 +799,7 @@ EXTERN_C const IID IID_IQueryCodePage;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("C7B236CE-EE80-11D0-985F-006008059382")
+     IQueryCodePage : public IUnknown
+     {
+@@ -935,6 +940,7 @@ EXTERN_C const IID IID_IFolderViewOptions;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("3cc974d2-b302-4d36-ad3e-06d93f695d3f")
+     IFolderViewOptions : public IUnknown
+     {
+@@ -1058,6 +1064,7 @@ EXTERN_C const IID IID_IShellView3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("ec39fa88-f8af-41c5-8421-38bed28f4673")
+     IShellView3 : public IShellView2
+     {
+@@ -1361,6 +1368,7 @@ EXTERN_C const IID IID_ISearchBoxInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("6af6e03f-d664-4ef4-9626-f7e0ed36755e")
+     ISearchBoxInfo : public IUnknown
+     {
+@@ -1493,6 +1501,7 @@ EXTERN_C const IID IID_IVisualProperties;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("e693cf68-d967-4112-8763-99172aee5e5a")
+     IVisualProperties : public IUnknown
+     {
+@@ -1701,6 +1710,7 @@ EXTERN_C const IID IID_ICommDlgBrowser3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("c8ad25a1-3294-41ee-8165-71174bd01c57")
+     ICommDlgBrowser3 : public ICommDlgBrowser2
+     {
+@@ -1897,6 +1907,7 @@ EXTERN_C const IID IID_IUserAccountChangeCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("a561e69a-b4b8-4113-91a5-64c6bcca3430")
+     IUserAccountChangeCallback : public IUnknown
+     {
+@@ -2012,6 +2023,7 @@ EXTERN_C const IID IID_IStreamAsync;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("fe0b6665-e0ca-49b9-a178-2b5cb48d92a5")
+     IStreamAsync : public IStream
+     {
+@@ -2289,6 +2301,7 @@ EXTERN_C const IID IID_IStreamUnbufferedInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8a68fdda-1fdc-4c20-8ceb-416643b5a625")
+     IStreamUnbufferedInfo : public IUnknown
+     {
+@@ -2370,8 +2383,11 @@ EXTERN_C const IID IID_IStreamUnbufferedInfo;
+ 
+ #if (_WIN32_IE >= _WIN32_IE_IE70)
+ SHSTDAPI SHRemovePersonalPropertyValues(_In_ IShellItemArray *psia);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ SHSTDAPI SHAddDefaultPropertiesByExt(_In_ PCWSTR pszExt, _In_ IPropertyStore *pPropStore);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ SHSTDAPI SHCreateDefaultPropertiesOp(_In_ IShellItem *psi, _Outptr_ IFileOperation **ppFileOp);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ SHSTDAPI SHSetDefaultProperties(_In_opt_ HWND hwnd, _In_ IShellItem *psi, DWORD dwFileOpFlags, _In_opt_ IFileOperationProgressSink *pfops);
+ #endif  // (_WIN32_IE >= _WIN32_IE_IE70)
+ #if (NTDDI_VERSION >= NTDDI_WIN2K)
+@@ -2399,6 +2415,7 @@ EXTERN_C const IID IID_IDragSourceHelper2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("83E07D0D-0C5F-4163-BF1A-60B274051E40")
+     IDragSourceHelper2 : public IDragSourceHelper
+     {
+@@ -2521,6 +2538,7 @@ EXTERN_C const IID IID_IHWEventHandler;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("C1FB73D0-EC3A-4ba2-B512-8CDB9187B6D1")
+     IHWEventHandler : public IUnknown
+     {
+@@ -2658,6 +2676,7 @@ EXTERN_C const IID IID_IHWEventHandler2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("CFCC809F-295D-42e8-9FFC-424B33C487E6")
+     IHWEventHandler2 : public IHWEventHandler
+     {
+@@ -2797,6 +2816,7 @@ EXTERN_C const IID IID_IQueryCancelAutoPlay;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("DDEFE873-6997-4e68-BE26-39B633ADBE12")
+     IQueryCancelAutoPlay : public IUnknown
+     {
+@@ -2905,6 +2925,7 @@ EXTERN_C const IID IID_IDynamicHWHandler;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("DC2601D7-059E-42fc-A09D-2AFD21B6D5F7")
+     IDynamicHWHandler : public IUnknown
+     {
+@@ -3009,6 +3030,7 @@ EXTERN_C const IID IID_IUserNotificationCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("19108294-0441-4AFF-8013-FA0A730B0BEA")
+     IUserNotificationCallback : public IUnknown
+     {
+@@ -3122,6 +3144,7 @@ EXTERN_C const IID IID_IUserNotification2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("215913CC-57EB-4FAB-AB5A-E5FA7BEA2A6C")
+     IUserNotification2 : public IUnknown
+     {
+@@ -3298,6 +3321,7 @@ EXTERN_C const IID IID_IDeskBand2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("79D16DE4-ABEE-4021-8D9D-9169B261D657")
+     IDeskBand2 : public IDeskBand
+     {
+@@ -3485,6 +3509,7 @@ EXTERN_C const IID IID_IStartMenuPinnedList;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("4CD19ADA-25A5-4A32-B3B7-347BEE5BE36B")
+     IStartMenuPinnedList : public IUnknown
+     {
+@@ -3572,6 +3597,7 @@ EXTERN_C const IID IID_ICDBurn;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("3d73a659-e5d0-4d42-afc0-5121ba425c8d")
+     ICDBurn : public IUnknown
+     {
+@@ -3699,6 +3725,7 @@ EXTERN_C const IID IID_IWizardSite;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("88960f5b-422f-4e7b-8013-73415381c3c3")
+     IWizardSite : public IUnknown
+     {
+@@ -3821,6 +3848,7 @@ EXTERN_C const IID IID_IWizardExtension;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("c02ea696-86cc-491e-9b23-74394a0444a8")
+     IWizardExtension : public IUnknown
+     {
+@@ -3942,6 +3970,7 @@ EXTERN_C const IID IID_IWebWizardExtension;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("0e6b3f66-98d1-48c0-a222-fbde74e2fbc5")
+     IWebWizardExtension : public IWizardExtension
+     {
+@@ -4091,6 +4120,7 @@ EXTERN_C const IID IID_IPublishingWizard;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("aa9198bb-ccec-472d-beed-19a4f6733f7a")
+     IPublishingWizard : public IWizardExtension
+     {
+@@ -4244,6 +4274,7 @@ EXTERN_C const IID IID_IFolderViewHost;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("1ea58f02-d55a-411d-b09e-9e65ac21605b")
+     IFolderViewHost : public IUnknown
+     {
+@@ -4348,6 +4379,7 @@ EXTERN_C const IID IID_IAccessibleObject;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("95A391C5-9ED4-4c28-8401-AB9E06719E11")
+     IAccessibleObject : public IUnknown
+     {
+@@ -4444,6 +4476,7 @@ EXTERN_C const IID IID_IResultsFolder;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96E5AE6D-6AE1-4b1c-900C-C6480EAA8828")
+     IResultsFolder : public IUnknown
+     {
+@@ -4610,6 +4643,7 @@ EXTERN_C const IID IID_IAutoCompleteDropDown;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("3CD141F4-3C6A-11d2-BCAA-00C04FD929DB")
+     IAutoCompleteDropDown : public IUnknown
+     {
+@@ -4737,6 +4771,7 @@ EXTERN_C const IID IID_ICDBurnExt;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("2271dcca-74fc-4414-8fb7-c56b05ace2d7")
+     ICDBurnExt : public IUnknown
+     {
+@@ -4833,6 +4868,7 @@ EXTERN_C const IID IID_IEnumReadyCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("61E00D45-8FFF-4e60-924E-6537B61612DD")
+     IEnumReadyCallback : public IUnknown
+     {
+@@ -4916,6 +4952,7 @@ EXTERN_C const IID IID_IEnumerableView;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8C8BF236-1AEC-495f-9894-91D57C3C686F")
+     IEnumerableView : public IUnknown
+     {
+@@ -5034,6 +5071,7 @@ EXTERN_C const IID IID_IInsertItem;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("D2B57227-3D23-4b95-93C0-492BD454C356")
+     IInsertItem : public IUnknown
+     {
+@@ -5130,6 +5168,7 @@ EXTERN_C const IID IID_IFolderBandPriv;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("47c01f95-e185-412c-b5c5-4f27df965aea")
+     IFolderBandPriv : public IUnknown
+     {
+@@ -5256,6 +5295,7 @@ EXTERN_C const IID IID_IImageRecompress;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("505f1513-6b3e-4892-a272-59f8889a4d3e")
+     IImageRecompress : public IUnknown
+     {
+@@ -5374,6 +5414,7 @@ EXTERN_C const IID IID_IFileDialogControlEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("36116642-D713-4b97-9B83-7484A9D00433")
+     IFileDialogControlEvents : public IUnknown
+     {
+@@ -5524,6 +5565,7 @@ EXTERN_C const IID IID_IFileDialog2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("61744fc7-85b5-4791-a9b0-272276309b13")
+     IFileDialog2 : public IFileDialog
+     {
+@@ -5846,6 +5888,7 @@ EXTERN_C const IID IID_IApplicationAssociationRegistrationUI;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("1f76a169-f994-40ac-8fc8-0959e8874710")
+     IApplicationAssociationRegistrationUI : public IUnknown
+     {
+@@ -5942,6 +5985,7 @@ EXTERN_C const IID IID_IShellRunDll;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("fce4bde0-4b68-4b80-8e9c-7426315a7388")
+     IShellRunDll : public IUnknown
+     {
+@@ -6029,6 +6073,7 @@ EXTERN_C const IID IID_IPreviousVersionsInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("76e54780-ad74-48e3-a695-3ba9a0aff10d")
+     IPreviousVersionsInfo : public IUnknown
+     {
+@@ -6133,6 +6178,7 @@ EXTERN_C const IID IID_IUseToBrowseItem;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("05edda5c-98a3-4717-8adb-c5e7da991eb1")
+     IUseToBrowseItem : public IRelatedItem
+     {
+@@ -6249,6 +6295,7 @@ EXTERN_C const IID IID_INameSpaceTreeControl2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("7cc7aed8-290e-49bc-8945-c1401cc9306c")
+     INameSpaceTreeControl2 : public INameSpaceTreeControl
+     {
+@@ -6638,6 +6685,7 @@ EXTERN_C const IID IID_INameSpaceTreeControlEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("93D77985-B3D8-4484-8318-672CDDA002CE")
+     INameSpaceTreeControlEvents : public IUnknown
+     {
+@@ -7031,6 +7079,7 @@ EXTERN_C const IID IID_INameSpaceTreeControlDropHandler;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("F9C665D6-C2F2-4c19-BF33-8322D7352F51")
+     INameSpaceTreeControlDropHandler : public IUnknown
+     {
+@@ -7251,6 +7300,7 @@ EXTERN_C const IID IID_INameSpaceTreeAccessible;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("71f312de-43ed-4190-8477-e9536b82350b")
+     INameSpaceTreeAccessible : public IUnknown
+     {
+@@ -7384,6 +7434,7 @@ EXTERN_C const IID IID_INameSpaceTreeControlCustomDraw;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("2D3BA758-33EE-42d5-BB7B-5F3431D86C78")
+     INameSpaceTreeControlCustomDraw : public IUnknown
+     {
+@@ -7559,6 +7610,7 @@ EXTERN_C const IID IID_ITrayDeskBand;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("6D67E846-5B9C-4db8-9CBC-DDE12F4254F1")
+     ITrayDeskBand : public IUnknown
+     {
+@@ -7681,6 +7733,7 @@ EXTERN_C const IID IID_IBandHost;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("B9075C7C-D48E-403f-AB99-D6C77A1084AC")
+     IBandHost : public IUnknown
+     {
+@@ -7824,6 +7877,7 @@ EXTERN_C const IID IID_IComputerInfoChangeNotify;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("0DF60D92-6818-46d6-B358-D66170DDE466")
+     IComputerInfoChangeNotify : public IUnknown
+     {
+@@ -7917,6 +7971,7 @@ EXTERN_C const IID IID_IDesktopGadget;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++    _Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("c1646bc4-f298-4f91-a204-eb2dd1709d1a")
+     IDesktopGadget : public IUnknown
+     {
+@@ -8252,6 +8307,7 @@ StorageProviderBanners;
+ // that includes shobjidl.h and compiles with /analyze.
+ #pragma warning(push)
+ #pragma warning(disable:6387)
++_Win32_metadata_supported_os_(windows6.1)
+ __inline HRESULT SHResolveFolderPathInLibrary(_In_ IShellLibrary *plib, _In_ PCWSTR pszFolderPath, _In_ DWORD dwTimeout, _Outptr_ PWSTR *ppszResolvedPath)
+ {
+     *ppszResolvedPath = NULL;

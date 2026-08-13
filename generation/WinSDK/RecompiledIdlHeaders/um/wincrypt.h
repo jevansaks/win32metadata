@@ -1681,10 +1681,12 @@ GetEncSChannel(
 // This type is used when the API can take either the CAPI1 HCRYPTPROV or
 // the CNG NCRYPT_KEY_HANDLE. Where appropriate, the HCRYPTPROV will be
 // converted to a NCRYPT_KEY_HANDLE via the CNG NCryptTranslateHandle().
+_Win32_metadata_invalid_handle_(0)
 typedef ULONG_PTR HCRYPTPROV_OR_NCRYPT_KEY_HANDLE;
 
 // This type is used where the HCRYPTPROV parameter is no longer used.
 // The caller should always pass in NULL.
+_Win32_metadata_invalid_handle_(0)
 typedef ULONG_PTR HCRYPTPROV_LEGACY;
 
 //+-------------------------------------------------------------------------
@@ -9271,6 +9273,8 @@ typedef BOOL (WINAPI *PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY) (
 //
 //--------------------------------------------------------------------------
 
+_Win32_metadata_invalid_handle_(-1)
+_Win32_metadata_invalid_handle_(0)
 typedef void *HCERTSTORE;
 
 //+-------------------------------------------------------------------------
@@ -10690,6 +10694,8 @@ CertOpenStore(
 //--------------------------------------------------------------------------
 
 // Handle returned by the store provider when opened.
+_Win32_metadata_invalid_handle_(-1)
+_Win32_metadata_invalid_handle_(0)
 typedef void *HCERTSTOREPROV;
 
 // Store Provider OID function's pszFuncName.
@@ -17368,6 +17374,9 @@ CryptMemFree (
 // Following functions were never used. If called, will fail with LastError
 // set to ERROR_CALL_NOT_IMPLEMENTED.
 
+_Win32_metadata_invalid_handle_(-1)
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(CryptCloseAsyncHandle)
 typedef HANDLE HCRYPTASYNC, *PHCRYPTASYNC;
 
 typedef VOID (WINAPI *PFN_CRYPT_ASYNC_PARAM_FREE_FUNC) (
@@ -19505,6 +19514,9 @@ CryptCreateKeyIdentifierFromCSP(
 // of the application in order to get optimal caching behavior
 //
 
+_Win32_metadata_invalid_handle_(-1)
+_Win32_metadata_invalid_handle_(0)
+_Win32_metadata_raii_free_(CertFreeCertificateChainEngine)
 typedef HANDLE HCERTCHAINENGINE;
 
 #define HCCE_CURRENT_USER           ((HCERTCHAINENGINE)NULL)
@@ -22759,7 +22771,7 @@ enum class
 {
     AT_KEYEXCHANGE = 1,
     AT_SIGNATURE = 2,
-    CERT_NCRYPT_KEY_SPEC = uint.MaxValue,
+    CERT_NCRYPT_KEY_SPEC = 0xFFFFFFFFu,
 };
 #pragma pop_macro("CERT_NCRYPT_KEY_SPEC")
 #pragma pop_macro("AT_SIGNATURE")

@@ -1,0 +1,96 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NTSecPKG.h b/generation/WinSDK/RecompiledIdlHeaders/um/NTSecPKG.h
+index 346ecf9abf79ca0939ce14b904e527963b3797e2..c33267a21c58bbe9e7f15c705fd08792d973de8b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/NTSecPKG.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/NTSecPKG.h
+@@ -1269,7 +1269,10 @@ typedef NTSTATUS
+ typedef NTSTATUS
+ (NTAPI LSA_DUPLICATE_HANDLE)(
+     _In_ HANDLE     SourceHandle,
+-    _Out_ PHANDLE   DestionationHandle);
++    _Out_ PHANDLE   DestionationHandle
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle));
+ 
+ 
+ typedef NTSTATUS
+@@ -1289,7 +1292,10 @@ typedef HANDLE
+     _In_ PVOID ThreadParameter,
+     _In_ ULONG CreationFlags,
+     _Out_ PULONG ThreadId
+-    );
++    )
++    _Win32_metadata_invalid_handle_(-1)
++    _Win32_metadata_invalid_handle_(0)
++    _Win32_metadata_raii_free_(CloseHandle);
+ 
+ 
+ typedef NTSTATUS
+@@ -1339,7 +1345,10 @@ typedef NTSTATUS
+     _In_ PUNICODE_STRING AuthorityName,
+     _In_opt_ PUNICODE_STRING Workstation,
+     _In_opt_ PUNICODE_STRING ProfilePath,
+-    _Out_ PHANDLE Token,
++    _Out_ PHANDLE Token
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle),
+     _Out_ PNTSTATUS SubStatus
+     );
+ 
+@@ -1360,7 +1369,10 @@ typedef NTSTATUS
+     _In_opt_ PUNICODE_STRING ProfilePath,
+     _In_ PVOID SessionInformation,
+     _In_ SECPKG_SESSIONINFO_TYPE SessionInformationType,
+-    _Out_ PHANDLE Token,
++    _Out_ PHANDLE Token
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle),
+     _Out_ PNTSTATUS SubStatus
+     );
+ 
+@@ -1652,6 +1664,9 @@ NTSTATUS
+ (NTAPI LSA_OPEN_TOKEN_BY_LOGON_ID)(
+     _In_ PLUID LogonId,
+     _Out_ HANDLE *RetTokenHandle
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle)
+     );
+ 
+ typedef
+@@ -2460,6 +2475,9 @@ typedef NTSTATUS
+ (NTAPI SpGetContextTokenFn)(
+     _In_ LSA_SEC_HANDLE ContextHandle,
+     _Out_ PHANDLE ImpersonationToken
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle)
+     );
+ 
+ 
+@@ -2468,7 +2486,10 @@ typedef NTSTATUS
+     _In_        LSA_SEC_HANDLE phContext,             // (in) context to export
+     _In_        ULONG          fFlags,                // (in) option flags
+     _Out_       PSecBuffer     pPackedContext,        // (out) marshalled context
+-    _Out_opt_   PHANDLE        pToken                 // (out, optional) token handle for impersonation
++    _Out_opt_   PHANDLE        pToken
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle)        // (out, optional) token handle for impersonation
+     );
+ 
+ typedef NTSTATUS
+@@ -2758,7 +2779,10 @@ typedef NTSTATUS
+ typedef NTSTATUS
+ (NTAPI KspGetTokenFn)(
+     _In_ LSA_SEC_HANDLE ContextId,
+-    _Out_opt_ PHANDLE ImpersonationToken,
++    _Out_opt_ PHANDLE ImpersonationToken
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(CloseHandle),
+     _Outptr_opt_ PACCESS_TOKEN * RawToken
+     );
+ 

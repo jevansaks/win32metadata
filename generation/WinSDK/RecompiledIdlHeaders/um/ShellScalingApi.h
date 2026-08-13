@@ -1,4 +1,8 @@
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #ifdef _MSC_VER
 #pragma once
 #endif // _MSC_VER
@@ -35,19 +39,25 @@ DEFINE_ENUM_FLAG_OPERATORS(SCALE_CHANGE_FLAGS);
 
 // Given a display device, return the preferred DEVICE_SCALE_FACTOR to be used for scaling values.
 // Default is SCALE_100_PERCENT
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI_(DEVICE_SCALE_FACTOR) GetScaleFactorForDevice(_In_ DISPLAY_DEVICE_TYPE deviceType);
 
 // Register a window to receive callbacks when scaling information changes.  The uMsgNotify param specifies a message
 // that will be posted to the requesting window.  The wParam for this message is a combination of SCALE_CHANGE_FLAGS
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI RegisterScaleChangeNotifications(_In_ DISPLAY_DEVICE_TYPE displayDevice, _In_ HWND hwndNotify, _In_ UINT uMsgNotify, _Out_ DWORD *pdwCookie);
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI RevokeScaleChangeNotifications(_In_ DISPLAY_DEVICE_TYPE displayDevice, _In_ DWORD dwCookie);
 
 #endif // (NTDDI_VERSION >= NTDDI_WIN8)
 
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
 
+_Win32_metadata_supported_os_(windows8.1)
 STDAPI GetScaleFactorForMonitor(_In_ HMONITOR hMon, _Out_ DEVICE_SCALE_FACTOR *pScale);
+_Win32_metadata_supported_os_(windows8.1)
 STDAPI RegisterScaleChangeEvent(_In_ HANDLE hEvent, _Out_ DWORD_PTR *pdwCookie);
+_Win32_metadata_supported_os_(windows8.1)
 STDAPI UnregisterScaleChangeEvent(_In_ DWORD_PTR dwCookie);
 
 #endif // (NTDDI_VERSION >= NTDDI_WINBLUE)
@@ -72,13 +82,16 @@ typedef enum MONITOR_DPI_TYPE {
 
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
 
+_Win32_metadata_supported_os_(windows8.1)
 STDAPI SetProcessDpiAwareness(
     _In_ PROCESS_DPI_AWARENESS value);
 
+_Win32_metadata_supported_os_(windows8.1)
 STDAPI GetProcessDpiAwareness(
     _In_opt_ HANDLE hprocess,
     _Out_ PROCESS_DPI_AWARENESS *value);
 
+_Win32_metadata_supported_os_(windows8.1)
 STDAPI GetDpiForMonitor(
     _In_ HMONITOR hmonitor,
     _In_ MONITOR_DPI_TYPE dpiType,
@@ -101,6 +114,7 @@ typedef enum
 #define SHELL_UI_COMPONENT_ENUMS_DECLARED
 #endif // (SHELL_UI_COMPONENT_ENUMS_DECLARED)
 
+_Win32_metadata_supported_os_(windows8.1)
 STDAPI_(UINT) GetDpiForShellUIComponent(
     _In_ SHELL_UI_COMPONENT);
 
