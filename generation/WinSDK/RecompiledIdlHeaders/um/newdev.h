@@ -79,6 +79,34 @@ UpdateDriverForPlugAndPlayDevicesW(
 #define DIIDFLAG_INSTALLCOPYINFDRIVERS  0x00000008      // Install any extra INFs specified via CopyInf directive.
 #define DIIDFLAG_BITS                   0x0000000F
 
+#if defined(WIN32METADATA)
+#pragma push_macro("DIIDFLAG_SHOWSEARCHUI")
+#pragma push_macro("DIIDFLAG_NOFINISHINSTALLUI")
+#pragma push_macro("DIIDFLAG_INSTALLNULLDRIVER")
+#pragma push_macro("DIIDFLAG_INSTALLCOPYINFDRIVERS")
+#pragma push_macro("DIIDFLAG_BITS")
+#undef DIIDFLAG_SHOWSEARCHUI
+#undef DIIDFLAG_NOFINISHINSTALLUI
+#undef DIIDFLAG_INSTALLNULLDRIVER
+#undef DIIDFLAG_INSTALLCOPYINFDRIVERS
+#undef DIIDFLAG_BITS
+enum class
+    [[clang::flag_enum]]
+    DIINSTALLDEVICE_FLAGS : unsigned int
+{
+    DIIDFLAG_SHOWSEARCHUI = 0x00000001,
+    DIIDFLAG_NOFINISHINSTALLUI = 0x00000002,
+    DIIDFLAG_INSTALLNULLDRIVER = 0x00000004,
+    DIIDFLAG_INSTALLCOPYINFDRIVERS = 0x00000008,
+    DIIDFLAG_BITS = 0x0000000F,
+};
+#pragma pop_macro("DIIDFLAG_BITS")
+#pragma pop_macro("DIIDFLAG_INSTALLCOPYINFDRIVERS")
+#pragma pop_macro("DIIDFLAG_INSTALLNULLDRIVER")
+#pragma pop_macro("DIIDFLAG_NOFINISHINSTALLUI")
+#pragma pop_macro("DIIDFLAG_SHOWSEARCHUI")
+#endif
+
 _Win32_metadata_set_last_error_
 BOOL
 WINAPI
@@ -87,7 +115,7 @@ DiInstallDevice(
     _In_      HDEVINFO DeviceInfoSet,
     _In_      PSP_DEVINFO_DATA DeviceInfoData,
     _In_opt_  PSP_DRVINFO_DATA DriverInfoData,
-    _In_      DWORD Flags,
+    _In_      _Win32_metadata_associated_enum_(DIINSTALLDEVICE_FLAGS) DWORD Flags,
     _Out_opt_ PBOOL NeedReboot
     );
 
@@ -267,4 +295,3 @@ DiShowUpdateDriver(
 #pragma endregion
 
 #endif // _INC_NEWDEV
-

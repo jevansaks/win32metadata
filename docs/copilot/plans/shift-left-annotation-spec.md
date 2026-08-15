@@ -141,7 +141,8 @@ typedef BOOL (WINAPI *INTERNAL_CALLBACK)(DWORD value);
 | `NativeArrayInfo.CountFieldName` | `_Win32_metadata_array_count_field_(field)` | Field. |
 | `MemorySize.BytesParamIndex` | `_Win32_metadata_memory_size_param_(index)` | Parameter; byte-size parameter index. |
 | `AlsoUsableFor("TYPE")` | `_Win32_metadata_also_usable_for_(TYPE)` | Typedef. |
-| `AssociatedEnum("TYPE")` | `_Win32_metadata_associated_enum_(TYPE)` | Parameter, field, or constant when direct enum typing is impossible. |
+| `ProjectAs("TYPE")` | `_Win32_metadata_project_as_(TYPE)` | Parameter, return value, or field. Directs opinionated generators to use the named metadata type at that use site. |
+| `AssociatedEnum("TYPE")` | `_Win32_metadata_associated_enum_(TYPE)` | Parameter, return value, or field when direct enum typing is impossible. |
 | `AssociatedConstant("NAME")` | `_Win32_metadata_associated_constant_(NAME)` | Enum declaration for mask/composite constants left as macros. |
 | `NativeInheritance("BASE")` | `_Win32_metadata_native_inheritance_(BASE)` | Record declaration. |
 | `StructSizeField("field")` | `_Win32_metadata_struct_size_field_(field)` | Record declaration. |
@@ -164,6 +165,30 @@ Existing compiler/SAL facts remain the preferred source for attributes already e
 by native syntax, including `noreturn`, architecture guards, alignment, native typedef
 identity, bitfields, UUIDs, packing, parameter direction, optionality, and array sizes.
 The custom annotations are fallbacks where existing syntax is absent or wrong.
+
+## Type projection
+
+`ProjectAs` expresses a generator-facing semantic projection on an individual API use
+without changing or hiding the native typedef:
+
+```cpp
+typedef LONG SECURITY_STATUS;
+
+SECURITY_STATUS AcceptSecurityContext(
+    /* parameters */)
+    _Win32_metadata_project_as_(HRESULT);
+```
+
+The winmd retains `SECURITY_STATUS`, its `LONG` storage, and its native typedef identity.
+The annotated return value carries `ProjectAs("HRESULT")`. Raw-header consumers such as
+windows-rs may continue to surface `SECURITY_STATUS`. Opinionated consumers such as
+CsWin32 may substitute `HRESULT` at that use site to align the generated declaration
+with the documented API semantics.
+
+The target must resolve to a metadata type with an ABI-compatible representation.
+Consumers that honor the projection must reject unresolved targets and incompatible
+representations. `ProjectAs` is authoritative for consumers that opt into opinionated
+projection; it is not merely a suggested alias. It is never attached to the type itself.
 
 ## Enum and constant migration
 

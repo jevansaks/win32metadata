@@ -40,6 +40,10 @@ The windows-rs branch has been pushed. Important commits are:
 9. Current logical comparison ignores namespace partition differences between the NuGet
    winmd and windows-rs output, but not behavioral differences.
 10. Documentation URLs are not part of functional winmd equivalence.
+11. `ProjectAs` is use-site metadata for parameters, return values, and fields. It
+    preserves raw native typedefs while allowing opinionated generators to substitute
+    an ABI-compatible semantic type at an annotated use. `SECURITY_STATUS` returns
+    projected as `HRESULT` are the initial case.
 
 ## windows-rs implementation completed
 
@@ -51,6 +55,8 @@ The windows-rs branch has been pushed. Important commits are:
 - Supports signed/hexadecimal C integer literals and suffixes.
 - Supports enum class/scoped and Clang flags-enum semantics.
 - Supports canonical callback aliases and one-level pointer reduction.
+- Emits `ProjectAsAttribute` on annotated parameters, return values, and fields without
+  changing their raw native types.
 - Preserves repeated annotations, including multiple invalid handle values.
 - Validates unknown, malformed, valued/valueless, and misplaced annotations with source
   locations.
@@ -61,6 +67,7 @@ Validation completed on the windows-rs branch:
 - 88 Clang tests passed.
 - 8 header-partition tests passed.
 - RDL tests, including repeated parameter attributes, passed.
+- The `ProjectAs` Clang fixture and RDL-to-winmd custom-attribute round trip passed.
 - Full user-mode generation passed for x64, arm64, and x86.
 - 663 partitions were generated.
 

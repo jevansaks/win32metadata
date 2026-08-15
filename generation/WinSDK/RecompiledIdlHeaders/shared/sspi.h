@@ -1743,7 +1743,8 @@ InitializeSecurityContextW(
     _Inout_opt_ PSecBufferDesc pOutput,                 // (inout) Output Buffers
     _Out_       unsigned long * pfContextAttr,  // (out) Context attrs
     _Out_opt_   PTimeStamp ptsExpiry                    // (out) Life span (OPT)
-    );
+    )
+    _Win32_metadata_project_as_(HRESULT);
 
 typedef SECURITY_STATUS
 (SEC_ENTRY * INITIALIZE_SECURITY_CONTEXT_FN_W)(
@@ -1819,7 +1820,8 @@ AcceptSecurityContext(
     _Inout_opt_ PSecBufferDesc pOutput,                 // (inout) Output buffers
     _Out_       unsigned long * pfContextAttr,  // (out) Context attributes
     _Out_opt_   PTimeStamp ptsExpiry                    // (out) Life span (OPT)
-    );
+    )
+    _Win32_metadata_project_as_(HRESULT);
 
 typedef SECURITY_STATUS
 (SEC_ENTRY * ACCEPT_SECURITY_CONTEXT_FN)(

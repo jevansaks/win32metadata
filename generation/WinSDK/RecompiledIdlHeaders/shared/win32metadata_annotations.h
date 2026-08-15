@@ -54,6 +54,8 @@
     _WIN32META_ANNOTATION_("win32metadata:memory_size_param=" #index)
 #define _Win32_metadata_also_usable_for_(type) \
     _WIN32META_ANNOTATION_("win32metadata:also_usable_for=" #type)
+#define _Win32_metadata_project_as_(type) \
+    _WIN32META_ANNOTATION_("win32metadata:project_as=" #type)
 #define _Win32_metadata_associated_enum_(type) \
     _WIN32META_ANNOTATION_("win32metadata:associated_enum=" #type)
 #define _Win32_metadata_associated_constant_(name) \

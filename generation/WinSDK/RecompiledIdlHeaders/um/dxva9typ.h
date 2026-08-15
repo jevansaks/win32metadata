@@ -261,7 +261,11 @@ typedef enum _DXVA_SampleFormat {
 #define DXVA_ExtractExtColorData(_sf, _Mask, _Shift) \
     (((_sf) & (_Mask)) >> (_Shift))
 
+#ifdef WIN32METADATA
+#define DXVABitMask(__n) (~((~0u) << __n))
+#else
 #define DXVABitMask(__n) (~((~0) << __n))
+#endif
 #define DXVA_ExtColorData_ShiftBase 8
 #define DXVAColorMask(__bits,__base) (DXVABitMask(__bits) << (__base))
 
@@ -1005,5 +1009,4 @@ typedef struct _DXVA_COPPStatusSignalingCmdData {
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
-
 

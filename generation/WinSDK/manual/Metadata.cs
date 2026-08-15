@@ -18,6 +18,16 @@ public class AlsoUsableForAttribute : Attribute
     }
 }
 
+// Directs opinionated generators to project this use site as another
+// ABI-compatible metadata type without changing the native declaration.
+[AttributeUsage(AttributeTargets.Parameter | AttributeTargets.ReturnValue | AttributeTargets.Field, AllowMultiple = false)]
+public class ProjectAsAttribute : Attribute
+{
+    public ProjectAsAttribute(string typeName)
+    {
+    }
+}
+
 public class AnsiAttribute : Attribute
 {
     public AnsiAttribute()
@@ -34,6 +44,7 @@ public class AssociatedConstantAttribute : Attribute
     }
 }
 
+[AttributeUsage(AttributeTargets.Parameter | AttributeTargets.ReturnValue | AttributeTargets.Field, AllowMultiple = false)]
 public class AssociatedEnumAttribute : Attribute
 {
     public AssociatedEnumAttribute(string Name)

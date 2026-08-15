@@ -37,7 +37,7 @@ Primary consumer fixture:
 | Array count field | `_Win32_metadata_array_count_field_(field)` | Record field fixture | Representative consumer fixture | Proven |
 | Byte-size parameter | `_Win32_metadata_memory_size_param_(index)` | Parameter fixture | Representative consumer fixture | Proven |
 | Also usable for | `_Win32_metadata_also_usable_for_(TYPE)` | Typedef fixture | Shared handle patches | Proven |
-| Associated enum | `_Win32_metadata_associated_enum_(TYPE)` | Constant and field fixtures | Guarded enum batches prefer direct typing | Proven |
+| Associated enum | `_Win32_metadata_associated_enum_(TYPE)` | Parameter, return, and field fixtures | Guarded enum batches prefer direct typing | Proven |
 | Associated constant | `_Win32_metadata_associated_constant_(NAME)` | Enum fixture | WinUser, RichEdit, and multimedia enums | Proven |
 | Native inheritance | `_Win32_metadata_native_inheritance_(BASE)` | Record fixture | Representative consumer fixture | Proven |
 | Struct size field | `_Win32_metadata_struct_size_field_(field)` | Record fixture | Representative consumer fixture | Proven |
@@ -52,6 +52,7 @@ Primary consumer fixture:
 | COM out pointer | `_Win32_metadata_com_out_ptr_` | Parameter fixture | COM retval compatibility fallback | Proven |
 | Native const | `_Win32_metadata_const_` | Parameter/field target validation | Existing C `const` remains preferred | Proven |
 | Canonical callback name | `_Win32_metadata_canonical_name_(NAME)` | Alias resolution fixture | Eight callback patches | Proven |
+| Semantic type projection | `_Win32_metadata_project_as_(TYPE)` | Parameter, return, and field RDL plus winmd attribute round trip | `SECURITY_STATUS` return values are the motivating case | Proven |
 | Reduce pointer level | `_Win32_metadata_reduce_pointer_level_` | Parameter and field fixtures | LDAP and ICU patches | Proven |
 | Scoped enum | guarded `enum class` | Scoped-enum RDL fixture | Multiple guarded enum batches | Proven |
 | Flags enum | `[[clang::flag_enum]]` | Clang cursor/RDL fixture | Multiple guarded flags batches | Proven |

@@ -1,0 +1,25 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h b/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
+@@ -1739,8 +1739,9 @@ InitializeSecurityContextW(
+     _Inout_opt_ PCtxtHandle phNewContext,               // (out) New Context handle
+     _Inout_opt_ PSecBufferDesc pOutput,                 // (inout) Output Buffers
+     _Out_       unsigned long * pfContextAttr,  // (out) Context attrs
+     _Out_opt_   PTimeStamp ptsExpiry                    // (out) Life span (OPT)
+-    );
++    )
++    _Win32_metadata_project_as_(HRESULT);
+ 
+ typedef SECURITY_STATUS
+ (SEC_ENTRY * INITIALIZE_SECURITY_CONTEXT_FN_W)(
+@@ -1818,8 +1819,9 @@ AcceptSecurityContext(
+     _Inout_opt_ PCtxtHandle phNewContext,               // (out) New context handle
+     _Inout_opt_ PSecBufferDesc pOutput,                 // (inout) Output buffers
+     _Out_       unsigned long * pfContextAttr,  // (out) Context attributes
+     _Out_opt_   PTimeStamp ptsExpiry                    // (out) Life span (OPT)
+-    );
++    )
++    _Win32_metadata_project_as_(HRESULT);
+ 
+ typedef SECURITY_STATUS
+ (SEC_ENTRY * ACCEPT_SECURITY_CONTEXT_FN)(
