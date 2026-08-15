@@ -75,7 +75,7 @@ function Get-Surface([string]$path) {
             }
             $pendingAttributes.Clear()
         }
-        elseif ($currentType -and $line -match "\bextern\b.*\b([A-Za-z_][A-Za-z0-9_]*)\s*\(") {
+        elseif ($line -match "^public\s+(?:(?:unsafe|static)\s+)*extern\s+.+?\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(") {
             $name = $Matches[1]
             $signature = Normalize-Declaration $line
             $pinvokes.Add("$name|$signature") | Out-Null

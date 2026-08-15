@@ -15,6 +15,7 @@ that the annotated SDK can generate logically equivalent Win32 metadata.
 
 The windows-rs branch has been pushed. Important commits are:
 
+- `30be978e8` partition-aligned Win32 metadata generation
 - `cf325af15` initial annotation support
 - `995986501` authoritative import-library overrides
 - `4efb99ddb` annotation syntax, validation, enums, ownership, and pointer reduction
@@ -105,6 +106,15 @@ Current result:
 - The first broad logical comparison measured 62.30% weighted identity overlap and
   72.56% P/Invoke-name coverage. The remaining delta is documented in
   `docs/copilot/shift-left-winmd-delta.md`.
+- Partition-aligned generation using all 321 win32metadata translation units improved
+  weighted identity overlap to 88.37% and P/Invoke-name coverage to 98.06%.
+- The comparison script's P/Invoke parser was corrected to recognize top-level methods
+  independently of the current type-body state. The corrected missing-name count is
+  354.
+- Explicit partition scraping now force-includes the same SAL capture shim as the normal
+  user-mode and kernel-mode paths.
+- `DiInstallDevice.Flags` now carries a guarded `DIINSTALLDEVICE_FLAGS`
+  `AssociatedEnum`; targeted RDL also recovered the SDK's existing SAL optionality.
 
 ## Completed SDK migration batches
 

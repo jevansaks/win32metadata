@@ -2,16 +2,16 @@
 
 ## Compared inputs
 
-- Reference:
-  `Microsoft.Windows.SDK.Win32Metadata` `70.0.11-preview`
-- Generated:
-  windows-rs user-mode winmd from the 254-patch SDK overlay
-- SDK:
-  `Microsoft.Windows.SDK.CPP` `10.0.26100.7705`
-- Architectures:
-  x64, arm64, and x86, processed sequentially
-- Generated partitions:
-  662
+- Reference: current `bin/Windows.Win32.winmd` from win32metadata.
+- Generated: full x64 windows-rs output using all 321 win32metadata partition
+  translation units and their header traversal settings.
+- SDK headers: the patched `generation/WinSDK/RecompiledIdlHeaders` tree.
+- Generated partitions: 321.
+
+This generated winmd predates the partition-path SAL-shim fix and the
+`DIINSTALLDEVICE_FLAGS` patch. SAL-heavy signature counts therefore overstate the
+remaining direction, optionality, constness, and array-size delta. Identity counts are
+still useful.
 
 The comparison ignores namespace partitioning and documentation attributes. Two levels
 are reported:
@@ -24,16 +24,16 @@ are reported:
 
 | Identity surface | Reference | Generated | Matches | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| Type simple names | 32,188 | 32,817 | 19,179 | 59.58% |
-| P/Invoke names | 15,086 | 11,327 | 10,947 | 72.56% |
-| Type/member names | 205,615 | 163,211 | 127,419 | 61.97% |
-| **Weighted identity overlap** | 252,889 |  | 157,545 | **62.30%** |
+| Type simple names | 32,214 | 35,383 | 28,838 | 89.52% |
+| P/Invoke names | 18,276 | 19,694 | 17,922 | 98.06% |
+| Type/member names | 205,729 | 216,137 | 179,667 | 87.33% |
+| **Weighted identity overlap** | 256,219 |  | 226,427 | **88.37%** |
 
 | Exact surface | Reference | Generated | Exact matches | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| Types by kind and simple name | 32,251 | 32,869 | 19,179 | 59.47% |
-| P/Invoke signatures | 18,352 | 14,093 | 3,717 | 20.25% |
-| Member signatures and enum values | 206,227 | 163,725 | 76,426 | 37.06% |
+| Types by kind and simple name | 32,277 | 35,433 | 28,846 | 89.37% |
+| P/Invoke signatures | 18,320 | 19,705 | 2,291 | 12.51% |
+| Member signatures and enum values | 206,342 | 216,633 | 103,881 | 50.34% |
 
 These values are a baseline for the remaining migration, not a claim that 37-62% of the
 native API is functional. A single typedef spelling or annotation difference makes an
@@ -43,21 +43,37 @@ otherwise equivalent declaration fail exact matching.
 
 | Delta | Count | Initial classification |
 | --- | ---: | --- |
-| Reference P/Invoke names absent from generated winmd | 4,139 | Primarily headers outside the current windows-rs scrape scope, legacy/current-SDK differences, and macros/manual declarations. |
-| Generated P/Invoke names absent from reference | 380 | Header-version differences, scan scope differences, or declarations excluded/renamed by win32metadata. |
-| Reference type names absent from generated winmd | 13,009 | Dominated by anonymous aggregate naming, synthetic enums, aliases, manual metadata, and legacy declarations. |
-| Generated type names absent from reference | 13,638 | Dominated by windows-rs anonymous aggregate/canonical naming and raw native typedefs where win32metadata remaps names. |
-| Reference type/member identities absent from generated | 78,196 | Missing types plus enum/member remaps and anonymous aggregate naming differences. |
-| Generated type/member identities absent from reference | 35,792 | Extra/raw declarations and alternate aggregate naming. |
+| Reference P/Invoke names absent from generated winmd | 354 | RPC/MIDL plumbing, raw export aliases, legacy aliases, inline pseudo APIs, and a small number of real emission gaps. |
+| Generated P/Invoke names absent from reference | 1,772 | Newer SDK declarations, alternate canonical names, and declarations intentionally excluded by win32metadata. |
+| Reference type names absent from generated winmd | 3,376 | Synthetic enums, anonymous aggregate naming, pseudo handles, aliases, and real interface/typedef ownership gaps. |
+| Generated type names absent from reference | 6,545 | Raw SDK declarations, alternate aggregate naming, and types excluded or remapped by win32metadata. |
+| Reference type/member identities absent from generated | 26,062 | Missing types plus enum/member remaps and anonymous aggregate naming differences. |
+| Generated type/member identities absent from reference | 36,470 | Extra/raw declarations and alternate aggregate naming. |
 
-Representative missing P/Invoke families include AllJoyn, iSCSI, setup/installation,
-legacy licensing, ink/input, and APIs supplied by headers not currently in the windows-rs
-header list. This is a scrape-surface issue rather than an annotation-vocabulary gap.
+The 354 missing P/Invoke names divide into these principal families:
+
+| Family | Count | Classification |
+| --- | ---: | --- |
+| MIDL user-marshalling helpers | 136 | RPC plumbing currently filtered by windows-rs. |
+| Classic NDR runtime functions | 145 | Real scraper/emission investigation; newer NDR forms emit while many older forms do not. |
+| `K32*` PSAPI exports | 27 | Canonical-name difference: generated metadata exposes `EnumProcesses` with import `K32EnumProcesses`. |
+| Legacy dbghelp exports | 22 | Mostly canonicalized to `*64` or `Ex` forms. |
+| CLFS raw exports | 6 | Canonical-name difference such as `ClfsLsnEqual` with import `LsnEqual`. |
+| Inline pseudo-token APIs | 3 | Manually synthesized by win32metadata from `FORCEINLINE` SDK helpers. |
+| Direct2D APIs | 2 | Real regression: present in an earlier partition run and absent from the latest run. |
+| Other individual APIs | 13 | Require API-specific classification. |
+
+The missing type list includes 961 enums, of which 775 match synthetic definitions in
+`enums.json`, and 133 interfaces. The enum set is predominantly annotation/header
+migration work. The interface set contains substantive ownership/emission gaps,
+especially the central Direct2D interface hierarchy.
 
 ## Common-name signature differences
 
-10,947 P/Invoke names exist in both outputs, but only 3,717 normalized signatures match
-exactly. Representative causes:
+17,922 P/Invoke names exist in both outputs. Exact textual agreement is intentionally a
+poor metric because the toolchains preserve different aliases and attributes. A
+projection-aware comparison found 2,371 shared-name signatures with ABI-width
+differences; 1,803 differ at one return/parameter position. Representative causes:
 
 - Raw `HANDLE` versus win32metadata pseudo handles. The shift-left design intentionally
   keeps raw `HANDLE` and moves ownership to attributes.
@@ -73,6 +89,72 @@ exactly. Representative causes:
 Some exact differences are intentional outcomes of the new policy. In particular,
 `AbortPrinter(HANDLE)` plus output/ownership annotations is preferred over retaining a
 synthetic `PRINTER_HANDLE`.
+
+## Representative end-to-end traces
+
+### `HtmlHelpA`
+
+The header already supplies optionality, string direction, `UINT`, and pointer-sized
+`DWORD_PTR`. The reference additionally applies
+`AssociatedEnum("HTML_HELP_COMMAND")` from `emitter.settings.rsp`. The old generated
+winmd lost optionality, string aliasing, associated-enum metadata, and the pointer-sized
+alias. This combines a stale pre-SAL-shim result, an enum migration, and alias
+preservation.
+
+### `OpenTnefStreamEx`
+
+The header uses `LPADRBOOK`, declared through
+`DECLARE_MAPI_INTERFACE_PTR(IAddrBook, LPADRBOOK)`. The generated signature reduced this
+parameter to `void*`. This is not an ABI mismatch, but it is a functional projection
+gap for CsWin32. The generator must discover macro-generated COM interface pointer
+aliases or the use site needs `ProjectAs(IAddrBook)`.
+
+### `IWbemEventProviderSecurity::AccessCheck` and `WsRequestReply`
+
+The headers contain `_In_reads_`, `_In_opt_`, `_Out_opt_`, and const-qualified pointer
+contracts. The old partition output lost constness, optionality, direction, and
+count/byte-size relationships. The root cause was that explicit partition scraping did
+not force-include the windows-rs SAL capture shim. That path is now fixed; a new full
+generation is required to measure the remaining annotation gap.
+
+### `JET_API_PTR` and `JetTerm`
+
+`esent.h` defines `JET_API_PTR` as `JET_UINT64` under `_WIN64` and `JET_UINT32`
+otherwise. Generated RDL uses `JET_API_PTR` throughout and defines
+`JET_INSTANCE = JET_API_PTR`, but emits no `JET_API_PTR` definition. This leaves the
+architecture-dependent typedef root unresolved and accounts for many x64 width
+mismatches. This is a generator ownership/dependency bug, not missing source metadata.
+
+### `D2D1CreateDevice` and `ID2D1Device`
+
+The declarations and DLL mappings are present in `d2d1_1.h` and the Direct2D partition
+traverses that header. An earlier full run emitted both APIs, while the latest run emits
+neither and omits the central `ID2D1Device`/`ID2D1DeviceContext` hierarchy. Secondary
+Direct2D interfaces still emit. This is a regression in cross-partition ownership or
+reference suppression, not a header-list gap.
+
+### `NdrClientCall2`
+
+`rpcndr.h` declares `NdrClientCall2` as a variadic `RPC_VAR_ENTRY` function and
+`libMappings.rsp` maps it to `RPCRT4.dll`. The same generated RDL emits the similarly
+variadic `NdrClientCall3`, proving that variadic functions are not categorically
+unsupported. The remaining likely causes are cursor collection, partition filtering,
+or duplicate/reference ownership.
+
+### `K32EnumProcesses`
+
+Generated metadata exposes `EnumProcesses` with
+`DllImport(EntryPoint = "K32EnumProcesses")`; the reference also retains a method named
+`K32EnumProcesses`. This should be treated as equivalent only if the target projection
+does not require both public aliases. The same policy question applies to CLFS and
+legacy dbghelp names.
+
+### `GetCurrentProcessToken`
+
+The SDK declaration is a `FORCEINLINE` helper returning the pseudo-handle constant
+`-4`. Current win32metadata manually synthesizes a method with `Constant("-4")` and
+`DoNotRelease`. Reproducing it requires guarded metadata-only representation rather than
+ordinary exported-function scraping.
 
 ## Annotation completeness versus migration completeness
 
