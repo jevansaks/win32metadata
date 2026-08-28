@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "statusValues": [
+    "queued",
+    "patching",
+    "generated",
+    "classified",
+    "matched",
+    "blocked"
+  ],
+  "acceptedNormalizations": {
+    "rawHandleOwnership": "A pseudo handle is replaced by raw HANDLE. RAIIFree and invalid values are attached only to producer returns and output parameters.",
+    "associatedEnum": "The native integer parameter type is retained and AssociatedEnum supplies the projection type.",
+    "scopedEnum": "A loose-value enum becomes scoped while retaining the same underlying width, member names, and numeric values.",
+    "unusedProjectionAttributes": "Ansi, Unicode, documentation, and sidecars without consumer behavior do not affect functional matching."
+  },
+  "headers": [
+    {
+      "order": 1,
+      "header": "winspool.h",
+      "partition": "Printing",
+      "namespace": "Windows.Win32.Graphics.Printing",
+      "status": "classified",
+      "focus": "Raw HANDLE ownership and invalid values",
+      "targetSymbols": ["OpenPrinterA", "OpenPrinterW", "OpenPrinter2A", "OpenPrinter2W", "ClosePrinter"],
+      "acceptedNormalizations": ["rawHandleOwnership", "unusedProjectionAttributes"],
+      "expectedLifecycle": {
+        "producerSymbols": ["OpenPrinterA", "OpenPrinterW", "OpenPrinter2A", "OpenPrinter2W"],
+        "freeFunction": "ClosePrinter",
+        "invalidValues": [-1, 0]
+      },
+      "lastRun": "2026-08-27",
+      "evidence": "docs/copilot/header-reports/winspool.h.Printing.md",
+      "unresolved": ["Native ConstAttribute is lost between RDL and winmd", "Expand from the five canonical functions to the complete producer inventory", "CsWin32 SafeHandle projection from parameter-level lifecycle metadata"]
+    },
+    {
+      "order": 2,
+      "header": "wingdi.h",
+      "partition": "Gdi",
+      "namespace": "Windows.Win32.Graphics.Gdi",
+      "status": "classified",
+      "focus": "Associated enum without changing DWORD parameters",
+      "targetSymbols": ["FONT_RESOURCE_CHARACTERISTICS", "AddFontResourceExA", "AddFontResourceExW"],
+      "acceptedNormalizations": ["associatedEnum", "scopedEnum", "unusedProjectionAttributes"],
+      "expectedEnumMembers": {
+        "FR_PRIVATE": 16,
+        "FR_NOT_ENUM": 32
+      },
+      "lastRun": "2026-08-27",
+      "evidence": "docs/copilot/header-reports/wingdi.h.Gdi.md",
+      "unresolved": ["Native ConstAttribute is lost between RDL and winmd", "Reserved parameters lose OptionalAttribute", "Confirm CsWin32 friendly signature remains enum-typed"]
+    },
+    {"order": 3, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
+    {"order": 4, "header": "esent.h", "partition": "Storage.Jet", "namespace": "Windows.Win32.Storage.Jet", "status": "queued", "focus": "Architecture-neutral integer widths"},
+    {"order": 5, "header": "d2d1_1.h", "partition": "Direct2D", "namespace": "Windows.Win32.Graphics.Direct2D", "status": "queued", "focus": "Cross-partition owner suppression"},
+    {"order": 6, "header": "psapi.h", "partition": "PsApi2", "namespace": "Windows.Win32.System.ProcessStatus", "status": "queued", "focus": "Alias and public P/Invoke naming"},
+    {"order": 7, "header": "dxgi1_2.h", "partition": "Dxgi", "namespace": "Windows.Win32.Graphics.Dxgi", "status": "queued", "focus": "Retval and COM output semantics"},
+    {"order": 8, "header": "ole2.h", "partition": "ComOle", "namespace": "Windows.Win32.System.Ole", "status": "queued", "focus": "Exact successful result preservation"},
+    {"order": 9, "header": "http.h", "partition": "HttpServer", "namespace": "Windows.Win32.Networking.HttpServer", "status": "queued", "focus": "Retained buffers and byte counts"},
+    {"order": 10, "header": "ras.h", "partition": "RRas", "namespace": "Windows.Win32.NetworkManagement.Rras", "status": "queued", "focus": "Byte capacity and element count"},
+    {"order": 11, "header": "sspi.h", "partition": "Identity", "namespace": "Windows.Win32.Security.Authentication.Identity", "status": "queued", "focus": "Result preservation and security handles"},
+    {"order": 12, "header": "errhandlingapi.h", "partition": "Debug", "namespace": "Windows.Win32.System.Diagnostics.Debug", "status": "queued", "focus": "Callback aliases and last error"},
+    {"order": 13, "header": "icucommon.h", "partition": "Intl", "namespace": "Windows.Win32.Globalization", "status": "queued", "focus": "Callback pointer direction and depth"},
+    {"order": 14, "header": "cfgmgr32.h", "partition": "DevInst", "namespace": "Windows.Win32.Devices.DeviceAndDriverInstallation", "status": "queued", "focus": "Struct-size metadata decision"},
+    {"order": 15, "header": "winsvc.h", "partition": "Services", "namespace": "Windows.Win32.System.Services", "status": "queued", "focus": "Guarded enums and repeated loose values"},
+    {"order": 16, "header": "mmsystem.h", "partition": "Multimedia", "namespace": "Windows.Win32.Media.Multimedia", "status": "queued", "focus": "Binary buffers represented as strings"},
+    {"order": 17, "header": "fileapi.h", "partition": "Fs", "namespace": "Windows.Win32.Storage.FileSystem", "status": "queued", "focus": "Double-NUL SAL propagation"},
+    {"order": 18, "header": "objidl.h", "partition": "Com", "namespace": "Windows.Win32.System.Com", "status": "queued", "focus": "MIDL comments, retval, and agility"},
+    {"order": 19, "header": "oaidl.h", "partition": "Automation", "namespace": "Windows.Win32.System.Ole", "status": "queued", "focus": "Automation aliases and MIDL ownership"},
+    {"order": 20, "header": "winuser.h", "partition": "MenuRc", "namespace": "Windows.Win32.UI.WindowsAndMessaging", "status": "queued", "focus": "High-volume enums, callbacks, and last error"}
+  ]
+}

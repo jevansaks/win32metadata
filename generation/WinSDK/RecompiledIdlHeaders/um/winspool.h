@@ -19,6 +19,7 @@ Revision History:
 #define _WINSPOOL_
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #ifdef _WINUSER_
 #include <prsht.h>
@@ -1334,18 +1335,28 @@ _In_    HANDLE  hPrinter,
 _In_    HANDLE  hSpoolFile
 );
 
+_Win32_SetLastError_
 BOOL
 WINAPI
 OpenPrinterA(
 _In_opt_    LPSTR             pPrinterName,
-_Out_       LPHANDLE            phPrinter,
+_Out_
+_Win32_RAIIFree_(ClosePrinter)
+_Win32_InvalidHandle_(-1)
+_Win32_InvalidHandle_(0)
+             LPHANDLE            phPrinter,
 _In_opt_    LPPRINTER_DEFAULTSA pDefault
 );
+_Win32_SetLastError_
 BOOL
 WINAPI
 OpenPrinterW(
 _In_opt_    LPWSTR             pPrinterName,
-_Out_       LPHANDLE            phPrinter,
+_Out_
+_Win32_RAIIFree_(ClosePrinter)
+_Win32_InvalidHandle_(-1)
+_Win32_InvalidHandle_(0)
+             LPHANDLE            phPrinter,
 _In_opt_    LPPRINTER_DEFAULTSW pDefault
 );
 #ifdef UNICODE
@@ -2665,6 +2676,7 @@ _In_   LPWSTR   pCaption,
 #define PRINTER_ERROR_JAM           0x00000002
 #define PRINTER_ERROR_OUTOFTONER    0x00000004
 
+_Win32_SetLastError_
 BOOL
 WINAPI
 ClosePrinter(
@@ -3441,19 +3453,29 @@ typedef PPRINTER_OPTIONSA PPRINTER_OPTIONS;
 typedef LPPRINTER_OPTIONSA LPPRINTER_OPTIONS;
 #endif // UNICODE
 
+    _Win32_SetLastError_
     BOOL
     WINAPI
     OpenPrinter2A(
     _In_opt_      LPCSTR                pPrinterName,
-    _Out_         LPHANDLE                phPrinter,
+    _Out_
+    _Win32_RAIIFree_(ClosePrinter)
+    _Win32_InvalidHandle_(-1)
+    _Win32_InvalidHandle_(0)
+                   LPHANDLE                phPrinter,
     _In_opt_      PPRINTER_DEFAULTSA      pDefault,
     _In_opt_      PPRINTER_OPTIONSA       pOptions
     );
+    _Win32_SetLastError_
     BOOL
     WINAPI
     OpenPrinter2W(
     _In_opt_      LPCWSTR                pPrinterName,
-    _Out_         LPHANDLE                phPrinter,
+    _Out_
+    _Win32_RAIIFree_(ClosePrinter)
+    _Win32_InvalidHandle_(-1)
+    _Win32_InvalidHandle_(0)
+                   LPHANDLE                phPrinter,
     _In_opt_      PPRINTER_DEFAULTSW      pDefault,
     _In_opt_      PPRINTER_OPTIONSW       pOptions
     );
@@ -3915,4 +3937,3 @@ GetPrintOutputInfo(
 
 
 #endif // _WINSPOOL_
-

@@ -1,0 +1,48 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
+index 9cc979f2..db1203e2 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
+@@ -1,4 +1,5 @@
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ /**************************************************************************
+ *                                                                         *
+@@ -4476,8 +4477,30 @@ typedef struct tagDESIGNVECTOR
+     LONG   dvValues[MM_MAX_NUMAXES];
+ } DESIGNVECTOR, *PDESIGNVECTOR, FAR *LPDESIGNVECTOR;
+ 
+-WINGDIAPI int  WINAPI AddFontResourceExA( _In_ LPCSTR name, _In_ DWORD fl, _Reserved_ PVOID res);
+-WINGDIAPI int  WINAPI AddFontResourceExW( _In_ LPCWSTR name, _In_ DWORD fl, _Reserved_ PVOID res);
++#if defined(WIN32METADATA)
++#pragma push_macro("FR_PRIVATE")
++#pragma push_macro("FR_NOT_ENUM")
++#undef FR_PRIVATE
++#undef FR_NOT_ENUM
++enum class FONT_RESOURCE_CHARACTERISTICS : unsigned int
++{
++    FR_PRIVATE = 0x10,
++    FR_NOT_ENUM = 0x20,
++};
++#pragma pop_macro("FR_NOT_ENUM")
++#pragma pop_macro("FR_PRIVATE")
++#endif
++
++_Windows_SupportedOS_Windows2000_
++WINGDIAPI int WINAPI AddFontResourceExA(
++    _In_ LPCSTR name,
++    _In_ _Win32_AssociatedEnum_(FONT_RESOURCE_CHARACTERISTICS) DWORD fl,
++    _Reserved_ PVOID res);
++_Windows_SupportedOS_Windows2000_
++WINGDIAPI int WINAPI AddFontResourceExW(
++    _In_ LPCWSTR name,
++    _In_ _Win32_AssociatedEnum_(FONT_RESOURCE_CHARACTERISTICS) DWORD fl,
++    _Reserved_ PVOID res);
+ #ifdef UNICODE
+ #define AddFontResourceEx  AddFontResourceExW
+ #else
+@@ -6490,4 +6513,3 @@ WINGDIAPI DWORD WINAPI wglSwapMultipleBuffers(UINT, CONST WGLSWAP *);
+ #endif
+ 
+ #endif /* _WINGDI_ */
+-
