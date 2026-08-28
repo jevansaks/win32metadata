@@ -53,7 +53,14 @@ For each `(header, partition)` unit:
    - one architecture for iteration, then x64/x86/arm64 before `matched`.
    During early iteration, `targetSymbols` limits emission to the reviewed declarations
    and their dependencies. Before a unit reaches `matched`, expand the inventory to
-   every declaration owned by that `(header, partition)` unit.
+   every declaration owned by that `(header, partition)` unit by passing `-FullHeader`
+   to `Invoke-ShiftLeftHeader.ps1`.
+   A header-focused run selects declarations by defining-header location, excludes
+   declarations written directly in the partition `main.cpp`, and does not force every
+   type already present in the output namespace into the root set. Reference winmds may
+   satisfy dependencies, but the legacy flat windows-rs `Windows.Win32.winmd` must not
+   be supplied while discovering roots because it can mask selected declarations as
+   external references.
 6. Compare header-scoped RDL and winmd declarations with the NuGet reference.
 7. Apply agreed normalization rules, then classify every remaining difference.
 8. Add or update windows-rs parser/RDL tests and CsWin32 projection tests when the
@@ -75,8 +82,19 @@ projection-relevant behavior is equivalent after these explicit normalizations:
 - Removed `Ansi`, `Unicode`, documentation, and unused sidecar attributes do not count
   as functional gaps.
 - Direct windows-rs fixes that are more faithful to C/C++ semantics are retained:
-  native constness, compiler integer typing, alignment, raw success values, and correct
-  architecture-dependent typedef widths.
+  native constness, alignment, raw success values, and correct architecture-dependent
+  typedef widths.
+- Native C typedef aliases are not automatically public metadata types. Pointer aliases,
+  charset-selection aliases, and other ABI-equivalent wrappers collapse unless the
+  reference metadata or a projection contract demonstrates a distinct public type.
+- Constants are compared by name, value, and projected storage type. The legacy
+  win32metadata scraper projects non-negative untyped integer macros as unsigned; this
+  remains a functional compatibility requirement until an explicit projection review
+  approves compiler-signed integer typing.
+- Native constants present in the selected header but absent from the NuGet reference are
+  tracked as additions, not regressions. They still require review for namespace and type.
+- `NativeEncoding` on string constants is ignored only after confirming it does not alter
+  CsWin32 output; until then it remains an explicitly classified metadata addition.
 - Namespace differences are not accepted. The windows-rs partition configuration must
   emit the same namespace selected by the current win32metadata partition.
 - Calling convention, import library/entry point, parameter direction and optionality,
@@ -85,6 +103,36 @@ projection-relevant behavior is equivalent after these explicit normalizations:
 
 Any new normalization rule requires a concrete example, a recorded decision in
 `header-progress.json`, and a projection test where generated source behavior changes.
+
+## Calibration rules from `winspool.h`
+
+The first complete header inventory established the reusable comparison procedure:
+
+1. Build the root inventory from declarations whose spelling or macro expansion belongs
+   to the selected header. Do not infer ownership from namespace membership.
+2. Keep dependency closure separate from roots. A dependency may be emitted so the winmd
+   compiles, but it is not charged to the header unless the header defines it.
+3. Generate without the flat windows-rs reference when measuring roots; otherwise selected
+   declarations may resolve from that reference and appear missing.
+4. Compare presence first, then compare normalized declaration details. For `winspool.h`,
+   all 160 functions, 93 structs, and 6 enums were present; the apparent missing APIs in
+   the original report were an isolation error.
+5. Treat standard SAL as source truth. Fix nested `_When_`, `_At_`, and count-expression
+   parsing in windows-rs rather than duplicating those contracts with custom annotations.
+6. Preserve Clang constness through RDL and winmd for parameters and fields.
+7. Add custom annotations only for semantics not represented by standard SAL: lifecycle,
+   invalid values, associated enums, struct-size fields, last-error behavior, and similar
+   approved vocabulary.
+8. For handle normalization, consumers use borrowed raw `HANDLE`; producer returns and out
+   parameters carry the exact cleanup function and every invalid value.
+9. Compare enum underlying width, members, and values. Compare lifecycle payloads exactly.
+10. Run a CsWin32 generated-source baseline before accepting any metadata normalization as
+    projection-equivalent.
+
+The corrected `winspool.h` root inventory is 880 declarations: 160 functions, 93 structs,
+6 enums, 329 constants, 0 interfaces, and 292 C typedef aliases. Excluding aliases, the
+representable native surface is 588 declarations. The NuGet reference contains 569 because
+19 native constants were not emitted by the legacy toolchain.
 
 ## Initial ordered header backlog
 

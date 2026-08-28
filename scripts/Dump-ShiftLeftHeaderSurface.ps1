@@ -92,6 +92,12 @@ function New-DumpIndex([string]$path, [string]$targetNamespace) {
         if ($category -and !$declarations.ContainsKey("$category|$symbol")) {
             $declarations["$category|$symbol"] = $i
         }
+        if ($category -eq "struct" -and
+            $i -gt 0 -and
+            $lines[$i - 1].Trim() -eq "[NativeTypedef]" -and
+            !$declarations.ContainsKey("type|$symbol")) {
+            $declarations["type|$symbol"] = $i
+        }
     }
     return @{
         Lines = $lines
@@ -224,14 +230,15 @@ $presenceRows = foreach ($source in $sources) {
     "| $($source.Name) | $present | $($rows.Count - $present) |"
 }
 
-$summary = @"
+$summary = @'
 # `winspool.h` surface comparison
 
 The inventory is derived from every declaration emitted from the patched
 `winspool.h` RDL. Each symbol is then looked up in the existing win32metadata
 winmd, the existing windows-rs winmd, and the new shift-left conversion.
 The existing windows-rs metadata uses its historical flat `Windows.Win32`
-namespace; the other two use `$Namespace`.
+namespace; the other two use the partition namespace.
+'@ + @"
 
 | Category | Symbols |
 | --- | ---: |

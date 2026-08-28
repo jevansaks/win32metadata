@@ -31,7 +31,7 @@
       },
       "lastRun": "2026-08-27",
       "evidence": "docs/copilot/header-reports/winspool.h.Printing.md",
-      "unresolved": ["Native ConstAttribute is lost between RDL and winmd", "Expand from the five canonical functions to the complete producer inventory", "CsWin32 SafeHandle projection from parameter-level lifecycle metadata"]
+      "unresolved": ["Add lifecycle metadata for AddPrinterA/W and FindFirstPrinterChangeNotification", "Add remaining SetLastError, struct-size, and associated-enum metadata", "Fix nested _When_ and _At_ SAL interpretation", "Classify typedef aliases, constant signedness, and native-only constant additions", "CsWin32 SafeHandle projection from parameter-level lifecycle metadata"]
     },
     {
       "order": 2,

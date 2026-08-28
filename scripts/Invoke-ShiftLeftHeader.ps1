@@ -13,11 +13,14 @@ param(
     [ValidateSet("x64", "x86", "arm64")]
     [string]$Architecture = "x64",
 
+    [switch]$FullHeader,
+
     [string]$OutputRoot = "$PSScriptRoot\..\artifacts\shift-left-headers"
 )
 
 $ErrorActionPreference = "Stop"
 $repoRoot = (Resolve-Path "$PSScriptRoot\..").Path
+$OutputRoot = [System.IO.Path]::GetFullPath($OutputRoot)
 
 if (!$WindowsRsRoot -or !(Test-Path (Join-Path $WindowsRsRoot "crates\tools\win32\Cargo.toml"))) {
     throw "Pass -WindowsRsRoot or set WINDOWS_RS_SHIFT_LEFT_ROOT to the windows-rs implementation checkout."
@@ -76,8 +79,13 @@ try {
     $env:WIN32METADATA_PARTITION_SMOKE = "1"
     $env:WIN32METADATA_SEQUENTIAL = "1"
     $env:WIN32METADATA_REFERENCE_WINMD = $ReferenceWinmd
-    $env:WIN32METADATA_DEPENDENCY_WINMD = Join-Path $WindowsRsRoot "crates\libs\default\Windows.Win32.winmd"
-    $env:WIN32METADATA_SYMBOL_FILTER = $entry.targetSymbols -join ","
+    Remove-Item -Path "Env:WIN32METADATA_DEPENDENCY_WINMD" -ErrorAction SilentlyContinue
+    if ($FullHeader) {
+        Remove-Item -Path "Env:WIN32METADATA_SYMBOL_FILTER" -ErrorAction SilentlyContinue
+    }
+    else {
+        $env:WIN32METADATA_SYMBOL_FILTER = $entry.targetSymbols -join ","
+    }
 
     Push-Location $WindowsRsRoot
     try {
