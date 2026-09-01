@@ -77,7 +77,7 @@ function New-DumpIndex([string]$path, [string]$targetNamespace) {
             $category = "function"
             $symbol = $Matches[1]
         }
-        elseif ($lines[$i] -match '^\s*public\s+(?:const|static)\s+.*\b([A-Za-z_][A-Za-z0-9_]*)\s*(?:=|;)') {
+        elseif ($lines[$i] -match '^\s*public\s+(?:const|static)\s+.*?\b([A-Za-z_][A-Za-z0-9_]*)\s*(?:=|;)') {
             $category = "constant"
             $symbol = $Matches[1]
         }

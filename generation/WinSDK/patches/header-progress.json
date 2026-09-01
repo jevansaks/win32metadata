@@ -51,7 +51,8 @@
       },
       "lastRun": "2026-08-27",
       "evidence": "docs/copilot/header-reports/wingdi.h.Gdi.md",
-      "unresolved": ["Native ConstAttribute is lost between RDL and winmd", "Reserved parameters lose OptionalAttribute", "Confirm CsWin32 friendly signature remains enum-typed"]
+      "unresolved": ["Classify 300 full-header function differences, primarily SupportedOS metadata", "Move 48 flexible-array and related struct sidecars", "Classify 32 constant signedness/value differences", "Classify native handle invalid values and callback typedef differences"],
+      "deferred": ["Confirm CsWin32 friendly signature remains enum-typed"]
     },
     {"order": 3, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
     {"order": 4, "header": "esent.h", "partition": "Storage.Jet", "namespace": "Windows.Win32.Storage.Jet", "status": "queued", "focus": "Architecture-neutral integer widths"},

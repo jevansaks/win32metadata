@@ -46,11 +46,39 @@ enum FONT_RESOURCE_CHARACTERISTICS {
 present on both functions. The reference changes the metadata signature itself to the
 enum; the proposed result deliberately retains `uint` plus `AssociatedEnum`.
 
-Two windows-rs fidelity defects remain:
+The two initial windows-rs fidelity defects are closed:
 
-1. RDL retains `*const`, but winmd emission loses `ConstAttribute`.
-2. `_Reserved_` produces `ReservedAttribute` but loses the reference
-   `OptionalAttribute`.
+1. Native constness survives RDL and winmd emission.
+2. `_Reserved_` produces `OptionalAttribute` and `ReservedAttribute` without
+   incorrectly inferring an output direction.
+
+## Full-header calibration
+
+The corrected header-root pass contains 2,030 RDL declarations:
+
+| Category | Count |
+| --- | ---: |
+| Functions | 364 |
+| Structs | 195 |
+| Enums | 11 |
+| Constants | 1,444 |
+| Type roots | 16 |
+
+The generated winmd contains every declaration present in the NuGet reference. It
+also contains 788 native declarations omitted by the reference, primarily constants.
+
+The first normalized classification pass leaves 392 textual or semantic differences:
+
+| Category | Count | Primary cause |
+| --- | ---: | --- |
+| Functions | 300 | Mostly legacy `SupportedOS` metadata not yet shifted to headers |
+| Structs | 48 | Flexible arrays and other field sidecars |
+| Constants | 32 | Signedness and sentinel-value policy |
+| Types | 11 | Handle invalid values and callback typedef representation |
+| Enums | 1 | Native force-width sentinel omitted by the legacy metadata |
+
+The reviewed `FONT_RESOURCE_CHARACTERISTICS` and `AddFontResourceExA/W` unit is
+matched. The rest of `wingdi.h` remains the next full-header classification task.
 
 ## Projection gate
 
