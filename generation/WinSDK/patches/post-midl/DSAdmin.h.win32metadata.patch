@@ -1,0 +1,75 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DSAdmin.h b/generation/WinSDK/RecompiledIdlHeaders/um/DSAdmin.h
+index af83bc58..83a06144 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/DSAdmin.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/DSAdmin.h
+@@ -49,6 +49,7 @@ DEFINE_GUID(IID_IDsAdminNotifyHandler,
+ #ifndef _DSADMIN_H
+ #define _DSADMIN_H
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -68,6 +69,7 @@ DEFINE_GUID(IID_IDsAdminNotifyHandler,
+ #undef  INTERFACE
+ #define INTERFACE   IDsAdminCreateObj
+ 
++_Windows_SupportedOS_WindowsVista_
+ DECLARE_INTERFACE_(IDsAdminCreateObj, IUnknown)
+ {
+   // *** IUnknown methods ***
+@@ -80,7 +82,7 @@ DECLARE_INTERFACE_(IDsAdminCreateObj, IUnknown)
+                               /*IN*/ IADs* pADsCopySource,
+                               /*IN*/ LPCWSTR lpszClassName) PURE;
+   STDMETHOD(CreateModal)(THIS_ /*IN*/ HWND hwndParent, 
+-                               /*OUT*/ IADs** ppADsObj) PURE;
++                               _Out_ /*OUT*/ IADs** ppADsObj) PURE;
+ };
+ 
+ 
+@@ -100,6 +102,7 @@ DECLARE_INTERFACE_(IDsAdminCreateObj, IUnknown)
+ #undef  INTERFACE
+ #define INTERFACE   IDsAdminNewObj
+ 
++_Windows_SupportedOS_WindowsVista_
+ DECLARE_INTERFACE_(IDsAdminNewObj, IUnknown)
+ {
+   // *** IUnknown methods ***
+@@ -129,6 +132,7 @@ DECLARE_INTERFACE_(IDsAdminNewObj, IUnknown)
+ #undef  INTERFACE
+ #define INTERFACE   IDsAdminNewObjPrimarySite
+ 
++_Windows_SupportedOS_WindowsVista_
+ DECLARE_INTERFACE_(IDsAdminNewObjPrimarySite, IUnknown)
+ {
+   // *** IUnknown methods ***
+@@ -184,6 +188,7 @@ typedef struct
+ #undef  INTERFACE
+ #define INTERFACE   IDsAdminNewObjExt
+ 
++_Windows_SupportedOS_WindowsVista_
+ DECLARE_INTERFACE_(IDsAdminNewObjExt, IUnknown)
+ {
+   // *** IUnknown methods ***
+@@ -199,7 +204,7 @@ DECLARE_INTERFACE_(IDsAdminNewObjExt, IUnknown)
+                               /*IN*/ IDsAdminNewObj* pDsAdminNewObj,
+                               /*IN*/ LPDSA_NEWOBJ_DISPINFO pDispInfo) PURE;
+ 
+-  STDMETHOD(AddPages)(THIS_ /*IN*/ LPFNADDPROPSHEETPAGE lpfnAddPage, 
++  STDMETHOD(AddPages)(THIS_ /*IN*/ LPFNSVADDPROPSHEETPAGE lpfnAddPage, 
+                             /*IN*/ LPARAM lParam) PURE;
+ 
+   STDMETHOD(SetObject)(THIS_ /*IN*/ IADs* pADsObj) PURE;
+@@ -250,6 +255,7 @@ DECLARE_INTERFACE_(IDsAdminNewObjExt, IUnknown)
+ #define INTERFACE   IDsAdminNotifyHandler
+ 
+ 
++_Windows_SupportedOS_WindowsVista_
+ DECLARE_INTERFACE_(IDsAdminNotifyHandler, IUnknown)
+ {
+   // *** IUnknown methods ***
+@@ -278,4 +284,3 @@ DECLARE_INTERFACE_(IDsAdminNotifyHandler, IUnknown)
+ #pragma endregion
+ 
+ #endif // _DSADMIN_H
+-
