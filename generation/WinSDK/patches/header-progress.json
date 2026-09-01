@@ -14,6 +14,7 @@
     "scopedEnum": "A loose-value enum becomes scoped while retaining the same underlying width, member names, and numeric values.",
     "opaqueDiscriminatedBuffer": "A byte buffer whose SAL permits more than one structure type remains ABI-accurate instead of being narrowed to one legacy sidecar type.",
     "anonymousRecordNames": "Compiler-generated names for anonymous nested records may differ when layout and field signatures are equivalent.",
+    "nativeOnlyConstants": "Native constants present in the SDK header but omitted by the legacy win32metadata package may be generated when they do not alter existing declarations.",
     "unusedProjectionAttributes": "Ansi, Unicode, documentation, and sidecars without consumer behavior do not affect functional matching."
   },
   "headers": [
@@ -66,7 +67,19 @@
       "evidence": "docs/copilot/header-reports/AdsHlp.h.ActiveDirectory.md",
       "unresolved": []
     },
-    {"order": 4, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
+    {
+      "order": 4,
+      "header": "AdsProp.h",
+      "partition": "ActiveDirectory",
+      "namespace": "Windows.Win32.Networking.ActiveDirectory",
+      "status": "matched",
+      "focus": "Supported OS, native constness, TCHAR alias collapse, and native-only constants",
+      "acceptedNormalizations": ["nativeOnlyConstants", "unusedProjectionAttributes"],
+      "lastRun": "2026-09-01",
+      "evidence": "docs/copilot/header-reports/AdsProp.h.ActiveDirectory.md",
+      "unresolved": []
+    },
+    {"order": 5, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
     {"order": 4, "header": "esent.h", "partition": "Storage.Jet", "namespace": "Windows.Win32.Storage.Jet", "status": "queued", "focus": "Architecture-neutral integer widths"},
     {"order": 5, "header": "d2d1_1.h", "partition": "Direct2D", "namespace": "Windows.Win32.Graphics.Direct2D", "status": "queued", "focus": "Cross-partition owner suppression"},
     {"order": 6, "header": "psapi.h", "partition": "PsApi2", "namespace": "Windows.Win32.System.ProcessStatus", "status": "queued", "focus": "Alias and public P/Invoke naming"},

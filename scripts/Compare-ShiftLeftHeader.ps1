@@ -181,6 +181,13 @@ function Classify-Delta(
     [string]$generated,
     $progressEntry) {
     if (!$reference) {
+        if (!$generated) {
+            return "accepted:noMetadata"
+        }
+        if ($progressEntry.acceptedNormalizations -contains "nativeOnlyConstants" -and
+            $generated -match "^\s*public\s+const\s+") {
+            return "accepted:nativeOnlyConstants"
+        }
         return "unresolved:missing-reference"
     }
     if (!$generated) {
