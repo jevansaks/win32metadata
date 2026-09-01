@@ -6,6 +6,8 @@
 #ifndef __cmnquery_h
 #define __cmnquery_h
 
+#include <win32metadata_annotations.h>
+
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
@@ -104,6 +106,7 @@ struct _cqpage
 #undef  INTERFACE
 #define INTERFACE IQueryForm
 
+_Windows_SupportedOS_WindowsVista_
 DECLARE_INTERFACE_IID_(IQueryForm, IUnknown, "8cfcee30-39bd-11d0-b8d1-00a024ab2dbb")
 {
     // *** IUnknown methods ***
@@ -142,6 +145,7 @@ DECLARE_INTERFACE_IID_(IQueryForm, IUnknown, "8cfcee30-39bd-11d0-b8d1-00a024ab2d
 #undef  INTERFACE
 #define INTERFACE IPersistQuery
 
+_Windows_SupportedOS_WindowsVista_
 DECLARE_INTERFACE_IID_(IPersistQuery, IPersist, "1a3114b8-a62e-11d0-a6c5-00a0c906af45")
 {
     // *** IUnknown methods ***
@@ -202,6 +206,7 @@ typedef struct
 #undef  INTERFACE
 #define INTERFACE ICommonQuery
 
+_Windows_SupportedOS_WindowsVista_
 DECLARE_INTERFACE_IID_(ICommonQuery, IUnknown, "ab50dec0-6f1d-11d0-a1c4-00aa00c16e65")
 {
     // *** IUnknown methods ***
@@ -210,7 +215,7 @@ DECLARE_INTERFACE_IID_(ICommonQuery, IUnknown, "ab50dec0-6f1d-11d0-a1c4-00aa00c1
     STDMETHOD_(ULONG, Release)(THIS) PURE;
 
     // ICommonQuery methods
-    STDMETHOD(OpenQueryWindow)(THIS_ HWND hwndParent, LPOPENQUERYWINDOW pQueryWnd, IDataObject** ppDataObject) PURE;
+    STDMETHOD(OpenQueryWindow)(THIS_ HWND hwndParent, LPOPENQUERYWINDOW pQueryWnd, _Out_ IDataObject** ppDataObject) PURE;
 };
 
 

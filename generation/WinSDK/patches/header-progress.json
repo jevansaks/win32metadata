@@ -6,7 +6,9 @@
     "generated",
     "classified",
     "matched",
-    "blocked"
+    "blocked",
+    "dependency-only",
+    "out-of-scope-empty"
   ],
   "acceptedNormalizations": {
     "rawHandleOwnership": "A pseudo handle is replaced by raw HANDLE. RAIIFree and invalid values are attached only to producer returns and output parameters.",
@@ -79,7 +81,34 @@
       "evidence": "docs/copilot/header-reports/AdsProp.h.ActiveDirectory.md",
       "unresolved": []
     },
-    {"order": 5, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
+    {
+      "order": 5,
+      "header": "adsiid.h",
+      "partition": "ActiveDirectory",
+      "namespace": "Windows.Win32.Networking.ActiveDirectory",
+      "status": "dependency-only",
+      "focus": "Direct full-header queue check",
+      "acceptedNormalizations": ["unusedProjectionAttributes"],
+      "lastRun": "2026-09-01",
+      "evidence": "artifacts/all-sdk-headers/adsiid/ActiveDirectory/x64/comparison/comparison.md",
+      "unresolved": []
+    },
+    {
+      "order": 6,
+      "header": "CmnQuery.h",
+      "partition": "ActiveDirectory",
+      "namespace": "Windows.Win32.Networking.ActiveDirectory",
+      "status": "classified",
+      "focus": "COM interface supported OS, LPARAM/WPARAM semantic aliases, and anonymous union naming",
+      "acceptedNormalizations": ["nativeOnlyConstants", "unusedProjectionAttributes", "anonymousRecordNames"],
+      "lastRun": "2026-09-01",
+      "evidence": "docs/copilot/header-reports/CmnQuery.h.ActiveDirectory.md",
+      "unresolved": [
+        "SupportedOSPlatform missing on DECLARE_INTERFACE_IID_ macro-authored COM interfaces",
+        "Anonymous union nested type name differs for OPENQUERYWINDOW"
+      ]
+    },
+    {"order": 7, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
     {"order": 4, "header": "esent.h", "partition": "Storage.Jet", "namespace": "Windows.Win32.Storage.Jet", "status": "queued", "focus": "Architecture-neutral integer widths"},
     {"order": 5, "header": "d2d1_1.h", "partition": "Direct2D", "namespace": "Windows.Win32.Graphics.Direct2D", "status": "queued", "focus": "Cross-partition owner suppression"},
     {"order": 6, "header": "psapi.h", "partition": "PsApi2", "namespace": "Windows.Win32.System.ProcessStatus", "status": "queued", "focus": "Alias and public P/Invoke naming"},
