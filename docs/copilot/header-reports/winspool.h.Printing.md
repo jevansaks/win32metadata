@@ -2,9 +2,8 @@
 
 ## Calibration scope
 
-The lifecycle patch currently covers `OpenPrinterA/W`, `OpenPrinter2A/W`, and
-`ClosePrinter`. The comparison scope has expanded to every declaration defined by
-`winspool.h` in `Windows.Win32.Graphics.Printing`.
+The patch and comparison cover every declaration defined by `winspool.h` in
+`Windows.Win32.Graphics.Printing`.
 
 The corrected native inventory contains:
 
@@ -15,21 +14,24 @@ The corrected native inventory contains:
 | Enums | 6 |
 | Constants | 329 |
 | Interfaces | 0 |
-| C typedef aliases | 292 |
-| **Total** | **880** |
+| C typedef aliases emitted as metadata roots | 0 |
+| **Total** | **588** |
 
-The earlier 795-declaration report was not a valid header inventory. It included
-interfaces and other declarations defined by `BiDiSpl.h`, `PrinterExtension.h`,
-`printoem.h`, and other headers sharing the same metadata namespace.
+The native RDL also contains 292 C typedef aliases. They collapse to their semantic
+metadata types and are not public winmd roots.
 
 ## Patch
 
 `generation/WinSDK/patches/post-midl/winspool.h.win32metadata.patch`
 
 - Keeps every native parameter as `HANDLE`/`LPHANDLE`.
-- Adds `_Win32_SetLastError_` to the five reviewed APIs.
-- Adds `_Win32_RAIIFree_(ClosePrinter)` and invalid values `-1` and `0` only to
-  the four producer output parameters.
+- Moves all 31 `winspool.h` last-error sidecars to `_Win32_SetLastError_`.
+- Moves all 92 string constness sidecars into native `LPCSTR`/`LPCWSTR`
+  declarations.
+- Adds lifecycle and invalid-value metadata to `OpenPrinterA/W`,
+  `OpenPrinter2A/W`, `AddPrinterA/W`, and
+  `FindFirstPrinterChangeNotification`.
+- Adds struct-size, associated-enum, and flexible-array metadata.
 - Does not attach ownership to `ClosePrinter` or other borrowed input handles.
 
 ## Generated result
@@ -47,12 +49,10 @@ extern "system" fn OpenPrinterW(
     #[opt] pDefault: *const PRINTER_DEFAULTSW) -> BOOL;
 ```
 
-## Root-presence result
+## Full-header result
 
-Existing windows-rs and the new conversion contain all 880 header-derived roots. The
-NuGet win32metadata reference contains all 160 functions, 93 structs, and 6 enums, but
-omits 19 native constants and all 292 C typedef wrappers. No `winspool.h` APIs were
-actually missing.
+The conversion emits all 588 representable roots. The NuGet reference contains 569
+of them and omits 19 native constants. No functions, structs, or enums are missing.
 
 This result depends on two generation rules:
 
@@ -62,39 +62,17 @@ This result depends on two generation rules:
    while discovering roots because it can satisfy selected declarations externally and
    make them appear absent from the generated output.
 
-## Fidelity classification
+The final normalized comparison has no unaccepted logical differences. The remaining
+textual differences are intentional:
 
-| Symbol | Result |
-| --- | --- |
-| `OpenPrinterA/W` | Accepted pseudo-handle replacement; lifecycle payload matches |
-| `OpenPrinter2A/W` | Accepted pseudo-handle replacement; lifecycle payload matches |
-| `ClosePrinter` | Accepted borrowed `HANDLE` replacement |
+- Pseudo handles become raw `HANDLE`; producer sites carry `RAIIFree` and invalid
+  values while consumer sites remain borrowed.
+- `PRINTER_DEFAULTSA/W.DesiredAccess` remains native `ACCESS_MASK` with
+  `AssociatedEnum(PRINTER_ACCESS_RIGHTS)`.
+- `StartDocPrinterA/W.pDocInfo` remains `byte*` because SAL permits both
+  `DOC_INFO_1` and `DOC_INFO_3`; the legacy sidecar incorrectly narrowed it to
+  `DOC_INFO_1A/W*`.
+- Three anonymous nested records have compiler-generated names that differ from the
+  legacy emitter, with equivalent layout and fields.
 
-The RDL writer now preserves `ConstAttribute` for const pointer parameters and fields.
-All 167 const occurrences in the NuGet reference survive into the regenerated
-header-focused winmd. The new conversion contains 62 additional const occurrences that
-reflect native header constness and require projection review rather than header edits.
-
-The complete comparison also identified:
-
-- 26 functions whose legacy `SetLastError` sidecar must move to the header.
-- `AddPrinterA/W` and `FindFirstPrinterChangeNotification` as additional owning handle
-  producers.
-- `PRINTER_OPTIONSA/W` struct-size and associated-enum sidecars.
-- Four conditional `_When_` direction/optionality gaps on `SetJobA/W` and
-  `SetPrinterA/W`; these are windows-rs SAL parser fixes.
-- One `_At_(*ppProperties, _Pre_readable_size_(cProperties) ...)` count relationship on
-  `FreePrintNamedPropertyArray`; this is also a SAL parser fix.
-- 301 common constants whose projected type is `uint` in win32metadata and `int` in
-  windows-rs.
-- Six string constants with additional `NativeEncoding` metadata.
-
-Consumer uses of `PRINTER_HANDLE` and `FINDPRINTERCHANGENOTIFICATION_HANDLE` become
-borrowed raw `HANDLE`. Only producer returns and output parameters receive `RAIIFree`
-and invalid-value metadata.
-
-## Projection gate
-
-CsWin32 must generate the same `ClosePrinterSafeHandle` experience from lifecycle
-metadata on a raw `HANDLE` output parameter. That source-generation test is required
-before this unit can move from `classified` to `matched`.
+CsWin32 SafeHandle behavior is intentionally deferred to the consumer follow-on.

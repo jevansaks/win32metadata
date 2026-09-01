@@ -25,6 +25,10 @@
     _WIN32_METADATA_VALUE_("also_usable_for", type)
 #define _Win32_AssociatedEnum_(type) \
     _WIN32_METADATA_VALUE_("associated_enum", type)
+#define _Win32_StructSizeField_(field) \
+    _WIN32_METADATA_VALUE_("struct_size_field", field)
+#define _Win32_FlexibleArray_ \
+    _WIN32_METADATA_ANNOTATE_("win32metadata:flexible_array")
 #define _Win32_Retval_ \
     _WIN32_METADATA_ANNOTATE_("win32metadata:retval")
 #define _Win32_Documentation_(url) \
@@ -80,6 +84,8 @@
 #define _Win32_Retained_
 #define _Win32_AlsoUsableFor_(type)
 #define _Win32_AssociatedEnum_(type)
+#define _Win32_StructSizeField_(field)
+#define _Win32_FlexibleArray_
 #define _Win32_Retval_
 #define _Win32_Documentation_(url)
 #define _Windows_SupportedOS_Windows2000_

@@ -12,6 +12,8 @@
     "rawHandleOwnership": "A pseudo handle is replaced by raw HANDLE. RAIIFree and invalid values are attached only to producer returns and output parameters.",
     "associatedEnum": "The native integer parameter type is retained and AssociatedEnum supplies the projection type.",
     "scopedEnum": "A loose-value enum becomes scoped while retaining the same underlying width, member names, and numeric values.",
+    "opaqueDiscriminatedBuffer": "A byte buffer whose SAL permits more than one structure type remains ABI-accurate instead of being narrowed to one legacy sidecar type.",
+    "anonymousRecordNames": "Compiler-generated names for anonymous nested records may differ when layout and field signatures are equivalent.",
     "unusedProjectionAttributes": "Ansi, Unicode, documentation, and sidecars without consumer behavior do not affect functional matching."
   },
   "headers": [
@@ -20,10 +22,10 @@
       "header": "winspool.h",
       "partition": "Printing",
       "namespace": "Windows.Win32.Graphics.Printing",
-      "status": "classified",
+      "status": "matched",
       "focus": "Raw HANDLE ownership and invalid values",
       "targetSymbols": ["OpenPrinterA", "OpenPrinterW", "OpenPrinter2A", "OpenPrinter2W", "ClosePrinter"],
-      "acceptedNormalizations": ["rawHandleOwnership", "unusedProjectionAttributes"],
+      "acceptedNormalizations": ["rawHandleOwnership", "associatedEnum", "opaqueDiscriminatedBuffer", "anonymousRecordNames", "unusedProjectionAttributes"],
       "expectedLifecycle": {
         "producerSymbols": ["OpenPrinterA", "OpenPrinterW", "OpenPrinter2A", "OpenPrinter2W"],
         "freeFunction": "ClosePrinter",
@@ -31,7 +33,8 @@
       },
       "lastRun": "2026-08-27",
       "evidence": "docs/copilot/header-reports/winspool.h.Printing.md",
-      "unresolved": ["Add lifecycle metadata for AddPrinterA/W and FindFirstPrinterChangeNotification", "Add remaining SetLastError, struct-size, and associated-enum metadata", "Fix nested _When_ and _At_ SAL interpretation", "Classify typedef aliases, constant signedness, and native-only constant additions", "CsWin32 SafeHandle projection from parameter-level lifecycle metadata"]
+      "unresolved": [],
+      "deferred": ["CsWin32 SafeHandle projection from parameter-level lifecycle metadata"]
     },
     {
       "order": 2,
