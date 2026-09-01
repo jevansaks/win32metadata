@@ -20,7 +20,9 @@ param(
 
     [string]$ProgressManifest = "$PSScriptRoot\..\generation\WinSDK\patches\header-progress.json",
 
-    [string]$WinmdUtils = "$PSScriptRoot\..\bin\Release\net8.0\WinmdUtils.dll"
+    [string]$WinmdUtils = "$PSScriptRoot\..\bin\Release\net8.0\WinmdUtils.dll",
+
+    [switch]$FullHeader
 )
 
 $ErrorActionPreference = "Stop"
@@ -35,9 +37,17 @@ $entry = (Get-Content $ProgressManifest -Raw | ConvertFrom-Json).headers |
     Where-Object { $_.header -ieq $Header -and $_.partition -ieq $Partition } |
     Select-Object -First 1
 if (!$entry) {
-    throw "No progress entry exists for $Header / $Partition."
+    $plan = Join-Path (Split-Path $ProgressManifest) "header-plan\partition-header-queue.csv"
+    if (Test-Path $plan) {
+        $entry = Import-Csv $plan |
+            Where-Object { $_.header -ieq $Header -and $_.partition -ieq $Partition } |
+            Select-Object -First 1
+    }
 }
-if (!$entry.targetSymbols -or $entry.targetSymbols.Count -eq 0) {
+if (!$entry) {
+    throw "No progress or all-SDK plan entry exists for $Header / $Partition."
+}
+if (!$FullHeader -and (!$entry.targetSymbols -or $entry.targetSymbols.Count -eq 0)) {
     throw "$Header / $Partition does not yet define targetSymbols in the progress manifest."
 }
 
@@ -52,6 +62,21 @@ if ($LASTEXITCODE -ne 0) {
 & dotnet $WinmdUtils dump --winmd $GeneratedWinmd --output $generatedDump
 if ($LASTEXITCODE -ne 0) {
     throw "Failed to dump generated winmd."
+}
+
+function Get-RdlInventory([string]$path) {
+    $items = foreach ($line in [System.IO.File]::ReadLines($path)) {
+        if ($line -match '^\s*extern "system" fn\s+([A-Za-z_][A-Za-z0-9_]*)\b') {
+            $Matches[1]
+        }
+        elseif ($line -match '^\s*(?:struct|enum|interface|type)\s+([A-Za-z_][A-Za-z0-9_]*)\b') {
+            $Matches[1]
+        }
+        elseif ($line -match '^\s*(?:const|static)\s+([A-Za-z_][A-Za-z0-9_]*)\b') {
+            $Matches[1]
+        }
+    }
+    return @($items | Sort-Object -Unique)
 }
 
 function Get-DeclarationSnippet([string[]]$lines, [string]$symbol) {
@@ -210,7 +235,13 @@ function Classify-Delta(
 
 $referenceLines = [System.IO.File]::ReadAllLines($referenceDump)
 $generatedLines = [System.IO.File]::ReadAllLines($generatedDump)
-$results = foreach ($symbol in $entry.targetSymbols) {
+$targetSymbols = if ($FullHeader) {
+    Get-RdlInventory $GeneratedRdl
+}
+else {
+    @($entry.targetSymbols)
+}
+$results = foreach ($symbol in $targetSymbols) {
     $reference = Get-DeclarationSnippet $referenceLines $symbol
     $generated = Get-DeclarationSnippet $generatedLines $symbol
     [pscustomobject]@{

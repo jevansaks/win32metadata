@@ -38,13 +38,21 @@ $manifest = Get-Content (Join-Path $repoRoot "generation\WinSDK\patches\header-p
 $entry = $manifest.headers |
     Where-Object { $_.header -ieq $Header -and $_.partition -ieq $Partition } |
     Select-Object -First 1
-if (!$entry -or !$entry.targetSymbols) {
-    throw "The progress manifest must define targetSymbols for $Header / $Partition."
+if (!$entry) {
+    $plan = Join-Path $repoRoot "generation\WinSDK\patches\header-plan\partition-header-queue.csv"
+    if (Test-Path $plan) {
+        $entry = Import-Csv $plan |
+            Where-Object { $_.header -ieq $Header -and $_.partition -ieq $Partition } |
+            Select-Object -First 1
+    }
+}
+if (!$entry) {
+    throw "No progress or all-SDK plan entry exists for $Header / $Partition."
+}
+if (!$FullHeader -and (!$entry.targetSymbols -or $entry.targetSymbols.Count -eq 0)) {
+    throw "The progress manifest must define targetSymbols for targeted $Header / $Partition runs, or pass -FullHeader."
 }
 $patch = Join-Path $repoRoot "generation\WinSDK\patches\post-midl\$Header.win32metadata.patch"
-if (!(Test-Path $patch)) {
-    throw "The one-patch-per-header artifact is missing: $patch"
-}
 
 $output = Join-Path $OutputRoot "$stem\$Partition\$Architecture"
 New-Item -ItemType Directory -Force -Path $output | Out-Null
@@ -118,5 +126,6 @@ $generatedRdl = Join-Path $output "rdl\$stem.rdl"
     -GeneratedWinmd $generatedWinmd `
     -GeneratedRdl $generatedRdl `
     -OutputDirectory (Join-Path $output "comparison") `
-    -WinmdUtils $winmdUtils
+    -WinmdUtils $winmdUtils `
+    -FullHeader:$FullHeader
 exit $LASTEXITCODE
