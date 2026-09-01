@@ -1,5 +1,5 @@
 "order","header","sdkPath","partition","namespace","status"
-"1","AdsHlp.h","/um/AdsHlp.h","ActiveDirectory","Windows.Win32.Networking.ActiveDirectory","queued"
+"1","AdsHlp.h","/um/AdsHlp.h","ActiveDirectory","Windows.Win32.Networking.ActiveDirectory","matched"
 "2","adsiid.h","/um/adsiid.h","ActiveDirectory","Windows.Win32.Networking.ActiveDirectory","queued"
 "3","AdsProp.h","/um/AdsProp.h","ActiveDirectory","Windows.Win32.Networking.ActiveDirectory","queued"
 "4","CmnQuery.h","/um/CmnQuery.h","ActiveDirectory","Windows.Win32.Networking.ActiveDirectory","queued"

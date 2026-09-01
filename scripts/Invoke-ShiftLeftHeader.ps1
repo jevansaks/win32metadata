@@ -56,6 +56,7 @@ $patch = Join-Path $repoRoot "generation\WinSDK\patches\post-midl\$Header.win32m
 
 $output = Join-Path $OutputRoot "$stem\$Partition\$Architecture"
 New-Item -ItemType Directory -Force -Path $output | Out-Null
+$rootOutput = Join-Path $output "roots"
 
 $winmdUtils = Join-Path $repoRoot "bin\Release\net8.0\WinmdUtils.dll"
 if (!(Test-Path $winmdUtils)) {
@@ -76,6 +77,8 @@ $saved = @{
     WIN32METADATA_REFERENCE_WINMD = $env:WIN32METADATA_REFERENCE_WINMD
     WIN32METADATA_DEPENDENCY_WINMD = $env:WIN32METADATA_DEPENDENCY_WINMD
     WIN32METADATA_SYMBOL_FILTER = $env:WIN32METADATA_SYMBOL_FILTER
+    WIN32METADATA_RDL_ONLY = $env:WIN32METADATA_RDL_ONLY
+    WIN32METADATA_DISABLE_DEPENDENCY_CLOSURE = $env:WIN32METADATA_DISABLE_DEPENDENCY_CLOSURE
 }
 
 try {
@@ -93,6 +96,25 @@ try {
     }
     else {
         $env:WIN32METADATA_SYMBOL_FILTER = $entry.targetSymbols -join ","
+    }
+
+    if ($FullHeader) {
+        $env:WIN32METADATA_PARTITION_OUTPUT = $rootOutput
+        $env:WIN32METADATA_RDL_ONLY = "1"
+        $env:WIN32METADATA_DISABLE_DEPENDENCY_CLOSURE = "1"
+        Push-Location $WindowsRsRoot
+        try {
+            & cargo run -p tool_win32
+            if ($LASTEXITCODE -ne 0) {
+                throw "windows-rs root inventory generation failed."
+            }
+        }
+        finally {
+            Pop-Location
+        }
+        Remove-Item -Path "Env:WIN32METADATA_RDL_ONLY" -ErrorAction SilentlyContinue
+        Remove-Item -Path "Env:WIN32METADATA_DISABLE_DEPENDENCY_CLOSURE" -ErrorAction SilentlyContinue
+        $env:WIN32METADATA_PARTITION_OUTPUT = $output
     }
 
     Push-Location $WindowsRsRoot
@@ -119,12 +141,14 @@ finally {
 
 $generatedWinmd = Join-Path $output "Windows.Win32.winmd"
 $generatedRdl = Join-Path $output "rdl\$stem.rdl"
+$rootRdl = if ($FullHeader) { Join-Path $rootOutput "rdl\$stem.rdl" } else { $generatedRdl }
 & "$PSScriptRoot\Compare-ShiftLeftHeader.ps1" `
     -Header $Header `
     -Partition $Partition `
     -ReferenceWinmd $ReferenceWinmd `
     -GeneratedWinmd $generatedWinmd `
     -GeneratedRdl $generatedRdl `
+    -RootRdl $rootRdl `
     -OutputDirectory (Join-Path $output "comparison") `
     -WinmdUtils $winmdUtils `
     -FullHeader:$FullHeader

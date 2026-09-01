@@ -1,3 +1,5 @@
+--exclude
+ADsFreeAllErrorRecords
 --traverse
 <IncludeRoot>/um/AdsHlp.h
 <IncludeRoot>/um/adsiid.h

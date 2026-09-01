@@ -18,24 +18,34 @@ record spellings before namespace resolution.
 
 After that fix, `AdsHlp.h` generates a winmd successfully.
 
-## Current blocker
+## Matched result
 
-The generated `AdsHlp.rdl` contains compile dependencies from related Active
-Directory headers, such as `ADSVALUE` from `Iads.h`. This is required so the
-single-header winmd compiles, but it means an RDL-only symbol inventory is not the
-same as the declared-by-`AdsHlp.h` root surface.
+The final x64 comparison reports 22 classified declarations and 0 unresolved
+declarations.
 
-The all-SDK loop needs windows-rs to emit an explicit root list while generating:
+The root/dependency issue is solved by a two-pass full-header run:
 
 | List | Meaning |
 | --- | --- |
-| header roots | Declarations whose spelling/expansion location belongs to the requested header. |
+| root RDL | Declarations whose spelling/expansion location belongs to the requested header. |
 | dependencies | Extra declarations emitted only so the header-root winmd compiles. |
 
-Only header roots should drive the fidelity comparison. Dependencies should be
-present for compilation but excluded from the per-header completion gate.
+Only root RDL symbols drive the fidelity comparison. Dependencies stay in the
+compiled winmd but are excluded from the per-header completion gate.
 
-## Next action
+## Changes required
 
-Add root-list output to the windows-rs header-filter path and update
-`Dump-ShiftLeftHeaderSurface.ps1` / `Compare-ShiftLeftHeader.ps1` to consume it.
+- Added `_Windows_SupportedOS_WindowsVista_` to the 18 functions that carry
+  `SupportedOSPlatform("windows6.0.6000")` in the reference metadata.
+- Added `_Win32_SetLastError_` and `_Inout_` to `ADsGetLastError`.
+- Added standard `_Out_` to `ADsBuildEnumerator.ppEnumVariant`.
+- Added `_Win32_AssociatedEnum_(ADS_AUTHENTICATION_ENUM)` to
+  `ADsOpenObject.dwReserved`.
+- Excluded `ADsFreeAllErrorRecords` from the ActiveDirectory partition because it
+  has no import library and is absent from the reference metadata.
+
+## Accepted normalization
+
+`ADsOpenObject.dwReserved` remains native `DWORD`/`uint` with
+`AssociatedEnum("ADS_AUTHENTICATION_ENUM")` instead of changing the ABI type to the
+enum.

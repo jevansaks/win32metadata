@@ -15,6 +15,8 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$GeneratedRdl,
 
+    [string]$RootRdl,
+
     [Parameter(Mandatory = $true)]
     [string]$OutputDirectory,
 
@@ -30,6 +32,12 @@ $ErrorActionPreference = "Stop"
 foreach ($path in @($ReferenceWinmd, $GeneratedWinmd, $GeneratedRdl, $ProgressManifest, $WinmdUtils)) {
     if (!(Test-Path $path)) {
         throw "Required input was not found: $path"
+    }
+    if (!$RootRdl) {
+        $RootRdl = $GeneratedRdl
+    }
+    if (!(Test-Path $RootRdl)) {
+        throw "Required input was not found: $RootRdl"
     }
 }
 
@@ -211,6 +219,16 @@ function Classify-Delta(
         $generated -match "\buint\s+fl\b") {
         $classifications.Add("accepted:associatedEnum")
     }
+    if ($progressEntry.acceptedNormalizations -contains "associatedEnum") {
+        foreach ($match in [regex]::Matches($generated, '\[AssociatedEnum\s*\("([^"]+)"\)\]\s+uint\s+([A-Za-z_][A-Za-z0-9_]*)\b')) {
+            $enum = [regex]::Escape($match.Groups[1].Value)
+            $param = [regex]::Escape($match.Groups[2].Value)
+            if ($reference -match "\b$enum\s+$param\b") {
+                $classifications.Add("accepted:associatedEnum")
+                break
+            }
+        }
+    }
     if ($progressEntry.acceptedNormalizations -contains "scopedEnum" -and
         $reference -match "public enum FONT_RESOURCE_CHARACTERISTICS : uint" -and
         $generated -match "public enum FONT_RESOURCE_CHARACTERISTICS : uint" -and
@@ -236,7 +254,7 @@ function Classify-Delta(
 $referenceLines = [System.IO.File]::ReadAllLines($referenceDump)
 $generatedLines = [System.IO.File]::ReadAllLines($generatedDump)
 $targetSymbols = if ($FullHeader) {
-    Get-RdlInventory $GeneratedRdl
+    Get-RdlInventory $RootRdl
 }
 else {
     @($entry.targetSymbols)

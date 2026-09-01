@@ -14,8 +14,8 @@ Generated from generation/WinSDK/RecompiledIdlHeaders and partition
 | Status | Count |
 | --- | ---: |
 | classified | 1 |
-| matched | 1 |
-| queued | 1586 |
+| matched | 2 |
+| queued | 1585 |
 
 ## SDK headers by area
 
