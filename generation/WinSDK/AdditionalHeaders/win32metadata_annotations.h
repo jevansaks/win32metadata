@@ -23,6 +23,8 @@
     _WIN32_METADATA_ANNOTATE_("win32metadata:retained")
 #define _Win32_AlsoUsableFor_(type) \
     _WIN32_METADATA_VALUE_("also_usable_for", type)
+#define _Win32_CanonicalName_(type) \
+    _WIN32_METADATA_VALUE_("canonical_name", type)
 #define _Win32_AssociatedEnum_(type) \
     _WIN32_METADATA_VALUE_("associated_enum", type)
 #define _Win32_StructSizeField_(field) \
@@ -83,6 +85,7 @@
 #define _Win32_InvalidHandle_(value)
 #define _Win32_Retained_
 #define _Win32_AlsoUsableFor_(type)
+#define _Win32_CanonicalName_(type)
 #define _Win32_AssociatedEnum_(type)
 #define _Win32_StructSizeField_(field)
 #define _Win32_FlexibleArray_

@@ -1,0 +1,122 @@
+diff --git a/generation/WinSDK/AdditionalHeaders/win32metadata_annotations.h b/generation/WinSDK/AdditionalHeaders/win32metadata_annotations.h
+index 5599ccb5..c27209ab 100644
+--- a/generation/WinSDK/AdditionalHeaders/win32metadata_annotations.h
++++ b/generation/WinSDK/AdditionalHeaders/win32metadata_annotations.h
+@@ -23,6 +23,8 @@
+     _WIN32_METADATA_ANNOTATE_("win32metadata:retained")
+ #define _Win32_AlsoUsableFor_(type) \
+     _WIN32_METADATA_VALUE_("also_usable_for", type)
++#define _Win32_CanonicalName_(type) \
++    _WIN32_METADATA_VALUE_("canonical_name", type)
+ #define _Win32_AssociatedEnum_(type) \
+     _WIN32_METADATA_VALUE_("associated_enum", type)
+ #define _Win32_StructSizeField_(field) \
+@@ -83,6 +85,7 @@
+ #define _Win32_InvalidHandle_(value)
+ #define _Win32_Retained_
+ #define _Win32_AlsoUsableFor_(type)
++#define _Win32_CanonicalName_(type)
+ #define _Win32_AssociatedEnum_(type)
+ #define _Win32_StructSizeField_(field)
+ #define _Win32_FlexibleArray_
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h b/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h
+index d141dde2..77f0b8a7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h
+@@ -3,6 +3,7 @@
+ //
+ #pragma once
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -72,7 +73,7 @@ typedef struct
+ {
+     CLSID    clsidNamespace;            // namespace identifier (indicates which namespace selection from)
+     UINT     cItems;                    // number of objects
+-    DSOBJECT aObjects[1];               // array of objects
++    _Win32_FlexibleArray_ DSOBJECT aObjects[1];               // array of objects
+ } DSOBJECTNAMES, * LPDSOBJECTNAMES;
+ 
+ 
+@@ -176,18 +177,22 @@ typedef struct _DOMAINDESC
+   BOOL   fDownLevel;                    // == 1 if downlevel domain
+   struct _DOMAINDESC *pdChildList;      // Children of this node
+   struct _DOMAINDESC *pdNextSibling;    // Siblings of this node            
+-} DOMAIN_DESC, DOMAINDESC, * PDOMAIN_DESC, * LPDOMAINDESC;
++} DOMAIN_DESC _Win32_CanonicalName_(DOMAINDESC), DOMAINDESC, * PDOMAIN_DESC, * LPDOMAINDESC;
+ 
+ typedef struct
+ {
+   DWORD dsSize;
+   DWORD dwCount;
+-  DOMAINDESC aDomains[1];
+-} DOMAIN_TREE, DOMAINTREE, * PDOMAIN_TREE, * LPDOMAINTREE;
++  _Win32_FlexibleArray_ DOMAINDESC aDomains[1];
++} DOMAIN_TREE, * PDOMAIN_TREE, * LPDOMAINTREE;
++#if !defined(WIN32METADATA)
++typedef DOMAIN_TREE DOMAINTREE;
++#endif
+ 
+ #undef  INTERFACE
+ #define INTERFACE  IDsBrowseDomainTree
+ 
++_Windows_SupportedOS_WindowsVista_
+ DECLARE_INTERFACE_IID_(IDsBrowseDomainTree, IUnknown, "7cabcf1e-78f5-11d2-960c-00c04fa31a86")
+ {
+     // *** IUnknown methods ***
+@@ -197,8 +202,8 @@ DECLARE_INTERFACE_IID_(IDsBrowseDomainTree, IUnknown, "7cabcf1e-78f5-11d2-960c-0
+ 
+     // *** IDsBrowseDomainTree methods ***
+     STDMETHOD(BrowseTo)(THIS_ HWND hwndParent, _Out_ LPWSTR *ppszTargetPath, _In_ DWORD dwFlags) PURE;
+-    STDMETHOD(GetDomains)(THIS_ PDOMAIN_TREE *ppDomainTree, DWORD dwFlags) PURE;
+-    STDMETHOD(FreeDomains)(THIS_ PDOMAIN_TREE *ppDomainTree) PURE;
++    STDMETHOD(GetDomains)(THIS_ DOMAIN_TREE **ppDomainTree, DWORD dwFlags) PURE;
++    STDMETHOD(FreeDomains)(THIS_ DOMAIN_TREE **ppDomainTree) PURE;
+     STDMETHOD(FlushCachedDomains)(THIS) PURE;
+     STDMETHOD(SetComputer)(THIS_ LPCWSTR pszComputerName, LPCWSTR pszUserName, LPCWSTR pszPassword) PURE;
+ };
+@@ -258,7 +263,7 @@ typedef struct
+     CLSID clsidWizardDialog;
+     CLSID clsidWizardPrimaryPage;
+     DWORD cWizardExtensions;            // how many extension CLSIDs?
+-    CLSID aWizardExtensions[1];
++    _Win32_FlexibleArray_ CLSID aWizardExtensions[1];
+ } DSCLASSCREATIONINFO, * LPDSCLASSCREATIONINFO;
+ 
+ //
+@@ -268,6 +273,7 @@ typedef struct
+ #undef  INTERFACE
+ #define INTERFACE IDsDisplaySpecifier
+ 
++_Windows_SupportedOS_WindowsVista_
+ DECLARE_INTERFACE_IID_(IDsDisplaySpecifier, IUnknown, "1ab4a8c0-6a0b-11d2-ad49-00c04fa31a86")
+ {
+     // *** IUnknown methods ***
+@@ -459,7 +465,9 @@ typedef struct
+ // API exported for browsing for containers.
+ //
+ 
++_Windows_SupportedOS_WindowsVista_
+ STDAPI_(int) DsBrowseForContainerW(_Inout_ PDSBROWSEINFOW pInfo);
++_Windows_SupportedOS_WindowsVista_
+ STDAPI_(int) DsBrowseForContainerA(_Inout_ PDSBROWSEINFOA pInfo);
+ 
+ #ifdef UNICODE
+@@ -471,7 +479,9 @@ STDAPI_(int) DsBrowseForContainerA(_Inout_ PDSBROWSEINFOA pInfo);
+ 
+ // NOTE: these are here to keep old clients building - remove soon
+ 
++_Windows_SupportedOS_WindowsVista_
+ STDAPI_(HICON) DsGetIcon(DWORD dwFlags, LPCWSTR pszObjectClass, INT cxImage, INT cyImage);
++_Windows_SupportedOS_WindowsVista_
+ STDAPI DsGetFriendlyClassName(LPCWSTR pszObjectClass, _Out_writes_(cchBuffer) LPWSTR pszBuffer, UINT cchBuffer);
+ 
+ 
+@@ -483,5 +493,3 @@ struct __declspec(uuid("1ab4a8c0-6a0b-11d2-ad49-00c04fa31a86")) IDsDisplaySpecif
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
+ #pragma endregion
+-
+-
