@@ -148,6 +148,18 @@
       "evidence": "docs/copilot/header-reports/DsGetDC.h.ActiveDirectory.md",
       "unresolved": []
     },
+    {
+      "order": 10,
+      "header": "dsparse.h",
+      "partition": "ActiveDirectory",
+      "namespace": "Windows.Win32.Networking.ActiveDirectory",
+      "status": "matched",
+      "focus": "Supported OS, counted-character string aliases, and RDN buffer null-termination metadata",
+      "acceptedNormalizations": ["unusedProjectionAttributes"],
+      "lastRun": "2026-09-02",
+      "evidence": "docs/copilot/header-reports/dsparse.h.ActiveDirectory.md",
+      "unresolved": []
+    },
     {"order": 10, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
     {"order": 4, "header": "esent.h", "partition": "Storage.Jet", "namespace": "Windows.Win32.Storage.Jet", "status": "queued", "focus": "Architecture-neutral integer widths"},
     {"order": 5, "header": "d2d1_1.h", "partition": "Direct2D", "namespace": "Windows.Win32.Graphics.Direct2D", "status": "queued", "focus": "Cross-partition owner suppression"},

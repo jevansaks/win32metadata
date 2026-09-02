@@ -135,7 +135,12 @@ function Normalize-Snippet([string]$snippet) {
             $_ -notmatch "^\s*\[(Documentation|Ansi|Unicode)\b"
         } |
         ForEach-Object {
-            ($_ -replace "\bWindows\.Win32(?:\.[A-Za-z_][A-Za-z0-9_]*)*\.", "") -replace "\s+", " "
+            $line = ($_ -replace "\bWindows\.Win32(?:\.[A-Za-z_][A-Za-z0-9_]*)*\.", "") -replace "\s+", " "
+            $line = $line -replace "\[Optional\]\[In\]\[NativeArrayInfo ([^\]]+)\]\[Const\]", '[Optional][In][Const][NativeArrayInfo $1]'
+            $line = $line -replace "\[In\]\[NativeArrayInfo ([^\]]+)\]\[Const\]", '[In][Const][NativeArrayInfo $1]'
+            $line = $line -replace "\[In\]\[NativeArrayInfo ([^\]]+)\]\[NotNullTerminated\]\[Const\]", '[In][Const][NotNullTerminated][NativeArrayInfo $1]'
+            $line = $line -replace "\[Out\]\[NativeArrayInfo ([^\]]+)\]\[NotNullTerminated\]", '[Out][NotNullTerminated][NativeArrayInfo $1]'
+            $line
         }) -join "`n"
 }
 
