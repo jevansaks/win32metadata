@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:41:25Z
+- Generated: 2026-09-02T21:42:46Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 64
+- Matched: 69
 - In progress: 0
 - Blocked: 0
-- Remaining: 1339
+- Remaining: 1334
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -347,15 +347,15 @@
 | `dwmapi.h` | Dwm | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dwrite_1.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dwrite_2.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
-| `dwrite_3.h` | DirectWrite | remaining |  |  |  |
+| `dwrite_3.h` | DirectWrite | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dwrite.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dxcapi.h` | Direct3DDxc | remaining |  |  |  |
 | `dxcore_interface.h` | Debug, DXCore | remaining |  |  |  |
 | `dxcore.h` | Debug, DXCore | remaining |  |  |  |
-| `dxgi.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
-| `dxgi1_2.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
-| `dxgi1_3.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
-| `dxgi1_4.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
+| `dxgi.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
+| `dxgi1_2.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
+| `dxgi1_3.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
+| `dxgi1_4.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dxgi1_5.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxgi1_6.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxgicommon.h` | Dxgi, Dxgi.Common | remaining |  |  |  |

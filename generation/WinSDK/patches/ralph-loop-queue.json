@@ -3035,10 +3035,10 @@
   {
     "header": "dwrite_3.h",
     "partition": "DirectWrite",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-11.",
     "_source": "header-progress"
   },
   {
@@ -3080,37 +3080,37 @@
   {
     "header": "dxgi.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-11.",
     "_source": "header-progress"
   },
   {
     "header": "dxgi1_2.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-11.",
     "_source": "header-progress"
   },
   {
     "header": "dxgi1_3.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-11.",
     "_source": "header-progress"
   },
   {
     "header": "dxgi1_4.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-11.",
     "_source": "header-progress"
   },
   {

@@ -248,3 +248,10 @@
 - Classified retained `supported-os` (4 headers) and semantic-enum-typing (1 header,
   `zzz-multimedia-enums`) patches; none contain ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T01:40:00Z - Batch existing-patches-11
+
+- Headers: `dwrite_3.h`, `dxgi.h`, `dxgi1_2.h`, `dxgi1_3.h`, and `dxgi1_4.h`.
+- Classified retained `supported-os` annotation-only patches; none contain
+  ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.
