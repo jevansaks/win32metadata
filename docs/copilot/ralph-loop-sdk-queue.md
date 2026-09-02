@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:49:06Z
+- Generated: 2026-09-02T21:50:30Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 84
+- Matched: 89
 - In progress: 0
 - Blocked: 0
-- Remaining: 1319
+- Remaining: 1314
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -510,7 +510,7 @@
 | `icontactproperties.h` | WinContacts | remaining |  |  |  |
 | `icontentprefetchertasktrigger.h` | Wsw | remaining |  |  |  |
 | `icu.h` | Intl | remaining |  |  |  |
-| `icucommon.h` | Intl | remaining |  |  |  |
+| `icucommon.h` | Intl | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `icui18n.h` | Intl | remaining |  |  |  |
 | `icwcfg.h` | FileHistory, InternetConnectionWizard | remaining |  |  |  |
 | `identitycommon.h` | IdentityProvider | remaining |  |  |  |
@@ -519,13 +519,13 @@
 | `idispids.h` | ComOle, InternetExplorer | remaining |  |  |  |
 | `ie12plugin.h` | InternetExplorer | remaining |  |  |  |
 | `ieautomation.h` | InternetExplorer | remaining |  |  |  |
-| `ieobj.h` | InternetExplorer | remaining |  |  |  |
-| `iepmapi.h` | InternetExplorer | remaining |  |  |  |
+| `ieobj.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
+| `iepmapi.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `iewebdriver.h` | InternetExplorer | remaining |  |  |  |
 | `iextag.h` | InternetExplorer | remaining |  |  |  |
 | `il21dec.h` | Media.DShow | remaining |  |  |  |
 | `ImageHlp.h` | Debug | remaining |  |  |  |
-| `imagetranscode.h` | Shell | remaining |  |  |  |
+| `imagetranscode.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `imapi.h` | IMapi | remaining |  |  |  |
 | `imapi2.h` | IMapi | remaining |  |  |  |
 | `imapi2error.h` | IMapi, Wab | remaining |  |  |  |
@@ -553,7 +553,7 @@
 | `inkpresenterdesktop.h` | Input_Ink | remaining |  |  |  |
 | `inkrenderer.h` | Input_Ink | remaining |  |  |  |
 | `inputpaneinterop.h` | WinRT | remaining |  |  |  |
-| `inputpanelconfiguration.h` | Shell | remaining |  |  |  |
+| `inputpanelconfiguration.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `inputscope.h` | Tsf | remaining |  |  |  |
 | `inspectable.h` | Tcui | remaining |  |  |  |
 | `interactioncontext.h` | Input_IntContext | remaining |  |  |  |

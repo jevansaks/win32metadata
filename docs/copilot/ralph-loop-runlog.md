@@ -287,3 +287,12 @@
   ownership/typedef metadata. Confirmed `handleapi.h` (generic HANDLE lifetime functions)
   does not annotate HANDLE itself, consistent with the corrected shared-handle policy.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T02:45:00Z - Batch existing-patches-15
+
+- Headers: `icucommon.h`, `IEObj.h`, `IEPMapi.h`, `ImageTranscode.h`, and
+  `inputpanelconfiguration.h`.
+- Classified retained `callback-pointer-levels` (1 header), `import-library-overrides`
+  (2 headers), and `supported-os` (2 headers) patches; none contain ownership/typedef
+  metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

@@ -4502,10 +4502,10 @@
   {
     "header": "icucommon.h",
     "partition": "Intl",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-15.",
     "_source": "header-progress"
   },
   {
@@ -4583,19 +4583,19 @@
   {
     "header": "ieobj.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-15.",
     "_source": "header-progress"
   },
   {
     "header": "iepmapi.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-15.",
     "_source": "header-progress"
   },
   {
@@ -4637,10 +4637,10 @@
   {
     "header": "imagetranscode.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-15.",
     "_source": "header-progress"
   },
   {
@@ -4889,10 +4889,10 @@
   {
     "header": "inputpanelconfiguration.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-15.",
     "_source": "header-progress"
   },
   {
