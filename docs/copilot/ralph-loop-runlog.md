@@ -521,3 +521,11 @@ o-annotation-required with live-scrape evidence.
   to correct against the producer-site-only policy; adding new ownership annotations would
   be a separate, larger scraping-investigation task given the header's size).
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T00:30:00Z - Batch existing-patches-29
+
+- Headers: `shdeprecated.h`, `shellapi.h`, `ShellScalingApi.h`, `shimgdata.h`, and
+  `ShlDisp.h`.
+- Classified retained `supported-os` annotation-only patches; none contain
+  ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

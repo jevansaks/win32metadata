@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:37:57Z
+- Generated: 2026-09-02T22:39:26Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 160
+- Matched: 165
 - In progress: 0
 - Blocked: 0
-- Remaining: 1243
+- Remaining: 1238
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1003,14 +1003,14 @@
 | `shappmgr.h` | Shell | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `sharewindowcommandsourceinterop.h` | WinRT | remaining |  |  |  |
 | `shcore.h` | WinRT | remaining |  |  |  |
-| `shdeprecated.h` | Shell | remaining |  |  |  |
+| `shdeprecated.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shdispid.h` | Shell | remaining |  |  |  |
-| `shellapi.h` | Properties, Shell | remaining |  |  |  |
-| `shellscalingapi.h` | Shell | remaining |  |  |  |
+| `shellapi.h` | Properties, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
+| `shellscalingapi.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `sherrors.h` | Shell | remaining |  |  |  |
 | `shidfact.h` | Shell | remaining |  |  |  |
-| `shimgdata.h` | Shell | remaining |  |  |  |
-| `shldisp.h` | Lwef, Shell | remaining |  |  |  |
+| `shimgdata.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
+| `shldisp.h` | Lwef, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shlguid.h` | Shell | remaining |  |  |  |
 | `shlobj_core.h` | ActiveDirectory, Lwef, Properties, Shell | remaining |  |  |  |
 | `shlobj.h` | Controls, Lwef, Shell | remaining |  |  |  |

@@ -8939,10 +8939,10 @@
   {
     "header": "shdeprecated.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-29.",
     "_source": "header-progress"
   },
   {
@@ -8957,19 +8957,19 @@
   {
     "header": "shellapi.h",
     "partition": "Properties, Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-29.",
     "_source": "header-progress"
   },
   {
     "header": "shellscalingapi.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-29.",
     "_source": "header-progress"
   },
   {
@@ -8993,19 +8993,19 @@
   {
     "header": "shimgdata.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-29.",
     "_source": "header-progress"
   },
   {
     "header": "shldisp.h",
     "partition": "Lwef, Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-29.",
     "_source": "header-progress"
   },
   {
