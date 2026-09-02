@@ -621,3 +621,16 @@ o-annotation-required with live-scrape evidence.
   pattern documented throughout this session; verified via full sequential forward replay
   of all three in filename-sort order, reproducing the committed header exactly.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T03:05:00Z - Batch existing-patches-39 (completes the retained-patch cohort)
+
+- Headers: `wldp.h`, `wmcontainer.h`, `WS2spi.h`, and `WS2tcpip.h`.
+- Classified retained `import-library-overrides`, semantic-enum-typing, and
+  `set-last-error` patches; none contain ownership/typedef metadata.
+- **This batch completes classification of every pending header in the authoritative
+  `header-progress.json` ledger that already had a retained post-MIDL patch artifact at
+  session start.** 214 of 1403 headers are now `accepted-normalized`. All 1189 remaining
+  pending headers have no retained patch and require header-scraping investigation
+  (established in the `scraping-investigation-*` batches) to determine whether any patch
+  is needed at all — most are expected to need no patch given the global
+  `supportedOS.rsp`/`WithSetLastError.rsp` mechanisms discovered this session.

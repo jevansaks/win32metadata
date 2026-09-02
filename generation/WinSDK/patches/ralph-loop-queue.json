@@ -11819,10 +11819,10 @@
   {
     "header": "wldp.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-39.",
     "_source": "header-progress"
   },
   {
@@ -11837,10 +11837,10 @@
   {
     "header": "wmcontainer.h",
     "partition": "Mf",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-39.",
     "_source": "header-progress"
   },
   {
@@ -12134,19 +12134,19 @@
   {
     "header": "ws2spi.h",
     "partition": "WinSock",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-39.",
     "_source": "header-progress"
   },
   {
     "header": "ws2tcpip.h",
     "partition": "WinSock",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-39.",
     "_source": "header-progress"
   },
   {

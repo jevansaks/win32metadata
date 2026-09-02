@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:55:55Z
+- Generated: 2026-09-02T22:57:43Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 210
+- Matched: 214
 - In progress: 0
 - Blocked: 0
-- Remaining: 1193
+- Remaining: 1189
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1323,9 +1323,9 @@
 | `wlanihvtypes.h` | NWifi | remaining |  |  |  |
 | `wlantypes.h` | Ndis, NWifi | remaining |  |  |  |
 | `wlclient.h` | NWifi | remaining |  |  |  |
-| `wldp.h` | FileHistory, WinProg | remaining |  |  |  |
+| `wldp.h` | FileHistory, WinProg | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wmcodecdsp.h` | Media.DShow, Mf | remaining |  |  |  |
-| `wmcontainer.h` | Mf | remaining |  |  |  |
+| `wmcontainer.h` | Mf | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wmdmlog.h` | Wmdm | remaining |  |  |  |
 | `wmdxva.h` | WmFormat | remaining |  |  |  |
 | `wmistr.h` | Etw | remaining |  |  |  |
@@ -1358,8 +1358,8 @@
 | `ws2bth.h` | Bluetooth | remaining |  |  |  |
 | `ws2def.h` | IpHlp, WinSock | remaining |  |  |  |
 | `ws2ipdef.h` | IpHlp, WinSock | remaining |  |  |  |
-| `ws2spi.h` | WinSock | remaining |  |  |  |
-| `ws2tcpip.h` | WinSock | remaining |  |  |  |
+| `ws2spi.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
+| `ws2tcpip.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wsbapp.h` | Wsb | remaining |  |  |  |
 | `wsbapperror.h` | Wsb | remaining |  |  |  |
 | `wsbonline.h` | Wsb | remaining |  |  |  |
