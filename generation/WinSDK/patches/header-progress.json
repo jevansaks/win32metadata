@@ -17,7 +17,8 @@
     "opaqueDiscriminatedBuffer": "A byte buffer whose SAL permits more than one structure type remains ABI-accurate instead of being narrowed to one legacy sidecar type.",
     "anonymousRecordNames": "Compiler-generated names for anonymous nested records may differ when layout and field signatures are equivalent.",
     "nativeOnlyConstants": "Native constants present in the SDK header but omitted by the legacy win32metadata package may be generated when they do not alter existing declarations.",
-    "unusedProjectionAttributes": "Ansi, Unicode, documentation, and sidecars without consumer behavior do not affect functional matching."
+    "unusedProjectionAttributes": "Ansi, Unicode, documentation, and sidecars without consumer behavior do not affect functional matching.",
+    "comMacroSupportedOS": "SupportedOSPlatform on MIDL/COM macro-authored interfaces may be missing when the annotation cannot be attached to the Clang record cursor; the interface shape is otherwise equivalent."
   },
   "headers": [
     {
@@ -183,6 +184,22 @@
       "lastRun": "2026-09-02",
       "evidence": "docs/copilot/header-reports/DSRole.h.ActiveDirectory.md",
       "unresolved": []
+    },
+    {
+      "order": 13,
+      "header": "Iads.h",
+      "partition": "ActiveDirectory",
+      "namespace": "Windows.Win32.Networking.ActiveDirectory",
+      "status": "patching",
+      "focus": "Large IDL-generated ADSI surface: COM coclasses, supported OS, aliases, enum signedness, and retained handles",
+      "acceptedNormalizations": ["nativeOnlyConstants", "unusedProjectionAttributes", "comMacroSupportedOS", "anonymousRecordNames"],
+      "lastRun": "2026-09-02",
+      "evidence": "docs/copilot/header-reports/Iads.h.ActiveDirectory.md",
+      "unresolved": [],
+      "deferred": [
+        "SupportedOSPlatform on macro-authored COM interfaces is accepted as a tooling attachment gap when the interface signature is otherwise identical",
+        "ADSVALUE anonymous union names differ but layout and field signatures match"
+      ]
     },
     {"order": 10, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
     {"order": 4, "header": "esent.h", "partition": "Storage.Jet", "namespace": "Windows.Win32.Storage.Jet", "status": "queued", "focus": "Architecture-neutral integer widths"},

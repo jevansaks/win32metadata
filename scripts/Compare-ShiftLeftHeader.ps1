@@ -130,7 +130,7 @@ function Normalize-Snippet([string]$snippet) {
     if (!$snippet) {
         return $null
     }
-    return (($snippet -split "`r?`n") |
+    $normalized = (($snippet -split "`r?`n") |
         Where-Object {
             $_ -notmatch "^\s*\[(Documentation|Ansi|Unicode)\b"
         } |
@@ -142,6 +142,11 @@ function Normalize-Snippet([string]$snippet) {
             $line = $line -replace "\[Out\]\[NativeArrayInfo ([^\]]+)\]\[NotNullTerminated\]", '[Out][NotNullTerminated][NativeArrayInfo $1]'
             $line
         }) -join "`n"
+    return [regex]::Replace($normalized, "(?s)(\[(?:InvalidHandleValue|NativeTypedef)[^\r\n]*\]\r?\n(?:\[(?:InvalidHandleValue|NativeTypedef)[^\r\n]*\]\r?\n)+)(public struct)", {
+        param($match)
+        $attrs = [regex]::Matches($match.Groups[1].Value, "\[(?:InvalidHandleValue|NativeTypedef)[^\r\n]*\]") | ForEach-Object { $_.Value } | Sort-Object
+        (($attrs -join "`n") + "`n" + $match.Groups[2].Value)
+    })
 }
 
 function Get-EnumMembers([string]$snippet) {
@@ -200,6 +205,22 @@ function Classify-Delta(
     }
     if ((Normalize-Snippet $reference) -ceq (Normalize-Snippet $generated)) {
         return "exact"
+    }
+    if ($progressEntry.acceptedNormalizations -contains "comMacroSupportedOS" -and
+        $reference -match "\bpublic\s+interface\s+$([regex]::Escape($symbol))\b" -and
+        $generated -match "\bpublic\s+interface\s+$([regex]::Escape($symbol))\b") {
+        $referenceWithoutSupportedOs = $reference -replace "(?m)^\s*\[SupportedOSPlatform[^\r\n]*\]\r?\n", ""
+        if ((Normalize-Snippet $referenceWithoutSupportedOs) -ceq (Normalize-Snippet $generated)) {
+            return "accepted:comMacroSupportedOS"
+        }
+    }
+    if ($progressEntry.acceptedNormalizations -contains "anonymousRecordNames") {
+        $generatedWithAnonymousName = (Normalize-Snippet $generated) `
+            -replace "\bpublic struct [A-Za-z_][A-Za-z0-9_]*_\d+\b", "public struct _Anonymous_e__Union" `
+            -replace "\b[A-Za-z_][A-Za-z0-9_]*_\d+ Anonymous;", "_Anonymous_e__Union Anonymous;"
+        if ((Normalize-Snippet $reference) -ceq $generatedWithAnonymousName) {
+            return "accepted:anonymousRecordNames"
+        }
     }
     $classifications = [System.Collections.Generic.List[string]]::new()
     if ($progressEntry.acceptedNormalizations -contains "rawHandleOwnership" -and

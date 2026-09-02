@@ -32,6 +32,7 @@
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
 #endif
+#include <win32metadata_annotations.h>
 
 #ifndef DECLSPEC_XFGVIRT
 #if defined(_CONTROL_FLOW_GUARD_XFG)
@@ -1250,6 +1251,8 @@ typedef struct ads_searchpref_info *LPADS_SEARCHPREF_INFO;
 
 #define	ADS_VLV_RESPONSE	( L"fc8cb04d-311d-406c-8cb9-1ae8b843b419" )
 
+_Win32_InvalidHandle_(-1)
+_Win32_InvalidHandle_(0)
 typedef HANDLE ADS_SEARCH_HANDLE;
 
 typedef HANDLE *PADS_SEARCH_HANDLE;
@@ -2486,9 +2489,11 @@ EXTERN_C const IID IID_IADsPropertyList;
         virtual /* [propget][id] */ HRESULT STDMETHODCALLTYPE get_PropertyCount( 
             /* [retval][out] */ __RPC__out long *plCount) = 0;
         
+        _Win32_PreserveResult_
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE Next( 
             /* [retval][out] */ __RPC__out VARIANT *pVariant) = 0;
         
+        _Win32_PreserveResult_
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE Skip( 
             /* [in] */ long cElements) = 0;
         
@@ -3003,13 +3008,13 @@ EXTERN_C const IID IID_IADsPropertyValue;
             /* [retval][out] */ __RPC__deref_out_opt IDispatch **retval) = 0;
         
         virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_SecurityDescriptor( 
-            /* [in] */ __RPC__in_opt IDispatch *pSecurityDescriptor) = 0;
+            /* [in] */ _In_opt_ __RPC__in_opt IDispatch *pSecurityDescriptor) = 0;
         
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_LargeInteger( 
             /* [retval][out] */ __RPC__deref_out_opt IDispatch **retval) = 0;
         
         virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_LargeInteger( 
-            /* [in] */ __RPC__in_opt IDispatch *pLargeInteger) = 0;
+            /* [in] */ _In_opt_ __RPC__in_opt IDispatch *pLargeInteger) = 0;
         
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_UTCTime( 
             /* [retval][out] */ __RPC__out DATE *retval) = 0;
@@ -13700,15 +13705,19 @@ EXTERN_C const IID IID_IDirectorySearch;
         virtual HRESULT STDMETHODCALLTYPE AbandonSearch( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE phSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetFirstRow( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetNextRow( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetPreviousRow( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetNextColumnName( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchHandle,
             /* [out] */ __RPC__deref_out_opt LPWSTR *ppszColumnName) = 0;
@@ -13885,35 +13894,35 @@ EXTERN_C const IID IID_IDirectorySchemaMgmt;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE EnumAttributes( 
-            __RPC__deref_in_opt LPWSTR *ppszAttrNames,
+            _In_ __RPC__deref_in_opt LPWSTR *ppszAttrNames,
             DWORD dwNumAttributes,
-            __RPC__deref_in_opt PADS_ATTR_DEF *ppAttrDefinition,
-            __RPC__in DWORD *pdwNumAttributes) = 0;
+            _In_ __RPC__deref_in_opt PADS_ATTR_DEF *ppAttrDefinition,
+            _In_ __RPC__in DWORD *pdwNumAttributes) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE CreateAttributeDefinition( 
             __RPC__in LPWSTR pszAttributeName,
-            __RPC__in PADS_ATTR_DEF pAttributeDefinition) = 0;
+            _In_ __RPC__in PADS_ATTR_DEF pAttributeDefinition) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE WriteAttributeDefinition( 
             __RPC__in LPWSTR pszAttributeName,
-            __RPC__in PADS_ATTR_DEF pAttributeDefinition) = 0;
+            _In_ __RPC__in PADS_ATTR_DEF pAttributeDefinition) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE DeleteAttributeDefinition( 
             __RPC__in LPWSTR pszAttributeName) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE EnumClasses( 
-            __RPC__deref_in_opt LPWSTR *ppszClassNames,
+            _In_ __RPC__deref_in_opt LPWSTR *ppszClassNames,
             DWORD dwNumClasses,
-            __RPC__deref_in_opt PADS_CLASS_DEF *ppClassDefinition,
-            __RPC__in DWORD *pdwNumClasses) = 0;
+            _In_ __RPC__deref_in_opt PADS_CLASS_DEF *ppClassDefinition,
+            _In_ __RPC__in DWORD *pdwNumClasses) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE WriteClassDefinition( 
             __RPC__in LPWSTR pszClassName,
-            __RPC__in PADS_CLASS_DEF pClassDefinition) = 0;
+            _In_ __RPC__in PADS_CLASS_DEF pClassDefinition) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE CreateClassDefinition( 
             __RPC__in LPWSTR pszClassName,
-            __RPC__in PADS_CLASS_DEF pClassDefinition) = 0;
+            _In_ __RPC__in PADS_CLASS_DEF pClassDefinition) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE DeleteClassDefinition( 
             __RPC__in LPWSTR pszClassName) = 0;
@@ -14066,7 +14075,7 @@ EXTERN_C const IID IID_IADsAggregatee;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE ConnectAsAggregatee( 
-            __RPC__in_opt IUnknown *pOuterUnknown) = 0;
+            _In_opt_ __RPC__in_opt IUnknown *pOuterUnknown) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE DisconnectAsAggregatee( void) = 0;
         
@@ -14181,7 +14190,7 @@ EXTERN_C const IID IID_IADsAggregator;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE ConnectAsAggregator( 
-            __RPC__in_opt IUnknown *pAggregatee) = 0;
+            _In_opt_ __RPC__in_opt IUnknown *pAggregatee) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE DisconnectAsAggregator( void) = 0;
         
@@ -14575,10 +14584,10 @@ EXTERN_C const IID IID_IADsAccessControlList;
             /* [in] */ long lnAceCount) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE AddAce( 
-            /* [in] */ __RPC__in_opt IDispatch *pAccessControlEntry) = 0;
+            /* [in] */ _In_opt_ __RPC__in_opt IDispatch *pAccessControlEntry) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE RemoveAce( 
-            /* [in] */ __RPC__in_opt IDispatch *pAccessControlEntry) = 0;
+            /* [in] */ _In_opt_ __RPC__in_opt IDispatch *pAccessControlEntry) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE CopyAccessList( 
             /* [retval][out] */ __RPC__deref_out_opt IDispatch **ppAccessControlList) = 0;
@@ -14825,7 +14834,7 @@ EXTERN_C const IID IID_IADsSecurityDescriptor;
             /* [retval][out] */ __RPC__deref_out_opt IDispatch **retval) = 0;
         
         virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_DiscretionaryAcl( 
-            /* [in] */ __RPC__in_opt IDispatch *pDiscretionaryAcl) = 0;
+            /* [in] */ _In_opt_ __RPC__in_opt IDispatch *pDiscretionaryAcl) = 0;
         
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_DaclDefaulted( 
             /* [retval][out] */ __RPC__out VARIANT_BOOL *retval) = 0;
@@ -14837,7 +14846,7 @@ EXTERN_C const IID IID_IADsSecurityDescriptor;
             /* [retval][out] */ __RPC__deref_out_opt IDispatch **retval) = 0;
         
         virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_SystemAcl( 
-            /* [in] */ __RPC__in_opt IDispatch *pSystemAcl) = 0;
+            /* [in] */ _In_opt_ __RPC__in_opt IDispatch *pSystemAcl) = 0;
         
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_SaclDefaulted( 
             /* [retval][out] */ __RPC__out VARIANT_BOOL *retval) = 0;
@@ -19391,5 +19400,3 @@ ADsSecurityUtility;
 #endif
 
 #endif
-
-
