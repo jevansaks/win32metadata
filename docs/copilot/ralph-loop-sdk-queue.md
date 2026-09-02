@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:40:05Z
+- Generated: 2026-09-02T21:41:25Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 59
+- Matched: 64
 - In progress: 0
 - Blocked: 0
-- Remaining: 1344
+- Remaining: 1339
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -342,13 +342,13 @@
 | `dv.h` | Audio.DirectMusic | remaining |  |  |  |
 | `dvbsiparser.h` | MsTv | remaining |  |  |  |
 | `dvdevcod.h` | Media.DShow | remaining |  |  |  |
-| `dvdmedia.h` | Media.DShow | remaining |  |  |  |
+| `dvdmedia.h` | Media.DShow | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dvp.h` | DirectDraw | remaining |  |  |  |
-| `dwmapi.h` | Dwm | remaining |  |  |  |
-| `dwrite_1.h` | DirectWrite | remaining |  |  |  |
-| `dwrite_2.h` | DirectWrite | remaining |  |  |  |
+| `dwmapi.h` | Dwm | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
+| `dwrite_1.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
+| `dwrite_2.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dwrite_3.h` | DirectWrite | remaining |  |  |  |
-| `dwrite.h` | DirectWrite | remaining |  |  |  |
+| `dwrite.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dxcapi.h` | Direct3DDxc | remaining |  |  |  |
 | `dxcore_interface.h` | Debug, DXCore | remaining |  |  |  |
 | `dxcore.h` | Debug, DXCore | remaining |  |  |  |

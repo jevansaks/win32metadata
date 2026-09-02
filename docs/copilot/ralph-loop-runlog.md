@@ -241,3 +241,10 @@
 - Classified retained `supported-os` (4 headers) and `import-library-overrides`
   (1 header) annotation-only patches; none contain ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T01:25:00Z - Batch existing-patches-10
+
+- Headers: `dvdmedia.h`, `dwmapi.h`, `dwrite.h`, `dwrite_1.h`, and `dwrite_2.h`.
+- Classified retained `supported-os` (4 headers) and semantic-enum-typing (1 header,
+  `zzz-multimedia-enums`) patches; none contain ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

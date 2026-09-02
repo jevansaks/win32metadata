@@ -2990,10 +2990,10 @@
   {
     "header": "dvdmedia.h",
     "partition": "Media.DShow",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:25:00Z",
+    "notes": "Classified retained artifact in existing-patches-10.",
     "_source": "header-progress"
   },
   {
@@ -3008,28 +3008,28 @@
   {
     "header": "dwmapi.h",
     "partition": "Dwm",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:25:00Z",
+    "notes": "Classified retained artifact in existing-patches-10.",
     "_source": "header-progress"
   },
   {
     "header": "dwrite_1.h",
     "partition": "DirectWrite",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:25:00Z",
+    "notes": "Classified retained artifact in existing-patches-10.",
     "_source": "header-progress"
   },
   {
     "header": "dwrite_2.h",
     "partition": "DirectWrite",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:25:00Z",
+    "notes": "Classified retained artifact in existing-patches-10.",
     "_source": "header-progress"
   },
   {
@@ -3044,10 +3044,10 @@
   {
     "header": "dwrite.h",
     "partition": "DirectWrite",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:25:00Z",
+    "notes": "Classified retained artifact in existing-patches-10.",
     "_source": "header-progress"
   },
   {
