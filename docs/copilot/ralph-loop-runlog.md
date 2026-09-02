@@ -355,3 +355,15 @@
 - Classified retained `supported-os` annotation-only patches (core COM/OLE interface
   headers); none contain ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T04:30:00Z - Batch existing-patches-22
+
+- Headers: `oleacc.h`, `OleAuto.h`, `OleCtl.h`, `OleDlg.h`, and `oleidl.h`.
+- Classified retained `supported-os` annotation-only patches; none contain
+  ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.
+- Session checkpoint: 124 of 1403 authoritative ledger headers now classified
+  `accepted-normalized` across 22 existing-patch batches plus the 11-header
+  resource-ownership policy audit (5 batches). 1279 headers remain pending; most have no
+  retained patch yet and require header scraping/generation investigation via the full
+  build toolchain in a future session.

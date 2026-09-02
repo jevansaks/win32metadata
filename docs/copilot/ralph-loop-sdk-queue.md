@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:00:37Z
+- Generated: 2026-09-02T22:02:38Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 119
+- Matched: 124
 - In progress: 0
 - Blocked: 0
-- Remaining: 1284
+- Remaining: 1279
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -832,13 +832,13 @@
 | `odbcinst.h` | Search | remaining |  |  |  |
 | `odbcss.h` | Search | remaining |  |  |  |
 | `ole2.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
-| `oleacc.h` | WinAuto | remaining |  |  |  |
-| `oleauto.h` | ComOle | remaining |  |  |  |
-| `olectl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | remaining |  |  |  |
+| `oleacc.h` | WinAuto | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
+| `oleauto.h` | ComOle | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
+| `olectl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oledbdep.h` | Search | remaining |  |  |  |
 | `oledberr.h` | Search | remaining |  |  |  |
-| `oledlg.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | remaining |  |  |  |
-| `oleidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer | remaining |  |  |  |
+| `oledlg.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
+| `oleidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oletx2xa.h` | DTC | remaining |  |  |  |
 | `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | remaining |  |  |  |
 | `oobenotification.h` | WindowsSetupAndMigration | remaining |  |  |  |

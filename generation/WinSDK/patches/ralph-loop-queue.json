@@ -7400,28 +7400,28 @@
   {
     "header": "oleacc.h",
     "partition": "WinAuto",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-22.",
     "_source": "header-progress"
   },
   {
     "header": "oleauto.h",
     "partition": "ComOle",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-22.",
     "_source": "header-progress"
   },
   {
     "header": "olectl.h",
     "partition": "Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-22.",
     "_source": "header-progress"
   },
   {
@@ -7445,19 +7445,19 @@
   {
     "header": "oledlg.h",
     "partition": "Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-22.",
     "_source": "header-progress"
   },
   {
     "header": "oleidl.h",
     "partition": "Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-22.",
     "_source": "header-progress"
   },
   {
