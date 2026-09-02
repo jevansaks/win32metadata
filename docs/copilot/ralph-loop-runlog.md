@@ -170,3 +170,15 @@
   `winsafer.h`, `winsvc.h`) are now compliant with the corrected shared-handle ownership
   policy and classified `accepted-normalized`.** This closes out the audit explicitly
   requested to correct or block resource-ownership patches that still annotate typedefs.
+
+## 2026-09-02T23:05:00Z - Batch existing-patches-02
+
+- Headers: `bluetoothapis.h`, `clfsmgmtw32.h`, `clfsw32.h`, `combaseapi.h`, and `comcat.h`.
+- Resumed processing the general pending-header queue (189 pending headers already have
+  retained post-MIDL patches) now that the full resource-ownership audit is closed.
+- Classified retained `set-last-error` (3 headers) and `supported-os` (2 headers)
+  annotation-only patches; none contain ownership/typedef metadata, so no code changes were
+  required.
+- Every retained artifact passes reverse application against its tracked patched header.
+  These patches were present in the prior successful sequential x64, arm64, and x86
+  generation checkpoint.

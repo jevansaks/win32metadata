@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:22:59Z
+- Generated: 2026-09-02T21:25:27Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 19
+- Matched: 24
 - In progress: 0
 - Blocked: 0
-- Remaining: 1384
+- Remaining: 1379
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -120,7 +120,7 @@
 | `bits5_0.h` | Bits | remaining |  |  |  |
 | `bitscfg.h` | Bits | remaining |  |  |  |
 | `bitsmsg.h` | Bits | remaining |  |  |  |
-| `bluetoothapis.h` | Bluetooth | remaining |  |  |  |
+| `bluetoothapis.h` | Bluetooth | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `bluetoothleapis.h` | Bluetooth | remaining |  |  |  |
 | `bridgedeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `bthdef.h` | Bluetooth | remaining |  |  |  |
@@ -158,16 +158,16 @@
 | `cierror.h` | Foundation | remaining |  |  |  |
 | `clfs.h` | Fs | remaining |  |  |  |
 | `clfsmgmt.h` | Fs | remaining |  |  |  |
-| `clfsmgmtw32.h` | Fs | remaining |  |  |  |
-| `clfsw32.h` | Fs | remaining |  |  |  |
+| `clfsmgmtw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
+| `clfsw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `cloneviewhelper.h` | Monitor | remaining |  |  |  |
 | `cluadmex.h` | MsCs | remaining |  |  |  |
 | `cmnquery.h` | ActiveDirectory | remaining |  |  |  |
 | `codecapi.h` | Media.DShow, Mf | remaining |  |  |  |
 | `colordlg.h` | DlgBox | remaining |  |  |  |
 | `comadmin.h` | Cos | remaining |  |  |  |
-| `combaseapi.h` | Base, Com.Events, Com.StructuredStorage, Cos, IO, Multimedia, Shell, TransactionServer, VSS | remaining |  |  |  |
-| `comcat.h` | Com, ComOle | remaining |  |  |  |
+| `combaseapi.h` | Base, Com.Events, Com.StructuredStorage, Cos, IO, Multimedia, Shell, TransactionServer, VSS | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
+| `comcat.h` | Com, ComOle | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `coml2api.h` | Com.StructuredStorage | remaining |  |  |  |
 | `commctrl.h` | Controls, Policy, Shell | remaining |  |  |  |
 | `commdlg.h` | DlgBox, Media, Media.KernelStreaming, Multimedia | remaining |  |  |  |

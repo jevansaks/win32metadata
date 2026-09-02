@@ -3111,20 +3111,29 @@
       "header": "bluetoothapis.h",
       "partitions": "Bluetooth",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-02",
+      "category": "set-last-error",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:05:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/bluetoothapis.h.md generation/WinSDK/patches/post-midl/bluetoothapis.h.zzz-set-last-error.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-02T23:05:00Z",
+      "notes": "Classified retained artifact in existing-patches-02.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Bluetooth/main.cpp",
@@ -4146,20 +4155,29 @@
       "header": "clfsmgmtw32.h",
       "partitions": "Fs",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-02",
+      "category": "set-last-error",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:05:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/clfsmgmtw32.h.md generation/WinSDK/patches/post-midl/clfsmgmtw32.h.zzz-set-last-error.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-02T23:05:00Z",
+      "notes": "Classified retained artifact in existing-patches-02.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Fs/main.cpp",
@@ -4171,20 +4189,29 @@
       "header": "clfsw32.h",
       "partitions": "Fs",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-02",
+      "category": "set-last-error",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:05:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/clfsw32.h.md generation/WinSDK/patches/post-midl/clfsw32.h.zzz-set-last-error.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-02T23:05:00Z",
+      "notes": "Classified retained artifact in existing-patches-02.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Fs/main.cpp",
@@ -4367,20 +4394,29 @@
         "VSS"
       ],
       "partition_count": 9,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-02",
+      "category": "supported-os",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:05:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/combaseapi.h.md generation/WinSDK/patches/post-midl/combaseapi.h.zzz-supported-os.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-02T23:05:00Z",
+      "notes": "Classified retained artifact in existing-patches-02.",
       "sources": [
         {
           "source": "partition-main",
@@ -4445,20 +4481,29 @@
         "ComOle"
       ],
       "partition_count": 2,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-02",
+      "category": "supported-os",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:05:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/comcat.h.md generation/WinSDK/patches/post-midl/comcat.h.zzz-supported-os.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-02T23:05:00Z",
+      "notes": "Classified retained artifact in existing-patches-02.",
       "sources": [
         {
           "source": "partition-main",

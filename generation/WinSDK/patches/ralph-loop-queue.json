@@ -992,10 +992,10 @@
   {
     "header": "bluetoothapis.h",
     "partition": "Bluetooth",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-02.",
     "_source": "header-progress"
   },
   {
@@ -1334,19 +1334,19 @@
   {
     "header": "clfsmgmtw32.h",
     "partition": "Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-02.",
     "_source": "header-progress"
   },
   {
     "header": "clfsw32.h",
     "partition": "Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-02.",
     "_source": "header-progress"
   },
   {
@@ -1406,19 +1406,19 @@
   {
     "header": "combaseapi.h",
     "partition": "Base, Com.Events, Com.StructuredStorage, Cos, IO, Multimedia, Shell, TransactionServer, VSS",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-02.",
     "_source": "header-progress"
   },
   {
     "header": "comcat.h",
     "partition": "Com, ComOle",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-02.",
     "_source": "header-progress"
   },
   {
