@@ -7913,10 +7913,10 @@
   {
     "header": "prnasntp.h",
     "partition": "Printing",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:20:00Z",
+    "notes": "Classified retained artifact in existing-patches-24.",
     "_source": "header-progress"
   },
   {
@@ -7940,10 +7940,10 @@
   {
     "header": "processenv.h",
     "partition": "Environment, FileHistory, Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:20:00Z",
+    "notes": "Classified retained artifact in existing-patches-24.",
     "_source": "header-progress"
   },
   {
@@ -7958,19 +7958,19 @@
   {
     "header": "processthreadsapi.h",
     "partition": "FileHistory, TermServ",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:20:00Z",
+    "notes": "Classified retained artifact in existing-patches-24.",
     "_source": "header-progress"
   },
   {
     "header": "profileapi.h",
     "partition": "Perf",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:20:00Z",
+    "notes": "Classified retained artifact in existing-patches-24.",
     "_source": "header-progress"
   },
   {
@@ -8003,10 +8003,10 @@
   {
     "header": "propapi.h",
     "partition": "Com.StructuredStorage",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:20:00Z",
+    "notes": "Classified retained artifact in existing-patches-24.",
     "_source": "header-progress"
   },
   {

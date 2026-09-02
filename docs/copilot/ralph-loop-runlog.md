@@ -381,3 +381,12 @@
 - Classified retained `set-last-error` (2 headers), `supported-os` (1 header), and
   semantic-enum-typing (1 header) patches; none contain ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-02T22:20:00Z - Batch existing-patches-24
+
+- Headers: `prnasntp.h`, `processenv.h`, `processthreadsapi.h`, `profileapi.h`, and
+  `propapi.h`.
+- Classified retained `import-library-overrides` (1 header), `set-last-error`
+  (3 headers), and `supported-os` (1 header) patches; none contain ownership/typedef
+  metadata. Confirmed `processthreadsapi.h` does not annotate process/thread `HANDLE`.
+- Every retained artifact passes reverse application against its tracked patched header.

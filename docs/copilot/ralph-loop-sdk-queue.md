@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:05:53Z
+- Generated: 2026-09-02T22:07:52Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 129
+- Matched: 134
 - In progress: 0
 - Blocked: 0
-- Remaining: 1274
+- Remaining: 1269
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -889,17 +889,17 @@
 | `printoem.h` | Printing | remaining |  |  |  |
 | `printpreview.h` | Printing | remaining |  |  |  |
 | `prnasnot.h` | Gdi, Printing | remaining |  |  |  |
-| `prnasntp.h` | Printing | remaining |  |  |  |
+| `prnasntp.h` | Printing | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `prntfont.h` | Printing | remaining |  |  |  |
 | `prntvpt.h` | Gdi, PrintTicket | remaining |  |  |  |
-| `processenv.h` | Environment, FileHistory, Fs | remaining |  |  |  |
+| `processenv.h` | Environment, FileHistory, Fs | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `processsnapshot.h` | Proc_Snap | remaining |  |  |  |
-| `processthreadsapi.h` | FileHistory, TermServ | remaining |  |  |  |
-| `profileapi.h` | Perf | remaining |  |  |  |
+| `processthreadsapi.h` | FileHistory, TermServ | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
+| `profileapi.h` | Perf | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `profinfo.h` | Shell | remaining |  |  |  |
 | `projectedfslib.h` | ProjFs | remaining |  |  |  |
 | `proofofpossessioncookieinfo.h` | WinInet | remaining |  |  |  |
-| `propapi.h` | Com.StructuredStorage | remaining |  |  |  |
+| `propapi.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `propidl.h` | Com.StructuredStorage, Properties, Shell | remaining |  |  |  |
 | `propidlbase.h` | Com.StructuredStorage | remaining |  |  |  |
 | `propkeydef.h` | Console, Shell, WinContacts, WpdSdk | remaining |  |  |  |
