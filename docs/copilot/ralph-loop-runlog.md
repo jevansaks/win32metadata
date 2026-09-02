@@ -278,3 +278,12 @@
   `callback-canonical-name` (1 header, stacked with set-last-error on
   `errhandlingapi.h`) patches; none contain ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T02:30:00Z - Batch existing-patches-14
+
+- Headers: `FileHC.h`, `handleapi.h`, `HtmlHelp.h`, `Icm.h`, and `IcmpAPI.h`.
+- Classified retained `set-last-error` (3 headers), `import-library-overrides`
+  (1 header), and `callback-canonical-name` (1 header) patches; none contain
+  ownership/typedef metadata. Confirmed `handleapi.h` (generic HANDLE lifetime functions)
+  does not annotate HANDLE itself, consistent with the corrected shared-handle policy.
+- Every retained artifact passes reverse application against its tracked patched header.

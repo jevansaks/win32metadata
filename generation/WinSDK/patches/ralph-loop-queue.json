@@ -3764,10 +3764,10 @@
   {
     "header": "filehc.h",
     "partition": "FileHistory, Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-14.",
     "_source": "header-progress"
   },
   {
@@ -4178,10 +4178,10 @@
   {
     "header": "handleapi.h",
     "partition": "FileHistory, Foundation",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-14.",
     "_source": "header-progress"
   },
   {
@@ -4295,10 +4295,10 @@
   {
     "header": "htmlhelp.h",
     "partition": "HtmlHelp",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-14.",
     "_source": "header-progress"
   },
   {
@@ -4448,19 +4448,19 @@
   {
     "header": "Icm.h",
     "partition": "Wcs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-14.",
     "_source": "header-progress"
   },
   {
     "header": "icmpapi.h",
     "partition": "IpHlp",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-14.",
     "_source": "header-progress"
   },
   {

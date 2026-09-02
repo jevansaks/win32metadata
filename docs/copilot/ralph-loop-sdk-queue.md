@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:47:42Z
+- Generated: 2026-09-02T21:49:06Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 79
+- Matched: 84
 - In progress: 0
 - Blocked: 0
-- Remaining: 1324
+- Remaining: 1319
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -428,7 +428,7 @@
 | `fhstatus.h` | FileHistory | remaining |  |  |  |
 | `fhsvcctl.h` | FileHistory | remaining |  |  |  |
 | `fileapi.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
-| `filehc.h` | FileHistory, Fs | remaining |  |  |  |
+| `filehc.h` | FileHistory, Fs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `filter.h` | IndexSrv, Search | remaining |  |  |  |
 | `filtereg.h` | Search | remaining |  |  |  |
 | `filterpipeline.h` | Printing | remaining |  |  |  |
@@ -474,7 +474,7 @@
 | `gpiobuttontypes.h` | Hid | remaining |  |  |  |
 | `gpmgmt.h` | Gpmc | remaining |  |  |  |
 | `guiddef.h` | TransactionServer | remaining |  |  |  |
-| `handleapi.h` | FileHistory, Foundation | remaining |  |  |  |
+| `handleapi.h` | FileHistory, Foundation | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `hidclass.h` | Hid | remaining |  |  |  |
 | `hidpi.h` | Hid | remaining |  |  |  |
 | `hidsdi.h` | Hid | remaining |  |  |  |
@@ -487,7 +487,7 @@
 | `hstring.h` | WinRT | remaining |  |  |  |
 | `htiface.h` | InternetExplorer | remaining |  |  |  |
 | `htiframe.h` | InternetExplorer | remaining |  |  |  |
-| `htmlhelp.h` | HtmlHelp | remaining |  |  |  |
+| `htmlhelp.h` | HtmlHelp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `http.h` | HttpServer | remaining |  |  |  |
 | `httpext.h` | Iis | remaining |  |  |  |
 | `httpfilt.h` | Iis | remaining |  |  |  |
@@ -504,8 +504,8 @@
 | `iads.h` | ActiveDirectory, Iis | remaining |  |  |  |
 | `icftypes.h` | WindowsFirewall | remaining |  |  |  |
 | `ichannelcredentials.h` | Com.ChannelCreds, ComOle | remaining |  |  |  |
-| `Icm.h` | Wcs | remaining |  |  |  |
-| `icmpapi.h` | IpHlp | remaining |  |  |  |
+| `Icm.h` | Wcs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
+| `icmpapi.h` | IpHlp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `icontact.h` | WinContacts | remaining |  |  |  |
 | `icontactproperties.h` | WinContacts | remaining |  |  |  |
 | `icontentprefetchertasktrigger.h` | Wsw | remaining |  |  |  |
