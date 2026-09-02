@@ -2414,10 +2414,10 @@
   {
     "header": "deliveryoptimization.h",
     "partition": "DeliveryOptimization",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:20:00Z",
+    "notes": "No patch needed; verified via live scrape and static review.",
     "_source": "header-progress"
   },
   {
@@ -2648,19 +2648,19 @@
   {
     "header": "dlnadeviceinterfaceids.h",
     "partition": "Dlna",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:20:00Z",
+    "notes": "No patch needed; constant-only header verified via live scrape.",
     "_source": "header-progress"
   },
   {
     "header": "dlnametadataproviderproperties.h",
     "partition": "Dlna",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:20:00Z",
+    "notes": "No patch needed; constant-only header verified via live scrape.",
     "_source": "header-progress"
   },
   {
@@ -11396,10 +11396,10 @@
   {
     "header": "winenclave.h",
     "partition": "Enclave",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:20:00Z",
+    "notes": "No patch needed; verified via live scrape and static review.",
     "_source": "header-progress"
   },
   {
@@ -11504,10 +11504,10 @@
   {
     "header": "winmeta.h",
     "partition": "TraceLogging",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:20:00Z",
+    "notes": "No patch needed; constant-only header verified via live scrape.",
     "_source": "header-progress"
   },
   {

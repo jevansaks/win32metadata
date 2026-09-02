@@ -7829,20 +7829,29 @@
       "header": "deliveryoptimization.h",
       "partitions": "DeliveryOptimization",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-04",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership/enum gaps; supported-os/last-error handled globally where applicable"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T03:20:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/deliveryoptimization.h.md live re-scrape (ScanArch=x86, partition DeliveryOptimization) succeeds; static review confirms no DECLARE_HANDLE/ownership patterns"
+      ],
+      "last_updated": "2026-09-03T03:20:00Z",
+      "notes": "No patch needed; verified via live scrape and static review.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/DeliveryOptimization/main.cpp",
@@ -8560,20 +8569,29 @@
       "header": "dlnadeviceinterfaceids.h",
       "partitions": "Dlna",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-04",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership/enum gaps; supported-os/last-error handled globally where applicable"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T03:20:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/dlnadeviceinterfaceids.h.md live re-scrape (ScanArch=x86, partition Dlna) succeeds with 0 warnings/errors; no DllImport entries"
+      ],
+      "last_updated": "2026-09-03T03:20:00Z",
+      "notes": "No patch needed; constant-only header verified via live scrape.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Dlna/main.cpp",
@@ -8585,20 +8603,29 @@
       "header": "dlnametadataproviderproperties.h",
       "partitions": "Dlna",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-04",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership/enum gaps; supported-os/last-error handled globally where applicable"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T03:20:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/dlnametadataproviderproperties.h.md live re-scrape (ScanArch=x86, partition Dlna) succeeds with 0 warnings/errors; no DllImport entries"
+      ],
+      "last_updated": "2026-09-03T03:20:00Z",
+      "notes": "No patch needed; constant-only header verified via live scrape.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Dlna/main.cpp",
@@ -43810,20 +43837,29 @@
       "header": "winenclave.h",
       "partitions": "Enclave",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-04",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership/enum gaps; supported-os/last-error handled globally where applicable"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T03:20:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/winenclave.h.md live re-scrape (ScanArch=x86, partition Enclave) succeeds; static review confirms no DECLARE_HANDLE/ownership patterns"
+      ],
+      "last_updated": "2026-09-03T03:20:00Z",
+      "notes": "No patch needed; verified via live scrape and static review.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Enclave/main.cpp",
@@ -44344,20 +44380,29 @@
       "header": "winmeta.h",
       "partitions": "TraceLogging",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-04",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership/enum gaps; supported-os/last-error handled globally where applicable"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T03:20:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/winmeta.h.md live re-scrape (ScanArch=x86, partition TraceLogging) succeeds with 0 warnings/errors; no DllImport entries"
+      ],
+      "last_updated": "2026-09-03T03:20:00Z",
+      "notes": "No patch needed; constant-only header verified via live scrape.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/TraceLogging/main.cpp",

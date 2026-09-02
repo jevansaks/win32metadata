@@ -634,3 +634,19 @@ o-annotation-required with live-scrape evidence.
   (established in the `scraping-investigation-*` batches) to determine whether any patch
   is needed at all — most are expected to need no patch given the global
   `supportedOS.rsp`/`WithSetLastError.rsp` mechanisms discovered this session.
+
+## 2026-09-03T03:20:00Z - Batch scraping-investigation-04
+
+- Headers: `winmeta.h`, `winenclave.h`, `dlnadeviceinterfaceids.h`,
+  `dlnametadataproviderproperties.h`, and `deliveryoptimization.h` (partitions
+  TraceLogging, Enclave, Dlna x2, DeliveryOptimization).
+- All five live-scraped cleanly (0 build-affecting warnings/errors); `winmeta.h`,
+  `dlnadeviceinterfaceids.h`, and `dlnametadataproviderproperties.h` are
+  constant/GUID-only with no function surface; `winenclave.h` (19 functions) and
+  `deliveryoptimization.h` (8 functions) have no `DECLARE_HANDLE`/ownership patterns.
+  Classified `accepted-normalized` / `no-annotation-required` with live-scrape evidence.
+- Noted `Enclave` (and `WinHttp`) partitions are **not** in `ExcludeFromCrossarch`, so
+  their scrape output is architecture-specific (`obj/generated/x86` etc.), unlike most
+  other investigated partitions this session.
+- Session checkpoint: 219 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`.
