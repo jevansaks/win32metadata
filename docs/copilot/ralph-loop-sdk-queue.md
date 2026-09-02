@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:27:54Z
+- Generated: 2026-09-02T21:30:26Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 29
+- Matched: 34
 - In progress: 0
 - Blocked: 0
-- Remaining: 1374
+- Remaining: 1369
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -177,12 +177,12 @@
 | `computecore.h` | HostComputeSystem | remaining |  |  |  |
 | `computenetwork.h` | HostComputeNetwork | remaining |  |  |  |
 | `computestorage.h` | HostComputeSystem | remaining |  |  |  |
-| `comsvcs.h` | Com.Events, Cos | remaining |  |  |  |
+| `comsvcs.h` | Com.Events, Cos | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `consoleapis.h` | Console | remaining |  |  |  |
 | `contactaggregation.h` | WinContacts | remaining |  |  |  |
 | `contactdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `contentpartner.h` | Wmp | remaining |  |  |  |
-| `control.h` | Media.DShow | remaining |  |  |  |
+| `control.h` | Media.DShow | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cor.h` | ClrProfiling | remaining |  |  |  |
 | `corecrt_io.h` | Multimedia | remaining |  |  |  |
 | `CoreWindow.h` | WinRT | remaining |  |  |  |
@@ -190,12 +190,12 @@
 | `corprof.h` | ClrProfiling | remaining |  |  |  |
 | `cpl.h` | Shell | remaining |  |  |  |
 | `cplext.h` | Shell | remaining |  |  |  |
-| `credentialprovider.h` | Shell | remaining |  |  |  |
+| `credentialprovider.h` | Shell | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `credssp.h` | Credentials | remaining |  |  |  |
 | `cryptcat.h` | Security.Cryptography.Catalog | remaining |  |  |  |
 | `cryptdlg.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
-| `cryptuiapi.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
-| `cryptxml.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `cryptuiapi.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
+| `cryptxml.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cscapi.h` | Of | remaining |  |  |  |
 | `cscobj.h` | Of | remaining |  |  |  |
 | `cspdk.h` | Security.Cryptography | remaining |  |  |  |

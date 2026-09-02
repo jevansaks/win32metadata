@@ -196,3 +196,12 @@
   Verified instead via full sequential replay: reverse-applied both patches in unwind order,
   then forward-applied both in filename-sort order; reproduces the committed header exactly
   (zero diff).
+
+## 2026-09-02T23:50:00Z - Batch existing-patches-04
+
+- Headers: `ComSvcs.h`, `control.h`, `credentialprovider.h`, `cryptuiapi.h`, and
+  `cryptxml.h`.
+- Classified retained `supported-os` (3 headers) and semantic-enum-typing (2 headers,
+  `zz-crypto-security-enums`/`zzz-multimedia-enums`) patches; none contain
+  ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

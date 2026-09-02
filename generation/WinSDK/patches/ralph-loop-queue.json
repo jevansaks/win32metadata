@@ -1505,10 +1505,10 @@
   {
     "header": "comsvcs.h",
     "partition": "Com.Events, Cos",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-04.",
     "_source": "header-progress"
   },
   {
@@ -1550,10 +1550,10 @@
   {
     "header": "control.h",
     "partition": "Media.DShow",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-04.",
     "_source": "header-progress"
   },
   {
@@ -1622,10 +1622,10 @@
   {
     "header": "credentialprovider.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-04.",
     "_source": "header-progress"
   },
   {
@@ -1658,19 +1658,19 @@
   {
     "header": "cryptuiapi.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-04.",
     "_source": "header-progress"
   },
   {
     "header": "cryptxml.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T23:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-04.",
     "_source": "header-progress"
   },
   {
