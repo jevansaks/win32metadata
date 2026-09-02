@@ -20,15 +20,20 @@
   (`dotnet build generation/WinSDK -c Release -p:ScanArch=x86 -t:ScrapeHeaders
   -p:PartitionFilter=PrintTicket`) succeeds with 0 warnings/errors, confirming the annotation
   placement is syntactically valid C parsed cleanly by Clang.
-- **Blocker (documentation ambiguity, not fixed here):** Attempted to verify a
-  `_Win32_metadata_supported_os_` value for `PTOpenProvider`/`PTCloseProvider` via web
-  search; the result claimed "Windows XP", which is implausible for the Print Ticket XML
-  API (introduced with the XPS/Vista print pipeline) and is not corroborated by any
-  `NTDDI_VERSION`/`_WIN32_WINNT` guard in the header itself (this header has none at all).
-  Given the documentation signal is unreliable and no header-level guard corroborates it,
-  no `supported_os` annotation was added — this matches the ledger's own stop condition
-  ("Ambiguous... requiring spec decision"). Flagged for a future queue entry with a more
-  authoritative source (e.g. a live Windows SDK reference build) rather than guessed at.
+- **Correction:** Initially could not corroborate a `supported_os` value for these functions
+  via web search (which implausibly claimed "Windows XP") and left it unannotated pending a
+  more authoritative source. Subsequently discovered this repository's own authoritative,
+  global `generation/WinSDK/supportedOS.rsp` (17,249 `--with-attribute FunctionName=
+  SupportedOSPlatform(...)` entries, loaded for every partition scrape via
+  `Windows.Win32.proj`'s `ScraperRsp` item group) already maps `PTOpenProvider`,
+  `PTOpenProviderEx`, `PTCloseProvider`, and `PTQuerySchemaVersionSupport` to
+  `SupportedOSPlatform("windows5.1.2600")` — confirming the web search result was in fact
+  correct, and, more importantly, that **no per-header patch is needed at all**: live
+  re-scrape confirms `[SupportedOSPlatform("windows5.1.2600")]` is already emitted on these
+  functions purely from the global rsp, with zero inline annotation in the header. The
+  earlier "ambiguous, needs external verification" characterization was wrong — the
+  repository already has an authoritative answer; the fix was to consult
+  `supportedOS.rsp` directly, not the web.
 - **Note:** The custom `_Win32_metadata_raii_free_`/`_Win32_metadata_invalid_handle_`
   annotations are processed at the `EmitWinmd` stage (via `MetadataSyntaxTreeCleaner`), not
   visible as C# attributes at the `ScrapeHeaders` stage (unlike

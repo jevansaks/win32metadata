@@ -20396,26 +20396,35 @@
       "header": "metahost.h",
       "partitions": "ClrHosting",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-03",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "last_updated": "2026-09-02T23:40:00Z",
+      "notes": "No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/ClrHosting/main.cpp",
         "source_line": 6,
         "partition": "ClrHosting"
-      }
+      },
+      "normalization_profile": "default",
+      "normalizations_applied": [
+        "No ownership/enum gaps; supported-os handled globally via supportedOS.rsp"
+      ],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:40:00Z",
+          "rationale": "Confirmed via live scrape and static review that this header has no DECLARE_HANDLE ownership patterns; global supportedOS.rsp already supplies SupportedOSPlatform for all real functions."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/metahost.h.md live re-scrape (ScanArch=x86, partition ClrHosting) succeeds with 0 warnings/errors; static review confirms no DECLARE_HANDLE typedefs"
+      ]
     },
     {
       "header": "mfapi.h",
@@ -22298,26 +22307,35 @@
       "header": "mscoree.h",
       "partitions": "ClrHosting",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-03",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "last_updated": "2026-09-02T23:40:00Z",
+      "notes": "No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/ClrHosting/main.cpp",
         "source_line": 7,
         "partition": "ClrHosting"
-      }
+      },
+      "normalization_profile": "default",
+      "normalizations_applied": [
+        "No ownership/enum gaps; supported-os handled globally via supportedOS.rsp"
+      ],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:40:00Z",
+          "rationale": "Confirmed via live scrape and static review that this header has no DECLARE_HANDLE ownership patterns; global supportedOS.rsp already supplies SupportedOSPlatform for all real functions."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/mscoree.h.md live re-scrape (ScanArch=x86, partition ClrHosting) succeeds with 0 warnings/errors; static review confirms no DECLARE_HANDLE typedefs"
+      ]
     },
     {
       "header": "msctf.h",

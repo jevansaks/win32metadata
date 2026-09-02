@@ -471,3 +471,34 @@
   used throughout the resource-ownership audit batches, not full winmd emission.
 - Session checkpoint: 148 of 1403 authoritative ledger headers now classified
   `accepted-normalized`.
+
+## 2026-09-02T23:40:00Z - Batch scraping-investigation-03 + major workflow discovery
+
+- **Major discovery:** This repository has two global, authoritative response files loaded
+  for every partition scrape (via `Windows.Win32.proj`'s `ScraperRsp` item group):
+  `generation/WinSDK/supportedOS.rsp` (17,249 `--with-attribute
+  FunctionName=SupportedOSPlatform(...)` entries) and
+  `generation/WinSDK/WithSetLastError.rsp` (3,366 `--with-setlasterror` function names).
+  Confirmed by grepping both files directly and cross-checking against live scrape output
+  (e.g. `CoGetMalloc`, `PTOpenProvider`, `UalStart` are all present with the exact
+  values already used in per-header patches). This means most retained
+  `zzz-supported-os`/`set-last-error` per-header patches classified in earlier batches
+  are **redundant** with (harmless duplicates of) this global mechanism, and — more
+  importantly for the remaining backlog — **most pending headers with no patch may already
+  be fully correct for supported-os/last-error with zero header changes needed**, once
+  confirmed clean of ownership/enum gaps.
+- **Correction:** Revised the `prntvpt.h` report from earlier this session: the
+  "ambiguous, needs external verification" characterization for its supported-os value was
+  wrong. supportedOS.rsp directly confirms PTOpenProvider/PTOpenProviderEx/
+  PTCloseProvider/PTQuerySchemaVersionSupport are windows5.1.2600, already emitted
+  with zero inline annotation — no per-header patch was ever needed for this aspect.
+  **Going forward: consult supportedOS.rsp/WithSetLastError.rsp directly (fast,
+  authoritative) instead of web search before concluding a header needs a new
+  supported-os/set-last-error patch.**
+- Headers: `metahost.h`, `mscoree.h` (partition ClrHosting). Live-scraped cleanly (0
+  warnings/errors); no DECLARE_HANDLE ownership patterns; all real functions already
+  correctly annotated via the global supportedOS.rsp. Classified ccepted-normalized /
+  
+o-annotation-required with live-scrape evidence.
+- Session checkpoint: 150 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`.

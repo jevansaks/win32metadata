@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:29:20Z
+- Generated: 2026-09-02T22:33:23Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 148
+- Matched: 150
 - In progress: 0
 - Blocked: 0
-- Remaining: 1255
+- Remaining: 1253
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -642,7 +642,7 @@
 | `messagedeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `messagedispatcherapi.h` | ComOle, WinRT | remaining |  |  |  |
 | `metadatadeviceservice.h` | WpdSdk | remaining |  |  |  |
-| `metahost.h` | ClrHosting | remaining |  |  |  |
+| `metahost.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `mfapi.h` | Mf | remaining |  |  |  |
 | `mfcaptureengine.h` | Mf | remaining |  |  |  |
 | `mfcontentdecryptionmodule.h` | Mf | remaining |  |  |  |
@@ -706,7 +706,7 @@
 | `mschapp.h` | MsChap | remaining |  |  |  |
 | `msclmd.h` | Security.Cryptography | remaining |  |  |  |
 | `msclus.h` | MsCs | remaining |  |  |  |
-| `mscoree.h` | ClrHosting | remaining |  |  |  |
+| `mscoree.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `msctf.h` | Tsf | remaining |  |  |  |
 | `msctfmonitorapi.h` | Tsf | remaining |  |  |  |
 | `msdadc.h` | Search | remaining |  |  |  |

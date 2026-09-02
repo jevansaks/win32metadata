@@ -43,3 +43,14 @@
   rather than guessed at.
 - **Normalization:** ABI-neutral declaration annotation, verified against official
   documentation rather than assumed.
+- **Follow-up discovery (recorded for future batches):** This repository also has a global,
+  authoritative `generation/WinSDK/supportedOS.rsp` (17,249 `--with-attribute
+  FunctionName=SupportedOSPlatform(...)` entries, loaded for every partition scrape) that
+  independently maps `UalStart`/`UalStop`/`UalInstrument`/`UalRegisterProduct` to the same
+  `SupportedOSPlatform("windows8.0")` value added here inline. The inline patch is therefore
+  redundant with the global mechanism (consistent with many other already-classified
+  headers in this repo, e.g. `combaseapi.h`, which also redundantly specify inline
+  annotations already covered by `supportedOS.rsp`) but not harmful — live re-scrape shows
+  no duplicate-attribute conflict. For future scraping-investigation batches, check
+  `supportedOS.rsp`/`WithSetLastError.rsp` directly (fast, authoritative, no web lookup
+  needed) before concluding a header needs a new supported-os/set-last-error patch at all.
