@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:53:44Z
+- Generated: 2026-09-02T23:57:14Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 263
+- Matched: 268
 - In progress: 0
 - Blocked: 3
-- Remaining: 1137
+- Remaining: 1132
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -572,7 +572,7 @@
 | `iscsidsc.h` | IScsiDisc | remaining |  |  |  |
 | `iscsierr.h` | IScsiDisc | remaining |  |  |  |
 | `isolatedapplauncher.h` | FileHistory, Isolation | remaining |  |  |  |
-| `isolatedwindowsenvironmentutils.h` | Isolation | remaining |  |  |  |
+| `isolatedwindowsenvironmentutils.h` | Isolation | matched |  | 09/02/2026 16:57:06 | Boolean query functions only. |
 | `issper16.h` | Identity | remaining |  |  |  |
 | `iswindowarranged.h` | MenuRc | matched |  | 09/02/2026 16:49:01 | Query-only function taking HWND input; no handle production. |
 | `isysmon.h` | Perf | remaining |  |  |  |
@@ -1020,12 +1020,12 @@
 | `shtypes.h` | Shell, Shell.Common | remaining |  |  |  |
 | `simpdata.h` | Search | remaining |  |  |  |
 | `slerror.h` | Identity | remaining |  |  |  |
-| `sliddefs.h` | Identity | remaining |  |  |  |
+| `sliddefs.h` | Identity | matched |  | 09/02/2026 16:57:06 | GUID constant only, no functions. |
 | `slpublic.h` | Identity | remaining |  |  |  |
 | `smbclnt.h` | MsCs | remaining |  |  |  |
 | `smtpguid.h` | IMapi | remaining |  |  |  |
 | `snmp.h` | Snmp | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
-| `socketapi.h` | WinSock | remaining |  |  |  |
+| `socketapi.h` | WinSock | matched |  | 09/02/2026 16:57:06 | SetSocketMediaStreamingMode(BOOL) - no handle. |
 | `softpub.h` | Security.WinTrust | remaining |  |  |  |
 | `spatialaudioclient.h` | Audio | remaining |  |  |  |
 | `spatialaudiohrtf.h` | Audio | remaining |  |  |  |
@@ -1106,7 +1106,7 @@
 | `TpmVscAttestation.h` | Security.Tpm | remaining |  |  |  |
 | `tpmvscmgr.h` | Security.Tpm | remaining |  |  |  |
 | `traffic.h` | Qos | remaining |  |  |  |
-| `transportsettingcommon.h` | WinSock | remaining |  |  |  |
+| `transportsettingcommon.h` | WinSock | matched |  | 09/02/2026 16:57:06 | Plain data struct only, no functions. |
 | `transportsettings.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `tsattrs.h` | Tsf | remaining |  |  |  |
 | `tsgauthenticationengine.h` | TermServ | remaining |  |  |  |
@@ -1186,7 +1186,7 @@
 | `wbemads.h` | Wmi | remaining |  |  |  |
 | `wbemcli.h` | TermServ, Wmi | remaining |  |  |  |
 | `wbemdisp.h` | Wmi | remaining |  |  |  |
-| `wbemidl.h` | Wmi | remaining |  |  |  |
+| `wbemidl.h` | Wmi | matched |  | 09/02/2026 16:57:06 | Redirect-only; 40 functions all MIDL RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wbemprov.h` | Wmi | remaining |  |  |  |
 | `wbemtran.h` | Wmi | remaining |  |  |  |
 | `wcmapi.h` | Wcm | remaining |  |  |  |

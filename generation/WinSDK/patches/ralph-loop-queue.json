@@ -5060,10 +5060,10 @@
   {
     "header": "isolatedwindowsenvironmentutils.h",
     "partition": "Isolation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:57:06Z",
+    "notes": "Boolean query functions only.",
     "_source": "header-progress"
   },
   {
@@ -9092,10 +9092,10 @@
   {
     "header": "sliddefs.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:57:06Z",
+    "notes": "GUID constant only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -9137,10 +9137,10 @@
   {
     "header": "socketapi.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:57:06Z",
+    "notes": "SetSocketMediaStreamingMode(BOOL) - no handle.",
     "_source": "header-progress"
   },
   {
@@ -9866,10 +9866,10 @@
   {
     "header": "transportsettingcommon.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:57:06Z",
+    "notes": "Plain data struct only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10586,10 +10586,10 @@
   {
     "header": "wbemidl.h",
     "partition": "Wmi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:57:06Z",
+    "notes": "Redirect-only; 40 functions all MIDL RPC marshalling stubs, no DECLARE_HANDLE.",
     "_source": "header-progress"
   },
   {

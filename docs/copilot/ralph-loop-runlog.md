@@ -827,3 +827,21 @@ headers for these types) do not need new producer-site patches for these specifi
   Recorded as blocked pending the same dedicated policy decision.
 
 **Ledger status:** 263 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1137 pending.
+
+## 2026-09-02 16:57:26 UTC - Batch scraping-investigation-16
+
+**Headers:** sliddefs.h, wbemidl.h, transportsettingcommon.h, socketapi.h, isolatedwindowsenvironmentutils.h
+**Partitions scraped:** Identity, Wmi, WinSock, Isolation (x86; 0 errors; Identity/WinSock show 3 each
+pre-existing cross-partition remap warnings for sockaddr/timeval/_CERT_CONTEXT/SecPkgContext_IssuerListInfoEx
+unrelated to any header in this batch - not introduced by this batch, no content in the audited headers
+touches those types)
+
+- sliddefs.h: GUID constant only, no functions. Clean.
+- wbemidl.h: redirect-only header (wbemcli.h/wbemprov.h/wbemtran.h/wbemdisp.h); 40 functions all MIDL
+  RPC marshalling stubs (BSTR_User*/VARIANT_User*), no DECLARE_HANDLE. Clean. Sub-headers remain
+  separately tracked/pending.
+- transportsettingcommon.h: plain data struct only (TRANSPORT_SETTING_ID), no functions. Clean.
+- socketapi.h: SetSocketMediaStreamingMode(BOOL) - no handle. Clean.
+- isolatedwindowsenvironmentutils.h: two BOOL* out-param query functions, no handle. Clean.
+
+**Ledger status:** 268 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1132 pending.
