@@ -318,3 +318,11 @@
   semantic-enum-typing (1 header, `zzz-multimedia-enums`) patches; none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T03:30:00Z - Batch existing-patches-18
+
+- Headers: `MgmtAPI.h`, `minwinbase.h`, `mmdeviceapi.h`, `mmeapi.h`, and `mmreg.h`.
+- Classified retained `set-last-error` (1 header), `callback-canonical-name`
+  (1 header), and semantic-enum-typing (3 headers, `zzz-multimedia-enums`) patches; none
+  contain ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

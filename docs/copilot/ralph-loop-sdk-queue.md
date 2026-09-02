@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:54:14Z
+- Generated: 2026-09-02T21:55:39Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 99
+- Matched: 104
 - In progress: 0
 - Blocked: 0
-- Remaining: 1304
+- Remaining: 1299
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -660,7 +660,7 @@
 | `mftransform.h` | Mf | remaining |  |  |  |
 | `mfvirtualcamera.h` | Mf | remaining |  |  |  |
 | `mgm.h` | RRas | remaining |  |  |  |
-| `mgmtapi.h` | Snmp | remaining |  |  |  |
+| `mgmtapi.h` | Snmp | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mi.h` | Mi | remaining |  |  |  |
 | `micaut.h` | Tablet | remaining |  |  |  |
 | `midles.h` | Rpc | remaining |  |  |  |
@@ -668,7 +668,7 @@
 | `minappmodel.h` | AppxPackaging | remaining |  |  |  |
 | `mindumpdef.h` | Debug | remaining |  |  |  |
 | `minidumpapiset.h` | Base, Debug | remaining |  |  |  |
-| `minwinbase.h` | Base, Fs, Ioctl | remaining |  |  |  |
+| `minwinbase.h` | Base, Fs, Ioctl | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `minwindef.h` | Foundation, Multimedia | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `mixerocx.h` | Media.DShow | remaining |  |  |  |
 | `mlang.h` | Intl | remaining |  |  |  |
@@ -676,11 +676,11 @@
 | `mmc.h` | Mmc | remaining |  |  |  |
 | `mmcobj.h` | Lwef, Mmc | remaining |  |  |  |
 | `mmddk.h` | Audio.DirectMusic, Multimedia | remaining |  |  |  |
-| `mmdeviceapi.h` | Audio | remaining |  |  |  |
-| `mmeapi.h` | Audio, Multimedia | remaining |  |  |  |
+| `mmdeviceapi.h` | Audio | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
+| `mmeapi.h` | Audio, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmiscapi.h` | Multimedia | remaining |  |  |  |
 | `mmiscapi2.h` | Media | remaining |  |  |  |
-| `mmreg.h` | Audio.DirectMusic, Media.DShow, Multimedia | remaining |  |  |  |
+| `mmreg.h` | Audio.DirectMusic, Media.DShow, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmstream.h` | Media.DShow | remaining |  |  |  |
 | `mmsyscom.h` | Media | remaining |  |  |  |
 | `mmsystem.h` | Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Base, Devices.Properties, FileHistory, GamingDvcInfo, Gdi, Hid, IO, Multimedia, WinProg | remaining |  |  |  |
