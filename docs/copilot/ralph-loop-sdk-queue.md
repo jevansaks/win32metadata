@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:52:48Z
+- Generated: 2026-09-02T21:54:14Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 94
+- Matched: 99
 - In progress: 0
 - Blocked: 0
-- Remaining: 1309
+- Remaining: 1304
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -594,7 +594,7 @@
 | `libloaderapi2.h` | LibraryLoader | remaining |  |  |  |
 | `licenseprotection.h` | Security.LicenseProtection | remaining |  |  |  |
 | `lm.h` | NetMgmt | remaining |  |  |  |
-| `lmaccess.h` | FileHistory, NetMgmt, WinProg | remaining |  |  |  |
+| `lmaccess.h` | FileHistory, NetMgmt, WinProg | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `lmalert.h` | NetMgmt | remaining |  |  |  |
 | `lmapibuf.h` | NetMgmt | remaining |  |  |  |
 | `lmat.h` | NetMgmt | remaining |  |  |  |
@@ -608,7 +608,7 @@
 | `lmmsg.h` | NetMgmt | remaining |  |  |  |
 | `lmremutl.h` | NetMgmt | remaining |  |  |  |
 | `lmrepl.h` | NetMgmt | remaining |  |  |  |
-| `lmserver.h` | Base, NetMgmt | remaining |  |  |  |
+| `lmserver.h` | Base, NetMgmt | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `lmshare.h` | Fs | remaining |  |  |  |
 | `lmsname.h` | NetMgmt | remaining |  |  |  |
 | `lmstats.h` | Fs | remaining |  |  |  |
@@ -619,9 +619,9 @@
 | `loadperf.h` | FileHistory, Perf, WinProg | remaining |  |  |  |
 | `locationapi.h` | WinLocation | remaining |  |  |  |
 | `lowlevelmonitorconfigurationapi.h` | Monitor | remaining |  |  |  |
-| `lzexpand.h` | Fs | remaining |  |  |  |
+| `lzexpand.h` | Fs | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `madcapcl.h` | MadCap | remaining |  |  |  |
-| `magnification.h` | MagApi | remaining |  |  |  |
+| `magnification.h` | MagApi | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `mailmsgprops.h` | IMapi | remaining |  |  |  |
 | `manipulations.h` | WinTouch | remaining |  |  |  |
 | `manual.h` | Com.StructuredStorage | remaining |  |  |  |
@@ -652,7 +652,7 @@
 | `mfmediacapture.h` | Mf | remaining |  |  |  |
 | `mfmediaengine.h` | Mf | remaining |  |  |  |
 | `mfmp2dlna.h` | Mf | remaining |  |  |  |
-| `mfobjects.h` | Mf | remaining |  |  |  |
+| `mfobjects.h` | Mf | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `mfplay.h` | Mf | remaining |  |  |  |
 | `mfreadwrite.h` | Mf | remaining |  |  |  |
 | `mfsharingengine.h` | Mf | remaining |  |  |  |

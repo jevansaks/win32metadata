@@ -309,3 +309,12 @@
   partition `main.cpp` direct include, so they are absent from the authoritative
   `header-progress.json` ledger (out of scope for this queue).
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T03:15:00Z - Batch existing-patches-17
+
+- Headers: `LMaccess.h`, `LMServer.h`, `lzexpand.h`, `magnification.h`, and
+  `mfobjects.h`.
+- Classified retained `set-last-error` (3 headers), `supported-os` (1 header), and
+  semantic-enum-typing (1 header, `zzz-multimedia-enums`) patches; none contain
+  ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

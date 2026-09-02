@@ -5258,10 +5258,10 @@
   {
     "header": "lmaccess.h",
     "partition": "FileHistory, NetMgmt, WinProg",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-17.",
     "_source": "header-progress"
   },
   {
@@ -5384,10 +5384,10 @@
   {
     "header": "lmserver.h",
     "partition": "Base, NetMgmt",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-17.",
     "_source": "header-progress"
   },
   {
@@ -5483,10 +5483,10 @@
   {
     "header": "lzexpand.h",
     "partition": "Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-17.",
     "_source": "header-progress"
   },
   {
@@ -5501,10 +5501,10 @@
   {
     "header": "magnification.h",
     "partition": "MagApi",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-17.",
     "_source": "header-progress"
   },
   {
@@ -5780,10 +5780,10 @@
   {
     "header": "mfobjects.h",
     "partition": "Mf",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-17.",
     "_source": "header-progress"
   },
   {
