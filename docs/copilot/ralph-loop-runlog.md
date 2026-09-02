@@ -390,3 +390,12 @@
   (3 headers), and `supported-os` (1 header) patches; none contain ownership/typedef
   metadata. Confirmed `processthreadsapi.h` does not annotate process/thread `HANDLE`.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-02T22:35:00Z - Batch existing-patches-25
+
+- Headers: `PropIdl.h`, `PropIdlBase.h`, `propsys.h`, `propvarutil.h`, and
+  `prsht.h`.
+- Classified retained `supported-os` patches (`prsht.h` also carries a stacked
+  `callback-canonical-name` patch, verified non-overlapping); none contain
+  ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

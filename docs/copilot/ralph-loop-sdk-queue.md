@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:07:52Z
+- Generated: 2026-09-02T22:09:21Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 134
+- Matched: 139
 - In progress: 0
 - Blocked: 0
-- Remaining: 1269
+- Remaining: 1264
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -900,12 +900,12 @@
 | `projectedfslib.h` | ProjFs | remaining |  |  |  |
 | `proofofpossessioncookieinfo.h` | WinInet | remaining |  |  |  |
 | `propapi.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
-| `propidl.h` | Com.StructuredStorage, Properties, Shell | remaining |  |  |  |
-| `propidlbase.h` | Com.StructuredStorage | remaining |  |  |  |
+| `propidl.h` | Com.StructuredStorage, Properties, Shell | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
+| `propidlbase.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `propkeydef.h` | Console, Shell, WinContacts, WpdSdk | remaining |  |  |  |
-| `propsys.h` | Audio.DirectMusic, Properties, Shell | remaining |  |  |  |
-| `propvarutil.h` | Com.StructuredStorage, Variant | remaining |  |  |  |
-| `prsht.h` | Controls | remaining |  |  |  |
+| `propsys.h` | Audio.DirectMusic, Properties, Shell | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
+| `propvarutil.h` | Com.StructuredStorage, Variant | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
+| `prsht.h` | Controls | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `psapi.h` | PsApi1, PsApi2 | remaining |  |  |  |
 | `pwm.h` | PWM | remaining |  |  |  |
 | `qmgr.h` | Bits | remaining |  |  |  |
