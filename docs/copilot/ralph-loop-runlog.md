@@ -234,3 +234,10 @@
 - Classified retained `supported-os` annotation-only patches; none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T01:10:00Z - Batch existing-patches-09
+
+- Headers: `DispEx.h`, `DocObj.h`, `dpa_dsa.h`, `drt.h`, and `DskQuota.h`.
+- Classified retained `supported-os` (4 headers) and `import-library-overrides`
+  (1 header) annotation-only patches; none contain ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

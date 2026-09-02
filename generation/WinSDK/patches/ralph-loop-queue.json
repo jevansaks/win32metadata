@@ -2639,10 +2639,10 @@
   {
     "header": "DispEx.h",
     "partition": "ComOle",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-09.",
     "_source": "header-progress"
   },
   {
@@ -2747,10 +2747,10 @@
   {
     "header": "docobj.h",
     "partition": "Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-09.",
     "_source": "header-progress"
   },
   {
@@ -2801,10 +2801,10 @@
   {
     "header": "dpa_dsa.h",
     "partition": "Controls",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-09.",
     "_source": "header-progress"
   },
   {
@@ -2828,10 +2828,10 @@
   {
     "header": "drt.h",
     "partition": "P2p",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-09.",
     "_source": "header-progress"
   },
   {
@@ -2900,10 +2900,10 @@
   {
     "header": "dskquota.h",
     "partition": "Fs, Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-09.",
     "_source": "header-progress"
   },
   {

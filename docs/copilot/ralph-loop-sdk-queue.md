@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:38:00Z
+- Generated: 2026-09-02T21:40:05Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 54
+- Matched: 59
 - In progress: 0
 - Blocked: 0
-- Remaining: 1349
+- Remaining: 1344
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -303,7 +303,7 @@
 | `directml.h` | DirectML | remaining |  |  |  |
 | `diskguid.h` | Fs | remaining |  |  |  |
 | `dispatcherqueue.h` | WinRT | remaining |  |  |  |
-| `DispEx.h` | ComOle | remaining |  |  |  |
+| `DispEx.h` | ComOle | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dlnadeviceinterfaceids.h` | Dlna | remaining |  |  |  |
 | `dlnametadataproviderproperties.h` | Dlna | remaining |  |  |  |
 | `dls1.h` | Audio.DirectMusic | remaining |  |  |  |
@@ -315,16 +315,16 @@
 | `dmort.h` | Media.DxMediaObjects | remaining |  |  |  |
 | `dmprocessxmlfiltered.h` | WpdSdk | remaining |  |  |  |
 | `dmusics.h` | Audio.DirectMusic | remaining |  |  |  |
-| `docobj.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | remaining |  |  |  |
+| `docobj.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `docobjectservice.h` | InternetExplorer | remaining |  |  |  |
 | `DocumentSource.h` | WinRT.Printing | remaining |  |  |  |
 | `documenttarget.h` | XpsPrinting | remaining |  |  |  |
 | `dot1x.h` | Ndis, NWifi | remaining |  |  |  |
 | `downloadmgr.h` | InternetExplorer | remaining |  |  |  |
-| `dpa_dsa.h` | Controls | remaining |  |  |  |
+| `dpa_dsa.h` | Controls | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dpapi.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `dragdropinterop.h` | WinRT | remaining |  |  |  |
-| `drt.h` | P2p | remaining |  |  |  |
+| `drt.h` | P2p | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsadmin.h` | ActiveDirectory | remaining |  |  |  |
 | `dsattrib.h` | MsTv | remaining |  |  |  |
 | `dsclient.h` | ActiveDirectory | remaining |  |  |  |
@@ -332,7 +332,7 @@
 | `DsGetDC.h` | ActiveDirectory | remaining |  |  |  |
 | `dshow.h` | Media.DShow | remaining |  |  |  |
 | `dshowasf.h` | Media.DShow | remaining |  |  |  |
-| `dskquota.h` | Fs, Shell | remaining |  |  |  |
+| `dskquota.h` | Fs, Shell | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsound.h` | Audio.DirectSound, FileHistory, WinProg | remaining |  |  |  |
 | `dsparse.h` | ActiveDirectory | remaining |  |  |  |
 | `dsquery.h` | ActiveDirectory | remaining |  |  |  |
