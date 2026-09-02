@@ -326,3 +326,12 @@
   (1 header), and semantic-enum-typing (3 headers, `zzz-multimedia-enums`) patches; none
   contain ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T03:45:00Z - Batch existing-patches-19
+
+- Headers: `Mobsync.h`, `mssip.h`, `MSWSock.h`, `MtxAdmin.h`, and
+  `namedpipeapi.h`.
+- Classified retained `supported-os` (2 headers), semantic-enum-typing (1 header,
+  `zz-crypto-security-enums`), and `set-last-error` (2 headers) patches; none contain
+  ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

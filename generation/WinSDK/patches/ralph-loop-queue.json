@@ -6068,10 +6068,10 @@
   {
     "header": "mobsync.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-19.",
     "_source": "header-progress"
   },
   {
@@ -6608,10 +6608,10 @@
   {
     "header": "mssip.h",
     "partition": "Security.Cryptography.Sip, Security.WinTrust",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-19.",
     "_source": "header-progress"
   },
   {
@@ -6653,10 +6653,10 @@
   {
     "header": "mswsock.h",
     "partition": "WinSock",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-19.",
     "_source": "header-progress"
   },
   {
@@ -6707,10 +6707,10 @@
   {
     "header": "mtxadmin.h",
     "partition": "ComOle, TransactionServer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-19.",
     "_source": "header-progress"
   },
   {
@@ -6752,10 +6752,10 @@
   {
     "header": "namedpipeapi.h",
     "partition": "Pipes",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:45:00Z",
+    "notes": "Classified retained artifact in existing-patches-19.",
     "_source": "header-progress"
   },
   {

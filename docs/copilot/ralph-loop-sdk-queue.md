@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:55:39Z
+- Generated: 2026-09-02T21:57:05Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 104
+- Matched: 109
 - In progress: 0
 - Blocked: 0
-- Remaining: 1299
+- Remaining: 1294
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -684,7 +684,7 @@
 | `mmstream.h` | Media.DShow | remaining |  |  |  |
 | `mmsyscom.h` | Media | remaining |  |  |  |
 | `mmsystem.h` | Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Base, Devices.Properties, FileHistory, GamingDvcInfo, Gdi, Hid, IO, Multimedia, WinProg | remaining |  |  |  |
-| `mobsync.h` | Shell | remaining |  |  |  |
+| `mobsync.h` | Shell | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mpconfig.h` | Media.DShow | remaining |  |  |  |
 | `mpeg2bits.h` | MsTv | remaining |  |  |  |
 | `mpeg2data.h` | MsTv | remaining |  |  |  |
@@ -744,23 +744,23 @@
 | `msports.h` | SerPorts | remaining |  |  |  |
 | `msrdc.h` | Rdc | remaining |  |  |  |
 | `mssign.h` | Security.Cryptography | remaining |  |  |  |
-| `mssip.h` | Security.Cryptography.Sip, Security.WinTrust | remaining |  |  |  |
+| `mssip.h` | Security.Cryptography.Sip, Security.WinTrust | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mstask.h` | TaskSchd | remaining |  |  |  |
 | `mstcpip.h` | WinSock | remaining |  |  |  |
 | `msvidctl.h` | MsTv | remaining |  |  |  |
 | `mswmdm.h` | Wmdm | remaining |  |  |  |
-| `mswsock.h` | WinSock | remaining |  |  |  |
+| `mswsock.h` | WinSock | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mswsockdef.h` | WinSock | remaining |  |  |  |
 | `msxml.h` | FileHistory, MsXml, WinProg | remaining |  |  |  |
 | `msxml6.h` | MsXml, Printing | remaining |  |  |  |
 | `mtpext.h` | Wmdm | remaining |  |  |  |
 | `mtx.h` | ComOle, TransactionServer | remaining |  |  |  |
-| `mtxadmin.h` | ComOle, TransactionServer | remaining |  |  |  |
+| `mtxadmin.h` | ComOle, TransactionServer | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mtxattr.h` | ComOle, TransactionServer | remaining |  |  |  |
 | `mtxdm.h` | Cos | remaining |  |  |  |
 | `muiload.h` | Intl | remaining |  |  |  |
 | `mxdc.h` | Gdi, Printing | remaining |  |  |  |
-| `namedpipeapi.h` | Pipes | remaining |  |  |  |
+| `namedpipeapi.h` | Pipes | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `napmicrosoftvendorids.h` | NetworkAccessProtection | remaining |  |  |  |
 | `naptypes.h` | NetworkAccessProtection | remaining |  |  |  |
 | `natupnp.h` | WindowsFirewall | remaining |  |  |  |
