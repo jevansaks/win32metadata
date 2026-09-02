@@ -557,3 +557,11 @@ o-annotation-required with live-scrape evidence.
   header or patch — nothing to correct against the producer-site-only policy, flagged for
   visibility only.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T01:30:00Z - Batch existing-patches-33
+
+- Headers: `TOM.h`, `txfw32.h`, `UIAutomationClient.h`, `UIAutomationCore.h`, and
+  `UIAutomationCoreApi.h`.
+- Classified retained `supported-os` (4 headers) and `set-last-error` (1 header)
+  patches; none contain ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

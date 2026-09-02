@@ -9812,10 +9812,10 @@
   {
     "header": "tom.h",
     "partition": "Controls.RichEdit",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-33.",
     "_source": "header-progress"
   },
   {
@@ -10001,10 +10001,10 @@
   {
     "header": "txfw32.h",
     "partition": "Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-33.",
     "_source": "header-progress"
   },
   {
@@ -10037,28 +10037,28 @@
   {
     "header": "uiautomationclient.h",
     "partition": "WinAuto",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-33.",
     "_source": "header-progress"
   },
   {
     "header": "uiautomationcore.h",
     "partition": "WinAuto",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-33.",
     "_source": "header-progress"
   },
   {
     "header": "uiautomationcoreapi.h",
     "partition": "WinAuto",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-33.",
     "_source": "header-progress"
   },
   {

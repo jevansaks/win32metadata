@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:43:54Z
+- Generated: 2026-09-02T22:45:24Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 180
+- Matched: 185
 - In progress: 0
 - Blocked: 0
-- Remaining: 1223
+- Remaining: 1218
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1100,7 +1100,7 @@
 | `tlogstg.h` | Shell | remaining |  |  |  |
 | `tnef.h` | Tapi3 | remaining |  |  |  |
 | `tokenbinding.h` | Identity | remaining |  |  |  |
-| `tom.h` | Controls.RichEdit | remaining |  |  |  |
+| `tom.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `tpcerror.h` | Tablet | remaining |  |  |  |
 | `tpcshrd.h` | Tablet | remaining |  |  |  |
 | `TpmVscAttestation.h` | Security.Tpm | remaining |  |  |  |
@@ -1121,13 +1121,13 @@
 | `tvout.h` | Gdi | remaining |  |  |  |
 | `tvratings.h` | MsTv | remaining |  |  |  |
 | `txdtc.h` | DTC | remaining |  |  |  |
-| `txfw32.h` | Fs | remaining |  |  |  |
+| `txfw32.h` | Fs | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `txlogpub.h` | TransactionServer | remaining |  |  |  |
 | `ual.h` | Ual | matched | copilot | 09/02/2026 22:59:00 | First header-scraping-investigation batch: no prior patch existed. New supported-os patch created and verified via live re-scrape, not just static review. |
 | `uianimation.h` | UiAnimation | remaining |  |  |  |
-| `uiautomationclient.h` | WinAuto | remaining |  |  |  |
-| `uiautomationcore.h` | WinAuto | remaining |  |  |  |
-| `uiautomationcoreapi.h` | WinAuto | remaining |  |  |  |
+| `uiautomationclient.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
+| `uiautomationcore.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
+| `uiautomationcoreapi.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `uiribbon.h` | WindowsRibbon | remaining |  |  |  |
 | `UIViewSettingsInterop.h` | WinRT | remaining |  |  |  |
 | `upnp.h` | Upnp | remaining |  |  |  |
