@@ -1352,26 +1352,35 @@
       "header": "amsi.h",
       "partitions": "Antimalware",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-05",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "last_updated": "2026-09-03T03:35:00Z",
+      "notes": "New resource-ownership patch created and verified via live re-scrape (build-level validation).",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Antimalware/main.cpp",
         "source_line": 8,
         "partition": "Antimalware"
-      }
+      },
+      "normalization_profile": "default",
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T03:35:00Z",
+          "rationale": "HAMSICONTEXT/HAMSISESSION ownership (AmsiInitialize/AmsiOpenSession producers, AmsiUninitialize/AmsiCloseSession consumers) is directly verifiable from the header itself with no external documentation needed."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/amsi.h.md generation/WinSDK/patches/post-midl/amsi.h.antimalware-context-ownership.patch git apply --check --reverse passed; live re-scrape (ScanArch=x86) succeeds with 0 warnings/errors confirming valid C syntax"
+      ]
     },
     {
       "header": "amstream.h",
@@ -13918,26 +13927,35 @@
       "header": "httprequest.h",
       "partitions": "WinHttp",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-05",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "last_updated": "2026-09-03T03:35:00Z",
+      "notes": "No patch needed; verified via live scrape and static review.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/WinHttp/main.cpp",
         "source_line": 5,
         "partition": "WinHttp"
-      }
+      },
+      "normalization_profile": "default",
+      "normalizations_applied": [
+        "No ownership gaps; COM interface only"
+      ],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T03:35:00Z",
+          "rationale": "Confirmed via live scrape and static review that this header declares only the IWinHttpRequest COM interface, no DECLARE_HANDLE typedefs."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/httprequest.h.md live re-scrape (ScanArch=x86, partition WinHttp) succeeds; static review confirms no DECLARE_HANDLE typedefs"
+      ]
     },
     {
       "header": "httprequestid.h",
@@ -24853,26 +24871,35 @@
       "header": "ntddcdrm.h",
       "partitions": "Devices.Cdrom",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-05",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "last_updated": "2026-09-03T03:35:00Z",
+      "notes": "No patch needed; data-structure-only header verified via live scrape.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Devices.Cdrom/main.cpp",
         "source_line": 5,
         "partition": "Devices.Cdrom"
-      }
+      },
+      "normalization_profile": "default",
+      "normalizations_applied": [
+        "No function surface present; data-structure/IOCTL-only header"
+      ],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T03:35:00Z",
+          "rationale": "Confirmed via live scrape that ntddcdrm.h declares only CD-ROM IOCTL constants/structs, no WINAPI functions."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/ntddcdrm.h.md live re-scrape (ScanArch=x86, partition Devices.Cdrom) succeeds with 0 warnings/errors; generated Devices.Cdrom.cs contains no DllImport entries"
+      ]
     },
     {
       "header": "ntddcdvd.h",

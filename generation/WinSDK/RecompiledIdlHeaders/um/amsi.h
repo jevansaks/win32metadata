@@ -102,6 +102,9 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -964,14 +967,18 @@ DECLARE_HANDLE(HAMSISESSION);
 
 STDAPI AmsiInitialize(
     _In_  LPCWSTR appName,
-    _Outptr_ HAMSICONTEXT* amsiContext);
+    _Outptr_ HAMSICONTEXT* amsiContext
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(AmsiUninitialize));
 
 STDAPI_(VOID) AmsiUninitialize(
     _In_  HAMSICONTEXT amsiContext);
 
 STDAPI AmsiOpenSession(
     _In_  HAMSICONTEXT amsiContext,
-    _Out_ HAMSISESSION* amsiSession);
+    _Out_ HAMSISESSION* amsiSession
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(AmsiCloseSession));
 
 STDAPI_(VOID) AmsiCloseSession(
     _In_  HAMSICONTEXT amsiContext,

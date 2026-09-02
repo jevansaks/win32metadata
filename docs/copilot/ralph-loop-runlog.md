@@ -650,3 +650,21 @@ o-annotation-required with live-scrape evidence.
   other investigated partitions this session.
 - Session checkpoint: 219 of 1403 authoritative ledger headers now classified
   `accepted-normalized`.
+
+## 2026-09-03T03:35:00Z - Batch scraping-investigation-05
+
+- Headers: `httprequest.h` (WinHttp), `ntddcdrm.h` (Devices.Cdrom), and `amsi.h`
+  (Antimalware).
+- `httprequest.h` (COM interface only) and `ntddcdrm.h` (IOCTL-only) verified clean via
+  live scrape, no ownership gaps, no patch needed.
+- `amsi.h`: found a genuine resource-ownership gap directly verifiable from the header
+  itself. `HAMSICONTEXT` produced by `AmsiInitialize`, released by
+  `AmsiUninitialize`; `HAMSISESSION` produced by `AmsiOpenSession`, released by
+  `AmsiCloseSession`. Created a **new**
+  `amsi.h.antimalware-context-ownership.patch` placing invalid-handle/RAIIFree on both
+  producer output parameters (never the typedef). This is a MIDL-generated header; added
+  the `win32metadata_annotations.h` include guard immediately after its existing
+  `#include <winapifamily.h>`. Verified via live re-scrape that the header still parses
+  cleanly (0 warnings/errors).
+- Session checkpoint: 222 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`.

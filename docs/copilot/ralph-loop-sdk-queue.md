@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:02:26Z
+- Generated: 2026-09-02T23:06:12Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 219
+- Matched: 222
 - In progress: 0
 - Blocked: 0
-- Remaining: 1184
+- Remaining: 1181
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -58,7 +58,7 @@
 | `alljoyn_c\version.h` | AllJoyn | remaining |  |  |  |
 | `amaudio.h` | Media.DShow | remaining |  |  |  |
 | `amparse.h` | Media.DShow | remaining |  |  |  |
-| `amsi.h` | Antimalware | remaining |  |  |  |
+| `amsi.h` | Antimalware | matched | copilot | 09/03/2026 03:35:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
 | `amstream.h` | Media.DShow, Media.DShow.Xml | remaining |  |  |  |
 | `amva.h` | Media.DShow | remaining |  |  |  |
 | `amvideo.h` | Media.DShow | remaining |  |  |  |
@@ -491,7 +491,7 @@
 | `http.h` | HttpServer | remaining |  |  |  |
 | `httpext.h` | Iis | remaining |  |  |  |
 | `httpfilt.h` | Iis | remaining |  |  |  |
-| `httprequest.h` | WinHttp | remaining |  |  |  |
+| `httprequest.h` | WinHttp | matched | copilot | 09/03/2026 03:35:00 | No patch needed; verified via live scrape and static review. |
 | `httprequestid.h` | Iis | remaining |  |  |  |
 | `httptrace.h` | Iis | remaining |  |  |  |
 | `hvsocket.h` | Hypervisor | remaining |  |  |  |
@@ -797,7 +797,7 @@
 | `nspapi.h` | WinSock | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `ntdd1394.h` | Devices.1394 | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `ntddbeep.h` | Devices.Beep | remaining |  |  |  |
-| `ntddcdrm.h` | Devices.Cdrom | remaining |  |  |  |
+| `ntddcdrm.h` | Devices.Cdrom | matched | copilot | 09/03/2026 03:35:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `ntddcdvd.h` | Devices.Dvd | remaining |  |  |  |
 | `ntdddisk.h` | Fs | remaining |  |  |  |
 | `ntddkbd.h` | Hid | remaining |  |  |  |

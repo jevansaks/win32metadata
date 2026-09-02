@@ -434,10 +434,10 @@
   {
     "header": "amsi.h",
     "partition": "Antimalware",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:35:00Z",
+    "notes": "New resource-ownership patch created and verified via live re-scrape (build-level validation).",
     "_source": "header-progress"
   },
   {
@@ -4331,10 +4331,10 @@
   {
     "header": "httprequest.h",
     "partition": "WinHttp",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:35:00Z",
+    "notes": "No patch needed; verified via live scrape and static review.",
     "_source": "header-progress"
   },
   {
@@ -7085,10 +7085,10 @@
   {
     "header": "ntddcdrm.h",
     "partition": "Devices.Cdrom",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:35:00Z",
+    "notes": "No patch needed; data-structure-only header verified via live scrape.",
     "_source": "header-progress"
   },
   {
