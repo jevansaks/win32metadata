@@ -367,3 +367,17 @@
   resource-ownership policy audit (5 batches). 1279 headers remain pending; most have no
   retained patch yet and require header scraping/generation investigation via the full
   build toolchain in a future session.
+
+## 2026-09-02T22:05:00Z - Batch resource-ownership-audit-06 + existing-patches-23
+
+- Discovered `winspool.h.printing-handle-ownership.patch` — a resource-ownership patch not
+  covered by the original 11-header audit. Per the standing instruction to verify every
+  resource-ownership patch, audited it: all ownership annotations (`OpenPrinterA`/`W`,
+  `OpenPrinter2A`/`W` → `ClosePrinter`; `FindFirstPrinterChangeNotification` return
+  value → `FindClosePrinterChangeNotification`) already target producer `_Out_`
+  parameters or the return-value position, never a typedef. Classified compliant, no code
+  change required.
+- Headers: `oobenotification.h`, `PathCch.h`, `playsoundapi.h`, and `powerbase.h`.
+- Classified retained `set-last-error` (2 headers), `supported-os` (1 header), and
+  semantic-enum-typing (1 header) patches; none contain ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

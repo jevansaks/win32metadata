@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:02:38Z
+- Generated: 2026-09-02T22:05:53Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 124
+- Matched: 129
 - In progress: 0
 - Blocked: 0
-- Remaining: 1279
+- Remaining: 1274
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -841,7 +841,7 @@
 | `oleidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oletx2xa.h` | DTC | remaining |  |  |  |
 | `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | remaining |  |  |  |
-| `oobenotification.h` | WindowsSetupAndMigration | remaining |  |  |  |
+| `oobenotification.h` | WindowsSetupAndMigration | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `openservice.h` | InternetExplorer | remaining |  |  |  |
 | `opmapi.h` | Mf | remaining |  |  |  |
 | `opmxbox.h` | Mf | remaining |  |  |  |
@@ -850,7 +850,7 @@
 | `pacmanclientapi.h` | Setup | remaining |  |  |  |
 | `patchapi.h` | Setup | remaining |  |  |  |
 | `patchwiz.h` | Setup | remaining |  |  |  |
-| `pathcch.h` | Shell | remaining |  |  |  |
+| `pathcch.h` | Shell | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `pbdaerrors.h` | Media.DShow | remaining |  |  |  |
 | `pchannel.h` | TermServ | remaining |  |  |  |
 | `pdh.h` | Perf | remaining |  |  |  |
@@ -865,7 +865,7 @@
 | `physicalmonitorenumerationapi.h` | Monitor | remaining |  |  |  |
 | `pla.h` | Pla | remaining |  |  |  |
 | `playlist.h` | Media.DShow | remaining |  |  |  |
-| `playsoundapi.h` | Audio | remaining |  |  |  |
+| `playsoundapi.h` | Audio | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `playto.h` | Mf | remaining |  |  |  |
 | `PlayToManagerInterop.h` | WinRT | remaining |  |  |  |
 | `pluginauthenticator.h` | WebAuthn | remaining |  |  |  |
@@ -875,7 +875,7 @@
 | `portabledeviceapi.h` | WpdSdk | remaining |  |  |  |
 | `portabledeviceconnectapi.h` | WpdSdk | remaining |  |  |  |
 | `portabledevicetypes.h` | WpdSdk | remaining |  |  |  |
-| `powerbase.h` | Power | remaining |  |  |  |
+| `powerbase.h` | Power | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `powersetting.h` | Power | remaining |  |  |  |
 | `powrprof.h` | Power | remaining |  |  |  |
 | `prcomoem.h` | Printing | remaining |  |  |  |
@@ -1306,7 +1306,7 @@
 | `WinSock.h` | Fsrm, TermServ, WinSock | remaining |  |  |  |
 | `winsock2.h` | ActiveDirectory, HttpServer, IpHlp, P2p, Qos, Ual, WindowsFilteringPlatform, WinHttp, WinSock, wnv | remaining |  |  |  |
 | `winsplp.h` | Printing | remaining |  |  |  |
-| `winspool.h` | Gdi, Printing | remaining |  |  |  |
+| `winspool.h` | Gdi, Printing | matched | copilot | 09/02/2026 22:05:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. Not part of the original 11-header audit set (discovered as an additional resource-ownership patch). |
 | `winstring.h` | WinRT | remaining |  |  |  |
 | `winsvc.h` | Services | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types). |
 | `winsxs.h` | Setup | remaining |  |  |  |

@@ -7481,10 +7481,10 @@
   {
     "header": "oobenotification.h",
     "partition": "WindowsSetupAndMigration",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-23.",
     "_source": "header-progress"
   },
   {
@@ -7562,10 +7562,10 @@
   {
     "header": "pathcch.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-23.",
     "_source": "header-progress"
   },
   {
@@ -7697,10 +7697,10 @@
   {
     "header": "playsoundapi.h",
     "partition": "Audio",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-23.",
     "_source": "header-progress"
   },
   {
@@ -7787,10 +7787,10 @@
   {
     "header": "powerbase.h",
     "partition": "Power",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:05:00Z",
+    "notes": "Classified retained artifact in existing-patches-23.",
     "_source": "header-progress"
   },
   {
@@ -11666,10 +11666,10 @@
   {
     "header": "winspool.h",
     "partition": "Gdi, Printing",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:05:00Z",
+    "notes": "Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. Not part of the original 11-header audit set (discovered as an additional resource-ownership patch).",
     "_source": "header-progress"
   },
   {
