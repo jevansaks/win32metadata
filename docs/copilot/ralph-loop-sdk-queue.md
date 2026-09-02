@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:45:46Z
+- Generated: 2026-09-02T21:47:42Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 74
+- Matched: 79
 - In progress: 0
 - Blocked: 0
-- Remaining: 1329
+- Remaining: 1324
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -395,20 +395,20 @@
 | `emptyvc.h` | Lwef | remaining |  |  |  |
 | `encdec.h` | MsTv | remaining |  |  |  |
 | `endpointvolume.h` | Audio.Endpoints | remaining |  |  |  |
-| `errhandlingapi.h` | Base, Debug | remaining |  |  |  |
+| `errhandlingapi.h` | Base, Debug | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `errorrep.h` | Wer | remaining |  |  |  |
 | `errors.h` | Media.DShow | remaining |  |  |  |
 | `esent.h` | Storage.Jet | remaining |  |  |  |
 | `evalcom2.h` | Setup | remaining |  |  |  |
 | `evcode.h` | Media.DShow | remaining |  |  |  |
 | `evcoll.h` | Wec | remaining |  |  |  |
-| `eventsys.h` | Com.Events, TransactionServer | remaining |  |  |  |
+| `eventsys.h` | Com.Events, TransactionServer | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `evntcons.h` | Etw | remaining |  |  |  |
 | `evntprov.h` | Etw | remaining |  |  |  |
-| `evntrace.h` | Etw, Media.DShow | remaining |  |  |  |
+| `evntrace.h` | Etw, Media.DShow | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `evr.h` | Mf | remaining |  |  |  |
 | `evr9.h` | Mf | remaining |  |  |  |
-| `exdisp.h` | FileHistory, Shell, WinProg | remaining |  |  |  |
+| `exdisp.h` | FileHistory, Shell, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `exdispid.h` | InternetExplorer | remaining |  |  |  |
 | `expandedresources.h` | GameMode | remaining |  |  |  |
 | `exposeenums2managed.h` | FileHistory, WinProg | remaining |  |  |  |
@@ -427,7 +427,7 @@
 | `fherrors.h` | FileHistory | remaining |  |  |  |
 | `fhstatus.h` | FileHistory | remaining |  |  |  |
 | `fhsvcctl.h` | FileHistory | remaining |  |  |  |
-| `fileapi.h` | Fs | remaining |  |  |  |
+| `fileapi.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `filehc.h` | FileHistory, Fs | remaining |  |  |  |
 | `filter.h` | IndexSrv, Search | remaining |  |  |  |
 | `filtereg.h` | Search | remaining |  |  |  |

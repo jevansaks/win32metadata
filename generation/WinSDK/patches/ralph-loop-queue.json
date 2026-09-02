@@ -3467,10 +3467,10 @@
   {
     "header": "errhandlingapi.h",
     "partition": "Base, Debug",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-13.",
     "_source": "header-progress"
   },
   {
@@ -3530,10 +3530,10 @@
   {
     "header": "eventsys.h",
     "partition": "Com.Events, TransactionServer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-13.",
     "_source": "header-progress"
   },
   {
@@ -3557,10 +3557,10 @@
   {
     "header": "evntrace.h",
     "partition": "Etw, Media.DShow",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-13.",
     "_source": "header-progress"
   },
   {
@@ -3584,10 +3584,10 @@
   {
     "header": "exdisp.h",
     "partition": "FileHistory, Shell, WinProg",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-13.",
     "_source": "header-progress"
   },
   {
@@ -3755,10 +3755,10 @@
   {
     "header": "fileapi.h",
     "partition": "Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-13.",
     "_source": "header-progress"
   },
   {

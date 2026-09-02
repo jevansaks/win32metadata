@@ -269,3 +269,12 @@
   not re-run since no fresh SDK checkout is available in this session — flagged for
   re-escalation with fresh evidence if the mismatch recurs during the next full
   `DoAll.ps1` build.
+
+## 2026-09-03T02:15:00Z - Batch existing-patches-13
+
+- Headers: `errhandlingapi.h`, `EventSys.h`, `evntrace.h`, `ExDisp.h`, and
+  `fileapi.h`.
+- Classified retained `set-last-error` (3 headers), `supported-os` (2 headers), and
+  `callback-canonical-name` (1 header, stacked with set-last-error on
+  `errhandlingapi.h`) patches; none contain ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.
