@@ -322,20 +322,12 @@ typedef BCryptBufferDesc* PNCryptBufferDesc;
 // NCrypt handles
 //
 
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(NCryptFreeObject)
 typedef ULONG_PTR NCRYPT_HANDLE;
 _Win32_metadata_also_usable_for_(NCRYPT_HANDLE)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(NCryptFreeObject)
 typedef ULONG_PTR NCRYPT_PROV_HANDLE;
 _Win32_metadata_also_usable_for_(NCRYPT_HANDLE)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(NCryptFreeObject)
 typedef ULONG_PTR NCRYPT_KEY_HANDLE;
-_Win32_metadata_invalid_handle_(0)
 typedef ULONG_PTR NCRYPT_HASH_HANDLE;
-_Win32_metadata_invalid_handle_(0)
 typedef ULONG_PTR NCRYPT_SECRET_HANDLE;
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
@@ -722,7 +714,9 @@ _Check_return_
 SECURITY_STATUS
 WINAPI
 NCryptOpenStorageProvider(
-    _Out_   NCRYPT_PROV_HANDLE *phProvider,
+    _Out_   NCRYPT_PROV_HANDLE *phProvider
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptFreeObject),
     _In_opt_ LPCWSTR pszProviderName,
     _In_    DWORD   dwFlags);
 
@@ -842,7 +836,9 @@ SECURITY_STATUS
 WINAPI
 NCryptOpenKey(
     _In_    NCRYPT_PROV_HANDLE hProvider,
-    _Out_   NCRYPT_KEY_HANDLE *phKey,
+    _Out_   NCRYPT_KEY_HANDLE *phKey
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptFreeObject),
     _In_    LPCWSTR pszKeyName,
     _In_opt_ CERT_KEY_SPEC  dwLegacyKeySpec,
     _In_    NCRYPT_FLAGS   dwFlags);
@@ -858,7 +854,9 @@ SECURITY_STATUS
 WINAPI
 NCryptCreatePersistedKey(
     _In_    NCRYPT_PROV_HANDLE hProvider,
-    _Out_   NCRYPT_KEY_HANDLE *phKey,
+    _Out_   NCRYPT_KEY_HANDLE *phKey
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptFreeObject),
     _In_    LPCWSTR pszAlgId,
     _In_opt_ LPCWSTR pszKeyName,
     _In_    CERT_KEY_SPEC   dwLegacyKeySpec,
@@ -1458,7 +1456,9 @@ NCryptImportKey(
     _In_opt_ NCRYPT_KEY_HANDLE hImportKey,
     _In_    LPCWSTR pszBlobType,
     _In_opt_ NCryptBufferDesc *pParameterList,
-    _Out_   NCRYPT_KEY_HANDLE *phKey,
+    _Out_   NCRYPT_KEY_HANDLE *phKey
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptFreeObject),
     _In_reads_bytes_(cbData) PBYTE pbData,
     _In_    DWORD   cbData,
     _In_    NCRYPT_FLAGS   dwFlags);
@@ -1535,8 +1535,12 @@ _Check_return_
 SECURITY_STATUS
 WINAPI
 NCryptTranslateHandle(
-    _Out_opt_ NCRYPT_PROV_HANDLE *phProvider,
-    _Out_   NCRYPT_KEY_HANDLE *phKey,
+    _Out_opt_ NCRYPT_PROV_HANDLE *phProvider
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptFreeObject),
+    _Out_   NCRYPT_KEY_HANDLE *phKey
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptFreeObject),
     _In_    HCRYPTPROV hLegacyProv,
     _In_opt_ HCRYPTKEY hLegacyKey,
     _In_opt_ CERT_KEY_SPEC  dwLegacyKeySpec,
@@ -1573,7 +1577,9 @@ WINAPI
 NCryptSecretAgreement(
     _In_    NCRYPT_KEY_HANDLE hPrivKey,
     _In_    NCRYPT_KEY_HANDLE hPubKey,
-    _Out_   NCRYPT_SECRET_HANDLE *phAgreedSecret,
+    _Out_   NCRYPT_SECRET_HANDLE *phAgreedSecret
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptFreeObject),
     _In_    NCRYPT_FLAGS   dwFlags);
 
 

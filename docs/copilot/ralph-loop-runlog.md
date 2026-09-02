@@ -117,3 +117,23 @@
   diff.
 - Remaining unresolved resource-ownership headers: `ncrypt.h`, `wincrypt.h`. These are
   being migrated in subsequent batches.
+
+## 2026-09-02T22:10:00Z - Batch resource-ownership-audit-04
+
+- Header: `ncrypt.h` (single-header batch; the only remaining header in this audit set is
+  `wincrypt.h`, which is large enough to warrant its own dedicated batch next).
+- `NCRYPT_HANDLE` (base) and its four subtypes carried invalid-handle/RAIIFree annotations
+  directly on their typedef sites. Unlike `bcrypt.h`, all subtypes here share one generic
+  free function, `NCryptFreeObject`.
+- Removed typedef-level annotations; added invalid-handle plus
+  `_Win32_metadata_raii_free_(NCryptFreeObject)` to all 7 producer `_Out_`/`_Out_opt_`
+  parameters (`NCryptOpenStorageProvider`, `NCryptOpenKey`, `NCryptCreatePersistedKey`,
+  `NCryptImportKey`, `NCryptTranslateHandle` (2 out-params), `NCryptSecretAgreement`).
+  `NCRYPT_HASH_HANDLE` has no producer or consumer anywhere in this header (declared but
+  unused); its annotation was dropped rather than misattached.
+- Regenerated the patch via pristine-baseline reconstruction. `git apply --check --reverse`
+  passes. Verified full sequential forward replay (pristine → co-resident
+  `zz-crypto-security-enums.patch` → the regenerated `zzz-resource-ownership.patch`)
+  reproduces the exact corrected file with zero diff.
+- Remaining unresolved resource-ownership header: `wincrypt.h` (6 handle types across a
+  much larger file; tracked as its own batch next).

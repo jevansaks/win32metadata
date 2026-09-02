@@ -6806,10 +6806,10 @@
   {
     "header": "ncrypt.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:10:00Z",
+    "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit; verified compatible with co-resident zz-crypto-security-enums patch via full replay.",
     "_source": "header-progress"
   },
   {

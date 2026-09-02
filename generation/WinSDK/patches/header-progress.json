@@ -23128,20 +23128,29 @@
         "Security.Cryptography.UI"
       ],
       "partition_count": 2,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-04",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T22:10:00Z",
+          "rationale": "NCRYPT_PROV_HANDLE/KEY_HANDLE/SECRET_HANDLE ownership metadata moved from typedefs to their 7 producer _Out_/_Out_opt_ parameters, all sharing the generic NCryptFreeObject free function; NCRYPT_HASH_HANDLE has no producer or consumer in this header so its annotation was dropped rather than misattached."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/ncrypt.h.md generation/WinSDK/patches/post-midl/ncrypt.h.zzz-resource-ownership.patch git apply --check --reverse passed for regenerated patch; static audit confirms no remaining typedef-adjacent ownership annotations; full sequential forward replay verified against co-resident zz-crypto-security-enums patch"
+      ],
+      "last_updated": "2026-09-02T22:10:00Z",
+      "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit; verified compatible with co-resident zz-crypto-security-enums patch via full replay.",
       "sources": [
         {
           "source": "partition-main",

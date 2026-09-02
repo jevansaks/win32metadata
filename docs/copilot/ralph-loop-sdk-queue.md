@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:13:39Z
+- Generated: 2026-09-02T21:16:55Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 17
+- Matched: 18
 - In progress: 0
 - Blocked: 0
-- Remaining: 1386
+- Remaining: 1385
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -766,7 +766,7 @@
 | `natupnp.h` | WindowsFirewall | remaining |  |  |  |
 | `nb30.h` | NetBios | remaining |  |  |  |
 | `ncrypt_provider.h` | Security.Cryptography | remaining |  |  |  |
-| `ncrypt.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `ncrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:10:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
 | `ncryptprotect.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `ndattrib.h` | Ndf | remaining |  |  |  |
 | `ndfapi.h` | Ndf | remaining |  |  |  |
