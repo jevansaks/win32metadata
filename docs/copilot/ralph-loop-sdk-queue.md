@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:16:55Z
+- Generated: 2026-09-02T21:22:59Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 18
+- Matched: 19
 - In progress: 0
 - Blocked: 0
-- Remaining: 1385
+- Remaining: 1384
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1239,7 +1239,7 @@
 | `wincon.h` | Console | remaining |  |  |  |
 | `winconp.h` | Console | remaining |  |  |  |
 | `wincred.h` | Certificates, Credentials, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | remaining |  |  |  |
-| `wincrypt.h` | NetMgmt, Rpc, Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `wincrypt.h` | NetMgmt, Rpc, Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:40:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; final header in the 11-header audit set (all now compliant). Verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
 | `winddi.h` | Display, IO, Printing, TransactionServer | remaining |  |  |  |
 | `winddiui.h` | Printing | remaining |  |  |  |
 | `windef.h` | Foundation, Gdi, WinAuto | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |

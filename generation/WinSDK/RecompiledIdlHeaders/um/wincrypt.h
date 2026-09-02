@@ -1681,12 +1681,10 @@ GetEncSChannel(
 // This type is used when the API can take either the CAPI1 HCRYPTPROV or
 // the CNG NCRYPT_KEY_HANDLE. Where appropriate, the HCRYPTPROV will be
 // converted to a NCRYPT_KEY_HANDLE via the CNG NCryptTranslateHandle().
-_Win32_metadata_invalid_handle_(0)
 typedef ULONG_PTR HCRYPTPROV_OR_NCRYPT_KEY_HANDLE;
 
 // This type is used where the HCRYPTPROV parameter is no longer used.
 // The caller should always pass in NULL.
-_Win32_metadata_invalid_handle_(0)
 typedef ULONG_PTR HCRYPTPROV_LEGACY;
 
 //+-------------------------------------------------------------------------
@@ -9273,8 +9271,6 @@ typedef BOOL (WINAPI *PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY) (
 //
 //--------------------------------------------------------------------------
 
-_Win32_metadata_invalid_handle_(-1)
-_Win32_metadata_invalid_handle_(0)
 typedef void *HCERTSTORE;
 
 //+-------------------------------------------------------------------------
@@ -10687,15 +10683,15 @@ CertOpenStore(
     _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
     _In_ DWORD dwFlags,
     _In_opt_ const void *pvPara
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 
 //+-------------------------------------------------------------------------
 //  OID Installable Certificate Store Provider Data Structures
 //--------------------------------------------------------------------------
 
 // Handle returned by the store provider when opened.
-_Win32_metadata_invalid_handle_(-1)
-_Win32_metadata_invalid_handle_(0)
 typedef void *HCERTSTOREPROV;
 
 // Store Provider OID function's pszFuncName.
@@ -11053,7 +11049,9 @@ HCERTSTORE
 WINAPI
 CertDuplicateStore(
     _In_ HCERTSTORE hCertStore
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 
 #define CERT_STORE_SAVE_AS_STORE        1
 #define CERT_STORE_SAVE_AS_PKCS7        2
@@ -15476,7 +15474,8 @@ CryptAcquireCertificatePrivateKey(
     _In_ PCCERT_CONTEXT pCert,
     _In_ CRYPT_ACQUIRE_FLAGS dwFlags,
     _In_opt_ void *pvParameters,
-    _Out_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE *phCryptProvOrNCryptKey,
+    _Out_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE *phCryptProvOrNCryptKey
+        _Win32_metadata_invalid_handle_(0),
     _Out_opt_ CERT_KEY_SPEC *pdwKeySpec,
     _Out_opt_ BOOL *pfCallerFreeProvOrNCryptKey
     );
@@ -16615,7 +16614,9 @@ CryptGetMessageCertificates(
     _In_ DWORD dwFlags,                   // passed to CertOpenStore
     _In_reads_bytes_(cbSignedBlob) const BYTE *pbSignedBlob,
     _In_ DWORD cbSignedBlob
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 
 //+-------------------------------------------------------------------------
 //  Verify a signed message containing detached signature(s).
@@ -16938,14 +16939,18 @@ WINAPI
 CertOpenSystemStoreA(
     _In_opt_ HCRYPTPROV_LEGACY      hProv,
     _In_ LPCSTR            szSubsystemProtocol
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 WINCRYPT32API
 HCERTSTORE
 WINAPI
 CertOpenSystemStoreW(
     _In_opt_ HCRYPTPROV_LEGACY      hProv,
     _In_ LPCWSTR            szSubsystemProtocol
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 #ifdef UNICODE
 #define CertOpenSystemStore  CertOpenSystemStoreW
 #else
@@ -17167,7 +17172,9 @@ CryptQueryObject(
     _Out_opt_ CERT_QUERY_ENCODING_TYPE               *pdwMsgAndCertEncodingType,
     _Out_opt_ CERT_QUERY_CONTENT_TYPE               *pdwContentType,
     _Out_opt_ CERT_QUERY_FORMAT_TYPE               *pdwFormatType,
-    _Out_opt_ HCERTSTORE          *phCertStore,
+    _Out_opt_ HCERTSTORE          *phCertStore
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0),
     _Out_opt_ HCRYPTMSG           *phMsg,
     _Outptr_opt_result_maybenull_ const void **ppvContext
     );
@@ -17374,9 +17381,6 @@ CryptMemFree (
 // Following functions were never used. If called, will fail with LastError
 // set to ERROR_CALL_NOT_IMPLEMENTED.
 
-_Win32_metadata_invalid_handle_(-1)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(CryptCloseAsyncHandle)
 typedef HANDLE HCRYPTASYNC, *PHCRYPTASYNC;
 
 typedef VOID (WINAPI *PFN_CRYPT_ASYNC_PARAM_FREE_FUNC) (
@@ -17390,6 +17394,9 @@ WINAPI
 CryptCreateAsyncHandle (
     _In_ DWORD dwFlags,
     _Out_ PHCRYPTASYNC phAsync
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(CryptCloseAsyncHandle)
     );
 
 WINCRYPT32API
@@ -19514,9 +19521,6 @@ CryptCreateKeyIdentifierFromCSP(
 // of the application in order to get optimal caching behavior
 //
 
-_Win32_metadata_invalid_handle_(-1)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(CertFreeCertificateChainEngine)
 typedef HANDLE HCERTCHAINENGINE;
 
 #define HCCE_CURRENT_USER           ((HCERTCHAINENGINE)NULL)
@@ -19645,6 +19649,9 @@ WINAPI
 CertCreateCertificateChainEngine (
     _In_ PCERT_CHAIN_ENGINE_CONFIG pConfig,
     _Out_ HCERTCHAINENGINE* phChainEngine
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(CertFreeCertificateChainEngine)
     );
 
 //
@@ -21175,7 +21182,9 @@ WINAPI
 PFXImportCertStore(
     _In_ CRYPT_DATA_BLOB* pPFX,
     _In_ LPCWSTR szPassword,
-    _In_ CRYPT_KEY_FLAGS   dwFlags);
+    _In_ CRYPT_KEY_FLAGS   dwFlags)
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 
 // dwFlags definitions for PFXImportCertStore
 //#define CRYPT_EXPORTABLE          0x00000001  // CryptImportKey dwFlags
@@ -21938,6 +21947,8 @@ CryptRetrieveTimeStamp(
     _Outptr_                 PCRYPT_TIMESTAMP_CONTEXT *ppTsContext,
     _Outptr_result_maybenull_             PCCERT_CONTEXT *ppTsSigner,
     _Out_opt_                   HCERTSTORE  *phStore
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
     );
 
 // Set this flag to inhibit hash calculation on pbData
@@ -22001,6 +22012,8 @@ CryptVerifyTimeStampSignature (
     _Outptr_                 PCRYPT_TIMESTAMP_CONTEXT   *ppTsContext,
     _Outptr_result_maybenull_             PCCERT_CONTEXT *ppTsSigner,
     _Out_opt_                   HCERTSTORE  *phStore
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
     );
 
 #endif // (NTDDI_VERSION >= NTDDI_WIN7)

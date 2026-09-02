@@ -137,3 +137,36 @@
   reproduces the exact corrected file with zero diff.
 - Remaining unresolved resource-ownership header: `wincrypt.h` (6 handle types across a
   much larger file; tracked as its own batch next).
+
+## 2026-09-02T22:40:00Z - Batch resource-ownership-audit-05
+
+- Header: `wincrypt.h` — the final and largest header in the 11-header resource-ownership
+  audit set (19.5k+ lines, plus a co-resident 104 KB `zz-crypto-security-enums` patch).
+- Six handle typedefs (`HCRYPTPROV_OR_NCRYPT_KEY_HANDLE`, `HCRYPTPROV_LEGACY`, `HCERTSTORE`,
+  `HCERTSTOREPROV`, `HCRYPTASYNC`/`PHCRYPTASYNC`, `HCERTCHAINENGINE`) carried
+  invalid-handle/RAIIFree annotations directly on their typedef sites.
+- Removed typedef-level annotations; added invalid-handle (plus RAIIFree where a single
+  unambiguous free function exists) to 12 producer groups: 1 for
+  `HCRYPTPROV_OR_NCRYPT_KEY_HANDLE`, 9 for `HCERTSTORE` (6 direct-return functions:
+  `CertOpenStore`, `CertDuplicateStore`, `CryptGetMessageCertificates`,
+  `CertOpenSystemStoreA`/`W`, `PFXImportCertStore`; 3 out-params: `CryptQueryObject`,
+  `CryptRetrieveTimeStamp`, `CryptVerifyTimeStampSignature`), 1 for `HCRYPTASYNC`
+  (`CryptCreateAsyncHandle` → `CryptCloseAsyncHandle`), 1 for `HCERTCHAINENGINE`
+  (`CertCreateCertificateChainEngine` → `CertFreeCertificateChainEngine`).
+- Deliberately did **not** add RAIIFree for `HCERTSTORE`: it is a reference-counted resource
+  (`CertDuplicateStore` increments, `CertCloseStore` decrements), not a simple 1:1 RAII
+  relationship, and the original (non-compliant) patch never specified one either — this fix
+  preserves that design decision rather than inventing new semantics.
+- `HCRYPTPROV_LEGACY` and `HCERTSTOREPROV` have no in-header producer (every occurrence is
+  an `_In_`/`_Inout_` consumer or struct field); their invalid-handle annotations were
+  dropped rather than misattached, called out explicitly as an assumption.
+- Regenerated the patch via pristine-baseline reconstruction. `git apply --check --reverse`
+  passes. Verified full sequential forward replay (pristine → the much larger co-resident
+  `zz-crypto-security-enums.patch` → the regenerated `zzz-resource-ownership.patch`)
+  reproduces the exact corrected file with zero diff, confirming no context-window
+  collisions despite the enums patch's size.
+- **All 11 headers in the resource-ownership audit set (`AuthZ.h`, `bcrypt.h`, `ncrypt.h`,
+  `ncryptprotect.h`, `NTSecAPI.h`, `NTSecPKG.h`, `securitybaseapi.h`, `sspi.h`, `wincrypt.h`,
+  `winsafer.h`, `winsvc.h`) are now compliant with the corrected shared-handle ownership
+  policy and classified `accepted-normalized`.** This closes out the audit explicitly
+  requested to correct or block resource-ownership patches that still annotate typedefs.
