@@ -587,3 +587,15 @@ o-annotation-required with live-scrape evidence.
 - `wincred.h` carries two stacked patches with the same expected hunk-context-overlap
   pattern already documented for `bcrypt.h`/`CommCtrl.h`/`UserEnv.h`/`Uxtheme.h`.
   Verified via full sequential forward replay reproducing the committed header exactly.
+
+## 2026-09-03T02:15:00Z - Batch existing-patches-36
+
+- Headers: `winefs.h`, `winevt.h`, `wingdi.h`, `winhttp.h`, and `WinInet.h`.
+- Classified retained `set-last-error` (3 headers, plus `WinInet.h`'s stacked pair) and
+  `callback-canonical-name` (2 headers) patches; none contain ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.
+- **Session milestone: 200 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`** (11-header resource-ownership policy audit + 1 additional
+  audited resource-ownership header (`winspool.h`) + header-scraping-investigation new
+  patches (`ual.h`, `prntvpt.h`) + no-op-verified headers (`pwm.h`, `ntdd1394.h`,
+  `metahost.h`, `mscoree.h`) + 36 batches of retained-patch classification).

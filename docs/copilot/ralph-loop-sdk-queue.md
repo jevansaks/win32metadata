@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:49:32Z
+- Generated: 2026-09-02T22:51:10Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 195
+- Matched: 200
 - In progress: 0
 - Blocked: 0
-- Remaining: 1208
+- Remaining: 1203
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1275,16 +1275,16 @@
 | `windowssideshowdriverevents.h` | SideShow | remaining |  |  |  |
 | `windowsstoragecom.h` | WinRT.Storage | remaining |  |  |  |
 | `windowsx.h` | Controls, FileHistory, Gdi, WinProg | remaining |  |  |  |
-| `winefs.h` | Fs | remaining |  |  |  |
+| `winefs.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winenclave.h` | Enclave | remaining |  |  |  |
 | `winerror.h` | Direct2D, DXCore, Dxgi, Dxgi.Common, Foundation, Rpc, TaskSchd, TransactionServer, UiAnimation, Wes | remaining |  |  |  |
-| `winevt.h` | Wes | remaining |  |  |  |
+| `winevt.h` | Wes | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winfax.h` | Fax | remaining |  |  |  |
-| `wingdi.h` | DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs | remaining |  |  |  |
-| `winhttp.h` | HttpServer, WinHttp | remaining |  |  |  |
+| `wingdi.h` | DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
+| `winhttp.h` | HttpServer, WinHttp | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `WinHvEmulation.h` | Hypervisor | remaining |  |  |  |
 | `WinHvPlatform.h` | Hypervisor | remaining |  |  |  |
-| `wininet.h` | FileHistory, WinInet, WinProg | remaining |  |  |  |
+| `wininet.h` | FileHistory, WinInet, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winineti.h` | WinInet | remaining |  |  |  |
 | `winioctl.h` | Base, Fs, Ioctl, Nfc, Nfp | remaining |  |  |  |
 | `winldap.h` | Ldap | remaining |  |  |  |

@@ -11387,10 +11387,10 @@
   {
     "header": "winefs.h",
     "partition": "Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-36.",
     "_source": "header-progress"
   },
   {
@@ -11414,10 +11414,10 @@
   {
     "header": "winevt.h",
     "partition": "Wes",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-36.",
     "_source": "header-progress"
   },
   {
@@ -11432,19 +11432,19 @@
   {
     "header": "wingdi.h",
     "partition": "DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-36.",
     "_source": "header-progress"
   },
   {
     "header": "winhttp.h",
     "partition": "HttpServer, WinHttp",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-36.",
     "_source": "header-progress"
   },
   {
@@ -11468,10 +11468,10 @@
   {
     "header": "wininet.h",
     "partition": "FileHistory, WinInet, WinProg",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-36.",
     "_source": "header-progress"
   },
   {
