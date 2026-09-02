@@ -114,7 +114,7 @@ WINAPI
 DsRoleGetPrimaryDomainInformation(
     _In_  LPCWSTR lpServer,
     _In_  DSROLE_PRIMARY_DOMAIN_INFO_LEVEL InfoLevel,
-    _Inout_ PBYTE *Buffer 
+    _Inout_ PBYTE *Buffer
     );
 
 _Windows_SupportedOS_WindowsVista_
@@ -134,4 +134,3 @@ DsRoleFreeMemory(
 #pragma endregion
 
 #endif // __DSROLE_H__
-
