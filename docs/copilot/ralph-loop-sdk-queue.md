@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:25:27Z
+- Generated: 2026-09-02T21:27:54Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 24
+- Matched: 29
 - In progress: 0
 - Blocked: 0
-- Remaining: 1379
+- Remaining: 1374
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -168,11 +168,11 @@
 | `comadmin.h` | Cos | remaining |  |  |  |
 | `combaseapi.h` | Base, Com.Events, Com.StructuredStorage, Cos, IO, Multimedia, Shell, TransactionServer, VSS | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `comcat.h` | Com, ComOle | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
-| `coml2api.h` | Com.StructuredStorage | remaining |  |  |  |
-| `commctrl.h` | Controls, Policy, Shell | remaining |  |  |  |
-| `commdlg.h` | DlgBox, Media, Media.KernelStreaming, Multimedia | remaining |  |  |  |
-| `commoncontrols.h` | Controls | remaining |  |  |  |
-| `compressapi.h` | CmpApi | remaining |  |  |  |
+| `coml2api.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
+| `commctrl.h` | Controls, Policy, Shell | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
+| `commdlg.h` | DlgBox, Media, Media.KernelStreaming, Multimedia | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
+| `commoncontrols.h` | Controls | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
+| `compressapi.h` | CmpApi | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
 | `compstui.h` | Printing | remaining |  |  |  |
 | `computecore.h` | HostComputeSystem | remaining |  |  |  |
 | `computenetwork.h` | HostComputeNetwork | remaining |  |  |  |

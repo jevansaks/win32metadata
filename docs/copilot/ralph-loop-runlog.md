@@ -182,3 +182,17 @@
 - Every retained artifact passes reverse application against its tracked patched header.
   These patches were present in the prior successful sequential x64, arm64, and x86
   generation checkpoint.
+
+## 2026-09-02T23:30:00Z - Batch existing-patches-03
+
+- Headers: `coml2api.h`, `CommCtrl.h`, `commdlg.h`, `commoncontrols.h`, and `compressapi.h`.
+- Classified retained `supported-os`, `set-last-error`, and semantic enum-typing
+  (`controls-enums`, `imagelist-creation-flags`) patches; none contain ownership/typedef
+  metadata.
+- `CommCtrl.h` carries two stacked patches (`controls-enums` applies before
+  `zzz-supported-os` in filename-sort order). Isolated reverse-check of `controls-enums`
+  alone fails because its hunk context overlaps lines also touched by `zzz-supported-os` —
+  the same expected collision pattern already documented for `bcrypt.h`/`wincrypt.h`.
+  Verified instead via full sequential replay: reverse-applied both patches in unwind order,
+  then forward-applied both in filename-sort order; reproduces the committed header exactly
+  (zero diff).
