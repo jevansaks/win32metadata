@@ -10019,10 +10019,10 @@
   {
     "header": "ual.h",
     "partition": "Ual",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:59:00Z",
+    "notes": "First header-scraping-investigation batch: no prior patch existed. New supported-os patch created and verified via live re-scrape, not just static review.",
     "_source": "header-progress"
   },
   {

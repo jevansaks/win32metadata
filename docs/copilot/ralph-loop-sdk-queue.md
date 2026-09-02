@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:11:04Z
+- Generated: 2026-09-02T22:22:45Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 144
+- Matched: 145
 - In progress: 0
 - Blocked: 0
-- Remaining: 1259
+- Remaining: 1258
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1123,7 +1123,7 @@
 | `txdtc.h` | DTC | remaining |  |  |  |
 | `txfw32.h` | Fs | remaining |  |  |  |
 | `txlogpub.h` | TransactionServer | remaining |  |  |  |
-| `ual.h` | Ual | remaining |  |  |  |
+| `ual.h` | Ual | matched | copilot | 09/02/2026 22:59:00 | First header-scraping-investigation batch: no prior patch existed. New supported-os patch created and verified via live re-scrape, not just static review. |
 | `uianimation.h` | UiAnimation | remaining |  |  |  |
 | `uiautomationclient.h` | WinAuto | remaining |  |  |  |
 | `uiautomationcore.h` | WinAuto | remaining |  |  |  |

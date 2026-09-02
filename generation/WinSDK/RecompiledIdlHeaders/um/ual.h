@@ -10,6 +10,9 @@
 
 #include <winapifamily.h>
 #include <winsock2.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #if defined (_MSC_VER)
 #pragma once
@@ -33,21 +36,25 @@ typedef struct tagUAL_DATA_BLOB
     WCHAR               UserName[MAX_PATH];
 } UAL_DATA_BLOB, *PUAL_DATA_BLOB;
 
+_Win32_metadata_supported_os_(windows8.0)
 HRESULT
 WINAPI
 UalStart(
     _In_ PUAL_DATA_BLOB Data);
 
+_Win32_metadata_supported_os_(windows8.0)
 HRESULT
 WINAPI
 UalStop(
     _In_ PUAL_DATA_BLOB Data);
     
+_Win32_metadata_supported_os_(windows8.0)
 HRESULT
 WINAPI
 UalInstrument(
     _In_ PUAL_DATA_BLOB Data);
     
+_Win32_metadata_supported_os_(windows8.0)
 HRESULT
 WINAPI
 UalRegisterProduct(

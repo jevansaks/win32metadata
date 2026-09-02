@@ -407,3 +407,38 @@
   (1 header), and `supported-os` (1 header) patches; none contain ownership/typedef
   metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-02T22:59:00Z - Batch scraping-investigation-01
+
+- Began header-scraping investigation phase for pending headers with no retained patch,
+  per the smallest-viable-architecture-first instruction.
+- Discovered that partitions listed in `Windows.Win32.proj`'s `ExcludeFromCrossarch`
+  property (the large majority of partitions, including `Ual`) are silently skipped when
+  `ScanArch=x64`/`arm64` — `MetadataTasks.ScrapeHeaders.ProcessPartition` returns early
+  for those architectures. For these partitions the correct "smallest viable architecture"
+  is `x86` (output lands in the arch-neutral `common` directory), not `x64`. Confirmed
+  by forcing a partition rescrape (touching `main.cpp` to invalidate the per-partition
+  up-to-date marker) and observing zero output change under `x64` versus real scraper
+  output under `x86`.
+- Header: `ual.h` (partition `Ual`, no prior patch). Live-scraped with
+  `dotnet build generation/WinSDK -c Release -p:ScanArch=x86 -t:ScrapeHeaders
+  -p:PartitionFilter=Ual`. Build succeeded with 4 pre-existing "Inconsistent remap"
+  warnings (`in_addr`/`sockaddr`/`timeval`/`_CERT_CONTEXT` "discovered in partition
+  'Ual'") that do not appear anywhere in the generated `Ual.cs` — confirmed via grep — so
+  they are a cross-partition auto-remap-consistency check unrelated to this header's own
+  output; recorded as an external blocker for a future dedicated queue entry rather than
+  guessed at or silently ignored.
+- Verified via Microsoft Learn (`ual/nf-ual-ualstart`) that `UalStart`/`UalStop`/
+  `UalInstrument`/`UalRegisterProduct` require Windows 8 / Server 2012, matching the
+  header's own `NTDDI_WIN8` guard and this repo's existing `windows8.0` convention.
+  Created a **new** `ual.h.zzz-supported-os.patch` adding
+  `_Win32_metadata_supported_os_(windows8.0)` to all four functions. Verified via live
+  re-scrape that the generated C# now correctly emits
+  `[SupportedOSPlatform("windows8.0")]` on all four methods — not just a static/textual
+  review, but a real, working scraper round-trip.
+- Session checkpoint: 145 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`. Established a workable per-partition scraping-investigation
+  workflow (touch partition main.cpp to force rescrape → `dotnet build ... -t:ScrapeHeaders
+  -p:PartitionFilter=<name>` with `ScanArch=x86` for `ExcludeFromCrossarch` partitions,
+  `x64` otherwise → inspect `obj/generated/<arch-or-common>/<Partition>.cs` and the
+  MSBuild warning stream for diagnostics) for continued use in subsequent batches.

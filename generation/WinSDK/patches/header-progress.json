@@ -36752,20 +36752,29 @@
       "header": "ual.h",
       "partitions": "Ual",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-01",
+      "category": "supported-os",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
-      "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation, verified against Microsoft Learn documentation"
+      ],
+      "blocker": "Cross-partition auto-remap-consistency warning (in_addr/sockaddr/timeval/_CERT_CONTEXT discovered in partition 'Ual') is pre-existing and unrelated to this header's own emitted metadata; out of scope for this header, flagged for a future dedicated queue entry.",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T22:59:00Z",
+          "rationale": "NTDDI_WIN8 guard in the header, plus Microsoft Learn documentation for UalStart (Windows 8 / Server 2012 minimum), maps to the windows8.0 supported_os value already used elsewhere in this repo for the same NTDDI_WIN8 threshold."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/ual.h.md generation/WinSDK/patches/post-midl/ual.h.zzz-supported-os.patch git apply --check --reverse passed; live re-scrape (ScanArch=x86, the viable arch for this ExcludeFromCrossarch partition) confirms [SupportedOSPlatform(\"windows8.0\")] emitted on all 4 functions; verified against learn.microsoft.com/windows/win32/api/ual/nf-ual-ualstart"
+      ],
+      "last_updated": "2026-09-02T22:59:00Z",
+      "notes": "First header-scraping-investigation batch: no prior patch existed. New supported-os patch created and verified via live re-scrape, not just static review.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Ual/main.cpp",
