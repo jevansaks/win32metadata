@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:47:26Z
+- Generated: 2026-09-02T22:49:32Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 190
+- Matched: 195
 - In progress: 0
 - Blocked: 0
-- Remaining: 1213
+- Remaining: 1208
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1227,23 +1227,23 @@
 | `wiatwcmp.h` | Wia | remaining |  |  |  |
 | `wiavideo.h` | Wia | remaining |  |  |  |
 | `wiawsdsc.h` | Wia | remaining |  |  |  |
-| `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | remaining |  |  |  |
+| `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `winber.h` | Ldap | remaining |  |  |  |
 | `winbio_adapter.h` | SecBitomet | remaining |  |  |  |
 | `winbio_err.h` | SecBitomet | remaining |  |  |  |
 | `winbio_ioctl.h` | SecBitomet | remaining |  |  |  |
 | `winbio_types.h` | SecBitomet | remaining |  |  |  |
 | `winbio.h` | SecBitomet | remaining |  |  |  |
-| `wincodec.h` | Wic | remaining |  |  |  |
-| `wincodecsdk.h` | Wic | remaining |  |  |  |
+| `wincodec.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
+| `wincodecsdk.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincon.h` | Console | remaining |  |  |  |
 | `winconp.h` | Console | remaining |  |  |  |
-| `wincred.h` | Certificates, Credentials, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | remaining |  |  |  |
+| `wincred.h` | Certificates, Credentials, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincrypt.h` | NetMgmt, Rpc, Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:40:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; final header in the 11-header audit set (all now compliant). Verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
 | `winddi.h` | Display, IO, Printing, TransactionServer | remaining |  |  |  |
 | `winddiui.h` | Printing | remaining |  |  |  |
 | `windef.h` | Foundation, Gdi, WinAuto | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
-| `windns.h` | Dns, IpHlp | remaining |  |  |  |
+| `windns.h` | Dns, IpHlp | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `windnsdef.h` | Dns | remaining |  |  |  |
 | `windot11.h` | Ndis, NWifi | remaining |  |  |  |
 | `windows.ai.machinelearning.native.h` | WinRT.ML | remaining |  |  |  |

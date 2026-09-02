@@ -39955,20 +39955,29 @@
         "WinProg"
       ],
       "partition_count": 25,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-35",
+      "category": "set-last-error",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T02:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/WinBase.h.md generation/WinSDK/patches/post-midl/WinBase.h.callback-canonical-name.patch generation/WinSDK/patches/post-midl/WinBase.h.service-security-set-last-error.patch generation/WinSDK/patches/post-midl/WinBase.h.zzz-set-last-error.patch git apply --check --reverse passed for all three docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-03T02:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-35.",
       "sources": [
         {
           "source": "partition-main",
@@ -40276,20 +40285,29 @@
       "header": "wincodec.h",
       "partitions": "Wic",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-35",
+      "category": "supported-os",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T02:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/wincodec.h.md generation/WinSDK/patches/post-midl/wincodec.h.zz-supported-os.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-03T02:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-35.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Wic/main.cpp",
@@ -40301,20 +40319,29 @@
       "header": "wincodecsdk.h",
       "partitions": "Wic",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-35",
+      "category": "supported-os",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T02:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/wincodecsdk.h.md generation/WinSDK/patches/post-midl/wincodecsdk.h.zz-supported-os.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-03T02:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-35.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Wic/main.cpp",
@@ -40393,20 +40420,29 @@
         "Security.WinWlx"
       ],
       "partition_count": 16,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-35",
+      "category": "semantic-enum-typing",
+      "delta_class": "abi-compatible-typedef-spelling",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T02:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/wincred.h.md generation/WinSDK/patches/post-midl/wincred.h.credential-enums.patch generation/WinSDK/patches/post-midl/wincred.h.service-security-set-last-error.patch full sequential forward replay verified (zero diff); isolated reverse-check of credential-enums alone fails due to expected hunk-context overlap"
+      ],
+      "last_updated": "2026-09-03T02:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-35.",
       "sources": [
         {
           "source": "partition-main",
@@ -40705,20 +40741,29 @@
         "IpHlp"
       ],
       "partition_count": 2,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-35",
+      "category": "set-last-error",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T02:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/WinDNS.h.md generation/WinSDK/patches/post-midl/WinDNS.h.set-last-error.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-03T02:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-35.",
       "sources": [
         {
           "source": "partition-main",

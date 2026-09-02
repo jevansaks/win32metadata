@@ -576,3 +576,14 @@ o-annotation-required with live-scrape evidence.
   hunk-context-overlap pattern already documented for `bcrypt.h`/`CommCtrl.h`. Verified
   both via full sequential forward replay (reverse-apply in unwind order, forward-apply in
   filename-sort order) reproducing the committed header exactly.
+
+## 2026-09-03T02:00:00Z - Batch existing-patches-35
+
+- Headers: `WinBase.h`, `wincodec.h`, `wincodecsdk.h`, `wincred.h`, and
+  `WinDNS.h`.
+- Classified retained `set-last-error` (2 headers, `WinBase.h` with three
+  non-overlapping stacked patches), `supported-os` (2 headers), and semantic-enum-typing
+  (1 header, `wincred.h`) patches; none contain ownership/typedef metadata.
+- `wincred.h` carries two stacked patches with the same expected hunk-context-overlap
+  pattern already documented for `bcrypt.h`/`CommCtrl.h`/`UserEnv.h`/`Uxtheme.h`.
+  Verified via full sequential forward replay reproducing the committed header exactly.

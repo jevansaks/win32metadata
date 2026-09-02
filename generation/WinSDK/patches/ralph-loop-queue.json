@@ -10955,10 +10955,10 @@
   {
     "header": "winbase.h",
     "partition": "Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-35.",
     "_source": "header-progress"
   },
   {
@@ -11018,19 +11018,19 @@
   {
     "header": "wincodec.h",
     "partition": "Wic",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-35.",
     "_source": "header-progress"
   },
   {
     "header": "wincodecsdk.h",
     "partition": "Wic",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-35.",
     "_source": "header-progress"
   },
   {
@@ -11054,10 +11054,10 @@
   {
     "header": "wincred.h",
     "partition": "Certificates, Credentials, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-35.",
     "_source": "header-progress"
   },
   {
@@ -11099,10 +11099,10 @@
   {
     "header": "windns.h",
     "partition": "Dns, IpHlp",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-35.",
     "_source": "header-progress"
   },
   {
