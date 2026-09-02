@@ -806,3 +806,24 @@ autoTypes.json ownership entries) - confirmed NOT a regression, wingdi.h/winuser
 headers for these types) do not need new producer-site patches for these specific well-known GDI handles.
 
 **Ledger status:** 259 accepted-normalized, 2 blocked (esent.h, getprocesshandlefromhwnd.h), 1142 pending.
+
+## 2026-09-02 16:53:58 UTC - Batch scraping-investigation-15
+
+**Headers:** bcp47mrm.h, wia.h, sas.h, getcurrentpackageinfo3.h, wab.h (blocked)
+**Partitions scraped:** Wab, Wia (x86; 0 warnings/errors)
+
+- bcp47mrm.h: GetDistanceOfClosestLanguageInList/IsWellFormedTag - no handle involved. Clean.
+- wia.h: redirect-only header (wia_lh.h/wia_xp.h); 185 functions all MIDL COM/RPC proxy/stub
+  marshalling helpers (IWiaDevMgr_*_Proxy/_Stub etc.), no DECLARE_HANDLE. Clean.
+- sas.h: SendSAS(BOOL) - no handle involved at all. Clean.
+- getcurrentpackageinfo3.h: buffer-fill API (UINT32*/void* buffer), no handle production. Clean.
+- **wab.h: BLOCKED.** 77 functions scraped; 76 are clean (COM-interface pointer producers like
+  WABOpen/WABOpenEx via _Outptr_ LPADRBOOK*, or data/struct-copy helpers). One genuine exception:
+  FtgRegisterIdleRoutine(PFNIDLE*, LPVOID, ...) returns an opaque FTG handle (void*) directly as the
+  function RETURN VALUE (not an out-param), later released via DeregisterIdleRoutine(FTG) and mutated
+  via EnableIdleRoutine/ChangeIdleRoutine. This is the same return-value-handle-ownership blocker class
+  first documented for getprocesshandlefromhwnd.h in batch scraping-investigation-14: no precedent
+  anywhere in this repo or the published baseline winmd for annotating a bare return-value handle.
+  Recorded as blocked pending the same dedicated policy decision.
+
+**Ledger status:** 263 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1137 pending.

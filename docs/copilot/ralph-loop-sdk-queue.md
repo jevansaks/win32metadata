@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:49:37Z
+- Generated: 2026-09-02T23:53:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 259
+- Matched: 263
 - In progress: 0
-- Blocked: 2
-- Remaining: 1142
+- Blocked: 3
+- Remaining: 1137
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -99,7 +99,7 @@
 | `avrt.h` | Threading | remaining |  |  |  |
 | `azroles.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `batclass.h` | Power | remaining |  |  |  |
-| `bcp47mrm.h` | Intl | remaining |  |  |  |
+| `bcp47mrm.h` | Intl | matched |  | 09/02/2026 16:53:36 | No handle-producing functions. |
 | `bcrypt_provider.h` | Security.Cryptography | remaining |  |  |  |
 | `bcrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; unrelated zz-crypto-security-enums patch verified compatible via full sequential forward replay. |
 | `bdaiface.h` | Media.DShow, MsTv | remaining |  |  |  |
@@ -465,7 +465,7 @@
 | `gdiplus.h` | Gdiplus | matched |  | 09/02/2026 16:34:06 | GDI+ create/delete object pattern uses strongly-typed C++ pointers (GpGraphics* etc), not HANDLE-family typedefs; no pre-existing RAII metadata to correct; out of current policy scope. |
 | `gdipluseffects.h` | Media.DShow | remaining |  |  |  |
 | `genericusbfnioctl.h` | Buses | remaining |  |  |  |
-| `getcurrentpackageinfo3.h` | AppxPackaging | remaining |  |  |  |
+| `getcurrentpackageinfo3.h` | AppxPackaging | matched |  | 09/02/2026 16:53:36 | Buffer-fill API, no handle production. |
 | `getprocesshandlefromhwnd.h` | Threading | blocked | copilot | 09/02/2026 16:49:01 | Deferred: return-value HANDLE ownership has no precedent anywhere in the repo or published baseline winmd (confirmed via WinmdUtils dump); requires dedicated policy decision on annotation placement before this can be fixed. |
 | `gl/gl.h` | OpenGL | remaining |  |  |  |
 | `gl/glu.h` | OpenGL | remaining |  |  |  |
@@ -970,7 +970,7 @@
 | `rtutils.h` | NetMgmt | remaining |  |  |  |
 | `rtworkq.h` | Threading | remaining |  |  |  |
 | `sapiddk.h` | Speech | remaining |  |  |  |
-| `sas.h` | Identity | remaining |  |  |  |
+| `sas.h` | Identity | matched |  | 09/02/2026 16:53:36 | SendSAS(BOOL) - no handle involved. |
 | `sbe.h` | MsTv | remaining |  |  |  |
 | `sbtsv.h` | TermServ | remaining |  |  |  |
 | `scarderr.h` | Credentials | remaining |  |  |  |
@@ -1180,7 +1180,7 @@
 | `vswriter.h` | VSS | remaining |  |  |  |
 | `waasapi.h` | UpdateAssessment | remaining |  |  |  |
 | `waasapitypes.h` | UpdateAssessment | remaining |  |  |  |
-| `wab.h` | Wab | remaining |  |  |  |
+| `wab.h` | Wab | blocked | copilot | 09/02/2026 16:53:36 | Deferred: 1 of 77 functions (FtgRegisterIdleRoutine) has genuine return-value handle ownership with no annotation precedent; needs the same dedicated policy decision as getprocesshandlefromhwnd.h. |
 | `wabdefs.h` | IMapi, Tapi3 | remaining |  |  |  |
 | `wbcl.h` | Qos | remaining |  |  |  |
 | `wbemads.h` | Wmi | remaining |  |  |  |
@@ -1217,7 +1217,7 @@
 | `websocket.h` | WebSock | remaining |  |  |  |
 | `werapi.h` | Wer | remaining |  |  |  |
 | `wheadef.h` | Debug | remaining |  |  |  |
-| `wia.h` | Wia | remaining |  |  |  |
+| `wia.h` | Wia | matched |  | 09/02/2026 16:53:36 | Redirect-only; 185 functions all COM/RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wiadef.h` | Wia | remaining |  |  |  |
 | `wiadevd.h` | Wia | remaining |  |  |  |
 | `wiaintfc.h` | Wia | remaining |  |  |  |

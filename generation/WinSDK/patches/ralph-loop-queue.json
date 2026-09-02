@@ -803,10 +803,10 @@
   {
     "header": "bcp47mrm.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:53:36Z",
+    "notes": "No handle-producing functions.",
     "_source": "header-progress"
   },
   {
@@ -4097,10 +4097,10 @@
   {
     "header": "getcurrentpackageinfo3.h",
     "partition": "AppxPackaging",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:53:36Z",
+    "notes": "Buffer-fill API, no handle production.",
     "_source": "header-progress"
   },
   {
@@ -8642,10 +8642,10 @@
   {
     "header": "sas.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:53:36Z",
+    "notes": "SendSAS(BOOL) - no handle involved.",
     "_source": "header-progress"
   },
   {
@@ -10532,10 +10532,10 @@
   {
     "header": "wab.h",
     "partition": "Wab",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T16:53:36Z",
+    "notes": "Deferred: 1 of 77 functions (FtgRegisterIdleRoutine) has genuine return-value handle ownership with no annotation precedent; needs the same dedicated policy decision as getprocesshandlefromhwnd.h.",
     "_source": "header-progress"
   },
   {
@@ -10865,10 +10865,10 @@
   {
     "header": "wia.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:53:36Z",
+    "notes": "Redirect-only; 185 functions all COM/RPC marshalling stubs, no DECLARE_HANDLE.",
     "_source": "header-progress"
   },
   {
