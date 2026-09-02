@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h b/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h
-index 2f506077..b5c92c47 100644
+index 2f506077..44c1e938 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h
 @@ -20,6 +20,7 @@ Abstract:
@@ -23,7 +23,7 @@ index 2f506077..b5c92c47 100644
 -    OUT PBYTE *Buffer 
 +    _In_  LPCWSTR lpServer,
 +    _In_  DSROLE_PRIMARY_DOMAIN_INFO_LEVEL InfoLevel,
-+    _Inout_ PBYTE *Buffer 
++    _Inout_ PBYTE *Buffer
      );
  
 +_Windows_SupportedOS_WindowsVista_
@@ -35,8 +35,9 @@ index 2f506077..b5c92c47 100644
      );
  
  
-@@ -132,4 +135,3 @@ DsRoleFreeMemory(
+@@ -131,5 +134,3 @@ DsRoleFreeMemory(
+ #pragma endregion
  
  #endif // __DSROLE_H__
- 
+-
 -
