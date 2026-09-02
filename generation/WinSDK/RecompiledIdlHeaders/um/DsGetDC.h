@@ -27,6 +27,7 @@ Notes:
 #pragma once
 #endif
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -224,6 +225,7 @@ typedef struct _DOMAIN_CONTROLLER_INFOW {
 //
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -237,6 +239,7 @@ DsGetDcNameA(
     );
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -256,6 +259,7 @@ DsGetDcNameW(
 #endif // !UNICODE
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -265,6 +269,7 @@ DsGetSiteNameA(
     );
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -282,6 +287,7 @@ DsGetSiteNameW(
 DSGETDCAPI
 DWORD
 WINAPI
+_Windows_SupportedOS_WindowsVista_
 DsValidateSubnetNameW(
     _In_ LPCWSTR SubnetName
     );
@@ -289,6 +295,7 @@ DsValidateSubnetNameW(
 DSGETDCAPI
 DWORD
 WINAPI
+_Windows_SupportedOS_WindowsVista_
 DsValidateSubnetNameA(
     _In_ LPCSTR SubnetName
     );
@@ -306,6 +313,7 @@ DsValidateSubnetNameA(
 #ifdef _WINSOCK2API_
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -317,6 +325,7 @@ DsAddressToSiteNamesW(
     );
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -334,6 +343,7 @@ DsAddressToSiteNamesA(
 #endif // !UNICODE
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -346,6 +356,7 @@ DsAddressToSiteNamesExW(
     );
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -459,6 +470,7 @@ typedef struct _DS_DOMAIN_TRUSTSA {
 #endif // !UNICODE
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -470,6 +482,7 @@ DsEnumerateDomainTrustsW (
     );
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -494,6 +507,7 @@ DsEnumerateDomainTrustsA (
 #if defined(_NTLSA_) || defined(_NTSECAPI_)
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -508,6 +522,7 @@ DsGetForestTrustInformationW (
 #define DS_GFTI_VALID_FLAGS     0x1     // All valid flags to DsGetForestTrustInformation
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -521,6 +536,7 @@ DsMergeForestTrustInformationW(
 #endif // _NTLSA_ || _NTSECAPI_
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -531,6 +547,7 @@ DsGetDcSiteCoverageW(
     );
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -549,6 +566,7 @@ DsGetDcSiteCoverageA(
 DSGETDCAPI
 DWORD
 WINAPI
+_Windows_SupportedOS_WindowsVista_
 DsDeregisterDnsHostRecordsW (
     _In_opt_ LPWSTR ServerName,
     _In_opt_ LPWSTR DnsDomainName,
@@ -560,6 +578,7 @@ DsDeregisterDnsHostRecordsW (
 DSGETDCAPI
 DWORD
 WINAPI
+_Windows_SupportedOS_WindowsVista_
 DsDeregisterDnsHostRecordsA (
     _In_opt_ LPSTR ServerName,
     _In_opt_ LPSTR DnsDomainName,
@@ -603,6 +622,7 @@ DsDeregisterDnsHostRecordsA (
 DSGETDCAPI
 DWORD
 WINAPI
+_Windows_SupportedOS_WindowsVista_
 DsGetDcOpenW(
     _In_ LPCWSTR DnsName,
     _In_ ULONG OptionFlags,
@@ -610,12 +630,13 @@ DsGetDcOpenW(
     _In_opt_ GUID *DomainGuid,
     _In_opt_ LPCWSTR DnsForestName,
     _In_ ULONG DcFlags,
-    _Out_ PHANDLE RetGetDcContext
+    _Out_ _Win32_RAIIFree_(DsGetDcCloseW) PHANDLE RetGetDcContext
     );
 
 DSGETDCAPI
 DWORD
 WINAPI
+_Windows_SupportedOS_WindowsVista_
 DsGetDcOpenA(
     _In_ LPCSTR DnsName,
     _In_ ULONG OptionFlags,
@@ -623,7 +644,7 @@ DsGetDcOpenA(
     _In_opt_ GUID *DomainGuid,
     _In_opt_ LPCSTR DnsForestName,
     _In_ ULONG DcFlags,
-    _Out_ PHANDLE RetGetDcContext
+    _Out_ _Win32_RAIIFree_(DsGetDcCloseW) PHANDLE RetGetDcContext
     );
 
 #ifdef UNICODE
@@ -633,6 +654,7 @@ DsGetDcOpenA(
 #endif // !UNICODE
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -644,6 +666,7 @@ DsGetDcNextW(
     );
 
 _Success_(return == ERROR_SUCCESS)
+_Windows_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -663,6 +686,7 @@ DsGetDcNextA(
 DSGETDCAPI
 VOID
 WINAPI
+_Windows_SupportedOS_WindowsVista_
 DsGetDcCloseW(
     _In_ HANDLE GetDcContextHandle
     );

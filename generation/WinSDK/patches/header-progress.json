@@ -136,7 +136,19 @@
         "SupportedOSPlatform missing on DECLARE_INTERFACE_IID_ macro-authored COM interfaces"
       ]
     },
-    {"order": 9, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
+    {
+      "order": 9,
+      "header": "DsGetDC.h",
+      "partition": "ActiveDirectory",
+      "namespace": "Windows.Win32.Networking.ActiveDirectory",
+      "status": "matched",
+      "focus": "Supported OS and returned HANDLE lifecycle",
+      "acceptedNormalizations": ["nativeOnlyConstants", "unusedProjectionAttributes"],
+      "lastRun": "2026-09-01",
+      "evidence": "docs/copilot/header-reports/DsGetDC.h.ActiveDirectory.md",
+      "unresolved": []
+    },
+    {"order": 10, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
     {"order": 4, "header": "esent.h", "partition": "Storage.Jet", "namespace": "Windows.Win32.Storage.Jet", "status": "queued", "focus": "Architecture-neutral integer widths"},
     {"order": 5, "header": "d2d1_1.h", "partition": "Direct2D", "namespace": "Windows.Win32.Graphics.Direct2D", "status": "queued", "focus": "Cross-partition owner suppression"},
     {"order": 6, "header": "psapi.h", "partition": "PsApi2", "namespace": "Windows.Win32.System.ProcessStatus", "status": "queued", "focus": "Alias and public P/Invoke naming"},
