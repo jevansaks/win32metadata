@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:45:24Z
+- Generated: 2026-09-02T22:47:26Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 185
+- Matched: 190
 - In progress: 0
 - Blocked: 0
-- Remaining: 1218
+- Remaining: 1213
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1133,7 +1133,7 @@
 | `upnp.h` | Upnp | remaining |  |  |  |
 | `upnphost.h` | Upnp | remaining |  |  |  |
 | `urlhist.h` | InternetExplorer | remaining |  |  |  |
-| `urlmon.h` | Shell, TransactionServer | remaining |  |  |  |
+| `urlmon.h` | Shell, TransactionServer | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `usb.h` | Buses | remaining |  |  |  |
 | `usb4dbgioctl.h` | Buses | remaining |  |  |  |
 | `usbfnbase.h` | Buses | remaining |  |  |  |
@@ -1144,11 +1144,11 @@
 | `usbuser.h` | Buses | remaining |  |  |  |
 | `useractivityinterop.h` | WinRT | remaining |  |  |  |
 | `UserConsentVerifierInterop.h` | WinRT | remaining |  |  |  |
-| `userenv.h` | Policy, Shell | remaining |  |  |  |
+| `userenv.h` | Policy, Shell | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `usp10.h` | Intl | remaining |  |  |  |
 | `utilapiset.h` | Base, Debug | remaining |  |  |  |
 | `uuids.h` | Media, Mf | remaining |  |  |  |
-| `uxtheme.h` | Controls, WinTouch | remaining |  |  |  |
+| `uxtheme.h` | Controls, WinTouch | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `vbinterf.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | remaining |  |  |  |
 | `vdmdbg.h` | FileHistory, VirtualDOSMachines | remaining |  |  |  |
 | `vds.h` | VirtualDiskService | remaining |  |  |  |
@@ -1200,9 +1200,9 @@
 | `wdigest.h` | Identity | remaining |  |  |  |
 | `wdmguid.h` | DevInst | remaining |  |  |  |
 | `wdsbp.h` | Wds | remaining |  |  |  |
-| `wdsclientapi.h` | Wds | remaining |  |  |  |
+| `wdsclientapi.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdsmcerr.h` | Wds | remaining |  |  |  |
-| `wdspxe.h` | Wds | remaining |  |  |  |
+| `wdspxe.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdstci.h` | Wds | remaining |  |  |  |
 | `wdstpdi.h` | Wds | remaining |  |  |  |
 | `wdstptmgmt.h` | Wds | remaining |  |  |  |

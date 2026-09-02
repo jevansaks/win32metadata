@@ -565,3 +565,14 @@ o-annotation-required with live-scrape evidence.
 - Classified retained `supported-os` (4 headers) and `set-last-error` (1 header)
   patches; none contain ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T01:45:00Z - Batch existing-patches-34
+
+- Headers: `urlmon.h`, `UserEnv.h`, `Uxtheme.h`, `WdsClientApi.h`, and `wdspxe.h`.
+- Classified retained `supported-os` (1 header), `set-last-error` (3 headers total
+  including `UserEnv.h`'s stacked pair), and semantic-enum-typing (1 header) patches;
+  none contain ownership/typedef metadata.
+- `UserEnv.h` and `Uxtheme.h` each carry two stacked patches with the same expected
+  hunk-context-overlap pattern already documented for `bcrypt.h`/`CommCtrl.h`. Verified
+  both via full sequential forward replay (reverse-apply in unwind order, forward-apply in
+  filename-sort order) reproducing the committed header exactly.
