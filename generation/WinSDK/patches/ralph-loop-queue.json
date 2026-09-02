@@ -4520,10 +4520,10 @@
   {
     "header": "icwcfg.h",
     "partition": "FileHistory, InternetConnectionWizard",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:00:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
@@ -5492,10 +5492,10 @@
   {
     "header": "madcapcl.h",
     "partition": "MadCap",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:00:00Z",
+    "notes": "No patch needed; no ownership-relevant handle type.",
     "_source": "header-progress"
   },
   {
@@ -5546,10 +5546,10 @@
   {
     "header": "mbnapi.h",
     "partition": "Mbn",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:00:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
@@ -7004,10 +7004,10 @@
   {
     "header": "nfpdev.h",
     "partition": "Nfp",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:00:00Z",
+    "notes": "No patch needed; constant-only header.",
     "_source": "header-progress"
   },
   {
@@ -8219,10 +8219,10 @@
   {
     "header": "rdpencomapi.h",
     "partition": "Rdp, TermServ",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:00:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {

@@ -734,3 +734,14 @@ o-annotation-required with live-scrape evidence.
   dedicated, authoritative pass through ESE documentation to annotate correctly. Recording
   this now as an actionable blocker rather than rushing an incomplete/incorrect ownership
   mapping, per the ledger's own stop condition.
+
+## 2026-09-03T05:00:00Z - Batch scraping-investigation-11
+
+- Headers: `rdpencomapi.h` (Rdp), `madcapcl.h` (MadCap), `mbnapi.h` (Mbn),
+  `icwcfg.h` (InternetConnectionWizard), and `nfpdev.h` (Nfp).
+- All five live-scraped cleanly (0 warnings/errors). `rdpencomapi.h`/`mbnapi.h`/
+  `icwcfg.h` are COM-interface based; `madcapcl.h`'s 7 functions use only structs/DWORDs
+  (no HANDLE-typed parameters at all); `nfpdev.h` is constant/GUID-only. Classified
+  `accepted-normalized` / `no-annotation-required` with live-scrape evidence.
+- Session checkpoint: 244 of 1403 authoritative ledger headers now classified
+  `accepted-normalized` (plus 1 explicitly `blocked`: `esent.h`).

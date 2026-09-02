@@ -14567,20 +14567,29 @@
         "InternetConnectionWizard"
       ],
       "partition_count": 2,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-11",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership gaps found"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T05:00:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/icwcfg.h.md live re-scrape (ScanArch=x86, partition InternetConnectionWizard) succeeds; no DECLARE_HANDLE"
+      ],
+      "last_updated": "2026-09-03T05:00:00Z",
+      "notes": "No patch needed; COM interface only.",
       "sources": [
         {
           "source": "partition-main",
@@ -19901,20 +19910,29 @@
       "header": "madcapcl.h",
       "partitions": "MadCap",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-11",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership gaps found"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T05:00:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/madcapcl.h.md live re-scrape (ScanArch=x86, partition MadCap) succeeds; no HANDLE-typed parameters in any of 7 functions"
+      ],
+      "last_updated": "2026-09-03T05:00:00Z",
+      "notes": "No patch needed; no ownership-relevant handle type.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/MadCap/main.cpp",
@@ -20060,20 +20078,29 @@
       "header": "mbnapi.h",
       "partitions": "Mbn",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-11",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership gaps found"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T05:00:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/mbnapi.h.md live re-scrape (ScanArch=x86, partition Mbn) succeeds; no DECLARE_HANDLE"
+      ],
+      "last_updated": "2026-09-03T05:00:00Z",
+      "notes": "No patch needed; COM interface only.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Mbn/main.cpp",
@@ -24689,20 +24716,29 @@
       "header": "nfpdev.h",
       "partitions": "Nfp",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-11",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership gaps found"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T05:00:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/nfpdev.h.md live re-scrape (ScanArch=x86, partition Nfp) succeeds; no DllImport entries"
+      ],
+      "last_updated": "2026-09-03T05:00:00Z",
+      "notes": "No patch needed; constant-only header.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Nfp/main.cpp",
@@ -29238,20 +29274,29 @@
         "TermServ"
       ],
       "partition_count": 2,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-11",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership gaps found"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T05:00:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/rdpencomapi.h.md live re-scrape (ScanArch=x86, partition Rdp) succeeds; no DECLARE_HANDLE"
+      ],
+      "last_updated": "2026-09-03T05:00:00Z",
+      "notes": "No patch needed; COM interface only.",
       "sources": [
         {
           "source": "partition-main",

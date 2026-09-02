@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:21:18Z
+- Generated: 2026-09-02T23:24:26Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 239
+- Matched: 244
 - In progress: 0
 - Blocked: 1
-- Remaining: 1163
+- Remaining: 1158
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -512,7 +512,7 @@
 | `icu.h` | Intl | remaining |  |  |  |
 | `icucommon.h` | Intl | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `icui18n.h` | Intl | remaining |  |  |  |
-| `icwcfg.h` | FileHistory, InternetConnectionWizard | remaining |  |  |  |
+| `icwcfg.h` | FileHistory, InternetConnectionWizard | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `identitycommon.h` | IdentityProvider | remaining |  |  |  |
 | `identityprovider.h` | IdentityProvider | remaining |  |  |  |
 | `identitystore.h` | IdentityProvider | remaining |  |  |  |
@@ -620,13 +620,13 @@
 | `locationapi.h` | WinLocation | remaining |  |  |  |
 | `lowlevelmonitorconfigurationapi.h` | Monitor | remaining |  |  |  |
 | `lzexpand.h` | Fs | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
-| `madcapcl.h` | MadCap | remaining |  |  |  |
+| `madcapcl.h` | MadCap | matched | copilot | 09/03/2026 05:00:00 | No patch needed; no ownership-relevant handle type. |
 | `magnification.h` | MagApi | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `mailmsgprops.h` | IMapi | remaining |  |  |  |
 | `manipulations.h` | WinTouch | remaining |  |  |  |
 | `manual.h` | Com.StructuredStorage | remaining |  |  |  |
 | `mapi.h` | Mapi | remaining |  |  |  |
-| `mbnapi.h` | Mbn | remaining |  |  |  |
+| `mbnapi.h` | Mbn | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `mciapi.h` | Multimedia | remaining |  |  |  |
 | `mciavi.h` | Multimedia | remaining |  |  |  |
 | `mcx.h` | Communication | remaining |  |  |  |
@@ -788,7 +788,7 @@
 | `nfcdtadev.h` | Nfc | remaining |  |  |  |
 | `nfcradiodev.h` | Nfc | remaining |  |  |  |
 | `nfcsedev.h` | Nfc | remaining |  |  |  |
-| `nfpdev.h` | Nfp | remaining |  |  |  |
+| `nfpdev.h` | Nfp | matched | copilot | 09/03/2026 05:00:00 | No patch needed; constant-only header. |
 | `notesdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `notificationactivationcallback.h` | Win32_Tile_Badge_Notif | remaining |  |  |  |
 | `Npapi.h` | Wnet | remaining |  |  |  |
@@ -923,7 +923,7 @@
 | `rasshost.h` | RRas | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `ratings.h` | InternetExplorer | remaining |  |  |  |
 | `rdpappcontainerclient.h` | TermServ | remaining |  |  |  |
-| `rdpencomapi.h` | Rdp, TermServ | remaining |  |  |  |
+| `rdpencomapi.h` | Rdp, TermServ | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `realtimeapiset.h` | Base | remaining |  |  |  |
 | `reason.h` | FileHistory, Shutdown | remaining |  |  |  |
 | `recapis.h` | Tablet | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
