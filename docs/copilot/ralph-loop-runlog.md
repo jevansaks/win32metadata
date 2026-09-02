@@ -202,6 +202,11 @@
 - Headers: `ComSvcs.h`, `control.h`, `credentialprovider.h`, `cryptuiapi.h`, and
   `cryptxml.h`.
 - Classified retained `supported-os` (3 headers) and semantic-enum-typing (2 headers,
-  `zz-crypto-security-enums`/`zzz-multimedia-enums`) patches; none contain
+- Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T00:10:00Z - Batch existing-patches-05
+
+- Headers: `ctxtcall.h`, `d2d1.h`, `d2d1_1.h`, `d2d1_2.h`, and `d2d1_3.h`.
+- Classified retained `supported-os` annotation-only patches; none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.

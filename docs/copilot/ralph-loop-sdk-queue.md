@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:30:26Z
+- Generated: 2026-09-02T21:32:11Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 34
+- Matched: 39
 - In progress: 0
 - Blocked: 0
-- Remaining: 1369
+- Remaining: 1364
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -202,12 +202,12 @@
 | `ctffunc.h` | Tsf | remaining |  |  |  |
 | `ctfspui.h` | Tsf | remaining |  |  |  |
 | `ctfutb.h` | Tsf | remaining |  |  |  |
-| `ctxtcall.h` | Com, ComOle | remaining |  |  |  |
+| `ctxtcall.h` | Com, ComOle | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `custcntl.h` | Controls | remaining |  |  |  |
-| `d2d1_1.h` | Direct2D | remaining |  |  |  |
-| `d2d1_2.h` | Direct2D | remaining |  |  |  |
-| `d2d1_3.h` | Direct2D | remaining |  |  |  |
-| `d2d1.h` | Direct2D | remaining |  |  |  |
+| `d2d1_1.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
+| `d2d1_2.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
+| `d2d1_3.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
+| `d2d1.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `d2d1effectauthor_1.h` | Direct2D | remaining |  |  |  |
 | `d2d1effectauthor.h` | Direct2D | remaining |  |  |  |
 | `d2d1effects_1.h` | Direct2D | remaining |  |  |  |

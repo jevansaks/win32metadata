@@ -1730,10 +1730,10 @@
   {
     "header": "ctxtcall.h",
     "partition": "Com, ComOle",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-05.",
     "_source": "header-progress"
   },
   {
@@ -1748,37 +1748,37 @@
   {
     "header": "d2d1_1.h",
     "partition": "Direct2D",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-05.",
     "_source": "header-progress"
   },
   {
     "header": "d2d1_2.h",
     "partition": "Direct2D",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-05.",
     "_source": "header-progress"
   },
   {
     "header": "d2d1_3.h",
     "partition": "Direct2D",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-05.",
     "_source": "header-progress"
   },
   {
     "header": "d2d1.h",
     "partition": "Direct2D",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:10:00Z",
+    "notes": "Classified retained artifact in existing-patches-05.",
     "_source": "header-progress"
   },
   {
