@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T20:53:34Z
+- Generated: 2026-09-02T21:02:04Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 11
+- Matched: 14
 - In progress: 0
 - Blocked: 0
-- Remaining: 1392
+- Remaining: 1389
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -767,7 +767,7 @@
 | `nb30.h` | NetBios | remaining |  |  |  |
 | `ncrypt_provider.h` | Security.Cryptography | remaining |  |  |  |
 | `ncrypt.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
-| `ncryptprotect.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `ncryptprotect.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `ndattrib.h` | Ndf | remaining |  |  |  |
 | `ndfapi.h` | Ndf | remaining |  |  |  |
 | `ndhelper.h` | Ndf | remaining |  |  |  |
@@ -816,7 +816,7 @@
 | `ntmsapi.h` | Fs | remaining |  |  |  |
 | `ntmsmli.h` | Fs | remaining |  |  |  |
 | `ntquery.h` | IndexSrv, Shell | remaining |  |  |  |
-| `ntsecapi.h` | ActiveDirectory, Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | remaining |  |  |  |
+| `ntsecapi.h` | ActiveDirectory, Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned LSA_HANDLE ownership violation found during resource-ownership audit; other annotation groups in file were already compliant. |
 | `NTSecPKG.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `ntstatus.h` | Foundation | remaining |  |  |  |
 | `nvme.h` | Storage.Nvme | remaining |  |  |  |
@@ -1297,7 +1297,7 @@
 | `winperf.h` | Perf | remaining |  |  |  |
 | `winppi.h` | Printing | remaining |  |  |  |
 | `winreg.h` | Registry | remaining |  |  |  |
-| `winsafer.h` | Security.AppLocker | remaining |  |  |  |
+| `winsafer.h` | Security.AppLocker | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `winsatcominterfacei.h` | WinSat | remaining |  |  |  |
 | `winscard.h` | Credentials | remaining |  |  |  |
 | `winsdkver.h` | Foundation | remaining |  |  |  |

@@ -2388,9 +2388,6 @@ typedef enum _POLICY_NOTIFICATION_INFORMATION_CLASS {
 // always a pointer type unlike regular handles.
 //
 
-_Win32_metadata_invalid_handle_(-1)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(LsaClose)
 typedef PVOID LSA_HANDLE, *PLSA_HANDLE;
 
 
@@ -2984,6 +2981,9 @@ LsaOpenPolicy(
     _In_ PLSA_OBJECT_ATTRIBUTES ObjectAttributes,
     _In_ ACCESS_MASK DesiredAccess,
     _Out_ PLSA_HANDLE PolicyHandle
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(LsaClose)
     );
 
 
@@ -3298,6 +3298,9 @@ LsaOpenTrustedDomainByName(
     _In_ PLSA_UNICODE_STRING TrustedDomainName,
     _In_ ACCESS_MASK DesiredAccess,
     _Out_ PLSA_HANDLE TrustedDomainHandle
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(LsaClose)
     );
 
 
@@ -3362,6 +3365,9 @@ LsaCreateTrustedDomainEx(
     _In_ PTRUSTED_DOMAIN_AUTH_INFORMATION AuthenticationInformation,
     _In_ ACCESS_MASK DesiredAccess,
     _Out_ PLSA_HANDLE TrustedDomainHandle
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(LsaClose)
     );
 
 #if (_WIN32_WINNT >= 0x0501)

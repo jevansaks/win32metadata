@@ -65,3 +65,27 @@
   correction; they are being migrated in subsequent batches rather than closed here.
 - Reverse patch checks (`git apply --check --reverse`) pass for all three retained
   artifacts.
+
+## 2026-09-02T21:05:00Z - Batch resource-ownership-audit-02
+
+- Headers: `NTSecAPI.h`, `ncryptprotect.h`, and `winsafer.h`.
+- All three violated the corrected shared-handle ownership policy: `LSA_HANDLE`
+  (`NTSecAPI.h`), `NCRYPT_DESCRIPTOR_HANDLE`/`NCRYPT_STREAM_HANDLE` (`ncryptprotect.h`), and
+  `SAFER_LEVEL_HANDLE` (`winsafer.h`) all carried invalid-handle/RAIIFree annotations
+  directly on their typedef/`DECLARE_HANDLE` sites.
+- Corrected each header in place: removed the typedef-level annotations and added
+  equivalent invalid-handle/RAIIFree annotations to every producer `_Out_`/`_Out_opt_`
+  output parameter that actually vends a new handle of that type, using close functions
+  confirmed present in the same header (`LsaClose`, `NCryptCloseProtectionDescriptor`,
+  `NCryptStreamClose`, `SaferCloseLevel`).
+- Regenerated each patch artifact by reconstructing the pre-annotation baseline (reverse
+  application of the prior non-compliant patch against the committed header, in an
+  isolated working-tree copy) and re-diffing forward against the corrected header. This
+  preserves unrelated already-compliant hunks in the same patch untouched (e.g.
+  `NTSecAPI.h`'s `LsaRegisterLogonProcess`/`LsaLogonUser`/`LsaConnectUntrusted` groups).
+- `git apply --check --reverse` passes for all three regenerated patches. Static audit
+  (grep with context) confirms zero remaining `_Win32_metadata_raii_free_`/
+  `_Win32_metadata_invalid_handle_` occurrences adjacent to a `typedef`/`DECLARE_HANDLE`
+  site in any of the three headers.
+- Remaining unresolved resource-ownership headers: `AuthZ.h`, `bcrypt.h`, `ncrypt.h`,
+  `wincrypt.h`, `winsvc.h`. These are being migrated in subsequent batches.

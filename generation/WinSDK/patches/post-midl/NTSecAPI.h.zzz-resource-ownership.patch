@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NTSecAPI.h b/generation/WinSDK/RecompiledIdlHeaders/um/NTSecAPI.h
-index e076b65d36ca50684409cbaa1b4107624d38e89a..24d16e388b5cdabe2889ea52c3f1f76fe1947c9d 100644
+index e076b65d..c4a771d3 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/NTSecAPI.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/NTSecAPI.h
 @@ -1685,7 +1685,10 @@ NTSTATUS
@@ -36,13 +36,33 @@ index e076b65d36ca50684409cbaa1b4107624d38e89a..24d16e388b5cdabe2889ea52c3f1f76f
      );
  
  __drv_sameIRQL
-@@ -2379,6 +2388,9 @@ typedef enum _POLICY_NOTIFICATION_INFORMATION_CLASS {
- // always a pointer type unlike regular handles.
- //
+@@ -2972,6 +2981,9 @@ LsaOpenPolicy(
+     _In_ PLSA_OBJECT_ATTRIBUTES ObjectAttributes,
+     _In_ ACCESS_MASK DesiredAccess,
+     _Out_ PLSA_HANDLE PolicyHandle
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(LsaClose)
+     );
  
-+_Win32_metadata_invalid_handle_(-1)
-+_Win32_metadata_invalid_handle_(0)
-+_Win32_metadata_raii_free_(LsaClose)
- typedef PVOID LSA_HANDLE, *PLSA_HANDLE;
+ 
+@@ -3286,6 +3298,9 @@ LsaOpenTrustedDomainByName(
+     _In_ PLSA_UNICODE_STRING TrustedDomainName,
+     _In_ ACCESS_MASK DesiredAccess,
+     _Out_ PLSA_HANDLE TrustedDomainHandle
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(LsaClose)
+     );
  
  
+@@ -3350,6 +3365,9 @@ LsaCreateTrustedDomainEx(
+     _In_ PTRUSTED_DOMAIN_AUTH_INFORMATION AuthenticationInformation,
+     _In_ ACCESS_MASK DesiredAccess,
+     _Out_ PLSA_HANDLE TrustedDomainHandle
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(LsaClose)
+     );
+ 
+ #if (_WIN32_WINNT >= 0x0501)

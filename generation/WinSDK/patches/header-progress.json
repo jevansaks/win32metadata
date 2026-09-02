@@ -23146,20 +23146,29 @@
         "Security.Cryptography.UI"
       ],
       "partition_count": 2,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-02",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T21:05:00Z",
+          "rationale": "NCRYPT_DESCRIPTOR_HANDLE and NCRYPT_STREAM_HANDLE ownership metadata moved from DECLARE_HANDLE typedefs to their producer _Out_/_Out_opt_ parameters, with RAIIFree added referencing the confirmed in-header close functions."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/ncryptprotect.h.md generation/WinSDK/patches/post-midl/ncryptprotect.h.zzz-resource-ownership.patch git apply --check --reverse passed for regenerated patch; static audit confirms no remaining typedef-adjacent ownership annotations"
+      ],
+      "last_updated": "2026-09-02T21:05:00Z",
+      "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit.",
       "sources": [
         {
           "source": "partition-main",
@@ -24458,20 +24467,29 @@
         "Security.WinWlx"
       ],
       "partition_count": 16,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-02",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T21:05:00Z",
+          "rationale": "LSA_HANDLE ownership metadata moved from typedef to the three producer _Out_ PLSA_HANDLE parameters (LsaOpenPolicy, LsaOpenTrustedDomainByName, LsaCreateTrustedDomainEx)."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/ntsecapi.h.md generation/WinSDK/patches/post-midl/NTSecAPI.h.zzz-resource-ownership.patch git apply --check --reverse passed for regenerated patch; static audit confirms no remaining typedef-adjacent ownership annotations"
+      ],
+      "last_updated": "2026-09-02T21:05:00Z",
+      "notes": "Corrected typedef-owned LSA_HANDLE ownership violation found during resource-ownership audit; other annotation groups in file were already compliant.",
       "sources": [
         {
           "source": "partition-main",
@@ -43102,20 +43120,29 @@
       "header": "winsafer.h",
       "partitions": "Security.AppLocker",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-02",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T21:05:00Z",
+          "rationale": "SAFER_LEVEL_HANDLE ownership metadata moved from DECLARE_HANDLE typedef to SaferCreateLevel/SaferIdentifyLevel producer output parameters, with RAIIFree added referencing the confirmed in-header SaferCloseLevel."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/winsafer.h.md generation/WinSDK/patches/post-midl/winsafer.h.zzz-resource-ownership.patch git apply --check --reverse passed for regenerated patch; static audit confirms no remaining typedef-adjacent ownership annotations"
+      ],
+      "last_updated": "2026-09-02T21:05:00Z",
+      "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Security.AppLocker/main.cpp",

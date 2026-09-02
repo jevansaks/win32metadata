@@ -6815,10 +6815,10 @@
   {
     "header": "ncryptprotect.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T21:05:00Z",
+    "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit.",
     "_source": "header-progress"
   },
   {
@@ -7256,10 +7256,10 @@
   {
     "header": "ntsecapi.h",
     "partition": "ActiveDirectory, Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T21:05:00Z",
+    "notes": "Corrected typedef-owned LSA_HANDLE ownership violation found during resource-ownership audit; other annotation groups in file were already compliant.",
     "_source": "header-progress"
   },
   {
@@ -11585,10 +11585,10 @@
   {
     "header": "winsafer.h",
     "partition": "Security.AppLocker",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T21:05:00Z",
+    "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit.",
     "_source": "header-progress"
   },
   {

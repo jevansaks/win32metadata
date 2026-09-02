@@ -129,9 +129,7 @@ extern "C" {
 //
 // NCRYPT_DESCRIPTOR_HANDLE
 // 
-DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE )
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0);
+DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE );
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 
@@ -269,6 +267,9 @@ NCryptCreateProtectionDescriptor(
     _In_            LPCWSTR                             pwszDescriptorString,
                     DWORD                               dwFlags,
     _Out_           NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptCloseProtectionDescriptor)
     );
 
 //
@@ -503,7 +504,10 @@ NCryptProtectSecret(
 SECURITY_STATUS
 WINAPI
 NCryptUnprotectSecret(
-    _Out_opt_       NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor,
+    _Out_opt_       NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptCloseProtectionDescriptor),
      _In_            NCRYPT_FLAGS                               dwFlags,
     _In_reads_bytes_(cbProtectedBlob)
                     const BYTE                          *pbProtectedBlob,
@@ -523,9 +527,7 @@ NCryptUnprotectSecret(
 //
 ---------------------------------------------------------------------------*/
 
-DECLARE_HANDLE( NCRYPT_STREAM_HANDLE )
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0);
+DECLARE_HANDLE( NCRYPT_STREAM_HANDLE );
 
 
 /****************************************************************************
@@ -639,6 +641,9 @@ NCryptStreamOpenToProtect(
     _In_opt_        HWND                    hWnd,
     _In_            NCRYPT_PROTECT_STREAM_INFO          *pStreamInfo,
     _Out_           NCRYPT_STREAM_HANDLE                *phStream
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptStreamClose)
     );
 
 /****************************************************************************
@@ -683,6 +688,9 @@ NCryptStreamOpenToUnprotect(
                     DWORD                               dwFlags,
     _In_opt_        HWND                hWnd,
     _Out_           NCRYPT_STREAM_HANDLE                *phStream
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptStreamClose)
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
@@ -800,6 +808,9 @@ NCryptStreamOpenToUnprotectEx(
                     DWORD                               dwFlags,
     _In_opt_        HWND                                hWnd,
     _Out_           NCRYPT_STREAM_HANDLE                *phStream
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(NCryptStreamClose)
 );
 
 #endif

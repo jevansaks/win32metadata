@@ -37,9 +37,7 @@ extern "C" {
 // Opaque datatype for representing handles to Safer objects.
 //
 
-DECLARE_HANDLE(SAFER_LEVEL_HANDLE)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0);
+DECLARE_HANDLE(SAFER_LEVEL_HANDLE);
 
 
 //
@@ -658,7 +656,10 @@ SaferCreateLevel(
     _In_ DWORD                dwScopeId,
     _In_ DWORD                dwLevelId,
     _In_ DWORD                OpenFlags,
-    _Outptr_ SAFER_LEVEL_HANDLE * pLevelHandle,
+    _Outptr_ SAFER_LEVEL_HANDLE * pLevelHandle
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(SaferCloseLevel),
     _Reserved_ LPVOID               lpReserved
     );
 
@@ -675,7 +676,10 @@ BOOL WINAPI
 SaferIdentifyLevel(
     _In_ DWORD              dwNumProperties,
     _In_reads_opt_(dwNumProperties) PSAFER_CODE_PROPERTIES pCodeProperties,
-    _Outptr_ SAFER_LEVEL_HANDLE  * pLevelHandle,
+    _Outptr_ SAFER_LEVEL_HANDLE  * pLevelHandle
+        _Win32_metadata_invalid_handle_(-1)
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(SaferCloseLevel),
     _In_opt_ LPVOID         lpReserved
     );
 
