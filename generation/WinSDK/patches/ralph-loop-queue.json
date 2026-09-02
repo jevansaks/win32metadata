@@ -8732,10 +8732,10 @@
   {
     "header": "sddl.h",
     "partition": "Authorization, Authorization.UI",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-28.",
     "_source": "header-progress"
   },
   {
@@ -8786,10 +8786,10 @@
   {
     "header": "securityappcontainer.h",
     "partition": "Isolation",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-28.",
     "_source": "header-progress"
   },
   {
@@ -8894,28 +8894,28 @@
   {
     "header": "setupapi.h",
     "partition": "DevInst, Setup",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-28.",
     "_source": "header-progress"
   },
   {
     "header": "sfc.h",
     "partition": "Setup",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-28.",
     "_source": "header-progress"
   },
   {
     "header": "shappmgr.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-28.",
     "_source": "header-progress"
   },
   {

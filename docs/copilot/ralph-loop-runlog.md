@@ -510,3 +510,14 @@ o-annotation-required with live-scrape evidence.
   (1 header), and `supported-os` (1 header) patches; none contain ownership/typedef
   metadata. `richedit.h`/`richole.h` each carry two stacked, non-overlapping patches.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T00:15:00Z - Batch existing-patches-28
+
+- Headers: `sddl.h`, `securityappcontainer.h`, `SetupAPI.h`, `Sfc.h`, and
+  `shappmgr.h`.
+- Classified retained `set-last-error` (4 headers) and `supported-os` (1 header)
+  patches; none contain ownership/typedef metadata. Noted for `SetupAPI.h` that
+  `HDEVINFO`/etc. ownership is not yet annotated anywhere in the retained patch (nothing
+  to correct against the producer-site-only policy; adding new ownership annotations would
+  be a separate, larger scraping-investigation task given the header's size).
+- Every retained artifact passes reverse application against its tracked patched header.
