@@ -529,3 +529,11 @@ o-annotation-required with live-scrape evidence.
 - Classified retained `supported-os` annotation-only patches; none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T00:45:00Z - Batch existing-patches-30
+
+- Headers: `ShlObj.h`, `ShlObj_core.h`, `Shlwapi.h`, `ShObjIdl.h`, and
+  `ShObjIdl_core.h` (five of the largest remaining Shell headers, up to 86 KB patches).
+- Classified retained `supported-os` annotation-only patches; none contain
+  ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

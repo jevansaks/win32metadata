@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:39:26Z
+- Generated: 2026-09-02T22:40:56Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 165
+- Matched: 170
 - In progress: 0
 - Blocked: 0
-- Remaining: 1238
+- Remaining: 1233
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1012,11 +1012,11 @@
 | `shimgdata.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shldisp.h` | Lwef, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shlguid.h` | Shell | remaining |  |  |  |
-| `shlobj_core.h` | ActiveDirectory, Lwef, Properties, Shell | remaining |  |  |  |
-| `shlobj.h` | Controls, Lwef, Shell | remaining |  |  |  |
-| `shlwapi.h` | Shell | remaining |  |  |  |
-| `shobjidl_core.h` | Properties, Search, Shell | remaining |  |  |  |
-| `shobjidl.h` | Properties, Shell, TransactionServer | remaining |  |  |  |
+| `shlobj_core.h` | ActiveDirectory, Lwef, Properties, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
+| `shlobj.h` | Controls, Lwef, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
+| `shlwapi.h` | Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
+| `shobjidl_core.h` | Properties, Search, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
+| `shobjidl.h` | Properties, Shell, TransactionServer | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shtypes.h` | Shell, Shell.Common | remaining |  |  |  |
 | `simpdata.h` | Search | remaining |  |  |  |
 | `slerror.h` | Identity | remaining |  |  |  |
