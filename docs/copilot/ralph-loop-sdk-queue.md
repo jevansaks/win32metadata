@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:42:22Z
+- Generated: 2026-09-02T22:43:54Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 175
+- Matched: 180
 - In progress: 0
 - Blocked: 0
-- Remaining: 1228
+- Remaining: 1223
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1089,14 +1089,14 @@
 | `tcpxcv.h` | Printing | remaining |  |  |  |
 | `tdh.h` | Etw | remaining |  |  |  |
 | `tdiinfo.h` | FileHistory, WinProg | remaining |  |  |  |
-| `textserv.h` | Controls.RichEdit | remaining |  |  |  |
+| `textserv.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `textstor.h` | Tsf | remaining |  |  |  |
-| `thumbcache.h` | Shell | remaining |  |  |  |
-| `thumbnailstreamcache.h` | Shell | remaining |  |  |  |
+| `thumbcache.h` | Shell | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
+| `thumbnailstreamcache.h` | Shell | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `timeapi.h` | Media, Multimedia | remaining |  |  |  |
-| `timezoneapi.h` | FileHistory, Time | remaining |  |  |  |
+| `timezoneapi.h` | FileHistory, Time | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `tipautocomplete.h` | Tablet | remaining |  |  |  |
-| `tlhelp32.h` | ToolHelp | remaining |  |  |  |
+| `tlhelp32.h` | ToolHelp | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `tlogstg.h` | Shell | remaining |  |  |  |
 | `tnef.h` | Tapi3 | remaining |  |  |  |
 | `tokenbinding.h` | Identity | remaining |  |  |  |

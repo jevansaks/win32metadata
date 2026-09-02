@@ -546,3 +546,14 @@ o-annotation-required with live-scrape evidence.
   (1 header), semantic-enum-typing (1 header), and `supported-os` (1 header) patches;
   none contain ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T01:15:00Z - Batch existing-patches-32
+
+- Headers: `TextServ.h`, `thumbcache.h`, `thumbnailstreamcache.h`, `timezoneapi.h`,
+  and `TlHelp32.h`.
+- Classified retained `supported-os` (3 headers) and `set-last-error` (2 headers)
+  patches; none contain ownership/typedef metadata. Noted for `TlHelp32.h` that
+  `CreateToolhelp32Snapshot`'s generic-`HANDLE` ownership is not annotated in this
+  header or patch — nothing to correct against the producer-site-only policy, flagged for
+  visibility only.
+- Every retained artifact passes reverse application against its tracked patched header.

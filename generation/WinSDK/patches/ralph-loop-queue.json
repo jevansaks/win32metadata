@@ -9713,10 +9713,10 @@
   {
     "header": "textserv.h",
     "partition": "Controls.RichEdit",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-32.",
     "_source": "header-progress"
   },
   {
@@ -9731,19 +9731,19 @@
   {
     "header": "thumbcache.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-32.",
     "_source": "header-progress"
   },
   {
     "header": "thumbnailstreamcache.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-32.",
     "_source": "header-progress"
   },
   {
@@ -9758,10 +9758,10 @@
   {
     "header": "timezoneapi.h",
     "partition": "FileHistory, Time",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-32.",
     "_source": "header-progress"
   },
   {
@@ -9776,10 +9776,10 @@
   {
     "header": "tlhelp32.h",
     "partition": "ToolHelp",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T01:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-32.",
     "_source": "header-progress"
   },
   {
