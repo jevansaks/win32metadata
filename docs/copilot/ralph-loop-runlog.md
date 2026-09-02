@@ -722,3 +722,15 @@ o-annotation-required with live-scrape evidence.
   Engine API) to its own dedicated batch given its size.
 - Session checkpoint: 239 of 1403 authoritative ledger headers now classified
   `accepted-normalized`.
+
+## 2026-09-03T04:45:00Z - Batch scraping-investigation-10 (blocker recorded)
+
+- Header: `esent.h` (Storage.Jet partition, 229 functions — the Extensible Storage Engine
+  API). Live scrape succeeds cleanly (0 warnings/errors) — **not** a parser/build defect.
+- Recorded as **blocked** rather than guessed at: four JET handle-identifier types
+  (`JET_INSTANCE`, `JET_SESID`, `JET_TABLEID`, `JET_DBID`) have many-to-many
+  producer/consumer relationships (e.g. 3 instance-creation variants, multiple
+  table-opening variants, cross-referencing session/table scoping) that require a
+  dedicated, authoritative pass through ESE documentation to annotate correctly. Recording
+  this now as an actionable blocker rather than rushing an incomplete/incorrect ownership
+  mapping, per the ledger's own stop condition.

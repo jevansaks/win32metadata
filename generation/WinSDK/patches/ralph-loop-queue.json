@@ -3494,10 +3494,10 @@
   {
     "header": "esent.h",
     "partition": "Storage.Jet",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:45:00Z",
+    "notes": "Deferred: 229-function header with complex many-to-many JET handle ownership graph requiring dedicated research pass, not a quick classification.",
     "_source": "header-progress"
   },
   {

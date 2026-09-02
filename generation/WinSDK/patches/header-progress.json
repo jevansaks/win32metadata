@@ -11458,26 +11458,33 @@
       "header": "esent.h",
       "partitions": "Storage.Jet",
       "partition_count": 1,
-      "status": "pending",
+      "status": "blocked",
       "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
+      "assignee": "copilot",
+      "batch": "scraping-investigation-10",
+      "category": "resource-ownership",
       "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
-      "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "fix_route": "windows_rs_parser",
+      "blocker": "229 functions across 4 JET handle-identifier types (JET_INSTANCE, JET_SESID, JET_TABLEID, JET_DBID) with many-to-many producer/consumer relationships; requires a dedicated authoritative pass through ESE documentation to map ownership correctly without introducing incorrect metadata. Deferred to a future dedicated queue entry.",
+      "last_updated": "2026-09-03T04:45:00Z",
+      "notes": "Deferred: 229-function header with complex many-to-many JET handle ownership graph requiring dedicated research pass, not a quick classification.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Storage.Jet/main.cpp",
         "source_line": 9,
         "partition": "Storage.Jet"
-      }
+      },
+      "normalization_profile": "default",
+      "normalizations_applied": [],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T04:45:00Z",
+          "rationale": "Live scrape confirms no parser/build defect; the blocker is scope/research complexity for correct ownership annotation across many-to-many producer/consumer functions, not a technical defect in the header."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/esent.h.md live re-scrape (ScanArch=x86, partition Storage.Jet) succeeds with 0 warnings/errors; static review identifies 4 handle-identifier types and dozens of producer/consumer functions requiring dedicated research"
+      ]
     },
     {
       "header": "evalcom2.h",

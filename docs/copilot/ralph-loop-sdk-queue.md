@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:19:42Z
+- Generated: 2026-09-02T23:21:18Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 239
 - In progress: 0
-- Blocked: 0
-- Remaining: 1164
+- Blocked: 1
+- Remaining: 1163
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -398,7 +398,7 @@
 | `errhandlingapi.h` | Base, Debug | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `errorrep.h` | Wer | remaining |  |  |  |
 | `errors.h` | Media.DShow | remaining |  |  |  |
-| `esent.h` | Storage.Jet | remaining |  |  |  |
+| `esent.h` | Storage.Jet | blocked | copilot | 09/03/2026 04:45:00 | Deferred: 229-function header with complex many-to-many JET handle ownership graph requiring dedicated research pass, not a quick classification. |
 | `evalcom2.h` | Setup | remaining |  |  |  |
 | `evcode.h` | Media.DShow | remaining |  |  |  |
 | `evcoll.h` | Wec | remaining |  |  |  |
