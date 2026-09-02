@@ -296,3 +296,16 @@
   (2 headers), and `supported-os` (2 headers) patches; none contain ownership/typedef
   metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T03:00:00Z - Batch existing-patches-16
+
+- Headers: `IntShCut.h`, `ioapiset.h`, `iphlpapi.h`, `ktmw32.h`, and
+  `libloaderapi.h`.
+- Classified retained `supported-os` (1 header) and `set-last-error` (4 headers)
+  patches; none contain ownership/typedef metadata. Confirmed `libloaderapi.h` does not
+  annotate `HMODULE`.
+- Skipped `jobapi.h`/`jobapi2.h` from the pending-with-patches candidate list: both are
+  referenced only from `generation/WinSDK/Partitions/JobObjects/settings.rsp`, not from any
+  partition `main.cpp` direct include, so they are absent from the authoritative
+  `header-progress.json` ledger (out of scope for this queue).
+- Every retained artifact passes reverse application against its tracked patched header.
