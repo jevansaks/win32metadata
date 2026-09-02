@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:34:14Z
+- Generated: 2026-09-02T23:49:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 255
+- Matched: 259
 - In progress: 0
-- Blocked: 1
-- Remaining: 1147
+- Blocked: 2
+- Remaining: 1142
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -466,7 +466,7 @@
 | `gdipluseffects.h` | Media.DShow | remaining |  |  |  |
 | `genericusbfnioctl.h` | Buses | remaining |  |  |  |
 | `getcurrentpackageinfo3.h` | AppxPackaging | remaining |  |  |  |
-| `getprocesshandlefromhwnd.h` | Threading | remaining |  |  |  |
+| `getprocesshandlefromhwnd.h` | Threading | blocked | copilot | 09/02/2026 16:49:01 | Deferred: return-value HANDLE ownership has no precedent anywhere in the repo or published baseline winmd (confirmed via WinmdUtils dump); requires dedicated policy decision on annotation placement before this can be fixed. |
 | `gl/gl.h` | OpenGL | remaining |  |  |  |
 | `gl/glu.h` | OpenGL | remaining |  |  |  |
 | `gnssdriver.h` | WinLocation | remaining |  |  |  |
@@ -574,7 +574,7 @@
 | `isolatedapplauncher.h` | FileHistory, Isolation | remaining |  |  |  |
 | `isolatedwindowsenvironmentutils.h` | Isolation | remaining |  |  |  |
 | `issper16.h` | Identity | remaining |  |  |  |
-| `iswindowarranged.h` | MenuRc | remaining |  |  |  |
+| `iswindowarranged.h` | MenuRc | matched |  | 09/02/2026 16:49:01 | Query-only function taking HWND input; no handle production. |
 | `isysmon.h` | Perf | remaining |  |  |  |
 | `iwscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |
 | `iwstdec.h` | Media.DShow | remaining |  |  |  |
@@ -754,7 +754,7 @@
 | `msxml.h` | FileHistory, MsXml, WinProg | remaining |  |  |  |
 | `msxml6.h` | MsXml, Printing | remaining |  |  |  |
 | `mtpext.h` | Wmdm | remaining |  |  |  |
-| `mtx.h` | ComOle, TransactionServer | remaining |  |  |  |
+| `mtx.h` | ComOle, TransactionServer | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include comsvcs.h, already accepted-normalized). |
 | `mtxadmin.h` | ComOle, TransactionServer | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mtxattr.h` | ComOle, TransactionServer | remaining |  |  |  |
 | `mtxdm.h` | Cos | remaining |  |  |  |
@@ -983,7 +983,7 @@
 | `sddl.h` | Authorization, Authorization.UI | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `sdkddkver.h` | Antimalware, ApplicationVerifier, AppxPackaging, Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Authorization, Authorization.UI, Backup, Base, Bits, Bluetooth, Buses, Cabinets, CEIP, Certificates, Cloudapi, ClrHosting, ClrProfiling, CmpApi, Com, Com.CallObj, Com.ChannelCreds, Com.Events, Com.StructuredStorage, Com.Urlmon, Communication, ComOle, CompositionSwapchain, Console, Controls, Controls.RichEdit, Cos, Credentials, DataXchg, Debug, Debug.ActiveScript, Debug.Extensions, Debug.WebApp, Dedup, DeliveryOptimization, DeviceAccess, DeviceQuery, Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Devices.Properties, DevInst, DevLic, Dfs, Dhcp, Direct2D, Direct2D.Common, Direct3D, Direct3D10, Direct3D11, Direct3D11on12, Direct3D12, Direct3D9, Direct3D9on12, Direct3DDxc, Direct3DFxc, DirectComp, DirectDraw, DirectManipulation, DirectML, DirectWrite, Display, DlgBox, Dlna, Dns, DTC, Dwm, DXCore, Dxgi, Dxgi.Common, Eap, EapHost, Edp, Enstor, Environment, Etw, Fax, FileHistory, Foundation, Fs, Fsrm, FunctionDiscovery, GameInput, GameMode, GamingDvcInfo, Gdi, Gdiplus, Gpmc, Hid, HostComputeNetwork, HostComputeSystem, HtmlHelp, Hypervisor, Identity, IdentityProvider, Ifsk, Iis, ImagingDevice, IMapi, IndexSrv, Input_Ink, Input_IntContext, Input.Ime, InputRadial, InternetConnectionWizard, InternetExplorer, Intl, IO, Ioctl, IScsiDisc, Isolation, JobObjects, Js, KeyboardAndMouseInput, Ldap, LibraryLoader, Lwef, MachineLearning, MagApi, Mapi, Mbn, MdmReg, Media, Media.DShow, Media.DShow.Xml, Media.DxMediaObjects, Media.KernelStreaming, Memory, MenuRc, MessageQueuing, Mf, Mi, MixedReality, MixedRealityInterop, Mmc, Monitor, MsChap, MsCs, MsHtml, MsTv, MsXml, Multimedia, Ndf, Ndis, NetBios, NetMgmt, NetShell, NetworkAccessProtection, Nfc, Nfp, Nla, Nps, NWifi, Of, Opc, OpenGL, Parcon, Perf, PicAcq, Pipes, Pla, Policy, Power, Printing, PrintTicket, Proc_Snap, ProjFs, Properties, PsApi1, PsApi2, PWM, Rdc, Rdp, RemoteAssist, Rm, Rpc, RRas, RstMgr, Search, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, SecurityCenter, Sens, SerPorts, Services, Setup, Shell, Shell.Common, Smi, Snmp, Speech, Sr, Storage.Jet, Storage.Nvme, SwDevice, SystemInformation, Tablet, Tapi3, TaskSchd, Tbs, Tcui, TermServ, Threading, Time, ToolHelp, TransactionServer, Tsf, UiAnimation, UpdateAssessment, Upnp, Variant, Vhd, VirtualDiskService, VirtualDOSMachines, VSS, Wab, Wcm, Wcn, Wcs, Wds, WebAuthn, WebDav, WebServicesOnDevices, WebSock, Wec, Wer, Wes, Wia, Wibe, Wic, Win32_Tile_Badge_Notif, WinAuto, WinContacts, WindowsConnectionManager, WindowsFilteringPlatform, WindowsFirewall, WindowsRibbon, WindowsSetupAndMigration, WinInet, WinLocation, WinProg, WinRm, WinRT, WinRT.AllJoyn, WinRT.Composition, WinRT.CoreInputView, WinRT.Direct2D, WinRT.Direct3D11, WinRT.Display, WinRT.Graphics.Capture, WinRT.Graphics.Imaging, WinRT.Holographic, WinRT.Isolation, WinRT.Media, WinRT.Metadata, WinRT.ML, WinRT.Pdf, WinRT.Printing, WinRT.Storage, WinRT.Xaml, WinSat, WinSensors, WinSync, WinTouch, Wmdm, WmFormat, Wmi, Wmlss, Wmp, Wnet, WpdSdk, Wsb, Wsl, Wsw, Wua, Xaml_Diagnostics, Xaudio2, Xblidp, Xinput, XmlLite, Xps, XpsPrinting | remaining |  |  |  |
 | `sdoias.h` | Nps | remaining |  |  |  |
-| `search.h` | Search | remaining |  |  |  |
+| `search.h` | Search | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include corecrt_search.h); CRT-only, no Win32 declarations. |
 | `searchapi.h` | Lwef, Search | remaining |  |  |  |
 | `security.h` | Identity | remaining |  |  |  |
 | `securityappcontainer.h` | Isolation | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
@@ -1223,7 +1223,7 @@
 | `wiaintfc.h` | Wia | remaining |  |  |  |
 | `wiamicro.h` | Wia | remaining |  |  |  |
 | `wiamindr_lh.h` | Wia | remaining |  |  |  |
-| `wiamindr.h` | Wia | remaining |  |  |  |
+| `wiamindr.h` | Wia | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include wiamindr_lh.h/wiamindr_xp.h); no direct declarations. |
 | `wiatwcmp.h` | Wia | remaining |  |  |  |
 | `wiavideo.h` | Wia | remaining |  |  |  |
 | `wiawsdsc.h` | Wia | remaining |  |  |  |

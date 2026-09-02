@@ -771,3 +771,38 @@ o-annotation-required with live-scrape evidence.
 
 **Ledger status:** 255 accepted-normalized, 1 blocked (esent.h), 1147 pending.
 **Policy note:** This batch establishes precedent that ownership annotations apply only to (a) DllImport/extern "C" functions producing/consuming (b) HANDLE-family scalar opaque types (DECLARE_HANDLE/typedef PVOID), consistent with every existing annotated header in the repo. Strongly-typed C++ object pointers (GDI+) and COM vtable interface methods (GameInput) are out of scope for this mechanism and require no fix to remain policy-compliant.
+
+## 2026-09-02 16:49:59 UTC - Batch scraping-investigation-14
+
+**Headers:** iswindowarranged.h, getprocesshandlefromhwnd.h (blocked), search.h, mtx.h, wiamindr.h
+**Partitions scraped:** MenuRc, Search, ComOle, TransactionServer, Wia, Threading (x86 for ExcludeFromCrossarch; 0 warnings/errors)
+
+- iswindowarranged.h: IsWindowArranged(HWND) is query-only, no handle production. Clean.
+- **getprocesshandlefromhwnd.h: BLOCKED.** GetProcessHandleFromHwnd returns a process HANDLE directly as
+  the C function return value (not via _Out_/_Outptr_ param). Investigated whether the producer-site-only
+  annotation mechanism can express this: dumped the baseline bin\Windows.Win32.winmd (24MB, 35145 types)
+  via WinmdUtils.exe dump. Confirmed the dump DOES render return-position attributes when present (289
+  [return: ...] occurrences exist, e.g. [return: Const]), so absence elsewhere is meaningful. Found that
+  EVERY RAIIFree/InvalidHandleValue attribute in the entire published winmd attaches to a struct TYPE
+  declaration only (e.g. HBITMAP's struct decl) - never to a parameter or a [return: ...] position.
+  Cross-checked comparable return-HANDLE-shaped APIs already in the baseline (LoadLibraryExW/A returning
+  HMODULE, IcmpCreateFile returning HANDLE) - neither carries any ownership metadata either.
+  GetProcessHandleFromHwnd itself is already in the baseline with none. This confirms there is
+  zero precedent anywhere in this codebase (or its currently published output) for annotating a bare
+  function return-value handle's ownership - the mechanism (both the legacy autoTypes.json type-level
+  path and the newer inline producer-site path) only supports out-parameters/type declarations.
+  Recorded as blocked (same class as esent.h): a genuine ownership relationship exists, but expressing
+  it correctly requires a dedicated policy decision on annotation placement, not a guess.
+- search.h: pure CRT redirect (#include corecrt_search.h), out of Win32 scope. Clean.
+- mtx.h: pure redirect (#include comsvcs.h, already accepted-normalized). Clean.
+- wiamindr.h: pure redirect (#include wiamindr_lh.h/wiamindr_xp.h); wiamindr_lh.h remains pending as a
+  separate follow-up item. Clean (no direct declarations in wiamindr.h itself).
+
+**Also investigated (deep-dive, no ledger change needed):** Verified the corrected-policy commits
+165b5f09/7335ddc4 removed only REDUNDANT typedef-level annotations from windef.h/minwindef.h that
+duplicated existing autoTypes.json entries (HGLRC, HWINEVENTHOOK, HGDIOBJ, HBITMAP, HPEN, HFONT,
+HENHMETAFILE, HPALETTE, HHOOK, HICON, HMENU, HCOLORSPACE, HDESK, HACCEL all still have working
+autoTypes.json ownership entries) - confirmed NOT a regression, wingdi.h/winuser.h (the producer-site
+headers for these types) do not need new producer-site patches for these specific well-known GDI handles.
+
+**Ledger status:** 259 accepted-normalized, 2 blocked (esent.h, getprocesshandlefromhwnd.h), 1142 pending.

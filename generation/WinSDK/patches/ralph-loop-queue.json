@@ -4106,10 +4106,10 @@
   {
     "header": "getprocesshandlefromhwnd.h",
     "partition": "Threading",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T16:49:01Z",
+    "notes": "Deferred: return-value HANDLE ownership has no precedent anywhere in the repo or published baseline winmd (confirmed via WinmdUtils dump); requires dedicated policy decision on annotation placement before this can be fixed.",
     "_source": "header-progress"
   },
   {
@@ -5078,10 +5078,10 @@
   {
     "header": "iswindowarranged.h",
     "partition": "MenuRc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:49:01Z",
+    "notes": "Query-only function taking HWND input; no handle production.",
     "_source": "header-progress"
   },
   {
@@ -6698,10 +6698,10 @@
   {
     "header": "mtx.h",
     "partition": "ComOle, TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:49:01Z",
+    "notes": "Redirect-only header (#include comsvcs.h, already accepted-normalized).",
     "_source": "header-progress"
   },
   {
@@ -8759,10 +8759,10 @@
   {
     "header": "search.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:49:01Z",
+    "notes": "Redirect-only header (#include corecrt_search.h); CRT-only, no Win32 declarations.",
     "_source": "header-progress"
   },
   {
@@ -10919,10 +10919,10 @@
   {
     "header": "wiamindr.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T16:49:01Z",
+    "notes": "Redirect-only header (#include wiamindr_lh.h/wiamindr_xp.h); no direct declarations.",
     "_source": "header-progress"
   },
   {
