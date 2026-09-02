@@ -745,3 +745,14 @@ o-annotation-required with live-scrape evidence.
   `accepted-normalized` / `no-annotation-required` with live-scrape evidence.
 - Session checkpoint: 244 of 1403 authoritative ledger headers now classified
   `accepted-normalized` (plus 1 explicitly `blocked`: `esent.h`).
+
+## 2026-09-03T05:15:00Z - Batch scraping-investigation-12
+
+- Headers: `mi.h` (Mi), `netsh.h` (NetShell), `rendezvoussession.h` (RemoteAssist),
+  `msopc.h` (Opc), and `gpmgmt.h` (Gpmc).
+- All five live-scraped cleanly (0 warnings/errors beyond pre-existing, already-documented
+  cross-partition remap notices for `mi.h`/`msopc.h`). No `DECLARE_HANDLE` ownership
+  patterns. Classified `accepted-normalized` / `no-annotation-required` with
+  live-scrape evidence.
+- Session checkpoint: 249 of 1403 authoritative ledger headers now classified
+  `accepted-normalized` (plus 1 explicitly `blocked`: `esent.h`).

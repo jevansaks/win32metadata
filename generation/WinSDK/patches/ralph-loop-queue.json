@@ -4160,10 +4160,10 @@
   {
     "header": "gpmgmt.h",
     "partition": "Gpmc",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:15:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
@@ -5861,10 +5861,10 @@
   {
     "header": "mi.h",
     "partition": "Mi",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:15:00Z",
+    "notes": "No patch needed; no ownership-relevant handle type.",
     "_source": "header-progress"
   },
   {
@@ -6572,10 +6572,10 @@
   {
     "header": "msopc.h",
     "partition": "Opc",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:15:00Z",
+    "notes": "No patch needed; COM interface only, no free functions.",
     "_source": "header-progress"
   },
   {
@@ -6950,10 +6950,10 @@
   {
     "header": "netsh.h",
     "partition": "NetShell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:15:00Z",
+    "notes": "No patch needed; no ownership-relevant handle type.",
     "_source": "header-progress"
   },
   {
@@ -8336,10 +8336,10 @@
   {
     "header": "rendezvoussession.h",
     "partition": "RemoteAssist",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T05:15:00Z",
+    "notes": "No patch needed; no function surface.",
     "_source": "header-progress"
   },
   {

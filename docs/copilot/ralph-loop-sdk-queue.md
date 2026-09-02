@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:24:26Z
+- Generated: 2026-09-02T23:27:47Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 244
+- Matched: 249
 - In progress: 0
 - Blocked: 1
-- Remaining: 1158
+- Remaining: 1153
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -472,7 +472,7 @@
 | `gnssdriver.h` | WinLocation | remaining |  |  |  |
 | `gpedit.h` | Policy | remaining |  |  |  |
 | `gpiobuttontypes.h` | Hid | remaining |  |  |  |
-| `gpmgmt.h` | Gpmc | remaining |  |  |  |
+| `gpmgmt.h` | Gpmc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only. |
 | `guiddef.h` | TransactionServer | remaining |  |  |  |
 | `handleapi.h` | FileHistory, Foundation | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `hidclass.h` | Hid | remaining |  |  |  |
@@ -661,7 +661,7 @@
 | `mfvirtualcamera.h` | Mf | remaining |  |  |  |
 | `mgm.h` | RRas | remaining |  |  |  |
 | `mgmtapi.h` | Snmp | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
-| `mi.h` | Mi | remaining |  |  |  |
+| `mi.h` | Mi | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
 | `micaut.h` | Tablet | remaining |  |  |  |
 | `midles.h` | Rpc | remaining |  |  |  |
 | `mileffects.h` | Wibe | remaining |  |  |  |
@@ -740,7 +740,7 @@
 | `msinkaut.h` | Tablet | remaining |  |  |  |
 | `msinkaut15.h` | Tablet | remaining |  |  |  |
 | `msiquery.h` | Setup | remaining |  |  |  |
-| `msopc.h` | Opc | remaining |  |  |  |
+| `msopc.h` | Opc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only, no free functions. |
 | `msports.h` | SerPorts | remaining |  |  |  |
 | `msrdc.h` | Rdc | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
 | `mssign.h` | Security.Cryptography | remaining |  |  |  |
@@ -782,7 +782,7 @@
 | `netiodef.h` | WinSock, wnv | remaining |  |  |  |
 | `netlistmgr.h` | Nla, WindowsConnectionManager | remaining |  |  |  |
 | `netprov.h` | NetMgmt | remaining |  |  |  |
-| `netsh.h` | NetShell | remaining |  |  |  |
+| `netsh.h` | NetShell | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
 | `nettypes.h` | NetMgmt | remaining |  |  |  |
 | `newdev.h` | DevInst | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `nfcdtadev.h` | Nfc | remaining |  |  |  |
@@ -936,7 +936,7 @@
 | `remotesystemadditionalinfo.h` | TermServ | remaining |  |  |  |
 | `RemoteSystemsInterop.h` | WinRT | remaining |  |  |  |
 | `rend.h` | Tapi3 | remaining |  |  |  |
-| `rendezvoussession.h` | RemoteAssist | remaining |  |  |  |
+| `rendezvoussession.h` | RemoteAssist | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no function surface. |
 | `resapi.h` | MsCs | remaining |  |  |  |
 | `resourceindexer.h` | MenuRc | remaining |  |  |  |
 | `restartmanager.h` | RstMgr | matched | copilot | 09/03/2026 04:35:00 | No patch needed; no ownership-relevant handle type. |
