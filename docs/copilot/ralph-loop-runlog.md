@@ -207,6 +207,11 @@
 ## 2026-09-03T00:10:00Z - Batch existing-patches-05
 
 - Headers: `ctxtcall.h`, `d2d1.h`, `d2d1_1.h`, `d2d1_2.h`, and `d2d1_3.h`.
+- Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T00:25:00Z - Batch existing-patches-06
+
+- Headers: `d2d1effectauthor.h`, `d3d11.h`, `d3d11_1.h`, `d3d11_2.h`, and `d3d11_3.h`.
 - Classified retained `supported-os` annotation-only patches; none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.

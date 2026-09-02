@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:32:11Z
+- Generated: 2026-09-02T21:34:01Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 39
+- Matched: 44
 - In progress: 0
 - Blocked: 0
-- Remaining: 1364
+- Remaining: 1359
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -209,7 +209,7 @@
 | `d2d1_3.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `d2d1.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `d2d1effectauthor_1.h` | Direct2D | remaining |  |  |  |
-| `d2d1effectauthor.h` | Direct2D | remaining |  |  |  |
+| `d2d1effectauthor.h` | Direct2D | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d2d1effects_1.h` | Direct2D | remaining |  |  |  |
 | `d2d1effects_2.h` | Direct2D | remaining |  |  |  |
 | `d2d1effects.h` | Direct2D | remaining |  |  |  |
@@ -223,11 +223,11 @@
 | `d3d10misc.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10sdklayers.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10shader.h` | Direct3D10 | remaining |  |  |  |
-| `d3d11_1.h` | Direct3D11, Mf | remaining |  |  |  |
-| `d3d11_2.h` | Direct3D11 | remaining |  |  |  |
-| `d3d11_3.h` | Direct3D11 | remaining |  |  |  |
+| `d3d11_1.h` | Direct3D11, Mf | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
+| `d3d11_2.h` | Direct3D11 | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
+| `d3d11_3.h` | Direct3D11 | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d3d11_4.h` | Direct3D11, Mf | remaining |  |  |  |
-| `d3d11.h` | Direct3D11, Mf | remaining |  |  |  |
+| `d3d11.h` | Direct3D11, Mf | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d3d11on12.h` | Direct3D11on12 | remaining |  |  |  |
 | `d3d11sdklayers.h` | Direct3D11 | remaining |  |  |  |
 | `d3d11shader.h` | Direct3D11 | remaining |  |  |  |
