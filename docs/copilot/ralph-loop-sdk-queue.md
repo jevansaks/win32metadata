@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:02:04Z
+- Generated: 2026-09-02T21:13:39Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 14
+- Matched: 17
 - In progress: 0
 - Blocked: 0
-- Remaining: 1389
+- Remaining: 1386
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -91,7 +91,7 @@
 | `audiostatemonitorapi.h` | Audio | remaining |  |  |  |
 | `austream.h` | Media.DShow | remaining |  |  |  |
 | `authif.h` | Nps | remaining |  |  |  |
-| `authz.h` | Authorization, Authorization.UI | remaining |  |  |  |
+| `authz.h` | Authorization, Authorization.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (12 producer sites across 6 handle types). |
 | `aux_ulib.h` | FileHistory, WinProg | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `avifmt.h` | Media.DShow | remaining |  |  |  |
 | `aviriff.h` | Media.DShow | remaining |  |  |  |
@@ -101,7 +101,7 @@
 | `batclass.h` | Power | remaining |  |  |  |
 | `bcp47mrm.h` | Intl | remaining |  |  |  |
 | `bcrypt_provider.h` | Security.Cryptography | remaining |  |  |  |
-| `bcrypt.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `bcrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; unrelated zz-crypto-security-enums patch verified compatible via full sequential forward replay. |
 | `bdaiface.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `bdamedia.h` | MsTv | remaining |  |  |  |
 | `bdatif.h` | MsTv | remaining |  |  |  |
@@ -1308,7 +1308,7 @@
 | `winsplp.h` | Printing | remaining |  |  |  |
 | `winspool.h` | Gdi, Printing | remaining |  |  |  |
 | `winstring.h` | WinRT | remaining |  |  |  |
-| `winsvc.h` | Services | remaining |  |  |  |
+| `winsvc.h` | Services | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types). |
 | `winsxs.h` | Setup | remaining |  |  |  |
 | `winsync.h` | WinSync | remaining |  |  |  |
 | `winternl.h` | ActiveDirectory, Base, Certificates, FileHistory, IpHlp, MadCap, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, WinProg | remaining |  |  |  |

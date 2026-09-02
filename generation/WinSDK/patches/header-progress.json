@@ -2285,20 +2285,29 @@
         "Authorization.UI"
       ],
       "partition_count": 2,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-03",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T21:45:00Z",
+          "rationale": "All seven AuthZ handle types' ownership metadata moved from DECLARE_HANDLE typedefs to their producer _Out_/_Out_opt_ parameters; AUTHZ_AUDIT_EVENT_TYPE_HANDLE has no in-header producer so its annotation was dropped rather than misattached."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/authz.h.md generation/WinSDK/patches/post-midl/AuthZ.h.zzz-resource-ownership.patch git apply --check --reverse passed for regenerated patch; static audit confirms no remaining typedef-adjacent ownership annotations"
+      ],
+      "last_updated": "2026-09-02T21:45:00Z",
+      "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit (12 producer sites across 6 handle types).",
       "sources": [
         {
           "source": "partition-main",
@@ -2588,20 +2597,29 @@
         "Security.Cryptography.UI"
       ],
       "partition_count": 2,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-03",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T21:45:00Z",
+          "rationale": "BCRYPT_ALG_HANDLE/KEY_HANDLE/HASH_HANDLE/SECRET_HANDLE ownership metadata moved from typedefs to their 10 producer _Out_ parameters; base BCRYPT_HANDLE has no in-header producer so its annotation was dropped rather than misattached."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/bcrypt.h.md generation/WinSDK/patches/post-midl/bcrypt.h.zzz-resource-ownership.patch git apply --check --reverse passed for regenerated patch; static audit confirms no remaining typedef-adjacent ownership annotations"
+      ],
+      "last_updated": "2026-09-02T21:45:00Z",
+      "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit; unrelated zz-crypto-security-enums patch verified compatible via full sequential forward replay.",
       "sources": [
         {
           "source": "partition-main",
@@ -43500,20 +43518,29 @@
       "header": "winsvc.h",
       "partitions": "Services",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-03",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T21:45:00Z",
+          "rationale": "SC_HANDLE and SERVICE_STATUS_HANDLE ownership metadata moved from DECLARE_HANDLE typedefs to producer function return-value positions (both are direct returns, not out-params), using the repo's established trailing-attribute convention for return-value annotations."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/winsvc.h.md generation/WinSDK/patches/post-midl/winsvc.h.zzz-resource-ownership.patch git apply --check --reverse passed for regenerated patch; static audit confirms no remaining typedef-adjacent ownership annotations"
+      ],
+      "last_updated": "2026-09-02T21:45:00Z",
+      "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types).",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Services/main.cpp",

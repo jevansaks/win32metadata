@@ -698,15 +698,10 @@ typedef struct _SERVICE_LAUNCH_PROTECTED_INFO {
 // Handle Types
 //
 
-DECLARE_HANDLE(SC_HANDLE)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0)
-    _Win32_metadata_raii_free_(CloseServiceHandle);
+DECLARE_HANDLE(SC_HANDLE);
 typedef SC_HANDLE   *LPSC_HANDLE;
 
-DECLARE_HANDLE(SERVICE_STATUS_HANDLE)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0);
+DECLARE_HANDLE(SERVICE_STATUS_HANDLE);
 
 //
 // Info levels for QueryServiceStatusEx
@@ -1128,7 +1123,10 @@ CreateServiceA(
     _In_opt_    LPCSTR     lpDependencies,
     _In_opt_    LPCSTR     lpServiceStartName,
     _In_opt_    LPCSTR     lpPassword
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0)
+    _Win32_metadata_raii_free_(CloseServiceHandle);
 _Win32_metadata_set_last_error_
 _Must_inspect_result_
 WINADVAPI
@@ -1148,7 +1146,10 @@ CreateServiceW(
     _In_opt_    LPCWSTR     lpDependencies,
     _In_opt_    LPCWSTR     lpServiceStartName,
     _In_opt_    LPCWSTR     lpPassword
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0)
+    _Win32_metadata_raii_free_(CloseServiceHandle);
 #ifdef UNICODE
 #define CreateService  CreateServiceW
 #else
@@ -1386,7 +1387,10 @@ OpenSCManagerA(
     _In_opt_        LPCSTR                lpMachineName,
     _In_opt_        LPCSTR                lpDatabaseName,
     _In_            DWORD                   dwDesiredAccess
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0)
+    _Win32_metadata_raii_free_(CloseServiceHandle);
 _Win32_metadata_set_last_error_
 _Must_inspect_result_
 WINADVAPI
@@ -1396,7 +1400,10 @@ OpenSCManagerW(
     _In_opt_        LPCWSTR                lpMachineName,
     _In_opt_        LPCWSTR                lpDatabaseName,
     _In_            DWORD                   dwDesiredAccess
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0)
+    _Win32_metadata_raii_free_(CloseServiceHandle);
 #ifdef UNICODE
 #define OpenSCManager  OpenSCManagerW
 #else
@@ -1412,7 +1419,10 @@ OpenServiceA(
     _In_            SC_HANDLE               hSCManager,
     _In_            LPCSTR                lpServiceName,
     _In_            DWORD                   dwDesiredAccess
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0)
+    _Win32_metadata_raii_free_(CloseServiceHandle);
 _Win32_metadata_set_last_error_
 _Must_inspect_result_
 WINADVAPI
@@ -1422,7 +1432,10 @@ OpenServiceW(
     _In_            SC_HANDLE               hSCManager,
     _In_            LPCWSTR                lpServiceName,
     _In_            DWORD                   dwDesiredAccess
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0)
+    _Win32_metadata_raii_free_(CloseServiceHandle);
 #ifdef UNICODE
 #define OpenService  OpenServiceW
 #else
@@ -1594,7 +1607,9 @@ RegisterServiceCtrlHandlerA(
     _In_    LPCSTR                    lpServiceName,
     _In_    __callback
             LPHANDLER_FUNCTION          lpHandlerProc
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 _Win32_metadata_set_last_error_
 _Must_inspect_result_
 WINADVAPI
@@ -1604,7 +1619,9 @@ RegisterServiceCtrlHandlerW(
     _In_    LPCWSTR                    lpServiceName,
     _In_    __callback
             LPHANDLER_FUNCTION          lpHandlerProc
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 #ifdef UNICODE
 #define RegisterServiceCtrlHandler  RegisterServiceCtrlHandlerW
 #else
@@ -1621,7 +1638,9 @@ RegisterServiceCtrlHandlerExA(
     _In_    __callback
             LPHANDLER_FUNCTION_EX       lpHandlerProc,
     _In_opt_ LPVOID                     lpContext
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 _Win32_metadata_set_last_error_
 _Must_inspect_result_
 WINADVAPI
@@ -1632,7 +1651,9 @@ RegisterServiceCtrlHandlerExW(
     _In_    __callback
             LPHANDLER_FUNCTION_EX       lpHandlerProc,
     _In_opt_ LPVOID                     lpContext
-    );
+    )
+    _Win32_metadata_invalid_handle_(-1)
+    _Win32_metadata_invalid_handle_(0);
 #ifdef UNICODE
 #define RegisterServiceCtrlHandlerEx  RegisterServiceCtrlHandlerExW
 #else

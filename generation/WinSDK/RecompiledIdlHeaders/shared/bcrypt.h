@@ -479,23 +479,14 @@ typedef struct _BCryptBufferDesc {
 // Primitive handles
 //
 
-_Win32_metadata_invalid_handle_(0)
 typedef PVOID BCRYPT_HANDLE;
 _Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(BCryptCloseAlgorithmProvider)
 typedef PVOID BCRYPT_ALG_HANDLE;
 _Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(BCryptDestroyKey)
 typedef PVOID BCRYPT_KEY_HANDLE;
 _Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(BCryptDestroyHash)
 typedef PVOID BCRYPT_HASH_HANDLE;
 _Win32_metadata_also_usable_for_(BCRYPT_HANDLE)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(BCryptDestroySecret)
 typedef PVOID BCRYPT_SECRET_HANDLE;
 
 //
@@ -1255,7 +1246,9 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptOpenAlgorithmProvider(
-    _Out_       BCRYPT_ALG_HANDLE   *phAlgorithm,
+    _Out_       BCRYPT_ALG_HANDLE   *phAlgorithm
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptCloseAlgorithmProvider),
     _In_z_      LPCWSTR pszAlgId,
     _In_opt_z_  LPCWSTR pszImplementation,
     _In_        BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS   dwFlags);
@@ -1363,7 +1356,9 @@ NTSTATUS
 WINAPI
 BCryptGenerateSymmetricKey(
     _Inout_                             BCRYPT_ALG_HANDLE   hAlgorithm,
-    _Out_                               BCRYPT_KEY_HANDLE   *phKey,
+    _Out_                               BCRYPT_KEY_HANDLE   *phKey
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptDestroyKey),
     _Out_writes_bytes_all_opt_(cbKeyObject)  PUCHAR   pbKeyObject,
     _In_                                ULONG   cbKeyObject,
     _In_reads_bytes_(cbSecret)               PUCHAR   pbSecret,
@@ -1376,7 +1371,9 @@ NTSTATUS
 WINAPI
 BCryptGenerateKeyPair(
     _Inout_ BCRYPT_ALG_HANDLE   hAlgorithm,
-    _Out_   BCRYPT_KEY_HANDLE   *phKey,
+    _Out_   BCRYPT_KEY_HANDLE   *phKey
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptDestroyKey),
     _In_    ULONG   dwLength,
     _In_    ULONG   dwFlags);
 
@@ -1433,7 +1430,9 @@ BCryptImportKey(
     _In_                                BCRYPT_ALG_HANDLE hAlgorithm,
     _In_opt_                            BCRYPT_KEY_HANDLE hImportKey,
     _In_z_                              LPCWSTR pszBlobType,
-    _Out_                               BCRYPT_KEY_HANDLE *phKey,
+    _Out_                               BCRYPT_KEY_HANDLE *phKey
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptDestroyKey),
     _Out_writes_bytes_all_opt_(cbKeyObject)  PUCHAR   pbKeyObject,
     _In_                                ULONG   cbKeyObject,
     _In_reads_bytes_(cbInput)                PUCHAR   pbInput,
@@ -1456,7 +1455,9 @@ BCryptImportKeyPair(
     _In_                            BCRYPT_ALG_HANDLE hAlgorithm,
     _In_opt_                        BCRYPT_KEY_HANDLE hImportKey,
     _In_z_                          LPCWSTR pszBlobType,
-    _Out_                           BCRYPT_KEY_HANDLE *phKey,
+    _Out_                           BCRYPT_KEY_HANDLE *phKey
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptDestroyKey),
     _In_reads_bytes_(cbInput)            PUCHAR   pbInput,
     _In_                            ULONG   cbInput,
     _In_                            ULONG   dwFlags);
@@ -1467,7 +1468,9 @@ NTSTATUS
 WINAPI
 BCryptDuplicateKey(
     _In_                                BCRYPT_KEY_HANDLE   hKey,
-    _Out_                               BCRYPT_KEY_HANDLE   *phNewKey,
+    _Out_                               BCRYPT_KEY_HANDLE   *phNewKey
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptDestroyKey),
     _Out_writes_bytes_all_opt_(cbKeyObject)  PUCHAR   pbKeyObject,
     _In_                                ULONG   cbKeyObject,
     _In_                                ULONG   dwFlags);
@@ -1526,7 +1529,9 @@ WINAPI
 BCryptSecretAgreement(
     _In_    BCRYPT_KEY_HANDLE       hPrivKey,
     _In_    BCRYPT_KEY_HANDLE       hPubKey,
-    _Out_   BCRYPT_SECRET_HANDLE    *phAgreedSecret,
+    _Out_   BCRYPT_SECRET_HANDLE    *phAgreedSecret
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptDestroySecret),
     _In_    ULONG                   dwFlags);
 
 
@@ -1565,7 +1570,9 @@ NTSTATUS
 WINAPI
 BCryptCreateHash(
     _Inout_                             BCRYPT_ALG_HANDLE   hAlgorithm,
-    _Out_                               BCRYPT_HASH_HANDLE  *phHash,
+    _Out_                               BCRYPT_HASH_HANDLE  *phHash
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptDestroyHash),
     _Out_writes_bytes_all_opt_(cbHashObject) PUCHAR   pbHashObject,
     _In_                                ULONG   cbHashObject,
     _In_reads_bytes_opt_(cbSecret)           PUCHAR   pbSecret,   // optional
@@ -1599,7 +1606,9 @@ NTSTATUS
 WINAPI
 BCryptCreateMultiHash(
     _Inout_                                     BCRYPT_ALG_HANDLE   hAlgorithm,
-    _Out_                                       BCRYPT_HASH_HANDLE *phHash,
+    _Out_                                       BCRYPT_HASH_HANDLE *phHash
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptDestroyHash),
     _In_                                        ULONG               nHashes,
     _Out_writes_bytes_all_opt_(cbHashObject)    PUCHAR              pbHashObject,
     _In_                                        ULONG               cbHashObject,
@@ -1624,7 +1633,9 @@ NTSTATUS
 WINAPI
 BCryptDuplicateHash(
     _In_                                BCRYPT_HASH_HANDLE  hHash,
-    _Out_                               BCRYPT_HASH_HANDLE  *phNewHash,
+    _Out_                               BCRYPT_HASH_HANDLE  *phNewHash
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(BCryptDestroyHash),
     _Out_writes_bytes_all_opt_(cbHashObject) PUCHAR   pbHashObject,
     _In_                                ULONG   cbHashObject,
     _In_                                ULONG   dwFlags);

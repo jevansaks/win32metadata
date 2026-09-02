@@ -731,10 +731,10 @@
   {
     "header": "authz.h",
     "partition": "Authorization, Authorization.UI",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T21:45:00Z",
+    "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit (12 producer sites across 6 handle types).",
     "_source": "header-progress"
   },
   {
@@ -821,10 +821,10 @@
   {
     "header": "bcrypt.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T21:45:00Z",
+    "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit; unrelated zz-crypto-security-enums patch verified compatible via full sequential forward replay.",
     "_source": "header-progress"
   },
   {
@@ -11684,10 +11684,10 @@
   {
     "header": "winsvc.h",
     "partition": "Services",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T21:45:00Z",
+    "notes": "Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types).",
     "_source": "header-progress"
   },
   {

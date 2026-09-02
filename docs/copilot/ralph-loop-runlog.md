@@ -89,3 +89,31 @@
   site in any of the three headers.
 - Remaining unresolved resource-ownership headers: `AuthZ.h`, `bcrypt.h`, `ncrypt.h`,
   `wincrypt.h`, `winsvc.h`. These are being migrated in subsequent batches.
+
+## 2026-09-02T21:45:00Z - Batch resource-ownership-audit-03
+
+- Headers: `AuthZ.h`, `winsvc.h`, and `bcrypt.h`.
+- All three violated the corrected shared-handle ownership policy: seven AuthZ handle
+  types, `SC_HANDLE`/`SERVICE_STATUS_HANDLE`, and five BCrypt handle types all carried
+  invalid-handle/RAIIFree annotations directly on their typedef/`DECLARE_HANDLE` sites.
+- `winsvc.h` required a new placement pattern: `SC_HANDLE` and `SERVICE_STATUS_HANDLE` are
+  produced as direct function **return values**, not `_Out_` parameters. Adopted the
+  trailing-attribute-after-closing-paren convention already established in this repo for
+  function-pointer typedef return values (`NTSecPKG.h`), applied here to ordinary (non-typedef)
+  function declarations for the first time.
+- Two handle types (`AUTHZ_AUDIT_EVENT_TYPE_HANDLE` in `AuthZ.h`, base `BCRYPT_HANDLE` in
+  `bcrypt.h`) have no producer function within their header; their invalid-handle
+  annotations were dropped rather than misattached, and this is called out explicitly in
+  each header report as an assumption rather than silently discarded.
+- Regenerated each patch artifact by reconstructing the pre-annotation baseline (reverse
+  application of the prior non-compliant patch) and re-diffing forward against the
+  corrected header. `git apply --check --reverse` passes for all three regenerated patches.
+- `bcrypt.h` has an independent `zz-crypto-security-enums` patch whose
+  `BCryptOpenAlgorithmProvider` hunk shares a 3-line context window with this change.
+  Isolated reverse-check of that unrelated patch alone against the fully-patched file no
+  longer succeeds (expected context-window collision, not a regression). Verified full
+  sequential forward replay instead: pristine → `zz-crypto-security-enums.patch` → the
+  regenerated `zzz-resource-ownership.patch` reproduces the exact corrected file with zero
+  diff.
+- Remaining unresolved resource-ownership headers: `ncrypt.h`, `wincrypt.h`. These are
+  being migrated in subsequent batches.
