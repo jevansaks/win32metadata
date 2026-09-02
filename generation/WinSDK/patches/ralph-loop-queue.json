@@ -8570,19 +8570,19 @@
   {
     "header": "rtccore.h",
     "partition": "RealTimeCommunications",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:50:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
     "header": "rtcerr.h",
     "partition": "RealTimeCommunications",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:50:00Z",
+    "notes": "No patch needed; constant-only header.",
     "_source": "header-progress"
   },
   {
@@ -9875,10 +9875,10 @@
   {
     "header": "transportsettings.h",
     "partition": "RealTimeCommunications",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:50:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
@@ -11342,19 +11342,19 @@
   {
     "header": "windowssideshow.h",
     "partition": "SideShow",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:50:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
     "header": "windowssideshowapi.h",
     "partition": "SideShow",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T03:50:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {

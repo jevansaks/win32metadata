@@ -668,3 +668,16 @@ o-annotation-required with live-scrape evidence.
   cleanly (0 warnings/errors).
 - Session checkpoint: 222 of 1403 authoritative ledger headers now classified
   `accepted-normalized`.
+
+## 2026-09-03T03:50:00Z - Batch scraping-investigation-06
+
+- Headers: `rtccore.h`, `rtcerr.h`, `transportsettings.h` (partition
+  RealTimeCommunications) and `windowssideshowapi.h`, `windowssideshow.h` (partition
+  SideShow).
+- All five live-scraped cleanly (0 warnings/errors); COM-interface/constant-only content,
+  no `DECLARE_HANDLE` ownership patterns. Classified `accepted-normalized` /
+  `no-annotation-required` with live-scrape evidence.
+- `windowssideshowdriverevents.h` (also in the SideShow partition) remains pending for a
+  subsequent batch.
+- Session checkpoint: 227 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`.

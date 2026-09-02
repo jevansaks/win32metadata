@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:06:12Z
+- Generated: 2026-09-02T23:08:48Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 222
+- Matched: 227
 - In progress: 0
 - Blocked: 0
-- Remaining: 1181
+- Remaining: 1176
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -962,8 +962,8 @@
 | `rpcnterr.h` | Foundation | remaining |  |  |  |
 | `rpcssl.h` | Rpc | remaining |  |  |  |
 | `rrascfg.h` | Eap | remaining |  |  |  |
-| `rtccore.h` | RealTimeCommunications | remaining |  |  |  |
-| `rtcerr.h` | RealTimeCommunications | remaining |  |  |  |
+| `rtccore.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
+| `rtcerr.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; constant-only header. |
 | `rtinfo.h` | NetMgmt | remaining |  |  |  |
 | `rtmv2.h` | RRas | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `rtscom.h` | Tablet | remaining |  |  |  |
@@ -1107,7 +1107,7 @@
 | `tpmvscmgr.h` | Security.Tpm | remaining |  |  |  |
 | `traffic.h` | Qos | remaining |  |  |  |
 | `transportsettingcommon.h` | WinSock | remaining |  |  |  |
-| `transportsettings.h` | RealTimeCommunications | remaining |  |  |  |
+| `transportsettings.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `tsattrs.h` | Tsf | remaining |  |  |  |
 | `tsgauthenticationengine.h` | TermServ | remaining |  |  |  |
 | `tsgpolicyengine.h` | TermServ | remaining |  |  |  |
@@ -1270,8 +1270,8 @@
 | `windowsceip.h` | Base, CEIP, FileHistory | remaining |  |  |  |
 | `windowsdefender.h` | Lwef | remaining |  |  |  |
 | `windowssearcherrors.h` | Search | remaining |  |  |  |
-| `windowssideshow.h` | SideShow | remaining |  |  |  |
-| `windowssideshowapi.h` | SideShow | remaining |  |  |  |
+| `windowssideshow.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
+| `windowssideshowapi.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `windowssideshowdriverevents.h` | SideShow | remaining |  |  |  |
 | `windowsstoragecom.h` | WinRT.Storage | remaining |  |  |  |
 | `windowsx.h` | Controls, FileHistory, Gdi, WinProg | remaining |  |  |  |
