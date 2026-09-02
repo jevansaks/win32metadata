@@ -47,3 +47,21 @@
   generation checkpoint.
 - Current windows-rs test-harness blockers remain recorded under the preceding batch and
   do not change the classification of these already generated artifacts.
+
+## 2026-09-02T20:35:00Z - Batch resource-ownership-audit-01
+
+- Started a full audit of every retained `*.zzz-resource-ownership.patch` artifact
+  (11 headers: `AuthZ.h`, `bcrypt.h`, `ncrypt.h`, `ncryptprotect.h`, `NTSecAPI.h`,
+  `NTSecPKG.h`, `securitybaseapi.h`, `sspi.h`, `wincrypt.h`, `winsafer.h`, `winsvc.h`) per
+  the explicit instruction to not classify existing resource-ownership patches as closed
+  if they still annotate typedefs.
+- Headers: `NTSecPKG.h`, `securitybaseapi.h`, and `sspi.h`.
+- Static audit (grep for `_Win32_metadata_raii_free_`/`_Win32_metadata_invalid_handle_`
+  with surrounding context) confirms all three headers already place ownership annotations
+  exclusively on producer `_Out_`/`_Out_opt_`/`_Outptr_` parameters, never on
+  typedefs/`DECLARE_HANDLE` sites. These three are compliant with the corrected policy
+  as-is; no code change was required, only classification.
+- Remaining 8 headers in this audit set still annotate typedefs directly and require
+  correction; they are being migrated in subsequent batches rather than closed here.
+- Reverse patch checks (`git apply --check --reverse`) pass for all three retained
+  artifacts.

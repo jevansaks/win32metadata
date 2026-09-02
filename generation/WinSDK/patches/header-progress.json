@@ -24591,20 +24591,29 @@
         "Security.WinWlx"
       ],
       "partition_count": 15,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-01",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values confirmed on producer output parameters, not typedefs"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T20:35:00Z",
+          "rationale": "All LSA/SSPI handle out-parameters (PHANDLE/HANDLE*) already carry invalid-handle and RAIIFree annotations at the producer function boundary; no typedef carries ownership metadata."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/NTSecPKG.h.md generation/WinSDK/patches/post-midl/NTSecPKG.h.zzz-resource-ownership.patch git apply --check --reverse passed; static audit found all _Win32_metadata_raii_free_/_Win32_metadata_invalid_handle_ annotations on producer _Out_/_Outptr_ parameters, none on typedefs"
+      ],
+      "last_updated": "2026-09-02T20:35:00Z",
+      "notes": "Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required.",
       "sources": [
         {
           "source": "partition-main",
@@ -31815,20 +31824,29 @@
         "Security"
       ],
       "partition_count": 3,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-01",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values confirmed on producer output parameters, not typedefs"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T20:35:00Z",
+          "rationale": "CreateRestrictedToken/DuplicateToken/DuplicateTokenEx annotate their _Outptr_ PHANDLE output parameters directly; no typedef carries ownership metadata."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/securitybaseapi.h.md generation/WinSDK/patches/post-midl/securitybaseapi.h.zzz-resource-ownership.patch git apply --check --reverse passed; static audit found all _Win32_metadata_raii_free_/_Win32_metadata_invalid_handle_ annotations on producer _Out_/_Outptr_ parameters, none on typedefs"
+      ],
+      "last_updated": "2026-09-02T20:35:00Z",
+      "notes": "Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required.",
       "sources": [
         {
           "source": "partition-main",
@@ -33415,20 +33433,29 @@
         "Security.WinWlx"
       ],
       "partition_count": 15,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "resource-ownership-audit-01",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values confirmed on producer output parameters, not typedefs"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T20:35:00Z",
+          "rationale": "SspiGetCredUIContext annotates its _Out_opt_ HANDLE* TokenHandle output parameter directly; no typedef carries ownership metadata."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/sspi.h.md generation/WinSDK/patches/post-midl/sspi.h.zzz-resource-ownership.patch git apply --check --reverse passed; static audit found all _Win32_metadata_raii_free_/_Win32_metadata_invalid_handle_ annotations on producer _Out_/_Outptr_ parameters, none on typedefs"
+      ],
+      "last_updated": "2026-09-02T20:35:00Z",
+      "notes": "Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required.",
       "sources": [
         {
           "source": "partition-main",

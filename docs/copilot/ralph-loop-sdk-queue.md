@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T19:25:46Z
+- Generated: 2026-09-02T20:53:34Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 8
+- Matched: 11
 - In progress: 0
 - Blocked: 0
-- Remaining: 1395
+- Remaining: 1392
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -817,7 +817,7 @@
 | `ntmsmli.h` | Fs | remaining |  |  |  |
 | `ntquery.h` | IndexSrv, Shell | remaining |  |  |  |
 | `ntsecapi.h` | ActiveDirectory, Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | remaining |  |  |  |
-| `NTSecPKG.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | remaining |  |  |  |
+| `NTSecPKG.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `ntstatus.h` | Foundation | remaining |  |  |  |
 | `nvme.h` | Storage.Nvme | remaining |  |  |  |
 | `oaidl.h` | ComOle | remaining |  |  |  |
@@ -987,7 +987,7 @@
 | `searchapi.h` | Lwef, Search | remaining |  |  |  |
 | `security.h` | Identity | remaining |  |  |  |
 | `securityappcontainer.h` | Isolation | remaining |  |  |  |
-| `securitybaseapi.h` | Etw, Identity, Security | remaining |  |  |  |
+| `securitybaseapi.h` | Etw, Identity, Security | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `segment.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `sens.h` | Sens | remaining |  |  |  |
 | `sensapi.h` | Sens | remaining |  |  |  |
@@ -1044,7 +1044,7 @@
 | `srpapi.h` | Edp | remaining |  |  |  |
 | `srrestoreptapi.h` | Sr | remaining |  |  |  |
 | `sslprovider.h` | Security.Cryptography | remaining |  |  |  |
-| `sspi.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | remaining |  |  |  |
+| `sspi.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `statehelpers.h` | FileHistory, Registry | remaining |  |  |  |
 | `statusdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `stdint.h` | AllJoyn | remaining |  |  |  |
