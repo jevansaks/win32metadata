@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:13:44Z
+- Generated: 2026-09-02T23:16:26Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 231
+- Matched: 235
 - In progress: 0
 - Blocked: 0
-- Remaining: 1172
+- Remaining: 1168
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -245,7 +245,7 @@
 | `d3d9types.h` | Direct3D9, Mf | remaining |  |  |  |
 | `d3dcaps.h` | Direct3D9 | remaining |  |  |  |
 | `d3dcommon.h` | Direct2D, Direct3D, Direct3D10 | remaining |  |  |  |
-| `d3dcompiler.h` | Direct3DFxc | remaining |  |  |  |
+| `d3dcompiler.h` | Direct3DFxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `d3dcsx.h` | Direct3D11 | remaining |  |  |  |
 | `d3dshadercacheregistration.h` | Direct3D | remaining |  |  |  |
 | `d3dtypes.h` | Direct3D9 | remaining |  |  |  |
@@ -300,7 +300,7 @@
 | `dinput.h` | Hid | remaining |  |  |  |
 | `dinputd.h` | Hid | remaining |  |  |  |
 | `directmanipulation.h` | DirectManipulation | remaining |  |  |  |
-| `directml.h` | DirectML | remaining |  |  |  |
+| `directml.h` | DirectML | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `diskguid.h` | Fs | remaining |  |  |  |
 | `dispatcherqueue.h` | WinRT | remaining |  |  |  |
 | `DispEx.h` | ComOle | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
@@ -349,7 +349,7 @@
 | `dwrite_2.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dwrite_3.h` | DirectWrite | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dwrite.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
-| `dxcapi.h` | Direct3DDxc | remaining |  |  |  |
+| `dxcapi.h` | Direct3DDxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `dxcore_interface.h` | Debug, DXCore | remaining |  |  |  |
 | `dxcore.h` | Debug, DXCore | remaining |  |  |  |
 | `dxgi.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
@@ -582,7 +582,7 @@
 | `jscript9diag.h` | Debug.ActiveScript | remaining |  |  |  |
 | `jsrt.h` | Js | remaining |  |  |  |
 | `jsrt9.h` | Js | remaining |  |  |  |
-| `kbd.h` | KeyboardAndMouseInput | remaining |  |  |  |
+| `kbd.h` | KeyboardAndMouseInput | matched | copilot | 09/03/2026 04:20:00 | No patch needed; data-structure-only header. |
 | `keycredmgr.h` | Credentials | remaining |  |  |  |
 | `knownfolders.h` | Shell | remaining |  |  |  |
 | `ks.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |

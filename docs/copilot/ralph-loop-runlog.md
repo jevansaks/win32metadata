@@ -696,3 +696,15 @@ o-annotation-required with live-scrape evidence.
   that the header still parses cleanly (0 warnings/errors).
 - Session checkpoint: 231 of 1403 authoritative ledger headers now classified
   `accepted-normalized`.
+
+## 2026-09-03T04:20:00Z - Batch scraping-investigation-08
+
+- Headers: `kbd.h` (KeyboardAndMouseInput), `dxcapi.h` (Direct3DDxc), `d3dcompiler.h`
+  (Direct3DFxc), and `directml.h` (DirectML).
+- All four live-scraped cleanly (0 warnings/errors). `kbd.h` is keyboard-layout
+  data-table structures only (no function surface); `dxcapi.h`/`d3dcompiler.h`/
+  `directml.h` are COM-interface based with no `DECLARE_HANDLE` ownership patterns.
+  Classified `accepted-normalized` / `no-annotation-required` with live-scrape
+  evidence.
+- Session checkpoint: 235 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`.

@@ -2117,10 +2117,10 @@
   {
     "header": "d3dcompiler.h",
     "partition": "Direct3DFxc",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:20:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
@@ -2612,10 +2612,10 @@
   {
     "header": "directml.h",
     "partition": "DirectML",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:20:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
@@ -3053,10 +3053,10 @@
   {
     "header": "dxcapi.h",
     "partition": "Direct3DDxc",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:20:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
@@ -5150,10 +5150,10 @@
   {
     "header": "kbd.h",
     "partition": "KeyboardAndMouseInput",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:20:00Z",
+    "notes": "No patch needed; data-structure-only header.",
     "_source": "header-progress"
   },
   {
