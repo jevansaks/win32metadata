@@ -3116,19 +3116,19 @@
   {
     "header": "dxgi1_5.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-12.",
     "_source": "header-progress"
   },
   {
     "header": "dxgi1_6.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-12.",
     "_source": "header-progress"
   },
   {
@@ -3143,10 +3143,10 @@
   {
     "header": "dxgidebug.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-12.",
     "_source": "header-progress"
   },
   {
@@ -3233,10 +3233,10 @@
   {
     "header": "dxva9typ.h",
     "partition": "Media.DShow, Mf",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence).",
     "_source": "header-progress"
   },
   {
@@ -6968,10 +6968,10 @@
   {
     "header": "newdev.h",
     "partition": "DevInst",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:00:00Z",
+    "notes": "Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence).",
     "_source": "header-progress"
   },
   {

@@ -255,3 +255,17 @@
 - Classified retained `supported-os` annotation-only patches; none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T02:00:00Z - Batch existing-patches-12
+
+- Headers: `dxgi1_5.h`, `dxgi1_6.h`, `dxgidebug.h`, `dxva9typ.h`, and `newdev.h`.
+- Classified retained `supported-os` (3 headers) annotation-only patches.
+- Resolved the two headers flagged by `shared-handle-policy-01` as "pre-existing replay
+  mismatches outside this batch" (`dxva9typ.h`, `newdev.h`). Both patch files carry
+  timestamps (2026-08-13, 2026-08-14) after the original 2026-08-12 patch set, indicating the
+  mismatch was already addressed in the interim. Verified via isolated reverse/forward
+  round-trip in this session (reverse-apply then forward-reapply reproduces the committed
+  header exactly); a full pristine-SDK-checkout replay (the original evidence mechanism) was
+  not re-run since no fresh SDK checkout is available in this session — flagged for
+  re-escalation with fresh evidence if the mismatch recurs during the next full
+  `DoAll.ps1` build.

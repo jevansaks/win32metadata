@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:42:46Z
+- Generated: 2026-09-02T21:45:46Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 69
+- Matched: 74
 - In progress: 0
 - Blocked: 0
-- Remaining: 1334
+- Remaining: 1329
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -356,10 +356,10 @@
 | `dxgi1_2.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dxgi1_3.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dxgi1_4.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
-| `dxgi1_5.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
-| `dxgi1_6.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
+| `dxgi1_5.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
+| `dxgi1_6.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
 | `dxgicommon.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
-| `dxgidebug.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
+| `dxgidebug.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
 | `dxgiformat.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxgimessages.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxgitype.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
@@ -369,7 +369,7 @@
 | `dxva2api.h` | Media.DShow, Mf | remaining |  |  |  |
 | `dxva2swdev.h` | Media.DShow | remaining |  |  |  |
 | `dxva2trace.h` | Media.DShow | remaining |  |  |  |
-| `dxva9typ.h` | Media.DShow, Mf | remaining |  |  |  |
+| `dxva9typ.h` | Media.DShow, Mf | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `dxvahd.h` | Mf | remaining |  |  |  |
 | `eapauthenticatoractiondefine.h` | EapHost | remaining |  |  |  |
 | `eapauthenticatortypes.h` | EapHost | remaining |  |  |  |
@@ -784,7 +784,7 @@
 | `netprov.h` | NetMgmt | remaining |  |  |  |
 | `netsh.h` | NetShell | remaining |  |  |  |
 | `nettypes.h` | NetMgmt | remaining |  |  |  |
-| `newdev.h` | DevInst | remaining |  |  |  |
+| `newdev.h` | DevInst | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `nfcdtadev.h` | Nfc | remaining |  |  |  |
 | `nfcradiodev.h` | Nfc | remaining |  |  |  |
 | `nfcsedev.h` | Nfc | remaining |  |  |  |
