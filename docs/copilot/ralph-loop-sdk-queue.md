@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:53:41Z
+- Generated: 2026-09-02T22:55:55Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 205
+- Matched: 210
 - In progress: 0
 - Blocked: 0
-- Remaining: 1198
+- Remaining: 1193
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1304,7 +1304,7 @@
 | `winsmcrd.h` | Credentials | remaining |  |  |  |
 | `winsnmp.h` | Snmp | remaining |  |  |  |
 | `WinSock.h` | Fsrm, TermServ, WinSock | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
-| `winsock2.h` | ActiveDirectory, HttpServer, IpHlp, P2p, Qos, Ual, WindowsFilteringPlatform, WinHttp, WinSock, wnv | remaining |  |  |  |
+| `winsock2.h` | ActiveDirectory, HttpServer, IpHlp, P2p, Qos, Ual, WindowsFilteringPlatform, WinHttp, WinSock, wnv | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winsplp.h` | Printing | remaining |  |  |  |
 | `winspool.h` | Gdi, Printing | matched | copilot | 09/02/2026 22:05:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. Not part of the original 11-header audit set (discovered as an additional resource-ownership patch). |
 | `winstring.h` | WinRT | remaining |  |  |  |
@@ -1313,12 +1313,12 @@
 | `winsync.h` | WinSync | remaining |  |  |  |
 | `winternl.h` | ActiveDirectory, Base, Certificates, FileHistory, IpHlp, MadCap, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, WinProg | remaining |  |  |  |
 | `wintrust.h` | Security.WinTrust | remaining |  |  |  |
-| `winusb.h` | Buses | remaining |  |  |  |
+| `winusb.h` | Buses | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winusbio.h` | Buses | remaining |  |  |  |
-| `winuser.h` | Base, Controls, DataXchg, DlgBox, Dwm, FileHistory, Gdi, Input.Ime, Intl, IO, MenuRc, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Shell, TermServ, WinAuto, WinProg, WinTouch | remaining |  |  |  |
-| `winver.h` | Fs | remaining |  |  |  |
+| `winuser.h` | Base, Controls, DataXchg, DlgBox, Dwm, FileHistory, Gdi, Input.Ime, Intl, IO, MenuRc, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Shell, TermServ, WinAuto, WinProg, WinTouch | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
+| `winver.h` | Fs | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winwlx.h` | Security.WinWlx | remaining |  |  |  |
-| `wlanapi.h` | Ndis, NWifi | remaining |  |  |  |
+| `wlanapi.h` | Ndis, NWifi | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `wlanihv.h` | NWifi | remaining |  |  |  |
 | `wlanihvtypes.h` | NWifi | remaining |  |  |  |
 | `wlantypes.h` | Ndis, NWifi | remaining |  |  |  |

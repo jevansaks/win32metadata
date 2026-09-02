@@ -611,3 +611,13 @@ o-annotation-required with live-scrape evidence.
   first attempt with lowercase `winsock.h`, aborting the batch script before it saved);
   re-ran with the correct casing and verified all 5 headers landed correctly (205 total
   matched, consistent count).
+
+## 2026-09-03T02:50:00Z - Batch existing-patches-38
+
+- Headers: `winsock2.h`, `winusb.h`, `WinUser.h`, `winver.h`, and `wlanapi.h`.
+- Classified retained `set-last-error` patches; none contain ownership/typedef metadata.
+- `WinUser.h` carries three stacked patches (this session's largest at 226 KB + 133 KB +
+  71 KB). Two fail isolated reverse-check due to the same expected hunk-context-overlap
+  pattern documented throughout this session; verified via full sequential forward replay
+  of all three in filename-sort order, reproducing the committed header exactly.
+- Every retained artifact passes reverse application against its tracked patched header.

@@ -11648,10 +11648,10 @@
   {
     "header": "winsock2.h",
     "partition": "ActiveDirectory, HttpServer, IpHlp, P2p, Qos, Ual, WindowsFilteringPlatform, WinHttp, WinSock, wnv",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-38.",
     "_source": "header-progress"
   },
   {
@@ -11729,10 +11729,10 @@
   {
     "header": "winusb.h",
     "partition": "Buses",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-38.",
     "_source": "header-progress"
   },
   {
@@ -11747,19 +11747,19 @@
   {
     "header": "winuser.h",
     "partition": "Base, Controls, DataXchg, DlgBox, Dwm, FileHistory, Gdi, Input.Ime, Intl, IO, MenuRc, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Shell, TermServ, WinAuto, WinProg, WinTouch",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-38.",
     "_source": "header-progress"
   },
   {
     "header": "winver.h",
     "partition": "Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-38.",
     "_source": "header-progress"
   },
   {
@@ -11774,10 +11774,10 @@
   {
     "header": "wlanapi.h",
     "partition": "Ndis, NWifi",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-38.",
     "_source": "header-progress"
   },
   {
