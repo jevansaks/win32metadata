@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T19:18:46Z
+- Generated: 2026-09-02T19:25:46Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 3
+- Matched: 8
 - In progress: 0
 - Blocked: 0
-- Remaining: 1400
+- Remaining: 1395
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -68,7 +68,7 @@
 | `apdevpkey.h` | Base, Devices.Properties | remaining |  |  |  |
 | `apiquery2.h` | FileHistory, WinProg | remaining |  |  |  |
 | `appcompatapi.h` | FileHistory, WinProg | remaining |  |  |  |
-| `appmgmt.h` | Policy, Shell | remaining |  |  |  |
+| `appmgmt.h` | Policy, Shell | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `appmodel.h` | AppxPackaging | remaining |  |  |  |
 | `appnotify.h` | Shell | remaining |  |  |  |
 | `appserviceinterop.h` | WinRT | remaining |  |  |  |
@@ -92,7 +92,7 @@
 | `austream.h` | Media.DShow | remaining |  |  |  |
 | `authif.h` | Nps | remaining |  |  |  |
 | `authz.h` | Authorization, Authorization.UI | remaining |  |  |  |
-| `aux_ulib.h` | FileHistory, WinProg | remaining |  |  |  |
+| `aux_ulib.h` | FileHistory, WinProg | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `avifmt.h` | Media.DShow | remaining |  |  |  |
 | `aviriff.h` | Media.DShow | remaining |  |  |  |
 | `avrfsdk.h` | ApplicationVerifier, FileHistory | remaining |  |  |  |
@@ -129,7 +129,7 @@
 | `bugcodes.h` | Debug | remaining |  |  |  |
 | `calendarapis.h` | Intl | remaining |  |  |  |
 | `calendardeviceservice.h` | WpdSdk | remaining |  |  |  |
-| `callobj.h` | Com.CallObj, ComOle | remaining |  |  |  |
+| `callobj.h` | Com.CallObj, ComOle | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `camerauicontrol.h` | FileHistory, Media.DShow, Mf, WinProg | remaining |  |  |  |
 | `capi.h` | FileHistory, WinProg | remaining |  |  |  |
 | `cardmod.h` | Security.Cryptography | remaining |  |  |  |
@@ -142,7 +142,7 @@
 | `certadm.h` | Certificates | remaining |  |  |  |
 | `certbcli.h` | Certificates | remaining |  |  |  |
 | `certcli.h` | Certificates | remaining |  |  |  |
-| `certenc.h` | Certificates | remaining |  |  |  |
+| `certenc.h` | Certificates | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `certenroll.h` | Certificates | remaining |  |  |  |
 | `certexit.h` | Certificates | remaining |  |  |  |
 | `certif.h` | Certificates | remaining |  |  |  |
@@ -154,7 +154,7 @@
 | `certview.h` | Certificates | remaining |  |  |  |
 | `cfapi.h` | Cloudapi | remaining |  |  |  |
 | `cfg.h` | DevInst | remaining |  |  |  |
-| `cfgmgr32.h` | DevInst | remaining |  |  |  |
+| `cfgmgr32.h` | DevInst | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `cierror.h` | Foundation | remaining |  |  |  |
 | `clfs.h` | Fs | remaining |  |  |  |
 | `clfsmgmt.h` | Fs | remaining |  |  |  |

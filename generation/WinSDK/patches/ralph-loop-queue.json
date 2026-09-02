@@ -524,10 +524,10 @@
   {
     "header": "appmgmt.h",
     "partition": "Policy, Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T19:25:46Z",
+    "notes": "Classified retained artifact in existing-patches-01.",
     "_source": "header-progress"
   },
   {
@@ -740,10 +740,10 @@
   {
     "header": "aux_ulib.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T19:25:46Z",
+    "notes": "Classified retained artifact in existing-patches-01.",
     "_source": "header-progress"
   },
   {
@@ -1073,10 +1073,10 @@
   {
     "header": "callobj.h",
     "partition": "Com.CallObj, ComOle",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T19:25:46Z",
+    "notes": "Classified retained artifact in existing-patches-01.",
     "_source": "header-progress"
   },
   {
@@ -1190,10 +1190,10 @@
   {
     "header": "certenc.h",
     "partition": "Certificates",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T19:25:46Z",
+    "notes": "Classified retained artifact in existing-patches-01.",
     "_source": "header-progress"
   },
   {
@@ -1298,10 +1298,10 @@
   {
     "header": "cfgmgr32.h",
     "partition": "DevInst",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T19:25:46Z",
+    "notes": "Classified retained artifact in existing-patches-01.",
     "_source": "header-progress"
   },
   {

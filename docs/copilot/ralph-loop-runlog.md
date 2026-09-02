@@ -36,3 +36,14 @@
   match exactly; `wtypes.h` differs only by a removed trailing blank line. `dxva9typ.h`
   and `newdev.h` remain pre-existing replay mismatches outside this batch and must be
   reconciled in their own queue entries.
+
+## 2026-09-02T20:05:00Z - Batch existing-patches-01
+
+- Headers: `appmgmt.h`, `aux_ulib.h`, `callobj.h`, `certenc.h`, and `cfgmgr32.h`.
+- Classified retained supported-OS, set-last-error, and ABI-compatible semantic enum
+  typing patches.
+- Every retained artifact passes reverse application against its tracked patched header.
+- These patches were present in the prior successful sequential x64, arm64, and x86
+  generation checkpoint.
+- Current windows-rs test-harness blockers remain recorded under the preceding batch and
+  do not change the classification of these already generated artifacts.
