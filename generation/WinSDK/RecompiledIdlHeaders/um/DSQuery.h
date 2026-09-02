@@ -5,6 +5,7 @@
 #define __dsquery_h
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -95,7 +96,7 @@ typedef struct
     LONG      offsetQuery;          // offset to LDAP filter string
     LONG      iColumns;             // column count
     DWORD     dwReserved;           // reserved field for this query
-    DSCOLUMN  aColumns[1];          // array of column descriptions
+    _Win32_FlexibleArray_ DSCOLUMN  aColumns[1];          // array of column descriptions
 } DSQUERYPARAMS, * LPDSQUERYPARAMS;
 
 
@@ -120,7 +121,7 @@ typedef struct
 {
     DWORD   cbStruct;
     LONG    cClasses;               // number of classes in array
-    DWORD   offsetClass[1];         // offset to the class names (UNICODE)
+    _Win32_FlexibleArray_ DWORD   offsetClass[1];         // offset to the class names (UNICODE)
 } DSQUERYCLASSLIST, * LPDSQUERYCLASSLIST;
 
 
