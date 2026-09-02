@@ -1946,10 +1946,10 @@
   {
     "header": "d3d11_4.h",
     "partition": "Direct3D11, Mf",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-07.",
     "_source": "header-progress"
   },
   {
@@ -1964,37 +1964,37 @@
   {
     "header": "d3d11on12.h",
     "partition": "Direct3D11on12",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-07.",
     "_source": "header-progress"
   },
   {
     "header": "d3d11sdklayers.h",
     "partition": "Direct3D11",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-07.",
     "_source": "header-progress"
   },
   {
     "header": "d3d11shader.h",
     "partition": "Direct3D11",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-07.",
     "_source": "header-progress"
   },
   {
     "header": "d3d11shadertracing.h",
     "partition": "Direct3D11",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:40:00Z",
+    "notes": "Classified retained artifact in existing-patches-07.",
     "_source": "header-progress"
   },
   {

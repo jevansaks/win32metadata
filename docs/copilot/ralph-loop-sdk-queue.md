@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:34:01Z
+- Generated: 2026-09-02T21:35:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 44
+- Matched: 49
 - In progress: 0
 - Blocked: 0
-- Remaining: 1359
+- Remaining: 1354
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -226,12 +226,12 @@
 | `d3d11_1.h` | Direct3D11, Mf | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d3d11_2.h` | Direct3D11 | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d3d11_3.h` | Direct3D11 | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
-| `d3d11_4.h` | Direct3D11, Mf | remaining |  |  |  |
+| `d3d11_4.h` | Direct3D11, Mf | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
 | `d3d11.h` | Direct3D11, Mf | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
-| `d3d11on12.h` | Direct3D11on12 | remaining |  |  |  |
-| `d3d11sdklayers.h` | Direct3D11 | remaining |  |  |  |
-| `d3d11shader.h` | Direct3D11 | remaining |  |  |  |
-| `d3d11shadertracing.h` | Direct3D11 | remaining |  |  |  |
+| `d3d11on12.h` | Direct3D11on12 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
+| `d3d11sdklayers.h` | Direct3D11 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
+| `d3d11shader.h` | Direct3D11 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
+| `d3d11shadertracing.h` | Direct3D11 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
 | `d3d12.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12compatibility.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12compiler.h` | Direct3D12 | remaining |  |  |  |
