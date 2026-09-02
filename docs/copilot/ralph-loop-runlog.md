@@ -335,3 +335,16 @@
   `zz-crypto-security-enums`), and `set-last-error` (2 headers) patches; none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T04:00:00Z - Batch existing-patches-20
+
+- Headers: `NetCon.h`, `netfw.h`, `NTMSAPI.h`, `NspAPI.h`, and `oaidl.h`.
+- Classified retained `import-library-overrides` (2 headers), `set-last-error`
+  (2 headers), and `supported-os` (1 header) patches; none contain ownership/typedef
+  metadata.
+- Every retained artifact passes reverse application against its tracked patched header.
+- Session checkpoint: 114 of 1403 authoritative ledger headers now classified
+  `accepted-normalized` across 20 batches (11-header resource-ownership policy audit plus
+  20 batches of retained-patch classification). 1289 headers remain pending; the majority
+  have no retained patch yet and require header scraping/generation investigation via the
+  full build toolchain in a future session.

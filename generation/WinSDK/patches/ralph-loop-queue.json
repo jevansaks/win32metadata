@@ -6896,10 +6896,10 @@
   {
     "header": "netcon.h",
     "partition": "WindowsFirewall",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-20.",
     "_source": "header-progress"
   },
   {
@@ -6914,10 +6914,10 @@
   {
     "header": "netfw.h",
     "partition": "WindowsFirewall",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-20.",
     "_source": "header-progress"
   },
   {
@@ -7058,10 +7058,10 @@
   {
     "header": "nspapi.h",
     "partition": "WinSock",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-20.",
     "_source": "header-progress"
   },
   {
@@ -7229,10 +7229,10 @@
   {
     "header": "ntmsapi.h",
     "partition": "Fs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-20.",
     "_source": "header-progress"
   },
   {
@@ -7292,10 +7292,10 @@
   {
     "header": "oaidl.h",
     "partition": "ComOle",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-20.",
     "_source": "header-progress"
   },
   {

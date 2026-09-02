@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:57:05Z
+- Generated: 2026-09-02T21:58:41Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 109
+- Matched: 114
 - In progress: 0
 - Blocked: 0
-- Remaining: 1294
+- Remaining: 1289
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -776,9 +776,9 @@
 | `ndr64types.h` | Rpc | remaining |  |  |  |
 | `netcfgn.h` | NetMgmt | remaining |  |  |  |
 | `netcfgx.h` | NetMgmt | remaining |  |  |  |
-| `netcon.h` | WindowsFirewall | remaining |  |  |  |
+| `netcon.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `netevent.h` | NetMgmt | remaining |  |  |  |
-| `netfw.h` | WindowsFirewall | remaining |  |  |  |
+| `netfw.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `netiodef.h` | WinSock, wnv | remaining |  |  |  |
 | `netlistmgr.h` | Nla, WindowsConnectionManager | remaining |  |  |  |
 | `netprov.h` | NetMgmt | remaining |  |  |  |
@@ -794,7 +794,7 @@
 | `Npapi.h` | Wnet | remaining |  |  |  |
 | `nsemail.h` | WinSock | remaining |  |  |  |
 | `nserror.h` | Multimedia | remaining |  |  |  |
-| `nspapi.h` | WinSock | remaining |  |  |  |
+| `nspapi.h` | WinSock | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `ntdd1394.h` | Devices.1394 | remaining |  |  |  |
 | `ntddbeep.h` | Devices.Beep | remaining |  |  |  |
 | `ntddcdrm.h` | Devices.Cdrom | remaining |  |  |  |
@@ -813,14 +813,14 @@
 | `ntiologc.h` | Foundation | remaining |  |  |  |
 | `ntioring_x.h` | Fs | remaining |  |  |  |
 | `ntldap.h` | Ldap | remaining |  |  |  |
-| `ntmsapi.h` | Fs | remaining |  |  |  |
+| `ntmsapi.h` | Fs | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `ntmsmli.h` | Fs | remaining |  |  |  |
 | `ntquery.h` | IndexSrv, Shell | remaining |  |  |  |
 | `ntsecapi.h` | ActiveDirectory, Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned LSA_HANDLE ownership violation found during resource-ownership audit; other annotation groups in file were already compliant. |
 | `NTSecPKG.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `ntstatus.h` | Foundation | remaining |  |  |  |
 | `nvme.h` | Storage.Nvme | remaining |  |  |  |
-| `oaidl.h` | ComOle | remaining |  |  |  |
+| `oaidl.h` | ComOle | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `objbase.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, IO, Printing, TransactionServer, VSS, WinProg | remaining |  |  |  |
 | `objectarray.h` | Shell, Shell.Common | remaining |  |  |  |
 | `ObjIdl.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, IO, Rpc, TransactionServer, VSS | remaining |  |  |  |
