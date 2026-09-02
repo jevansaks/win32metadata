@@ -201,6 +201,18 @@
         "ADSVALUE anonymous union names differ but layout and field signatures match"
       ]
     },
+    {
+      "order": 14,
+      "header": "NtDsAPI.h",
+      "partition": "ActiveDirectory",
+      "namespace": "Windows.Win32.Networking.ActiveDirectory",
+      "status": "matched",
+      "focus": "Macro-level supported OS, flexible replication arrays, RPC auth identity handle collapse, const string arrays, and inline callback pointers",
+      "acceptedNormalizations": ["nativeOnlyConstants", "unusedProjectionAttributes"],
+      "lastRun": "2026-09-02",
+      "evidence": "docs/copilot/header-reports/NtDsAPI.h.ActiveDirectory.md",
+      "unresolved": []
+    },
     {"order": 10, "header": "webservices.h", "partition": "Wsw", "namespace": "Windows.Win32.Networking.WindowsWebServices", "status": "queued", "focus": "SAL direction, names, and retained parameters"},
     {"order": 4, "header": "esent.h", "partition": "Storage.Jet", "namespace": "Windows.Win32.Storage.Jet", "status": "queued", "focus": "Architecture-neutral integer widths"},
     {"order": 5, "header": "d2d1_1.h", "partition": "Direct2D", "namespace": "Windows.Win32.Graphics.Direct2D", "status": "queued", "focus": "Cross-partition owner suppression"},

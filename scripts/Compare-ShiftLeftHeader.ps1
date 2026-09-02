@@ -140,6 +140,7 @@ function Normalize-Snippet([string]$snippet) {
             $line = $line -replace "\[In\]\[NativeArrayInfo ([^\]]+)\]\[Const\]", '[In][Const][NativeArrayInfo $1]'
             $line = $line -replace "\[In\]\[NativeArrayInfo ([^\]]+)\]\[NotNullTerminated\]\[Const\]", '[In][Const][NotNullTerminated][NativeArrayInfo $1]'
             $line = $line -replace "\[Out\]\[NativeArrayInfo ([^\]]+)\]\[NotNullTerminated\]", '[Out][NotNullTerminated][NativeArrayInfo $1]'
+            $line = $line -replace "\[Optional\]\[Reserved\]\[Const\]", '[Optional][Const][Reserved]'
             $line
         }) -join "`n"
     return [regex]::Replace($normalized, "(?s)(\[(?:InvalidHandleValue|NativeTypedef)[^\r\n]*\]\r?\n(?:\[(?:InvalidHandleValue|NativeTypedef)[^\r\n]*\]\r?\n)+)(public struct)", {

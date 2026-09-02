@@ -27,6 +27,7 @@ Notes:
 #pragma once
 #endif
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #if _MSC_VER >= 1200
 #pragma warning(push)
@@ -41,15 +42,15 @@ Notes:
 #include <dsparse.h>
 
 #if !defined(_NTDSAPI_)
-#define NTDSAPI DECLSPEC_IMPORT
+#define NTDSAPI _Windows_SupportedOS_WindowsVista_ DECLSPEC_IMPORT
 #if !defined(_NTDSAPI_POSTXP_ASLIB_)
-#define NTDSAPI_POSTXP DECLSPEC_IMPORT
+#define NTDSAPI_POSTXP _Windows_SupportedOS_WindowsVista_ DECLSPEC_IMPORT
 #else
-#define NTDSAPI_POSTXP
+#define NTDSAPI_POSTXP _Windows_SupportedOS_WindowsVista_
 #endif
 #else
-#define NTDSAPI
-#define NTDSAPI_POSTXP
+#define NTDSAPI _Windows_SupportedOS_WindowsVista_
+#define NTDSAPI_POSTXP _Windows_SupportedOS_WindowsVista_
 #endif
 
 #ifdef __cplusplus
@@ -2252,6 +2253,7 @@ DsQuerySitesByCostA(
 // DsQuerySitesByCost will free the site info array returned
 // from DsQuerySitesByCost{A|W}.
 //
+_Windows_SupportedOS_WindowsVista_
 VOID
 WINAPI
 DsQuerySitesFree(
@@ -2751,6 +2753,7 @@ typedef struct _DS_REPL_NEIGHBORSW {
 #ifdef MIDL_PASS
     [size_is(cNumNeighbors)] DS_REPL_NEIGHBORW rgNeighbor[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_NEIGHBORW rgNeighbor[1];
 #endif
 } DS_REPL_NEIGHBORSW;
@@ -2787,6 +2790,7 @@ typedef struct _DS_REPL_CURSORS {
 #ifdef MIDL_PASS
     [size_is(cNumCursors)] DS_REPL_CURSOR rgCursor[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_CURSOR rgCursor[1];
 #endif
 } DS_REPL_CURSORS;
@@ -2798,6 +2802,7 @@ typedef struct _DS_REPL_CURSORS_2 {
 #ifdef MIDL_PASS
     [size_is(cNumCursors)] DS_REPL_CURSOR_2 rgCursor[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_CURSOR_2 rgCursor[1];
 #endif
 } DS_REPL_CURSORS_2;
@@ -2809,6 +2814,7 @@ typedef struct _DS_REPL_CURSORS_3W {
 #ifdef MIDL_PASS
     [size_is(cNumCursors)] DS_REPL_CURSOR_3W rgCursor[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_CURSOR_3W rgCursor[1];
 #endif
 } DS_REPL_CURSORS_3W;
@@ -2849,6 +2855,7 @@ typedef struct _DS_REPL_OBJ_META_DATA {
 #ifdef MIDL_PASS
     [size_is(cNumEntries)] DS_REPL_ATTR_META_DATA rgMetaData[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_ATTR_META_DATA rgMetaData[1];
 #endif
 } DS_REPL_OBJ_META_DATA;
@@ -2859,6 +2866,7 @@ typedef struct _DS_REPL_OBJ_META_DATA_2 {
 #ifdef MIDL_PASS
     [size_is(cNumEntries)] DS_REPL_ATTR_META_DATA_2 rgMetaData[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_ATTR_META_DATA_2 rgMetaData[1];
 #endif
 } DS_REPL_OBJ_META_DATA_2;
@@ -2886,6 +2894,7 @@ typedef struct _DS_REPL_KCC_DSA_FAILURESW {
 #ifdef MIDL_PASS
     [size_is(cNumEntries)] DS_REPL_KCC_DSA_FAILUREW rgDsaFailure[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_KCC_DSA_FAILUREW rgDsaFailure[1];
 #endif
 } DS_REPL_KCC_DSA_FAILURESW;
@@ -2939,6 +2948,7 @@ typedef struct _DS_REPL_PENDING_OPSW {
 #ifdef MIDL_PASS
     [size_is(cNumPendingOps)] DS_REPL_OPW rgPendingOp[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_OPW         rgPendingOp[1];
 #endif
 } DS_REPL_PENDING_OPSW;
@@ -3043,6 +3053,7 @@ typedef struct _DS_REPL_ATTR_VALUE_META_DATA {
 #ifdef MIDL_PASS
     [size_is(cNumEntries)] DS_REPL_VALUE_META_DATA rgMetaData[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_VALUE_META_DATA rgMetaData[1];
 #endif
 } DS_REPL_ATTR_VALUE_META_DATA;
@@ -3053,6 +3064,7 @@ typedef struct _DS_REPL_ATTR_VALUE_META_DATA_2 {
 #ifdef MIDL_PASS
     [size_is(cNumEntries)] DS_REPL_VALUE_META_DATA_2 rgMetaData[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_VALUE_META_DATA_2 rgMetaData[1];
 #endif
 } DS_REPL_ATTR_VALUE_META_DATA_2;
@@ -3063,6 +3075,7 @@ typedef struct _DS_REPL_ATTR_VALUE_META_DATA_EXT {
 #ifdef MIDL_PASS
     [size_is(cNumEntries)] DS_REPL_VALUE_META_DATA_EXT rgMetaData[];
 #else
+    _Win32_FlexibleArray_
     DS_REPL_VALUE_META_DATA_EXT rgMetaData[1];
 #endif
 } DS_REPL_ATTR_VALUE_META_DATA_EXT;
@@ -3279,4 +3292,3 @@ DsInheritSecurityIdentityA(
 #endif
 
 #endif // _NTDSAPI_H_
-
