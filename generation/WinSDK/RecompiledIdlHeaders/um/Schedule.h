@@ -21,6 +21,7 @@ Abstract:
 #endif
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -68,6 +69,7 @@ typedef struct _SCHEDULE {
     ULONG           Size;           // inclusive size in bytes
     ULONG           Bandwidth;
     ULONG           NumberOfSchedules;
+    _Win32_FlexibleArray_
     SCHEDULE_HEADER Schedules[1];
 } SCHEDULE, *PSCHEDULE;
 // The above structure is followed by the Data buffer and the
@@ -85,4 +87,3 @@ typedef struct _SCHEDULE {
 #pragma endregion
 
 #endif // _SCHEDULE_H_
-
