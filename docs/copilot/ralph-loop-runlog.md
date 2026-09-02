@@ -537,3 +537,12 @@ o-annotation-required with live-scrape evidence.
 - Classified retained `supported-os` annotation-only patches; none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T01:00:00Z - Batch existing-patches-31
+
+- Headers: `Snmp.h`, `SrRestorePtApi.h`, `SubAuth.h`, `SyncMgr.h`, and
+  `sysinfoapi.h`.
+- Classified retained `set-last-error` (2 headers), `import-library-overrides`
+  (1 header), semantic-enum-typing (1 header), and `supported-os` (1 header) patches;
+  none contain ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

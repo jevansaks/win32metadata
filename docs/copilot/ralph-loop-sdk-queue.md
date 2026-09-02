@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:40:56Z
+- Generated: 2026-09-02T22:42:22Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 170
+- Matched: 175
 - In progress: 0
 - Blocked: 0
-- Remaining: 1233
+- Remaining: 1228
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1024,7 +1024,7 @@
 | `slpublic.h` | Identity | remaining |  |  |  |
 | `smbclnt.h` | MsCs | remaining |  |  |  |
 | `smtpguid.h` | IMapi | remaining |  |  |  |
-| `snmp.h` | Snmp | remaining |  |  |  |
+| `snmp.h` | Snmp | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `socketapi.h` | WinSock | remaining |  |  |  |
 | `softpub.h` | Security.WinTrust | remaining |  |  |  |
 | `spatialaudioclient.h` | Audio | remaining |  |  |  |
@@ -1042,7 +1042,7 @@
 | `sqltypes.h` | Search | remaining |  |  |  |
 | `sqlucode.h` | Search | remaining |  |  |  |
 | `srpapi.h` | Edp | remaining |  |  |  |
-| `srrestoreptapi.h` | Sr | remaining |  |  |  |
+| `srrestoreptapi.h` | Sr | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `sslprovider.h` | Security.Cryptography | remaining |  |  |  |
 | `sspi.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `statehelpers.h` | FileHistory, Registry | remaining |  |  |  |
@@ -1061,7 +1061,7 @@
 | `strsafe.h` | MenuRc | remaining |  |  |  |
 | `structuredquery.h` | Search | remaining |  |  |  |
 | `structuredquerycondition.h` | Search | remaining |  |  |  |
-| `subauth.h` | Identity | remaining |  |  |  |
+| `subauth.h` | Identity | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `subscriptionservices.h` | Wmp | remaining |  |  |  |
 | `subsmgr.h` | Search | remaining |  |  |  |
 | `svcguid.h` | WinSock | remaining |  |  |  |
@@ -1069,10 +1069,10 @@
 | `swdevicedef.h` | SwDevice | remaining |  |  |  |
 | `syncdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `synchronizationerrors.h` | WinSync | remaining |  |  |  |
-| `syncmgr.h` | Shell | remaining |  |  |  |
+| `syncmgr.h` | Shell | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `syncregistration.h` | WinSync | remaining |  |  |  |
 | `syncregistrationerrors.h` | WinSync | remaining |  |  |  |
-| `sysinfoapi.h` | SystemInformation | remaining |  |  |  |
+| `sysinfoapi.h` | SystemInformation | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `systemmediatransportcontrolsinterop.h` | WinRT | remaining |  |  |  |
 | `t2embapi.h` | Gdi | remaining |  |  |  |
 | `tabflicks.h` | Tablet | remaining |  |  |  |
