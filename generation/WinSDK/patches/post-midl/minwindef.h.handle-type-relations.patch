@@ -1,0 +1,32 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/minwindef.h b/generation/WinSDK/RecompiledIdlHeaders/shared/minwindef.h
+index 298adbf1..e86ce505 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/minwindef.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/minwindef.h
+@@ -14,6 +14,7 @@
+ #include <specstrings.h>
+ 
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+@@ -247,9 +248,12 @@ typedef WORD                ATOM;   //BUGBUG - might want to remove this from mi
+ DECLARE_HANDLE(HKEY);
+ typedef HKEY *PHKEY;
+ DECLARE_HANDLE(HMETAFILE);
+-DECLARE_HANDLE(HINSTANCE);
++DECLARE_HANDLE(HINSTANCE)
++    _Win32_metadata_also_usable_for_(HMODULE);
++_Win32_metadata_also_usable_for_(HINSTANCE)
+ typedef HINSTANCE HMODULE;      /* HMODULEs can be used in place of HINSTANCEs */
+-DECLARE_HANDLE(HRGN);
++DECLARE_HANDLE(HRGN)
++    _Win32_metadata_also_usable_for_(HGDIOBJ);
+ DECLARE_HANDLE(HRSRC);
+ DECLARE_HANDLE(HSPRITE);
+ DECLARE_HANDLE(HLSURF);
+@@ -282,4 +286,3 @@ typedef struct _FILETIME {
+ #pragma endregion
+ 
+ #endif // _MINWINDEF_
+-

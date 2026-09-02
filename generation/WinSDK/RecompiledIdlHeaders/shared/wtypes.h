@@ -29,10 +29,6 @@
 #ifndef __wtypes_h__
 #define __wtypes_h__
 
-#if defined(WIN32METADATA)
-#include <win32metadata_annotations.h>
-#endif
-
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
 #endif
@@ -738,11 +734,9 @@ typedef DECIMAL *LPDECIMAL;
 typedef /* [unique] */  __RPC_unique_pointer FLAGGED_WORD_BLOB *wireBSTR;
 
 #ifndef _PREFAST_
-_Win32_metadata_free_with_(SysFreeString)
 typedef /* [wire_marshal] */ OLECHAR *BSTR;
 
 #else // _PREFAST_
-_Win32_metadata_free_with_(SysFreeString)
 typedef _Null_terminated_ OLECHAR *BSTR;
 #endif
 typedef BSTR *LPBSTR;
@@ -971,5 +965,4 @@ extern RPC_IF_HANDLE __MIDL_itf_wtypes_0000_0001_v0_0_s_ifspec;
 #endif
 
 #endif
-
 

@@ -11,7 +11,7 @@
 #endif
 
 #ifndef _COM_Outptr_retval_
-#define _COM_Outptr_retval_ _Win32_metadata_out_ _Win32_metadata_retval_ _Win32_metadata_com_out_ptr_
+#define _COM_Outptr_retval_ _COM_Outptr_ _Win32_metadata_retval_
 #endif
 
 #define _Win32_metadata_set_last_error_ \
@@ -32,10 +32,6 @@
     _WIN32META_ANNOTATION_("win32metadata:raii_free=" #function)
 #define _Win32_metadata_invalid_handle_(value) \
     _WIN32META_ANNOTATION_("win32metadata:invalid_handle=" #value)
-#define _Win32_metadata_free_with_(function) \
-    _WIN32META_ANNOTATION_("win32metadata:free_with=" #function)
-#define _Win32_metadata_do_not_release_ \
-    _WIN32META_ANNOTATION_("win32metadata:do_not_release")
 #define _Win32_metadata_not_null_terminated_ \
     _WIN32META_ANNOTATION_("win32metadata:not_null_terminated")
 #define _Win32_metadata_null_null_terminated_ \
@@ -80,8 +76,6 @@
     _WIN32META_ANNOTATION_("win32metadata:reserved")
 #define _Win32_metadata_retval_ \
     _WIN32META_ANNOTATION_("win32metadata:retval")
-#define _Win32_metadata_com_out_ptr_ \
-    _WIN32META_ANNOTATION_("win32metadata:com_out_ptr")
 #define _Win32_metadata_const_ \
     _WIN32META_ANNOTATION_("win32metadata:const")
 #define _Win32_metadata_canonical_name_(name) \

@@ -209,13 +209,7 @@ typedef LONG_PTR            LRESULT;
 
 typedef HANDLE NEAR         *SPHANDLE;
 typedef HANDLE FAR          *LPHANDLE;
-_Win32_metadata_invalid_handle_(-1)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(GlobalFree)
 typedef HANDLE              HGLOBAL;
-_Win32_metadata_invalid_handle_(-1)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(LocalFree)
 typedef HANDLE              HLOCAL;
 typedef HANDLE              GLOBALHANDLE;
 typedef HANDLE              LOCALHANDLE;
@@ -251,45 +245,22 @@ typedef INT_PTR (WINAPI *PROC)(void);
 
 typedef WORD                ATOM;   //BUGBUG - might want to remove this from minwin
 
-DECLARE_HANDLE(HKEY)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0)
-    _Win32_metadata_raii_free_(RegCloseKey);
+DECLARE_HANDLE(HKEY);
 typedef HKEY *PHKEY;
-DECLARE_HANDLE(HMETAFILE)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0)
-    _Win32_metadata_raii_free_(DeleteMetaFile);
+DECLARE_HANDLE(HMETAFILE);
 DECLARE_HANDLE(HINSTANCE)
-    _Win32_metadata_also_usable_for_(HMODULE)
-    _Win32_metadata_invalid_handle_(0)
-    _Win32_metadata_raii_free_(FreeLibrary);
+    _Win32_metadata_also_usable_for_(HMODULE);
 _Win32_metadata_also_usable_for_(HINSTANCE)
-_Win32_metadata_invalid_handle_(0)
-_Win32_metadata_raii_free_(FreeLibrary)
 typedef HINSTANCE HMODULE;      /* HMODULEs can be used in place of HINSTANCEs */
 DECLARE_HANDLE(HRGN)
-    _Win32_metadata_also_usable_for_(HGDIOBJ)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0)
-    _Win32_metadata_raii_free_(DeleteObject);
-DECLARE_HANDLE(HRSRC)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0);
+    _Win32_metadata_also_usable_for_(HGDIOBJ);
+DECLARE_HANDLE(HRSRC);
 DECLARE_HANDLE(HSPRITE);
 DECLARE_HANDLE(HLSURF);
 DECLARE_HANDLE(HSTR);
-DECLARE_HANDLE(HTASK)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0);
-DECLARE_HANDLE(HWINSTA)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0)
-    _Win32_metadata_raii_free_(CloseWindowStation);
-DECLARE_HANDLE(HKL)
-    _Win32_metadata_invalid_handle_(-1)
-    _Win32_metadata_invalid_handle_(0)
-    _Win32_metadata_raii_free_(UnloadKeyboardLayout);
+DECLARE_HANDLE(HTASK);
+DECLARE_HANDLE(HWINSTA);
+DECLARE_HANDLE(HKL);
 
 #ifndef _MAC
 typedef int HFILE;

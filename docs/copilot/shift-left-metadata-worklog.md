@@ -35,7 +35,8 @@ The windows-rs branch has been pushed. Important commits are:
 4. windows-rs import-library scanning is the default; a header annotation overrides it.
 5. API-specific pseudo handles are intentionally removed. Ownership belongs on raw
    `HANDLE` producer returns/output parameters.
-6. Genuine existing SDK handle/resource typedefs may carry ownership metadata.
+6. Handle/resource typedefs do not carry cleanup ownership. `RAIIFree` and invalid
+   values belong only on producer returns and output parameters.
 7. Repeated nested Clang annotations are written on separate source lines.
 8. Enums use guarded declarations with balanced macro push/undef/pop operations.
 9. Current logical comparison ignores namespace partition differences between the NuGet
@@ -45,6 +46,18 @@ The windows-rs branch has been pushed. Important commits are:
     preserves raw native typedefs while allowing opinionated generators to substitute
     an ABI-compatible semantic type at an annotated use. `SECURITY_STATUS` returns
     projected as `HRESULT` are the initial case.
+12. COM out pointers use existing `_COM_Outptr_` SAL variants or IID/PPV convention
+    inference. The staged SDK vocabulary no longer defines a duplicate
+    `_Win32_metadata_com_out_ptr_` annotation.
+13. `FreeWith` is removed from the proposed vocabulary. Generic allocation ownership
+    uses `RAIIFree` on producer returns/output parameters rather than attaching cleanup
+    behavior to pointer typedefs.
+14. `DoNotRelease` is removed from the proposed vocabulary. With pseudo-handle types
+    removed, plain `HANDLE` is borrowed unless a producer site explicitly carries
+    `RAIIFree`.
+15. The windows-rs Clang path now recognizes a bare `_Out_retval_` token and emits
+    RDL `#[retval]`; the existing RDL, winmd, and bindgen paths already consume that
+    attribute.
 
 ## windows-rs implementation completed
 
@@ -120,7 +133,7 @@ Current result:
 
 | Batch | Result |
 | --- | --- |
-| Annotation vocabulary | Added `win32metadata_annotations.h` with the complete 38-annotation vocabulary. |
+| Annotation vocabulary | Added `win32metadata_annotations.h` with the complete custom vocabulary; COM out pointers use existing SAL. |
 | Printing ownership pilot | Raw `HANDLE` outputs carry `RAIIFree(ClosePrinter)` and invalid values; no `PRINTER_HANDLE`. |
 | Callback fixups | Migrated all 27 classified fixups using canonical-name or pointer-reduction annotations. |
 | Manual import overrides | Migrated current-header overrides to authoritative declaration annotations. |
@@ -199,7 +212,8 @@ header migration and cumulative equivalence comparison:
 3. Complete `WithSetLastError.rsp` outside WinUser, kernel/process/file,
    service/security, networking, and storage/setup/device/system.
 4. Classify and migrate the remaining auto-type candidates outside the completed shared
-   and security batches. Use genuine typedef annotations or raw-HANDLE producer metadata;
+   and security batches. Move cleanup and invalid-value metadata to producer
+   returns/output parameters, remove typedef ownership and `DoNotRelease` sidecars, and
    reject pseudo handles.
 5. Migrate member remaps, array/count/byte-size/string semantics, COM method metadata,
    native inheritance, struct-size fields, success semantics, agility, and encoding.

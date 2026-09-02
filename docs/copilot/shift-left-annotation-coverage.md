@@ -24,10 +24,8 @@ Primary consumer fixture:
 | Multiple success values | `_Win32_metadata_multiple_success_values_` | Function fixture | Representative consumer fixture | Proven |
 | Static library | `_Win32_metadata_static_library_("x.lib")` | Function fixture | Representative consumer fixture | Proven |
 | Agile | `_Win32_metadata_agile_` | Interface fixture | Representative consumer fixture | Proven |
-| RAII free | `_Win32_metadata_raii_free_(CloseX)` | Return, parameter, and typedef fixtures | Printing, shared handles, security ownership | Proven |
-| Invalid handle | `_Win32_metadata_invalid_handle_(value)` | Repeated signed/hex literal fixtures | Printing and ownership batches | Proven |
-| Free with | `_Win32_metadata_free_with_(FreeX)` | Return, parameter, field, typedef fixtures | Ownership fixtures | Proven |
-| Do not release | `_Win32_metadata_do_not_release_` | Return fixture | Representative consumer fixture | Proven |
+| RAII free | `_Win32_metadata_raii_free_(CloseX)` | Return and output-parameter fixtures | Printing and producer ownership | Proven |
+| Invalid handle | `_Win32_metadata_invalid_handle_(value)` | Repeated signed/hex literal fixtures | Printing and producer ownership | Proven |
 | Not null terminated | `_Win32_metadata_not_null_terminated_` | Return, parameter, field fixtures | Representative consumer fixture | Proven |
 | Double-null terminated | `_Win32_metadata_null_null_terminated_` | Parameter and field fixtures | Representative consumer fixture | Proven |
 | Retained | `_Win32_metadata_retained_` | Parameter fixture | Representative consumer fixture | Proven |
@@ -49,7 +47,7 @@ Primary consumer fixture:
 | Optional | `_Win32_metadata_optional_` | Parameter fixture | SAL remains preferred | Proven |
 | Reserved | `_Win32_metadata_reserved_` | Parameter fixture | SAL remains preferred | Proven |
 | Retval | `_Win32_metadata_retval_` | Parameter fixture | `_Out_retval_` compatibility fallback | Proven |
-| COM out pointer | `_Win32_metadata_com_out_ptr_` | Parameter fixture | COM retval compatibility fallback | Proven |
+| COM out pointer | `_COM_Outptr_` and standard SAL variants | SAL parameter fixture | Shape-based inference is compatibility-only | Proven |
 | Native const | `_Win32_metadata_const_` | Parameter/field target validation | Existing C `const` remains preferred | Proven |
 | Canonical callback name | `_Win32_metadata_canonical_name_(NAME)` | Alias resolution fixture | Eight callback patches | Proven |
 | Semantic type projection | `_Win32_metadata_project_as_(TYPE)` | Parameter, return, and field RDL plus winmd attribute round trip | `SECURITY_STATUS` return values are the motivating case | Proven |
