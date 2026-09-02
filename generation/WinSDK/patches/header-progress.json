@@ -29594,20 +29594,29 @@
       "header": "richedit.h",
       "partitions": "Controls.RichEdit",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-27",
+      "category": "semantic-enum-typing",
+      "delta_class": "abi-compatible-typedef-spelling",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T00:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/richedit.h.md generation/WinSDK/patches/post-midl/Richedit.h.richedit-enums.patch generation/WinSDK/patches/post-midl/Richedit.h.zzz-supported-os.patch git apply --check --reverse passed for both docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-03T00:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-27.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Controls.RichEdit/main.cpp",
@@ -29619,20 +29628,29 @@
       "header": "richole.h",
       "partitions": "Controls.RichEdit",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-27",
+      "category": "semantic-enum-typing",
+      "delta_class": "abi-compatible-typedef-spelling",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T00:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/richole.h.md generation/WinSDK/patches/post-midl/RichOle.h.richedit-context-menu-enum.patch generation/WinSDK/patches/post-midl/RichOle.h.zzz-supported-os.patch git apply --check --reverse passed for both docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-03T00:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-27.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Controls.RichEdit/main.cpp",
@@ -30234,20 +30252,29 @@
       "header": "rtmv2.h",
       "partitions": "RRas",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-27",
+      "category": "callback-canonical-name",
+      "delta_class": "abi-compatible-typedef-spelling",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T00:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/RtmV2.h.md generation/WinSDK/patches/post-midl/RtmV2.h.callback-canonical-name.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-03T00:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-27.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/RRas/main.cpp",
@@ -30526,20 +30553,29 @@
         "Wsw"
       ],
       "partition_count": 16,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-27",
+      "category": "semantic-enum-typing",
+      "delta_class": "abi-compatible-typedef-spelling",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T00:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/schannel.h.md generation/WinSDK/patches/post-midl/schannel.h.zz-crypto-security-enums.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-03T00:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-27.",
       "sources": [
         {
           "source": "partition-main",
@@ -30693,20 +30729,29 @@
       "header": "scrnsave.h",
       "partitions": "Shell",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "existing-patches-27",
+      "category": "supported-os",
+      "delta_class": "metadata-annotation",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "ABI-neutral declaration annotation"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T00:00:00Z",
+          "rationale": "Retained artifact was part of the previously successful sequential x64, arm64, and x86 generation checkpoint."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/ScrnSave.h.md generation/WinSDK/patches/post-midl/ScrnSave.h.zzz-supported-os.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
+      ],
+      "last_updated": "2026-09-03T00:00:00Z",
+      "notes": "Classified retained artifact in existing-patches-27.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Shell/main.cpp",

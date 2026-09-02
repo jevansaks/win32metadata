@@ -502,3 +502,11 @@
 o-annotation-required with live-scrape evidence.
 - Session checkpoint: 150 of 1403 authoritative ledger headers now classified
   `accepted-normalized`.
+
+## 2026-09-03T00:00:00Z - Batch existing-patches-27
+
+- Headers: `richedit.h`, `richole.h`, `RtmV2.h`, `schannel.h`, and `ScrnSave.h`.
+- Classified retained semantic-enum-typing (3 headers), `callback-canonical-name`
+  (1 header), and `supported-os` (1 header) patches; none contain ownership/typedef
+  metadata. `richedit.h`/`richole.h` each carry two stacked, non-overlapping patches.
+- Every retained artifact passes reverse application against its tracked patched header.

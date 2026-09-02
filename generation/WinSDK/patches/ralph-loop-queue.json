@@ -8381,19 +8381,19 @@
   {
     "header": "richedit.h",
     "partition": "Controls.RichEdit",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-27.",
     "_source": "header-progress"
   },
   {
     "header": "richole.h",
     "partition": "Controls.RichEdit",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-27.",
     "_source": "header-progress"
   },
   {
@@ -8597,10 +8597,10 @@
   {
     "header": "rtmv2.h",
     "partition": "RRas",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-27.",
     "_source": "header-progress"
   },
   {
@@ -8696,10 +8696,10 @@
   {
     "header": "schannel.h",
     "partition": "Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Wsw",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-27.",
     "_source": "header-progress"
   },
   {
@@ -8723,10 +8723,10 @@
   {
     "header": "scrnsave.h",
     "partition": "Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:00:00Z",
+    "notes": "Classified retained artifact in existing-patches-27.",
     "_source": "header-progress"
   },
   {
