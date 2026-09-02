@@ -7076,10 +7076,10 @@
   {
     "header": "ntddbeep.h",
     "partition": "Devices.Beep",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:05:00Z",
+    "notes": "No patch needed; data-structure-only header.",
     "_source": "header-progress"
   },
   {
@@ -7094,10 +7094,10 @@
   {
     "header": "ntddcdvd.h",
     "partition": "Devices.Dvd",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:05:00Z",
+    "notes": "No patch needed; data-structure-only header.",
     "_source": "header-progress"
   },
   {
@@ -9659,10 +9659,10 @@
   {
     "header": "tbs.h",
     "partition": "Tbs",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:05:00Z",
+    "notes": "New resource-ownership patch created and verified via live re-scrape (build-level validation).",
     "_source": "header-progress"
   },
   {
@@ -11360,10 +11360,10 @@
   {
     "header": "windowssideshowdriverevents.h",
     "partition": "SideShow",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:05:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {

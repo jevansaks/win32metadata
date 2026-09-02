@@ -24846,20 +24846,29 @@
       "header": "ntddbeep.h",
       "partitions": "Devices.Beep",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-07",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership gaps found"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T04:05:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/ntddbeep.h.md live re-scrape (ScanArch=x86, partition Devices.Beep) succeeds; no DllImport entries"
+      ],
+      "last_updated": "2026-09-03T04:05:00Z",
+      "notes": "No patch needed; data-structure-only header.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Devices.Beep/main.cpp",
@@ -24905,20 +24914,29 @@
       "header": "ntddcdvd.h",
       "partitions": "Devices.Dvd",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-07",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership gaps found"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T04:05:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/ntddcdvd.h.md live re-scrape (ScanArch=x86, partition Devices.Dvd) succeeds; no DllImport entries"
+      ],
+      "last_updated": "2026-09-03T04:05:00Z",
+      "notes": "No patch needed; data-structure-only header.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Devices.Dvd/main.cpp",
@@ -36061,26 +36079,35 @@
       "header": "tbs.h",
       "partitions": "Tbs",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-07",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "last_updated": "2026-09-03T04:05:00Z",
+      "notes": "New resource-ownership patch created and verified via live re-scrape (build-level validation).",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Tbs/main.cpp",
         "source_line": 9,
         "partition": "Tbs"
-      }
+      },
+      "normalization_profile": "default",
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T04:05:00Z",
+          "rationale": "TBS_HCONTEXT ownership (Tbsi_Context_Create/Tbsi_Tpm_Vendor_Maintenance_Mode producers, Tbsip_Context_Close consumer) is directly verifiable from the header itself with no external documentation needed."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/tbs.h.md generation/WinSDK/patches/post-midl/tbs.h.tpm-context-ownership.patch git apply --check --reverse passed; live re-scrape (ScanArch=x86) succeeds with 0 warnings/errors confirming valid C syntax"
+      ]
     },
     {
       "header": "tcerror.h",
@@ -43775,20 +43802,29 @@
       "header": "windowssideshowdriverevents.h",
       "partitions": "SideShow",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-07",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "normalization_profile": "default",
-      "normalizations_applied": [],
+      "normalizations_applied": [
+        "No ownership gaps found"
+      ],
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "assumptions": [
+        {
+          "timestamp": "2026-09-03T04:05:00Z",
+          "rationale": "Confirmed via live scrape and static review of ownership/handle patterns."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/windowssideshowdriverevents.h.md live re-scrape (ScanArch=x86, partition SideShow) succeeds; no DECLARE_HANDLE"
+      ],
+      "last_updated": "2026-09-03T04:05:00Z",
+      "notes": "No patch needed; COM interface only.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/SideShow/main.cpp",

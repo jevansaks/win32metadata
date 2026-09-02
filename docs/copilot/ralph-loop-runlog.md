@@ -681,3 +681,18 @@ o-annotation-required with live-scrape evidence.
   subsequent batch.
 - Session checkpoint: 227 of 1403 authoritative ledger headers now classified
   `accepted-normalized`.
+
+## 2026-09-03T04:05:00Z - Batch scraping-investigation-07
+
+- Headers: `ntddcdvd.h` (Devices.Dvd), `ntddbeep.h` (Devices.Beep), `tbs.h` (Tbs), and
+  `windowssideshowdriverevents.h` (SideShow, completing that partition).
+- `ntddcdvd.h`/`ntddbeep.h` (IOCTL-only) and `windowssideshowdriverevents.h` (COM
+  interface only) verified clean via live scrape, no ownership gaps, no patch needed.
+- `tbs.h`: found a genuine resource-ownership gap directly verifiable from the header
+  itself. `TBS_HCONTEXT` (plain `typedef PVOID`, not `DECLARE_HANDLE`) produced by
+  `Tbsi_Context_Create`/`Tbsi_Tpm_Vendor_Maintenance_Mode`, released by
+  `Tbsip_Context_Close`. Created a **new** `tbs.h.tpm-context-ownership.patch` placing
+  invalid-handle/RAIIFree on both producer output parameters. Verified via live re-scrape
+  that the header still parses cleanly (0 warnings/errors).
+- Session checkpoint: 231 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`.

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:08:48Z
+- Generated: 2026-09-02T23:13:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 227
+- Matched: 231
 - In progress: 0
 - Blocked: 0
-- Remaining: 1176
+- Remaining: 1172
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -796,9 +796,9 @@
 | `nserror.h` | Multimedia | remaining |  |  |  |
 | `nspapi.h` | WinSock | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `ntdd1394.h` | Devices.1394 | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
-| `ntddbeep.h` | Devices.Beep | remaining |  |  |  |
+| `ntddbeep.h` | Devices.Beep | matched | copilot | 09/03/2026 04:05:00 | No patch needed; data-structure-only header. |
 | `ntddcdrm.h` | Devices.Cdrom | matched | copilot | 09/03/2026 03:35:00 | No patch needed; data-structure-only header verified via live scrape. |
-| `ntddcdvd.h` | Devices.Dvd | remaining |  |  |  |
+| `ntddcdvd.h` | Devices.Dvd | matched | copilot | 09/03/2026 04:05:00 | No patch needed; data-structure-only header. |
 | `ntdddisk.h` | Fs | remaining |  |  |  |
 | `ntddkbd.h` | Hid | remaining |  |  |  |
 | `ntddmou.h` | Hid | remaining |  |  |  |
@@ -1083,7 +1083,7 @@
 | `tapi3if.h` | Tapi3 | remaining |  |  |  |
 | `taskdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `taskschd.h` | TaskSchd | remaining |  |  |  |
-| `tbs.h` | Tbs | remaining |  |  |  |
+| `tbs.h` | Tbs | matched | copilot | 09/03/2026 04:05:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
 | `tcerror.h` | Qos | remaining |  |  |  |
 | `tcguid.h` | Qos | remaining |  |  |  |
 | `tcpxcv.h` | Printing | remaining |  |  |  |
@@ -1272,7 +1272,7 @@
 | `windowssearcherrors.h` | Search | remaining |  |  |  |
 | `windowssideshow.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `windowssideshowapi.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
-| `windowssideshowdriverevents.h` | SideShow | remaining |  |  |  |
+| `windowssideshowdriverevents.h` | SideShow | matched | copilot | 09/03/2026 04:05:00 | No patch needed; COM interface only. |
 | `windowsstoragecom.h` | WinRT.Storage | remaining |  |  |  |
 | `windowsx.h` | Controls, FileHistory, Gdi, WinProg | remaining |  |  |  |
 | `winefs.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |

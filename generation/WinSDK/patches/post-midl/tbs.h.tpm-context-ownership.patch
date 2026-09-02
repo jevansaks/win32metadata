@@ -1,0 +1,33 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h b/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h
+index 4340cf3e..1f7b245e 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h
+@@ -18,6 +18,9 @@ Contents:   Definitions and prototypes for the TBS (TPM Base Services) for
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or SecureStartup Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_SECURESTARTUP)
+@@ -97,12 +100,16 @@ typedef const TBS_CONTEXT_PARAMS *PCTBS_CONTEXT_PARAMS;
+ TBS_RESULT WINAPI
+ Tbsi_Context_Create(
+     _In_ PCTBS_CONTEXT_PARAMS pContextParams,
+-    _Out_ PTBS_HCONTEXT phContext);
++    _Out_ PTBS_HCONTEXT phContext
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(Tbsip_Context_Close));
+ 
+ TBS_RESULT WINAPI
+ Tbsi_Tpm_Vendor_Maintenance_Mode(
+     _In_ PCTBS_CONTEXT_PARAMS pContextParams,
+-    _Out_ PTBS_HCONTEXT phContext);
++    _Out_ PTBS_HCONTEXT phContext
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(Tbsip_Context_Close));
+ 
+ TBS_RESULT WINAPI
+ Tbsip_Context_Close(
