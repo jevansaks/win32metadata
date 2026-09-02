@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:35:37Z
+- Generated: 2026-09-02T21:38:00Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 49
+- Matched: 54
 - In progress: 0
 - Blocked: 0
-- Remaining: 1354
+- Remaining: 1349
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -232,13 +232,13 @@
 | `d3d11sdklayers.h` | Direct3D11 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
 | `d3d11shader.h` | Direct3D11 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
 | `d3d11shadertracing.h` | Direct3D11 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
-| `d3d12.h` | Direct3D12 | remaining |  |  |  |
+| `d3d12.h` | Direct3D12 | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d12compatibility.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12compiler.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12sdklayers.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12shader.h` | Direct3D12 | remaining |  |  |  |
-| `d3d12video.h` | Mf | remaining |  |  |  |
-| `d3d9.h` | Direct3D9, Mf | remaining |  |  |  |
+| `d3d12video.h` | Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
+| `d3d9.h` | Direct3D9, Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d9caps.h` | Direct3D9, Mf | remaining |  |  |  |
 | `d3d9helper.h` | Media.DShow | remaining |  |  |  |
 | `d3d9on12.h` | Direct3D9on12 | remaining |  |  |  |
@@ -259,8 +259,8 @@
 | `dciddi.h` | Direct2D | remaining |  |  |  |
 | `dciman.h` | FileHistory, WinProg | remaining |  |  |  |
 | `dcommon.h` | Direct2D, Direct2D.Common, DirectWrite | remaining |  |  |  |
-| `dcomp.h` | DirectComp | remaining |  |  |  |
-| `dcompanimation.h` | DirectComp | remaining |  |  |  |
+| `dcomp.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
+| `dcompanimation.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcomptypes.h` | DirectComp | remaining |  |  |  |
 | `dde.h` | DataXchg | remaining |  |  |  |
 | `ddeml.h` | DataXchg | remaining |  |  |  |

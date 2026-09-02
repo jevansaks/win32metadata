@@ -2000,10 +2000,10 @@
   {
     "header": "d3d12.h",
     "partition": "Direct3D12",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:55:00Z",
+    "notes": "Classified retained artifact in existing-patches-08.",
     "_source": "header-progress"
   },
   {
@@ -2045,19 +2045,19 @@
   {
     "header": "d3d12video.h",
     "partition": "Mf",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:55:00Z",
+    "notes": "Classified retained artifact in existing-patches-08.",
     "_source": "header-progress"
   },
   {
     "header": "d3d9.h",
     "partition": "Direct3D9, Mf",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:55:00Z",
+    "notes": "Classified retained artifact in existing-patches-08.",
     "_source": "header-progress"
   },
   {
@@ -2243,19 +2243,19 @@
   {
     "header": "dcomp.h",
     "partition": "DirectComp",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:55:00Z",
+    "notes": "Classified retained artifact in existing-patches-08.",
     "_source": "header-progress"
   },
   {
     "header": "dcompanimation.h",
     "partition": "DirectComp",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T00:55:00Z",
+    "notes": "Classified retained artifact in existing-patches-08.",
     "_source": "header-progress"
   },
   {

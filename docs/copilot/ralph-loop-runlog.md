@@ -227,3 +227,10 @@
 - Classified retained `supported-os` annotation-only patches; none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-03T00:55:00Z - Batch existing-patches-08
+
+- Headers: `d3d12.h`, `d3d12video.h`, `d3d9.h`, `dcomp.h`, and `dcompanimation.h`.
+- Classified retained `supported-os` annotation-only patches; none contain
+  ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.
