@@ -399,3 +399,11 @@
   `callback-canonical-name` patch, verified non-overlapping); none contain
   ownership/typedef metadata.
 - Every retained artifact passes reverse application against its tracked patched header.
+
+## 2026-09-02T22:50:00Z - Batch existing-patches-26
+
+- Headers: `powrprof.h`, `Psapi.h`, `RassHost.h`, `recapis.h`, and `Reconcil.h`.
+- Classified retained `set-last-error` (3 headers), `import-library-overrides`
+  (1 header), and `supported-os` (1 header) patches; none contain ownership/typedef
+  metadata.
+- Every retained artifact passes reverse application against its tracked patched header.

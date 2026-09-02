@@ -7805,10 +7805,10 @@
   {
     "header": "powrprof.h",
     "partition": "Power",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-26.",
     "_source": "header-progress"
   },
   {
@@ -8066,10 +8066,10 @@
   {
     "header": "psapi.h",
     "partition": "PsApi1, PsApi2",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-26.",
     "_source": "header-progress"
   },
   {
@@ -8192,10 +8192,10 @@
   {
     "header": "rasshost.h",
     "partition": "RRas",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-26.",
     "_source": "header-progress"
   },
   {
@@ -8246,10 +8246,10 @@
   {
     "header": "recapis.h",
     "partition": "Tablet",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-26.",
     "_source": "header-progress"
   },
   {
@@ -8264,10 +8264,10 @@
   {
     "header": "reconcil.h",
     "partition": "Lwef, Shell",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T22:50:00Z",
+    "notes": "Classified retained artifact in existing-patches-26.",
     "_source": "header-progress"
   },
   {

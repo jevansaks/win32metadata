@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:09:21Z
+- Generated: 2026-09-02T22:11:04Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 139
+- Matched: 144
 - In progress: 0
 - Blocked: 0
-- Remaining: 1264
+- Remaining: 1259
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -877,7 +877,7 @@
 | `portabledevicetypes.h` | WpdSdk | remaining |  |  |  |
 | `powerbase.h` | Power | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `powersetting.h` | Power | remaining |  |  |  |
-| `powrprof.h` | Power | remaining |  |  |  |
+| `powrprof.h` | Power | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `prcomoem.h` | Printing | remaining |  |  |  |
 | `prdrvcom.h` | Printing | remaining |  |  |  |
 | `presentation.h` | CompositionSwapchain | remaining |  |  |  |
@@ -906,7 +906,7 @@
 | `propsys.h` | Audio.DirectMusic, Properties, Shell | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `propvarutil.h` | Com.StructuredStorage, Variant | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `prsht.h` | Controls | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
-| `psapi.h` | PsApi1, PsApi2 | remaining |  |  |  |
+| `psapi.h` | PsApi1, PsApi2 | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `pwm.h` | PWM | remaining |  |  |  |
 | `qmgr.h` | Bits | remaining |  |  |  |
 | `qnetwork.h` | Media.DShow | remaining |  |  |  |
@@ -920,15 +920,15 @@
 | `rasdlg.h` | RRas | remaining |  |  |  |
 | `raseapif.h` | Eap | remaining |  |  |  |
 | `raserror.h` | RRas | remaining |  |  |  |
-| `rasshost.h` | RRas | remaining |  |  |  |
+| `rasshost.h` | RRas | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `ratings.h` | InternetExplorer | remaining |  |  |  |
 | `rdpappcontainerclient.h` | TermServ | remaining |  |  |  |
 | `rdpencomapi.h` | Rdp, TermServ | remaining |  |  |  |
 | `realtimeapiset.h` | Base | remaining |  |  |  |
 | `reason.h` | FileHistory, Shutdown | remaining |  |  |  |
-| `recapis.h` | Tablet | remaining |  |  |  |
+| `recapis.h` | Tablet | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `recdefs.h` | Tablet | remaining |  |  |  |
-| `reconcil.h` | Lwef, Shell | remaining |  |  |  |
+| `reconcil.h` | Lwef, Shell | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `rectypes.h` | Tablet | remaining |  |  |  |
 | `regbag.h` | MsTv | remaining |  |  |  |
 | `regstr.h` | Registry | remaining |  |  |  |
