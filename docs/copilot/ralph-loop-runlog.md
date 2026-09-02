@@ -756,3 +756,18 @@ o-annotation-required with live-scrape evidence.
   live-scrape evidence.
 - Session checkpoint: 249 of 1403 authoritative ledger headers now classified
   `accepted-normalized` (plus 1 explicitly `blocked`: `esent.h`).
+
+## 2026-09-02 16:34:33 UTC - Batch scraping-investigation-13
+
+**Headers:** ddraw.h, gdiplus.h, wpc.h, photoacquire.h, GameInput.h, pla.h
+**Partitions scraped:** Gdiplus, Parcon, PicAcq, GameInput, Pla (all x86 per ExcludeFromCrossarch; 0 warnings/errors)
+
+- ddraw.h: HMONITOR is a pass-through system handle used only as a callback parameter type; the guarded DECLARE_HANDLE fallback never fires (HMONITOR_DECLARED already defined by windows.fixed.h). No DirectDraw function creates/releases HMONITOR. Clean.
+- gdiplus.h: 632 functions scraped. GDI+'s create/delete object pattern (GdipCreateFromHDC/GdipDeleteGraphics etc.) uses strongly-typed C++ pointers (GpGraphics*, GpBitmap*, ...), not HANDLE-family typedefs. Cross-checked all 13 headers in the repo currently carrying _Win32_metadata_raii_free_/_invalid_handle_ (bcrypt.h, amsi.h, AuthZ.h, sspi.h, tbs.h, ncrypt.h, ncryptprotect.h, NTSecAPI.h, NTSecPKG.h, prntvpt.h, securitybaseapi.h, wincrypt.h) — the mechanism is applied exclusively to HANDLE-family opaque scalar types, never strongly-typed C++ pointers. autoTypes.json/emitter.settings.rsp have no Gp*/Gdiplus entries. Classified out-of-current-policy-scope / no-annotation-required (no regression - nothing pre-existing to correct).
+- wpc.h: All 16 functions are MIDL RPC marshalling stubs (BSTR_User*/HWND_User*, incl. *64 variants). Clean.
+- photoacquire.h: All 40 functions are MIDL RPC marshalling stubs (BSTR/HBITMAP/HICON/HWND/LPSAFEARRAY_User*). Pass-through of externally-owned GDI handles only, not produced/released here. Clean.
+- GameInput.h: GameInputCreate(IGameInput**) is a clean COM-factory pattern (consistent with dxcapi.h/directml.h precedent). Found one raw HANDLE out-param: IGameInputDispatcher::OpenWaitHandle - but this is a COM vtable interface method (IFACEMETHOD), not a DllImport/extern function. Confirmed via repo-wide grep that no existing header applies _Win32_metadata_raii_free_/_invalid_handle_ to a COM interface method - out of current mechanism's scope. Clean under current policy.
+- pla.h: 6 functions, all operate on strings/flags/paths only. No handle-producing functions. Clean.
+
+**Ledger status:** 255 accepted-normalized, 1 blocked (esent.h), 1147 pending.
+**Policy note:** This batch establishes precedent that ownership annotations apply only to (a) DllImport/extern "C" functions producing/consuming (b) HANDLE-family scalar opaque types (DECLARE_HANDLE/typedef PVOID), consistent with every existing annotated header in the repo. Strongly-typed C++ object pointers (GDI+) and COM vtable interface methods (GameInput) are out of scope for this mechanism and require no fix to remain policy-compliant.

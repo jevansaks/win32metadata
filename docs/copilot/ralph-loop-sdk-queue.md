@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:27:47Z
+- Generated: 2026-09-02T23:34:14Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 249
+- Matched: 255
 - In progress: 0
 - Blocked: 1
-- Remaining: 1153
+- Remaining: 1147
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -269,7 +269,7 @@
 | `ddpchunk.h` | Dedup | remaining |  |  |  |
 | `ddpcommon.h` | Dedup | remaining |  |  |  |
 | `ddpdataport.h` | Dedup | remaining |  |  |  |
-| `ddraw.h` | DirectDraw, Gdiplus, Media.DShow | remaining |  |  |  |
+| `ddraw.h` | DirectDraw, Gdiplus, Media.DShow | matched |  | 09/02/2026 16:34:06 | HMONITOR reference is a pass-through system handle (never created/released by DirectDraw); guarded DECLARE_HANDLE fallback never fires. |
 | `ddrawgdi.h` | FileHistory, WinProg | remaining |  |  |  |
 | `ddrawi.h` | DirectDraw, FileHistory, WinProg | remaining |  |  |  |
 | `ddrawint.h` | DirectDraw | remaining |  |  |  |
@@ -457,12 +457,12 @@
 | `fwpmu.h` | WindowsFilteringPlatform | remaining |  |  |  |
 | `fwptypes.h` | WindowsFilteringPlatform | remaining |  |  |  |
 | `fxsutility.h` | Fax | remaining |  |  |  |
-| `GameInput.h` | GameInput | remaining |  |  |  |
+| `GameInput.h` | GameInput | matched |  | 09/02/2026 16:34:06 | GameInputCreate is a clean COM-factory pattern; the one raw HANDLE out-param (IGameInputDispatcher::OpenWaitHandle) is a COM vtable method, outside DllImport-based ownership-annotation scope. |
 | `gameux.h` | GameMode | remaining |  |  |  |
 | `gamingdeviceinformation.h` | GamingDvcInfo | remaining |  |  |  |
 | `gamingtcui.h` | Tcui | remaining |  |  |  |
 | `gb18030.h` | Intl | remaining |  |  |  |
-| `gdiplus.h` | Gdiplus | remaining |  |  |  |
+| `gdiplus.h` | Gdiplus | matched |  | 09/02/2026 16:34:06 | GDI+ create/delete object pattern uses strongly-typed C++ pointers (GpGraphics* etc), not HANDLE-family typedefs; no pre-existing RAII metadata to correct; out of current policy scope. |
 | `gdipluseffects.h` | Media.DShow | remaining |  |  |  |
 | `genericusbfnioctl.h` | Buses | remaining |  |  |  |
 | `getcurrentpackageinfo3.h` | AppxPackaging | remaining |  |  |  |
@@ -861,9 +861,9 @@
 | `perflib.h` | Perf | remaining |  |  |  |
 | `perhist.h` | InternetExplorer | remaining |  |  |  |
 | `persist.h` | Search | remaining |  |  |  |
-| `photoacquire.h` | PicAcq, Setup | remaining |  |  |  |
+| `photoacquire.h` | PicAcq, Setup | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR/HBITMAP/HICON/HWND/LPSAFEARRAY_User*); pass-through of externally-owned handles only. |
 | `physicalmonitorenumerationapi.h` | Monitor | remaining |  |  |  |
-| `pla.h` | Pla | remaining |  |  |  |
+| `pla.h` | Pla | matched |  | 09/02/2026 16:34:06 | All 6 functions operate on strings/flags/paths only; no handle-producing functions. |
 | `playlist.h` | Media.DShow | remaining |  |  |  |
 | `playsoundapi.h` | Audio | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `playto.h` | Mf | remaining |  |  |  |
@@ -1350,7 +1350,7 @@
 | `workspaceax.h` | TermServ | remaining |  |  |  |
 | `workspaceruntime.h` | TermServ | remaining |  |  |  |
 | `workspaceruntimeclientext.h` | TermServ | remaining |  |  |  |
-| `wpc.h` | Parcon | remaining |  |  |  |
+| `wpc.h` | Parcon | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR_User*/HWND_User*); no resource-owning functions. |
 | `wpdmtpextensions.h` | WpdSdk | remaining |  |  |  |
 | `wpdshellextension.h` | WpdSdk | remaining |  |  |  |
 | `wrdsgraphicschannels.h` | TermServ | remaining |  |  |  |
