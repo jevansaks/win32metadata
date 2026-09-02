@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:22:45Z
+- Generated: 2026-09-02T22:29:20Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 145
+- Matched: 148
 - In progress: 0
 - Blocked: 0
-- Remaining: 1258
+- Remaining: 1255
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -795,7 +795,7 @@
 | `nsemail.h` | WinSock | remaining |  |  |  |
 | `nserror.h` | Multimedia | remaining |  |  |  |
 | `nspapi.h` | WinSock | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
-| `ntdd1394.h` | Devices.1394 | remaining |  |  |  |
+| `ntdd1394.h` | Devices.1394 | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `ntddbeep.h` | Devices.Beep | remaining |  |  |  |
 | `ntddcdrm.h` | Devices.Cdrom | remaining |  |  |  |
 | `ntddcdvd.h` | Devices.Dvd | remaining |  |  |  |
@@ -891,7 +891,7 @@
 | `prnasnot.h` | Gdi, Printing | remaining |  |  |  |
 | `prnasntp.h` | Printing | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `prntfont.h` | Printing | remaining |  |  |  |
-| `prntvpt.h` | Gdi, PrintTicket | remaining |  |  |  |
+| `prntvpt.h` | Gdi, PrintTicket | matched | copilot | 09/02/2026 23:20:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation); supported-os left unresolved due to ambiguous/uncorroborated documentation. |
 | `processenv.h` | Environment, FileHistory, Fs | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `processsnapshot.h` | Proc_Snap | remaining |  |  |  |
 | `processthreadsapi.h` | FileHistory, TermServ | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
@@ -907,7 +907,7 @@
 | `propvarutil.h` | Com.StructuredStorage, Variant | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `prsht.h` | Controls | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `psapi.h` | PsApi1, PsApi2 | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
-| `pwm.h` | PWM | remaining |  |  |  |
+| `pwm.h` | PWM | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `qmgr.h` | Bits | remaining |  |  |  |
 | `qnetwork.h` | Media.DShow | remaining |  |  |  |
 | `qos2.h` | Qos | remaining |  |  |  |

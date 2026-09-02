@@ -24749,26 +24749,35 @@
       "header": "ntdd1394.h",
       "partitions": "Devices.1394",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-01",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "last_updated": "2026-09-02T23:20:00Z",
+      "notes": "No patch needed; data-structure-only header verified via live scrape.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Devices.1394/main.cpp",
         "source_line": 5,
         "partition": "Devices.1394"
-      }
+      },
+      "normalization_profile": "default",
+      "normalizations_applied": [
+        "No function surface present; data-structure/IOCTL-only header"
+      ],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:20:00Z",
+          "rationale": "Confirmed via live scrape that ntdd1394.h declares only IEEE 1394 IOCTL constants/structs, no WINAPI functions."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/ntdd1394.h.md live re-scrape (ScanArch=x86) succeeds with 0 warnings/errors; generated Devices.1394.cs contains no DllImport entries"
+      ]
     },
     {
       "header": "ntddbeep.h",
@@ -28029,20 +28038,16 @@
         "PrintTicket"
       ],
       "partition_count": 2,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
-      "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-01",
+      "category": "resource-ownership",
+      "delta_class": "accepted-policy-normalization",
+      "fix_route": "header_patch",
+      "blocker": "Attempted supported_os lookup for PTOpenProvider/PTCloseProvider returned an implausible 'Windows XP' claim uncorroborated by any header-level NTDDI_VERSION/_WIN32_WINNT guard (header has none); left unannotated pending a more authoritative source rather than guessed at.",
+      "last_updated": "2026-09-02T23:20:00Z",
+      "notes": "New resource-ownership patch created and verified via live re-scrape (build-level validation); supported-os left unresolved due to ambiguous/uncorroborated documentation.",
       "sources": [
         {
           "source": "partition-main",
@@ -28056,6 +28061,19 @@
           "source_line": 8,
           "partition": "PrintTicket"
         }
+      ],
+      "normalization_profile": "default",
+      "normalizations_applied": [
+        "Cleanup ownership and invalid values are producer-use metadata, not typedef metadata"
+      ],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:20:00Z",
+          "rationale": "HPTPROVIDER ownership (PTOpenProvider/PTOpenProviderEx producers, PTCloseProvider consumer) is directly verifiable from the header itself with no external documentation needed."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/prntvpt.h.md generation/WinSDK/patches/post-midl/prntvpt.h.printticket-provider-ownership.patch git apply --check --reverse passed; live re-scrape (ScanArch=x86) succeeds with 0 warnings/errors confirming valid C syntax"
       ]
     },
     {
@@ -28639,26 +28657,35 @@
       "header": "pwm.h",
       "partitions": "PWM",
       "partition_count": 1,
-      "status": "pending",
-      "matched": false,
-      "assignee": "",
-      "batch": "",
-      "category": "unclassified",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
-      "normalization_profile": "default",
-      "normalizations_applied": [],
+      "status": "accepted-normalized",
+      "matched": true,
+      "assignee": "copilot",
+      "batch": "scraping-investigation-01",
+      "category": "no-annotation-required",
+      "delta_class": "matched-no-change",
+      "fix_route": "header_patch",
       "blocker": "",
-      "assumptions": [],
-      "evidence": [],
-      "last_updated": "",
-      "notes": "",
+      "last_updated": "2026-09-02T23:20:00Z",
+      "notes": "No patch needed; data-structure-only header verified via live scrape.",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/PWM/main.cpp",
         "source_line": 8,
         "partition": "PWM"
-      }
+      },
+      "normalization_profile": "default",
+      "normalizations_applied": [
+        "No function surface present; data-structure/IOCTL-only header"
+      ],
+      "assumptions": [
+        {
+          "timestamp": "2026-09-02T23:20:00Z",
+          "rationale": "Confirmed via live scrape and direct header review that pwm.h declares only structs/enum/IOCTL constants, no WINAPI functions."
+        }
+      ],
+      "evidence": [
+        "docs/copilot/header-reports/pwm.h.md live re-scrape (ScanArch=x86) succeeds with 0 warnings/errors; generated PWM.cs contains no DllImport entries"
+      ]
     },
     {
       "header": "qmgr.h",

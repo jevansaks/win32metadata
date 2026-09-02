@@ -442,3 +442,32 @@
   -p:PartitionFilter=<name>` with `ScanArch=x86` for `ExcludeFromCrossarch` partitions,
   `x64` otherwise → inspect `obj/generated/<arch-or-common>/<Partition>.cs` and the
   MSBuild warning stream for diagnostics) for continued use in subsequent batches.
+
+## 2026-09-02T23:20:00Z - Batch scraping-investigation-02
+
+- Continued header-scraping investigation for pending headers with no retained patch, using
+  the workflow established in scraping-investigation-01.
+- `pwm.h` (partition PWM) and `ntdd1394.h` (partition Devices.1394): live-scraped
+  cleanly (0 warnings/errors); both are IOCTL constant/data-structure-only headers with no
+  function surface, so no patch is applicable. Classified `accepted-normalized` /
+  `no-annotation-required` with live-scrape evidence rather than left pending indefinitely.
+- `prntvpt.h` (partitions Gdi, PrintTicket): live-scraped cleanly. Found a genuine
+  resource-ownership gap directly verifiable from the header itself (no external lookup
+  needed): `HPTPROVIDER` is produced by `PTOpenProvider`/`PTOpenProviderEx` and
+  released by `PTCloseProvider`. Created a **new**
+  `prntvpt.h.printticket-provider-ownership.patch` adding invalid-handle/RAIIFree to both
+  producer output parameters (never the typedef), consistent with the corrected
+  shared-handle policy. Verified via live re-scrape that the header still parses cleanly.
+  Attempted to also add a `supported_os` annotation for these functions, but the only
+  available documentation signal (web search) claimed "Windows XP", which is implausible
+  for the Print Ticket XML API and is not corroborated by any header-level version guard
+  (there is none) — left unannotated and recorded as an explicit blocker rather than
+  guessing, per the ledger's own "ambiguous... requiring spec decision" stop condition.
+- Noted for future batches: the custom `_Win32_metadata_raii_free_`/
+  `_Win32_metadata_invalid_handle_` annotations are processed at the `EmitWinmd` stage,
+  not visible as C# attributes during `ScrapeHeaders` (unlike `_Win32_metadata_supported_os_`,
+  which does render as `[SupportedOSPlatform(...)]` at scrape time). Live re-scrape
+  therefore validates syntax/parseability for ownership annotations, the same evidence bar
+  used throughout the resource-ownership audit batches, not full winmd emission.
+- Session checkpoint: 148 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`.

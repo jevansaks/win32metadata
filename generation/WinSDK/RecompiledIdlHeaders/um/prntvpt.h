@@ -17,6 +17,9 @@ Abstract:
 #define _PRNPTNTV_H_
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -88,6 +91,8 @@ PTOpenProvider(
             _In_        PCWSTR       pszPrinterName,
                         DWORD        dwVersion,
             _Out_       HPTPROVIDER *phProvider
+                _Win32_metadata_invalid_handle_(0)
+                _Win32_metadata_raii_free_(PTCloseProvider)
             );
 
 HRESULT WINAPI
@@ -95,7 +100,9 @@ PTOpenProviderEx(
             _In_  PCWSTR       pszPrinterName,
                   DWORD        dwMaxVersion,
                   DWORD        dwPrefVersion,
-            _Out_ HPTPROVIDER *phProvider,
+            _Out_ HPTPROVIDER *phProvider
+                _Win32_metadata_invalid_handle_(0)
+                _Win32_metadata_raii_free_(PTCloseProvider),
             _Out_ DWORD       *pUsedVersion
             );
 
