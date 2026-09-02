@@ -599,3 +599,15 @@ o-annotation-required with live-scrape evidence.
   audited resource-ownership header (`winspool.h`) + header-scraping-investigation new
   patches (`ual.h`, `prntvpt.h`) + no-op-verified headers (`pwm.h`, `ntdd1394.h`,
   `metahost.h`, `mscoree.h`) + 36 batches of retained-patch classification).
+
+## 2026-09-03T02:30:00Z - Batch existing-patches-37
+
+- Headers: `Winineti.h`, `Winldap.h`, `winnetwk.h`, `winreg.h`, and `WinSock.h`.
+- Classified retained `set-last-error` patches (`Winldap.h` also carries a stacked,
+  non-overlapping `callback-pointer-levels` patch); none contain ownership/typedef
+  metadata.
+- Every retained artifact passes reverse application against its tracked patched header.
+- Corrected a ledger-update script error (case-sensitive lookup for `WinSock.h` failed on
+  first attempt with lowercase `winsock.h`, aborting the batch script before it saved);
+  re-ran with the correct casing and verified all 5 headers landed correctly (205 total
+  matched, consistent count).

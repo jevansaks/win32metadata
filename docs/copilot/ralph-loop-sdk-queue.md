@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T22:51:10Z
+- Generated: 2026-09-02T22:53:41Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 200
+- Matched: 205
 - In progress: 0
 - Blocked: 0
-- Remaining: 1203
+- Remaining: 1198
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -1285,25 +1285,25 @@
 | `WinHvEmulation.h` | Hypervisor | remaining |  |  |  |
 | `WinHvPlatform.h` | Hypervisor | remaining |  |  |  |
 | `wininet.h` | FileHistory, WinInet, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
-| `winineti.h` | WinInet | remaining |  |  |  |
+| `winineti.h` | WinInet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winioctl.h` | Base, Fs, Ioctl, Nfc, Nfp | remaining |  |  |  |
-| `winldap.h` | Ldap | remaining |  |  |  |
+| `winldap.h` | Ldap | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winmeta.h` | TraceLogging | remaining |  |  |  |
 | `winml.h` | MachineLearning | remaining |  |  |  |
-| `winnetwk.h` | Wnet | remaining |  |  |  |
+| `winnetwk.h` | Wnet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winnls.h` | Intl | remaining |  |  |  |
 | `winnls32.h` | FileHistory, WinProg | remaining |  |  |  |
 | `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | remaining |  |  |  |
 | `winperf.h` | Perf | remaining |  |  |  |
 | `winppi.h` | Printing | remaining |  |  |  |
-| `winreg.h` | Registry | remaining |  |  |  |
+| `winreg.h` | Registry | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsafer.h` | Security.AppLocker | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `winsatcominterfacei.h` | WinSat | remaining |  |  |  |
 | `winscard.h` | Credentials | remaining |  |  |  |
 | `winsdkver.h` | Foundation | remaining |  |  |  |
 | `winsmcrd.h` | Credentials | remaining |  |  |  |
 | `winsnmp.h` | Snmp | remaining |  |  |  |
-| `WinSock.h` | Fsrm, TermServ, WinSock | remaining |  |  |  |
+| `WinSock.h` | Fsrm, TermServ, WinSock | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsock2.h` | ActiveDirectory, HttpServer, IpHlp, P2p, Qos, Ual, WindowsFilteringPlatform, WinHttp, WinSock, wnv | remaining |  |  |  |
 | `winsplp.h` | Printing | remaining |  |  |  |
 | `winspool.h` | Gdi, Printing | matched | copilot | 09/02/2026 22:05:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. Not part of the original 11-header audit set (discovered as an additional resource-ownership patch). |

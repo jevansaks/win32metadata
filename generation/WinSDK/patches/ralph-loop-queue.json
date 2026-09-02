@@ -11477,10 +11477,10 @@
   {
     "header": "winineti.h",
     "partition": "WinInet",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-37.",
     "_source": "header-progress"
   },
   {
@@ -11495,10 +11495,10 @@
   {
     "header": "winldap.h",
     "partition": "Ldap",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-37.",
     "_source": "header-progress"
   },
   {
@@ -11522,10 +11522,10 @@
   {
     "header": "winnetwk.h",
     "partition": "Wnet",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-37.",
     "_source": "header-progress"
   },
   {
@@ -11576,10 +11576,10 @@
   {
     "header": "winreg.h",
     "partition": "Registry",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-37.",
     "_source": "header-progress"
   },
   {
@@ -11639,10 +11639,10 @@
   {
     "header": "WinSock.h",
     "partition": "Fsrm, TermServ, WinSock",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T02:30:00Z",
+    "notes": "Classified retained artifact in existing-patches-37.",
     "_source": "header-progress"
   },
   {
