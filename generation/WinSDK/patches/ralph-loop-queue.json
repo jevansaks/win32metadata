@@ -7301,28 +7301,28 @@
   {
     "header": "objbase.h",
     "partition": "Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, IO, Printing, TransactionServer, VSS, WinProg",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-21.",
     "_source": "header-progress"
   },
   {
     "header": "objectarray.h",
     "partition": "Shell, Shell.Common",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-21.",
     "_source": "header-progress"
   },
   {
     "header": "ObjIdl.h",
     "partition": "Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, IO, Rpc, TransactionServer, VSS",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-21.",
     "_source": "header-progress"
   },
   {
@@ -7355,10 +7355,10 @@
   {
     "header": "ocidl.h",
     "partition": "Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Media.DShow, Search, TransactionServer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-21.",
     "_source": "header-progress"
   },
   {
@@ -7391,10 +7391,10 @@
   {
     "header": "ole2.h",
     "partition": "Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, TransactionServer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:15:00Z",
+    "notes": "Classified retained artifact in existing-patches-21.",
     "_source": "header-progress"
   },
   {

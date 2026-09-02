@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T21:58:41Z
+- Generated: 2026-09-02T22:00:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 114
+- Matched: 119
 - In progress: 0
 - Blocked: 0
-- Remaining: 1289
+- Remaining: 1284
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -821,17 +821,17 @@
 | `ntstatus.h` | Foundation | remaining |  |  |  |
 | `nvme.h` | Storage.Nvme | remaining |  |  |  |
 | `oaidl.h` | ComOle | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
-| `objbase.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, IO, Printing, TransactionServer, VSS, WinProg | remaining |  |  |  |
-| `objectarray.h` | Shell, Shell.Common | remaining |  |  |  |
-| `ObjIdl.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, IO, Rpc, TransactionServer, VSS | remaining |  |  |  |
+| `objbase.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, IO, Printing, TransactionServer, VSS, WinProg | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
+| `objectarray.h` | Shell, Shell.Common | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
+| `ObjIdl.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, IO, Rpc, TransactionServer, VSS | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `objidlbase.h` | TransactionServer | remaining |  |  |  |
 | `objsafe.h` | Debug | remaining |  |  |  |
 | `objsel.h` | ActiveDirectory | remaining |  |  |  |
-| `ocidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Media.DShow, Search, TransactionServer | remaining |  |  |  |
+| `ocidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Media.DShow, Search, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `ocmm.h` | InternetExplorer | remaining |  |  |  |
 | `odbcinst.h` | Search | remaining |  |  |  |
 | `odbcss.h` | Search | remaining |  |  |  |
-| `ole2.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, TransactionServer | remaining |  |  |  |
+| `ole2.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `oleacc.h` | WinAuto | remaining |  |  |  |
 | `oleauto.h` | ComOle | remaining |  |  |  |
 | `olectl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | remaining |  |  |  |

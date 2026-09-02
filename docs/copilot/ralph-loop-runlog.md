@@ -348,3 +348,10 @@
   20 batches of retained-patch classification). 1289 headers remain pending; the majority
   have no retained patch yet and require header scraping/generation investigation via the
   full build toolchain in a future session.
+
+## 2026-09-03T04:15:00Z - Batch existing-patches-21
+
+- Headers: `objbase.h`, `ObjectArray.h`, `ObjIdl.h`, `ocidl.h`, and `Ole2.h`.
+- Classified retained `supported-os` annotation-only patches (core COM/OLE interface
+  headers); none contain ownership/typedef metadata.
+- Every retained artifact passes reverse application against its tracked patched header.
