@@ -2603,10 +2603,10 @@
   {
     "header": "directmanipulation.h",
     "partition": "DirectManipulation",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:35:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
@@ -6590,10 +6590,10 @@
   {
     "header": "msrdc.h",
     "partition": "Rdc",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:35:00Z",
+    "notes": "No patch needed; COM interface only.",
     "_source": "header-progress"
   },
   {
@@ -7283,10 +7283,10 @@
   {
     "header": "nvme.h",
     "partition": "Storage.Nvme",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:35:00Z",
+    "notes": "No patch needed; data-structure-only header.",
     "_source": "header-progress"
   },
   {
@@ -8363,10 +8363,10 @@
   {
     "header": "restartmanager.h",
     "partition": "RstMgr",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "matched",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T04:35:00Z",
+    "notes": "No patch needed; no ownership-relevant handle type.",
     "_source": "header-progress"
   },
   {

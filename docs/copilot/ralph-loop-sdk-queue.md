@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-02T23:16:26Z
+- Generated: 2026-09-02T23:19:42Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 235
+- Matched: 239
 - In progress: 0
 - Blocked: 0
-- Remaining: 1168
+- Remaining: 1164
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -299,7 +299,7 @@
 | `dimm.h` | Input.Ime | remaining |  |  |  |
 | `dinput.h` | Hid | remaining |  |  |  |
 | `dinputd.h` | Hid | remaining |  |  |  |
-| `directmanipulation.h` | DirectManipulation | remaining |  |  |  |
+| `directmanipulation.h` | DirectManipulation | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
 | `directml.h` | DirectML | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `diskguid.h` | Fs | remaining |  |  |  |
 | `dispatcherqueue.h` | WinRT | remaining |  |  |  |
@@ -742,7 +742,7 @@
 | `msiquery.h` | Setup | remaining |  |  |  |
 | `msopc.h` | Opc | remaining |  |  |  |
 | `msports.h` | SerPorts | remaining |  |  |  |
-| `msrdc.h` | Rdc | remaining |  |  |  |
+| `msrdc.h` | Rdc | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
 | `mssign.h` | Security.Cryptography | remaining |  |  |  |
 | `mssip.h` | Security.Cryptography.Sip, Security.WinTrust | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mstask.h` | TaskSchd | remaining |  |  |  |
@@ -819,7 +819,7 @@
 | `ntsecapi.h` | ActiveDirectory, Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned LSA_HANDLE ownership violation found during resource-ownership audit; other annotation groups in file were already compliant. |
 | `NTSecPKG.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `ntstatus.h` | Foundation | remaining |  |  |  |
-| `nvme.h` | Storage.Nvme | remaining |  |  |  |
+| `nvme.h` | Storage.Nvme | matched | copilot | 09/03/2026 04:35:00 | No patch needed; data-structure-only header. |
 | `oaidl.h` | ComOle | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `objbase.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, IO, Printing, TransactionServer, VSS, WinProg | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `objectarray.h` | Shell, Shell.Common | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
@@ -939,7 +939,7 @@
 | `rendezvoussession.h` | RemoteAssist | remaining |  |  |  |
 | `resapi.h` | MsCs | remaining |  |  |  |
 | `resourceindexer.h` | MenuRc | remaining |  |  |  |
-| `restartmanager.h` | RstMgr | remaining |  |  |  |
+| `restartmanager.h` | RstMgr | matched | copilot | 09/03/2026 04:35:00 | No patch needed; no ownership-relevant handle type. |
 | `restrictederrorinfo.h` | WinRT | remaining |  |  |  |
 | `richedit.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `richole.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |

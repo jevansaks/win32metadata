@@ -708,3 +708,17 @@ o-annotation-required with live-scrape evidence.
   evidence.
 - Session checkpoint: 235 of 1403 authoritative ledger headers now classified
   `accepted-normalized`.
+
+## 2026-09-03T04:35:00Z - Batch scraping-investigation-09
+
+- Headers: `directmanipulation.h` (DirectManipulation), `restartmanager.h` (RstMgr),
+  `nvme.h` (Storage.Nvme), and `msrdc.h` (Rdc).
+- All four live-scraped cleanly (0 warnings/errors). `directmanipulation.h`/`msrdc.h`
+  are COM-interface based; `nvme.h` is data-structure-only; `restartmanager.h`'s
+  session identifier is confirmed to be a plain `DWORD`, not a pointer-sized
+  `HANDLE`/`DECLARE_HANDLE` type, so no ownership annotation applies. Classified
+  `accepted-normalized` / `no-annotation-required` with live-scrape evidence.
+- Deferred `esent.h` (Storage.Jet partition, 229 functions — the Extensible Storage
+  Engine API) to its own dedicated batch given its size.
+- Session checkpoint: 239 of 1403 authoritative ledger headers now classified
+  `accepted-normalized`.
