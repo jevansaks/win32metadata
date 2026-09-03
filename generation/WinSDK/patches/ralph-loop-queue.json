@@ -2558,10 +2558,10 @@
   {
     "header": "diagnosticdataquerytypes.h",
     "partition": "Security.DiagnosticDataQuery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:31:37Z",
+    "notes": "Types/RPC boilerplate only, no functions; DIAGNOSTIC_DATA_QUERY_SESSION ownership deferred to DiagnosticDataQuery.h.",
     "_source": "header-progress"
   },
   {
@@ -2783,10 +2783,10 @@
   {
     "header": "dot1x.h",
     "partition": "Ndis, NWifi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:31:37Z",
+    "notes": "Enums/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2819,10 +2819,10 @@
   {
     "header": "dragdropinterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:31:37Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -4061,10 +4061,10 @@
   {
     "header": "gb18030.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:31:37Z",
+    "notes": "Buffer-conversion function only, no handles.",
     "_source": "header-progress"
   },
   {
@@ -12026,10 +12026,10 @@
   {
     "header": "wofapi.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:31:37Z",
+    "notes": "No function produces an opaque handle; HANDLE params are pre-owned caller inputs.",
     "_source": "header-progress"
   },
   {

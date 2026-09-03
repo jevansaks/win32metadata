@@ -1907,3 +1907,18 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - usbprint.h: device-interface GUID + IOCTL_USBPRINT_* control-code constants only. Clean.
 
 **Ledger status:** 541 accepted-normalized, 26 blocked, 836 pending.
+
+## 2026-09-02 20:31:53 UTC - Batch scraping-investigation-76
+
+**Headers:** gb18030.h, DiagnosticDataQueryTypes.h, dragdropinterop.h, wofapi.h, dot1x.h
+**Partitions scraped (x64):** Security.DiagnosticDataQuery (0 errors); Intl/WinRT/Fs/Ndis/NWifi reused
+
+- gb18030.h: NlsDllCodePageTranslation buffer-conversion function only, no handles. Clean.
+- DiagnosticDataQueryTypes.h: types/RPC boilerplate only, no functions. DIAGNOSTIC_DATA_QUERY_SESSION
+  is an RPC context-handle type but its producer/consumer functions live in the still-pending
+  DiagnosticDataQuery.h - ownership audit deferred there (same pattern as HSTRING/winstring.h). Clean.
+- dragdropinterop.h: IDragDropManagerInterop COM/WinRT interop interface method only. Clean.
+- wofapi.h: all Wof*/WofWim*/WofFile* functions take HANDLE as pre-owned input only. Clean.
+- dot1x.h: 802.1X enums/structs only, no functions. Clean.
+
+**Ledger status:** 546 accepted-normalized, 26 blocked, 831 pending.

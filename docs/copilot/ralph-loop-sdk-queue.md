@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:28:37Z
+- Generated: 2026-09-03T03:31:53Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 541
+- Matched: 546
 - In progress: 0
 - Blocked: 26
-- Remaining: 836
+- Remaining: 831
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -294,7 +294,7 @@
 | `dhcpssdk.h` | Dhcp | remaining |  |  |  |
 | `dhcpv6csdk.h` | Dhcp | remaining |  |  |  |
 | `diagnosticdataquery.h` | Security.DiagnosticDataQuery | remaining |  |  |  |
-| `diagnosticdataquerytypes.h` | Security.DiagnosticDataQuery | remaining |  |  |  |
+| `diagnosticdataquerytypes.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:31:37 | Types/RPC boilerplate only, no functions; DIAGNOSTIC_DATA_QUERY_SESSION ownership deferred to DiagnosticDataQuery.h. |
 | `digitalv.h` | Multimedia | remaining |  |  |  |
 | `dimm.h` | Input.Ime | remaining |  |  |  |
 | `dinput.h` | Hid | remaining |  |  |  |
@@ -319,11 +319,11 @@
 | `docobjectservice.h` | InternetExplorer | remaining |  |  |  |
 | `DocumentSource.h` | WinRT.Printing | remaining |  |  |  |
 | `documenttarget.h` | XpsPrinting | remaining |  |  |  |
-| `dot1x.h` | Ndis, NWifi | remaining |  |  |  |
+| `dot1x.h` | Ndis, NWifi | matched |  | 09/02/2026 20:31:37 | Enums/structs only, no functions. |
 | `downloadmgr.h` | InternetExplorer | remaining |  |  |  |
 | `dpa_dsa.h` | Controls | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dpapi.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
-| `dragdropinterop.h` | WinRT | remaining |  |  |  |
+| `dragdropinterop.h` | WinRT | matched |  | 09/02/2026 20:31:37 | COM/WinRT interop interface method only, out of scope. |
 | `drt.h` | P2p | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsadmin.h` | ActiveDirectory | remaining |  |  |  |
 | `dsattrib.h` | MsTv | remaining |  |  |  |
@@ -461,7 +461,7 @@
 | `gameux.h` | GameMode | remaining |  |  |  |
 | `gamingdeviceinformation.h` | GamingDvcInfo | matched |  | 09/02/2026 18:06:26 | Plain struct output, no handle. |
 | `gamingtcui.h` | Tcui | remaining |  |  |  |
-| `gb18030.h` | Intl | remaining |  |  |  |
+| `gb18030.h` | Intl | matched |  | 09/02/2026 20:31:37 | Buffer-conversion function only, no handles. |
 | `gdiplus.h` | Gdiplus | matched |  | 09/02/2026 16:34:06 | GDI+ create/delete object pattern uses strongly-typed C++ pointers (GpGraphics* etc), not HANDLE-family typedefs; no pre-existing RAII metadata to correct; out of current policy scope. |
 | `gdipluseffects.h` | Media.DShow | remaining |  |  |  |
 | `genericusbfnioctl.h` | Buses | remaining |  |  |  |
@@ -1346,7 +1346,7 @@
 | `wmsysprf.h` | Wmp | remaining |  |  |  |
 | `wnnc.h` | Ifsk | matched |  | 09/02/2026 19:19:02 | Constants only, no functions. |
 | `wnvapi.h` | wnv | blocked | copilot | 09/02/2026 19:09:17 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
-| `wofapi.h` | Fs | remaining |  |  |  |
+| `wofapi.h` | Fs | matched |  | 09/02/2026 20:31:37 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `workspaceax.h` | TermServ | remaining |  |  |  |
 | `workspaceruntime.h` | TermServ | remaining |  |  |  |
 | `workspaceruntimeclientext.h` | TermServ | remaining |  |  |  |
