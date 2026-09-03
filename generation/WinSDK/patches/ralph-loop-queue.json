@@ -2855,10 +2855,10 @@
   {
     "header": "dsclient.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsclient.h.md",
     "_source": "header-progress"
   },
   {
@@ -3368,10 +3368,10 @@
   {
     "header": "effects.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/effects.h.md",
     "_source": "header-progress"
   },
   {
@@ -4313,10 +4313,10 @@
   {
     "header": "httpext.h",
     "partition": "Iis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/httpext.h.md",
     "_source": "header-progress"
   },
   {
@@ -7994,10 +7994,10 @@
   {
     "header": "proofofpossessioncookieinfo.h",
     "partition": "WinInet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/proofofpossessioncookieinfo.h.md",
     "_source": "header-progress"
   },
   {
@@ -12260,10 +12260,10 @@
   {
     "header": "wsdns.h",
     "partition": "WebServicesOnDevices",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdns.h.md",
     "_source": "header-progress"
   },
   {

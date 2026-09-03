@@ -2728,3 +2728,13 @@ Ledger: 861 accepted-normalized, 31 blocked, 511 pending (892/1403 classified).
 - **eapmethodauthenticatorapis.h** (EapHost): EapMethodAuthenticatorInvokeConfigUI outputs generic byte buffer. Clean.
 
 Ledger: 866 accepted-normalized, 31 blocked, 506 pending (897/1403 classified).
+
+## Batch 142 (2026-09-03 00:20): dsclient.h, httpext.h, wsdns.h, effects.h, proofofpossessioncookieinfo.h
+
+- **dsclient.h** (ActiveDirectory): DsGetFriendlyClassName outputs caller-allocated string buffer. Clean.
+- **httpext.h** (Iis): transparent structs consumed by extension-DLL-implemented entry points, no imports. Clean.
+- **wsdns.h** (WebServicesOnDevices): extern array declarations/constants only, no functions. Clean.
+- **effects.h** (Wmp): COM interfaces only, no free functions. Clean.
+- **proofofpossessioncookieinfo.h** (WinInet): COM interfaces only, no free functions. Clean.
+
+Ledger: 871 accepted-normalized, 31 blocked, 501 pending (902/1403 classified). Milestone: 900+ classified.

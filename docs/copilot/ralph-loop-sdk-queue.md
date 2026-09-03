@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:18:16Z
+- Generated: 2026-09-03T07:20:21Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 866
+- Matched: 871
 - In progress: 0
 - Blocked: 31
-- Remaining: 506
+- Remaining: 501
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -327,7 +327,7 @@
 | `drt.h` | P2p | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsadmin.h` | ActiveDirectory | matched |  | 09/02/2026 21:27:04 | GUID constants + COM interfaces only, no extern functions. |
 | `dsattrib.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsattrib.h.md |
-| `dsclient.h` | ActiveDirectory | remaining |  |  |  |
+| `dsclient.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsclient.h.md |
 | `dsconf.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:06:03 | Constants/enum only, no functions. |
 | `DsGetDC.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/DsGetDC.h.md |
 | `dshow.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Pure umbrella redirect; all sub-headers already individually tracked. |
@@ -384,7 +384,7 @@
 | `edevdefs.h` | DeviceAccess | remaining |  |  |  |
 | `editionupgradehelper.h` | FileHistory, WinProg | remaining |  |  |  |
 | `edpwin32.h` | Edp | matched |  | 09/02/2026 17:19:28 | Path-string-only API, no handle. |
-| `effects.h` | Wmp | remaining |  |  |  |
+| `effects.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/effects.h.md |
 | `efswrtinterop.h` | Edp | remaining |  |  |  |
 | `ehstorapi.h` | Enstor | remaining |  |  |  |
 | `ehstorextensions.h` | Enstor | remaining |  |  |  |
@@ -489,7 +489,7 @@
 | `htiframe.h` | InternetExplorer | remaining |  |  |  |
 | `htmlhelp.h` | HtmlHelp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `http.h` | HttpServer | remaining |  |  |  |
-| `httpext.h` | Iis | remaining |  |  |  |
+| `httpext.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/httpext.h.md |
 | `httpfilt.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/httpfilt.h.md |
 | `httprequest.h` | WinHttp | matched | copilot | 09/03/2026 03:35:00 | No patch needed; verified via live scrape and static review. |
 | `httprequestid.h` | Iis | matched |  | 09/02/2026 18:09:40 | DISPID constants only, no functions. |
@@ -898,7 +898,7 @@
 | `profileapi.h` | Perf | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `profinfo.h` | Shell | matched |  | 09/02/2026 18:56:34 | Struct-only header; real gap belongs to UserEnv.h (reclassified blocked). |
 | `projectedfslib.h` | ProjFs | matched |  |  | Genuine producer-site fix: added CloseApi=PrjStopVirtualizing to existing incomplete PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT autoTypes.json entry. See docs/copilot/header-reports/projectedfslib.h.md |
-| `proofofpossessioncookieinfo.h` | WinInet | remaining |  |  |  |
+| `proofofpossessioncookieinfo.h` | WinInet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/proofofpossessioncookieinfo.h.md |
 | `propapi.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `propidl.h` | Com.StructuredStorage, Properties, Shell | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `propidlbase.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
@@ -1372,7 +1372,7 @@
 | `wsddisco.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdevlicensing.h` | DevLic | matched |  | 09/02/2026 17:16:10 | HWND is input parameter; outputs are plain FILETIME values. |
 | `wsdhost.h` | FunctionDiscovery | remaining |  |  |  |
-| `wsdns.h` | WebServicesOnDevices | remaining |  |  |  |
+| `wsdns.h` | WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdns.h.md |
 | `wsdtypes.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdtypes.h.md |
 | `wsdutil.h` | FunctionDiscovery | matched |  | 09/02/2026 19:02:46 | WSDAPI linked-memory/buffer convention, not HANDLE-family (consistent with wsdapi.h). |
 | `wsdxml.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdxml.h.md |
