@@ -560,10 +560,10 @@
   {
     "header": "appxpackaging.h",
     "partition": "AppxPackaging",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/appxpackaging.h.md",
     "_source": "header-progress"
   },
   {
@@ -2189,10 +2189,10 @@
   {
     "header": "DbgModel.h",
     "partition": "Debug.Extensions",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DbgModel.h.md",
     "_source": "header-progress"
   },
   {
@@ -6644,10 +6644,10 @@
   {
     "header": "mswmdm.h",
     "partition": "Wmdm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/mswmdm.h.md",
     "_source": "header-progress"
   },
   {
@@ -7130,10 +7130,10 @@
   {
     "header": "ntddndis.h",
     "partition": "Ndis, NWifi, Qos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; NDIS network driver constants/structs only, no functions. See docs/copilot/header-reports/ntddndis.h.md",
     "_source": "header-progress"
   },
   {
@@ -10271,10 +10271,10 @@
   {
     "header": "vds.h",
     "partition": "VirtualDiskService",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/vds.h.md",
     "_source": "header-progress"
   },
   {

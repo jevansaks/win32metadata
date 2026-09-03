@@ -3542,3 +3542,8 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - mfmediaengine.h, wbemdisp.h, activdbg.h, imapi2.h, winsync.h: COM vtable-only headers, clean.
 - ksmedia.h: kernel streaming IOCTL constants/structs only, no functions, clean.
 - Ledger: 1307 accepted-normalized, 59 blocked, 37 pending (1366/1403 = 97.4%).
+
+## Batch 230 (bbb36c2c -> next)
+- vds.h, dbgmodel.h, appxpackaging.h, mswmdm.h: COM vtable-only headers, clean.
+- ntddndis.h: NDIS network driver constants/structs only, no functions, clean.
+- Ledger: 1312 accepted-normalized, 59 blocked, 32 pending (1371/1403 = 97.7%).

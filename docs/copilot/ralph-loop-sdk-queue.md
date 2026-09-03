@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:54:41Z
+- Generated: 2026-09-03T11:56:11Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1307
+- Matched: 1312
 - In progress: 0
 - Blocked: 59
-- Remaining: 37
+- Remaining: 32
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -72,7 +72,7 @@
 | `appmodel.h` | AppxPackaging | matched |  |  | Producer-site fix: added PACKAGE_INFO_REFERENCE entry, filled missing CloseApi/InvalidHandleValues on PACKAGEDEPENDENCY_CONTEXT. See docs/copilot/header-reports/appmodel.h.md |
 | `appnotify.h` | Shell | matched |  | 09/02/2026 18:20:58 | Genuine ownership gap fixed: RegisterAppStateChangeNotification/RegisterAppConstrainedChangeNotification out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via UnregisterAppStateChangeNotification/UnregisterAppConstrainedChangeNotification. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
 | `appserviceinterop.h` | WinRT | matched |  | 09/02/2026 22:02:59 | COM/WinRT interface methods only, out of scope. |
-| `appxpackaging.h` | AppxPackaging | remaining |  |  |  |
+| `appxpackaging.h` | AppxPackaging | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/appxpackaging.h.md |
 | `asferr.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/asferr.h.md |
 | `atacct.h` | NetMgmt | matched |  | 09/02/2026 17:09:31 | String-only account-info API, no handle. |
 | `atscpsipparser.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/atscpsipparser.h.md |
@@ -253,7 +253,7 @@
 | `davclnt.h` | WebDav | blocked |  | 09/02/2026 19:54:02 | DavAddConnection generic HANDLE out-param; DavRegisterAuthCallback returns generic DWORD-typed OPAQUE_HANDLE via return value. |
 | `DbgEng.h` | Debug.Extensions | remaining |  |  |  |
 | `dbghelp.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbghelp.h.md |
-| `DbgModel.h` | Debug.Extensions | remaining |  |  |  |
+| `DbgModel.h` | Debug.Extensions | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DbgModel.h.md |
 | `dbgprop.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbgprop.h.md |
 | `dbt.h` | MenuRc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbt.h.md |
 | `dciddi.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dciddi.h.md |
@@ -748,7 +748,7 @@
 | `mstask.h` | TaskSchd | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mstask.h.md |
 | `mstcpip.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mstcpip.h.md |
 | `msvidctl.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msvidctl.h.md |
-| `mswmdm.h` | Wmdm | remaining |  |  |  |
+| `mswmdm.h` | Wmdm | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/mswmdm.h.md |
 | `mswsock.h` | WinSock | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mswsockdef.h` | WinSock | matched |  | 09/02/2026 19:28:18 | RIO handle types have no scrapable extern/DllImport producer function (function-pointer table pattern), architecturally out of scope. |
 | `msxml.h` | FileHistory, MsXml, WinProg | remaining |  |  |  |
@@ -802,7 +802,7 @@
 | `ntdddisk.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdddisk.h.md |
 | `ntddkbd.h` | Hid | matched |  | 09/02/2026 22:12:28 | Constants only, no functions. |
 | `ntddmou.h` | Hid | matched |  | 09/02/2026 20:38:46 | Constants/structs only, no functions. |
-| `ntddndis.h` | Ndis, NWifi, Qos | remaining |  |  |  |
+| `ntddndis.h` | Ndis, NWifi, Qos | matched |  |  | Investigated; NDIS network driver constants/structs only, no functions. See docs/copilot/header-reports/ntddndis.h.md |
 | `ntddser.h` | SerPorts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddser.h.md |
 | `ntddstor.h` | Fs, Ioctl | matched |  |  | Investigated; kernel storage driver IOCTL constants/structs only, no functions. See docs/copilot/header-reports/ntddstor.h.md |
 | `ntddvdeo.h` | Display | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvdeo.h.md |
@@ -1151,7 +1151,7 @@
 | `uxtheme.h` | Controls, WinTouch | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `vbinterf.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched |  | 09/02/2026 19:02:46 | COM interface refcounting pattern, not HANDLE-family. |
 | `vdmdbg.h` | FileHistory, VirtualDOSMachines | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdmdbg.h.md |
-| `vds.h` | VirtualDiskService | remaining |  |  |  |
+| `vds.h` | VirtualDiskService | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/vds.h.md |
 | `vdserr.h` | VirtualDiskService | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdserr.h.md |
 | `vdslun.h` | VirtualDiskService | matched |  | 09/02/2026 19:50:38 | Enums/structs + MIDL boilerplate only, no functions. |
 | `vdssys.h` | VirtualDiskService, VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdssys.h.md |
