@@ -443,10 +443,10 @@
   {
     "header": "amstream.h",
     "partition": "Media.DShow, Media.DShow.Xml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/amstream.h.md",
     "_source": "header-progress"
   },
   {
@@ -650,10 +650,10 @@
   {
     "header": "audioenginebaseapo.h",
     "partition": "Audio.Apo",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioenginebaseapo.h.md",
     "_source": "header-progress"
   },
   {
@@ -4853,10 +4853,10 @@
   {
     "header": "inked.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inked.h.md",
     "_source": "header-progress"
   },
   {
@@ -10064,10 +10064,10 @@
   {
     "header": "uiribbon.h",
     "partition": "WindowsRibbon",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/uiribbon.h.md",
     "_source": "header-progress"
   },
   {
@@ -10145,10 +10145,10 @@
   {
     "header": "usbioctl.h",
     "partition": "Buses",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usbioctl.h.md",
     "_source": "header-progress"
   },
   {

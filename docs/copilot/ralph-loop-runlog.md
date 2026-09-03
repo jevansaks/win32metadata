@@ -3223,3 +3223,13 @@ Ledger: 1111 accepted-normalized, 31 blocked, 261 pending (1142/1403 classified)
 - SELF-CORRECTION: mscat.h HCATADMIN - previously blocked, now fixed after HACMDRIVER/acmDriverClose precedent proved reserved-flags 2-param close functions are tolerated. Added autoTypes.json entry, validated 0 errors. HCATINFO remains correctly blocked (needs external HCATADMIN context).
 
 Ledger: 1116 accepted-normalized, 31 blocked, 256 pending (1147/1403 classified).
+
+## Batch 192 (2026-09-03 02:58): audioenginebaseapo.h, uiribbon.h, inked.h, amstream.h, usbioctl.h
+
+- **audioenginebaseapo.h** (Audio.Apo): COM vtable only. Clean.
+- **uiribbon.h** (WindowsRibbon): COM vtable only. Clean.
+- **inked.h** (Tablet): COM vtable only. Clean.
+- **amstream.h** (Media.DShow/Media.DShow.Xml): COM vtable only. Clean.
+- **usbioctl.h** (Buses): IOCTL constants/structs only, no functions. Clean.
+
+Ledger: 1121 accepted-normalized, 31 blocked, 251 pending (1152/1403 classified).

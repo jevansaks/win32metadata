@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:56:17Z
+- Generated: 2026-09-03T09:58:17Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1116
+- Matched: 1121
 - In progress: 0
 - Blocked: 31
-- Remaining: 256
+- Remaining: 251
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -59,7 +59,7 @@
 | `amaudio.h` | Media.DShow | matched |  | 09/02/2026 18:40:30 | COM interface-pointer refcounting pattern, not HANDLE-family. |
 | `amparse.h` | Media.DShow | matched |  | 09/02/2026 17:27:04 | COM interface with plain integer output, no handle. |
 | `amsi.h` | Antimalware | matched | copilot | 09/03/2026 03:35:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
-| `amstream.h` | Media.DShow, Media.DShow.Xml | remaining |  |  |  |
+| `amstream.h` | Media.DShow, Media.DShow.Xml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/amstream.h.md |
 | `amva.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Constants + data structs only, no functions. |
 | `amvideo.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/amvideo.h.md |
 | `amxmlgraphbuilder.h` | Media.DShow, Media.DShow.Xml | matched |  | 09/02/2026 17:13:02 | COM interface + GUID constants only. |
@@ -82,7 +82,7 @@
 | `audioclient.h` | Audio | remaining |  |  |  |
 | `audioclientactivationparams.h` | Audio | matched |  | 09/02/2026 19:06:16 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `audioendpoints.h` | Audio.Endpoints | matched |  | 09/02/2026 19:47:59 | COM interface method only, no extern functions. |
-| `audioenginebaseapo.h` | Audio.Apo | remaining |  |  |  |
+| `audioenginebaseapo.h` | Audio.Apo | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioenginebaseapo.h.md |
 | `audioengineendpoint.h` | Audio.Endpoints, TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioengineendpoint.h.md |
 | `audioengineextensionapo.h` | Audio.Apo | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioengineextensionapo.h.md |
 | `audiomediatype.h` | Audio.Apo | matched |  | 09/02/2026 20:53:11 | COM interface + standard COM factory functions only. |
@@ -549,7 +549,7 @@
 | `infocard.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infocard.h.md |
 | `infotech.h` | HtmlHelp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infotech.h.md |
 | `infstr.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infstr.h.md |
-| `inked.h` | Tablet | remaining |  |  |  |
+| `inked.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inked.h.md |
 | `inkpresenterdesktop.h` | Input_Ink | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inkpresenterdesktop.h.md |
 | `inkrenderer.h` | Input_Ink | matched |  | 09/02/2026 21:52:12 | COM interfaces + enum only, no extern functions. |
 | `inputpaneinterop.h` | WinRT | matched |  | 09/02/2026 20:56:17 | COM/WinRT interop interface method only, out of scope. |
@@ -1128,7 +1128,7 @@
 | `uiautomationclient.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `uiautomationcore.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `uiautomationcoreapi.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
-| `uiribbon.h` | WindowsRibbon | remaining |  |  |  |
+| `uiribbon.h` | WindowsRibbon | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/uiribbon.h.md |
 | `UIViewSettingsInterop.h` | WinRT | matched |  | 09/02/2026 21:01:40 | COM/WinRT interop interface method only, out of scope. |
 | `upnp.h` | Upnp | remaining |  |  |  |
 | `upnphost.h` | Upnp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/upnphost.h.md |
@@ -1137,7 +1137,7 @@
 | `usb.h` | Buses | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usb.h.md |
 | `usb4dbgioctl.h` | Buses | matched |  | 09/02/2026 18:47:24 | Enums/constants/data structs only, no functions. |
 | `usbfnbase.h` | Buses | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usbfnbase.h.md |
-| `usbioctl.h` | Buses | remaining |  |  |  |
+| `usbioctl.h` | Buses | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usbioctl.h.md |
 | `usbiodef.h` | Buses | matched |  | 09/02/2026 21:52:12 | Constants only, no functions. |
 | `usbprint.h` | Printing | matched |  | 09/02/2026 20:28:23 | GUID/IOCTL constants only, no functions. |
 | `usbscan.h` | Buses | matched |  | 09/02/2026 20:25:02 | IOCTL parameter structs only, no functions. |
