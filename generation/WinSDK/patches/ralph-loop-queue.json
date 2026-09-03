@@ -2441,10 +2441,10 @@
   {
     "header": "deviceaccess.h",
     "partition": "DeviceAccess",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/deviceaccess.h.md",
     "_source": "header-progress"
   },
   {
@@ -4394,10 +4394,10 @@
   {
     "header": "iaccess.h",
     "partition": "TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iaccess.h.md",
     "_source": "header-progress"
   },
   {
@@ -5024,10 +5024,10 @@
   {
     "header": "IPTypes.h",
     "partition": "wnv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/IPTypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -8669,10 +8669,10 @@
   {
     "header": "scarderr.h",
     "partition": "Credentials",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/scarderr.h.md",
     "_source": "header-progress"
   },
   {
@@ -9146,10 +9146,10 @@
   {
     "header": "softpub.h",
     "partition": "Security.WinTrust",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/softpub.h.md",
     "_source": "header-progress"
   },
   {

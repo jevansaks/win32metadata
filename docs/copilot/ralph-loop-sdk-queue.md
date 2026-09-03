@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:18:41Z
+- Generated: 2026-09-03T06:20:38Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 766
+- Matched: 771
 - In progress: 0
 - Blocked: 31
-- Remaining: 606
+- Remaining: 601
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -281,7 +281,7 @@
 | `deliveryoptimization.h` | DeliveryOptimization | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
 | `devfiltertypes.h` | DeviceQuery | matched |  | 09/02/2026 19:37:21 | Enum/struct only, no functions. |
 | `devguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devguid.h.md |
-| `deviceaccess.h` | DeviceAccess | remaining |  |  |  |
+| `deviceaccess.h` | DeviceAccess | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/deviceaccess.h.md |
 | `deviceservices.h` | WpdSdk | matched |  | 09/02/2026 17:58:11 | GUID/property-key constants only, no functions; BridgeDeviceService.h separately tracked (pending). |
 | `devicetopology.h` | Audio | remaining |  |  |  |
 | `devioctl.h` | Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd | matched |  | 09/02/2026 21:04:56 | Device-type constants only, no functions. |
@@ -498,7 +498,7 @@
 | `hwebcore.h` | Iis | matched |  | 09/02/2026 19:37:21 | Dynamically-loaded function-pointer typedefs only, no scrapable extern functions. |
 | `hypervdevicevirtualization.h` | Hypervisor | matched |  | 09/02/2026 21:43:41 | Fixed genuine gap: added new autoTypes.json entry for HDV_HOST (CloseApi=HdvTeardownDeviceHost). |
 | `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | blocked | copilot | 09/02/2026 18:56:34 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h. |
-| `iaccess.h` | TransactionServer | remaining |  |  |  |
+| `iaccess.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iaccess.h.md |
 | `iadmext.h` | Iis | matched |  | 09/02/2026 19:06:16 | COM interface, not HANDLE-family. |
 | `iadmw.h` | Iis | remaining |  |  |  |
 | `iads.h` | ActiveDirectory, Iis | remaining |  |  |  |
@@ -568,7 +568,7 @@
 | `iphlpapi.h` | IpHlp, Shell | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ipinfoid.h` | IpHlp | matched |  | 09/02/2026 19:47:59 | Constants only, no functions. |
 | `ipmib.h` | RRas | remaining |  |  |  |
-| `IPTypes.h` | wnv | remaining |  |  |  |
+| `IPTypes.h` | wnv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/IPTypes.h.md |
 | `iscsidsc.h` | IScsiDisc | remaining |  |  |  |
 | `iscsierr.h` | IScsiDisc | remaining |  |  |  |
 | `isolatedapplauncher.h` | FileHistory, Isolation | remaining |  |  |  |
@@ -973,7 +973,7 @@
 | `sas.h` | Identity | matched |  | 09/02/2026 16:53:36 | SendSAS(BOOL) - no handle involved. |
 | `sbe.h` | MsTv | remaining |  |  |  |
 | `sbtsv.h` | TermServ | remaining |  |  |  |
-| `scarderr.h` | Credentials | remaining |  |  |  |
+| `scarderr.h` | Credentials | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/scarderr.h.md |
 | `scclient.h` | Wmdm | matched |  | 09/02/2026 18:32:46 | Pure C++ class, no extern/DllImport functions; out of scope for annotation mechanism. |
 | `scesvc.h` | Security.ConfigurationSnapin | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/scesvc.h.md |
 | `schannel.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Wsw | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
@@ -1026,7 +1026,7 @@
 | `smtpguid.h` | IMapi | matched |  | 09/02/2026 21:04:56 | GUID/string constants only, no functions. |
 | `snmp.h` | Snmp | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `socketapi.h` | WinSock | matched |  | 09/02/2026 16:57:06 | SetSocketMediaStreamingMode(BOOL) - no handle. |
-| `softpub.h` | Security.WinTrust | remaining |  |  |  |
+| `softpub.h` | Security.WinTrust | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/softpub.h.md |
 | `spatialaudioclient.h` | Audio | remaining |  |  |  |
 | `spatialaudiohrtf.h` | Audio | remaining |  |  |  |
 | `spatialaudiometadata.h` | Audio | remaining |  |  |  |

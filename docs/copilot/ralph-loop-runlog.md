@@ -2528,3 +2528,13 @@ Ledger: 761 accepted-normalized, 31 blocked, 611 pending (792/1403 classified).
 - **dxcore_interface.h** (Debug, DXCore): C++ enum class + COM interfaces, DXCoreCreateAdapterFactory declared elsewhere. Clean.
 
 Ledger: 766 accepted-normalized, 31 blocked, 606 pending (797/1403 classified).
+
+## Batch 122 (2026-09-02 23:20): IPTypes.h, iaccess.h, softpub.h, scarderr.h, deviceaccess.h
+
+- **IPTypes.h** (wnv): transparent structs for GetNetworkParams/GetAdaptersInfo, no functions. Clean.
+- **iaccess.h** (TransactionServer): COM interfaces only, no free functions. Clean.
+- **softpub.h** (Security.WinTrust): GUIDs + transparent structs, WinVerifyTrust declared elsewhere. Clean.
+- **scarderr.h** (Credentials): SCARD error-code macros only. Clean.
+- **deviceaccess.h** (DeviceAccess): COM interfaces only, no free functions. Clean.
+
+Ledger: 771 accepted-normalized, 31 blocked, 601 pending (802/1403 classified). Milestone: 802/1403 = 57.2%.
