@@ -2306,10 +2306,10 @@
   {
     "header": "ddpchunk.h",
     "partition": "Dedup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpchunk.h.md",
     "_source": "header-progress"
   },
   {
@@ -3593,10 +3593,10 @@
   {
     "header": "exdispid.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/exdispid.h.md",
     "_source": "header-progress"
   },
   {
@@ -4439,10 +4439,10 @@
   {
     "header": "ichannelcredentials.h",
     "partition": "Com.ChannelCreds, ComOle",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ichannelcredentials.h.md",
     "_source": "header-progress"
   },
   {
@@ -5726,10 +5726,10 @@
   {
     "header": "mfd3d12.h",
     "partition": "Direct3D12, Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfd3d12.h.md",
     "_source": "header-progress"
   },
   {
@@ -9920,10 +9920,10 @@
   {
     "header": "tspubplugin2com.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tspubplugin2com.h.md",
     "_source": "header-progress"
   },
   {

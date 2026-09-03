@@ -2428,3 +2428,13 @@ Ledger: 711 accepted-normalized, 31 blocked, 661 pending (742/1403 classified). 
 - **ncrypt_provider.h** (Security.Cryptography): CNG provider DDI function-pointer typedefs only (NCryptOpenStorageProviderFn etc.), no extern functions. Clean.
 
 Ledger: 716 accepted-normalized, 31 blocked, 656 pending (747/1403 classified).
+
+## Batch 112 (2026-09-02 22:46): tspubplugin2com.h, ddpchunk.h, exdispid.h, mfd3d12.h, ichannelcredentials.h
+
+- **tspubplugin2com.h** (TermServ): COM interfaces only, no free functions. Clean.
+- **ddpchunk.h** (Dedup): COM interfaces only, no free functions. Clean.
+- **exdispid.h** (InternetExplorer): DISPID constants only, no functions. Clean.
+- **mfd3d12.h** (Direct3D12, Mf): COM interfaces only, no free functions. Clean.
+- **ichannelcredentials.h** (Com.ChannelCreds, ComOle): COM interfaces only, no free functions. Clean.
+
+Ledger: 721 accepted-normalized, 31 blocked, 651 pending (752/1403 classified).

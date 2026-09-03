@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:43:50Z
+- Generated: 2026-09-03T05:45:49Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 716
+- Matched: 721
 - In progress: 0
 - Blocked: 31
-- Remaining: 656
+- Remaining: 651
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -266,7 +266,7 @@
 | `ddeml.h` | DataXchg | remaining |  |  |  |
 | `ddkernel.h` | DirectDraw | matched |  | 09/02/2026 21:27:04 | COM-style interfaces + GUID constants only, no extern functions. |
 | `ddpbackup.h` | Dedup | remaining |  |  |  |
-| `ddpchunk.h` | Dedup | remaining |  |  |  |
+| `ddpchunk.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpchunk.h.md |
 | `ddpcommon.h` | Dedup | matched |  | 09/02/2026 19:16:41 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `ddpdataport.h` | Dedup | remaining |  |  |  |
 | `ddraw.h` | DirectDraw, Gdiplus, Media.DShow | matched |  | 09/02/2026 16:34:06 | HMONITOR reference is a pass-through system handle (never created/released by DirectDraw); guarded DECLARE_HANDLE fallback never fires. |
@@ -409,7 +409,7 @@
 | `evr.h` | Mf | remaining |  |  |  |
 | `evr9.h` | Mf | remaining |  |  |  |
 | `exdisp.h` | FileHistory, Shell, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
-| `exdispid.h` | InternetExplorer | remaining |  |  |  |
+| `exdispid.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/exdispid.h.md |
 | `expandedresources.h` | GameMode | matched |  | 09/02/2026 17:16:10 | No handle-typed values anywhere in this header. |
 | `exposeenums2managed.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:26:39 | Macro-definitions only, no declarations. |
 | `extensionvalidation.h` | InternetExplorer | matched |  | 09/02/2026 21:17:15 | COM interface + enums only, no extern functions. |
@@ -503,7 +503,7 @@
 | `iadmw.h` | Iis | remaining |  |  |  |
 | `iads.h` | ActiveDirectory, Iis | remaining |  |  |  |
 | `icftypes.h` | WindowsFirewall | matched |  | 09/02/2026 20:22:05 | Enums + MIDL boilerplate only, no functions. |
-| `ichannelcredentials.h` | Com.ChannelCreds, ComOle | remaining |  |  |  |
+| `ichannelcredentials.h` | Com.ChannelCreds, ComOle | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ichannelcredentials.h.md |
 | `Icm.h` | Wcs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `icmpapi.h` | IpHlp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `icontact.h` | WinContacts | remaining |  |  |  |
@@ -646,7 +646,7 @@
 | `mfapi.h` | Mf | remaining |  |  |  |
 | `mfcaptureengine.h` | Mf | remaining |  |  |  |
 | `mfcontentdecryptionmodule.h` | Mf | remaining |  |  |  |
-| `mfd3d12.h` | Direct3D12, Mf | remaining |  |  |  |
+| `mfd3d12.h` | Direct3D12, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfd3d12.h.md |
 | `mferror.h` | Mf | remaining |  |  |  |
 | `mfidl.h` | Mf | remaining |  |  |  |
 | `mfmediacapture.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfmediacapture.h.md |
@@ -1112,7 +1112,7 @@
 | `tsgauthenticationengine.h` | TermServ | remaining |  |  |  |
 | `tsgpolicyengine.h` | TermServ | remaining |  |  |  |
 | `TSPI.h` | Tapi3 | remaining |  |  |  |
-| `tspubplugin2com.h` | TermServ | remaining |  |  |  |
+| `tspubplugin2com.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tspubplugin2com.h.md |
 | `tspubplugincom.h` | TermServ | matched |  | 09/02/2026 22:09:36 | COM interface only, no extern functions. |
 | `tssbx.h` | TermServ | remaining |  |  |  |
 | `tsuserex.h` | TermServ | remaining |  |  |  |
