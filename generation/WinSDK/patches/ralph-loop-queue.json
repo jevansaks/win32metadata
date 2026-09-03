@@ -425,10 +425,10 @@
   {
     "header": "amparse.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:27:04Z",
+    "notes": "COM interface with plain integer output, no handle.",
     "_source": "header-progress"
   },
   {
@@ -596,10 +596,10 @@
   {
     "header": "atsmedia.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:27:04Z",
+    "notes": "GUID constant only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2396,10 +2396,10 @@
   {
     "header": "delayloadhandler.h",
     "partition": "WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:27:04Z",
+    "notes": "Structs/callback-typedef/extern-variable only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6203,10 +6203,10 @@
   {
     "header": "msacmdlg.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:27:04Z",
+    "notes": "Dialog resource ID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10685,10 +10685,10 @@
   {
     "header": "wdigest.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:27:04Z",
+    "notes": "String constants only, no functions.",
     "_source": "header-progress"
   },
   {

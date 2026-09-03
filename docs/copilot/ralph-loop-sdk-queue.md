@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:23:50Z
+- Generated: 2026-09-03T00:27:12Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 302
+- Matched: 307
 - In progress: 0
 - Blocked: 5
-- Remaining: 1096
+- Remaining: 1091
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -57,7 +57,7 @@
 | `alljoyn_c\SessionListener.h` | AllJoyn | remaining |  |  |  |
 | `alljoyn_c\version.h` | AllJoyn | remaining |  |  |  |
 | `amaudio.h` | Media.DShow | remaining |  |  |  |
-| `amparse.h` | Media.DShow | remaining |  |  |  |
+| `amparse.h` | Media.DShow | matched |  | 09/02/2026 17:27:04 | COM interface with plain integer output, no handle. |
 | `amsi.h` | Antimalware | matched | copilot | 09/03/2026 03:35:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
 | `amstream.h` | Media.DShow, Media.DShow.Xml | remaining |  |  |  |
 | `amva.h` | Media.DShow | remaining |  |  |  |
@@ -76,7 +76,7 @@
 | `asferr.h` | Multimedia | remaining |  |  |  |
 | `atacct.h` | NetMgmt | matched |  | 09/02/2026 17:09:31 | String-only account-info API, no handle. |
 | `atscpsipparser.h` | MsTv | remaining |  |  |  |
-| `atsmedia.h` | MsTv | remaining |  |  |  |
+| `atsmedia.h` | MsTv | matched |  | 09/02/2026 17:27:04 | GUID constant only, no functions. |
 | `audevcod.h` | Media.DShow | remaining |  |  |  |
 | `AudioAPOTypes.h` | Audio.Apo, TermServ | remaining |  |  |  |
 | `audioclient.h` | Audio | remaining |  |  |  |
@@ -276,7 +276,7 @@
 | `ddstream.h` | Media.DShow | remaining |  |  |  |
 | `debugapi.h` | Base, Debug | remaining |  |  |  |
 | `defaultbrowsersyncsettings.h` | WinProg | remaining |  |  |  |
-| `delayloadhandler.h` | WinProg | remaining |  |  |  |
+| `delayloadhandler.h` | WinProg | matched |  | 09/02/2026 17:27:04 | Structs/callback-typedef/extern-variable only, no functions. |
 | `deletebrowsinghistory.h` | WinProg | remaining |  |  |  |
 | `deliveryoptimization.h` | DeliveryOptimization | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
 | `devfiltertypes.h` | DeviceQuery | remaining |  |  |  |
@@ -699,7 +699,7 @@
 | `mrmresourceindexer.h` | MenuRc | remaining |  |  |  |
 | `msaatext.h` | Tsf | remaining |  |  |  |
 | `msacm.h` | Audio | remaining |  |  |  |
-| `msacmdlg.h` | Multimedia | remaining |  |  |  |
+| `msacmdlg.h` | Multimedia | matched |  | 09/02/2026 17:27:04 | Dialog resource ID constants only, no functions. |
 | `msacmdrv.h` | Audio | remaining |  |  |  |
 | `MSAJTransport.h` | AllJoyn, WinRT | remaining |  |  |  |
 | `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | remaining |  |  |  |
@@ -1197,7 +1197,7 @@
 | `wcsplugin.h` | Wcs | remaining |  |  |  |
 | `wct.h` | Base, Debug | remaining |  |  |  |
 | `WDBGEXTS.H` | Debug.Extensions | remaining |  |  |  |
-| `wdigest.h` | Identity | remaining |  |  |  |
+| `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |
 | `wdmguid.h` | DevInst | remaining |  |  |  |
 | `wdsbp.h` | Wds | remaining |  |  |  |
 | `wdsclientapi.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |

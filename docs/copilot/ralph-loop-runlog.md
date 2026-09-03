@@ -977,3 +977,17 @@ cross-partition remap warning for _CERT_CONTEXT)
 
 **Ledger status:** 302 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h), 1096 pending.
+
+## 2026-09-02 17:27:23 UTC - Batch scraping-investigation-24
+
+**Headers:** delayloadhandler.h, msacmdlg.h, amparse.h, atsmedia.h, wdigest.h
+**Partitions scraped:** Multimedia, MsTv (x86; 0 warnings/errors)
+
+- delayloadhandler.h: structs + callback-typedef + extern variable, no DllImport functions. Clean.
+- msacmdlg.h: dialog resource ID constants only, no functions. Clean.
+- amparse.h: IAMParse COM interface, plain REFERENCE_TIME output, no handle. Clean.
+- atsmedia.h: GUID-struct constant only, no functions. Clean.
+- wdigest.h: WDIGEST_SP_NAME* string constants only, no functions. Clean.
+
+**Ledger status:** 307 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h), 1091 pending.
