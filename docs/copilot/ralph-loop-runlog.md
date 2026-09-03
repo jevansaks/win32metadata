@@ -3088,3 +3088,13 @@ Ledger: 1041 accepted-normalized, 31 blocked, 331 pending (1072/1403 classified)
 - **appmodel.h** (AppxPackaging): PRODUCER-SITE FIX x2 - added PACKAGE_INFO_REFERENCE entry (ValueType 'typedef struct*', CloseApi ClosePackageInfo) and filled missing CloseApi/InvalidHandleValues on pre-existing PACKAGEDEPENDENCY_CONTEXT entry (CloseApi RemovePackageDependency). Validated via ScrapeHeaders x64 AppxPackaging - 0 errors.
 
 Ledger: 1046 accepted-normalized, 31 blocked, 326 pending (1077/1403 classified).
+
+## Batch 178 (2026-09-03 02:18): mediaobj.h, eapmethodpeerapis.h, advpub.h, perflib.h, printoem.h
+
+- **mediaobj.h** (Media.DShow/Media.DxMediaObjects): COM vtable only. Clean.
+- **eapmethodpeerapis.h** (EapHost): COM vtable only. Clean.
+- **advpub.h** (FileHistory/WinProg): HRESULT functions, no handle production. Clean.
+- **perflib.h** (Perf): PerfOpenQueryHandle/PerfStartProvider(Ex) already have correct inline RAIIFree param annotations in emitter.settings.rsp; PerfCreateInstance/PerfDeleteInstance unrepresentable (external Provider-handle-dependent close, same as mscat.h HCATINFO pattern).
+- **printoem.h** (Printing): legacy obsolete OEM print-driver plugin contract functions, no handle production. Clean.
+
+Ledger: 1051 accepted-normalized, 31 blocked, 321 pending (1082/1403 classified).

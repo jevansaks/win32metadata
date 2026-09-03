@@ -137,10 +137,10 @@
   {
     "header": "advpub.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/advpub.h.md",
     "_source": "header-progress"
   },
   {
@@ -3305,10 +3305,10 @@
   {
     "header": "eapmethodpeerapis.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eapmethodpeerapis.h.md",
     "_source": "header-progress"
   },
   {
@@ -5618,10 +5618,10 @@
   {
     "header": "mediaobj.h",
     "partition": "Media.DShow, Media.DxMediaObjects",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mediaobj.h.md",
     "_source": "header-progress"
   },
   {
@@ -7634,10 +7634,10 @@
   {
     "header": "perflib.h",
     "partition": "Perf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/perflib.h.md",
     "_source": "header-progress"
   },
   {
@@ -7886,10 +7886,10 @@
   {
     "header": "printoem.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/printoem.h.md",
     "_source": "header-progress"
   },
   {

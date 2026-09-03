@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:15:09Z
+- Generated: 2026-09-03T09:18:15Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1046
+- Matched: 1051
 - In progress: 0
 - Blocked: 31
-- Remaining: 326
+- Remaining: 321
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -25,7 +25,7 @@
 | `adsprop.h` | ActiveDirectory | blocked |  | 09/02/2026 21:49:17 | ADsPropCreateNotifyObj produces generic HWND via direct out-param; extends established blocker class to HWND. |
 | `adssts.h` | ActiveDirectory | matched |  | 09/02/2026 19:19:02 | Status-code constants only, no functions. |
 | `adtgen.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/adtgen.h.md |
-| `advpub.h` | FileHistory, WinProg | remaining |  |  |  |
+| `advpub.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/advpub.h.md |
 | `af_irda.h` | WinSock | matched |  | 09/02/2026 20:41:40 | Constants only, no functions. |
 | `afunix.h` | WinSock | matched |  | 09/02/2026 17:09:31 | Data struct + IOCTL constants only, no functions. |
 | `alljoyn_c\AboutData.h` | AllJoyn | remaining |  |  |  |
@@ -377,7 +377,7 @@
 | `eaphostpeerconfigapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaphostpeerconfigapis.h.md |
 | `eaphostpeertypes.h` | EapHost | matched |  | 09/02/2026 19:35:00 | Enums/structs only, no functions. |
 | `eapmethodauthenticatorapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eapmethodauthenticatorapis.h.md |
-| `eapmethodpeerapis.h` | EapHost | remaining |  |  |  |
+| `eapmethodpeerapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eapmethodpeerapis.h.md |
 | `eapmethodtypes.h` | EapHost | matched |  | 09/02/2026 17:30:54 | Type declarations only (struct/enum/typedef), no functions; producer functions tracked separately under eapmethodpeerapis.h (pending). |
 | `eappapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eappapis.h.md |
 | `eaptypes.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaptypes.h.md |
@@ -634,7 +634,7 @@
 | `mdmlocalmanagement.h` | MdmReg | matched |  | 09/02/2026 17:54:05 | No handle-typed values; string output uses LocalFree, not HANDLE mechanism. |
 | `mdmregistration.h` | MdmReg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mdmregistration.h.md |
 | `mediaerr.h` | Media.DShow, Media.DxMediaObjects | matched |  | 09/02/2026 17:13:02 | HRESULT error constants only, no functions. |
-| `mediaobj.h` | Media.DShow, Media.DxMediaObjects | remaining |  |  |  |
+| `mediaobj.h` | Media.DShow, Media.DxMediaObjects | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mediaobj.h.md |
 | `medparam.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/medparam.h.md |
 | `memorybuffer.h` | WinRT | matched |  | 09/02/2026 17:05:19 | IMemoryBufferByteAccess COM interface; buffer view not a HANDLE-family resource. |
 | `menutemplate.h` | MenuRc | matched |  | 09/02/2026 17:01:48 | Plain data structs only, no functions. |
@@ -858,7 +858,7 @@
 | `peerdist.h` | P2p | matched |  |  | Genuine producer-site fix: added 4 autoTypes.json entries (PEERDIST_INSTANCE_HANDLE/STREAM/CONTENTINFO/CONTENT_HANDLE). See docs/copilot/header-reports/peerdist.h.md |
 | `peninputpanel.h` | Tablet | remaining |  |  |  |
 | `perceptiondevicecore.h` | MixedReality | matched |  | 09/02/2026 18:23:41 | Data structs + GUID constant only, no functions. |
-| `perflib.h` | Perf | remaining |  |  |  |
+| `perflib.h` | Perf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/perflib.h.md |
 | `perhist.h` | InternetExplorer | matched |  | 09/02/2026 21:04:56 | COM interface method only, out of scope. |
 | `persist.h` | Search | matched |  | 09/02/2026 18:06:26 | Constants only, no functions. |
 | `photoacquire.h` | PicAcq, Setup | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR/HBITMAP/HICON/HWND/LPSAFEARRAY_User*); pass-through of externally-owned handles only. |
@@ -886,7 +886,7 @@
 | `PrinterExtension.h` | Printing | remaining |  |  |  |
 | `printerextensiondispid.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/printerextensiondispid.h.md |
 | `PrintManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:32:46 | COM/WinRT interop interface method only, out of scope. |
-| `printoem.h` | Printing | remaining |  |  |  |
+| `printoem.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/printoem.h.md |
 | `printpreview.h` | Printing | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `prnasnot.h` | Gdi, Printing | blocked |  | 09/02/2026 20:44:40 | RegisterForPrintAsyncNotifications produces generic HANDLE via direct out-param. |
 | `prnasntp.h` | Printing | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
