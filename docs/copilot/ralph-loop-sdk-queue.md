@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:45:32Z
+- Generated: 2026-09-03T02:48:12Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 497
+- Matched: 502
 - In progress: 0
 - Blocked: 20
-- Remaining: 886
+- Remaining: 881
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -81,7 +81,7 @@
 | `AudioAPOTypes.h` | Audio.Apo, TermServ | matched |  | 09/02/2026 19:32:00 | Typedefs/enum/structs only, no functions. |
 | `audioclient.h` | Audio | remaining |  |  |  |
 | `audioclientactivationparams.h` | Audio | matched |  | 09/02/2026 19:06:16 | Enums/data structs + MIDL boilerplate only, no functions. |
-| `audioendpoints.h` | Audio.Endpoints | remaining |  |  |  |
+| `audioendpoints.h` | Audio.Endpoints | matched |  | 09/02/2026 19:47:59 | COM interface method only, no extern functions. |
 | `audioenginebaseapo.h` | Audio.Apo | remaining |  |  |  |
 | `audioengineendpoint.h` | Audio.Endpoints, TermServ | remaining |  |  |  |
 | `audioengineextensionapo.h` | Audio.Apo | remaining |  |  |  |
@@ -220,7 +220,7 @@
 | `d3d10_1shader.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10effect.h` | Direct3D10 | remaining |  |  |  |
-| `d3d10misc.h` | Direct3D10 | remaining |  |  |  |
+| `d3d10misc.h` | Direct3D10 | matched |  | 09/02/2026 19:47:59 | All outputs are standard COM interface pointers. |
 | `d3d10sdklayers.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10shader.h` | Direct3D10 | remaining |  |  |  |
 | `d3d11_1.h` | Direct3D11, Mf | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
@@ -261,7 +261,7 @@
 | `dcommon.h` | Direct2D, Direct2D.Common, DirectWrite | remaining |  |  |  |
 | `dcomp.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcompanimation.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
-| `dcomptypes.h` | DirectComp | remaining |  |  |  |
+| `dcomptypes.h` | DirectComp | matched |  | 09/02/2026 19:47:59 | Enums/structs/constants only, no functions. |
 | `dde.h` | DataXchg | remaining |  |  |  |
 | `ddeml.h` | DataXchg | remaining |  |  |  |
 | `ddkernel.h` | DirectDraw | remaining |  |  |  |
@@ -424,7 +424,7 @@
 | `fdi.h` | Cabinets | remaining |  |  |  |
 | `featurestagingapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:40:30 | FEATURE_STATE_CHANGE_SUBSCRIPTION ownership already correctly captured via existing autoTypes.json entry. |
 | `fhcfg.h` | FileHistory | remaining |  |  |  |
-| `fherrors.h` | FileHistory | remaining |  |  |  |
+| `fherrors.h` | FileHistory | matched |  | 09/02/2026 19:47:59 | HRESULT constants only, no functions. |
 | `fhstatus.h` | FileHistory | matched |  | 09/02/2026 18:00:53 | Status-code constants only, no functions. |
 | `fhsvcctl.h` | FileHistory | matched |  | 09/02/2026 18:50:10 | FH_SERVICE_PIPE_HANDLE ownership already correctly captured via existing autoTypes.json entry. |
 | `fileapi.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
@@ -566,7 +566,7 @@
 | `ip2string.h` | IpHlp, wnv | remaining |  |  |  |
 | `IPExport.h` | IpHlp | remaining |  |  |  |
 | `iphlpapi.h` | IpHlp, Shell | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
-| `ipinfoid.h` | IpHlp | remaining |  |  |  |
+| `ipinfoid.h` | IpHlp | matched |  | 09/02/2026 19:47:59 | Constants only, no functions. |
 | `ipmib.h` | RRas | remaining |  |  |  |
 | `IPTypes.h` | wnv | remaining |  |  |  |
 | `iscsidsc.h` | IScsiDisc | remaining |  |  |  |

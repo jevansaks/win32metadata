@@ -641,10 +641,10 @@
   {
     "header": "audioendpoints.h",
     "partition": "Audio.Endpoints",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:47:59Z",
+    "notes": "COM interface method only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -1892,10 +1892,10 @@
   {
     "header": "d3d10misc.h",
     "partition": "Direct3D10",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:47:59Z",
+    "notes": "All outputs are standard COM interface pointers.",
     "_source": "header-progress"
   },
   {
@@ -2261,10 +2261,10 @@
   {
     "header": "dcomptypes.h",
     "partition": "DirectComp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:47:59Z",
+    "notes": "Enums/structs/constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3728,10 +3728,10 @@
   {
     "header": "fherrors.h",
     "partition": "FileHistory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:47:59Z",
+    "notes": "HRESULT constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5006,10 +5006,10 @@
   {
     "header": "ipinfoid.h",
     "partition": "IpHlp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:47:59Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {

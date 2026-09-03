@@ -1742,3 +1742,17 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   return value (established return-value-handle class); legacy private GDI/DirectDraw entry points.
 
 **Ledger status:** 497 accepted-normalized, 20 blocked, 886 pending.
+
+## 2026-09-02 19:48:12 UTC - Batch scraping-investigation-66
+
+**Headers:** audioendpoints.h, d3d10misc.h, ipinfoid.h, fherrors.h, dcomptypes.h
+**Partitions scraped (x64):** Audio.Endpoints, Direct3D10, IpHlp, DirectComp (0 errors each); FileHistory reused from batch 65
+
+- audioendpoints.h: COM interface method (IAudioEndpointFormatControl::ResetToDefault) only. Clean.
+- d3d10misc.h: D3D10CreateDevice/DeviceAndSwapChain/CreateBlob all output standard COM interface
+  pointers (ID3D10Device**/IDXGISwapChain**/ID3D10Blob**). Clean.
+- ipinfoid.h: IP router manager ID constants only, no functions. Clean.
+- fherrors.h: HRESULT error code constants only, no functions. Clean.
+- dcomptypes.h: DirectComposition enums/structs/constants only, no functions. Clean.
+
+**Ledger status:** 502 accepted-normalized, 20 blocked, 881 pending.
