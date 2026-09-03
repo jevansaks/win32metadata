@@ -2638,3 +2638,13 @@ Ledger: 816 accepted-normalized, 31 blocked, 556 pending (847/1403 classified).
 - **rpcnterr.h** (Foundation): RPC error-code macros only. Clean.
 
 Ledger: 821 accepted-normalized, 31 blocked, 551 pending (852/1403 classified).
+
+## Batch 133 (2026-09-02 23:56): qnetwork.h, imapi2fserror.h, lmwksta.h, ddstream.h, bits10_1.h
+
+- **qnetwork.h** (Media.DShow): IAMNetShowConfig COM interface only, no free functions. Clean.
+- **imapi2fserror.h** (Wab): MC-tool HRESULT message codes only. Clean.
+- **lmwksta.h** (NetMgmt): NetApiBufferAllocate/Free convention. Clean.
+- **ddstream.h** (Media.DShow): COM interfaces only, no free functions. Clean.
+- **bits10_1.h** (Bits): COM interfaces only, no free functions. Clean.
+
+Ledger: 826 accepted-normalized, 31 blocked, 546 pending (857/1403 classified).

@@ -902,10 +902,10 @@
   {
     "header": "bits10_1.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_1.h.md",
     "_source": "header-progress"
   },
   {
@@ -2369,10 +2369,10 @@
   {
     "header": "ddstream.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddstream.h.md",
     "_source": "header-progress"
   },
   {
@@ -4682,10 +4682,10 @@
   {
     "header": "imapi2fserror.h",
     "partition": "Wab",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi2fserror.h.md",
     "_source": "header-progress"
   },
   {
@@ -5447,10 +5447,10 @@
   {
     "header": "lmwksta.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmwksta.h.md",
     "_source": "header-progress"
   },
   {
@@ -8093,10 +8093,10 @@
   {
     "header": "qnetwork.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qnetwork.h.md",
     "_source": "header-progress"
   },
   {

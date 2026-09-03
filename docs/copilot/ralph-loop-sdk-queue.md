@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:53:49Z
+- Generated: 2026-09-03T06:56:23Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 821
+- Matched: 826
 - In progress: 0
 - Blocked: 31
-- Remaining: 551
+- Remaining: 546
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -110,7 +110,7 @@
 | `bindlink.h` | Fs | matched |  | 09/02/2026 17:30:54 | Path-string-only API, no handle. |
 | `bits.h` | Bits | remaining |  |  |  |
 | `bits1_5.h` | Bits | remaining |  |  |  |
-| `bits10_1.h` | Bits | remaining |  |  |  |
+| `bits10_1.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_1.h.md |
 | `bits10_2.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_2.h.md |
 | `bits10_3.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_3.h.md |
 | `bits2_0.h` | Bits | remaining |  |  |  |
@@ -273,7 +273,7 @@
 | `ddrawgdi.h` | FileHistory, WinProg | blocked |  | 09/02/2026 19:45:17 | DdGetDxHandle/DdCreateDIBSection return generic HANDLE/HBITMAP via return value. |
 | `ddrawi.h` | DirectDraw, FileHistory, WinProg | remaining |  |  |  |
 | `ddrawint.h` | DirectDraw | remaining |  |  |  |
-| `ddstream.h` | Media.DShow | remaining |  |  |  |
+| `ddstream.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddstream.h.md |
 | `debugapi.h` | Base, Debug | matched |  | 09/02/2026 19:06:16 | HANDLE is a caller-supplied input, not produced here. |
 | `defaultbrowsersyncsettings.h` | WinProg | matched |  | 09/02/2026 20:16:15 | COM interface + GUID constants only, no extern functions. |
 | `delayloadhandler.h` | WinProg | matched |  | 09/02/2026 17:27:04 | Structs/callback-typedef/extern-variable only, no functions. |
@@ -530,7 +530,7 @@
 | `imapi2.h` | IMapi | remaining |  |  |  |
 | `imapi2error.h` | IMapi, Wab | remaining |  |  |  |
 | `imapi2fs.h` | IMapi | remaining |  |  |  |
-| `imapi2fserror.h` | Wab | remaining |  |  |  |
+| `imapi2fserror.h` | Wab | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi2fserror.h.md |
 | `imapierror.h` | IMapi | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
 | `ime_cmodes.h` | Input.Ime | matched |  | 09/02/2026 17:09:31 | Bit-field constants only, no functions. |
 | `ime.h` | FileHistory, WinProg | matched |  | 09/02/2026 20:56:17 | No function produces an opaque handle. |
@@ -615,7 +615,7 @@
 | `lmsvc.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmsvc.h.md |
 | `lmuse.h` | NetMgmt | matched |  | 09/02/2026 22:09:36 | Net API buffer-allocation convention. |
 | `lmuseflg.h` | NetMgmt | matched |  | 09/02/2026 17:23:42 | Constants/macro only, no functions. |
-| `lmwksta.h` | NetMgmt | remaining |  |  |  |
+| `lmwksta.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmwksta.h.md |
 | `loadperf.h` | FileHistory, Perf, WinProg | matched |  | 09/02/2026 19:12:01 | String/flag-only API, no handle. |
 | `locationapi.h` | WinLocation | remaining |  |  |  |
 | `lowlevelmonitorconfigurationapi.h` | Monitor | matched |  | 09/02/2026 17:48:13 | All functions only consume an existing physical-monitor HANDLE; producer pair tracked separately under PhysicalMonitorEnumerationAPI.h (pending). |
@@ -909,7 +909,7 @@
 | `psapi.h` | PsApi1, PsApi2 | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `pwm.h` | PWM | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `qmgr.h` | Bits | remaining |  |  |  |
-| `qnetwork.h` | Media.DShow | remaining |  |  |  |
+| `qnetwork.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qnetwork.h.md |
 | `qos2.h` | Qos | remaining |  |  |  |
 | `qospol.h` | Qos | matched |  | 09/02/2026 17:48:13 | Data struct + constants only, no functions. |
 | `qossp.h` | Qos | remaining |  |  |  |
