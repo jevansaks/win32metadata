@@ -29,10 +29,10 @@
   {
     "header": "aclui.h",
     "partition": "Authorization, Authorization.UI",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclui.h.md",
     "_source": "header-progress"
   },
   {
@@ -3278,10 +3278,10 @@
   {
     "header": "eaphostpeerconfigapis.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaphostpeerconfigapis.h.md",
     "_source": "header-progress"
   },
   {
@@ -4007,10 +4007,10 @@
   {
     "header": "fwptypes.h",
     "partition": "WindowsFilteringPlatform",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwptypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -8975,10 +8975,10 @@
   {
     "header": "sherrors.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sherrors.h.md",
     "_source": "header-progress"
   },
   {
@@ -10181,10 +10181,10 @@
   {
     "header": "usbuser.h",
     "partition": "Buses",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usbuser.h.md",
     "_source": "header-progress"
   },
   {

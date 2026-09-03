@@ -2648,3 +2648,13 @@ Ledger: 821 accepted-normalized, 31 blocked, 551 pending (852/1403 classified).
 - **bits10_1.h** (Bits): COM interfaces only, no free functions. Clean.
 
 Ledger: 826 accepted-normalized, 31 blocked, 546 pending (857/1403 classified).
+
+## Batch 134 (2026-09-02 23:58): sherrors.h, fwptypes.h, eaphostpeerconfigapis.h, usbuser.h, aclui.h
+
+- **sherrors.h** (Shell): COPYENGINE_* HRESULT constants only. Clean.
+- **fwptypes.h** (WindowsFilteringPlatform): COM interfaces only, no free functions. Clean.
+- **eaphostpeerconfigapis.h** (EapHost): all outputs are EAP_ERROR** (transparent)/BYTE**/LPWSTR*/COM interface pointer. Clean.
+- **usbuser.h** (Buses): IOCTL codes/structs only, no functions. Clean.
+- **aclui.h** (Authorization, Authorization.UI): HPROPSHEETPAGE already has complete autoTypes.json entry - no gap. Clean.
+
+Ledger: 831 accepted-normalized, 31 blocked, 541 pending (862/1403 classified).

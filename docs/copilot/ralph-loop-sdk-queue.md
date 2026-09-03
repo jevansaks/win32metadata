@@ -1,19 +1,19 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:56:23Z
+- Generated: 2026-09-03T06:58:39Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 826
+- Matched: 831
 - In progress: 0
 - Blocked: 31
-- Remaining: 546
+- Remaining: 541
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
 | `accctrl.h` | Authorization, Authorization.UI, Security, TransactionServer | remaining |  |  |  |
 | `accountssettingspaneinterop.h` | WinRT | matched |  | 09/02/2026 22:02:59 | COM/WinRT interop interface method only, out of scope. |
 | `aclapi.h` | Authorization, Authorization.UI | remaining |  |  |  |
-| `aclui.h` | Authorization, Authorization.UI | remaining |  |  |  |
+| `aclui.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclui.h.md |
 | `activation.h` | WinRT | matched |  | 09/02/2026 20:19:39 | COM/WinRT interface method only, out of scope. |
 | `activaut.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activdbg.h` | Debug.ActiveScript | remaining |  |  |  |
@@ -374,7 +374,7 @@
 | `eapauthenticatoractiondefine.h` | EapHost | matched |  | 09/02/2026 18:50:10 | Enums/data structs only, no functions. |
 | `eapauthenticatortypes.h` | EapHost | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
 | `eaphosterror.h` | EapHost | remaining |  |  |  |
-| `eaphostpeerconfigapis.h` | EapHost | remaining |  |  |  |
+| `eaphostpeerconfigapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaphostpeerconfigapis.h.md |
 | `eaphostpeertypes.h` | EapHost | matched |  | 09/02/2026 19:35:00 | Enums/structs only, no functions. |
 | `eapmethodauthenticatorapis.h` | EapHost | remaining |  |  |  |
 | `eapmethodpeerapis.h` | EapHost | remaining |  |  |  |
@@ -455,7 +455,7 @@
 | `functiondiscoveryprovider.h` | FunctionDiscovery, WebServicesOnDevices | remaining |  |  |  |
 | `fwpmtypes.h` | WindowsFilteringPlatform | remaining |  |  |  |
 | `fwpmu.h` | WindowsFilteringPlatform | remaining |  |  |  |
-| `fwptypes.h` | WindowsFilteringPlatform | remaining |  |  |  |
+| `fwptypes.h` | WindowsFilteringPlatform | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwptypes.h.md |
 | `fxsutility.h` | Fax | matched |  | 09/02/2026 17:19:28 | No handle involved. |
 | `GameInput.h` | GameInput | matched |  | 09/02/2026 16:34:06 | GameInputCreate is a clean COM-factory pattern; the one raw HANDLE out-param (IGameInputDispatcher::OpenWaitHandle) is a COM vtable method, outside DllImport-based ownership-annotation scope. |
 | `gameux.h` | GameMode | remaining |  |  |  |
@@ -1007,7 +1007,7 @@
 | `shdispid.h` | Shell | matched |  | 09/02/2026 19:14:35 | DISPID constants only, no functions. |
 | `shellapi.h` | Properties, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shellscalingapi.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
-| `sherrors.h` | Shell | remaining |  |  |  |
+| `sherrors.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sherrors.h.md |
 | `shidfact.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shidfact.h.md |
 | `shimgdata.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shldisp.h` | Lwef, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
@@ -1141,7 +1141,7 @@
 | `usbiodef.h` | Buses | matched |  | 09/02/2026 21:52:12 | Constants only, no functions. |
 | `usbprint.h` | Printing | matched |  | 09/02/2026 20:28:23 | GUID/IOCTL constants only, no functions. |
 | `usbscan.h` | Buses | matched |  | 09/02/2026 20:25:02 | IOCTL parameter structs only, no functions. |
-| `usbuser.h` | Buses | remaining |  |  |  |
+| `usbuser.h` | Buses | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usbuser.h.md |
 | `useractivityinterop.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/useractivityinterop.h.md |
 | `UserConsentVerifierInterop.h` | WinRT | matched |  | 09/02/2026 20:44:40 | COM/WinRT interop interface method only, out of scope. |
 | `userenv.h` | Policy, Shell | blocked | copilot | 09/02/2026 18:53:55 | RE-AUDITED: previously classified in existing-patches-34 based only on retained set-last-error/supported-os patches (not an ownership audit). Re-audit found a genuine unaddressed HANDLE ownership gap (LoadUserProfileW/UnloadUserProfile via PROFILEINFOW.hProfile), same class as physicalmonitorenumerationapi.h. Reclassified to blocked; prior retained patches remain valid. |
