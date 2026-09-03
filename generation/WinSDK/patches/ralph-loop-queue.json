@@ -3503,10 +3503,10 @@
   {
     "header": "evalcom2.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:06:26Z",
+    "notes": "COM interface with caller-supplied context pointers only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -4043,10 +4043,10 @@
   {
     "header": "gamingdeviceinformation.h",
     "partition": "GamingDvcInfo",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:06:26Z",
+    "notes": "Plain struct output, no handle.",
     "_source": "header-progress"
   },
   {
@@ -6302,10 +6302,10 @@
   {
     "header": "msdaguid.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:06:26Z",
+    "notes": "GUID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7652,10 +7652,10 @@
   {
     "header": "persist.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:06:26Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7841,10 +7841,10 @@
   {
     "header": "presentationtypes.h",
     "partition": "CompositionSwapchain",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:06:26Z",
+    "notes": "Data structs/enum/typedef + MIDL boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {

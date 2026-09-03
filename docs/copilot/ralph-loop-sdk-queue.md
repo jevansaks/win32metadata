@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:03:37Z
+- Generated: 2026-09-03T01:06:34Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 360
+- Matched: 365
 - In progress: 0
 - Blocked: 7
-- Remaining: 1036
+- Remaining: 1031
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -399,7 +399,7 @@
 | `errorrep.h` | Wer | matched |  | 09/02/2026 18:00:52 | HWND is a caller-supplied input, not produced here. |
 | `errors.h` | Media.DShow | matched |  | 09/02/2026 17:38:44 | Caller-allocated string buffer output only, no handle. |
 | `esent.h` | Storage.Jet | blocked | copilot | 09/03/2026 04:45:00 | Deferred: 229-function header with complex many-to-many JET handle ownership graph requiring dedicated research pass, not a quick classification. |
-| `evalcom2.h` | Setup | remaining |  |  |  |
+| `evalcom2.h` | Setup | matched |  | 09/02/2026 18:06:26 | COM interface with caller-supplied context pointers only, no handle. |
 | `evcode.h` | Media.DShow | remaining |  |  |  |
 | `evcoll.h` | Wec | remaining |  |  |  |
 | `eventsys.h` | Com.Events, TransactionServer | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
@@ -459,7 +459,7 @@
 | `fxsutility.h` | Fax | matched |  | 09/02/2026 17:19:28 | No handle involved. |
 | `GameInput.h` | GameInput | matched |  | 09/02/2026 16:34:06 | GameInputCreate is a clean COM-factory pattern; the one raw HANDLE out-param (IGameInputDispatcher::OpenWaitHandle) is a COM vtable method, outside DllImport-based ownership-annotation scope. |
 | `gameux.h` | GameMode | remaining |  |  |  |
-| `gamingdeviceinformation.h` | GamingDvcInfo | remaining |  |  |  |
+| `gamingdeviceinformation.h` | GamingDvcInfo | matched |  | 09/02/2026 18:06:26 | Plain struct output, no handle. |
 | `gamingtcui.h` | Tcui | remaining |  |  |  |
 | `gb18030.h` | Intl | remaining |  |  |  |
 | `gdiplus.h` | Gdiplus | matched |  | 09/02/2026 16:34:06 | GDI+ create/delete object pattern uses strongly-typed C++ pointers (GpGraphics* etc), not HANDLE-family typedefs; no pre-existing RAII metadata to correct; out of current policy scope. |
@@ -710,7 +710,7 @@
 | `msctf.h` | Tsf | remaining |  |  |  |
 | `msctfmonitorapi.h` | Tsf | remaining |  |  |  |
 | `msdadc.h` | Search | remaining |  |  |  |
-| `msdaguid.h` | Search | remaining |  |  |  |
+| `msdaguid.h` | Search | matched |  | 09/02/2026 18:06:26 | GUID constants only, no functions. |
 | `msdaora.h` | Search | remaining |  |  |  |
 | `msdaosp.h` | Search | remaining |  |  |  |
 | `msdasc.h` | Search | remaining |  |  |  |
@@ -860,7 +860,7 @@
 | `perceptiondevicecore.h` | MixedReality | remaining |  |  |  |
 | `perflib.h` | Perf | remaining |  |  |  |
 | `perhist.h` | InternetExplorer | remaining |  |  |  |
-| `persist.h` | Search | remaining |  |  |  |
+| `persist.h` | Search | matched |  | 09/02/2026 18:06:26 | Constants only, no functions. |
 | `photoacquire.h` | PicAcq, Setup | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR/HBITMAP/HICON/HWND/LPSAFEARRAY_User*); pass-through of externally-owned handles only. |
 | `physicalmonitorenumerationapi.h` | Monitor | remaining |  |  |  |
 | `pla.h` | Pla | matched |  | 09/02/2026 16:34:06 | All 6 functions operate on strings/flags/paths only; no handle-producing functions. |
@@ -881,7 +881,7 @@
 | `prcomoem.h` | Printing | remaining |  |  |  |
 | `prdrvcom.h` | Printing | remaining |  |  |  |
 | `presentation.h` | CompositionSwapchain | remaining |  |  |  |
-| `presentationtypes.h` | CompositionSwapchain | remaining |  |  |  |
+| `presentationtypes.h` | CompositionSwapchain | matched |  | 09/02/2026 18:06:26 | Data structs/enum/typedef + MIDL boilerplate only, no functions. |
 | `Print3DManagerInterop.h` | WinRT.Printing | remaining |  |  |  |
 | `PrinterExtension.h` | Printing | remaining |  |  |  |
 | `printerextensiondispid.h` | Printing | remaining |  |  |  |

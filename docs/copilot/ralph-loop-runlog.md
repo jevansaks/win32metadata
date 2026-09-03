@@ -1206,3 +1206,18 @@ cross-partition remap warnings on both, not touched by these headers)
 
 **Ledger status:** 360 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1036 pending.
+
+## 2026-09-02 18:06:46 UTC - Batch scraping-investigation-36
+
+**Headers:** msdaguid.h, gamingdeviceinformation.h, evalcom2.h, presentationtypes.h, persist.h
+**Partitions scraped:** GamingDvcInfo, CompositionSwapchain (x86; 0 warnings/errors)
+
+- msdaguid.h: OLE DB GUID constants only, no functions. Clean.
+- gamingdeviceinformation.h: GetGamingDeviceModelInformation outputs a plain struct, no handle. Clean.
+- evalcom2.h: IValidate COM interface; SetDisplay/SetStatus take a caller-supplied LPVOID context
+  (not produced/owned here), no raw HANDLE. Clean.
+- presentationtypes.h: MIDL boilerplate + data structs/enum/typedef only, no functions. Clean.
+- persist.h: CLSID/GUID/PROGID constants only, no functions. Clean.
+
+**Ledger status:** 365 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1031 pending.
