@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:20:21Z
+- Generated: 2026-09-03T07:22:13Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 871
+- Matched: 876
 - In progress: 0
 - Blocked: 31
-- Remaining: 501
+- Remaining: 496
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -106,7 +106,7 @@
 | `bdamedia.h` | MsTv | remaining |  |  |  |
 | `bdatif.h` | MsTv | remaining |  |  |  |
 | `bdatypes.h` | Media.DShow, MsTv | remaining |  |  |  |
-| `BiDiSpl.h` | Printing | remaining |  |  |  |
+| `BiDiSpl.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/BiDiSpl.h.md |
 | `bindlink.h` | Fs | matched |  | 09/02/2026 17:30:54 | Path-string-only API, no handle. |
 | `bits.h` | Bits | remaining |  |  |  |
 | `bits1_5.h` | Bits | remaining |  |  |  |
@@ -826,7 +826,7 @@
 | `ObjIdl.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, IO, Rpc, TransactionServer, VSS | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `objidlbase.h` | TransactionServer | remaining |  |  |  |
 | `objsafe.h` | Debug | matched |  | 09/02/2026 21:27:04 | COM interface method only, out of scope. |
-| `objsel.h` | ActiveDirectory | remaining |  |  |  |
+| `objsel.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/objsel.h.md |
 | `ocidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Media.DShow, Search, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `ocmm.h` | InternetExplorer | remaining |  |  |  |
 | `odbcinst.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/odbcinst.h.md |
@@ -940,7 +940,7 @@
 | `resapi.h` | MsCs | remaining |  |  |  |
 | `resourceindexer.h` | MenuRc | blocked | copilot | 09/02/2026 17:23:42 | Deferred: genuine ownership pair uses generic PVOID rather than a distinct handle typedef; needs a design decision to introduce a named type before an annotation fix is possible. |
 | `restartmanager.h` | RstMgr | matched | copilot | 09/03/2026 04:35:00 | No patch needed; no ownership-relevant handle type. |
-| `restrictederrorinfo.h` | WinRT | remaining |  |  |  |
+| `restrictederrorinfo.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/restrictederrorinfo.h.md |
 | `richedit.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `richole.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `ringtonedeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:51:18 | GUID/name constants only, no functions (same pattern as notesdeviceservice.h). |
@@ -1371,7 +1371,7 @@
 | `wsdclient.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsddisco.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdevlicensing.h` | DevLic | matched |  | 09/02/2026 17:16:10 | HWND is input parameter; outputs are plain FILETIME values. |
-| `wsdhost.h` | FunctionDiscovery | remaining |  |  |  |
+| `wsdhost.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdhost.h.md |
 | `wsdns.h` | WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdns.h.md |
 | `wsdtypes.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdtypes.h.md |
 | `wsdutil.h` | FunctionDiscovery | matched |  | 09/02/2026 19:02:46 | WSDAPI linked-memory/buffer convention, not HANDLE-family (consistent with wsdapi.h). |
@@ -1412,4 +1412,4 @@
 | `xpsobjectmodel_2.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_2.h.md |
 | `xpsobjectmodel.h` | Xps | remaining |  |  |  |
 | `xpsprint.h` | Gdi, XpsPrinting | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsprint.h.md |
-| `xpsrassvc.h` | Printing | remaining |  |  |  |
+| `xpsrassvc.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsrassvc.h.md |

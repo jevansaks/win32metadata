@@ -866,10 +866,10 @@
   {
     "header": "BiDiSpl.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/BiDiSpl.h.md",
     "_source": "header-progress"
   },
   {
@@ -7346,10 +7346,10 @@
   {
     "header": "objsel.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/objsel.h.md",
     "_source": "header-progress"
   },
   {
@@ -8372,10 +8372,10 @@
   {
     "header": "restrictederrorinfo.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/restrictederrorinfo.h.md",
     "_source": "header-progress"
   },
   {
@@ -12251,10 +12251,10 @@
   {
     "header": "wsdhost.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdhost.h.md",
     "_source": "header-progress"
   },
   {
@@ -12620,10 +12620,10 @@
   {
     "header": "xpsrassvc.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsrassvc.h.md",
     "_source": "header-progress"
   }
 ]

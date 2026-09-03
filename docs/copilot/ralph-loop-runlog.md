@@ -2738,3 +2738,13 @@ Ledger: 866 accepted-normalized, 31 blocked, 506 pending (897/1403 classified).
 - **proofofpossessioncookieinfo.h** (WinInet): COM interfaces only, no free functions. Clean.
 
 Ledger: 871 accepted-normalized, 31 blocked, 501 pending (902/1403 classified). Milestone: 900+ classified.
+
+## Batch 143 (2026-09-03 00:22): objsel.h, xpsrassvc.h, BiDiSpl.h, wsdhost.h, restrictederrorinfo.h
+
+- **objsel.h** (ActiveDirectory): GUID + IDsObjectPicker COM interface, no free functions. Clean.
+- **xpsrassvc.h** (Printing): COM interfaces only, no free functions. Clean.
+- **BiDiSpl.h** (Printing): COM interfaces only, no free functions. Clean.
+- **wsdhost.h** (FunctionDiscovery): COM interfaces only, no free functions. Clean.
+- **restrictederrorinfo.h** (WinRT): COM interfaces only, no free functions. Clean.
+
+Ledger: 876 accepted-normalized, 31 blocked, 496 pending (907/1403 classified).
