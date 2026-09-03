@@ -3138,3 +3138,13 @@ Ledger: 1066 accepted-normalized, 31 blocked, 306 pending (1097/1403 classified)
 - **jscript9diag.h** (Debug.ActiveScript): COM vtable only. Clean.
 
 Ledger: 1071 accepted-normalized, 31 blocked, 301 pending (1102/1403 classified).
+
+## Batch 183 (2026-09-03 02:30): sensors.h, wbcl.h, wmiutils.h, fwpmtypes.h, mfplay.h
+
+- **sensors.h** (WinSensors): GUID constants/structs only. Clean.
+- **wbcl.h** (Qos): TCG log constants/structs only, no functions. Clean.
+- **wmiutils.h** (Lwef/Wmi): COM vtable only. Clean.
+- **fwpmtypes.h** (WindowsFilteringPlatform): COM vtable only. Clean.
+- **mfplay.h** (Mf): MFPCreateMediaPlayer outputs COM interface pointer. Clean.
+
+Ledger: 1076 accepted-normalized, 31 blocked, 296 pending (1107/1403 classified).

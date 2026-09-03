@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:28:28Z
+- Generated: 2026-09-03T09:30:38Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1071
+- Matched: 1076
 - In progress: 0
 - Blocked: 31
-- Remaining: 301
+- Remaining: 296
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -453,7 +453,7 @@
 | `functiondiscoveryerror.h` | FunctionDiscovery | matched |  | 09/02/2026 18:03:29 | HRESULT error-code constants only, no functions. |
 | `functiondiscoverykeys_devpkey.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/functiondiscoverykeys_devpkey.h.md |
 | `functiondiscoveryprovider.h` | FunctionDiscovery, WebServicesOnDevices | remaining |  |  |  |
-| `fwpmtypes.h` | WindowsFilteringPlatform | remaining |  |  |  |
+| `fwpmtypes.h` | WindowsFilteringPlatform | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwpmtypes.h.md |
 | `fwpmu.h` | WindowsFilteringPlatform | remaining |  |  |  |
 | `fwptypes.h` | WindowsFilteringPlatform | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwptypes.h.md |
 | `fxsutility.h` | Fax | matched |  | 09/02/2026 17:19:28 | No handle involved. |
@@ -653,7 +653,7 @@
 | `mfmediaengine.h` | Mf | remaining |  |  |  |
 | `mfmp2dlna.h` | Mf | matched |  | 09/02/2026 20:28:23 | COM interface + GUID constants/struct only, no extern functions. |
 | `mfobjects.h` | Mf | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
-| `mfplay.h` | Mf | remaining |  |  |  |
+| `mfplay.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfplay.h.md |
 | `mfreadwrite.h` | Mf | remaining |  |  |  |
 | `mfsharingengine.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfsharingengine.h.md |
 | `mfspatialaudio.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfspatialaudio.h.md |
@@ -992,7 +992,7 @@
 | `sens.h` | Sens | matched |  | 09/02/2026 18:20:58 | Constants only, no functions. |
 | `sensapi.h` | Sens | matched |  | 09/02/2026 17:41:54 | No handle involved. |
 | `sensevts.h` | Sens | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensevts.h.md |
-| `sensors.h` | WinSensors | remaining |  |  |  |
+| `sensors.h` | WinSensors | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensors.h.md |
 | `sensorsapi.h` | WinLocation, WinSensors | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensorsapi.h.md |
 | `sensorsdef.h` | WinSensors | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensorsdef.h.md |
 | `sensorsstructures.h` | WinSensors | matched |  | 09/02/2026 18:00:52 | Data structs/enum only, no functions. |
@@ -1182,7 +1182,7 @@
 | `waasapitypes.h` | UpdateAssessment | matched |  | 09/02/2026 19:32:00 | MIDL enums/structs/boilerplate only, no functions. |
 | `wab.h` | Wab | blocked | copilot | 09/02/2026 16:53:36 | Deferred: 1 of 77 functions (FtgRegisterIdleRoutine) has genuine return-value handle ownership with no annotation precedent; needs the same dedicated policy decision as getprocesshandlefromhwnd.h. |
 | `wabdefs.h` | IMapi, Tapi3 | remaining |  |  |  |
-| `wbcl.h` | Qos | remaining |  |  |  |
+| `wbcl.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbcl.h.md |
 | `wbemads.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemads.h.md |
 | `wbemcli.h` | TermServ, Wmi | remaining |  |  |  |
 | `wbemdisp.h` | Wmi | remaining |  |  |  |
@@ -1329,7 +1329,7 @@
 | `wmdmlog.h` | Wmdm | matched |  | 09/02/2026 22:02:59 | COM interface only, no extern functions. |
 | `wmdxva.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmdxva.h.md |
 | `wmistr.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmistr.h.md |
-| `wmiutils.h` | Lwef, Wmi | remaining |  |  |  |
+| `wmiutils.h` | Lwef, Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmiutils.h.md |
 | `wmlss.h` | Wmlss | remaining |  |  |  |
 | `wmnetsourcecreator.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmnetsourcecreator.h.md |
 | `wmp.h` | Media.DShow, Wmp | remaining |  |  |  |

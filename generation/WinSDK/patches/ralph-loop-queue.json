@@ -3989,10 +3989,10 @@
   {
     "header": "fwpmtypes.h",
     "partition": "WindowsFilteringPlatform",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwpmtypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -5789,10 +5789,10 @@
   {
     "header": "mfplay.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfplay.h.md",
     "_source": "header-progress"
   },
   {
@@ -8840,10 +8840,10 @@
   {
     "header": "sensors.h",
     "partition": "WinSensors",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensors.h.md",
     "_source": "header-progress"
   },
   {
@@ -10550,10 +10550,10 @@
   {
     "header": "wbcl.h",
     "partition": "Qos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbcl.h.md",
     "_source": "header-progress"
   },
   {
@@ -11873,10 +11873,10 @@
   {
     "header": "wmiutils.h",
     "partition": "Lwef, Wmi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmiutils.h.md",
     "_source": "header-progress"
   },
   {
