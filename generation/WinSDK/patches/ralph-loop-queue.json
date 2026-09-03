@@ -1127,10 +1127,10 @@
   {
     "header": "ccgplugins.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:37:21Z",
+    "notes": "COM interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -2423,10 +2423,10 @@
   {
     "header": "devfiltertypes.h",
     "partition": "DeviceQuery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:37:21Z",
+    "notes": "Enum/struct only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3656,10 +3656,10 @@
   {
     "header": "faxext.h",
     "partition": "Fax",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:37:21Z",
+    "notes": "FaxExtRegisterForEvents returns generic HANDLE via return value.",
     "_source": "header-progress"
   },
   {
@@ -4367,10 +4367,10 @@
   {
     "header": "hwebcore.h",
     "partition": "Iis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:37:21Z",
+    "notes": "Dynamically-loaded function-pointer typedefs only, no scrapable extern functions.",
     "_source": "header-progress"
   },
   {
@@ -12080,10 +12080,10 @@
   {
     "header": "wpdshellextension.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:37:21Z",
+    "notes": "GUID/property-key constants only, no functions.",
     "_source": "header-progress"
   },
   {

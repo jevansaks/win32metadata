@@ -1690,3 +1690,19 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   or transparent structs, not distinctly-named opaque handles - out of scope. Clean.
 
 **Ledger status:** 486 accepted-normalized, 16 blocked, 901 pending.
+
+## 2026-09-02 19:37:35 UTC - Batch scraping-investigation-63
+
+**Headers:** faxext.h, devfiltertypes.h, hwebcore.h, wpdshellextension.h, ccgplugins.h
+**Partitions scraped (x64):** Fax, DeviceQuery, Iis, WpdSdk (0 errors each); Identity reused from batch 62
+
+- faxext.h: **blocked** - FaxExtRegisterForEvents returns generic HANDLE via return value
+  (established return-value-handle class); closed via FaxExtUnregisterForEvents.
+- devfiltertypes.h: enum/struct only, no functions. Clean.
+- hwebcore.h: dynamically-loaded (GetProcAddress) function-pointer typedefs only, no scrapable
+  extern functions - out of scope (same class as mswsockdef.h). Clean.
+- wpdshellextension.h: GUID/property-key constants only, no functions. Clean.
+- ccgplugins.h: COM interface method (ICcgDomainAuthCredentials::GetPasswordCredentials) only,
+  out of scope. Clean.
+
+**Ledger status:** 490 accepted-normalized, 17 blocked, 896 pending.

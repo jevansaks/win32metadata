@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:35:14Z
+- Generated: 2026-09-03T02:37:35Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 486
+- Matched: 490
 - In progress: 0
-- Blocked: 16
-- Remaining: 901
+- Blocked: 17
+- Remaining: 896
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -135,7 +135,7 @@
 | `cardmod.h` | Security.Cryptography | remaining |  |  |  |
 | `casetup.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `CastingInterop.h` | WinRT | remaining |  |  |  |
-| `ccgplugins.h` | Identity | remaining |  |  |  |
+| `ccgplugins.h` | Identity | matched |  | 09/02/2026 19:37:21 | COM interface method only, out of scope. |
 | `cchannel.h` | TermServ | remaining |  |  |  |
 | `cderr.h` | DlgBox | matched |  | 09/02/2026 18:15:12 | Error-code constants only, no functions. |
 | `celib.h` | Security | remaining |  |  |  |
@@ -279,7 +279,7 @@
 | `delayloadhandler.h` | WinProg | matched |  | 09/02/2026 17:27:04 | Structs/callback-typedef/extern-variable only, no functions. |
 | `deletebrowsinghistory.h` | WinProg | remaining |  |  |  |
 | `deliveryoptimization.h` | DeliveryOptimization | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
-| `devfiltertypes.h` | DeviceQuery | remaining |  |  |  |
+| `devfiltertypes.h` | DeviceQuery | matched |  | 09/02/2026 19:37:21 | Enum/struct only, no functions. |
 | `devguid.h` | DevInst | remaining |  |  |  |
 | `deviceaccess.h` | DeviceAccess | remaining |  |  |  |
 | `deviceservices.h` | WpdSdk | matched |  | 09/02/2026 17:58:11 | GUID/property-key constants only, no functions; BridgeDeviceService.h separately tracked (pending). |
@@ -416,7 +416,7 @@
 | `extsfns.h` | Debug.Extensions | remaining |  |  |  |
 | `faxcomex.h` | Fax | remaining |  |  |  |
 | `faxdev.h` | Fax | remaining |  |  |  |
-| `faxext.h` | Fax | remaining |  |  |  |
+| `faxext.h` | Fax | blocked |  | 09/02/2026 19:37:21 | FaxExtRegisterForEvents returns generic HANDLE via return value. |
 | `faxmmc.h` | Fax | matched |  | 09/02/2026 17:58:11 | GUID/string constants only, no functions. |
 | `faxroute.h` | Fax | remaining |  |  |  |
 | `fci.h` | Cabinets | remaining |  |  |  |
@@ -495,7 +495,7 @@
 | `httprequestid.h` | Iis | matched |  | 09/02/2026 18:09:40 | DISPID constants only, no functions. |
 | `httptrace.h` | Iis | remaining |  |  |  |
 | `hvsocket.h` | Hypervisor | remaining |  |  |  |
-| `hwebcore.h` | Iis | remaining |  |  |  |
+| `hwebcore.h` | Iis | matched |  | 09/02/2026 19:37:21 | Dynamically-loaded function-pointer typedefs only, no scrapable extern functions. |
 | `hypervdevicevirtualization.h` | Hypervisor | remaining |  |  |  |
 | `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | blocked | copilot | 09/02/2026 18:56:34 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h. |
 | `iaccess.h` | TransactionServer | remaining |  |  |  |
@@ -1352,7 +1352,7 @@
 | `workspaceruntimeclientext.h` | TermServ | remaining |  |  |  |
 | `wpc.h` | Parcon | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR_User*/HWND_User*); no resource-owning functions. |
 | `wpdmtpextensions.h` | WpdSdk | remaining |  |  |  |
-| `wpdshellextension.h` | WpdSdk | remaining |  |  |  |
+| `wpdshellextension.h` | WpdSdk | matched |  | 09/02/2026 19:37:21 | GUID/property-key constants only, no functions. |
 | `wrdsgraphicschannels.h` | TermServ | remaining |  |  |  |
 | `ws2atm.h` | WinSock | remaining |  |  |  |
 | `ws2bth.h` | Bluetooth | remaining |  |  |  |
