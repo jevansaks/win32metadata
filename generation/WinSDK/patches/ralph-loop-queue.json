@@ -1883,10 +1883,10 @@
   {
     "header": "d3d10effect.h",
     "partition": "Direct3D10",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10effect.h.md",
     "_source": "header-progress"
   },
   {
@@ -5825,10 +5825,10 @@
   {
     "header": "mftransform.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mftransform.h.md",
     "_source": "header-progress"
   },
   {
@@ -6185,10 +6185,10 @@
   {
     "header": "msaatext.h",
     "partition": "Tsf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msaatext.h.md",
     "_source": "header-progress"
   },
   {
@@ -7517,10 +7517,10 @@
   {
     "header": "p2p.h",
     "partition": "P2p",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added HGRAPH (CloseApi PeerGraphClose) and HPEERENUM (CloseApi PeerGraphEndEnumeration) autoTypes.json entries. See docs/copilot/header-reports/p2p.h.md",
     "_source": "header-progress"
   },
   {
@@ -11720,10 +11720,10 @@
   {
     "header": "wintrust.h",
     "partition": "Security.WinTrust",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wintrust.h.md",
     "_source": "header-progress"
   },
   {

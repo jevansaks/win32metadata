@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:17:16Z
+- Generated: 2026-09-03T10:21:21Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1151
+- Matched: 1156
 - In progress: 0
 - Blocked: 31
-- Remaining: 221
+- Remaining: 216
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -219,7 +219,7 @@
 | `d3d10_1.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10_1shader.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10_1shader.h.md |
 | `d3d10.h` | Direct3D10 | remaining |  |  |  |
-| `d3d10effect.h` | Direct3D10 | remaining |  |  |  |
+| `d3d10effect.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10effect.h.md |
 | `d3d10misc.h` | Direct3D10 | matched |  | 09/02/2026 19:47:59 | All outputs are standard COM interface pointers. |
 | `d3d10sdklayers.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10shader.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10shader.h.md |
@@ -657,7 +657,7 @@
 | `mfreadwrite.h` | Mf | remaining |  |  |  |
 | `mfsharingengine.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfsharingengine.h.md |
 | `mfspatialaudio.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfspatialaudio.h.md |
-| `mftransform.h` | Mf | remaining |  |  |  |
+| `mftransform.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mftransform.h.md |
 | `mfvirtualcamera.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfvirtualcamera.h.md |
 | `mgm.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mgm.h.md |
 | `mgmtapi.h` | Snmp | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
@@ -697,7 +697,7 @@
 | `mq.h` | MessageQueuing | remaining |  |  |  |
 | `mqoai.h` | MessageQueuing | remaining |  |  |  |
 | `mrmresourceindexer.h` | MenuRc | matched |  | 09/02/2026 22:02:59 | Transparent wrapper struct, not an opaque handle type representable by the annotation mechanism. |
-| `msaatext.h` | Tsf | remaining |  |  |  |
+| `msaatext.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msaatext.h.md |
 | `msacm.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacm.h.md |
 | `msacmdlg.h` | Multimedia | matched |  | 09/02/2026 17:27:04 | Dialog resource ID constants only, no functions. |
 | `msacmdrv.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacmdrv.h.md |
@@ -845,7 +845,7 @@
 | `openservice.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/openservice.h.md |
 | `opmapi.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/opmapi.h.md |
 | `opmxbox.h` | Mf | matched |  | 09/02/2026 17:23:42 | Enum-output-only API, no handle. |
-| `p2p.h` | P2p | remaining |  |  |  |
+| `p2p.h` | P2p | matched |  |  | Producer-site fix: added HGRAPH (CloseApi PeerGraphClose) and HPEERENUM (CloseApi PeerGraphEndEnumeration) autoTypes.json entries. See docs/copilot/header-reports/p2p.h.md |
 | `packagevirtualizationcontext.h` | AppxPackaging | matched |  | 09/02/2026 18:56:34 | Genuine ownership gap fixed: CreatePackageVirtualizationContext/DuplicatePackageVirtualizationContext out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via ReleasePackageVirtualizationContext. GetCurrentPackageVirtualizationContext is a borrowed/non-owned query (like GetConsoleWindow), left unannotated correctly. GetProcessesInVirtualizationContext's HANDLE** array is the already-documented generic-HANDLE-array limitation (same as physicalmonitorenumerationapi.h), not a new blocker. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
 | `pacmanclientapi.h` | Setup | remaining |  |  |  |
 | `patchapi.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/patchapi.h.md |
@@ -1312,7 +1312,7 @@
 | `winsxs.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsxs.h.md |
 | `winsync.h` | WinSync | remaining |  |  |  |
 | `winternl.h` | ActiveDirectory, Base, Certificates, FileHistory, IpHlp, MadCap, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winternl.h.md |
-| `wintrust.h` | Security.WinTrust | remaining |  |  |  |
+| `wintrust.h` | Security.WinTrust | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wintrust.h.md |
 | `winusb.h` | Buses | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winusbio.h` | Buses | matched |  | 09/02/2026 18:38:01 | Constants + data structs only, no functions. |
 | `winuser.h` | Base, Controls, DataXchg, DlgBox, Dwm, FileHistory, Gdi, Input.Ime, Intl, IO, MenuRc, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Shell, TermServ, WinAuto, WinProg, WinTouch | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |

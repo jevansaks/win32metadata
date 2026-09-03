@@ -3285,3 +3285,12 @@ Ledger: 1146 accepted-normalized, 31 blocked, 226 pending (1177/1403 classified)
 - wsman.h (WinRm): PRODUCER-SITE FIX x3 - WSMAN_API_HANDLE/WSMAN_SESSION_HANDLE/WSMAN_OPERATION_HANDLE CloseApi filled in. WSMAN_COMMAND_HANDLE/WSMAN_SHELL_HANDLE blocked (mandatory async param).
 
 Ledger: 1151 accepted-normalized, 31 blocked, 221 pending (1182/1403 classified).
+
+## Batch 199 (2026-09-03 03:21): msaatext.h, p2p.h, wintrust.h, d3d10effect.h, mftransform.h
+
+- msaatext.h: COM vtable only. Clean.
+- p2p.h (P2p): PRODUCER-SITE FIX - HGRAPH/HPEERENUM autoTypes.json entries added.
+- wintrust.h: state-data HANDLE via WinVerifyTrust action params, unrepresentable. Clean.
+- d3d10effect.h, mftransform.h: COM interface pointer outputs. Clean.
+
+Ledger: 1156 accepted-normalized, 31 blocked, 216 pending (1187/1403 classified).
