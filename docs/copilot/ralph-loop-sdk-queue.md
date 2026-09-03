@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:30:48Z
+- Generated: 2026-09-03T06:35:53Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 791
+- Matched: 796
 - In progress: 0
 - Blocked: 31
-- Remaining: 581
+- Remaining: 576
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -118,7 +118,7 @@
 | `bits3_0.h` | Bits | remaining |  |  |  |
 | `bits4_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits4_0.h.md |
 | `bits5_0.h` | Bits | remaining |  |  |  |
-| `bitscfg.h` | Bits | remaining |  |  |  |
+| `bitscfg.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bitscfg.h.md |
 | `bitsmsg.h` | Bits | remaining |  |  |  |
 | `bluetoothapis.h` | Bluetooth | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `bluetoothleapis.h` | Bluetooth | remaining |  |  |  |
@@ -144,7 +144,7 @@
 | `certcli.h` | Certificates | remaining |  |  |  |
 | `certenc.h` | Certificates | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `certenroll.h` | Certificates | remaining |  |  |  |
-| `certexit.h` | Certificates | remaining |  |  |  |
+| `certexit.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certexit.h.md |
 | `certif.h` | Certificates | remaining |  |  |  |
 | `certmod.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certmod.h.md |
 | `certpol.h` | Certificates | remaining |  |  |  |
@@ -477,7 +477,7 @@
 | `handleapi.h` | FileHistory, Foundation | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `hidclass.h` | Hid | matched |  | 09/02/2026 21:59:01 | GUID/property-key constants only, no functions. |
 | `hidpi.h` | Hid | remaining |  |  |  |
-| `hidsdi.h` | Hid | remaining |  |  |  |
+| `hidsdi.h` | Hid | matched |  |  | Genuine producer-site fix: added CloseApi=HidD_FreePreparsedData to existing incomplete PHIDP_PREPARSED_DATA autoTypes.json entry. See docs/copilot/header-reports/hidsdi.h.md |
 | `hidusage.h` | Hid | remaining |  |  |  |
 | `highlevelmonitorconfigurationapi.h` | Monitor | matched |  | 09/02/2026 21:17:15 | No function produces an opaque handle; HANDLE param is a pre-owned caller input. |
 | `hintsdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 21:27:04 | Constants only, no functions. |
@@ -913,7 +913,7 @@
 | `qos2.h` | Qos | remaining |  |  |  |
 | `qospol.h` | Qos | matched |  | 09/02/2026 17:48:13 | Data struct + constants only, no functions. |
 | `qossp.h` | Qos | remaining |  |  |  |
-| `query.h` | Search | remaining |  |  |  |
+| `query.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/query.h.md |
 | `radialcontrollerinterop.h` | InputRadial | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radialcontrollerinterop.h.md |
 | `radiomgr.h` | WpdSdk | remaining |  |  |  |
 | `ras.h` | RRas | remaining |  |  |  |
@@ -1074,7 +1074,7 @@
 | `syncregistrationerrors.h` | WinSync | matched |  | 09/02/2026 18:09:40 | HRESULT error-code constants only, no functions. |
 | `sysinfoapi.h` | SystemInformation | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `systemmediatransportcontrolsinterop.h` | WinRT | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
-| `t2embapi.h` | Gdi | remaining |  |  |  |
+| `t2embapi.h` | Gdi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/t2embapi.h.md |
 | `tabflicks.h` | Tablet | matched |  | 09/02/2026 17:58:11 | Enums/bitfield structs only, no functions. |
 | `tapi.h` | Tapi3 | remaining |  |  |  |
 | `tapi3.h` | Tapi3 | remaining |  |  |  |

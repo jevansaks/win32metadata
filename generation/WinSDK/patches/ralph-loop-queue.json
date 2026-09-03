@@ -974,10 +974,10 @@
   {
     "header": "bitscfg.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bitscfg.h.md",
     "_source": "header-progress"
   },
   {
@@ -1208,10 +1208,10 @@
   {
     "header": "certexit.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certexit.h.md",
     "_source": "header-progress"
   },
   {
@@ -4205,10 +4205,10 @@
   {
     "header": "hidsdi.h",
     "partition": "Hid",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added CloseApi=HidD_FreePreparsedData to existing incomplete PHIDP_PREPARSED_DATA autoTypes.json entry. See docs/copilot/header-reports/hidsdi.h.md",
     "_source": "header-progress"
   },
   {
@@ -8129,10 +8129,10 @@
   {
     "header": "query.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/query.h.md",
     "_source": "header-progress"
   },
   {
@@ -9578,10 +9578,10 @@
   {
     "header": "t2embapi.h",
     "partition": "Gdi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/t2embapi.h.md",
     "_source": "header-progress"
   },
   {

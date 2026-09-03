@@ -2578,3 +2578,13 @@ Ledger: 786 accepted-normalized, 31 blocked, 586 pending (817/1403 classified). 
 - **d3dcsx.h** (Direct3D11): D3DX11CreateScan/CreateFFT family output standard COM interface pointers. Clean.
 
 Ledger: 791 accepted-normalized, 31 blocked, 581 pending (822/1403 classified).
+
+## Batch 127 (2026-09-02 23:36): t2embapi.h, query.h, hidsdi.h, bitscfg.h, certexit.h
+
+- **t2embapi.h** (Gdi): TTLoadEmbeddedFont outputs generic shared HANDLE, not fixable. Clean.
+- **query.h** (Search): COM interfaces only, no free functions. Clean.
+- **hidsdi.h** (Hid): PATCH APPLIED. PHIDP_PREPARSED_DATA had an existing autoTypes.json entry missing CloseApi - added CloseApi=HidD_FreePreparsedData (producer HidD_GetPreparsedData). Type is opaque, shared with hidclass.h/hidpi.h (both already tracked). Re-scraped Hid (x64): 0 errors.
+- **bitscfg.h** (Bits): COM interfaces only, no free functions. Clean.
+- **certexit.h** (Certificates): COM interfaces only, no free functions. Clean.
+
+Ledger: 796 accepted-normalized, 31 blocked, 576 pending (827/1403 classified).

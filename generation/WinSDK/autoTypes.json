@@ -2500,6 +2500,7 @@
     "Namespace": "Windows.Win32.Devices.HumanInterfaceDevice",
     "Name": "PHIDP_PREPARSED_DATA",
     "ValueType": "typedef struct _HIDP_PREPARSED_DATA",
+    "CloseApi": "HidD_FreePreparsedData",
     "NativeTypedef": true
   },
   {
