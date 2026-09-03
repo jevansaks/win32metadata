@@ -1307,10 +1307,10 @@
   {
     "header": "cierror.h",
     "partition": "Foundation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cierror.h.md",
     "_source": "header-progress"
   },
   {
@@ -2099,10 +2099,10 @@
   {
     "header": "d3dcaps.h",
     "partition": "Direct3D9",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcaps.h.md",
     "_source": "header-progress"
   },
   {
@@ -4034,10 +4034,10 @@
   {
     "header": "gameux.h",
     "partition": "GameMode",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gameux.h.md",
     "_source": "header-progress"
   },
   {
@@ -5168,10 +5168,10 @@
   {
     "header": "knownfolders.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/knownfolders.h.md",
     "_source": "header-progress"
   },
   {
@@ -9245,10 +9245,10 @@
   {
     "header": "sqloledb.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqloledb.h.md",
     "_source": "header-progress"
   },
   {

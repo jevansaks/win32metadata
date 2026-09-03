@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:10:41Z
+- Generated: 2026-09-03T08:12:49Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 941
+- Matched: 946
 - In progress: 0
 - Blocked: 31
-- Remaining: 431
+- Remaining: 426
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -155,7 +155,7 @@
 | `cfapi.h` | Cloudapi | remaining |  |  |  |
 | `cfg.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfg.h.md |
 | `cfgmgr32.h` | DevInst | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
-| `cierror.h` | Foundation | remaining |  |  |  |
+| `cierror.h` | Foundation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cierror.h.md |
 | `clfs.h` | Fs | remaining |  |  |  |
 | `clfsmgmt.h` | Fs | matched |  |  | Genuine producer-site fix: added CLFS_MGMT_CLIENT autoTypes.json entry (CloseApi=ClfsMgmtDeregisterManagedClient). See docs/copilot/header-reports/clfsmgmt.h.md |
 | `clfsmgmtw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
@@ -243,7 +243,7 @@
 | `d3d9helper.h` | Media.DShow | remaining |  |  |  |
 | `d3d9on12.h` | Direct3D9on12 | matched |  | 09/02/2026 19:21:35 | COM factory/refcounting pattern throughout. |
 | `d3d9types.h` | Direct3D9, Mf | remaining |  |  |  |
-| `d3dcaps.h` | Direct3D9 | remaining |  |  |  |
+| `d3dcaps.h` | Direct3D9 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcaps.h.md |
 | `d3dcommon.h` | Direct2D, Direct3D, Direct3D10 | remaining |  |  |  |
 | `d3dcompiler.h` | Direct3DFxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `d3dcsx.h` | Direct3D11 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcsx.h.md |
@@ -458,7 +458,7 @@
 | `fwptypes.h` | WindowsFilteringPlatform | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwptypes.h.md |
 | `fxsutility.h` | Fax | matched |  | 09/02/2026 17:19:28 | No handle involved. |
 | `GameInput.h` | GameInput | matched |  | 09/02/2026 16:34:06 | GameInputCreate is a clean COM-factory pattern; the one raw HANDLE out-param (IGameInputDispatcher::OpenWaitHandle) is a COM vtable method, outside DllImport-based ownership-annotation scope. |
-| `gameux.h` | GameMode | remaining |  |  |  |
+| `gameux.h` | GameMode | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gameux.h.md |
 | `gamingdeviceinformation.h` | GamingDvcInfo | matched |  | 09/02/2026 18:06:26 | Plain struct output, no handle. |
 | `gamingtcui.h` | Tcui | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gamingtcui.h.md |
 | `gb18030.h` | Intl | matched |  | 09/02/2026 20:31:37 | Buffer-conversion function only, no handles. |
@@ -584,7 +584,7 @@
 | `jsrt9.h` | Js | remaining |  |  |  |
 | `kbd.h` | KeyboardAndMouseInput | matched | copilot | 09/03/2026 04:20:00 | No patch needed; data-structure-only header. |
 | `keycredmgr.h` | Credentials | matched |  | 09/02/2026 18:20:58 | KeyCredentialManagerInfo alloc/free is a transparent-struct memory pattern, not an opaque handle. |
-| `knownfolders.h` | Shell | remaining |  |  |  |
+| `knownfolders.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/knownfolders.h.md |
 | `ks.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
 | `ksmedia.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
 | `ksproxy.h` | Media.KernelStreaming | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ksproxy.h.md |
@@ -1037,7 +1037,7 @@
 | `sporder.h` | WinSock | matched |  | 09/02/2026 17:45:25 | DWORD/GUID array API only, no handle. |
 | `sql.h` | Search | remaining |  |  |  |
 | `sqlext.h` | Search | remaining |  |  |  |
-| `sqloledb.h` | Search | remaining |  |  |  |
+| `sqloledb.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqloledb.h.md |
 | `sqlspi.h` | Search | matched |  | 09/02/2026 21:27:04 | No function produces the generic ODBC handle type; all reference it as pre-owned input. |
 | `sqltypes.h` | Search | matched |  | 09/02/2026 21:24:15 | Type definitions only, no functions. |
 | `sqlucode.h` | Search | remaining |  |  |  |

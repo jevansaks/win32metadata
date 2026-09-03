@@ -2878,3 +2878,13 @@ Ledger: 936 accepted-normalized, 31 blocked, 436 pending (967/1403 classified).
 - **d3d10shader.h** (Direct3D10): all outputs are COM interface pointers/static strings. Clean.
 
 Ledger: 941 accepted-normalized, 31 blocked, 431 pending (972/1403 classified).
+
+## Batch 157 (2026-09-03 01:13): sqloledb.h, d3dcaps.h, gameux.h, knownfolders.h, cierror.h
+
+- **sqloledb.h** (Search): CLSID_*/IID_* GUID constants only. Clean.
+- **d3dcaps.h** (Direct3D9): transparent structs only, no functions. Clean.
+- **gameux.h** (GameMode): COM interfaces only, no free functions. Clean.
+- **knownfolders.h** (Shell): FOLDERID_* GUID constants only. Clean.
+- **cierror.h** (Foundation): FACILITY_*/severity constants only. Clean.
+
+Ledger: 946 accepted-normalized, 31 blocked, 426 pending (977/1403 classified).
