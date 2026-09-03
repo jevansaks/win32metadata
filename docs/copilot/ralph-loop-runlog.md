@@ -2378,3 +2378,13 @@ Ledger: 686 accepted-normalized, 31 blocked, 686 pending (717/1403 classified). 
 - **wsdattachment.h** (FunctionDiscovery): COM interfaces only, no free functions. Clean.
 
 Ledger: 691 accepted-normalized, 31 blocked, 681 pending (722/1403 classified).
+
+## Batch 107 (2026-09-02 22:32): ioevent.h, vmsavedstatedumpdefs.h, lmaudit.h, mmsyscom.h, traffic.h
+
+- **ioevent.h** (MenuRc): GUIDs + transparent event-data structs, no functions. Clean.
+- **vmsavedstatedumpdefs.h** (Hypervisor): defs-only header (VM_SAVED_STATE_DUMP_HANDLE typedef), no functions - ownership deferred to still-pending VmSavedStateDumpProvider.h sibling. Clean.
+- **lmaudit.h** (NetMgmt): NetAuditRead uses NetApiBufferAllocate/Free convention (OUT LPBYTE *bufptr). Clean.
+- **mmsyscom.h** (Media): DECLARE_HANDLE(HDRVR) + callback typedef only, no functions. HDRVR's autoTypes.json entry lacks CloseApi - noted for follow-up when still-pending mmiscapi.h (OpenDriver/CloseDriver) is processed. Clean for this header.
+- **traffic.h** (Qos): APIENTRY macro + transparent QoS structs, no Tc* function declarations in this file. Clean.
+
+Ledger: 696 accepted-normalized, 31 blocked, 676 pending (727/1403 classified).

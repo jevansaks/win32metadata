@@ -4961,10 +4961,10 @@
   {
     "header": "ioevent.h",
     "partition": "MenuRc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ioevent.h.md",
     "_source": "header-progress"
   },
   {
@@ -5294,10 +5294,10 @@
   {
     "header": "lmaudit.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmaudit.h.md",
     "_source": "header-progress"
   },
   {
@@ -6050,10 +6050,10 @@
   {
     "header": "mmsyscom.h",
     "partition": "Media",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmsyscom.h.md",
     "_source": "header-progress"
   },
   {
@@ -9857,10 +9857,10 @@
   {
     "header": "traffic.h",
     "partition": "Qos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/traffic.h.md",
     "_source": "header-progress"
   },
   {
@@ -10397,10 +10397,10 @@
   {
     "header": "vmsavedstatedumpdefs.h",
     "partition": "Hypervisor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vmsavedstatedumpdefs.h.md",
     "_source": "header-progress"
   },
   {

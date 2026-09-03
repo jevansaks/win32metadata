@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:28:20Z
+- Generated: 2026-09-03T05:31:48Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 691
+- Matched: 696
 - In progress: 0
 - Blocked: 31
-- Remaining: 681
+- Remaining: 676
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -561,7 +561,7 @@
 | `intsafe.h` | Shell | remaining |  |  |  |
 | `intshcut.h` | Shell | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ioapiset.h` | Base, IO | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
-| `ioevent.h` | MenuRc | remaining |  |  |  |
+| `ioevent.h` | MenuRc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ioevent.h.md |
 | `ioringapi.h` | Fs | matched |  | 09/02/2026 21:59:01 | HIORING already correctly covered via existing autoTypes.json entry. |
 | `ip2string.h` | IpHlp, wnv | matched |  | 09/02/2026 20:34:23 | String-conversion functions write into caller buffers only, no handles. |
 | `IPExport.h` | IpHlp | matched |  | 09/02/2026 22:09:36 | Type aliases/structs only, no functions. |
@@ -598,7 +598,7 @@
 | `lmalert.h` | NetMgmt | matched |  | 09/02/2026 19:19:02 | Caller-supplied input buffers only, no handle. |
 | `lmapibuf.h` | NetMgmt | matched |  | 09/02/2026 18:32:46 | Canonical NetApiBufferFree convention, generic memory buffer, not HANDLE-family. |
 | `lmat.h` | NetMgmt | matched |  | 09/02/2026 19:16:41 | Net API buffer-allocation convention, not HANDLE-family. |
-| `lmaudit.h` | NetMgmt | remaining |  |  |  |
+| `lmaudit.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmaudit.h.md |
 | `lmconfig.h` | NetMgmt | matched |  | 09/02/2026 18:03:29 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
 | `lmcons.h` | Dfs, NetMgmt | matched |  | 09/02/2026 21:32:46 | Constants only, no functions. |
 | `lmdfs.h` | Dfs | remaining |  |  |  |
@@ -682,7 +682,7 @@
 | `mmiscapi2.h` | Media | matched |  | 09/02/2026 18:15:12 | Timer ID is a UINT, not a HANDLE. |
 | `mmreg.h` | Audio.DirectMusic, Media.DShow, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmstream.h` | Media.DShow | remaining |  |  |  |
-| `mmsyscom.h` | Media | remaining |  |  |  |
+| `mmsyscom.h` | Media | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmsyscom.h.md |
 | `mmsystem.h` | Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Base, Devices.Properties, FileHistory, GamingDvcInfo, Gdi, Hid, IO, Multimedia, WinProg | matched |  | 09/02/2026 19:42:09 | Pure umbrella redirect; all sub-headers already individually tracked. |
 | `mobsync.h` | Shell | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mpconfig.h` | Media.DShow | matched |  | 09/02/2026 20:34:23 | COM-style interface methods only, no extern functions. |
@@ -1105,7 +1105,7 @@
 | `tpcshrd.h` | Tablet | matched |  | 09/02/2026 21:55:32 | Constants/typedefs/enums only, no functions. |
 | `TpmVscAttestation.h` | Security.Tpm | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
 | `tpmvscmgr.h` | Security.Tpm | remaining |  |  |  |
-| `traffic.h` | Qos | remaining |  |  |  |
+| `traffic.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/traffic.h.md |
 | `transportsettingcommon.h` | WinSock | matched |  | 09/02/2026 16:57:06 | Plain data struct only, no functions. |
 | `transportsettings.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `tsattrs.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsattrs.h.md |
@@ -1165,7 +1165,7 @@
 | `vmgenerationcounter.h` | Hypervisor | matched |  | 09/02/2026 17:19:28 | GUID/IOCTL constant + data struct only, no functions. |
 | `vmr9.h` | Media.DShow | remaining |  |  |  |
 | `vmsavedstatedump.h` | Hypervisor | remaining |  |  |  |
-| `vmsavedstatedumpdefs.h` | Hypervisor | remaining |  |  |  |
+| `vmsavedstatedumpdefs.h` | Hypervisor | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vmsavedstatedumpdefs.h.md |
 | `vpconfig.h` | Media.DShow | matched |  | 09/02/2026 19:45:17 | COM-style interfaces only, no extern functions. |
 | `vpnotify.h` | Media.DShow | matched |  | 09/02/2026 18:23:41 | COM interfaces with plain enum/BOOL parameters only, no handle. |
 | `vptype.h` | Media.DShow | matched |  | 09/02/2026 18:47:23 | Enums/data structs only, no functions. |
