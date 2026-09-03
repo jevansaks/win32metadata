@@ -2618,3 +2618,13 @@ Ledger: 806 accepted-normalized, 31 blocked, 566 pending (837/1403 classified).
 - **ws2atm.h** (WinSock): protocol constants/transparent structs only, no functions. Clean.
 
 Ledger: 811 accepted-normalized, 31 blocked, 561 pending (842/1403 classified). Milestone: 130 batches this session.
+
+## Batch 131 (2026-09-02 23:51): inputscope.h, inkpresenterdesktop.h, eappapis.h, portabledeviceconnectapi.h, interactioncontext.h
+
+- **inputscope.h** (Tsf): COM interfaces only, no free functions. Clean.
+- **inkpresenterdesktop.h** (Input_Ink): COM interfaces only, no free functions. Clean.
+- **eappapis.h** (EapHost): EapHostPeerFreeEapError targets transparent EAP_ERROR struct (defined in still-pending eaptypes.h) - out of scope. Clean.
+- **portabledeviceconnectapi.h** (WpdSdk): COM interfaces only, no free functions. Clean.
+- **interactioncontext.h** (Input_IntContext): HINTERACTIONCONTEXT already has complete autoTypes.json entry (CloseApi=DestroyInteractionContext) - no gap. Clean.
+
+Ledger: 816 accepted-normalized, 31 blocked, 556 pending (847/1403 classified).

@@ -3323,10 +3323,10 @@
   {
     "header": "eappapis.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eappapis.h.md",
     "_source": "header-progress"
   },
   {
@@ -4862,10 +4862,10 @@
   {
     "header": "inkpresenterdesktop.h",
     "partition": "Input_Ink",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inkpresenterdesktop.h.md",
     "_source": "header-progress"
   },
   {
@@ -4898,10 +4898,10 @@
   {
     "header": "inputscope.h",
     "partition": "Tsf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inputscope.h.md",
     "_source": "header-progress"
   },
   {
@@ -4916,10 +4916,10 @@
   {
     "header": "interactioncontext.h",
     "partition": "Input_IntContext",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/interactioncontext.h.md",
     "_source": "header-progress"
   },
   {
@@ -7769,10 +7769,10 @@
   {
     "header": "portabledeviceconnectapi.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceconnectapi.h.md",
     "_source": "header-progress"
   },
   {
