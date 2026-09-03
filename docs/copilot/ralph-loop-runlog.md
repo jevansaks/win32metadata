@@ -3520,3 +3520,8 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - d3d10.h, imapi2fs.h, fsrmpipeline.h, searchapi.h: COM vtable-only headers, clean.
 - hidusage.h: HID usage-page/usage constants only, clean.
 - Ledger: 1287 accepted-normalized, 59 blocked, 57 pending (1346/1403 = 95.9%).
+
+## Batch 226 (5eb7a857 -> next)
+- cscobj.h, uianimation.h, xenroll.h, objidlbase.h: COM vtable-only headers, clean.
+- mmc.h: COM vtable methods + 5 STDAPI helpers using generic LONG_PTR notify handle (no producer/distinct typedef in this header), generic/shared-type blocker class 2, clean.
+- Ledger: 1292 accepted-normalized, 59 blocked, 52 pending (1351/1403 = 96.3%).

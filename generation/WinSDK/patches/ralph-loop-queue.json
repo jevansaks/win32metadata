@@ -1685,10 +1685,10 @@
   {
     "header": "cscobj.h",
     "partition": "Of",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/cscobj.h.md",
     "_source": "header-progress"
   },
   {
@@ -5969,10 +5969,10 @@
   {
     "header": "mmc.h",
     "partition": "Mmc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; 5 STDAPI helpers use generic LONG_PTR notify handle (no producer/distinct typedef), generic/shared-type blocker class 2, plus COM vtable methods. See docs/copilot/header-reports/MMC.h.md",
     "_source": "header-progress"
   },
   {
@@ -7328,10 +7328,10 @@
   {
     "header": "objidlbase.h",
     "partition": "TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/ObjIdlbase.h.md",
     "_source": "header-progress"
   },
   {
@@ -10028,10 +10028,10 @@
   {
     "header": "uianimation.h",
     "partition": "UiAnimation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/UIAnimation.h.md",
     "_source": "header-progress"
   },
   {
@@ -12530,10 +12530,10 @@
   {
     "header": "xenroll.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/xenroll.h.md",
     "_source": "header-progress"
   },
   {

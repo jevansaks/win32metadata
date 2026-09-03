@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:43:05Z
+- Generated: 2026-09-03T11:45:19Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1287
+- Matched: 1292
 - In progress: 0
 - Blocked: 59
-- Remaining: 57
+- Remaining: 52
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -197,7 +197,7 @@
 | `cryptuiapi.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cryptxml.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cscapi.h` | Of | matched |  | 09/02/2026 18:20:58 | BOOL-output-only API, no handle. |
-| `cscobj.h` | Of | remaining |  |  |  |
+| `cscobj.h` | Of | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/cscobj.h.md |
 | `cspdk.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cspdk.h.md |
 | `ctffunc.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ctffunc.h.md |
 | `ctfspui.h` | Tsf | matched |  | 09/02/2026 20:41:40 | COM interface method + GUID constants only, no extern functions. |
@@ -673,7 +673,7 @@
 | `mixerocx.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mixerocx.h.md |
 | `mlang.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mlang.h.md |
 | `MLOperatorAuthor.h` | MachineLearning | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/MLOperatorAuthor.h.md |
-| `mmc.h` | Mmc | remaining |  |  |  |
+| `mmc.h` | Mmc | matched |  |  | Investigated; 5 STDAPI helpers use generic LONG_PTR notify handle (no producer/distinct typedef), generic/shared-type blocker class 2, plus COM vtable methods. See docs/copilot/header-reports/MMC.h.md |
 | `mmcobj.h` | Lwef, Mmc | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MMCObj.h.md |
 | `mmddk.h` | Audio.DirectMusic, Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmddk.h.md |
 | `mmdeviceapi.h` | Audio | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
@@ -824,7 +824,7 @@
 | `objbase.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, IO, Printing, TransactionServer, VSS, WinProg | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `objectarray.h` | Shell, Shell.Common | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `ObjIdl.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, IO, Rpc, TransactionServer, VSS | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
-| `objidlbase.h` | TransactionServer | remaining |  |  |  |
+| `objidlbase.h` | TransactionServer | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/ObjIdlbase.h.md |
 | `objsafe.h` | Debug | matched |  | 09/02/2026 21:27:04 | COM interface method only, out of scope. |
 | `objsel.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/objsel.h.md |
 | `ocidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Media.DShow, Search, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
@@ -1124,7 +1124,7 @@
 | `txfw32.h` | Fs | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `txlogpub.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/txlogpub.h.md |
 | `ual.h` | Ual | matched | copilot | 09/02/2026 22:59:00 | First header-scraping-investigation batch: no prior patch existed. New supported-os patch created and verified via live re-scrape, not just static review. |
-| `uianimation.h` | UiAnimation | remaining |  |  |  |
+| `uianimation.h` | UiAnimation | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/UIAnimation.h.md |
 | `uiautomationclient.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `uiautomationcore.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `uiautomationcoreapi.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
@@ -1402,7 +1402,7 @@
 | `xaudio2.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2.h.md |
 | `xaudio2fx.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2fx.h.md |
 | `xblidpauthmanager.h` | Xblidp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xblidpauthmanager.h.md |
-| `xenroll.h` | Certificates | remaining |  |  |  |
+| `xenroll.h` | Certificates | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/xenroll.h.md |
 | `xinput.h` | Xinput | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xinput.h.md |
 | `xmllite.h` | FileHistory, XmlLite | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xmllite.h.md |
 | `xolehlp.h` | DTC | matched |  | 09/02/2026 20:38:46 | All outputs are standard COM QueryInterface-style interface pointers. |
