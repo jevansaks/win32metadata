@@ -2432,10 +2432,10 @@
   {
     "header": "devguid.h",
     "partition": "DevInst",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devguid.h.md",
     "_source": "header-progress"
   },
   {
@@ -3809,10 +3809,10 @@
   {
     "header": "fltdefs.h",
     "partition": "FileHistory, IpHlp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added INTERFACE_HANDLE autoTypes.json entry (CloseApi=PfDeleteInterface). FILTER_HANDLE left unannotated (bulk-array removal, no single-handle CloseApi). See docs/copilot/header-reports/fltdefs.h.md",
     "_source": "header-progress"
   },
   {
@@ -4745,10 +4745,10 @@
   {
     "header": "imgerror.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgerror.h.md",
     "_source": "header-progress"
   },
   {
@@ -7868,10 +7868,10 @@
   {
     "header": "printerextensiondispid.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/printerextensiondispid.h.md",
     "_source": "header-progress"
   },
   {
@@ -10190,10 +10190,10 @@
   {
     "header": "useractivityinterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/useractivityinterop.h.md",
     "_source": "header-progress"
   },
   {

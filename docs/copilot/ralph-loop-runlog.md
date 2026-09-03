@@ -2508,3 +2508,13 @@ Ledger: 751 accepted-normalized, 31 blocked, 621 pending (782/1403 classified).
 - **mdmregistration.h** (MdmReg): GetDeviceRegistrationInfo outputs untyped PVOID (type varies per enum value, unrepresentable); DiscoverManagementService outputs transparent MANAGEMENT_SERVICE_INFO struct. Clean, no new metadata gap.
 
 Ledger: 756 accepted-normalized, 31 blocked, 616 pending (787/1403 classified).
+
+## Batch 120 (2026-09-02 23:15): fltdefs.h, devguid.h, imgerror.h, useractivityinterop.h, printerextensiondispid.h
+
+- **fltdefs.h** (FileHistory, IpHlp): PATCH APPLIED. INTERFACE_HANDLE (produced by PfCreateInterface, freed by PfDeleteInterface) added to autoTypes.json. FILTER_HANDLE left unannotated - bulk array removal via PfRemoveFilterHandles, no single-handle CloseApi. Re-scraped IpHlp (x64): 0 errors (6 pre-existing unrelated cross-partition remap warnings).
+- **devguid.h** (DevInst): PnP device-class GUID constants only, no functions. Clean.
+- **imgerror.h** (Printing): COM interfaces only, no free functions. Clean.
+- **useractivityinterop.h** (WinRT): COM interfaces only, no free functions. Clean.
+- **printerextensiondispid.h** (Printing): DISPID constants only, no functions. Clean.
+
+Ledger: 761 accepted-normalized, 31 blocked, 611 pending (792/1403 classified).

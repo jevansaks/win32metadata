@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:10:40Z
+- Generated: 2026-09-03T06:15:34Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 756
+- Matched: 761
 - In progress: 0
 - Blocked: 31
-- Remaining: 616
+- Remaining: 611
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -280,7 +280,7 @@
 | `deletebrowsinghistory.h` | WinProg | matched |  | 09/02/2026 20:22:05 | COM interface + GUID/flag constants only, no extern functions. |
 | `deliveryoptimization.h` | DeliveryOptimization | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
 | `devfiltertypes.h` | DeviceQuery | matched |  | 09/02/2026 19:37:21 | Enum/struct only, no functions. |
-| `devguid.h` | DevInst | remaining |  |  |  |
+| `devguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devguid.h.md |
 | `deviceaccess.h` | DeviceAccess | remaining |  |  |  |
 | `deviceservices.h` | WpdSdk | matched |  | 09/02/2026 17:58:11 | GUID/property-key constants only, no functions; BridgeDeviceService.h separately tracked (pending). |
 | `devicetopology.h` | Audio | remaining |  |  |  |
@@ -433,7 +433,7 @@
 | `filtereg.h` | Search | remaining |  |  |  |
 | `filterpipeline.h` | Printing | remaining |  |  |  |
 | `filterr.h` | IndexSrv | matched |  | 09/02/2026 19:14:35 | HRESULT error-code constants only, no functions. |
-| `fltdefs.h` | FileHistory, IpHlp | remaining |  |  |  |
+| `fltdefs.h` | FileHistory, IpHlp | matched |  |  | Genuine producer-site fix: added INTERFACE_HANDLE autoTypes.json entry (CloseApi=PfDeleteInterface). FILTER_HANDLE left unannotated (bulk-array removal, no single-handle CloseApi). See docs/copilot/header-reports/fltdefs.h.md |
 | `fltuser.h` | Ifsk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fltuser.h.md |
 | `fontsub.h` | Gdi | matched |  | 09/02/2026 21:52:12 | Buffer allocation delegated entirely to caller-supplied callbacks, no opaque handle. |
 | `fsrm.h` | Fsrm | remaining |  |  |  |
@@ -537,7 +537,7 @@
 | `imepad.h` | Input.Ime | remaining |  |  |  |
 | `imessage.h` | IMapi | matched |  | 09/02/2026 21:32:46 | Fixed genuine gap: completed autoTypes.json entry for LPMSGSESS (CloseApi=CloseIMsgSession). |
 | `imessagedispatcher.h` | TransactionServer | matched |  | 09/02/2026 20:22:05 | COM/WinRT interface method only, out of scope. |
-| `imgerror.h` | Printing | remaining |  |  |  |
+| `imgerror.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgerror.h.md |
 | `imgutil.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgutil.h.md |
 | `imm.h` | Input.Ime | remaining |  |  |  |
 | `immdev.h` | Input.Ime | remaining |  |  |  |
@@ -884,7 +884,7 @@
 | `presentationtypes.h` | CompositionSwapchain | matched |  | 09/02/2026 18:06:26 | Data structs/enum/typedef + MIDL boilerplate only, no functions. |
 | `Print3DManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:43:41 | COM/WinRT interop interface method only, out of scope. |
 | `PrinterExtension.h` | Printing | remaining |  |  |  |
-| `printerextensiondispid.h` | Printing | remaining |  |  |  |
+| `printerextensiondispid.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/printerextensiondispid.h.md |
 | `PrintManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:32:46 | COM/WinRT interop interface method only, out of scope. |
 | `printoem.h` | Printing | remaining |  |  |  |
 | `printpreview.h` | Printing | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
@@ -1142,7 +1142,7 @@
 | `usbprint.h` | Printing | matched |  | 09/02/2026 20:28:23 | GUID/IOCTL constants only, no functions. |
 | `usbscan.h` | Buses | matched |  | 09/02/2026 20:25:02 | IOCTL parameter structs only, no functions. |
 | `usbuser.h` | Buses | remaining |  |  |  |
-| `useractivityinterop.h` | WinRT | remaining |  |  |  |
+| `useractivityinterop.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/useractivityinterop.h.md |
 | `UserConsentVerifierInterop.h` | WinRT | matched |  | 09/02/2026 20:44:40 | COM/WinRT interop interface method only, out of scope. |
 | `userenv.h` | Policy, Shell | blocked | copilot | 09/02/2026 18:53:55 | RE-AUDITED: previously classified in existing-patches-34 based only on retained set-last-error/supported-os patches (not an ownership audit). Re-audit found a genuine unaddressed HANDLE ownership gap (LoadUserProfileW/UnloadUserProfile via PROFILEINFOW.hProfile), same class as physicalmonitorenumerationapi.h. Reclassified to blocked; prior retained patches remain valid. |
 | `usp10.h` | Intl | remaining |  |  |  |
