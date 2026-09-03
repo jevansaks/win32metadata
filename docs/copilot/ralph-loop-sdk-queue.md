@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:59:25Z
+- Generated: 2026-09-03T09:01:33Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1026
+- Matched: 1031
 - In progress: 0
 - Blocked: 31
-- Remaining: 346
+- Remaining: 341
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -247,7 +247,7 @@
 | `d3dcommon.h` | Direct2D, Direct3D, Direct3D10 | remaining |  |  |  |
 | `d3dcompiler.h` | Direct3DFxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `d3dcsx.h` | Direct3D11 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcsx.h.md |
-| `d3dshadercacheregistration.h` | Direct3D | remaining |  |  |  |
+| `d3dshadercacheregistration.h` | Direct3D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dshadercacheregistration.h.md |
 | `d3dtypes.h` | Direct3D9 | remaining |  |  |  |
 | `datetimeapi.h` | Intl | matched |  | 09/02/2026 19:19:02 | String/buffer formatting API only, no handle. |
 | `davclnt.h` | WebDav | blocked |  | 09/02/2026 19:54:02 | DavAddConnection generic HANDLE out-param; DavRegisterAuthCallback returns generic DWORD-typed OPAQUE_HANDLE via return value. |
@@ -295,7 +295,7 @@
 | `dhcpv6csdk.h` | Dhcp | matched |  | 09/02/2026 21:12:30 | Constants only, no functions. |
 | `diagnosticdataquery.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:49:21 | All six opaque handle types already correctly covered via existing autoTypes.json entries; resolves deferred DIAGNOSTIC_DATA_QUERY_SESSION item. |
 | `diagnosticdataquerytypes.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:31:37 | Types/RPC boilerplate only, no functions; DIAGNOSTIC_DATA_QUERY_SESSION ownership deferred to DiagnosticDataQuery.h. |
-| `digitalv.h` | Multimedia | remaining |  |  |  |
+| `digitalv.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/digitalv.h.md |
 | `dimm.h` | Input.Ime | remaining |  |  |  |
 | `dinput.h` | Hid | remaining |  |  |  |
 | `dinputd.h` | Hid | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dinputd.h.md |
@@ -601,7 +601,7 @@
 | `lmaudit.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmaudit.h.md |
 | `lmconfig.h` | NetMgmt | matched |  | 09/02/2026 18:03:29 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
 | `lmcons.h` | Dfs, NetMgmt | matched |  | 09/02/2026 21:32:46 | Constants only, no functions. |
-| `lmdfs.h` | Dfs | remaining |  |  |  |
+| `lmdfs.h` | Dfs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmdfs.h.md |
 | `lmerr.h` | NetMgmt | remaining |  |  |  |
 | `lmerrlog.h` | NetMgmt | remaining |  |  |  |
 | `lmjoin.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmjoin.h.md |
@@ -994,7 +994,7 @@
 | `sensevts.h` | Sens | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensevts.h.md |
 | `sensors.h` | WinSensors | remaining |  |  |  |
 | `sensorsapi.h` | WinLocation, WinSensors | remaining |  |  |  |
-| `sensorsdef.h` | WinSensors | remaining |  |  |  |
+| `sensorsdef.h` | WinSensors | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensorsdef.h.md |
 | `sensorsstructures.h` | WinSensors | matched |  | 09/02/2026 18:00:52 | Data structs/enum only, no functions. |
 | `sensorsutils.h` | WinSensors | matched |  | 09/02/2026 21:55:32 | No function produces an opaque handle. |
 | `sessdirpublictypes.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sessdirpublictypes.h.md |
@@ -1104,7 +1104,7 @@
 | `tpcerror.h` | Tablet | matched |  | 09/02/2026 19:54:02 | HRESULT constants/macros only, no functions. |
 | `tpcshrd.h` | Tablet | matched |  | 09/02/2026 21:55:32 | Constants/typedefs/enums only, no functions. |
 | `TpmVscAttestation.h` | Security.Tpm | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
-| `tpmvscmgr.h` | Security.Tpm | remaining |  |  |  |
+| `tpmvscmgr.h` | Security.Tpm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tpmvscmgr.h.md |
 | `traffic.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/traffic.h.md |
 | `transportsettingcommon.h` | WinSock | matched |  | 09/02/2026 16:57:06 | Plain data struct only, no functions. |
 | `transportsettings.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |

@@ -3048,3 +3048,13 @@ Ledger: 1021 accepted-normalized, 31 blocked, 351 pending (1052/1403 classified)
 - **ehstorapi.h** (Enstor): COM vtable only. Clean.
 
 Ledger: 1026 accepted-normalized, 31 blocked, 346 pending (1057/1403 classified).
+
+## Batch 174 (2026-09-03 02:01): tpmvscmgr.h, sensorsdef.h, d3dshadercacheregistration.h, digitalv.h, lmdfs.h
+
+- **tpmvscmgr.h** (Security.Tpm): COM vtable only. Clean.
+- **sensorsdef.h** (WinSensors): GUID/property-key constants/enums only, no functions. Clean.
+- **d3dshadercacheregistration.h** (Direct3D): COM vtable only. Clean.
+- **digitalv.h** (Multimedia): MCI command constants/structs only, used via generic mciSendCommand. Clean.
+- **lmdfs.h** (Dfs): NetDfs*-family LPBYTE buffer output freed via NetApiBufferFree - blocker-class 7, out of scope.
+
+Ledger: 1031 accepted-normalized, 31 blocked, 341 pending (1062/1403 classified).

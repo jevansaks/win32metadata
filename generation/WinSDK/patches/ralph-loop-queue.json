@@ -2135,10 +2135,10 @@
   {
     "header": "d3dshadercacheregistration.h",
     "partition": "Direct3D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dshadercacheregistration.h.md",
     "_source": "header-progress"
   },
   {
@@ -2567,10 +2567,10 @@
   {
     "header": "digitalv.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/digitalv.h.md",
     "_source": "header-progress"
   },
   {
@@ -5321,10 +5321,10 @@
   {
     "header": "lmdfs.h",
     "partition": "Dfs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmdfs.h.md",
     "_source": "header-progress"
   },
   {
@@ -8858,10 +8858,10 @@
   {
     "header": "sensorsdef.h",
     "partition": "WinSensors",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensorsdef.h.md",
     "_source": "header-progress"
   },
   {
@@ -9848,10 +9848,10 @@
   {
     "header": "tpmvscmgr.h",
     "partition": "Security.Tpm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tpmvscmgr.h.md",
     "_source": "header-progress"
   },
   {
