@@ -2675,10 +2675,10 @@
   {
     "header": "dls2.h",
     "partition": "Audio.DirectMusic",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:13:28Z",
+    "notes": "DLS2 FOURCC/format constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2927,10 +2927,10 @@
   {
     "header": "dsquery.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:13:28Z",
+    "notes": "GUID constants/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3692,10 +3692,10 @@
   {
     "header": "fdi_fci_types.h",
     "partition": "Cabinets",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:13:28Z",
+    "notes": "Constants/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7571,10 +7571,10 @@
   {
     "header": "pbdaerrors.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:13:28Z",
+    "notes": "HRESULT constants/macros only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -11450,10 +11450,10 @@
   {
     "header": "WinHvEmulation.h",
     "partition": "Hypervisor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:13:28Z",
+    "notes": "Fixed genuine gap: added new autoTypes.json entry for WHV_EMULATOR_HANDLE (CloseApi=WHvEmulatorDestroyEmulator).",
     "_source": "header-progress"
   },
   {

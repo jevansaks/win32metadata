@@ -1811,3 +1811,25 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   return-value remains an unrepresentable gap (established blocker class) - header stays blocked.
 
 **Ledger status:** 514 accepted-normalized, 23 blocked, 866 pending.
+
+## 2026-09-02 20:13:46 UTC - Batch scraping-investigation-70
+
+**Headers:** fdi_fci_types.h, pbdaerrors.h, WinHvEmulation.h, dsquery.h, dls2.h
+**Partitions scraped (x64):** Cabinets, ActiveDirectory, Audio.DirectMusic (0 errors each); Hypervisor re-scraped after fix
+
+- fdi_fci_types.h: FCI/FDI cabinet compression constants/structs only, no functions. Clean.
+- pbdaerrors.h: HRESULT constants/macros only, no functions. Clean.
+- WinHvEmulation.h: **genuine fix applied.** WHvEmulatorCreateEmulator/WHvEmulatorDestroyEmulator's
+  WHV_EMULATOR_HANDLE (distinctly-named, not generic HANDLE) had NO autoTypes.json entry at all.
+  Added new entry (Namespace: Windows.Win32.System.Hypervisor, CloseApi: WHvEmulatorDestroyEmulator).
+  Verified single-file declaration (no namespace conflict) and re-scraped Hypervisor (0 errors).
+  Also used WinmdUtils dump of baseline Windows.Win32.winmd to empirically confirm: HINSTANCE/
+  HMODULE/HPOWERNOTIFY/HSTRING structs all correctly carry [RAIIFree] in the real winmd (matching
+  their autoTypes.json entries), while the generic HANDLE struct does NOT get [RAIIFree] despite
+  autoTypes.json listing CloseApi=CloseHandle for it - decisive confirmation that the established
+  generic-type blocker class (used throughout this session) is architecturally correct and that
+  distinctly-named single-purpose types are the right target for new autoTypes.json entries.
+- dsquery.h: GUID constants/structs only, no functions. Clean.
+- dls2.h: DLS2 FOURCC/format constants only, no functions. Clean.
+
+**Ledger status:** 519 accepted-normalized, 23 blocked, 861 pending.

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:07:51Z
+- Generated: 2026-09-03T03:13:46Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 514
+- Matched: 519
 - In progress: 0
 - Blocked: 23
-- Remaining: 866
+- Remaining: 861
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -307,7 +307,7 @@
 | `dlnadeviceinterfaceids.h` | Dlna | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
 | `dlnametadataproviderproperties.h` | Dlna | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
 | `dls1.h` | Audio.DirectMusic | remaining |  |  |  |
-| `dls2.h` | Audio.DirectMusic | remaining |  |  |  |
+| `dls2.h` | Audio.DirectMusic | matched |  | 09/02/2026 20:13:28 | DLS2 FOURCC/format constants only, no functions. |
 | `dmemmgr.h` | DirectDraw | remaining |  |  |  |
 | `dmerror.h` | TransactionServer | remaining |  |  |  |
 | `dmodshow.h` | Media.DShow | matched |  | 09/02/2026 19:42:09 | COM interface + GUID constants only, no extern functions. |
@@ -335,7 +335,7 @@
 | `dskquota.h` | Fs, Shell | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsound.h` | Audio.DirectSound, FileHistory, WinProg | remaining |  |  |  |
 | `dsparse.h` | ActiveDirectory | remaining |  |  |  |
-| `dsquery.h` | ActiveDirectory | remaining |  |  |  |
+| `dsquery.h` | ActiveDirectory | matched |  | 09/02/2026 20:13:28 | GUID constants/structs only, no functions. |
 | `dsrole.h` | ActiveDirectory | matched |  | 09/02/2026 18:50:10 | Generic memory-buffer allocation, not HANDLE-family. |
 | `dssec.h` | Security.DirectoryServices | remaining |  |  |  |
 | `dtchelp.h` | DTC | remaining |  |  |  |
@@ -420,7 +420,7 @@
 | `faxmmc.h` | Fax | matched |  | 09/02/2026 17:58:11 | GUID/string constants only, no functions. |
 | `faxroute.h` | Fax | matched |  | 09/02/2026 19:50:38 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `fci.h` | Cabinets | remaining |  |  |  |
-| `fdi_fci_types.h` | Cabinets | remaining |  |  |  |
+| `fdi_fci_types.h` | Cabinets | matched |  | 09/02/2026 20:13:28 | Constants/structs only, no functions. |
 | `fdi.h` | Cabinets | remaining |  |  |  |
 | `featurestagingapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:40:30 | FEATURE_STATE_CHANGE_SUBSCRIPTION ownership already correctly captured via existing autoTypes.json entry. |
 | `fhcfg.h` | FileHistory | remaining |  |  |  |
@@ -851,7 +851,7 @@
 | `patchapi.h` | Setup | remaining |  |  |  |
 | `patchwiz.h` | Setup | remaining |  |  |  |
 | `pathcch.h` | Shell | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
-| `pbdaerrors.h` | Media.DShow | remaining |  |  |  |
+| `pbdaerrors.h` | Media.DShow | matched |  | 09/02/2026 20:13:28 | HRESULT constants/macros only, no functions. |
 | `pchannel.h` | TermServ | remaining |  |  |  |
 | `pdh.h` | Perf | remaining |  |  |  |
 | `pdhmsg.h` | Perf | remaining |  |  |  |
@@ -1282,7 +1282,7 @@
 | `winfax.h` | Fax | remaining |  |  |  |
 | `wingdi.h` | DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winhttp.h` | HttpServer, WinHttp | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
-| `WinHvEmulation.h` | Hypervisor | remaining |  |  |  |
+| `WinHvEmulation.h` | Hypervisor | matched |  | 09/02/2026 20:13:28 | Fixed genuine gap: added new autoTypes.json entry for WHV_EMULATOR_HANDLE (CloseApi=WHvEmulatorDestroyEmulator). |
 | `WinHvPlatform.h` | Hypervisor | remaining |  |  |  |
 | `wininet.h` | FileHistory, WinInet, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winineti.h` | WinInet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |

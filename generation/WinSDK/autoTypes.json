@@ -510,6 +510,14 @@
     "NativeTypedef": true
   },
   {
+    "Namespace": "Windows.Win32.System.Hypervisor",
+    "Name": "WHV_EMULATOR_HANDLE",
+    "ValueType": "IntPtr",
+    "CloseApi": "WHvEmulatorDestroyEmulator",
+    "InvalidHandleValues": [ 0 ],
+    "NativeTypedef": true
+  },
+  {
     "Name": "LSA_HANDLE",
     "ValueType": "IntPtr",
     "CloseApi": "LsaClose",
