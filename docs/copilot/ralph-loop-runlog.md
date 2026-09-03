@@ -1506,3 +1506,20 @@ packagevirtualizationcontext.h (FIXED); **userenv.h reclassified accepted-normal
 **Ledger status:** 431 accepted-normalized (incl. 1 new genuine producer-site fix), 11 blocked (esent.h,
 getprocesshandlefromhwnd.h, wab.h, wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h,
 MSAJTransport.h, physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h), 961 pending.
+
+## 2026-09-02 18:59:34 UTC - Batch scraping-investigation-51
+
+**Headers:** realtimeapiset.h, devquerydef.h, mciavi.h, tcguid.h, taskdeviceservice.h
+**Partitions scraped:** DeviceQuery (x86; 0 warnings/errors)
+
+- realtimeapiset.h: HANDLE params are caller-supplied inputs (existing thread/process handles), not
+  produced here; other outputs are plain integers. Clean.
+- devquerydef.h: enums/data structs only, no functions. Clean.
+- mciavi.h: constants only, no functions. Clean.
+- tcguid.h: GUID constants only, no functions. Clean.
+- taskdeviceservice.h: GUID/property-key constants only (same pattern as prior device service headers),
+  no functions. Clean.
+
+**Ledger status:** 436 accepted-normalized, 11 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h,
+physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h), 956 pending.

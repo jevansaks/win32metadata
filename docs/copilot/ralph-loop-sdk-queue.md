@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:56:43Z
+- Generated: 2026-09-03T01:59:22Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 431
+- Matched: 436
 - In progress: 0
 - Blocked: 11
-- Remaining: 961
+- Remaining: 956
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -288,7 +288,7 @@
 | `devpkey.h` | Base, Devices.Properties | remaining |  |  |  |
 | `devpropdef.h` | Display, Nfc, Nfp, WpdSdk | remaining |  |  |  |
 | `devquery.h` | DeviceQuery, FileHistory | remaining |  |  |  |
-| `devquerydef.h` | DeviceQuery | remaining |  |  |  |
+| `devquerydef.h` | DeviceQuery | matched |  | 09/02/2026 18:59:13 | Enums/data structs only, no functions. |
 | `dhcpcsdk.h` | Dhcp | remaining |  |  |  |
 | `dhcpsapi.h` | Dhcp | remaining |  |  |  |
 | `dhcpssdk.h` | Dhcp | remaining |  |  |  |
@@ -628,7 +628,7 @@
 | `mapi.h` | Mapi | remaining |  |  |  |
 | `mbnapi.h` | Mbn | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `mciapi.h` | Multimedia | remaining |  |  |  |
-| `mciavi.h` | Multimedia | remaining |  |  |  |
+| `mciavi.h` | Multimedia | matched |  | 09/02/2026 18:59:13 | Constants only, no functions. |
 | `mcx.h` | Communication | remaining |  |  |  |
 | `mdhcp.h` | Tapi3 | remaining |  |  |  |
 | `mdmlocalmanagement.h` | MdmReg | matched |  | 09/02/2026 17:54:05 | No handle-typed values; string output uses LocalFree, not HANDLE mechanism. |
@@ -924,7 +924,7 @@
 | `ratings.h` | InternetExplorer | remaining |  |  |  |
 | `rdpappcontainerclient.h` | TermServ | remaining |  |  |  |
 | `rdpencomapi.h` | Rdp, TermServ | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
-| `realtimeapiset.h` | Base | remaining |  |  |  |
+| `realtimeapiset.h` | Base | matched |  | 09/02/2026 18:59:13 | HANDLE is a caller-supplied input, not produced here. |
 | `reason.h` | FileHistory, Shutdown | remaining |  |  |  |
 | `recapis.h` | Tablet | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `recdefs.h` | Tablet | remaining |  |  |  |
@@ -1081,11 +1081,11 @@
 | `tapi3ds.h` | Tapi3 | remaining |  |  |  |
 | `tapi3err.h` | Tapi3 | remaining |  |  |  |
 | `tapi3if.h` | Tapi3 | remaining |  |  |  |
-| `taskdeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `taskdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:59:13 | GUID/property-key constants only, no functions. |
 | `taskschd.h` | TaskSchd | remaining |  |  |  |
 | `tbs.h` | Tbs | matched | copilot | 09/03/2026 04:05:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
 | `tcerror.h` | Qos | matched |  | 09/02/2026 18:35:09 | Error-code constants only, no functions. |
-| `tcguid.h` | Qos | remaining |  |  |  |
+| `tcguid.h` | Qos | matched |  | 09/02/2026 18:59:13 | GUID constants only, no functions. |
 | `tcpxcv.h` | Printing | matched |  | 09/02/2026 18:50:10 | Data structs + constants only, no functions. |
 | `tdh.h` | Etw | remaining |  |  |  |
 | `tdiinfo.h` | FileHistory, WinProg | remaining |  |  |  |

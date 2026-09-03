@@ -2504,10 +2504,10 @@
   {
     "header": "devquerydef.h",
     "partition": "DeviceQuery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:59:13Z",
+    "notes": "Enums/data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5564,10 +5564,10 @@
   {
     "header": "mciavi.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:59:13Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8228,10 +8228,10 @@
   {
     "header": "realtimeapiset.h",
     "partition": "Base",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:59:13Z",
+    "notes": "HANDLE is a caller-supplied input, not produced here.",
     "_source": "header-progress"
   },
   {
@@ -9641,10 +9641,10 @@
   {
     "header": "taskdeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:59:13Z",
+    "notes": "GUID/property-key constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -9677,10 +9677,10 @@
   {
     "header": "tcguid.h",
     "partition": "Qos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:59:13Z",
+    "notes": "GUID constants only, no functions.",
     "_source": "header-progress"
   },
   {
