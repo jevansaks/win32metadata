@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:52:03Z
+- Generated: 2026-09-03T08:54:48Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1011
+- Matched: 1016
 - In progress: 0
 - Blocked: 31
-- Remaining: 361
+- Remaining: 356
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -105,7 +105,7 @@
 | `bdaiface.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `bdamedia.h` | MsTv | remaining |  |  |  |
 | `bdatif.h` | MsTv | remaining |  |  |  |
-| `bdatypes.h` | Media.DShow, MsTv | remaining |  |  |  |
+| `bdatypes.h` | Media.DShow, MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatypes.h.md |
 | `BiDiSpl.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/BiDiSpl.h.md |
 | `bindlink.h` | Fs | matched |  | 09/02/2026 17:30:54 | Path-string-only API, no handle. |
 | `bits.h` | Bits | remaining |  |  |  |
@@ -152,7 +152,7 @@
 | `certreqd.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certreqd.h.md |
 | `certsrv.h` | Certificates | remaining |  |  |  |
 | `certview.h` | Certificates | remaining |  |  |  |
-| `cfapi.h` | Cloudapi | remaining |  |  |  |
+| `cfapi.h` | Cloudapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfapi.h.md |
 | `cfg.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfg.h.md |
 | `cfgmgr32.h` | DevInst | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `cierror.h` | Foundation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cierror.h.md |
@@ -1158,7 +1158,7 @@
 | `VersionHelpers.h` | SystemInformation | matched |  | 09/02/2026 19:54:02 | All functions are inline, no scrapable extern declarations. |
 | `vfw.h` | Multimedia | remaining |  |  |  |
 | `vfwext.h` | Multimedia | matched |  | 09/02/2026 18:35:09 | Constants + callback-signature typedefs only, no functions. |
-| `vfwmsgs.h` | Media.DShow | remaining |  |  |  |
+| `vfwmsgs.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vfwmsgs.h.md |
 | `vidcap.h` | Media.DShow | remaining |  |  |  |
 | `videoacc.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/videoacc.h.md |
 | `virtdisk.h` | Vhd | remaining |  |  |  |
@@ -1334,7 +1334,7 @@
 | `wmnetsourcecreator.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmnetsourcecreator.h.md |
 | `wmp.h` | Media.DShow, Wmp | remaining |  |  |  |
 | `wmpdevices.h` | Wmp | matched |  | 09/02/2026 20:44:40 | Inline functions generate no bindings; remaining declarations are IOCTL constants/structs. |
-| `wmpids.h` | Wmp | remaining |  |  |  |
+| `wmpids.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmpids.h.md |
 | `wmpplug.h` | Wmp | matched |  | 09/02/2026 22:06:03 | COM interface only, no extern functions. |
 | `wmprealestate.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmprealestate.h.md |
 | `wmpservices.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmpservices.h.md |
@@ -1342,7 +1342,7 @@
 | `wmsdkidl.h` | WmFormat | remaining |  |  |  |
 | `wmsdkvalidate.h` | WmFormat | matched |  | 09/02/2026 18:32:46 | String/buffer/BOOL API only, no handle. |
 | `wmsecure.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsecure.h.md |
-| `wmsinternaladminnetsource.h` | WmFormat | remaining |  |  |  |
+| `wmsinternaladminnetsource.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsinternaladminnetsource.h.md |
 | `wmsysprf.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsysprf.h.md |
 | `wnnc.h` | Ifsk | matched |  | 09/02/2026 19:19:02 | Constants only, no functions. |
 | `wnvapi.h` | wnv | blocked | copilot | 09/02/2026 19:09:17 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |

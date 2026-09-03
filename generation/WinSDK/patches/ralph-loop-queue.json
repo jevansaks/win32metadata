@@ -857,10 +857,10 @@
   {
     "header": "bdatypes.h",
     "partition": "Media.DShow, MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -1280,10 +1280,10 @@
   {
     "header": "cfapi.h",
     "partition": "Cloudapi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -10334,10 +10334,10 @@
   {
     "header": "vfwmsgs.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vfwmsgs.h.md",
     "_source": "header-progress"
   },
   {
@@ -11918,10 +11918,10 @@
   {
     "header": "wmpids.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmpids.h.md",
     "_source": "header-progress"
   },
   {
@@ -11990,10 +11990,10 @@
   {
     "header": "wmsinternaladminnetsource.h",
     "partition": "WmFormat",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsinternaladminnetsource.h.md",
     "_source": "header-progress"
   },
   {

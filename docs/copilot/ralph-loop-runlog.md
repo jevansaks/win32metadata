@@ -3018,3 +3018,13 @@ Ledger: 1006 accepted-normalized, 31 blocked, 366 pending (1037/1403 classified)
 - **ntdsbmsg.h** (ActiveDirectory): HRESULT error constants only. Clean.
 
 Ledger: 1011 accepted-normalized, 31 blocked, 361 pending (1042/1403 classified).
+
+## Batch 171 (2026-09-03 01:55): vfwmsgs.h, wmpids.h, bdatypes.h, cfapi.h, wmsinternaladminnetsource.h
+
+- **vfwmsgs.h** (Media.DShow): HRESULT error constants only. Clean.
+- **wmpids.h** (Wmp): DISPID constants only. Clean.
+- **bdatypes.h** (Media.DShow/MsTv): structs/enums only, no functions. Clean.
+- **cfapi.h** (Cloudapi): CF_CONNECTION_KEY already has correct autoTypes.json entry (CloseApi CfDisconnectSyncRoot) - no gap. Generic PHANDLE (CfOpenFileWithOplock) is blocker-class 2.
+- **wmsinternaladminnetsource.h** (WmFormat): COM vtable only. Clean.
+
+Ledger: 1016 accepted-normalized, 31 blocked, 356 pending (1047/1403 classified).
