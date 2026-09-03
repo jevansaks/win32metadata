@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:51:00Z
+- Generated: 2026-09-03T07:53:14Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 906
+- Matched: 911
 - In progress: 0
 - Blocked: 31
-- Remaining: 466
+- Remaining: 461
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -570,7 +570,7 @@
 | `ipmib.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ipmib.h.md |
 | `IPTypes.h` | wnv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/IPTypes.h.md |
 | `iscsidsc.h` | IScsiDisc | remaining |  |  |  |
-| `iscsierr.h` | IScsiDisc | remaining |  |  |  |
+| `iscsierr.h` | IScsiDisc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iscsierr.h.md |
 | `isolatedapplauncher.h` | FileHistory, Isolation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/isolatedapplauncher.h.md |
 | `isolatedwindowsenvironmentutils.h` | Isolation | matched |  | 09/02/2026 16:57:06 | Boolean query functions only. |
 | `issper16.h` | Identity | matched |  | 09/02/2026 21:08:27 | Constants only, no functions. |
@@ -587,7 +587,7 @@
 | `knownfolders.h` | Shell | remaining |  |  |  |
 | `ks.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
 | `ksmedia.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
-| `ksproxy.h` | Media.KernelStreaming | remaining |  |  |  |
+| `ksproxy.h` | Media.KernelStreaming | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ksproxy.h.md |
 | `ktmtypes.h` | Fs | matched |  | 09/02/2026 21:17:15 | Type aliases/constants only, no functions. |
 | `ktmw32.h` | Fs | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `libloaderapi.h` | Intl, LibraryLoader | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
@@ -1097,7 +1097,7 @@
 | `timezoneapi.h` | FileHistory, Time | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `tipautocomplete.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tipautocomplete.h.md |
 | `tlhelp32.h` | ToolHelp | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
-| `tlogstg.h` | Shell | remaining |  |  |  |
+| `tlogstg.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tlogstg.h.md |
 | `tnef.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tnef.h.md |
 | `tokenbinding.h` | Identity | matched |  | 09/02/2026 19:35:00 | All outputs are generic heap-allocated buffers/transparent structs (HeapFree convention), not distinctly-named opaque handles. |
 | `tom.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
@@ -1230,7 +1230,7 @@
 | `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `winber.h` | Ldap | matched |  |  | Genuine producer-site fix: added BerElement autoTypes.json entry (CloseApi=ber_free), matching sibling PLDAPSearch's typedef-struct ValueType convention. See docs/copilot/header-reports/winber.h.md |
 | `winbio_adapter.h` | SecBitomet | remaining |  |  |  |
-| `winbio_err.h` | SecBitomet | remaining |  |  |  |
+| `winbio_err.h` | SecBitomet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winbio_err.h.md |
 | `winbio_ioctl.h` | SecBitomet | matched |  | 09/02/2026 21:49:17 | IOCTL/GUID constants only, no functions. |
 | `winbio_types.h` | SecBitomet | remaining |  |  |  |
 | `winbio.h` | SecBitomet | matched |  |  | Genuine producer-site fix: added WINBIO_SESSION_HANDLE autoTypes.json entry (ValueType=uint, novel pattern, CloseApi=WinBioCloseSession). See docs/copilot/header-reports/winbio.h.md |
@@ -1289,7 +1289,7 @@
 | `winioctl.h` | Base, Fs, Ioctl, Nfc, Nfp | remaining |  |  |  |
 | `winldap.h` | Ldap | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winmeta.h` | TraceLogging | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
-| `winml.h` | MachineLearning | remaining |  |  |  |
+| `winml.h` | MachineLearning | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winml.h.md |
 | `winnetwk.h` | Wnet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winnls.h` | Intl | remaining |  |  |  |
 | `winnls32.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:23:41 | HWND is an input; IME info struct is caller-allocated, not a handle. |

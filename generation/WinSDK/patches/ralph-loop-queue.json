@@ -5042,10 +5042,10 @@
   {
     "header": "iscsierr.h",
     "partition": "IScsiDisc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iscsierr.h.md",
     "_source": "header-progress"
   },
   {
@@ -5195,10 +5195,10 @@
   {
     "header": "ksproxy.h",
     "partition": "Media.KernelStreaming",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ksproxy.h.md",
     "_source": "header-progress"
   },
   {
@@ -9785,10 +9785,10 @@
   {
     "header": "tlogstg.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tlogstg.h.md",
     "_source": "header-progress"
   },
   {
@@ -10982,10 +10982,10 @@
   {
     "header": "winbio_err.h",
     "partition": "SecBitomet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winbio_err.h.md",
     "_source": "header-progress"
   },
   {
@@ -11513,10 +11513,10 @@
   {
     "header": "winml.h",
     "partition": "MachineLearning",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winml.h.md",
     "_source": "header-progress"
   },
   {

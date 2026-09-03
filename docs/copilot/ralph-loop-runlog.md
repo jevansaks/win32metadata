@@ -2808,3 +2808,13 @@ Ledger: 901 accepted-normalized, 31 blocked, 471 pending (932/1403 classified). 
 - **winbio.h** (SecBitomet): PATCH APPLIED. Added WINBIO_SESSION_HANDLE autoTypes.json entry - novel 32-bit (ULONG-backed) handle type using ValueType=uint (confirmed supported via NativeTypedefStructsCreator.cs source review). Producer WinBioOpenSession, closer WinBioCloseSession. Re-scraped SecBitomet (x64): 0 errors. Attempted full EmitWinmd validation - blocked project-wide by pre-existing unrelated AllJoyn __builtin_verbose_trap toolchain issue (not a regression from this change).
 
 Ledger: 906 accepted-normalized, 31 blocked, 466 pending (937/1403 classified).
+
+## Batch 150 (2026-09-03 00:53): winml.h, ksproxy.h, iscsierr.h, tlogstg.h, winbio_err.h
+
+- **winml.h** (MachineLearning): COM interfaces only, no free functions. Clean.
+- **ksproxy.h** (Media.KernelStreaming): COM interfaces only, no free functions. Clean.
+- **iscsierr.h** (IScsiDisc): status-code constants only. Clean.
+- **tlogstg.h** (Shell): COM interfaces only, no free functions. Clean.
+- **winbio_err.h** (SecBitomet): HRESULT error-code constants only. Clean.
+
+Ledger: 911 accepted-normalized, 31 blocked, 461 pending (942/1403 classified). Milestone: 150 batches this session.
