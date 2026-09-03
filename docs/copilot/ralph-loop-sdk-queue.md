@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:42:02Z
+- Generated: 2026-09-03T00:45:33Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 327
+- Matched: 332
 - In progress: 0
 - Blocked: 5
-- Remaining: 1071
+- Remaining: 1066
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -131,7 +131,7 @@
 | `calendardeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `callobj.h` | Com.CallObj, ComOle | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `camerauicontrol.h` | FileHistory, Media.DShow, Mf, WinProg | remaining |  |  |  |
-| `capi.h` | FileHistory, WinProg | remaining |  |  |  |
+| `capi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:45:25 | JAVA_TRUST plain data struct; all redirected headers already accepted or separately tracked pending; sipbase.h verified as trivial redirect to accepted mssip.h. |
 | `cardmod.h` | Security.Cryptography | remaining |  |  |  |
 | `casetup.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `CastingInterop.h` | WinRT | remaining |  |  |  |
@@ -364,7 +364,7 @@
 | `dxgimessages.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxgitype.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxmini.h` | DirectDraw | remaining |  |  |  |
-| `dxprogrammablecapture.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
+| `dxprogrammablecapture.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 17:45:25 | Parameterless COM interface methods, no handle. |
 | `dxva.h` | Media.DShow, Mf | remaining |  |  |  |
 | `dxva2api.h` | Media.DShow, Mf | remaining |  |  |  |
 | `dxva2swdev.h` | Media.DShow | remaining |  |  |  |
@@ -814,7 +814,7 @@
 | `ntioring_x.h` | Fs | remaining |  |  |  |
 | `ntldap.h` | Ldap | remaining |  |  |  |
 | `ntmsapi.h` | Fs | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
-| `ntmsmli.h` | Fs | remaining |  |  |  |
+| `ntmsmli.h` | Fs | matched |  | 09/02/2026 17:45:25 | Data struct + callback-signature typedefs only, no functions. |
 | `ntquery.h` | IndexSrv, Shell | remaining |  |  |  |
 | `ntsecapi.h` | ActiveDirectory, Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned LSA_HANDLE ownership violation found during resource-ownership audit; other annotation groups in file were already compliant. |
 | `NTSecPKG.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
@@ -960,7 +960,7 @@
 | `rpcnsi.h` | Rpc | remaining |  |  |  |
 | `rpcnsip.h` | Rpc | matched |  | 09/02/2026 17:41:54 | Internal I_-prefixed RPC stub routines; RPC_BINDING_HANDLE canonical API tracked separately under rpcdce.h (pending). |
 | `rpcnterr.h` | Foundation | remaining |  |  |  |
-| `rpcssl.h` | Rpc | remaining |  |  |  |
+| `rpcssl.h` | Rpc | matched |  | 09/02/2026 17:45:25 | RPC string-buffer output, not HANDLE-family. |
 | `rrascfg.h` | Eap | remaining |  |  |  |
 | `rtccore.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `rtcerr.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; constant-only header. |
@@ -1034,7 +1034,7 @@
 | `spellcheck.h` | Intl | remaining |  |  |  |
 | `spellcheckprovider.h` | Intl | remaining |  |  |  |
 | `sperror.h` | Speech | remaining |  |  |  |
-| `sporder.h` | WinSock | remaining |  |  |  |
+| `sporder.h` | WinSock | matched |  | 09/02/2026 17:45:25 | DWORD/GUID array API only, no handle. |
 | `sql.h` | Search | remaining |  |  |  |
 | `sqlext.h` | Search | remaining |  |  |  |
 | `sqloledb.h` | Search | remaining |  |  |  |

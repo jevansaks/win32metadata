@@ -1091,10 +1091,10 @@
   {
     "header": "capi.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:45:25Z",
+    "notes": "JAVA_TRUST plain data struct; all redirected headers already accepted or separately tracked pending; sipbase.h verified as trivial redirect to accepted mssip.h.",
     "_source": "header-progress"
   },
   {
@@ -3188,10 +3188,10 @@
   {
     "header": "dxprogrammablecapture.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:45:25Z",
+    "notes": "Parameterless COM interface methods, no handle.",
     "_source": "header-progress"
   },
   {
@@ -7238,10 +7238,10 @@
   {
     "header": "ntmsmli.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:45:25Z",
+    "notes": "Data struct + callback-signature typedefs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8552,10 +8552,10 @@
   {
     "header": "rpcssl.h",
     "partition": "Rpc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:45:25Z",
+    "notes": "RPC string-buffer output, not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -9218,10 +9218,10 @@
   {
     "header": "sporder.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:45:25Z",
+    "notes": "DWORD/GUID array API only, no handle.",
     "_source": "header-progress"
   },
   {

@@ -1076,3 +1076,20 @@ cross-partition remap warning for _CERT_CONTEXT)
 
 **Ledger status:** 327 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h), 1071 pending.
+
+## 2026-09-02 17:45:46 UTC - Batch scraping-investigation-29
+
+**Headers:** ntmsmli.h, rpcssl.h, dxprogrammablecapture.h, capi.h, sporder.h
+**Partitions scraped:** Dxgi (x86; 0 warnings/errors)
+
+- ntmsmli.h: data struct + callback-signature typedefs only (no DllImport functions). Clean.
+- rpcssl.h: RpcCertGeneratePrincipalName outputs an RPC_WSTR/RPC_CSTR string buffer (RpcStringFree
+  convention), not HANDLE-family. Clean.
+- dxprogrammablecapture.h: IDXGraphicsAnalysis::BeginCapture/EndCapture are parameterless, no handle. Clean.
+- capi.h: redirects to wincrypt.h/sipbase.h/mscat.h/mssip.h/wintrust.h. sipbase.h itself is untracked
+  but verified (per the wincon.h lesson) to be a trivial redirect to the already-accepted mssip.h - no
+  hidden content. capi.h's own JAVA_TRUST struct is plain data. Clean.
+- sporder.h: WSCWriteProviderOrder/WSCWriteNameSpaceOrder operate on DWORD/GUID arrays only. Clean.
+
+**Ledger status:** 332 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h), 1066 pending.
