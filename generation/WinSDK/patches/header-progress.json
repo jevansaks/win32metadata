@@ -13700,7 +13700,7 @@
       "header": "gl/gl.h",
       "partitions": "OpenGL",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -13713,7 +13713,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; 336 functions use plain GLuint scalar IDs (generic/shared-type blocker class 2), no distinct handle typedef gap. See docs/copilot/header-reports/GL.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/OpenGL/main.cpp",
@@ -13725,7 +13725,7 @@
       "header": "gl/glu.h",
       "partitions": "OpenGL",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -13738,7 +13738,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Producer-site fix: added CloseApi/InvalidHandleValues to existing GLUquadric/GLUtesselator/GLUnurbs autoTypes.json entries (gluDeleteQuadric/gluDeleteTess/gluDeleteNurbsRenderer). See docs/copilot/header-reports/GLU.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/OpenGL/main.cpp",
@@ -16580,7 +16580,7 @@
         "XpsPrinting"
       ],
       "partition_count": 318,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -16593,7 +16593,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; preprocessor macro fixups only, no functions/typedefs, no ownership metadata gap. See docs/copilot/header-reports/intrinfix.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -20516,7 +20516,7 @@
       "header": "manual.h",
       "partitions": "Com.StructuredStorage",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -20529,7 +20529,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; single abstract C++ interface (IMemoryAllocator) with pure-virtual methods only (blocker class 5), no ownership metadata gap. See docs/copilot/header-reports/manual.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Com.StructuredStorage/main.cpp",
@@ -36011,7 +36011,7 @@
       "header": "stdint.h",
       "partitions": "AllJoyn",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -36024,7 +36024,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; standard C99 fixed-width integer typedefs only (no functions), classified by standard-library knowledge since only referencing partition (AllJoyn) cannot build. See docs/copilot/header-reports/stdint.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/AllJoyn/main.cpp",
@@ -42421,7 +42421,7 @@
         "XpsPrinting"
       ],
       "partition_count": 305,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -42434,7 +42434,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; preprocessor undef-list + includes only, no functions/typedefs declared directly, no ownership metadata gap. See docs/copilot/header-reports/windows.fixed.h.md",
       "sources": [
         {
           "source": "partition-main",

@@ -2364,18 +2364,24 @@
     "Namespace": "Windows.Win32.Graphics.OpenGL",
     "Name": "GLUnurbs",
     "ValueType": "typedef struct GLUnurbs",
+    "CloseApi": "gluDeleteNurbsRenderer",
+    "InvalidHandleValues": [ 0 ],
     "NativeTypedef": true
   },
   {
     "Namespace": "Windows.Win32.Graphics.OpenGL",
     "Name": "GLUquadric",
     "ValueType": "typedef struct GLUquadric",
+    "CloseApi": "gluDeleteQuadric",
+    "InvalidHandleValues": [ 0 ],
     "NativeTypedef": true
   },
   {
     "Namespace": "Windows.Win32.Graphics.OpenGL",
     "Name": "GLUtesselator",
     "ValueType": "typedef struct GLUtesselator",
+    "CloseApi": "gluDeleteTess",
+    "InvalidHandleValues": [ 0 ],
     "NativeTypedef": true
   },
   {

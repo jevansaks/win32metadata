@@ -3495,3 +3495,11 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 ## Batch 221 (e8f1573f -> next)
 - Bulk-blocked 28 alljoyn_c\*.h headers (AboutData, AboutIconObj, AboutIconProxy, AboutObj, AboutObjectDescription, AboutProxy, AjAPI, ApplicationStateListener, AuthListener, AutoPinger, BusAttachment, BusListener, BusObject, DBusStdDefines, Init, InterfaceDescription, KeyStoreListener, Message, MsgArg, Observer, PasswordManager, PermissionConfigurationListener, PermissionConfigurator, ProxyBusObject, SecurityApplicationProxy, Session, SessionListener, version) — all reachable only via the AllJoyn partition, which fails to scrape entirely due to the previously-documented '__builtin_verbose_trap' Clang/MSVC toolset mismatch (same root cause as MSAJTransport.h). No alternate partition includes these headers, so no substitute validation path exists. Reused parser/toolchain-limitation blocker class with per-header evidence reports.
 - Ledger: 1264 accepted-normalized, 59 blocked, 80 pending (1323/1403 = 94.3%).
+
+## Batch 222 (dd6ba6e0 -> next)
+- gl/gl.h: clean (GLuint scalar IDs, generic/shared-type blocker class 2).
+- gl/glu.h: 3 producer-site fixes - added CloseApi to existing GLUquadric/GLUtesselator/GLUnurbs autoTypes.json entries (gluDeleteQuadric/gluDeleteTess/gluDeleteNurbsRenderer), all genuinely opaque forward-declared struct pointers with single producer/consumer pairs. Validated ScrapeHeaders x64 OpenGL -> 0 errors.
+- intrinfix.h, windows.fixed.h: internal build-fixup headers, preprocessor-only, clean.
+- manual.h (Com.StructuredStorage): single abstract interface, vtable-only, clean.
+- stdint.h: standard C99 header (AllJoyn-only reference), fixed-width typedefs only, clean by standard-library knowledge despite AllJoyn partition build failure.
+- Ledger: 1270 accepted-normalized, 59 blocked, 74 pending (1329/1403 = 94.7%).
