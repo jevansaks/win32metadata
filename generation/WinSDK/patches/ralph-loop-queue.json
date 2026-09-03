@@ -3179,10 +3179,10 @@
   {
     "header": "dxmini.h",
     "partition": "DirectDraw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxmini.h.md",
     "_source": "header-progress"
   },
   {
@@ -4826,10 +4826,10 @@
   {
     "header": "infocard.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infocard.h.md",
     "_source": "header-progress"
   },
   {
@@ -6482,10 +6482,10 @@
   {
     "header": "mshtmldiagnostics.h",
     "partition": "MsHtml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmldiagnostics.h.md",
     "_source": "header-progress"
   },
   {
@@ -8687,10 +8687,10 @@
   {
     "header": "scesvc.h",
     "partition": "Security.ConfigurationSnapin",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/scesvc.h.md",
     "_source": "header-progress"
   },
   {
@@ -10433,10 +10433,10 @@
   {
     "header": "vsadmin.h",
     "partition": "VSS",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsadmin.h.md",
     "_source": "header-progress"
   },
   {

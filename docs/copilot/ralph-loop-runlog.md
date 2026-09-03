@@ -2478,3 +2478,13 @@ Ledger: 736 accepted-normalized, 31 blocked, 636 pending (767/1403 classified).
 - **ddpbackup.h** (Dedup): COM interfaces only, no free functions. Clean.
 
 Ledger: 741 accepted-normalized, 31 blocked, 631 pending (772/1403 classified).
+
+## Batch 117 (2026-09-02 23:04): mshtmldiagnostics.h, dxmini.h, scesvc.h, infocard.h, vsadmin.h
+
+- **mshtmldiagnostics.h** (MsHtml): COM interfaces only, no free functions. Clean.
+- **dxmini.h** (DirectDraw): kernel MDL struct + function-pointer typedefs for driver callback tables only. Clean.
+- **scesvc.h** (Security.ConfigurationSnapin): COM vtable methods wrapped as macros, not extern declarations. Clean.
+- **infocard.h** (Security.Cryptography, Security.Cryptography.UI): CloseCryptoHandle/FreeToken target INFORMATIONCARD_CRYPTO_HANDLE/GENERIC_XML_TOKEN, both fully transparent structs - out of scope (transparent-struct blocker class). Clean.
+- **vsadmin.h** (VSS): COM interfaces only, no free functions. Clean.
+
+Ledger: 746 accepted-normalized, 31 blocked, 626 pending (777/1403 classified).

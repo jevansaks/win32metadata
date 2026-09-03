@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:01:32Z
+- Generated: 2026-09-03T06:04:35Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 741
+- Matched: 746
 - In progress: 0
 - Blocked: 31
-- Remaining: 631
+- Remaining: 626
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -363,7 +363,7 @@
 | `dxgiformat.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 21:24:15 | Enum only, no functions. |
 | `dxgimessages.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxgitype.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 18:40:30 | Data structs/enums only, no functions. |
-| `dxmini.h` | DirectDraw | remaining |  |  |  |
+| `dxmini.h` | DirectDraw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxmini.h.md |
 | `dxprogrammablecapture.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 17:45:25 | Parameterless COM interface methods, no handle. |
 | `dxva.h` | Media.DShow, Mf | remaining |  |  |  |
 | `dxva2api.h` | Media.DShow, Mf | remaining |  |  |  |
@@ -546,7 +546,7 @@
 | `indexsrv.h` | IndexSrv, Search | remaining |  |  |  |
 | `inetreg.h` | InternetExplorer | remaining |  |  |  |
 | `inetsdk.h` | InternetExplorer | matched |  | 09/02/2026 18:23:41 | Pure MIDL boilerplate, no functions. |
-| `infocard.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `infocard.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infocard.h.md |
 | `infotech.h` | HtmlHelp | remaining |  |  |  |
 | `infstr.h` | DevInst | remaining |  |  |  |
 | `inked.h` | Tablet | remaining |  |  |  |
@@ -730,7 +730,7 @@
 | `mshtmhst.h` | MsHtml | remaining |  |  |  |
 | `Mshtml.h` | MsHtml | remaining |  |  |  |
 | `mshtmlc.h` | MsHtml | remaining |  |  |  |
-| `mshtmldiagnostics.h` | MsHtml | remaining |  |  |  |
+| `mshtmldiagnostics.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmldiagnostics.h.md |
 | `msi.h` | Setup | remaining |  |  |  |
 | `msidefs.h` | Setup | remaining |  |  |  |
 | `msiehost.h` | InternetExplorer | matched |  | 09/02/2026 17:51:18 | GUID/command-ID constants only, no functions. |
@@ -975,7 +975,7 @@
 | `sbtsv.h` | TermServ | remaining |  |  |  |
 | `scarderr.h` | Credentials | remaining |  |  |  |
 | `scclient.h` | Wmdm | matched |  | 09/02/2026 18:32:46 | Pure C++ class, no extern/DllImport functions; out of scope for annotation mechanism. |
-| `scesvc.h` | Security.ConfigurationSnapin | remaining |  |  |  |
+| `scesvc.h` | Security.ConfigurationSnapin | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/scesvc.h.md |
 | `schannel.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Wsw | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `schedule.h` | ActiveDirectory | matched |  | 09/02/2026 18:26:39 | Constants + data structs only, no functions. |
 | `schnlsp.h` | Identity | matched |  | 09/02/2026 17:01:48 | Redirect-only; schannel.h already accepted-normalized. |
@@ -1169,7 +1169,7 @@
 | `vpconfig.h` | Media.DShow | matched |  | 09/02/2026 19:45:17 | COM-style interfaces only, no extern functions. |
 | `vpnotify.h` | Media.DShow | matched |  | 09/02/2026 18:23:41 | COM interfaces with plain enum/BOOL parameters only, no handle. |
 | `vptype.h` | Media.DShow | matched |  | 09/02/2026 18:47:23 | Enums/data structs only, no functions. |
-| `vsadmin.h` | VSS | remaining |  |  |  |
+| `vsadmin.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsadmin.h.md |
 | `vsbackup.h` | VSS | remaining |  |  |  |
 | `vsmgmt.h` | VSS | remaining |  |  |  |
 | `vsprov.h` | VSS | remaining |  |  |  |
