@@ -2538,3 +2538,13 @@ Ledger: 766 accepted-normalized, 31 blocked, 606 pending (797/1403 classified).
 - **deviceaccess.h** (DeviceAccess): COM interfaces only, no free functions. Clean.
 
 Ledger: 771 accepted-normalized, 31 blocked, 601 pending (802/1403 classified). Milestone: 802/1403 = 57.2%.
+
+## Batch 123 (2026-09-02 23:23): fsrmenums.h, wsdxml.h, wpdmtpextensions.h, cloneviewhelper.h, rpcnsi.h
+
+- **fsrmenums.h** (Fsrm): COM interfaces only, no free functions. Clean.
+- **wsdxml.h** (FunctionDiscovery): COM interfaces only, no free functions. Clean.
+- **wpdmtpextensions.h** (WpdSdk): GUID/PROPERTYKEY constants only, no functions. Clean.
+- **cloneviewhelper.h** (Monitor): COM interfaces only, no free functions. Clean.
+- **rpcnsi.h** (Rpc): RPC_NS_HANDLE shared across 5 independent producer/closer pairs (BindingLookup/EntryObjectInq/GroupMbrInq/ProfileEltInq/BindingImport), each with a distinct Done function - generic/shared type, not fixable. Clean.
+
+Ledger: 776 accepted-normalized, 31 blocked, 596 pending (807/1403 classified).

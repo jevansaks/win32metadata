@@ -1352,10 +1352,10 @@
   {
     "header": "cloneviewhelper.h",
     "partition": "Monitor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cloneviewhelper.h.md",
     "_source": "header-progress"
   },
   {
@@ -3845,10 +3845,10 @@
   {
     "header": "fsrmenums.h",
     "partition": "Fsrm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmenums.h.md",
     "_source": "header-progress"
   },
   {
@@ -8525,10 +8525,10 @@
   {
     "header": "rpcnsi.h",
     "partition": "Rpc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnsi.h.md",
     "_source": "header-progress"
   },
   {
@@ -12071,10 +12071,10 @@
   {
     "header": "wpdmtpextensions.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wpdmtpextensions.h.md",
     "_source": "header-progress"
   },
   {
@@ -12287,10 +12287,10 @@
   {
     "header": "wsdxml.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdxml.h.md",
     "_source": "header-progress"
   },
   {

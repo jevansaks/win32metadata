@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:20:38Z
+- Generated: 2026-09-03T06:23:00Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 771
+- Matched: 776
 - In progress: 0
 - Blocked: 31
-- Remaining: 601
+- Remaining: 596
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -160,7 +160,7 @@
 | `clfsmgmt.h` | Fs | matched |  |  | Genuine producer-site fix: added CLFS_MGMT_CLIENT autoTypes.json entry (CloseApi=ClfsMgmtDeregisterManagedClient). See docs/copilot/header-reports/clfsmgmt.h.md |
 | `clfsmgmtw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `clfsw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
-| `cloneviewhelper.h` | Monitor | remaining |  |  |  |
+| `cloneviewhelper.h` | Monitor | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cloneviewhelper.h.md |
 | `cluadmex.h` | MsCs | remaining |  |  |  |
 | `cmnquery.h` | ActiveDirectory | matched |  | 09/02/2026 21:43:41 | GUID/flag constants only, no extern functions. |
 | `codecapi.h` | Media.DShow, Mf | remaining |  |  |  |
@@ -437,7 +437,7 @@
 | `fltuser.h` | Ifsk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fltuser.h.md |
 | `fontsub.h` | Gdi | matched |  | 09/02/2026 21:52:12 | Buffer allocation delegated entirely to caller-supplied callbacks, no opaque handle. |
 | `fsrm.h` | Fsrm | remaining |  |  |  |
-| `fsrmenums.h` | Fsrm | remaining |  |  |  |
+| `fsrmenums.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmenums.h.md |
 | `fsrmerr.h` | Fsrm | remaining |  |  |  |
 | `fsrmpipeline.h` | Fsrm | remaining |  |  |  |
 | `fsrmquota.h` | Fsrm | remaining |  |  |  |
@@ -957,7 +957,7 @@
 | `rpcdce.h` | Rpc, TransactionServer | remaining |  |  |  |
 | `rpcdcep.h` | Rpc | remaining |  |  |  |
 | `rpcndr.h` | FileHistory, Rpc, WinProg | remaining |  |  |  |
-| `rpcnsi.h` | Rpc | remaining |  |  |  |
+| `rpcnsi.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnsi.h.md |
 | `rpcnsip.h` | Rpc | matched |  | 09/02/2026 17:41:54 | Internal I_-prefixed RPC stub routines; RPC_BINDING_HANDLE canonical API tracked separately under rpcdce.h (pending). |
 | `rpcnterr.h` | Foundation | remaining |  |  |  |
 | `rpcssl.h` | Rpc | matched |  | 09/02/2026 17:45:25 | RPC string-buffer output, not HANDLE-family. |
@@ -1351,7 +1351,7 @@
 | `workspaceruntime.h` | TermServ | remaining |  |  |  |
 | `workspaceruntimeclientext.h` | TermServ | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `wpc.h` | Parcon | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR_User*/HWND_User*); no resource-owning functions. |
-| `wpdmtpextensions.h` | WpdSdk | remaining |  |  |  |
+| `wpdmtpextensions.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wpdmtpextensions.h.md |
 | `wpdshellextension.h` | WpdSdk | matched |  | 09/02/2026 19:37:21 | GUID/property-key constants only, no functions. |
 | `wrdsgraphicschannels.h` | TermServ | remaining |  |  |  |
 | `ws2atm.h` | WinSock | remaining |  |  |  |
@@ -1375,7 +1375,7 @@
 | `wsdns.h` | WebServicesOnDevices | remaining |  |  |  |
 | `wsdtypes.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdutil.h` | FunctionDiscovery | matched |  | 09/02/2026 19:02:46 | WSDAPI linked-memory/buffer convention, not HANDLE-family (consistent with wsdapi.h). |
-| `wsdxml.h` | FunctionDiscovery | remaining |  |  |  |
+| `wsdxml.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdxml.h.md |
 | `wshisotp.h` | WinSock | matched |  | 09/02/2026 19:09:17 | Data struct + constants/macro only, no functions. |
 | `wsipv6ok.h` | WinSock | matched |  | 09/02/2026 19:06:16 | Macro redefinitions only, no declarations. |
 | `wsipx.h` | WinSock | matched |  | 09/02/2026 18:09:40 | Data struct + constants only, no functions. |
