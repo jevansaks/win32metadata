@@ -1937,3 +1937,20 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   same buffer (no new allocation). Clean.
 
 **Ledger status:** 551 accepted-normalized, 26 blocked, 826 pending.
+
+## 2026-09-02 20:39:03 UTC - Batch scraping-investigation-78
+
+**Headers:** ndfapi.h, xoleHlp.h, dxva2swdev.h, ntddmou.h, ntioring_x.h
+**Partitions scraped (x64):** DTC, Hid (0 errors each); Ndf re-scraped after fix; Media.DShow/Fs reused
+
+- ndfapi.h: **genuine fix applied.** NDFHANDLE (produced by many NdfCreate*Incident functions,
+  closed via single NdfCloseIncident) had NO autoTypes.json entry. Added new entry (Namespace:
+  Windows.Win32.NetworkManagement.NetworkDiagnosticsFramework, CloseApi: NdfCloseIncident).
+  Verified single-file declaration (no namespace conflict) and re-scraped Ndf (0 errors).
+- xoleHlp.h: DtcGetTransactionManager* outputs are standard COM QueryInterface-style pointers. Clean.
+- dxva2swdev.h: PDXVA2SW_CREATEVIDEOPROCESSDEVICE etc. are function-pointer typedefs stored in
+  DXVA2SW_CALLBACKS struct (same out-of-scope class as mswsockdef.h's RIO table). Clean.
+- ntddmou.h: mouse IOCTL/GUID constants and structs only, no functions. Clean.
+- ntioring_x.h: IoRing version/feature-flag enums only, no functions in this types header. Clean.
+
+**Ledger status:** 556 accepted-normalized, 26 blocked, 821 pending.

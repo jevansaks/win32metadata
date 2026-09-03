@@ -3215,10 +3215,10 @@
   {
     "header": "dxva2swdev.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:38:46Z",
+    "notes": "Function-pointer-typedef-in-struct pattern, out of scope; no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -6833,10 +6833,10 @@
   {
     "header": "ndfapi.h",
     "partition": "Ndf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:38:46Z",
+    "notes": "Fixed genuine gap: added new autoTypes.json entry for NDFHANDLE (CloseApi=NdfCloseIncident).",
     "_source": "header-progress"
   },
   {
@@ -7121,10 +7121,10 @@
   {
     "header": "ntddmou.h",
     "partition": "Hid",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:38:46Z",
+    "notes": "Constants/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7211,10 +7211,10 @@
   {
     "header": "ntioring_x.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:38:46Z",
+    "notes": "Enums/constants only, no functions in this types header.",
     "_source": "header-progress"
   },
   {
@@ -12557,10 +12557,10 @@
   {
     "header": "xolehlp.h",
     "partition": "DTC",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:38:46Z",
+    "notes": "All outputs are standard COM QueryInterface-style interface pointers.",
     "_source": "header-progress"
   },
   {

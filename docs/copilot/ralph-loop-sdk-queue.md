@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:34:36Z
+- Generated: 2026-09-03T03:39:03Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 551
+- Matched: 556
 - In progress: 0
 - Blocked: 26
-- Remaining: 826
+- Remaining: 821
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -367,7 +367,7 @@
 | `dxprogrammablecapture.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 17:45:25 | Parameterless COM interface methods, no handle. |
 | `dxva.h` | Media.DShow, Mf | remaining |  |  |  |
 | `dxva2api.h` | Media.DShow, Mf | remaining |  |  |  |
-| `dxva2swdev.h` | Media.DShow | remaining |  |  |  |
+| `dxva2swdev.h` | Media.DShow | matched |  | 09/02/2026 20:38:46 | Function-pointer-typedef-in-struct pattern, out of scope; no extern functions. |
 | `dxva2trace.h` | Media.DShow | matched |  | 09/02/2026 20:07:23 | ETW tracing constants/structs only, no functions. |
 | `dxva9typ.h` | Media.DShow, Mf | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `dxvahd.h` | Mf | remaining |  |  |  |
@@ -769,7 +769,7 @@
 | `ncrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:10:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
 | `ncryptprotect.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `ndattrib.h` | Ndf | remaining |  |  |  |
-| `ndfapi.h` | Ndf | remaining |  |  |  |
+| `ndfapi.h` | Ndf | matched |  | 09/02/2026 20:38:46 | Fixed genuine gap: added new autoTypes.json entry for NDFHANDLE (CloseApi=NdfCloseIncident). |
 | `ndhelper.h` | Ndf | remaining |  |  |  |
 | `ndisguid.h` | Ndis | remaining |  |  |  |
 | `ndkinfo.h` | Ndis | matched |  | 09/02/2026 18:00:53 | Data structs/enum/constants only, no functions. |
@@ -801,7 +801,7 @@
 | `ntddcdvd.h` | Devices.Dvd | matched | copilot | 09/03/2026 04:05:00 | No patch needed; data-structure-only header. |
 | `ntdddisk.h` | Fs | remaining |  |  |  |
 | `ntddkbd.h` | Hid | remaining |  |  |  |
-| `ntddmou.h` | Hid | remaining |  |  |  |
+| `ntddmou.h` | Hid | matched |  | 09/02/2026 20:38:46 | Constants/structs only, no functions. |
 | `ntddndis.h` | Ndis, NWifi, Qos | remaining |  |  |  |
 | `ntddser.h` | SerPorts | remaining |  |  |  |
 | `ntddstor.h` | Fs, Ioctl | remaining |  |  |  |
@@ -811,7 +811,7 @@
 | `ntdsapi.h` | ActiveDirectory | remaining |  |  |  |
 | `ntdsbmsg.h` | ActiveDirectory | remaining |  |  |  |
 | `ntiologc.h` | Foundation | remaining |  |  |  |
-| `ntioring_x.h` | Fs | remaining |  |  |  |
+| `ntioring_x.h` | Fs | matched |  | 09/02/2026 20:38:46 | Enums/constants only, no functions in this types header. |
 | `ntldap.h` | Ldap | remaining |  |  |  |
 | `ntmsapi.h` | Fs | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `ntmsmli.h` | Fs | matched |  | 09/02/2026 17:45:25 | Data struct + callback-signature typedefs only, no functions. |
@@ -1405,7 +1405,7 @@
 | `xenroll.h` | Certificates | remaining |  |  |  |
 | `xinput.h` | Xinput | remaining |  |  |  |
 | `xmllite.h` | FileHistory, XmlLite | remaining |  |  |  |
-| `xolehlp.h` | DTC | remaining |  |  |  |
+| `xolehlp.h` | DTC | matched |  | 09/02/2026 20:38:46 | All outputs are standard COM QueryInterface-style interface pointers. |
 | `xprtdefs.h` | Media.DShow | remaining |  |  |  |
 | `xpsdigitalsignature.h` | Xps | remaining |  |  |  |
 | `xpsobjectmodel_1.h` | Xps | remaining |  |  |  |
