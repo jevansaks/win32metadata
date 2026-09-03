@@ -5033,10 +5033,10 @@
   {
     "header": "iscsidsc.h",
     "partition": "IScsiDisc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iscsidsc.h.md",
     "_source": "header-progress"
   },
   {
@@ -5123,10 +5123,10 @@
   {
     "header": "jscript9diag.h",
     "partition": "Debug.ActiveScript",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/jscript9diag.h.md",
     "_source": "header-progress"
   },
   {
@@ -9470,19 +9470,19 @@
   {
     "header": "subscriptionservices.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/subscriptionservices.h.md",
     "_source": "header-progress"
   },
   {
     "header": "subsmgr.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/subsmgr.h.md",
     "_source": "header-progress"
   },
   {
@@ -9911,10 +9911,10 @@
   {
     "header": "TSPI.h",
     "partition": "Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/TSPI.h.md",
     "_source": "header-progress"
   },
   {

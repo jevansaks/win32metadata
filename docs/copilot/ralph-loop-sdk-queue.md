@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:25:47Z
+- Generated: 2026-09-03T09:28:28Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1066
+- Matched: 1071
 - In progress: 0
 - Blocked: 31
-- Remaining: 306
+- Remaining: 301
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -569,7 +569,7 @@
 | `ipinfoid.h` | IpHlp | matched |  | 09/02/2026 19:47:59 | Constants only, no functions. |
 | `ipmib.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ipmib.h.md |
 | `IPTypes.h` | wnv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/IPTypes.h.md |
-| `iscsidsc.h` | IScsiDisc | remaining |  |  |  |
+| `iscsidsc.h` | IScsiDisc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iscsidsc.h.md |
 | `iscsierr.h` | IScsiDisc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iscsierr.h.md |
 | `isolatedapplauncher.h` | FileHistory, Isolation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/isolatedapplauncher.h.md |
 | `isolatedwindowsenvironmentutils.h` | Isolation | matched |  | 09/02/2026 16:57:06 | Boolean query functions only. |
@@ -579,7 +579,7 @@
 | `iwscapi.h` | FileHistory, SecurityCenter | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iwscapi.h.md |
 | `iwstdec.h` | Media.DShow | matched |  | 09/02/2026 19:14:35 | COM interface with plain-value parameters only, no handle. |
 | `joystickapi.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/joystickapi.h.md |
-| `jscript9diag.h` | Debug.ActiveScript | remaining |  |  |  |
+| `jscript9diag.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/jscript9diag.h.md |
 | `jsrt.h` | Js | matched |  | 09/02/2026 17:35:31 | Redirect-only; reachable branch (jsrt9.h) already tracked pending; chakrart.h unreachable in this partition. |
 | `jsrt9.h` | Js | remaining |  |  |  |
 | `kbd.h` | KeyboardAndMouseInput | matched | copilot | 09/03/2026 04:20:00 | No patch needed; data-structure-only header. |
@@ -1062,8 +1062,8 @@
 | `structuredquery.h` | Search | remaining |  |  |  |
 | `structuredquerycondition.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquerycondition.h.md |
 | `subauth.h` | Identity | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
-| `subscriptionservices.h` | Wmp | remaining |  |  |  |
-| `subsmgr.h` | Search | remaining |  |  |  |
+| `subscriptionservices.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/subscriptionservices.h.md |
+| `subsmgr.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/subsmgr.h.md |
 | `svcguid.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/svcguid.h.md |
 | `swdevice.h` | SwDevice | matched |  | 09/02/2026 18:38:01 | HSWDEVICE ownership already correctly captured via existing autoTypes.json entry (CloseApi: SwDeviceClose); no gap to fix. |
 | `swdevicedef.h` | SwDevice | matched |  | 09/02/2026 17:30:54 | Type declarations only (enums/struct), no functions; HSWDEVICE ownership tracked separately under swdevice.h (pending). |
@@ -1111,7 +1111,7 @@
 | `tsattrs.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsattrs.h.md |
 | `tsgauthenticationengine.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsgauthenticationengine.h.md |
 | `tsgpolicyengine.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsgpolicyengine.h.md |
-| `TSPI.h` | Tapi3 | remaining |  |  |  |
+| `TSPI.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/TSPI.h.md |
 | `tspubplugin2com.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tspubplugin2com.h.md |
 | `tspubplugincom.h` | TermServ | matched |  | 09/02/2026 22:09:36 | COM interface only, no extern functions. |
 | `tssbx.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tssbx.h.md |

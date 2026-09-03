@@ -3128,3 +3128,13 @@ Ledger: 1061 accepted-normalized, 31 blocked, 311 pending (1092/1403 classified)
 - **audiopolicy.h** (Audio): COM vtable only. Clean.
 
 Ledger: 1066 accepted-normalized, 31 blocked, 306 pending (1097/1403 classified).
+
+## Batch 182 (2026-09-03 02:28): TSPI.h, subsmgr.h, iscsidsc.h, subscriptionservices.h, jscript9diag.h
+
+- **TSPI.h** (Tapi3): TSP-DLL SPI contract functions called by TAPI, no representable ownership pattern. Clean.
+- **subsmgr.h** (Search): COM vtable only. Clean.
+- **iscsidsc.h** (IScsiDisc): ISCSI_UNIQUE_SESSION_ID/CONNECTION_ID is a real multi-field transparent struct (blocker-class 6), not an opaque handle. Clean.
+- **subscriptionservices.h** (Wmp): COM vtable only. Clean.
+- **jscript9diag.h** (Debug.ActiveScript): COM vtable only. Clean.
+
+Ledger: 1071 accepted-normalized, 31 blocked, 301 pending (1102/1403 classified).
