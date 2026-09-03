@@ -2018,10 +2018,10 @@
   {
     "header": "d3d12compiler.h",
     "partition": "Direct3D12",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12compiler.h.md",
     "_source": "header-progress"
   },
   {
@@ -4772,10 +4772,10 @@
   {
     "header": "immdev.h",
     "partition": "Input.Ime",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: filled missing CloseApi (ImmDestroyIMCC) on pre-existing HIMCC autoTypes.json entry. See docs/copilot/header-reports/immdev.h.md",
     "_source": "header-progress"
   },
   {
@@ -6500,10 +6500,10 @@
   {
     "header": "msidefs.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msidefs.h.md",
     "_source": "header-progress"
   },
   {
@@ -7364,10 +7364,10 @@
   {
     "header": "ocmm.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ocmm.h.md",
     "_source": "header-progress"
   },
   {
@@ -11558,10 +11558,10 @@
   {
     "header": "winperf.h",
     "partition": "Perf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winperf.h.md",
     "_source": "header-progress"
   },
   {

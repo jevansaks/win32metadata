@@ -835,6 +835,7 @@
     "Namespace": "Windows.Win32.UI.Input.Ime",
     "Name": "HIMCC",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "ImmDestroyIMCC",
     "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
   },

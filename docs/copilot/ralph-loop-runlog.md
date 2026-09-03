@@ -3058,3 +3058,13 @@ Ledger: 1026 accepted-normalized, 31 blocked, 346 pending (1057/1403 classified)
 - **lmdfs.h** (Dfs): NetDfs*-family LPBYTE buffer output freed via NetApiBufferFree - blocker-class 7, out of scope.
 
 Ledger: 1031 accepted-normalized, 31 blocked, 341 pending (1062/1403 classified).
+
+## Batch 175 (2026-09-03 02:04): winperf.h, d3d12compiler.h, ocmm.h, immdev.h, msidefs.h
+
+- **winperf.h** (Perf): PERF_* transparent structs only, no functions. Clean.
+- **d3d12compiler.h** (Direct3D12): COM vtable only. Clean.
+- **ocmm.h** (InternetExplorer): COM vtable only. Clean.
+- **immdev.h** (Input.Ime): PRODUCER-SITE FIX - filled missing CloseApi (ImmDestroyIMCC) on pre-existing HIMCC autoTypes.json entry (previously had ValueType/InvalidHandleValues but no CloseApi). Validated via ScrapeHeaders x64 Input.Ime - 0 errors.
+- **msidefs.h** (Setup): enums/constants only, no functions. Clean.
+
+Ledger: 1036 accepted-normalized, 31 blocked, 336 pending (1067/1403 classified).

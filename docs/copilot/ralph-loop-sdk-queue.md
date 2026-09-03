@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:01:33Z
+- Generated: 2026-09-03T09:04:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1031
+- Matched: 1036
 - In progress: 0
 - Blocked: 31
-- Remaining: 341
+- Remaining: 336
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -234,7 +234,7 @@
 | `d3d11shadertracing.h` | Direct3D11 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
 | `d3d12.h` | Direct3D12 | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d12compatibility.h` | Direct3D12 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12compatibility.h.md |
-| `d3d12compiler.h` | Direct3D12 | remaining |  |  |  |
+| `d3d12compiler.h` | Direct3D12 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12compiler.h.md |
 | `d3d12sdklayers.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12shader.h` | Direct3D12 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12shader.h.md |
 | `d3d12video.h` | Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
@@ -540,7 +540,7 @@
 | `imgerror.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgerror.h.md |
 | `imgutil.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgutil.h.md |
 | `imm.h` | Input.Ime | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imm.h.md |
-| `immdev.h` | Input.Ime | remaining |  |  |  |
+| `immdev.h` | Input.Ime | matched |  |  | Producer-site fix: filled missing CloseApi (ImmDestroyIMCC) on pre-existing HIMCC autoTypes.json entry. See docs/copilot/header-reports/immdev.h.md |
 | `in6addr.h` | WinSock, wnv | matched |  | 09/02/2026 17:16:10 | Plain data struct + macros only, no functions. |
 | `inaddr.h` | IpHlp, RRas, WinSock | matched |  | 09/02/2026 17:19:28 | Plain data struct + macros only, no functions. |
 | `indexsrv.h` | IndexSrv, Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/indexsrv.h.md |
@@ -732,7 +732,7 @@
 | `mshtmlc.h` | MsHtml | remaining |  |  |  |
 | `mshtmldiagnostics.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmldiagnostics.h.md |
 | `msi.h` | Setup | remaining |  |  |  |
-| `msidefs.h` | Setup | remaining |  |  |  |
+| `msidefs.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msidefs.h.md |
 | `msiehost.h` | InternetExplorer | matched |  | 09/02/2026 17:51:18 | GUID/command-ID constants only, no functions. |
 | `msiltcfg.h` | Setup | matched |  | 09/02/2026 17:38:44 | No handle involved. |
 | `msime.h` | Input.Ime | remaining |  |  |  |
@@ -828,7 +828,7 @@
 | `objsafe.h` | Debug | matched |  | 09/02/2026 21:27:04 | COM interface method only, out of scope. |
 | `objsel.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/objsel.h.md |
 | `ocidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Media.DShow, Search, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
-| `ocmm.h` | InternetExplorer | remaining |  |  |  |
+| `ocmm.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ocmm.h.md |
 | `odbcinst.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/odbcinst.h.md |
 | `odbcss.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/odbcss.h.md |
 | `ole2.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
@@ -1294,7 +1294,7 @@
 | `winnls.h` | Intl | remaining |  |  |  |
 | `winnls32.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:23:41 | HWND is an input; IME info struct is caller-allocated, not a handle. |
 | `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | remaining |  |  |  |
-| `winperf.h` | Perf | remaining |  |  |  |
+| `winperf.h` | Perf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winperf.h.md |
 | `winppi.h` | Printing | blocked | copilot | 09/02/2026 17:51:18 | Deferred: genuine spool-file/page HANDLE ownership relationship via return value, no annotation precedent; same class as getprocesshandlefromhwnd.h/wab.h/wincon.h. |
 | `winreg.h` | Registry | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsafer.h` | Security.AppLocker | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
