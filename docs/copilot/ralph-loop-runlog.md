@@ -1862,3 +1862,18 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - WaaSApi.h: IWaaSAssessor COM interface + CLSID/LIBID constants only. Clean.
 
 **Ledger status:** 528 accepted-normalized, 24 blocked, 851 pending.
+
+## 2026-09-02 20:22:20 UTC - Batch scraping-investigation-73
+
+**Headers:** DeleteBrowsingHistory.h, icftypes.h, NotificationActivationCallback.h, IMessageDispatcher.h, ElsCore.h
+**Partitions scraped (x64):** WindowsFirewall, Win32_Tile_Badge_Notif (0 errors each); WinProg/TransactionServer/Intl reused
+
+- DeleteBrowsingHistory.h: IDeleteBrowsingHistory COM interface + GUID/flag constants only. Clean.
+- icftypes.h: NET_FW_* firewall enums + MIDL boilerplate only, no functions. Clean.
+- NotificationActivationCallback.h: INotificationActivationCallback COM interface method only. Clean.
+- IMessageDispatcher.h: IMessageDispatcher COM/WinRT interface method only. Clean.
+- ElsCore.h: MappingGetServices/MappingRecognizeText/MappingDoAction all operate on transparent
+  structs (MAPPING_SERVICE_INFO/MAPPING_PROPERTY_BAG), freed via dedicated but structurally
+  transparent free functions - out of scope per established precedent. Clean.
+
+**Ledger status:** 533 accepted-normalized, 24 blocked, 846 pending.

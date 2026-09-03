@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:19:54Z
+- Generated: 2026-09-03T03:22:20Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 528
+- Matched: 533
 - In progress: 0
 - Blocked: 24
-- Remaining: 851
+- Remaining: 846
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -277,7 +277,7 @@
 | `debugapi.h` | Base, Debug | matched |  | 09/02/2026 19:06:16 | HANDLE is a caller-supplied input, not produced here. |
 | `defaultbrowsersyncsettings.h` | WinProg | matched |  | 09/02/2026 20:16:15 | COM interface + GUID constants only, no extern functions. |
 | `delayloadhandler.h` | WinProg | matched |  | 09/02/2026 17:27:04 | Structs/callback-typedef/extern-variable only, no functions. |
-| `deletebrowsinghistory.h` | WinProg | remaining |  |  |  |
+| `deletebrowsinghistory.h` | WinProg | matched |  | 09/02/2026 20:22:05 | COM interface + GUID/flag constants only, no extern functions. |
 | `deliveryoptimization.h` | DeliveryOptimization | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
 | `devfiltertypes.h` | DeviceQuery | matched |  | 09/02/2026 19:37:21 | Enum/struct only, no functions. |
 | `devguid.h` | DevInst | remaining |  |  |  |
@@ -389,7 +389,7 @@
 | `ehstorapi.h` | Enstor | remaining |  |  |  |
 | `ehstorextensions.h` | Enstor | remaining |  |  |  |
 | `ehstormsg.h` | Enstor | remaining |  |  |  |
-| `elscore.h` | Intl | remaining |  |  |  |
+| `elscore.h` | Intl | matched |  | 09/02/2026 20:22:05 | All producer/consumer pairs operate on transparent structs, not opaque handles. |
 | `elssrvc.h` | Intl | matched |  | 09/02/2026 18:03:29 | GUID constants only, no functions. |
 | `emi.h` | Power | matched |  | 09/02/2026 18:56:34 | GUID/IOCTL constants + data structs only, no functions. |
 | `emptyvc.h` | Lwef | remaining |  |  |  |
@@ -502,7 +502,7 @@
 | `iadmext.h` | Iis | matched |  | 09/02/2026 19:06:16 | COM interface, not HANDLE-family. |
 | `iadmw.h` | Iis | remaining |  |  |  |
 | `iads.h` | ActiveDirectory, Iis | remaining |  |  |  |
-| `icftypes.h` | WindowsFirewall | remaining |  |  |  |
+| `icftypes.h` | WindowsFirewall | matched |  | 09/02/2026 20:22:05 | Enums + MIDL boilerplate only, no functions. |
 | `ichannelcredentials.h` | Com.ChannelCreds, ComOle | remaining |  |  |  |
 | `Icm.h` | Wcs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `icmpapi.h` | IpHlp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
@@ -536,7 +536,7 @@
 | `ime.h` | FileHistory, WinProg | remaining |  |  |  |
 | `imepad.h` | Input.Ime | remaining |  |  |  |
 | `imessage.h` | IMapi | remaining |  |  |  |
-| `imessagedispatcher.h` | TransactionServer | remaining |  |  |  |
+| `imessagedispatcher.h` | TransactionServer | matched |  | 09/02/2026 20:22:05 | COM/WinRT interface method only, out of scope. |
 | `imgerror.h` | Printing | remaining |  |  |  |
 | `imgutil.h` | InternetExplorer | remaining |  |  |  |
 | `imm.h` | Input.Ime | remaining |  |  |  |
@@ -790,7 +790,7 @@
 | `nfcsedev.h` | Nfc | remaining |  |  |  |
 | `nfpdev.h` | Nfp | matched | copilot | 09/03/2026 05:00:00 | No patch needed; constant-only header. |
 | `notesdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:35:31 | GUID/name constants only, no functions. |
-| `notificationactivationcallback.h` | Win32_Tile_Badge_Notif | remaining |  |  |  |
+| `notificationactivationcallback.h` | Win32_Tile_Badge_Notif | matched |  | 09/02/2026 20:22:05 | COM interface method only, out of scope. |
 | `Npapi.h` | Wnet | remaining |  |  |  |
 | `nsemail.h` | WinSock | remaining |  |  |  |
 | `nserror.h` | Multimedia | remaining |  |  |  |

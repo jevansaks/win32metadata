@@ -2405,10 +2405,10 @@
   {
     "header": "deletebrowsinghistory.h",
     "partition": "WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:22:05Z",
+    "notes": "COM interface + GUID/flag constants only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -3413,10 +3413,10 @@
   {
     "header": "elscore.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:22:05Z",
+    "notes": "All producer/consumer pairs operate on transparent structs, not opaque handles.",
     "_source": "header-progress"
   },
   {
@@ -4430,10 +4430,10 @@
   {
     "header": "icftypes.h",
     "partition": "WindowsFirewall",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:22:05Z",
+    "notes": "Enums + MIDL boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4736,10 +4736,10 @@
   {
     "header": "imessagedispatcher.h",
     "partition": "TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:22:05Z",
+    "notes": "COM/WinRT interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -7022,10 +7022,10 @@
   {
     "header": "notificationactivationcallback.h",
     "partition": "Win32_Tile_Badge_Notif",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:22:05Z",
+    "notes": "COM interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
