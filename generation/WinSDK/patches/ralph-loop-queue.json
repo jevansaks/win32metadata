@@ -1901,10 +1901,10 @@
   {
     "header": "d3d10sdklayers.h",
     "partition": "Direct3D10",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10sdklayers.h.md",
     "_source": "header-progress"
   },
   {
@@ -2072,10 +2072,10 @@
   {
     "header": "d3d9helper.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9helper.h.md",
     "_source": "header-progress"
   },
   {
@@ -4304,10 +4304,10 @@
   {
     "header": "http.h",
     "partition": "HttpServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added HTTP_SERVER_SESSION_ID (CloseApi HttpCloseServerSession) and HTTP_URL_GROUP_ID (CloseApi HttpCloseUrlGroup) autoTypes.json entries. See docs/copilot/header-reports/http.h.md",
     "_source": "header-progress"
   },
   {
@@ -4412,10 +4412,10 @@
   {
     "header": "iadmw.h",
     "partition": "Iis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iadmw.h.md",
     "_source": "header-progress"
   },
   {
@@ -8606,10 +8606,10 @@
   {
     "header": "rtscom.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtscom.h.md",
     "_source": "header-progress"
   },
   {

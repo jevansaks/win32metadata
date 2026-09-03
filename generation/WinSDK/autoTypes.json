@@ -1063,6 +1063,22 @@
     "NativeTypedef": false
   },
   {
+    "Namespace": "Windows.Win32.Networking.HttpServer",
+    "Name": "HTTP_SERVER_SESSION_ID",
+    "ValueType": "ulong",
+    "CloseApi": "HttpCloseServerSession",
+    "InvalidHandleValues": [ 0 ],
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.Networking.HttpServer",
+    "Name": "HTTP_URL_GROUP_ID",
+    "ValueType": "ulong",
+    "CloseApi": "HttpCloseUrlGroup",
+    "InvalidHandleValues": [ 0 ],
+    "NativeTypedef": true
+  },
+  {
     "Namespace": "Windows.Win32.Globalization",
     "Name": "HSAVEDUILANGUAGES",
     "ValueType": "DECLARE_HANDLE",

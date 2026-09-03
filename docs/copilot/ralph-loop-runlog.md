@@ -3379,3 +3379,11 @@ Ledger: 1196 accepted-normalized, 31 blocked, 176 pending (1227/1403 classified)
 - **CorHdr.h** (ClrProfiling): CLR metadata structs/constants only. Clean.
 
 Ledger: 1201 accepted-normalized, 31 blocked, 171 pending (1232/1403 classified).
+
+## Batch 209 (2026-09-03 03:51): d3d10sdklayers.h, d3d9helper.h, http.h, rtscom.h, iadmw.h
+
+- d3d10sdklayers.h, rtscom.h, iadmw.h: COM vtable only. Clean.
+- d3d9helper.h: COM interface pointer output. Clean.
+- http.h (HttpServer): PRODUCER-SITE FIX x2 - HTTP_SERVER_SESSION_ID/HTTP_URL_GROUP_ID autoTypes.json entries added.
+
+Ledger: 1206 accepted-normalized, 31 blocked, 166 pending (1237/1403 classified).

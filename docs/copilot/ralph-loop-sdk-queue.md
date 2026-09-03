@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:47:24Z
+- Generated: 2026-09-03T10:51:42Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1201
+- Matched: 1206
 - In progress: 0
 - Blocked: 31
-- Remaining: 171
+- Remaining: 166
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -221,7 +221,7 @@
 | `d3d10.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10effect.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10effect.h.md |
 | `d3d10misc.h` | Direct3D10 | matched |  | 09/02/2026 19:47:59 | All outputs are standard COM interface pointers. |
-| `d3d10sdklayers.h` | Direct3D10 | remaining |  |  |  |
+| `d3d10sdklayers.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10sdklayers.h.md |
 | `d3d10shader.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10shader.h.md |
 | `d3d11_1.h` | Direct3D11, Mf | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d3d11_2.h` | Direct3D11 | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
@@ -240,7 +240,7 @@
 | `d3d12video.h` | Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d9.h` | Direct3D9, Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d9caps.h` | Direct3D9, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9caps.h.md |
-| `d3d9helper.h` | Media.DShow | remaining |  |  |  |
+| `d3d9helper.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9helper.h.md |
 | `d3d9on12.h` | Direct3D9on12 | matched |  | 09/02/2026 19:21:35 | COM factory/refcounting pattern throughout. |
 | `d3d9types.h` | Direct3D9, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9types.h.md |
 | `d3dcaps.h` | Direct3D9 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcaps.h.md |
@@ -488,7 +488,7 @@
 | `htiface.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/htiface.h.md |
 | `htiframe.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/htiframe.h.md |
 | `htmlhelp.h` | HtmlHelp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
-| `http.h` | HttpServer | remaining |  |  |  |
+| `http.h` | HttpServer | matched |  |  | Producer-site fix: added HTTP_SERVER_SESSION_ID (CloseApi HttpCloseServerSession) and HTTP_URL_GROUP_ID (CloseApi HttpCloseUrlGroup) autoTypes.json entries. See docs/copilot/header-reports/http.h.md |
 | `httpext.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/httpext.h.md |
 | `httpfilt.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/httpfilt.h.md |
 | `httprequest.h` | WinHttp | matched | copilot | 09/03/2026 03:35:00 | No patch needed; verified via live scrape and static review. |
@@ -500,7 +500,7 @@
 | `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | blocked | copilot | 09/02/2026 18:56:34 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h. |
 | `iaccess.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iaccess.h.md |
 | `iadmext.h` | Iis | matched |  | 09/02/2026 19:06:16 | COM interface, not HANDLE-family. |
-| `iadmw.h` | Iis | remaining |  |  |  |
+| `iadmw.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iadmw.h.md |
 | `iads.h` | ActiveDirectory, Iis | remaining |  |  |  |
 | `icftypes.h` | WindowsFirewall | matched |  | 09/02/2026 20:22:05 | Enums + MIDL boilerplate only, no functions. |
 | `ichannelcredentials.h` | Com.ChannelCreds, ComOle | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ichannelcredentials.h.md |
@@ -966,7 +966,7 @@
 | `rtcerr.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; constant-only header. |
 | `rtinfo.h` | NetMgmt | matched |  | 09/02/2026 21:24:15 | Structs only, no functions. |
 | `rtmv2.h` | RRas | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
-| `rtscom.h` | Tablet | remaining |  |  |  |
+| `rtscom.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtscom.h.md |
 | `rtutils.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtutils.h.md |
 | `rtworkq.h` | Threading | blocked |  | 09/02/2026 20:19:39 | RtwqJoinWorkQueue/RtwqSetDeadline produce generic HANDLE via direct out-param. |
 | `sapiddk.h` | Speech | remaining |  |  |  |
