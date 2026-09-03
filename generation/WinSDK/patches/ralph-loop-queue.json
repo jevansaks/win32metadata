@@ -470,10 +470,10 @@
   {
     "header": "amxmlgraphbuilder.h",
     "partition": "Media.DShow, Media.DShow.Xml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:13:02Z",
+    "notes": "COM interface + GUID constants only.",
     "_source": "header-progress"
   },
   {
@@ -5609,10 +5609,10 @@
   {
     "header": "mediaerr.h",
     "partition": "Media.DShow, Media.DxMediaObjects",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:13:02Z",
+    "notes": "HRESULT error constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5672,10 +5672,10 @@
   {
     "header": "messagedispatcherapi.h",
     "partition": "ComOle, WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:13:02Z",
+    "notes": "IMessageDispatcher pointer is caller-supplied input, not produced here.",
     "_source": "header-progress"
   },
   {
@@ -8417,10 +8417,10 @@
   {
     "header": "robuffer.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:13:02Z",
+    "notes": "COM-factory (RoGetBufferMarshaler) + buffer-view pattern (IBufferByteAccess), not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -12197,10 +12197,10 @@
   {
     "header": "wsdapi.h",
     "partition": "WebServicesOnDevices",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:13:02Z",
+    "notes": "Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE.",
     "_source": "header-progress"
   },
   {

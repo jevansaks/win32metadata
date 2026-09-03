@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:09:39Z
+- Generated: 2026-09-03T00:13:10Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 283
+- Matched: 288
 - In progress: 0
 - Blocked: 3
-- Remaining: 1117
+- Remaining: 1112
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -62,7 +62,7 @@
 | `amstream.h` | Media.DShow, Media.DShow.Xml | remaining |  |  |  |
 | `amva.h` | Media.DShow | remaining |  |  |  |
 | `amvideo.h` | Media.DShow | remaining |  |  |  |
-| `amxmlgraphbuilder.h` | Media.DShow, Media.DShow.Xml | remaining |  |  |  |
+| `amxmlgraphbuilder.h` | Media.DShow, Media.DShow.Xml | matched |  | 09/02/2026 17:13:02 | COM interface + GUID constants only. |
 | `anchorsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `animationcoordinator.h` | Shell | remaining |  |  |  |
 | `apdevpkey.h` | Base, Devices.Properties | matched |  | 09/02/2026 17:05:19 | Device property key constant only, no functions. |
@@ -633,14 +633,14 @@
 | `mdhcp.h` | Tapi3 | remaining |  |  |  |
 | `mdmlocalmanagement.h` | MdmReg | remaining |  |  |  |
 | `mdmregistration.h` | MdmReg | remaining |  |  |  |
-| `mediaerr.h` | Media.DShow, Media.DxMediaObjects | remaining |  |  |  |
+| `mediaerr.h` | Media.DShow, Media.DxMediaObjects | matched |  | 09/02/2026 17:13:02 | HRESULT error constants only, no functions. |
 | `mediaobj.h` | Media.DShow, Media.DxMediaObjects | remaining |  |  |  |
 | `medparam.h` | Media.DShow | remaining |  |  |  |
 | `memorybuffer.h` | WinRT | matched |  | 09/02/2026 17:05:19 | IMemoryBufferByteAccess COM interface; buffer view not a HANDLE-family resource. |
 | `menutemplate.h` | MenuRc | matched |  | 09/02/2026 17:01:48 | Plain data structs only, no functions. |
 | `mergemod.h` | Setup | remaining |  |  |  |
 | `messagedeviceservice.h` | WpdSdk | remaining |  |  |  |
-| `messagedispatcherapi.h` | ComOle, WinRT | remaining |  |  |  |
+| `messagedispatcherapi.h` | ComOle, WinRT | matched |  | 09/02/2026 17:13:02 | IMessageDispatcher pointer is caller-supplied input, not produced here. |
 | `metadatadeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `metahost.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `mfapi.h` | Mf | remaining |  |  |  |
@@ -945,7 +945,7 @@
 | `richole.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `ringtonedeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `roapi.h` | TransactionServer, WinRT | remaining |  |  |  |
-| `robuffer.h` | WinRT | remaining |  |  |  |
+| `robuffer.h` | WinRT | matched |  | 09/02/2026 17:13:02 | COM-factory (RoGetBufferMarshaler) + buffer-view pattern (IBufferByteAccess), not HANDLE-family. |
 | `roerrorapi.h` | WinRT | remaining |  |  |  |
 | `rometadata.h` | WinRT.Metadata | matched |  | 09/02/2026 17:01:48 | COM QueryInterface-style factory (MetaDataGetDispenser), no raw HANDLE. |
 | `rometadataapi.h` | WinRT.Metadata | remaining |  |  |  |
@@ -1365,7 +1365,7 @@
 | `wsbonline.h` | Wsb | remaining |  |  |  |
 | `wsbonlineerror.h` | Wsb | remaining |  |  |  |
 | `wscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |
-| `wsdapi.h` | WebServicesOnDevices | remaining |  |  |  |
+| `wsdapi.h` | WebServicesOnDevices | matched |  | 09/02/2026 17:13:02 | Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE. |
 | `wsdattachment.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdbase.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdclient.h` | FunctionDiscovery | remaining |  |  |  |

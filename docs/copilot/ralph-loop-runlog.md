@@ -889,3 +889,22 @@ pre-existing unrelated cross-partition remap warning for _CERT_CONTEXT, not touc
 - winsdkver.h: SDK version-max constants only, no functions. Clean.
 
 **Ledger status:** 283 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1117 pending.
+
+## 2026-09-02 17:13:23 UTC - Batch scraping-investigation-20
+
+**Headers:** messagedispatcherapi.h, wsdapi.h, robuffer.h, mediaerr.h, amxmlgraphbuilder.h
+**Partitions scraped:** ComOle, WebServicesOnDevices, GameMode (x86; 0 errors; WebServicesOnDevices
+shows 1 pre-existing unrelated cross-partition remap warning for _CERT_CONTEXT)
+
+- messagedispatcherapi.h: CoSetMessageDispatcher takes a caller-supplied IMessageDispatcher* as input
+  (not produced here); CoHandlePriorityEventsFromMessagePump has no params. Clean.
+- wsdapi.h: redirect-only header (9 wsd*.h sub-headers, all still separately pending); 32 functions
+  scraped, all COM-factory (_Outptr_ IWSD*) or memory/XML-node helper pairs (WSDAllocateLinkedMemory/
+  WSDFreeLinkedMemory operate on raw void*, not HANDLE-family - analogous to a custom heap allocator,
+  out of scope for the HANDLE-specific ownership mechanism). No DECLARE_HANDLE. Clean.
+- robuffer.h: RoGetBufferMarshaler is a clean COM-factory; IBufferByteAccess::Buffer is a buffer-view
+  method (same reasoning as memorybuffer.h's IMemoryBufferByteAccess, already accepted). Clean.
+- mediaerr.h: DMO_E_* HRESULT constants only, no functions. Clean.
+- amxmlgraphbuilder.h: IXMLGraphBuilder COM interface + GUID constants, no raw HANDLE. Clean.
+
+**Ledger status:** 288 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1112 pending.
