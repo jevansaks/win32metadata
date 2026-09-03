@@ -2774,10 +2774,10 @@
   {
     "header": "documenttarget.h",
     "partition": "XpsPrinting",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/documenttarget.h.md",
     "_source": "header-progress"
   },
   {
@@ -2918,10 +2918,10 @@
   {
     "header": "dsparse.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsparse.h.md",
     "_source": "header-progress"
   },
   {
@@ -4808,10 +4808,10 @@
   {
     "header": "inetreg.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inetreg.h.md",
     "_source": "header-progress"
   },
   {
@@ -5573,10 +5573,10 @@
   {
     "header": "mcx.h",
     "partition": "Communication",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mcx.h.md",
     "_source": "header-progress"
   },
   {
@@ -10811,10 +10811,10 @@
   {
     "header": "webauthnplugin.h",
     "partition": "WebAuthn",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webauthnplugin.h.md",
     "_source": "header-progress"
   },
   {

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:58:17Z
+- Generated: 2026-09-03T08:00:59Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 921
+- Matched: 926
 - In progress: 0
 - Blocked: 31
-- Remaining: 451
+- Remaining: 446
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -318,7 +318,7 @@
 | `docobj.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `docobjectservice.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/docobjectservice.h.md |
 | `DocumentSource.h` | WinRT.Printing | matched |  | 09/02/2026 22:12:28 | COM/WinRT interface methods only, out of scope. |
-| `documenttarget.h` | XpsPrinting | remaining |  |  |  |
+| `documenttarget.h` | XpsPrinting | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/documenttarget.h.md |
 | `dot1x.h` | Ndis, NWifi | matched |  | 09/02/2026 20:31:37 | Enums/structs only, no functions. |
 | `downloadmgr.h` | InternetExplorer | matched |  | 09/02/2026 20:44:40 | COM interface method + GUID constant only, no extern functions. |
 | `dpa_dsa.h` | Controls | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
@@ -334,7 +334,7 @@
 | `dshowasf.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dshowasf.h.md |
 | `dskquota.h` | Fs, Shell | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsound.h` | Audio.DirectSound, FileHistory, WinProg | remaining |  |  |  |
-| `dsparse.h` | ActiveDirectory | remaining |  |  |  |
+| `dsparse.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsparse.h.md |
 | `dsquery.h` | ActiveDirectory | matched |  | 09/02/2026 20:13:28 | GUID constants/structs only, no functions. |
 | `dsrole.h` | ActiveDirectory | matched |  | 09/02/2026 18:50:10 | Generic memory-buffer allocation, not HANDLE-family. |
 | `dssec.h` | Security.DirectoryServices | matched |  | 09/02/2026 21:43:41 | Standard COM interface output + caller-supplied callback typedefs only. |
@@ -544,7 +544,7 @@
 | `in6addr.h` | WinSock, wnv | matched |  | 09/02/2026 17:16:10 | Plain data struct + macros only, no functions. |
 | `inaddr.h` | IpHlp, RRas, WinSock | matched |  | 09/02/2026 17:19:28 | Plain data struct + macros only, no functions. |
 | `indexsrv.h` | IndexSrv, Search | remaining |  |  |  |
-| `inetreg.h` | InternetExplorer | remaining |  |  |  |
+| `inetreg.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inetreg.h.md |
 | `inetsdk.h` | InternetExplorer | matched |  | 09/02/2026 18:23:41 | Pure MIDL boilerplate, no functions. |
 | `infocard.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infocard.h.md |
 | `infotech.h` | HtmlHelp | remaining |  |  |  |
@@ -629,7 +629,7 @@
 | `mbnapi.h` | Mbn | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `mciapi.h` | Multimedia | remaining |  |  |  |
 | `mciavi.h` | Multimedia | matched |  | 09/02/2026 18:59:13 | Constants only, no functions. |
-| `mcx.h` | Communication | remaining |  |  |  |
+| `mcx.h` | Communication | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mcx.h.md |
 | `mdhcp.h` | Tapi3 | remaining |  |  |  |
 | `mdmlocalmanagement.h` | MdmReg | matched |  | 09/02/2026 17:54:05 | No handle-typed values; string output uses LocalFree, not HANDLE mechanism. |
 | `mdmregistration.h` | MdmReg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mdmregistration.h.md |
@@ -1211,7 +1211,7 @@
 | `webapplication.h` | Debug.WebApp | remaining |  |  |  |
 | `WebAuthenticationCoreManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:38:18 | COM/WinRT interop interface method only, out of scope. |
 | `webauthn.h` | WebAuthn | remaining |  |  |  |
-| `webauthnplugin.h` | WebAuthn | remaining |  |  |  |
+| `webauthnplugin.h` | WebAuthn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webauthnplugin.h.md |
 | `webevnts.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webevnts.h.md |
 | `webservices.h` | Wsw | remaining |  |  |  |
 | `websocket.h` | WebSock | matched |  | 09/02/2026 21:01:40 | WEB_SOCKET_HANDLE already correctly covered via existing autoTypes.json entry. |

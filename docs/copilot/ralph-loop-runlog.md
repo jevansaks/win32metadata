@@ -2838,3 +2838,13 @@ Ledger: 916 accepted-normalized, 31 blocked, 456 pending (947/1403 classified).
 - **urlhist.h** (InternetExplorer): COM interfaces only, no free functions. Clean.
 
 Ledger: 921 accepted-normalized, 31 blocked, 451 pending (952/1403 classified).
+
+## Batch 153 (2026-09-03 01:01): documenttarget.h, mcx.h, webauthnplugin.h, inetreg.h, dsparse.h
+
+- **documenttarget.h** (XpsPrinting): COM interfaces only, no free functions. Clean.
+- **mcx.h** (Communication): transparent structs only, no functions. Clean.
+- **webauthnplugin.h** (WebAuthn): frees generic PBYTE buffer, not opaque handle. Clean.
+- **inetreg.h** (InternetExplorer): registry string constants only. Clean.
+- **dsparse.h** (ActiveDirectory): DsMakeSpn/DsCrackSpn family - strings/DWORD lengths only. Clean.
+
+Ledger: 926 accepted-normalized, 31 blocked, 446 pending (957/1403 classified).
