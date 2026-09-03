@@ -2468,3 +2468,13 @@ Ledger: 731 accepted-normalized, 31 blocked, 641 pending (762/1403 classified).
 - **mixerocx.h** (Media.DShow): COM interfaces only, no free functions. Clean.
 
 Ledger: 736 accepted-normalized, 31 blocked, 636 pending (767/1403 classified).
+
+## Batch 116 (2026-09-02 23:01): tssbx.h, clfsmgmt.h, tipautocomplete.h, winber.h, ddpbackup.h
+
+- **tssbx.h** (TermServ): COM interfaces only, no free functions. Clean.
+- **clfsmgmt.h** (Fs): PATCH APPLIED. CLFS_MGMT_CLIENT (typedef PVOID, produced by ClfsMgmtRegisterManagedClient, freed by ClfsMgmtDeregisterManagedClient) had no autoTypes.json entry - added new entry (ValueType IntPtr, matching NDFHANDLE convention). Re-scraped Fs (x64): 0 errors.
+- **tipautocomplete.h** (Tablet): COM interfaces only, no free functions. Clean.
+- **winber.h** (Ldap): PATCH APPLIED. BerElement (defined opaque in sibling Winldap.h, already accepted-normalized) produced by ber_alloc_t/ber_init, freed by ber_free - added new autoTypes.json entry using the "typedef struct berelement" ValueType convention established by sibling PLDAPSearch entry in the same namespace. Re-scraped Ldap (x64): 0 errors.
+- **ddpbackup.h** (Dedup): COM interfaces only, no free functions. Clean.
+
+Ledger: 741 accepted-normalized, 31 blocked, 631 pending (772/1403 classified).

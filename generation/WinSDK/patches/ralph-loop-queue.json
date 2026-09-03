@@ -1325,10 +1325,10 @@
   {
     "header": "clfsmgmt.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added CLFS_MGMT_CLIENT autoTypes.json entry (CloseApi=ClfsMgmtDeregisterManagedClient). See docs/copilot/header-reports/clfsmgmt.h.md",
     "_source": "header-progress"
   },
   {
@@ -2297,10 +2297,10 @@
   {
     "header": "ddpbackup.h",
     "partition": "Dedup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpbackup.h.md",
     "_source": "header-progress"
   },
   {
@@ -9767,10 +9767,10 @@
   {
     "header": "tipautocomplete.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tipautocomplete.h.md",
     "_source": "header-progress"
   },
   {
@@ -9938,10 +9938,10 @@
   {
     "header": "tssbx.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tssbx.h.md",
     "_source": "header-progress"
   },
   {
@@ -10964,10 +10964,10 @@
   {
     "header": "winber.h",
     "partition": "Ldap",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added BerElement autoTypes.json entry (CloseApi=ber_free), matching sibling PLDAPSearch's typedef-struct ValueType convention. See docs/copilot/header-reports/winber.h.md",
     "_source": "header-progress"
   },
   {

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:54:39Z
+- Generated: 2026-09-03T06:01:32Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 736
+- Matched: 741
 - In progress: 0
 - Blocked: 31
-- Remaining: 636
+- Remaining: 631
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -157,7 +157,7 @@
 | `cfgmgr32.h` | DevInst | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `cierror.h` | Foundation | remaining |  |  |  |
 | `clfs.h` | Fs | remaining |  |  |  |
-| `clfsmgmt.h` | Fs | remaining |  |  |  |
+| `clfsmgmt.h` | Fs | matched |  |  | Genuine producer-site fix: added CLFS_MGMT_CLIENT autoTypes.json entry (CloseApi=ClfsMgmtDeregisterManagedClient). See docs/copilot/header-reports/clfsmgmt.h.md |
 | `clfsmgmtw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `clfsw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `cloneviewhelper.h` | Monitor | remaining |  |  |  |
@@ -265,7 +265,7 @@
 | `dde.h` | DataXchg | matched |  | 09/02/2026 20:25:02 | No function produces an opaque handle. |
 | `ddeml.h` | DataXchg | remaining |  |  |  |
 | `ddkernel.h` | DirectDraw | matched |  | 09/02/2026 21:27:04 | COM-style interfaces + GUID constants only, no extern functions. |
-| `ddpbackup.h` | Dedup | remaining |  |  |  |
+| `ddpbackup.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpbackup.h.md |
 | `ddpchunk.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpchunk.h.md |
 | `ddpcommon.h` | Dedup | matched |  | 09/02/2026 19:16:41 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `ddpdataport.h` | Dedup | remaining |  |  |  |
@@ -1095,7 +1095,7 @@
 | `thumbnailstreamcache.h` | Shell | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `timeapi.h` | Media, Multimedia | matched |  | 09/02/2026 18:38:01 | No HANDLE-family type involved. |
 | `timezoneapi.h` | FileHistory, Time | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
-| `tipautocomplete.h` | Tablet | remaining |  |  |  |
+| `tipautocomplete.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tipautocomplete.h.md |
 | `tlhelp32.h` | ToolHelp | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `tlogstg.h` | Shell | remaining |  |  |  |
 | `tnef.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tnef.h.md |
@@ -1114,7 +1114,7 @@
 | `TSPI.h` | Tapi3 | remaining |  |  |  |
 | `tspubplugin2com.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tspubplugin2com.h.md |
 | `tspubplugincom.h` | TermServ | matched |  | 09/02/2026 22:09:36 | COM interface only, no extern functions. |
-| `tssbx.h` | TermServ | remaining |  |  |  |
+| `tssbx.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tssbx.h.md |
 | `tsuserex.h` | TermServ | remaining |  |  |  |
 | `tsvirtualchannels.h` | TermServ | remaining |  |  |  |
 | `tuner.h` | MsTv | remaining |  |  |  |
@@ -1228,7 +1228,7 @@
 | `wiavideo.h` | Wia | remaining |  |  |  |
 | `wiawsdsc.h` | Wia | matched |  | 09/02/2026 18:35:09 | Property-ID constants only, no functions. |
 | `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
-| `winber.h` | Ldap | remaining |  |  |  |
+| `winber.h` | Ldap | matched |  |  | Genuine producer-site fix: added BerElement autoTypes.json entry (CloseApi=ber_free), matching sibling PLDAPSearch's typedef-struct ValueType convention. See docs/copilot/header-reports/winber.h.md |
 | `winbio_adapter.h` | SecBitomet | remaining |  |  |  |
 | `winbio_err.h` | SecBitomet | remaining |  |  |  |
 | `winbio_ioctl.h` | SecBitomet | matched |  | 09/02/2026 21:49:17 | IOCTL/GUID constants only, no functions. |
