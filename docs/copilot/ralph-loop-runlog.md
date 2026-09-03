@@ -2032,3 +2032,20 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - mxdc.h: MxdcGetPDEVAdjustment's HANDLE is a pre-owned caller input only. Clean.
 
 **Ledger status:** 578 accepted-normalized, 29 blocked, 796 pending.
+
+## 2026-09-02 21:01:56 UTC - Batch scraping-investigation-84
+
+**Headers:** devquery.h, websocket.h, IContentPrefetcherTaskTrigger.h, UIViewSettingsInterop.h, msports.h
+**Partitions scraped (x64):** WebSock, Wsw, SerPorts (0 errors each); DeviceQuery re-scraped after fix; WinRT reused
+
+- devquery.h: **genuine fix applied.** HDEVQUERY's autoTypes.json entry was missing CloseApi
+  (same incomplete-entry pattern as appnotify.h/dciman.h). Added CloseApi: DevCloseObjectQuery.
+  Verified single-file declaration and re-scraped DeviceQuery (0 errors).
+- websocket.h: WEB_SOCKET_HANDLE already correctly covered via existing autoTypes.json entry
+  (CloseApi: WebSocketDeleteHandle). Clean.
+- IContentPrefetcherTaskTrigger.h: COM/WinRT interface method only. Clean.
+- UIViewSettingsInterop.h: COM/WinRT interop interface method only. Clean.
+- msports.h: HCOMDB already correctly covered via existing autoTypes.json entry
+  (CloseApi: ComDBClose). Clean.
+
+**Ledger status:** 583 accepted-normalized, 29 blocked, 791 pending.

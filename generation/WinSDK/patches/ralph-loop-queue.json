@@ -2495,10 +2495,10 @@
   {
     "header": "devquery.h",
     "partition": "DeviceQuery, FileHistory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:01:40Z",
+    "notes": "Fixed genuine gap: completed existing autoTypes.json entry for HDEVQUERY (CloseApi=DevCloseObjectQuery).",
     "_source": "header-progress"
   },
   {
@@ -4484,10 +4484,10 @@
   {
     "header": "icontentprefetchertasktrigger.h",
     "partition": "Wsw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:01:40Z",
+    "notes": "COM/WinRT interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -6581,10 +6581,10 @@
   {
     "header": "msports.h",
     "partition": "SerPorts",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:01:40Z",
+    "notes": "HCOMDB already correctly covered via existing autoTypes.json entry.",
     "_source": "header-progress"
   },
   {
@@ -10073,10 +10073,10 @@
   {
     "header": "UIViewSettingsInterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:01:40Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -10838,10 +10838,10 @@
   {
     "header": "websocket.h",
     "partition": "WebSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:01:40Z",
+    "notes": "WEB_SOCKET_HANDLE already correctly covered via existing autoTypes.json entry.",
     "_source": "header-progress"
   },
   {

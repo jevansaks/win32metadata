@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:56:32Z
+- Generated: 2026-09-03T04:01:56Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 578
+- Matched: 583
 - In progress: 0
 - Blocked: 29
-- Remaining: 796
+- Remaining: 791
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -287,7 +287,7 @@
 | `devioctl.h` | Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd | remaining |  |  |  |
 | `devpkey.h` | Base, Devices.Properties | remaining |  |  |  |
 | `devpropdef.h` | Display, Nfc, Nfp, WpdSdk | remaining |  |  |  |
-| `devquery.h` | DeviceQuery, FileHistory | remaining |  |  |  |
+| `devquery.h` | DeviceQuery, FileHistory | matched |  | 09/02/2026 21:01:40 | Fixed genuine gap: completed existing autoTypes.json entry for HDEVQUERY (CloseApi=DevCloseObjectQuery). |
 | `devquerydef.h` | DeviceQuery | matched |  | 09/02/2026 18:59:13 | Enums/data structs only, no functions. |
 | `dhcpcsdk.h` | Dhcp | remaining |  |  |  |
 | `dhcpsapi.h` | Dhcp | remaining |  |  |  |
@@ -508,7 +508,7 @@
 | `icmpapi.h` | IpHlp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `icontact.h` | WinContacts | remaining |  |  |  |
 | `icontactproperties.h` | WinContacts | remaining |  |  |  |
-| `icontentprefetchertasktrigger.h` | Wsw | remaining |  |  |  |
+| `icontentprefetchertasktrigger.h` | Wsw | matched |  | 09/02/2026 21:01:40 | COM/WinRT interface method only, out of scope. |
 | `icu.h` | Intl | remaining |  |  |  |
 | `icucommon.h` | Intl | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `icui18n.h` | Intl | remaining |  |  |  |
@@ -741,7 +741,7 @@
 | `msinkaut15.h` | Tablet | remaining |  |  |  |
 | `msiquery.h` | Setup | remaining |  |  |  |
 | `msopc.h` | Opc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only, no free functions. |
-| `msports.h` | SerPorts | remaining |  |  |  |
+| `msports.h` | SerPorts | matched |  | 09/02/2026 21:01:40 | HCOMDB already correctly covered via existing autoTypes.json entry. |
 | `msrdc.h` | Rdc | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
 | `mssign.h` | Security.Cryptography | remaining |  |  |  |
 | `mssip.h` | Security.Cryptography.Sip, Security.WinTrust | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
@@ -1129,7 +1129,7 @@
 | `uiautomationcore.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `uiautomationcoreapi.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `uiribbon.h` | WindowsRibbon | remaining |  |  |  |
-| `UIViewSettingsInterop.h` | WinRT | remaining |  |  |  |
+| `UIViewSettingsInterop.h` | WinRT | matched |  | 09/02/2026 21:01:40 | COM/WinRT interop interface method only, out of scope. |
 | `upnp.h` | Upnp | remaining |  |  |  |
 | `upnphost.h` | Upnp | remaining |  |  |  |
 | `urlhist.h` | InternetExplorer | remaining |  |  |  |
@@ -1214,7 +1214,7 @@
 | `webauthnplugin.h` | WebAuthn | remaining |  |  |  |
 | `webevnts.h` | InternetExplorer | remaining |  |  |  |
 | `webservices.h` | Wsw | remaining |  |  |  |
-| `websocket.h` | WebSock | remaining |  |  |  |
+| `websocket.h` | WebSock | matched |  | 09/02/2026 21:01:40 | WEB_SOCKET_HANDLE already correctly covered via existing autoTypes.json entry. |
 | `werapi.h` | Wer | remaining |  |  |  |
 | `wheadef.h` | Debug | remaining |  |  |  |
 | `wia.h` | Wia | matched |  | 09/02/2026 16:53:36 | Redirect-only; 185 functions all COM/RPC marshalling stubs, no DECLARE_HANDLE. |

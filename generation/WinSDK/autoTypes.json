@@ -2697,6 +2697,8 @@
     "Namespace": "Windows.Win32.Devices.DeviceQuery",
     "Name": "HDEVQUERY",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "DevCloseObjectQuery",
+    "InvalidHandleValues": [ 0 ],
     "NativeTypedef": true
   },
   {
