@@ -2948,3 +2948,13 @@ Ledger: 971 accepted-normalized, 31 blocked, 401 pending (1002/1403 classified).
 - **mfspatialaudio.h** (Mf): COM vtable only. Clean.
 
 Ledger: 976 accepted-normalized, 31 blocked, 396 pending (1007/1403 classified).
+
+## Batch 164 (2026-09-03 01:30): raseapif.h, winternl.h, fhcfg.h, gnssdriver.h, eaptypes.h
+
+- **raseapif.h** (Eap): 3rd-party EAP DLL contract functions; BYTE*/BYTE** buffer freed via RasEapFreeMemory - raw-buffer convention (blocker-class 7), out of scope.
+- **winternl.h** (multi-partition): NtCreateFile/NtOpenFile output generic PHANDLE (not a distinct typedef) - blocker-class 2 (generic HANDLE), out of scope.
+- **fhcfg.h** (FileHistory): COM vtable only. Clean.
+- **gnssdriver.h** (WinLocation): IOCTL codes/structs only, no functions. Clean.
+- **eaptypes.h** (EapHost): constants/structs only, no functions. Clean.
+
+Ledger: 981 accepted-normalized, 31 blocked, 391 pending (1012/1403 classified).

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:26:59Z
+- Generated: 2026-09-03T08:30:35Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 976
+- Matched: 981
 - In progress: 0
 - Blocked: 31
-- Remaining: 396
+- Remaining: 391
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -380,7 +380,7 @@
 | `eapmethodpeerapis.h` | EapHost | remaining |  |  |  |
 | `eapmethodtypes.h` | EapHost | matched |  | 09/02/2026 17:30:54 | Type declarations only (struct/enum/typedef), no functions; producer functions tracked separately under eapmethodpeerapis.h (pending). |
 | `eappapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eappapis.h.md |
-| `eaptypes.h` | EapHost | remaining |  |  |  |
+| `eaptypes.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaptypes.h.md |
 | `edevdefs.h` | DeviceAccess | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/edevdefs.h.md |
 | `editionupgradehelper.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/editionupgradehelper.h.md |
 | `edpwin32.h` | Edp | matched |  | 09/02/2026 17:19:28 | Path-string-only API, no handle. |
@@ -423,7 +423,7 @@
 | `fdi_fci_types.h` | Cabinets | matched |  | 09/02/2026 20:13:28 | Constants/structs only, no functions. |
 | `fdi.h` | Cabinets | remaining |  |  |  |
 | `featurestagingapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:40:30 | FEATURE_STATE_CHANGE_SUBSCRIPTION ownership already correctly captured via existing autoTypes.json entry. |
-| `fhcfg.h` | FileHistory | remaining |  |  |  |
+| `fhcfg.h` | FileHistory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fhcfg.h.md |
 | `fherrors.h` | FileHistory | matched |  | 09/02/2026 19:47:59 | HRESULT constants only, no functions. |
 | `fhstatus.h` | FileHistory | matched |  | 09/02/2026 18:00:53 | Status-code constants only, no functions. |
 | `fhsvcctl.h` | FileHistory | matched |  | 09/02/2026 18:50:10 | FH_SERVICE_PIPE_HANDLE ownership already correctly captured via existing autoTypes.json entry. |
@@ -469,7 +469,7 @@
 | `getprocesshandlefromhwnd.h` | Threading | blocked | copilot | 09/02/2026 16:49:01 | Deferred: return-value HANDLE ownership has no precedent anywhere in the repo or published baseline winmd (confirmed via WinmdUtils dump); requires dedicated policy decision on annotation placement before this can be fixed. |
 | `gl/gl.h` | OpenGL | remaining |  |  |  |
 | `gl/glu.h` | OpenGL | remaining |  |  |  |
-| `gnssdriver.h` | WinLocation | remaining |  |  |  |
+| `gnssdriver.h` | WinLocation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gnssdriver.h.md |
 | `gpedit.h` | Policy | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gpedit.h.md |
 | `gpiobuttontypes.h` | Hid | matched |  | 09/02/2026 18:23:41 | Enum/constants/data struct only, no functions. |
 | `gpmgmt.h` | Gpmc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only. |
@@ -918,7 +918,7 @@
 | `radiomgr.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radiomgr.h.md |
 | `ras.h` | RRas | remaining |  |  |  |
 | `rasdlg.h` | RRas | matched |  | 09/02/2026 21:12:30 | No function produces an opaque handle. |
-| `raseapif.h` | Eap | remaining |  |  |  |
+| `raseapif.h` | Eap | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raseapif.h.md |
 | `raserror.h` | RRas | remaining |  |  |  |
 | `rasshost.h` | RRas | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `ratings.h` | InternetExplorer | blocked | copilot | 09/02/2026 19:09:17 | Deferred: direct out-param instance of the generic/shared-type blocker class. |
@@ -1311,7 +1311,7 @@
 | `winsvc.h` | Services | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types). |
 | `winsxs.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsxs.h.md |
 | `winsync.h` | WinSync | remaining |  |  |  |
-| `winternl.h` | ActiveDirectory, Base, Certificates, FileHistory, IpHlp, MadCap, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, WinProg | remaining |  |  |  |
+| `winternl.h` | ActiveDirectory, Base, Certificates, FileHistory, IpHlp, MadCap, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winternl.h.md |
 | `wintrust.h` | Security.WinTrust | remaining |  |  |  |
 | `winusb.h` | Buses | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winusbio.h` | Buses | matched |  | 09/02/2026 18:38:01 | Constants + data structs only, no functions. |

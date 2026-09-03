@@ -3332,10 +3332,10 @@
   {
     "header": "eaptypes.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaptypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -3719,10 +3719,10 @@
   {
     "header": "fhcfg.h",
     "partition": "FileHistory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fhcfg.h.md",
     "_source": "header-progress"
   },
   {
@@ -4133,10 +4133,10 @@
   {
     "header": "gnssdriver.h",
     "partition": "WinLocation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gnssdriver.h.md",
     "_source": "header-progress"
   },
   {
@@ -8174,10 +8174,10 @@
   {
     "header": "raseapif.h",
     "partition": "Eap",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raseapif.h.md",
     "_source": "header-progress"
   },
   {
@@ -11711,10 +11711,10 @@
   {
     "header": "winternl.h",
     "partition": "ActiveDirectory, Base, Certificates, FileHistory, IpHlp, MadCap, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winternl.h.md",
     "_source": "header-progress"
   },
   {
