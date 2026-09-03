@@ -2718,3 +2718,13 @@ Ledger: 856 accepted-normalized, 31 blocked, 516 pending (887/1403 classified).
 - **wsdtypes.h** (FunctionDiscovery): forward struct decls + function-pointer typedef only, no extern functions. Clean.
 
 Ledger: 861 accepted-normalized, 31 blocked, 511 pending (892/1403 classified).
+
+## Batch 141 (2026-09-03 00:18): nfcdtadev.h, windows.media.core.interop.h, d2d1effects_2.h, oletx2xa.h, eapmethodauthenticatorapis.h
+
+- **nfcdtadev.h** (Nfc): GUID + IOCTL codes only, no functions. Clean.
+- **windows.media.core.interop.h** (WinRT.Media): COM interfaces only, no free functions. Clean.
+- **d2d1effects_2.h** (Direct2D): CLSID_* GUID constants only. Clean.
+- **oletx2xa.h** (DTC): COM interfaces only, no free functions. Clean.
+- **eapmethodauthenticatorapis.h** (EapHost): EapMethodAuthenticatorInvokeConfigUI outputs generic byte buffer. Clean.
+
+Ledger: 866 accepted-normalized, 31 blocked, 506 pending (897/1403 classified).

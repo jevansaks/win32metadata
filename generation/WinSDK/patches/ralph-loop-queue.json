@@ -1811,10 +1811,10 @@
   {
     "header": "d2d1effects_2.h",
     "partition": "Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d2d1effects_2.h.md",
     "_source": "header-progress"
   },
   {
@@ -3296,10 +3296,10 @@
   {
     "header": "eapmethodauthenticatorapis.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eapmethodauthenticatorapis.h.md",
     "_source": "header-progress"
   },
   {
@@ -6977,10 +6977,10 @@
   {
     "header": "nfcdtadev.h",
     "partition": "Nfc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/nfcdtadev.h.md",
     "_source": "header-progress"
   },
   {
@@ -7463,10 +7463,10 @@
   {
     "header": "oletx2xa.h",
     "partition": "DTC",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oletx2xa.h.md",
     "_source": "header-progress"
   },
   {
@@ -11252,10 +11252,10 @@
   {
     "header": "windows.media.core.interop.h",
     "partition": "WinRT.Media",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.media.core.interop.h.md",
     "_source": "header-progress"
   },
   {

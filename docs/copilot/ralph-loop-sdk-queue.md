@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:16:07Z
+- Generated: 2026-09-03T07:18:16Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 861
+- Matched: 866
 - In progress: 0
 - Blocked: 31
-- Remaining: 511
+- Remaining: 506
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -211,7 +211,7 @@
 | `d2d1effectauthor_1.h` | Direct2D | matched |  | 09/02/2026 18:56:34 | COM factory pattern. |
 | `d2d1effectauthor.h` | Direct2D | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d2d1effects_1.h` | Direct2D | matched |  | 09/02/2026 18:40:30 | GUID constant + enums only, no functions. |
-| `d2d1effects_2.h` | Direct2D | remaining |  |  |  |
+| `d2d1effects_2.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d2d1effects_2.h.md |
 | `d2d1effects.h` | Direct2D | remaining |  |  |  |
 | `d2d1svg.h` | Direct2D | remaining |  |  |  |
 | `d2dbasetypes.h` | Direct2D | matched |  | 09/02/2026 17:05:19 | Type alias only, no functions. |
@@ -376,7 +376,7 @@
 | `eaphosterror.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaphosterror.h.md |
 | `eaphostpeerconfigapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaphostpeerconfigapis.h.md |
 | `eaphostpeertypes.h` | EapHost | matched |  | 09/02/2026 19:35:00 | Enums/structs only, no functions. |
-| `eapmethodauthenticatorapis.h` | EapHost | remaining |  |  |  |
+| `eapmethodauthenticatorapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eapmethodauthenticatorapis.h.md |
 | `eapmethodpeerapis.h` | EapHost | remaining |  |  |  |
 | `eapmethodtypes.h` | EapHost | matched |  | 09/02/2026 17:30:54 | Type declarations only (struct/enum/typedef), no functions; producer functions tracked separately under eapmethodpeerapis.h (pending). |
 | `eappapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eappapis.h.md |
@@ -785,7 +785,7 @@
 | `netsh.h` | NetShell | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
 | `nettypes.h` | NetMgmt | matched |  | 09/02/2026 18:40:30 | Typedefs/data structs/constants only, no functions. |
 | `newdev.h` | DevInst | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
-| `nfcdtadev.h` | Nfc | remaining |  |  |  |
+| `nfcdtadev.h` | Nfc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/nfcdtadev.h.md |
 | `nfcradiodev.h` | Nfc | matched |  | 09/02/2026 17:54:05 | GUID/IOCTL constants + data structs only, no functions. |
 | `nfcsedev.h` | Nfc | matched |  | 09/02/2026 21:32:46 | GUID/IOCTL constants and structs only, no functions. |
 | `nfpdev.h` | Nfp | matched | copilot | 09/03/2026 05:00:00 | No patch needed; constant-only header. |
@@ -839,7 +839,7 @@
 | `oledberr.h` | Search | remaining |  |  |  |
 | `oledlg.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oleidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
-| `oletx2xa.h` | DTC | remaining |  |  |  |
+| `oletx2xa.h` | DTC | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oletx2xa.h.md |
 | `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | blocked |  | 09/02/2026 19:45:17 | OnDemandRegisterNotification outputs generic HANDLE via direct out-param. |
 | `oobenotification.h` | WindowsSetupAndMigration | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `openservice.h` | InternetExplorer | remaining |  |  |  |
@@ -1260,7 +1260,7 @@
 | `windows.graphics.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 17:41:54 | COM factory pattern. |
 | `windows.graphics.printing.workflow.native.h` | WinRT.Printing | remaining |  |  |  |
 | `windows.h` | Console, Edp, Enstor, Memory, Mi | matched |  | 09/02/2026 21:08:27 | Pure umbrella redirect; all sub-headers tracked or (dlgs.h) directly confirmed no functions. |
-| `windows.media.core.interop.h` | WinRT.Media | remaining |  |  |  |
+| `windows.media.core.interop.h` | WinRT.Media | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.media.core.interop.h.md |
 | `windows.security.isolation.isolatedenvironmentinterop.h` | WinRT.Isolation | matched |  | 09/02/2026 20:41:40 | COM interface method returning non-owned HWND reference, out of scope. |
 | `windows.ui.composition.interop.h` | WinRT.Composition | matched |  | 09/02/2026 20:19:39 | COM interop interface methods only, out of scope. |
 | `windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h` | WinRT.CoreInputView | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
