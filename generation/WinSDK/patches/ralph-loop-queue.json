@@ -3674,10 +3674,10 @@
   {
     "header": "faxroute.h",
     "partition": "Fax",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:50:38Z",
+    "notes": "No function produces an opaque handle; HANDLE params are pre-owned caller inputs.",
     "_source": "header-progress"
   },
   {
@@ -4358,10 +4358,10 @@
   {
     "header": "hvsocket.h",
     "partition": "Hypervisor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:50:38Z",
+    "notes": "Constants/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6347,10 +6347,10 @@
   {
     "header": "msdasql.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:50:38Z",
+    "notes": "GUID/property constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8237,10 +8237,10 @@
   {
     "header": "reason.h",
     "partition": "FileHistory, Shutdown",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:50:38Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10289,10 +10289,10 @@
   {
     "header": "vdslun.h",
     "partition": "VirtualDiskService",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:50:38Z",
+    "notes": "Enums/structs + MIDL boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {

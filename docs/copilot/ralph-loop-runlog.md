@@ -1756,3 +1756,18 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - dcomptypes.h: DirectComposition enums/structs/constants only, no functions. Clean.
 
 **Ledger status:** 502 accepted-normalized, 20 blocked, 881 pending.
+
+## 2026-09-02 19:50:51 UTC - Batch scraping-investigation-67
+
+**Headers:** vdslun.h, hvsocket.h, faxroute.h, msdasql.h, reason.h
+**Partitions scraped (x64):** VirtualDiskService, Hypervisor, Search, Shutdown (0 errors each); Fax/FileHistory reused from batches 63/65
+
+- vdslun.h: VDS enums/structs + MIDL boilerplate only, no functions. Clean.
+- hvsocket.h: Hyper-V socket constants/structs only, no functions. Clean.
+- faxroute.h: FaxRouteInitialize's HANDLE is a pre-owned caller input; no function produces an
+  opaque handle; callback typedefs are function pointers, out of scope. Clean.
+- msdasql.h: GUID/property-ID constants only, no functions (interfaces in separate
+  msdasql_interfaces.h). Clean.
+- reason.h: shutdown-reason-code constants only, no functions. Clean.
+
+**Ledger status:** 507 accepted-normalized, 20 blocked, 876 pending.

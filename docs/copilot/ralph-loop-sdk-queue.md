@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:48:12Z
+- Generated: 2026-09-03T02:50:51Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 502
+- Matched: 507
 - In progress: 0
 - Blocked: 20
-- Remaining: 881
+- Remaining: 876
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -418,7 +418,7 @@
 | `faxdev.h` | Fax | remaining |  |  |  |
 | `faxext.h` | Fax | blocked |  | 09/02/2026 19:37:21 | FaxExtRegisterForEvents returns generic HANDLE via return value. |
 | `faxmmc.h` | Fax | matched |  | 09/02/2026 17:58:11 | GUID/string constants only, no functions. |
-| `faxroute.h` | Fax | remaining |  |  |  |
+| `faxroute.h` | Fax | matched |  | 09/02/2026 19:50:38 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `fci.h` | Cabinets | remaining |  |  |  |
 | `fdi_fci_types.h` | Cabinets | remaining |  |  |  |
 | `fdi.h` | Cabinets | remaining |  |  |  |
@@ -494,7 +494,7 @@
 | `httprequest.h` | WinHttp | matched | copilot | 09/03/2026 03:35:00 | No patch needed; verified via live scrape and static review. |
 | `httprequestid.h` | Iis | matched |  | 09/02/2026 18:09:40 | DISPID constants only, no functions. |
 | `httptrace.h` | Iis | remaining |  |  |  |
-| `hvsocket.h` | Hypervisor | remaining |  |  |  |
+| `hvsocket.h` | Hypervisor | matched |  | 09/02/2026 19:50:38 | Constants/structs only, no functions. |
 | `hwebcore.h` | Iis | matched |  | 09/02/2026 19:37:21 | Dynamically-loaded function-pointer typedefs only, no scrapable extern functions. |
 | `hypervdevicevirtualization.h` | Hypervisor | remaining |  |  |  |
 | `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | blocked | copilot | 09/02/2026 18:56:34 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h. |
@@ -715,7 +715,7 @@
 | `msdaosp.h` | Search | remaining |  |  |  |
 | `msdasc.h` | Search | remaining |  |  |  |
 | `msdasql_interfaces.h` | Search | remaining |  |  |  |
-| `msdasql.h` | Search | remaining |  |  |  |
+| `msdasql.h` | Search | matched |  | 09/02/2026 19:50:38 | GUID/property constants only, no functions. |
 | `msdatsrc.h` | Search | remaining |  |  |  |
 | `msdelta.h` | Setup | remaining |  |  |  |
 | `msdrm.h` | Rm | remaining |  |  |  |
@@ -925,7 +925,7 @@
 | `rdpappcontainerclient.h` | TermServ | remaining |  |  |  |
 | `rdpencomapi.h` | Rdp, TermServ | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `realtimeapiset.h` | Base | matched |  | 09/02/2026 18:59:13 | HANDLE is a caller-supplied input, not produced here. |
-| `reason.h` | FileHistory, Shutdown | remaining |  |  |  |
+| `reason.h` | FileHistory, Shutdown | matched |  | 09/02/2026 19:50:38 | Constants only, no functions. |
 | `recapis.h` | Tablet | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `recdefs.h` | Tablet | remaining |  |  |  |
 | `reconcil.h` | Lwef, Shell | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
@@ -1153,7 +1153,7 @@
 | `vdmdbg.h` | FileHistory, VirtualDOSMachines | remaining |  |  |  |
 | `vds.h` | VirtualDiskService | remaining |  |  |  |
 | `vdserr.h` | VirtualDiskService | remaining |  |  |  |
-| `vdslun.h` | VirtualDiskService | remaining |  |  |  |
+| `vdslun.h` | VirtualDiskService | matched |  | 09/02/2026 19:50:38 | Enums/structs + MIDL boilerplate only, no functions. |
 | `vdssys.h` | VirtualDiskService, VSS | remaining |  |  |  |
 | `VersionHelpers.h` | SystemInformation | remaining |  |  |  |
 | `vfw.h` | Multimedia | remaining |  |  |  |
