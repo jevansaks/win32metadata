@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:28:43Z
+- Generated: 2026-09-03T06:30:48Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 786
+- Matched: 791
 - In progress: 0
 - Blocked: 31
-- Remaining: 586
+- Remaining: 581
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -246,7 +246,7 @@
 | `d3dcaps.h` | Direct3D9 | remaining |  |  |  |
 | `d3dcommon.h` | Direct2D, Direct3D, Direct3D10 | remaining |  |  |  |
 | `d3dcompiler.h` | Direct3DFxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
-| `d3dcsx.h` | Direct3D11 | remaining |  |  |  |
+| `d3dcsx.h` | Direct3D11 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcsx.h.md |
 | `d3dshadercacheregistration.h` | Direct3D | remaining |  |  |  |
 | `d3dtypes.h` | Direct3D9 | remaining |  |  |  |
 | `datetimeapi.h` | Intl | matched |  | 09/02/2026 19:19:02 | String/buffer formatting API only, no handle. |
@@ -255,7 +255,7 @@
 | `dbghelp.h` | FileHistory, WinProg | remaining |  |  |  |
 | `DbgModel.h` | Debug.Extensions | remaining |  |  |  |
 | `dbgprop.h` | Debug | remaining |  |  |  |
-| `dbt.h` | MenuRc | remaining |  |  |  |
+| `dbt.h` | MenuRc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbt.h.md |
 | `dciddi.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dciddi.h.md |
 | `dciman.h` | FileHistory, WinProg | blocked |  | 09/02/2026 20:07:23 | DCIOpenProvider/DCICloseProvider generic HDC return-value remains a gap; HWINWATCH gap fixed via autoTypes.json CloseApi addition. |
 | `dcommon.h` | Direct2D, Direct2D.Common, DirectWrite | matched |  | 09/02/2026 22:06:03 | Enums/forward declaration only, no functions. |
@@ -868,7 +868,7 @@
 | `playsoundapi.h` | Audio | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `playto.h` | Mf | matched |  | 09/02/2026 17:51:18 | Pure MIDL boilerplate; real content in separately-tracked MFSharingEngine.h (pending). |
 | `PlayToManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
-| `pluginauthenticator.h` | WebAuthn | remaining |  |  |  |
+| `pluginauthenticator.h` | WebAuthn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pluginauthenticator.h.md |
 | `pnpxassoc.h` | FunctionDiscovery, WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pnpxassoc.h.md |
 | `poclass.h` | Power | remaining |  |  |  |
 | `portabledevice.h` | WpdSdk | remaining |  |  |  |
@@ -914,7 +914,7 @@
 | `qospol.h` | Qos | matched |  | 09/02/2026 17:48:13 | Data struct + constants only, no functions. |
 | `qossp.h` | Qos | remaining |  |  |  |
 | `query.h` | Search | remaining |  |  |  |
-| `radialcontrollerinterop.h` | InputRadial | remaining |  |  |  |
+| `radialcontrollerinterop.h` | InputRadial | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radialcontrollerinterop.h.md |
 | `radiomgr.h` | WpdSdk | remaining |  |  |  |
 | `ras.h` | RRas | remaining |  |  |  |
 | `rasdlg.h` | RRas | matched |  | 09/02/2026 21:12:30 | No function produces an opaque handle. |
@@ -927,7 +927,7 @@
 | `realtimeapiset.h` | Base | matched |  | 09/02/2026 18:59:13 | HANDLE is a caller-supplied input, not produced here. |
 | `reason.h` | FileHistory, Shutdown | matched |  | 09/02/2026 19:50:38 | Constants only, no functions. |
 | `recapis.h` | Tablet | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
-| `recdefs.h` | Tablet | remaining |  |  |  |
+| `recdefs.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/recdefs.h.md |
 | `reconcil.h` | Lwef, Shell | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `rectypes.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rectypes.h.md |
 | `regbag.h` | MsTv | matched |  | 09/02/2026 20:16:15 | COM interface method only, out of scope. |

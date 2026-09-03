@@ -2126,10 +2126,10 @@
   {
     "header": "d3dcsx.h",
     "partition": "Direct3D11",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcsx.h.md",
     "_source": "header-progress"
   },
   {
@@ -2207,10 +2207,10 @@
   {
     "header": "dbt.h",
     "partition": "MenuRc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbt.h.md",
     "_source": "header-progress"
   },
   {
@@ -7724,10 +7724,10 @@
   {
     "header": "pluginauthenticator.h",
     "partition": "WebAuthn",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pluginauthenticator.h.md",
     "_source": "header-progress"
   },
   {
@@ -8138,10 +8138,10 @@
   {
     "header": "radialcontrollerinterop.h",
     "partition": "InputRadial",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radialcontrollerinterop.h.md",
     "_source": "header-progress"
   },
   {
@@ -8255,10 +8255,10 @@
   {
     "header": "recdefs.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/recdefs.h.md",
     "_source": "header-progress"
   },
   {

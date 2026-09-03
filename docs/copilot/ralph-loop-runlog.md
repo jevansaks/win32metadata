@@ -2568,3 +2568,13 @@ Ledger: 781 accepted-normalized, 31 blocked, 591 pending (812/1403 classified).
 - **camerauicontrol.h** (FileHistory, Media.DShow, Mf, WinProg): COM interfaces only, no free functions. Clean.
 
 Ledger: 786 accepted-normalized, 31 blocked, 586 pending (817/1403 classified). Milestone: 125 batches this session.
+
+## Batch 126 (2026-09-02 23:31): pluginauthenticator.h, recdefs.h, radialcontrollerinterop.h, dbt.h, d3dcsx.h
+
+- **pluginauthenticator.h** (WebAuthn): COM interfaces only, no free functions. Clean.
+- **recdefs.h** (Tablet): recognizer flag/gesture constants only, no functions. Clean.
+- **radialcontrollerinterop.h** (InputRadial): COM interfaces only, no free functions. Clean.
+- **dbt.h** (MenuRc): DEV_BROADCAST_* transparent structs/constants, RegisterDeviceNotification declared elsewhere. Clean.
+- **d3dcsx.h** (Direct3D11): D3DX11CreateScan/CreateFFT family output standard COM interface pointers. Clean.
+
+Ledger: 791 accepted-normalized, 31 blocked, 581 pending (822/1403 classified).
