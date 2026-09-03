@@ -2290,3 +2290,18 @@ WinRT.Printing/ActiveDirectory/ImagingDevice reused
   interfaces only. Clean.
 
 **Ledger status:** 656 accepted-normalized, 31 blocked, 716 pending.
+
+## 2026-09-02 22:06:19 UTC - Batch scraping-investigation-100
+
+**Headers:** dcommon.h, windows.ui.xaml.hosting.desktopwindowxamlsource.h, wmpplug.h, anchorsyncdeviceservice.h, dsconf.h
+**Partitions scraped (x64):** Direct2D, Direct2D.Common, DirectWrite, WinRT.Xaml (0 errors each); Wmp/WpdSdk/Audio.DirectMusic reused
+
+- dcommon.h: DWRITE_MEASURING_MODE enum + IDXGISurface forward declaration only, no functions. Clean.
+- windows.ui.xaml.hosting.desktopwindowxamlsource.h: IDesktopWindowXamlSourceNative/Native2 COM
+  interface methods only (get_WindowHandle returns a reference to an existing HWND). Clean.
+- wmpplug.h: IWMPPluginUI COM interface only, no extern functions. Clean.
+- anchorsyncdeviceservice.h: WPD Anchor Sync device-service GUID constants only. Clean.
+- dsconf.h: DirectSound configuration GUID constants/property-ID enum only, no functions. Clean.
+
+**Ledger status:** 661 accepted-normalized, 31 blocked, 711 pending. (100 batches completed this
+Ralph loop session.)

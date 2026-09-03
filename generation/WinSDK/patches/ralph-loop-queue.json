@@ -479,10 +479,10 @@
   {
     "header": "anchorsyncdeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:06:03Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2234,10 +2234,10 @@
   {
     "header": "dcommon.h",
     "partition": "Direct2D, Direct2D.Common, DirectWrite",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:06:03Z",
+    "notes": "Enums/forward declaration only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2864,10 +2864,10 @@
   {
     "header": "dsconf.h",
     "partition": "Audio.DirectMusic",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:06:03Z",
+    "notes": "Constants/enum only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -11288,10 +11288,10 @@
   {
     "header": "windows.ui.xaml.hosting.desktopwindowxamlsource.h",
     "partition": "WinRT.Xaml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:06:03Z",
+    "notes": "COM interface methods only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -11927,10 +11927,10 @@
   {
     "header": "wmpplug.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:06:03Z",
+    "notes": "COM interface only, no extern functions.",
     "_source": "header-progress"
   },
   {

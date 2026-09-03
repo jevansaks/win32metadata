@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:03:15Z
+- Generated: 2026-09-03T05:06:19Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 656
+- Matched: 661
 - In progress: 0
 - Blocked: 31
-- Remaining: 716
+- Remaining: 711
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -63,7 +63,7 @@
 | `amva.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Constants + data structs only, no functions. |
 | `amvideo.h` | Media.DShow | remaining |  |  |  |
 | `amxmlgraphbuilder.h` | Media.DShow, Media.DShow.Xml | matched |  | 09/02/2026 17:13:02 | COM interface + GUID constants only. |
-| `anchorsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `anchorsyncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 22:06:03 | Constants only, no functions. |
 | `animationcoordinator.h` | Shell | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `apdevpkey.h` | Base, Devices.Properties | matched |  | 09/02/2026 17:05:19 | Device property key constant only, no functions. |
 | `apiquery2.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:41:54 | Caller-allocated string buffer output only. |
@@ -258,7 +258,7 @@
 | `dbt.h` | MenuRc | remaining |  |  |  |
 | `dciddi.h` | Direct2D | remaining |  |  |  |
 | `dciman.h` | FileHistory, WinProg | blocked |  | 09/02/2026 20:07:23 | DCIOpenProvider/DCICloseProvider generic HDC return-value remains a gap; HWINWATCH gap fixed via autoTypes.json CloseApi addition. |
-| `dcommon.h` | Direct2D, Direct2D.Common, DirectWrite | remaining |  |  |  |
+| `dcommon.h` | Direct2D, Direct2D.Common, DirectWrite | matched |  | 09/02/2026 22:06:03 | Enums/forward declaration only, no functions. |
 | `dcomp.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcompanimation.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcomptypes.h` | DirectComp | matched |  | 09/02/2026 19:47:59 | Enums/structs/constants only, no functions. |
@@ -328,7 +328,7 @@
 | `dsadmin.h` | ActiveDirectory | matched |  | 09/02/2026 21:27:04 | GUID constants + COM interfaces only, no extern functions. |
 | `dsattrib.h` | MsTv | remaining |  |  |  |
 | `dsclient.h` | ActiveDirectory | remaining |  |  |  |
-| `dsconf.h` | Audio.DirectMusic | remaining |  |  |  |
+| `dsconf.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:06:03 | Constants/enum only, no functions. |
 | `DsGetDC.h` | ActiveDirectory | remaining |  |  |  |
 | `dshow.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Pure umbrella redirect; all sub-headers already individually tracked. |
 | `dshowasf.h` | Media.DShow | remaining |  |  |  |
@@ -1264,7 +1264,7 @@
 | `windows.security.isolation.isolatedenvironmentinterop.h` | WinRT.Isolation | matched |  | 09/02/2026 20:41:40 | COM interface method returning non-owned HWND reference, out of scope. |
 | `windows.ui.composition.interop.h` | WinRT.Composition | matched |  | 09/02/2026 20:19:39 | COM interop interface methods only, out of scope. |
 | `windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h` | WinRT.CoreInputView | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
-| `windows.ui.xaml.hosting.desktopwindowxamlsource.h` | WinRT.Xaml | remaining |  |  |  |
+| `windows.ui.xaml.hosting.desktopwindowxamlsource.h` | WinRT.Xaml | matched |  | 09/02/2026 22:06:03 | COM interface methods only, out of scope. |
 | `windows.ui.xaml.hosting.referencetracker.h` | WinRT.Xaml | remaining |  |  |  |
 | `windows.ui.xaml.media.dxinterop.h` | WinRT.Xaml | remaining |  |  |  |
 | `windowsceip.h` | Base, CEIP, FileHistory | matched |  | 09/02/2026 17:01:48 | CeipIsOptedIn() - no handle involved. |
@@ -1335,7 +1335,7 @@
 | `wmp.h` | Media.DShow, Wmp | remaining |  |  |  |
 | `wmpdevices.h` | Wmp | matched |  | 09/02/2026 20:44:40 | Inline functions generate no bindings; remaining declarations are IOCTL constants/structs. |
 | `wmpids.h` | Wmp | remaining |  |  |  |
-| `wmpplug.h` | Wmp | remaining |  |  |  |
+| `wmpplug.h` | Wmp | matched |  | 09/02/2026 22:06:03 | COM interface only, no extern functions. |
 | `wmprealestate.h` | Wmp | remaining |  |  |  |
 | `wmpservices.h` | Wmp | remaining |  |  |  |
 | `wmsbuffer.h` | WmFormat | remaining |  |  |  |
