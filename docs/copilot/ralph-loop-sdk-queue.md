@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:02:55Z
+- Generated: 2026-09-03T02:06:30Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 440
+- Matched: 445
 - In progress: 0
 - Blocked: 12
-- Remaining: 951
+- Remaining: 946
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -80,7 +80,7 @@
 | `audevcod.h` | Media.DShow | matched |  | 09/02/2026 17:48:13 | Error-code enum/constants only, no functions. |
 | `AudioAPOTypes.h` | Audio.Apo, TermServ | remaining |  |  |  |
 | `audioclient.h` | Audio | remaining |  |  |  |
-| `audioclientactivationparams.h` | Audio | remaining |  |  |  |
+| `audioclientactivationparams.h` | Audio | matched |  | 09/02/2026 19:06:16 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `audioendpoints.h` | Audio.Endpoints | remaining |  |  |  |
 | `audioenginebaseapo.h` | Audio.Apo | remaining |  |  |  |
 | `audioengineendpoint.h` | Audio.Endpoints, TermServ | remaining |  |  |  |
@@ -274,7 +274,7 @@
 | `ddrawi.h` | DirectDraw, FileHistory, WinProg | remaining |  |  |  |
 | `ddrawint.h` | DirectDraw | remaining |  |  |  |
 | `ddstream.h` | Media.DShow | remaining |  |  |  |
-| `debugapi.h` | Base, Debug | remaining |  |  |  |
+| `debugapi.h` | Base, Debug | matched |  | 09/02/2026 19:06:16 | HANDLE is a caller-supplied input, not produced here. |
 | `defaultbrowsersyncsettings.h` | WinProg | remaining |  |  |  |
 | `delayloadhandler.h` | WinProg | matched |  | 09/02/2026 17:27:04 | Structs/callback-typedef/extern-variable only, no functions. |
 | `deletebrowsinghistory.h` | WinProg | remaining |  |  |  |
@@ -499,7 +499,7 @@
 | `hypervdevicevirtualization.h` | Hypervisor | remaining |  |  |  |
 | `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | blocked | copilot | 09/02/2026 18:56:34 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h. |
 | `iaccess.h` | TransactionServer | remaining |  |  |  |
-| `iadmext.h` | Iis | remaining |  |  |  |
+| `iadmext.h` | Iis | matched |  | 09/02/2026 19:06:16 | COM interface, not HANDLE-family. |
 | `iadmw.h` | Iis | remaining |  |  |  |
 | `iads.h` | ActiveDirectory, Iis | remaining |  |  |  |
 | `icftypes.h` | WindowsFirewall | remaining |  |  |  |
@@ -951,7 +951,7 @@
 | `rometadataapi.h` | WinRT.Metadata | remaining |  |  |  |
 | `rometadataresolution.h` | WinRT.Metadata | remaining |  |  |  |
 | `roparameterizediid.h` | WinRT.Metadata | remaining |  |  |  |
-| `roregistrationapi.h` | WinRT | remaining |  |  |  |
+| `roregistrationapi.h` | WinRT | matched |  | 09/02/2026 19:06:16 | COM factory; HSTRING array ownership tracked separately under winstring.h. |
 | `rpc.h` | Rpc | remaining |  |  |  |
 | `rpcasync.h` | Rpc | remaining |  |  |  |
 | `rpcdce.h` | Rpc, TransactionServer | remaining |  |  |  |
@@ -1377,7 +1377,7 @@
 | `wsdutil.h` | FunctionDiscovery | matched |  | 09/02/2026 19:02:46 | WSDAPI linked-memory/buffer convention, not HANDLE-family (consistent with wsdapi.h). |
 | `wsdxml.h` | FunctionDiscovery | remaining |  |  |  |
 | `wshisotp.h` | WinSock | remaining |  |  |  |
-| `wsipv6ok.h` | WinSock | remaining |  |  |  |
+| `wsipv6ok.h` | WinSock | matched |  | 09/02/2026 19:06:16 | Macro redefinitions only, no declarations. |
 | `wsipx.h` | WinSock | matched |  | 09/02/2026 18:09:40 | Data struct + constants only, no functions. |
 | `wslapi.h` | Wsl | blocked | copilot | 09/02/2026 19:02:46 | Deferred: direct out-param instance of the generic/shared-type blocker class (HANDLE has no single correct CloseApi). |
 | `wsman.h` | WinRm | remaining |  |  |  |

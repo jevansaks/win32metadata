@@ -1545,3 +1545,17 @@ avrfsdk.h
 **Ledger status:** 440 accepted-normalized, 12 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h,
 physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pending.
+
+## 2026-09-02 19:06:30 UTC - Batch scraping-investigation-53
+
+**Headers:** roregistrationapi.h, iadmext.h, wsipv6ok.h, audioclientactivationparams.h, debugapi.h
+**Partitions scraped:** Iis, Audio (x86; 0 errors)
+
+- roregistrationapi.h: COM factory; HSTRING array output ownership tracked separately under
+  winstring.h. Clean.
+- iadmext.h: IADMEXT COM interface, not HANDLE-family. Clean.
+- wsipv6ok.h: macro redefinitions only, no declarations. Clean.
+- audioclientactivationparams.h: enums/data structs + MIDL boilerplate only, no functions. Clean.
+- debugapi.h: HANDLE is a caller-supplied input, not produced here. Clean.
+
+**Ledger status:** 445 accepted-normalized, 12 blocked, 946 pending.

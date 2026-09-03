@@ -632,10 +632,10 @@
   {
     "header": "audioclientactivationparams.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:06:16Z",
+    "notes": "Enums/data structs + MIDL boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2378,10 +2378,10 @@
   {
     "header": "debugapi.h",
     "partition": "Base, Debug",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:06:16Z",
+    "notes": "HANDLE is a caller-supplied input, not produced here.",
     "_source": "header-progress"
   },
   {
@@ -4403,10 +4403,10 @@
   {
     "header": "iadmext.h",
     "partition": "Iis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:06:16Z",
+    "notes": "COM interface, not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -8471,10 +8471,10 @@
   {
     "header": "roregistrationapi.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:06:16Z",
+    "notes": "COM factory; HSTRING array ownership tracked separately under winstring.h.",
     "_source": "header-progress"
   },
   {
@@ -12305,10 +12305,10 @@
   {
     "header": "wsipv6ok.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:06:16Z",
+    "notes": "Macro redefinitions only, no declarations.",
     "_source": "header-progress"
   },
   {
