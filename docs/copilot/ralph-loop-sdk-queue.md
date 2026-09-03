@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:05:24Z
+- Generated: 2026-09-03T10:08:56Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1136
+- Matched: 1141
 - In progress: 0
 - Blocked: 31
-- Remaining: 236
+- Remaining: 231
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -115,7 +115,7 @@
 | `bits10_3.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_3.h.md |
 | `bits2_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_0.h.md |
 | `bits2_5.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_5.h.md |
-| `bits3_0.h` | Bits | remaining |  |  |  |
+| `bits3_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits3_0.h.md |
 | `bits4_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits4_0.h.md |
 | `bits5_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits5_0.h.md |
 | `bitscfg.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bitscfg.h.md |
@@ -132,7 +132,7 @@
 | `callobj.h` | Com.CallObj, ComOle | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `camerauicontrol.h` | FileHistory, Media.DShow, Mf, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/camerauicontrol.h.md |
 | `capi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:45:25 | JAVA_TRUST plain data struct; all redirected headers already accepted or separately tracked pending; sipbase.h verified as trivial redirect to accepted mssip.h. |
-| `cardmod.h` | Security.Cryptography | remaining |  |  |  |
+| `cardmod.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cardmod.h.md |
 | `casetup.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `CastingInterop.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CastingInterop.h.md |
 | `ccgplugins.h` | Identity | matched |  | 09/02/2026 19:37:21 | COM interface method only, out of scope. |
@@ -517,7 +517,7 @@
 | `identityprovider.h` | IdentityProvider | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/identityprovider.h.md |
 | `identitystore.h` | IdentityProvider | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/identitystore.h.md |
 | `idispids.h` | ComOle, InternetExplorer | matched |  | 09/02/2026 17:16:10 | DISPID constants only, no functions. |
-| `ie12plugin.h` | InternetExplorer | remaining |  |  |  |
+| `ie12plugin.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ie12plugin.h.md |
 | `ieautomation.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ieautomation.h.md |
 | `ieobj.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `iepmapi.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
@@ -1279,7 +1279,7 @@
 | `winenclave.h` | Enclave | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
 | `winerror.h` | Direct2D, DXCore, Dxgi, Dxgi.Common, Foundation, Rpc, TaskSchd, TransactionServer, UiAnimation, Wes | remaining |  |  |  |
 | `winevt.h` | Wes | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
-| `winfax.h` | Fax | remaining |  |  |  |
+| `winfax.h` | Fax | matched |  |  | Producer-site fix: added 3 inline RAIIFree(FaxClose) annotations in emitter.settings.rsp. See docs/copilot/header-reports/winfax.h.md |
 | `wingdi.h` | DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winhttp.h` | HttpServer, WinHttp | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `WinHvEmulation.h` | Hypervisor | matched |  | 09/02/2026 20:13:28 | Fixed genuine gap: added new autoTypes.json entry for WHV_EMULATOR_HANDLE (CloseApi=WHvEmulatorDestroyEmulator). |
@@ -1368,7 +1368,7 @@
 | `wsdapi.h` | WebServicesOnDevices | matched |  | 09/02/2026 17:13:02 | Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE. |
 | `wsdattachment.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdattachment.h.md |
 | `wsdbase.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdbase.h.md |
-| `wsdclient.h` | FunctionDiscovery | remaining |  |  |  |
+| `wsdclient.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdclient.h.md |
 | `wsddisco.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsddisco.h.md |
 | `wsdevlicensing.h` | DevLic | matched |  | 09/02/2026 17:16:10 | HWND is input parameter; outputs are plain FILETIME values. |
 | `wsdhost.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdhost.h.md |

@@ -947,10 +947,10 @@
   {
     "header": "bits3_0.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits3_0.h.md",
     "_source": "header-progress"
   },
   {
@@ -1100,10 +1100,10 @@
   {
     "header": "cardmod.h",
     "partition": "Security.Cryptography",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cardmod.h.md",
     "_source": "header-progress"
   },
   {
@@ -4565,10 +4565,10 @@
   {
     "header": "ie12plugin.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ie12plugin.h.md",
     "_source": "header-progress"
   },
   {
@@ -11423,10 +11423,10 @@
   {
     "header": "winfax.h",
     "partition": "Fax",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added 3 inline RAIIFree(FaxClose) annotations in emitter.settings.rsp. See docs/copilot/header-reports/winfax.h.md",
     "_source": "header-progress"
   },
   {
@@ -12224,10 +12224,10 @@
   {
     "header": "wsdclient.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdclient.h.md",
     "_source": "header-progress"
   },
   {

@@ -3261,3 +3261,11 @@ Ledger: 1131 accepted-normalized, 31 blocked, 241 pending (1162/1403 classified)
 - winsplp.h (Printing): PRODUCER-SITE FIX - CreatePrinterIC::return=[RAIIFree("DeletePrinterIC")] inline annotation added.
 
 Ledger: 1136 accepted-normalized, 31 blocked, 236 pending (1167/1403 classified).
+
+## Batch 196 (2026-09-03 03:09): winfax.h, bits3_0.h, wsdclient.h, cardmod.h, ie12plugin.h
+
+- winfax.h (Fax): PRODUCER-SITE FIX - 3 inline RAIIFree(FaxClose) annotations added.
+- bits3_0.h, wsdclient.h, ie12plugin.h: COM vtable only. Clean.
+- cardmod.h (Security.Cryptography): minidriver plugin contract, no ownership pattern. Clean.
+
+Ledger: 1141 accepted-normalized, 31 blocked, 231 pending (1172/1403 classified).
