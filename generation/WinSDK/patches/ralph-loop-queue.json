@@ -875,10 +875,10 @@
   {
     "header": "bindlink.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:30:54Z",
+    "notes": "Path-string-only API, no handle.",
     "_source": "header-progress"
   },
   {
@@ -1055,10 +1055,10 @@
   {
     "header": "calendarapis.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:30:54Z",
+    "notes": "Calendar-date-struct-only API, no handle.",
     "_source": "header-progress"
   },
   {
@@ -3314,10 +3314,10 @@
   {
     "header": "eapmethodtypes.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:30:54Z",
+    "notes": "Type declarations only (struct/enum/typedef), no functions; producer functions tracked separately under eapmethodpeerapis.h (pending).",
     "_source": "header-progress"
   },
   {
@@ -8030,10 +8030,10 @@
   {
     "header": "propkeydef.h",
     "partition": "Console, Shell, WinContacts, WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:30:54Z",
+    "notes": "Macros/operators only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -9506,10 +9506,10 @@
   {
     "header": "swdevicedef.h",
     "partition": "SwDevice",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:30:54Z",
+    "notes": "Type declarations only (enums/struct), no functions; HSWDEVICE ownership tracked separately under swdevice.h (pending).",
     "_source": "header-progress"
   },
   {

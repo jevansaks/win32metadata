@@ -991,3 +991,23 @@ wincon.h, resourceindexer.h), 1096 pending.
 
 **Ledger status:** 307 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h), 1091 pending.
+
+## 2026-09-02 17:31:16 UTC - Batch scraping-investigation-25
+
+**Headers:** bindlink.h, propkeydef.h, calendarapis.h, eapmethodtypes.h, swdevicedef.h
+**Partitions scraped:** Fs, Shell, EapHost, SwDevice (x86; 0 errors; Shell shows 3 pre-existing
+unrelated cross-partition remap warnings for in6_addr/in_addr)
+
+- bindlink.h: CreateBindLink/RemoveBindLink - path-string-only, no handle. Clean.
+- propkeydef.h: PROPERTYKEY macros/operators only, no functions. Clean.
+- calendarapis.h: all 7 functions operate on CALDATETIME/SYSTEMTIME structs only, no handle. Clean.
+- eapmethodtypes.h: declares only EapPacket struct, tagEapCode enum, and EAP_SESSION_HANDLE typedef -
+  zero functions in this header. Per corrected policy, no annotation belongs on the typedef itself;
+  actual EAP_SESSION_HANDLE-consuming functions live in the separately-tracked eapmethodpeerapis.h
+  (still pending) - that is where future producer-site work belongs. Clean.
+- swdevicedef.h: declares only SW_DEVICE_CAPABILITIES/SW_DEVICE_LIFETIME enums and
+  SW_DEVICE_CREATE_INFO struct - zero functions. HSWDEVICE producer/consumer (SwDeviceCreate/
+  SwDeviceClose) lives in the separately-tracked swdevice.h (still pending). Clean.
+
+**Ledger status:** 312 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h), 1086 pending.

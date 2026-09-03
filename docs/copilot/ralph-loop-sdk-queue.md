@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:27:12Z
+- Generated: 2026-09-03T00:31:02Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 307
+- Matched: 312
 - In progress: 0
 - Blocked: 5
-- Remaining: 1091
+- Remaining: 1086
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -107,7 +107,7 @@
 | `bdatif.h` | MsTv | remaining |  |  |  |
 | `bdatypes.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `BiDiSpl.h` | Printing | remaining |  |  |  |
-| `bindlink.h` | Fs | remaining |  |  |  |
+| `bindlink.h` | Fs | matched |  | 09/02/2026 17:30:54 | Path-string-only API, no handle. |
 | `bits.h` | Bits | remaining |  |  |  |
 | `bits1_5.h` | Bits | remaining |  |  |  |
 | `bits10_1.h` | Bits | remaining |  |  |  |
@@ -127,7 +127,7 @@
 | `bthledef.h` | Bluetooth | remaining |  |  |  |
 | `bthsdpdef.h` | Bluetooth | remaining |  |  |  |
 | `bugcodes.h` | Debug | remaining |  |  |  |
-| `calendarapis.h` | Intl | remaining |  |  |  |
+| `calendarapis.h` | Intl | matched |  | 09/02/2026 17:30:54 | Calendar-date-struct-only API, no handle. |
 | `calendardeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `callobj.h` | Com.CallObj, ComOle | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `camerauicontrol.h` | FileHistory, Media.DShow, Mf, WinProg | remaining |  |  |  |
@@ -378,7 +378,7 @@
 | `eaphostpeertypes.h` | EapHost | remaining |  |  |  |
 | `eapmethodauthenticatorapis.h` | EapHost | remaining |  |  |  |
 | `eapmethodpeerapis.h` | EapHost | remaining |  |  |  |
-| `eapmethodtypes.h` | EapHost | remaining |  |  |  |
+| `eapmethodtypes.h` | EapHost | matched |  | 09/02/2026 17:30:54 | Type declarations only (struct/enum/typedef), no functions; producer functions tracked separately under eapmethodpeerapis.h (pending). |
 | `eappapis.h` | EapHost | remaining |  |  |  |
 | `eaptypes.h` | EapHost | remaining |  |  |  |
 | `edevdefs.h` | DeviceAccess | remaining |  |  |  |
@@ -902,7 +902,7 @@
 | `propapi.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `propidl.h` | Com.StructuredStorage, Properties, Shell | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `propidlbase.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
-| `propkeydef.h` | Console, Shell, WinContacts, WpdSdk | remaining |  |  |  |
+| `propkeydef.h` | Console, Shell, WinContacts, WpdSdk | matched |  | 09/02/2026 17:30:54 | Macros/operators only, no functions. |
 | `propsys.h` | Audio.DirectMusic, Properties, Shell | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `propvarutil.h` | Com.StructuredStorage, Variant | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `prsht.h` | Controls | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
@@ -1066,7 +1066,7 @@
 | `subsmgr.h` | Search | remaining |  |  |  |
 | `svcguid.h` | WinSock | remaining |  |  |  |
 | `swdevice.h` | SwDevice | remaining |  |  |  |
-| `swdevicedef.h` | SwDevice | remaining |  |  |  |
+| `swdevicedef.h` | SwDevice | matched |  | 09/02/2026 17:30:54 | Type declarations only (enums/struct), no functions; HSWDEVICE ownership tracked separately under swdevice.h (pending). |
 | `syncdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `synchronizationerrors.h` | WinSync | remaining |  |  |  |
 | `syncmgr.h` | Shell | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
