@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:49:37Z
+- Generated: 2026-09-03T03:53:25Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 569
+- Matched: 573
 - In progress: 0
-- Blocked: 28
-- Remaining: 806
+- Blocked: 29
+- Remaining: 801
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -85,7 +85,7 @@
 | `audioenginebaseapo.h` | Audio.Apo | remaining |  |  |  |
 | `audioengineendpoint.h` | Audio.Endpoints, TermServ | remaining |  |  |  |
 | `audioengineextensionapo.h` | Audio.Apo | remaining |  |  |  |
-| `audiomediatype.h` | Audio.Apo | remaining |  |  |  |
+| `audiomediatype.h` | Audio.Apo | matched |  | 09/02/2026 20:53:11 | COM interface + standard COM factory functions only. |
 | `audiopolicy.h` | Audio | remaining |  |  |  |
 | `audiosessiontypes.h` | Audio | remaining |  |  |  |
 | `audiostatemonitorapi.h` | Audio | matched |  | 09/02/2026 19:28:18 | Handle-producing method is a COM vtable method, out of scope; extern functions are COM factories. |
@@ -607,7 +607,7 @@
 | `lmjoin.h` | NetMgmt | remaining |  |  |  |
 | `lmmsg.h` | NetMgmt | matched |  | 09/02/2026 18:26:39 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
 | `lmremutl.h` | NetMgmt | matched |  | 09/02/2026 19:14:35 | Net API buffer-allocation convention, not HANDLE-family. |
-| `lmrepl.h` | NetMgmt | remaining |  |  |  |
+| `lmrepl.h` | NetMgmt | matched |  | 09/02/2026 20:53:10 | Net API buffer-allocation convention. |
 | `lmserver.h` | Base, NetMgmt | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `lmshare.h` | Fs | remaining |  |  |  |
 | `lmsname.h` | NetMgmt | matched |  | 09/02/2026 19:35:00 | Service-name string constants only, no functions. |
@@ -712,7 +712,7 @@
 | `msdadc.h` | Search | remaining |  |  |  |
 | `msdaguid.h` | Search | matched |  | 09/02/2026 18:06:26 | GUID constants only, no functions. |
 | `msdaora.h` | Search | matched |  | 09/02/2026 18:29:38 | CLSID/GUID constants only, no functions. |
-| `msdaosp.h` | Search | remaining |  |  |  |
+| `msdaosp.h` | Search | matched |  | 09/02/2026 20:53:10 | COM/IDispatch interface method only, out of scope. |
 | `msdasc.h` | Search | remaining |  |  |  |
 | `msdasql_interfaces.h` | Search | remaining |  |  |  |
 | `msdasql.h` | Search | matched |  | 09/02/2026 19:50:38 | GUID/property constants only, no functions. |
@@ -1203,7 +1203,7 @@
 | `wdsclientapi.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdsmcerr.h` | Wds | remaining |  |  |  |
 | `wdspxe.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
-| `wdstci.h` | Wds | remaining |  |  |  |
+| `wdstci.h` | Wds | matched |  | 09/02/2026 20:53:10 | Constants/enums/structs only, no functions. |
 | `wdstpdi.h` | Wds | blocked |  | 09/02/2026 20:25:02 | WdsTransportProviderCreateInstance/OpenContent produce generic HANDLE via direct out-param. |
 | `wdstptmgmt.h` | Wds | remaining |  |  |  |
 | `wdstptmgmtmsg.h` | Wds | remaining |  |  |  |
@@ -1364,7 +1364,7 @@
 | `wsbapperror.h` | Wsb | matched |  | 09/02/2026 18:35:09 | HRESULT error-code constants/macros only, no functions. |
 | `wsbonline.h` | Wsb | matched |  | 09/02/2026 18:32:46 | Struct/GUID input-only API, no handle. |
 | `wsbonlineerror.h` | Wsb | matched |  | 09/02/2026 18:44:05 | HRESULT error-code constants/macros only, no functions. |
-| `wscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |
+| `wscapi.h` | FileHistory, SecurityCenter | blocked |  | 09/02/2026 20:53:11 | WscRegisterForChanges produces generic HANDLE via direct out-param. |
 | `wsdapi.h` | WebServicesOnDevices | matched |  | 09/02/2026 17:13:02 | Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE. |
 | `wsdattachment.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdbase.h` | FunctionDiscovery | remaining |  |  |  |

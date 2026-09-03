@@ -677,10 +677,10 @@
   {
     "header": "audiomediatype.h",
     "partition": "Audio.Apo",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:53:11Z",
+    "notes": "COM interface + standard COM factory functions only.",
     "_source": "header-progress"
   },
   {
@@ -5375,10 +5375,10 @@
   {
     "header": "lmrepl.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:53:10Z",
+    "notes": "Net API buffer-allocation convention.",
     "_source": "header-progress"
   },
   {
@@ -6320,10 +6320,10 @@
   {
     "header": "msdaosp.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:53:10Z",
+    "notes": "COM/IDispatch interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -10739,10 +10739,10 @@
   {
     "header": "wdstci.h",
     "partition": "Wds",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:53:10Z",
+    "notes": "Constants/enums/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -12188,10 +12188,10 @@
   {
     "header": "wscapi.h",
     "partition": "FileHistory, SecurityCenter",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:53:11Z",
+    "notes": "WscRegisterForChanges produces generic HANDLE via direct out-param.",
     "_source": "header-progress"
   },
   {

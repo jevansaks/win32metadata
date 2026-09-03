@@ -2003,3 +2003,19 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - animationcoordinator.h: IInputPaneAnimationCoordinator COM interface method only. Clean.
 
 **Ledger status:** 569 accepted-normalized, 28 blocked, 806 pending.
+
+## 2026-09-02 20:53:25 UTC - Batch scraping-investigation-82
+
+**Headers:** msdaosp.h, LMRepl.h, wdstci.h, Wscapi.h, audiomediatype.h
+**Partitions scraped (x64):** NetMgmt, SecurityCenter (0 errors each); Search/Wds/FileHistory/Audio.Apo reused
+
+- msdaosp.h: DataSourceObject COM/IDispatch interface method only. Clean.
+- LMRepl.h: NetReplGetInfo and other NET_API_FUNCTION replicator functions follow established
+  NetApiBufferAllocate/Free convention. Clean.
+- wdstci.h: transport-client constants/enums/structs only, no functions or callback typedefs. Clean.
+- Wscapi.h: **blocked** - WscRegisterForChanges/WscUnRegisterChanges produce generic HANDLE via
+  direct out-param (established blocker class).
+- audiomediatype.h: IAudioMediaType COM interface + CreateAudioMediaType* standard COM factory
+  functions only. Clean.
+
+**Ledger status:** 573 accepted-normalized, 29 blocked, 801 pending.
