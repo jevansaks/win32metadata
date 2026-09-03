@@ -3446,3 +3446,13 @@ Ledger: 1231 accepted-normalized, 31 blocked, 141 pending (1262/1403 classified)
 - **sbe.h** (MsTv): COM vtable only. Clean.
 
 Ledger: 1236 accepted-normalized, 31 blocked, 136 pending (1267/1403 classified).
+
+## Batch 216 (2026-09-03 04:10): fsrmreports.h, dhcpsapi.h, mergemod.h, winnls.h, ImageHlp.h
+
+- **fsrmreports.h** (Fsrm): COM vtable only. Clean.
+- **dhcpsapi.h** (Dhcp): DhcpRpcFreeMemory buffer convention (blocker-class 7). Clean.
+- **mergemod.h** (Setup): COM vtable only; BSTR ownership generic. Clean.
+- **winnls.h** (Intl): locale/string query functions, no handle production. Clean.
+- **ImageHlp.h** (Debug): LOADED_IMAGE real multi-field struct / caller-provided struct (blocker-class 6). Clean.
+
+Ledger: 1241 accepted-normalized, 31 blocked, 131 pending (1272/1403 classified).

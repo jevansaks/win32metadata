@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:07:25Z
+- Generated: 2026-09-03T11:09:58Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1236
+- Matched: 1241
 - In progress: 0
 - Blocked: 31
-- Remaining: 136
+- Remaining: 131
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -290,7 +290,7 @@
 | `devquery.h` | DeviceQuery, FileHistory | matched |  | 09/02/2026 21:01:40 | Fixed genuine gap: completed existing autoTypes.json entry for HDEVQUERY (CloseApi=DevCloseObjectQuery). |
 | `devquerydef.h` | DeviceQuery | matched |  | 09/02/2026 18:59:13 | Enums/data structs only, no functions. |
 | `dhcpcsdk.h` | Dhcp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dhcpcsdk.h.md |
-| `dhcpsapi.h` | Dhcp | remaining |  |  |  |
+| `dhcpsapi.h` | Dhcp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dhcpsapi.h.md |
 | `dhcpssdk.h` | Dhcp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dhcpssdk.h.md |
 | `dhcpv6csdk.h` | Dhcp | matched |  | 09/02/2026 21:12:30 | Constants only, no functions. |
 | `diagnosticdataquery.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:49:21 | All six opaque handle types already correctly covered via existing autoTypes.json entries; resolves deferred DIAGNOSTIC_DATA_QUERY_SESSION item. |
@@ -441,7 +441,7 @@
 | `fsrmerr.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmerr.h.md |
 | `fsrmpipeline.h` | Fsrm | remaining |  |  |  |
 | `fsrmquota.h` | Fsrm | remaining |  |  |  |
-| `fsrmreports.h` | Fsrm | remaining |  |  |  |
+| `fsrmreports.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmreports.h.md |
 | `fsrmscreen.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmscreen.h.md |
 | `fsrmtlb.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmtlb.h.md |
 | `ftpext.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ftpext.h.md |
@@ -524,7 +524,7 @@
 | `iewebdriver.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iewebdriver.h.md |
 | `iextag.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iextag.h.md |
 | `il21dec.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
-| `ImageHlp.h` | Debug | remaining |  |  |  |
+| `ImageHlp.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ImageHlp.h.md |
 | `imagetranscode.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `imapi.h` | IMapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi.h.md |
 | `imapi2.h` | IMapi | remaining |  |  |  |
@@ -638,7 +638,7 @@
 | `medparam.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/medparam.h.md |
 | `memorybuffer.h` | WinRT | matched |  | 09/02/2026 17:05:19 | IMemoryBufferByteAccess COM interface; buffer view not a HANDLE-family resource. |
 | `menutemplate.h` | MenuRc | matched |  | 09/02/2026 17:01:48 | Plain data structs only, no functions. |
-| `mergemod.h` | Setup | remaining |  |  |  |
+| `mergemod.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mergemod.h.md |
 | `messagedeviceservice.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/messagedeviceservice.h.md |
 | `messagedispatcherapi.h` | ComOle, WinRT | matched |  | 09/02/2026 17:13:02 | IMessageDispatcher pointer is caller-supplied input, not produced here. |
 | `metadatadeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:26:39 | GUID/property-key constants only, no functions. |
@@ -1291,7 +1291,7 @@
 | `winmeta.h` | TraceLogging | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
 | `winml.h` | MachineLearning | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winml.h.md |
 | `winnetwk.h` | Wnet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
-| `winnls.h` | Intl | remaining |  |  |  |
+| `winnls.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winnls.h.md |
 | `winnls32.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:23:41 | HWND is an input; IME info struct is caller-allocated, not a handle. |
 | `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | remaining |  |  |  |
 | `winperf.h` | Perf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winperf.h.md |

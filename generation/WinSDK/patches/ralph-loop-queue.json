@@ -2522,10 +2522,10 @@
   {
     "header": "dhcpsapi.h",
     "partition": "Dhcp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dhcpsapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -3881,10 +3881,10 @@
   {
     "header": "fsrmreports.h",
     "partition": "Fsrm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmreports.h.md",
     "_source": "header-progress"
   },
   {
@@ -4628,10 +4628,10 @@
   {
     "header": "ImageHlp.h",
     "partition": "Debug",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ImageHlp.h.md",
     "_source": "header-progress"
   },
   {
@@ -5654,10 +5654,10 @@
   {
     "header": "mergemod.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mergemod.h.md",
     "_source": "header-progress"
   },
   {
@@ -11531,10 +11531,10 @@
   {
     "header": "winnls.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winnls.h.md",
     "_source": "header-progress"
   },
   {
