@@ -2398,3 +2398,13 @@ Ledger: 696 accepted-normalized, 31 blocked, 676 pending (727/1403 classified).
 - **webevnts.h** (InternetExplorer): COM interfaces only, no free functions. Clean.
 
 Ledger: 701 accepted-normalized, 31 blocked, 671 pending (732/1403 classified).
+
+## Batch 109 (2026-09-02 22:37): sdkddkver.h, wmnetsourcecreator.h, evntcons.h, msdatsrc.h, winconp.h
+
+- **sdkddkver.h** (widely-included version header): version-check macros only, no functions/structs. Clean.
+- **wmnetsourcecreator.h** (WmFormat): COM interfaces only, no free functions. Clean.
+- **evntcons.h** (Etw): EventAccessControl/Query/Remove output PSECURITY_DESCRIPTOR buffer (caller-allocated, in-place) or plain scalars; OpenTrace/TRACEHANDLE belong to separate evntrace.h. Clean.
+- **msdatsrc.h** (Search): COM interfaces only, no free functions. Clean.
+- **winconp.h** (Console): internal console API - OpenConsoleW/DuplicateConsoleHandle/GetConsoleInputWaitHandle all use generic shared HANDLE, no dedicated console-handle typedef; RegisterConsoleVDM's PVOID outputs also generic. Not fixable (generic-type blocker class 2). Clean.
+
+Ledger: 706 accepted-normalized, 31 blocked, 666 pending (737/1403 classified).
