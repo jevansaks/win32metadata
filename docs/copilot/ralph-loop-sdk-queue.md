@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:01:56Z
+- Generated: 2026-09-03T04:05:11Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 583
+- Matched: 588
 - In progress: 0
 - Blocked: 29
-- Remaining: 791
+- Remaining: 786
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -284,7 +284,7 @@
 | `deviceaccess.h` | DeviceAccess | remaining |  |  |  |
 | `deviceservices.h` | WpdSdk | matched |  | 09/02/2026 17:58:11 | GUID/property-key constants only, no functions; BridgeDeviceService.h separately tracked (pending). |
 | `devicetopology.h` | Audio | remaining |  |  |  |
-| `devioctl.h` | Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd | remaining |  |  |  |
+| `devioctl.h` | Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd | matched |  | 09/02/2026 21:04:56 | Device-type constants only, no functions. |
 | `devpkey.h` | Base, Devices.Properties | remaining |  |  |  |
 | `devpropdef.h` | Display, Nfc, Nfp, WpdSdk | remaining |  |  |  |
 | `devquery.h` | DeviceQuery, FileHistory | matched |  | 09/02/2026 21:01:40 | Fixed genuine gap: completed existing autoTypes.json entry for HDEVQUERY (CloseApi=DevCloseObjectQuery). |
@@ -481,9 +481,9 @@
 | `hidusage.h` | Hid | remaining |  |  |  |
 | `highlevelmonitorconfigurationapi.h` | Monitor | remaining |  |  |  |
 | `hintsdeviceservice.h` | WpdSdk | remaining |  |  |  |
-| `holographicspaceinterop.h` | MixedRealityInterop | remaining |  |  |  |
+| `holographicspaceinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:04:56 | COM/WinRT interop interface method only, out of scope. |
 | `homepagesetting.h` | InternetExplorer | matched |  | 09/02/2026 20:56:17 | COM interface + GUID constants only, no extern functions. |
-| `hrtfapoapi.h` | Xaudio2 | remaining |  |  |  |
+| `hrtfapoapi.h` | Xaudio2 | matched |  | 09/02/2026 21:04:56 | Standard COM factory function + constants/structs only. |
 | `hstring.h` | WinRT | matched |  | 09/02/2026 18:47:23 | Type declarations only (opaque handle typedefs), no functions; producer functions tracked separately under winstring.h (pending). |
 | `htiface.h` | InternetExplorer | remaining |  |  |  |
 | `htiframe.h` | InternetExplorer | remaining |  |  |  |
@@ -859,7 +859,7 @@
 | `peninputpanel.h` | Tablet | remaining |  |  |  |
 | `perceptiondevicecore.h` | MixedReality | matched |  | 09/02/2026 18:23:41 | Data structs + GUID constant only, no functions. |
 | `perflib.h` | Perf | remaining |  |  |  |
-| `perhist.h` | InternetExplorer | remaining |  |  |  |
+| `perhist.h` | InternetExplorer | matched |  | 09/02/2026 21:04:56 | COM interface method only, out of scope. |
 | `persist.h` | Search | matched |  | 09/02/2026 18:06:26 | Constants only, no functions. |
 | `photoacquire.h` | PicAcq, Setup | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR/HBITMAP/HICON/HWND/LPSAFEARRAY_User*); pass-through of externally-owned handles only. |
 | `physicalmonitorenumerationapi.h` | Monitor | blocked | copilot | 09/02/2026 18:44:05 | Deferred from lowlevelmonitorconfigurationapi.h (batch 30); genuine ownership relationship but generic HANDLE field nested in struct array precludes producer-site annotation, same root class as resourceindexer.h. |
@@ -1023,7 +1023,7 @@
 | `sliddefs.h` | Identity | matched |  | 09/02/2026 16:57:06 | GUID constant only, no functions. |
 | `slpublic.h` | Identity | remaining |  |  |  |
 | `smbclnt.h` | MsCs | matched |  | 09/02/2026 18:50:10 | HANDLE is a caller-supplied input, not produced here. |
-| `smtpguid.h` | IMapi | remaining |  |  |  |
+| `smtpguid.h` | IMapi | matched |  | 09/02/2026 21:04:56 | GUID/string constants only, no functions. |
 | `snmp.h` | Snmp | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `socketapi.h` | WinSock | matched |  | 09/02/2026 16:57:06 | SetSocketMediaStreamingMode(BOOL) - no handle. |
 | `softpub.h` | Security.WinTrust | remaining |  |  |  |

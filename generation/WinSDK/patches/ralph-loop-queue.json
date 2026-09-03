@@ -2468,10 +2468,10 @@
   {
     "header": "devioctl.h",
     "partition": "Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:04:56Z",
+    "notes": "Device-type constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4241,10 +4241,10 @@
   {
     "header": "holographicspaceinterop.h",
     "partition": "MixedRealityInterop",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:04:56Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -4259,10 +4259,10 @@
   {
     "header": "hrtfapoapi.h",
     "partition": "Xaudio2",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:04:56Z",
+    "notes": "Standard COM factory function + constants/structs only.",
     "_source": "header-progress"
   },
   {
@@ -7643,10 +7643,10 @@
   {
     "header": "perhist.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:04:56Z",
+    "notes": "COM interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -9119,10 +9119,10 @@
   {
     "header": "smtpguid.h",
     "partition": "IMapi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:04:56Z",
+    "notes": "GUID/string constants only, no functions.",
     "_source": "header-progress"
   },
   {

@@ -2049,3 +2049,18 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   (CloseApi: ComDBClose). Clean.
 
 **Ledger status:** 583 accepted-normalized, 29 blocked, 791 pending.
+
+## 2026-09-02 21:05:11 UTC - Batch scraping-investigation-85
+
+**Headers:** SmtpGuid.h, PerHist.h, devioctl.h, hrtfapoapi.h, HolographicSpaceInterop.h
+**Partitions scraped (x64):** Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Xaudio2,
+MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
+
+- SmtpGuid.h: SMTP event GUID/string constants only, no functions. Clean.
+- PerHist.h: IPersistHistory COM interface method only. Clean.
+- devioctl.h: FILE_DEVICE_* constants only, no functions. Clean.
+- hrtfapoapi.h: CreateHrtfApo outputs standard COM interface pointer (IXAPO**); remaining
+  declarations are constants/structs/enums. Clean.
+- HolographicSpaceInterop.h: IHolographicSpaceInterop COM/WinRT interop interface method only. Clean.
+
+**Ledger status:** 588 accepted-normalized, 29 blocked, 786 pending.
