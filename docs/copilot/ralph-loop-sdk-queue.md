@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:58:39Z
+- Generated: 2026-09-03T07:01:47Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 831
+- Matched: 836
 - In progress: 0
 - Blocked: 31
-- Remaining: 541
+- Remaining: 536
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -429,8 +429,8 @@
 | `fhsvcctl.h` | FileHistory | matched |  | 09/02/2026 18:50:10 | FH_SERVICE_PIPE_HANDLE ownership already correctly captured via existing autoTypes.json entry. |
 | `fileapi.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `filehc.h` | FileHistory, Fs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
-| `filter.h` | IndexSrv, Search | remaining |  |  |  |
-| `filtereg.h` | Search | remaining |  |  |  |
+| `filter.h` | IndexSrv, Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filter.h.md |
+| `filtereg.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filtereg.h.md |
 | `filterpipeline.h` | Printing | remaining |  |  |  |
 | `filterr.h` | IndexSrv | matched |  | 09/02/2026 19:14:35 | HRESULT error-code constants only, no functions. |
 | `fltdefs.h` | FileHistory, IpHlp | matched |  |  | Genuine producer-site fix: added INTERFACE_HANDLE autoTypes.json entry (CloseApi=PfDeleteInterface). FILTER_HANDLE left unannotated (bulk-array removal, no single-handle CloseApi). See docs/copilot/header-reports/fltdefs.h.md |
@@ -490,7 +490,7 @@
 | `htmlhelp.h` | HtmlHelp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `http.h` | HttpServer | remaining |  |  |  |
 | `httpext.h` | Iis | remaining |  |  |  |
-| `httpfilt.h` | Iis | remaining |  |  |  |
+| `httpfilt.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/httpfilt.h.md |
 | `httprequest.h` | WinHttp | matched | copilot | 09/03/2026 03:35:00 | No patch needed; verified via live scrape and static review. |
 | `httprequestid.h` | Iis | matched |  | 09/02/2026 18:09:40 | DISPID constants only, no functions. |
 | `httptrace.h` | Iis | matched |  | 09/02/2026 20:44:40 | Enum/structs/GUID constants only, no functions. |
@@ -678,7 +678,7 @@
 | `mmddk.h` | Audio.DirectMusic, Multimedia | remaining |  |  |  |
 | `mmdeviceapi.h` | Audio | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmeapi.h` | Audio, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
-| `mmiscapi.h` | Multimedia | remaining |  |  |  |
+| `mmiscapi.h` | Multimedia | matched |  |  | Genuine producer-site fix: added CloseApi=CloseDriver to existing incomplete HDRVR autoTypes.json entry (resolves mmsyscom.h batch-107 follow-up). See docs/copilot/header-reports/mmiscapi.h.md |
 | `mmiscapi2.h` | Media | matched |  | 09/02/2026 18:15:12 | Timer ID is a UINT, not a HANDLE. |
 | `mmreg.h` | Audio.DirectMusic, Media.DShow, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmstream.h` | Media.DShow | remaining |  |  |  |
@@ -1032,7 +1032,7 @@
 | `spatialaudiometadata.h` | Audio | remaining |  |  |  |
 | `spatialinteractionmanagerinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `spellcheck.h` | Intl | remaining |  |  |  |
-| `spellcheckprovider.h` | Intl | remaining |  |  |  |
+| `spellcheckprovider.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spellcheckprovider.h.md |
 | `sperror.h` | Speech | remaining |  |  |  |
 | `sporder.h` | WinSock | matched |  | 09/02/2026 17:45:25 | DWORD/GUID array API only, no handle. |
 | `sql.h` | Search | remaining |  |  |  |

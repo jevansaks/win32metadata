@@ -2658,3 +2658,13 @@ Ledger: 826 accepted-normalized, 31 blocked, 546 pending (857/1403 classified).
 - **aclui.h** (Authorization, Authorization.UI): HPROPSHEETPAGE already has complete autoTypes.json entry - no gap. Clean.
 
 Ledger: 831 accepted-normalized, 31 blocked, 541 pending (862/1403 classified).
+
+## Batch 135 (2026-09-03 00:02): filter.h, httpfilt.h, spellcheckprovider.h, filtereg.h, mmiscapi.h
+
+- **filter.h** (IndexSrv, Search): COM interfaces only, no free functions. Clean.
+- **httpfilt.h** (Iis): transparent structs only, no scrapable functions. Clean.
+- **spellcheckprovider.h** (Intl): COM interfaces only, no free functions. Clean.
+- **filtereg.h** (Search): COM interfaces only, no free functions. Clean.
+- **mmiscapi.h** (Multimedia): PATCH APPLIED. Added CloseApi=CloseDriver to existing incomplete HDRVR autoTypes.json entry (producer OpenDriver) - resolves the mmsyscom.h batch-107 follow-up note. Re-scraped Multimedia (x64): 0 errors.
+
+Ledger: 836 accepted-normalized, 31 blocked, 536 pending (867/1403 classified).

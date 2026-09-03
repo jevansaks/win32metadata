@@ -871,6 +871,7 @@
     "Namespace": "Windows.Win32.Media.Multimedia",
     "Name": "HDRVR",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "CloseDriver",
     "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
   },

@@ -3773,19 +3773,19 @@
   {
     "header": "filter.h",
     "partition": "IndexSrv, Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filter.h.md",
     "_source": "header-progress"
   },
   {
     "header": "filtereg.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filtereg.h.md",
     "_source": "header-progress"
   },
   {
@@ -4322,10 +4322,10 @@
   {
     "header": "httpfilt.h",
     "partition": "Iis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/httpfilt.h.md",
     "_source": "header-progress"
   },
   {
@@ -6014,10 +6014,10 @@
   {
     "header": "mmiscapi.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added CloseApi=CloseDriver to existing incomplete HDRVR autoTypes.json entry (resolves mmsyscom.h batch-107 follow-up). See docs/copilot/header-reports/mmiscapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -9200,10 +9200,10 @@
   {
     "header": "spellcheckprovider.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spellcheckprovider.h.md",
     "_source": "header-progress"
   },
   {
