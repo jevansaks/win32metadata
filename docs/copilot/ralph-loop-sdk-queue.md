@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:28:02Z
+- Generated: 2026-09-03T10:30:47Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1166
+- Matched: 1171
 - In progress: 0
 - Blocked: 31
-- Remaining: 206
+- Remaining: 201
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -603,7 +603,7 @@
 | `lmcons.h` | Dfs, NetMgmt | matched |  | 09/02/2026 21:32:46 | Constants only, no functions. |
 | `lmdfs.h` | Dfs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmdfs.h.md |
 | `lmerr.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmerr.h.md |
-| `lmerrlog.h` | NetMgmt | remaining |  |  |  |
+| `lmerrlog.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmerrlog.h.md |
 | `lmjoin.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmjoin.h.md |
 | `lmmsg.h` | NetMgmt | matched |  | 09/02/2026 18:26:39 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
 | `lmremutl.h` | NetMgmt | matched |  | 09/02/2026 19:14:35 | Net API buffer-allocation convention, not HANDLE-family. |
@@ -835,7 +835,7 @@
 | `oleacc.h` | WinAuto | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oleauto.h` | ComOle | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `olectl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
-| `oledbdep.h` | Search | remaining |  |  |  |
+| `oledbdep.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oledbdep.h.md |
 | `oledberr.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oledberr.h.md |
 | `oledlg.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oleidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
@@ -931,11 +931,11 @@
 | `reconcil.h` | Lwef, Shell | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `rectypes.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rectypes.h.md |
 | `regbag.h` | MsTv | matched |  | 09/02/2026 20:16:15 | COM interface method only, out of scope. |
-| `regstr.h` | Registry | remaining |  |  |  |
+| `regstr.h` | Registry | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/regstr.h.md |
 | `relogger.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/relogger.h.md |
 | `remotesystemadditionalinfo.h` | TermServ | matched |  | 09/02/2026 20:41:40 | COM interface method only, out of scope. |
 | `RemoteSystemsInterop.h` | WinRT | matched |  | 09/02/2026 21:08:27 | COM/WinRT interface method only, out of scope. |
-| `rend.h` | Tapi3 | remaining |  |  |  |
+| `rend.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rend.h.md |
 | `rendezvoussession.h` | RemoteAssist | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no function surface. |
 | `resapi.h` | MsCs | remaining |  |  |  |
 | `resourceindexer.h` | MenuRc | blocked | copilot | 09/02/2026 17:23:42 | Deferred: genuine ownership pair uses generic PVOID rather than a distinct handle typedef; needs a design decision to introduce a named type before an annotation fix is possible. |
@@ -1210,7 +1210,7 @@
 | `weakreference.h` | WinRT | matched |  | 09/02/2026 21:24:15 | COM/WinRT interface methods only, out of scope. |
 | `webapplication.h` | Debug.WebApp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webapplication.h.md |
 | `WebAuthenticationCoreManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:38:18 | COM/WinRT interop interface method only, out of scope. |
-| `webauthn.h` | WebAuthn | remaining |  |  |  |
+| `webauthn.h` | WebAuthn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webauthn.h.md |
 | `webauthnplugin.h` | WebAuthn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webauthnplugin.h.md |
 | `webevnts.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webevnts.h.md |
 | `webservices.h` | Wsw | remaining |  |  |  |

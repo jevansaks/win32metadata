@@ -5339,10 +5339,10 @@
   {
     "header": "lmerrlog.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmerrlog.h.md",
     "_source": "header-progress"
   },
   {
@@ -7427,10 +7427,10 @@
   {
     "header": "oledbdep.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oledbdep.h.md",
     "_source": "header-progress"
   },
   {
@@ -8291,10 +8291,10 @@
   {
     "header": "regstr.h",
     "partition": "Registry",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/regstr.h.md",
     "_source": "header-progress"
   },
   {
@@ -8327,10 +8327,10 @@
   {
     "header": "rend.h",
     "partition": "Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rend.h.md",
     "_source": "header-progress"
   },
   {
@@ -10802,10 +10802,10 @@
   {
     "header": "webauthn.h",
     "partition": "WebAuthn",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webauthn.h.md",
     "_source": "header-progress"
   },
   {

@@ -3310,3 +3310,13 @@ Ledger: 1161 accepted-normalized, 31 blocked, 211 pending (1192/1403 classified)
 - slpublic.h (Identity): PRODUCER-SITE FIX - HSLC autoTypes.json entry added (CloseApi SLClose).
 
 Ledger: 1166 accepted-normalized, 31 blocked, 206 pending (1197/1403 classified).
+
+## Batch 202 (2026-09-03 03:31): webauthn.h, lmerrlog.h, rend.h, regstr.h, oledbdep.h
+
+- **webauthn.h** (WebAuthn): allocated structs with real fields, not opaque handles (blocker-class 6). Clean.
+- **lmerrlog.h** (NetMgmt): structs/constants only, no functions. Clean.
+- **rend.h** (Tapi3): COM vtable only. Clean.
+- **regstr.h** (Registry): REGSTR_* string constants only. Clean.
+- **oledbdep.h** (Search): COM vtable only. Clean.
+
+Ledger: 1171 accepted-normalized, 31 blocked, 201 pending (1202/1403 classified).
