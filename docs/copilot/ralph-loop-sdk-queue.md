@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:32:54Z
+- Generated: 2026-09-03T08:37:36Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 986
+- Matched: 991
 - In progress: 0
 - Blocked: 31
-- Remaining: 386
+- Remaining: 381
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -645,7 +645,7 @@
 | `metahost.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `mfapi.h` | Mf | remaining |  |  |  |
 | `mfcaptureengine.h` | Mf | remaining |  |  |  |
-| `mfcontentdecryptionmodule.h` | Mf | remaining |  |  |  |
+| `mfcontentdecryptionmodule.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcontentdecryptionmodule.h.md |
 | `mfd3d12.h` | Direct3D12, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfd3d12.h.md |
 | `mferror.h` | Mf | remaining |  |  |  |
 | `mfidl.h` | Mf | remaining |  |  |  |
@@ -718,7 +718,7 @@
 | `msdasql.h` | Search | matched |  | 09/02/2026 19:50:38 | GUID/property constants only, no functions. |
 | `msdatsrc.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdatsrc.h.md |
 | `msdelta.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdelta.h.md |
-| `msdrm.h` | Rm | remaining |  |  |  |
+| `msdrm.h` | Rm | matched |  |  | Producer-site fix: added DRMHANDLE/DRMENVHANDLE/DRMHSESSION/DRMQUERYHANDLE/DRMPUBHANDLE autoTypes.json entries. See docs/copilot/header-reports/msdrm.h.md |
 | `msdrmdefs.h` | Rm | matched |  | 09/02/2026 22:09:36 | Types/constants only, no functions; DRM handle ownership deferred to msdrm.h. |
 | `msdrmerror.h` | Rm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdrmerror.h.md |
 | `msdrmgetinfo.h` | Rm | matched |  | 09/02/2026 21:08:27 | String constants only, no functions. |
@@ -955,7 +955,7 @@
 | `rpc.h` | Rpc | matched |  | 09/02/2026 20:07:23 | Pure umbrella/typedef header; all sub-headers already tracked; Mac-only function unreachable on Windows. |
 | `rpcasync.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcasync.h.md |
 | `rpcdce.h` | Rpc, TransactionServer | remaining |  |  |  |
-| `rpcdcep.h` | Rpc | remaining |  |  |  |
+| `rpcdcep.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcdcep.h.md |
 | `rpcndr.h` | FileHistory, Rpc, WinProg | remaining |  |  |  |
 | `rpcnsi.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnsi.h.md |
 | `rpcnsip.h` | Rpc | matched |  | 09/02/2026 17:41:54 | Internal I_-prefixed RPC stub routines; RPC_BINDING_HANDLE canonical API tracked separately under rpcdce.h (pending). |
@@ -1134,7 +1134,7 @@
 | `upnphost.h` | Upnp | remaining |  |  |  |
 | `urlhist.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/urlhist.h.md |
 | `urlmon.h` | Shell, TransactionServer | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
-| `usb.h` | Buses | remaining |  |  |  |
+| `usb.h` | Buses | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usb.h.md |
 | `usb4dbgioctl.h` | Buses | matched |  | 09/02/2026 18:47:24 | Enums/constants/data structs only, no functions. |
 | `usbfnbase.h` | Buses | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usbfnbase.h.md |
 | `usbioctl.h` | Buses | remaining |  |  |  |
@@ -1255,7 +1255,7 @@
 | `Windows.Graphics.Capture.Interop.h` | WinRT.Graphics.Capture | matched |  | 09/02/2026 17:35:31 | COM factory + query-only HWND/HMONITOR accessors. |
 | `windows.graphics.directx.direct3d11.interop.h` | WinRT.Direct3D11 | matched |  | 09/02/2026 19:02:46 | COM factory pattern throughout. |
 | `windows.graphics.effects.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 18:44:05 | COM interface with plain-value/interface-pointer outputs only. |
-| `Windows.Graphics.Holographic.Interop.h` | WinRT.Holographic | remaining |  |  |  |
+| `Windows.Graphics.Holographic.Interop.h` | WinRT.Holographic | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/Windows.Graphics.Holographic.Interop.h.md |
 | `windows.graphics.imaging.interop.h` | WinRT.Graphics.Imaging | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.graphics.imaging.interop.h.md |
 | `windows.graphics.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 17:41:54 | COM factory pattern. |
 | `windows.graphics.printing.workflow.native.h` | WinRT.Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.graphics.printing.workflow.native.h.md |

@@ -5717,10 +5717,10 @@
   {
     "header": "mfcontentdecryptionmodule.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcontentdecryptionmodule.h.md",
     "_source": "header-progress"
   },
   {
@@ -6374,10 +6374,10 @@
   {
     "header": "msdrm.h",
     "partition": "Rm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added DRMHANDLE/DRMENVHANDLE/DRMHSESSION/DRMQUERYHANDLE/DRMPUBHANDLE autoTypes.json entries. See docs/copilot/header-reports/msdrm.h.md",
     "_source": "header-progress"
   },
   {
@@ -8507,10 +8507,10 @@
   {
     "header": "rpcdcep.h",
     "partition": "Rpc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcdcep.h.md",
     "_source": "header-progress"
   },
   {
@@ -10118,10 +10118,10 @@
   {
     "header": "usb.h",
     "partition": "Buses",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usb.h.md",
     "_source": "header-progress"
   },
   {
@@ -11207,10 +11207,10 @@
   {
     "header": "Windows.Graphics.Holographic.Interop.h",
     "partition": "WinRT.Holographic",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/Windows.Graphics.Holographic.Interop.h.md",
     "_source": "header-progress"
   },
   {

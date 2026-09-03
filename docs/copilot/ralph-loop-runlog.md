@@ -2968,3 +2968,13 @@ Ledger: 981 accepted-normalized, 31 blocked, 391 pending (1012/1403 classified).
 - **msinkaut15.h** (Tablet): COM vtable only. Clean.
 
 Ledger: 986 accepted-normalized, 31 blocked, 386 pending (1017/1403 classified).
+
+## Batch 166 (2026-09-03 01:37): usb.h, msdrm.h, Windows.Graphics.Holographic.Interop.h, rpcdcep.h, mfcontentdecryptionmodule.h
+
+- **usb.h** (Buses): structs/constants only. Clean.
+- **msdrm.h** (Rm): PRODUCER-SITE FIX - added 5 new autoTypes.json entries (DRMHANDLE/DRMCloseHandle, DRMENVHANDLE/DRMCloseEnvironmentHandle, DRMHSESSION/DRMCloseSession, DRMQUERYHANDLE/DRMCloseQueryHandle, DRMPUBHANDLE/DRMClosePubHandle), all ValueType uint per WINBIO_SESSION_HANDLE precedent. Validated via ScrapeHeaders x64 Rm - 0 errors. msdrmdefs.h (already accepted-normalized) had explicitly deferred this to msdrm.h.
+- **Windows.Graphics.Holographic.Interop.h** (WinRT.Holographic): COM vtable only. Clean.
+- **rpcdcep.h** (Rpc): private RPC runtime constants, no callable functions. Clean.
+- **mfcontentdecryptionmodule.h** (Mf): MFCreateEncryptedMediaExtensionsStoreActivate outputs COM interface pointer (IMFActivate**), out of scope. Clean.
+
+Ledger: 991 accepted-normalized, 31 blocked, 381 pending (1022/1403 classified).
