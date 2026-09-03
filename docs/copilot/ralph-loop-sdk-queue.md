@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:44:14Z
+- Generated: 2026-09-03T01:47:32Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 418
+- Matched: 423
 - In progress: 0
 - Blocked: 9
-- Remaining: 976
+- Remaining: 971
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -189,7 +189,7 @@
 | `CorHdr.h` | ClrProfiling | remaining |  |  |  |
 | `corprof.h` | ClrProfiling | remaining |  |  |  |
 | `cpl.h` | Shell | remaining |  |  |  |
-| `cplext.h` | Shell | remaining |  |  |  |
+| `cplext.h` | Shell | matched |  | 09/02/2026 18:47:23 | Property-page ID constants only, no functions. |
 | `credentialprovider.h` | Shell | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `credssp.h` | Credentials | matched |  | 09/02/2026 18:38:01 | Structs/enum/constants only; one function returns a non-owned static function table. |
 | `cryptcat.h` | Security.Cryptography.Catalog | matched |  | 09/02/2026 17:16:10 | Consumer-only functions (enumerate existing CRYPTCATCDF); producer pair lives in mscat.h (separately tracked, pending). |
@@ -312,7 +312,7 @@
 | `dmerror.h` | TransactionServer | remaining |  |  |  |
 | `dmodshow.h` | Media.DShow | remaining |  |  |  |
 | `dmoreg.h` | Media.DxMediaObjects | remaining |  |  |  |
-| `dmort.h` | Media.DxMediaObjects | remaining |  |  |  |
+| `dmort.h` | Media.DxMediaObjects | matched |  | 09/02/2026 18:47:23 | DMO_MEDIA_TYPE alloc/free is a transparent-struct memory pattern, not an opaque handle. |
 | `dmprocessxmlfiltered.h` | WpdSdk | matched |  | 09/02/2026 17:38:44 | BSTR output, not HANDLE-family. |
 | `dmusics.h` | Audio.DirectMusic | remaining |  |  |  |
 | `docobj.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
@@ -484,7 +484,7 @@
 | `holographicspaceinterop.h` | MixedRealityInterop | remaining |  |  |  |
 | `homepagesetting.h` | InternetExplorer | remaining |  |  |  |
 | `hrtfapoapi.h` | Xaudio2 | remaining |  |  |  |
-| `hstring.h` | WinRT | remaining |  |  |  |
+| `hstring.h` | WinRT | matched |  | 09/02/2026 18:47:23 | Type declarations only (opaque handle typedefs), no functions; producer functions tracked separately under winstring.h (pending). |
 | `htiface.h` | InternetExplorer | remaining |  |  |  |
 | `htiframe.h` | InternetExplorer | remaining |  |  |  |
 | `htmlhelp.h` | HtmlHelp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
@@ -1135,7 +1135,7 @@
 | `urlhist.h` | InternetExplorer | remaining |  |  |  |
 | `urlmon.h` | Shell, TransactionServer | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `usb.h` | Buses | remaining |  |  |  |
-| `usb4dbgioctl.h` | Buses | remaining |  |  |  |
+| `usb4dbgioctl.h` | Buses | matched |  | 09/02/2026 18:47:24 | Enums/constants/data structs only, no functions. |
 | `usbfnbase.h` | Buses | remaining |  |  |  |
 | `usbioctl.h` | Buses | remaining |  |  |  |
 | `usbiodef.h` | Buses | remaining |  |  |  |
@@ -1168,7 +1168,7 @@
 | `vmsavedstatedumpdefs.h` | Hypervisor | remaining |  |  |  |
 | `vpconfig.h` | Media.DShow | remaining |  |  |  |
 | `vpnotify.h` | Media.DShow | matched |  | 09/02/2026 18:23:41 | COM interfaces with plain enum/BOOL parameters only, no handle. |
-| `vptype.h` | Media.DShow | remaining |  |  |  |
+| `vptype.h` | Media.DShow | matched |  | 09/02/2026 18:47:23 | Enums/data structs only, no functions. |
 | `vsadmin.h` | VSS | remaining |  |  |  |
 | `vsbackup.h` | VSS | remaining |  |  |  |
 | `vsmgmt.h` | VSS | remaining |  |  |  |

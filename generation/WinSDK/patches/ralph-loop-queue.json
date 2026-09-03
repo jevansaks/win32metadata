@@ -1613,10 +1613,10 @@
   {
     "header": "cplext.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:47:23Z",
+    "notes": "Property-page ID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2720,10 +2720,10 @@
   {
     "header": "dmort.h",
     "partition": "Media.DxMediaObjects",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:47:23Z",
+    "notes": "DMO_MEDIA_TYPE alloc/free is a transparent-struct memory pattern, not an opaque handle.",
     "_source": "header-progress"
   },
   {
@@ -4268,10 +4268,10 @@
   {
     "header": "hstring.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:47:23Z",
+    "notes": "Type declarations only (opaque handle typedefs), no functions; producer functions tracked separately under winstring.h (pending).",
     "_source": "header-progress"
   },
   {
@@ -10127,10 +10127,10 @@
   {
     "header": "usb4dbgioctl.h",
     "partition": "Buses",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:47:24Z",
+    "notes": "Enums/constants/data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10424,10 +10424,10 @@
   {
     "header": "vptype.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:47:23Z",
+    "notes": "Enums/data structs only, no functions.",
     "_source": "header-progress"
   },
   {

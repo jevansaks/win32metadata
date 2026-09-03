@@ -1434,3 +1434,23 @@ wsbonlineerror.h, storprop.h, mtpext.h
 
 **Ledger status:** 418 accepted-normalized, 9 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h, physicalmonitorenumerationapi.h), 976 pending.
+
+## 2026-09-02 18:47:46 UTC - Batch scraping-investigation-48
+
+**Headers:** cplext.h, hstring.h, vptype.h, dmort.h, usb4dbgioctl.h
+**Partitions scraped:** Media.DxMediaObjects (x86; 0 warnings/errors)
+
+- cplext.h: control-panel property-page ID constants only, no functions. Clean.
+- hstring.h: declares only HSTRING/HSTRING_BUFFER opaque handle typedefs and MIDL boilerplate - zero
+  functions in this header. Per corrected policy, no annotation belongs on the typedef itself; the
+  actual WindowsCreateString/WindowsDeleteString/WindowsPreallocateStringBuffer/etc. producer/consumer
+  functions live in the separately-tracked winstring.h (still pending). Clean.
+- vptype.h: enums/data structs only, no functions. Clean.
+- dmort.h: MoInitMediaType/MoFreeMediaType etc. allocate/free the fully-defined transparent
+  DMO_MEDIA_TYPE struct - a memory-allocation pattern, not an opaque handle (same reasoning as
+  keycredmgr.h). Clean.
+- usb4dbgioctl.h: enums/constants/data structs only, no functions. Clean.
+
+**Ledger status:** 423 accepted-normalized, 9 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h,
+physicalmonitorenumerationapi.h), 971 pending.
