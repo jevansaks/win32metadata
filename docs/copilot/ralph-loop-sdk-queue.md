@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:05:11Z
+- Generated: 2026-09-03T04:08:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 588
+- Matched: 593
 - In progress: 0
 - Blocked: 29
-- Remaining: 786
+- Remaining: 781
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -573,7 +573,7 @@
 | `iscsierr.h` | IScsiDisc | remaining |  |  |  |
 | `isolatedapplauncher.h` | FileHistory, Isolation | remaining |  |  |  |
 | `isolatedwindowsenvironmentutils.h` | Isolation | matched |  | 09/02/2026 16:57:06 | Boolean query functions only. |
-| `issper16.h` | Identity | remaining |  |  |  |
+| `issper16.h` | Identity | matched |  | 09/02/2026 21:08:27 | Constants only, no functions. |
 | `iswindowarranged.h` | MenuRc | matched |  | 09/02/2026 16:49:01 | Query-only function taking HWND input; no handle production. |
 | `isysmon.h` | Perf | remaining |  |  |  |
 | `iwscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |
@@ -721,7 +721,7 @@
 | `msdrm.h` | Rm | remaining |  |  |  |
 | `msdrmdefs.h` | Rm | remaining |  |  |  |
 | `msdrmerror.h` | Rm | remaining |  |  |  |
-| `msdrmgetinfo.h` | Rm | remaining |  |  |  |
+| `msdrmgetinfo.h` | Rm | matched |  | 09/02/2026 21:08:27 | String constants only, no functions. |
 | `msdshape.h` | Search | matched |  | 09/02/2026 17:51:18 | Constants/enums only, no functions. |
 | `msfeeds.h` | Wmp | remaining |  |  |  |
 | `msfeedsid.h` | Wmp | remaining |  |  |  |
@@ -934,7 +934,7 @@
 | `regstr.h` | Registry | remaining |  |  |  |
 | `relogger.h` | Etw | remaining |  |  |  |
 | `remotesystemadditionalinfo.h` | TermServ | matched |  | 09/02/2026 20:41:40 | COM interface method only, out of scope. |
-| `RemoteSystemsInterop.h` | WinRT | remaining |  |  |  |
+| `RemoteSystemsInterop.h` | WinRT | matched |  | 09/02/2026 21:08:27 | COM/WinRT interface method only, out of scope. |
 | `rend.h` | Tapi3 | remaining |  |  |  |
 | `rendezvoussession.h` | RemoteAssist | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no function surface. |
 | `resapi.h` | MsCs | remaining |  |  |  |
@@ -1247,7 +1247,7 @@
 | `windnsdef.h` | Dns | remaining |  |  |  |
 | `windot11.h` | Ndis, NWifi | remaining |  |  |  |
 | `windows.ai.machinelearning.native.h` | WinRT.ML | remaining |  |  |  |
-| `windows.data.pdf.interop.h` | WinRT.Pdf | remaining |  |  |  |
+| `windows.data.pdf.interop.h` | WinRT.Pdf | matched |  | 09/02/2026 21:08:27 | Standard COM factory function + inline helper + COM interface method only. |
 | `windows.devices.alljoyn.interop.h` | WinRT.AllJoyn | remaining |  |  |  |
 | `Windows.Devices.Display.Core.Interop.h` | WinRT.Display | remaining |  |  |  |
 | `windows.devices.midi.h` | Media.DShow | remaining |  |  |  |
@@ -1259,7 +1259,7 @@
 | `windows.graphics.imaging.interop.h` | WinRT.Graphics.Imaging | remaining |  |  |  |
 | `windows.graphics.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 17:41:54 | COM factory pattern. |
 | `windows.graphics.printing.workflow.native.h` | WinRT.Printing | remaining |  |  |  |
-| `windows.h` | Console, Edp, Enstor, Memory, Mi | remaining |  |  |  |
+| `windows.h` | Console, Edp, Enstor, Memory, Mi | matched |  | 09/02/2026 21:08:27 | Pure umbrella redirect; all sub-headers tracked or (dlgs.h) directly confirmed no functions. |
 | `windows.media.core.interop.h` | WinRT.Media | remaining |  |  |  |
 | `windows.security.isolation.isolatedenvironmentinterop.h` | WinRT.Isolation | matched |  | 09/02/2026 20:41:40 | COM interface method returning non-owned HWND reference, out of scope. |
 | `windows.ui.composition.interop.h` | WinRT.Composition | matched |  | 09/02/2026 20:19:39 | COM interop interface methods only, out of scope. |

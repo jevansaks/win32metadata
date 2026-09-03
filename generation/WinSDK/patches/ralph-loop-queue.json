@@ -5069,10 +5069,10 @@
   {
     "header": "issper16.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:08:27Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6401,10 +6401,10 @@
   {
     "header": "msdrmgetinfo.h",
     "partition": "Rm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:08:27Z",
+    "notes": "String constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8318,10 +8318,10 @@
   {
     "header": "RemoteSystemsInterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:08:27Z",
+    "notes": "COM/WinRT interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -11135,10 +11135,10 @@
   {
     "header": "windows.data.pdf.interop.h",
     "partition": "WinRT.Pdf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:08:27Z",
+    "notes": "Standard COM factory function + inline helper + COM interface method only.",
     "_source": "header-progress"
   },
   {
@@ -11243,10 +11243,10 @@
   {
     "header": "windows.h",
     "partition": "Console, Edp, Enstor, Memory, Mi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:08:27Z",
+    "notes": "Pure umbrella redirect; all sub-headers tracked or (dlgs.h) directly confirmed no functions.",
     "_source": "header-progress"
   },
   {

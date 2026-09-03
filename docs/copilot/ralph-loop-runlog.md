@@ -2064,3 +2064,20 @@ MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
 - HolographicSpaceInterop.h: IHolographicSpaceInterop COM/WinRT interop interface method only. Clean.
 
 **Ledger status:** 588 accepted-normalized, 29 blocked, 786 pending.
+
+## 2026-09-02 21:08:44 UTC - Batch scraping-investigation-86
+
+**Headers:** Windows.h, msdrmgetinfo.h, IssPer16.h, RemoteSystemsInterop.h, windows.data.pdf.interop.h
+**Partitions scraped (x64):** Console, Enstor, Memory, Mi, Rm, WinRT.Pdf (0 errors each); Edp/Identity/WinRT reused
+
+- Windows.h: master umbrella redirect header; all sub-headers already tracked ledger items except
+  dlgs.h (untracked - directly investigated and confirmed to declare only dialog-control-ID
+  constants, no functions). Clean.
+- msdrmgetinfo.h: DRM query-tag string constants only, no functions. Clean.
+- IssPer16.h: OLE HRESULT status-code constants only, no functions. Clean.
+- RemoteSystemsInterop.h: ICorrelationVectorInformation COM/WinRT interface method only;
+  HSTRING outputs already covered via existing autoTypes.json entry. Clean.
+- windows.data.pdf.interop.h: PdfCreateRenderer outputs standard COM interface pointer;
+  PdfRenderParams is inline (no bindings); IPdfRendererNative is a COM interface. Clean.
+
+**Ledger status:** 593 accepted-normalized, 29 blocked, 781 pending.
