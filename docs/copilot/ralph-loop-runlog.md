@@ -2668,3 +2668,13 @@ Ledger: 831 accepted-normalized, 31 blocked, 541 pending (862/1403 classified).
 - **mmiscapi.h** (Multimedia): PATCH APPLIED. Added CloseApi=CloseDriver to existing incomplete HDRVR autoTypes.json entry (producer OpenDriver) - resolves the mmsyscom.h batch-107 follow-up note. Re-scraped Multimedia (x64): 0 errors.
 
 Ledger: 836 accepted-normalized, 31 blocked, 536 pending (867/1403 classified).
+
+## Batch 136 (2026-09-03 00:04): eaphosterror.h, dvdevcod.h, tapi3err.h, DsGetDC.h, wmistr.h
+
+- **eaphosterror.h** (EapHost): error code constants only. Clean.
+- **dvdevcod.h** (Media.DShow): DVD_ERROR enum + event codes only. Clean.
+- **tapi3err.h** (Tapi3): HRESULT error code constants only. Clean.
+- **DsGetDC.h** (ActiveDirectory): DsGetDcNameA outputs transparent struct freed via NetApiBufferFree. Clean.
+- **wmistr.h** (Etw): transparent WMI structs only, no functions. Clean.
+
+Ledger: 841 accepted-normalized, 31 blocked, 531 pending (872/1403 classified).

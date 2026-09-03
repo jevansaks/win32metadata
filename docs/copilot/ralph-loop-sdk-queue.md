@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:01:47Z
+- Generated: 2026-09-03T07:03:58Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 836
+- Matched: 841
 - In progress: 0
 - Blocked: 31
-- Remaining: 536
+- Remaining: 531
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -329,7 +329,7 @@
 | `dsattrib.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsattrib.h.md |
 | `dsclient.h` | ActiveDirectory | remaining |  |  |  |
 | `dsconf.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:06:03 | Constants/enum only, no functions. |
-| `DsGetDC.h` | ActiveDirectory | remaining |  |  |  |
+| `DsGetDC.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/DsGetDC.h.md |
 | `dshow.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Pure umbrella redirect; all sub-headers already individually tracked. |
 | `dshowasf.h` | Media.DShow | remaining |  |  |  |
 | `dskquota.h` | Fs, Shell | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
@@ -341,7 +341,7 @@
 | `dtchelp.h` | DTC | matched |  | 09/02/2026 21:55:32 | Enum + dynamically-loaded function-pointer typedefs only, no extern functions. |
 | `dv.h` | Audio.DirectMusic | matched |  | 09/02/2026 18:20:58 | Constants + data struct only, no functions. |
 | `dvbsiparser.h` | MsTv | remaining |  |  |  |
-| `dvdevcod.h` | Media.DShow | remaining |  |  |  |
+| `dvdevcod.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dvdevcod.h.md |
 | `dvdmedia.h` | Media.DShow | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dvp.h` | DirectDraw | remaining |  |  |  |
 | `dwmapi.h` | Dwm | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
@@ -373,7 +373,7 @@
 | `dxvahd.h` | Mf | remaining |  |  |  |
 | `eapauthenticatoractiondefine.h` | EapHost | matched |  | 09/02/2026 18:50:10 | Enums/data structs only, no functions. |
 | `eapauthenticatortypes.h` | EapHost | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
-| `eaphosterror.h` | EapHost | remaining |  |  |  |
+| `eaphosterror.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaphosterror.h.md |
 | `eaphostpeerconfigapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaphostpeerconfigapis.h.md |
 | `eaphostpeertypes.h` | EapHost | matched |  | 09/02/2026 19:35:00 | Enums/structs only, no functions. |
 | `eapmethodauthenticatorapis.h` | EapHost | remaining |  |  |  |
@@ -1079,7 +1079,7 @@
 | `tapi.h` | Tapi3 | remaining |  |  |  |
 | `tapi3.h` | Tapi3 | remaining |  |  |  |
 | `tapi3ds.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3ds.h.md |
-| `tapi3err.h` | Tapi3 | remaining |  |  |  |
+| `tapi3err.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3err.h.md |
 | `tapi3if.h` | Tapi3 | remaining |  |  |  |
 | `taskdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:59:13 | GUID/property-key constants only, no functions. |
 | `taskschd.h` | TaskSchd | remaining |  |  |  |
@@ -1328,7 +1328,7 @@
 | `wmcontainer.h` | Mf | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wmdmlog.h` | Wmdm | matched |  | 09/02/2026 22:02:59 | COM interface only, no extern functions. |
 | `wmdxva.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmdxva.h.md |
-| `wmistr.h` | Etw | remaining |  |  |  |
+| `wmistr.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmistr.h.md |
 | `wmiutils.h` | Lwef, Wmi | remaining |  |  |  |
 | `wmlss.h` | Wmlss | remaining |  |  |  |
 | `wmnetsourcecreator.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmnetsourcecreator.h.md |

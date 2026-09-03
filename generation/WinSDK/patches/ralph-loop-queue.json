@@ -2873,10 +2873,10 @@
   {
     "header": "DsGetDC.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/DsGetDC.h.md",
     "_source": "header-progress"
   },
   {
@@ -2981,10 +2981,10 @@
   {
     "header": "dvdevcod.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dvdevcod.h.md",
     "_source": "header-progress"
   },
   {
@@ -3269,10 +3269,10 @@
   {
     "header": "eaphosterror.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaphosterror.h.md",
     "_source": "header-progress"
   },
   {
@@ -9623,10 +9623,10 @@
   {
     "header": "tapi3err.h",
     "partition": "Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3err.h.md",
     "_source": "header-progress"
   },
   {
@@ -11864,10 +11864,10 @@
   {
     "header": "wmistr.h",
     "partition": "Etw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmistr.h.md",
     "_source": "header-progress"
   },
   {
