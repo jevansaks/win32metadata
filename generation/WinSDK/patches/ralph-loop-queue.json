@@ -839,10 +839,10 @@
   {
     "header": "bdamedia.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdamedia.h.md",
     "_source": "header-progress"
   },
   {
@@ -2351,10 +2351,10 @@
   {
     "header": "ddrawi.h",
     "partition": "DirectDraw, FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddrawi.h.md",
     "_source": "header-progress"
   },
   {
@@ -3872,10 +3872,10 @@
   {
     "header": "fsrmquota.h",
     "partition": "Fsrm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmquota.h.md",
     "_source": "header-progress"
   },
   {
@@ -11072,10 +11072,10 @@
   {
     "header": "winddi.h",
     "partition": "Display, IO, Printing, TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddi.h.md",
     "_source": "header-progress"
   },
   {
@@ -12341,10 +12341,10 @@
   {
     "header": "wsmandisp.h",
     "partition": "WinRm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsmandisp.h.md",
     "_source": "header-progress"
   },
   {

@@ -2751,7 +2751,7 @@
       "header": "bdamedia.h",
       "partitions": "MsTv",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -2764,7 +2764,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdamedia.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/MsTv/main.cpp",
@@ -7784,7 +7784,7 @@
         "WinProg"
       ],
       "partition_count": 3,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -7797,7 +7797,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddrawi.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -12930,7 +12930,7 @@
       "header": "fsrmquota.h",
       "partitions": "Fsrm",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -12943,7 +12943,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmquota.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Fsrm/main.cpp",
@@ -41696,7 +41696,7 @@
         "TransactionServer"
       ],
       "partition_count": 4,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -41709,7 +41709,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddi.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -48750,7 +48750,7 @@
       "header": "wsmandisp.h",
       "partitions": "WinRm",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -48763,7 +48763,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsmandisp.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/WinRm/main.cpp",

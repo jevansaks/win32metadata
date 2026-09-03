@@ -3456,3 +3456,13 @@ Ledger: 1236 accepted-normalized, 31 blocked, 136 pending (1267/1403 classified)
 - **ImageHlp.h** (Debug): LOADED_IMAGE real multi-field struct / caller-provided struct (blocker-class 6). Clean.
 
 Ledger: 1241 accepted-normalized, 31 blocked, 131 pending (1272/1403 classified).
+
+## Batch 217 (2026-09-03 04:12): fsrmquota.h, wsmandisp.h, bdamedia.h, ddrawi.h, winddi.h
+
+- **fsrmquota.h** (Fsrm): COM vtable only. Clean.
+- **wsmandisp.h** (WinRm): COM vtable only. Clean.
+- **bdamedia.h** (MsTv): constants/structs only, no functions. Clean.
+- **ddrawi.h** (DirectDraw/FileHistory/WinProg): internal driver-interface structs, handles stored as DWORD. Clean.
+- **winddi.h** (Display/IO/Printing/TransactionServer): kernel-mode driver callback contract. Clean.
+
+Ledger: 1246 accepted-normalized, 31 blocked, 126 pending (1277/1403 classified).

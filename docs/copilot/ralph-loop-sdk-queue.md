@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:09:58Z
+- Generated: 2026-09-03T11:12:15Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1241
+- Matched: 1246
 - In progress: 0
 - Blocked: 31
-- Remaining: 131
+- Remaining: 126
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -103,7 +103,7 @@
 | `bcrypt_provider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bcrypt_provider.h.md |
 | `bcrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; unrelated zz-crypto-security-enums patch verified compatible via full sequential forward replay. |
 | `bdaiface.h` | Media.DShow, MsTv | remaining |  |  |  |
-| `bdamedia.h` | MsTv | remaining |  |  |  |
+| `bdamedia.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdamedia.h.md |
 | `bdatif.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatif.h.md |
 | `bdatypes.h` | Media.DShow, MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatypes.h.md |
 | `BiDiSpl.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/BiDiSpl.h.md |
@@ -271,7 +271,7 @@
 | `ddpdataport.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpdataport.h.md |
 | `ddraw.h` | DirectDraw, Gdiplus, Media.DShow | matched |  | 09/02/2026 16:34:06 | HMONITOR reference is a pass-through system handle (never created/released by DirectDraw); guarded DECLARE_HANDLE fallback never fires. |
 | `ddrawgdi.h` | FileHistory, WinProg | blocked |  | 09/02/2026 19:45:17 | DdGetDxHandle/DdCreateDIBSection return generic HANDLE/HBITMAP via return value. |
-| `ddrawi.h` | DirectDraw, FileHistory, WinProg | remaining |  |  |  |
+| `ddrawi.h` | DirectDraw, FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddrawi.h.md |
 | `ddrawint.h` | DirectDraw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddrawint.h.md |
 | `ddstream.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddstream.h.md |
 | `debugapi.h` | Base, Debug | matched |  | 09/02/2026 19:06:16 | HANDLE is a caller-supplied input, not produced here. |
@@ -440,7 +440,7 @@
 | `fsrmenums.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmenums.h.md |
 | `fsrmerr.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmerr.h.md |
 | `fsrmpipeline.h` | Fsrm | remaining |  |  |  |
-| `fsrmquota.h` | Fsrm | remaining |  |  |  |
+| `fsrmquota.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmquota.h.md |
 | `fsrmreports.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmreports.h.md |
 | `fsrmscreen.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmscreen.h.md |
 | `fsrmtlb.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmtlb.h.md |
@@ -1240,7 +1240,7 @@
 | `winconp.h` | Console | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winconp.h.md |
 | `wincred.h` | Certificates, Credentials, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincrypt.h` | NetMgmt, Rpc, Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:40:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; final header in the 11-header audit set (all now compliant). Verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
-| `winddi.h` | Display, IO, Printing, TransactionServer | remaining |  |  |  |
+| `winddi.h` | Display, IO, Printing, TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddi.h.md |
 | `winddiui.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddiui.h.md |
 | `windef.h` | Foundation, Gdi, WinAuto | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `windns.h` | Dns, IpHlp | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
@@ -1381,7 +1381,7 @@
 | `wsipx.h` | WinSock | matched |  | 09/02/2026 18:09:40 | Data struct + constants only, no functions. |
 | `wslapi.h` | Wsl | blocked | copilot | 09/02/2026 19:02:46 | Deferred: direct out-param instance of the generic/shared-type blocker class (HANDLE has no single correct CloseApi). |
 | `wsman.h` | WinRm | matched |  |  | Producer-site fix: filled missing CloseApi on WSMAN_API_HANDLE/WSMAN_SESSION_HANDLE/WSMAN_OPERATION_HANDLE. WSMAN_COMMAND_HANDLE/WSMAN_SHELL_HANDLE blocked (mandatory async param). See docs/copilot/header-reports/wsman.h.md |
-| `wsmandisp.h` | WinRm | remaining |  |  |  |
+| `wsmandisp.h` | WinRm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsmandisp.h.md |
 | `wsmerror.h` | WinRm | remaining |  |  |  |
 | `wsnetbs.h` | WinSock | matched |  | 09/02/2026 18:29:38 | Data struct + constants/macro only, no functions. |
 | `wsnwlink.h` | WinSock | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
