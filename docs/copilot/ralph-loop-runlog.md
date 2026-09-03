@@ -3359,3 +3359,13 @@ Ledger: 1186 accepted-normalized, 31 blocked, 186 pending (1217/1403 classified)
 - **sqlext.h** (Search): SQLAllocHandleStd uses same generic SQLHANDLE pattern already documented in sql.h; other functions consume already-covered handles. Clean.
 
 Ledger: 1191 accepted-normalized, 31 blocked, 181 pending (1222/1403 classified).
+
+## Batch 207 (2026-09-03 03:44): ntddvdeo.h, vidcap.h, vmr9.h, atscpsipparser.h, certadm.h
+
+- **ntddvdeo.h** (Display): IOCTL constants/structs only, no functions. Clean.
+- **vidcap.h** (Media.DShow): COM vtable only. Clean.
+- **vmr9.h** (Media.DShow): COM vtable only. Clean.
+- **atscpsipparser.h** (MsTv): COM vtable only. Clean.
+- **certadm.h** (Certificates): COM vtable only. Clean.
+
+Ledger: 1196 accepted-normalized, 31 blocked, 176 pending (1227/1403 classified).

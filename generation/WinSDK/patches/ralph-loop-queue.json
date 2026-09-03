@@ -587,10 +587,10 @@
   {
     "header": "atscpsipparser.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/atscpsipparser.h.md",
     "_source": "header-progress"
   },
   {
@@ -1163,10 +1163,10 @@
   {
     "header": "certadm.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certadm.h.md",
     "_source": "header-progress"
   },
   {
@@ -7157,10 +7157,10 @@
   {
     "header": "ntddvdeo.h",
     "partition": "Display",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvdeo.h.md",
     "_source": "header-progress"
   },
   {
@@ -10343,10 +10343,10 @@
   {
     "header": "vidcap.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vidcap.h.md",
     "_source": "header-progress"
   },
   {
@@ -10379,10 +10379,10 @@
   {
     "header": "vmr9.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vmr9.h.md",
     "_source": "header-progress"
   },
   {

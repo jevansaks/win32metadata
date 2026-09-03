@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:42:42Z
+- Generated: 2026-09-03T10:44:40Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1191
+- Matched: 1196
 - In progress: 0
 - Blocked: 31
-- Remaining: 181
+- Remaining: 176
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -75,7 +75,7 @@
 | `appxpackaging.h` | AppxPackaging | remaining |  |  |  |
 | `asferr.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/asferr.h.md |
 | `atacct.h` | NetMgmt | matched |  | 09/02/2026 17:09:31 | String-only account-info API, no handle. |
-| `atscpsipparser.h` | MsTv | remaining |  |  |  |
+| `atscpsipparser.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/atscpsipparser.h.md |
 | `atsmedia.h` | MsTv | matched |  | 09/02/2026 17:27:04 | GUID constant only, no functions. |
 | `audevcod.h` | Media.DShow | matched |  | 09/02/2026 17:48:13 | Error-code enum/constants only, no functions. |
 | `AudioAPOTypes.h` | Audio.Apo, TermServ | matched |  | 09/02/2026 19:32:00 | Typedefs/enum/structs only, no functions. |
@@ -139,7 +139,7 @@
 | `cchannel.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cchannel.h.md |
 | `cderr.h` | DlgBox | matched |  | 09/02/2026 18:15:12 | Error-code constants only, no functions. |
 | `celib.h` | Security | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/celib.h.md |
-| `certadm.h` | Certificates | remaining |  |  |  |
+| `certadm.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certadm.h.md |
 | `certbcli.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certbcli.h.md |
 | `certcli.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certcli.h.md |
 | `certenc.h` | Certificates | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
@@ -805,7 +805,7 @@
 | `ntddndis.h` | Ndis, NWifi, Qos | remaining |  |  |  |
 | `ntddser.h` | SerPorts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddser.h.md |
 | `ntddstor.h` | Fs, Ioctl | remaining |  |  |  |
-| `ntddvdeo.h` | Display | remaining |  |  |  |
+| `ntddvdeo.h` | Display | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvdeo.h.md |
 | `ntddvol.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvol.h.md |
 | `ntdef.h` | Kernel | remaining |  |  |  |
 | `ntdsapi.h` | ActiveDirectory | remaining |  |  |  |
@@ -1159,11 +1159,11 @@
 | `vfw.h` | Multimedia | remaining |  |  |  |
 | `vfwext.h` | Multimedia | matched |  | 09/02/2026 18:35:09 | Constants + callback-signature typedefs only, no functions. |
 | `vfwmsgs.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vfwmsgs.h.md |
-| `vidcap.h` | Media.DShow | remaining |  |  |  |
+| `vidcap.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vidcap.h.md |
 | `videoacc.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/videoacc.h.md |
 | `virtdisk.h` | Vhd | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/virtdisk.h.md |
 | `vmgenerationcounter.h` | Hypervisor | matched |  | 09/02/2026 17:19:28 | GUID/IOCTL constant + data struct only, no functions. |
-| `vmr9.h` | Media.DShow | remaining |  |  |  |
+| `vmr9.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vmr9.h.md |
 | `vmsavedstatedump.h` | Hypervisor | matched |  |  | Producer-site fix: added VM_SAVED_STATE_DUMP_HANDLE autoTypes.json entry (CloseApi ReleaseSavedStateFiles). See docs/copilot/header-reports/vmsavedstatedump.h.md |
 | `vmsavedstatedumpdefs.h` | Hypervisor | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vmsavedstatedumpdefs.h.md |
 | `vpconfig.h` | Media.DShow | matched |  | 09/02/2026 19:45:17 | COM-style interfaces only, no extern functions. |
