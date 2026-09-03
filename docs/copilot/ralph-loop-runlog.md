@@ -3537,3 +3537,8 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - windows.devices.midi.h, PrinterExtension.h: COM/WinRT vtable-only headers, clean.
 - strsafe.h: inline string-safety buffer helpers only, no handle pattern, clean.
 - Ledger: 1301 accepted-normalized, 59 blocked, 43 pending (1360/1403 = 96.9%).
+
+## Batch 229 (bf1f9ace -> next)
+- mfmediaengine.h, wbemdisp.h, activdbg.h, imapi2.h, winsync.h: COM vtable-only headers, clean.
+- ksmedia.h: kernel streaming IOCTL constants/structs only, no functions, clean.
+- Ledger: 1307 accepted-normalized, 59 blocked, 37 pending (1366/1403 = 97.4%).

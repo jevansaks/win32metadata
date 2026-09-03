@@ -56,10 +56,10 @@
   {
     "header": "activdbg.h",
     "partition": "Debug.ActiveScript",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/activdbg.h.md",
     "_source": "header-progress"
   },
   {
@@ -4655,10 +4655,10 @@
   {
     "header": "imapi2.h",
     "partition": "IMapi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/imapi2.h.md",
     "_source": "header-progress"
   },
   {
@@ -5186,10 +5186,10 @@
   {
     "header": "ksmedia.h",
     "partition": "Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; kernel streaming IOCTL constants/structs only, no functions. See docs/copilot/header-reports/ksmedia.h.md",
     "_source": "header-progress"
   },
   {
@@ -5762,10 +5762,10 @@
   {
     "header": "mfmediaengine.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/mfmediaengine.h.md",
     "_source": "header-progress"
   },
   {
@@ -10577,10 +10577,10 @@
   {
     "header": "wbemdisp.h",
     "partition": "Wmi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/WbemDisp.h.md",
     "_source": "header-progress"
   },
   {
@@ -11702,10 +11702,10 @@
   {
     "header": "winsync.h",
     "partition": "WinSync",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/winsync.h.md",
     "_source": "header-progress"
   },
   {

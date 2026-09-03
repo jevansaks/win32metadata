@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:52:42Z
+- Generated: 2026-09-03T11:54:41Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1301
+- Matched: 1307
 - In progress: 0
 - Blocked: 59
-- Remaining: 43
+- Remaining: 37
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -16,7 +16,7 @@
 | `aclui.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclui.h.md |
 | `activation.h` | WinRT | matched |  | 09/02/2026 20:19:39 | COM/WinRT interface method only, out of scope. |
 | `activaut.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activaut.h.md |
-| `activdbg.h` | Debug.ActiveScript | remaining |  |  |  |
+| `activdbg.h` | Debug.ActiveScript | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/activdbg.h.md |
 | `activdbg100.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activdbg100.h.md |
 | `activecf.h` | Media.DShow | matched |  | 09/02/2026 17:09:31 | Clipboard-format data struct only, no functions. |
 | `activprof.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activprof.h.md |
@@ -527,7 +527,7 @@
 | `ImageHlp.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ImageHlp.h.md |
 | `imagetranscode.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `imapi.h` | IMapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi.h.md |
-| `imapi2.h` | IMapi | remaining |  |  |  |
+| `imapi2.h` | IMapi | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/imapi2.h.md |
 | `imapi2error.h` | IMapi, Wab | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi2error.h.md |
 | `imapi2fs.h` | IMapi | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/imapi2fs.h.md |
 | `imapi2fserror.h` | Wab | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi2fserror.h.md |
@@ -586,7 +586,7 @@
 | `keycredmgr.h` | Credentials | matched |  | 09/02/2026 18:20:58 | KeyCredentialManagerInfo alloc/free is a transparent-struct memory pattern, not an opaque handle. |
 | `knownfolders.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/knownfolders.h.md |
 | `ks.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | matched |  |  | Investigated; kernel streaming COM/kernel vtable interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/ks.h.md |
-| `ksmedia.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
+| `ksmedia.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | matched |  |  | Investigated; kernel streaming IOCTL constants/structs only, no functions. See docs/copilot/header-reports/ksmedia.h.md |
 | `ksproxy.h` | Media.KernelStreaming | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ksproxy.h.md |
 | `ktmtypes.h` | Fs | matched |  | 09/02/2026 21:17:15 | Type aliases/constants only, no functions. |
 | `ktmw32.h` | Fs | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
@@ -650,7 +650,7 @@
 | `mferror.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mferror.h.md |
 | `mfidl.h` | Mf | remaining |  |  |  |
 | `mfmediacapture.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfmediacapture.h.md |
-| `mfmediaengine.h` | Mf | remaining |  |  |  |
+| `mfmediaengine.h` | Mf | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/mfmediaengine.h.md |
 | `mfmp2dlna.h` | Mf | matched |  | 09/02/2026 20:28:23 | COM interface + GUID constants/struct only, no extern functions. |
 | `mfobjects.h` | Mf | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `mfplay.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfplay.h.md |
@@ -1185,7 +1185,7 @@
 | `wbcl.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbcl.h.md |
 | `wbemads.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemads.h.md |
 | `wbemcli.h` | TermServ, Wmi | matched |  |  | Investigated; WMI client COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/wbemcli.h.md |
-| `wbemdisp.h` | Wmi | remaining |  |  |  |
+| `wbemdisp.h` | Wmi | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/WbemDisp.h.md |
 | `wbemidl.h` | Wmi | matched |  | 09/02/2026 16:57:06 | Redirect-only; 40 functions all MIDL RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wbemprov.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemprov.h.md |
 | `wbemtran.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemtran.h.md |
@@ -1310,7 +1310,7 @@
 | `winstring.h` | WinRT | matched |  | 09/02/2026 20:07:23 | HSTRING/HSTRING_BUFFER already correctly covered via existing autoTypes.json entries. |
 | `winsvc.h` | Services | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types). |
 | `winsxs.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsxs.h.md |
-| `winsync.h` | WinSync | remaining |  |  |  |
+| `winsync.h` | WinSync | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/winsync.h.md |
 | `winternl.h` | ActiveDirectory, Base, Certificates, FileHistory, IpHlp, MadCap, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winternl.h.md |
 | `wintrust.h` | Security.WinTrust | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wintrust.h.md |
 | `winusb.h` | Buses | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
