@@ -1523,3 +1523,25 @@ MSAJTransport.h, physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h), 
 **Ledger status:** 436 accepted-normalized, 11 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h,
 physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h), 956 pending.
+
+## 2026-09-02 19:03:09 UTC - Batch scraping-investigation-52
+
+**Headers:** windows.graphics.directx.direct3d11.interop.h, wslapi.h (blocked), wsdutil.h, vbinterf.h,
+avrfsdk.h
+**Partitions scraped:** WinRT.Direct3D11, Wsl, Com, ApplicationVerifier (x86; 0 warnings/errors)
+
+- windows.graphics.directx.direct3d11.interop.h: COM factory pattern throughout. Clean.
+- **wslapi.h: BLOCKED.** WslLaunch produces a process HANDLE via a direct _Out_ HANDLE* out-param, but
+  the type is the generic system HANDLE (not distinctly named like PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE),
+  same generic/shared-type blocker class as resourceindexer.h/physicalmonitorenumerationapi.h/userenv.h -
+  annotating it would incorrectly apply to every HANDLE anywhere in the metadata. This is a direct
+  out-param instance of the class (vs. nested-in-struct for the other two).
+- wsdutil.h: WSDAPI linked-memory/buffer convention, not HANDLE-family (consistent with wsdapi.h
+  precedent from batch 20). Clean.
+- vbinterf.h: COM interface refcounting pattern, not HANDLE-family. Clean.
+- avrfsdk.h: HANDLE is a caller-supplied input; diagnostic "handle" fields are plain ULONG64 values,
+  not HANDLE-typed. Clean.
+
+**Ledger status:** 440 accepted-normalized, 12 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h,
+physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pending.

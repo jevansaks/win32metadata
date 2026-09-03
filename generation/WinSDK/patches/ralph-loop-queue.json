@@ -767,10 +767,10 @@
   {
     "header": "avrfsdk.h",
     "partition": "ApplicationVerifier, FileHistory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:02:46Z",
+    "notes": "HANDLE is a caller-supplied input; diagnostic handle fields are plain ULONG64.",
     "_source": "header-progress"
   },
   {
@@ -10253,10 +10253,10 @@
   {
     "header": "vbinterf.h",
     "partition": "Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:02:46Z",
+    "notes": "COM interface refcounting pattern, not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -11189,10 +11189,10 @@
   {
     "header": "windows.graphics.directx.direct3d11.interop.h",
     "partition": "WinRT.Direct3D11",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:02:46Z",
+    "notes": "COM factory pattern throughout.",
     "_source": "header-progress"
   },
   {
@@ -12278,10 +12278,10 @@
   {
     "header": "wsdutil.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:02:46Z",
+    "notes": "WSDAPI linked-memory/buffer convention, not HANDLE-family (consistent with wsdapi.h).",
     "_source": "header-progress"
   },
   {
@@ -12323,10 +12323,10 @@
   {
     "header": "wslapi.h",
     "partition": "Wsl",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T19:02:46Z",
+    "notes": "Deferred: direct out-param instance of the generic/shared-type blocker class (HANDLE has no single correct CloseApi).",
     "_source": "header-progress"
   },
   {

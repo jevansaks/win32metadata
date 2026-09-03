@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:59:22Z
+- Generated: 2026-09-03T02:02:55Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 436
+- Matched: 440
 - In progress: 0
-- Blocked: 11
-- Remaining: 956
+- Blocked: 12
+- Remaining: 951
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -95,7 +95,7 @@
 | `aux_ulib.h` | FileHistory, WinProg | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `avifmt.h` | Media.DShow | remaining |  |  |  |
 | `aviriff.h` | Media.DShow | remaining |  |  |  |
-| `avrfsdk.h` | ApplicationVerifier, FileHistory | remaining |  |  |  |
+| `avrfsdk.h` | ApplicationVerifier, FileHistory | matched |  | 09/02/2026 19:02:46 | HANDLE is a caller-supplied input; diagnostic handle fields are plain ULONG64. |
 | `avrt.h` | Threading | remaining |  |  |  |
 | `azroles.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `batclass.h` | Power | remaining |  |  |  |
@@ -1149,7 +1149,7 @@
 | `utilapiset.h` | Base, Debug | matched |  | 09/02/2026 18:29:37 | Pointer obfuscation, not resource ownership; HANDLE is an input only. |
 | `uuids.h` | Media, Mf | remaining |  |  |  |
 | `uxtheme.h` | Controls, WinTouch | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
-| `vbinterf.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | remaining |  |  |  |
+| `vbinterf.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched |  | 09/02/2026 19:02:46 | COM interface refcounting pattern, not HANDLE-family. |
 | `vdmdbg.h` | FileHistory, VirtualDOSMachines | remaining |  |  |  |
 | `vds.h` | VirtualDiskService | remaining |  |  |  |
 | `vdserr.h` | VirtualDiskService | remaining |  |  |  |
@@ -1253,7 +1253,7 @@
 | `windows.devices.midi.h` | Media.DShow | remaining |  |  |  |
 | `windows.fixed.h` | AllJoyn, Antimalware, ApplicationVerifier, AppxPackaging, Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Authorization, Authorization.UI, Backup, Base, Bits, Bluetooth, Buses, Cabinets, CEIP, Certificates, Cloudapi, ClrHosting, ClrProfiling, CmpApi, Com, Com.CallObj, Com.ChannelCreds, Com.Events, Com.StructuredStorage, Com.Urlmon, Communication, ComOle, CompositionSwapchain, Console, Controls, Controls.RichEdit, Cos, Credentials, DataXchg, Debug, Debug.ActiveScript, Debug.Extensions, Debug.WebApp, Dedup, DeliveryOptimization, DeviceAccess, DeviceQuery, Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Devices.Properties, DevInst, DevLic, Dfs, Dhcp, Direct2D, Direct2D.Common, Direct3D, Direct3D10, Direct3D11, Direct3D11on12, Direct3D12, Direct3D9, Direct3D9on12, Direct3DDxc, Direct3DFxc, DirectComp, DirectDraw, DirectManipulation, DirectML, DirectWrite, Display, DlgBox, Dlna, Dns, DTC, Dwm, DXCore, Dxgi, Dxgi.Common, Eap, EapHost, Environment, Etw, Fax, FileHistory, Foundation, Fs, Fsrm, FunctionDiscovery, GameInput, GameMode, GamingDvcInfo, Gdi, Gdiplus, Gpmc, Hid, HostComputeNetwork, HostComputeSystem, HtmlHelp, Hypervisor, Identity, IdentityProvider, Ifsk, Iis, ImagingDevice, IMapi, IndexSrv, Input_Ink, Input_IntContext, Input.Ime, InputRadial, InternetConnectionWizard, InternetExplorer, Intl, IO, Ioctl, IScsiDisc, Isolation, JobObjects, Js, KeyboardAndMouseInput, Ldap, LibraryLoader, Lwef, MachineLearning, MadCap, MagApi, Mapi, Mbn, MdmReg, Media, Media.DShow, Media.DShow.Xml, Media.DxMediaObjects, Media.KernelStreaming, Memory, MenuRc, MessageQueuing, Mf, MixedReality, MixedRealityInterop, Mmc, Monitor, MsChap, MsCs, MsHtml, MsTv, MsXml, Multimedia, Ndf, Ndis, NetBios, NetMgmt, NetShell, NetworkAccessProtection, Nfc, Nfp, Nla, Nps, NWifi, Of, Opc, OpenGL, Parcon, Perf, PicAcq, Pipes, Pla, Policy, Power, Printing, PrintTicket, Proc_Snap, ProjFs, Properties, PsApi1, PsApi2, PWM, Rdc, Rdp, RealTimeCommunications, Registry, RemoteAssist, Rm, Rpc, RRas, RstMgr, Search, SecBitomet, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, SecurityCenter, Sens, SerPorts, Services, Setup, Shell, Shell.Common, Shutdown, SideShow, Smi, Snmp, Speech, Sr, Storage.Jet, Storage.Nvme, SwDevice, SystemInformation, Tablet, Tapi3, TaskSchd, Tbs, Tcui, TermServ, Threading, Time, ToolHelp, TransactionServer, Tsf, UiAnimation, UpdateAssessment, Upnp, Variant, Vhd, VirtualDiskService, VirtualDOSMachines, VSS, Wab, Wcm, Wcn, Wcs, Wds, WebAuthn, WebDav, WebServicesOnDevices, WebSock, Wec, Wer, Wes, Wia, Wibe, Wic, Win32_Tile_Badge_Notif, WinAuto, WinContacts, WindowsConnectionManager, WindowsFirewall, WindowsRibbon, WindowsSetupAndMigration, WinInet, WinLocation, WinProg, WinRm, WinRT, WinRT.AllJoyn, WinRT.Composition, WinRT.CoreInputView, WinRT.Direct2D, WinRT.Direct3D11, WinRT.Display, WinRT.Graphics.Capture, WinRT.Graphics.Imaging, WinRT.Holographic, WinRT.Isolation, WinRT.Media, WinRT.Metadata, WinRT.ML, WinRT.Pdf, WinRT.Printing, WinRT.Storage, WinRT.Xaml, WinSat, WinSensors, WinSync, WinTouch, Wmdm, WmFormat, Wmi, Wmlss, Wmp, Wnet, WpdSdk, Wsb, Wsl, Wsw, Wua, Xaml_Diagnostics, Xaudio2, Xblidp, Xinput, XmlLite, Xps, XpsPrinting | remaining |  |  |  |
 | `Windows.Graphics.Capture.Interop.h` | WinRT.Graphics.Capture | matched |  | 09/02/2026 17:35:31 | COM factory + query-only HWND/HMONITOR accessors. |
-| `windows.graphics.directx.direct3d11.interop.h` | WinRT.Direct3D11 | remaining |  |  |  |
+| `windows.graphics.directx.direct3d11.interop.h` | WinRT.Direct3D11 | matched |  | 09/02/2026 19:02:46 | COM factory pattern throughout. |
 | `windows.graphics.effects.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 18:44:05 | COM interface with plain-value/interface-pointer outputs only. |
 | `Windows.Graphics.Holographic.Interop.h` | WinRT.Holographic | remaining |  |  |  |
 | `windows.graphics.imaging.interop.h` | WinRT.Graphics.Imaging | remaining |  |  |  |
@@ -1374,12 +1374,12 @@
 | `wsdhost.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdns.h` | WebServicesOnDevices | remaining |  |  |  |
 | `wsdtypes.h` | FunctionDiscovery | remaining |  |  |  |
-| `wsdutil.h` | FunctionDiscovery | remaining |  |  |  |
+| `wsdutil.h` | FunctionDiscovery | matched |  | 09/02/2026 19:02:46 | WSDAPI linked-memory/buffer convention, not HANDLE-family (consistent with wsdapi.h). |
 | `wsdxml.h` | FunctionDiscovery | remaining |  |  |  |
 | `wshisotp.h` | WinSock | remaining |  |  |  |
 | `wsipv6ok.h` | WinSock | remaining |  |  |  |
 | `wsipx.h` | WinSock | matched |  | 09/02/2026 18:09:40 | Data struct + constants only, no functions. |
-| `wslapi.h` | Wsl | remaining |  |  |  |
+| `wslapi.h` | Wsl | blocked | copilot | 09/02/2026 19:02:46 | Deferred: direct out-param instance of the generic/shared-type blocker class (HANDLE has no single correct CloseApi). |
 | `wsman.h` | WinRm | remaining |  |  |  |
 | `wsmandisp.h` | WinRm | remaining |  |  |  |
 | `wsmerror.h` | WinRm | remaining |  |  |  |
