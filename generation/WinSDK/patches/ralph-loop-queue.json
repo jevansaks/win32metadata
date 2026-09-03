@@ -1370,10 +1370,10 @@
   {
     "header": "cmnquery.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:43:41Z",
+    "notes": "GUID/flag constants only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -2945,10 +2945,10 @@
   {
     "header": "dssec.h",
     "partition": "Security.DirectoryServices",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:43:41Z",
+    "notes": "Standard COM interface output + caller-supplied callback typedefs only.",
     "_source": "header-progress"
   },
   {
@@ -4376,10 +4376,10 @@
   {
     "header": "hypervdevicevirtualization.h",
     "partition": "Hypervisor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:43:41Z",
+    "notes": "Fixed genuine gap: added new autoTypes.json entry for HDV_HOST (CloseApi=HdvTeardownDeviceHost).",
     "_source": "header-progress"
   },
   {
@@ -7850,10 +7850,10 @@
   {
     "header": "Print3DManagerInterop.h",
     "partition": "WinRT.Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:43:41Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -9380,10 +9380,10 @@
   {
     "header": "stiusd.h",
     "partition": "ImagingDevice",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:43:41Z",
+    "notes": "COM interface + GUID constants only, no extern functions.",
     "_source": "header-progress"
   },
   {

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:38:37Z
+- Generated: 2026-09-03T04:43:58Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 627
+- Matched: 632
 - In progress: 0
 - Blocked: 30
-- Remaining: 746
+- Remaining: 741
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -162,7 +162,7 @@
 | `clfsw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `cloneviewhelper.h` | Monitor | remaining |  |  |  |
 | `cluadmex.h` | MsCs | remaining |  |  |  |
-| `cmnquery.h` | ActiveDirectory | remaining |  |  |  |
+| `cmnquery.h` | ActiveDirectory | matched |  | 09/02/2026 21:43:41 | GUID/flag constants only, no extern functions. |
 | `codecapi.h` | Media.DShow, Mf | remaining |  |  |  |
 | `colordlg.h` | DlgBox | matched |  | 09/02/2026 17:35:31 | Dialog control ID constants only, no functions. |
 | `comadmin.h` | Cos | remaining |  |  |  |
@@ -337,7 +337,7 @@
 | `dsparse.h` | ActiveDirectory | remaining |  |  |  |
 | `dsquery.h` | ActiveDirectory | matched |  | 09/02/2026 20:13:28 | GUID constants/structs only, no functions. |
 | `dsrole.h` | ActiveDirectory | matched |  | 09/02/2026 18:50:10 | Generic memory-buffer allocation, not HANDLE-family. |
-| `dssec.h` | Security.DirectoryServices | remaining |  |  |  |
+| `dssec.h` | Security.DirectoryServices | matched |  | 09/02/2026 21:43:41 | Standard COM interface output + caller-supplied callback typedefs only. |
 | `dtchelp.h` | DTC | remaining |  |  |  |
 | `dv.h` | Audio.DirectMusic | matched |  | 09/02/2026 18:20:58 | Constants + data struct only, no functions. |
 | `dvbsiparser.h` | MsTv | remaining |  |  |  |
@@ -496,7 +496,7 @@
 | `httptrace.h` | Iis | matched |  | 09/02/2026 20:44:40 | Enum/structs/GUID constants only, no functions. |
 | `hvsocket.h` | Hypervisor | matched |  | 09/02/2026 19:50:38 | Constants/structs only, no functions. |
 | `hwebcore.h` | Iis | matched |  | 09/02/2026 19:37:21 | Dynamically-loaded function-pointer typedefs only, no scrapable extern functions. |
-| `hypervdevicevirtualization.h` | Hypervisor | remaining |  |  |  |
+| `hypervdevicevirtualization.h` | Hypervisor | matched |  | 09/02/2026 21:43:41 | Fixed genuine gap: added new autoTypes.json entry for HDV_HOST (CloseApi=HdvTeardownDeviceHost). |
 | `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | blocked | copilot | 09/02/2026 18:56:34 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h. |
 | `iaccess.h` | TransactionServer | remaining |  |  |  |
 | `iadmext.h` | Iis | matched |  | 09/02/2026 19:06:16 | COM interface, not HANDLE-family. |
@@ -882,7 +882,7 @@
 | `prdrvcom.h` | Printing | matched |  | 09/02/2026 20:34:23 | COM interface methods only, out of scope. |
 | `presentation.h` | CompositionSwapchain | remaining |  |  |  |
 | `presentationtypes.h` | CompositionSwapchain | matched |  | 09/02/2026 18:06:26 | Data structs/enum/typedef + MIDL boilerplate only, no functions. |
-| `Print3DManagerInterop.h` | WinRT.Printing | remaining |  |  |  |
+| `Print3DManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:43:41 | COM/WinRT interop interface method only, out of scope. |
 | `PrinterExtension.h` | Printing | remaining |  |  |  |
 | `printerextensiondispid.h` | Printing | remaining |  |  |  |
 | `PrintManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:32:46 | COM/WinRT interop interface method only, out of scope. |
@@ -1052,7 +1052,7 @@
 | `sti.h` | ImagingDevice | remaining |  |  |  |
 | `stierr.h` | ImagingDevice | matched |  | 09/02/2026 19:32:00 | HRESULT/status-code constants only, no functions. |
 | `stireg.h` | ImagingDevice | matched |  | 09/02/2026 19:45:17 | Registry key/property GUID constants only, no functions. |
-| `stiusd.h` | ImagingDevice | remaining |  |  |  |
+| `stiusd.h` | ImagingDevice | matched |  | 09/02/2026 21:43:41 | COM interface + GUID constants only, no extern functions. |
 | `storageprovider.h` | Shell | remaining |  |  |  |
 | `storprop.h` | Base | matched |  | 09/02/2026 18:44:05 | HDEVINFO is a consumer-only input from the separate SetupAPI surface. |
 | `stralign.h` | FileHistory, WinProg | remaining |  |  |  |

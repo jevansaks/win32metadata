@@ -2191,3 +2191,22 @@ MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
   no single dedicated producer).
 
 **Ledger status:** 627 accepted-normalized, 30 blocked, 746 pending.
+
+## 2026-09-02 21:43:58 UTC - Batch scraping-investigation-94
+
+**Headers:** Print3DManagerInterop.h, dssec.h, CmnQuery.h, hypervdevicevirtualization.h, stiusd.h
+**Partitions scraped (x64):** Security.DirectoryServices (0 errors); Hypervisor re-scraped after fix;
+WinRT.Printing/ActiveDirectory/ImagingDevice reused
+
+- Print3DManagerInterop.h: IPrinting3DManagerInterop COM/WinRT interop interface method only. Clean.
+- dssec.h: DSCreateISecurityInfoObject outputs standard COM interface pointer; callback typedefs
+  are caller-supplied function pointers. Clean.
+- CmnQuery.h: Common Query dialog GUID/flag constants only, no extern functions. Clean.
+- hypervdevicevirtualization.h: **genuine fix applied.** HDV_HOST (produced by
+  HdvInitializeDeviceHost/Ex, closed via single HdvTeardownDeviceHost) had NO autoTypes.json
+  entry. Added new entry (Namespace: Windows.Win32.System.Hypervisor, CloseApi:
+  HdvTeardownDeviceHost). HDV_DEVICE has no representable close API in this header, left
+  unannotated (no gap - nothing to free independently).
+- stiusd.h: IStiUSD COM interface + GUID constants only, no extern functions. Clean.
+
+**Ledger status:** 632 accepted-normalized, 30 blocked, 741 pending.
