@@ -3340,3 +3340,12 @@ Ledger: 1176 accepted-normalized, 31 blocked, 196 pending (1207/1403 classified)
 - **vdserr.h** (VirtualDiskService): error-code constants only. Clean.
 
 Ledger: 1181 accepted-normalized, 31 blocked, 191 pending (1212/1403 classified).
+
+## Batch 205 (2026-09-03 03:40): jsrt9.h, mferror.h, encdec.h, rpcdce.h, contentpartner.h
+
+- jsrt9.h (Js): PRODUCER-SITE FIX - JsRuntimeHandle autoTypes.json entry added.
+- mferror.h: error constants only. Clean.
+- encdec.h, contentpartner.h: COM vtable only. Clean.
+- rpcdce.h: RPC_BINDING_HANDLE identified, RpcBindingFree takes by-pointer (not by-value) - unrepresentable, documented.
+
+Ledger: 1186 accepted-normalized, 31 blocked, 186 pending (1217/1403 classified).

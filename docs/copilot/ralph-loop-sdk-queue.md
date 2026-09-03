@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:35:37Z
+- Generated: 2026-09-03T10:40:15Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1181
+- Matched: 1186
 - In progress: 0
 - Blocked: 31
-- Remaining: 191
+- Remaining: 186
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -181,7 +181,7 @@
 | `consoleapis.h` | Console | matched |  | 09/02/2026 17:23:42 | HANDLE/HWND fields are caller-supplied input references, not produced/owned here; distinct from the wincon.h blocker (different functions). |
 | `contactaggregation.h` | WinContacts | remaining |  |  |  |
 | `contactdeviceservice.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contactdeviceservice.h.md |
-| `contentpartner.h` | Wmp | remaining |  |  |  |
+| `contentpartner.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contentpartner.h.md |
 | `control.h` | Media.DShow | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cor.h` | ClrProfiling | remaining |  |  |  |
 | `corecrt_io.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/corecrt_io.h.md |
@@ -393,7 +393,7 @@
 | `elssrvc.h` | Intl | matched |  | 09/02/2026 18:03:29 | GUID constants only, no functions. |
 | `emi.h` | Power | matched |  | 09/02/2026 18:56:34 | GUID/IOCTL constants + data structs only, no functions. |
 | `emptyvc.h` | Lwef | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/emptyvc.h.md |
-| `encdec.h` | MsTv | remaining |  |  |  |
+| `encdec.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/encdec.h.md |
 | `endpointvolume.h` | Audio.Endpoints | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/endpointvolume.h.md |
 | `errhandlingapi.h` | Base, Debug | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `errorrep.h` | Wer | matched |  | 09/02/2026 18:00:52 | HWND is a caller-supplied input, not produced here. |
@@ -581,7 +581,7 @@
 | `joystickapi.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/joystickapi.h.md |
 | `jscript9diag.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/jscript9diag.h.md |
 | `jsrt.h` | Js | matched |  | 09/02/2026 17:35:31 | Redirect-only; reachable branch (jsrt9.h) already tracked pending; chakrart.h unreachable in this partition. |
-| `jsrt9.h` | Js | remaining |  |  |  |
+| `jsrt9.h` | Js | matched |  |  | Producer-site fix: added JsRuntimeHandle autoTypes.json entry (CloseApi JsDisposeRuntime). See docs/copilot/header-reports/jsrt9.h.md |
 | `kbd.h` | KeyboardAndMouseInput | matched | copilot | 09/03/2026 04:20:00 | No patch needed; data-structure-only header. |
 | `keycredmgr.h` | Credentials | matched |  | 09/02/2026 18:20:58 | KeyCredentialManagerInfo alloc/free is a transparent-struct memory pattern, not an opaque handle. |
 | `knownfolders.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/knownfolders.h.md |
@@ -647,7 +647,7 @@
 | `mfcaptureengine.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcaptureengine.h.md |
 | `mfcontentdecryptionmodule.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcontentdecryptionmodule.h.md |
 | `mfd3d12.h` | Direct3D12, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfd3d12.h.md |
-| `mferror.h` | Mf | remaining |  |  |  |
+| `mferror.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mferror.h.md |
 | `mfidl.h` | Mf | remaining |  |  |  |
 | `mfmediacapture.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfmediacapture.h.md |
 | `mfmediaengine.h` | Mf | remaining |  |  |  |
@@ -954,7 +954,7 @@
 | `roregistrationapi.h` | WinRT | matched |  | 09/02/2026 19:06:16 | COM factory; HSTRING array ownership tracked separately under winstring.h. |
 | `rpc.h` | Rpc | matched |  | 09/02/2026 20:07:23 | Pure umbrella/typedef header; all sub-headers already tracked; Mac-only function unreachable on Windows. |
 | `rpcasync.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcasync.h.md |
-| `rpcdce.h` | Rpc, TransactionServer | remaining |  |  |  |
+| `rpcdce.h` | Rpc, TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcdce.h.md |
 | `rpcdcep.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcdcep.h.md |
 | `rpcndr.h` | FileHistory, Rpc, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcndr.h.md |
 | `rpcnsi.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnsi.h.md |

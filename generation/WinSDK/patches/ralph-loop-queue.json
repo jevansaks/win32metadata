@@ -1541,10 +1541,10 @@
   {
     "header": "contentpartner.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contentpartner.h.md",
     "_source": "header-progress"
   },
   {
@@ -3449,10 +3449,10 @@
   {
     "header": "encdec.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/encdec.h.md",
     "_source": "header-progress"
   },
   {
@@ -5141,10 +5141,10 @@
   {
     "header": "jsrt9.h",
     "partition": "Js",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added JsRuntimeHandle autoTypes.json entry (CloseApi JsDisposeRuntime). See docs/copilot/header-reports/jsrt9.h.md",
     "_source": "header-progress"
   },
   {
@@ -5735,10 +5735,10 @@
   {
     "header": "mferror.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mferror.h.md",
     "_source": "header-progress"
   },
   {
@@ -8498,10 +8498,10 @@
   {
     "header": "rpcdce.h",
     "partition": "Rpc, TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcdce.h.md",
     "_source": "header-progress"
   },
   {
