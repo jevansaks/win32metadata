@@ -1659,3 +1659,19 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - amva.h: constants + data structs only, no functions. Clean.
 
 **Ledger status:** 477 accepted-normalized, 15 blocked, 911 pending.
+
+## 2026-09-02 19:32:15 UTC - Batch scraping-investigation-61
+
+**Headers:** stierr.h, AudioAPOTypes.h, dmoreg.h, WaaSApiTypes.h, avrt.h
+**Partitions scraped (x64):** ImagingDevice, Audio.Apo, TermServ, Media.DxMediaObjects, Threading, UpdateAssessment (0 errors each)
+
+- stierr.h: HRESULT/status-code constants only. Clean.
+- AudioAPOTypes.h: typedefs/enum/structs only, no functions. Clean.
+- dmoreg.h: registration/enum functions operate on CLSIDs and standard COM interface pointers
+  (IEnumDMO**), not opaque handles. Clean.
+- WaaSApiTypes.h: MIDL enums/structs/boilerplate only, no functions. Clean.
+- avrt.h: **blocked** - two genuine ownership gaps, both already-established blocker classes:
+  return-value HANDLE (AvSetMmThreadCharacteristics*/AvSetMmMaxThreadCharacteristics*) and
+  generic PHANDLE direct-out-param (AvRtCreateThreadOrderingGroup*/AvRtJoinThreadOrderingGroup).
+
+**Ledger status:** 481 accepted-normalized, 16 blocked, 906 pending.

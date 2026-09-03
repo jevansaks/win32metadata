@@ -614,10 +614,10 @@
   {
     "header": "AudioAPOTypes.h",
     "partition": "Audio.Apo, TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:32:00Z",
+    "notes": "Typedefs/enum/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -776,10 +776,10 @@
   {
     "header": "avrt.h",
     "partition": "Threading",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:32:00Z",
+    "notes": "Return-value HANDLE (AvSetMmThreadCharacteristics*) + generic PHANDLE direct out-param (AvRtCreateThreadOrderingGroup*).",
     "_source": "header-progress"
   },
   {
@@ -2711,10 +2711,10 @@
   {
     "header": "dmoreg.h",
     "partition": "Media.DxMediaObjects",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:32:00Z",
+    "notes": "Registration/enum functions operate on CLSIDs and standard COM interface pointers only.",
     "_source": "header-progress"
   },
   {
@@ -9362,10 +9362,10 @@
   {
     "header": "stierr.h",
     "partition": "ImagingDevice",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:32:00Z",
+    "notes": "HRESULT/status-code constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10523,10 +10523,10 @@
   {
     "header": "waasapitypes.h",
     "partition": "UpdateAssessment",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:32:00Z",
+    "notes": "MIDL enums/structs/boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {

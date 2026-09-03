@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:28:33Z
+- Generated: 2026-09-03T02:32:15Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 477
+- Matched: 481
 - In progress: 0
-- Blocked: 15
-- Remaining: 911
+- Blocked: 16
+- Remaining: 906
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -78,7 +78,7 @@
 | `atscpsipparser.h` | MsTv | remaining |  |  |  |
 | `atsmedia.h` | MsTv | matched |  | 09/02/2026 17:27:04 | GUID constant only, no functions. |
 | `audevcod.h` | Media.DShow | matched |  | 09/02/2026 17:48:13 | Error-code enum/constants only, no functions. |
-| `AudioAPOTypes.h` | Audio.Apo, TermServ | remaining |  |  |  |
+| `AudioAPOTypes.h` | Audio.Apo, TermServ | matched |  | 09/02/2026 19:32:00 | Typedefs/enum/structs only, no functions. |
 | `audioclient.h` | Audio | remaining |  |  |  |
 | `audioclientactivationparams.h` | Audio | matched |  | 09/02/2026 19:06:16 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `audioendpoints.h` | Audio.Endpoints | remaining |  |  |  |
@@ -96,7 +96,7 @@
 | `avifmt.h` | Media.DShow | remaining |  |  |  |
 | `aviriff.h` | Media.DShow | remaining |  |  |  |
 | `avrfsdk.h` | ApplicationVerifier, FileHistory | matched |  | 09/02/2026 19:02:46 | HANDLE is a caller-supplied input; diagnostic handle fields are plain ULONG64. |
-| `avrt.h` | Threading | remaining |  |  |  |
+| `avrt.h` | Threading | blocked |  | 09/02/2026 19:32:00 | Return-value HANDLE (AvSetMmThreadCharacteristics*) + generic PHANDLE direct out-param (AvRtCreateThreadOrderingGroup*). |
 | `azroles.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `batclass.h` | Power | remaining |  |  |  |
 | `bcp47mrm.h` | Intl | matched |  | 09/02/2026 16:53:36 | No handle-producing functions. |
@@ -311,7 +311,7 @@
 | `dmemmgr.h` | DirectDraw | remaining |  |  |  |
 | `dmerror.h` | TransactionServer | remaining |  |  |  |
 | `dmodshow.h` | Media.DShow | remaining |  |  |  |
-| `dmoreg.h` | Media.DxMediaObjects | remaining |  |  |  |
+| `dmoreg.h` | Media.DxMediaObjects | matched |  | 09/02/2026 19:32:00 | Registration/enum functions operate on CLSIDs and standard COM interface pointers only. |
 | `dmort.h` | Media.DxMediaObjects | matched |  | 09/02/2026 18:47:23 | DMO_MEDIA_TYPE alloc/free is a transparent-struct memory pattern, not an opaque handle. |
 | `dmprocessxmlfiltered.h` | WpdSdk | matched |  | 09/02/2026 17:38:44 | BSTR output, not HANDLE-family. |
 | `dmusics.h` | Audio.DirectMusic | remaining |  |  |  |
@@ -1050,7 +1050,7 @@
 | `stdint.h` | AllJoyn | remaining |  |  |  |
 | `stgprop.h` | Search | matched |  | 09/02/2026 18:26:39 | PROPID/GUID constants only, no functions. |
 | `sti.h` | ImagingDevice | remaining |  |  |  |
-| `stierr.h` | ImagingDevice | remaining |  |  |  |
+| `stierr.h` | ImagingDevice | matched |  | 09/02/2026 19:32:00 | HRESULT/status-code constants only, no functions. |
 | `stireg.h` | ImagingDevice | remaining |  |  |  |
 | `stiusd.h` | ImagingDevice | remaining |  |  |  |
 | `storageprovider.h` | Shell | remaining |  |  |  |
@@ -1179,7 +1179,7 @@
 | `vssym32.h` | Controls | remaining |  |  |  |
 | `vswriter.h` | VSS | remaining |  |  |  |
 | `waasapi.h` | UpdateAssessment | remaining |  |  |  |
-| `waasapitypes.h` | UpdateAssessment | remaining |  |  |  |
+| `waasapitypes.h` | UpdateAssessment | matched |  | 09/02/2026 19:32:00 | MIDL enums/structs/boilerplate only, no functions. |
 | `wab.h` | Wab | blocked | copilot | 09/02/2026 16:53:36 | Deferred: 1 of 77 functions (FtgRegisterIdleRoutine) has genuine return-value handle ownership with no annotation precedent; needs the same dedicated policy decision as getprocesshandlefromhwnd.h. |
 | `wabdefs.h` | IMapi, Tapi3 | remaining |  |  |  |
 | `wbcl.h` | Qos | remaining |  |  |  |
