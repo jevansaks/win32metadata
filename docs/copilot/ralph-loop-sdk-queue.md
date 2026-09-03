@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:12:45Z
+- Generated: 2026-09-03T04:17:33Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 598
+- Matched: 603
 - In progress: 0
 - Blocked: 29
-- Remaining: 776
+- Remaining: 771
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -128,7 +128,7 @@
 | `bthsdpdef.h` | Bluetooth | matched |  | 09/02/2026 18:38:01 | Data structs/enums/union only, no functions. |
 | `bugcodes.h` | Debug | remaining |  |  |  |
 | `calendarapis.h` | Intl | matched |  | 09/02/2026 17:30:54 | Calendar-date-struct-only API, no handle. |
-| `calendardeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `calendardeviceservice.h` | WpdSdk | matched |  | 09/02/2026 21:17:15 | Constants only, no functions. |
 | `callobj.h` | Com.CallObj, ComOle | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `camerauicontrol.h` | FileHistory, Media.DShow, Mf, WinProg | remaining |  |  |  |
 | `capi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:45:25 | JAVA_TRUST plain data struct; all redirected headers already accepted or separately tracked pending; sipbase.h verified as trivial redirect to accepted mssip.h. |
@@ -412,7 +412,7 @@
 | `exdispid.h` | InternetExplorer | remaining |  |  |  |
 | `expandedresources.h` | GameMode | matched |  | 09/02/2026 17:16:10 | No handle-typed values anywhere in this header. |
 | `exposeenums2managed.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:26:39 | Macro-definitions only, no declarations. |
-| `extensionvalidation.h` | InternetExplorer | remaining |  |  |  |
+| `extensionvalidation.h` | InternetExplorer | matched |  | 09/02/2026 21:17:15 | COM interface + enums only, no extern functions. |
 | `extsfns.h` | Debug.Extensions | remaining |  |  |  |
 | `faxcomex.h` | Fax | remaining |  |  |  |
 | `faxdev.h` | Fax | blocked |  | 09/02/2026 20:25:02 | FaxDevStartJob produces generic HANDLE via direct out-param. |
@@ -479,7 +479,7 @@
 | `hidpi.h` | Hid | remaining |  |  |  |
 | `hidsdi.h` | Hid | remaining |  |  |  |
 | `hidusage.h` | Hid | remaining |  |  |  |
-| `highlevelmonitorconfigurationapi.h` | Monitor | remaining |  |  |  |
+| `highlevelmonitorconfigurationapi.h` | Monitor | matched |  | 09/02/2026 21:17:15 | No function produces an opaque handle; HANDLE param is a pre-owned caller input. |
 | `hintsdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `holographicspaceinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:04:56 | COM/WinRT interop interface method only, out of scope. |
 | `homepagesetting.h` | InternetExplorer | matched |  | 09/02/2026 20:56:17 | COM interface + GUID constants only, no extern functions. |
@@ -588,7 +588,7 @@
 | `ks.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
 | `ksmedia.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
 | `ksproxy.h` | Media.KernelStreaming | remaining |  |  |  |
-| `ktmtypes.h` | Fs | remaining |  |  |  |
+| `ktmtypes.h` | Fs | matched |  | 09/02/2026 21:17:15 | Type aliases/constants only, no functions. |
 | `ktmw32.h` | Fs | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `libloaderapi.h` | Intl, LibraryLoader | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `libloaderapi2.h` | LibraryLoader | blocked | copilot | 09/02/2026 17:58:11 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h, no new investigation required. |
@@ -944,7 +944,7 @@
 | `richedit.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `richole.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `ringtonedeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:51:18 | GUID/name constants only, no functions (same pattern as notesdeviceservice.h). |
-| `roapi.h` | TransactionServer, WinRT | remaining |  |  |  |
+| `roapi.h` | TransactionServer, WinRT | matched |  | 09/02/2026 21:17:15 | Fixed two genuine gaps: completed autoTypes.json entries for RO_REGISTRATION_COOKIE and APARTMENT_SHUTDOWN_REGISTRATION_COOKIE. |
 | `robuffer.h` | WinRT | matched |  | 09/02/2026 17:13:02 | COM-factory (RoGetBufferMarshaler) + buffer-view pattern (IBufferByteAccess), not HANDLE-family. |
 | `roerrorapi.h` | WinRT | remaining |  |  |  |
 | `rometadata.h` | WinRT.Metadata | matched |  | 09/02/2026 17:01:48 | COM QueryInterface-style factory (MetaDataGetDispenser), no raw HANDLE. |

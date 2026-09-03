@@ -2095,3 +2095,21 @@ MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
 - naptypes.h: NAP MIDL types only, no functions. Clean.
 
 **Ledger status:** 598 accepted-normalized, 29 blocked, 776 pending.
+
+## 2026-09-02 21:17:33 UTC - Batch scraping-investigation-88
+
+**Headers:** roapi.h, ExtensionValidation.h, calendardeviceservice.h, ktmtypes.h, highlevelmonitorconfigurationapi.h
+**Partitions scraped (x64):** Monitor (0 errors); WinRT re-scraped after fix; InternetExplorer/WpdSdk/Fs reused
+
+- roapi.h: **two genuine fixes applied.** RO_REGISTRATION_COOKIE and
+  APARTMENT_SHUTDOWN_REGISTRATION_COOKIE both had autoTypes.json entries missing CloseApi.
+  Added CloseApi: RoRevokeActivationFactories / RoUnregisterForApartmentShutdown respectively.
+  Verified type definitions exist only in roapi.h (referenced but not redefined in wrl/*.h
+  C++ template headers). Re-scraped WinRT (0 errors).
+- ExtensionValidation.h: IExtensionValidation COM interface + enums only. Clean.
+- calendardeviceservice.h: WPD Calendar device-service GUID/property constants only. Clean.
+- ktmtypes.h: KTM type aliases/constants only, no functions. Clean.
+- highlevelmonitorconfigurationapi.h: all functions take HANDLE hMonitor as pre-owned input
+  (produced elsewhere by physicalmonitorenumerationapi.h, already blocked). Clean.
+
+**Ledger status:** 603 accepted-normalized, 29 blocked, 771 pending.

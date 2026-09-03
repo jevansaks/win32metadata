@@ -1064,10 +1064,10 @@
   {
     "header": "calendardeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:17:15Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3620,10 +3620,10 @@
   {
     "header": "extensionvalidation.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:17:15Z",
+    "notes": "COM interface + enums only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -4223,10 +4223,10 @@
   {
     "header": "highlevelmonitorconfigurationapi.h",
     "partition": "Monitor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:17:15Z",
+    "notes": "No function produces an opaque handle; HANDLE param is a pre-owned caller input.",
     "_source": "header-progress"
   },
   {
@@ -5204,10 +5204,10 @@
   {
     "header": "ktmtypes.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:17:15Z",
+    "notes": "Type aliases/constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8408,10 +8408,10 @@
   {
     "header": "roapi.h",
     "partition": "TransactionServer, WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:17:15Z",
+    "notes": "Fixed two genuine gaps: completed autoTypes.json entries for RO_REGISTRATION_COOKIE and APARTMENT_SHUTDOWN_REGISTRATION_COOKIE.",
     "_source": "header-progress"
   },
   {

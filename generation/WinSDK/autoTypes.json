@@ -1088,6 +1088,7 @@
     "Namespace": "Windows.Win32.System.WinRT",
     "Name": "APARTMENT_SHUTDOWN_REGISTRATION_COOKIE",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "RoUnregisterForApartmentShutdown",
     "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
   },
@@ -2510,6 +2511,7 @@
     "Namespace": "Windows.Win32.System.WinRT",
     "Name": "RO_REGISTRATION_COOKIE",
     "ValueType": "typedef struct _RO_REGISTRATION_COOKIE",
+    "CloseApi": "RoRevokeActivationFactories",
     "NativeTypedef": true
   },
   {
