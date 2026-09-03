@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:06:07Z
+- Generated: 2026-09-03T07:08:07Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 846
+- Matched: 851
 - In progress: 0
 - Blocked: 31
-- Remaining: 526
+- Remaining: 521
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -571,7 +571,7 @@
 | `IPTypes.h` | wnv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/IPTypes.h.md |
 | `iscsidsc.h` | IScsiDisc | remaining |  |  |  |
 | `iscsierr.h` | IScsiDisc | remaining |  |  |  |
-| `isolatedapplauncher.h` | FileHistory, Isolation | remaining |  |  |  |
+| `isolatedapplauncher.h` | FileHistory, Isolation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/isolatedapplauncher.h.md |
 | `isolatedwindowsenvironmentutils.h` | Isolation | matched |  | 09/02/2026 16:57:06 | Boolean query functions only. |
 | `issper16.h` | Identity | matched |  | 09/02/2026 21:08:27 | Constants only, no functions. |
 | `iswindowarranged.h` | MenuRc | matched |  | 09/02/2026 16:49:01 | Query-only function taking HWND input; no handle production. |
@@ -720,7 +720,7 @@
 | `msdelta.h` | Setup | remaining |  |  |  |
 | `msdrm.h` | Rm | remaining |  |  |  |
 | `msdrmdefs.h` | Rm | matched |  | 09/02/2026 22:09:36 | Types/constants only, no functions; DRM handle ownership deferred to msdrm.h. |
-| `msdrmerror.h` | Rm | remaining |  |  |  |
+| `msdrmerror.h` | Rm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdrmerror.h.md |
 | `msdrmgetinfo.h` | Rm | matched |  | 09/02/2026 21:08:27 | String constants only, no functions. |
 | `msdshape.h` | Search | matched |  | 09/02/2026 17:51:18 | Constants/enums only, no functions. |
 | `msfeeds.h` | Wmp | remaining |  |  |  |
@@ -1028,7 +1028,7 @@
 | `socketapi.h` | WinSock | matched |  | 09/02/2026 16:57:06 | SetSocketMediaStreamingMode(BOOL) - no handle. |
 | `softpub.h` | Security.WinTrust | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/softpub.h.md |
 | `spatialaudioclient.h` | Audio | remaining |  |  |  |
-| `spatialaudiohrtf.h` | Audio | remaining |  |  |  |
+| `spatialaudiohrtf.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudiohrtf.h.md |
 | `spatialaudiometadata.h` | Audio | remaining |  |  |  |
 | `spatialinteractionmanagerinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `spellcheck.h` | Intl | remaining |  |  |  |
@@ -1341,7 +1341,7 @@
 | `wmsbuffer.h` | WmFormat | remaining |  |  |  |
 | `wmsdkidl.h` | WmFormat | remaining |  |  |  |
 | `wmsdkvalidate.h` | WmFormat | matched |  | 09/02/2026 18:32:46 | String/buffer/BOOL API only, no handle. |
-| `wmsecure.h` | WmFormat | remaining |  |  |  |
+| `wmsecure.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsecure.h.md |
 | `wmsinternaladminnetsource.h` | WmFormat | remaining |  |  |  |
 | `wmsysprf.h` | Wmp | remaining |  |  |  |
 | `wnnc.h` | Ifsk | matched |  | 09/02/2026 19:19:02 | Constants only, no functions. |
@@ -1400,7 +1400,7 @@
 | `xapo.h` | Xaudio2 | remaining |  |  |  |
 | `xapofx.h` | Xaudio2 | matched |  | 09/02/2026 21:49:17 | Standard COM factory function + GUID/parameter constants only. |
 | `xaudio2.h` | Xaudio2 | remaining |  |  |  |
-| `xaudio2fx.h` | Xaudio2 | remaining |  |  |  |
+| `xaudio2fx.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2fx.h.md |
 | `xblidpauthmanager.h` | Xblidp | remaining |  |  |  |
 | `xenroll.h` | Certificates | remaining |  |  |  |
 | `xinput.h` | Xinput | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xinput.h.md |

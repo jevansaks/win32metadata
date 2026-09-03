@@ -2688,3 +2688,13 @@ Ledger: 841 accepted-normalized, 31 blocked, 531 pending (872/1403 classified).
 - **radiomgr.h** (WpdSdk): COM interfaces only, no free functions. Clean.
 
 Ledger: 846 accepted-normalized, 31 blocked, 526 pending (877/1403 classified).
+
+## Batch 138 (2026-09-03 00:08): isolatedapplauncher.h, xaudio2fx.h, spatialaudiohrtf.h, wmsecure.h, msdrmerror.h
+
+- **isolatedapplauncher.h** (FileHistory, Isolation): IsProcessInWDAGContainer/IsProcessInIsolatedContainer output plain BOOL. Clean.
+- **xaudio2fx.h** (Xaudio2): CreateAudioVolumeMeter/CreateAudioReverb output standard COM interface pointers. Clean.
+- **spatialaudiohrtf.h** (Audio): COM interfaces only, no free functions. Clean.
+- **wmsecure.h** (WmFormat): COM interfaces only, no free functions. Clean.
+- **msdrmerror.h** (Rm): HRESULT error-code macros only. Clean.
+
+Ledger: 851 accepted-normalized, 31 blocked, 521 pending (882/1403 classified).

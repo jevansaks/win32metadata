@@ -18849,7 +18849,7 @@
         "Isolation"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -18862,7 +18862,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/isolatedapplauncher.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -23289,7 +23289,7 @@
       "header": "msdrmerror.h",
       "partitions": "Rm",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -23302,7 +23302,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdrmerror.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -35335,7 +35335,7 @@
       "header": "spatialaudiohrtf.h",
       "partitions": "Audio",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -35348,7 +35348,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudiohrtf.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Audio/main.cpp",
@@ -47665,7 +47665,7 @@
       "header": "wmsecure.h",
       "partitions": "WmFormat",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -47678,7 +47678,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsecure.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/WmFormat/main.cpp",
@@ -49348,7 +49348,7 @@
       "header": "xaudio2fx.h",
       "partitions": "Xaudio2",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -49361,7 +49361,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2fx.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Xaudio2/main.cpp",

@@ -5051,10 +5051,10 @@
   {
     "header": "isolatedapplauncher.h",
     "partition": "FileHistory, Isolation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/isolatedapplauncher.h.md",
     "_source": "header-progress"
   },
   {
@@ -6392,10 +6392,10 @@
   {
     "header": "msdrmerror.h",
     "partition": "Rm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdrmerror.h.md",
     "_source": "header-progress"
   },
   {
@@ -9164,10 +9164,10 @@
   {
     "header": "spatialaudiohrtf.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudiohrtf.h.md",
     "_source": "header-progress"
   },
   {
@@ -11981,10 +11981,10 @@
   {
     "header": "wmsecure.h",
     "partition": "WmFormat",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsecure.h.md",
     "_source": "header-progress"
   },
   {
@@ -12512,10 +12512,10 @@
   {
     "header": "xaudio2fx.h",
     "partition": "Xaudio2",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2fx.h.md",
     "_source": "header-progress"
   },
   {
