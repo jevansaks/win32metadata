@@ -3233,3 +3233,13 @@ Ledger: 1116 accepted-normalized, 31 blocked, 256 pending (1147/1403 classified)
 - **usbioctl.h** (Buses): IOCTL constants/structs only, no functions. Clean.
 
 Ledger: 1121 accepted-normalized, 31 blocked, 251 pending (1152/1403 classified).
+
+## Batch 193 (2026-09-03 03:00): activaut.h, bdatif.h, d2d1effects.h, d2d1svg.h, ntdddisk.h
+
+- **activaut.h** (Debug.ActiveScript): COM vtable only. Clean.
+- **bdatif.h** (MsTv): COM vtable only. Clean.
+- **d2d1effects.h** (Direct2D): GUID constants only. Clean.
+- **d2d1svg.h** (Direct2D): COM vtable/enums only. Clean.
+- **ntdddisk.h** (Fs): IOCTL constants/structs only, no functions. Clean.
+
+Ledger: 1126 accepted-normalized, 31 blocked, 246 pending (1157/1403 classified).

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:58:17Z
+- Generated: 2026-09-03T10:00:14Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1121
+- Matched: 1126
 - In progress: 0
 - Blocked: 31
-- Remaining: 251
+- Remaining: 246
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -15,7 +15,7 @@
 | `aclapi.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclapi.h.md |
 | `aclui.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclui.h.md |
 | `activation.h` | WinRT | matched |  | 09/02/2026 20:19:39 | COM/WinRT interface method only, out of scope. |
-| `activaut.h` | Debug.ActiveScript | remaining |  |  |  |
+| `activaut.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activaut.h.md |
 | `activdbg.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activdbg100.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activecf.h` | Media.DShow | matched |  | 09/02/2026 17:09:31 | Clipboard-format data struct only, no functions. |
@@ -104,7 +104,7 @@
 | `bcrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; unrelated zz-crypto-security-enums patch verified compatible via full sequential forward replay. |
 | `bdaiface.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `bdamedia.h` | MsTv | remaining |  |  |  |
-| `bdatif.h` | MsTv | remaining |  |  |  |
+| `bdatif.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatif.h.md |
 | `bdatypes.h` | Media.DShow, MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatypes.h.md |
 | `BiDiSpl.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/BiDiSpl.h.md |
 | `bindlink.h` | Fs | matched |  | 09/02/2026 17:30:54 | Path-string-only API, no handle. |
@@ -212,8 +212,8 @@
 | `d2d1effectauthor.h` | Direct2D | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d2d1effects_1.h` | Direct2D | matched |  | 09/02/2026 18:40:30 | GUID constant + enums only, no functions. |
 | `d2d1effects_2.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d2d1effects_2.h.md |
-| `d2d1effects.h` | Direct2D | remaining |  |  |  |
-| `d2d1svg.h` | Direct2D | remaining |  |  |  |
+| `d2d1effects.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d2d1effects.h.md |
+| `d2d1svg.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d2d1svg.h.md |
 | `d2dbasetypes.h` | Direct2D | matched |  | 09/02/2026 17:05:19 | Type alias only, no functions. |
 | `d2derr.h` | Direct2D | matched |  | 09/02/2026 17:48:13 | HRESULT error-code macros only, no functions. |
 | `d3d10_1.h` | Direct3D10 | remaining |  |  |  |
@@ -799,7 +799,7 @@
 | `ntddbeep.h` | Devices.Beep | matched | copilot | 09/03/2026 04:05:00 | No patch needed; data-structure-only header. |
 | `ntddcdrm.h` | Devices.Cdrom | matched | copilot | 09/03/2026 03:35:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `ntddcdvd.h` | Devices.Dvd | matched | copilot | 09/03/2026 04:05:00 | No patch needed; data-structure-only header. |
-| `ntdddisk.h` | Fs | remaining |  |  |  |
+| `ntdddisk.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdddisk.h.md |
 | `ntddkbd.h` | Hid | matched |  | 09/02/2026 22:12:28 | Constants only, no functions. |
 | `ntddmou.h` | Hid | matched |  | 09/02/2026 20:38:46 | Constants/structs only, no functions. |
 | `ntddndis.h` | Ndis, NWifi, Qos | remaining |  |  |  |

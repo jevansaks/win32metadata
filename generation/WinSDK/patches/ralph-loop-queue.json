@@ -47,10 +47,10 @@
   {
     "header": "activaut.h",
     "partition": "Debug.ActiveScript",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activaut.h.md",
     "_source": "header-progress"
   },
   {
@@ -848,10 +848,10 @@
   {
     "header": "bdatif.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatif.h.md",
     "_source": "header-progress"
   },
   {
@@ -1820,19 +1820,19 @@
   {
     "header": "d2d1effects.h",
     "partition": "Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d2d1effects.h.md",
     "_source": "header-progress"
   },
   {
     "header": "d2d1svg.h",
     "partition": "Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d2d1svg.h.md",
     "_source": "header-progress"
   },
   {
@@ -7103,10 +7103,10 @@
   {
     "header": "ntdddisk.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdddisk.h.md",
     "_source": "header-progress"
   },
   {
