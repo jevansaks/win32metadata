@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:40:38Z
+- Generated: 2026-09-03T01:44:14Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 414
+- Matched: 418
 - In progress: 0
-- Blocked: 8
-- Remaining: 981
+- Blocked: 9
+- Remaining: 976
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -753,7 +753,7 @@
 | `mswsockdef.h` | WinSock | remaining |  |  |  |
 | `msxml.h` | FileHistory, MsXml, WinProg | remaining |  |  |  |
 | `msxml6.h` | MsXml, Printing | remaining |  |  |  |
-| `mtpext.h` | Wmdm | remaining |  |  |  |
+| `mtpext.h` | Wmdm | matched |  | 09/02/2026 18:44:05 | Constants + data structs only, no functions. |
 | `mtx.h` | ComOle, TransactionServer | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include comsvcs.h, already accepted-normalized). |
 | `mtxadmin.h` | ComOle, TransactionServer | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mtxattr.h` | ComOle, TransactionServer | matched |  | 09/02/2026 18:29:38 | Typelib attribute macros only, no functions. |
@@ -862,7 +862,7 @@
 | `perhist.h` | InternetExplorer | remaining |  |  |  |
 | `persist.h` | Search | matched |  | 09/02/2026 18:06:26 | Constants only, no functions. |
 | `photoacquire.h` | PicAcq, Setup | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR/HBITMAP/HICON/HWND/LPSAFEARRAY_User*); pass-through of externally-owned handles only. |
-| `physicalmonitorenumerationapi.h` | Monitor | remaining |  |  |  |
+| `physicalmonitorenumerationapi.h` | Monitor | blocked | copilot | 09/02/2026 18:44:05 | Deferred from lowlevelmonitorconfigurationapi.h (batch 30); genuine ownership relationship but generic HANDLE field nested in struct array precludes producer-site annotation, same root class as resourceindexer.h. |
 | `pla.h` | Pla | matched |  | 09/02/2026 16:34:06 | All 6 functions operate on strings/flags/paths only; no handle-producing functions. |
 | `playlist.h` | Media.DShow | remaining |  |  |  |
 | `playsoundapi.h` | Audio | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
@@ -1054,7 +1054,7 @@
 | `stireg.h` | ImagingDevice | remaining |  |  |  |
 | `stiusd.h` | ImagingDevice | remaining |  |  |  |
 | `storageprovider.h` | Shell | remaining |  |  |  |
-| `storprop.h` | Base | remaining |  |  |  |
+| `storprop.h` | Base | matched |  | 09/02/2026 18:44:05 | HDEVINFO is a consumer-only input from the separate SetupAPI surface. |
 | `stralign.h` | FileHistory, WinProg | remaining |  |  |  |
 | `stringapiset.h` | Intl | remaining |  |  |  |
 | `strmif.h` | Media.DShow, Media.KernelStreaming, MsTv, WmFormat | remaining |  |  |  |
@@ -1254,7 +1254,7 @@
 | `windows.fixed.h` | AllJoyn, Antimalware, ApplicationVerifier, AppxPackaging, Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Authorization, Authorization.UI, Backup, Base, Bits, Bluetooth, Buses, Cabinets, CEIP, Certificates, Cloudapi, ClrHosting, ClrProfiling, CmpApi, Com, Com.CallObj, Com.ChannelCreds, Com.Events, Com.StructuredStorage, Com.Urlmon, Communication, ComOle, CompositionSwapchain, Console, Controls, Controls.RichEdit, Cos, Credentials, DataXchg, Debug, Debug.ActiveScript, Debug.Extensions, Debug.WebApp, Dedup, DeliveryOptimization, DeviceAccess, DeviceQuery, Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Devices.Properties, DevInst, DevLic, Dfs, Dhcp, Direct2D, Direct2D.Common, Direct3D, Direct3D10, Direct3D11, Direct3D11on12, Direct3D12, Direct3D9, Direct3D9on12, Direct3DDxc, Direct3DFxc, DirectComp, DirectDraw, DirectManipulation, DirectML, DirectWrite, Display, DlgBox, Dlna, Dns, DTC, Dwm, DXCore, Dxgi, Dxgi.Common, Eap, EapHost, Environment, Etw, Fax, FileHistory, Foundation, Fs, Fsrm, FunctionDiscovery, GameInput, GameMode, GamingDvcInfo, Gdi, Gdiplus, Gpmc, Hid, HostComputeNetwork, HostComputeSystem, HtmlHelp, Hypervisor, Identity, IdentityProvider, Ifsk, Iis, ImagingDevice, IMapi, IndexSrv, Input_Ink, Input_IntContext, Input.Ime, InputRadial, InternetConnectionWizard, InternetExplorer, Intl, IO, Ioctl, IScsiDisc, Isolation, JobObjects, Js, KeyboardAndMouseInput, Ldap, LibraryLoader, Lwef, MachineLearning, MadCap, MagApi, Mapi, Mbn, MdmReg, Media, Media.DShow, Media.DShow.Xml, Media.DxMediaObjects, Media.KernelStreaming, Memory, MenuRc, MessageQueuing, Mf, MixedReality, MixedRealityInterop, Mmc, Monitor, MsChap, MsCs, MsHtml, MsTv, MsXml, Multimedia, Ndf, Ndis, NetBios, NetMgmt, NetShell, NetworkAccessProtection, Nfc, Nfp, Nla, Nps, NWifi, Of, Opc, OpenGL, Parcon, Perf, PicAcq, Pipes, Pla, Policy, Power, Printing, PrintTicket, Proc_Snap, ProjFs, Properties, PsApi1, PsApi2, PWM, Rdc, Rdp, RealTimeCommunications, Registry, RemoteAssist, Rm, Rpc, RRas, RstMgr, Search, SecBitomet, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, SecurityCenter, Sens, SerPorts, Services, Setup, Shell, Shell.Common, Shutdown, SideShow, Smi, Snmp, Speech, Sr, Storage.Jet, Storage.Nvme, SwDevice, SystemInformation, Tablet, Tapi3, TaskSchd, Tbs, Tcui, TermServ, Threading, Time, ToolHelp, TransactionServer, Tsf, UiAnimation, UpdateAssessment, Upnp, Variant, Vhd, VirtualDiskService, VirtualDOSMachines, VSS, Wab, Wcm, Wcn, Wcs, Wds, WebAuthn, WebDav, WebServicesOnDevices, WebSock, Wec, Wer, Wes, Wia, Wibe, Wic, Win32_Tile_Badge_Notif, WinAuto, WinContacts, WindowsConnectionManager, WindowsFirewall, WindowsRibbon, WindowsSetupAndMigration, WinInet, WinLocation, WinProg, WinRm, WinRT, WinRT.AllJoyn, WinRT.Composition, WinRT.CoreInputView, WinRT.Direct2D, WinRT.Direct3D11, WinRT.Display, WinRT.Graphics.Capture, WinRT.Graphics.Imaging, WinRT.Holographic, WinRT.Isolation, WinRT.Media, WinRT.Metadata, WinRT.ML, WinRT.Pdf, WinRT.Printing, WinRT.Storage, WinRT.Xaml, WinSat, WinSensors, WinSync, WinTouch, Wmdm, WmFormat, Wmi, Wmlss, Wmp, Wnet, WpdSdk, Wsb, Wsl, Wsw, Wua, Xaml_Diagnostics, Xaudio2, Xblidp, Xinput, XmlLite, Xps, XpsPrinting | remaining |  |  |  |
 | `Windows.Graphics.Capture.Interop.h` | WinRT.Graphics.Capture | matched |  | 09/02/2026 17:35:31 | COM factory + query-only HWND/HMONITOR accessors. |
 | `windows.graphics.directx.direct3d11.interop.h` | WinRT.Direct3D11 | remaining |  |  |  |
-| `windows.graphics.effects.interop.h` | WinRT.Direct2D | remaining |  |  |  |
+| `windows.graphics.effects.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 18:44:05 | COM interface with plain-value/interface-pointer outputs only. |
 | `Windows.Graphics.Holographic.Interop.h` | WinRT.Holographic | remaining |  |  |  |
 | `windows.graphics.imaging.interop.h` | WinRT.Graphics.Imaging | remaining |  |  |  |
 | `windows.graphics.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 17:41:54 | COM factory pattern. |
@@ -1363,7 +1363,7 @@
 | `wsbapp.h` | Wsb | remaining |  |  |  |
 | `wsbapperror.h` | Wsb | matched |  | 09/02/2026 18:35:09 | HRESULT error-code constants/macros only, no functions. |
 | `wsbonline.h` | Wsb | matched |  | 09/02/2026 18:32:46 | Struct/GUID input-only API, no handle. |
-| `wsbonlineerror.h` | Wsb | remaining |  |  |  |
+| `wsbonlineerror.h` | Wsb | matched |  | 09/02/2026 18:44:05 | HRESULT error-code constants/macros only, no functions. |
 | `wscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |
 | `wsdapi.h` | WebServicesOnDevices | matched |  | 09/02/2026 17:13:02 | Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE. |
 | `wsdattachment.h` | FunctionDiscovery | remaining |  |  |  |

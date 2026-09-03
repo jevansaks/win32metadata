@@ -6689,10 +6689,10 @@
   {
     "header": "mtpext.h",
     "partition": "Wmdm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:44:05Z",
+    "notes": "Constants + data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7670,10 +7670,10 @@
   {
     "header": "physicalmonitorenumerationapi.h",
     "partition": "Monitor",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T18:44:05Z",
+    "notes": "Deferred from lowlevelmonitorconfigurationapi.h (batch 30); genuine ownership relationship but generic HANDLE field nested in struct array precludes producer-site annotation, same root class as resourceindexer.h.",
     "_source": "header-progress"
   },
   {
@@ -9398,10 +9398,10 @@
   {
     "header": "storprop.h",
     "partition": "Base",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:44:05Z",
+    "notes": "HDEVINFO is a consumer-only input from the separate SetupAPI surface.",
     "_source": "header-progress"
   },
   {
@@ -11198,10 +11198,10 @@
   {
     "header": "windows.graphics.effects.interop.h",
     "partition": "WinRT.Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:44:05Z",
+    "notes": "COM interface with plain-value/interface-pointer outputs only.",
     "_source": "header-progress"
   },
   {
@@ -12179,10 +12179,10 @@
   {
     "header": "wsbonlineerror.h",
     "partition": "Wsb",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:44:05Z",
+    "notes": "HRESULT error-code constants/macros only, no functions.",
     "_source": "header-progress"
   },
   {

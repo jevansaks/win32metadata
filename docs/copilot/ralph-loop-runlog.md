@@ -1411,3 +1411,26 @@ wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 986 pe
 
 **Ledger status:** 414 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 981 pending.
+
+## 2026-09-02 18:44:27 UTC - Batch scraping-investigation-47
+
+**Headers:** physicalmonitorenumerationapi.h (blocked), windows.graphics.effects.interop.h,
+wsbonlineerror.h, storprop.h, mtpext.h
+**Partitions scraped:** Base (x86; 0 warnings/errors)
+
+- **physicalmonitorenumerationapi.h: BLOCKED.** Resolves the item deferred from
+  lowlevelmonitorconfigurationapi.h (batch 30). GetPhysicalMonitorsFromHMONITOR/
+  GetPhysicalMonitorsFromIDirect3DDevice9 fill a caller-allocated array of PHYSICAL_MONITOR structs,
+  each with a generic HANDLE field (hPhysicalMonitor), released via DestroyPhysicalMonitor(s). Same
+  generic/shared-type blocker class as resourceindexer.h (HANDLE used for thousands of unrelated
+  resource kinds cannot be annotated), plus a structural wrinkle: the handle is nested inside a
+  struct-array output, not a directly annotatable out-param.
+- windows.graphics.effects.interop.h: IGraphicsEffectD2D1Interop COM interface with plain-value/
+  interface-pointer outputs only. Clean.
+- wsbonlineerror.h: HRESULT error-code constants/macros only (same pattern as wsbapperror.h). Clean.
+- storprop.h: HDEVINFO is a consumer-only input from the separate, already-established SetupAPI
+  device-info-set surface. Clean.
+- mtpext.h: constants + data structs only, no functions. Clean.
+
+**Ledger status:** 418 accepted-normalized, 9 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h, physicalmonitorenumerationapi.h), 976 pending.
