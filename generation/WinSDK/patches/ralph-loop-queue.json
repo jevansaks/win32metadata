@@ -2450,10 +2450,10 @@
   {
     "header": "deviceservices.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:58:11Z",
+    "notes": "GUID/property-key constants only, no functions; BridgeDeviceService.h separately tracked (pending).",
     "_source": "header-progress"
   },
   {
@@ -3665,10 +3665,10 @@
   {
     "header": "faxmmc.h",
     "partition": "Fax",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:58:11Z",
+    "notes": "GUID/string constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5231,10 +5231,10 @@
   {
     "header": "libloaderapi2.h",
     "partition": "LibraryLoader",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T17:58:11Z",
+    "notes": "Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h, no new investigation required.",
     "_source": "header-progress"
   },
   {
@@ -6761,10 +6761,10 @@
   {
     "header": "napmicrosoftvendorids.h",
     "partition": "NetworkAccessProtection",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:58:11Z",
+    "notes": "Integer constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -9587,10 +9587,10 @@
   {
     "header": "tabflicks.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:58:11Z",
+    "notes": "Enums/bitfield structs only, no functions.",
     "_source": "header-progress"
   },
   {

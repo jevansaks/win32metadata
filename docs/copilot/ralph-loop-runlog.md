@@ -1148,3 +1148,29 @@ wincon.h, resourceindexer.h, winppi.h), 1056 pending.
 
 **Ledger status:** 346 accepted-normalized, 6 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h), 1051 pending.
+
+## 2026-09-02 17:58:34 UTC - Batch scraping-investigation-33
+
+**Headers:** napmicrosoftvendorids.h, libloaderapi2.h (blocked), faxmmc.h, tabflicks.h, deviceservices.h
+**Partitions scraped:** NetworkAccessProtection, LibraryLoader, Fax, Tablet (x86; 0 warnings/errors)
+
+- napmicrosoftvendorids.h: static UINT32 constants only, no functions. Clean.
+- **libloaderapi2.h: BLOCKED.** LoadPackagedLibrary returns HMODULE directly as the function return
+  value (not out-param), released via FreeLibrary - same return-value-handle-ownership blocker class
+  already documented for getprocesshandlefromhwnd.h/wab.h/wincon.h/winppi.h. This is the ambient,
+  already-confirmed (via the original WinmdUtils dump investigation, which used LoadLibraryExW/A as its
+  comparison baseline) unaddressed state of the whole LoadLibrary-family API surface - recorded for
+  per-header traceability, no new investigation needed.
+- faxmmc.h: GUID/string constants only, no functions. Clean.
+- tabflicks.h: enums/bitfield structs only, no functions. Clean.
+- deviceservices.h: GUID/property-key constants only, no functions; BridgeDeviceService.h separately
+  tracked (pending). Clean.
+
+**Policy note:** established that once the return-value-handle-ownership blocker CLASS is fully
+documented (as of batch 14), subsequent headers exhibiting the same pattern are recorded as blocked
+with a concise reference to the existing evidence rather than repeating the full WinmdUtils
+investigation each time - this keeps the ledger honest (each affected header gets its own tracked
+blocked entry) without redundant re-investigation.
+
+**Ledger status:** 350 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1046 pending.

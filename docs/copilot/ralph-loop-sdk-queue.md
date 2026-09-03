@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:54:13Z
+- Generated: 2026-09-03T00:58:20Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 346
+- Matched: 350
 - In progress: 0
-- Blocked: 6
-- Remaining: 1051
+- Blocked: 7
+- Remaining: 1046
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -282,7 +282,7 @@
 | `devfiltertypes.h` | DeviceQuery | remaining |  |  |  |
 | `devguid.h` | DevInst | remaining |  |  |  |
 | `deviceaccess.h` | DeviceAccess | remaining |  |  |  |
-| `deviceservices.h` | WpdSdk | remaining |  |  |  |
+| `deviceservices.h` | WpdSdk | matched |  | 09/02/2026 17:58:11 | GUID/property-key constants only, no functions; BridgeDeviceService.h separately tracked (pending). |
 | `devicetopology.h` | Audio | remaining |  |  |  |
 | `devioctl.h` | Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd | remaining |  |  |  |
 | `devpkey.h` | Base, Devices.Properties | remaining |  |  |  |
@@ -417,7 +417,7 @@
 | `faxcomex.h` | Fax | remaining |  |  |  |
 | `faxdev.h` | Fax | remaining |  |  |  |
 | `faxext.h` | Fax | remaining |  |  |  |
-| `faxmmc.h` | Fax | remaining |  |  |  |
+| `faxmmc.h` | Fax | matched |  | 09/02/2026 17:58:11 | GUID/string constants only, no functions. |
 | `faxroute.h` | Fax | remaining |  |  |  |
 | `fci.h` | Cabinets | remaining |  |  |  |
 | `fdi_fci_types.h` | Cabinets | remaining |  |  |  |
@@ -591,7 +591,7 @@
 | `ktmtypes.h` | Fs | remaining |  |  |  |
 | `ktmw32.h` | Fs | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `libloaderapi.h` | Intl, LibraryLoader | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
-| `libloaderapi2.h` | LibraryLoader | remaining |  |  |  |
+| `libloaderapi2.h` | LibraryLoader | blocked | copilot | 09/02/2026 17:58:11 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h, no new investigation required. |
 | `licenseprotection.h` | Security.LicenseProtection | matched |  | 09/02/2026 17:38:44 | Enum/FILETIME output only, no handle. |
 | `lm.h` | NetMgmt | matched |  | 09/02/2026 17:38:44 | Pure umbrella redirect; all 18 sub-headers already individually tracked in ledger (2 accepted, 16 pending). |
 | `lmaccess.h` | FileHistory, NetMgmt, WinProg | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
@@ -761,7 +761,7 @@
 | `muiload.h` | Intl | remaining |  |  |  |
 | `mxdc.h` | Gdi, Printing | remaining |  |  |  |
 | `namedpipeapi.h` | Pipes | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
-| `napmicrosoftvendorids.h` | NetworkAccessProtection | remaining |  |  |  |
+| `napmicrosoftvendorids.h` | NetworkAccessProtection | matched |  | 09/02/2026 17:58:11 | Integer constants only, no functions. |
 | `naptypes.h` | NetworkAccessProtection | remaining |  |  |  |
 | `natupnp.h` | WindowsFirewall | remaining |  |  |  |
 | `nb30.h` | NetBios | remaining |  |  |  |
@@ -1075,7 +1075,7 @@
 | `sysinfoapi.h` | SystemInformation | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `systemmediatransportcontrolsinterop.h` | WinRT | remaining |  |  |  |
 | `t2embapi.h` | Gdi | remaining |  |  |  |
-| `tabflicks.h` | Tablet | remaining |  |  |  |
+| `tabflicks.h` | Tablet | matched |  | 09/02/2026 17:58:11 | Enums/bitfield structs only, no functions. |
 | `tapi.h` | Tapi3 | remaining |  |  |  |
 | `tapi3.h` | Tapi3 | remaining |  |  |  |
 | `tapi3ds.h` | Tapi3 | remaining |  |  |  |
