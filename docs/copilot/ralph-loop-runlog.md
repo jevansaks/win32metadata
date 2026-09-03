@@ -3491,3 +3491,7 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - windot11.h, wsmerror.h, codecapi.h, ks.h, winbio_adapter.h, sapiddk.h, wbemcli.h: clean (no functions / COM vtable-only / function-pointer-typedef contract / constants-only); no ownership gap.
 - tapi.h: 4 producer-site fixes — new autoTypes.json entries HLINE->lineClose, HPHONE->phoneClose, HLINEAPP->lineShutdown, HPHONEAPP->phoneShutdown (all DECLARE_OPAQUE32/uint-valued, single-arg CloseApi). Validated via ScrapeHeaders x64 Tapi3 -> 0 errors.
 - Ledger: 1264 accepted-normalized, 31 blocked, 108 pending (1295/1403 = 92.3%).
+
+## Batch 221 (e8f1573f -> next)
+- Bulk-blocked 28 alljoyn_c\*.h headers (AboutData, AboutIconObj, AboutIconProxy, AboutObj, AboutObjectDescription, AboutProxy, AjAPI, ApplicationStateListener, AuthListener, AutoPinger, BusAttachment, BusListener, BusObject, DBusStdDefines, Init, InterfaceDescription, KeyStoreListener, Message, MsgArg, Observer, PasswordManager, PermissionConfigurationListener, PermissionConfigurator, ProxyBusObject, SecurityApplicationProxy, Session, SessionListener, version) — all reachable only via the AllJoyn partition, which fails to scrape entirely due to the previously-documented '__builtin_verbose_trap' Clang/MSVC toolset mismatch (same root cause as MSAJTransport.h). No alternate partition includes these headers, so no substitute validation path exists. Reused parser/toolchain-limitation blocker class with per-header evidence reports.
+- Ledger: 1264 accepted-normalized, 59 blocked, 80 pending (1323/1403 = 94.3%).

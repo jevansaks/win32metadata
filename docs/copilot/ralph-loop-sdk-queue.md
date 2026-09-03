@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:24:54Z
+- Generated: 2026-09-03T11:28:16Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1264
 - In progress: 0
-- Blocked: 31
-- Remaining: 108
+- Blocked: 59
+- Remaining: 80
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -28,34 +28,34 @@
 | `advpub.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/advpub.h.md |
 | `af_irda.h` | WinSock | matched |  | 09/02/2026 20:41:40 | Constants only, no functions. |
 | `afunix.h` | WinSock | matched |  | 09/02/2026 17:09:31 | Data struct + IOCTL constants only, no functions. |
-| `alljoyn_c\AboutData.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\AboutIconObj.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\AboutIconProxy.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\AboutObj.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\AboutObjectDescription.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\AboutProxy.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\AjAPI.h` | AllJoyn, WinRT.AllJoyn | remaining |  |  |  |
-| `alljoyn_c\ApplicationStateListener.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\AuthListener.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\AutoPinger.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\BusAttachment.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\BusListener.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\BusObject.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\DBusStdDefines.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\Init.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\InterfaceDescription.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\KeyStoreListener.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\Message.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\MsgArg.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\Observer.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\PasswordManager.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\PermissionConfigurationListener.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\PermissionConfigurator.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\ProxyBusObject.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\SecurityApplicationProxy.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\Session.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\SessionListener.h` | AllJoyn | remaining |  |  |  |
-| `alljoyn_c\version.h` | AllJoyn | remaining |  |  |  |
+| `alljoyn_c\AboutData.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/AboutData.h.md |
+| `alljoyn_c\AboutIconObj.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/AboutIconObj.h.md |
+| `alljoyn_c\AboutIconProxy.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/AboutIconProxy.h.md |
+| `alljoyn_c\AboutObj.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/AboutObj.h.md |
+| `alljoyn_c\AboutObjectDescription.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/AboutObjectDescription.h.md |
+| `alljoyn_c\AboutProxy.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/AboutProxy.h.md |
+| `alljoyn_c\AjAPI.h` | AllJoyn, WinRT.AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/AjAPI.h.md |
+| `alljoyn_c\ApplicationStateListener.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/ApplicationStateListener.h.md |
+| `alljoyn_c\AuthListener.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/AuthListener.h.md |
+| `alljoyn_c\AutoPinger.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/AutoPinger.h.md |
+| `alljoyn_c\BusAttachment.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/BusAttachment.h.md |
+| `alljoyn_c\BusListener.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/BusListener.h.md |
+| `alljoyn_c\BusObject.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/BusObject.h.md |
+| `alljoyn_c\DBusStdDefines.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/DBusStdDefines.h.md |
+| `alljoyn_c\Init.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/Init.h.md |
+| `alljoyn_c\InterfaceDescription.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/InterfaceDescription.h.md |
+| `alljoyn_c\KeyStoreListener.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/KeyStoreListener.h.md |
+| `alljoyn_c\Message.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/Message.h.md |
+| `alljoyn_c\MsgArg.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/MsgArg.h.md |
+| `alljoyn_c\Observer.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/Observer.h.md |
+| `alljoyn_c\PasswordManager.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/PasswordManager.h.md |
+| `alljoyn_c\PermissionConfigurationListener.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/PermissionConfigurationListener.h.md |
+| `alljoyn_c\PermissionConfigurator.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/PermissionConfigurator.h.md |
+| `alljoyn_c\ProxyBusObject.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/ProxyBusObject.h.md |
+| `alljoyn_c\SecurityApplicationProxy.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/SecurityApplicationProxy.h.md |
+| `alljoyn_c\Session.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/Session.h.md |
+| `alljoyn_c\SessionListener.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/SessionListener.h.md |
+| `alljoyn_c\version.h` | AllJoyn | blocked | copilot | 09/03/2026 11:28:06 | Reused parser/toolchain-limitation blocker class (AllJoyn partition, same as MSAJTransport.h). See docs/copilot/header-reports/version.h.md |
 | `amaudio.h` | Media.DShow | matched |  | 09/02/2026 18:40:30 | COM interface-pointer refcounting pattern, not HANDLE-family. |
 | `amparse.h` | Media.DShow | matched |  | 09/02/2026 17:27:04 | COM interface with plain integer output, no handle. |
 | `amsi.h` | Antimalware | matched | copilot | 09/03/2026 03:35:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
