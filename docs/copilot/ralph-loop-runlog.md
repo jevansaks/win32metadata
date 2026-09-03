@@ -2368,3 +2368,13 @@ Ledger: 681 accepted-normalized, 31 blocked, 691 pending (712/1403 classified).
 - **bits10_2.h** (Bits): COM interfaces only, no free functions. Clean.
 
 Ledger: 686 accepted-normalized, 31 blocked, 686 pending (717/1403 classified). Exactly half of pending remaining vs classified.
+
+## Batch 106 (2026-09-02 22:28): tsattrs.h, wbemads.h, peerdist.h, tapi3ds.h, wsdattachment.h
+
+- **tsattrs.h** (Tsf): GUID constants only, no functions. Clean.
+- **wbemads.h** (Wmi): COM interfaces only, no free functions. Clean.
+- **peerdist.h** (P2p): PATCH APPLIED. Four distinct typedef-HANDLE types each with a clear producer/closer pair, single-file-verified: PEERDIST_INSTANCE_HANDLE (PeerDistStartup/PeerDistShutdown), PEERDIST_STREAM_HANDLE (PeerDistServerPublishStream/PeerDistServerCloseStreamHandle), PEERDIST_CONTENTINFO_HANDLE (PeerDistServerOpenContentInformation/PeerDistServerCloseContentInformation), PEERDIST_CONTENT_HANDLE (PeerDistClientOpenContent/PeerDistClientCloseContent). Added 4 new autoTypes.json entries under Windows.Win32.NetworkManagement.P2P. Re-scraped P2p (x64): 0 errors.
+- **tapi3ds.h** (Tapi3): COM interfaces only, no free functions. Clean.
+- **wsdattachment.h** (FunctionDiscovery): COM interfaces only, no free functions. Clean.
+
+Ledger: 691 accepted-normalized, 31 blocked, 681 pending (722/1403 classified).

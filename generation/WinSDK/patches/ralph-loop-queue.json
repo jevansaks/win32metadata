@@ -7607,10 +7607,10 @@
   {
     "header": "peerdist.h",
     "partition": "P2p",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added 4 autoTypes.json entries (PEERDIST_INSTANCE_HANDLE/STREAM/CONTENTINFO/CONTENT_HANDLE). See docs/copilot/header-reports/peerdist.h.md",
     "_source": "header-progress"
   },
   {
@@ -9614,10 +9614,10 @@
   {
     "header": "tapi3ds.h",
     "partition": "Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3ds.h.md",
     "_source": "header-progress"
   },
   {
@@ -9884,10 +9884,10 @@
   {
     "header": "tsattrs.h",
     "partition": "Tsf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsattrs.h.md",
     "_source": "header-progress"
   },
   {
@@ -10559,10 +10559,10 @@
   {
     "header": "wbemads.h",
     "partition": "Wmi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemads.h.md",
     "_source": "header-progress"
   },
   {
@@ -12206,10 +12206,10 @@
   {
     "header": "wsdattachment.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdattachment.h.md",
     "_source": "header-progress"
   },
   {

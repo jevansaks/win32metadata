@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:23:42Z
+- Generated: 2026-09-03T05:28:20Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 686
+- Matched: 691
 - In progress: 0
 - Blocked: 31
-- Remaining: 686
+- Remaining: 681
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -855,7 +855,7 @@
 | `pchannel.h` | TermServ | matched |  | 09/02/2026 21:59:01 | Constants/transparent structs only, no functions. |
 | `pdh.h` | Perf | remaining |  |  |  |
 | `pdhmsg.h` | Perf | matched |  | 09/02/2026 20:16:15 | Message-compiler constants only, no functions. |
-| `peerdist.h` | P2p | remaining |  |  |  |
+| `peerdist.h` | P2p | matched |  |  | Genuine producer-site fix: added 4 autoTypes.json entries (PEERDIST_INSTANCE_HANDLE/STREAM/CONTENTINFO/CONTENT_HANDLE). See docs/copilot/header-reports/peerdist.h.md |
 | `peninputpanel.h` | Tablet | remaining |  |  |  |
 | `perceptiondevicecore.h` | MixedReality | matched |  | 09/02/2026 18:23:41 | Data structs + GUID constant only, no functions. |
 | `perflib.h` | Perf | remaining |  |  |  |
@@ -1078,7 +1078,7 @@
 | `tabflicks.h` | Tablet | matched |  | 09/02/2026 17:58:11 | Enums/bitfield structs only, no functions. |
 | `tapi.h` | Tapi3 | remaining |  |  |  |
 | `tapi3.h` | Tapi3 | remaining |  |  |  |
-| `tapi3ds.h` | Tapi3 | remaining |  |  |  |
+| `tapi3ds.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3ds.h.md |
 | `tapi3err.h` | Tapi3 | remaining |  |  |  |
 | `tapi3if.h` | Tapi3 | remaining |  |  |  |
 | `taskdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:59:13 | GUID/property-key constants only, no functions. |
@@ -1108,7 +1108,7 @@
 | `traffic.h` | Qos | remaining |  |  |  |
 | `transportsettingcommon.h` | WinSock | matched |  | 09/02/2026 16:57:06 | Plain data struct only, no functions. |
 | `transportsettings.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
-| `tsattrs.h` | Tsf | remaining |  |  |  |
+| `tsattrs.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsattrs.h.md |
 | `tsgauthenticationengine.h` | TermServ | remaining |  |  |  |
 | `tsgpolicyengine.h` | TermServ | remaining |  |  |  |
 | `TSPI.h` | Tapi3 | remaining |  |  |  |
@@ -1183,7 +1183,7 @@
 | `wab.h` | Wab | blocked | copilot | 09/02/2026 16:53:36 | Deferred: 1 of 77 functions (FtgRegisterIdleRoutine) has genuine return-value handle ownership with no annotation precedent; needs the same dedicated policy decision as getprocesshandlefromhwnd.h. |
 | `wabdefs.h` | IMapi, Tapi3 | remaining |  |  |  |
 | `wbcl.h` | Qos | remaining |  |  |  |
-| `wbemads.h` | Wmi | remaining |  |  |  |
+| `wbemads.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemads.h.md |
 | `wbemcli.h` | TermServ, Wmi | remaining |  |  |  |
 | `wbemdisp.h` | Wmi | remaining |  |  |  |
 | `wbemidl.h` | Wmi | matched |  | 09/02/2026 16:57:06 | Redirect-only; 40 functions all MIDL RPC marshalling stubs, no DECLARE_HANDLE. |
@@ -1366,7 +1366,7 @@
 | `wsbonlineerror.h` | Wsb | matched |  | 09/02/2026 18:44:05 | HRESULT error-code constants/macros only, no functions. |
 | `wscapi.h` | FileHistory, SecurityCenter | blocked |  | 09/02/2026 20:53:11 | WscRegisterForChanges produces generic HANDLE via direct out-param. |
 | `wsdapi.h` | WebServicesOnDevices | matched |  | 09/02/2026 17:13:02 | Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE. |
-| `wsdattachment.h` | FunctionDiscovery | remaining |  |  |  |
+| `wsdattachment.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdattachment.h.md |
 | `wsdbase.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdclient.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsddisco.h` | FunctionDiscovery | remaining |  |  |  |
