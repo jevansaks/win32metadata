@@ -2458,3 +2458,13 @@ Ledger: 726 accepted-normalized, 31 blocked, 646 pending (757/1403 classified).
 - **msdadc.h** (Search): COM interfaces only, no free functions. Clean.
 
 Ledger: 731 accepted-normalized, 31 blocked, 641 pending (762/1403 classified).
+
+## Batch 115 (2026-09-02 22:54): nb30.h, xpsobjectmodel_2.h, workspaceax.h, rectypes.h, mixerocx.h
+
+- **nb30.h** (NetBios): single Netbios(PNCB pncb) function, transparent NCB struct, no opaque handles. Clean.
+- **xpsobjectmodel_2.h** (Xps): COM interfaces only, no free functions. Clean.
+- **workspaceax.h** (TermServ): COM interfaces only, no free functions. Clean.
+- **rectypes.h** (Tablet): COM interfaces only, no free functions. Clean.
+- **mixerocx.h** (Media.DShow): COM interfaces only, no free functions. Clean.
+
+Ledger: 736 accepted-normalized, 31 blocked, 636 pending (767/1403 classified).

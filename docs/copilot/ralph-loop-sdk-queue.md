@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:53:09Z
+- Generated: 2026-09-03T05:54:39Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 731
+- Matched: 736
 - In progress: 0
 - Blocked: 31
-- Remaining: 641
+- Remaining: 636
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -670,7 +670,7 @@
 | `minidumpapiset.h` | Base, Debug | remaining |  |  |  |
 | `minwinbase.h` | Base, Fs, Ioctl | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `minwindef.h` | Foundation, Multimedia | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
-| `mixerocx.h` | Media.DShow | remaining |  |  |  |
+| `mixerocx.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mixerocx.h.md |
 | `mlang.h` | Intl | remaining |  |  |  |
 | `MLOperatorAuthor.h` | MachineLearning | remaining |  |  |  |
 | `mmc.h` | Mmc | remaining |  |  |  |
@@ -764,7 +764,7 @@
 | `napmicrosoftvendorids.h` | NetworkAccessProtection | matched |  | 09/02/2026 17:58:11 | Integer constants only, no functions. |
 | `naptypes.h` | NetworkAccessProtection | matched |  | 09/02/2026 21:12:30 | Types only, no functions. |
 | `natupnp.h` | WindowsFirewall | remaining |  |  |  |
-| `nb30.h` | NetBios | remaining |  |  |  |
+| `nb30.h` | NetBios | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/nb30.h.md |
 | `ncrypt_provider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ncrypt_provider.h.md |
 | `ncrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:10:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
 | `ncryptprotect.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
@@ -929,7 +929,7 @@
 | `recapis.h` | Tablet | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `recdefs.h` | Tablet | remaining |  |  |  |
 | `reconcil.h` | Lwef, Shell | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
-| `rectypes.h` | Tablet | remaining |  |  |  |
+| `rectypes.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rectypes.h.md |
 | `regbag.h` | MsTv | matched |  | 09/02/2026 20:16:15 | COM interface method only, out of scope. |
 | `regstr.h` | Registry | remaining |  |  |  |
 | `relogger.h` | Etw | remaining |  |  |  |
@@ -1347,7 +1347,7 @@
 | `wnnc.h` | Ifsk | matched |  | 09/02/2026 19:19:02 | Constants only, no functions. |
 | `wnvapi.h` | wnv | blocked | copilot | 09/02/2026 19:09:17 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
 | `wofapi.h` | Fs | matched |  | 09/02/2026 20:31:37 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
-| `workspaceax.h` | TermServ | remaining |  |  |  |
+| `workspaceax.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/workspaceax.h.md |
 | `workspaceruntime.h` | TermServ | remaining |  |  |  |
 | `workspaceruntimeclientext.h` | TermServ | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `wpc.h` | Parcon | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR_User*/HWND_User*); no resource-owning functions. |
@@ -1409,7 +1409,7 @@
 | `xprtdefs.h` | Media.DShow | remaining |  |  |  |
 | `xpsdigitalsignature.h` | Xps | remaining |  |  |  |
 | `xpsobjectmodel_1.h` | Xps | remaining |  |  |  |
-| `xpsobjectmodel_2.h` | Xps | remaining |  |  |  |
+| `xpsobjectmodel_2.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_2.h.md |
 | `xpsobjectmodel.h` | Xps | remaining |  |  |  |
 | `xpsprint.h` | Gdi, XpsPrinting | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsprint.h.md |
 | `xpsrassvc.h` | Printing | remaining |  |  |  |

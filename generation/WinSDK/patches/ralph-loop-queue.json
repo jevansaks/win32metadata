@@ -5942,10 +5942,10 @@
   {
     "header": "mixerocx.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mixerocx.h.md",
     "_source": "header-progress"
   },
   {
@@ -6788,10 +6788,10 @@
   {
     "header": "nb30.h",
     "partition": "NetBios",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/nb30.h.md",
     "_source": "header-progress"
   },
   {
@@ -8273,10 +8273,10 @@
   {
     "header": "rectypes.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rectypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -12035,10 +12035,10 @@
   {
     "header": "workspaceax.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/workspaceax.h.md",
     "_source": "header-progress"
   },
   {
@@ -12593,10 +12593,10 @@
   {
     "header": "xpsobjectmodel_2.h",
     "partition": "Xps",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_2.h.md",
     "_source": "header-progress"
   },
   {
