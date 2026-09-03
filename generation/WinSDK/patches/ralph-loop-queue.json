@@ -812,10 +812,10 @@
   {
     "header": "bcrypt_provider.h",
     "partition": "Security.Cryptography",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bcrypt_provider.h.md",
     "_source": "header-progress"
   },
   {
@@ -3350,10 +3350,10 @@
   {
     "header": "editionupgradehelper.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/editionupgradehelper.h.md",
     "_source": "header-progress"
   },
   {
@@ -11081,10 +11081,10 @@
   {
     "header": "winddiui.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddiui.h.md",
     "_source": "header-progress"
   },
   {
@@ -11234,10 +11234,10 @@
   {
     "header": "windows.graphics.printing.workflow.native.h",
     "partition": "WinRT.Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.graphics.printing.workflow.native.h.md",
     "_source": "header-progress"
   },
   {
@@ -11693,10 +11693,10 @@
   {
     "header": "winsxs.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsxs.h.md",
     "_source": "header-progress"
   },
   {

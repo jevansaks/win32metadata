@@ -2848,3 +2848,13 @@ Ledger: 921 accepted-normalized, 31 blocked, 451 pending (952/1403 classified).
 - **dsparse.h** (ActiveDirectory): DsMakeSpn/DsCrackSpn family - strings/DWORD lengths only. Clean.
 
 Ledger: 926 accepted-normalized, 31 blocked, 446 pending (957/1403 classified).
+
+## Batch 154 (2026-09-03 01:04): editionupgradehelper.h, winddiui.h, windows.graphics.printing.workflow.native.h, bcrypt_provider.h, winsxs.h
+
+- **editionupgradehelper.h** (FileHistory, WinProg): COM interfaces only, no free functions. Clean.
+- **winddiui.h** (Printing): transparent structs only, no functions. Clean.
+- **windows.graphics.printing.workflow.native.h** (WinRT.Printing): COM interfaces only, no free functions. Clean.
+- **bcrypt_provider.h** (Security.Cryptography): CNG provider DDI function-pointer typedefs only. Clean.
+- **winsxs.h** (Setup): CreateAssemblyNameObject/CreateAssemblyCache output standard COM interface pointers. Clean.
+
+Ledger: 931 accepted-normalized, 31 blocked, 441 pending (962/1403 classified).

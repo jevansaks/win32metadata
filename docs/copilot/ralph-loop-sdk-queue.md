@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:00:59Z
+- Generated: 2026-09-03T08:03:50Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 926
+- Matched: 931
 - In progress: 0
 - Blocked: 31
-- Remaining: 446
+- Remaining: 441
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -100,7 +100,7 @@
 | `azroles.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `batclass.h` | Power | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/batclass.h.md |
 | `bcp47mrm.h` | Intl | matched |  | 09/02/2026 16:53:36 | No handle-producing functions. |
-| `bcrypt_provider.h` | Security.Cryptography | remaining |  |  |  |
+| `bcrypt_provider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bcrypt_provider.h.md |
 | `bcrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; unrelated zz-crypto-security-enums patch verified compatible via full sequential forward replay. |
 | `bdaiface.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `bdamedia.h` | MsTv | remaining |  |  |  |
@@ -382,7 +382,7 @@
 | `eappapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eappapis.h.md |
 | `eaptypes.h` | EapHost | remaining |  |  |  |
 | `edevdefs.h` | DeviceAccess | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/edevdefs.h.md |
-| `editionupgradehelper.h` | FileHistory, WinProg | remaining |  |  |  |
+| `editionupgradehelper.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/editionupgradehelper.h.md |
 | `edpwin32.h` | Edp | matched |  | 09/02/2026 17:19:28 | Path-string-only API, no handle. |
 | `effects.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/effects.h.md |
 | `efswrtinterop.h` | Edp | remaining |  |  |  |
@@ -1241,7 +1241,7 @@
 | `wincred.h` | Certificates, Credentials, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincrypt.h` | NetMgmt, Rpc, Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:40:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; final header in the 11-header audit set (all now compliant). Verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
 | `winddi.h` | Display, IO, Printing, TransactionServer | remaining |  |  |  |
-| `winddiui.h` | Printing | remaining |  |  |  |
+| `winddiui.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddiui.h.md |
 | `windef.h` | Foundation, Gdi, WinAuto | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `windns.h` | Dns, IpHlp | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `windnsdef.h` | Dns | remaining |  |  |  |
@@ -1258,7 +1258,7 @@
 | `Windows.Graphics.Holographic.Interop.h` | WinRT.Holographic | remaining |  |  |  |
 | `windows.graphics.imaging.interop.h` | WinRT.Graphics.Imaging | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.graphics.imaging.interop.h.md |
 | `windows.graphics.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 17:41:54 | COM factory pattern. |
-| `windows.graphics.printing.workflow.native.h` | WinRT.Printing | remaining |  |  |  |
+| `windows.graphics.printing.workflow.native.h` | WinRT.Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.graphics.printing.workflow.native.h.md |
 | `windows.h` | Console, Edp, Enstor, Memory, Mi | matched |  | 09/02/2026 21:08:27 | Pure umbrella redirect; all sub-headers tracked or (dlgs.h) directly confirmed no functions. |
 | `windows.media.core.interop.h` | WinRT.Media | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.media.core.interop.h.md |
 | `windows.security.isolation.isolatedenvironmentinterop.h` | WinRT.Isolation | matched |  | 09/02/2026 20:41:40 | COM interface method returning non-owned HWND reference, out of scope. |
@@ -1309,7 +1309,7 @@
 | `winspool.h` | Gdi, Printing | matched | copilot | 09/02/2026 22:05:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. Not part of the original 11-header audit set (discovered as an additional resource-ownership patch). |
 | `winstring.h` | WinRT | matched |  | 09/02/2026 20:07:23 | HSTRING/HSTRING_BUFFER already correctly covered via existing autoTypes.json entries. |
 | `winsvc.h` | Services | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types). |
-| `winsxs.h` | Setup | remaining |  |  |  |
+| `winsxs.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsxs.h.md |
 | `winsync.h` | WinSync | remaining |  |  |  |
 | `winternl.h` | ActiveDirectory, Base, Certificates, FileHistory, IpHlp, MadCap, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, WinProg | remaining |  |  |  |
 | `wintrust.h` | Security.WinTrust | remaining |  |  |  |
