@@ -3248,7 +3248,7 @@
       "header": "bridgedeviceservice.h",
       "partitions": "WpdSdk",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -3261,7 +3261,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bridgedeviceservice.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/WpdSdk/main.cpp",
@@ -21649,7 +21649,7 @@
         "Debug"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -21662,7 +21662,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/minidumpapiset.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -22449,7 +22449,7 @@
         "MsTv"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -22462,7 +22462,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2psiparser.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -29561,7 +29561,7 @@
       "header": "qos2.h",
       "partitions": "Qos",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -29574,7 +29574,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Producer-site fix: added inline RAIIFree(QOSCloseHandle) annotation on QOSCreateHandle::QOSHandle in emitter.settings.rsp. See docs/copilot/header-reports/qos2.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Qos/main.cpp",
@@ -39250,7 +39250,7 @@
       "header": "virtdisk.h",
       "partitions": "Vhd",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -39263,7 +39263,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/virtdisk.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Vhd/main.cpp",

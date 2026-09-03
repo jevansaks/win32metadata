@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:30:38Z
+- Generated: 2026-09-03T09:33:50Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1076
+- Matched: 1081
 - In progress: 0
 - Blocked: 31
-- Remaining: 296
+- Remaining: 291
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -122,7 +122,7 @@
 | `bitsmsg.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bitsmsg.h.md |
 | `bluetoothapis.h` | Bluetooth | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `bluetoothleapis.h` | Bluetooth | matched |  |  | Genuine producer-site fix: added BLUETOOTH_GATT_EVENT_HANDLE autoTypes.json entry (CloseApi=BluetoothGATTUnregisterEvent). See docs/copilot/header-reports/bluetoothleapis.h.md |
-| `bridgedeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `bridgedeviceservice.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bridgedeviceservice.h.md |
 | `bthdef.h` | Bluetooth | remaining |  |  |  |
 | `bthledef.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bthledef.h.md |
 | `bthsdpdef.h` | Bluetooth | matched |  | 09/02/2026 18:38:01 | Data structs/enums/union only, no functions. |
@@ -667,7 +667,7 @@
 | `mileffects.h` | Wibe | remaining |  |  |  |
 | `minappmodel.h` | AppxPackaging | matched |  | 09/02/2026 19:14:35 | Constants only, no functions. |
 | `mindumpdef.h` | Debug | matched |  | 09/02/2026 20:56:17 | Constants/enum only, no functions. |
-| `minidumpapiset.h` | Base, Debug | remaining |  |  |  |
+| `minidumpapiset.h` | Base, Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/minidumpapiset.h.md |
 | `minwinbase.h` | Base, Fs, Ioctl | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `minwindef.h` | Foundation, Multimedia | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `mixerocx.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mixerocx.h.md |
@@ -689,7 +689,7 @@
 | `mpeg2bits.h` | MsTv | matched |  | 09/02/2026 17:48:13 | Bitfield data structs only, no functions. |
 | `mpeg2data.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2data.h.md |
 | `mpeg2error.h` | Media.DShow | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
-| `mpeg2psiparser.h` | Media.DShow, MsTv | remaining |  |  |  |
+| `mpeg2psiparser.h` | Media.DShow, MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2psiparser.h.md |
 | `mpeg2structs.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2structs.h.md |
 | `mpegtype.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
 | `mprapi.h` | RRas | remaining |  |  |  |
@@ -910,7 +910,7 @@
 | `pwm.h` | PWM | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `qmgr.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qmgr.h.md |
 | `qnetwork.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qnetwork.h.md |
-| `qos2.h` | Qos | remaining |  |  |  |
+| `qos2.h` | Qos | matched |  |  | Producer-site fix: added inline RAIIFree(QOSCloseHandle) annotation on QOSCreateHandle::QOSHandle in emitter.settings.rsp. See docs/copilot/header-reports/qos2.h.md |
 | `qospol.h` | Qos | matched |  | 09/02/2026 17:48:13 | Data struct + constants only, no functions. |
 | `qossp.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qossp.h.md |
 | `query.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/query.h.md |
@@ -1161,7 +1161,7 @@
 | `vfwmsgs.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vfwmsgs.h.md |
 | `vidcap.h` | Media.DShow | remaining |  |  |  |
 | `videoacc.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/videoacc.h.md |
-| `virtdisk.h` | Vhd | remaining |  |  |  |
+| `virtdisk.h` | Vhd | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/virtdisk.h.md |
 | `vmgenerationcounter.h` | Hypervisor | matched |  | 09/02/2026 17:19:28 | GUID/IOCTL constant + data struct only, no functions. |
 | `vmr9.h` | Media.DShow | remaining |  |  |  |
 | `vmsavedstatedump.h` | Hypervisor | matched |  |  | Producer-site fix: added VM_SAVED_STATE_DUMP_HANDLE autoTypes.json entry (CloseApi ReleaseSavedStateFiles). See docs/copilot/header-reports/vmsavedstatedump.h.md |

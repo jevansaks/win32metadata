@@ -3148,3 +3148,13 @@ Ledger: 1071 accepted-normalized, 31 blocked, 301 pending (1102/1403 classified)
 - **mfplay.h** (Mf): MFPCreateMediaPlayer outputs COM interface pointer. Clean.
 
 Ledger: 1076 accepted-normalized, 31 blocked, 296 pending (1107/1403 classified).
+
+## Batch 184 (2026-09-03 02:34): minidumpapiset.h, mpeg2psiparser.h, bridgedeviceservice.h, virtdisk.h, qos2.h
+
+- **minidumpapiset.h** (Base/Debug): MiniDumpWriteDump/ReadDumpStream operate on caller-owned handles, no production. Clean.
+- **mpeg2psiparser.h** (Media.DShow/MsTv): COM vtable only. Clean.
+- **bridgedeviceservice.h** (WpdSdk): DEVSVCGUID constants only, no functions. Clean.
+- **virtdisk.h** (Vhd): OpenVirtualDisk/CreateVirtualDisk output generic PHANDLE (blocker-class 2), closed via generic CloseHandle. Clean.
+- **qos2.h** (Qos): PRODUCER-SITE FIX - added inline emitter.settings.rsp RAIIFree annotation QOSCreateHandle::QOSHandle=[RAIIFree(\"QOSCloseHandle\")], following the established CfOpenFileWithOplock precedent for semantically-specific generic-HANDLE outputs.
+
+Ledger: 1081 accepted-normalized, 31 blocked, 291 pending (1112/1403 classified).

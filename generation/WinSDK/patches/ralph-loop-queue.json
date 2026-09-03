@@ -1010,10 +1010,10 @@
   {
     "header": "bridgedeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bridgedeviceservice.h.md",
     "_source": "header-progress"
   },
   {
@@ -5915,10 +5915,10 @@
   {
     "header": "minidumpapiset.h",
     "partition": "Base, Debug",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/minidumpapiset.h.md",
     "_source": "header-progress"
   },
   {
@@ -6113,10 +6113,10 @@
   {
     "header": "mpeg2psiparser.h",
     "partition": "Media.DShow, MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2psiparser.h.md",
     "_source": "header-progress"
   },
   {
@@ -8102,10 +8102,10 @@
   {
     "header": "qos2.h",
     "partition": "Qos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added inline RAIIFree(QOSCloseHandle) annotation on QOSCreateHandle::QOSHandle in emitter.settings.rsp. See docs/copilot/header-reports/qos2.h.md",
     "_source": "header-progress"
   },
   {
@@ -10361,10 +10361,10 @@
   {
     "header": "virtdisk.h",
     "partition": "Vhd",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/virtdisk.h.md",
     "_source": "header-progress"
   },
   {

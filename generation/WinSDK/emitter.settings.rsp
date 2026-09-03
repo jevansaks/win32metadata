@@ -2038,6 +2038,7 @@ CreateTransaction::Timeout=[In][Optional]
 CreateStreamOnHGlobal::hGlobal=[Optional]
 D3D11CreateDevice::Software=[Optional]
 CfOpenFileWithOplock::ProtectedHandle=[RAIIFree("CfCloseHandle")]
+QOSCreateHandle::QOSHandle=[RAIIFree("QOSCloseHandle")]
 ShellExecuteA::return=[DoNotRelease]
 ShellExecuteW::return=[DoNotRelease]
 AddPrinterW::return=PRINTER_HANDLE
