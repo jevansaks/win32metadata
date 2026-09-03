@@ -416,10 +416,10 @@
   {
     "header": "amaudio.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:40:30Z",
+    "notes": "COM interface-pointer refcounting pattern, not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -1802,10 +1802,10 @@
   {
     "header": "d2d1effects_1.h",
     "partition": "Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:40:30Z",
+    "notes": "GUID constant + enums only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3170,10 +3170,10 @@
   {
     "header": "dxgitype.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:40:30Z",
+    "notes": "Data structs/enums only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3710,10 +3710,10 @@
   {
     "header": "featurestagingapi.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:40:30Z",
+    "notes": "FEATURE_STATE_CHANGE_SUBSCRIPTION ownership already correctly captured via existing autoTypes.json entry.",
     "_source": "header-progress"
   },
   {
@@ -6959,10 +6959,10 @@
   {
     "header": "nettypes.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:40:30Z",
+    "notes": "Typedefs/data structs/constants only, no functions.",
     "_source": "header-progress"
   },
   {

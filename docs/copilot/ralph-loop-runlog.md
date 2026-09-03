@@ -1394,3 +1394,20 @@ wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 991 pe
 
 **Ledger status:** 409 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 986 pending.
+
+## 2026-09-02 18:40:51 UTC - Batch scraping-investigation-46
+
+**Headers:** dxgitype.h, amaudio.h, d2d1effects_1.h, nettypes.h, featurestagingapi.h
+
+- dxgitype.h: data structs/enums only, no functions. Clean.
+- amaudio.h: IAMDirectSound COM interface uses standard COM refcounting (Get*/Release* pattern), not
+  HANDLE-family; AMValidateAndFixWaveFormatEx is a caller-buffer inline helper. Clean.
+- d2d1effects_1.h: GUID constant + enums only, no functions. Clean.
+- nettypes.h: typedefs/data structs/constants only, no functions. Clean.
+- featurestagingapi.h: DECLARE_HANDLE(FEATURE_STATE_CHANGE_SUBSCRIPTION) produced/released via
+  Subscribe/UnsubscribeFeatureStateChangeNotification - genuinely fixable shape, but autoTypes.json
+  already has a complete correct entry (CloseApi: UnsubscribeFeatureStateChangeNotification) matching
+  this header exactly - no new inline annotation needed (same pattern as swdevice.h in batch 45).
+
+**Ledger status:** 414 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 981 pending.

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:38:10Z
+- Generated: 2026-09-03T01:40:38Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 409
+- Matched: 414
 - In progress: 0
 - Blocked: 8
-- Remaining: 986
+- Remaining: 981
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -56,7 +56,7 @@
 | `alljoyn_c\Session.h` | AllJoyn | remaining |  |  |  |
 | `alljoyn_c\SessionListener.h` | AllJoyn | remaining |  |  |  |
 | `alljoyn_c\version.h` | AllJoyn | remaining |  |  |  |
-| `amaudio.h` | Media.DShow | remaining |  |  |  |
+| `amaudio.h` | Media.DShow | matched |  | 09/02/2026 18:40:30 | COM interface-pointer refcounting pattern, not HANDLE-family. |
 | `amparse.h` | Media.DShow | matched |  | 09/02/2026 17:27:04 | COM interface with plain integer output, no handle. |
 | `amsi.h` | Antimalware | matched | copilot | 09/03/2026 03:35:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
 | `amstream.h` | Media.DShow, Media.DShow.Xml | remaining |  |  |  |
@@ -210,7 +210,7 @@
 | `d2d1.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `d2d1effectauthor_1.h` | Direct2D | remaining |  |  |  |
 | `d2d1effectauthor.h` | Direct2D | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
-| `d2d1effects_1.h` | Direct2D | remaining |  |  |  |
+| `d2d1effects_1.h` | Direct2D | matched |  | 09/02/2026 18:40:30 | GUID constant + enums only, no functions. |
 | `d2d1effects_2.h` | Direct2D | remaining |  |  |  |
 | `d2d1effects.h` | Direct2D | remaining |  |  |  |
 | `d2d1svg.h` | Direct2D | remaining |  |  |  |
@@ -362,7 +362,7 @@
 | `dxgidebug.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
 | `dxgiformat.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxgimessages.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
-| `dxgitype.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
+| `dxgitype.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 18:40:30 | Data structs/enums only, no functions. |
 | `dxmini.h` | DirectDraw | remaining |  |  |  |
 | `dxprogrammablecapture.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 17:45:25 | Parameterless COM interface methods, no handle. |
 | `dxva.h` | Media.DShow, Mf | remaining |  |  |  |
@@ -422,7 +422,7 @@
 | `fci.h` | Cabinets | remaining |  |  |  |
 | `fdi_fci_types.h` | Cabinets | remaining |  |  |  |
 | `fdi.h` | Cabinets | remaining |  |  |  |
-| `featurestagingapi.h` | FileHistory, WinProg | remaining |  |  |  |
+| `featurestagingapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:40:30 | FEATURE_STATE_CHANGE_SUBSCRIPTION ownership already correctly captured via existing autoTypes.json entry. |
 | `fhcfg.h` | FileHistory | remaining |  |  |  |
 | `fherrors.h` | FileHistory | remaining |  |  |  |
 | `fhstatus.h` | FileHistory | matched |  | 09/02/2026 18:00:53 | Status-code constants only, no functions. |
@@ -783,7 +783,7 @@
 | `netlistmgr.h` | Nla, WindowsConnectionManager | remaining |  |  |  |
 | `netprov.h` | NetMgmt | remaining |  |  |  |
 | `netsh.h` | NetShell | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
-| `nettypes.h` | NetMgmt | remaining |  |  |  |
+| `nettypes.h` | NetMgmt | matched |  | 09/02/2026 18:40:30 | Typedefs/data structs/constants only, no functions. |
 | `newdev.h` | DevInst | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `nfcdtadev.h` | Nfc | remaining |  |  |  |
 | `nfcradiodev.h` | Nfc | matched |  | 09/02/2026 17:54:05 | GUID/IOCTL constants + data structs only, no functions. |
