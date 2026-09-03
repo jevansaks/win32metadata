@@ -1109,10 +1109,10 @@
   {
     "header": "casetup.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/casetup.h.md",
     "_source": "header-progress"
   },
   {
@@ -1856,10 +1856,10 @@
   {
     "header": "d3d10_1.h",
     "partition": "Direct3D10",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10_1.h.md",
     "_source": "header-progress"
   },
   {
@@ -2144,10 +2144,10 @@
   {
     "header": "d3dtypes.h",
     "partition": "Direct3D9",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dtypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -6635,10 +6635,10 @@
   {
     "header": "msvidctl.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msvidctl.h.md",
     "_source": "header-progress"
   },
   {
@@ -10235,10 +10235,10 @@
   {
     "header": "uuids.h",
     "partition": "Media, Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/uuids.h.md",
     "_source": "header-progress"
   },
   {

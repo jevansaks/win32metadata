@@ -3320,3 +3320,13 @@ Ledger: 1166 accepted-normalized, 31 blocked, 206 pending (1197/1403 classified)
 - **oledbdep.h** (Search): COM vtable only. Clean.
 
 Ledger: 1171 accepted-normalized, 31 blocked, 201 pending (1202/1403 classified).
+
+## Batch 203 (2026-09-03 03:33): msvidctl.h, d3d10_1.h, uuids.h, casetup.h, d3dtypes.h
+
+- **msvidctl.h** (MsTv): COM vtable only. Clean.
+- **d3d10_1.h** (Direct3D10): COM vtable only. Clean.
+- **uuids.h** (Media/Mf): GUID constants only. Clean.
+- **casetup.h** (Security.Cryptography/Security.Cryptography.UI): COM vtable only. Clean.
+- **d3dtypes.h** (Direct3D9): transparent structs/enums only. Clean.
+
+Ledger: 1176 accepted-normalized, 31 blocked, 196 pending (1207/1403 classified).

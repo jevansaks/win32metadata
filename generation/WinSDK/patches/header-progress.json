@@ -3590,7 +3590,7 @@
         "Security.Cryptography.UI"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -3603,7 +3603,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/casetup.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -6093,7 +6093,7 @@
       "header": "d3d10_1.h",
       "partitions": "Direct3D10",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -6106,7 +6106,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10_1.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Direct3D10/main.cpp",
@@ -7098,7 +7098,7 @@
       "header": "d3dtypes.h",
       "partitions": "Direct3D9",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -7111,7 +7111,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dtypes.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Direct3D9/main.cpp",
@@ -24022,7 +24022,7 @@
       "header": "msvidctl.h",
       "partitions": "MsTv",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -24035,7 +24035,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msvidctl.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/MsTv/main.cpp",
@@ -38797,7 +38797,7 @@
         "Mf"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -38810,7 +38810,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/uuids.h.md",
       "sources": [
         {
           "source": "partition-main",

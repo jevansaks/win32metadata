@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:30:47Z
+- Generated: 2026-09-03T10:32:58Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1171
+- Matched: 1176
 - In progress: 0
 - Blocked: 31
-- Remaining: 201
+- Remaining: 196
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -133,7 +133,7 @@
 | `camerauicontrol.h` | FileHistory, Media.DShow, Mf, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/camerauicontrol.h.md |
 | `capi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:45:25 | JAVA_TRUST plain data struct; all redirected headers already accepted or separately tracked pending; sipbase.h verified as trivial redirect to accepted mssip.h. |
 | `cardmod.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cardmod.h.md |
-| `casetup.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `casetup.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/casetup.h.md |
 | `CastingInterop.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CastingInterop.h.md |
 | `ccgplugins.h` | Identity | matched |  | 09/02/2026 19:37:21 | COM interface method only, out of scope. |
 | `cchannel.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cchannel.h.md |
@@ -216,7 +216,7 @@
 | `d2d1svg.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d2d1svg.h.md |
 | `d2dbasetypes.h` | Direct2D | matched |  | 09/02/2026 17:05:19 | Type alias only, no functions. |
 | `d2derr.h` | Direct2D | matched |  | 09/02/2026 17:48:13 | HRESULT error-code macros only, no functions. |
-| `d3d10_1.h` | Direct3D10 | remaining |  |  |  |
+| `d3d10_1.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10_1.h.md |
 | `d3d10_1shader.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10_1shader.h.md |
 | `d3d10.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10effect.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10effect.h.md |
@@ -248,7 +248,7 @@
 | `d3dcompiler.h` | Direct3DFxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `d3dcsx.h` | Direct3D11 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcsx.h.md |
 | `d3dshadercacheregistration.h` | Direct3D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dshadercacheregistration.h.md |
-| `d3dtypes.h` | Direct3D9 | remaining |  |  |  |
+| `d3dtypes.h` | Direct3D9 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dtypes.h.md |
 | `datetimeapi.h` | Intl | matched |  | 09/02/2026 19:19:02 | String/buffer formatting API only, no handle. |
 | `davclnt.h` | WebDav | blocked |  | 09/02/2026 19:54:02 | DavAddConnection generic HANDLE out-param; DavRegisterAuthCallback returns generic DWORD-typed OPAQUE_HANDLE via return value. |
 | `DbgEng.h` | Debug.Extensions | remaining |  |  |  |
@@ -747,7 +747,7 @@
 | `mssip.h` | Security.Cryptography.Sip, Security.WinTrust | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mstask.h` | TaskSchd | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mstask.h.md |
 | `mstcpip.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mstcpip.h.md |
-| `msvidctl.h` | MsTv | remaining |  |  |  |
+| `msvidctl.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msvidctl.h.md |
 | `mswmdm.h` | Wmdm | remaining |  |  |  |
 | `mswsock.h` | WinSock | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mswsockdef.h` | WinSock | matched |  | 09/02/2026 19:28:18 | RIO handle types have no scrapable extern/DllImport producer function (function-pointer table pattern), architecturally out of scope. |
@@ -1147,7 +1147,7 @@
 | `userenv.h` | Policy, Shell | blocked | copilot | 09/02/2026 18:53:55 | RE-AUDITED: previously classified in existing-patches-34 based only on retained set-last-error/supported-os patches (not an ownership audit). Re-audit found a genuine unaddressed HANDLE ownership gap (LoadUserProfileW/UnloadUserProfile via PROFILEINFOW.hProfile), same class as physicalmonitorenumerationapi.h. Reclassified to blocked; prior retained patches remain valid. |
 | `usp10.h` | Intl | remaining |  |  |  |
 | `utilapiset.h` | Base, Debug | matched |  | 09/02/2026 18:29:37 | Pointer obfuscation, not resource ownership; HANDLE is an input only. |
-| `uuids.h` | Media, Mf | remaining |  |  |  |
+| `uuids.h` | Media, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/uuids.h.md |
 | `uxtheme.h` | Controls, WinTouch | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `vbinterf.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched |  | 09/02/2026 19:02:46 | COM interface refcounting pattern, not HANDLE-family. |
 | `vdmdbg.h` | FileHistory, VirtualDOSMachines | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdmdbg.h.md |
