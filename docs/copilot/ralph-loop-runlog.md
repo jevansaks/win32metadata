@@ -1675,3 +1675,18 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   generic PHANDLE direct-out-param (AvRtCreateThreadOrderingGroup*/AvRtJoinThreadOrderingGroup).
 
 **Ledger status:** 481 accepted-normalized, 16 blocked, 906 pending.
+
+## 2026-09-02 19:35:14 UTC - Batch scraping-investigation-62
+
+**Headers:** imapierror.h, eaphostpeertypes.h, lmsname.h, mpeg2error.h, tokenbinding.h
+**Partitions scraped (x64):** IMapi, Identity, EapHost, NetMgmt (0 errors each); Media.DShow reused from batch 60
+
+- imapierror.h: HRESULT constants only. Clean.
+- eaphostpeertypes.h: enums/structs only, no functions. Clean.
+- lmsname.h: service-name string constants only, no functions. Clean.
+- mpeg2error.h: HRESULT constants only, no functions. Clean.
+- tokenbinding.h: TokenBindingGenerateBinding/GenerateMessage/VerifyMessage/GetKeyTypes*/GenerateID*
+  outputs are all generic heap-allocated buffers (HeapFree(GetProcessHeap(),...) convention per MS docs)
+  or transparent structs, not distinctly-named opaque handles - out of scope. Clean.
+
+**Ledger status:** 486 accepted-normalized, 16 blocked, 901 pending.

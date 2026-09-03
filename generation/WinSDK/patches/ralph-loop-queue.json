@@ -3287,10 +3287,10 @@
   {
     "header": "eaphostpeertypes.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:35:00Z",
+    "notes": "Enums/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4691,10 +4691,10 @@
   {
     "header": "imapierror.h",
     "partition": "IMapi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:35:00Z",
+    "notes": "HRESULT constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5402,10 +5402,10 @@
   {
     "header": "lmsname.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:35:00Z",
+    "notes": "Service-name string constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6104,10 +6104,10 @@
   {
     "header": "mpeg2error.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:35:00Z",
+    "notes": "HRESULT constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -9803,10 +9803,10 @@
   {
     "header": "tokenbinding.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:35:00Z",
+    "notes": "All outputs are generic heap-allocated buffers/transparent structs (HeapFree convention), not distinctly-named opaque handles.",
     "_source": "header-progress"
   },
   {

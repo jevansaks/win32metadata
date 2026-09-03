@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:32:15Z
+- Generated: 2026-09-03T02:35:14Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 481
+- Matched: 486
 - In progress: 0
 - Blocked: 16
-- Remaining: 906
+- Remaining: 901
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -375,7 +375,7 @@
 | `eapauthenticatortypes.h` | EapHost | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
 | `eaphosterror.h` | EapHost | remaining |  |  |  |
 | `eaphostpeerconfigapis.h` | EapHost | remaining |  |  |  |
-| `eaphostpeertypes.h` | EapHost | remaining |  |  |  |
+| `eaphostpeertypes.h` | EapHost | matched |  | 09/02/2026 19:35:00 | Enums/structs only, no functions. |
 | `eapmethodauthenticatorapis.h` | EapHost | remaining |  |  |  |
 | `eapmethodpeerapis.h` | EapHost | remaining |  |  |  |
 | `eapmethodtypes.h` | EapHost | matched |  | 09/02/2026 17:30:54 | Type declarations only (struct/enum/typedef), no functions; producer functions tracked separately under eapmethodpeerapis.h (pending). |
@@ -531,7 +531,7 @@
 | `imapi2error.h` | IMapi, Wab | remaining |  |  |  |
 | `imapi2fs.h` | IMapi | remaining |  |  |  |
 | `imapi2fserror.h` | Wab | remaining |  |  |  |
-| `imapierror.h` | IMapi | remaining |  |  |  |
+| `imapierror.h` | IMapi | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
 | `ime_cmodes.h` | Input.Ime | matched |  | 09/02/2026 17:09:31 | Bit-field constants only, no functions. |
 | `ime.h` | FileHistory, WinProg | remaining |  |  |  |
 | `imepad.h` | Input.Ime | remaining |  |  |  |
@@ -610,7 +610,7 @@
 | `lmrepl.h` | NetMgmt | remaining |  |  |  |
 | `lmserver.h` | Base, NetMgmt | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `lmshare.h` | Fs | remaining |  |  |  |
-| `lmsname.h` | NetMgmt | remaining |  |  |  |
+| `lmsname.h` | NetMgmt | matched |  | 09/02/2026 19:35:00 | Service-name string constants only, no functions. |
 | `lmstats.h` | Fs | remaining |  |  |  |
 | `lmsvc.h` | NetMgmt | remaining |  |  |  |
 | `lmuse.h` | NetMgmt | remaining |  |  |  |
@@ -688,7 +688,7 @@
 | `mpconfig.h` | Media.DShow | remaining |  |  |  |
 | `mpeg2bits.h` | MsTv | matched |  | 09/02/2026 17:48:13 | Bitfield data structs only, no functions. |
 | `mpeg2data.h` | MsTv | remaining |  |  |  |
-| `mpeg2error.h` | Media.DShow | remaining |  |  |  |
+| `mpeg2error.h` | Media.DShow | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
 | `mpeg2psiparser.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `mpeg2structs.h` | MsTv | remaining |  |  |  |
 | `mpegtype.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
@@ -1099,7 +1099,7 @@
 | `tlhelp32.h` | ToolHelp | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `tlogstg.h` | Shell | remaining |  |  |  |
 | `tnef.h` | Tapi3 | remaining |  |  |  |
-| `tokenbinding.h` | Identity | remaining |  |  |  |
+| `tokenbinding.h` | Identity | matched |  | 09/02/2026 19:35:00 | All outputs are generic heap-allocated buffers/transparent structs (HeapFree convention), not distinctly-named opaque handles. |
 | `tom.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `tpcerror.h` | Tablet | remaining |  |  |  |
 | `tpcshrd.h` | Tablet | remaining |  |  |  |
