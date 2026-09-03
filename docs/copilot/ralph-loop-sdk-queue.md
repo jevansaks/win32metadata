@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:27:18Z
+- Generated: 2026-09-03T04:33:01Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 617
+- Matched: 622
 - In progress: 0
 - Blocked: 30
-- Remaining: 756
+- Remaining: 751
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -535,7 +535,7 @@
 | `ime_cmodes.h` | Input.Ime | matched |  | 09/02/2026 17:09:31 | Bit-field constants only, no functions. |
 | `ime.h` | FileHistory, WinProg | matched |  | 09/02/2026 20:56:17 | No function produces an opaque handle. |
 | `imepad.h` | Input.Ime | remaining |  |  |  |
-| `imessage.h` | IMapi | remaining |  |  |  |
+| `imessage.h` | IMapi | matched |  | 09/02/2026 21:32:46 | Fixed genuine gap: completed autoTypes.json entry for LPMSGSESS (CloseApi=CloseIMsgSession). |
 | `imessagedispatcher.h` | TransactionServer | matched |  | 09/02/2026 20:22:05 | COM/WinRT interface method only, out of scope. |
 | `imgerror.h` | Printing | remaining |  |  |  |
 | `imgutil.h` | InternetExplorer | remaining |  |  |  |
@@ -600,7 +600,7 @@
 | `lmat.h` | NetMgmt | matched |  | 09/02/2026 19:16:41 | Net API buffer-allocation convention, not HANDLE-family. |
 | `lmaudit.h` | NetMgmt | remaining |  |  |  |
 | `lmconfig.h` | NetMgmt | matched |  | 09/02/2026 18:03:29 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
-| `lmcons.h` | Dfs, NetMgmt | remaining |  |  |  |
+| `lmcons.h` | Dfs, NetMgmt | matched |  | 09/02/2026 21:32:46 | Constants only, no functions. |
 | `lmdfs.h` | Dfs | remaining |  |  |  |
 | `lmerr.h` | NetMgmt | remaining |  |  |  |
 | `lmerrlog.h` | NetMgmt | remaining |  |  |  |
@@ -663,7 +663,7 @@
 | `mgmtapi.h` | Snmp | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mi.h` | Mi | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
 | `micaut.h` | Tablet | remaining |  |  |  |
-| `midles.h` | Rpc | remaining |  |  |  |
+| `midles.h` | Rpc | matched |  | 09/02/2026 21:32:46 | Enums/function-pointer typedefs only, no extern functions. |
 | `mileffects.h` | Wibe | remaining |  |  |  |
 | `minappmodel.h` | AppxPackaging | matched |  | 09/02/2026 19:14:35 | Constants only, no functions. |
 | `mindumpdef.h` | Debug | matched |  | 09/02/2026 20:56:17 | Constants/enum only, no functions. |
@@ -787,7 +787,7 @@
 | `newdev.h` | DevInst | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `nfcdtadev.h` | Nfc | remaining |  |  |  |
 | `nfcradiodev.h` | Nfc | matched |  | 09/02/2026 17:54:05 | GUID/IOCTL constants + data structs only, no functions. |
-| `nfcsedev.h` | Nfc | remaining |  |  |  |
+| `nfcsedev.h` | Nfc | matched |  | 09/02/2026 21:32:46 | GUID/IOCTL constants and structs only, no functions. |
 | `nfpdev.h` | Nfp | matched | copilot | 09/03/2026 05:00:00 | No patch needed; constant-only header. |
 | `notesdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:35:31 | GUID/name constants only, no functions. |
 | `notificationactivationcallback.h` | Win32_Tile_Badge_Notif | matched |  | 09/02/2026 20:22:05 | COM interface method only, out of scope. |
@@ -885,7 +885,7 @@
 | `Print3DManagerInterop.h` | WinRT.Printing | remaining |  |  |  |
 | `PrinterExtension.h` | Printing | remaining |  |  |  |
 | `printerextensiondispid.h` | Printing | remaining |  |  |  |
-| `PrintManagerInterop.h` | WinRT.Printing | remaining |  |  |  |
+| `PrintManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:32:46 | COM/WinRT interop interface method only, out of scope. |
 | `printoem.h` | Printing | remaining |  |  |  |
 | `printpreview.h` | Printing | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `prnasnot.h` | Gdi, Printing | blocked |  | 09/02/2026 20:44:40 | RegisterForPrintAsyncNotifications produces generic HANDLE via direct out-param. |

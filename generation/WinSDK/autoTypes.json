@@ -2505,6 +2505,7 @@
     "Namespace": "Windows.Win32.Storage.Imapi",
     "Name": "LPMSGSESS",
     "ValueType": "typedef struct _MSGSESS",
+    "CloseApi": "CloseIMsgSession",
     "NativeTypedef": true
   },
   {

@@ -4727,10 +4727,10 @@
   {
     "header": "imessage.h",
     "partition": "IMapi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:32:46Z",
+    "notes": "Fixed genuine gap: completed autoTypes.json entry for LPMSGSESS (CloseApi=CloseIMsgSession).",
     "_source": "header-progress"
   },
   {
@@ -5312,10 +5312,10 @@
   {
     "header": "lmcons.h",
     "partition": "Dfs, NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:32:46Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5879,10 +5879,10 @@
   {
     "header": "midles.h",
     "partition": "Rpc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:32:46Z",
+    "notes": "Enums/function-pointer typedefs only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -6995,10 +6995,10 @@
   {
     "header": "nfcsedev.h",
     "partition": "Nfc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:32:46Z",
+    "notes": "GUID/IOCTL constants and structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7877,10 +7877,10 @@
   {
     "header": "PrintManagerInterop.h",
     "partition": "WinRT.Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:32:46Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {

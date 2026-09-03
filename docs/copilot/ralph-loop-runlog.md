@@ -2155,3 +2155,18 @@ MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
 - hintsdeviceservice.h: WPD Hints device-service GUID constants only. Clean.
 
 **Ledger status:** 617 accepted-normalized, 30 blocked, 756 pending.
+
+## 2026-09-02 21:33:01 UTC - Batch scraping-investigation-92
+
+**Headers:** nfcsedev.h, IMessage.h, PrintManagerInterop.h, Midles.h, lmcons.h
+**Partitions scraped (x64):** WinRT.Printing, Dfs (0 errors each); IMapi re-scraped after fix; Nfc/Rpc/NetMgmt reused
+
+- nfcsedev.h: NFC SE device GUID/IOCTL constants and structs only, no functions. Clean.
+- IMessage.h: **genuine fix applied.** LPMSGSESS's autoTypes.json entry was missing CloseApi
+  (same incomplete-entry pattern as appnotify.h/dciman.h/devquery.h/roapi.h). Added
+  CloseApi: CloseIMsgSession. Verified single-file declaration and re-scraped IMapi (0 errors).
+- PrintManagerInterop.h: IPrintManagerInterop COM/WinRT interop interface method only. Clean.
+- Midles.h: RPC pickling enums/function-pointer typedefs only, no extern functions. Clean.
+- lmcons.h: LAN Manager API constants only, no functions. Clean.
+
+**Ledger status:** 622 accepted-normalized, 30 blocked, 751 pending.
