@@ -1833,3 +1833,17 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - dls2.h: DLS2 FOURCC/format constants only, no functions. Clean.
 
 **Ledger status:** 519 accepted-normalized, 23 blocked, 861 pending.
+
+## 2026-09-02 20:16:29 UTC - Batch scraping-investigation-71
+
+**Headers:** lmstats.h, pdhmsg.h, wcmapi.h, defaultbrowsersyncsettings.h, regbag.h
+**Partitions scraped (x64):** Fs, Perf, Wcm, MsTv (0 errors each); WinProg reused from batch 69
+
+- lmstats.h: NetStatisticsGet follows established NetApiBufferAllocate/Free convention. Clean.
+- pdhmsg.h: Message-compiler-generated PDH status/message constants only, no functions. Clean.
+- wcmapi.h: WcmQueryProperty/WcmGetProfileList outputs are generic buffer/transparent struct freed
+  via generic WcmFreeMemory, not distinctly-named opaque handles. Clean.
+- defaultbrowsersyncsettings.h: COM interface (IDefaultBrowserSyncSettings) + GUID constants only. Clean.
+- regbag.h: COM interface (ICreatePropBagOnRegKey) method only, out of scope. Clean.
+
+**Ledger status:** 524 accepted-normalized, 23 blocked, 856 pending.

@@ -2387,10 +2387,10 @@
   {
     "header": "defaultbrowsersyncsettings.h",
     "partition": "WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:16:15Z",
+    "notes": "COM interface + GUID constants only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -5411,10 +5411,10 @@
   {
     "header": "lmstats.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:16:15Z",
+    "notes": "Net API buffer-allocation convention.",
     "_source": "header-progress"
   },
   {
@@ -7598,10 +7598,10 @@
   {
     "header": "pdhmsg.h",
     "partition": "Perf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:16:15Z",
+    "notes": "Message-compiler constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8282,10 +8282,10 @@
   {
     "header": "regbag.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:16:15Z",
+    "notes": "COM interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -10613,10 +10613,10 @@
   {
     "header": "wcmapi.h",
     "partition": "Wcm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:16:15Z",
+    "notes": "Generic memory-allocation convention / transparent struct, not distinctly-named opaque handle.",
     "_source": "header-progress"
   },
   {

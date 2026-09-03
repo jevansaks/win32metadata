@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:13:46Z
+- Generated: 2026-09-03T03:16:29Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 519
+- Matched: 524
 - In progress: 0
 - Blocked: 23
-- Remaining: 861
+- Remaining: 856
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -275,7 +275,7 @@
 | `ddrawint.h` | DirectDraw | remaining |  |  |  |
 | `ddstream.h` | Media.DShow | remaining |  |  |  |
 | `debugapi.h` | Base, Debug | matched |  | 09/02/2026 19:06:16 | HANDLE is a caller-supplied input, not produced here. |
-| `defaultbrowsersyncsettings.h` | WinProg | remaining |  |  |  |
+| `defaultbrowsersyncsettings.h` | WinProg | matched |  | 09/02/2026 20:16:15 | COM interface + GUID constants only, no extern functions. |
 | `delayloadhandler.h` | WinProg | matched |  | 09/02/2026 17:27:04 | Structs/callback-typedef/extern-variable only, no functions. |
 | `deletebrowsinghistory.h` | WinProg | remaining |  |  |  |
 | `deliveryoptimization.h` | DeliveryOptimization | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
@@ -611,7 +611,7 @@
 | `lmserver.h` | Base, NetMgmt | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `lmshare.h` | Fs | remaining |  |  |  |
 | `lmsname.h` | NetMgmt | matched |  | 09/02/2026 19:35:00 | Service-name string constants only, no functions. |
-| `lmstats.h` | Fs | remaining |  |  |  |
+| `lmstats.h` | Fs | matched |  | 09/02/2026 20:16:15 | Net API buffer-allocation convention. |
 | `lmsvc.h` | NetMgmt | remaining |  |  |  |
 | `lmuse.h` | NetMgmt | remaining |  |  |  |
 | `lmuseflg.h` | NetMgmt | matched |  | 09/02/2026 17:23:42 | Constants/macro only, no functions. |
@@ -854,7 +854,7 @@
 | `pbdaerrors.h` | Media.DShow | matched |  | 09/02/2026 20:13:28 | HRESULT constants/macros only, no functions. |
 | `pchannel.h` | TermServ | remaining |  |  |  |
 | `pdh.h` | Perf | remaining |  |  |  |
-| `pdhmsg.h` | Perf | remaining |  |  |  |
+| `pdhmsg.h` | Perf | matched |  | 09/02/2026 20:16:15 | Message-compiler constants only, no functions. |
 | `peerdist.h` | P2p | remaining |  |  |  |
 | `peninputpanel.h` | Tablet | remaining |  |  |  |
 | `perceptiondevicecore.h` | MixedReality | matched |  | 09/02/2026 18:23:41 | Data structs + GUID constant only, no functions. |
@@ -930,7 +930,7 @@
 | `recdefs.h` | Tablet | remaining |  |  |  |
 | `reconcil.h` | Lwef, Shell | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `rectypes.h` | Tablet | remaining |  |  |  |
-| `regbag.h` | MsTv | remaining |  |  |  |
+| `regbag.h` | MsTv | matched |  | 09/02/2026 20:16:15 | COM interface method only, out of scope. |
 | `regstr.h` | Registry | remaining |  |  |  |
 | `relogger.h` | Etw | remaining |  |  |  |
 | `remotesystemadditionalinfo.h` | TermServ | remaining |  |  |  |
@@ -1189,7 +1189,7 @@
 | `wbemidl.h` | Wmi | matched |  | 09/02/2026 16:57:06 | Redirect-only; 40 functions all MIDL RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wbemprov.h` | Wmi | remaining |  |  |  |
 | `wbemtran.h` | Wmi | remaining |  |  |  |
-| `wcmapi.h` | Wcm | remaining |  |  |  |
+| `wcmapi.h` | Wcm | matched |  | 09/02/2026 20:16:15 | Generic memory-allocation convention / transparent struct, not distinctly-named opaque handle. |
 | `wcmconfig.h` | Smi | remaining |  |  |  |
 | `wcmerrors.h` | Smi | remaining |  |  |  |
 | `wcnapi.h` | Wcn | matched |  | 09/02/2026 17:01:48 | Redirect-only; 0 functions in entire Wcn partition, no DECLARE_HANDLE. |
