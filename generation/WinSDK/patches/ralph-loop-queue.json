@@ -3611,10 +3611,10 @@
   {
     "header": "exposeenums2managed.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:26:39Z",
+    "notes": "Macro-definitions only, no declarations.",
     "_source": "header-progress"
   },
   {
@@ -5357,10 +5357,10 @@
   {
     "header": "lmmsg.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:26:39Z",
+    "notes": "Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -5681,10 +5681,10 @@
   {
     "header": "metadatadeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:26:39Z",
+    "notes": "GUID/property-key constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8705,10 +8705,10 @@
   {
     "header": "schedule.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:26:39Z",
+    "notes": "Constants + data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -9344,10 +9344,10 @@
   {
     "header": "stgprop.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:26:39Z",
+    "notes": "PROPID/GUID constants only, no functions.",
     "_source": "header-progress"
   },
   {

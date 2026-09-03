@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:23:49Z
+- Generated: 2026-09-03T01:26:47Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 384
+- Matched: 389
 - In progress: 0
 - Blocked: 8
-- Remaining: 1011
+- Remaining: 1006
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -411,7 +411,7 @@
 | `exdisp.h` | FileHistory, Shell, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `exdispid.h` | InternetExplorer | remaining |  |  |  |
 | `expandedresources.h` | GameMode | matched |  | 09/02/2026 17:16:10 | No handle-typed values anywhere in this header. |
-| `exposeenums2managed.h` | FileHistory, WinProg | remaining |  |  |  |
+| `exposeenums2managed.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:26:39 | Macro-definitions only, no declarations. |
 | `extensionvalidation.h` | InternetExplorer | remaining |  |  |  |
 | `extsfns.h` | Debug.Extensions | remaining |  |  |  |
 | `faxcomex.h` | Fax | remaining |  |  |  |
@@ -605,7 +605,7 @@
 | `lmerr.h` | NetMgmt | remaining |  |  |  |
 | `lmerrlog.h` | NetMgmt | remaining |  |  |  |
 | `lmjoin.h` | NetMgmt | remaining |  |  |  |
-| `lmmsg.h` | NetMgmt | remaining |  |  |  |
+| `lmmsg.h` | NetMgmt | matched |  | 09/02/2026 18:26:39 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
 | `lmremutl.h` | NetMgmt | remaining |  |  |  |
 | `lmrepl.h` | NetMgmt | remaining |  |  |  |
 | `lmserver.h` | Base, NetMgmt | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
@@ -641,7 +641,7 @@
 | `mergemod.h` | Setup | remaining |  |  |  |
 | `messagedeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `messagedispatcherapi.h` | ComOle, WinRT | matched |  | 09/02/2026 17:13:02 | IMessageDispatcher pointer is caller-supplied input, not produced here. |
-| `metadatadeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `metadatadeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:26:39 | GUID/property-key constants only, no functions. |
 | `metahost.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `mfapi.h` | Mf | remaining |  |  |  |
 | `mfcaptureengine.h` | Mf | remaining |  |  |  |
@@ -977,7 +977,7 @@
 | `scclient.h` | Wmdm | remaining |  |  |  |
 | `scesvc.h` | Security.ConfigurationSnapin | remaining |  |  |  |
 | `schannel.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Wsw | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
-| `schedule.h` | ActiveDirectory | remaining |  |  |  |
+| `schedule.h` | ActiveDirectory | matched |  | 09/02/2026 18:26:39 | Constants + data structs only, no functions. |
 | `schnlsp.h` | Identity | matched |  | 09/02/2026 17:01:48 | Redirect-only; schannel.h already accepted-normalized. |
 | `scrnsave.h` | Shell | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `sddl.h` | Authorization, Authorization.UI | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
@@ -1048,7 +1048,7 @@
 | `statehelpers.h` | FileHistory, Registry | matched |  | 09/02/2026 18:09:40 | HKEY parameters are inputs only, not produced here. |
 | `statusdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `stdint.h` | AllJoyn | remaining |  |  |  |
-| `stgprop.h` | Search | remaining |  |  |  |
+| `stgprop.h` | Search | matched |  | 09/02/2026 18:26:39 | PROPID/GUID constants only, no functions. |
 | `sti.h` | ImagingDevice | remaining |  |  |  |
 | `stierr.h` | ImagingDevice | remaining |  |  |  |
 | `stireg.h` | ImagingDevice | remaining |  |  |  |

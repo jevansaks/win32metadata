@@ -1309,3 +1309,21 @@ MSAJTransport.h), 1016 pending.
 
 **Ledger status:** 384 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 1011 pending.
+
+## 2026-09-02 18:27:00 UTC - Batch scraping-investigation-41
+
+**Headers:** exposeenums2managed.h, metadatadeviceservice.h, stgprop.h, lmmsg.h, schedule.h
+**Partitions scraped:** ActiveDirectory (x86; 0 errors; 3 pre-existing unrelated cross-partition remap
+warnings for sockaddr/timeval/_CERT_CONTEXT)
+
+- exposeenums2managed.h: pure macro-definition helper, no declarations. Clean.
+- metadatadeviceservice.h: GUID/property-key constants only (same pattern as notesdeviceservice.h/
+  ringtonedeviceservice.h/deviceservices.h), no functions. Clean.
+- stgprop.h: PROPID/GUID constants only, no functions. Clean.
+- lmmsg.h: NetMessageName*/NetMessageBufferSend use the Net API buffer-allocation convention
+  (NetApiBufferFree), not HANDLE-family; part of the lm.h umbrella already noted as individually
+  tracked. Clean.
+- schedule.h: constants + data structs only, no functions. Clean.
+
+**Ledger status:** 389 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 1006 pending.
