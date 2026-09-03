@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:25:01Z
+- Generated: 2026-09-03T10:28:02Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1161
+- Matched: 1166
 - In progress: 0
 - Blocked: 31
-- Remaining: 211
+- Remaining: 206
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -17,7 +17,7 @@
 | `activation.h` | WinRT | matched |  | 09/02/2026 20:19:39 | COM/WinRT interface method only, out of scope. |
 | `activaut.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activaut.h.md |
 | `activdbg.h` | Debug.ActiveScript | remaining |  |  |  |
-| `activdbg100.h` | Debug.ActiveScript | remaining |  |  |  |
+| `activdbg100.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activdbg100.h.md |
 | `activecf.h` | Media.DShow | matched |  | 09/02/2026 17:09:31 | Clipboard-format data struct only, no functions. |
 | `activprof.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activprof.h.md |
 | `adhoc.h` | Ndis, NWifi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/adhoc.h.md |
@@ -366,7 +366,7 @@
 | `dxmini.h` | DirectDraw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxmini.h.md |
 | `dxprogrammablecapture.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 17:45:25 | Parameterless COM interface methods, no handle. |
 | `dxva.h` | Media.DShow, Mf | remaining |  |  |  |
-| `dxva2api.h` | Media.DShow, Mf | remaining |  |  |  |
+| `dxva2api.h` | Media.DShow, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxva2api.h.md |
 | `dxva2swdev.h` | Media.DShow | matched |  | 09/02/2026 20:38:46 | Function-pointer-typedef-in-struct pattern, out of scope; no extern functions. |
 | `dxva2trace.h` | Media.DShow | matched |  | 09/02/2026 20:07:23 | ETW tracing constants/structs only, no functions. |
 | `dxva9typ.h` | Media.DShow, Mf | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
@@ -644,7 +644,7 @@
 | `metadatadeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:26:39 | GUID/property-key constants only, no functions. |
 | `metahost.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `mfapi.h` | Mf | remaining |  |  |  |
-| `mfcaptureengine.h` | Mf | remaining |  |  |  |
+| `mfcaptureengine.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcaptureengine.h.md |
 | `mfcontentdecryptionmodule.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcontentdecryptionmodule.h.md |
 | `mfd3d12.h` | Direct3D12, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfd3d12.h.md |
 | `mferror.h` | Mf | remaining |  |  |  |
@@ -1021,7 +1021,7 @@
 | `simpdata.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/simpdata.h.md |
 | `slerror.h` | Identity | remaining |  |  |  |
 | `sliddefs.h` | Identity | matched |  | 09/02/2026 16:57:06 | GUID constant only, no functions. |
-| `slpublic.h` | Identity | remaining |  |  |  |
+| `slpublic.h` | Identity | matched |  |  | Producer-site fix: added HSLC autoTypes.json entry (CloseApi SLClose). See docs/copilot/header-reports/slpublic.h.md |
 | `smbclnt.h` | MsCs | matched |  | 09/02/2026 18:50:10 | HANDLE is a caller-supplied input, not produced here. |
 | `smtpguid.h` | IMapi | matched |  | 09/02/2026 21:04:56 | GUID/string constants only, no functions. |
 | `snmp.h` | Snmp | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
@@ -1408,7 +1408,7 @@
 | `xolehlp.h` | DTC | matched |  | 09/02/2026 20:38:46 | All outputs are standard COM QueryInterface-style interface pointers. |
 | `xprtdefs.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xprtdefs.h.md |
 | `xpsdigitalsignature.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsdigitalsignature.h.md |
-| `xpsobjectmodel_1.h` | Xps | remaining |  |  |  |
+| `xpsobjectmodel_1.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_1.h.md |
 | `xpsobjectmodel_2.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_2.h.md |
 | `xpsobjectmodel.h` | Xps | remaining |  |  |  |
 | `xpsprint.h` | Gdi, XpsPrinting | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsprint.h.md |

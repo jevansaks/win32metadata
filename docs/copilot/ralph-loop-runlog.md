@@ -3302,3 +3302,11 @@ Ledger: 1156 accepted-normalized, 31 blocked, 216 pending (1187/1403 classified)
 - windowsx.h: pure macro-only header. Clean.
 
 Ledger: 1161 accepted-normalized, 31 blocked, 211 pending (1192/1403 classified).
+
+## Batch 201 (2026-09-03 03:28): dxva2api.h, activdbg100.h, slpublic.h, xpsobjectmodel_1.h, mfcaptureengine.h
+
+- dxva2api.h: COM interface pointer outputs. Clean.
+- activdbg100.h, xpsobjectmodel_1.h, mfcaptureengine.h: COM vtable only. Clean.
+- slpublic.h (Identity): PRODUCER-SITE FIX - HSLC autoTypes.json entry added (CloseApi SLClose).
+
+Ledger: 1166 accepted-normalized, 31 blocked, 206 pending (1197/1403 classified).

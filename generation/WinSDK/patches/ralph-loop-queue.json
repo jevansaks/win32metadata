@@ -65,10 +65,10 @@
   {
     "header": "activdbg100.h",
     "partition": "Debug.ActiveScript",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activdbg100.h.md",
     "_source": "header-progress"
   },
   {
@@ -3206,10 +3206,10 @@
   {
     "header": "dxva2api.h",
     "partition": "Media.DShow, Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxva2api.h.md",
     "_source": "header-progress"
   },
   {
@@ -5708,10 +5708,10 @@
   {
     "header": "mfcaptureengine.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcaptureengine.h.md",
     "_source": "header-progress"
   },
   {
@@ -9101,10 +9101,10 @@
   {
     "header": "slpublic.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added HSLC autoTypes.json entry (CloseApi SLClose). See docs/copilot/header-reports/slpublic.h.md",
     "_source": "header-progress"
   },
   {
@@ -12584,10 +12584,10 @@
   {
     "header": "xpsobjectmodel_1.h",
     "partition": "Xps",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_1.h.md",
     "_source": "header-progress"
   },
   {
