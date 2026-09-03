@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:08:03Z
+- Generated: 2026-09-03T06:10:40Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 751
+- Matched: 756
 - In progress: 0
 - Blocked: 31
-- Remaining: 621
+- Remaining: 616
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -632,7 +632,7 @@
 | `mcx.h` | Communication | remaining |  |  |  |
 | `mdhcp.h` | Tapi3 | remaining |  |  |  |
 | `mdmlocalmanagement.h` | MdmReg | matched |  | 09/02/2026 17:54:05 | No handle-typed values; string output uses LocalFree, not HANDLE mechanism. |
-| `mdmregistration.h` | MdmReg | remaining |  |  |  |
+| `mdmregistration.h` | MdmReg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mdmregistration.h.md |
 | `mediaerr.h` | Media.DShow, Media.DxMediaObjects | matched |  | 09/02/2026 17:13:02 | HRESULT error constants only, no functions. |
 | `mediaobj.h` | Media.DShow, Media.DxMediaObjects | remaining |  |  |  |
 | `medparam.h` | Media.DShow | remaining |  |  |  |
@@ -781,7 +781,7 @@
 | `netfw.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `netiodef.h` | WinSock, wnv | remaining |  |  |  |
 | `netlistmgr.h` | Nla, WindowsConnectionManager | remaining |  |  |  |
-| `netprov.h` | NetMgmt | remaining |  |  |  |
+| `netprov.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netprov.h.md |
 | `netsh.h` | NetShell | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
 | `nettypes.h` | NetMgmt | matched |  | 09/02/2026 18:40:30 | Typedefs/data structs/constants only, no functions. |
 | `newdev.h` | DevInst | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
@@ -1122,7 +1122,7 @@
 | `tvratings.h` | MsTv | remaining |  |  |  |
 | `txdtc.h` | DTC | remaining |  |  |  |
 | `txfw32.h` | Fs | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
-| `txlogpub.h` | TransactionServer | remaining |  |  |  |
+| `txlogpub.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/txlogpub.h.md |
 | `ual.h` | Ual | matched | copilot | 09/02/2026 22:59:00 | First header-scraping-investigation batch: no prior patch existed. New supported-os patch created and verified via live re-scrape, not just static review. |
 | `uianimation.h` | UiAnimation | remaining |  |  |  |
 | `uiautomationclient.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
@@ -1301,7 +1301,7 @@
 | `winsatcominterfacei.h` | WinSat | remaining |  |  |  |
 | `winscard.h` | Credentials | remaining |  |  |  |
 | `winsdkver.h` | Foundation | matched |  | 09/02/2026 17:09:31 | Version constants only, no functions. |
-| `winsmcrd.h` | Credentials | remaining |  |  |  |
+| `winsmcrd.h` | Credentials | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsmcrd.h.md |
 | `winsnmp.h` | Snmp | remaining |  |  |  |
 | `WinSock.h` | Fsrm, TermServ, WinSock | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsock2.h` | ActiveDirectory, HttpServer, IpHlp, P2p, Qos, Ual, WindowsFilteringPlatform, WinHttp, WinSock, wnv | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
@@ -1392,7 +1392,7 @@
 | `wtshintapi.h` | TermServ | matched |  | 09/02/2026 19:12:01 | HWND is an input; render hint ID is a plain UINT64, not a HANDLE. |
 | `wtsprotocol.h` | TermServ | remaining |  |  |  |
 | `wtypes.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, Properties, Registry, Shutdown, TransactionServer, WinProg | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
-| `wtypesbase.h` | TransactionServer, WinSock | remaining |  |  |  |
+| `wtypesbase.h` | TransactionServer, WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtypesbase.h.md |
 | `wuapi.h` | Wua | remaining |  |  |  |
 | `wuerror.h` | Wua | remaining |  |  |  |
 | `xa.h` | DTC | matched |  | 09/02/2026 21:38:18 | No function produces an opaque handle; XA switch entries are function-pointer struct fields. |

@@ -2498,3 +2498,13 @@ Ledger: 746 accepted-normalized, 31 blocked, 626 pending (777/1403 classified).
 - **CastingInterop.h** (WinRT): COM interfaces only, no free functions. Clean.
 
 Ledger: 751 accepted-normalized, 31 blocked, 621 pending (782/1403 classified).
+
+## Batch 119 (2026-09-02 23:10): wtypesbase.h, txlogpub.h, winsmcrd.h, netprov.h, mdmregistration.h
+
+- **wtypesbase.h** (TransactionServer, WinSock): COM base types only, no free functions. Clean.
+- **txlogpub.h** (TransactionServer): COM interfaces only, no free functions. Clean.
+- **winsmcrd.h** (Credentials): Smart Card IOCTL codes/structs only, no functions. Clean.
+- **netprov.h** (NetMgmt): COM interfaces only, no free functions. Clean.
+- **mdmregistration.h** (MdmReg): GetDeviceRegistrationInfo outputs untyped PVOID (type varies per enum value, unrepresentable); DiscoverManagementService outputs transparent MANAGEMENT_SERVICE_INFO struct. Clean, no new metadata gap.
+
+Ledger: 756 accepted-normalized, 31 blocked, 616 pending (787/1403 classified).

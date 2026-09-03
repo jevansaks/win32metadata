@@ -5600,10 +5600,10 @@
   {
     "header": "mdmregistration.h",
     "partition": "MdmReg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mdmregistration.h.md",
     "_source": "header-progress"
   },
   {
@@ -6941,10 +6941,10 @@
   {
     "header": "netprov.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netprov.h.md",
     "_source": "header-progress"
   },
   {
@@ -10010,10 +10010,10 @@
   {
     "header": "txlogpub.h",
     "partition": "TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/txlogpub.h.md",
     "_source": "header-progress"
   },
   {
@@ -11621,10 +11621,10 @@
   {
     "header": "winsmcrd.h",
     "partition": "Credentials",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsmcrd.h.md",
     "_source": "header-progress"
   },
   {
@@ -12440,10 +12440,10 @@
   {
     "header": "wtypesbase.h",
     "partition": "TransactionServer, WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtypesbase.h.md",
     "_source": "header-progress"
   },
   {
