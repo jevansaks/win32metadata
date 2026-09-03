@@ -3531,3 +3531,9 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - portabledevice.h: COM interfaces + 2 macro-generated WPD command-access-map helper functions (no handle-ownership pattern), clean.
 - nserror.h: error-code constants only, clean.
 - Ledger: 1297 accepted-normalized, 59 blocked, 47 pending (1356/1403 = 96.6%).
+
+## Batch 228 (2e503443 -> next)
+- webservices.h: 11 producer-site fixes - added CloseApi to existing WS_CHANNEL/WS_ERROR/WS_HEAP/WS_LISTENER/WS_MESSAGE/WS_METADATA/WS_SECURITY_TOKEN/WS_SERVICE_HOST/WS_SERVICE_PROXY/WS_XML_READER/WS_XML_WRITER autoTypes.json entries, all genuinely opaque forward-declared struct pointers with single producer/consumer pairs (same pattern as gl/glu.h GLU types). WS_XML_BUFFER/WS_OPERATION_CONTEXT/WS_POLICY/WS_SECURITY_CONTEXT investigated but not annotated (no paired WsFree* function - heap-owned or transient references). Validated ScrapeHeaders x64 Wsw -> 0 errors.
+- windows.devices.midi.h, PrinterExtension.h: COM/WinRT vtable-only headers, clean.
+- strsafe.h: inline string-safety buffer helpers only, no handle pattern, clean.
+- Ledger: 1301 accepted-normalized, 59 blocked, 43 pending (1360/1403 = 96.9%).

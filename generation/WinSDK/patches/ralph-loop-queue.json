@@ -7859,10 +7859,10 @@
   {
     "header": "PrinterExtension.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/PrinterExtension.h.md",
     "_source": "header-progress"
   },
   {
@@ -9434,10 +9434,10 @@
   {
     "header": "strsafe.h",
     "partition": "MenuRc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; inline string-safety buffer helpers only, no handle pattern. See docs/copilot/header-reports/strsafe.h.md",
     "_source": "header-progress"
   },
   {
@@ -10829,10 +10829,10 @@
   {
     "header": "webservices.h",
     "partition": "Wsw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added CloseApi/InvalidHandleValues to 11 existing opaque struct-pointer autoTypes.json entries (WS_CHANNEL/WS_ERROR/WS_HEAP/WS_LISTENER/WS_MESSAGE/WS_METADATA/WS_SECURITY_TOKEN/WS_SERVICE_HOST/WS_SERVICE_PROXY/WS_XML_READER/WS_XML_WRITER). Validated ScrapeHeaders x64 Wsw -> 0 errors. See docs/copilot/header-reports/WebServices.h.md",
     "_source": "header-progress"
   },
   {
@@ -11162,10 +11162,10 @@
   {
     "header": "windows.devices.midi.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; MIDL-generated WinRT COM vtable methods only, no free functions. See docs/copilot/header-reports/windows.devices.midi.h.md",
     "_source": "header-progress"
   },
   {

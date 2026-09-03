@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:47:23Z
+- Generated: 2026-09-03T11:52:42Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1297
+- Matched: 1301
 - In progress: 0
 - Blocked: 59
-- Remaining: 47
+- Remaining: 43
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -883,7 +883,7 @@
 | `presentation.h` | CompositionSwapchain | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/presentation.h.md |
 | `presentationtypes.h` | CompositionSwapchain | matched |  | 09/02/2026 18:06:26 | Data structs/enum/typedef + MIDL boilerplate only, no functions. |
 | `Print3DManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:43:41 | COM/WinRT interop interface method only, out of scope. |
-| `PrinterExtension.h` | Printing | remaining |  |  |  |
+| `PrinterExtension.h` | Printing | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/PrinterExtension.h.md |
 | `printerextensiondispid.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/printerextensiondispid.h.md |
 | `PrintManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:32:46 | COM/WinRT interop interface method only, out of scope. |
 | `printoem.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/printoem.h.md |
@@ -1058,7 +1058,7 @@
 | `stralign.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/stralign.h.md |
 | `stringapiset.h` | Intl | matched |  | 09/02/2026 19:16:41 | String/buffer conversion API only, no handle. |
 | `strmif.h` | Media.DShow, Media.KernelStreaming, MsTv, WmFormat | remaining |  |  |  |
-| `strsafe.h` | MenuRc | remaining |  |  |  |
+| `strsafe.h` | MenuRc | matched |  |  | Investigated; inline string-safety buffer helpers only, no handle pattern. See docs/copilot/header-reports/strsafe.h.md |
 | `structuredquery.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquery.h.md |
 | `structuredquerycondition.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquerycondition.h.md |
 | `subauth.h` | Identity | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
@@ -1213,7 +1213,7 @@
 | `webauthn.h` | WebAuthn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webauthn.h.md |
 | `webauthnplugin.h` | WebAuthn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webauthnplugin.h.md |
 | `webevnts.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webevnts.h.md |
-| `webservices.h` | Wsw | remaining |  |  |  |
+| `webservices.h` | Wsw | matched |  |  | Producer-site fix: added CloseApi/InvalidHandleValues to 11 existing opaque struct-pointer autoTypes.json entries (WS_CHANNEL/WS_ERROR/WS_HEAP/WS_LISTENER/WS_MESSAGE/WS_METADATA/WS_SECURITY_TOKEN/WS_SERVICE_HOST/WS_SERVICE_PROXY/WS_XML_READER/WS_XML_WRITER). Validated ScrapeHeaders x64 Wsw -> 0 errors. See docs/copilot/header-reports/WebServices.h.md |
 | `websocket.h` | WebSock | matched |  | 09/02/2026 21:01:40 | WEB_SOCKET_HANDLE already correctly covered via existing autoTypes.json entry. |
 | `werapi.h` | Wer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/werapi.h.md |
 | `wheadef.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wheadef.h.md |
@@ -1250,7 +1250,7 @@
 | `windows.data.pdf.interop.h` | WinRT.Pdf | matched |  | 09/02/2026 21:08:27 | Standard COM factory function + inline helper + COM interface method only. |
 | `windows.devices.alljoyn.interop.h` | WinRT.AllJoyn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.devices.alljoyn.interop.h.md |
 | `Windows.Devices.Display.Core.Interop.h` | WinRT.Display | matched |  | 09/02/2026 22:12:28 | COM interface methods + inline helpers only, out of scope. |
-| `windows.devices.midi.h` | Media.DShow | remaining |  |  |  |
+| `windows.devices.midi.h` | Media.DShow | matched |  |  | Investigated; MIDL-generated WinRT COM vtable methods only, no free functions. See docs/copilot/header-reports/windows.devices.midi.h.md |
 | `windows.fixed.h` | AllJoyn, Antimalware, ApplicationVerifier, AppxPackaging, Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Authorization, Authorization.UI, Backup, Base, Bits, Bluetooth, Buses, Cabinets, CEIP, Certificates, Cloudapi, ClrHosting, ClrProfiling, CmpApi, Com, Com.CallObj, Com.ChannelCreds, Com.Events, Com.StructuredStorage, Com.Urlmon, Communication, ComOle, CompositionSwapchain, Console, Controls, Controls.RichEdit, Cos, Credentials, DataXchg, Debug, Debug.ActiveScript, Debug.Extensions, Debug.WebApp, Dedup, DeliveryOptimization, DeviceAccess, DeviceQuery, Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Devices.Properties, DevInst, DevLic, Dfs, Dhcp, Direct2D, Direct2D.Common, Direct3D, Direct3D10, Direct3D11, Direct3D11on12, Direct3D12, Direct3D9, Direct3D9on12, Direct3DDxc, Direct3DFxc, DirectComp, DirectDraw, DirectManipulation, DirectML, DirectWrite, Display, DlgBox, Dlna, Dns, DTC, Dwm, DXCore, Dxgi, Dxgi.Common, Eap, EapHost, Environment, Etw, Fax, FileHistory, Foundation, Fs, Fsrm, FunctionDiscovery, GameInput, GameMode, GamingDvcInfo, Gdi, Gdiplus, Gpmc, Hid, HostComputeNetwork, HostComputeSystem, HtmlHelp, Hypervisor, Identity, IdentityProvider, Ifsk, Iis, ImagingDevice, IMapi, IndexSrv, Input_Ink, Input_IntContext, Input.Ime, InputRadial, InternetConnectionWizard, InternetExplorer, Intl, IO, Ioctl, IScsiDisc, Isolation, JobObjects, Js, KeyboardAndMouseInput, Ldap, LibraryLoader, Lwef, MachineLearning, MadCap, MagApi, Mapi, Mbn, MdmReg, Media, Media.DShow, Media.DShow.Xml, Media.DxMediaObjects, Media.KernelStreaming, Memory, MenuRc, MessageQueuing, Mf, MixedReality, MixedRealityInterop, Mmc, Monitor, MsChap, MsCs, MsHtml, MsTv, MsXml, Multimedia, Ndf, Ndis, NetBios, NetMgmt, NetShell, NetworkAccessProtection, Nfc, Nfp, Nla, Nps, NWifi, Of, Opc, OpenGL, Parcon, Perf, PicAcq, Pipes, Pla, Policy, Power, Printing, PrintTicket, Proc_Snap, ProjFs, Properties, PsApi1, PsApi2, PWM, Rdc, Rdp, RealTimeCommunications, Registry, RemoteAssist, Rm, Rpc, RRas, RstMgr, Search, SecBitomet, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, SecurityCenter, Sens, SerPorts, Services, Setup, Shell, Shell.Common, Shutdown, SideShow, Smi, Snmp, Speech, Sr, Storage.Jet, Storage.Nvme, SwDevice, SystemInformation, Tablet, Tapi3, TaskSchd, Tbs, Tcui, TermServ, Threading, Time, ToolHelp, TransactionServer, Tsf, UiAnimation, UpdateAssessment, Upnp, Variant, Vhd, VirtualDiskService, VirtualDOSMachines, VSS, Wab, Wcm, Wcn, Wcs, Wds, WebAuthn, WebDav, WebServicesOnDevices, WebSock, Wec, Wer, Wes, Wia, Wibe, Wic, Win32_Tile_Badge_Notif, WinAuto, WinContacts, WindowsConnectionManager, WindowsFirewall, WindowsRibbon, WindowsSetupAndMigration, WinInet, WinLocation, WinProg, WinRm, WinRT, WinRT.AllJoyn, WinRT.Composition, WinRT.CoreInputView, WinRT.Direct2D, WinRT.Direct3D11, WinRT.Display, WinRT.Graphics.Capture, WinRT.Graphics.Imaging, WinRT.Holographic, WinRT.Isolation, WinRT.Media, WinRT.Metadata, WinRT.ML, WinRT.Pdf, WinRT.Printing, WinRT.Storage, WinRT.Xaml, WinSat, WinSensors, WinSync, WinTouch, Wmdm, WmFormat, Wmi, Wmlss, Wmp, Wnet, WpdSdk, Wsb, Wsl, Wsw, Wua, Xaml_Diagnostics, Xaudio2, Xblidp, Xinput, XmlLite, Xps, XpsPrinting | matched |  |  | Investigated; preprocessor undef-list + includes only, no functions/typedefs declared directly, no ownership metadata gap. See docs/copilot/header-reports/windows.fixed.h.md |
 | `Windows.Graphics.Capture.Interop.h` | WinRT.Graphics.Capture | matched |  | 09/02/2026 17:35:31 | COM factory + query-only HWND/HMONITOR accessors. |
 | `windows.graphics.directx.direct3d11.interop.h` | WinRT.Direct3D11 | matched |  | 09/02/2026 19:02:46 | COM factory pattern throughout. |
