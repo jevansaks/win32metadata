@@ -3098,3 +3098,13 @@ Ledger: 1046 accepted-normalized, 31 blocked, 326 pending (1077/1403 classified)
 - **printoem.h** (Printing): legacy obsolete OEM print-driver plugin contract functions, no handle production. Clean.
 
 Ledger: 1051 accepted-normalized, 31 blocked, 321 pending (1082/1403 classified).
+
+## Batch 179 (2026-09-03 02:20): upnphost.h, mfsharingengine.h, msime.h, wiamindr_lh.h, lmerr.h
+
+- **upnphost.h** (Upnp): COM vtable only. Clean.
+- **mfsharingengine.h** (Mf): COM vtable only. Clean.
+- **msime.h** (Input.Ime): COM vtable only. Clean.
+- **wiamindr_lh.h** (Wia): COM vtable only. Clean.
+- **lmerr.h** (NetMgmt): NERR_* error constants only. Clean.
+
+Ledger: 1056 accepted-normalized, 31 blocked, 316 pending (1087/1403 classified).

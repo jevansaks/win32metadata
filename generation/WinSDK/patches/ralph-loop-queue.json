@@ -5330,10 +5330,10 @@
   {
     "header": "lmerr.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmerr.h.md",
     "_source": "header-progress"
   },
   {
@@ -5807,10 +5807,10 @@
   {
     "header": "mfsharingengine.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfsharingengine.h.md",
     "_source": "header-progress"
   },
   {
@@ -6527,10 +6527,10 @@
   {
     "header": "msime.h",
     "partition": "Input.Ime",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msime.h.md",
     "_source": "header-progress"
   },
   {
@@ -10091,10 +10091,10 @@
   {
     "header": "upnphost.h",
     "partition": "Upnp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/upnphost.h.md",
     "_source": "header-progress"
   },
   {
@@ -10910,10 +10910,10 @@
   {
     "header": "wiamindr_lh.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wiamindr_lh.h.md",
     "_source": "header-progress"
   },
   {

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:18:15Z
+- Generated: 2026-09-03T09:20:09Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1051
+- Matched: 1056
 - In progress: 0
 - Blocked: 31
-- Remaining: 321
+- Remaining: 316
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -602,7 +602,7 @@
 | `lmconfig.h` | NetMgmt | matched |  | 09/02/2026 18:03:29 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
 | `lmcons.h` | Dfs, NetMgmt | matched |  | 09/02/2026 21:32:46 | Constants only, no functions. |
 | `lmdfs.h` | Dfs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmdfs.h.md |
-| `lmerr.h` | NetMgmt | remaining |  |  |  |
+| `lmerr.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmerr.h.md |
 | `lmerrlog.h` | NetMgmt | remaining |  |  |  |
 | `lmjoin.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmjoin.h.md |
 | `lmmsg.h` | NetMgmt | matched |  | 09/02/2026 18:26:39 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
@@ -655,7 +655,7 @@
 | `mfobjects.h` | Mf | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `mfplay.h` | Mf | remaining |  |  |  |
 | `mfreadwrite.h` | Mf | remaining |  |  |  |
-| `mfsharingengine.h` | Mf | remaining |  |  |  |
+| `mfsharingengine.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfsharingengine.h.md |
 | `mfspatialaudio.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfspatialaudio.h.md |
 | `mftransform.h` | Mf | remaining |  |  |  |
 | `mfvirtualcamera.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfvirtualcamera.h.md |
@@ -735,7 +735,7 @@
 | `msidefs.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msidefs.h.md |
 | `msiehost.h` | InternetExplorer | matched |  | 09/02/2026 17:51:18 | GUID/command-ID constants only, no functions. |
 | `msiltcfg.h` | Setup | matched |  | 09/02/2026 17:38:44 | No handle involved. |
-| `msime.h` | Input.Ime | remaining |  |  |  |
+| `msime.h` | Input.Ime | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msime.h.md |
 | `msimeapi.h` | Input.Ime | matched |  | 09/02/2026 21:52:12 | COM interface only, no extern functions. |
 | `msinkaut.h` | Tablet | remaining |  |  |  |
 | `msinkaut15.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msinkaut15.h.md |
@@ -1131,7 +1131,7 @@
 | `uiribbon.h` | WindowsRibbon | remaining |  |  |  |
 | `UIViewSettingsInterop.h` | WinRT | matched |  | 09/02/2026 21:01:40 | COM/WinRT interop interface method only, out of scope. |
 | `upnp.h` | Upnp | remaining |  |  |  |
-| `upnphost.h` | Upnp | remaining |  |  |  |
+| `upnphost.h` | Upnp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/upnphost.h.md |
 | `urlhist.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/urlhist.h.md |
 | `urlmon.h` | Shell, TransactionServer | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `usb.h` | Buses | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usb.h.md |
@@ -1222,7 +1222,7 @@
 | `wiadevd.h` | Wia | matched |  | 09/02/2026 19:42:09 | Only extern function takes no opaque-handle output; other handle producers are COM vtable methods. |
 | `wiaintfc.h` | Wia | matched |  | 09/02/2026 17:05:19 | Device-interface GUID constant only, no functions. |
 | `wiamicro.h` | Wia | matched |  | 09/02/2026 21:38:18 | No concrete annotatable ownership gap identified. |
-| `wiamindr_lh.h` | Wia | remaining |  |  |  |
+| `wiamindr_lh.h` | Wia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wiamindr_lh.h.md |
 | `wiamindr.h` | Wia | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include wiamindr_lh.h/wiamindr_xp.h); no direct declarations. |
 | `wiatwcmp.h` | Wia | matched |  | 09/02/2026 18:00:53 | Data struct + constants only, no functions. |
 | `wiavideo.h` | Wia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wiavideo.h.md |
