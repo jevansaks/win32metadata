@@ -2180,10 +2180,10 @@
   {
     "header": "dbghelp.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbghelp.h.md",
     "_source": "header-progress"
   },
   {
@@ -2459,10 +2459,10 @@
   {
     "header": "devicetopology.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devicetopology.h.md",
     "_source": "header-progress"
   },
   {
@@ -3998,10 +3998,10 @@
   {
     "header": "fwpmu.h",
     "partition": "WindowsFilteringPlatform",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwpmu.h.md",
     "_source": "header-progress"
   },
   {
@@ -6491,10 +6491,10 @@
   {
     "header": "msi.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msi.h.md",
     "_source": "header-progress"
   },
   {
@@ -8651,10 +8651,10 @@
   {
     "header": "sbe.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sbe.h.md",
     "_source": "header-progress"
   },
   {

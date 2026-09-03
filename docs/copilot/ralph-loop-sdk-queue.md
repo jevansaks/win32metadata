@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:04:32Z
+- Generated: 2026-09-03T11:07:25Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1231
+- Matched: 1236
 - In progress: 0
 - Blocked: 31
-- Remaining: 141
+- Remaining: 136
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -252,7 +252,7 @@
 | `datetimeapi.h` | Intl | matched |  | 09/02/2026 19:19:02 | String/buffer formatting API only, no handle. |
 | `davclnt.h` | WebDav | blocked |  | 09/02/2026 19:54:02 | DavAddConnection generic HANDLE out-param; DavRegisterAuthCallback returns generic DWORD-typed OPAQUE_HANDLE via return value. |
 | `DbgEng.h` | Debug.Extensions | remaining |  |  |  |
-| `dbghelp.h` | FileHistory, WinProg | remaining |  |  |  |
+| `dbghelp.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbghelp.h.md |
 | `DbgModel.h` | Debug.Extensions | remaining |  |  |  |
 | `dbgprop.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbgprop.h.md |
 | `dbt.h` | MenuRc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbt.h.md |
@@ -283,7 +283,7 @@
 | `devguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devguid.h.md |
 | `deviceaccess.h` | DeviceAccess | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/deviceaccess.h.md |
 | `deviceservices.h` | WpdSdk | matched |  | 09/02/2026 17:58:11 | GUID/property-key constants only, no functions; BridgeDeviceService.h separately tracked (pending). |
-| `devicetopology.h` | Audio | remaining |  |  |  |
+| `devicetopology.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devicetopology.h.md |
 | `devioctl.h` | Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd | matched |  | 09/02/2026 21:04:56 | Device-type constants only, no functions. |
 | `devpkey.h` | Base, Devices.Properties | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devpkey.h.md |
 | `devpropdef.h` | Display, Nfc, Nfp, WpdSdk | matched |  | 09/02/2026 21:21:09 | Constants/typedef only, no functions. |
@@ -454,7 +454,7 @@
 | `functiondiscoverykeys_devpkey.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/functiondiscoverykeys_devpkey.h.md |
 | `functiondiscoveryprovider.h` | FunctionDiscovery, WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/functiondiscoveryprovider.h.md |
 | `fwpmtypes.h` | WindowsFilteringPlatform | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwpmtypes.h.md |
-| `fwpmu.h` | WindowsFilteringPlatform | remaining |  |  |  |
+| `fwpmu.h` | WindowsFilteringPlatform | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwpmu.h.md |
 | `fwptypes.h` | WindowsFilteringPlatform | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwptypes.h.md |
 | `fxsutility.h` | Fax | matched |  | 09/02/2026 17:19:28 | No handle involved. |
 | `GameInput.h` | GameInput | matched |  | 09/02/2026 16:34:06 | GameInputCreate is a clean COM-factory pattern; the one raw HANDLE out-param (IGameInputDispatcher::OpenWaitHandle) is a COM vtable method, outside DllImport-based ownership-annotation scope. |
@@ -731,7 +731,7 @@
 | `Mshtml.h` | MsHtml | remaining |  |  |  |
 | `mshtmlc.h` | MsHtml | remaining |  |  |  |
 | `mshtmldiagnostics.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmldiagnostics.h.md |
-| `msi.h` | Setup | remaining |  |  |  |
+| `msi.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msi.h.md |
 | `msidefs.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msidefs.h.md |
 | `msiehost.h` | InternetExplorer | matched |  | 09/02/2026 17:51:18 | GUID/command-ID constants only, no functions. |
 | `msiltcfg.h` | Setup | matched |  | 09/02/2026 17:38:44 | No handle involved. |
@@ -971,7 +971,7 @@
 | `rtworkq.h` | Threading | blocked |  | 09/02/2026 20:19:39 | RtwqJoinWorkQueue/RtwqSetDeadline produce generic HANDLE via direct out-param. |
 | `sapiddk.h` | Speech | remaining |  |  |  |
 | `sas.h` | Identity | matched |  | 09/02/2026 16:53:36 | SendSAS(BOOL) - no handle involved. |
-| `sbe.h` | MsTv | remaining |  |  |  |
+| `sbe.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sbe.h.md |
 | `sbtsv.h` | TermServ | remaining |  |  |  |
 | `scarderr.h` | Credentials | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/scarderr.h.md |
 | `scclient.h` | Wmdm | matched |  | 09/02/2026 18:32:46 | Pure C++ class, no extern/DllImport functions; out of scope for annotation mechanism. |

@@ -3436,3 +3436,13 @@ Ledger: 1226 accepted-normalized, 31 blocked, 146 pending (1257/1403 classified)
 - **cor.h** (ClrProfiling): internal CLR loader functions, no handle pair. Clean.
 
 Ledger: 1231 accepted-normalized, 31 blocked, 141 pending (1262/1403 classified).
+
+## Batch 215 (2026-09-03 04:07): dbghelp.h, msi.h, devicetopology.h, fwpmu.h, sbe.h
+
+- **dbghelp.h** (FileHistory/WinProg): SymInitialize/SymCleanup consume app-provided HANDLE as lookup key, no production. Clean.
+- **msi.h** (Setup): MSIHANDLE already correct. No gap.
+- **devicetopology.h** (Audio): COM vtable only. Clean.
+- **fwpmu.h** (WindowsFilteringPlatform): FWPM_ENGINE_HANDLE already correct. No gap.
+- **sbe.h** (MsTv): COM vtable only. Clean.
+
+Ledger: 1236 accepted-normalized, 31 blocked, 136 pending (1267/1403 classified).
