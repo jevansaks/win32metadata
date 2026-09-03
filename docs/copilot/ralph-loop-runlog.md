@@ -2748,3 +2748,13 @@ Ledger: 871 accepted-normalized, 31 blocked, 501 pending (902/1403 classified). 
 - **restrictederrorinfo.h** (WinRT): COM interfaces only, no free functions. Clean.
 
 Ledger: 876 accepted-normalized, 31 blocked, 496 pending (907/1403 classified).
+
+## Batch 144 (2026-09-03 00:25): wrdsgraphicschannels.h, videoacc.h, emptyvc.h, aclapi.h, vss.h
+
+- **wrdsgraphicschannels.h** (TermServ): COM interfaces only, no free functions. Clean.
+- **videoacc.h** (Media.DShow): COM interfaces only, no free functions. Clean.
+- **emptyvc.h** (Lwef): COM interfaces only, no free functions. Clean.
+- **aclapi.h** (Authorization, Authorization.UI): GetNamedSecurityInfo outputs point into a single LocalFree-managed security descriptor buffer - transparent. Clean.
+- **vss.h** (VSS): COM interfaces only, no free functions. Clean.
+
+Ledger: 881 accepted-normalized, 31 blocked, 491 pending (912/1403 classified).

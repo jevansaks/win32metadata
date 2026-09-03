@@ -1,18 +1,18 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:22:13Z
+- Generated: 2026-09-03T07:25:12Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 876
+- Matched: 881
 - In progress: 0
 - Blocked: 31
-- Remaining: 496
+- Remaining: 491
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
 | `accctrl.h` | Authorization, Authorization.UI, Security, TransactionServer | remaining |  |  |  |
 | `accountssettingspaneinterop.h` | WinRT | matched |  | 09/02/2026 22:02:59 | COM/WinRT interop interface method only, out of scope. |
-| `aclapi.h` | Authorization, Authorization.UI | remaining |  |  |  |
+| `aclapi.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclapi.h.md |
 | `aclui.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclui.h.md |
 | `activation.h` | WinRT | matched |  | 09/02/2026 20:19:39 | COM/WinRT interface method only, out of scope. |
 | `activaut.h` | Debug.ActiveScript | remaining |  |  |  |
@@ -392,7 +392,7 @@
 | `elscore.h` | Intl | matched |  | 09/02/2026 20:22:05 | All producer/consumer pairs operate on transparent structs, not opaque handles. |
 | `elssrvc.h` | Intl | matched |  | 09/02/2026 18:03:29 | GUID constants only, no functions. |
 | `emi.h` | Power | matched |  | 09/02/2026 18:56:34 | GUID/IOCTL constants + data structs only, no functions. |
-| `emptyvc.h` | Lwef | remaining |  |  |  |
+| `emptyvc.h` | Lwef | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/emptyvc.h.md |
 | `encdec.h` | MsTv | remaining |  |  |  |
 | `endpointvolume.h` | Audio.Endpoints | remaining |  |  |  |
 | `errhandlingapi.h` | Base, Debug | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
@@ -1160,7 +1160,7 @@
 | `vfwext.h` | Multimedia | matched |  | 09/02/2026 18:35:09 | Constants + callback-signature typedefs only, no functions. |
 | `vfwmsgs.h` | Media.DShow | remaining |  |  |  |
 | `vidcap.h` | Media.DShow | remaining |  |  |  |
-| `videoacc.h` | Media.DShow | remaining |  |  |  |
+| `videoacc.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/videoacc.h.md |
 | `virtdisk.h` | Vhd | remaining |  |  |  |
 | `vmgenerationcounter.h` | Hypervisor | matched |  | 09/02/2026 17:19:28 | GUID/IOCTL constant + data struct only, no functions. |
 | `vmr9.h` | Media.DShow | remaining |  |  |  |
@@ -1173,7 +1173,7 @@
 | `vsbackup.h` | VSS | remaining |  |  |  |
 | `vsmgmt.h` | VSS | remaining |  |  |  |
 | `vsprov.h` | VSS | remaining |  |  |  |
-| `vss.h` | VSS | remaining |  |  |  |
+| `vss.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vss.h.md |
 | `vsserror.h` | VSS | remaining |  |  |  |
 | `vsstyle.h` | Controls | remaining |  |  |  |
 | `vssym32.h` | Controls | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vssym32.h.md |
@@ -1353,7 +1353,7 @@
 | `wpc.h` | Parcon | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR_User*/HWND_User*); no resource-owning functions. |
 | `wpdmtpextensions.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wpdmtpextensions.h.md |
 | `wpdshellextension.h` | WpdSdk | matched |  | 09/02/2026 19:37:21 | GUID/property-key constants only, no functions. |
-| `wrdsgraphicschannels.h` | TermServ | remaining |  |  |  |
+| `wrdsgraphicschannels.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wrdsgraphicschannels.h.md |
 | `ws2atm.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2atm.h.md |
 | `ws2bth.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2bth.h.md |
 | `ws2def.h` | IpHlp, WinSock | remaining |  |  |  |

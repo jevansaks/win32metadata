@@ -20,10 +20,10 @@
   {
     "header": "aclapi.h",
     "partition": "Authorization, Authorization.UI",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -3440,10 +3440,10 @@
   {
     "header": "emptyvc.h",
     "partition": "Lwef",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/emptyvc.h.md",
     "_source": "header-progress"
   },
   {
@@ -10352,10 +10352,10 @@
   {
     "header": "videoacc.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/videoacc.h.md",
     "_source": "header-progress"
   },
   {
@@ -10469,10 +10469,10 @@
   {
     "header": "vss.h",
     "partition": "VSS",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vss.h.md",
     "_source": "header-progress"
   },
   {
@@ -12089,10 +12089,10 @@
   {
     "header": "wrdsgraphicschannels.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wrdsgraphicschannels.h.md",
     "_source": "header-progress"
   },
   {
