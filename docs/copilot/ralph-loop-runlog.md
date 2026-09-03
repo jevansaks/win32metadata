@@ -2241,3 +2241,20 @@ WinRT.Printing/ActiveDirectory/ImagingDevice reused
 - usbiodef.h: USB IOCTL function/control-code constants only, no functions. Clean.
 
 **Ledger status:** 641 accepted-normalized, 31 blocked, 731 pending.
+
+## 2026-09-02 21:55:47 UTC - Batch scraping-investigation-97
+
+**Headers:** DtcHelp.h, sensorsutils.h, tpcshrd.h, AviFmt.h, sharewindowcommandsourceinterop.h
+**Partitions scraped (x64):** WinSensors (0 errors); DTC/Tablet/Media.DShow/WinRT reused
+
+- DtcHelp.h: DTC_STATUS enum + dynamically-loaded (GetProcAddress) function-pointer typedefs
+  only, no extern functions. Clean.
+- sensorsutils.h: GetPerformanceTime/InitPropVariantFromFloat/PropKeyFindKeyGet* all output
+  plain values or transparent PROPVARIANT/SENSOR_COLLECTION_LIST structs. Clean.
+- tpcshrd.h: WM_TABLET_*/TABLET_* constants + typedefs/enums only, no functions. Clean.
+- AviFmt.h: AVI format constants/structs only, no functions. Clean.
+- sharewindowcommandsourceinterop.h: IShareWindowCommandEventArgsInterop/
+  IShareWindowCommandSourceInterop COM/WinRT interop interface methods only (GetWindow returns
+  a reference to an existing HWND, not a disposable resource). Clean.
+
+**Ledger status:** 646 accepted-normalized, 31 blocked, 726 pending.

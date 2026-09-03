@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:52:27Z
+- Generated: 2026-09-03T04:55:47Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 641
+- Matched: 646
 - In progress: 0
 - Blocked: 31
-- Remaining: 731
+- Remaining: 726
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -93,7 +93,7 @@
 | `authif.h` | Nps | remaining |  |  |  |
 | `authz.h` | Authorization, Authorization.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (12 producer sites across 6 handle types). |
 | `aux_ulib.h` | FileHistory, WinProg | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
-| `avifmt.h` | Media.DShow | remaining |  |  |  |
+| `avifmt.h` | Media.DShow | matched |  | 09/02/2026 21:55:32 | Constants/structs only, no functions. |
 | `aviriff.h` | Media.DShow | remaining |  |  |  |
 | `avrfsdk.h` | ApplicationVerifier, FileHistory | matched |  | 09/02/2026 19:02:46 | HANDLE is a caller-supplied input; diagnostic handle fields are plain ULONG64. |
 | `avrt.h` | Threading | blocked |  | 09/02/2026 19:32:00 | Return-value HANDLE (AvSetMmThreadCharacteristics*) + generic PHANDLE direct out-param (AvRtCreateThreadOrderingGroup*). |
@@ -338,7 +338,7 @@
 | `dsquery.h` | ActiveDirectory | matched |  | 09/02/2026 20:13:28 | GUID constants/structs only, no functions. |
 | `dsrole.h` | ActiveDirectory | matched |  | 09/02/2026 18:50:10 | Generic memory-buffer allocation, not HANDLE-family. |
 | `dssec.h` | Security.DirectoryServices | matched |  | 09/02/2026 21:43:41 | Standard COM interface output + caller-supplied callback typedefs only. |
-| `dtchelp.h` | DTC | remaining |  |  |  |
+| `dtchelp.h` | DTC | matched |  | 09/02/2026 21:55:32 | Enum + dynamically-loaded function-pointer typedefs only, no extern functions. |
 | `dv.h` | Audio.DirectMusic | matched |  | 09/02/2026 18:20:58 | Constants + data struct only, no functions. |
 | `dvbsiparser.h` | MsTv | remaining |  |  |  |
 | `dvdevcod.h` | Media.DShow | remaining |  |  |  |
@@ -996,12 +996,12 @@
 | `sensorsapi.h` | WinLocation, WinSensors | remaining |  |  |  |
 | `sensorsdef.h` | WinSensors | remaining |  |  |  |
 | `sensorsstructures.h` | WinSensors | matched |  | 09/02/2026 18:00:52 | Data structs/enum only, no functions. |
-| `sensorsutils.h` | WinSensors | remaining |  |  |  |
+| `sensorsutils.h` | WinSensors | matched |  | 09/02/2026 21:55:32 | No function produces an opaque handle. |
 | `sessdirpublictypes.h` | TermServ | remaining |  |  |  |
 | `setupapi.h` | DevInst, Setup | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `sfc.h` | Setup | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `shappmgr.h` | Shell | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
-| `sharewindowcommandsourceinterop.h` | WinRT | remaining |  |  |  |
+| `sharewindowcommandsourceinterop.h` | WinRT | matched |  | 09/02/2026 21:55:32 | COM/WinRT interop interface methods only, out of scope. |
 | `shcore.h` | WinRT | matched |  | 09/02/2026 17:54:05 | COM factory pattern. |
 | `shdeprecated.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shdispid.h` | Shell | matched |  | 09/02/2026 19:14:35 | DISPID constants only, no functions. |
@@ -1102,7 +1102,7 @@
 | `tokenbinding.h` | Identity | matched |  | 09/02/2026 19:35:00 | All outputs are generic heap-allocated buffers/transparent structs (HeapFree convention), not distinctly-named opaque handles. |
 | `tom.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `tpcerror.h` | Tablet | matched |  | 09/02/2026 19:54:02 | HRESULT constants/macros only, no functions. |
-| `tpcshrd.h` | Tablet | remaining |  |  |  |
+| `tpcshrd.h` | Tablet | matched |  | 09/02/2026 21:55:32 | Constants/typedefs/enums only, no functions. |
 | `TpmVscAttestation.h` | Security.Tpm | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
 | `tpmvscmgr.h` | Security.Tpm | remaining |  |  |  |
 | `traffic.h` | Qos | remaining |  |  |  |

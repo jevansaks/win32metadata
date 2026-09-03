@@ -749,10 +749,10 @@
   {
     "header": "avifmt.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:55:32Z",
+    "notes": "Constants/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2954,10 +2954,10 @@
   {
     "header": "dtchelp.h",
     "partition": "DTC",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:55:32Z",
+    "notes": "Enum + dynamically-loaded function-pointer typedefs only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -8876,10 +8876,10 @@
   {
     "header": "sensorsutils.h",
     "partition": "WinSensors",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:55:32Z",
+    "notes": "No function produces an opaque handle.",
     "_source": "header-progress"
   },
   {
@@ -8921,10 +8921,10 @@
   {
     "header": "sharewindowcommandsourceinterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:55:32Z",
+    "notes": "COM/WinRT interop interface methods only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -9830,10 +9830,10 @@
   {
     "header": "tpcshrd.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:55:32Z",
+    "notes": "Constants/typedefs/enums only, no functions.",
     "_source": "header-progress"
   },
   {
