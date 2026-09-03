@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:49:34Z
+- Generated: 2026-09-03T04:52:27Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 636
+- Matched: 641
 - In progress: 0
 - Blocked: 31
-- Remaining: 736
+- Remaining: 731
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -435,7 +435,7 @@
 | `filterr.h` | IndexSrv | matched |  | 09/02/2026 19:14:35 | HRESULT error-code constants only, no functions. |
 | `fltdefs.h` | FileHistory, IpHlp | remaining |  |  |  |
 | `fltuser.h` | Ifsk | remaining |  |  |  |
-| `fontsub.h` | Gdi | remaining |  |  |  |
+| `fontsub.h` | Gdi | matched |  | 09/02/2026 21:52:12 | Buffer allocation delegated entirely to caller-supplied callbacks, no opaque handle. |
 | `fsrm.h` | Fsrm | remaining |  |  |  |
 | `fsrmenums.h` | Fsrm | remaining |  |  |  |
 | `fsrmerr.h` | Fsrm | remaining |  |  |  |
@@ -449,7 +449,7 @@
 | `fullenumsyncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 20:28:23 | Constants only, no functions. |
 | `functiondiscovery.h` | FunctionDiscovery | matched |  | 09/02/2026 19:28:18 | CLSID constants + MIDL boilerplate only, no functions. |
 | `functiondiscoverycategories.h` | FunctionDiscovery | matched |  | 09/02/2026 19:12:01 | String constants only, no functions. |
-| `functiondiscoveryconstraints.h` | FunctionDiscovery | remaining |  |  |  |
+| `functiondiscoveryconstraints.h` | FunctionDiscovery | matched |  | 09/02/2026 21:52:12 | Constants only, no functions. |
 | `functiondiscoveryerror.h` | FunctionDiscovery | matched |  | 09/02/2026 18:03:29 | HRESULT error-code constants only, no functions. |
 | `functiondiscoverykeys_devpkey.h` | Audio | remaining |  |  |  |
 | `functiondiscoveryprovider.h` | FunctionDiscovery, WebServicesOnDevices | remaining |  |  |  |
@@ -551,7 +551,7 @@
 | `infstr.h` | DevInst | remaining |  |  |  |
 | `inked.h` | Tablet | remaining |  |  |  |
 | `inkpresenterdesktop.h` | Input_Ink | remaining |  |  |  |
-| `inkrenderer.h` | Input_Ink | remaining |  |  |  |
+| `inkrenderer.h` | Input_Ink | matched |  | 09/02/2026 21:52:12 | COM interfaces + enum only, no extern functions. |
 | `inputpaneinterop.h` | WinRT | matched |  | 09/02/2026 20:56:17 | COM/WinRT interop interface method only, out of scope. |
 | `inputpanelconfiguration.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `inputscope.h` | Tsf | remaining |  |  |  |
@@ -736,7 +736,7 @@
 | `msiehost.h` | InternetExplorer | matched |  | 09/02/2026 17:51:18 | GUID/command-ID constants only, no functions. |
 | `msiltcfg.h` | Setup | matched |  | 09/02/2026 17:38:44 | No handle involved. |
 | `msime.h` | Input.Ime | remaining |  |  |  |
-| `msimeapi.h` | Input.Ime | remaining |  |  |  |
+| `msimeapi.h` | Input.Ime | matched |  | 09/02/2026 21:52:12 | COM interface only, no extern functions. |
 | `msinkaut.h` | Tablet | remaining |  |  |  |
 | `msinkaut15.h` | Tablet | remaining |  |  |  |
 | `msiquery.h` | Setup | remaining |  |  |  |
@@ -1138,7 +1138,7 @@
 | `usb4dbgioctl.h` | Buses | matched |  | 09/02/2026 18:47:24 | Enums/constants/data structs only, no functions. |
 | `usbfnbase.h` | Buses | remaining |  |  |  |
 | `usbioctl.h` | Buses | remaining |  |  |  |
-| `usbiodef.h` | Buses | remaining |  |  |  |
+| `usbiodef.h` | Buses | matched |  | 09/02/2026 21:52:12 | Constants only, no functions. |
 | `usbprint.h` | Printing | matched |  | 09/02/2026 20:28:23 | GUID/IOCTL constants only, no functions. |
 | `usbscan.h` | Buses | matched |  | 09/02/2026 20:25:02 | IOCTL parameter structs only, no functions. |
 | `usbuser.h` | Buses | remaining |  |  |  |

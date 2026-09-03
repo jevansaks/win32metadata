@@ -2227,3 +2227,17 @@ WinRT.Printing/ActiveDirectory/ImagingDevice reused
 - CustCntl.h: Custom Control Library constants/transparent structs only, no extern functions. Clean.
 
 **Ledger status:** 636 accepted-normalized, 31 blocked, 736 pending.
+
+## 2026-09-02 21:52:27 UTC - Batch scraping-investigation-96
+
+**Headers:** functiondiscoveryconstraints.h, inkrenderer.h, msimeapi.h, fontsub.h, usbiodef.h
+**Partitions scraped (x64):** Input_Ink, Input.Ime (0 errors each); FunctionDiscovery/Gdi/Buses reused
+
+- functiondiscoveryconstraints.h: FD query-constraint name/value string constants only. Clean.
+- inkrenderer.h: IInkD2DRenderer/IInkD2DRenderer2 COM interfaces + enum only, no extern functions. Clean.
+- msimeapi.h: IImePlugInDictDictionaryList COM interface only, no extern functions. Clean.
+- fontsub.h: CreateFontPackage/MergeFontPackage delegate buffer allocation entirely to
+  caller-supplied CFP_ALLOCPROC/CFP_FREEPROC callbacks, no opaque handle. Clean.
+- usbiodef.h: USB IOCTL function/control-code constants only, no functions. Clean.
+
+**Ledger status:** 641 accepted-normalized, 31 blocked, 731 pending.

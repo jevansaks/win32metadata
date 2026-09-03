@@ -3827,10 +3827,10 @@
   {
     "header": "fontsub.h",
     "partition": "Gdi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:52:12Z",
+    "notes": "Buffer allocation delegated entirely to caller-supplied callbacks, no opaque handle.",
     "_source": "header-progress"
   },
   {
@@ -3953,10 +3953,10 @@
   {
     "header": "functiondiscoveryconstraints.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:52:12Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4871,10 +4871,10 @@
   {
     "header": "inkrenderer.h",
     "partition": "Input_Ink",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:52:12Z",
+    "notes": "COM interfaces + enum only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -6536,10 +6536,10 @@
   {
     "header": "msimeapi.h",
     "partition": "Input.Ime",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:52:12Z",
+    "notes": "COM interface only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -10154,10 +10154,10 @@
   {
     "header": "usbiodef.h",
     "partition": "Buses",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:52:12Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
