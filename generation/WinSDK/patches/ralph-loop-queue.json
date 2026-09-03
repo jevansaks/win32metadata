@@ -1001,10 +1001,10 @@
   {
     "header": "bluetoothleapis.h",
     "partition": "Bluetooth",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added BLUETOOTH_GATT_EVENT_HANDLE autoTypes.json entry (CloseApi=BluetoothGATTUnregisterEvent). See docs/copilot/header-reports/bluetoothleapis.h.md",
     "_source": "header-progress"
   },
   {
@@ -1910,10 +1910,10 @@
   {
     "header": "d3d10shader.h",
     "partition": "Direct3D10",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10shader.h.md",
     "_source": "header-progress"
   },
   {
@@ -4835,10 +4835,10 @@
   {
     "header": "infotech.h",
     "partition": "HtmlHelp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infotech.h.md",
     "_source": "header-progress"
   },
   {
@@ -8300,10 +8300,10 @@
   {
     "header": "relogger.h",
     "partition": "Etw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/relogger.h.md",
     "_source": "header-progress"
   },
   {
@@ -9902,10 +9902,10 @@
   {
     "header": "tsgpolicyengine.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsgpolicyengine.h.md",
     "_source": "header-progress"
   },
   {

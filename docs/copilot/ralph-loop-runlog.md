@@ -2868,3 +2868,13 @@ Ledger: 931 accepted-normalized, 31 blocked, 441 pending (962/1403 classified).
 - **mmddk.h** (Audio.DirectMusic, Multimedia): kernel driver structs/callbacks only, no functions. Clean.
 
 Ledger: 936 accepted-normalized, 31 blocked, 436 pending (967/1403 classified).
+
+## Batch 156 (2026-09-03 01:10): tsgpolicyengine.h, relogger.h, infotech.h, bluetoothleapis.h, d3d10shader.h
+
+- **tsgpolicyengine.h** (TermServ): COM interfaces only, no free functions. Clean.
+- **relogger.h** (Etw): COM interfaces only, no free functions. Clean.
+- **infotech.h** (HtmlHelp): C++ class only, no extern functions. Clean.
+- **bluetoothleapis.h** (Bluetooth): PATCH APPLIED. Added BLUETOOTH_GATT_EVENT_HANDLE autoTypes.json entry (producer BluetoothGATTRegisterEvent, closer BluetoothGATTUnregisterEvent; type declared in already-accepted bthledef.h). Re-scraped Bluetooth (x64): 0 errors.
+- **d3d10shader.h** (Direct3D10): all outputs are COM interface pointers/static strings. Clean.
+
+Ledger: 941 accepted-normalized, 31 blocked, 431 pending (972/1403 classified).

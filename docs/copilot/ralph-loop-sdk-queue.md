@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:06:03Z
+- Generated: 2026-09-03T08:10:41Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 936
+- Matched: 941
 - In progress: 0
 - Blocked: 31
-- Remaining: 436
+- Remaining: 431
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -121,7 +121,7 @@
 | `bitscfg.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bitscfg.h.md |
 | `bitsmsg.h` | Bits | remaining |  |  |  |
 | `bluetoothapis.h` | Bluetooth | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
-| `bluetoothleapis.h` | Bluetooth | remaining |  |  |  |
+| `bluetoothleapis.h` | Bluetooth | matched |  |  | Genuine producer-site fix: added BLUETOOTH_GATT_EVENT_HANDLE autoTypes.json entry (CloseApi=BluetoothGATTUnregisterEvent). See docs/copilot/header-reports/bluetoothleapis.h.md |
 | `bridgedeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `bthdef.h` | Bluetooth | remaining |  |  |  |
 | `bthledef.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bthledef.h.md |
@@ -222,7 +222,7 @@
 | `d3d10effect.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10misc.h` | Direct3D10 | matched |  | 09/02/2026 19:47:59 | All outputs are standard COM interface pointers. |
 | `d3d10sdklayers.h` | Direct3D10 | remaining |  |  |  |
-| `d3d10shader.h` | Direct3D10 | remaining |  |  |  |
+| `d3d10shader.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10shader.h.md |
 | `d3d11_1.h` | Direct3D11, Mf | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d3d11_2.h` | Direct3D11 | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d3d11_3.h` | Direct3D11 | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
@@ -547,7 +547,7 @@
 | `inetreg.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inetreg.h.md |
 | `inetsdk.h` | InternetExplorer | matched |  | 09/02/2026 18:23:41 | Pure MIDL boilerplate, no functions. |
 | `infocard.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infocard.h.md |
-| `infotech.h` | HtmlHelp | remaining |  |  |  |
+| `infotech.h` | HtmlHelp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infotech.h.md |
 | `infstr.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infstr.h.md |
 | `inked.h` | Tablet | remaining |  |  |  |
 | `inkpresenterdesktop.h` | Input_Ink | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inkpresenterdesktop.h.md |
@@ -932,7 +932,7 @@
 | `rectypes.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rectypes.h.md |
 | `regbag.h` | MsTv | matched |  | 09/02/2026 20:16:15 | COM interface method only, out of scope. |
 | `regstr.h` | Registry | remaining |  |  |  |
-| `relogger.h` | Etw | remaining |  |  |  |
+| `relogger.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/relogger.h.md |
 | `remotesystemadditionalinfo.h` | TermServ | matched |  | 09/02/2026 20:41:40 | COM interface method only, out of scope. |
 | `RemoteSystemsInterop.h` | WinRT | matched |  | 09/02/2026 21:08:27 | COM/WinRT interface method only, out of scope. |
 | `rend.h` | Tapi3 | remaining |  |  |  |
@@ -1110,7 +1110,7 @@
 | `transportsettings.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `tsattrs.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsattrs.h.md |
 | `tsgauthenticationengine.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsgauthenticationengine.h.md |
-| `tsgpolicyengine.h` | TermServ | remaining |  |  |  |
+| `tsgpolicyengine.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsgpolicyengine.h.md |
 | `TSPI.h` | Tapi3 | remaining |  |  |  |
 | `tspubplugin2com.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tspubplugin2com.h.md |
 | `tspubplugincom.h` | TermServ | matched |  | 09/02/2026 22:09:36 | COM interface only, no extern functions. |
