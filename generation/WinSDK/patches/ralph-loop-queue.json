@@ -5816,10 +5816,10 @@
   {
     "header": "mfspatialaudio.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfspatialaudio.h.md",
     "_source": "header-progress"
   },
   {
@@ -9452,10 +9452,10 @@
   {
     "header": "structuredquerycondition.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquerycondition.h.md",
     "_source": "header-progress"
   },
   {
@@ -10784,10 +10784,10 @@
   {
     "header": "webapplication.h",
     "partition": "Debug.WebApp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webapplication.h.md",
     "_source": "header-progress"
   },
   {
@@ -10856,10 +10856,10 @@
   {
     "header": "wheadef.h",
     "partition": "Debug",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wheadef.h.md",
     "_source": "header-progress"
   },
   {
@@ -11954,10 +11954,10 @@
   {
     "header": "wmsbuffer.h",
     "partition": "WmFormat",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsbuffer.h.md",
     "_source": "header-progress"
   },
   {

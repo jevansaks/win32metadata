@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:25:00Z
+- Generated: 2026-09-03T08:26:59Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 971
+- Matched: 976
 - In progress: 0
 - Blocked: 31
-- Remaining: 401
+- Remaining: 396
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -656,7 +656,7 @@
 | `mfplay.h` | Mf | remaining |  |  |  |
 | `mfreadwrite.h` | Mf | remaining |  |  |  |
 | `mfsharingengine.h` | Mf | remaining |  |  |  |
-| `mfspatialaudio.h` | Mf | remaining |  |  |  |
+| `mfspatialaudio.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfspatialaudio.h.md |
 | `mftransform.h` | Mf | remaining |  |  |  |
 | `mfvirtualcamera.h` | Mf | remaining |  |  |  |
 | `mgm.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mgm.h.md |
@@ -1060,7 +1060,7 @@
 | `strmif.h` | Media.DShow, Media.KernelStreaming, MsTv, WmFormat | remaining |  |  |  |
 | `strsafe.h` | MenuRc | remaining |  |  |  |
 | `structuredquery.h` | Search | remaining |  |  |  |
-| `structuredquerycondition.h` | Search | remaining |  |  |  |
+| `structuredquerycondition.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquerycondition.h.md |
 | `subauth.h` | Identity | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `subscriptionservices.h` | Wmp | remaining |  |  |  |
 | `subsmgr.h` | Search | remaining |  |  |  |
@@ -1208,7 +1208,7 @@
 | `wdstptmgmt.h` | Wds | remaining |  |  |  |
 | `wdstptmgmtmsg.h` | Wds | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdstptmgmtmsg.h.md |
 | `weakreference.h` | WinRT | matched |  | 09/02/2026 21:24:15 | COM/WinRT interface methods only, out of scope. |
-| `webapplication.h` | Debug.WebApp | remaining |  |  |  |
+| `webapplication.h` | Debug.WebApp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webapplication.h.md |
 | `WebAuthenticationCoreManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:38:18 | COM/WinRT interop interface method only, out of scope. |
 | `webauthn.h` | WebAuthn | remaining |  |  |  |
 | `webauthnplugin.h` | WebAuthn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webauthnplugin.h.md |
@@ -1216,7 +1216,7 @@
 | `webservices.h` | Wsw | remaining |  |  |  |
 | `websocket.h` | WebSock | matched |  | 09/02/2026 21:01:40 | WEB_SOCKET_HANDLE already correctly covered via existing autoTypes.json entry. |
 | `werapi.h` | Wer | remaining |  |  |  |
-| `wheadef.h` | Debug | remaining |  |  |  |
+| `wheadef.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wheadef.h.md |
 | `wia.h` | Wia | matched |  | 09/02/2026 16:53:36 | Redirect-only; 185 functions all COM/RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wiadef.h` | Wia | remaining |  |  |  |
 | `wiadevd.h` | Wia | matched |  | 09/02/2026 19:42:09 | Only extern function takes no opaque-handle output; other handle producers are COM vtable methods. |
@@ -1338,7 +1338,7 @@
 | `wmpplug.h` | Wmp | matched |  | 09/02/2026 22:06:03 | COM interface only, no extern functions. |
 | `wmprealestate.h` | Wmp | remaining |  |  |  |
 | `wmpservices.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmpservices.h.md |
-| `wmsbuffer.h` | WmFormat | remaining |  |  |  |
+| `wmsbuffer.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsbuffer.h.md |
 | `wmsdkidl.h` | WmFormat | remaining |  |  |  |
 | `wmsdkvalidate.h` | WmFormat | matched |  | 09/02/2026 18:32:46 | String/buffer/BOOL API only, no handle. |
 | `wmsecure.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsecure.h.md |

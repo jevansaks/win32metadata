@@ -2938,3 +2938,13 @@ Ledger: 966 accepted-normalized, 31 blocked, 406 pending (997/1403 classified).
 - **wmpservices.h** (Wmp): COM vtable only. Clean.
 
 Ledger: 971 accepted-normalized, 31 blocked, 401 pending (1002/1403 classified).
+
+## Batch 163 (2026-09-03 01:27): wmsbuffer.h, structuredquerycondition.h, webapplication.h, wheadef.h, mfspatialaudio.h
+
+- **wmsbuffer.h** (WmFormat): COM vtable only. Clean.
+- **structuredquerycondition.h** (Search): COM vtable only. Clean.
+- **webapplication.h** (Debug.WebApp): COM vtable only. Clean.
+- **wheadef.h** (Debug): error-record structs/constants only, no functions. Clean.
+- **mfspatialaudio.h** (Mf): COM vtable only. Clean.
+
+Ledger: 976 accepted-normalized, 31 blocked, 396 pending (1007/1403 classified).
