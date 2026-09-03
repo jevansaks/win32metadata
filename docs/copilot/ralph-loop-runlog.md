@@ -2438,3 +2438,13 @@ Ledger: 716 accepted-normalized, 31 blocked, 656 pending (747/1403 classified).
 - **ichannelcredentials.h** (Com.ChannelCreds, ComOle): COM interfaces only, no free functions. Clean.
 
 Ledger: 721 accepted-normalized, 31 blocked, 651 pending (752/1403 classified).
+
+## Batch 113 (2026-09-02 22:47): certmod.h, sessdirpublictypes.h, bits2_5.h, wmdxva.h, msdasql_interfaces.h
+
+- **certmod.h** (Certificates): COM interfaces only, no free functions. Clean.
+- **sessdirpublictypes.h** (TermServ): COM interfaces only, no free functions. Clean.
+- **bits2_5.h** (Bits): COM interfaces only, no free functions. Clean.
+- **wmdxva.h** (WmFormat): COM interfaces only, no free functions. Clean.
+- **msdasql_interfaces.h** (Search): COM interfaces only, no free functions. Clean.
+
+Ledger: 726 accepted-normalized, 31 blocked, 646 pending (757/1403 classified).

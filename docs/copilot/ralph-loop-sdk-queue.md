@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:45:49Z
+- Generated: 2026-09-03T05:47:35Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 721
+- Matched: 726
 - In progress: 0
 - Blocked: 31
-- Remaining: 651
+- Remaining: 646
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -114,7 +114,7 @@
 | `bits10_2.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_2.h.md |
 | `bits10_3.h` | Bits | remaining |  |  |  |
 | `bits2_0.h` | Bits | remaining |  |  |  |
-| `bits2_5.h` | Bits | remaining |  |  |  |
+| `bits2_5.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_5.h.md |
 | `bits3_0.h` | Bits | remaining |  |  |  |
 | `bits4_0.h` | Bits | remaining |  |  |  |
 | `bits5_0.h` | Bits | remaining |  |  |  |
@@ -146,7 +146,7 @@
 | `certenroll.h` | Certificates | remaining |  |  |  |
 | `certexit.h` | Certificates | remaining |  |  |  |
 | `certif.h` | Certificates | remaining |  |  |  |
-| `certmod.h` | Certificates | remaining |  |  |  |
+| `certmod.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certmod.h.md |
 | `certpol.h` | Certificates | remaining |  |  |  |
 | `certpoleng.h` | Certificates | matched |  | 09/02/2026 19:09:17 | Transparent structs with generic free conventions, or generic PVOID; both out of scope. |
 | `certreqd.h` | Certificates | remaining |  |  |  |
@@ -714,7 +714,7 @@
 | `msdaora.h` | Search | matched |  | 09/02/2026 18:29:38 | CLSID/GUID constants only, no functions. |
 | `msdaosp.h` | Search | matched |  | 09/02/2026 20:53:10 | COM/IDispatch interface method only, out of scope. |
 | `msdasc.h` | Search | remaining |  |  |  |
-| `msdasql_interfaces.h` | Search | remaining |  |  |  |
+| `msdasql_interfaces.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdasql_interfaces.h.md |
 | `msdasql.h` | Search | matched |  | 09/02/2026 19:50:38 | GUID/property constants only, no functions. |
 | `msdatsrc.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdatsrc.h.md |
 | `msdelta.h` | Setup | remaining |  |  |  |
@@ -997,7 +997,7 @@
 | `sensorsdef.h` | WinSensors | remaining |  |  |  |
 | `sensorsstructures.h` | WinSensors | matched |  | 09/02/2026 18:00:52 | Data structs/enum only, no functions. |
 | `sensorsutils.h` | WinSensors | matched |  | 09/02/2026 21:55:32 | No function produces an opaque handle. |
-| `sessdirpublictypes.h` | TermServ | remaining |  |  |  |
+| `sessdirpublictypes.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sessdirpublictypes.h.md |
 | `setupapi.h` | DevInst, Setup | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `sfc.h` | Setup | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `shappmgr.h` | Shell | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
@@ -1327,7 +1327,7 @@
 | `wmcodecdsp.h` | Media.DShow, Mf | remaining |  |  |  |
 | `wmcontainer.h` | Mf | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wmdmlog.h` | Wmdm | matched |  | 09/02/2026 22:02:59 | COM interface only, no extern functions. |
-| `wmdxva.h` | WmFormat | remaining |  |  |  |
+| `wmdxva.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmdxva.h.md |
 | `wmistr.h` | Etw | remaining |  |  |  |
 | `wmiutils.h` | Lwef, Wmi | remaining |  |  |  |
 | `wmlss.h` | Wmlss | remaining |  |  |  |

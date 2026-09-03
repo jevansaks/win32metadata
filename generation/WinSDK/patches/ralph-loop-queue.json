@@ -938,10 +938,10 @@
   {
     "header": "bits2_5.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_5.h.md",
     "_source": "header-progress"
   },
   {
@@ -1226,10 +1226,10 @@
   {
     "header": "certmod.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certmod.h.md",
     "_source": "header-progress"
   },
   {
@@ -6338,10 +6338,10 @@
   {
     "header": "msdasql_interfaces.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdasql_interfaces.h.md",
     "_source": "header-progress"
   },
   {
@@ -8885,10 +8885,10 @@
   {
     "header": "sessdirpublictypes.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sessdirpublictypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -11855,10 +11855,10 @@
   {
     "header": "wmdxva.h",
     "partition": "WmFormat",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmdxva.h.md",
     "_source": "header-progress"
   },
   {
