@@ -1028,10 +1028,10 @@
   {
     "header": "bthledef.h",
     "partition": "Bluetooth",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bthledef.h.md",
     "_source": "header-progress"
   },
   {
@@ -2891,10 +2891,10 @@
   {
     "header": "dshowasf.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dshowasf.h.md",
     "_source": "header-progress"
   },
   {
@@ -7544,10 +7544,10 @@
   {
     "header": "patchapi.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/patchapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -8615,10 +8615,10 @@
   {
     "header": "rtutils.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtutils.h.md",
     "_source": "header-progress"
   },
   {
@@ -9947,10 +9947,10 @@
   {
     "header": "tsuserex.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsuserex.h.md",
     "_source": "header-progress"
   },
   {

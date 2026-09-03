@@ -2818,3 +2818,13 @@ Ledger: 906 accepted-normalized, 31 blocked, 466 pending (937/1403 classified).
 - **winbio_err.h** (SecBitomet): HRESULT error-code constants only. Clean.
 
 Ledger: 911 accepted-normalized, 31 blocked, 461 pending (942/1403 classified). Milestone: 150 batches this session.
+
+## Batch 151 (2026-09-03 00:56): tsuserex.h, dshowasf.h, bthledef.h, patchapi.h, rtutils.h
+
+- **tsuserex.h** (TermServ): COM interfaces only, no free functions. Clean.
+- **dshowasf.h** (Media.DShow): COM interfaces only, no free functions. Clean.
+- **bthledef.h** (Bluetooth): transparent GATT structs/constants, no functions. Clean.
+- **patchapi.h** (Setup): *ByHandles variants take generic caller-owned HANDLE as input only. Clean.
+- **rtutils.h** (NetMgmt): TraceRegisterEx returns generic DWORD trace ID, not fixable. Clean.
+
+Ledger: 916 accepted-normalized, 31 blocked, 456 pending (947/1403 classified).

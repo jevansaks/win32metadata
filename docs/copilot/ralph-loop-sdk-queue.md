@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:53:14Z
+- Generated: 2026-09-03T07:56:20Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 911
+- Matched: 916
 - In progress: 0
 - Blocked: 31
-- Remaining: 461
+- Remaining: 456
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -124,7 +124,7 @@
 | `bluetoothleapis.h` | Bluetooth | remaining |  |  |  |
 | `bridgedeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `bthdef.h` | Bluetooth | remaining |  |  |  |
-| `bthledef.h` | Bluetooth | remaining |  |  |  |
+| `bthledef.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bthledef.h.md |
 | `bthsdpdef.h` | Bluetooth | matched |  | 09/02/2026 18:38:01 | Data structs/enums/union only, no functions. |
 | `bugcodes.h` | Debug | remaining |  |  |  |
 | `calendarapis.h` | Intl | matched |  | 09/02/2026 17:30:54 | Calendar-date-struct-only API, no handle. |
@@ -331,7 +331,7 @@
 | `dsconf.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:06:03 | Constants/enum only, no functions. |
 | `DsGetDC.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/DsGetDC.h.md |
 | `dshow.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Pure umbrella redirect; all sub-headers already individually tracked. |
-| `dshowasf.h` | Media.DShow | remaining |  |  |  |
+| `dshowasf.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dshowasf.h.md |
 | `dskquota.h` | Fs, Shell | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsound.h` | Audio.DirectSound, FileHistory, WinProg | remaining |  |  |  |
 | `dsparse.h` | ActiveDirectory | remaining |  |  |  |
@@ -848,7 +848,7 @@
 | `p2p.h` | P2p | remaining |  |  |  |
 | `packagevirtualizationcontext.h` | AppxPackaging | matched |  | 09/02/2026 18:56:34 | Genuine ownership gap fixed: CreatePackageVirtualizationContext/DuplicatePackageVirtualizationContext out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via ReleasePackageVirtualizationContext. GetCurrentPackageVirtualizationContext is a borrowed/non-owned query (like GetConsoleWindow), left unannotated correctly. GetProcessesInVirtualizationContext's HANDLE** array is the already-documented generic-HANDLE-array limitation (same as physicalmonitorenumerationapi.h), not a new blocker. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
 | `pacmanclientapi.h` | Setup | remaining |  |  |  |
-| `patchapi.h` | Setup | remaining |  |  |  |
+| `patchapi.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/patchapi.h.md |
 | `patchwiz.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/patchwiz.h.md |
 | `pathcch.h` | Shell | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `pbdaerrors.h` | Media.DShow | matched |  | 09/02/2026 20:13:28 | HRESULT constants/macros only, no functions. |
@@ -967,7 +967,7 @@
 | `rtinfo.h` | NetMgmt | matched |  | 09/02/2026 21:24:15 | Structs only, no functions. |
 | `rtmv2.h` | RRas | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `rtscom.h` | Tablet | remaining |  |  |  |
-| `rtutils.h` | NetMgmt | remaining |  |  |  |
+| `rtutils.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtutils.h.md |
 | `rtworkq.h` | Threading | blocked |  | 09/02/2026 20:19:39 | RtwqJoinWorkQueue/RtwqSetDeadline produce generic HANDLE via direct out-param. |
 | `sapiddk.h` | Speech | remaining |  |  |  |
 | `sas.h` | Identity | matched |  | 09/02/2026 16:53:36 | SendSAS(BOOL) - no handle involved. |
@@ -1115,7 +1115,7 @@
 | `tspubplugin2com.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tspubplugin2com.h.md |
 | `tspubplugincom.h` | TermServ | matched |  | 09/02/2026 22:09:36 | COM interface only, no extern functions. |
 | `tssbx.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tssbx.h.md |
-| `tsuserex.h` | TermServ | remaining |  |  |  |
+| `tsuserex.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsuserex.h.md |
 | `tsvirtualchannels.h` | TermServ | remaining |  |  |  |
 | `tuner.h` | MsTv | remaining |  |  |  |
 | `tvout.h` | Gdi | matched |  | 09/02/2026 19:21:35 | Data struct + constants only, no functions. |
