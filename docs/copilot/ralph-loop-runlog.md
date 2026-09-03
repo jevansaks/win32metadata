@@ -2258,3 +2258,19 @@ WinRT.Printing/ActiveDirectory/ImagingDevice reused
   a reference to an existing HWND, not a disposable resource). Clean.
 
 **Ledger status:** 646 accepted-normalized, 31 blocked, 726 pending.
+
+## 2026-09-02 21:59:16 UTC - Batch scraping-investigation-98
+
+**Headers:** ioringapi.h, WSNwLink.h, MprError.h, hidclass.h, pchannel.h
+**Partitions:** Fs, WinSock, Foundation, Hid, TermServ (all already scraped this session, reused)
+
+- ioringapi.h: HIORING (explicitly documented as closed via CloseIoRing) already correctly
+  covered via existing autoTypes.json entry; all other outputs are transparent structs or
+  pre-owned HANDLE inputs. Clean.
+- WSNwLink.h: IPX/SPX socket-option constants only, no functions. Clean.
+- MprError.h: router-specific error-code constants only, no functions. Clean.
+- hidclass.h: HID device-interface GUID/property-key constants only, no functions. Clean.
+- pchannel.h: Terminal Server Virtual Channel protocol constants/transparent structs only,
+  no functions. Clean.
+
+**Ledger status:** 651 accepted-normalized, 31 blocked, 721 pending.

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:55:47Z
+- Generated: 2026-09-03T04:59:16Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 646
+- Matched: 651
 - In progress: 0
 - Blocked: 31
-- Remaining: 726
+- Remaining: 721
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -475,7 +475,7 @@
 | `gpmgmt.h` | Gpmc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only. |
 | `guiddef.h` | TransactionServer | matched |  | 09/02/2026 20:07:23 | GUID type/macros/inline helpers only, no extern functions. |
 | `handleapi.h` | FileHistory, Foundation | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
-| `hidclass.h` | Hid | remaining |  |  |  |
+| `hidclass.h` | Hid | matched |  | 09/02/2026 21:59:01 | GUID/property-key constants only, no functions. |
 | `hidpi.h` | Hid | remaining |  |  |  |
 | `hidsdi.h` | Hid | remaining |  |  |  |
 | `hidusage.h` | Hid | remaining |  |  |  |
@@ -562,7 +562,7 @@
 | `intshcut.h` | Shell | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ioapiset.h` | Base, IO | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ioevent.h` | MenuRc | remaining |  |  |  |
-| `ioringapi.h` | Fs | remaining |  |  |  |
+| `ioringapi.h` | Fs | matched |  | 09/02/2026 21:59:01 | HIORING already correctly covered via existing autoTypes.json entry. |
 | `ip2string.h` | IpHlp, wnv | matched |  | 09/02/2026 20:34:23 | String-conversion functions write into caller buffers only, no handles. |
 | `IPExport.h` | IpHlp | remaining |  |  |  |
 | `iphlpapi.h` | IpHlp, Shell | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
@@ -693,7 +693,7 @@
 | `mpeg2structs.h` | MsTv | remaining |  |  |  |
 | `mpegtype.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
 | `mprapi.h` | RRas | remaining |  |  |  |
-| `mprerror.h` | Foundation | remaining |  |  |  |
+| `mprerror.h` | Foundation | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
 | `mq.h` | MessageQueuing | remaining |  |  |  |
 | `mqoai.h` | MessageQueuing | remaining |  |  |  |
 | `mrmresourceindexer.h` | MenuRc | remaining |  |  |  |
@@ -852,7 +852,7 @@
 | `patchwiz.h` | Setup | remaining |  |  |  |
 | `pathcch.h` | Shell | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `pbdaerrors.h` | Media.DShow | matched |  | 09/02/2026 20:13:28 | HRESULT constants/macros only, no functions. |
-| `pchannel.h` | TermServ | remaining |  |  |  |
+| `pchannel.h` | TermServ | matched |  | 09/02/2026 21:59:01 | Constants/transparent structs only, no functions. |
 | `pdh.h` | Perf | remaining |  |  |  |
 | `pdhmsg.h` | Perf | matched |  | 09/02/2026 20:16:15 | Message-compiler constants only, no functions. |
 | `peerdist.h` | P2p | remaining |  |  |  |
@@ -1384,7 +1384,7 @@
 | `wsmandisp.h` | WinRm | remaining |  |  |  |
 | `wsmerror.h` | WinRm | remaining |  |  |  |
 | `wsnetbs.h` | WinSock | matched |  | 09/02/2026 18:29:38 | Data struct + constants/macro only, no functions. |
-| `wsnwlink.h` | WinSock | remaining |  |  |  |
+| `wsnwlink.h` | WinSock | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
 | `wsrm.h` | WinSock | matched |  | 09/02/2026 20:34:23 | Socket-option constants only, no functions. |
 | `wsvns.h` | WinSock | matched |  | 09/02/2026 17:41:54 | Data struct + constants only, no functions. |
 | `wtsapi32.h` | TermServ | remaining |  |  |  |

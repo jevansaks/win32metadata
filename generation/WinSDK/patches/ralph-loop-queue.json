@@ -4187,10 +4187,10 @@
   {
     "header": "hidclass.h",
     "partition": "Hid",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:59:01Z",
+    "notes": "GUID/property-key constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4970,10 +4970,10 @@
   {
     "header": "ioringapi.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:59:01Z",
+    "notes": "HIORING already correctly covered via existing autoTypes.json entry.",
     "_source": "header-progress"
   },
   {
@@ -6149,10 +6149,10 @@
   {
     "header": "mprerror.h",
     "partition": "Foundation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:59:01Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7580,10 +7580,10 @@
   {
     "header": "pchannel.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:59:01Z",
+    "notes": "Constants/transparent structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -12368,10 +12368,10 @@
   {
     "header": "wsnwlink.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:59:01Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
