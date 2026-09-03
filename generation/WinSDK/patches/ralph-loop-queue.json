@@ -929,10 +929,10 @@
   {
     "header": "bits2_0.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_0.h.md",
     "_source": "header-progress"
   },
   {
@@ -1217,10 +1217,10 @@
   {
     "header": "certif.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certif.h.md",
     "_source": "header-progress"
   },
   {
@@ -7139,10 +7139,10 @@
   {
     "header": "ntddser.h",
     "partition": "SerPorts",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddser.h.md",
     "_source": "header-progress"
   },
   {
@@ -7382,10 +7382,10 @@
   {
     "header": "odbcss.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/odbcss.h.md",
     "_source": "header-progress"
   },
   {
@@ -8120,10 +8120,10 @@
   {
     "header": "qossp.h",
     "partition": "Qos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qossp.h.md",
     "_source": "header-progress"
   },
   {

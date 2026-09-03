@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:20:19Z
+- Generated: 2026-09-03T08:22:09Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 961
+- Matched: 966
 - In progress: 0
 - Blocked: 31
-- Remaining: 411
+- Remaining: 406
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -113,7 +113,7 @@
 | `bits10_1.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_1.h.md |
 | `bits10_2.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_2.h.md |
 | `bits10_3.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_3.h.md |
-| `bits2_0.h` | Bits | remaining |  |  |  |
+| `bits2_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_0.h.md |
 | `bits2_5.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_5.h.md |
 | `bits3_0.h` | Bits | remaining |  |  |  |
 | `bits4_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits4_0.h.md |
@@ -145,7 +145,7 @@
 | `certenc.h` | Certificates | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `certenroll.h` | Certificates | remaining |  |  |  |
 | `certexit.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certexit.h.md |
-| `certif.h` | Certificates | remaining |  |  |  |
+| `certif.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certif.h.md |
 | `certmod.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certmod.h.md |
 | `certpol.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certpol.h.md |
 | `certpoleng.h` | Certificates | matched |  | 09/02/2026 19:09:17 | Transparent structs with generic free conventions, or generic PVOID; both out of scope. |
@@ -803,7 +803,7 @@
 | `ntddkbd.h` | Hid | matched |  | 09/02/2026 22:12:28 | Constants only, no functions. |
 | `ntddmou.h` | Hid | matched |  | 09/02/2026 20:38:46 | Constants/structs only, no functions. |
 | `ntddndis.h` | Ndis, NWifi, Qos | remaining |  |  |  |
-| `ntddser.h` | SerPorts | remaining |  |  |  |
+| `ntddser.h` | SerPorts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddser.h.md |
 | `ntddstor.h` | Fs, Ioctl | remaining |  |  |  |
 | `ntddvdeo.h` | Display | remaining |  |  |  |
 | `ntddvol.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvol.h.md |
@@ -830,7 +830,7 @@
 | `ocidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Media.DShow, Search, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `ocmm.h` | InternetExplorer | remaining |  |  |  |
 | `odbcinst.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/odbcinst.h.md |
-| `odbcss.h` | Search | remaining |  |  |  |
+| `odbcss.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/odbcss.h.md |
 | `ole2.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `oleacc.h` | WinAuto | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oleauto.h` | ComOle | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
@@ -912,7 +912,7 @@
 | `qnetwork.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qnetwork.h.md |
 | `qos2.h` | Qos | remaining |  |  |  |
 | `qospol.h` | Qos | matched |  | 09/02/2026 17:48:13 | Data struct + constants only, no functions. |
-| `qossp.h` | Qos | remaining |  |  |  |
+| `qossp.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qossp.h.md |
 | `query.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/query.h.md |
 | `radialcontrollerinterop.h` | InputRadial | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radialcontrollerinterop.h.md |
 | `radiomgr.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radiomgr.h.md |

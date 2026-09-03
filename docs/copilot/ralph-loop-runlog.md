@@ -2918,3 +2918,13 @@ Ledger: 956 accepted-normalized, 31 blocked, 416 pending (987/1403 classified).
 - **accctrl.h** (Authorization/Security/TransactionServer): enums/structs + AccFree=LocalFree macro only, no functions; defers cleanly to already-classified sibling aclapi.h.
 
 Ledger: 961 accepted-normalized, 31 blocked, 411 pending (992/1403 classified).
+
+## Batch 161 (2026-09-03 01:22): bits2_0.h, ntddser.h, odbcss.h, qossp.h, certif.h
+
+- **bits2_0.h** (Bits): COM vtable only. Clean.
+- **ntddser.h** (SerPorts): GUIDs/IOCTL constants only, no functions. Clean.
+- **odbcss.h** (Search): SQL Server ODBC constants/structs only. Clean.
+- **qossp.h** (Qos): QoS object-type constants/structs only. Clean.
+- **certif.h** (Certificates): COM vtable only. Clean.
+
+Ledger: 966 accepted-normalized, 31 blocked, 406 pending (997/1403 classified).
