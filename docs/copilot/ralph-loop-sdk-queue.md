@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:01:01Z
+- Generated: 2026-09-03T01:03:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 355
+- Matched: 360
 - In progress: 0
 - Blocked: 7
-- Remaining: 1041
+- Remaining: 1036
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -372,7 +372,7 @@
 | `dxva9typ.h` | Media.DShow, Mf | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `dxvahd.h` | Mf | remaining |  |  |  |
 | `eapauthenticatoractiondefine.h` | EapHost | remaining |  |  |  |
-| `eapauthenticatortypes.h` | EapHost | remaining |  |  |  |
+| `eapauthenticatortypes.h` | EapHost | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
 | `eaphosterror.h` | EapHost | remaining |  |  |  |
 | `eaphostpeerconfigapis.h` | EapHost | remaining |  |  |  |
 | `eaphostpeertypes.h` | EapHost | remaining |  |  |  |
@@ -390,7 +390,7 @@
 | `ehstorextensions.h` | Enstor | remaining |  |  |  |
 | `ehstormsg.h` | Enstor | remaining |  |  |  |
 | `elscore.h` | Intl | remaining |  |  |  |
-| `elssrvc.h` | Intl | remaining |  |  |  |
+| `elssrvc.h` | Intl | matched |  | 09/02/2026 18:03:29 | GUID constants only, no functions. |
 | `emi.h` | Power | remaining |  |  |  |
 | `emptyvc.h` | Lwef | remaining |  |  |  |
 | `encdec.h` | MsTv | remaining |  |  |  |
@@ -450,7 +450,7 @@
 | `functiondiscovery.h` | FunctionDiscovery | remaining |  |  |  |
 | `functiondiscoverycategories.h` | FunctionDiscovery | remaining |  |  |  |
 | `functiondiscoveryconstraints.h` | FunctionDiscovery | remaining |  |  |  |
-| `functiondiscoveryerror.h` | FunctionDiscovery | remaining |  |  |  |
+| `functiondiscoveryerror.h` | FunctionDiscovery | matched |  | 09/02/2026 18:03:29 | HRESULT error-code constants only, no functions. |
 | `functiondiscoverykeys_devpkey.h` | Audio | remaining |  |  |  |
 | `functiondiscoveryprovider.h` | FunctionDiscovery, WebServicesOnDevices | remaining |  |  |  |
 | `fwpmtypes.h` | WindowsFilteringPlatform | remaining |  |  |  |
@@ -599,7 +599,7 @@
 | `lmapibuf.h` | NetMgmt | remaining |  |  |  |
 | `lmat.h` | NetMgmt | remaining |  |  |  |
 | `lmaudit.h` | NetMgmt | remaining |  |  |  |
-| `lmconfig.h` | NetMgmt | remaining |  |  |  |
+| `lmconfig.h` | NetMgmt | matched |  | 09/02/2026 18:03:29 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
 | `lmcons.h` | Dfs, NetMgmt | remaining |  |  |  |
 | `lmdfs.h` | Dfs | remaining |  |  |  |
 | `lmerr.h` | NetMgmt | remaining |  |  |  |
@@ -1103,7 +1103,7 @@
 | `tom.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `tpcerror.h` | Tablet | remaining |  |  |  |
 | `tpcshrd.h` | Tablet | remaining |  |  |  |
-| `TpmVscAttestation.h` | Security.Tpm | remaining |  |  |  |
+| `TpmVscAttestation.h` | Security.Tpm | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
 | `tpmvscmgr.h` | Security.Tpm | remaining |  |  |  |
 | `traffic.h` | Qos | remaining |  |  |  |
 | `transportsettingcommon.h` | WinSock | matched |  | 09/02/2026 16:57:06 | Plain data struct only, no functions. |

@@ -1190,3 +1190,19 @@ wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1046 pending.
 
 **Ledger status:** 355 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1041 pending.
+
+## 2026-09-02 18:03:49 UTC - Batch scraping-investigation-35
+
+**Headers:** eapauthenticatortypes.h, functiondiscoveryerror.h, elssrvc.h, TpmVscAttestation.h, lmconfig.h
+**Partitions scraped:** FunctionDiscovery, Security.Tpm (x86; 0 errors; pre-existing unrelated
+cross-partition remap warnings on both, not touched by these headers)
+
+- eapauthenticatortypes.h: enum + MIDL boilerplate only, no functions. Clean.
+- functiondiscoveryerror.h: HRESULT error-code constants only, no functions. Clean.
+- elssrvc.h: static const GUID constants only, no functions. Clean.
+- TpmVscAttestation.h: enum + MIDL boilerplate only, no functions. Clean.
+- lmconfig.h: NetConfigGet/NetConfigGetAll output LPBYTE buffers freed via NetApiBufferFree (Net API
+  convention, not HANDLE-family); part of the lm.h umbrella already noted as individually tracked. Clean.
+
+**Ledger status:** 360 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1036 pending.

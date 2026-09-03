@@ -3260,10 +3260,10 @@
   {
     "header": "eapauthenticatortypes.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:03:29Z",
+    "notes": "Enum + MIDL boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3422,10 +3422,10 @@
   {
     "header": "elssrvc.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:03:29Z",
+    "notes": "GUID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3962,10 +3962,10 @@
   {
     "header": "functiondiscoveryerror.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:03:29Z",
+    "notes": "HRESULT error-code constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5303,10 +5303,10 @@
   {
     "header": "lmconfig.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:03:29Z",
+    "notes": "Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -9839,10 +9839,10 @@
   {
     "header": "TpmVscAttestation.h",
     "partition": "Security.Tpm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:03:29Z",
+    "notes": "Enum + MIDL boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {
