@@ -965,6 +965,7 @@
     "Namespace": "Windows.Win32.NetworkManagement.Rras",
     "Name": "HRASCONN",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "RasHangUpW",
     "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
   },

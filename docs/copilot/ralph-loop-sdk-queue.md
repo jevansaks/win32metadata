@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:08:56Z
+- Generated: 2026-09-03T10:12:29Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1141
+- Matched: 1146
 - In progress: 0
 - Blocked: 31
-- Remaining: 231
+- Remaining: 226
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -406,7 +406,7 @@
 | `evntcons.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evntcons.h.md |
 | `evntprov.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evntprov.h.md |
 | `evntrace.h` | Etw, Media.DShow | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
-| `evr.h` | Mf | remaining |  |  |  |
+| `evr.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evr.h.md |
 | `evr9.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evr9.h.md |
 | `exdisp.h` | FileHistory, Shell, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `exdispid.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/exdispid.h.md |
@@ -763,7 +763,7 @@
 | `namedpipeapi.h` | Pipes | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `napmicrosoftvendorids.h` | NetworkAccessProtection | matched |  | 09/02/2026 17:58:11 | Integer constants only, no functions. |
 | `naptypes.h` | NetworkAccessProtection | matched |  | 09/02/2026 21:12:30 | Types only, no functions. |
-| `natupnp.h` | WindowsFirewall | remaining |  |  |  |
+| `natupnp.h` | WindowsFirewall | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/natupnp.h.md |
 | `nb30.h` | NetBios | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/nb30.h.md |
 | `ncrypt_provider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ncrypt_provider.h.md |
 | `ncrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:10:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
@@ -916,7 +916,7 @@
 | `query.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/query.h.md |
 | `radialcontrollerinterop.h` | InputRadial | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radialcontrollerinterop.h.md |
 | `radiomgr.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radiomgr.h.md |
-| `ras.h` | RRas | remaining |  |  |  |
+| `ras.h` | RRas | matched |  |  | Producer-site fix: filled missing CloseApi on pre-existing HRASCONN autoTypes.json entry (CloseApi RasHangUpW). See docs/copilot/header-reports/ras.h.md |
 | `rasdlg.h` | RRas | matched |  | 09/02/2026 21:12:30 | No function produces an opaque handle. |
 | `raseapif.h` | Eap | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raseapif.h.md |
 | `raserror.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raserror.h.md |
@@ -1187,7 +1187,7 @@
 | `wbemcli.h` | TermServ, Wmi | remaining |  |  |  |
 | `wbemdisp.h` | Wmi | remaining |  |  |  |
 | `wbemidl.h` | Wmi | matched |  | 09/02/2026 16:57:06 | Redirect-only; 40 functions all MIDL RPC marshalling stubs, no DECLARE_HANDLE. |
-| `wbemprov.h` | Wmi | remaining |  |  |  |
+| `wbemprov.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemprov.h.md |
 | `wbemtran.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemtran.h.md |
 | `wcmapi.h` | Wcm | matched |  | 09/02/2026 20:16:15 | Generic memory-allocation convention / transparent struct, not distinctly-named opaque handle. |
 | `wcmconfig.h` | Smi | remaining |  |  |  |
@@ -1404,7 +1404,7 @@
 | `xblidpauthmanager.h` | Xblidp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xblidpauthmanager.h.md |
 | `xenroll.h` | Certificates | remaining |  |  |  |
 | `xinput.h` | Xinput | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xinput.h.md |
-| `xmllite.h` | FileHistory, XmlLite | remaining |  |  |  |
+| `xmllite.h` | FileHistory, XmlLite | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xmllite.h.md |
 | `xolehlp.h` | DTC | matched |  | 09/02/2026 20:38:46 | All outputs are standard COM QueryInterface-style interface pointers. |
 | `xprtdefs.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xprtdefs.h.md |
 | `xpsdigitalsignature.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsdigitalsignature.h.md |

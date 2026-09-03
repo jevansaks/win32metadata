@@ -3566,10 +3566,10 @@
   {
     "header": "evr.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evr.h.md",
     "_source": "header-progress"
   },
   {
@@ -6779,10 +6779,10 @@
   {
     "header": "natupnp.h",
     "partition": "WindowsFirewall",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/natupnp.h.md",
     "_source": "header-progress"
   },
   {
@@ -8156,10 +8156,10 @@
   {
     "header": "ras.h",
     "partition": "RRas",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: filled missing CloseApi on pre-existing HRASCONN autoTypes.json entry (CloseApi RasHangUpW). See docs/copilot/header-reports/ras.h.md",
     "_source": "header-progress"
   },
   {
@@ -10595,10 +10595,10 @@
   {
     "header": "wbemprov.h",
     "partition": "Wmi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemprov.h.md",
     "_source": "header-progress"
   },
   {
@@ -12548,10 +12548,10 @@
   {
     "header": "xmllite.h",
     "partition": "FileHistory, XmlLite",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xmllite.h.md",
     "_source": "header-progress"
   },
   {

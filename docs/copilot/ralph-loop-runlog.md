@@ -3269,3 +3269,11 @@ Ledger: 1136 accepted-normalized, 31 blocked, 236 pending (1167/1403 classified)
 - cardmod.h (Security.Cryptography): minidriver plugin contract, no ownership pattern. Clean.
 
 Ledger: 1141 accepted-normalized, 31 blocked, 231 pending (1172/1403 classified).
+
+## Batch 197 (2026-09-03 03:12): wbemprov.h, natupnp.h, evr.h, xmllite.h, ras.h
+
+- wbemprov.h, natupnp.h, evr.h: COM vtable only. Clean.
+- xmllite.h: Create* functions output COM interface pointers. Clean.
+- ras.h (RRas): PRODUCER-SITE FIX - filled missing CloseApi (RasHangUpW) on pre-existing HRASCONN entry.
+
+Ledger: 1146 accepted-normalized, 31 blocked, 226 pending (1177/1403 classified).
