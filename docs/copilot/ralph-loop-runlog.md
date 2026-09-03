@@ -3416,3 +3416,13 @@ Ledger: 1216 accepted-normalized, 31 blocked, 156 pending (1247/1403 classified)
 - **upnp.h** (Upnp): COM vtable only. Clean.
 
 Ledger: 1221 accepted-normalized, 31 blocked, 151 pending (1252/1403 classified).
+
+## Batch 213 (2026-09-03 04:02): dsound.h, ctffunc.h, fsrmscreen.h, textstor.h, wuerror.h
+
+- **dsound.h** (Audio.DirectSound/FileHistory/WinProg): outputs COM interface pointers. Clean.
+- **ctffunc.h** (Tsf): COM vtable only. Clean.
+- **fsrmscreen.h** (Fsrm): COM vtable only. Clean.
+- **textstor.h** (Tsf): COM vtable only. Clean.
+- **wuerror.h** (Wua): HRESULT constants only. Clean.
+
+Ledger: 1226 accepted-normalized, 31 blocked, 146 pending (1257/1403 classified).

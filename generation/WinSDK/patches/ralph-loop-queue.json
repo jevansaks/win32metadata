@@ -1703,10 +1703,10 @@
   {
     "header": "ctffunc.h",
     "partition": "Tsf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ctffunc.h.md",
     "_source": "header-progress"
   },
   {
@@ -2909,10 +2909,10 @@
   {
     "header": "dsound.h",
     "partition": "Audio.DirectSound, FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsound.h.md",
     "_source": "header-progress"
   },
   {
@@ -3890,10 +3890,10 @@
   {
     "header": "fsrmscreen.h",
     "partition": "Fsrm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmscreen.h.md",
     "_source": "header-progress"
   },
   {
@@ -9722,10 +9722,10 @@
   {
     "header": "textstor.h",
     "partition": "Tsf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/textstor.h.md",
     "_source": "header-progress"
   },
   {
@@ -12458,10 +12458,10 @@
   {
     "header": "wuerror.h",
     "partition": "Wua",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wuerror.h.md",
     "_source": "header-progress"
   },
   {

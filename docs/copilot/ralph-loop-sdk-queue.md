@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:59:44Z
+- Generated: 2026-09-03T11:02:42Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1221
+- Matched: 1226
 - In progress: 0
 - Blocked: 31
-- Remaining: 151
+- Remaining: 146
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -199,7 +199,7 @@
 | `cscapi.h` | Of | matched |  | 09/02/2026 18:20:58 | BOOL-output-only API, no handle. |
 | `cscobj.h` | Of | remaining |  |  |  |
 | `cspdk.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cspdk.h.md |
-| `ctffunc.h` | Tsf | remaining |  |  |  |
+| `ctffunc.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ctffunc.h.md |
 | `ctfspui.h` | Tsf | matched |  | 09/02/2026 20:41:40 | COM interface method + GUID constants only, no extern functions. |
 | `ctfutb.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ctfutb.h.md |
 | `ctxtcall.h` | Com, ComOle | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
@@ -333,7 +333,7 @@
 | `dshow.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Pure umbrella redirect; all sub-headers already individually tracked. |
 | `dshowasf.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dshowasf.h.md |
 | `dskquota.h` | Fs, Shell | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
-| `dsound.h` | Audio.DirectSound, FileHistory, WinProg | remaining |  |  |  |
+| `dsound.h` | Audio.DirectSound, FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsound.h.md |
 | `dsparse.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsparse.h.md |
 | `dsquery.h` | ActiveDirectory | matched |  | 09/02/2026 20:13:28 | GUID constants/structs only, no functions. |
 | `dsrole.h` | ActiveDirectory | matched |  | 09/02/2026 18:50:10 | Generic memory-buffer allocation, not HANDLE-family. |
@@ -442,7 +442,7 @@
 | `fsrmpipeline.h` | Fsrm | remaining |  |  |  |
 | `fsrmquota.h` | Fsrm | remaining |  |  |  |
 | `fsrmreports.h` | Fsrm | remaining |  |  |  |
-| `fsrmscreen.h` | Fsrm | remaining |  |  |  |
+| `fsrmscreen.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmscreen.h.md |
 | `fsrmtlb.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmtlb.h.md |
 | `ftpext.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ftpext.h.md |
 | `fttypes.h` | Fs | matched |  | 09/02/2026 19:16:41 | Typedef/enums/data structs only, no functions. |
@@ -1090,7 +1090,7 @@
 | `tdh.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tdh.h.md |
 | `tdiinfo.h` | FileHistory, WinProg | matched |  | 09/02/2026 20:28:23 | Structs/typedefs only, no functions. |
 | `textserv.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
-| `textstor.h` | Tsf | remaining |  |  |  |
+| `textstor.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/textstor.h.md |
 | `thumbcache.h` | Shell | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `thumbnailstreamcache.h` | Shell | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `timeapi.h` | Media, Multimedia | matched |  | 09/02/2026 18:38:01 | No HANDLE-family type involved. |
@@ -1394,7 +1394,7 @@
 | `wtypes.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, Properties, Registry, Shutdown, TransactionServer, WinProg | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `wtypesbase.h` | TransactionServer, WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtypesbase.h.md |
 | `wuapi.h` | Wua | remaining |  |  |  |
-| `wuerror.h` | Wua | remaining |  |  |  |
+| `wuerror.h` | Wua | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wuerror.h.md |
 | `xa.h` | DTC | matched |  | 09/02/2026 21:38:18 | No function produces an opaque handle; XA switch entries are function-pointer struct fields. |
 | `xamlom.h` | Xaml_Diagnostics | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xamlom.h.md |
 | `xapo.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xapo.h.md |
