@@ -2338,3 +2338,13 @@ Ralph loop session.)
 - synchronizationerrors.h: Sync Platform HRESULT error-code constants only, no functions. Clean.
 
 **Ledger status:** 671 accepted-normalized, 31 blocked, 701 pending.
+
+## Batch 103 (2026-09-02 22:17): dpapi.h, mssign.h, msacmdrv.h, ntquery.h, xpsprint.h
+
+- **dpapi.h** (Security.Cryptography, Security.Cryptography.UI): CryptProtectData family outputs transparent DATA_BLOB (LocalFree convention) — clean.
+- **mssign.h** (Security.Cryptography): SignerSignEx produces SIGNER_CONTEXT** freed via SignerFreeSignerContext, but SIGNER_CONTEXT is a fully transparent struct (cbSize/cbBlob/pbBlob) — out of scope per transparent-struct blocker class, same as MrmResourceIndexerHandle/dmort.h precedent. Function-pointer typedefs in SIGNER_DIGEST_SIGN_INFO out of scope (class 4).
+- **msacmdrv.h** (Audio): ACM driver-side header, defines only message codes/transparent structs consumed by driver-implemented DriverProc — no STDAPI/WINAPI declarations at all. Clean.
+- **ntquery.h** (IndexSrv, Shell): LoadIFilter/LoadIFilterEx/BindIFilterFromStorage/BindIFilterFromStream all output generic COM interface pointers (void**/IUnknown); SetCatalogState outputs a plain DWORD*. Clean.
+- **xpsprint.h** (Gdi, XpsPrinting): StartXpsPrintJob takes caller-owned HANDLE progressEvent/completionEvent as input (not produced), outputs standard COM interface pointers (IXpsPrintJob**/IXpsPrintJobStream**). Clean.
+
+Ledger: 676 accepted-normalized, 31 blocked, 696 pending (707/1403 classified).

@@ -2810,10 +2810,10 @@
   {
     "header": "dpapi.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dpapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -6212,10 +6212,10 @@
   {
     "header": "msacmdrv.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacmdrv.h.md",
     "_source": "header-progress"
   },
   {
@@ -6599,10 +6599,10 @@
   {
     "header": "mssign.h",
     "partition": "Security.Cryptography",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mssign.h.md",
     "_source": "header-progress"
   },
   {
@@ -7247,10 +7247,10 @@
   {
     "header": "ntquery.h",
     "partition": "IndexSrv, Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntquery.h.md",
     "_source": "header-progress"
   },
   {
@@ -12611,10 +12611,10 @@
   {
     "header": "xpsprint.h",
     "partition": "Gdi, XpsPrinting",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsprint.h.md",
     "_source": "header-progress"
   },
   {

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:12:44Z
+- Generated: 2026-09-03T05:17:22Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 671
+- Matched: 676
 - In progress: 0
 - Blocked: 31
-- Remaining: 701
+- Remaining: 696
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -322,7 +322,7 @@
 | `dot1x.h` | Ndis, NWifi | matched |  | 09/02/2026 20:31:37 | Enums/structs only, no functions. |
 | `downloadmgr.h` | InternetExplorer | matched |  | 09/02/2026 20:44:40 | COM interface method + GUID constant only, no extern functions. |
 | `dpa_dsa.h` | Controls | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
-| `dpapi.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `dpapi.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dpapi.h.md |
 | `dragdropinterop.h` | WinRT | matched |  | 09/02/2026 20:31:37 | COM/WinRT interop interface method only, out of scope. |
 | `drt.h` | P2p | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsadmin.h` | ActiveDirectory | matched |  | 09/02/2026 21:27:04 | GUID constants + COM interfaces only, no extern functions. |
@@ -700,7 +700,7 @@
 | `msaatext.h` | Tsf | remaining |  |  |  |
 | `msacm.h` | Audio | remaining |  |  |  |
 | `msacmdlg.h` | Multimedia | matched |  | 09/02/2026 17:27:04 | Dialog resource ID constants only, no functions. |
-| `msacmdrv.h` | Audio | remaining |  |  |  |
+| `msacmdrv.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacmdrv.h.md |
 | `MSAJTransport.h` | AllJoyn, WinRT | blocked | copilot | 09/02/2026 18:15:12 | Two compounding blockers: parser/toolchain version mismatch prevents live-scrape validation of the AllJoyn partition; and a genuine return-value HANDLE ownership pattern with no annotation precedent. |
 | `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | remaining |  |  |  |
 | `mschapp.h` | MsChap | matched |  | 09/02/2026 18:29:38 | Password-encryption struct/string API only, no handle. |
@@ -743,7 +743,7 @@
 | `msopc.h` | Opc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only, no free functions. |
 | `msports.h` | SerPorts | matched |  | 09/02/2026 21:01:40 | HCOMDB already correctly covered via existing autoTypes.json entry. |
 | `msrdc.h` | Rdc | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
-| `mssign.h` | Security.Cryptography | remaining |  |  |  |
+| `mssign.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mssign.h.md |
 | `mssip.h` | Security.Cryptography.Sip, Security.WinTrust | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mstask.h` | TaskSchd | remaining |  |  |  |
 | `mstcpip.h` | WinSock | remaining |  |  |  |
@@ -815,7 +815,7 @@
 | `ntldap.h` | Ldap | remaining |  |  |  |
 | `ntmsapi.h` | Fs | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `ntmsmli.h` | Fs | matched |  | 09/02/2026 17:45:25 | Data struct + callback-signature typedefs only, no functions. |
-| `ntquery.h` | IndexSrv, Shell | remaining |  |  |  |
+| `ntquery.h` | IndexSrv, Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntquery.h.md |
 | `ntsecapi.h` | ActiveDirectory, Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned LSA_HANDLE ownership violation found during resource-ownership audit; other annotation groups in file were already compliant. |
 | `NTSecPKG.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `ntstatus.h` | Foundation | remaining |  |  |  |
@@ -1411,5 +1411,5 @@
 | `xpsobjectmodel_1.h` | Xps | remaining |  |  |  |
 | `xpsobjectmodel_2.h` | Xps | remaining |  |  |  |
 | `xpsobjectmodel.h` | Xps | remaining |  |  |  |
-| `xpsprint.h` | Gdi, XpsPrinting | remaining |  |  |  |
+| `xpsprint.h` | Gdi, XpsPrinting | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsprint.h.md |
 | `xpsrassvc.h` | Printing | remaining |  |  |  |
