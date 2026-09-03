@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:16:29Z
+- Generated: 2026-09-03T03:19:54Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 524
+- Matched: 528
 - In progress: 0
-- Blocked: 23
-- Remaining: 856
+- Blocked: 24
+- Remaining: 851
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -14,7 +14,7 @@
 | `accountssettingspaneinterop.h` | WinRT | remaining |  |  |  |
 | `aclapi.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `aclui.h` | Authorization, Authorization.UI | remaining |  |  |  |
-| `activation.h` | WinRT | remaining |  |  |  |
+| `activation.h` | WinRT | matched |  | 09/02/2026 20:19:39 | COM/WinRT interface method only, out of scope. |
 | `activaut.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activdbg.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activdbg100.h` | Debug.ActiveScript | remaining |  |  |  |
@@ -968,7 +968,7 @@
 | `rtmv2.h` | RRas | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `rtscom.h` | Tablet | remaining |  |  |  |
 | `rtutils.h` | NetMgmt | remaining |  |  |  |
-| `rtworkq.h` | Threading | remaining |  |  |  |
+| `rtworkq.h` | Threading | blocked |  | 09/02/2026 20:19:39 | RtwqJoinWorkQueue/RtwqSetDeadline produce generic HANDLE via direct out-param. |
 | `sapiddk.h` | Speech | remaining |  |  |  |
 | `sas.h` | Identity | matched |  | 09/02/2026 16:53:36 | SendSAS(BOOL) - no handle involved. |
 | `sbe.h` | MsTv | remaining |  |  |  |
@@ -1178,7 +1178,7 @@
 | `vsstyle.h` | Controls | remaining |  |  |  |
 | `vssym32.h` | Controls | remaining |  |  |  |
 | `vswriter.h` | VSS | remaining |  |  |  |
-| `waasapi.h` | UpdateAssessment | remaining |  |  |  |
+| `waasapi.h` | UpdateAssessment | matched |  | 09/02/2026 20:19:39 | COM interface + GUID constants only, no extern functions. |
 | `waasapitypes.h` | UpdateAssessment | matched |  | 09/02/2026 19:32:00 | MIDL enums/structs/boilerplate only, no functions. |
 | `wab.h` | Wab | blocked | copilot | 09/02/2026 16:53:36 | Deferred: 1 of 77 functions (FtgRegisterIdleRoutine) has genuine return-value handle ownership with no annotation precedent; needs the same dedicated policy decision as getprocesshandlefromhwnd.h. |
 | `wabdefs.h` | IMapi, Tapi3 | remaining |  |  |  |
@@ -1262,7 +1262,7 @@
 | `windows.h` | Console, Edp, Enstor, Memory, Mi | remaining |  |  |  |
 | `windows.media.core.interop.h` | WinRT.Media | remaining |  |  |  |
 | `windows.security.isolation.isolatedenvironmentinterop.h` | WinRT.Isolation | remaining |  |  |  |
-| `windows.ui.composition.interop.h` | WinRT.Composition | remaining |  |  |  |
+| `windows.ui.composition.interop.h` | WinRT.Composition | matched |  | 09/02/2026 20:19:39 | COM interop interface methods only, out of scope. |
 | `windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h` | WinRT.CoreInputView | remaining |  |  |  |
 | `windows.ui.xaml.hosting.desktopwindowxamlsource.h` | WinRT.Xaml | remaining |  |  |  |
 | `windows.ui.xaml.hosting.referencetracker.h` | WinRT.Xaml | remaining |  |  |  |
@@ -1321,7 +1321,7 @@
 | `wlanapi.h` | Ndis, NWifi | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `wlanihv.h` | NWifi | remaining |  |  |  |
 | `wlanihvtypes.h` | NWifi | matched |  | 09/02/2026 18:15:12 | Data structs + constants only, no functions. |
-| `wlantypes.h` | Ndis, NWifi | remaining |  |  |  |
+| `wlantypes.h` | Ndis, NWifi | matched |  | 09/02/2026 20:19:39 | Enums/structs only, no functions. |
 | `wlclient.h` | NWifi | matched |  | 09/02/2026 17:54:05 | Data structs only, no functions. |
 | `wldp.h` | FileHistory, WinProg | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wmcodecdsp.h` | Media.DShow, Mf | remaining |  |  |  |

@@ -38,10 +38,10 @@
   {
     "header": "activation.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:19:39Z",
+    "notes": "COM/WinRT interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -8624,10 +8624,10 @@
   {
     "header": "rtworkq.h",
     "partition": "Threading",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:19:39Z",
+    "notes": "RtwqJoinWorkQueue/RtwqSetDeadline produce generic HANDLE via direct out-param.",
     "_source": "header-progress"
   },
   {
@@ -10514,10 +10514,10 @@
   {
     "header": "waasapi.h",
     "partition": "UpdateAssessment",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:19:39Z",
+    "notes": "COM interface + GUID constants only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -11270,10 +11270,10 @@
   {
     "header": "windows.ui.composition.interop.h",
     "partition": "WinRT.Composition",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:19:39Z",
+    "notes": "COM interop interface methods only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -11801,10 +11801,10 @@
   {
     "header": "wlantypes.h",
     "partition": "Ndis, NWifi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:19:39Z",
+    "notes": "Enums/structs only, no functions.",
     "_source": "header-progress"
   },
   {

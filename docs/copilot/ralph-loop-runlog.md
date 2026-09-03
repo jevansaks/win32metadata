@@ -1847,3 +1847,18 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - regbag.h: COM interface (ICreatePropBagOnRegKey) method only, out of scope. Clean.
 
 **Ledger status:** 524 accepted-normalized, 23 blocked, 856 pending.
+
+## 2026-09-02 20:19:54 UTC - Batch scraping-investigation-72
+
+**Headers:** wlantypes.h, activation.h, windows.ui.composition.interop.h, RTWorkQ.h, WaaSApi.h
+**Partitions scraped (x64):** Ndis, NWifi, WinRT.Composition (0 errors each); WinRT/Threading/UpdateAssessment reused
+
+- wlantypes.h: 802.11 WLAN enums/structs only, no functions. Clean.
+- activation.h: IActivationFactory COM/WinRT interface method only, out of scope. Clean.
+- windows.ui.composition.interop.h: COM interop interfaces (ICompositorInterop etc.), all vtable
+  methods; CreateCompositionSurfaceForHandle's HANDLE is a pre-owned input. Clean.
+- RTWorkQ.h: **blocked** - RtwqJoinWorkQueue/RtwqSetDeadline/RtwqSetDeadline2 produce a generic
+  HANDLE via direct out-param (established blocker class); RtwqCancelDeadline closes it.
+- WaaSApi.h: IWaaSAssessor COM interface + CLSID/LIBID constants only. Clean.
+
+**Ledger status:** 528 accepted-normalized, 24 blocked, 851 pending.
