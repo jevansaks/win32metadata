@@ -1057,3 +1057,22 @@ required first (as was necessary for wincon.h in batch 22).
 
 **Ledger status:** 322 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h), 1076 pending.
+
+## 2026-09-02 17:42:15 UTC - Batch scraping-investigation-28
+
+**Headers:** windows.graphics.interop.h, sensapi.h, apiquery2.h, wsvns.h, rpcnsip.h
+**Partitions scraped:** WinRT.Direct2D, Sens, Rpc (x86; 0 errors; Rpc shows 1 pre-existing unrelated
+cross-partition remap warning for _CERT_CONTEXT)
+
+- windows.graphics.interop.h: IGeometrySource2DInterop is a clean COM factory pattern. Clean.
+- sensapi.h: IsDestinationReachableA/W/IsNetworkAlive - plain struct/DWORD output, no handle. Clean.
+- apiquery2.h: caller-allocated string buffer output only, no handle. Clean.
+- wsvns.h: data struct + constants only, no functions. Clean.
+- rpcnsip.h: internal (I_-prefixed) RPC runtime stub-binding routines. I_RpcNsSendReceive outputs an
+  RPC_BINDING_HANDLE, but this is a documented-internal stub routine, not the canonical public producer
+  site. RPC_BINDING_HANDLE has no autoTypes.json entry; its canonical public API
+  (RpcBindingFromStringBinding/RpcBindingFree) lives in rpcdce.h, already separately tracked (pending) -
+  that is where future ownership work belongs. Clean.
+
+**Ledger status:** 327 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h), 1071 pending.

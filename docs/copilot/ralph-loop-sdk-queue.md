@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:38:52Z
+- Generated: 2026-09-03T00:42:02Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 322
+- Matched: 327
 - In progress: 0
 - Blocked: 5
-- Remaining: 1076
+- Remaining: 1071
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -66,7 +66,7 @@
 | `anchorsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `animationcoordinator.h` | Shell | remaining |  |  |  |
 | `apdevpkey.h` | Base, Devices.Properties | matched |  | 09/02/2026 17:05:19 | Device property key constant only, no functions. |
-| `apiquery2.h` | FileHistory, WinProg | remaining |  |  |  |
+| `apiquery2.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:41:54 | Caller-allocated string buffer output only. |
 | `appcompatapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:23:42 | No handle involved. |
 | `appmgmt.h` | Policy, Shell | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `appmodel.h` | AppxPackaging | remaining |  |  |  |
@@ -958,7 +958,7 @@
 | `rpcdcep.h` | Rpc | remaining |  |  |  |
 | `rpcndr.h` | FileHistory, Rpc, WinProg | remaining |  |  |  |
 | `rpcnsi.h` | Rpc | remaining |  |  |  |
-| `rpcnsip.h` | Rpc | remaining |  |  |  |
+| `rpcnsip.h` | Rpc | matched |  | 09/02/2026 17:41:54 | Internal I_-prefixed RPC stub routines; RPC_BINDING_HANDLE canonical API tracked separately under rpcdce.h (pending). |
 | `rpcnterr.h` | Foundation | remaining |  |  |  |
 | `rpcssl.h` | Rpc | remaining |  |  |  |
 | `rrascfg.h` | Eap | remaining |  |  |  |
@@ -990,7 +990,7 @@
 | `securitybaseapi.h` | Etw, Identity, Security | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `segment.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `sens.h` | Sens | remaining |  |  |  |
-| `sensapi.h` | Sens | remaining |  |  |  |
+| `sensapi.h` | Sens | matched |  | 09/02/2026 17:41:54 | No handle involved. |
 | `sensevts.h` | Sens | remaining |  |  |  |
 | `sensors.h` | WinSensors | remaining |  |  |  |
 | `sensorsapi.h` | WinLocation, WinSensors | remaining |  |  |  |
@@ -1257,7 +1257,7 @@
 | `windows.graphics.effects.interop.h` | WinRT.Direct2D | remaining |  |  |  |
 | `Windows.Graphics.Holographic.Interop.h` | WinRT.Holographic | remaining |  |  |  |
 | `windows.graphics.imaging.interop.h` | WinRT.Graphics.Imaging | remaining |  |  |  |
-| `windows.graphics.interop.h` | WinRT.Direct2D | remaining |  |  |  |
+| `windows.graphics.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 17:41:54 | COM factory pattern. |
 | `windows.graphics.printing.workflow.native.h` | WinRT.Printing | remaining |  |  |  |
 | `windows.h` | Console, Edp, Enstor, Memory, Mi | remaining |  |  |  |
 | `windows.media.core.interop.h` | WinRT.Media | remaining |  |  |  |
@@ -1386,7 +1386,7 @@
 | `wsnetbs.h` | WinSock | remaining |  |  |  |
 | `wsnwlink.h` | WinSock | remaining |  |  |  |
 | `wsrm.h` | WinSock | remaining |  |  |  |
-| `wsvns.h` | WinSock | remaining |  |  |  |
+| `wsvns.h` | WinSock | matched |  | 09/02/2026 17:41:54 | Data struct + constants only, no functions. |
 | `wtsapi32.h` | TermServ | remaining |  |  |  |
 | `wtsdefs.h` | TermServ | remaining |  |  |  |
 | `wtshintapi.h` | TermServ | remaining |  |  |  |

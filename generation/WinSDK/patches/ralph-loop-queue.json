@@ -506,10 +506,10 @@
   {
     "header": "apiquery2.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:41:54Z",
+    "notes": "Caller-allocated string buffer output only.",
     "_source": "header-progress"
   },
   {
@@ -8534,10 +8534,10 @@
   {
     "header": "rpcnsip.h",
     "partition": "Rpc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:41:54Z",
+    "notes": "Internal I_-prefixed RPC stub routines; RPC_BINDING_HANDLE canonical API tracked separately under rpcdce.h (pending).",
     "_source": "header-progress"
   },
   {
@@ -8822,10 +8822,10 @@
   {
     "header": "sensapi.h",
     "partition": "Sens",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:41:54Z",
+    "notes": "No handle involved.",
     "_source": "header-progress"
   },
   {
@@ -11225,10 +11225,10 @@
   {
     "header": "windows.graphics.interop.h",
     "partition": "WinRT.Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:41:54Z",
+    "notes": "COM factory pattern.",
     "_source": "header-progress"
   },
   {
@@ -12386,10 +12386,10 @@
   {
     "header": "wsvns.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:41:54Z",
+    "notes": "Data struct + constants only, no functions.",
     "_source": "header-progress"
   },
   {
