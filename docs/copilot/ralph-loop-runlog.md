@@ -3204,3 +3204,13 @@ Ledger: 1101 accepted-normalized, 31 blocked, 271 pending (1132/1403 classified)
 - winscard.h (Credentials): PRODUCER-SITE FIX - added SCARDCONTEXT autoTypes.json entry (CloseApi SCardReleaseContext). SCARDHANDLE blocked (mandatory disposition param).
 
 Ledger: 1106 accepted-normalized, 31 blocked, 266 pending (1137/1403 classified).
+
+## Batch 190 (2026-09-03 02:51): syncregistration.h, cluadmex.h, mstcpip.h, vsprov.h, netiodef.h
+
+- **syncregistration.h** (WinSync): COM vtable only. Clean.
+- **cluadmex.h** (MsCs): COM vtable only. Clean.
+- **mstcpip.h** (WinSock): GUID constants/structs only. Clean.
+- **vsprov.h** (VSS): COM vtable only. Clean.
+- **netiodef.h** (WinSock/wnv): structs/constants only, no functions. Clean.
+
+Ledger: 1111 accepted-normalized, 31 blocked, 261 pending (1142/1403 classified).

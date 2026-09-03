@@ -1361,10 +1361,10 @@
   {
     "header": "cluadmex.h",
     "partition": "MsCs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cluadmex.h.md",
     "_source": "header-progress"
   },
   {
@@ -6626,10 +6626,10 @@
   {
     "header": "mstcpip.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mstcpip.h.md",
     "_source": "header-progress"
   },
   {
@@ -6923,10 +6923,10 @@
   {
     "header": "netiodef.h",
     "partition": "WinSock, wnv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netiodef.h.md",
     "_source": "header-progress"
   },
   {
@@ -9542,10 +9542,10 @@
   {
     "header": "syncregistration.h",
     "partition": "WinSync",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/syncregistration.h.md",
     "_source": "header-progress"
   },
   {
@@ -10460,10 +10460,10 @@
   {
     "header": "vsprov.h",
     "partition": "VSS",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsprov.h.md",
     "_source": "header-progress"
   },
   {

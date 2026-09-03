@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:49:30Z
+- Generated: 2026-09-03T09:51:27Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1106
+- Matched: 1111
 - In progress: 0
 - Blocked: 31
-- Remaining: 266
+- Remaining: 261
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -161,7 +161,7 @@
 | `clfsmgmtw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `clfsw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `cloneviewhelper.h` | Monitor | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cloneviewhelper.h.md |
-| `cluadmex.h` | MsCs | remaining |  |  |  |
+| `cluadmex.h` | MsCs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cluadmex.h.md |
 | `cmnquery.h` | ActiveDirectory | matched |  | 09/02/2026 21:43:41 | GUID/flag constants only, no extern functions. |
 | `codecapi.h` | Media.DShow, Mf | remaining |  |  |  |
 | `colordlg.h` | DlgBox | matched |  | 09/02/2026 17:35:31 | Dialog control ID constants only, no functions. |
@@ -746,7 +746,7 @@
 | `mssign.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mssign.h.md |
 | `mssip.h` | Security.Cryptography.Sip, Security.WinTrust | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mstask.h` | TaskSchd | remaining |  |  |  |
-| `mstcpip.h` | WinSock | remaining |  |  |  |
+| `mstcpip.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mstcpip.h.md |
 | `msvidctl.h` | MsTv | remaining |  |  |  |
 | `mswmdm.h` | Wmdm | remaining |  |  |  |
 | `mswsock.h` | WinSock | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
@@ -779,7 +779,7 @@
 | `netcon.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `netevent.h` | NetMgmt | remaining |  |  |  |
 | `netfw.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
-| `netiodef.h` | WinSock, wnv | remaining |  |  |  |
+| `netiodef.h` | WinSock, wnv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netiodef.h.md |
 | `netlistmgr.h` | Nla, WindowsConnectionManager | remaining |  |  |  |
 | `netprov.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netprov.h.md |
 | `netsh.h` | NetShell | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
@@ -1070,7 +1070,7 @@
 | `syncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 19:16:41 | GUID/property-key constants only, no functions. |
 | `synchronizationerrors.h` | WinSync | matched |  | 09/02/2026 22:12:28 | Constants only, no functions. |
 | `syncmgr.h` | Shell | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
-| `syncregistration.h` | WinSync | remaining |  |  |  |
+| `syncregistration.h` | WinSync | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/syncregistration.h.md |
 | `syncregistrationerrors.h` | WinSync | matched |  | 09/02/2026 18:09:40 | HRESULT error-code constants only, no functions. |
 | `sysinfoapi.h` | SystemInformation | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `systemmediatransportcontrolsinterop.h` | WinRT | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
@@ -1172,7 +1172,7 @@
 | `vsadmin.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsadmin.h.md |
 | `vsbackup.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsbackup.h.md |
 | `vsmgmt.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsmgmt.h.md |
-| `vsprov.h` | VSS | remaining |  |  |  |
+| `vsprov.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsprov.h.md |
 | `vss.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vss.h.md |
 | `vsserror.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsserror.h.md |
 | `vsstyle.h` | Controls | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsstyle.h.md |
