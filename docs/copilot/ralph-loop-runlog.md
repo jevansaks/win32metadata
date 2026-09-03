@@ -3466,3 +3466,13 @@ Ledger: 1241 accepted-normalized, 31 blocked, 131 pending (1272/1403 classified)
 - **winddi.h** (Display/IO/Printing/TransactionServer): kernel-mode driver callback contract. Clean.
 
 Ledger: 1246 accepted-normalized, 31 blocked, 126 pending (1277/1403 classified).
+
+## Batch 218 (2026-09-03 04:15): tapi3.h, vfw.h, portabledeviceapi.h, intsafe.h, rometadataapi.h
+
+- **tapi3.h** (Tapi3): COM vtable only. Clean.
+- **vfw.h** (Multimedia): HIC already has correct autoTypes.json entry (CloseApi ICClose). No gap.
+- **portabledeviceapi.h** (WpdSdk): COM vtable only. Clean.
+- **intsafe.h** (Shell): integer overflow helper functions only, no handle production. Clean.
+- **rometadataapi.h** (WinRT.Metadata): COM vtable only. Clean.
+
+Ledger: 1251 accepted-normalized, 31 blocked, 121 pending (1282/1403 classified).

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:12:15Z
+- Generated: 2026-09-03T11:15:01Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1246
+- Matched: 1251
 - In progress: 0
 - Blocked: 31
-- Remaining: 126
+- Remaining: 121
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -558,7 +558,7 @@
 | `inspectable.h` | Tcui | matched |  | 09/02/2026 21:12:30 | COM/WinRT interface method only, out of scope. |
 | `interactioncontext.h` | Input_IntContext | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/interactioncontext.h.md |
 | `intrinfix.h` | ActiveDirectory, AllJoyn, Antimalware, ApplicationVerifier, AppxPackaging, Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Authorization, Authorization.UI, Backup, Base, Bits, Bluetooth, Buses, Cabinets, CEIP, Certificates, Cloudapi, ClrHosting, ClrProfiling, CmpApi, Com, Com.CallObj, Com.ChannelCreds, Com.Events, Com.StructuredStorage, Com.Urlmon, Communication, ComOle, CompositionSwapchain, Console, Controls, Controls.RichEdit, Cos, Credentials, DataXchg, Debug, Debug.ActiveScript, Debug.Extensions, Debug.WebApp, Dedup, DeliveryOptimization, DeviceAccess, DeviceQuery, Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Devices.Properties, DevInst, DevLic, Dfs, Dhcp, Direct2D, Direct2D.Common, Direct3D, Direct3D10, Direct3D11, Direct3D11on12, Direct3D12, Direct3D9, Direct3D9on12, Direct3DDxc, Direct3DFxc, DirectComp, DirectDraw, DirectManipulation, DirectML, DirectWrite, Display, DlgBox, Dns, DTC, Dwm, DXCore, Dxgi, Dxgi.Common, Eap, EapHost, Edp, Enstor, Environment, Etw, Fax, FileHistory, Foundation, Fs, Fsrm, FunctionDiscovery, GameInput, GameMode, GamingDvcInfo, Gdi, Gdiplus, Gpmc, Hid, HostComputeNetwork, HostComputeSystem, HtmlHelp, HttpServer, Hypervisor, Identity, IdentityProvider, Ifsk, Iis, ImagingDevice, IMapi, IndexSrv, Input_Ink, Input_IntContext, Input.Ime, InputRadial, InternetConnectionWizard, InternetExplorer, Intl, IO, Ioctl, IpHlp, IScsiDisc, Isolation, JobObjects, Js, Kernel, KeyboardAndMouseInput, Ldap, LibraryLoader, Lwef, MachineLearning, MadCap, MagApi, Mapi, Mbn, MdmReg, Media, Media.DShow, Media.DShow.Xml, Media.DxMediaObjects, Media.KernelStreaming, Memory, MenuRc, MessageQueuing, Mf, Mi, MixedReality, MixedRealityInterop, Mmc, Monitor, MsChap, MsCs, MsHtml, MsTv, MsXml, Multimedia, Ndf, Ndis, NetBios, NetMgmt, NetShell, NetworkAccessProtection, Nfc, Nfp, Nla, Nps, NWifi, Of, Opc, OpenGL, P2p, Parcon, Perf, PicAcq, Pipes, Pla, Policy, Power, Printing, PrintTicket, Proc_Snap, ProjFs, Properties, PsApi1, PsApi2, PWM, Qos, Rdc, Rdp, RealTimeCommunications, Registry, RemoteAssist, Rm, Rpc, RRas, RstMgr, Search, SecBitomet, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, SecurityCenter, Sens, SerPorts, Services, Setup, Shell, Shell.Common, Shutdown, SideShow, Smi, Snmp, Speech, Sr, Storage.Jet, Storage.Nvme, SwDevice, SystemInformation, Tablet, Tapi3, TaskSchd, Tbs, Tcui, TermServ, Threading, Time, ToolHelp, TransactionServer, Tsf, Ual, UiAnimation, UpdateAssessment, Upnp, Variant, Vhd, VirtualDiskService, VirtualDOSMachines, VSS, Wab, Wcm, Wcn, Wcs, Wds, WebAuthn, WebDav, WebServicesOnDevices, WebSock, Wec, Wer, Wes, Wia, Wibe, Wic, Win32_Tile_Badge_Notif, WinAuto, WinContacts, WindowsConnectionManager, WindowsFilteringPlatform, WindowsFirewall, WindowsRibbon, WindowsSetupAndMigration, WinHttp, WinInet, WinLocation, WinProg, WinRm, WinRT, WinRT.AllJoyn, WinRT.Composition, WinRT.CoreInputView, WinRT.Direct2D, WinRT.Direct3D11, WinRT.Display, WinRT.Graphics.Capture, WinRT.Graphics.Imaging, WinRT.Holographic, WinRT.Isolation, WinRT.Media, WinRT.Metadata, WinRT.ML, WinRT.Pdf, WinRT.Printing, WinRT.Storage, WinRT.Xaml, WinSat, WinSensors, WinSock, WinSync, WinTouch, Wmdm, WmFormat, Wmi, Wmlss, Wmp, Wnet, wnv, WpdSdk, Wsb, Wsl, Wsw, Wua, Xaml_Diagnostics, Xaudio2, Xblidp, Xinput, XmlLite, Xps, XpsPrinting | remaining |  |  |  |
-| `intsafe.h` | Shell | remaining |  |  |  |
+| `intsafe.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/intsafe.h.md |
 | `intshcut.h` | Shell | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ioapiset.h` | Base, IO | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ioevent.h` | MenuRc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ioevent.h.md |
@@ -872,7 +872,7 @@
 | `pnpxassoc.h` | FunctionDiscovery, WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pnpxassoc.h.md |
 | `poclass.h` | Power | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/poclass.h.md |
 | `portabledevice.h` | WpdSdk | remaining |  |  |  |
-| `portabledeviceapi.h` | WpdSdk | remaining |  |  |  |
+| `portabledeviceapi.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceapi.h.md |
 | `portabledeviceconnectapi.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceconnectapi.h.md |
 | `portabledevicetypes.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledevicetypes.h.md |
 | `powerbase.h` | Power | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
@@ -948,7 +948,7 @@
 | `robuffer.h` | WinRT | matched |  | 09/02/2026 17:13:02 | COM-factory (RoGetBufferMarshaler) + buffer-view pattern (IBufferByteAccess), not HANDLE-family. |
 | `roerrorapi.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/roerrorapi.h.md |
 | `rometadata.h` | WinRT.Metadata | matched |  | 09/02/2026 17:01:48 | COM QueryInterface-style factory (MetaDataGetDispenser), no raw HANDLE. |
-| `rometadataapi.h` | WinRT.Metadata | remaining |  |  |  |
+| `rometadataapi.h` | WinRT.Metadata | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rometadataapi.h.md |
 | `rometadataresolution.h` | WinRT.Metadata | matched |  | 09/02/2026 19:12:01 | COM factory pattern + HSTRING outputs tracked separately under winstring.h. |
 | `roparameterizediid.h` | WinRT.Metadata | matched |  | 09/02/2026 19:19:02 | ROPARAMIIDHANDLE ownership already correctly captured via existing autoTypes.json entry. |
 | `roregistrationapi.h` | WinRT | matched |  | 09/02/2026 19:06:16 | COM factory; HSTRING array ownership tracked separately under winstring.h. |
@@ -1077,7 +1077,7 @@
 | `t2embapi.h` | Gdi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/t2embapi.h.md |
 | `tabflicks.h` | Tablet | matched |  | 09/02/2026 17:58:11 | Enums/bitfield structs only, no functions. |
 | `tapi.h` | Tapi3 | remaining |  |  |  |
-| `tapi3.h` | Tapi3 | remaining |  |  |  |
+| `tapi3.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3.h.md |
 | `tapi3ds.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3ds.h.md |
 | `tapi3err.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3err.h.md |
 | `tapi3if.h` | Tapi3 | remaining |  |  |  |
@@ -1156,7 +1156,7 @@
 | `vdslun.h` | VirtualDiskService | matched |  | 09/02/2026 19:50:38 | Enums/structs + MIDL boilerplate only, no functions. |
 | `vdssys.h` | VirtualDiskService, VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdssys.h.md |
 | `VersionHelpers.h` | SystemInformation | matched |  | 09/02/2026 19:54:02 | All functions are inline, no scrapable extern declarations. |
-| `vfw.h` | Multimedia | remaining |  |  |  |
+| `vfw.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vfw.h.md |
 | `vfwext.h` | Multimedia | matched |  | 09/02/2026 18:35:09 | Constants + callback-signature typedefs only, no functions. |
 | `vfwmsgs.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vfwmsgs.h.md |
 | `vidcap.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vidcap.h.md |

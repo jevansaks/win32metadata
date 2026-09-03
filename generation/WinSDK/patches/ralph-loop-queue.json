@@ -4934,10 +4934,10 @@
   {
     "header": "intsafe.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/intsafe.h.md",
     "_source": "header-progress"
   },
   {
@@ -7760,10 +7760,10 @@
   {
     "header": "portabledeviceapi.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -8444,10 +8444,10 @@
   {
     "header": "rometadataapi.h",
     "partition": "WinRT.Metadata",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rometadataapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -9605,10 +9605,10 @@
   {
     "header": "tapi3.h",
     "partition": "Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3.h.md",
     "_source": "header-progress"
   },
   {
@@ -10316,10 +10316,10 @@
   {
     "header": "vfw.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vfw.h.md",
     "_source": "header-progress"
   },
   {
