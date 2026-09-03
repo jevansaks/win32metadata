@@ -3349,3 +3349,13 @@ Ledger: 1181 accepted-normalized, 31 blocked, 191 pending (1212/1403 classified)
 - rpcdce.h: RPC_BINDING_HANDLE identified, RpcBindingFree takes by-pointer (not by-value) - unrepresentable, documented.
 
 Ledger: 1186 accepted-normalized, 31 blocked, 186 pending (1217/1403 classified).
+
+## Batch 206 (2026-09-03 03:42): d3d9types.h, ddrawint.h, winbio_types.h, ctfutb.h, sqlext.h
+
+- **d3d9types.h** (Direct3D9/Mf): transparent structs/enums only. Clean.
+- **ddrawint.h** (DirectDraw): GUID constants/structs only. Clean.
+- **winbio_types.h** (SecBitomet): types/constants/structs only. Clean.
+- **ctfutb.h** (Tsf): COM vtable only. Clean.
+- **sqlext.h** (Search): SQLAllocHandleStd uses same generic SQLHANDLE pattern already documented in sql.h; other functions consume already-covered handles. Clean.
+
+Ledger: 1191 accepted-normalized, 31 blocked, 181 pending (1222/1403 classified).

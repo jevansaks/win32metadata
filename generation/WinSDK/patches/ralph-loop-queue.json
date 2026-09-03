@@ -1721,10 +1721,10 @@
   {
     "header": "ctfutb.h",
     "partition": "Tsf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ctfutb.h.md",
     "_source": "header-progress"
   },
   {
@@ -2090,10 +2090,10 @@
   {
     "header": "d3d9types.h",
     "partition": "Direct3D9, Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9types.h.md",
     "_source": "header-progress"
   },
   {
@@ -2360,10 +2360,10 @@
   {
     "header": "ddrawint.h",
     "partition": "DirectDraw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddrawint.h.md",
     "_source": "header-progress"
   },
   {
@@ -9236,10 +9236,10 @@
   {
     "header": "sqlext.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqlext.h.md",
     "_source": "header-progress"
   },
   {
@@ -11000,10 +11000,10 @@
   {
     "header": "winbio_types.h",
     "partition": "SecBitomet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winbio_types.h.md",
     "_source": "header-progress"
   },
   {

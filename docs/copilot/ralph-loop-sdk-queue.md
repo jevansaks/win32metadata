@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:40:15Z
+- Generated: 2026-09-03T10:42:42Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1186
+- Matched: 1191
 - In progress: 0
 - Blocked: 31
-- Remaining: 186
+- Remaining: 181
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -201,7 +201,7 @@
 | `cspdk.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cspdk.h.md |
 | `ctffunc.h` | Tsf | remaining |  |  |  |
 | `ctfspui.h` | Tsf | matched |  | 09/02/2026 20:41:40 | COM interface method + GUID constants only, no extern functions. |
-| `ctfutb.h` | Tsf | remaining |  |  |  |
+| `ctfutb.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ctfutb.h.md |
 | `ctxtcall.h` | Com, ComOle | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `custcntl.h` | Controls | matched |  | 09/02/2026 21:49:17 | Constants/transparent structs only, no extern functions. |
 | `d2d1_1.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
@@ -242,7 +242,7 @@
 | `d3d9caps.h` | Direct3D9, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9caps.h.md |
 | `d3d9helper.h` | Media.DShow | remaining |  |  |  |
 | `d3d9on12.h` | Direct3D9on12 | matched |  | 09/02/2026 19:21:35 | COM factory/refcounting pattern throughout. |
-| `d3d9types.h` | Direct3D9, Mf | remaining |  |  |  |
+| `d3d9types.h` | Direct3D9, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9types.h.md |
 | `d3dcaps.h` | Direct3D9 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcaps.h.md |
 | `d3dcommon.h` | Direct2D, Direct3D, Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcommon.h.md |
 | `d3dcompiler.h` | Direct3DFxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
@@ -272,7 +272,7 @@
 | `ddraw.h` | DirectDraw, Gdiplus, Media.DShow | matched |  | 09/02/2026 16:34:06 | HMONITOR reference is a pass-through system handle (never created/released by DirectDraw); guarded DECLARE_HANDLE fallback never fires. |
 | `ddrawgdi.h` | FileHistory, WinProg | blocked |  | 09/02/2026 19:45:17 | DdGetDxHandle/DdCreateDIBSection return generic HANDLE/HBITMAP via return value. |
 | `ddrawi.h` | DirectDraw, FileHistory, WinProg | remaining |  |  |  |
-| `ddrawint.h` | DirectDraw | remaining |  |  |  |
+| `ddrawint.h` | DirectDraw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddrawint.h.md |
 | `ddstream.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddstream.h.md |
 | `debugapi.h` | Base, Debug | matched |  | 09/02/2026 19:06:16 | HANDLE is a caller-supplied input, not produced here. |
 | `defaultbrowsersyncsettings.h` | WinProg | matched |  | 09/02/2026 20:16:15 | COM interface + GUID constants only, no extern functions. |
@@ -1036,7 +1036,7 @@
 | `sperror.h` | Speech | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sperror.h.md |
 | `sporder.h` | WinSock | matched |  | 09/02/2026 17:45:25 | DWORD/GUID array API only, no handle. |
 | `sql.h` | Search | matched |  |  | Producer-site fix: added SQLHENV/SQLFreeEnv, SQLHDBC/SQLFreeConnect autoTypes.json entries. SQLHSTMT (SQLFreeStmt requires mandatory 2nd param, unrepresentable) and SQLHDESC (only generic SQLAllocHandle/SQLFreeHandle, blocker-class 2) documented as out of scope. See docs/copilot/header-reports/sql.h.md |
-| `sqlext.h` | Search | remaining |  |  |  |
+| `sqlext.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqlext.h.md |
 | `sqloledb.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqloledb.h.md |
 | `sqlspi.h` | Search | matched |  | 09/02/2026 21:27:04 | No function produces the generic ODBC handle type; all reference it as pre-owned input. |
 | `sqltypes.h` | Search | matched |  | 09/02/2026 21:24:15 | Type definitions only, no functions. |
@@ -1232,7 +1232,7 @@
 | `winbio_adapter.h` | SecBitomet | remaining |  |  |  |
 | `winbio_err.h` | SecBitomet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winbio_err.h.md |
 | `winbio_ioctl.h` | SecBitomet | matched |  | 09/02/2026 21:49:17 | IOCTL/GUID constants only, no functions. |
-| `winbio_types.h` | SecBitomet | remaining |  |  |  |
+| `winbio_types.h` | SecBitomet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winbio_types.h.md |
 | `winbio.h` | SecBitomet | matched |  |  | Genuine producer-site fix: added WINBIO_SESSION_HANDLE autoTypes.json entry (ValueType=uint, novel pattern, CloseApi=WinBioCloseSession). See docs/copilot/header-reports/winbio.h.md |
 | `wincodec.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincodecsdk.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
