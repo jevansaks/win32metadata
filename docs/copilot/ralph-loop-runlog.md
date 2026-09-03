@@ -1221,3 +1221,22 @@ wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1036 pending.
 
 **Ledger status:** 365 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1031 pending.
+
+## 2026-09-02 18:10:02 UTC - Batch scraping-investigation-37
+
+**Headers:** security.h, statehelpers.h, wsipx.h, syncregistrationerrors.h, httprequestid.h
+**Partitions scraped:** Identity, Registry, WinSync, Iis (x86; 0 errors; Identity/Iis show pre-existing
+unrelated cross-partition remap warnings)
+
+- security.h: redirect-only header (name macros + sspi.h/secext.h/issper16.h). sspi.h already accepted,
+  issper16.h already tracked (pending). secext.h is untracked - per the wincon.h lesson, read its
+  content directly: GetUserNameExA/W, GetComputerObjectNameA/W, TranslateNameA/W all output plain
+  string buffers, no HANDLE. Clean.
+- statehelpers.h: GetRegistryValueWithFallbackW - both HKEY params are caller-supplied inputs, not
+  produced here. Clean.
+- wsipx.h: data struct + constants only, no functions. Clean.
+- syncregistrationerrors.h: HRESULT error-code constants only, no functions. Clean.
+- httprequestid.h: DISPID constants only, no functions. Clean.
+
+**Ledger status:** 370 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1026 pending.

@@ -4340,10 +4340,10 @@
   {
     "header": "httprequestid.h",
     "partition": "Iis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:09:40Z",
+    "notes": "DISPID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8777,10 +8777,10 @@
   {
     "header": "security.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:09:40Z",
+    "notes": "Redirect-only; sspi.h accepted, issper16.h tracked pending, secext.h (untracked) directly verified clean (string-buffer-output only).",
     "_source": "header-progress"
   },
   {
@@ -9317,10 +9317,10 @@
   {
     "header": "statehelpers.h",
     "partition": "FileHistory, Registry",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:09:40Z",
+    "notes": "HKEY parameters are inputs only, not produced here.",
     "_source": "header-progress"
   },
   {
@@ -9551,10 +9551,10 @@
   {
     "header": "syncregistrationerrors.h",
     "partition": "WinSync",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:09:40Z",
+    "notes": "HRESULT error-code constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -12314,10 +12314,10 @@
   {
     "header": "wsipx.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:09:40Z",
+    "notes": "Data struct + constants only, no functions.",
     "_source": "header-progress"
   },
   {

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:06:34Z
+- Generated: 2026-09-03T01:09:49Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 365
+- Matched: 370
 - In progress: 0
 - Blocked: 7
-- Remaining: 1031
+- Remaining: 1026
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -492,7 +492,7 @@
 | `httpext.h` | Iis | remaining |  |  |  |
 | `httpfilt.h` | Iis | remaining |  |  |  |
 | `httprequest.h` | WinHttp | matched | copilot | 09/03/2026 03:35:00 | No patch needed; verified via live scrape and static review. |
-| `httprequestid.h` | Iis | remaining |  |  |  |
+| `httprequestid.h` | Iis | matched |  | 09/02/2026 18:09:40 | DISPID constants only, no functions. |
 | `httptrace.h` | Iis | remaining |  |  |  |
 | `hvsocket.h` | Hypervisor | remaining |  |  |  |
 | `hwebcore.h` | Iis | remaining |  |  |  |
@@ -985,7 +985,7 @@
 | `sdoias.h` | Nps | remaining |  |  |  |
 | `search.h` | Search | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include corecrt_search.h); CRT-only, no Win32 declarations. |
 | `searchapi.h` | Lwef, Search | remaining |  |  |  |
-| `security.h` | Identity | remaining |  |  |  |
+| `security.h` | Identity | matched |  | 09/02/2026 18:09:40 | Redirect-only; sspi.h accepted, issper16.h tracked pending, secext.h (untracked) directly verified clean (string-buffer-output only). |
 | `securityappcontainer.h` | Isolation | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `securitybaseapi.h` | Etw, Identity, Security | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `segment.h` | Media.DShow, MsTv | remaining |  |  |  |
@@ -1045,7 +1045,7 @@
 | `srrestoreptapi.h` | Sr | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `sslprovider.h` | Security.Cryptography | remaining |  |  |  |
 | `sspi.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
-| `statehelpers.h` | FileHistory, Registry | remaining |  |  |  |
+| `statehelpers.h` | FileHistory, Registry | matched |  | 09/02/2026 18:09:40 | HKEY parameters are inputs only, not produced here. |
 | `statusdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `stdint.h` | AllJoyn | remaining |  |  |  |
 | `stgprop.h` | Search | remaining |  |  |  |
@@ -1071,7 +1071,7 @@
 | `synchronizationerrors.h` | WinSync | remaining |  |  |  |
 | `syncmgr.h` | Shell | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `syncregistration.h` | WinSync | remaining |  |  |  |
-| `syncregistrationerrors.h` | WinSync | remaining |  |  |  |
+| `syncregistrationerrors.h` | WinSync | matched |  | 09/02/2026 18:09:40 | HRESULT error-code constants only, no functions. |
 | `sysinfoapi.h` | SystemInformation | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `systemmediatransportcontrolsinterop.h` | WinRT | remaining |  |  |  |
 | `t2embapi.h` | Gdi | remaining |  |  |  |
@@ -1378,7 +1378,7 @@
 | `wsdxml.h` | FunctionDiscovery | remaining |  |  |  |
 | `wshisotp.h` | WinSock | remaining |  |  |  |
 | `wsipv6ok.h` | WinSock | remaining |  |  |  |
-| `wsipx.h` | WinSock | remaining |  |  |  |
+| `wsipx.h` | WinSock | matched |  | 09/02/2026 18:09:40 | Data struct + constants only, no functions. |
 | `wslapi.h` | Wsl | remaining |  |  |  |
 | `wsman.h` | WinRm | remaining |  |  |  |
 | `wsmandisp.h` | WinRm | remaining |  |  |  |
