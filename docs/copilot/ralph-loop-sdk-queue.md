@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:06:19Z
+- Generated: 2026-09-03T05:09:52Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 661
+- Matched: 666
 - In progress: 0
 - Blocked: 31
-- Remaining: 711
+- Remaining: 706
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -314,7 +314,7 @@
 | `dmoreg.h` | Media.DxMediaObjects | matched |  | 09/02/2026 19:32:00 | Registration/enum functions operate on CLSIDs and standard COM interface pointers only. |
 | `dmort.h` | Media.DxMediaObjects | matched |  | 09/02/2026 18:47:23 | DMO_MEDIA_TYPE alloc/free is a transparent-struct memory pattern, not an opaque handle. |
 | `dmprocessxmlfiltered.h` | WpdSdk | matched |  | 09/02/2026 17:38:44 | BSTR output, not HANDLE-family. |
-| `dmusics.h` | Audio.DirectMusic | remaining |  |  |  |
+| `dmusics.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:09:36 | COM-style interfaces + constants/structs only, no extern functions. |
 | `docobj.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `docobjectservice.h` | InternetExplorer | remaining |  |  |  |
 | `DocumentSource.h` | WinRT.Printing | remaining |  |  |  |
@@ -564,7 +564,7 @@
 | `ioevent.h` | MenuRc | remaining |  |  |  |
 | `ioringapi.h` | Fs | matched |  | 09/02/2026 21:59:01 | HIORING already correctly covered via existing autoTypes.json entry. |
 | `ip2string.h` | IpHlp, wnv | matched |  | 09/02/2026 20:34:23 | String-conversion functions write into caller buffers only, no handles. |
-| `IPExport.h` | IpHlp | remaining |  |  |  |
+| `IPExport.h` | IpHlp | matched |  | 09/02/2026 22:09:36 | Type aliases/structs only, no functions. |
 | `iphlpapi.h` | IpHlp, Shell | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ipinfoid.h` | IpHlp | matched |  | 09/02/2026 19:47:59 | Constants only, no functions. |
 | `ipmib.h` | RRas | remaining |  |  |  |
@@ -613,7 +613,7 @@
 | `lmsname.h` | NetMgmt | matched |  | 09/02/2026 19:35:00 | Service-name string constants only, no functions. |
 | `lmstats.h` | Fs | matched |  | 09/02/2026 20:16:15 | Net API buffer-allocation convention. |
 | `lmsvc.h` | NetMgmt | remaining |  |  |  |
-| `lmuse.h` | NetMgmt | remaining |  |  |  |
+| `lmuse.h` | NetMgmt | matched |  | 09/02/2026 22:09:36 | Net API buffer-allocation convention. |
 | `lmuseflg.h` | NetMgmt | matched |  | 09/02/2026 17:23:42 | Constants/macro only, no functions. |
 | `lmwksta.h` | NetMgmt | remaining |  |  |  |
 | `loadperf.h` | FileHistory, Perf, WinProg | matched |  | 09/02/2026 19:12:01 | String/flag-only API, no handle. |
@@ -719,7 +719,7 @@
 | `msdatsrc.h` | Search | remaining |  |  |  |
 | `msdelta.h` | Setup | remaining |  |  |  |
 | `msdrm.h` | Rm | remaining |  |  |  |
-| `msdrmdefs.h` | Rm | remaining |  |  |  |
+| `msdrmdefs.h` | Rm | matched |  | 09/02/2026 22:09:36 | Types/constants only, no functions; DRM handle ownership deferred to msdrm.h. |
 | `msdrmerror.h` | Rm | remaining |  |  |  |
 | `msdrmgetinfo.h` | Rm | matched |  | 09/02/2026 21:08:27 | String constants only, no functions. |
 | `msdshape.h` | Search | matched |  | 09/02/2026 17:51:18 | Constants/enums only, no functions. |
@@ -1113,7 +1113,7 @@
 | `tsgpolicyengine.h` | TermServ | remaining |  |  |  |
 | `TSPI.h` | Tapi3 | remaining |  |  |  |
 | `tspubplugin2com.h` | TermServ | remaining |  |  |  |
-| `tspubplugincom.h` | TermServ | remaining |  |  |  |
+| `tspubplugincom.h` | TermServ | matched |  | 09/02/2026 22:09:36 | COM interface only, no extern functions. |
 | `tssbx.h` | TermServ | remaining |  |  |  |
 | `tsuserex.h` | TermServ | remaining |  |  |  |
 | `tsvirtualchannels.h` | TermServ | remaining |  |  |  |

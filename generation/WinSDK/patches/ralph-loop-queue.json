@@ -2738,10 +2738,10 @@
   {
     "header": "dmusics.h",
     "partition": "Audio.DirectMusic",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:09:36Z",
+    "notes": "COM-style interfaces + constants/structs only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -4988,10 +4988,10 @@
   {
     "header": "IPExport.h",
     "partition": "IpHlp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:09:36Z",
+    "notes": "Type aliases/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5429,10 +5429,10 @@
   {
     "header": "lmuse.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:09:36Z",
+    "notes": "Net API buffer-allocation convention.",
     "_source": "header-progress"
   },
   {
@@ -6383,10 +6383,10 @@
   {
     "header": "msdrmdefs.h",
     "partition": "Rm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:09:36Z",
+    "notes": "Types/constants only, no functions; DRM handle ownership deferred to msdrm.h.",
     "_source": "header-progress"
   },
   {
@@ -9929,10 +9929,10 @@
   {
     "header": "tspubplugincom.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:09:36Z",
+    "notes": "COM interface only, no extern functions.",
     "_source": "header-progress"
   },
   {

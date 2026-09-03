@@ -2305,3 +2305,21 @@ WinRT.Printing/ActiveDirectory/ImagingDevice reused
 
 **Ledger status:** 661 accepted-normalized, 31 blocked, 711 pending. (100 batches completed this
 Ralph loop session.)
+
+## 2026-09-02 22:09:52 UTC - Batch scraping-investigation-101
+
+**Headers:** LMUse.h, msdrmdefs.h, IPExport.h, dmusics.h, tspubplugincom.h
+**Partitions:** NetMgmt, Rm, IpHlp, Audio.DirectMusic, TermServ (all already scraped this session, reused)
+
+- LMUse.h: NetUseAdd/NetUseGetInfo/NetUseEnum follow established NetApiBufferAllocate/Free
+  convention. Clean.
+- msdrmdefs.h: DRM handle-family type definitions (DRMHANDLE/DRMQUERYHANDLE/DRMENVHANDLE/
+  DRMHSESSION/DRMPUBHANDLE, all typedef ULONG) + transparent _DRMID struct, no functions in
+  this "defs" header. Deferred ownership audit to still-pending msdrm.h (same pattern as
+  HSTRING/winstring.h). Clean.
+- IPExport.h: IP type aliases + transparent structs only, no functions. Clean.
+- dmusics.h: IDirectMusicSynth/IDirectMusicSynthSink COM-style interfaces + constants/structs
+  only, no extern functions. Clean.
+- tspubplugincom.h: ItsPubPlugin COM interface only, no extern functions. Clean.
+
+**Ledger status:** 666 accepted-normalized, 31 blocked, 706 pending.
