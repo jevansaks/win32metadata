@@ -20,6 +20,10 @@
 #include <minwindef.h>
 #include <minwinbase.h>
 
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #pragma region Desktop Family
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -32,6 +36,8 @@ STDAPI
 CreatePackageVirtualizationContext(
     _In_opt_ PCWSTR packageFamilyName,
     _Out_ PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE* context
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(ReleasePackageVirtualizationContext)
     );
 
 STDAPI
@@ -54,6 +60,8 @@ STDAPI
 DuplicatePackageVirtualizationContext(
     _In_ PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE sourceContext,
     _Out_ PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE* destContext
+        _Win32_metadata_invalid_handle_(0)
+        _Win32_metadata_raii_free_(ReleasePackageVirtualizationContext)
     );
 
 STDAPI_(PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE)

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:50:19Z
+- Generated: 2026-09-03T01:56:43Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 428
+- Matched: 431
 - In progress: 0
-- Blocked: 9
-- Remaining: 966
+- Blocked: 11
+- Remaining: 961
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -208,7 +208,7 @@
 | `d2d1_2.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `d2d1_3.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `d2d1.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
-| `d2d1effectauthor_1.h` | Direct2D | remaining |  |  |  |
+| `d2d1effectauthor_1.h` | Direct2D | matched |  | 09/02/2026 18:56:34 | COM factory pattern. |
 | `d2d1effectauthor.h` | Direct2D | matched | copilot | 09/03/2026 00:25:00 | Classified retained artifact in existing-patches-06. |
 | `d2d1effects_1.h` | Direct2D | matched |  | 09/02/2026 18:40:30 | GUID constant + enums only, no functions. |
 | `d2d1effects_2.h` | Direct2D | remaining |  |  |  |
@@ -391,7 +391,7 @@
 | `ehstormsg.h` | Enstor | remaining |  |  |  |
 | `elscore.h` | Intl | remaining |  |  |  |
 | `elssrvc.h` | Intl | matched |  | 09/02/2026 18:03:29 | GUID constants only, no functions. |
-| `emi.h` | Power | remaining |  |  |  |
+| `emi.h` | Power | matched |  | 09/02/2026 18:56:34 | GUID/IOCTL constants + data structs only, no functions. |
 | `emptyvc.h` | Lwef | remaining |  |  |  |
 | `encdec.h` | MsTv | remaining |  |  |  |
 | `endpointvolume.h` | Audio.Endpoints | remaining |  |  |  |
@@ -497,7 +497,7 @@
 | `hvsocket.h` | Hypervisor | remaining |  |  |  |
 | `hwebcore.h` | Iis | remaining |  |  |  |
 | `hypervdevicevirtualization.h` | Hypervisor | remaining |  |  |  |
-| `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | blocked | copilot | 09/02/2026 18:56:34 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h. |
 | `iaccess.h` | TransactionServer | remaining |  |  |  |
 | `iadmext.h` | Iis | remaining |  |  |  |
 | `iadmw.h` | Iis | remaining |  |  |  |
@@ -846,7 +846,7 @@
 | `opmapi.h` | Mf | remaining |  |  |  |
 | `opmxbox.h` | Mf | matched |  | 09/02/2026 17:23:42 | Enum-output-only API, no handle. |
 | `p2p.h` | P2p | remaining |  |  |  |
-| `packagevirtualizationcontext.h` | AppxPackaging | remaining |  |  |  |
+| `packagevirtualizationcontext.h` | AppxPackaging | matched |  | 09/02/2026 18:56:34 | Genuine ownership gap fixed: CreatePackageVirtualizationContext/DuplicatePackageVirtualizationContext out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via ReleasePackageVirtualizationContext. GetCurrentPackageVirtualizationContext is a borrowed/non-owned query (like GetConsoleWindow), left unannotated correctly. GetProcessesInVirtualizationContext's HANDLE** array is the already-documented generic-HANDLE-array limitation (same as physicalmonitorenumerationapi.h), not a new blocker. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
 | `pacmanclientapi.h` | Setup | remaining |  |  |  |
 | `patchapi.h` | Setup | remaining |  |  |  |
 | `patchwiz.h` | Setup | remaining |  |  |  |
@@ -896,7 +896,7 @@
 | `processsnapshot.h` | Proc_Snap | remaining |  |  |  |
 | `processthreadsapi.h` | FileHistory, TermServ | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `profileapi.h` | Perf | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
-| `profinfo.h` | Shell | remaining |  |  |  |
+| `profinfo.h` | Shell | matched |  | 09/02/2026 18:56:34 | Struct-only header; real gap belongs to UserEnv.h (reclassified blocked). |
 | `projectedfslib.h` | ProjFs | remaining |  |  |  |
 | `proofofpossessioncookieinfo.h` | WinInet | remaining |  |  |  |
 | `propapi.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
@@ -1144,7 +1144,7 @@
 | `usbuser.h` | Buses | remaining |  |  |  |
 | `useractivityinterop.h` | WinRT | remaining |  |  |  |
 | `UserConsentVerifierInterop.h` | WinRT | remaining |  |  |  |
-| `userenv.h` | Policy, Shell | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
+| `userenv.h` | Policy, Shell | blocked | copilot | 09/02/2026 18:53:55 | RE-AUDITED: previously classified in existing-patches-34 based only on retained set-last-error/supported-os patches (not an ownership audit). Re-audit found a genuine unaddressed HANDLE ownership gap (LoadUserProfileW/UnloadUserProfile via PROFILEINFOW.hProfile), same class as physicalmonitorenumerationapi.h. Reclassified to blocked; prior retained patches remain valid. |
 | `usp10.h` | Intl | remaining |  |  |  |
 | `utilapiset.h` | Base, Debug | matched |  | 09/02/2026 18:29:37 | Pointer obfuscation, not resource ownership; HANDLE is an input only. |
 | `uuids.h` | Media, Mf | remaining |  |  |  |

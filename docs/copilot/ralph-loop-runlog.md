@@ -1473,3 +1473,36 @@ physicalmonitorenumerationapi.h), 971 pending.
 **Ledger status:** 428 accepted-normalized, 9 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h,
 physicalmonitorenumerationapi.h), 966 pending.
+
+## 2026-09-02 18:57:02 UTC - Batch scraping-investigation-50
+
+**Headers:** profinfo.h, emi.h, i_cryptasn1tls.h (blocked), d2d1effectauthor_1.h,
+packagevirtualizationcontext.h (FIXED); **userenv.h reclassified accepted-normalized -> blocked**
+**Partitions scraped:** AppxPackaging (x86; 0 warnings/errors)
+
+- profinfo.h: declares only PROFILEINFOA/W structs, no functions. While auditing its hProfile HANDLE
+  field, discovered UserEnv.h's prior existing-patches-34 classification only verified unrelated
+  retained patches, never audited ownership. **Reclassified UserEnv.h to blocked**: LoadUserProfileW
+  populates PROFILEINFOW.hProfile (a plain HANDLE field), released via UnloadUserProfile - same
+  generic/shared-type-nested-in-struct blocker class as physicalmonitorenumerationapi.h. Prior retained
+  patches remain valid.
+- emi.h: GUID/IOCTL constants + data structs only, no functions. Clean.
+- **i_cryptasn1tls.h: BLOCKED.** I_CryptInstallAsn1Module returns HCRYPTASN1MODULE (typedef DWORD)
+  directly as the function return value, released via I_CryptUninstallAsn1Module - same
+  return-value-handle-ownership blocker class as getprocesshandlefromhwnd.h/wab.h/wincon.h/winppi.h/
+  libloaderapi2.h/MSAJTransport.h.
+- d2d1effectauthor_1.h: COM factory pattern, no raw HANDLE. Clean.
+- **packagevirtualizationcontext.h: GENUINE GAP FOUND AND FIXED.** DECLARE_HANDLE(PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE)
+  has an autoTypes.json entry but NO CloseApi/InvalidHandleValues (unlike the swdevice.h/
+  featurestagingapi.h/fhsvcctl.h cases which were already complete) - a genuine unaddressed gap. Applied
+  producer-site fix to CreatePackageVirtualizationContext/DuplicatePackageVirtualizationContext's
+  out-params (_Win32_metadata_invalid_handle_(0) + _raii_free_(ReleasePackageVirtualizationContext)).
+  GetCurrentPackageVirtualizationContext is a borrowed/non-owned query (like GetConsoleWindow), left
+  unannotated correctly. GetProcessesInVirtualizationContext's HANDLE** array output is the
+  already-documented generic-HANDLE-array limitation (same as physicalmonitorenumerationapi.h), not a
+  new blocker. Verified via live re-scrape (0 errors) and git apply --check --reverse (exit 0). New
+  patch: packagevirtualizationcontext.h.context-ownership.patch.
+
+**Ledger status:** 431 accepted-normalized (incl. 1 new genuine producer-site fix), 11 blocked (esent.h,
+getprocesshandlefromhwnd.h, wab.h, wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h,
+MSAJTransport.h, physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h), 961 pending.

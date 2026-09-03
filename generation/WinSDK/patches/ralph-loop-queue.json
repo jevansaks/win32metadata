@@ -1784,10 +1784,10 @@
   {
     "header": "d2d1effectauthor_1.h",
     "partition": "Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:56:34Z",
+    "notes": "COM factory pattern.",
     "_source": "header-progress"
   },
   {
@@ -3431,10 +3431,10 @@
   {
     "header": "emi.h",
     "partition": "Power",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:56:34Z",
+    "notes": "GUID/IOCTL constants + data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4385,10 +4385,10 @@
   {
     "header": "i_cryptasn1tls.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T18:56:34Z",
+    "notes": "Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h.",
     "_source": "header-progress"
   },
   {
@@ -7526,10 +7526,10 @@
   {
     "header": "packagevirtualizationcontext.h",
     "partition": "AppxPackaging",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:56:34Z",
+    "notes": "Genuine ownership gap fixed: CreatePackageVirtualizationContext/DuplicatePackageVirtualizationContext out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via ReleasePackageVirtualizationContext. GetCurrentPackageVirtualizationContext is a borrowed/non-owned query (like GetConsoleWindow), left unannotated correctly. GetProcessesInVirtualizationContext's HANDLE** array is the already-documented generic-HANDLE-array limitation (same as physicalmonitorenumerationapi.h), not a new blocker. Verified via live re-scrape (0 errors) and git apply --check --reverse.",
     "_source": "header-progress"
   },
   {
@@ -7976,10 +7976,10 @@
   {
     "header": "profinfo.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:56:34Z",
+    "notes": "Struct-only header; real gap belongs to UserEnv.h (reclassified blocked).",
     "_source": "header-progress"
   },
   {
@@ -10208,10 +10208,10 @@
   {
     "header": "userenv.h",
     "partition": "Policy, Shell",
-    "status": "matched",
+    "status": "blocked",
     "owner": "copilot",
-    "last_updated": "2026-09-03T01:45:00Z",
-    "notes": "Classified retained artifact in existing-patches-34.",
+    "last_updated": "2026-09-02T18:53:55Z",
+    "notes": "RE-AUDITED: previously classified in existing-patches-34 based only on retained set-last-error/supported-os patches (not an ownership audit). Re-audit found a genuine unaddressed HANDLE ownership gap (LoadUserProfileW/UnloadUserProfile via PROFILEINFOW.hProfile), same class as physicalmonitorenumerationapi.h. Reclassified to blocked; prior retained patches remain valid.",
     "_source": "header-progress"
   },
   {
