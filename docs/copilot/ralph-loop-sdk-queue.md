@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:25:12Z
+- Generated: 2026-09-03T07:27:25Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 881
+- Matched: 886
 - In progress: 0
 - Blocked: 31
-- Remaining: 491
+- Remaining: 486
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -89,7 +89,7 @@
 | `audiopolicy.h` | Audio | remaining |  |  |  |
 | `audiosessiontypes.h` | Audio | matched |  | 09/02/2026 21:12:30 | Enums only, no functions. |
 | `audiostatemonitorapi.h` | Audio | matched |  | 09/02/2026 19:28:18 | Handle-producing method is a COM vtable method, out of scope; extern functions are COM factories. |
-| `austream.h` | Media.DShow | remaining |  |  |  |
+| `austream.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/austream.h.md |
 | `authif.h` | Nps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/authif.h.md |
 | `authz.h` | Authorization, Authorization.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (12 producer sites across 6 handle types). |
 | `aux_ulib.h` | FileHistory, WinProg | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
@@ -136,7 +136,7 @@
 | `casetup.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `CastingInterop.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CastingInterop.h.md |
 | `ccgplugins.h` | Identity | matched |  | 09/02/2026 19:37:21 | COM interface method only, out of scope. |
-| `cchannel.h` | TermServ | remaining |  |  |  |
+| `cchannel.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cchannel.h.md |
 | `cderr.h` | DlgBox | matched |  | 09/02/2026 18:15:12 | Error-code constants only, no functions. |
 | `celib.h` | Security | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/celib.h.md |
 | `certadm.h` | Certificates | remaining |  |  |  |
@@ -400,7 +400,7 @@
 | `errors.h` | Media.DShow | matched |  | 09/02/2026 17:38:44 | Caller-allocated string buffer output only, no handle. |
 | `esent.h` | Storage.Jet | blocked | copilot | 09/03/2026 04:45:00 | Deferred: 229-function header with complex many-to-many JET handle ownership graph requiring dedicated research pass, not a quick classification. |
 | `evalcom2.h` | Setup | matched |  | 09/02/2026 18:06:26 | COM interface with caller-supplied context pointers only, no handle. |
-| `evcode.h` | Media.DShow | remaining |  |  |  |
+| `evcode.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evcode.h.md |
 | `evcoll.h` | Wec | matched |  | 09/02/2026 21:38:18 | Fixed genuine gap: added new autoTypes.json entry for EC_HANDLE (CloseApi=EcClose). |
 | `eventsys.h` | Com.Events, TransactionServer | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `evntcons.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evntcons.h.md |
@@ -609,7 +609,7 @@
 | `lmremutl.h` | NetMgmt | matched |  | 09/02/2026 19:14:35 | Net API buffer-allocation convention, not HANDLE-family. |
 | `lmrepl.h` | NetMgmt | matched |  | 09/02/2026 20:53:10 | Net API buffer-allocation convention. |
 | `lmserver.h` | Base, NetMgmt | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
-| `lmshare.h` | Fs | remaining |  |  |  |
+| `lmshare.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmshare.h.md |
 | `lmsname.h` | NetMgmt | matched |  | 09/02/2026 19:35:00 | Service-name string constants only, no functions. |
 | `lmstats.h` | Fs | matched |  | 09/02/2026 20:16:15 | Net API buffer-allocation convention. |
 | `lmsvc.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmsvc.h.md |
@@ -1194,7 +1194,7 @@
 | `wcmerrors.h` | Smi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcmerrors.h.md |
 | `wcnapi.h` | Wcn | matched |  | 09/02/2026 17:01:48 | Redirect-only; 0 functions in entire Wcn partition, no DECLARE_HANDLE. |
 | `wcnfunctiondiscoverykeys.h` | Wcn | matched |  | 09/02/2026 17:35:31 | GUID/PROPERTYKEY constants only, no functions. |
-| `wcsplugin.h` | Wcs | remaining |  |  |  |
+| `wcsplugin.h` | Wcs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcsplugin.h.md |
 | `wct.h` | Base, Debug | blocked | copilot | 09/02/2026 19:12:01 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
 | `WDBGEXTS.H` | Debug.Extensions | remaining |  |  |  |
 | `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |

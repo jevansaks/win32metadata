@@ -713,10 +713,10 @@
   {
     "header": "austream.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/austream.h.md",
     "_source": "header-progress"
   },
   {
@@ -1136,10 +1136,10 @@
   {
     "header": "cchannel.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cchannel.h.md",
     "_source": "header-progress"
   },
   {
@@ -3512,10 +3512,10 @@
   {
     "header": "evcode.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evcode.h.md",
     "_source": "header-progress"
   },
   {
@@ -5393,10 +5393,10 @@
   {
     "header": "lmshare.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmshare.h.md",
     "_source": "header-progress"
   },
   {
@@ -10658,10 +10658,10 @@
   {
     "header": "wcsplugin.h",
     "partition": "Wcs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcsplugin.h.md",
     "_source": "header-progress"
   },
   {

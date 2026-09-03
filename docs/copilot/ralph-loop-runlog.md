@@ -2758,3 +2758,13 @@ Ledger: 876 accepted-normalized, 31 blocked, 496 pending (907/1403 classified).
 - **vss.h** (VSS): COM interfaces only, no free functions. Clean.
 
 Ledger: 881 accepted-normalized, 31 blocked, 491 pending (912/1403 classified).
+
+## Batch 145 (2026-09-03 00:27): lmshare.h, wcsplugin.h, cchannel.h, evcode.h, austream.h
+
+- **lmshare.h** (Fs): NetApiBufferAllocate/Free convention. Clean.
+- **wcsplugin.h** (Wcs): COM interfaces only, no free functions. Clean.
+- **cchannel.h** (TermServ): function-pointer typedefs only, no extern functions. Clean.
+- **evcode.h** (Media.DShow): EC_* constants only. Clean.
+- **austream.h** (Media.DShow): COM interfaces only, no free functions. Clean.
+
+Ledger: 886 accepted-normalized, 31 blocked, 486 pending (917/1403 classified).
