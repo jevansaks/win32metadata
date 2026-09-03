@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:31:48Z
+- Generated: 2026-09-03T05:34:46Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 696
+- Matched: 701
 - In progress: 0
 - Blocked: 31
-- Remaining: 676
+- Remaining: 671
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -73,7 +73,7 @@
 | `appnotify.h` | Shell | matched |  | 09/02/2026 18:20:58 | Genuine ownership gap fixed: RegisterAppStateChangeNotification/RegisterAppConstrainedChangeNotification out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via UnregisterAppStateChangeNotification/UnregisterAppConstrainedChangeNotification. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
 | `appserviceinterop.h` | WinRT | matched |  | 09/02/2026 22:02:59 | COM/WinRT interface methods only, out of scope. |
 | `appxpackaging.h` | AppxPackaging | remaining |  |  |  |
-| `asferr.h` | Multimedia | remaining |  |  |  |
+| `asferr.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/asferr.h.md |
 | `atacct.h` | NetMgmt | matched |  | 09/02/2026 17:09:31 | String-only account-info API, no handle. |
 | `atscpsipparser.h` | MsTv | remaining |  |  |  |
 | `atsmedia.h` | MsTv | matched |  | 09/02/2026 17:27:04 | GUID constant only, no functions. |
@@ -434,7 +434,7 @@
 | `filterpipeline.h` | Printing | remaining |  |  |  |
 | `filterr.h` | IndexSrv | matched |  | 09/02/2026 19:14:35 | HRESULT error-code constants only, no functions. |
 | `fltdefs.h` | FileHistory, IpHlp | remaining |  |  |  |
-| `fltuser.h` | Ifsk | remaining |  |  |  |
+| `fltuser.h` | Ifsk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fltuser.h.md |
 | `fontsub.h` | Gdi | matched |  | 09/02/2026 21:52:12 | Buffer allocation delegated entirely to caller-supplied callbacks, no opaque handle. |
 | `fsrm.h` | Fsrm | remaining |  |  |  |
 | `fsrmenums.h` | Fsrm | remaining |  |  |  |
@@ -869,7 +869,7 @@
 | `playto.h` | Mf | matched |  | 09/02/2026 17:51:18 | Pure MIDL boilerplate; real content in separately-tracked MFSharingEngine.h (pending). |
 | `PlayToManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `pluginauthenticator.h` | WebAuthn | remaining |  |  |  |
-| `pnpxassoc.h` | FunctionDiscovery, WebServicesOnDevices | remaining |  |  |  |
+| `pnpxassoc.h` | FunctionDiscovery, WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pnpxassoc.h.md |
 | `poclass.h` | Power | remaining |  |  |  |
 | `portabledevice.h` | WpdSdk | remaining |  |  |  |
 | `portabledeviceapi.h` | WpdSdk | remaining |  |  |  |
@@ -1212,7 +1212,7 @@
 | `WebAuthenticationCoreManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:38:18 | COM/WinRT interop interface method only, out of scope. |
 | `webauthn.h` | WebAuthn | remaining |  |  |  |
 | `webauthnplugin.h` | WebAuthn | remaining |  |  |  |
-| `webevnts.h` | InternetExplorer | remaining |  |  |  |
+| `webevnts.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webevnts.h.md |
 | `webservices.h` | Wsw | remaining |  |  |  |
 | `websocket.h` | WebSock | matched |  | 09/02/2026 21:01:40 | WEB_SOCKET_HANDLE already correctly covered via existing autoTypes.json entry. |
 | `werapi.h` | Wer | remaining |  |  |  |
@@ -1403,7 +1403,7 @@
 | `xaudio2fx.h` | Xaudio2 | remaining |  |  |  |
 | `xblidpauthmanager.h` | Xblidp | remaining |  |  |  |
 | `xenroll.h` | Certificates | remaining |  |  |  |
-| `xinput.h` | Xinput | remaining |  |  |  |
+| `xinput.h` | Xinput | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xinput.h.md |
 | `xmllite.h` | FileHistory, XmlLite | remaining |  |  |  |
 | `xolehlp.h` | DTC | matched |  | 09/02/2026 20:38:46 | All outputs are standard COM QueryInterface-style interface pointers. |
 | `xprtdefs.h` | Media.DShow | remaining |  |  |  |

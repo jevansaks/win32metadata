@@ -569,10 +569,10 @@
   {
     "header": "asferr.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/asferr.h.md",
     "_source": "header-progress"
   },
   {
@@ -3818,10 +3818,10 @@
   {
     "header": "fltuser.h",
     "partition": "Ifsk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fltuser.h.md",
     "_source": "header-progress"
   },
   {
@@ -7733,10 +7733,10 @@
   {
     "header": "pnpxassoc.h",
     "partition": "FunctionDiscovery, WebServicesOnDevices",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pnpxassoc.h.md",
     "_source": "header-progress"
   },
   {
@@ -10820,10 +10820,10 @@
   {
     "header": "webevnts.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webevnts.h.md",
     "_source": "header-progress"
   },
   {
@@ -12539,10 +12539,10 @@
   {
     "header": "xinput.h",
     "partition": "Xinput",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xinput.h.md",
     "_source": "header-progress"
   },
   {

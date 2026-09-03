@@ -2388,3 +2388,13 @@ Ledger: 691 accepted-normalized, 31 blocked, 681 pending (722/1403 classified).
 - **traffic.h** (Qos): APIENTRY macro + transparent QoS structs, no Tc* function declarations in this file. Clean.
 
 Ledger: 696 accepted-normalized, 31 blocked, 676 pending (727/1403 classified).
+
+## Batch 108 (2026-09-02 22:34): asferr.h, pnpxassoc.h, fltuser.h, xinput.h, webevnts.h
+
+- **asferr.h** (Multimedia): HRESULT error-code macros only, no functions. Clean.
+- **pnpxassoc.h** (FunctionDiscovery, WebServicesOnDevices): COM interfaces only, no free functions. Clean.
+- **fltuser.h** (Ifsk): FilterConnectCommunicationPort/FilterFindFirst/etc. all output generic shared HANDLE, no distinctly-named handle typedef anywhere - not fixable (generic-type blocker class 2). Clean.
+- **xinput.h** (Xinput): XInputGetState family - DWORD dwUserIndex input, transparent struct/GUID outputs only. Clean.
+- **webevnts.h** (InternetExplorer): COM interfaces only, no free functions. Clean.
+
+Ledger: 701 accepted-normalized, 31 blocked, 671 pending (732/1403 classified).
