@@ -2698,3 +2698,13 @@ Ledger: 846 accepted-normalized, 31 blocked, 526 pending (877/1403 classified).
 - **msdrmerror.h** (Rm): HRESULT error-code macros only. Clean.
 
 Ledger: 851 accepted-normalized, 31 blocked, 521 pending (882/1403 classified).
+
+## Batch 139 (2026-09-03 00:14): ddeml.h, evr9.h, functiondiscoverykeys_devpkey.h, rpcasync.h, fci.h
+
+- **ddeml.h** (DataXchg): PATCH APPLIED. HSZ had an existing autoTypes.json entry missing CloseApi (producer DdeCreateStringHandleA/W) - added CloseApi=DdeFreeStringHandle. HCONVLIST/HCONV/HDDEDATA already complete. Re-scraped DataXchg (x64): 0 errors.
+- **evr9.h** (Mf): COM interfaces only, no free functions. Clean.
+- **functiondiscoverykeys_devpkey.h** (Audio): PKEY_* PROPERTYKEY constants only. Clean.
+- **rpcasync.h** (Rpc): RPC_ASYNC_STATE is caller-allocated transparent struct, not opaque. Clean.
+- **fci.h** (Cabinets): PATCH APPLIED. New HFCI autoTypes.json entry (producer FCICreate, closer FCIDestroy). Re-scraped Cabinets (x64): 0 errors.
+
+Ledger: 856 accepted-normalized, 31 blocked, 516 pending (887/1403 classified).

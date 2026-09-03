@@ -113,6 +113,7 @@
     "Namespace": "Windows.Win32.System.DataExchange",
     "Name": "HSZ",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "DdeFreeStringHandle",
     "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
   },
@@ -3138,6 +3139,13 @@
     "Name": "HCS_OPERATION",
     "ValueType": "DECLARE_HANDLE",
     "CloseApi": "HcsCloseOperation",
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.Storage.Cabinets",
+    "Name": "HFCI",
+    "ValueType": "IntPtr",
+    "CloseApi": "FCIDestroy",
     "NativeTypedef": true
   }
 ]

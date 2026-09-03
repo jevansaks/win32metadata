@@ -2279,10 +2279,10 @@
   {
     "header": "ddeml.h",
     "partition": "DataXchg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added CloseApi=DdeFreeStringHandle to existing incomplete HSZ autoTypes.json entry. See docs/copilot/header-reports/ddeml.h.md",
     "_source": "header-progress"
   },
   {
@@ -3575,10 +3575,10 @@
   {
     "header": "evr9.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evr9.h.md",
     "_source": "header-progress"
   },
   {
@@ -3683,10 +3683,10 @@
   {
     "header": "fci.h",
     "partition": "Cabinets",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added new HFCI autoTypes.json entry (CloseApi=FCIDestroy). See docs/copilot/header-reports/fci.h.md",
     "_source": "header-progress"
   },
   {
@@ -3971,10 +3971,10 @@
   {
     "header": "functiondiscoverykeys_devpkey.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/functiondiscoverykeys_devpkey.h.md",
     "_source": "header-progress"
   },
   {
@@ -8489,10 +8489,10 @@
   {
     "header": "rpcasync.h",
     "partition": "Rpc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcasync.h.md",
     "_source": "header-progress"
   },
   {

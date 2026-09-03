@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:08:07Z
+- Generated: 2026-09-03T07:13:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 851
+- Matched: 856
 - In progress: 0
 - Blocked: 31
-- Remaining: 521
+- Remaining: 516
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -263,7 +263,7 @@
 | `dcompanimation.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcomptypes.h` | DirectComp | matched |  | 09/02/2026 19:47:59 | Enums/structs/constants only, no functions. |
 | `dde.h` | DataXchg | matched |  | 09/02/2026 20:25:02 | No function produces an opaque handle. |
-| `ddeml.h` | DataXchg | remaining |  |  |  |
+| `ddeml.h` | DataXchg | matched |  |  | Genuine producer-site fix: added CloseApi=DdeFreeStringHandle to existing incomplete HSZ autoTypes.json entry. See docs/copilot/header-reports/ddeml.h.md |
 | `ddkernel.h` | DirectDraw | matched |  | 09/02/2026 21:27:04 | COM-style interfaces + GUID constants only, no extern functions. |
 | `ddpbackup.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpbackup.h.md |
 | `ddpchunk.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpchunk.h.md |
@@ -407,7 +407,7 @@
 | `evntprov.h` | Etw | remaining |  |  |  |
 | `evntrace.h` | Etw, Media.DShow | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `evr.h` | Mf | remaining |  |  |  |
-| `evr9.h` | Mf | remaining |  |  |  |
+| `evr9.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evr9.h.md |
 | `exdisp.h` | FileHistory, Shell, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `exdispid.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/exdispid.h.md |
 | `expandedresources.h` | GameMode | matched |  | 09/02/2026 17:16:10 | No handle-typed values anywhere in this header. |
@@ -419,7 +419,7 @@
 | `faxext.h` | Fax | blocked |  | 09/02/2026 19:37:21 | FaxExtRegisterForEvents returns generic HANDLE via return value. |
 | `faxmmc.h` | Fax | matched |  | 09/02/2026 17:58:11 | GUID/string constants only, no functions. |
 | `faxroute.h` | Fax | matched |  | 09/02/2026 19:50:38 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
-| `fci.h` | Cabinets | remaining |  |  |  |
+| `fci.h` | Cabinets | matched |  |  | Genuine producer-site fix: added new HFCI autoTypes.json entry (CloseApi=FCIDestroy). See docs/copilot/header-reports/fci.h.md |
 | `fdi_fci_types.h` | Cabinets | matched |  | 09/02/2026 20:13:28 | Constants/structs only, no functions. |
 | `fdi.h` | Cabinets | remaining |  |  |  |
 | `featurestagingapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:40:30 | FEATURE_STATE_CHANGE_SUBSCRIPTION ownership already correctly captured via existing autoTypes.json entry. |
@@ -451,7 +451,7 @@
 | `functiondiscoverycategories.h` | FunctionDiscovery | matched |  | 09/02/2026 19:12:01 | String constants only, no functions. |
 | `functiondiscoveryconstraints.h` | FunctionDiscovery | matched |  | 09/02/2026 21:52:12 | Constants only, no functions. |
 | `functiondiscoveryerror.h` | FunctionDiscovery | matched |  | 09/02/2026 18:03:29 | HRESULT error-code constants only, no functions. |
-| `functiondiscoverykeys_devpkey.h` | Audio | remaining |  |  |  |
+| `functiondiscoverykeys_devpkey.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/functiondiscoverykeys_devpkey.h.md |
 | `functiondiscoveryprovider.h` | FunctionDiscovery, WebServicesOnDevices | remaining |  |  |  |
 | `fwpmtypes.h` | WindowsFilteringPlatform | remaining |  |  |  |
 | `fwpmu.h` | WindowsFilteringPlatform | remaining |  |  |  |
@@ -953,7 +953,7 @@
 | `roparameterizediid.h` | WinRT.Metadata | matched |  | 09/02/2026 19:19:02 | ROPARAMIIDHANDLE ownership already correctly captured via existing autoTypes.json entry. |
 | `roregistrationapi.h` | WinRT | matched |  | 09/02/2026 19:06:16 | COM factory; HSTRING array ownership tracked separately under winstring.h. |
 | `rpc.h` | Rpc | matched |  | 09/02/2026 20:07:23 | Pure umbrella/typedef header; all sub-headers already tracked; Mac-only function unreachable on Windows. |
-| `rpcasync.h` | Rpc | remaining |  |  |  |
+| `rpcasync.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcasync.h.md |
 | `rpcdce.h` | Rpc, TransactionServer | remaining |  |  |  |
 | `rpcdcep.h` | Rpc | remaining |  |  |  |
 | `rpcndr.h` | FileHistory, Rpc, WinProg | remaining |  |  |  |
