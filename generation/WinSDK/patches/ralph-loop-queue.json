@@ -1523,10 +1523,10 @@
   {
     "header": "contactaggregation.h",
     "partition": "WinContacts",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contactaggregation.h.md",
     "_source": "header-progress"
   },
   {
@@ -4610,10 +4610,10 @@
   {
     "header": "iextag.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iextag.h.md",
     "_source": "header-progress"
   },
   {
@@ -7814,10 +7814,10 @@
   {
     "header": "prcomoem.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/prcomoem.h.md",
     "_source": "header-progress"
   },
   {
@@ -9083,10 +9083,10 @@
   {
     "header": "slerror.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/slerror.h.md",
     "_source": "header-progress"
   },
   {
@@ -10082,10 +10082,10 @@
   {
     "header": "upnp.h",
     "partition": "Upnp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/upnp.h.md",
     "_source": "header-progress"
   },
   {

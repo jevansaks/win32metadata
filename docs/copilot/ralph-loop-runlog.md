@@ -3406,3 +3406,13 @@ Ledger: 1211 accepted-normalized, 31 blocked, 161 pending (1242/1403 classified)
 - **sdoias.h** (Nps): COM vtable only. Clean.
 
 Ledger: 1216 accepted-normalized, 31 blocked, 156 pending (1247/1403 classified).
+
+## Batch 212 (2026-09-03 03:59): contactaggregation.h, prcomoem.h, slerror.h, iextag.h, upnp.h
+
+- **contactaggregation.h** (WinContacts): COM vtable only. Clean.
+- **prcomoem.h** (Printing): COM plugin interfaces, ref-counted. Clean.
+- **slerror.h** (Identity): error-code constants only. Clean.
+- **iextag.h** (InternetExplorer): COM vtable only. Clean.
+- **upnp.h** (Upnp): COM vtable only. Clean.
+
+Ledger: 1221 accepted-normalized, 31 blocked, 151 pending (1252/1403 classified).

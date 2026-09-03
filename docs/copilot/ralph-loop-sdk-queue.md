@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:57:44Z
+- Generated: 2026-09-03T10:59:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1216
+- Matched: 1221
 - In progress: 0
 - Blocked: 31
-- Remaining: 156
+- Remaining: 151
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -179,7 +179,7 @@
 | `computestorage.h` | HostComputeSystem | matched |  | 09/02/2026 19:42:09 | No opaque handles produced; HANDLE params are pre-owned caller inputs. |
 | `comsvcs.h` | Com.Events, Cos | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `consoleapis.h` | Console | matched |  | 09/02/2026 17:23:42 | HANDLE/HWND fields are caller-supplied input references, not produced/owned here; distinct from the wincon.h blocker (different functions). |
-| `contactaggregation.h` | WinContacts | remaining |  |  |  |
+| `contactaggregation.h` | WinContacts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contactaggregation.h.md |
 | `contactdeviceservice.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contactdeviceservice.h.md |
 | `contentpartner.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contentpartner.h.md |
 | `control.h` | Media.DShow | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
@@ -522,7 +522,7 @@
 | `ieobj.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `iepmapi.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `iewebdriver.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iewebdriver.h.md |
-| `iextag.h` | InternetExplorer | remaining |  |  |  |
+| `iextag.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iextag.h.md |
 | `il21dec.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
 | `ImageHlp.h` | Debug | remaining |  |  |  |
 | `imagetranscode.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
@@ -878,7 +878,7 @@
 | `powerbase.h` | Power | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `powersetting.h` | Power | blocked |  | 09/02/2026 19:42:09 | PowerRegisterForEffectivePowerModeNotifications outputs generic PVOID via direct out-param; HPOWERNOTIFY portion already covered by autoTypes.json. |
 | `powrprof.h` | Power | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
-| `prcomoem.h` | Printing | remaining |  |  |  |
+| `prcomoem.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/prcomoem.h.md |
 | `prdrvcom.h` | Printing | matched |  | 09/02/2026 20:34:23 | COM interface methods only, out of scope. |
 | `presentation.h` | CompositionSwapchain | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/presentation.h.md |
 | `presentationtypes.h` | CompositionSwapchain | matched |  | 09/02/2026 18:06:26 | Data structs/enum/typedef + MIDL boilerplate only, no functions. |
@@ -1019,7 +1019,7 @@
 | `shobjidl.h` | Properties, Shell, TransactionServer | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shtypes.h` | Shell, Shell.Common | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shtypes.h.md |
 | `simpdata.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/simpdata.h.md |
-| `slerror.h` | Identity | remaining |  |  |  |
+| `slerror.h` | Identity | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/slerror.h.md |
 | `sliddefs.h` | Identity | matched |  | 09/02/2026 16:57:06 | GUID constant only, no functions. |
 | `slpublic.h` | Identity | matched |  |  | Producer-site fix: added HSLC autoTypes.json entry (CloseApi SLClose). See docs/copilot/header-reports/slpublic.h.md |
 | `smbclnt.h` | MsCs | matched |  | 09/02/2026 18:50:10 | HANDLE is a caller-supplied input, not produced here. |
@@ -1130,7 +1130,7 @@
 | `uiautomationcoreapi.h` | WinAuto | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `uiribbon.h` | WindowsRibbon | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/uiribbon.h.md |
 | `UIViewSettingsInterop.h` | WinRT | matched |  | 09/02/2026 21:01:40 | COM/WinRT interop interface method only, out of scope. |
-| `upnp.h` | Upnp | remaining |  |  |  |
+| `upnp.h` | Upnp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/upnp.h.md |
 | `upnphost.h` | Upnp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/upnphost.h.md |
 | `urlhist.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/urlhist.h.md |
 | `urlmon.h` | Shell, TransactionServer | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
