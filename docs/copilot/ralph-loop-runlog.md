@@ -1613,3 +1613,19 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - stringapiset.h: string/buffer conversion API only, no handle. Clean.
 
 **Ledger status:** 462 accepted-normalized, 15 blocked, 926 pending.
+
+## 2026-09-02 19:19:17 UTC - Batch scraping-investigation-58
+
+**Headers:** datetimeapi.h, roparameterizediid.h, lmalert.h, wnnc.h, adssts.h
+**Partitions scraped:** Ifsk (x86; 0 warnings/errors)
+
+- datetimeapi.h: string/buffer formatting API only, no handle. Clean.
+- roparameterizediid.h: DECLARE_HANDLE(ROPARAMIIDHANDLE) produced/released via
+  RoGetParameterizedTypeInstanceIID/RoFreeParameterizedTypeExtra - autoTypes.json already has a
+  complete correct entry matching this header exactly, same pattern as swdevice.h/featurestagingapi.h/
+  fhsvcctl.h. Clean.
+- lmalert.h: caller-supplied input buffers only, no handle. Clean.
+- wnnc.h: network-type constants only, no functions. Clean.
+- adssts.h: status-code constants only, no functions. Clean.
+
+**Ledger status:** 467 accepted-normalized, 15 blocked, 921 pending.

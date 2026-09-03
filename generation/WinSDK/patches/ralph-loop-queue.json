@@ -119,10 +119,10 @@
   {
     "header": "adssts.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:19:02Z",
+    "notes": "Status-code constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2153,10 +2153,10 @@
   {
     "header": "datetimeapi.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:19:02Z",
+    "notes": "String/buffer formatting API only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -5267,10 +5267,10 @@
   {
     "header": "lmalert.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:19:02Z",
+    "notes": "Caller-supplied input buffers only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -8462,10 +8462,10 @@
   {
     "header": "roparameterizediid.h",
     "partition": "WinRT.Metadata",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:19:02Z",
+    "notes": "ROPARAMIIDHANDLE ownership already correctly captured via existing autoTypes.json entry.",
     "_source": "header-progress"
   },
   {
@@ -12008,10 +12008,10 @@
   {
     "header": "wnnc.h",
     "partition": "Ifsk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:19:02Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {

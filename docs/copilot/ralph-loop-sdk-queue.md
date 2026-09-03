@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:16:54Z
+- Generated: 2026-09-03T02:19:17Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 462
+- Matched: 467
 - In progress: 0
 - Blocked: 15
-- Remaining: 926
+- Remaining: 921
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -23,7 +23,7 @@
 | `adhoc.h` | Ndis, NWifi | remaining |  |  |  |
 | `adshlp.h` | ActiveDirectory | remaining |  |  |  |
 | `adsprop.h` | ActiveDirectory | remaining |  |  |  |
-| `adssts.h` | ActiveDirectory | remaining |  |  |  |
+| `adssts.h` | ActiveDirectory | matched |  | 09/02/2026 19:19:02 | Status-code constants only, no functions. |
 | `adtgen.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `advpub.h` | FileHistory, WinProg | remaining |  |  |  |
 | `af_irda.h` | WinSock | remaining |  |  |  |
@@ -249,7 +249,7 @@
 | `d3dcsx.h` | Direct3D11 | remaining |  |  |  |
 | `d3dshadercacheregistration.h` | Direct3D | remaining |  |  |  |
 | `d3dtypes.h` | Direct3D9 | remaining |  |  |  |
-| `datetimeapi.h` | Intl | remaining |  |  |  |
+| `datetimeapi.h` | Intl | matched |  | 09/02/2026 19:19:02 | String/buffer formatting API only, no handle. |
 | `davclnt.h` | WebDav | remaining |  |  |  |
 | `DbgEng.h` | Debug.Extensions | remaining |  |  |  |
 | `dbghelp.h` | FileHistory, WinProg | remaining |  |  |  |
@@ -595,7 +595,7 @@
 | `licenseprotection.h` | Security.LicenseProtection | matched |  | 09/02/2026 17:38:44 | Enum/FILETIME output only, no handle. |
 | `lm.h` | NetMgmt | matched |  | 09/02/2026 17:38:44 | Pure umbrella redirect; all 18 sub-headers already individually tracked in ledger (2 accepted, 16 pending). |
 | `lmaccess.h` | FileHistory, NetMgmt, WinProg | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
-| `lmalert.h` | NetMgmt | remaining |  |  |  |
+| `lmalert.h` | NetMgmt | matched |  | 09/02/2026 19:19:02 | Caller-supplied input buffers only, no handle. |
 | `lmapibuf.h` | NetMgmt | matched |  | 09/02/2026 18:32:46 | Canonical NetApiBufferFree convention, generic memory buffer, not HANDLE-family. |
 | `lmat.h` | NetMgmt | matched |  | 09/02/2026 19:16:41 | Net API buffer-allocation convention, not HANDLE-family. |
 | `lmaudit.h` | NetMgmt | remaining |  |  |  |
@@ -950,7 +950,7 @@
 | `rometadata.h` | WinRT.Metadata | matched |  | 09/02/2026 17:01:48 | COM QueryInterface-style factory (MetaDataGetDispenser), no raw HANDLE. |
 | `rometadataapi.h` | WinRT.Metadata | remaining |  |  |  |
 | `rometadataresolution.h` | WinRT.Metadata | matched |  | 09/02/2026 19:12:01 | COM factory pattern + HSTRING outputs tracked separately under winstring.h. |
-| `roparameterizediid.h` | WinRT.Metadata | remaining |  |  |  |
+| `roparameterizediid.h` | WinRT.Metadata | matched |  | 09/02/2026 19:19:02 | ROPARAMIIDHANDLE ownership already correctly captured via existing autoTypes.json entry. |
 | `roregistrationapi.h` | WinRT | matched |  | 09/02/2026 19:06:16 | COM factory; HSTRING array ownership tracked separately under winstring.h. |
 | `rpc.h` | Rpc | remaining |  |  |  |
 | `rpcasync.h` | Rpc | remaining |  |  |  |
@@ -1344,7 +1344,7 @@
 | `wmsecure.h` | WmFormat | remaining |  |  |  |
 | `wmsinternaladminnetsource.h` | WmFormat | remaining |  |  |  |
 | `wmsysprf.h` | Wmp | remaining |  |  |  |
-| `wnnc.h` | Ifsk | remaining |  |  |  |
+| `wnnc.h` | Ifsk | matched |  | 09/02/2026 19:19:02 | Constants only, no functions. |
 | `wnvapi.h` | wnv | blocked | copilot | 09/02/2026 19:09:17 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
 | `wofapi.h` | Fs | remaining |  |  |  |
 | `workspaceax.h` | TermServ | remaining |  |  |  |
