@@ -2988,3 +2988,13 @@ Ledger: 991 accepted-normalized, 31 blocked, 381 pending (1022/1403 classified).
 - **dinputd.h** (Hid): COM vtable only. Clean.
 
 Ledger: 996 accepted-normalized, 31 blocked, 376 pending (1027/1403 classified).
+
+## Batch 168 (2026-09-03 01:41): windows.ui.xaml.media.dxinterop.h, MLOperatorAuthor.h, dvp.h, sensevts.h, indexsrv.h
+
+- **windows.ui.xaml.media.dxinterop.h** (WinRT.Xaml): COM vtable only. Clean.
+- **MLOperatorAuthor.h** (MachineLearning): modern C++ COM interfaces only. Clean.
+- **dvp.h** (DirectDraw): GUID constants/structs only. Clean.
+- **sensevts.h** (Sens): COM vtable only. Clean.
+- **indexsrv.h** (IndexSrv/Search): COM vtable only. Clean.
+
+Ledger: 1001 accepted-normalized, 31 blocked, 371 pending (1032/1403 classified). Crosses 1000 accepted-normalized milestone.

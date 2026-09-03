@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:39:45Z
+- Generated: 2026-09-03T08:41:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 996
+- Matched: 1001
 - In progress: 0
 - Blocked: 31
-- Remaining: 376
+- Remaining: 371
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -343,7 +343,7 @@
 | `dvbsiparser.h` | MsTv | remaining |  |  |  |
 | `dvdevcod.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dvdevcod.h.md |
 | `dvdmedia.h` | Media.DShow | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
-| `dvp.h` | DirectDraw | remaining |  |  |  |
+| `dvp.h` | DirectDraw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dvp.h.md |
 | `dwmapi.h` | Dwm | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dwrite_1.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dwrite_2.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
@@ -543,7 +543,7 @@
 | `immdev.h` | Input.Ime | remaining |  |  |  |
 | `in6addr.h` | WinSock, wnv | matched |  | 09/02/2026 17:16:10 | Plain data struct + macros only, no functions. |
 | `inaddr.h` | IpHlp, RRas, WinSock | matched |  | 09/02/2026 17:19:28 | Plain data struct + macros only, no functions. |
-| `indexsrv.h` | IndexSrv, Search | remaining |  |  |  |
+| `indexsrv.h` | IndexSrv, Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/indexsrv.h.md |
 | `inetreg.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inetreg.h.md |
 | `inetsdk.h` | InternetExplorer | matched |  | 09/02/2026 18:23:41 | Pure MIDL boilerplate, no functions. |
 | `infocard.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infocard.h.md |
@@ -672,7 +672,7 @@
 | `minwindef.h` | Foundation, Multimedia | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `mixerocx.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mixerocx.h.md |
 | `mlang.h` | Intl | remaining |  |  |  |
-| `MLOperatorAuthor.h` | MachineLearning | remaining |  |  |  |
+| `MLOperatorAuthor.h` | MachineLearning | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/MLOperatorAuthor.h.md |
 | `mmc.h` | Mmc | remaining |  |  |  |
 | `mmcobj.h` | Lwef, Mmc | remaining |  |  |  |
 | `mmddk.h` | Audio.DirectMusic, Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmddk.h.md |
@@ -991,7 +991,7 @@
 | `segment.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `sens.h` | Sens | matched |  | 09/02/2026 18:20:58 | Constants only, no functions. |
 | `sensapi.h` | Sens | matched |  | 09/02/2026 17:41:54 | No handle involved. |
-| `sensevts.h` | Sens | remaining |  |  |  |
+| `sensevts.h` | Sens | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensevts.h.md |
 | `sensors.h` | WinSensors | remaining |  |  |  |
 | `sensorsapi.h` | WinLocation, WinSensors | remaining |  |  |  |
 | `sensorsdef.h` | WinSensors | remaining |  |  |  |
@@ -1266,7 +1266,7 @@
 | `windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h` | WinRT.CoreInputView | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `windows.ui.xaml.hosting.desktopwindowxamlsource.h` | WinRT.Xaml | matched |  | 09/02/2026 22:06:03 | COM interface methods only, out of scope. |
 | `windows.ui.xaml.hosting.referencetracker.h` | WinRT.Xaml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ui.xaml.hosting.referencetracker.h.md |
-| `windows.ui.xaml.media.dxinterop.h` | WinRT.Xaml | remaining |  |  |  |
+| `windows.ui.xaml.media.dxinterop.h` | WinRT.Xaml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ui.xaml.media.dxinterop.h.md |
 | `windowsceip.h` | Base, CEIP, FileHistory | matched |  | 09/02/2026 17:01:48 | CeipIsOptedIn() - no handle involved. |
 | `windowsdefender.h` | Lwef | matched |  | 09/02/2026 18:32:46 | BOOL-only API, no handle. |
 | `windowssearcherrors.h` | Search | remaining |  |  |  |

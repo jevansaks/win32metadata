@@ -2999,10 +2999,10 @@
   {
     "header": "dvp.h",
     "partition": "DirectDraw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dvp.h.md",
     "_source": "header-progress"
   },
   {
@@ -4799,10 +4799,10 @@
   {
     "header": "indexsrv.h",
     "partition": "IndexSrv, Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/indexsrv.h.md",
     "_source": "header-progress"
   },
   {
@@ -5960,10 +5960,10 @@
   {
     "header": "MLOperatorAuthor.h",
     "partition": "MachineLearning",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/MLOperatorAuthor.h.md",
     "_source": "header-progress"
   },
   {
@@ -8831,10 +8831,10 @@
   {
     "header": "sensevts.h",
     "partition": "Sens",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensevts.h.md",
     "_source": "header-progress"
   },
   {
@@ -11306,10 +11306,10 @@
   {
     "header": "windows.ui.xaml.media.dxinterop.h",
     "partition": "WinRT.Xaml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ui.xaml.media.dxinterop.h.md",
     "_source": "header-progress"
   },
   {
