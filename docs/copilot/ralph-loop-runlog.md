@@ -2798,3 +2798,13 @@ Ledger: 896 accepted-normalized, 31 blocked, 476 pending (927/1403 classified).
 - **htiframe.h** (InternetExplorer): COM interfaces only, no free functions. Clean.
 
 Ledger: 901 accepted-normalized, 31 blocked, 471 pending (932/1403 classified). Milestone: 900+ accepted-normalized.
+
+## Batch 149 (2026-09-03 00:51): bits1_5.h, certpol.h, patchwiz.h, imapi2error.h, winbio.h
+
+- **bits1_5.h** (Bits): COM interfaces only, no free functions. Clean.
+- **certpol.h** (Certificates): COM interfaces only, no free functions. Clean.
+- **patchwiz.h** (Setup): UiCreatePatchPackage family - strings/HWND/DWORD params only. Clean.
+- **imapi2error.h** (IMapi, Wab): HRESULT error-code constants only. Clean.
+- **winbio.h** (SecBitomet): PATCH APPLIED. Added WINBIO_SESSION_HANDLE autoTypes.json entry - novel 32-bit (ULONG-backed) handle type using ValueType=uint (confirmed supported via NativeTypedefStructsCreator.cs source review). Producer WinBioOpenSession, closer WinBioCloseSession. Re-scraped SecBitomet (x64): 0 errors. Attempted full EmitWinmd validation - blocked project-wide by pre-existing unrelated AllJoyn __builtin_verbose_trap toolchain issue (not a regression from this change).
+
+Ledger: 906 accepted-normalized, 31 blocked, 466 pending (937/1403 classified).

@@ -893,10 +893,10 @@
   {
     "header": "bits1_5.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits1_5.h.md",
     "_source": "header-progress"
   },
   {
@@ -1235,10 +1235,10 @@
   {
     "header": "certpol.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certpol.h.md",
     "_source": "header-progress"
   },
   {
@@ -4664,10 +4664,10 @@
   {
     "header": "imapi2error.h",
     "partition": "IMapi, Wab",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi2error.h.md",
     "_source": "header-progress"
   },
   {
@@ -7553,10 +7553,10 @@
   {
     "header": "patchwiz.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/patchwiz.h.md",
     "_source": "header-progress"
   },
   {
@@ -11009,10 +11009,10 @@
   {
     "header": "winbio.h",
     "partition": "SecBitomet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added WINBIO_SESSION_HANDLE autoTypes.json entry (ValueType=uint, novel pattern, CloseApi=WinBioCloseSession). See docs/copilot/header-reports/winbio.h.md",
     "_source": "header-progress"
   },
   {

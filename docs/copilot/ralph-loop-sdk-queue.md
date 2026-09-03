@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:37:29Z
+- Generated: 2026-09-03T07:51:00Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 901
+- Matched: 906
 - In progress: 0
 - Blocked: 31
-- Remaining: 471
+- Remaining: 466
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -109,7 +109,7 @@
 | `BiDiSpl.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/BiDiSpl.h.md |
 | `bindlink.h` | Fs | matched |  | 09/02/2026 17:30:54 | Path-string-only API, no handle. |
 | `bits.h` | Bits | remaining |  |  |  |
-| `bits1_5.h` | Bits | remaining |  |  |  |
+| `bits1_5.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits1_5.h.md |
 | `bits10_1.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_1.h.md |
 | `bits10_2.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_2.h.md |
 | `bits10_3.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_3.h.md |
@@ -147,7 +147,7 @@
 | `certexit.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certexit.h.md |
 | `certif.h` | Certificates | remaining |  |  |  |
 | `certmod.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certmod.h.md |
-| `certpol.h` | Certificates | remaining |  |  |  |
+| `certpol.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certpol.h.md |
 | `certpoleng.h` | Certificates | matched |  | 09/02/2026 19:09:17 | Transparent structs with generic free conventions, or generic PVOID; both out of scope. |
 | `certreqd.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certreqd.h.md |
 | `certsrv.h` | Certificates | remaining |  |  |  |
@@ -528,7 +528,7 @@
 | `imagetranscode.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `imapi.h` | IMapi | remaining |  |  |  |
 | `imapi2.h` | IMapi | remaining |  |  |  |
-| `imapi2error.h` | IMapi, Wab | remaining |  |  |  |
+| `imapi2error.h` | IMapi, Wab | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi2error.h.md |
 | `imapi2fs.h` | IMapi | remaining |  |  |  |
 | `imapi2fserror.h` | Wab | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi2fserror.h.md |
 | `imapierror.h` | IMapi | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
@@ -849,7 +849,7 @@
 | `packagevirtualizationcontext.h` | AppxPackaging | matched |  | 09/02/2026 18:56:34 | Genuine ownership gap fixed: CreatePackageVirtualizationContext/DuplicatePackageVirtualizationContext out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via ReleasePackageVirtualizationContext. GetCurrentPackageVirtualizationContext is a borrowed/non-owned query (like GetConsoleWindow), left unannotated correctly. GetProcessesInVirtualizationContext's HANDLE** array is the already-documented generic-HANDLE-array limitation (same as physicalmonitorenumerationapi.h), not a new blocker. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
 | `pacmanclientapi.h` | Setup | remaining |  |  |  |
 | `patchapi.h` | Setup | remaining |  |  |  |
-| `patchwiz.h` | Setup | remaining |  |  |  |
+| `patchwiz.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/patchwiz.h.md |
 | `pathcch.h` | Shell | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `pbdaerrors.h` | Media.DShow | matched |  | 09/02/2026 20:13:28 | HRESULT constants/macros only, no functions. |
 | `pchannel.h` | TermServ | matched |  | 09/02/2026 21:59:01 | Constants/transparent structs only, no functions. |
@@ -1233,7 +1233,7 @@
 | `winbio_err.h` | SecBitomet | remaining |  |  |  |
 | `winbio_ioctl.h` | SecBitomet | matched |  | 09/02/2026 21:49:17 | IOCTL/GUID constants only, no functions. |
 | `winbio_types.h` | SecBitomet | remaining |  |  |  |
-| `winbio.h` | SecBitomet | remaining |  |  |  |
+| `winbio.h` | SecBitomet | matched |  |  | Genuine producer-site fix: added WINBIO_SESSION_HANDLE autoTypes.json entry (ValueType=uint, novel pattern, CloseApi=WinBioCloseSession). See docs/copilot/header-reports/winbio.h.md |
 | `wincodec.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincodecsdk.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincon.h` | Console | blocked | copilot | 09/02/2026 17:19:28 | Deferred: wincon.h redirects to consoleapi.h/consoleapi2.h/consoleapi3.h/wincontypes.h (none separately tracked); live-scrape of the Console partition (~120 functions) found a genuine multi-producer/single-consumer return-value HANDLE ownership relationship with no annotation precedent, same class as getprocesshandlefromhwnd.h/wab.h. |
