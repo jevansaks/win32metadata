@@ -3854,10 +3854,10 @@
   {
     "header": "fsrmerr.h",
     "partition": "Fsrm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmerr.h.md",
     "_source": "header-progress"
   },
   {
@@ -4277,10 +4277,10 @@
   {
     "header": "htiface.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/htiface.h.md",
     "_source": "header-progress"
   },
   {
@@ -6554,10 +6554,10 @@
   {
     "header": "msinkaut15.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msinkaut15.h.md",
     "_source": "header-progress"
   },
   {
@@ -10847,10 +10847,10 @@
   {
     "header": "werapi.h",
     "partition": "Wer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/werapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -11297,10 +11297,10 @@
   {
     "header": "windows.ui.xaml.hosting.referencetracker.h",
     "partition": "WinRT.Xaml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ui.xaml.hosting.referencetracker.h.md",
     "_source": "header-progress"
   },
   {

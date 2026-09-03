@@ -2958,3 +2958,13 @@ Ledger: 976 accepted-normalized, 31 blocked, 396 pending (1007/1403 classified).
 - **eaptypes.h** (EapHost): constants/structs only, no functions. Clean.
 
 Ledger: 981 accepted-normalized, 31 blocked, 391 pending (1012/1403 classified).
+
+## Batch 165 (2026-09-03 01:33): htiface.h, windows.ui.xaml.hosting.referencetracker.h, fsrmerr.h, werapi.h, msinkaut15.h
+
+- **htiface.h** (InternetExplorer): COM vtable only. Clean.
+- **windows.ui.xaml.hosting.referencetracker.h** (WinRT.Xaml): COM vtable only. Clean.
+- **fsrmerr.h** (Fsrm): HRESULT error constants only. Clean.
+- **werapi.h** (Wer): HREPORT already has correct autoTypes.json entry (CloseApi WerReportCloseHandle) - no gap.
+- **msinkaut15.h** (Tablet): COM vtable only. Clean.
+
+Ledger: 986 accepted-normalized, 31 blocked, 386 pending (1017/1403 classified).

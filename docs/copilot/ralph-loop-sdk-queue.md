@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:30:35Z
+- Generated: 2026-09-03T08:32:54Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 981
+- Matched: 986
 - In progress: 0
 - Blocked: 31
-- Remaining: 391
+- Remaining: 386
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -438,7 +438,7 @@
 | `fontsub.h` | Gdi | matched |  | 09/02/2026 21:52:12 | Buffer allocation delegated entirely to caller-supplied callbacks, no opaque handle. |
 | `fsrm.h` | Fsrm | remaining |  |  |  |
 | `fsrmenums.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmenums.h.md |
-| `fsrmerr.h` | Fsrm | remaining |  |  |  |
+| `fsrmerr.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmerr.h.md |
 | `fsrmpipeline.h` | Fsrm | remaining |  |  |  |
 | `fsrmquota.h` | Fsrm | remaining |  |  |  |
 | `fsrmreports.h` | Fsrm | remaining |  |  |  |
@@ -485,7 +485,7 @@
 | `homepagesetting.h` | InternetExplorer | matched |  | 09/02/2026 20:56:17 | COM interface + GUID constants only, no extern functions. |
 | `hrtfapoapi.h` | Xaudio2 | matched |  | 09/02/2026 21:04:56 | Standard COM factory function + constants/structs only. |
 | `hstring.h` | WinRT | matched |  | 09/02/2026 18:47:23 | Type declarations only (opaque handle typedefs), no functions; producer functions tracked separately under winstring.h (pending). |
-| `htiface.h` | InternetExplorer | remaining |  |  |  |
+| `htiface.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/htiface.h.md |
 | `htiframe.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/htiframe.h.md |
 | `htmlhelp.h` | HtmlHelp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `http.h` | HttpServer | remaining |  |  |  |
@@ -738,7 +738,7 @@
 | `msime.h` | Input.Ime | remaining |  |  |  |
 | `msimeapi.h` | Input.Ime | matched |  | 09/02/2026 21:52:12 | COM interface only, no extern functions. |
 | `msinkaut.h` | Tablet | remaining |  |  |  |
-| `msinkaut15.h` | Tablet | remaining |  |  |  |
+| `msinkaut15.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msinkaut15.h.md |
 | `msiquery.h` | Setup | remaining |  |  |  |
 | `msopc.h` | Opc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only, no free functions. |
 | `msports.h` | SerPorts | matched |  | 09/02/2026 21:01:40 | HCOMDB already correctly covered via existing autoTypes.json entry. |
@@ -1215,7 +1215,7 @@
 | `webevnts.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webevnts.h.md |
 | `webservices.h` | Wsw | remaining |  |  |  |
 | `websocket.h` | WebSock | matched |  | 09/02/2026 21:01:40 | WEB_SOCKET_HANDLE already correctly covered via existing autoTypes.json entry. |
-| `werapi.h` | Wer | remaining |  |  |  |
+| `werapi.h` | Wer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/werapi.h.md |
 | `wheadef.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wheadef.h.md |
 | `wia.h` | Wia | matched |  | 09/02/2026 16:53:36 | Redirect-only; 185 functions all COM/RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wiadef.h` | Wia | remaining |  |  |  |
@@ -1265,7 +1265,7 @@
 | `windows.ui.composition.interop.h` | WinRT.Composition | matched |  | 09/02/2026 20:19:39 | COM interop interface methods only, out of scope. |
 | `windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h` | WinRT.CoreInputView | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `windows.ui.xaml.hosting.desktopwindowxamlsource.h` | WinRT.Xaml | matched |  | 09/02/2026 22:06:03 | COM interface methods only, out of scope. |
-| `windows.ui.xaml.hosting.referencetracker.h` | WinRT.Xaml | remaining |  |  |  |
+| `windows.ui.xaml.hosting.referencetracker.h` | WinRT.Xaml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ui.xaml.hosting.referencetracker.h.md |
 | `windows.ui.xaml.media.dxinterop.h` | WinRT.Xaml | remaining |  |  |  |
 | `windowsceip.h` | Base, CEIP, FileHistory | matched |  | 09/02/2026 17:01:48 | CeipIsOptedIn() - no handle involved. |
 | `windowsdefender.h` | Lwef | matched |  | 09/02/2026 18:32:46 | BOOL-only API, no handle. |
