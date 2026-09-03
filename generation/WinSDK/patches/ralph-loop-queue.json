@@ -3152,10 +3152,10 @@
   {
     "header": "dxgiformat.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:24:15Z",
+    "notes": "Enum only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8588,10 +8588,10 @@
   {
     "header": "rtinfo.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:24:15Z",
+    "notes": "Structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -9263,10 +9263,10 @@
   {
     "header": "sqltypes.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:24:15Z",
+    "notes": "Type definitions only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10703,10 +10703,10 @@
   {
     "header": "wdsbp.h",
     "partition": "Wds",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:24:15Z",
+    "notes": "WdsBpParseInitialize/WdsBpInitialize produce generic HANDLE via direct out-param.",
     "_source": "header-progress"
   },
   {
@@ -10775,10 +10775,10 @@
   {
     "header": "weakreference.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:24:15Z",
+    "notes": "COM/WinRT interface methods only, out of scope.",
     "_source": "header-progress"
   },
   {

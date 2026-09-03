@@ -2126,3 +2126,17 @@ MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
 - devpropdef.h: DEVPROP_TYPE_*/DEVPROP_TYPEMOD_* constants + DEVPROPTYPE typedef only, no functions. Clean.
 
 **Ledger status:** 608 accepted-normalized, 29 blocked, 766 pending.
+
+## 2026-09-02 21:24:30 UTC - Batch scraping-investigation-90
+
+**Headers:** sqltypes.h, dxgiformat.h, WdsBp.h, RTInfo.h, WeakReference.h
+**Partitions scraped (x64):** Dxgi, Dxgi.Common (0 errors each); Search/Wds/NetMgmt/WinRT reused
+
+- sqltypes.h: ODBC type typedefs only, no functions. Clean.
+- dxgiformat.h: DXGI_FORMAT enum only, no functions. Clean.
+- WdsBp.h: **blocked** - WdsBpParseInitialize/WdsBpParseInitializev6/WdsBpInitialize produce
+  generic HANDLE via direct out-param (established blocker class); WdsBpCloseHandle closes it.
+- RTInfo.h: router-manager info-block structs only, no functions. Clean.
+- WeakReference.h: IWeakReference/IWeakReferenceSource COM/WinRT interface methods only. Clean.
+
+**Ledger status:** 612 accepted-normalized, 30 blocked, 761 pending.

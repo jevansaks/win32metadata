@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:21:24Z
+- Generated: 2026-09-03T04:24:30Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 608
+- Matched: 612
 - In progress: 0
-- Blocked: 29
-- Remaining: 766
+- Blocked: 30
+- Remaining: 761
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -360,7 +360,7 @@
 | `dxgi1_6.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
 | `dxgicommon.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 18:15:12 | Data structs/enum/constants only, no functions. |
 | `dxgidebug.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
-| `dxgiformat.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
+| `dxgiformat.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 21:24:15 | Enum only, no functions. |
 | `dxgimessages.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxgitype.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 18:40:30 | Data structs/enums only, no functions. |
 | `dxmini.h` | DirectDraw | remaining |  |  |  |
@@ -964,7 +964,7 @@
 | `rrascfg.h` | Eap | remaining |  |  |  |
 | `rtccore.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `rtcerr.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; constant-only header. |
-| `rtinfo.h` | NetMgmt | remaining |  |  |  |
+| `rtinfo.h` | NetMgmt | matched |  | 09/02/2026 21:24:15 | Structs only, no functions. |
 | `rtmv2.h` | RRas | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `rtscom.h` | Tablet | remaining |  |  |  |
 | `rtutils.h` | NetMgmt | remaining |  |  |  |
@@ -1039,7 +1039,7 @@
 | `sqlext.h` | Search | remaining |  |  |  |
 | `sqloledb.h` | Search | remaining |  |  |  |
 | `sqlspi.h` | Search | remaining |  |  |  |
-| `sqltypes.h` | Search | remaining |  |  |  |
+| `sqltypes.h` | Search | matched |  | 09/02/2026 21:24:15 | Type definitions only, no functions. |
 | `sqlucode.h` | Search | remaining |  |  |  |
 | `srpapi.h` | Edp | blocked |  | 09/02/2026 19:54:02 | SrpCreateThreadNetworkContext populates HTHREAD_NETWORK_CONTEXT.ThreadContext, a generic HANDLE field. |
 | `srrestoreptapi.h` | Sr | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
@@ -1199,7 +1199,7 @@
 | `WDBGEXTS.H` | Debug.Extensions | remaining |  |  |  |
 | `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |
 | `wdmguid.h` | DevInst | remaining |  |  |  |
-| `wdsbp.h` | Wds | remaining |  |  |  |
+| `wdsbp.h` | Wds | blocked |  | 09/02/2026 21:24:15 | WdsBpParseInitialize/WdsBpInitialize produce generic HANDLE via direct out-param. |
 | `wdsclientapi.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdsmcerr.h` | Wds | remaining |  |  |  |
 | `wdspxe.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
@@ -1207,7 +1207,7 @@
 | `wdstpdi.h` | Wds | blocked |  | 09/02/2026 20:25:02 | WdsTransportProviderCreateInstance/OpenContent produce generic HANDLE via direct out-param. |
 | `wdstptmgmt.h` | Wds | remaining |  |  |  |
 | `wdstptmgmtmsg.h` | Wds | remaining |  |  |  |
-| `weakreference.h` | WinRT | remaining |  |  |  |
+| `weakreference.h` | WinRT | matched |  | 09/02/2026 21:24:15 | COM/WinRT interface methods only, out of scope. |
 | `webapplication.h` | Debug.WebApp | remaining |  |  |  |
 | `WebAuthenticationCoreManagerInterop.h` | WinRT | remaining |  |  |  |
 | `webauthn.h` | WebAuthn | remaining |  |  |  |
