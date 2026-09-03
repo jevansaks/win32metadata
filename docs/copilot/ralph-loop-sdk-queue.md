@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:38:04Z
+- Generated: 2026-09-03T09:41:34Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1086
+- Matched: 1091
 - In progress: 0
 - Blocked: 31
-- Remaining: 286
+- Remaining: 281
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -727,7 +727,7 @@
 | `msfeedsid.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msfeedsid.h.md |
 | `mshtmcid.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmcid.h.md |
 | `mshtmdid.h` | MsHtml | remaining |  |  |  |
-| `mshtmhst.h` | MsHtml | remaining |  |  |  |
+| `mshtmhst.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmhst.h.md |
 | `Mshtml.h` | MsHtml | remaining |  |  |  |
 | `mshtmlc.h` | MsHtml | remaining |  |  |  |
 | `mshtmldiagnostics.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmldiagnostics.h.md |
@@ -739,7 +739,7 @@
 | `msimeapi.h` | Input.Ime | matched |  | 09/02/2026 21:52:12 | COM interface only, no extern functions. |
 | `msinkaut.h` | Tablet | remaining |  |  |  |
 | `msinkaut15.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msinkaut15.h.md |
-| `msiquery.h` | Setup | remaining |  |  |  |
+| `msiquery.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msiquery.h.md |
 | `msopc.h` | Opc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only, no free functions. |
 | `msports.h` | SerPorts | matched |  | 09/02/2026 21:01:40 | HCOMDB already correctly covered via existing autoTypes.json entry. |
 | `msrdc.h` | Rdc | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
@@ -1027,7 +1027,7 @@
 | `snmp.h` | Snmp | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `socketapi.h` | WinSock | matched |  | 09/02/2026 16:57:06 | SetSocketMediaStreamingMode(BOOL) - no handle. |
 | `softpub.h` | Security.WinTrust | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/softpub.h.md |
-| `spatialaudioclient.h` | Audio | remaining |  |  |  |
+| `spatialaudioclient.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudioclient.h.md |
 | `spatialaudiohrtf.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudiohrtf.h.md |
 | `spatialaudiometadata.h` | Audio | remaining |  |  |  |
 | `spatialinteractionmanagerinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
@@ -1087,7 +1087,7 @@
 | `tcerror.h` | Qos | matched |  | 09/02/2026 18:35:09 | Error-code constants only, no functions. |
 | `tcguid.h` | Qos | matched |  | 09/02/2026 18:59:13 | GUID constants only, no functions. |
 | `tcpxcv.h` | Printing | matched |  | 09/02/2026 18:50:10 | Data structs + constants only, no functions. |
-| `tdh.h` | Etw | remaining |  |  |  |
+| `tdh.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tdh.h.md |
 | `tdiinfo.h` | FileHistory, WinProg | matched |  | 09/02/2026 20:28:23 | Structs/typedefs only, no functions. |
 | `textserv.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `textstor.h` | Tsf | remaining |  |  |  |
@@ -1387,7 +1387,7 @@
 | `wsnwlink.h` | WinSock | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
 | `wsrm.h` | WinSock | matched |  | 09/02/2026 20:34:23 | Socket-option constants only, no functions. |
 | `wsvns.h` | WinSock | matched |  | 09/02/2026 17:41:54 | Data struct + constants only, no functions. |
-| `wtsapi32.h` | TermServ | remaining |  |  |  |
+| `wtsapi32.h` | TermServ | matched |  |  | Producer-site fix: added 4 inline RAIIFree return-value annotations for WTSOpenServerA/W/ExA/ExW in emitter.settings.rsp. See docs/copilot/header-reports/wtsapi32.h.md |
 | `wtsdefs.h` | TermServ | remaining |  |  |  |
 | `wtshintapi.h` | TermServ | matched |  | 09/02/2026 19:12:01 | HWND is an input; render hint ID is a plain UINT64, not a HANDLE. |
 | `wtsprotocol.h` | TermServ | remaining |  |  |  |

@@ -3168,3 +3168,12 @@ Ledger: 1081 accepted-normalized, 31 blocked, 291 pending (1112/1403 classified)
 - vsmgmt.h (VSS): COM vtable only. Clean.
 
 Ledger: 1086 accepted-normalized, 31 blocked, 286 pending (1117/1403 classified).
+
+## Batch 186 (2026-09-03 02:41): mshtmhst.h, spatialaudioclient.h, msiquery.h, tdh.h, wtsapi32.h
+
+- mshtmhst.h (MsHtml), spatialaudioclient.h (Audio): COM vtable only. Clean.
+- msiquery.h (Setup): MSIHANDLE already correct. No gap.
+- tdh.h (Etw): TDH_HANDLE already correct. No gap.
+- wtsapi32.h (TermServ): PRODUCER-SITE FIX - 4 inline RAIIFree return-value annotations for WTSOpenServerA/W/ExA/ExW.
+
+Ledger: 1091 accepted-normalized, 31 blocked, 281 pending (1122/1403 classified).

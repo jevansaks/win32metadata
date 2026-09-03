@@ -6455,10 +6455,10 @@
   {
     "header": "mshtmhst.h",
     "partition": "MsHtml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmhst.h.md",
     "_source": "header-progress"
   },
   {
@@ -6563,10 +6563,10 @@
   {
     "header": "msiquery.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msiquery.h.md",
     "_source": "header-progress"
   },
   {
@@ -9155,10 +9155,10 @@
   {
     "header": "spatialaudioclient.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudioclient.h.md",
     "_source": "header-progress"
   },
   {
@@ -9695,10 +9695,10 @@
   {
     "header": "tdh.h",
     "partition": "Etw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tdh.h.md",
     "_source": "header-progress"
   },
   {
@@ -12395,10 +12395,10 @@
   {
     "header": "wtsapi32.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added 4 inline RAIIFree return-value annotations for WTSOpenServerA/W/ExA/ExW in emitter.settings.rsp. See docs/copilot/header-reports/wtsapi32.h.md",
     "_source": "header-progress"
   },
   {
