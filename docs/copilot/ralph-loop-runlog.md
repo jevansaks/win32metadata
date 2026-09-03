@@ -875,3 +875,17 @@ touches those types)
 - wiaintfc.h: single DEFINE_GUID constant, no functions. Clean.
 
 **Ledger status:** 278 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1122 pending.
+
+## 2026-09-02 17:09:51 UTC - Batch scraping-investigation-19
+
+**Headers:** afunix.h, activecf.h, ime_cmodes.h, atacct.h, winsdkver.h
+**Partitions scraped:** Media.DShow, Input.Ime, NetMgmt, Foundation (x86; 0 errors; NetMgmt shows 1
+pre-existing unrelated cross-partition remap warning for _CERT_CONTEXT, not touched by this header)
+
+- afunix.h: SOCKADDR_UN data struct + SIO_AF_UNIX_* IOCTL constants, no functions. Clean.
+- activecf.h: CFSTR_VFW_FILTERLIST constant + VFW_FILTERLIST data struct, no functions. Clean.
+- ime_cmodes.h: IME_CMODE_* bit-field constants only, no functions. Clean.
+- atacct.h: GetNetScheduleAccountInformation/SetNetScheduleAccountInformation - string-only, no handle. Clean.
+- winsdkver.h: SDK version-max constants only, no functions. Clean.
+
+**Ledger status:** 283 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1117 pending.

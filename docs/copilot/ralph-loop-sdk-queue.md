@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:05:27Z
+- Generated: 2026-09-03T00:09:39Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 278
+- Matched: 283
 - In progress: 0
 - Blocked: 3
-- Remaining: 1122
+- Remaining: 1117
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -18,7 +18,7 @@
 | `activaut.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activdbg.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activdbg100.h` | Debug.ActiveScript | remaining |  |  |  |
-| `activecf.h` | Media.DShow | remaining |  |  |  |
+| `activecf.h` | Media.DShow | matched |  | 09/02/2026 17:09:31 | Clipboard-format data struct only, no functions. |
 | `activprof.h` | Debug.ActiveScript | remaining |  |  |  |
 | `adhoc.h` | Ndis, NWifi | remaining |  |  |  |
 | `adshlp.h` | ActiveDirectory | remaining |  |  |  |
@@ -27,7 +27,7 @@
 | `adtgen.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `advpub.h` | FileHistory, WinProg | remaining |  |  |  |
 | `af_irda.h` | WinSock | remaining |  |  |  |
-| `afunix.h` | WinSock | remaining |  |  |  |
+| `afunix.h` | WinSock | matched |  | 09/02/2026 17:09:31 | Data struct + IOCTL constants only, no functions. |
 | `alljoyn_c\AboutData.h` | AllJoyn | remaining |  |  |  |
 | `alljoyn_c\AboutIconObj.h` | AllJoyn | remaining |  |  |  |
 | `alljoyn_c\AboutIconProxy.h` | AllJoyn | remaining |  |  |  |
@@ -74,7 +74,7 @@
 | `appserviceinterop.h` | WinRT | remaining |  |  |  |
 | `appxpackaging.h` | AppxPackaging | remaining |  |  |  |
 | `asferr.h` | Multimedia | remaining |  |  |  |
-| `atacct.h` | NetMgmt | remaining |  |  |  |
+| `atacct.h` | NetMgmt | matched |  | 09/02/2026 17:09:31 | String-only account-info API, no handle. |
 | `atscpsipparser.h` | MsTv | remaining |  |  |  |
 | `atsmedia.h` | MsTv | remaining |  |  |  |
 | `audevcod.h` | Media.DShow | remaining |  |  |  |
@@ -532,7 +532,7 @@
 | `imapi2fs.h` | IMapi | remaining |  |  |  |
 | `imapi2fserror.h` | Wab | remaining |  |  |  |
 | `imapierror.h` | IMapi | remaining |  |  |  |
-| `ime_cmodes.h` | Input.Ime | remaining |  |  |  |
+| `ime_cmodes.h` | Input.Ime | matched |  | 09/02/2026 17:09:31 | Bit-field constants only, no functions. |
 | `ime.h` | FileHistory, WinProg | remaining |  |  |  |
 | `imepad.h` | Input.Ime | remaining |  |  |  |
 | `imessage.h` | IMapi | remaining |  |  |  |
@@ -1300,7 +1300,7 @@
 | `winsafer.h` | Security.AppLocker | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `winsatcominterfacei.h` | WinSat | remaining |  |  |  |
 | `winscard.h` | Credentials | remaining |  |  |  |
-| `winsdkver.h` | Foundation | remaining |  |  |  |
+| `winsdkver.h` | Foundation | matched |  | 09/02/2026 17:09:31 | Version constants only, no functions. |
 | `winsmcrd.h` | Credentials | remaining |  |  |  |
 | `winsnmp.h` | Snmp | remaining |  |  |  |
 | `WinSock.h` | Fsrm, TermServ, WinSock | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |

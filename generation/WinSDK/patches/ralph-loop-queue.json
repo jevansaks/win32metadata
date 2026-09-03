@@ -74,10 +74,10 @@
   {
     "header": "activecf.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:09:31Z",
+    "notes": "Clipboard-format data struct only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -155,10 +155,10 @@
   {
     "header": "afunix.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:09:31Z",
+    "notes": "Data struct + IOCTL constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -578,10 +578,10 @@
   {
     "header": "atacct.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:09:31Z",
+    "notes": "String-only account-info API, no handle.",
     "_source": "header-progress"
   },
   {
@@ -4700,10 +4700,10 @@
   {
     "header": "ime_cmodes.h",
     "partition": "Input.Ime",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:09:31Z",
+    "notes": "Bit-field constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -11612,10 +11612,10 @@
   {
     "header": "winsdkver.h",
     "partition": "Foundation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:09:31Z",
+    "notes": "Version constants only, no functions.",
     "_source": "header-progress"
   },
   {
