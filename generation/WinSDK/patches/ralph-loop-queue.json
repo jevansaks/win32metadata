@@ -2108,10 +2108,10 @@
   {
     "header": "d3dcommon.h",
     "partition": "Direct2D, Direct3D, Direct3D10",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcommon.h.md",
     "_source": "header-progress"
   },
   {
@@ -4646,10 +4646,10 @@
   {
     "header": "imapi.h",
     "partition": "IMapi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -8561,10 +8561,10 @@
   {
     "header": "rrascfg.h",
     "partition": "Eap",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rrascfg.h.md",
     "_source": "header-progress"
   },
   {
@@ -11882,10 +11882,10 @@
   {
     "header": "wmlss.h",
     "partition": "Wmlss",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmlss.h.md",
     "_source": "header-progress"
   },
   {
@@ -12404,10 +12404,10 @@
   {
     "header": "wtsdefs.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtsdefs.h.md",
     "_source": "header-progress"
   },
   {

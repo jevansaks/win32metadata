@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:41:34Z
+- Generated: 2026-09-03T09:43:15Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1091
+- Matched: 1096
 - In progress: 0
 - Blocked: 31
-- Remaining: 281
+- Remaining: 276
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -244,7 +244,7 @@
 | `d3d9on12.h` | Direct3D9on12 | matched |  | 09/02/2026 19:21:35 | COM factory/refcounting pattern throughout. |
 | `d3d9types.h` | Direct3D9, Mf | remaining |  |  |  |
 | `d3dcaps.h` | Direct3D9 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcaps.h.md |
-| `d3dcommon.h` | Direct2D, Direct3D, Direct3D10 | remaining |  |  |  |
+| `d3dcommon.h` | Direct2D, Direct3D, Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcommon.h.md |
 | `d3dcompiler.h` | Direct3DFxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `d3dcsx.h` | Direct3D11 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dcsx.h.md |
 | `d3dshadercacheregistration.h` | Direct3D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dshadercacheregistration.h.md |
@@ -526,7 +526,7 @@
 | `il21dec.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
 | `ImageHlp.h` | Debug | remaining |  |  |  |
 | `imagetranscode.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
-| `imapi.h` | IMapi | remaining |  |  |  |
+| `imapi.h` | IMapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi.h.md |
 | `imapi2.h` | IMapi | remaining |  |  |  |
 | `imapi2error.h` | IMapi, Wab | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imapi2error.h.md |
 | `imapi2fs.h` | IMapi | remaining |  |  |  |
@@ -961,7 +961,7 @@
 | `rpcnsip.h` | Rpc | matched |  | 09/02/2026 17:41:54 | Internal I_-prefixed RPC stub routines; RPC_BINDING_HANDLE canonical API tracked separately under rpcdce.h (pending). |
 | `rpcnterr.h` | Foundation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnterr.h.md |
 | `rpcssl.h` | Rpc | matched |  | 09/02/2026 17:45:25 | RPC string-buffer output, not HANDLE-family. |
-| `rrascfg.h` | Eap | remaining |  |  |  |
+| `rrascfg.h` | Eap | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rrascfg.h.md |
 | `rtccore.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `rtcerr.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; constant-only header. |
 | `rtinfo.h` | NetMgmt | matched |  | 09/02/2026 21:24:15 | Structs only, no functions. |
@@ -1330,7 +1330,7 @@
 | `wmdxva.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmdxva.h.md |
 | `wmistr.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmistr.h.md |
 | `wmiutils.h` | Lwef, Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmiutils.h.md |
-| `wmlss.h` | Wmlss | remaining |  |  |  |
+| `wmlss.h` | Wmlss | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmlss.h.md |
 | `wmnetsourcecreator.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmnetsourcecreator.h.md |
 | `wmp.h` | Media.DShow, Wmp | remaining |  |  |  |
 | `wmpdevices.h` | Wmp | matched |  | 09/02/2026 20:44:40 | Inline functions generate no bindings; remaining declarations are IOCTL constants/structs. |
@@ -1388,7 +1388,7 @@
 | `wsrm.h` | WinSock | matched |  | 09/02/2026 20:34:23 | Socket-option constants only, no functions. |
 | `wsvns.h` | WinSock | matched |  | 09/02/2026 17:41:54 | Data struct + constants only, no functions. |
 | `wtsapi32.h` | TermServ | matched |  |  | Producer-site fix: added 4 inline RAIIFree return-value annotations for WTSOpenServerA/W/ExA/ExW in emitter.settings.rsp. See docs/copilot/header-reports/wtsapi32.h.md |
-| `wtsdefs.h` | TermServ | remaining |  |  |  |
+| `wtsdefs.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtsdefs.h.md |
 | `wtshintapi.h` | TermServ | matched |  | 09/02/2026 19:12:01 | HWND is an input; render hint ID is a plain UINT64, not a HANDLE. |
 | `wtsprotocol.h` | TermServ | remaining |  |  |  |
 | `wtypes.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, Properties, Registry, Shutdown, TransactionServer, WinProg | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |

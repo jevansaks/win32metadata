@@ -3177,3 +3177,13 @@ Ledger: 1086 accepted-normalized, 31 blocked, 286 pending (1117/1403 classified)
 - wtsapi32.h (TermServ): PRODUCER-SITE FIX - 4 inline RAIIFree return-value annotations for WTSOpenServerA/W/ExA/ExW.
 
 Ledger: 1091 accepted-normalized, 31 blocked, 281 pending (1122/1403 classified).
+
+## Batch 187 (2026-09-03 02:43): d3dcommon.h, imapi.h, wmlss.h, rrascfg.h, wtsdefs.h
+
+- **d3dcommon.h** (Direct2D/Direct3D/Direct3D10): COM vtable only. Clean.
+- **imapi.h** (IMapi): COM vtable only. Clean.
+- **wmlss.h** (Wmlss): COM vtable only. Clean.
+- **rrascfg.h** (Eap): COM vtable only. Clean.
+- **wtsdefs.h** (TermServ): constants/macros only, no functions. Clean.
+
+Ledger: 1096 accepted-normalized, 31 blocked, 276 pending (1127/1403 classified).
