@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:37:36Z
+- Generated: 2026-09-03T08:39:45Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 991
+- Matched: 996
 - In progress: 0
 - Blocked: 31
-- Remaining: 381
+- Remaining: 376
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -84,7 +84,7 @@
 | `audioendpoints.h` | Audio.Endpoints | matched |  | 09/02/2026 19:47:59 | COM interface method only, no extern functions. |
 | `audioenginebaseapo.h` | Audio.Apo | remaining |  |  |  |
 | `audioengineendpoint.h` | Audio.Endpoints, TermServ | remaining |  |  |  |
-| `audioengineextensionapo.h` | Audio.Apo | remaining |  |  |  |
+| `audioengineextensionapo.h` | Audio.Apo | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioengineextensionapo.h.md |
 | `audiomediatype.h` | Audio.Apo | matched |  | 09/02/2026 20:53:11 | COM interface + standard COM factory functions only. |
 | `audiopolicy.h` | Audio | remaining |  |  |  |
 | `audiosessiontypes.h` | Audio | matched |  | 09/02/2026 21:12:30 | Enums only, no functions. |
@@ -298,7 +298,7 @@
 | `digitalv.h` | Multimedia | remaining |  |  |  |
 | `dimm.h` | Input.Ime | remaining |  |  |  |
 | `dinput.h` | Hid | remaining |  |  |  |
-| `dinputd.h` | Hid | remaining |  |  |  |
+| `dinputd.h` | Hid | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dinputd.h.md |
 | `directmanipulation.h` | DirectManipulation | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
 | `directml.h` | DirectML | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `diskguid.h` | Fs | matched |  | 09/02/2026 20:34:23 | GUID constants only, no functions. |
@@ -658,7 +658,7 @@
 | `mfsharingengine.h` | Mf | remaining |  |  |  |
 | `mfspatialaudio.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfspatialaudio.h.md |
 | `mftransform.h` | Mf | remaining |  |  |  |
-| `mfvirtualcamera.h` | Mf | remaining |  |  |  |
+| `mfvirtualcamera.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfvirtualcamera.h.md |
 | `mgm.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mgm.h.md |
 | `mgmtapi.h` | Snmp | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mi.h` | Mi | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
@@ -1154,7 +1154,7 @@
 | `vds.h` | VirtualDiskService | remaining |  |  |  |
 | `vdserr.h` | VirtualDiskService | remaining |  |  |  |
 | `vdslun.h` | VirtualDiskService | matched |  | 09/02/2026 19:50:38 | Enums/structs + MIDL boilerplate only, no functions. |
-| `vdssys.h` | VirtualDiskService, VSS | remaining |  |  |  |
+| `vdssys.h` | VirtualDiskService, VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdssys.h.md |
 | `VersionHelpers.h` | SystemInformation | matched |  | 09/02/2026 19:54:02 | All functions are inline, no scrapable extern declarations. |
 | `vfw.h` | Multimedia | remaining |  |  |  |
 | `vfwext.h` | Multimedia | matched |  | 09/02/2026 18:35:09 | Constants + callback-signature typedefs only, no functions. |
@@ -1357,7 +1357,7 @@
 | `ws2atm.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2atm.h.md |
 | `ws2bth.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2bth.h.md |
 | `ws2def.h` | IpHlp, WinSock | remaining |  |  |  |
-| `ws2ipdef.h` | IpHlp, WinSock | remaining |  |  |  |
+| `ws2ipdef.h` | IpHlp, WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2ipdef.h.md |
 | `ws2spi.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `ws2tcpip.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wsbapp.h` | Wsb | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsbapp.h.md |

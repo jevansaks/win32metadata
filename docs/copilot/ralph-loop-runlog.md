@@ -2978,3 +2978,13 @@ Ledger: 986 accepted-normalized, 31 blocked, 386 pending (1017/1403 classified).
 - **mfcontentdecryptionmodule.h** (Mf): MFCreateEncryptedMediaExtensionsStoreActivate outputs COM interface pointer (IMFActivate**), out of scope. Clean.
 
 Ledger: 991 accepted-normalized, 31 blocked, 381 pending (1022/1403 classified).
+
+## Batch 167 (2026-09-03 01:39): mfvirtualcamera.h, vdssys.h, ws2ipdef.h, audioengineextensionapo.h, dinputd.h
+
+- **mfvirtualcamera.h** (Mf): MFCreateVirtualCamera outputs COM interface pointer; MFIsVirtualCameraTypeSupported outputs plain BOOL*. Clean.
+- **vdssys.h** (VirtualDiskService/VSS): COM vtable only. Clean.
+- **ws2ipdef.h** (IpHlp/WinSock): structs/constants only. Clean.
+- **audioengineextensionapo.h** (Audio.Apo): COM vtable only. Clean.
+- **dinputd.h** (Hid): COM vtable only. Clean.
+
+Ledger: 996 accepted-normalized, 31 blocked, 376 pending (1027/1403 classified).

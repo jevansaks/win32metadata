@@ -668,10 +668,10 @@
   {
     "header": "audioengineextensionapo.h",
     "partition": "Audio.Apo",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioengineextensionapo.h.md",
     "_source": "header-progress"
   },
   {
@@ -2594,10 +2594,10 @@
   {
     "header": "dinputd.h",
     "partition": "Hid",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dinputd.h.md",
     "_source": "header-progress"
   },
   {
@@ -5834,10 +5834,10 @@
   {
     "header": "mfvirtualcamera.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfvirtualcamera.h.md",
     "_source": "header-progress"
   },
   {
@@ -10298,10 +10298,10 @@
   {
     "header": "vdssys.h",
     "partition": "VirtualDiskService, VSS",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdssys.h.md",
     "_source": "header-progress"
   },
   {
@@ -12125,10 +12125,10 @@
   {
     "header": "ws2ipdef.h",
     "partition": "IpHlp, WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2ipdef.h.md",
     "_source": "header-progress"
   },
   {
