@@ -3396,3 +3396,13 @@ Ledger: 1206 accepted-normalized, 31 blocked, 166 pending (1237/1403 classified)
 - netlistmgr.h, filterpipeline.h: COM vtable only. Clean.
 
 Ledger: 1211 accepted-normalized, 31 blocked, 161 pending (1242/1403 classified).
+
+## Batch 211 (2026-09-03 03:57): mileffects.h, structuredquery.h, wabdefs.h, dxva.h, sdoias.h
+
+- **mileffects.h** (Wibe): COM vtable only. Clean.
+- **structuredquery.h** (Search): COM vtable only. Clean.
+- **wabdefs.h** (IMapi/Tapi3): constants/macros only, no functions. Clean.
+- **dxva.h** (Media.DShow/Mf): transparent structs/constants only. Clean.
+- **sdoias.h** (Nps): COM vtable only. Clean.
+
+Ledger: 1216 accepted-normalized, 31 blocked, 156 pending (1247/1403 classified).

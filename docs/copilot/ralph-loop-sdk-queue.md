@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:55:44Z
+- Generated: 2026-09-03T10:57:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1211
+- Matched: 1216
 - In progress: 0
 - Blocked: 31
-- Remaining: 161
+- Remaining: 156
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -365,7 +365,7 @@
 | `dxgitype.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 18:40:30 | Data structs/enums only, no functions. |
 | `dxmini.h` | DirectDraw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxmini.h.md |
 | `dxprogrammablecapture.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 17:45:25 | Parameterless COM interface methods, no handle. |
-| `dxva.h` | Media.DShow, Mf | remaining |  |  |  |
+| `dxva.h` | Media.DShow, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxva.h.md |
 | `dxva2api.h` | Media.DShow, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxva2api.h.md |
 | `dxva2swdev.h` | Media.DShow | matched |  | 09/02/2026 20:38:46 | Function-pointer-typedef-in-struct pattern, out of scope; no extern functions. |
 | `dxva2trace.h` | Media.DShow | matched |  | 09/02/2026 20:07:23 | ETW tracing constants/structs only, no functions. |
@@ -664,7 +664,7 @@
 | `mi.h` | Mi | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
 | `micaut.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/micaut.h.md |
 | `midles.h` | Rpc | matched |  | 09/02/2026 21:32:46 | Enums/function-pointer typedefs only, no extern functions. |
-| `mileffects.h` | Wibe | remaining |  |  |  |
+| `mileffects.h` | Wibe | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mileffects.h.md |
 | `minappmodel.h` | AppxPackaging | matched |  | 09/02/2026 19:14:35 | Constants only, no functions. |
 | `mindumpdef.h` | Debug | matched |  | 09/02/2026 20:56:17 | Constants/enum only, no functions. |
 | `minidumpapiset.h` | Base, Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/minidumpapiset.h.md |
@@ -982,7 +982,7 @@
 | `scrnsave.h` | Shell | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `sddl.h` | Authorization, Authorization.UI | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `sdkddkver.h` | Antimalware, ApplicationVerifier, AppxPackaging, Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Authorization, Authorization.UI, Backup, Base, Bits, Bluetooth, Buses, Cabinets, CEIP, Certificates, Cloudapi, ClrHosting, ClrProfiling, CmpApi, Com, Com.CallObj, Com.ChannelCreds, Com.Events, Com.StructuredStorage, Com.Urlmon, Communication, ComOle, CompositionSwapchain, Console, Controls, Controls.RichEdit, Cos, Credentials, DataXchg, Debug, Debug.ActiveScript, Debug.Extensions, Debug.WebApp, Dedup, DeliveryOptimization, DeviceAccess, DeviceQuery, Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Devices.Properties, DevInst, DevLic, Dfs, Dhcp, Direct2D, Direct2D.Common, Direct3D, Direct3D10, Direct3D11, Direct3D11on12, Direct3D12, Direct3D9, Direct3D9on12, Direct3DDxc, Direct3DFxc, DirectComp, DirectDraw, DirectManipulation, DirectML, DirectWrite, Display, DlgBox, Dlna, Dns, DTC, Dwm, DXCore, Dxgi, Dxgi.Common, Eap, EapHost, Edp, Enstor, Environment, Etw, Fax, FileHistory, Foundation, Fs, Fsrm, FunctionDiscovery, GameInput, GameMode, GamingDvcInfo, Gdi, Gdiplus, Gpmc, Hid, HostComputeNetwork, HostComputeSystem, HtmlHelp, Hypervisor, Identity, IdentityProvider, Ifsk, Iis, ImagingDevice, IMapi, IndexSrv, Input_Ink, Input_IntContext, Input.Ime, InputRadial, InternetConnectionWizard, InternetExplorer, Intl, IO, Ioctl, IScsiDisc, Isolation, JobObjects, Js, KeyboardAndMouseInput, Ldap, LibraryLoader, Lwef, MachineLearning, MagApi, Mapi, Mbn, MdmReg, Media, Media.DShow, Media.DShow.Xml, Media.DxMediaObjects, Media.KernelStreaming, Memory, MenuRc, MessageQueuing, Mf, Mi, MixedReality, MixedRealityInterop, Mmc, Monitor, MsChap, MsCs, MsHtml, MsTv, MsXml, Multimedia, Ndf, Ndis, NetBios, NetMgmt, NetShell, NetworkAccessProtection, Nfc, Nfp, Nla, Nps, NWifi, Of, Opc, OpenGL, Parcon, Perf, PicAcq, Pipes, Pla, Policy, Power, Printing, PrintTicket, Proc_Snap, ProjFs, Properties, PsApi1, PsApi2, PWM, Rdc, Rdp, RemoteAssist, Rm, Rpc, RRas, RstMgr, Search, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, SecurityCenter, Sens, SerPorts, Services, Setup, Shell, Shell.Common, Smi, Snmp, Speech, Sr, Storage.Jet, Storage.Nvme, SwDevice, SystemInformation, Tablet, Tapi3, TaskSchd, Tbs, Tcui, TermServ, Threading, Time, ToolHelp, TransactionServer, Tsf, UiAnimation, UpdateAssessment, Upnp, Variant, Vhd, VirtualDiskService, VirtualDOSMachines, VSS, Wab, Wcm, Wcn, Wcs, Wds, WebAuthn, WebDav, WebServicesOnDevices, WebSock, Wec, Wer, Wes, Wia, Wibe, Wic, Win32_Tile_Badge_Notif, WinAuto, WinContacts, WindowsConnectionManager, WindowsFilteringPlatform, WindowsFirewall, WindowsRibbon, WindowsSetupAndMigration, WinInet, WinLocation, WinProg, WinRm, WinRT, WinRT.AllJoyn, WinRT.Composition, WinRT.CoreInputView, WinRT.Direct2D, WinRT.Direct3D11, WinRT.Display, WinRT.Graphics.Capture, WinRT.Graphics.Imaging, WinRT.Holographic, WinRT.Isolation, WinRT.Media, WinRT.Metadata, WinRT.ML, WinRT.Pdf, WinRT.Printing, WinRT.Storage, WinRT.Xaml, WinSat, WinSensors, WinSync, WinTouch, Wmdm, WmFormat, Wmi, Wmlss, Wmp, Wnet, WpdSdk, Wsb, Wsl, Wsw, Wua, Xaml_Diagnostics, Xaudio2, Xblidp, Xinput, XmlLite, Xps, XpsPrinting | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sdkddkver.h.md |
-| `sdoias.h` | Nps | remaining |  |  |  |
+| `sdoias.h` | Nps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sdoias.h.md |
 | `search.h` | Search | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include corecrt_search.h); CRT-only, no Win32 declarations. |
 | `searchapi.h` | Lwef, Search | remaining |  |  |  |
 | `security.h` | Identity | matched |  | 09/02/2026 18:09:40 | Redirect-only; sspi.h accepted, issper16.h tracked pending, secext.h (untracked) directly verified clean (string-buffer-output only). |
@@ -1059,7 +1059,7 @@
 | `stringapiset.h` | Intl | matched |  | 09/02/2026 19:16:41 | String/buffer conversion API only, no handle. |
 | `strmif.h` | Media.DShow, Media.KernelStreaming, MsTv, WmFormat | remaining |  |  |  |
 | `strsafe.h` | MenuRc | remaining |  |  |  |
-| `structuredquery.h` | Search | remaining |  |  |  |
+| `structuredquery.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquery.h.md |
 | `structuredquerycondition.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquerycondition.h.md |
 | `subauth.h` | Identity | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `subscriptionservices.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/subscriptionservices.h.md |
@@ -1181,7 +1181,7 @@
 | `waasapi.h` | UpdateAssessment | matched |  | 09/02/2026 20:19:39 | COM interface + GUID constants only, no extern functions. |
 | `waasapitypes.h` | UpdateAssessment | matched |  | 09/02/2026 19:32:00 | MIDL enums/structs/boilerplate only, no functions. |
 | `wab.h` | Wab | blocked | copilot | 09/02/2026 16:53:36 | Deferred: 1 of 77 functions (FtgRegisterIdleRoutine) has genuine return-value handle ownership with no annotation precedent; needs the same dedicated policy decision as getprocesshandlefromhwnd.h. |
-| `wabdefs.h` | IMapi, Tapi3 | remaining |  |  |  |
+| `wabdefs.h` | IMapi, Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wabdefs.h.md |
 | `wbcl.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbcl.h.md |
 | `wbemads.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemads.h.md |
 | `wbemcli.h` | TermServ, Wmi | remaining |  |  |  |

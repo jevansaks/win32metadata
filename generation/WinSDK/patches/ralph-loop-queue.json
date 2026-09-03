@@ -3197,10 +3197,10 @@
   {
     "header": "dxva.h",
     "partition": "Media.DShow, Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxva.h.md",
     "_source": "header-progress"
   },
   {
@@ -5888,10 +5888,10 @@
   {
     "header": "mileffects.h",
     "partition": "Wibe",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mileffects.h.md",
     "_source": "header-progress"
   },
   {
@@ -8750,10 +8750,10 @@
   {
     "header": "sdoias.h",
     "partition": "Nps",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sdoias.h.md",
     "_source": "header-progress"
   },
   {
@@ -9443,10 +9443,10 @@
   {
     "header": "structuredquery.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquery.h.md",
     "_source": "header-progress"
   },
   {
@@ -10541,10 +10541,10 @@
   {
     "header": "wabdefs.h",
     "partition": "IMapi, Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wabdefs.h.md",
     "_source": "header-progress"
   },
   {
