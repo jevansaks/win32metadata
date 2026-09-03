@@ -927,3 +927,28 @@ Security.Cryptography.Catalog/wnv show pre-existing unrelated cross-partition re
   input parameter, outputs are plain FILETIME values. Clean.
 
 **Ledger status:** 293 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1107 pending.
+
+## 2026-09-02 17:19:51 UTC - Batch scraping-investigation-22
+
+**Headers:** fxsutility.h, vmgenerationcounter.h, edpwin32.h, inaddr.h, wincon.h (blocked)
+**Partitions scraped:** Console (x86; 0 warnings/errors)
+
+- fxsutility.h / vmgenerationcounter.h / edpwin32.h / inaddr.h: no handle involved (fax-send query,
+  GUID/IOCTL/struct constants, enterprise-data-protection path API, IPv4 address struct). Clean.
+- **wincon.h: BLOCKED.** Unlike prior redirect-only headers (mtx.h/schnlsp.h) whose included content was
+  already separately tracked and accepted, wincon.h redirects to consoleapi.h/consoleapi2.h/
+  consoleapi3.h/wincontypes.h which are NOT separately tracked in the ledger - required a direct
+  live-scrape audit of the whole Console partition (~120 functions). Found a genuine multi-producer/
+  single-consumer HANDLE ownership relationship: CreateConsoleScreenBuffer/OpenConsoleW/
+  DuplicateConsoleHandle all return a console HANDLE directly as the function RETURN VALUE (not
+  out-param), released via CloseConsoleHandle. This is the same return-value-handle-ownership blocker
+  class first documented for getprocesshandlefromhwnd.h (batch 14) and wab.h (batch 15) - no precedent
+  anywhere in the repo or published baseline winmd for annotating a bare return-value handle.
+  (Note: GetConsoleWindow()/GetConsoleInputWaitHandle() also return IntPtr but are documented
+  borrowed/non-owned handles, correctly out of scope regardless.)
+
+**Methodology note:** This batch highlights that the "redirect-only header, check if included content
+is already tracked" shortcut is NOT safe when the included sub-headers are untracked - a live partition
+scrape is required in that case to avoid missing genuine ownership gaps (as almost happened here).
+
+**Ledger status:** 297 accepted-normalized, 4 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h, wincon.h), 1102 pending.

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:16:18Z
+- Generated: 2026-09-03T00:19:36Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 293
+- Matched: 297
 - In progress: 0
-- Blocked: 3
-- Remaining: 1107
+- Blocked: 4
+- Remaining: 1102
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -383,7 +383,7 @@
 | `eaptypes.h` | EapHost | remaining |  |  |  |
 | `edevdefs.h` | DeviceAccess | remaining |  |  |  |
 | `editionupgradehelper.h` | FileHistory, WinProg | remaining |  |  |  |
-| `edpwin32.h` | Edp | remaining |  |  |  |
+| `edpwin32.h` | Edp | matched |  | 09/02/2026 17:19:28 | Path-string-only API, no handle. |
 | `effects.h` | Wmp | remaining |  |  |  |
 | `efswrtinterop.h` | Edp | remaining |  |  |  |
 | `ehstorapi.h` | Enstor | remaining |  |  |  |
@@ -456,7 +456,7 @@
 | `fwpmtypes.h` | WindowsFilteringPlatform | remaining |  |  |  |
 | `fwpmu.h` | WindowsFilteringPlatform | remaining |  |  |  |
 | `fwptypes.h` | WindowsFilteringPlatform | remaining |  |  |  |
-| `fxsutility.h` | Fax | remaining |  |  |  |
+| `fxsutility.h` | Fax | matched |  | 09/02/2026 17:19:28 | No handle involved. |
 | `GameInput.h` | GameInput | matched |  | 09/02/2026 16:34:06 | GameInputCreate is a clean COM-factory pattern; the one raw HANDLE out-param (IGameInputDispatcher::OpenWaitHandle) is a COM vtable method, outside DllImport-based ownership-annotation scope. |
 | `gameux.h` | GameMode | remaining |  |  |  |
 | `gamingdeviceinformation.h` | GamingDvcInfo | remaining |  |  |  |
@@ -542,7 +542,7 @@
 | `imm.h` | Input.Ime | remaining |  |  |  |
 | `immdev.h` | Input.Ime | remaining |  |  |  |
 | `in6addr.h` | WinSock, wnv | matched |  | 09/02/2026 17:16:10 | Plain data struct + macros only, no functions. |
-| `inaddr.h` | IpHlp, RRas, WinSock | remaining |  |  |  |
+| `inaddr.h` | IpHlp, RRas, WinSock | matched |  | 09/02/2026 17:19:28 | Plain data struct + macros only, no functions. |
 | `indexsrv.h` | IndexSrv, Search | remaining |  |  |  |
 | `inetreg.h` | InternetExplorer | remaining |  |  |  |
 | `inetsdk.h` | InternetExplorer | remaining |  |  |  |
@@ -1162,7 +1162,7 @@
 | `vidcap.h` | Media.DShow | remaining |  |  |  |
 | `videoacc.h` | Media.DShow | remaining |  |  |  |
 | `virtdisk.h` | Vhd | remaining |  |  |  |
-| `vmgenerationcounter.h` | Hypervisor | remaining |  |  |  |
+| `vmgenerationcounter.h` | Hypervisor | matched |  | 09/02/2026 17:19:28 | GUID/IOCTL constant + data struct only, no functions. |
 | `vmr9.h` | Media.DShow | remaining |  |  |  |
 | `vmsavedstatedump.h` | Hypervisor | remaining |  |  |  |
 | `vmsavedstatedumpdefs.h` | Hypervisor | remaining |  |  |  |
@@ -1236,7 +1236,7 @@
 | `winbio.h` | SecBitomet | remaining |  |  |  |
 | `wincodec.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincodecsdk.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
-| `wincon.h` | Console | remaining |  |  |  |
+| `wincon.h` | Console | blocked | copilot | 09/02/2026 17:19:28 | Deferred: wincon.h redirects to consoleapi.h/consoleapi2.h/consoleapi3.h/wincontypes.h (none separately tracked); live-scrape of the Console partition (~120 functions) found a genuine multi-producer/single-consumer return-value HANDLE ownership relationship with no annotation precedent, same class as getprocesshandlefromhwnd.h/wab.h. |
 | `winconp.h` | Console | remaining |  |  |  |
 | `wincred.h` | Certificates, Credentials, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincrypt.h` | NetMgmt, Rpc, Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:40:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; final header in the 11-header audit set (all now compliant). Verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
