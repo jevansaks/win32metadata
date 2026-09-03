@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:42:27Z
+- Generated: 2026-09-03T02:45:32Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 494
+- Matched: 497
 - In progress: 0
-- Blocked: 18
-- Remaining: 891
+- Blocked: 20
+- Remaining: 886
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -270,7 +270,7 @@
 | `ddpcommon.h` | Dedup | matched |  | 09/02/2026 19:16:41 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `ddpdataport.h` | Dedup | remaining |  |  |  |
 | `ddraw.h` | DirectDraw, Gdiplus, Media.DShow | matched |  | 09/02/2026 16:34:06 | HMONITOR reference is a pass-through system handle (never created/released by DirectDraw); guarded DECLARE_HANDLE fallback never fires. |
-| `ddrawgdi.h` | FileHistory, WinProg | remaining |  |  |  |
+| `ddrawgdi.h` | FileHistory, WinProg | blocked |  | 09/02/2026 19:45:17 | DdGetDxHandle/DdCreateDIBSection return generic HANDLE/HBITMAP via return value. |
 | `ddrawi.h` | DirectDraw, FileHistory, WinProg | remaining |  |  |  |
 | `ddrawint.h` | DirectDraw | remaining |  |  |  |
 | `ddstream.h` | Media.DShow | remaining |  |  |  |
@@ -704,7 +704,7 @@
 | `MSAJTransport.h` | AllJoyn, WinRT | blocked | copilot | 09/02/2026 18:15:12 | Two compounding blockers: parser/toolchain version mismatch prevents live-scrape validation of the AllJoyn partition; and a genuine return-value HANDLE ownership pattern with no annotation precedent. |
 | `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | remaining |  |  |  |
 | `mschapp.h` | MsChap | matched |  | 09/02/2026 18:29:38 | Password-encryption struct/string API only, no handle. |
-| `msclmd.h` | Security.Cryptography | remaining |  |  |  |
+| `msclmd.h` | Security.Cryptography | matched |  | 09/02/2026 19:45:17 | Constants/structs only, no functions. |
 | `msclus.h` | MsCs | remaining |  |  |  |
 | `mscoree.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `msctf.h` | Tsf | remaining |  |  |  |
@@ -840,7 +840,7 @@
 | `oledlg.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oleidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oletx2xa.h` | DTC | remaining |  |  |  |
-| `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | remaining |  |  |  |
+| `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | blocked |  | 09/02/2026 19:45:17 | OnDemandRegisterNotification outputs generic HANDLE via direct out-param. |
 | `oobenotification.h` | WindowsSetupAndMigration | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `openservice.h` | InternetExplorer | remaining |  |  |  |
 | `opmapi.h` | Mf | remaining |  |  |  |
@@ -1051,7 +1051,7 @@
 | `stgprop.h` | Search | matched |  | 09/02/2026 18:26:39 | PROPID/GUID constants only, no functions. |
 | `sti.h` | ImagingDevice | remaining |  |  |  |
 | `stierr.h` | ImagingDevice | matched |  | 09/02/2026 19:32:00 | HRESULT/status-code constants only, no functions. |
-| `stireg.h` | ImagingDevice | remaining |  |  |  |
+| `stireg.h` | ImagingDevice | matched |  | 09/02/2026 19:45:17 | Registry key/property GUID constants only, no functions. |
 | `stiusd.h` | ImagingDevice | remaining |  |  |  |
 | `storageprovider.h` | Shell | remaining |  |  |  |
 | `storprop.h` | Base | matched |  | 09/02/2026 18:44:05 | HDEVINFO is a consumer-only input from the separate SetupAPI surface. |
@@ -1166,7 +1166,7 @@
 | `vmr9.h` | Media.DShow | remaining |  |  |  |
 | `vmsavedstatedump.h` | Hypervisor | remaining |  |  |  |
 | `vmsavedstatedumpdefs.h` | Hypervisor | remaining |  |  |  |
-| `vpconfig.h` | Media.DShow | remaining |  |  |  |
+| `vpconfig.h` | Media.DShow | matched |  | 09/02/2026 19:45:17 | COM-style interfaces only, no extern functions. |
 | `vpnotify.h` | Media.DShow | matched |  | 09/02/2026 18:23:41 | COM interfaces with plain enum/BOOL parameters only, no handle. |
 | `vptype.h` | Media.DShow | matched |  | 09/02/2026 18:47:23 | Enums/data structs only, no functions. |
 | `vsadmin.h` | VSS | remaining |  |  |  |

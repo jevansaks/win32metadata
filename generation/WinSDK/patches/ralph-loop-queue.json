@@ -2342,10 +2342,10 @@
   {
     "header": "ddrawgdi.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:45:17Z",
+    "notes": "DdGetDxHandle/DdCreateDIBSection return generic HANDLE/HBITMAP via return value.",
     "_source": "header-progress"
   },
   {
@@ -6248,10 +6248,10 @@
   {
     "header": "msclmd.h",
     "partition": "Security.Cryptography",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:45:17Z",
+    "notes": "Constants/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7472,10 +7472,10 @@
   {
     "header": "ondemandconnroutehelper.h",
     "partition": "Nla, WindowsConnectionManager",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:45:17Z",
+    "notes": "OnDemandRegisterNotification outputs generic HANDLE via direct out-param.",
     "_source": "header-progress"
   },
   {
@@ -9371,10 +9371,10 @@
   {
     "header": "stireg.h",
     "partition": "ImagingDevice",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:45:17Z",
+    "notes": "Registry key/property GUID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10406,10 +10406,10 @@
   {
     "header": "vpconfig.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:45:17Z",
+    "notes": "COM-style interfaces only, no extern functions.",
     "_source": "header-progress"
   },
   {

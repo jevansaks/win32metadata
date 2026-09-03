@@ -1726,3 +1726,19 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   policy that targets shared/generic types like windef.h's HWND) - no new annotation needed there.
 
 **Ledger status:** 494 accepted-normalized, 18 blocked, 891 pending.
+
+## 2026-09-02 19:45:32 UTC - Batch scraping-investigation-65
+
+**Headers:** vpconfig.h, stireg.h, ondemandconnroutehelper.h, msclmd.h, ddrawgdi.h
+**Partitions scraped (x64):** Nla, WindowsConnectionManager, Security.Cryptography, FileHistory, WinProg (0 errors each)
+
+- vpconfig.h: COM-style DECLARE_INTERFACE_ interfaces only, no extern functions. Clean.
+- stireg.h: registry key/property GUID constants only, no functions. Clean.
+- ondemandconnroutehelper.h: **blocked** - OnDemandRegisterNotification/OnDemandUnRegisterNotification
+  use a generic HANDLE direct-out-param (established blocker class). GetInterfaceContextTableForHostName's
+  NET_INTERFACE_CONTEXT_TABLE** is a transparent struct (out of scope despite dedicated free function).
+- msclmd.h: PIV smart-card constants/structs only, no functions. Clean.
+- ddrawgdi.h: **blocked** - DdGetDxHandle/DdCreateDIBSection return generic HANDLE/HBITMAP via
+  return value (established return-value-handle class); legacy private GDI/DirectDraw entry points.
+
+**Ledger status:** 497 accepted-normalized, 20 blocked, 886 pending.
