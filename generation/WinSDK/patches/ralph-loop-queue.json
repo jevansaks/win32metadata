@@ -2693,10 +2693,10 @@
   {
     "header": "dmerror.h",
     "partition": "TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dmerror.h.md",
     "_source": "header-progress"
   },
   {
@@ -6095,10 +6095,10 @@
   {
     "header": "mpeg2data.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2data.h.md",
     "_source": "header-progress"
   },
   {
@@ -6851,10 +6851,10 @@
   {
     "header": "ndisguid.h",
     "partition": "Ndis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndisguid.h.md",
     "_source": "header-progress"
   },
   {
@@ -9353,10 +9353,10 @@
   {
     "header": "sti.h",
     "partition": "ImagingDevice",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sti.h.md",
     "_source": "header-progress"
   },
   {
@@ -11369,10 +11369,10 @@
   {
     "header": "windowsstoragecom.h",
     "partition": "WinRT.Storage",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windowsstoragecom.h.md",
     "_source": "header-progress"
   },
   {

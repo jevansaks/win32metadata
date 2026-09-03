@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:15:37Z
+- Generated: 2026-09-03T08:17:34Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 951
+- Matched: 956
 - In progress: 0
 - Blocked: 31
-- Remaining: 421
+- Remaining: 416
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -309,7 +309,7 @@
 | `dls1.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:02:59 | Constants/documentation only, no functions. |
 | `dls2.h` | Audio.DirectMusic | matched |  | 09/02/2026 20:13:28 | DLS2 FOURCC/format constants only, no functions. |
 | `dmemmgr.h` | DirectDraw | blocked |  | 09/02/2026 20:41:40 | VidMemAlloc/HeapVidMemAllocAligned return generic FLATPTR (ULONG_PTR alias) via return value. |
-| `dmerror.h` | TransactionServer | remaining |  |  |  |
+| `dmerror.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dmerror.h.md |
 | `dmodshow.h` | Media.DShow | matched |  | 09/02/2026 19:42:09 | COM interface + GUID constants only, no extern functions. |
 | `dmoreg.h` | Media.DxMediaObjects | matched |  | 09/02/2026 19:32:00 | Registration/enum functions operate on CLSIDs and standard COM interface pointers only. |
 | `dmort.h` | Media.DxMediaObjects | matched |  | 09/02/2026 18:47:23 | DMO_MEDIA_TYPE alloc/free is a transparent-struct memory pattern, not an opaque handle. |
@@ -687,7 +687,7 @@
 | `mobsync.h` | Shell | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mpconfig.h` | Media.DShow | matched |  | 09/02/2026 20:34:23 | COM-style interface methods only, no extern functions. |
 | `mpeg2bits.h` | MsTv | matched |  | 09/02/2026 17:48:13 | Bitfield data structs only, no functions. |
-| `mpeg2data.h` | MsTv | remaining |  |  |  |
+| `mpeg2data.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2data.h.md |
 | `mpeg2error.h` | Media.DShow | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
 | `mpeg2psiparser.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `mpeg2structs.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2structs.h.md |
@@ -771,7 +771,7 @@
 | `ndattrib.h` | Ndf | matched |  | 09/02/2026 21:49:17 | Data structs only, no functions. |
 | `ndfapi.h` | Ndf | matched |  | 09/02/2026 20:38:46 | Fixed genuine gap: added new autoTypes.json entry for NDFHANDLE (CloseApi=NdfCloseIncident). |
 | `ndhelper.h` | Ndf | remaining |  |  |  |
-| `ndisguid.h` | Ndis | remaining |  |  |  |
+| `ndisguid.h` | Ndis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndisguid.h.md |
 | `ndkinfo.h` | Ndis | matched |  | 09/02/2026 18:00:53 | Data structs/enum/constants only, no functions. |
 | `ndr64types.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndr64types.h.md |
 | `netcfgn.h` | NetMgmt | remaining |  |  |  |
@@ -1049,7 +1049,7 @@
 | `statusdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 20:25:02 | Constants only, no functions. |
 | `stdint.h` | AllJoyn | remaining |  |  |  |
 | `stgprop.h` | Search | matched |  | 09/02/2026 18:26:39 | PROPID/GUID constants only, no functions. |
-| `sti.h` | ImagingDevice | remaining |  |  |  |
+| `sti.h` | ImagingDevice | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sti.h.md |
 | `stierr.h` | ImagingDevice | matched |  | 09/02/2026 19:32:00 | HRESULT/status-code constants only, no functions. |
 | `stireg.h` | ImagingDevice | matched |  | 09/02/2026 19:45:17 | Registry key/property GUID constants only, no functions. |
 | `stiusd.h` | ImagingDevice | matched |  | 09/02/2026 21:43:41 | COM interface + GUID constants only, no extern functions. |
@@ -1273,7 +1273,7 @@
 | `windowssideshow.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `windowssideshowapi.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `windowssideshowdriverevents.h` | SideShow | matched | copilot | 09/03/2026 04:05:00 | No patch needed; COM interface only. |
-| `windowsstoragecom.h` | WinRT.Storage | remaining |  |  |  |
+| `windowsstoragecom.h` | WinRT.Storage | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windowsstoragecom.h.md |
 | `windowsx.h` | Controls, FileHistory, Gdi, WinProg | remaining |  |  |  |
 | `winefs.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winenclave.h` | Enclave | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |

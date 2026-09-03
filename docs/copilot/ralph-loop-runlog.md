@@ -2898,3 +2898,13 @@ Ledger: 946 accepted-normalized, 31 blocked, 426 pending (977/1403 classified).
 - **msdelta.h** (Setup): DeltaFree pattern is a raw LPVOID field embedded in transparent struct DELTA_OUTPUT, not an opaque handle typedef — matches Net-API-buffer-allocation blocker class (7), out of scope for typedef-level annotation.
 
 Ledger: 951 accepted-normalized, 31 blocked, 421 pending (982/1403 classified).
+
+## Batch 159 (2026-09-03 01:17): windowsstoragecom.h, mpeg2data.h, sti.h, dmerror.h, ndisguid.h
+
+- **windowsstoragecom.h** (WinRT.Storage): COM vtable only. Clean.
+- **mpeg2data.h** (MsTv): COM vtable only. Clean.
+- **sti.h** (ImagingDevice): COM vtable only. Clean.
+- **dmerror.h** (TransactionServer): HRESULT error-code macros only. Clean.
+- **ndisguid.h** (Ndis): GUID constants only. Clean.
+
+Ledger: 956 accepted-normalized, 31 blocked, 416 pending (987/1403 classified).
