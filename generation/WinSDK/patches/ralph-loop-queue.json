@@ -146,10 +146,10 @@
   {
     "header": "af_irda.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:41:40Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -1712,10 +1712,10 @@
   {
     "header": "ctfspui.h",
     "partition": "Tsf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:41:40Z",
+    "notes": "COM interface method + GUID constants only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -2684,10 +2684,10 @@
   {
     "header": "dmemmgr.h",
     "partition": "DirectDraw",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:41:40Z",
+    "notes": "VidMemAlloc/HeapVidMemAllocAligned return generic FLATPTR (ULONG_PTR alias) via return value.",
     "_source": "header-progress"
   },
   {
@@ -8309,10 +8309,10 @@
   {
     "header": "remotesystemadditionalinfo.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:41:40Z",
+    "notes": "COM interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -11261,10 +11261,10 @@
   {
     "header": "windows.security.isolation.isolatedenvironmentinterop.h",
     "partition": "WinRT.Isolation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:41:40Z",
+    "notes": "COM interface method returning non-owned HWND reference, out of scope.",
     "_source": "header-progress"
   },
   {

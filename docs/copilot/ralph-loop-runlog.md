@@ -1954,3 +1954,20 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - ntioring_x.h: IoRing version/feature-flag enums only, no functions in this types header. Clean.
 
 **Ledger status:** 556 accepted-normalized, 26 blocked, 821 pending.
+
+## 2026-09-02 20:41:57 UTC - Batch scraping-investigation-79
+
+**Headers:** windows.security.isolation.isolatedenvironmentinterop.h, AF_Irda.h, ctfspui.h, remotesystemadditionalinfo.h, dmemmgr.h
+**Partitions scraped (x64):** WinRT.Isolation, Tsf, DirectDraw (0 errors each); WinSock/TermServ reused
+
+- windows.security.isolation.isolatedenvironmentinterop.h: IIsolatedEnvironmentInterop's
+  GetHostHwndInterop returns a non-owned HWND reference (not a disposable resource). Clean.
+- AF_Irda.h: IrDA socket-address-family/option constants only, no functions. Clean.
+- ctfspui.h: ITfSpeechUIServer COM interface + GUID constants only. Clean.
+- remotesystemadditionalinfo.h: IRemoteSystemAdditionalInfoProvider COM interface method only;
+  its HSTRING output is already covered via existing autoTypes.json entry. Clean.
+- dmemmgr.h: **blocked** - VidMemAlloc/HeapVidMemAllocAligned/VidMemFree use generic FLATPTR
+  (ULONG_PTR alias, used pervasively for unrelated non-owned pointer fields elsewhere in the
+  header) via return value - reuses established generic-type blocker class.
+
+**Ledger status:** 560 accepted-normalized, 27 blocked, 816 pending.

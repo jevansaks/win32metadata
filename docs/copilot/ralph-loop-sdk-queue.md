@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:39:03Z
+- Generated: 2026-09-03T03:41:57Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 556
+- Matched: 560
 - In progress: 0
-- Blocked: 26
-- Remaining: 821
+- Blocked: 27
+- Remaining: 816
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -26,7 +26,7 @@
 | `adssts.h` | ActiveDirectory | matched |  | 09/02/2026 19:19:02 | Status-code constants only, no functions. |
 | `adtgen.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `advpub.h` | FileHistory, WinProg | remaining |  |  |  |
-| `af_irda.h` | WinSock | remaining |  |  |  |
+| `af_irda.h` | WinSock | matched |  | 09/02/2026 20:41:40 | Constants only, no functions. |
 | `afunix.h` | WinSock | matched |  | 09/02/2026 17:09:31 | Data struct + IOCTL constants only, no functions. |
 | `alljoyn_c\AboutData.h` | AllJoyn | remaining |  |  |  |
 | `alljoyn_c\AboutIconObj.h` | AllJoyn | remaining |  |  |  |
@@ -200,7 +200,7 @@
 | `cscobj.h` | Of | remaining |  |  |  |
 | `cspdk.h` | Security.Cryptography | remaining |  |  |  |
 | `ctffunc.h` | Tsf | remaining |  |  |  |
-| `ctfspui.h` | Tsf | remaining |  |  |  |
+| `ctfspui.h` | Tsf | matched |  | 09/02/2026 20:41:40 | COM interface method + GUID constants only, no extern functions. |
 | `ctfutb.h` | Tsf | remaining |  |  |  |
 | `ctxtcall.h` | Com, ComOle | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `custcntl.h` | Controls | remaining |  |  |  |
@@ -308,7 +308,7 @@
 | `dlnametadataproviderproperties.h` | Dlna | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
 | `dls1.h` | Audio.DirectMusic | remaining |  |  |  |
 | `dls2.h` | Audio.DirectMusic | matched |  | 09/02/2026 20:13:28 | DLS2 FOURCC/format constants only, no functions. |
-| `dmemmgr.h` | DirectDraw | remaining |  |  |  |
+| `dmemmgr.h` | DirectDraw | blocked |  | 09/02/2026 20:41:40 | VidMemAlloc/HeapVidMemAllocAligned return generic FLATPTR (ULONG_PTR alias) via return value. |
 | `dmerror.h` | TransactionServer | remaining |  |  |  |
 | `dmodshow.h` | Media.DShow | matched |  | 09/02/2026 19:42:09 | COM interface + GUID constants only, no extern functions. |
 | `dmoreg.h` | Media.DxMediaObjects | matched |  | 09/02/2026 19:32:00 | Registration/enum functions operate on CLSIDs and standard COM interface pointers only. |
@@ -933,7 +933,7 @@
 | `regbag.h` | MsTv | matched |  | 09/02/2026 20:16:15 | COM interface method only, out of scope. |
 | `regstr.h` | Registry | remaining |  |  |  |
 | `relogger.h` | Etw | remaining |  |  |  |
-| `remotesystemadditionalinfo.h` | TermServ | remaining |  |  |  |
+| `remotesystemadditionalinfo.h` | TermServ | matched |  | 09/02/2026 20:41:40 | COM interface method only, out of scope. |
 | `RemoteSystemsInterop.h` | WinRT | remaining |  |  |  |
 | `rend.h` | Tapi3 | remaining |  |  |  |
 | `rendezvoussession.h` | RemoteAssist | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no function surface. |
@@ -1261,7 +1261,7 @@
 | `windows.graphics.printing.workflow.native.h` | WinRT.Printing | remaining |  |  |  |
 | `windows.h` | Console, Edp, Enstor, Memory, Mi | remaining |  |  |  |
 | `windows.media.core.interop.h` | WinRT.Media | remaining |  |  |  |
-| `windows.security.isolation.isolatedenvironmentinterop.h` | WinRT.Isolation | remaining |  |  |  |
+| `windows.security.isolation.isolatedenvironmentinterop.h` | WinRT.Isolation | matched |  | 09/02/2026 20:41:40 | COM interface method returning non-owned HWND reference, out of scope. |
 | `windows.ui.composition.interop.h` | WinRT.Composition | matched |  | 09/02/2026 20:19:39 | COM interop interface methods only, out of scope. |
 | `windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h` | WinRT.CoreInputView | remaining |  |  |  |
 | `windows.ui.xaml.hosting.desktopwindowxamlsource.h` | WinRT.Xaml | remaining |  |  |  |
