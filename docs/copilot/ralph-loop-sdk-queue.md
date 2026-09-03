@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:32:58Z
+- Generated: 2026-09-03T10:35:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1176
+- Matched: 1181
 - In progress: 0
 - Blocked: 31
-- Remaining: 196
+- Remaining: 191
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -937,7 +937,7 @@
 | `RemoteSystemsInterop.h` | WinRT | matched |  | 09/02/2026 21:08:27 | COM/WinRT interface method only, out of scope. |
 | `rend.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rend.h.md |
 | `rendezvoussession.h` | RemoteAssist | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no function surface. |
-| `resapi.h` | MsCs | remaining |  |  |  |
+| `resapi.h` | MsCs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/resapi.h.md |
 | `resourceindexer.h` | MenuRc | blocked | copilot | 09/02/2026 17:23:42 | Deferred: genuine ownership pair uses generic PVOID rather than a distinct handle typedef; needs a design decision to introduce a named type before an annotation fix is possible. |
 | `restartmanager.h` | RstMgr | matched | copilot | 09/03/2026 04:35:00 | No patch needed; no ownership-relevant handle type. |
 | `restrictederrorinfo.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/restrictederrorinfo.h.md |
@@ -956,7 +956,7 @@
 | `rpcasync.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcasync.h.md |
 | `rpcdce.h` | Rpc, TransactionServer | remaining |  |  |  |
 | `rpcdcep.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcdcep.h.md |
-| `rpcndr.h` | FileHistory, Rpc, WinProg | remaining |  |  |  |
+| `rpcndr.h` | FileHistory, Rpc, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcndr.h.md |
 | `rpcnsi.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnsi.h.md |
 | `rpcnsip.h` | Rpc | matched |  | 09/02/2026 17:41:54 | Internal I_-prefixed RPC stub routines; RPC_BINDING_HANDLE canonical API tracked separately under rpcdce.h (pending). |
 | `rpcnterr.h` | Foundation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnterr.h.md |
@@ -1152,7 +1152,7 @@
 | `vbinterf.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched |  | 09/02/2026 19:02:46 | COM interface refcounting pattern, not HANDLE-family. |
 | `vdmdbg.h` | FileHistory, VirtualDOSMachines | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdmdbg.h.md |
 | `vds.h` | VirtualDiskService | remaining |  |  |  |
-| `vdserr.h` | VirtualDiskService | remaining |  |  |  |
+| `vdserr.h` | VirtualDiskService | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdserr.h.md |
 | `vdslun.h` | VirtualDiskService | matched |  | 09/02/2026 19:50:38 | Enums/structs + MIDL boilerplate only, no functions. |
 | `vdssys.h` | VirtualDiskService, VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdssys.h.md |
 | `VersionHelpers.h` | SystemInformation | matched |  | 09/02/2026 19:54:02 | All functions are inline, no scrapable extern declarations. |
@@ -1190,13 +1190,13 @@
 | `wbemprov.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemprov.h.md |
 | `wbemtran.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemtran.h.md |
 | `wcmapi.h` | Wcm | matched |  | 09/02/2026 20:16:15 | Generic memory-allocation convention / transparent struct, not distinctly-named opaque handle. |
-| `wcmconfig.h` | Smi | remaining |  |  |  |
+| `wcmconfig.h` | Smi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcmconfig.h.md |
 | `wcmerrors.h` | Smi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcmerrors.h.md |
 | `wcnapi.h` | Wcn | matched |  | 09/02/2026 17:01:48 | Redirect-only; 0 functions in entire Wcn partition, no DECLARE_HANDLE. |
 | `wcnfunctiondiscoverykeys.h` | Wcn | matched |  | 09/02/2026 17:35:31 | GUID/PROPERTYKEY constants only, no functions. |
 | `wcsplugin.h` | Wcs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcsplugin.h.md |
 | `wct.h` | Base, Debug | blocked | copilot | 09/02/2026 19:12:01 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
-| `WDBGEXTS.H` | Debug.Extensions | remaining |  |  |  |
+| `WDBGEXTS.H` | Debug.Extensions | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/WDBGEXTS.H.md |
 | `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |
 | `wdmguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdmguid.h.md |
 | `wdsbp.h` | Wds | blocked |  | 09/02/2026 21:24:15 | WdsBpParseInitialize/WdsBpInitialize produce generic HANDLE via direct out-param. |

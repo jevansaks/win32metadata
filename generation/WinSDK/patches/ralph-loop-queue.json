@@ -8345,10 +8345,10 @@
   {
     "header": "resapi.h",
     "partition": "MsCs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/resapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -8516,10 +8516,10 @@
   {
     "header": "rpcndr.h",
     "partition": "FileHistory, Rpc, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcndr.h.md",
     "_source": "header-progress"
   },
   {
@@ -10280,10 +10280,10 @@
   {
     "header": "vdserr.h",
     "partition": "VirtualDiskService",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdserr.h.md",
     "_source": "header-progress"
   },
   {
@@ -10622,10 +10622,10 @@
   {
     "header": "wcmconfig.h",
     "partition": "Smi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcmconfig.h.md",
     "_source": "header-progress"
   },
   {
@@ -10676,10 +10676,10 @@
   {
     "header": "WDBGEXTS.H",
     "partition": "Debug.Extensions",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/WDBGEXTS.H.md",
     "_source": "header-progress"
   },
   {

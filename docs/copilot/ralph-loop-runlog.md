@@ -3330,3 +3330,13 @@ Ledger: 1171 accepted-normalized, 31 blocked, 201 pending (1202/1403 classified)
 - **d3dtypes.h** (Direct3D9): transparent structs/enums only. Clean.
 
 Ledger: 1176 accepted-normalized, 31 blocked, 196 pending (1207/1403 classified).
+
+## Batch 204 (2026-09-03 03:35): wcmconfig.h, rpcndr.h, WDBGEXTS.H, resapi.h, vdserr.h
+
+- **wcmconfig.h** (Smi): COM vtable only. Clean.
+- **rpcndr.h** (FileHistory/Rpc/WinProg): RPC/MIDL infrastructure macros/types only. Clean.
+- **WDBGEXTS.H** (Debug.Extensions): debugger-extension callback contract, no ownership pattern. Clean.
+- **resapi.h** (MsCs): ClusWorkerCreate/Terminate operate on caller-allocated struct, not opaque handle. Clean.
+- **vdserr.h** (VirtualDiskService): error-code constants only. Clean.
+
+Ledger: 1181 accepted-normalized, 31 blocked, 191 pending (1212/1403 classified).
