@@ -1397,10 +1397,10 @@
   {
     "header": "comadmin.h",
     "partition": "Cos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/comadmin.h.md",
     "_source": "header-progress"
   },
   {
@@ -1559,10 +1559,10 @@
   {
     "header": "cor.h",
     "partition": "ClrProfiling",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cor.h.md",
     "_source": "header-progress"
   },
   {
@@ -7175,19 +7175,19 @@
   {
     "header": "ntdef.h",
     "partition": "Kernel",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdef.h.md",
     "_source": "header-progress"
   },
   {
     "header": "ntdsapi.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdsapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -10874,10 +10874,10 @@
   {
     "header": "wiadef.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wiadef.h.md",
     "_source": "header-progress"
   },
   {

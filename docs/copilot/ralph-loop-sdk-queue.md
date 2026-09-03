@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:02:42Z
+- Generated: 2026-09-03T11:04:32Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1226
+- Matched: 1231
 - In progress: 0
 - Blocked: 31
-- Remaining: 146
+- Remaining: 141
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -165,7 +165,7 @@
 | `cmnquery.h` | ActiveDirectory | matched |  | 09/02/2026 21:43:41 | GUID/flag constants only, no extern functions. |
 | `codecapi.h` | Media.DShow, Mf | remaining |  |  |  |
 | `colordlg.h` | DlgBox | matched |  | 09/02/2026 17:35:31 | Dialog control ID constants only, no functions. |
-| `comadmin.h` | Cos | remaining |  |  |  |
+| `comadmin.h` | Cos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/comadmin.h.md |
 | `combaseapi.h` | Base, Com.Events, Com.StructuredStorage, Cos, IO, Multimedia, Shell, TransactionServer, VSS | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `comcat.h` | Com, ComOle | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `coml2api.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
@@ -183,7 +183,7 @@
 | `contactdeviceservice.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contactdeviceservice.h.md |
 | `contentpartner.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contentpartner.h.md |
 | `control.h` | Media.DShow | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
-| `cor.h` | ClrProfiling | remaining |  |  |  |
+| `cor.h` | ClrProfiling | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cor.h.md |
 | `corecrt_io.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/corecrt_io.h.md |
 | `CoreWindow.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CoreWindow.h.md |
 | `CorHdr.h` | ClrProfiling | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CorHdr.h.md |
@@ -807,8 +807,8 @@
 | `ntddstor.h` | Fs, Ioctl | remaining |  |  |  |
 | `ntddvdeo.h` | Display | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvdeo.h.md |
 | `ntddvol.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvol.h.md |
-| `ntdef.h` | Kernel | remaining |  |  |  |
-| `ntdsapi.h` | ActiveDirectory | remaining |  |  |  |
+| `ntdef.h` | Kernel | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdef.h.md |
+| `ntdsapi.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdsapi.h.md |
 | `ntdsbmsg.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdsbmsg.h.md |
 | `ntiologc.h` | Foundation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntiologc.h.md |
 | `ntioring_x.h` | Fs | matched |  | 09/02/2026 20:38:46 | Enums/constants only, no functions in this types header. |
@@ -1218,7 +1218,7 @@
 | `werapi.h` | Wer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/werapi.h.md |
 | `wheadef.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wheadef.h.md |
 | `wia.h` | Wia | matched |  | 09/02/2026 16:53:36 | Redirect-only; 185 functions all COM/RPC marshalling stubs, no DECLARE_HANDLE. |
-| `wiadef.h` | Wia | remaining |  |  |  |
+| `wiadef.h` | Wia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wiadef.h.md |
 | `wiadevd.h` | Wia | matched |  | 09/02/2026 19:42:09 | Only extern function takes no opaque-handle output; other handle producers are COM vtable methods. |
 | `wiaintfc.h` | Wia | matched |  | 09/02/2026 17:05:19 | Device-interface GUID constant only, no functions. |
 | `wiamicro.h` | Wia | matched |  | 09/02/2026 21:38:18 | No concrete annotatable ownership gap identified. |

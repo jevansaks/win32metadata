@@ -3426,3 +3426,13 @@ Ledger: 1221 accepted-normalized, 31 blocked, 151 pending (1252/1403 classified)
 - **wuerror.h** (Wua): HRESULT constants only. Clean.
 
 Ledger: 1226 accepted-normalized, 31 blocked, 146 pending (1257/1403 classified).
+
+## Batch 214 (2026-09-03 04:04): wiadef.h, ntdsapi.h, ntdef.h, comadmin.h, cor.h
+
+- **wiadef.h** (Wia): WIA constants only, no functions. Clean.
+- **ntdsapi.h** (ActiveDirectory): DsBindW/A generic HANDLE with by-pointer DsUnBindW/A close (doubly out of scope). Clean.
+- **ntdef.h** (Kernel): basic type definitions/macros only. Clean.
+- **comadmin.h** (Cos): COM vtable only. Clean.
+- **cor.h** (ClrProfiling): internal CLR loader functions, no handle pair. Clean.
+
+Ledger: 1231 accepted-normalized, 31 blocked, 141 pending (1262/1403 classified).
