@@ -2315,10 +2315,10 @@
   {
     "header": "ddpcommon.h",
     "partition": "Dedup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:16:41Z",
+    "notes": "Enums/data structs + MIDL boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3917,10 +3917,10 @@
   {
     "header": "fttypes.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:16:41Z",
+    "notes": "Typedef/enums/data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5285,10 +5285,10 @@
   {
     "header": "lmat.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:16:41Z",
+    "notes": "Net API buffer-allocation convention, not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -9416,10 +9416,10 @@
   {
     "header": "stringapiset.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:16:41Z",
+    "notes": "String/buffer conversion API only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -9515,10 +9515,10 @@
   {
     "header": "syncdeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:16:41Z",
+    "notes": "GUID/property-key constants only, no functions.",
     "_source": "header-progress"
   },
   {

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:14:48Z
+- Generated: 2026-09-03T02:16:54Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 457
+- Matched: 462
 - In progress: 0
 - Blocked: 15
-- Remaining: 931
+- Remaining: 926
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -267,7 +267,7 @@
 | `ddkernel.h` | DirectDraw | remaining |  |  |  |
 | `ddpbackup.h` | Dedup | remaining |  |  |  |
 | `ddpchunk.h` | Dedup | remaining |  |  |  |
-| `ddpcommon.h` | Dedup | remaining |  |  |  |
+| `ddpcommon.h` | Dedup | matched |  | 09/02/2026 19:16:41 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `ddpdataport.h` | Dedup | remaining |  |  |  |
 | `ddraw.h` | DirectDraw, Gdiplus, Media.DShow | matched |  | 09/02/2026 16:34:06 | HMONITOR reference is a pass-through system handle (never created/released by DirectDraw); guarded DECLARE_HANDLE fallback never fires. |
 | `ddrawgdi.h` | FileHistory, WinProg | remaining |  |  |  |
@@ -445,7 +445,7 @@
 | `fsrmscreen.h` | Fsrm | remaining |  |  |  |
 | `fsrmtlb.h` | Fsrm | remaining |  |  |  |
 | `ftpext.h` | Iis | remaining |  |  |  |
-| `fttypes.h` | Fs | remaining |  |  |  |
+| `fttypes.h` | Fs | matched |  | 09/02/2026 19:16:41 | Typedef/enums/data structs only, no functions. |
 | `fullenumsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `functiondiscovery.h` | FunctionDiscovery | remaining |  |  |  |
 | `functiondiscoverycategories.h` | FunctionDiscovery | matched |  | 09/02/2026 19:12:01 | String constants only, no functions. |
@@ -597,7 +597,7 @@
 | `lmaccess.h` | FileHistory, NetMgmt, WinProg | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `lmalert.h` | NetMgmt | remaining |  |  |  |
 | `lmapibuf.h` | NetMgmt | matched |  | 09/02/2026 18:32:46 | Canonical NetApiBufferFree convention, generic memory buffer, not HANDLE-family. |
-| `lmat.h` | NetMgmt | remaining |  |  |  |
+| `lmat.h` | NetMgmt | matched |  | 09/02/2026 19:16:41 | Net API buffer-allocation convention, not HANDLE-family. |
 | `lmaudit.h` | NetMgmt | remaining |  |  |  |
 | `lmconfig.h` | NetMgmt | matched |  | 09/02/2026 18:03:29 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
 | `lmcons.h` | Dfs, NetMgmt | remaining |  |  |  |
@@ -1056,7 +1056,7 @@
 | `storageprovider.h` | Shell | remaining |  |  |  |
 | `storprop.h` | Base | matched |  | 09/02/2026 18:44:05 | HDEVINFO is a consumer-only input from the separate SetupAPI surface. |
 | `stralign.h` | FileHistory, WinProg | remaining |  |  |  |
-| `stringapiset.h` | Intl | remaining |  |  |  |
+| `stringapiset.h` | Intl | matched |  | 09/02/2026 19:16:41 | String/buffer conversion API only, no handle. |
 | `strmif.h` | Media.DShow, Media.KernelStreaming, MsTv, WmFormat | remaining |  |  |  |
 | `strsafe.h` | MenuRc | remaining |  |  |  |
 | `structuredquery.h` | Search | remaining |  |  |  |
@@ -1067,7 +1067,7 @@
 | `svcguid.h` | WinSock | remaining |  |  |  |
 | `swdevice.h` | SwDevice | matched |  | 09/02/2026 18:38:01 | HSWDEVICE ownership already correctly captured via existing autoTypes.json entry (CloseApi: SwDeviceClose); no gap to fix. |
 | `swdevicedef.h` | SwDevice | matched |  | 09/02/2026 17:30:54 | Type declarations only (enums/struct), no functions; HSWDEVICE ownership tracked separately under swdevice.h (pending). |
-| `syncdeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `syncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 19:16:41 | GUID/property-key constants only, no functions. |
 | `synchronizationerrors.h` | WinSync | remaining |  |  |  |
 | `syncmgr.h` | Shell | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `syncregistration.h` | WinSync | remaining |  |  |  |

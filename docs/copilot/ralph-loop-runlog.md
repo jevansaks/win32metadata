@@ -1600,3 +1600,16 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - filterr.h: HRESULT error-code constants only, no functions. Clean.
 
 **Ledger status:** 457 accepted-normalized, 15 blocked, 931 pending.
+
+## 2026-09-02 19:16:54 UTC - Batch scraping-investigation-57
+
+**Headers:** syncdeviceservice.h, lmat.h, fttypes.h, ddpcommon.h, stringapiset.h
+**Partitions scraped:** Dedup (x86; 0 warnings/errors)
+
+- syncdeviceservice.h: GUID/property-key constants only, no functions. Clean.
+- lmat.h: NetScheduleJob* use Net API buffer-allocation convention. Clean.
+- fttypes.h: typedef/enums/data structs only, no functions. Clean.
+- ddpcommon.h: MIDL boilerplate + enums/data structs only, no functions. Clean.
+- stringapiset.h: string/buffer conversion API only, no handle. Clean.
+
+**Ledger status:** 462 accepted-normalized, 15 blocked, 926 pending.
