@@ -101,10 +101,10 @@
   {
     "header": "adshlp.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:21:35Z",
+    "notes": "COM refcounting + generic memory/string-allocation conventions only.",
     "_source": "header-progress"
   },
   {
@@ -2081,10 +2081,10 @@
   {
     "header": "d3d9on12.h",
     "partition": "Direct3D9on12",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:21:35Z",
+    "notes": "COM factory/refcounting pattern throughout.",
     "_source": "header-progress"
   },
   {
@@ -4619,10 +4619,10 @@
   {
     "header": "il21dec.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:21:35Z",
+    "notes": "COM interface with plain-value parameters only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -6131,10 +6131,10 @@
   {
     "header": "mpegtype.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:21:35Z",
+    "notes": "COM interface with plain-value parameters only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -9974,10 +9974,10 @@
   {
     "header": "tvout.h",
     "partition": "Gdi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:21:35Z",
+    "notes": "Data struct + constants only, no functions.",
     "_source": "header-progress"
   },
   {

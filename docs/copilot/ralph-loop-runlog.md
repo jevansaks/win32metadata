@@ -1629,3 +1629,16 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - adssts.h: status-code constants only, no functions. Clean.
 
 **Ledger status:** 467 accepted-normalized, 15 blocked, 921 pending.
+
+## 2026-09-02 19:21:48 UTC - Batch scraping-investigation-59
+
+**Headers:** il21dec.h, d3d9on12.h, mpegtype.h, adshlp.h, tvout.h
+**Partitions scraped:** Direct3D9on12, Gdi (x86; 0 errors)
+
+- il21dec.h / mpegtype.h: COM interfaces with plain-value parameters only, no handle.
+- d3d9on12.h: COM factory/refcounting pattern throughout.
+- adshlp.h: COM refcounting + generic memory/string-allocation conventions only, no opaque
+  HANDLE-family gap.
+- tvout.h: data struct + constants only, no functions.
+
+**Ledger status:** 472 accepted-normalized, 15 blocked, 916 pending.

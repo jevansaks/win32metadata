@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:19:17Z
+- Generated: 2026-09-03T02:21:48Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 467
+- Matched: 472
 - In progress: 0
 - Blocked: 15
-- Remaining: 921
+- Remaining: 916
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -21,7 +21,7 @@
 | `activecf.h` | Media.DShow | matched |  | 09/02/2026 17:09:31 | Clipboard-format data struct only, no functions. |
 | `activprof.h` | Debug.ActiveScript | remaining |  |  |  |
 | `adhoc.h` | Ndis, NWifi | remaining |  |  |  |
-| `adshlp.h` | ActiveDirectory | remaining |  |  |  |
+| `adshlp.h` | ActiveDirectory | matched |  | 09/02/2026 19:21:35 | COM refcounting + generic memory/string-allocation conventions only. |
 | `adsprop.h` | ActiveDirectory | remaining |  |  |  |
 | `adssts.h` | ActiveDirectory | matched |  | 09/02/2026 19:19:02 | Status-code constants only, no functions. |
 | `adtgen.h` | Authorization, Authorization.UI | remaining |  |  |  |
@@ -241,7 +241,7 @@
 | `d3d9.h` | Direct3D9, Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d9caps.h` | Direct3D9, Mf | remaining |  |  |  |
 | `d3d9helper.h` | Media.DShow | remaining |  |  |  |
-| `d3d9on12.h` | Direct3D9on12 | remaining |  |  |  |
+| `d3d9on12.h` | Direct3D9on12 | matched |  | 09/02/2026 19:21:35 | COM factory/refcounting pattern throughout. |
 | `d3d9types.h` | Direct3D9, Mf | remaining |  |  |  |
 | `d3dcaps.h` | Direct3D9 | remaining |  |  |  |
 | `d3dcommon.h` | Direct2D, Direct3D, Direct3D10 | remaining |  |  |  |
@@ -523,7 +523,7 @@
 | `iepmapi.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `iewebdriver.h` | InternetExplorer | remaining |  |  |  |
 | `iextag.h` | InternetExplorer | remaining |  |  |  |
-| `il21dec.h` | Media.DShow | remaining |  |  |  |
+| `il21dec.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
 | `ImageHlp.h` | Debug | remaining |  |  |  |
 | `imagetranscode.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `imapi.h` | IMapi | remaining |  |  |  |
@@ -691,7 +691,7 @@
 | `mpeg2error.h` | Media.DShow | remaining |  |  |  |
 | `mpeg2psiparser.h` | Media.DShow, MsTv | remaining |  |  |  |
 | `mpeg2structs.h` | MsTv | remaining |  |  |  |
-| `mpegtype.h` | Media.DShow | remaining |  |  |  |
+| `mpegtype.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
 | `mprapi.h` | RRas | remaining |  |  |  |
 | `mprerror.h` | Foundation | remaining |  |  |  |
 | `mq.h` | MessageQueuing | remaining |  |  |  |
@@ -1118,7 +1118,7 @@
 | `tsuserex.h` | TermServ | remaining |  |  |  |
 | `tsvirtualchannels.h` | TermServ | remaining |  |  |  |
 | `tuner.h` | MsTv | remaining |  |  |  |
-| `tvout.h` | Gdi | remaining |  |  |  |
+| `tvout.h` | Gdi | matched |  | 09/02/2026 19:21:35 | Data struct + constants only, no functions. |
 | `tvratings.h` | MsTv | remaining |  |  |  |
 | `txdtc.h` | DTC | remaining |  |  |  |
 | `txfw32.h` | Fs | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
