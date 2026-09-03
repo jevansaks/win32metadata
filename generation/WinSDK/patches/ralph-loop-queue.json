@@ -128,10 +128,10 @@
   {
     "header": "adtgen.h",
     "partition": "Authorization, Authorization.UI",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/adtgen.h.md",
     "_source": "header-progress"
   },
   {
@@ -911,10 +911,10 @@
   {
     "header": "bits10_2.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_2.h.md",
     "_source": "header-progress"
   },
   {
@@ -5663,10 +5663,10 @@
   {
     "header": "messagedeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/messagedeviceservice.h.md",
     "_source": "header-progress"
   },
   {
@@ -5753,10 +5753,10 @@
   {
     "header": "mfmediacapture.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfmediacapture.h.md",
     "_source": "header-progress"
   },
   {
@@ -9389,10 +9389,10 @@
   {
     "header": "storageprovider.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/storageprovider.h.md",
     "_source": "header-progress"
   },
   {

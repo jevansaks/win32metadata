@@ -2358,3 +2358,13 @@ Ledger: 676 accepted-normalized, 31 blocked, 696 pending (707/1403 classified).
 - **msfeedsid.h** (Wmp): DISPID constants only, no functions. Clean.
 
 Ledger: 681 accepted-normalized, 31 blocked, 691 pending (712/1403 classified).
+
+## Batch 105 (2026-09-02 22:23): mfmediacapture.h, storageprovider.h, adtgen.h, messagedeviceservice.h, bits10_2.h
+
+- **mfmediacapture.h** (Mf): COM interfaces only, no free functions. Clean.
+- **storageprovider.h** (Shell): COM interfaces only, no free functions. Clean.
+- **adtgen.h** (Authorization, Authorization.UI): declares AUDIT_HANDLE as an RPC [context_handle], but zero producer/consumer functions exist anywhere in the scraped SDK surface (repo-wide grep confirms single-file, function-less usage) - no representable gap. Clean.
+- **messagedeviceservice.h** (WpdSdk): GUID/format constants only, no functions. Clean.
+- **bits10_2.h** (Bits): COM interfaces only, no free functions. Clean.
+
+Ledger: 686 accepted-normalized, 31 blocked, 686 pending (717/1403 classified). Exactly half of pending remaining vs classified.

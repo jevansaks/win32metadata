@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:20:12Z
+- Generated: 2026-09-03T05:23:42Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 681
+- Matched: 686
 - In progress: 0
 - Blocked: 31
-- Remaining: 691
+- Remaining: 686
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -24,7 +24,7 @@
 | `adshlp.h` | ActiveDirectory | matched |  | 09/02/2026 19:21:35 | COM refcounting + generic memory/string-allocation conventions only. |
 | `adsprop.h` | ActiveDirectory | blocked |  | 09/02/2026 21:49:17 | ADsPropCreateNotifyObj produces generic HWND via direct out-param; extends established blocker class to HWND. |
 | `adssts.h` | ActiveDirectory | matched |  | 09/02/2026 19:19:02 | Status-code constants only, no functions. |
-| `adtgen.h` | Authorization, Authorization.UI | remaining |  |  |  |
+| `adtgen.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/adtgen.h.md |
 | `advpub.h` | FileHistory, WinProg | remaining |  |  |  |
 | `af_irda.h` | WinSock | matched |  | 09/02/2026 20:41:40 | Constants only, no functions. |
 | `afunix.h` | WinSock | matched |  | 09/02/2026 17:09:31 | Data struct + IOCTL constants only, no functions. |
@@ -111,7 +111,7 @@
 | `bits.h` | Bits | remaining |  |  |  |
 | `bits1_5.h` | Bits | remaining |  |  |  |
 | `bits10_1.h` | Bits | remaining |  |  |  |
-| `bits10_2.h` | Bits | remaining |  |  |  |
+| `bits10_2.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_2.h.md |
 | `bits10_3.h` | Bits | remaining |  |  |  |
 | `bits2_0.h` | Bits | remaining |  |  |  |
 | `bits2_5.h` | Bits | remaining |  |  |  |
@@ -639,7 +639,7 @@
 | `memorybuffer.h` | WinRT | matched |  | 09/02/2026 17:05:19 | IMemoryBufferByteAccess COM interface; buffer view not a HANDLE-family resource. |
 | `menutemplate.h` | MenuRc | matched |  | 09/02/2026 17:01:48 | Plain data structs only, no functions. |
 | `mergemod.h` | Setup | remaining |  |  |  |
-| `messagedeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `messagedeviceservice.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/messagedeviceservice.h.md |
 | `messagedispatcherapi.h` | ComOle, WinRT | matched |  | 09/02/2026 17:13:02 | IMessageDispatcher pointer is caller-supplied input, not produced here. |
 | `metadatadeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:26:39 | GUID/property-key constants only, no functions. |
 | `metahost.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
@@ -649,7 +649,7 @@
 | `mfd3d12.h` | Direct3D12, Mf | remaining |  |  |  |
 | `mferror.h` | Mf | remaining |  |  |  |
 | `mfidl.h` | Mf | remaining |  |  |  |
-| `mfmediacapture.h` | Mf | remaining |  |  |  |
+| `mfmediacapture.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfmediacapture.h.md |
 | `mfmediaengine.h` | Mf | remaining |  |  |  |
 | `mfmp2dlna.h` | Mf | matched |  | 09/02/2026 20:28:23 | COM interface + GUID constants/struct only, no extern functions. |
 | `mfobjects.h` | Mf | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
@@ -1053,7 +1053,7 @@
 | `stierr.h` | ImagingDevice | matched |  | 09/02/2026 19:32:00 | HRESULT/status-code constants only, no functions. |
 | `stireg.h` | ImagingDevice | matched |  | 09/02/2026 19:45:17 | Registry key/property GUID constants only, no functions. |
 | `stiusd.h` | ImagingDevice | matched |  | 09/02/2026 21:43:41 | COM interface + GUID constants only, no extern functions. |
-| `storageprovider.h` | Shell | remaining |  |  |  |
+| `storageprovider.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/storageprovider.h.md |
 | `storprop.h` | Base | matched |  | 09/02/2026 18:44:05 | HDEVINFO is a consumer-only input from the separate SetupAPI surface. |
 | `stralign.h` | FileHistory, WinProg | remaining |  |  |  |
 | `stringapiset.h` | Intl | matched |  | 09/02/2026 19:16:41 | String/buffer conversion API only, no handle. |
