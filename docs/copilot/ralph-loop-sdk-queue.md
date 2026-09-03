@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:03:50Z
+- Generated: 2026-09-03T08:06:03Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 931
+- Matched: 936
 - In progress: 0
 - Blocked: 31
-- Remaining: 441
+- Remaining: 436
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -239,7 +239,7 @@
 | `d3d12shader.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12video.h` | Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d9.h` | Direct3D9, Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
-| `d3d9caps.h` | Direct3D9, Mf | remaining |  |  |  |
+| `d3d9caps.h` | Direct3D9, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9caps.h.md |
 | `d3d9helper.h` | Media.DShow | remaining |  |  |  |
 | `d3d9on12.h` | Direct3D9on12 | matched |  | 09/02/2026 19:21:35 | COM factory/refcounting pattern throughout. |
 | `d3d9types.h` | Direct3D9, Mf | remaining |  |  |  |
@@ -675,7 +675,7 @@
 | `MLOperatorAuthor.h` | MachineLearning | remaining |  |  |  |
 | `mmc.h` | Mmc | remaining |  |  |  |
 | `mmcobj.h` | Lwef, Mmc | remaining |  |  |  |
-| `mmddk.h` | Audio.DirectMusic, Multimedia | remaining |  |  |  |
+| `mmddk.h` | Audio.DirectMusic, Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmddk.h.md |
 | `mmdeviceapi.h` | Audio | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmeapi.h` | Audio, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmiscapi.h` | Multimedia | matched |  |  | Genuine producer-site fix: added CloseApi=CloseDriver to existing incomplete HDRVR autoTypes.json entry (resolves mmsyscom.h batch-107 follow-up). See docs/copilot/header-reports/mmiscapi.h.md |
@@ -843,7 +843,7 @@
 | `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | blocked |  | 09/02/2026 19:45:17 | OnDemandRegisterNotification outputs generic HANDLE via direct out-param. |
 | `oobenotification.h` | WindowsSetupAndMigration | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `openservice.h` | InternetExplorer | remaining |  |  |  |
-| `opmapi.h` | Mf | remaining |  |  |  |
+| `opmapi.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/opmapi.h.md |
 | `opmxbox.h` | Mf | matched |  | 09/02/2026 17:23:42 | Enum-output-only API, no handle. |
 | `p2p.h` | P2p | remaining |  |  |  |
 | `packagevirtualizationcontext.h` | AppxPackaging | matched |  | 09/02/2026 18:56:34 | Genuine ownership gap fixed: CreatePackageVirtualizationContext/DuplicatePackageVirtualizationContext out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via ReleasePackageVirtualizationContext. GetCurrentPackageVirtualizationContext is a borrowed/non-owned query (like GetConsoleWindow), left unannotated correctly. GetProcessesInVirtualizationContext's HANDLE** array is the already-documented generic-HANDLE-array limitation (same as physicalmonitorenumerationapi.h), not a new blocker. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
@@ -864,13 +864,13 @@
 | `photoacquire.h` | PicAcq, Setup | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR/HBITMAP/HICON/HWND/LPSAFEARRAY_User*); pass-through of externally-owned handles only. |
 | `physicalmonitorenumerationapi.h` | Monitor | blocked | copilot | 09/02/2026 18:44:05 | Deferred from lowlevelmonitorconfigurationapi.h (batch 30); genuine ownership relationship but generic HANDLE field nested in struct array precludes producer-site annotation, same root class as resourceindexer.h. |
 | `pla.h` | Pla | matched |  | 09/02/2026 16:34:06 | All 6 functions operate on strings/flags/paths only; no handle-producing functions. |
-| `playlist.h` | Media.DShow | remaining |  |  |  |
+| `playlist.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/playlist.h.md |
 | `playsoundapi.h` | Audio | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `playto.h` | Mf | matched |  | 09/02/2026 17:51:18 | Pure MIDL boilerplate; real content in separately-tracked MFSharingEngine.h (pending). |
 | `PlayToManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `pluginauthenticator.h` | WebAuthn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pluginauthenticator.h.md |
 | `pnpxassoc.h` | FunctionDiscovery, WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pnpxassoc.h.md |
-| `poclass.h` | Power | remaining |  |  |  |
+| `poclass.h` | Power | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/poclass.h.md |
 | `portabledevice.h` | WpdSdk | remaining |  |  |  |
 | `portabledeviceapi.h` | WpdSdk | remaining |  |  |  |
 | `portabledeviceconnectapi.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceconnectapi.h.md |

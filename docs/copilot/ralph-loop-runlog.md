@@ -2858,3 +2858,13 @@ Ledger: 926 accepted-normalized, 31 blocked, 446 pending (957/1403 classified).
 - **winsxs.h** (Setup): CreateAssemblyNameObject/CreateAssemblyCache output standard COM interface pointers. Clean.
 
 Ledger: 931 accepted-normalized, 31 blocked, 441 pending (962/1403 classified).
+
+## Batch 155 (2026-09-03 01:06): playlist.h, d3d9caps.h, poclass.h, opmapi.h, mmddk.h
+
+- **playlist.h** (Media.DShow): COM interfaces only, no free functions. Clean.
+- **d3d9caps.h** (Direct3D9, Mf): transparent structs/constants only, no functions. Clean.
+- **poclass.h** (Power): DEFINE_DEVPROPKEY constants only. Clean.
+- **opmapi.h** (Mf): all outputs are COM interface pointer arrays. Clean.
+- **mmddk.h** (Audio.DirectMusic, Multimedia): kernel driver structs/callbacks only, no functions. Clean.
+
+Ledger: 936 accepted-normalized, 31 blocked, 436 pending (967/1403 classified).

@@ -2063,10 +2063,10 @@
   {
     "header": "d3d9caps.h",
     "partition": "Direct3D9, Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9caps.h.md",
     "_source": "header-progress"
   },
   {
@@ -5987,10 +5987,10 @@
   {
     "header": "mmddk.h",
     "partition": "Audio.DirectMusic, Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmddk.h.md",
     "_source": "header-progress"
   },
   {
@@ -7499,10 +7499,10 @@
   {
     "header": "opmapi.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/opmapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -7688,10 +7688,10 @@
   {
     "header": "playlist.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/playlist.h.md",
     "_source": "header-progress"
   },
   {
@@ -7742,10 +7742,10 @@
   {
     "header": "poclass.h",
     "partition": "Power",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/poclass.h.md",
     "_source": "header-progress"
   },
   {
