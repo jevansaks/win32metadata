@@ -3062,10 +3062,10 @@
   {
     "header": "dxcore_interface.h",
     "partition": "Debug, DXCore",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxcore_interface.h.md",
     "_source": "header-progress"
   },
   {
@@ -3899,10 +3899,10 @@
   {
     "header": "fsrmtlb.h",
     "partition": "Fsrm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmtlb.h.md",
     "_source": "header-progress"
   },
   {
@@ -5843,10 +5843,10 @@
   {
     "header": "mgm.h",
     "partition": "RRas",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mgm.h.md",
     "_source": "header-progress"
   },
   {
@@ -10262,10 +10262,10 @@
   {
     "header": "vdmdbg.h",
     "partition": "FileHistory, VirtualDOSMachines",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdmdbg.h.md",
     "_source": "header-progress"
   },
   {
@@ -10937,10 +10937,10 @@
   {
     "header": "wiavideo.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wiavideo.h.md",
     "_source": "header-progress"
   },
   {

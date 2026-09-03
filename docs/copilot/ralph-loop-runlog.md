@@ -2518,3 +2518,13 @@ Ledger: 756 accepted-normalized, 31 blocked, 616 pending (787/1403 classified).
 - **printerextensiondispid.h** (Printing): DISPID constants only, no functions. Clean.
 
 Ledger: 761 accepted-normalized, 31 blocked, 611 pending (792/1403 classified).
+
+## Batch 121 (2026-09-02 23:18): wiavideo.h, vdmdbg.h, fsrmtlb.h, mgm.h, dxcore_interface.h
+
+- **wiavideo.h** (Wia): COM interfaces only, no free functions. Clean.
+- **vdmdbg.h** (FileHistory, VirtualDOSMachines): legacy VDM debugger API, all handle-like params are 16-bit WORD task/module values, no opaque handle production. Clean.
+- **fsrmtlb.h** (Fsrm): COM interfaces only, no free functions. Clean.
+- **mgm.h** (RRas): transparent struct + callback function-pointer typedefs only, no extern functions. Clean.
+- **dxcore_interface.h** (Debug, DXCore): C++ enum class + COM interfaces, DXCoreCreateAdapterFactory declared elsewhere. Clean.
+
+Ledger: 766 accepted-normalized, 31 blocked, 606 pending (797/1403 classified).

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:15:34Z
+- Generated: 2026-09-03T06:18:41Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 761
+- Matched: 766
 - In progress: 0
 - Blocked: 31
-- Remaining: 611
+- Remaining: 606
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -350,7 +350,7 @@
 | `dwrite_3.h` | DirectWrite | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dwrite.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dxcapi.h` | Direct3DDxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
-| `dxcore_interface.h` | Debug, DXCore | remaining |  |  |  |
+| `dxcore_interface.h` | Debug, DXCore | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxcore_interface.h.md |
 | `dxcore.h` | Debug, DXCore | matched |  | 09/02/2026 17:23:42 | COM factory pattern (DXCoreCreateAdapterFactory). |
 | `dxgi.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dxgi1_2.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
@@ -443,7 +443,7 @@
 | `fsrmquota.h` | Fsrm | remaining |  |  |  |
 | `fsrmreports.h` | Fsrm | remaining |  |  |  |
 | `fsrmscreen.h` | Fsrm | remaining |  |  |  |
-| `fsrmtlb.h` | Fsrm | remaining |  |  |  |
+| `fsrmtlb.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmtlb.h.md |
 | `ftpext.h` | Iis | remaining |  |  |  |
 | `fttypes.h` | Fs | matched |  | 09/02/2026 19:16:41 | Typedef/enums/data structs only, no functions. |
 | `fullenumsyncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 20:28:23 | Constants only, no functions. |
@@ -659,7 +659,7 @@
 | `mfspatialaudio.h` | Mf | remaining |  |  |  |
 | `mftransform.h` | Mf | remaining |  |  |  |
 | `mfvirtualcamera.h` | Mf | remaining |  |  |  |
-| `mgm.h` | RRas | remaining |  |  |  |
+| `mgm.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mgm.h.md |
 | `mgmtapi.h` | Snmp | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mi.h` | Mi | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
 | `micaut.h` | Tablet | remaining |  |  |  |
@@ -1150,7 +1150,7 @@
 | `uuids.h` | Media, Mf | remaining |  |  |  |
 | `uxtheme.h` | Controls, WinTouch | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `vbinterf.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched |  | 09/02/2026 19:02:46 | COM interface refcounting pattern, not HANDLE-family. |
-| `vdmdbg.h` | FileHistory, VirtualDOSMachines | remaining |  |  |  |
+| `vdmdbg.h` | FileHistory, VirtualDOSMachines | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vdmdbg.h.md |
 | `vds.h` | VirtualDiskService | remaining |  |  |  |
 | `vdserr.h` | VirtualDiskService | remaining |  |  |  |
 | `vdslun.h` | VirtualDiskService | matched |  | 09/02/2026 19:50:38 | Enums/structs + MIDL boilerplate only, no functions. |
@@ -1225,7 +1225,7 @@
 | `wiamindr_lh.h` | Wia | remaining |  |  |  |
 | `wiamindr.h` | Wia | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include wiamindr_lh.h/wiamindr_xp.h); no direct declarations. |
 | `wiatwcmp.h` | Wia | matched |  | 09/02/2026 18:00:53 | Data struct + constants only, no functions. |
-| `wiavideo.h` | Wia | remaining |  |  |  |
+| `wiavideo.h` | Wia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wiavideo.h.md |
 | `wiawsdsc.h` | Wia | matched |  | 09/02/2026 18:35:09 | Property-ID constants only, no functions. |
 | `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `winber.h` | Ldap | matched |  |  | Genuine producer-site fix: added BerElement autoTypes.json entry (CloseApi=ber_free), matching sibling PLDAPSearch's typedef-struct ValueType convention. See docs/copilot/header-reports/winber.h.md |
