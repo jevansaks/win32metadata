@@ -1267,3 +1267,31 @@ class), WinRT (re-scraped fresh to check as alternate validation path)
 
 **Ledger status:** 374 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 1021 pending.
+
+## 2026-09-02 18:21:25 UTC - Batch scraping-investigation-39
+
+**Headers:** cscapi.h, appnotify.h (FIXED), keycredmgr.h, sens.h, dv.h
+**Partitions scraped:** Of, Shell, Credentials, Audio.DirectMusic (x86; 0 errors; Shell shows 2
+pre-existing unrelated cross-partition remap warnings for in6_addr/in_addr)
+
+- cscapi.h: OfflineFilesEnable/Start/QueryStatus/QueryStatusEx output plain BOOL* only. Clean.
+- **appnotify.h: GENUINE GAP FOUND AND FIXED.** RegisterAppStateChangeNotification/
+  RegisterAppConstrainedChangeNotification produce opaque PAPPSTATE_REGISTRATION/
+  PAPPCONSTRAIN_REGISTRATION handles (typedef struct _X *PX - genuinely opaque pointer-to-incomplete
+  type, unlike resourceindexer.h's generic PVOID) via out-param, released via
+  UnregisterAppStateChangeNotification/UnregisterAppConstrainedChangeNotification. Checked autoTypes.json:
+  both types have NativeTypedef entries but no CloseApi/InvalidHandleValues - confirmed no existing
+  ownership metadata to duplicate/conflict with. Applied producer-site fix: added
+  win32metadata_annotations.h include guard + _Win32_metadata_invalid_handle_(0) +
+  _Win32_metadata_raii_free_(...) on each out-param. Verified via live re-scrape of Shell partition
+  (0 errors) and git apply --check --reverse (exit 0). New patch:
+  appnotify.h.appstate-registration-ownership.patch.
+- keycredmgr.h: KeyCredentialManagerGetInformation/FreeInformation alloc/free a transparent (fully
+  defined) struct, not an opaque handle - out of scope for the HANDLE-specific mechanism (same
+  reasoning as WSDAllocateLinkedMemory in batch 20). Clean.
+- sens.h: constants only, no functions. Clean.
+- dv.h: constants + data struct only, no functions. Clean.
+
+**Ledger status:** 379 accepted-normalized (including 1 genuine producer-site fix), 8 blocked (esent.h,
+getprocesshandlefromhwnd.h, wab.h, wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h,
+MSAJTransport.h), 1016 pending.

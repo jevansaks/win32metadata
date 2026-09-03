@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:15:21Z
+- Generated: 2026-09-03T01:21:07Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 374
+- Matched: 379
 - In progress: 0
 - Blocked: 8
-- Remaining: 1021
+- Remaining: 1016
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -70,7 +70,7 @@
 | `appcompatapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:23:42 | No handle involved. |
 | `appmgmt.h` | Policy, Shell | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `appmodel.h` | AppxPackaging | remaining |  |  |  |
-| `appnotify.h` | Shell | remaining |  |  |  |
+| `appnotify.h` | Shell | matched |  | 09/02/2026 18:20:58 | Genuine ownership gap fixed: RegisterAppStateChangeNotification/RegisterAppConstrainedChangeNotification out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via UnregisterAppStateChangeNotification/UnregisterAppConstrainedChangeNotification. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
 | `appserviceinterop.h` | WinRT | remaining |  |  |  |
 | `appxpackaging.h` | AppxPackaging | remaining |  |  |  |
 | `asferr.h` | Multimedia | remaining |  |  |  |
@@ -196,7 +196,7 @@
 | `cryptdlg.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `cryptuiapi.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cryptxml.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
-| `cscapi.h` | Of | remaining |  |  |  |
+| `cscapi.h` | Of | matched |  | 09/02/2026 18:20:58 | BOOL-output-only API, no handle. |
 | `cscobj.h` | Of | remaining |  |  |  |
 | `cspdk.h` | Security.Cryptography | remaining |  |  |  |
 | `ctffunc.h` | Tsf | remaining |  |  |  |
@@ -339,7 +339,7 @@
 | `dsrole.h` | ActiveDirectory | remaining |  |  |  |
 | `dssec.h` | Security.DirectoryServices | remaining |  |  |  |
 | `dtchelp.h` | DTC | remaining |  |  |  |
-| `dv.h` | Audio.DirectMusic | remaining |  |  |  |
+| `dv.h` | Audio.DirectMusic | matched |  | 09/02/2026 18:20:58 | Constants + data struct only, no functions. |
 | `dvbsiparser.h` | MsTv | remaining |  |  |  |
 | `dvdevcod.h` | Media.DShow | remaining |  |  |  |
 | `dvdmedia.h` | Media.DShow | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
@@ -583,7 +583,7 @@
 | `jsrt.h` | Js | matched |  | 09/02/2026 17:35:31 | Redirect-only; reachable branch (jsrt9.h) already tracked pending; chakrart.h unreachable in this partition. |
 | `jsrt9.h` | Js | remaining |  |  |  |
 | `kbd.h` | KeyboardAndMouseInput | matched | copilot | 09/03/2026 04:20:00 | No patch needed; data-structure-only header. |
-| `keycredmgr.h` | Credentials | remaining |  |  |  |
+| `keycredmgr.h` | Credentials | matched |  | 09/02/2026 18:20:58 | KeyCredentialManagerInfo alloc/free is a transparent-struct memory pattern, not an opaque handle. |
 | `knownfolders.h` | Shell | remaining |  |  |  |
 | `ks.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
 | `ksmedia.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
@@ -989,7 +989,7 @@
 | `securityappcontainer.h` | Isolation | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `securitybaseapi.h` | Etw, Identity, Security | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `segment.h` | Media.DShow, MsTv | remaining |  |  |  |
-| `sens.h` | Sens | remaining |  |  |  |
+| `sens.h` | Sens | matched |  | 09/02/2026 18:20:58 | Constants only, no functions. |
 | `sensapi.h` | Sens | matched |  | 09/02/2026 17:41:54 | No handle involved. |
 | `sensevts.h` | Sens | remaining |  |  |  |
 | `sensors.h` | WinSensors | remaining |  |  |  |

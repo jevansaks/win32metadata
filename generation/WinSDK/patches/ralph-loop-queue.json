@@ -542,10 +542,10 @@
   {
     "header": "appnotify.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:20:58Z",
+    "notes": "Genuine ownership gap fixed: RegisterAppStateChangeNotification/RegisterAppConstrainedChangeNotification out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via UnregisterAppStateChangeNotification/UnregisterAppConstrainedChangeNotification. Verified via live re-scrape (0 errors) and git apply --check --reverse.",
     "_source": "header-progress"
   },
   {
@@ -1676,10 +1676,10 @@
   {
     "header": "cscapi.h",
     "partition": "Of",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:20:58Z",
+    "notes": "BOOL-output-only API, no handle.",
     "_source": "header-progress"
   },
   {
@@ -2963,10 +2963,10 @@
   {
     "header": "dv.h",
     "partition": "Audio.DirectMusic",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:20:58Z",
+    "notes": "Constants + data struct only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5159,10 +5159,10 @@
   {
     "header": "keycredmgr.h",
     "partition": "Credentials",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:20:58Z",
+    "notes": "KeyCredentialManagerInfo alloc/free is a transparent-struct memory pattern, not an opaque handle.",
     "_source": "header-progress"
   },
   {
@@ -8813,10 +8813,10 @@
   {
     "header": "sens.h",
     "partition": "Sens",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:20:58Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
