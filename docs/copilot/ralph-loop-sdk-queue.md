@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:04:37Z
+- Generated: 2026-09-03T09:10:05Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1036
+- Matched: 1041
 - In progress: 0
 - Blocked: 31
-- Remaining: 336
+- Remaining: 331
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -285,7 +285,7 @@
 | `deviceservices.h` | WpdSdk | matched |  | 09/02/2026 17:58:11 | GUID/property-key constants only, no functions; BridgeDeviceService.h separately tracked (pending). |
 | `devicetopology.h` | Audio | remaining |  |  |  |
 | `devioctl.h` | Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd | matched |  | 09/02/2026 21:04:56 | Device-type constants only, no functions. |
-| `devpkey.h` | Base, Devices.Properties | remaining |  |  |  |
+| `devpkey.h` | Base, Devices.Properties | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devpkey.h.md |
 | `devpropdef.h` | Display, Nfc, Nfp, WpdSdk | matched |  | 09/02/2026 21:21:09 | Constants/typedef only, no functions. |
 | `devquery.h` | DeviceQuery, FileHistory | matched |  | 09/02/2026 21:01:40 | Fixed genuine gap: completed existing autoTypes.json entry for HDEVQUERY (CloseApi=DevCloseObjectQuery). |
 | `devquerydef.h` | DeviceQuery | matched |  | 09/02/2026 18:59:13 | Enums/data structs only, no functions. |
@@ -506,7 +506,7 @@
 | `ichannelcredentials.h` | Com.ChannelCreds, ComOle | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ichannelcredentials.h.md |
 | `Icm.h` | Wcs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `icmpapi.h` | IpHlp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
-| `icontact.h` | WinContacts | remaining |  |  |  |
+| `icontact.h` | WinContacts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontact.h.md |
 | `icontactproperties.h` | WinContacts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontactproperties.h.md |
 | `icontentprefetchertasktrigger.h` | Wsw | matched |  | 09/02/2026 21:01:40 | COM/WinRT interface method only, out of scope. |
 | `icu.h` | Intl | remaining |  |  |  |
@@ -702,7 +702,7 @@
 | `msacmdlg.h` | Multimedia | matched |  | 09/02/2026 17:27:04 | Dialog resource ID constants only, no functions. |
 | `msacmdrv.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacmdrv.h.md |
 | `MSAJTransport.h` | AllJoyn, WinRT | blocked | copilot | 09/02/2026 18:15:12 | Two compounding blockers: parser/toolchain version mismatch prevents live-scrape validation of the AllJoyn partition; and a genuine return-value HANDLE ownership pattern with no annotation precedent. |
-| `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | remaining |  |  |  |
+| `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | matched |  |  | HCATADMIN/HCATINFO close functions require multi-arg (reserved flags / external context), unrepresentable per SQLFreeStmt precedent; CryptCATOpen/Close use generic HANDLE. See docs/copilot/header-reports/mscat.h.md |
 | `mschapp.h` | MsChap | matched |  | 09/02/2026 18:29:38 | Password-encryption struct/string API only, no handle. |
 | `msclmd.h` | Security.Cryptography | matched |  | 09/02/2026 19:45:17 | Constants/structs only, no functions. |
 | `msclus.h` | MsCs | remaining |  |  |  |
@@ -836,7 +836,7 @@
 | `oleauto.h` | ComOle | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `olectl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oledbdep.h` | Search | remaining |  |  |  |
-| `oledberr.h` | Search | remaining |  |  |  |
+| `oledberr.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oledberr.h.md |
 | `oledlg.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oleidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oletx2xa.h` | DTC | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oletx2xa.h.md |
@@ -1177,7 +1177,7 @@
 | `vsserror.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsserror.h.md |
 | `vsstyle.h` | Controls | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsstyle.h.md |
 | `vssym32.h` | Controls | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vssym32.h.md |
-| `vswriter.h` | VSS | remaining |  |  |  |
+| `vswriter.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vswriter.h.md |
 | `waasapi.h` | UpdateAssessment | matched |  | 09/02/2026 20:19:39 | COM interface + GUID constants only, no extern functions. |
 | `waasapitypes.h` | UpdateAssessment | matched |  | 09/02/2026 19:32:00 | MIDL enums/structs/boilerplate only, no functions. |
 | `wab.h` | Wab | blocked | copilot | 09/02/2026 16:53:36 | Deferred: 1 of 77 functions (FtgRegisterIdleRoutine) has genuine return-value handle ownership with no annotation precedent; needs the same dedicated policy decision as getprocesshandlefromhwnd.h. |

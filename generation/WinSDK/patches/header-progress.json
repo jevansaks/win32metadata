@@ -8210,7 +8210,7 @@
         "Devices.Properties"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -8223,7 +8223,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devpkey.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -14751,7 +14751,7 @@
       "header": "icontact.h",
       "partitions": "WinContacts",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -14764,7 +14764,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontact.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/WinContacts/main.cpp",
@@ -22806,7 +22806,7 @@
         "Security.Cryptography.Sip"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -22819,7 +22819,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "HCATADMIN/HCATINFO close functions require multi-arg (reserved flags / external context), unrepresentable per SQLFreeStmt precedent; CryptCATOpen/Close use generic HANDLE. See docs/copilot/header-reports/mscat.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -27230,7 +27230,7 @@
       "header": "oledberr.h",
       "partitions": "Search",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -27243,7 +27243,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oledberr.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Search/main.cpp",
@@ -39666,7 +39666,7 @@
       "header": "vswriter.h",
       "partitions": "VSS",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -39679,7 +39679,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vswriter.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/VSS/main.cpp",

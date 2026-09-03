@@ -2477,10 +2477,10 @@
   {
     "header": "devpkey.h",
     "partition": "Base, Devices.Properties",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/devpkey.h.md",
     "_source": "header-progress"
   },
   {
@@ -4466,10 +4466,10 @@
   {
     "header": "icontact.h",
     "partition": "WinContacts",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontact.h.md",
     "_source": "header-progress"
   },
   {
@@ -6230,10 +6230,10 @@
   {
     "header": "mscat.h",
     "partition": "Security.Cryptography.Catalog, Security.Cryptography.Sip",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "HCATADMIN/HCATINFO close functions require multi-arg (reserved flags / external context), unrepresentable per SQLFreeStmt precedent; CryptCATOpen/Close use generic HANDLE. See docs/copilot/header-reports/mscat.h.md",
     "_source": "header-progress"
   },
   {
@@ -7436,10 +7436,10 @@
   {
     "header": "oledberr.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oledberr.h.md",
     "_source": "header-progress"
   },
   {
@@ -10505,10 +10505,10 @@
   {
     "header": "vswriter.h",
     "partition": "VSS",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vswriter.h.md",
     "_source": "header-progress"
   },
   {

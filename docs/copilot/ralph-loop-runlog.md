@@ -3068,3 +3068,13 @@ Ledger: 1031 accepted-normalized, 31 blocked, 341 pending (1062/1403 classified)
 - **msidefs.h** (Setup): enums/constants only, no functions. Clean.
 
 Ledger: 1036 accepted-normalized, 31 blocked, 336 pending (1067/1403 classified).
+
+## Batch 176 (2026-09-03 02:10): icontact.h, vswriter.h, mscat.h, oledberr.h, devpkey.h
+
+- **icontact.h** (WinContacts): COM vtable only. Clean.
+- **vswriter.h** (VSS): COM (STDMETHOD-style C++) interfaces only. Clean.
+- **mscat.h** (Security.Cryptography.Catalog/Sip): HCATADMIN/HCATINFO close functions require multi-arg (reserved flags / external HCATADMIN context) - unrepresentable per SQLFreeStmt precedent; CryptCATOpen/Close use generic HANDLE (blocker-class 2). Discovered/documented emitter.settings.rsp inline per-parameter RAIIFree mechanism (e.g. CfOpenFileWithOplock) exists alongside autoTypes.json.
+- **oledberr.h** (Search): HRESULT error constants only. Clean.
+- **devpkey.h** (Base/Devices.Properties): DEVPKEY_* constants only. Clean.
+
+Ledger: 1041 accepted-normalized, 31 blocked, 331 pending (1072/1403 classified).
