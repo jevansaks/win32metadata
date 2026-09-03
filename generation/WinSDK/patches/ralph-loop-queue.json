@@ -2027,10 +2027,10 @@
   {
     "header": "d3d12sdklayers.h",
     "partition": "Direct3D12",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/d3d12sdklayers.h.md",
     "_source": "header-progress"
   },
   {
@@ -2576,10 +2576,10 @@
   {
     "header": "dimm.h",
     "partition": "Input.Ime",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/Dimm.h.md",
     "_source": "header-progress"
   },
   {
@@ -5699,10 +5699,10 @@
   {
     "header": "mfapi.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM interface pointer outputs + one optional-cancellation scalar token (MFWORKITEM_KEY, not a mandatory-release handle), no ownership metadata gap. See docs/copilot/header-reports/mfapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -5978,10 +5978,10 @@
   {
     "header": "mmcobj.h",
     "partition": "Lwef, Mmc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MMCObj.h.md",
     "_source": "header-progress"
   },
   {
@@ -6905,10 +6905,10 @@
   {
     "header": "netevent.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; network event constants only, no functions. See docs/copilot/header-reports/netevent.h.md",
     "_source": "header-progress"
   },
   {
@@ -7535,10 +7535,10 @@
   {
     "header": "pacmanclientapi.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; MIDL-generated COM vtable methods only, no free functions. See docs/copilot/header-reports/pacmanclientapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -8660,10 +8660,10 @@
   {
     "header": "sbtsv.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/sbtsv.h.md",
     "_source": "header-progress"
   },
   {

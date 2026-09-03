@@ -3503,3 +3503,9 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - manual.h (Com.StructuredStorage): single abstract interface, vtable-only, clean.
 - stdint.h: standard C99 header (AllJoyn-only reference), fixed-width typedefs only, clean by standard-library knowledge despite AllJoyn partition build failure.
 - Ledger: 1270 accepted-normalized, 59 blocked, 74 pending (1329/1403 = 94.7%).
+
+## Batch 223 (978dc1ed -> next)
+- mfapi.h: 126 STDAPI functions investigated; COM interface pointer outputs (clean) + MFWORKITEM_KEY scalar token evaluated and NOT annotated (MFCancelWorkItem is optional cancellation, not mandatory resource release - new nuance distinguishing 'optional-cancel token' from RAII-ownership handle).
+- d3d12sdklayers.h, dimm.h, mmcobj.h, sbtsv.h, pacmanclientapi.h: COM vtable-only headers, clean.
+- netevent.h: constants-only, clean.
+- Ledger: 1277 accepted-normalized, 59 blocked, 67 pending (1336/1403 = 95.2%).

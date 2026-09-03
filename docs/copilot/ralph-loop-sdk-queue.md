@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:35:10Z
+- Generated: 2026-09-03T11:39:00Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1270
+- Matched: 1277
 - In progress: 0
 - Blocked: 59
-- Remaining: 74
+- Remaining: 67
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -235,7 +235,7 @@
 | `d3d12.h` | Direct3D12 | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d12compatibility.h` | Direct3D12 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12compatibility.h.md |
 | `d3d12compiler.h` | Direct3D12 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12compiler.h.md |
-| `d3d12sdklayers.h` | Direct3D12 | remaining |  |  |  |
+| `d3d12sdklayers.h` | Direct3D12 | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/d3d12sdklayers.h.md |
 | `d3d12shader.h` | Direct3D12 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12shader.h.md |
 | `d3d12video.h` | Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d9.h` | Direct3D9, Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
@@ -296,7 +296,7 @@
 | `diagnosticdataquery.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:49:21 | All six opaque handle types already correctly covered via existing autoTypes.json entries; resolves deferred DIAGNOSTIC_DATA_QUERY_SESSION item. |
 | `diagnosticdataquerytypes.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:31:37 | Types/RPC boilerplate only, no functions; DIAGNOSTIC_DATA_QUERY_SESSION ownership deferred to DiagnosticDataQuery.h. |
 | `digitalv.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/digitalv.h.md |
-| `dimm.h` | Input.Ime | remaining |  |  |  |
+| `dimm.h` | Input.Ime | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/Dimm.h.md |
 | `dinput.h` | Hid | remaining |  |  |  |
 | `dinputd.h` | Hid | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dinputd.h.md |
 | `directmanipulation.h` | DirectManipulation | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
@@ -643,7 +643,7 @@
 | `messagedispatcherapi.h` | ComOle, WinRT | matched |  | 09/02/2026 17:13:02 | IMessageDispatcher pointer is caller-supplied input, not produced here. |
 | `metadatadeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:26:39 | GUID/property-key constants only, no functions. |
 | `metahost.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
-| `mfapi.h` | Mf | remaining |  |  |  |
+| `mfapi.h` | Mf | matched |  |  | Investigated; COM interface pointer outputs + one optional-cancellation scalar token (MFWORKITEM_KEY, not a mandatory-release handle), no ownership metadata gap. See docs/copilot/header-reports/mfapi.h.md |
 | `mfcaptureengine.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcaptureengine.h.md |
 | `mfcontentdecryptionmodule.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcontentdecryptionmodule.h.md |
 | `mfd3d12.h` | Direct3D12, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfd3d12.h.md |
@@ -674,7 +674,7 @@
 | `mlang.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mlang.h.md |
 | `MLOperatorAuthor.h` | MachineLearning | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/MLOperatorAuthor.h.md |
 | `mmc.h` | Mmc | remaining |  |  |  |
-| `mmcobj.h` | Lwef, Mmc | remaining |  |  |  |
+| `mmcobj.h` | Lwef, Mmc | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MMCObj.h.md |
 | `mmddk.h` | Audio.DirectMusic, Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmddk.h.md |
 | `mmdeviceapi.h` | Audio | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmeapi.h` | Audio, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
@@ -777,7 +777,7 @@
 | `netcfgn.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netcfgn.h.md |
 | `netcfgx.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netcfgx.h.md |
 | `netcon.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
-| `netevent.h` | NetMgmt | remaining |  |  |  |
+| `netevent.h` | NetMgmt | matched |  |  | Investigated; network event constants only, no functions. See docs/copilot/header-reports/netevent.h.md |
 | `netfw.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `netiodef.h` | WinSock, wnv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netiodef.h.md |
 | `netlistmgr.h` | Nla, WindowsConnectionManager | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netlistmgr.h.md |
@@ -847,7 +847,7 @@
 | `opmxbox.h` | Mf | matched |  | 09/02/2026 17:23:42 | Enum-output-only API, no handle. |
 | `p2p.h` | P2p | matched |  |  | Producer-site fix: added HGRAPH (CloseApi PeerGraphClose) and HPEERENUM (CloseApi PeerGraphEndEnumeration) autoTypes.json entries. See docs/copilot/header-reports/p2p.h.md |
 | `packagevirtualizationcontext.h` | AppxPackaging | matched |  | 09/02/2026 18:56:34 | Genuine ownership gap fixed: CreatePackageVirtualizationContext/DuplicatePackageVirtualizationContext out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via ReleasePackageVirtualizationContext. GetCurrentPackageVirtualizationContext is a borrowed/non-owned query (like GetConsoleWindow), left unannotated correctly. GetProcessesInVirtualizationContext's HANDLE** array is the already-documented generic-HANDLE-array limitation (same as physicalmonitorenumerationapi.h), not a new blocker. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
-| `pacmanclientapi.h` | Setup | remaining |  |  |  |
+| `pacmanclientapi.h` | Setup | matched |  |  | Investigated; MIDL-generated COM vtable methods only, no free functions. See docs/copilot/header-reports/pacmanclientapi.h.md |
 | `patchapi.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/patchapi.h.md |
 | `patchwiz.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/patchwiz.h.md |
 | `pathcch.h` | Shell | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
@@ -972,7 +972,7 @@
 | `sapiddk.h` | Speech | matched |  |  | Investigated; SAPI device-driver-kit COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/sapiddk.h.md |
 | `sas.h` | Identity | matched |  | 09/02/2026 16:53:36 | SendSAS(BOOL) - no handle involved. |
 | `sbe.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sbe.h.md |
-| `sbtsv.h` | TermServ | remaining |  |  |  |
+| `sbtsv.h` | TermServ | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/sbtsv.h.md |
 | `scarderr.h` | Credentials | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/scarderr.h.md |
 | `scclient.h` | Wmdm | matched |  | 09/02/2026 18:32:46 | Pure C++ class, no extern/DllImport functions; out of scope for annotation mechanism. |
 | `scesvc.h` | Security.ConfigurationSnapin | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/scesvc.h.md |
