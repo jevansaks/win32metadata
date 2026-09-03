@@ -1244,10 +1244,10 @@
   {
     "header": "certpoleng.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:09:17Z",
+    "notes": "Transparent structs with generic free conventions, or generic PVOID; both out of scope.",
     "_source": "header-progress"
   },
   {
@@ -2630,10 +2630,10 @@
   {
     "header": "dispatcherqueue.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:09:17Z",
+    "notes": "COM factory pattern.",
     "_source": "header-progress"
   },
   {
@@ -8201,10 +8201,10 @@
   {
     "header": "ratings.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T19:09:17Z",
+    "notes": "Deferred: direct out-param instance of the generic/shared-type blocker class.",
     "_source": "header-progress"
   },
   {
@@ -12017,10 +12017,10 @@
   {
     "header": "wnvapi.h",
     "partition": "wnv",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T19:09:17Z",
+    "notes": "Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h.",
     "_source": "header-progress"
   },
   {
@@ -12296,10 +12296,10 @@
   {
     "header": "wshisotp.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:09:17Z",
+    "notes": "Data struct + constants/macro only, no functions.",
     "_source": "header-progress"
   },
   {

@@ -1559,3 +1559,17 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - debugapi.h: HANDLE is a caller-supplied input, not produced here. Clean.
 
 **Ledger status:** 445 accepted-normalized, 12 blocked, 946 pending.
+
+## 2026-09-02 19:09:33 UTC - Batch scraping-investigation-54
+
+**Headers:** dispatcherqueue.h, wnvapi.h (blocked), wshisotp.h, certpoleng.h, ratings.h (blocked)
+**Partitions scraped:** wnv, Certificates (x86; 0 errors)
+
+- dispatcherqueue.h: COM factory pattern. Clean.
+- wnvapi.h: BLOCKED. WnvOpen returns a generic HANDLE via return value - known blocker class.
+- wshisotp.h: data struct + constants/macro only, no functions. Clean.
+- certpoleng.h: transparent structs w/ generic free conventions, or generic PVOID; out of scope. Clean.
+- ratings.h: BLOCKED. RatingObtainQuery(W) produces a generic HANDLE via direct out-param - same
+  class as wslapi.h.
+
+**Ledger status:** 448 accepted-normalized, 14 blocked, 941 pending.

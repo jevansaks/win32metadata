@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:06:30Z
+- Generated: 2026-09-03T02:09:33Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 445
+- Matched: 448
 - In progress: 0
-- Blocked: 12
-- Remaining: 946
+- Blocked: 14
+- Remaining: 941
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -148,7 +148,7 @@
 | `certif.h` | Certificates | remaining |  |  |  |
 | `certmod.h` | Certificates | remaining |  |  |  |
 | `certpol.h` | Certificates | remaining |  |  |  |
-| `certpoleng.h` | Certificates | remaining |  |  |  |
+| `certpoleng.h` | Certificates | matched |  | 09/02/2026 19:09:17 | Transparent structs with generic free conventions, or generic PVOID; both out of scope. |
 | `certreqd.h` | Certificates | remaining |  |  |  |
 | `certsrv.h` | Certificates | remaining |  |  |  |
 | `certview.h` | Certificates | remaining |  |  |  |
@@ -302,7 +302,7 @@
 | `directmanipulation.h` | DirectManipulation | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
 | `directml.h` | DirectML | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `diskguid.h` | Fs | remaining |  |  |  |
-| `dispatcherqueue.h` | WinRT | remaining |  |  |  |
+| `dispatcherqueue.h` | WinRT | matched |  | 09/02/2026 19:09:17 | COM factory pattern. |
 | `DispEx.h` | ComOle | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dlnadeviceinterfaceids.h` | Dlna | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
 | `dlnametadataproviderproperties.h` | Dlna | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
@@ -921,7 +921,7 @@
 | `raseapif.h` | Eap | remaining |  |  |  |
 | `raserror.h` | RRas | remaining |  |  |  |
 | `rasshost.h` | RRas | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
-| `ratings.h` | InternetExplorer | remaining |  |  |  |
+| `ratings.h` | InternetExplorer | blocked | copilot | 09/02/2026 19:09:17 | Deferred: direct out-param instance of the generic/shared-type blocker class. |
 | `rdpappcontainerclient.h` | TermServ | remaining |  |  |  |
 | `rdpencomapi.h` | Rdp, TermServ | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `realtimeapiset.h` | Base | matched |  | 09/02/2026 18:59:13 | HANDLE is a caller-supplied input, not produced here. |
@@ -1345,7 +1345,7 @@
 | `wmsinternaladminnetsource.h` | WmFormat | remaining |  |  |  |
 | `wmsysprf.h` | Wmp | remaining |  |  |  |
 | `wnnc.h` | Ifsk | remaining |  |  |  |
-| `wnvapi.h` | wnv | remaining |  |  |  |
+| `wnvapi.h` | wnv | blocked | copilot | 09/02/2026 19:09:17 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
 | `wofapi.h` | Fs | remaining |  |  |  |
 | `workspaceax.h` | TermServ | remaining |  |  |  |
 | `workspaceruntime.h` | TermServ | remaining |  |  |  |
@@ -1376,7 +1376,7 @@
 | `wsdtypes.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdutil.h` | FunctionDiscovery | matched |  | 09/02/2026 19:02:46 | WSDAPI linked-memory/buffer convention, not HANDLE-family (consistent with wsdapi.h). |
 | `wsdxml.h` | FunctionDiscovery | remaining |  |  |  |
-| `wshisotp.h` | WinSock | remaining |  |  |  |
+| `wshisotp.h` | WinSock | matched |  | 09/02/2026 19:09:17 | Data struct + constants/macro only, no functions. |
 | `wsipv6ok.h` | WinSock | matched |  | 09/02/2026 19:06:16 | Macro redefinitions only, no declarations. |
 | `wsipx.h` | WinSock | matched |  | 09/02/2026 18:09:40 | Data struct + constants only, no functions. |
 | `wslapi.h` | Wsl | blocked | copilot | 09/02/2026 19:02:46 | Deferred: direct out-param instance of the generic/shared-type blocker class (HANDLE has no single correct CloseApi). |
