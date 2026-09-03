@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:53:25Z
+- Generated: 2026-09-03T03:56:32Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 573
+- Matched: 578
 - In progress: 0
 - Blocked: 29
-- Remaining: 801
+- Remaining: 796
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -482,7 +482,7 @@
 | `highlevelmonitorconfigurationapi.h` | Monitor | remaining |  |  |  |
 | `hintsdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `holographicspaceinterop.h` | MixedRealityInterop | remaining |  |  |  |
-| `homepagesetting.h` | InternetExplorer | remaining |  |  |  |
+| `homepagesetting.h` | InternetExplorer | matched |  | 09/02/2026 20:56:17 | COM interface + GUID constants only, no extern functions. |
 | `hrtfapoapi.h` | Xaudio2 | remaining |  |  |  |
 | `hstring.h` | WinRT | matched |  | 09/02/2026 18:47:23 | Type declarations only (opaque handle typedefs), no functions; producer functions tracked separately under winstring.h (pending). |
 | `htiface.h` | InternetExplorer | remaining |  |  |  |
@@ -533,7 +533,7 @@
 | `imapi2fserror.h` | Wab | remaining |  |  |  |
 | `imapierror.h` | IMapi | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
 | `ime_cmodes.h` | Input.Ime | matched |  | 09/02/2026 17:09:31 | Bit-field constants only, no functions. |
-| `ime.h` | FileHistory, WinProg | remaining |  |  |  |
+| `ime.h` | FileHistory, WinProg | matched |  | 09/02/2026 20:56:17 | No function produces an opaque handle. |
 | `imepad.h` | Input.Ime | remaining |  |  |  |
 | `imessage.h` | IMapi | remaining |  |  |  |
 | `imessagedispatcher.h` | TransactionServer | matched |  | 09/02/2026 20:22:05 | COM/WinRT interface method only, out of scope. |
@@ -552,7 +552,7 @@
 | `inked.h` | Tablet | remaining |  |  |  |
 | `inkpresenterdesktop.h` | Input_Ink | remaining |  |  |  |
 | `inkrenderer.h` | Input_Ink | remaining |  |  |  |
-| `inputpaneinterop.h` | WinRT | remaining |  |  |  |
+| `inputpaneinterop.h` | WinRT | matched |  | 09/02/2026 20:56:17 | COM/WinRT interop interface method only, out of scope. |
 | `inputpanelconfiguration.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `inputscope.h` | Tsf | remaining |  |  |  |
 | `inspectable.h` | Tcui | remaining |  |  |  |
@@ -666,7 +666,7 @@
 | `midles.h` | Rpc | remaining |  |  |  |
 | `mileffects.h` | Wibe | remaining |  |  |  |
 | `minappmodel.h` | AppxPackaging | matched |  | 09/02/2026 19:14:35 | Constants only, no functions. |
-| `mindumpdef.h` | Debug | remaining |  |  |  |
+| `mindumpdef.h` | Debug | matched |  | 09/02/2026 20:56:17 | Constants/enum only, no functions. |
 | `minidumpapiset.h` | Base, Debug | remaining |  |  |  |
 | `minwinbase.h` | Base, Fs, Ioctl | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `minwindef.h` | Foundation, Multimedia | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
@@ -759,7 +759,7 @@
 | `mtxattr.h` | ComOle, TransactionServer | matched |  | 09/02/2026 18:29:38 | Typelib attribute macros only, no functions. |
 | `mtxdm.h` | Cos | matched |  | 09/02/2026 17:05:19 | GetDispenserManager is a COM-factory pattern; comsvcs.h already accepted. |
 | `muiload.h` | Intl | matched |  | 09/02/2026 19:54:02 | HINSTANCE/HMODULE already correctly covered via existing autoTypes.json CloseApi=FreeLibrary entry. |
-| `mxdc.h` | Gdi, Printing | remaining |  |  |  |
+| `mxdc.h` | Gdi, Printing | matched |  | 09/02/2026 20:56:17 | No function produces an opaque handle; HANDLE param is a pre-owned caller input. |
 | `namedpipeapi.h` | Pipes | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `napmicrosoftvendorids.h` | NetworkAccessProtection | matched |  | 09/02/2026 17:58:11 | Integer constants only, no functions. |
 | `naptypes.h` | NetworkAccessProtection | remaining |  |  |  |

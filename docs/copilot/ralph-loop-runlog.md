@@ -2019,3 +2019,16 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   functions only. Clean.
 
 **Ledger status:** 573 accepted-normalized, 29 blocked, 801 pending.
+
+## 2026-09-02 20:56:32 UTC - Batch scraping-investigation-83
+
+**Headers:** mindumpdef.h, homepagesetting.h, inputpaneinterop.h, Ime.h, mxdc.h
+**Partitions scraped (x64):** Debug (0 errors); InternetExplorer/WinRT/FileHistory/WinProg/Gdi/Printing reused
+
+- mindumpdef.h: crash-dump-format constants/enum only, no functions. Clean.
+- homepagesetting.h: IHomePageSetting COM interface + GUID constants only. Clean.
+- inputpaneinterop.h: IInputPaneInterop COM/WinRT interop interface method only. Clean.
+- Ime.h: SendIMEMessageExA/W take only HWND/LPARAM, no opaque handle produced. Clean.
+- mxdc.h: MxdcGetPDEVAdjustment's HANDLE is a pre-owned caller input only. Clean.
+
+**Ledger status:** 578 accepted-normalized, 29 blocked, 796 pending.

@@ -4250,10 +4250,10 @@
   {
     "header": "homepagesetting.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:56:17Z",
+    "notes": "COM interface + GUID constants only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -4709,10 +4709,10 @@
   {
     "header": "ime.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:56:17Z",
+    "notes": "No function produces an opaque handle.",
     "_source": "header-progress"
   },
   {
@@ -4880,10 +4880,10 @@
   {
     "header": "inputpaneinterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:56:17Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -5906,10 +5906,10 @@
   {
     "header": "mindumpdef.h",
     "partition": "Debug",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:56:17Z",
+    "notes": "Constants/enum only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6743,10 +6743,10 @@
   {
     "header": "mxdc.h",
     "partition": "Gdi, Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:56:17Z",
+    "notes": "No function produces an opaque handle; HANDLE param is a pre-owned caller input.",
     "_source": "header-progress"
   },
   {
