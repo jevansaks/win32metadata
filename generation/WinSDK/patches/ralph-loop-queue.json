@@ -6842,10 +6842,10 @@
   {
     "header": "ndhelper.h",
     "partition": "Ndf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndhelper.h.md",
     "_source": "header-progress"
   },
   {
@@ -9227,10 +9227,10 @@
   {
     "header": "sql.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added SQLHENV/SQLFreeEnv, SQLHDBC/SQLFreeConnect autoTypes.json entries. SQLHSTMT (SQLFreeStmt requires mandatory 2nd param, unrepresentable) and SQLHDESC (only generic SQLAllocHandle/SQLFreeHandle, blocker-class 2) documented as out of scope. See docs/copilot/header-reports/sql.h.md",
     "_source": "header-progress"
   },
   {
@@ -10487,10 +10487,10 @@
   {
     "header": "vsstyle.h",
     "partition": "Controls",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsstyle.h.md",
     "_source": "header-progress"
   },
   {
@@ -11936,10 +11936,10 @@
   {
     "header": "wmprealestate.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmprealestate.h.md",
     "_source": "header-progress"
   },
   {
@@ -12521,10 +12521,10 @@
   {
     "header": "xblidpauthmanager.h",
     "partition": "Xblidp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xblidpauthmanager.h.md",
     "_source": "header-progress"
   },
   {

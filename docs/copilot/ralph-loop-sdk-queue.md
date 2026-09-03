@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:41:44Z
+- Generated: 2026-09-03T08:48:10Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1001
+- Matched: 1006
 - In progress: 0
 - Blocked: 31
-- Remaining: 371
+- Remaining: 366
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -770,7 +770,7 @@
 | `ncryptprotect.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `ndattrib.h` | Ndf | matched |  | 09/02/2026 21:49:17 | Data structs only, no functions. |
 | `ndfapi.h` | Ndf | matched |  | 09/02/2026 20:38:46 | Fixed genuine gap: added new autoTypes.json entry for NDFHANDLE (CloseApi=NdfCloseIncident). |
-| `ndhelper.h` | Ndf | remaining |  |  |  |
+| `ndhelper.h` | Ndf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndhelper.h.md |
 | `ndisguid.h` | Ndis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndisguid.h.md |
 | `ndkinfo.h` | Ndis | matched |  | 09/02/2026 18:00:53 | Data structs/enum/constants only, no functions. |
 | `ndr64types.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndr64types.h.md |
@@ -1035,7 +1035,7 @@
 | `spellcheckprovider.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spellcheckprovider.h.md |
 | `sperror.h` | Speech | remaining |  |  |  |
 | `sporder.h` | WinSock | matched |  | 09/02/2026 17:45:25 | DWORD/GUID array API only, no handle. |
-| `sql.h` | Search | remaining |  |  |  |
+| `sql.h` | Search | matched |  |  | Producer-site fix: added SQLHENV/SQLFreeEnv, SQLHDBC/SQLFreeConnect autoTypes.json entries. SQLHSTMT (SQLFreeStmt requires mandatory 2nd param, unrepresentable) and SQLHDESC (only generic SQLAllocHandle/SQLFreeHandle, blocker-class 2) documented as out of scope. See docs/copilot/header-reports/sql.h.md |
 | `sqlext.h` | Search | remaining |  |  |  |
 | `sqloledb.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqloledb.h.md |
 | `sqlspi.h` | Search | matched |  | 09/02/2026 21:27:04 | No function produces the generic ODBC handle type; all reference it as pre-owned input. |
@@ -1175,7 +1175,7 @@
 | `vsprov.h` | VSS | remaining |  |  |  |
 | `vss.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vss.h.md |
 | `vsserror.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsserror.h.md |
-| `vsstyle.h` | Controls | remaining |  |  |  |
+| `vsstyle.h` | Controls | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsstyle.h.md |
 | `vssym32.h` | Controls | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vssym32.h.md |
 | `vswriter.h` | VSS | remaining |  |  |  |
 | `waasapi.h` | UpdateAssessment | matched |  | 09/02/2026 20:19:39 | COM interface + GUID constants only, no extern functions. |
@@ -1336,7 +1336,7 @@
 | `wmpdevices.h` | Wmp | matched |  | 09/02/2026 20:44:40 | Inline functions generate no bindings; remaining declarations are IOCTL constants/structs. |
 | `wmpids.h` | Wmp | remaining |  |  |  |
 | `wmpplug.h` | Wmp | matched |  | 09/02/2026 22:06:03 | COM interface only, no extern functions. |
-| `wmprealestate.h` | Wmp | remaining |  |  |  |
+| `wmprealestate.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmprealestate.h.md |
 | `wmpservices.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmpservices.h.md |
 | `wmsbuffer.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsbuffer.h.md |
 | `wmsdkidl.h` | WmFormat | remaining |  |  |  |
@@ -1401,7 +1401,7 @@
 | `xapofx.h` | Xaudio2 | matched |  | 09/02/2026 21:49:17 | Standard COM factory function + GUID/parameter constants only. |
 | `xaudio2.h` | Xaudio2 | remaining |  |  |  |
 | `xaudio2fx.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2fx.h.md |
-| `xblidpauthmanager.h` | Xblidp | remaining |  |  |  |
+| `xblidpauthmanager.h` | Xblidp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xblidpauthmanager.h.md |
 | `xenroll.h` | Certificates | remaining |  |  |  |
 | `xinput.h` | Xinput | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xinput.h.md |
 | `xmllite.h` | FileHistory, XmlLite | remaining |  |  |  |

@@ -2998,3 +2998,13 @@ Ledger: 996 accepted-normalized, 31 blocked, 376 pending (1027/1403 classified).
 - **indexsrv.h** (IndexSrv/Search): COM vtable only. Clean.
 
 Ledger: 1001 accepted-normalized, 31 blocked, 371 pending (1032/1403 classified). Crosses 1000 accepted-normalized milestone.
+
+## Batch 169 (2026-09-03 01:48): sql.h, ndhelper.h, vsstyle.h, wmprealestate.h, xblidpauthmanager.h
+
+- **sql.h** (Search): PRODUCER-SITE FIX - added SQLHENV/SQLFreeEnv and SQLHDBC/SQLFreeConnect autoTypes.json entries (ValueType DECLARE_HANDLE, InvalidHandleValues [0]). Validated via ScrapeHeaders x64 Search - 0 errors. SQLHSTMT blocked (SQLFreeStmt requires mandatory 2nd Option param, RAIIFree mechanism has no support for extra args per NativeTypedefStructsCreator.cs). SQLHDESC blocked (only generic multi-type SQLAllocHandle/SQLFreeHandle, blocker-class 2). Fulfills deferred-ownership note on already-accepted sqltypes.h.
+- **ndhelper.h** (Ndf): COM vtable only. Clean.
+- **vsstyle.h** (Controls): enums/constants only, no functions. Clean.
+- **wmprealestate.h** (Wmp): COM vtable only. Clean.
+- **xblidpauthmanager.h** (Xblidp): COM vtable only. Clean.
+
+Ledger: 1006 accepted-normalized, 31 blocked, 366 pending (1037/1403 classified).
