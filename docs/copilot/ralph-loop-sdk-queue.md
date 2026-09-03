@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:40:10Z
+- Generated: 2026-09-03T06:43:07Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 801
+- Matched: 806
 - In progress: 0
 - Blocked: 31
-- Remaining: 571
+- Remaining: 566
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -90,7 +90,7 @@
 | `audiosessiontypes.h` | Audio | matched |  | 09/02/2026 21:12:30 | Enums only, no functions. |
 | `audiostatemonitorapi.h` | Audio | matched |  | 09/02/2026 19:28:18 | Handle-producing method is a COM vtable method, out of scope; extern functions are COM factories. |
 | `austream.h` | Media.DShow | remaining |  |  |  |
-| `authif.h` | Nps | remaining |  |  |  |
+| `authif.h` | Nps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/authif.h.md |
 | `authz.h` | Authorization, Authorization.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (12 producer sites across 6 handle types). |
 | `aux_ulib.h` | FileHistory, WinProg | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `avifmt.h` | Media.DShow | matched |  | 09/02/2026 21:55:32 | Constants/structs only, no functions. |
@@ -184,7 +184,7 @@
 | `contentpartner.h` | Wmp | remaining |  |  |  |
 | `control.h` | Media.DShow | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cor.h` | ClrProfiling | remaining |  |  |  |
-| `corecrt_io.h` | Multimedia | remaining |  |  |  |
+| `corecrt_io.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/corecrt_io.h.md |
 | `CoreWindow.h` | WinRT | remaining |  |  |  |
 | `CorHdr.h` | ClrProfiling | remaining |  |  |  |
 | `corprof.h` | ClrProfiling | remaining |  |  |  |
@@ -567,7 +567,7 @@
 | `IPExport.h` | IpHlp | matched |  | 09/02/2026 22:09:36 | Type aliases/structs only, no functions. |
 | `iphlpapi.h` | IpHlp, Shell | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ipinfoid.h` | IpHlp | matched |  | 09/02/2026 19:47:59 | Constants only, no functions. |
-| `ipmib.h` | RRas | remaining |  |  |  |
+| `ipmib.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ipmib.h.md |
 | `IPTypes.h` | wnv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/IPTypes.h.md |
 | `iscsidsc.h` | IScsiDisc | remaining |  |  |  |
 | `iscsierr.h` | IScsiDisc | remaining |  |  |  |
@@ -829,7 +829,7 @@
 | `objsel.h` | ActiveDirectory | remaining |  |  |  |
 | `ocidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Media.DShow, Search, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `ocmm.h` | InternetExplorer | remaining |  |  |  |
-| `odbcinst.h` | Search | remaining |  |  |  |
+| `odbcinst.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/odbcinst.h.md |
 | `odbcss.h` | Search | remaining |  |  |  |
 | `ole2.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `oleacc.h` | WinAuto | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
@@ -1055,7 +1055,7 @@
 | `stiusd.h` | ImagingDevice | matched |  | 09/02/2026 21:43:41 | COM interface + GUID constants only, no extern functions. |
 | `storageprovider.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/storageprovider.h.md |
 | `storprop.h` | Base | matched |  | 09/02/2026 18:44:05 | HDEVINFO is a consumer-only input from the separate SetupAPI surface. |
-| `stralign.h` | FileHistory, WinProg | remaining |  |  |  |
+| `stralign.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/stralign.h.md |
 | `stringapiset.h` | Intl | matched |  | 09/02/2026 19:16:41 | String/buffer conversion API only, no handle. |
 | `strmif.h` | Media.DShow, Media.KernelStreaming, MsTv, WmFormat | remaining |  |  |  |
 | `strsafe.h` | MenuRc | remaining |  |  |  |

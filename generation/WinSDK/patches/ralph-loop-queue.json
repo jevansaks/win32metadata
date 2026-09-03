@@ -722,10 +722,10 @@
   {
     "header": "authif.h",
     "partition": "Nps",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/authif.h.md",
     "_source": "header-progress"
   },
   {
@@ -1568,10 +1568,10 @@
   {
     "header": "corecrt_io.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/corecrt_io.h.md",
     "_source": "header-progress"
   },
   {
@@ -5015,10 +5015,10 @@
   {
     "header": "ipmib.h",
     "partition": "RRas",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ipmib.h.md",
     "_source": "header-progress"
   },
   {
@@ -7373,10 +7373,10 @@
   {
     "header": "odbcinst.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/odbcinst.h.md",
     "_source": "header-progress"
   },
   {
@@ -9407,10 +9407,10 @@
   {
     "header": "stralign.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/stralign.h.md",
     "_source": "header-progress"
   },
   {

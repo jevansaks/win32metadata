@@ -2598,3 +2598,13 @@ Ledger: 796 accepted-normalized, 31 blocked, 576 pending (827/1403 classified).
 - **bits10_3.h** (Bits): COM interfaces only, no free functions. Clean.
 
 Ledger: 801 accepted-normalized, 31 blocked, 571 pending (832/1403 classified). Milestone: 800+ accepted-normalized.
+
+## Batch 129 (2026-09-02 23:43): ipmib.h, corecrt_io.h, stralign.h, authif.h, odbcinst.h
+
+- **ipmib.h** (RRas): transparent MIB-II structs only, no functions. Clean.
+- **corecrt_io.h** (Multimedia): _findfirst32 returns generic intptr_t, not fixable. Clean.
+- **stralign.h** (FileHistory, WinProg): ua_* functions are static inline, not exported/scrapable. Clean.
+- **authif.h** (Nps): function-pointer typedefs + transparent struct only, no extern functions. Clean.
+- **odbcinst.h** (Search): SQL*/ConfigDSN family - generic HWND/string/scalar params only. Clean.
+
+Ledger: 806 accepted-normalized, 31 blocked, 566 pending (837/1403 classified).
