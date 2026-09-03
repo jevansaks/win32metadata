@@ -884,10 +884,10 @@
   {
     "header": "bits.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits.h.md",
     "_source": "header-progress"
   },
   {
@@ -3908,10 +3908,10 @@
   {
     "header": "ftpext.h",
     "partition": "Iis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ftpext.h.md",
     "_source": "header-progress"
   },
   {
@@ -6194,10 +6194,10 @@
   {
     "header": "msacm.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacm.h.md",
     "_source": "header-progress"
   },
   {
@@ -6233,7 +6233,7 @@
     "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "HCATADMIN/HCATINFO close functions require multi-arg (reserved flags / external context), unrepresentable per SQLFreeStmt precedent; CryptCATOpen/Close use generic HANDLE. See docs/copilot/header-reports/mscat.h.md",
+    "notes": "CORRECTED: added HCATADMIN autoTypes.json entry (CloseApi CryptCATAdminReleaseContext) after HACMDRIVER precedent proved reserved-flags 2-param close functions are tolerated. HCATINFO remains blocked (needs external HCATADMIN context). See docs/copilot/header-reports/mscat.h.md",
     "_source": "header-progress"
   },
   {
@@ -7490,10 +7490,10 @@
   {
     "header": "openservice.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/openservice.h.md",
     "_source": "header-progress"
   },
   {
@@ -9299,10 +9299,10 @@
   {
     "header": "sslprovider.h",
     "partition": "Security.Cryptography",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sslprovider.h.md",
     "_source": "header-progress"
   },
   {

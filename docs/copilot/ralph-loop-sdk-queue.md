@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:51:27Z
+- Generated: 2026-09-03T09:56:17Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1111
+- Matched: 1116
 - In progress: 0
 - Blocked: 31
-- Remaining: 261
+- Remaining: 256
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -108,7 +108,7 @@
 | `bdatypes.h` | Media.DShow, MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatypes.h.md |
 | `BiDiSpl.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/BiDiSpl.h.md |
 | `bindlink.h` | Fs | matched |  | 09/02/2026 17:30:54 | Path-string-only API, no handle. |
-| `bits.h` | Bits | remaining |  |  |  |
+| `bits.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits.h.md |
 | `bits1_5.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits1_5.h.md |
 | `bits10_1.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_1.h.md |
 | `bits10_2.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_2.h.md |
@@ -444,7 +444,7 @@
 | `fsrmreports.h` | Fsrm | remaining |  |  |  |
 | `fsrmscreen.h` | Fsrm | remaining |  |  |  |
 | `fsrmtlb.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmtlb.h.md |
-| `ftpext.h` | Iis | remaining |  |  |  |
+| `ftpext.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ftpext.h.md |
 | `fttypes.h` | Fs | matched |  | 09/02/2026 19:16:41 | Typedef/enums/data structs only, no functions. |
 | `fullenumsyncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 20:28:23 | Constants only, no functions. |
 | `functiondiscovery.h` | FunctionDiscovery | matched |  | 09/02/2026 19:28:18 | CLSID constants + MIDL boilerplate only, no functions. |
@@ -698,11 +698,11 @@
 | `mqoai.h` | MessageQueuing | remaining |  |  |  |
 | `mrmresourceindexer.h` | MenuRc | matched |  | 09/02/2026 22:02:59 | Transparent wrapper struct, not an opaque handle type representable by the annotation mechanism. |
 | `msaatext.h` | Tsf | remaining |  |  |  |
-| `msacm.h` | Audio | remaining |  |  |  |
+| `msacm.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacm.h.md |
 | `msacmdlg.h` | Multimedia | matched |  | 09/02/2026 17:27:04 | Dialog resource ID constants only, no functions. |
 | `msacmdrv.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacmdrv.h.md |
 | `MSAJTransport.h` | AllJoyn, WinRT | blocked | copilot | 09/02/2026 18:15:12 | Two compounding blockers: parser/toolchain version mismatch prevents live-scrape validation of the AllJoyn partition; and a genuine return-value HANDLE ownership pattern with no annotation precedent. |
-| `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | matched |  |  | HCATADMIN/HCATINFO close functions require multi-arg (reserved flags / external context), unrepresentable per SQLFreeStmt precedent; CryptCATOpen/Close use generic HANDLE. See docs/copilot/header-reports/mscat.h.md |
+| `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | matched |  |  | CORRECTED: added HCATADMIN autoTypes.json entry (CloseApi CryptCATAdminReleaseContext) after HACMDRIVER precedent proved reserved-flags 2-param close functions are tolerated. HCATINFO remains blocked (needs external HCATADMIN context). See docs/copilot/header-reports/mscat.h.md |
 | `mschapp.h` | MsChap | matched |  | 09/02/2026 18:29:38 | Password-encryption struct/string API only, no handle. |
 | `msclmd.h` | Security.Cryptography | matched |  | 09/02/2026 19:45:17 | Constants/structs only, no functions. |
 | `msclus.h` | MsCs | remaining |  |  |  |
@@ -842,7 +842,7 @@
 | `oletx2xa.h` | DTC | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oletx2xa.h.md |
 | `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | blocked |  | 09/02/2026 19:45:17 | OnDemandRegisterNotification outputs generic HANDLE via direct out-param. |
 | `oobenotification.h` | WindowsSetupAndMigration | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
-| `openservice.h` | InternetExplorer | remaining |  |  |  |
+| `openservice.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/openservice.h.md |
 | `opmapi.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/opmapi.h.md |
 | `opmxbox.h` | Mf | matched |  | 09/02/2026 17:23:42 | Enum-output-only API, no handle. |
 | `p2p.h` | P2p | remaining |  |  |  |
@@ -1043,7 +1043,7 @@
 | `sqlucode.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqlucode.h.md |
 | `srpapi.h` | Edp | blocked |  | 09/02/2026 19:54:02 | SrpCreateThreadNetworkContext populates HTHREAD_NETWORK_CONTEXT.ThreadContext, a generic HANDLE field. |
 | `srrestoreptapi.h` | Sr | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
-| `sslprovider.h` | Security.Cryptography | remaining |  |  |  |
+| `sslprovider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sslprovider.h.md |
 | `sspi.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `statehelpers.h` | FileHistory, Registry | matched |  | 09/02/2026 18:09:40 | HKEY parameters are inputs only, not produced here. |
 | `statusdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 20:25:02 | Constants only, no functions. |

@@ -3214,3 +3214,12 @@ Ledger: 1106 accepted-normalized, 31 blocked, 266 pending (1137/1403 classified)
 - **netiodef.h** (WinSock/wnv): structs/constants only, no functions. Clean.
 
 Ledger: 1111 accepted-normalized, 31 blocked, 261 pending (1142/1403 classified).
+
+## Batch 191 (2026-09-03 02:56): ftpext.h, bits.h, msacm.h, sslprovider.h, openservice.h + mscat.h correction
+
+- ftpext.h (Iis), bits.h (Bits), openservice.h (InternetExplorer): COM vtable only. Clean.
+- msacm.h (Audio): HACMDRIVER/HACMSTREAM already correct. Clean.
+- sslprovider.h (Security.Cryptography): SSL provider callback contract, no ownership pattern. Clean.
+- SELF-CORRECTION: mscat.h HCATADMIN - previously blocked, now fixed after HACMDRIVER/acmDriverClose precedent proved reserved-flags 2-param close functions are tolerated. Added autoTypes.json entry, validated 0 errors. HCATINFO remains correctly blocked (needs external HCATADMIN context).
+
+Ledger: 1116 accepted-normalized, 31 blocked, 256 pending (1147/1403 classified).
