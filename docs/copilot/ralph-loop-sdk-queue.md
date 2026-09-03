@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:43:15Z
+- Generated: 2026-09-03T09:45:08Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1096
+- Matched: 1101
 - In progress: 0
 - Blocked: 31
-- Remaining: 276
+- Remaining: 271
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -83,7 +83,7 @@
 | `audioclientactivationparams.h` | Audio | matched |  | 09/02/2026 19:06:16 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `audioendpoints.h` | Audio.Endpoints | matched |  | 09/02/2026 19:47:59 | COM interface method only, no extern functions. |
 | `audioenginebaseapo.h` | Audio.Apo | remaining |  |  |  |
-| `audioengineendpoint.h` | Audio.Endpoints, TermServ | remaining |  |  |  |
+| `audioengineendpoint.h` | Audio.Endpoints, TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioengineendpoint.h.md |
 | `audioengineextensionapo.h` | Audio.Apo | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioengineextensionapo.h.md |
 | `audiomediatype.h` | Audio.Apo | matched |  | 09/02/2026 20:53:11 | COM interface + standard COM factory functions only. |
 | `audiopolicy.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audiopolicy.h.md |
@@ -452,7 +452,7 @@
 | `functiondiscoveryconstraints.h` | FunctionDiscovery | matched |  | 09/02/2026 21:52:12 | Constants only, no functions. |
 | `functiondiscoveryerror.h` | FunctionDiscovery | matched |  | 09/02/2026 18:03:29 | HRESULT error-code constants only, no functions. |
 | `functiondiscoverykeys_devpkey.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/functiondiscoverykeys_devpkey.h.md |
-| `functiondiscoveryprovider.h` | FunctionDiscovery, WebServicesOnDevices | remaining |  |  |  |
+| `functiondiscoveryprovider.h` | FunctionDiscovery, WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/functiondiscoveryprovider.h.md |
 | `fwpmtypes.h` | WindowsFilteringPlatform | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwpmtypes.h.md |
 | `fwpmu.h` | WindowsFilteringPlatform | remaining |  |  |  |
 | `fwptypes.h` | WindowsFilteringPlatform | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fwptypes.h.md |
@@ -919,7 +919,7 @@
 | `ras.h` | RRas | remaining |  |  |  |
 | `rasdlg.h` | RRas | matched |  | 09/02/2026 21:12:30 | No function produces an opaque handle. |
 | `raseapif.h` | Eap | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raseapif.h.md |
-| `raserror.h` | RRas | remaining |  |  |  |
+| `raserror.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raserror.h.md |
 | `rasshost.h` | RRas | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `ratings.h` | InternetExplorer | blocked | copilot | 09/02/2026 19:09:17 | Deferred: direct out-param instance of the generic/shared-type blocker class. |
 | `rdpappcontainerclient.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rdpappcontainerclient.h.md |
@@ -1029,7 +1029,7 @@
 | `softpub.h` | Security.WinTrust | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/softpub.h.md |
 | `spatialaudioclient.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudioclient.h.md |
 | `spatialaudiohrtf.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudiohrtf.h.md |
-| `spatialaudiometadata.h` | Audio | remaining |  |  |  |
+| `spatialaudiometadata.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudiometadata.h.md |
 | `spatialinteractionmanagerinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `spellcheck.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spellcheck.h.md |
 | `spellcheckprovider.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spellcheckprovider.h.md |
@@ -1369,7 +1369,7 @@
 | `wsdattachment.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdattachment.h.md |
 | `wsdbase.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdclient.h` | FunctionDiscovery | remaining |  |  |  |
-| `wsddisco.h` | FunctionDiscovery | remaining |  |  |  |
+| `wsddisco.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsddisco.h.md |
 | `wsdevlicensing.h` | DevLic | matched |  | 09/02/2026 17:16:10 | HWND is input parameter; outputs are plain FILETIME values. |
 | `wsdhost.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdhost.h.md |
 | `wsdns.h` | WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdns.h.md |

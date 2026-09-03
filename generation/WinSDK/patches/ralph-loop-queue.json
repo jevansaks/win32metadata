@@ -659,10 +659,10 @@
   {
     "header": "audioengineendpoint.h",
     "partition": "Audio.Endpoints, TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioengineendpoint.h.md",
     "_source": "header-progress"
   },
   {
@@ -3980,10 +3980,10 @@
   {
     "header": "functiondiscoveryprovider.h",
     "partition": "FunctionDiscovery, WebServicesOnDevices",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/functiondiscoveryprovider.h.md",
     "_source": "header-progress"
   },
   {
@@ -8183,10 +8183,10 @@
   {
     "header": "raserror.h",
     "partition": "RRas",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raserror.h.md",
     "_source": "header-progress"
   },
   {
@@ -9173,10 +9173,10 @@
   {
     "header": "spatialaudiometadata.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudiometadata.h.md",
     "_source": "header-progress"
   },
   {
@@ -12233,10 +12233,10 @@
   {
     "header": "wsddisco.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsddisco.h.md",
     "_source": "header-progress"
   },
   {

@@ -3187,3 +3187,13 @@ Ledger: 1091 accepted-normalized, 31 blocked, 281 pending (1122/1403 classified)
 - **wtsdefs.h** (TermServ): constants/macros only, no functions. Clean.
 
 Ledger: 1096 accepted-normalized, 31 blocked, 276 pending (1127/1403 classified).
+
+## Batch 188 (2026-09-03 02:45): functiondiscoveryprovider.h, audioengineendpoint.h, raserror.h, wsddisco.h, spatialaudiometadata.h
+
+- **functiondiscoveryprovider.h** (FunctionDiscovery/WebServicesOnDevices): COM vtable only. Clean.
+- **audioengineendpoint.h** (Audio.Endpoints/TermServ): COM vtable only. Clean.
+- **raserror.h** (RRas): error-code constants only. Clean.
+- **wsddisco.h** (FunctionDiscovery): COM vtable only. Clean.
+- **spatialaudiometadata.h** (Audio): COM vtable only. Clean.
+
+Ledger: 1101 accepted-normalized, 31 blocked, 271 pending (1132/1403 classified).

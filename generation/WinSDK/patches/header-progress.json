@@ -2128,7 +2128,7 @@
         "TermServ"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -2141,7 +2141,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioengineendpoint.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -13245,7 +13245,7 @@
         "WebServicesOnDevices"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -13258,7 +13258,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/functiondiscoveryprovider.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -29790,7 +29790,7 @@
       "header": "raserror.h",
       "partitions": "RRas",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -29803,7 +29803,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raserror.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/RRas/main.cpp",
@@ -35360,7 +35360,7 @@
       "header": "spatialaudiometadata.h",
       "partitions": "Audio",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -35373,7 +35373,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudiometadata.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Audio/main.cpp",
@@ -48438,7 +48438,7 @@
       "header": "wsddisco.h",
       "partitions": "FunctionDiscovery",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -48451,7 +48451,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsddisco.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/FunctionDiscovery/main.cpp",
