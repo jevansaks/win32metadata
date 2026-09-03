@@ -2828,3 +2828,13 @@ Ledger: 911 accepted-normalized, 31 blocked, 461 pending (942/1403 classified). 
 - **rtutils.h** (NetMgmt): TraceRegisterEx returns generic DWORD trace ID, not fixable. Clean.
 
 Ledger: 916 accepted-normalized, 31 blocked, 456 pending (947/1403 classified).
+
+## Batch 152 (2026-09-03 00:58): simpdata.h, contactdeviceservice.h, mshtmcid.h, vsbackup.h, urlhist.h
+
+- **simpdata.h** (Search): COM interfaces only, no free functions. Clean.
+- **contactdeviceservice.h** (WpdSdk): GUID/property key constants only. Clean.
+- **mshtmcid.h** (MsHtml): IDM_* command ID constants only. Clean.
+- **vsbackup.h** (VSS): COM interfaces only, no free functions. Clean.
+- **urlhist.h** (InternetExplorer): COM interfaces only, no free functions. Clean.
+
+Ledger: 921 accepted-normalized, 31 blocked, 451 pending (952/1403 classified).

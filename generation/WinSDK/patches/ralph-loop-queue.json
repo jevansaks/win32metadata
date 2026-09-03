@@ -1532,10 +1532,10 @@
   {
     "header": "contactdeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contactdeviceservice.h.md",
     "_source": "header-progress"
   },
   {
@@ -6437,10 +6437,10 @@
   {
     "header": "mshtmcid.h",
     "partition": "MsHtml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmcid.h.md",
     "_source": "header-progress"
   },
   {
@@ -9074,10 +9074,10 @@
   {
     "header": "simpdata.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/simpdata.h.md",
     "_source": "header-progress"
   },
   {
@@ -10100,10 +10100,10 @@
   {
     "header": "urlhist.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/urlhist.h.md",
     "_source": "header-progress"
   },
   {
@@ -10442,10 +10442,10 @@
   {
     "header": "vsbackup.h",
     "partition": "VSS",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsbackup.h.md",
     "_source": "header-progress"
   },
   {

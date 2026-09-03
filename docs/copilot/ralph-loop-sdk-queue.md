@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:56:20Z
+- Generated: 2026-09-03T07:58:17Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 916
+- Matched: 921
 - In progress: 0
 - Blocked: 31
-- Remaining: 456
+- Remaining: 451
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -180,7 +180,7 @@
 | `comsvcs.h` | Com.Events, Cos | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `consoleapis.h` | Console | matched |  | 09/02/2026 17:23:42 | HANDLE/HWND fields are caller-supplied input references, not produced/owned here; distinct from the wincon.h blocker (different functions). |
 | `contactaggregation.h` | WinContacts | remaining |  |  |  |
-| `contactdeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `contactdeviceservice.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/contactdeviceservice.h.md |
 | `contentpartner.h` | Wmp | remaining |  |  |  |
 | `control.h` | Media.DShow | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cor.h` | ClrProfiling | remaining |  |  |  |
@@ -725,7 +725,7 @@
 | `msdshape.h` | Search | matched |  | 09/02/2026 17:51:18 | Constants/enums only, no functions. |
 | `msfeeds.h` | Wmp | remaining |  |  |  |
 | `msfeedsid.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msfeedsid.h.md |
-| `mshtmcid.h` | MsHtml | remaining |  |  |  |
+| `mshtmcid.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmcid.h.md |
 | `mshtmdid.h` | MsHtml | remaining |  |  |  |
 | `mshtmhst.h` | MsHtml | remaining |  |  |  |
 | `Mshtml.h` | MsHtml | remaining |  |  |  |
@@ -1018,7 +1018,7 @@
 | `shobjidl_core.h` | Properties, Search, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shobjidl.h` | Properties, Shell, TransactionServer | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shtypes.h` | Shell, Shell.Common | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shtypes.h.md |
-| `simpdata.h` | Search | remaining |  |  |  |
+| `simpdata.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/simpdata.h.md |
 | `slerror.h` | Identity | remaining |  |  |  |
 | `sliddefs.h` | Identity | matched |  | 09/02/2026 16:57:06 | GUID constant only, no functions. |
 | `slpublic.h` | Identity | remaining |  |  |  |
@@ -1132,7 +1132,7 @@
 | `UIViewSettingsInterop.h` | WinRT | matched |  | 09/02/2026 21:01:40 | COM/WinRT interop interface method only, out of scope. |
 | `upnp.h` | Upnp | remaining |  |  |  |
 | `upnphost.h` | Upnp | remaining |  |  |  |
-| `urlhist.h` | InternetExplorer | remaining |  |  |  |
+| `urlhist.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/urlhist.h.md |
 | `urlmon.h` | Shell, TransactionServer | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `usb.h` | Buses | remaining |  |  |  |
 | `usb4dbgioctl.h` | Buses | matched |  | 09/02/2026 18:47:24 | Enums/constants/data structs only, no functions. |
@@ -1170,7 +1170,7 @@
 | `vpnotify.h` | Media.DShow | matched |  | 09/02/2026 18:23:41 | COM interfaces with plain enum/BOOL parameters only, no handle. |
 | `vptype.h` | Media.DShow | matched |  | 09/02/2026 18:47:23 | Enums/data structs only, no functions. |
 | `vsadmin.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsadmin.h.md |
-| `vsbackup.h` | VSS | remaining |  |  |  |
+| `vsbackup.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsbackup.h.md |
 | `vsmgmt.h` | VSS | remaining |  |  |  |
 | `vsprov.h` | VSS | remaining |  |  |  |
 | `vss.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vss.h.md |
