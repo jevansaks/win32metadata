@@ -1454,3 +1454,22 @@ wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h, physica
 **Ledger status:** 423 accepted-normalized, 9 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h,
 physicalmonitorenumerationapi.h), 971 pending.
+
+## 2026-09-02 18:50:32 UTC - Batch scraping-investigation-49
+
+**Headers:** dsrole.h, tcpxcv.h, smbclnt.h, eapauthenticatoractiondefine.h, fhsvcctl.h
+**Partitions scraped:** MsCs (x86; 0 warnings/errors)
+
+- dsrole.h: DsRoleGetPrimaryDomainInformation/DsRoleFreeMemory - generic memory-buffer allocation, not
+  HANDLE-family. Clean.
+- tcpxcv.h: data structs + constants only, no functions. Clean.
+- smbclnt.h: HANDLE ProcessHandle is a caller-supplied input, not produced here. Clean.
+- eapauthenticatoractiondefine.h: enums/data structs only, no functions. Clean.
+- fhsvcctl.h: DECLARE_HANDLE(FH_SERVICE_PIPE_HANDLE) produced/released via FhServiceOpenPipe/
+  FhServiceClosePipe (deprecated APIs) - autoTypes.json already has a complete correct entry
+  (CloseApi: FhServiceClosePipe) matching this header exactly - no new inline annotation needed, same
+  pattern as swdevice.h/featurestagingapi.h.
+
+**Ledger status:** 428 accepted-normalized, 9 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h,
+physicalmonitorenumerationapi.h), 966 pending.

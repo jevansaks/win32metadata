@@ -2936,10 +2936,10 @@
   {
     "header": "dsrole.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:50:10Z",
+    "notes": "Generic memory-buffer allocation, not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -3251,10 +3251,10 @@
   {
     "header": "eapauthenticatoractiondefine.h",
     "partition": "EapHost",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:50:10Z",
+    "notes": "Enums/data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3746,10 +3746,10 @@
   {
     "header": "fhsvcctl.h",
     "partition": "FileHistory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:50:10Z",
+    "notes": "FH_SERVICE_PIPE_HANDLE ownership already correctly captured via existing autoTypes.json entry.",
     "_source": "header-progress"
   },
   {
@@ -9110,10 +9110,10 @@
   {
     "header": "smbclnt.h",
     "partition": "MsCs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:50:10Z",
+    "notes": "HANDLE is a caller-supplied input, not produced here.",
     "_source": "header-progress"
   },
   {
@@ -9686,10 +9686,10 @@
   {
     "header": "tcpxcv.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:50:10Z",
+    "notes": "Data structs + constants only, no functions.",
     "_source": "header-progress"
   },
   {

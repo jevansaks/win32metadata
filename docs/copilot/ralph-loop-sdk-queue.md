@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:47:32Z
+- Generated: 2026-09-03T01:50:19Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 423
+- Matched: 428
 - In progress: 0
 - Blocked: 9
-- Remaining: 971
+- Remaining: 966
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -336,7 +336,7 @@
 | `dsound.h` | Audio.DirectSound, FileHistory, WinProg | remaining |  |  |  |
 | `dsparse.h` | ActiveDirectory | remaining |  |  |  |
 | `dsquery.h` | ActiveDirectory | remaining |  |  |  |
-| `dsrole.h` | ActiveDirectory | remaining |  |  |  |
+| `dsrole.h` | ActiveDirectory | matched |  | 09/02/2026 18:50:10 | Generic memory-buffer allocation, not HANDLE-family. |
 | `dssec.h` | Security.DirectoryServices | remaining |  |  |  |
 | `dtchelp.h` | DTC | remaining |  |  |  |
 | `dv.h` | Audio.DirectMusic | matched |  | 09/02/2026 18:20:58 | Constants + data struct only, no functions. |
@@ -371,7 +371,7 @@
 | `dxva2trace.h` | Media.DShow | remaining |  |  |  |
 | `dxva9typ.h` | Media.DShow, Mf | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `dxvahd.h` | Mf | remaining |  |  |  |
-| `eapauthenticatoractiondefine.h` | EapHost | remaining |  |  |  |
+| `eapauthenticatoractiondefine.h` | EapHost | matched |  | 09/02/2026 18:50:10 | Enums/data structs only, no functions. |
 | `eapauthenticatortypes.h` | EapHost | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
 | `eaphosterror.h` | EapHost | remaining |  |  |  |
 | `eaphostpeerconfigapis.h` | EapHost | remaining |  |  |  |
@@ -426,7 +426,7 @@
 | `fhcfg.h` | FileHistory | remaining |  |  |  |
 | `fherrors.h` | FileHistory | remaining |  |  |  |
 | `fhstatus.h` | FileHistory | matched |  | 09/02/2026 18:00:53 | Status-code constants only, no functions. |
-| `fhsvcctl.h` | FileHistory | remaining |  |  |  |
+| `fhsvcctl.h` | FileHistory | matched |  | 09/02/2026 18:50:10 | FH_SERVICE_PIPE_HANDLE ownership already correctly captured via existing autoTypes.json entry. |
 | `fileapi.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `filehc.h` | FileHistory, Fs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `filter.h` | IndexSrv, Search | remaining |  |  |  |
@@ -1022,7 +1022,7 @@
 | `slerror.h` | Identity | remaining |  |  |  |
 | `sliddefs.h` | Identity | matched |  | 09/02/2026 16:57:06 | GUID constant only, no functions. |
 | `slpublic.h` | Identity | remaining |  |  |  |
-| `smbclnt.h` | MsCs | remaining |  |  |  |
+| `smbclnt.h` | MsCs | matched |  | 09/02/2026 18:50:10 | HANDLE is a caller-supplied input, not produced here. |
 | `smtpguid.h` | IMapi | remaining |  |  |  |
 | `snmp.h` | Snmp | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `socketapi.h` | WinSock | matched |  | 09/02/2026 16:57:06 | SetSocketMediaStreamingMode(BOOL) - no handle. |
@@ -1086,7 +1086,7 @@
 | `tbs.h` | Tbs | matched | copilot | 09/03/2026 04:05:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
 | `tcerror.h` | Qos | matched |  | 09/02/2026 18:35:09 | Error-code constants only, no functions. |
 | `tcguid.h` | Qos | remaining |  |  |  |
-| `tcpxcv.h` | Printing | remaining |  |  |  |
+| `tcpxcv.h` | Printing | matched |  | 09/02/2026 18:50:10 | Data structs + constants only, no functions. |
 | `tdh.h` | Etw | remaining |  |  |  |
 | `tdiinfo.h` | FileHistory, WinProg | remaining |  |  |  |
 | `textserv.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
