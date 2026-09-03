@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:45:33Z
+- Generated: 2026-09-03T00:48:22Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 332
+- Matched: 337
 - In progress: 0
 - Blocked: 5
-- Remaining: 1066
+- Remaining: 1061
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -77,7 +77,7 @@
 | `atacct.h` | NetMgmt | matched |  | 09/02/2026 17:09:31 | String-only account-info API, no handle. |
 | `atscpsipparser.h` | MsTv | remaining |  |  |  |
 | `atsmedia.h` | MsTv | matched |  | 09/02/2026 17:27:04 | GUID constant only, no functions. |
-| `audevcod.h` | Media.DShow | remaining |  |  |  |
+| `audevcod.h` | Media.DShow | matched |  | 09/02/2026 17:48:13 | Error-code enum/constants only, no functions. |
 | `AudioAPOTypes.h` | Audio.Apo, TermServ | remaining |  |  |  |
 | `audioclient.h` | Audio | remaining |  |  |  |
 | `audioclientactivationparams.h` | Audio | remaining |  |  |  |
@@ -215,7 +215,7 @@
 | `d2d1effects.h` | Direct2D | remaining |  |  |  |
 | `d2d1svg.h` | Direct2D | remaining |  |  |  |
 | `d2dbasetypes.h` | Direct2D | matched |  | 09/02/2026 17:05:19 | Type alias only, no functions. |
-| `d2derr.h` | Direct2D | remaining |  |  |  |
+| `d2derr.h` | Direct2D | matched |  | 09/02/2026 17:48:13 | HRESULT error-code macros only, no functions. |
 | `d3d10_1.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10_1shader.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10.h` | Direct3D10 | remaining |  |  |  |
@@ -618,7 +618,7 @@
 | `lmwksta.h` | NetMgmt | remaining |  |  |  |
 | `loadperf.h` | FileHistory, Perf, WinProg | remaining |  |  |  |
 | `locationapi.h` | WinLocation | remaining |  |  |  |
-| `lowlevelmonitorconfigurationapi.h` | Monitor | remaining |  |  |  |
+| `lowlevelmonitorconfigurationapi.h` | Monitor | matched |  | 09/02/2026 17:48:13 | All functions only consume an existing physical-monitor HANDLE; producer pair tracked separately under PhysicalMonitorEnumerationAPI.h (pending). |
 | `lzexpand.h` | Fs | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `madcapcl.h` | MadCap | matched | copilot | 09/03/2026 05:00:00 | No patch needed; no ownership-relevant handle type. |
 | `magnification.h` | MagApi | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
@@ -686,7 +686,7 @@
 | `mmsystem.h` | Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Base, Devices.Properties, FileHistory, GamingDvcInfo, Gdi, Hid, IO, Multimedia, WinProg | remaining |  |  |  |
 | `mobsync.h` | Shell | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mpconfig.h` | Media.DShow | remaining |  |  |  |
-| `mpeg2bits.h` | MsTv | remaining |  |  |  |
+| `mpeg2bits.h` | MsTv | matched |  | 09/02/2026 17:48:13 | Bitfield data structs only, no functions. |
 | `mpeg2data.h` | MsTv | remaining |  |  |  |
 | `mpeg2error.h` | Media.DShow | remaining |  |  |  |
 | `mpeg2psiparser.h` | Media.DShow, MsTv | remaining |  |  |  |
@@ -911,7 +911,7 @@
 | `qmgr.h` | Bits | remaining |  |  |  |
 | `qnetwork.h` | Media.DShow | remaining |  |  |  |
 | `qos2.h` | Qos | remaining |  |  |  |
-| `qospol.h` | Qos | remaining |  |  |  |
+| `qospol.h` | Qos | matched |  | 09/02/2026 17:48:13 | Data struct + constants only, no functions. |
 | `qossp.h` | Qos | remaining |  |  |  |
 | `query.h` | Search | remaining |  |  |  |
 | `radialcontrollerinterop.h` | InputRadial | remaining |  |  |  |

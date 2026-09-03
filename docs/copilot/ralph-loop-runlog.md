@@ -1093,3 +1093,21 @@ wincon.h, resourceindexer.h), 1071 pending.
 
 **Ledger status:** 332 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h), 1066 pending.
+
+## 2026-09-02 17:48:34 UTC - Batch scraping-investigation-30
+
+**Headers:** mpeg2bits.h, qospol.h, lowlevelmonitorconfigurationapi.h, audevcod.h, d2derr.h
+**Partitions scraped:** Qos, Monitor (x86; 0 errors; Qos shows 3 pre-existing unrelated cross-partition
+remap warnings for sockaddr/timeval/_CERT_CONTEXT)
+
+- mpeg2bits.h: bitfield data structs only, no functions. Clean.
+- qospol.h: IDPE_ATTR data struct + constants only, no functions. Clean.
+- lowlevelmonitorconfigurationapi.h: all 6 functions take HANDLE hMonitor as _In_ only (never produce
+  it). The actual producer pair (GetPhysicalMonitorsFromHMONITOR/DestroyPhysicalMonitors) lives in
+  PhysicalMonitorEnumerationAPI.h, already separately tracked (pending) - future ownership work belongs
+  there. Clean.
+- audevcod.h: SNDDEV_ERR enum + error-code constants only, no functions. Clean.
+- d2derr.h: D2DERR_* HRESULT macros only, no functions. Clean.
+
+**Ledger status:** 337 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h), 1061 pending.

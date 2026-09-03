@@ -605,10 +605,10 @@
   {
     "header": "audevcod.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:48:13Z",
+    "notes": "Error-code enum/constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -1847,10 +1847,10 @@
   {
     "header": "d2derr.h",
     "partition": "Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:48:13Z",
+    "notes": "HRESULT error-code macros only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5474,10 +5474,10 @@
   {
     "header": "lowlevelmonitorconfigurationapi.h",
     "partition": "Monitor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:48:13Z",
+    "notes": "All functions only consume an existing physical-monitor HANDLE; producer pair tracked separately under PhysicalMonitorEnumerationAPI.h (pending).",
     "_source": "header-progress"
   },
   {
@@ -6086,10 +6086,10 @@
   {
     "header": "mpeg2bits.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:48:13Z",
+    "notes": "Bitfield data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8111,10 +8111,10 @@
   {
     "header": "qospol.h",
     "partition": "Qos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:48:13Z",
+    "notes": "Data struct + constants only, no functions.",
     "_source": "header-progress"
   },
   {
