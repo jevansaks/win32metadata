@@ -1037,10 +1037,10 @@
   {
     "header": "bthsdpdef.h",
     "partition": "Bluetooth",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:38:01Z",
+    "notes": "Data structs/enums/union only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -1631,10 +1631,10 @@
   {
     "header": "credssp.h",
     "partition": "Credentials",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:38:01Z",
+    "notes": "Structs/enum/constants only; one function returns a non-owned static function table.",
     "_source": "header-progress"
   },
   {
@@ -9497,10 +9497,10 @@
   {
     "header": "swdevice.h",
     "partition": "SwDevice",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:38:01Z",
+    "notes": "HSWDEVICE ownership already correctly captured via existing autoTypes.json entry (CloseApi: SwDeviceClose); no gap to fix.",
     "_source": "header-progress"
   },
   {
@@ -9749,10 +9749,10 @@
   {
     "header": "timeapi.h",
     "partition": "Media, Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:38:01Z",
+    "notes": "No HANDLE-family type involved.",
     "_source": "header-progress"
   },
   {
@@ -11738,10 +11738,10 @@
   {
     "header": "winusbio.h",
     "partition": "Buses",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:38:01Z",
+    "notes": "Constants + data structs only, no functions.",
     "_source": "header-progress"
   },
   {

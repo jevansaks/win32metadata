@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:35:18Z
+- Generated: 2026-09-03T01:38:10Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 404
+- Matched: 409
 - In progress: 0
 - Blocked: 8
-- Remaining: 991
+- Remaining: 986
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -125,7 +125,7 @@
 | `bridgedeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `bthdef.h` | Bluetooth | remaining |  |  |  |
 | `bthledef.h` | Bluetooth | remaining |  |  |  |
-| `bthsdpdef.h` | Bluetooth | remaining |  |  |  |
+| `bthsdpdef.h` | Bluetooth | matched |  | 09/02/2026 18:38:01 | Data structs/enums/union only, no functions. |
 | `bugcodes.h` | Debug | remaining |  |  |  |
 | `calendarapis.h` | Intl | matched |  | 09/02/2026 17:30:54 | Calendar-date-struct-only API, no handle. |
 | `calendardeviceservice.h` | WpdSdk | remaining |  |  |  |
@@ -191,7 +191,7 @@
 | `cpl.h` | Shell | remaining |  |  |  |
 | `cplext.h` | Shell | remaining |  |  |  |
 | `credentialprovider.h` | Shell | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
-| `credssp.h` | Credentials | remaining |  |  |  |
+| `credssp.h` | Credentials | matched |  | 09/02/2026 18:38:01 | Structs/enum/constants only; one function returns a non-owned static function table. |
 | `cryptcat.h` | Security.Cryptography.Catalog | matched |  | 09/02/2026 17:16:10 | Consumer-only functions (enumerate existing CRYPTCATCDF); producer pair lives in mscat.h (separately tracked, pending). |
 | `cryptdlg.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `cryptuiapi.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
@@ -1065,7 +1065,7 @@
 | `subscriptionservices.h` | Wmp | remaining |  |  |  |
 | `subsmgr.h` | Search | remaining |  |  |  |
 | `svcguid.h` | WinSock | remaining |  |  |  |
-| `swdevice.h` | SwDevice | remaining |  |  |  |
+| `swdevice.h` | SwDevice | matched |  | 09/02/2026 18:38:01 | HSWDEVICE ownership already correctly captured via existing autoTypes.json entry (CloseApi: SwDeviceClose); no gap to fix. |
 | `swdevicedef.h` | SwDevice | matched |  | 09/02/2026 17:30:54 | Type declarations only (enums/struct), no functions; HSWDEVICE ownership tracked separately under swdevice.h (pending). |
 | `syncdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `synchronizationerrors.h` | WinSync | remaining |  |  |  |
@@ -1093,7 +1093,7 @@
 | `textstor.h` | Tsf | remaining |  |  |  |
 | `thumbcache.h` | Shell | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `thumbnailstreamcache.h` | Shell | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
-| `timeapi.h` | Media, Multimedia | remaining |  |  |  |
+| `timeapi.h` | Media, Multimedia | matched |  | 09/02/2026 18:38:01 | No HANDLE-family type involved. |
 | `timezoneapi.h` | FileHistory, Time | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `tipautocomplete.h` | Tablet | remaining |  |  |  |
 | `tlhelp32.h` | ToolHelp | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
@@ -1314,7 +1314,7 @@
 | `winternl.h` | ActiveDirectory, Base, Certificates, FileHistory, IpHlp, MadCap, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, WinProg | remaining |  |  |  |
 | `wintrust.h` | Security.WinTrust | remaining |  |  |  |
 | `winusb.h` | Buses | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
-| `winusbio.h` | Buses | remaining |  |  |  |
+| `winusbio.h` | Buses | matched |  | 09/02/2026 18:38:01 | Constants + data structs only, no functions. |
 | `winuser.h` | Base, Controls, DataXchg, DlgBox, Dwm, FileHistory, Gdi, Input.Ime, Intl, IO, MenuRc, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Shell, TermServ, WinAuto, WinProg, WinTouch | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winver.h` | Fs | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winwlx.h` | Security.WinWlx | remaining |  |  |  |

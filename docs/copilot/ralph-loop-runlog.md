@@ -1374,3 +1374,23 @@ wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 996 pe
 
 **Ledger status:** 404 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 991 pending.
+
+## 2026-09-02 18:38:25 UTC - Batch scraping-investigation-45
+
+**Headers:** swdevice.h, winusbio.h, bthsdpdef.h, timeapi.h, credssp.h
+**Partitions scraped:** Buses, Bluetooth (x86; 0 warnings/errors)
+
+- **swdevice.h: resolved a previously-deferred item.** DECLARE_HANDLE(HSWDEVICE) is produced via
+  SwDeviceCreate's out-param and released via SwDeviceClose - exactly the shape of a fixable producer-
+  site gap (like appnotify.h). Checked autoTypes.json FIRST: HSWDEVICE already has a complete, correct
+  entry (CloseApi: SwDeviceClose, InvalidHandleValues: [-1,0]) matching this header exactly - same
+  situation as the GDI handles from the batch-14 deep-dive. No new inline annotation needed; existing
+  legacy typedef metadata is already correct and complete. Clean.
+- winusbio.h: constants + data structs only, no functions. Clean.
+- bthsdpdef.h: SDP data structs/enums/union only, no functions. Clean.
+- timeapi.h: timer period is a UINT, not a HANDLE (same reasoning as mmiscapi2.h). Clean.
+- credssp.h: structs/enum/constants only; SpInitSecurityInterfaceW returns a non-owned static SSPI
+  function table (standard pattern), not an owned resource. Clean.
+
+**Ledger status:** 409 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 986 pending.
