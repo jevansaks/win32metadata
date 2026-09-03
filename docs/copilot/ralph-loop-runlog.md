@@ -3008,3 +3008,13 @@ Ledger: 1001 accepted-normalized, 31 blocked, 371 pending (1032/1403 classified)
 - **xblidpauthmanager.h** (Xblidp): COM vtable only. Clean.
 
 Ledger: 1006 accepted-normalized, 31 blocked, 366 pending (1037/1403 classified).
+
+## Batch 170 (2026-09-03 01:52): vmsavedstatedump.h, ehstorextensions.h, sperror.h, xapo.h, ntdsbmsg.h
+
+- **vmsavedstatedump.h** (Hypervisor): PRODUCER-SITE FIX - added VM_SAVED_STATE_DUMP_HANDLE autoTypes.json entry (CloseApi ReleaseSavedStateFiles, ValueType DECLARE_HANDLE, InvalidHandleValues [0]). Validated via ScrapeHeaders x64 Hypervisor - 0 errors. Fulfills deferred-ownership note on already-accepted vmsavedstatedumpdefs.h.
+- **ehstorextensions.h** (Enstor): GUID constants/structs only, no functions. Clean.
+- **sperror.h** (Speech): HRESULT error constants only. Clean.
+- **xapo.h** (Xaudio2): COM vtable only. Clean.
+- **ntdsbmsg.h** (ActiveDirectory): HRESULT error constants only. Clean.
+
+Ledger: 1011 accepted-normalized, 31 blocked, 361 pending (1042/1403 classified).

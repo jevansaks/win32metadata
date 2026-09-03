@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:48:10Z
+- Generated: 2026-09-03T08:52:03Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1006
+- Matched: 1011
 - In progress: 0
 - Blocked: 31
-- Remaining: 366
+- Remaining: 361
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -387,7 +387,7 @@
 | `effects.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/effects.h.md |
 | `efswrtinterop.h` | Edp | remaining |  |  |  |
 | `ehstorapi.h` | Enstor | remaining |  |  |  |
-| `ehstorextensions.h` | Enstor | remaining |  |  |  |
+| `ehstorextensions.h` | Enstor | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ehstorextensions.h.md |
 | `ehstormsg.h` | Enstor | matched |  | 09/02/2026 22:12:28 | Constants/macros only, no functions. |
 | `elscore.h` | Intl | matched |  | 09/02/2026 20:22:05 | All producer/consumer pairs operate on transparent structs, not opaque handles. |
 | `elssrvc.h` | Intl | matched |  | 09/02/2026 18:03:29 | GUID constants only, no functions. |
@@ -809,7 +809,7 @@
 | `ntddvol.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvol.h.md |
 | `ntdef.h` | Kernel | remaining |  |  |  |
 | `ntdsapi.h` | ActiveDirectory | remaining |  |  |  |
-| `ntdsbmsg.h` | ActiveDirectory | remaining |  |  |  |
+| `ntdsbmsg.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdsbmsg.h.md |
 | `ntiologc.h` | Foundation | remaining |  |  |  |
 | `ntioring_x.h` | Fs | matched |  | 09/02/2026 20:38:46 | Enums/constants only, no functions in this types header. |
 | `ntldap.h` | Ldap | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntldap.h.md |
@@ -1033,7 +1033,7 @@
 | `spatialinteractionmanagerinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `spellcheck.h` | Intl | remaining |  |  |  |
 | `spellcheckprovider.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spellcheckprovider.h.md |
-| `sperror.h` | Speech | remaining |  |  |  |
+| `sperror.h` | Speech | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sperror.h.md |
 | `sporder.h` | WinSock | matched |  | 09/02/2026 17:45:25 | DWORD/GUID array API only, no handle. |
 | `sql.h` | Search | matched |  |  | Producer-site fix: added SQLHENV/SQLFreeEnv, SQLHDBC/SQLFreeConnect autoTypes.json entries. SQLHSTMT (SQLFreeStmt requires mandatory 2nd param, unrepresentable) and SQLHDESC (only generic SQLAllocHandle/SQLFreeHandle, blocker-class 2) documented as out of scope. See docs/copilot/header-reports/sql.h.md |
 | `sqlext.h` | Search | remaining |  |  |  |
@@ -1164,7 +1164,7 @@
 | `virtdisk.h` | Vhd | remaining |  |  |  |
 | `vmgenerationcounter.h` | Hypervisor | matched |  | 09/02/2026 17:19:28 | GUID/IOCTL constant + data struct only, no functions. |
 | `vmr9.h` | Media.DShow | remaining |  |  |  |
-| `vmsavedstatedump.h` | Hypervisor | remaining |  |  |  |
+| `vmsavedstatedump.h` | Hypervisor | matched |  |  | Producer-site fix: added VM_SAVED_STATE_DUMP_HANDLE autoTypes.json entry (CloseApi ReleaseSavedStateFiles). See docs/copilot/header-reports/vmsavedstatedump.h.md |
 | `vmsavedstatedumpdefs.h` | Hypervisor | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vmsavedstatedumpdefs.h.md |
 | `vpconfig.h` | Media.DShow | matched |  | 09/02/2026 19:45:17 | COM-style interfaces only, no extern functions. |
 | `vpnotify.h` | Media.DShow | matched |  | 09/02/2026 18:23:41 | COM interfaces with plain enum/BOOL parameters only, no handle. |
@@ -1397,7 +1397,7 @@
 | `wuerror.h` | Wua | remaining |  |  |  |
 | `xa.h` | DTC | matched |  | 09/02/2026 21:38:18 | No function produces an opaque handle; XA switch entries are function-pointer struct fields. |
 | `xamlom.h` | Xaml_Diagnostics | remaining |  |  |  |
-| `xapo.h` | Xaudio2 | remaining |  |  |  |
+| `xapo.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xapo.h.md |
 | `xapofx.h` | Xaudio2 | matched |  | 09/02/2026 21:49:17 | Standard COM factory function + GUID/parameter constants only. |
 | `xaudio2.h` | Xaudio2 | remaining |  |  |  |
 | `xaudio2fx.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2fx.h.md |

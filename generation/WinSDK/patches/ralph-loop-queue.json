@@ -3395,10 +3395,10 @@
   {
     "header": "ehstorextensions.h",
     "partition": "Enstor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ehstorextensions.h.md",
     "_source": "header-progress"
   },
   {
@@ -7193,10 +7193,10 @@
   {
     "header": "ntdsbmsg.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdsbmsg.h.md",
     "_source": "header-progress"
   },
   {
@@ -9209,10 +9209,10 @@
   {
     "header": "sperror.h",
     "partition": "Speech",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sperror.h.md",
     "_source": "header-progress"
   },
   {
@@ -10388,10 +10388,10 @@
   {
     "header": "vmsavedstatedump.h",
     "partition": "Hypervisor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added VM_SAVED_STATE_DUMP_HANDLE autoTypes.json entry (CloseApi ReleaseSavedStateFiles). See docs/copilot/header-reports/vmsavedstatedump.h.md",
     "_source": "header-progress"
   },
   {
@@ -12485,10 +12485,10 @@
   {
     "header": "xapo.h",
     "partition": "Xaudio2",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xapo.h.md",
     "_source": "header-progress"
   },
   {
