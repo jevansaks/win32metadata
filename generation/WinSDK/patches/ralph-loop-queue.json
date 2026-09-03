@@ -533,10 +533,10 @@
   {
     "header": "appmodel.h",
     "partition": "AppxPackaging",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added PACKAGE_INFO_REFERENCE entry, filled missing CloseApi/InvalidHandleValues on PACKAGEDEPENDENCY_CONTEXT. See docs/copilot/header-reports/appmodel.h.md",
     "_source": "header-progress"
   },
   {
@@ -1316,10 +1316,10 @@
   {
     "header": "clfs.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/clfs.h.md",
     "_source": "header-progress"
   },
   {
@@ -8210,10 +8210,10 @@
   {
     "header": "rdpappcontainerclient.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rdpappcontainerclient.h.md",
     "_source": "header-progress"
   },
   {
@@ -9956,10 +9956,10 @@
   {
     "header": "tsvirtualchannels.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsvirtualchannels.h.md",
     "_source": "header-progress"
   },
   {
@@ -10604,10 +10604,10 @@
   {
     "header": "wbemtran.h",
     "partition": "Wmi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemtran.h.md",
     "_source": "header-progress"
   },
   {

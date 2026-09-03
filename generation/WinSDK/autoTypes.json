@@ -2632,6 +2632,16 @@
     "Namespace": "Windows.Win32.Storage.Packaging.Appx",
     "Name": "PACKAGEDEPENDENCY_CONTEXT",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "RemovePackageDependency",
+    "InvalidHandleValues": [ 0 ],
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.Storage.Packaging.Appx",
+    "Name": "PACKAGE_INFO_REFERENCE",
+    "ValueType": "typedef struct*",
+    "CloseApi": "ClosePackageInfo",
+    "InvalidHandleValues": [ 0 ],
     "NativeTypedef": true
   },
   {

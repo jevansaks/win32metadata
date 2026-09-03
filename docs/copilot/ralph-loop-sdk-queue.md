@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:10:05Z
+- Generated: 2026-09-03T09:15:09Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1041
+- Matched: 1046
 - In progress: 0
 - Blocked: 31
-- Remaining: 331
+- Remaining: 326
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -69,7 +69,7 @@
 | `apiquery2.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:41:54 | Caller-allocated string buffer output only. |
 | `appcompatapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:23:42 | No handle involved. |
 | `appmgmt.h` | Policy, Shell | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
-| `appmodel.h` | AppxPackaging | remaining |  |  |  |
+| `appmodel.h` | AppxPackaging | matched |  |  | Producer-site fix: added PACKAGE_INFO_REFERENCE entry, filled missing CloseApi/InvalidHandleValues on PACKAGEDEPENDENCY_CONTEXT. See docs/copilot/header-reports/appmodel.h.md |
 | `appnotify.h` | Shell | matched |  | 09/02/2026 18:20:58 | Genuine ownership gap fixed: RegisterAppStateChangeNotification/RegisterAppConstrainedChangeNotification out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via UnregisterAppStateChangeNotification/UnregisterAppConstrainedChangeNotification. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
 | `appserviceinterop.h` | WinRT | matched |  | 09/02/2026 22:02:59 | COM/WinRT interface methods only, out of scope. |
 | `appxpackaging.h` | AppxPackaging | remaining |  |  |  |
@@ -156,7 +156,7 @@
 | `cfg.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfg.h.md |
 | `cfgmgr32.h` | DevInst | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `cierror.h` | Foundation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cierror.h.md |
-| `clfs.h` | Fs | remaining |  |  |  |
+| `clfs.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/clfs.h.md |
 | `clfsmgmt.h` | Fs | matched |  |  | Genuine producer-site fix: added CLFS_MGMT_CLIENT autoTypes.json entry (CloseApi=ClfsMgmtDeregisterManagedClient). See docs/copilot/header-reports/clfsmgmt.h.md |
 | `clfsmgmtw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `clfsw32.h` | Fs | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
@@ -922,7 +922,7 @@
 | `raserror.h` | RRas | remaining |  |  |  |
 | `rasshost.h` | RRas | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `ratings.h` | InternetExplorer | blocked | copilot | 09/02/2026 19:09:17 | Deferred: direct out-param instance of the generic/shared-type blocker class. |
-| `rdpappcontainerclient.h` | TermServ | remaining |  |  |  |
+| `rdpappcontainerclient.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rdpappcontainerclient.h.md |
 | `rdpencomapi.h` | Rdp, TermServ | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `realtimeapiset.h` | Base | matched |  | 09/02/2026 18:59:13 | HANDLE is a caller-supplied input, not produced here. |
 | `reason.h` | FileHistory, Shutdown | matched |  | 09/02/2026 19:50:38 | Constants only, no functions. |
@@ -1116,7 +1116,7 @@
 | `tspubplugincom.h` | TermServ | matched |  | 09/02/2026 22:09:36 | COM interface only, no extern functions. |
 | `tssbx.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tssbx.h.md |
 | `tsuserex.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsuserex.h.md |
-| `tsvirtualchannels.h` | TermServ | remaining |  |  |  |
+| `tsvirtualchannels.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsvirtualchannels.h.md |
 | `tuner.h` | MsTv | remaining |  |  |  |
 | `tvout.h` | Gdi | matched |  | 09/02/2026 19:21:35 | Data struct + constants only, no functions. |
 | `tvratings.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tvratings.h.md |
@@ -1188,7 +1188,7 @@
 | `wbemdisp.h` | Wmi | remaining |  |  |  |
 | `wbemidl.h` | Wmi | matched |  | 09/02/2026 16:57:06 | Redirect-only; 40 functions all MIDL RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wbemprov.h` | Wmi | remaining |  |  |  |
-| `wbemtran.h` | Wmi | remaining |  |  |  |
+| `wbemtran.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemtran.h.md |
 | `wcmapi.h` | Wcm | matched |  | 09/02/2026 20:16:15 | Generic memory-allocation convention / transparent struct, not distinctly-named opaque handle. |
 | `wcmconfig.h` | Smi | remaining |  |  |  |
 | `wcmerrors.h` | Smi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcmerrors.h.md |

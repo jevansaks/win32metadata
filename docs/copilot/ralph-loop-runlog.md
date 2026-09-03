@@ -3078,3 +3078,13 @@ Ledger: 1036 accepted-normalized, 31 blocked, 336 pending (1067/1403 classified)
 - **devpkey.h** (Base/Devices.Properties): DEVPKEY_* constants only. Clean.
 
 Ledger: 1041 accepted-normalized, 31 blocked, 331 pending (1072/1403 classified).
+
+## Batch 177 (2026-09-03 02:15): wbemtran.h, tsvirtualchannels.h, rdpappcontainerclient.h, clfs.h, appmodel.h
+
+- **wbemtran.h** (Wmi): COM vtable only. Clean.
+- **tsvirtualchannels.h** (TermServ): COM vtable only. Clean.
+- **rdpappcontainerclient.h** (TermServ): COM vtable only. Clean.
+- **clfs.h** (Fs): public structs/constants only, no functions. Clean.
+- **appmodel.h** (AppxPackaging): PRODUCER-SITE FIX x2 - added PACKAGE_INFO_REFERENCE entry (ValueType 'typedef struct*', CloseApi ClosePackageInfo) and filled missing CloseApi/InvalidHandleValues on pre-existing PACKAGEDEPENDENCY_CONTEXT entry (CloseApi RemovePackageDependency). Validated via ScrapeHeaders x64 AppxPackaging - 0 errors.
+
+Ledger: 1046 accepted-normalized, 31 blocked, 326 pending (1077/1403 classified).
