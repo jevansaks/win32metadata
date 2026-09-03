@@ -8622,7 +8622,7 @@
       "header": "dinput.h",
       "partitions": "Hid",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -8635,7 +8635,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/dinput.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Hid/main.cpp",
@@ -19019,7 +19019,7 @@
       "header": "isysmon.h",
       "partitions": "Perf",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -19032,7 +19032,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/isysmon.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Perf/main.cpp",
@@ -25816,7 +25816,7 @@
         "Ioctl"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -25829,7 +25829,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; kernel storage driver IOCTL constants/structs only, no functions. See docs/copilot/header-reports/ntddstor.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -44769,7 +44769,7 @@
       "header": "windowssearcherrors.h",
       "partitions": "Search",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -44782,7 +44782,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; error-code constants only, no functions. See docs/copilot/header-reports/windowssearcherrors.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Search/main.cpp",
@@ -47249,7 +47249,7 @@
         "Mf"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -47262,7 +47262,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/wmcodecdsp.h.md",
       "sources": [
         {
           "source": "partition-main",

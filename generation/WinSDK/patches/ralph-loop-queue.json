@@ -2585,10 +2585,10 @@
   {
     "header": "dinput.h",
     "partition": "Hid",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/dinput.h.md",
     "_source": "header-progress"
   },
   {
@@ -5087,10 +5087,10 @@
   {
     "header": "isysmon.h",
     "partition": "Perf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/isysmon.h.md",
     "_source": "header-progress"
   },
   {
@@ -7148,10 +7148,10 @@
   {
     "header": "ntddstor.h",
     "partition": "Fs, Ioctl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; kernel storage driver IOCTL constants/structs only, no functions. See docs/copilot/header-reports/ntddstor.h.md",
     "_source": "header-progress"
   },
   {
@@ -11333,10 +11333,10 @@
   {
     "header": "windowssearcherrors.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; error-code constants only, no functions. See docs/copilot/header-reports/windowssearcherrors.h.md",
     "_source": "header-progress"
   },
   {
@@ -11828,10 +11828,10 @@
   {
     "header": "wmcodecdsp.h",
     "partition": "Media.DShow, Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/wmcodecdsp.h.md",
     "_source": "header-progress"
   },
   {

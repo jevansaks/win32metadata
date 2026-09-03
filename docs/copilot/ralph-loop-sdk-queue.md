@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:39:00Z
+- Generated: 2026-09-03T11:41:20Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1277
+- Matched: 1282
 - In progress: 0
 - Blocked: 59
-- Remaining: 67
+- Remaining: 62
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -297,7 +297,7 @@
 | `diagnosticdataquerytypes.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:31:37 | Types/RPC boilerplate only, no functions; DIAGNOSTIC_DATA_QUERY_SESSION ownership deferred to DiagnosticDataQuery.h. |
 | `digitalv.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/digitalv.h.md |
 | `dimm.h` | Input.Ime | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/Dimm.h.md |
-| `dinput.h` | Hid | remaining |  |  |  |
+| `dinput.h` | Hid | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/dinput.h.md |
 | `dinputd.h` | Hid | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dinputd.h.md |
 | `directmanipulation.h` | DirectManipulation | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
 | `directml.h` | DirectML | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
@@ -575,7 +575,7 @@
 | `isolatedwindowsenvironmentutils.h` | Isolation | matched |  | 09/02/2026 16:57:06 | Boolean query functions only. |
 | `issper16.h` | Identity | matched |  | 09/02/2026 21:08:27 | Constants only, no functions. |
 | `iswindowarranged.h` | MenuRc | matched |  | 09/02/2026 16:49:01 | Query-only function taking HWND input; no handle production. |
-| `isysmon.h` | Perf | remaining |  |  |  |
+| `isysmon.h` | Perf | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/isysmon.h.md |
 | `iwscapi.h` | FileHistory, SecurityCenter | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iwscapi.h.md |
 | `iwstdec.h` | Media.DShow | matched |  | 09/02/2026 19:14:35 | COM interface with plain-value parameters only, no handle. |
 | `joystickapi.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/joystickapi.h.md |
@@ -804,7 +804,7 @@
 | `ntddmou.h` | Hid | matched |  | 09/02/2026 20:38:46 | Constants/structs only, no functions. |
 | `ntddndis.h` | Ndis, NWifi, Qos | remaining |  |  |  |
 | `ntddser.h` | SerPorts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddser.h.md |
-| `ntddstor.h` | Fs, Ioctl | remaining |  |  |  |
+| `ntddstor.h` | Fs, Ioctl | matched |  |  | Investigated; kernel storage driver IOCTL constants/structs only, no functions. See docs/copilot/header-reports/ntddstor.h.md |
 | `ntddvdeo.h` | Display | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvdeo.h.md |
 | `ntddvol.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvol.h.md |
 | `ntdef.h` | Kernel | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdef.h.md |
@@ -1269,7 +1269,7 @@
 | `windows.ui.xaml.media.dxinterop.h` | WinRT.Xaml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ui.xaml.media.dxinterop.h.md |
 | `windowsceip.h` | Base, CEIP, FileHistory | matched |  | 09/02/2026 17:01:48 | CeipIsOptedIn() - no handle involved. |
 | `windowsdefender.h` | Lwef | matched |  | 09/02/2026 18:32:46 | BOOL-only API, no handle. |
-| `windowssearcherrors.h` | Search | remaining |  |  |  |
+| `windowssearcherrors.h` | Search | matched |  |  | Investigated; error-code constants only, no functions. See docs/copilot/header-reports/windowssearcherrors.h.md |
 | `windowssideshow.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `windowssideshowapi.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `windowssideshowdriverevents.h` | SideShow | matched | copilot | 09/03/2026 04:05:00 | No patch needed; COM interface only. |
@@ -1324,7 +1324,7 @@
 | `wlantypes.h` | Ndis, NWifi | matched |  | 09/02/2026 20:19:39 | Enums/structs only, no functions. |
 | `wlclient.h` | NWifi | matched |  | 09/02/2026 17:54:05 | Data structs only, no functions. |
 | `wldp.h` | FileHistory, WinProg | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
-| `wmcodecdsp.h` | Media.DShow, Mf | remaining |  |  |  |
+| `wmcodecdsp.h` | Media.DShow, Mf | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/wmcodecdsp.h.md |
 | `wmcontainer.h` | Mf | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wmdmlog.h` | Wmdm | matched |  | 09/02/2026 22:02:59 | COM interface only, no extern functions. |
 | `wmdxva.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmdxva.h.md |

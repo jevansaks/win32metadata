@@ -3509,3 +3509,9 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - d3d12sdklayers.h, dimm.h, mmcobj.h, sbtsv.h, pacmanclientapi.h: COM vtable-only headers, clean.
 - netevent.h: constants-only, clean.
 - Ledger: 1277 accepted-normalized, 59 blocked, 67 pending (1336/1403 = 95.2%).
+
+## Batch 224 (412bf832 -> next)
+- wmcodecdsp.h, isysmon.h, dinput.h: COM vtable-only headers, clean.
+- windowssearcherrors.h: error-code constants only, clean.
+- ntddstor.h: kernel storage driver IOCTL constants/structs only, no functions, clean.
+- Ledger: 1282 accepted-normalized, 59 blocked, 62 pending (1341/1403 = 95.6%).
