@@ -3476,3 +3476,13 @@ Ledger: 1246 accepted-normalized, 31 blocked, 126 pending (1277/1403 classified)
 - **rometadataapi.h** (WinRT.Metadata): COM vtable only. Clean.
 
 Ledger: 1251 accepted-normalized, 31 blocked, 121 pending (1282/1403 classified).
+
+## Batch 219 (2026-09-03 04:17): fsrm.h, wtsprotocol.h, txdtc.h, mlang.h, compstui.h
+
+- **fsrm.h** (Fsrm): COM vtable only. Clean.
+- **wtsprotocol.h** (TermServ): COM vtable only. Clean.
+- **txdtc.h** (DTC): COM vtable only. Clean.
+- **mlang.h** (Intl): COM vtable only. Clean.
+- **compstui.h** (Printing): outputs plain DWORD result, no handle. Clean.
+
+Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified).

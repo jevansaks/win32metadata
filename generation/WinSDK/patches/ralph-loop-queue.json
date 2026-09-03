@@ -1469,10 +1469,10 @@
   {
     "header": "compstui.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/compstui.h.md",
     "_source": "header-progress"
   },
   {
@@ -3836,10 +3836,10 @@
   {
     "header": "fsrm.h",
     "partition": "Fsrm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrm.h.md",
     "_source": "header-progress"
   },
   {
@@ -5951,10 +5951,10 @@
   {
     "header": "mlang.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mlang.h.md",
     "_source": "header-progress"
   },
   {
@@ -9992,10 +9992,10 @@
   {
     "header": "txdtc.h",
     "partition": "DTC",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/txdtc.h.md",
     "_source": "header-progress"
   },
   {
@@ -12422,10 +12422,10 @@
   {
     "header": "wtsprotocol.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtsprotocol.h.md",
     "_source": "header-progress"
   },
   {

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:15:01Z
+- Generated: 2026-09-03T11:17:16Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1251
+- Matched: 1256
 - In progress: 0
 - Blocked: 31
-- Remaining: 121
+- Remaining: 116
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -173,7 +173,7 @@
 | `commdlg.h` | DlgBox, Media, Media.KernelStreaming, Multimedia | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
 | `commoncontrols.h` | Controls | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
 | `compressapi.h` | CmpApi | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
-| `compstui.h` | Printing | remaining |  |  |  |
+| `compstui.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/compstui.h.md |
 | `computecore.h` | HostComputeSystem | matched |  |  | Genuine producer-site fix: added 3 autoTypes.json entries (HCS_SYSTEM/HCS_PROCESS/HCS_OPERATION). HCS_CALLBACK left unannotated (unused). See docs/copilot/header-reports/computecore.h.md |
 | `computenetwork.h` | HostComputeNetwork | matched |  |  | Genuine producer-site fix: added 6 autoTypes.json entries (HCN_NETWORK/NAMESPACE/ENDPOINT/LOADBALANCER/GUESTNETWORKSERVICE/CALLBACK). HCN_SERVICE left unannotated (unused). See docs/copilot/header-reports/computenetwork.h.md |
 | `computestorage.h` | HostComputeSystem | matched |  | 09/02/2026 19:42:09 | No opaque handles produced; HANDLE params are pre-owned caller inputs. |
@@ -436,7 +436,7 @@
 | `fltdefs.h` | FileHistory, IpHlp | matched |  |  | Genuine producer-site fix: added INTERFACE_HANDLE autoTypes.json entry (CloseApi=PfDeleteInterface). FILTER_HANDLE left unannotated (bulk-array removal, no single-handle CloseApi). See docs/copilot/header-reports/fltdefs.h.md |
 | `fltuser.h` | Ifsk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fltuser.h.md |
 | `fontsub.h` | Gdi | matched |  | 09/02/2026 21:52:12 | Buffer allocation delegated entirely to caller-supplied callbacks, no opaque handle. |
-| `fsrm.h` | Fsrm | remaining |  |  |  |
+| `fsrm.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrm.h.md |
 | `fsrmenums.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmenums.h.md |
 | `fsrmerr.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmerr.h.md |
 | `fsrmpipeline.h` | Fsrm | remaining |  |  |  |
@@ -671,7 +671,7 @@
 | `minwinbase.h` | Base, Fs, Ioctl | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `minwindef.h` | Foundation, Multimedia | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `mixerocx.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mixerocx.h.md |
-| `mlang.h` | Intl | remaining |  |  |  |
+| `mlang.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mlang.h.md |
 | `MLOperatorAuthor.h` | MachineLearning | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/MLOperatorAuthor.h.md |
 | `mmc.h` | Mmc | remaining |  |  |  |
 | `mmcobj.h` | Lwef, Mmc | remaining |  |  |  |
@@ -1120,7 +1120,7 @@
 | `tuner.h` | MsTv | remaining |  |  |  |
 | `tvout.h` | Gdi | matched |  | 09/02/2026 19:21:35 | Data struct + constants only, no functions. |
 | `tvratings.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tvratings.h.md |
-| `txdtc.h` | DTC | remaining |  |  |  |
+| `txdtc.h` | DTC | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/txdtc.h.md |
 | `txfw32.h` | Fs | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `txlogpub.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/txlogpub.h.md |
 | `ual.h` | Ual | matched | copilot | 09/02/2026 22:59:00 | First header-scraping-investigation batch: no prior patch existed. New supported-os patch created and verified via live re-scrape, not just static review. |
@@ -1390,7 +1390,7 @@
 | `wtsapi32.h` | TermServ | matched |  |  | Producer-site fix: added 4 inline RAIIFree return-value annotations for WTSOpenServerA/W/ExA/ExW in emitter.settings.rsp. See docs/copilot/header-reports/wtsapi32.h.md |
 | `wtsdefs.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtsdefs.h.md |
 | `wtshintapi.h` | TermServ | matched |  | 09/02/2026 19:12:01 | HWND is an input; render hint ID is a plain UINT64, not a HANDLE. |
-| `wtsprotocol.h` | TermServ | remaining |  |  |  |
+| `wtsprotocol.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtsprotocol.h.md |
 | `wtypes.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, Properties, Registry, Shutdown, TransactionServer, WinProg | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `wtypesbase.h` | TransactionServer, WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtypesbase.h.md |
 | `wuapi.h` | Wua | remaining |  |  |  |
