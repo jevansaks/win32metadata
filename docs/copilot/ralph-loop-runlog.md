@@ -2448,3 +2448,13 @@ Ledger: 721 accepted-normalized, 31 blocked, 651 pending (752/1403 classified).
 - **msdasql_interfaces.h** (Search): COM interfaces only, no free functions. Clean.
 
 Ledger: 726 accepted-normalized, 31 blocked, 646 pending (757/1403 classified).
+
+## Batch 114 (2026-09-02 22:53): tsgauthenticationengine.h, wcmerrors.h, roerrorapi.h, processsnapshot.h, msdadc.h
+
+- **tsgauthenticationengine.h** (TermServ): COM interfaces only, no free functions. Clean.
+- **wcmerrors.h** (Smi): HRESULT error-code macros only, no functions. Clean.
+- **roerrorapi.h** (WinRT): RoGetErrorReportingFlags/RoOriginateError/RoTransformError family - no handle production; RoResolveRestrictedErrorInfoReference outputs standard COM interface pointer. Clean.
+- **processsnapshot.h** (Proc_Snap): PATCH APPLIED. HPSS (produced by PssCaptureSnapshot, freed by PssFreeSnapshot) had an existing autoTypes.json entry missing CloseApi, unlike its sibling HPSSWALK which was already complete. Added CloseApi=PssFreeSnapshot (2-param close function, confirmed the RAIIFree mechanism performs no signature validation). Re-scraped Proc_Snap (x64): 0 errors.
+- **msdadc.h** (Search): COM interfaces only, no free functions. Clean.
+
+Ledger: 731 accepted-normalized, 31 blocked, 641 pending (762/1403 classified).

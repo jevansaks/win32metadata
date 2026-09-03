@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:47:35Z
+- Generated: 2026-09-03T05:53:09Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 726
+- Matched: 731
 - In progress: 0
 - Blocked: 31
-- Remaining: 646
+- Remaining: 641
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -709,7 +709,7 @@
 | `mscoree.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `msctf.h` | Tsf | remaining |  |  |  |
 | `msctfmonitorapi.h` | Tsf | matched |  | 09/02/2026 18:35:09 | HANDLE is a caller-supplied input, not produced here. |
-| `msdadc.h` | Search | remaining |  |  |  |
+| `msdadc.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdadc.h.md |
 | `msdaguid.h` | Search | matched |  | 09/02/2026 18:06:26 | GUID constants only, no functions. |
 | `msdaora.h` | Search | matched |  | 09/02/2026 18:29:38 | CLSID/GUID constants only, no functions. |
 | `msdaosp.h` | Search | matched |  | 09/02/2026 20:53:10 | COM/IDispatch interface method only, out of scope. |
@@ -893,7 +893,7 @@
 | `prntfont.h` | Printing | remaining |  |  |  |
 | `prntvpt.h` | Gdi, PrintTicket | matched | copilot | 09/02/2026 23:20:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation); supported-os left unresolved due to ambiguous/uncorroborated documentation. |
 | `processenv.h` | Environment, FileHistory, Fs | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
-| `processsnapshot.h` | Proc_Snap | remaining |  |  |  |
+| `processsnapshot.h` | Proc_Snap | matched |  |  | Genuine producer-site fix: added CloseApi=PssFreeSnapshot to existing incomplete HPSS autoTypes.json entry. See docs/copilot/header-reports/processsnapshot.h.md |
 | `processthreadsapi.h` | FileHistory, TermServ | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `profileapi.h` | Perf | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `profinfo.h` | Shell | matched |  | 09/02/2026 18:56:34 | Struct-only header; real gap belongs to UserEnv.h (reclassified blocked). |
@@ -946,7 +946,7 @@
 | `ringtonedeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:51:18 | GUID/name constants only, no functions (same pattern as notesdeviceservice.h). |
 | `roapi.h` | TransactionServer, WinRT | matched |  | 09/02/2026 21:17:15 | Fixed two genuine gaps: completed autoTypes.json entries for RO_REGISTRATION_COOKIE and APARTMENT_SHUTDOWN_REGISTRATION_COOKIE. |
 | `robuffer.h` | WinRT | matched |  | 09/02/2026 17:13:02 | COM-factory (RoGetBufferMarshaler) + buffer-view pattern (IBufferByteAccess), not HANDLE-family. |
-| `roerrorapi.h` | WinRT | remaining |  |  |  |
+| `roerrorapi.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/roerrorapi.h.md |
 | `rometadata.h` | WinRT.Metadata | matched |  | 09/02/2026 17:01:48 | COM QueryInterface-style factory (MetaDataGetDispenser), no raw HANDLE. |
 | `rometadataapi.h` | WinRT.Metadata | remaining |  |  |  |
 | `rometadataresolution.h` | WinRT.Metadata | matched |  | 09/02/2026 19:12:01 | COM factory pattern + HSTRING outputs tracked separately under winstring.h. |
@@ -1109,7 +1109,7 @@
 | `transportsettingcommon.h` | WinSock | matched |  | 09/02/2026 16:57:06 | Plain data struct only, no functions. |
 | `transportsettings.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `tsattrs.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsattrs.h.md |
-| `tsgauthenticationengine.h` | TermServ | remaining |  |  |  |
+| `tsgauthenticationengine.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsgauthenticationengine.h.md |
 | `tsgpolicyengine.h` | TermServ | remaining |  |  |  |
 | `TSPI.h` | Tapi3 | remaining |  |  |  |
 | `tspubplugin2com.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tspubplugin2com.h.md |
@@ -1191,7 +1191,7 @@
 | `wbemtran.h` | Wmi | remaining |  |  |  |
 | `wcmapi.h` | Wcm | matched |  | 09/02/2026 20:16:15 | Generic memory-allocation convention / transparent struct, not distinctly-named opaque handle. |
 | `wcmconfig.h` | Smi | remaining |  |  |  |
-| `wcmerrors.h` | Smi | remaining |  |  |  |
+| `wcmerrors.h` | Smi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcmerrors.h.md |
 | `wcnapi.h` | Wcn | matched |  | 09/02/2026 17:01:48 | Redirect-only; 0 functions in entire Wcn partition, no DECLARE_HANDLE. |
 | `wcnfunctiondiscoverykeys.h` | Wcn | matched |  | 09/02/2026 17:35:31 | GUID/PROPERTYKEY constants only, no functions. |
 | `wcsplugin.h` | Wcs | remaining |  |  |  |

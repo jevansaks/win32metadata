@@ -938,6 +938,7 @@
     "Namespace": "Windows.Win32.System.Diagnostics.ProcessSnapshotting",
     "Name": "HPSS",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "PssFreeSnapshot",
     "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
   },

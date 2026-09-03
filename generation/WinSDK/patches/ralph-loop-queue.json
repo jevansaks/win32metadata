@@ -6293,10 +6293,10 @@
   {
     "header": "msdadc.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdadc.h.md",
     "_source": "header-progress"
   },
   {
@@ -7949,10 +7949,10 @@
   {
     "header": "processsnapshot.h",
     "partition": "Proc_Snap",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added CloseApi=PssFreeSnapshot to existing incomplete HPSS autoTypes.json entry. See docs/copilot/header-reports/processsnapshot.h.md",
     "_source": "header-progress"
   },
   {
@@ -8426,10 +8426,10 @@
   {
     "header": "roerrorapi.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/roerrorapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -9893,10 +9893,10 @@
   {
     "header": "tsgauthenticationengine.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsgauthenticationengine.h.md",
     "_source": "header-progress"
   },
   {
@@ -10631,10 +10631,10 @@
   {
     "header": "wcmerrors.h",
     "partition": "Smi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcmerrors.h.md",
     "_source": "header-progress"
   },
   {
