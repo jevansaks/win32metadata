@@ -2162,10 +2162,10 @@
   {
     "header": "davclnt.h",
     "partition": "WebDav",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:54:02Z",
+    "notes": "DavAddConnection generic HANDLE out-param; DavRegisterAuthCallback returns generic DWORD-typed OPAQUE_HANDLE via return value.",
     "_source": "header-progress"
   },
   {
@@ -6734,10 +6734,10 @@
   {
     "header": "muiload.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:54:02Z",
+    "notes": "HINSTANCE/HMODULE already correctly covered via existing autoTypes.json CloseApi=FreeLibrary entry.",
     "_source": "header-progress"
   },
   {
@@ -9281,10 +9281,10 @@
   {
     "header": "srpapi.h",
     "partition": "Edp",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:54:02Z",
+    "notes": "SrpCreateThreadNetworkContext populates HTHREAD_NETWORK_CONTEXT.ThreadContext, a generic HANDLE field.",
     "_source": "header-progress"
   },
   {
@@ -9821,10 +9821,10 @@
   {
     "header": "tpcerror.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:54:02Z",
+    "notes": "HRESULT constants/macros only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10307,10 +10307,10 @@
   {
     "header": "VersionHelpers.h",
     "partition": "SystemInformation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:54:02Z",
+    "notes": "All functions are inline, no scrapable extern declarations.",
     "_source": "header-progress"
   },
   {

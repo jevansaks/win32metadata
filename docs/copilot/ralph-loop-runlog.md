@@ -1771,3 +1771,22 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - reason.h: shutdown-reason-code constants only, no functions. Clean.
 
 **Ledger status:** 507 accepted-normalized, 20 blocked, 876 pending.
+
+## 2026-09-02 19:54:20 UTC - Batch scraping-investigation-68
+
+**Headers:** muiload.h, VersionHelpers.h, srpapi.h, tpcerror.h, davclnt.h
+**Partitions scraped (x64):** Intl, SystemInformation, Edp, Tablet, WebDav (0 errors each)
+
+- muiload.h: LoadMUILibraryA/W return HINSTANCE via return value, but autoTypes.json already has
+  complete HMODULE/HINSTANCE entries (CloseApi=FreeLibrary, AlsoUsableFor cross-linked) - already
+  correctly covered at the type level; FreeMUILibrary is a compatible alternate close. No new gap.
+- VersionHelpers.h: all functions are inline/FORCEINLINE, no scrapable extern declarations. Clean.
+- srpapi.h: **blocked** - SrpCreateThreadNetworkContext/SrpCloseThreadNetworkContext operate on a
+  transparent struct (HTHREAD_NETWORK_CONTEXT) with a generic HANDLE field (ThreadContext) nested
+  inside (established generic-type-nested-in-struct blocker class).
+- tpcerror.h: HRESULT error-code constants/ATL macros only, no functions. Clean.
+- davclnt.h: **blocked** - two gaps: DavAddConnection/DavDeleteConnection generic HANDLE
+  direct-out-param, and DavRegisterAuthCallback/DavUnregisterAuthCallback return-value handle
+  (OPAQUE_HANDLE is literally a DWORD). Both reuse established blocker classes.
+
+**Ledger status:** 510 accepted-normalized, 22 blocked, 871 pending.

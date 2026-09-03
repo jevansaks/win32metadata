@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:50:51Z
+- Generated: 2026-09-03T02:54:20Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 507
+- Matched: 510
 - In progress: 0
-- Blocked: 20
-- Remaining: 876
+- Blocked: 22
+- Remaining: 871
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -250,7 +250,7 @@
 | `d3dshadercacheregistration.h` | Direct3D | remaining |  |  |  |
 | `d3dtypes.h` | Direct3D9 | remaining |  |  |  |
 | `datetimeapi.h` | Intl | matched |  | 09/02/2026 19:19:02 | String/buffer formatting API only, no handle. |
-| `davclnt.h` | WebDav | remaining |  |  |  |
+| `davclnt.h` | WebDav | blocked |  | 09/02/2026 19:54:02 | DavAddConnection generic HANDLE out-param; DavRegisterAuthCallback returns generic DWORD-typed OPAQUE_HANDLE via return value. |
 | `DbgEng.h` | Debug.Extensions | remaining |  |  |  |
 | `dbghelp.h` | FileHistory, WinProg | remaining |  |  |  |
 | `DbgModel.h` | Debug.Extensions | remaining |  |  |  |
@@ -758,7 +758,7 @@
 | `mtxadmin.h` | ComOle, TransactionServer | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mtxattr.h` | ComOle, TransactionServer | matched |  | 09/02/2026 18:29:38 | Typelib attribute macros only, no functions. |
 | `mtxdm.h` | Cos | matched |  | 09/02/2026 17:05:19 | GetDispenserManager is a COM-factory pattern; comsvcs.h already accepted. |
-| `muiload.h` | Intl | remaining |  |  |  |
+| `muiload.h` | Intl | matched |  | 09/02/2026 19:54:02 | HINSTANCE/HMODULE already correctly covered via existing autoTypes.json CloseApi=FreeLibrary entry. |
 | `mxdc.h` | Gdi, Printing | remaining |  |  |  |
 | `namedpipeapi.h` | Pipes | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `napmicrosoftvendorids.h` | NetworkAccessProtection | matched |  | 09/02/2026 17:58:11 | Integer constants only, no functions. |
@@ -1041,7 +1041,7 @@
 | `sqlspi.h` | Search | remaining |  |  |  |
 | `sqltypes.h` | Search | remaining |  |  |  |
 | `sqlucode.h` | Search | remaining |  |  |  |
-| `srpapi.h` | Edp | remaining |  |  |  |
+| `srpapi.h` | Edp | blocked |  | 09/02/2026 19:54:02 | SrpCreateThreadNetworkContext populates HTHREAD_NETWORK_CONTEXT.ThreadContext, a generic HANDLE field. |
 | `srrestoreptapi.h` | Sr | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `sslprovider.h` | Security.Cryptography | remaining |  |  |  |
 | `sspi.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
@@ -1101,7 +1101,7 @@
 | `tnef.h` | Tapi3 | remaining |  |  |  |
 | `tokenbinding.h` | Identity | matched |  | 09/02/2026 19:35:00 | All outputs are generic heap-allocated buffers/transparent structs (HeapFree convention), not distinctly-named opaque handles. |
 | `tom.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
-| `tpcerror.h` | Tablet | remaining |  |  |  |
+| `tpcerror.h` | Tablet | matched |  | 09/02/2026 19:54:02 | HRESULT constants/macros only, no functions. |
 | `tpcshrd.h` | Tablet | remaining |  |  |  |
 | `TpmVscAttestation.h` | Security.Tpm | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
 | `tpmvscmgr.h` | Security.Tpm | remaining |  |  |  |
@@ -1155,7 +1155,7 @@
 | `vdserr.h` | VirtualDiskService | remaining |  |  |  |
 | `vdslun.h` | VirtualDiskService | matched |  | 09/02/2026 19:50:38 | Enums/structs + MIDL boilerplate only, no functions. |
 | `vdssys.h` | VirtualDiskService, VSS | remaining |  |  |  |
-| `VersionHelpers.h` | SystemInformation | remaining |  |  |  |
+| `VersionHelpers.h` | SystemInformation | matched |  | 09/02/2026 19:54:02 | All functions are inline, no scrapable extern declarations. |
 | `vfw.h` | Multimedia | remaining |  |  |  |
 | `vfwext.h` | Multimedia | matched |  | 09/02/2026 18:35:09 | Constants + callback-signature typedefs only, no functions. |
 | `vfwmsgs.h` | Media.DShow | remaining |  |  |  |
