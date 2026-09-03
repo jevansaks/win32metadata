@@ -3525,3 +3525,9 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - cscobj.h, uianimation.h, xenroll.h, objidlbase.h: COM vtable-only headers, clean.
 - mmc.h: COM vtable methods + 5 STDAPI helpers using generic LONG_PTR notify handle (no producer/distinct typedef in this header), generic/shared-type blocker class 2, clean.
 - Ledger: 1292 accepted-normalized, 59 blocked, 52 pending (1351/1403 = 96.3%).
+
+## Batch 227 (2a14d498 -> next)
+- msfeeds.h, bdaiface.h, wdstptmgmt.h: COM vtable-only headers, clean.
+- portabledevice.h: COM interfaces + 2 macro-generated WPD command-access-map helper functions (no handle-ownership pattern), clean.
+- nserror.h: error-code constants only, clean.
+- Ledger: 1297 accepted-normalized, 59 blocked, 47 pending (1356/1403 = 96.6%).

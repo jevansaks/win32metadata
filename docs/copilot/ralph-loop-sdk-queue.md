@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:45:19Z
+- Generated: 2026-09-03T11:47:23Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1292
+- Matched: 1297
 - In progress: 0
 - Blocked: 59
-- Remaining: 52
+- Remaining: 47
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -102,7 +102,7 @@
 | `bcp47mrm.h` | Intl | matched |  | 09/02/2026 16:53:36 | No handle-producing functions. |
 | `bcrypt_provider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bcrypt_provider.h.md |
 | `bcrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; unrelated zz-crypto-security-enums patch verified compatible via full sequential forward replay. |
-| `bdaiface.h` | Media.DShow, MsTv | remaining |  |  |  |
+| `bdaiface.h` | Media.DShow, MsTv | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/bdaiface.h.md |
 | `bdamedia.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdamedia.h.md |
 | `bdatif.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatif.h.md |
 | `bdatypes.h` | Media.DShow, MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bdatypes.h.md |
@@ -723,7 +723,7 @@
 | `msdrmerror.h` | Rm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdrmerror.h.md |
 | `msdrmgetinfo.h` | Rm | matched |  | 09/02/2026 21:08:27 | String constants only, no functions. |
 | `msdshape.h` | Search | matched |  | 09/02/2026 17:51:18 | Constants/enums only, no functions. |
-| `msfeeds.h` | Wmp | remaining |  |  |  |
+| `msfeeds.h` | Wmp | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msfeeds.h.md |
 | `msfeedsid.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msfeedsid.h.md |
 | `mshtmcid.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmcid.h.md |
 | `mshtmdid.h` | MsHtml | remaining |  |  |  |
@@ -793,7 +793,7 @@
 | `notificationactivationcallback.h` | Win32_Tile_Badge_Notif | matched |  | 09/02/2026 20:22:05 | COM interface method only, out of scope. |
 | `Npapi.h` | Wnet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/Npapi.h.md |
 | `nsemail.h` | WinSock | matched |  | 09/02/2026 20:28:23 | Enums/structs only, no functions. |
-| `nserror.h` | Multimedia | remaining |  |  |  |
+| `nserror.h` | Multimedia | matched |  |  | Investigated; error-code constants only, no functions. See docs/copilot/header-reports/nserror.h.md |
 | `nspapi.h` | WinSock | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `ntdd1394.h` | Devices.1394 | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `ntddbeep.h` | Devices.Beep | matched | copilot | 09/03/2026 04:05:00 | No patch needed; data-structure-only header. |
@@ -871,7 +871,7 @@
 | `pluginauthenticator.h` | WebAuthn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pluginauthenticator.h.md |
 | `pnpxassoc.h` | FunctionDiscovery, WebServicesOnDevices | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/pnpxassoc.h.md |
 | `poclass.h` | Power | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/poclass.h.md |
-| `portabledevice.h` | WpdSdk | remaining |  |  |  |
+| `portabledevice.h` | WpdSdk | matched |  |  | Investigated; COM interfaces + 2 macro-generated WPD command-access-map helper functions (no handle-ownership pattern), clean. See docs/copilot/header-reports/PortableDevice.h.md |
 | `portabledeviceapi.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceapi.h.md |
 | `portabledeviceconnectapi.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceconnectapi.h.md |
 | `portabledevicetypes.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledevicetypes.h.md |
@@ -1205,7 +1205,7 @@
 | `wdspxe.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdstci.h` | Wds | matched |  | 09/02/2026 20:53:10 | Constants/enums/structs only, no functions. |
 | `wdstpdi.h` | Wds | blocked |  | 09/02/2026 20:25:02 | WdsTransportProviderCreateInstance/OpenContent produce generic HANDLE via direct out-param. |
-| `wdstptmgmt.h` | Wds | remaining |  |  |  |
+| `wdstptmgmt.h` | Wds | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/WdsTptMgmt.h.md |
 | `wdstptmgmtmsg.h` | Wds | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdstptmgmtmsg.h.md |
 | `weakreference.h` | WinRT | matched |  | 09/02/2026 21:24:15 | COM/WinRT interface methods only, out of scope. |
 | `webapplication.h` | Debug.WebApp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/webapplication.h.md |

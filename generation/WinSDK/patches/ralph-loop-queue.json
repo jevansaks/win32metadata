@@ -830,10 +830,10 @@
   {
     "header": "bdaiface.h",
     "partition": "Media.DShow, MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/bdaiface.h.md",
     "_source": "header-progress"
   },
   {
@@ -6419,10 +6419,10 @@
   {
     "header": "msfeeds.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msfeeds.h.md",
     "_source": "header-progress"
   },
   {
@@ -7049,10 +7049,10 @@
   {
     "header": "nserror.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; error-code constants only, no functions. See docs/copilot/header-reports/nserror.h.md",
     "_source": "header-progress"
   },
   {
@@ -7751,10 +7751,10 @@
   {
     "header": "portabledevice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM interfaces + 2 macro-generated WPD command-access-map helper functions (no handle-ownership pattern), clean. See docs/copilot/header-reports/PortableDevice.h.md",
     "_source": "header-progress"
   },
   {
@@ -10757,10 +10757,10 @@
   {
     "header": "wdstptmgmt.h",
     "partition": "Wds",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/WdsTptMgmt.h.md",
     "_source": "header-progress"
   },
   {
