@@ -2844,6 +2844,8 @@
     "Namespace": "Windows.Win32.System.Performance",
     "Name": "PDH_HCOUNTER",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "PdhRemoveCounter",
+    "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
   },
   {

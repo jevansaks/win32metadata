@@ -3118,3 +3118,13 @@ Ledger: 1056 accepted-normalized, 31 blocked, 316 pending (1087/1403 classified)
 - **qmgr.h** (Bits): COM vtable only. Clean.
 
 Ledger: 1061 accepted-normalized, 31 blocked, 311 pending (1092/1403 classified).
+
+## Batch 181 (2026-09-03 02:26): pdh.h, iwscapi.h, ws2def.h, ntiologc.h, audiopolicy.h
+
+- **pdh.h** (Perf): PRODUCER-SITE FIX - filled missing CloseApi/InvalidHandleValues on pre-existing PDH_HCOUNTER autoTypes.json entry (CloseApi PdhRemoveCounter, InvalidHandleValues [-1,0], matching sibling PDH_HLOG/PDH_HQUERY convention). Validated via ScrapeHeaders x64 Perf - 0 errors.
+- **iwscapi.h** (FileHistory/SecurityCenter): COM vtable only. Clean.
+- **ws2def.h** (IpHlp/WinSock): structs/constants only. Clean.
+- **ntiologc.h** (Foundation): I/O error-code constants only. Clean.
+- **audiopolicy.h** (Audio): COM vtable only. Clean.
+
+Ledger: 1066 accepted-normalized, 31 blocked, 306 pending (1097/1403 classified).

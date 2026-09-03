@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:22:05Z
+- Generated: 2026-09-03T09:25:47Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1061
+- Matched: 1066
 - In progress: 0
 - Blocked: 31
-- Remaining: 311
+- Remaining: 306
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -86,7 +86,7 @@
 | `audioengineendpoint.h` | Audio.Endpoints, TermServ | remaining |  |  |  |
 | `audioengineextensionapo.h` | Audio.Apo | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioengineextensionapo.h.md |
 | `audiomediatype.h` | Audio.Apo | matched |  | 09/02/2026 20:53:11 | COM interface + standard COM factory functions only. |
-| `audiopolicy.h` | Audio | remaining |  |  |  |
+| `audiopolicy.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audiopolicy.h.md |
 | `audiosessiontypes.h` | Audio | matched |  | 09/02/2026 21:12:30 | Enums only, no functions. |
 | `audiostatemonitorapi.h` | Audio | matched |  | 09/02/2026 19:28:18 | Handle-producing method is a COM vtable method, out of scope; extern functions are COM factories. |
 | `austream.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/austream.h.md |
@@ -576,7 +576,7 @@
 | `issper16.h` | Identity | matched |  | 09/02/2026 21:08:27 | Constants only, no functions. |
 | `iswindowarranged.h` | MenuRc | matched |  | 09/02/2026 16:49:01 | Query-only function taking HWND input; no handle production. |
 | `isysmon.h` | Perf | remaining |  |  |  |
-| `iwscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |
+| `iwscapi.h` | FileHistory, SecurityCenter | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iwscapi.h.md |
 | `iwstdec.h` | Media.DShow | matched |  | 09/02/2026 19:14:35 | COM interface with plain-value parameters only, no handle. |
 | `joystickapi.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/joystickapi.h.md |
 | `jscript9diag.h` | Debug.ActiveScript | remaining |  |  |  |
@@ -810,7 +810,7 @@
 | `ntdef.h` | Kernel | remaining |  |  |  |
 | `ntdsapi.h` | ActiveDirectory | remaining |  |  |  |
 | `ntdsbmsg.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntdsbmsg.h.md |
-| `ntiologc.h` | Foundation | remaining |  |  |  |
+| `ntiologc.h` | Foundation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntiologc.h.md |
 | `ntioring_x.h` | Fs | matched |  | 09/02/2026 20:38:46 | Enums/constants only, no functions in this types header. |
 | `ntldap.h` | Ldap | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntldap.h.md |
 | `ntmsapi.h` | Fs | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
@@ -853,7 +853,7 @@
 | `pathcch.h` | Shell | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `pbdaerrors.h` | Media.DShow | matched |  | 09/02/2026 20:13:28 | HRESULT constants/macros only, no functions. |
 | `pchannel.h` | TermServ | matched |  | 09/02/2026 21:59:01 | Constants/transparent structs only, no functions. |
-| `pdh.h` | Perf | remaining |  |  |  |
+| `pdh.h` | Perf | matched |  |  | Producer-site fix: filled missing CloseApi/InvalidHandleValues on pre-existing PDH_HCOUNTER autoTypes.json entry (CloseApi PdhRemoveCounter). See docs/copilot/header-reports/pdh.h.md |
 | `pdhmsg.h` | Perf | matched |  | 09/02/2026 20:16:15 | Message-compiler constants only, no functions. |
 | `peerdist.h` | P2p | matched |  |  | Genuine producer-site fix: added 4 autoTypes.json entries (PEERDIST_INSTANCE_HANDLE/STREAM/CONTENTINFO/CONTENT_HANDLE). See docs/copilot/header-reports/peerdist.h.md |
 | `peninputpanel.h` | Tablet | remaining |  |  |  |
@@ -1356,7 +1356,7 @@
 | `wrdsgraphicschannels.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wrdsgraphicschannels.h.md |
 | `ws2atm.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2atm.h.md |
 | `ws2bth.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2bth.h.md |
-| `ws2def.h` | IpHlp, WinSock | remaining |  |  |  |
+| `ws2def.h` | IpHlp, WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2def.h.md |
 | `ws2ipdef.h` | IpHlp, WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2ipdef.h.md |
 | `ws2spi.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `ws2tcpip.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |

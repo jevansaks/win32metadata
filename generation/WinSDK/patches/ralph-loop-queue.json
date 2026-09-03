@@ -686,10 +686,10 @@
   {
     "header": "audiopolicy.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audiopolicy.h.md",
     "_source": "header-progress"
   },
   {
@@ -5096,10 +5096,10 @@
   {
     "header": "iwscapi.h",
     "partition": "FileHistory, SecurityCenter",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iwscapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -7202,10 +7202,10 @@
   {
     "header": "ntiologc.h",
     "partition": "Foundation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntiologc.h.md",
     "_source": "header-progress"
   },
   {
@@ -7589,10 +7589,10 @@
   {
     "header": "pdh.h",
     "partition": "Perf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: filled missing CloseApi/InvalidHandleValues on pre-existing PDH_HCOUNTER autoTypes.json entry (CloseApi PdhRemoveCounter). See docs/copilot/header-reports/pdh.h.md",
     "_source": "header-progress"
   },
   {
@@ -12116,10 +12116,10 @@
   {
     "header": "ws2def.h",
     "partition": "IpHlp, WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2def.h.md",
     "_source": "header-progress"
   },
   {
