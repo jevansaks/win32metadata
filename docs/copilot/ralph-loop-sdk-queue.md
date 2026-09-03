@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:32:54Z
+- Generated: 2026-09-03T01:35:18Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 399
+- Matched: 404
 - In progress: 0
 - Blocked: 8
-- Remaining: 996
+- Remaining: 991
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -708,7 +708,7 @@
 | `msclus.h` | MsCs | remaining |  |  |  |
 | `mscoree.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `msctf.h` | Tsf | remaining |  |  |  |
-| `msctfmonitorapi.h` | Tsf | remaining |  |  |  |
+| `msctfmonitorapi.h` | Tsf | matched |  | 09/02/2026 18:35:09 | HANDLE is a caller-supplied input, not produced here. |
 | `msdadc.h` | Search | remaining |  |  |  |
 | `msdaguid.h` | Search | matched |  | 09/02/2026 18:06:26 | GUID constants only, no functions. |
 | `msdaora.h` | Search | matched |  | 09/02/2026 18:29:38 | CLSID/GUID constants only, no functions. |
@@ -1084,7 +1084,7 @@
 | `taskdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `taskschd.h` | TaskSchd | remaining |  |  |  |
 | `tbs.h` | Tbs | matched | copilot | 09/03/2026 04:05:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
-| `tcerror.h` | Qos | remaining |  |  |  |
+| `tcerror.h` | Qos | matched |  | 09/02/2026 18:35:09 | Error-code constants only, no functions. |
 | `tcguid.h` | Qos | remaining |  |  |  |
 | `tcpxcv.h` | Printing | remaining |  |  |  |
 | `tdh.h` | Etw | remaining |  |  |  |
@@ -1157,7 +1157,7 @@
 | `vdssys.h` | VirtualDiskService, VSS | remaining |  |  |  |
 | `VersionHelpers.h` | SystemInformation | remaining |  |  |  |
 | `vfw.h` | Multimedia | remaining |  |  |  |
-| `vfwext.h` | Multimedia | remaining |  |  |  |
+| `vfwext.h` | Multimedia | matched |  | 09/02/2026 18:35:09 | Constants + callback-signature typedefs only, no functions. |
 | `vfwmsgs.h` | Media.DShow | remaining |  |  |  |
 | `vidcap.h` | Media.DShow | remaining |  |  |  |
 | `videoacc.h` | Media.DShow | remaining |  |  |  |
@@ -1226,7 +1226,7 @@
 | `wiamindr.h` | Wia | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include wiamindr_lh.h/wiamindr_xp.h); no direct declarations. |
 | `wiatwcmp.h` | Wia | matched |  | 09/02/2026 18:00:53 | Data struct + constants only, no functions. |
 | `wiavideo.h` | Wia | remaining |  |  |  |
-| `wiawsdsc.h` | Wia | remaining |  |  |  |
+| `wiawsdsc.h` | Wia | matched |  | 09/02/2026 18:35:09 | Property-ID constants only, no functions. |
 | `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `winber.h` | Ldap | remaining |  |  |  |
 | `winbio_adapter.h` | SecBitomet | remaining |  |  |  |
@@ -1361,7 +1361,7 @@
 | `ws2spi.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `ws2tcpip.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wsbapp.h` | Wsb | remaining |  |  |  |
-| `wsbapperror.h` | Wsb | remaining |  |  |  |
+| `wsbapperror.h` | Wsb | matched |  | 09/02/2026 18:35:09 | HRESULT error-code constants/macros only, no functions. |
 | `wsbonline.h` | Wsb | matched |  | 09/02/2026 18:32:46 | Struct/GUID input-only API, no handle. |
 | `wsbonlineerror.h` | Wsb | remaining |  |  |  |
 | `wscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |

@@ -1359,3 +1359,18 @@ wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 1001 p
 
 **Ledger status:** 399 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 996 pending.
+
+## 2026-09-02 18:35:29 UTC - Batch scraping-investigation-44
+
+**Headers:** tcerror.h, vfwext.h, wiawsdsc.h, wsbapperror.h, msctfmonitorapi.h
+**Partitions scraped:** Tsf (x86; 0 warnings/errors)
+
+- tcerror.h: Traffic Control error-code constants only, no functions. Clean.
+- vfwext.h: constants + callback-signature typedefs only, no DllImport functions. Clean.
+- wiawsdsc.h: custom WIA property-ID constants only, no functions. Clean.
+- wsbapperror.h: HRESULT error-code constants/macros only, no functions. Clean.
+- msctfmonitorapi.h: DoMsCtfMonitor's HANDLE is a caller-supplied input (event handle), not produced
+  here. Clean.
+
+**Ledger status:** 404 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 991 pending.

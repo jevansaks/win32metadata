@@ -6284,10 +6284,10 @@
   {
     "header": "msctfmonitorapi.h",
     "partition": "Tsf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:35:09Z",
+    "notes": "HANDLE is a caller-supplied input, not produced here.",
     "_source": "header-progress"
   },
   {
@@ -9668,10 +9668,10 @@
   {
     "header": "tcerror.h",
     "partition": "Qos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:35:09Z",
+    "notes": "Error-code constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10325,10 +10325,10 @@
   {
     "header": "vfwext.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:35:09Z",
+    "notes": "Constants + callback-signature typedefs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10946,10 +10946,10 @@
   {
     "header": "wiawsdsc.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:35:09Z",
+    "notes": "Property-ID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -12161,10 +12161,10 @@
   {
     "header": "wsbapperror.h",
     "partition": "Wsb",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:35:09Z",
+    "notes": "HRESULT error-code constants/macros only, no functions.",
     "_source": "header-progress"
   },
   {
