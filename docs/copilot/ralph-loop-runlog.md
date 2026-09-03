@@ -1706,3 +1706,23 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   out of scope. Clean.
 
 **Ledger status:** 490 accepted-normalized, 17 blocked, 896 pending.
+
+## 2026-09-02 19:42:27 UTC - Batch scraping-investigation-64
+
+**Headers:** mmsystem.h, wiadevd.h, dmodshow.h, computestorage.h, powersetting.h
+**Partitions scraped (x64):** Wia, HostComputeSystem, Power (0 errors each); Media.DShow reused from batch 60
+
+- mmsystem.h: pure umbrella redirect (mmsyscom.h/mciapi.h/mmiscapi.h/mmiscapi2.h/playsoundapi.h/
+  mmeapi.h/timeapi.h/joystickapi.h), all sub-headers already tracked ledger items. Clean.
+- wiadevd.h: DeviceDialog extern function has no opaque-handle output; GetDeviceIcon/
+  GetDeviceBitmapLogo are COM vtable methods, out of scope. Clean.
+- dmodshow.h: COM interface (IDMOWrapperFilter) + GUID constants only, no extern functions. Clean.
+- computestorage.h: Hcs* functions take pre-owned HANDLE as input only, never produce one. Clean.
+- powersetting.h: **blocked** - PowerRegisterForEffectivePowerModeNotifications/
+  PowerUnregisterFromEffectivePowerModeNotifications use a generic PVOID direct-out-param
+  (established blocker class). The header's other handle type, HPOWERNOTIFY, is already
+  correctly covered via autoTypes.json's existing complete entry (CloseApi mechanism attaches
+  to the single-purpose type itself, distinct from the newer per-producer inline annotation
+  policy that targets shared/generic types like windef.h's HWND) - no new annotation needed there.
+
+**Ledger status:** 494 accepted-normalized, 18 blocked, 891 pending.

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:37:35Z
+- Generated: 2026-09-03T02:42:27Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 490
+- Matched: 494
 - In progress: 0
-- Blocked: 17
-- Remaining: 896
+- Blocked: 18
+- Remaining: 891
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -176,7 +176,7 @@
 | `compstui.h` | Printing | remaining |  |  |  |
 | `computecore.h` | HostComputeSystem | remaining |  |  |  |
 | `computenetwork.h` | HostComputeNetwork | remaining |  |  |  |
-| `computestorage.h` | HostComputeSystem | remaining |  |  |  |
+| `computestorage.h` | HostComputeSystem | matched |  | 09/02/2026 19:42:09 | No opaque handles produced; HANDLE params are pre-owned caller inputs. |
 | `comsvcs.h` | Com.Events, Cos | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `consoleapis.h` | Console | matched |  | 09/02/2026 17:23:42 | HANDLE/HWND fields are caller-supplied input references, not produced/owned here; distinct from the wincon.h blocker (different functions). |
 | `contactaggregation.h` | WinContacts | remaining |  |  |  |
@@ -310,7 +310,7 @@
 | `dls2.h` | Audio.DirectMusic | remaining |  |  |  |
 | `dmemmgr.h` | DirectDraw | remaining |  |  |  |
 | `dmerror.h` | TransactionServer | remaining |  |  |  |
-| `dmodshow.h` | Media.DShow | remaining |  |  |  |
+| `dmodshow.h` | Media.DShow | matched |  | 09/02/2026 19:42:09 | COM interface + GUID constants only, no extern functions. |
 | `dmoreg.h` | Media.DxMediaObjects | matched |  | 09/02/2026 19:32:00 | Registration/enum functions operate on CLSIDs and standard COM interface pointers only. |
 | `dmort.h` | Media.DxMediaObjects | matched |  | 09/02/2026 18:47:23 | DMO_MEDIA_TYPE alloc/free is a transparent-struct memory pattern, not an opaque handle. |
 | `dmprocessxmlfiltered.h` | WpdSdk | matched |  | 09/02/2026 17:38:44 | BSTR output, not HANDLE-family. |
@@ -683,7 +683,7 @@
 | `mmreg.h` | Audio.DirectMusic, Media.DShow, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmstream.h` | Media.DShow | remaining |  |  |  |
 | `mmsyscom.h` | Media | remaining |  |  |  |
-| `mmsystem.h` | Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Base, Devices.Properties, FileHistory, GamingDvcInfo, Gdi, Hid, IO, Multimedia, WinProg | remaining |  |  |  |
+| `mmsystem.h` | Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Base, Devices.Properties, FileHistory, GamingDvcInfo, Gdi, Hid, IO, Multimedia, WinProg | matched |  | 09/02/2026 19:42:09 | Pure umbrella redirect; all sub-headers already individually tracked. |
 | `mobsync.h` | Shell | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mpconfig.h` | Media.DShow | remaining |  |  |  |
 | `mpeg2bits.h` | MsTv | matched |  | 09/02/2026 17:48:13 | Bitfield data structs only, no functions. |
@@ -876,7 +876,7 @@
 | `portabledeviceconnectapi.h` | WpdSdk | remaining |  |  |  |
 | `portabledevicetypes.h` | WpdSdk | remaining |  |  |  |
 | `powerbase.h` | Power | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
-| `powersetting.h` | Power | remaining |  |  |  |
+| `powersetting.h` | Power | blocked |  | 09/02/2026 19:42:09 | PowerRegisterForEffectivePowerModeNotifications outputs generic PVOID via direct out-param; HPOWERNOTIFY portion already covered by autoTypes.json. |
 | `powrprof.h` | Power | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `prcomoem.h` | Printing | remaining |  |  |  |
 | `prdrvcom.h` | Printing | remaining |  |  |  |
@@ -1219,7 +1219,7 @@
 | `wheadef.h` | Debug | remaining |  |  |  |
 | `wia.h` | Wia | matched |  | 09/02/2026 16:53:36 | Redirect-only; 185 functions all COM/RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wiadef.h` | Wia | remaining |  |  |  |
-| `wiadevd.h` | Wia | remaining |  |  |  |
+| `wiadevd.h` | Wia | matched |  | 09/02/2026 19:42:09 | Only extern function takes no opaque-handle output; other handle producers are COM vtable methods. |
 | `wiaintfc.h` | Wia | matched |  | 09/02/2026 17:05:19 | Device-interface GUID constant only, no functions. |
 | `wiamicro.h` | Wia | remaining |  |  |  |
 | `wiamindr_lh.h` | Wia | remaining |  |  |  |

@@ -1496,10 +1496,10 @@
   {
     "header": "computestorage.h",
     "partition": "HostComputeSystem",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:42:09Z",
+    "notes": "No opaque handles produced; HANDLE params are pre-owned caller inputs.",
     "_source": "header-progress"
   },
   {
@@ -2702,10 +2702,10 @@
   {
     "header": "dmodshow.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:42:09Z",
+    "notes": "COM interface + GUID constants only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -6059,10 +6059,10 @@
   {
     "header": "mmsystem.h",
     "partition": "Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Base, Devices.Properties, FileHistory, GamingDvcInfo, Gdi, Hid, IO, Multimedia, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:42:09Z",
+    "notes": "Pure umbrella redirect; all sub-headers already individually tracked.",
     "_source": "header-progress"
   },
   {
@@ -7796,10 +7796,10 @@
   {
     "header": "powersetting.h",
     "partition": "Power",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:42:09Z",
+    "notes": "PowerRegisterForEffectivePowerModeNotifications outputs generic PVOID via direct out-param; HPOWERNOTIFY portion already covered by autoTypes.json.",
     "_source": "header-progress"
   },
   {
@@ -10883,10 +10883,10 @@
   {
     "header": "wiadevd.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:42:09Z",
+    "notes": "Only extern function takes no opaque-handle output; other handle producers are COM vtable methods.",
     "_source": "header-progress"
   },
   {
