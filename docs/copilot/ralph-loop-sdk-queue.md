@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:09:33Z
+- Generated: 2026-09-03T02:12:15Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 448
+- Matched: 452
 - In progress: 0
-- Blocked: 14
-- Remaining: 941
+- Blocked: 15
+- Remaining: 936
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -448,7 +448,7 @@
 | `fttypes.h` | Fs | remaining |  |  |  |
 | `fullenumsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `functiondiscovery.h` | FunctionDiscovery | remaining |  |  |  |
-| `functiondiscoverycategories.h` | FunctionDiscovery | remaining |  |  |  |
+| `functiondiscoverycategories.h` | FunctionDiscovery | matched |  | 09/02/2026 19:12:01 | String constants only, no functions. |
 | `functiondiscoveryconstraints.h` | FunctionDiscovery | remaining |  |  |  |
 | `functiondiscoveryerror.h` | FunctionDiscovery | matched |  | 09/02/2026 18:03:29 | HRESULT error-code constants only, no functions. |
 | `functiondiscoverykeys_devpkey.h` | Audio | remaining |  |  |  |
@@ -616,7 +616,7 @@
 | `lmuse.h` | NetMgmt | remaining |  |  |  |
 | `lmuseflg.h` | NetMgmt | matched |  | 09/02/2026 17:23:42 | Constants/macro only, no functions. |
 | `lmwksta.h` | NetMgmt | remaining |  |  |  |
-| `loadperf.h` | FileHistory, Perf, WinProg | remaining |  |  |  |
+| `loadperf.h` | FileHistory, Perf, WinProg | matched |  | 09/02/2026 19:12:01 | String/flag-only API, no handle. |
 | `locationapi.h` | WinLocation | remaining |  |  |  |
 | `lowlevelmonitorconfigurationapi.h` | Monitor | matched |  | 09/02/2026 17:48:13 | All functions only consume an existing physical-monitor HANDLE; producer pair tracked separately under PhysicalMonitorEnumerationAPI.h (pending). |
 | `lzexpand.h` | Fs | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
@@ -949,7 +949,7 @@
 | `roerrorapi.h` | WinRT | remaining |  |  |  |
 | `rometadata.h` | WinRT.Metadata | matched |  | 09/02/2026 17:01:48 | COM QueryInterface-style factory (MetaDataGetDispenser), no raw HANDLE. |
 | `rometadataapi.h` | WinRT.Metadata | remaining |  |  |  |
-| `rometadataresolution.h` | WinRT.Metadata | remaining |  |  |  |
+| `rometadataresolution.h` | WinRT.Metadata | matched |  | 09/02/2026 19:12:01 | COM factory pattern + HSTRING outputs tracked separately under winstring.h. |
 | `roparameterizediid.h` | WinRT.Metadata | remaining |  |  |  |
 | `roregistrationapi.h` | WinRT | matched |  | 09/02/2026 19:06:16 | COM factory; HSTRING array ownership tracked separately under winstring.h. |
 | `rpc.h` | Rpc | remaining |  |  |  |
@@ -1195,7 +1195,7 @@
 | `wcnapi.h` | Wcn | matched |  | 09/02/2026 17:01:48 | Redirect-only; 0 functions in entire Wcn partition, no DECLARE_HANDLE. |
 | `wcnfunctiondiscoverykeys.h` | Wcn | matched |  | 09/02/2026 17:35:31 | GUID/PROPERTYKEY constants only, no functions. |
 | `wcsplugin.h` | Wcs | remaining |  |  |  |
-| `wct.h` | Base, Debug | remaining |  |  |  |
+| `wct.h` | Base, Debug | blocked | copilot | 09/02/2026 19:12:01 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
 | `WDBGEXTS.H` | Debug.Extensions | remaining |  |  |  |
 | `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |
 | `wdmguid.h` | DevInst | remaining |  |  |  |
@@ -1389,7 +1389,7 @@
 | `wsvns.h` | WinSock | matched |  | 09/02/2026 17:41:54 | Data struct + constants only, no functions. |
 | `wtsapi32.h` | TermServ | remaining |  |  |  |
 | `wtsdefs.h` | TermServ | remaining |  |  |  |
-| `wtshintapi.h` | TermServ | remaining |  |  |  |
+| `wtshintapi.h` | TermServ | matched |  | 09/02/2026 19:12:01 | HWND is an input; render hint ID is a plain UINT64, not a HANDLE. |
 | `wtsprotocol.h` | TermServ | remaining |  |  |  |
 | `wtypes.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, Properties, Registry, Shutdown, TransactionServer, WinProg | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `wtypesbase.h` | TransactionServer, WinSock | remaining |  |  |  |

@@ -3944,10 +3944,10 @@
   {
     "header": "functiondiscoverycategories.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:12:01Z",
+    "notes": "String constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5456,10 +5456,10 @@
   {
     "header": "loadperf.h",
     "partition": "FileHistory, Perf, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:12:01Z",
+    "notes": "String/flag-only API, no handle.",
     "_source": "header-progress"
   },
   {
@@ -8453,10 +8453,10 @@
   {
     "header": "rometadataresolution.h",
     "partition": "WinRT.Metadata",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:12:01Z",
+    "notes": "COM factory pattern + HSTRING outputs tracked separately under winstring.h.",
     "_source": "header-progress"
   },
   {
@@ -10667,10 +10667,10 @@
   {
     "header": "wct.h",
     "partition": "Base, Debug",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T19:12:01Z",
+    "notes": "Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h.",
     "_source": "header-progress"
   },
   {
@@ -12413,10 +12413,10 @@
   {
     "header": "wtshintapi.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:12:01Z",
+    "notes": "HWND is an input; render hint ID is a plain UINT64, not a HANDLE.",
     "_source": "header-progress"
   },
   {

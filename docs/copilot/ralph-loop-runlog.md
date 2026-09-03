@@ -1573,3 +1573,17 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   class as wslapi.h.
 
 **Ledger status:** 448 accepted-normalized, 14 blocked, 941 pending.
+
+## 2026-09-02 19:12:15 UTC - Batch scraping-investigation-55
+
+**Headers:** rometadataresolution.h, wct.h (blocked), wtshintapi.h, functiondiscoverycategories.h, loadperf.h
+**Partitions scraped:** TermServ, Perf (x86; 0 errors)
+
+- rometadataresolution.h: COM factory pattern + HSTRING outputs tracked separately under winstring.h. Clean.
+- wct.h: BLOCKED. OpenThreadWaitChainSession returns HWCT (typedef LPVOID) directly as function return
+  value - known return-value-handle blocker class.
+- wtshintapi.h: HWND is an input; render hint ID is plain UINT64, not a HANDLE. Clean.
+- functiondiscoverycategories.h: string constants only, no functions. Clean.
+- loadperf.h: string/flag-only API, no handle. Clean.
+
+**Ledger status:** 452 accepted-normalized, 15 blocked, 936 pending.
