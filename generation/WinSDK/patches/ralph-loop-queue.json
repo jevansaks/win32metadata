@@ -515,10 +515,10 @@
   {
     "header": "appcompatapi.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:23:42Z",
+    "notes": "No handle involved.",
     "_source": "header-progress"
   },
   {
@@ -1514,10 +1514,10 @@
   {
     "header": "consoleapis.h",
     "partition": "Console",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:23:42Z",
+    "notes": "HANDLE/HWND fields are caller-supplied input references, not produced/owned here; distinct from the wincon.h blocker (different functions).",
     "_source": "header-progress"
   },
   {
@@ -3071,10 +3071,10 @@
   {
     "header": "dxcore.h",
     "partition": "Debug, DXCore",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:23:42Z",
+    "notes": "COM factory pattern (DXCoreCreateAdapterFactory).",
     "_source": "header-progress"
   },
   {
@@ -5438,10 +5438,10 @@
   {
     "header": "lmuseflg.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:23:42Z",
+    "notes": "Constants/macro only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7508,10 +7508,10 @@
   {
     "header": "opmxbox.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:23:42Z",
+    "notes": "Enum-output-only API, no handle.",
     "_source": "header-progress"
   },
   {
@@ -8354,10 +8354,10 @@
   {
     "header": "resourceindexer.h",
     "partition": "MenuRc",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T17:23:42Z",
+    "notes": "Deferred: genuine ownership pair uses generic PVOID rather than a distinct handle typedef; needs a design decision to introduce a named type before an annotation fix is possible.",
     "_source": "header-progress"
   },
   {

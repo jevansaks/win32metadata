@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:19:36Z
+- Generated: 2026-09-03T00:23:50Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 297
+- Matched: 302
 - In progress: 0
-- Blocked: 4
-- Remaining: 1102
+- Blocked: 5
+- Remaining: 1096
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -67,7 +67,7 @@
 | `animationcoordinator.h` | Shell | remaining |  |  |  |
 | `apdevpkey.h` | Base, Devices.Properties | matched |  | 09/02/2026 17:05:19 | Device property key constant only, no functions. |
 | `apiquery2.h` | FileHistory, WinProg | remaining |  |  |  |
-| `appcompatapi.h` | FileHistory, WinProg | remaining |  |  |  |
+| `appcompatapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:23:42 | No handle involved. |
 | `appmgmt.h` | Policy, Shell | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `appmodel.h` | AppxPackaging | remaining |  |  |  |
 | `appnotify.h` | Shell | remaining |  |  |  |
@@ -178,7 +178,7 @@
 | `computenetwork.h` | HostComputeNetwork | remaining |  |  |  |
 | `computestorage.h` | HostComputeSystem | remaining |  |  |  |
 | `comsvcs.h` | Com.Events, Cos | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
-| `consoleapis.h` | Console | remaining |  |  |  |
+| `consoleapis.h` | Console | matched |  | 09/02/2026 17:23:42 | HANDLE/HWND fields are caller-supplied input references, not produced/owned here; distinct from the wincon.h blocker (different functions). |
 | `contactaggregation.h` | WinContacts | remaining |  |  |  |
 | `contactdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `contentpartner.h` | Wmp | remaining |  |  |  |
@@ -351,7 +351,7 @@
 | `dwrite.h` | DirectWrite | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dxcapi.h` | Direct3DDxc | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
 | `dxcore_interface.h` | Debug, DXCore | remaining |  |  |  |
-| `dxcore.h` | Debug, DXCore | remaining |  |  |  |
+| `dxcore.h` | Debug, DXCore | matched |  | 09/02/2026 17:23:42 | COM factory pattern (DXCoreCreateAdapterFactory). |
 | `dxgi.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dxgi1_2.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dxgi1_3.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
@@ -614,7 +614,7 @@
 | `lmstats.h` | Fs | remaining |  |  |  |
 | `lmsvc.h` | NetMgmt | remaining |  |  |  |
 | `lmuse.h` | NetMgmt | remaining |  |  |  |
-| `lmuseflg.h` | NetMgmt | remaining |  |  |  |
+| `lmuseflg.h` | NetMgmt | matched |  | 09/02/2026 17:23:42 | Constants/macro only, no functions. |
 | `lmwksta.h` | NetMgmt | remaining |  |  |  |
 | `loadperf.h` | FileHistory, Perf, WinProg | remaining |  |  |  |
 | `locationapi.h` | WinLocation | remaining |  |  |  |
@@ -844,7 +844,7 @@
 | `oobenotification.h` | WindowsSetupAndMigration | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `openservice.h` | InternetExplorer | remaining |  |  |  |
 | `opmapi.h` | Mf | remaining |  |  |  |
-| `opmxbox.h` | Mf | remaining |  |  |  |
+| `opmxbox.h` | Mf | matched |  | 09/02/2026 17:23:42 | Enum-output-only API, no handle. |
 | `p2p.h` | P2p | remaining |  |  |  |
 | `packagevirtualizationcontext.h` | AppxPackaging | remaining |  |  |  |
 | `pacmanclientapi.h` | Setup | remaining |  |  |  |
@@ -938,7 +938,7 @@
 | `rend.h` | Tapi3 | remaining |  |  |  |
 | `rendezvoussession.h` | RemoteAssist | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no function surface. |
 | `resapi.h` | MsCs | remaining |  |  |  |
-| `resourceindexer.h` | MenuRc | remaining |  |  |  |
+| `resourceindexer.h` | MenuRc | blocked | copilot | 09/02/2026 17:23:42 | Deferred: genuine ownership pair uses generic PVOID rather than a distinct handle typedef; needs a design decision to introduce a named type before an annotation fix is possible. |
 | `restartmanager.h` | RstMgr | matched | copilot | 09/03/2026 04:35:00 | No patch needed; no ownership-relevant handle type. |
 | `restrictederrorinfo.h` | WinRT | remaining |  |  |  |
 | `richedit.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |

@@ -952,3 +952,28 @@ is already tracked" shortcut is NOT safe when the included sub-headers are untra
 scrape is required in that case to avoid missing genuine ownership gaps (as almost happened here).
 
 **Ledger status:** 297 accepted-normalized, 4 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h, wincon.h), 1102 pending.
+
+## 2026-09-02 17:24:06 UTC - Batch scraping-investigation-23
+
+**Headers:** dxcore.h, lmuseflg.h, resourceindexer.h (blocked), opmxbox.h, appcompatapi.h, consoleapis.h
+**Partitions scraped:** DXCore, Mf, WinProg (x86; 0 errors; WinProg shows 1 pre-existing unrelated
+cross-partition remap warning for _CERT_CONTEXT)
+
+- dxcore.h: DXCoreCreateAdapterFactory is a clean COM factory pattern. Clean.
+- lmuseflg.h: force-level constants + macro only, no functions. Clean.
+- **resourceindexer.h: BLOCKED (new blocker sub-class).** CreateResourceIndexer/DestroyResourceIndexer
+  form a genuine ownership pair via an out-param (_Outptr_ PVOID*) - unlike the return-value class
+  (getprocesshandlefromhwnd.h/wab.h/wincon.h), the *placement* here is correct. The blocker is that the
+  parameter type is generic untyped PVOID, not a distinctly-named handle typedef like every other fixed
+  case this session (TBS_HCONTEXT, BCRYPT_ALG_HANDLE, etc). Since RAIIFree/InvalidHandleValue attach to
+  the parameter's TYPE declaration (confirmed via the WinmdUtils dump investigation), annotating bare
+  PVOID would incorrectly apply RAIIFree(DestroyResourceIndexer) to every void* in the published
+  metadata. Fixing this requires first introducing a new named handle typedef - a design decision.
+- opmxbox.h: enum-output-only API (OPMXboxEnableHDCP/GetHDCPStatus/GetHDCPStatusAndType), no handle. Clean.
+- appcompatapi.h: ApphelpCheckShellObject outputs a plain ULONGLONG, no handle. Clean.
+- consoleapis.h: HANDLE/HWND struct fields are caller-supplied input references (not produced here);
+  ConsoleControl itself has no handle parameter. Distinct from the wincon.h blocker (different
+  functions - CreateConsoleScreenBuffer et al are NOT declared here). Clean.
+
+**Ledger status:** 302 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h), 1096 pending.
