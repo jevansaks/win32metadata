@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:51:06Z
+- Generated: 2026-09-03T06:53:49Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 816
+- Matched: 821
 - In progress: 0
 - Blocked: 31
-- Remaining: 556
+- Remaining: 551
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -193,7 +193,7 @@
 | `credentialprovider.h` | Shell | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `credssp.h` | Credentials | matched |  | 09/02/2026 18:38:01 | Structs/enum/constants only; one function returns a non-owned static function table. |
 | `cryptcat.h` | Security.Cryptography.Catalog | matched |  | 09/02/2026 17:16:10 | Consumer-only functions (enumerate existing CRYPTCATCDF); producer pair lives in mscat.h (separately tracked, pending). |
-| `cryptdlg.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
+| `cryptdlg.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cryptdlg.h.md |
 | `cryptuiapi.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cryptxml.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cscapi.h` | Of | matched |  | 09/02/2026 18:20:58 | BOOL-output-only API, no handle. |
@@ -578,7 +578,7 @@
 | `isysmon.h` | Perf | remaining |  |  |  |
 | `iwscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |
 | `iwstdec.h` | Media.DShow | matched |  | 09/02/2026 19:14:35 | COM interface with plain-value parameters only, no handle. |
-| `joystickapi.h` | Multimedia | remaining |  |  |  |
+| `joystickapi.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/joystickapi.h.md |
 | `jscript9diag.h` | Debug.ActiveScript | remaining |  |  |  |
 | `jsrt.h` | Js | matched |  | 09/02/2026 17:35:31 | Redirect-only; reachable branch (jsrt9.h) already tracked pending; chakrart.h unreachable in this partition. |
 | `jsrt9.h` | Js | remaining |  |  |  |
@@ -959,7 +959,7 @@
 | `rpcndr.h` | FileHistory, Rpc, WinProg | remaining |  |  |  |
 | `rpcnsi.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnsi.h.md |
 | `rpcnsip.h` | Rpc | matched |  | 09/02/2026 17:41:54 | Internal I_-prefixed RPC stub routines; RPC_BINDING_HANDLE canonical API tracked separately under rpcdce.h (pending). |
-| `rpcnterr.h` | Foundation | remaining |  |  |  |
+| `rpcnterr.h` | Foundation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnterr.h.md |
 | `rpcssl.h` | Rpc | matched |  | 09/02/2026 17:45:25 | RPC string-buffer output, not HANDLE-family. |
 | `rrascfg.h` | Eap | remaining |  |  |  |
 | `rtccore.h` | RealTimeCommunications | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
@@ -1198,7 +1198,7 @@
 | `wct.h` | Base, Debug | blocked | copilot | 09/02/2026 19:12:01 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
 | `WDBGEXTS.H` | Debug.Extensions | remaining |  |  |  |
 | `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |
-| `wdmguid.h` | DevInst | remaining |  |  |  |
+| `wdmguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdmguid.h.md |
 | `wdsbp.h` | Wds | blocked |  | 09/02/2026 21:24:15 | WdsBpParseInitialize/WdsBpInitialize produce generic HANDLE via direct out-param. |
 | `wdsclientapi.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdsmcerr.h` | Wds | remaining |  |  |  |
@@ -1246,7 +1246,7 @@
 | `windns.h` | Dns, IpHlp | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `windnsdef.h` | Dns | remaining |  |  |  |
 | `windot11.h` | Ndis, NWifi | remaining |  |  |  |
-| `windows.ai.machinelearning.native.h` | WinRT.ML | remaining |  |  |  |
+| `windows.ai.machinelearning.native.h` | WinRT.ML | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ai.machinelearning.native.h.md |
 | `windows.data.pdf.interop.h` | WinRT.Pdf | matched |  | 09/02/2026 21:08:27 | Standard COM factory function + inline helper + COM interface method only. |
 | `windows.devices.alljoyn.interop.h` | WinRT.AllJoyn | remaining |  |  |  |
 | `Windows.Devices.Display.Core.Interop.h` | WinRT.Display | matched |  | 09/02/2026 22:12:28 | COM interface methods + inline helpers only, out of scope. |

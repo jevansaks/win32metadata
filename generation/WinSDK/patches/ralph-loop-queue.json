@@ -1649,10 +1649,10 @@
   {
     "header": "cryptdlg.h",
     "partition": "Security.Cryptography, Security.Cryptography.UI",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cryptdlg.h.md",
     "_source": "header-progress"
   },
   {
@@ -5114,10 +5114,10 @@
   {
     "header": "joystickapi.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/joystickapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -8543,10 +8543,10 @@
   {
     "header": "rpcnterr.h",
     "partition": "Foundation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rpcnterr.h.md",
     "_source": "header-progress"
   },
   {
@@ -10694,10 +10694,10 @@
   {
     "header": "wdmguid.h",
     "partition": "DevInst",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdmguid.h.md",
     "_source": "header-progress"
   },
   {
@@ -11126,10 +11126,10 @@
   {
     "header": "windows.ai.machinelearning.native.h",
     "partition": "WinRT.ML",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ai.machinelearning.native.h.md",
     "_source": "header-progress"
   },
   {

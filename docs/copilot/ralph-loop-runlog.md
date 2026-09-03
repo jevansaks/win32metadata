@@ -2628,3 +2628,13 @@ Ledger: 811 accepted-normalized, 31 blocked, 561 pending (842/1403 classified). 
 - **interactioncontext.h** (Input_IntContext): HINTERACTIONCONTEXT already has complete autoTypes.json entry (CloseApi=DestroyInteractionContext) - no gap. Clean.
 
 Ledger: 816 accepted-normalized, 31 blocked, 556 pending (847/1403 classified).
+
+## Batch 132 (2026-09-02 23:54): wdmguid.h, windows.ai.machinelearning.native.h, joystickapi.h, cryptdlg.h, rpcnterr.h
+
+- **wdmguid.h** (DevInst): device-class/PnP event GUID constants only, no functions. Clean.
+- **windows.ai.machinelearning.native.h** (WinRT.ML): COM interfaces only, no free functions. Clean.
+- **joystickapi.h** (Multimedia): all functions use UINT joystick ID + transparent structs, no handle production. Clean.
+- **cryptdlg.h** (Security.Cryptography, Security.Cryptography.UI): transparent struct params only, no handle production. Clean.
+- **rpcnterr.h** (Foundation): RPC error-code macros only. Clean.
+
+Ledger: 821 accepted-normalized, 31 blocked, 551 pending (852/1403 classified).
