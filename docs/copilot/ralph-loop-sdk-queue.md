@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:29:46Z
+- Generated: 2026-09-03T01:32:54Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 394
+- Matched: 399
 - In progress: 0
 - Blocked: 8
-- Remaining: 1001
+- Remaining: 996
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -596,7 +596,7 @@
 | `lm.h` | NetMgmt | matched |  | 09/02/2026 17:38:44 | Pure umbrella redirect; all 18 sub-headers already individually tracked in ledger (2 accepted, 16 pending). |
 | `lmaccess.h` | FileHistory, NetMgmt, WinProg | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `lmalert.h` | NetMgmt | remaining |  |  |  |
-| `lmapibuf.h` | NetMgmt | remaining |  |  |  |
+| `lmapibuf.h` | NetMgmt | matched |  | 09/02/2026 18:32:46 | Canonical NetApiBufferFree convention, generic memory buffer, not HANDLE-family. |
 | `lmat.h` | NetMgmt | remaining |  |  |  |
 | `lmaudit.h` | NetMgmt | remaining |  |  |  |
 | `lmconfig.h` | NetMgmt | matched |  | 09/02/2026 18:03:29 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
@@ -974,7 +974,7 @@
 | `sbe.h` | MsTv | remaining |  |  |  |
 | `sbtsv.h` | TermServ | remaining |  |  |  |
 | `scarderr.h` | Credentials | remaining |  |  |  |
-| `scclient.h` | Wmdm | remaining |  |  |  |
+| `scclient.h` | Wmdm | matched |  | 09/02/2026 18:32:46 | Pure C++ class, no extern/DllImport functions; out of scope for annotation mechanism. |
 | `scesvc.h` | Security.ConfigurationSnapin | remaining |  |  |  |
 | `schannel.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Wsw | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `schedule.h` | ActiveDirectory | matched |  | 09/02/2026 18:26:39 | Constants + data structs only, no functions. |
@@ -1268,7 +1268,7 @@
 | `windows.ui.xaml.hosting.referencetracker.h` | WinRT.Xaml | remaining |  |  |  |
 | `windows.ui.xaml.media.dxinterop.h` | WinRT.Xaml | remaining |  |  |  |
 | `windowsceip.h` | Base, CEIP, FileHistory | matched |  | 09/02/2026 17:01:48 | CeipIsOptedIn() - no handle involved. |
-| `windowsdefender.h` | Lwef | remaining |  |  |  |
+| `windowsdefender.h` | Lwef | matched |  | 09/02/2026 18:32:46 | BOOL-only API, no handle. |
 | `windowssearcherrors.h` | Search | remaining |  |  |  |
 | `windowssideshow.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `windowssideshowapi.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
@@ -1340,7 +1340,7 @@
 | `wmpservices.h` | Wmp | remaining |  |  |  |
 | `wmsbuffer.h` | WmFormat | remaining |  |  |  |
 | `wmsdkidl.h` | WmFormat | remaining |  |  |  |
-| `wmsdkvalidate.h` | WmFormat | remaining |  |  |  |
+| `wmsdkvalidate.h` | WmFormat | matched |  | 09/02/2026 18:32:46 | String/buffer/BOOL API only, no handle. |
 | `wmsecure.h` | WmFormat | remaining |  |  |  |
 | `wmsinternaladminnetsource.h` | WmFormat | remaining |  |  |  |
 | `wmsysprf.h` | Wmp | remaining |  |  |  |
@@ -1362,7 +1362,7 @@
 | `ws2tcpip.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wsbapp.h` | Wsb | remaining |  |  |  |
 | `wsbapperror.h` | Wsb | remaining |  |  |  |
-| `wsbonline.h` | Wsb | remaining |  |  |  |
+| `wsbonline.h` | Wsb | matched |  | 09/02/2026 18:32:46 | Struct/GUID input-only API, no handle. |
 | `wsbonlineerror.h` | Wsb | remaining |  |  |  |
 | `wscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |
 | `wsdapi.h` | WebServicesOnDevices | matched |  | 09/02/2026 17:13:02 | Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE. |

@@ -1343,3 +1343,19 @@ cross-partition remap warning for _CERT_CONTEXT)
 
 **Ledger status:** 394 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 1001 pending.
+
+## 2026-09-02 18:33:07 UTC - Batch scraping-investigation-43
+
+**Headers:** lmapibuf.h, scclient.h, windowsdefender.h, wmsdkvalidate.h, wsbonline.h
+**Partitions scraped:** Wmdm, Lwef, WmFormat, Wsb (x86; 0 warnings/errors)
+
+- lmapibuf.h: canonical home of NetApiBufferAllocate/Free/Reallocate/Size - generic LPVOID memory
+  buffer allocation, not HANDLE-family (confirms precedent already cited by lmconfig.h/lmmsg.h). Clean.
+- scclient.h: pure C++ class (CSecureChannelClient), no extern "C"/DllImport functions at all - out of
+  scope for the annotation mechanism entirely (same reasoning as COM vtable methods). Clean.
+- windowsdefender.h: BOOL-only API, no handle. Clean.
+- wmsdkvalidate.h: string/buffer/BOOL API only, no handle. Clean.
+- wsbonline.h: struct/GUID input-only API, no handle. Clean.
+
+**Ledger status:** 399 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 996 pending.

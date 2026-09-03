@@ -5276,10 +5276,10 @@
   {
     "header": "lmapibuf.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:32:46Z",
+    "notes": "Canonical NetApiBufferFree convention, generic memory buffer, not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -8678,10 +8678,10 @@
   {
     "header": "scclient.h",
     "partition": "Wmdm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:32:46Z",
+    "notes": "Pure C++ class, no extern/DllImport functions; out of scope for annotation mechanism.",
     "_source": "header-progress"
   },
   {
@@ -11324,10 +11324,10 @@
   {
     "header": "windowsdefender.h",
     "partition": "Lwef",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:32:46Z",
+    "notes": "BOOL-only API, no handle.",
     "_source": "header-progress"
   },
   {
@@ -11972,10 +11972,10 @@
   {
     "header": "wmsdkvalidate.h",
     "partition": "WmFormat",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:32:46Z",
+    "notes": "String/buffer/BOOL API only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -12170,10 +12170,10 @@
   {
     "header": "wsbonline.h",
     "partition": "Wsb",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:32:46Z",
+    "notes": "Struct/GUID input-only API, no handle.",
     "_source": "header-progress"
   },
   {
