@@ -4395,7 +4395,7 @@
         "Mf"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -4408,7 +4408,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; CODECAPI GUID definitions only, functionality via existing ICodecAPI COM interface, no ownership metadata gap. See docs/copilot/header-reports/codecapi.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -19246,7 +19246,7 @@
         "Multimedia"
       ],
       "partition_count": 6,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -19259,7 +19259,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; kernel streaming COM/kernel vtable interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/ks.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -31250,7 +31250,7 @@
       "header": "sapiddk.h",
       "partitions": "Speech",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -31263,7 +31263,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; SAPI device-driver-kit COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/sapiddk.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Speech/main.cpp",
@@ -36769,7 +36769,7 @@
       "header": "tapi.h",
       "partitions": "Tapi3",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -36782,7 +36782,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Producer-site fix: added HLINE/HPHONE/HLINEAPP/HPHONEAPP autoTypes.json entries (CloseApi lineClose/phoneClose/lineShutdown/phoneShutdown). See docs/copilot/header-reports/tapi.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Tapi3/main.cpp",
@@ -39861,7 +39861,7 @@
         "Wmi"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -39874,7 +39874,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; WMI client COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/wbemcli.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -41242,7 +41242,7 @@
       "header": "winbio_adapter.h",
       "partitions": "SecBitomet",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -41255,7 +41255,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; WinBio adapter plugin function-pointer-typedef contract (blocker class 4), no ownership metadata gap. See docs/copilot/header-reports/winbio_adapter.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/SecBitomet/main.cpp",
@@ -41897,7 +41897,7 @@
         "NWifi"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -41910,7 +41910,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; no functions in header (driver spec structs only), no ownership metadata gap. See docs/copilot/header-reports/windot11.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -48775,7 +48775,7 @@
       "header": "wsmerror.h",
       "partitions": "WinRm",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -48788,7 +48788,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; error-code constants only, no functions, no ownership metadata gap. See docs/copilot/header-reports/wsmerror.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/WinRm/main.cpp",

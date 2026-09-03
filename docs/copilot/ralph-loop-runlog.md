@@ -3486,3 +3486,8 @@ Ledger: 1251 accepted-normalized, 31 blocked, 121 pending (1282/1403 classified)
 - **compstui.h** (Printing): outputs plain DWORD result, no handle. Clean.
 
 Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified).
+
+## Batch 220 (2c641f79 -> next)
+- windot11.h, wsmerror.h, codecapi.h, ks.h, winbio_adapter.h, sapiddk.h, wbemcli.h: clean (no functions / COM vtable-only / function-pointer-typedef contract / constants-only); no ownership gap.
+- tapi.h: 4 producer-site fixes — new autoTypes.json entries HLINE->lineClose, HPHONE->phoneClose, HLINEAPP->lineShutdown, HPHONEAPP->phoneShutdown (all DECLARE_OPAQUE32/uint-valued, single-arg CloseApi). Validated via ScrapeHeaders x64 Tapi3 -> 0 errors.
+- Ledger: 1264 accepted-normalized, 31 blocked, 108 pending (1295/1403 = 92.3%).

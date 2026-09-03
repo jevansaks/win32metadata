@@ -1379,10 +1379,10 @@
   {
     "header": "codecapi.h",
     "partition": "Media.DShow, Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; CODECAPI GUID definitions only, functionality via existing ICodecAPI COM interface, no ownership metadata gap. See docs/copilot/header-reports/codecapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -5177,10 +5177,10 @@
   {
     "header": "ks.h",
     "partition": "Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; kernel streaming COM/kernel vtable interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/ks.h.md",
     "_source": "header-progress"
   },
   {
@@ -8633,10 +8633,10 @@
   {
     "header": "sapiddk.h",
     "partition": "Speech",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; SAPI device-driver-kit COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/sapiddk.h.md",
     "_source": "header-progress"
   },
   {
@@ -9596,10 +9596,10 @@
   {
     "header": "tapi.h",
     "partition": "Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added HLINE/HPHONE/HLINEAPP/HPHONEAPP autoTypes.json entries (CloseApi lineClose/phoneClose/lineShutdown/phoneShutdown). See docs/copilot/header-reports/tapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -10568,10 +10568,10 @@
   {
     "header": "wbemcli.h",
     "partition": "TermServ, Wmi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; WMI client COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/wbemcli.h.md",
     "_source": "header-progress"
   },
   {
@@ -10973,10 +10973,10 @@
   {
     "header": "winbio_adapter.h",
     "partition": "SecBitomet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; WinBio adapter plugin function-pointer-typedef contract (blocker class 4), no ownership metadata gap. See docs/copilot/header-reports/winbio_adapter.h.md",
     "_source": "header-progress"
   },
   {
@@ -11117,10 +11117,10 @@
   {
     "header": "windot11.h",
     "partition": "Ndis, NWifi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; no functions in header (driver spec structs only), no ownership metadata gap. See docs/copilot/header-reports/windot11.h.md",
     "_source": "header-progress"
   },
   {
@@ -12350,10 +12350,10 @@
   {
     "header": "wsmerror.h",
     "partition": "WinRm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; error-code constants only, no functions, no ownership metadata gap. See docs/copilot/header-reports/wsmerror.h.md",
     "_source": "header-progress"
   },
   {

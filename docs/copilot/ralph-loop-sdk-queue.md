@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:17:16Z
+- Generated: 2026-09-03T11:24:54Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1256
+- Matched: 1264
 - In progress: 0
 - Blocked: 31
-- Remaining: 116
+- Remaining: 108
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -163,7 +163,7 @@
 | `cloneviewhelper.h` | Monitor | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cloneviewhelper.h.md |
 | `cluadmex.h` | MsCs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cluadmex.h.md |
 | `cmnquery.h` | ActiveDirectory | matched |  | 09/02/2026 21:43:41 | GUID/flag constants only, no extern functions. |
-| `codecapi.h` | Media.DShow, Mf | remaining |  |  |  |
+| `codecapi.h` | Media.DShow, Mf | matched |  |  | Investigated; CODECAPI GUID definitions only, functionality via existing ICodecAPI COM interface, no ownership metadata gap. See docs/copilot/header-reports/codecapi.h.md |
 | `colordlg.h` | DlgBox | matched |  | 09/02/2026 17:35:31 | Dialog control ID constants only, no functions. |
 | `comadmin.h` | Cos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/comadmin.h.md |
 | `combaseapi.h` | Base, Com.Events, Com.StructuredStorage, Cos, IO, Multimedia, Shell, TransactionServer, VSS | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
@@ -585,7 +585,7 @@
 | `kbd.h` | KeyboardAndMouseInput | matched | copilot | 09/03/2026 04:20:00 | No patch needed; data-structure-only header. |
 | `keycredmgr.h` | Credentials | matched |  | 09/02/2026 18:20:58 | KeyCredentialManagerInfo alloc/free is a transparent-struct memory pattern, not an opaque handle. |
 | `knownfolders.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/knownfolders.h.md |
-| `ks.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
+| `ks.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | matched |  |  | Investigated; kernel streaming COM/kernel vtable interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/ks.h.md |
 | `ksmedia.h` | Audio, Audio.DirectMusic, Media.DShow, Media.KernelStreaming, MsTv, Multimedia | remaining |  |  |  |
 | `ksproxy.h` | Media.KernelStreaming | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ksproxy.h.md |
 | `ktmtypes.h` | Fs | matched |  | 09/02/2026 21:17:15 | Type aliases/constants only, no functions. |
@@ -969,7 +969,7 @@
 | `rtscom.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtscom.h.md |
 | `rtutils.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtutils.h.md |
 | `rtworkq.h` | Threading | blocked |  | 09/02/2026 20:19:39 | RtwqJoinWorkQueue/RtwqSetDeadline produce generic HANDLE via direct out-param. |
-| `sapiddk.h` | Speech | remaining |  |  |  |
+| `sapiddk.h` | Speech | matched |  |  | Investigated; SAPI device-driver-kit COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/sapiddk.h.md |
 | `sas.h` | Identity | matched |  | 09/02/2026 16:53:36 | SendSAS(BOOL) - no handle involved. |
 | `sbe.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sbe.h.md |
 | `sbtsv.h` | TermServ | remaining |  |  |  |
@@ -1076,7 +1076,7 @@
 | `systemmediatransportcontrolsinterop.h` | WinRT | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `t2embapi.h` | Gdi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/t2embapi.h.md |
 | `tabflicks.h` | Tablet | matched |  | 09/02/2026 17:58:11 | Enums/bitfield structs only, no functions. |
-| `tapi.h` | Tapi3 | remaining |  |  |  |
+| `tapi.h` | Tapi3 | matched |  |  | Producer-site fix: added HLINE/HPHONE/HLINEAPP/HPHONEAPP autoTypes.json entries (CloseApi lineClose/phoneClose/lineShutdown/phoneShutdown). See docs/copilot/header-reports/tapi.h.md |
 | `tapi3.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3.h.md |
 | `tapi3ds.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3ds.h.md |
 | `tapi3err.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3err.h.md |
@@ -1184,7 +1184,7 @@
 | `wabdefs.h` | IMapi, Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wabdefs.h.md |
 | `wbcl.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbcl.h.md |
 | `wbemads.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemads.h.md |
-| `wbemcli.h` | TermServ, Wmi | remaining |  |  |  |
+| `wbemcli.h` | TermServ, Wmi | matched |  |  | Investigated; WMI client COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/wbemcli.h.md |
 | `wbemdisp.h` | Wmi | remaining |  |  |  |
 | `wbemidl.h` | Wmi | matched |  | 09/02/2026 16:57:06 | Redirect-only; 40 functions all MIDL RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wbemprov.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemprov.h.md |
@@ -1229,7 +1229,7 @@
 | `wiawsdsc.h` | Wia | matched |  | 09/02/2026 18:35:09 | Property-ID constants only, no functions. |
 | `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `winber.h` | Ldap | matched |  |  | Genuine producer-site fix: added BerElement autoTypes.json entry (CloseApi=ber_free), matching sibling PLDAPSearch's typedef-struct ValueType convention. See docs/copilot/header-reports/winber.h.md |
-| `winbio_adapter.h` | SecBitomet | remaining |  |  |  |
+| `winbio_adapter.h` | SecBitomet | matched |  |  | Investigated; WinBio adapter plugin function-pointer-typedef contract (blocker class 4), no ownership metadata gap. See docs/copilot/header-reports/winbio_adapter.h.md |
 | `winbio_err.h` | SecBitomet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winbio_err.h.md |
 | `winbio_ioctl.h` | SecBitomet | matched |  | 09/02/2026 21:49:17 | IOCTL/GUID constants only, no functions. |
 | `winbio_types.h` | SecBitomet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winbio_types.h.md |
@@ -1245,7 +1245,7 @@
 | `windef.h` | Foundation, Gdi, WinAuto | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `windns.h` | Dns, IpHlp | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `windnsdef.h` | Dns | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windnsdef.h.md |
-| `windot11.h` | Ndis, NWifi | remaining |  |  |  |
+| `windot11.h` | Ndis, NWifi | matched |  |  | Investigated; no functions in header (driver spec structs only), no ownership metadata gap. See docs/copilot/header-reports/windot11.h.md |
 | `windows.ai.machinelearning.native.h` | WinRT.ML | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ai.machinelearning.native.h.md |
 | `windows.data.pdf.interop.h` | WinRT.Pdf | matched |  | 09/02/2026 21:08:27 | Standard COM factory function + inline helper + COM interface method only. |
 | `windows.devices.alljoyn.interop.h` | WinRT.AllJoyn | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.devices.alljoyn.interop.h.md |
@@ -1382,7 +1382,7 @@
 | `wslapi.h` | Wsl | blocked | copilot | 09/02/2026 19:02:46 | Deferred: direct out-param instance of the generic/shared-type blocker class (HANDLE has no single correct CloseApi). |
 | `wsman.h` | WinRm | matched |  |  | Producer-site fix: filled missing CloseApi on WSMAN_API_HANDLE/WSMAN_SESSION_HANDLE/WSMAN_OPERATION_HANDLE. WSMAN_COMMAND_HANDLE/WSMAN_SHELL_HANDLE blocked (mandatory async param). See docs/copilot/header-reports/wsman.h.md |
 | `wsmandisp.h` | WinRm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsmandisp.h.md |
-| `wsmerror.h` | WinRm | remaining |  |  |  |
+| `wsmerror.h` | WinRm | matched |  |  | Investigated; error-code constants only, no functions, no ownership metadata gap. See docs/copilot/header-reports/wsmerror.h.md |
 | `wsnetbs.h` | WinSock | matched |  | 09/02/2026 18:29:38 | Data struct + constants/macro only, no functions. |
 | `wsnwlink.h` | WinSock | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
 | `wsrm.h` | WinSock | matched |  | 09/02/2026 20:34:23 | Socket-option constants only, no functions. |
