@@ -3515,3 +3515,8 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - windowssearcherrors.h: error-code constants only, clean.
 - ntddstor.h: kernel storage driver IOCTL constants/structs only, no functions, clean.
 - Ledger: 1282 accepted-normalized, 59 blocked, 62 pending (1341/1403 = 95.6%).
+
+## Batch 225 (073c7475 -> next)
+- d3d10.h, imapi2fs.h, fsrmpipeline.h, searchapi.h: COM vtable-only headers, clean.
+- hidusage.h: HID usage-page/usage constants only, clean.
+- Ledger: 1287 accepted-normalized, 59 blocked, 57 pending (1346/1403 = 95.9%).

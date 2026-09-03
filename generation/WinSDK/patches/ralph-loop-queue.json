@@ -1874,10 +1874,10 @@
   {
     "header": "d3d10.h",
     "partition": "Direct3D10",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/d3d10.h.md",
     "_source": "header-progress"
   },
   {
@@ -3863,10 +3863,10 @@
   {
     "header": "fsrmpipeline.h",
     "partition": "Fsrm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/fsrmpipeline.h.md",
     "_source": "header-progress"
   },
   {
@@ -4214,10 +4214,10 @@
   {
     "header": "hidusage.h",
     "partition": "Hid",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; HID usage-page/usage constants only, no functions. See docs/copilot/header-reports/hidusage.h.md",
     "_source": "header-progress"
   },
   {
@@ -4673,10 +4673,10 @@
   {
     "header": "imapi2fs.h",
     "partition": "IMapi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/imapi2fs.h.md",
     "_source": "header-progress"
   },
   {
@@ -8768,10 +8768,10 @@
   {
     "header": "searchapi.h",
     "partition": "Lwef, Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/SearchAPI.h.md",
     "_source": "header-progress"
   },
   {
