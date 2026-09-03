@@ -2140,3 +2140,18 @@ MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
 - WeakReference.h: IWeakReference/IWeakReferenceSource COM/WinRT interface methods only. Clean.
 
 **Ledger status:** 612 accepted-normalized, 30 blocked, 761 pending.
+
+## 2026-09-02 21:27:19 UTC - Batch scraping-investigation-91
+
+**Headers:** ObjSafe.h, DSAdmin.h, ddkernel.h, sqlspi.h, hintsdeviceservice.h
+**Partitions:** Debug, ActiveDirectory, DirectDraw, Search, WpdSdk (all already scraped this session, reused)
+
+- ObjSafe.h: IObjectSafety COM interface method only. Clean.
+- DSAdmin.h: DS Admin GUID constants + COM interfaces only, no extern functions. Clean.
+- ddkernel.h: kernel-mode DirectDraw COM-style interfaces + GUID constants only. Clean.
+- sqlspi.h: all functions take SQLHDBC_INFO_TOKEN (generic ODBC SQLHANDLE alias, managed by
+  shared SQLAllocHandle/SQLFreeHandle across multiple handle kinds) as input only; SQLGetPoolID's
+  POOLID* is a plain numeric ID, not a handle. Clean.
+- hintsdeviceservice.h: WPD Hints device-service GUID constants only. Clean.
+
+**Ledger status:** 617 accepted-normalized, 30 blocked, 756 pending.

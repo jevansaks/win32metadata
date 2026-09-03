@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:24:30Z
+- Generated: 2026-09-03T04:27:18Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 612
+- Matched: 617
 - In progress: 0
 - Blocked: 30
-- Remaining: 761
+- Remaining: 756
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -264,7 +264,7 @@
 | `dcomptypes.h` | DirectComp | matched |  | 09/02/2026 19:47:59 | Enums/structs/constants only, no functions. |
 | `dde.h` | DataXchg | matched |  | 09/02/2026 20:25:02 | No function produces an opaque handle. |
 | `ddeml.h` | DataXchg | remaining |  |  |  |
-| `ddkernel.h` | DirectDraw | remaining |  |  |  |
+| `ddkernel.h` | DirectDraw | matched |  | 09/02/2026 21:27:04 | COM-style interfaces + GUID constants only, no extern functions. |
 | `ddpbackup.h` | Dedup | remaining |  |  |  |
 | `ddpchunk.h` | Dedup | remaining |  |  |  |
 | `ddpcommon.h` | Dedup | matched |  | 09/02/2026 19:16:41 | Enums/data structs + MIDL boilerplate only, no functions. |
@@ -325,7 +325,7 @@
 | `dpapi.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `dragdropinterop.h` | WinRT | matched |  | 09/02/2026 20:31:37 | COM/WinRT interop interface method only, out of scope. |
 | `drt.h` | P2p | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
-| `dsadmin.h` | ActiveDirectory | remaining |  |  |  |
+| `dsadmin.h` | ActiveDirectory | matched |  | 09/02/2026 21:27:04 | GUID constants + COM interfaces only, no extern functions. |
 | `dsattrib.h` | MsTv | remaining |  |  |  |
 | `dsclient.h` | ActiveDirectory | remaining |  |  |  |
 | `dsconf.h` | Audio.DirectMusic | remaining |  |  |  |
@@ -480,7 +480,7 @@
 | `hidsdi.h` | Hid | remaining |  |  |  |
 | `hidusage.h` | Hid | remaining |  |  |  |
 | `highlevelmonitorconfigurationapi.h` | Monitor | matched |  | 09/02/2026 21:17:15 | No function produces an opaque handle; HANDLE param is a pre-owned caller input. |
-| `hintsdeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `hintsdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 21:27:04 | Constants only, no functions. |
 | `holographicspaceinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:04:56 | COM/WinRT interop interface method only, out of scope. |
 | `homepagesetting.h` | InternetExplorer | matched |  | 09/02/2026 20:56:17 | COM interface + GUID constants only, no extern functions. |
 | `hrtfapoapi.h` | Xaudio2 | matched |  | 09/02/2026 21:04:56 | Standard COM factory function + constants/structs only. |
@@ -825,7 +825,7 @@
 | `objectarray.h` | Shell, Shell.Common | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `ObjIdl.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, IO, Rpc, TransactionServer, VSS | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `objidlbase.h` | TransactionServer | remaining |  |  |  |
-| `objsafe.h` | Debug | remaining |  |  |  |
+| `objsafe.h` | Debug | matched |  | 09/02/2026 21:27:04 | COM interface method only, out of scope. |
 | `objsel.h` | ActiveDirectory | remaining |  |  |  |
 | `ocidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Media.DShow, Search, TransactionServer | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
 | `ocmm.h` | InternetExplorer | remaining |  |  |  |
@@ -1038,7 +1038,7 @@
 | `sql.h` | Search | remaining |  |  |  |
 | `sqlext.h` | Search | remaining |  |  |  |
 | `sqloledb.h` | Search | remaining |  |  |  |
-| `sqlspi.h` | Search | remaining |  |  |  |
+| `sqlspi.h` | Search | matched |  | 09/02/2026 21:27:04 | No function produces the generic ODBC handle type; all reference it as pre-owned input. |
 | `sqltypes.h` | Search | matched |  | 09/02/2026 21:24:15 | Type definitions only, no functions. |
 | `sqlucode.h` | Search | remaining |  |  |  |
 | `srpapi.h` | Edp | blocked |  | 09/02/2026 19:54:02 | SrpCreateThreadNetworkContext populates HTHREAD_NETWORK_CONTEXT.ThreadContext, a generic HANDLE field. |

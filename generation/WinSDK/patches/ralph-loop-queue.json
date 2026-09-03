@@ -2288,10 +2288,10 @@
   {
     "header": "ddkernel.h",
     "partition": "DirectDraw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:27:04Z",
+    "notes": "COM-style interfaces + GUID constants only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -2837,10 +2837,10 @@
   {
     "header": "dsadmin.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:27:04Z",
+    "notes": "GUID constants + COM interfaces only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -4232,10 +4232,10 @@
   {
     "header": "hintsdeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:27:04Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7337,10 +7337,10 @@
   {
     "header": "objsafe.h",
     "partition": "Debug",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:27:04Z",
+    "notes": "COM interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -9254,10 +9254,10 @@
   {
     "header": "sqlspi.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:27:04Z",
+    "notes": "No function produces the generic ODBC handle type; all reference it as pre-owned input.",
     "_source": "header-progress"
   },
   {
