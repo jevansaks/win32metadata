@@ -3369,3 +3369,13 @@ Ledger: 1191 accepted-normalized, 31 blocked, 181 pending (1222/1403 classified)
 - **certadm.h** (Certificates): COM vtable only. Clean.
 
 Ledger: 1196 accepted-normalized, 31 blocked, 176 pending (1227/1403 classified).
+
+## Batch 208 (2026-09-03 03:47): hidpi.h, bugcodes.h, locationapi.h, audioclient.h, CorHdr.h
+
+- **hidpi.h** (Hid): consumes existing preparsed-data, no new production; HidD_FreePreparsedData already correct. Clean.
+- **bugcodes.h** (Debug): bug-check code constants only. Clean.
+- **locationapi.h** (WinLocation): COM vtable only. Clean.
+- **audioclient.h** (Audio): COM vtable only. Clean.
+- **CorHdr.h** (ClrProfiling): CLR metadata structs/constants only. Clean.
+
+Ledger: 1201 accepted-normalized, 31 blocked, 171 pending (1232/1403 classified).

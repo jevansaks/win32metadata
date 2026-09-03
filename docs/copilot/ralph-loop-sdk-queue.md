@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:44:40Z
+- Generated: 2026-09-03T10:47:24Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1196
+- Matched: 1201
 - In progress: 0
 - Blocked: 31
-- Remaining: 176
+- Remaining: 171
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -79,7 +79,7 @@
 | `atsmedia.h` | MsTv | matched |  | 09/02/2026 17:27:04 | GUID constant only, no functions. |
 | `audevcod.h` | Media.DShow | matched |  | 09/02/2026 17:48:13 | Error-code enum/constants only, no functions. |
 | `AudioAPOTypes.h` | Audio.Apo, TermServ | matched |  | 09/02/2026 19:32:00 | Typedefs/enum/structs only, no functions. |
-| `audioclient.h` | Audio | remaining |  |  |  |
+| `audioclient.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioclient.h.md |
 | `audioclientactivationparams.h` | Audio | matched |  | 09/02/2026 19:06:16 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `audioendpoints.h` | Audio.Endpoints | matched |  | 09/02/2026 19:47:59 | COM interface method only, no extern functions. |
 | `audioenginebaseapo.h` | Audio.Apo | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioenginebaseapo.h.md |
@@ -126,7 +126,7 @@
 | `bthdef.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bthdef.h.md |
 | `bthledef.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bthledef.h.md |
 | `bthsdpdef.h` | Bluetooth | matched |  | 09/02/2026 18:38:01 | Data structs/enums/union only, no functions. |
-| `bugcodes.h` | Debug | remaining |  |  |  |
+| `bugcodes.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bugcodes.h.md |
 | `calendarapis.h` | Intl | matched |  | 09/02/2026 17:30:54 | Calendar-date-struct-only API, no handle. |
 | `calendardeviceservice.h` | WpdSdk | matched |  | 09/02/2026 21:17:15 | Constants only, no functions. |
 | `callobj.h` | Com.CallObj, ComOle | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
@@ -186,7 +186,7 @@
 | `cor.h` | ClrProfiling | remaining |  |  |  |
 | `corecrt_io.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/corecrt_io.h.md |
 | `CoreWindow.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CoreWindow.h.md |
-| `CorHdr.h` | ClrProfiling | remaining |  |  |  |
+| `CorHdr.h` | ClrProfiling | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CorHdr.h.md |
 | `corprof.h` | ClrProfiling | remaining |  |  |  |
 | `cpl.h` | Shell | matched |  | 09/02/2026 21:38:18 | Function-pointer typedef + transparent structs only, no extern functions. |
 | `cplext.h` | Shell | matched |  | 09/02/2026 18:47:23 | Property-page ID constants only, no functions. |
@@ -476,7 +476,7 @@
 | `guiddef.h` | TransactionServer | matched |  | 09/02/2026 20:07:23 | GUID type/macros/inline helpers only, no extern functions. |
 | `handleapi.h` | FileHistory, Foundation | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `hidclass.h` | Hid | matched |  | 09/02/2026 21:59:01 | GUID/property-key constants only, no functions. |
-| `hidpi.h` | Hid | remaining |  |  |  |
+| `hidpi.h` | Hid | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/hidpi.h.md |
 | `hidsdi.h` | Hid | matched |  |  | Genuine producer-site fix: added CloseApi=HidD_FreePreparsedData to existing incomplete PHIDP_PREPARSED_DATA autoTypes.json entry. See docs/copilot/header-reports/hidsdi.h.md |
 | `hidusage.h` | Hid | remaining |  |  |  |
 | `highlevelmonitorconfigurationapi.h` | Monitor | matched |  | 09/02/2026 21:17:15 | No function produces an opaque handle; HANDLE param is a pre-owned caller input. |
@@ -617,7 +617,7 @@
 | `lmuseflg.h` | NetMgmt | matched |  | 09/02/2026 17:23:42 | Constants/macro only, no functions. |
 | `lmwksta.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmwksta.h.md |
 | `loadperf.h` | FileHistory, Perf, WinProg | matched |  | 09/02/2026 19:12:01 | String/flag-only API, no handle. |
-| `locationapi.h` | WinLocation | remaining |  |  |  |
+| `locationapi.h` | WinLocation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/locationapi.h.md |
 | `lowlevelmonitorconfigurationapi.h` | Monitor | matched |  | 09/02/2026 17:48:13 | All functions only consume an existing physical-monitor HANDLE; producer pair tracked separately under PhysicalMonitorEnumerationAPI.h (pending). |
 | `lzexpand.h` | Fs | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `madcapcl.h` | MadCap | matched | copilot | 09/03/2026 05:00:00 | No patch needed; no ownership-relevant handle type. |

@@ -623,10 +623,10 @@
   {
     "header": "audioclient.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/audioclient.h.md",
     "_source": "header-progress"
   },
   {
@@ -1046,10 +1046,10 @@
   {
     "header": "bugcodes.h",
     "partition": "Debug",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bugcodes.h.md",
     "_source": "header-progress"
   },
   {
@@ -1586,10 +1586,10 @@
   {
     "header": "CorHdr.h",
     "partition": "ClrProfiling",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CorHdr.h.md",
     "_source": "header-progress"
   },
   {
@@ -4196,10 +4196,10 @@
   {
     "header": "hidpi.h",
     "partition": "Hid",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/hidpi.h.md",
     "_source": "header-progress"
   },
   {
@@ -5465,10 +5465,10 @@
   {
     "header": "locationapi.h",
     "partition": "WinLocation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/locationapi.h.md",
     "_source": "header-progress"
   },
   {
