@@ -3800,10 +3800,10 @@
   {
     "header": "filterr.h",
     "partition": "IndexSrv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:14:35Z",
+    "notes": "HRESULT error-code constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5105,10 +5105,10 @@
   {
     "header": "iwstdec.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:14:35Z",
+    "notes": "COM interface with plain-value parameters only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -5366,10 +5366,10 @@
   {
     "header": "lmremutl.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:14:35Z",
+    "notes": "Net API buffer-allocation convention, not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -5897,10 +5897,10 @@
   {
     "header": "minappmodel.h",
     "partition": "AppxPackaging",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:14:35Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8948,10 +8948,10 @@
   {
     "header": "shdispid.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:14:35Z",
+    "notes": "DISPID constants only, no functions.",
     "_source": "header-progress"
   },
   {

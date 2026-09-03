@@ -1587,3 +1587,16 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - loadperf.h: string/flag-only API, no handle. Clean.
 
 **Ledger status:** 452 accepted-normalized, 15 blocked, 936 pending.
+
+## 2026-09-02 19:14:48 UTC - Batch scraping-investigation-56
+
+**Headers:** shdispid.h, lmremutl.h, minappmodel.h, iwstdec.h, filterr.h
+**Partitions scraped:** IndexSrv (x86; 0 warnings/errors)
+
+- shdispid.h: DISPID constants only, no functions. Clean.
+- lmremutl.h: NetRemoteTOD uses the established Net API buffer-allocation convention. Clean.
+- minappmodel.h: constants only, no functions. Clean.
+- iwstdec.h: IAMWstDecoder COM interface with plain-value parameters only. Clean.
+- filterr.h: HRESULT error-code constants only, no functions. Clean.
+
+**Ledger status:** 457 accepted-normalized, 15 blocked, 931 pending.

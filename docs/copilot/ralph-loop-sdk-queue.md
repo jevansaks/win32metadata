@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:12:15Z
+- Generated: 2026-09-03T02:14:48Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 452
+- Matched: 457
 - In progress: 0
 - Blocked: 15
-- Remaining: 936
+- Remaining: 931
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -432,7 +432,7 @@
 | `filter.h` | IndexSrv, Search | remaining |  |  |  |
 | `filtereg.h` | Search | remaining |  |  |  |
 | `filterpipeline.h` | Printing | remaining |  |  |  |
-| `filterr.h` | IndexSrv | remaining |  |  |  |
+| `filterr.h` | IndexSrv | matched |  | 09/02/2026 19:14:35 | HRESULT error-code constants only, no functions. |
 | `fltdefs.h` | FileHistory, IpHlp | remaining |  |  |  |
 | `fltuser.h` | Ifsk | remaining |  |  |  |
 | `fontsub.h` | Gdi | remaining |  |  |  |
@@ -577,7 +577,7 @@
 | `iswindowarranged.h` | MenuRc | matched |  | 09/02/2026 16:49:01 | Query-only function taking HWND input; no handle production. |
 | `isysmon.h` | Perf | remaining |  |  |  |
 | `iwscapi.h` | FileHistory, SecurityCenter | remaining |  |  |  |
-| `iwstdec.h` | Media.DShow | remaining |  |  |  |
+| `iwstdec.h` | Media.DShow | matched |  | 09/02/2026 19:14:35 | COM interface with plain-value parameters only, no handle. |
 | `joystickapi.h` | Multimedia | remaining |  |  |  |
 | `jscript9diag.h` | Debug.ActiveScript | remaining |  |  |  |
 | `jsrt.h` | Js | matched |  | 09/02/2026 17:35:31 | Redirect-only; reachable branch (jsrt9.h) already tracked pending; chakrart.h unreachable in this partition. |
@@ -606,7 +606,7 @@
 | `lmerrlog.h` | NetMgmt | remaining |  |  |  |
 | `lmjoin.h` | NetMgmt | remaining |  |  |  |
 | `lmmsg.h` | NetMgmt | matched |  | 09/02/2026 18:26:39 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
-| `lmremutl.h` | NetMgmt | remaining |  |  |  |
+| `lmremutl.h` | NetMgmt | matched |  | 09/02/2026 19:14:35 | Net API buffer-allocation convention, not HANDLE-family. |
 | `lmrepl.h` | NetMgmt | remaining |  |  |  |
 | `lmserver.h` | Base, NetMgmt | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `lmshare.h` | Fs | remaining |  |  |  |
@@ -665,7 +665,7 @@
 | `micaut.h` | Tablet | remaining |  |  |  |
 | `midles.h` | Rpc | remaining |  |  |  |
 | `mileffects.h` | Wibe | remaining |  |  |  |
-| `minappmodel.h` | AppxPackaging | remaining |  |  |  |
+| `minappmodel.h` | AppxPackaging | matched |  | 09/02/2026 19:14:35 | Constants only, no functions. |
 | `mindumpdef.h` | Debug | remaining |  |  |  |
 | `minidumpapiset.h` | Base, Debug | remaining |  |  |  |
 | `minwinbase.h` | Base, Fs, Ioctl | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
@@ -1004,7 +1004,7 @@
 | `sharewindowcommandsourceinterop.h` | WinRT | remaining |  |  |  |
 | `shcore.h` | WinRT | matched |  | 09/02/2026 17:54:05 | COM factory pattern. |
 | `shdeprecated.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
-| `shdispid.h` | Shell | remaining |  |  |  |
+| `shdispid.h` | Shell | matched |  | 09/02/2026 19:14:35 | DISPID constants only, no functions. |
 | `shellapi.h` | Properties, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shellscalingapi.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `sherrors.h` | Shell | remaining |  |  |  |
