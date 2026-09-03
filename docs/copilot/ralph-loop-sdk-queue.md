@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:09:49Z
+- Generated: 2026-09-03T01:15:21Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 370
+- Matched: 374
 - In progress: 0
-- Blocked: 7
-- Remaining: 1026
+- Blocked: 8
+- Remaining: 1021
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -137,7 +137,7 @@
 | `CastingInterop.h` | WinRT | remaining |  |  |  |
 | `ccgplugins.h` | Identity | remaining |  |  |  |
 | `cchannel.h` | TermServ | remaining |  |  |  |
-| `cderr.h` | DlgBox | remaining |  |  |  |
+| `cderr.h` | DlgBox | matched |  | 09/02/2026 18:15:12 | Error-code constants only, no functions. |
 | `celib.h` | Security | remaining |  |  |  |
 | `certadm.h` | Certificates | remaining |  |  |  |
 | `certbcli.h` | Certificates | remaining |  |  |  |
@@ -358,7 +358,7 @@
 | `dxgi1_4.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 01:40:00 | Classified retained artifact in existing-patches-11. |
 | `dxgi1_5.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
 | `dxgi1_6.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
-| `dxgicommon.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
+| `dxgicommon.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 18:15:12 | Data structs/enum/constants only, no functions. |
 | `dxgidebug.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
 | `dxgiformat.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
 | `dxgimessages.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
@@ -679,7 +679,7 @@
 | `mmdeviceapi.h` | Audio | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmeapi.h` | Audio, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmiscapi.h` | Multimedia | remaining |  |  |  |
-| `mmiscapi2.h` | Media | remaining |  |  |  |
+| `mmiscapi2.h` | Media | matched |  | 09/02/2026 18:15:12 | Timer ID is a UINT, not a HANDLE. |
 | `mmreg.h` | Audio.DirectMusic, Media.DShow, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mmstream.h` | Media.DShow | remaining |  |  |  |
 | `mmsyscom.h` | Media | remaining |  |  |  |
@@ -701,7 +701,7 @@
 | `msacm.h` | Audio | remaining |  |  |  |
 | `msacmdlg.h` | Multimedia | matched |  | 09/02/2026 17:27:04 | Dialog resource ID constants only, no functions. |
 | `msacmdrv.h` | Audio | remaining |  |  |  |
-| `MSAJTransport.h` | AllJoyn, WinRT | remaining |  |  |  |
+| `MSAJTransport.h` | AllJoyn, WinRT | blocked | copilot | 09/02/2026 18:15:12 | Two compounding blockers: parser/toolchain version mismatch prevents live-scrape validation of the AllJoyn partition; and a genuine return-value HANDLE ownership pattern with no annotation precedent. |
 | `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | remaining |  |  |  |
 | `mschapp.h` | MsChap | remaining |  |  |  |
 | `msclmd.h` | Security.Cryptography | remaining |  |  |  |
@@ -1320,7 +1320,7 @@
 | `winwlx.h` | Security.WinWlx | remaining |  |  |  |
 | `wlanapi.h` | Ndis, NWifi | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `wlanihv.h` | NWifi | remaining |  |  |  |
-| `wlanihvtypes.h` | NWifi | remaining |  |  |  |
+| `wlanihvtypes.h` | NWifi | matched |  | 09/02/2026 18:15:12 | Data structs + constants only, no functions. |
 | `wlantypes.h` | Ndis, NWifi | remaining |  |  |  |
 | `wlclient.h` | NWifi | matched |  | 09/02/2026 17:54:05 | Data structs only, no functions. |
 | `wldp.h` | FileHistory, WinProg | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |

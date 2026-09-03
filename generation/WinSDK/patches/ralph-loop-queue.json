@@ -1145,10 +1145,10 @@
   {
     "header": "cderr.h",
     "partition": "DlgBox",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:15:12Z",
+    "notes": "Error-code constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -3134,10 +3134,10 @@
   {
     "header": "dxgicommon.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:15:12Z",
+    "notes": "Data structs/enum/constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6023,10 +6023,10 @@
   {
     "header": "mmiscapi2.h",
     "partition": "Media",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:15:12Z",
+    "notes": "Timer ID is a UINT, not a HANDLE.",
     "_source": "header-progress"
   },
   {
@@ -6221,10 +6221,10 @@
   {
     "header": "MSAJTransport.h",
     "partition": "AllJoyn, WinRT",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T18:15:12Z",
+    "notes": "Two compounding blockers: parser/toolchain version mismatch prevents live-scrape validation of the AllJoyn partition; and a genuine return-value HANDLE ownership pattern with no annotation precedent.",
     "_source": "header-progress"
   },
   {
@@ -11792,10 +11792,10 @@
   {
     "header": "wlanihvtypes.h",
     "partition": "NWifi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:15:12Z",
+    "notes": "Data structs + constants only, no functions.",
     "_source": "header-progress"
   },
   {

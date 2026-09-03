@@ -1240,3 +1240,30 @@ unrelated cross-partition remap warnings)
 
 **Ledger status:** 370 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1026 pending.
+
+## 2026-09-02 18:15:37 UTC - Batch scraping-investigation-38
+
+**Headers:** wlanihvtypes.h, cderr.h, mmiscapi2.h, MSAJTransport.h (blocked), dxgicommon.h
+**Partitions scraped:** Media (x86; 0 warnings/errors), AllJoyn (FAILED - new parser/toolchain blocker
+class), WinRT (re-scraped fresh to check as alternate validation path)
+
+- wlanihvtypes.h: data structs + constants only, no functions. Clean.
+- cderr.h: common-dialog error-code constants only, no functions. Clean.
+- mmiscapi2.h: timeSetEvent/timeKillEvent - timer ID is a UINT, not a HANDLE. Clean.
+- **MSAJTransport.h: BLOCKED (new blocker class: parser/toolchain limitation).** Attempted to re-scrape
+  the AllJoyn partition - the only partition that actually compiles this header's
+  WINAPI_PARTITION_APP/DESKTOP-guarded declarations (confirmed via a fresh WinRT re-scrape that this
+  header's functions are NOT present in WinRT's output despite #include, so WinRT cannot substitute).
+  AllJoyn scrape FAILS outright: 'use of undeclared identifier __builtin_verbose_trap' in MSVC
+  14.51.36231's <xmemory>, pulled in transitively by the AllJoyn C++ SDK headers also included by this
+  partition - a genuine Clang/MSVC toolset version mismatch unrelated to any Win32 header content, not
+  fixable via a header patch (would need a ClangSharp/Clang upgrade or MSVC toolset pin change).
+  Additionally, even by direct source inspection, AllJoynConnectToBus/AllJoynCreateBus return a bus
+  HANDLE directly as the function return value (not out-param), released via AllJoynCloseBusHandle -
+  the same already-documented return-value-handle-ownership class as getprocesshandlefromhwnd.h/wab.h/
+  wincon.h/winppi.h/libloaderapi2.h. Recorded as blocked with full evidence for the new parser-limitation
+  class, concise evidence for the already-known ownership class.
+- dxgicommon.h: data structs/enum/constants only, no functions. Clean.
+
+**Ledger status:** 374 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 1021 pending.
