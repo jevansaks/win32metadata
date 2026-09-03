@@ -3108,3 +3108,13 @@ Ledger: 1051 accepted-normalized, 31 blocked, 321 pending (1082/1403 classified)
 - **lmerr.h** (NetMgmt): NERR_* error constants only. Clean.
 
 Ledger: 1056 accepted-normalized, 31 blocked, 316 pending (1087/1403 classified).
+
+## Batch 180 (2026-09-03 02:22): spellcheck.h, sensorsapi.h, windnsdef.h, netcfgn.h, qmgr.h
+
+- **spellcheck.h** (Intl): COM vtable only. Clean.
+- **sensorsapi.h** (WinLocation/WinSensors): COM vtable only. Clean.
+- **windnsdef.h** (Dns): structs/constants only, no functions. Clean.
+- **netcfgn.h** (NetMgmt): COM vtable only. Clean.
+- **qmgr.h** (Bits): COM vtable only. Clean.
+
+Ledger: 1061 accepted-normalized, 31 blocked, 311 pending (1092/1403 classified).

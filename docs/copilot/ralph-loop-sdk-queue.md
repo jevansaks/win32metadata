@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:20:09Z
+- Generated: 2026-09-03T09:22:05Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1056
+- Matched: 1061
 - In progress: 0
 - Blocked: 31
-- Remaining: 316
+- Remaining: 311
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -774,7 +774,7 @@
 | `ndisguid.h` | Ndis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndisguid.h.md |
 | `ndkinfo.h` | Ndis | matched |  | 09/02/2026 18:00:53 | Data structs/enum/constants only, no functions. |
 | `ndr64types.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndr64types.h.md |
-| `netcfgn.h` | NetMgmt | remaining |  |  |  |
+| `netcfgn.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netcfgn.h.md |
 | `netcfgx.h` | NetMgmt | remaining |  |  |  |
 | `netcon.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `netevent.h` | NetMgmt | remaining |  |  |  |
@@ -908,7 +908,7 @@
 | `prsht.h` | Controls | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
 | `psapi.h` | PsApi1, PsApi2 | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `pwm.h` | PWM | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
-| `qmgr.h` | Bits | remaining |  |  |  |
+| `qmgr.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qmgr.h.md |
 | `qnetwork.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qnetwork.h.md |
 | `qos2.h` | Qos | remaining |  |  |  |
 | `qospol.h` | Qos | matched |  | 09/02/2026 17:48:13 | Data struct + constants only, no functions. |
@@ -993,7 +993,7 @@
 | `sensapi.h` | Sens | matched |  | 09/02/2026 17:41:54 | No handle involved. |
 | `sensevts.h` | Sens | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensevts.h.md |
 | `sensors.h` | WinSensors | remaining |  |  |  |
-| `sensorsapi.h` | WinLocation, WinSensors | remaining |  |  |  |
+| `sensorsapi.h` | WinLocation, WinSensors | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensorsapi.h.md |
 | `sensorsdef.h` | WinSensors | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensorsdef.h.md |
 | `sensorsstructures.h` | WinSensors | matched |  | 09/02/2026 18:00:52 | Data structs/enum only, no functions. |
 | `sensorsutils.h` | WinSensors | matched |  | 09/02/2026 21:55:32 | No function produces an opaque handle. |
@@ -1031,7 +1031,7 @@
 | `spatialaudiohrtf.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spatialaudiohrtf.h.md |
 | `spatialaudiometadata.h` | Audio | remaining |  |  |  |
 | `spatialinteractionmanagerinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
-| `spellcheck.h` | Intl | remaining |  |  |  |
+| `spellcheck.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spellcheck.h.md |
 | `spellcheckprovider.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spellcheckprovider.h.md |
 | `sperror.h` | Speech | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sperror.h.md |
 | `sporder.h` | WinSock | matched |  | 09/02/2026 17:45:25 | DWORD/GUID array API only, no handle. |
@@ -1244,7 +1244,7 @@
 | `winddiui.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddiui.h.md |
 | `windef.h` | Foundation, Gdi, WinAuto | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `windns.h` | Dns, IpHlp | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
-| `windnsdef.h` | Dns | remaining |  |  |  |
+| `windnsdef.h` | Dns | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windnsdef.h.md |
 | `windot11.h` | Ndis, NWifi | remaining |  |  |  |
 | `windows.ai.machinelearning.native.h` | WinRT.ML | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ai.machinelearning.native.h.md |
 | `windows.data.pdf.interop.h` | WinRT.Pdf | matched |  | 09/02/2026 21:08:27 | Standard COM factory function + inline helper + COM interface method only. |

@@ -6878,10 +6878,10 @@
   {
     "header": "netcfgn.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netcfgn.h.md",
     "_source": "header-progress"
   },
   {
@@ -8084,10 +8084,10 @@
   {
     "header": "qmgr.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qmgr.h.md",
     "_source": "header-progress"
   },
   {
@@ -8849,10 +8849,10 @@
   {
     "header": "sensorsapi.h",
     "partition": "WinLocation, WinSensors",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensorsapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -9191,10 +9191,10 @@
   {
     "header": "spellcheck.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/spellcheck.h.md",
     "_source": "header-progress"
   },
   {
@@ -11108,10 +11108,10 @@
   {
     "header": "windnsdef.h",
     "partition": "Dns",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windnsdef.h.md",
     "_source": "header-progress"
   },
   {
