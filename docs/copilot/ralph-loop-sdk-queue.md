@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:44:56Z
+- Generated: 2026-09-03T03:49:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 564
+- Matched: 569
 - In progress: 0
 - Blocked: 28
-- Remaining: 811
+- Remaining: 806
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -64,7 +64,7 @@
 | `amvideo.h` | Media.DShow | remaining |  |  |  |
 | `amxmlgraphbuilder.h` | Media.DShow, Media.DShow.Xml | matched |  | 09/02/2026 17:13:02 | COM interface + GUID constants only. |
 | `anchorsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
-| `animationcoordinator.h` | Shell | remaining |  |  |  |
+| `animationcoordinator.h` | Shell | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `apdevpkey.h` | Base, Devices.Properties | matched |  | 09/02/2026 17:05:19 | Device property key constant only, no functions. |
 | `apiquery2.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:41:54 | Caller-allocated string buffer output only. |
 | `appcompatapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:23:42 | No handle involved. |
@@ -293,7 +293,7 @@
 | `dhcpsapi.h` | Dhcp | remaining |  |  |  |
 | `dhcpssdk.h` | Dhcp | remaining |  |  |  |
 | `dhcpv6csdk.h` | Dhcp | remaining |  |  |  |
-| `diagnosticdataquery.h` | Security.DiagnosticDataQuery | remaining |  |  |  |
+| `diagnosticdataquery.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:49:21 | All six opaque handle types already correctly covered via existing autoTypes.json entries; resolves deferred DIAGNOSTIC_DATA_QUERY_SESSION item. |
 | `diagnosticdataquerytypes.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:31:37 | Types/RPC boilerplate only, no functions; DIAGNOSTIC_DATA_QUERY_SESSION ownership deferred to DiagnosticDataQuery.h. |
 | `digitalv.h` | Multimedia | remaining |  |  |  |
 | `dimm.h` | Input.Ime | remaining |  |  |  |
@@ -464,7 +464,7 @@
 | `gb18030.h` | Intl | matched |  | 09/02/2026 20:31:37 | Buffer-conversion function only, no handles. |
 | `gdiplus.h` | Gdiplus | matched |  | 09/02/2026 16:34:06 | GDI+ create/delete object pattern uses strongly-typed C++ pointers (GpGraphics* etc), not HANDLE-family typedefs; no pre-existing RAII metadata to correct; out of current policy scope. |
 | `gdipluseffects.h` | Media.DShow | remaining |  |  |  |
-| `genericusbfnioctl.h` | Buses | remaining |  |  |  |
+| `genericusbfnioctl.h` | Buses | matched |  | 09/02/2026 20:49:21 | IOCTL constants only, no functions. |
 | `getcurrentpackageinfo3.h` | AppxPackaging | matched |  | 09/02/2026 16:53:36 | Buffer-fill API, no handle production. |
 | `getprocesshandlefromhwnd.h` | Threading | blocked | copilot | 09/02/2026 16:49:01 | Deferred: return-value HANDLE ownership has no precedent anywhere in the repo or published baseline winmd (confirmed via WinmdUtils dump); requires dedicated policy decision on annotation placement before this can be fixed. |
 | `gl/gl.h` | OpenGL | remaining |  |  |  |
@@ -887,7 +887,7 @@
 | `printerextensiondispid.h` | Printing | remaining |  |  |  |
 | `PrintManagerInterop.h` | WinRT.Printing | remaining |  |  |  |
 | `printoem.h` | Printing | remaining |  |  |  |
-| `printpreview.h` | Printing | remaining |  |  |  |
+| `printpreview.h` | Printing | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `prnasnot.h` | Gdi, Printing | blocked |  | 09/02/2026 20:44:40 | RegisterForPrintAsyncNotifications produces generic HANDLE via direct out-param. |
 | `prnasntp.h` | Printing | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `prntfont.h` | Printing | remaining |  |  |  |
@@ -1349,7 +1349,7 @@
 | `wofapi.h` | Fs | matched |  | 09/02/2026 20:31:37 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `workspaceax.h` | TermServ | remaining |  |  |  |
 | `workspaceruntime.h` | TermServ | remaining |  |  |  |
-| `workspaceruntimeclientext.h` | TermServ | remaining |  |  |  |
+| `workspaceruntimeclientext.h` | TermServ | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `wpc.h` | Parcon | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR_User*/HWND_User*); no resource-owning functions. |
 | `wpdmtpextensions.h` | WpdSdk | remaining |  |  |  |
 | `wpdshellextension.h` | WpdSdk | matched |  | 09/02/2026 19:37:21 | GUID/property-key constants only, no functions. |

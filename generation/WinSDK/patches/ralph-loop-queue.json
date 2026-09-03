@@ -488,10 +488,10 @@
   {
     "header": "animationcoordinator.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:49:21Z",
+    "notes": "COM interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -2549,10 +2549,10 @@
   {
     "header": "diagnosticdataquery.h",
     "partition": "Security.DiagnosticDataQuery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:49:21Z",
+    "notes": "All six opaque handle types already correctly covered via existing autoTypes.json entries; resolves deferred DIAGNOSTIC_DATA_QUERY_SESSION item.",
     "_source": "header-progress"
   },
   {
@@ -4088,10 +4088,10 @@
   {
     "header": "genericusbfnioctl.h",
     "partition": "Buses",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:49:21Z",
+    "notes": "IOCTL constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7895,10 +7895,10 @@
   {
     "header": "printpreview.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:49:21Z",
+    "notes": "COM interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -12053,10 +12053,10 @@
   {
     "header": "workspaceruntimeclientext.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:49:21Z",
+    "notes": "COM interface method only, out of scope.",
     "_source": "header-progress"
   },
   {

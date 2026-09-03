@@ -1986,3 +1986,20 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   produce generic HANDLE via direct out-param (established blocker class).
 
 **Ledger status:** 564 accepted-normalized, 28 blocked, 811 pending.
+
+## 2026-09-02 20:49:37 UTC - Batch scraping-investigation-81
+
+**Headers:** DiagnosticDataQuery.h, PrintPreview.h, workspaceruntimeclientext.h, GenericUsbFnIoctl.h, animationcoordinator.h
+**Partitions scraped (x64):** Shell (0 errors); Security.DiagnosticDataQuery/Printing/TermServ/Buses reused
+
+- DiagnosticDataQuery.h: **resolves the deferred DIAGNOSTIC_DATA_QUERY_SESSION item from
+  DiagnosticDataQueryTypes.h.** All six distinctly-named DECLARE_HANDLE types (HDIAGNOSTIC_DATA_QUERY_SESSION,
+  HDIAGNOSTIC_REPORT, HDIAGNOSTIC_EVENT_TAG_DESCRIPTION, HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION,
+  HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION, HDIAGNOSTIC_RECORD) already have complete autoTypes.json
+  entries matching their exact close functions. Clean.
+- PrintPreview.h: IPrintPreviewDxgiPackageTarget COM interface method only. Clean.
+- workspaceruntimeclientext.h: IWorkspaceClientExt COM interface method only. Clean.
+- GenericUsbFnIoctl.h: IOCTL_GENERICUSBFN_* constants only, no functions. Clean.
+- animationcoordinator.h: IInputPaneAnimationCoordinator COM interface method only. Clean.
+
+**Ledger status:** 569 accepted-normalized, 28 blocked, 806 pending.
