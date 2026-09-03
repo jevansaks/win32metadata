@@ -6410,10 +6410,10 @@
   {
     "header": "msdshape.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:51:18Z",
+    "notes": "Constants/enums only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6509,10 +6509,10 @@
   {
     "header": "msiehost.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:51:18Z",
+    "notes": "GUID/command-ID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7706,10 +7706,10 @@
   {
     "header": "playto.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:51:18Z",
+    "notes": "Pure MIDL boilerplate; real content in separately-tracked MFSharingEngine.h (pending).",
     "_source": "header-progress"
   },
   {
@@ -8399,10 +8399,10 @@
   {
     "header": "ringtonedeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:51:18Z",
+    "notes": "GUID/name constants only, no functions (same pattern as notesdeviceservice.h).",
     "_source": "header-progress"
   },
   {
@@ -11567,10 +11567,10 @@
   {
     "header": "winppi.h",
     "partition": "Printing",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-02T17:51:18Z",
+    "notes": "Deferred: genuine spool-file/page HANDLE ownership relationship via return value, no annotation precedent; same class as getprocesshandlefromhwnd.h/wab.h/wincon.h.",
     "_source": "header-progress"
   },
   {

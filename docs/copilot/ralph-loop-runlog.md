@@ -1111,3 +1111,22 @@ remap warnings for sockaddr/timeval/_CERT_CONTEXT)
 
 **Ledger status:** 337 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h), 1061 pending.
+
+## 2026-09-02 17:51:39 UTC - Batch scraping-investigation-31
+
+**Headers:** msiehost.h, playto.h, winppi.h (blocked), ringtonedeviceservice.h, msdshape.h
+**Partitions scraped:** Printing, Search (x86; 0 errors; Printing shows 1 pre-existing unrelated
+cross-partition remap warning for _CERT_CONTEXT)
+
+- msiehost.h: GUID/command-ID constants only, no functions. Clean.
+- playto.h: pure MIDL boilerplate (RPC_IF_HANDLE ifspec externs only); real content is in the
+  separately-tracked MFSharingEngine.h (pending). Clean.
+- **winppi.h: BLOCKED.** GdiGetSpoolFileHandle/GdiGetPageHandle both return a HANDLE directly as the
+  function return value (not out-param), released via GdiDeleteSpoolFileHandle. Same
+  return-value-handle-ownership blocker class as getprocesshandlefromhwnd.h/wab.h/wincon.h - no
+  precedent anywhere in the repo or published baseline winmd for annotating a bare return-value handle.
+- ringtonedeviceservice.h: GUID/name constants only, no functions (same pattern as notesdeviceservice.h). Clean.
+- msdshape.h: constants/enums only, no functions. Clean.
+
+**Ledger status:** 341 accepted-normalized, 6 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h), 1056 pending.

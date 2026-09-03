@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:48:22Z
+- Generated: 2026-09-03T00:51:27Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 337
+- Matched: 341
 - In progress: 0
-- Blocked: 5
-- Remaining: 1061
+- Blocked: 6
+- Remaining: 1056
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -722,7 +722,7 @@
 | `msdrmdefs.h` | Rm | remaining |  |  |  |
 | `msdrmerror.h` | Rm | remaining |  |  |  |
 | `msdrmgetinfo.h` | Rm | remaining |  |  |  |
-| `msdshape.h` | Search | remaining |  |  |  |
+| `msdshape.h` | Search | matched |  | 09/02/2026 17:51:18 | Constants/enums only, no functions. |
 | `msfeeds.h` | Wmp | remaining |  |  |  |
 | `msfeedsid.h` | Wmp | remaining |  |  |  |
 | `mshtmcid.h` | MsHtml | remaining |  |  |  |
@@ -733,7 +733,7 @@
 | `mshtmldiagnostics.h` | MsHtml | remaining |  |  |  |
 | `msi.h` | Setup | remaining |  |  |  |
 | `msidefs.h` | Setup | remaining |  |  |  |
-| `msiehost.h` | InternetExplorer | remaining |  |  |  |
+| `msiehost.h` | InternetExplorer | matched |  | 09/02/2026 17:51:18 | GUID/command-ID constants only, no functions. |
 | `msiltcfg.h` | Setup | matched |  | 09/02/2026 17:38:44 | No handle involved. |
 | `msime.h` | Input.Ime | remaining |  |  |  |
 | `msimeapi.h` | Input.Ime | remaining |  |  |  |
@@ -866,7 +866,7 @@
 | `pla.h` | Pla | matched |  | 09/02/2026 16:34:06 | All 6 functions operate on strings/flags/paths only; no handle-producing functions. |
 | `playlist.h` | Media.DShow | remaining |  |  |  |
 | `playsoundapi.h` | Audio | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
-| `playto.h` | Mf | remaining |  |  |  |
+| `playto.h` | Mf | matched |  | 09/02/2026 17:51:18 | Pure MIDL boilerplate; real content in separately-tracked MFSharingEngine.h (pending). |
 | `PlayToManagerInterop.h` | WinRT | remaining |  |  |  |
 | `pluginauthenticator.h` | WebAuthn | remaining |  |  |  |
 | `pnpxassoc.h` | FunctionDiscovery, WebServicesOnDevices | remaining |  |  |  |
@@ -943,7 +943,7 @@
 | `restrictederrorinfo.h` | WinRT | remaining |  |  |  |
 | `richedit.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `richole.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
-| `ringtonedeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `ringtonedeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:51:18 | GUID/name constants only, no functions (same pattern as notesdeviceservice.h). |
 | `roapi.h` | TransactionServer, WinRT | remaining |  |  |  |
 | `robuffer.h` | WinRT | matched |  | 09/02/2026 17:13:02 | COM-factory (RoGetBufferMarshaler) + buffer-view pattern (IBufferByteAccess), not HANDLE-family. |
 | `roerrorapi.h` | WinRT | remaining |  |  |  |
@@ -1295,7 +1295,7 @@
 | `winnls32.h` | FileHistory, WinProg | remaining |  |  |  |
 | `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | remaining |  |  |  |
 | `winperf.h` | Perf | remaining |  |  |  |
-| `winppi.h` | Printing | remaining |  |  |  |
+| `winppi.h` | Printing | blocked | copilot | 09/02/2026 17:51:18 | Deferred: genuine spool-file/page HANDLE ownership relationship via return value, no annotation precedent; same class as getprocesshandlefromhwnd.h/wab.h/wincon.h. |
 | `winreg.h` | Registry | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsafer.h` | Security.AppLocker | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `winsatcominterfacei.h` | WinSat | remaining |  |  |  |
