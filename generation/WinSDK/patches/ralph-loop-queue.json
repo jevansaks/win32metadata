@@ -785,10 +785,10 @@
   {
     "header": "azroles.h",
     "partition": "Authorization, Authorization.UI",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/azroles.h.md",
     "_source": "header-progress"
   },
   {
@@ -1199,10 +1199,10 @@
   {
     "header": "certenroll.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/certenroll.h.md",
     "_source": "header-progress"
   },
   {
@@ -1595,10 +1595,10 @@
   {
     "header": "corprof.h",
     "partition": "ClrProfiling",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/corprof.h.md",
     "_source": "header-progress"
   },
   {
@@ -2171,10 +2171,10 @@
   {
     "header": "DbgEng.h",
     "partition": "Debug.Extensions",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DbgEng.h.md",
     "_source": "header-progress"
   },
   {
@@ -2972,10 +2972,10 @@
   {
     "header": "dvbsiparser.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DvbSiParser.h.md",
     "_source": "header-progress"
   },
   {
@@ -3638,10 +3638,10 @@
   {
     "header": "faxcomex.h",
     "partition": "Fax",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/FaxComEx.h.md",
     "_source": "header-progress"
   },
   {
@@ -4421,10 +4421,10 @@
   {
     "header": "iads.h",
     "partition": "ActiveDirectory, Iis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/Iads.h.md",
     "_source": "header-progress"
   },
   {
@@ -4493,10 +4493,10 @@
   {
     "header": "icu.h",
     "partition": "Intl",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T12:06:36Z",
+    "notes": "Blocked: 45+ opaque ICU types with mixed owned/borrowed-singleton return patterns per typedef (e.g. UNormalizer2 via unorm2_openFiltered vs unorm2_getNFCInstance); blanket typedef CloseApi would be unsafe per corrected producer-site policy. UDateTimePatternGenerator also missing from autoTypes.json entirely. See docs/copilot/header-reports/icu.h.md",
     "_source": "header-progress"
   },
   {
@@ -4511,10 +4511,10 @@
   {
     "header": "icui18n.h",
     "partition": "Intl",
-    "status": "remaining",
-    "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "status": "blocked",
+    "owner": "copilot",
+    "last_updated": "2026-09-03T12:06:36Z",
+    "notes": "Blocked: shares the same ICU opaque-type ownership ambiguity as icu.h (owned-instance vs borrowed-singleton per typedef). See docs/copilot/header-reports/icui18n.h.md",
     "_source": "header-progress"
   },
   {
@@ -5744,10 +5744,10 @@
   {
     "header": "mfidl.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/mfidl.h.md",
     "_source": "header-progress"
   },
   {
@@ -6167,10 +6167,10 @@
   {
     "header": "mqoai.h",
     "partition": "MessageQueuing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MqOaI.h.md",
     "_source": "header-progress"
   },
   {
@@ -6257,10 +6257,10 @@
   {
     "header": "msclus.h",
     "partition": "MsCs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MSClus.h.md",
     "_source": "header-progress"
   },
   {
@@ -6446,10 +6446,10 @@
   {
     "header": "mshtmdid.h",
     "partition": "MsHtml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; DISPID constants only, no functions. See docs/copilot/header-reports/MsHtmdid.h.md",
     "_source": "header-progress"
   },
   {
@@ -6464,19 +6464,19 @@
   {
     "header": "Mshtml.h",
     "partition": "MsHtml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MsHTML.h.md",
     "_source": "header-progress"
   },
   {
     "header": "mshtmlc.h",
     "partition": "MsHtml",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MsHTML.h.md",
     "_source": "header-progress"
   },
   {
@@ -6680,10 +6680,10 @@
   {
     "header": "msxml6.h",
     "partition": "MsXml, Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MsXml6.h.md",
     "_source": "header-progress"
   },
   {
@@ -7274,10 +7274,10 @@
   {
     "header": "ntstatus.h",
     "partition": "Foundation",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; NTSTATUS constants only, no functions. See docs/copilot/header-reports/ntstatus.h.md",
     "_source": "header-progress"
   },
   {
@@ -8804,10 +8804,10 @@
   {
     "header": "segment.h",
     "partition": "Media.DShow, MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/segment.h.md",
     "_source": "header-progress"
   },
   {
@@ -9425,10 +9425,10 @@
   {
     "header": "strmif.h",
     "partition": "Media.DShow, Media.KernelStreaming, MsTv, WmFormat",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/strmif.h.md",
     "_source": "header-progress"
   },
   {
@@ -9632,10 +9632,10 @@
   {
     "header": "tapi3if.h",
     "partition": "Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/Tapi3if.h.md",
     "_source": "header-progress"
   },
   {
@@ -9965,10 +9965,10 @@
   {
     "header": "tuner.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/tuner.h.md",
     "_source": "header-progress"
   },
   {
@@ -11405,10 +11405,10 @@
   {
     "header": "winerror.h",
     "partition": "Direct2D, DXCore, Dxgi, Dxgi.Common, Foundation, Rpc, TaskSchd, TransactionServer, UiAnimation, Wes",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; error-code constants only, no functions. See docs/copilot/header-reports/winerror.h.md",
     "_source": "header-progress"
   },
   {
@@ -11486,10 +11486,10 @@
   {
     "header": "winioctl.h",
     "partition": "Base, Fs, Ioctl, Nfc, Nfp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; kernel IOCTL/FSCTL constants only, no functions. See docs/copilot/header-reports/winioctl.h.md",
     "_source": "header-progress"
   },
   {
@@ -11549,10 +11549,10 @@
   {
     "header": "winnt.h",
     "partition": "Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; foundational type/macro definitions only, no functions or handle typedefs. See docs/copilot/header-reports/winnt.h.md",
     "_source": "header-progress"
   },
   {
@@ -11900,10 +11900,10 @@
   {
     "header": "wmp.h",
     "partition": "Media.DShow, Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/wmp.h.md",
     "_source": "header-progress"
   },
   {
@@ -11963,10 +11963,10 @@
   {
     "header": "wmsdkidl.h",
     "partition": "WmFormat",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/wmsdkidl.h.md",
     "_source": "header-progress"
   },
   {
@@ -12449,10 +12449,10 @@
   {
     "header": "wuapi.h",
     "partition": "Wua",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/wuapi.h.md",
     "_source": "header-progress"
   },
   {

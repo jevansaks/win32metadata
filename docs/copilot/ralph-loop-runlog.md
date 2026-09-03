@@ -3551,3 +3551,9 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 ## Batch 231 (dd32346b -> next)
 - taskschd.h, xpsobjectmodel.h, msxml.h, msinkaut.h, msctf.h: COM vtable-only headers, clean.
 - Ledger: 1317 accepted-normalized, 59 blocked, 27 pending (1376/1403 = 98.1%).
+
+## Batch 232 (d443c687 -> next) - LEDGER COMPLETE: 0 PENDING
+- 25 clean headers: winerror.h, ntstatus.h, winioctl.h, winnt.h, segment.h, mshtmdid.h, azroles.h, corprof.h, DbgEng.h, faxcomex.h, iads.h, mfidl.h, mqoai.h, msclus.h, mshtml.h, mshtmlc.h, msxml6.h, strmif.h, tapi3if.h, tuner.h, wmp.h, wmsdkidl.h, wuapi.h, dvbsiparser.h, certenroll.h - all COM vtable-only, constants-only, or foundational-macro headers.
+- 2 NEW blocked: icu.h, icui18n.h - 45+ opaque ICU struct-pointer types already in autoTypes.json without CloseApi. Systematic scan found single _close functions for ~30 types, but confirmed ownership ambiguity (UNormalizer2/UCollator returned by BOTH owned-instance constructors AND borrowed ICU-managed singleton accessors from the same typedef) means a blanket per-typedef CloseApi would be unsafe per the corrected producer-site policy. Also found UDateTimePatternGenerator entirely missing from autoTypes.json. Blocked with detailed evidence recommending a dedicated per-function follow-up investigation.
+- **FINAL LEDGER STATE: 1342 accepted-normalized, 61 blocked, 0 pending (1403/1403 = 100% classified).**
+- All 1403 headers in the authoritative queue have now been classified. The Ralph loop's primary classification objective is complete. Remaining work (if any) would be: (1) the dedicated ICU per-function ownership follow-up noted above, (2) periodic re-audit of blocked items if new tooling/evidence becomes available (e.g. by-pointer-close handles, AllJoyn toolchain fix), (3) downstream windows-rs consumer validation.

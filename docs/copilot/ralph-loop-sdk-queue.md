@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:57:40Z
+- Generated: 2026-09-03T12:06:47Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1317
+- Matched: 1342
 - In progress: 0
-- Blocked: 59
-- Remaining: 27
+- Blocked: 61
+- Remaining: 0
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -97,7 +97,7 @@
 | `aviriff.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aviriff.h.md |
 | `avrfsdk.h` | ApplicationVerifier, FileHistory | matched |  | 09/02/2026 19:02:46 | HANDLE is a caller-supplied input; diagnostic handle fields are plain ULONG64. |
 | `avrt.h` | Threading | blocked |  | 09/02/2026 19:32:00 | Return-value HANDLE (AvSetMmThreadCharacteristics*) + generic PHANDLE direct out-param (AvRtCreateThreadOrderingGroup*). |
-| `azroles.h` | Authorization, Authorization.UI | remaining |  |  |  |
+| `azroles.h` | Authorization, Authorization.UI | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/azroles.h.md |
 | `batclass.h` | Power | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/batclass.h.md |
 | `bcp47mrm.h` | Intl | matched |  | 09/02/2026 16:53:36 | No handle-producing functions. |
 | `bcrypt_provider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bcrypt_provider.h.md |
@@ -143,7 +143,7 @@
 | `certbcli.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certbcli.h.md |
 | `certcli.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certcli.h.md |
 | `certenc.h` | Certificates | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
-| `certenroll.h` | Certificates | remaining |  |  |  |
+| `certenroll.h` | Certificates | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/certenroll.h.md |
 | `certexit.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certexit.h.md |
 | `certif.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certif.h.md |
 | `certmod.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certmod.h.md |
@@ -187,7 +187,7 @@
 | `corecrt_io.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/corecrt_io.h.md |
 | `CoreWindow.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CoreWindow.h.md |
 | `CorHdr.h` | ClrProfiling | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CorHdr.h.md |
-| `corprof.h` | ClrProfiling | remaining |  |  |  |
+| `corprof.h` | ClrProfiling | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/corprof.h.md |
 | `cpl.h` | Shell | matched |  | 09/02/2026 21:38:18 | Function-pointer typedef + transparent structs only, no extern functions. |
 | `cplext.h` | Shell | matched |  | 09/02/2026 18:47:23 | Property-page ID constants only, no functions. |
 | `credentialprovider.h` | Shell | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
@@ -251,7 +251,7 @@
 | `d3dtypes.h` | Direct3D9 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dtypes.h.md |
 | `datetimeapi.h` | Intl | matched |  | 09/02/2026 19:19:02 | String/buffer formatting API only, no handle. |
 | `davclnt.h` | WebDav | blocked |  | 09/02/2026 19:54:02 | DavAddConnection generic HANDLE out-param; DavRegisterAuthCallback returns generic DWORD-typed OPAQUE_HANDLE via return value. |
-| `DbgEng.h` | Debug.Extensions | remaining |  |  |  |
+| `DbgEng.h` | Debug.Extensions | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DbgEng.h.md |
 | `dbghelp.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbghelp.h.md |
 | `DbgModel.h` | Debug.Extensions | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DbgModel.h.md |
 | `dbgprop.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbgprop.h.md |
@@ -340,7 +340,7 @@
 | `dssec.h` | Security.DirectoryServices | matched |  | 09/02/2026 21:43:41 | Standard COM interface output + caller-supplied callback typedefs only. |
 | `dtchelp.h` | DTC | matched |  | 09/02/2026 21:55:32 | Enum + dynamically-loaded function-pointer typedefs only, no extern functions. |
 | `dv.h` | Audio.DirectMusic | matched |  | 09/02/2026 18:20:58 | Constants + data struct only, no functions. |
-| `dvbsiparser.h` | MsTv | remaining |  |  |  |
+| `dvbsiparser.h` | MsTv | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DvbSiParser.h.md |
 | `dvdevcod.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dvdevcod.h.md |
 | `dvdmedia.h` | Media.DShow | matched | copilot | 09/03/2026 01:25:00 | Classified retained artifact in existing-patches-10. |
 | `dvp.h` | DirectDraw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dvp.h.md |
@@ -414,7 +414,7 @@
 | `exposeenums2managed.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:26:39 | Macro-definitions only, no declarations. |
 | `extensionvalidation.h` | InternetExplorer | matched |  | 09/02/2026 21:17:15 | COM interface + enums only, no extern functions. |
 | `extsfns.h` | Debug.Extensions | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/extsfns.h.md |
-| `faxcomex.h` | Fax | remaining |  |  |  |
+| `faxcomex.h` | Fax | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/FaxComEx.h.md |
 | `faxdev.h` | Fax | blocked |  | 09/02/2026 20:25:02 | FaxDevStartJob produces generic HANDLE via direct out-param. |
 | `faxext.h` | Fax | blocked |  | 09/02/2026 19:37:21 | FaxExtRegisterForEvents returns generic HANDLE via return value. |
 | `faxmmc.h` | Fax | matched |  | 09/02/2026 17:58:11 | GUID/string constants only, no functions. |
@@ -501,7 +501,7 @@
 | `iaccess.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iaccess.h.md |
 | `iadmext.h` | Iis | matched |  | 09/02/2026 19:06:16 | COM interface, not HANDLE-family. |
 | `iadmw.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iadmw.h.md |
-| `iads.h` | ActiveDirectory, Iis | remaining |  |  |  |
+| `iads.h` | ActiveDirectory, Iis | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/Iads.h.md |
 | `icftypes.h` | WindowsFirewall | matched |  | 09/02/2026 20:22:05 | Enums + MIDL boilerplate only, no functions. |
 | `ichannelcredentials.h` | Com.ChannelCreds, ComOle | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ichannelcredentials.h.md |
 | `Icm.h` | Wcs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
@@ -509,9 +509,9 @@
 | `icontact.h` | WinContacts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontact.h.md |
 | `icontactproperties.h` | WinContacts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontactproperties.h.md |
 | `icontentprefetchertasktrigger.h` | Wsw | matched |  | 09/02/2026 21:01:40 | COM/WinRT interface method only, out of scope. |
-| `icu.h` | Intl | remaining |  |  |  |
+| `icu.h` | Intl | blocked | copilot | 09/03/2026 12:06:36 | Blocked: 45+ opaque ICU types with mixed owned/borrowed-singleton return patterns per typedef (e.g. UNormalizer2 via unorm2_openFiltered vs unorm2_getNFCInstance); blanket typedef CloseApi would be unsafe per corrected producer-site policy. UDateTimePatternGenerator also missing from autoTypes.json entirely. See docs/copilot/header-reports/icu.h.md |
 | `icucommon.h` | Intl | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
-| `icui18n.h` | Intl | remaining |  |  |  |
+| `icui18n.h` | Intl | blocked | copilot | 09/03/2026 12:06:36 | Blocked: shares the same ICU opaque-type ownership ambiguity as icu.h (owned-instance vs borrowed-singleton per typedef). See docs/copilot/header-reports/icui18n.h.md |
 | `icwcfg.h` | FileHistory, InternetConnectionWizard | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `identitycommon.h` | IdentityProvider | matched |  | 09/02/2026 17:54:05 | Enum + MIDL boilerplate only, no functions. |
 | `identityprovider.h` | IdentityProvider | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/identityprovider.h.md |
@@ -648,7 +648,7 @@
 | `mfcontentdecryptionmodule.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfcontentdecryptionmodule.h.md |
 | `mfd3d12.h` | Direct3D12, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfd3d12.h.md |
 | `mferror.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mferror.h.md |
-| `mfidl.h` | Mf | remaining |  |  |  |
+| `mfidl.h` | Mf | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/mfidl.h.md |
 | `mfmediacapture.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfmediacapture.h.md |
 | `mfmediaengine.h` | Mf | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/mfmediaengine.h.md |
 | `mfmp2dlna.h` | Mf | matched |  | 09/02/2026 20:28:23 | COM interface + GUID constants/struct only, no extern functions. |
@@ -695,7 +695,7 @@
 | `mprapi.h` | RRas | matched |  |  | Producer-site fix: added MPR_SERVER_HANDLE autoTypes.json entry and MprConfigServerConnect inline RAIIFree. See docs/copilot/header-reports/mprapi.h.md |
 | `mprerror.h` | Foundation | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
 | `mq.h` | MessageQueuing | matched |  |  | Producer-site fix: added QUEUEHANDLE autoTypes.json entry (CloseApi MQCloseQueue) and MQCreateCursor::phCursor inline RAIIFree(MQCloseCursor). See docs/copilot/header-reports/mq.h.md |
-| `mqoai.h` | MessageQueuing | remaining |  |  |  |
+| `mqoai.h` | MessageQueuing | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MqOaI.h.md |
 | `mrmresourceindexer.h` | MenuRc | matched |  | 09/02/2026 22:02:59 | Transparent wrapper struct, not an opaque handle type representable by the annotation mechanism. |
 | `msaatext.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msaatext.h.md |
 | `msacm.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacm.h.md |
@@ -705,7 +705,7 @@
 | `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | matched |  |  | CORRECTED: added HCATADMIN autoTypes.json entry (CloseApi CryptCATAdminReleaseContext) after HACMDRIVER precedent proved reserved-flags 2-param close functions are tolerated. HCATINFO remains blocked (needs external HCATADMIN context). See docs/copilot/header-reports/mscat.h.md |
 | `mschapp.h` | MsChap | matched |  | 09/02/2026 18:29:38 | Password-encryption struct/string API only, no handle. |
 | `msclmd.h` | Security.Cryptography | matched |  | 09/02/2026 19:45:17 | Constants/structs only, no functions. |
-| `msclus.h` | MsCs | remaining |  |  |  |
+| `msclus.h` | MsCs | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MSClus.h.md |
 | `mscoree.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
 | `msctf.h` | Tsf | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msctf.h.md |
 | `msctfmonitorapi.h` | Tsf | matched |  | 09/02/2026 18:35:09 | HANDLE is a caller-supplied input, not produced here. |
@@ -726,10 +726,10 @@
 | `msfeeds.h` | Wmp | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msfeeds.h.md |
 | `msfeedsid.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msfeedsid.h.md |
 | `mshtmcid.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmcid.h.md |
-| `mshtmdid.h` | MsHtml | remaining |  |  |  |
+| `mshtmdid.h` | MsHtml | matched |  |  | Investigated; DISPID constants only, no functions. See docs/copilot/header-reports/MsHtmdid.h.md |
 | `mshtmhst.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmhst.h.md |
-| `Mshtml.h` | MsHtml | remaining |  |  |  |
-| `mshtmlc.h` | MsHtml | remaining |  |  |  |
+| `Mshtml.h` | MsHtml | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MsHTML.h.md |
+| `mshtmlc.h` | MsHtml | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MsHTML.h.md |
 | `mshtmldiagnostics.h` | MsHtml | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mshtmldiagnostics.h.md |
 | `msi.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msi.h.md |
 | `msidefs.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msidefs.h.md |
@@ -752,7 +752,7 @@
 | `mswsock.h` | WinSock | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mswsockdef.h` | WinSock | matched |  | 09/02/2026 19:28:18 | RIO handle types have no scrapable extern/DllImport producer function (function-pointer table pattern), architecturally out of scope. |
 | `msxml.h` | FileHistory, MsXml, WinProg | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msxml.h.md |
-| `msxml6.h` | MsXml, Printing | remaining |  |  |  |
+| `msxml6.h` | MsXml, Printing | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MsXml6.h.md |
 | `mtpext.h` | Wmdm | matched |  | 09/02/2026 18:44:05 | Constants + data structs only, no functions. |
 | `mtx.h` | ComOle, TransactionServer | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include comsvcs.h, already accepted-normalized). |
 | `mtxadmin.h` | ComOle, TransactionServer | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
@@ -818,7 +818,7 @@
 | `ntquery.h` | IndexSrv, Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntquery.h.md |
 | `ntsecapi.h` | ActiveDirectory, Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned LSA_HANDLE ownership violation found during resource-ownership audit; other annotation groups in file were already compliant. |
 | `NTSecPKG.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
-| `ntstatus.h` | Foundation | remaining |  |  |  |
+| `ntstatus.h` | Foundation | matched |  |  | Investigated; NTSTATUS constants only, no functions. See docs/copilot/header-reports/ntstatus.h.md |
 | `nvme.h` | Storage.Nvme | matched | copilot | 09/03/2026 04:35:00 | No patch needed; data-structure-only header. |
 | `oaidl.h` | ComOle | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `objbase.h` | Base, Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, IO, Printing, TransactionServer, VSS, WinProg | matched | copilot | 09/03/2026 04:15:00 | Classified retained artifact in existing-patches-21. |
@@ -988,7 +988,7 @@
 | `security.h` | Identity | matched |  | 09/02/2026 18:09:40 | Redirect-only; sspi.h accepted, issper16.h tracked pending, secext.h (untracked) directly verified clean (string-buffer-output only). |
 | `securityappcontainer.h` | Isolation | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `securitybaseapi.h` | Etw, Identity, Security | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
-| `segment.h` | Media.DShow, MsTv | remaining |  |  |  |
+| `segment.h` | Media.DShow, MsTv | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/segment.h.md |
 | `sens.h` | Sens | matched |  | 09/02/2026 18:20:58 | Constants only, no functions. |
 | `sensapi.h` | Sens | matched |  | 09/02/2026 17:41:54 | No handle involved. |
 | `sensevts.h` | Sens | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sensevts.h.md |
@@ -1057,7 +1057,7 @@
 | `storprop.h` | Base | matched |  | 09/02/2026 18:44:05 | HDEVINFO is a consumer-only input from the separate SetupAPI surface. |
 | `stralign.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/stralign.h.md |
 | `stringapiset.h` | Intl | matched |  | 09/02/2026 19:16:41 | String/buffer conversion API only, no handle. |
-| `strmif.h` | Media.DShow, Media.KernelStreaming, MsTv, WmFormat | remaining |  |  |  |
+| `strmif.h` | Media.DShow, Media.KernelStreaming, MsTv, WmFormat | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/strmif.h.md |
 | `strsafe.h` | MenuRc | matched |  |  | Investigated; inline string-safety buffer helpers only, no handle pattern. See docs/copilot/header-reports/strsafe.h.md |
 | `structuredquery.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquery.h.md |
 | `structuredquerycondition.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/structuredquerycondition.h.md |
@@ -1080,7 +1080,7 @@
 | `tapi3.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3.h.md |
 | `tapi3ds.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3ds.h.md |
 | `tapi3err.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3err.h.md |
-| `tapi3if.h` | Tapi3 | remaining |  |  |  |
+| `tapi3if.h` | Tapi3 | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/Tapi3if.h.md |
 | `taskdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:59:13 | GUID/property-key constants only, no functions. |
 | `taskschd.h` | TaskSchd | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/taskschd.h.md |
 | `tbs.h` | Tbs | matched | copilot | 09/03/2026 04:05:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
@@ -1117,7 +1117,7 @@
 | `tssbx.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tssbx.h.md |
 | `tsuserex.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsuserex.h.md |
 | `tsvirtualchannels.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tsvirtualchannels.h.md |
-| `tuner.h` | MsTv | remaining |  |  |  |
+| `tuner.h` | MsTv | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/tuner.h.md |
 | `tvout.h` | Gdi | matched |  | 09/02/2026 19:21:35 | Data struct + constants only, no functions. |
 | `tvratings.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tvratings.h.md |
 | `txdtc.h` | DTC | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/txdtc.h.md |
@@ -1277,7 +1277,7 @@
 | `windowsx.h` | Controls, FileHistory, Gdi, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windowsx.h.md |
 | `winefs.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winenclave.h` | Enclave | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
-| `winerror.h` | Direct2D, DXCore, Dxgi, Dxgi.Common, Foundation, Rpc, TaskSchd, TransactionServer, UiAnimation, Wes | remaining |  |  |  |
+| `winerror.h` | Direct2D, DXCore, Dxgi, Dxgi.Common, Foundation, Rpc, TaskSchd, TransactionServer, UiAnimation, Wes | matched |  |  | Investigated; error-code constants only, no functions. See docs/copilot/header-reports/winerror.h.md |
 | `winevt.h` | Wes | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winfax.h` | Fax | matched |  |  | Producer-site fix: added 3 inline RAIIFree(FaxClose) annotations in emitter.settings.rsp. See docs/copilot/header-reports/winfax.h.md |
 | `wingdi.h` | DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
@@ -1286,14 +1286,14 @@
 | `WinHvPlatform.h` | Hypervisor | matched |  |  | Genuine producer-site fix: added WHV_TRIGGER_HANDLE and WHV_NOTIFICATION_PORT_HANDLE autoTypes.json entries. See docs/copilot/header-reports/WinHvPlatform.h.md |
 | `wininet.h` | FileHistory, WinInet, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winineti.h` | WinInet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
-| `winioctl.h` | Base, Fs, Ioctl, Nfc, Nfp | remaining |  |  |  |
+| `winioctl.h` | Base, Fs, Ioctl, Nfc, Nfp | matched |  |  | Investigated; kernel IOCTL/FSCTL constants only, no functions. See docs/copilot/header-reports/winioctl.h.md |
 | `winldap.h` | Ldap | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winmeta.h` | TraceLogging | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
 | `winml.h` | MachineLearning | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winml.h.md |
 | `winnetwk.h` | Wnet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winnls.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winnls.h.md |
 | `winnls32.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:23:41 | HWND is an input; IME info struct is caller-allocated, not a handle. |
-| `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | remaining |  |  |  |
+| `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | matched |  |  | Investigated; foundational type/macro definitions only, no functions or handle typedefs. See docs/copilot/header-reports/winnt.h.md |
 | `winperf.h` | Perf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winperf.h.md |
 | `winppi.h` | Printing | blocked | copilot | 09/02/2026 17:51:18 | Deferred: genuine spool-file/page HANDLE ownership relationship via return value, no annotation precedent; same class as getprocesshandlefromhwnd.h/wab.h/wincon.h. |
 | `winreg.h` | Registry | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
@@ -1332,14 +1332,14 @@
 | `wmiutils.h` | Lwef, Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmiutils.h.md |
 | `wmlss.h` | Wmlss | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmlss.h.md |
 | `wmnetsourcecreator.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmnetsourcecreator.h.md |
-| `wmp.h` | Media.DShow, Wmp | remaining |  |  |  |
+| `wmp.h` | Media.DShow, Wmp | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/wmp.h.md |
 | `wmpdevices.h` | Wmp | matched |  | 09/02/2026 20:44:40 | Inline functions generate no bindings; remaining declarations are IOCTL constants/structs. |
 | `wmpids.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmpids.h.md |
 | `wmpplug.h` | Wmp | matched |  | 09/02/2026 22:06:03 | COM interface only, no extern functions. |
 | `wmprealestate.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmprealestate.h.md |
 | `wmpservices.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmpservices.h.md |
 | `wmsbuffer.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsbuffer.h.md |
-| `wmsdkidl.h` | WmFormat | remaining |  |  |  |
+| `wmsdkidl.h` | WmFormat | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/wmsdkidl.h.md |
 | `wmsdkvalidate.h` | WmFormat | matched |  | 09/02/2026 18:32:46 | String/buffer/BOOL API only, no handle. |
 | `wmsecure.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsecure.h.md |
 | `wmsinternaladminnetsource.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsinternaladminnetsource.h.md |
@@ -1393,7 +1393,7 @@
 | `wtsprotocol.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtsprotocol.h.md |
 | `wtypes.h` | Com, Com.CallObj, Com.ChannelCreds, Com.StructuredStorage, Com.Urlmon, ComOle, FileHistory, Properties, Registry, Shutdown, TransactionServer, WinProg | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
 | `wtypesbase.h` | TransactionServer, WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtypesbase.h.md |
-| `wuapi.h` | Wua | remaining |  |  |  |
+| `wuapi.h` | Wua | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/wuapi.h.md |
 | `wuerror.h` | Wua | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wuerror.h.md |
 | `xa.h` | DTC | matched |  | 09/02/2026 21:38:18 | No function produces an opaque handle; XA switch entries are function-pointer struct fields. |
 | `xamlom.h` | Xaml_Diagnostics | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xamlom.h.md |
