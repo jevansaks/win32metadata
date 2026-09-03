@@ -2678,3 +2678,13 @@ Ledger: 836 accepted-normalized, 31 blocked, 536 pending (867/1403 classified).
 - **wmistr.h** (Etw): transparent WMI structs only, no functions. Clean.
 
 Ledger: 841 accepted-normalized, 31 blocked, 531 pending (872/1403 classified).
+
+## Batch 137 (2026-09-03 00:06): batclass.h, svcguid.h, infstr.h, prntfont.h, radiomgr.h
+
+- **batclass.h** (Power): WMI GUID constants + kernel IOCTL structs only, no functions. Clean.
+- **svcguid.h** (WinSock): well-known-service GUID constants only. Clean.
+- **infstr.h** (DevInst): SetupAPI INF string constants only. Clean.
+- **prntfont.h** (Printing): transparent font metric structs only, no functions. Clean.
+- **radiomgr.h** (WpdSdk): COM interfaces only, no free functions. Clean.
+
+Ledger: 846 accepted-normalized, 31 blocked, 526 pending (877/1403 classified).

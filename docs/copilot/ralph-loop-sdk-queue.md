@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:03:58Z
+- Generated: 2026-09-03T07:06:07Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 841
+- Matched: 846
 - In progress: 0
 - Blocked: 31
-- Remaining: 531
+- Remaining: 526
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -98,7 +98,7 @@
 | `avrfsdk.h` | ApplicationVerifier, FileHistory | matched |  | 09/02/2026 19:02:46 | HANDLE is a caller-supplied input; diagnostic handle fields are plain ULONG64. |
 | `avrt.h` | Threading | blocked |  | 09/02/2026 19:32:00 | Return-value HANDLE (AvSetMmThreadCharacteristics*) + generic PHANDLE direct out-param (AvRtCreateThreadOrderingGroup*). |
 | `azroles.h` | Authorization, Authorization.UI | remaining |  |  |  |
-| `batclass.h` | Power | remaining |  |  |  |
+| `batclass.h` | Power | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/batclass.h.md |
 | `bcp47mrm.h` | Intl | matched |  | 09/02/2026 16:53:36 | No handle-producing functions. |
 | `bcrypt_provider.h` | Security.Cryptography | remaining |  |  |  |
 | `bcrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; unrelated zz-crypto-security-enums patch verified compatible via full sequential forward replay. |
@@ -548,7 +548,7 @@
 | `inetsdk.h` | InternetExplorer | matched |  | 09/02/2026 18:23:41 | Pure MIDL boilerplate, no functions. |
 | `infocard.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infocard.h.md |
 | `infotech.h` | HtmlHelp | remaining |  |  |  |
-| `infstr.h` | DevInst | remaining |  |  |  |
+| `infstr.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infstr.h.md |
 | `inked.h` | Tablet | remaining |  |  |  |
 | `inkpresenterdesktop.h` | Input_Ink | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/inkpresenterdesktop.h.md |
 | `inkrenderer.h` | Input_Ink | matched |  | 09/02/2026 21:52:12 | COM interfaces + enum only, no extern functions. |
@@ -890,7 +890,7 @@
 | `printpreview.h` | Printing | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `prnasnot.h` | Gdi, Printing | blocked |  | 09/02/2026 20:44:40 | RegisterForPrintAsyncNotifications produces generic HANDLE via direct out-param. |
 | `prnasntp.h` | Printing | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
-| `prntfont.h` | Printing | remaining |  |  |  |
+| `prntfont.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/prntfont.h.md |
 | `prntvpt.h` | Gdi, PrintTicket | matched | copilot | 09/02/2026 23:20:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation); supported-os left unresolved due to ambiguous/uncorroborated documentation. |
 | `processenv.h` | Environment, FileHistory, Fs | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `processsnapshot.h` | Proc_Snap | matched |  |  | Genuine producer-site fix: added CloseApi=PssFreeSnapshot to existing incomplete HPSS autoTypes.json entry. See docs/copilot/header-reports/processsnapshot.h.md |
@@ -915,7 +915,7 @@
 | `qossp.h` | Qos | remaining |  |  |  |
 | `query.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/query.h.md |
 | `radialcontrollerinterop.h` | InputRadial | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radialcontrollerinterop.h.md |
-| `radiomgr.h` | WpdSdk | remaining |  |  |  |
+| `radiomgr.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radiomgr.h.md |
 | `ras.h` | RRas | remaining |  |  |  |
 | `rasdlg.h` | RRas | matched |  | 09/02/2026 21:12:30 | No function produces an opaque handle. |
 | `raseapif.h` | Eap | remaining |  |  |  |
@@ -1064,7 +1064,7 @@
 | `subauth.h` | Identity | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `subscriptionservices.h` | Wmp | remaining |  |  |  |
 | `subsmgr.h` | Search | remaining |  |  |  |
-| `svcguid.h` | WinSock | remaining |  |  |  |
+| `svcguid.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/svcguid.h.md |
 | `swdevice.h` | SwDevice | matched |  | 09/02/2026 18:38:01 | HSWDEVICE ownership already correctly captured via existing autoTypes.json entry (CloseApi: SwDeviceClose); no gap to fix. |
 | `swdevicedef.h` | SwDevice | matched |  | 09/02/2026 17:30:54 | Type declarations only (enums/struct), no functions; HSWDEVICE ownership tracked separately under swdevice.h (pending). |
 | `syncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 19:16:41 | GUID/property-key constants only, no functions. |

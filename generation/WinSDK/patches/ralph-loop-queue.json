@@ -794,10 +794,10 @@
   {
     "header": "batclass.h",
     "partition": "Power",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/batclass.h.md",
     "_source": "header-progress"
   },
   {
@@ -4844,10 +4844,10 @@
   {
     "header": "infstr.h",
     "partition": "DevInst",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/infstr.h.md",
     "_source": "header-progress"
   },
   {
@@ -7922,10 +7922,10 @@
   {
     "header": "prntfont.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/prntfont.h.md",
     "_source": "header-progress"
   },
   {
@@ -8147,10 +8147,10 @@
   {
     "header": "radiomgr.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/radiomgr.h.md",
     "_source": "header-progress"
   },
   {
@@ -9488,10 +9488,10 @@
   {
     "header": "svcguid.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/svcguid.h.md",
     "_source": "header-progress"
   },
   {
