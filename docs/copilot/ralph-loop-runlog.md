@@ -1790,3 +1790,24 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   (OPAQUE_HANDLE is literally a DWORD). Both reuse established blocker classes.
 
 **Ledger status:** 510 accepted-normalized, 22 blocked, 871 pending.
+
+## 2026-09-02 20:07:51 UTC - Batch scraping-investigation-69
+
+**Headers:** winstring.h, guiddef.h, rpc.h, dxva2trace.h, dciman.h
+**Partitions scraped (x64):** WinRT, TransactionServer, Rpc (0 errors each); Media.DShow/WinProg/FileHistory reused
+
+- winstring.h: **resolves the long-deferred "HSTRING ownership tracked separately" item.**
+  HSTRING/HSTRING_BUFFER are both already fully covered by existing autoTypes.json entries
+  (CloseApi: WindowsDeleteString / WindowsDeleteStringBuffer) - this confirms every previously-deferred
+  HSTRING-producing header across the SDK was correctly closed without needing its own annotation.
+- guiddef.h: GUID type/macros/inline helpers only, no extern functions. Clean.
+- rpc.h: pure umbrella/typedef header (rpcdce.h/rpcnsi.h/rpcnterr.h/rpcasync.h all already tracked);
+  RpcMacSetYieldInfo is Mac-only, unreachable on Windows. Clean.
+- dxva2trace.h: ETW tracing GUID constants/structs only, no functions. Clean.
+- dciman.h: **partially fixed, still blocked** - HWINWATCH's autoTypes.json entry was missing
+  CloseApi (same incomplete-entry pattern as appnotify.h/packagevirtualizationcontext.h); added
+  CloseApi: WinWatchClose, verified same-namespace consistency (Windows.Win32.System.WindowsProgramming)
+  and re-scraped WinProg/FileHistory (0 errors). DCIOpenProvider/DCICloseProvider's generic HDC
+  return-value remains an unrepresentable gap (established blocker class) - header stays blocked.
+
+**Ledger status:** 514 accepted-normalized, 23 blocked, 866 pending.

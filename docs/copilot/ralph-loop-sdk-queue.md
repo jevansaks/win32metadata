@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:54:20Z
+- Generated: 2026-09-03T03:07:51Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 510
+- Matched: 514
 - In progress: 0
-- Blocked: 22
-- Remaining: 871
+- Blocked: 23
+- Remaining: 866
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -257,7 +257,7 @@
 | `dbgprop.h` | Debug | remaining |  |  |  |
 | `dbt.h` | MenuRc | remaining |  |  |  |
 | `dciddi.h` | Direct2D | remaining |  |  |  |
-| `dciman.h` | FileHistory, WinProg | remaining |  |  |  |
+| `dciman.h` | FileHistory, WinProg | blocked |  | 09/02/2026 20:07:23 | DCIOpenProvider/DCICloseProvider generic HDC return-value remains a gap; HWINWATCH gap fixed via autoTypes.json CloseApi addition. |
 | `dcommon.h` | Direct2D, Direct2D.Common, DirectWrite | remaining |  |  |  |
 | `dcomp.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcompanimation.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
@@ -368,7 +368,7 @@
 | `dxva.h` | Media.DShow, Mf | remaining |  |  |  |
 | `dxva2api.h` | Media.DShow, Mf | remaining |  |  |  |
 | `dxva2swdev.h` | Media.DShow | remaining |  |  |  |
-| `dxva2trace.h` | Media.DShow | remaining |  |  |  |
+| `dxva2trace.h` | Media.DShow | matched |  | 09/02/2026 20:07:23 | ETW tracing constants/structs only, no functions. |
 | `dxva9typ.h` | Media.DShow, Mf | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `dxvahd.h` | Mf | remaining |  |  |  |
 | `eapauthenticatoractiondefine.h` | EapHost | matched |  | 09/02/2026 18:50:10 | Enums/data structs only, no functions. |
@@ -473,7 +473,7 @@
 | `gpedit.h` | Policy | remaining |  |  |  |
 | `gpiobuttontypes.h` | Hid | matched |  | 09/02/2026 18:23:41 | Enum/constants/data struct only, no functions. |
 | `gpmgmt.h` | Gpmc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only. |
-| `guiddef.h` | TransactionServer | remaining |  |  |  |
+| `guiddef.h` | TransactionServer | matched |  | 09/02/2026 20:07:23 | GUID type/macros/inline helpers only, no extern functions. |
 | `handleapi.h` | FileHistory, Foundation | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `hidclass.h` | Hid | remaining |  |  |  |
 | `hidpi.h` | Hid | remaining |  |  |  |
@@ -952,7 +952,7 @@
 | `rometadataresolution.h` | WinRT.Metadata | matched |  | 09/02/2026 19:12:01 | COM factory pattern + HSTRING outputs tracked separately under winstring.h. |
 | `roparameterizediid.h` | WinRT.Metadata | matched |  | 09/02/2026 19:19:02 | ROPARAMIIDHANDLE ownership already correctly captured via existing autoTypes.json entry. |
 | `roregistrationapi.h` | WinRT | matched |  | 09/02/2026 19:06:16 | COM factory; HSTRING array ownership tracked separately under winstring.h. |
-| `rpc.h` | Rpc | remaining |  |  |  |
+| `rpc.h` | Rpc | matched |  | 09/02/2026 20:07:23 | Pure umbrella/typedef header; all sub-headers already tracked; Mac-only function unreachable on Windows. |
 | `rpcasync.h` | Rpc | remaining |  |  |  |
 | `rpcdce.h` | Rpc, TransactionServer | remaining |  |  |  |
 | `rpcdcep.h` | Rpc | remaining |  |  |  |
@@ -1307,7 +1307,7 @@
 | `winsock2.h` | ActiveDirectory, HttpServer, IpHlp, P2p, Qos, Ual, WindowsFilteringPlatform, WinHttp, WinSock, wnv | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winsplp.h` | Printing | remaining |  |  |  |
 | `winspool.h` | Gdi, Printing | matched | copilot | 09/02/2026 22:05:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. Not part of the original 11-header audit set (discovered as an additional resource-ownership patch). |
-| `winstring.h` | WinRT | remaining |  |  |  |
+| `winstring.h` | WinRT | matched |  | 09/02/2026 20:07:23 | HSTRING/HSTRING_BUFFER already correctly covered via existing autoTypes.json entries. |
 | `winsvc.h` | Services | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types). |
 | `winsxs.h` | Setup | remaining |  |  |  |
 | `winsync.h` | WinSync | remaining |  |  |  |

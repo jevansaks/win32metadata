@@ -722,6 +722,7 @@
     "Namespace": "Windows.Win32.System.WindowsProgramming",
     "Name": "HWINWATCH",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "WinWatchClose",
     "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
   },

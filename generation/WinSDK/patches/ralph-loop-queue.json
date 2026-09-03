@@ -2225,10 +2225,10 @@
   {
     "header": "dciman.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:07:23Z",
+    "notes": "DCIOpenProvider/DCICloseProvider generic HDC return-value remains a gap; HWINWATCH gap fixed via autoTypes.json CloseApi addition.",
     "_source": "header-progress"
   },
   {
@@ -3224,10 +3224,10 @@
   {
     "header": "dxva2trace.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:07:23Z",
+    "notes": "ETW tracing constants/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4169,10 +4169,10 @@
   {
     "header": "guiddef.h",
     "partition": "TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:07:23Z",
+    "notes": "GUID type/macros/inline helpers only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -8480,10 +8480,10 @@
   {
     "header": "rpc.h",
     "partition": "Rpc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:07:23Z",
+    "notes": "Pure umbrella/typedef header; all sub-headers already tracked; Mac-only function unreachable on Windows.",
     "_source": "header-progress"
   },
   {
@@ -11675,10 +11675,10 @@
   {
     "header": "winstring.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:07:23Z",
+    "notes": "HSTRING/HSTRING_BUFFER already correctly covered via existing autoTypes.json entries.",
     "_source": "header-progress"
   },
   {
