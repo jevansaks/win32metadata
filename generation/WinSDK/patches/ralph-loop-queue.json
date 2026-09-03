@@ -6275,10 +6275,10 @@
   {
     "header": "msctf.h",
     "partition": "Tsf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msctf.h.md",
     "_source": "header-progress"
   },
   {
@@ -6545,10 +6545,10 @@
   {
     "header": "msinkaut.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msinkaut.h.md",
     "_source": "header-progress"
   },
   {
@@ -6671,10 +6671,10 @@
   {
     "header": "msxml.h",
     "partition": "FileHistory, MsXml, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msxml.h.md",
     "_source": "header-progress"
   },
   {
@@ -9650,10 +9650,10 @@
   {
     "header": "taskschd.h",
     "partition": "TaskSchd",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/taskschd.h.md",
     "_source": "header-progress"
   },
   {
@@ -12602,10 +12602,10 @@
   {
     "header": "xpsobjectmodel.h",
     "partition": "Xps",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/xpsobjectmodel.h.md",
     "_source": "header-progress"
   },
   {

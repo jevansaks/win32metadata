@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T11:56:11Z
+- Generated: 2026-09-03T11:57:40Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1312
+- Matched: 1317
 - In progress: 0
 - Blocked: 59
-- Remaining: 32
+- Remaining: 27
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -707,7 +707,7 @@
 | `msclmd.h` | Security.Cryptography | matched |  | 09/02/2026 19:45:17 | Constants/structs only, no functions. |
 | `msclus.h` | MsCs | remaining |  |  |  |
 | `mscoree.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
-| `msctf.h` | Tsf | remaining |  |  |  |
+| `msctf.h` | Tsf | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msctf.h.md |
 | `msctfmonitorapi.h` | Tsf | matched |  | 09/02/2026 18:35:09 | HANDLE is a caller-supplied input, not produced here. |
 | `msdadc.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdadc.h.md |
 | `msdaguid.h` | Search | matched |  | 09/02/2026 18:06:26 | GUID constants only, no functions. |
@@ -737,7 +737,7 @@
 | `msiltcfg.h` | Setup | matched |  | 09/02/2026 17:38:44 | No handle involved. |
 | `msime.h` | Input.Ime | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msime.h.md |
 | `msimeapi.h` | Input.Ime | matched |  | 09/02/2026 21:52:12 | COM interface only, no extern functions. |
-| `msinkaut.h` | Tablet | remaining |  |  |  |
+| `msinkaut.h` | Tablet | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msinkaut.h.md |
 | `msinkaut15.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msinkaut15.h.md |
 | `msiquery.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msiquery.h.md |
 | `msopc.h` | Opc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only, no free functions. |
@@ -751,7 +751,7 @@
 | `mswmdm.h` | Wmdm | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/mswmdm.h.md |
 | `mswsock.h` | WinSock | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mswsockdef.h` | WinSock | matched |  | 09/02/2026 19:28:18 | RIO handle types have no scrapable extern/DllImport producer function (function-pointer table pattern), architecturally out of scope. |
-| `msxml.h` | FileHistory, MsXml, WinProg | remaining |  |  |  |
+| `msxml.h` | FileHistory, MsXml, WinProg | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/msxml.h.md |
 | `msxml6.h` | MsXml, Printing | remaining |  |  |  |
 | `mtpext.h` | Wmdm | matched |  | 09/02/2026 18:44:05 | Constants + data structs only, no functions. |
 | `mtx.h` | ComOle, TransactionServer | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include comsvcs.h, already accepted-normalized). |
@@ -1082,7 +1082,7 @@
 | `tapi3err.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tapi3err.h.md |
 | `tapi3if.h` | Tapi3 | remaining |  |  |  |
 | `taskdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 18:59:13 | GUID/property-key constants only, no functions. |
-| `taskschd.h` | TaskSchd | remaining |  |  |  |
+| `taskschd.h` | TaskSchd | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/taskschd.h.md |
 | `tbs.h` | Tbs | matched | copilot | 09/03/2026 04:05:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
 | `tcerror.h` | Qos | matched |  | 09/02/2026 18:35:09 | Error-code constants only, no functions. |
 | `tcguid.h` | Qos | matched |  | 09/02/2026 18:59:13 | GUID constants only, no functions. |
@@ -1410,6 +1410,6 @@
 | `xpsdigitalsignature.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsdigitalsignature.h.md |
 | `xpsobjectmodel_1.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_1.h.md |
 | `xpsobjectmodel_2.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_2.h.md |
-| `xpsobjectmodel.h` | Xps | remaining |  |  |  |
+| `xpsobjectmodel.h` | Xps | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/xpsobjectmodel.h.md |
 | `xpsprint.h` | Gdi, XpsPrinting | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsprint.h.md |
 | `xpsrassvc.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsrassvc.h.md |
