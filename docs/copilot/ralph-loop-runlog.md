@@ -3158,3 +3158,13 @@ Ledger: 1076 accepted-normalized, 31 blocked, 296 pending (1107/1403 classified)
 - **qos2.h** (Qos): PRODUCER-SITE FIX - added inline emitter.settings.rsp RAIIFree annotation QOSCreateHandle::QOSHandle=[RAIIFree(\"QOSCloseHandle\")], following the established CfOpenFileWithOplock precedent for semantically-specific generic-HANDLE outputs.
 
 Ledger: 1081 accepted-normalized, 31 blocked, 291 pending (1112/1403 classified).
+
+## Batch 185 (2026-09-03 02:38): fdi.h, mciapi.h, shlguid.h, certview.h, vsmgmt.h
+
+- fdi.h (Cabinets): PRODUCER-SITE FIX - added HFDI autoTypes.json entry (CloseApi FDIDestroy). Validated 0 errors.
+- mciapi.h (Multimedia): generic MCIDEVICEID/UINT identifiers, no distinct handle typedef. Clean.
+- shlguid.h (Shell): GUID constants only. Clean.
+- certview.h (Certificates): COM vtable only. Clean.
+- vsmgmt.h (VSS): COM vtable only. Clean.
+
+Ledger: 1086 accepted-normalized, 31 blocked, 286 pending (1117/1403 classified).

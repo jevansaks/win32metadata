@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:33:50Z
+- Generated: 2026-09-03T09:38:04Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1081
+- Matched: 1086
 - In progress: 0
 - Blocked: 31
-- Remaining: 291
+- Remaining: 286
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -151,7 +151,7 @@
 | `certpoleng.h` | Certificates | matched |  | 09/02/2026 19:09:17 | Transparent structs with generic free conventions, or generic PVOID; both out of scope. |
 | `certreqd.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certreqd.h.md |
 | `certsrv.h` | Certificates | remaining |  |  |  |
-| `certview.h` | Certificates | remaining |  |  |  |
+| `certview.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certview.h.md |
 | `cfapi.h` | Cloudapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfapi.h.md |
 | `cfg.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfg.h.md |
 | `cfgmgr32.h` | DevInst | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
@@ -421,7 +421,7 @@
 | `faxroute.h` | Fax | matched |  | 09/02/2026 19:50:38 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `fci.h` | Cabinets | matched |  |  | Genuine producer-site fix: added new HFCI autoTypes.json entry (CloseApi=FCIDestroy). See docs/copilot/header-reports/fci.h.md |
 | `fdi_fci_types.h` | Cabinets | matched |  | 09/02/2026 20:13:28 | Constants/structs only, no functions. |
-| `fdi.h` | Cabinets | remaining |  |  |  |
+| `fdi.h` | Cabinets | matched |  |  | Producer-site fix: added HFDI autoTypes.json entry (CloseApi FDIDestroy). See docs/copilot/header-reports/fdi.h.md |
 | `featurestagingapi.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:40:30 | FEATURE_STATE_CHANGE_SUBSCRIPTION ownership already correctly captured via existing autoTypes.json entry. |
 | `fhcfg.h` | FileHistory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fhcfg.h.md |
 | `fherrors.h` | FileHistory | matched |  | 09/02/2026 19:47:59 | HRESULT constants only, no functions. |
@@ -627,7 +627,7 @@
 | `manual.h` | Com.StructuredStorage | remaining |  |  |  |
 | `mapi.h` | Mapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mapi.h.md |
 | `mbnapi.h` | Mbn | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
-| `mciapi.h` | Multimedia | remaining |  |  |  |
+| `mciapi.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mciapi.h.md |
 | `mciavi.h` | Multimedia | matched |  | 09/02/2026 18:59:13 | Constants only, no functions. |
 | `mcx.h` | Communication | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mcx.h.md |
 | `mdhcp.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mdhcp.h.md |
@@ -1011,7 +1011,7 @@
 | `shidfact.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shidfact.h.md |
 | `shimgdata.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shldisp.h` | Lwef, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
-| `shlguid.h` | Shell | remaining |  |  |  |
+| `shlguid.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shlguid.h.md |
 | `shlobj_core.h` | ActiveDirectory, Lwef, Properties, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shlobj.h` | Controls, Lwef, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shlwapi.h` | Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
@@ -1171,7 +1171,7 @@
 | `vptype.h` | Media.DShow | matched |  | 09/02/2026 18:47:23 | Enums/data structs only, no functions. |
 | `vsadmin.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsadmin.h.md |
 | `vsbackup.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsbackup.h.md |
-| `vsmgmt.h` | VSS | remaining |  |  |  |
+| `vsmgmt.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsmgmt.h.md |
 | `vsprov.h` | VSS | remaining |  |  |  |
 | `vss.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vss.h.md |
 | `vsserror.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsserror.h.md |

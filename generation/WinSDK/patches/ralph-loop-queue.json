@@ -1271,10 +1271,10 @@
   {
     "header": "certview.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certview.h.md",
     "_source": "header-progress"
   },
   {
@@ -3701,10 +3701,10 @@
   {
     "header": "fdi.h",
     "partition": "Cabinets",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added HFDI autoTypes.json entry (CloseApi FDIDestroy). See docs/copilot/header-reports/fdi.h.md",
     "_source": "header-progress"
   },
   {
@@ -5555,10 +5555,10 @@
   {
     "header": "mciapi.h",
     "partition": "Multimedia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mciapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -9011,10 +9011,10 @@
   {
     "header": "shlguid.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shlguid.h.md",
     "_source": "header-progress"
   },
   {
@@ -10451,10 +10451,10 @@
   {
     "header": "vsmgmt.h",
     "partition": "VSS",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsmgmt.h.md",
     "_source": "header-progress"
   },
   {
