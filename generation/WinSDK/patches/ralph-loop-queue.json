@@ -758,10 +758,10 @@
   {
     "header": "aviriff.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aviriff.h.md",
     "_source": "header-progress"
   },
   {
@@ -956,10 +956,10 @@
   {
     "header": "bits4_0.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits4_0.h.md",
     "_source": "header-progress"
   },
   {
@@ -1118,10 +1118,10 @@
   {
     "header": "CastingInterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CastingInterop.h.md",
     "_source": "header-progress"
   },
   {
@@ -5420,10 +5420,10 @@
   {
     "header": "lmsvc.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmsvc.h.md",
     "_source": "header-progress"
   },
   {
@@ -5537,10 +5537,10 @@
   {
     "header": "mapi.h",
     "partition": "Mapi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mapi.h.md",
     "_source": "header-progress"
   },
   {

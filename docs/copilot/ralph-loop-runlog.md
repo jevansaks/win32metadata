@@ -2488,3 +2488,13 @@ Ledger: 741 accepted-normalized, 31 blocked, 631 pending (772/1403 classified).
 - **vsadmin.h** (VSS): COM interfaces only, no free functions. Clean.
 
 Ledger: 746 accepted-normalized, 31 blocked, 626 pending (777/1403 classified).
+
+## Batch 118 (2026-09-02 23:08): lmsvc.h, mapi.h, bits4_0.h, aviriff.h, CastingInterop.h
+
+- **lmsvc.h** (NetMgmt): NetApiBufferAllocate/Free convention. Clean.
+- **mapi.h** (Mapi): MAPIFreeBuffer is generic buffer free; LHANDLE consumed as input only (producer MAPILogon elsewhere), shared/generic type used across 3 files; ScMAPIXFromSMAPI outputs COM interface pointer. Clean.
+- **bits4_0.h** (Bits): COM interfaces only, no free functions. Clean.
+- **aviriff.h** (Media.DShow): transparent RIFF/AVI structs only, no functions. Clean.
+- **CastingInterop.h** (WinRT): COM interfaces only, no free functions. Clean.
+
+Ledger: 751 accepted-normalized, 31 blocked, 621 pending (782/1403 classified).

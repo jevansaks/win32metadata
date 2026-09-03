@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:04:35Z
+- Generated: 2026-09-03T06:08:03Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 746
+- Matched: 751
 - In progress: 0
 - Blocked: 31
-- Remaining: 626
+- Remaining: 621
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -94,7 +94,7 @@
 | `authz.h` | Authorization, Authorization.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (12 producer sites across 6 handle types). |
 | `aux_ulib.h` | FileHistory, WinProg | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `avifmt.h` | Media.DShow | matched |  | 09/02/2026 21:55:32 | Constants/structs only, no functions. |
-| `aviriff.h` | Media.DShow | remaining |  |  |  |
+| `aviriff.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aviriff.h.md |
 | `avrfsdk.h` | ApplicationVerifier, FileHistory | matched |  | 09/02/2026 19:02:46 | HANDLE is a caller-supplied input; diagnostic handle fields are plain ULONG64. |
 | `avrt.h` | Threading | blocked |  | 09/02/2026 19:32:00 | Return-value HANDLE (AvSetMmThreadCharacteristics*) + generic PHANDLE direct out-param (AvRtCreateThreadOrderingGroup*). |
 | `azroles.h` | Authorization, Authorization.UI | remaining |  |  |  |
@@ -116,7 +116,7 @@
 | `bits2_0.h` | Bits | remaining |  |  |  |
 | `bits2_5.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_5.h.md |
 | `bits3_0.h` | Bits | remaining |  |  |  |
-| `bits4_0.h` | Bits | remaining |  |  |  |
+| `bits4_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits4_0.h.md |
 | `bits5_0.h` | Bits | remaining |  |  |  |
 | `bitscfg.h` | Bits | remaining |  |  |  |
 | `bitsmsg.h` | Bits | remaining |  |  |  |
@@ -134,7 +134,7 @@
 | `capi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:45:25 | JAVA_TRUST plain data struct; all redirected headers already accepted or separately tracked pending; sipbase.h verified as trivial redirect to accepted mssip.h. |
 | `cardmod.h` | Security.Cryptography | remaining |  |  |  |
 | `casetup.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
-| `CastingInterop.h` | WinRT | remaining |  |  |  |
+| `CastingInterop.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CastingInterop.h.md |
 | `ccgplugins.h` | Identity | matched |  | 09/02/2026 19:37:21 | COM interface method only, out of scope. |
 | `cchannel.h` | TermServ | remaining |  |  |  |
 | `cderr.h` | DlgBox | matched |  | 09/02/2026 18:15:12 | Error-code constants only, no functions. |
@@ -612,7 +612,7 @@
 | `lmshare.h` | Fs | remaining |  |  |  |
 | `lmsname.h` | NetMgmt | matched |  | 09/02/2026 19:35:00 | Service-name string constants only, no functions. |
 | `lmstats.h` | Fs | matched |  | 09/02/2026 20:16:15 | Net API buffer-allocation convention. |
-| `lmsvc.h` | NetMgmt | remaining |  |  |  |
+| `lmsvc.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmsvc.h.md |
 | `lmuse.h` | NetMgmt | matched |  | 09/02/2026 22:09:36 | Net API buffer-allocation convention. |
 | `lmuseflg.h` | NetMgmt | matched |  | 09/02/2026 17:23:42 | Constants/macro only, no functions. |
 | `lmwksta.h` | NetMgmt | remaining |  |  |  |
@@ -625,7 +625,7 @@
 | `mailmsgprops.h` | IMapi | remaining |  |  |  |
 | `manipulations.h` | WinTouch | remaining |  |  |  |
 | `manual.h` | Com.StructuredStorage | remaining |  |  |  |
-| `mapi.h` | Mapi | remaining |  |  |  |
+| `mapi.h` | Mapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mapi.h.md |
 | `mbnapi.h` | Mbn | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `mciapi.h` | Multimedia | remaining |  |  |  |
 | `mciavi.h` | Multimedia | matched |  | 09/02/2026 18:59:13 | Constants only, no functions. |
