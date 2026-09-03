@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:57:02Z
+- Generated: 2026-09-03T08:59:25Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1021
+- Matched: 1026
 - In progress: 0
 - Blocked: 31
-- Remaining: 351
+- Remaining: 346
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -385,8 +385,8 @@
 | `editionupgradehelper.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/editionupgradehelper.h.md |
 | `edpwin32.h` | Edp | matched |  | 09/02/2026 17:19:28 | Path-string-only API, no handle. |
 | `effects.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/effects.h.md |
-| `efswrtinterop.h` | Edp | remaining |  |  |  |
-| `ehstorapi.h` | Enstor | remaining |  |  |  |
+| `efswrtinterop.h` | Edp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/efswrtinterop.h.md |
+| `ehstorapi.h` | Enstor | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ehstorapi.h.md |
 | `ehstorextensions.h` | Enstor | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ehstorextensions.h.md |
 | `ehstormsg.h` | Enstor | matched |  | 09/02/2026 22:12:28 | Constants/macros only, no functions. |
 | `elscore.h` | Intl | matched |  | 09/02/2026 20:22:05 | All producer/consumer pairs operate on transparent structs, not opaque handles. |
@@ -394,7 +394,7 @@
 | `emi.h` | Power | matched |  | 09/02/2026 18:56:34 | GUID/IOCTL constants + data structs only, no functions. |
 | `emptyvc.h` | Lwef | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/emptyvc.h.md |
 | `encdec.h` | MsTv | remaining |  |  |  |
-| `endpointvolume.h` | Audio.Endpoints | remaining |  |  |  |
+| `endpointvolume.h` | Audio.Endpoints | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/endpointvolume.h.md |
 | `errhandlingapi.h` | Base, Debug | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `errorrep.h` | Wer | matched |  | 09/02/2026 18:00:52 | HWND is a caller-supplied input, not produced here. |
 | `errors.h` | Media.DShow | matched |  | 09/02/2026 17:38:44 | Caller-allocated string buffer output only, no handle. |
@@ -404,7 +404,7 @@
 | `evcoll.h` | Wec | matched |  | 09/02/2026 21:38:18 | Fixed genuine gap: added new autoTypes.json entry for EC_HANDLE (CloseApi=EcClose). |
 | `eventsys.h` | Com.Events, TransactionServer | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `evntcons.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evntcons.h.md |
-| `evntprov.h` | Etw | remaining |  |  |  |
+| `evntprov.h` | Etw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evntprov.h.md |
 | `evntrace.h` | Etw, Media.DShow | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `evr.h` | Mf | remaining |  |  |  |
 | `evr9.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evr9.h.md |
@@ -630,7 +630,7 @@
 | `mciapi.h` | Multimedia | remaining |  |  |  |
 | `mciavi.h` | Multimedia | matched |  | 09/02/2026 18:59:13 | Constants only, no functions. |
 | `mcx.h` | Communication | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mcx.h.md |
-| `mdhcp.h` | Tapi3 | remaining |  |  |  |
+| `mdhcp.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mdhcp.h.md |
 | `mdmlocalmanagement.h` | MdmReg | matched |  | 09/02/2026 17:54:05 | No handle-typed values; string output uses LocalFree, not HANDLE mechanism. |
 | `mdmregistration.h` | MdmReg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mdmregistration.h.md |
 | `mediaerr.h` | Media.DShow, Media.DxMediaObjects | matched |  | 09/02/2026 17:13:02 | HRESULT error constants only, no functions. |

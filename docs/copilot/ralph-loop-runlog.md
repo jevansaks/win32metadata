@@ -3038,3 +3038,13 @@ Ledger: 1016 accepted-normalized, 31 blocked, 356 pending (1047/1403 classified)
 - **bits5_0.h** (Bits): COM vtable only. Clean.
 
 Ledger: 1021 accepted-normalized, 31 blocked, 351 pending (1052/1403 classified).
+
+## Batch 173 (2026-09-03 01:59): endpointvolume.h, mdhcp.h, evntprov.h, efswrtinterop.h, ehstorapi.h
+
+- **endpointvolume.h** (Audio.Endpoints): COM vtable only. Clean.
+- **mdhcp.h** (Tapi3): COM vtable only. Clean.
+- **evntprov.h** (Etw): REGHANDLE already has correct autoTypes.json entry (CloseApi EventUnregister) - no gap.
+- **efswrtinterop.h** (Edp): COM vtable only. Clean.
+- **ehstorapi.h** (Enstor): COM vtable only. Clean.
+
+Ledger: 1026 accepted-normalized, 31 blocked, 346 pending (1057/1403 classified).

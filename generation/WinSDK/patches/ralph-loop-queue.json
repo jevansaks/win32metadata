@@ -3377,19 +3377,19 @@
   {
     "header": "efswrtinterop.h",
     "partition": "Edp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/efswrtinterop.h.md",
     "_source": "header-progress"
   },
   {
     "header": "ehstorapi.h",
     "partition": "Enstor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ehstorapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -3458,10 +3458,10 @@
   {
     "header": "endpointvolume.h",
     "partition": "Audio.Endpoints",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/endpointvolume.h.md",
     "_source": "header-progress"
   },
   {
@@ -3548,10 +3548,10 @@
   {
     "header": "evntprov.h",
     "partition": "Etw",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/evntprov.h.md",
     "_source": "header-progress"
   },
   {
@@ -5582,10 +5582,10 @@
   {
     "header": "mdhcp.h",
     "partition": "Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mdhcp.h.md",
     "_source": "header-progress"
   },
   {
