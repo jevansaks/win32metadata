@@ -3479,7 +3479,7 @@
         "WinProg"
       ],
       "partition_count": 4,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -3492,7 +3492,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/camerauicontrol.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -4013,7 +4013,7 @@
       "header": "certreqd.h",
       "partitions": "Certificates",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -4026,7 +4026,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certreqd.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Certificates/main.cpp",
@@ -20772,7 +20772,7 @@
       "header": "medparam.h",
       "partitions": "Media.DShow",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -20785,7 +20785,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/medparam.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Media.DShow/main.cpp",
@@ -35035,7 +35035,7 @@
         "Shell.Common"
       ],
       "partition_count": 2,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -35048,7 +35048,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shtypes.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -40466,7 +40466,7 @@
       "header": "wdstptmgmtmsg.h",
       "partitions": "Wds",
       "partition_count": 1,
-      "status": "pending",
+      "status": "accepted-normalized",
       "matched": false,
       "assignee": "",
       "batch": "",
@@ -40479,7 +40479,7 @@
       "assumptions": [],
       "evidence": [],
       "last_updated": "",
-      "notes": "",
+      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdstptmgmtmsg.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Wds/main.cpp",

@@ -1082,10 +1082,10 @@
   {
     "header": "camerauicontrol.h",
     "partition": "FileHistory, Media.DShow, Mf, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/camerauicontrol.h.md",
     "_source": "header-progress"
   },
   {
@@ -1253,10 +1253,10 @@
   {
     "header": "certreqd.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certreqd.h.md",
     "_source": "header-progress"
   },
   {
@@ -5627,10 +5627,10 @@
   {
     "header": "medparam.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/medparam.h.md",
     "_source": "header-progress"
   },
   {
@@ -9065,10 +9065,10 @@
   {
     "header": "shtypes.h",
     "partition": "Shell, Shell.Common",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shtypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -10766,10 +10766,10 @@
   {
     "header": "wdstptmgmtmsg.h",
     "partition": "Wds",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdstptmgmtmsg.h.md",
     "_source": "header-progress"
   },
   {

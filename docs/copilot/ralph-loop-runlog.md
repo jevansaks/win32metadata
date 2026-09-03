@@ -2558,3 +2558,13 @@ Ledger: 776 accepted-normalized, 31 blocked, 596 pending (807/1403 classified).
 - **projectedfslib.h** (ProjFs): PATCH APPLIED. PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT had an existing autoTypes.json entry missing CloseApi - added CloseApi=PrjStopVirtualizing (producer PrjStartVirtualizing). Re-scraped ProjFs (x64): 0 errors.
 
 Ledger: 781 accepted-normalized, 31 blocked, 591 pending (812/1403 classified).
+
+## Batch 125 (2026-09-02 23:28): medparam.h, shtypes.h, certreqd.h, wdstptmgmtmsg.h, camerauicontrol.h
+
+- **medparam.h** (Media.DShow): COM interfaces only, no free functions. Clean.
+- **shtypes.h** (Shell, Shell.Common): COM/type definitions only, no free functions. Clean.
+- **certreqd.h** (Certificates): COM interfaces only, no free functions. Clean.
+- **wdstptmgmtmsg.h** (Wds): MC-tool event log message constants only. Clean.
+- **camerauicontrol.h** (FileHistory, Media.DShow, Mf, WinProg): COM interfaces only, no free functions. Clean.
+
+Ledger: 786 accepted-normalized, 31 blocked, 586 pending (817/1403 classified). Milestone: 125 batches this session.

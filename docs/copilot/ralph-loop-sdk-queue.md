@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:26:36Z
+- Generated: 2026-09-03T06:28:43Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 781
+- Matched: 786
 - In progress: 0
 - Blocked: 31
-- Remaining: 591
+- Remaining: 586
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -130,7 +130,7 @@
 | `calendarapis.h` | Intl | matched |  | 09/02/2026 17:30:54 | Calendar-date-struct-only API, no handle. |
 | `calendardeviceservice.h` | WpdSdk | matched |  | 09/02/2026 21:17:15 | Constants only, no functions. |
 | `callobj.h` | Com.CallObj, ComOle | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
-| `camerauicontrol.h` | FileHistory, Media.DShow, Mf, WinProg | remaining |  |  |  |
+| `camerauicontrol.h` | FileHistory, Media.DShow, Mf, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/camerauicontrol.h.md |
 | `capi.h` | FileHistory, WinProg | matched |  | 09/02/2026 17:45:25 | JAVA_TRUST plain data struct; all redirected headers already accepted or separately tracked pending; sipbase.h verified as trivial redirect to accepted mssip.h. |
 | `cardmod.h` | Security.Cryptography | remaining |  |  |  |
 | `casetup.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
@@ -149,7 +149,7 @@
 | `certmod.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certmod.h.md |
 | `certpol.h` | Certificates | remaining |  |  |  |
 | `certpoleng.h` | Certificates | matched |  | 09/02/2026 19:09:17 | Transparent structs with generic free conventions, or generic PVOID; both out of scope. |
-| `certreqd.h` | Certificates | remaining |  |  |  |
+| `certreqd.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certreqd.h.md |
 | `certsrv.h` | Certificates | remaining |  |  |  |
 | `certview.h` | Certificates | remaining |  |  |  |
 | `cfapi.h` | Cloudapi | remaining |  |  |  |
@@ -635,7 +635,7 @@
 | `mdmregistration.h` | MdmReg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mdmregistration.h.md |
 | `mediaerr.h` | Media.DShow, Media.DxMediaObjects | matched |  | 09/02/2026 17:13:02 | HRESULT error constants only, no functions. |
 | `mediaobj.h` | Media.DShow, Media.DxMediaObjects | remaining |  |  |  |
-| `medparam.h` | Media.DShow | remaining |  |  |  |
+| `medparam.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/medparam.h.md |
 | `memorybuffer.h` | WinRT | matched |  | 09/02/2026 17:05:19 | IMemoryBufferByteAccess COM interface; buffer view not a HANDLE-family resource. |
 | `menutemplate.h` | MenuRc | matched |  | 09/02/2026 17:01:48 | Plain data structs only, no functions. |
 | `mergemod.h` | Setup | remaining |  |  |  |
@@ -1017,7 +1017,7 @@
 | `shlwapi.h` | Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shobjidl_core.h` | Properties, Search, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shobjidl.h` | Properties, Shell, TransactionServer | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
-| `shtypes.h` | Shell, Shell.Common | remaining |  |  |  |
+| `shtypes.h` | Shell, Shell.Common | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shtypes.h.md |
 | `simpdata.h` | Search | remaining |  |  |  |
 | `slerror.h` | Identity | remaining |  |  |  |
 | `sliddefs.h` | Identity | matched |  | 09/02/2026 16:57:06 | GUID constant only, no functions. |
@@ -1206,7 +1206,7 @@
 | `wdstci.h` | Wds | matched |  | 09/02/2026 20:53:10 | Constants/enums/structs only, no functions. |
 | `wdstpdi.h` | Wds | blocked |  | 09/02/2026 20:25:02 | WdsTransportProviderCreateInstance/OpenContent produce generic HANDLE via direct out-param. |
 | `wdstptmgmt.h` | Wds | remaining |  |  |  |
-| `wdstptmgmtmsg.h` | Wds | remaining |  |  |  |
+| `wdstptmgmtmsg.h` | Wds | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdstptmgmtmsg.h.md |
 | `weakreference.h` | WinRT | matched |  | 09/02/2026 21:24:15 | COM/WinRT interface methods only, out of scope. |
 | `webapplication.h` | Debug.WebApp | remaining |  |  |  |
 | `WebAuthenticationCoreManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:38:18 | COM/WinRT interop interface method only, out of scope. |
