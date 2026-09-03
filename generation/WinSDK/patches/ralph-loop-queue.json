@@ -11,10 +11,10 @@
   {
     "header": "accountssettingspaneinterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:02:59Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -551,10 +551,10 @@
   {
     "header": "appserviceinterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:02:59Z",
+    "notes": "COM/WinRT interface methods only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -2666,10 +2666,10 @@
   {
     "header": "dls1.h",
     "partition": "Audio.DirectMusic",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:02:59Z",
+    "notes": "Constants/documentation only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6176,10 +6176,10 @@
   {
     "header": "mrmresourceindexer.h",
     "partition": "MenuRc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:02:59Z",
+    "notes": "Transparent wrapper struct, not an opaque handle type representable by the annotation mechanism.",
     "_source": "header-progress"
   },
   {
@@ -11846,10 +11846,10 @@
   {
     "header": "wmdmlog.h",
     "partition": "Wmdm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:02:59Z",
+    "notes": "COM interface only, no extern functions.",
     "_source": "header-progress"
   },
   {

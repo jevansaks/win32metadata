@@ -2274,3 +2274,19 @@ WinRT.Printing/ActiveDirectory/ImagingDevice reused
   no functions. Clean.
 
 **Ledger status:** 651 accepted-normalized, 31 blocked, 721 pending.
+
+## 2026-09-02 22:03:15 UTC - Batch scraping-investigation-99
+
+**Headers:** wmdmlog.h, accountssettingspaneinterop.h, MrmResourceIndexer.h, dls1.h, appserviceinterop.h
+**Partitions scraped (x64):** Wmdm, MenuRc (0 errors each); WinRT/Audio.DirectMusic reused
+
+- wmdmlog.h: IWMDMLogger COM interface only, no extern functions. Clean.
+- accountssettingspaneinterop.h: standard GetForWindow COM/WinRT interop interface method only. Clean.
+- MrmResourceIndexer.h: MrmResourceIndexerHandle is a transparent by-value wrapper struct
+  (single PVOID field visible), out of scope per transparent-struct precedent despite having
+  a genuine dedicated close function (MrmDestroyIndexerAndMessages). Clean.
+- dls1.h: DLS1 RIFF format constants/documentation only, no functions. Clean.
+- appserviceinterop.h: IAppServiceConnectionExtendedExecution/ICorrelationVectorSource COM/WinRT
+  interfaces only. Clean.
+
+**Ledger status:** 656 accepted-normalized, 31 blocked, 716 pending.

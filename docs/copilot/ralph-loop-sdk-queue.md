@@ -1,17 +1,17 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:59:16Z
+- Generated: 2026-09-03T05:03:15Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 651
+- Matched: 656
 - In progress: 0
 - Blocked: 31
-- Remaining: 721
+- Remaining: 716
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
 | `accctrl.h` | Authorization, Authorization.UI, Security, TransactionServer | remaining |  |  |  |
-| `accountssettingspaneinterop.h` | WinRT | remaining |  |  |  |
+| `accountssettingspaneinterop.h` | WinRT | matched |  | 09/02/2026 22:02:59 | COM/WinRT interop interface method only, out of scope. |
 | `aclapi.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `aclui.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `activation.h` | WinRT | matched |  | 09/02/2026 20:19:39 | COM/WinRT interface method only, out of scope. |
@@ -71,7 +71,7 @@
 | `appmgmt.h` | Policy, Shell | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `appmodel.h` | AppxPackaging | remaining |  |  |  |
 | `appnotify.h` | Shell | matched |  | 09/02/2026 18:20:58 | Genuine ownership gap fixed: RegisterAppStateChangeNotification/RegisterAppConstrainedChangeNotification out-params now carry _Win32_metadata_invalid_handle_/_raii_free_, releasing via UnregisterAppStateChangeNotification/UnregisterAppConstrainedChangeNotification. Verified via live re-scrape (0 errors) and git apply --check --reverse. |
-| `appserviceinterop.h` | WinRT | remaining |  |  |  |
+| `appserviceinterop.h` | WinRT | matched |  | 09/02/2026 22:02:59 | COM/WinRT interface methods only, out of scope. |
 | `appxpackaging.h` | AppxPackaging | remaining |  |  |  |
 | `asferr.h` | Multimedia | remaining |  |  |  |
 | `atacct.h` | NetMgmt | matched |  | 09/02/2026 17:09:31 | String-only account-info API, no handle. |
@@ -306,7 +306,7 @@
 | `DispEx.h` | ComOle | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dlnadeviceinterfaceids.h` | Dlna | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
 | `dlnametadataproviderproperties.h` | Dlna | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
-| `dls1.h` | Audio.DirectMusic | remaining |  |  |  |
+| `dls1.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:02:59 | Constants/documentation only, no functions. |
 | `dls2.h` | Audio.DirectMusic | matched |  | 09/02/2026 20:13:28 | DLS2 FOURCC/format constants only, no functions. |
 | `dmemmgr.h` | DirectDraw | blocked |  | 09/02/2026 20:41:40 | VidMemAlloc/HeapVidMemAllocAligned return generic FLATPTR (ULONG_PTR alias) via return value. |
 | `dmerror.h` | TransactionServer | remaining |  |  |  |
@@ -696,7 +696,7 @@
 | `mprerror.h` | Foundation | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
 | `mq.h` | MessageQueuing | remaining |  |  |  |
 | `mqoai.h` | MessageQueuing | remaining |  |  |  |
-| `mrmresourceindexer.h` | MenuRc | remaining |  |  |  |
+| `mrmresourceindexer.h` | MenuRc | matched |  | 09/02/2026 22:02:59 | Transparent wrapper struct, not an opaque handle type representable by the annotation mechanism. |
 | `msaatext.h` | Tsf | remaining |  |  |  |
 | `msacm.h` | Audio | remaining |  |  |  |
 | `msacmdlg.h` | Multimedia | matched |  | 09/02/2026 17:27:04 | Dialog resource ID constants only, no functions. |
@@ -1326,7 +1326,7 @@
 | `wldp.h` | FileHistory, WinProg | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wmcodecdsp.h` | Media.DShow, Mf | remaining |  |  |  |
 | `wmcontainer.h` | Mf | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
-| `wmdmlog.h` | Wmdm | remaining |  |  |  |
+| `wmdmlog.h` | Wmdm | matched |  | 09/02/2026 22:02:59 | COM interface only, no extern functions. |
 | `wmdxva.h` | WmFormat | remaining |  |  |  |
 | `wmistr.h` | Etw | remaining |  |  |  |
 | `wmiutils.h` | Lwef, Wmi | remaining |  |  |  |
