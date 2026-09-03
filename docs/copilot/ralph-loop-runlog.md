@@ -2908,3 +2908,13 @@ Ledger: 951 accepted-normalized, 31 blocked, 421 pending (982/1403 classified).
 - **ndisguid.h** (Ndis): GUID constants only. Clean.
 
 Ledger: 956 accepted-normalized, 31 blocked, 416 pending (987/1403 classified).
+
+## Batch 160 (2026-09-03 01:20): imepad.h, ntddvol.h, gpedit.h, d3d12shader.h, accctrl.h
+
+- **imepad.h** (Input.Ime): COM vtable only. Clean.
+- **ntddvol.h** (Fs): IOCTL codes/structs only, no functions. Clean.
+- **gpedit.h** (Policy): COM vtable only. Clean.
+- **d3d12shader.h** (Direct3D12): COM vtable only (incl. methods returning raw interface pointers). Clean.
+- **accctrl.h** (Authorization/Security/TransactionServer): enums/structs + AccFree=LocalFree macro only, no functions; defers cleanly to already-classified sibling aclapi.h.
+
+Ledger: 961 accepted-normalized, 31 blocked, 411 pending (992/1403 classified).

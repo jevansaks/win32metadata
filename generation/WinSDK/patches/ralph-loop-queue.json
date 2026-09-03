@@ -2,10 +2,10 @@
   {
     "header": "accctrl.h",
     "partition": "Authorization, Authorization.UI, Security, TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/accctrl.h.md",
     "_source": "header-progress"
   },
   {
@@ -2036,10 +2036,10 @@
   {
     "header": "d3d12shader.h",
     "partition": "Direct3D12",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12shader.h.md",
     "_source": "header-progress"
   },
   {
@@ -4142,10 +4142,10 @@
   {
     "header": "gpedit.h",
     "partition": "Policy",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gpedit.h.md",
     "_source": "header-progress"
   },
   {
@@ -4718,10 +4718,10 @@
   {
     "header": "imepad.h",
     "partition": "Input.Ime",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imepad.h.md",
     "_source": "header-progress"
   },
   {
@@ -7166,10 +7166,10 @@
   {
     "header": "ntddvol.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvol.h.md",
     "_source": "header-progress"
   },
   {

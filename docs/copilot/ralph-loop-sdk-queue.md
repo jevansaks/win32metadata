@@ -1,16 +1,16 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:17:34Z
+- Generated: 2026-09-03T08:20:19Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 956
+- Matched: 961
 - In progress: 0
 - Blocked: 31
-- Remaining: 416
+- Remaining: 411
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
-| `accctrl.h` | Authorization, Authorization.UI, Security, TransactionServer | remaining |  |  |  |
+| `accctrl.h` | Authorization, Authorization.UI, Security, TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/accctrl.h.md |
 | `accountssettingspaneinterop.h` | WinRT | matched |  | 09/02/2026 22:02:59 | COM/WinRT interop interface method only, out of scope. |
 | `aclapi.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclapi.h.md |
 | `aclui.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aclui.h.md |
@@ -236,7 +236,7 @@
 | `d3d12compatibility.h` | Direct3D12 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12compatibility.h.md |
 | `d3d12compiler.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12sdklayers.h` | Direct3D12 | remaining |  |  |  |
-| `d3d12shader.h` | Direct3D12 | remaining |  |  |  |
+| `d3d12shader.h` | Direct3D12 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12shader.h.md |
 | `d3d12video.h` | Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d9.h` | Direct3D9, Mf | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `d3d9caps.h` | Direct3D9, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d9caps.h.md |
@@ -470,7 +470,7 @@
 | `gl/gl.h` | OpenGL | remaining |  |  |  |
 | `gl/glu.h` | OpenGL | remaining |  |  |  |
 | `gnssdriver.h` | WinLocation | remaining |  |  |  |
-| `gpedit.h` | Policy | remaining |  |  |  |
+| `gpedit.h` | Policy | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gpedit.h.md |
 | `gpiobuttontypes.h` | Hid | matched |  | 09/02/2026 18:23:41 | Enum/constants/data struct only, no functions. |
 | `gpmgmt.h` | Gpmc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only. |
 | `guiddef.h` | TransactionServer | matched |  | 09/02/2026 20:07:23 | GUID type/macros/inline helpers only, no extern functions. |
@@ -534,7 +534,7 @@
 | `imapierror.h` | IMapi | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
 | `ime_cmodes.h` | Input.Ime | matched |  | 09/02/2026 17:09:31 | Bit-field constants only, no functions. |
 | `ime.h` | FileHistory, WinProg | matched |  | 09/02/2026 20:56:17 | No function produces an opaque handle. |
-| `imepad.h` | Input.Ime | remaining |  |  |  |
+| `imepad.h` | Input.Ime | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imepad.h.md |
 | `imessage.h` | IMapi | matched |  | 09/02/2026 21:32:46 | Fixed genuine gap: completed autoTypes.json entry for LPMSGSESS (CloseApi=CloseIMsgSession). |
 | `imessagedispatcher.h` | TransactionServer | matched |  | 09/02/2026 20:22:05 | COM/WinRT interface method only, out of scope. |
 | `imgerror.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgerror.h.md |
@@ -806,7 +806,7 @@
 | `ntddser.h` | SerPorts | remaining |  |  |  |
 | `ntddstor.h` | Fs, Ioctl | remaining |  |  |  |
 | `ntddvdeo.h` | Display | remaining |  |  |  |
-| `ntddvol.h` | Fs | remaining |  |  |  |
+| `ntddvol.h` | Fs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntddvol.h.md |
 | `ntdef.h` | Kernel | remaining |  |  |  |
 | `ntdsapi.h` | ActiveDirectory | remaining |  |  |  |
 | `ntdsbmsg.h` | ActiveDirectory | remaining |  |  |  |
