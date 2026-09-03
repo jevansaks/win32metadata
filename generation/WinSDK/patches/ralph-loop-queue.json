@@ -452,10 +452,10 @@
   {
     "header": "amva.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:28:18Z",
+    "notes": "Constants + data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -704,10 +704,10 @@
   {
     "header": "audiostatemonitorapi.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:28:18Z",
+    "notes": "Handle-producing method is a COM vtable method, out of scope; extern functions are COM factories.",
     "_source": "header-progress"
   },
   {
@@ -2882,10 +2882,10 @@
   {
     "header": "dshow.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:28:18Z",
+    "notes": "Pure umbrella redirect; all sub-headers already individually tracked.",
     "_source": "header-progress"
   },
   {
@@ -3935,10 +3935,10 @@
   {
     "header": "functiondiscovery.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:28:18Z",
+    "notes": "CLSID constants + MIDL boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6662,10 +6662,10 @@
   {
     "header": "mswsockdef.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T19:28:18Z",
+    "notes": "RIO handle types have no scrapable extern/DllImport producer function (function-pointer table pattern), architecturally out of scope.",
     "_source": "header-progress"
   },
   {

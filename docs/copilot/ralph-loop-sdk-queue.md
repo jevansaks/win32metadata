@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T02:21:48Z
+- Generated: 2026-09-03T02:28:33Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 472
+- Matched: 477
 - In progress: 0
 - Blocked: 15
-- Remaining: 916
+- Remaining: 911
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -60,7 +60,7 @@
 | `amparse.h` | Media.DShow | matched |  | 09/02/2026 17:27:04 | COM interface with plain integer output, no handle. |
 | `amsi.h` | Antimalware | matched | copilot | 09/03/2026 03:35:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
 | `amstream.h` | Media.DShow, Media.DShow.Xml | remaining |  |  |  |
-| `amva.h` | Media.DShow | remaining |  |  |  |
+| `amva.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Constants + data structs only, no functions. |
 | `amvideo.h` | Media.DShow | remaining |  |  |  |
 | `amxmlgraphbuilder.h` | Media.DShow, Media.DShow.Xml | matched |  | 09/02/2026 17:13:02 | COM interface + GUID constants only. |
 | `anchorsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
@@ -88,7 +88,7 @@
 | `audiomediatype.h` | Audio.Apo | remaining |  |  |  |
 | `audiopolicy.h` | Audio | remaining |  |  |  |
 | `audiosessiontypes.h` | Audio | remaining |  |  |  |
-| `audiostatemonitorapi.h` | Audio | remaining |  |  |  |
+| `audiostatemonitorapi.h` | Audio | matched |  | 09/02/2026 19:28:18 | Handle-producing method is a COM vtable method, out of scope; extern functions are COM factories. |
 | `austream.h` | Media.DShow | remaining |  |  |  |
 | `authif.h` | Nps | remaining |  |  |  |
 | `authz.h` | Authorization, Authorization.UI | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (12 producer sites across 6 handle types). |
@@ -330,7 +330,7 @@
 | `dsclient.h` | ActiveDirectory | remaining |  |  |  |
 | `dsconf.h` | Audio.DirectMusic | remaining |  |  |  |
 | `DsGetDC.h` | ActiveDirectory | remaining |  |  |  |
-| `dshow.h` | Media.DShow | remaining |  |  |  |
+| `dshow.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Pure umbrella redirect; all sub-headers already individually tracked. |
 | `dshowasf.h` | Media.DShow | remaining |  |  |  |
 | `dskquota.h` | Fs, Shell | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsound.h` | Audio.DirectSound, FileHistory, WinProg | remaining |  |  |  |
@@ -447,7 +447,7 @@
 | `ftpext.h` | Iis | remaining |  |  |  |
 | `fttypes.h` | Fs | matched |  | 09/02/2026 19:16:41 | Typedef/enums/data structs only, no functions. |
 | `fullenumsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
-| `functiondiscovery.h` | FunctionDiscovery | remaining |  |  |  |
+| `functiondiscovery.h` | FunctionDiscovery | matched |  | 09/02/2026 19:28:18 | CLSID constants + MIDL boilerplate only, no functions. |
 | `functiondiscoverycategories.h` | FunctionDiscovery | matched |  | 09/02/2026 19:12:01 | String constants only, no functions. |
 | `functiondiscoveryconstraints.h` | FunctionDiscovery | remaining |  |  |  |
 | `functiondiscoveryerror.h` | FunctionDiscovery | matched |  | 09/02/2026 18:03:29 | HRESULT error-code constants only, no functions. |
@@ -750,7 +750,7 @@
 | `msvidctl.h` | MsTv | remaining |  |  |  |
 | `mswmdm.h` | Wmdm | remaining |  |  |  |
 | `mswsock.h` | WinSock | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
-| `mswsockdef.h` | WinSock | remaining |  |  |  |
+| `mswsockdef.h` | WinSock | matched |  | 09/02/2026 19:28:18 | RIO handle types have no scrapable extern/DllImport producer function (function-pointer table pattern), architecturally out of scope. |
 | `msxml.h` | FileHistory, MsXml, WinProg | remaining |  |  |  |
 | `msxml6.h` | MsXml, Printing | remaining |  |  |  |
 | `mtpext.h` | Wmdm | matched |  | 09/02/2026 18:44:05 | Constants + data structs only, no functions. |

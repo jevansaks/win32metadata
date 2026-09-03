@@ -1642,3 +1642,20 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - tvout.h: data struct + constants only, no functions.
 
 **Ledger status:** 472 accepted-normalized, 15 blocked, 916 pending.
+
+## 2026-09-02 19:28:33 UTC - Batch scraping-investigation-60
+
+**Headers:** dshow.h, mswsockdef.h, audiostatemonitorapi.h, functiondiscovery.h, amva.h
+**Partitions scraped:** Media.DShow, WinSock, Audio (x86; 0 errors)
+
+- dshow.h: pure umbrella redirect; all sub-headers already individually tracked ledger items. Clean.
+- mswsockdef.h: RIO_BUFFERID/RIO_CQ/RIO_RQ are genuine opaque handles, but their producer/consumer
+  functions (in the already-accepted MSWSock.h) are function-pointer typedef fields inside
+  RIO_EXTENSION_FUNCTION_TABLE (retrieved via WSAIoctl at runtime), not extern/DllImport declarations -
+  architecturally out of scope for the annotation mechanism (same reasoning as COM vtable methods).
+- audiostatemonitorapi.h: the one real handle-producing method (RegisterCallback) is a COM vtable
+  method, out of scope; extern functions are all COM factories. Clean.
+- functiondiscovery.h: CLSID constants + MIDL boilerplate only, no functions. Clean.
+- amva.h: constants + data structs only, no functions. Clean.
+
+**Ledger status:** 477 accepted-normalized, 15 blocked, 911 pending.
