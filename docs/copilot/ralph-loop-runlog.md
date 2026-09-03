@@ -1877,3 +1877,20 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   transparent free functions - out of scope per established precedent. Clean.
 
 **Ledger status:** 533 accepted-normalized, 24 blocked, 846 pending.
+
+## 2026-09-02 20:25:18 UTC - Batch scraping-investigation-74
+
+**Headers:** statusdeviceservice.h, FaxDev.h, usbscan.h, dde.h, wdstpdi.h
+**Partitions scraped (x64):** Buses, DataXchg, Wds (0 errors each); WpdSdk/Fax reused
+
+- statusdeviceservice.h: WPD status device service GUID/property constants only. Clean.
+- FaxDev.h: **blocked** - FaxDevStartJob/FaxDevEndJob generic HANDLE direct-out-param
+  (established blocker class).
+- usbscan.h: IOCTL parameter structs only, no functions. Clean.
+- dde.h: no function produces an opaque handle (DdeSetQualityOfService/ImpersonateDdeClientWindow
+  take only HWND/security-descriptor inputs; FreeDDElParam/ReuseDDElParam pack LPARAM data). Clean.
+- wdstpdi.h: **blocked** - WdsTransportProviderCreateInstance/OpenContent produce generic HANDLE
+  via direct out-param (established blocker class); provider-callback functions, still scraped
+  as ordinary extern declarations.
+
+**Ledger status:** 536 accepted-normalized, 26 blocked, 841 pending.

@@ -2270,10 +2270,10 @@
   {
     "header": "dde.h",
     "partition": "DataXchg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:25:02Z",
+    "notes": "No function produces an opaque handle.",
     "_source": "header-progress"
   },
   {
@@ -3647,10 +3647,10 @@
   {
     "header": "faxdev.h",
     "partition": "Fax",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:25:02Z",
+    "notes": "FaxDevStartJob produces generic HANDLE via direct out-param.",
     "_source": "header-progress"
   },
   {
@@ -9326,10 +9326,10 @@
   {
     "header": "statusdeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:25:02Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10172,10 +10172,10 @@
   {
     "header": "usbscan.h",
     "partition": "Buses",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:25:02Z",
+    "notes": "IOCTL parameter structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10748,10 +10748,10 @@
   {
     "header": "wdstpdi.h",
     "partition": "Wds",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:25:02Z",
+    "notes": "WdsTransportProviderCreateInstance/OpenContent produce generic HANDLE via direct out-param.",
     "_source": "header-progress"
   },
   {

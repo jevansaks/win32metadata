@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:22:20Z
+- Generated: 2026-09-03T03:25:18Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 533
+- Matched: 536
 - In progress: 0
-- Blocked: 24
-- Remaining: 846
+- Blocked: 26
+- Remaining: 841
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -262,7 +262,7 @@
 | `dcomp.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcompanimation.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcomptypes.h` | DirectComp | matched |  | 09/02/2026 19:47:59 | Enums/structs/constants only, no functions. |
-| `dde.h` | DataXchg | remaining |  |  |  |
+| `dde.h` | DataXchg | matched |  | 09/02/2026 20:25:02 | No function produces an opaque handle. |
 | `ddeml.h` | DataXchg | remaining |  |  |  |
 | `ddkernel.h` | DirectDraw | remaining |  |  |  |
 | `ddpbackup.h` | Dedup | remaining |  |  |  |
@@ -415,7 +415,7 @@
 | `extensionvalidation.h` | InternetExplorer | remaining |  |  |  |
 | `extsfns.h` | Debug.Extensions | remaining |  |  |  |
 | `faxcomex.h` | Fax | remaining |  |  |  |
-| `faxdev.h` | Fax | remaining |  |  |  |
+| `faxdev.h` | Fax | blocked |  | 09/02/2026 20:25:02 | FaxDevStartJob produces generic HANDLE via direct out-param. |
 | `faxext.h` | Fax | blocked |  | 09/02/2026 19:37:21 | FaxExtRegisterForEvents returns generic HANDLE via return value. |
 | `faxmmc.h` | Fax | matched |  | 09/02/2026 17:58:11 | GUID/string constants only, no functions. |
 | `faxroute.h` | Fax | matched |  | 09/02/2026 19:50:38 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
@@ -1046,7 +1046,7 @@
 | `sslprovider.h` | Security.Cryptography | remaining |  |  |  |
 | `sspi.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
 | `statehelpers.h` | FileHistory, Registry | matched |  | 09/02/2026 18:09:40 | HKEY parameters are inputs only, not produced here. |
-| `statusdeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `statusdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 20:25:02 | Constants only, no functions. |
 | `stdint.h` | AllJoyn | remaining |  |  |  |
 | `stgprop.h` | Search | matched |  | 09/02/2026 18:26:39 | PROPID/GUID constants only, no functions. |
 | `sti.h` | ImagingDevice | remaining |  |  |  |
@@ -1140,7 +1140,7 @@
 | `usbioctl.h` | Buses | remaining |  |  |  |
 | `usbiodef.h` | Buses | remaining |  |  |  |
 | `usbprint.h` | Printing | remaining |  |  |  |
-| `usbscan.h` | Buses | remaining |  |  |  |
+| `usbscan.h` | Buses | matched |  | 09/02/2026 20:25:02 | IOCTL parameter structs only, no functions. |
 | `usbuser.h` | Buses | remaining |  |  |  |
 | `useractivityinterop.h` | WinRT | remaining |  |  |  |
 | `UserConsentVerifierInterop.h` | WinRT | remaining |  |  |  |
@@ -1204,7 +1204,7 @@
 | `wdsmcerr.h` | Wds | remaining |  |  |  |
 | `wdspxe.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdstci.h` | Wds | remaining |  |  |  |
-| `wdstpdi.h` | Wds | remaining |  |  |  |
+| `wdstpdi.h` | Wds | blocked |  | 09/02/2026 20:25:02 | WdsTransportProviderCreateInstance/OpenContent produce generic HANDLE via direct out-param. |
 | `wdstptmgmt.h` | Wds | remaining |  |  |  |
 | `wdstptmgmtmsg.h` | Wds | remaining |  |  |  |
 | `weakreference.h` | WinRT | remaining |  |  |  |
