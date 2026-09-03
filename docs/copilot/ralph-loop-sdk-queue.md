@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:35:39Z
+- Generated: 2026-09-03T00:38:52Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 317
+- Matched: 322
 - In progress: 0
 - Blocked: 5
-- Remaining: 1081
+- Remaining: 1076
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -313,7 +313,7 @@
 | `dmodshow.h` | Media.DShow | remaining |  |  |  |
 | `dmoreg.h` | Media.DxMediaObjects | remaining |  |  |  |
 | `dmort.h` | Media.DxMediaObjects | remaining |  |  |  |
-| `dmprocessxmlfiltered.h` | WpdSdk | remaining |  |  |  |
+| `dmprocessxmlfiltered.h` | WpdSdk | matched |  | 09/02/2026 17:38:44 | BSTR output, not HANDLE-family. |
 | `dmusics.h` | Audio.DirectMusic | remaining |  |  |  |
 | `docobj.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `docobjectservice.h` | InternetExplorer | remaining |  |  |  |
@@ -397,7 +397,7 @@
 | `endpointvolume.h` | Audio.Endpoints | remaining |  |  |  |
 | `errhandlingapi.h` | Base, Debug | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `errorrep.h` | Wer | remaining |  |  |  |
-| `errors.h` | Media.DShow | remaining |  |  |  |
+| `errors.h` | Media.DShow | matched |  | 09/02/2026 17:38:44 | Caller-allocated string buffer output only, no handle. |
 | `esent.h` | Storage.Jet | blocked | copilot | 09/03/2026 04:45:00 | Deferred: 229-function header with complex many-to-many JET handle ownership graph requiring dedicated research pass, not a quick classification. |
 | `evalcom2.h` | Setup | remaining |  |  |  |
 | `evcode.h` | Media.DShow | remaining |  |  |  |
@@ -592,8 +592,8 @@
 | `ktmw32.h` | Fs | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `libloaderapi.h` | Intl, LibraryLoader | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `libloaderapi2.h` | LibraryLoader | remaining |  |  |  |
-| `licenseprotection.h` | Security.LicenseProtection | remaining |  |  |  |
-| `lm.h` | NetMgmt | remaining |  |  |  |
+| `licenseprotection.h` | Security.LicenseProtection | matched |  | 09/02/2026 17:38:44 | Enum/FILETIME output only, no handle. |
+| `lm.h` | NetMgmt | matched |  | 09/02/2026 17:38:44 | Pure umbrella redirect; all 18 sub-headers already individually tracked in ledger (2 accepted, 16 pending). |
 | `lmaccess.h` | FileHistory, NetMgmt, WinProg | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `lmalert.h` | NetMgmt | remaining |  |  |  |
 | `lmapibuf.h` | NetMgmt | remaining |  |  |  |
@@ -734,7 +734,7 @@
 | `msi.h` | Setup | remaining |  |  |  |
 | `msidefs.h` | Setup | remaining |  |  |  |
 | `msiehost.h` | InternetExplorer | remaining |  |  |  |
-| `msiltcfg.h` | Setup | remaining |  |  |  |
+| `msiltcfg.h` | Setup | matched |  | 09/02/2026 17:38:44 | No handle involved. |
 | `msime.h` | Input.Ime | remaining |  |  |  |
 | `msimeapi.h` | Input.Ime | remaining |  |  |  |
 | `msinkaut.h` | Tablet | remaining |  |  |  |

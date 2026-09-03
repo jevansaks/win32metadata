@@ -1030,3 +1030,30 @@ wincon.h, resourceindexer.h), 1086 pending.
 
 **Ledger status:** 317 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h), 1081 pending.
+
+## 2026-09-02 17:39:07 UTC - Batch scraping-investigation-27
+
+**Headers:** dmprocessxmlfiltered.h, lm.h, errors.h, msiltcfg.h, licenseprotection.h
+**Partitions scraped:** NetMgmt, Setup, Security.LicenseProtection (x86; 0 errors; pre-existing
+unrelated cross-partition remap warnings on all three, none touched by these headers)
+
+- dmprocessxmlfiltered.h: DMProcessConfigXMLFiltered outputs a BSTR (freed via SysFreeString per doc
+  comment) - BSTR allocation out of scope for the HANDLE-specific ownership mechanism. Clean.
+- lm.h: pure umbrella redirect header (18 sub-headers: lmcons.h, lmerr.h, lmaccess.h, lmalert.h,
+  lmshare.h, lmmsg.h, lmremutl.h, lmrepl.h, lmserver.h, lmsvc.h, lmuse.h, lmwksta.h, lmapibuf.h,
+  lmerrlog.h, lmconfig.h, lmstats.h, lmaudit.h, lmjoin.h). Unlike wincon.h, every one of these
+  sub-headers IS already a tracked ledger item (2 accepted, 16 pending) - so any genuine ownership
+  work (e.g. NetUseAdd/NetUseDel in lmuse.h) will be caught by those already-queued individual audits,
+  not silently missed. Clean.
+- errors.h: AMGetErrorTextA/W output caller-allocated string buffers, no handle. Clean.
+- msiltcfg.h: ShutdownMsi/RestartMsi, no handle involved. Clean.
+- licenseprotection.h: RegisterLicenseKeyWithExpiration/ValidateLicenseKeyProtection output plain
+  enum/FILETIME values, no handle. Clean.
+
+**Methodology reaffirmed:** for redirect-only headers, the safety test is whether ALL included
+sub-headers are already represented as ledger items (regardless of status) - if yes, closing the
+umbrella header loses no audit coverage; if any sub-header is untracked, a live partition scrape is
+required first (as was necessary for wincon.h in batch 22).
+
+**Ledger status:** 322 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h), 1076 pending.

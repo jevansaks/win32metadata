@@ -2729,10 +2729,10 @@
   {
     "header": "dmprocessxmlfiltered.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:38:44Z",
+    "notes": "BSTR output, not HANDLE-family.",
     "_source": "header-progress"
   },
   {
@@ -3485,10 +3485,10 @@
   {
     "header": "errors.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:38:44Z",
+    "notes": "Caller-allocated string buffer output only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -5240,19 +5240,19 @@
   {
     "header": "licenseprotection.h",
     "partition": "Security.LicenseProtection",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:38:44Z",
+    "notes": "Enum/FILETIME output only, no handle.",
     "_source": "header-progress"
   },
   {
     "header": "lm.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:38:44Z",
+    "notes": "Pure umbrella redirect; all 18 sub-headers already individually tracked in ledger (2 accepted, 16 pending).",
     "_source": "header-progress"
   },
   {
@@ -6518,10 +6518,10 @@
   {
     "header": "msiltcfg.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:38:44Z",
+    "notes": "No handle involved.",
     "_source": "header-progress"
   },
   {
