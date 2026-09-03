@@ -3277,3 +3277,11 @@ Ledger: 1141 accepted-normalized, 31 blocked, 231 pending (1172/1403 classified)
 - ras.h (RRas): PRODUCER-SITE FIX - filled missing CloseApi (RasHangUpW) on pre-existing HRASCONN entry.
 
 Ledger: 1146 accepted-normalized, 31 blocked, 226 pending (1177/1403 classified).
+
+## Batch 198 (2026-09-03 03:17): xamlom.h, xaudio2.h, peninputpanel.h, certcli.h, wsman.h
+
+- xamlom.h, peninputpanel.h, certcli.h: COM vtable only. Clean.
+- xaudio2.h: COM interface pointer output. Clean.
+- wsman.h (WinRm): PRODUCER-SITE FIX x3 - WSMAN_API_HANDLE/WSMAN_SESSION_HANDLE/WSMAN_OPERATION_HANDLE CloseApi filled in. WSMAN_COMMAND_HANDLE/WSMAN_SHELL_HANDLE blocked (mandatory async param).
+
+Ledger: 1151 accepted-normalized, 31 blocked, 221 pending (1182/1403 classified).

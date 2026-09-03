@@ -1181,10 +1181,10 @@
   {
     "header": "certcli.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certcli.h.md",
     "_source": "header-progress"
   },
   {
@@ -7616,10 +7616,10 @@
   {
     "header": "peninputpanel.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/peninputpanel.h.md",
     "_source": "header-progress"
   },
   {
@@ -12332,10 +12332,10 @@
   {
     "header": "wsman.h",
     "partition": "WinRm",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: filled missing CloseApi on WSMAN_API_HANDLE/WSMAN_SESSION_HANDLE/WSMAN_OPERATION_HANDLE. WSMAN_COMMAND_HANDLE/WSMAN_SHELL_HANDLE blocked (mandatory async param). See docs/copilot/header-reports/wsman.h.md",
     "_source": "header-progress"
   },
   {
@@ -12476,10 +12476,10 @@
   {
     "header": "xamlom.h",
     "partition": "Xaml_Diagnostics",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xamlom.h.md",
     "_source": "header-progress"
   },
   {
@@ -12503,10 +12503,10 @@
   {
     "header": "xaudio2.h",
     "partition": "Xaudio2",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2.h.md",
     "_source": "header-progress"
   },
   {

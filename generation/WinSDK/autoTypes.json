@@ -2366,6 +2366,7 @@
     "Namespace": "Windows.Win32.System.RemoteManagement",
     "Name": "WSMAN_API_HANDLE",
     "ValueType": "typedef struct WSMAN_API",
+    "CloseApi": "WSManDeinitialize",
     "NativeTypedef": true
   },
   {
@@ -2378,12 +2379,14 @@
     "Namespace": "Windows.Win32.System.RemoteManagement",
     "Name": "WSMAN_OPERATION_HANDLE",
     "ValueType": "typedef struct WSMAN_OPERATION",
+    "CloseApi": "WSManCloseOperation",
     "NativeTypedef": true
   },
   {
     "Namespace": "Windows.Win32.System.RemoteManagement",
     "Name": "WSMAN_SESSION_HANDLE",
     "ValueType": "typedef struct WSMAN_SESSION",
+    "CloseApi": "WSManCloseSession",
     "NativeTypedef": true
   },
   {

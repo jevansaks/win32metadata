@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:12:29Z
+- Generated: 2026-09-03T10:17:16Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1146
+- Matched: 1151
 - In progress: 0
 - Blocked: 31
-- Remaining: 226
+- Remaining: 221
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -141,7 +141,7 @@
 | `celib.h` | Security | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/celib.h.md |
 | `certadm.h` | Certificates | remaining |  |  |  |
 | `certbcli.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certbcli.h.md |
-| `certcli.h` | Certificates | remaining |  |  |  |
+| `certcli.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certcli.h.md |
 | `certenc.h` | Certificates | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `certenroll.h` | Certificates | remaining |  |  |  |
 | `certexit.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certexit.h.md |
@@ -856,7 +856,7 @@
 | `pdh.h` | Perf | matched |  |  | Producer-site fix: filled missing CloseApi/InvalidHandleValues on pre-existing PDH_HCOUNTER autoTypes.json entry (CloseApi PdhRemoveCounter). See docs/copilot/header-reports/pdh.h.md |
 | `pdhmsg.h` | Perf | matched |  | 09/02/2026 20:16:15 | Message-compiler constants only, no functions. |
 | `peerdist.h` | P2p | matched |  |  | Genuine producer-site fix: added 4 autoTypes.json entries (PEERDIST_INSTANCE_HANDLE/STREAM/CONTENTINFO/CONTENT_HANDLE). See docs/copilot/header-reports/peerdist.h.md |
-| `peninputpanel.h` | Tablet | remaining |  |  |  |
+| `peninputpanel.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/peninputpanel.h.md |
 | `perceptiondevicecore.h` | MixedReality | matched |  | 09/02/2026 18:23:41 | Data structs + GUID constant only, no functions. |
 | `perflib.h` | Perf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/perflib.h.md |
 | `perhist.h` | InternetExplorer | matched |  | 09/02/2026 21:04:56 | COM interface method only, out of scope. |
@@ -1380,7 +1380,7 @@
 | `wsipv6ok.h` | WinSock | matched |  | 09/02/2026 19:06:16 | Macro redefinitions only, no declarations. |
 | `wsipx.h` | WinSock | matched |  | 09/02/2026 18:09:40 | Data struct + constants only, no functions. |
 | `wslapi.h` | Wsl | blocked | copilot | 09/02/2026 19:02:46 | Deferred: direct out-param instance of the generic/shared-type blocker class (HANDLE has no single correct CloseApi). |
-| `wsman.h` | WinRm | remaining |  |  |  |
+| `wsman.h` | WinRm | matched |  |  | Producer-site fix: filled missing CloseApi on WSMAN_API_HANDLE/WSMAN_SESSION_HANDLE/WSMAN_OPERATION_HANDLE. WSMAN_COMMAND_HANDLE/WSMAN_SHELL_HANDLE blocked (mandatory async param). See docs/copilot/header-reports/wsman.h.md |
 | `wsmandisp.h` | WinRm | remaining |  |  |  |
 | `wsmerror.h` | WinRm | remaining |  |  |  |
 | `wsnetbs.h` | WinSock | matched |  | 09/02/2026 18:29:38 | Data struct + constants/macro only, no functions. |
@@ -1396,10 +1396,10 @@
 | `wuapi.h` | Wua | remaining |  |  |  |
 | `wuerror.h` | Wua | remaining |  |  |  |
 | `xa.h` | DTC | matched |  | 09/02/2026 21:38:18 | No function produces an opaque handle; XA switch entries are function-pointer struct fields. |
-| `xamlom.h` | Xaml_Diagnostics | remaining |  |  |  |
+| `xamlom.h` | Xaml_Diagnostics | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xamlom.h.md |
 | `xapo.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xapo.h.md |
 | `xapofx.h` | Xaudio2 | matched |  | 09/02/2026 21:49:17 | Standard COM factory function + GUID/parameter constants only. |
-| `xaudio2.h` | Xaudio2 | remaining |  |  |  |
+| `xaudio2.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2.h.md |
 | `xaudio2fx.h` | Xaudio2 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xaudio2fx.h.md |
 | `xblidpauthmanager.h` | Xblidp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xblidpauthmanager.h.md |
 | `xenroll.h` | Certificates | remaining |  |  |  |
