@@ -860,3 +860,18 @@ touches those types)
 - menutemplate.h: plain data structs only (MENUEX_TEMPLATE_HEADER/ITEM, MENUTEMPLATEEX), no functions. Clean.
 
 **Ledger status:** 273 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1127 pending.
+
+## 2026-09-02 17:05:38 UTC - Batch scraping-investigation-18
+
+**Headers:** memorybuffer.h, apdevpkey.h, mtxdm.h, d2dbasetypes.h, wiaintfc.h
+**Partitions scraped:** WinRT, Devices.Properties, Cos, Direct2D (x86; 0 warnings/errors)
+
+- memorybuffer.h: IMemoryBufferByteAccess COM interface (GetBuffer via _Outptr_result_buffer_); buffer
+  view is not a separately-owned HANDLE-family resource (lifecycle implicit in COM refcounting/Close()). Clean.
+- apdevpkey.h: single DEFINE_DEVPROPKEY constant, no functions. Clean.
+- mtxdm.h: GetDispenserManager(IDispenserManager**) is a COM-factory pattern; includes comsvcs.h
+  (already accepted-normalized). Clean.
+- d2dbasetypes.h: single typedef (D2D_COLOR_F = D3DCOLORVALUE), no functions. Clean.
+- wiaintfc.h: single DEFINE_GUID constant, no functions. Clean.
+
+**Ledger status:** 278 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1122 pending.

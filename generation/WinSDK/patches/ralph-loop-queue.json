@@ -497,10 +497,10 @@
   {
     "header": "apdevpkey.h",
     "partition": "Base, Devices.Properties",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:05:19Z",
+    "notes": "Device property key constant only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -1838,10 +1838,10 @@
   {
     "header": "d2dbasetypes.h",
     "partition": "Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:05:19Z",
+    "notes": "Type alias only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5636,10 +5636,10 @@
   {
     "header": "memorybuffer.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:05:19Z",
+    "notes": "IMemoryBufferByteAccess COM interface; buffer view not a HANDLE-family resource.",
     "_source": "header-progress"
   },
   {
@@ -6725,10 +6725,10 @@
   {
     "header": "mtxdm.h",
     "partition": "Cos",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:05:19Z",
+    "notes": "GetDispenserManager is a COM-factory pattern; comsvcs.h already accepted.",
     "_source": "header-progress"
   },
   {
@@ -10892,10 +10892,10 @@
   {
     "header": "wiaintfc.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:05:19Z",
+    "notes": "Device-interface GUID constant only, no functions.",
     "_source": "header-progress"
   },
   {

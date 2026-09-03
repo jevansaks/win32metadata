@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:01:56Z
+- Generated: 2026-09-03T00:05:27Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 273
+- Matched: 278
 - In progress: 0
 - Blocked: 3
-- Remaining: 1127
+- Remaining: 1122
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -65,7 +65,7 @@
 | `amxmlgraphbuilder.h` | Media.DShow, Media.DShow.Xml | remaining |  |  |  |
 | `anchorsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
 | `animationcoordinator.h` | Shell | remaining |  |  |  |
-| `apdevpkey.h` | Base, Devices.Properties | remaining |  |  |  |
+| `apdevpkey.h` | Base, Devices.Properties | matched |  | 09/02/2026 17:05:19 | Device property key constant only, no functions. |
 | `apiquery2.h` | FileHistory, WinProg | remaining |  |  |  |
 | `appcompatapi.h` | FileHistory, WinProg | remaining |  |  |  |
 | `appmgmt.h` | Policy, Shell | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
@@ -214,7 +214,7 @@
 | `d2d1effects_2.h` | Direct2D | remaining |  |  |  |
 | `d2d1effects.h` | Direct2D | remaining |  |  |  |
 | `d2d1svg.h` | Direct2D | remaining |  |  |  |
-| `d2dbasetypes.h` | Direct2D | remaining |  |  |  |
+| `d2dbasetypes.h` | Direct2D | matched |  | 09/02/2026 17:05:19 | Type alias only, no functions. |
 | `d2derr.h` | Direct2D | remaining |  |  |  |
 | `d3d10_1.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10_1shader.h` | Direct3D10 | remaining |  |  |  |
@@ -636,7 +636,7 @@
 | `mediaerr.h` | Media.DShow, Media.DxMediaObjects | remaining |  |  |  |
 | `mediaobj.h` | Media.DShow, Media.DxMediaObjects | remaining |  |  |  |
 | `medparam.h` | Media.DShow | remaining |  |  |  |
-| `memorybuffer.h` | WinRT | remaining |  |  |  |
+| `memorybuffer.h` | WinRT | matched |  | 09/02/2026 17:05:19 | IMemoryBufferByteAccess COM interface; buffer view not a HANDLE-family resource. |
 | `menutemplate.h` | MenuRc | matched |  | 09/02/2026 17:01:48 | Plain data structs only, no functions. |
 | `mergemod.h` | Setup | remaining |  |  |  |
 | `messagedeviceservice.h` | WpdSdk | remaining |  |  |  |
@@ -757,7 +757,7 @@
 | `mtx.h` | ComOle, TransactionServer | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include comsvcs.h, already accepted-normalized). |
 | `mtxadmin.h` | ComOle, TransactionServer | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `mtxattr.h` | ComOle, TransactionServer | remaining |  |  |  |
-| `mtxdm.h` | Cos | remaining |  |  |  |
+| `mtxdm.h` | Cos | matched |  | 09/02/2026 17:05:19 | GetDispenserManager is a COM-factory pattern; comsvcs.h already accepted. |
 | `muiload.h` | Intl | remaining |  |  |  |
 | `mxdc.h` | Gdi, Printing | remaining |  |  |  |
 | `namedpipeapi.h` | Pipes | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
@@ -1220,7 +1220,7 @@
 | `wia.h` | Wia | matched |  | 09/02/2026 16:53:36 | Redirect-only; 185 functions all COM/RPC marshalling stubs, no DECLARE_HANDLE. |
 | `wiadef.h` | Wia | remaining |  |  |  |
 | `wiadevd.h` | Wia | remaining |  |  |  |
-| `wiaintfc.h` | Wia | remaining |  |  |  |
+| `wiaintfc.h` | Wia | matched |  | 09/02/2026 17:05:19 | Device-interface GUID constant only, no functions. |
 | `wiamicro.h` | Wia | remaining |  |  |  |
 | `wiamindr_lh.h` | Wia | remaining |  |  |  |
 | `wiamindr.h` | Wia | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include wiamindr_lh.h/wiamindr_xp.h); no direct declarations. |
