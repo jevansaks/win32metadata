@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:54:48Z
+- Generated: 2026-09-03T08:57:02Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1016
+- Matched: 1021
 - In progress: 0
 - Blocked: 31
-- Remaining: 356
+- Remaining: 351
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -117,9 +117,9 @@
 | `bits2_5.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_5.h.md |
 | `bits3_0.h` | Bits | remaining |  |  |  |
 | `bits4_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits4_0.h.md |
-| `bits5_0.h` | Bits | remaining |  |  |  |
+| `bits5_0.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits5_0.h.md |
 | `bitscfg.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bitscfg.h.md |
-| `bitsmsg.h` | Bits | remaining |  |  |  |
+| `bitsmsg.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bitsmsg.h.md |
 | `bluetoothapis.h` | Bluetooth | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `bluetoothleapis.h` | Bluetooth | matched |  |  | Genuine producer-site fix: added BLUETOOTH_GATT_EVENT_HANDLE autoTypes.json entry (CloseApi=BluetoothGATTUnregisterEvent). See docs/copilot/header-reports/bluetoothleapis.h.md |
 | `bridgedeviceservice.h` | WpdSdk | remaining |  |  |  |
@@ -370,7 +370,7 @@
 | `dxva2swdev.h` | Media.DShow | matched |  | 09/02/2026 20:38:46 | Function-pointer-typedef-in-struct pattern, out of scope; no extern functions. |
 | `dxva2trace.h` | Media.DShow | matched |  | 09/02/2026 20:07:23 | ETW tracing constants/structs only, no functions. |
 | `dxva9typ.h` | Media.DShow, Mf | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
-| `dxvahd.h` | Mf | remaining |  |  |  |
+| `dxvahd.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxvahd.h.md |
 | `eapauthenticatoractiondefine.h` | EapHost | matched |  | 09/02/2026 18:50:10 | Enums/data structs only, no functions. |
 | `eapauthenticatortypes.h` | EapHost | matched |  | 09/02/2026 18:03:29 | Enum + MIDL boilerplate only, no functions. |
 | `eaphosterror.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eaphosterror.h.md |
@@ -1317,7 +1317,7 @@
 | `winusbio.h` | Buses | matched |  | 09/02/2026 18:38:01 | Constants + data structs only, no functions. |
 | `winuser.h` | Base, Controls, DataXchg, DlgBox, Dwm, FileHistory, Gdi, Input.Ime, Intl, IO, MenuRc, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Shell, TermServ, WinAuto, WinProg, WinTouch | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winver.h` | Fs | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
-| `winwlx.h` | Security.WinWlx | remaining |  |  |  |
+| `winwlx.h` | Security.WinWlx | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winwlx.h.md |
 | `wlanapi.h` | Ndis, NWifi | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `wlanihv.h` | NWifi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wlanihv.h.md |
 | `wlanihvtypes.h` | NWifi | matched |  | 09/02/2026 18:15:12 | Data structs + constants only, no functions. |
@@ -1406,7 +1406,7 @@
 | `xinput.h` | Xinput | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xinput.h.md |
 | `xmllite.h` | FileHistory, XmlLite | remaining |  |  |  |
 | `xolehlp.h` | DTC | matched |  | 09/02/2026 20:38:46 | All outputs are standard COM QueryInterface-style interface pointers. |
-| `xprtdefs.h` | Media.DShow | remaining |  |  |  |
+| `xprtdefs.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xprtdefs.h.md |
 | `xpsdigitalsignature.h` | Xps | remaining |  |  |  |
 | `xpsobjectmodel_1.h` | Xps | remaining |  |  |  |
 | `xpsobjectmodel_2.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_2.h.md |

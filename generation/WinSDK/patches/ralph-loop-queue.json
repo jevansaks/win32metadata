@@ -965,10 +965,10 @@
   {
     "header": "bits5_0.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits5_0.h.md",
     "_source": "header-progress"
   },
   {
@@ -983,10 +983,10 @@
   {
     "header": "bitsmsg.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bitsmsg.h.md",
     "_source": "header-progress"
   },
   {
@@ -3242,10 +3242,10 @@
   {
     "header": "dxvahd.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxvahd.h.md",
     "_source": "header-progress"
   },
   {
@@ -11765,10 +11765,10 @@
   {
     "header": "winwlx.h",
     "partition": "Security.WinWlx",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winwlx.h.md",
     "_source": "header-progress"
   },
   {
@@ -12566,10 +12566,10 @@
   {
     "header": "xprtdefs.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xprtdefs.h.md",
     "_source": "header-progress"
   },
   {

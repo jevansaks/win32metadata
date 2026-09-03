@@ -3028,3 +3028,13 @@ Ledger: 1011 accepted-normalized, 31 blocked, 361 pending (1042/1403 classified)
 - **wmsinternaladminnetsource.h** (WmFormat): COM vtable only. Clean.
 
 Ledger: 1016 accepted-normalized, 31 blocked, 356 pending (1047/1403 classified).
+
+## Batch 172 (2026-09-03 01:57): bitsmsg.h, xprtdefs.h, dxvahd.h, winwlx.h, bits5_0.h
+
+- **bitsmsg.h** (Bits): HRESULT error constants only. Clean.
+- **xprtdefs.h** (Media.DShow): integer constants only. Clean.
+- **dxvahd.h** (Mf): COM vtable only. Clean.
+- **winwlx.h** (Security.WinWlx): legacy GINA-DLL contract functions called by Winlogon, no representable ownership pattern (opaque context fully internally managed). Clean.
+- **bits5_0.h** (Bits): COM vtable only. Clean.
+
+Ledger: 1021 accepted-normalized, 31 blocked, 351 pending (1052/1403 classified).
