@@ -845,3 +845,18 @@ touches those types)
 - isolatedwindowsenvironmentutils.h: two BOOL* out-param query functions, no handle. Clean.
 
 **Ledger status:** 268 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1132 pending.
+
+## 2026-09-02 17:02:07 UTC - Batch scraping-investigation-17
+
+**Headers:** windowsceip.h, wcnapi.h, rometadata.h, schnlsp.h, menutemplate.h
+**Partitions scraped:** CEIP, Wcn, WinRT.Metadata (x86; 0 warnings/errors)
+
+- windowsceip.h: CeipIsOptedIn() - no handle involved. Clean.
+- wcnapi.h: redirect-only header (WcnTypes.h/WcnDevice.h/WcnFunctionDiscoveryKeys.h); entire Wcn
+  partition scraped 0 DllImport functions (types/constants only), no DECLARE_HANDLE. Clean.
+- rometadata.h: MetaDataGetDispenser is a COM QueryInterface-style factory (_Outptr_ void** ppv per
+  caller riid), consistent with the established clean COM-factory pattern. Clean.
+- schnlsp.h: redirect-only header (#include schannel.h, already accepted-normalized). Clean.
+- menutemplate.h: plain data structs only (MENUEX_TEMPLATE_HEADER/ITEM, MENUTEMPLATEEX), no functions. Clean.
+
+**Ledger status:** 273 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1127 pending.

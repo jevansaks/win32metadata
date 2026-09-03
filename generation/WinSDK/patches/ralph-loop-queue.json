@@ -5645,10 +5645,10 @@
   {
     "header": "menutemplate.h",
     "partition": "MenuRc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:01:48Z",
+    "notes": "Plain data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8435,10 +8435,10 @@
   {
     "header": "rometadata.h",
     "partition": "WinRT.Metadata",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:01:48Z",
+    "notes": "COM QueryInterface-style factory (MetaDataGetDispenser), no raw HANDLE.",
     "_source": "header-progress"
   },
   {
@@ -8714,10 +8714,10 @@
   {
     "header": "schnlsp.h",
     "partition": "Identity",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:01:48Z",
+    "notes": "Redirect-only; schannel.h already accepted-normalized.",
     "_source": "header-progress"
   },
   {
@@ -10640,10 +10640,10 @@
   {
     "header": "wcnapi.h",
     "partition": "Wcn",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:01:48Z",
+    "notes": "Redirect-only; 0 functions in entire Wcn partition, no DECLARE_HANDLE.",
     "_source": "header-progress"
   },
   {
@@ -11315,10 +11315,10 @@
   {
     "header": "windowsceip.h",
     "partition": "Base, CEIP, FileHistory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:01:48Z",
+    "notes": "CeipIsOptedIn() - no handle involved.",
     "_source": "header-progress"
   },
   {
