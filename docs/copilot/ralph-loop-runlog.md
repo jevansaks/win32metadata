@@ -2170,3 +2170,24 @@ MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
 - lmcons.h: LAN Manager API constants only, no functions. Clean.
 
 **Ledger status:** 622 accepted-normalized, 30 blocked, 751 pending.
+
+## 2026-09-02 21:38:37 UTC - Batch scraping-investigation-93
+
+**Headers:** wiamicro.h, WebAuthenticationCoreManagerInterop.h, Cpl.h, xa.h, EvColl.h
+**Partitions:** Wia, WinRT, Shell, DTC (already scraped this session, reused); Wec re-scraped after fix (0 errors)
+
+- wiamicro.h: no concrete annotatable ownership gap (microdriver dllexport functions operate on
+  transparent structs; DeviceIOHandles array populated by caller before invocation; VAL union's
+  HANDLE field has no single dedicated producer with clear _Out_ semantics). Clean.
+- WebAuthenticationCoreManagerInterop.h: COM/WinRT interop interface method only. Clean.
+- Cpl.h: APPLET_PROC function-pointer typedef + transparent structs only, no extern functions. Clean.
+- xa.h: ax_reg/ax_unreg take no handles; xa_switch_t's xa_*_entry are function-pointer struct
+  fields (dynamically dispatched), out of scope. Clean.
+- EvColl.h: **genuine fix applied.** EC_HANDLE (returned via return value by EcOpenSubscriptionEnum/
+  EcOpenSubscription, closed via single EcClose) had NO autoTypes.json entry. Added new entry
+  (Namespace: Windows.Win32.System.EventCollector, CloseApi: EcClose). Confirmed the type-level
+  mechanism correctly covers return-value production (same reasoning validated for HINSTANCE/
+  HMODULE). EC_OBJECT_ARRAY_PROPERTY_HANDLE left unannotated (ambiguous variant-union field,
+  no single dedicated producer).
+
+**Ledger status:** 627 accepted-normalized, 30 blocked, 746 pending.

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:33:01Z
+- Generated: 2026-09-03T04:38:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 622
+- Matched: 627
 - In progress: 0
 - Blocked: 30
-- Remaining: 751
+- Remaining: 746
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -188,7 +188,7 @@
 | `CoreWindow.h` | WinRT | remaining |  |  |  |
 | `CorHdr.h` | ClrProfiling | remaining |  |  |  |
 | `corprof.h` | ClrProfiling | remaining |  |  |  |
-| `cpl.h` | Shell | remaining |  |  |  |
+| `cpl.h` | Shell | matched |  | 09/02/2026 21:38:18 | Function-pointer typedef + transparent structs only, no extern functions. |
 | `cplext.h` | Shell | matched |  | 09/02/2026 18:47:23 | Property-page ID constants only, no functions. |
 | `credentialprovider.h` | Shell | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `credssp.h` | Credentials | matched |  | 09/02/2026 18:38:01 | Structs/enum/constants only; one function returns a non-owned static function table. |
@@ -401,7 +401,7 @@
 | `esent.h` | Storage.Jet | blocked | copilot | 09/03/2026 04:45:00 | Deferred: 229-function header with complex many-to-many JET handle ownership graph requiring dedicated research pass, not a quick classification. |
 | `evalcom2.h` | Setup | matched |  | 09/02/2026 18:06:26 | COM interface with caller-supplied context pointers only, no handle. |
 | `evcode.h` | Media.DShow | remaining |  |  |  |
-| `evcoll.h` | Wec | remaining |  |  |  |
+| `evcoll.h` | Wec | matched |  | 09/02/2026 21:38:18 | Fixed genuine gap: added new autoTypes.json entry for EC_HANDLE (CloseApi=EcClose). |
 | `eventsys.h` | Com.Events, TransactionServer | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `evntcons.h` | Etw | remaining |  |  |  |
 | `evntprov.h` | Etw | remaining |  |  |  |
@@ -1209,7 +1209,7 @@
 | `wdstptmgmtmsg.h` | Wds | remaining |  |  |  |
 | `weakreference.h` | WinRT | matched |  | 09/02/2026 21:24:15 | COM/WinRT interface methods only, out of scope. |
 | `webapplication.h` | Debug.WebApp | remaining |  |  |  |
-| `WebAuthenticationCoreManagerInterop.h` | WinRT | remaining |  |  |  |
+| `WebAuthenticationCoreManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:38:18 | COM/WinRT interop interface method only, out of scope. |
 | `webauthn.h` | WebAuthn | remaining |  |  |  |
 | `webauthnplugin.h` | WebAuthn | remaining |  |  |  |
 | `webevnts.h` | InternetExplorer | remaining |  |  |  |
@@ -1221,7 +1221,7 @@
 | `wiadef.h` | Wia | remaining |  |  |  |
 | `wiadevd.h` | Wia | matched |  | 09/02/2026 19:42:09 | Only extern function takes no opaque-handle output; other handle producers are COM vtable methods. |
 | `wiaintfc.h` | Wia | matched |  | 09/02/2026 17:05:19 | Device-interface GUID constant only, no functions. |
-| `wiamicro.h` | Wia | remaining |  |  |  |
+| `wiamicro.h` | Wia | matched |  | 09/02/2026 21:38:18 | No concrete annotatable ownership gap identified. |
 | `wiamindr_lh.h` | Wia | remaining |  |  |  |
 | `wiamindr.h` | Wia | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include wiamindr_lh.h/wiamindr_xp.h); no direct declarations. |
 | `wiatwcmp.h` | Wia | matched |  | 09/02/2026 18:00:53 | Data struct + constants only, no functions. |
@@ -1395,7 +1395,7 @@
 | `wtypesbase.h` | TransactionServer, WinSock | remaining |  |  |  |
 | `wuapi.h` | Wua | remaining |  |  |  |
 | `wuerror.h` | Wua | remaining |  |  |  |
-| `xa.h` | DTC | remaining |  |  |  |
+| `xa.h` | DTC | matched |  | 09/02/2026 21:38:18 | No function produces an opaque handle; XA switch entries are function-pointer struct fields. |
 | `xamlom.h` | Xaml_Diagnostics | remaining |  |  |  |
 | `xapo.h` | Xaudio2 | remaining |  |  |  |
 | `xapofx.h` | Xaudio2 | remaining |  |  |  |

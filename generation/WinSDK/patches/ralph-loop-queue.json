@@ -1604,10 +1604,10 @@
   {
     "header": "cpl.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:38:18Z",
+    "notes": "Function-pointer typedef + transparent structs only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -3521,10 +3521,10 @@
   {
     "header": "evcoll.h",
     "partition": "Wec",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:38:18Z",
+    "notes": "Fixed genuine gap: added new autoTypes.json entry for EC_HANDLE (CloseApi=EcClose).",
     "_source": "header-progress"
   },
   {
@@ -10793,10 +10793,10 @@
   {
     "header": "WebAuthenticationCoreManagerInterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:38:18Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -10901,10 +10901,10 @@
   {
     "header": "wiamicro.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:38:18Z",
+    "notes": "No concrete annotatable ownership gap identified.",
     "_source": "header-progress"
   },
   {
@@ -12467,10 +12467,10 @@
   {
     "header": "xa.h",
     "partition": "DTC",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:38:18Z",
+    "notes": "No function produces an opaque handle; XA switch entries are function-pointer struct fields.",
     "_source": "header-progress"
   },
   {
