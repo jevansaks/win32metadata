@@ -110,10 +110,10 @@
   {
     "header": "adsprop.h",
     "partition": "ActiveDirectory",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:49:17Z",
+    "notes": "ADsPropCreateNotifyObj produces generic HWND via direct out-param; extends established blocker class to HWND.",
     "_source": "header-progress"
   },
   {
@@ -1739,10 +1739,10 @@
   {
     "header": "custcntl.h",
     "partition": "Controls",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:49:17Z",
+    "notes": "Constants/transparent structs only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -6824,10 +6824,10 @@
   {
     "header": "ndattrib.h",
     "partition": "Ndf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:49:17Z",
+    "notes": "Data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10991,10 +10991,10 @@
   {
     "header": "winbio_ioctl.h",
     "partition": "SecBitomet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:49:17Z",
+    "notes": "IOCTL/GUID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -12494,10 +12494,10 @@
   {
     "header": "xapofx.h",
     "partition": "Xaudio2",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:49:17Z",
+    "notes": "Standard COM factory function + GUID/parameter constants only.",
     "_source": "header-progress"
   },
   {

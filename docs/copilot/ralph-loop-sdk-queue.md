@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:43:58Z
+- Generated: 2026-09-03T04:49:34Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 632
+- Matched: 636
 - In progress: 0
-- Blocked: 30
-- Remaining: 741
+- Blocked: 31
+- Remaining: 736
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -22,7 +22,7 @@
 | `activprof.h` | Debug.ActiveScript | remaining |  |  |  |
 | `adhoc.h` | Ndis, NWifi | remaining |  |  |  |
 | `adshlp.h` | ActiveDirectory | matched |  | 09/02/2026 19:21:35 | COM refcounting + generic memory/string-allocation conventions only. |
-| `adsprop.h` | ActiveDirectory | remaining |  |  |  |
+| `adsprop.h` | ActiveDirectory | blocked |  | 09/02/2026 21:49:17 | ADsPropCreateNotifyObj produces generic HWND via direct out-param; extends established blocker class to HWND. |
 | `adssts.h` | ActiveDirectory | matched |  | 09/02/2026 19:19:02 | Status-code constants only, no functions. |
 | `adtgen.h` | Authorization, Authorization.UI | remaining |  |  |  |
 | `advpub.h` | FileHistory, WinProg | remaining |  |  |  |
@@ -203,7 +203,7 @@
 | `ctfspui.h` | Tsf | matched |  | 09/02/2026 20:41:40 | COM interface method + GUID constants only, no extern functions. |
 | `ctfutb.h` | Tsf | remaining |  |  |  |
 | `ctxtcall.h` | Com, ComOle | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
-| `custcntl.h` | Controls | remaining |  |  |  |
+| `custcntl.h` | Controls | matched |  | 09/02/2026 21:49:17 | Constants/transparent structs only, no extern functions. |
 | `d2d1_1.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `d2d1_2.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
 | `d2d1_3.h` | Direct2D | matched | copilot | 09/03/2026 00:10:00 | Classified retained artifact in existing-patches-05. |
@@ -768,7 +768,7 @@
 | `ncrypt_provider.h` | Security.Cryptography | remaining |  |  |  |
 | `ncrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:10:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
 | `ncryptprotect.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
-| `ndattrib.h` | Ndf | remaining |  |  |  |
+| `ndattrib.h` | Ndf | matched |  | 09/02/2026 21:49:17 | Data structs only, no functions. |
 | `ndfapi.h` | Ndf | matched |  | 09/02/2026 20:38:46 | Fixed genuine gap: added new autoTypes.json entry for NDFHANDLE (CloseApi=NdfCloseIncident). |
 | `ndhelper.h` | Ndf | remaining |  |  |  |
 | `ndisguid.h` | Ndis | remaining |  |  |  |
@@ -1231,7 +1231,7 @@
 | `winber.h` | Ldap | remaining |  |  |  |
 | `winbio_adapter.h` | SecBitomet | remaining |  |  |  |
 | `winbio_err.h` | SecBitomet | remaining |  |  |  |
-| `winbio_ioctl.h` | SecBitomet | remaining |  |  |  |
+| `winbio_ioctl.h` | SecBitomet | matched |  | 09/02/2026 21:49:17 | IOCTL/GUID constants only, no functions. |
 | `winbio_types.h` | SecBitomet | remaining |  |  |  |
 | `winbio.h` | SecBitomet | remaining |  |  |  |
 | `wincodec.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
@@ -1398,7 +1398,7 @@
 | `xa.h` | DTC | matched |  | 09/02/2026 21:38:18 | No function produces an opaque handle; XA switch entries are function-pointer struct fields. |
 | `xamlom.h` | Xaml_Diagnostics | remaining |  |  |  |
 | `xapo.h` | Xaudio2 | remaining |  |  |  |
-| `xapofx.h` | Xaudio2 | remaining |  |  |  |
+| `xapofx.h` | Xaudio2 | matched |  | 09/02/2026 21:49:17 | Standard COM factory function + GUID/parameter constants only. |
 | `xaudio2.h` | Xaudio2 | remaining |  |  |  |
 | `xaudio2fx.h` | Xaudio2 | remaining |  |  |  |
 | `xblidpauthmanager.h` | Xblidp | remaining |  |  |  |

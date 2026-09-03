@@ -2210,3 +2210,20 @@ WinRT.Printing/ActiveDirectory/ImagingDevice reused
 - stiusd.h: IStiUSD COM interface + GUID constants only, no extern functions. Clean.
 
 **Ledger status:** 632 accepted-normalized, 30 blocked, 741 pending.
+
+## 2026-09-02 21:49:34 UTC - Batch scraping-investigation-95
+
+**Headers:** ndattrib.h, AdsProp.h, xapofx.h, winbio_ioctl.h, CustCntl.h
+**Partitions scraped (x64):** SecBitomet, Controls (0 errors each); Ndf/ActiveDirectory/Xaudio2 reused
+
+- ndattrib.h: Network Diagnostics Framework attribute data structs only, no functions. Clean.
+- AdsProp.h: **blocked** - ADsPropCreateNotifyObj produces generic HWND via direct out-param.
+  Confirmed HWND's autoTypes.json entry deliberately has no CloseApi (same generic-shared-type
+  reasoning as HANDLE) - extends the established generic-type direct-out-param blocker class to
+  HWND for the first time this session.
+- xapofx.h: CreateFX outputs standard COM interface pointer; remaining declarations are GUID/
+  parameter-bound constants. Clean.
+- winbio_ioctl.h: biometric device IOCTL/GUID constants only, no functions. Clean.
+- CustCntl.h: Custom Control Library constants/transparent structs only, no extern functions. Clean.
+
+**Ledger status:** 636 accepted-normalized, 31 blocked, 736 pending.
