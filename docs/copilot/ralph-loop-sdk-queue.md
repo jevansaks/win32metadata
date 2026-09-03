@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:35:53Z
+- Generated: 2026-09-03T06:40:10Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 796
+- Matched: 801
 - In progress: 0
 - Blocked: 31
-- Remaining: 576
+- Remaining: 571
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -112,7 +112,7 @@
 | `bits1_5.h` | Bits | remaining |  |  |  |
 | `bits10_1.h` | Bits | remaining |  |  |  |
 | `bits10_2.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_2.h.md |
-| `bits10_3.h` | Bits | remaining |  |  |  |
+| `bits10_3.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_3.h.md |
 | `bits2_0.h` | Bits | remaining |  |  |  |
 | `bits2_5.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits2_5.h.md |
 | `bits3_0.h` | Bits | remaining |  |  |  |
@@ -175,7 +175,7 @@
 | `compressapi.h` | CmpApi | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
 | `compstui.h` | Printing | remaining |  |  |  |
 | `computecore.h` | HostComputeSystem | remaining |  |  |  |
-| `computenetwork.h` | HostComputeNetwork | remaining |  |  |  |
+| `computenetwork.h` | HostComputeNetwork | matched |  |  | Genuine producer-site fix: added 6 autoTypes.json entries (HCN_NETWORK/NAMESPACE/ENDPOINT/LOADBALANCER/GUESTNETWORKSERVICE/CALLBACK). HCN_SERVICE left unannotated (unused). See docs/copilot/header-reports/computenetwork.h.md |
 | `computestorage.h` | HostComputeSystem | matched |  | 09/02/2026 19:42:09 | No opaque handles produced; HANDLE params are pre-owned caller inputs. |
 | `comsvcs.h` | Com.Events, Cos | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `consoleapis.h` | Console | matched |  | 09/02/2026 17:23:42 | HANDLE/HWND fields are caller-supplied input references, not produced/owned here; distinct from the wincon.h blocker (different functions). |
@@ -507,7 +507,7 @@
 | `Icm.h` | Wcs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `icmpapi.h` | IpHlp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `icontact.h` | WinContacts | remaining |  |  |  |
-| `icontactproperties.h` | WinContacts | remaining |  |  |  |
+| `icontactproperties.h` | WinContacts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontactproperties.h.md |
 | `icontentprefetchertasktrigger.h` | Wsw | matched |  | 09/02/2026 21:01:40 | COM/WinRT interface method only, out of scope. |
 | `icu.h` | Intl | remaining |  |  |  |
 | `icucommon.h` | Intl | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
@@ -521,7 +521,7 @@
 | `ieautomation.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ieautomation.h.md |
 | `ieobj.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `iepmapi.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
-| `iewebdriver.h` | InternetExplorer | remaining |  |  |  |
+| `iewebdriver.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iewebdriver.h.md |
 | `iextag.h` | InternetExplorer | remaining |  |  |  |
 | `il21dec.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
 | `ImageHlp.h` | Debug | remaining |  |  |  |
@@ -1360,7 +1360,7 @@
 | `ws2ipdef.h` | IpHlp, WinSock | remaining |  |  |  |
 | `ws2spi.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `ws2tcpip.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
-| `wsbapp.h` | Wsb | remaining |  |  |  |
+| `wsbapp.h` | Wsb | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsbapp.h.md |
 | `wsbapperror.h` | Wsb | matched |  | 09/02/2026 18:35:09 | HRESULT error-code constants/macros only, no functions. |
 | `wsbonline.h` | Wsb | matched |  | 09/02/2026 18:32:46 | Struct/GUID input-only API, no handle. |
 | `wsbonlineerror.h` | Wsb | matched |  | 09/02/2026 18:44:05 | HRESULT error-code constants/macros only, no functions. |

@@ -3075,5 +3075,47 @@
     "ValueType": "IntPtr",
     "CloseApi": "PfDeleteInterface",
     "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.System.HostComputeNetwork",
+    "Name": "HCN_NETWORK",
+    "ValueType": "IntPtr",
+    "CloseApi": "HcnCloseNetwork",
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.System.HostComputeNetwork",
+    "Name": "HCN_NAMESPACE",
+    "ValueType": "IntPtr",
+    "CloseApi": "HcnCloseNamespace",
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.System.HostComputeNetwork",
+    "Name": "HCN_ENDPOINT",
+    "ValueType": "IntPtr",
+    "CloseApi": "HcnCloseEndpoint",
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.System.HostComputeNetwork",
+    "Name": "HCN_LOADBALANCER",
+    "ValueType": "IntPtr",
+    "CloseApi": "HcnCloseLoadBalancer",
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.System.HostComputeNetwork",
+    "Name": "HCN_GUESTNETWORKSERVICE",
+    "ValueType": "IntPtr",
+    "CloseApi": "HcnCloseGuestNetworkService",
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.System.HostComputeNetwork",
+    "Name": "HCN_CALLBACK",
+    "ValueType": "IntPtr",
+    "CloseApi": "HcnUnregisterServiceCallback",
+    "NativeTypedef": true
   }
 ]

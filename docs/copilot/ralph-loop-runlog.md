@@ -2588,3 +2588,13 @@ Ledger: 791 accepted-normalized, 31 blocked, 581 pending (822/1403 classified).
 - **certexit.h** (Certificates): COM interfaces only, no free functions. Clean.
 
 Ledger: 796 accepted-normalized, 31 blocked, 576 pending (827/1403 classified).
+
+## Batch 128 (2026-09-02 23:40): icontactproperties.h, wsbapp.h, iewebdriver.h, computenetwork.h, bits10_3.h
+
+- **icontactproperties.h** (WinContacts): CONTACTPROP_* string constants only, no functions. Clean.
+- **wsbapp.h** (Wsb): COM interfaces only, no free functions. Clean.
+- **iewebdriver.h** (InternetExplorer): COM interfaces only, no free functions. Clean.
+- **computenetwork.h** (HostComputeNetwork): PATCH APPLIED. Added 6 autoTypes.json entries for HCN_NETWORK/HCN_NAMESPACE/HCN_ENDPOINT/HCN_LOADBALANCER/HCN_GUESTNETWORKSERVICE/HCN_CALLBACK, each with confirmed producer/closer pairs. HCN_SERVICE left unannotated (declared but never used as a parameter anywhere). Re-scraped HostComputeNetwork (x64): 0 errors.
+- **bits10_3.h** (Bits): COM interfaces only, no free functions. Clean.
+
+Ledger: 801 accepted-normalized, 31 blocked, 571 pending (832/1403 classified). Milestone: 800+ accepted-normalized.

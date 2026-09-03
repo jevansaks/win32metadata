@@ -920,10 +920,10 @@
   {
     "header": "bits10_3.h",
     "partition": "Bits",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bits10_3.h.md",
     "_source": "header-progress"
   },
   {
@@ -1487,10 +1487,10 @@
   {
     "header": "computenetwork.h",
     "partition": "HostComputeNetwork",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added 6 autoTypes.json entries (HCN_NETWORK/NAMESPACE/ENDPOINT/LOADBALANCER/GUESTNETWORKSERVICE/CALLBACK). HCN_SERVICE left unannotated (unused). See docs/copilot/header-reports/computenetwork.h.md",
     "_source": "header-progress"
   },
   {
@@ -4475,10 +4475,10 @@
   {
     "header": "icontactproperties.h",
     "partition": "WinContacts",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontactproperties.h.md",
     "_source": "header-progress"
   },
   {
@@ -4601,10 +4601,10 @@
   {
     "header": "iewebdriver.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iewebdriver.h.md",
     "_source": "header-progress"
   },
   {
@@ -12152,10 +12152,10 @@
   {
     "header": "wsbapp.h",
     "partition": "Wsb",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsbapp.h.md",
     "_source": "header-progress"
   },
   {
