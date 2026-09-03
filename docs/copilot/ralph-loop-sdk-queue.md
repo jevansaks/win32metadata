@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:21:07Z
+- Generated: 2026-09-03T01:23:49Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 379
+- Matched: 384
 - In progress: 0
 - Blocked: 8
-- Remaining: 1016
+- Remaining: 1011
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -471,7 +471,7 @@
 | `gl/glu.h` | OpenGL | remaining |  |  |  |
 | `gnssdriver.h` | WinLocation | remaining |  |  |  |
 | `gpedit.h` | Policy | remaining |  |  |  |
-| `gpiobuttontypes.h` | Hid | remaining |  |  |  |
+| `gpiobuttontypes.h` | Hid | matched |  | 09/02/2026 18:23:41 | Enum/constants/data struct only, no functions. |
 | `gpmgmt.h` | Gpmc | matched | copilot | 09/03/2026 05:15:00 | No patch needed; COM interface only. |
 | `guiddef.h` | TransactionServer | remaining |  |  |  |
 | `handleapi.h` | FileHistory, Foundation | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
@@ -545,7 +545,7 @@
 | `inaddr.h` | IpHlp, RRas, WinSock | matched |  | 09/02/2026 17:19:28 | Plain data struct + macros only, no functions. |
 | `indexsrv.h` | IndexSrv, Search | remaining |  |  |  |
 | `inetreg.h` | InternetExplorer | remaining |  |  |  |
-| `inetsdk.h` | InternetExplorer | remaining |  |  |  |
+| `inetsdk.h` | InternetExplorer | matched |  | 09/02/2026 18:23:41 | Pure MIDL boilerplate, no functions. |
 | `infocard.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `infotech.h` | HtmlHelp | remaining |  |  |  |
 | `infstr.h` | DevInst | remaining |  |  |  |
@@ -857,7 +857,7 @@
 | `pdhmsg.h` | Perf | remaining |  |  |  |
 | `peerdist.h` | P2p | remaining |  |  |  |
 | `peninputpanel.h` | Tablet | remaining |  |  |  |
-| `perceptiondevicecore.h` | MixedReality | remaining |  |  |  |
+| `perceptiondevicecore.h` | MixedReality | matched |  | 09/02/2026 18:23:41 | Data structs + GUID constant only, no functions. |
 | `perflib.h` | Perf | remaining |  |  |  |
 | `perhist.h` | InternetExplorer | remaining |  |  |  |
 | `persist.h` | Search | matched |  | 09/02/2026 18:06:26 | Constants only, no functions. |
@@ -1167,7 +1167,7 @@
 | `vmsavedstatedump.h` | Hypervisor | remaining |  |  |  |
 | `vmsavedstatedumpdefs.h` | Hypervisor | remaining |  |  |  |
 | `vpconfig.h` | Media.DShow | remaining |  |  |  |
-| `vpnotify.h` | Media.DShow | remaining |  |  |  |
+| `vpnotify.h` | Media.DShow | matched |  | 09/02/2026 18:23:41 | COM interfaces with plain enum/BOOL parameters only, no handle. |
 | `vptype.h` | Media.DShow | remaining |  |  |  |
 | `vsadmin.h` | VSS | remaining |  |  |  |
 | `vsbackup.h` | VSS | remaining |  |  |  |
@@ -1292,7 +1292,7 @@
 | `winml.h` | MachineLearning | remaining |  |  |  |
 | `winnetwk.h` | Wnet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winnls.h` | Intl | remaining |  |  |  |
-| `winnls32.h` | FileHistory, WinProg | remaining |  |  |  |
+| `winnls32.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:23:41 | HWND is an input; IME info struct is caller-allocated, not a handle. |
 | `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | remaining |  |  |  |
 | `winperf.h` | Perf | remaining |  |  |  |
 | `winppi.h` | Printing | blocked | copilot | 09/02/2026 17:51:18 | Deferred: genuine spool-file/page HANDLE ownership relationship via return value, no annotation precedent; same class as getprocesshandlefromhwnd.h/wab.h/wincon.h. |

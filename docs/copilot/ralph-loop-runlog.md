@@ -1295,3 +1295,17 @@ pre-existing unrelated cross-partition remap warnings for in6_addr/in_addr)
 **Ledger status:** 379 accepted-normalized (including 1 genuine producer-site fix), 8 blocked (esent.h,
 getprocesshandlefromhwnd.h, wab.h, wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h,
 MSAJTransport.h), 1016 pending.
+
+## 2026-09-02 18:24:01 UTC - Batch scraping-investigation-40
+
+**Headers:** perceptiondevicecore.h, winnls32.h, gpiobuttontypes.h, vpnotify.h, inetsdk.h
+**Partitions scraped:** MixedReality, Hid (x86; 0 warnings/errors)
+
+- perceptiondevicecore.h: data structs + GUID constant only, no functions. Clean.
+- winnls32.h: HWND is an input parameter; IME info structs are caller-allocated, not handles. Clean.
+- gpiobuttontypes.h: enum/constants/data struct only, no functions. Clean.
+- vpnotify.h: COM interfaces with plain enum/BOOL parameters only, no handle. Clean.
+- inetsdk.h: pure MIDL boilerplate, no functions. Clean.
+
+**Ledger status:** 384 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 1011 pending.

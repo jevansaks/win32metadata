@@ -4151,10 +4151,10 @@
   {
     "header": "gpiobuttontypes.h",
     "partition": "Hid",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:23:41Z",
+    "notes": "Enum/constants/data struct only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4817,10 +4817,10 @@
   {
     "header": "inetsdk.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:23:41Z",
+    "notes": "Pure MIDL boilerplate, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7625,10 +7625,10 @@
   {
     "header": "perceptiondevicecore.h",
     "partition": "MixedReality",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:23:41Z",
+    "notes": "Data structs + GUID constant only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10415,10 +10415,10 @@
   {
     "header": "vpnotify.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:23:41Z",
+    "notes": "COM interfaces with plain enum/BOOL parameters only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -11540,10 +11540,10 @@
   {
     "header": "winnls32.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:23:41Z",
+    "notes": "HWND is an input; IME info struct is caller-allocated, not a handle.",
     "_source": "header-progress"
   },
   {
