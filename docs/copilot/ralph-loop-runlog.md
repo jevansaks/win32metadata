@@ -2348,3 +2348,13 @@ Ralph loop session.)
 - **xpsprint.h** (Gdi, XpsPrinting): StartXpsPrintJob takes caller-owned HANDLE progressEvent/completionEvent as input (not produced), outputs standard COM interface pointers (IXpsPrintJob**/IXpsPrintJobStream**). Clean.
 
 Ledger: 676 accepted-normalized, 31 blocked, 696 pending (707/1403 classified).
+
+## Batch 104 (2026-09-02 22:20): imgutil.h, dhcpcsdk.h, usbfnbase.h, gamingtcui.h, msfeedsid.h
+
+- **imgutil.h** (InternetExplorer): CreateMIMEMap/DecodeImage/SniffStream/etc. output COM interface pointers or plain scalars; CreateDDrawSurfaceOnDIB's HBITMAP is an input. Clean.
+- **dhcpcsdk.h** (Dhcp): constants + transparent structs only, no function declarations. Clean.
+- **usbfnbase.h** (Buses): constants + transparent structs only, no function declarations. Clean.
+- **gamingtcui.h** (Tcui): ShowGameInviteUI family - all HSTRING/callback/context inputs, no handle production. Clean.
+- **msfeedsid.h** (Wmp): DISPID constants only, no functions. Clean.
+
+Ledger: 681 accepted-normalized, 31 blocked, 691 pending (712/1403 classified).

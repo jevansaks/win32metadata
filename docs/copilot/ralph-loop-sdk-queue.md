@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:17:22Z
+- Generated: 2026-09-03T05:20:12Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 676
+- Matched: 681
 - In progress: 0
 - Blocked: 31
-- Remaining: 696
+- Remaining: 691
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -289,7 +289,7 @@
 | `devpropdef.h` | Display, Nfc, Nfp, WpdSdk | matched |  | 09/02/2026 21:21:09 | Constants/typedef only, no functions. |
 | `devquery.h` | DeviceQuery, FileHistory | matched |  | 09/02/2026 21:01:40 | Fixed genuine gap: completed existing autoTypes.json entry for HDEVQUERY (CloseApi=DevCloseObjectQuery). |
 | `devquerydef.h` | DeviceQuery | matched |  | 09/02/2026 18:59:13 | Enums/data structs only, no functions. |
-| `dhcpcsdk.h` | Dhcp | remaining |  |  |  |
+| `dhcpcsdk.h` | Dhcp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dhcpcsdk.h.md |
 | `dhcpsapi.h` | Dhcp | remaining |  |  |  |
 | `dhcpssdk.h` | Dhcp | remaining |  |  |  |
 | `dhcpv6csdk.h` | Dhcp | matched |  | 09/02/2026 21:12:30 | Constants only, no functions. |
@@ -460,7 +460,7 @@
 | `GameInput.h` | GameInput | matched |  | 09/02/2026 16:34:06 | GameInputCreate is a clean COM-factory pattern; the one raw HANDLE out-param (IGameInputDispatcher::OpenWaitHandle) is a COM vtable method, outside DllImport-based ownership-annotation scope. |
 | `gameux.h` | GameMode | remaining |  |  |  |
 | `gamingdeviceinformation.h` | GamingDvcInfo | matched |  | 09/02/2026 18:06:26 | Plain struct output, no handle. |
-| `gamingtcui.h` | Tcui | remaining |  |  |  |
+| `gamingtcui.h` | Tcui | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gamingtcui.h.md |
 | `gb18030.h` | Intl | matched |  | 09/02/2026 20:31:37 | Buffer-conversion function only, no handles. |
 | `gdiplus.h` | Gdiplus | matched |  | 09/02/2026 16:34:06 | GDI+ create/delete object pattern uses strongly-typed C++ pointers (GpGraphics* etc), not HANDLE-family typedefs; no pre-existing RAII metadata to correct; out of current policy scope. |
 | `gdipluseffects.h` | Media.DShow | remaining |  |  |  |
@@ -538,7 +538,7 @@
 | `imessage.h` | IMapi | matched |  | 09/02/2026 21:32:46 | Fixed genuine gap: completed autoTypes.json entry for LPMSGSESS (CloseApi=CloseIMsgSession). |
 | `imessagedispatcher.h` | TransactionServer | matched |  | 09/02/2026 20:22:05 | COM/WinRT interface method only, out of scope. |
 | `imgerror.h` | Printing | remaining |  |  |  |
-| `imgutil.h` | InternetExplorer | remaining |  |  |  |
+| `imgutil.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgutil.h.md |
 | `imm.h` | Input.Ime | remaining |  |  |  |
 | `immdev.h` | Input.Ime | remaining |  |  |  |
 | `in6addr.h` | WinSock, wnv | matched |  | 09/02/2026 17:16:10 | Plain data struct + macros only, no functions. |
@@ -724,7 +724,7 @@
 | `msdrmgetinfo.h` | Rm | matched |  | 09/02/2026 21:08:27 | String constants only, no functions. |
 | `msdshape.h` | Search | matched |  | 09/02/2026 17:51:18 | Constants/enums only, no functions. |
 | `msfeeds.h` | Wmp | remaining |  |  |  |
-| `msfeedsid.h` | Wmp | remaining |  |  |  |
+| `msfeedsid.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msfeedsid.h.md |
 | `mshtmcid.h` | MsHtml | remaining |  |  |  |
 | `mshtmdid.h` | MsHtml | remaining |  |  |  |
 | `mshtmhst.h` | MsHtml | remaining |  |  |  |
@@ -1136,7 +1136,7 @@
 | `urlmon.h` | Shell, TransactionServer | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `usb.h` | Buses | remaining |  |  |  |
 | `usb4dbgioctl.h` | Buses | matched |  | 09/02/2026 18:47:24 | Enums/constants/data structs only, no functions. |
-| `usbfnbase.h` | Buses | remaining |  |  |  |
+| `usbfnbase.h` | Buses | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usbfnbase.h.md |
 | `usbioctl.h` | Buses | remaining |  |  |  |
 | `usbiodef.h` | Buses | matched |  | 09/02/2026 21:52:12 | Constants only, no functions. |
 | `usbprint.h` | Printing | matched |  | 09/02/2026 20:28:23 | GUID/IOCTL constants only, no functions. |

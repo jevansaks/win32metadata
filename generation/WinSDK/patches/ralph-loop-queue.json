@@ -2513,10 +2513,10 @@
   {
     "header": "dhcpcsdk.h",
     "partition": "Dhcp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dhcpcsdk.h.md",
     "_source": "header-progress"
   },
   {
@@ -4052,10 +4052,10 @@
   {
     "header": "gamingtcui.h",
     "partition": "Tcui",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gamingtcui.h.md",
     "_source": "header-progress"
   },
   {
@@ -4754,10 +4754,10 @@
   {
     "header": "imgutil.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgutil.h.md",
     "_source": "header-progress"
   },
   {
@@ -6428,10 +6428,10 @@
   {
     "header": "msfeedsid.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msfeedsid.h.md",
     "_source": "header-progress"
   },
   {
@@ -10136,10 +10136,10 @@
   {
     "header": "usbfnbase.h",
     "partition": "Buses",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usbfnbase.h.md",
     "_source": "header-progress"
   },
   {
