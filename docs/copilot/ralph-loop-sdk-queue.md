@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:21:21Z
+- Generated: 2026-09-03T10:25:01Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1156
+- Matched: 1161
 - In progress: 0
 - Blocked: 31
-- Remaining: 216
+- Remaining: 211
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -654,7 +654,7 @@
 | `mfmp2dlna.h` | Mf | matched |  | 09/02/2026 20:28:23 | COM interface + GUID constants/struct only, no extern functions. |
 | `mfobjects.h` | Mf | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `mfplay.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfplay.h.md |
-| `mfreadwrite.h` | Mf | remaining |  |  |  |
+| `mfreadwrite.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfreadwrite.h.md |
 | `mfsharingengine.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfsharingengine.h.md |
 | `mfspatialaudio.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfspatialaudio.h.md |
 | `mftransform.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mftransform.h.md |
@@ -694,7 +694,7 @@
 | `mpegtype.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
 | `mprapi.h` | RRas | remaining |  |  |  |
 | `mprerror.h` | Foundation | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
-| `mq.h` | MessageQueuing | remaining |  |  |  |
+| `mq.h` | MessageQueuing | matched |  |  | Producer-site fix: added QUEUEHANDLE autoTypes.json entry (CloseApi MQCloseQueue) and MQCreateCursor::phCursor inline RAIIFree(MQCloseCursor). See docs/copilot/header-reports/mq.h.md |
 | `mqoai.h` | MessageQueuing | remaining |  |  |  |
 | `mrmresourceindexer.h` | MenuRc | matched |  | 09/02/2026 22:02:59 | Transparent wrapper struct, not an opaque handle type representable by the annotation mechanism. |
 | `msaatext.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msaatext.h.md |
@@ -775,7 +775,7 @@
 | `ndkinfo.h` | Ndis | matched |  | 09/02/2026 18:00:53 | Data structs/enum/constants only, no functions. |
 | `ndr64types.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndr64types.h.md |
 | `netcfgn.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netcfgn.h.md |
-| `netcfgx.h` | NetMgmt | remaining |  |  |  |
+| `netcfgx.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netcfgx.h.md |
 | `netcon.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `netevent.h` | NetMgmt | remaining |  |  |  |
 | `netfw.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
@@ -1274,7 +1274,7 @@
 | `windowssideshowapi.h` | SideShow | matched | copilot | 09/03/2026 03:50:00 | No patch needed; COM interface only. |
 | `windowssideshowdriverevents.h` | SideShow | matched | copilot | 09/03/2026 04:05:00 | No patch needed; COM interface only. |
 | `windowsstoragecom.h` | WinRT.Storage | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windowsstoragecom.h.md |
-| `windowsx.h` | Controls, FileHistory, Gdi, WinProg | remaining |  |  |  |
+| `windowsx.h` | Controls, FileHistory, Gdi, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windowsx.h.md |
 | `winefs.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winenclave.h` | Enclave | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
 | `winerror.h` | Direct2D, DXCore, Dxgi, Dxgi.Common, Foundation, Rpc, TaskSchd, TransactionServer, UiAnimation, Wes | remaining |  |  |  |
@@ -1348,7 +1348,7 @@
 | `wnvapi.h` | wnv | blocked | copilot | 09/02/2026 19:09:17 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
 | `wofapi.h` | Fs | matched |  | 09/02/2026 20:31:37 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `workspaceax.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/workspaceax.h.md |
-| `workspaceruntime.h` | TermServ | remaining |  |  |  |
+| `workspaceruntime.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/workspaceruntime.h.md |
 | `workspaceruntimeclientext.h` | TermServ | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
 | `wpc.h` | Parcon | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR_User*/HWND_User*); no resource-owning functions. |
 | `wpdmtpextensions.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wpdmtpextensions.h.md |

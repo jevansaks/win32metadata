@@ -5798,10 +5798,10 @@
   {
     "header": "mfreadwrite.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mfreadwrite.h.md",
     "_source": "header-progress"
   },
   {
@@ -6158,10 +6158,10 @@
   {
     "header": "mq.h",
     "partition": "MessageQueuing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added QUEUEHANDLE autoTypes.json entry (CloseApi MQCloseQueue) and MQCreateCursor::phCursor inline RAIIFree(MQCloseCursor). See docs/copilot/header-reports/mq.h.md",
     "_source": "header-progress"
   },
   {
@@ -6887,10 +6887,10 @@
   {
     "header": "netcfgx.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netcfgx.h.md",
     "_source": "header-progress"
   },
   {
@@ -11378,10 +11378,10 @@
   {
     "header": "windowsx.h",
     "partition": "Controls, FileHistory, Gdi, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windowsx.h.md",
     "_source": "header-progress"
   },
   {
@@ -12044,10 +12044,10 @@
   {
     "header": "workspaceruntime.h",
     "partition": "TermServ",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/workspaceruntime.h.md",
     "_source": "header-progress"
   },
   {

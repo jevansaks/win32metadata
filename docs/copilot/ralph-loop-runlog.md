@@ -3294,3 +3294,11 @@ Ledger: 1151 accepted-normalized, 31 blocked, 221 pending (1182/1403 classified)
 - d3d10effect.h, mftransform.h: COM interface pointer outputs. Clean.
 
 Ledger: 1156 accepted-normalized, 31 blocked, 216 pending (1187/1403 classified).
+
+## Batch 200 (2026-09-03 03:25): mq.h, workspaceruntime.h, netcfgx.h, mfreadwrite.h, windowsx.h
+
+- mq.h (MessageQueuing): PRODUCER-SITE FIX x2 - QUEUEHANDLE/MQCloseQueue and MQCreateCursor inline RAIIFree.
+- workspaceruntime.h, netcfgx.h, mfreadwrite.h: COM vtable/interface pointers. Clean.
+- windowsx.h: pure macro-only header. Clean.
+
+Ledger: 1161 accepted-normalized, 31 blocked, 211 pending (1192/1403 classified).
