@@ -3926,10 +3926,10 @@
   {
     "header": "fullenumsyncdeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:28:23Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5771,10 +5771,10 @@
   {
     "header": "mfmp2dlna.h",
     "partition": "Mf",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:28:23Z",
+    "notes": "COM interface + GUID constants/struct only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -7040,10 +7040,10 @@
   {
     "header": "nsemail.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:28:23Z",
+    "notes": "Enums/structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -9704,10 +9704,10 @@
   {
     "header": "tdiinfo.h",
     "partition": "FileHistory, WinProg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:28:23Z",
+    "notes": "Structs/typedefs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10163,10 +10163,10 @@
   {
     "header": "usbprint.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:28:23Z",
+    "notes": "GUID/IOCTL constants only, no functions.",
     "_source": "header-progress"
   },
   {

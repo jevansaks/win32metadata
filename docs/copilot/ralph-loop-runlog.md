@@ -1894,3 +1894,16 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   as ordinary extern declarations.
 
 **Ledger status:** 536 accepted-normalized, 26 blocked, 841 pending.
+
+## 2026-09-02 20:28:37 UTC - Batch scraping-investigation-75
+
+**Headers:** mfmp2dlna.h, nsemail.h, fullenumsyncdeviceservice.h, tdiinfo.h, usbprint.h
+**Partitions scraped (x64):** Mf, Printing (0 errors each); WinSock/WpdSdk/FileHistory/WinProg reused
+
+- mfmp2dlna.h: IMFDLNASinkInit COM interface + GUID constants/struct only. Clean.
+- nsemail.h: NAPI provider enums/structs (installation blob layout) only, no functions. Clean.
+- fullenumsyncdeviceservice.h: WPD device-service GUID/property constants only. Clean.
+- tdiinfo.h: TDI entity/object ID structs/typedefs only, no functions. Clean.
+- usbprint.h: device-interface GUID + IOCTL_USBPRINT_* control-code constants only. Clean.
+
+**Ledger status:** 541 accepted-normalized, 26 blocked, 836 pending.

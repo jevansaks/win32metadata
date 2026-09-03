@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:25:18Z
+- Generated: 2026-09-03T03:28:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 536
+- Matched: 541
 - In progress: 0
 - Blocked: 26
-- Remaining: 841
+- Remaining: 836
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -446,7 +446,7 @@
 | `fsrmtlb.h` | Fsrm | remaining |  |  |  |
 | `ftpext.h` | Iis | remaining |  |  |  |
 | `fttypes.h` | Fs | matched |  | 09/02/2026 19:16:41 | Typedef/enums/data structs only, no functions. |
-| `fullenumsyncdeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `fullenumsyncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 20:28:23 | Constants only, no functions. |
 | `functiondiscovery.h` | FunctionDiscovery | matched |  | 09/02/2026 19:28:18 | CLSID constants + MIDL boilerplate only, no functions. |
 | `functiondiscoverycategories.h` | FunctionDiscovery | matched |  | 09/02/2026 19:12:01 | String constants only, no functions. |
 | `functiondiscoveryconstraints.h` | FunctionDiscovery | remaining |  |  |  |
@@ -651,7 +651,7 @@
 | `mfidl.h` | Mf | remaining |  |  |  |
 | `mfmediacapture.h` | Mf | remaining |  |  |  |
 | `mfmediaengine.h` | Mf | remaining |  |  |  |
-| `mfmp2dlna.h` | Mf | remaining |  |  |  |
+| `mfmp2dlna.h` | Mf | matched |  | 09/02/2026 20:28:23 | COM interface + GUID constants/struct only, no extern functions. |
 | `mfobjects.h` | Mf | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `mfplay.h` | Mf | remaining |  |  |  |
 | `mfreadwrite.h` | Mf | remaining |  |  |  |
@@ -792,7 +792,7 @@
 | `notesdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:35:31 | GUID/name constants only, no functions. |
 | `notificationactivationcallback.h` | Win32_Tile_Badge_Notif | matched |  | 09/02/2026 20:22:05 | COM interface method only, out of scope. |
 | `Npapi.h` | Wnet | remaining |  |  |  |
-| `nsemail.h` | WinSock | remaining |  |  |  |
+| `nsemail.h` | WinSock | matched |  | 09/02/2026 20:28:23 | Enums/structs only, no functions. |
 | `nserror.h` | Multimedia | remaining |  |  |  |
 | `nspapi.h` | WinSock | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `ntdd1394.h` | Devices.1394 | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
@@ -1088,7 +1088,7 @@
 | `tcguid.h` | Qos | matched |  | 09/02/2026 18:59:13 | GUID constants only, no functions. |
 | `tcpxcv.h` | Printing | matched |  | 09/02/2026 18:50:10 | Data structs + constants only, no functions. |
 | `tdh.h` | Etw | remaining |  |  |  |
-| `tdiinfo.h` | FileHistory, WinProg | remaining |  |  |  |
+| `tdiinfo.h` | FileHistory, WinProg | matched |  | 09/02/2026 20:28:23 | Structs/typedefs only, no functions. |
 | `textserv.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `textstor.h` | Tsf | remaining |  |  |  |
 | `thumbcache.h` | Shell | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
@@ -1139,7 +1139,7 @@
 | `usbfnbase.h` | Buses | remaining |  |  |  |
 | `usbioctl.h` | Buses | remaining |  |  |  |
 | `usbiodef.h` | Buses | remaining |  |  |  |
-| `usbprint.h` | Printing | remaining |  |  |  |
+| `usbprint.h` | Printing | matched |  | 09/02/2026 20:28:23 | GUID/IOCTL constants only, no functions. |
 | `usbscan.h` | Buses | matched |  | 09/02/2026 20:25:02 | IOCTL parameter structs only, no functions. |
 | `usbuser.h` | Buses | remaining |  |  |  |
 | `useractivityinterop.h` | WinRT | remaining |  |  |  |
