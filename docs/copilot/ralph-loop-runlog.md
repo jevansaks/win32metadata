@@ -908,3 +908,22 @@ shows 1 pre-existing unrelated cross-partition remap warning for _CERT_CONTEXT)
 - amxmlgraphbuilder.h: IXMLGraphBuilder COM interface + GUID constants, no raw HANDLE. Clean.
 
 **Ledger status:** 288 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1112 pending.
+
+## 2026-09-02 17:16:30 UTC - Batch scraping-investigation-21
+
+**Headers:** expandedresources.h, cryptcat.h, idispids.h, in6addr.h, wsdevlicensing.h
+**Partitions scraped:** Security.Cryptography.Catalog, InternetExplorer, wnv, DevLic (x86; 0 errors;
+Security.Cryptography.Catalog/wnv show pre-existing unrelated cross-partition remap warnings)
+
+- expandedresources.h: HasExpandedResources/GetExpandedResourceExclusiveCpuCount/ReleaseExclusiveCpuSets -
+  no HANDLE-family type involved. Clean.
+- cryptcat.h: CryptCATCDFEnumMembersByCDFTagEx/CryptCATCDFEnumAttributesWithCDFTag only *consume* an
+  already-open CRYPTCATCDF* (enumeration), never open/close it. The actual producer/consumer pair
+  (CryptCATCDFOpen/CryptCATCDFClose) lives in mscat.h (included by cryptcat.h), separately tracked and
+  still pending - that is where any future ownership-annotation work belongs. Clean.
+- idispids.h: DISPID_* constants only, no functions. Clean.
+- in6addr.h: in6_addr/IN6_ADDR data struct + macros only, no functions. Clean.
+- wsdevlicensing.h: CheckDeveloperLicense/AcquireDeveloperLicense/RemoveDeveloperLicense - HWND is an
+  input parameter, outputs are plain FILETIME values. Clean.
+
+**Ledger status:** 293 accepted-normalized, 3 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h), 1107 pending.

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:13:10Z
+- Generated: 2026-09-03T00:16:18Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 288
+- Matched: 293
 - In progress: 0
 - Blocked: 3
-- Remaining: 1112
+- Remaining: 1107
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -192,7 +192,7 @@
 | `cplext.h` | Shell | remaining |  |  |  |
 | `credentialprovider.h` | Shell | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `credssp.h` | Credentials | remaining |  |  |  |
-| `cryptcat.h` | Security.Cryptography.Catalog | remaining |  |  |  |
+| `cryptcat.h` | Security.Cryptography.Catalog | matched |  | 09/02/2026 17:16:10 | Consumer-only functions (enumerate existing CRYPTCATCDF); producer pair lives in mscat.h (separately tracked, pending). |
 | `cryptdlg.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `cryptuiapi.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cryptxml.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
@@ -410,7 +410,7 @@
 | `evr9.h` | Mf | remaining |  |  |  |
 | `exdisp.h` | FileHistory, Shell, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `exdispid.h` | InternetExplorer | remaining |  |  |  |
-| `expandedresources.h` | GameMode | remaining |  |  |  |
+| `expandedresources.h` | GameMode | matched |  | 09/02/2026 17:16:10 | No handle-typed values anywhere in this header. |
 | `exposeenums2managed.h` | FileHistory, WinProg | remaining |  |  |  |
 | `extensionvalidation.h` | InternetExplorer | remaining |  |  |  |
 | `extsfns.h` | Debug.Extensions | remaining |  |  |  |
@@ -516,7 +516,7 @@
 | `identitycommon.h` | IdentityProvider | remaining |  |  |  |
 | `identityprovider.h` | IdentityProvider | remaining |  |  |  |
 | `identitystore.h` | IdentityProvider | remaining |  |  |  |
-| `idispids.h` | ComOle, InternetExplorer | remaining |  |  |  |
+| `idispids.h` | ComOle, InternetExplorer | matched |  | 09/02/2026 17:16:10 | DISPID constants only, no functions. |
 | `ie12plugin.h` | InternetExplorer | remaining |  |  |  |
 | `ieautomation.h` | InternetExplorer | remaining |  |  |  |
 | `ieobj.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
@@ -541,7 +541,7 @@
 | `imgutil.h` | InternetExplorer | remaining |  |  |  |
 | `imm.h` | Input.Ime | remaining |  |  |  |
 | `immdev.h` | Input.Ime | remaining |  |  |  |
-| `in6addr.h` | WinSock, wnv | remaining |  |  |  |
+| `in6addr.h` | WinSock, wnv | matched |  | 09/02/2026 17:16:10 | Plain data struct + macros only, no functions. |
 | `inaddr.h` | IpHlp, RRas, WinSock | remaining |  |  |  |
 | `indexsrv.h` | IndexSrv, Search | remaining |  |  |  |
 | `inetreg.h` | InternetExplorer | remaining |  |  |  |
@@ -1370,7 +1370,7 @@
 | `wsdbase.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdclient.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsddisco.h` | FunctionDiscovery | remaining |  |  |  |
-| `wsdevlicensing.h` | DevLic | remaining |  |  |  |
+| `wsdevlicensing.h` | DevLic | matched |  | 09/02/2026 17:16:10 | HWND is input parameter; outputs are plain FILETIME values. |
 | `wsdhost.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdns.h` | WebServicesOnDevices | remaining |  |  |  |
 | `wsdtypes.h` | FunctionDiscovery | remaining |  |  |  |

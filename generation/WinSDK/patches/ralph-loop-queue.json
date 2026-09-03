@@ -1640,10 +1640,10 @@
   {
     "header": "cryptcat.h",
     "partition": "Security.Cryptography.Catalog",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:16:10Z",
+    "notes": "Consumer-only functions (enumerate existing CRYPTCATCDF); producer pair lives in mscat.h (separately tracked, pending).",
     "_source": "header-progress"
   },
   {
@@ -3602,10 +3602,10 @@
   {
     "header": "expandedresources.h",
     "partition": "GameMode",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:16:10Z",
+    "notes": "No handle-typed values anywhere in this header.",
     "_source": "header-progress"
   },
   {
@@ -4556,10 +4556,10 @@
   {
     "header": "idispids.h",
     "partition": "ComOle, InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:16:10Z",
+    "notes": "DISPID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4781,10 +4781,10 @@
   {
     "header": "in6addr.h",
     "partition": "WinSock, wnv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:16:10Z",
+    "notes": "Plain data struct + macros only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -12242,10 +12242,10 @@
   {
     "header": "wsdevlicensing.h",
     "partition": "DevLic",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:16:10Z",
+    "notes": "HWND is input parameter; outputs are plain FILETIME values.",
     "_source": "header-progress"
   },
   {
