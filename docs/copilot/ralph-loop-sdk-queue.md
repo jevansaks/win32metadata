@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:37:33Z
+- Generated: 2026-09-03T05:39:49Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 706
+- Matched: 711
 - In progress: 0
 - Blocked: 31
-- Remaining: 666
+- Remaining: 661
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -256,7 +256,7 @@
 | `DbgModel.h` | Debug.Extensions | remaining |  |  |  |
 | `dbgprop.h` | Debug | remaining |  |  |  |
 | `dbt.h` | MenuRc | remaining |  |  |  |
-| `dciddi.h` | Direct2D | remaining |  |  |  |
+| `dciddi.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dciddi.h.md |
 | `dciman.h` | FileHistory, WinProg | blocked |  | 09/02/2026 20:07:23 | DCIOpenProvider/DCICloseProvider generic HDC return-value remains a gap; HWINWATCH gap fixed via autoTypes.json CloseApi addition. |
 | `dcommon.h` | Direct2D, Direct2D.Common, DirectWrite | matched |  | 09/02/2026 22:06:03 | Enums/forward declaration only, no functions. |
 | `dcomp.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
@@ -316,7 +316,7 @@
 | `dmprocessxmlfiltered.h` | WpdSdk | matched |  | 09/02/2026 17:38:44 | BSTR output, not HANDLE-family. |
 | `dmusics.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:09:36 | COM-style interfaces + constants/structs only, no extern functions. |
 | `docobj.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
-| `docobjectservice.h` | InternetExplorer | remaining |  |  |  |
+| `docobjectservice.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/docobjectservice.h.md |
 | `DocumentSource.h` | WinRT.Printing | matched |  | 09/02/2026 22:12:28 | COM/WinRT interface methods only, out of scope. |
 | `documenttarget.h` | XpsPrinting | remaining |  |  |  |
 | `dot1x.h` | Ndis, NWifi | matched |  | 09/02/2026 20:31:37 | Enums/structs only, no functions. |
@@ -1008,7 +1008,7 @@
 | `shellapi.h` | Properties, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shellscalingapi.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `sherrors.h` | Shell | remaining |  |  |  |
-| `shidfact.h` | Shell | remaining |  |  |  |
+| `shidfact.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shidfact.h.md |
 | `shimgdata.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shldisp.h` | Lwef, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shlguid.h` | Shell | remaining |  |  |  |
@@ -1098,7 +1098,7 @@
 | `tipautocomplete.h` | Tablet | remaining |  |  |  |
 | `tlhelp32.h` | ToolHelp | matched | copilot | 09/03/2026 01:15:00 | Classified retained artifact in existing-patches-32. |
 | `tlogstg.h` | Shell | remaining |  |  |  |
-| `tnef.h` | Tapi3 | remaining |  |  |  |
+| `tnef.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tnef.h.md |
 | `tokenbinding.h` | Identity | matched |  | 09/02/2026 19:35:00 | All outputs are generic heap-allocated buffers/transparent structs (HeapFree convention), not distinctly-named opaque handles. |
 | `tom.h` | Controls.RichEdit | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `tpcerror.h` | Tablet | matched |  | 09/02/2026 19:54:02 | HRESULT constants/macros only, no functions. |
@@ -1355,7 +1355,7 @@
 | `wpdshellextension.h` | WpdSdk | matched |  | 09/02/2026 19:37:21 | GUID/property-key constants only, no functions. |
 | `wrdsgraphicschannels.h` | TermServ | remaining |  |  |  |
 | `ws2atm.h` | WinSock | remaining |  |  |  |
-| `ws2bth.h` | Bluetooth | remaining |  |  |  |
+| `ws2bth.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2bth.h.md |
 | `ws2def.h` | IpHlp, WinSock | remaining |  |  |  |
 | `ws2ipdef.h` | IpHlp, WinSock | remaining |  |  |  |
 | `ws2spi.h` | WinSock | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |

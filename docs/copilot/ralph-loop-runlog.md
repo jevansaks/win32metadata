@@ -2408,3 +2408,13 @@ Ledger: 701 accepted-normalized, 31 blocked, 671 pending (732/1403 classified).
 - **winconp.h** (Console): internal console API - OpenConsoleW/DuplicateConsoleHandle/GetConsoleInputWaitHandle all use generic shared HANDLE, no dedicated console-handle typedef; RegisterConsoleVDM's PVOID outputs also generic. Not fixable (generic-type blocker class 2). Clean.
 
 Ledger: 706 accepted-normalized, 31 blocked, 666 pending (737/1403 classified).
+
+## Batch 110 (2026-09-02 22:40): shidfact.h, docobjectservice.h, dciddi.h, tnef.h, ws2bth.h
+
+- **shidfact.h** (Shell): C++ template class only (CItemIDFactory), no extern/STDAPI declarations. Clean.
+- **docobjectservice.h** (InternetExplorer): COM interfaces only, no free functions. Clean.
+- **dciddi.h** (Direct2D): transparent structs with struct-field callback pointers only, no free functions. Clean.
+- **tnef.h** (Tapi3): function-pointer typedefs only (LPOPENTNEFSTREAM/EX, LPGETTNEFSTREAMCODEPAGE), no free functions. Clean.
+- **ws2bth.h** (Bluetooth): protocol constants/GUID/transparent SOCKADDR_BTH struct only, no functions (uses standard Winsock API). Clean.
+
+Ledger: 711 accepted-normalized, 31 blocked, 661 pending (742/1403 classified). Milestone: 110 batches completed this session.

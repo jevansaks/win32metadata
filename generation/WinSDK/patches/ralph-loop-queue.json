@@ -2216,10 +2216,10 @@
   {
     "header": "dciddi.h",
     "partition": "Direct2D",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dciddi.h.md",
     "_source": "header-progress"
   },
   {
@@ -2756,10 +2756,10 @@
   {
     "header": "docobjectservice.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/docobjectservice.h.md",
     "_source": "header-progress"
   },
   {
@@ -8984,10 +8984,10 @@
   {
     "header": "shidfact.h",
     "partition": "Shell",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shidfact.h.md",
     "_source": "header-progress"
   },
   {
@@ -9794,10 +9794,10 @@
   {
     "header": "tnef.h",
     "partition": "Tapi3",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tnef.h.md",
     "_source": "header-progress"
   },
   {
@@ -12107,10 +12107,10 @@
   {
     "header": "ws2bth.h",
     "partition": "Bluetooth",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2bth.h.md",
     "_source": "header-progress"
   },
   {
