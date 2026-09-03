@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:23:00Z
+- Generated: 2026-09-03T06:26:36Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 776
+- Matched: 781
 - In progress: 0
 - Blocked: 31
-- Remaining: 596
+- Remaining: 591
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -153,7 +153,7 @@
 | `certsrv.h` | Certificates | remaining |  |  |  |
 | `certview.h` | Certificates | remaining |  |  |  |
 | `cfapi.h` | Cloudapi | remaining |  |  |  |
-| `cfg.h` | DevInst | remaining |  |  |  |
+| `cfg.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfg.h.md |
 | `cfgmgr32.h` | DevInst | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `cierror.h` | Foundation | remaining |  |  |  |
 | `clfs.h` | Fs | remaining |  |  |  |
@@ -518,7 +518,7 @@
 | `identitystore.h` | IdentityProvider | remaining |  |  |  |
 | `idispids.h` | ComOle, InternetExplorer | matched |  | 09/02/2026 17:16:10 | DISPID constants only, no functions. |
 | `ie12plugin.h` | InternetExplorer | remaining |  |  |  |
-| `ieautomation.h` | InternetExplorer | remaining |  |  |  |
+| `ieautomation.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ieautomation.h.md |
 | `ieobj.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `iepmapi.h` | InternetExplorer | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `iewebdriver.h` | InternetExplorer | remaining |  |  |  |
@@ -604,7 +604,7 @@
 | `lmdfs.h` | Dfs | remaining |  |  |  |
 | `lmerr.h` | NetMgmt | remaining |  |  |  |
 | `lmerrlog.h` | NetMgmt | remaining |  |  |  |
-| `lmjoin.h` | NetMgmt | remaining |  |  |  |
+| `lmjoin.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmjoin.h.md |
 | `lmmsg.h` | NetMgmt | matched |  | 09/02/2026 18:26:39 | Net API buffer-allocation convention (NetApiBufferFree), not HANDLE-family. |
 | `lmremutl.h` | NetMgmt | matched |  | 09/02/2026 19:14:35 | Net API buffer-allocation convention, not HANDLE-family. |
 | `lmrepl.h` | NetMgmt | matched |  | 09/02/2026 20:53:10 | Net API buffer-allocation convention. |
@@ -897,7 +897,7 @@
 | `processthreadsapi.h` | FileHistory, TermServ | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `profileapi.h` | Perf | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `profinfo.h` | Shell | matched |  | 09/02/2026 18:56:34 | Struct-only header; real gap belongs to UserEnv.h (reclassified blocked). |
-| `projectedfslib.h` | ProjFs | remaining |  |  |  |
+| `projectedfslib.h` | ProjFs | matched |  |  | Genuine producer-site fix: added CloseApi=PrjStopVirtualizing to existing incomplete PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT autoTypes.json entry. See docs/copilot/header-reports/projectedfslib.h.md |
 | `proofofpossessioncookieinfo.h` | WinInet | remaining |  |  |  |
 | `propapi.h` | Com.StructuredStorage | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `propidl.h` | Com.StructuredStorage, Properties, Shell | matched | copilot | 09/02/2026 22:35:00 | Classified retained artifact in existing-patches-25. |
@@ -1176,7 +1176,7 @@
 | `vss.h` | VSS | remaining |  |  |  |
 | `vsserror.h` | VSS | remaining |  |  |  |
 | `vsstyle.h` | Controls | remaining |  |  |  |
-| `vssym32.h` | Controls | remaining |  |  |  |
+| `vssym32.h` | Controls | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vssym32.h.md |
 | `vswriter.h` | VSS | remaining |  |  |  |
 | `waasapi.h` | UpdateAssessment | matched |  | 09/02/2026 20:19:39 | COM interface + GUID constants only, no extern functions. |
 | `waasapitypes.h` | UpdateAssessment | matched |  | 09/02/2026 19:32:00 | MIDL enums/structs/boilerplate only, no functions. |

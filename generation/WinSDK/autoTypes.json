@@ -954,6 +954,7 @@
     "Namespace": "Windows.Win32.Storage.ProjectedFileSystem",
     "Name": "PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT",
     "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "PrjStopVirtualizing",
     "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
   },

@@ -1289,10 +1289,10 @@
   {
     "header": "cfg.h",
     "partition": "DevInst",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfg.h.md",
     "_source": "header-progress"
   },
   {
@@ -4574,10 +4574,10 @@
   {
     "header": "ieautomation.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ieautomation.h.md",
     "_source": "header-progress"
   },
   {
@@ -5348,10 +5348,10 @@
   {
     "header": "lmjoin.h",
     "partition": "NetMgmt",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/lmjoin.h.md",
     "_source": "header-progress"
   },
   {
@@ -7985,10 +7985,10 @@
   {
     "header": "projectedfslib.h",
     "partition": "ProjFs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added CloseApi=PrjStopVirtualizing to existing incomplete PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT autoTypes.json entry. See docs/copilot/header-reports/projectedfslib.h.md",
     "_source": "header-progress"
   },
   {
@@ -10496,10 +10496,10 @@
   {
     "header": "vssym32.h",
     "partition": "Controls",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vssym32.h.md",
     "_source": "header-progress"
   },
   {

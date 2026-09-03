@@ -2548,3 +2548,13 @@ Ledger: 771 accepted-normalized, 31 blocked, 601 pending (802/1403 classified). 
 - **rpcnsi.h** (Rpc): RPC_NS_HANDLE shared across 5 independent producer/closer pairs (BindingLookup/EntryObjectInq/GroupMbrInq/ProfileEltInq/BindingImport), each with a distinct Done function - generic/shared type, not fixable. Clean.
 
 Ledger: 776 accepted-normalized, 31 blocked, 596 pending (807/1403 classified).
+
+## Batch 124 (2026-09-02 23:26): vssym32.h, cfg.h, ieautomation.h, lmjoin.h, projectedfslib.h
+
+- **vssym32.h** (Controls): transparent C-style enums only, no functions. Clean.
+- **cfg.h** (DevInst): CM_PROB_* constants + PNP_VETO_TYPE enum, CM_* functions declared in separate cfgmgr32.h. Clean.
+- **ieautomation.h** (InternetExplorer): COM interfaces only, no free functions. Clean.
+- **lmjoin.h** (NetMgmt): NetJoinDomain string-only inputs; NetGetJoinInformation uses NetApiBufferAllocate/Free convention. Clean.
+- **projectedfslib.h** (ProjFs): PATCH APPLIED. PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT had an existing autoTypes.json entry missing CloseApi - added CloseApi=PrjStopVirtualizing (producer PrjStartVirtualizing). Re-scraped ProjFs (x64): 0 errors.
+
+Ledger: 781 accepted-normalized, 31 blocked, 591 pending (812/1403 classified).
