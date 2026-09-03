@@ -1971,3 +1971,18 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
   header) via return value - reuses established generic-type blocker class.
 
 **Ledger status:** 560 accepted-normalized, 27 blocked, 816 pending.
+
+## 2026-09-02 20:44:56 UTC - Batch scraping-investigation-80
+
+**Headers:** DownloadMgr.h, UserConsentVerifierInterop.h, httptrace.h, wmpdevices.h, prnasnot.h
+**Partitions scraped (x64):** InternetExplorer, Wmp, Gdi (0 errors each); WinRT/Iis/Printing reused
+
+- DownloadMgr.h: IDownloadManager COM interface + GUID constant only. Clean.
+- UserConsentVerifierInterop.h: IUserConsentVerifierInterop COM/WinRT interop interface method only. Clean.
+- httptrace.h: IIS ETW trace enum/structs/GUID constants only, no functions. Clean.
+- wmpdevices.h: WMPNotifyDeviceArrival/Removal are __inline (no bindings); IOCTL constants/structs
+  otherwise. Clean.
+- prnasnot.h: **blocked** - RegisterForPrintAsyncNotifications/UnRegisterForPrintAsyncNotifications
+  produce generic HANDLE via direct out-param (established blocker class).
+
+**Ledger status:** 564 accepted-normalized, 28 blocked, 811 pending.

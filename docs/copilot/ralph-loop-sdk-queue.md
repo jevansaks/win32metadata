@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:41:57Z
+- Generated: 2026-09-03T03:44:56Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 560
+- Matched: 564
 - In progress: 0
-- Blocked: 27
-- Remaining: 816
+- Blocked: 28
+- Remaining: 811
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -320,7 +320,7 @@
 | `DocumentSource.h` | WinRT.Printing | remaining |  |  |  |
 | `documenttarget.h` | XpsPrinting | remaining |  |  |  |
 | `dot1x.h` | Ndis, NWifi | matched |  | 09/02/2026 20:31:37 | Enums/structs only, no functions. |
-| `downloadmgr.h` | InternetExplorer | remaining |  |  |  |
+| `downloadmgr.h` | InternetExplorer | matched |  | 09/02/2026 20:44:40 | COM interface method + GUID constant only, no extern functions. |
 | `dpa_dsa.h` | Controls | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dpapi.h` | Security.Cryptography, Security.Cryptography.UI | remaining |  |  |  |
 | `dragdropinterop.h` | WinRT | matched |  | 09/02/2026 20:31:37 | COM/WinRT interop interface method only, out of scope. |
@@ -493,7 +493,7 @@
 | `httpfilt.h` | Iis | remaining |  |  |  |
 | `httprequest.h` | WinHttp | matched | copilot | 09/03/2026 03:35:00 | No patch needed; verified via live scrape and static review. |
 | `httprequestid.h` | Iis | matched |  | 09/02/2026 18:09:40 | DISPID constants only, no functions. |
-| `httptrace.h` | Iis | remaining |  |  |  |
+| `httptrace.h` | Iis | matched |  | 09/02/2026 20:44:40 | Enum/structs/GUID constants only, no functions. |
 | `hvsocket.h` | Hypervisor | matched |  | 09/02/2026 19:50:38 | Constants/structs only, no functions. |
 | `hwebcore.h` | Iis | matched |  | 09/02/2026 19:37:21 | Dynamically-loaded function-pointer typedefs only, no scrapable extern functions. |
 | `hypervdevicevirtualization.h` | Hypervisor | remaining |  |  |  |
@@ -888,7 +888,7 @@
 | `PrintManagerInterop.h` | WinRT.Printing | remaining |  |  |  |
 | `printoem.h` | Printing | remaining |  |  |  |
 | `printpreview.h` | Printing | remaining |  |  |  |
-| `prnasnot.h` | Gdi, Printing | remaining |  |  |  |
+| `prnasnot.h` | Gdi, Printing | blocked |  | 09/02/2026 20:44:40 | RegisterForPrintAsyncNotifications produces generic HANDLE via direct out-param. |
 | `prnasntp.h` | Printing | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `prntfont.h` | Printing | remaining |  |  |  |
 | `prntvpt.h` | Gdi, PrintTicket | matched | copilot | 09/02/2026 23:20:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation); supported-os left unresolved due to ambiguous/uncorroborated documentation. |
@@ -1143,7 +1143,7 @@
 | `usbscan.h` | Buses | matched |  | 09/02/2026 20:25:02 | IOCTL parameter structs only, no functions. |
 | `usbuser.h` | Buses | remaining |  |  |  |
 | `useractivityinterop.h` | WinRT | remaining |  |  |  |
-| `UserConsentVerifierInterop.h` | WinRT | remaining |  |  |  |
+| `UserConsentVerifierInterop.h` | WinRT | matched |  | 09/02/2026 20:44:40 | COM/WinRT interop interface method only, out of scope. |
 | `userenv.h` | Policy, Shell | blocked | copilot | 09/02/2026 18:53:55 | RE-AUDITED: previously classified in existing-patches-34 based only on retained set-last-error/supported-os patches (not an ownership audit). Re-audit found a genuine unaddressed HANDLE ownership gap (LoadUserProfileW/UnloadUserProfile via PROFILEINFOW.hProfile), same class as physicalmonitorenumerationapi.h. Reclassified to blocked; prior retained patches remain valid. |
 | `usp10.h` | Intl | remaining |  |  |  |
 | `utilapiset.h` | Base, Debug | matched |  | 09/02/2026 18:29:37 | Pointer obfuscation, not resource ownership; HANDLE is an input only. |
@@ -1333,7 +1333,7 @@
 | `wmlss.h` | Wmlss | remaining |  |  |  |
 | `wmnetsourcecreator.h` | WmFormat | remaining |  |  |  |
 | `wmp.h` | Media.DShow, Wmp | remaining |  |  |  |
-| `wmpdevices.h` | Wmp | remaining |  |  |  |
+| `wmpdevices.h` | Wmp | matched |  | 09/02/2026 20:44:40 | Inline functions generate no bindings; remaining declarations are IOCTL constants/structs. |
 | `wmpids.h` | Wmp | remaining |  |  |  |
 | `wmpplug.h` | Wmp | remaining |  |  |  |
 | `wmprealestate.h` | Wmp | remaining |  |  |  |

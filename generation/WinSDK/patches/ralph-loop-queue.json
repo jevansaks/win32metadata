@@ -2792,10 +2792,10 @@
   {
     "header": "downloadmgr.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:44:40Z",
+    "notes": "COM interface method + GUID constant only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -4349,10 +4349,10 @@
   {
     "header": "httptrace.h",
     "partition": "Iis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:44:40Z",
+    "notes": "Enum/structs/GUID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7904,10 +7904,10 @@
   {
     "header": "prnasnot.h",
     "partition": "Gdi, Printing",
-    "status": "remaining",
+    "status": "blocked",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:44:40Z",
+    "notes": "RegisterForPrintAsyncNotifications produces generic HANDLE via direct out-param.",
     "_source": "header-progress"
   },
   {
@@ -10199,10 +10199,10 @@
   {
     "header": "UserConsentVerifierInterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:44:40Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -11909,10 +11909,10 @@
   {
     "header": "wmpdevices.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:44:40Z",
+    "notes": "Inline functions generate no bindings; remaining declarations are IOCTL constants/structs.",
     "_source": "header-progress"
   },
   {
