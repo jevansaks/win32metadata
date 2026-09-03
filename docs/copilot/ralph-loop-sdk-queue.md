@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:29:34Z
+- Generated: 2026-09-03T07:33:36Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 891
+- Matched: 896
 - In progress: 0
 - Blocked: 31
-- Remaining: 481
+- Remaining: 476
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -381,7 +381,7 @@
 | `eapmethodtypes.h` | EapHost | matched |  | 09/02/2026 17:30:54 | Type declarations only (struct/enum/typedef), no functions; producer functions tracked separately under eapmethodpeerapis.h (pending). |
 | `eappapis.h` | EapHost | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/eappapis.h.md |
 | `eaptypes.h` | EapHost | remaining |  |  |  |
-| `edevdefs.h` | DeviceAccess | remaining |  |  |  |
+| `edevdefs.h` | DeviceAccess | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/edevdefs.h.md |
 | `editionupgradehelper.h` | FileHistory, WinProg | remaining |  |  |  |
 | `edpwin32.h` | Edp | matched |  | 09/02/2026 17:19:28 | Path-string-only API, no handle. |
 | `effects.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/effects.h.md |
@@ -662,7 +662,7 @@
 | `mgm.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mgm.h.md |
 | `mgmtapi.h` | Snmp | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
 | `mi.h` | Mi | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
-| `micaut.h` | Tablet | remaining |  |  |  |
+| `micaut.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/micaut.h.md |
 | `midles.h` | Rpc | matched |  | 09/02/2026 21:32:46 | Enums/function-pointer typedefs only, no extern functions. |
 | `mileffects.h` | Wibe | remaining |  |  |  |
 | `minappmodel.h` | AppxPackaging | matched |  | 09/02/2026 19:14:35 | Constants only, no functions. |
@@ -1174,7 +1174,7 @@
 | `vsmgmt.h` | VSS | remaining |  |  |  |
 | `vsprov.h` | VSS | remaining |  |  |  |
 | `vss.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vss.h.md |
-| `vsserror.h` | VSS | remaining |  |  |  |
+| `vsserror.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsserror.h.md |
 | `vsstyle.h` | Controls | remaining |  |  |  |
 | `vssym32.h` | Controls | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vssym32.h.md |
 | `vswriter.h` | VSS | remaining |  |  |  |
@@ -1283,7 +1283,7 @@
 | `wingdi.h` | DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winhttp.h` | HttpServer, WinHttp | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `WinHvEmulation.h` | Hypervisor | matched |  | 09/02/2026 20:13:28 | Fixed genuine gap: added new autoTypes.json entry for WHV_EMULATOR_HANDLE (CloseApi=WHvEmulatorDestroyEmulator). |
-| `WinHvPlatform.h` | Hypervisor | remaining |  |  |  |
+| `WinHvPlatform.h` | Hypervisor | matched |  |  | Genuine producer-site fix: added WHV_TRIGGER_HANDLE and WHV_NOTIFICATION_PORT_HANDLE autoTypes.json entries. See docs/copilot/header-reports/WinHvPlatform.h.md |
 | `wininet.h` | FileHistory, WinInet, WinProg | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winineti.h` | WinInet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winioctl.h` | Base, Fs, Ioctl, Nfc, Nfp | remaining |  |  |  |
@@ -1343,7 +1343,7 @@
 | `wmsdkvalidate.h` | WmFormat | matched |  | 09/02/2026 18:32:46 | String/buffer/BOOL API only, no handle. |
 | `wmsecure.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsecure.h.md |
 | `wmsinternaladminnetsource.h` | WmFormat | remaining |  |  |  |
-| `wmsysprf.h` | Wmp | remaining |  |  |  |
+| `wmsysprf.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsysprf.h.md |
 | `wnnc.h` | Ifsk | matched |  | 09/02/2026 19:19:02 | Constants only, no functions. |
 | `wnvapi.h` | wnv | blocked | copilot | 09/02/2026 19:09:17 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
 | `wofapi.h` | Fs | matched |  | 09/02/2026 20:31:37 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |

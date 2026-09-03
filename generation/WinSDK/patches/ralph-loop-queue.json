@@ -3341,10 +3341,10 @@
   {
     "header": "edevdefs.h",
     "partition": "DeviceAccess",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/edevdefs.h.md",
     "_source": "header-progress"
   },
   {
@@ -5870,10 +5870,10 @@
   {
     "header": "micaut.h",
     "partition": "Tablet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/micaut.h.md",
     "_source": "header-progress"
   },
   {
@@ -10478,10 +10478,10 @@
   {
     "header": "vsserror.h",
     "partition": "VSS",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vsserror.h.md",
     "_source": "header-progress"
   },
   {
@@ -11459,10 +11459,10 @@
   {
     "header": "WinHvPlatform.h",
     "partition": "Hypervisor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added WHV_TRIGGER_HANDLE and WHV_NOTIFICATION_PORT_HANDLE autoTypes.json entries. See docs/copilot/header-reports/WinHvPlatform.h.md",
     "_source": "header-progress"
   },
   {
@@ -11999,10 +11999,10 @@
   {
     "header": "wmsysprf.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsysprf.h.md",
     "_source": "header-progress"
   },
   {

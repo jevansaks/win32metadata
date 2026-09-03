@@ -2778,3 +2778,13 @@ Ledger: 886 accepted-normalized, 31 blocked, 486 pending (917/1403 classified).
 - **mmstream.h** (Media.DShow): COM interfaces only, no free functions. Clean.
 
 Ledger: 891 accepted-normalized, 31 blocked, 481 pending (922/1403 classified).
+
+## Batch 147 (2026-09-03 00:33): edevdefs.h, wmsysprf.h, WinHvPlatform.h, micaut.h, vsserror.h
+
+- **edevdefs.h** (DeviceAccess): constants only, no functions. Clean.
+- **wmsysprf.h** (Wmp): EXTERN_GUID profile constants only. Clean.
+- **WinHvPlatform.h** (Hypervisor): PATCH APPLIED. Added WHV_TRIGGER_HANDLE (WHvCreateTrigger/WHvDeleteTrigger) and WHV_NOTIFICATION_PORT_HANDLE (WHvCreateNotificationPort/WHvDeleteNotificationPort) autoTypes.json entries. WHV_PARTITION_HANDLE already complete. Re-scraped Hypervisor (x64): 0 errors.
+- **micaut.h** (Tablet): COM interfaces only, no free functions. Clean.
+- **vsserror.h** (VSS): VSS_E_* HRESULT error-code constants only. Clean.
+
+Ledger: 896 accepted-normalized, 31 blocked, 476 pending (927/1403 classified).
