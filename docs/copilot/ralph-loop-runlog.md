@@ -3387,3 +3387,12 @@ Ledger: 1201 accepted-normalized, 31 blocked, 171 pending (1232/1403 classified)
 - http.h (HttpServer): PRODUCER-SITE FIX x2 - HTTP_SERVER_SESSION_ID/HTTP_URL_GROUP_ID autoTypes.json entries added.
 
 Ledger: 1206 accepted-normalized, 31 blocked, 166 pending (1237/1403 classified).
+
+## Batch 210 (2026-09-03 03:55): mprapi.h, extsfns.h, usp10.h, netlistmgr.h, filterpipeline.h
+
+- mprapi.h (RRas): PRODUCER-SITE FIX x2 - MPR_SERVER_HANDLE and MprConfigServerConnect.
+- extsfns.h: debugger-extension callback contract. Clean.
+- usp10.h: SCRIPT_STRING_ANALYSIS by-pointer close, unrepresentable (consistent w/ rpcdce.h).
+- netlistmgr.h, filterpipeline.h: COM vtable only. Clean.
+
+Ledger: 1211 accepted-normalized, 31 blocked, 161 pending (1242/1403 classified).

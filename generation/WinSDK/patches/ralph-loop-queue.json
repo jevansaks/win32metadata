@@ -3629,10 +3629,10 @@
   {
     "header": "extsfns.h",
     "partition": "Debug.Extensions",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/extsfns.h.md",
     "_source": "header-progress"
   },
   {
@@ -3791,10 +3791,10 @@
   {
     "header": "filterpipeline.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filterpipeline.h.md",
     "_source": "header-progress"
   },
   {
@@ -6140,10 +6140,10 @@
   {
     "header": "mprapi.h",
     "partition": "RRas",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added MPR_SERVER_HANDLE autoTypes.json entry and MprConfigServerConnect inline RAIIFree. See docs/copilot/header-reports/mprapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -6932,10 +6932,10 @@
   {
     "header": "netlistmgr.h",
     "partition": "Nla, WindowsConnectionManager",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netlistmgr.h.md",
     "_source": "header-progress"
   },
   {
@@ -10217,10 +10217,10 @@
   {
     "header": "usp10.h",
     "partition": "Intl",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usp10.h.md",
     "_source": "header-progress"
   },
   {

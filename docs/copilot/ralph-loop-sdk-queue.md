@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:51:42Z
+- Generated: 2026-09-03T10:55:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1206
+- Matched: 1211
 - In progress: 0
 - Blocked: 31
-- Remaining: 166
+- Remaining: 161
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -413,7 +413,7 @@
 | `expandedresources.h` | GameMode | matched |  | 09/02/2026 17:16:10 | No handle-typed values anywhere in this header. |
 | `exposeenums2managed.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:26:39 | Macro-definitions only, no declarations. |
 | `extensionvalidation.h` | InternetExplorer | matched |  | 09/02/2026 21:17:15 | COM interface + enums only, no extern functions. |
-| `extsfns.h` | Debug.Extensions | remaining |  |  |  |
+| `extsfns.h` | Debug.Extensions | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/extsfns.h.md |
 | `faxcomex.h` | Fax | remaining |  |  |  |
 | `faxdev.h` | Fax | blocked |  | 09/02/2026 20:25:02 | FaxDevStartJob produces generic HANDLE via direct out-param. |
 | `faxext.h` | Fax | blocked |  | 09/02/2026 19:37:21 | FaxExtRegisterForEvents returns generic HANDLE via return value. |
@@ -431,7 +431,7 @@
 | `filehc.h` | FileHistory, Fs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `filter.h` | IndexSrv, Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filter.h.md |
 | `filtereg.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filtereg.h.md |
-| `filterpipeline.h` | Printing | remaining |  |  |  |
+| `filterpipeline.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filterpipeline.h.md |
 | `filterr.h` | IndexSrv | matched |  | 09/02/2026 19:14:35 | HRESULT error-code constants only, no functions. |
 | `fltdefs.h` | FileHistory, IpHlp | matched |  |  | Genuine producer-site fix: added INTERFACE_HANDLE autoTypes.json entry (CloseApi=PfDeleteInterface). FILTER_HANDLE left unannotated (bulk-array removal, no single-handle CloseApi). See docs/copilot/header-reports/fltdefs.h.md |
 | `fltuser.h` | Ifsk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fltuser.h.md |
@@ -692,7 +692,7 @@
 | `mpeg2psiparser.h` | Media.DShow, MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2psiparser.h.md |
 | `mpeg2structs.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2structs.h.md |
 | `mpegtype.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
-| `mprapi.h` | RRas | remaining |  |  |  |
+| `mprapi.h` | RRas | matched |  |  | Producer-site fix: added MPR_SERVER_HANDLE autoTypes.json entry and MprConfigServerConnect inline RAIIFree. See docs/copilot/header-reports/mprapi.h.md |
 | `mprerror.h` | Foundation | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
 | `mq.h` | MessageQueuing | matched |  |  | Producer-site fix: added QUEUEHANDLE autoTypes.json entry (CloseApi MQCloseQueue) and MQCreateCursor::phCursor inline RAIIFree(MQCloseCursor). See docs/copilot/header-reports/mq.h.md |
 | `mqoai.h` | MessageQueuing | remaining |  |  |  |
@@ -780,7 +780,7 @@
 | `netevent.h` | NetMgmt | remaining |  |  |  |
 | `netfw.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `netiodef.h` | WinSock, wnv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netiodef.h.md |
-| `netlistmgr.h` | Nla, WindowsConnectionManager | remaining |  |  |  |
+| `netlistmgr.h` | Nla, WindowsConnectionManager | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netlistmgr.h.md |
 | `netprov.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/netprov.h.md |
 | `netsh.h` | NetShell | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no ownership-relevant handle type. |
 | `nettypes.h` | NetMgmt | matched |  | 09/02/2026 18:40:30 | Typedefs/data structs/constants only, no functions. |
@@ -1145,7 +1145,7 @@
 | `useractivityinterop.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/useractivityinterop.h.md |
 | `UserConsentVerifierInterop.h` | WinRT | matched |  | 09/02/2026 20:44:40 | COM/WinRT interop interface method only, out of scope. |
 | `userenv.h` | Policy, Shell | blocked | copilot | 09/02/2026 18:53:55 | RE-AUDITED: previously classified in existing-patches-34 based only on retained set-last-error/supported-os patches (not an ownership audit). Re-audit found a genuine unaddressed HANDLE ownership gap (LoadUserProfileW/UnloadUserProfile via PROFILEINFOW.hProfile), same class as physicalmonitorenumerationapi.h. Reclassified to blocked; prior retained patches remain valid. |
-| `usp10.h` | Intl | remaining |  |  |  |
+| `usp10.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usp10.h.md |
 | `utilapiset.h` | Base, Debug | matched |  | 09/02/2026 18:29:37 | Pointer obfuscation, not resource ownership; HANDLE is an input only. |
 | `uuids.h` | Media, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/uuids.h.md |
 | `uxtheme.h` | Controls, WinTouch | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
