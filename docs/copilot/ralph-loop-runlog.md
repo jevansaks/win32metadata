@@ -2928,3 +2928,13 @@ Ledger: 961 accepted-normalized, 31 blocked, 411 pending (992/1403 classified).
 - **certif.h** (Certificates): COM vtable only. Clean.
 
 Ledger: 966 accepted-normalized, 31 blocked, 406 pending (997/1403 classified).
+
+## Batch 162 (2026-09-03 01:25): sqlucode.h, imm.h, identitystore.h, msdasc.h, wmpservices.h
+
+- **sqlucode.h** (Search): ODBC W/A functions consume existing SQLHDBC/SQLHSTMT/SQLHENV, none produce - clean; producer SQLAllocHandle deferred to still-pending sql.h.
+- **imm.h** (Input.Ime): HIMC already has correct autoTypes.json entry (CloseApi ImmDestroyContext) - producer-site metadata already correct, no gap.
+- **identitystore.h** (IdentityProvider): COM vtable only. Clean.
+- **msdasc.h** (Search): COM vtable only. Clean.
+- **wmpservices.h** (Wmp): COM vtable only. Clean.
+
+Ledger: 971 accepted-normalized, 31 blocked, 401 pending (1002/1403 classified).

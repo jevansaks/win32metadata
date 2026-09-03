@@ -4547,10 +4547,10 @@
   {
     "header": "identitystore.h",
     "partition": "IdentityProvider",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/identitystore.h.md",
     "_source": "header-progress"
   },
   {
@@ -4763,10 +4763,10 @@
   {
     "header": "imm.h",
     "partition": "Input.Ime",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imm.h.md",
     "_source": "header-progress"
   },
   {
@@ -6329,10 +6329,10 @@
   {
     "header": "msdasc.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdasc.h.md",
     "_source": "header-progress"
   },
   {
@@ -9272,10 +9272,10 @@
   {
     "header": "sqlucode.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqlucode.h.md",
     "_source": "header-progress"
   },
   {
@@ -11945,10 +11945,10 @@
   {
     "header": "wmpservices.h",
     "partition": "Wmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmpservices.h.md",
     "_source": "header-progress"
   },
   {

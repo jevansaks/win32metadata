@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:22:09Z
+- Generated: 2026-09-03T08:25:00Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 966
+- Matched: 971
 - In progress: 0
 - Blocked: 31
-- Remaining: 406
+- Remaining: 401
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -515,7 +515,7 @@
 | `icwcfg.h` | FileHistory, InternetConnectionWizard | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `identitycommon.h` | IdentityProvider | matched |  | 09/02/2026 17:54:05 | Enum + MIDL boilerplate only, no functions. |
 | `identityprovider.h` | IdentityProvider | remaining |  |  |  |
-| `identitystore.h` | IdentityProvider | remaining |  |  |  |
+| `identitystore.h` | IdentityProvider | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/identitystore.h.md |
 | `idispids.h` | ComOle, InternetExplorer | matched |  | 09/02/2026 17:16:10 | DISPID constants only, no functions. |
 | `ie12plugin.h` | InternetExplorer | remaining |  |  |  |
 | `ieautomation.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ieautomation.h.md |
@@ -539,7 +539,7 @@
 | `imessagedispatcher.h` | TransactionServer | matched |  | 09/02/2026 20:22:05 | COM/WinRT interface method only, out of scope. |
 | `imgerror.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgerror.h.md |
 | `imgutil.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imgutil.h.md |
-| `imm.h` | Input.Ime | remaining |  |  |  |
+| `imm.h` | Input.Ime | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/imm.h.md |
 | `immdev.h` | Input.Ime | remaining |  |  |  |
 | `in6addr.h` | WinSock, wnv | matched |  | 09/02/2026 17:16:10 | Plain data struct + macros only, no functions. |
 | `inaddr.h` | IpHlp, RRas, WinSock | matched |  | 09/02/2026 17:19:28 | Plain data struct + macros only, no functions. |
@@ -713,7 +713,7 @@
 | `msdaguid.h` | Search | matched |  | 09/02/2026 18:06:26 | GUID constants only, no functions. |
 | `msdaora.h` | Search | matched |  | 09/02/2026 18:29:38 | CLSID/GUID constants only, no functions. |
 | `msdaosp.h` | Search | matched |  | 09/02/2026 20:53:10 | COM/IDispatch interface method only, out of scope. |
-| `msdasc.h` | Search | remaining |  |  |  |
+| `msdasc.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdasc.h.md |
 | `msdasql_interfaces.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdasql_interfaces.h.md |
 | `msdasql.h` | Search | matched |  | 09/02/2026 19:50:38 | GUID/property constants only, no functions. |
 | `msdatsrc.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdatsrc.h.md |
@@ -1040,7 +1040,7 @@
 | `sqloledb.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqloledb.h.md |
 | `sqlspi.h` | Search | matched |  | 09/02/2026 21:27:04 | No function produces the generic ODBC handle type; all reference it as pre-owned input. |
 | `sqltypes.h` | Search | matched |  | 09/02/2026 21:24:15 | Type definitions only, no functions. |
-| `sqlucode.h` | Search | remaining |  |  |  |
+| `sqlucode.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqlucode.h.md |
 | `srpapi.h` | Edp | blocked |  | 09/02/2026 19:54:02 | SrpCreateThreadNetworkContext populates HTHREAD_NETWORK_CONTEXT.ThreadContext, a generic HANDLE field. |
 | `srrestoreptapi.h` | Sr | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `sslprovider.h` | Security.Cryptography | remaining |  |  |  |
@@ -1337,7 +1337,7 @@
 | `wmpids.h` | Wmp | remaining |  |  |  |
 | `wmpplug.h` | Wmp | matched |  | 09/02/2026 22:06:03 | COM interface only, no extern functions. |
 | `wmprealestate.h` | Wmp | remaining |  |  |  |
-| `wmpservices.h` | Wmp | remaining |  |  |  |
+| `wmpservices.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmpservices.h.md |
 | `wmsbuffer.h` | WmFormat | remaining |  |  |  |
 | `wmsdkidl.h` | WmFormat | remaining |  |  |  |
 | `wmsdkvalidate.h` | WmFormat | matched |  | 09/02/2026 18:32:46 | String/buffer/BOOL API only, no handle. |
