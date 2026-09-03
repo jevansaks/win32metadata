@@ -1172,10 +1172,10 @@
   {
     "header": "certbcli.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certbcli.h.md",
     "_source": "header-progress"
   },
   {
@@ -1694,10 +1694,10 @@
   {
     "header": "cspdk.h",
     "partition": "Security.Cryptography",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cspdk.h.md",
     "_source": "header-progress"
   },
   {
@@ -4286,10 +4286,10 @@
   {
     "header": "htiframe.h",
     "partition": "InternetExplorer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/htiframe.h.md",
     "_source": "header-progress"
   },
   {
@@ -11144,10 +11144,10 @@
   {
     "header": "windows.devices.alljoyn.interop.h",
     "partition": "WinRT.AllJoyn",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.devices.alljoyn.interop.h.md",
     "_source": "header-progress"
   },
   {
@@ -11630,10 +11630,10 @@
   {
     "header": "winsnmp.h",
     "partition": "Snmp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added 5 autoTypes.json entries (HSNMP_SESSION/ENTITY/CONTEXT/PDU/VBL). See docs/copilot/header-reports/winsnmp.h.md",
     "_source": "header-progress"
   },
   {

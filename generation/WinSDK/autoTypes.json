@@ -3163,5 +3163,45 @@
       "CloseApi": "WHvDeleteNotificationPort",
       "InvalidHandleValues": [ -1, 0 ],
       "NativeTypedef": true
+    },
+    {
+      "Namespace": "Windows.Win32.NetworkManagement.Snmp",
+      "Name": "HSNMP_SESSION",
+      "ValueType": "DECLARE_HANDLE",
+      "CloseApi": "SnmpClose",
+      "InvalidHandleValues": [ 0 ],
+      "NativeTypedef": true
+    },
+    {
+      "Namespace": "Windows.Win32.NetworkManagement.Snmp",
+      "Name": "HSNMP_ENTITY",
+      "ValueType": "DECLARE_HANDLE",
+      "CloseApi": "SnmpFreeEntity",
+      "InvalidHandleValues": [ 0 ],
+      "NativeTypedef": true
+    },
+    {
+      "Namespace": "Windows.Win32.NetworkManagement.Snmp",
+      "Name": "HSNMP_CONTEXT",
+      "ValueType": "DECLARE_HANDLE",
+      "CloseApi": "SnmpFreeContext",
+      "InvalidHandleValues": [ 0 ],
+      "NativeTypedef": true
+    },
+    {
+      "Namespace": "Windows.Win32.NetworkManagement.Snmp",
+      "Name": "HSNMP_PDU",
+      "ValueType": "DECLARE_HANDLE",
+      "CloseApi": "SnmpFreePdu",
+      "InvalidHandleValues": [ 0 ],
+      "NativeTypedef": true
+    },
+    {
+      "Namespace": "Windows.Win32.NetworkManagement.Snmp",
+      "Name": "HSNMP_VBL",
+      "ValueType": "DECLARE_HANDLE",
+      "CloseApi": "SnmpFreeVbl",
+      "InvalidHandleValues": [ 0 ],
+      "NativeTypedef": true
     }
   ]

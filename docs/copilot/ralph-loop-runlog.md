@@ -2788,3 +2788,13 @@ Ledger: 891 accepted-normalized, 31 blocked, 481 pending (922/1403 classified).
 - **vsserror.h** (VSS): VSS_E_* HRESULT error-code constants only. Clean.
 
 Ledger: 896 accepted-normalized, 31 blocked, 476 pending (927/1403 classified).
+
+## Batch 148 (2026-09-03 00:37): cspdk.h, windows.devices.alljoyn.interop.h, certbcli.h, winsnmp.h, htiframe.h
+
+- **cspdk.h** (Security.Cryptography): CSP DDI, no extern functions. Clean.
+- **windows.devices.alljoyn.interop.h** (WinRT.AllJoyn): COM interfaces only, no free functions. Clean.
+- **certbcli.h** (Certificates): function-pointer typedefs only, no extern functions. Clean.
+- **winsnmp.h** (Snmp): PATCH APPLIED. Added 5 autoTypes.json entries for HSNMP_SESSION/ENTITY/CONTEXT/PDU/VBL, each with confirmed single-file producer/closer pairs. Re-scraped Snmp (x64): 0 errors (4 pre-existing unrelated cross-partition remap warnings).
+- **htiframe.h** (InternetExplorer): COM interfaces only, no free functions. Clean.
+
+Ledger: 901 accepted-normalized, 31 blocked, 471 pending (932/1403 classified). Milestone: 900+ accepted-normalized.
