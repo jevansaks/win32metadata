@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:13:44Z
+- Generated: 2026-09-03T07:16:07Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 856
+- Matched: 861
 - In progress: 0
 - Blocked: 31
-- Remaining: 516
+- Remaining: 511
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -791,7 +791,7 @@
 | `nfpdev.h` | Nfp | matched | copilot | 09/03/2026 05:00:00 | No patch needed; constant-only header. |
 | `notesdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:35:31 | GUID/name constants only, no functions. |
 | `notificationactivationcallback.h` | Win32_Tile_Badge_Notif | matched |  | 09/02/2026 20:22:05 | COM interface method only, out of scope. |
-| `Npapi.h` | Wnet | remaining |  |  |  |
+| `Npapi.h` | Wnet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/Npapi.h.md |
 | `nsemail.h` | WinSock | matched |  | 09/02/2026 20:28:23 | Enums/structs only, no functions. |
 | `nserror.h` | Multimedia | remaining |  |  |  |
 | `nspapi.h` | WinSock | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
@@ -812,7 +812,7 @@
 | `ntdsbmsg.h` | ActiveDirectory | remaining |  |  |  |
 | `ntiologc.h` | Foundation | remaining |  |  |  |
 | `ntioring_x.h` | Fs | matched |  | 09/02/2026 20:38:46 | Enums/constants only, no functions in this types header. |
-| `ntldap.h` | Ldap | remaining |  |  |  |
+| `ntldap.h` | Ldap | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntldap.h.md |
 | `ntmsapi.h` | Fs | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
 | `ntmsmli.h` | Fs | matched |  | 09/02/2026 17:45:25 | Data struct + callback-signature typedefs only, no functions. |
 | `ntquery.h` | IndexSrv, Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntquery.h.md |
@@ -1119,7 +1119,7 @@
 | `tsvirtualchannels.h` | TermServ | remaining |  |  |  |
 | `tuner.h` | MsTv | remaining |  |  |  |
 | `tvout.h` | Gdi | matched |  | 09/02/2026 19:21:35 | Data struct + constants only, no functions. |
-| `tvratings.h` | MsTv | remaining |  |  |  |
+| `tvratings.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tvratings.h.md |
 | `txdtc.h` | DTC | remaining |  |  |  |
 | `txfw32.h` | Fs | matched | copilot | 09/03/2026 01:30:00 | Classified retained artifact in existing-patches-33. |
 | `txlogpub.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/txlogpub.h.md |
@@ -1201,7 +1201,7 @@
 | `wdmguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdmguid.h.md |
 | `wdsbp.h` | Wds | blocked |  | 09/02/2026 21:24:15 | WdsBpParseInitialize/WdsBpInitialize produce generic HANDLE via direct out-param. |
 | `wdsclientapi.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
-| `wdsmcerr.h` | Wds | remaining |  |  |  |
+| `wdsmcerr.h` | Wds | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdsmcerr.h.md |
 | `wdspxe.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdstci.h` | Wds | matched |  | 09/02/2026 20:53:10 | Constants/enums/structs only, no functions. |
 | `wdstpdi.h` | Wds | blocked |  | 09/02/2026 20:25:02 | WdsTransportProviderCreateInstance/OpenContent produce generic HANDLE via direct out-param. |
@@ -1373,7 +1373,7 @@
 | `wsdevlicensing.h` | DevLic | matched |  | 09/02/2026 17:16:10 | HWND is input parameter; outputs are plain FILETIME values. |
 | `wsdhost.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsdns.h` | WebServicesOnDevices | remaining |  |  |  |
-| `wsdtypes.h` | FunctionDiscovery | remaining |  |  |  |
+| `wsdtypes.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdtypes.h.md |
 | `wsdutil.h` | FunctionDiscovery | matched |  | 09/02/2026 19:02:46 | WSDAPI linked-memory/buffer convention, not HANDLE-family (consistent with wsdapi.h). |
 | `wsdxml.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdxml.h.md |
 | `wshisotp.h` | WinSock | matched |  | 09/02/2026 19:09:17 | Data struct + constants/macro only, no functions. |

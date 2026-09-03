@@ -7031,10 +7031,10 @@
   {
     "header": "Npapi.h",
     "partition": "Wnet",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/Npapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -7220,10 +7220,10 @@
   {
     "header": "ntldap.h",
     "partition": "Ldap",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ntldap.h.md",
     "_source": "header-progress"
   },
   {
@@ -9983,10 +9983,10 @@
   {
     "header": "tvratings.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/tvratings.h.md",
     "_source": "header-progress"
   },
   {
@@ -10721,10 +10721,10 @@
   {
     "header": "wdsmcerr.h",
     "partition": "Wds",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdsmcerr.h.md",
     "_source": "header-progress"
   },
   {
@@ -12269,10 +12269,10 @@
   {
     "header": "wsdtypes.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdtypes.h.md",
     "_source": "header-progress"
   },
   {
