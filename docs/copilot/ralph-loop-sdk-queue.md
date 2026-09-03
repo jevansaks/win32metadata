@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:17:33Z
+- Generated: 2026-09-03T04:21:24Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 603
+- Matched: 608
 - In progress: 0
 - Blocked: 29
-- Remaining: 771
+- Remaining: 766
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -286,7 +286,7 @@
 | `devicetopology.h` | Audio | remaining |  |  |  |
 | `devioctl.h` | Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd | matched |  | 09/02/2026 21:04:56 | Device-type constants only, no functions. |
 | `devpkey.h` | Base, Devices.Properties | remaining |  |  |  |
-| `devpropdef.h` | Display, Nfc, Nfp, WpdSdk | remaining |  |  |  |
+| `devpropdef.h` | Display, Nfc, Nfp, WpdSdk | matched |  | 09/02/2026 21:21:09 | Constants/typedef only, no functions. |
 | `devquery.h` | DeviceQuery, FileHistory | matched |  | 09/02/2026 21:01:40 | Fixed genuine gap: completed existing autoTypes.json entry for HDEVQUERY (CloseApi=DevCloseObjectQuery). |
 | `devquerydef.h` | DeviceQuery | matched |  | 09/02/2026 18:59:13 | Enums/data structs only, no functions. |
 | `dhcpcsdk.h` | Dhcp | remaining |  |  |  |
@@ -867,7 +867,7 @@
 | `playlist.h` | Media.DShow | remaining |  |  |  |
 | `playsoundapi.h` | Audio | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `playto.h` | Mf | matched |  | 09/02/2026 17:51:18 | Pure MIDL boilerplate; real content in separately-tracked MFSharingEngine.h (pending). |
-| `PlayToManagerInterop.h` | WinRT | remaining |  |  |  |
+| `PlayToManagerInterop.h` | WinRT | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `pluginauthenticator.h` | WebAuthn | remaining |  |  |  |
 | `pnpxassoc.h` | FunctionDiscovery, WebServicesOnDevices | remaining |  |  |  |
 | `poclass.h` | Power | remaining |  |  |  |
@@ -1030,7 +1030,7 @@
 | `spatialaudioclient.h` | Audio | remaining |  |  |  |
 | `spatialaudiohrtf.h` | Audio | remaining |  |  |  |
 | `spatialaudiometadata.h` | Audio | remaining |  |  |  |
-| `spatialinteractionmanagerinterop.h` | MixedRealityInterop | remaining |  |  |  |
+| `spatialinteractionmanagerinterop.h` | MixedRealityInterop | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `spellcheck.h` | Intl | remaining |  |  |  |
 | `spellcheckprovider.h` | Intl | remaining |  |  |  |
 | `sperror.h` | Speech | remaining |  |  |  |
@@ -1073,7 +1073,7 @@
 | `syncregistration.h` | WinSync | remaining |  |  |  |
 | `syncregistrationerrors.h` | WinSync | matched |  | 09/02/2026 18:09:40 | HRESULT error-code constants only, no functions. |
 | `sysinfoapi.h` | SystemInformation | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
-| `systemmediatransportcontrolsinterop.h` | WinRT | remaining |  |  |  |
+| `systemmediatransportcontrolsinterop.h` | WinRT | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `t2embapi.h` | Gdi | remaining |  |  |  |
 | `tabflicks.h` | Tablet | matched |  | 09/02/2026 17:58:11 | Enums/bitfield structs only, no functions. |
 | `tapi.h` | Tapi3 | remaining |  |  |  |
@@ -1263,7 +1263,7 @@
 | `windows.media.core.interop.h` | WinRT.Media | remaining |  |  |  |
 | `windows.security.isolation.isolatedenvironmentinterop.h` | WinRT.Isolation | matched |  | 09/02/2026 20:41:40 | COM interface method returning non-owned HWND reference, out of scope. |
 | `windows.ui.composition.interop.h` | WinRT.Composition | matched |  | 09/02/2026 20:19:39 | COM interop interface methods only, out of scope. |
-| `windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h` | WinRT.CoreInputView | remaining |  |  |  |
+| `windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h` | WinRT.CoreInputView | matched |  | 09/02/2026 21:21:09 | COM/WinRT interop interface method only, out of scope. |
 | `windows.ui.xaml.hosting.desktopwindowxamlsource.h` | WinRT.Xaml | remaining |  |  |  |
 | `windows.ui.xaml.hosting.referencetracker.h` | WinRT.Xaml | remaining |  |  |  |
 | `windows.ui.xaml.media.dxinterop.h` | WinRT.Xaml | remaining |  |  |  |

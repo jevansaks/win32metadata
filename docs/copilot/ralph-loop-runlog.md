@@ -2113,3 +2113,16 @@ MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
   (produced elsewhere by physicalmonitorenumerationapi.h, already blocked). Clean.
 
 **Ledger status:** 603 accepted-normalized, 29 blocked, 771 pending.
+
+## 2026-09-02 21:21:24 UTC - Batch scraping-investigation-89
+
+**Headers:** SpatialInteractionManagerInterop.h, devpropdef.h, PlayToManagerInterop.h, windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h, SystemMediaTransportControlsInterop.h
+**Partitions scraped (x64):** Display, Nfc, Nfp, WinRT.CoreInputView (0 errors each); MixedRealityInterop/WinRT/WpdSdk reused
+
+- SpatialInteractionManagerInterop.h, PlayToManagerInterop.h,
+  windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h, SystemMediaTransportControlsInterop.h:
+  all four are the identical "GetForWindow" COM/WinRT interop pattern (derive IInspectable, standard
+  QueryInterface-style output, HWND pre-owned caller input). Clean.
+- devpropdef.h: DEVPROP_TYPE_*/DEVPROP_TYPEMOD_* constants + DEVPROPTYPE typedef only, no functions. Clean.
+
+**Ledger status:** 608 accepted-normalized, 29 blocked, 766 pending.

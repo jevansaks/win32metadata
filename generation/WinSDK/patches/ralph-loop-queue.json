@@ -2486,10 +2486,10 @@
   {
     "header": "devpropdef.h",
     "partition": "Display, Nfc, Nfp, WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:21:09Z",
+    "notes": "Constants/typedef only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7715,10 +7715,10 @@
   {
     "header": "PlayToManagerInterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:21:09Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -9182,10 +9182,10 @@
   {
     "header": "spatialinteractionmanagerinterop.h",
     "partition": "MixedRealityInterop",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:21:09Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -9569,10 +9569,10 @@
   {
     "header": "systemmediatransportcontrolsinterop.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:21:09Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -11279,10 +11279,10 @@
   {
     "header": "windows.ui.viewmanagement.core.coreframeworkinputviewinterop.h",
     "partition": "WinRT.CoreInputView",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:21:09Z",
+    "notes": "COM/WinRT interop interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
