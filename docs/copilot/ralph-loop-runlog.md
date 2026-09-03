@@ -2418,3 +2418,13 @@ Ledger: 706 accepted-normalized, 31 blocked, 666 pending (737/1403 classified).
 - **ws2bth.h** (Bluetooth): protocol constants/GUID/transparent SOCKADDR_BTH struct only, no functions (uses standard Winsock API). Clean.
 
 Ledger: 711 accepted-normalized, 31 blocked, 661 pending (742/1403 classified). Milestone: 110 batches completed this session.
+
+## Batch 111 (2026-09-02 22:44): gdipluseffects.h, d3d10_1shader.h, celib.h, windows.graphics.imaging.interop.h, ncrypt_provider.h
+
+- **gdipluseffects.h** (Media.DShow): GdipCreateEffect/GdipDeleteEffect produce CGpEffect (existing autoTypes.json entry, no CloseApi) - confirmed this matches a deliberate, systemic GdiPlus-namespace-wide convention (Matrix/Font/FontCollection/etc. all similarly lack CloseApi despite having Gdip*Delete* functions). Not modified - consistent with established policy, not an isolated gap.
+- **d3d10_1shader.h** (Direct3D10): COM interfaces + enums only, no free functions. Clean.
+- **celib.h** (Security): ceGetBStrBuffer/encode functions output transparent, generically-allocated byte buffers (fCoTaskMemAlloc-controlled), not opaque handles. Clean.
+- **windows.graphics.imaging.interop.h** (WinRT.Graphics.Imaging): COM interfaces only, no free functions. Clean.
+- **ncrypt_provider.h** (Security.Cryptography): CNG provider DDI function-pointer typedefs only (NCryptOpenStorageProviderFn etc.), no extern functions. Clean.
+
+Ledger: 716 accepted-normalized, 31 blocked, 656 pending (747/1403 classified).

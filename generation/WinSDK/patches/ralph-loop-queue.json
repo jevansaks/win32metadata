@@ -1154,10 +1154,10 @@
   {
     "header": "celib.h",
     "partition": "Security",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/celib.h.md",
     "_source": "header-progress"
   },
   {
@@ -1865,10 +1865,10 @@
   {
     "header": "d3d10_1shader.h",
     "partition": "Direct3D10",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10_1shader.h.md",
     "_source": "header-progress"
   },
   {
@@ -4079,10 +4079,10 @@
   {
     "header": "gdipluseffects.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gdipluseffects.h.md",
     "_source": "header-progress"
   },
   {
@@ -6797,10 +6797,10 @@
   {
     "header": "ncrypt_provider.h",
     "partition": "Security.Cryptography",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ncrypt_provider.h.md",
     "_source": "header-progress"
   },
   {
@@ -11216,10 +11216,10 @@
   {
     "header": "windows.graphics.imaging.interop.h",
     "partition": "WinRT.Graphics.Imaging",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.graphics.imaging.interop.h.md",
     "_source": "header-progress"
   },
   {

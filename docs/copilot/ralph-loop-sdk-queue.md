@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:39:49Z
+- Generated: 2026-09-03T05:43:50Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 711
+- Matched: 716
 - In progress: 0
 - Blocked: 31
-- Remaining: 661
+- Remaining: 656
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -138,7 +138,7 @@
 | `ccgplugins.h` | Identity | matched |  | 09/02/2026 19:37:21 | COM interface method only, out of scope. |
 | `cchannel.h` | TermServ | remaining |  |  |  |
 | `cderr.h` | DlgBox | matched |  | 09/02/2026 18:15:12 | Error-code constants only, no functions. |
-| `celib.h` | Security | remaining |  |  |  |
+| `celib.h` | Security | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/celib.h.md |
 | `certadm.h` | Certificates | remaining |  |  |  |
 | `certbcli.h` | Certificates | remaining |  |  |  |
 | `certcli.h` | Certificates | remaining |  |  |  |
@@ -217,7 +217,7 @@
 | `d2dbasetypes.h` | Direct2D | matched |  | 09/02/2026 17:05:19 | Type alias only, no functions. |
 | `d2derr.h` | Direct2D | matched |  | 09/02/2026 17:48:13 | HRESULT error-code macros only, no functions. |
 | `d3d10_1.h` | Direct3D10 | remaining |  |  |  |
-| `d3d10_1shader.h` | Direct3D10 | remaining |  |  |  |
+| `d3d10_1shader.h` | Direct3D10 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d10_1shader.h.md |
 | `d3d10.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10effect.h` | Direct3D10 | remaining |  |  |  |
 | `d3d10misc.h` | Direct3D10 | matched |  | 09/02/2026 19:47:59 | All outputs are standard COM interface pointers. |
@@ -463,7 +463,7 @@
 | `gamingtcui.h` | Tcui | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gamingtcui.h.md |
 | `gb18030.h` | Intl | matched |  | 09/02/2026 20:31:37 | Buffer-conversion function only, no handles. |
 | `gdiplus.h` | Gdiplus | matched |  | 09/02/2026 16:34:06 | GDI+ create/delete object pattern uses strongly-typed C++ pointers (GpGraphics* etc), not HANDLE-family typedefs; no pre-existing RAII metadata to correct; out of current policy scope. |
-| `gdipluseffects.h` | Media.DShow | remaining |  |  |  |
+| `gdipluseffects.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gdipluseffects.h.md |
 | `genericusbfnioctl.h` | Buses | matched |  | 09/02/2026 20:49:21 | IOCTL constants only, no functions. |
 | `getcurrentpackageinfo3.h` | AppxPackaging | matched |  | 09/02/2026 16:53:36 | Buffer-fill API, no handle production. |
 | `getprocesshandlefromhwnd.h` | Threading | blocked | copilot | 09/02/2026 16:49:01 | Deferred: return-value HANDLE ownership has no precedent anywhere in the repo or published baseline winmd (confirmed via WinmdUtils dump); requires dedicated policy decision on annotation placement before this can be fixed. |
@@ -765,7 +765,7 @@
 | `naptypes.h` | NetworkAccessProtection | matched |  | 09/02/2026 21:12:30 | Types only, no functions. |
 | `natupnp.h` | WindowsFirewall | remaining |  |  |  |
 | `nb30.h` | NetBios | remaining |  |  |  |
-| `ncrypt_provider.h` | Security.Cryptography | remaining |  |  |  |
+| `ncrypt_provider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ncrypt_provider.h.md |
 | `ncrypt.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:10:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
 | `ncryptprotect.h` | Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `ndattrib.h` | Ndf | matched |  | 09/02/2026 21:49:17 | Data structs only, no functions. |
@@ -1256,7 +1256,7 @@
 | `windows.graphics.directx.direct3d11.interop.h` | WinRT.Direct3D11 | matched |  | 09/02/2026 19:02:46 | COM factory pattern throughout. |
 | `windows.graphics.effects.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 18:44:05 | COM interface with plain-value/interface-pointer outputs only. |
 | `Windows.Graphics.Holographic.Interop.h` | WinRT.Holographic | remaining |  |  |  |
-| `windows.graphics.imaging.interop.h` | WinRT.Graphics.Imaging | remaining |  |  |  |
+| `windows.graphics.imaging.interop.h` | WinRT.Graphics.Imaging | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.graphics.imaging.interop.h.md |
 | `windows.graphics.interop.h` | WinRT.Direct2D | matched |  | 09/02/2026 17:41:54 | COM factory pattern. |
 | `windows.graphics.printing.workflow.native.h` | WinRT.Printing | remaining |  |  |  |
 | `windows.h` | Console, Edp, Enstor, Memory, Mi | matched |  | 09/02/2026 21:08:27 | Pure umbrella redirect; all sub-headers tracked or (dlgs.h) directly confirmed no functions. |
