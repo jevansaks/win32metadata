@@ -3117,5 +3117,26 @@
     "ValueType": "IntPtr",
     "CloseApi": "HcnUnregisterServiceCallback",
     "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.System.HostComputeSystem",
+    "Name": "HCS_SYSTEM",
+    "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "HcsCloseComputeSystem",
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.System.HostComputeSystem",
+    "Name": "HCS_PROCESS",
+    "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "HcsCloseProcess",
+    "NativeTypedef": true
+  },
+  {
+    "Namespace": "Windows.Win32.System.HostComputeSystem",
+    "Name": "HCS_OPERATION",
+    "ValueType": "DECLARE_HANDLE",
+    "CloseApi": "HcsCloseOperation",
+    "NativeTypedef": true
   }
 ]

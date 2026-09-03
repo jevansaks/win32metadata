@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T06:43:07Z
+- Generated: 2026-09-03T06:47:57Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 806
+- Matched: 811
 - In progress: 0
 - Blocked: 31
-- Remaining: 566
+- Remaining: 561
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -174,7 +174,7 @@
 | `commoncontrols.h` | Controls | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
 | `compressapi.h` | CmpApi | matched | copilot | 09/02/2026 23:30:00 | Classified retained artifact in existing-patches-03. |
 | `compstui.h` | Printing | remaining |  |  |  |
-| `computecore.h` | HostComputeSystem | remaining |  |  |  |
+| `computecore.h` | HostComputeSystem | matched |  |  | Genuine producer-site fix: added 3 autoTypes.json entries (HCS_SYSTEM/HCS_PROCESS/HCS_OPERATION). HCS_CALLBACK left unannotated (unused). See docs/copilot/header-reports/computecore.h.md |
 | `computenetwork.h` | HostComputeNetwork | matched |  |  | Genuine producer-site fix: added 6 autoTypes.json entries (HCN_NETWORK/NAMESPACE/ENDPOINT/LOADBALANCER/GUESTNETWORKSERVICE/CALLBACK). HCN_SERVICE left unannotated (unused). See docs/copilot/header-reports/computenetwork.h.md |
 | `computestorage.h` | HostComputeSystem | matched |  | 09/02/2026 19:42:09 | No opaque handles produced; HANDLE params are pre-owned caller inputs. |
 | `comsvcs.h` | Com.Events, Cos | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
@@ -291,7 +291,7 @@
 | `devquerydef.h` | DeviceQuery | matched |  | 09/02/2026 18:59:13 | Enums/data structs only, no functions. |
 | `dhcpcsdk.h` | Dhcp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dhcpcsdk.h.md |
 | `dhcpsapi.h` | Dhcp | remaining |  |  |  |
-| `dhcpssdk.h` | Dhcp | remaining |  |  |  |
+| `dhcpssdk.h` | Dhcp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dhcpssdk.h.md |
 | `dhcpv6csdk.h` | Dhcp | matched |  | 09/02/2026 21:12:30 | Constants only, no functions. |
 | `diagnosticdataquery.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:49:21 | All six opaque handle types already correctly covered via existing autoTypes.json entries; resolves deferred DIAGNOSTIC_DATA_QUERY_SESSION item. |
 | `diagnosticdataquerytypes.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:31:37 | Types/RPC boilerplate only, no functions; DIAGNOSTIC_DATA_QUERY_SESSION ownership deferred to DiagnosticDataQuery.h. |
@@ -326,7 +326,7 @@
 | `dragdropinterop.h` | WinRT | matched |  | 09/02/2026 20:31:37 | COM/WinRT interop interface method only, out of scope. |
 | `drt.h` | P2p | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dsadmin.h` | ActiveDirectory | matched |  | 09/02/2026 21:27:04 | GUID constants + COM interfaces only, no extern functions. |
-| `dsattrib.h` | MsTv | remaining |  |  |  |
+| `dsattrib.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsattrib.h.md |
 | `dsclient.h` | ActiveDirectory | remaining |  |  |  |
 | `dsconf.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:06:03 | Constants/enum only, no functions. |
 | `DsGetDC.h` | ActiveDirectory | remaining |  |  |  |
@@ -690,7 +690,7 @@
 | `mpeg2data.h` | MsTv | remaining |  |  |  |
 | `mpeg2error.h` | Media.DShow | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
 | `mpeg2psiparser.h` | Media.DShow, MsTv | remaining |  |  |  |
-| `mpeg2structs.h` | MsTv | remaining |  |  |  |
+| `mpeg2structs.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2structs.h.md |
 | `mpegtype.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
 | `mprapi.h` | RRas | remaining |  |  |  |
 | `mprerror.h` | Foundation | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
@@ -1354,7 +1354,7 @@
 | `wpdmtpextensions.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wpdmtpextensions.h.md |
 | `wpdshellextension.h` | WpdSdk | matched |  | 09/02/2026 19:37:21 | GUID/property-key constants only, no functions. |
 | `wrdsgraphicschannels.h` | TermServ | remaining |  |  |  |
-| `ws2atm.h` | WinSock | remaining |  |  |  |
+| `ws2atm.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2atm.h.md |
 | `ws2bth.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2bth.h.md |
 | `ws2def.h` | IpHlp, WinSock | remaining |  |  |  |
 | `ws2ipdef.h` | IpHlp, WinSock | remaining |  |  |  |

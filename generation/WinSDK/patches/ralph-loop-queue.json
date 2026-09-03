@@ -1478,10 +1478,10 @@
   {
     "header": "computecore.h",
     "partition": "HostComputeSystem",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Genuine producer-site fix: added 3 autoTypes.json entries (HCS_SYSTEM/HCS_PROCESS/HCS_OPERATION). HCS_CALLBACK left unannotated (unused). See docs/copilot/header-reports/computecore.h.md",
     "_source": "header-progress"
   },
   {
@@ -2531,10 +2531,10 @@
   {
     "header": "dhcpssdk.h",
     "partition": "Dhcp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dhcpssdk.h.md",
     "_source": "header-progress"
   },
   {
@@ -2846,10 +2846,10 @@
   {
     "header": "dsattrib.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsattrib.h.md",
     "_source": "header-progress"
   },
   {
@@ -6122,10 +6122,10 @@
   {
     "header": "mpeg2structs.h",
     "partition": "MsTv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2structs.h.md",
     "_source": "header-progress"
   },
   {
@@ -12098,10 +12098,10 @@
   {
     "header": "ws2atm.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ws2atm.h.md",
     "_source": "header-progress"
   },
   {

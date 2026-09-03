@@ -2608,3 +2608,13 @@ Ledger: 801 accepted-normalized, 31 blocked, 571 pending (832/1403 classified). 
 - **odbcinst.h** (Search): SQL*/ConfigDSN family - generic HWND/string/scalar params only. Clean.
 
 Ledger: 806 accepted-normalized, 31 blocked, 566 pending (837/1403 classified).
+
+## Batch 130 (2026-09-02 23:48): dhcpssdk.h, dsattrib.h, mpeg2structs.h, computecore.h, ws2atm.h
+
+- **dhcpssdk.h** (Dhcp): DHCP Callout DLL header, transparent structs, functions implemented by callout not imported. Clean.
+- **dsattrib.h** (MsTv): COM interfaces only, no free functions. Clean.
+- **mpeg2structs.h** (MsTv): COM interfaces only, no free functions. Clean.
+- **computecore.h** (HostComputeSystem): PATCH APPLIED. Added 3 autoTypes.json entries for HCS_SYSTEM/HCS_PROCESS/HCS_OPERATION (types declared in computedefs.h, producers/closers found in this file). HCS_CALLBACK unused, left unannotated. Cross-checked with hypervdevicevirtualization.h (consumer only, already accepted). Re-scraped HostComputeSystem + Hypervisor (x64): 0 errors both.
+- **ws2atm.h** (WinSock): protocol constants/transparent structs only, no functions. Clean.
+
+Ledger: 811 accepted-normalized, 31 blocked, 561 pending (842/1403 classified). Milestone: 130 batches this session.
