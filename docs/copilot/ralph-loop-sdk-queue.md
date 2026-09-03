@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T07:27:25Z
+- Generated: 2026-09-03T07:29:34Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 886
+- Matched: 891
 - In progress: 0
 - Blocked: 31
-- Remaining: 486
+- Remaining: 481
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -61,7 +61,7 @@
 | `amsi.h` | Antimalware | matched | copilot | 09/03/2026 03:35:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation). |
 | `amstream.h` | Media.DShow, Media.DShow.Xml | remaining |  |  |  |
 | `amva.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Constants + data structs only, no functions. |
-| `amvideo.h` | Media.DShow | remaining |  |  |  |
+| `amvideo.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/amvideo.h.md |
 | `amxmlgraphbuilder.h` | Media.DShow, Media.DShow.Xml | matched |  | 09/02/2026 17:13:02 | COM interface + GUID constants only. |
 | `anchorsyncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 22:06:03 | Constants only, no functions. |
 | `animationcoordinator.h` | Shell | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
@@ -361,7 +361,7 @@
 | `dxgicommon.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 18:15:12 | Data structs/enum/constants only, no functions. |
 | `dxgidebug.h` | Dxgi, Dxgi.Common | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-12. |
 | `dxgiformat.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 21:24:15 | Enum only, no functions. |
-| `dxgimessages.h` | Dxgi, Dxgi.Common | remaining |  |  |  |
+| `dxgimessages.h` | Dxgi, Dxgi.Common | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxgimessages.h.md |
 | `dxgitype.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 18:40:30 | Data structs/enums only, no functions. |
 | `dxmini.h` | DirectDraw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxmini.h.md |
 | `dxprogrammablecapture.h` | Dxgi, Dxgi.Common | matched |  | 09/02/2026 17:45:25 | Parameterless COM interface methods, no handle. |
@@ -681,7 +681,7 @@
 | `mmiscapi.h` | Multimedia | matched |  |  | Genuine producer-site fix: added CloseApi=CloseDriver to existing incomplete HDRVR autoTypes.json entry (resolves mmsyscom.h batch-107 follow-up). See docs/copilot/header-reports/mmiscapi.h.md |
 | `mmiscapi2.h` | Media | matched |  | 09/02/2026 18:15:12 | Timer ID is a UINT, not a HANDLE. |
 | `mmreg.h` | Audio.DirectMusic, Media.DShow, Multimedia | matched | copilot | 09/03/2026 03:30:00 | Classified retained artifact in existing-patches-18. |
-| `mmstream.h` | Media.DShow | remaining |  |  |  |
+| `mmstream.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmstream.h.md |
 | `mmsyscom.h` | Media | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmsyscom.h.md |
 | `mmsystem.h` | Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Base, Devices.Properties, FileHistory, GamingDvcInfo, Gdi, Hid, IO, Multimedia, WinProg | matched |  | 09/02/2026 19:42:09 | Pure umbrella redirect; all sub-headers already individually tracked. |
 | `mobsync.h` | Shell | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
@@ -773,7 +773,7 @@
 | `ndhelper.h` | Ndf | remaining |  |  |  |
 | `ndisguid.h` | Ndis | remaining |  |  |  |
 | `ndkinfo.h` | Ndis | matched |  | 09/02/2026 18:00:53 | Data structs/enum/constants only, no functions. |
-| `ndr64types.h` | Rpc | remaining |  |  |  |
+| `ndr64types.h` | Rpc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndr64types.h.md |
 | `netcfgn.h` | NetMgmt | remaining |  |  |  |
 | `netcfgx.h` | NetMgmt | remaining |  |  |  |
 | `netcon.h` | WindowsFirewall | matched | copilot | 09/03/2026 04:00:00 | Classified retained artifact in existing-patches-20. |
@@ -1319,7 +1319,7 @@
 | `winver.h` | Fs | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winwlx.h` | Security.WinWlx | remaining |  |  |  |
 | `wlanapi.h` | Ndis, NWifi | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
-| `wlanihv.h` | NWifi | remaining |  |  |  |
+| `wlanihv.h` | NWifi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wlanihv.h.md |
 | `wlanihvtypes.h` | NWifi | matched |  | 09/02/2026 18:15:12 | Data structs + constants only, no functions. |
 | `wlantypes.h` | Ndis, NWifi | matched |  | 09/02/2026 20:19:39 | Enums/structs only, no functions. |
 | `wlclient.h` | NWifi | matched |  | 09/02/2026 17:54:05 | Data structs only, no functions. |

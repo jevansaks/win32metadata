@@ -2768,3 +2768,13 @@ Ledger: 881 accepted-normalized, 31 blocked, 491 pending (912/1403 classified).
 - **austream.h** (Media.DShow): COM interfaces only, no free functions. Clean.
 
 Ledger: 886 accepted-normalized, 31 blocked, 486 pending (917/1403 classified).
+
+## Batch 146 (2026-09-03 00:29): amvideo.h, ndr64types.h, dxgimessages.h, wlanihv.h, mmstream.h
+
+- **amvideo.h** (Media.DShow): COM interfaces only, no free functions. Clean.
+- **ndr64types.h** (Rpc): transparent type definitions/constants only, no functions. Clean.
+- **dxgimessages.h** (Dxgi, Dxgi.Common): transparent enum only. Clean.
+- **wlanihv.h** (NWifi): forward-declared struct used by IHV DLL function tables, no extern functions. Clean.
+- **mmstream.h** (Media.DShow): COM interfaces only, no free functions. Clean.
+
+Ledger: 891 accepted-normalized, 31 blocked, 481 pending (922/1403 classified).

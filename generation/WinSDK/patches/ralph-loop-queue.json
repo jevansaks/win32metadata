@@ -461,10 +461,10 @@
   {
     "header": "amvideo.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/amvideo.h.md",
     "_source": "header-progress"
   },
   {
@@ -3161,10 +3161,10 @@
   {
     "header": "dxgimessages.h",
     "partition": "Dxgi, Dxgi.Common",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dxgimessages.h.md",
     "_source": "header-progress"
   },
   {
@@ -6041,10 +6041,10 @@
   {
     "header": "mmstream.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mmstream.h.md",
     "_source": "header-progress"
   },
   {
@@ -6869,10 +6869,10 @@
   {
     "header": "ndr64types.h",
     "partition": "Rpc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ndr64types.h.md",
     "_source": "header-progress"
   },
   {
@@ -11783,10 +11783,10 @@
   {
     "header": "wlanihv.h",
     "partition": "NWifi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wlanihv.h.md",
     "_source": "header-progress"
   },
   {
