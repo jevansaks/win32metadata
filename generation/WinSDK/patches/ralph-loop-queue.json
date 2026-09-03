@@ -1388,10 +1388,10 @@
   {
     "header": "colordlg.h",
     "partition": "DlgBox",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:35:31Z",
+    "notes": "Dialog control ID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5132,10 +5132,10 @@
   {
     "header": "jsrt.h",
     "partition": "Js",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:35:31Z",
+    "notes": "Redirect-only; reachable branch (jsrt9.h) already tracked pending; chakrart.h unreachable in this partition.",
     "_source": "header-progress"
   },
   {
@@ -7013,10 +7013,10 @@
   {
     "header": "notesdeviceservice.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:35:31Z",
+    "notes": "GUID/name constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10649,10 +10649,10 @@
   {
     "header": "wcnfunctiondiscoverykeys.h",
     "partition": "Wcn",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:35:31Z",
+    "notes": "GUID/PROPERTYKEY constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -11180,10 +11180,10 @@
   {
     "header": "Windows.Graphics.Capture.Interop.h",
     "partition": "WinRT.Graphics.Capture",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:35:31Z",
+    "notes": "COM factory + query-only HWND/HMONITOR accessors.",
     "_source": "header-progress"
   },
   {

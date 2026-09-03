@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:31:02Z
+- Generated: 2026-09-03T00:35:39Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 312
+- Matched: 317
 - In progress: 0
 - Blocked: 5
-- Remaining: 1086
+- Remaining: 1081
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -164,7 +164,7 @@
 | `cluadmex.h` | MsCs | remaining |  |  |  |
 | `cmnquery.h` | ActiveDirectory | remaining |  |  |  |
 | `codecapi.h` | Media.DShow, Mf | remaining |  |  |  |
-| `colordlg.h` | DlgBox | remaining |  |  |  |
+| `colordlg.h` | DlgBox | matched |  | 09/02/2026 17:35:31 | Dialog control ID constants only, no functions. |
 | `comadmin.h` | Cos | remaining |  |  |  |
 | `combaseapi.h` | Base, Com.Events, Com.StructuredStorage, Cos, IO, Multimedia, Shell, TransactionServer, VSS | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `comcat.h` | Com, ComOle | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
@@ -580,7 +580,7 @@
 | `iwstdec.h` | Media.DShow | remaining |  |  |  |
 | `joystickapi.h` | Multimedia | remaining |  |  |  |
 | `jscript9diag.h` | Debug.ActiveScript | remaining |  |  |  |
-| `jsrt.h` | Js | remaining |  |  |  |
+| `jsrt.h` | Js | matched |  | 09/02/2026 17:35:31 | Redirect-only; reachable branch (jsrt9.h) already tracked pending; chakrart.h unreachable in this partition. |
 | `jsrt9.h` | Js | remaining |  |  |  |
 | `kbd.h` | KeyboardAndMouseInput | matched | copilot | 09/03/2026 04:20:00 | No patch needed; data-structure-only header. |
 | `keycredmgr.h` | Credentials | remaining |  |  |  |
@@ -789,7 +789,7 @@
 | `nfcradiodev.h` | Nfc | remaining |  |  |  |
 | `nfcsedev.h` | Nfc | remaining |  |  |  |
 | `nfpdev.h` | Nfp | matched | copilot | 09/03/2026 05:00:00 | No patch needed; constant-only header. |
-| `notesdeviceservice.h` | WpdSdk | remaining |  |  |  |
+| `notesdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:35:31 | GUID/name constants only, no functions. |
 | `notificationactivationcallback.h` | Win32_Tile_Badge_Notif | remaining |  |  |  |
 | `Npapi.h` | Wnet | remaining |  |  |  |
 | `nsemail.h` | WinSock | remaining |  |  |  |
@@ -1193,7 +1193,7 @@
 | `wcmconfig.h` | Smi | remaining |  |  |  |
 | `wcmerrors.h` | Smi | remaining |  |  |  |
 | `wcnapi.h` | Wcn | matched |  | 09/02/2026 17:01:48 | Redirect-only; 0 functions in entire Wcn partition, no DECLARE_HANDLE. |
-| `wcnfunctiondiscoverykeys.h` | Wcn | remaining |  |  |  |
+| `wcnfunctiondiscoverykeys.h` | Wcn | matched |  | 09/02/2026 17:35:31 | GUID/PROPERTYKEY constants only, no functions. |
 | `wcsplugin.h` | Wcs | remaining |  |  |  |
 | `wct.h` | Base, Debug | remaining |  |  |  |
 | `WDBGEXTS.H` | Debug.Extensions | remaining |  |  |  |
@@ -1252,7 +1252,7 @@
 | `Windows.Devices.Display.Core.Interop.h` | WinRT.Display | remaining |  |  |  |
 | `windows.devices.midi.h` | Media.DShow | remaining |  |  |  |
 | `windows.fixed.h` | AllJoyn, Antimalware, ApplicationVerifier, AppxPackaging, Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Authorization, Authorization.UI, Backup, Base, Bits, Bluetooth, Buses, Cabinets, CEIP, Certificates, Cloudapi, ClrHosting, ClrProfiling, CmpApi, Com, Com.CallObj, Com.ChannelCreds, Com.Events, Com.StructuredStorage, Com.Urlmon, Communication, ComOle, CompositionSwapchain, Console, Controls, Controls.RichEdit, Cos, Credentials, DataXchg, Debug, Debug.ActiveScript, Debug.Extensions, Debug.WebApp, Dedup, DeliveryOptimization, DeviceAccess, DeviceQuery, Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Devices.Properties, DevInst, DevLic, Dfs, Dhcp, Direct2D, Direct2D.Common, Direct3D, Direct3D10, Direct3D11, Direct3D11on12, Direct3D12, Direct3D9, Direct3D9on12, Direct3DDxc, Direct3DFxc, DirectComp, DirectDraw, DirectManipulation, DirectML, DirectWrite, Display, DlgBox, Dlna, Dns, DTC, Dwm, DXCore, Dxgi, Dxgi.Common, Eap, EapHost, Environment, Etw, Fax, FileHistory, Foundation, Fs, Fsrm, FunctionDiscovery, GameInput, GameMode, GamingDvcInfo, Gdi, Gdiplus, Gpmc, Hid, HostComputeNetwork, HostComputeSystem, HtmlHelp, Hypervisor, Identity, IdentityProvider, Ifsk, Iis, ImagingDevice, IMapi, IndexSrv, Input_Ink, Input_IntContext, Input.Ime, InputRadial, InternetConnectionWizard, InternetExplorer, Intl, IO, Ioctl, IScsiDisc, Isolation, JobObjects, Js, KeyboardAndMouseInput, Ldap, LibraryLoader, Lwef, MachineLearning, MadCap, MagApi, Mapi, Mbn, MdmReg, Media, Media.DShow, Media.DShow.Xml, Media.DxMediaObjects, Media.KernelStreaming, Memory, MenuRc, MessageQueuing, Mf, MixedReality, MixedRealityInterop, Mmc, Monitor, MsChap, MsCs, MsHtml, MsTv, MsXml, Multimedia, Ndf, Ndis, NetBios, NetMgmt, NetShell, NetworkAccessProtection, Nfc, Nfp, Nla, Nps, NWifi, Of, Opc, OpenGL, Parcon, Perf, PicAcq, Pipes, Pla, Policy, Power, Printing, PrintTicket, Proc_Snap, ProjFs, Properties, PsApi1, PsApi2, PWM, Rdc, Rdp, RealTimeCommunications, Registry, RemoteAssist, Rm, Rpc, RRas, RstMgr, Search, SecBitomet, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, SecurityCenter, Sens, SerPorts, Services, Setup, Shell, Shell.Common, Shutdown, SideShow, Smi, Snmp, Speech, Sr, Storage.Jet, Storage.Nvme, SwDevice, SystemInformation, Tablet, Tapi3, TaskSchd, Tbs, Tcui, TermServ, Threading, Time, ToolHelp, TransactionServer, Tsf, UiAnimation, UpdateAssessment, Upnp, Variant, Vhd, VirtualDiskService, VirtualDOSMachines, VSS, Wab, Wcm, Wcn, Wcs, Wds, WebAuthn, WebDav, WebServicesOnDevices, WebSock, Wec, Wer, Wes, Wia, Wibe, Wic, Win32_Tile_Badge_Notif, WinAuto, WinContacts, WindowsConnectionManager, WindowsFirewall, WindowsRibbon, WindowsSetupAndMigration, WinInet, WinLocation, WinProg, WinRm, WinRT, WinRT.AllJoyn, WinRT.Composition, WinRT.CoreInputView, WinRT.Direct2D, WinRT.Direct3D11, WinRT.Display, WinRT.Graphics.Capture, WinRT.Graphics.Imaging, WinRT.Holographic, WinRT.Isolation, WinRT.Media, WinRT.Metadata, WinRT.ML, WinRT.Pdf, WinRT.Printing, WinRT.Storage, WinRT.Xaml, WinSat, WinSensors, WinSync, WinTouch, Wmdm, WmFormat, Wmi, Wmlss, Wmp, Wnet, WpdSdk, Wsb, Wsl, Wsw, Wua, Xaml_Diagnostics, Xaudio2, Xblidp, Xinput, XmlLite, Xps, XpsPrinting | remaining |  |  |  |
-| `Windows.Graphics.Capture.Interop.h` | WinRT.Graphics.Capture | remaining |  |  |  |
+| `Windows.Graphics.Capture.Interop.h` | WinRT.Graphics.Capture | matched |  | 09/02/2026 17:35:31 | COM factory + query-only HWND/HMONITOR accessors. |
 | `windows.graphics.directx.direct3d11.interop.h` | WinRT.Direct3D11 | remaining |  |  |  |
 | `windows.graphics.effects.interop.h` | WinRT.Direct2D | remaining |  |  |  |
 | `Windows.Graphics.Holographic.Interop.h` | WinRT.Holographic | remaining |  |  |  |

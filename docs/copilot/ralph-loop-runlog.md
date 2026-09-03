@@ -1011,3 +1011,22 @@ unrelated cross-partition remap warnings for in6_addr/in_addr)
 
 **Ledger status:** 312 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h), 1086 pending.
+
+## 2026-09-02 17:35:52 UTC - Batch scraping-investigation-26
+
+**Headers:** Windows.Graphics.Capture.Interop.h, colordlg.h, jsrt.h, notesdeviceservice.h, wcnfunctiondiscoverykeys.h
+**Partitions scraped:** WinRT.Graphics.Capture, DlgBox, Js, WpdSdk (x86; 0 warnings/errors)
+
+- Windows.Graphics.Capture.Interop.h: IGraphicsCaptureItemInterop::CreateForWindow/CreateForMonitor are
+  clean COM factory methods; GetWindow/GetMonitor are query-only HWND/HMONITOR accessors (not owned
+  resources). Clean.
+- colordlg.h: dialog control ID constants only, no functions. Clean.
+- jsrt.h: redirect-only header - verified Js/main.cpp does not define USE_EDGEMODE_JSRT (chakrart.h
+  explicitly commented out as unreachable); the only reachable branch (jsrt9.h) is already separately
+  tracked (pending). Clean.
+- notesdeviceservice.h: DEFINE_DEVSVCGUID + name/type constants only, no functions. Clean.
+- wcnfunctiondiscoverykeys.h: DEFINE_GUID + DEFINE_PROPERTYKEY constants only (via already-accepted
+  PropKeyDef.h), no functions. Clean.
+
+**Ledger status:** 317 accepted-normalized, 5 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h), 1081 pending.
