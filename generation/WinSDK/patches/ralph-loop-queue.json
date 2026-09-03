@@ -1019,10 +1019,10 @@
   {
     "header": "bthdef.h",
     "partition": "Bluetooth",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bthdef.h.md",
     "_source": "header-progress"
   },
   {
@@ -6617,10 +6617,10 @@
   {
     "header": "mstask.h",
     "partition": "TaskSchd",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mstask.h.md",
     "_source": "header-progress"
   },
   {
@@ -7778,10 +7778,10 @@
   {
     "header": "portabledevicetypes.h",
     "partition": "WpdSdk",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledevicetypes.h.md",
     "_source": "header-progress"
   },
   {
@@ -12215,10 +12215,10 @@
   {
     "header": "wsdbase.h",
     "partition": "FunctionDiscovery",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdbase.h.md",
     "_source": "header-progress"
   },
   {
@@ -12575,10 +12575,10 @@
   {
     "header": "xpsdigitalsignature.h",
     "partition": "Xps",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsdigitalsignature.h.md",
     "_source": "header-progress"
   },
   {

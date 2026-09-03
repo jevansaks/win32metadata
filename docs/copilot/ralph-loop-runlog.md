@@ -3243,3 +3243,13 @@ Ledger: 1121 accepted-normalized, 31 blocked, 251 pending (1152/1403 classified)
 - **ntdddisk.h** (Fs): IOCTL constants/structs only, no functions. Clean.
 
 Ledger: 1126 accepted-normalized, 31 blocked, 246 pending (1157/1403 classified).
+
+## Batch 194 (2026-09-03 03:02): portabledevicetypes.h, mstask.h, xpsdigitalsignature.h, wsdbase.h, bthdef.h
+
+- **portabledevicetypes.h** (WpdSdk): COM vtable only. Clean.
+- **mstask.h** (TaskSchd): COM vtable only. Clean.
+- **xpsdigitalsignature.h** (Xps): COM vtable only. Clean.
+- **wsdbase.h** (FunctionDiscovery): COM vtable only. Clean.
+- **bthdef.h** (Bluetooth): structs/constants only, no functions. Clean.
+
+Ledger: 1131 accepted-normalized, 31 blocked, 241 pending (1162/1403 classified).

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:00:14Z
+- Generated: 2026-09-03T10:02:07Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1126
+- Matched: 1131
 - In progress: 0
 - Blocked: 31
-- Remaining: 246
+- Remaining: 241
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -123,7 +123,7 @@
 | `bluetoothapis.h` | Bluetooth | matched | copilot | 09/02/2026 23:05:00 | Classified retained artifact in existing-patches-02. |
 | `bluetoothleapis.h` | Bluetooth | matched |  |  | Genuine producer-site fix: added BLUETOOTH_GATT_EVENT_HANDLE autoTypes.json entry (CloseApi=BluetoothGATTUnregisterEvent). See docs/copilot/header-reports/bluetoothleapis.h.md |
 | `bridgedeviceservice.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bridgedeviceservice.h.md |
-| `bthdef.h` | Bluetooth | remaining |  |  |  |
+| `bthdef.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bthdef.h.md |
 | `bthledef.h` | Bluetooth | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/bthledef.h.md |
 | `bthsdpdef.h` | Bluetooth | matched |  | 09/02/2026 18:38:01 | Data structs/enums/union only, no functions. |
 | `bugcodes.h` | Debug | remaining |  |  |  |
@@ -745,7 +745,7 @@
 | `msrdc.h` | Rdc | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
 | `mssign.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mssign.h.md |
 | `mssip.h` | Security.Cryptography.Sip, Security.WinTrust | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
-| `mstask.h` | TaskSchd | remaining |  |  |  |
+| `mstask.h` | TaskSchd | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mstask.h.md |
 | `mstcpip.h` | WinSock | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mstcpip.h.md |
 | `msvidctl.h` | MsTv | remaining |  |  |  |
 | `mswmdm.h` | Wmdm | remaining |  |  |  |
@@ -874,7 +874,7 @@
 | `portabledevice.h` | WpdSdk | remaining |  |  |  |
 | `portabledeviceapi.h` | WpdSdk | remaining |  |  |  |
 | `portabledeviceconnectapi.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceconnectapi.h.md |
-| `portabledevicetypes.h` | WpdSdk | remaining |  |  |  |
+| `portabledevicetypes.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledevicetypes.h.md |
 | `powerbase.h` | Power | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `powersetting.h` | Power | blocked |  | 09/02/2026 19:42:09 | PowerRegisterForEffectivePowerModeNotifications outputs generic PVOID via direct out-param; HPOWERNOTIFY portion already covered by autoTypes.json. |
 | `powrprof.h` | Power | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
@@ -1367,7 +1367,7 @@
 | `wscapi.h` | FileHistory, SecurityCenter | blocked |  | 09/02/2026 20:53:11 | WscRegisterForChanges produces generic HANDLE via direct out-param. |
 | `wsdapi.h` | WebServicesOnDevices | matched |  | 09/02/2026 17:13:02 | Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE. |
 | `wsdattachment.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdattachment.h.md |
-| `wsdbase.h` | FunctionDiscovery | remaining |  |  |  |
+| `wsdbase.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdbase.h.md |
 | `wsdclient.h` | FunctionDiscovery | remaining |  |  |  |
 | `wsddisco.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsddisco.h.md |
 | `wsdevlicensing.h` | DevLic | matched |  | 09/02/2026 17:16:10 | HWND is input parameter; outputs are plain FILETIME values. |
@@ -1407,7 +1407,7 @@
 | `xmllite.h` | FileHistory, XmlLite | remaining |  |  |  |
 | `xolehlp.h` | DTC | matched |  | 09/02/2026 20:38:46 | All outputs are standard COM QueryInterface-style interface pointers. |
 | `xprtdefs.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xprtdefs.h.md |
-| `xpsdigitalsignature.h` | Xps | remaining |  |  |  |
+| `xpsdigitalsignature.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsdigitalsignature.h.md |
 | `xpsobjectmodel_1.h` | Xps | remaining |  |  |  |
 | `xpsobjectmodel_2.h` | Xps | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/xpsobjectmodel_2.h.md |
 | `xpsobjectmodel.h` | Xps | remaining |  |  |  |
