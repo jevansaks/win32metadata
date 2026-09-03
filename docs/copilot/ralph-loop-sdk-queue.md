@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:51:27Z
+- Generated: 2026-09-03T00:54:13Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 341
+- Matched: 346
 - In progress: 0
 - Blocked: 6
-- Remaining: 1056
+- Remaining: 1051
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -513,7 +513,7 @@
 | `icucommon.h` | Intl | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `icui18n.h` | Intl | remaining |  |  |  |
 | `icwcfg.h` | FileHistory, InternetConnectionWizard | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
-| `identitycommon.h` | IdentityProvider | remaining |  |  |  |
+| `identitycommon.h` | IdentityProvider | matched |  | 09/02/2026 17:54:05 | Enum + MIDL boilerplate only, no functions. |
 | `identityprovider.h` | IdentityProvider | remaining |  |  |  |
 | `identitystore.h` | IdentityProvider | remaining |  |  |  |
 | `idispids.h` | ComOle, InternetExplorer | matched |  | 09/02/2026 17:16:10 | DISPID constants only, no functions. |
@@ -631,7 +631,7 @@
 | `mciavi.h` | Multimedia | remaining |  |  |  |
 | `mcx.h` | Communication | remaining |  |  |  |
 | `mdhcp.h` | Tapi3 | remaining |  |  |  |
-| `mdmlocalmanagement.h` | MdmReg | remaining |  |  |  |
+| `mdmlocalmanagement.h` | MdmReg | matched |  | 09/02/2026 17:54:05 | No handle-typed values; string output uses LocalFree, not HANDLE mechanism. |
 | `mdmregistration.h` | MdmReg | remaining |  |  |  |
 | `mediaerr.h` | Media.DShow, Media.DxMediaObjects | matched |  | 09/02/2026 17:13:02 | HRESULT error constants only, no functions. |
 | `mediaobj.h` | Media.DShow, Media.DxMediaObjects | remaining |  |  |  |
@@ -786,7 +786,7 @@
 | `nettypes.h` | NetMgmt | remaining |  |  |  |
 | `newdev.h` | DevInst | matched | copilot | 09/03/2026 02:00:00 | Resolves the replay-mismatch flagged in shared-handle-policy-01; verified via isolated round-trip in this session (no fresh SDK checkout available to rerun the original full-replay evidence). |
 | `nfcdtadev.h` | Nfc | remaining |  |  |  |
-| `nfcradiodev.h` | Nfc | remaining |  |  |  |
+| `nfcradiodev.h` | Nfc | matched |  | 09/02/2026 17:54:05 | GUID/IOCTL constants + data structs only, no functions. |
 | `nfcsedev.h` | Nfc | remaining |  |  |  |
 | `nfpdev.h` | Nfp | matched | copilot | 09/03/2026 05:00:00 | No patch needed; constant-only header. |
 | `notesdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 17:35:31 | GUID/name constants only, no functions. |
@@ -1002,7 +1002,7 @@
 | `sfc.h` | Setup | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `shappmgr.h` | Shell | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
 | `sharewindowcommandsourceinterop.h` | WinRT | remaining |  |  |  |
-| `shcore.h` | WinRT | remaining |  |  |  |
+| `shcore.h` | WinRT | matched |  | 09/02/2026 17:54:05 | COM factory pattern. |
 | `shdeprecated.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shdispid.h` | Shell | remaining |  |  |  |
 | `shellapi.h` | Properties, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
@@ -1322,7 +1322,7 @@
 | `wlanihv.h` | NWifi | remaining |  |  |  |
 | `wlanihvtypes.h` | NWifi | remaining |  |  |  |
 | `wlantypes.h` | Ndis, NWifi | remaining |  |  |  |
-| `wlclient.h` | NWifi | remaining |  |  |  |
+| `wlclient.h` | NWifi | matched |  | 09/02/2026 17:54:05 | Data structs only, no functions. |
 | `wldp.h` | FileHistory, WinProg | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |
 | `wmcodecdsp.h` | Media.DShow, Mf | remaining |  |  |  |
 | `wmcontainer.h` | Mf | matched | copilot | 09/03/2026 03:05:00 | Classified retained artifact in existing-patches-39. |

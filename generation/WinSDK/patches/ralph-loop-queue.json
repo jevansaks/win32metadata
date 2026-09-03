@@ -4529,10 +4529,10 @@
   {
     "header": "identitycommon.h",
     "partition": "IdentityProvider",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:54:05Z",
+    "notes": "Enum + MIDL boilerplate only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -5591,10 +5591,10 @@
   {
     "header": "mdmlocalmanagement.h",
     "partition": "MdmReg",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:54:05Z",
+    "notes": "No handle-typed values; string output uses LocalFree, not HANDLE mechanism.",
     "_source": "header-progress"
   },
   {
@@ -6986,10 +6986,10 @@
   {
     "header": "nfcradiodev.h",
     "partition": "Nfc",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:54:05Z",
+    "notes": "GUID/IOCTL constants + data structs only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8930,10 +8930,10 @@
   {
     "header": "shcore.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:54:05Z",
+    "notes": "COM factory pattern.",
     "_source": "header-progress"
   },
   {
@@ -11810,10 +11810,10 @@
   {
     "header": "wlclient.h",
     "partition": "NWifi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T17:54:05Z",
+    "notes": "Data structs only, no functions.",
     "_source": "header-progress"
   },
   {

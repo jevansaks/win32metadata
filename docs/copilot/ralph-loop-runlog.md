@@ -1130,3 +1130,21 @@ cross-partition remap warning for _CERT_CONTEXT)
 
 **Ledger status:** 341 accepted-normalized, 6 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h), 1056 pending.
+
+## 2026-09-02 17:54:26 UTC - Batch scraping-investigation-32
+
+**Headers:** wlclient.h, nfcradiodev.h, shcore.h, mdmlocalmanagement.h, identitycommon.h
+**Partitions scraped:** NWifi, Nfc, MdmReg, IdentityProvider (x86; 0 warnings/errors)
+
+- wlclient.h: DOT11_ADAPTER/DOT11_BSS_LIST/DOT11_PORT_STATE/DOT11_SECURITY_PACKET_HEADER data structs
+  only, no functions. Clean.
+- nfcradiodev.h: GUID + IOCTL constants + data structs only, no functions. Clean.
+- shcore.h: CreateRandomAccessStreamOnFile/OverStream/CreateStreamOverRandomAccessStream are clean COM
+  factory functions. Clean.
+- mdmlocalmanagement.h: RegisterDeviceWithLocalManagement/UnregisterDeviceWithLocalManagement have no
+  handle params; ApplyLocalManagementSyncML's string output is explicitly freed via LocalFree (memory
+  convention, not HANDLE-family). Clean.
+- identitycommon.h: IDENTITY_TYPE enum + MIDL boilerplate only, no functions. Clean.
+
+**Ledger status:** 346 accepted-normalized, 6 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h), 1051 pending.
