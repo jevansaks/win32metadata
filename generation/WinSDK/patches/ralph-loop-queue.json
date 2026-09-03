@@ -3476,10 +3476,10 @@
   {
     "header": "errorrep.h",
     "partition": "Wer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:00:52Z",
+    "notes": "HWND is a caller-supplied input, not produced here.",
     "_source": "header-progress"
   },
   {
@@ -3737,10 +3737,10 @@
   {
     "header": "fhstatus.h",
     "partition": "FileHistory",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:00:53Z",
+    "notes": "Status-code constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6860,10 +6860,10 @@
   {
     "header": "ndkinfo.h",
     "partition": "Ndis",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:00:53Z",
+    "notes": "Data structs/enum/constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8867,10 +8867,10 @@
   {
     "header": "sensorsstructures.h",
     "partition": "WinSensors",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:00:52Z",
+    "notes": "Data structs/enum only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10928,10 +10928,10 @@
   {
     "header": "wiatwcmp.h",
     "partition": "Wia",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:00:53Z",
+    "notes": "Data struct + constants only, no functions.",
     "_source": "header-progress"
   },
   {

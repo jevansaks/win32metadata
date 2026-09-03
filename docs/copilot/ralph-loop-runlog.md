@@ -1174,3 +1174,19 @@ blocked entry) without redundant re-investigation.
 
 **Ledger status:** 350 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1046 pending.
+
+## 2026-09-02 18:01:13 UTC - Batch scraping-investigation-34
+
+**Headers:** errorrep.h, sensorsstructures.h, wiatwcmp.h, ndkinfo.h, fhstatus.h
+**Partitions scraped:** Wer, WinSensors, Ndis (x86; 0 warnings/errors)
+
+- errorrep.h: ReportFault/AddERExcludedApplicationA/W/WerReportHang - HWND is a caller-supplied input,
+  not produced here. Clean.
+- sensorsstructures.h: VEC3D/MATRIX3X3/QUATERNION data structs + AXIS enum only, no functions. Clean.
+- wiatwcmp.h: TWAIN_CAPABILITY data struct + constants only, no functions. Clean.
+- ndkinfo.h: NDK_VERSION/NDK_ADAPTER_INFO data structs + NDK_RDMA_TECHNOLOGY enum + constants only, no
+  functions. Clean.
+- fhstatus.h: FH_STATE_* status-code constants only, no functions. Clean.
+
+**Ledger status:** 355 accepted-normalized, 7 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h), 1041 pending.

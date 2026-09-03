@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T00:58:20Z
+- Generated: 2026-09-03T01:01:01Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 350
+- Matched: 355
 - In progress: 0
 - Blocked: 7
-- Remaining: 1046
+- Remaining: 1041
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -396,7 +396,7 @@
 | `encdec.h` | MsTv | remaining |  |  |  |
 | `endpointvolume.h` | Audio.Endpoints | remaining |  |  |  |
 | `errhandlingapi.h` | Base, Debug | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
-| `errorrep.h` | Wer | remaining |  |  |  |
+| `errorrep.h` | Wer | matched |  | 09/02/2026 18:00:52 | HWND is a caller-supplied input, not produced here. |
 | `errors.h` | Media.DShow | matched |  | 09/02/2026 17:38:44 | Caller-allocated string buffer output only, no handle. |
 | `esent.h` | Storage.Jet | blocked | copilot | 09/03/2026 04:45:00 | Deferred: 229-function header with complex many-to-many JET handle ownership graph requiring dedicated research pass, not a quick classification. |
 | `evalcom2.h` | Setup | remaining |  |  |  |
@@ -425,7 +425,7 @@
 | `featurestagingapi.h` | FileHistory, WinProg | remaining |  |  |  |
 | `fhcfg.h` | FileHistory | remaining |  |  |  |
 | `fherrors.h` | FileHistory | remaining |  |  |  |
-| `fhstatus.h` | FileHistory | remaining |  |  |  |
+| `fhstatus.h` | FileHistory | matched |  | 09/02/2026 18:00:53 | Status-code constants only, no functions. |
 | `fhsvcctl.h` | FileHistory | remaining |  |  |  |
 | `fileapi.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
 | `filehc.h` | FileHistory, Fs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
@@ -772,7 +772,7 @@
 | `ndfapi.h` | Ndf | remaining |  |  |  |
 | `ndhelper.h` | Ndf | remaining |  |  |  |
 | `ndisguid.h` | Ndis | remaining |  |  |  |
-| `ndkinfo.h` | Ndis | remaining |  |  |  |
+| `ndkinfo.h` | Ndis | matched |  | 09/02/2026 18:00:53 | Data structs/enum/constants only, no functions. |
 | `ndr64types.h` | Rpc | remaining |  |  |  |
 | `netcfgn.h` | NetMgmt | remaining |  |  |  |
 | `netcfgx.h` | NetMgmt | remaining |  |  |  |
@@ -995,7 +995,7 @@
 | `sensors.h` | WinSensors | remaining |  |  |  |
 | `sensorsapi.h` | WinLocation, WinSensors | remaining |  |  |  |
 | `sensorsdef.h` | WinSensors | remaining |  |  |  |
-| `sensorsstructures.h` | WinSensors | remaining |  |  |  |
+| `sensorsstructures.h` | WinSensors | matched |  | 09/02/2026 18:00:52 | Data structs/enum only, no functions. |
 | `sensorsutils.h` | WinSensors | remaining |  |  |  |
 | `sessdirpublictypes.h` | TermServ | remaining |  |  |  |
 | `setupapi.h` | DevInst, Setup | matched | copilot | 09/03/2026 00:15:00 | Classified retained artifact in existing-patches-28. |
@@ -1224,7 +1224,7 @@
 | `wiamicro.h` | Wia | remaining |  |  |  |
 | `wiamindr_lh.h` | Wia | remaining |  |  |  |
 | `wiamindr.h` | Wia | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include wiamindr_lh.h/wiamindr_xp.h); no direct declarations. |
-| `wiatwcmp.h` | Wia | remaining |  |  |  |
+| `wiatwcmp.h` | Wia | matched |  | 09/02/2026 18:00:53 | Data struct + constants only, no functions. |
 | `wiavideo.h` | Wia | remaining |  |  |  |
 | `wiawsdsc.h` | Wia | remaining |  |  |  |
 | `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
