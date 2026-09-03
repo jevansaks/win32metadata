@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T03:31:53Z
+- Generated: 2026-09-03T03:34:36Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 546
+- Matched: 551
 - In progress: 0
 - Blocked: 26
-- Remaining: 831
+- Remaining: 826
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -301,7 +301,7 @@
 | `dinputd.h` | Hid | remaining |  |  |  |
 | `directmanipulation.h` | DirectManipulation | matched | copilot | 09/03/2026 04:35:00 | No patch needed; COM interface only. |
 | `directml.h` | DirectML | matched | copilot | 09/03/2026 04:20:00 | No patch needed; COM interface only. |
-| `diskguid.h` | Fs | remaining |  |  |  |
+| `diskguid.h` | Fs | matched |  | 09/02/2026 20:34:23 | GUID constants only, no functions. |
 | `dispatcherqueue.h` | WinRT | matched |  | 09/02/2026 19:09:17 | COM factory pattern. |
 | `DispEx.h` | ComOle | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `dlnadeviceinterfaceids.h` | Dlna | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
@@ -563,7 +563,7 @@
 | `ioapiset.h` | Base, IO | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ioevent.h` | MenuRc | remaining |  |  |  |
 | `ioringapi.h` | Fs | remaining |  |  |  |
-| `ip2string.h` | IpHlp, wnv | remaining |  |  |  |
+| `ip2string.h` | IpHlp, wnv | matched |  | 09/02/2026 20:34:23 | String-conversion functions write into caller buffers only, no handles. |
 | `IPExport.h` | IpHlp | remaining |  |  |  |
 | `iphlpapi.h` | IpHlp, Shell | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `ipinfoid.h` | IpHlp | matched |  | 09/02/2026 19:47:59 | Constants only, no functions. |
@@ -685,7 +685,7 @@
 | `mmsyscom.h` | Media | remaining |  |  |  |
 | `mmsystem.h` | Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Base, Devices.Properties, FileHistory, GamingDvcInfo, Gdi, Hid, IO, Multimedia, WinProg | matched |  | 09/02/2026 19:42:09 | Pure umbrella redirect; all sub-headers already individually tracked. |
 | `mobsync.h` | Shell | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
-| `mpconfig.h` | Media.DShow | remaining |  |  |  |
+| `mpconfig.h` | Media.DShow | matched |  | 09/02/2026 20:34:23 | COM-style interface methods only, no extern functions. |
 | `mpeg2bits.h` | MsTv | matched |  | 09/02/2026 17:48:13 | Bitfield data structs only, no functions. |
 | `mpeg2data.h` | MsTv | remaining |  |  |  |
 | `mpeg2error.h` | Media.DShow | matched |  | 09/02/2026 19:35:00 | HRESULT constants only, no functions. |
@@ -879,7 +879,7 @@
 | `powersetting.h` | Power | blocked |  | 09/02/2026 19:42:09 | PowerRegisterForEffectivePowerModeNotifications outputs generic PVOID via direct out-param; HPOWERNOTIFY portion already covered by autoTypes.json. |
 | `powrprof.h` | Power | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `prcomoem.h` | Printing | remaining |  |  |  |
-| `prdrvcom.h` | Printing | remaining |  |  |  |
+| `prdrvcom.h` | Printing | matched |  | 09/02/2026 20:34:23 | COM interface methods only, out of scope. |
 | `presentation.h` | CompositionSwapchain | remaining |  |  |  |
 | `presentationtypes.h` | CompositionSwapchain | matched |  | 09/02/2026 18:06:26 | Data structs/enum/typedef + MIDL boilerplate only, no functions. |
 | `Print3DManagerInterop.h` | WinRT.Printing | remaining |  |  |  |
@@ -1385,7 +1385,7 @@
 | `wsmerror.h` | WinRm | remaining |  |  |  |
 | `wsnetbs.h` | WinSock | matched |  | 09/02/2026 18:29:38 | Data struct + constants/macro only, no functions. |
 | `wsnwlink.h` | WinSock | remaining |  |  |  |
-| `wsrm.h` | WinSock | remaining |  |  |  |
+| `wsrm.h` | WinSock | matched |  | 09/02/2026 20:34:23 | Socket-option constants only, no functions. |
 | `wsvns.h` | WinSock | matched |  | 09/02/2026 17:41:54 | Data struct + constants only, no functions. |
 | `wtsapi32.h` | TermServ | remaining |  |  |  |
 | `wtsdefs.h` | TermServ | remaining |  |  |  |

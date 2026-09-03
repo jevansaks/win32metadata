@@ -1922,3 +1922,18 @@ physicalmonitorenumerationapi.h, i_cryptasn1tls.h, userenv.h, wslapi.h), 951 pen
 - dot1x.h: 802.1X enums/structs only, no functions. Clean.
 
 **Ledger status:** 546 accepted-normalized, 26 blocked, 831 pending.
+
+## 2026-09-02 20:34:37 UTC - Batch scraping-investigation-77
+
+**Headers:** mpconfig.h, diskguid.h, wsrm.h, prdrvcom.h, ip2string.h
+**Partitions scraped (x64):** IpHlp, wnv (0 errors each); Media.DShow/Fs/WinSock/Printing reused
+
+- mpconfig.h: IMixerPinConfig/IMixerPinConfig2 COM-style interfaces only, no extern functions. Clean.
+- diskguid.h: GPT partition-type GUID constants only, no functions. Clean.
+- wsrm.h: PGM Reliable Multicast socket-option constants only, no functions. Clean.
+- prdrvcom.h: IPrintTicketProvider/IPrintTicketProvider2 COM interfaces only; hPrinter is a
+  pre-owned caller input. Clean.
+- ip2string.h: RtlIpv4AddressToStringA family write into caller buffers, return pointer into
+  same buffer (no new allocation). Clean.
+
+**Ledger status:** 551 accepted-normalized, 26 blocked, 826 pending.

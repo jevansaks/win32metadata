@@ -2621,10 +2621,10 @@
   {
     "header": "diskguid.h",
     "partition": "Fs",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:34:23Z",
+    "notes": "GUID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4979,10 +4979,10 @@
   {
     "header": "ip2string.h",
     "partition": "IpHlp, wnv",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:34:23Z",
+    "notes": "String-conversion functions write into caller buffers only, no handles.",
     "_source": "header-progress"
   },
   {
@@ -6077,10 +6077,10 @@
   {
     "header": "mpconfig.h",
     "partition": "Media.DShow",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:34:23Z",
+    "notes": "COM-style interface methods only, no extern functions.",
     "_source": "header-progress"
   },
   {
@@ -7823,10 +7823,10 @@
   {
     "header": "prdrvcom.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:34:23Z",
+    "notes": "COM interface methods only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -12377,10 +12377,10 @@
   {
     "header": "wsrm.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T20:34:23Z",
+    "notes": "Socket-option constants only, no functions.",
     "_source": "header-progress"
   },
   {
