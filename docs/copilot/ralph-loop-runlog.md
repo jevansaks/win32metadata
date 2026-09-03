@@ -3253,3 +3253,11 @@ Ledger: 1126 accepted-normalized, 31 blocked, 246 pending (1157/1403 classified)
 - **bthdef.h** (Bluetooth): structs/constants only, no functions. Clean.
 
 Ledger: 1131 accepted-normalized, 31 blocked, 241 pending (1162/1403 classified).
+
+## Batch 195 (2026-09-03 03:05): certsrv.h, identityprovider.h, winsplp.h, activprof.h, winsatcominterfacei.h
+
+- certsrv.h (Certificates): pure aggregator header. Clean.
+- identityprovider.h, activprof.h, winsatcominterfacei.h: COM vtable only. Clean.
+- winsplp.h (Printing): PRODUCER-SITE FIX - CreatePrinterIC::return=[RAIIFree("DeletePrinterIC")] inline annotation added.
+
+Ledger: 1136 accepted-normalized, 31 blocked, 236 pending (1167/1403 classified).

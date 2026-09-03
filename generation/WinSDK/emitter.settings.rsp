@@ -1909,6 +1909,7 @@ ClosePrinter::hPrinter=PRINTER_HANDLE
 CloseSpoolFileHandle::hPrinter=PRINTER_HANDLE
 CommitSpoolData::hPrinter=PRINTER_HANDLE
 CreatePrinterIC::hPrinter=PRINTER_HANDLE
+CreatePrinterIC::return=[RAIIFree("DeletePrinterIC")]
 DeleteFormA::hPrinter=PRINTER_HANDLE
 DeleteFormW::hPrinter=PRINTER_HANDLE
 DeleteJobNamedProperty::hPrinter=PRINTER_HANDLE

@@ -83,10 +83,10 @@
   {
     "header": "activprof.h",
     "partition": "Debug.ActiveScript",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activprof.h.md",
     "_source": "header-progress"
   },
   {
@@ -1262,10 +1262,10 @@
   {
     "header": "certsrv.h",
     "partition": "Certificates",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certsrv.h.md",
     "_source": "header-progress"
   },
   {
@@ -4538,10 +4538,10 @@
   {
     "header": "identityprovider.h",
     "partition": "IdentityProvider",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/identityprovider.h.md",
     "_source": "header-progress"
   },
   {
@@ -11594,10 +11594,10 @@
   {
     "header": "winsatcominterfacei.h",
     "partition": "WinSat",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsatcominterfacei.h.md",
     "_source": "header-progress"
   },
   {
@@ -11657,10 +11657,10 @@
   {
     "header": "winsplp.h",
     "partition": "Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added inline RAIIFree(DeletePrinterIC) annotation on CreatePrinterIC::return in emitter.settings.rsp. See docs/copilot/header-reports/winsplp.h.md",
     "_source": "header-progress"
   },
   {

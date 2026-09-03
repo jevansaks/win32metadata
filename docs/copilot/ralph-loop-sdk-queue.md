@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T10:02:07Z
+- Generated: 2026-09-03T10:05:24Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1131
+- Matched: 1136
 - In progress: 0
 - Blocked: 31
-- Remaining: 241
+- Remaining: 236
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -19,7 +19,7 @@
 | `activdbg.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activdbg100.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activecf.h` | Media.DShow | matched |  | 09/02/2026 17:09:31 | Clipboard-format data struct only, no functions. |
-| `activprof.h` | Debug.ActiveScript | remaining |  |  |  |
+| `activprof.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activprof.h.md |
 | `adhoc.h` | Ndis, NWifi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/adhoc.h.md |
 | `adshlp.h` | ActiveDirectory | matched |  | 09/02/2026 19:21:35 | COM refcounting + generic memory/string-allocation conventions only. |
 | `adsprop.h` | ActiveDirectory | blocked |  | 09/02/2026 21:49:17 | ADsPropCreateNotifyObj produces generic HWND via direct out-param; extends established blocker class to HWND. |
@@ -150,7 +150,7 @@
 | `certpol.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certpol.h.md |
 | `certpoleng.h` | Certificates | matched |  | 09/02/2026 19:09:17 | Transparent structs with generic free conventions, or generic PVOID; both out of scope. |
 | `certreqd.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certreqd.h.md |
-| `certsrv.h` | Certificates | remaining |  |  |  |
+| `certsrv.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certsrv.h.md |
 | `certview.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certview.h.md |
 | `cfapi.h` | Cloudapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfapi.h.md |
 | `cfg.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfg.h.md |
@@ -514,7 +514,7 @@
 | `icui18n.h` | Intl | remaining |  |  |  |
 | `icwcfg.h` | FileHistory, InternetConnectionWizard | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `identitycommon.h` | IdentityProvider | matched |  | 09/02/2026 17:54:05 | Enum + MIDL boilerplate only, no functions. |
-| `identityprovider.h` | IdentityProvider | remaining |  |  |  |
+| `identityprovider.h` | IdentityProvider | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/identityprovider.h.md |
 | `identitystore.h` | IdentityProvider | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/identitystore.h.md |
 | `idispids.h` | ComOle, InternetExplorer | matched |  | 09/02/2026 17:16:10 | DISPID constants only, no functions. |
 | `ie12plugin.h` | InternetExplorer | remaining |  |  |  |
@@ -1298,14 +1298,14 @@
 | `winppi.h` | Printing | blocked | copilot | 09/02/2026 17:51:18 | Deferred: genuine spool-file/page HANDLE ownership relationship via return value, no annotation precedent; same class as getprocesshandlefromhwnd.h/wab.h/wincon.h. |
 | `winreg.h` | Registry | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsafer.h` | Security.AppLocker | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
-| `winsatcominterfacei.h` | WinSat | remaining |  |  |  |
+| `winsatcominterfacei.h` | WinSat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsatcominterfacei.h.md |
 | `winscard.h` | Credentials | matched |  |  | Producer-site fix: added SCARDCONTEXT autoTypes.json entry (CloseApi SCardReleaseContext). SCARDHANDLE blocked (SCardDisconnect requires meaningful disposition param). See docs/copilot/header-reports/winscard.h.md |
 | `winsdkver.h` | Foundation | matched |  | 09/02/2026 17:09:31 | Version constants only, no functions. |
 | `winsmcrd.h` | Credentials | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsmcrd.h.md |
 | `winsnmp.h` | Snmp | matched |  |  | Genuine producer-site fix: added 5 autoTypes.json entries (HSNMP_SESSION/ENTITY/CONTEXT/PDU/VBL). See docs/copilot/header-reports/winsnmp.h.md |
 | `WinSock.h` | Fsrm, TermServ, WinSock | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsock2.h` | ActiveDirectory, HttpServer, IpHlp, P2p, Qos, Ual, WindowsFilteringPlatform, WinHttp, WinSock, wnv | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
-| `winsplp.h` | Printing | remaining |  |  |  |
+| `winsplp.h` | Printing | matched |  |  | Producer-site fix: added inline RAIIFree(DeletePrinterIC) annotation on CreatePrinterIC::return in emitter.settings.rsp. See docs/copilot/header-reports/winsplp.h.md |
 | `winspool.h` | Gdi, Printing | matched | copilot | 09/02/2026 22:05:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. Not part of the original 11-header audit set (discovered as an additional resource-ownership patch). |
 | `winstring.h` | WinRT | matched |  | 09/02/2026 20:07:23 | HSTRING/HSTRING_BUFFER already correctly covered via existing autoTypes.json entries. |
 | `winsvc.h` | Services | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types). |
