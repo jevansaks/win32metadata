@@ -3197,3 +3197,10 @@ Ledger: 1096 accepted-normalized, 31 blocked, 276 pending (1127/1403 classified)
 - **spatialaudiometadata.h** (Audio): COM vtable only. Clean.
 
 Ledger: 1101 accepted-normalized, 31 blocked, 271 pending (1132/1403 classified).
+
+## Batch 189 (2026-09-03 02:49): dbgprop.h, adhoc.h, presentation.h, manipulations.h, winscard.h
+
+- dbgprop.h, adhoc.h, presentation.h, manipulations.h: COM vtable only. Clean.
+- winscard.h (Credentials): PRODUCER-SITE FIX - added SCARDCONTEXT autoTypes.json entry (CloseApi SCardReleaseContext). SCARDHANDLE blocked (mandatory disposition param).
+
+Ledger: 1106 accepted-normalized, 31 blocked, 266 pending (1137/1403 classified).

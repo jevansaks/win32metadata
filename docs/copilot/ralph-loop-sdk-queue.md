@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T09:45:08Z
+- Generated: 2026-09-03T09:49:30Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1101
+- Matched: 1106
 - In progress: 0
 - Blocked: 31
-- Remaining: 271
+- Remaining: 266
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -20,7 +20,7 @@
 | `activdbg100.h` | Debug.ActiveScript | remaining |  |  |  |
 | `activecf.h` | Media.DShow | matched |  | 09/02/2026 17:09:31 | Clipboard-format data struct only, no functions. |
 | `activprof.h` | Debug.ActiveScript | remaining |  |  |  |
-| `adhoc.h` | Ndis, NWifi | remaining |  |  |  |
+| `adhoc.h` | Ndis, NWifi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/adhoc.h.md |
 | `adshlp.h` | ActiveDirectory | matched |  | 09/02/2026 19:21:35 | COM refcounting + generic memory/string-allocation conventions only. |
 | `adsprop.h` | ActiveDirectory | blocked |  | 09/02/2026 21:49:17 | ADsPropCreateNotifyObj produces generic HWND via direct out-param; extends established blocker class to HWND. |
 | `adssts.h` | ActiveDirectory | matched |  | 09/02/2026 19:19:02 | Status-code constants only, no functions. |
@@ -254,7 +254,7 @@
 | `DbgEng.h` | Debug.Extensions | remaining |  |  |  |
 | `dbghelp.h` | FileHistory, WinProg | remaining |  |  |  |
 | `DbgModel.h` | Debug.Extensions | remaining |  |  |  |
-| `dbgprop.h` | Debug | remaining |  |  |  |
+| `dbgprop.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbgprop.h.md |
 | `dbt.h` | MenuRc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbt.h.md |
 | `dciddi.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dciddi.h.md |
 | `dciman.h` | FileHistory, WinProg | blocked |  | 09/02/2026 20:07:23 | DCIOpenProvider/DCICloseProvider generic HDC return-value remains a gap; HWINWATCH gap fixed via autoTypes.json CloseApi addition. |
@@ -623,7 +623,7 @@
 | `madcapcl.h` | MadCap | matched | copilot | 09/03/2026 05:00:00 | No patch needed; no ownership-relevant handle type. |
 | `magnification.h` | MagApi | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `mailmsgprops.h` | IMapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mailmsgprops.h.md |
-| `manipulations.h` | WinTouch | remaining |  |  |  |
+| `manipulations.h` | WinTouch | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/manipulations.h.md |
 | `manual.h` | Com.StructuredStorage | remaining |  |  |  |
 | `mapi.h` | Mapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mapi.h.md |
 | `mbnapi.h` | Mbn | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
@@ -880,7 +880,7 @@
 | `powrprof.h` | Power | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `prcomoem.h` | Printing | remaining |  |  |  |
 | `prdrvcom.h` | Printing | matched |  | 09/02/2026 20:34:23 | COM interface methods only, out of scope. |
-| `presentation.h` | CompositionSwapchain | remaining |  |  |  |
+| `presentation.h` | CompositionSwapchain | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/presentation.h.md |
 | `presentationtypes.h` | CompositionSwapchain | matched |  | 09/02/2026 18:06:26 | Data structs/enum/typedef + MIDL boilerplate only, no functions. |
 | `Print3DManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:43:41 | COM/WinRT interop interface method only, out of scope. |
 | `PrinterExtension.h` | Printing | remaining |  |  |  |
@@ -1299,7 +1299,7 @@
 | `winreg.h` | Registry | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsafer.h` | Security.AppLocker | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `winsatcominterfacei.h` | WinSat | remaining |  |  |  |
-| `winscard.h` | Credentials | remaining |  |  |  |
+| `winscard.h` | Credentials | matched |  |  | Producer-site fix: added SCARDCONTEXT autoTypes.json entry (CloseApi SCardReleaseContext). SCARDHANDLE blocked (SCardDisconnect requires meaningful disposition param). See docs/copilot/header-reports/winscard.h.md |
 | `winsdkver.h` | Foundation | matched |  | 09/02/2026 17:09:31 | Version constants only, no functions. |
 | `winsmcrd.h` | Credentials | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsmcrd.h.md |
 | `winsnmp.h` | Snmp | matched |  |  | Genuine producer-site fix: added 5 autoTypes.json entries (HSNMP_SESSION/ENTITY/CONTEXT/PDU/VBL). See docs/copilot/header-reports/winsnmp.h.md |

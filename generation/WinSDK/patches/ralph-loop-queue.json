@@ -92,10 +92,10 @@
   {
     "header": "adhoc.h",
     "partition": "Ndis, NWifi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/adhoc.h.md",
     "_source": "header-progress"
   },
   {
@@ -2198,10 +2198,10 @@
   {
     "header": "dbgprop.h",
     "partition": "Debug",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbgprop.h.md",
     "_source": "header-progress"
   },
   {
@@ -5519,10 +5519,10 @@
   {
     "header": "manipulations.h",
     "partition": "WinTouch",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/manipulations.h.md",
     "_source": "header-progress"
   },
   {
@@ -7832,10 +7832,10 @@
   {
     "header": "presentation.h",
     "partition": "CompositionSwapchain",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/presentation.h.md",
     "_source": "header-progress"
   },
   {
@@ -11603,10 +11603,10 @@
   {
     "header": "winscard.h",
     "partition": "Credentials",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Producer-site fix: added SCARDCONTEXT autoTypes.json entry (CloseApi SCardReleaseContext). SCARDHANDLE blocked (SCardDisconnect requires meaningful disposition param). See docs/copilot/header-reports/winscard.h.md",
     "_source": "header-progress"
   },
   {
