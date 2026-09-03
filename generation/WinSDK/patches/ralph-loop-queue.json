@@ -2765,10 +2765,10 @@
   {
     "header": "DocumentSource.h",
     "partition": "WinRT.Printing",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:12:28Z",
+    "notes": "COM/WinRT interface methods only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -3404,10 +3404,10 @@
   {
     "header": "ehstormsg.h",
     "partition": "Enstor",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:12:28Z",
+    "notes": "Constants/macros only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -7112,10 +7112,10 @@
   {
     "header": "ntddkbd.h",
     "partition": "Hid",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:12:28Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -9524,10 +9524,10 @@
   {
     "header": "synchronizationerrors.h",
     "partition": "WinSync",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:12:28Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -11153,10 +11153,10 @@
   {
     "header": "Windows.Devices.Display.Core.Interop.h",
     "partition": "WinRT.Display",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T22:12:28Z",
+    "notes": "COM interface methods + inline helpers only, out of scope.",
     "_source": "header-progress"
   },
   {

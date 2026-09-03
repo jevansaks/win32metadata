@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T05:09:52Z
+- Generated: 2026-09-03T05:12:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 666
+- Matched: 671
 - In progress: 0
 - Blocked: 31
-- Remaining: 706
+- Remaining: 701
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -317,7 +317,7 @@
 | `dmusics.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:09:36 | COM-style interfaces + constants/structs only, no extern functions. |
 | `docobj.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
 | `docobjectservice.h` | InternetExplorer | remaining |  |  |  |
-| `DocumentSource.h` | WinRT.Printing | remaining |  |  |  |
+| `DocumentSource.h` | WinRT.Printing | matched |  | 09/02/2026 22:12:28 | COM/WinRT interface methods only, out of scope. |
 | `documenttarget.h` | XpsPrinting | remaining |  |  |  |
 | `dot1x.h` | Ndis, NWifi | matched |  | 09/02/2026 20:31:37 | Enums/structs only, no functions. |
 | `downloadmgr.h` | InternetExplorer | matched |  | 09/02/2026 20:44:40 | COM interface method + GUID constant only, no extern functions. |
@@ -388,7 +388,7 @@
 | `efswrtinterop.h` | Edp | remaining |  |  |  |
 | `ehstorapi.h` | Enstor | remaining |  |  |  |
 | `ehstorextensions.h` | Enstor | remaining |  |  |  |
-| `ehstormsg.h` | Enstor | remaining |  |  |  |
+| `ehstormsg.h` | Enstor | matched |  | 09/02/2026 22:12:28 | Constants/macros only, no functions. |
 | `elscore.h` | Intl | matched |  | 09/02/2026 20:22:05 | All producer/consumer pairs operate on transparent structs, not opaque handles. |
 | `elssrvc.h` | Intl | matched |  | 09/02/2026 18:03:29 | GUID constants only, no functions. |
 | `emi.h` | Power | matched |  | 09/02/2026 18:56:34 | GUID/IOCTL constants + data structs only, no functions. |
@@ -800,7 +800,7 @@
 | `ntddcdrm.h` | Devices.Cdrom | matched | copilot | 09/03/2026 03:35:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `ntddcdvd.h` | Devices.Dvd | matched | copilot | 09/03/2026 04:05:00 | No patch needed; data-structure-only header. |
 | `ntdddisk.h` | Fs | remaining |  |  |  |
-| `ntddkbd.h` | Hid | remaining |  |  |  |
+| `ntddkbd.h` | Hid | matched |  | 09/02/2026 22:12:28 | Constants only, no functions. |
 | `ntddmou.h` | Hid | matched |  | 09/02/2026 20:38:46 | Constants/structs only, no functions. |
 | `ntddndis.h` | Ndis, NWifi, Qos | remaining |  |  |  |
 | `ntddser.h` | SerPorts | remaining |  |  |  |
@@ -1068,7 +1068,7 @@
 | `swdevice.h` | SwDevice | matched |  | 09/02/2026 18:38:01 | HSWDEVICE ownership already correctly captured via existing autoTypes.json entry (CloseApi: SwDeviceClose); no gap to fix. |
 | `swdevicedef.h` | SwDevice | matched |  | 09/02/2026 17:30:54 | Type declarations only (enums/struct), no functions; HSWDEVICE ownership tracked separately under swdevice.h (pending). |
 | `syncdeviceservice.h` | WpdSdk | matched |  | 09/02/2026 19:16:41 | GUID/property-key constants only, no functions. |
-| `synchronizationerrors.h` | WinSync | remaining |  |  |  |
+| `synchronizationerrors.h` | WinSync | matched |  | 09/02/2026 22:12:28 | Constants only, no functions. |
 | `syncmgr.h` | Shell | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `syncregistration.h` | WinSync | remaining |  |  |  |
 | `syncregistrationerrors.h` | WinSync | matched |  | 09/02/2026 18:09:40 | HRESULT error-code constants only, no functions. |
@@ -1249,7 +1249,7 @@
 | `windows.ai.machinelearning.native.h` | WinRT.ML | remaining |  |  |  |
 | `windows.data.pdf.interop.h` | WinRT.Pdf | matched |  | 09/02/2026 21:08:27 | Standard COM factory function + inline helper + COM interface method only. |
 | `windows.devices.alljoyn.interop.h` | WinRT.AllJoyn | remaining |  |  |  |
-| `Windows.Devices.Display.Core.Interop.h` | WinRT.Display | remaining |  |  |  |
+| `Windows.Devices.Display.Core.Interop.h` | WinRT.Display | matched |  | 09/02/2026 22:12:28 | COM interface methods + inline helpers only, out of scope. |
 | `windows.devices.midi.h` | Media.DShow | remaining |  |  |  |
 | `windows.fixed.h` | AllJoyn, Antimalware, ApplicationVerifier, AppxPackaging, Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Authorization, Authorization.UI, Backup, Base, Bits, Bluetooth, Buses, Cabinets, CEIP, Certificates, Cloudapi, ClrHosting, ClrProfiling, CmpApi, Com, Com.CallObj, Com.ChannelCreds, Com.Events, Com.StructuredStorage, Com.Urlmon, Communication, ComOle, CompositionSwapchain, Console, Controls, Controls.RichEdit, Cos, Credentials, DataXchg, Debug, Debug.ActiveScript, Debug.Extensions, Debug.WebApp, Dedup, DeliveryOptimization, DeviceAccess, DeviceQuery, Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Devices.Properties, DevInst, DevLic, Dfs, Dhcp, Direct2D, Direct2D.Common, Direct3D, Direct3D10, Direct3D11, Direct3D11on12, Direct3D12, Direct3D9, Direct3D9on12, Direct3DDxc, Direct3DFxc, DirectComp, DirectDraw, DirectManipulation, DirectML, DirectWrite, Display, DlgBox, Dlna, Dns, DTC, Dwm, DXCore, Dxgi, Dxgi.Common, Eap, EapHost, Environment, Etw, Fax, FileHistory, Foundation, Fs, Fsrm, FunctionDiscovery, GameInput, GameMode, GamingDvcInfo, Gdi, Gdiplus, Gpmc, Hid, HostComputeNetwork, HostComputeSystem, HtmlHelp, Hypervisor, Identity, IdentityProvider, Ifsk, Iis, ImagingDevice, IMapi, IndexSrv, Input_Ink, Input_IntContext, Input.Ime, InputRadial, InternetConnectionWizard, InternetExplorer, Intl, IO, Ioctl, IScsiDisc, Isolation, JobObjects, Js, KeyboardAndMouseInput, Ldap, LibraryLoader, Lwef, MachineLearning, MadCap, MagApi, Mapi, Mbn, MdmReg, Media, Media.DShow, Media.DShow.Xml, Media.DxMediaObjects, Media.KernelStreaming, Memory, MenuRc, MessageQueuing, Mf, MixedReality, MixedRealityInterop, Mmc, Monitor, MsChap, MsCs, MsHtml, MsTv, MsXml, Multimedia, Ndf, Ndis, NetBios, NetMgmt, NetShell, NetworkAccessProtection, Nfc, Nfp, Nla, Nps, NWifi, Of, Opc, OpenGL, Parcon, Perf, PicAcq, Pipes, Pla, Policy, Power, Printing, PrintTicket, Proc_Snap, ProjFs, Properties, PsApi1, PsApi2, PWM, Rdc, Rdp, RealTimeCommunications, Registry, RemoteAssist, Rm, Rpc, RRas, RstMgr, Search, SecBitomet, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, SecurityCenter, Sens, SerPorts, Services, Setup, Shell, Shell.Common, Shutdown, SideShow, Smi, Snmp, Speech, Sr, Storage.Jet, Storage.Nvme, SwDevice, SystemInformation, Tablet, Tapi3, TaskSchd, Tbs, Tcui, TermServ, Threading, Time, ToolHelp, TransactionServer, Tsf, UiAnimation, UpdateAssessment, Upnp, Variant, Vhd, VirtualDiskService, VirtualDOSMachines, VSS, Wab, Wcm, Wcn, Wcs, Wds, WebAuthn, WebDav, WebServicesOnDevices, WebSock, Wec, Wer, Wes, Wia, Wibe, Wic, Win32_Tile_Badge_Notif, WinAuto, WinContacts, WindowsConnectionManager, WindowsFirewall, WindowsRibbon, WindowsSetupAndMigration, WinInet, WinLocation, WinProg, WinRm, WinRT, WinRT.AllJoyn, WinRT.Composition, WinRT.CoreInputView, WinRT.Direct2D, WinRT.Direct3D11, WinRT.Display, WinRT.Graphics.Capture, WinRT.Graphics.Imaging, WinRT.Holographic, WinRT.Isolation, WinRT.Media, WinRT.Metadata, WinRT.ML, WinRT.Pdf, WinRT.Printing, WinRT.Storage, WinRT.Xaml, WinSat, WinSensors, WinSync, WinTouch, Wmdm, WmFormat, Wmi, Wmlss, Wmp, Wnet, WpdSdk, Wsb, Wsl, Wsw, Wua, Xaml_Diagnostics, Xaudio2, Xblidp, Xinput, XmlLite, Xps, XpsPrinting | remaining |  |  |  |
 | `Windows.Graphics.Capture.Interop.h` | WinRT.Graphics.Capture | matched |  | 09/02/2026 17:35:31 | COM factory + query-only HWND/HMONITOR accessors. |

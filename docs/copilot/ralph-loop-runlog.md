@@ -2323,3 +2323,18 @@ Ralph loop session.)
 - tspubplugincom.h: ItsPubPlugin COM interface only, no extern functions. Clean.
 
 **Ledger status:** 666 accepted-normalized, 31 blocked, 706 pending.
+
+## 2026-09-02 22:12:44 UTC - Batch scraping-investigation-102
+
+**Headers:** Windows.Devices.Display.Core.Interop.h, DocumentSource.h, ehstormsg.h, ntddkbd.h, synchronizationerrors.h
+**Partitions scraped (x64):** WinRT.Display, WinSync (0 errors each); WinRT.Printing/Enstor/Hid reused
+
+- Windows.Devices.Display.Core.Interop.h: IDisplayDeviceInterop/IDisplayPathInterop COM interface
+  methods only (CreateSharedHandle/CreateSourcePresentationHandle produce HANDLE, but COM vtable
+  methods are categorically out of scope regardless of output type). Clean.
+- DocumentSource.h: IPrintPreviewPageCollection/IPrintDocumentPageSource COM/WinRT interfaces only. Clean.
+- ehstormsg.h: Enhanced Storage error-code range constants/macros only, no functions. Clean.
+- ntddkbd.h: keyboard-device-name/IOCTL constants only, no functions. Clean.
+- synchronizationerrors.h: Sync Platform HRESULT error-code constants only, no functions. Clean.
+
+**Ledger status:** 671 accepted-normalized, 31 blocked, 701 pending.
