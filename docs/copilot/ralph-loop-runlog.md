@@ -1327,3 +1327,19 @@ warnings for sockaddr/timeval/_CERT_CONTEXT)
 
 **Ledger status:** 389 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
 wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 1006 pending.
+
+## 2026-09-02 18:29:58 UTC - Batch scraping-investigation-42
+
+**Headers:** utilapiset.h, msdaora.h, mtxattr.h, mschapp.h, wsnetbs.h
+**Partitions scraped:** Debug, MsChap (x86; 0 errors; Debug shows 1 pre-existing unrelated
+cross-partition remap warning for _CERT_CONTEXT)
+
+- utilapiset.h: EncodePointer/DecodePointer-family obfuscate a raw PVOID (not ownership);
+  EncodeRemotePointer/DecodeRemotePointer take HANDLE ProcessHandle as input only. Clean.
+- msdaora.h: CLSID/GUID constants only, no functions. Clean.
+- mtxattr.h: IDL typelib custom-attribute macros only (not compiled C declarations), no functions. Clean.
+- mschapp.h: MSChapSrvChangePassword/2 take password-encryption structs/strings only, no handle. Clean.
+- wsnetbs.h: data struct + constants/macro only, no functions. Clean.
+
+**Ledger status:** 394 accepted-normalized, 8 blocked (esent.h, getprocesshandlefromhwnd.h, wab.h,
+wincon.h, resourceindexer.h, winppi.h, libloaderapi2.h, MSAJTransport.h), 1001 pending.

@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T01:26:47Z
+- Generated: 2026-09-03T01:29:46Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 389
+- Matched: 394
 - In progress: 0
 - Blocked: 8
-- Remaining: 1006
+- Remaining: 1001
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -703,7 +703,7 @@
 | `msacmdrv.h` | Audio | remaining |  |  |  |
 | `MSAJTransport.h` | AllJoyn, WinRT | blocked | copilot | 09/02/2026 18:15:12 | Two compounding blockers: parser/toolchain version mismatch prevents live-scrape validation of the AllJoyn partition; and a genuine return-value HANDLE ownership pattern with no annotation precedent. |
 | `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | remaining |  |  |  |
-| `mschapp.h` | MsChap | remaining |  |  |  |
+| `mschapp.h` | MsChap | matched |  | 09/02/2026 18:29:38 | Password-encryption struct/string API only, no handle. |
 | `msclmd.h` | Security.Cryptography | remaining |  |  |  |
 | `msclus.h` | MsCs | remaining |  |  |  |
 | `mscoree.h` | ClrHosting | matched | copilot | 09/02/2026 23:40:00 | No patch needed; verified via live scrape plus confirmation that global supportedOS.rsp already covers this header's functions. |
@@ -711,7 +711,7 @@
 | `msctfmonitorapi.h` | Tsf | remaining |  |  |  |
 | `msdadc.h` | Search | remaining |  |  |  |
 | `msdaguid.h` | Search | matched |  | 09/02/2026 18:06:26 | GUID constants only, no functions. |
-| `msdaora.h` | Search | remaining |  |  |  |
+| `msdaora.h` | Search | matched |  | 09/02/2026 18:29:38 | CLSID/GUID constants only, no functions. |
 | `msdaosp.h` | Search | remaining |  |  |  |
 | `msdasc.h` | Search | remaining |  |  |  |
 | `msdasql_interfaces.h` | Search | remaining |  |  |  |
@@ -756,7 +756,7 @@
 | `mtpext.h` | Wmdm | remaining |  |  |  |
 | `mtx.h` | ComOle, TransactionServer | matched |  | 09/02/2026 16:49:01 | Redirect-only header (#include comsvcs.h, already accepted-normalized). |
 | `mtxadmin.h` | ComOle, TransactionServer | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
-| `mtxattr.h` | ComOle, TransactionServer | remaining |  |  |  |
+| `mtxattr.h` | ComOle, TransactionServer | matched |  | 09/02/2026 18:29:38 | Typelib attribute macros only, no functions. |
 | `mtxdm.h` | Cos | matched |  | 09/02/2026 17:05:19 | GetDispenserManager is a COM-factory pattern; comsvcs.h already accepted. |
 | `muiload.h` | Intl | remaining |  |  |  |
 | `mxdc.h` | Gdi, Printing | remaining |  |  |  |
@@ -1146,7 +1146,7 @@
 | `UserConsentVerifierInterop.h` | WinRT | remaining |  |  |  |
 | `userenv.h` | Policy, Shell | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `usp10.h` | Intl | remaining |  |  |  |
-| `utilapiset.h` | Base, Debug | remaining |  |  |  |
+| `utilapiset.h` | Base, Debug | matched |  | 09/02/2026 18:29:37 | Pointer obfuscation, not resource ownership; HANDLE is an input only. |
 | `uuids.h` | Media, Mf | remaining |  |  |  |
 | `uxtheme.h` | Controls, WinTouch | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `vbinterf.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | remaining |  |  |  |
@@ -1383,7 +1383,7 @@
 | `wsman.h` | WinRm | remaining |  |  |  |
 | `wsmandisp.h` | WinRm | remaining |  |  |  |
 | `wsmerror.h` | WinRm | remaining |  |  |  |
-| `wsnetbs.h` | WinSock | remaining |  |  |  |
+| `wsnetbs.h` | WinSock | matched |  | 09/02/2026 18:29:38 | Data struct + constants/macro only, no functions. |
 | `wsnwlink.h` | WinSock | remaining |  |  |  |
 | `wsrm.h` | WinSock | remaining |  |  |  |
 | `wsvns.h` | WinSock | matched |  | 09/02/2026 17:41:54 | Data struct + constants only, no functions. |

@@ -6239,10 +6239,10 @@
   {
     "header": "mschapp.h",
     "partition": "MsChap",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:29:38Z",
+    "notes": "Password-encryption struct/string API only, no handle.",
     "_source": "header-progress"
   },
   {
@@ -6311,10 +6311,10 @@
   {
     "header": "msdaora.h",
     "partition": "Search",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:29:38Z",
+    "notes": "CLSID/GUID constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -6716,10 +6716,10 @@
   {
     "header": "mtxattr.h",
     "partition": "ComOle, TransactionServer",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:29:38Z",
+    "notes": "Typelib attribute macros only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -10226,10 +10226,10 @@
   {
     "header": "utilapiset.h",
     "partition": "Base, Debug",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:29:37Z",
+    "notes": "Pointer obfuscation, not resource ownership; HANDLE is an input only.",
     "_source": "header-progress"
   },
   {
@@ -12359,10 +12359,10 @@
   {
     "header": "wsnetbs.h",
     "partition": "WinSock",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T18:29:38Z",
+    "notes": "Data struct + constants/macro only, no functions.",
     "_source": "header-progress"
   },
   {
