@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T04:08:44Z
+- Generated: 2026-09-03T04:12:45Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 593
+- Matched: 598
 - In progress: 0
 - Blocked: 29
-- Remaining: 781
+- Remaining: 776
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -87,7 +87,7 @@
 | `audioengineextensionapo.h` | Audio.Apo | remaining |  |  |  |
 | `audiomediatype.h` | Audio.Apo | matched |  | 09/02/2026 20:53:11 | COM interface + standard COM factory functions only. |
 | `audiopolicy.h` | Audio | remaining |  |  |  |
-| `audiosessiontypes.h` | Audio | remaining |  |  |  |
+| `audiosessiontypes.h` | Audio | matched |  | 09/02/2026 21:12:30 | Enums only, no functions. |
 | `audiostatemonitorapi.h` | Audio | matched |  | 09/02/2026 19:28:18 | Handle-producing method is a COM vtable method, out of scope; extern functions are COM factories. |
 | `austream.h` | Media.DShow | remaining |  |  |  |
 | `authif.h` | Nps | remaining |  |  |  |
@@ -292,7 +292,7 @@
 | `dhcpcsdk.h` | Dhcp | remaining |  |  |  |
 | `dhcpsapi.h` | Dhcp | remaining |  |  |  |
 | `dhcpssdk.h` | Dhcp | remaining |  |  |  |
-| `dhcpv6csdk.h` | Dhcp | remaining |  |  |  |
+| `dhcpv6csdk.h` | Dhcp | matched |  | 09/02/2026 21:12:30 | Constants only, no functions. |
 | `diagnosticdataquery.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:49:21 | All six opaque handle types already correctly covered via existing autoTypes.json entries; resolves deferred DIAGNOSTIC_DATA_QUERY_SESSION item. |
 | `diagnosticdataquerytypes.h` | Security.DiagnosticDataQuery | matched |  | 09/02/2026 20:31:37 | Types/RPC boilerplate only, no functions; DIAGNOSTIC_DATA_QUERY_SESSION ownership deferred to DiagnosticDataQuery.h. |
 | `digitalv.h` | Multimedia | remaining |  |  |  |
@@ -555,7 +555,7 @@
 | `inputpaneinterop.h` | WinRT | matched |  | 09/02/2026 20:56:17 | COM/WinRT interop interface method only, out of scope. |
 | `inputpanelconfiguration.h` | Shell | matched | copilot | 09/03/2026 02:45:00 | Classified retained artifact in existing-patches-15. |
 | `inputscope.h` | Tsf | remaining |  |  |  |
-| `inspectable.h` | Tcui | remaining |  |  |  |
+| `inspectable.h` | Tcui | matched |  | 09/02/2026 21:12:30 | COM/WinRT interface method only, out of scope. |
 | `interactioncontext.h` | Input_IntContext | remaining |  |  |  |
 | `intrinfix.h` | ActiveDirectory, AllJoyn, Antimalware, ApplicationVerifier, AppxPackaging, Audio, Audio.Apo, Audio.DirectMusic, Audio.DirectSound, Audio.Endpoints, Authorization, Authorization.UI, Backup, Base, Bits, Bluetooth, Buses, Cabinets, CEIP, Certificates, Cloudapi, ClrHosting, ClrProfiling, CmpApi, Com, Com.CallObj, Com.ChannelCreds, Com.Events, Com.StructuredStorage, Com.Urlmon, Communication, ComOle, CompositionSwapchain, Console, Controls, Controls.RichEdit, Cos, Credentials, DataXchg, Debug, Debug.ActiveScript, Debug.Extensions, Debug.WebApp, Dedup, DeliveryOptimization, DeviceAccess, DeviceQuery, Devices.1394, Devices.Beep, Devices.Cdrom, Devices.Dvd, Devices.Properties, DevInst, DevLic, Dfs, Dhcp, Direct2D, Direct2D.Common, Direct3D, Direct3D10, Direct3D11, Direct3D11on12, Direct3D12, Direct3D9, Direct3D9on12, Direct3DDxc, Direct3DFxc, DirectComp, DirectDraw, DirectManipulation, DirectML, DirectWrite, Display, DlgBox, Dns, DTC, Dwm, DXCore, Dxgi, Dxgi.Common, Eap, EapHost, Edp, Enstor, Environment, Etw, Fax, FileHistory, Foundation, Fs, Fsrm, FunctionDiscovery, GameInput, GameMode, GamingDvcInfo, Gdi, Gdiplus, Gpmc, Hid, HostComputeNetwork, HostComputeSystem, HtmlHelp, HttpServer, Hypervisor, Identity, IdentityProvider, Ifsk, Iis, ImagingDevice, IMapi, IndexSrv, Input_Ink, Input_IntContext, Input.Ime, InputRadial, InternetConnectionWizard, InternetExplorer, Intl, IO, Ioctl, IpHlp, IScsiDisc, Isolation, JobObjects, Js, Kernel, KeyboardAndMouseInput, Ldap, LibraryLoader, Lwef, MachineLearning, MadCap, MagApi, Mapi, Mbn, MdmReg, Media, Media.DShow, Media.DShow.Xml, Media.DxMediaObjects, Media.KernelStreaming, Memory, MenuRc, MessageQueuing, Mf, Mi, MixedReality, MixedRealityInterop, Mmc, Monitor, MsChap, MsCs, MsHtml, MsTv, MsXml, Multimedia, Ndf, Ndis, NetBios, NetMgmt, NetShell, NetworkAccessProtection, Nfc, Nfp, Nla, Nps, NWifi, Of, Opc, OpenGL, P2p, Parcon, Perf, PicAcq, Pipes, Pla, Policy, Power, Printing, PrintTicket, Proc_Snap, ProjFs, Properties, PsApi1, PsApi2, PWM, Qos, Rdc, Rdp, RealTimeCommunications, Registry, RemoteAssist, Rm, Rpc, RRas, RstMgr, Search, SecBitomet, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, SecurityCenter, Sens, SerPorts, Services, Setup, Shell, Shell.Common, Shutdown, SideShow, Smi, Snmp, Speech, Sr, Storage.Jet, Storage.Nvme, SwDevice, SystemInformation, Tablet, Tapi3, TaskSchd, Tbs, Tcui, TermServ, Threading, Time, ToolHelp, TransactionServer, Tsf, Ual, UiAnimation, UpdateAssessment, Upnp, Variant, Vhd, VirtualDiskService, VirtualDOSMachines, VSS, Wab, Wcm, Wcn, Wcs, Wds, WebAuthn, WebDav, WebServicesOnDevices, WebSock, Wec, Wer, Wes, Wia, Wibe, Wic, Win32_Tile_Badge_Notif, WinAuto, WinContacts, WindowsConnectionManager, WindowsFilteringPlatform, WindowsFirewall, WindowsRibbon, WindowsSetupAndMigration, WinHttp, WinInet, WinLocation, WinProg, WinRm, WinRT, WinRT.AllJoyn, WinRT.Composition, WinRT.CoreInputView, WinRT.Direct2D, WinRT.Direct3D11, WinRT.Display, WinRT.Graphics.Capture, WinRT.Graphics.Imaging, WinRT.Holographic, WinRT.Isolation, WinRT.Media, WinRT.Metadata, WinRT.ML, WinRT.Pdf, WinRT.Printing, WinRT.Storage, WinRT.Xaml, WinSat, WinSensors, WinSock, WinSync, WinTouch, Wmdm, WmFormat, Wmi, Wmlss, Wmp, Wnet, wnv, WpdSdk, Wsb, Wsl, Wsw, Wua, Xaml_Diagnostics, Xaudio2, Xblidp, Xinput, XmlLite, Xps, XpsPrinting | remaining |  |  |  |
 | `intsafe.h` | Shell | remaining |  |  |  |
@@ -762,7 +762,7 @@
 | `mxdc.h` | Gdi, Printing | matched |  | 09/02/2026 20:56:17 | No function produces an opaque handle; HANDLE param is a pre-owned caller input. |
 | `namedpipeapi.h` | Pipes | matched | copilot | 09/03/2026 03:45:00 | Classified retained artifact in existing-patches-19. |
 | `napmicrosoftvendorids.h` | NetworkAccessProtection | matched |  | 09/02/2026 17:58:11 | Integer constants only, no functions. |
-| `naptypes.h` | NetworkAccessProtection | remaining |  |  |  |
+| `naptypes.h` | NetworkAccessProtection | matched |  | 09/02/2026 21:12:30 | Types only, no functions. |
 | `natupnp.h` | WindowsFirewall | remaining |  |  |  |
 | `nb30.h` | NetBios | remaining |  |  |  |
 | `ncrypt_provider.h` | Security.Cryptography | remaining |  |  |  |
@@ -917,7 +917,7 @@
 | `radialcontrollerinterop.h` | InputRadial | remaining |  |  |  |
 | `radiomgr.h` | WpdSdk | remaining |  |  |  |
 | `ras.h` | RRas | remaining |  |  |  |
-| `rasdlg.h` | RRas | remaining |  |  |  |
+| `rasdlg.h` | RRas | matched |  | 09/02/2026 21:12:30 | No function produces an opaque handle. |
 | `raseapif.h` | Eap | remaining |  |  |  |
 | `raserror.h` | RRas | remaining |  |  |  |
 | `rasshost.h` | RRas | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |

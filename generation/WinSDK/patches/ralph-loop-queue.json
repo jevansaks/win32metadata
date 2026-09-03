@@ -695,10 +695,10 @@
   {
     "header": "audiosessiontypes.h",
     "partition": "Audio",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:12:30Z",
+    "notes": "Enums only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -2540,10 +2540,10 @@
   {
     "header": "dhcpv6csdk.h",
     "partition": "Dhcp",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:12:30Z",
+    "notes": "Constants only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -4907,10 +4907,10 @@
   {
     "header": "inspectable.h",
     "partition": "Tcui",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:12:30Z",
+    "notes": "COM/WinRT interface method only, out of scope.",
     "_source": "header-progress"
   },
   {
@@ -6770,10 +6770,10 @@
   {
     "header": "naptypes.h",
     "partition": "NetworkAccessProtection",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:12:30Z",
+    "notes": "Types only, no functions.",
     "_source": "header-progress"
   },
   {
@@ -8165,10 +8165,10 @@
   {
     "header": "rasdlg.h",
     "partition": "RRas",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "",
+    "last_updated": "2026-09-02T21:12:30Z",
+    "notes": "No function produces an opaque handle.",
     "_source": "header-progress"
   },
   {

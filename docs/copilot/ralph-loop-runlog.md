@@ -2081,3 +2081,17 @@ MixedRealityInterop (0 errors each); IMapi/InternetExplorer reused
   PdfRenderParams is inline (no bindings); IPdfRendererNative is a COM interface. Clean.
 
 **Ledger status:** 593 accepted-normalized, 29 blocked, 781 pending.
+
+## 2026-09-02 21:12:45 UTC - Batch scraping-investigation-87
+
+**Headers:** RasDlg.h, Dhcpv6cSdk.h, inspectable.h, AudioSessionTypes.h, naptypes.h
+**Partitions scraped (x64):** RRas, Dhcp, Tcui, NetworkAccessProtection (0 errors each); Audio reused
+
+- RasDlg.h: RasPhonebookDlg*/RasEntryDlg*/RasDialDlg* take transparent caller-allocated structs
+  only, no opaque handles produced. Clean.
+- Dhcpv6cSdk.h: DHCPV6_OPTION_* constants only, no functions. Clean.
+- inspectable.h: foundational IInspectable COM/WinRT interface method only. Clean.
+- AudioSessionTypes.h: AUDCLNT_SHAREMODE/AUDIO_STREAM_CATEGORY enums only, no functions. Clean.
+- naptypes.h: NAP MIDL types only, no functions. Clean.
+
+**Ledger status:** 598 accepted-normalized, 29 blocked, 776 pending.
