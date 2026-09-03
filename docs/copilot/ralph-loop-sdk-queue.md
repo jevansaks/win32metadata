@@ -1,12 +1,12 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T08:12:49Z
+- Generated: 2026-09-03T08:15:37Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 946
+- Matched: 951
 - In progress: 0
 - Blocked: 31
-- Remaining: 426
+- Remaining: 421
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
 |---|---|---|---|---|---|
@@ -185,7 +185,7 @@
 | `control.h` | Media.DShow | matched | copilot | 09/02/2026 23:50:00 | Classified retained artifact in existing-patches-04. |
 | `cor.h` | ClrProfiling | remaining |  |  |  |
 | `corecrt_io.h` | Multimedia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/corecrt_io.h.md |
-| `CoreWindow.h` | WinRT | remaining |  |  |  |
+| `CoreWindow.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CoreWindow.h.md |
 | `CorHdr.h` | ClrProfiling | remaining |  |  |  |
 | `corprof.h` | ClrProfiling | remaining |  |  |  |
 | `cpl.h` | Shell | matched |  | 09/02/2026 21:38:18 | Function-pointer typedef + transparent structs only, no extern functions. |
@@ -233,7 +233,7 @@
 | `d3d11shader.h` | Direct3D11 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
 | `d3d11shadertracing.h` | Direct3D11 | matched | copilot | 09/03/2026 00:40:00 | Classified retained artifact in existing-patches-07. |
 | `d3d12.h` | Direct3D12 | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
-| `d3d12compatibility.h` | Direct3D12 | remaining |  |  |  |
+| `d3d12compatibility.h` | Direct3D12 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12compatibility.h.md |
 | `d3d12compiler.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12sdklayers.h` | Direct3D12 | remaining |  |  |  |
 | `d3d12shader.h` | Direct3D12 | remaining |  |  |  |
@@ -268,7 +268,7 @@
 | `ddpbackup.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpbackup.h.md |
 | `ddpchunk.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpchunk.h.md |
 | `ddpcommon.h` | Dedup | matched |  | 09/02/2026 19:16:41 | Enums/data structs + MIDL boilerplate only, no functions. |
-| `ddpdataport.h` | Dedup | remaining |  |  |  |
+| `ddpdataport.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpdataport.h.md |
 | `ddraw.h` | DirectDraw, Gdiplus, Media.DShow | matched |  | 09/02/2026 16:34:06 | HMONITOR reference is a pass-through system handle (never created/released by DirectDraw); guarded DECLARE_HANDLE fallback never fires. |
 | `ddrawgdi.h` | FileHistory, WinProg | blocked |  | 09/02/2026 19:45:17 | DdGetDxHandle/DdCreateDIBSection return generic HANDLE/HBITMAP via return value. |
 | `ddrawi.h` | DirectDraw, FileHistory, WinProg | remaining |  |  |  |
@@ -622,7 +622,7 @@
 | `lzexpand.h` | Fs | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
 | `madcapcl.h` | MadCap | matched | copilot | 09/03/2026 05:00:00 | No patch needed; no ownership-relevant handle type. |
 | `magnification.h` | MagApi | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
-| `mailmsgprops.h` | IMapi | remaining |  |  |  |
+| `mailmsgprops.h` | IMapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mailmsgprops.h.md |
 | `manipulations.h` | WinTouch | remaining |  |  |  |
 | `manual.h` | Com.StructuredStorage | remaining |  |  |  |
 | `mapi.h` | Mapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mapi.h.md |
@@ -717,7 +717,7 @@
 | `msdasql_interfaces.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdasql_interfaces.h.md |
 | `msdasql.h` | Search | matched |  | 09/02/2026 19:50:38 | GUID/property constants only, no functions. |
 | `msdatsrc.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdatsrc.h.md |
-| `msdelta.h` | Setup | remaining |  |  |  |
+| `msdelta.h` | Setup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdelta.h.md |
 | `msdrm.h` | Rm | remaining |  |  |  |
 | `msdrmdefs.h` | Rm | matched |  | 09/02/2026 22:09:36 | Types/constants only, no functions; DRM handle ownership deferred to msdrm.h. |
 | `msdrmerror.h` | Rm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdrmerror.h.md |

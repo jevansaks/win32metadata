@@ -1577,10 +1577,10 @@
   {
     "header": "CoreWindow.h",
     "partition": "WinRT",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/CoreWindow.h.md",
     "_source": "header-progress"
   },
   {
@@ -2009,10 +2009,10 @@
   {
     "header": "d3d12compatibility.h",
     "partition": "Direct3D12",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3d12compatibility.h.md",
     "_source": "header-progress"
   },
   {
@@ -2324,10 +2324,10 @@
   {
     "header": "ddpdataport.h",
     "partition": "Dedup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpdataport.h.md",
     "_source": "header-progress"
   },
   {
@@ -5510,10 +5510,10 @@
   {
     "header": "mailmsgprops.h",
     "partition": "IMapi",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mailmsgprops.h.md",
     "_source": "header-progress"
   },
   {
@@ -6365,10 +6365,10 @@
   {
     "header": "msdelta.h",
     "partition": "Setup",
-    "status": "remaining",
+    "status": "matched",
     "owner": "",
     "last_updated": "",
-    "notes": "",
+    "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msdelta.h.md",
     "_source": "header-progress"
   },
   {

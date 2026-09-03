@@ -2888,3 +2888,13 @@ Ledger: 941 accepted-normalized, 31 blocked, 431 pending (972/1403 classified).
 - **cierror.h** (Foundation): FACILITY_*/severity constants only. Clean.
 
 Ledger: 946 accepted-normalized, 31 blocked, 426 pending (977/1403 classified).
+
+## Batch 158 (2026-09-03 01:15): d3d12compatibility.h, CoreWindow.h, ddpdataport.h, mailmsgprops.h, msdelta.h
+
+- **d3d12compatibility.h** (Direct3D12): COM vtable only. Clean.
+- **CoreWindow.h** (WinRT): COM vtable only. Clean.
+- **ddpdataport.h** (Dedup): COM vtable only. Clean.
+- **mailmsgprops.h** (IMapi): property-ID enum macros only. Clean.
+- **msdelta.h** (Setup): DeltaFree pattern is a raw LPVOID field embedded in transparent struct DELTA_OUTPUT, not an opaque handle typedef — matches Net-API-buffer-allocation blocker class (7), out of scope for typedef-level annotation.
+
+Ledger: 951 accepted-normalized, 31 blocked, 421 pending (982/1403 classified).
