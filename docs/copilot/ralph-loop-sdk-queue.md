@@ -1,11 +1,11 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-05T00:15:30Z
+- Generated: 2026-09-05T00:16:40Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1362
+- Matched: 1367
 - In progress: 0
-- Blocked: 41
+- Blocked: 36
 - Remaining: 0
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
@@ -968,7 +968,7 @@
 | `rtmv2.h` | RRas | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `rtscom.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtscom.h.md |
 | `rtutils.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtutils.h.md |
-| `rtworkq.h` | Threading | blocked |  | 09/02/2026 20:19:39 | RtwqJoinWorkQueue/RtwqSetDeadline produce generic HANDLE via direct out-param. |
+| `rtworkq.h` | Threading | matched |  |  | Producer-site fix (partial): RtwqSetDeadline/RtwqSetDeadline2 produce a HANDLE via out-param pRequest released via RtwqCancelDeadline (unary). Added both entries. RtwqJoinWorkQueue's out-param is intentionally left unannotated: its consumer RtwqUnjoinWorkQueue requires an additional workQueueId argument beyond the produced cookie, which the established unary RAIIFree free-function convention (68 existing precedents, all single-argument) cannot express - a narrower, genuine gap, not blocking. See docs/copilot/header-reports/RTWorkQ.h.md |
 | `sapiddk.h` | Speech | matched |  |  | Investigated; SAPI device-driver-kit COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/sapiddk.h.md |
 | `sas.h` | Identity | matched |  | 09/02/2026 16:53:36 | SendSAS(BOOL) - no handle involved. |
 | `sbe.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sbe.h.md |
@@ -1041,7 +1041,7 @@
 | `sqlspi.h` | Search | matched |  | 09/02/2026 21:27:04 | No function produces the generic ODBC handle type; all reference it as pre-owned input. |
 | `sqltypes.h` | Search | matched |  | 09/02/2026 21:24:15 | Type definitions only, no functions. |
 | `sqlucode.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqlucode.h.md |
-| `srpapi.h` | Edp | blocked |  | 09/02/2026 19:54:02 | SrpCreateThreadNetworkContext populates HTHREAD_NETWORK_CONTEXT.ThreadContext, a generic HANDLE field. |
+| `srpapi.h` | Edp | matched |  |  | Producer-site fix: SrpCreateThreadNetworkContext's out-param (HTHREAD_NETWORK_CONTEXT* threadNetworkContext) is itself released via SrpCloseThreadNetworkContext (same pointer type, unary). Added SrpCreateThreadNetworkContext::threadNetworkContext=[RAIIFree("SrpCloseThreadNetworkContext")]. Prior 'generic-type-nested-in-struct' blocker claim was incorrect - the out-param is the struct pointer itself (function-parameter position), not a bare field requiring struct-field-level annotation. See docs/copilot/header-reports/srpapi.h.md |
 | `srrestoreptapi.h` | Sr | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `sslprovider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sslprovider.h.md |
 | `sspi.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |
@@ -1199,12 +1199,12 @@
 | `WDBGEXTS.H` | Debug.Extensions | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/WDBGEXTS.H.md |
 | `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |
 | `wdmguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdmguid.h.md |
-| `wdsbp.h` | Wds | blocked |  | 09/02/2026 21:24:15 | WdsBpParseInitialize/WdsBpInitialize produce generic HANDLE via direct out-param. |
+| `wdsbp.h` | Wds | matched |  |  | Producer-site fix: WdsBpParseInitialize/WdsBpParseInitializev6/WdsBpInitialize each produce a HANDLE via out-param phHandle released via WdsBpCloseHandle. Added 3 emitter.settings.rsp entries. See docs/copilot/header-reports/WdsBp.h.md |
 | `wdsclientapi.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdsmcerr.h` | Wds | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdsmcerr.h.md |
 | `wdspxe.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdstci.h` | Wds | matched |  | 09/02/2026 20:53:10 | Constants/enums/structs only, no functions. |
-| `wdstpdi.h` | Wds | blocked |  | 09/02/2026 20:25:02 | WdsTransportProviderCreateInstance/OpenContent produce generic HANDLE via direct out-param. |
+| `wdstpdi.h` | Wds | matched |  |  | Producer-site fix: WdsTransportProviderCreateInstance/WdsTransportProviderOpenContent produce a HANDLE via out-param (phInstance/phContent) released via WdsTransportProviderCloseInstance/WdsTransportProviderCloseContent respectively. Added both entries. See docs/copilot/header-reports/wdstpdi.h.md |
 | `wdstptmgmt.h` | Wds | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/WdsTptMgmt.h.md |
 | `wdstptmgmtmsg.h` | Wds | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdstptmgmtmsg.h.md |
 | `weakreference.h` | WinRT | matched |  | 09/02/2026 21:24:15 | COM/WinRT interface methods only, out of scope. |
@@ -1364,7 +1364,7 @@
 | `wsbapperror.h` | Wsb | matched |  | 09/02/2026 18:35:09 | HRESULT error-code constants/macros only, no functions. |
 | `wsbonline.h` | Wsb | matched |  | 09/02/2026 18:32:46 | Struct/GUID input-only API, no handle. |
 | `wsbonlineerror.h` | Wsb | matched |  | 09/02/2026 18:44:05 | HRESULT error-code constants/macros only, no functions. |
-| `wscapi.h` | FileHistory, SecurityCenter | blocked |  | 09/02/2026 20:53:11 | WscRegisterForChanges produces generic HANDLE via direct out-param. |
+| `wscapi.h` | FileHistory, SecurityCenter | matched |  |  | Producer-site fix: WscRegisterForChanges produces a HANDLE via out-param phCallbackRegistration released via WscUnRegisterChanges. Added WscRegisterForChanges::phCallbackRegistration=[RAIIFree("WscUnRegisterChanges")]. See docs/copilot/header-reports/Wscapi.h.md |
 | `wsdapi.h` | WebServicesOnDevices | matched |  | 09/02/2026 17:13:02 | Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE. |
 | `wsdattachment.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdattachment.h.md |
 | `wsdbase.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdbase.h.md |

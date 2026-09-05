@@ -1,11 +1,26 @@
-# Header Report: WdsBp.h
+# WdsBp.h
 
-## Partitions
-`Wds`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Ownership audit (producer-site-only policy)
-- `WdsBpParseInitialize`/`WdsBpParseInitializev6`/`WdsBpInitialize` all produce a generic `HANDLE` via `_Out_ HANDLE *phHandle`, closed via `WdsBpCloseHandle(_In_ HANDLE hHandle)` — the already-established **generic-type direct-out-param** blocker class (`wslapi.h`/`ratings.h`/`avrt.h`/`powersetting.h`/`ondemandconnroutehelper.h`/`davclnt.h`/`RTWorkQ.h`/`FaxDev.h`/`wdstpdi.h`/`prnasnot.h`/`Wscapi.h`).
-- `WdsBpQueryOption`/`WdsBpAddOption`/`WdsBpGetOptionBuffer` take the handle as `_In_` input and output plain buffers, no additional gaps.
+## Summary
+`WdsBpParseInitialize`/`WdsBpParseInitializev6`/`WdsBpInitialize` each produce
+a `HANDLE` via out-param `phHandle`, released via `WdsBpCloseHandle(HANDLE)`.
 
-## Conclusion
-`blocked` — genuine gap in `WdsBpParseInitialize`/`WdsBpParseInitializev6`/`WdsBpInitialize`/`WdsBpCloseHandle` (generic `HANDLE` direct-out-param, reuses established blocker class).
+## Correction to prior investigation
+Prior report treated this as the unrepresentable "generic-type" blocker
+class. Fixable per-function.
+
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+WdsBpParseInitialize::phHandle=[RAIIFree("WdsBpCloseHandle")]
+WdsBpParseInitializev6::phHandle=[RAIIFree("WdsBpCloseHandle")]
+WdsBpInitialize::phHandle=[RAIIFree("WdsBpCloseHandle")]
+```
+
+## Validation
+ScrapeHeaders (Wds, x64): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

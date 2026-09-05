@@ -1,15 +1,38 @@
-# Header Report: RTWorkQ.h
+# RTWorkQ.h
 
-## Partitions
-`Threading`
+**Classification:** accepted-normalized (producer-site fix applied, partial)
 
-## Ownership audit (producer-site-only policy)
-Genuine gaps found, both reusing the already-established **generic-type direct-out-param** blocker class (`wslapi.h`/`ratings.h`/`avrt.h`/`powersetting.h`/`ondemandconnroutehelper.h`/`davclnt.h`):
+## Summary
+- `RtwqSetDeadline`/`RtwqSetDeadline2(..., _Out_ HANDLE* pRequest)` produce a
+  `HANDLE`, released via `RtwqCancelDeadline(HANDLE pRequest)` (unary). Fixed.
+- `RtwqJoinWorkQueue(DWORD workQueueId, HANDLE hFile, _Out_ HANDLE* out)`
+  produces a "cookie" `HANDLE`, but its consumer
+  `RtwqUnjoinWorkQueue(DWORD workQueueId, HANDLE hFile)` requires the
+  original `workQueueId` as well as the cookie - a two-argument release.
+  Confirmed via Microsoft Learn documentation. The established
+  `RAIIFree` convention (68 existing entries, all single-argument release
+  functions) cannot express a release that needs an extra caller-supplied
+  argument. Left unannotated - a narrower, genuine gap that does not block
+  the rest of the header (consistent with how many other unannotated
+  producer/consumer pairs exist across the winmd without blocking their
+  headers).
 
-- `RtwqJoinWorkQueue(DWORD workQueueId, HANDLE hFile, _Out_ HANDLE* out)` produces a generic `HANDLE` via a direct out-param; the exact close site is ambiguous from this header alone (`RtwqUnjoinWorkQueue` takes the original `hFile`, not the produced `out` value), reinforcing that this is a generic, not distinctly-named, type.
-- `RtwqSetDeadline`/`RtwqSetDeadline2(..., _Out_ HANDLE* pRequest)` produce a generic `HANDLE` via a direct out-param, closed via `RtwqCancelDeadline(_In_ HANDLE pRequest)`.
+## Correction to prior investigation
+Prior report blocked the whole header citing "generic-type-direct-out-param"
+for both functions. `RtwqSetDeadline`/`RtwqSetDeadline2` are fixable;
+`RtwqJoinWorkQueue` has a distinct, real limitation (multi-arg free function)
+that is correctly left unannotated rather than blocking classification.
 
-Other functions (`RtwqAllocateWorkQueue`, `RtwqLockSharedWorkQueue`, `RtwqAddPeriodicCallback`, etc.) produce plain `DWORD` IDs (not `HANDLE`-family types, out of scope entirely) or standard COM interface pointers (`IRtwqAsyncResult**`, out of scope).
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+RtwqSetDeadline::pRequest=[RAIIFree("RtwqCancelDeadline")]
+RtwqSetDeadline2::pRequest=[RAIIFree("RtwqCancelDeadline")]
+```
 
-## Conclusion
-`blocked` — genuine gaps in `RtwqJoinWorkQueue` and `RtwqSetDeadline`/`RtwqSetDeadline2`/`RtwqCancelDeadline` (generic `HANDLE` direct-out-param, reuses established blocker class).
+## Validation
+ScrapeHeaders (Threading, x64): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

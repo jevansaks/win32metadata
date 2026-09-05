@@ -3627,3 +3627,20 @@ exactly.
   (the `HPOWERNOTIFY`/`PowerSettingRegisterNotification` portion of this header was already fixed in a prior batch).
 - prnasnot.h: `RegisterForPrintAsyncNotifications::phNotify=[RAIIFree("UnRegisterForPrintAsyncNotifications")]`.
 - Ledger: 1362 accepted-normalized, 41 blocked, 0 pending (1403/1403 = 100% classified).
+
+### Sub-batch 233.5 - generic out-param HANDLE class + one struct-pointer-param correction
+- RTWorkQ.h (partial): `RtwqSetDeadline`/`RtwqSetDeadline2::pRequest=[RAIIFree("RtwqCancelDeadline")]`.
+  `RtwqJoinWorkQueue`'s out-param intentionally left unannotated - its
+  consumer `RtwqUnjoinWorkQueue` needs an additional `workQueueId` argument
+  beyond the produced cookie (confirmed via Microsoft Learn), which the
+  unary-only `RAIIFree` convention cannot express. A narrower, genuine gap
+  that does not block the header's classification.
+- srpapi.h: `SrpCreateThreadNetworkContext::threadNetworkContext=[RAIIFree("SrpCloseThreadNetworkContext")]` -
+  the prior "generic-type-nested-in-struct" claim was incorrect: the
+  out-param is the struct *pointer* itself (an ordinary function-parameter
+  position), not a bare field requiring untested struct-field annotation.
+- WdsBp.h (3 entries): `WdsBpParseInitialize`/`WdsBpParseInitializev6`/`WdsBpInitialize::phHandle=[RAIIFree("WdsBpCloseHandle")]`.
+- wdstpdi.h (2 entries): `WdsTransportProviderCreateInstance::phInstance=[RAIIFree("WdsTransportProviderCloseInstance")]`,
+  `WdsTransportProviderOpenContent::phContent=[RAIIFree("WdsTransportProviderCloseContent")]`.
+- Wscapi.h: `WscRegisterForChanges::phCallbackRegistration=[RAIIFree("WscUnRegisterChanges")]`.
+- Ledger: 1367 accepted-normalized, 36 blocked, 0 pending (1403/1403 = 100% classified).
