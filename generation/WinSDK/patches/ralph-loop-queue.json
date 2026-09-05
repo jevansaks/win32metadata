@@ -3647,19 +3647,19 @@
   {
     "header": "faxdev.h",
     "partition": "Fax",
-    "status": "blocked",
+    "status": "matched",
     "owner": "",
-    "last_updated": "2026-09-02T20:25:02Z",
-    "notes": "FaxDevStartJob produces generic HANDLE via direct out-param.",
+    "last_updated": "",
+    "notes": "Producer-site fix: FaxDevStartJob produces a HANDLE via out-param FaxHandle released via FaxDevEndJob. Added FaxDevStartJob::FaxHandle=[RAIIFree(\"FaxDevEndJob\")]. See docs/copilot/header-reports/FaxDev.h.md",
     "_source": "header-progress"
   },
   {
     "header": "faxext.h",
     "partition": "Fax",
-    "status": "blocked",
+    "status": "matched",
     "owner": "",
-    "last_updated": "2026-09-02T19:37:21Z",
-    "notes": "FaxExtRegisterForEvents returns generic HANDLE via return value.",
+    "last_updated": "",
+    "notes": "Producer-site fix: FaxExtRegisterForEvents returns a HANDLE released via FaxExtUnregisterForEvents. Added FaxExtRegisterForEvents::return=[RAIIFree(\"FaxExtUnregisterForEvents\")]. See docs/copilot/header-reports/faxext.h.md",
     "_source": "header-progress"
   },
   {
@@ -7472,10 +7472,10 @@
   {
     "header": "ondemandconnroutehelper.h",
     "partition": "Nla, WindowsConnectionManager",
-    "status": "blocked",
+    "status": "matched",
     "owner": "",
-    "last_updated": "2026-09-02T19:45:17Z",
-    "notes": "OnDemandRegisterNotification outputs generic HANDLE via direct out-param.",
+    "last_updated": "",
+    "notes": "Producer-site fix: OnDemandRegisterNotification produces a HANDLE via out-param registrationHandle released via OnDemandUnRegisterNotification. Added OnDemandRegisterNotification::registrationHandle=[RAIIFree(\"OnDemandUnRegisterNotification\")]. See docs/copilot/header-reports/ondemandconnroutehelper.h.md",
     "_source": "header-progress"
   },
   {
@@ -7796,10 +7796,10 @@
   {
     "header": "powersetting.h",
     "partition": "Power",
-    "status": "blocked",
+    "status": "matched",
     "owner": "",
-    "last_updated": "2026-09-02T19:42:09Z",
-    "notes": "PowerRegisterForEffectivePowerModeNotifications outputs generic PVOID via direct out-param; HPOWERNOTIFY portion already covered by autoTypes.json.",
+    "last_updated": "",
+    "notes": "Producer-site fix: PowerRegisterForEffectivePowerModeNotifications produces a generic PVOID via out-param RegistrationHandle released via PowerUnregisterFromEffectivePowerModeNotifications. Added the RAIIFree entry (HPOWERNOTIFY portion was already fixed in a prior batch). See docs/copilot/header-reports/powersetting.h.md",
     "_source": "header-progress"
   },
   {
@@ -7904,10 +7904,10 @@
   {
     "header": "prnasnot.h",
     "partition": "Gdi, Printing",
-    "status": "blocked",
+    "status": "matched",
     "owner": "",
-    "last_updated": "2026-09-02T20:44:40Z",
-    "notes": "RegisterForPrintAsyncNotifications produces generic HANDLE via direct out-param.",
+    "last_updated": "",
+    "notes": "Producer-site fix: RegisterForPrintAsyncNotifications produces a HANDLE via out-param phNotify released via UnRegisterForPrintAsyncNotifications. Added RegisterForPrintAsyncNotifications::phNotify=[RAIIFree(\"UnRegisterForPrintAsyncNotifications\")]. See docs/copilot/header-reports/prnasnot.h.md",
     "_source": "header-progress"
   },
   {

@@ -1,11 +1,11 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-05T00:14:26Z
+- Generated: 2026-09-05T00:15:30Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1357
+- Matched: 1362
 - In progress: 0
-- Blocked: 46
+- Blocked: 41
 - Remaining: 0
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
@@ -415,8 +415,8 @@
 | `extensionvalidation.h` | InternetExplorer | matched |  | 09/02/2026 21:17:15 | COM interface + enums only, no extern functions. |
 | `extsfns.h` | Debug.Extensions | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/extsfns.h.md |
 | `faxcomex.h` | Fax | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/FaxComEx.h.md |
-| `faxdev.h` | Fax | blocked |  | 09/02/2026 20:25:02 | FaxDevStartJob produces generic HANDLE via direct out-param. |
-| `faxext.h` | Fax | blocked |  | 09/02/2026 19:37:21 | FaxExtRegisterForEvents returns generic HANDLE via return value. |
+| `faxdev.h` | Fax | matched |  |  | Producer-site fix: FaxDevStartJob produces a HANDLE via out-param FaxHandle released via FaxDevEndJob. Added FaxDevStartJob::FaxHandle=[RAIIFree("FaxDevEndJob")]. See docs/copilot/header-reports/FaxDev.h.md |
+| `faxext.h` | Fax | matched |  |  | Producer-site fix: FaxExtRegisterForEvents returns a HANDLE released via FaxExtUnregisterForEvents. Added FaxExtRegisterForEvents::return=[RAIIFree("FaxExtUnregisterForEvents")]. See docs/copilot/header-reports/faxext.h.md |
 | `faxmmc.h` | Fax | matched |  | 09/02/2026 17:58:11 | GUID/string constants only, no functions. |
 | `faxroute.h` | Fax | matched |  | 09/02/2026 19:50:38 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `fci.h` | Cabinets | matched |  |  | Genuine producer-site fix: added new HFCI autoTypes.json entry (CloseApi=FCIDestroy). See docs/copilot/header-reports/fci.h.md |
@@ -840,7 +840,7 @@
 | `oledlg.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oleidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oletx2xa.h` | DTC | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oletx2xa.h.md |
-| `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | blocked |  | 09/02/2026 19:45:17 | OnDemandRegisterNotification outputs generic HANDLE via direct out-param. |
+| `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | matched |  |  | Producer-site fix: OnDemandRegisterNotification produces a HANDLE via out-param registrationHandle released via OnDemandUnRegisterNotification. Added OnDemandRegisterNotification::registrationHandle=[RAIIFree("OnDemandUnRegisterNotification")]. See docs/copilot/header-reports/ondemandconnroutehelper.h.md |
 | `oobenotification.h` | WindowsSetupAndMigration | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `openservice.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/openservice.h.md |
 | `opmapi.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/opmapi.h.md |
@@ -876,7 +876,7 @@
 | `portabledeviceconnectapi.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceconnectapi.h.md |
 | `portabledevicetypes.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledevicetypes.h.md |
 | `powerbase.h` | Power | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
-| `powersetting.h` | Power | blocked |  | 09/02/2026 19:42:09 | PowerRegisterForEffectivePowerModeNotifications outputs generic PVOID via direct out-param; HPOWERNOTIFY portion already covered by autoTypes.json. |
+| `powersetting.h` | Power | matched |  |  | Producer-site fix: PowerRegisterForEffectivePowerModeNotifications produces a generic PVOID via out-param RegistrationHandle released via PowerUnregisterFromEffectivePowerModeNotifications. Added the RAIIFree entry (HPOWERNOTIFY portion was already fixed in a prior batch). See docs/copilot/header-reports/powersetting.h.md |
 | `powrprof.h` | Power | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `prcomoem.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/prcomoem.h.md |
 | `prdrvcom.h` | Printing | matched |  | 09/02/2026 20:34:23 | COM interface methods only, out of scope. |
@@ -888,7 +888,7 @@
 | `PrintManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:32:46 | COM/WinRT interop interface method only, out of scope. |
 | `printoem.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/printoem.h.md |
 | `printpreview.h` | Printing | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
-| `prnasnot.h` | Gdi, Printing | blocked |  | 09/02/2026 20:44:40 | RegisterForPrintAsyncNotifications produces generic HANDLE via direct out-param. |
+| `prnasnot.h` | Gdi, Printing | matched |  |  | Producer-site fix: RegisterForPrintAsyncNotifications produces a HANDLE via out-param phNotify released via UnRegisterForPrintAsyncNotifications. Added RegisterForPrintAsyncNotifications::phNotify=[RAIIFree("UnRegisterForPrintAsyncNotifications")]. See docs/copilot/header-reports/prnasnot.h.md |
 | `prnasntp.h` | Printing | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `prntfont.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/prntfont.h.md |
 | `prntvpt.h` | Gdi, PrintTicket | matched | copilot | 09/02/2026 23:20:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation); supported-os left unresolved due to ambiguous/uncorroborated documentation. |

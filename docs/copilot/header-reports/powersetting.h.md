@@ -1,14 +1,28 @@
-# Header Report: powersetting.h
+# powersetting.h
 
-## Partitions
-`Power`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Ownership audit (producer-site-only policy)
-Two distinct ownership-relevant findings:
+## Summary
+`PowerRegisterForEffectivePowerModeNotifications(..., _Outptr_ PVOID*
+RegistrationHandle)` produces a generic `PVOID`, released via
+`PowerUnregisterFromEffectivePowerModeNotifications(PVOID)`. (The
+`HPOWERNOTIFY`/`PowerSettingRegisterNotification` portion of this header was
+already fixed in a prior batch via `autoTypes.json`.)
 
-1. **`HPOWERNOTIFY` (already covered)** — `PowerSettingRegisterNotification(..., _Out_ PHPOWERNOTIFY RegistrationHandle)` / `PowerSettingUnregisterNotification(_Inout_ HPOWERNOTIFY RegistrationHandle)` produce/consume the `HPOWERNOTIFY` type. `autoTypes.json` already has a complete entry (`Name: HPOWERNOTIFY`, `CloseApi: UnregisterPowerSettingNotification`, `InvalidHandleValues: [-1, 0]`) — this attaches ownership metadata to the type itself (via `NativeTypedefStructsCreator`'s `[RAIIFree]` on the auto-generated struct), which is a distinct, pre-existing, single-purpose-type mechanism (not the newer per-producer inline `_Win32_metadata_raii_free_` annotation the corrected policy targets — that policy applies to *shared/generic* types like `windef.h`'s `HWND`, not to single-CloseApi opaque types like this one). `RegisterPowerSettingNotification`/`UnregisterPowerSettingNotification` (the actual matching close pair, in `WinUser.h`) already use this same type consistently; `PowerSettingUnregisterNotification` in this header is a semantically-equivalent close for the same type. No new annotation needed.
-2. **`PowerRegisterForEffectivePowerModeNotifications`/`PowerUnregisterFromEffectivePowerModeNotifications` (genuine gap)** — `_Outptr_ PVOID* RegistrationHandle` is a raw, generic `PVOID` (not a distinctly-named type), produced via a direct out-param. This is the already-established **generic-type direct-out-param** blocker class (`wslapi.h`/`ratings.h`/`avrt.h`): annotating a bare `PVOID` out-param would incorrectly apply ownership metadata to every `PVOID` value anywhere in the metadata.
-3. `PowerGetActiveScheme`'s `_Outptr_ GUID** ActivePolicyGuid` is a transparent `GUID` struct output, out of scope (same as other transparent-struct patterns).
+## Correction to prior investigation
+Prior report treated the remaining `PVOID` out-param as the unrepresentable
+"generic-type" blocker class. Fixable per-function, same reasoning as
+resourceindexer.h.
 
-## Conclusion
-`blocked` — genuine gap in `PowerRegisterForEffectivePowerModeNotifications`/`PowerUnregisterFromEffectivePowerModeNotifications` (generic `PVOID` direct-out-param, reuses established blocker class). `HPOWERNOTIFY` portion is already correctly covered via `autoTypes.json`.
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+PowerRegisterForEffectivePowerModeNotifications::RegistrationHandle=[RAIIFree("PowerUnregisterFromEffectivePowerModeNotifications")]
+```
+
+## Validation
+ScrapeHeaders (Power, x64): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

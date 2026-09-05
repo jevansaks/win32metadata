@@ -3618,3 +3618,12 @@ exactly.
   parameter with no separate consumer function, so it is not an ownership
   gap at all. Prior blocker claim treated both as unaddressed gaps.
 - Ledger: 1357 accepted-normalized, 46 blocked, 0 pending (1403/1403 = 100% classified).
+
+### Sub-batch 233.4 - generic out-param HANDLE/PVOID class
+- FaxDev.h: `FaxDevStartJob::FaxHandle=[RAIIFree("FaxDevEndJob")]`.
+- faxext.h: `FaxExtRegisterForEvents::return=[RAIIFree("FaxExtUnregisterForEvents")]`.
+- ondemandconnroutehelper.h: `OnDemandRegisterNotification::registrationHandle=[RAIIFree("OnDemandUnRegisterNotification")]`.
+- powersetting.h: `PowerRegisterForEffectivePowerModeNotifications::RegistrationHandle=[RAIIFree("PowerUnregisterFromEffectivePowerModeNotifications")]`
+  (the `HPOWERNOTIFY`/`PowerSettingRegisterNotification` portion of this header was already fixed in a prior batch).
+- prnasnot.h: `RegisterForPrintAsyncNotifications::phNotify=[RAIIFree("UnRegisterForPrintAsyncNotifications")]`.
+- Ledger: 1362 accepted-normalized, 41 blocked, 0 pending (1403/1403 = 100% classified).
