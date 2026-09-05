@@ -1,20 +1,31 @@
-# `UserEnv.h`
+# UserEnv.h
 
-- **Status:** accepted-normalized
-- **Batch:** `existing-patches-34`
-- **Partitions:** Policy, Shell
-- **Delta:** Two retained artifacts: `zzz-set-last-error`
-  (`_Win32_metadata_set_last_error_`) and `zzz-supported-os`
-  (`_Win32_metadata_supported_os_(...)`) on the user-profile/policy API surface declared in
-  this header. Neither contains ownership/typedef metadata.
-- **Resolution:** No further changes needed; retained as-is.
-- **Artifact:** `generation/WinSDK/patches/post-midl/UserEnv.h.zzz-set-last-error.patch`,
-  `generation/WinSDK/patches/post-midl/UserEnv.h.zzz-supported-os.patch`
-- **Evidence:** Isolated `git apply --check --reverse` succeeds for `zzz-supported-os` (the
-  last-applied patch in filename-sort order) but not for `zzz-set-last-error` in isolation,
-  because its hunk context overlaps lines also touched by `zzz-supported-os` — the same
-  expected collision pattern documented for `bcrypt.h`/`CommCtrl.h`. Verified instead via
-  full sequential forward replay: reverse-applied both patches in unwind order, then
-  forward-applied both in filename-sort order; reproduces the committed header exactly
-  (zero diff).
-- **Normalization:** ABI-neutral declaration annotation.
+**Classification:** blocked (corrected evidence)
+
+## Summary
+`LoadUserProfileW/A(_In_ HANDLE hToken, _Inout_ LPPROFILEINFOW/A
+lpProfileInfo)` populates a plain `HANDLE` field (`lpProfileInfo->hProfile`)
+inside a caller-allocated struct, released via `UnloadUserProfile(HANDLE
+hToken, HANDLE hProfile)`.
+
+## Correction to prior investigation
+Prior blocker text ("generic HANDLE nested in struct field cannot be
+annotated, same class as physicalmonitorenumerationapi.h") was an inaccurate
+generalization on two counts:
+1. A struct-pointer **out-param itself** (not a bare field) can be
+   annotated normally when the consumer takes the same pointer/handle alone
+   - see srpapi.h's `SrpCreateThreadNetworkContext`, fixed in this batch.
+2. The real, narrower blocker here is structurally different from
+   physicalmonitorenumerationapi.h: `UnloadUserProfile` needs a **second**
+   argument (`hToken`) beyond the value produced (`hProfile`), which the
+   established unary-only `RAIIFree` convention (68 existing precedents)
+   cannot express - the same root limitation as dmemmgr.h's `VidMemFree`, not
+   a struct-nesting problem.
+
+## Ownership Analysis
+No `emitter.settings.rsp` change possible with the current unary-only
+`RAIIFree` convention.
+
+## Conclusion
+`blocked` - remains blocked, but for the corrected reason above (free
+function needs a second argument, `hToken`, not "struct nesting").

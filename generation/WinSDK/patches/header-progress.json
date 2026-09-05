@@ -421,20 +421,20 @@
       "partition_count": 1,
       "status": "blocked",
       "matched": false,
-      "assignee": "",
+      "assignee": "copilot",
       "batch": "",
-      "category": "ownership-gap",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "category": "ambiguous-ownership-semantics",
+      "delta_class": "requires-spec-decision",
+      "fix_route": "needs-policy-decision",
       "normalization_profile": "default",
       "normalizations_applied": [],
-      "blocker": "generic-type-direct-out-param",
+      "blocker": "ADsPropCreateNotifyObj produces a notification-window HWND via out-param phNotifyObj, but (confirmed via MSDN) the object is not destroyed via a paired free API - the caller sends a WM_ADSPROP_NOTIFY_EXIT message to the notification window, which then destroys itself. No consumer function exists to reference in a RAIIFree annotation. Genuinely not representable with the producer/consumer RAIIFree pattern (self-managed lifetime via windowing messages, not a function call).",
       "assumptions": [],
       "evidence": [
         "docs/copilot/header-reports/AdsProp.h.md"
       ],
-      "last_updated": "2026-09-02T21:49:17Z",
-      "notes": "ADsPropCreateNotifyObj produces generic HWND via direct out-param; extends established blocker class to HWND.",
+      "last_updated": "2026-09-04T22:40:00Z",
+      "notes": "RE-AUDITED: prior blocker text ('generic HWND out-param cannot be annotated') was an inaccurate generalization - per-function annotation of a generic HWND out-param is representable in principle (see other fixed headers this batch), but this specific API has no companion free *function* at all to name, only a window-message-based self-destruction protocol. Remains blocked for this narrower, correct reason. See docs/copilot/header-reports/AdsProp.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/ActiveDirectory/main.cpp",
@@ -8944,20 +8944,20 @@
       "partition_count": 1,
       "status": "blocked",
       "matched": false,
-      "assignee": "",
+      "assignee": "copilot",
       "batch": "",
-      "category": "ownership-gap",
-      "delta_class": "unknown",
-      "fix_route": "undecided",
+      "category": "ambiguous-ownership-semantics",
+      "delta_class": "requires-spec-decision",
+      "fix_route": "needs-policy-decision",
       "normalization_profile": "default",
       "normalizations_applied": [],
-      "blocker": "generic-type-return-value",
+      "blocker": "VidMemAlloc/HeapVidMemAllocAligned return FLATPTR (ULONG_PTR alias) directly, released via VidMemFree(LPVMEMHEAP pvmh, FLATPTR ptr) - a two-argument free function requiring the originating heap pointer in addition to the returned value. The established RAIIFree convention (68 existing precedents in emitter.settings.rsp) only supports unary free functions (single argument = the value being freed); VidMemFree cannot be expressed this way.",
       "assumptions": [],
       "evidence": [
         "docs/copilot/header-reports/dmemmgr.h.md"
       ],
-      "last_updated": "2026-09-02T20:41:40Z",
-      "notes": "VidMemAlloc/HeapVidMemAllocAligned return generic FLATPTR (ULONG_PTR alias) via return value.",
+      "last_updated": "2026-09-04T22:40:00Z",
+      "notes": "RE-AUDITED: prior blocker text ('generic FLATPTR return value cannot be annotated') was an inaccurate generalization - the real, narrower blocker is that the free function needs a second caller-supplied argument (the heap handle) that RAIIFree has no mechanism to supply. Remains blocked for this corrected reason. See docs/copilot/header-reports/dmemmgr.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/DirectDraw/main.cpp",
@@ -22819,13 +22819,13 @@
       "fix_route": "needs-toolchain-upgrade-and-policy-decision",
       "normalization_profile": "producer-site-only",
       "normalizations_applied": [],
-      "blocker": "AllJoyn partition scrape fails with 'use of undeclared identifier __builtin_verbose_trap' in MSVC 14.51.36231's <xmemory> - a genuine Clang/MSVC toolset version mismatch, unrelated to header content, not fixable via a header patch. WinRT partition (which also includes this header) does not satisfy the WINAPI_PARTITION_APP/DESKTOP guards so cannot substitute. Additionally, AllJoynConnectToBus/AllJoynCreateBus return a bus HANDLE directly as the function return value (not out-param), released via AllJoynCloseBusHandle - same return-value-handle-ownership blocker class as getprocesshandlefromhwnd.h/wab.h/wincon.h/winppi.h/libloaderapi2.h.",
+      "blocker": "AllJoyn partition scrape fails with 'use of undeclared identifier __builtin_verbose_trap' in MSVC 14.51.36231's <xmemory> - a genuine Clang/MSVC toolset version mismatch, unrelated to header content, not fixable via a header patch; remains the sole blocker (toolchain, not ownership semantics). WinRT partition (which also includes this header) does not satisfy the WINAPI_PARTITION_APP/DESKTOP guards so cannot substitute.",
       "assumptions": [],
       "evidence": [
         "docs/copilot/header-reports/MSAJTransport.h.md"
       ],
-      "last_updated": "2026-09-02T18:15:12Z",
-      "notes": "Two compounding blockers: parser/toolchain version mismatch prevents live-scrape validation of the AllJoyn partition; and a genuine return-value HANDLE ownership pattern with no annotation precedent.",
+      "last_updated": "2026-09-04T22:40:00Z",
+      "notes": "EVIDENCE CORRECTED (ownership only; still blocked on toolchain): AllJoynConnectToBus/AllJoynCreateBus returning a bus HANDLE directly as the function return value, released via AllJoynCloseBusHandle, is NOT an unrepresentable ownership pattern - this same return-value-HANDLE class was fixed this batch for getprocesshandlefromhwnd.h/wab.h/wct.h/wincon.h/wnvapi.h/i_cryptasn1tls.h via the established per-function Function::return=[RAIIFree(...)] emitter.settings.rsp mechanism (68 existing precedents). The correct, single remaining blocker for MSAJTransport.h is the pre-existing AllJoyn partition scrape/toolchain failure (__builtin_verbose_trap), which prevents scraping and validating ANY change to this partition, including the now-known-correct ownership fix. Once the toolchain issue is resolved, apply AllJoynConnectToBus::return / AllJoynCreateBus::return=[RAIIFree(\"AllJoynCloseBusHandle\")] (function/parameter names to be reconfirmed against current header source at that time). See docs/copilot/header-reports/MSAJTransport.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -28095,13 +28095,13 @@
       "fix_route": "needs-policy-decision",
       "normalization_profile": "producer-site-only",
       "normalizations_applied": [],
-      "blocker": "GetPhysicalMonitorsFromHMONITOR/FromIDirect3DDevice9 fill a caller-allocated array of PHYSICAL_MONITOR structs, each containing a generic HANDLE field (hPhysicalMonitor), released via DestroyPhysicalMonitor(s). Same generic/shared-type blocker class as resourceindexer.h (HANDLE is used for thousands of unrelated resource kinds, cannot be annotated), plus a structural wrinkle: the handle is nested inside a struct-array output, not a directly annotatable out-param.",
+      "blocker": "GetPhysicalMonitorsFromHMONITOR/FromIDirect3DDevice9 fill a caller-allocated array of PHYSICAL_MONITOR structs, each with a HANDLE field (hPhysicalMonitor), released per-element via DestroyPhysicalMonitor(HANDLE) - a unary free function. However, the producer's out-param is the array itself (LPPHYSICAL_MONITOR pPhysicalMonitorArray), not a HANDLE/HANDLE* value directly - ownership lives on a field nested inside each array element. Fixing this would require a struct-field-level RAIIFree annotation (PHYSICAL_MONITOR::hPhysicalMonitor=[RAIIFree(...)]) which has zero precedent in this codebase's 68 existing RAIIFree entries (all attach to a Function's return value or a direct parameter, never to a bare struct field) and could not be validated in this environment (EmitWinmd could not be run to completion locally due to unrelated pre-existing toolchain/cross-arch-merge issues).",
       "assumptions": [],
       "evidence": [
         "docs/copilot/header-reports/physicalmonitorenumerationapi.h.md"
       ],
-      "last_updated": "2026-09-02T18:44:05Z",
-      "notes": "Deferred from lowlevelmonitorconfigurationapi.h (batch 30); genuine ownership relationship but generic HANDLE field nested in struct array precludes producer-site annotation, same root class as resourceindexer.h.",
+      "last_updated": "2026-09-04T22:40:00Z",
+      "notes": "RE-AUDITED: prior blocker text ('generic/shared HANDLE cannot be annotated, same class as resourceindexer.h') was partly corrected this batch - resourceindexer.h's PVOID out-param case IS fixable via per-function annotation (fixed this batch) and is NOT the same class as this header. The real, narrower blocker here is that ownership lives on a struct FIELD (not a function parameter or return value), which is an untested annotation surface, not a false generalization about generic types. Remains blocked pending either (a) confirmation that Type::Field=[RAIIFree(...)] memberRemap syntax is accepted by the emitter, or (b) a policy decision on how to express per-element ownership in an out-param array. See docs/copilot/header-reports/physicalmonitorenumerationapi.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Monitor/main.cpp",
@@ -38727,7 +38727,7 @@
       "normalizations_applied": [
         "ABI-neutral declaration annotation"
       ],
-      "blocker": "LoadUserProfileW populates a plain HANDLE field (lpProfileInfo->hProfile) inside the caller-allocated PROFILEINFOW struct, released via UnloadUserProfile. Same generic/shared-type-nested-in-struct blocker class as physicalmonitorenumerationapi.h - HANDLE is generic and nested in a struct field, not a directly annotatable out-param of a distinctly-named type.",
+      "blocker": "LoadUserProfileW/A populate a plain HANDLE field (lpProfileInfo->hProfile) inside a caller-allocated PROFILEINFOW/A struct, released via UnloadUserProfile(HANDLE hToken, HANDLE hProfile) - a two-argument free function requiring the original token handle in addition to the profile handle. The established RAIIFree convention (68 existing precedents) only supports unary free functions.",
       "assumptions": [
         {
           "timestamp": "2026-09-03T01:45:00Z",
@@ -38738,8 +38738,8 @@
         "docs/copilot/header-reports/UserEnv.h.md generation/WinSDK/patches/post-midl/UserEnv.h.zzz-set-last-error.patch generation/WinSDK/patches/post-midl/UserEnv.h.zzz-supported-os.patch full sequential forward replay verified (zero diff); isolated reverse-check of zzz-set-last-error alone fails due to expected hunk-context overlap with zzz-supported-os",
         "docs/copilot/header-reports/userenv.h.reaudit.md"
       ],
-      "last_updated": "2026-09-02T18:53:55Z",
-      "notes": "RE-AUDITED: previously classified in existing-patches-34 based only on retained set-last-error/supported-os patches (not an ownership audit). Re-audit found a genuine unaddressed HANDLE ownership gap (LoadUserProfileW/UnloadUserProfile via PROFILEINFOW.hProfile), same class as physicalmonitorenumerationapi.h. Reclassified to blocked; prior retained patches remain valid.",
+      "last_updated": "2026-09-04T22:40:00Z",
+      "notes": "RE-AUDITED: prior blocker text ('generic HANDLE nested in struct field cannot be annotated') was an inaccurate generalization - struct-pointer out-params CAN be annotated directly when the consumer takes the same pointer/handle alone (see srpapi.h fix, this batch). The real, narrower blocker here is that UnloadUserProfile needs a second argument (hToken) beyond the value produced, which RAIIFree cannot supply. Remains blocked for this corrected reason. See docs/copilot/header-reports/UserEnv.h.md",
       "sources": [
         {
           "source": "partition-main",

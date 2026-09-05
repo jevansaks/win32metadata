@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-05T00:16:40Z
+- Generated: 2026-09-05T00:17:52Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -22,7 +22,7 @@
 | `activprof.h` | Debug.ActiveScript | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/activprof.h.md |
 | `adhoc.h` | Ndis, NWifi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/adhoc.h.md |
 | `adshlp.h` | ActiveDirectory | matched |  | 09/02/2026 19:21:35 | COM refcounting + generic memory/string-allocation conventions only. |
-| `adsprop.h` | ActiveDirectory | blocked |  | 09/02/2026 21:49:17 | ADsPropCreateNotifyObj produces generic HWND via direct out-param; extends established blocker class to HWND. |
+| `adsprop.h` | ActiveDirectory | blocked | copilot | 09/04/2026 22:40:00 | RE-AUDITED: prior blocker text ('generic HWND out-param cannot be annotated') was an inaccurate generalization - per-function annotation of a generic HWND out-param is representable in principle (see other fixed headers this batch), but this specific API has no companion free *function* at all to name, only a window-message-based self-destruction protocol. Remains blocked for this narrower, correct reason. See docs/copilot/header-reports/AdsProp.h.md |
 | `adssts.h` | ActiveDirectory | matched |  | 09/02/2026 19:19:02 | Status-code constants only, no functions. |
 | `adtgen.h` | Authorization, Authorization.UI | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/adtgen.h.md |
 | `advpub.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/advpub.h.md |
@@ -308,7 +308,7 @@
 | `dlnametadataproviderproperties.h` | Dlna | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
 | `dls1.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:02:59 | Constants/documentation only, no functions. |
 | `dls2.h` | Audio.DirectMusic | matched |  | 09/02/2026 20:13:28 | DLS2 FOURCC/format constants only, no functions. |
-| `dmemmgr.h` | DirectDraw | blocked |  | 09/02/2026 20:41:40 | VidMemAlloc/HeapVidMemAllocAligned return generic FLATPTR (ULONG_PTR alias) via return value. |
+| `dmemmgr.h` | DirectDraw | blocked | copilot | 09/04/2026 22:40:00 | RE-AUDITED: prior blocker text ('generic FLATPTR return value cannot be annotated') was an inaccurate generalization - the real, narrower blocker is that the free function needs a second caller-supplied argument (the heap handle) that RAIIFree has no mechanism to supply. Remains blocked for this corrected reason. See docs/copilot/header-reports/dmemmgr.h.md |
 | `dmerror.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dmerror.h.md |
 | `dmodshow.h` | Media.DShow | matched |  | 09/02/2026 19:42:09 | COM interface + GUID constants only, no extern functions. |
 | `dmoreg.h` | Media.DxMediaObjects | matched |  | 09/02/2026 19:32:00 | Registration/enum functions operate on CLSIDs and standard COM interface pointers only. |
@@ -701,7 +701,7 @@
 | `msacm.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacm.h.md |
 | `msacmdlg.h` | Multimedia | matched |  | 09/02/2026 17:27:04 | Dialog resource ID constants only, no functions. |
 | `msacmdrv.h` | Audio | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msacmdrv.h.md |
-| `MSAJTransport.h` | AllJoyn, WinRT | blocked | copilot | 09/02/2026 18:15:12 | Two compounding blockers: parser/toolchain version mismatch prevents live-scrape validation of the AllJoyn partition; and a genuine return-value HANDLE ownership pattern with no annotation precedent. |
+| `MSAJTransport.h` | AllJoyn, WinRT | blocked | copilot | 09/04/2026 22:40:00 | EVIDENCE CORRECTED (ownership only; still blocked on toolchain): AllJoynConnectToBus/AllJoynCreateBus returning a bus HANDLE directly as the function return value, released via AllJoynCloseBusHandle, is NOT an unrepresentable ownership pattern - this same return-value-HANDLE class was fixed this batch for getprocesshandlefromhwnd.h/wab.h/wct.h/wincon.h/wnvapi.h/i_cryptasn1tls.h via the established per-function Function::return=[RAIIFree(...)] emitter.settings.rsp mechanism (68 existing precedents). The correct, single remaining blocker for MSAJTransport.h is the pre-existing AllJoyn partition scrape/toolchain failure (__builtin_verbose_trap), which prevents scraping and validating ANY change to this partition, including the now-known-correct ownership fix. Once the toolchain issue is resolved, apply AllJoynConnectToBus::return / AllJoynCreateBus::return=[RAIIFree("AllJoynCloseBusHandle")] (function/parameter names to be reconfirmed against current header source at that time). See docs/copilot/header-reports/MSAJTransport.h.md |
 | `mscat.h` | Security.Cryptography.Catalog, Security.Cryptography.Sip | matched |  |  | CORRECTED: added HCATADMIN autoTypes.json entry (CloseApi CryptCATAdminReleaseContext) after HACMDRIVER precedent proved reserved-flags 2-param close functions are tolerated. HCATINFO remains blocked (needs external HCATADMIN context). See docs/copilot/header-reports/mscat.h.md |
 | `mschapp.h` | MsChap | matched |  | 09/02/2026 18:29:38 | Password-encryption struct/string API only, no handle. |
 | `msclmd.h` | Security.Cryptography | matched |  | 09/02/2026 19:45:17 | Constants/structs only, no functions. |
@@ -862,7 +862,7 @@
 | `perhist.h` | InternetExplorer | matched |  | 09/02/2026 21:04:56 | COM interface method only, out of scope. |
 | `persist.h` | Search | matched |  | 09/02/2026 18:06:26 | Constants only, no functions. |
 | `photoacquire.h` | PicAcq, Setup | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR/HBITMAP/HICON/HWND/LPSAFEARRAY_User*); pass-through of externally-owned handles only. |
-| `physicalmonitorenumerationapi.h` | Monitor | blocked | copilot | 09/02/2026 18:44:05 | Deferred from lowlevelmonitorconfigurationapi.h (batch 30); genuine ownership relationship but generic HANDLE field nested in struct array precludes producer-site annotation, same root class as resourceindexer.h. |
+| `physicalmonitorenumerationapi.h` | Monitor | blocked | copilot | 09/04/2026 22:40:00 | RE-AUDITED: prior blocker text ('generic/shared HANDLE cannot be annotated, same class as resourceindexer.h') was partly corrected this batch - resourceindexer.h's PVOID out-param case IS fixable via per-function annotation (fixed this batch) and is NOT the same class as this header. The real, narrower blocker here is that ownership lives on a struct FIELD (not a function parameter or return value), which is an untested annotation surface, not a false generalization about generic types. Remains blocked pending either (a) confirmation that Type::Field=[RAIIFree(...)] memberRemap syntax is accepted by the emitter, or (b) a policy decision on how to express per-element ownership in an out-param array. See docs/copilot/header-reports/physicalmonitorenumerationapi.h.md |
 | `pla.h` | Pla | matched |  | 09/02/2026 16:34:06 | All 6 functions operate on strings/flags/paths only; no handle-producing functions. |
 | `playlist.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/playlist.h.md |
 | `playsoundapi.h` | Audio | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
@@ -1144,7 +1144,7 @@
 | `usbuser.h` | Buses | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usbuser.h.md |
 | `useractivityinterop.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/useractivityinterop.h.md |
 | `UserConsentVerifierInterop.h` | WinRT | matched |  | 09/02/2026 20:44:40 | COM/WinRT interop interface method only, out of scope. |
-| `userenv.h` | Policy, Shell | blocked | copilot | 09/02/2026 18:53:55 | RE-AUDITED: previously classified in existing-patches-34 based only on retained set-last-error/supported-os patches (not an ownership audit). Re-audit found a genuine unaddressed HANDLE ownership gap (LoadUserProfileW/UnloadUserProfile via PROFILEINFOW.hProfile), same class as physicalmonitorenumerationapi.h. Reclassified to blocked; prior retained patches remain valid. |
+| `userenv.h` | Policy, Shell | blocked | copilot | 09/04/2026 22:40:00 | RE-AUDITED: prior blocker text ('generic HANDLE nested in struct field cannot be annotated') was an inaccurate generalization - struct-pointer out-params CAN be annotated directly when the consumer takes the same pointer/handle alone (see srpapi.h fix, this batch). The real, narrower blocker here is that UnloadUserProfile needs a second argument (hToken) beyond the value produced, which RAIIFree cannot supply. Remains blocked for this corrected reason. See docs/copilot/header-reports/UserEnv.h.md |
 | `usp10.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/usp10.h.md |
 | `utilapiset.h` | Base, Debug | matched |  | 09/02/2026 18:29:37 | Pointer obfuscation, not resource ownership; HANDLE is an input only. |
 | `uuids.h` | Media, Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/uuids.h.md |

@@ -45,14 +45,27 @@ ownership relationship, **in addition to** the parser-limitation blocker above:
   `AllJoynEnumEvents`, `AllJoynAcceptBusConnection`) take the bus `HANDLE` as an `_In_`-style consumer
   parameter only.
 
-This is the same return-value-handle-ownership blocker class already documented in depth for
-`getprocesshandlefromhwnd.h` (batch `scraping-investigation-14`), `wab.h` (`-15`), `wincon.h` (`-22`),
-`winppi.h` (`-31`), and `libloaderapi2.h` (`-33`).
+### EVIDENCE CORRECTED (this batch): the ownership pattern is representable
+This is the same return-value-handle-ownership shape previously documented for
+`getprocesshandlefromhwnd.h`, `wab.h`, `wincon.h`, `winppi.h`, `wnvapi.h`, and `i_cryptasn1tls.h` — all
+of which were confirmed FIXABLE and FIXED in this batch via the established per-function
+`Function::return=[RAIIFree(...)]` `emitter.settings.rsp` mechanism (68 existing precedents such as
+`WTSOpenServerA::return=[RAIIFree("WTSCloseServer")]`). The prior claim that this pattern had "no
+annotation precedent" is now known to be incorrect — it never blocked those other headers, and it does
+not genuinely block this one either.
+
+The correct, sole remaining blocker for `MSAJTransport.h` is the pre-existing `AllJoyn`
+parser/toolchain failure above, which prevents scraping and validating **any** change to this
+partition — including this now-known-correct ownership fix. Once the toolchain issue is resolved, apply:
+```
+AllJoynConnectToBus::return=[RAIIFree("AllJoynCloseBusHandle")]
+AllJoynCreateBus::return=[RAIIFree("AllJoynCloseBusHandle")]
+```
+(function names to be reconfirmed against current header source at that time).
 
 ## Conclusion
-`blocked` — two independent, compounding blockers: (1) a genuine parser/toolchain version mismatch
-(`__builtin_verbose_trap` unsupported by the pinned Clang version) prevents live-scrape validation of
-the only partition (`AllJoyn`) where this header's declarations are actually compiled; (2) even by
-direct source inspection, `AllJoynConnectToBus`/`AllJoynCreateBus` exhibit the already-documented
-return-value-handle-ownership class with no annotation precedent. Neither blocker is fixable via a
-header-content patch.
+`blocked` — sole blocker is the genuine parser/toolchain version mismatch (`__builtin_verbose_trap`
+unsupported by the pinned Clang version), which prevents live-scrape validation of the only partition
+(`AllJoyn`) where this header's declarations are actually compiled. The ownership pattern itself is
+representable and not a blocker (see correction above) — not fixable via a header-content patch;
+requires a toolchain upgrade.

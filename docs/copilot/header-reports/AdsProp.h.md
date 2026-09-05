@@ -1,11 +1,30 @@
-# Header Report: AdsProp.h
+# AdsProp.h
 
-## Partitions
-`ActiveDirectory`
+**Classification:** blocked (corrected evidence)
 
-## Ownership audit (producer-site-only policy)
-- `ADsPropCreateNotifyObj(LPDATAOBJECT pAppThdDataObj, _In_ PWSTR pwzADsObjName, HWND * phNotifyObj)` produces a generic `HWND` (hidden notification window) via a direct out-param. `HWND` already has an `autoTypes.json` entry (`AlsoUsableFor: HANDLE`) but **deliberately has no `CloseApi`** — like generic `HANDLE`, `HWND` is a shared type used across the entire windowing subsystem by thousands of different creation/destruction APIs with different semantics, so it cannot safely carry a single universal close function. This is the already-established **generic-type direct-out-param** blocker class, now confirmed to extend to `HWND` (alongside `HANDLE`/`PVOID`/`DWORD`) for the same reason.
-- No explicit `ADsPropDestroyNotifyObj` exists; the notification window is presumably torn down via a `WM_ADSPROP_NOTIFY_EXIT` message or standard `DestroyWindow`, neither of which is a dedicated, single, unambiguous close API distinct from generic window teardown.
+## Summary
+`ADsPropCreateNotifyObj(..., HWND* phNotifyObj)` produces an `HWND` for a
+hidden notification window.
+
+## Correction to prior investigation
+Prior blocker text ("generic HWND out-param cannot be annotated, extends
+blocker class to HWND") was an inaccurate generalization - per-function
+out-param annotation of a generic handle type is representable in principle,
+as demonstrated by the other headers fixed in this same batch (e.g.
+resourceindexer.h, wslapi.h).
+
+The correct, narrower reason this remains blocked: confirmed via Microsoft
+Learn documentation that the notification object has **no companion free
+function** at all. The caller sends a `WM_ADSPROP_NOTIFY_EXIT` window message
+to the notification window, which then destroys itself; there is no
+`ADsPropDestroyNotifyObj`-style API to name in a `RAIIFree` attribute. This is
+a genuine, different limitation (self-managed lifetime via a windowing
+message protocol, not a function call), not a type-genericity problem.
+
+## Ownership Analysis
+No `emitter.settings.rsp` change possible - no consumer function exists.
 
 ## Conclusion
-`blocked` — genuine gap in `ADsPropCreateNotifyObj` (generic `HWND` direct-out-param, extends established generic-type blocker class to `HWND`).
+`blocked` - remains blocked, but for the corrected reason above (no
+close/destroy *function* exists to reference, not "generic type cannot be
+annotated").

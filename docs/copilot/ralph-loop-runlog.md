@@ -3644,3 +3644,34 @@ exactly.
   `WdsTransportProviderOpenContent::phContent=[RAIIFree("WdsTransportProviderCloseContent")]`.
 - Wscapi.h: `WscRegisterForChanges::phCallbackRegistration=[RAIIFree("WscUnRegisterChanges")]`.
 - Ledger: 1367 accepted-normalized, 36 blocked, 0 pending (1403/1403 = 100% classified).
+
+### Sub-batch 233.6 - corrected evidence for genuinely-blocked headers (no status change)
+Re-audited the remaining 5 headers that were left blocked (4) or evidence-only (1, AllJoyn-excluded)
+after the fixes above. All 5 previously carried an inaccurate blanket generalization ("generic type
+cannot be annotated") copied from the now-disproven blocker class; each actually has a distinct,
+narrower, genuine reason to remain blocked:
+- AdsProp.h: `ADsPropCreateNotifyObj`'s notification object has no callable free *function* at all -
+  it self-destructs via a `WM_ADSPROP_NOTIFY_EXIT` window message (confirmed via MSDN). No annotation
+  target exists.
+- dmemmgr.h: `VidMemFree(pvmh, ptr)` requires a second caller-supplied argument (the heap pointer)
+  beyond the produced value - the unary-only `RAIIFree` convention (68 precedents) cannot express this.
+- UserEnv.h: `UnloadUserProfile(hToken, hProfile)` likewise requires a second argument (`hToken`)
+  beyond the produced `hProfile` value - same root limitation as dmemmgr.h, not a struct-nesting issue.
+- physicalmonitorenumerationapi.h: ownership lives on a struct FIELD nested inside an out-param array
+  element (`PHYSICAL_MONITOR::hPhysicalMonitor`), not a function parameter/return value - an untested
+  annotation surface with zero precedent, correctly not attempted without validation.
+- MSAJTransport.h (AllJoyn, per instructions left blocked on toolchain, evidence-only update):
+  corrected the ownership evidence to note that `AllJoynConnectToBus`/`AllJoynCreateBus`'s
+  return-value-HANDLE pattern IS representable (same class fixed for 6 other headers this batch) -
+  the sole remaining blocker is the pre-existing `__builtin_verbose_trap` toolchain failure, not
+  ownership semantics.
+- No `emitter.settings.rsp` changes in this sub-batch (evidence corrections only).
+- Ledger unchanged: 1367 accepted-normalized, 36 blocked, 0 pending (1403/1403 = 100% classified).
+
+**Tranche summary (batches 233.1-233.6): 39 emitter.settings.rsp entries added across 23 headers; 2
+headers (libloaderapi2.h, ddrawgdi.h) needed no code change (already covered by existing type-level
+`autoTypes.json` coverage); 5 headers corrected to a narrower, accurate blocker reason and left
+blocked (AdsProp.h, dmemmgr.h, UserEnv.h, physicalmonitorenumerationapi.h, MSAJTransport.h). Net: 25
+headers moved blocked -> accepted-normalized. esent.h/icu.h/icui18n.h untouched (different, larger
+blocker shape - out of scope for this mechanical-fix tranche). The 28 AllJoyn parser-limitation
+blockers untouched except MSAJTransport.h's ownership evidence.**
