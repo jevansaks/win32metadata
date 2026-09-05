@@ -1,19 +1,25 @@
-# Header Report: wab.h
+# wab.h
 
-## Partitions
-`Wab`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Scrape validation
-- Re-scraped `Wab` partition (`ScanArch=x86` default) after touching `main.cpp`.
-- Result: `Build succeeded. 0 Warning(s). 0 Error(s).` — 77 `DllImport` functions, 1387 auto-remaps, 24 fn-ptr excludes written.
+## Summary
+`FtgRegisterIdleRoutine` (declared in `wabutil.h`, pulled in by `wab.h`) returns
+an opaque `FTG` handle (`void*`) directly as the function return value,
+released via `DeregisterIdleRoutine(FTG)`.
 
-## Ownership audit (producer-site-only policy) — BLOCKED
+## Correction to prior investigation
+Same corrected mechanism as getprocesshandlefromhwnd.h - per-function
+`Function::return=[RAIIFree(...)]` is scoped to this function only.
 
-- `wab.h` is a redirect-only header pulling in `wabdefs.h`, `wabcode.h`, `wabtags.h`, `wabutil.h`, `wabiab.h`, `wabapi.h`, `wabmem.h`, `wabnot.h` (MAPI/WAB — Windows Address Book — API).
-- No `DECLARE_HANDLE` found in any of these sub-headers.
-- Almost all 77 functions are COM-interface-pointer producers (`_Outptr_ LPADRBOOK*` via `WABOpen`/`WABOpenEx`, `IMalloc*`, `IMAPITable*`, etc.) or pure data/struct-copy helpers (`ScCopyProps`, `PropCopyMore`, etc.) — consistent with the clean COM-interface pattern established throughout this session.
-- **One genuine exception:** `FtgRegisterIdleRoutine(PFNIDLE* lpfnIdle, LPVOID lpvIdleParam, ...)` returns an opaque `FTG` handle (`void*`) **directly as the C function return value** (not via out-param). This handle is later passed to `DeregisterIdleRoutine(FTG ftg)` (release), `EnableIdleRoutine(FTG ftg, BOOL fEnable)`, and `ChangeIdleRoutine(FTG ftg, ...)` (mutate) — a genuine, well-defined producer/consumer ownership relationship exists.
-- This is the **same class of blocker already recorded for `getprocesshandlefromhwnd.h`** in batch `scraping-investigation-14`: the annotation mechanism (both the legacy `autoTypes.json` type-level path and the newer inline producer-site path) has no precedent anywhere in this repository — or in the currently published baseline `Windows.Win32.winmd` (verified via `WinmdUtils.exe dump`, see `getprocesshandlefromhwnd.h.md` for the full investigation) — for annotating a bare function return-value handle's ownership. `FtgRegisterIdleRoutine`'s `FTG` return value cannot be fixed without the same dedicated policy decision.
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+FtgRegisterIdleRoutine::return=[RAIIFree("DeregisterIdleRoutine")]
+```
 
-## Conclusion
-`blocked` — genuine `FTG`-handle-producing function (`FtgRegisterIdleRoutine`, return value, not out-param), same unresolved return-value-handle-ownership class as `getprocesshandlefromhwnd.h`. All other 76 functions in this header are clean (COM-interface/data-only).
+## Validation
+ScrapeHeaders (Wab, x64): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

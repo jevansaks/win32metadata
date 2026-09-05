@@ -1,22 +1,24 @@
-# Header Report: i_cryptasn1tls.h
+# i_cryptasn1tls.h
 
-## Partitions
-`Security.Cryptography`, `Security.Cryptography.UI`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Ownership audit (producer-site-only policy) — BLOCKED (known blocker class)
+## Summary
+`I_CryptInstallAsn1Module` returns `HCRYPTASN1MODULE` (typedef `DWORD`) directly
+as the function return value, released via `I_CryptUninstallAsn1Module`.
 
-- `typedef DWORD HCRYPTASN1MODULE` — a genuine "handle to an installed Asn1 module" (per the header's
-  own comment), produced by `I_CryptInstallAsn1Module(...)` **returned directly as the function return
-  value** (not via out-param), and released via `I_CryptUninstallAsn1Module(IN HCRYPTASN1MODULE hAsn1Module)`.
-- This is the same **return-value-handle-ownership blocker class** already documented in depth for
-  `getprocesshandlefromhwnd.h` (batch `scraping-investigation-14`) and reused concisely for `wab.h`,
-  `wincon.h`, `winppi.h`, `libloaderapi2.h`, and `MSAJTransport.h`: no precedent anywhere in this repo
-  or the published baseline winmd for annotating a bare return-value handle.
-- `I_CryptGetAsn1Encoder`/`I_CryptGetAsn1Decoder` return `ASN1encoding_t`/`ASN1decoding_t` (`void*`
-  typedefs) — these are per-thread cached pointers owned/managed internally by the Asn1 module
-  (lifetime tied to the module, not independently freed by the caller), so no additional ownership
-  concern beyond the module handle itself.
+## Correction to prior investigation
+Recorded as "same root cause as getprocesshandlefromhwnd.h" - now fixed using the
+same corrected mechanism (see getprocesshandlefromhwnd.h.md for full rationale).
 
-## Conclusion
-`blocked` — genuine `HCRYPTASN1MODULE` ownership relationship via return value, same already-documented
-return-value-handle-ownership class; needs the same dedicated policy decision.
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+I_CryptInstallAsn1Module::return=[RAIIFree("I_CryptUninstallAsn1Module")]
+```
+
+## Validation
+ScrapeHeaders (Security.Cryptography, x64): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

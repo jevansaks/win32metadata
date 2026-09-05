@@ -3557,3 +3557,32 @@ Ledger: 1256 accepted-normalized, 31 blocked, 116 pending (1287/1403 classified)
 - 2 NEW blocked: icu.h, icui18n.h - 45+ opaque ICU struct-pointer types already in autoTypes.json without CloseApi. Systematic scan found single _close functions for ~30 types, but confirmed ownership ambiguity (UNormalizer2/UCollator returned by BOTH owned-instance constructors AND borrowed ICU-managed singleton accessors from the same typedef) means a blanket per-typedef CloseApi would be unsafe per the corrected producer-site policy. Also found UDateTimePatternGenerator entirely missing from autoTypes.json. Blocked with detailed evidence recommending a dedicated per-function follow-up investigation.
 - **FINAL LEDGER STATE: 1342 accepted-normalized, 61 blocked, 0 pending (1403/1403 = 100% classified).**
 - All 1403 headers in the authoritative queue have now been classified. The Ralph loop's primary classification objective is complete. Remaining work (if any) would be: (1) the dedicated ICU per-function ownership follow-up noted above, (2) periodic re-audit of blocked items if new tooling/evidence becomes available (e.g. by-pointer-close handles, AllJoyn toolchain fix), (3) downstream windows-rs consumer validation.
+
+## Batch 233 (6ed23029 -> next) - actionable-blocker re-audit tranche
+Re-audited the 33 non-AllJoyn blocked headers (61 blocked - 28 AllJoyn parser-limitation) for two
+mistaken blocker classes: "no precedent exists for annotating a return-value HANDLE" and "a generic
+HANDLE/PVOID out-param cannot be annotated without a distinct handle typedef". Both claims are false -
+the `emitter.settings.rsp` `--memberRemap` mechanism (`Function::return=[RAIIFree(...)]` /
+`Function::Parameter=[RAIIFree(...)]`) is scoped to the named function/parameter only, not to the
+underlying type globally, and already has 68 existing precedents shipped in the winmd (e.g.
+`WTSOpenServerA::return`, `FaxConnectFaxServerA::FaxHandle`, `QOSCreateHandle::QOSHandle`,
+`CreatePrinterIC::return`). Working through the full tranche across several sub-batches below.
+
+Full `EmitWinmd` could not be run to completion locally in this environment: besides the known
+AllJoyn/WinRT.AllJoyn `__builtin_verbose_trap` toolchain failure, a second pre-existing, unrelated
+limitation was found - `EmitWinmd` validates every `autoTypes.json` entry globally against the scraped
+`.cs` output, and several entries (e.g. `CLFS_MGMT_CLIENT`/`HIORING`, NTSTATUS-returning APIs) are only
+resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local `ScanArch` invocation.
+Both limitations are pre-existing and unrelated to this change. Per-partition `ScrapeHeaders` succeeded
+(0 errors) for every affected partition in every sub-batch below (no header/`main.cpp` content was
+changed); the `emitter.settings.rsp` syntax added matches the 68 existing, already-shipped precedents
+exactly.
+
+### Sub-batch 233.1 - return-value-HANDLE class, previously claimed "no precedent"
+- getprocesshandlefromhwnd.h: `GetProcessHandleFromHwnd::return=[RAIIFree("CloseHandle")]`.
+- i_cryptasn1tls.h: `I_CryptInstallAsn1Module::return=[RAIIFree("I_CryptUninstallAsn1Module")]`.
+- libloaderapi2.h: no code change - `LoadPackagedLibrary` returns `HMODULE`, already covered by the
+  existing type-level `CloseApi=FreeLibrary` in `autoTypes.json`; the prior investigation missed this.
+- wab.h: `FtgRegisterIdleRoutine::return=[RAIIFree("DeregisterIdleRoutine")]`.
+- wct.h: `OpenThreadWaitChainSession::return=[RAIIFree("CloseThreadWaitChainSession")]`.
+- Ledger: 1347 accepted-normalized, 56 blocked, 0 pending (1403/1403 = 100% classified).

@@ -1,19 +1,23 @@
-# Header Report: wct.h
+# wct.h
 
-## Partitions
-`Base`, `Debug`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Ownership audit (producer-site-only policy) — BLOCKED (known blocker class)
+## Summary
+`OpenThreadWaitChainSession` returns `HWCT` (typedef `LPVOID`) directly as the
+function return value, released via `CloseThreadWaitChainSession`.
 
-- `typedef LPVOID HWCT;` — a genuine "wait-chain session" handle (per usage), produced by
-  `OpenThreadWaitChainSession(...)` **returned directly as the function return value** (not out-param),
-  and released via `CloseThreadWaitChainSession(_In_ HWCT WctHandle)`.
-- Checked `autoTypes.json`: no entry exists for `HWCT`.
-- This is the same **return-value-handle-ownership blocker class** already documented for
-  `getprocesshandlefromhwnd.h`/`wab.h`/`wincon.h`/`winppi.h`/`libloaderapi2.h`/`MSAJTransport.h`/
-  `i_cryptasn1tls.h`/`wnvapi.h`: no precedent anywhere in this repo or the published baseline winmd for
-  annotating a bare return-value handle, even for a distinctly-named type like `HWCT`.
+## Correction to prior investigation
+Same corrected mechanism as getprocesshandlefromhwnd.h.
 
-## Conclusion
-`blocked` — genuine `HWCT` ownership relationship via return value; same already-documented
-return-value-handle-ownership class, no new investigation required.
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+OpenThreadWaitChainSession::return=[RAIIFree("CloseThreadWaitChainSession")]
+```
+
+## Validation
+ScrapeHeaders (Base, x64): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

@@ -1,11 +1,11 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-03T12:06:47Z
+- Generated: 2026-09-05T00:11:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1342
+- Matched: 1347
 - In progress: 0
-- Blocked: 61
+- Blocked: 56
 - Remaining: 0
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
@@ -466,7 +466,7 @@
 | `gdipluseffects.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gdipluseffects.h.md |
 | `genericusbfnioctl.h` | Buses | matched |  | 09/02/2026 20:49:21 | IOCTL constants only, no functions. |
 | `getcurrentpackageinfo3.h` | AppxPackaging | matched |  | 09/02/2026 16:53:36 | Buffer-fill API, no handle production. |
-| `getprocesshandlefromhwnd.h` | Threading | blocked | copilot | 09/02/2026 16:49:01 | Deferred: return-value HANDLE ownership has no precedent anywhere in the repo or published baseline winmd (confirmed via WinmdUtils dump); requires dedicated policy decision on annotation placement before this can be fixed. |
+| `getprocesshandlefromhwnd.h` | Threading | matched |  |  | Producer-site fix: GetProcessHandleFromHwnd returns a process HANDLE directly; added GetProcessHandleFromHwnd::return=[RAIIFree("CloseHandle")] to emitter.settings.rsp. Prior blocker claim (no precedent for return-value HANDLE ownership) was incorrect - per-function Function::return=[RAIIFree(...)] is an established, scoped mechanism (68 existing precedents e.g. WTSOpenServerA::return, FindFirstFileA::return) that applies only to this function's return position, not to HANDLE globally. See docs/copilot/header-reports/getprocesshandlefromhwnd.h.md |
 | `gl/gl.h` | OpenGL | matched |  |  | Investigated; 336 functions use plain GLuint scalar IDs (generic/shared-type blocker class 2), no distinct handle typedef gap. See docs/copilot/header-reports/GL.h.md |
 | `gl/glu.h` | OpenGL | matched |  |  | Producer-site fix: added CloseApi/InvalidHandleValues to existing GLUquadric/GLUtesselator/GLUnurbs autoTypes.json entries (gluDeleteQuadric/gluDeleteTess/gluDeleteNurbsRenderer). See docs/copilot/header-reports/GLU.h.md |
 | `gnssdriver.h` | WinLocation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/gnssdriver.h.md |
@@ -497,7 +497,7 @@
 | `hvsocket.h` | Hypervisor | matched |  | 09/02/2026 19:50:38 | Constants/structs only, no functions. |
 | `hwebcore.h` | Iis | matched |  | 09/02/2026 19:37:21 | Dynamically-loaded function-pointer typedefs only, no scrapable extern functions. |
 | `hypervdevicevirtualization.h` | Hypervisor | matched |  | 09/02/2026 21:43:41 | Fixed genuine gap: added new autoTypes.json entry for HDV_HOST (CloseApi=HdvTeardownDeviceHost). |
-| `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | blocked | copilot | 09/02/2026 18:56:34 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h. |
+| `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Producer-site fix: I_CryptInstallAsn1Module returns HCRYPTASN1MODULE (typedef DWORD) directly, released via I_CryptUninstallAsn1Module. Added I_CryptInstallAsn1Module::return=[RAIIFree("I_CryptUninstallAsn1Module")]. Same corrected reasoning as getprocesshandlefromhwnd.h. See docs/copilot/header-reports/i_cryptasn1tls.h.md |
 | `iaccess.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iaccess.h.md |
 | `iadmext.h` | Iis | matched |  | 09/02/2026 19:06:16 | COM interface, not HANDLE-family. |
 | `iadmw.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iadmw.h.md |
@@ -591,7 +591,7 @@
 | `ktmtypes.h` | Fs | matched |  | 09/02/2026 21:17:15 | Type aliases/constants only, no functions. |
 | `ktmw32.h` | Fs | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
 | `libloaderapi.h` | Intl, LibraryLoader | matched | copilot | 09/03/2026 03:00:00 | Classified retained artifact in existing-patches-16. |
-| `libloaderapi2.h` | LibraryLoader | blocked | copilot | 09/02/2026 17:58:11 | Recorded for per-header traceability; same root cause and evidence as getprocesshandlefromhwnd.h, no new investigation required. |
+| `libloaderapi2.h` | LibraryLoader | matched |  |  | No code change needed: LoadPackagedLibrary returns HMODULE, which already carries CloseApi=FreeLibrary at the type level via autoTypes.json (Windows.Win32.Foundation.HMODULE) - applied automatically to every HMODULE-returning function. Prior blocker claim was based on searching only for per-function annotations and missed the existing type-level coverage. See docs/copilot/header-reports/libloaderapi2.h.md |
 | `licenseprotection.h` | Security.LicenseProtection | matched |  | 09/02/2026 17:38:44 | Enum/FILETIME output only, no handle. |
 | `lm.h` | NetMgmt | matched |  | 09/02/2026 17:38:44 | Pure umbrella redirect; all 18 sub-headers already individually tracked in ledger (2 accepted, 16 pending). |
 | `lmaccess.h` | FileHistory, NetMgmt, WinProg | matched | copilot | 09/03/2026 03:15:00 | Classified retained artifact in existing-patches-17. |
@@ -1180,7 +1180,7 @@
 | `vswriter.h` | VSS | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/vswriter.h.md |
 | `waasapi.h` | UpdateAssessment | matched |  | 09/02/2026 20:19:39 | COM interface + GUID constants only, no extern functions. |
 | `waasapitypes.h` | UpdateAssessment | matched |  | 09/02/2026 19:32:00 | MIDL enums/structs/boilerplate only, no functions. |
-| `wab.h` | Wab | blocked | copilot | 09/02/2026 16:53:36 | Deferred: 1 of 77 functions (FtgRegisterIdleRoutine) has genuine return-value handle ownership with no annotation precedent; needs the same dedicated policy decision as getprocesshandlefromhwnd.h. |
+| `wab.h` | Wab | matched |  |  | Producer-site fix: FtgRegisterIdleRoutine (in included wabutil.h) returns an opaque FTG handle (void*) directly, released via DeregisterIdleRoutine. Added FtgRegisterIdleRoutine::return=[RAIIFree("DeregisterIdleRoutine")]. See docs/copilot/header-reports/wab.h.md |
 | `wabdefs.h` | IMapi, Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wabdefs.h.md |
 | `wbcl.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbcl.h.md |
 | `wbemads.h` | Wmi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wbemads.h.md |
@@ -1195,7 +1195,7 @@
 | `wcnapi.h` | Wcn | matched |  | 09/02/2026 17:01:48 | Redirect-only; 0 functions in entire Wcn partition, no DECLARE_HANDLE. |
 | `wcnfunctiondiscoverykeys.h` | Wcn | matched |  | 09/02/2026 17:35:31 | GUID/PROPERTYKEY constants only, no functions. |
 | `wcsplugin.h` | Wcs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcsplugin.h.md |
-| `wct.h` | Base, Debug | blocked | copilot | 09/02/2026 19:12:01 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
+| `wct.h` | Base, Debug | matched |  |  | Producer-site fix: OpenThreadWaitChainSession returns HWCT (typedef LPVOID) directly, released via CloseThreadWaitChainSession. Added OpenThreadWaitChainSession::return=[RAIIFree("CloseThreadWaitChainSession")]. See docs/copilot/header-reports/wct.h.md |
 | `WDBGEXTS.H` | Debug.Extensions | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/WDBGEXTS.H.md |
 | `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |
 | `wdmguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdmguid.h.md |

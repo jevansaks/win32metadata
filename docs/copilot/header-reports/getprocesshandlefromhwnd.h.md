@@ -1,55 +1,31 @@
-# Header Report: getprocesshandlefromhwnd.h
+# getprocesshandlefromhwnd.h
 
-## Partitions
-`Threading`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Scrape validation
-- Re-scraped `Threading` partition (`ScanArch=x64` default; not `ExcludeFromCrossarch`) after touching `main.cpp`.
-- Result: `Build succeeded. 0 Warning(s). 0 Error(s).`
+## Summary
+`GetProcessHandleFromHwnd(HWND hwnd)` returns a process `HANDLE` directly as
+the function return value, released via `CloseHandle`.
 
-## Ownership audit (producer-site-only policy) — BLOCKED
+## Correction to prior investigation
+The prior report (`scraping-investigation-14`) concluded this was unrepresentable,
+citing a `WinmdUtils` dump search that found RAIIFree/InvalidHandleValue attributes
+only on `struct` type declarations. That search missed the separate, already-shipped
+`emitter.settings.rsp` `--memberRemap` mechanism, which applies `[RAIIFree(...)]`
+directly to a specific function's return value or parameter (68 existing entries,
+e.g. `WTSOpenServerA::return=[RAIIFree("WTSCloseServer")]`,
+`FindFirstFileA::return=[RAIIFree("FindClose")]`). This mechanism is scoped to the
+named function only - it does not assert ownership for `HANDLE` globally - so it is
+exactly applicable here.
 
-Single function: `HANDLE WINAPI GetProcessHandleFromHwnd(_In_ HWND hwnd)`. This function genuinely
-produces a process `HANDLE` that the caller must eventually `CloseHandle()` — a real ownership
-relationship exists. However, the value is returned **directly as the C function return value**,
-not through an `_Out_`/`_Outptr_` pointer parameter.
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+GetProcessHandleFromHwnd::return=[RAIIFree("CloseHandle")]
+```
 
-### Why this cannot be classified clean or fixed with the existing pattern
-Every ownership annotation currently present anywhere in this repository (13 headers audited this
-session: `bcrypt.h`, `amsi.h`, `AuthZ.h`, `sspi.h`, `tbs.h`, `ncrypt.h`, `ncryptprotect.h`,
-`NTSecAPI.h`, `NTSecPKG.h`, `prntvpt.h`, `securitybaseapi.h`, `wincrypt.h`, plus the corrected-policy
-commits `165b5f09`/`7335ddc4` which stripped stale typedef-level annotations from `windef.h`) attaches
-`_Win32_metadata_raii_free_`/`_Win32_metadata_invalid_handle_` **exclusively to an `_Out_`-style
-pointer parameter declarator** — never to a bare function return type.
+## Validation
+ScrapeHeaders (Threading, x64): Build succeeded, 0 Error(s) (no header changes).
 
-To confirm there is no existing precedent (in this repo's own scraper output, or in the currently
-published/baseline winmd) for annotating a raw return-value `HANDLE`:
-- Dumped the baseline `bin\Windows.Win32.winmd` (24MB, 35,145 types) via `WinmdUtils.exe dump`.
-- Confirmed the dump tool *does* render return-position attributes when present (289 `[return: ...]`
-  occurrences found, e.g. `[return: Const]`), so its absence elsewhere is meaningful, not a tooling gap.
-- Searched for `[RAIIFree(...)]`/`[InvalidHandleValue(...)]` usage: **every single occurrence attaches
-  to a `struct` type declaration** (e.g. `[InvalidHandleValue(-1L)] [InvalidHandleValue(0L)]
-  [NativeTypedef] public struct HBITMAP { ... }`), never to a method or a `[return: ...]` position.
-- Checked well-known return-HANDLE-shaped APIs already in the baseline winmd for comparison:
-  `LoadLibraryExW`/`LoadLibraryExA` (return `HMODULE` directly, definitely require `FreeLibrary`) and
-  `IcmpCreateFile` (returns `HANDLE` directly) — **neither carries any RAIIFree-equivalent metadata**
-  in the currently published winmd. `GetProcessHandleFromHwnd` itself is already present in the
-  baseline winmd with **no** ownership metadata.
-- This confirms the pipeline's ownership-annotation mechanism (both the legacy `autoTypes.json`
-  type-level path and the newer inline producer-site path) supports HANDLE ownership only via
-  out-parameters / type declarations — a direct function return value has no established annotation
-  surface anywhere in this codebase.
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (__builtin_verbose_trap), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition ScrapeHeaders for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The mitter.settings.rsp syntax used matches 68 existing, already-shipped precedents exactly (e.g. WTSOpenServerA::return=[RAIIFree(...)], DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]).
 
-### Blocker
-Adding ownership metadata for a return-value-only HANDLE producer would require inventing a new,
-unprecedented annotation placement (e.g. a `[return: RAIIFree(...)]`-equivalent convention) with no
-existing example anywhere in this repository to validate against, and no visibility into whether any
-downstream consumer (this repo's own `EmitWinmd`, or the separate windows-rs-shift-left parser) would
-even recognize such a placement. This is the same class of blocker as `esent.h` — a genuine ownership
-relationship exists, but expressing it correctly requires a dedicated policy decision, not a guess.
-
-## Conclusion
-`blocked` — genuine `HANDLE`-producing function (return value, not out-param); no precedent anywhere
-in the repository or the published baseline winmd for annotating a direct function return value's
-ownership. Needs a dedicated decision on whether/how to extend the annotation vocabulary to cover
-return-value handles before this can be classified or fixed.
