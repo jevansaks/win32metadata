@@ -1,11 +1,11 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-05T00:13:10Z
+- Generated: 2026-09-05T00:14:26Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1352
+- Matched: 1357
 - In progress: 0
-- Blocked: 51
+- Blocked: 46
 - Remaining: 0
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
@@ -96,7 +96,7 @@
 | `avifmt.h` | Media.DShow | matched |  | 09/02/2026 21:55:32 | Constants/structs only, no functions. |
 | `aviriff.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aviriff.h.md |
 | `avrfsdk.h` | ApplicationVerifier, FileHistory | matched |  | 09/02/2026 19:02:46 | HANDLE is a caller-supplied input; diagnostic handle fields are plain ULONG64. |
-| `avrt.h` | Threading | blocked |  | 09/02/2026 19:32:00 | Return-value HANDLE (AvSetMmThreadCharacteristics*) + generic PHANDLE direct out-param (AvRtCreateThreadOrderingGroup*). |
+| `avrt.h` | Threading | matched |  |  | Producer-site fix: AvSetMmThreadCharacteristics(A/W)/AvSetMmMaxThreadCharacteristics(A/W) return a HANDLE released via AvRevertMmThreadCharacteristics; AvRtCreateThreadOrderingGroup(ExA/ExW) produce a HANDLE via out-param Context released via AvRtDeleteThreadOrderingGroup; AvRtJoinThreadOrderingGroup produces Context released via AvRtLeaveThreadOrderingGroup. Added 8 emitter.settings.rsp entries. See docs/copilot/header-reports/avrt.h.md |
 | `azroles.h` | Authorization, Authorization.UI | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/azroles.h.md |
 | `batclass.h` | Power | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/batclass.h.md |
 | `bcp47mrm.h` | Intl | matched |  | 09/02/2026 16:53:36 | No handle-producing functions. |
@@ -250,14 +250,14 @@
 | `d3dshadercacheregistration.h` | Direct3D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dshadercacheregistration.h.md |
 | `d3dtypes.h` | Direct3D9 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dtypes.h.md |
 | `datetimeapi.h` | Intl | matched |  | 09/02/2026 19:19:02 | String/buffer formatting API only, no handle. |
-| `davclnt.h` | WebDav | blocked |  | 09/02/2026 19:54:02 | DavAddConnection generic HANDLE out-param; DavRegisterAuthCallback returns generic DWORD-typed OPAQUE_HANDLE via return value. |
+| `davclnt.h` | WebDav | matched |  |  | Producer-site fix: DavAddConnection populates HANDLE *ConnectionHandle released via DavDeleteConnection; DavRegisterAuthCallback returns OPAQUE_HANDLE (DWORD) released via DavUnregisterAuthCallback. Added DavAddConnection::ConnectionHandle and DavRegisterAuthCallback::return =[RAIIFree(...)]. See docs/copilot/header-reports/davclnt.h.md |
 | `DbgEng.h` | Debug.Extensions | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DbgEng.h.md |
 | `dbghelp.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbghelp.h.md |
 | `DbgModel.h` | Debug.Extensions | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DbgModel.h.md |
 | `dbgprop.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbgprop.h.md |
 | `dbt.h` | MenuRc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbt.h.md |
 | `dciddi.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dciddi.h.md |
-| `dciman.h` | FileHistory, WinProg | blocked |  | 09/02/2026 20:07:23 | DCIOpenProvider/DCICloseProvider generic HDC return-value remains a gap; HWINWATCH gap fixed via autoTypes.json CloseApi addition. |
+| `dciman.h` | FileHistory, WinProg | matched |  |  | Producer-site fix: DCIOpenProvider returns HDC released via DCICloseProvider. Added DCIOpenProvider::return=[RAIIFree("DCICloseProvider")]. (HWINWATCH portion already fixed in a prior batch via autoTypes.json.) See docs/copilot/header-reports/dciman.h.md |
 | `dcommon.h` | Direct2D, Direct2D.Common, DirectWrite | matched |  | 09/02/2026 22:06:03 | Enums/forward declaration only, no functions. |
 | `dcomp.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcompanimation.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
@@ -270,7 +270,7 @@
 | `ddpcommon.h` | Dedup | matched |  | 09/02/2026 19:16:41 | Enums/data structs + MIDL boilerplate only, no functions. |
 | `ddpdataport.h` | Dedup | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddpdataport.h.md |
 | `ddraw.h` | DirectDraw, Gdiplus, Media.DShow | matched |  | 09/02/2026 16:34:06 | HMONITOR reference is a pass-through system handle (never created/released by DirectDraw); guarded DECLARE_HANDLE fallback never fires. |
-| `ddrawgdi.h` | FileHistory, WinProg | blocked |  | 09/02/2026 19:45:17 | DdGetDxHandle/DdCreateDIBSection return generic HANDLE/HBITMAP via return value. |
+| `ddrawgdi.h` | FileHistory, WinProg | matched |  |  | Corrected evidence, no code change needed: DdCreateDIBSection returns HBITMAP, which already carries CloseApi=DeleteObject at the type level via autoTypes.json - automatically covers this function. DdGetDxHandle is self-releasing (same function called again with bRelease=TRUE); it has no separate consumer function, so it is not an ownership gap requiring annotation. Prior blocker claim incorrectly treated both as unaddressed HANDLE/HBITMAP return-value gaps. See docs/copilot/header-reports/ddrawgdi.h.md |
 | `ddrawi.h` | DirectDraw, FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddrawi.h.md |
 | `ddrawint.h` | DirectDraw | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddrawint.h.md |
 | `ddstream.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ddstream.h.md |
@@ -921,7 +921,7 @@
 | `raseapif.h` | Eap | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raseapif.h.md |
 | `raserror.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raserror.h.md |
 | `rasshost.h` | RRas | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
-| `ratings.h` | InternetExplorer | blocked | copilot | 09/02/2026 19:09:17 | Deferred: direct out-param instance of the generic/shared-type blocker class. |
+| `ratings.h` | InternetExplorer | matched |  |  | Producer-site fix: RatingObtainQuery(W) produce a generic HANDLE via direct out-param (_Out_opt_ HANDLE *phRatingObtainQuery), consumed by RatingObtainCancel. Added RatingObtainQuery::phRatingObtainQuery and RatingObtainQueryW::phRatingObtainQuery =[RAIIFree("RatingObtainCancel")]. See docs/copilot/header-reports/ratings.h.md |
 | `rdpappcontainerclient.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rdpappcontainerclient.h.md |
 | `rdpencomapi.h` | Rdp, TermServ | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `realtimeapiset.h` | Base | matched |  | 09/02/2026 18:59:13 | HANDLE is a caller-supplied input, not produced here. |

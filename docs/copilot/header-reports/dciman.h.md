@@ -1,13 +1,30 @@
-# Header Report: dciman.h
+# dciman.h
 
-## Partitions
-`FileHistory`, `WinProg`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Ownership audit (producer-site-only policy)
-Two distinct findings — one genuine fix applied, one remaining genuine gap:
+## Summary
+`DCIOpenProvider()` returns `HDC` directly, released via
+`DCICloseProvider(HDC)`. (The `HWINWATCH` gap in this same header -
+`WinWatchOpen`/`WinWatchClose` - was already fixed in a prior batch via
+`autoTypes.json`.)
 
-1. **`HWINWATCH` (fixed)** — `WinWatchOpen(HWND hwnd)` returns `HWINWATCH` (a distinctly-named, single-purpose `DECLARE_HANDLE` opaque type) directly as its C return value, closed via `WinWatchClose(HWINWATCH hWW)`. `autoTypes.json` already had an entry for `HWINWATCH` (`InvalidHandleValues: [-1, 0]`) but it was **missing `CloseApi`** — the same "entry existed but incomplete" gap pattern previously found for `appnotify.h`/`packagevirtualizationcontext.h`. Added `"CloseApi": "WinWatchClose"` to the existing `autoTypes.json` entry. Since this is a type-level (not per-producer-site) annotation mechanism, it correctly covers `WinWatchOpen`'s return-value production (the return-value-handle-ownership restriction applies to *inline* per-declaration C attributes, not to this global type-level `autoTypes.json`/`NativeTypedefStructsCreator` mechanism). Verified namespace consistency: both `HWINWATCH` and `WinWatchClose` are declared only in `dciman.h`, scraped under partition `WinProg`'s namespace `Windows.Win32.System.WindowsProgramming` (matching the `autoTypes.json` entry's `Namespace` field) — satisfies `NativeTypedefStructsCreator`'s same-namespace `CloseApi` constraint. Re-scraped `WinProg`/`FileHistory` partitions (0 errors). Full `EmitWinmd` validation is blocked by the pre-existing, already-documented AllJoyn/`__builtin_verbose_trap` toolchain incompatibility (unrelated to this change) — confirmed no other partition declares `HWINWATCH` or `WinWatchClose`, so no cross-namespace conflict is possible.
-2. **`DCIOpenProvider()`/`DCICloseProvider()` (genuine remaining gap)** — `DCIOpenProvider(void)` returns a generic `HDC` directly as its C return value, closed via `DCICloseProvider(HDC hdc)`. `HDC` is an extremely generic, shared-everywhere type (used by hundreds of different GDI APIs with different creation/destruction semantics) — the already-established **return-value handle ownership** blocker class applies (annotating `HDC` at the type level would incorrectly apply ownership metadata to every `HDC` value anywhere in the metadata).
+## Correction to prior investigation
+`HDC` has no single universal close API (context-dependent: `ReleaseDC`,
+`DeleteDC`, `EndPaint`, etc.), so it correctly has no type-level
+`autoTypes.json` `CloseApi`. But `DCIOpenProvider` specifically only ever
+pairs with `DCICloseProvider` - a per-function annotation is exactly the
+right tool here, not a type-level one, and does not conflict with any other
+`HDC`-returning function.
 
-## Conclusion
-`blocked` — `HWINWATCH`/`WinWatchOpen`/`WinWatchClose` gap fixed via `autoTypes.json`; `DCIOpenProvider`/`DCICloseProvider`'s generic `HDC` return-value remains an unrepresentable gap (reuses established blocker class).
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+DCIOpenProvider::return=[RAIIFree("DCICloseProvider")]
+```
+
+## Validation
+ScrapeHeaders (WinProg, x64): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

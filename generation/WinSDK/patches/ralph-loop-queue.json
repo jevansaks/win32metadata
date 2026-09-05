@@ -776,10 +776,10 @@
   {
     "header": "avrt.h",
     "partition": "Threading",
-    "status": "blocked",
+    "status": "matched",
     "owner": "",
-    "last_updated": "2026-09-02T19:32:00Z",
-    "notes": "Return-value HANDLE (AvSetMmThreadCharacteristics*) + generic PHANDLE direct out-param (AvRtCreateThreadOrderingGroup*).",
+    "last_updated": "",
+    "notes": "Producer-site fix: AvSetMmThreadCharacteristics(A/W)/AvSetMmMaxThreadCharacteristics(A/W) return a HANDLE released via AvRevertMmThreadCharacteristics; AvRtCreateThreadOrderingGroup(ExA/ExW) produce a HANDLE via out-param Context released via AvRtDeleteThreadOrderingGroup; AvRtJoinThreadOrderingGroup produces Context released via AvRtLeaveThreadOrderingGroup. Added 8 emitter.settings.rsp entries. See docs/copilot/header-reports/avrt.h.md",
     "_source": "header-progress"
   },
   {
@@ -2162,10 +2162,10 @@
   {
     "header": "davclnt.h",
     "partition": "WebDav",
-    "status": "blocked",
+    "status": "matched",
     "owner": "",
-    "last_updated": "2026-09-02T19:54:02Z",
-    "notes": "DavAddConnection generic HANDLE out-param; DavRegisterAuthCallback returns generic DWORD-typed OPAQUE_HANDLE via return value.",
+    "last_updated": "",
+    "notes": "Producer-site fix: DavAddConnection populates HANDLE *ConnectionHandle released via DavDeleteConnection; DavRegisterAuthCallback returns OPAQUE_HANDLE (DWORD) released via DavUnregisterAuthCallback. Added DavAddConnection::ConnectionHandle and DavRegisterAuthCallback::return =[RAIIFree(...)]. See docs/copilot/header-reports/davclnt.h.md",
     "_source": "header-progress"
   },
   {
@@ -2225,10 +2225,10 @@
   {
     "header": "dciman.h",
     "partition": "FileHistory, WinProg",
-    "status": "blocked",
+    "status": "matched",
     "owner": "",
-    "last_updated": "2026-09-02T20:07:23Z",
-    "notes": "DCIOpenProvider/DCICloseProvider generic HDC return-value remains a gap; HWINWATCH gap fixed via autoTypes.json CloseApi addition.",
+    "last_updated": "",
+    "notes": "Producer-site fix: DCIOpenProvider returns HDC released via DCICloseProvider. Added DCIOpenProvider::return=[RAIIFree(\"DCICloseProvider\")]. (HWINWATCH portion already fixed in a prior batch via autoTypes.json.) See docs/copilot/header-reports/dciman.h.md",
     "_source": "header-progress"
   },
   {
@@ -2342,10 +2342,10 @@
   {
     "header": "ddrawgdi.h",
     "partition": "FileHistory, WinProg",
-    "status": "blocked",
+    "status": "matched",
     "owner": "",
-    "last_updated": "2026-09-02T19:45:17Z",
-    "notes": "DdGetDxHandle/DdCreateDIBSection return generic HANDLE/HBITMAP via return value.",
+    "last_updated": "",
+    "notes": "Corrected evidence, no code change needed: DdCreateDIBSection returns HBITMAP, which already carries CloseApi=DeleteObject at the type level via autoTypes.json - automatically covers this function. DdGetDxHandle is self-releasing (same function called again with bRelease=TRUE); it has no separate consumer function, so it is not an ownership gap requiring annotation. Prior blocker claim incorrectly treated both as unaddressed HANDLE/HBITMAP return-value gaps. See docs/copilot/header-reports/ddrawgdi.h.md",
     "_source": "header-progress"
   },
   {
@@ -8201,10 +8201,10 @@
   {
     "header": "ratings.h",
     "partition": "InternetExplorer",
-    "status": "blocked",
-    "owner": "copilot",
-    "last_updated": "2026-09-02T19:09:17Z",
-    "notes": "Deferred: direct out-param instance of the generic/shared-type blocker class.",
+    "status": "matched",
+    "owner": "",
+    "last_updated": "",
+    "notes": "Producer-site fix: RatingObtainQuery(W) produce a generic HANDLE via direct out-param (_Out_opt_ HANDLE *phRatingObtainQuery), consumed by RatingObtainCancel. Added RatingObtainQuery::phRatingObtainQuery and RatingObtainQueryW::phRatingObtainQuery =[RAIIFree(\"RatingObtainCancel\")]. See docs/copilot/header-reports/ratings.h.md",
     "_source": "header-progress"
   },
   {

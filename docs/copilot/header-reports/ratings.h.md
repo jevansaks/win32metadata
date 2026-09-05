@@ -1,13 +1,27 @@
-# Header Report: ratings.h
+# ratings.h
 
-## Partitions
-`InternetExplorer`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Ownership audit (producer-site-only policy) — BLOCKED (known blocker class)
+## Summary
+`RatingObtainQuery`/`RatingObtainQueryW` produce a generic `HANDLE` via a
+direct out-param (`_Out_opt_ HANDLE *phRatingObtainQuery`), consumed by
+`RatingObtainCancel(HANDLE)`.
 
-- `RatingObtainQuery(..., _Out_opt_ HANDLE *phRatingObtainQuery)`/`RatingObtainQueryW(...)` **produce** a generic `HANDLE` via a direct out-parameter, consumed/cancelled by `RatingObtainCancel(HANDLE hRatingObtainQuery)`.
-- The type is the plain, generic system `HANDLE` (not distinctly named) — same generic/shared-type blocker class already documented for `resourceindexer.h`/`physicalmonitorenumerationapi.h`/`userenv.h`/`wslapi.h` (direct out-param variant, like `wslapi.h`).
-- `RatingCheckUserAccess(W)`/`RatingAccessDeniedDialog(2)(W)`/`RatingFreeDetails` allocate/free a generic untyped `void*` ("RatingDetails") — out of scope for the same reason as `resourceindexer.h`'s `PVOID`.
+## Correction to prior investigation
+Prior report treated this as the same unrepresentable "generic/shared-type"
+blocker class as resourceindexer.h/wslapi.h. Both of those are now fixed;
+same corrected reasoning applies here.
 
-## Conclusion
-`blocked` — genuine `HANDLE` ownership relationship (`RatingObtainQuery(W)` → `RatingObtainCancel`) via a direct out-parameter, but the generic `HANDLE` type precludes producer-site annotation; same root blocker class as `wslapi.h`.
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+RatingObtainQuery::phRatingObtainQuery=[RAIIFree("RatingObtainCancel")]
+RatingObtainQueryW::phRatingObtainQuery=[RAIIFree("RatingObtainCancel")]
+```
+
+## Validation
+ScrapeHeaders (InternetExplorer, x86): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

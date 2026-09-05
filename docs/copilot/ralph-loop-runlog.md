@@ -3597,3 +3597,24 @@ exactly.
 - resourceindexer.h: `CreateResourceIndexer::ppResourceIndexer=[RAIIFree("DestroyResourceIndexer")]`.
 - wslapi.h: `WslLaunch::process=[RAIIFree("CloseHandle")]`.
 - Ledger: 1352 accepted-normalized, 51 blocked, 0 pending (1403/1403 = 100% classified).
+
+### Sub-batch 233.3 - generic out-param HANDLE class + one no-genuine-gap correction
+- ratings.h: `RatingObtainQuery(W)::phRatingObtainQuery=[RAIIFree("RatingObtainCancel")]` (both A/W).
+- avrt.h (8 entries): `AvSetMmThreadCharacteristicsA/W` and
+  `AvSetMmMaxThreadCharacteristicsA/W` return-value HANDLE ->
+  `AvRevertMmThreadCharacteristics`; `AvRtCreateThreadOrderingGroup`/`ExA`/`ExW`
+  out-param `Context` -> `AvRtDeleteThreadOrderingGroup`; `AvRtJoinThreadOrderingGroup`
+  out-param `Context` -> `AvRtLeaveThreadOrderingGroup` (a distinct
+  join/leave lifecycle pair from create/delete, same param name).
+- davclnt.h: `DavAddConnection::ConnectionHandle=[RAIIFree("DavDeleteConnection")]`,
+  `DavRegisterAuthCallback::return=[RAIIFree("DavUnregisterAuthCallback")]`
+  (`OPAQUE_HANDLE` is a `DWORD` alias - RAIIFree does not require a
+  pointer-shaped type).
+- dciman.h: `DCIOpenProvider::return=[RAIIFree("DCICloseProvider")]`
+  (`HWINWATCH` portion already fixed in a prior batch via `autoTypes.json`).
+- ddrawgdi.h: no code change - `DdCreateDIBSection` returns `HBITMAP`,
+  already covered by the existing type-level `CloseApi=DeleteObject` in
+  `autoTypes.json`; `DdGetDxHandle` is self-releasing via its `bRelease` flag
+  parameter with no separate consumer function, so it is not an ownership
+  gap at all. Prior blocker claim treated both as unaddressed gaps.
+- Ledger: 1357 accepted-normalized, 46 blocked, 0 pending (1403/1403 = 100% classified).

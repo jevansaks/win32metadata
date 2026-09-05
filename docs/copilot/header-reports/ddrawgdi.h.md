@@ -1,12 +1,29 @@
-# Header Report: ddrawgdi.h
+# ddrawgdi.h
 
-## Partitions
-`FileHistory`, `WinProg`
+**Classification:** accepted-normalized (no code change needed - not a genuine gap)
 
-## Ownership audit (producer-site-only policy)
-- Legacy, private GDI/DirectDraw kernel-mode interop entry points (renamed via `#define` to `GdiEntry1..17` when `NODDRAWGDI` is not defined).
-- `DdGetDxHandle` returns a generic `HANDLE` directly as its C return value — the already-established **return-value handle ownership** blocker class (`getprocesshandlefromhwnd.h`).
-- `DdCreateDIBSection` returns `HBITMAP` directly as its C return value — same return-value-handle class (GDI object handles follow the same "no bare return-value handle annotation anywhere in baseline metadata" rule).
+## Summary
+Re-audit found neither producer previously listed is actually an
+unaddressed ownership gap:
+- `DdCreateDIBSection` returns `HBITMAP`, which already carries
+  `CloseApi=DeleteObject` at the type level via `autoTypes.json`
+  (`Windows.Win32.Graphics.Gdi.HBITMAP`) - automatically covers every
+  `HBITMAP`-returning function, including this one.
+- `DdGetDxHandle(..., BOOL bRelease)` is self-releasing: calling the same
+  function again with `bRelease=TRUE` releases the handle. It has no separate
+  consumer function to name in a `RAIIFree` annotation, so it is not an
+  ownership gap in the RAIIFree sense at all (this is an internal/private GDI
+  entry point renamed `GdiEntry14`, not a public documented API).
 
-## Conclusion
-`blocked` — genuine gaps in `DdGetDxHandle` and `DdCreateDIBSection` (return-value handle ownership, reuses established blocker class).
+## Correction to prior investigation
+Prior report blocked this header claiming both functions were unaddressed
+return-value `HANDLE`/`HBITMAP` ownership gaps. Neither actually needs (or
+can meaningfully use) a `RAIIFree` annotation.
+
+## Ownership Analysis
+No `emitter.settings.rsp`/`autoTypes.json` change required.
+
+## Validation
+Confirmed by inspection of `generation/WinSDK/autoTypes.json` (HBITMAP entry,
+`CloseApi: "DeleteObject"`) and the `ddrawgdi.h` source (`DdGetDxHandle`
+signature/comment describing `bRelease` self-release semantics).
