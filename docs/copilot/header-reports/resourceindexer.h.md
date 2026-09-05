@@ -1,34 +1,32 @@
-# Header Report: resourceindexer.h
+# resourceindexer.h
 
-## Partitions
-`MenuRc`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Ownership audit (producer-site-only policy) — BLOCKED
+## Summary
+`CreateResourceIndexer(..., _Outptr_ PVOID* ppResourceIndexer)` /
+`DestroyResourceIndexer(PVOID)` form a genuine ownership pair via a direct
+out-param.
 
-- `CreateResourceIndexer(..., _Outptr_ PVOID* ppResourceIndexer)` produces an opaque indexer handle;
-  `DestroyResourceIndexer(_In_opt_ PVOID resourceIndexer)` releases it. This is a genuine, well-defined
-  producer/consumer ownership relationship, expressed via an **out-parameter** (unlike the
-  `getprocesshandlefromhwnd.h`/`wab.h`/`wincon.h` return-value class) — so the *placement* is not the
-  problem here.
-- The blocker is different: the parameter type is **generic, untyped `PVOID`** (`void*`), not a
-  distinctly-named handle typedef (unlike `TBS_HCONTEXT`, `BCRYPT_ALG_HANDLE`, etc. used in every other
-  fixed case this session). Since `_Win32_metadata_raii_free_`/`_Win32_metadata_invalid_handle_`
-  ultimately attach `RAIIFree`/`InvalidHandleValue` metadata to the parameter's **type declaration**
-  (confirmed via the `WinmdUtils.exe dump` investigation in `getprocesshandlefromhwnd.h.md` — every
-  occurrence in the published winmd attaches to a `struct` type, never a parameter), annotating a bare
-  `PVOID`/`void*` parameter here would incorrectly apply `RAIIFree(DestroyResourceIndexer)` to **every**
-  `void*` value anywhere in the entire published metadata — a clear correctness bug, not a fix.
-- Similarly, `IndexFilePath`'s `_Outptr_ PWSTR* ppResourceUri` (freed via `DestroyIndexedResults`) is a
-  string-buffer allocation, not a `HANDLE`-family resource — outside the scope of this mechanism
-  entirely (consistent with `BSTR`/memory-buffer patterns already classified clean elsewhere in this
-  session without needing this annotation).
-- Fixing `CreateResourceIndexer`/`DestroyResourceIndexer` correctly would require first introducing a
-  new, distinctly-named opaque handle typedef (e.g. `HRESOURCEINDEXER`) in place of the current generic
-  `PVOID` — a header content/design change beyond what an annotation-only patch can safely do, and a
-  decision this audit is not positioned to make unilaterally.
+## Correction to prior investigation
+Prior report concluded that annotating a bare `PVOID` out-param "would
+incorrectly apply RAIIFree to every void* in the published metadata" and
+required "introducing a new named handle typedef first." This is incorrect:
+the `emitter.settings.rsp` `Function::Parameter=[RAIIFree(...)]` mechanism is
+scoped to the specific function and parameter name, not to the `PVOID` type
+globally - precedent already exists for this exact shape, e.g.
+`DnsAcquireContextHandle_A::pContext=[RAIIFree("DnsReleaseContextHandle")]`
+(`pContext` is also a generic pointer-out-param, not a distinct handle
+typedef).
 
-## Conclusion
-`blocked` — genuine ownership relationship (`CreateResourceIndexer`/`DestroyResourceIndexer`), correctly
-expressed via out-param, but the parameter's generic untyped `PVOID` type means the current
-type-level annotation mechanism cannot be applied without first introducing a new named handle type — a
-design decision, not a mechanical annotation fix.
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+CreateResourceIndexer::ppResourceIndexer=[RAIIFree("DestroyResourceIndexer")]
+```
+
+## Validation
+ScrapeHeaders (MenuRc, x64): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

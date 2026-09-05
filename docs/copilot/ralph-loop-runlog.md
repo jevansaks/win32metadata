@@ -3586,3 +3586,14 @@ exactly.
 - wab.h: `FtgRegisterIdleRoutine::return=[RAIIFree("DeregisterIdleRoutine")]`.
 - wct.h: `OpenThreadWaitChainSession::return=[RAIIFree("CloseThreadWaitChainSession")]`.
 - Ledger: 1347 accepted-normalized, 56 blocked, 0 pending (1403/1403 = 100% classified).
+
+### Sub-batch 233.2 - return-value/out-param HANDLE class, previously claimed "no precedent"
+- wincon.h: `CreateConsoleScreenBuffer::return=[RAIIFree("CloseHandle")]`,
+  `OpenConsoleW::return` / `DuplicateConsoleHandle::return=[RAIIFree("CloseConsoleHandle")]`.
+- winppi.h: `GdiGetSpoolFileHandle::return=[RAIIFree("GdiDeleteSpoolFileHandle")]`
+  (`GdiGetPageHandle` correctly left unannotated - confirmed borrowed, no free API).
+- wnvapi.h: `WnvOpen::return=[RAIIFree("CloseHandle")]` (corrected a wrong
+  consumer-function claim - was misattributed to `WnvRequestNotification`).
+- resourceindexer.h: `CreateResourceIndexer::ppResourceIndexer=[RAIIFree("DestroyResourceIndexer")]`.
+- wslapi.h: `WslLaunch::process=[RAIIFree("CloseHandle")]`.
+- Ledger: 1352 accepted-normalized, 51 blocked, 0 pending (1403/1403 = 100% classified).

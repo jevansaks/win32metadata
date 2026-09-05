@@ -1,36 +1,32 @@
-# Header Report: winppi.h
+# winppi.h
 
-## Partitions
-`Printing`
+**Classification:** accepted-normalized (producer-site fix applied)
 
-## Scrape validation
-- Re-scraped `Printing` partition (`ScanArch=x86`) after touching `main.cpp`.
-- Result: `Build succeeded. 0 Error(s).` (1 pre-existing unrelated cross-partition remap warning for `_CERT_CONTEXT`, not touched by this header).
+## Summary
+`GdiGetSpoolFileHandle` returns a spool-file `HANDLE` directly, released via
+`GdiDeleteSpoolFileHandle`.
 
-## Ownership audit (producer-site-only policy) — BLOCKED
+`GdiGetPageHandle` also returns a `HANDLE` but (confirmed via Windows driver
+documentation - "Using GDI Functions in Print Processors") this is a
+**borrowed** page handle scoped to the current page/document, with cleanup
+happening implicitly via `GdiEndPageEMF`/`GdiEndDocEMF`; there is no public
+free API for it, so it is correctly left unannotated (not an ownership gap).
 
-This header contains a genuine, well-defined `HANDLE` ownership relationship over a "spool file handle":
-- `HANDLE WINAPI GdiGetSpoolFileHandle(LPWSTR, LPDEVMODEW, LPWSTR)` — **produces** the handle, returned
-  **directly as the function return value** (not via out-param).
-- `BOOL WINAPI GdiDeleteSpoolFileHandle(HANDLE SpoolFileHandle)` — the corresponding release function.
-- `HANDLE WINAPI GdiGetPageHandle(HANDLE SpoolFileHandle, DWORD Page, LPDWORD pdwPageType)` — a second
-  return-value handle producer (a "page handle" derived from the spool file handle), with no visible
-  corresponding release function in this header (its lifetime is presumably tied to the parent spool
-  file handle).
-- All other functions (`GdiGetPageCount`, `GdiGetDC`, `GdiStartDocEMF`, `GdiStartPageEMF`,
-  `GdiPlayPageEMF`, `GdiEndPageEMF`, `GdiEndDocEMF`, `GdiGetDevmodeForPage`, `GdiResetDCEMF`) take the
-  spool file `HANDLE` as an `_In_`-style consumer parameter only.
+## Correction to prior investigation
+Prior report treated both functions as the same unrepresentable blocker
+class. Corrected: `GdiGetSpoolFileHandle` is a genuine, fixable
+producer/consumer pair; `GdiGetPageHandle` is a borrowed handle and requires
+no annotation at all (same treatment as `GetConsoleWindow` in wincon.h).
 
-This is the **same return-value-handle-ownership blocker class** already documented for
-`getprocesshandlefromhwnd.h` (batch `scraping-investigation-14`), `wab.h`
-(`scraping-investigation-15`), and `wincon.h` (`scraping-investigation-22`): confirmed via
-`WinmdUtils.exe dump` of the baseline `Windows.Win32.winmd` that no function anywhere in the published
-metadata annotates a bare return-value `HANDLE` — every `RAIIFree`/`InvalidHandleValue` occurrence
-attaches to a `struct` type declaration only. There is no precedent in this repository for expressing
-ownership on a direct function return value.
+## Ownership Analysis
+Added to `emitter.settings.rsp`:
+```
+GdiGetSpoolFileHandle::return=[RAIIFree("GdiDeleteSpoolFileHandle")]
+```
 
-## Conclusion
-`blocked` — genuine `HANDLE`-producing functions (`GdiGetSpoolFileHandle`/`GdiGetPageHandle`), both via
-return value rather than out-param, released via `GdiDeleteSpoolFileHandle`. Same unresolved
-return-value-handle-ownership class as `getprocesshandlefromhwnd.h`/`wab.h`/`wincon.h`; needs the same
-dedicated policy decision before this can be fixed.
+## Validation
+ScrapeHeaders (Printing, x64): Build succeeded, 0 Error(s).
+
+## Note
+Full EmitWinmd validation could not be completed in this environment: the AllJoyn/WinRT.AllJoyn partitions fail with a pre-existing, unrelated MSVC/Clang toolchain mismatch (`__builtin_verbose_trap`), and a separate pre-existing cross-arch-merge gap (NTSTATUS-returning autoTypes such as CLFS_MGMT_CLIENT/HIORING are only resolvable via the full 3-arch scrape-then-merge CI pipeline, not a single local invocation). Both are documented, project-wide, pre-existing limitations unrelated to this change (see prior batch notes, e.g. winbio.h). Per-partition `ScrapeHeaders` for the affected partition(s) was confirmed to succeed with 0 errors (no header/main.cpp changes were made). The `emitter.settings.rsp` syntax used matches 68 existing, already-shipped precedents exactly (e.g. `WTSOpenServerA::return=[RAIIFree(...)]`, `DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]`).
+

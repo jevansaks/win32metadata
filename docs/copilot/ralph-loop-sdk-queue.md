@@ -1,11 +1,11 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-05T00:11:44Z
+- Generated: 2026-09-05T00:13:10Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
-- Matched: 1347
+- Matched: 1352
 - In progress: 0
-- Blocked: 56
+- Blocked: 51
 - Remaining: 0
 
 | Header | Partition(s) | Status | Owner | Last Updated | Notes |
@@ -938,7 +938,7 @@
 | `rend.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rend.h.md |
 | `rendezvoussession.h` | RemoteAssist | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no function surface. |
 | `resapi.h` | MsCs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/resapi.h.md |
-| `resourceindexer.h` | MenuRc | blocked | copilot | 09/02/2026 17:23:42 | Deferred: genuine ownership pair uses generic PVOID rather than a distinct handle typedef; needs a design decision to introduce a named type before an annotation fix is possible. |
+| `resourceindexer.h` | MenuRc | matched |  |  | Producer-site fix: CreateResourceIndexer/DestroyResourceIndexer form a genuine ownership pair via out-param (_Outptr_ PVOID* ppResourceIndexer). Added CreateResourceIndexer::ppResourceIndexer=[RAIIFree("DestroyResourceIndexer")]. Prior blocker claim (bare PVOID out-param cannot be annotated without a new named handle typedef) was incorrect - the existing Function::Param=[RAIIFree(...)] mechanism is scoped to this specific function+parameter, not to PVOID globally (precedent: DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]). See docs/copilot/header-reports/resourceindexer.h.md |
 | `restartmanager.h` | RstMgr | matched | copilot | 09/03/2026 04:35:00 | No patch needed; no ownership-relevant handle type. |
 | `restrictederrorinfo.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/restrictederrorinfo.h.md |
 | `richedit.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
@@ -1236,7 +1236,7 @@
 | `winbio.h` | SecBitomet | matched |  |  | Genuine producer-site fix: added WINBIO_SESSION_HANDLE autoTypes.json entry (ValueType=uint, novel pattern, CloseApi=WinBioCloseSession). See docs/copilot/header-reports/winbio.h.md |
 | `wincodec.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincodecsdk.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
-| `wincon.h` | Console | blocked | copilot | 09/02/2026 17:19:28 | Deferred: wincon.h redirects to consoleapi.h/consoleapi2.h/consoleapi3.h/wincontypes.h (none separately tracked); live-scrape of the Console partition (~120 functions) found a genuine multi-producer/single-consumer return-value HANDLE ownership relationship with no annotation precedent, same class as getprocesshandlefromhwnd.h/wab.h. |
+| `wincon.h` | Console | matched |  |  | Producer-site fix: three return-value HANDLE producers in the Console partition (CreateConsoleScreenBuffer/OpenConsoleW/DuplicateConsoleHandle, declared in consoleapi2.h/winconp.h pulled in by wincon.h). Added CreateConsoleScreenBuffer::return=[RAIIFree("CloseHandle")] (per MSDN, console screen buffer handles close via CloseHandle) and OpenConsoleW::return / DuplicateConsoleHandle::return=[RAIIFree("CloseConsoleHandle")] (internal winconp.h consumer). See docs/copilot/header-reports/wincon.h.md |
 | `winconp.h` | Console | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winconp.h.md |
 | `wincred.h` | Certificates, Credentials, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincrypt.h` | NetMgmt, Rpc, Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:40:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; final header in the 11-header audit set (all now compliant). Verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
@@ -1295,7 +1295,7 @@
 | `winnls32.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:23:41 | HWND is an input; IME info struct is caller-allocated, not a handle. |
 | `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | matched |  |  | Investigated; foundational type/macro definitions only, no functions or handle typedefs. See docs/copilot/header-reports/winnt.h.md |
 | `winperf.h` | Perf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winperf.h.md |
-| `winppi.h` | Printing | blocked | copilot | 09/02/2026 17:51:18 | Deferred: genuine spool-file/page HANDLE ownership relationship via return value, no annotation precedent; same class as getprocesshandlefromhwnd.h/wab.h/wincon.h. |
+| `winppi.h` | Printing | matched |  |  | Producer-site fix: GdiGetSpoolFileHandle returns a spool-file HANDLE released via GdiDeleteSpoolFileHandle. Added GdiGetSpoolFileHandle::return=[RAIIFree("GdiDeleteSpoolFileHandle")]. GdiGetPageHandle intentionally left unannotated - confirmed (web search of driver docs) it is a borrowed handle scoped to the current page/document with no separate free API. See docs/copilot/header-reports/winppi.h.md |
 | `winreg.h` | Registry | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsafer.h` | Security.AppLocker | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `winsatcominterfacei.h` | WinSat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsatcominterfacei.h.md |
@@ -1345,7 +1345,7 @@
 | `wmsinternaladminnetsource.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsinternaladminnetsource.h.md |
 | `wmsysprf.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsysprf.h.md |
 | `wnnc.h` | Ifsk | matched |  | 09/02/2026 19:19:02 | Constants only, no functions. |
-| `wnvapi.h` | wnv | blocked | copilot | 09/02/2026 19:09:17 | Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h. |
+| `wnvapi.h` | wnv | matched |  |  | Producer-site fix: WnvOpen returns a generic HANDLE directly; confirmed (MSDN) it is released via CloseHandle, not WnvRequestNotification as previously misattributed. Added WnvOpen::return=[RAIIFree("CloseHandle")]. See docs/copilot/header-reports/wnvapi.h.md |
 | `wofapi.h` | Fs | matched |  | 09/02/2026 20:31:37 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `workspaceax.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/workspaceax.h.md |
 | `workspaceruntime.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/workspaceruntime.h.md |
@@ -1379,7 +1379,7 @@
 | `wshisotp.h` | WinSock | matched |  | 09/02/2026 19:09:17 | Data struct + constants/macro only, no functions. |
 | `wsipv6ok.h` | WinSock | matched |  | 09/02/2026 19:06:16 | Macro redefinitions only, no declarations. |
 | `wsipx.h` | WinSock | matched |  | 09/02/2026 18:09:40 | Data struct + constants only, no functions. |
-| `wslapi.h` | Wsl | blocked | copilot | 09/02/2026 19:02:46 | Deferred: direct out-param instance of the generic/shared-type blocker class (HANDLE has no single correct CloseApi). |
+| `wslapi.h` | Wsl | matched |  |  | Producer-site fix: WslLaunch produces a process HANDLE via a direct out-param (_Out_ HANDLE* process). Added WslLaunch::process=[RAIIFree("CloseHandle")]. Same corrected reasoning as resourceindexer.h - per-function param annotation does not apply globally to HANDLE. See docs/copilot/header-reports/wslapi.h.md |
 | `wsman.h` | WinRm | matched |  |  | Producer-site fix: filled missing CloseApi on WSMAN_API_HANDLE/WSMAN_SESSION_HANDLE/WSMAN_OPERATION_HANDLE. WSMAN_COMMAND_HANDLE/WSMAN_SHELL_HANDLE blocked (mandatory async param). See docs/copilot/header-reports/wsman.h.md |
 | `wsmandisp.h` | WinRm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsmandisp.h.md |
 | `wsmerror.h` | WinRm | matched |  |  | Investigated; error-code constants only, no functions, no ownership metadata gap. See docs/copilot/header-reports/wsmerror.h.md |

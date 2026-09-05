@@ -8354,10 +8354,10 @@
   {
     "header": "resourceindexer.h",
     "partition": "MenuRc",
-    "status": "blocked",
-    "owner": "copilot",
-    "last_updated": "2026-09-02T17:23:42Z",
-    "notes": "Deferred: genuine ownership pair uses generic PVOID rather than a distinct handle typedef; needs a design decision to introduce a named type before an annotation fix is possible.",
+    "status": "matched",
+    "owner": "",
+    "last_updated": "",
+    "notes": "Producer-site fix: CreateResourceIndexer/DestroyResourceIndexer form a genuine ownership pair via out-param (_Outptr_ PVOID* ppResourceIndexer). Added CreateResourceIndexer::ppResourceIndexer=[RAIIFree(\"DestroyResourceIndexer\")]. Prior blocker claim (bare PVOID out-param cannot be annotated without a new named handle typedef) was incorrect - the existing Function::Param=[RAIIFree(...)] mechanism is scoped to this specific function+parameter, not to PVOID globally (precedent: DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]). See docs/copilot/header-reports/resourceindexer.h.md",
     "_source": "header-progress"
   },
   {
@@ -11036,10 +11036,10 @@
   {
     "header": "wincon.h",
     "partition": "Console",
-    "status": "blocked",
-    "owner": "copilot",
-    "last_updated": "2026-09-02T17:19:28Z",
-    "notes": "Deferred: wincon.h redirects to consoleapi.h/consoleapi2.h/consoleapi3.h/wincontypes.h (none separately tracked); live-scrape of the Console partition (~120 functions) found a genuine multi-producer/single-consumer return-value HANDLE ownership relationship with no annotation precedent, same class as getprocesshandlefromhwnd.h/wab.h.",
+    "status": "matched",
+    "owner": "",
+    "last_updated": "",
+    "notes": "Producer-site fix: three return-value HANDLE producers in the Console partition (CreateConsoleScreenBuffer/OpenConsoleW/DuplicateConsoleHandle, declared in consoleapi2.h/winconp.h pulled in by wincon.h). Added CreateConsoleScreenBuffer::return=[RAIIFree(\"CloseHandle\")] (per MSDN, console screen buffer handles close via CloseHandle) and OpenConsoleW::return / DuplicateConsoleHandle::return=[RAIIFree(\"CloseConsoleHandle\")] (internal winconp.h consumer). See docs/copilot/header-reports/wincon.h.md",
     "_source": "header-progress"
   },
   {
@@ -11567,10 +11567,10 @@
   {
     "header": "winppi.h",
     "partition": "Printing",
-    "status": "blocked",
-    "owner": "copilot",
-    "last_updated": "2026-09-02T17:51:18Z",
-    "notes": "Deferred: genuine spool-file/page HANDLE ownership relationship via return value, no annotation precedent; same class as getprocesshandlefromhwnd.h/wab.h/wincon.h.",
+    "status": "matched",
+    "owner": "",
+    "last_updated": "",
+    "notes": "Producer-site fix: GdiGetSpoolFileHandle returns a spool-file HANDLE released via GdiDeleteSpoolFileHandle. Added GdiGetSpoolFileHandle::return=[RAIIFree(\"GdiDeleteSpoolFileHandle\")]. GdiGetPageHandle intentionally left unannotated - confirmed (web search of driver docs) it is a borrowed handle scoped to the current page/document with no separate free API. See docs/copilot/header-reports/winppi.h.md",
     "_source": "header-progress"
   },
   {
@@ -12017,10 +12017,10 @@
   {
     "header": "wnvapi.h",
     "partition": "wnv",
-    "status": "blocked",
-    "owner": "copilot",
-    "last_updated": "2026-09-02T19:09:17Z",
-    "notes": "Recorded for per-header traceability; same root cause as getprocesshandlefromhwnd.h.",
+    "status": "matched",
+    "owner": "",
+    "last_updated": "",
+    "notes": "Producer-site fix: WnvOpen returns a generic HANDLE directly; confirmed (MSDN) it is released via CloseHandle, not WnvRequestNotification as previously misattributed. Added WnvOpen::return=[RAIIFree(\"CloseHandle\")]. See docs/copilot/header-reports/wnvapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -12323,10 +12323,10 @@
   {
     "header": "wslapi.h",
     "partition": "Wsl",
-    "status": "blocked",
-    "owner": "copilot",
-    "last_updated": "2026-09-02T19:02:46Z",
-    "notes": "Deferred: direct out-param instance of the generic/shared-type blocker class (HANDLE has no single correct CloseApi).",
+    "status": "matched",
+    "owner": "",
+    "last_updated": "",
+    "notes": "Producer-site fix: WslLaunch produces a process HANDLE via a direct out-param (_Out_ HANDLE* process). Added WslLaunch::process=[RAIIFree(\"CloseHandle\")]. Same corrected reasoning as resourceindexer.h - per-function param annotation does not apply globally to HANDLE. See docs/copilot/header-reports/wslapi.h.md",
     "_source": "header-progress"
   },
   {
