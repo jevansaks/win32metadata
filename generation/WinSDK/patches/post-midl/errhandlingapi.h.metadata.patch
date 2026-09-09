@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/errhandlingapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/errhandlingapi.h
-index bbe0c939..204322cf 100644
+index bbe0c939..188a6258 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/errhandlingapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/errhandlingapi.h
 @@ -16,6 +16,9 @@
@@ -20,3 +20,19 @@ index bbe0c939..204322cf 100644
  typedef LONG (WINAPI *PTOP_LEVEL_EXCEPTION_FILTER)(
      _In_ struct _EXCEPTION_POINTERS *ExceptionInfo
      );
+@@ -88,6 +92,7 @@ GetLastError(
+ 
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -237,6 +242,7 @@ GetThreadErrorMode(
+     VOID
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI

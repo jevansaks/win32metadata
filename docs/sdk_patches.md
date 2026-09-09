@@ -21,27 +21,30 @@ Both phases run automatically during `UpdateSDK.ps1` / `RecompileIdlFilesForScra
 ## Naming Convention
 
 ```
-<filename>.<reason>.patch
+<filename>.metadata.patch
 ```
 
-Each patch is a single logical change. Multiple patches per file are supported:
+Prefer one cumulative patch per source header. This keeps every staged metadata change
+for a header reviewable in one diff and removes ordering dependencies between patches
+that modify the same file.
 
 ```
 patches/post-midl/
-  Uxtheme.h.set-theme-app-properties-enum.patch
-  Uxtheme.h.some-other-fix.patch
+  errhandlingapi.h.metadata.patch
+  prsht.h.metadata.patch
 ```
 
-Patches are applied in sorted filename order within each phase.
+Legacy per-reason patches remain supported while they are consolidated. Patches are
+applied in sorted filename order within each phase.
 
 ## Creating a Patch
 
 1. Run `UpdateSDK.ps1` (or `RecompileIdlFilesForScraping.ps1`) to get a pristine SDK copy with existing patches applied.
 2. Edit the target file in `generation/WinSDK/RecompiledIdlHeaders/`.
-3. Generate the patch:
+3. Generate the cumulative patch against the pristine SDK baseline:
    ```powershell
-   git diff -- "generation/WinSDK/RecompiledIdlHeaders/um/MyHeader.h" `
-     > "generation/WinSDK/patches/post-midl/MyHeader.h.my-reason.patch"
+   git diff <baseline-commit> -- "generation/WinSDK/RecompiledIdlHeaders/um/MyHeader.h" `
+     > "generation/WinSDK/patches/post-midl/MyHeader.h.metadata.patch"
    ```
 4. Commit both the patch file and the modified header.
 
@@ -69,6 +72,8 @@ When the official SDK ships a fix, delete the `.patch` file and re-run `UpdateSD
 
 ## Examples
 
-**Header patch** (`post-midl/Uxtheme.h.set-theme-app-properties-enum.patch`): Would add a conditional `SET_THEME_APP_PROPERTIES_FLAGS` enum under `#ifdef _WIN32METADATA_` and update function signatures.
+**Header patch** (`post-midl/Uxtheme.h.metadata.patch`): Would contain all staged
+metadata changes for `Uxtheme.h`, such as conditional enums, supported-OS annotations,
+and signature typing.
 
 **IDL patch** (`pre-midl/myfile.idl.my-reason.patch`): Would add a `cpp_quote` block to an IDL file. MIDL compiles it and the change appears in the generated `.h`.

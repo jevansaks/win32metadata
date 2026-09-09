@@ -11672,7 +11672,7 @@
         }
       ],
       "evidence": [
-        "docs/copilot/header-reports/errhandlingapi.h.md generation/WinSDK/patches/post-midl/errhandlingapi.h.callback-canonical-name.patch generation/WinSDK/patches/post-midl/errhandlingapi.h.set-last-error.patch git apply --check --reverse passed for both docs/copilot/shift-left-metadata-worklog.md"
+        "docs/copilot/header-reports/errhandlingapi.h.md generation/WinSDK/patches/post-midl/errhandlingapi.h.metadata.patch full post-MIDL replay from clean d154186c matched tracked header docs/copilot/shift-left-metadata-worklog.md"
       ],
       "last_updated": "2026-09-03T02:15:00Z",
       "notes": "Classified retained artifact in existing-patches-13.",
@@ -29453,7 +29453,7 @@
         }
       ],
       "evidence": [
-        "docs/copilot/header-reports/prsht.h.md generation/WinSDK/patches/post-midl/prsht.h.callback-canonical-name.patch generation/WinSDK/patches/post-midl/prsht.h.zzz-supported-os.patch git apply --check --reverse passed for both docs/copilot/shift-left-metadata-worklog.md"
+        "docs/copilot/header-reports/prsht.h.md generation/WinSDK/patches/post-midl/prsht.h.metadata.patch full post-MIDL replay from clean d154186c matched tracked header docs/copilot/shift-left-metadata-worklog.md"
       ],
       "last_updated": "2026-09-02T22:35:00Z",
       "notes": "Classified retained artifact in existing-patches-25.",
