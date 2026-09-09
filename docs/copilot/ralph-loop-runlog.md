@@ -3989,3 +3989,33 @@ Batch 9 (2 headers, 14 entries): `avrt.h`, `WtsApi32.h`.
   ledger).
 - Running total: 77 of 106 RAIIFree sidecar entries migrated across 42
   headers; 29 entries across 2 headers remain (`fileapi.h`, `WinBase.h`).
+
+## 2026-09-09T02:52:00Z - Sidecar-removal tranche batch 10 of N
+
+Batch 10 (1 header, 9 entries): `fileapi.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `FindFirstChangeNotificationA`/`W`, `FindFirstFileA`/`W`,
+  `FindFirstFileExA`/`W` (return), `FindFirstVolumeW`,
+  `FindFirstStreamW`, `FindFirstFileNameW` (return/out-param as
+  applicable).
+- This header already had a `fileapi.h.set-last-error.patch`;
+  consolidated it together with the new annotations into one
+  `fileapi.h.metadata.patch` and removed the old patch file. Left the
+  unrelated `FindFirstFileExA/W::dwAdditionalFlags=FIND_FIRST_EX_FLAGS`
+  entries untouched.
+- Removed all 9 corresponding sidecar entries from `emitter.settings.rsp`.
+  The transacted/mount-point variant entries
+  (`FindFirstFileTransactedA/W`, `FindFirstFileNameTransactedW`,
+  `FindFirstStreamTransactedW`, `FindFirstVolumeA`,
+  `FindFirstVolumeMountPointA/W`) live in `WinBase.h` and are left for
+  the final batch.
+- Validation: same pristine-checkout-and-replay method as prior batches -
+  the header matches byte-for-byte. `ScrapeHeaders -p:ScanArch=crossarch`
+  for Fs succeeded with 0 errors.
+- Post-edit self-audit: zero duplicate `RAIIFree` lines in
+  `emitter.settings.rsp` (29 - 9 = 20, matches exactly - all 20 remaining
+  belong to `WinBase.h`).
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` and the
+  per-header report.
+- Running total: 86 of 106 RAIIFree sidecar entries migrated across 43
+  headers; 20 entries across 1 header remain (`WinBase.h`).

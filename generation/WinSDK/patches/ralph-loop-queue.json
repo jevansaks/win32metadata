@@ -3757,8 +3757,8 @@
     "partition": "Fs",
     "status": "matched",
     "owner": "copilot",
-    "last_updated": "2026-09-03T02:15:00Z",
-    "notes": "Classified retained artifact in existing-patches-13.",
+    "last_updated": "09/09/2026 02:50:00",
+    "notes": "Producer-site fix, consolidated: moved 9 emitter.settings.rsp sidecar entries to inline _Win32_metadata_raii_free_ annotations on FindFirstChangeNotificationA/W, FindFirstFileA/W, FindFirstFileExA/W, FindFirstVolumeW, FindFirstStreamW, FindFirstFileNameW in RecompiledIdlHeaders/um/fileapi.h. Consolidated the pre-existing set-last-error patch and these new annotations into one fileapi.h.metadata.patch against the d154186c baseline; removed the old fileapi.h.set-last-error.patch. Transacted/mount-point variants live in WinBase.h, tracked separately. See docs/copilot/header-reports/fileapi.h.md",
     "_source": "header-progress"
   },
   {

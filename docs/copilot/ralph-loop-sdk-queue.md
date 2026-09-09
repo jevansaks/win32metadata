@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T08:43:00Z
+- Generated: 2026-09-09T08:47:35Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -427,7 +427,7 @@
 | `fherrors.h` | FileHistory | matched |  | 09/02/2026 19:47:59 | HRESULT constants only, no functions. |
 | `fhstatus.h` | FileHistory | matched |  | 09/02/2026 18:00:53 | Status-code constants only, no functions. |
 | `fhsvcctl.h` | FileHistory | matched |  | 09/02/2026 18:50:10 | FH_SERVICE_PIPE_HANDLE ownership already correctly captured via existing autoTypes.json entry. |
-| `fileapi.h` | Fs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-13. |
+| `fileapi.h` | Fs | matched | copilot | 09/09/2026 02:50:00 | Producer-site fix, consolidated: moved 9 emitter.settings.rsp sidecar entries to inline _Win32_metadata_raii_free_ annotations on FindFirstChangeNotificationA/W, FindFirstFileA/W, FindFirstFileExA/W, FindFirstVolumeW, FindFirstStreamW, FindFirstFileNameW in RecompiledIdlHeaders/um/fileapi.h. Consolidated the pre-existing set-last-error patch and these new annotations into one fileapi.h.metadata.patch against the d154186c baseline; removed the old fileapi.h.set-last-error.patch. Transacted/mount-point variants live in WinBase.h, tracked separately. See docs/copilot/header-reports/fileapi.h.md |
 | `filehc.h` | FileHistory, Fs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
 | `filter.h` | IndexSrv, Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filter.h.md |
 | `filtereg.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filtereg.h.md |

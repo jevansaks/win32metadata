@@ -230,7 +230,8 @@ FindFirstChangeNotificationA(
     _In_ LPCSTR lpPathName,
     _In_ BOOL bWatchSubtree,
     _In_ DWORD dwNotifyFilter
-    );
+    )
+    _Win32_metadata_raii_free_(FindCloseChangeNotification);
 
 _Win32_metadata_set_last_error_
 WINBASEAPI
@@ -240,7 +241,8 @@ FindFirstChangeNotificationW(
     _In_ LPCWSTR lpPathName,
     _In_ BOOL bWatchSubtree,
     _In_ DWORD dwNotifyFilter
-    );
+    )
+    _Win32_metadata_raii_free_(FindCloseChangeNotification);
 
 #ifdef UNICODE
 #define FindFirstChangeNotification  FindFirstChangeNotificationW
@@ -261,7 +263,8 @@ WINAPI
 FindFirstFileA(
     _In_ LPCSTR lpFileName,
     _Out_ LPWIN32_FIND_DATAA lpFindFileData
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 
 _Win32_metadata_set_last_error_
 WINBASEAPI
@@ -270,7 +273,8 @@ WINAPI
 FindFirstFileW(
     _In_ LPCWSTR lpFileName,
     _Out_ LPWIN32_FIND_DATAW lpFindFileData
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 
 #ifdef UNICODE
 #define FindFirstFile  FindFirstFileW
@@ -291,7 +295,8 @@ FindFirstFileExA(
     _In_ FINDEX_SEARCH_OPS fSearchOp,
     _Reserved_ LPVOID lpSearchFilter,
     _In_ DWORD dwAdditionalFlags
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 
 _Win32_metadata_set_last_error_
 WINBASEAPI
@@ -304,7 +309,8 @@ FindFirstFileExW(
     _In_ FINDEX_SEARCH_OPS fSearchOp,
     _Reserved_ LPVOID lpSearchFilter,
     _In_ DWORD dwAdditionalFlags
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 
 #ifdef UNICODE
 #define FindFirstFileEx  FindFirstFileExW
@@ -327,7 +333,8 @@ WINAPI
 FindFirstVolumeW(
     _Out_writes_(cchBufferLength) LPWSTR lpszVolumeName,
     _In_ DWORD cchBufferLength
-    );
+    )
+    _Win32_metadata_raii_free_(FindVolumeClose);
 
 #ifdef UNICODE
 #define FindFirstVolume FindFirstVolumeW
@@ -1419,7 +1426,8 @@ FindFirstStreamW(
     _In_ STREAM_INFO_LEVELS InfoLevel,
     _Out_writes_bytes_(sizeof(WIN32_FIND_STREAM_DATA)) LPVOID lpFindStreamData,
     _Reserved_ DWORD dwFlags
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 
 _Win32_metadata_set_last_error_
 WINBASEAPI
@@ -1481,7 +1489,8 @@ FindFirstFileNameW(
     _In_ DWORD dwFlags,
     _Inout_ LPDWORD StringLength,
     _Out_writes_(*StringLength) PWSTR LinkName
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 
 _Win32_metadata_set_last_error_
 WINBASEAPI
