@@ -1,10 +1,74 @@
-# Remaining `functionPointerFixups.json` Entries
+# `functionPointerFixups.json` Sidecar Removal — Complete
 
-## Goal
+## Outcome
 
-Eliminate `functionPointerFixups.json` entirely. All function pointer fixup information should come from the headers — either inferred by simple regular rules in the auto-discovery heuristic, or expressed as `__attribute__((annotate("w32m:...")))` annotations in the headers themselves. See `annotation-validation-results.md` for the annotation validation framework and ClangSharp v18+ requirements.
+`generation/WinSDK/functionPointerFixups.json` has been fully migrated and
+deleted. All 27 remaining entries (down from an original 184, reduced via the
+`RemapDiscovery` AST-structure heuristic described below) are now resolved
+with zero sidecar configuration:
 
-## Background
+- **13 entries** (3 LDAP referral callbacks + 10 ICU iterator functions) are
+  struct-field callbacks with no separate pointer-alias typedef. Annotated
+  the struct field directly with `_Win32_metadata_reduce_pointer_level_` in
+  `Winldap.h`, `icucommon.h`, and `icu.h` (the modern ICU header shadows
+  `icucommon.h`'s legacy copy of the same struct via a shared `__UITER_H__`
+  include guard when both are included together, so both copies needed the
+  annotation for correctness regardless of inclusion order).
+- **10 entries** are same-level function pointer aliases (`typedef NAME
+  ALIAS;`, no added pointer) where the AST alone can't determine which name
+  is canonical. Annotated the non-canonical typedef with
+  `_Win32_metadata_canonical_name_(ALIAS)` in `WinBase.h`, `minwinbase.h`,
+  `errhandlingapi.h`, `WinInet.h`, `wingdi.h`, `RtmV2.h`, `Icm.h`, and
+  `prsht.h`.
+- **4 entries** (`LSA_GET_EXTENDED_CALL_FLAGS`, 3× `WHEA_ERROR_SOURCE_*`) were
+  header-inclusion gaps: the bare-function-typedef-plus-pointer-alias pattern
+  is already auto-discoverable with zero annotation, but the owning headers
+  (`NTSecPKG.h`, `wheadef.h`) weren't reachable from any partition. Both are
+  now included (`Partitions/Identity/main.cpp`, `Partitions/Debug/main.cpp`).
+  Removing these entries also revealed that the JSON's own `--exclude`
+  derivation was *self-poisoning* auto-discovery (the alias name was
+  pre-excluded from auto-discovery candidacy by the sidecar's own generated
+  `--exclude`), so keeping a stale entry after adding the `#include` would
+  have silently suppressed the very auto-discovery it was meant to enable.
+
+## Infrastructure fix required
+
+The two annotations above are read directly from the Clang AST
+(`Attr.Spelling` on `FieldDecl`/`TypedefDecl`, in
+`RemapDiscovery.MergeAnnotatedFixups`), bypassing ClangSharp v17's
+C#-attribute-preservation round-trip entirely (which drops struct-field and
+typedef-level `annotate` attributes — see `annotation-validation-results.md`).
+This requires the `_Win32_metadata_*` macro to actually expand during
+scraping, which it previously never did: the shared
+`_WIN32META_ANNOTATION_` macro is gated behind `defined(WIN32METADATA)`, and
+`WIN32METADATA` is never defined anywhere in the real build (confirmed by
+exhaustive search). Turning it on globally is unsafe for this task's scope —
+it also activates large, unrelated `#ifdef WIN32METADATA` content blocks
+elsewhere (e.g. a ~1700-line constant→enum synthesis block in `wincrypt.h`
+with at least one real, previously-uncompiled narrowing bug) that need
+separate, dedicated investigation.
+
+Instead, `win32metadata_annotations.h` now defines a second macro,
+`_WIN32META_ANNOTATION_SCRAPE_`, gated on `defined(__clang__)` alone (with no
+`WIN32METADATA` dependency) and used only by
+`_Win32_metadata_canonical_name_` and `_Win32_metadata_reduce_pointer_level_`.
+This is safe for real downstream SDK consumers, who almost universally
+compile with MSVC, never clang.
+
+**This also means the RAIIFree / `WithSetLastError.rsp` / `supportedOS.rsp` /
+`libMappingsManual.rsp` annotations from the four prior sidecar-removal
+tranches have never actually been functionally live** — the sidecar facts
+were removed from their respective files, but the `WIN32METADATA` gate meant
+the replacement header annotations never took effect, since none of those
+annotation kinds are consumed via the direct-AST-read path this task
+introduces. This is a real, previously-undiscovered gap requiring dedicated
+follow-up (either extending the direct-AST-read approach to the other
+annotation kinds, or upgrading to ClangSharp v18+ as
+`annotation-validation-results.md` recommends, plus fixing whatever
+`#ifdef WIN32METADATA` content elsewhere breaks once the switch is flipped
+for real).
+
+## Background (original analysis, retained for history)
 
 The `functionPointerFixups.json` file provides manual configuration for function pointer types that ClangSharp's PInvokeGenerator doesn't handle well on its own. Without these fixups, the winmd would contain duplicate delegate types and `Delegate*` (pointer-to-delegate) parameters instead of clean delegate parameters.
 
@@ -24,11 +88,14 @@ typedef DWORD (*PFOO)(...);        // already a pointer
 typedef PFOO *LPPFOO;              // adds another *
 ```
 
-As of this writing, the file has been reduced from 184 entries to 27. The remaining 27 fall into three categories described below, with a plan for each.
+As of this writing, the file has been reduced from 184 entries to 27, and
+this document's original categorization of the remaining 27 (below) turned
+out to be substantially accurate. The remaining 27 fell into three
+categories described below, all now resolved as described above.
 
 ---
 
-## Category 1: No pointer alias — struct field callbacks (12 entries)
+## Category 1: No pointer alias — struct field callbacks (13 entries)
 
 These are bare function typedefs (or function declarations) used as `NAME *member` in struct fields, but there is no `typedef NAME *PNAME;` anywhere.
 
@@ -47,7 +114,7 @@ typedef struct LdapReferralCallback {
 } LDAP_REFERRAL_CALLBACK;
 ```
 
-### ICU iterator function pointers (9 entries)
+### ICU iterator function pointers (10 entries)
 ```json
 { "name": "UCharIteratorGetIndex" }
 { "name": "UCharIteratorMove" }
@@ -150,7 +217,7 @@ These follow patterns the heuristic already handles, but the headers declaring t
 |----------|---------|----------|------------|
 | Header inclusion gaps | 4 | Add `#include` to partitions | Low — do first |
 | Same-level aliases | 10 | Heuristic (alias=canonical), annotation fallback | Medium |
-| Struct field callbacks | 12 | Heuristic (scan struct fields), annotation fallback | Medium-high |
+| Struct field callbacks | 13 | Heuristic (scan struct fields), annotation fallback | Medium-high |
 | **Total** | **27** | | |
 
 ### Suggested order of work

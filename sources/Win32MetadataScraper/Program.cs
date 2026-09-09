@@ -119,6 +119,11 @@ class Program
             // Resolve function pointer fixups
             var fnPtrResult = RemapDiscovery.ResolveFunctionPointerFixups(discovery, configuredExcludes);
 
+            // Merge fixups discovered via explicit header annotations
+            // (_Win32_metadata_reduce_pointer_level_ / _Win32_metadata_canonical_name_)
+            // that the AST-structure heuristic above can't determine on its own.
+            RemapDiscovery.MergeAnnotatedFixups(discovery, fnPtrResult);
+
             // Merge all remaps: auto tag remaps + fn ptr remaps + configured (configured wins)
             var mergedRemaps = new Dictionary<string, string>(autoRemaps);
             foreach (var kv in fnPtrResult.FnPtrRemaps)

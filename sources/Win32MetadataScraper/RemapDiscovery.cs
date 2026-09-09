@@ -48,6 +48,25 @@ public class DiscoveryResult
     /// <summary>Names of typedefs whose underlying type is PointerType → FunctionProtoType (already a pointer).</summary>
     public HashSet<string> FnPointerFunctionTypedefs { get; } = new();
 
+    /// <summary>
+    /// Function-typedef names found via a struct field annotated with
+    /// <c>_Win32_metadata_reduce_pointer_level_</c> (e.g. <c>QUERYFORCONNECTION *QueryForConnection
+    /// _Win32_metadata_reduce_pointer_level_;</c>). Read directly from the Clang AST's
+    /// AnnotateAttr text (bypassing ClangSharp's C# attribute round-trip, which drops
+    /// struct-field-level "annotate" attributes under v17 - see
+    /// docs/copilot/plans/annotation-validation-results.md).
+    /// </summary>
+    public HashSet<string> AnnotatedReducePointerLevel { get; } = new(StringComparer.Ordinal);
+
+    /// <summary>
+    /// Non-canonical typedef name → canonical alias name, from a
+    /// <c>_Win32_metadata_canonical_name_(alias)</c> annotation placed directly on the
+    /// non-canonical typedef (e.g. same-level aliases like
+    /// <c>typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;</c> where the AST alone
+    /// cannot determine which name should be canonical).
+    /// </summary>
+    public Dictionary<string, string> AnnotatedCanonicalNames { get; } = new(StringComparer.Ordinal);
+
     /// <summary>All fn proto typedef names (bare + pointer). Convenience accessor.</summary>
     public IEnumerable<string> FnProtoTypedefNames => FnBareFunctionTypedefs.Concat(FnPointerFunctionTypedefs);
 }
@@ -301,9 +320,74 @@ public static class RemapDiscovery
         }
 
         // Already-pointer typedefs with same-level aliases (typedef PFOO LPFOO)
-        // are NOT auto-discovered — left to manual configuration.
+        // are NOT auto-discovered — left to manual configuration, unless annotated
+        // (see MergeAnnotatedFixups).
 
         return result;
+    }
+
+    /// <summary>
+    /// Text prefix used for the reduce-pointer-level annotation. Matches the string
+    /// literal argument to <c>__attribute__((annotate(...)))</c> that
+    /// <c>_Win32_metadata_reduce_pointer_level_</c> expands to (see
+    /// win32metadata_annotations.h).
+    /// </summary>
+    private const string ReducePointerLevelAnnotation = "win32metadata:reduce_pointer_level";
+
+    /// <summary>
+    /// Text prefix used for the canonical-name annotation. The full annotation text is
+    /// this prefix followed by the canonical alias name (see win32metadata_annotations.h).
+    /// </summary>
+    private const string CanonicalNameAnnotationPrefix = "win32metadata:canonical_name=";
+
+    /// <summary>
+    /// Returns the raw text of the first AnnotateAttr attached to <paramref name="decl"/>
+    /// that starts with <paramref name="prefix"/>, or null if none is found. Reads
+    /// directly from the Clang AST (<c>Attr.Spelling</c>) rather than relying on
+    /// ClangSharp's C# attribute-preservation round-trip, which silently drops
+    /// struct-field/typedef-level "annotate" attributes under the pinned ClangSharp v17
+    /// (see docs/copilot/plans/annotation-validation-results.md).
+    /// </summary>
+    private static string TryGetAnnotation(Decl decl, string prefix)
+    {
+        if (!decl.HasAttrs)
+            return null;
+
+        foreach (var attr in decl.Attrs)
+        {
+            if (attr.Kind == ClangSharp.Interop.CX_AttrKind.CX_AttrKind_Annotate &&
+                attr.Spelling is string spelling &&
+                spelling.StartsWith(prefix, StringComparison.Ordinal))
+            {
+                return spelling;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Resolves <c>_Win32_metadata_reduce_pointer_level_</c> (struct field) and
+    /// <c>_Win32_metadata_canonical_name_</c> (typedef) annotations discovered directly
+    /// from the AST into the same remap/exclude/reducePointerLevel entries the
+    /// heuristic passes in <see cref="ResolveFunctionPointerFixups"/> already produce,
+    /// so no additional downstream (emitter) wiring is needed.
+    /// </summary>
+    public static void MergeAnnotatedFixups(DiscoveryResult discovery, ResolvedRemaps result)
+    {
+        foreach (var name in discovery.AnnotatedReducePointerLevel)
+        {
+            result.ReducePointerLevel.Add(name);
+        }
+
+        foreach (var kv in discovery.AnnotatedCanonicalNames)
+        {
+            string originalName = kv.Key;
+            string canonicalName = kv.Value;
+
+            result.FnPtrRemaps[originalName] = canonicalName;
+            result.FnPtrExcludes.Add(canonicalName);
+        }
     }
 
     /// <summary>
@@ -329,6 +413,16 @@ public static class RemapDiscovery
     {
         if (decl is TypedefDecl typedefDecl)
         {
+            string canonicalAnnotation = TryGetAnnotation(typedefDecl, CanonicalNameAnnotationPrefix);
+            if (canonicalAnnotation != null)
+            {
+                string canonicalName = canonicalAnnotation.Substring(CanonicalNameAnnotationPrefix.Length);
+                if (!string.IsNullOrEmpty(canonicalName))
+                {
+                    result.AnnotatedCanonicalNames[typedefDecl.Name] = canonicalName;
+                }
+            }
+
             var underlyingType = UnwrapType(typedefDecl.UnderlyingType);
 
             if (underlyingType is TagType tagType)
@@ -409,6 +503,23 @@ public static class RemapDiscovery
                         result.FnSameLevelAliases[sourceTypedefName] = aliasList = new List<string>();
                     if (!aliasList.Contains(typedefDecl.Name))
                         aliasList.Add(typedefDecl.Name);
+                }
+            }
+        }
+        else if (decl is FieldDecl fieldDecl)
+        {
+            // Struct field callback with no pointer-adding alias anywhere, e.g.
+            // "QUERYFORCONNECTION *QueryForConnection _Win32_metadata_reduce_pointer_level_;"
+            // The AST alone can't distinguish this from an ordinary struct field pointer,
+            // so it requires an explicit annotation at the usage site.
+            if (TryGetAnnotation(fieldDecl, ReducePointerLevelAnnotation) != null)
+            {
+                var fieldType = UnwrapType(fieldDecl.Type);
+                if (fieldType is PointerType fieldPtrType &&
+                    UnwrapType(fieldPtrType.PointeeType) is TypedefType fieldPointeeTypedef &&
+                    fieldPointeeTypedef.Decl?.Name is string pointeeName)
+                {
+                    result.AnnotatedReducePointerLevel.Add(pointeeName);
                 }
             }
         }

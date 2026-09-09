@@ -1,0 +1,103 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/icu.h b/generation/WinSDK/RecompiledIdlHeaders/um/icu.h
+index 850cfe69..0c4213db 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/icu.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/icu.h
+@@ -3,6 +3,8 @@
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN10_RS3)
+ 
++#include <win32metadata_annotations.h>
++
+ // Default Windows SDK ICU configuration options.
+ // Alternate selections are not supported in the Windows SDK.
+ #define U_DISABLE_RENAMING 1
+@@ -8251,7 +8253,7 @@ struct UCharIterator {
+      * @see UCharIteratorGetIndex
+      * @stable ICU 2.1
+      */
+-    UCharIteratorGetIndex *getIndex;
++    UCharIteratorGetIndex *getIndex _Win32_metadata_reduce_pointer_level_;
+ 
+     /**
+      * (public) Moves the current position relative to the start or limit of the
+@@ -8262,7 +8264,7 @@ struct UCharIterator {
+      * @see UCharIteratorMove
+      * @stable ICU 2.1
+      */
+-    UCharIteratorMove *move;
++    UCharIteratorMove *move _Win32_metadata_reduce_pointer_level_;
+ 
+     /**
+      * (public) Check if current() and next() can still
+@@ -8271,7 +8273,7 @@ struct UCharIterator {
+      * @see UCharIteratorHasNext
+      * @stable ICU 2.1
+      */
+-    UCharIteratorHasNext *hasNext;
++    UCharIteratorHasNext *hasNext _Win32_metadata_reduce_pointer_level_;
+ 
+     /**
+      * (public) Check if previous() can still return another code unit.
+@@ -8279,7 +8281,7 @@ struct UCharIterator {
+      * @see UCharIteratorHasPrevious
+      * @stable ICU 2.1
+      */
+-    UCharIteratorHasPrevious *hasPrevious;
++    UCharIteratorHasPrevious *hasPrevious _Win32_metadata_reduce_pointer_level_;
+ 
+     /**
+      * (public) Return the code unit at the current position,
+@@ -8288,7 +8290,7 @@ struct UCharIterator {
+      * @see UCharIteratorCurrent
+      * @stable ICU 2.1
+      */
+-    UCharIteratorCurrent *current;
++    UCharIteratorCurrent *current _Win32_metadata_reduce_pointer_level_;
+ 
+     /**
+      * (public) Return the code unit at the current index and increment
+@@ -8298,7 +8300,7 @@ struct UCharIterator {
+      * @see UCharIteratorNext
+      * @stable ICU 2.1
+      */
+-    UCharIteratorNext *next;
++    UCharIteratorNext *next _Win32_metadata_reduce_pointer_level_;
+ 
+     /**
+      * (public) Decrement the index and return the code unit from there
+@@ -8308,7 +8310,7 @@ struct UCharIterator {
+      * @see UCharIteratorPrevious
+      * @stable ICU 2.1
+      */
+-    UCharIteratorPrevious *previous;
++    UCharIteratorPrevious *previous _Win32_metadata_reduce_pointer_level_;
+ 
+     /**
+      * (public) Reserved for future use. Currently NULL.
+@@ -8316,7 +8318,7 @@ struct UCharIterator {
+      * @see UCharIteratorReserved
+      * @stable ICU 2.1
+      */
+-    UCharIteratorReserved *reservedFn;
++    UCharIteratorReserved *reservedFn _Win32_metadata_reduce_pointer_level_;
+ 
+     /**
+      * (public) Return the state of the iterator, to be restored later with setState().
+@@ -8325,7 +8327,7 @@ struct UCharIterator {
+      * @see UCharIteratorGet
+      * @stable ICU 2.6
+      */
+-    UCharIteratorGetState *getState;
++    UCharIteratorGetState *getState _Win32_metadata_reduce_pointer_level_;
+ 
+     /**
+      * (public) Restore the iterator state from the state word from a call
+@@ -8335,7 +8337,7 @@ struct UCharIterator {
+      * @see UCharIteratorSet
+      * @stable ICU 2.6
+      */
+-    UCharIteratorSetState *setState;
++    UCharIteratorSetState *setState _Win32_metadata_reduce_pointer_level_;
+ };
+ 
+ /**

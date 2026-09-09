@@ -6,6 +6,22 @@
 #define _WIN32META_ANNOTATION_(text)
 #endif
 
+// _WIN32META_ANNOTATION_SCRAPE_ is like _WIN32META_ANNOTATION_ but is NOT
+// gated behind WIN32METADATA (which the real scraper build never actually
+// defines - see docs/copilot/ralph-loop-runlog.md, functionPointerFixups.json
+// tranche, for the full analysis). It is gated on __clang__ alone, which is
+// safe: real Windows SDK consumers overwhelmingly compile with MSVC (cl.exe),
+// never with clang, so this never surfaces to them. Used only for annotations
+// that a downstream tool consumes directly from the Clang AST during
+// scraping (bypassing the ClangSharp v17 CppAttributeList round-trip, which
+// silently drops struct-field/typedef/function-level "annotate" attributes -
+// see docs/copilot/plans/annotation-validation-results.md).
+#if defined(__clang__)
+#define _WIN32META_ANNOTATION_SCRAPE_(text) __attribute__((annotate(text)))
+#else
+#define _WIN32META_ANNOTATION_SCRAPE_(text)
+#endif
+
 #ifndef _Out_retval_
 #define _Out_retval_ _Win32_metadata_out_ _Win32_metadata_retval_
 #endif
@@ -79,6 +95,6 @@
 #define _Win32_metadata_const_ \
     _WIN32META_ANNOTATION_("win32metadata:const")
 #define _Win32_metadata_canonical_name_(name) \
-    _WIN32META_ANNOTATION_("win32metadata:canonical_name=" #name)
+    _WIN32META_ANNOTATION_SCRAPE_("win32metadata:canonical_name=" #name)
 #define _Win32_metadata_reduce_pointer_level_ \
-    _WIN32META_ANNOTATION_("win32metadata:reduce_pointer_level")
+    _WIN32META_ANNOTATION_SCRAPE_("win32metadata:reduce_pointer_level")

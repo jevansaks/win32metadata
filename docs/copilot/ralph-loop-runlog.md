@@ -4479,3 +4479,105 @@ along with its `<ScraperRsp Include="libMappingsManual.rsp"/>` reference in
 `Windows.Win32.proj`. Updated `docs/spec.md` and `CONTRIBUTING.md` to point
 contributors at the inline-annotation (or hand-written-C#) approach instead.
 See `docs/copilot/libmappingsmanual-migration.md` for the complete accounting.
+
+## functionPointerFixups.json sidecar-removal tranche (complete)
+
+Removed all 27 remaining API-specific entries from
+`generation/WinSDK/functionPointerFixups.json` (reduced from an original 184
+by the pre-existing `RemapDiscovery` AST-structure heuristic across earlier
+sessions), then deleted the file entirely. Full accounting in
+`docs/copilot/plans/remaining-function-pointer-fixups.md`.
+
+Most of the header-side work (canonical_name annotations on 8 headers, plus
+the `_Win32_metadata_reduce_pointer_level_`/`_Win32_metadata_canonical_name_`
+vocabulary itself) had already been committed in earlier, unsummarized
+sessions on this branch. This session's job was closing the remaining gaps
+and, critically, discovering and fixing why none of it was actually taking
+effect.
+
+**Root cause found:** the shared `_WIN32META_ANNOTATION_` macro that all
+`_Win32_metadata_*` annotations expand through is gated behind
+`defined(WIN32METADATA)`, and `WIN32METADATA` is never defined anywhere in
+the real scraper build (confirmed by exhaustive search of every `.rsp` and
+every `.cs` file in the repo). This means **every annotation from all four
+prior sidecar-removal tranches (RAIIFree, `WithSetLastError.rsp`,
+`supportedOS.rsp`, `libMappingsManual.rsp`) has never actually been
+functionally live** - the sidecar facts were removed, but the replacement
+header annotations silently expanded to nothing. Empirically verified via a
+real end-to-end scrape: a `_Win32_metadata_raii_free_`/
+`_Win32_metadata_invalid_handle_`-annotated parameter in `bcrypt.h` produced
+zero trace of the annotation anywhere in the generated intermediate C#, in
+either prefix or suffix placement. This is a significant, previously
+undiscovered gap - flagged here for dedicated follow-up (either extend the
+direct-AST-read approach introduced this tranche to the other five
+annotation kinds, or complete the ClangSharp v18 upgrade recommended in
+`docs/copilot/plans/annotation-validation-results.md`).
+
+Tried enabling `-DWIN32METADATA=1` globally (in
+`sources/GeneratorSdk/tools/assets/scraper/baseSettings.rsp`) as the
+straightforward fix, but reverted it: it also activates large, unrelated
+pre-existing `#ifdef WIN32METADATA` content blocks scattered through the
+header tree (e.g. a ~1700-line constant-to-`enum class` synthesis block in
+`wincrypt.h`), and at least one of those blocks has a real,
+never-before-compiled bug (`CERT_KEY_SPEC : int` narrowing an
+`0xFFFFFFFF` enumerator) that breaks the build. Fixing that blast radius is
+out of scope for this tranche.
+
+Instead, added a second, narrowly-scoped macro gate,
+`_WIN32META_ANNOTATION_SCRAPE_`, keyed on `defined(__clang__)` alone (real
+downstream SDK consumers essentially never compile with clang), and moved
+only `_Win32_metadata_canonical_name_` and `_Win32_metadata_reduce_pointer_level_`
+onto it. Then added a new AST-based discovery pass,
+`RemapDiscovery.MergeAnnotatedFixups`, that reads these two annotations
+directly from `Attr.Spelling` on `FieldDecl`/`TypedefDecl` nodes (bypassing
+ClangSharp v17's C#-attribute-preservation round-trip entirely, which drops
+struct-field/typedef-level `annotate` attributes regardless of the
+`WIN32METADATA` gate - confirmed via `annotation-validation-results.md` and
+reproduced empirically), and merges the results into the exact same
+`ResolvedRemaps.FnPtrRemaps` / `FnPtrExcludes` / `ReducePointerLevel`
+structures the pre-existing AST-structure heuristic already populates, so no
+new emitter-side wiring was needed.
+
+While validating, found and fixed a real duplicate-declaration shadowing bug:
+`icucommon.h`'s `UCharIterator` struct (with the reduce-pointer-level
+annotations already on its callback fields) is entirely skipped whenever the
+modern `icu.h` is included first, because both files guard the same section
+with `#ifndef __UITER_H__` and `icu.h`'s unannotated copy wins. Added
+matching annotations to `icu.h`'s copy of the same 10 fields (plus the
+missing `win32metadata_annotations.h` include) so the fact is captured
+regardless of which header a given partition reaches first.
+
+Also found that 4 entries (`LSA_GET_EXTENDED_CALL_FLAGS`, 3×
+`WHEA_ERROR_SOURCE_*`) were pure AST-structure-heuristic cases (bare function
+typedef + separate pointer-adding alias, no annotation needed at all) once
+their owning headers (`NTSecPKG.h`, `wheadef.h`) were reachable - the
+`#include` additions to `Partitions/Identity/main.cpp` and
+`Partitions/Debug/main.cpp` were also already committed from an earlier
+session. Discovered that the sidecar's own JSON-derived `--exclude` entries
+were self-poisoning auto-discovery for these 4 (the alias name was
+pre-excluded from auto-discovery candidacy), so simply adding the
+`#include` without also removing the stale JSON entry would have left
+auto-discovery silently suppressed.
+
+Final tally: 27 entries → 0. 13 struct-field-callback entries (3 LDAP + 10
+ICU) via `_Win32_metadata_reduce_pointer_level_` across `Winldap.h`,
+`icucommon.h`, and `icu.h`; 10 same-level-alias entries via
+`_Win32_metadata_canonical_name_` across `WinBase.h`, `minwinbase.h`,
+`errhandlingapi.h`, `WinInet.h`, `wingdi.h`, `RtmV2.h`, `Icm.h`, `prsht.h`
+(all already committed pre-session); 4 header-inclusion-gap entries via pure
+auto-discovery once unblocked. Consolidated `icu.h` and
+`win32metadata_annotations.h` into their single `.metadata.patch` /
+`.annotation-vocabulary.patch` (all other touched headers already had a
+single consolidated patch from earlier sessions); validated byte-for-byte
+replay from `d154186c`; re-ran `ScrapeHeaders -p:ScanArch=crossarch` across
+all 8 affected partitions (`Ldap`, `Intl`, `RRas`, `WinInet`, `Wcs`,
+`Controls`, `Debug`, `Identity`) plus the full `Win32MetadataScraperTests`
+suite (44/44 passed) - 0 errors.
+
+`functionPointerFixups.json` reached zero entries and was deleted. Left the
+generic, reusable `sdk.targets`/`sdk.props`/`PrepSettingsForFunctionPointerFixups`
+GeneratorSdk plumbing untouched (it's parameterized, generic infrastructure
+also used by the `GeneratorSampleDebug` sample project, not specific to this
+repo's now-empty sidecar). Updated `docs/generationOptions.md`,
+`CONTRIBUTING.md`, `docs/spec.md`, and `.github/copilot-instructions.md` to
+describe the inline-annotation approach instead of the removed sidecar.

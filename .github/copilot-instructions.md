@@ -56,7 +56,6 @@ The toolchain converts Windows SDK C/C++ headers into a .NET metadata assembly (
 - `scraper.settings.rsp` — Type remaps (`--remap`), exclusions (`--exclude`), type overrides (`--with-type`)
 - `emitter.settings.rsp` — Member remaps (`--memberRemap`), enum additions
 - `autoTypes.json` — Handle/typedef definitions (RAII close functions, invalid values)
-- `functionPointerFixups.json` — Function pointer prototype→alias pairs
 
 **CI pipeline** (`azure-pipelines.yml` / `.github/workflows/pr-validation.yml`):
 Three parallel scrape jobs (x64, x86, arm64) → artifacts merged → one build/test/package job.

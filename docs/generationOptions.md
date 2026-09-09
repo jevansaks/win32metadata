@@ -157,37 +157,10 @@ This tells the constants scraper create a new enum named WNDCLASS_STYLES and mak
 
 ## Function pointer fixups
 
-Because ClangSharp emits both prototypes and pointers to prototypes as delegates, it can be tricky to get them to emit correctly. Projects can include a functionPointerFixups.json file to make sure things get represented correctly. Look at a fragment of [generation/WinSDK/functionPointerFixups.json](/generation/WinSDK/functionPointerFixups.json):
-
-````json
-  {
-    "name": "PTHREAD_START_ROUTINE",
-    "pointerType": "LPTHREAD_START_ROUTINE",
-    "alreadyPointer": true
-  },
-````
-
-Now let's look at the C definition:
+Because ClangSharp emits both prototypes and pointers to prototypes as delegates, it can be tricky to get them to emit correctly. The `RemapDiscovery` pass in `Win32MetadataScraper` auto-discovers the two most common patterns directly from the AST, with no configuration needed:
 
 ````C
-typedef DWORD (WINAPI *PTHREAD_START_ROUTINE)(
-    LPVOID lpThreadParameter
-    );
-typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
-````
-
-The json tells the build system that PTHREAD_START_ROUTINE is the prototype name and that it's already a pointer. It should get remapped to LPTHREAD_START_ROUTINE.
-
-Here's another one:
-
-````json
-  {
-    "name": "QUERYHANDLER",
-    "pointerType": "PQUERYHANDLER"
-  },
-````
-
-````C
+// Pattern 1: bare function proto + pointer alias
 DWORD __cdecl
 QUERYHANDLER (LPVOID keycontext, PVALCONTEXT val_list, DWORD num_vals,
           LPVOID outputbuffer, DWORD FAR *total_outlen, DWORD input_blen);
@@ -195,4 +168,38 @@ QUERYHANDLER (LPVOID keycontext, PVALCONTEXT val_list, DWORD num_vals,
 typedef QUERYHANDLER FAR *PQUERYHANDLER;
 ````
 
-The json tells the build system that QUERYHANDLER is the prototype name but it wasn't defined as a pointer ("alreadyPointer" is assumed to be false if not present). It should get remapped to PQUERYHANDLER.
+`QUERYHANDLER` gets remapped to `PQUERYHANDLER` (the pointer alias) automatically, with no header change or configuration required.
+
+Two patterns can't be determined from AST structure alone and need an explicit
+annotation directly on the producer declaration (see
+[shift-left-annotation-spec.md](copilot/plans/shift-left-annotation-spec.md)):
+
+**Same-level aliases** — the AST alone can't tell which of two equivalent
+names should be canonical:
+
+````C
+_Win32_metadata_canonical_name_(LPTHREAD_START_ROUTINE)
+typedef DWORD (WINAPI *PTHREAD_START_ROUTINE)(
+    LPVOID lpThreadParameter
+    );
+typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
+````
+
+**Struct field callbacks with no separate pointer-alias typedef** — the bare
+function typedef is used directly as `NAME *fieldName` in a struct, with no
+`typedef NAME *ALIAS;` anywhere to auto-discover:
+
+````C
+typedef struct LdapReferralCallback {
+    QUERYFORCONNECTION *QueryForConnection _Win32_metadata_reduce_pointer_level_;
+} LDAP_REFERRAL_CALLBACK;
+````
+
+Both annotations are read directly from the Clang AST's `AnnotateAttr` text in
+`RemapDiscovery.MergeAnnotatedFixups` (not via ClangSharp's C# attribute
+round-trip, which drops struct-field/typedef-level `annotate` attributes under
+the pinned ClangSharp v17 — see
+[annotation-validation-results.md](copilot/plans/annotation-validation-results.md)),
+and are merged into the same remap/exclude/reducePointerLevel entries the
+AST-structure heuristic produces, so no sidecar configuration file is needed.
+

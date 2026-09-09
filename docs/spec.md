@@ -274,7 +274,7 @@ Several sidecar files provide metadata that isn't (yet) expressible in headers:
 | ~~`supportedOS.rsp`~~ | OS version requirements | Done: `_Win32_metadata_supported_os_(...)` (sidecar removed) |
 | `libMappings.rsp` | Function→DLL mappings | Auto-generated from .lib files |
 | `documentationMappings.rsp` | Documentation URLs | Stays (external data) |
-| `functionPointerFixups.json` | Fn ptr name fixes | Mostly auto-derived |
+| ~~`functionPointerFixups.json`~~ | Fn ptr name fixes | Done: `_Win32_metadata_canonical_name_(...)` / `_Win32_metadata_reduce_pointer_level_` (sidecar removed) |
 
 The shift-left strategy (`docs/copilot/plans/shift-left-metadata-plan.md`) aims to move
 API-semantic metadata into the headers themselves, leaving only tooling configuration in
