@@ -578,29 +578,52 @@ EXTERN_GUID(IID_ICLRProbingAssemblyEnum, 0xd0c5fb1f, 0x416b, 0x4f97, 0x81, 0xf4,
 EXTERN_GUID(IID_ICLRHostBindingPolicyManager, 0x4b3545e7, 0x1856, 0x48c9, 0xa8, 0xba, 0x24, 0xb2, 0x1a, 0x75, 0x3c, 0x09);
 EXTERN_GUID(IID_ITypeNameBuilder, 0xB81FF171, 0x20F3, 0x11d2, 0x8d, 0xcc, 0x00, 0xa0, 0xc9, 0xb0, 0x05, 0x23);
 EXTERN_GUID(IID_ITypeNameFactory, 0xB81FF171, 0x20F3, 0x11d2, 0x8d, 0xcc, 0x00, 0xa0, 0xc9, 0xb0, 0x05, 0x21);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI GetCORSystemDirectory(_Out_writes_to_(cchBuffer, *dwLength) LPWSTR pbuffer, DWORD  cchBuffer, DWORD* dwLength);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI GetCORVersion(_Out_writes_to_(cchBuffer, *dwLength) LPWSTR pbBuffer, DWORD cchBuffer, DWORD* dwLength);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI GetFileVersion(LPCWSTR szFilename, _Out_writes_to_opt_(cchBuffer, *dwLength) LPWSTR szBuffer, DWORD cchBuffer, DWORD* dwLength);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI GetCORRequiredVersion(_Out_writes_to_(cchBuffer, *dwLength) LPWSTR pbuffer, DWORD cchBuffer, DWORD* dwLength);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI GetRequestedRuntimeInfo(LPCWSTR pExe, LPCWSTR pwszVersion, LPCWSTR pConfigurationFile, DWORD startupFlags, DWORD runtimeInfoFlags, _Out_writes_opt_(dwDirectory) LPWSTR pDirectory, DWORD dwDirectory, _Out_opt_ DWORD *dwDirectoryLength, _Out_writes_opt_(cchBuffer) LPWSTR pVersion, DWORD cchBuffer, _Out_opt_ DWORD* dwlength);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI GetRequestedRuntimeVersion(_In_ LPWSTR pExe, _Out_writes_to_(cchBuffer, *pdwLength) LPWSTR pVersion, DWORD cchBuffer, _Out_ DWORD* dwLength);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI CorBindToRuntimeHost(LPCWSTR pwszVersion, LPCWSTR pwszBuildFlavor, LPCWSTR pwszHostConfigFile, VOID* pReserved, DWORD startupFlags, REFCLSID rclsid, REFIID riid, LPVOID FAR *ppv);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI CorBindToRuntimeEx(LPCWSTR pwszVersion, LPCWSTR pwszBuildFlavor, DWORD startupFlags, REFCLSID rclsid, REFIID riid, LPVOID FAR *ppv);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI CorBindToRuntimeByCfg(IStream* pCfgStream, DWORD reserved, DWORD startupFlags, REFCLSID rclsid,REFIID riid, LPVOID FAR* ppv);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI CorBindToRuntime(LPCWSTR pwszVersion, LPCWSTR pwszBuildFlavor, REFCLSID rclsid, REFIID riid, LPVOID FAR *ppv);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI CorBindToCurrentRuntime(LPCWSTR pwszFileName, REFCLSID rclsid, REFIID riid, LPVOID FAR *ppv);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI ClrCreateManagedInstance(LPCWSTR pTypeName, REFIID riid, void **ppObject);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DECLARE_DEPRECATED void STDMETHODCALLTYPE CorMarkThreadInThreadPool();
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI RunDll32ShimW(HWND hwnd, HINSTANCE hinst, LPCWSTR lpszCmdLine, int nCmdShow);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI LoadLibraryShim(LPCWSTR szDllName, LPCWSTR szVersion, LPVOID pvReserved, HMODULE *phModDll);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI CallFunctionShim(LPCWSTR szDllName, LPCSTR szFunctionName, LPVOID lpvArgument1, LPVOID lpvArgument2, LPCWSTR szVersion, LPVOID pvReserved);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI GetRealProcAddress(LPCSTR pwszProcName, VOID** ppv);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DECLARE_DEPRECATED void STDMETHODCALLTYPE CorExitProcess(int exitCode);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI LoadStringRC(UINT iResouceID, _Out_writes_z_(iMax) LPWSTR szBuffer, int iMax, int bQuiet);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI LoadStringRCEx(LCID lcid, UINT iResouceID, _Out_writes_z_(iMax) LPWSTR szBuffer, int iMax, int bQuiet, int *pcwchUsed);
 typedef HRESULT (__stdcall *FLockClrVersionCallback) ();
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI LockClrVersion(FLockClrVersionCallback hostCallback,FLockClrVersionCallback *pBeginHostSetup,FLockClrVersionCallback *pEndHostSetup);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI CreateDebuggingInterfaceFromVersion(int iDebuggerVersion, LPCWSTR szDebuggeeVersion, IUnknown ** ppCordb);
+_Win32_metadata_import_library_("MSCorEE.dll")
 DEPRECATED_CLR_STDAPI GetVersionFromProcess(HANDLE hProcess, _Out_writes_to_(cchBuffer, *pdwLength) LPWSTR pVersion, DWORD cchBuffer, _Out_ DWORD* dwLength);
 typedef /* [public] */ 
 enum __MIDL___MIDL_itf_mscoree_0000_0000_0001
@@ -610,6 +633,7 @@ enum __MIDL___MIDL_itf_mscoree_0000_0000_0001
         HOST_TYPE_CORFLAG	= 0x2
     } 	HOST_TYPE;
 
+_Win32_metadata_import_library_("MSCorEE.dll")
 STDAPI CorLaunchApplication(HOST_TYPE dwClickOnceHost, LPCWSTR pwzAppFullName, DWORD dwManifestPaths, LPCWSTR* ppwzManifestPaths, DWORD dwActivationData, LPCWSTR* ppwzActivationData, LPPROCESS_INFORMATION lpProcessInformation);
 typedef HRESULT ( __stdcall *FExecuteInAppDomainCallback )( 
     void *cookie);
@@ -665,6 +689,7 @@ enum __MIDL___MIDL_itf_mscoree_0000_0000_0005
         APPDOMAIN_FORCE_TRIVIAL_WAIT_OPERATIONS	= 0x8
     } 	APPDOMAIN_SECURITY_FLAGS;
 
+_Win32_metadata_import_library_("MSCorEE.dll")
 STDAPI GetRequestedRuntimeVersionForCLSID(REFCLSID rclsid, _Out_writes_opt_(cchBuffer) LPWSTR pVersion, DWORD cchBuffer, _Out_opt_ DWORD* dwLength, CLSID_RESOLUTION_FLAGS dwResolutionFlags);
 
 
@@ -7181,6 +7206,7 @@ EXTERN_C const IID IID_IHostAssemblyManager;
 /* interface __MIDL_itf_mscoree_0000_0042 */
 /* [local] */ 
 
+_Win32_metadata_import_library_("MSCorEE.dll")
 STDAPI GetCLRIdentityManager(REFIID riid, IUnknown **ppManager);
 EXTERN_GUID(IID_IHostControl, 0x02CA073C, 0x7079, 0x4860, 0x88, 0x0A, 0xC2, 0xF7, 0xA4, 0x49, 0xC9, 0x91);
 

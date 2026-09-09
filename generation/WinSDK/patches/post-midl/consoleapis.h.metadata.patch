@@ -1,0 +1,18 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/consoleapis.h b/generation/WinSDK/RecompiledIdlHeaders/um/consoleapis.h
+index 49ac7824..c7a52513 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/consoleapis.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/consoleapis.h
+@@ -1,4 +1,5 @@
+ #include <windows.h>
++#include <win32metadata_annotations.h>
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -51,6 +52,7 @@ typedef struct _CONSOLE_CARET_INFO
+     IN RECT rc;
+ } CONSOLE_CARET_INFO, *PCONSOLE_CARET_INFO;
+ 
++_Win32_metadata_import_library_("USER32.dll")
+ NTSTATUS ConsoleControl(
+   _In_ CONSOLECONTROL Command,
+   _In_reads_bytes_(ConsoleInformationLength) PVOID ConsoleInformation,

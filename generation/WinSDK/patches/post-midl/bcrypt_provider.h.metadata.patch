@@ -1,0 +1,100 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cpdk/bcrypt_provider.h b/generation/WinSDK/RecompiledIdlHeaders/um/cpdk/bcrypt_provider.h
+index f9267e60..4c640dcc 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/cpdk/bcrypt_provider.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/cpdk/bcrypt_provider.h
+@@ -1,6 +1,7 @@
+ 
+ //
+ #pragma once
++#include <win32metadata_annotations.h>
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -378,6 +379,7 @@ typedef struct _BCRYPT_CIPHER_FUNCTION_TABLE
+     BCryptDestroyKeyFn              DestroyKey;
+ } BCRYPT_CIPHER_FUNCTION_TABLE;
+ 
++_Win32_metadata_import_library_("bcryptprimitives.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -416,6 +418,7 @@ typedef struct _BCRYPT_HASH_FUNCTION_TABLE
+ #endif
+ } BCRYPT_HASH_FUNCTION_TABLE;
+ 
++_Win32_metadata_import_library_("bcryptprimitives.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -451,6 +454,7 @@ typedef struct _BCRYPT_ASYMMETRIC_ENCRYPTION_FUNCTION_TABLE
+     BCryptVerifySignatureFn         VerifySignature;
+ } BCRYPT_ASYMMETRIC_ENCRYPTION_FUNCTION_TABLE;
+ 
++_Win32_metadata_import_library_("bcryptprimitives.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -486,6 +490,7 @@ typedef struct _BCRYPT_SECRET_AGREEMENT_FUNCTION_TABLE
+     BCryptDestroyKeyFn              DestroyKey;
+ } BCRYPT_SECRET_AGREEMENT_FUNCTION_TABLE;
+ 
++_Win32_metadata_import_library_("bcryptprimitives.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -520,6 +525,7 @@ typedef struct _BCRYPT_SIGNATURE_FUNCTION_TABLE
+     BCryptDestroyKeyFn              DestroyKey;
+ } BCRYPT_SIGNATURE_FUNCTION_TABLE;
+ 
++_Win32_metadata_import_library_("bcryptprimitives.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -547,6 +553,7 @@ typedef struct _BCRYPT_RNG_FUNCTION_TABLE
+     BCryptGenRandomFn               GenRandom;
+ } BCRYPT_RNG_FUNCTION_TABLE;
+ 
++_Win32_metadata_import_library_("bcryptprimitives.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -582,6 +589,7 @@ typedef struct _BCRYPT_KEY_DERIVATION_FUNCTION_TABLE
+     BCryptDuplicateKeyFn            DuplicateKey;
+ } BCRYPT_KEY_DERIVATION_FUNCTION_TABLE;
+ 
++_Win32_metadata_import_library_("bcryptprimitives.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -646,6 +654,7 @@ typedef struct _CRYPT_PROV_IOCTL_OUTPUT_PARAMS {
+ // Provider Registration Functions
+ //
+ 
++_Win32_metadata_import_library_("bcrypt.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -654,6 +663,7 @@ BCryptRegisterProvider(
+     _In_ ULONG dwFlags,
+     _In_ PCRYPT_PROVIDER_REG pReg);
+ 
++_Win32_metadata_import_library_("bcrypt.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -662,6 +672,7 @@ BCryptUnregisterProvider(
+ 
+ //
+ //
++_Win32_metadata_import_library_("bcrypt.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI
+@@ -673,6 +684,7 @@ BCryptAddContextFunctionProvider(
+     _In_ LPCWSTR pszProvider,
+     _In_ ULONG dwPosition);
+ 
++_Win32_metadata_import_library_("bcrypt.dll")
+ _Must_inspect_result_
+ NTSTATUS
+ WINAPI

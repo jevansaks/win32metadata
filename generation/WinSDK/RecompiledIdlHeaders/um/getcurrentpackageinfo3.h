@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <win32metadata_annotations.h>
 #include <appmodel.h>
 
 #ifdef __cplusplus
@@ -10,6 +11,7 @@ enum PackageInfo3Type
 	PackageInfo3Type_PackageInfoGeneration = 16,
 } PackageInfoType;
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 HRESULT GetCurrentPackageInfo3(
   _In_ UINT32                                 flags,
   _In_ PackageInfo3Type                       packageInfoType,

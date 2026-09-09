@@ -1,0 +1,82 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mssign.h b/generation/WinSDK/RecompiledIdlHeaders/um/mssign.h
+index c0d8ee28..445de1e8 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mssign.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mssign.h
+@@ -1,4 +1,5 @@
+ #include <wincrypt.h>
++#include <win32metadata_annotations.h>
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -180,12 +181,15 @@ typedef struct _SIGNER_SUBJECT_INFO {
+     };
+ } SIGNER_SUBJECT_INFO, *PSIGNER_SUBJECT_INFO;
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignError(void);
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignerFreeSignerContext(
+     _In_ SIGNER_CONTEXT *pSignerContext
+     );
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignerSign(
+     _In_     SIGNER_SUBJECT_INFO   *pSubjectInfo,
+     _In_     SIGNER_CERT           *pSignerCert,
+@@ -196,6 +200,7 @@ HRESULT WINAPI SignerSign(
+     _In_opt_ LPVOID                pSipData
+     );
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignerSignEx(
+     _In_     DWORD                 dwFlags,
+     _In_     SIGNER_SUBJECT_INFO   *pSubjectInfo,
+@@ -208,6 +213,7 @@ HRESULT WINAPI SignerSignEx(
+     _Out_    SIGNER_CONTEXT        **ppSignerContext
+     );
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignerSignEx2(
+     _In_       DWORD                  dwFlags,
+     _In_       SIGNER_SUBJECT_INFO    *pSubjectInfo,
+@@ -224,6 +230,7 @@ HRESULT WINAPI SignerSignEx2(
+     _Reserved_ PVOID                  pReserved
+     );
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignerSignEx3(
+     _In_       DWORD                  dwFlags,
+     _In_       SIGNER_SUBJECT_INFO    *pSubjectInfo,
+@@ -241,6 +248,7 @@ HRESULT WINAPI SignerSignEx3(
+     _Reserved_ PVOID                  pReserved
+     );
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignerTimeStamp(
+     _In_     SIGNER_SUBJECT_INFO *pSubjectInfo,
+     _In_     LPCWSTR             pwszHttpTimeStamp,
+@@ -248,6 +256,7 @@ HRESULT WINAPI SignerTimeStamp(
+     _In_opt_ LPVOID              pSipData
+     );
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignerTimeStampEx(
+     _Reserved_ DWORD               dwFlags,
+     _In_       SIGNER_SUBJECT_INFO *pSubjectInfo,
+@@ -257,6 +266,7 @@ HRESULT WINAPI SignerTimeStampEx(
+     _Out_      SIGNER_CONTEXT      **ppSignerContext 
+     );
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignerTimeStampEx2(
+     _Reserved_ DWORD               dwFlags,
+     _In_       SIGNER_SUBJECT_INFO *pSubjectInfo,
+@@ -267,6 +277,7 @@ HRESULT WINAPI SignerTimeStampEx2(
+     _Out_      SIGNER_CONTEXT      **ppSignerContext 
+     );
+ 
++_Win32_metadata_import_library_("Mssign32.dll")
+ HRESULT WINAPI SignerTimeStampEx3(
+     _In_       DWORD                  dwFlags,
+     _In_       DWORD                  dwIndex,

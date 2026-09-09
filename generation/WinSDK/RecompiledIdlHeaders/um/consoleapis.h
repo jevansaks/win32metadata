@@ -1,4 +1,5 @@
 #include <windows.h>
+#include <win32metadata_annotations.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -51,6 +52,7 @@ typedef struct _CONSOLE_CARET_INFO
     IN RECT rc;
 } CONSOLE_CARET_INFO, *PCONSOLE_CARET_INFO;
 
+_Win32_metadata_import_library_("USER32.dll")
 NTSTATUS ConsoleControl(
   _In_ CONSOLECONTROL Command,
   _In_reads_bytes_(ConsoleInformationLength) PVOID ConsoleInformation,

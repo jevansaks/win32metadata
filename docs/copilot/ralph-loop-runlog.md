@@ -4429,3 +4429,53 @@ This completes both the `WithSetLastError.rsp` and `supportedOS.rsp`
 sidecar-removal tranches; combined with the earlier `emitter.settings.rsp`
 RAIIFree tranche, all three of this project's originally-scoped sidecar
 categories are now fully migrated to inline header annotations.
+
+## libMappingsManual.rsp sidecar-removal tranche (complete)
+
+Removed all 384 API-specific import-library override entries from
+`generation/WinSDK/libMappingsManual.rsp`, leaving `libMappings.rsp` (the
+auto-generated, `.lib`-scan-derived global mapping) completely untouched as
+required. Reused the validated declaration-scanner infrastructure from the
+prior two tranches (string-literal blanking, off-by-one-safe prefix-expression
+check, etc.) and added one new exclusion: a bare `virtual` keyword (with no
+`STDMETHODCALLTYPE`) on the declaration line or a wrapped preceding specifier
+line, which fixed a real false conflict (`CloneContext` - a `virtual
+HRESULT CloneContext(...)` C++ interface method in `httpserv.h` was being
+matched as the unrelated `inkobjcore.dll` free function of the same name
+already correctly annotated in `recapis.h`).
+
+94 entries were already covered by pre-existing annotations from earlier,
+pre-ralph-loop tranches (`drt.h`, `recapis.h`, `wldp.h`, `winsvc.h`, etc.).
+235 entries were migrated to inline `_Win32_metadata_import_library_("dll.dll")`
+annotations across 8 headers (`p2p.h` alone covered the large majority - ~150
+Peer* APIs). Found that the 4 `BCrypt*Provider` functions the rsp's own
+comment called "removed from the SDK" are in fact declared in
+`um/cpdk/bcrypt_provider.h` (the Crypto Provider Development Kit header, a
+subdirectory the initial per-file grep missed) and already fully generated -
+migrated normally rather than treating as absent.
+
+54 entries are confirmed absent from every header (including `cpdk`), every
+hand-written file under `generation/WinSDK/manual/`, and the complete
+generated C# output (already functionally inert sidecar facts) - undocumented
+internal MAPI32/ntdll/user32/MDM exports, Wcm*/Peer* functions missing from
+their otherwise-mostly-covered headers, 12 `Wldp*` functions likely newer than
+this SDK snapshot, and `pSetupModifyGlobalFlags` (whose own rsp comment
+already documents it as LoadLibrary+GetProcAddress-only, matching Microsoft's
+public devnotes page for the sibling function `pSetupSetGlobalFlags` almost
+verbatim, but with no verified signature of its own). None were fabricated
+into guarded metadata-only declarations, per the requirement to only do so
+with a known authoritative signature. One entry (`ProcessPrng`) was already
+fully represented via hand-written C# (`manual/Security.Cryptography.cs`,
+`[DllImport("BCryptPrimitives.dll", ...)]`), matching the
+`DWRITE_MAKE_OPENTYPE_TAG` precedent from the `supportedOS.rsp` tranche.
+
+Consolidated all 8 touched headers into `<header>.metadata.patch` (5 new, 3
+updated), validated byte-for-byte replay, and ran `ScrapeHeaders
+-p:ScanArch=crossarch` across all 5 reachable partitions (`Console`,
+`Security.Cryptography`, `AppxPackaging`, `ClrHosting`, `P2p`) - 0 errors.
+
+**`libMappingsManual.rsp` reached zero API-specific entries and was deleted**,
+along with its `<ScraperRsp Include="libMappingsManual.rsp"/>` reference in
+`Windows.Win32.proj`. Updated `docs/spec.md` and `CONTRIBUTING.md` to point
+contributors at the inline-annotation (or hand-written-C#) approach instead.
+See `docs/copilot/libmappingsmanual-migration.md` for the complete accounting.

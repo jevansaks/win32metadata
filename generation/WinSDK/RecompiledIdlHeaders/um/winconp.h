@@ -30,11 +30,13 @@ extern "C" {
                                          CONSOLE_MOUSE_DOWN)
 
 
+_Win32_metadata_import_library_("user32.dll")
 WINBASEAPI
 BOOL
 WINAPI
 GetConsoleKeyboardLayoutNameA(
     _Out_writes_(KL_NAMELENGTH) LPSTR pszLayout);
+_Win32_metadata_import_library_("user32.dll")
 WINBASEAPI
 BOOL
 WINAPI
@@ -69,12 +71,14 @@ typedef struct _CONSOLE_GRAPHICS_BUFFER_INFO {
 
 #endif
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 WINAPI
 InvalidateConsoleDIBits(
     _In_ HANDLE hConsoleOutput,
     _In_ PSMALL_RECT lpRect);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 VOID
 WINAPI
 SetLastConsoleEventActive(
@@ -89,6 +93,7 @@ SetLastConsoleEventActive(
 #define VDM_FULLSCREEN_NOPAINT  7
 #define VDM_SET_VIDEO_MODE      8
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 WINAPI
 VDMConsoleOperation(
@@ -96,6 +101,7 @@ VDMConsoleOperation(
     _Inout_opt_ LPVOID lpData);
 
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 WINAPI
 SetConsoleIcon(
@@ -103,12 +109,14 @@ SetConsoleIcon(
 
 // ...
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 WINAPI
 SetConsoleFont(
     _In_ HANDLE hConsoleOutput,
     _In_ DWORD nFont);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 DWORD
 WINAPI
 GetConsoleFontInfo(
@@ -117,6 +125,7 @@ GetConsoleFontInfo(
     _In_ DWORD nLength,
     _Out_ PCONSOLE_FONT_INFO lpConsoleFontInfo);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 DWORD
 WINAPI
 GetNumberOfConsoleFonts(
@@ -128,12 +137,14 @@ SetConsoleCursor(
     _In_ HANDLE hConsoleOutput,
     _In_ HCURSOR hCursor);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 int
 WINAPI
 ShowConsoleCursor(
     _In_ HANDLE hConsoleOutput,
     _In_ BOOL bShow);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 HMENU
 APIENTRY
 ConsoleMenuControl(
@@ -141,6 +152,7 @@ ConsoleMenuControl(
     _In_ UINT dwCommandIdLow,
     _In_ UINT dwCommandIdHigh);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 SetConsolePalette(
     _In_ HANDLE hConsoleOutput,
@@ -151,6 +163,7 @@ SetConsolePalette(
 #define CONSOLE_REGISTER_VDM   1
 #define CONSOLE_REGISTER_WOW   2
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 RegisterConsoleVDM(
@@ -164,6 +177,7 @@ RegisterConsoleVDM(
     _In_opt_ COORD VDMBufferSize,
     _Outptr_ PVOID *lpVDMBuffer);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 GetConsoleHardwareState(
@@ -171,6 +185,7 @@ GetConsoleHardwareState(
     _Out_ PCOORD lpResolution,
     _Out_ PCOORD lpFontSize);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 SetConsoleHardwareState(
@@ -196,6 +211,7 @@ typedef struct _APPKEY {
 #define CONSOLE_MODIFIER_CONTROL    0x0004   // Either Control shift key
 #define CONSOLE_MODIFIER_ALT        0x0008   // Either Alt shift key
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 SetConsoleKeyShortcuts(
@@ -204,15 +220,18 @@ SetConsoleKeyShortcuts(
     _In_reads_(dwNumAppKeys) LPAPPKEY lpAppKeys,
     _In_ DWORD dwNumAppKeys);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 SetConsoleMenuClose(
     _In_ BOOL bEnable);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 DWORD
 GetConsoleInputExeNameA(
     _In_ DWORD nBufferLength,
     _Out_writes_(nBufferLength) LPSTR lpBuffer);
+_Win32_metadata_import_library_("KERNEL32.dll")
 DWORD
 GetConsoleInputExeNameW(
     _In_ DWORD nBufferLength,
@@ -223,9 +242,11 @@ GetConsoleInputExeNameW(
 #define GetConsoleInputExeName  GetConsoleInputExeNameA
 #endif // !UNICODE
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 SetConsoleInputExeNameA(
     _In_ LPSTR lpExeName);
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 SetConsoleInputExeNameW(
     _In_ LPWSTR lpExeName);
@@ -235,6 +256,7 @@ SetConsoleInputExeNameW(
 #define SetConsoleInputExeName  SetConsoleInputExeNameA
 #endif // !UNICODE
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 WINAPI
 ReadConsoleInputExA(
@@ -243,6 +265,7 @@ ReadConsoleInputExA(
     _In_ DWORD nLength,
     _Out_ LPDWORD lpNumberOfEventsRead,
     _In_ USHORT wFlags);
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 WINAPI
 ReadConsoleInputExW(
@@ -257,6 +280,7 @@ ReadConsoleInputExW(
 #define ReadConsoleInputEx  ReadConsoleInputExA
 #endif // !UNICODE
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 WINAPI
 WriteConsoleInputVDMA(
@@ -264,6 +288,7 @@ WriteConsoleInputVDMA(
     _In_reads_(nLength) PINPUT_RECORD lpBuffer,
     _In_ DWORD nLength,
     _Out_ LPDWORD lpNumberOfEventsWritten);
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 WINAPI
 WriteConsoleInputVDMW(
@@ -278,18 +303,21 @@ WriteConsoleInputVDMW(
 #endif // !UNICODE
 
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 GetConsoleNlsMode(
     _In_ HANDLE hConsole,
     _Out_ PDWORD lpdwNlsMode);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 SetConsoleNlsMode(
     _In_ HANDLE hConsole,
     _In_ DWORD fdwNlsMode);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 GetConsoleCharType(
@@ -301,6 +329,7 @@ GetConsoleCharType(
 #define CHAR_TYPE_LEADING  2   // Displayed leading byte of DBCS
 #define CHAR_TYPE_TRAILING 3   // Displayed trailing byte of DBCS
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 SetConsoleLocalEUDC(
@@ -309,6 +338,7 @@ SetConsoleLocalEUDC(
     _In_ COORD  cFontSize,
     _In_ PCHAR  lpSB);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 SetConsoleCursorMode(
@@ -316,6 +346,7 @@ SetConsoleCursorMode(
     _In_ BOOL   Blink,
     _In_ BOOL   DBEnable);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 GetConsoleCursorMode(
@@ -323,11 +354,13 @@ GetConsoleCursorMode(
     _Out_ PBOOL  pbBlink,
     _Out_ PBOOL  pbDBEnable);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 RegisterConsoleOS2(
     _In_ BOOL fOs2Register);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 SetConsoleOS2OemFormat(
@@ -336,12 +369,14 @@ SetConsoleOS2OemFormat(
 // ...
 
 #if defined(FE_IME)
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 RegisterConsoleIME(
     _In_ HWND  hWndConsoleIME,
     _Out_opt_ DWORD *lpdwConsoleThreadId);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 UnregisterConsoleIME(
@@ -374,6 +409,7 @@ UnregisterConsoleIME(
 // subsystems (i.e. OpenFile routes to OpenConsoleW).
 //
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 HANDLE
 APIENTRY
 OpenConsoleW(
@@ -383,6 +419,7 @@ OpenConsoleW(
     _In_ DWORD dwShareMode)
     _Win32_metadata_raii_free_(CloseConsoleHandle);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 HANDLE
 APIENTRY
 DuplicateConsoleHandle(
@@ -394,16 +431,19 @@ DuplicateConsoleHandle(
 
 // ...
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 CloseConsoleHandle(
     _In_ HANDLE hConsole);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 BOOL
 APIENTRY
 VerifyConsoleIoHandle(
     _In_ HANDLE hIoHandle);
 
+_Win32_metadata_import_library_("KERNEL32.dll")
 HANDLE
 APIENTRY
 GetConsoleInputWaitHandle(

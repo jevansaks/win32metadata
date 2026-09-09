@@ -367,27 +367,32 @@ typedef struct peer_security_interface_tag {
 // API Definitions
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphStartup(
                 _In_  WORD                  wVersionRequested,
                 _Out_ PPEER_VERSION_DATA    pVersionData);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphShutdown();
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 VOID WINAPI PeerGraphFreeData(
                 _In_  PVOID       pvData);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphGetItemCount(
                 _In_    HPEERENUM   hPeerEnum,
                 _Out_   ULONG       * pCount);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphGetNextItem(
                 _In_  HPEERENUM     hPeerEnum,
@@ -395,11 +400,13 @@ HRESULT WINAPI PeerGraphGetNextItem(
                 _Outptr_result_buffer_(*pCount) PVOID ** pppvItems);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphEndEnumeration(
                 _In_  HPEERENUM   hPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphCreate(
                 _In_    PPEER_GRAPH_PROPERTIES          pGraphProperties,
@@ -408,6 +415,7 @@ HRESULT WINAPI PeerGraphCreate(
                 _Out_   HGRAPH                          * phGraph);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphOpen(
                 _In_  PCWSTR                                            pwzGraphId,
@@ -419,6 +427,7 @@ HRESULT WINAPI PeerGraphOpen(
                 _Out_ HGRAPH                                            * phGraph);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphListen(
                 _In_  HGRAPH        hGraph,
@@ -427,6 +436,7 @@ HRESULT WINAPI PeerGraphListen(
                 _In_opt_  WORD      wPort);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphConnect(
                 _In_  HGRAPH            hGraph,
@@ -435,11 +445,13 @@ HRESULT WINAPI PeerGraphConnect(
                 _Out_ ULONGLONG         * pullConnectionId);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphClose(
                 _In_  HGRAPH      hGraph);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphDelete(
                 _In_  PCWSTR      pwzGraphId,
@@ -447,18 +459,21 @@ HRESULT WINAPI PeerGraphDelete(
                 _In_  PCWSTR      pwzDatabaseName);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphGetStatus(
                 _In_  HGRAPH       hGraph,
                 _Out_   DWORD      * pdwStatus);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphGetProperties(
                 _In_  HGRAPH                        hGraph,
                 _Outptr_ PPEER_GRAPH_PROPERTIES  * ppGraphProperties);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphSetProperties(
                 _In_  HGRAPH                    hGraph,
@@ -467,6 +482,7 @@ HRESULT WINAPI PeerGraphSetProperties(
 // Eventing interfaces
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphRegisterEvent(
                 _In_  HGRAPH                    hGraph,
@@ -476,11 +492,13 @@ HRESULT WINAPI PeerGraphRegisterEvent(
                 _Out_ HPEEREVENT                * phPeerEvent);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphUnregisterEvent(
                 _In_  HPEEREVENT   hPeerEvent);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphGetEventData(
                 _In_  HPEEREVENT                    hPeerEvent,
@@ -490,6 +508,7 @@ HRESULT WINAPI PeerGraphGetEventData(
 // Data Storage
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphGetRecord(
                 _In_  HGRAPH             hGraph,
@@ -497,6 +516,7 @@ HRESULT WINAPI PeerGraphGetRecord(
                 _Outptr_ PPEER_RECORD * ppRecord);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphAddRecord(
                 _In_  HGRAPH        hGraph,
@@ -504,12 +524,14 @@ HRESULT WINAPI PeerGraphAddRecord(
                 _Out_ GUID          * pRecordId);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphUpdateRecord(
                 _In_  HGRAPH            hGraph,
                 _In_  PPEER_RECORD      pRecord);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphDeleteRecord(
                 _In_  HGRAPH       hGraph,
@@ -517,6 +539,7 @@ HRESULT WINAPI PeerGraphDeleteRecord(
                 _In_  BOOL         fLocal);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphEnumRecords(
                 _In_  HGRAPH            hGraph,
@@ -525,6 +548,7 @@ HRESULT WINAPI PeerGraphEnumRecords(
                 _Out_ HPEERENUM         * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphSearchRecords(
                 _In_  HGRAPH        hGraph,
@@ -532,18 +556,21 @@ HRESULT WINAPI PeerGraphSearchRecords(
                 _Out_ HPEERENUM     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphExportDatabase(
                 _In_  HGRAPH       hGraph,
                 _In_  PCWSTR       pwzFilePath);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphImportDatabase(
                 _In_  HGRAPH       hGraph,
                 _In_  PCWSTR       pwzFilePath);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphValidateDeferredRecords(
                 _In_  HGRAPH                        hGraph,
@@ -554,6 +581,7 @@ HRESULT WINAPI PeerGraphValidateDeferredRecords(
 // Node/Connection interfaces
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphOpenDirectConnection(
                 _In_  HGRAPH            hGraph,
@@ -562,6 +590,7 @@ HRESULT WINAPI PeerGraphOpenDirectConnection(
                 _Out_ ULONGLONG         * pullConnectionId);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphSendData(
                 _In_  HGRAPH                hGraph,
@@ -571,12 +600,14 @@ HRESULT WINAPI PeerGraphSendData(
                 _In_reads_bytes_(cbData) PVOID   pvData);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphCloseDirectConnection(
                 _In_  HGRAPH       hGraph,
                 _In_  ULONGLONG    ullConnectionId);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphEnumConnections(
                 _In_  HGRAPH        hGraph,
@@ -584,6 +615,7 @@ HRESULT WINAPI PeerGraphEnumConnections(
                 _Out_ HPEERENUM     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphEnumNodes(
                 _In_  HGRAPH        hGraph,
@@ -591,12 +623,14 @@ HRESULT WINAPI PeerGraphEnumNodes(
                 _Out_ HPEERENUM     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphSetPresence(
                 _In_  HGRAPH       hGraph,
                 _In_  BOOL         fPresent);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphGetNodeInfo(
                 _In_  HGRAPH                hGraph,
@@ -604,12 +638,14 @@ HRESULT WINAPI PeerGraphGetNodeInfo(
                 _Outptr_ PPEER_NODE_INFO * ppNodeInfo);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphSetNodeAttributes(
                 _In_  HGRAPH       hGraph,
                 _In_  PCWSTR       pwzAttributes);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphPeerTimeToUniversalTime(
                 _In_  HGRAPH       hGraph,
@@ -617,6 +653,7 @@ HRESULT WINAPI PeerGraphPeerTimeToUniversalTime(
                 _Out_ FILETIME *   pftUniversalTime);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2PGRAPH.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGraphUniversalTimeToPeerTime(
                 _In_  HGRAPH       hGraph,
@@ -638,17 +675,20 @@ HRESULT WINAPI PeerGraphUniversalTimeToPeerTime(
 #include <wincrypt.h>
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 VOID    WINAPI PeerFreeData(
                 _In_opt_    LPCVOID     pvData);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGetItemCount(
                 _In_    HPEERENUM       hPeerEnum,
                 _Out_   ULONG           * pCount);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGetNextItem(
                 _In_  HPEERENUM                     hPeerEnum,
@@ -656,6 +696,7 @@ HRESULT WINAPI PeerGetNextItem(
                 _Outptr_result_buffer_(*pCount) PVOID   ** pppvItems);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerEndEnumeration(
                 _In_  HPEERENUM    hPeerEnum);
@@ -891,22 +932,26 @@ typedef struct peer_name_pair_tag {
 #ifndef MIDL_PASS
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupStartup(
                 _In_  WORD                  wVersionRequested,
                 _Out_ PPEER_VERSION_DATA    pVersionData);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupShutdown();
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupCreate(
                 _In_  PPEER_GROUP_PROPERTIES    pProperties,
                 _Out_ HGROUP                    * phGroup);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupOpen(
                 _In_  PCWSTR       pwzIdentity,
@@ -915,6 +960,7 @@ HRESULT WINAPI PeerGroupOpen(
                 _Out_ HGROUP       * phGroup);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupJoin(
                 _In_  PCWSTR        pwzIdentity,
@@ -925,6 +971,7 @@ HRESULT WINAPI PeerGroupJoin(
 
 #if NTDDI_VERSION >= NTDDI_VISTA
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupPasswordJoin(
                 _In_  PCWSTR        pwzIdentity,
@@ -935,12 +982,14 @@ HRESULT WINAPI PeerGroupPasswordJoin(
 #endif
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupConnect(
                 _In_  HGROUP       hGroup);
 
 #if NTDDI_VERSION >= NTDDI_VISTA
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupConnectByAddress(
                 _In_  HGROUP                            hGroup,
@@ -949,17 +998,20 @@ HRESULT WINAPI PeerGroupConnectByAddress(
 #endif
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupClose(
                 _In_  HGROUP       hGroup);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupDelete(
                 _In_  PCWSTR       pwzIdentity,
                 _In_  PCWSTR       pwzGroupPeerName);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupCreateInvitation(
                 _In_  HGROUP                        hGroup,
@@ -971,6 +1023,7 @@ HRESULT WINAPI PeerGroupCreateInvitation(
 
 #if NTDDI_VERSION >= NTDDI_VISTA
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupCreatePasswordInvitation(
                 _In_  HGROUP        hGroup,
@@ -978,30 +1031,35 @@ HRESULT WINAPI PeerGroupCreatePasswordInvitation(
 #endif
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupParseInvitation(
                 _In_  PCWSTR                        pwzInvitation,
                 _Outptr_ PPEER_INVITATION_INFO   * ppInvitationInfo);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupGetStatus(
                 _In_  HGROUP        hGroup,
                 _Out_ DWORD         * pdwStatus);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupGetProperties(
                 _In_  HGROUP                        hGroup,
                 _Outptr_ PPEER_GROUP_PROPERTIES  * ppProperties);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupSetProperties(
                 _In_  HGROUP                    hGroup,
                 _In_  PPEER_GROUP_PROPERTIES    pProperties);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupEnumMembers(
                 _In_  HGROUP        hGroup,
@@ -1010,6 +1068,7 @@ HRESULT WINAPI PeerGroupEnumMembers(
                 _Out_ HPEERENUM     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupOpenDirectConnection(
                 _In_  HGROUP            hGroup,
@@ -1018,12 +1077,14 @@ HRESULT WINAPI PeerGroupOpenDirectConnection(
                 _Out_ ULONGLONG         * pullConnectionId);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupCloseDirectConnection(
                 _In_  HGROUP       hGroup,
                 _In_  ULONGLONG    ullConnectionId);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupEnumConnections(
                 _In_  HGROUP        hGroup,
@@ -1031,6 +1092,7 @@ HRESULT WINAPI PeerGroupEnumConnections(
                 _Out_ HPEERENUM     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupSendData(
                 _In_  HGROUP                hGroup,
@@ -1043,6 +1105,7 @@ HRESULT WINAPI PeerGroupSendData(
 // Eventing interfaces
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupRegisterEvent(
                 _In_  HGROUP                hGroup,
@@ -1052,11 +1115,13 @@ HRESULT WINAPI PeerGroupRegisterEvent(
                 _Out_ HPEEREVENT            * phPeerEvent);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupUnregisterEvent(
                 _In_  HPEEREVENT   hPeerEvent);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupGetEventData(
                 _In_  HPEEREVENT                    hPeerEvent,
@@ -1066,6 +1131,7 @@ HRESULT WINAPI PeerGroupGetEventData(
 // Data Storage
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupGetRecord(
                 _In_  HGROUP                hGroup,
@@ -1073,6 +1139,7 @@ HRESULT WINAPI PeerGroupGetRecord(
                 _Outptr_ PPEER_RECORD    * ppRecord);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupAddRecord(
                 _In_  HGROUP        hGroup,
@@ -1080,18 +1147,21 @@ HRESULT WINAPI PeerGroupAddRecord(
                 _Out_ GUID          * pRecordId);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupUpdateRecord(
                 _In_  HGROUP        hGroup,
                 _In_  PPEER_RECORD pRecord);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupDeleteRecord(
                 _In_  HGROUP       hGroup,
                 _In_  const GUID * pRecordId);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupEnumRecords(
                 _In_  HGROUP        hGroup,
@@ -1099,6 +1169,7 @@ HRESULT WINAPI PeerGroupEnumRecords(
                 _Out_ HPEERENUM     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupSearchRecords(
                 _In_  HGROUP        hGroup,
@@ -1106,18 +1177,21 @@ HRESULT WINAPI PeerGroupSearchRecords(
                 _Out_ HPEERENUM     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupExportDatabase(
                 _In_  HGROUP       hGroup,
                 _In_  PCWSTR       pwzFilePath);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupImportDatabase(
                 _In_  HGROUP       hGroup,
                 _In_  PCWSTR       pwzFilePath);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupIssueCredentials(
                 _In_ HGROUP                     hGroup,
@@ -1127,6 +1201,7 @@ HRESULT WINAPI PeerGroupIssueCredentials(
                 _Outptr_opt_ PWSTR           * ppwzInvitation);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupExportConfig(
                 _In_  HGROUP        hGroup,
@@ -1134,6 +1209,7 @@ HRESULT WINAPI PeerGroupExportConfig(
                 _Outptr_ PWSTR   * ppwzXML);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupImportConfig(
                 _In_ PCWSTR         pwzXML,
@@ -1143,6 +1219,7 @@ HRESULT WINAPI PeerGroupImportConfig(
                 _Outptr_ PWSTR   * ppwzGroup);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupPeerTimeToUniversalTime(
                 _In_  HGROUP       hGroup,
@@ -1150,6 +1227,7 @@ HRESULT WINAPI PeerGroupPeerTimeToUniversalTime(
                 _Out_ FILETIME *   pftUniversalTime);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupUniversalTimeToPeerTime(
                 _In_  HGROUP       hGroup,
@@ -1157,6 +1235,7 @@ HRESULT WINAPI PeerGroupUniversalTimeToPeerTime(
                 _Out_ FILETIME *   pftPeerTime);
 
 #if NTDDI_VERSION >= NTDDI_WIN7
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerGroupResumePasswordAuthentication(
                 _In_ HGROUP hGroup,
@@ -1179,6 +1258,7 @@ HRESULT WINAPI PeerGroupResumePasswordAuthentication(
 // API Definitions
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerIdentityCreate(
                 _In_opt_  PCWSTR        pwzClassifier,
@@ -1187,40 +1267,47 @@ HRESULT WINAPI PeerIdentityCreate(
                 _Outptr_ PWSTR       * ppwzIdentity);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerIdentityGetFriendlyName(
                 _In_opt_  PCWSTR    pwzIdentity,
                 _Outptr_ PWSTR   * ppwzFriendlyName);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerIdentitySetFriendlyName(
                 _In_opt_  PCWSTR    pwzIdentity,
                 _In_  PCWSTR       pwzFriendlyName);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerIdentityGetCryptKey(
                 _In_opt_  PCWSTR    pwzIdentity,
                 _Out_ HCRYPTPROV    * phCryptProv);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerIdentityDelete(
                 _In_  PCWSTR       pwzIdentity);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerEnumIdentities(
                 _Out_ HPEERENUM  * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerEnumGroups(
                 _In_  PCWSTR        pwzIdentity,
                 _Out_ HPEERENUM     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCreatePeerName(
                 _In_opt_ PCWSTR     pwzIdentity,
@@ -1228,12 +1315,14 @@ HRESULT WINAPI PeerCreatePeerName(
                 _Outptr_ PWSTR   * ppwzPeerName);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerIdentityGetXML(
                 _In_opt_  PCWSTR    pwzIdentity,
                 _Outptr_ PWSTR   * ppwzIdentityXML);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerIdentityExport(
                 _In_opt_  PCWSTR    pwzIdentity,
@@ -1241,6 +1330,7 @@ HRESULT WINAPI PeerIdentityExport(
                 _Outptr_ PWSTR   * ppwzExportXML);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerIdentityImport(
                 _In_  PCWSTR        pwzImportXML,
@@ -1248,6 +1338,7 @@ HRESULT WINAPI PeerIdentityImport(
                 _Outptr_ PWSTR   * ppwzIdentity);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerIdentityGetDefault(
                 _Outptr_ PWSTR   * ppwzPeerName);
@@ -1356,26 +1447,31 @@ typedef PPEER_PEOPLE_NEAR_ME *PPPEER_PEOPLE_NEAR_ME;
 // APIs
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabStartup(
                 _In_  WORD      wVersionRequested);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabShutdown();
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabSignin(
                 _In_opt_    HWND      hwndParent,
                 _In_        DWORD     dwSigninOptions);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabSignout(
                 _In_  DWORD     dwSigninOptions);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabGetSigninOptions(
                 _Out_  DWORD    * pdwSigninOptions);
@@ -1450,6 +1546,7 @@ typedef const PEER_APPLICATION_REGISTRATION_INFO * PCPEER_APPLICATION_REGISTRATI
 
 // AppInvite sender side API's
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabAsyncInviteContact(
                     _In_opt_ PCPEER_CONTACT             pcContact,
@@ -1459,22 +1556,26 @@ HRESULT WINAPI PeerCollabAsyncInviteContact(
                     _Out_opt_ HANDLE                    * phInvitation);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabGetInvitationResponse(
                     _In_  HANDLE                            hInvitation,
                     _Outptr_ PPEER_INVITATION_RESPONSE   * ppInvitationResponse);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabCancelInvitation(
                     _In_  HANDLE        hInvitation);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabCloseHandle(
                     _In_  HANDLE        hInvitation);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabInviteContact(
                     _In_opt_     PCPEER_CONTACT             pcContact,
@@ -1483,6 +1584,7 @@ HRESULT WINAPI PeerCollabInviteContact(
                     _Outptr_ PPEER_INVITATION_RESPONSE   * ppResponse);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabAsyncInviteEndpoint(
                     _In_  PCPEER_ENDPOINT               pcEndpoint,
@@ -1491,6 +1593,7 @@ HRESULT WINAPI PeerCollabAsyncInviteEndpoint(
                     _Out_opt_ HANDLE                    * phInvitation);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabInviteEndpoint(
                     _In_  PCPEER_ENDPOINT                   pcEndpoint,
@@ -1499,24 +1602,28 @@ HRESULT WINAPI PeerCollabInviteEndpoint(
 
 // AppInvite receiver side API's
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabGetAppLaunchInfo(
                     _Outptr_ PPEER_APP_LAUNCH_INFO       * ppLaunchInfo);
 
 // Applications registration API's
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabRegisterApplication(
                     _In_ PCPEER_APPLICATION_REGISTRATION_INFO   pcApplication,
                     _In_ PEER_APPLICATION_REGISTRATION_TYPE     registrationType);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabUnregisterApplication(
                     _In_ const GUID                             * pApplicationId,
                     _In_ PEER_APPLICATION_REGISTRATION_TYPE     registrationType);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabGetApplicationRegistrationInfo(
                     _In_ const GUID                                     * pApplicationId,
@@ -1524,6 +1631,7 @@ HRESULT WINAPI PeerCollabGetApplicationRegistrationInfo(
                     _Outptr_ PPEER_APPLICATION_REGISTRATION_INFO     * ppApplication);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabEnumApplicationRegistrationInfo(
                     _In_  PEER_APPLICATION_REGISTRATION_TYPE      registrationType,
@@ -1568,12 +1676,14 @@ typedef const PEER_PRESENCE_INFO * PCPEER_PRESENCE_INFO;
 
 // Subscriber
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabGetPresenceInfo(
                 _In_opt_  PCPEER_ENDPOINT           pcEndpoint,
                 _Outptr_ PPEER_PRESENCE_INFO     *ppPresenceInfo);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabEnumApplications(
                 _In_opt_  PCPEER_ENDPOINT           pcEndpoint,
@@ -1581,6 +1691,7 @@ HRESULT WINAPI PeerCollabEnumApplications(
                 _Out_ HPEERENUM                     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabEnumObjects(
                 _In_opt_ PCPEER_ENDPOINT            pcEndpoint,
@@ -1588,33 +1699,39 @@ HRESULT WINAPI PeerCollabEnumObjects(
                 _Out_ HPEERENUM                     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabEnumEndpoints(
                 _In_opt_    PCPEER_CONTACT          pcContact,
                 _Out_ HPEERENUM                     * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabRefreshEndpointData(
                 _In_ PCPEER_ENDPOINT                pcEndpoint);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabDeleteEndpointData(
                 _In_ PCPEER_ENDPOINT                pcEndpoint);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabQueryContactData(
                 _In_opt_ PCPEER_ENDPOINT            pcEndpoint,
                 _Outptr_ PWSTR                   * ppwzContactData);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabSubscribeEndpointData(
                 _In_ const PCPEER_ENDPOINT        pcEndpoint);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabUnsubscribeEndpointData(
                 _In_ const PCPEER_ENDPOINT        pcEndpoint);
@@ -1622,26 +1739,31 @@ HRESULT WINAPI PeerCollabUnsubscribeEndpointData(
 // Publisher
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabSetPresenceInfo(
                 _In_ PCPEER_PRESENCE_INFO    pcPresenceInfo);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabGetEndpointName(
                 _Outptr_ PWSTR            * ppwzEndpointName);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabSetEndpointName(
                 _In_ PCWSTR                  pwzEndpointName);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabSetObject(
                 _In_ PCPEER_OBJECT           pcObject);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabDeleteObject(
                 _In_ const GUID              * pObjectId);
@@ -1792,6 +1914,7 @@ typedef struct peer_event_request_status_changed_data_tag {
 // API's
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabRegisterEvent(
                 _In_ HANDLE                       hEvent,
@@ -1800,12 +1923,14 @@ HRESULT WINAPI PeerCollabRegisterEvent(
                 _Out_ HPEEREVENT                  *phPeerEvent);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabGetEventData(
                 _In_  HPEEREVENT                        hPeerEvent,
                 _Outptr_ PPEER_COLLAB_EVENT_DATA     * ppEventData);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabUnregisterEvent(
                 _In_ HPEEREVENT                         hPeerEvent);
@@ -1820,6 +1945,7 @@ HRESULT WINAPI PeerCollabUnregisterEvent(
 // API's
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabEnumPeopleNearMe(
                 _Out_ HPEERENUM                 *phPeerEnum);
@@ -1834,39 +1960,46 @@ HRESULT WINAPI PeerCollabEnumPeopleNearMe(
 // API's
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabAddContact(
                 _In_           PCWSTR           pwzContactData,
                 _Outptr_opt_ PPEER_CONTACT   * ppContact);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabDeleteContact(
                 _In_           PCWSTR           pwzPeerName);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabGetContact(
                 _In_opt_ PCWSTR                 pwzPeerName,
                 _Outptr_ PPEER_CONTACT       * ppContact);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabUpdateContact(
                 _In_    PCPEER_CONTACT          pContact);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabEnumContacts(
                 _Out_ HPEERENUM                 * phPeerEnum);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabExportContact(
                 _In_opt_  PCWSTR                pwzPeerName,
                 _Outptr_ PWSTR               * ppwzContactData);
 
 _Win32_metadata_supported_os_(windows6.0.6000)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerCollabParseContact(
                 _In_        PCWSTR              pwzContactData,
@@ -1930,27 +2063,32 @@ typedef struct peer_pnrp_registration_info_tag {
 // API's
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerNameToPeerHostName(
                 _In_    PCWSTR      pwzPeerName,
                 _Outptr_ PWSTR   *ppwzHostName);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerHostNameToPeerName(
                 _In_  PCWSTR        pwzHostName,
                 _Outptr_ PWSTR   *ppwzPeerName);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpStartup(
                 _In_ WORD           wVersionRequested);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpShutdown();
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpRegister(
                   _In_  PCWSTR                            pcwzPeerName,
@@ -1958,17 +2096,20 @@ HRESULT WINAPI PeerPnrpRegister(
                   _Out_ HREGISTRATION                    *phRegistration);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpUpdateRegistration(
                   _In_ HREGISTRATION                 hRegistration,
                   _In_ PPEER_PNRP_REGISTRATION_INFO  pRegistrationInfo);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpUnregister(
                 _In_ HREGISTRATION   hRegistration);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpResolve(
                   _In_ PCWSTR                           pcwzPeerName,
@@ -1977,6 +2118,7 @@ HRESULT WINAPI PeerPnrpResolve(
                   _Outptr_result_buffer_(*pcEndpoints) PPEER_PNRP_ENDPOINT_INFO  *ppEndpoints);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpStartResolve(
                   _In_  PCWSTR          pcwzPeerName,
@@ -1986,18 +2128,21 @@ HRESULT WINAPI PeerPnrpStartResolve(
                   _Out_ HRESOLUTION    *phResolve);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpGetCloudInfo(
                   _Out_ ULONG                                               *pcNumClouds,
                   _Outptr_result_buffer_(*pcNumClouds) PPEER_PNRP_CLOUD_INFO    *ppCloudInfo);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpGetEndpoint(
                   _In_  HRESOLUTION                       hResolve,
                   _Outptr_ PPEER_PNRP_ENDPOINT_INFO   *ppEndpoint);
 
 _Win32_metadata_supported_os_(windows5.1.2600)
+_Win32_metadata_import_library_("P2P.dll")
 NOT_BUILD_WINDOWS_DEPRECATE
 HRESULT WINAPI PeerPnrpEndResolve(
                   _In_ HRESOLUTION   hResolve);
