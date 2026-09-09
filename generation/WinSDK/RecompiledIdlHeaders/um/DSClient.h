@@ -3,9 +3,7 @@
 //
 #pragma once
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -191,6 +189,7 @@ typedef struct
 #undef  INTERFACE
 #define INTERFACE  IDsBrowseDomainTree
 
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_IID_(IDsBrowseDomainTree, IUnknown, "7cabcf1e-78f5-11d2-960c-00c04fa31a86")
 {
     // *** IUnknown methods ***
@@ -271,6 +270,7 @@ typedef struct
 #undef  INTERFACE
 #define INTERFACE IDsDisplaySpecifier
 
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_IID_(IDsDisplaySpecifier, IUnknown, "1ab4a8c0-6a0b-11d2-ad49-00c04fa31a86")
 {
     // *** IUnknown methods ***

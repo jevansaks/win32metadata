@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msvidctl.h b/generation/WinSDK/RecompiledIdlHeaders/um/msvidctl.h
-index 767539a9..2260e619 100644
+index 767539a9..9f80bf87 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/msvidctl.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/msvidctl.h
-@@ -844,6 +844,9 @@ extern "C"{
+@@ -844,6 +844,7 @@ extern "C"{
  //--------------------------------------------------------------------------
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef 
-@@ -918,6 +921,7 @@ EXTERN_C const IID IID_IMSVidCtl;
+@@ -918,6 +919,7 @@ EXTERN_C const IID IID_IMSVidCtl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 767539a9..2260e619 100644
      MIDL_INTERFACE("B0EDF162-910A-11D2-B632-00C04F79498E")
      IMSVidCtl : public IDispatch
      {
-@@ -2435,9 +2439,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -2435,9 +2437,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  
@@ -34,7 +32,7 @@ index 767539a9..2260e619 100644
  void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  
  unsigned long             __RPC_USER  HWND_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HWND * ); 
-@@ -2445,9 +2453,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+@@ -2445,9 +2451,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
  unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

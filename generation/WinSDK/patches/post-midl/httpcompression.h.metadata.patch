@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/httpcompression.h b/generation/WinSDK/RecompiledIdlHeaders/um/httpcompression.h
-index 0b699332..a0ab825a 100644
+index 0b699332..cf7e510f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/httpcompression.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/httpcompression.h
-@@ -2,6 +2,9 @@
+@@ -2,6 +2,7 @@
  #define _HTTP_COMPRESSION_H_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -77,6 +80,7 @@ CreateCompression(
+@@ -77,6 +78,7 @@ CreateCompression(
  //
  // Compress data
  //

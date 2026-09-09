@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MSTask.h b/generation/WinSDK/RecompiledIdlHeaders/um/MSTask.h
-index 51dac54e..5cc7192c 100644
+index 51dac54e..b0b117bf 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/MSTask.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/MSTask.h
-@@ -102,6 +102,9 @@ extern "C"{
+@@ -102,6 +102,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define TASK_SUNDAY       (0x1)
-@@ -235,6 +238,7 @@ EXTERN_C const IID IID_ITaskTrigger;
+@@ -235,6 +236,7 @@ EXTERN_C const IID IID_ITaskTrigger;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 51dac54e..5cc7192c 100644
      MIDL_INTERFACE("148BD52B-A2AB-11CE-B11F-00AA00530503")
      ITaskTrigger : public IUnknown
      {
-@@ -359,6 +363,7 @@ EXTERN_C const IID IID_IScheduledWorkItem;
+@@ -359,6 +361,7 @@ EXTERN_C const IID IID_IScheduledWorkItem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 51dac54e..5cc7192c 100644
      MIDL_INTERFACE("a6b952f0-a4b1-11d0-997d-00aa006887ec")
      IScheduledWorkItem : public IUnknown
      {
-@@ -861,6 +866,7 @@ EXTERN_C const IID IID_ITask;
+@@ -861,6 +864,7 @@ EXTERN_C const IID IID_ITask;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 51dac54e..5cc7192c 100644
      MIDL_INTERFACE("148BD524-A2AB-11CE-B11F-00AA00530503")
      ITask : public IScheduledWorkItem
      {
-@@ -1384,6 +1390,7 @@ EXTERN_C const IID IID_IEnumWorkItems;
+@@ -1384,6 +1388,7 @@ EXTERN_C const IID IID_IEnumWorkItems;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 51dac54e..5cc7192c 100644
      MIDL_INTERFACE("148BD528-A2AB-11CE-B11F-00AA00530503")
      IEnumWorkItems : public IUnknown
      {
-@@ -1525,6 +1532,7 @@ EXTERN_C const IID IID_ITaskScheduler;
+@@ -1525,6 +1530,7 @@ EXTERN_C const IID IID_ITaskScheduler;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 51dac54e..5cc7192c 100644
      MIDL_INTERFACE("148BD527-A2AB-11CE-B11F-00AA00530503")
      ITaskScheduler : public IUnknown
      {
-@@ -1762,6 +1770,7 @@ EXTERN_C const IID IID_IProvideTaskPage;
+@@ -1762,6 +1768,7 @@ EXTERN_C const IID IID_IProvideTaskPage;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

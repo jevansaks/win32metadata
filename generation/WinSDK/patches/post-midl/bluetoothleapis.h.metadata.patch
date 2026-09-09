@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothleapis.h b/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothleapis.h
-index 8d432133..f8cea54b 100644
+index 8d432133..beec7454 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothleapis.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothleapis.h
-@@ -19,6 +19,9 @@ Environment:
+@@ -19,6 +19,7 @@ Environment:
  #pragma once
  #endif //_MSC_VER
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #include <BthLEDef.h>
  
  #pragma region Desktop Family
-@@ -75,6 +78,7 @@ extern "C"{
+@@ -75,6 +76,7 @@ extern "C"{
  //      ERROR_NO_SYSTEM_RESOURCES
  //          The operation ran out of memory.
  //
@@ -20,7 +18,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTGetServices(
-@@ -141,6 +145,7 @@ BluetoothGATTGetServices(
+@@ -141,6 +143,7 @@ BluetoothGATTGetServices(
  //          If both a parent service and a service handle is provided and the
  //          parent service hierarchy do not roll up to the service handle that is provided.
  //
@@ -28,7 +26,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTGetIncludedServices(
-@@ -198,6 +203,7 @@ BluetoothGATTGetIncludedServices(
+@@ -198,6 +201,7 @@ BluetoothGATTGetIncludedServices(
  ///      ERROR_NO_SYSTEM_RESOURCES
  //          The operation ran out of memory.
  //
@@ -36,7 +34,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTGetCharacteristics(
-@@ -253,6 +259,7 @@ BluetoothGATTGetCharacteristics(
+@@ -253,6 +257,7 @@ BluetoothGATTGetCharacteristics(
  ///      ERROR_NO_SYSTEM_RESOURCES
  //          The operation ran out of memory.
  //
@@ -44,7 +42,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTGetDescriptors(
-@@ -326,6 +333,7 @@ BluetoothGATTGetDescriptors(
+@@ -326,6 +331,7 @@ BluetoothGATTGetDescriptors(
  //          An error code returned by the device indicating a specific error has occured.
  //          Consult the Bluetooth specification for more information.
  //
@@ -52,7 +50,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTGetCharacteristicValue(
-@@ -396,6 +404,7 @@ BluetoothGATTGetCharacteristicValue(
+@@ -396,6 +402,7 @@ BluetoothGATTGetCharacteristicValue(
  //          An error code returned by the device indicating a specific error has occured.
  //          Consult the Bluetooth specification for more information.
  //
@@ -60,7 +58,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTGetDescriptorValue(
-@@ -428,6 +437,7 @@ BluetoothGATTGetDescriptorValue(
+@@ -428,6 +435,7 @@ BluetoothGATTGetDescriptorValue(
  //      ERROR_INVALID_FUNCTION
  //          A reliable write operation is already presently underway.
  //
@@ -68,7 +66,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTBeginReliableWrite(
-@@ -486,6 +496,7 @@ BluetoothGATTBeginReliableWrite(
+@@ -486,6 +494,7 @@ BluetoothGATTBeginReliableWrite(
  //          An error code returned by the device indicating a specific error has occured.
  //          Consult the Bluetooth specification for more information.
  //
@@ -76,7 +74,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTSetCharacteristicValue(
-@@ -532,6 +543,7 @@ BluetoothGATTSetCharacteristicValue(
+@@ -532,6 +541,7 @@ BluetoothGATTSetCharacteristicValue(
  //          An error code returned by the device indicating a specific error has occured.
  //          Consult the Bluetooth specification for more information.
  //
@@ -84,7 +82,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTEndReliableWrite(
-@@ -577,6 +589,7 @@ BluetoothGATTEndReliableWrite(
+@@ -577,6 +587,7 @@ BluetoothGATTEndReliableWrite(
  //          An error code returned by the device indicating a specific error has occured.
  //          Consult the Bluetooth specification for more information.
  //
@@ -92,7 +90,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTAbortReliableWrite(
-@@ -628,6 +641,7 @@ BluetoothGATTAbortReliableWrite(
+@@ -628,6 +639,7 @@ BluetoothGATTAbortReliableWrite(
  //          An error code returned by the device indicating a specific error has occured.
  //          Consult the Bluetooth specification for more information.
  //
@@ -100,7 +98,7 @@ index 8d432133..f8cea54b 100644
  _Success_(S_OK == return)
  HRESULT WINAPI
  BluetoothGATTSetDescriptorValue(
-@@ -677,6 +691,7 @@ BluetoothGATTSetDescriptorValue(
+@@ -677,6 +689,7 @@ BluetoothGATTSetDescriptorValue(
  //      ERROR_INVALID_PARAMETER
  //          One of the parameters were invalid.
  //
@@ -108,7 +106,7 @@ index 8d432133..f8cea54b 100644
  HRESULT WINAPI
  BluetoothGATTRegisterEvent(
      _In_ HANDLE hService,
-@@ -706,6 +721,7 @@ BluetoothGATTRegisterEvent(
+@@ -706,6 +719,7 @@ BluetoothGATTRegisterEvent(
  //      ERROR_INVALID_PARAMETER
  //          One of the parameters were invalid.
  //

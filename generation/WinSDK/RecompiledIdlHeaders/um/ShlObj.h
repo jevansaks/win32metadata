@@ -6,9 +6,7 @@ File: shlobj.h
 
 ===========================================================================*/
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef _SHLOBJ_H_
 #define _SHLOBJ_H_

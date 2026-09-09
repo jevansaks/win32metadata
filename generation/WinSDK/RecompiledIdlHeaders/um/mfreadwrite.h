@@ -130,9 +130,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #if (WINVER >= _WIN32_WINNT_WIN7) 
 #pragma region Application or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)

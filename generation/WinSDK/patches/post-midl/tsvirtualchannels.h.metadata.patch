@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tsvirtualchannels.h b/generation/WinSDK/RecompiledIdlHeaders/um/tsvirtualchannels.h
-index eb8ab3d1..3ed22ac0 100644
+index eb8ab3d1..2486ef05 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/tsvirtualchannels.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/tsvirtualchannels.h
-@@ -130,6 +130,9 @@ extern "C"{
+@@ -130,6 +130,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -158,6 +161,7 @@ EXTERN_C const IID IID_IWTSPlugin;
+@@ -158,6 +159,7 @@ EXTERN_C const IID IID_IWTSPlugin;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("A1230201-1439-4e62-a414-190d0ac3d40e")
      IWTSPlugin : public IUnknown
      {
-@@ -283,6 +287,7 @@ EXTERN_C const IID IID_IWTSListener;
+@@ -283,6 +285,7 @@ EXTERN_C const IID IID_IWTSListener;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("A1230206-9a39-4d58-8674-cdb4dff4e73b")
      IWTSListener : public IUnknown
      {
-@@ -379,6 +384,7 @@ EXTERN_C const IID IID_IWTSListenerCallback;
+@@ -379,6 +382,7 @@ EXTERN_C const IID IID_IWTSListenerCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("A1230203-d6a7-11d8-b9fd-000bdbd1f198")
      IWTSListenerCallback : public IUnknown
      {
-@@ -485,6 +491,7 @@ EXTERN_C const IID IID_IWTSVirtualChannelCallback;
+@@ -485,6 +489,7 @@ EXTERN_C const IID IID_IWTSVirtualChannelCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("A1230204-d6a7-11d8-b9fd-000bdbd1f198")
      IWTSVirtualChannelCallback : public IUnknown
      {
-@@ -595,6 +602,7 @@ EXTERN_C const IID IID_IWTSVirtualChannelManager;
+@@ -595,6 +600,7 @@ EXTERN_C const IID IID_IWTSVirtualChannelManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("A1230205-d6a7-11d8-b9fd-000bdbd1f198")
      IWTSVirtualChannelManager : public IUnknown
      {
-@@ -703,6 +711,7 @@ EXTERN_C const IID IID_IWTSVirtualChannel;
+@@ -703,6 +709,7 @@ EXTERN_C const IID IID_IWTSVirtualChannel;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("A1230207-d6a7-11d8-b9fd-000bdbd1f198")
      IWTSVirtualChannel : public IUnknown
      {
-@@ -817,6 +826,7 @@ EXTERN_C const IID IID_IWTSPluginServiceProvider;
+@@ -817,6 +824,7 @@ EXTERN_C const IID IID_IWTSPluginServiceProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("D3E07363-087C-476C-86A7-DBB15F46DDB4")
      IWTSPluginServiceProvider : public IUnknown
      {
-@@ -925,6 +935,7 @@ EXTERN_C const IID IID_IWTSBitmapRenderer;
+@@ -925,6 +933,7 @@ EXTERN_C const IID IID_IWTSBitmapRenderer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("5B7ACC97-F3C9-46F7-8C5B-FA685D3441B1")
      IWTSBitmapRenderer : public IUnknown
      {
-@@ -1063,6 +1074,7 @@ EXTERN_C const IID IID_IWTSBitmapRendererCallback;
+@@ -1063,6 +1072,7 @@ EXTERN_C const IID IID_IWTSBitmapRendererCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("D782928E-FE4E-4E77-AE90-9CD0B3E3B353")
      IWTSBitmapRendererCallback : public IUnknown
      {
-@@ -1159,6 +1171,7 @@ EXTERN_C const IID IID_IWTSBitmapRenderService;
+@@ -1159,6 +1169,7 @@ EXTERN_C const IID IID_IWTSBitmapRenderService;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index eb8ab3d1..3ed22ac0 100644
      MIDL_INTERFACE("EA326091-05FE-40C1-B49C-3D2EF4626A0E")
      IWTSBitmapRenderService : public IUnknown
      {
-@@ -1260,9 +1273,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -1260,9 +1271,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBer.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinBer.h
-index 62e8aa6d..c9019bba 100644
+index 62e8aa6d..d6a36ec9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WinBer.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinBer.h
-@@ -30,6 +30,9 @@ Environments :
+@@ -30,6 +30,7 @@ Environments :
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -64,6 +67,7 @@ typedef int ber_slen_t;           /* signed equivalent of ber_len_t */
+@@ -64,6 +65,7 @@ typedef int ber_slen_t;           /* signed equivalent of ber_len_t */
  // data in the supplied berval structure.
  //
  
@@ -20,7 +18,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI BerElement * BERAPI ber_init( BERVAL *pBerVal );
  
  //
-@@ -73,6 +77,7 @@ WINBERAPI BerElement * BERAPI ber_init( BERVAL *pBerVal );
+@@ -73,6 +75,7 @@ WINBERAPI BerElement * BERAPI ber_init( BERVAL *pBerVal );
  //
  //
  
@@ -28,7 +26,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI VOID BERAPI ber_free( BerElement *pBerElement, INT fbuf );
  
  //
-@@ -81,6 +86,7 @@ WINBERAPI VOID BERAPI ber_free( BerElement *pBerElement, INT fbuf );
+@@ -81,6 +84,7 @@ WINBERAPI VOID BERAPI ber_free( BerElement *pBerElement, INT fbuf );
  // have allocated
  //
  
@@ -36,7 +34,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI VOID BERAPI ber_bvfree( BERVAL *pBerVal );
  
  
-@@ -88,12 +94,14 @@ WINBERAPI VOID BERAPI ber_bvfree( BERVAL *pBerVal );
+@@ -88,12 +92,14 @@ WINBERAPI VOID BERAPI ber_bvfree( BERVAL *pBerVal );
  // Frees an array of BERVAL structures.
  //
  
@@ -51,7 +49,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI BERVAL * BERAPI ber_bvdup( BERVAL *pBerVal );
  
  
-@@ -105,6 +113,7 @@ WINBERAPI BERVAL * BERAPI ber_bvdup( BERVAL *pBerVal );
+@@ -105,6 +111,7 @@ WINBERAPI BERVAL * BERAPI ber_bvdup( BERVAL *pBerVal );
  // The LBER_USE_DER options should always be specified.
  //
  
@@ -59,7 +57,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI BerElement * BERAPI ber_alloc_t( INT options );
  
  
-@@ -121,6 +130,7 @@ WINBERAPI BerElement * BERAPI ber_alloc_t( INT options );
+@@ -121,6 +128,7 @@ WINBERAPI BerElement * BERAPI ber_alloc_t( INT options );
  // the value part of the next element
  //
  
@@ -67,7 +65,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI ULONG BERAPI ber_skip_tag( BerElement *pBerElement, ULONG *pLen );
  
  //
-@@ -132,6 +142,7 @@ WINBERAPI ULONG BERAPI ber_skip_tag( BerElement *pBerElement, ULONG *pLen );
+@@ -132,6 +140,7 @@ WINBERAPI ULONG BERAPI ber_skip_tag( BerElement *pBerElement, ULONG *pLen );
  // else the tag of the next element is returned.
  //
  
@@ -75,7 +73,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI ULONG BERAPI ber_peek_tag( BerElement *pBerElement, ULONG *pLen);
  
  //
-@@ -143,6 +154,7 @@ WINBERAPI ULONG BERAPI ber_peek_tag( BerElement *pBerElement, ULONG *pLen);
+@@ -143,6 +152,7 @@ WINBERAPI ULONG BERAPI ber_peek_tag( BerElement *pBerElement, ULONG *pLen);
  // subsequent invocations of ber_next_element().
  //
  
@@ -83,7 +81,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI ULONG BERAPI ber_first_element( BerElement *pBerElement, ULONG *pLen, _Out_ CHAR **ppOpaque );
  
  //
-@@ -153,6 +165,7 @@ WINBERAPI ULONG BERAPI ber_first_element( BerElement *pBerElement, ULONG *pLen,
+@@ -153,6 +163,7 @@ WINBERAPI ULONG BERAPI ber_first_element( BerElement *pBerElement, ULONG *pLen,
  // is returned.
  //
  
@@ -91,7 +89,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI ULONG BERAPI ber_next_element( BerElement *pBerElement, ULONG *pLen, _In_ CHAR *opaque );
  
  //
-@@ -162,6 +175,7 @@ WINBERAPI ULONG BERAPI ber_next_element( BerElement *pBerElement, ULONG *pLen, _
+@@ -162,6 +173,7 @@ WINBERAPI ULONG BERAPI ber_next_element( BerElement *pBerElement, ULONG *pLen, _
  // The return values are 0 on success and -1 on error.
  //
  
@@ -99,7 +97,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI INT BERAPI ber_flatten( BerElement *pBerElement, PBERVAL *pBerVal );
  
  
-@@ -245,6 +259,7 @@ The format string can contain the following format characters:
+@@ -245,6 +257,7 @@ The format string can contain the following format characters:
          be used with this format character.
  */
  
@@ -107,7 +105,7 @@ index 62e8aa6d..c9019bba 100644
  WINBERAPI INT BERAPI ber_printf( BerElement *pBerElement, _In_ PSTR fmt, ... );
  
  /*
-@@ -337,6 +352,7 @@ contain the following characters:
+@@ -337,6 +350,7 @@ contain the following characters:
  
  */
  

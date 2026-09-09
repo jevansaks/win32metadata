@@ -162,9 +162,7 @@ DEFINE_GUID(IID_IRSOPInformation, 0x9a5a81b5, 0xd9c7, 0x49ef, 0x9d, 0x11, 0xdd, 
 #ifndef _GPEDIT_H_
 #define _GPEDIT_H_
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -231,6 +229,7 @@ typedef enum _GROUP_POLICY_HINT_TYPE {
 
 #undef INTERFACE
 #define INTERFACE   IGPEInformation
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_(IGPEInformation, IUnknown)
 {
     // *** IUnknown methods ***
@@ -387,6 +386,7 @@ typedef IGPEInformation *LPGPEINFORMATION;
 
 #undef INTERFACE
 #define INTERFACE   IGroupPolicyObject
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_(IGroupPolicyObject, IUnknown)
 {
     // *** IUnknown methods ***
@@ -647,6 +647,7 @@ typedef IGroupPolicyObject *LPGROUPPOLICYOBJECT;
 
 #undef INTERFACE
 #define INTERFACE   IRSOPInformation
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_(IRSOPInformation, IUnknown)
 {
     // *** IUnknown methods ***

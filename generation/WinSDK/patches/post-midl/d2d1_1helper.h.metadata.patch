@@ -1,19 +1,17 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1_1helper.h b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1_1helper.h
-index 1c1a37bb..bb9327fe 100644
+index 1c1a37bb..279fc7f1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1_1helper.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1_1helper.h
-@@ -10,6 +10,10 @@
+@@ -10,6 +10,8 @@
      Description: Helper files over the D2D interfaces and APIs.
  
  \*=========================================================================*/
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
 +
  #pragma once
  
  #ifndef _D2D1_1HELPER_H_
-@@ -543,6 +547,7 @@ namespace D2D1
+@@ -543,6 +545,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      inline
      D2D1_COLOR_F
@@ -21,7 +19,7 @@ index 1c1a37bb..bb9327fe 100644
      ConvertColorSpace(
          D2D1_COLOR_SPACE sourceColorSpace,
          D2D1_COLOR_SPACE destinationColorSpace,
-@@ -559,6 +564,7 @@ namespace D2D1
+@@ -559,6 +562,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_DRAWING_STATE_DESCRIPTION1
@@ -29,7 +27,7 @@ index 1c1a37bb..bb9327fe 100644
      DrawingStateDescription1(
          D2D1_ANTIALIAS_MODE antialiasMode = D2D1_ANTIALIAS_MODE_PER_PRIMITIVE,
          D2D1_TEXT_ANTIALIAS_MODE textAntialiasMode = D2D1_TEXT_ANTIALIAS_MODE_DEFAULT,
-@@ -582,6 +588,7 @@ namespace D2D1
+@@ -582,6 +586,7 @@ namespace D2D1
          return drawingStateDescription1;
      }
  
@@ -37,7 +35,7 @@ index 1c1a37bb..bb9327fe 100644
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_DRAWING_STATE_DESCRIPTION1
-@@ -607,6 +614,7 @@ namespace D2D1
+@@ -607,6 +612,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_BITMAP_PROPERTIES1
@@ -45,7 +43,7 @@ index 1c1a37bb..bb9327fe 100644
      BitmapProperties1(
          D2D1_BITMAP_OPTIONS bitmapOptions = D2D1_BITMAP_OPTIONS_NONE,
          _In_ CONST D2D1_PIXEL_FORMAT pixelFormat = D2D1::PixelFormat(),
-@@ -631,6 +639,7 @@ namespace D2D1
+@@ -631,6 +637,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_LAYER_PARAMETERS1
@@ -53,7 +51,7 @@ index 1c1a37bb..bb9327fe 100644
      LayerParameters1(
          _In_ CONST D2D1_RECT_F &contentBounds = D2D1::InfiniteRect(),
          _In_opt_ ID2D1Geometry *geometricMask = NULL,
-@@ -657,6 +666,7 @@ namespace D2D1
+@@ -657,6 +664,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_STROKE_STYLE_PROPERTIES1
@@ -61,7 +59,7 @@ index 1c1a37bb..bb9327fe 100644
      StrokeStyleProperties1(
          D2D1_CAP_STYLE startCap = D2D1_CAP_STYLE_FLAT,
          D2D1_CAP_STYLE endCap = D2D1_CAP_STYLE_FLAT,
-@@ -685,6 +695,7 @@ namespace D2D1
+@@ -685,6 +693,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_IMAGE_BRUSH_PROPERTIES
@@ -69,7 +67,7 @@ index 1c1a37bb..bb9327fe 100644
      ImageBrushProperties(
          D2D1_RECT_F sourceRectangle,
          D2D1_EXTEND_MODE extendModeX = D2D1_EXTEND_MODE_CLAMP,
-@@ -705,6 +716,7 @@ namespace D2D1
+@@ -705,6 +714,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_BITMAP_BRUSH_PROPERTIES1
@@ -77,7 +75,7 @@ index 1c1a37bb..bb9327fe 100644
      BitmapBrushProperties1(
          D2D1_EXTEND_MODE extendModeX = D2D1_EXTEND_MODE_CLAMP,
          D2D1_EXTEND_MODE extendModeY = D2D1_EXTEND_MODE_CLAMP,
-@@ -723,6 +735,7 @@ namespace D2D1
+@@ -723,6 +733,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_PRINT_CONTROL_PROPERTIES
@@ -85,7 +83,7 @@ index 1c1a37bb..bb9327fe 100644
      PrintControlProperties(
          D2D1_PRINT_FONT_SUBSET_MODE fontSubsetMode = D2D1_PRINT_FONT_SUBSET_MODE_DEFAULT,
          FLOAT rasterDpi = 150.0f,
-@@ -741,6 +754,7 @@ namespace D2D1
+@@ -741,6 +752,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_RENDERING_CONTROLS
@@ -93,7 +91,7 @@ index 1c1a37bb..bb9327fe 100644
      RenderingControls(
          D2D1_BUFFER_PRECISION bufferPrecision,
          D2D1_SIZE_U tileSize
-@@ -757,6 +771,7 @@ namespace D2D1
+@@ -757,6 +769,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_EFFECT_INPUT_DESCRIPTION
@@ -101,7 +99,7 @@ index 1c1a37bb..bb9327fe 100644
      EffectInputDescription(
          ID2D1Effect *effect,
          UINT32 inputIndex,
-@@ -775,6 +790,7 @@ namespace D2D1
+@@ -775,6 +788,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_CREATION_PROPERTIES
@@ -109,7 +107,7 @@ index 1c1a37bb..bb9327fe 100644
      CreationProperties(
          D2D1_THREADING_MODE threadingMode,
          D2D1_DEBUG_LEVEL debugLevel,
-@@ -793,6 +809,7 @@ namespace D2D1
+@@ -793,6 +807,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_VECTOR_2F
@@ -117,7 +115,7 @@ index 1c1a37bb..bb9327fe 100644
      Vector2F(
          FLOAT x = 0.0f,
          FLOAT y = 0.0f
-@@ -805,6 +822,7 @@ namespace D2D1
+@@ -805,6 +820,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_VECTOR_3F
@@ -125,7 +123,7 @@ index 1c1a37bb..bb9327fe 100644
      Vector3F(
          FLOAT x = 0.0f,
          FLOAT y = 0.0f,
-@@ -818,6 +836,7 @@ namespace D2D1
+@@ -818,6 +834,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_VECTOR_4F
@@ -133,7 +131,7 @@ index 1c1a37bb..bb9327fe 100644
      Vector4F(
          FLOAT x = 0.0f,
          FLOAT y = 0.0f,
-@@ -832,6 +851,7 @@ namespace D2D1
+@@ -832,6 +849,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_POINT_2L
@@ -141,7 +139,7 @@ index 1c1a37bb..bb9327fe 100644
      Point2L(
          INT32 x = 0,
          INT32 y = 0
-@@ -843,6 +863,7 @@ namespace D2D1
+@@ -843,6 +861,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_RECT_L
@@ -149,7 +147,7 @@ index 1c1a37bb..bb9327fe 100644
      RectL(
          INT32 left = 0.f,
          INT32 top = 0.f,
-@@ -860,6 +881,7 @@ namespace D2D1
+@@ -860,6 +879,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      HRESULT

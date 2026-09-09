@@ -257,9 +257,7 @@ extern "C"{
 /*                                                             */
 /***************************************************************/
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #pragma region Desktop Family or WinMgmt Package
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WINMGMT)
 

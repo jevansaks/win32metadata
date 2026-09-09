@@ -5,9 +5,7 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 File: shlobj_core.h
 
 ===========================================================================*/
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #include <winapifamily.h>
 

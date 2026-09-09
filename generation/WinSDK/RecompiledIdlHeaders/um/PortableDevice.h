@@ -2,9 +2,7 @@
 * Copyright (c) Microsoft Corporation. All rights reserved.
 ****************************************************************************/
 #pragma once
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 // Windows XP SP2, Windows Vista, or later (excluding Windows Server 2003)
 #if ((NTDDI_VERSION >= NTDDI_WINXPSP2 && NTDDI_VERSION < NTDDI_WS03) || (NTDDI_VERSION >= NTDDI_WINLH))

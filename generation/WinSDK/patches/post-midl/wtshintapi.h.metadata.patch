@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wtshintapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wtshintapi.h
-index da70dd26..41035d56 100644
+index da70dd26..16869e2a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wtshintapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wtshintapi.h
-@@ -17,6 +17,9 @@
+@@ -17,6 +17,7 @@
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -86,6 +89,7 @@ extern "C" {
+@@ -86,6 +87,7 @@ extern "C" {
  //                 The hintDataSize MUST be sizeof(RECT)
  /*------------------------------------------------------------------*/
  

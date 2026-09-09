@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/iextag.h b/generation/WinSDK/RecompiledIdlHeaders/um/iextag.h
-index e8b7b8fb..fa4d1be5 100644
+index e8b7b8fb..1153dc6b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/iextag.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/iextag.h
-@@ -344,6 +344,9 @@ extern "C"{
+@@ -344,6 +344,7 @@ extern "C"{
  //=--------------------------------------------------------------------------=
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -3179,14 +3182,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -3179,14 +3180,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

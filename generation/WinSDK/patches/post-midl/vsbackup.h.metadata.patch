@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vsbackup.h b/generation/WinSDK/RecompiledIdlHeaders/um/vsbackup.h
-index e95397d4..b762ec34 100644
+index e95397d4..c350f9b1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/vsbackup.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/vsbackup.h
-@@ -15,6 +15,9 @@ Abstract:
+@@ -15,6 +15,7 @@ Abstract:
  #ifndef _VSBACKUP_H_
  #define _VSBACKUP_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or VSS Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_VSS)
-@@ -791,11 +794,13 @@ public:
+@@ -791,11 +792,13 @@ public:
  #define VSS_SW_BOOTABLE_STATE   (1 << 0)
  
  extern "C"  {
@@ -26,7 +24,7 @@ index e95397d4..b762ec34 100644
      HRESULT STDAPICALLTYPE CreateVssExamineWriterMetadataInternal
          (
          _In_ BSTR bstrXML,
-@@ -803,6 +808,7 @@ extern "C"  {
+@@ -803,6 +806,7 @@ extern "C"  {
          );
  
  
@@ -34,7 +32,7 @@ index e95397d4..b762ec34 100644
      HRESULT APIENTRY IsVolumeSnapshottedInternal
          (
          _In_z_ VSS_PWSZ  pwszVolumeName,
-@@ -813,6 +819,7 @@ extern "C"  {
+@@ -813,6 +817,7 @@ extern "C"  {
  /////////////////////////////////////////////////////////////////////
  // Life-management methods for structure members
  
@@ -42,7 +40,7 @@ index e95397d4..b762ec34 100644
      void APIENTRY VssFreeSnapshotPropertiesInternal(
          _In_ VSS_SNAPSHOT_PROP*  pProp
          );
-@@ -831,6 +838,7 @@ extern "C"  {
+@@ -831,6 +836,7 @@ extern "C"  {
          );
  }
  
@@ -50,7 +48,7 @@ index e95397d4..b762ec34 100644
  inline HRESULT  CreateVssBackupComponents
      (
      _Out_ IVssBackupComponents **ppBackup
-@@ -839,6 +847,7 @@ inline HRESULT  CreateVssBackupComponents
+@@ -839,6 +845,7 @@ inline HRESULT  CreateVssBackupComponents
      return CreateVssBackupComponentsInternal(ppBackup);
  }
  
@@ -58,7 +56,7 @@ index e95397d4..b762ec34 100644
  inline HRESULT CreateVssExamineWriterMetadata
      (
      _In_ BSTR bstrXML,
-@@ -848,6 +857,7 @@ inline HRESULT CreateVssExamineWriterMetadata
+@@ -848,6 +855,7 @@ inline HRESULT CreateVssExamineWriterMetadata
      return CreateVssExamineWriterMetadataInternal(bstrXML, ppMetadata);
  }
  
@@ -66,7 +64,7 @@ index e95397d4..b762ec34 100644
  inline HRESULT IsVolumeSnapshotted
      (
      _In_z_ VSS_PWSZ  pwszVolumeName,
-@@ -858,6 +868,7 @@ inline HRESULT IsVolumeSnapshotted
+@@ -858,6 +866,7 @@ inline HRESULT IsVolumeSnapshotted
      return IsVolumeSnapshottedInternal(pwszVolumeName, pbSnapshotsPresent, plSnapshotCapability);
  }
  
@@ -74,7 +72,7 @@ index e95397d4..b762ec34 100644
  inline void VssFreeSnapshotProperties
      (
      _In_ VSS_SNAPSHOT_PROP* pProp
-@@ -876,6 +887,7 @@ inline HRESULT GetProviderMgmtInterface
+@@ -876,6 +885,7 @@ inline HRESULT GetProviderMgmtInterface
      return GetProviderMgmtInterfaceInternal(ProviderId, InterfaceId, ppItf);
  }
  

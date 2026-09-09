@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h b/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h
-index 2c153a65..6909f0c7 100644
+index 2c153a65..2d426df4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h
-@@ -7,6 +7,9 @@
+@@ -7,6 +7,7 @@
  #define RESOURCEINDEXER_H
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -23,13 +26,17 @@ typedef struct
+@@ -23,13 +24,17 @@ typedef struct
      PWSTR value;
  } IndexedResourceQualifier;
  
@@ -31,7 +29,7 @@ index 2c153a65..6909f0c7 100644
  STDAPI IndexFilePath(
      _In_ PVOID resourceIndexer,
      _In_ PCWSTR filePath,
-@@ -37,6 +44,7 @@ STDAPI IndexFilePath(
+@@ -37,6 +42,7 @@ STDAPI IndexFilePath(
      _Out_ ULONG* pQualifierCount,
      _Out_writes_(*pQualifierCount) IndexedResourceQualifier** ppQualifiers);
  

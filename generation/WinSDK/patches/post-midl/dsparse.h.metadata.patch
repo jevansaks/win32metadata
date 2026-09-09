@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dsparse.h b/generation/WinSDK/RecompiledIdlHeaders/um/dsparse.h
-index d794031b..784a53f0 100644
+index d794031b..dc312d2d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/dsparse.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/dsparse.h
-@@ -27,6 +27,9 @@ Notes:
+@@ -27,6 +27,7 @@ Notes:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Familyy or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -98,6 +101,7 @@ typedef enum _DS_MANGLE_FOR {
+@@ -98,6 +99,7 @@ typedef enum _DS_MANGLE_FOR {
  //
  //
  
@@ -20,7 +18,7 @@ index d794031b..784a53f0 100644
  _Check_return_
  _Success_(return == ERROR_SUCCESS)
  DSPARSE
-@@ -113,6 +117,7 @@ DsMakeSpnW(
+@@ -113,6 +115,7 @@ DsMakeSpnW(
      _Out_writes_to_opt_(*pcSpnLength, *pcSpnLength) LPWSTR pszSpn
  );
  
@@ -28,7 +26,7 @@ index d794031b..784a53f0 100644
  _Check_return_
  _Success_(return == ERROR_SUCCESS)
  DSPARSE
-@@ -160,6 +165,7 @@ DsMakeSpnA(
+@@ -160,6 +163,7 @@ DsMakeSpnA(
  // All arguments except pszSpn are optional.
  //
  
@@ -36,7 +34,7 @@ index d794031b..784a53f0 100644
  _Check_return_
  DSPARSE
  DWORD
-@@ -175,6 +181,7 @@ DsCrackSpnA(
+@@ -175,6 +179,7 @@ DsCrackSpnA(
      _Out_opt_ USHORT *pInstancePort
      );
  
@@ -44,7 +42,7 @@ index d794031b..784a53f0 100644
  _Check_return_
  DSPARSE
  DWORD
-@@ -261,6 +268,7 @@ Return Value:
+@@ -261,6 +266,7 @@ Return Value:
  
  --*/
  
@@ -52,7 +50,7 @@ index d794031b..784a53f0 100644
  _Check_return_
  _Success_(return == 0)
  DSPARSE
-@@ -273,6 +281,7 @@ DsQuoteRdnValueW(
+@@ -273,6 +279,7 @@ DsQuoteRdnValueW(
      _Out_writes_to_(*pcQuotedRdnValueLength, *pcQuotedRdnValueLength) LPWCH    psQuotedRdnValue
  );
  
@@ -60,7 +58,7 @@ index d794031b..784a53f0 100644
  _Check_return_
  _Success_(return == 0)
  DSPARSE
-@@ -371,6 +380,7 @@ Return Value:
+@@ -371,6 +378,7 @@ Return Value:
  
  --*/
  
@@ -68,7 +66,7 @@ index d794031b..784a53f0 100644
  _Check_return_
  _Success_(return == 0)
  DSPARSE
-@@ -383,6 +393,7 @@ DsUnquoteRdnValueW(
+@@ -383,6 +391,7 @@ DsUnquoteRdnValueW(
      _Out_writes_to_ (*pcUnquotedRdnValueLength, *pcUnquotedRdnValueLength) LPWCH    psUnquotedRdnValue
  );
  
@@ -76,7 +74,7 @@ index d794031b..784a53f0 100644
  _Check_return_
  _Success_(return == 0)
  DSPARSE
-@@ -493,6 +504,7 @@ Return Value:
+@@ -493,6 +502,7 @@ Return Value:
          All output parameters are undefined.
  
  --*/
@@ -84,7 +82,7 @@ index d794031b..784a53f0 100644
  _Check_return_
  _Success_(return == 0)
  DSPARSE
-@@ -547,6 +559,7 @@ Return Value:
+@@ -547,6 +557,7 @@ Return Value:
  
  --*/
  
@@ -92,7 +90,7 @@ index d794031b..784a53f0 100644
  DSPARSE
  BOOL
  WINAPI
-@@ -557,6 +570,7 @@ DsCrackUnquotedMangledRdnW(
+@@ -557,6 +568,7 @@ DsCrackUnquotedMangledRdnW(
       _Out_opt_ DS_MANGLE_FOR *peDsMangleFor
       );
  
@@ -100,7 +98,7 @@ index d794031b..784a53f0 100644
  DSPARSE
  BOOL
  WINAPI
-@@ -622,6 +636,7 @@ Return Value:
+@@ -622,6 +634,7 @@ Return Value:
  
  --*/
  
@@ -108,7 +106,7 @@ index d794031b..784a53f0 100644
  DSPARSE
  BOOL
  WINAPI
-@@ -631,6 +646,7 @@ DsIsMangledRdnValueW(
+@@ -631,6 +644,7 @@ DsIsMangledRdnValueW(
      DS_MANGLE_FOR eDsMangleForDesired
      );
  
@@ -116,7 +114,7 @@ index d794031b..784a53f0 100644
  DSPARSE
  BOOL
  WINAPI
-@@ -680,6 +696,7 @@ Return Value:
+@@ -680,6 +694,7 @@ Return Value:
  
  --*/
  
@@ -124,7 +122,7 @@ index d794031b..784a53f0 100644
  DSPARSE
  BOOL
  WINAPI
-@@ -688,6 +705,7 @@ DsIsMangledDnA(
+@@ -688,6 +703,7 @@ DsIsMangledDnA(
      DS_MANGLE_FOR eDsMangleFor
      );
  

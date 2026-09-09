@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusinit.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusinit.h
-index 4fe4b832..8409cf52 100644
+index 4fe4b832..045a8b82 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusinit.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusinit.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  #ifndef _GDIPLUSINIT_H
  #define _GDIPLUSINIT_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -144,6 +147,7 @@ struct GdiplusStartupOutput
+@@ -144,6 +145,7 @@ struct GdiplusStartupOutput
  // input  - may not be NULL
  // output - may be NULL only if input->SuppressBackgroundThread is FALSE.
  
@@ -20,7 +18,7 @@ index 4fe4b832..8409cf52 100644
  extern "C" Status WINAPI GdiplusStartup(
      OUT ULONG_PTR *token,
      const GdiplusStartupInput *input,
-@@ -155,6 +159,7 @@ extern "C" Status WINAPI GdiplusStartup(
+@@ -155,6 +157,7 @@ extern "C" Status WINAPI GdiplusStartup(
  // GDI+ API's may not be called after GdiplusShutdown. Pay careful attention
  // to GDI+ object destructors.
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsSideShowAPI.h b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsSideShowAPI.h
-index 0d997081..4d8cbf76 100644
+index 0d997081..c78ef388 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsSideShowAPI.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsSideShowAPI.h
-@@ -185,6 +185,9 @@ extern "C"{
+@@ -185,6 +185,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if (_WIN32_WINNT >= 0x0600) // Windows Vista and later
-@@ -1581,9 +1584,13 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -1581,9 +1582,13 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  
@@ -26,7 +24,7 @@ index 0d997081..4d8cbf76 100644
  void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  
  unsigned long             __RPC_USER  HICON_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HICON * ); 
-@@ -1591,9 +1598,13 @@ unsigned char * __RPC_USER  HICON_UserMarshal64(  __RPC__in unsigned long *, __R
+@@ -1591,9 +1596,13 @@ unsigned char * __RPC_USER  HICON_UserMarshal64(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  HICON_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HICON * ); 
  void                      __RPC_USER  HICON_UserFree64(     __RPC__in unsigned long *, __RPC__in HICON * ); 
  

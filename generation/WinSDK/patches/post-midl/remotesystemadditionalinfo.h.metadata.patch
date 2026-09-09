@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/remotesystemadditionalinfo.h b/generation/WinSDK/RecompiledIdlHeaders/um/remotesystemadditionalinfo.h
-index 035bb3de..d1917fb0 100644
+index 035bb3de..8619bd32 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/remotesystemadditionalinfo.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/remotesystemadditionalinfo.h
-@@ -67,6 +67,9 @@ extern "C"{
+@@ -67,6 +67,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (NTDDI_VERSION >= NTDDI_WIN10_RS4)
  #pragma region Application Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
-@@ -183,14 +186,22 @@ extern RPC_IF_HANDLE __MIDL_itf_remotesystemadditionalinfo_0000_0001_v0_0_s_ifsp
+@@ -183,14 +184,22 @@ extern RPC_IF_HANDLE __MIDL_itf_remotesystemadditionalinfo_0000_0001_v0_0_s_ifsp
  
  /* Additional Prototypes for ALL interfaces */
  

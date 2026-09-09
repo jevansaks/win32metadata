@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation
 
 #pragma once
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #include <diagnosticdataquerytypes.h>
 

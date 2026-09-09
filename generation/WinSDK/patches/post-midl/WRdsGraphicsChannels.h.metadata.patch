@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WRdsGraphicsChannels.h b/generation/WinSDK/RecompiledIdlHeaders/um/WRdsGraphicsChannels.h
-index aafb5f0c..d7a3ddda 100644
+index aafb5f0c..d317cc7b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WRdsGraphicsChannels.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WRdsGraphicsChannels.h
-@@ -81,6 +81,9 @@ extern "C"{
+@@ -81,6 +81,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if (NTDDI_VERSION >= NTDDI_WIN8)
-@@ -107,6 +110,7 @@ EXTERN_C const IID IID_IWRdsGraphicsChannelEvents;
+@@ -107,6 +108,7 @@ EXTERN_C const IID IID_IWRdsGraphicsChannelEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index aafb5f0c..d7a3ddda 100644
      MIDL_INTERFACE("67f2368c-d674-4fae-66a5-d20628a640d2")
      IWRdsGraphicsChannelEvents : public IUnknown
      {
-@@ -279,6 +283,7 @@ EXTERN_C const IID IID_IWRdsGraphicsChannel;
+@@ -279,6 +281,7 @@ EXTERN_C const IID IID_IWRdsGraphicsChannel;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index aafb5f0c..d7a3ddda 100644
      MIDL_INTERFACE("684b7a0b-edff-43ad-d5a2-4a8d5388f401")
      IWRdsGraphicsChannel : public IUnknown
      {
-@@ -416,6 +421,7 @@ EXTERN_C const IID IID_IWRdsGraphicsChannelManager;
+@@ -416,6 +419,7 @@ EXTERN_C const IID IID_IWRdsGraphicsChannelManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

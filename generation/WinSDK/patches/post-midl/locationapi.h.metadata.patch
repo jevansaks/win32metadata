@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/locationapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/locationapi.h
-index 48d5007f..52401dc9 100644
+index 48d5007f..41b269d4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/locationapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/locationapi.h
-@@ -255,6 +255,9 @@ extern "C"{
+@@ -255,6 +255,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #include <SensorsApi.h>
-@@ -290,6 +293,7 @@ EXTERN_C const IID IID_ILocationReport;
+@@ -290,6 +291,7 @@ EXTERN_C const IID IID_ILocationReport;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 48d5007f..52401dc9 100644
      MIDL_INTERFACE("C8B7F7EE-75D0-4db9-B62D-7A0F369CA456")
      ILocationReport : public IUnknown
      {
-@@ -398,6 +402,7 @@ EXTERN_C const IID IID_ILatLongReport;
+@@ -398,6 +400,7 @@ EXTERN_C const IID IID_ILatLongReport;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 48d5007f..52401dc9 100644
      MIDL_INTERFACE("7FED806D-0EF8-4f07-80AC-36A0BEAE3134")
      ILatLongReport : public ILocationReport
      {
-@@ -552,6 +557,7 @@ EXTERN_C const IID IID_ICivicAddressReport;
+@@ -552,6 +555,7 @@ EXTERN_C const IID IID_ICivicAddressReport;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 48d5007f..52401dc9 100644
      MIDL_INTERFACE("C0B19F70-4ADF-445d-87F2-CAD8FD711792")
      ICivicAddressReport : public ILocationReport
      {
-@@ -729,6 +735,7 @@ EXTERN_C const IID IID_ILocation;
+@@ -729,6 +733,7 @@ EXTERN_C const IID IID_ILocation;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 48d5007f..52401dc9 100644
      MIDL_INTERFACE("AB2ECE69-56D9-4F28-B525-DE1B0EE44237")
      ILocation : public IUnknown
      {
-@@ -923,6 +930,7 @@ EXTERN_C const IID IID_ILocationPower;
+@@ -923,6 +928,7 @@ EXTERN_C const IID IID_ILocationPower;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 48d5007f..52401dc9 100644
      MIDL_INTERFACE("193E7729-AB6B-4b12-8617-7596E1BB191C")
      ILocationPower : public IUnknown
      {
-@@ -1014,6 +1022,7 @@ EXTERN_C const IID IID_IDefaultLocation;
+@@ -1014,6 +1020,7 @@ EXTERN_C const IID IID_IDefaultLocation;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 48d5007f..52401dc9 100644
      MIDL_INTERFACE("A65AF77E-969A-4a2e-8ACA-33BB7CBB1235")
      IDefaultLocation : public IUnknown
      {
-@@ -1113,6 +1122,7 @@ EXTERN_C const IID IID_ILocationEvents;
+@@ -1113,6 +1120,7 @@ EXTERN_C const IID IID_ILocationEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 48d5007f..52401dc9 100644
      MIDL_INTERFACE("CAE02BBF-798B-4508-A207-35A7906DC73D")
      ILocationEvents : public IUnknown
      {
-@@ -2583,9 +2593,13 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -2583,9 +2591,13 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  
@@ -82,7 +80,7 @@ index 48d5007f..52401dc9 100644
  void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  
  unsigned long             __RPC_USER  HWND_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HWND * ); 
-@@ -2593,9 +2607,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+@@ -2593,9 +2605,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
  unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

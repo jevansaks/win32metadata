@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CimFs.h b/generation/WinSDK/RecompiledIdlHeaders/um/CimFs.h
-index 8a39e70a..c7dc533e 100644
+index 8a39e70a..7959f065 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/CimFs.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/CimFs.h
-@@ -5,6 +5,9 @@ Copyright (c) Microsoft Corporation
+@@ -5,6 +5,7 @@ Copyright (c) Microsoft Corporation
  */
  
  #include <windows.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C"
-@@ -70,6 +73,7 @@ typedef struct _CIMFS_FILE_METADATA
+@@ -70,6 +71,7 @@ typedef struct _CIMFS_FILE_METADATA
  //  location.
  //
  
@@ -20,7 +18,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI
  CimCreateImage(_In_ PCWSTR imageContainingPath,
                 _In_opt_ PCWSTR existingImageName,
-@@ -96,6 +100,7 @@ CimCreateImage2(_In_ PCWSTR imageContainingPath,
+@@ -96,6 +98,7 @@ CimCreateImage2(_In_ PCWSTR imageContainingPath,
  //  which can be used to write data to the stream.
  //
  
@@ -28,7 +26,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI
  CimCreateFile(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
                _In_ PCWSTR imageRelativePath,
-@@ -109,6 +114,7 @@ CimCreateFile(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
+@@ -109,6 +112,7 @@ CimCreateFile(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
  //  data to the stream.
  //
  
@@ -36,7 +34,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI
  CimCreateAlternateStream(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
                           _In_ PCWSTR imageRelativePath,
-@@ -120,6 +126,7 @@ CimCreateAlternateStream(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
+@@ -120,6 +124,7 @@ CimCreateAlternateStream(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
  //  represented by the image handle.
  //
  
@@ -44,7 +42,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI
  CimCreateHardLink(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
                    _In_ PCWSTR imageRelativePath,
-@@ -130,6 +137,7 @@ CimCreateHardLink(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
+@@ -130,6 +135,7 @@ CimCreateHardLink(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
  //  by the stream handle.
  //
  
@@ -52,7 +50,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI
  CimWriteStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle,
                 _In_reads_bytes_(bufferSize) const void* buffer,
-@@ -139,6 +147,7 @@ CimWriteStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle,
+@@ -139,6 +145,7 @@ CimWriteStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle,
  //  Frees resources associated with the stream handle.
  //
  
@@ -60,7 +58,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI_(void)
  CimCloseStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle);
  
-@@ -147,6 +156,7 @@ CimCloseStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle);
+@@ -147,6 +154,7 @@ CimCloseStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle);
  //  relative to the image represented by the image handle.
  //
  
@@ -68,7 +66,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI
  CimDeletePath(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
                _In_ PCWSTR imageRelativePath);
-@@ -156,6 +166,7 @@ CimDeletePath(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
+@@ -156,6 +164,7 @@ CimDeletePath(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
  //  becomes invalid for further operations on the image.
  //
  
@@ -76,7 +74,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI
  CimCommitImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
  
-@@ -163,6 +174,7 @@ CimCommitImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
+@@ -163,6 +172,7 @@ CimCommitImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
  //  Frees resources associated with the image handle.
  //
  
@@ -84,7 +82,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI_(void)
  CimCloseImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
  
-@@ -171,6 +183,7 @@ CimCloseImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
+@@ -171,6 +181,7 @@ CimCloseImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
  //  as a volume with the volume GUID specified by volumeId.
  //
  
@@ -92,7 +90,7 @@ index 8a39e70a..c7dc533e 100644
  STDAPI
  CimMountImage(_In_ PCWSTR imageContainingPath,
                _In_ PCWSTR imageName,
-@@ -181,6 +194,7 @@ CimMountImage(_In_ PCWSTR imageContainingPath,
+@@ -181,6 +192,7 @@ CimMountImage(_In_ PCWSTR imageContainingPath,
  //  Dismounts an image mounted with volumeId as the volume GUID.
  //
  

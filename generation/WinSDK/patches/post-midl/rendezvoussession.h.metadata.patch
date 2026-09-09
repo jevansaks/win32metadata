@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/rendezvoussession.h b/generation/WinSDK/RecompiledIdlHeaders/um/rendezvoussession.h
-index 588dfe44..ec9c38d7 100644
+index 588dfe44..0cdccbf9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/rendezvoussession.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/rendezvoussession.h
-@@ -89,6 +89,9 @@ extern "C"{
+@@ -89,6 +89,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define	DISPID_EVENT_ON_STATE_CHANGED	( 5 )
-@@ -149,6 +152,7 @@ EXTERN_C const IID IID_IRendezvousSession;
+@@ -149,6 +150,7 @@ EXTERN_C const IID IID_IRendezvousSession;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 588dfe44..ec9c38d7 100644
      MIDL_INTERFACE("9BA4B1DD-8B0C-48B7-9E7C-2F25857C8DF5")
      IRendezvousSession : public IUnknown
      {
-@@ -279,6 +283,7 @@ EXTERN_C const IID DIID_DRendezvousSessionEvents;
+@@ -279,6 +281,7 @@ EXTERN_C const IID DIID_DRendezvousSessionEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
  
@@ -28,7 +26,7 @@ index 588dfe44..ec9c38d7 100644
      MIDL_INTERFACE("3FA19CF8-64C4-4F53-AE60-635B3806ECA6")
      DRendezvousSessionEvents : public IDispatch
      {
-@@ -401,6 +406,7 @@ EXTERN_C const IID IID_IRendezvousApplication;
+@@ -401,6 +404,7 @@ EXTERN_C const IID IID_IRendezvousApplication;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/StructuredQueryCondition.h b/generation/WinSDK/RecompiledIdlHeaders/um/StructuredQueryCondition.h
-index ac706c5f..4676dfca 100644
+index ac706c5f..edf1fe3d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/StructuredQueryCondition.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/StructuredQueryCondition.h
-@@ -82,6 +82,9 @@ extern "C"{
+@@ -82,6 +82,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  typedef /* [v1_enum] */ 
  enum tagCONDITION_TYPE
      {
-@@ -129,6 +132,7 @@ EXTERN_C const IID IID_IRichChunk;
+@@ -129,6 +130,7 @@ EXTERN_C const IID IID_IRichChunk;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index ac706c5f..4676dfca 100644
      MIDL_INTERFACE("4FDEF69C-DBC9-454e-9910-B34F3C64B510")
      IRichChunk : public IUnknown
      {
-@@ -247,6 +251,7 @@ EXTERN_C const IID IID_ICondition;
+@@ -247,6 +249,7 @@ EXTERN_C const IID IID_ICondition;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index ac706c5f..4676dfca 100644
      MIDL_INTERFACE("0FC988D4-C935-4b97-A973-46282EA175C8")
      ICondition : public IPersistStream
      {
-@@ -513,6 +518,7 @@ EXTERN_C const IID IID_ICondition2;
+@@ -513,6 +516,7 @@ EXTERN_C const IID IID_ICondition2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index ac706c5f..4676dfca 100644
      MIDL_INTERFACE("0DB8851D-2E5B-47eb-9208-D28C325A01D7")
      ICondition2 : public ICondition
      {
-@@ -770,14 +776,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -770,14 +774,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

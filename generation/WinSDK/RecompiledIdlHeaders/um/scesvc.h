@@ -15,9 +15,7 @@ Revision History:
 --*/
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -251,6 +249,7 @@ typedef ISceSvcAttachmentPersistInfo __RPC_FAR *LPSCESVCATTACHMENTPERSISTINFO;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
 
+_Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("6d90e0d0-200d-11d1-affb-00c04fb984f9")
 
 _Win32_metadata_supported_os_(windows5.1.2600)
@@ -351,6 +350,7 @@ typedef ISceSvcAttachmentData __RPC_FAR *LPSCESVCATTACHMENTDATA;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
 
+_Win32_metadata_supported_os_(windows5.1.2600)
     MIDL_INTERFACE("17c35fde-200d-11d1-affb-00c04fb984f9")
 
 _Win32_metadata_supported_os_(windows5.1.2600)

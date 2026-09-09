@@ -23,9 +23,7 @@
 #pragma once
 #endif
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if _MSC_VER >= 1200
 #pragma warning(push)
@@ -713,7 +711,6 @@ gai_strerrorA(
 {
     static char buff[GAI_STRERROR_BUFFER_SIZE + 1];
 
-_Win32_metadata_supported_os_(windows5.1.2600)
     (void)FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM
                              |FORMAT_MESSAGE_IGNORE_INSERTS
                              |FORMAT_MESSAGE_MAX_WIDTH_MASK,
@@ -736,7 +733,6 @@ gai_strerrorW(
 {
     static WCHAR buff[GAI_STRERROR_BUFFER_SIZE + 1];
 
-_Win32_metadata_supported_os_(windows5.1.2600)
     (void)FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM
                              |FORMAT_MESSAGE_IGNORE_INSERTS
                              |FORMAT_MESSAGE_MAX_WIDTH_MASK,

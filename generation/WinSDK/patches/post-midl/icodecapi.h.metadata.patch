@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/icodecapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/icodecapi.h
-index 8b9a9abc..3f476107 100644
+index 8b9a9abc..1bb447b7 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/icodecapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/icodecapi.h
-@@ -67,6 +67,9 @@ extern "C"{
+@@ -67,6 +67,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Application Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
  struct CodecAPIEventData
-@@ -92,6 +95,7 @@ EXTERN_C const IID IID_ICodecAPI;
+@@ -92,6 +93,7 @@ EXTERN_C const IID IID_ICodecAPI;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

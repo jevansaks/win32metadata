@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdutil.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdutil.h
-index ac2ddfa7..60c5cfd6 100644
+index ac2ddfa7..3e55033b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdutil.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdutil.h
-@@ -12,6 +12,9 @@
+@@ -12,6 +12,7 @@
  //--------------------------------------------------------------------------
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -43,12 +46,14 @@ extern "C" {
+@@ -43,12 +44,14 @@ extern "C" {
  #define WSDAPI_OPTION_TRACE_XML_TO_FILE 0x0003
  #endif
      
@@ -27,7 +25,7 @@ index ac2ddfa7..60c5cfd6 100644
  HRESULT WINAPI
  WSDGetConfigurationOption(
      DWORD dwOption,
-@@ -59,20 +64,24 @@ WSDGetConfigurationOption(
+@@ -59,20 +62,24 @@ WSDGetConfigurationOption(
  // Linked memory
  //
  
@@ -52,7 +50,7 @@ index ac2ddfa7..60c5cfd6 100644
  void WINAPI
  WSDDetachLinkedMemory(
      void* pVoid);
-@@ -83,12 +92,14 @@ WSDDetachLinkedMemory(
+@@ -83,12 +90,14 @@ WSDDetachLinkedMemory(
  
  typedef struct _WSDXML_ELEMENT WSDXML_ELEMENT; 
  
@@ -67,7 +65,7 @@ index ac2ddfa7..60c5cfd6 100644
  HRESULT WINAPI
  WSDXMLGetValueFromAny(
      _In_ LPCWSTR pszNamespace,
-@@ -96,20 +107,24 @@ WSDXMLGetValueFromAny(
+@@ -96,20 +105,24 @@ WSDXMLGetValueFromAny(
      WSDXML_ELEMENT* pAny, 
      _Outptr_ LPCWSTR* ppszValue);
  
@@ -92,7 +90,7 @@ index ac2ddfa7..60c5cfd6 100644
  HRESULT WINAPI
  WSDGenerateFault(
      _In_ LPCWSTR pszCode,
-@@ -119,6 +134,7 @@ WSDGenerateFault(
+@@ -119,6 +132,7 @@ WSDGenerateFault(
      _In_ IWSDXMLContext* pContext,
      _Outptr_ WSD_SOAP_FAULT** ppFault);
  
@@ -100,7 +98,7 @@ index ac2ddfa7..60c5cfd6 100644
  HRESULT WINAPI
  WSDGenerateFaultEx(
      _In_ WSDXML_NAME* pCode, 
-@@ -128,6 +144,7 @@ WSDGenerateFaultEx(
+@@ -128,6 +142,7 @@ WSDGenerateFaultEx(
      _Outptr_ WSD_SOAP_FAULT** ppFault);
  
  #if (WINVER >= _WIN32_WINNT_WIN7)
@@ -108,7 +106,7 @@ index ac2ddfa7..60c5cfd6 100644
  HRESULT WINAPI
  WSDUriEncode(
      _In_reads_(cchSource) LPCWSTR source,
-@@ -135,6 +152,7 @@ WSDUriEncode(
+@@ -135,6 +150,7 @@ WSDUriEncode(
      _Out_writes_(*cchDestOut) LPWSTR *destOut,
      _Out_opt_ DWORD *cchDestOut);
  

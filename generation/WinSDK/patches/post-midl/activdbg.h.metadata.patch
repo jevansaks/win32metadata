@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/activdbg.h b/generation/WinSDK/RecompiledIdlHeaders/um/activdbg.h
-index 227d2380..914c803c 100644
+index 227d2380..3bdcdc60 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/activdbg.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/activdbg.h
-@@ -970,6 +970,9 @@ extern "C"{
+@@ -970,6 +970,7 @@ extern "C"{
  //=--------------------------------------------------------------------------=
  //
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #pragma comment(lib,"uuid.lib")
-@@ -10930,9 +10933,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -10930,9 +10931,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

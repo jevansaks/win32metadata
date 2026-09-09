@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TSGAuthenticationEngine.h b/generation/WinSDK/RecompiledIdlHeaders/um/TSGAuthenticationEngine.h
-index 3c0b5e23..142159a7 100644
+index 3c0b5e23..9aed8498 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/TSGAuthenticationEngine.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/TSGAuthenticationEngine.h
-@@ -74,6 +74,9 @@ extern "C"{
+@@ -74,6 +74,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -92,6 +95,7 @@ EXTERN_C const IID IID_ITSGAuthenticateUserSink;
+@@ -92,6 +93,7 @@ EXTERN_C const IID IID_ITSGAuthenticateUserSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 3c0b5e23..142159a7 100644
      MIDL_INTERFACE("2c3e2e73-a782-47f9-8dfb-77ee1ed27a03")
      ITSGAuthenticateUserSink : public IUnknown
      {
-@@ -236,6 +240,7 @@ EXTERN_C const IID IID_ITSGAuthenticationEngine;
+@@ -236,6 +238,7 @@ EXTERN_C const IID IID_ITSGAuthenticationEngine;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 3c0b5e23..142159a7 100644
      MIDL_INTERFACE("9ee3e5bf-04ab-4691-998c-d7f622321a56")
      ITSGAuthenticationEngine : public IUnknown
      {
-@@ -362,9 +367,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -362,9 +365,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

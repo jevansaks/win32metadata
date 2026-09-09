@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/bits10_2.h b/generation/WinSDK/RecompiledIdlHeaders/um/bits10_2.h
-index 3e58ad5f..8400e37b 100644
+index 3e58ad5f..605a5a8c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/bits10_2.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/bits10_2.h
-@@ -93,6 +93,9 @@ extern "C"{
+@@ -93,6 +93,7 @@ extern "C"{
  
  #if (NTDDI_VERSION >= NTDDI_WIN10_RS5)
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -111,6 +114,7 @@ EXTERN_C const IID IID_IBackgroundCopyJobHttpOptions2;
+@@ -111,6 +112,7 @@ EXTERN_C const IID IID_IBackgroundCopyJobHttpOptions2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

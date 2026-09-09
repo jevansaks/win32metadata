@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/evr9.h b/generation/WinSDK/RecompiledIdlHeaders/um/evr9.h
-index df2ca007..6007174b 100644
+index df2ca007..19d8855b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/evr9.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/evr9.h
-@@ -84,6 +84,9 @@ extern "C"{
+@@ -84,6 +84,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -104,6 +107,7 @@ EXTERN_C const IID IID_IEVRVideoStreamControl;
+@@ -104,6 +105,7 @@ EXTERN_C const IID IID_IEVRVideoStreamControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index df2ca007..6007174b 100644
      MIDL_INTERFACE("d0cfe38b-93e7-4772-8957-0400c49a4485")
      IEVRVideoStreamControl : public IUnknown
      {
-@@ -201,6 +205,7 @@ EXTERN_C const IID IID_IMFVideoProcessor;
+@@ -201,6 +203,7 @@ EXTERN_C const IID IID_IMFVideoProcessor;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index df2ca007..6007174b 100644
      MIDL_INTERFACE("6AB0000C-FECE-4d1f-A2AC-A9573530656E")
      IMFVideoProcessor : public IUnknown
      {
-@@ -463,6 +468,7 @@ EXTERN_C const IID IID_IMFVideoMixerBitmap;
+@@ -463,6 +466,7 @@ EXTERN_C const IID IID_IMFVideoMixerBitmap;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

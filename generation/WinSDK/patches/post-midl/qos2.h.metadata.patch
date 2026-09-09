@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h b/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h
-index 55a0ce89..859316c7 100644
+index 55a0ce89..57d25c52 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h
-@@ -14,6 +14,9 @@ Abstract:
+@@ -14,6 +14,7 @@ Abstract:
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -503,12 +506,14 @@ QOS_SUBTRACT_OVERHEAD(
+@@ -503,12 +504,14 @@ QOS_SUBTRACT_OVERHEAD(
  //          exception for the qWave service. Please see the developer guidelines 
  //          and MSFT firewall documentation for more details.
  //
@@ -27,7 +25,7 @@ index 55a0ce89..859316c7 100644
  );
  
  //
-@@ -538,6 +543,7 @@ QOSCreateHandle(
+@@ -538,6 +541,7 @@ QOSCreateHandle(
  //  If the function fails, the return value is zero. To get extended error 
  //  information, call GetLastError.
  //
@@ -35,7 +33,7 @@ index 55a0ce89..859316c7 100644
  ExternC
  BOOL
  WINAPI
-@@ -595,6 +601,7 @@ QOSCloseHandle(
+@@ -595,6 +599,7 @@ QOSCloseHandle(
  //          you've specified. It could be that the other host does does not 
  //          have the required components or that it is not on the same link.
  //
@@ -43,7 +41,7 @@ index 55a0ce89..859316c7 100644
  ExternC
  BOOL
  WINAPI
-@@ -629,6 +636,7 @@ QOSStartTrackingClient(
+@@ -629,6 +634,7 @@ QOSStartTrackingClient(
  //  If the function fails, the return value is zero. To get extended error 
  //  information, call GetLastError.
  //
@@ -51,7 +49,7 @@ index 55a0ce89..859316c7 100644
  ExternC
  BOOL
  WINAPI
-@@ -674,6 +682,7 @@ QOSStopTrackingClient(
+@@ -674,6 +680,7 @@ QOSStopTrackingClient(
  //          The caller does not have the administrator rights required 
  //          to perform this call.
  //
@@ -59,7 +57,7 @@ index 55a0ce89..859316c7 100644
  ExternC
  BOOL
  WINAPI
-@@ -817,6 +826,7 @@ QOSEnumerateFlows(
+@@ -817,6 +824,7 @@ QOSEnumerateFlows(
  //          you've specified. It could be that the other host does does not 
  //          have the required components or that it is not on the same link.
  //
@@ -67,7 +65,7 @@ index 55a0ce89..859316c7 100644
  ExternC
  BOOL
  WINAPI
-@@ -880,6 +890,7 @@ QOSAddSocketToFlow(
+@@ -880,6 +888,7 @@ QOSAddSocketToFlow(
  //      ERROR_NOT_FOUND
  //          Invalid FlowId specified
  //
@@ -75,7 +73,7 @@ index 55a0ce89..859316c7 100644
  ExternC
  BOOL
  WINAPI
-@@ -984,6 +995,7 @@ QOSRemoveSocketFromFlow(
+@@ -984,6 +993,7 @@ QOSRemoveSocketFromFlow(
  //          The caller does not have the administrator rights required 
  //          to perform this call.
  //
@@ -83,7 +81,7 @@ index 55a0ce89..859316c7 100644
  ExternC
  BOOL
  WINAPI
-@@ -1106,6 +1118,7 @@ QOSSetFlow(
+@@ -1106,6 +1116,7 @@ QOSSetFlow(
  //          qWave has erred on the side of caution as it waits for more data
  //          before ascertaining the state of the network.
  //
@@ -91,7 +89,7 @@ index 55a0ce89..859316c7 100644
  ExternC
  BOOL
  WINAPI
-@@ -1227,6 +1240,7 @@ QOSQueryFlow(
+@@ -1227,6 +1238,7 @@ QOSQueryFlow(
  //          network which the qWave subsystem does not have. Obtaining this
  //          information on your network is currently not supported.
  //
@@ -99,7 +97,7 @@ index 55a0ce89..859316c7 100644
  ExternC
  BOOL
  WINAPI
-@@ -1273,6 +1287,7 @@ QOSNotifyFlow(
+@@ -1273,6 +1285,7 @@ QOSNotifyFlow(
  //  If the function fails, the return value is zero. To get extended error 
  //  information, call GetLastError.
  //

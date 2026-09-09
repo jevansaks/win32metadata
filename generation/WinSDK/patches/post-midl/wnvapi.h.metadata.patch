@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h
-index 594858a0..c84d9f15 100644
+index 594858a0..0378446e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h
-@@ -19,6 +19,9 @@ Abstract:
+@@ -19,6 +19,7 @@ Abstract:
  #endif  // _MSC_VER
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or WNV Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WNV)
-@@ -114,11 +117,14 @@ typedef struct _WNV_REDIRECT_PARAM {
+@@ -114,11 +115,14 @@ typedef struct _WNV_REDIRECT_PARAM {
  #ifdef __cplusplus
  extern "C" {
  #endif  // __cplusplus

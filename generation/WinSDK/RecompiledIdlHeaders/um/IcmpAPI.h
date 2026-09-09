@@ -28,9 +28,7 @@ Notes:
 #pragma once
 #endif
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 //
 // Establish DLL function linkage if supported by the current build

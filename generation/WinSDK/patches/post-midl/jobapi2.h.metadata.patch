@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/jobapi2.h b/generation/WinSDK/RecompiledIdlHeaders/um/jobapi2.h
-index 984429f9..b8886cf0 100644
+index 984429f9..37d29fd9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/jobapi2.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/jobapi2.h
-@@ -12,6 +12,9 @@
+@@ -12,6 +12,7 @@
  
  #include <apiset.h>
  #include <apisetcconv.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #include <minwindef.h>
  #include <minwinbase.h>
  
-@@ -32,6 +35,8 @@ typedef struct JOBOBJECT_IO_RATE_CONTROL_INFORMATION {
+@@ -32,6 +33,8 @@ typedef struct JOBOBJECT_IO_RATE_CONTROL_INFORMATION {
      ULONG ControlFlags;
  } JOBOBJECT_IO_RATE_CONTROL_INFORMATION;
  
@@ -21,7 +19,7 @@ index 984429f9..b8886cf0 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -40,6 +45,7 @@ CreateJobObjectW(
+@@ -40,6 +43,7 @@ CreateJobObjectW(
      _In_opt_ LPCWSTR lpName
      );
  
@@ -29,7 +27,7 @@ index 984429f9..b8886cf0 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -47,6 +53,8 @@ FreeMemoryJobObject(
+@@ -47,6 +51,8 @@ FreeMemoryJobObject(
      _In_ _Frees_ptr_ VOID* Buffer
      );
  
@@ -38,7 +36,7 @@ index 984429f9..b8886cf0 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -56,6 +64,8 @@ OpenJobObjectW(
+@@ -56,6 +62,8 @@ OpenJobObjectW(
      _In_ LPCWSTR lpName
      );
  
@@ -47,7 +45,7 @@ index 984429f9..b8886cf0 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -64,6 +74,8 @@ AssignProcessToJobObject(
+@@ -64,6 +72,8 @@ AssignProcessToJobObject(
      _In_ HANDLE hProcess
      );
  
@@ -56,7 +54,7 @@ index 984429f9..b8886cf0 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -72,6 +84,8 @@ TerminateJobObject(
+@@ -72,6 +82,8 @@ TerminateJobObject(
      _In_ UINT uExitCode
      );
  
@@ -65,7 +63,7 @@ index 984429f9..b8886cf0 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -82,6 +96,8 @@ SetInformationJobObject(
+@@ -82,6 +94,8 @@ SetInformationJobObject(
      _In_ DWORD cbJobObjectInformationLength
      );
  
@@ -74,7 +72,7 @@ index 984429f9..b8886cf0 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -90,6 +106,8 @@ SetIoRateControlInformationJobObject(
+@@ -90,6 +104,8 @@ SetIoRateControlInformationJobObject(
      _In_ JOBOBJECT_IO_RATE_CONTROL_INFORMATION* IoRateControlInfo
      );
  
@@ -83,7 +81,7 @@ index 984429f9..b8886cf0 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -101,6 +119,8 @@ QueryInformationJobObject(
+@@ -101,6 +117,8 @@ QueryInformationJobObject(
      _Out_opt_ LPDWORD lpReturnLength
      );
  

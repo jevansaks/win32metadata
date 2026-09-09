@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msinkaut.h b/generation/WinSDK/RecompiledIdlHeaders/um/msinkaut.h
-index 188c130d..86c57ea4 100644
+index 188c130d..8b6bdd43 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/msinkaut.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/msinkaut.h
-@@ -545,6 +545,9 @@ extern "C"{
+@@ -545,6 +545,7 @@ extern "C"{
  #ifndef _MSINKAUT_IDL_H_
  #define _MSINKAUT_IDL_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #include <TPCError.h> // for Tablet PC Error codes
-@@ -1912,6 +1915,7 @@ EXTERN_C const IID IID_IInkExtendedProperty;
+@@ -1912,6 +1913,7 @@ EXTERN_C const IID IID_IInkExtendedProperty;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("DB489209-B7C3-411D-90F6-1548CFFF271E")
      IInkExtendedProperty : public IDispatch
      {
-@@ -2072,6 +2076,7 @@ EXTERN_C const IID IID_IInkExtendedProperties;
+@@ -2072,6 +2074,7 @@ EXTERN_C const IID IID_IInkExtendedProperties;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("89F2A8BE-95A9-4530-8B8F-88E971E3E25F")
      IInkExtendedProperties : public IDispatch
      {
-@@ -3028,6 +3033,7 @@ EXTERN_C const IID IID_IInkGesture;
+@@ -3028,6 +3031,7 @@ EXTERN_C const IID IID_IInkGesture;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("3BDC0A97-04E5-4e26-B813-18F052D41DEF")
      IInkGesture : public IDispatch
      {
-@@ -3190,6 +3196,7 @@ EXTERN_C const IID IID_IInkCursor;
+@@ -3190,6 +3194,7 @@ EXTERN_C const IID IID_IInkCursor;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("AD30C630-40C5-4350-8405-9C71012FC558")
      IInkCursor : public IDispatch
      {
-@@ -3394,6 +3401,7 @@ EXTERN_C const IID IID_IInkCursors;
+@@ -3394,6 +3399,7 @@ EXTERN_C const IID IID_IInkCursors;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("A248C1AC-C698-4e06-9E5C-D57F77C7E647")
      IInkCursors : public IDispatch
      {
-@@ -3556,6 +3564,7 @@ EXTERN_C const IID IID_IInkCursorButton;
+@@ -3556,6 +3562,7 @@ EXTERN_C const IID IID_IInkCursorButton;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("85EF9417-1D59-49b2-A13C-702C85430894")
      IInkCursorButton : public IDispatch
      {
-@@ -3716,6 +3725,7 @@ EXTERN_C const IID IID_IInkCursorButtons;
+@@ -3716,6 +3723,7 @@ EXTERN_C const IID IID_IInkCursorButtons;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("3671CC40-B624-4671-9FA0-DB119D952D54")
      IInkCursorButtons : public IDispatch
      {
-@@ -3878,6 +3888,7 @@ EXTERN_C const IID IID_IInkTablet;
+@@ -3878,6 +3886,7 @@ EXTERN_C const IID IID_IInkTablet;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("2DE25EAA-6EF8-42d5-AEE9-185BC81B912D")
      IInkTablet : public IDispatch
      {
-@@ -4081,6 +4092,7 @@ EXTERN_C const IID IID_IInkTablet2;
+@@ -4081,6 +4090,7 @@ EXTERN_C const IID IID_IInkTablet2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("90c91ad2-fa36-49d6-9516-ce8d570f6f85")
      IInkTablet2 : public IDispatch
      {
-@@ -4219,6 +4231,7 @@ EXTERN_C const IID IID_IInkTablet3;
+@@ -4219,6 +4229,7 @@ EXTERN_C const IID IID_IInkTablet3;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("7e313997-1327-41dd-8ca9-79f24be17250")
      IInkTablet3 : public IDispatch
      {
-@@ -4554,6 +4567,7 @@ EXTERN_C const IID IID_IInkStrokeDisp;
+@@ -4554,6 +4565,7 @@ EXTERN_C const IID IID_IInkStrokeDisp;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("43242FEA-91D1-4a72-963E-FBB91829CFA2")
      IInkStrokeDisp : public IDispatch
      {
-@@ -5475,6 +5489,7 @@ EXTERN_C const IID IID_IInkCustomStrokes;
+@@ -5475,6 +5487,7 @@ EXTERN_C const IID IID_IInkCustomStrokes;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("7E23A88F-C30E-420f-9BDB-28902543F0C1")
      IInkCustomStrokes : public IDispatch
      {
-@@ -9170,6 +9185,7 @@ EXTERN_C const IID IID_IInkRecognizer;
+@@ -9170,6 +9183,7 @@ EXTERN_C const IID IID_IInkRecognizer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("782BF7CF-034B-4396-8A32-3A1833CF6B56")
      IInkRecognizer : public IDispatch
      {
-@@ -9374,6 +9390,7 @@ EXTERN_C const IID IID_IInkRecognizer2;
+@@ -9374,6 +9388,7 @@ EXTERN_C const IID IID_IInkRecognizer2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("6110118A-3A75-4ad6-B2AA-04B2B72BBE65")
      IInkRecognizer2 : public IDispatch
      {
-@@ -10211,6 +10228,7 @@ EXTERN_C const IID IID_IInkRecognizerContext2;
+@@ -10211,6 +10226,7 @@ EXTERN_C const IID IID_IInkRecognizerContext2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("D6F0E32F-73D8-408e-8E9F-5FEA592C363F")
      IInkRecognizerContext2 : public IDispatch
      {
-@@ -10360,6 +10378,7 @@ EXTERN_C const IID IID_IInkRecognitionResult;
+@@ -10360,6 +10376,7 @@ EXTERN_C const IID IID_IInkRecognitionResult;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("3BC129A8-86CD-45ad-BDE8-E0D32D61C16D")
      IInkRecognitionResult : public IDispatch
      {
-@@ -10568,6 +10587,7 @@ EXTERN_C const IID IID_IInkRecognitionAlternate;
+@@ -10568,6 +10585,7 @@ EXTERN_C const IID IID_IInkRecognitionAlternate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("B7E660AD-77E4-429b-ADDA-873780D1FC4A")
      IInkRecognitionAlternate : public IDispatch
      {
-@@ -10874,6 +10894,7 @@ EXTERN_C const IID IID_IInkRecognitionAlternates;
+@@ -10874,6 +10892,7 @@ EXTERN_C const IID IID_IInkRecognitionAlternates;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("286A167F-9F19-4c61-9D53-4F07BE622B84")
      IInkRecognitionAlternates : public IDispatch
      {
-@@ -11466,6 +11487,7 @@ EXTERN_C const IID IID_IInkWordList2;
+@@ -11466,6 +11485,7 @@ EXTERN_C const IID IID_IInkWordList2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index 188c130d..86c57ea4 100644
      MIDL_INTERFACE("14542586-11BF-4f5f-B6E7-49D0744AAB6E")
      IInkWordList2 : public IDispatch
      {
-@@ -11843,6 +11865,7 @@ EXTERN_C const IID IID_IInkLineInfo;
+@@ -11843,6 +11863,7 @@ EXTERN_C const IID IID_IInkLineInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

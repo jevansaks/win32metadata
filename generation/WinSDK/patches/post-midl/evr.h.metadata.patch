@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/evr.h b/generation/WinSDK/RecompiledIdlHeaders/um/evr.h
-index 89b5fd6e..bf88ec4e 100644
+index 89b5fd6e..f5606b38 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/evr.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/evr.h
-@@ -153,6 +153,9 @@ extern "C"{
+@@ -153,6 +153,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if defined(__midl)
-@@ -254,6 +257,7 @@ EXTERN_C const IID IID_IMFVideoPositionMapper;
+@@ -254,6 +255,7 @@ EXTERN_C const IID IID_IMFVideoPositionMapper;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("1F6A9F17-E70B-4e24-8AE4-0B2C3BA7A4AE")
      IMFVideoPositionMapper : public IUnknown
      {
-@@ -361,6 +365,7 @@ EXTERN_C const IID IID_IMFVideoDeviceID;
+@@ -361,6 +363,7 @@ EXTERN_C const IID IID_IMFVideoDeviceID;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("A38D9567-5A9C-4f3c-B293-8EB415B279BA")
      IMFVideoDeviceID : public IUnknown
      {
-@@ -492,6 +497,7 @@ EXTERN_C const IID IID_IMFVideoDisplayControl;
+@@ -492,6 +495,7 @@ EXTERN_C const IID IID_IMFVideoDisplayControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("a490b1e4-ab84-4d31-a1b2-181e03b1077a")
      IMFVideoDisplayControl : public IUnknown
      {
-@@ -819,6 +825,7 @@ EXTERN_C const IID IID_IMFVideoPresenter;
+@@ -819,6 +823,7 @@ EXTERN_C const IID IID_IMFVideoPresenter;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("29AFF080-182A-4a5d-AF3B-448F3A6346CB")
      IMFVideoPresenter : public IMFClockStateSink
      {
-@@ -969,6 +976,7 @@ EXTERN_C const IID IID_IMFDesiredSample;
+@@ -969,6 +974,7 @@ EXTERN_C const IID IID_IMFDesiredSample;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("56C294D0-753E-4260-8D61-A3D8820B1D54")
      IMFDesiredSample : public IUnknown
      {
-@@ -1086,6 +1094,7 @@ EXTERN_C const IID IID_IMFVideoMixerControl;
+@@ -1086,6 +1092,7 @@ EXTERN_C const IID IID_IMFVideoMixerControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("A5C6C53F-C202-4aa5-9695-175BA8C508A5")
      IMFVideoMixerControl : public IUnknown
      {
-@@ -1247,6 +1256,7 @@ EXTERN_C const IID IID_IMFVideoMixerControl2;
+@@ -1247,6 +1254,7 @@ EXTERN_C const IID IID_IMFVideoMixerControl2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("8459616d-966e-4930-b658-54fa7e5a16d3")
      IMFVideoMixerControl2 : public IMFVideoMixerControl
      {
-@@ -1392,6 +1402,7 @@ EXTERN_C const IID IID_IMFVideoRenderer;
+@@ -1392,6 +1400,7 @@ EXTERN_C const IID IID_IMFVideoRenderer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("DFDFD197-A9CA-43d8-B341-6AF3503792CD")
      IMFVideoRenderer : public IUnknown
      {
-@@ -1483,6 +1494,7 @@ EXTERN_C const IID IID_IEVRFilterConfig;
+@@ -1483,6 +1492,7 @@ EXTERN_C const IID IID_IEVRFilterConfig;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("83E91E85-82C1-4ea7-801D-85DC50B75086")
      IEVRFilterConfig : public IUnknown
      {
-@@ -1598,6 +1610,7 @@ EXTERN_C const IID IID_IEVRFilterConfigEx;
+@@ -1598,6 +1608,7 @@ EXTERN_C const IID IID_IEVRFilterConfigEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("aea36028-796d-454f-beee-b48071e24304")
      IEVRFilterConfigEx : public IEVRFilterConfig
      {
-@@ -1736,6 +1749,7 @@ EXTERN_C const IID IID_IMFTopologyServiceLookup;
+@@ -1736,6 +1747,7 @@ EXTERN_C const IID IID_IMFTopologyServiceLookup;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("fa993889-4383-415a-a930-dd472a8cf6f7")
      IMFTopologyServiceLookup : public IUnknown
      {
-@@ -1843,6 +1857,7 @@ EXTERN_C const IID IID_IMFTopologyServiceLookupClient;
+@@ -1843,6 +1855,7 @@ EXTERN_C const IID IID_IMFTopologyServiceLookupClient;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 89b5fd6e..bf88ec4e 100644
      MIDL_INTERFACE("fa99388a-4383-415a-a930-dd472a8cf6f7")
      IMFTopologyServiceLookupClient : public IUnknown
      {
-@@ -1939,6 +1954,7 @@ EXTERN_C const IID IID_IEVRTrustedVideoPlugin;
+@@ -1939,6 +1952,7 @@ EXTERN_C const IID IID_IEVRTrustedVideoPlugin;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/fdi.h
-index 180d640e..d5d251ca 100644
+index 180d640e..4b7fb58a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fdi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fdi.h
-@@ -185,6 +185,9 @@
+@@ -185,6 +185,7 @@
  
  #ifndef INCLUDED_FDI
  #define INCLUDED_FDI    1
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <specstrings.h>
  typedef _Null_terminated_ char* LPSTR;
-@@ -905,6 +908,7 @@ typedef FDISPILLFILE *PFDISPILLFILE; /* pfdisf */
+@@ -905,6 +906,7 @@ typedef FDISPILLFILE *PFDISPILLFILE; /* pfdisf */
  #endif
  
  
@@ -20,7 +18,7 @@ index 180d640e..d5d251ca 100644
  /*** cpuType values for FDICreate()
   *
   *  WARNING: For 16-bit Windows applications, the CPU detection may not
-@@ -957,6 +961,7 @@ typedef FDISPILLFILE *PFDISPILLFILE; /* pfdisf */
+@@ -957,6 +959,7 @@ typedef FDISPILLFILE *PFDISPILLFILE; /* pfdisf */
   *      FDICreate(), and then free it up afterwards (or do all your allocation
   *      before calling FDICreate().
   */
@@ -28,7 +26,7 @@ index 180d640e..d5d251ca 100644
  HFDI FAR DIAMONDAPI FDICreate(__callback PFNALLOC pfnalloc,
                                __callback PFNFREE  pfnfree,
                                __callback PFNOPEN  pfnopen,
-@@ -983,6 +988,7 @@ HFDI FAR DIAMONDAPI FDICreate(__callback PFNALLOC pfnalloc,
+@@ -983,6 +986,7 @@ HFDI FAR DIAMONDAPI FDICreate(__callback PFNALLOC pfnalloc,
   *      Returns FALSE, file is not a cabinet;  If an error occurred,
   *          perf (passed on FDICreate call!) filled in with error.
   */
@@ -36,7 +34,7 @@ index 180d640e..d5d251ca 100644
  BOOL FAR DIAMONDAPI FDIIsCabinet(_In_  HFDI             hfdi,
                                   _In_  INT_PTR          hf,
                                   _Out_opt_ PFDICABINETINFO  pfdici);
-@@ -1014,6 +1020,7 @@ BOOL FAR DIAMONDAPI FDIIsCabinet(_In_  HFDI             hfdi,
+@@ -1014,6 +1018,7 @@ BOOL FAR DIAMONDAPI FDIIsCabinet(_In_  HFDI             hfdi,
   *      it will not be in a valid state (since there was an error while
   *      writing it out).
   */
@@ -44,7 +42,7 @@ index 180d640e..d5d251ca 100644
  BOOL FAR DIAMONDAPI FDICopy(_In_ HFDI                   hfdi,
                              _In_ LPSTR                  pszCabinet,
                              _In_ LPSTR                  pszCabPath,
-@@ -1034,6 +1041,7 @@ BOOL FAR DIAMONDAPI FDICopy(_In_ HFDI                   hfdi,
+@@ -1034,6 +1039,7 @@ BOOL FAR DIAMONDAPI FDICopy(_In_ HFDI                   hfdi,
   *  Exit-Failure:
   *      Returns FALSE;
   */

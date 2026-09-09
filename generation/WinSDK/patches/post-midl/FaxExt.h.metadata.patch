@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FaxExt.h b/generation/WinSDK/RecompiledIdlHeaders/um/FaxExt.h
-index 42ee87d8..10617105 100644
+index 42ee87d8..206c1b5c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/FaxExt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/FaxExt.h
-@@ -24,6 +24,9 @@ Abstract:
+@@ -24,6 +24,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -48,6 +51,7 @@ typedef enum
+@@ -48,6 +49,7 @@ typedef enum
  //
  // Prototype of FaxExtGetData
  //
@@ -20,7 +18,7 @@ index 42ee87d8..10617105 100644
  DWORD
  WINAPI
  FaxExtGetData (
-@@ -62,6 +66,7 @@ typedef DWORD (CALLBACK *PFAX_EXT_GET_DATA) (DWORD, FAX_ENUM_DEVICE_ID_SOURCE, L
+@@ -62,6 +64,7 @@ typedef DWORD (CALLBACK *PFAX_EXT_GET_DATA) (DWORD, FAX_ENUM_DEVICE_ID_SOURCE, L
  //
  // Prototype of FaxExtSetData
  //
@@ -28,7 +26,7 @@ index 42ee87d8..10617105 100644
  DWORD
  WINAPI
  FaxExtSetData (
-@@ -74,6 +79,7 @@ FaxExtSetData (
+@@ -74,6 +77,7 @@ FaxExtSetData (
  );
  typedef DWORD (CALLBACK *PFAX_EXT_SET_DATA) (HINSTANCE, DWORD, FAX_ENUM_DEVICE_ID_SOURCE, LPCWSTR, LPBYTE, DWORD);
  
@@ -36,7 +34,7 @@ index 42ee87d8..10617105 100644
  HRESULT
  WINAPI
  FaxExtConfigChange (
-@@ -87,6 +93,7 @@ typedef HRESULT (WINAPI *PFAX_EXT_CONFIG_CHANGE) (DWORD, LPCWSTR, LPBYTE, DWORD)
+@@ -87,6 +91,7 @@ typedef HRESULT (WINAPI *PFAX_EXT_CONFIG_CHANGE) (DWORD, LPCWSTR, LPBYTE, DWORD)
  //
  // Prototype of FaxExtRegisterForEvents
  //
@@ -44,7 +42,7 @@ index 42ee87d8..10617105 100644
  HANDLE
  WINAPI
  FaxExtRegisterForEvents (
-@@ -95,12 +102,14 @@ FaxExtRegisterForEvents (
+@@ -95,12 +100,14 @@ FaxExtRegisterForEvents (
      FAX_ENUM_DEVICE_ID_SOURCE   DevIdSrc,       // The source of the device id
      LPCWSTR                     lpcwstrDataGUID,// GUID of data
      PFAX_EXT_CONFIG_CHANGE      lpConfigChangeCallback
@@ -60,7 +58,7 @@ index 42ee87d8..10617105 100644
  DWORD
  WINAPI
  FaxExtUnregisterForEvents (
-@@ -111,6 +120,7 @@ typedef DWORD (CALLBACK *PFAX_EXT_UNREGISTER_FOR_EVENTS) (HANDLE);
+@@ -111,6 +118,7 @@ typedef DWORD (CALLBACK *PFAX_EXT_UNREGISTER_FOR_EVENTS) (HANDLE);
  //
  // Prototype of FaxExtFreeBuffer
  //
@@ -68,7 +66,7 @@ index 42ee87d8..10617105 100644
  VOID
  WINAPI
  FaxExtFreeBuffer (
-@@ -121,6 +131,7 @@ typedef VOID (CALLBACK *PFAX_EXT_FREE_BUFFER) (LPVOID);
+@@ -121,6 +129,7 @@ typedef VOID (CALLBACK *PFAX_EXT_FREE_BUFFER) (LPVOID);
  //
  // The extension should implement and export the following function:
  //

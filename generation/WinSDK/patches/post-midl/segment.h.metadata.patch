@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/segment.h b/generation/WinSDK/RecompiledIdlHeaders/um/segment.h
-index ed729d02..ca0b5b9c 100644
+index ed729d02..2c54f842 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/segment.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/segment.h
-@@ -561,6 +561,9 @@ extern "C"{
+@@ -561,6 +561,7 @@ extern "C"{
  //--------------------------------------------------------------------------
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #include <olectl.h>
-@@ -906,6 +909,7 @@ EXTERN_C const IID IID_IMSVidRect;
+@@ -906,6 +907,7 @@ EXTERN_C const IID IID_IMSVidRect;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("7F5000A6-A440-47ca-8ACC-C0E75531A2C2")
      IMSVidRect : public IDispatch
      {
-@@ -1196,6 +1200,7 @@ EXTERN_C const IID IID_IMSVidGraphSegmentContainer;
+@@ -1196,6 +1198,7 @@ EXTERN_C const IID IID_IMSVidGraphSegmentContainer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("3DD2903D-E0AA-11d2-B63A-00C04F79498E")
      IMSVidGraphSegmentContainer : public IUnknown
      {
-@@ -2729,6 +2734,7 @@ EXTERN_C const IID IID_IMSVidDevice;
+@@ -2729,6 +2732,7 @@ EXTERN_C const IID IID_IMSVidDevice;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("1C15D47C-911D-11d2-B632-00C04F79498E")
      IMSVidDevice : public IDispatch
      {
-@@ -3073,6 +3079,7 @@ EXTERN_C const IID IID_IMSVidInputDevice;
+@@ -3073,6 +3077,7 @@ EXTERN_C const IID IID_IMSVidInputDevice;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("37B0353D-A4C8-11d2-B634-00C04F79498E")
      IMSVidInputDevice : public IMSVidDevice
      {
-@@ -3616,6 +3623,7 @@ EXTERN_C const IID IID_IMSVidVideoInputDevice;
+@@ -3616,6 +3621,7 @@ EXTERN_C const IID IID_IMSVidVideoInputDevice;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("1C15D47F-911D-11d2-B632-00C04F79498E")
      IMSVidVideoInputDevice : public IMSVidInputDevice
      {
-@@ -3857,6 +3865,7 @@ EXTERN_C const IID IID_IMSVidPlayback;
+@@ -3857,6 +3863,7 @@ EXTERN_C const IID IID_IMSVidPlayback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("37B03538-A4C8-11d2-B634-00C04F79498E")
      IMSVidPlayback : public IMSVidInputDevice
      {
-@@ -4422,6 +4431,7 @@ EXTERN_C const IID IID_IMSVidTuner;
+@@ -4422,6 +4429,7 @@ EXTERN_C const IID IID_IMSVidTuner;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("1C15D47D-911D-11d2-B632-00C04F79498E")
      IMSVidTuner : public IMSVidVideoInputDevice
      {
-@@ -4866,6 +4876,7 @@ EXTERN_C const IID IID_IMSVidAnalogTuner;
+@@ -4866,6 +4874,7 @@ EXTERN_C const IID IID_IMSVidAnalogTuner;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("1C15D47E-911D-11d2-B632-00C04F79498E")
      IMSVidAnalogTuner : public IMSVidTuner
      {
-@@ -5821,6 +5832,7 @@ EXTERN_C const IID IID_IMSVidFilePlayback;
+@@ -5821,6 +5830,7 @@ EXTERN_C const IID IID_IMSVidFilePlayback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("37B03539-A4C8-11d2-B634-00C04F79498E")
      IMSVidFilePlayback : public IMSVidPlayback
      {
-@@ -8550,6 +8562,7 @@ EXTERN_C const IID IID_IMSVidWebDVD2;
+@@ -8550,6 +8560,7 @@ EXTERN_C const IID IID_IMSVidWebDVD2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("7027212F-EE9A-4a7c-8B67-F023714CDAFF")
      IMSVidWebDVD2 : public IMSVidWebDVD
      {
-@@ -10663,6 +10676,7 @@ EXTERN_C const IID IID_IMSVidOutputDevice;
+@@ -10663,6 +10674,7 @@ EXTERN_C const IID IID_IMSVidOutputDevice;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("37B03546-A4C8-11d2-B634-00C04F79498E")
      IMSVidOutputDevice : public IMSVidDevice
      {
-@@ -11033,6 +11047,7 @@ EXTERN_C const IID IID_IMSVidFeature;
+@@ -11033,6 +11045,7 @@ EXTERN_C const IID IID_IMSVidFeature;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("37B03547-A4C8-11d2-B634-00C04F79498E")
      IMSVidFeature : public IMSVidDevice
      {
-@@ -11403,6 +11418,7 @@ EXTERN_C const IID IID_IMSVidEncoder;
+@@ -11403,6 +11416,7 @@ EXTERN_C const IID IID_IMSVidEncoder;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("C0020FD4-BEE7-43d9-A495-9F213117103D")
      IMSVidEncoder : public IMSVidFeature
      {
-@@ -11650,6 +11666,7 @@ EXTERN_C const IID IID_IMSVidClosedCaptioning;
+@@ -11650,6 +11664,7 @@ EXTERN_C const IID IID_IMSVidClosedCaptioning;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("99652EA1-C1F7-414f-BB7B-1C967DE75983")
      IMSVidClosedCaptioning : public IMSVidFeature
      {
-@@ -11897,6 +11914,7 @@ EXTERN_C const IID IID_IMSVidClosedCaptioning2;
+@@ -11897,6 +11912,7 @@ EXTERN_C const IID IID_IMSVidClosedCaptioning2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("E00CB864-A029-4310-9987-A873F5887D97")
      IMSVidClosedCaptioning2 : public IMSVidClosedCaptioning
      {
-@@ -12853,6 +12871,7 @@ EXTERN_C const IID IID_IMSVidDataServices;
+@@ -12853,6 +12869,7 @@ EXTERN_C const IID IID_IMSVidDataServices;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("334125C1-77E5-11d3-B653-00C04F79498E")
      IMSVidDataServices : public IMSVidFeature
      {
-@@ -13240,6 +13259,7 @@ EXTERN_C const IID IID_IMSVidVideoRenderer;
+@@ -13240,6 +13257,7 @@ EXTERN_C const IID IID_IMSVidVideoRenderer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("37B03540-A4C8-11d2-B634-00C04F79498E")
      IMSVidVideoRenderer : public IMSVidOutputDevice
      {
-@@ -14545,6 +14565,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferRecordingControl;
+@@ -14545,6 +14563,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferRecordingControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("160621AA-BBBC-4326-A824-C395AEBC6E74")
      IMSVidStreamBufferRecordingControl : public IDispatch
      {
-@@ -14785,6 +14806,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferSink;
+@@ -14785,6 +14804,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("159DBB45-CD1B-4dab-83EA-5CB1F4F21D07")
      IMSVidStreamBufferSink : public IMSVidOutputDevice
      {
-@@ -16465,6 +16487,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferSinkEvent4;
+@@ -16465,6 +16485,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferSinkEvent4;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -172,7 +170,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("1B01DCB0-DAF0-412c-A5D1-590C7F62E2B8")
      IMSVidStreamBufferSinkEvent4 : public IMSVidStreamBufferSinkEvent3
      {
-@@ -16672,6 +16695,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferSource;
+@@ -16672,6 +16693,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferSource;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -180,7 +178,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("EB0C8CF9-6950-4772-87B1-47D11CF3A02F")
      IMSVidStreamBufferSource : public IMSVidFilePlayback
      {
-@@ -18453,6 +18477,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferV2SourceEvent;
+@@ -18453,6 +18475,7 @@ EXTERN_C const IID IID_IMSVidStreamBufferV2SourceEvent;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -188,7 +186,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("49C771F9-41B2-4CF7-9F9A-A313A8F6027E")
      IMSVidStreamBufferV2SourceEvent : public IMSVidFilePlaybackEvent
      {
-@@ -18722,6 +18747,7 @@ EXTERN_C const IID IID_IMSVidVideoRenderer2;
+@@ -18722,6 +18745,7 @@ EXTERN_C const IID IID_IMSVidVideoRenderer2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -196,7 +194,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("6BDD5C1E-2810-4159-94BC-05511AE8549B")
      IMSVidVideoRenderer2 : public IMSVidVideoRenderer
      {
-@@ -20042,6 +20068,7 @@ EXTERN_C const IID IID_IMSVidEVR;
+@@ -20042,6 +20066,7 @@ EXTERN_C const IID IID_IMSVidEVR;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -204,7 +202,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("15E496AE-82A8-4cf9-A6B6-C561DC60398F")
      IMSVidEVR : public IMSVidVideoRenderer
      {
-@@ -20754,6 +20781,7 @@ EXTERN_C const IID IID_IMSVidAudioRenderer;
+@@ -20754,6 +20779,7 @@ EXTERN_C const IID IID_IMSVidAudioRenderer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -212,7 +210,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("37B0353F-A4C8-11d2-B634-00C04F79498E")
      IMSVidAudioRenderer : public IMSVidOutputDevice
      {
-@@ -21178,6 +21206,7 @@ EXTERN_C const IID IID_IMSVidAudioRendererEvent2;
+@@ -21178,6 +21204,7 @@ EXTERN_C const IID IID_IMSVidAudioRendererEvent2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -220,7 +218,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("E3F55729-353B-4c43-A028-50F79AA9A907")
      IMSVidAudioRendererEvent2 : public IMSVidAudioRendererEvent
      {
-@@ -21402,6 +21431,7 @@ EXTERN_C const IID IID_IMSVidInputDevices;
+@@ -21402,6 +21429,7 @@ EXTERN_C const IID IID_IMSVidInputDevices;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -228,7 +226,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("C5702CD1-9B79-11d3-B654-00C04F79498E")
      IMSVidInputDevices : public IDispatch
      {
-@@ -21607,6 +21637,7 @@ EXTERN_C const IID IID_IMSVidOutputDevices;
+@@ -21607,6 +21635,7 @@ EXTERN_C const IID IID_IMSVidOutputDevices;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -236,7 +234,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("C5702CD2-9B79-11d3-B654-00C04F79498E")
      IMSVidOutputDevices : public IDispatch
      {
-@@ -21812,6 +21843,7 @@ EXTERN_C const IID IID_IMSVidVideoRendererDevices;
+@@ -21812,6 +21841,7 @@ EXTERN_C const IID IID_IMSVidVideoRendererDevices;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -244,7 +242,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("C5702CD3-9B79-11d3-B654-00C04F79498E")
      IMSVidVideoRendererDevices : public IDispatch
      {
-@@ -22017,6 +22049,7 @@ EXTERN_C const IID IID_IMSVidAudioRendererDevices;
+@@ -22017,6 +22047,7 @@ EXTERN_C const IID IID_IMSVidAudioRendererDevices;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -252,7 +250,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("C5702CD4-9B79-11d3-B654-00C04F79498E")
      IMSVidAudioRendererDevices : public IDispatch
      {
-@@ -22222,6 +22255,7 @@ EXTERN_C const IID IID_IMSVidFeatures;
+@@ -22222,6 +22253,7 @@ EXTERN_C const IID IID_IMSVidFeatures;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -260,7 +258,7 @@ index ed729d02..ca0b5b9c 100644
      MIDL_INTERFACE("C5702CD5-9B79-11d3-B654-00C04F79498E")
      IMSVidFeatures : public IDispatch
      {
-@@ -22448,9 +22482,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -22448,9 +22480,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  
@@ -274,7 +272,7 @@ index ed729d02..ca0b5b9c 100644
  void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  
  unsigned long             __RPC_USER  HDC_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HDC * ); 
-@@ -22463,9 +22501,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+@@ -22463,9 +22499,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
  unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

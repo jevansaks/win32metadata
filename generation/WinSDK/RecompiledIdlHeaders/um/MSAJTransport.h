@@ -6,9 +6,7 @@
 
 #ifndef _MSAJ_TRANSPORT_API_H
 #define _MSAJ_TRANSPORT_API_H
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifdef _MSC_VER 
 #pragma once 

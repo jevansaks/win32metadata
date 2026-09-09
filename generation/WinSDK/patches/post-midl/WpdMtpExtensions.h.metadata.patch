@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WpdMtpExtensions.h b/generation/WinSDK/RecompiledIdlHeaders/um/WpdMtpExtensions.h
-index b2c9f598..54a03884 100644
+index b2c9f598..09a93b36 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WpdMtpExtensions.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WpdMtpExtensions.h
-@@ -11,6 +11,9 @@
+@@ -11,6 +11,7 @@
  //=============================================================================
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Application Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
-@@ -29,6 +32,7 @@ DEFINE_GUID( WPD_CATEGORY_MTP_EXT_VENDOR_OPERATIONS , 0x4d545058, 0x1a2e, 0x4106
+@@ -29,6 +30,7 @@ DEFINE_GUID( WPD_CATEGORY_MTP_EXT_VENDOR_OPERATIONS , 0x4d545058, 0x1a2e, 0x4106
  // Inputs:  None
  // Outputs: WPD_PROPERTY_MTP_EXT_VENDOR_OPERATION_CODES: an IPortableDevicePropVariantCollection (of VT_UI4)
  //                                which contains all vendor-extended operation codes 
@@ -20,7 +18,7 @@ index b2c9f598..54a03884 100644
  DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_GET_SUPPORTED_VENDOR_OPCODES , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 11 ); 
  
  //
-@@ -39,6 +43,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_GET_SUPPORTED_VENDOR_OPCODES , 0x4d54505
+@@ -39,6 +41,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_GET_SUPPORTED_VENDOR_OPCODES , 0x4d54505
  //                                                 which identifies the required params for the vendor operation code.
  // Outputs: WPD_PROPERTY_MTP_EXT_RESPONSE_CODE: [VT_UI4] the response code to the vendor operation code, and 
  //          WPD_PROPERTY_MTP_EXT_RESPONSE_PARAMS: An IPortableDevicePropVariantCollection (of VT_UI4) identifying response params if any (could be empty)
@@ -28,7 +26,7 @@ index b2c9f598..54a03884 100644
  DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITHOUT_DATA_PHASE , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 12 ); 
  
  //
-@@ -51,6 +56,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITHOUT_DATA_PHASE , 0x4
+@@ -51,6 +54,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITHOUT_DATA_PHASE , 0x4
  //                                                         if Devie reports unknown datasize (0xFFFFFFFF), call ReadData() repeatedly until a short chunk received
  //          WPD_PROPERTY_MTP_EXT_OPTIMAL_TRANSFER_BUFFER_SIZE: [VT_UI4] Returns the optimal size of the transfer buffer
  //          WPD_PROPERTY_MTP_EXT_TRANSFER_CONTEXT: [VT_LPWSTR] Returned as a context idetifier for subsequent data transfer 
@@ -36,7 +34,7 @@ index b2c9f598..54a03884 100644
  DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_READ , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 13 ); 
  
  //
-@@ -62,6 +68,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_READ , 0x4d
+@@ -62,6 +66,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_READ , 0x4d
  //          WPD_PROPERTY_MTP_EXT_TRANSFER_TOTAL_DATA_SIZE: [VT_UI8] Specifies the total data size in bytes (excluding any overhead) to be sent to device
  // Outputs: WPD_PROPERTY_MTP_EXT_OPTIMAL_TRANSFER_BUFFER_SIZE: [VT_UI4] Returns the optimal size of the transfer buffer
  //          WPD_PROPERTY_MTP_EXT_TRANSFER_CONTEXT: [VT_LPWSTR] Returned as a context idetifier for subsequent data transfer 
@@ -44,7 +42,7 @@ index b2c9f598..54a03884 100644
  DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_WRITE , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 14 );
  
  //
-@@ -73,6 +80,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_WRITE , 0x4
+@@ -73,6 +78,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_WRITE , 0x4
  // Outputs: WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_READ: [VT_UI4] returns actual number of bytes (no overhead) received from device in a read call 
  //          WPD_PROPERTY_MTP_EXT_TRANSFER_DATA: [VT_VECTOR|VT_UI1] Returns the buffer with received data
  //          
@@ -52,7 +50,7 @@ index b2c9f598..54a03884 100644
  DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_READ_DATA , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 15 ); 
  
  //
-@@ -83,6 +91,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_READ_DATA , 0x4d545058, 0x1a2e, 0x4106,
+@@ -83,6 +89,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_READ_DATA , 0x4d545058, 0x1a2e, 0x4106,
  //          WPD_PROPERTY_MTP_EXT_TRANSFER_DATA: [VT_VECTOR|VT_UI1] specifies the buffer which contains the data to send to device 
  // Outputs: WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_WRITTEN: [VT_UI4] returns actual number of bytes (no overhead) sent to device in a write call 
  //    
@@ -60,7 +58,7 @@ index b2c9f598..54a03884 100644
  DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_WRITE_DATA , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 16 );
  
  //
-@@ -93,6 +102,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_WRITE_DATA , 0x4d545058, 0x1a2e, 0x4106,
+@@ -93,6 +100,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_WRITE_DATA , 0x4d545058, 0x1a2e, 0x4106,
  // Outputs: WPD_PROPERTY_MTP_EXT_RESPONSE_CODE: [VT_UI4] the response code to the vendor operation code, and 
  //          WPD_PROPERTY_MTP_EXT_RESPONSE_PARAMS: An IPortableDevicePropVariantCollection (of VT_UI4) identifying response params if any (could be empty)
  //  
@@ -68,7 +66,7 @@ index b2c9f598..54a03884 100644
  DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_END_DATA_TRANSFER , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 17 );  
  
  //
-@@ -100,22 +110,37 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_END_DATA_TRANSFER , 0x4d545058, 0x1a2e,
+@@ -100,22 +108,37 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_END_DATA_TRANSFER , 0x4d545058, 0x1a2e,
  // Usage:   retrieves the vendor extension description string (as defined by DeviceInfo dataset)
  // Inputs:  None
  // Outputs: WPD_PROPERTY_MTP_EXT_VENDOR_EXTENSION_DESCRIPTION: [VT_LPWSTR] contains the vendor extension description string 
@@ -106,7 +104,7 @@ index b2c9f598..54a03884 100644
  DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_VENDOR_EXTENSION_DESCRIPTION , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1014 ); // [ VT_LPWSTR ] : Returns vendor extension description string
  
  
-@@ -176,6 +201,7 @@ DEFINE_GUID( WPD_EVENT_MTP_VENDOR_EXTENDED_EVENTS , 0x00000000, 0x5738, 0x4ff2,
+@@ -176,6 +199,7 @@ DEFINE_GUID( WPD_EVENT_MTP_VENDOR_EXTENDED_EVENTS , 0x00000000, 0x5738, 0x4ff2,
  // If there is no parameters for the event, the collection will be empty.
  //
  //	{4D545058-EF88-4e4d-95C3-4F327F728A96}

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MsHTML.h b/generation/WinSDK/RecompiledIdlHeaders/um/MsHTML.h
-index 8b415ce8..1afb85e7 100644
+index 8b415ce8..55b9fbd4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/MsHTML.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/MsHTML.h
-@@ -9677,6 +9677,9 @@ extern "C"{
+@@ -9677,6 +9677,7 @@ extern "C"{
  
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #include <dxgitype.h>
  #include <olectl.h>
-@@ -184435,6 +184438,7 @@ EXTERN_C const IID IID_IRangeException;
+@@ -184435,6 +184436,7 @@ EXTERN_C const IID IID_IRangeException;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 8b415ce8..1afb85e7 100644
      MIDL_INTERFACE("3051072d-98b5-11cf-bb82-00aa00bdce0b")
      IRangeException : public IDispatch
      {
-@@ -215430,9 +215434,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -215430,9 +215432,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

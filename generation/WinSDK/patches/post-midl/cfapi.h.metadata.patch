@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h
-index 2171807b..2ba81487 100644
+index 2171807b..0970cfa9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h
-@@ -21,6 +21,9 @@ Abstract:
+@@ -21,6 +21,7 @@ Abstract:
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION( WINAPI_PARTITION_DESKTOP )
-@@ -132,6 +135,7 @@ typedef struct CF_PLATFORM_INFO {
+@@ -132,6 +133,7 @@ typedef struct CF_PLATFORM_INFO {
      DWORD IntegrationNumber;
  } CF_PLATFORM_INFO;
  
@@ -20,7 +18,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfGetPlatformInfo (
      _Out_ CF_PLATFORM_INFO *PlatformVersion
-@@ -254,6 +258,7 @@ typedef struct CF_SYNC_REGISTRATION {
+@@ -254,6 +256,7 @@ typedef struct CF_SYNC_REGISTRATION {
      GUID ProviderId;
  } CF_SYNC_REGISTRATION;
  
@@ -28,7 +26,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfRegisterSyncRoot (
      _In_ LPCWSTR SyncRootPath,
-@@ -262,6 +267,7 @@ CfRegisterSyncRoot (
+@@ -262,6 +265,7 @@ CfRegisterSyncRoot (
      _In_ CF_REGISTER_FLAGS RegisterFlags
      );
  
@@ -36,7 +34,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfUnregisterSyncRoot (
      _In_ LPCWSTR SyncRootPath
-@@ -518,6 +524,7 @@ typedef enum CF_CONNECT_FLAGS {
+@@ -518,6 +522,7 @@ typedef enum CF_CONNECT_FLAGS {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_CONNECT_FLAGS );
  
@@ -44,7 +42,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfConnectSyncRoot (
      _In_ LPCWSTR SyncRootPath,
-@@ -527,17 +534,20 @@ CfConnectSyncRoot (
+@@ -527,17 +532,20 @@ CfConnectSyncRoot (
      _Out_ CF_CONNECTION_KEY *ConnectionKey
      );
  
@@ -65,7 +63,7 @@ index 2171807b..2ba81487 100644
  STDAPI_(VOID)
  CfReleaseTransferKey(
      _In_ HANDLE FileHandle,
-@@ -700,6 +710,7 @@ typedef struct CF_OPERATION_PARAMETERS {
+@@ -700,6 +708,7 @@ typedef struct CF_OPERATION_PARAMETERS {
  
  #pragma warning( pop )
  
@@ -73,7 +71,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfExecute(
      _In_ CONST CF_OPERATION_INFO *OpInfo,
-@@ -707,12 +718,14 @@ CfExecute(
+@@ -707,12 +716,14 @@ CfExecute(
      );
  
  
@@ -88,7 +86,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfQuerySyncProviderStatus(
      _In_ CF_CONNECTION_KEY ConnectionKey,
-@@ -722,6 +735,7 @@ CfQuerySyncProviderStatus(
+@@ -722,6 +733,7 @@ CfQuerySyncProviderStatus(
  #pragma endregion
  
  
@@ -96,7 +94,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfReportSyncStatus(
      _In_ LPCWSTR SyncRootPath,
-@@ -742,6 +756,7 @@ typedef enum CF_CREATE_FLAGS {
+@@ -742,6 +754,7 @@ typedef enum CF_CREATE_FLAGS {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_CREATE_FLAGS );
  
@@ -104,7 +102,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfCreatePlaceholders (
      _In_ LPCWSTR BaseDirectoryPath,
-@@ -761,28 +776,34 @@ typedef enum CF_OPEN_FILE_FLAGS {
+@@ -761,28 +774,34 @@ typedef enum CF_OPEN_FILE_FLAGS {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_OPEN_FILE_FLAGS );
  
@@ -139,7 +137,7 @@ index 2171807b..2ba81487 100644
  STDAPI_(VOID)
  CfCloseHandle(
      _In_ HANDLE FileHandle
-@@ -804,6 +825,7 @@ typedef enum CF_CONVERT_FLAGS {
+@@ -804,6 +823,7 @@ typedef enum CF_CONVERT_FLAGS {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_CONVERT_FLAGS );
  
@@ -147,7 +145,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfConvertToPlaceholder (
      _In_ HANDLE FileHandle,
-@@ -831,6 +853,7 @@ typedef enum CF_UPDATE_FLAGS {
+@@ -831,6 +851,7 @@ typedef enum CF_UPDATE_FLAGS {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_UPDATE_FLAGS );
  
@@ -155,7 +153,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfUpdatePlaceholder (
      _In_ HANDLE FileHandle,
-@@ -850,6 +873,7 @@ typedef enum CF_REVERT_FLAGS {
+@@ -850,6 +871,7 @@ typedef enum CF_REVERT_FLAGS {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_REVERT_FLAGS );
  
@@ -163,7 +161,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfRevertPlaceholder (
      _In_ HANDLE FileHandle,
-@@ -863,6 +887,7 @@ typedef enum CF_HYDRATE_FLAGS {
+@@ -863,6 +885,7 @@ typedef enum CF_HYDRATE_FLAGS {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_HYDRATE_FLAGS );
  
@@ -171,7 +169,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfHydratePlaceholder (
      _In_ HANDLE FileHandle,
-@@ -905,6 +930,7 @@ typedef enum CF_SET_PIN_FLAGS {
+@@ -905,6 +928,7 @@ typedef enum CF_SET_PIN_FLAGS {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_SET_PIN_FLAGS );
  
@@ -179,7 +177,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfSetPinState (
      _In_ HANDLE FileHandle,
-@@ -924,6 +950,7 @@ typedef enum CF_SET_IN_SYNC_FLAGS {
+@@ -924,6 +948,7 @@ typedef enum CF_SET_IN_SYNC_FLAGS {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_SET_IN_SYNC_FLAGS );
  
@@ -187,7 +185,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfSetInSyncState (
      _In_ HANDLE FileHandle,
-@@ -932,12 +959,14 @@ CfSetInSyncState (
+@@ -932,12 +957,14 @@ CfSetInSyncState (
      _Inout_opt_ USN *InSyncUsn
      );
  
@@ -202,7 +200,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfGetCorrelationVector (
      _In_ HANDLE FileHandle,
-@@ -957,18 +986,21 @@ typedef enum CF_PLACEHOLDER_STATE {
+@@ -957,18 +984,21 @@ typedef enum CF_PLACEHOLDER_STATE {
  
  DEFINE_ENUM_FLAG_OPERATORS( CF_PLACEHOLDER_STATE );
  
@@ -224,7 +222,7 @@ index 2171807b..2ba81487 100644
  STDAPI_( CF_PLACEHOLDER_STATE )
  CfGetPlaceholderStateFromFindData (
      _In_ CONST WIN32_FIND_DATA *FindData
-@@ -1015,6 +1047,7 @@ typedef struct CF_PLACEHOLDER_STANDARD_INFO {
+@@ -1015,6 +1045,7 @@ typedef struct CF_PLACEHOLDER_STANDARD_INFO {
  
  } CF_PLACEHOLDER_STANDARD_INFO;
  
@@ -232,7 +230,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfGetPlaceholderInfo (
      _In_ HANDLE FileHandle,
-@@ -1080,6 +1113,7 @@ typedef struct CF_SYNC_ROOT_STANDARD_INFO {
+@@ -1080,6 +1111,7 @@ typedef struct CF_SYNC_ROOT_STANDARD_INFO {
  } CF_SYNC_ROOT_STANDARD_INFO;
  
  
@@ -240,7 +238,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfGetSyncRootInfoByPath(
      _In_ LPCWSTR FilePath,
-@@ -1089,6 +1123,7 @@ CfGetSyncRootInfoByPath(
+@@ -1089,6 +1121,7 @@ CfGetSyncRootInfoByPath(
      _Out_opt_ DWORD *ReturnedLength
      );
  
@@ -248,7 +246,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfGetSyncRootInfoByHandle(
      _In_ HANDLE FileHandle,
-@@ -1106,6 +1141,7 @@ typedef enum CF_PLACEHOLDER_RANGE_INFO_CLASS {
+@@ -1106,6 +1139,7 @@ typedef enum CF_PLACEHOLDER_RANGE_INFO_CLASS {
  
  } CF_PLACEHOLDER_RANGE_INFO_CLASS;
  
@@ -256,7 +254,7 @@ index 2171807b..2ba81487 100644
  STDAPI
  CfGetPlaceholderRangeInfo (
      _In_ HANDLE FileHandle,
-@@ -1140,6 +1176,7 @@ CfGetPlaceholderRangeInfoForHydration(
+@@ -1140,6 +1174,7 @@ CfGetPlaceholderRangeInfoForHydration(
  
  #pragma region Progress APIs
  

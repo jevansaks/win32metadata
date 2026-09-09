@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfcontentdecryptionmodule.h b/generation/WinSDK/RecompiledIdlHeaders/um/mfcontentdecryptionmodule.h
-index 6b751d70..567f14c7 100644
+index 6b751d70..a455b1fc 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mfcontentdecryptionmodule.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfcontentdecryptionmodule.h
-@@ -32,6 +32,9 @@
+@@ -32,6 +32,7 @@
  
  #ifndef __mfcontentdecryptionmodule_h__
  #define __mfcontentdecryptionmodule_h__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if defined(_MSC_VER) && (_MSC_VER >= 1020)
  #pragma once
-@@ -111,6 +114,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModuleSession;
+@@ -111,6 +112,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModuleSession;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 6b751d70..567f14c7 100644
      MIDL_INTERFACE("4e233efd-1dd2-49e8-b577-d63eee4c0d33")
      IMFContentDecryptionModuleSession : public IUnknown
      {
-@@ -301,6 +305,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModuleSessionCallbacks;
+@@ -301,6 +303,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModuleSessionCallbacks;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 6b751d70..567f14c7 100644
      MIDL_INTERFACE("3f96ee40-ad81-4096-8470-59a4b770f89a")
      IMFContentDecryptionModuleSessionCallbacks : public IUnknown
      {
-@@ -407,6 +412,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModule;
+@@ -407,6 +410,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModule;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 6b751d70..567f14c7 100644
      MIDL_INTERFACE("87be986c-10be-4943-bf48-4b54ce1983a2")
      IMFContentDecryptionModule : public IUnknown
      {
-@@ -600,6 +606,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModuleAccess;
+@@ -600,6 +604,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModuleAccess;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 6b751d70..567f14c7 100644
      MIDL_INTERFACE("a853d1f4-e2a0-4303-9edc-f1a68ee43136")
      IMFContentDecryptionModuleAccess : public IUnknown
      {
-@@ -728,6 +735,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModuleFactory;
+@@ -728,6 +733,7 @@ EXTERN_C const IID IID_IMFContentDecryptionModuleFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 6b751d70..567f14c7 100644
      MIDL_INTERFACE("7d5abf16-4cbb-4e08-b977-9ba59049943e")
      IMFContentDecryptionModuleFactory : public IUnknown
      {
-@@ -841,6 +849,7 @@ EXTERN_GUID(MF_ENCRYPTEDMEDIAEXTENSIONS_ACTIVATABLE_CLASS_ID,
+@@ -841,6 +847,7 @@ EXTERN_GUID(MF_ENCRYPTEDMEDIAEXTENSIONS_ACTIVATABLE_CLASS_ID,
      0x77631a31, 0xe5e7, 0x4785, 0xbf, 0x17, 0x20, 0xf5, 0x7b, 0x22, 0x48, 0x02);
  EXTERN_GUID(MF_ENCRYPTEDMEDIAEXTENSIONS_INITIALIZATION_DATA,
      0x3e73735c, 0xe6c0, 0x481d, 0x82, 0x60, 0xee, 0x5d, 0xb1, 0x34, 0x3b, 0x5f);

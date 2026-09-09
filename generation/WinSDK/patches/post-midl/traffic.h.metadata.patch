@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/traffic.h b/generation/WinSDK/RecompiledIdlHeaders/shared/traffic.h
-index 8e028e77..92765847 100644
+index 8e028e77..38e160cf 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/traffic.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/traffic.h
-@@ -19,6 +19,9 @@ Abstract:
+@@ -19,6 +19,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or Traffic Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_TRAFFIC)
-@@ -273,6 +276,7 @@ typedef struct _ENUMERATION_BUFFER {
+@@ -273,6 +274,7 @@ typedef struct _ENUMERATION_BUFFER {
  // Interface Function Definitions
  //
  
@@ -20,7 +18,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcRegisterClient(
-@@ -282,6 +286,7 @@ TcRegisterClient(
+@@ -282,6 +284,7 @@ TcRegisterClient(
      _Out_ PHANDLE                 pClientHandle
      );
  
@@ -28,7 +26,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcEnumerateInterfaces(
-@@ -290,6 +295,7 @@ TcEnumerateInterfaces(
+@@ -290,6 +293,7 @@ TcEnumerateInterfaces(
      _Out_   PTC_IFC_DESCRIPTOR  InterfaceBuffer
      );
  
@@ -36,7 +34,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcOpenInterfaceA(
-@@ -299,6 +305,7 @@ TcOpenInterfaceA(
+@@ -299,6 +303,7 @@ TcOpenInterfaceA(
      _Out_ PHANDLE         pIfcHandle
      );
  
@@ -44,7 +42,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcOpenInterfaceW(
-@@ -308,12 +315,14 @@ TcOpenInterfaceW(
+@@ -308,12 +313,14 @@ TcOpenInterfaceW(
      _Out_ PHANDLE         pIfcHandle
      );
  
@@ -59,7 +57,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcQueryInterface(
-@@ -324,6 +333,7 @@ TcQueryInterface(
+@@ -324,6 +331,7 @@ TcQueryInterface(
      _Out_writes_bytes_(*pBufferSize) PVOID       Buffer
      );
  
@@ -67,7 +65,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcSetInterface(
-@@ -333,6 +343,7 @@ TcSetInterface(
+@@ -333,6 +341,7 @@ TcSetInterface(
      _In_reads_bytes_(BufferSize) PVOID       Buffer
      );
  
@@ -75,7 +73,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcQueryFlowA(
-@@ -342,6 +353,7 @@ TcQueryFlowA(
+@@ -342,6 +351,7 @@ TcQueryFlowA(
      _Out_writes_bytes_(*pBufferSize) PVOID       Buffer
      );
  
@@ -83,7 +81,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcQueryFlowW(
-@@ -351,6 +363,7 @@ TcQueryFlowW(
+@@ -351,6 +361,7 @@ TcQueryFlowW(
      _Out_writes_bytes_(*pBufferSize) PVOID       Buffer
      );
  
@@ -91,7 +89,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcSetFlowA(
-@@ -360,6 +373,7 @@ TcSetFlowA(
+@@ -360,6 +371,7 @@ TcSetFlowA(
      _In_reads_bytes_(BufferSize) PVOID       Buffer
      );
  
@@ -99,7 +97,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcSetFlowW(
-@@ -369,6 +383,7 @@ TcSetFlowW(
+@@ -369,6 +381,7 @@ TcSetFlowW(
      _In_reads_bytes_(BufferSize) PVOID       Buffer
      );
  
@@ -107,7 +105,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcAddFlow(
-@@ -379,6 +394,7 @@ TcAddFlow(
+@@ -379,6 +392,7 @@ TcAddFlow(
      _Out_ PHANDLE         pFlowHandle
      );
  
@@ -115,7 +113,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcGetFlowNameA(
-@@ -387,6 +403,7 @@ TcGetFlowNameA(
+@@ -387,6 +401,7 @@ TcGetFlowNameA(
      _Out_writes_(StrSize) LPSTR   pFlowName
      );
  
@@ -123,7 +121,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcGetFlowNameW(
-@@ -395,6 +412,7 @@ TcGetFlowNameW(
+@@ -395,6 +410,7 @@ TcGetFlowNameW(
      _Out_writes_(StrSize) LPWSTR  pFlowName
      );
  
@@ -131,7 +129,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcModifyFlow(   
-@@ -402,6 +420,7 @@ TcModifyFlow(
+@@ -402,6 +418,7 @@ TcModifyFlow(
      _In_ PTC_GEN_FLOW    pGenericFlow
      );
  
@@ -139,7 +137,7 @@ index 8e028e77..92765847 100644
  ULONG
  APIENTRY
  TcAddFilter(
-@@ -410,24 +429,28 @@ TcAddFilter(
+@@ -410,24 +427,28 @@ TcAddFilter(
      _Out_ PHANDLE         pFilterHandle
      );
  

@@ -8,9 +8,7 @@
 
 #ifndef _WINERROR_
 #define _WINERROR_
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if defined (_MSC_VER) && (_MSC_VER >= 1020) && !defined(__midl)
 #pragma once

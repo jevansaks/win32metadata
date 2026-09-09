@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TermMgr.h b/generation/WinSDK/RecompiledIdlHeaders/um/TermMgr.h
-index b35ea0a8..f3305ed6 100644
+index b35ea0a8..78c36003 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/TermMgr.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/TermMgr.h
-@@ -141,6 +141,9 @@ extern "C"{
+@@ -141,6 +141,7 @@ extern "C"{
  
  /* Copyright (c) Microsoft Corporation. All rights reserved. */
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef /* [public][public][public] */ 
-@@ -1349,14 +1352,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -1349,14 +1350,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

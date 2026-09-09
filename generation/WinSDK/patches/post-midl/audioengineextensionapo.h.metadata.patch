@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/audioengineextensionapo.h b/generation/WinSDK/RecompiledIdlHeaders/um/audioengineextensionapo.h
-index 7301dc89..0bf41006 100644
+index 7301dc89..e10dfa64 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/audioengineextensionapo.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/audioengineextensionapo.h
-@@ -102,6 +102,9 @@ extern "C"{
+@@ -102,6 +102,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #ifdef DEFINE_PROPERTYKEY
-@@ -563,6 +566,7 @@ typedef struct AUDIO_MICROPHONE_BOOST_NOTIFICATION
+@@ -563,6 +564,7 @@ typedef struct AUDIO_MICROPHONE_BOOST_NOTIFICATION
      BOOL mute;
      } 	AUDIO_MICROPHONE_BOOST_NOTIFICATION;
  

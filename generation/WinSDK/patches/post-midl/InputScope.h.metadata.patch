@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/InputScope.h b/generation/WinSDK/RecompiledIdlHeaders/um/InputScope.h
-index 0a3c8693..e86a6ce1 100644
+index 0a3c8693..08f2954b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/InputScope.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/InputScope.h
-@@ -74,6 +74,9 @@ extern "C"{
+@@ -74,6 +74,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  //=--------------------------------------------------------------------------=
  // InputScope.h
  
-@@ -185,9 +188,13 @@ enum __MIDL___MIDL_itf_inputscope_0000_0000_0001
+@@ -185,9 +186,13 @@ enum __MIDL___MIDL_itf_inputscope_0000_0000_0001
  #pragma region Desktop Family
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -26,7 +24,7 @@ index 0a3c8693..e86a6ce1 100644
  HRESULT WINAPI SetInputScopes2(HWND hwnd, const InputScope *pInputScopes, UINT cInputScopes, IEnumString *pEnumString, _In_opt_ PWSTR pszRegExp, _In_opt_ PWSTR pszSRGS);
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
  #pragma endregion
-@@ -217,6 +224,7 @@ EXTERN_C const IID IID_ITfInputScope;
+@@ -217,6 +222,7 @@ EXTERN_C const IID IID_ITfInputScope;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -34,7 +32,7 @@ index 0a3c8693..e86a6ce1 100644
      MIDL_INTERFACE("fde1eaee-6924-4cdf-91e7-da38cff5559d")
      ITfInputScope : public IUnknown
      {
-@@ -364,6 +372,7 @@ EXTERN_C const IID IID_ITfInputScope2;
+@@ -364,6 +370,7 @@ EXTERN_C const IID IID_ITfInputScope2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -42,7 +40,7 @@ index 0a3c8693..e86a6ce1 100644
      MIDL_INTERFACE("5731eaa0-6bc2-4681-a532-92fbb74d7c41")
      ITfInputScope2 : public ITfInputScope
      {
-@@ -508,9 +517,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -508,9 +515,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

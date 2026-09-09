@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AtscPsipParser.h b/generation/WinSDK/RecompiledIdlHeaders/um/AtscPsipParser.h
-index 0be5f112..a941aab0 100644
+index 0be5f112..dfa1c10e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/AtscPsipParser.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/AtscPsipParser.h
-@@ -133,6 +133,9 @@ extern "C"{
+@@ -133,6 +133,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -1577,6 +1580,7 @@ EXTERN_C const IID IID_ISCTE_EAS;
+@@ -1577,6 +1578,7 @@ EXTERN_C const IID IID_ISCTE_EAS;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 0be5f112..a941aab0 100644
      MIDL_INTERFACE("1FF544D6-161D-4fae-9FAA-4F9F492AE999")
      ISCTE_EAS : public IUnknown
      {
-@@ -2319,6 +2323,7 @@ EXTERN_C const IID IID_IServiceLocationDescriptor;
+@@ -2319,6 +2321,7 @@ EXTERN_C const IID IID_IServiceLocationDescriptor;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 0be5f112..a941aab0 100644
      MIDL_INTERFACE("58C3C827-9D91-4215-BFF3-820A49F0904C")
      IServiceLocationDescriptor : public IUnknown
      {
-@@ -2459,9 +2464,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -2459,9 +2462,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

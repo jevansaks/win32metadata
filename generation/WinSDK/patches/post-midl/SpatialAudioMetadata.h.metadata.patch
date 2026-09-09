@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioMetadata.h b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioMetadata.h
-index ce0bf45d..ba20e931 100644
+index ce0bf45d..be21ed8a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioMetadata.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioMetadata.h
-@@ -126,6 +126,9 @@ extern "C"{
+@@ -126,6 +126,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Application and Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
  #define SPATIAL_AUDIO_STANDARD_COMMANDS_START   200     // 200 and above is reserved
-@@ -205,6 +208,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataItems;
+@@ -205,6 +206,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataItems;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index ce0bf45d..ba20e931 100644
      MIDL_INTERFACE("BCD7C78F-3098-4F22-B547-A2F25A381269")
      ISpatialAudioMetadataItems : public IUnknown
      {
-@@ -344,6 +348,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataWriter;
+@@ -344,6 +346,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataWriter;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index ce0bf45d..ba20e931 100644
      MIDL_INTERFACE("1B17CA01-2955-444D-A430-537DC589A844")
      ISpatialAudioMetadataWriter : public IUnknown
      {
-@@ -474,6 +479,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataReader;
+@@ -474,6 +477,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataReader;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index ce0bf45d..ba20e931 100644
      MIDL_INTERFACE("B78E86A2-31D9-4C32-94D2-7DF40FC7EBEC")
      ISpatialAudioMetadataReader : public IUnknown
      {
-@@ -612,6 +618,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataCopier;
+@@ -612,6 +616,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataCopier;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index ce0bf45d..ba20e931 100644
      MIDL_INTERFACE("D224B233-E251-4FD0-9CA2-D5ECF9A68404")
      ISpatialAudioMetadataCopier : public IUnknown
      {
-@@ -733,6 +740,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataItemsBuffer;
+@@ -733,6 +738,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataItemsBuffer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index ce0bf45d..ba20e931 100644
      MIDL_INTERFACE("42640A16-E1BD-42D9-9FF6-031AB71A2DBA")
      ISpatialAudioMetadataItemsBuffer : public IUnknown
      {
-@@ -850,6 +858,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataClient;
+@@ -850,6 +856,7 @@ EXTERN_C const IID IID_ISpatialAudioMetadataClient;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index ce0bf45d..ba20e931 100644
      MIDL_INTERFACE("777D4A3B-F6FF-4A26-85DC-68D7CDEDA1D4")
      ISpatialAudioMetadataClient : public IUnknown
      {
-@@ -1009,6 +1018,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectForMetadataCommands;
+@@ -1009,6 +1016,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectForMetadataCommands;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index ce0bf45d..ba20e931 100644
      MIDL_INTERFACE("0DF2C94B-F5F9-472D-AF6B-C46E0AC9CD05")
      ISpatialAudioObjectForMetadataCommands : public ISpatialAudioObjectBase
      {
-@@ -1143,6 +1153,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectForMetadataItems;
+@@ -1143,6 +1151,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectForMetadataItems;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index ce0bf45d..ba20e931 100644
      MIDL_INTERFACE("DDEA49FF-3BC0-4377-8AAD-9FBCFD808566")
      ISpatialAudioObjectForMetadataItems : public ISpatialAudioObjectBase
      {
-@@ -1269,6 +1280,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectRenderStreamForMetadata;
+@@ -1269,6 +1278,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectRenderStreamForMetadata;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

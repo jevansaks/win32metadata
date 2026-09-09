@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CertExit.h b/generation/WinSDK/RecompiledIdlHeaders/um/CertExit.h
-index c656b3bb..90b9d079 100644
+index c656b3bb..1d8461ac 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/CertExit.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/CertExit.h
-@@ -74,6 +74,9 @@ extern "C"{
+@@ -74,6 +74,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define EXITEVENT_INVALID               ( 0x0 )  // Invalid event
-@@ -102,6 +105,7 @@ EXTERN_C const IID IID_ICertExit;
+@@ -102,6 +103,7 @@ EXTERN_C const IID IID_ICertExit;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index c656b3bb..90b9d079 100644
      MIDL_INTERFACE("e19ae1a0-7364-11d0-8816-00a0c903b83c")
      ICertExit : public IDispatch
      {
-@@ -285,6 +289,7 @@ EXTERN_C const IID IID_ICertExit2;
+@@ -285,6 +287,7 @@ EXTERN_C const IID IID_ICertExit2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index c656b3bb..90b9d079 100644
      MIDL_INTERFACE("0abf484b-d049-464d-a7ed-552e7529b0ff")
      ICertExit2 : public ICertExit
      {
-@@ -472,9 +477,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -472,9 +475,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

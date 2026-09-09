@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/openservice.h b/generation/WinSDK/RecompiledIdlHeaders/um/openservice.h
-index a5d7b9a8..3569ca6d 100644
+index a5d7b9a8..3f1b5944 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/openservice.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/openservice.h
-@@ -160,6 +160,9 @@ extern "C"{
+@@ -160,6 +160,7 @@ extern "C"{
  //=--------------------------------------------------------------------------=
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef 
-@@ -1670,9 +1673,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -1670,9 +1671,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  HWND_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

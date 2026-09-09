@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TxDtc.h b/generation/WinSDK/RecompiledIdlHeaders/um/TxDtc.h
-index 85a912d3..3162fa13 100644
+index 85a912d3..5a712889 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/TxDtc.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/TxDtc.h
-@@ -332,6 +332,9 @@ extern "C"{
+@@ -332,6 +332,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define XACTTOMSG(dwXact) (dwXact-0x00040000+0x40000000)
-@@ -694,6 +697,7 @@ EXTERN_C const IID IID_IResourceManager;
+@@ -694,6 +695,7 @@ EXTERN_C const IID IID_IResourceManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/sysinfoapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/sysinfoapi.h
-index 8cc6aa8c..4933e014 100644
+index 8cc6aa8c..7b445e2f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/sysinfoapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/sysinfoapi.h
-@@ -37,6 +37,9 @@
+@@ -37,6 +37,7 @@
  # define NOT_BUILD_WINDOWS_DEPRECATE __declspec(deprecated)
  #endif
  
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #ifdef __cplusplus
  extern "C" {
  #endif
-@@ -80,6 +83,8 @@ typedef struct _MEMORYSTATUSEX {
+@@ -80,6 +81,8 @@ typedef struct _MEMORYSTATUSEX {
  #define USER_CET_ENVIRONMENT_VBS_ENCLAVE          0x00000010
  #define USER_CET_ENVIRONMENT_VBS_BASIC_ENCLAVE    0x00000011
  
@@ -21,7 +19,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -87,6 +92,7 @@ GlobalMemoryStatusEx(
+@@ -87,6 +90,7 @@ GlobalMemoryStatusEx(
      _Out_ LPMEMORYSTATUSEX lpBuffer
      );
  
@@ -29,7 +27,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -94,6 +100,7 @@ GetSystemInfo(
+@@ -94,6 +98,7 @@ GetSystemInfo(
      _Out_ LPSYSTEM_INFO lpSystemInfo
      );
  
@@ -37,7 +35,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -101,6 +108,7 @@ GetSystemTime(
+@@ -101,6 +106,7 @@ GetSystemTime(
      _Out_ LPSYSTEMTIME lpSystemTime
      );
  
@@ -45,7 +43,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -108,6 +116,7 @@ GetSystemTimeAsFileTime(
+@@ -108,6 +114,7 @@ GetSystemTimeAsFileTime(
      _Out_ LPFILETIME lpSystemTimeAsFileTime
      );
  
@@ -53,7 +51,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -150,6 +159,7 @@ GetSystemLeapSecondInformation(
+@@ -150,6 +157,7 @@ GetSystemLeapSecondInformation(
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -61,7 +59,7 @@ index 8cc6aa8c..4933e014 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  WINBASEAPI
  __drv_preferredFunction("IsWindows*", "Deprecated. Use VerifyVersionInfo* or IsWindows* macros from VersionHelpers.")
-@@ -159,6 +169,8 @@ GetVersion(
+@@ -159,6 +167,8 @@ GetVersion(
      VOID
      );
  
@@ -70,7 +68,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -172,6 +184,7 @@ SetLocalTime(
+@@ -172,6 +182,7 @@ SetLocalTime(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -78,7 +76,7 @@ index 8cc6aa8c..4933e014 100644
  __drv_preferredFunction("GetTickCount64", "GetTickCount overflows roughly every 49 days.  Code that does not take that into account can loop indefinitely.  GetTickCount64 operates on 64 bit values and does not have that problem")
  WINBASEAPI
  DWORD
-@@ -182,6 +195,7 @@ GetTickCount(
+@@ -182,6 +193,7 @@ GetTickCount(
  
  #if (_WIN32_WINNT >= 0x0600)
  
@@ -86,7 +84,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  ULONGLONG
  WINAPI
-@@ -197,6 +211,8 @@ GetTickCount64(
+@@ -197,6 +209,8 @@ GetTickCount64(
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -95,7 +93,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -213,6 +229,8 @@ GetSystemTimeAdjustment(
+@@ -213,6 +227,8 @@ GetSystemTimeAdjustment(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -104,7 +102,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -229,6 +247,8 @@ GetSystemTimeAdjustmentPrecise(
+@@ -229,6 +245,8 @@ GetSystemTimeAdjustmentPrecise(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -113,7 +111,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != 0 && return < uSize)
  UINT
-@@ -238,6 +258,8 @@ GetSystemDirectoryA(
+@@ -238,6 +256,8 @@ GetSystemDirectoryA(
      _In_ UINT uSize
      );
  
@@ -122,7 +120,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != 0 && return < uSize)
  UINT
-@@ -259,6 +281,8 @@ GetSystemDirectoryW(
+@@ -259,6 +279,8 @@ GetSystemDirectoryW(
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -131,7 +129,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Must_inspect_result_
  _Success_(return != 0 && return < uSize)
-@@ -269,6 +293,8 @@ GetWindowsDirectoryA(
+@@ -269,6 +291,8 @@ GetWindowsDirectoryA(
      _In_ UINT uSize
      );
  
@@ -140,7 +138,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Must_inspect_result_
  _Success_(return != 0 && return < uSize)
-@@ -291,6 +317,8 @@ GetWindowsDirectoryW(
+@@ -291,6 +315,8 @@ GetWindowsDirectoryW(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -149,7 +147,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != 0 && return < uSize)
  UINT
-@@ -300,6 +328,8 @@ GetSystemWindowsDirectoryA(
+@@ -300,6 +326,8 @@ GetSystemWindowsDirectoryA(
      _In_ UINT uSize
      );
  
@@ -158,7 +156,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != 0 && return < uSize)
  UINT
-@@ -333,6 +363,8 @@ typedef enum _COMPUTER_NAME_FORMAT {
+@@ -333,6 +361,8 @@ typedef enum _COMPUTER_NAME_FORMAT {
      ComputerNameMax
  } COMPUTER_NAME_FORMAT ;
  
@@ -167,7 +165,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -343,6 +375,8 @@ GetComputerNameExA(
+@@ -343,6 +373,8 @@ GetComputerNameExA(
      _Inout_ LPDWORD nSize
      );
  
@@ -176,7 +174,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -365,6 +399,8 @@ GetComputerNameExW(
+@@ -365,6 +397,8 @@ GetComputerNameExW(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -185,7 +183,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -377,6 +413,8 @@ SetComputerNameExW(
+@@ -377,6 +411,8 @@ SetComputerNameExW(
  #define SetComputerNameEx SetComputerNameExW
  #endif
  
@@ -194,7 +192,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -390,7 +428,9 @@ SetSystemTime(
+@@ -390,7 +426,9 @@ SetSystemTime(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -204,7 +202,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  __drv_preferredFunction("IsWindows*", "Deprecated. Use VerifyVersionInfo* or IsWindows* macros from VersionHelpers.")
  BOOL
-@@ -399,7 +439,9 @@ GetVersionExA(
+@@ -399,7 +437,9 @@ GetVersionExA(
      _Inout_ LPOSVERSIONINFOA lpVersionInformation
      );
  
@@ -214,7 +212,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  __drv_preferredFunction("IsWindows*", "Deprecated. Use VerifyVersionInfo* or IsWindows* macros from VersionHelpers.")
  BOOL
-@@ -414,6 +456,8 @@ GetVersionExW(
+@@ -414,6 +454,8 @@ GetVersionExW(
  #define GetVersionEx  GetVersionExA
  #endif // !UNICODE
  
@@ -223,7 +221,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -424,6 +468,8 @@ GetLogicalProcessorInformation(
+@@ -424,6 +466,8 @@ GetLogicalProcessorInformation(
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WIN7)
  
@@ -232,7 +230,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -437,6 +483,7 @@ GetLogicalProcessorInformationEx(
+@@ -437,6 +481,7 @@ GetLogicalProcessorInformationEx(
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WINXP)
  
@@ -240,7 +238,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -448,6 +495,7 @@ GetNativeSystemInfo(
+@@ -448,6 +493,7 @@ GetNativeSystemInfo(
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
  
@@ -248,7 +246,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -465,6 +513,7 @@ GetSystemTimePreciseAsFileTime(
+@@ -465,6 +511,7 @@ GetSystemTimePreciseAsFileTime(
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_VISTA)
  
@@ -256,7 +254,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -486,6 +535,7 @@ GetProductInfo(
+@@ -486,6 +533,7 @@ GetProductInfo(
  
  #if (NTDDI_VERSION >= NTDDI_WIN2K)
  
@@ -264,7 +262,7 @@ index 8cc6aa8c..4933e014 100644
  NTSYSAPI
  ULONGLONG
  NTAPI
-@@ -514,6 +564,8 @@ GetOsSafeBootMode(
+@@ -514,6 +562,8 @@ GetOsSafeBootMode(
  #pragma region OneCore Family or App Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
  
@@ -273,7 +271,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  UINT
  WINAPI
-@@ -523,6 +575,8 @@ EnumSystemFirmwareTables(
+@@ -523,6 +573,8 @@ EnumSystemFirmwareTables(
      _In_ DWORD BufferSize
      );
  
@@ -282,7 +280,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  UINT
  WINAPI
-@@ -549,6 +603,8 @@ DnsHostnameToComputerNameExW(
+@@ -549,6 +601,8 @@ DnsHostnameToComputerNameExW(
      _Inout_ LPDWORD nSize
      );
  
@@ -291,7 +289,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -572,6 +628,8 @@ SetComputerNameEx2W(
+@@ -572,6 +626,8 @@ SetComputerNameEx2W(
  #define SetComputerNameEx2 SetComputerNameEx2W
  #endif
  
@@ -300,7 +298,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -581,6 +639,8 @@ SetSystemTimeAdjustment(
+@@ -581,6 +637,8 @@ SetSystemTimeAdjustment(
      _In_ BOOL bTimeAdjustmentDisabled
      );
  
@@ -309,7 +307,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -590,6 +650,8 @@ SetSystemTimeAdjustmentPrecise(
+@@ -590,6 +648,8 @@ SetSystemTimeAdjustmentPrecise(
      _In_ BOOL bTimeAdjustmentDisabled
      );
  
@@ -318,7 +316,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -602,6 +664,8 @@ InstallELAMCertificateInfo(
+@@ -602,6 +662,8 @@ InstallELAMCertificateInfo(
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WIN7)
  
@@ -327,7 +325,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -635,6 +699,7 @@ GetOsManufacturingMode(
+@@ -635,6 +697,7 @@ GetOsManufacturingMode(
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WINTHRESHOLD)
  
@@ -335,7 +333,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  HRESULT
  WINAPI
-@@ -650,6 +715,8 @@ GetIntegratedDisplaySize(
+@@ -650,6 +713,8 @@ GetIntegratedDisplaySize(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -344,7 +342,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -657,6 +724,8 @@ SetComputerNameA(
+@@ -657,6 +722,8 @@ SetComputerNameA(
      _In_ LPCSTR lpComputerName
      );
  
@@ -353,7 +351,7 @@ index 8cc6aa8c..4933e014 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -670,6 +739,8 @@ SetComputerNameW(
+@@ -670,6 +737,8 @@ SetComputerNameW(
  #define SetComputerName  SetComputerNameA
  #endif // !UNICODE
  

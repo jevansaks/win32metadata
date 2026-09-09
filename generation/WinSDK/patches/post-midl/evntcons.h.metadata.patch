@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/evntcons.h b/generation/WinSDK/RecompiledIdlHeaders/um/evntcons.h
-index c03832f0..343d31ac 100644
+index c03832f0..c35033d1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/evntcons.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/evntcons.h
-@@ -23,6 +23,9 @@ Revision History:
+@@ -23,6 +23,7 @@ Revision History:
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -325,6 +328,7 @@ typedef enum {
+@@ -325,6 +326,7 @@ typedef enum {
  } EVENTSECURITYOPERATION;
  
  #if (WINVER >= _WIN32_WINNT_LONGHORN)
@@ -20,7 +18,7 @@ index c03832f0..343d31ac 100644
  ULONG
  EVNTAPI
  EventAccessControl(
-@@ -337,6 +341,7 @@ EventAccessControl(
+@@ -337,6 +339,7 @@ EventAccessControl(
  #endif
  
  #if (WINVER >= _WIN32_WINNT_LONGHORN)
@@ -28,7 +26,7 @@ index c03832f0..343d31ac 100644
  ULONG
  EVNTAPI
  EventAccessQuery(
-@@ -347,6 +352,7 @@ EventAccessQuery(
+@@ -347,6 +350,7 @@ EventAccessQuery(
  #endif
  
  #if (WINVER >= _WIN32_WINNT_LONGHORN)

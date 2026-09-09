@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/avrfsdk.h b/generation/WinSDK/RecompiledIdlHeaders/um/avrfsdk.h
-index e15de4bf..e80dafe5 100644
+index e15de4bf..4b828fb4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/avrfsdk.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/avrfsdk.h
-@@ -24,6 +24,9 @@ Revision History:
+@@ -24,6 +24,7 @@ Revision History:
  #ifndef _AVRFSDK_
  #define _AVRFSDK_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -153,6 +156,7 @@ VerifierEnumerateResource(
+@@ -153,6 +154,7 @@ VerifierEnumerateResource(
  // API to find out if per user verifier settings are enabled
  //
  

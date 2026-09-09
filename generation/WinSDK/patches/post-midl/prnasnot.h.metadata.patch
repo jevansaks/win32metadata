@@ -1,18 +1,40 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/prnasnot.h b/generation/WinSDK/RecompiledIdlHeaders/um/prnasnot.h
-index 5b0cae8d..5179c49d 100644
+index 5b0cae8d..edb1c032 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/prnasnot.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/prnasnot.h
-@@ -15,6 +15,9 @@ Revision History:
+@@ -15,6 +15,7 @@ Revision History:
  --*/
  #ifndef _PRINTASYNCNOTIFY_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -170,6 +173,7 @@ DECLARE_INTERFACE_(IPrintAsyncNotifyCallback, IUnknown)
+@@ -77,6 +78,7 @@ typedef GUID PrintAsyncNotificationType;
+ 
+ #undef  INTERFACE
+ #define INTERFACE IPrintAsyncNotifyDataObject
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DECLARE_INTERFACE_(IPrintAsyncNotifyDataObject, IUnknown)
+ {
+     STDMETHOD(QueryInterface)(
+@@ -109,6 +111,7 @@ typedef interface IPrintAsyncNotifyCallback IPrintAsyncNotifyCallback;
+ 
+ #undef  INTERFACE
+ #define INTERFACE IPrintAsyncNotifyChannel
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DECLARE_INTERFACE_(IPrintAsyncNotifyChannel, IUnknown)
+ {
+     STDMETHOD(QueryInterface)(
+@@ -139,6 +142,7 @@ DECLARE_INTERFACE_(IPrintAsyncNotifyChannel, IUnknown)
+ 
+ #undef  INTERFACE
+ #define INTERFACE IPrintAsyncNotifyCallback
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DECLARE_INTERFACE_(IPrintAsyncNotifyCallback, IUnknown)
+ {
+     STDMETHOD(QueryInterface)(
+@@ -170,6 +174,7 @@ DECLARE_INTERFACE_(IPrintAsyncNotifyCallback, IUnknown)
  
  #undef INTERFACE
  
@@ -20,7 +42,7 @@ index 5b0cae8d..5179c49d 100644
  HRESULT
  WINAPI
  RegisterForPrintAsyncNotifications(
-@@ -179,14 +183,17 @@ RegisterForPrintAsyncNotifications(
+@@ -179,14 +184,17 @@ RegisterForPrintAsyncNotifications(
               PrintAsyncNotifyConversationStyle eConversationStyle,
      _In_     IPrintAsyncNotifyCallback*        pCallback,
      _Out_    HANDLE*                           phNotify

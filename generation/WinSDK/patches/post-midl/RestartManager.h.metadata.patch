@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RestartManager.h b/generation/WinSDK/RecompiledIdlHeaders/um/RestartManager.h
-index 0c832073..82fd95d5 100644
+index 0c832073..e998ee80 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RestartManager.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RestartManager.h
-@@ -8,6 +8,9 @@
+@@ -8,6 +8,7 @@
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -147,6 +150,7 @@ typedef void (*RM_WRITE_STATUS_CALLBACK)( _In_ UINT nPercentComplete );
+@@ -147,6 +148,7 @@ typedef void (*RM_WRITE_STATUS_CALLBACK)( _In_ UINT nPercentComplete );
  //            Read/write operation failed.
  //        ERROR_OUTOFMEMORY
  //            Could not allocate memory or instantiate class object.
@@ -20,7 +18,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmStartSession(
      _Out_ DWORD *pSessionHandle,
-@@ -164,6 +168,7 @@ RmStartSession(
+@@ -164,6 +166,7 @@ RmStartSession(
  //            Read/write operation failed.
  //        ERROR_OUTOFMEMORY
  //            Could not allocate memory or instantiate class object.
@@ -28,7 +26,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmJoinSession(
      _Out_ DWORD *pSessionHandle,
-@@ -182,6 +187,7 @@ RmJoinSession(
+@@ -182,6 +185,7 @@ RmJoinSession(
  //            Could not allocate memory or instantiate class object.
  //        ERROR_INVALID_HANDLE
  //            No session exists for the supplied handle.
@@ -36,7 +34,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmEndSession( _In_ DWORD dwSessionHandle );
  
-@@ -203,6 +209,7 @@ RmEndSession( _In_ DWORD dwSessionHandle );
+@@ -203,6 +207,7 @@ RmEndSession( _In_ DWORD dwSessionHandle );
  //            Could not allocate memory or instantiate class object.
  //        ERROR_INVALID_HANDLE
  //            No session exists for the supplied handle.
@@ -44,7 +42,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmRegisterResources(
      _In_ DWORD dwSessionHandle,
-@@ -236,6 +243,7 @@ RmRegisterResources(
+@@ -236,6 +241,7 @@ RmRegisterResources(
  //            Could not allocate memory or instantiate class object.
  //        ERROR_INVALID_HANDLE
  //            No session exists for the supplied handle.
@@ -52,7 +50,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmGetList(
      _In_ DWORD dwSessionHandle,
-@@ -264,6 +272,7 @@ RmGetList(
+@@ -264,6 +270,7 @@ RmGetList(
  //            Could not allocate memory or instantiate class object.
  //        ERROR_INVALID_HANDLE
  //            No session exists for the supplied handle.
@@ -60,7 +58,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmShutdown(
      _In_ DWORD dwSessionHandle,
-@@ -291,6 +300,7 @@ RmShutdown(
+@@ -291,6 +298,7 @@ RmShutdown(
  //            Could not allocate memory or instantiate class object.
  //        ERROR_INVALID_HANDLE
  //            No session exists for the supplied handle.
@@ -68,7 +66,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmRestart(
          _In_ DWORD dwSessionHandle,
-@@ -307,6 +317,7 @@ RmRestart(
+@@ -307,6 +315,7 @@ RmRestart(
  //            Could not allocate memory or instantiate class object.
  //        ERROR_INVALID_HANDLE
  //            No session exists for the supplied handle.
@@ -76,7 +74,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmCancelCurrentTask(
          _In_ DWORD dwSessionHandle);
-@@ -320,6 +331,7 @@ RmCancelCurrentTask(
+@@ -320,6 +329,7 @@ RmCancelCurrentTask(
  //            An invalid argument was supplied to the function.
  //        ERROR_INVALID_HANDLE
  //            No session exists for the supplied handle.
@@ -84,7 +82,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmAddFilter(
          _In_ DWORD dwSessionHandle,
-@@ -338,6 +350,7 @@ RmAddFilter(
+@@ -338,6 +348,7 @@ RmAddFilter(
  //            An invalid argument was supplied to the function.
  //        ERROR_INVALID_HANDLE
  //            No session exists for the supplied handle.
@@ -92,7 +90,7 @@ index 0c832073..82fd95d5 100644
  DWORD WINAPI
  RmRemoveFilter(
          _In_ DWORD dwSessionHandle,
-@@ -353,6 +366,7 @@ RmRemoveFilter(
+@@ -353,6 +364,7 @@ RmRemoveFilter(
  //            An invalid argument was supplied to the function.
  //        ERROR_INVALID_HANDLE
  //            No session exists for the supplied handle.

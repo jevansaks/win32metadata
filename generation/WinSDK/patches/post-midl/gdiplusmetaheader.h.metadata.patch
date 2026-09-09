@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusmetaheader.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusmetaheader.h
-index d80c93d8..7a01e0c8 100644
+index d80c93d8..6f07907a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusmetaheader.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusmetaheader.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  #ifndef _GDIPLUSMETAHEADER_H
  #define _GDIPLUSMETAHEADER_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -142,6 +145,7 @@ public:
+@@ -142,6 +143,7 @@ public:
  
      // If IsEmfPlus, this is the EMF+ version; else it is the WMF or EMF ver
      

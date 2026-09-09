@@ -1,0 +1,20 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/activation.h b/generation/WinSDK/RecompiledIdlHeaders/winrt/activation.h
+index 42e7a0c5..cfe2aa34 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/activation.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/activation.h
+@@ -32,6 +32,7 @@
+ 
+ #ifndef __activation_h__
+ #define __activation_h__
++#include <win32metadata_annotations.h>
+ 
+ #if defined(_MSC_VER) && (_MSC_VER >= 1020)
+ #pragma once
+@@ -92,6 +93,7 @@ EXTERN_C const IID IID_IActivationFactory;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("00000035-0000-0000-C000-000000000046")
+     IActivationFactory : public IInspectable
+     {

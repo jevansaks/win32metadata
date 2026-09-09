@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcndr.h b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcndr.h
-index f0f6bef1..46e0f620 100644
+index f0f6bef1..50e74869 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcndr.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcndr.h
-@@ -43,6 +43,9 @@ Abstract:
+@@ -43,6 +43,7 @@ Abstract:
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <pshpack8.h>
  #include <basetsd.h>
-@@ -398,6 +401,7 @@ NDRSContextUnmarshall2(
+@@ -398,6 +399,7 @@ NDRSContextUnmarshall2(
      _In_ unsigned long        Flags
      );
  
@@ -20,7 +18,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -1297,6 +1301,7 @@ NdrServerGetSupportedSyntaxes(
+@@ -1297,6 +1299,7 @@ NdrServerGetSupportedSyntaxes(
      // SAL can't adequately express buffer sizes from rpc format strings
  #pragma warning(disable:28740)
  
@@ -28,7 +26,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -1306,6 +1311,7 @@ NdrSimpleTypeMarshall(
+@@ -1306,6 +1309,7 @@ NdrSimpleTypeMarshall(
      unsigned char           FormatChar
      );
  
@@ -36,7 +34,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1335,6 +1341,7 @@ NdrCsTagMarshall(
+@@ -1335,6 +1339,7 @@ NdrCsTagMarshall(
  
  /* Structures */
  
@@ -44,7 +42,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1362,6 +1369,7 @@ NdrConformantVaryingStructMarshall(
+@@ -1362,6 +1367,7 @@ NdrConformantVaryingStructMarshall(
      PFORMAT_STRING          pFormat
      );
  
@@ -52,7 +50,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1409,6 +1417,7 @@ NdrVaryingArrayMarshall(
+@@ -1409,6 +1415,7 @@ NdrVaryingArrayMarshall(
      PFORMAT_STRING          pFormat
      );
  
@@ -60,7 +58,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1429,6 +1438,7 @@ NdrNonConformantStringMarshall(
+@@ -1429,6 +1436,7 @@ NdrNonConformantStringMarshall(
      PFORMAT_STRING          pFormat
      );
  
@@ -68,7 +66,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1482,6 +1492,7 @@ NdrXmitOrRepAsMarshall(
+@@ -1482,6 +1490,7 @@ NdrXmitOrRepAsMarshall(
  
  /* User_marshal */
  
@@ -76,7 +74,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1493,6 +1504,7 @@ NdrUserMarshalMarshall(
+@@ -1493,6 +1502,7 @@ NdrUserMarshalMarshall(
  
  /* Interface pointer */
  
@@ -84,7 +82,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1536,6 +1548,7 @@ NdrServerContextNewMarshall(
+@@ -1536,6 +1546,7 @@ NdrServerContextNewMarshall(
   * Unmarshall routines
   */
  
@@ -92,7 +90,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -1599,6 +1612,7 @@ NdrCorrelationFree(
+@@ -1599,6 +1610,7 @@ NdrCorrelationFree(
      PMIDL_STUB_MESSAGE      pStubMsg
      );
  
@@ -100,7 +98,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1611,6 +1625,7 @@ NdrPointerUnmarshall(
+@@ -1611,6 +1623,7 @@ NdrPointerUnmarshall(
  
  /* Structures */
  
@@ -108,7 +106,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1641,6 +1656,7 @@ NdrConformantVaryingStructUnmarshall(
+@@ -1641,6 +1654,7 @@ NdrConformantVaryingStructUnmarshall(
      unsigned char           fMustAlloc
      );
  
@@ -116,7 +114,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1663,6 +1679,7 @@ NdrFixedArrayUnmarshall(
+@@ -1663,6 +1677,7 @@ NdrFixedArrayUnmarshall(
      unsigned char           fMustAlloc
      );
  
@@ -124,7 +122,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1693,6 +1710,7 @@ NdrVaryingArrayUnmarshall(
+@@ -1693,6 +1708,7 @@ NdrVaryingArrayUnmarshall(
      unsigned char           fMustAlloc
      );
  
@@ -132,7 +130,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1715,6 +1733,7 @@ NdrNonConformantStringUnmarshall(
+@@ -1715,6 +1731,7 @@ NdrNonConformantStringUnmarshall(
      unsigned char           fMustAlloc
      );
  
@@ -140,7 +138,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1773,6 +1792,7 @@ NdrXmitOrRepAsUnmarshall(
+@@ -1773,6 +1790,7 @@ NdrXmitOrRepAsUnmarshall(
  
  /* User_marshal */
  
@@ -148,7 +146,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1785,6 +1805,7 @@ NdrUserMarshalUnmarshall(
+@@ -1785,6 +1803,7 @@ NdrUserMarshalUnmarshall(
  
  /* Interface pointer */
  
@@ -156,7 +154,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned char  *
  RPC_ENTRY
-@@ -1815,6 +1836,7 @@ NdrServerContextUnmarshall(
+@@ -1815,6 +1834,7 @@ NdrServerContextUnmarshall(
  
  /* New context handle flavors */
  
@@ -164,7 +162,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  NDR_SCONTEXT
  RPC_ENTRY
-@@ -1835,6 +1857,7 @@ NdrServerContextNewUnmarshall(
+@@ -1835,6 +1855,7 @@ NdrServerContextNewUnmarshall(
   * Buffer sizing routines
   */
  
@@ -172,7 +170,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -1864,6 +1887,7 @@ NdrCsTagBufferSize(
+@@ -1864,6 +1885,7 @@ NdrCsTagBufferSize(
  
  /* Structures */
  
@@ -180,7 +178,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -1891,6 +1915,7 @@ NdrConformantVaryingStructBufferSize(
+@@ -1891,6 +1913,7 @@ NdrConformantVaryingStructBufferSize(
      PFORMAT_STRING          pFormat
      );
  
@@ -188,7 +186,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -1938,6 +1963,7 @@ NdrVaryingArrayBufferSize(
+@@ -1938,6 +1961,7 @@ NdrVaryingArrayBufferSize(
      PFORMAT_STRING          pFormat
      );
  
@@ -196,7 +194,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -1949,6 +1975,7 @@ NdrComplexArrayBufferSize(
+@@ -1949,6 +1973,7 @@ NdrComplexArrayBufferSize(
  
  /* Strings */
  
@@ -204,7 +202,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2011,6 +2038,7 @@ NdrXmitOrRepAsBufferSize(
+@@ -2011,6 +2036,7 @@ NdrXmitOrRepAsBufferSize(
  
  /* User_marshal */
  
@@ -212,7 +210,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2022,6 +2050,7 @@ NdrUserMarshalBufferSize(
+@@ -2022,6 +2048,7 @@ NdrUserMarshalBufferSize(
  
  /* Interface pointer */
  
@@ -220,7 +218,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2033,6 +2062,7 @@ NdrInterfacePointerBufferSize(
+@@ -2033,6 +2060,7 @@ NdrInterfacePointerBufferSize(
  
  // Context Handle size
  //
@@ -228,7 +226,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2054,6 +2084,7 @@ NdrPointerMemorySize(
+@@ -2054,6 +2082,7 @@ NdrPointerMemorySize(
      PFORMAT_STRING          pFormat
      );
  
@@ -236,7 +234,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  unsigned long
  RPC_ENTRY
-@@ -2227,6 +2258,7 @@ NdrInterfacePointerMemorySize(
+@@ -2227,6 +2256,7 @@ NdrInterfacePointerMemorySize(
   * Freeing routines
   */
  
@@ -244,7 +242,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2374,6 +2406,7 @@ NdrXmitOrRepAsFree(
+@@ -2374,6 +2404,7 @@ NdrXmitOrRepAsFree(
  
  /* User_marshal */
  
@@ -252,7 +250,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2385,6 +2418,7 @@ NdrUserMarshalFree(
+@@ -2385,6 +2416,7 @@ NdrUserMarshalFree(
  
  /* Interface pointer */
  
@@ -260,7 +258,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2407,6 +2441,7 @@ NdrConvert2(
+@@ -2407,6 +2439,7 @@ NdrConvert2(
      long                    NumberParams
      );
  
@@ -268,7 +266,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2563,6 +2598,7 @@ NdrGetDcomProtocolVersion(
+@@ -2563,6 +2596,7 @@ NdrGetDcomProtocolVersion(
  
  /* client */
  
@@ -276,7 +274,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN RPC_VAR_ENTRY
  NdrClientCall2(
      PMIDL_STUB_DESC         pStubDescriptor,
-@@ -2570,6 +2606,7 @@ NdrClientCall2(
+@@ -2570,6 +2604,7 @@ NdrClientCall2(
      ...
      );
  
@@ -284,7 +282,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN RPC_VAR_ENTRY
  NdrClientCall(
      PMIDL_STUB_DESC         pStubDescriptor,
-@@ -2577,6 +2614,7 @@ NdrClientCall(
+@@ -2577,6 +2612,7 @@ NdrClientCall(
      ...
      );
  
@@ -292,7 +290,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN RPC_VAR_ENTRY
  NdrAsyncClientCall(
      PMIDL_STUB_DESC         pStubDescriptor,
-@@ -2586,6 +2624,7 @@ NdrAsyncClientCall(
+@@ -2586,6 +2622,7 @@ NdrAsyncClientCall(
  
  #if ( !defined(_WIN64) && !defined(_ARM_) )
  
@@ -300,7 +298,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN RPC_VAR_ENTRY
  NdrClientCall4(
      PMIDL_STUB_DESC         pStubDescriptor,
-@@ -2593,6 +2632,7 @@ NdrClientCall4(
+@@ -2593,6 +2630,7 @@ NdrClientCall4(
      ...
      );
  
@@ -308,7 +306,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN RPC_VAR_ENTRY
  NdrAsyncClientCall2(
      PMIDL_STUB_DESC         pStubDescriptor,
-@@ -2600,6 +2640,7 @@ NdrAsyncClientCall2(
+@@ -2600,6 +2638,7 @@ NdrAsyncClientCall2(
      ...
      );
  
@@ -316,7 +314,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN RPC_VAR_ENTRY
  NdrMesProcEncodeDecode4(
      handle_t                Handle,
-@@ -2616,6 +2657,7 @@ NdrMesProcEncodeDecode4(
+@@ -2616,6 +2655,7 @@ NdrMesProcEncodeDecode4(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -324,7 +322,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN RPC_VAR_ENTRY
  NdrDcomAsyncClientCall(
      PMIDL_STUB_DESC         pStubDescriptor,
-@@ -2625,6 +2667,7 @@ NdrDcomAsyncClientCall(
+@@ -2625,6 +2665,7 @@ NdrDcomAsyncClientCall(
  
  #if ( !defined(_WIN64) && !defined(_ARM_) )
  
@@ -332,7 +330,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN  RPC_VAR_ENTRY
  NdrDcomAsyncClientCall2(
      PMIDL_STUB_DESC         pStubDescriptor,
-@@ -2660,6 +2703,7 @@ struct IRpcStubBuffer;      // Forward declaration
+@@ -2660,6 +2701,7 @@ struct IRpcStubBuffer;      // Forward declaration
  
  
  // Raw RPC only
@@ -340,7 +338,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2701,6 +2745,7 @@ NdrDcomAsyncStubCall(
+@@ -2701,6 +2743,7 @@ NdrDcomAsyncStubCall(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -348,7 +346,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  long
  RPC_ENTRY
-@@ -2711,6 +2756,7 @@ NdrStubCall2(
+@@ -2711,6 +2754,7 @@ NdrStubCall2(
      unsigned long  *            pdwStubPhase
      );
  
@@ -356,7 +354,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2791,6 +2837,7 @@ RPC_CLIENT_FREE (
+@@ -2791,6 +2835,7 @@ RPC_CLIENT_FREE (
       RpcSs* package
  --*/
  
@@ -364,7 +362,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void  *
  RPC_ENTRY
-@@ -2798,6 +2845,7 @@ RpcSsAllocate (
+@@ -2798,6 +2843,7 @@ RpcSsAllocate (
      _In_ size_t Size
      );
  
@@ -372,7 +370,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2805,6 +2853,7 @@ RpcSsDisableAllocate (
+@@ -2805,6 +2851,7 @@ RpcSsDisableAllocate (
      void
      );
  
@@ -380,7 +378,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2812,6 +2861,7 @@ RpcSsEnableAllocate (
+@@ -2812,6 +2859,7 @@ RpcSsEnableAllocate (
      void
      );
  
@@ -388,7 +386,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2819,6 +2869,7 @@ RpcSsFree (
+@@ -2819,6 +2867,7 @@ RpcSsFree (
      _In_ void  * NodeToFree
      );
  
@@ -396,7 +394,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_SS_THREAD_HANDLE
  RPC_ENTRY
-@@ -2826,6 +2877,7 @@ RpcSsGetThreadHandle (
+@@ -2826,6 +2875,7 @@ RpcSsGetThreadHandle (
      void
      );
  
@@ -404,7 +402,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2834,6 +2886,7 @@ RpcSsSetClientAllocFree (
+@@ -2834,6 +2884,7 @@ RpcSsSetClientAllocFree (
      _In_ RPC_CLIENT_FREE   * ClientFree
      );
  
@@ -412,7 +410,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2841,6 +2894,7 @@ RpcSsSetThreadHandle (
+@@ -2841,6 +2892,7 @@ RpcSsSetThreadHandle (
      _In_ RPC_SS_THREAD_HANDLE Id
      );
  
@@ -420,7 +418,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -2855,6 +2909,7 @@ RpcSsSwapClientAllocFree (
+@@ -2855,6 +2907,7 @@ RpcSsSwapClientAllocFree (
       RpcSm* package
  --*/
  
@@ -428,7 +426,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void  *
  RPC_ENTRY
-@@ -2863,6 +2918,7 @@ RpcSmAllocate (
+@@ -2863,6 +2916,7 @@ RpcSmAllocate (
      _Out_ RPC_STATUS  *   pStatus
      );
  
@@ -436,7 +434,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -2870,6 +2926,7 @@ RpcSmClientFree (
+@@ -2870,6 +2924,7 @@ RpcSmClientFree (
      _In_  void        *   pNodeToFree
      );
  
@@ -444,7 +442,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -2877,6 +2934,7 @@ RpcSmDestroyClientContext (
+@@ -2877,6 +2932,7 @@ RpcSmDestroyClientContext (
      _In_ void         * * ContextHandle
      );
  
@@ -452,7 +450,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -2884,6 +2942,7 @@ RpcSmDisableAllocate (
+@@ -2884,6 +2940,7 @@ RpcSmDisableAllocate (
      void
      );
  
@@ -460,7 +458,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -2891,6 +2950,7 @@ RpcSmEnableAllocate (
+@@ -2891,6 +2948,7 @@ RpcSmEnableAllocate (
      void
      );
  
@@ -468,7 +466,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -2898,6 +2958,7 @@ RpcSmFree (
+@@ -2898,6 +2956,7 @@ RpcSmFree (
      _In_ void         *   NodeToFree
      );
  
@@ -476,7 +474,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_SS_THREAD_HANDLE
  RPC_ENTRY
-@@ -2905,6 +2966,7 @@ RpcSmGetThreadHandle (
+@@ -2905,6 +2964,7 @@ RpcSmGetThreadHandle (
      _Out_ RPC_STATUS  *   pStatus
      );
  
@@ -484,7 +482,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -2913,6 +2975,7 @@ RpcSmSetClientAllocFree (
+@@ -2913,6 +2973,7 @@ RpcSmSetClientAllocFree (
      _In_ RPC_CLIENT_FREE  * ClientFree
      );
  
@@ -492,7 +490,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -2920,6 +2983,7 @@ RpcSmSetThreadHandle (
+@@ -2920,6 +2981,7 @@ RpcSmSetThreadHandle (
      _In_ RPC_SS_THREAD_HANDLE Id
      );
  
@@ -500,7 +498,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -3012,6 +3076,7 @@ NdrAllocate(
+@@ -3012,6 +3074,7 @@ NdrAllocate(
      size_t                  Len
      );
  
@@ -508,7 +506,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -3026,6 +3091,7 @@ NdrClearOutParameters(
+@@ -3026,6 +3089,7 @@ NdrClearOutParameters(
   * Proxy APIs
   ****************************************************************************/
  
@@ -516,7 +514,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void  *
  RPC_ENTRY
-@@ -3033,6 +3099,7 @@ NdrOleAllocate (
+@@ -3033,6 +3097,7 @@ NdrOleAllocate (
      _In_ size_t Size
      );
  
@@ -524,7 +522,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -3155,6 +3222,7 @@ typedef struct _NDR_USER_MARSHAL_INFO
+@@ -3155,6 +3220,7 @@ typedef struct _NDR_USER_MARSHAL_INFO
  #endif
  
  
@@ -532,7 +530,7 @@ index f0f6bef1..46e0f620 100644
  RPC_STATUS
  RPC_ENTRY
  NdrGetUserMarshalInfo (
-@@ -3174,6 +3242,7 @@ NdrCreateServerInterfaceFromStub(
+@@ -3174,6 +3240,7 @@ NdrCreateServerInterfaceFromStub(
  /*
   * Interpreter calls
   */
@@ -540,7 +538,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN RPC_VAR_ENTRY
  NdrClientCall3(
      MIDL_STUBLESS_PROXY_INFO   *pProxyInfo,
-@@ -3182,6 +3251,7 @@ NdrClientCall3(
+@@ -3182,6 +3249,7 @@ NdrClientCall3(
      ...
      );
  
@@ -548,7 +546,7 @@ index f0f6bef1..46e0f620 100644
  CLIENT_CALL_RETURN RPC_VAR_ENTRY
  Ndr64AsyncClientCall(
      MIDL_STUBLESS_PROXY_INFO   *pProxyInfo,
-@@ -3226,6 +3296,7 @@ Ndr64AsyncServerCall64(
+@@ -3226,6 +3294,7 @@ Ndr64AsyncServerCall64(
      PRPC_MESSAGE                pRpcMsg
      );
  
@@ -556,7 +554,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -3266,6 +3337,7 @@ Ndr64DcomAsyncStubCall(
+@@ -3266,6 +3335,7 @@ Ndr64DcomAsyncStubCall(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -564,7 +562,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  long
  RPC_ENTRY
-@@ -3276,6 +3348,7 @@ NdrStubCall3 (
+@@ -3276,6 +3346,7 @@ NdrStubCall3 (
      unsigned long  *            pdwStubPhase
      );
  
@@ -572,7 +570,7 @@ index f0f6bef1..46e0f620 100644
  RPCRTAPI
  void
  RPC_ENTRY
-@@ -3334,6 +3407,7 @@ NdrPartialIgnoreServerInitialize(
+@@ -3334,6 +3405,7 @@ NdrPartialIgnoreServerInitialize(
      );
  
  

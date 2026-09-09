@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ole.h b/generation/WinSDK/RecompiledIdlHeaders/um/ole.h
-index 7b740b05..5364dea3 100644
+index 7b740b05..ded20827 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ole.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ole.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  /*****************************************************************************\
  *                                                                             *
-@@ -341,6 +344,7 @@ typedef struct _OLESTREAM
+@@ -341,6 +342,7 @@ typedef struct _OLESTREAM
  /* Public Function Prototypes */
  OLESTATUS   WINAPI  OleDelete(LPOLEOBJECT);
  OLESTATUS   WINAPI  OleRelease(LPOLEOBJECT);
@@ -18,7 +16,7 @@ index 7b740b05..5364dea3 100644
  OLESTATUS   WINAPI  OleSaveToStream(LPOLEOBJECT, LPOLESTREAM);
  OLESTATUS   WINAPI  OleEqual(LPOLEOBJECT, LPOLEOBJECT );
  OLESTATUS   WINAPI  OleCopyToClipboard(LPOLEOBJECT);
-@@ -350,6 +354,7 @@ OLESTATUS   WINAPI  OleSetBounds(LPOLEOBJECT, const RECT FAR*);
+@@ -350,6 +352,7 @@ OLESTATUS   WINAPI  OleSetBounds(LPOLEOBJECT, const RECT FAR*);
  OLESTATUS   WINAPI  OleSetColorScheme(LPOLEOBJECT, const LOGPALETTE FAR*);
  OLESTATUS   WINAPI  OleQueryBounds(LPOLEOBJECT, RECT FAR*);
  OLESTATUS   WINAPI  OleQuerySize(LPOLEOBJECT, DWORD FAR*);
@@ -26,7 +24,7 @@ index 7b740b05..5364dea3 100644
  OLESTATUS   WINAPI  OleDraw(LPOLEOBJECT, HDC, const RECT FAR*, const RECT FAR*, HDC);
  OLESTATUS   WINAPI  OleQueryOpen(LPOLEOBJECT);
  OLESTATUS   WINAPI  OleActivate(LPOLEOBJECT, UINT, BOOL, BOOL, HWND, const RECT FAR*);
-@@ -386,9 +391,12 @@ OLESTATUS   WINAPI  OleQueryCreateFromClip(LPCSTR, OLEOPT_RENDER, OLECLIPFORMAT)
+@@ -386,9 +389,12 @@ OLESTATUS   WINAPI  OleQueryCreateFromClip(LPCSTR, OLEOPT_RENDER, OLECLIPFORMAT)
  /* Object creation functions */
  OLESTATUS   WINAPI  OleCreateFromClip(LPCSTR, LPOLECLIENT, LHCLIENTDOC, LPCSTR,  LPOLEOBJECT FAR*, OLEOPT_RENDER, OLECLIPFORMAT);
  OLESTATUS   WINAPI  OleCreateLinkFromClip(LPCSTR, LPOLECLIENT, LHCLIENTDOC, LPCSTR, LPOLEOBJECT FAR*, OLEOPT_RENDER, OLECLIPFORMAT);

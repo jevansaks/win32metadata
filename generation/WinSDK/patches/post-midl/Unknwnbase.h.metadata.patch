@@ -1,18 +1,64 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h
-index 536b6de0..7414583f 100644
+index 536b6de0..cd450890 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h
-@@ -80,6 +80,9 @@ extern "C"{
+@@ -80,6 +80,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  //+-------------------------------------------------------------------------
  //
  //  Microsoft Windows
-@@ -460,6 +463,7 @@ EXTERN_C const IID IID_IClassFactory;
+@@ -141,6 +142,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
+             END_INTERFACE
+         };
+     } // extern C++
++_Win32_metadata_supported_os_(windows5.0)
+     HRESULT STDMETHODCALLTYPE IUnknown_QueryInterface_Proxy(
+         IUnknown __RPC_FAR * This,
+         /* [in] */ REFIID riid,
+@@ -152,6 +154,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
+         PRPC_MESSAGE _pRpcMessage,
+         DWORD *_pdwStubPhase);
+     
++_Win32_metadata_supported_os_(windows5.0)
+     ULONG STDMETHODCALLTYPE IUnknown_AddRef_Proxy(
+         IUnknown __RPC_FAR * This);
+     
+@@ -161,6 +164,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
+         PRPC_MESSAGE _pRpcMessage,
+         DWORD *_pdwStubPhase);
+     
++_Win32_metadata_supported_os_(windows5.0)
+     ULONG STDMETHODCALLTYPE IUnknown_Release_Proxy(
+         IUnknown __RPC_FAR * This);
+     
+@@ -245,6 +249,7 @@ EXTERN_C const IID IID_IUnknown;
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ HRESULT STDMETHODCALLTYPE IUnknown_QueryInterface_Proxy( 
+     IUnknown * This,
+     /* [annotation][in] */ 
+@@ -260,6 +265,7 @@ void __RPC_STUB IUnknown_QueryInterface_Stub(
+     DWORD *_pdwStubPhase);
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG STDMETHODCALLTYPE IUnknown_AddRef_Proxy( 
+     IUnknown * This);
+ 
+@@ -271,6 +277,7 @@ void __RPC_STUB IUnknown_AddRef_Stub(
+     DWORD *_pdwStubPhase);
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG STDMETHODCALLTYPE IUnknown_Release_Proxy( 
+     IUnknown * This);
+ 
+@@ -460,6 +467,7 @@ EXTERN_C const IID IID_IClassFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

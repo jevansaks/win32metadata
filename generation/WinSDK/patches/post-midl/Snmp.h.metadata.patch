@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h b/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h
-index bd1d0751..60dd6db6 100644
+index bd1d0751..f0f962d7 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h
-@@ -19,6 +19,9 @@ Abstract:
+@@ -19,6 +19,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -267,6 +270,7 @@ typedef struct {
+@@ -267,6 +268,7 @@ typedef struct {
  //                                                                           //
  ///////////////////////////////////////////////////////////////////////////////
  
@@ -20,7 +18,7 @@ index bd1d0751..60dd6db6 100644
  BOOL
  SNMP_FUNC_TYPE
  SnmpExtensionInit(
-@@ -275,18 +279,21 @@ SnmpExtensionInit(
+@@ -275,18 +277,21 @@ SnmpExtensionInit(
      AsnObjectIdentifier * pFirstSupportedRegion
      );
  
@@ -42,7 +40,7 @@ index bd1d0751..60dd6db6 100644
  BOOL
  SNMP_FUNC_TYPE
  SnmpExtensionQuery(
-@@ -296,6 +303,7 @@ SnmpExtensionQuery(
+@@ -296,6 +301,7 @@ SnmpExtensionQuery(
      AsnInteger32 *    pErrorIndex
      );
  
@@ -50,7 +48,7 @@ index bd1d0751..60dd6db6 100644
  BOOL
  SNMP_FUNC_TYPE
  SnmpExtensionQueryEx(
-@@ -307,6 +315,7 @@ SnmpExtensionQueryEx(
+@@ -307,6 +313,7 @@ SnmpExtensionQueryEx(
      AsnInteger32 *    pErrorIndex
      );
  
@@ -58,7 +56,7 @@ index bd1d0751..60dd6db6 100644
  BOOL
  SNMP_FUNC_TYPE
  SnmpExtensionTrap(
-@@ -317,6 +326,7 @@ SnmpExtensionTrap(
+@@ -317,6 +324,7 @@ SnmpExtensionTrap(
      SnmpVarBindList *     pVarBindList
      );
  
@@ -66,7 +64,7 @@ index bd1d0751..60dd6db6 100644
  VOID
  SNMP_FUNC_TYPE
  SnmpExtensionClose(
-@@ -375,6 +385,7 @@ typedef VOID (SNMP_FUNC_TYPE * PFNSNMPEXTENSIONCLOSE)(
+@@ -375,6 +383,7 @@ typedef VOID (SNMP_FUNC_TYPE * PFNSNMPEXTENSIONCLOSE)(
  //                                                                           //
  ///////////////////////////////////////////////////////////////////////////////
  
@@ -74,7 +72,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilOidCpy(
-@@ -382,6 +393,8 @@ SnmpUtilOidCpy(
+@@ -382,6 +391,8 @@ SnmpUtilOidCpy(
      AsnObjectIdentifier * pOidSrc
      );
  
@@ -83,7 +81,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilOidAppend(
-@@ -389,6 +402,7 @@ SnmpUtilOidAppend(
+@@ -389,6 +400,7 @@ SnmpUtilOidAppend(
      AsnObjectIdentifier * pOidSrc
      );
  
@@ -91,7 +89,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilOidNCmp(
-@@ -397,6 +411,7 @@ SnmpUtilOidNCmp(
+@@ -397,6 +409,7 @@ SnmpUtilOidNCmp(
      UINT                  nSubIds
      );
  
@@ -99,7 +97,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilOidCmp(
-@@ -404,12 +419,14 @@ SnmpUtilOidCmp(
+@@ -404,12 +417,14 @@ SnmpUtilOidCmp(
      AsnObjectIdentifier * pOid2
      );
  
@@ -114,7 +112,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilOctetsCmp(
-@@ -417,6 +434,7 @@ SnmpUtilOctetsCmp(
+@@ -417,6 +432,7 @@ SnmpUtilOctetsCmp(
      AsnOctetString * pOctets2
      );
  
@@ -122,7 +120,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilOctetsNCmp(
-@@ -425,6 +443,7 @@ SnmpUtilOctetsNCmp(
+@@ -425,6 +441,7 @@ SnmpUtilOctetsNCmp(
      UINT             nChars
      );
  
@@ -130,7 +128,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilOctetsCpy(
-@@ -432,12 +451,14 @@ SnmpUtilOctetsCpy(
+@@ -432,12 +449,14 @@ SnmpUtilOctetsCpy(
      AsnOctetString * pOctetsSrc
      );
  
@@ -145,7 +143,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilAsnAnyCpy(
-@@ -445,12 +466,14 @@ SnmpUtilAsnAnyCpy(
+@@ -445,12 +464,14 @@ SnmpUtilAsnAnyCpy(
      AsnAny * pAnySrc
      );
  
@@ -160,7 +158,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilVarBindCpy(
-@@ -458,12 +481,14 @@ SnmpUtilVarBindCpy(
+@@ -458,12 +479,14 @@ SnmpUtilVarBindCpy(
      SnmpVarBind * pVbSrc
      );
  
@@ -175,7 +173,7 @@ index bd1d0751..60dd6db6 100644
  SNMPAPI
  SNMP_FUNC_TYPE
  SnmpUtilVarBindListCpy(
-@@ -471,24 +496,28 @@ SnmpUtilVarBindListCpy(
+@@ -471,24 +494,28 @@ SnmpUtilVarBindListCpy(
      SnmpVarBindList * pVblSrc
      );
  
@@ -204,7 +202,7 @@ index bd1d0751..60dd6db6 100644
  LPVOID
  SNMP_FUNC_TYPE
  SnmpUtilMemReAlloc(
-@@ -496,12 +525,14 @@ SnmpUtilMemReAlloc(
+@@ -496,12 +523,14 @@ SnmpUtilMemReAlloc(
      UINT   nBytes
      );
  
@@ -219,7 +217,7 @@ index bd1d0751..60dd6db6 100644
  LPSTR
  SNMP_FUNC_TYPE
  SnmpUtilIdsToA(
-@@ -509,29 +540,34 @@ SnmpUtilIdsToA(
+@@ -509,29 +538,34 @@ SnmpUtilIdsToA(
      IN UINT IdLength
      );
  
@@ -254,7 +252,7 @@ index bd1d0751..60dd6db6 100644
  VOID
  SNMP_FUNC_TYPE
  SnmpSvcSetLogType(
-@@ -562,6 +598,7 @@ SnmpSvcSetLogType(
+@@ -562,6 +596,7 @@ SnmpSvcSetLogType(
  //                                                                           //
  ///////////////////////////////////////////////////////////////////////////////
  

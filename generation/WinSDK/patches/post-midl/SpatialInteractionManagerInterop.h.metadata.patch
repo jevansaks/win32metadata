@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialInteractionManagerInterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialInteractionManagerInterop.h
-index 80fc22b7..98a181cb 100644
+index 80fc22b7..066e5283 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialInteractionManagerInterop.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialInteractionManagerInterop.h
-@@ -66,6 +66,9 @@ extern "C"{
+@@ -66,6 +66,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (NTDDI_VERSION >= NTDDI_WIN10_RS2)
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -85,6 +88,7 @@ EXTERN_C const IID IID_ISpatialInteractionManagerInterop;
+@@ -85,6 +86,7 @@ EXTERN_C const IID IID_ISpatialInteractionManagerInterop;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

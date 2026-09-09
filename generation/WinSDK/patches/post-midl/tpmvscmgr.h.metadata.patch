@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tpmvscmgr.h b/generation/WinSDK/RecompiledIdlHeaders/um/tpmvscmgr.h
-index 535aba72..a1b3f586 100644
+index 535aba72..d19e39b2 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/tpmvscmgr.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/tpmvscmgr.h
-@@ -112,6 +112,9 @@ extern "C"{
+@@ -112,6 +112,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if (NTDDI_VERSION >= NTDDI_WIN8)
-@@ -174,6 +177,7 @@ EXTERN_C const IID IID_ITpmVirtualSmartCardManagerStatusCallback;
+@@ -174,6 +175,7 @@ EXTERN_C const IID IID_ITpmVirtualSmartCardManagerStatusCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 535aba72..a1b3f586 100644
      MIDL_INTERFACE("1A1BB35F-ABB8-451C-A1AE-33D98F1BEF4A")
      ITpmVirtualSmartCardManagerStatusCallback : public IUnknown
      {
-@@ -290,6 +294,7 @@ EXTERN_C const IID IID_ITpmVirtualSmartCardManager;
+@@ -290,6 +292,7 @@ EXTERN_C const IID IID_ITpmVirtualSmartCardManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

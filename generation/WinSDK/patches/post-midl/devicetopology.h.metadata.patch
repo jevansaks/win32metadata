@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/devicetopology.h b/generation/WinSDK/RecompiledIdlHeaders/um/devicetopology.h
-index 48a95b66..055241d7 100644
+index 48a95b66..a4170fb1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/devicetopology.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/devicetopology.h
-@@ -360,6 +360,9 @@ extern "C"{
+@@ -360,6 +360,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Application Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
  #define E_NOTFOUND HRESULT_FROM_WIN32(ERROR_NOT_FOUND)
-@@ -742,6 +745,7 @@ EXTERN_C const IID IID_IPerChannelDbLevel;
+@@ -742,6 +743,7 @@ EXTERN_C const IID IID_IPerChannelDbLevel;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("C2F8E001-F205-4BC9-99BC-C13B1E048CCB")
      IPerChannelDbLevel : public IUnknown
      {
-@@ -930,6 +934,7 @@ EXTERN_C const IID IID_IAudioVolumeLevel;
+@@ -930,6 +932,7 @@ EXTERN_C const IID IID_IAudioVolumeLevel;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("7FB7B48F-531D-44A2-BCB3-5AD5A134B3DC")
      IAudioVolumeLevel : public IPerChannelDbLevel
      {
-@@ -1077,6 +1082,7 @@ EXTERN_C const IID IID_IAudioChannelConfig;
+@@ -1077,6 +1080,7 @@ EXTERN_C const IID IID_IAudioChannelConfig;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("BB11C46F-EC28-493C-B88A-5DB88062CE98")
      IAudioChannelConfig : public IUnknown
      {
-@@ -1179,6 +1185,7 @@ EXTERN_C const IID IID_IAudioLoudness;
+@@ -1179,6 +1183,7 @@ EXTERN_C const IID IID_IAudioLoudness;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("7D8B1437-DD53-4350-9C1B-1EE2890BD938")
      IAudioLoudness : public IUnknown
      {
-@@ -1283,6 +1290,7 @@ EXTERN_C const IID IID_IAudioInputSelector;
+@@ -1283,6 +1288,7 @@ EXTERN_C const IID IID_IAudioInputSelector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("4F03DC02-5E6E-4653-8F72-A030C123D598")
      IAudioInputSelector : public IUnknown
      {
-@@ -1387,6 +1395,7 @@ EXTERN_C const IID IID_IAudioOutputSelector;
+@@ -1387,6 +1393,7 @@ EXTERN_C const IID IID_IAudioOutputSelector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("BB515F69-94A7-429e-8B9C-271B3F11A3AB")
      IAudioOutputSelector : public IUnknown
      {
-@@ -1491,6 +1500,7 @@ EXTERN_C const IID IID_IAudioMute;
+@@ -1491,6 +1498,7 @@ EXTERN_C const IID IID_IAudioMute;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("DF45AEEA-B74A-4B6B-AFAD-2366B6AA012E")
      IAudioMute : public IUnknown
      {
-@@ -1595,6 +1605,7 @@ EXTERN_C const IID IID_IAudioBass;
+@@ -1595,6 +1603,7 @@ EXTERN_C const IID IID_IAudioBass;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("A2B1A1D9-4DB3-425D-A2B2-BD335CB3E2E5")
      IAudioBass : public IPerChannelDbLevel
      {
-@@ -1742,6 +1753,7 @@ EXTERN_C const IID IID_IAudioMidrange;
+@@ -1742,6 +1751,7 @@ EXTERN_C const IID IID_IAudioMidrange;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("5E54B6D7-B44B-40D9-9A9E-E691D9CE6EDF")
      IAudioMidrange : public IPerChannelDbLevel
      {
-@@ -1889,6 +1901,7 @@ EXTERN_C const IID IID_IAudioTreble;
+@@ -1889,6 +1899,7 @@ EXTERN_C const IID IID_IAudioTreble;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("0A717812-694E-4907-B74B-BAFA5CFDCA7B")
      IAudioTreble : public IPerChannelDbLevel
      {
-@@ -2036,6 +2049,7 @@ EXTERN_C const IID IID_IAudioAutoGainControl;
+@@ -2036,6 +2047,7 @@ EXTERN_C const IID IID_IAudioAutoGainControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("85401FD4-6DE4-4b9d-9869-2D6753A82F3C")
      IAudioAutoGainControl : public IUnknown
      {
-@@ -2140,6 +2154,7 @@ EXTERN_C const IID IID_IAudioPeakMeter;
+@@ -2140,6 +2152,7 @@ EXTERN_C const IID IID_IAudioPeakMeter;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("DD79923C-0599-45e0-B8B6-C8DF7DB6E796")
      IAudioPeakMeter : public IUnknown
      {
-@@ -2244,6 +2259,7 @@ EXTERN_C const IID IID_IDeviceSpecificProperty;
+@@ -2244,6 +2257,7 @@ EXTERN_C const IID IID_IDeviceSpecificProperty;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("3B22BCBF-2586-4af0-8583-205D391B807C")
      IDeviceSpecificProperty : public IUnknown
      {
-@@ -2388,6 +2404,7 @@ EXTERN_C const IID IID_IKsFormatSupport;
+@@ -2388,6 +2402,7 @@ EXTERN_C const IID IID_IKsFormatSupport;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("3CB4A69D-BB6F-4D2B-95B7-452D2C155DB5")
      IKsFormatSupport : public IUnknown
      {
-@@ -2494,6 +2511,7 @@ EXTERN_C const IID IID_IKsJackDescription;
+@@ -2494,6 +2509,7 @@ EXTERN_C const IID IID_IKsJackDescription;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("4509F757-2D46-4637-8E62-CE7DB944F57B")
      IKsJackDescription : public IUnknown
      {
-@@ -2596,6 +2614,7 @@ EXTERN_C const IID IID_IKsJackDescription2;
+@@ -2596,6 +2612,7 @@ EXTERN_C const IID IID_IKsJackDescription2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("478F3A9B-E0C9-4827-9228-6F5505FFE76A")
      IKsJackDescription2 : public IUnknown
      {
-@@ -2818,6 +2837,7 @@ EXTERN_C const IID IID_IKsJackSinkInformation;
+@@ -2818,6 +2835,7 @@ EXTERN_C const IID IID_IKsJackSinkInformation;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("D9BD72ED-290F-4581-9FF3-61027A8FE532")
      IKsJackSinkInformation : public IUnknown
      {
-@@ -2992,6 +3012,7 @@ EXTERN_C const IID IID_IPartsList;
+@@ -2992,6 +3010,7 @@ EXTERN_C const IID IID_IPartsList;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("6DAA848C-5EB0-45CC-AEA5-998A2CDA1FFB")
      IPartsList : public IUnknown
      {
-@@ -3096,6 +3117,7 @@ EXTERN_C const IID IID_IPart;
+@@ -3096,6 +3115,7 @@ EXTERN_C const IID IID_IPart;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("AE2DE0E4-5BCA-4F2D-AA46-5D13F8FDB3A9")
      IPart : public IUnknown
      {
-@@ -3355,6 +3377,7 @@ EXTERN_C const IID IID_IConnector;
+@@ -3355,6 +3375,7 @@ EXTERN_C const IID IID_IConnector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -172,7 +170,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("9c2c4058-23f5-41de-877a-df3af236a09e")
      IConnector : public IUnknown
      {
-@@ -3529,6 +3552,7 @@ EXTERN_C const IID IID_ISubunit;
+@@ -3529,6 +3550,7 @@ EXTERN_C const IID IID_ISubunit;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -180,7 +178,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("82149A85-DBA6-4487-86BB-EA8F7FEFCC71")
      ISubunit : public IUnknown
      {
-@@ -3603,6 +3627,7 @@ EXTERN_C const IID IID_IControlInterface;
+@@ -3603,6 +3625,7 @@ EXTERN_C const IID IID_IControlInterface;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -188,7 +186,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("45d37c3f-5140-444a-ae24-400789f3cbf3")
      IControlInterface : public IUnknown
      {
-@@ -3703,6 +3728,7 @@ EXTERN_C const IID IID_IControlChangeNotify;
+@@ -3703,6 +3726,7 @@ EXTERN_C const IID IID_IControlChangeNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -196,7 +194,7 @@ index 48a95b66..055241d7 100644
      MIDL_INTERFACE("A09513ED-C709-4d21-BD7B-5F34C47F3947")
      IControlChangeNotify : public IUnknown
      {
-@@ -3794,6 +3820,7 @@ EXTERN_C const IID IID_IDeviceTopology;
+@@ -3794,6 +3818,7 @@ EXTERN_C const IID IID_IDeviceTopology;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

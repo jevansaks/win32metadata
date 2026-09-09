@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/advpub.h b/generation/WinSDK/RecompiledIdlHeaders/um/advpub.h
-index 89687f51..3d1734cb 100644
+index 89687f51..b52a8e2e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/advpub.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/advpub.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  #ifndef _ADVPUB_H_
  #define _ADVPUB_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -248,7 +251,9 @@ typedef STRTABLEA STRTABLE;
+@@ -248,7 +249,9 @@ typedef STRTABLEA STRTABLE;
  typedef LPCSTRTABLEA LPCSTRTABLE;
  #endif // UNICODE
  

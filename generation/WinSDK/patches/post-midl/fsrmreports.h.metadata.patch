@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fsrmreports.h b/generation/WinSDK/RecompiledIdlHeaders/um/fsrmreports.h
-index a415308a..c400c200 100644
+index a415308a..9f8ab428 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fsrmreports.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fsrmreports.h
-@@ -124,6 +124,9 @@ extern "C"{
+@@ -124,6 +124,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -170,6 +173,7 @@ EXTERN_C const IID IID_IFsrmReportManager;
+@@ -170,6 +171,7 @@ EXTERN_C const IID IID_IFsrmReportManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index a415308a..c400c200 100644
      MIDL_INTERFACE("27b899fe-6ffa-4481-a184-d3daade8a02b")
      IFsrmReportManager : public IDispatch
      {
-@@ -484,6 +488,7 @@ EXTERN_C const IID IID_IFsrmReportJob;
+@@ -484,6 +486,7 @@ EXTERN_C const IID IID_IFsrmReportJob;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index a415308a..c400c200 100644
      MIDL_INTERFACE("38e87280-715c-4c7d-a280-ea1651a19fef")
      IFsrmReportJob : public IFsrmObject
      {
-@@ -887,6 +892,7 @@ EXTERN_C const IID IID_IFsrmReport;
+@@ -887,6 +890,7 @@ EXTERN_C const IID IID_IFsrmReport;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index a415308a..c400c200 100644
      MIDL_INTERFACE("d8cc81d9-46b8-4fa4-bfa5-4aa9dec9b638")
      IFsrmReport : public IDispatch
      {
-@@ -1144,6 +1150,7 @@ EXTERN_C const IID IID_IFsrmReportScheduler;
+@@ -1144,6 +1148,7 @@ EXTERN_C const IID IID_IFsrmReportScheduler;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index a415308a..c400c200 100644
      MIDL_INTERFACE("6879caf9-6617-4484-8719-71c3d8645f94")
      IFsrmReportScheduler : public IDispatch
      {
-@@ -1348,6 +1355,7 @@ EXTERN_C const IID IID_IFsrmFileManagementJobManager;
+@@ -1348,6 +1353,7 @@ EXTERN_C const IID IID_IFsrmFileManagementJobManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index a415308a..c400c200 100644
      MIDL_INTERFACE("ee321ecb-d95e-48e9-907c-c7685a013235")
      IFsrmFileManagementJobManager : public IDispatch
      {
-@@ -1561,6 +1569,7 @@ EXTERN_C const IID IID_IFsrmFileManagementJob;
+@@ -1561,6 +1567,7 @@ EXTERN_C const IID IID_IFsrmFileManagementJob;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index a415308a..c400c200 100644
      MIDL_INTERFACE("0770687e-9f36-4d6f-8778-599d188461c9")
      IFsrmFileManagementJob : public IFsrmObject
      {
-@@ -2396,6 +2405,7 @@ EXTERN_C const IID IID_IFsrmPropertyCondition;
+@@ -2396,6 +2403,7 @@ EXTERN_C const IID IID_IFsrmPropertyCondition;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index a415308a..c400c200 100644
      MIDL_INTERFACE("326af66f-2ac0-4f68-bf8c-4759f054fa29")
      IFsrmPropertyCondition : public IDispatch
      {
-@@ -2777,6 +2787,7 @@ EXTERN_C const IID IID_IFsrmFileConditionProperty;
+@@ -2777,6 +2785,7 @@ EXTERN_C const IID IID_IFsrmFileConditionProperty;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index a415308a..c400c200 100644
      MIDL_INTERFACE("81926775-B981-4479-988F-DA171D627360")
      IFsrmFileConditionProperty : public IFsrmFileCondition
      {
-@@ -3076,19 +3087,31 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -3076,19 +3085,31 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

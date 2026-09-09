@@ -1,14 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/deliveryoptimizationerrors.h b/generation/WinSDK/RecompiledIdlHeaders/um/deliveryoptimizationerrors.h
-index 568efe78..87577215 100644
+index 568efe78..a99f5925 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/deliveryoptimizationerrors.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/deliveryoptimizationerrors.h
-@@ -5,6 +5,9 @@
+@@ -5,6 +5,7 @@
  //+-------------------------------------------------------------------------
  #ifndef __DELIVERYOPTIMIZATION_ERROR_H__
  #define __DELIVERYOPTIMIZATION_ERROR_H__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if defined(_MSC_VER) && (_MSC_VER >= 1020)
  #pragma once

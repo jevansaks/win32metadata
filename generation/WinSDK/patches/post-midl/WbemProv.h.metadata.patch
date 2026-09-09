@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WbemProv.h b/generation/WinSDK/RecompiledIdlHeaders/um/WbemProv.h
-index c9de86da..5c249742 100644
+index c9de86da..e1a05df5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WbemProv.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WbemProv.h
-@@ -291,6 +291,9 @@ extern "C"{
+@@ -291,6 +291,7 @@ extern "C"{
  /*                                                                             */
  /*******************************************************************************/
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family or WinMgmt Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WINMGMT)
  typedef VARIANT WBEM_VARIANT;
-@@ -343,6 +346,7 @@ EXTERN_C const IID IID_IWbemPropertyProvider;
+@@ -343,6 +344,7 @@ EXTERN_C const IID IID_IWbemPropertyProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("CE61E841-65BC-11d0-B6BD-00AA003240C7")
      IWbemPropertyProvider : public IUnknown
      {
-@@ -483,6 +487,7 @@ EXTERN_C const IID IID_IWbemUnboundObjectSink;
+@@ -483,6 +485,7 @@ EXTERN_C const IID IID_IWbemUnboundObjectSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("e246107b-b06e-11d0-ad61-00c04fd8fdff")
      IWbemUnboundObjectSink : public IUnknown
      {
-@@ -578,6 +583,7 @@ EXTERN_C const IID IID_IWbemEventProvider;
+@@ -578,6 +581,7 @@ EXTERN_C const IID IID_IWbemEventProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("e245105b-b06e-11d0-ad61-00c04fd8fdff")
      IWbemEventProvider : public IUnknown
      {
-@@ -669,6 +675,7 @@ EXTERN_C const IID IID_IWbemEventProviderQuerySink;
+@@ -669,6 +673,7 @@ EXTERN_C const IID IID_IWbemEventProviderQuerySink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("580acaf8-fa1c-11d0-ad72-00c04fd8fdff")
      IWbemEventProviderQuerySink : public IUnknown
      {
-@@ -777,6 +784,7 @@ EXTERN_C const IID IID_IWbemEventProviderSecurity;
+@@ -777,6 +782,7 @@ EXTERN_C const IID IID_IWbemEventProviderSecurity;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("631f7d96-d993-11d2-b339-00105a1f4aaf")
      IWbemEventProviderSecurity : public IUnknown
      {
-@@ -876,6 +884,7 @@ EXTERN_C const IID IID_IWbemEventConsumerProvider;
+@@ -876,6 +882,7 @@ EXTERN_C const IID IID_IWbemEventConsumerProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("e246107a-b06e-11d0-ad61-00c04fd8fdff")
      IWbemEventConsumerProvider : public IUnknown
      {
-@@ -967,6 +976,7 @@ EXTERN_C const IID IID_IWbemProviderInitSink;
+@@ -967,6 +974,7 @@ EXTERN_C const IID IID_IWbemProviderInitSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("1be41571-91dd-11d1-aeb2-00c04fb68820")
      IWbemProviderInitSink : public IUnknown
      {
-@@ -1058,6 +1068,7 @@ EXTERN_C const IID IID_IWbemProviderInit;
+@@ -1058,6 +1066,7 @@ EXTERN_C const IID IID_IWbemProviderInit;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("1be41572-91dd-11d1-aeb2-00c04fb68820")
      IWbemProviderInit : public IUnknown
      {
-@@ -1169,6 +1180,7 @@ EXTERN_C const IID IID_IWbemHiPerfProvider;
+@@ -1169,6 +1178,7 @@ EXTERN_C const IID IID_IWbemHiPerfProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("49353c93-516b-11d1-aea6-00c04fb68820")
      IWbemHiPerfProvider : public IUnknown
      {
-@@ -1417,6 +1429,7 @@ EXTERN_C const IID IID_IWbemDecoupledRegistrar;
+@@ -1417,6 +1427,7 @@ EXTERN_C const IID IID_IWbemDecoupledRegistrar;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("1005cbcf-e64f-4646-bcd3-3a089d8a84b4")
      IWbemDecoupledRegistrar : public IUnknown
      {
-@@ -1578,6 +1591,7 @@ EXTERN_C const IID IID_IWbemProviderIdentity;
+@@ -1578,6 +1589,7 @@ EXTERN_C const IID IID_IWbemProviderIdentity;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("631f7d97-d993-11d2-b339-00105a1f4aaf")
      IWbemProviderIdentity : public IUnknown
      {
-@@ -1694,6 +1708,7 @@ EXTERN_C const IID IID_IWbemDecoupledBasicEventProvider;
+@@ -1694,6 +1706,7 @@ EXTERN_C const IID IID_IWbemDecoupledBasicEventProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("86336d20-ca11-4786-9ef1-bc8a946b42fc")
      IWbemDecoupledBasicEventProvider : public IWbemDecoupledRegistrar
      {
-@@ -1855,6 +1870,7 @@ EXTERN_C const IID IID_IWbemEventSink;
+@@ -1855,6 +1868,7 @@ EXTERN_C const IID IID_IWbemEventSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index c9de86da..5c249742 100644
      MIDL_INTERFACE("3ae0080a-7e3a-4366-bf89-0feedc931659")
      IWbemEventSink : public IWbemObjectSink
      {
-@@ -2039,14 +2055,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -2039,14 +2053,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

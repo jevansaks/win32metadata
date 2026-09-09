@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PNPXAssoc.h b/generation/WinSDK/RecompiledIdlHeaders/um/PNPXAssoc.h
-index 632e8118..eb4386b1 100644
+index 632e8118..789113e9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/PNPXAssoc.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/PNPXAssoc.h
-@@ -99,6 +99,9 @@ extern "C"{
+@@ -99,6 +99,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -117,6 +120,7 @@ EXTERN_C const IID IID_IPNPXAssociation;
+@@ -117,6 +118,7 @@ EXTERN_C const IID IID_IPNPXAssociation;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 632e8118..eb4386b1 100644
      MIDL_INTERFACE("0bd7e521-4da6-42d5-81ba-1981b6b94075")
      IPNPXAssociation : public IUnknown
      {
-@@ -223,6 +227,7 @@ EXTERN_C const IID IID_IPNPXDeviceAssociation;
+@@ -223,6 +225,7 @@ EXTERN_C const IID IID_IPNPXDeviceAssociation;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

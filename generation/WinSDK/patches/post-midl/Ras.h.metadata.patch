@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ras.h b/generation/WinSDK/RecompiledIdlHeaders/um/Ras.h
-index 0d914ac1..7711e8a9 100644
+index 0d914ac1..6bd35ee2 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Ras.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Ras.h
-@@ -31,6 +31,9 @@ Abstract:
+@@ -31,6 +31,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or CmdLineTools Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_CMDTOOLS)
-@@ -1910,147 +1913,209 @@ RASCUSTOMSCRIPTEXTENSIONS
+@@ -1910,147 +1911,209 @@ RASCUSTOMSCRIPTEXTENSIONS
  
  /* External RAS API function prototypes.
  */
@@ -222,7 +220,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY RasSetAutodialParamW( _In_ DWORD, _In_ LPVOID, _In_ DWORD );
  
  DWORD APIENTRY RasGetPCscf(_Out_ LPWSTR lpszPCscf);
-@@ -2106,21 +2171,27 @@ typedef DWORD (WINAPI *RasCustomDeleteEntryNotifyFn) (
+@@ -2106,21 +2169,27 @@ typedef DWORD (WINAPI *RasCustomDeleteEntryNotifyFn) (
  #define RCD_Eap         0x00000002
  #define RCD_Logon       0x00000004
  
@@ -250,7 +248,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY RasGetEapUserDataA(
                     _In_opt_ HANDLE hToken,
                     _In_opt_ LPCSTR pszPhonebook,
-@@ -2129,6 +2200,7 @@ DWORD APIENTRY RasGetEapUserDataA(
+@@ -2129,6 +2198,7 @@ DWORD APIENTRY RasGetEapUserDataA(
                     _Inout_ DWORD *pdwSizeofEapData );
  
  
@@ -258,7 +256,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY RasGetEapUserDataW(
                     _In_opt_ HANDLE  hToken,
                     _In_opt_ LPCWSTR pszPhonebook,
-@@ -2136,6 +2208,7 @@ DWORD APIENTRY RasGetEapUserDataW(
+@@ -2136,6 +2206,7 @@ DWORD APIENTRY RasGetEapUserDataW(
                     _Out_opt_ BYTE    *pbEapData,
                     _Inout_ DWORD *pdwSizeofEapData );
  
@@ -266,7 +264,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY RasSetEapUserDataA(
                     _In_opt_ HANDLE hToken,
                     _In_opt_ LPCSTR pszPhonebook,
-@@ -2143,6 +2216,7 @@ DWORD APIENTRY RasSetEapUserDataA(
+@@ -2143,6 +2214,7 @@ DWORD APIENTRY RasSetEapUserDataA(
                     _In_ BYTE   *pbEapData,
                     _In_ DWORD dwSizeofEapData );
  
@@ -274,7 +272,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY RasSetEapUserDataW(
                     _In_opt_ HANDLE  hToken,
                     _In_opt_ LPCWSTR pszPhonebook,
-@@ -2150,6 +2224,7 @@ DWORD APIENTRY RasSetEapUserDataW(
+@@ -2150,6 +2222,7 @@ DWORD APIENTRY RasSetEapUserDataW(
                     _In_ BYTE    *pbEapData,
                     _In_ DWORD dwSizeofEapData );
  
@@ -282,7 +280,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY RasGetCustomAuthDataA(
                     _In_opt_ LPCSTR pszPhonebook,
                     _In_ LPCSTR pszEntry,
-@@ -2157,12 +2232,14 @@ DWORD APIENTRY RasGetCustomAuthDataA(
+@@ -2157,12 +2230,14 @@ DWORD APIENTRY RasGetCustomAuthDataA(
                     _Inout_ DWORD  *pdwSizeofCustomAuthData );
  
  
@@ -297,7 +295,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY RasSetCustomAuthDataA(
                     _In_opt_ LPCSTR pszPhonebook,
                     _In_ LPCSTR pszEntry,
-@@ -2170,12 +2247,14 @@ DWORD APIENTRY RasSetCustomAuthDataA(
+@@ -2170,12 +2245,14 @@ DWORD APIENTRY RasSetCustomAuthDataA(
                     _In_ DWORD  dwSizeofCustomAuthData
                     );
  
@@ -312,7 +310,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY RasGetEapUserIdentityW(
                     _In_opt_ LPCWSTR              pszPhonebook,
                     _In_ LPCWSTR                  pszEntry,
-@@ -2183,6 +2262,7 @@ DWORD APIENTRY RasGetEapUserIdentityW(
+@@ -2183,6 +2260,7 @@ DWORD APIENTRY RasGetEapUserIdentityW(
                     _In_ HWND                     hwnd,
                     _Out_ LPRASEAPUSERIDENTITYW*  ppRasEapUserIdentity
  );
@@ -320,7 +318,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY RasGetEapUserIdentityA(
                     _In_opt_ LPCSTR                   pszPhonebook,
                     _In_ LPCSTR                   pszEntry,
-@@ -2190,9 +2270,11 @@ DWORD APIENTRY RasGetEapUserIdentityA(
+@@ -2190,9 +2268,11 @@ DWORD APIENTRY RasGetEapUserIdentityA(
                     _In_ HWND                     hwnd,
                     _Out_ LPRASEAPUSERIDENTITYA*   ppRasEapUserIdentity
  );
@@ -332,7 +330,7 @@ index 0d914ac1..7711e8a9 100644
  VOID APIENTRY RasFreeEapUserIdentityA(
                     _In_ LPRASEAPUSERIDENTITYA    pRasEapUserIdentity
  );
-@@ -2200,11 +2282,13 @@ VOID APIENTRY RasFreeEapUserIdentityA(
+@@ -2200,11 +2280,13 @@ VOID APIENTRY RasFreeEapUserIdentityA(
  
  #if (WINVER >= 0x501)
  
@@ -346,7 +344,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY  RasDeleteSubEntryW(
                  _In_opt_ LPCWSTR pszPhonebook,
                  _In_ LPCWSTR pszEntry,
-@@ -2216,6 +2300,7 @@ DWORD APIENTRY  RasDeleteSubEntryW(
+@@ -2216,6 +2298,7 @@ DWORD APIENTRY  RasDeleteSubEntryW(
  
  #ifdef USES_RAS_QUARANTINE_APIS
  
@@ -354,7 +352,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY
  RasGetNapStatus(
          _In_ HRASCONN hRasconn,
-@@ -2244,6 +2329,7 @@ RASUPDATECONN
+@@ -2244,6 +2327,7 @@ RASUPDATECONN
  
  #define LPRASUPDATECONN  RASUPDATECONN*
  
@@ -362,7 +360,7 @@ index 0d914ac1..7711e8a9 100644
  DWORD APIENTRY
  RasUpdateConnection(
          _In_ HRASCONN        hrasconn,
-@@ -2251,6 +2337,7 @@ RasUpdateConnection(
+@@ -2251,6 +2335,7 @@ RasUpdateConnection(
  
  /* Ras Projection information for PPP or IKEv2
  */

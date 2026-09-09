@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
-index 3b1817e9..6a77a4ab 100644
+index 3b1817e9..661e8cc5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  //+---------------------------------------------------------------------------
  //
  //  Microsoft Windows
-@@ -24,6 +27,7 @@ extern "C" {
+@@ -24,6 +25,7 @@ extern "C" {
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -18,7 +16,7 @@ index 3b1817e9..6a77a4ab 100644
  HRESULT WINAPI
  ADsGetObject(
      LPCWSTR lpszPathName,
-@@ -32,17 +36,20 @@ ADsGetObject(
+@@ -32,17 +34,20 @@ ADsGetObject(
      );
  
  
@@ -39,7 +37,7 @@ index 3b1817e9..6a77a4ab 100644
  HRESULT WINAPI
  ADsEnumerateNext(
      IEnumVARIANT *pEnumVariant,
-@@ -51,6 +58,7 @@ ADsEnumerateNext(
+@@ -51,6 +56,7 @@ ADsEnumerateNext(
      ULONG FAR    *pcElementsFetched
      );
  
@@ -47,7 +45,7 @@ index 3b1817e9..6a77a4ab 100644
  HRESULT WINAPI
  ADsBuildVarArrayStr(
      _In_reads_(dwPathNames) LPWSTR * lppPathNames,
-@@ -58,6 +66,7 @@ ADsBuildVarArrayStr(
+@@ -58,6 +64,7 @@ ADsBuildVarArrayStr(
      VARIANT * pVar
      );
  
@@ -55,7 +53,7 @@ index 3b1817e9..6a77a4ab 100644
  HRESULT WINAPI
  ADsBuildVarArrayInt(
      LPDWORD    lpdwObjectTypes,
-@@ -66,6 +75,7 @@ ADsBuildVarArrayInt(
+@@ -66,6 +73,7 @@ ADsBuildVarArrayInt(
      );
  
  
@@ -63,7 +61,7 @@ index 3b1817e9..6a77a4ab 100644
  HRESULT WINAPI
  ADsOpenObject(
      LPCWSTR lpszPathName,
-@@ -80,6 +90,8 @@ ADsOpenObject(
+@@ -80,6 +88,8 @@ ADsOpenObject(
  // Helper functions for extended error support
  //
  
@@ -72,7 +70,7 @@ index 3b1817e9..6a77a4ab 100644
  HRESULT WINAPI
  ADsGetLastError(
      OUT     LPDWORD lpError,
-@@ -89,6 +101,7 @@ ADsGetLastError(
+@@ -89,6 +99,7 @@ ADsGetLastError(
      IN      DWORD   dwNameBufLen
      );
  
@@ -80,7 +78,7 @@ index 3b1817e9..6a77a4ab 100644
  VOID WINAPI
  ADsSetLastError(
      IN  DWORD   dwErr,
-@@ -101,16 +114,19 @@ VOID WINAPI
+@@ -101,16 +112,19 @@ VOID WINAPI
  ADsFreeAllErrorRecords(
      VOID);
  
@@ -100,7 +98,7 @@ index 3b1817e9..6a77a4ab 100644
  LPVOID WINAPI
  ReallocADsMem(
     LPVOID pOldMem,
-@@ -118,17 +134,20 @@ ReallocADsMem(
+@@ -118,17 +132,20 @@ ReallocADsMem(
     DWORD cbNew
  );
  
@@ -121,7 +119,7 @@ index 3b1817e9..6a77a4ab 100644
  BOOL WINAPI
  ReallocADsStr(
     _Inout_ LPWSTR *ppStr,
-@@ -136,6 +155,7 @@ ReallocADsStr(
+@@ -136,6 +153,7 @@ ReallocADsStr(
  );
  
  
@@ -129,7 +127,7 @@ index 3b1817e9..6a77a4ab 100644
  HRESULT WINAPI
  ADsEncodeBinaryData (
     PBYTE   pbSrcData,
-@@ -176,6 +196,7 @@ AdsFreeAdsValues(
+@@ -176,6 +194,7 @@ AdsFreeAdsValues(
  // security descriptor and also to convert a binary SD to 
  // IADsSecurityDescriptor.
  //
@@ -137,7 +135,7 @@ index 3b1817e9..6a77a4ab 100644
  HRESULT WINAPI
  BinarySDToSecurityDescriptor(
      PSECURITY_DESCRIPTOR  pSecurityDescriptor,
-@@ -186,6 +207,7 @@ BinarySDToSecurityDescriptor(
+@@ -186,6 +205,7 @@ BinarySDToSecurityDescriptor(
      DWORD dwFlags
      );
  

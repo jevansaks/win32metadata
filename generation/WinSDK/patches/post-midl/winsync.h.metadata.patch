@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsync.h b/generation/WinSDK/RecompiledIdlHeaders/um/winsync.h
-index f345c3b0..f25fd050 100644
+index f345c3b0..004f5b9d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winsync.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winsync.h
-@@ -556,6 +556,9 @@ extern "C"{
+@@ -556,6 +556,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #pragma warning ( disable : 28718 )
-@@ -713,6 +716,7 @@ EXTERN_C const IID IID_IClockVectorElement;
+@@ -713,6 +714,7 @@ EXTERN_C const IID IID_IClockVectorElement;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("e71c4250-adf8-4a07-8fae-5669596909c1")
      IClockVectorElement : public IUnknown
      {
-@@ -818,6 +822,7 @@ EXTERN_C const IID IID_IFeedClockVectorElement;
+@@ -818,6 +820,7 @@ EXTERN_C const IID IID_IFeedClockVectorElement;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("a40b46d2-e97b-4156-b6da-991f501b0f05")
      IFeedClockVectorElement : public IClockVectorElement
      {
-@@ -930,6 +935,7 @@ EXTERN_C const IID IID_IClockVector;
+@@ -930,6 +933,7 @@ EXTERN_C const IID IID_IClockVector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("14b2274a-8698-4cc6-9333-f89bd1d47bc4")
      IClockVector : public IUnknown
      {
-@@ -1027,6 +1033,7 @@ EXTERN_C const IID IID_IFeedClockVector;
+@@ -1027,6 +1031,7 @@ EXTERN_C const IID IID_IFeedClockVector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("8d1d98d1-9fb8-4ec9-a553-54dd924e0f67")
      IFeedClockVector : public IClockVector
      {
-@@ -1140,6 +1147,7 @@ EXTERN_C const IID IID_IEnumClockVector;
+@@ -1140,6 +1145,7 @@ EXTERN_C const IID IID_IEnumClockVector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("525844db-2837-4799-9e80-81a66e02220c")
      IEnumClockVector : public IUnknown
      {
-@@ -1259,6 +1267,7 @@ EXTERN_C const IID IID_IEnumFeedClockVector;
+@@ -1259,6 +1265,7 @@ EXTERN_C const IID IID_IEnumFeedClockVector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("550f763d-146a-48f6-abeb-6c88c7f70514")
      IEnumFeedClockVector : public IUnknown
      {
-@@ -1378,6 +1387,7 @@ EXTERN_C const IID IID_ICoreFragment;
+@@ -1378,6 +1385,7 @@ EXTERN_C const IID IID_ICoreFragment;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("613b2ab5-b304-47d9-9c31-ce6c54401a15")
      ICoreFragment : public IUnknown
      {
-@@ -1510,6 +1520,7 @@ EXTERN_C const IID IID_ICoreFragmentInspector;
+@@ -1510,6 +1518,7 @@ EXTERN_C const IID IID_ICoreFragmentInspector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("f7fcc5fd-ae26-4679-ba16-96aac583c134")
      ICoreFragmentInspector : public IUnknown
      {
-@@ -1607,6 +1618,7 @@ EXTERN_C const IID IID_IRangeException;
+@@ -1607,6 +1616,7 @@ EXTERN_C const IID IID_IRangeException;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("75ae8777-6848-49f7-956c-a3a92f5096e8")
      IRangeException : public IUnknown
      {
-@@ -1719,6 +1731,7 @@ EXTERN_C const IID IID_IEnumRangeExceptions;
+@@ -1719,6 +1729,7 @@ EXTERN_C const IID IID_IEnumRangeExceptions;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("0944439f-ddb1-4176-b703-046ff22a2386")
      IEnumRangeExceptions : public IUnknown
      {
-@@ -1838,6 +1851,7 @@ EXTERN_C const IID IID_ISingleItemException;
+@@ -1838,6 +1849,7 @@ EXTERN_C const IID IID_ISingleItemException;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("892fb9b0-7c55-4a18-9316-fdF449569b64")
      ISingleItemException : public IUnknown
      {
-@@ -1937,6 +1951,7 @@ EXTERN_C const IID IID_IEnumSingleItemExceptions;
+@@ -1937,6 +1949,7 @@ EXTERN_C const IID IID_IEnumSingleItemExceptions;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("e563381c-1b4d-4c66-9796-c86faccdcd40")
      IEnumSingleItemExceptions : public IUnknown
      {
-@@ -2056,6 +2071,7 @@ EXTERN_C const IID IID_IChangeUnitException;
+@@ -2056,6 +2069,7 @@ EXTERN_C const IID IID_IChangeUnitException;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("0cd7ee7c-fec0-4021-99ee-f0e5348f2a5f")
      IChangeUnitException : public IUnknown
      {
-@@ -2168,6 +2184,7 @@ EXTERN_C const IID IID_IEnumChangeUnitExceptions;
+@@ -2168,6 +2182,7 @@ EXTERN_C const IID IID_IEnumChangeUnitExceptions;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("3074e802-9319-4420-be21-1022e2e21da8")
      IEnumChangeUnitExceptions : public IUnknown
      {
-@@ -2287,6 +2304,7 @@ EXTERN_C const IID IID_IReplicaKeyMap;
+@@ -2287,6 +2302,7 @@ EXTERN_C const IID IID_IReplicaKeyMap;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("2209F4FC-FD10-4ff0-84A8-F0A1982E440E")
      IReplicaKeyMap : public IUnknown
      {
-@@ -2401,6 +2419,7 @@ EXTERN_C const IID IID_IConstructReplicaKeyMap;
+@@ -2401,6 +2417,7 @@ EXTERN_C const IID IID_IConstructReplicaKeyMap;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("ded10970-ec85-4115-b52c-4405845642a5")
      IConstructReplicaKeyMap : public IUnknown
      {
-@@ -2487,6 +2506,7 @@ EXTERN_C const IID IID_ISyncKnowledge;
+@@ -2487,6 +2504,7 @@ EXTERN_C const IID IID_ISyncKnowledge;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("615bbb53-c945-4203-bf4b-2cb65919a0aa")
      ISyncKnowledge : public IUnknown
      {
-@@ -2882,6 +2902,7 @@ EXTERN_C const IID IID_IForgottenKnowledge;
+@@ -2882,6 +2900,7 @@ EXTERN_C const IID IID_IForgottenKnowledge;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("456e0f96-6036-452b-9f9d-bcc4b4a85db2")
      IForgottenKnowledge : public ISyncKnowledge
      {
-@@ -3199,6 +3220,7 @@ EXTERN_C const IID IID_ISyncKnowledge2;
+@@ -3199,6 +3218,7 @@ EXTERN_C const IID IID_ISyncKnowledge2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("ed0addc0-3b4b-46a1-9a45-45661d2114c8")
      ISyncKnowledge2 : public ISyncKnowledge
      {
-@@ -3680,6 +3702,7 @@ EXTERN_C const IID IID_IRecoverableErrorData;
+@@ -3680,6 +3700,7 @@ EXTERN_C const IID IID_IRecoverableErrorData;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -172,7 +170,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("b37c4a0a-4b7d-4c2d-9711-3b00d119b1c8")
      IRecoverableErrorData : public IUnknown
      {
-@@ -3802,6 +3825,7 @@ EXTERN_C const IID IID_IRecoverableError;
+@@ -3802,6 +3823,7 @@ EXTERN_C const IID IID_IRecoverableError;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -180,7 +178,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("0f5625e8-0a7b-45ee-9637-1ce13645909e")
      IRecoverableError : public IUnknown
      {
-@@ -3936,6 +3960,7 @@ EXTERN_C const IID IID_IChangeConflict;
+@@ -3936,6 +3958,7 @@ EXTERN_C const IID IID_IChangeConflict;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -188,7 +186,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("014ebf97-9f20-4f7a-bdd4-25979c77c002")
      IChangeConflict : public IUnknown
      {
-@@ -4308,6 +4333,7 @@ EXTERN_C const IID IID_ISyncCallback;
+@@ -4308,6 +4331,7 @@ EXTERN_C const IID IID_ISyncCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -196,7 +194,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("0599797f-5ed9-485c-ae36-0c5d1bf2e7a5")
      ISyncCallback : public IUnknown
      {
-@@ -4442,6 +4468,7 @@ EXTERN_C const IID IID_ISyncCallback2;
+@@ -4442,6 +4466,7 @@ EXTERN_C const IID IID_ISyncCallback2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -204,7 +202,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("47ce84af-7442-4ead-8630-12015e030ad7")
      ISyncCallback2 : public ISyncCallback
      {
-@@ -4669,6 +4696,7 @@ EXTERN_C const IID IID_ISyncProvider;
+@@ -4669,6 +4694,7 @@ EXTERN_C const IID IID_ISyncProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -212,7 +210,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("8f657056-2bce-4a17-8c68-c7bb7898b56f")
      ISyncProvider : public IUnknown
      {
-@@ -4753,6 +4781,7 @@ EXTERN_C const IID IID_ISyncSessionState;
+@@ -4753,6 +4779,7 @@ EXTERN_C const IID IID_ISyncSessionState;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -220,7 +218,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("b8a940fe-9f01-483b-9434-c37d361225d9")
      ISyncSessionState : public IUnknown
      {
-@@ -4917,6 +4946,7 @@ EXTERN_C const IID IID_ISyncSessionExtendedErrorInfo;
+@@ -4917,6 +4944,7 @@ EXTERN_C const IID IID_ISyncSessionExtendedErrorInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -228,7 +226,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("326c6810-790a-409b-b741-6999388761eb")
      ISyncSessionExtendedErrorInfo : public IUnknown
      {
-@@ -5001,6 +5031,7 @@ EXTERN_C const IID IID_ISyncSessionState2;
+@@ -5001,6 +5029,7 @@ EXTERN_C const IID IID_ISyncSessionState2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -236,7 +234,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("9e37cfa3-9e38-4c61-9ca3-ffe810b45ca2")
      ISyncSessionState2 : public ISyncSessionState
      {
-@@ -5160,6 +5191,7 @@ EXTERN_C const IID IID_ISyncFilterInfo;
+@@ -5160,6 +5189,7 @@ EXTERN_C const IID IID_ISyncFilterInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -244,7 +242,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("794eaaf8-3f2e-47e6-9728-17e6fcf94cb7")
      ISyncFilterInfo : public IUnknown
      {
-@@ -5258,6 +5290,7 @@ EXTERN_C const IID IID_ISyncFilterInfo2;
+@@ -5258,6 +5288,7 @@ EXTERN_C const IID IID_ISyncFilterInfo2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -252,7 +250,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("19b394ba-e3d0-468c-934d-321968b2ab34")
      ISyncFilterInfo2 : public ISyncFilterInfo
      {
-@@ -5352,6 +5385,7 @@ EXTERN_C const IID IID_IChangeUnitListFilterInfo;
+@@ -5352,6 +5383,7 @@ EXTERN_C const IID IID_IChangeUnitListFilterInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -260,7 +258,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("f2837671-0bdf-43fa-b502-232375fb50c2")
      IChangeUnitListFilterInfo : public ISyncFilterInfo
      {
-@@ -5885,6 +5919,7 @@ EXTERN_C const IID IID_IEnumSyncChanges;
+@@ -5885,6 +5917,7 @@ EXTERN_C const IID IID_IEnumSyncChanges;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -268,7 +266,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("5f86be4a-5e78-4e32-ac1c-c24fd223ef85")
      IEnumSyncChanges : public IUnknown
      {
-@@ -6004,6 +6039,7 @@ EXTERN_C const IID IID_ISyncChangeBuilder;
+@@ -6004,6 +6037,7 @@ EXTERN_C const IID IID_ISyncChangeBuilder;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -276,7 +274,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("56f14771-8677-484f-a170-e386e418a676")
      ISyncChangeBuilder : public IUnknown
      {
-@@ -6196,6 +6232,7 @@ EXTERN_C const IID IID_ISyncChangeBatchBase;
+@@ -6196,6 +6230,7 @@ EXTERN_C const IID IID_ISyncChangeBatchBase;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -284,7 +282,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("52F6E694-6A71-4494-A184-A8311BF5D227")
      ISyncChangeBatchBase : public IUnknown
      {
-@@ -6437,6 +6474,7 @@ EXTERN_C const IID IID_ISyncChangeBatch;
+@@ -6437,6 +6472,7 @@ EXTERN_C const IID IID_ISyncChangeBatch;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -292,7 +290,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("70c64dee-380f-4c2e-8f70-31c55bd5f9b3")
      ISyncChangeBatch : public ISyncChangeBatchBase
      {
-@@ -6677,6 +6715,7 @@ EXTERN_C const IID IID_ISyncFullEnumerationChangeBatch;
+@@ -6677,6 +6713,7 @@ EXTERN_C const IID IID_ISyncFullEnumerationChangeBatch;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -300,7 +298,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("EF64197D-4F44-4ea2-B355-4524713E3BED")
      ISyncFullEnumerationChangeBatch : public ISyncChangeBatchBase
      {
-@@ -6907,6 +6946,7 @@ EXTERN_C const IID IID_ISyncChangeBatchWithPrerequisite;
+@@ -6907,6 +6944,7 @@ EXTERN_C const IID IID_ISyncChangeBatchWithPrerequisite;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -308,7 +306,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("097f13be-5b92-4048-b3f2-7b42a2515e07")
      ISyncChangeBatchWithPrerequisite : public ISyncChangeBatchBase
      {
-@@ -7135,6 +7175,7 @@ EXTERN_C const IID IID_ISyncChangeBatchBase2;
+@@ -7135,6 +7173,7 @@ EXTERN_C const IID IID_ISyncChangeBatchBase2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -316,7 +314,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("6fdb596a-d755-4584-bd0c-c0c23a548fbf")
      ISyncChangeBatchBase2 : public ISyncChangeBatchBase
      {
-@@ -7345,6 +7386,7 @@ EXTERN_C const IID IID_ISyncChangeBatchAdvanced;
+@@ -7345,6 +7384,7 @@ EXTERN_C const IID IID_ISyncChangeBatchAdvanced;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -324,7 +322,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("0f1a4995-cbc8-421d-b550-5d0bebf3e9a5")
      ISyncChangeBatchAdvanced : public IUnknown
      {
-@@ -7980,6 +8022,7 @@ EXTERN_C const IID IID_IKnowledgeSyncProvider;
+@@ -7980,6 +8020,7 @@ EXTERN_C const IID IID_IKnowledgeSyncProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -332,7 +330,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("43434a49-8da4-47f2-8172-ad7b8b024978")
      IKnowledgeSyncProvider : public ISyncProvider
      {
-@@ -8173,6 +8216,7 @@ EXTERN_C const IID IID_ISyncChangeUnit;
+@@ -8173,6 +8214,7 @@ EXTERN_C const IID IID_ISyncChangeUnit;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -340,7 +338,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("60edd8ca-7341-4bb7-95ce-fab6394b51cb")
      ISyncChangeUnit : public IUnknown
      {
-@@ -8283,6 +8327,7 @@ EXTERN_C const IID IID_IEnumSyncChangeUnits;
+@@ -8283,6 +8325,7 @@ EXTERN_C const IID IID_IEnumSyncChangeUnits;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -348,7 +346,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("346b35f1-8703-4c6d-ab1a-4dbca2cff97f")
      IEnumSyncChangeUnits : public IUnknown
      {
-@@ -8402,6 +8447,7 @@ EXTERN_C const IID IID_ISyncChange;
+@@ -8402,6 +8445,7 @@ EXTERN_C const IID IID_ISyncChange;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -356,7 +354,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("a1952beb-0f6b-4711-b136-01da85b968a6")
      ISyncChange : public IUnknown
      {
-@@ -8593,6 +8639,7 @@ EXTERN_C const IID IID_ISyncChangeWithPrerequisite;
+@@ -8593,6 +8637,7 @@ EXTERN_C const IID IID_ISyncChangeWithPrerequisite;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -364,7 +362,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("9e38382f-1589-48c3-92e4-05ecdcb4f3f7")
      ISyncChangeWithPrerequisite : public IUnknown
      {
-@@ -8690,6 +8737,7 @@ EXTERN_C const IID IID_ISyncFullEnumerationChange;
+@@ -8690,6 +8735,7 @@ EXTERN_C const IID IID_ISyncFullEnumerationChange;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -372,7 +370,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("9785e0bd-bdff-40c4-98c5-b34b2f1991b3")
      ISyncFullEnumerationChange : public IUnknown
      {
-@@ -9467,6 +9515,7 @@ EXTERN_C const IID IID_IDataRetrieverCallback;
+@@ -9467,6 +9513,7 @@ EXTERN_C const IID IID_IDataRetrieverCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -380,7 +378,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("71b4863b-f969-4676-bbc3-3d9fdc3fb2c7")
      IDataRetrieverCallback : public IUnknown
      {
-@@ -9562,6 +9611,7 @@ EXTERN_C const IID IID_ILoadChangeContext;
+@@ -9562,6 +9609,7 @@ EXTERN_C const IID IID_ILoadChangeContext;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -388,7 +386,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("44a4aaca-ec39-46d5-b5c9-d633c0ee67e2")
      ILoadChangeContext : public IUnknown
      {
-@@ -9674,6 +9724,7 @@ EXTERN_C const IID IID_ISynchronousDataRetriever;
+@@ -9674,6 +9722,7 @@ EXTERN_C const IID IID_ISynchronousDataRetriever;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -396,7 +394,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("9b22f2a9-a4cd-4648-9d8e-3a510d4da04b")
      ISynchronousDataRetriever : public IUnknown
      {
-@@ -9771,6 +9822,7 @@ EXTERN_C const IID IID_IAsynchronousDataRetriever;
+@@ -9771,6 +9820,7 @@ EXTERN_C const IID IID_IAsynchronousDataRetriever;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -404,7 +402,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("9fc7e470-61ea-4a88-9be4-df56a27cfef2")
      IAsynchronousDataRetriever : public IUnknown
      {
-@@ -9888,6 +9940,7 @@ EXTERN_C const IID IID_IFilterRequestCallback;
+@@ -9888,6 +9938,7 @@ EXTERN_C const IID IID_IFilterRequestCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -412,7 +410,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("82df8873-6360-463a-a8a1-ede5e1a1594d")
      IFilterRequestCallback : public IUnknown
      {
-@@ -9974,6 +10027,7 @@ EXTERN_C const IID IID_IRequestFilteredSync;
+@@ -9974,6 +10025,7 @@ EXTERN_C const IID IID_IRequestFilteredSync;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -420,7 +418,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("2e020184-6d18-46a7-a32a-da4aeb06696c")
      IRequestFilteredSync : public IUnknown
      {
-@@ -10058,6 +10112,7 @@ EXTERN_C const IID IID_ISupportFilteredSync;
+@@ -10058,6 +10110,7 @@ EXTERN_C const IID IID_ISupportFilteredSync;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -428,7 +426,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("3d128ded-d555-4e0d-bf4b-fb213a8a9302")
      ISupportFilteredSync : public IUnknown
      {
-@@ -10323,6 +10378,7 @@ EXTERN_C const IID IID_ISupportLastWriteTime;
+@@ -10323,6 +10376,7 @@ EXTERN_C const IID IID_ISupportLastWriteTime;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -436,7 +434,7 @@ index f345c3b0..f25fd050 100644
      MIDL_INTERFACE("eadf816f-d0bd-43ca-8f40-5acdc6c06f7a")
      ISupportLastWriteTime : public IUnknown
      {
-@@ -10424,6 +10480,7 @@ EXTERN_C const IID IID_IProviderConverter;
+@@ -10424,6 +10478,7 @@ EXTERN_C const IID IID_IProviderConverter;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

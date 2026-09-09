@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WS2spi.h b/generation/WinSDK/RecompiledIdlHeaders/um/WS2spi.h
-index 1785a208..35e64773 100644
+index 1785a208..6f008be4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WS2spi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WS2spi.h
-@@ -20,6 +20,9 @@
+@@ -20,6 +20,7 @@
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -615,6 +618,7 @@ typedef struct _WSPUPCALLTABLE {
+@@ -615,6 +616,7 @@ typedef struct _WSPUPCALLTABLE {
   *  WinSock 2 SPI socket function prototypes
   */
  
@@ -20,7 +18,7 @@ index 1785a208..35e64773 100644
  _Must_inspect_result_
  int
  WSPAPI
-@@ -641,6 +645,7 @@ int
+@@ -641,6 +643,7 @@ int
   * Installation and configuration entrypoints.
   */
  
@@ -28,7 +26,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCEnumProtocols(
-@@ -666,6 +671,7 @@ int
+@@ -666,6 +669,7 @@ int
   * separate 64-bit and 32-bit catalogs.  API with '32' prefix
   * allow 32 bit catalog manipulations by 64 bit process.
   */
@@ -36,7 +34,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCEnumProtocols32(
-@@ -676,6 +682,7 @@ WSCEnumProtocols32(
+@@ -676,6 +680,7 @@ WSCEnumProtocols32(
      );
  #endif //(defined(_WIN64) && _WIN32_WINNT >= 0x0501)
  
@@ -44,7 +42,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCDeinstallProvider(
-@@ -692,6 +699,7 @@ int
+@@ -692,6 +697,7 @@ int
  
  #if(defined(_WIN64) && (_WIN32_WINNT >= 0x0501))
  
@@ -52,7 +50,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCDeinstallProvider32(
-@@ -700,6 +708,7 @@ WSCDeinstallProvider32(
+@@ -700,6 +706,7 @@ WSCDeinstallProvider32(
      );
  #endif //(defined(_WIN64) && _WIN32_WINNT >= 0x0501)
  
@@ -60,7 +58,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCInstallProvider(
-@@ -727,6 +736,7 @@ int
+@@ -727,6 +734,7 @@ int
   * It is needed to guarantee the same catalog IDs for provider catalog
   * entries in both 64-bit and 32-bit catalogs.
   */
@@ -68,7 +66,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCInstallProvider64_32(
-@@ -738,6 +748,7 @@ WSCInstallProvider64_32(
+@@ -738,6 +746,7 @@ WSCInstallProvider64_32(
      );
  #endif //(defined(_WIN64) && (_WIN32_WINNT >= 0x0501))
  
@@ -76,7 +74,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCGetProviderPath(
-@@ -758,6 +769,7 @@ int
+@@ -758,6 +767,7 @@ int
  
  #if(_WIN32_WINNT >= 0x0501)
  #if defined(_WIN64)
@@ -84,7 +82,7 @@ index 1785a208..35e64773 100644
  _Success_(return == 0)
  int
  WSPAPI
-@@ -769,6 +781,7 @@ WSCGetProviderPath32(
+@@ -769,6 +779,7 @@ WSCGetProviderPath32(
      );
  #endif
  
@@ -92,7 +90,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCUpdateProvider(
-@@ -790,6 +803,7 @@ int
+@@ -790,6 +801,7 @@ int
      );
  
  #if defined(_WIN64)
@@ -100,7 +98,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCUpdateProvider32(
-@@ -803,6 +817,7 @@ WSCUpdateProvider32(
+@@ -803,6 +815,7 @@ WSCUpdateProvider32(
  #endif //(_WIN32_WINNT >= 0x0501)
  
  #if (_WIN32_WINNT < 0x0600)
@@ -108,7 +106,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCInstallQOSTemplate (
-@@ -819,6 +834,7 @@ int
+@@ -819,6 +832,7 @@ int
      _In_ LPQOS           Qos
      );
  
@@ -116,7 +114,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCRemoveQOSTemplate (
-@@ -870,6 +886,7 @@ typedef struct _WSC_PROVIDER_AUDIT_INFO {
+@@ -870,6 +884,7 @@ typedef struct _WSC_PROVIDER_AUDIT_INFO {
      // Full Path of EXE performing install
  } WSC_PROVIDER_AUDIT_INFO;
  
@@ -124,7 +122,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCSetProviderInfo( 
-@@ -881,6 +898,7 @@ WSCSetProviderInfo(
+@@ -881,6 +896,7 @@ WSCSetProviderInfo(
      _Out_ LPINT lpErrno
      );
  
@@ -132,7 +130,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCGetProviderInfo( 
-@@ -894,6 +912,7 @@ WSCGetProviderInfo(
+@@ -894,6 +910,7 @@ WSCGetProviderInfo(
  
  #if defined(_WIN64)
  
@@ -140,7 +138,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCSetProviderInfo32( 
-@@ -905,6 +924,7 @@ WSCSetProviderInfo32(
+@@ -905,6 +922,7 @@ WSCSetProviderInfo32(
      _Out_ LPINT lpErrno
      );
  
@@ -148,7 +146,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCGetProviderInfo32( 
-@@ -922,6 +942,7 @@ WSCGetProviderInfo32(
+@@ -922,6 +940,7 @@ WSCGetProviderInfo32(
  // App Permitted LSP Categorization APIs
  //
  
@@ -156,7 +154,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCSetApplicationCategory(
-@@ -934,6 +955,7 @@ WSCSetApplicationCategory(
+@@ -934,6 +953,7 @@ WSCSetApplicationCategory(
      _Out_ LPINT lpErrno
      );
  
@@ -164,7 +162,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WSCGetApplicationCategory(
-@@ -953,6 +975,7 @@ WSCGetApplicationCategory(
+@@ -953,6 +973,7 @@ WSCGetApplicationCategory(
   *  should not be used by any service providers.
   */
  
@@ -172,7 +170,7 @@ index 1785a208..35e64773 100644
  BOOL
  WSPAPI
  WPUCloseEvent(
-@@ -960,6 +983,7 @@ WPUCloseEvent(
+@@ -960,6 +981,7 @@ WPUCloseEvent(
      _Out_ LPINT lpErrno
      );
  
@@ -180,7 +178,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WPUCloseSocketHandle(
-@@ -967,12 +991,14 @@ WPUCloseSocketHandle(
+@@ -967,12 +989,14 @@ WPUCloseSocketHandle(
      _Out_ LPINT lpErrno
      );
  
@@ -195,7 +193,7 @@ index 1785a208..35e64773 100644
  SOCKET
  WSPAPI
  WPUCreateSocketHandle(
-@@ -981,6 +1007,7 @@ WPUCreateSocketHandle(
+@@ -981,6 +1005,7 @@ WPUCreateSocketHandle(
      _Out_ LPINT lpErrno
      );
  
@@ -203,7 +201,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WPUFDIsSet(
-@@ -988,6 +1015,7 @@ WPUFDIsSet(
+@@ -988,6 +1013,7 @@ WPUFDIsSet(
      _In_ fd_set FAR * fdset
      );
  
@@ -211,7 +209,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WPUGetProviderPath(
-@@ -997,6 +1025,7 @@ WPUGetProviderPath(
+@@ -997,6 +1023,7 @@ WPUGetProviderPath(
      _Out_ LPINT lpErrno
      );
  
@@ -219,7 +217,7 @@ index 1785a208..35e64773 100644
  SOCKET
  WSPAPI
  WPUModifyIFSHandle(
-@@ -1005,6 +1034,7 @@ WPUModifyIFSHandle(
+@@ -1005,6 +1032,7 @@ WPUModifyIFSHandle(
      _Out_ LPINT lpErrno
      );
  
@@ -227,7 +225,7 @@ index 1785a208..35e64773 100644
  BOOL
  WSPAPI
  WPUPostMessage(
-@@ -1014,6 +1044,7 @@ WPUPostMessage(
+@@ -1014,6 +1042,7 @@ WPUPostMessage(
      _In_ LPARAM lParam
      );
  
@@ -235,7 +233,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WPUQueryBlockingCallback(
-@@ -1023,6 +1054,7 @@ WPUQueryBlockingCallback(
+@@ -1023,6 +1052,7 @@ WPUQueryBlockingCallback(
      _Out_ LPINT lpErrno
      );
  
@@ -243,7 +241,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WPUQuerySocketHandleContext(
-@@ -1031,6 +1063,7 @@ WPUQuerySocketHandleContext(
+@@ -1031,6 +1061,7 @@ WPUQuerySocketHandleContext(
      _Out_ LPINT lpErrno
      );
  
@@ -251,7 +249,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WPUQueueApc(
-@@ -1040,6 +1073,7 @@ WPUQueueApc(
+@@ -1040,6 +1071,7 @@ WPUQueueApc(
      _Out_ LPINT lpErrno
      );
  
@@ -259,7 +257,7 @@ index 1785a208..35e64773 100644
  BOOL
  WSPAPI
  WPUResetEvent(
-@@ -1047,6 +1081,7 @@ WPUResetEvent(
+@@ -1047,6 +1079,7 @@ WPUResetEvent(
      _Out_ LPINT lpErrno
      );
  
@@ -267,7 +265,7 @@ index 1785a208..35e64773 100644
  BOOL
  WSPAPI
  WPUSetEvent(
-@@ -1054,6 +1089,7 @@ WPUSetEvent(
+@@ -1054,6 +1087,7 @@ WPUSetEvent(
      _Out_ LPINT lpErrno
      );
  
@@ -275,7 +273,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WPUCompleteOverlappedRequest (
-@@ -1065,6 +1101,7 @@ WPUCompleteOverlappedRequest (
+@@ -1065,6 +1099,7 @@ WPUCompleteOverlappedRequest (
  );
  
  #if(_WIN32_WINNT >= 0x0501)
@@ -283,7 +281,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WPUOpenCurrentThread(
-@@ -1072,6 +1109,7 @@ WPUOpenCurrentThread(
+@@ -1072,6 +1107,7 @@ WPUOpenCurrentThread(
      _Out_ LPINT lpErrno
      );
  
@@ -291,7 +289,7 @@ index 1785a208..35e64773 100644
  int
  WSPAPI
  WPUCloseThread(
-@@ -1094,6 +1132,7 @@ WPUCloseThread(
+@@ -1094,6 +1130,7 @@ WPUCloseThread(
  #define LPFN_WSCENUMNAMESPACEPROVIDERS LPFN_WSAENUMNAMESPACEPROVIDERSW
  
  #if defined(_WIN64)
@@ -299,7 +297,7 @@ index 1785a208..35e64773 100644
  INT
  WSAAPI
  WSCEnumNameSpaceProviders32(
-@@ -1108,6 +1147,7 @@ WSCEnumNameSpaceProviders32(
+@@ -1108,6 +1145,7 @@ WSCEnumNameSpaceProviders32(
  #define LPFN_WSCENUMNAMESPACEPROVIDERSEX LPFN_WSAENUMNAMESPACEPROVIDERSEXW
  
  #if defined(_WIN64)
@@ -307,7 +305,7 @@ index 1785a208..35e64773 100644
  INT
  WSAAPI
  WSCEnumNameSpaceProvidersEx32(
-@@ -1117,6 +1157,7 @@ WSCEnumNameSpaceProvidersEx32(
+@@ -1117,6 +1155,7 @@ WSCEnumNameSpaceProvidersEx32(
  #endif //(_WIN64)
  #endif //(_WIN32_WINNT >= 0x0600)
  
@@ -315,7 +313,7 @@ index 1785a208..35e64773 100644
  INT
  WSPAPI
  WSCInstallNameSpace (
-@@ -1138,6 +1179,7 @@ INT
+@@ -1138,6 +1177,7 @@ INT
      );
  
  #if(defined(_WIN64) && (_WIN32_WINNT >= 0x0501))
@@ -323,7 +321,7 @@ index 1785a208..35e64773 100644
  INT
  WSPAPI
  WSCInstallNameSpace32 (
-@@ -1149,6 +1191,7 @@ WSCInstallNameSpace32 (
+@@ -1149,6 +1189,7 @@ WSCInstallNameSpace32 (
      );
  #endif //(defined(_WIN64) && (_WIN32_WINNT >= 0x0501))
  
@@ -331,7 +329,7 @@ index 1785a208..35e64773 100644
  INT
  WSPAPI
  WSCUnInstallNameSpace (
-@@ -1162,6 +1205,7 @@ INT
+@@ -1162,6 +1203,7 @@ INT
      );
  
  #if (_WIN32_WINNT >= 0x0600 )
@@ -339,7 +337,7 @@ index 1785a208..35e64773 100644
  INT
  WSPAPI
  WSCInstallNameSpaceEx(
-@@ -1175,6 +1219,7 @@ WSCInstallNameSpaceEx(
+@@ -1175,6 +1217,7 @@ WSCInstallNameSpaceEx(
  #endif //(defined(_WIN32_WINNT >= 0x0600)
  
  #if(defined(_WIN64) && (_WIN32_WINNT >= 0x0600))
@@ -347,7 +345,7 @@ index 1785a208..35e64773 100644
  INT
  WSPAPI
  WSCInstallNameSpaceEx32(
-@@ -1188,6 +1233,7 @@ WSCInstallNameSpaceEx32(
+@@ -1188,6 +1231,7 @@ WSCInstallNameSpaceEx32(
  #endif //(defined(_WIN64) && (_WIN32_WINNT >= 0x0600))
  
  #if(defined(_WIN64) && (_WIN32_WINNT >= 0x0501))
@@ -355,7 +353,7 @@ index 1785a208..35e64773 100644
  INT
  WSPAPI
  WSCUnInstallNameSpace32 (
-@@ -1195,6 +1241,7 @@ WSCUnInstallNameSpace32 (
+@@ -1195,6 +1239,7 @@ WSCUnInstallNameSpace32 (
      );
  #endif //(defined(_WIN64) && (_WIN32_WINNT >= 0x0501))
  
@@ -363,7 +361,7 @@ index 1785a208..35e64773 100644
  INT
  WSPAPI
  WSCEnableNSProvider (
-@@ -1210,6 +1257,7 @@ INT
+@@ -1210,6 +1255,7 @@ INT
      );
  
  #if(defined(_WIN64) && (_WIN32_WINNT >= 0x0501))
@@ -371,7 +369,7 @@ index 1785a208..35e64773 100644
  INT
  WSPAPI
  WSCEnableNSProvider32 (
-@@ -1221,6 +1269,7 @@ WSCEnableNSProvider32 (
+@@ -1221,6 +1267,7 @@ WSCEnableNSProvider32 (
  #if (_WIN32_WINNT >= 0x0600)
  
  #if defined(_WIN64)
@@ -379,7 +377,7 @@ index 1785a208..35e64773 100644
  int WSPAPI WSCInstallProviderAndChains64_32(
  #else
  int WSPAPI WSCInstallProviderAndChains(
-@@ -1359,6 +1408,7 @@ typedef struct _NSP_ROUTINE {
+@@ -1359,6 +1406,7 @@ typedef struct _NSP_ROUTINE {
   * Startup procedures.
   */
  
@@ -387,7 +385,7 @@ index 1785a208..35e64773 100644
  _Must_inspect_result_
  INT
  WSAAPI
-@@ -1450,13 +1500,19 @@ typedef const NSPV2_ROUTINE * PCNSPV2_ROUTINE, * LPCNSPV2_ROUTINE;
+@@ -1450,13 +1498,19 @@ typedef const NSPV2_ROUTINE * PCNSPV2_ROUTINE, * LPCNSPV2_ROUTINE;
  
  #if(_WIN32_WINNT >= 0x0600)
  

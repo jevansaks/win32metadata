@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mftransform.h b/generation/WinSDK/RecompiledIdlHeaders/um/mftransform.h
-index 422f6991..88d48cf8 100644
+index 422f6991..68f8a0c9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mftransform.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mftransform.h
-@@ -87,6 +87,9 @@ extern "C"{
+@@ -87,6 +87,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES) */
-@@ -253,6 +256,7 @@ EXTERN_C const IID IID_IMFTransform;
+@@ -253,6 +254,7 @@ EXTERN_C const IID IID_IMFTransform;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 422f6991..88d48cf8 100644
      MIDL_INTERFACE("bf94c121-5b05-4e6f-8000-ba598961414d")
      IMFTransform : public IUnknown
      {
-@@ -769,6 +773,7 @@ EXTERN_C const IID IID_IMFDeviceTransform;
+@@ -769,6 +771,7 @@ EXTERN_C const IID IID_IMFDeviceTransform;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 422f6991..88d48cf8 100644
      MIDL_INTERFACE("D818FBD8-FC46-42F2-87AC-1EA2D1F9BF32")
      IMFDeviceTransform : public IUnknown
      {
-@@ -1568,6 +1573,7 @@ EXTERN_C const IID IID_IMFDeviceTransformCallback;
+@@ -1568,6 +1571,7 @@ EXTERN_C const IID IID_IMFDeviceTransformCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 422f6991..88d48cf8 100644
      MIDL_INTERFACE("6D5CB646-29EC-41FB-8179-8C4C6D750811")
      IMFDeviceTransformCallback : public IUnknown
      {
-@@ -1713,6 +1719,7 @@ EXTERN_C const DECLSPEC_SELECTANY GUID MFT_ENUM_TRANSCODE_ONLY_ATTRIBUTE = { 0x1
+@@ -1713,6 +1717,7 @@ EXTERN_C const DECLSPEC_SELECTANY GUID MFT_ENUM_TRANSCODE_ONLY_ATTRIBUTE = { 0x1
  #pragma endregion
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Sfc.h b/generation/WinSDK/RecompiledIdlHeaders/um/Sfc.h
-index 8707a75a..5fc87b6f 100644
+index 8707a75a..9f196980 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Sfc.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Sfc.h
-@@ -24,6 +24,9 @@ Revision History:
+@@ -24,6 +24,7 @@ Revision History:
  #ifndef _SFC_
  #define _SFC_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -57,6 +60,8 @@ typedef struct _PROTECTED_FILE_DATA {
+@@ -57,6 +58,8 @@ typedef struct _PROTECTED_FILE_DATA {
  } PROTECTED_FILE_DATA, *PPROTECTED_FILE_DATA;
  
  
@@ -21,7 +19,7 @@ index 8707a75a..5fc87b6f 100644
  BOOL
  WINAPI
  SfcGetNextProtectedFile(
-@@ -64,6 +69,7 @@ SfcGetNextProtectedFile(
+@@ -64,6 +67,7 @@ SfcGetNextProtectedFile(
      IN PPROTECTED_FILE_DATA ProtFileData
      );
  
@@ -29,7 +27,7 @@ index 8707a75a..5fc87b6f 100644
  BOOL
  WINAPI
  SfcIsFileProtected(
-@@ -71,6 +77,7 @@ SfcIsFileProtected(
+@@ -71,6 +75,7 @@ SfcIsFileProtected(
      IN LPCWSTR ProtFileName
      );
  

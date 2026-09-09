@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusenums.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusenums.h
-index 38ad8a89..7181a767 100644
+index 38ad8a89..1ccb3395 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusenums.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusenums.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  #ifndef _GDIPLUSENUMS_H
  #define _GDIPLUSENUMS_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -530,6 +533,7 @@ enum ObjectType
+@@ -530,6 +531,7 @@ enum ObjectType
      ObjectTypeMin = ObjectTypeBrush
  };
  

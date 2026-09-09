@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TimeProv.h b/generation/WinSDK/RecompiledIdlHeaders/um/TimeProv.h
-index 1263e513..0f0292ca 100644
+index 1263e513..de5b6fec 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/TimeProv.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/TimeProv.h
-@@ -10,6 +10,9 @@
+@@ -10,6 +10,7 @@
  #ifndef TIMEPROV_H
  #define TIMEPROV_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -226,18 +229,21 @@ typedef void * TimeProvHandle;
+@@ -226,18 +227,21 @@ typedef void * TimeProvHandle;
  //--------------------------------------------------------------------
  // functions that a Time Provider must implement and export
  

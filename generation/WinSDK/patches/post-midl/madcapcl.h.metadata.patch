@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h b/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h
-index 0e710e25..a0dd47df 100644
+index 0e710e25..4474c189 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h
-@@ -7,6 +7,9 @@ extern "C" {
+@@ -7,6 +7,7 @@ extern "C" {
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #include <time.h>
  
  #if _MSC_VER > 1000
-@@ -205,24 +208,28 @@ Members:
+@@ -205,24 +206,28 @@ Members:
  
  --*/
  
@@ -41,7 +39,7 @@ index 0e710e25..a0dd47df 100644
  DWORD
  APIENTRY
  McastEnumerateScopes(
-@@ -233,6 +240,7 @@ McastEnumerateScopes(
+@@ -233,6 +238,7 @@ McastEnumerateScopes(
      OUT    PDWORD               pScopeCount
      );
  
@@ -49,7 +47,7 @@ index 0e710e25..a0dd47df 100644
  DWORD
  APIENTRY
  McastRequestAddress(
-@@ -243,6 +251,7 @@ McastRequestAddress(
+@@ -243,6 +249,7 @@ McastRequestAddress(
      IN OUT PMCAST_LEASE_RESPONSE    pAddrResponse
      );
  
@@ -57,7 +55,7 @@ index 0e710e25..a0dd47df 100644
  DWORD
  APIENTRY
  McastRenewAddress(
-@@ -252,6 +261,7 @@ McastRenewAddress(
+@@ -252,6 +259,7 @@ McastRenewAddress(
      IN OUT PMCAST_LEASE_RESPONSE    pRenewResponse
      );
  

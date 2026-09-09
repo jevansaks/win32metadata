@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wow64apiset.h b/generation/WinSDK/RecompiledIdlHeaders/um/wow64apiset.h
-index 2c10f964..a841aaa1 100644
+index 2c10f964..b197090f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wow64apiset.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wow64apiset.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  
  #include <apiset.h>
  #include <apisetcconv.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #include <minwindef.h>
  #include <minwinbase.h>
  
-@@ -29,6 +32,7 @@ extern "C" {
+@@ -29,6 +30,7 @@ extern "C" {
  #if !defined(RC_INVOKED)
  #if _WIN32_WINNT >= 0x0501 || defined(WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY)
  
@@ -20,7 +18,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  BOOLEAN
  WINAPI
-@@ -36,6 +40,8 @@ Wow64EnableWow64FsRedirection(
+@@ -36,6 +38,8 @@ Wow64EnableWow64FsRedirection(
      _In_ BOOLEAN Wow64FsEnableRedirection
      );
  
@@ -29,7 +27,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -43,6 +49,8 @@ Wow64DisableWow64FsRedirection(
+@@ -43,6 +47,8 @@ Wow64DisableWow64FsRedirection(
      _Out_ PVOID* OldValue
      );
  
@@ -38,7 +36,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -61,6 +69,8 @@ Wow64RevertWow64FsRedirection(
+@@ -61,6 +67,8 @@ Wow64RevertWow64FsRedirection(
  
  #if (_WIN32_WINNT >= 0x0501)
  
@@ -47,7 +45,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -81,6 +91,8 @@ IsWow64Process(
+@@ -81,6 +89,8 @@ IsWow64Process(
  #if !defined(RC_INVOKED)
  #if _WIN32_WINNT >= 0x0501 || defined(WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY)
  
@@ -56,7 +54,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  _Must_inspect_result_
  _Success_(return != 0 && return < uSize)
-@@ -91,6 +103,8 @@ GetSystemWow64DirectoryA(
+@@ -91,6 +101,8 @@ GetSystemWow64DirectoryA(
      _In_ UINT uSize
      );
  
@@ -65,7 +63,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  _Must_inspect_result_
  _Success_(return != 0 && return < uSize)
-@@ -129,6 +143,8 @@ Wow64SetThreadDefaultGuestMachine(
+@@ -129,6 +141,8 @@ Wow64SetThreadDefaultGuestMachine(
  
  #if (_WIN32_WINNT >= 0x0A00)
  
@@ -74,7 +72,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -148,6 +164,8 @@ IsWow64Process2(
+@@ -148,6 +162,8 @@ IsWow64Process2(
  
  #if (_WIN32_WINNT >= 0x0A00)
  
@@ -83,7 +81,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  _Must_inspect_result_
  _Success_(return != 0 && return < uSize)
-@@ -159,6 +177,8 @@ GetSystemWow64Directory2A(
+@@ -159,6 +175,8 @@ GetSystemWow64Directory2A(
      _In_ WORD ImageFileMachineType
      );
  
@@ -92,7 +90,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  _Must_inspect_result_
  _Success_(return != 0 && return < uSize)
-@@ -180,6 +200,8 @@ GetSystemWow64Directory2W(
+@@ -180,6 +198,8 @@ GetSystemWow64Directory2W(
  
  #if (_WIN32_WINNT >= 0x0A00)
  
@@ -101,7 +99,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  _Must_inspect_result_
  HRESULT
-@@ -193,6 +215,8 @@ IsWow64GuestMachineSupported(
+@@ -193,6 +213,8 @@ IsWow64GuestMachineSupported(
  
  #if (_WIN32_WINNT >= 0x0600)
  
@@ -110,7 +108,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -201,6 +225,8 @@ Wow64GetThreadContext(
+@@ -201,6 +223,8 @@ Wow64GetThreadContext(
      _Inout_ PWOW64_CONTEXT lpContext
      );
  
@@ -119,7 +117,7 @@ index 2c10f964..a841aaa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -209,6 +235,8 @@ Wow64SetThreadContext(
+@@ -209,6 +233,8 @@ Wow64SetThreadContext(
      _In_ CONST WOW64_CONTEXT* lpContext
      );
  

@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winefs.h b/generation/WinSDK/RecompiledIdlHeaders/um/winefs.h
-index 30e1a95a..9009cbc5 100644
+index 30e1a95a..3710dcb1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winefs.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winefs.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  //+---------------------------------------------------------------------------
  //
  //  Microsoft Windows
-@@ -318,6 +321,7 @@ typedef struct _ENCRYPTION_PROTECTOR_LIST {
+@@ -318,6 +319,7 @@ typedef struct _ENCRYPTION_PROTECTOR_LIST {
  //----------------------------------------------------------------------------------/
  
  
@@ -18,7 +16,7 @@ index 30e1a95a..9009cbc5 100644
  WINADVAPI
  DWORD
  WINAPI
-@@ -327,6 +331,7 @@ QueryUsersOnEncryptedFile(
+@@ -327,6 +329,7 @@ QueryUsersOnEncryptedFile(
      );
  
  
@@ -26,7 +24,7 @@ index 30e1a95a..9009cbc5 100644
  WINADVAPI
  DWORD
  WINAPI
-@@ -336,6 +341,7 @@ QueryRecoveryAgentsOnEncryptedFile(
+@@ -336,6 +339,7 @@ QueryRecoveryAgentsOnEncryptedFile(
      );
  
  
@@ -34,7 +32,7 @@ index 30e1a95a..9009cbc5 100644
  WINADVAPI
  DWORD
  WINAPI
-@@ -344,6 +350,7 @@ RemoveUsersFromEncryptedFile(
+@@ -344,6 +348,7 @@ RemoveUsersFromEncryptedFile(
      _In_    PENCRYPTION_CERTIFICATE_HASH_LIST   pHashes
      );
  
@@ -42,7 +40,7 @@ index 30e1a95a..9009cbc5 100644
  WINADVAPI
  DWORD
  WINAPI
-@@ -358,6 +365,7 @@ AddUsersToEncryptedFile(
+@@ -358,6 +363,7 @@ AddUsersToEncryptedFile(
  
  #if (NTDDI_VERSION >= NTDDI_VISTA)
  
@@ -50,7 +48,7 @@ index 30e1a95a..9009cbc5 100644
  WINADVAPI
  DWORD
  WINAPI
-@@ -367,6 +375,7 @@ SetUserFileEncryptionKey(
+@@ -367,6 +373,7 @@ SetUserFileEncryptionKey(
  
  #else
  
@@ -58,7 +56,7 @@ index 30e1a95a..9009cbc5 100644
  WINADVAPI
  DWORD
  WINAPI
-@@ -391,6 +400,7 @@ SetUserFileEncryptionKeyEx(
+@@ -391,6 +398,7 @@ SetUserFileEncryptionKeyEx(
  
  #endif // #if (NTDDI_VERSION >= NTDDI_VISTA) 
  
@@ -66,7 +64,7 @@ index 30e1a95a..9009cbc5 100644
  WINADVAPI
  VOID
  WINAPI
-@@ -398,6 +408,8 @@ FreeEncryptionCertificateHashList(
+@@ -398,6 +406,8 @@ FreeEncryptionCertificateHashList(
      _In_    PENCRYPTION_CERTIFICATE_HASH_LIST       pUsers
      );
  
@@ -75,7 +73,7 @@ index 30e1a95a..9009cbc5 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -412,6 +424,7 @@ EncryptionDisable(
+@@ -412,6 +422,7 @@ EncryptionDisable(
  // in WS03 to use a CONST SECURITY_ATTRIBUTES structure
  #if (NTDDI_VERSION >= NTDDI_WS03)
  
@@ -83,7 +81,7 @@ index 30e1a95a..9009cbc5 100644
  WINADVAPI
  DWORD
  WINAPI
-@@ -427,6 +440,7 @@ DuplicateEncryptionInfoFile(
+@@ -427,6 +438,7 @@ DuplicateEncryptionInfoFile(
  #elif (NTDDI_VERSION >= NTDDI_WINXP)
  
  

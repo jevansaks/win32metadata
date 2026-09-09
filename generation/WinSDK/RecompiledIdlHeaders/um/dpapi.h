@@ -11,9 +11,7 @@
 
 #ifndef __DPAPI_H__
 #define __DPAPI_H__
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if (_MSC_VER > 1020)
 #pragma once

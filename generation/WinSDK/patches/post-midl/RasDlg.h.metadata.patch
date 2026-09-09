@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RasDlg.h b/generation/WinSDK/RecompiledIdlHeaders/um/RasDlg.h
-index 571416aa..b8e8d7bb 100644
+index 571416aa..0e4194d4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RasDlg.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RasDlg.h
-@@ -24,6 +24,9 @@ Abstract:
+@@ -24,6 +24,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -249,22 +252,28 @@ typedef BOOL (WINAPI *RasCustomEntryDlgFn) (
+@@ -249,22 +250,28 @@ typedef BOOL (WINAPI *RasCustomEntryDlgFn) (
  
  /* RAS common dialog API prototypes.
  */

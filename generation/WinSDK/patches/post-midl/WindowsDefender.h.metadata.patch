@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsDefender.h b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsDefender.h
-index 1f1019bb..5c282453 100644
+index 1f1019bb..ae5f0c02 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsDefender.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsDefender.h
-@@ -16,6 +16,9 @@
+@@ -16,6 +16,7 @@
  #pragma once
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -41,6 +44,7 @@ extern "C" {
+@@ -41,6 +42,7 @@ extern "C" {
  //
  --*/
  
@@ -20,7 +18,7 @@ index 1f1019bb..5c282453 100644
  HRESULT WINAPI
  WDStatus(
      _Out_ BOOL* pfEnabled);
-@@ -74,6 +78,7 @@ WDStatus(
+@@ -74,6 +76,7 @@ WDStatus(
  //
  --*/
  

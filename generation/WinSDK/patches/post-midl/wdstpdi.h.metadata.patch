@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wdstpdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wdstpdi.h
-index a8690521..7beb9649 100644
+index a8690521..1d4d492c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wdstpdi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wdstpdi.h
-@@ -20,6 +20,9 @@ Environment:
+@@ -20,6 +20,7 @@ Environment:
  #ifndef _WDSTPDI_H
  #define _WDSTPDI_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -114,6 +117,7 @@ typedef struct _WDS_TRANSPORTPROVIDER_SETTINGS
+@@ -114,6 +115,7 @@ typedef struct _WDS_TRANSPORTPROVIDER_SETTINGS
  
  //---Functions the provider must implement (required callbacks)---
  
@@ -20,7 +18,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSTRANSPORTPROVIDERAPI
  WdsTransportProviderInitialize(
-@@ -122,13 +126,16 @@ WdsTransportProviderInitialize(
+@@ -122,13 +124,16 @@ WdsTransportProviderInitialize(
      _In_ ULONG ulLength
  );
  
@@ -37,7 +35,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSTRANSPORTPROVIDERAPI
  WdsTransportProviderCompareContent(
-@@ -138,14 +145,17 @@ WdsTransportProviderCompareContent(
+@@ -138,14 +143,17 @@ WdsTransportProviderCompareContent(
      _Out_ PBOOL pbContentMatches
  );
  
@@ -55,7 +53,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSTRANSPORTPROVIDERAPI
  WdsTransportProviderGetContentMetadata(
-@@ -154,6 +164,7 @@ WdsTransportProviderGetContentMetadata(
+@@ -154,6 +162,7 @@ WdsTransportProviderGetContentMetadata(
      _Out_ PULONG pulLength
  );
  
@@ -63,7 +61,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSTRANSPORTPROVIDERAPI
  WdsTransportProviderUserAccessCheck(
-@@ -162,6 +173,7 @@ WdsTransportProviderUserAccessCheck(
+@@ -162,6 +171,7 @@ WdsTransportProviderUserAccessCheck(
      _Out_ PBOOL pbAccessAllowed
  );
  
@@ -71,7 +69,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSTRANSPORTPROVIDERAPI
  WdsTransportProviderGetContentSize(
-@@ -169,6 +181,7 @@ WdsTransportProviderGetContentSize(
+@@ -169,6 +179,7 @@ WdsTransportProviderGetContentSize(
      _Out_ PULARGE_INTEGER pContentSize
  );
  
@@ -79,7 +77,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSTRANSPORTPROVIDERAPI
  WdsTransportProviderReadContent(
-@@ -179,18 +192,21 @@ WdsTransportProviderReadContent(
+@@ -179,18 +190,21 @@ WdsTransportProviderReadContent(
      _In_ PVOID pvUserData
  );
  
@@ -101,7 +99,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSTRANSPORTPROVIDERAPI
  WdsTransportProviderShutdown(
-@@ -198,11 +214,13 @@ WdsTransportProviderShutdown(
+@@ -198,11 +212,13 @@ WdsTransportProviderShutdown(
  
  //---Functions the provider may implement (optional callbacks)-------
  
@@ -115,7 +113,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSTRANSPORTPROVIDERAPI
  WdsTransportProviderRefreshSettings(
-@@ -210,6 +228,7 @@ WdsTransportProviderRefreshSettings(
+@@ -210,6 +226,7 @@ WdsTransportProviderRefreshSettings(
  
  //---Functions provided by the multicast server----------------------
  
@@ -123,7 +121,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSMCSAPI
  WdsTransportServerRegisterCallback(
-@@ -218,6 +237,7 @@ WdsTransportServerRegisterCallback(
+@@ -218,6 +235,7 @@ WdsTransportServerRegisterCallback(
      _In_ PVOID pfnCallback
  );
  
@@ -131,7 +129,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSMCSAPI
  WdsTransportServerCompleteRead(
-@@ -227,6 +247,7 @@ WdsTransportServerCompleteRead(
+@@ -227,6 +245,7 @@ WdsTransportServerCompleteRead(
      _In_ HRESULT hReadResult
  );
  
@@ -139,7 +137,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSMCSAPI
  WdsTransportServerTrace(
-@@ -236,6 +257,7 @@ WdsTransportServerTrace(
+@@ -236,6 +255,7 @@ WdsTransportServerTrace(
      ...
  );
  
@@ -147,7 +145,7 @@ index a8690521..7beb9649 100644
  HRESULT
  WDSMCSAPI
  WdsTransportServerTraceV(
-@@ -245,6 +267,7 @@ WdsTransportServerTraceV(
+@@ -245,6 +265,7 @@ WdsTransportServerTraceV(
      _In_ va_list Params
  );
  
@@ -155,7 +153,7 @@ index a8690521..7beb9649 100644
  PVOID
  WDSMCSAPI
  WdsTransportServerAllocateBuffer(
-@@ -252,6 +275,7 @@ WdsTransportServerAllocateBuffer(
+@@ -252,6 +273,7 @@ WdsTransportServerAllocateBuffer(
      _In_ ULONG ulBufferSize
  );
  

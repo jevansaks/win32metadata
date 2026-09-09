@@ -1,18 +1,40 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h b/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h
-index e9da7395..0e646ec4 100644
+index e9da7395..0bc1e2a4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h
-@@ -162,6 +162,9 @@ DEFINE_GUID(IID_IRSOPInformation, 0x9a5a81b5, 0xd9c7, 0x49ef, 0x9d, 0x11, 0xdd,
+@@ -162,6 +162,7 @@ DEFINE_GUID(IID_IRSOPInformation, 0x9a5a81b5, 0xd9c7, 0x49ef, 0x9d, 0x11, 0xdd,
  #ifndef _GPEDIT_H_
  #define _GPEDIT_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -706,6 +709,7 @@ typedef IRSOPInformation *LPRSOPINFORMATION;
+@@ -228,6 +229,7 @@ typedef enum _GROUP_POLICY_HINT_TYPE {
+ 
+ #undef INTERFACE
+ #define INTERFACE   IGPEInformation
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DECLARE_INTERFACE_(IGPEInformation, IUnknown)
+ {
+     // *** IUnknown methods ***
+@@ -384,6 +386,7 @@ typedef IGPEInformation *LPGPEINFORMATION;
+ 
+ #undef INTERFACE
+ #define INTERFACE   IGroupPolicyObject
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DECLARE_INTERFACE_(IGroupPolicyObject, IUnknown)
+ {
+     // *** IUnknown methods ***
+@@ -644,6 +647,7 @@ typedef IGroupPolicyObject *LPGROUPPOLICYOBJECT;
+ 
+ #undef INTERFACE
+ #define INTERFACE   IRSOPInformation
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DECLARE_INTERFACE_(IRSOPInformation, IUnknown)
+ {
+     // *** IUnknown methods ***
+@@ -706,6 +710,7 @@ typedef IRSOPInformation *LPRSOPINFORMATION;
  //
  //=============================================================================
  
@@ -20,7 +42,7 @@ index e9da7395..0e646ec4 100644
  GPEDITAPI
  HRESULT
  WINAPI
-@@ -728,6 +732,7 @@ CreateGPOLink(
+@@ -728,6 +733,7 @@ CreateGPOLink(
  //
  //=============================================================================
  
@@ -28,7 +50,7 @@ index e9da7395..0e646ec4 100644
  GPEDITAPI
  HRESULT
  WINAPI
-@@ -748,6 +753,7 @@ DeleteGPOLink(
+@@ -748,6 +754,7 @@ DeleteGPOLink(
  //
  //=============================================================================
  
@@ -36,7 +58,7 @@ index e9da7395..0e646ec4 100644
  GPEDITAPI
  HRESULT
  WINAPI
-@@ -796,6 +802,7 @@ typedef struct tag_GPOBROWSEINFO
+@@ -796,6 +803,7 @@ typedef struct tag_GPOBROWSEINFO
  } GPOBROWSEINFO, *LPGPOBROWSEINFO;
  
  
@@ -44,7 +66,7 @@ index e9da7395..0e646ec4 100644
  GPEDITAPI
  HRESULT
  WINAPI
-@@ -819,6 +826,7 @@ BrowseForGPO(
+@@ -819,6 +827,7 @@ BrowseForGPO(
  //
  //=============================================================================
  
@@ -52,7 +74,7 @@ index e9da7395..0e646ec4 100644
  GPEDITAPI
  HRESULT
  WINAPI
-@@ -844,6 +852,7 @@ ImportRSoPData(
+@@ -844,6 +853,7 @@ ImportRSoPData(
  //
  //=============================================================================
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RrasCfg.h b/generation/WinSDK/RecompiledIdlHeaders/um/RrasCfg.h
-index 46f6fdab..3bfba724 100644
+index 46f6fdab..41fa494d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RrasCfg.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RrasCfg.h
-@@ -114,6 +114,9 @@ extern "C"{
+@@ -114,6 +114,7 @@ extern "C"{
  //=--------------------------------------------------------------------------=
   
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef BYTE *PBYTE;
-@@ -719,6 +722,7 @@ EXTERN_C const IID IID_IEAPProviderConfig;
+@@ -719,6 +720,7 @@ EXTERN_C const IID IID_IEAPProviderConfig;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

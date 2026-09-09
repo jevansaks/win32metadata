@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SearchAPI.h b/generation/WinSDK/RecompiledIdlHeaders/um/SearchAPI.h
-index bc1c0c89..4729170c 100644
+index bc1c0c89..5dcdf26b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/SearchAPI.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/SearchAPI.h
-@@ -380,6 +380,9 @@ extern "C"{
+@@ -380,6 +380,7 @@ extern "C"{
  //
  //-----------------------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef LONG ITEMID;
-@@ -403,6 +406,7 @@ EXTERN_C const IID IID_IUrlAccessor;
+@@ -403,6 +404,7 @@ EXTERN_C const IID IID_IUrlAccessor;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("0b63e318-9ccc-11d0-bcdb-00805fccce04")
      IUrlAccessor : public IUnknown
      {
-@@ -686,6 +690,7 @@ EXTERN_C const IID IID_IUrlAccessor2;
+@@ -686,6 +688,7 @@ EXTERN_C const IID IID_IUrlAccessor2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("c7310734-ac80-11d1-8df3-00c04fb6ef4f")
      IUrlAccessor2 : public IUrlAccessor
      {
-@@ -949,6 +954,7 @@ EXTERN_C const IID IID_IUrlAccessor3;
+@@ -949,6 +952,7 @@ EXTERN_C const IID IID_IUrlAccessor3;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("6FBC7005-0455-4874-B8FF-7439450241A3")
      IUrlAccessor3 : public IUrlAccessor2
      {
-@@ -1216,6 +1222,7 @@ EXTERN_C const IID IID_IUrlAccessor4;
+@@ -1216,6 +1220,7 @@ EXTERN_C const IID IID_IUrlAccessor4;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("5CC51041-C8D2-41d7-BCA3-9E9E286297DC")
      IUrlAccessor4 : public IUrlAccessor3
      {
-@@ -1520,6 +1527,7 @@ EXTERN_C const IID IID_IOpLockStatus;
+@@ -1520,6 +1525,7 @@ EXTERN_C const IID IID_IOpLockStatus;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("c731065d-ac80-11d1-8df3-00c04fb6ef4f")
      IOpLockStatus : public IUnknown
      {
-@@ -1633,6 +1641,7 @@ EXTERN_C const IID IID_ISearchProtocolThreadContext;
+@@ -1633,6 +1639,7 @@ EXTERN_C const IID IID_ISearchProtocolThreadContext;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("c73106e1-ac80-11d1-8df3-00c04fb6ef4f")
      ISearchProtocolThreadContext : public IUnknown
      {
-@@ -1813,6 +1822,7 @@ EXTERN_C const IID IID_ISearchProtocol;
+@@ -1813,6 +1820,7 @@ EXTERN_C const IID IID_ISearchProtocol;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("c73106ba-ac80-11d1-8df3-00c04fb6ef4f")
      ISearchProtocol : public IUnknown
      {
-@@ -1959,6 +1969,7 @@ EXTERN_C const IID IID_ISearchProtocol2;
+@@ -1959,6 +1967,7 @@ EXTERN_C const IID IID_ISearchProtocol2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("7789F0B2-B5B2-4722-8B65-5DBD150697A9")
      ISearchProtocol2 : public ISearchProtocol
      {
-@@ -2113,6 +2124,7 @@ EXTERN_C const IID IID_IProtocolHandlerSite;
+@@ -2113,6 +2122,7 @@ EXTERN_C const IID IID_IProtocolHandlerSite;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("0b63e385-9ccc-11d0-bcdb-00805fccce04")
      IProtocolHandlerSite : public IUnknown
      {
-@@ -2227,6 +2239,7 @@ EXTERN_C const IID IID_ISearchRoot;
+@@ -2227,6 +2237,7 @@ EXTERN_C const IID IID_ISearchRoot;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("04C18CCF-1F57-4CBD-88CC-3900F5195CE3")
      ISearchRoot : public IUnknown
      {
-@@ -2587,6 +2600,7 @@ EXTERN_C const IID IID_IEnumSearchRoots;
+@@ -2587,6 +2598,7 @@ EXTERN_C const IID IID_IEnumSearchRoots;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("AB310581-AC80-11D1-8DF3-00C04FB6EF52")
      IEnumSearchRoots : public IUnknown
      {
-@@ -2732,6 +2746,7 @@ EXTERN_C const IID IID_ISearchScopeRule;
+@@ -2732,6 +2744,7 @@ EXTERN_C const IID IID_ISearchScopeRule;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("AB310581-AC80-11D1-8DF3-00C04FB6EF53")
      ISearchScopeRule : public IUnknown
      {
-@@ -2858,6 +2873,7 @@ EXTERN_C const IID IID_IEnumSearchScopeRules;
+@@ -2858,6 +2871,7 @@ EXTERN_C const IID IID_IEnumSearchScopeRules;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("AB310581-AC80-11D1-8DF3-00C04FB6EF54")
      IEnumSearchScopeRules : public IUnknown
      {
-@@ -3005,6 +3021,7 @@ EXTERN_C const IID IID_ISearchCrawlScopeManager;
+@@ -3005,6 +3019,7 @@ EXTERN_C const IID IID_ISearchCrawlScopeManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("AB310581-AC80-11D1-8DF3-00C04FB6EF55")
      ISearchCrawlScopeManager : public IUnknown
      {
-@@ -3335,6 +3352,7 @@ EXTERN_C const IID IID_ISearchCrawlScopeManager2;
+@@ -3335,6 +3350,7 @@ EXTERN_C const IID IID_ISearchCrawlScopeManager2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("6292F7AD-4E19-4717-A534-8FC22BCD5CCD")
      ISearchCrawlScopeManager2 : public ISearchCrawlScopeManager
      {
-@@ -3649,6 +3667,7 @@ EXTERN_C const IID IID_ISearchItemsChangedSink;
+@@ -3649,6 +3665,7 @@ EXTERN_C const IID IID_ISearchItemsChangedSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("AB310581-AC80-11D1-8DF3-00C04FB6EF58")
      ISearchItemsChangedSink : public IUnknown
      {
-@@ -3782,6 +3801,7 @@ EXTERN_C const IID IID_ISearchPersistentItemsChangedSink;
+@@ -3782,6 +3799,7 @@ EXTERN_C const IID IID_ISearchPersistentItemsChangedSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("A2FFDF9B-4758-4F84-B729-DF81A1A0612F")
      ISearchPersistentItemsChangedSink : public IUnknown
      {
-@@ -3903,6 +3923,7 @@ EXTERN_C const IID IID_ISearchViewChangedSink;
+@@ -3903,6 +3921,7 @@ EXTERN_C const IID IID_ISearchViewChangedSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("AB310581-AC80-11D1-8DF3-00C04FB6EF65")
      ISearchViewChangedSink : public IUnknown
      {
-@@ -4025,6 +4046,7 @@ EXTERN_C const IID IID_ISearchNotifyInlineSite;
+@@ -4025,6 +4044,7 @@ EXTERN_C const IID IID_ISearchNotifyInlineSite;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("B5702E61-E75C-4B64-82A1-6CB4F832FCCF")
      ISearchNotifyInlineSite : public IUnknown
      {
-@@ -4183,6 +4205,7 @@ EXTERN_C const IID IID_ISearchCatalogManager;
+@@ -4183,6 +4203,7 @@ EXTERN_C const IID IID_ISearchCatalogManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -172,7 +170,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("AB310581-AC80-11D1-8DF3-00C04FB6EF50")
      ISearchCatalogManager : public IUnknown
      {
-@@ -4659,6 +4682,7 @@ EXTERN_C const IID IID_ISearchCatalogManager2;
+@@ -4659,6 +4680,7 @@ EXTERN_C const IID IID_ISearchCatalogManager2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -180,7 +178,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("7AC3286D-4D1D-4817-84FC-C1C85E3AF0D9")
      ISearchCatalogManager2 : public ISearchCatalogManager
      {
-@@ -5402,6 +5426,7 @@ EXTERN_C const IID IID_ISearchQueryHelper;
+@@ -5402,6 +5424,7 @@ EXTERN_C const IID IID_ISearchQueryHelper;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -188,7 +186,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("AB310581-AC80-11D1-8DF3-00C04FB6EF63")
      ISearchQueryHelper : public IUnknown
      {
-@@ -5786,6 +5811,7 @@ EXTERN_C const IID IID_IRowsetPrioritization;
+@@ -5786,6 +5809,7 @@ EXTERN_C const IID IID_IRowsetPrioritization;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -196,7 +194,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("42811652-079D-481B-87A2-09A69ECC5F44")
      IRowsetPrioritization : public IUnknown
      {
-@@ -5939,6 +5965,7 @@ EXTERN_C const IID IID_IRowsetEvents;
+@@ -5939,6 +5963,7 @@ EXTERN_C const IID IID_IRowsetEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -204,7 +202,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("1551AEA5-5D66-4B11-86F5-D5634CB211B9")
      IRowsetEvents : public IUnknown
      {
-@@ -6098,6 +6125,7 @@ EXTERN_C const IID IID_ISearchManager;
+@@ -6098,6 +6123,7 @@ EXTERN_C const IID IID_ISearchManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -212,7 +210,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("AB310581-AC80-11D1-8DF3-00C04FB6EF69")
      ISearchManager : public IUnknown
      {
-@@ -6373,6 +6401,7 @@ EXTERN_C const IID IID_ISearchManager2;
+@@ -6373,6 +6399,7 @@ EXTERN_C const IID IID_ISearchManager2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -220,7 +218,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("DBAB3F73-DB19-4A79-BFC0-A61A93886DDF")
      ISearchManager2 : public ISearchManager
      {
-@@ -6629,6 +6658,7 @@ EXTERN_C const IID IID_ISearchLanguageSupport;
+@@ -6629,6 +6656,7 @@ EXTERN_C const IID IID_ISearchLanguageSupport;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -228,7 +226,7 @@ index bc1c0c89..4729170c 100644
      MIDL_INTERFACE("24C3CBAA-EBC1-491a-9EF1-9F6D8DEB1B8F")
      ISearchLanguageSupport : public IUnknown
      {
-@@ -6880,14 +6910,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -6880,14 +6908,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

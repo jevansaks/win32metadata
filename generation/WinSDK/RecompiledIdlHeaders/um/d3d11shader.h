@@ -7,9 +7,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef __D3D11SHADER_H__
 #define __D3D11SHADER_H__

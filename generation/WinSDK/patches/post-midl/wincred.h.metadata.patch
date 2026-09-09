@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincred.h b/generation/WinSDK/RecompiledIdlHeaders/um/wincred.h
-index c1a091cc..62e8122b 100644
+index c1a091cc..e3d20b64 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wincred.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wincred.h
-@@ -22,6 +22,9 @@ Revision History:
+@@ -22,6 +22,7 @@ Revision History:
  #ifndef _WINCRED_H_
  #define _WINCRED_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -436,6 +439,57 @@ typedef PCREDENTIAL_ATTRIBUTEA PCREDENTIAL_ATTRIBUTE;
+@@ -436,6 +437,57 @@ typedef PCREDENTIAL_ATTRIBUTEA PCREDENTIAL_ATTRIBUTE;
  
  #define CRED_FLAGS_VALID_INPUT_FLAGS    0xF09F
  
@@ -70,7 +68,7 @@ index c1a091cc..62e8122b 100644
  //
  // Values of the Credential Type field.
  //
-@@ -448,6 +502,48 @@ typedef PCREDENTIAL_ATTRIBUTEA PCREDENTIAL_ATTRIBUTE;
+@@ -448,6 +500,48 @@ typedef PCREDENTIAL_ATTRIBUTEA PCREDENTIAL_ATTRIBUTE;
  #define CRED_TYPE_MAXIMUM               7       // Maximum supported cred type
  #define CRED_TYPE_MAXIMUM_EX  (CRED_TYPE_MAXIMUM+1000)  // Allow new applications to run on old OSes
  
@@ -119,7 +117,7 @@ index c1a091cc..62e8122b 100644
  //
  // Maximum size of the CredBlob field (in bytes)
  //
-@@ -462,20 +558,46 @@ typedef PCREDENTIAL_ATTRIBUTEA PCREDENTIAL_ATTRIBUTE;
+@@ -462,20 +556,46 @@ typedef PCREDENTIAL_ATTRIBUTEA PCREDENTIAL_ATTRIBUTE;
  #define CRED_PERSIST_LOCAL_MACHINE      2
  #define CRED_PERSIST_ENTERPRISE         3
  
@@ -169,7 +167,7 @@ index c1a091cc..62e8122b 100644
      DWORD AttributeCount;
      PCREDENTIAL_ATTRIBUTEA Attributes;
      LPSTR TargetAlias;
-@@ -483,8 +605,8 @@ typedef struct _CREDENTIALA {
+@@ -483,8 +603,8 @@ typedef struct _CREDENTIALA {
  } CREDENTIALA, *PCREDENTIALA;
  
  typedef struct _CREDENTIALW {
@@ -180,7 +178,7 @@ index c1a091cc..62e8122b 100644
  #ifdef MIDL_PASS
      [string,max_is(CRED_MAX_GENERIC_TARGET_NAME_LENGTH-1)] wchar_t *TargetName;
  #else // MIDL_PASS
-@@ -504,7 +626,7 @@ typedef struct _CREDENTIALW {
+@@ -504,7 +624,7 @@ typedef struct _CREDENTIALW {
      [size_is(CredentialBlobSize)]
  #endif // MIDL_PASS
      LPBYTE CredentialBlob;
@@ -189,7 +187,7 @@ index c1a091cc..62e8122b 100644
  #ifdef MIDL_PASS
      [range(0,CRED_MAX_ATTRIBUTES)]
  #endif // MIDL_PASS
-@@ -666,6 +788,33 @@ typedef enum _CRED_PROTECTION_TYPE {
+@@ -666,6 +786,33 @@ typedef enum _CRED_PROTECTION_TYPE {
  #define CRED_PACK_GENERIC_CREDENTIALS        0x4
  #define CRED_PACK_ID_PROVIDER_CREDENTIALS    0x8
  
@@ -223,7 +221,7 @@ index c1a091cc..62e8122b 100644
  //
  // Credential UI info
  //
-@@ -774,6 +923,85 @@ typedef PCREDUI_INFOA PCREDUI_INFO;
+@@ -774,6 +921,85 @@ typedef PCREDUI_INFOA PCREDUI_INFO;
          CREDUI_FLAGS_KEEP_USERNAME )
  
  
@@ -309,7 +307,7 @@ index c1a091cc..62e8122b 100644
  //
  // Flags for CredUIPromptForWindowsCredentials and CPUS_CREDUI Usage Scenarios
  //
-@@ -840,6 +1068,60 @@ typedef PCREDUI_INFOA PCREDUI_INFO;
+@@ -840,6 +1066,60 @@ typedef PCREDUI_INFOA PCREDUI_INFO;
  
  #endif
  
@@ -370,7 +368,7 @@ index c1a091cc..62e8122b 100644
  // AuthPackageId in case of Back Button on Picker Screeen
  // CAD----- : Credui Authpackage iD's
  #define BACK_BUTTON_IDENTIFY_AUTH_PACKAGE  0xCAD00001
-@@ -858,6 +1140,8 @@ typedef PCREDUI_INFOA PCREDUI_INFO;
+@@ -858,6 +1138,8 @@ typedef PCREDUI_INFOA PCREDUI_INFO;
  
  #define CRED_PRESERVE_CREDENTIAL_BLOB 0x1
  
@@ -379,7 +377,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -866,6 +1150,8 @@ CredWriteW (
+@@ -866,6 +1148,8 @@ CredWriteW (
      _In_ DWORD Flags
      );
  
@@ -388,7 +386,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -881,22 +1167,26 @@ CredWriteA (
+@@ -881,22 +1165,26 @@ CredWriteA (
  #endif // UNICODE
  
  
@@ -417,7 +415,7 @@ index c1a091cc..62e8122b 100644
      _Reserved_ DWORD Flags,
      _Out_ PCREDENTIALA *Credential
      );
-@@ -914,22 +1204,41 @@ CredReadA (
+@@ -914,22 +1202,41 @@ CredReadA (
  
  #define CRED_ENUMERATE_ALL_CREDENTIALS 0x1
  
@@ -461,7 +459,7 @@ index c1a091cc..62e8122b 100644
      _Out_ DWORD *Count,
      _Outptr_result_buffer_(*Count) PCREDENTIALA **Credential
      );
-@@ -941,6 +1250,8 @@ CredEnumerateA (
+@@ -941,6 +1248,8 @@ CredEnumerateA (
  #endif // UNICODE
  
  
@@ -470,7 +468,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -950,6 +1261,8 @@ CredWriteDomainCredentialsW (
+@@ -950,6 +1259,8 @@ CredWriteDomainCredentialsW (
      _In_ DWORD Flags
      );
  
@@ -479,7 +477,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -974,6 +1287,8 @@ CredWriteDomainCredentialsA (
+@@ -974,6 +1285,8 @@ CredWriteDomainCredentialsA (
  #define CRED_CACHE_TARGET_INFORMATION 0x1
  
  
@@ -488,7 +486,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -984,6 +1299,8 @@ CredReadDomainCredentialsW (
+@@ -984,6 +1297,8 @@ CredReadDomainCredentialsW (
      _Outptr_result_buffer_(*Count) PCREDENTIALW **Credential
      );
  
@@ -497,7 +495,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1001,21 +1318,25 @@ CredReadDomainCredentialsA (
+@@ -1001,21 +1316,25 @@ CredReadDomainCredentialsA (
  #endif // UNICODE
  
  
@@ -525,7 +523,7 @@ index c1a091cc..62e8122b 100644
      _Reserved_ DWORD Flags
      );
  
-@@ -1031,23 +1352,27 @@ CredDeleteA (
+@@ -1031,23 +1350,27 @@ CredDeleteA (
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -555,7 +553,7 @@ index c1a091cc..62e8122b 100644
      _Reserved_ DWORD Flags
      );
  
-@@ -1070,6 +1395,8 @@ CredRenameA (
+@@ -1070,6 +1393,8 @@ CredRenameA (
  #define CRED_ALLOW_NAME_RESOLUTION 0x1
  
  
@@ -564,7 +562,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1079,6 +1406,8 @@ CredGetTargetInfoW (
+@@ -1079,6 +1404,8 @@ CredGetTargetInfoW (
      _Out_ PCREDENTIAL_TARGET_INFORMATIONW *TargetInfo
      );
  
@@ -573,7 +571,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1094,6 +1423,8 @@ CredGetTargetInfoA (
+@@ -1094,6 +1421,8 @@ CredGetTargetInfoA (
  #define CredGetTargetInfo CredGetTargetInfoA
  #endif // UNICODE
  
@@ -582,7 +580,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1103,6 +1434,8 @@ CredMarshalCredentialW(
+@@ -1103,6 +1432,8 @@ CredMarshalCredentialW(
      _Out_ LPWSTR *MarshaledCredential
      );
  
@@ -591,7 +589,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1118,6 +1451,8 @@ CredMarshalCredentialA(
+@@ -1118,6 +1449,8 @@ CredMarshalCredentialA(
  #define CredMarshalCredential CredMarshalCredentialA
  #endif // UNICODE
  
@@ -600,7 +598,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1127,6 +1462,8 @@ CredUnmarshalCredentialW(
+@@ -1127,6 +1460,8 @@ CredUnmarshalCredentialW(
      _Out_ PVOID *Credential
      );
  
@@ -609,7 +607,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1142,6 +1479,7 @@ CredUnmarshalCredentialA(
+@@ -1142,6 +1477,7 @@ CredUnmarshalCredentialA(
  #define CredUnmarshalCredential CredUnmarshalCredentialA
  #endif // UNICODE
  
@@ -617,7 +615,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1155,6 +1493,7 @@ CredIsMarshaledCredentialW(
+@@ -1155,6 +1491,7 @@ CredIsMarshaledCredentialW(
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -625,7 +623,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1168,11 +1507,13 @@ CredIsMarshaledCredentialA(
+@@ -1168,11 +1505,13 @@ CredIsMarshaledCredentialA(
  #define CredIsMarshaledCredential CredIsMarshaledCredentialA
  #endif // UNICODE
  
@@ -640,7 +638,7 @@ index c1a091cc..62e8122b 100644
      _In_reads_bytes_(cbAuthBuffer) PVOID                 pAuthBuffer,
      _In_ DWORD                                      cbAuthBuffer,
      _Out_writes_opt_(*pcchMaxUserName) LPWSTR       pszUserName,
-@@ -1183,11 +1524,13 @@ CredUnPackAuthenticationBufferW(
+@@ -1183,11 +1522,13 @@ CredUnPackAuthenticationBufferW(
      _Inout_ DWORD*                                  pcchMaxPassword
      );
  
@@ -655,7 +653,7 @@ index c1a091cc..62e8122b 100644
      _In_reads_bytes_(cbAuthBuffer) PVOID                 pAuthBuffer,
      _In_ DWORD                                      cbAuthBuffer,
      _Out_writes_opt_(*pcchlMaxUserName) LPSTR       pszUserName,
-@@ -1204,22 +1547,26 @@ CredUnPackAuthenticationBufferA(
+@@ -1204,22 +1545,26 @@ CredUnPackAuthenticationBufferA(
  #define CredUnPackAuthenticationBuffer CredUnPackAuthenticationBufferA
  #endif //UNICODE
  
@@ -684,7 +682,7 @@ index c1a091cc..62e8122b 100644
      _In_ LPSTR                                      pszUserName,
      _In_ LPSTR                                      pszPassword,
      _Out_writes_bytes_opt_(*pcbPackedCredentials) PBYTE   pPackedCredentials,
-@@ -1238,6 +1585,8 @@ CredPackAuthenticationBufferA(
+@@ -1238,6 +1583,8 @@ CredPackAuthenticationBufferA(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -693,7 +691,7 @@ index c1a091cc..62e8122b 100644
  _Success_(return)
  WINADVAPI
  BOOL
-@@ -1268,6 +1617,8 @@ CredProtectEx(
+@@ -1268,6 +1615,8 @@ CredProtectEx(
      _Out_opt_ CRED_PROTECTION_TYPE*         ProtectionType
      );
  
@@ -702,7 +700,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1286,6 +1637,8 @@ CredProtectA(
+@@ -1286,6 +1635,8 @@ CredProtectA(
  #define CredProtect CredProtectA
  #endif //UNICODE
  
@@ -711,7 +709,7 @@ index c1a091cc..62e8122b 100644
  _Success_(return)
  WINADVAPI
  BOOL
-@@ -1314,6 +1667,8 @@ CredUnprotectEx(
+@@ -1314,6 +1665,8 @@ CredUnprotectEx(
      _Inout_ DWORD*                              pcchMaxChars
      );
  
@@ -720,7 +718,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1331,6 +1686,8 @@ CredUnprotectA(
+@@ -1331,6 +1684,8 @@ CredUnprotectA(
  #define CredUnprotect CredUnprotectA
  #endif //UNICODE
  
@@ -729,7 +727,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1339,6 +1696,8 @@ CredIsProtectedW(
+@@ -1339,6 +1694,8 @@ CredIsProtectedW(
      _Out_ CRED_PROTECTION_TYPE* pProtectionType
      );
  
@@ -738,7 +736,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1355,6 +1714,8 @@ CredIsProtectedA(
+@@ -1355,6 +1712,8 @@ CredIsProtectedA(
  
  
  
@@ -747,7 +745,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1365,6 +1726,8 @@ CredFindBestCredentialW (
+@@ -1365,6 +1724,8 @@ CredFindBestCredentialW (
      _Out_ PCREDENTIALW *Credential
      );
  
@@ -756,7 +754,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1384,6 +1747,8 @@ CredFindBestCredentialA (
+@@ -1384,6 +1745,8 @@ CredFindBestCredentialA (
  
  
  
@@ -765,7 +763,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  BOOL
  WINAPI
-@@ -1393,6 +1758,7 @@ CredGetSessionTypes (
+@@ -1393,6 +1756,7 @@ CredGetSessionTypes (
      );
  
  
@@ -773,7 +771,7 @@ index c1a091cc..62e8122b 100644
  WINADVAPI
  VOID
  WINAPI
-@@ -1406,6 +1772,7 @@ CredFree (
+@@ -1406,6 +1770,7 @@ CredFree (
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -781,7 +779,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1419,9 +1786,10 @@ CredUIPromptForCredentialsW(
+@@ -1419,9 +1784,10 @@ CredUIPromptForCredentialsW(
      _Inout_updates_(ulPasswordBufferSize) PWSTR pszPassword,
      _In_ ULONG ulPasswordBufferSize,
      _Inout_opt_ BOOL *save,
@@ -793,7 +791,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1435,7 +1803,7 @@ CredUIPromptForCredentialsA(
+@@ -1435,7 +1801,7 @@ CredUIPromptForCredentialsA(
      _Inout_updates_(ulPasswordBufferSize) PSTR pszPassword,
      _In_ ULONG ulPasswordBufferSize,
      _Inout_opt_ BOOL *save,
@@ -802,7 +800,7 @@ index c1a091cc..62e8122b 100644
      );
  
  #ifdef UNICODE
-@@ -1444,6 +1812,7 @@ CredUIPromptForCredentialsA(
+@@ -1444,6 +1810,7 @@ CredUIPromptForCredentialsA(
  #define CredUIPromptForCredentials CredUIPromptForCredentialsA
  #endif
  
@@ -810,7 +808,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1456,9 +1825,10 @@ CredUIPromptForWindowsCredentialsW(
+@@ -1456,9 +1823,10 @@ CredUIPromptForWindowsCredentialsW(
      _Outptr_result_bytebuffer_to_(*pulOutAuthBufferSize, *pulOutAuthBufferSize) LPVOID * ppvOutAuthBuffer,
      _Out_ ULONG * pulOutAuthBufferSize,
      _Inout_opt_ BOOL *pfSave,
@@ -822,7 +820,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1471,7 +1841,7 @@ CredUIPromptForWindowsCredentialsA(
+@@ -1471,7 +1839,7 @@ CredUIPromptForWindowsCredentialsA(
      _Outptr_result_bytebuffer_to_(*pulOutAuthBufferSize, *pulOutAuthBufferSize) LPVOID * ppvOutAuthBuffer,
      _Out_ ULONG * pulOutAuthBufferSize,
      _Inout_opt_ BOOL *pfSave,
@@ -831,7 +829,7 @@ index c1a091cc..62e8122b 100644
      );
  
  #ifdef UNICODE
-@@ -1481,6 +1851,7 @@ CredUIPromptForWindowsCredentialsA(
+@@ -1481,6 +1849,7 @@ CredUIPromptForWindowsCredentialsA(
  #endif
  
  
@@ -839,7 +837,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1492,6 +1863,7 @@ CredUIParseUserNameW(
+@@ -1492,6 +1861,7 @@ CredUIParseUserNameW(
      _In_ ULONG domainBufferSize
      );
  
@@ -847,7 +845,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1511,6 +1883,7 @@ CredUIParseUserNameA(
+@@ -1511,6 +1881,7 @@ CredUIParseUserNameA(
  
  
  
@@ -855,7 +853,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1523,9 +1896,10 @@ CredUICmdLinePromptForCredentialsW(
+@@ -1523,9 +1894,10 @@ CredUICmdLinePromptForCredentialsW(
      _Inout_updates_(ulPasswordBufferSize) PWSTR pszPassword,
      _In_ ULONG ulPasswordBufferSize,
      _Inout_opt_ PBOOL pfSave,
@@ -867,7 +865,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1538,7 +1912,7 @@ CredUICmdLinePromptForCredentialsA(
+@@ -1538,7 +1910,7 @@ CredUICmdLinePromptForCredentialsA(
      _Inout_updates_(ulPasswordBufferSize) PSTR pszPassword,
      _In_ ULONG ulPasswordBufferSize,
      _Inout_opt_ PBOOL pfSave,
@@ -876,7 +874,7 @@ index c1a091cc..62e8122b 100644
      );
  
  #ifdef UNICODE
-@@ -1552,6 +1926,7 @@ CredUICmdLinePromptForCredentialsA(
+@@ -1552,6 +1924,7 @@ CredUICmdLinePromptForCredentialsA(
  // via CredUIGetCredentials or CredUIPromptForCredentials worked, or with bConfirm set to FALSE
  // to indicate it didn't
  
@@ -884,7 +882,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1560,6 +1935,7 @@ CredUIConfirmCredentialsW(
+@@ -1560,6 +1933,7 @@ CredUIConfirmCredentialsW(
      _In_ BOOL  bConfirm
      );
  
@@ -892,7 +890,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1575,6 +1951,7 @@ CredUIConfirmCredentialsA(
+@@ -1575,6 +1949,7 @@ CredUIConfirmCredentialsA(
  #endif
  
  
@@ -900,7 +898,7 @@ index c1a091cc..62e8122b 100644
  CREDUIAPI
  DWORD
  WINAPI
-@@ -1585,6 +1962,7 @@ CredUIStoreSSOCredW (
+@@ -1585,6 +1960,7 @@ CredUIStoreSSOCredW (
      _In_ BOOL   bPersist
      );
  

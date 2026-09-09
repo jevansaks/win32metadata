@@ -22,9 +22,7 @@ Environment:
 #ifndef _WINBIO_ADAPTER_H_2C0E14E1_5330_4f60_9B4F_836CFFD7452A_
 #define _WINBIO_ADAPTER_H_2C0E14E1_5330_4f60_9B4F_836CFFD7452A_
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)

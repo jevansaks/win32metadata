@@ -1,17 +1,31 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h b/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h
-index d141dde2..ec7311e8 100644
+index d141dde2..1b41fdd2 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h
-@@ -3,6 +3,9 @@
+@@ -3,6 +3,7 @@
  //
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -188,6 +189,7 @@ typedef struct
+ #undef  INTERFACE
+ #define INTERFACE  IDsBrowseDomainTree
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DECLARE_INTERFACE_IID_(IDsBrowseDomainTree, IUnknown, "7cabcf1e-78f5-11d2-960c-00c04fa31a86")
+ {
+     // *** IUnknown methods ***
+@@ -268,6 +270,7 @@ typedef struct
+ #undef  INTERFACE
+ #define INTERFACE IDsDisplaySpecifier
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DECLARE_INTERFACE_IID_(IDsDisplaySpecifier, IUnknown, "1ab4a8c0-6a0b-11d2-ad49-00c04fa31a86")
+ {
+     // *** IUnknown methods ***
 @@ -459,7 +462,9 @@ typedef struct
  // API exported for browsing for containers.
  //

@@ -1054,9 +1054,7 @@ extern "C"{
 //
 //--------------------------------------------------------------------------
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 // Disable /W4 compiler warning C4201: nameless struct/union
 #pragma warning(push)
 #pragma warning(disable:4201)  // Disable C4201: nameless struct/union

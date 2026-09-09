@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mixerocx.h b/generation/WinSDK/RecompiledIdlHeaders/um/mixerocx.h
-index 95157e04..fae4139b 100644
+index 95157e04..79fc64ba 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mixerocx.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mixerocx.h
-@@ -73,6 +73,9 @@ extern "C"{
+@@ -73,6 +73,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -93,6 +96,7 @@ EXTERN_C const IID IID_IMixerOCXNotify;
+@@ -93,6 +94,7 @@ EXTERN_C const IID IID_IMixerOCXNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 95157e04..fae4139b 100644
      MIDL_INTERFACE("81A3BD31-DEE1-11d1-8508-00A0C91F9CA0")
      IMixerOCXNotify : public IUnknown
      {
-@@ -206,6 +210,7 @@ EXTERN_C const IID IID_IMixerOCX;
+@@ -206,6 +208,7 @@ EXTERN_C const IID IID_IMixerOCX;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

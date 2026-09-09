@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdbase.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdbase.h
-index 68f97032..612fb69b 100644
+index 68f97032..4b949da6 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdbase.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdbase.h
-@@ -130,6 +130,9 @@ extern "C"{
+@@ -130,6 +130,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -245,6 +248,7 @@ EXTERN_C const IID IID_IWSDAddress;
+@@ -245,6 +246,7 @@ EXTERN_C const IID IID_IWSDAddress;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 68f97032..612fb69b 100644
      MIDL_INTERFACE("b9574c6c-12a6-4f74-93a1-3318ff605759")
      IWSDAddress : public IUnknown
      {
-@@ -353,6 +357,7 @@ EXTERN_C const IID IID_IWSDTransportAddress;
+@@ -353,6 +355,7 @@ EXTERN_C const IID IID_IWSDTransportAddress;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 68f97032..612fb69b 100644
      MIDL_INTERFACE("70d23498-4ee6-4340-a3df-d845d2235467")
      IWSDTransportAddress : public IWSDAddress
      {
-@@ -519,6 +524,7 @@ EXTERN_C const IID IID_IWSDMessageParameters;
+@@ -519,6 +522,7 @@ EXTERN_C const IID IID_IWSDMessageParameters;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 68f97032..612fb69b 100644
      MIDL_INTERFACE("1fafe8a2-e6fc-4b80-b6cf-b7d45c416d7c")
      IWSDMessageParameters : public IUnknown
      {
-@@ -650,6 +656,7 @@ EXTERN_C const IID IID_IWSDMessageParameters;
+@@ -650,6 +654,7 @@ EXTERN_C const IID IID_IWSDMessageParameters;
  /* interface __MIDL_itf_wsdbase_0000_0003 */
  /* [local] */ 
  
@@ -44,7 +42,7 @@ index 68f97032..612fb69b 100644
  HRESULT WINAPI
  WSDCreateUdpMessageParameters(
      IWSDUdpMessageParameters** ppTxParams);
-@@ -678,6 +685,7 @@ EXTERN_C const IID IID_IWSDUdpMessageParameters;
+@@ -678,6 +683,7 @@ EXTERN_C const IID IID_IWSDUdpMessageParameters;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 68f97032..612fb69b 100644
      MIDL_INTERFACE("9934149f-8f0c-447b-aa0b-73124b0ca7f0")
      IWSDUdpMessageParameters : public IWSDMessageParameters
      {
-@@ -816,6 +824,7 @@ EXTERN_C const IID IID_IWSDUdpMessageParameters;
+@@ -816,6 +822,7 @@ EXTERN_C const IID IID_IWSDUdpMessageParameters;
  /* interface __MIDL_itf_wsdbase_0000_0004 */
  /* [local] */ 
  
@@ -60,7 +58,7 @@ index 68f97032..612fb69b 100644
  HRESULT WINAPI
  WSDCreateUdpAddress(
      _Outptr_ IWSDUdpAddress** ppAddress);
-@@ -851,6 +860,7 @@ EXTERN_C const IID IID_IWSDUdpAddress;
+@@ -851,6 +858,7 @@ EXTERN_C const IID IID_IWSDUdpAddress;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 68f97032..612fb69b 100644
      MIDL_INTERFACE("74d6124a-a441-4f78-a1eb-97a8d1996893")
      IWSDUdpAddress : public IWSDTransportAddress
      {
-@@ -1114,6 +1124,7 @@ EXTERN_C const IID IID_IWSDUdpAddress;
+@@ -1114,6 +1122,7 @@ EXTERN_C const IID IID_IWSDUdpAddress;
  /* interface __MIDL_itf_wsdbase_0000_0005 */
  /* [local] */ 
  
@@ -76,7 +74,7 @@ index 68f97032..612fb69b 100644
  HRESULT WINAPI
  WSDCreateHttpMessageParameters(
      _Outptr_ IWSDHttpMessageParameters** ppTxParams);
-@@ -1133,6 +1144,7 @@ EXTERN_C const IID IID_IWSDHttpMessageParameters;
+@@ -1133,6 +1142,7 @@ EXTERN_C const IID IID_IWSDHttpMessageParameters;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 68f97032..612fb69b 100644
      MIDL_INTERFACE("540bd122-5c83-4dec-b396-ea62a2697fdf")
      IWSDHttpMessageParameters : public IWSDMessageParameters
      {
-@@ -1358,6 +1370,7 @@ EXTERN_C const IID IID_IWSDHttpMessageParameters;
+@@ -1358,6 +1368,7 @@ EXTERN_C const IID IID_IWSDHttpMessageParameters;
  /* interface __MIDL_itf_wsdbase_0000_0006 */
  /* [local] */ 
  
@@ -92,7 +90,7 @@ index 68f97032..612fb69b 100644
  HRESULT WINAPI
  WSDCreateHttpAddress(
      _Outptr_ IWSDHttpAddress** ppAddress);
-@@ -1377,6 +1390,7 @@ EXTERN_C const IID IID_IWSDHttpAddress;
+@@ -1377,6 +1388,7 @@ EXTERN_C const IID IID_IWSDHttpAddress;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 68f97032..612fb69b 100644
      MIDL_INTERFACE("d09ac7bd-2a3e-4b85-8605-2737ff3e4ea0")
      IWSDHttpAddress : public IWSDTransportAddress
      {
-@@ -1579,6 +1593,7 @@ EXTERN_C const IID IID_IWSDSSLClientCertificate;
+@@ -1579,6 +1591,7 @@ EXTERN_C const IID IID_IWSDSSLClientCertificate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 68f97032..612fb69b 100644
      MIDL_INTERFACE("de105e87-a0da-418e-98ad-27b9eed87bdc")
      IWSDSSLClientCertificate : public IUnknown
      {
-@@ -1679,6 +1694,7 @@ EXTERN_C const IID IID_IWSDHttpAuthParameters;
+@@ -1679,6 +1692,7 @@ EXTERN_C const IID IID_IWSDHttpAuthParameters;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 68f97032..612fb69b 100644
      MIDL_INTERFACE("0b476df0-8dac-480d-b05c-99781a5884aa")
      IWSDHttpAuthParameters : public IUnknown
      {
-@@ -1779,6 +1795,7 @@ EXTERN_C const IID IID_IWSDSignatureProperty;
+@@ -1779,6 +1793,7 @@ EXTERN_C const IID IID_IWSDSignatureProperty;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

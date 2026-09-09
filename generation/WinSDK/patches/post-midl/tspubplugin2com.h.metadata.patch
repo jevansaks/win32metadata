@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugin2com.h b/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugin2com.h
-index 22b2a7b3..1c0bb30d 100644
+index 22b2a7b3..10aee07e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugin2com.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugin2com.h
-@@ -68,6 +68,9 @@ extern "C"{
+@@ -68,6 +68,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -120,6 +123,7 @@ EXTERN_C const IID IID_ItsPubPlugin2;
+@@ -120,6 +121,7 @@ EXTERN_C const IID IID_ItsPubPlugin2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

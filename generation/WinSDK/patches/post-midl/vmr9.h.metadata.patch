@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vmr9.h b/generation/WinSDK/RecompiledIdlHeaders/um/vmr9.h
-index 5da47910..c0bcef13 100644
+index 5da47910..3b35a2b7 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/vmr9.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/vmr9.h
-@@ -164,6 +164,9 @@ extern "C"{
+@@ -164,6 +164,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if 0
-@@ -241,6 +244,7 @@ EXTERN_C const IID IID_IVMRImagePresenter9;
+@@ -241,6 +242,7 @@ EXTERN_C const IID IID_IVMRImagePresenter9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("69188c61-12a3-40f0-8ffc-342e7b433fd7")
      IVMRImagePresenter9 : public IUnknown
      {
-@@ -390,6 +394,7 @@ EXTERN_C const IID IID_IVMRSurfaceAllocator9;
+@@ -390,6 +392,7 @@ EXTERN_C const IID IID_IVMRSurfaceAllocator9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("8d5148ea-3f5d-46cf-9df1-d1b896eedb1f")
      IVMRSurfaceAllocator9 : public IUnknown
      {
-@@ -536,6 +541,7 @@ EXTERN_C const IID IID_IVMRSurfaceAllocatorEx9;
+@@ -536,6 +539,7 @@ EXTERN_C const IID IID_IVMRSurfaceAllocatorEx9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("6de9a68a-a928-4522-bf57-655ae3866456")
      IVMRSurfaceAllocatorEx9 : public IVMRSurfaceAllocator9
      {
-@@ -686,6 +692,7 @@ EXTERN_C const IID IID_IVMRSurfaceAllocatorNotify9;
+@@ -686,6 +690,7 @@ EXTERN_C const IID IID_IVMRSurfaceAllocatorNotify9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("dca3f5df-bb3a-4d03-bd81-84614bfbfa0c")
      IVMRSurfaceAllocatorNotify9 : public IUnknown
      {
-@@ -868,6 +875,7 @@ EXTERN_C const IID IID_IVMRWindowlessControl9;
+@@ -868,6 +873,7 @@ EXTERN_C const IID IID_IVMRWindowlessControl9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("8f537d09-f85e-4414-b23b-502e54c79927")
      IVMRWindowlessControl9 : public IUnknown
      {
-@@ -1210,6 +1218,7 @@ EXTERN_C const IID IID_IVMRMixerControl9;
+@@ -1210,6 +1216,7 @@ EXTERN_C const IID IID_IVMRMixerControl9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("1a777eaa-47c8-4930-b2c9-8fee1c1b0f3b")
      IVMRMixerControl9 : public IUnknown
      {
-@@ -1520,6 +1529,7 @@ EXTERN_C const IID IID_IVMRMixerBitmap9;
+@@ -1520,6 +1527,7 @@ EXTERN_C const IID IID_IVMRMixerBitmap9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("ced175e5-1935-4820-81bd-ff6ad00c9108")
      IVMRMixerBitmap9 : public IUnknown
      {
-@@ -1633,6 +1643,7 @@ EXTERN_C const IID IID_IVMRSurface9;
+@@ -1633,6 +1641,7 @@ EXTERN_C const IID IID_IVMRSurface9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("dfc581a1-6e1f-4c3a-8d0a-5e9792ea2afc")
      IVMRSurface9 : public IUnknown
      {
-@@ -1766,6 +1777,7 @@ EXTERN_C const IID IID_IVMRImagePresenterConfig9;
+@@ -1766,6 +1775,7 @@ EXTERN_C const IID IID_IVMRImagePresenterConfig9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("45c15cab-6e22-420a-8043-ae1f0ac02c7d")
      IVMRImagePresenterConfig9 : public IUnknown
      {
-@@ -1866,6 +1878,7 @@ EXTERN_C const IID IID_IVMRVideoStreamControl9;
+@@ -1866,6 +1876,7 @@ EXTERN_C const IID IID_IVMRVideoStreamControl9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("d0cfe38b-93e7-4772-8957-0400c49a4485")
      IVMRVideoStreamControl9 : public IUnknown
      {
-@@ -1983,6 +1996,7 @@ EXTERN_C const IID IID_IVMRFilterConfig9;
+@@ -1983,6 +1994,7 @@ EXTERN_C const IID IID_IVMRFilterConfig9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("5a804648-4f66-4867-9c43-4f5c822cf1b8")
      IVMRFilterConfig9 : public IUnknown
      {
-@@ -2148,6 +2162,7 @@ EXTERN_C const IID IID_IVMRAspectRatioControl9;
+@@ -2148,6 +2160,7 @@ EXTERN_C const IID IID_IVMRAspectRatioControl9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("00d96c29-bbde-4efc-9901-bb5036392146")
      IVMRAspectRatioControl9 : public IUnknown
      {
-@@ -2271,6 +2286,7 @@ EXTERN_C const IID IID_IVMRMonitorConfig9;
+@@ -2271,6 +2284,7 @@ EXTERN_C const IID IID_IVMRMonitorConfig9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("46c2e457-8ba0-4eef-b80b-0680f0978749")
      IVMRMonitorConfig9 : public IUnknown
      {
-@@ -2485,6 +2501,7 @@ EXTERN_C const IID IID_IVMRDeinterlaceControl9;
+@@ -2485,6 +2499,7 @@ EXTERN_C const IID IID_IVMRDeinterlaceControl9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index 5da47910..c0bcef13 100644
      MIDL_INTERFACE("a215fb8d-13c2-4f7f-993c-003d6271a459")
      IVMRDeinterlaceControl9 : public IUnknown
      {
-@@ -2699,6 +2716,7 @@ EXTERN_C const IID IID_IVMRImageCompositor9;
+@@ -2699,6 +2714,7 @@ EXTERN_C const IID IID_IVMRImageCompositor9;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

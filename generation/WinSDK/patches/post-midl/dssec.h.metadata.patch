@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dssec.h b/generation/WinSDK/RecompiledIdlHeaders/um/dssec.h
-index d504431e..0e0b6007 100644
+index d504431e..5547c8e3 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/dssec.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/dssec.h
-@@ -4,6 +4,9 @@
+@@ -4,6 +4,7 @@
  #ifndef _DSSEC_H_
  #define _DSSEC_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -59,6 +62,7 @@ typedef HRESULT (WINAPI *PFNWRITEOBJECTSECURITY)(LPCWSTR, SECURITY_INFORMATION,
+@@ -59,6 +60,7 @@ typedef HRESULT (WINAPI *PFNWRITEOBJECTSECURITY)(LPCWSTR, SECURITY_INFORMATION,
  //  Return:     HRESULT
  //
  //----------------------------------------------------------------------------
@@ -20,7 +18,7 @@ index d504431e..0e0b6007 100644
  STDAPI
  DSCreateISecurityInfoObject(LPCWSTR pwszObjectPath,
                              LPCWSTR pwszObjectClass,
-@@ -83,6 +87,7 @@ DSCreateISecurityInfoObject(LPCWSTR pwszObjectPath,
+@@ -83,6 +85,7 @@ DSCreateISecurityInfoObject(LPCWSTR pwszObjectPath,
  // If the server is not provided, it is obtained from the object
  // path or DsGetDcName.
  //
@@ -28,7 +26,7 @@ index d504431e..0e0b6007 100644
  STDAPI
  DSCreateISecurityInfoObjectEx(LPCWSTR pwszObjectPath,
                                LPCWSTR pwszObjectClass,
-@@ -113,6 +118,7 @@ DSCreateISecurityInfoObjectEx(LPCWSTR pwszObjectPath,
+@@ -113,6 +116,7 @@ DSCreateISecurityInfoObjectEx(LPCWSTR pwszObjectPath,
  //  Return:     HRESULT
  //
  //----------------------------------------------------------------------------
@@ -36,7 +34,7 @@ index d504431e..0e0b6007 100644
  STDAPI
  DSCreateSecurityPage(LPCWSTR pwszObjectPath,
                       LPCWSTR pwszObjectClass,
-@@ -140,6 +146,7 @@ DSCreateSecurityPage(LPCWSTR pwszObjectPath,
+@@ -140,6 +144,7 @@ DSCreateSecurityPage(LPCWSTR pwszObjectPath,
  //  Return:     HRESULT
  //
  //----------------------------------------------------------------------------

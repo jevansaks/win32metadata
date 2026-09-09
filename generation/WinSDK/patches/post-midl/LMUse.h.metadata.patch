@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h
-index 02924e66..3593501b 100644
+index 02924e66..907a64ba 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h
-@@ -33,6 +33,9 @@ Notes:
+@@ -33,6 +33,7 @@ Notes:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -60,6 +63,7 @@ extern "C" {
+@@ -60,6 +61,7 @@ extern "C" {
  // Function Prototypes
  //
  
@@ -20,7 +18,7 @@ index 02924e66..3593501b 100644
  NET_API_STATUS NET_API_FUNCTION
  NetUseAdd (
      _In_opt_ LPTSTR servername,
-@@ -74,6 +78,7 @@ NetUseAdd (
+@@ -74,6 +76,7 @@ NetUseAdd (
      _Out_opt_ LPDWORD parm_err
      );
  
@@ -28,7 +26,7 @@ index 02924e66..3593501b 100644
  NET_API_STATUS NET_API_FUNCTION
  NetUseDel (
      _In_opt_ LMSTR  UncServerName OPTIONAL,
-@@ -81,6 +86,7 @@ NetUseDel (
+@@ -81,6 +84,7 @@ NetUseDel (
      _In_ DWORD ForceLevelFlags
      );
  
@@ -36,7 +34,7 @@ index 02924e66..3593501b 100644
  NET_API_STATUS NET_API_FUNCTION
  NetUseEnum (
      _In_opt_ LMSTR  UncServerName,
-@@ -92,6 +98,7 @@ NetUseEnum (
+@@ -92,6 +96,7 @@ NetUseEnum (
      _Inout_opt_ LPDWORD ResumeHandle
      );
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMAPIbuf.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMAPIbuf.h
-index 5f58af0e..2c41f0db 100644
+index 5f58af0e..fdc13c0a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/LMAPIbuf.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMAPIbuf.h
-@@ -28,6 +28,9 @@ Notes:
+@@ -28,6 +28,7 @@ Notes:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -40,6 +43,7 @@ extern "C" {
+@@ -40,6 +41,7 @@ extern "C" {
  // Function Prototypes
  //
  
@@ -20,7 +18,7 @@ index 5f58af0e..2c41f0db 100644
  _Success_( return == 0 )
  NET_API_STATUS NET_API_FUNCTION
  NetApiBufferAllocate(
-@@ -47,12 +51,14 @@ NetApiBufferAllocate(
+@@ -47,12 +49,14 @@ NetApiBufferAllocate(
      _Outptr_result_bytebuffer_(ByteCount) LPVOID * Buffer
      );
  
@@ -35,7 +33,7 @@ index 5f58af0e..2c41f0db 100644
  _Success_( return == 0 )
  NET_API_STATUS NET_API_FUNCTION
  NetApiBufferReallocate(
-@@ -61,6 +67,7 @@ NetApiBufferReallocate(
+@@ -61,6 +65,7 @@ NetApiBufferReallocate(
      _Outptr_result_bytebuffer_(NewByteCount) LPVOID * NewBuffer
      );
  
@@ -43,7 +41,7 @@ index 5f58af0e..2c41f0db 100644
  _Success_( return == 0 )
  NET_API_STATUS NET_API_FUNCTION
  NetApiBufferSize(
-@@ -91,6 +98,7 @@ NetapipBufferAllocate (                 // Internal Function
+@@ -91,6 +96,7 @@ NetapipBufferAllocate (                 // Internal Function
  #pragma region Desktop Family or OneCore Family Or Application Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
  

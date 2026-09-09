@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MSClus.h b/generation/WinSDK/RecompiledIdlHeaders/um/MSClus.h
-index 8ea6b16a..eb40378a 100644
+index 8ea6b16a..faf5a4ed 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/MSClus.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/MSClus.h
-@@ -820,6 +820,9 @@ extern "C"{
+@@ -820,6 +820,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #ifndef _CLUSTER_API_TYPES_
-@@ -10725,6 +10728,7 @@ EXTERN_C const IID IID_ISClusPartitionEx;
+@@ -10725,6 +10726,7 @@ EXTERN_C const IID IID_ISClusPartitionEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 8ea6b16a..eb40378a 100644
      MIDL_INTERFACE("8802d4fe-b32e-4ad1-9dbd-64f18e1166ce")
      ISClusPartitionEx : public ISClusPartition
      {
-@@ -12415,14 +12419,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -12415,14 +12417,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

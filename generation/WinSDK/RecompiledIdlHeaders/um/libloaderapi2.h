@@ -12,9 +12,7 @@
 
 #ifndef _APISETLIBLOADER2_
 #define _APISETLIBLOADER2_
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #include <apiset.h>
 #include <apisetcconv.h>

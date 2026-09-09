@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspixelformats.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspixelformats.h
-index c5e3063d..139ca27f 100644
+index c5e3063d..90590f67 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspixelformats.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspixelformats.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  #ifndef _GDIPLUSPIXELFORMATS_H
  #define _GDIPLUSPIXELFORMATS_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -73,24 +76,28 @@ typedef INT PixelFormat;
+@@ -73,24 +74,28 @@ typedef INT PixelFormat;
  #define    PixelFormat32bppCMYK       (15 | (32 << 8))
  #define    PixelFormatMax             16
  
@@ -41,7 +39,7 @@ index c5e3063d..139ca27f 100644
  inline BOOL
  IsExtendedPixelFormat(PixelFormat pixfmt)
  {
-@@ -105,6 +112,7 @@ IsExtendedPixelFormat(PixelFormat pixfmt)
+@@ -105,6 +110,7 @@ IsExtendedPixelFormat(PixelFormat pixfmt)
  //   PixelFormat64bppPARGB
  //--------------------------------------------------------------------------
  

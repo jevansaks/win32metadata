@@ -14,9 +14,7 @@
 #pragma once
 #include <new>
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #include <Shellapi.h>
 
 #pragma region Desktop Family

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/pla.h b/generation/WinSDK/RecompiledIdlHeaders/um/pla.h
-index d39d9d14..07d9609a 100644
+index d39d9d14..22004bf7 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/pla.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/pla.h
-@@ -374,6 +374,9 @@ extern "C"{
+@@ -374,6 +374,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -601,6 +604,7 @@ EXTERN_C const IID IID_IDataCollectorSet;
+@@ -601,6 +602,7 @@ EXTERN_C const IID IID_IDataCollectorSet;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837520-098b-11d8-9414-505054503030")
      IDataCollectorSet : public IDispatch
      {
-@@ -1402,6 +1406,7 @@ EXTERN_C const IID IID_IDataManager;
+@@ -1402,6 +1404,7 @@ EXTERN_C const IID IID_IDataManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837541-098b-11d8-9414-505054503030")
      IDataManager : public IDispatch
      {
-@@ -1810,6 +1815,7 @@ EXTERN_C const IID IID_IFolderAction;
+@@ -1810,6 +1813,7 @@ EXTERN_C const IID IID_IFolderAction;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837543-098b-11d8-9414-505054503030")
      IFolderAction : public IDispatch
      {
-@@ -2025,6 +2031,7 @@ EXTERN_C const IID IID_IFolderActionCollection;
+@@ -2025,6 +2029,7 @@ EXTERN_C const IID IID_IFolderActionCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837544-098b-11d8-9414-505054503030")
      IFolderActionCollection : public IDispatch
      {
-@@ -2240,6 +2247,7 @@ EXTERN_C const IID IID_IDataCollector;
+@@ -2240,6 +2245,7 @@ EXTERN_C const IID IID_IDataCollector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("038374ff-098b-11d8-9414-505054503030")
      IDataCollector : public IDispatch
      {
-@@ -2646,6 +2654,7 @@ EXTERN_C const IID IID_IPerformanceCounterDataCollector;
+@@ -2646,6 +2652,7 @@ EXTERN_C const IID IID_IPerformanceCounterDataCollector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837506-098b-11d8-9414-505054503030")
      IPerformanceCounterDataCollector : public IDataCollector
      {
-@@ -3086,6 +3095,7 @@ EXTERN_C const IID IID_ITraceDataCollector;
+@@ -3086,6 +3093,7 @@ EXTERN_C const IID IID_ITraceDataCollector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("0383750b-098b-11d8-9414-505054503030")
      ITraceDataCollector : public IDataCollector
      {
-@@ -3856,6 +3866,7 @@ EXTERN_C const IID IID_IConfigurationDataCollector;
+@@ -3856,6 +3864,7 @@ EXTERN_C const IID IID_IConfigurationDataCollector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837514-098b-11d8-9414-505054503030")
      IConfigurationDataCollector : public IDataCollector
      {
-@@ -4384,6 +4395,7 @@ EXTERN_C const IID IID_IAlertDataCollector;
+@@ -4384,6 +4393,7 @@ EXTERN_C const IID IID_IAlertDataCollector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837516-098b-11d8-9414-505054503030")
      IAlertDataCollector : public IDataCollector
      {
-@@ -4890,6 +4902,7 @@ EXTERN_C const IID IID_IApiTracingDataCollector;
+@@ -4890,6 +4900,7 @@ EXTERN_C const IID IID_IApiTracingDataCollector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("0383751a-098b-11d8-9414-505054503030")
      IApiTracingDataCollector : public IDataCollector
      {
-@@ -5374,6 +5387,7 @@ EXTERN_C const IID IID_IDataCollectorCollection;
+@@ -5374,6 +5385,7 @@ EXTERN_C const IID IID_IDataCollectorCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837502-098b-11d8-9414-505054503030")
      IDataCollectorCollection : public IDispatch
      {
-@@ -5606,6 +5620,7 @@ EXTERN_C const IID IID_IDataCollectorSetCollection;
+@@ -5606,6 +5618,7 @@ EXTERN_C const IID IID_IDataCollectorSetCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837524-098b-11d8-9414-505054503030")
      IDataCollectorSetCollection : public IDispatch
      {
-@@ -5823,6 +5838,7 @@ EXTERN_C const IID IID_ITraceDataProvider;
+@@ -5823,6 +5836,7 @@ EXTERN_C const IID IID_ITraceDataProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837512-098b-11d8-9414-505054503030")
      ITraceDataProvider : public IDispatch
      {
-@@ -6163,6 +6179,7 @@ EXTERN_C const IID IID_ITraceDataProviderCollection;
+@@ -6163,6 +6177,7 @@ EXTERN_C const IID IID_ITraceDataProviderCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837510-098b-11d8-9414-505054503030")
      ITraceDataProviderCollection : public IDispatch
      {
-@@ -6402,6 +6419,7 @@ EXTERN_C const IID IID_ISchedule;
+@@ -6402,6 +6417,7 @@ EXTERN_C const IID IID_ISchedule;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("0383753a-098b-11d8-9414-505054503030")
      ISchedule : public IDispatch
      {
-@@ -6617,6 +6635,7 @@ EXTERN_C const IID IID_IScheduleCollection;
+@@ -6617,6 +6633,7 @@ EXTERN_C const IID IID_IScheduleCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("0383753d-098b-11d8-9414-505054503030")
      IScheduleCollection : public IDispatch
      {
-@@ -6832,6 +6851,7 @@ EXTERN_C const IID IID_IValueMapItem;
+@@ -6832,6 +6849,7 @@ EXTERN_C const IID IID_IValueMapItem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index d39d9d14..07d9609a 100644
      MIDL_INTERFACE("03837533-098b-11d8-9414-505054503030")
      IValueMapItem : public IDispatch
      {
-@@ -7069,6 +7089,7 @@ EXTERN_C const IID IID_IValueMap;
+@@ -7069,6 +7087,7 @@ EXTERN_C const IID IID_IValueMap;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

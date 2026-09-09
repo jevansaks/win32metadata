@@ -1,14 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1_2helper.h b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1_2helper.h
-index 5cfc2b9b..5d1463fa 100644
+index 5cfc2b9b..d6eb4aee 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1_2helper.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1_2helper.h
-@@ -27,6 +27,9 @@
+@@ -27,6 +27,7 @@
  #ifndef D2D_USE_C_DEFINITIONS
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Application Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)

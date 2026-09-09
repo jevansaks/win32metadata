@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CertView.h b/generation/WinSDK/RecompiledIdlHeaders/um/CertView.h
-index 5f916a65..236f9e45 100644
+index 5f916a65..6ecb571a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/CertView.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/CertView.h
-@@ -102,6 +102,9 @@ extern "C"{
+@@ -102,6 +102,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define	CV_OUT_BASE64HEADER	( 0 )
-@@ -202,6 +205,7 @@ EXTERN_C const IID IID_IEnumCERTVIEWCOLUMN;
+@@ -202,6 +203,7 @@ EXTERN_C const IID IID_IEnumCERTVIEWCOLUMN;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 5f916a65..236f9e45 100644
      MIDL_INTERFACE("9c735be2-57a5-11d1-9bdb-00c04fb683fa")
      IEnumCERTVIEWCOLUMN : public IDispatch
      {
-@@ -439,6 +443,7 @@ EXTERN_C const IID IID_IEnumCERTVIEWATTRIBUTE;
+@@ -439,6 +441,7 @@ EXTERN_C const IID IID_IEnumCERTVIEWATTRIBUTE;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 5f916a65..236f9e45 100644
      MIDL_INTERFACE("e77db656-7653-11d1-9bde-00c04fb683fa")
      IEnumCERTVIEWATTRIBUTE : public IDispatch
      {
-@@ -630,6 +635,7 @@ EXTERN_C const IID IID_IEnumCERTVIEWEXTENSION;
+@@ -630,6 +633,7 @@ EXTERN_C const IID IID_IEnumCERTVIEWEXTENSION;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 5f916a65..236f9e45 100644
      MIDL_INTERFACE("e7dd1466-7653-11d1-9bde-00c04fb683fa")
      IEnumCERTVIEWEXTENSION : public IDispatch
      {
-@@ -836,6 +842,7 @@ EXTERN_C const IID IID_IEnumCERTVIEWROW;
+@@ -836,6 +840,7 @@ EXTERN_C const IID IID_IEnumCERTVIEWROW;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 5f916a65..236f9e45 100644
      MIDL_INTERFACE("d1157f4c-5af2-11d1-9bdc-00c04fb683fa")
      IEnumCERTVIEWROW : public IDispatch
      {
-@@ -1053,6 +1060,7 @@ EXTERN_C const IID IID_ICertView;
+@@ -1053,6 +1058,7 @@ EXTERN_C const IID IID_ICertView;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 5f916a65..236f9e45 100644
      MIDL_INTERFACE("c3fac344-1e84-11d1-9bd6-00c04fb683fa")
      ICertView : public IDispatch
      {
-@@ -1282,6 +1290,7 @@ EXTERN_C const IID IID_ICertView2;
+@@ -1282,6 +1288,7 @@ EXTERN_C const IID IID_ICertView2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

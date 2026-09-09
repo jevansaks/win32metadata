@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfplay.h b/generation/WinSDK/RecompiledIdlHeaders/um/mfplay.h
-index d613b042..3b016d8b 100644
+index d613b042..deebc8e3 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mfplay.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfplay.h
-@@ -83,6 +83,9 @@ extern "C"{
+@@ -83,6 +83,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if (WINVER >= _WIN32_WINNT_WIN7) 
-@@ -138,6 +141,7 @@ enum _MFP_CREDENTIAL_FLAGS
+@@ -138,6 +139,7 @@ enum _MFP_CREDENTIAL_FLAGS
          MFP_CREDENTIAL_LOGGED_ON_USER	= 0x20
      } 	_MFP_CREDENTIAL_FLAGS;
  
@@ -20,7 +18,7 @@ index d613b042..3b016d8b 100644
  STDAPI MFPCreateMediaPlayer(
              _In_opt_  LPCWSTR pwszURL,
              _In_      BOOL fStartPlayback,
-@@ -161,6 +165,7 @@ EXTERN_C const IID IID_IMFPMediaPlayer;
+@@ -161,6 +163,7 @@ EXTERN_C const IID IID_IMFPMediaPlayer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index d613b042..3b016d8b 100644
      MIDL_INTERFACE("A714590A-58AF-430a-85BF-44F5EC838D85")
      IMFPMediaPlayer : public IUnknown
      {
-@@ -736,6 +741,7 @@ EXTERN_C const IID IID_IMFPMediaItem;
+@@ -736,6 +739,7 @@ EXTERN_C const IID IID_IMFPMediaItem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index d613b042..3b016d8b 100644
      MIDL_INTERFACE("90EB3E6B-ECBF-45cc-B1DA-C6FE3EA70D57")
      IMFPMediaItem : public IUnknown
      {
-@@ -1258,6 +1264,7 @@ EXTERN_C const IID IID_IMFPMediaPlayerCallback;
+@@ -1258,6 +1262,7 @@ EXTERN_C const IID IID_IMFPMediaPlayerCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

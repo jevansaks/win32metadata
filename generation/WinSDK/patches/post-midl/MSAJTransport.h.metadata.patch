@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MSAJTransport.h b/generation/WinSDK/RecompiledIdlHeaders/um/MSAJTransport.h
-index 5955f6fa..5e64f1e6 100644
+index 5955f6fa..df34ba91 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/MSAJTransport.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/MSAJTransport.h
-@@ -6,6 +6,9 @@
+@@ -6,6 +6,7 @@
  
  #ifndef _MSAJ_TRANSPORT_API_H
  #define _MSAJ_TRANSPORT_API_H
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef _MSC_VER 
  #pragma once 
-@@ -22,16 +25,22 @@ extern "C" {
+@@ -22,16 +23,22 @@ extern "C" {
  
  #define ALLJOYN_NAMED_PIPE_CONNECT_SPEC     L"npipe:"
  
@@ -35,7 +33,7 @@ index 5955f6fa..5e64f1e6 100644
  BOOL
  WINAPI 
  AllJoynSendToBus(
-@@ -41,6 +50,8 @@ AllJoynSendToBus(
+@@ -41,6 +48,8 @@ AllJoynSendToBus(
      _Out_opt_ PDWORD bytesTransferred,
      _Inout_ PVOID reserved);
  
@@ -44,7 +42,7 @@ index 5955f6fa..5e64f1e6 100644
  BOOL
  WINAPI 
  AllJoynReceiveFromBus(
-@@ -55,6 +66,8 @@ AllJoynReceiveFromBus(
+@@ -55,6 +64,8 @@ AllJoynReceiveFromBus(
  #define ALLJOYN_WRITE_READY     0x2
  #define ALLJOYN_DISCONNECTED    0x4
  
@@ -53,7 +51,7 @@ index 5955f6fa..5e64f1e6 100644
  BOOL
  WINAPI 
  AllJoynEventSelect(
-@@ -62,6 +75,8 @@ AllJoynEventSelect(
+@@ -62,6 +73,8 @@ AllJoynEventSelect(
      _In_ HANDLE eventHandle,
      _In_ DWORD eventTypes);
  

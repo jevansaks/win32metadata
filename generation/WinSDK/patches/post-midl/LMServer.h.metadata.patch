@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMServer.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMServer.h
-index 2c44ad28..bbd59e3d 100644
+index 2c44ad28..555cf51d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/LMServer.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMServer.h
-@@ -31,6 +31,9 @@ Notes:
+@@ -31,6 +31,7 @@ Notes:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -54,6 +57,7 @@ extern "C" {
+@@ -54,6 +55,7 @@ extern "C" {
  // Function Prototypes - SERVER
  //
  
@@ -20,7 +18,7 @@ index 2c44ad28..bbd59e3d 100644
  NET_API_STATUS NET_API_FUNCTION
  NetServerEnum (
      _In_opt_ IN  LMCSTR      servername OPTIONAL,
-@@ -87,6 +91,7 @@ NetServerEnumEx (
+@@ -87,6 +89,7 @@ NetServerEnumEx (
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -28,7 +26,7 @@ index 2c44ad28..bbd59e3d 100644
  _Check_return_
  _Success_( return == 0 )
  NET_API_STATUS NET_API_FUNCTION
-@@ -99,6 +104,7 @@ NetServerGetInfo (
+@@ -99,6 +102,7 @@ NetServerGetInfo (
      LPBYTE *bufptr
      );
  
@@ -36,7 +34,7 @@ index 2c44ad28..bbd59e3d 100644
  _Check_return_
  NET_API_STATUS NET_API_FUNCTION
  NetServerSetInfo(
-@@ -139,6 +145,7 @@ NetServerSetInfoCommandLine (
+@@ -139,6 +143,7 @@ NetServerSetInfoCommandLine (
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -44,7 +42,7 @@ index 2c44ad28..bbd59e3d 100644
  _Check_return_
  _Success_( return == 0 || return == ERROR_MORE_DATA )
  NET_API_STATUS NET_API_FUNCTION
-@@ -152,6 +159,7 @@ NetServerDiskEnum (
+@@ -152,6 +157,7 @@ NetServerDiskEnum (
      _Inout_opt_ LPDWORD resume_handle
      );
  
@@ -52,7 +50,7 @@ index 2c44ad28..bbd59e3d 100644
  _Check_return_
  NET_API_STATUS NET_API_FUNCTION
  NetServerComputerNameAdd(
-@@ -160,6 +168,7 @@ NetServerComputerNameAdd(
+@@ -160,6 +166,7 @@ NetServerComputerNameAdd(
      _In_ LMSTR EmulatedServerName
      );
  
@@ -60,7 +58,7 @@ index 2c44ad28..bbd59e3d 100644
  _Check_return_
  NET_API_STATUS NET_API_FUNCTION
  NetServerComputerNameDel(
-@@ -167,6 +176,7 @@ NetServerComputerNameDel(
+@@ -167,6 +174,7 @@ NetServerComputerNameDel(
      _In_ LMSTR EmulatedServerName
      );
  
@@ -68,7 +66,7 @@ index 2c44ad28..bbd59e3d 100644
  _Check_return_
  NET_API_STATUS NET_API_FUNCTION
  NetServerTransportAdd (
-@@ -175,6 +185,7 @@ NetServerTransportAdd (
+@@ -175,6 +183,7 @@ NetServerTransportAdd (
      _In_reads_bytes_(sizeof(SERVER_TRANSPORT_INFO_0)) LPBYTE bufptr
      );
  
@@ -76,7 +74,7 @@ index 2c44ad28..bbd59e3d 100644
  _Check_return_
  NET_API_STATUS NET_API_FUNCTION
  NetServerTransportAddEx(
-@@ -212,6 +223,7 @@ NetServerTransportAddForInstance(
+@@ -212,6 +221,7 @@ NetServerTransportAddForInstance(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -84,7 +82,7 @@ index 2c44ad28..bbd59e3d 100644
  _Check_return_
  NET_API_STATUS NET_API_FUNCTION
  NetServerTransportDel(
-@@ -245,6 +257,7 @@ NetServerTransportDelForInstance(
+@@ -245,6 +255,7 @@ NetServerTransportDelForInstance(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -92,7 +90,7 @@ index 2c44ad28..bbd59e3d 100644
  _Check_return_
  _Success_( return == 0 || return == ERROR_MORE_DATA )
  NET_API_STATUS NET_API_FUNCTION
-@@ -273,6 +286,8 @@ NetServerTransportEnum (
+@@ -273,6 +284,8 @@ NetServerTransportEnum (
  // Therefore, if this is the only function called by that service, then
  // it is not necessary to link to netapi32.lib.
  //

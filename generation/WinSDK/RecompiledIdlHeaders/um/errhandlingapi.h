@@ -16,9 +16,7 @@
 #include <apiset.h>
 #include <apisetcconv.h>
 #include <minwindef.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifdef __cplusplus
 extern "C" {

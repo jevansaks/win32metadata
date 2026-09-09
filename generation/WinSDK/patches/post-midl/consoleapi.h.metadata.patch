@@ -1,0 +1,148 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/consoleapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/consoleapi.h
+index 3754ec46..a763fc1b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/consoleapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/consoleapi.h
+@@ -21,6 +21,7 @@
+ 
+ #include <wincontypes.h>
+ 
++#include <win32metadata_annotations.h>
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -28,6 +29,7 @@ extern "C" {
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -65,6 +67,7 @@ AllocConsoleWithOptions(
+ 
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -74,6 +77,7 @@ FreeConsole(
+ 
+ #if (_WIN32_WINNT >= 0x0500)
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -85,6 +89,7 @@ AttachConsole(
+ 
+ #endif /* _WIN32_WINNT >= 0x0500 */
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ UINT
+ WINAPI
+@@ -92,6 +97,7 @@ GetConsoleCP(
+     VOID
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ UINT
+ WINAPI
+@@ -124,6 +130,7 @@ GetConsoleOutputCP(
+ #define DISABLE_NEWLINE_AUTO_RETURN         0x0008
+ #define ENABLE_LVB_GRID_WORLDWIDE           0x0010
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -132,6 +139,7 @@ GetConsoleMode(
+     _Out_ LPDWORD lpMode
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -140,6 +148,7 @@ SetConsoleMode(
+     _In_ DWORD dwMode
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -148,6 +157,7 @@ GetNumberOfConsoleInputEvents(
+     _Out_ LPDWORD lpNumberOfEvents
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Success_(return != FALSE)
+ BOOL
+@@ -159,6 +169,7 @@ ReadConsoleInputA(
+     _Out_ _Deref_out_range_(<=, nLength) LPDWORD lpNumberOfEventsRead
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Success_(return != FALSE)
+ BOOL
+@@ -184,6 +195,7 @@ ReadConsoleInputW(
+ 
+ // begin_consoleapi_h
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -194,6 +206,7 @@ PeekConsoleInputA(
+     _Out_ LPDWORD lpNumberOfEventsRead
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -217,6 +230,7 @@ typedef struct _CONSOLE_READCONSOLE_CONTROL {
+     ULONG dwControlKeyState;
+ } CONSOLE_READCONSOLE_CONTROL, *PCONSOLE_READCONSOLE_CONTROL;
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Success_(return != FALSE)
+ BOOL
+@@ -229,6 +243,7 @@ ReadConsoleA(
+     _In_opt_ PCONSOLE_READCONSOLE_CONTROL pInputControl
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Success_(return != FALSE)
+ BOOL
+@@ -247,6 +262,7 @@ ReadConsoleW(
+ #define ReadConsole  ReadConsoleA
+ #endif // !UNICODE
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -258,6 +274,7 @@ WriteConsoleA(
+     _Reserved_ LPVOID lpReserved
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -297,6 +314,7 @@ BOOL
+     _In_ DWORD CtrlType
+     );
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI

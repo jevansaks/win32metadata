@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/EditionUpgradeHelper.h b/generation/WinSDK/RecompiledIdlHeaders/um/EditionUpgradeHelper.h
-index 84e5b729..44833ef4 100644
+index 84e5b729..fcd82dad 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/EditionUpgradeHelper.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/EditionUpgradeHelper.h
-@@ -32,6 +32,9 @@
+@@ -32,6 +32,7 @@
  
  #ifndef __editionupgradehelper_h__
  #define __editionupgradehelper_h__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if defined(_MSC_VER) && (_MSC_VER >= 1020)
  #pragma once
-@@ -142,6 +145,7 @@ EXTERN_C const IID IID_IEditionUpgradeHelper;
+@@ -142,6 +143,7 @@ EXTERN_C const IID IID_IEditionUpgradeHelper;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 84e5b729..44833ef4 100644
      MIDL_INTERFACE("D3E9E342-5DEB-43B6-849E-6913B85D503A")
      IEditionUpgradeHelper : public IUnknown
      {
-@@ -796,9 +800,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -796,9 +798,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

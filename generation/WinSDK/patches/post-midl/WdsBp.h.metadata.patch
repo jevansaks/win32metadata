@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h b/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h
-index 8d1a1367..583ff58e 100644
+index 8d1a1367..aa3d72de 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h
-@@ -20,6 +20,9 @@ Environment:
+@@ -20,6 +20,7 @@ Environment:
  #ifndef __WDSBP_H__
  #define __WDSBP_H__
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -141,6 +144,7 @@ extern "C"
+@@ -141,6 +142,7 @@ extern "C"
  // APIs.
  //
  
@@ -20,7 +18,7 @@ index 8d1a1367..583ff58e 100644
  DWORD
  WDSBPAPI
  WdsBpParseInitialize (
-@@ -148,8 +152,10 @@ WdsBpParseInitialize (
+@@ -148,8 +150,10 @@ WdsBpParseInitialize (
      _In_ ULONG uPacketLen,
      _Out_opt_ PBYTE pbPacketType,
      _Out_ HANDLE *phHandle
@@ -31,7 +29,7 @@ index 8d1a1367..583ff58e 100644
  DWORD
  WDSBPAPI
  WdsBpParseInitializev6 (
-@@ -157,21 +163,26 @@ WdsBpParseInitializev6 (
+@@ -157,21 +161,26 @@ WdsBpParseInitializev6 (
      _In_ ULONG uPacketLen,
      _Out_opt_ PBYTE pbPacketType,
      _Out_ HANDLE *phHandle
@@ -58,7 +56,7 @@ index 8d1a1367..583ff58e 100644
  _Success_(return == ERROR_SUCCESS)
  DWORD
  WDSBPAPI
-@@ -183,6 +194,7 @@ WdsBpQueryOption (
+@@ -183,6 +192,7 @@ WdsBpQueryOption (
      _Out_opt_ PULONG puBytes
      );
  
@@ -66,7 +64,7 @@ index 8d1a1367..583ff58e 100644
  DWORD
  WDSBPAPI
  WdsBpAddOption (
-@@ -192,6 +204,7 @@ WdsBpAddOption (
+@@ -192,6 +202,7 @@ WdsBpAddOption (
      _In_reads_bytes_(uValueLen) PVOID pValue
      );
  

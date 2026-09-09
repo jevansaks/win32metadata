@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfsharingengine.h b/generation/WinSDK/RecompiledIdlHeaders/um/mfsharingengine.h
-index 961a4ae1..fd40256a 100644
+index 961a4ae1..7ab6be79 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mfsharingengine.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfsharingengine.h
-@@ -116,6 +116,9 @@ extern "C"{
+@@ -116,6 +116,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (WINVER >= _WIN32_WINNT_WIN8) 
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -160,6 +163,7 @@ EXTERN_C const IID IID_IMFSharingEngineClassFactory;
+@@ -160,6 +161,7 @@ EXTERN_C const IID IID_IMFSharingEngineClassFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 961a4ae1..fd40256a 100644
      MIDL_INTERFACE("2BA61F92-8305-413B-9733-FAF15F259384")
      IMFSharingEngineClassFactory : public IUnknown
      {
-@@ -255,6 +259,7 @@ EXTERN_C const IID IID_IMFMediaSharingEngine;
+@@ -255,6 +257,7 @@ EXTERN_C const IID IID_IMFMediaSharingEngine;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 961a4ae1..fd40256a 100644
      MIDL_INTERFACE("8D3CE1BF-2367-40E0-9EEE-40D377CC1B46")
      IMFMediaSharingEngine : public IMFMediaEngine
      {
-@@ -713,6 +718,7 @@ EXTERN_C const IID IID_IMFMediaSharingEngineClassFactory;
+@@ -713,6 +716,7 @@ EXTERN_C const IID IID_IMFMediaSharingEngineClassFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 961a4ae1..fd40256a 100644
      MIDL_INTERFACE("524D2BC4-B2B1-4FE5-8FAC-FA4E4512B4E0")
      IMFMediaSharingEngineClassFactory : public IUnknown
      {
-@@ -817,6 +823,7 @@ EXTERN_C const IID IID_IMFImageSharingEngine;
+@@ -817,6 +821,7 @@ EXTERN_C const IID IID_IMFImageSharingEngine;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 961a4ae1..fd40256a 100644
      MIDL_INTERFACE("CFA0AE8E-7E1C-44D2-AE68-FC4C148A6354")
      IMFImageSharingEngine : public IUnknown
      {
-@@ -926,6 +933,7 @@ EXTERN_C const IID IID_IMFImageSharingEngineClassFactory;
+@@ -926,6 +931,7 @@ EXTERN_C const IID IID_IMFImageSharingEngineClassFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 961a4ae1..fd40256a 100644
      MIDL_INTERFACE("1FC55727-A7FB-4FC8-83AE-8AF024990AF1")
      IMFImageSharingEngineClassFactory : public IUnknown
      {
-@@ -1037,6 +1045,7 @@ EXTERN_C const IID IID_IPlayToControl;
+@@ -1037,6 +1043,7 @@ EXTERN_C const IID IID_IPlayToControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 961a4ae1..fd40256a 100644
      MIDL_INTERFACE("607574EB-F4B6-45C1-B08C-CB715122901D")
      IPlayToControl : public IUnknown
      {
-@@ -1133,6 +1142,7 @@ EXTERN_C const IID IID_IPlayToControlWithCapabilities;
+@@ -1133,6 +1140,7 @@ EXTERN_C const IID IID_IPlayToControlWithCapabilities;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 961a4ae1..fd40256a 100644
      MIDL_INTERFACE("AA9DD80F-C50A-4220-91C1-332287F82A34")
      IPlayToControlWithCapabilities : public IPlayToControl
      {
-@@ -1237,6 +1247,7 @@ EXTERN_C const IID IID_IPlayToSourceClassFactory;
+@@ -1237,6 +1245,7 @@ EXTERN_C const IID IID_IPlayToSourceClassFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

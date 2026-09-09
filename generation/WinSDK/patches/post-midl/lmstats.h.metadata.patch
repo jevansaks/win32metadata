@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/lmstats.h b/generation/WinSDK/RecompiledIdlHeaders/um/lmstats.h
-index b1f832b9..962a38f8 100644
+index b1f832b9..20b64aeb 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/lmstats.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/lmstats.h
-@@ -30,6 +30,9 @@ Notes:
+@@ -30,6 +30,7 @@ Notes:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -45,6 +48,7 @@ extern "C" {
+@@ -45,6 +46,7 @@ extern "C" {
  // Function Prototypes - Statistics
  //
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/powerbase.h b/generation/WinSDK/RecompiledIdlHeaders/um/powerbase.h
-index 6ccde0d6..ffc30489 100644
+index 6ccde0d6..a0cfedb0 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/powerbase.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/powerbase.h
-@@ -17,6 +17,9 @@
+@@ -17,6 +17,7 @@
  
  #include <apiset.h>
  #include <apisetcconv.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef _CONTRACT_GEN
  #include <nt.h>
-@@ -44,6 +47,7 @@ typedef PVOID HPOWERNOTIFY, *PHPOWERNOTIFY;
+@@ -44,6 +45,7 @@ typedef PVOID HPOWERNOTIFY, *PHPOWERNOTIFY;
  #define _OVERRIDE_NTSTATUS_
  #endif
  
@@ -20,7 +18,7 @@ index 6ccde0d6..ffc30489 100644
  NTSTATUS
  WINAPI
  CallNtPowerInformation(
-@@ -58,6 +62,8 @@ CallNtPowerInformation(
+@@ -58,6 +60,8 @@ CallNtPowerInformation(
  #undef NTSTATUS
  #endif
  
@@ -29,7 +27,7 @@ index 6ccde0d6..ffc30489 100644
  BOOLEAN
  WINAPI
  GetPwrCapabilities(
-@@ -65,6 +71,7 @@ GetPwrCapabilities(
+@@ -65,6 +69,7 @@ GetPwrCapabilities(
      );
  
  #if (NTDDI_VERSION >= NTDDI_WIN8)
@@ -37,7 +35,7 @@ index 6ccde0d6..ffc30489 100644
  POWER_PLATFORM_ROLE
  WINAPI
  PowerDeterminePlatformRoleEx(
-@@ -74,6 +81,7 @@ PowerDeterminePlatformRoleEx(
+@@ -74,6 +79,7 @@ PowerDeterminePlatformRoleEx(
  #endif
  
  #if (NTDDI_VERSION >= NTDDI_WIN8)
@@ -45,7 +43,7 @@ index 6ccde0d6..ffc30489 100644
  DWORD
  WINAPI
  PowerRegisterSuspendResumeNotification(
-@@ -85,6 +93,7 @@ PowerRegisterSuspendResumeNotification(
+@@ -85,6 +91,7 @@ PowerRegisterSuspendResumeNotification(
  #endif
  
  #if (NTDDI_VERSION >= NTDDI_WIN8)

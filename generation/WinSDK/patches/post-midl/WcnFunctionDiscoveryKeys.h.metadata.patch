@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WcnFunctionDiscoveryKeys.h b/generation/WinSDK/RecompiledIdlHeaders/um/WcnFunctionDiscoveryKeys.h
-index 471a0564..eb15f480 100644
+index 471a0564..4461ea9a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WcnFunctionDiscoveryKeys.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WcnFunctionDiscoveryKeys.h
-@@ -17,6 +17,9 @@ Abstract:
+@@ -17,6 +17,7 @@ Abstract:
  #define _wcnfunctiondiscoverykeys_h_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -29,9 +32,13 @@ Abstract:
+@@ -29,9 +30,13 @@ Abstract:
  DEFINE_GUID( SID_WcnProvider, 0xC100BECA,0xD33A,0x4A4B,0xBF,0x23,0xBB,0xEF,0x46,0x63,0xD0,0x17);
  
  

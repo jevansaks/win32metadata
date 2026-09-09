@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfmediaengine.h b/generation/WinSDK/RecompiledIdlHeaders/um/mfmediaengine.h
-index d1b6f45a..2429a6a8 100644
+index d1b6f45a..2a7831d1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mfmediaengine.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfmediaengine.h
-@@ -438,6 +438,9 @@ extern "C"{
+@@ -438,6 +438,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (WINVER >= _WIN32_WINNT_WIN8) 
  
  // Prevent a name collision
-@@ -473,6 +476,7 @@ EXTERN_C const IID IID_IMFMediaError;
+@@ -473,6 +474,7 @@ EXTERN_C const IID IID_IMFMediaError;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("fc0e10d2-ab2a-4501-a951-06bb1075184c")
      IMFMediaError : public IUnknown
      {
-@@ -591,6 +595,7 @@ EXTERN_C const IID IID_IMFMediaTimeRange;
+@@ -591,6 +593,7 @@ EXTERN_C const IID IID_IMFMediaTimeRange;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("db71a2fc-078a-414e-9df9-8c2531b0aa6c")
      IMFMediaTimeRange : public IUnknown
      {
-@@ -799,6 +804,7 @@ EXTERN_C const IID IID_IMFMediaEngineNotify;
+@@ -799,6 +802,7 @@ EXTERN_C const IID IID_IMFMediaEngineNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("fee7c112-e776-42b5-9bbf-0048524e2bd5")
      IMFMediaEngineNotify : public IUnknown
      {
-@@ -894,6 +900,7 @@ EXTERN_C const IID IID_IMFMediaEngineSrcElements;
+@@ -894,6 +898,7 @@ EXTERN_C const IID IID_IMFMediaEngineSrcElements;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("7a5e5354-b114-4c72-b991-3131d75032ea")
      IMFMediaEngineSrcElements : public IUnknown
      {
-@@ -1114,6 +1121,7 @@ EXTERN_C const IID IID_IMFMediaEngine;
+@@ -1114,6 +1119,7 @@ EXTERN_C const IID IID_IMFMediaEngine;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("98a1b0bb-03eb-4935-ae7c-93c1fa0e1c93")
      IMFMediaEngine : public IUnknown
      {
-@@ -1710,6 +1718,7 @@ EXTERN_C const IID IID_IMFMediaEngineEx;
+@@ -1710,6 +1716,7 @@ EXTERN_C const IID IID_IMFMediaEngineEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("83015ead-b1e6-40d0-a98a-37145ffe1ad1")
      IMFMediaEngineEx : public IMFMediaEngine
      {
-@@ -2757,6 +2766,7 @@ EXTERN_C const IID IID_IMFMediaEngineExtension;
+@@ -2757,6 +2764,7 @@ EXTERN_C const IID IID_IMFMediaEngineExtension;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("2f69d622-20b5-41e9-afdf-89ced1dda04e")
      IMFMediaEngineExtension : public IUnknown
      {
-@@ -2930,6 +2940,7 @@ EXTERN_C const IID IID_IMFMediaEngineProtectedContent;
+@@ -2930,6 +2938,7 @@ EXTERN_C const IID IID_IMFMediaEngineProtectedContent;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("9f8021e8-9c8c-487e-bb5c-79aa4779938c")
      IMFMediaEngineProtectedContent : public IUnknown
      {
-@@ -3351,6 +3362,7 @@ EXTERN_C const IID IID_IMFMediaSourceExtensionNotify;
+@@ -3351,6 +3360,7 @@ EXTERN_C const IID IID_IMFMediaSourceExtensionNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("a7901327-05dd-4469-a7b7-0e01979e361d")
      IMFMediaSourceExtensionNotify : public IUnknown
      {
-@@ -3452,6 +3464,7 @@ EXTERN_C const IID IID_IMFBufferListNotify;
+@@ -3452,6 +3462,7 @@ EXTERN_C const IID IID_IMFBufferListNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("24cd47f7-81d8-4785-adb2-af697a963cd2")
      IMFBufferListNotify : public IUnknown
      {
-@@ -3544,6 +3557,7 @@ EXTERN_C const IID IID_IMFSourceBufferNotify;
+@@ -3544,6 +3555,7 @@ EXTERN_C const IID IID_IMFSourceBufferNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("87e47623-2ceb-45d6-9b88-d8520c4dcbbc")
      IMFSourceBufferNotify : public IUnknown
      {
-@@ -3667,6 +3681,7 @@ EXTERN_C const IID IID_IMFSourceBuffer;
+@@ -3667,6 +3679,7 @@ EXTERN_C const IID IID_IMFSourceBuffer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("e2cd3a4b-af25-4d3d-9110-da0e6f8ee877")
      IMFSourceBuffer : public IUnknown
      {
-@@ -4010,6 +4025,7 @@ EXTERN_C const IID IID_IMFSourceBufferList;
+@@ -4010,6 +4023,7 @@ EXTERN_C const IID IID_IMFSourceBufferList;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("249981f8-8325-41f3-b80c-3b9e3aad0cbe")
      IMFSourceBufferList : public IUnknown
      {
-@@ -4131,6 +4147,7 @@ EXTERN_C const IID IID_IMFMediaSourceExtension;
+@@ -4131,6 +4145,7 @@ EXTERN_C const IID IID_IMFMediaSourceExtension;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("e467b94e-a713-4562-a802-816a42e9008a")
      IMFMediaSourceExtension : public IUnknown
      {
-@@ -4440,6 +4457,7 @@ EXTERN_C const IID IID_IMFMediaEngineEME;
+@@ -4440,6 +4455,7 @@ EXTERN_C const IID IID_IMFMediaEngineEME;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("50dc93e4-ba4f-4275-ae66-83e836e57469")
      IMFMediaEngineEME : public IUnknown
      {
-@@ -4540,6 +4558,7 @@ EXTERN_C const IID IID_IMFMediaEngineSrcElementsEx;
+@@ -4540,6 +4556,7 @@ EXTERN_C const IID IID_IMFMediaEngineSrcElementsEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("654a6bb3-e1a3-424a-9908-53a43a0dfda0")
      IMFMediaEngineSrcElementsEx : public IMFMediaEngineSrcElements
      {
-@@ -4727,6 +4746,7 @@ EXTERN_C const IID IID_IMFMediaEngineNeedKeyNotify;
+@@ -4727,6 +4744,7 @@ EXTERN_C const IID IID_IMFMediaEngineNeedKeyNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("46a30204-a696-4b18-8804-246b8f031bb1")
      IMFMediaEngineNeedKeyNotify : public IUnknown
      {
-@@ -4818,6 +4838,7 @@ EXTERN_C const IID IID_IMFMediaKeys;
+@@ -4818,6 +4836,7 @@ EXTERN_C const IID IID_IMFMediaKeys;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("5cb31c05-61ff-418f-afda-caaf41421a38")
      IMFMediaKeys : public IUnknown
      {
-@@ -4983,6 +5004,7 @@ EXTERN_C const IID IID_IMFMediaKeySession;
+@@ -4983,6 +5002,7 @@ EXTERN_C const IID IID_IMFMediaKeySession;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("24fa67d5-d1d0-4dc5-995c-c0efdc191fb5")
      IMFMediaKeySession : public IUnknown
      {
-@@ -5126,6 +5148,7 @@ EXTERN_C const IID IID_IMFMediaKeySessionNotify;
+@@ -5126,6 +5146,7 @@ EXTERN_C const IID IID_IMFMediaKeySessionNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -172,7 +170,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("6a0083f9-8947-4c1d-9ce0-cdee22b23135")
      IMFMediaKeySessionNotify : public IUnknown
      {
-@@ -5247,6 +5270,7 @@ EXTERN_C const IID IID_IMFCdmSuspendNotify;
+@@ -5247,6 +5268,7 @@ EXTERN_C const IID IID_IMFCdmSuspendNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -180,7 +178,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("7a5645d2-43bd-47fd-87b7-dcd24cc7d692")
      IMFCdmSuspendNotify : public IUnknown
      {
-@@ -5478,6 +5502,7 @@ EXTERN_C const IID IID_IMFMediaEngineOPMInfo;
+@@ -5478,6 +5500,7 @@ EXTERN_C const IID IID_IMFMediaEngineOPMInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -188,7 +186,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("765763e6-6c01-4b01-bb0f-b829f60ed28c")
      IMFMediaEngineOPMInfo : public IUnknown
      {
-@@ -5663,6 +5688,7 @@ EXTERN_C const IID IID_IMFMediaEngineClassFactory;
+@@ -5663,6 +5686,7 @@ EXTERN_C const IID IID_IMFMediaEngineClassFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -196,7 +194,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("4D645ACE-26AA-4688-9BE1-DF3516990B93")
      IMFMediaEngineClassFactory : public IUnknown
      {
-@@ -5796,6 +5822,7 @@ EXTERN_C const IID IID_IMFMediaEngineClassFactoryEx;
+@@ -5796,6 +5820,7 @@ EXTERN_C const IID IID_IMFMediaEngineClassFactoryEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -204,7 +202,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("c56156c6-ea5b-48a5-9df8-fbe035d0929e")
      IMFMediaEngineClassFactoryEx : public IMFMediaEngineClassFactory
      {
-@@ -5965,6 +5992,7 @@ EXTERN_C const IID IID_IMFMediaEngineClassFactory2;
+@@ -5965,6 +5990,7 @@ EXTERN_C const IID IID_IMFMediaEngineClassFactory2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -212,7 +210,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("09083cef-867f-4bf6-8776-dee3a7b42fca")
      IMFMediaEngineClassFactory2 : public IUnknown
      {
-@@ -6159,6 +6187,7 @@ EXTERN_C const IID IID_IMFMediaEngineSupportsSourceTransfer;
+@@ -6159,6 +6185,7 @@ EXTERN_C const IID IID_IMFMediaEngineSupportsSourceTransfer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -220,7 +218,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("a724b056-1b2e-4642-a6f3-db9420c52908")
      IMFMediaEngineSupportsSourceTransfer : public IUnknown
      {
-@@ -6561,6 +6590,7 @@ EXTERN_C const IID IID_IMFTimedText;
+@@ -6561,6 +6588,7 @@ EXTERN_C const IID IID_IMFTimedText;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -228,7 +226,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("1f2a94c9-a3df-430d-9d0f-acd85ddc29af")
      IMFTimedText : public IUnknown
      {
-@@ -6869,6 +6899,7 @@ EXTERN_C const IID IID_IMFTimedTextNotify;
+@@ -6869,6 +6897,7 @@ EXTERN_C const IID IID_IMFTimedTextNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -236,7 +234,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("df6b87b6-ce12-45db-aba7-432fe054e57d")
      IMFTimedTextNotify : public IUnknown
      {
-@@ -7050,6 +7081,7 @@ EXTERN_C const IID IID_IMFTimedTextTrack;
+@@ -7050,6 +7079,7 @@ EXTERN_C const IID IID_IMFTimedTextTrack;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -244,7 +242,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("8822c32d-654e-4233-bf21-d7f2e67d30d4")
      IMFTimedTextTrack : public IUnknown
      {
-@@ -7265,6 +7297,7 @@ EXTERN_C const IID IID_IMFTimedTextTrackList;
+@@ -7265,6 +7295,7 @@ EXTERN_C const IID IID_IMFTimedTextTrackList;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -252,7 +250,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("23ff334c-442c-445f-bccc-edc438aa11e2")
      IMFTimedTextTrackList : public IUnknown
      {
-@@ -7382,6 +7415,7 @@ EXTERN_C const IID IID_IMFTimedTextCue;
+@@ -7382,6 +7413,7 @@ EXTERN_C const IID IID_IMFTimedTextCue;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -260,7 +258,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("1e560447-9a2b-43e1-a94c-b0aaabfbfbc9")
      IMFTimedTextCue : public IUnknown
      {
-@@ -7579,6 +7613,7 @@ EXTERN_C const IID IID_IMFTimedTextFormattedText;
+@@ -7579,6 +7611,7 @@ EXTERN_C const IID IID_IMFTimedTextFormattedText;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -268,7 +266,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("e13af3c1-4d47-4354-b1f5-e83ae0ecae60")
      IMFTimedTextFormattedText : public IUnknown
      {
-@@ -7700,6 +7735,7 @@ EXTERN_C const IID IID_IMFTimedTextStyle;
+@@ -7700,6 +7733,7 @@ EXTERN_C const IID IID_IMFTimedTextStyle;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -276,7 +274,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("09b2455d-b834-4f01-a347-9052e21c450e")
      IMFTimedTextStyle : public IUnknown
      {
-@@ -7955,6 +7991,7 @@ EXTERN_C const IID IID_IMFTimedTextRegion;
+@@ -7955,6 +7989,7 @@ EXTERN_C const IID IID_IMFTimedTextRegion;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -284,7 +282,7 @@ index d1b6f45a..2429a6a8 100644
      MIDL_INTERFACE("c8d22afc-bc47-4bdf-9b04-787e49ce3f58")
      IMFTimedTextRegion : public IUnknown
      {
-@@ -8221,6 +8258,7 @@ EXTERN_C const IID IID_IMFTimedTextBinary;
+@@ -8221,6 +8256,7 @@ EXTERN_C const IID IID_IMFTimedTextBinary;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,14 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PhotoAcquireProperties.h b/generation/WinSDK/RecompiledIdlHeaders/um/PhotoAcquireProperties.h
-index c5facee9..a8bd081a 100644
+index c5facee9..7a24419a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/PhotoAcquireProperties.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/PhotoAcquireProperties.h
-@@ -7,19 +7,31 @@
+@@ -7,19 +7,29 @@
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)

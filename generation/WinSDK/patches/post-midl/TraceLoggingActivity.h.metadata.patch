@@ -1,29 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/TraceLoggingActivity.h b/generation/WinSDK/RecompiledIdlHeaders/shared/TraceLoggingActivity.h
-index 3fbb5324..54c66358 100644
+index 3fbb5324..eaf9f255 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/TraceLoggingActivity.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/TraceLoggingActivity.h
-@@ -18,6 +18,9 @@ Environment:
+@@ -18,6 +18,7 @@ Environment:
  --*/
  
  #pragma once
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #ifndef RC_INVOKED
  
  #include "TraceLoggingProvider.h"
-@@ -429,12 +432,14 @@ void _tlgWriteActivityAutoStop(
-     TraceLoggingHProvider provider,
-     _In_ GUID const* pActivityId)
- {
-+_Win32_metadata_supported_os_(windows10.0.10240)
-     TraceLoggingWriteActivity(
-         provider,
-         "ActivityStoppedAutomatically",
-         pActivityId,
-         NULL,
-         TraceLoggingOpcode(2 /* WINEVENT_OPCODE_STOP */),
-+_Win32_metadata_supported_os_(windows10.0.10240)
-         TraceLoggingKeyword(keyword),
-         TraceLoggingLevel(level));
- }

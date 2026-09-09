@@ -1,19 +1,17 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1.h b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1.h
-index ecf2adca..ad23aceb 100644
+index ecf2adca..897aff77 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1.h
-@@ -5,6 +5,10 @@
+@@ -5,6 +5,8 @@
  //
  // File name: D2D1.h
  //---------------------------------------------------------------------------
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
 +
  #ifdef _MSC_VER
  #pragma once
  #endif // #ifdef _MSC_VER
-@@ -1079,6 +1083,7 @@ EXTERN_C CONST IID IID_ID2D1GdiInteropRenderTarget;
+@@ -1079,6 +1081,7 @@ EXTERN_C CONST IID IID_ID2D1GdiInteropRenderTarget;
  /// <summary>
  /// The root interface for all resources in D2D.
  /// </summary>
@@ -21,7 +19,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd90691-12e2-11dc-9fed-001143a055f9") ID2D1Resource  : public IUnknown
  {
      
-@@ -1094,6 +1099,7 @@ interface DX_DECLARE_INTERFACE("2cd90691-12e2-11dc-9fed-001143a055f9") ID2D1Reso
+@@ -1094,6 +1097,7 @@ interface DX_DECLARE_INTERFACE("2cd90691-12e2-11dc-9fed-001143a055f9") ID2D1Reso
  /// <summary>
  /// Represents a producer of pixels that can fill an arbitrary 2D plane.
  /// </summary>
@@ -29,7 +27,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("65019f75-8da2-497c-b32c-dfa34e48ede6") ID2D1Image  : public ID2D1Resource
  {
  }; // interface ID2D1Image
-@@ -1102,6 +1108,7 @@ interface DX_DECLARE_INTERFACE("65019f75-8da2-497c-b32c-dfa34e48ede6") ID2D1Imag
+@@ -1102,6 +1106,7 @@ interface DX_DECLARE_INTERFACE("65019f75-8da2-497c-b32c-dfa34e48ede6") ID2D1Imag
  /// <summary>
  /// Root bitmap resource, linearly scaled on a draw call.
  /// </summary>
@@ -37,7 +35,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("a2296057-ea42-4099-983b-539fb6505426") ID2D1Bitmap  : public ID2D1Image
  {
      
-@@ -1155,6 +1162,7 @@ interface DX_DECLARE_INTERFACE("a2296057-ea42-4099-983b-539fb6505426") ID2D1Bitm
+@@ -1155,6 +1160,7 @@ interface DX_DECLARE_INTERFACE("a2296057-ea42-4099-983b-539fb6505426") ID2D1Bitm
  /// Represents an collection of gradient stops that can then be the source resource
  /// for either a linear or radial gradient brush.
  /// </summary>
@@ -45,7 +43,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906a7-12e2-11dc-9fed-001143a055f9") ID2D1GradientStopCollection  : public ID2D1Resource
  {
      
-@@ -1187,6 +1195,7 @@ interface DX_DECLARE_INTERFACE("2cd906a7-12e2-11dc-9fed-001143a055f9") ID2D1Grad
+@@ -1187,6 +1193,7 @@ interface DX_DECLARE_INTERFACE("2cd906a7-12e2-11dc-9fed-001143a055f9") ID2D1Grad
  /// <summary>
  /// The root brush interface. All brushes can be used to fill or pen a geometry.
  /// </summary>
@@ -53,7 +51,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906a8-12e2-11dc-9fed-001143a055f9") ID2D1Brush  : public ID2D1Resource
  {
      
-@@ -1225,6 +1234,7 @@ interface DX_DECLARE_INTERFACE("2cd906a8-12e2-11dc-9fed-001143a055f9") ID2D1Brus
+@@ -1225,6 +1232,7 @@ interface DX_DECLARE_INTERFACE("2cd906a8-12e2-11dc-9fed-001143a055f9") ID2D1Brus
  /// <summary>
  /// A bitmap brush allows a bitmap to be used to fill a geometry.
  /// </summary>
@@ -61,7 +59,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906aa-12e2-11dc-9fed-001143a055f9") ID2D1BitmapBrush  : public ID2D1Brush
  {
      
-@@ -1276,6 +1286,7 @@ interface DX_DECLARE_INTERFACE("2cd906aa-12e2-11dc-9fed-001143a055f9") ID2D1Bitm
+@@ -1276,6 +1284,7 @@ interface DX_DECLARE_INTERFACE("2cd906aa-12e2-11dc-9fed-001143a055f9") ID2D1Bitm
  /// <summary>
  /// Paints an area with a solid color.
  /// </summary>
@@ -69,7 +67,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906a9-12e2-11dc-9fed-001143a055f9") ID2D1SolidColorBrush  : public ID2D1Brush
  {
      
-@@ -1300,6 +1311,7 @@ interface DX_DECLARE_INTERFACE("2cd906a9-12e2-11dc-9fed-001143a055f9") ID2D1Soli
+@@ -1300,6 +1309,7 @@ interface DX_DECLARE_INTERFACE("2cd906a9-12e2-11dc-9fed-001143a055f9") ID2D1Soli
  /// <summary>
  /// Paints an area with a linear gradient.
  /// </summary>
@@ -77,7 +75,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906ab-12e2-11dc-9fed-001143a055f9") ID2D1LinearGradientBrush  : public ID2D1Brush
  {
      
-@@ -1330,6 +1342,7 @@ interface DX_DECLARE_INTERFACE("2cd906ab-12e2-11dc-9fed-001143a055f9") ID2D1Line
+@@ -1330,6 +1340,7 @@ interface DX_DECLARE_INTERFACE("2cd906ab-12e2-11dc-9fed-001143a055f9") ID2D1Line
  /// <summary>
  /// Paints an area with a radial gradient.
  /// </summary>
@@ -85,7 +83,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906ac-12e2-11dc-9fed-001143a055f9") ID2D1RadialGradientBrush  : public ID2D1Brush
  {
      
-@@ -1377,6 +1390,7 @@ interface DX_DECLARE_INTERFACE("2cd906ac-12e2-11dc-9fed-001143a055f9") ID2D1Radi
+@@ -1377,6 +1388,7 @@ interface DX_DECLARE_INTERFACE("2cd906ac-12e2-11dc-9fed-001143a055f9") ID2D1Radi
  /// <summary>
  /// Resource interface that holds pen style properties.
  /// </summary>
@@ -93,7 +91,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd9069d-12e2-11dc-9fed-001143a055f9") ID2D1StrokeStyle  : public ID2D1Resource
  {
      
-@@ -1420,6 +1434,7 @@ interface DX_DECLARE_INTERFACE("2cd9069d-12e2-11dc-9fed-001143a055f9") ID2D1Stro
+@@ -1420,6 +1432,7 @@ interface DX_DECLARE_INTERFACE("2cd9069d-12e2-11dc-9fed-001143a055f9") ID2D1Stro
  /// manipulating and measuring geometric shapes. Interfaces that inherit from
  /// ID2D1Geometry define specific shapes.
  /// </summary>
@@ -101,7 +99,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906a1-12e2-11dc-9fed-001143a055f9") ID2D1Geometry  : public ID2D1Resource
  {
      
-@@ -2099,6 +2114,7 @@ interface DX_DECLARE_INTERFACE("2cd906a1-12e2-11dc-9fed-001143a055f9") ID2D1Geom
+@@ -2099,6 +2112,7 @@ interface DX_DECLARE_INTERFACE("2cd906a1-12e2-11dc-9fed-001143a055f9") ID2D1Geom
  /// <summary>
  /// Describes a two-dimensional rectangle.
  /// </summary>
@@ -109,7 +107,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906a2-12e2-11dc-9fed-001143a055f9") ID2D1RectangleGeometry  : public ID2D1Geometry
  {
      
-@@ -2111,6 +2127,7 @@ interface DX_DECLARE_INTERFACE("2cd906a2-12e2-11dc-9fed-001143a055f9") ID2D1Rect
+@@ -2111,6 +2125,7 @@ interface DX_DECLARE_INTERFACE("2cd906a2-12e2-11dc-9fed-001143a055f9") ID2D1Rect
  /// <summary>
  /// Describes a rounded rectangle.
  /// </summary>
@@ -117,7 +115,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906a3-12e2-11dc-9fed-001143a055f9") ID2D1RoundedRectangleGeometry  : public ID2D1Geometry
  {
      
-@@ -2123,6 +2140,7 @@ interface DX_DECLARE_INTERFACE("2cd906a3-12e2-11dc-9fed-001143a055f9") ID2D1Roun
+@@ -2123,6 +2138,7 @@ interface DX_DECLARE_INTERFACE("2cd906a3-12e2-11dc-9fed-001143a055f9") ID2D1Roun
  /// <summary>
  /// Represents an ellipse.
  /// </summary>
@@ -125,7 +123,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906a4-12e2-11dc-9fed-001143a055f9") ID2D1EllipseGeometry  : public ID2D1Geometry
  {
      
-@@ -2135,6 +2153,7 @@ interface DX_DECLARE_INTERFACE("2cd906a4-12e2-11dc-9fed-001143a055f9") ID2D1Elli
+@@ -2135,6 +2151,7 @@ interface DX_DECLARE_INTERFACE("2cd906a4-12e2-11dc-9fed-001143a055f9") ID2D1Elli
  /// <summary>
  /// Represents a composite geometry, composed of other ID2D1Geometry objects.
  /// </summary>
@@ -133,7 +131,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906a6-12e2-11dc-9fed-001143a055f9") ID2D1GeometryGroup  : public ID2D1Geometry
  {
      
-@@ -2154,6 +2173,7 @@ interface DX_DECLARE_INTERFACE("2cd906a6-12e2-11dc-9fed-001143a055f9") ID2D1Geom
+@@ -2154,6 +2171,7 @@ interface DX_DECLARE_INTERFACE("2cd906a6-12e2-11dc-9fed-001143a055f9") ID2D1Geom
  /// <summary>
  /// Represents a geometry that has been transformed.
  /// </summary>
@@ -141,7 +139,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906bb-12e2-11dc-9fed-001143a055f9") ID2D1TransformedGeometry  : public ID2D1Geometry
  {
      
-@@ -2171,6 +2191,7 @@ interface DX_DECLARE_INTERFACE("2cd906bb-12e2-11dc-9fed-001143a055f9") ID2D1Tran
+@@ -2171,6 +2189,7 @@ interface DX_DECLARE_INTERFACE("2cd906bb-12e2-11dc-9fed-001143a055f9") ID2D1Tran
  /// Describes a geometric path that does not contain quadratic bezier curves or
  /// arcs.
  /// </summary>
@@ -149,7 +147,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd9069e-12e2-11dc-9fed-001143a055f9") ID2D1SimplifiedGeometrySink  : public IUnknown
  {
      
-@@ -2210,6 +2231,7 @@ interface DX_DECLARE_INTERFACE("2cd9069e-12e2-11dc-9fed-001143a055f9") ID2D1Simp
+@@ -2210,6 +2229,7 @@ interface DX_DECLARE_INTERFACE("2cd9069e-12e2-11dc-9fed-001143a055f9") ID2D1Simp
  /// Describes a geometric path that can contain lines, arcs, cubic Bezier curves,
  /// and quadratic Bezier curves.
  /// </summary>
@@ -157,7 +155,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd9069f-12e2-11dc-9fed-001143a055f9") ID2D1GeometrySink  : public ID2D1SimplifiedGeometrySink
  {
      
-@@ -2266,6 +2288,7 @@ interface DX_DECLARE_INTERFACE("2cd9069f-12e2-11dc-9fed-001143a055f9") ID2D1Geom
+@@ -2266,6 +2286,7 @@ interface DX_DECLARE_INTERFACE("2cd9069f-12e2-11dc-9fed-001143a055f9") ID2D1Geom
  /// <summary>
  /// Populates an ID2D1Mesh object with triangles.
  /// </summary>
@@ -165,7 +163,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906c1-12e2-11dc-9fed-001143a055f9") ID2D1TessellationSink  : public IUnknown
  {
      
-@@ -2282,6 +2305,7 @@ interface DX_DECLARE_INTERFACE("2cd906c1-12e2-11dc-9fed-001143a055f9") ID2D1Tess
+@@ -2282,6 +2303,7 @@ interface DX_DECLARE_INTERFACE("2cd906c1-12e2-11dc-9fed-001143a055f9") ID2D1Tess
  /// <summary>
  /// Represents a complex shape that may be composed of arcs, curves, and lines.
  /// </summary>
@@ -173,7 +171,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906a5-12e2-11dc-9fed-001143a055f9") ID2D1PathGeometry  : public ID2D1Geometry
  {
      
-@@ -2313,6 +2337,7 @@ interface DX_DECLARE_INTERFACE("2cd906a5-12e2-11dc-9fed-001143a055f9") ID2D1Path
+@@ -2313,6 +2335,7 @@ interface DX_DECLARE_INTERFACE("2cd906a5-12e2-11dc-9fed-001143a055f9") ID2D1Path
  /// <summary>
  /// Represents a set of vertices that form a list of triangles.
  /// </summary>
@@ -181,7 +179,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd906c2-12e2-11dc-9fed-001143a055f9") ID2D1Mesh  : public ID2D1Resource
  {
      
-@@ -2328,6 +2353,7 @@ interface DX_DECLARE_INTERFACE("2cd906c2-12e2-11dc-9fed-001143a055f9") ID2D1Mesh
+@@ -2328,6 +2351,7 @@ interface DX_DECLARE_INTERFACE("2cd906c2-12e2-11dc-9fed-001143a055f9") ID2D1Mesh
  /// <summary>
  /// Represents the backing store required to render a layer.
  /// </summary>
@@ -189,7 +187,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd9069b-12e2-11dc-9fed-001143a055f9") ID2D1Layer  : public ID2D1Resource
  {
      
-@@ -2340,6 +2366,7 @@ interface DX_DECLARE_INTERFACE("2cd9069b-12e2-11dc-9fed-001143a055f9") ID2D1Laye
+@@ -2340,6 +2364,7 @@ interface DX_DECLARE_INTERFACE("2cd9069b-12e2-11dc-9fed-001143a055f9") ID2D1Laye
  /// Represents the drawing state of a render target: the antialiasing mode,
  /// transform, tags, and text-rendering options.
  /// </summary>
@@ -197,7 +195,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("28506e39-ebf6-46a1-bb47-fd85565ab957") ID2D1DrawingStateBlock  : public ID2D1Resource
  {
      
-@@ -2389,6 +2416,7 @@ interface DX_DECLARE_INTERFACE("28506e39-ebf6-46a1-bb47-fd85565ab957") ID2D1Draw
+@@ -2389,6 +2414,7 @@ interface DX_DECLARE_INTERFACE("28506e39-ebf6-46a1-bb47-fd85565ab957") ID2D1Draw
  /// from ID2D1RenderTarget render the drawing commands they receive in different
  /// ways.
  /// </summary>
@@ -205,7 +203,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1RenderTarget  : public ID2D1Resource
  {
      
-@@ -2822,6 +2850,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
+@@ -2822,6 +2848,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
          _In_ CONST D2D1_RENDER_TARGET_PROPERTIES *renderTargetProperties 
          ) CONST PURE;
      
@@ -213,7 +211,7 @@ index ecf2adca..ad23aceb 100644
      COM_DECLSPEC_NOTHROW
      HRESULT
      CreateBitmap(
-@@ -2835,6 +2864,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
+@@ -2835,6 +2862,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
          return CreateBitmap(size, srcData, pitch, &bitmapProperties, bitmap);
      }
      
@@ -221,7 +219,7 @@ index ecf2adca..ad23aceb 100644
      COM_DECLSPEC_NOTHROW
      HRESULT
      CreateBitmap(
-@@ -3217,6 +3247,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
+@@ -3217,6 +3245,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
      /// Draws the text within the given layout rectangle and by default also performs
      /// baseline snapping.
      /// </summary>
@@ -229,7 +227,7 @@ index ecf2adca..ad23aceb 100644
      COM_DECLSPEC_NOTHROW
      void
      DrawText(
-@@ -3247,6 +3278,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
+@@ -3247,6 +3276,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
  /// Renders to an intermediate texture created by the CreateCompatibleRenderTarget
  /// method.
  /// </summary>
@@ -237,7 +235,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd90695-12e2-11dc-9fed-001143a055f9") ID2D1BitmapRenderTarget  : public ID2D1RenderTarget
  {
      
-@@ -3259,6 +3291,7 @@ interface DX_DECLARE_INTERFACE("2cd90695-12e2-11dc-9fed-001143a055f9") ID2D1Bitm
+@@ -3259,6 +3289,7 @@ interface DX_DECLARE_INTERFACE("2cd90695-12e2-11dc-9fed-001143a055f9") ID2D1Bitm
  /// <summary>
  /// Renders drawing instructions to a window.
  /// </summary>
@@ -245,7 +243,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("2cd90698-12e2-11dc-9fed-001143a055f9") ID2D1HwndRenderTarget  : public ID2D1RenderTarget
  {
      
-@@ -3301,6 +3334,7 @@ interface DX_DECLARE_INTERFACE("2cd90698-12e2-11dc-9fed-001143a055f9") ID2D1Hwnd
+@@ -3301,6 +3332,7 @@ interface DX_DECLARE_INTERFACE("2cd90698-12e2-11dc-9fed-001143a055f9") ID2D1Hwnd
  /// <summary>
  /// Provides access to an device context that can accept GDI drawing commands.
  /// </summary>
@@ -253,7 +251,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("e0db51c3-6f77-4bae-b3d5-e47509b35838") ID2D1GdiInteropRenderTarget  : public IUnknown
  {
      
-@@ -3325,6 +3359,7 @@ interface DX_DECLARE_INTERFACE("e0db51c3-6f77-4bae-b3d5-e47509b35838") ID2D1GdiI
+@@ -3325,6 +3357,7 @@ interface DX_DECLARE_INTERFACE("e0db51c3-6f77-4bae-b3d5-e47509b35838") ID2D1GdiI
  /// <summary>
  /// Issues drawing commands to a GDI device context.
  /// </summary>
@@ -261,7 +259,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("1c51bc64-de61-46fd-9899-63a5d8f03950") ID2D1DCRenderTarget  : public ID2D1RenderTarget
  {
      
-@@ -3338,6 +3373,7 @@ interface DX_DECLARE_INTERFACE("1c51bc64-de61-46fd-9899-63a5d8f03950") ID2D1DCRe
+@@ -3338,6 +3371,7 @@ interface DX_DECLARE_INTERFACE("1c51bc64-de61-46fd-9899-63a5d8f03950") ID2D1DCRe
  /// <summary>
  /// The root factory interface for all of D2D's objects.
  /// </summary>
@@ -269,7 +267,7 @@ index ecf2adca..ad23aceb 100644
  interface DX_DECLARE_INTERFACE("06152247-6f50-465a-9245-118bfd3b6007") ID2D1Factory  : public IUnknown
  {
      
-@@ -3664,6 +3700,7 @@ extern "C"
+@@ -3664,6 +3698,7 @@ extern "C"
      // also, this must be 'C' callable.
      //
      HRESULT WINAPI
@@ -277,7 +275,7 @@ index ecf2adca..ad23aceb 100644
      D2D1CreateFactory(
          _In_ D2D1_FACTORY_TYPE factoryType,
          _In_ REFIID riid,
-@@ -3673,6 +3710,7 @@ extern "C"
+@@ -3673,6 +3708,7 @@ extern "C"
  
  
      void WINAPI
@@ -285,7 +283,7 @@ index ecf2adca..ad23aceb 100644
      D2D1MakeRotateMatrix(
          _In_ FLOAT angle,
          _In_ D2D1_POINT_2F center,
-@@ -3680,6 +3718,7 @@ extern "C"
+@@ -3680,6 +3716,7 @@ extern "C"
          );
  
      void WINAPI
@@ -293,7 +291,7 @@ index ecf2adca..ad23aceb 100644
      D2D1MakeSkewMatrix(
          _In_ FLOAT angleX,
          _In_ FLOAT angleY,
-@@ -3688,11 +3727,13 @@ extern "C"
+@@ -3688,11 +3725,13 @@ extern "C"
          );
  
      BOOL WINAPI
@@ -307,7 +305,7 @@ index ecf2adca..ad23aceb 100644
      D2D1InvertMatrix(
          _Inout_ D2D1_MATRIX_3X2_F *matrix
          );
-@@ -3714,6 +3755,7 @@ extern "C"
+@@ -3714,6 +3753,7 @@ extern "C"
  COM_DECLSPEC_NOTHROW
  inline
  HRESULT
@@ -315,7 +313,7 @@ index ecf2adca..ad23aceb 100644
  D2D1CreateFactory(
      _In_ D2D1_FACTORY_TYPE factoryType,
      _In_ REFIID riid,
-@@ -3729,6 +3771,7 @@ D2D1CreateFactory(
+@@ -3729,6 +3769,7 @@ D2D1CreateFactory(
  }
  
  
@@ -323,7 +321,7 @@ index ecf2adca..ad23aceb 100644
  template<class Factory>
  COM_DECLSPEC_NOTHROW
  HRESULT
-@@ -3744,6 +3787,7 @@ D2D1CreateFactory(
+@@ -3744,6 +3785,7 @@ D2D1CreateFactory(
              reinterpret_cast<void **>(factory));
  }
  

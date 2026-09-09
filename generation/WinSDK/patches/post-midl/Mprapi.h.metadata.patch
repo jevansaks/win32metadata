@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Mprapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/Mprapi.h
-index 7a04178b..6dca72e5 100644
+index 7a04178b..499ec59b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Mprapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Mprapi.h
-@@ -130,6 +130,9 @@ Abstract:
+@@ -130,6 +130,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or CmdLineTools Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_CMDTOOLS)
-@@ -1994,6 +1997,7 @@ typedef struct RAS_UPDATE_CONNECTION_
+@@ -1994,6 +1995,7 @@ typedef struct RAS_UPDATE_CONNECTION_
  RAS_UPDATE_CONNECTION,*PRAS_UPDATE_CONNECTION;
  
  // RAS Admin Functions:
@@ -20,7 +18,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminConnectionEnumEx(
       _In_      RAS_SERVER_HANDLE       hRasServer,
-@@ -2005,6 +2009,7 @@ MprAdminConnectionEnumEx(
+@@ -2005,6 +2007,7 @@ MprAdminConnectionEnumEx(
       _In_      LPDWORD                 lpdwResumeHandle);
  
  
@@ -28,7 +26,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY MprAdminConnectionGetInfoEx(
     _In_       RAS_SERVER_HANDLE       hRasServer,
     _In_       HANDLE                  hRasConnection,
-@@ -2012,11 +2017,13 @@ DWORD APIENTRY MprAdminConnectionGetInfoEx(
+@@ -2012,11 +2015,13 @@ DWORD APIENTRY MprAdminConnectionGetInfoEx(
  ); // Use MprAdminBufferFree for freeing pRASCONN
  
  // Router Admin Functions:
@@ -42,7 +40,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY MprAdminServerSetInfoEx(
      _In_      MPR_SERVER_HANDLE           hMprServer,
      _In_      MPR_SERVER_SET_CONFIG_EX*   pServerInfo);
-@@ -2024,11 +2031,13 @@ DWORD APIENTRY MprAdminServerSetInfoEx(
+@@ -2024,11 +2029,13 @@ DWORD APIENTRY MprAdminServerSetInfoEx(
  
  // Router Config Functions:
  
@@ -56,7 +54,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY MprConfigServerSetInfoEx(
      _In_      HANDLE                      hMprConfig,
      _In_      MPR_SERVER_SET_CONFIG_EX*   pSetServerConfig);
-@@ -2114,22 +2123,27 @@ typedef struct _MPRAPI_ADMIN_DLL_CALLBACKS
+@@ -2114,22 +2121,27 @@ typedef struct _MPRAPI_ADMIN_DLL_CALLBACKS
  } MPRAPI_ADMIN_DLL_CALLBACKS, *PMPRAPI_ADMIN_DLL_CALLBACKS;
  
  
@@ -84,7 +82,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY MprAdminIsServiceInitialized(
      _In_ LPWSTR  lpwsServerName,
      _In_ BOOL    *fIsServiceInitialized
-@@ -2138,6 +2152,7 @@ DWORD APIENTRY MprAdminIsServiceInitialized(
+@@ -2138,6 +2150,7 @@ DWORD APIENTRY MprAdminIsServiceInitialized(
  #if(NTDDI_VERSION >= NTDDI_WIN8)
  
  // Admin APIs
@@ -92,7 +90,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceSetCustomInfoEx(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2145,6 +2160,7 @@ MprAdminInterfaceSetCustomInfoEx(
+@@ -2145,6 +2158,7 @@ MprAdminInterfaceSetCustomInfoEx(
      _In_      PMPR_IF_CUSTOMINFOEX  pCustomInfo
  );
  
@@ -100,7 +98,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceGetCustomInfoEx(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2153,6 +2169,7 @@ MprAdminInterfaceGetCustomInfoEx(
+@@ -2153,6 +2167,7 @@ MprAdminInterfaceGetCustomInfoEx(
  );
  
  // Config APIs
@@ -108,7 +106,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceGetCustomInfoEx(
      _In_      HANDLE                            hMprConfig,
-@@ -2160,6 +2177,7 @@ MprConfigInterfaceGetCustomInfoEx(
+@@ -2160,6 +2175,7 @@ MprConfigInterfaceGetCustomInfoEx(
      _Out_    PMPR_IF_CUSTOMINFOEX  pCustomInfo
  );
  
@@ -116,7 +114,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceSetCustomInfoEx(
      _In_      HANDLE                            hMprConfig,
-@@ -2174,6 +2192,7 @@ MprConfigInterfaceSetCustomInfoEx(
+@@ -2174,6 +2190,7 @@ MprConfigInterfaceSetCustomInfoEx(
  //  RAS ADMIN APIs
  //
  
@@ -124,7 +122,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminConnectionEnum(
      _In_      RAS_SERVER_HANDLE       hRasServer,
-@@ -2188,6 +2207,7 @@ MprAdminConnectionEnum(
+@@ -2188,6 +2205,7 @@ MprAdminConnectionEnum(
      _In_opt_  LPDWORD                 lpdwResumeHandle
  );
  
@@ -132,7 +130,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminPortEnum(
      _In_      RAS_SERVER_HANDLE       hRasServer,
-@@ -2200,6 +2220,7 @@ MprAdminPortEnum(
+@@ -2200,6 +2218,7 @@ MprAdminPortEnum(
      _In_opt_  LPDWORD                 lpdwResumeHandle
  );
  
@@ -140,7 +138,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminConnectionGetInfo(
      _In_      RAS_SERVER_HANDLE       hRasServer,
-@@ -2208,6 +2229,7 @@ MprAdminConnectionGetInfo(
+@@ -2208,6 +2227,7 @@ MprAdminConnectionGetInfo(
      _Out_     LPBYTE *                lplpbBuffer
  );
  
@@ -148,7 +146,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminPortGetInfo(
      _In_      RAS_SERVER_HANDLE       hRasServer,
-@@ -2216,30 +2238,35 @@ MprAdminPortGetInfo(
+@@ -2216,30 +2236,35 @@ MprAdminPortGetInfo(
      _Out_     LPBYTE *                lplpbBuffer
  );
  
@@ -184,7 +182,7 @@ index 7a04178b..6dca72e5 100644
  BOOL APIENTRY
  MprAdminAcceptNewConnection(
      _In_      RAS_CONNECTION_0 *      pRasConnection0,
-@@ -2248,6 +2275,7 @@ MprAdminAcceptNewConnection(
+@@ -2248,6 +2273,7 @@ MprAdminAcceptNewConnection(
  
  #if(WINVER >= 0x0500)
  
@@ -192,7 +190,7 @@ index 7a04178b..6dca72e5 100644
  BOOL APIENTRY
  MprAdminAcceptNewConnection2(
      _In_      RAS_CONNECTION_0 *      pRasConnection0,
-@@ -2259,6 +2287,7 @@ MprAdminAcceptNewConnection2(
+@@ -2259,6 +2285,7 @@ MprAdminAcceptNewConnection2(
  
  #if(WINVER >= 0x0600)
  
@@ -200,7 +198,7 @@ index 7a04178b..6dca72e5 100644
  BOOL APIENTRY
  MprAdminAcceptNewConnection3(
      _In_      RAS_CONNECTION_0 *      pRasConnection0,
-@@ -2267,6 +2296,7 @@ MprAdminAcceptNewConnection3(
+@@ -2267,6 +2294,7 @@ MprAdminAcceptNewConnection3(
      _In_      RAS_CONNECTION_3 *      pRasConnection3
      );
  
@@ -208,7 +206,7 @@ index 7a04178b..6dca72e5 100644
  BOOL APIENTRY
  MprAdminAcceptReauthentication(
      _In_      RAS_CONNECTION_0 *      pRasConnection0,
-@@ -2276,12 +2306,14 @@ MprAdminAcceptReauthentication(
+@@ -2276,12 +2304,14 @@ MprAdminAcceptReauthentication(
      );
  #endif /* WINVER >= 0x0600 */
  
@@ -223,7 +221,7 @@ index 7a04178b..6dca72e5 100644
  VOID APIENTRY
  MprAdminConnectionHangupNotification(
      _In_      RAS_CONNECTION_0 *      pRasConnection0,
-@@ -2290,6 +2322,7 @@ MprAdminConnectionHangupNotification(
+@@ -2290,6 +2320,7 @@ MprAdminConnectionHangupNotification(
  
  #if(WINVER >= 0x0500)
  
@@ -231,7 +229,7 @@ index 7a04178b..6dca72e5 100644
  VOID APIENTRY
  MprAdminConnectionHangupNotification2(
      _In_      RAS_CONNECTION_0 *      pRasConnection0,
-@@ -2301,6 +2334,7 @@ MprAdminConnectionHangupNotification2(
+@@ -2301,6 +2332,7 @@ MprAdminConnectionHangupNotification2(
  
  #if(WINVER >= 0x0600)
  
@@ -239,7 +237,7 @@ index 7a04178b..6dca72e5 100644
  VOID APIENTRY
  MprAdminConnectionHangupNotification3(
      _In_      RAS_CONNECTION_0 *      pRasConnection0,
-@@ -2313,6 +2347,7 @@ MprAdminConnectionHangupNotification3(
+@@ -2313,6 +2345,7 @@ MprAdminConnectionHangupNotification3(
  
  #if (WINVER >= 0x501)
  
@@ -247,7 +245,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminConnectionRemoveQuarantine(
      _In_      HANDLE          hRasServer,    
-@@ -2322,12 +2357,14 @@ MprAdminConnectionRemoveQuarantine(
+@@ -2322,12 +2355,14 @@ MprAdminConnectionRemoveQuarantine(
  
  #endif
  
@@ -262,7 +260,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminGetIpAddressForUser (
      _In_      WCHAR *                 lpwszUserName,
-@@ -2338,6 +2375,7 @@ MprAdminGetIpAddressForUser (
+@@ -2338,6 +2373,7 @@ MprAdminGetIpAddressForUser (
  
  
      
@@ -270,7 +268,7 @@ index 7a04178b..6dca72e5 100644
  VOID APIENTRY
  MprAdminReleaseIpAddress (
      _In_      WCHAR *                 lpszUserName,
-@@ -2348,6 +2386,7 @@ MprAdminReleaseIpAddress (
+@@ -2348,6 +2384,7 @@ MprAdminReleaseIpAddress (
  
  #if(WINVER >= 0x0600)
  
@@ -278,7 +276,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY 
  MprAdminGetIpv6AddressForUser (
      _In_      WCHAR *                 lpwszUserName,
-@@ -2356,6 +2395,7 @@ MprAdminGetIpv6AddressForUser (
+@@ -2356,6 +2393,7 @@ MprAdminGetIpv6AddressForUser (
      _Out_     BOOL *                  bNotifyRelease
      );
  
@@ -286,7 +284,7 @@ index 7a04178b..6dca72e5 100644
  VOID MprAdminReleaseIpv6AddressForUser (
      _In_      WCHAR *                 lpszUserName,
      _In_      WCHAR *                 lpszPortName,
-@@ -2366,11 +2406,13 @@ VOID MprAdminReleaseIpv6AddressForUser (
+@@ -2366,11 +2404,13 @@ VOID MprAdminReleaseIpv6AddressForUser (
  
  #if(WINVER >= 0x0500)
  
@@ -300,7 +298,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminTerminateDll(
      VOID
-@@ -2382,6 +2424,7 @@ MprAdminTerminateDll(
+@@ -2382,6 +2422,7 @@ MprAdminTerminateDll(
  // MprAdminUser APIs
  //
  
@@ -308,7 +306,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminUserGetInfo(
      _In_      LPCWSTR           lpszServer,
-@@ -2391,6 +2434,7 @@ MprAdminUserGetInfo(
+@@ -2391,6 +2432,7 @@ MprAdminUserGetInfo(
  );
  
  
@@ -316,7 +314,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminUserSetInfo(
      _In_      LPCWSTR           lpszServer,
-@@ -2402,6 +2446,7 @@ MprAdminUserSetInfo(
+@@ -2402,6 +2444,7 @@ MprAdminUserSetInfo(
  
  #if(WINVER >= 0x0500)
  
@@ -324,7 +322,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminSendUserMessage(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2411,6 +2456,7 @@ MprAdminSendUserMessage(
+@@ -2411,6 +2454,7 @@ MprAdminSendUserMessage(
  
  #endif /* WINVER >= 0x0500 */
  
@@ -332,7 +330,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminGetPDCServer(
      _In_       LPCWSTR          lpszDomain,
-@@ -2422,23 +2468,27 @@ MprAdminGetPDCServer(
+@@ -2422,23 +2466,27 @@ MprAdminGetPDCServer(
  // Router APIs
  //
  
@@ -360,7 +358,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminServerGetCredentials(
      _In_  MPR_SERVER_HANDLE       hMprServer,
-@@ -2446,6 +2496,7 @@ MprAdminServerGetCredentials(
+@@ -2446,6 +2494,7 @@ MprAdminServerGetCredentials(
      _In_  LPBYTE *                lplpbBuffer
  );
  
@@ -368,7 +366,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminServerSetCredentials(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2456,17 +2507,20 @@ MprAdminServerSetCredentials(
+@@ -2456,17 +2505,20 @@ MprAdminServerSetCredentials(
  
  #endif
  
@@ -389,7 +387,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminServerGetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2475,6 +2529,7 @@ MprAdminServerGetInfo(
+@@ -2475,6 +2527,7 @@ MprAdminServerGetInfo(
  );
  
  #if (WINVER >= 0x501)
@@ -397,7 +395,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminServerSetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2483,6 +2538,7 @@ MprAdminServerSetInfo(
+@@ -2483,6 +2536,7 @@ MprAdminServerSetInfo(
  );
  
  
@@ -405,7 +403,7 @@ index 7a04178b..6dca72e5 100644
  DWORD  APIENTRY
  MprAdminEstablishDomainRasServer (
      _In_      LPWSTR                 pszDomain,
-@@ -2490,6 +2546,7 @@ MprAdminEstablishDomainRasServer (
+@@ -2490,6 +2544,7 @@ MprAdminEstablishDomainRasServer (
      _In_      BOOL                   bEnable
  );
  
@@ -413,7 +411,7 @@ index 7a04178b..6dca72e5 100644
  DWORD  APIENTRY
  MprAdminIsDomainRasServer (
      _In_     LPWSTR                  pszDomain,
-@@ -2501,6 +2558,7 @@ MprAdminIsDomainRasServer (
+@@ -2501,6 +2556,7 @@ MprAdminIsDomainRasServer (
  
  #if(WINVER >= 0x0500)
  
@@ -421,7 +419,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminTransportCreate(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2515,6 +2573,7 @@ MprAdminTransportCreate(
+@@ -2515,6 +2571,7 @@ MprAdminTransportCreate(
  
  #endif /* WINVER >= 0x0500 */
  
@@ -429,7 +427,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminTransportSetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2525,6 +2584,7 @@ MprAdminTransportSetInfo(
+@@ -2525,6 +2582,7 @@ MprAdminTransportSetInfo(
      _In_      DWORD                   dwClientInterfaceInfoSize
  );
  
@@ -437,7 +435,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminTransportGetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2537,6 +2597,7 @@ MprAdminTransportGetInfo(
+@@ -2537,6 +2595,7 @@ MprAdminTransportGetInfo(
  
  #if(WINVER >= 0x0500)
  
@@ -445,7 +443,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminDeviceEnum(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2546,6 +2607,7 @@ MprAdminDeviceEnum(
+@@ -2546,6 +2605,7 @@ MprAdminDeviceEnum(
  
  #endif /* WINVER >= 0x0500 */
  
@@ -453,7 +451,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceGetHandle(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2554,6 +2616,7 @@ MprAdminInterfaceGetHandle(
+@@ -2554,6 +2614,7 @@ MprAdminInterfaceGetHandle(
      _In_      BOOL                    fIncludeClientInterfaces
  );
  
@@ -461,7 +459,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceCreate(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2562,6 +2625,7 @@ MprAdminInterfaceCreate(
+@@ -2562,6 +2623,7 @@ MprAdminInterfaceCreate(
      _Out_     HANDLE *                phInterface
  );
  
@@ -469,7 +467,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceGetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2570,6 +2634,7 @@ MprAdminInterfaceGetInfo(
+@@ -2570,6 +2632,7 @@ MprAdminInterfaceGetInfo(
      _In_      LPBYTE *                lplpbBuffer
  );
  
@@ -477,7 +475,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceSetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2578,6 +2643,7 @@ MprAdminInterfaceSetInfo(
+@@ -2578,6 +2641,7 @@ MprAdminInterfaceSetInfo(
      _In_      LPBYTE                  lpbBuffer
  );
  
@@ -485,7 +483,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceDelete(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2586,6 +2652,7 @@ MprAdminInterfaceDelete(
+@@ -2586,6 +2650,7 @@ MprAdminInterfaceDelete(
  
  #if(WINVER >= 0x0500)
  
@@ -493,7 +491,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceDeviceGetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2595,6 +2662,7 @@ MprAdminInterfaceDeviceGetInfo(
+@@ -2595,6 +2660,7 @@ MprAdminInterfaceDeviceGetInfo(
      _Out_     LPBYTE*                 lplpBuffer
  );
  
@@ -501,7 +499,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceDeviceSetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2606,6 +2674,7 @@ MprAdminInterfaceDeviceSetInfo(
+@@ -2606,6 +2672,7 @@ MprAdminInterfaceDeviceSetInfo(
  
  #endif /* WINVER >= 0x0500 */
  
@@ -509,7 +507,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceTransportRemove(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2613,6 +2682,7 @@ MprAdminInterfaceTransportRemove(
+@@ -2613,6 +2680,7 @@ MprAdminInterfaceTransportRemove(
      _In_      DWORD                   dwTransportId
  );
  
@@ -517,7 +515,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceTransportAdd(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2622,6 +2692,7 @@ MprAdminInterfaceTransportAdd(
+@@ -2622,6 +2690,7 @@ MprAdminInterfaceTransportAdd(
      _In_      DWORD                   dwInterfaceInfoSize
  );
  
@@ -525,7 +523,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceTransportGetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2631,6 +2702,7 @@ MprAdminInterfaceTransportGetInfo(
+@@ -2631,6 +2700,7 @@ MprAdminInterfaceTransportGetInfo(
      _Out_opt_ LPDWORD                 lpdwInterfaceInfoSize
  );
  
@@ -533,7 +531,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceTransportSetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2640,6 +2712,7 @@ MprAdminInterfaceTransportSetInfo(
+@@ -2640,6 +2710,7 @@ MprAdminInterfaceTransportSetInfo(
      _In_      DWORD                   dwInterfaceInfoSize
  );
  
@@ -541,7 +539,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceEnum(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2675,6 +2748,7 @@ MprSetupIpInIpInterfaceFriendlyNameDelete(
+@@ -2675,6 +2746,7 @@ MprSetupIpInIpInterfaceFriendlyNameDelete(
      _In_  GUID    *pGuid
      );
  
@@ -549,7 +547,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceSetCredentials(
      _In_opt_       LPWSTR                  lpwsServer,
-@@ -2684,6 +2758,7 @@ MprAdminInterfaceSetCredentials(
+@@ -2684,6 +2756,7 @@ MprAdminInterfaceSetCredentials(
      _In_opt_       LPWSTR                  lpwsPassword
  );
  
@@ -557,7 +555,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceGetCredentials(
      _In_opt_         LPWSTR                  lpwsServer,
-@@ -2696,6 +2771,7 @@ MprAdminInterfaceGetCredentials(
+@@ -2696,6 +2769,7 @@ MprAdminInterfaceGetCredentials(
  
  #if(WINVER >= 0x0500)
  
@@ -565,7 +563,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceSetCredentialsEx(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2704,6 +2780,7 @@ MprAdminInterfaceSetCredentialsEx(
+@@ -2704,6 +2778,7 @@ MprAdminInterfaceSetCredentialsEx(
      _In_      LPBYTE                  lpbBuffer
  );
  
@@ -573,7 +571,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceGetCredentialsEx(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2714,6 +2791,7 @@ MprAdminInterfaceGetCredentialsEx(
+@@ -2714,6 +2789,7 @@ MprAdminInterfaceGetCredentialsEx(
  
  #endif /* WINVER >= 0x0500 */
  
@@ -581,7 +579,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceConnect(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2722,12 +2800,14 @@ MprAdminInterfaceConnect(
+@@ -2722,12 +2798,14 @@ MprAdminInterfaceConnect(
      _In_      BOOL                    fSynchronous
  );
  
@@ -596,7 +594,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceUpdateRoutes(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2736,6 +2816,7 @@ MprAdminInterfaceUpdateRoutes(
+@@ -2736,6 +2814,7 @@ MprAdminInterfaceUpdateRoutes(
      _In_      HANDLE                  hEvent
  );
  
@@ -604,7 +602,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceQueryUpdateResult(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2744,6 +2825,7 @@ MprAdminInterfaceQueryUpdateResult(
+@@ -2744,6 +2823,7 @@ MprAdminInterfaceQueryUpdateResult(
      _Out_     LPDWORD                 lpdwUpdateResult
  );
  
@@ -612,7 +610,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminInterfaceUpdatePhonebookInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2752,12 +2834,14 @@ MprAdminInterfaceUpdatePhonebookInfo(
+@@ -2752,12 +2832,14 @@ MprAdminInterfaceUpdatePhonebookInfo(
  
  #if(WINVER >= 0x0500)
  
@@ -627,7 +625,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminDeregisterConnectionNotification(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2770,17 +2854,20 @@ MprAdminDeregisterConnectionNotification(
+@@ -2770,17 +2852,20 @@ MprAdminDeregisterConnectionNotification(
  // MIB APIs
  //
  
@@ -648,7 +646,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminMIBEntryCreate(
      _In_      MIB_SERVER_HANDLE       hMibServer,
-@@ -2790,6 +2877,7 @@ MprAdminMIBEntryCreate(
+@@ -2790,6 +2875,7 @@ MprAdminMIBEntryCreate(
      _In_      DWORD                   dwEntrySize
  );
  
@@ -656,7 +654,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminMIBEntryDelete(
      _In_      MIB_SERVER_HANDLE       hMibServer,
-@@ -2799,6 +2887,7 @@ MprAdminMIBEntryDelete(
+@@ -2799,6 +2885,7 @@ MprAdminMIBEntryDelete(
      _In_      DWORD                   dwEntrySize
  );
  
@@ -664,7 +662,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminMIBEntrySet(
      _In_      MIB_SERVER_HANDLE       hMibServer,
-@@ -2808,6 +2897,7 @@ MprAdminMIBEntrySet(
+@@ -2808,6 +2895,7 @@ MprAdminMIBEntrySet(
      _In_      DWORD                   dwEntrySize
  );
  
@@ -672,7 +670,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminMIBEntryGet(
      _In_      MIB_SERVER_HANDLE       hMibServer,
-@@ -2819,6 +2909,7 @@ MprAdminMIBEntryGet(
+@@ -2819,6 +2907,7 @@ MprAdminMIBEntryGet(
      _Out_     LPDWORD                 lpOutEntrySize
  );
  
@@ -680,7 +678,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminMIBEntryGetFirst(
      _In_      MIB_SERVER_HANDLE       hMibServer,
-@@ -2830,6 +2921,7 @@ MprAdminMIBEntryGetFirst(
+@@ -2830,6 +2919,7 @@ MprAdminMIBEntryGetFirst(
      _Out_     LPDWORD                 lpOutEntrySize
  );
  
@@ -688,7 +686,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminMIBEntryGetNext(
      _In_      MIB_SERVER_HANDLE       hMibServer,
-@@ -2841,6 +2933,7 @@ MprAdminMIBEntryGetNext(
+@@ -2841,6 +2931,7 @@ MprAdminMIBEntryGetNext(
      _Out_     LPDWORD                 lpOutEntrySize
  );
  
@@ -696,7 +694,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminMIBGetTrapInfo(
      _In_      MIB_SERVER_HANDLE       hMibServer,
-@@ -2852,6 +2945,7 @@ MprAdminMIBGetTrapInfo(
+@@ -2852,6 +2943,7 @@ MprAdminMIBGetTrapInfo(
      _Inout_  LPDWORD                 lpOutDataSize
  );
  
@@ -704,7 +702,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminMIBSetTrapInfo(
      _In_      DWORD                   dwProtocolId,
-@@ -2863,6 +2957,7 @@ MprAdminMIBSetTrapInfo(
+@@ -2863,6 +2955,7 @@ MprAdminMIBSetTrapInfo(
      _Inout_  LPDWORD                 lpOutDataSize
  );
  
@@ -712,7 +710,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprAdminMIBBufferFree(
      _In_      LPVOID                  pBuffer
-@@ -2872,18 +2967,22 @@ MprAdminMIBBufferFree(
+@@ -2872,18 +2965,22 @@ MprAdminMIBBufferFree(
  // Configuration APIs
  //
  
@@ -735,7 +733,7 @@ index 7a04178b..6dca72e5 100644
  VOID APIENTRY
  MprConfigServerDisconnect(
      _In_      HANDLE                  hMprConfig
-@@ -2894,11 +2993,13 @@ MprConfigServerRefresh(
+@@ -2894,11 +2991,13 @@ MprConfigServerRefresh(
      _In_      HANDLE                  hMprConfig
      );
  
@@ -749,7 +747,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigServerGetInfo(
      _In_      HANDLE                  hMprConfig,
-@@ -2907,6 +3008,7 @@ MprConfigServerGetInfo(
+@@ -2907,6 +3006,7 @@ MprConfigServerGetInfo(
  );
  
  #if (WINVER >= 0x501)
@@ -757,7 +755,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigServerSetInfo(
      _In_      MPR_SERVER_HANDLE       hMprServer,
-@@ -2915,18 +3017,21 @@ MprConfigServerSetInfo(
+@@ -2915,18 +3015,21 @@ MprConfigServerSetInfo(
  );
  #endif
  
@@ -779,7 +777,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigTransportCreate(
      _In_      HANDLE                  hMprConfig,
-@@ -2940,12 +3045,14 @@ MprConfigTransportCreate(
+@@ -2940,12 +3043,14 @@ MprConfigTransportCreate(
      _Out_     HANDLE*                 phRouterTransport
  );
  
@@ -794,7 +792,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigTransportGetHandle(
      _In_      HANDLE                  hMprConfig,
-@@ -2953,6 +3060,7 @@ MprConfigTransportGetHandle(
+@@ -2953,6 +3058,7 @@ MprConfigTransportGetHandle(
      _Out_     HANDLE*                 phRouterTransport
  );
  
@@ -802,7 +800,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigTransportSetInfo(
      _In_      HANDLE                  hMprConfig,
-@@ -2964,6 +3072,7 @@ MprConfigTransportSetInfo(
+@@ -2964,6 +3070,7 @@ MprConfigTransportSetInfo(
      _In_opt_      LPWSTR              lpwsDLLPath
  );
  
@@ -810,7 +808,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigTransportGetInfo(
      _In_          HANDLE                 hMprConfig,
-@@ -2975,6 +3084,7 @@ MprConfigTransportGetInfo(
+@@ -2975,6 +3082,7 @@ MprConfigTransportGetInfo(
      _Outptr_opt_ _Inout_ LPWSTR*      lplpwsDLLPath 
  );
  
@@ -818,7 +816,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigTransportEnum(
      _In_      HANDLE                  hMprConfig,
-@@ -2986,6 +3096,7 @@ MprConfigTransportEnum(
+@@ -2986,6 +3094,7 @@ MprConfigTransportEnum(
      _Inout_opt_ LPDWORD               lpdwResumeHandle
  );
  
@@ -826,7 +824,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceCreate(
      _In_      HANDLE                  hMprConfig,
-@@ -2994,12 +3105,14 @@ MprConfigInterfaceCreate(
+@@ -2994,12 +3103,14 @@ MprConfigInterfaceCreate(
      _Out_     HANDLE*                 phRouterInterface
  );
  
@@ -841,7 +839,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceGetHandle(
      _In_      HANDLE                  hMprConfig,
-@@ -3007,6 +3120,7 @@ MprConfigInterfaceGetHandle(
+@@ -3007,6 +3118,7 @@ MprConfigInterfaceGetHandle(
      _Out_     HANDLE*                 phRouterInterface
  );
  
@@ -849,7 +847,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceGetInfo(
      _In_      HANDLE                  hMprConfig,
-@@ -3016,6 +3130,7 @@ MprConfigInterfaceGetInfo(
+@@ -3016,6 +3128,7 @@ MprConfigInterfaceGetInfo(
      _Out_     LPDWORD                 lpdwBufferSize
  );
  
@@ -857,7 +855,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceSetInfo(
      _In_      HANDLE                  hMprConfig,
-@@ -3024,6 +3139,7 @@ MprConfigInterfaceSetInfo(
+@@ -3024,6 +3137,7 @@ MprConfigInterfaceSetInfo(
      _In_reads_bytes_(dwLevel==1?sizeof(MPR_INTERFACE_1):sizeof(MPR_INTERFACE_0))      LPBYTE                  lpbBuffer
  );
  
@@ -865,7 +863,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceEnum(
      _In_      HANDLE                  hMprConfig,
-@@ -3035,6 +3151,7 @@ MprConfigInterfaceEnum(
+@@ -3035,6 +3149,7 @@ MprConfigInterfaceEnum(
      _Inout_opt_ LPDWORD               lpdwResumeHandle
  );
  
@@ -873,7 +871,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceTransportAdd(
      _In_      HANDLE                  hMprConfig,
-@@ -3046,6 +3163,7 @@ MprConfigInterfaceTransportAdd(
+@@ -3046,6 +3161,7 @@ MprConfigInterfaceTransportAdd(
      _Out_     HANDLE*                 phRouterIfTransport
  );
  
@@ -881,7 +879,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceTransportRemove(
      _In_      HANDLE                  hMprConfig,
-@@ -3053,6 +3171,7 @@ MprConfigInterfaceTransportRemove(
+@@ -3053,6 +3169,7 @@ MprConfigInterfaceTransportRemove(
      _In_      HANDLE                  hRouterIfTransport
  );
  
@@ -889,7 +887,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceTransportGetHandle(
      _In_      HANDLE                  hMprConfig,
-@@ -3061,6 +3180,7 @@ MprConfigInterfaceTransportGetHandle(
+@@ -3061,6 +3178,7 @@ MprConfigInterfaceTransportGetHandle(
      _Out_     HANDLE*                 phRouterIfTransport
  );
  
@@ -897,7 +895,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceTransportGetInfo(
      _In_      HANDLE                  hMprConfig,
-@@ -3070,6 +3190,7 @@ MprConfigInterfaceTransportGetInfo(
+@@ -3070,6 +3188,7 @@ MprConfigInterfaceTransportGetInfo(
      _Out_opt_ LPDWORD     lpdwInterfaceInfoSize
  );
  
@@ -905,7 +903,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceTransportSetInfo(
      _In_      HANDLE                  hMprConfig,
-@@ -3079,6 +3200,7 @@ MprConfigInterfaceTransportSetInfo(
+@@ -3079,6 +3198,7 @@ MprConfigInterfaceTransportSetInfo(
     _In_       DWORD                  dwInterfaceInfoSize         
  );
  
@@ -913,7 +911,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigInterfaceTransportEnum(
      _In_      HANDLE                  hMprConfig,
-@@ -3091,6 +3213,7 @@ MprConfigInterfaceTransportEnum(
+@@ -3091,6 +3211,7 @@ MprConfigInterfaceTransportEnum(
      _Inout_opt_ LPDWORD               lpdwResumeHandle            
  );
  
@@ -921,7 +919,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigGetFriendlyName(
      _In_      HANDLE                  hMprConfig,
-@@ -3098,6 +3221,7 @@ MprConfigGetFriendlyName(
+@@ -3098,6 +3219,7 @@ MprConfigGetFriendlyName(
      _Out_writes_bytes_(dwBufferSize) PWCHAR pszBuffer,
      _In_      DWORD                   dwBufferSize);
  
@@ -929,7 +927,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigGetGuidName(
      _In_      HANDLE                  hMprConfig,
-@@ -3106,6 +3230,7 @@ MprConfigGetGuidName(
+@@ -3106,6 +3228,7 @@ MprConfigGetGuidName(
      _In_      DWORD                   dwBufferSize);
  
  #if(WINVER >= 0x0600)
@@ -937,7 +935,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigFilterGetInfo(
      _In_      HANDLE                  hMprConfig,
-@@ -3113,6 +3238,7 @@ MprConfigFilterGetInfo(
+@@ -3113,6 +3236,7 @@ MprConfigFilterGetInfo(
      _In_      DWORD                   dwTransportId, 
      _Inout_updates_bytes_(sizeof(MPR_FILTER_0))     LPBYTE                  lpBuffer);
  
@@ -945,7 +943,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprConfigFilterSetInfo(
      _In_      HANDLE                  hMprConfig,
-@@ -3125,29 +3251,34 @@ MprConfigFilterSetInfo(
+@@ -3125,29 +3249,34 @@ MprConfigFilterSetInfo(
  // Information block APIs
  //
  
@@ -980,7 +978,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprInfoBlockAdd(
      _In_      LPVOID                  lpHeader,
-@@ -3158,6 +3289,7 @@ MprInfoBlockAdd(
+@@ -3158,6 +3287,7 @@ MprInfoBlockAdd(
      _Out_     LPVOID*                 lplpNewHeader
  );
  
@@ -988,7 +986,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprInfoBlockRemove(
      _In_      LPVOID                  lpHeader,
-@@ -3165,6 +3297,7 @@ MprInfoBlockRemove(
+@@ -3165,6 +3295,7 @@ MprInfoBlockRemove(
      _Out_     LPVOID*                 lplpNewHeader
  );
  
@@ -996,7 +994,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprInfoBlockSet(
      _In_      LPVOID                  lpHeader,
-@@ -3175,6 +3308,7 @@ MprInfoBlockSet(
+@@ -3175,6 +3306,7 @@ MprInfoBlockSet(
      _Out_     LPVOID*                 lplpNewHeader
  );
  
@@ -1004,7 +1002,7 @@ index 7a04178b..6dca72e5 100644
  DWORD APIENTRY
  MprInfoBlockFind(
      _In_      LPVOID                  lpHeader,
-@@ -3184,6 +3318,7 @@ MprInfoBlockFind(
+@@ -3184,6 +3316,7 @@ MprInfoBlockFind(
      _Outptr_result_bytebuffer_((*lpdwItemSize)*(*lpdwItemCount))     LPBYTE*                 lplpItemData        // OPTIONAL
  );
  

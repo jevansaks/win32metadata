@@ -74,9 +74,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 #define EXITEVENT_INVALID               ( 0x0 )  // Invalid event

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RtmV2.h b/generation/WinSDK/RecompiledIdlHeaders/um/RtmV2.h
-index ee4c143d..19d2e1b1 100644
+index ee4c143d..367d7026 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RtmV2.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RtmV2.h
-@@ -21,6 +21,9 @@ Revision History:
+@@ -21,6 +21,7 @@ Revision History:
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -513,6 +516,7 @@ RTM_EVENT_TYPE, *PRTM_EVENT_TYPE;
+@@ -513,6 +514,7 @@ RTM_EVENT_TYPE, *PRTM_EVENT_TYPE;
  // new entities registering,
  // or entities deregistering
  //
@@ -20,7 +18,7 @@ index ee4c143d..19d2e1b1 100644
  typedef
  DWORD
  (WINAPI * _EVENT_CALLBACK) (
-@@ -572,6 +576,7 @@ RTM_ENTITY_METHOD_OUTPUT, *PRTM_ENTITY_METHOD_OUTPUT;
+@@ -572,6 +574,7 @@ RTM_ENTITY_METHOD_OUTPUT, *PRTM_ENTITY_METHOD_OUTPUT;
  //
  // Common prototype for entity methods
  //
@@ -28,7 +26,7 @@ index ee4c143d..19d2e1b1 100644
  typedef
  VOID
  (WINAPI * _ENTITY_METHOD) (
-@@ -692,6 +697,7 @@ typedef DWORD          RTM_NOTIFY_FLAGS,
+@@ -692,6 +695,7 @@ typedef DWORD          RTM_NOTIFY_FLAGS,
  // Registration API Prototypes
  //
  
@@ -36,7 +34,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmRegisterEntity (
-@@ -703,12 +709,14 @@ RtmRegisterEntity (
+@@ -703,12 +707,14 @@ RtmRegisterEntity (
      OUT     PRTM_ENTITY_HANDLE              RtmRegHandle
      );
  
@@ -51,7 +49,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetRegisteredEntities (
-@@ -718,6 +726,7 @@ RtmGetRegisteredEntities (
+@@ -718,6 +724,7 @@ RtmGetRegisteredEntities (
      OUT     PRTM_ENTITY_INFO                EntityInfos OPTIONAL
      );
  
@@ -59,7 +57,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmReleaseEntities (
-@@ -730,6 +739,7 @@ RtmReleaseEntities (
+@@ -730,6 +737,7 @@ RtmReleaseEntities (
  // Opaque Ptr APIs
  //
  
@@ -67,7 +65,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmLockDestination(
-@@ -739,6 +749,7 @@ RtmLockDestination(
+@@ -739,6 +747,7 @@ RtmLockDestination(
      IN      BOOL                            LockDest
      );
  
@@ -75,7 +73,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetOpaqueInformationPointer (
-@@ -751,6 +762,7 @@ RtmGetOpaqueInformationPointer (
+@@ -751,6 +760,7 @@ RtmGetOpaqueInformationPointer (
  // Export Method API Prototypes
  //
  
@@ -83,7 +81,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetEntityMethods (
-@@ -760,6 +772,7 @@ RtmGetEntityMethods (
+@@ -760,6 +770,7 @@ RtmGetEntityMethods (
      OUT     PRTM_ENTITY_EXPORT_METHOD       ExptMethods
      );
  
@@ -91,7 +89,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmInvokeMethod (
-@@ -770,6 +783,7 @@ RtmInvokeMethod (
+@@ -770,6 +781,7 @@ RtmInvokeMethod (
      OUT     PRTM_ENTITY_METHOD_OUTPUT       Output
      );
  
@@ -99,7 +97,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmBlockMethods (
-@@ -783,6 +797,7 @@ RtmBlockMethods (
+@@ -783,6 +795,7 @@ RtmBlockMethods (
  // Handle to Info Structures
  //
  
@@ -107,7 +105,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetEntityInfo (
-@@ -791,6 +806,7 @@ RtmGetEntityInfo (
+@@ -791,6 +804,7 @@ RtmGetEntityInfo (
      OUT     PRTM_ENTITY_INFO                EntityInfo
      );
  
@@ -115,7 +113,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetDestInfo (
-@@ -801,6 +817,7 @@ RtmGetDestInfo (
+@@ -801,6 +815,7 @@ RtmGetDestInfo (
      OUT     PRTM_DEST_INFO                  DestInfo
      );
  
@@ -123,7 +121,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetRouteInfo (
-@@ -810,6 +827,7 @@ RtmGetRouteInfo (
+@@ -810,6 +825,7 @@ RtmGetRouteInfo (
      OUT     PRTM_NET_ADDRESS                DestAddress OPTIONAL
      );
  
@@ -131,7 +129,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetNextHopInfo (
-@@ -818,6 +836,7 @@ RtmGetNextHopInfo (
+@@ -818,6 +834,7 @@ RtmGetNextHopInfo (
      OUT     PRTM_NEXTHOP_INFO               NextHopInfo
      );
  
@@ -139,7 +137,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmReleaseEntityInfo (
-@@ -825,6 +844,7 @@ RtmReleaseEntityInfo (
+@@ -825,6 +842,7 @@ RtmReleaseEntityInfo (
      IN      PRTM_ENTITY_INFO               EntityInfo
      );
  
@@ -147,7 +145,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmReleaseDestInfo (
-@@ -832,6 +852,7 @@ RtmReleaseDestInfo (
+@@ -832,6 +850,7 @@ RtmReleaseDestInfo (
      IN      PRTM_DEST_INFO                 DestInfo
      );
  
@@ -155,7 +153,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmReleaseRouteInfo (
-@@ -839,6 +860,7 @@ RtmReleaseRouteInfo (
+@@ -839,6 +858,7 @@ RtmReleaseRouteInfo (
      IN      PRTM_ROUTE_INFO                RouteInfo
      );
  
@@ -163,7 +161,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmReleaseNextHopInfo (
-@@ -851,6 +873,7 @@ RtmReleaseNextHopInfo (
+@@ -851,6 +871,7 @@ RtmReleaseNextHopInfo (
  // RIB Insert/Delete API Prototypes
  //
  
@@ -171,7 +169,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmAddRouteToDest (
-@@ -865,6 +888,7 @@ RtmAddRouteToDest (
+@@ -865,6 +886,7 @@ RtmAddRouteToDest (
      IN OUT  PRTM_ROUTE_CHANGE_FLAGS         ChangeFlags
      );
  
@@ -179,7 +177,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmDeleteRouteToDest (
-@@ -873,6 +897,7 @@ RtmDeleteRouteToDest (
+@@ -873,6 +895,7 @@ RtmDeleteRouteToDest (
      OUT     PRTM_ROUTE_CHANGE_FLAGS         ChangeFlags
      );
  
@@ -187,7 +185,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmHoldDestination (
-@@ -882,6 +907,7 @@ RtmHoldDestination (
+@@ -882,6 +905,7 @@ RtmHoldDestination (
      IN      ULONG                           HoldTime
      );
  
@@ -195,7 +193,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetRoutePointer (
-@@ -890,6 +916,7 @@ RtmGetRoutePointer (
+@@ -890,6 +914,7 @@ RtmGetRoutePointer (
      OUT     PRTM_ROUTE_INFO                *RoutePointer
      );
  
@@ -203,7 +201,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmLockRoute(
-@@ -900,6 +927,7 @@ RtmLockRoute(
+@@ -900,6 +925,7 @@ RtmLockRoute(
      OUT     PRTM_ROUTE_INFO                *RoutePointer OPTIONAL
      );
  
@@ -211,7 +209,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmUpdateAndUnlockRoute(
-@@ -916,6 +944,7 @@ RtmUpdateAndUnlockRoute(
+@@ -916,6 +942,7 @@ RtmUpdateAndUnlockRoute(
  // RIB Query API Prototypes
  //
  
@@ -219,7 +217,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetExactMatchDestination (
-@@ -926,6 +955,7 @@ RtmGetExactMatchDestination (
+@@ -926,6 +953,7 @@ RtmGetExactMatchDestination (
      OUT     PRTM_DEST_INFO                  DestInfo
      );
  
@@ -227,7 +225,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetMostSpecificDestination (
-@@ -936,6 +966,7 @@ RtmGetMostSpecificDestination (
+@@ -936,6 +964,7 @@ RtmGetMostSpecificDestination (
      OUT     PRTM_DEST_INFO                  DestInfo
      );
  
@@ -235,7 +233,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetLessSpecificDestination (
-@@ -946,6 +977,7 @@ RtmGetLessSpecificDestination (
+@@ -946,6 +975,7 @@ RtmGetLessSpecificDestination (
      OUT     PRTM_DEST_INFO                  DestInfo
      );
  
@@ -243,7 +241,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetExactMatchRoute (
-@@ -958,6 +990,7 @@ RtmGetExactMatchRoute (
+@@ -958,6 +988,7 @@ RtmGetExactMatchRoute (
      OUT     PRTM_ROUTE_HANDLE               RouteHandle
      );
  
@@ -251,7 +249,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmIsBestRoute (
-@@ -970,6 +1003,7 @@ RtmIsBestRoute (
+@@ -970,6 +1001,7 @@ RtmIsBestRoute (
  // NextHop Object API Prototypes
  //
  
@@ -259,7 +257,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmAddNextHop (
-@@ -979,6 +1013,7 @@ RtmAddNextHop (
+@@ -979,6 +1011,7 @@ RtmAddNextHop (
      OUT     PRTM_NEXTHOP_CHANGE_FLAGS       ChangeFlags
      );
  
@@ -267,7 +265,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmFindNextHop (
-@@ -988,6 +1023,7 @@ RtmFindNextHop (
+@@ -988,6 +1021,7 @@ RtmFindNextHop (
      OUT     PRTM_NEXTHOP_INFO              *NextHopPointer OPTIONAL
      );
  
@@ -275,7 +273,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmDeleteNextHop (
-@@ -996,6 +1032,7 @@ RtmDeleteNextHop (
+@@ -996,6 +1030,7 @@ RtmDeleteNextHop (
      IN      PRTM_NEXTHOP_INFO               NextHopInfo
      );
  
@@ -283,7 +281,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetNextHopPointer (
-@@ -1004,6 +1041,7 @@ RtmGetNextHopPointer (
+@@ -1004,6 +1039,7 @@ RtmGetNextHopPointer (
      OUT     PRTM_NEXTHOP_INFO              *NextHopPointer
      );
  
@@ -291,7 +289,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmLockNextHop(
-@@ -1019,6 +1057,7 @@ RtmLockNextHop(
+@@ -1019,6 +1055,7 @@ RtmLockNextHop(
  // Enumeration API Prototypes
  //
  
@@ -299,7 +297,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmCreateDestEnum (
-@@ -1030,6 +1069,7 @@ RtmCreateDestEnum (
+@@ -1030,6 +1067,7 @@ RtmCreateDestEnum (
      OUT     PRTM_ENUM_HANDLE                RtmEnumHandle
      );
  
@@ -307,7 +305,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetEnumDests (
-@@ -1039,6 +1079,7 @@ RtmGetEnumDests (
+@@ -1039,6 +1077,7 @@ RtmGetEnumDests (
      OUT     PRTM_DEST_INFO                  DestInfos
      );
  
@@ -315,7 +313,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmReleaseDests (
-@@ -1047,6 +1088,7 @@ RtmReleaseDests (
+@@ -1047,6 +1086,7 @@ RtmReleaseDests (
      IN      PRTM_DEST_INFO                  DestInfos
      );
  
@@ -323,7 +321,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmCreateRouteEnum (
-@@ -1061,6 +1103,7 @@ RtmCreateRouteEnum (
+@@ -1061,6 +1101,7 @@ RtmCreateRouteEnum (
      OUT     PRTM_ENUM_HANDLE                RtmEnumHandle
      );
  
@@ -331,7 +329,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetEnumRoutes (
-@@ -1070,6 +1113,7 @@ RtmGetEnumRoutes (
+@@ -1070,6 +1111,7 @@ RtmGetEnumRoutes (
      OUT     PRTM_ROUTE_HANDLE               RouteHandles
      );
  
@@ -339,7 +337,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmReleaseRoutes (
-@@ -1078,6 +1122,7 @@ RtmReleaseRoutes (
+@@ -1078,6 +1120,7 @@ RtmReleaseRoutes (
      IN      PRTM_ROUTE_HANDLE               RouteHandles
      );
  
@@ -347,7 +345,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmCreateNextHopEnum (
-@@ -1087,6 +1132,7 @@ RtmCreateNextHopEnum (
+@@ -1087,6 +1130,7 @@ RtmCreateNextHopEnum (
      OUT     PRTM_ENUM_HANDLE                RtmEnumHandle
      );
  
@@ -355,7 +353,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetEnumNextHops (
-@@ -1096,6 +1142,7 @@ RtmGetEnumNextHops (
+@@ -1096,6 +1140,7 @@ RtmGetEnumNextHops (
      OUT     PRTM_NEXTHOP_HANDLE             NextHopHandles
      );
  
@@ -363,7 +361,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmReleaseNextHops (
-@@ -1104,6 +1151,7 @@ RtmReleaseNextHops (
+@@ -1104,6 +1149,7 @@ RtmReleaseNextHops (
      IN      PRTM_NEXTHOP_HANDLE             NextHopHandles
      );
  
@@ -371,7 +369,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmDeleteEnumHandle (
-@@ -1116,6 +1164,7 @@ RtmDeleteEnumHandle (
+@@ -1116,6 +1162,7 @@ RtmDeleteEnumHandle (
  // Change Notification APIs
  //
  
@@ -379,7 +377,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmRegisterForChangeNotification (
-@@ -1126,6 +1175,7 @@ RtmRegisterForChangeNotification (
+@@ -1126,6 +1173,7 @@ RtmRegisterForChangeNotification (
      OUT     PRTM_NOTIFY_HANDLE              NotifyHandle
      );
  
@@ -387,7 +385,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetChangedDests (
-@@ -1135,6 +1185,7 @@ RtmGetChangedDests (
+@@ -1135,6 +1183,7 @@ RtmGetChangedDests (
      OUT     PRTM_DEST_INFO                  ChangedDests
      );
  
@@ -395,7 +393,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmReleaseChangedDests (
-@@ -1144,6 +1195,7 @@ RtmReleaseChangedDests (
+@@ -1144,6 +1193,7 @@ RtmReleaseChangedDests (
      IN      PRTM_DEST_INFO                  ChangedDests
      );
  
@@ -403,7 +401,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmIgnoreChangedDests (
-@@ -1153,6 +1205,7 @@ RtmIgnoreChangedDests (
+@@ -1153,6 +1203,7 @@ RtmIgnoreChangedDests (
      IN      PRTM_DEST_HANDLE                ChangedDests
      );
  
@@ -411,7 +409,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetChangeStatus (
-@@ -1162,6 +1215,7 @@ RtmGetChangeStatus (
+@@ -1162,6 +1213,7 @@ RtmGetChangeStatus (
      OUT     PBOOL                           ChangeStatus
      );
  
@@ -419,7 +417,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmMarkDestForChangeNotification (
-@@ -1171,6 +1225,7 @@ RtmMarkDestForChangeNotification (
+@@ -1171,6 +1223,7 @@ RtmMarkDestForChangeNotification (
      IN      BOOL                            MarkDest
      );
  
@@ -427,7 +425,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmIsMarkedForChangeNotification (
-@@ -1180,6 +1235,7 @@ RtmIsMarkedForChangeNotification (
+@@ -1180,6 +1233,7 @@ RtmIsMarkedForChangeNotification (
      OUT     PBOOL                           DestMarked
      );
  
@@ -435,7 +433,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmDeregisterFromChangeNotification (
-@@ -1192,6 +1248,7 @@ RtmDeregisterFromChangeNotification (
+@@ -1192,6 +1246,7 @@ RtmDeregisterFromChangeNotification (
  // Entity Specific List APIs
  //
  
@@ -443,7 +441,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmCreateRouteList (
-@@ -1199,6 +1256,7 @@ RtmCreateRouteList (
+@@ -1199,6 +1254,7 @@ RtmCreateRouteList (
      OUT     PRTM_ROUTE_LIST_HANDLE          RouteListHandle
      );
  
@@ -451,7 +449,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmInsertInRouteList (
-@@ -1208,6 +1266,7 @@ RtmInsertInRouteList (
+@@ -1208,6 +1264,7 @@ RtmInsertInRouteList (
      IN      PRTM_ROUTE_HANDLE               RouteHandles
      );
  
@@ -459,7 +457,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmCreateRouteListEnum (
-@@ -1216,6 +1275,7 @@ RtmCreateRouteListEnum (
+@@ -1216,6 +1273,7 @@ RtmCreateRouteListEnum (
      OUT     PRTM_ENUM_HANDLE                RtmEnumHandle
      );
  
@@ -467,7 +465,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmGetListEnumRoutes (
-@@ -1225,6 +1285,7 @@ RtmGetListEnumRoutes (
+@@ -1225,6 +1283,7 @@ RtmGetListEnumRoutes (
      _Out_writes_(*NumRoutes) OUT     PRTM_ROUTE_HANDLE               RouteHandles
      );
  
@@ -475,7 +473,7 @@ index ee4c143d..19d2e1b1 100644
  DWORD
  WINAPI
  RtmDeleteRouteList (
-@@ -1236,6 +1297,7 @@ RtmDeleteRouteList (
+@@ -1236,6 +1295,7 @@ RtmDeleteRouteList (
  // Handle Management APIs
  //
  

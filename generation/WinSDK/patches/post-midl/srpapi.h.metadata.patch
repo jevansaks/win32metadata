@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h
-index ee75494a..d1b4c87f 100644
+index ee75494a..2099e947 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h
-@@ -8,6 +8,9 @@
+@@ -8,6 +8,7 @@
  
  #ifndef _APISETSRPEXT_
  #define _APISETSRPEXT_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <apiset.h>
  #include <apisetcconv.h>
-@@ -49,23 +52,28 @@ typedef struct HTHREAD_NETWORK_CONTEXT
+@@ -49,23 +50,28 @@ typedef struct HTHREAD_NETWORK_CONTEXT
      HANDLE ThreadContext;
  } HTHREAD_NETWORK_CONTEXT;
  
@@ -41,7 +39,7 @@ index ee75494a..d1b4c87f 100644
  STDAPI
  SrpGetEnterpriseIds(
      _In_ HANDLE tokenHandle,
-@@ -74,11 +82,13 @@ SrpGetEnterpriseIds(
+@@ -74,11 +80,13 @@ SrpGetEnterpriseIds(
      _Out_ PULONG enterpriseIdCount
      );
  
@@ -55,7 +53,7 @@ index ee75494a..d1b4c87f 100644
  STDAPI
  SrpDisablePermissiveModeFileEncryption(
      VOID
-@@ -96,12 +106,14 @@ typedef enum
+@@ -96,12 +104,14 @@ typedef enum
  
  DEFINE_ENUM_FLAG_OPERATORS(ENTERPRISE_DATA_POLICIES);
  
@@ -70,7 +68,7 @@ index ee75494a..d1b4c87f 100644
  NTSTATUS
  SrpIsTokenService(
      _In_ HANDLE TokenHandle,
-@@ -118,6 +130,7 @@ SrpIsTokenService(
+@@ -118,6 +128,7 @@ SrpIsTokenService(
  
  #include <appmodel.h>
  

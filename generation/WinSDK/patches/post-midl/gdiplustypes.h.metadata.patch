@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplustypes.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplustypes.h
-index c4560742..8b0c9398 100644
+index c4560742..5b7f2285 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplustypes.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplustypes.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  #ifndef _GDIPLUSTYPES_H
  #define _GDIPLUSTYPES_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -140,6 +143,7 @@ _Return_type_success_(return == 0) enum Status
+@@ -140,6 +141,7 @@ _Return_type_success_(return == 0) enum Status
  
  class SizeF
  {
@@ -20,7 +18,7 @@ index c4560742..8b0c9398 100644
  public:
      SizeF()
      {
-@@ -356,6 +360,7 @@ class RectF
+@@ -356,6 +358,7 @@ class RectF
  {
  public:
  

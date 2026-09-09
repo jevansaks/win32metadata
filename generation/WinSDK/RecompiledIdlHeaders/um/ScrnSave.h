@@ -27,9 +27,7 @@
 *                                                                             *
 \*****************************************************************************/
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef _INC_SCRNSAVE
 #define _INC_SCRNSAVE

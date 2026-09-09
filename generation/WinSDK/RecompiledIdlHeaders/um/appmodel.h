@@ -24,9 +24,7 @@
 
 #ifndef _APPMODEL_H_
 #define _APPMODEL_H_
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if defined(_CONTRACT_GEN)
 #include <nt.h>

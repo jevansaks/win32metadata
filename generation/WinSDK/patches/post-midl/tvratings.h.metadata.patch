@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tvratings.h b/generation/WinSDK/RecompiledIdlHeaders/um/tvratings.h
-index 5f8a6807..b9d4da44 100644
+index 5f8a6807..5406cf37 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/tvratings.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/tvratings.h
-@@ -99,6 +99,9 @@ extern "C"{
+@@ -99,6 +99,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -117,6 +120,7 @@ EXTERN_C const IID IID_IXDSToRat;
+@@ -117,6 +118,7 @@ EXTERN_C const IID IID_IXDSToRat;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 5f8a6807..b9d4da44 100644
      MIDL_INTERFACE("C5C5C5B0-3ABC-11D6-B25B-00C04FA0C026")
      IXDSToRat : public IDispatch
      {
-@@ -291,6 +295,7 @@ EXTERN_C const IID IID_IEvalRat;
+@@ -291,6 +293,7 @@ EXTERN_C const IID IID_IEvalRat;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

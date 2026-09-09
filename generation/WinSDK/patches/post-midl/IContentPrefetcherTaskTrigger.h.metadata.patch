@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IContentPrefetcherTaskTrigger.h b/generation/WinSDK/RecompiledIdlHeaders/um/IContentPrefetcherTaskTrigger.h
-index 073fed4f..c24cec00 100644
+index 073fed4f..e11d2d61 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/IContentPrefetcherTaskTrigger.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/IContentPrefetcherTaskTrigger.h
-@@ -67,6 +67,9 @@ extern "C"{
+@@ -67,6 +67,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -85,6 +88,7 @@ EXTERN_C const IID IID_IContentPrefetcherTaskTrigger;
+@@ -85,6 +86,7 @@ EXTERN_C const IID IID_IContentPrefetcherTaskTrigger;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

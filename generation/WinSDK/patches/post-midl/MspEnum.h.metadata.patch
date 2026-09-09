@@ -1,14 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MspEnum.h b/generation/WinSDK/RecompiledIdlHeaders/um/MspEnum.h
-index b8b83f12..64c949d4 100644
+index b8b83f12..41c39115 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/MspEnum.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/MspEnum.h
-@@ -7,6 +7,9 @@
+@@ -7,6 +7,7 @@
  #ifndef _MSPENUM_H_
  #define _MSPENUM_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)

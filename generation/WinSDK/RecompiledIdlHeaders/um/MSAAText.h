@@ -238,9 +238,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 DEFINE_GUID( IID_ITfMSAAControl, 0xb5f8fb3b,0x393f,0x4f7c,0x84,0xcb,0x50,0x49,0x24,0xc2,0x70,0x5a);

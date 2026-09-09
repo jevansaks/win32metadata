@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/enclaveapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/enclaveapi.h
-index 70dab084..cf03c413 100644
+index 70dab084..7b5a7c98 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/enclaveapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/enclaveapi.h
-@@ -12,6 +12,9 @@
+@@ -12,6 +12,7 @@
  
  #ifndef _ENCLAVEAPI_H_
  #define _ENCLAVEAPI_H_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <apiset.h>
  #include <apisetcconv.h>
-@@ -25,6 +28,8 @@ extern "C" {
+@@ -25,6 +26,8 @@ extern "C" {
  #pragma region Desktop Family or OneCore Or App Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
  
@@ -21,7 +19,7 @@ index 70dab084..cf03c413 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -33,6 +38,8 @@ IsEnclaveTypeSupported(
+@@ -33,6 +36,8 @@ IsEnclaveTypeSupported(
      _In_ DWORD flEnclaveType
      );
  
@@ -30,7 +28,7 @@ index 70dab084..cf03c413 100644
  WINBASEAPI
  _Ret_maybenull_
  _Post_writable_byte_size_(dwSize)
-@@ -49,6 +56,8 @@ CreateEnclave(
+@@ -49,6 +54,8 @@ CreateEnclave(
      _Out_opt_ LPDWORD lpEnclaveError
      );
  
@@ -39,7 +37,7 @@ index 70dab084..cf03c413 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -65,6 +74,8 @@ LoadEnclaveData(
+@@ -65,6 +72,8 @@ LoadEnclaveData(
      _Out_opt_ LPDWORD lpEnclaveError
      );
  
@@ -48,7 +46,7 @@ index 70dab084..cf03c413 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -92,6 +103,8 @@ LoadEnclaveImageA(
+@@ -92,6 +101,8 @@ LoadEnclaveImageA(
      _In_ LPCSTR lpImageName
      );
  
@@ -57,7 +55,7 @@ index 70dab084..cf03c413 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -107,6 +120,8 @@ LoadEnclaveImageW(
+@@ -107,6 +118,8 @@ LoadEnclaveImageW(
  #define LoadEnclaveImage  LoadEnclaveImageA
  #endif // !UNICODE
  
@@ -66,7 +64,7 @@ index 70dab084..cf03c413 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -118,6 +133,8 @@ CallEnclave(
+@@ -118,6 +131,8 @@ CallEnclave(
      _Out_ LPVOID* lpReturnValue
      );
  
@@ -75,7 +73,7 @@ index 70dab084..cf03c413 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -127,6 +144,8 @@ TerminateEnclave(
+@@ -127,6 +142,8 @@ TerminateEnclave(
      _In_ BOOL fWait
      );
  

@@ -4324,3 +4324,56 @@ constant macros), 14 names with a genuine pre-existing multi-declaration
 version conflict predating this tranche, and 1 Kernel-mode-scrape-context
 blocker (`IsEqualGUID`). See `docs/copilot/supportedos-migration.md` for the
 complete accounting and exact blocker documentation.
+
+## supportedOS.rsp tranche - phase 3 (fixing the Kernel gap, closing residual state)
+
+Root-caused the `IsEqualGUID`/Kernel blocker: `WIN32METADATA` is never actually
+defined anywhere in the scraper (exhaustive search of every `.rsp` in the repo
+confirms this) - annotations only work because `minwindef.h`/`windef.h` already
+include `win32metadata_annotations.h` **unconditionally**, so every user-mode
+(`windows.h`-chain) partition reaches its no-op macro definitions transitively.
+`Kernel/main.cpp` intentionally omits that chain, so it never got the
+definitions at all. Fixed by making the `#include <win32metadata_annotations.h>`
+unconditional everywhere (matching the `minwindef.h`/`windef.h` precedent):
+removed the `#if defined(WIN32METADATA) ... #endif` wrapper from all 779
+occurrences across the header tree. Safe (the header is idempotent and its own
+internal gate still controls the real attribute), verified via
+`ScrapeHeaders -p:PartitionFilter=Kernel` before/after, and re-added the
+previously-reverted `IsEqualGUID`/`Int64Shll/Shra/ShrlMod32` annotations.
+
+Found and fixed four more false-positive classes while driving the remaining
+~1,370 entries toward zero: identifiers inside string literals (e.g.
+`_WINSOCK_DEPRECATED_BY("WSARecv()")`), `return <cast>(NAME(...))`
+forwarding/alias calls (an off-by-one in prefix computation), multi-line
+call-argument lists with trailing commas mimicking a declaration context, and
+trailing line-comments hiding a real `;`/`{`/`}` terminator. A full post-fix
+audit cross-referencing every annotation against the original 17,248-entry
+list by name+version confirmed these were the only remaining issues.
+
+Added four new declaration idioms to the scanner: the `DECLARE_INTERFACE`
+macro family (pre-MIDL C-vtable interfaces), the `#define INTERFACE NAME`
+indirection, the single-line `interface *_DECLARE_INTERFACE("guid") NAME :
+public Base` DirectX/DirectWrite idiom, and plain `typedef struct <tag> NAME;`
+aliases. Narrowly allowlisted 7 "ABI-level" `winrt/` headers (roapi.h,
+inspectable.h, winstring.h, etc.) into the scan, reversing the blanket
+`winrt/` exclusion just for these non-projection foundational headers.
+
+Cross-referenced all remaining names against a complete `ScrapeHeaders` run
+across all 323 partitions' generated C# output (exact-identifier matching) and
+removed 952 entries that correspond to nothing currently generated: 935
+confirmed dead function-like macros (win32metadata does not project these as
+members at all), 13 names absent from every current header (legacy Content
+Index/RDP APIs removed from the SDK before this snapshot - documented rather
+than guessed-signature-fabricated), and 2 WinRT-projection-only helpers out of
+ABI scope.
+
+Resolved all 14 duplicate-declaration version conflicts by selecting the
+authoritative value and normalizing the header (not retaining sidecar
+entries): 6 WinSock async/graceful-disconnect functions had a stale
+`windows8.1` annotation next to an unrelated `_WINSOCK_DEPRECATED_BY(...)`
+marker in `WinSock2.h` alongside a correct `windows5.0` declaration in legacy
+`winsock.h`/the rsp - normalized to `windows5.0`; the remaining 8 were false
+conflicts entirely explained by the false-positive classes above.
+
+Result: `supportedOS.rsp` reduced from 1,370 to 50 entries in this phase.
+Continuing to zero.

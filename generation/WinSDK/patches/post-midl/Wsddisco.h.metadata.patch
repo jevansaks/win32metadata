@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wsddisco.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wsddisco.h
-index 1ed750e0..2693e3b8 100644
+index 1ed750e0..d51ab85b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Wsddisco.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wsddisco.h
-@@ -103,6 +103,9 @@ extern "C"{
+@@ -103,6 +103,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -112,11 +115,13 @@ extern "C"{
+@@ -112,11 +113,13 @@ extern "C"{
  
  
  
@@ -26,7 +24,7 @@ index 1ed750e0..2693e3b8 100644
  HRESULT WINAPI
  WSDCreateDiscoveryProvider2(
      IWSDXMLContext* pContext,
-@@ -140,6 +145,7 @@ EXTERN_C const IID IID_IWSDiscoveryProvider;
+@@ -140,6 +143,7 @@ EXTERN_C const IID IID_IWSDiscoveryProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -34,7 +32,7 @@ index 1ed750e0..2693e3b8 100644
      MIDL_INTERFACE("8FFC8E55-F0EB-480F-88B7-B435DD281D45")
      IWSDiscoveryProvider : public IUnknown
      {
-@@ -321,6 +327,7 @@ EXTERN_C const IID IID_IWSDiscoveryProviderNotify;
+@@ -321,6 +325,7 @@ EXTERN_C const IID IID_IWSDiscoveryProviderNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -42,7 +40,7 @@ index 1ed750e0..2693e3b8 100644
      MIDL_INTERFACE("73ee3ced-b6e6-4329-a546-3e8ad46563d2")
      IWSDiscoveryProviderNotify : public IUnknown
      {
-@@ -451,6 +458,7 @@ EXTERN_C const IID IID_IWSDiscoveredService;
+@@ -451,6 +456,7 @@ EXTERN_C const IID IID_IWSDiscoveredService;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -50,7 +48,7 @@ index 1ed750e0..2693e3b8 100644
      MIDL_INTERFACE("4BAD8A3B-B374-4420-9632-AAC945B374AA")
      IWSDiscoveredService : public IUnknown
      {
-@@ -664,11 +672,13 @@ EXTERN_C const IID IID_IWSDiscoveredService;
+@@ -664,11 +670,13 @@ EXTERN_C const IID IID_IWSDiscoveredService;
  /* interface __MIDL_itf_wsddisco_0000_0003 */
  /* [local] */ 
  
@@ -64,7 +62,7 @@ index 1ed750e0..2693e3b8 100644
  HRESULT WINAPI
  WSDCreateDiscoveryPublisher2(
      IWSDXMLContext* pContext,
-@@ -692,6 +702,7 @@ EXTERN_C const IID IID_IWSDiscoveryPublisher;
+@@ -692,6 +700,7 @@ EXTERN_C const IID IID_IWSDiscoveryPublisher;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -72,7 +70,7 @@ index 1ed750e0..2693e3b8 100644
      MIDL_INTERFACE("AE01E1A8-3FF9-4148-8116-057CC616FE13")
      IWSDiscoveryPublisher : public IUnknown
      {
-@@ -1211,6 +1222,7 @@ EXTERN_C const IID IID_IWSDiscoveryPublisherNotify;
+@@ -1211,6 +1220,7 @@ EXTERN_C const IID IID_IWSDiscoveryPublisherNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -80,7 +78,7 @@ index 1ed750e0..2693e3b8 100644
      MIDL_INTERFACE("e67651b0-337a-4b3c-9758-733388568251")
      IWSDiscoveryPublisherNotify : public IUnknown
      {
-@@ -1319,6 +1331,7 @@ EXTERN_C const IID IID_IWSDScopeMatchingRule;
+@@ -1319,6 +1329,7 @@ EXTERN_C const IID IID_IWSDScopeMatchingRule;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

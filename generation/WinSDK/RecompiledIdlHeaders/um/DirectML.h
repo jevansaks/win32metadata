@@ -2,9 +2,7 @@
 
 #ifndef DIRECTML_H
 #define DIRECTML_H
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #pragma once
 
 #ifdef _GAMING_XBOX_SCARLETT

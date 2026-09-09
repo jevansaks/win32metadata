@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winconp.h b/generation/WinSDK/RecompiledIdlHeaders/um/winconp.h
-index d761cec6..076fc0b0 100644
+index d761cec6..2ceedb70 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winconp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winconp.h
-@@ -15,6 +15,9 @@ extern "C" {
+@@ -15,6 +15,7 @@ extern "C" {
  #endif
  
  #include <wincontypes.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  // ...
  
-@@ -379,7 +382,8 @@ OpenConsoleW(
+@@ -379,7 +380,8 @@ OpenConsoleW(
      _In_ LPWSTR lpConsoleDevice,
      _In_ DWORD dwDesiredAccess,
      _In_ BOOL bInheritHandle,
@@ -22,7 +20,7 @@ index d761cec6..076fc0b0 100644
  
  HANDLE
  APIENTRY
-@@ -387,7 +391,8 @@ DuplicateConsoleHandle(
+@@ -387,7 +389,8 @@ DuplicateConsoleHandle(
      _In_ HANDLE hSourceHandle,
      _In_ DWORD dwDesiredAccess,
      _In_ BOOL bInheritHandle,
@@ -32,7 +30,7 @@ index d761cec6..076fc0b0 100644
  
  // ...
  
-@@ -424,6 +429,7 @@ GetConsoleInputWaitHandle(
+@@ -424,6 +427,7 @@ GetConsoleInputWaitHandle(
  #define PID_CONSOLE_TERMINALSCROLLING       13
  
  #define CONSOLE_PROPKEY(name, id) \

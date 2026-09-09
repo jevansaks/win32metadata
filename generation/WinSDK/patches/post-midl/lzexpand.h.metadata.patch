@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/lzexpand.h b/generation/WinSDK/RecompiledIdlHeaders/um/lzexpand.h
-index 79f257db..7c41fdaf 100644
+index 79f257db..f5c33394 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/lzexpand.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/lzexpand.h
-@@ -21,6 +21,9 @@ Revision History:
+@@ -21,6 +21,7 @@ Revision History:
  #define _LZEXPAND_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -71,6 +74,7 @@ CopyLZFile(
+@@ -71,6 +72,7 @@ CopyLZFile(
      _In_ INT hfDest
      );
  
@@ -20,7 +18,7 @@ index 79f257db..7c41fdaf 100644
  _Success_(return >= 0)
  _Check_return_
  LONG
-@@ -80,6 +84,7 @@ LZCopy(
+@@ -80,6 +82,7 @@ LZCopy(
      _In_ INT hfDest
      );
  
@@ -28,7 +26,7 @@ index 79f257db..7c41fdaf 100644
  _Success_(return >= 0)
  _Check_return_
  INT
-@@ -88,6 +93,8 @@ LZInit(
+@@ -88,6 +91,8 @@ LZInit(
      _In_ INT hfSource
      );
  
@@ -37,7 +35,7 @@ index 79f257db..7c41fdaf 100644
  _Success_(return >= 0)
  _Check_return_
  INT
-@@ -96,6 +103,8 @@ GetExpandedNameA(
+@@ -96,6 +101,8 @@ GetExpandedNameA(
      _In_ LPSTR lpszSource,
      _Out_writes_(MAX_PATH) LPSTR lpszBuffer
      );
@@ -46,7 +44,7 @@ index 79f257db..7c41fdaf 100644
  _Success_(return >= 0)
  _Check_return_
  INT
-@@ -110,6 +119,7 @@ GetExpandedNameW(
+@@ -110,6 +117,7 @@ GetExpandedNameW(
  #define GetExpandedName  GetExpandedNameA
  #endif // !UNICODE
  
@@ -54,7 +52,7 @@ index 79f257db..7c41fdaf 100644
  _Success_(return >= 0)
  _Check_return_
  INT
-@@ -119,6 +129,7 @@ LZOpenFileA(
+@@ -119,6 +127,7 @@ LZOpenFileA(
      _Inout_ LPOFSTRUCT lpReOpenBuf,
      _In_ WORD wStyle
      );
@@ -62,7 +60,7 @@ index 79f257db..7c41fdaf 100644
  _Success_(return >= 0)
  _Check_return_
  INT
-@@ -134,6 +145,7 @@ LZOpenFileW(
+@@ -134,6 +143,7 @@ LZOpenFileW(
  #define LZOpenFile  LZOpenFileA
  #endif // !UNICODE
  
@@ -70,7 +68,7 @@ index 79f257db..7c41fdaf 100644
  _Success_(return >= 0)
  _Check_return_
  LONG
-@@ -144,6 +156,7 @@ LZSeek(
+@@ -144,6 +154,7 @@ LZSeek(
      _In_ INT iOrigin
      );
  
@@ -78,7 +76,7 @@ index 79f257db..7c41fdaf 100644
  _Success_(return >= 0)
  _Check_return_
  INT
-@@ -154,6 +167,7 @@ LZRead(
+@@ -154,6 +165,7 @@ LZRead(
      _In_ INT cbRead
      );
  

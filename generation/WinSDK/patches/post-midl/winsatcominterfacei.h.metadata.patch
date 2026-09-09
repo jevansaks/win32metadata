@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsatcominterfacei.h b/generation/WinSDK/RecompiledIdlHeaders/um/winsatcominterfacei.h
-index 8853b660..4c90a76d 100644
+index 8853b660..d9a4fb54 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winsatcominterfacei.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winsatcominterfacei.h
-@@ -196,6 +196,9 @@ extern "C"{
+@@ -196,6 +196,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef /* [public][public] */ 
-@@ -252,6 +255,7 @@ EXTERN_C const IID IID_IProvideWinSATAssessmentInfo;
+@@ -252,6 +253,7 @@ EXTERN_C const IID IID_IProvideWinSATAssessmentInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 8853b660..4c90a76d 100644
      MIDL_INTERFACE("0CD1C380-52D3-4678-AC6F-E929E480BE9E")
      IProvideWinSATAssessmentInfo : public IDispatch
      {
-@@ -412,6 +416,7 @@ EXTERN_C const IID IID_IProvideWinSATResultsInfo;
+@@ -412,6 +414,7 @@ EXTERN_C const IID IID_IProvideWinSATResultsInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 8853b660..4c90a76d 100644
      MIDL_INTERFACE("F8334D5D-568E-4075-875F-9DF341506640")
      IProvideWinSATResultsInfo : public IDispatch
      {
-@@ -596,6 +601,7 @@ EXTERN_C const IID IID_IQueryRecentWinSATAssessment;
+@@ -596,6 +599,7 @@ EXTERN_C const IID IID_IQueryRecentWinSATAssessment;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 8853b660..4c90a76d 100644
      MIDL_INTERFACE("F8AD5D1F-3B47-4bdc-9375-7C6B1DA4ECA7")
      IQueryRecentWinSATAssessment : public IDispatch
      {
-@@ -749,6 +755,7 @@ EXTERN_C const IID IID_IProvideWinSATVisuals;
+@@ -749,6 +753,7 @@ EXTERN_C const IID IID_IProvideWinSATVisuals;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 8853b660..4c90a76d 100644
      MIDL_INTERFACE("A9F4ADE0-871A-42a3-B813-3078D25162C9")
      IProvideWinSATVisuals : public IUnknown
      {
-@@ -839,6 +846,7 @@ EXTERN_C const IID IID_IQueryAllWinSATAssessments;
+@@ -839,6 +844,7 @@ EXTERN_C const IID IID_IQueryAllWinSATAssessments;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 8853b660..4c90a76d 100644
      MIDL_INTERFACE("0B89ED1D-6398-4fea-87FC-567D8D19176F")
      IQueryAllWinSATAssessments : public IDispatch
      {
-@@ -981,6 +989,7 @@ EXTERN_C const IID IID_IWinSATInitiateEvents;
+@@ -981,6 +987,7 @@ EXTERN_C const IID IID_IWinSATInitiateEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 8853b660..4c90a76d 100644
      MIDL_INTERFACE("262A1918-BA0D-41d5-92C2-FAB4633EE74F")
      IWinSATInitiateEvents : public IUnknown
      {
-@@ -1082,6 +1091,7 @@ EXTERN_C const IID IID_IInitiateWinSATAssessment;
+@@ -1082,6 +1089,7 @@ EXTERN_C const IID IID_IInitiateWinSATAssessment;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 8853b660..4c90a76d 100644
      MIDL_INTERFACE("D983FC50-F5BF-49d5-B5ED-CCCB18AA7FC1")
      IInitiateWinSATAssessment : public IUnknown
      {
-@@ -1689,9 +1699,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -1689,9 +1697,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  
@@ -82,7 +80,7 @@ index 8853b660..4c90a76d 100644
  void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  
  unsigned long             __RPC_USER  HBITMAP_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HBITMAP * ); 
-@@ -1704,9 +1718,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+@@ -1704,9 +1716,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
  unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

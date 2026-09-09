@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mi.h b/generation/WinSDK/RecompiledIdlHeaders/um/mi.h
-index 61d31af9..88310a04 100644
+index 61d31af9..29803910 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mi.h
-@@ -14,6 +14,9 @@
+@@ -14,6 +14,7 @@
  */
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or WinMgmt Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WINMGMT)
-@@ -1682,6 +1685,7 @@ struct _MI_Server
+@@ -1682,6 +1683,7 @@ struct _MI_Server
   * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -20,7 +18,7 @@ index 61d31af9..88310a04 100644
  MI_Result MI_CALL MI_Server_GetVersion(MI_Uint32* version);
  
  /**
-@@ -1697,6 +1701,7 @@ MI_Result MI_CALL MI_Server_GetVersion(MI_Uint32* version);
+@@ -1697,6 +1699,7 @@ MI_Result MI_CALL MI_Server_GetVersion(MI_Uint32* version);
   * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -28,7 +26,7 @@ index 61d31af9..88310a04 100644
  MI_Result MI_CALL MI_Server_GetSystemName(const MI_Char** systemName);
  
  /*
-@@ -1741,6 +1746,7 @@ struct _MI_Filter
+@@ -1741,6 +1744,7 @@ struct _MI_Filter
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -36,7 +34,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Filter_Evaluate(
          _In_ const MI_Filter* self,
          _In_ const MI_Instance* instance,
-@@ -1767,6 +1773,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Filter_Evaluate(
+@@ -1767,6 +1771,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Filter_Evaluate(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -44,7 +42,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Filter_GetExpression(
          _In_ const MI_Filter* self,
          _Outptr_result_maybenull_z_ const MI_Char** queryLang,
-@@ -1850,6 +1857,7 @@ struct _MI_PropertySet
+@@ -1850,6 +1855,7 @@ struct _MI_PropertySet
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -52,7 +50,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementCount(
      _In_ const MI_PropertySet* self,
      _Out_ MI_Uint32* count)
-@@ -1874,6 +1882,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementCount(
+@@ -1874,6 +1880,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementCount(
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -60,7 +58,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_ContainsElement(
      _In_ const MI_PropertySet* self,
      _In_z_ const MI_Char* name,
-@@ -1898,6 +1907,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_ContainsElement(
+@@ -1898,6 +1905,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_ContainsElement(
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_ALREADY_EXISTS, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -68,7 +66,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_AddElement(
      _Inout_ MI_PropertySet* self,
      _In_z_ const MI_Char* name)
-@@ -1923,6 +1933,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_AddElement(
+@@ -1923,6 +1931,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_AddElement(
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -76,7 +74,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementAt(
      _In_ const MI_PropertySet* self,
      MI_Uint32 index,
-@@ -1948,6 +1959,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementAt(
+@@ -1948,6 +1957,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementAt(
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -84,7 +82,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Clear(
      _Inout_ MI_PropertySet* self)
  {
-@@ -1970,6 +1982,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Clear(
+@@ -1970,6 +1980,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Clear(
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -92,7 +90,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Destruct(
      _Inout_ MI_PropertySet* self)
  {
-@@ -1992,6 +2005,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Destruct(
+@@ -1992,6 +2003,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Destruct(
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -100,7 +98,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Delete(
      _Inout_ MI_PropertySet* self)
  {
-@@ -2017,6 +2031,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Delete(
+@@ -2017,6 +2029,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Delete(
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -108,7 +106,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Clone(
      _In_ const MI_PropertySet* self,
      _Outptr_ MI_PropertySet** newPropertySet)
-@@ -3256,6 +3271,7 @@ struct _MI_Instance
+@@ -3256,6 +3269,7 @@ struct _MI_Instance
   * See also: MI_Instance_Delete()
   *
   */
@@ -116,7 +114,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Clone(
      _In_ const MI_Instance* self,
      _Outptr_ MI_Instance** newInstance)
-@@ -3283,6 +3299,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Clone(
+@@ -3283,6 +3297,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Clone(
   * See also: MI_Instance_Delete()
   *
   */
@@ -124,7 +122,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Destruct(
      _Inout_ MI_Instance* self)
  {
-@@ -3306,6 +3323,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Destruct(
+@@ -3306,6 +3321,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Destruct(
   *
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   */
@@ -132,7 +130,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Delete(
      _Inout_ MI_Instance* self)
  {
-@@ -3332,6 +3350,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Delete(
+@@ -3332,6 +3348,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Delete(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -140,7 +138,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_IsA(
      _In_ const MI_Instance* self,
      _In_ const MI_ClassDecl* classDecl,
-@@ -3356,6 +3375,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_IsA(
+@@ -3356,6 +3373,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_IsA(
   * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -148,7 +146,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClassName(
      _In_ const MI_Instance* self,
      _Outptr_result_maybenull_z_ const MI_Char** className)
-@@ -3386,6 +3406,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClassName(
+@@ -3386,6 +3404,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClassName(
   *         MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -156,7 +154,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetNameSpace(
      _Inout_ MI_Instance* self,
      _In_z_ const MI_Char* nameSpace)
-@@ -3409,6 +3430,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetNameSpace(
+@@ -3409,6 +3428,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetNameSpace(
   * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
   *
   */
@@ -164,7 +162,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetNameSpace(
      _In_ const MI_Instance* self,
      _Outptr_result_maybenull_z_ const MI_Char** nameSpace)
-@@ -3434,6 +3456,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetNameSpace(
+@@ -3434,6 +3454,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetNameSpace(
   * See also: MI_Instance_GetAt(), MI_Instance_SetAt()
   *
   */
@@ -172,7 +170,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementCount(
      _In_ const MI_Instance* self,
      _Out_ MI_Uint32* count)
-@@ -3466,6 +3489,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementCount(
+@@ -3466,6 +3487,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementCount(
   *
   * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
   */
@@ -180,7 +178,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_AddElement(
      _Inout_ MI_Instance* self,
      _In_z_ const MI_Char* name,
-@@ -3501,6 +3525,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_AddElement(
+@@ -3501,6 +3523,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_AddElement(
   * See also: MI_Instance_GetElementCount()
   *
   */
@@ -188,7 +186,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElementAt(
      _Inout_ MI_Instance* self,
      MI_Uint32 index,
-@@ -3539,6 +3564,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElementAt(
+@@ -3539,6 +3562,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElementAt(
   * See also: MI_Instance_GetElement()
   *
   */
@@ -196,7 +194,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElement(
      _Inout_ MI_Instance* self,
      _In_z_ const MI_Char* name,
-@@ -3572,6 +3598,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElement(
+@@ -3572,6 +3596,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElement(
   *     MI_RESULT_NOT_FOUND, MI_RESULT_FAILED
   *
   */
@@ -204,7 +202,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElement(
      _In_ const MI_Instance* self,
      _In_z_ const MI_Char* name,
-@@ -3608,6 +3635,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElement(
+@@ -3608,6 +3633,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElement(
   * See also: MI_Instance_GetElementCount()
   *
   */
@@ -212,7 +210,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementAt(
      _In_ const MI_Instance* self,
      MI_Uint32 index,
-@@ -3636,6 +3664,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementAt(
+@@ -3636,6 +3662,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementAt(
   *
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   */
@@ -220,7 +218,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElement(
      _Inout_ MI_Instance* self,
      _In_z_ const MI_Char* name)
-@@ -3661,6 +3690,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElement(
+@@ -3661,6 +3688,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElement(
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_FAILED
   *
   */
@@ -228,7 +226,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElementAt(
      _Inout_ MI_Instance* self,
      MI_Uint32 index)
-@@ -3687,6 +3717,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElementAt(
+@@ -3687,6 +3715,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElementAt(
   * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_FAILED
   *
   */
@@ -236,7 +234,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetServerName(
      _In_ const MI_Instance* self,
      _Outptr_result_maybenull_z_ const MI_Char** name)
-@@ -3701,6 +3732,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetServerName(
+@@ -3701,6 +3730,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetServerName(
      }
  }
  
@@ -244,7 +242,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetServerName(
      _Inout_ MI_Instance* self,
      _In_z_ const MI_Char* name)
-@@ -3715,6 +3747,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetServerName(
+@@ -3715,6 +3745,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetServerName(
      }
  }
  
@@ -252,7 +250,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClass(
      _In_ const MI_Instance* self,
      _Outptr_ MI_Class** instanceClass)
-@@ -3729,6 +3762,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClass(
+@@ -3729,6 +3760,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClass(
      }
  }
  
@@ -260,7 +258,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Normalize(
      _Inout_ MI_Instance** self)
  {
-@@ -4039,6 +4073,7 @@ struct _MI_Context
+@@ -4039,6 +4071,7 @@ struct _MI_Context
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -268,7 +266,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostResult(
      _In_ MI_Context* context,
      MI_Result result)
-@@ -4062,6 +4097,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostResult(
+@@ -4062,6 +4095,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostResult(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -276,7 +274,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostCimError(
      _In_ MI_Context* context,
      _In_ const MI_Instance *error)
-@@ -4087,6 +4123,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostCimError(
+@@ -4087,6 +4121,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostCimError(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -284,7 +282,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostError(
      _In_ MI_Context* context,
      MI_Uint32 resultCode,
-@@ -4115,6 +4152,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostError(
+@@ -4115,6 +4150,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostError(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -292,7 +290,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostInstance(
      _In_ MI_Context* context,
      _In_ const MI_Instance* instance)
-@@ -4142,6 +4180,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostInstance(
+@@ -4142,6 +4178,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostInstance(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -300,7 +298,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostIndication(
      _In_ MI_Context* context,
      _In_ const MI_Instance* indication,
-@@ -4172,6 +4211,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostIndication(
+@@ -4172,6 +4209,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostIndication(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -308,7 +306,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructInstance(
      _In_ MI_Context* context,
      _In_ const MI_ClassDecl* classDecl,
-@@ -4200,6 +4240,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructInstance(
+@@ -4200,6 +4238,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructInstance(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -316,7 +314,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructParameters(
      _In_ MI_Context* context,
      _In_ const MI_MethodDecl* methodDecl,
-@@ -4227,6 +4268,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructParameters(
+@@ -4227,6 +4266,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructParameters(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -324,7 +322,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewInstance(
      _In_ MI_Context* context,
      _In_ const MI_ClassDecl* classDecl,
-@@ -4255,6 +4297,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewInstance(
+@@ -4255,6 +4295,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewInstance(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -332,7 +330,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewDynamicInstance(
      _In_ MI_Context* context,
      _In_ const MI_Char* className,
-@@ -4283,6 +4326,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewDynamicInstance(
+@@ -4283,6 +4324,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewDynamicInstance(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -340,7 +338,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewParameters(
      _In_ MI_Context* context,
      _In_ const MI_MethodDecl* methodDecl,
-@@ -4310,6 +4354,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewParameters(
+@@ -4310,6 +4352,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewParameters(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -348,7 +346,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Canceled(
      _In_ const MI_Context* context,
      _Out_ MI_Boolean* flag)
-@@ -4334,6 +4379,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Canceled(
+@@ -4334,6 +4377,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Canceled(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -356,7 +354,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocale(
      _In_ const MI_Context* context,
      MI_LocaleType localeType,
-@@ -4365,6 +4411,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocale(
+@@ -4365,6 +4409,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocale(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -364,7 +362,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RegisterCancel(
      _In_ MI_Context* context,
      _In_ MI_CancelCallback callback,
-@@ -4390,6 +4437,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RegisterCancel(
+@@ -4390,6 +4435,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RegisterCancel(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -372,7 +370,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RequestUnload(
      _In_ MI_Context* context)
  {
-@@ -4415,6 +4463,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RequestUnload(
+@@ -4415,6 +4461,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RequestUnload(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -380,7 +378,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RefuseUnload(
      _In_ MI_Context* context)
  {
-@@ -4441,6 +4490,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RefuseUnload(
+@@ -4441,6 +4488,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RefuseUnload(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -388,7 +386,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocalSession(
      _In_ const MI_Context* context,
      _Out_ MI_Session* session)
-@@ -4492,6 +4542,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocalSession(
+@@ -4492,6 +4540,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocalSession(
   *   WBEM_RIGHT_SUBSCRIBE permission, the SDDL must contain this flag, please
   *   see http://msdn.microsoft.com/en-us/library/aa390415.aspx for details.
   */
@@ -396,7 +394,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_SetStringOption(
      _In_ MI_Context* context,
      _In_z_ const MI_Char* name,
-@@ -4517,6 +4568,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_SetStringOption(
+@@ -4517,6 +4566,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_SetStringOption(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -404,7 +402,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetStringOption(
      _In_  MI_Context* context,
      _In_z_ const MI_Char* name,
-@@ -4542,6 +4594,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetStringOption(
+@@ -4542,6 +4592,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetStringOption(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -412,7 +410,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetNumberOption(
      _In_  MI_Context* context,
      _In_z_ const MI_Char* name,
-@@ -4567,6 +4620,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetNumberOption(
+@@ -4567,6 +4618,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetNumberOption(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -420,7 +418,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOption(
      _In_ MI_Context* context,
      _In_z_ const MI_Char* name,
-@@ -4593,6 +4647,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOption(
+@@ -4593,6 +4645,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOption(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -428,7 +426,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionCount(
      _In_  MI_Context* context,
      _Out_opt_ MI_Uint32* count)
-@@ -4617,6 +4672,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionCount(
+@@ -4617,6 +4670,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionCount(
   * return: MI_RESULT_OK, MI_RESULT_FAILED
   *
   */
@@ -436,7 +434,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionAt(
      _In_  MI_Context* context,
      _In_ MI_Uint32 index,
-@@ -4645,6 +4701,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionAt(
+@@ -4645,6 +4699,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionAt(
   * return: MI_RESULT_OK, MI_RESULT_FAILED.
   *
   */
@@ -444,7 +442,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldProcess(
      _In_ MI_Context* context,
      _In_z_ const MI_Char *target,
-@@ -4671,6 +4728,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldProcess(
+@@ -4671,6 +4726,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldProcess(
   * return: MI_RESULT_OK, MI_RESULT_FAILED.
   *
   */
@@ -452,7 +450,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldContinue(
      _In_ MI_Context* context,
      _In_z_ const MI_Char* message,
-@@ -4698,6 +4756,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldContinue(
+@@ -4698,6 +4754,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldContinue(
   * return: MI_RESULT_OK, MI_RESULT_FAILED.
   *
   */
@@ -460,7 +458,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PromptUser(
      _In_ MI_Context* context,
      _In_z_ const MI_Char* message,
-@@ -4727,6 +4786,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PromptUser(
+@@ -4727,6 +4784,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PromptUser(
   * return: MI_RESULT_OK, MI_RESULT_FAILED.
   *
   */
@@ -468,7 +466,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteError(
      _In_ MI_Context* context,
      MI_Uint32 resultCode,
-@@ -4754,6 +4814,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteError(
+@@ -4754,6 +4812,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteError(
   * return: MI_RESULT_OK, MI_RESULT_FAILED.
   *
   */
@@ -476,7 +474,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteCimError(
      _In_ MI_Context* context,
      _In_ const MI_Instance *error,
-@@ -4782,6 +4843,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteCimError(
+@@ -4782,6 +4841,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteCimError(
   * return: MI_TRUE or MI_FALSE.
   *
   */
@@ -484,7 +482,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteMessage(
      _In_ MI_Context* context,
      MI_Uint32 channel,
-@@ -4810,6 +4872,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteMessage(
+@@ -4810,6 +4870,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteMessage(
   * return: MI_TRUE or MI_FALSE.
   *
   */
@@ -492,7 +490,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteProgress(
      _In_ MI_Context* context,
      _In_z_ const MI_Char* activity,
-@@ -4844,6 +4907,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteProgress(
+@@ -4844,6 +4905,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteProgress(
   * return: MI_RESULT_OK, MI_RESULT_FAILED.
   *
   */
@@ -500,7 +498,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteStreamParameter(
      _In_ MI_Context* self,
      _In_z_ const MI_Char* name,
-@@ -4870,6 +4934,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteStreamParameter(
+@@ -4870,6 +4932,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteStreamParameter(
   * return: MI_TRUE or MI_FALSE.
   *
   */
@@ -508,7 +506,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteWarning(
      _In_ MI_Context* context,
      _In_z_ const MI_Char* message)
-@@ -4893,6 +4958,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteWarning(
+@@ -4893,6 +4956,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteWarning(
   * return: MI_TRUE or MI_FALSE.
   *
   */
@@ -516,7 +514,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteVerbose(
      _In_ MI_Context* context,
      _In_z_ const MI_Char* message)
-@@ -4916,6 +4982,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteVerbose(
+@@ -4916,6 +4980,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteVerbose(
   * return: MI_TRUE or MI_FALSE.
   *
   */
@@ -524,7 +522,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteDebug(
      _In_ MI_Context* context,
      _In_z_ const MI_Char* message)
-@@ -6712,6 +6779,7 @@ __declspec(dllimport) const MI_ClientFT_V1 *mi_clientFT_V1;
+@@ -6712,6 +6777,7 @@ __declspec(dllimport) const MI_ClientFT_V1 *mi_clientFT_V1;
  ** Return: MI_RESULT_OK success, other errors indicate specific failure
  **=============================================================================
  */
@@ -532,7 +530,7 @@ index 61d31af9..88310a04 100644
  MI_Result MI_MAIN_CALL MI_Application_InitializeV1(
               MI_Uint32 flags,
      _In_opt_z_ const MI_Char *applicationID,
-@@ -6734,6 +6802,7 @@ MI_Result MI_MAIN_CALL MI_Application_InitializeV1(
+@@ -6734,6 +6800,7 @@ MI_Result MI_MAIN_CALL MI_Application_InitializeV1(
  ** application: Handle returned from MI_Application_Initialize.
  **=============================================================================
  */
@@ -540,7 +538,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_Close(
      _Inout_ MI_Application *application)
  {
-@@ -6764,6 +6833,7 @@ MI_INLINE MI_Result MI_Application_Close(
+@@ -6764,6 +6831,7 @@ MI_INLINE MI_Result MI_Application_Close(
  ** Return: MI_RESULT_OK success, other errors indicate specific failure
  **=============================================================================
  */
@@ -548,7 +546,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewInstance(
      _In_     MI_Application *application,
      _In_z_ const MI_Char *className,
-@@ -6783,6 +6853,7 @@ MI_INLINE MI_Result MI_Application_NewInstance(
+@@ -6783,6 +6851,7 @@ MI_INLINE MI_Result MI_Application_NewInstance(
          return MI_RESULT_INVALID_PARAMETER;
      }
  }
@@ -556,7 +554,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewInstanceFromClass(
      _In_     MI_Application *application,
      _In_z_ const MI_Char *className,
-@@ -6820,6 +6891,7 @@ MI_INLINE MI_Result MI_Application_NewInstanceFromClass(
+@@ -6820,6 +6889,7 @@ MI_INLINE MI_Result MI_Application_NewInstanceFromClass(
  ** Return: MI_RESULT_OK success, other errors indicate specific failure
  **=============================================================================
  */
@@ -564,7 +562,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewClass(
          _In_ MI_Application *application,
          _In_ const MI_ClassDecl* classDecl,
-@@ -6842,6 +6914,7 @@ MI_INLINE MI_Result MI_Application_NewClass(
+@@ -6842,6 +6912,7 @@ MI_INLINE MI_Result MI_Application_NewClass(
  }
  
  
@@ -572,7 +570,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewParameterSet(
      _In_     MI_Application *application,
      _In_opt_ const MI_ClassDecl *classRTTI,
-@@ -6876,6 +6949,7 @@ MI_INLINE MI_Result MI_Application_NewParameterSet(
+@@ -6876,6 +6947,7 @@ MI_INLINE MI_Result MI_Application_NewParameterSet(
  ** Return: MI_RESULT_OK success, other errors indicate specific failure
  **=============================================================================
  */
@@ -580,7 +578,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewDestinationOptions(
      _In_  MI_Application *application,
      _Out_ MI_DestinationOptions *options)
-@@ -6909,6 +6983,7 @@ MI_INLINE MI_Result MI_Application_NewDestinationOptions(
+@@ -6909,6 +6981,7 @@ MI_INLINE MI_Result MI_Application_NewDestinationOptions(
  ** Return: MI_RESULT_OK success, other errors indicate specific failure
  **=============================================================================
  */
@@ -588,7 +586,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewOperationOptions(
      _In_  MI_Application *application,
            MI_Boolean mustUnderstand,
-@@ -6928,6 +7003,7 @@ MI_INLINE MI_Result MI_Application_NewOperationOptions(
+@@ -6928,6 +7001,7 @@ MI_INLINE MI_Result MI_Application_NewOperationOptions(
      }
  }
  
@@ -596,7 +594,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewSubscriptionDeliveryOptions(
      _In_  MI_Application *application,
      _In_  MI_SubscriptionDeliveryType deliveryType,
-@@ -6958,6 +7034,7 @@ MI_INLINE MI_Result MI_Application_NewSubscriptionDeliveryOptions(
+@@ -6958,6 +7032,7 @@ MI_INLINE MI_Result MI_Application_NewSubscriptionDeliveryOptions(
  **
  **=============================================================================
  */
@@ -604,7 +602,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewSession(
      _In_     MI_Application *application,
      _In_opt_z_ const MI_Char *protocol,
-@@ -6988,6 +7065,7 @@ MI_INLINE MI_Result MI_Application_NewSession(
+@@ -6988,6 +7063,7 @@ MI_INLINE MI_Result MI_Application_NewSession(
  **
  **=============================================================================
  */
@@ -612,7 +610,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewHostedProvider(
      _In_  MI_Application *application,
      _In_z_  const MI_Char *namespaceName,
-@@ -7010,6 +7088,7 @@ MI_INLINE MI_Result MI_Application_NewHostedProvider(
+@@ -7010,6 +7086,7 @@ MI_INLINE MI_Result MI_Application_NewHostedProvider(
      }
  }
  
@@ -620,7 +618,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewSerializer(
      _Inout_ MI_Application *application,
      MI_Uint32 flags,
-@@ -7030,6 +7109,7 @@ MI_INLINE MI_Result MI_Application_NewSerializer(
+@@ -7030,6 +7107,7 @@ MI_INLINE MI_Result MI_Application_NewSerializer(
      }
  }
  
@@ -628,7 +626,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Application_NewDeserializer(
      _Inout_ MI_Application *application,
      MI_Uint32 flags,
-@@ -7059,6 +7139,7 @@ MI_INLINE MI_Result MI_Application_NewDeserializer(
+@@ -7059,6 +7137,7 @@ MI_INLINE MI_Result MI_Application_NewDeserializer(
  **
  **=============================================================================
  */
@@ -636,7 +634,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_HostedProvider_Close(
      _Inout_ MI_HostedProvider *hostedProvider)
  {
-@@ -7079,6 +7160,7 @@ MI_INLINE MI_Result MI_HostedProvider_Close(
+@@ -7079,6 +7158,7 @@ MI_INLINE MI_Result MI_HostedProvider_Close(
  **
  **=============================================================================
  */
@@ -644,7 +642,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_HostedProvider_GetApplication(
      _In_  MI_HostedProvider *hostedProvider,
      _Out_ MI_Application *application)
-@@ -7110,6 +7192,7 @@ MI_INLINE MI_Result MI_HostedProvider_GetApplication(
+@@ -7110,6 +7190,7 @@ MI_INLINE MI_Result MI_HostedProvider_GetApplication(
  **
  **=============================================================================
  */
@@ -652,7 +650,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Session_Close(
      _Inout_     MI_Session *session,
      _In_opt_ void *completionContext,
-@@ -7137,6 +7220,7 @@ MI_INLINE MI_Result MI_Session_Close(
+@@ -7137,6 +7218,7 @@ MI_INLINE MI_Result MI_Session_Close(
  **
  **=============================================================================
  */
@@ -660,7 +658,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Session_GetApplication(
      _In_  MI_Session *session,
      _Out_ MI_Application *application)
-@@ -7165,6 +7249,7 @@ MI_INLINE MI_Result MI_Session_GetApplication(
+@@ -7165,6 +7247,7 @@ MI_INLINE MI_Result MI_Session_GetApplication(
  **
  **=============================================================================
  */
@@ -668,7 +666,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_GetInstance(
      _In_     MI_Session *session,
               MI_Uint32 flags,
-@@ -7204,6 +7289,7 @@ MI_INLINE void MI_Session_GetInstance(
+@@ -7204,6 +7287,7 @@ MI_INLINE void MI_Session_GetInstance(
  **
  **=============================================================================
  */
@@ -676,7 +674,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_ModifyInstance(
      _In_     MI_Session *session,
               MI_Uint32 flags,
-@@ -7243,6 +7329,7 @@ MI_INLINE void MI_Session_ModifyInstance(
+@@ -7243,6 +7327,7 @@ MI_INLINE void MI_Session_ModifyInstance(
  **
  **=============================================================================
  */
@@ -684,7 +682,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_CreateInstance(
      _In_     MI_Session *session,
               MI_Uint32 flags,
-@@ -7281,6 +7368,7 @@ MI_INLINE void MI_Session_CreateInstance(
+@@ -7281,6 +7366,7 @@ MI_INLINE void MI_Session_CreateInstance(
  **
  **=============================================================================
  */
@@ -692,7 +690,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_DeleteInstance(
      _In_     MI_Session *session,
               MI_Uint32 flags,
-@@ -7320,6 +7408,7 @@ MI_INLINE void MI_Session_DeleteInstance(
+@@ -7320,6 +7406,7 @@ MI_INLINE void MI_Session_DeleteInstance(
  **
  **=============================================================================
  */
@@ -700,7 +698,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_Invoke(
      _In_       MI_Session *session,
                 MI_Uint32 flags,
-@@ -7364,6 +7453,7 @@ MI_INLINE void MI_Session_Invoke(
+@@ -7364,6 +7451,7 @@ MI_INLINE void MI_Session_Invoke(
  **
  **=============================================================================
  */
@@ -708,7 +706,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_EnumerateInstances(
      _In_     MI_Session *session,
               MI_Uint32 flags,
-@@ -7391,6 +7481,7 @@ MI_INLINE void MI_Session_EnumerateInstances(
+@@ -7391,6 +7479,7 @@ MI_INLINE void MI_Session_EnumerateInstances(
      }
  }
  
@@ -716,7 +714,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_QueryInstances(
      _In_     MI_Session *session,
               MI_Uint32 flags,
-@@ -7433,6 +7524,7 @@ MI_INLINE void MI_Session_QueryInstances(
+@@ -7433,6 +7522,7 @@ MI_INLINE void MI_Session_QueryInstances(
  **
  **=============================================================================
  */
@@ -724,7 +722,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_AssociatorInstances(
      _In_       MI_Session *session,
                 MI_Uint32 flags,
-@@ -7479,6 +7571,7 @@ MI_INLINE void MI_Session_AssociatorInstances(
+@@ -7479,6 +7569,7 @@ MI_INLINE void MI_Session_AssociatorInstances(
  **
  **=============================================================================
  */
@@ -732,7 +730,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_ReferenceInstances(
      _In_     MI_Session *session,
               MI_Uint32 flags,
-@@ -7524,6 +7617,7 @@ MI_INLINE void MI_Session_ReferenceInstances(
+@@ -7524,6 +7615,7 @@ MI_INLINE void MI_Session_ReferenceInstances(
  **=============================================================================
  */
  
@@ -740,7 +738,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_Subscribe(
      _In_       MI_Session *session,
                 MI_Uint32 flags,
-@@ -7559,6 +7653,7 @@ MI_INLINE void MI_Session_Subscribe(
+@@ -7559,6 +7651,7 @@ MI_INLINE void MI_Session_Subscribe(
  **
  **=============================================================================
  */
@@ -748,7 +746,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_GetClass(
      _In_       MI_Session *session,
                 MI_Uint32 flags,
-@@ -7592,6 +7687,7 @@ MI_INLINE void MI_Session_GetClass(
+@@ -7592,6 +7685,7 @@ MI_INLINE void MI_Session_GetClass(
  **
  **=============================================================================
  */
@@ -756,7 +754,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_EnumerateClasses(
      _In_       MI_Session *session,
                 MI_Uint32 flags,
-@@ -7619,6 +7715,7 @@ MI_INLINE void MI_Session_EnumerateClasses(
+@@ -7619,6 +7713,7 @@ MI_INLINE void MI_Session_EnumerateClasses(
      }
  }
  
@@ -764,7 +762,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_Session_TestConnection(
          _In_     MI_Session *session,
                   MI_Uint32 flags,
-@@ -7658,6 +7755,7 @@ MI_INLINE void MI_Session_TestConnection(
+@@ -7658,6 +7753,7 @@ MI_INLINE void MI_Session_TestConnection(
  **
  **=============================================================================
  */
@@ -772,7 +770,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Operation_GetInstance(
      _In_        MI_Operation *operation,
      _Outptr_result_maybenull_       const MI_Instance **instance,
-@@ -7689,6 +7787,7 @@ MI_INLINE MI_Result MI_Operation_GetInstance(
+@@ -7689,6 +7785,7 @@ MI_INLINE MI_Result MI_Operation_GetInstance(
  **
  **=============================================================================
  */
@@ -780,7 +778,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Operation_GetIndication(
      _In_        MI_Operation *operation,
      _Outptr_result_maybenull_       const MI_Instance **instance,
-@@ -7715,6 +7814,7 @@ MI_INLINE MI_Result MI_Operation_GetIndication(
+@@ -7715,6 +7812,7 @@ MI_INLINE MI_Result MI_Operation_GetIndication(
  **
  **=============================================================================
  */
@@ -788,7 +786,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Operation_GetClass(
      _In_        MI_Operation *operation,
      _Outptr_result_maybenull_       const MI_Class **classResult,
-@@ -7745,6 +7845,7 @@ MI_INLINE MI_Result MI_Operation_GetClass(
+@@ -7745,6 +7843,7 @@ MI_INLINE MI_Result MI_Operation_GetClass(
  **
  **=============================================================================
  */
@@ -796,7 +794,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Operation_Close(
      _Inout_ MI_Operation *operation)
  {
-@@ -7764,6 +7865,7 @@ MI_INLINE MI_Result MI_Operation_Close(
+@@ -7764,6 +7863,7 @@ MI_INLINE MI_Result MI_Operation_Close(
  ** returns MI_FALSE.  The operation also must still be closed with MI_Operation_Close.
  **=============================================================================
  */
@@ -804,7 +802,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Operation_Cancel(
      _Inout_ MI_Operation *operation,
           MI_CancellationReason reason)
-@@ -7782,6 +7884,7 @@ MI_INLINE MI_Result MI_Operation_Cancel(
+@@ -7782,6 +7882,7 @@ MI_INLINE MI_Result MI_Operation_Cancel(
  **
  **=============================================================================
  */
@@ -812,7 +810,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Operation_GetSession(
      _In_  MI_Operation *operation,
      _Out_ MI_Session *session)
-@@ -7805,6 +7908,7 @@ MI_INLINE MI_Result MI_Operation_GetSession(
+@@ -7805,6 +7906,7 @@ MI_INLINE MI_Result MI_Operation_GetSession(
  **
  **=============================================================================
  */
@@ -820,7 +818,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_DestinationOptions_Delete(
      _Inout_ MI_DestinationOptions *options)
  {
-@@ -7821,6 +7925,7 @@ MI_INLINE void MI_DestinationOptions_Delete(
+@@ -7821,6 +7923,7 @@ MI_INLINE void MI_DestinationOptions_Delete(
  **
  **=============================================================================
  */
@@ -828,7 +826,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetTimeout(
      _Inout_ MI_DestinationOptions *options,
      _In_ const MI_Interval *timeout)
-@@ -7842,6 +7947,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetTimeout(
+@@ -7842,6 +7945,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetTimeout(
  **
  **=============================================================================
  */
@@ -836,7 +834,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetTimeout(
      _In_ MI_DestinationOptions *options,
      _Out_ MI_Interval *timeout)
-@@ -7864,6 +7970,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetTimeout(
+@@ -7864,6 +7968,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetTimeout(
  **=============================================================================
  */
  /* Check/skip CA check when doing SSL, default TRUE, check*/
@@ -844,7 +842,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetCertCACheck(
      _Inout_ MI_DestinationOptions *options,
           MI_Boolean check)
-@@ -7888,6 +7995,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetCertCACheck(
+@@ -7888,6 +7993,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetCertCACheck(
  **
  **=============================================================================
  */
@@ -852,7 +850,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetCertCACheck(
      _In_ MI_DestinationOptions *options,
      _Out_ MI_Boolean *check)
-@@ -7915,6 +8023,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCertCACheck(
+@@ -7915,6 +8021,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCertCACheck(
  **=============================================================================
  */
  /* Check/skip CN check when doing SSL, default TRUE, check*/
@@ -860,7 +858,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetCertCNCheck(
      _Inout_ MI_DestinationOptions *options,
           MI_Boolean check)
-@@ -7939,6 +8048,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetCertCNCheck(
+@@ -7939,6 +8046,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetCertCNCheck(
  **
  **=============================================================================
  */
@@ -868,7 +866,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetCertCNCheck(
      _In_ MI_DestinationOptions *options,
      _Out_ MI_Boolean *check)
-@@ -7965,6 +8075,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCertCNCheck(
+@@ -7965,6 +8073,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCertCNCheck(
  **=============================================================================
  */
  /* Check/skip cert revocation check when doing SSL, default TRUE, check*/
@@ -876,7 +874,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetCertRevocationCheck(
      _Inout_ MI_DestinationOptions *options,
           MI_Boolean check)
-@@ -7989,6 +8100,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetCertRevocationCheck(
+@@ -7989,6 +8098,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetCertRevocationCheck(
  **
  **=============================================================================
  */
@@ -884,7 +882,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetCertRevocationCheck(
      _In_ MI_DestinationOptions *options,
      _Out_ MI_Boolean *check)
-@@ -8015,6 +8127,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCertRevocationCheck(
+@@ -8015,6 +8125,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCertRevocationCheck(
  ** Ensure packet privacy (encryption), default TRUE
  **=============================================================================
  */
@@ -892,7 +890,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetPacketPrivacy(
      _Inout_ MI_DestinationOptions *options,
           MI_Boolean privacy)
-@@ -8039,6 +8152,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetPacketPrivacy(
+@@ -8039,6 +8150,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetPacketPrivacy(
  **
  **=============================================================================
  */
@@ -900,7 +898,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetPacketPrivacy(
      _In_ MI_DestinationOptions *options,
      _Out_ MI_Boolean *privacy)
-@@ -8065,6 +8179,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetPacketPrivacy(
+@@ -8065,6 +8177,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetPacketPrivacy(
  **=============================================================================
  */
  /* Ensure packet integrity (sign), default TRUE*/
@@ -908,7 +906,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetPacketIntegrity(
      _Inout_ MI_DestinationOptions *options,
           MI_Boolean integrity)
-@@ -8089,6 +8204,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetPacketIntegrity(
+@@ -8089,6 +8202,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetPacketIntegrity(
  **
  **=============================================================================
  */
@@ -916,7 +914,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetPacketIntegrity(
      _In_ MI_DestinationOptions *options,
      _Out_ MI_Boolean *integrity)
-@@ -8124,6 +8240,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetPacketIntegrity(
+@@ -8124,6 +8238,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetPacketIntegrity(
  **
  **=============================================================================
  */
@@ -924,7 +922,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetPacketEncoding(
      _Inout_   MI_DestinationOptions *options,
      _In_z_ const MI_Char *encoding)
-@@ -8145,6 +8262,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetPacketEncoding(
+@@ -8145,6 +8260,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetPacketEncoding(
  **
  **=============================================================================
  */
@@ -932,7 +930,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetPacketEncoding(
      _In_   MI_DestinationOptions *options,
      _Outptr_result_z_ const MI_Char **encoding)
-@@ -8178,6 +8296,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetPacketEncoding(
+@@ -8178,6 +8294,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetPacketEncoding(
  **
  **=============================================================================
  */
@@ -940,7 +938,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetDataLocale(
      _Inout_   MI_DestinationOptions *options,
      _In_z_ const MI_Char *locale)
-@@ -8207,6 +8326,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetDataLocale(
+@@ -8207,6 +8324,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetDataLocale(
  **
  **=============================================================================
  */
@@ -948,7 +946,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetDataLocale(
      _In_   MI_DestinationOptions *options,
      _Outptr_result_z_ const MI_Char **locale)
-@@ -8239,6 +8359,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetDataLocale(
+@@ -8239,6 +8357,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetDataLocale(
  **    locale:  Valid UI locale string.  Example: en-us
  **=============================================================================
  */
@@ -956,7 +954,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetUILocale(
      _Inout_   MI_DestinationOptions *options,
      _In_z_ const MI_Char *locale)
-@@ -8267,6 +8388,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetUILocale(
+@@ -8267,6 +8386,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetUILocale(
  **    locale:  UI locale string has been set.
  **=============================================================================
  */
@@ -964,7 +962,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetUILocale(
      _In_   MI_DestinationOptions *options,
      _Outptr_result_z_ const MI_Char **locale)
-@@ -8288,6 +8410,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetUILocale(
+@@ -8288,6 +8408,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetUILocale(
  **
  **=============================================================================
  */
@@ -972,7 +970,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetMaxEnvelopeSize(
      _Inout_ MI_DestinationOptions *options,
           MI_Uint32 sizeInKB)
-@@ -8309,6 +8432,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetMaxEnvelopeSize(
+@@ -8309,6 +8430,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetMaxEnvelopeSize(
  **
  **=============================================================================
  */
@@ -980,7 +978,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetMaxEnvelopeSize(
      _In_ MI_DestinationOptions *options,
      _Out_ MI_Uint32 *sizeInKB)
-@@ -8331,6 +8455,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetMaxEnvelopeSize(
+@@ -8331,6 +8453,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetMaxEnvelopeSize(
  ** default MI_FALSE = don't, MI_TRUE = do encode, WinRM transport specific
  **=============================================================================
  */
@@ -988,7 +986,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetEncodePortInSPN(
      _Inout_ MI_DestinationOptions *options,
           MI_Boolean encodePort)
-@@ -8353,6 +8478,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetEncodePortInSPN(
+@@ -8353,6 +8476,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetEncodePortInSPN(
  ** default MI_FALSE = don't, MI_TRUE = do encode, WinRM transport specific
  **=============================================================================
  */
@@ -996,7 +994,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetEncodePortInSPN(
      _In_ MI_DestinationOptions *options,
      _Out_ MI_Boolean *encodePort)
-@@ -8379,6 +8505,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetEncodePortInSPN(
+@@ -8379,6 +8503,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetEncodePortInSPN(
  **Specific to HTTP/HTTP based transports, WinRM default is /wsman, other transports are transports/protocols specific
  **=============================================================================
  */
@@ -1004,7 +1002,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetHttpUrlPrefix(
      _Inout_   MI_DestinationOptions *options,
      _In_z_ const MI_Char *prefix)
-@@ -8401,6 +8528,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetHttpUrlPrefix(
+@@ -8401,6 +8526,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetHttpUrlPrefix(
  **Specific to HTTP/HTTP based transports, WinRM default is /wsman, other transports are transports/protocols specific
  **=============================================================================
  */
@@ -1012,7 +1010,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetHttpUrlPrefix(
      _In_   MI_DestinationOptions *options,
      _Outptr_result_z_ const MI_Char **prefix)
-@@ -8423,6 +8551,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetHttpUrlPrefix(
+@@ -8423,6 +8549,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetHttpUrlPrefix(
  ** Transport specific, Default port for transport.
  **=============================================================================
  */
@@ -1020,7 +1018,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetDestinationPort(
      _Inout_ MI_DestinationOptions *options,
           MI_Uint32 port)
-@@ -8445,6 +8574,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetDestinationPort(
+@@ -8445,6 +8572,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetDestinationPort(
  ** Transport specific, Default port for transport.
  **=============================================================================
  */
@@ -1028,7 +1026,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetDestinationPort(
      _In_ MI_DestinationOptions *options,
      _Out_ MI_Uint32 *port)
-@@ -8478,6 +8608,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetDestinationPort(
+@@ -8478,6 +8606,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetDestinationPort(
  **
  **=============================================================================
  */
@@ -1036,7 +1034,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetTransport(
      _Inout_ MI_DestinationOptions *options,
      _In_z_ const MI_Char *transport)
-@@ -8499,6 +8630,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetTransport(
+@@ -8499,6 +8628,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetTransport(
  **
  **=============================================================================
  */
@@ -1044,7 +1042,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetTransport(
      _In_ MI_DestinationOptions *options,
      _Outptr_result_z_ const MI_Char **transport)
-@@ -8532,6 +8664,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetTransport(
+@@ -8532,6 +8662,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetTransport(
  **
  **=============================================================================
  */
@@ -1052,7 +1050,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetProxyType(
      _Inout_ MI_DestinationOptions *options,
      _In_z_ const MI_Char *proxyType)
-@@ -8553,6 +8686,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetProxyType(
+@@ -8553,6 +8684,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetProxyType(
  **
  **=============================================================================
  */
@@ -1060,7 +1058,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetProxyType(
      _In_ MI_DestinationOptions *options,
      _Outptr_result_z_ const MI_Char **proxyType)
-@@ -8577,6 +8711,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetProxyType(
+@@ -8577,6 +8709,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetProxyType(
  **
  **=============================================================================
  */
@@ -1068,7 +1066,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_AddProxyCredentials(
      _Inout_ MI_DestinationOptions *options,
      _In_ const MI_UserCredentials *credentials)
-@@ -8600,6 +8735,7 @@ MI_INLINE MI_Result MI_DestinationOptions_AddProxyCredentials(
+@@ -8600,6 +8733,7 @@ MI_INLINE MI_Result MI_DestinationOptions_AddProxyCredentials(
  ** can be combined, not all transport handles support dual auth.
  **=============================================================================
  */
@@ -1076,7 +1074,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_AddDestinationCredentials(
      _Inout_     MI_DestinationOptions *options,
      _In_ const MI_UserCredentials *credentials)
-@@ -8623,6 +8759,7 @@ typedef enum _MI_DestinationOptions_ImpersonationType
+@@ -8623,6 +8757,7 @@ typedef enum _MI_DestinationOptions_ImpersonationType
      MI_DestinationOptions_ImpersonationType_Delegate = 4
  } MI_DestinationOptions_ImpersonationType;
  
@@ -1084,7 +1082,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetImpersonationType(
      _Inout_ MI_DestinationOptions *options,
      _In_ MI_DestinationOptions_ImpersonationType impersonationType)
-@@ -8637,6 +8774,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetImpersonationType(
+@@ -8637,6 +8772,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetImpersonationType(
      }
  }
  
@@ -1092,7 +1090,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetImpersonationType(
      _Inout_ MI_DestinationOptions *options,
      _Out_ MI_DestinationOptions_ImpersonationType * impersonationType)
-@@ -8662,6 +8800,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetImpersonationType(
+@@ -8662,6 +8798,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetImpersonationType(
  **
  **=============================================================================
  */
@@ -1100,7 +1098,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetString(
      _Inout_ MI_DestinationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -8684,6 +8823,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetString(
+@@ -8684,6 +8821,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetString(
  **
  **=============================================================================
  */
@@ -1108,7 +1106,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetString(
      _In_ MI_DestinationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -8707,6 +8847,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetString(
+@@ -8707,6 +8845,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetString(
  **
  **=============================================================================
  */
@@ -1116,7 +1114,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_SetNumber(
      _Inout_ MI_DestinationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -8729,6 +8870,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetNumber(
+@@ -8729,6 +8868,7 @@ MI_INLINE MI_Result MI_DestinationOptions_SetNumber(
  **
  **=============================================================================
  */
@@ -1124,7 +1122,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetNumber(
      _In_ MI_DestinationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -8753,6 +8895,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetNumber(
+@@ -8753,6 +8893,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetNumber(
  **
  **=============================================================================
  */
@@ -1132,7 +1130,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetOptionCount(
      _In_   MI_DestinationOptions *options,
      _Out_ MI_Uint32 *count)
-@@ -8775,6 +8918,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetOptionCount(
+@@ -8775,6 +8916,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetOptionCount(
  **
  **=============================================================================
  */
@@ -1140,7 +1138,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetOptionAt(
      _In_   MI_DestinationOptions *options,
      MI_Uint32 index,
-@@ -8800,6 +8944,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetOptionAt(
+@@ -8800,6 +8942,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetOptionAt(
  **
  **=============================================================================
  */
@@ -1148,7 +1146,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetOption(
      _In_   MI_DestinationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -8826,6 +8971,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetOption(
+@@ -8826,6 +8969,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetOption(
  **
  **=============================================================================
  */
@@ -1156,7 +1154,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsCount(
      _In_   MI_DestinationOptions *options,
      _Out_ MI_Uint32 *count)
-@@ -8848,6 +8994,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsCount(
+@@ -8848,6 +8992,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsCount(
  **
  **=============================================================================
  */
@@ -1164,7 +1162,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsAt(
      _In_   MI_DestinationOptions *options,
      MI_Uint32 index,
-@@ -8873,6 +9020,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsAt(
+@@ -8873,6 +9018,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsAt(
  **
  **=============================================================================
  */
@@ -1172,7 +1170,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsPasswordAt(
      _In_   MI_DestinationOptions *options,
      MI_Uint32 index,
-@@ -8911,6 +9059,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsPasswordAt(
+@@ -8911,6 +9057,7 @@ MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsPasswordAt(
  **
  **=============================================================================
  */
@@ -1180,7 +1178,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_DestinationOptions_Clone(
      _In_ const MI_DestinationOptions* self,
      _Out_ MI_DestinationOptions* newDestinationOptions)
-@@ -8932,6 +9081,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_DestinationOptions_Clone(
+@@ -8932,6 +9079,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_DestinationOptions_Clone(
  **
  **=============================================================================
  */
@@ -1188,7 +1186,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE void MI_OperationOptions_Delete(
      _Inout_ MI_OperationOptions *options)
  {
-@@ -8948,6 +9098,7 @@ MI_INLINE void MI_OperationOptions_Delete(
+@@ -8948,6 +9096,7 @@ MI_INLINE void MI_OperationOptions_Delete(
  **
  **=============================================================================
  */
@@ -1196,7 +1194,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetWriteErrorMode(
      _Inout_ MI_OperationOptions *options,
      _In_ MI_CallbackMode mode)
-@@ -8969,6 +9120,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetWriteErrorMode(
+@@ -8969,6 +9118,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetWriteErrorMode(
  **
  **=============================================================================
  */
@@ -1204,7 +1202,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetWriteErrorMode(
      _In_ MI_OperationOptions *options,
      _Out_ MI_CallbackMode *mode)
-@@ -8994,6 +9146,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetWriteErrorMode(
+@@ -8994,6 +9144,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetWriteErrorMode(
  **
  **=============================================================================
  */
@@ -1212,7 +1210,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetPromptUserMode(
      _Inout_ MI_OperationOptions *options,
      _In_ MI_CallbackMode mode)
-@@ -9018,6 +9171,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetPromptUserMode(
+@@ -9018,6 +9169,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetPromptUserMode(
  **
  **=============================================================================
  */
@@ -1220,7 +1218,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetPromptUserMode(
      _In_ MI_OperationOptions *options,
      _Out_ MI_CallbackMode *mode)
-@@ -9043,6 +9197,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetPromptUserMode(
+@@ -9043,6 +9195,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetPromptUserMode(
  **
  **=============================================================================
  */
@@ -1228,7 +1226,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetPromptUserRegularMode(
      _Inout_ MI_OperationOptions *options,
      _In_ MI_CallbackMode mode,
-@@ -9069,6 +9224,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetPromptUserRegularMode(
+@@ -9069,6 +9222,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetPromptUserRegularMode(
  **
  **=============================================================================
  */
@@ -1236,7 +1234,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetPromptUserRegularMode(
      _Inout_ MI_OperationOptions *options,
      _Out_ MI_CallbackMode *mode,
-@@ -9105,6 +9261,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetPromptUserRegularMode(
+@@ -9105,6 +9259,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetPromptUserRegularMode(
  **
  **=============================================================================
  */
@@ -1244,7 +1242,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetProviderArchitecture(
      _Inout_ MI_OperationOptions *options,
      _In_ MI_ProviderArchitecture architecture,
-@@ -9131,6 +9288,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetProviderArchitecture(
+@@ -9131,6 +9286,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetProviderArchitecture(
  **
  **=============================================================================
  */
@@ -1252,7 +1250,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetProviderArchitecture(
      _In_ MI_OperationOptions *options,
      _Out_ MI_ProviderArchitecture *architecture,
-@@ -9165,6 +9323,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetProviderArchitecture(
+@@ -9165,6 +9321,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetProviderArchitecture(
  **
  **=============================================================================
  */
@@ -1260,7 +1258,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_EnableChannel(
      _Inout_ MI_OperationOptions *options,
      _In_ MI_Uint32 channel)
-@@ -9186,6 +9345,7 @@ MI_INLINE MI_Result MI_OperationOptions_EnableChannel(
+@@ -9186,6 +9343,7 @@ MI_INLINE MI_Result MI_OperationOptions_EnableChannel(
  **
  **=============================================================================
  */
@@ -1268,7 +1266,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_DisableChannel(
      _Inout_ MI_OperationOptions *options,
      _In_ MI_Uint32 channel)
-@@ -9207,6 +9367,7 @@ MI_INLINE MI_Result MI_OperationOptions_DisableChannel(
+@@ -9207,6 +9365,7 @@ MI_INLINE MI_Result MI_OperationOptions_DisableChannel(
  **
  **=============================================================================
  */
@@ -1276,7 +1274,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetEnabledChannels(
      _In_   MI_OperationOptions *options,
      _Out_writes_to_opt_(bufferLength, *channelCount) MI_Uint32 *channels,
-@@ -9231,6 +9392,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetEnabledChannels(
+@@ -9231,6 +9390,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetEnabledChannels(
  **
  **=============================================================================
  */
@@ -1284,7 +1282,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetTimeout(
      _Inout_ MI_OperationOptions *options,
      _In_ const MI_Interval *timeout)
-@@ -9252,6 +9414,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetTimeout(
+@@ -9252,6 +9412,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetTimeout(
  **
  **=============================================================================
  */
@@ -1292,7 +1290,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetTimeout(
      _In_ MI_OperationOptions *options,
      _Out_ MI_Interval *timeout)
-@@ -9273,6 +9436,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetTimeout(
+@@ -9273,6 +9434,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetTimeout(
  **
  **=============================================================================
  */
@@ -1300,7 +1298,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetResourceUriPrefix(
      _Inout_   MI_OperationOptions *options,
      _In_z_ const MI_Char *ruriPrefix)
-@@ -9294,6 +9458,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetResourceUriPrefix(
+@@ -9294,6 +9456,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetResourceUriPrefix(
  **
  **=============================================================================
  */
@@ -1308,7 +1306,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetResourceUriPrefix(
      _In_   MI_OperationOptions *options,
      _Outptr_result_z_ const MI_Char **ruriPrefix)
-@@ -9315,6 +9480,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetResourceUriPrefix(
+@@ -9315,6 +9478,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetResourceUriPrefix(
  **
  **=============================================================================
  */
@@ -1316,7 +1314,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetResourceUri(
      _Inout_   MI_OperationOptions *options,
      _In_z_ const MI_Char *rUri)
-@@ -9336,6 +9502,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetResourceUri(
+@@ -9336,6 +9500,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetResourceUri(
  **
  **=============================================================================
  */
@@ -1324,7 +1322,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetResourceUri(
      _In_   MI_OperationOptions *options,
      _Outptr_result_z_ const MI_Char **rUri)
-@@ -9358,6 +9525,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetResourceUri(
+@@ -9358,6 +9523,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetResourceUri(
  **
  **=============================================================================
  */
@@ -1332,7 +1330,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetUseMachineID(
      _Inout_ MI_OperationOptions *options,
      _In_ MI_Boolean machineID)
-@@ -9379,6 +9547,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetUseMachineID(
+@@ -9379,6 +9545,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetUseMachineID(
  **
  **=============================================================================
  */
@@ -1340,7 +1338,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetUseMachineID(
      _In_ MI_OperationOptions *options,
      _Out_ MI_Boolean *machineID)
-@@ -9404,6 +9573,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetUseMachineID(
+@@ -9404,6 +9571,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetUseMachineID(
  **
  **=============================================================================
  */
@@ -1348,7 +1346,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetCustomOption(
      _Inout_   MI_OperationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -9428,6 +9598,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetCustomOption(
+@@ -9428,6 +9596,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetCustomOption(
  **
  **=============================================================================
  */
@@ -1356,7 +1354,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetOptionCount(
      _In_   MI_OperationOptions *options,
      _Out_ MI_Uint32 *count)
-@@ -9449,6 +9620,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetOptionCount(
+@@ -9449,6 +9618,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetOptionCount(
  **
  **=============================================================================
  */
@@ -1364,7 +1362,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetOptionAt(
      _In_   MI_OperationOptions *options,
      MI_Uint32 index,
-@@ -9474,6 +9646,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetOptionAt(
+@@ -9474,6 +9644,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetOptionAt(
  **
  **=============================================================================
  */
@@ -1372,7 +1370,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetString(
      _Inout_   MI_OperationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -9497,6 +9670,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetString(
+@@ -9497,6 +9668,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetString(
  **
  **=============================================================================
  */
@@ -1380,7 +1378,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetString(
      _In_   MI_OperationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -9521,6 +9695,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetString(
+@@ -9521,6 +9693,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetString(
  **
  **=============================================================================
  */
@@ -1388,7 +1386,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_SetNumber(
      _Inout_   MI_OperationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -9544,6 +9719,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetNumber(
+@@ -9544,6 +9717,7 @@ MI_INLINE MI_Result MI_OperationOptions_SetNumber(
  **
  **=============================================================================
  */
@@ -1396,7 +1394,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetNumber(
      _In_   MI_OperationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -9568,6 +9744,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetNumber(
+@@ -9568,6 +9742,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetNumber(
  **
  **=============================================================================
  */
@@ -1404,7 +1402,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_OperationOptions_GetOption(
      _In_   MI_OperationOptions *options,
      _In_z_ const MI_Char *optionName,
-@@ -9605,6 +9782,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetOption(
+@@ -9605,6 +9780,7 @@ MI_INLINE MI_Result MI_OperationOptions_GetOption(
  **
  **=============================================================================
  */
@@ -1412,7 +1410,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_OperationOptions_Clone(
      _In_ const MI_OperationOptions* self,
      _Out_ MI_OperationOptions* newOperationOptions)
-@@ -9620,6 +9798,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_OperationOptions_Clone(
+@@ -9620,6 +9796,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_OperationOptions_Clone(
  }
  
  
@@ -1420,7 +1418,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetClassName(
          _In_              const MI_Class* self,
          _Outptr_result_maybenull_z_ const MI_Char** className)
-@@ -9634,6 +9813,7 @@ MI_INLINE MI_Result MI_Class_GetClassName(
+@@ -9634,6 +9811,7 @@ MI_INLINE MI_Result MI_Class_GetClassName(
      }
  }
  
@@ -1428,7 +1426,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetNameSpace(
          _In_              const MI_Class* self,
          _Outptr_result_maybenull_z_ const MI_Char** nameSpace)
-@@ -9649,6 +9829,7 @@ MI_INLINE MI_Result MI_Class_GetNameSpace(
+@@ -9649,6 +9827,7 @@ MI_INLINE MI_Result MI_Class_GetNameSpace(
  }
  
  
@@ -1436,7 +1434,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetServerName(
          _In_              const MI_Class* self,
          _Outptr_result_maybenull_z_ const MI_Char** serverName)
-@@ -9664,6 +9845,7 @@ MI_INLINE MI_Result MI_Class_GetServerName(
+@@ -9664,6 +9843,7 @@ MI_INLINE MI_Result MI_Class_GetServerName(
  }
  
  
@@ -1444,7 +1442,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetElementCount(
          _In_  const MI_Class* self,
          _Out_ MI_Uint32* count)
-@@ -9679,6 +9861,7 @@ MI_INLINE MI_Result MI_Class_GetElementCount(
+@@ -9679,6 +9859,7 @@ MI_INLINE MI_Result MI_Class_GetElementCount(
  }
  
  
@@ -1452,7 +1450,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetElement(
          _In_      const MI_Class* self,
          _In_z_    const MI_Char* name,
-@@ -9701,6 +9884,7 @@ MI_INLINE MI_Result MI_Class_GetElement(
+@@ -9701,6 +9882,7 @@ MI_INLINE MI_Result MI_Class_GetElement(
  }
  
  
@@ -1460,7 +1458,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetElementAt(
          _In_              const MI_Class* self,
                            MI_Uint32 index,
-@@ -9722,6 +9906,7 @@ MI_INLINE MI_Result MI_Class_GetElementAt(
+@@ -9722,6 +9904,7 @@ MI_INLINE MI_Result MI_Class_GetElementAt(
      }
  }
  
@@ -1468,7 +1466,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetClassQualifierSet(
          _In_            const MI_Class* self,
          _Out_opt_ MI_QualifierSet *qualifierSet
-@@ -9737,6 +9922,7 @@ MI_INLINE MI_Result MI_Class_GetClassQualifierSet(
+@@ -9737,6 +9920,7 @@ MI_INLINE MI_Result MI_Class_GetClassQualifierSet(
      }
  }
  
@@ -1476,7 +1474,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetMethodCount(
          _In_  const MI_Class* self,
          _Out_ MI_Uint32* count)
-@@ -9751,6 +9937,7 @@ MI_INLINE MI_Result MI_Class_GetMethodCount(
+@@ -9751,6 +9935,7 @@ MI_INLINE MI_Result MI_Class_GetMethodCount(
      }
  }
  
@@ -1484,7 +1482,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetMethodAt(
          _In_ const MI_Class *self,
          MI_Uint32 index,
-@@ -9768,6 +9955,7 @@ MI_INLINE MI_Result MI_Class_GetMethodAt(
+@@ -9768,6 +9953,7 @@ MI_INLINE MI_Result MI_Class_GetMethodAt(
      }
  }
  
@@ -1492,7 +1490,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetMethod(
          _In_ const MI_Class *self,
          _In_z_ const MI_Char *name,
-@@ -9785,6 +9973,7 @@ MI_INLINE MI_Result MI_Class_GetMethod(
+@@ -9785,6 +9971,7 @@ MI_INLINE MI_Result MI_Class_GetMethod(
      }
  }
  
@@ -1500,7 +1498,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetParentClassName(
          _In_ const MI_Class *self,
          _Outptr_result_maybenull_z_ const MI_Char **name)
-@@ -9799,6 +9988,7 @@ MI_INLINE MI_Result MI_Class_GetParentClassName(
+@@ -9799,6 +9986,7 @@ MI_INLINE MI_Result MI_Class_GetParentClassName(
      }
  }
  
@@ -1508,7 +1506,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_GetParentClass(
          _In_ const MI_Class *self,
          _Outptr_ MI_Class **parentClass)
-@@ -9813,6 +10003,7 @@ MI_INLINE MI_Result MI_Class_GetParentClass(
+@@ -9813,6 +10001,7 @@ MI_INLINE MI_Result MI_Class_GetParentClass(
      }
  }
  
@@ -1516,7 +1514,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Class_Delete(
          _Inout_ MI_Class* self)
  {
-@@ -9826,6 +10017,7 @@ MI_INLINE MI_Result MI_Class_Delete(
+@@ -9826,6 +10015,7 @@ MI_INLINE MI_Result MI_Class_Delete(
      }
  }
  
@@ -1524,7 +1522,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_Class_Clone(
      _In_ const MI_Class* self,
      _Outptr_ MI_Class** newClass)
-@@ -9841,6 +10033,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Class_Clone(
+@@ -9841,6 +10031,7 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_Class_Clone(
  }
  
  
@@ -1532,7 +1530,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_ParameterSet_GetMethodReturnType(
      _In_  const MI_ParameterSet *self,
      _Out_ MI_Type *returnType,
-@@ -9856,6 +10049,7 @@ MI_INLINE MI_Result MI_ParameterSet_GetMethodReturnType(
+@@ -9856,6 +10047,7 @@ MI_INLINE MI_Result MI_ParameterSet_GetMethodReturnType(
      }
  }
  
@@ -1540,7 +1538,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_ParameterSet_GetParameterCount(
      _In_ const MI_ParameterSet *self,
      _Out_ MI_Uint32 *count)
-@@ -9870,6 +10064,7 @@ MI_INLINE MI_Result MI_ParameterSet_GetParameterCount(
+@@ -9870,6 +10062,7 @@ MI_INLINE MI_Result MI_ParameterSet_GetParameterCount(
      }
  }
  
@@ -1548,7 +1546,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_ParameterSet_GetParameterAt(
      _In_ const MI_ParameterSet *self,
      MI_Uint32 index,
-@@ -9888,6 +10083,7 @@ MI_INLINE MI_Result MI_ParameterSet_GetParameterAt(
+@@ -9888,6 +10081,7 @@ MI_INLINE MI_Result MI_ParameterSet_GetParameterAt(
      }
  }
  
@@ -1556,7 +1554,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_ParameterSet_GetParameter(
      _In_ const MI_ParameterSet *self,
      _In_z_ const MI_Char *name,
-@@ -9906,6 +10102,7 @@ MI_INLINE MI_Result MI_ParameterSet_GetParameter(
+@@ -9906,6 +10100,7 @@ MI_INLINE MI_Result MI_ParameterSet_GetParameter(
      }
  }
  
@@ -1564,7 +1562,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_QualifierSet_GetQualifierCount(
      _In_ const MI_QualifierSet *self,
      _Out_ MI_Uint32 *count)
-@@ -9920,6 +10117,7 @@ MI_INLINE MI_Result MI_QualifierSet_GetQualifierCount(
+@@ -9920,6 +10115,7 @@ MI_INLINE MI_Result MI_QualifierSet_GetQualifierCount(
      }
  }
  
@@ -1572,7 +1570,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_QualifierSet_GetQualifierAt(
      _In_ const MI_QualifierSet *self,
      MI_Uint32 index,
-@@ -9938,6 +10136,7 @@ MI_INLINE MI_Result MI_QualifierSet_GetQualifierAt(
+@@ -9938,6 +10134,7 @@ MI_INLINE MI_Result MI_QualifierSet_GetQualifierAt(
      }
  }
  
@@ -1580,7 +1578,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_QualifierSet_GetQualifier(
      _In_ const MI_QualifierSet *self,
      _In_z_ const MI_Char *name,
-@@ -9956,6 +10155,7 @@ MI_INLINE MI_Result MI_QualifierSet_GetQualifier(
+@@ -9956,6 +10153,7 @@ MI_INLINE MI_Result MI_QualifierSet_GetQualifier(
      }
  }
  
@@ -1588,7 +1586,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetMaximumLatency(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_   MI_Interval *value)
-@@ -9970,6 +10170,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetMaximumLatency(
+@@ -9970,6 +10168,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetMaximumLatency(
      }
  }
  
@@ -1596,7 +1594,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetMaximumLatency(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _Out_ MI_Interval *value)
-@@ -9984,6 +10185,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetMaximumLatency(
+@@ -9984,6 +10183,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetMaximumLatency(
      }
  }
  
@@ -1604,7 +1602,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetHeartbeatInterval(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_   MI_Interval *value)
-@@ -9998,6 +10200,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetHeartbeatInterval(
+@@ -9998,6 +10198,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetHeartbeatInterval(
      }
  }
  
@@ -1612,7 +1610,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetHeartbeatInterval(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _Out_ MI_Interval *value)
-@@ -10012,6 +10215,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetHeartbeatInterval(
+@@ -10012,6 +10213,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetHeartbeatInterval(
      }
  }
  
@@ -1620,7 +1618,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetExpirationTime(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_   MI_Datetime *value)
-@@ -10026,6 +10230,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetExpirationTime(
+@@ -10026,6 +10228,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetExpirationTime(
      }
  }
  
@@ -1628,7 +1626,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetExpirationTime(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _Out_ MI_Datetime *value)
-@@ -10051,6 +10256,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetExpirationTime(
+@@ -10051,6 +10254,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetExpirationTime(
  #define MI_SUBSCRIBE_BOOKMARK_OLDEST L"MI_SUBSCRIBE_BOOKMARK_OLDEST"
  #define MI_SUBSCRIBE_BOOKMARK_NEWEST L"MI_SUBSCRIBE_BOOKMARK_NEWEST"
  
@@ -1636,7 +1634,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetBookmark(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_z_   const MI_Char *value)
-@@ -10065,6 +10271,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetBookmark(
+@@ -10065,6 +10269,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetBookmark(
      }
  }
  
@@ -1644,7 +1642,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetBookmark(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _Outptr_result_z_ const MI_Char **value)
-@@ -10079,6 +10286,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetBookmark(
+@@ -10079,6 +10284,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetBookmark(
      }
  }
  
@@ -1652,7 +1650,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryDestination(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *value)
-@@ -10093,6 +10301,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryDestination(
+@@ -10093,6 +10299,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryDestination(
      }
  }
  
@@ -1660,7 +1658,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryDestination(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _Outptr_result_z_ const MI_Char **value)
-@@ -10107,6 +10316,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryDestination(
+@@ -10107,6 +10314,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryDestination(
      }
  }
  
@@ -1668,7 +1666,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryPortNumber(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_   MI_Uint32 value)
-@@ -10121,6 +10331,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryPortNumber(
+@@ -10121,6 +10329,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryPortNumber(
      }
  }
  
@@ -1676,7 +1674,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryPortNumber(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _Out_   MI_Uint32 *value)
-@@ -10135,6 +10346,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryPortNumber(
+@@ -10135,6 +10344,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryPortNumber(
      }
  }
  
@@ -1684,7 +1682,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_AddDeliveryCredentials(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_   const MI_UserCredentials *value)
-@@ -10149,6 +10361,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_AddDeliveryCredentials(
+@@ -10149,6 +10359,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_AddDeliveryCredentials(
      }
  }
  
@@ -1692,7 +1690,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryInterval(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_   const MI_Interval *value)
-@@ -10163,6 +10376,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryInterval(
+@@ -10163,6 +10374,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryInterval(
      }
  }
  
@@ -1700,7 +1698,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryInterval(
      _In_  MI_SubscriptionDeliveryOptions *self,
      _Out_ MI_Interval *value)
-@@ -10177,6 +10391,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryInterval(
+@@ -10177,6 +10389,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryInterval(
      }
  }
  
@@ -1708,7 +1706,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryAttempts(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_   MI_Uint32 value)
-@@ -10191,6 +10406,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryAttempts(
+@@ -10191,6 +10404,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryAttempts(
      }
  }
  
@@ -1716,7 +1714,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryAttempts(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _Out_ MI_Uint32 *value)
-@@ -10206,6 +10422,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryAttempts(
+@@ -10206,6 +10420,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryAttempts(
  }
  
  
@@ -1724,7 +1722,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_Delete(
          _Inout_ MI_SubscriptionDeliveryOptions* self)
  {
-@@ -10219,6 +10436,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_Delete(
+@@ -10219,6 +10434,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_Delete(
      }
  }
  
@@ -1732,7 +1730,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetString(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *optionName,
-@@ -10235,6 +10453,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetString(
+@@ -10235,6 +10451,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetString(
      }
  }
  
@@ -1740,7 +1738,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetNumber(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *optionName,
-@@ -10251,6 +10470,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetNumber(
+@@ -10251,6 +10468,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetNumber(
      }
  }
  
@@ -1748,7 +1746,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDateTime(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *optionName,
-@@ -10267,6 +10487,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDateTime(
+@@ -10267,6 +10485,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDateTime(
      }
  }
  
@@ -1756,7 +1754,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetInterval(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *optionName,
-@@ -10283,6 +10504,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetInterval(
+@@ -10283,6 +10502,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetInterval(
      }
  }
  
@@ -1764,7 +1762,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetString(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *optionName,
-@@ -10300,6 +10522,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetString(
+@@ -10300,6 +10520,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetString(
      }
  }
  
@@ -1772,7 +1770,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetNumber(
      _Inout_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *optionName,
-@@ -10317,6 +10540,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetNumber(
+@@ -10317,6 +10538,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetNumber(
      }
  }
  
@@ -1780,7 +1778,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDateTime(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *optionName,
-@@ -10334,6 +10558,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDateTime(
+@@ -10334,6 +10556,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDateTime(
      }
  }
  
@@ -1788,7 +1786,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetInterval(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *optionName,
-@@ -10351,6 +10576,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetInterval(
+@@ -10351,6 +10574,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetInterval(
      }
  }
  
@@ -1796,7 +1794,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionCount(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _Out_opt_ MI_Uint32 *count)
-@@ -10365,6 +10591,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionCount(
+@@ -10365,6 +10589,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionCount(
      }
  }
  
@@ -1804,7 +1802,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionAt(
      _In_   MI_SubscriptionDeliveryOptions *self,
      MI_Uint32 index,
-@@ -10383,6 +10610,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionAt(
+@@ -10383,6 +10608,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionAt(
      }
  }
  
@@ -1812,7 +1810,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOption(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _In_z_ const MI_Char *optionName,
-@@ -10401,6 +10629,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOption(
+@@ -10401,6 +10627,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOption(
      }
  }
  
@@ -1820,7 +1818,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsCount(
      _In_   MI_SubscriptionDeliveryOptions *self,
      _Out_ MI_Uint32 *count)
-@@ -10415,6 +10644,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsCount(
+@@ -10415,6 +10642,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsCount(
      }
  }
  
@@ -1828,7 +1826,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsAt(
      _In_   MI_SubscriptionDeliveryOptions *self,
      MI_Uint32 index,
-@@ -10432,6 +10662,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsAt(
+@@ -10432,6 +10660,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsAt(
      }
  }
  
@@ -1836,7 +1834,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsPasswordAt(
      _In_   MI_SubscriptionDeliveryOptions *self,
      MI_Uint32 index,
-@@ -10465,6 +10696,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsPasswordAt(
+@@ -10465,6 +10694,7 @@ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsPasswordAt(
   * See also: MI_SubscriptionDeliveryOptions_Delete()
   *
   */
@@ -1844,7 +1842,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_INLINE_CALL MI_SubscriptionDeliveryOptions_Clone(
      _In_ const MI_SubscriptionDeliveryOptions* self,
      _Out_ MI_SubscriptionDeliveryOptions* newSubscriptionDeliveryOptions)
-@@ -10482,12 +10714,14 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_SubscriptionDeliveryOptions_Clone(
+@@ -10482,12 +10712,14 @@ MI_INLINE MI_Result MI_INLINE_CALL MI_SubscriptionDeliveryOptions_Clone(
  #define MI_SERIALIZER_FLAGS_CLASS_DEEP 1
  #define MI_SERIALIZER_FLAGS_INSTANCE_WITH_CLASS 1
  
@@ -1859,7 +1857,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Serializer_SerializeClass(
      _Inout_ MI_Serializer *serializer,
      MI_Uint32 flags,
-@@ -10499,6 +10733,7 @@ MI_INLINE MI_Result MI_Serializer_SerializeClass(
+@@ -10499,6 +10731,7 @@ MI_INLINE MI_Result MI_Serializer_SerializeClass(
      return mi_clientFT->serializerFT->SerializeClass(serializer, flags, classObject, clientBuffer, clientBufferLength, clientBufferNeeded);
  }
  
@@ -1867,7 +1865,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Serializer_SerializeInstance(
     _Inout_ MI_Serializer *serializer,
     MI_Uint32 flags,
-@@ -10511,6 +10746,7 @@ MI_INLINE MI_Result MI_Serializer_SerializeInstance(
+@@ -10511,6 +10744,7 @@ MI_INLINE MI_Result MI_Serializer_SerializeInstance(
  }
  
  
@@ -1875,7 +1873,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Deserializer_Close(
      _Inout_ MI_Deserializer *deserializer)
  {
-@@ -10519,6 +10755,7 @@ MI_INLINE MI_Result MI_Deserializer_Close(
+@@ -10519,6 +10753,7 @@ MI_INLINE MI_Result MI_Deserializer_Close(
      return deserializerFT->Close(deserializer);
  }
  
@@ -1883,7 +1881,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Deserializer_DeserializeClass(
      _Inout_ MI_Deserializer *deserializer,
      MI_Uint32 flags,
-@@ -10536,6 +10773,7 @@ MI_INLINE MI_Result MI_Deserializer_DeserializeClass(
+@@ -10536,6 +10771,7 @@ MI_INLINE MI_Result MI_Deserializer_DeserializeClass(
      return mi_clientFT->deserializerFT->DeserializeClass(deserializer, flags, serializedBuffer, serializedBufferLength, parentClass, serverName, namespaceName, classObjectNeeded, classObjectNeededContext, serializedBufferRead, classObject, cimErrorDetails);
  }
  
@@ -1891,7 +1889,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Deserializer_Class_GetClassName(
      _Inout_ MI_Deserializer *deserializer,
      _In_reads_(serializedBufferLength) MI_Uint8 *serializedBuffer,
-@@ -10548,6 +10786,7 @@ MI_INLINE MI_Result MI_Deserializer_Class_GetClassName(
+@@ -10548,6 +10784,7 @@ MI_INLINE MI_Result MI_Deserializer_Class_GetClassName(
  }
  
  
@@ -1899,7 +1897,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Deserializer_Class_GetParentClassName(
      _Inout_ MI_Deserializer *deserializer,
      _In_reads_(serializedBufferLength) MI_Uint8 *serializedBuffer,
-@@ -10559,6 +10798,7 @@ MI_INLINE MI_Result MI_Deserializer_Class_GetParentClassName(
+@@ -10559,6 +10796,7 @@ MI_INLINE MI_Result MI_Deserializer_Class_GetParentClassName(
      return mi_clientFT->deserializerFT->Class_GetParentClassName(deserializer, serializedBuffer, serializedBufferLength, parentClassName, parentClassNameLength, cimErrorDetails);
  }
  
@@ -1907,7 +1905,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Deserializer_DeserializeInstance(
      _Inout_ MI_Deserializer *deserializer,
      MI_Uint32 flags,
-@@ -10576,6 +10816,7 @@ MI_INLINE MI_Result MI_Deserializer_DeserializeInstance(
+@@ -10576,6 +10814,7 @@ MI_INLINE MI_Result MI_Deserializer_DeserializeInstance(
  }
  
  
@@ -1915,7 +1913,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_Result MI_Deserializer_Instance_GetClassName(
      _Inout_ MI_Deserializer *deserializer,
      _In_reads_(serializedBufferLength) MI_Uint8 *serializedBuffer,
-@@ -10589,6 +10830,7 @@ MI_INLINE MI_Result MI_Deserializer_Instance_GetClassName(
+@@ -10589,6 +10828,7 @@ MI_INLINE MI_Result MI_Deserializer_Instance_GetClassName(
  
  
  /* Map an OS specific error code to an error category */
@@ -1923,7 +1921,7 @@ index 61d31af9..88310a04 100644
  MI_INLINE MI_ErrorCategory MI_Utilities_MapErrorToMiErrorCategory(
          _In_z_ MI_Char *errorType,
          MI_Uint32 error)
-@@ -10600,6 +10842,7 @@ MI_INLINE MI_ErrorCategory MI_Utilities_MapErrorToMiErrorCategory(
+@@ -10600,6 +10840,7 @@ MI_INLINE MI_ErrorCategory MI_Utilities_MapErrorToMiErrorCategory(
      * Call MI_Instance_Delete on the CIM when finished
      * using it.
      */

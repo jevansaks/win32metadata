@@ -108,9 +108,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 //
 //   The following declarations within the 'if 0' block are dummy typedefs used to make
 //   the evr.idl file build. The actual definitions are contained in d3d9.h

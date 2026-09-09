@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gb18030.h b/generation/WinSDK/RecompiledIdlHeaders/um/gb18030.h
-index 1ef27e11..60c01489 100644
+index 1ef27e11..7d29d15a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gb18030.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gb18030.h
-@@ -1,6 +1,9 @@
+@@ -1,6 +1,7 @@
  #ifndef __GB18030_H
  #define __GB18030_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -95,6 +98,8 @@
+@@ -95,6 +96,8 @@
  //
  ////////////////////////////////////////////////////////////////////////////
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NetCon.h b/generation/WinSDK/RecompiledIdlHeaders/um/NetCon.h
-index a13c590d..4946a68c 100644
+index a13c590d..059b3c1e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/NetCon.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/NetCon.h
-@@ -197,6 +197,9 @@ extern "C"{
+@@ -197,6 +197,7 @@ extern "C"{
  //
  //--------------------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if ( _MSC_VER >= 800 )
-@@ -453,6 +456,7 @@ EXTERN_C const IID IID_INetConnection;
+@@ -453,6 +454,7 @@ EXTERN_C const IID IID_INetConnection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("C08956A1-1CD3-11D1-B1C5-00805FC1270E")
      INetConnection : public IUnknown
      {
-@@ -601,9 +605,13 @@ EXTERN_C const IID IID_INetConnection;
+@@ -601,9 +603,13 @@ EXTERN_C const IID IID_INetConnection;
  /* [local] */ 
  
  
@@ -34,7 +32,7 @@ index a13c590d..4946a68c 100644
  STDAPI_(BOOL) NcIsValidConnectionName (PCWSTR pszwName);
  
  
-@@ -849,6 +857,7 @@ EXTERN_C const IID IID_IEnumNetSharingPortMapping;
+@@ -849,6 +855,7 @@ EXTERN_C const IID IID_IEnumNetSharingPortMapping;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -42,7 +40,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("C08956B0-1CD3-11D1-B1C5-00805FC1270E")
      IEnumNetSharingPortMapping : public IUnknown
      {
-@@ -979,6 +988,7 @@ EXTERN_C const IID IID_INetSharingPortMappingProps;
+@@ -979,6 +986,7 @@ EXTERN_C const IID IID_INetSharingPortMappingProps;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -50,7 +48,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("24B7E9B5-E38F-4685-851B-00892CF5F940")
      INetSharingPortMappingProps : public IDispatch
      {
-@@ -1219,6 +1229,7 @@ EXTERN_C const IID IID_INetSharingPortMapping;
+@@ -1219,6 +1227,7 @@ EXTERN_C const IID IID_INetSharingPortMapping;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -58,7 +56,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("C08956B1-1CD3-11D1-B1C5-00805FC1270E")
      INetSharingPortMapping : public IDispatch
      {
-@@ -1395,6 +1406,7 @@ EXTERN_C const IID IID_IEnumNetSharingEveryConnection;
+@@ -1395,6 +1404,7 @@ EXTERN_C const IID IID_IEnumNetSharingEveryConnection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -66,7 +64,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("C08956B8-1CD3-11D1-B1C5-00805FC1270E")
      IEnumNetSharingEveryConnection : public IUnknown
      {
-@@ -1525,6 +1537,7 @@ EXTERN_C const IID IID_IEnumNetSharingPublicConnection;
+@@ -1525,6 +1535,7 @@ EXTERN_C const IID IID_IEnumNetSharingPublicConnection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -74,7 +72,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("C08956B4-1CD3-11D1-B1C5-00805FC1270E")
      IEnumNetSharingPublicConnection : public IUnknown
      {
-@@ -1655,6 +1668,7 @@ EXTERN_C const IID IID_IEnumNetSharingPrivateConnection;
+@@ -1655,6 +1666,7 @@ EXTERN_C const IID IID_IEnumNetSharingPrivateConnection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -82,7 +80,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("C08956B5-1CD3-11D1-B1C5-00805FC1270E")
      IEnumNetSharingPrivateConnection : public IUnknown
      {
-@@ -1785,6 +1799,7 @@ EXTERN_C const IID IID_INetSharingPortMappingCollection;
+@@ -1785,6 +1797,7 @@ EXTERN_C const IID IID_INetSharingPortMappingCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -90,7 +88,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("02E4A2DE-DA20-4E34-89C8-AC22275A010B")
      INetSharingPortMappingCollection : public IDispatch
      {
-@@ -1956,6 +1971,7 @@ EXTERN_C const IID IID_INetConnectionProps;
+@@ -1956,6 +1969,7 @@ EXTERN_C const IID IID_INetConnectionProps;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -98,7 +96,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("F4277C95-CE5B-463D-8167-5662D9BCAA72")
      INetConnectionProps : public IDispatch
      {
-@@ -2193,6 +2209,7 @@ EXTERN_C const IID IID_INetSharingConfiguration;
+@@ -2193,6 +2207,7 @@ EXTERN_C const IID IID_INetSharingConfiguration;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -106,7 +104,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("C08956B6-1CD3-11D1-B1C5-00805FC1270E")
      INetSharingConfiguration : public IDispatch
      {
-@@ -2479,6 +2496,7 @@ EXTERN_C const IID IID_INetSharingEveryConnectionCollection;
+@@ -2479,6 +2494,7 @@ EXTERN_C const IID IID_INetSharingEveryConnectionCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -114,7 +112,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("33C4643C-7811-46FA-A89A-768597BD7223")
      INetSharingEveryConnectionCollection : public IDispatch
      {
-@@ -2641,6 +2659,7 @@ EXTERN_C const IID IID_INetSharingPublicConnectionCollection;
+@@ -2641,6 +2657,7 @@ EXTERN_C const IID IID_INetSharingPublicConnectionCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -122,7 +120,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("7D7A6355-F372-4971-A149-BFC927BE762A")
      INetSharingPublicConnectionCollection : public IDispatch
      {
-@@ -2803,6 +2822,7 @@ EXTERN_C const IID IID_INetSharingPrivateConnectionCollection;
+@@ -2803,6 +2820,7 @@ EXTERN_C const IID IID_INetSharingPrivateConnectionCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -130,7 +128,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("38AE69E0-4409-402A-A2CB-E965C727F840")
      INetSharingPrivateConnectionCollection : public IDispatch
      {
-@@ -2965,6 +2985,7 @@ EXTERN_C const IID IID_INetSharingManager;
+@@ -2965,6 +2983,7 @@ EXTERN_C const IID IID_INetSharingManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -138,7 +136,7 @@ index a13c590d..4946a68c 100644
      MIDL_INTERFACE("C08956B7-1CD3-11D1-B1C5-00805FC1270E")
      INetSharingManager : public IDispatch
      {
-@@ -3230,9 +3251,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -3230,9 +3249,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  
@@ -152,7 +150,7 @@ index a13c590d..4946a68c 100644
  void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  
  unsigned long             __RPC_USER  HWND_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HWND * ); 
-@@ -3240,9 +3265,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+@@ -3240,9 +3263,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
  unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

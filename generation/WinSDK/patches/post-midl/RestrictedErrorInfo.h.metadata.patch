@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RestrictedErrorInfo.h b/generation/WinSDK/RecompiledIdlHeaders/um/RestrictedErrorInfo.h
-index ccafa8ca..8b55e37e 100644
+index ccafa8ca..f46d0cc0 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RestrictedErrorInfo.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RestrictedErrorInfo.h
-@@ -94,6 +94,9 @@ extern "C"{
+@@ -94,6 +94,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
-@@ -116,6 +119,7 @@ EXTERN_C const IID IID_IRestrictedErrorInfo;
+@@ -116,6 +117,7 @@ EXTERN_C const IID IID_IRestrictedErrorInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index ccafa8ca..8b55e37e 100644
      MIDL_INTERFACE("82BA7092-4C88-427D-A7BC-16DD93FEB67E")
      IRestrictedErrorInfo : public IUnknown
      {
-@@ -228,6 +232,7 @@ EXTERN_C const IID IID_ILanguageExceptionErrorInfo;
+@@ -228,6 +230,7 @@ EXTERN_C const IID IID_ILanguageExceptionErrorInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index ccafa8ca..8b55e37e 100644
      MIDL_INTERFACE("04a2dbf3-df83-116c-0946-0812abf6e07d")
      ILanguageExceptionErrorInfo : public IUnknown
      {
-@@ -315,6 +320,7 @@ EXTERN_C const IID IID_ILanguageExceptionTransform;
+@@ -315,6 +318,7 @@ EXTERN_C const IID IID_ILanguageExceptionTransform;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index ccafa8ca..8b55e37e 100644
      MIDL_INTERFACE("FEB5A271-A6CD-45CE-880A-696706BADC65")
      ILanguageExceptionTransform : public IUnknown
      {
-@@ -402,6 +408,7 @@ EXTERN_C const IID IID_ILanguageExceptionStackBackTrace;
+@@ -402,6 +406,7 @@ EXTERN_C const IID IID_ILanguageExceptionStackBackTrace;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index ccafa8ca..8b55e37e 100644
      MIDL_INTERFACE("CBE53FB5-F967-4258-8D34-42F5E25833DE")
      ILanguageExceptionStackBackTrace : public IUnknown
      {
-@@ -495,6 +502,7 @@ EXTERN_C const IID IID_ILanguageExceptionErrorInfo2;
+@@ -495,6 +500,7 @@ EXTERN_C const IID IID_ILanguageExceptionErrorInfo2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index ccafa8ca..8b55e37e 100644
      MIDL_INTERFACE("5746E5C4-5B97-424C-B620-2822915734DD")
      ILanguageExceptionErrorInfo2 : public ILanguageExceptionErrorInfo
      {
-@@ -624,9 +632,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -624,9 +630,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

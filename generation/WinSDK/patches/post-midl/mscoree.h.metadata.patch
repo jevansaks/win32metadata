@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mscoree.h b/generation/WinSDK/RecompiledIdlHeaders/um/mscoree.h
-index dee07417..aff4d573 100644
+index dee07417..1c5abc11 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mscoree.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mscoree.h
-@@ -32,6 +32,9 @@
+@@ -32,6 +32,7 @@
  
  #ifndef __mscoree_h__
  #define __mscoree_h__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if defined(_MSC_VER) && (_MSC_VER >= 1020)
  #pragma once
-@@ -9109,9 +9112,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -9109,9 +9110,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mileffects.h b/generation/WinSDK/RecompiledIdlHeaders/um/mileffects.h
-index 860486f7..b9bbe666 100644
+index 860486f7..74f1bb3c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mileffects.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mileffects.h
-@@ -197,6 +197,9 @@ extern "C"{
+@@ -197,6 +197,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if 0
-@@ -320,6 +323,7 @@ EXTERN_C const IID IID_IMILBitmapEffectConnectorInfo;
+@@ -320,6 +321,7 @@ EXTERN_C const IID IID_IMILBitmapEffectConnectorInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("F66D2E4B-B46B-42FC-859E-3DA0ECDB3C43")
      IMILBitmapEffectConnectorInfo : public IUnknown
      {
-@@ -450,6 +454,7 @@ EXTERN_C const IID IID_IMILBitmapEffectConnectionsInfo;
+@@ -450,6 +452,7 @@ EXTERN_C const IID IID_IMILBitmapEffectConnectionsInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("476B538A-C765-4237-BA4A-D6A880FF0CFC")
      IMILBitmapEffectConnectionsInfo : public IUnknown
      {
-@@ -584,6 +589,7 @@ EXTERN_C const IID IID_IMILBitmapEffectConnections;
+@@ -584,6 +587,7 @@ EXTERN_C const IID IID_IMILBitmapEffectConnections;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("C2B5D861-9B1A-4374-89B0-DEC4874D6A81")
      IMILBitmapEffectConnections : public IUnknown
      {
-@@ -692,6 +698,7 @@ EXTERN_C const IID IID_IMILBitmapEffect;
+@@ -692,6 +696,7 @@ EXTERN_C const IID IID_IMILBitmapEffect;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("8A6FF321-C944-4A1B-9944-9954AF301258")
      IMILBitmapEffect : public IUnknown
      {
-@@ -817,6 +824,7 @@ EXTERN_C const IID IID_IMILBitmapEffectImpl;
+@@ -817,6 +822,7 @@ EXTERN_C const IID IID_IMILBitmapEffectImpl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("CC2468F2-9936-47BE-B4AF-06B5DF5DBCBB")
      IMILBitmapEffectImpl : public IUnknown
      {
-@@ -1018,6 +1026,7 @@ EXTERN_C const IID IID_IMILBitmapEffectGroup;
+@@ -1018,6 +1024,7 @@ EXTERN_C const IID IID_IMILBitmapEffectGroup;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("2F952360-698A-4ac6-81A1-BCFDF08EB8E8")
      IMILBitmapEffectGroup : public IUnknown
      {
-@@ -1139,6 +1148,7 @@ EXTERN_C const IID IID_IMILBitmapEffectGroupImpl;
+@@ -1139,6 +1146,7 @@ EXTERN_C const IID IID_IMILBitmapEffectGroupImpl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("78FED518-1CFC-4807-8B85-6B6E51398F62")
      IMILBitmapEffectGroupImpl : public IUnknown
      {
-@@ -1252,6 +1262,7 @@ EXTERN_C const IID IID_IMILBitmapEffectRenderContext;
+@@ -1252,6 +1260,7 @@ EXTERN_C const IID IID_IMILBitmapEffectRenderContext;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("12A2EC7E-2D33-44b2-B334-1ABB7846E390")
      IMILBitmapEffectRenderContext : public IUnknown
      {
-@@ -1438,6 +1449,7 @@ EXTERN_C const IID IID_IMILBitmapEffectRenderContextImpl;
+@@ -1438,6 +1447,7 @@ EXTERN_C const IID IID_IMILBitmapEffectRenderContextImpl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("4D25ACCB-797D-4fd2-B128-DFFEFF84FCC3")
      IMILBitmapEffectRenderContextImpl : public IUnknown
      {
-@@ -1577,6 +1589,7 @@ EXTERN_C const IID IID_IMILBitmapEffectFactory;
+@@ -1577,6 +1587,7 @@ EXTERN_C const IID IID_IMILBitmapEffectFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("33A9DF34-A403-4EC7-B07E-BC0682370845")
      IMILBitmapEffectFactory : public IUnknown
      {
-@@ -1694,6 +1707,7 @@ EXTERN_C const IID IID_IMILBitmapEffectPrimitive;
+@@ -1694,6 +1705,7 @@ EXTERN_C const IID IID_IMILBitmapEffectPrimitive;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("67E31025-3091-4dfc-98D6-DD494551461D")
      IMILBitmapEffectPrimitive : public IUnknown
      {
-@@ -1898,6 +1912,7 @@ EXTERN_C const IID IID_IMILBitmapEffectPrimitiveImpl;
+@@ -1898,6 +1910,7 @@ EXTERN_C const IID IID_IMILBitmapEffectPrimitiveImpl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("CE41E00B-EFA6-44e7-B007-DD042E3AE126")
      IMILBitmapEffectPrimitiveImpl : public IUnknown
      {
-@@ -2006,6 +2021,7 @@ EXTERN_C const IID IID_IMILBitmapEffects;
+@@ -2006,6 +2019,7 @@ EXTERN_C const IID IID_IMILBitmapEffects;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("51AC3DCE-67C5-448b-9180-AD3EABDDD5DD")
      IMILBitmapEffects : public IUnknown
      {
-@@ -2134,6 +2150,7 @@ EXTERN_C const IID IID_IMILBitmapEffectConnector;
+@@ -2134,6 +2148,7 @@ EXTERN_C const IID IID_IMILBitmapEffectConnector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("F59567B3-76C1-4d47-BA1E-79F955E350EF")
      IMILBitmapEffectConnector : public IMILBitmapEffectConnectorInfo
      {
-@@ -2273,6 +2290,7 @@ EXTERN_C const IID IID_IMILBitmapEffectInputConnector;
+@@ -2273,6 +2288,7 @@ EXTERN_C const IID IID_IMILBitmapEffectInputConnector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("A9B4ECAA-7A3C-45e7-8573-F4B81B60DD6C")
      IMILBitmapEffectInputConnector : public IMILBitmapEffectConnector
      {
-@@ -2431,6 +2449,7 @@ EXTERN_C const IID IID_IMILBitmapEffectOutputConnector;
+@@ -2431,6 +2447,7 @@ EXTERN_C const IID IID_IMILBitmapEffectOutputConnector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("92957AAD-841B-4866-82EC-8752468B07FD")
      IMILBitmapEffectOutputConnector : public IMILBitmapEffectConnector
      {
-@@ -2593,6 +2612,7 @@ EXTERN_C const IID IID_IMILBitmapEffectOutputConnectorImpl;
+@@ -2593,6 +2610,7 @@ EXTERN_C const IID IID_IMILBitmapEffectOutputConnectorImpl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("21FAE777-8B39-4bfa-9F2D-F3941ED36913")
      IMILBitmapEffectOutputConnectorImpl : public IUnknown
      {
-@@ -2693,6 +2713,7 @@ EXTERN_C const IID IID_IMILBitmapEffectInteriorInputConnector;
+@@ -2693,6 +2711,7 @@ EXTERN_C const IID IID_IMILBitmapEffectInteriorInputConnector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("20287E9E-86A2-4e15-953D-EB1438A5B842")
      IMILBitmapEffectInteriorInputConnector : public IUnknown
      {
-@@ -2780,6 +2801,7 @@ EXTERN_C const IID IID_IMILBitmapEffectInteriorOutputConnector;
+@@ -2780,6 +2799,7 @@ EXTERN_C const IID IID_IMILBitmapEffectInteriorOutputConnector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index 860486f7..b9bbe666 100644
      MIDL_INTERFACE("00BBB6DC-ACC9-4bfc-B344-8BEE383DFEFA")
      IMILBitmapEffectInteriorOutputConnector : public IUnknown
      {
-@@ -2867,6 +2889,7 @@ EXTERN_C const IID IID_IMILBitmapEffectEvents;
+@@ -2867,6 +2887,7 @@ EXTERN_C const IID IID_IMILBitmapEffectEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -21,9 +21,7 @@ Revision History:
 #pragma once
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if _MSC_VER >= 1200
 #pragma warning(push)

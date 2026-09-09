@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TipAutoComplete.h b/generation/WinSDK/RecompiledIdlHeaders/um/TipAutoComplete.h
-index dffe071b..a3f023da 100644
+index dffe071b..810c1fb6 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/TipAutoComplete.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/TipAutoComplete.h
-@@ -86,6 +86,9 @@ extern "C"{
+@@ -86,6 +86,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -367,9 +370,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -367,9 +368,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  HWND_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

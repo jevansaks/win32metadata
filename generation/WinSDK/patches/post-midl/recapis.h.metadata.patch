@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/recapis.h b/generation/WinSDK/RecompiledIdlHeaders/um/recapis.h
-index e914f3f8..33f23837 100644
+index e914f3f8..4083a4ae 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/recapis.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/recapis.h
-@@ -10,6 +10,9 @@
+@@ -10,6 +10,7 @@
  //--------------------------------------------------------------------------
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -70,49 +73,95 @@ typedef IID CLSID;
+@@ -70,49 +71,95 @@ typedef IID CLSID;
  ////////////////////////
  // IRecognizer
  ////////////////////////
@@ -108,7 +106,7 @@ index e914f3f8..33f23837 100644
  HRESULT WINAPI MakeWordList(HRECOGNIZER hrec, _NullNull_terminated_ WCHAR *pBuffer, HRECOWORDLIST *phwl);
  
  #ifdef __cplusplus
-@@ -180,44 +229,70 @@ extern "C" {
+@@ -180,44 +227,70 @@ extern "C" {
  ////////////////////////
  // IRecognizer
  ////////////////////////

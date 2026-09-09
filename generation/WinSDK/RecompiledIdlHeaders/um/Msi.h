@@ -16,9 +16,7 @@
 #define _MSI_H_
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -736,7 +734,6 @@ UINT WINAPI MsiAdvertiseProductExA(
 	_In_ LANGID      lgidLanguage,       // install language
 	_In_ DWORD       dwPlatform,         // the MSIARCHITECTUREFLAGS that control for which platform
 	                                //   to create the script, ignored if szScriptfilePath is NULL
-_Win32_metadata_supported_os_(windows8.0)
 	_In_ DWORD       dwOptions);         // the MSIADVERTISEOPTIONFLAGS that specify extra advertise parameters
 UINT WINAPI MsiAdvertiseProductExW(
 	_In_ LPCWSTR	szPackagePath,      // location of package

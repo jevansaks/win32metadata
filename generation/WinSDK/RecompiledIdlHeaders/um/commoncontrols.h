@@ -9,9 +9,7 @@
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
 #define __REQUIRED_RPCNDR_H_VERSION__ 500

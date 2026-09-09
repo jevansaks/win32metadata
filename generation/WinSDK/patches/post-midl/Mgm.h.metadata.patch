@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Mgm.h b/generation/WinSDK/RecompiledIdlHeaders/um/Mgm.h
-index af9a7ff9..a2548e9b 100644
+index af9a7ff9..cda5734e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Mgm.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Mgm.h
-@@ -17,6 +17,9 @@
+@@ -17,6 +17,7 @@
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -315,6 +318,7 @@ typedef struct _SOURCE_GROUP_ENTRY {
+@@ -315,6 +316,7 @@ typedef struct _SOURCE_GROUP_ENTRY {
  // Routing protocol registration / de-registration API
  //============================================================================
  
@@ -20,7 +18,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmRegisterMProtocol(
      IN          PROUTING_PROTOCOL_CONFIG    prpiInfo,
-@@ -323,6 +327,7 @@ MgmRegisterMProtocol(
+@@ -323,6 +325,7 @@ MgmRegisterMProtocol(
      OUT         HANDLE  *                   phProtocol
  );
  
@@ -28,7 +26,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmDeRegisterMProtocol(
      IN          HANDLE                      hProtocol
-@@ -333,6 +338,7 @@ MgmDeRegisterMProtocol(
+@@ -333,6 +336,7 @@ MgmDeRegisterMProtocol(
  // Interface ownership API
  //============================================================================
  
@@ -36,7 +34,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmTakeInterfaceOwnership(
      IN          HANDLE                      hProtocol,
-@@ -341,6 +347,7 @@ MgmTakeInterfaceOwnership(
+@@ -341,6 +345,7 @@ MgmTakeInterfaceOwnership(
  );
  
  
@@ -44,7 +42,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmReleaseInterfaceOwnership(
      IN          HANDLE                      hProtocol,
-@@ -348,6 +355,7 @@ MgmReleaseInterfaceOwnership(
+@@ -348,6 +353,7 @@ MgmReleaseInterfaceOwnership(
      IN          DWORD                       dwIfNextHopAddr
  );
  
@@ -52,7 +50,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGetProtocolOnInterface(
      IN          DWORD                       dwIfIndex,
-@@ -364,6 +372,7 @@ MgmGetProtocolOnInterface(
+@@ -364,6 +370,7 @@ MgmGetProtocolOnInterface(
  #define         MGM_JOIN_STATE_FLAG         0x00000001
  #define         MGM_FORWARD_STATE_FLAG      0x00000002
  
@@ -60,7 +58,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmAddGroupMembershipEntry(
      IN              HANDLE                  hProtocol,
-@@ -376,6 +385,7 @@ MgmAddGroupMembershipEntry(
+@@ -376,6 +383,7 @@ MgmAddGroupMembershipEntry(
      IN              DWORD                   dwFlags
  );
  
@@ -68,7 +66,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmDeleteGroupMembershipEntry(
      IN              HANDLE                  hProtocol,
-@@ -399,6 +409,7 @@ MgmDeleteGroupMembershipEntry(
+@@ -399,6 +407,7 @@ MgmDeleteGroupMembershipEntry(
  // MFE enumeration API
  //----------------------------------------------------------------------------
  
@@ -76,7 +74,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGetMfe(
      IN              PMIB_IPMCAST_MFE        pimm,
-@@ -406,6 +417,7 @@ MgmGetMfe(
+@@ -406,6 +415,7 @@ MgmGetMfe(
      IN  OUT         PBYTE                   pbBuffer
  );
  
@@ -84,7 +82,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGetFirstMfe(
      IN  OUT         PDWORD                  pdwBufferSize,
-@@ -414,6 +426,7 @@ MgmGetFirstMfe(
+@@ -414,6 +424,7 @@ MgmGetFirstMfe(
  );
  
  
@@ -92,7 +90,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGetNextMfe(
      IN              PMIB_IPMCAST_MFE        pimmStart,
-@@ -436,6 +449,7 @@ MgmGetNextMfe(
+@@ -436,6 +447,7 @@ MgmGetNextMfe(
  #define         MGM_MFE_STATS_1             0x00000002
  
  
@@ -100,7 +98,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGetMfeStats(
      IN              PMIB_IPMCAST_MFE        pimm,
-@@ -444,6 +458,7 @@ MgmGetMfeStats(
+@@ -444,6 +456,7 @@ MgmGetMfeStats(
      IN              DWORD                   dwFlags
  );
  
@@ -108,7 +106,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGetFirstMfeStats(
      IN  OUT         PDWORD                  pdwBufferSize,
-@@ -453,6 +468,7 @@ MgmGetFirstMfeStats(
+@@ -453,6 +466,7 @@ MgmGetFirstMfeStats(
  );
  
  
@@ -116,7 +114,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGetNextMfeStats(
      IN              PMIB_IPMCAST_MFE        pimmStart,
-@@ -466,6 +482,7 @@ MgmGetNextMfeStats(
+@@ -466,6 +480,7 @@ MgmGetNextMfeStats(
  // Group menbership entry enumeration API
  //----------------------------------------------------------------------------
  
@@ -124,7 +122,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGroupEnumerationStart(
      IN              HANDLE                  hProtocol,
-@@ -473,6 +490,7 @@ MgmGroupEnumerationStart(
+@@ -473,6 +488,7 @@ MgmGroupEnumerationStart(
      OUT             HANDLE *                phEnumHandle
  );
  
@@ -132,7 +130,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGroupEnumerationGetNext(
      IN              HANDLE                  hEnum,
-@@ -481,6 +499,7 @@ MgmGroupEnumerationGetNext(
+@@ -481,6 +497,7 @@ MgmGroupEnumerationGetNext(
      IN  OUT         PDWORD                  pdwNumEntries
  );
  
@@ -140,7 +138,7 @@ index af9a7ff9..a2548e9b 100644
  DWORD
  MgmGroupEnumerationEnd(
      IN              HANDLE                  hEnum
-@@ -493,6 +512,7 @@ MgmGroupEnumerationEnd(
+@@ -493,6 +510,7 @@ MgmGroupEnumerationEnd(
  //
  //-----------------------------------------------------------------
  

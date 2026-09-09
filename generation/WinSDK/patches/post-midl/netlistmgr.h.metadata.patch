@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/netlistmgr.h b/generation/WinSDK/RecompiledIdlHeaders/um/netlistmgr.h
-index b1a28136..474d788b 100644
+index b1a28136..b649d4e6 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/netlistmgr.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/netlistmgr.h
-@@ -179,6 +179,9 @@ extern "C"{
+@@ -179,6 +179,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -326,6 +329,7 @@ EXTERN_C const IID IID_INetworkListManager;
+@@ -326,6 +327,7 @@ EXTERN_C const IID IID_INetworkListManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00000-570F-4A9B-8D69-199FDBA5723B")
      INetworkListManager : public IDispatch
      {
-@@ -587,6 +591,7 @@ EXTERN_C const IID IID_INetworkListManagerEvents;
+@@ -587,6 +589,7 @@ EXTERN_C const IID IID_INetworkListManagerEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00001-570F-4A9B-8D69-199FDBA5723B")
      INetworkListManagerEvents : public IUnknown
      {
-@@ -682,6 +687,7 @@ EXTERN_C const IID IID_INetwork;
+@@ -682,6 +685,7 @@ EXTERN_C const IID IID_INetwork;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00002-570F-4A9B-8D69-199FDBA5723B")
      INetwork : public IDispatch
      {
-@@ -1276,6 +1282,7 @@ EXTERN_C const IID IID_IEnumNetworks;
+@@ -1276,6 +1280,7 @@ EXTERN_C const IID IID_IEnumNetworks;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00003-570F-4A9B-8D69-199FDBA5723B")
      IEnumNetworks : public IDispatch
      {
-@@ -1489,6 +1496,7 @@ EXTERN_C const IID IID_INetworkEvents;
+@@ -1489,6 +1494,7 @@ EXTERN_C const IID IID_INetworkEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00004-570F-4A9B-8D69-199FDBA5723B")
      INetworkEvents : public IUnknown
      {
-@@ -1623,6 +1631,7 @@ EXTERN_C const IID IID_INetworkConnection;
+@@ -1623,6 +1629,7 @@ EXTERN_C const IID IID_INetworkConnection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00005-570F-4A9B-8D69-199FDBA5723B")
      INetworkConnection : public IDispatch
      {
-@@ -2065,6 +2074,7 @@ EXTERN_C const IID IID_IEnumNetworkConnections;
+@@ -2065,6 +2072,7 @@ EXTERN_C const IID IID_IEnumNetworkConnections;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00006-570F-4A9B-8D69-199FDBA5723B")
      IEnumNetworkConnections : public IDispatch
      {
-@@ -2274,6 +2284,7 @@ EXTERN_C const IID IID_INetworkConnectionEvents;
+@@ -2274,6 +2282,7 @@ EXTERN_C const IID IID_INetworkConnectionEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00007-570F-4A9B-8D69-199FDBA5723B")
      INetworkConnectionEvents : public IUnknown
      {
-@@ -2382,6 +2393,7 @@ EXTERN_C const IID IID_INetworkCostManager;
+@@ -2382,6 +2391,7 @@ EXTERN_C const IID IID_INetworkCostManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00008-570F-4A9B-8D69-199FDBA5723B")
      INetworkCostManager : public IUnknown
      {
-@@ -2509,6 +2521,7 @@ EXTERN_C const IID IID_INetworkCostManagerEvents;
+@@ -2509,6 +2519,7 @@ EXTERN_C const IID IID_INetworkCostManagerEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB00009-570F-4A9B-8D69-199FDBA5723B")
      INetworkCostManagerEvents : public IUnknown
      {
-@@ -2613,6 +2626,7 @@ EXTERN_C const IID IID_INetworkConnectionCost;
+@@ -2613,6 +2624,7 @@ EXTERN_C const IID IID_INetworkConnectionCost;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB0000a-570F-4A9B-8D69-199FDBA5723B")
      INetworkConnectionCost : public IUnknown
      {
-@@ -2713,6 +2727,7 @@ EXTERN_C const IID IID_INetworkConnectionCostEvents;
+@@ -2713,6 +2725,7 @@ EXTERN_C const IID IID_INetworkConnectionCostEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index b1a28136..474d788b 100644
      MIDL_INTERFACE("DCB0000b-570F-4A9B-8D69-199FDBA5723B")
      INetworkConnectionCostEvents : public IUnknown
      {
-@@ -2844,9 +2859,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -2844,9 +2857,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBio.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinBio.h
-index ddd3af2d..3b9eb761 100644
+index ddd3af2d..1c734262 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WinBio.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinBio.h
-@@ -23,6 +23,9 @@ Revision History:
+@@ -23,6 +23,7 @@ Revision History:
  #ifndef _WINBIO_H_9B9AD1F6_97B1_4647_923D_583FD7428C4C_
  #define _WINBIO_H_9B9AD1F6_97B1_4647_923D_583FD7428C4C_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -249,6 +252,7 @@ VOID
+@@ -249,6 +250,7 @@ VOID
  // Capability discovery
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -20,7 +18,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioEnumServiceProviders(
      _In_ WINBIO_BIOMETRIC_TYPE Factor,
-@@ -256,6 +260,7 @@ WinBioEnumServiceProviders(
+@@ -256,6 +258,7 @@ WinBioEnumServiceProviders(
      _Out_ SIZE_T *BspCount
      );
  
@@ -28,7 +26,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioEnumBiometricUnits(
      _In_ WINBIO_BIOMETRIC_TYPE Factor,
-@@ -263,6 +268,7 @@ WinBioEnumBiometricUnits(
+@@ -263,6 +266,7 @@ WinBioEnumBiometricUnits(
      _Out_ SIZE_T *UnitCount
      );
  
@@ -36,7 +34,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioEnumDatabases(
      _In_ WINBIO_BIOMETRIC_TYPE Factor,
-@@ -275,6 +281,7 @@ WinBioEnumDatabases(
+@@ -275,6 +279,7 @@ WinBioEnumDatabases(
  // Asynchronous capability discovery
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -44,7 +42,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioAsyncOpenFramework(
      _In_ WINBIO_ASYNC_NOTIFICATION_METHOD NotificationMethod,
-@@ -286,29 +293,34 @@ WinBioAsyncOpenFramework(
+@@ -286,29 +291,34 @@ WinBioAsyncOpenFramework(
      _Out_opt_ WINBIO_FRAMEWORK_HANDLE *FrameworkHandle
      );
  
@@ -79,7 +77,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioAsyncMonitorFrameworkChanges(
      _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle,
-@@ -320,6 +332,7 @@ WinBioAsyncMonitorFrameworkChanges(
+@@ -320,6 +330,7 @@ WinBioAsyncMonitorFrameworkChanges(
  // Session management
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -87,7 +85,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioOpenSession(
      _In_ WINBIO_BIOMETRIC_TYPE Factor,
-@@ -334,6 +347,7 @@ WinBioOpenSession(
+@@ -334,6 +345,7 @@ WinBioOpenSession(
  //
  // Asynchronous sessions...
  //
@@ -95,7 +93,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioAsyncOpenSession(
      _In_ WINBIO_BIOMETRIC_TYPE Factor,
-@@ -351,6 +365,7 @@ WinBioAsyncOpenSession(
+@@ -351,6 +363,7 @@ WinBioAsyncOpenSession(
      _Out_opt_ WINBIO_SESSION_HANDLE *SessionHandle
      );
  
@@ -103,7 +101,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioCloseSession(
      _In_ WINBIO_SESSION_HANDLE SessionHandle
-@@ -362,6 +377,7 @@ WinBioCloseSession(
+@@ -362,6 +375,7 @@ WinBioCloseSession(
  // High-level biometric operations
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -111,7 +109,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioVerify(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -382,6 +398,7 @@ VOID
+@@ -382,6 +396,7 @@ VOID
      _In_ WINBIO_REJECT_DETAIL RejectDetail
      );
  
@@ -119,7 +117,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioVerifyWithCallback(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -391,6 +408,7 @@ WinBioVerifyWithCallback(
+@@ -391,6 +406,7 @@ WinBioVerifyWithCallback(
      _In_opt_ PVOID VerifyCallbackContext
      );
  
@@ -127,7 +125,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioIdentify(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -411,6 +429,7 @@ VOID
+@@ -411,6 +427,7 @@ VOID
      _In_ WINBIO_REJECT_DETAIL RejectDetail
      );
  
@@ -135,7 +133,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioIdentifyWithCallback(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -418,11 +437,13 @@ WinBioIdentifyWithCallback(
+@@ -418,11 +435,13 @@ WinBioIdentifyWithCallback(
      _In_opt_ PVOID IdentifyCallbackContext
      );
  
@@ -149,7 +147,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioCancel(
      _In_ WINBIO_SESSION_HANDLE SessionHandle
-@@ -434,6 +455,7 @@ WinBioCancel(
+@@ -434,6 +453,7 @@ WinBioCancel(
  // Sensor-location operations
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -157,7 +155,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioLocateSensor(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -448,6 +470,7 @@ VOID
+@@ -448,6 +468,7 @@ VOID
      _In_ WINBIO_UNIT_ID UnitId
      );
  
@@ -165,7 +163,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioLocateSensorWithCallback(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -460,6 +483,7 @@ WinBioLocateSensorWithCallback(
+@@ -460,6 +481,7 @@ WinBioLocateSensorWithCallback(
  // Enrollment operations
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -173,7 +171,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioEnrollBegin(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -469,6 +493,7 @@ WinBioEnrollBegin(
+@@ -469,6 +491,7 @@ WinBioEnrollBegin(
  
  #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
  
@@ -181,7 +179,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioEnrollSelect(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -477,6 +502,7 @@ WinBioEnrollSelect(
+@@ -477,6 +500,7 @@ WinBioEnrollSelect(
  
  #endif // (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
  
@@ -189,7 +187,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioEnrollCapture(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -491,6 +517,7 @@ VOID
+@@ -491,6 +515,7 @@ VOID
      _In_ WINBIO_REJECT_DETAIL RejectDetail
      );
  
@@ -197,7 +195,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioEnrollCaptureWithCallback(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -498,6 +525,7 @@ WinBioEnrollCaptureWithCallback(
+@@ -498,6 +523,7 @@ WinBioEnrollCaptureWithCallback(
      _In_opt_ PVOID EnrollCallbackContext
      );
  
@@ -205,7 +203,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioEnrollCommit(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -505,11 +533,13 @@ WinBioEnrollCommit(
+@@ -505,11 +531,13 @@ WinBioEnrollCommit(
      _Out_opt_ BOOLEAN *IsNewTemplate
      );
  
@@ -219,7 +217,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioEnumEnrollments(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -548,6 +578,7 @@ VOID
+@@ -548,6 +576,7 @@ VOID
      _In_ PWINBIO_EVENT Event
      );
  
@@ -227,7 +225,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioRegisterEventMonitor(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -556,6 +587,7 @@ WinBioRegisterEventMonitor(
+@@ -556,6 +585,7 @@ WinBioRegisterEventMonitor(
      _In_opt_ PVOID EventCallbackContext
      );
  
@@ -235,7 +233,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioUnregisterEventMonitor(
      _In_ WINBIO_SESSION_HANDLE SessionHandle
-@@ -563,6 +595,7 @@ WinBioUnregisterEventMonitor(
+@@ -563,6 +593,7 @@ WinBioUnregisterEventMonitor(
  
  #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
  
@@ -243,7 +241,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioMonitorPresence(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -577,6 +610,7 @@ WinBioMonitorPresence(
+@@ -577,6 +608,7 @@ WinBioMonitorPresence(
  // Raw biometric operations
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -251,7 +249,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioCaptureSample(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -599,6 +633,7 @@ VOID
+@@ -599,6 +631,7 @@ VOID
      _In_ WINBIO_REJECT_DETAIL RejectDetail
      );
  
@@ -259,7 +257,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioCaptureSampleWithCallback(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -614,6 +649,7 @@ WinBioCaptureSampleWithCallback(
+@@ -614,6 +647,7 @@ WinBioCaptureSampleWithCallback(
  // Storage management
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -267,7 +265,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioDeleteTemplate(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -628,18 +664,21 @@ WinBioDeleteTemplate(
+@@ -628,18 +662,21 @@ WinBioDeleteTemplate(
  // Extension interface
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -289,7 +287,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioControlUnit(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -654,6 +693,7 @@ WinBioControlUnit(
+@@ -654,6 +691,7 @@ WinBioControlUnit(
      _Out_opt_ ULONG *OperationStatus
      );
  
@@ -297,7 +295,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioControlUnitPrivileged(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -674,6 +714,7 @@ WinBioControlUnitPrivileged(
+@@ -674,6 +712,7 @@ WinBioControlUnitPrivileged(
  // Get/set property operations
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -305,7 +303,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioGetProperty(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -686,6 +727,7 @@ WinBioGetProperty(
+@@ -686,6 +725,7 @@ WinBioGetProperty(
      _Out_opt_ SIZE_T *PropertyBufferSize
      );
  
@@ -313,7 +311,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioSetProperty(
      _In_ WINBIO_SESSION_HANDLE SessionHandle,
-@@ -704,6 +746,7 @@ WinBioSetProperty(
+@@ -704,6 +744,7 @@ WinBioSetProperty(
  // Resource management
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -321,7 +319,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioFree(
      _In_ PVOID Address
-@@ -715,6 +758,7 @@ WinBioFree(
+@@ -715,6 +756,7 @@ WinBioFree(
  // Credential management
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -329,7 +327,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioSetCredential(
      _In_ WINBIO_CREDENTIAL_TYPE Type,
-@@ -723,23 +767,27 @@ WinBioSetCredential(
+@@ -723,23 +765,27 @@ WinBioSetCredential(
      _In_ WINBIO_CREDENTIAL_FORMAT Format
      );
  
@@ -357,7 +355,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioGetCredentialState(
      _In_ WINBIO_IDENTITY Identity,
-@@ -747,6 +795,7 @@ WinBioGetCredentialState(
+@@ -747,6 +793,7 @@ WinBioGetCredentialState(
      _Out_ WINBIO_CREDENTIAL_STATE *CredentialState
      );
  
@@ -365,7 +363,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioLogonIdentifiedUser(
      _In_ WINBIO_SESSION_HANDLE SessionHandle
-@@ -760,6 +809,7 @@ WinBioLogonIdentifiedUser(
+@@ -760,6 +807,7 @@ WinBioLogonIdentifiedUser(
  //
  ///////////////////////////////////////////////////////////////////////////////
  
@@ -373,7 +371,7 @@ index ddd3af2d..3b9eb761 100644
  HRESULT WINAPI
  WinBioGetEnrolledFactors(
      _In_ WINBIO_IDENTITY *AccountOwner,
-@@ -773,18 +823,21 @@ WinBioGetEnrolledFactors(
+@@ -773,18 +821,21 @@ WinBioGetEnrolledFactors(
  // Settings
  //
  ///////////////////////////////////////////////////////////////////////////////
@@ -395,7 +393,7 @@ index ddd3af2d..3b9eb761 100644
  VOID WINAPI
  WinBioGetDomainLogonSetting(
      _Out_ BOOLEAN* Value,
-@@ -802,11 +855,13 @@ WinBioIsESSCapable(
+@@ -802,11 +853,13 @@ WinBioIsESSCapable(
  //
  ///////////////////////////////////////////////////////////////////////////////
  

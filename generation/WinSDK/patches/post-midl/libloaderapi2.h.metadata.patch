@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi2.h b/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi2.h
-index 105eee55..f6744ed0 100644
+index 105eee55..d5728aff 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi2.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi2.h
-@@ -12,6 +12,9 @@
+@@ -12,6 +12,7 @@
  
  #ifndef _APISETLIBLOADER2_
  #define _APISETLIBLOADER2_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <apiset.h>
  #include <apisetcconv.h>
-@@ -27,6 +30,7 @@ extern "C" {
+@@ -27,6 +28,7 @@ extern "C" {
  
  #if (_WIN32_WINNT >= 0x0602)
  
@@ -20,7 +18,7 @@ index 105eee55..f6744ed0 100644
  WINBASEAPI
  _Ret_maybenull_
  HMODULE
-@@ -46,6 +50,8 @@ LoadPackagedLibrary(
+@@ -46,6 +48,8 @@ LoadPackagedLibrary(
  
  #if (_WIN32_WINNT >= 0x0602)
  

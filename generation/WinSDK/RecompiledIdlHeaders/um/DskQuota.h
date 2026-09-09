@@ -5,9 +5,7 @@
 *   Copyright (c) 1991-1999, Microsoft Corp. All rights reserved.         *
 *                                                                         *
 **************************************************************************/
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef __DSKQUOTA_H
 #define __DSKQUOTA_H

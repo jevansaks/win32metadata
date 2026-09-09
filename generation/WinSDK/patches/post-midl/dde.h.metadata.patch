@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dde.h b/generation/WinSDK/RecompiledIdlHeaders/um/dde.h
-index 9e683906..7f37f6dd 100644
+index 9e683906..c1be14a2 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/dde.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/dde.h
-@@ -17,6 +17,9 @@
+@@ -17,6 +17,7 @@
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if _MSC_VER >= 1200
  #pragma warning(push)
-@@ -177,6 +180,8 @@ typedef struct {
+@@ -177,6 +178,8 @@ typedef struct {
   * DDE SECURITY
   */
  
@@ -21,7 +19,7 @@ index 9e683906..7f37f6dd 100644
  BOOL
  WINAPI
  DdeSetQualityOfService(
-@@ -184,6 +189,8 @@ DdeSetQualityOfService(
+@@ -184,6 +187,8 @@ DdeSetQualityOfService(
      CONST SECURITY_QUALITY_OF_SERVICE *pqosNew,
      PSECURITY_QUALITY_OF_SERVICE pqosPrev);
  
@@ -30,7 +28,7 @@ index 9e683906..7f37f6dd 100644
  BOOL
  WINAPI
  ImpersonateDdeClientWindow(
-@@ -193,9 +200,13 @@ ImpersonateDdeClientWindow(
+@@ -193,9 +198,13 @@ ImpersonateDdeClientWindow(
  /*
   * DDE message packing APIs
   */

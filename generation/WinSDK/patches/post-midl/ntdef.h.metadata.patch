@@ -1,14 +1,60 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/ntdef.h b/generation/WinSDK/RecompiledIdlHeaders/shared/ntdef.h
-index 981e5252..2a1f7774 100644
+index 981e5252..3eeb1f71 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/ntdef.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/ntdef.h
-@@ -23,6 +23,9 @@ Abstract:
+@@ -23,6 +23,7 @@ Abstract:
  
  #include <ctype.h>  // winnt ntndis
  #include <winapifamily.h>  // winnt
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  // begin_winnt begin_ntoshvp begin_ntddk
  
+@@ -1342,6 +1343,7 @@ typedef LARGE_INTEGER PHYSICAL_ADDRESS, *PPHYSICAL_ADDRESS;
+ #define UInt32x32To64(a, b) ((unsigned __int64)(((unsigned __int64)((unsigned int)(a))) * ((unsigned int)(b))))
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ ULONGLONG
+ NTAPI
+ Int64ShllMod32 (
+@@ -1349,6 +1351,7 @@ Int64ShllMod32 (
+     _In_ ULONG ShiftCount
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONGLONG
+ NTAPI
+ Int64ShraMod32 (
+@@ -1356,6 +1359,7 @@ Int64ShraMod32 (
+     _In_ ULONG ShiftCount
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ ULONGLONG
+ NTAPI
+ Int64ShrlMod32 (
+@@ -1368,6 +1372,7 @@ Int64ShrlMod32 (
+ #endif
+ #pragma warning(disable:4035 4793)               // re-enable below
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __inline ULONGLONG
+ NTAPI
+ Int64ShllMod32 (
+@@ -1384,6 +1389,7 @@ Int64ShllMod32 (
+     }
+ }
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __inline LONGLONG
+ NTAPI
+ Int64ShraMod32 (
+@@ -1400,6 +1406,7 @@ Int64ShraMod32 (
+     }
+ }
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __inline ULONGLONG
+ NTAPI
+ Int64ShrlMod32 (

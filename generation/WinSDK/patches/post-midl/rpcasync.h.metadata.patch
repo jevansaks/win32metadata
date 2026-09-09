@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcasync.h b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcasync.h
-index 060112fb..87600728 100644
+index 060112fb..81e5dff8 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcasync.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcasync.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  /*++
  
-@@ -178,6 +181,7 @@ typedef struct _RPC_ASYNC_STATE {
+@@ -178,6 +179,7 @@ typedef struct _RPC_ASYNC_STATE {
  #define RpcAsyncGetCallHandle(pAsync) (((PRPC_ASYNC_STATE) pAsync)->RuntimeInfo)
  
  #if !defined(_KRPCENV_)
@@ -18,7 +16,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  _Must_inspect_result_
  RPC_STATUS
-@@ -187,6 +191,7 @@ RpcAsyncRegisterInfo (
+@@ -187,6 +189,7 @@ RpcAsyncRegisterInfo (
      ) ;
  #endif
  
@@ -26,7 +24,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  _Must_inspect_result_
  RPC_STATUS
-@@ -196,6 +201,7 @@ RpcAsyncInitializeHandle (
+@@ -196,6 +199,7 @@ RpcAsyncInitializeHandle (
      _In_ unsigned int     Size
      );
  
@@ -34,7 +32,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  _Must_inspect_result_
  RPC_STATUS
-@@ -204,6 +210,7 @@ RpcAsyncGetCallStatus (
+@@ -204,6 +208,7 @@ RpcAsyncGetCallStatus (
      _In_ PRPC_ASYNC_STATE pAsync
      ) ;
  
@@ -42,7 +40,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  _Must_inspect_result_
  RPC_STATUS
-@@ -213,6 +220,7 @@ RpcAsyncCompleteCall (
+@@ -213,6 +218,7 @@ RpcAsyncCompleteCall (
      _Out_opt_ void *Reply
      ) ;
  
@@ -50,7 +48,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  _Must_inspect_result_
  RPC_STATUS
-@@ -222,6 +230,7 @@ RpcAsyncAbortCall (
+@@ -222,6 +228,7 @@ RpcAsyncAbortCall (
      _In_ unsigned long ExceptionCode
      ) ;
  
@@ -58,7 +56,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  _Must_inspect_result_
  RPC_STATUS
-@@ -308,6 +317,7 @@ typedef struct tagRPC_ERROR_ENUM_HANDLE
+@@ -308,6 +315,7 @@ typedef struct tagRPC_ERROR_ENUM_HANDLE
      void *Head;
  } RPC_ERROR_ENUM_HANDLE;
  
@@ -66,7 +64,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY
-@@ -315,6 +325,7 @@ RpcErrorStartEnumeration (
+@@ -315,6 +323,7 @@ RpcErrorStartEnumeration (
      _Out_ RPC_ERROR_ENUM_HANDLE *EnumHandle
      );
  
@@ -74,7 +72,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY
-@@ -324,6 +335,7 @@ RpcErrorGetNextRecord (
+@@ -324,6 +333,7 @@ RpcErrorGetNextRecord (
      _Out_ RPC_EXTENDED_ERROR_INFO *ErrorInfo
      );
  
@@ -82,7 +80,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY
-@@ -331,6 +343,7 @@ RpcErrorEndEnumeration (
+@@ -331,6 +341,7 @@ RpcErrorEndEnumeration (
      _Inout_ RPC_ERROR_ENUM_HANDLE *EnumHandle
      );
  
@@ -90,7 +88,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY
-@@ -338,6 +351,7 @@ RpcErrorResetEnumeration (
+@@ -338,6 +349,7 @@ RpcErrorResetEnumeration (
      _Inout_ RPC_ERROR_ENUM_HANDLE *EnumHandle
      );
  
@@ -98,7 +96,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY
-@@ -346,6 +360,7 @@ RpcErrorGetNumberOfRecords (
+@@ -346,6 +358,7 @@ RpcErrorGetNumberOfRecords (
      _Out_ int *Records
      );
  
@@ -106,7 +104,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY
-@@ -355,6 +370,7 @@ RpcErrorSaveErrorInfo (
+@@ -355,6 +368,7 @@ RpcErrorSaveErrorInfo (
      _Out_ size_t *BlobSize
      );
  
@@ -114,7 +112,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY
-@@ -364,6 +380,7 @@ RpcErrorLoadErrorInfo (
+@@ -364,6 +378,7 @@ RpcErrorLoadErrorInfo (
      _Out_ RPC_ERROR_ENUM_HANDLE *EnumHandle
      );
  
@@ -122,7 +120,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY
-@@ -371,6 +388,7 @@ RpcErrorAddRecord (
+@@ -371,6 +386,7 @@ RpcErrorAddRecord (
      _In_ RPC_EXTENDED_ERROR_INFO *ErrorInfo
      );
  
@@ -130,7 +128,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  void 
  RPC_ENTRY
-@@ -395,6 +413,7 @@ RpcAsyncCleanupThread (
+@@ -395,6 +411,7 @@ RpcAsyncCleanupThread (
      _In_ DWORD dwTimeout
      );
  
@@ -138,7 +136,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -409,6 +428,7 @@ RpcGetAuthorizationContextForClient (
+@@ -409,6 +426,7 @@ RpcGetAuthorizationContextForClient (
      _Out_ PVOID *pAuthzClientContext
      );
  
@@ -146,7 +144,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY
-@@ -416,6 +436,7 @@ RpcFreeAuthorizationContext (
+@@ -416,6 +434,7 @@ RpcFreeAuthorizationContext (
      _Inout_ PVOID *pAuthzClientContext
      );
  
@@ -154,7 +152,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -424,6 +445,7 @@ RpcSsContextLockExclusive (
+@@ -424,6 +443,7 @@ RpcSsContextLockExclusive (
      _In_ PVOID UserContext
      );
  
@@ -162,7 +160,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -615,6 +637,7 @@ typedef struct tagRPC_CALL_ATTRIBUTES_V3_A
+@@ -615,6 +635,7 @@ typedef struct tagRPC_CALL_ATTRIBUTES_V3_A
  
  #endif // (NTDDI_VERSION >= NTDDI_WIN8)
  
@@ -170,7 +168,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -623,6 +646,7 @@ RpcServerInqCallAttributesW (
+@@ -623,6 +644,7 @@ RpcServerInqCallAttributesW (
      _Inout_ void *RpcCallAttributes
      );
  
@@ -178,7 +176,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS
  RPC_ENTRY
-@@ -670,6 +694,7 @@ typedef enum _RPC_NOTIFICATIONS
+@@ -670,6 +692,7 @@ typedef enum _RPC_NOTIFICATIONS
  
  #define RpcNotificationCallStatusChange    RpcNotificationClientDisconnect
  
@@ -186,7 +184,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY 
-@@ -680,6 +705,7 @@ RpcServerSubscribeForNotification (
+@@ -680,6 +703,7 @@ RpcServerSubscribeForNotification (
      _In_ RPC_ASYNC_NOTIFICATION_INFO *NotificationInfo
      );
  
@@ -194,7 +192,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY 
-@@ -700,6 +726,7 @@ RpcServerUnsubscribeForNotification (
+@@ -700,6 +724,7 @@ RpcServerUnsubscribeForNotification (
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -202,7 +200,7 @@ index 060112fb..87600728 100644
  RPCRTAPI
  RPC_STATUS 
  RPC_ENTRY 
-@@ -709,6 +736,7 @@ RpcBindingBind (
+@@ -709,6 +734,7 @@ RpcBindingBind (
      _In_ RPC_IF_HANDLE IfSpec    
      );
  

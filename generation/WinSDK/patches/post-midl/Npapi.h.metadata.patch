@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h
-index 3e99aab7..3fb478b1 100644
+index 3e99aab7..1fc7652f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h
-@@ -25,6 +25,9 @@ Environment:
+@@ -25,6 +25,7 @@ Environment:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -43,6 +46,7 @@ extern "C" {
+@@ -43,6 +44,7 @@ extern "C" {
  //  CONNECTIONS
  //
  
@@ -20,7 +18,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPAddConnection (
      _In_     LPNETRESOURCEW lpNetResource,
-@@ -57,6 +61,7 @@ typedef DWORD (APIENTRY *PF_NPAddConnection) (
+@@ -57,6 +59,7 @@ typedef DWORD (APIENTRY *PF_NPAddConnection) (
      );
  
  
@@ -28,7 +26,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPAddConnection3 (
      _In_opt_ HWND           hwndOwner,
-@@ -95,6 +100,7 @@ typedef DWORD (APIENTRY *PF_NPAddConnection4) (
+@@ -95,6 +98,7 @@ typedef DWORD (APIENTRY *PF_NPAddConnection4) (
      _In_     DWORD          cbUseOptions
      );
  
@@ -36,7 +34,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPCancelConnection (
      _In_ LPWSTR  lpName,
-@@ -119,6 +125,7 @@ typedef DWORD (APIENTRY *PF_NPCancelConnection2) (
+@@ -119,6 +123,7 @@ typedef DWORD (APIENTRY *PF_NPCancelConnection2) (
      _In_ DWORD   dwFlags
      );
  
@@ -44,7 +42,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPGetConnection (
      _In_ LPWSTR     lpLocalName,
-@@ -136,6 +143,7 @@ typedef DWORD (APIENTRY *PF_NPGetConnection) (
+@@ -136,6 +141,7 @@ typedef DWORD (APIENTRY *PF_NPGetConnection) (
  #define WNGETCON_CONNECTED      0x00000000
  #define WNGETCON_DISCONNECTED   0x00000001
  
@@ -52,7 +50,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPGetConnection3 (
      _In_ LPCWSTR    lpLocalName,
-@@ -152,6 +160,7 @@ typedef DWORD (APIENTRY *PF_NPGetConnection3) (
+@@ -152,6 +158,7 @@ typedef DWORD (APIENTRY *PF_NPGetConnection3) (
      );
  
  
@@ -60,7 +58,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPGetUniversalName (
      _In_ LPCWSTR    lpLocalPath,
-@@ -167,6 +176,7 @@ typedef DWORD (APIENTRY *PF_NPGetUniversalName) (
+@@ -167,6 +174,7 @@ typedef DWORD (APIENTRY *PF_NPGetUniversalName) (
      _Inout_ LPDWORD lpnBufferSize
      );
  
@@ -68,7 +66,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPGetConnectionPerformance (
      _In_  LPCWSTR                lpRemoteName,
-@@ -179,6 +189,7 @@ typedef DWORD (APIENTRY *PF_NPGetConnectionPerformance) (
+@@ -179,6 +187,7 @@ typedef DWORD (APIENTRY *PF_NPGetConnectionPerformance) (
      );
  
  
@@ -76,7 +74,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPOpenEnum (
      _In_     DWORD          dwScope,
-@@ -196,6 +207,7 @@ typedef DWORD (APIENTRY *PF_NPOpenEnum) (
+@@ -196,6 +205,7 @@ typedef DWORD (APIENTRY *PF_NPOpenEnum) (
      _Out_    LPHANDLE       lphEnum
      );
  
@@ -84,7 +82,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPEnumResource (
      _In_    HANDLE  hEnum,
-@@ -211,6 +223,7 @@ typedef DWORD (APIENTRY *PF_NPEnumResource) (
+@@ -211,6 +221,7 @@ typedef DWORD (APIENTRY *PF_NPEnumResource) (
      _Inout_ LPDWORD lpBufferSize
      );
  
@@ -92,7 +90,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPCloseEnum (
      _In_ HANDLE   hEnum
-@@ -284,6 +297,7 @@ typedef DWORD (APIENTRY *PF_NPCloseEnum) (
+@@ -284,6 +295,7 @@ typedef DWORD (APIENTRY *PF_NPCloseEnum) (
  
  
  
@@ -100,7 +98,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPGetCaps (
      _In_ DWORD ndex
-@@ -297,6 +311,7 @@ typedef DWORD (APIENTRY *PF_NPGetCaps) (
+@@ -297,6 +309,7 @@ typedef DWORD (APIENTRY *PF_NPGetCaps) (
  //  OTHER
  //
  
@@ -108,7 +106,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPGetUser (
      _In_    LPWSTR  lpName,
-@@ -346,6 +361,7 @@ typedef DWORD (APIENTRY *PF_NPGetPersistentUseOptionsForConnection) (
+@@ -346,6 +359,7 @@ typedef DWORD (APIENTRY *PF_NPGetPersistentUseOptionsForConnection) (
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -116,7 +114,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPDeviceMode(
      _In_ HWND hParent
-@@ -358,6 +374,7 @@ typedef DWORD (APIENTRY *PF_NPDeviceMode) (
+@@ -358,6 +372,7 @@ typedef DWORD (APIENTRY *PF_NPDeviceMode) (
  // flag for search dialog
  #define WNSRCH_REFRESH_FIRST_LEVEL 0x00000001
  
@@ -124,7 +122,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPSearchDialog(
      _In_     HWND   hwndParent,
-@@ -381,6 +398,7 @@ typedef DWORD (APIENTRY *PF_NPSearchDialog) (
+@@ -381,6 +396,7 @@ typedef DWORD (APIENTRY *PF_NPSearchDialog) (
  #pragma region Desktop Family or RemoteFS Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_REMOTEFS)
  
@@ -132,7 +130,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPGetResourceParent(
      _In_ LPNETRESOURCEW lpNetResource,
-@@ -394,6 +412,7 @@ typedef DWORD (APIENTRY *PF_NPGetResourceParent) (
+@@ -394,6 +410,7 @@ typedef DWORD (APIENTRY *PF_NPGetResourceParent) (
      _Inout_ LPDWORD lpBufferSize
      );
  
@@ -140,7 +138,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY NPGetResourceInformation(
      _In_ LPNETRESOURCEW lpNetResource,
      _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
-@@ -408,6 +427,7 @@ typedef DWORD (APIENTRY *PF_NPGetResourceInformation) (
+@@ -408,6 +425,7 @@ typedef DWORD (APIENTRY *PF_NPGetResourceInformation) (
      _Outptr_ LPWSTR *lplpSystem
      );
  
@@ -148,7 +146,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPFormatNetworkName(
      _In_    LPWSTR   lpRemoteName,
-@@ -431,6 +451,7 @@ typedef DWORD (APIENTRY *PF_NPFormatNetworkName) (
+@@ -431,6 +449,7 @@ typedef DWORD (APIENTRY *PF_NPFormatNetworkName) (
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -156,7 +154,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPGetPropertyText(
      _In_ DWORD  iButton,
-@@ -450,6 +471,7 @@ typedef DWORD (APIENTRY *PF_NPGetPropertyText) (
+@@ -450,6 +469,7 @@ typedef DWORD (APIENTRY *PF_NPGetPropertyText) (
      _In_ DWORD  nType
      );
  
@@ -164,7 +162,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPPropertyDialog(
      _In_ HWND   hwndParent,
-@@ -479,6 +501,7 @@ typedef DWORD (APIENTRY *PF_NPPropertyDialog) (
+@@ -479,6 +499,7 @@ typedef DWORD (APIENTRY *PF_NPPropertyDialog) (
  #define WNDN_RMDIR    2
  #define WNDN_MVDIR    3
  
@@ -172,7 +170,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPGetDirectoryType (
      _In_ LPWSTR  lpName,
-@@ -492,6 +515,7 @@ typedef DWORD (APIENTRY *PF_NPGetDirectoryType) (
+@@ -492,6 +513,7 @@ typedef DWORD (APIENTRY *PF_NPGetDirectoryType) (
      _In_ BOOL    bFlushCache
      );
  
@@ -180,7 +178,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPDirectoryNotify (
      _In_ HWND    hwnd,
-@@ -511,6 +535,7 @@ typedef DWORD (APIENTRY *PF_NPDirectoryNotify) (
+@@ -511,6 +533,7 @@ typedef DWORD (APIENTRY *PF_NPDirectoryNotify) (
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -188,7 +186,7 @@ index 3e99aab7..3fb478b1 100644
  VOID
  WNetSetLastErrorA(
      _In_ DWORD   err,
-@@ -551,6 +576,7 @@ WNetSetLastErrorW(
+@@ -551,6 +574,7 @@ WNetSetLastErrorW(
  #define WN_VALID_LOGON_ACCOUNT      0x00000001
  #define WN_NT_PASSWORD_CHANGED      0x00000002
  
@@ -196,7 +194,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPLogonNotify (
      _In_     PLUID               lpLogonId,
-@@ -574,6 +600,7 @@ typedef DWORD (APIENTRY *PF_NPLogonNotify) (
+@@ -574,6 +598,7 @@ typedef DWORD (APIENTRY *PF_NPLogonNotify) (
      _Out_    LPWSTR              *lpLogonScript
      );
  
@@ -204,7 +202,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPPasswordChangeNotify (
      _In_     LPCWSTR             lpAuthentInfoType,
-@@ -626,6 +653,7 @@ typedef struct _NOTIFYCANCEL {
+@@ -626,6 +651,7 @@ typedef struct _NOTIFYCANCEL {
  } NOTIFYCANCEL, *LPNOTIFYCANCEL;
  
  
@@ -212,7 +210,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  AddConnectNotify (
      _Inout_ LPNOTIFYINFO lpNotifyInfo,
-@@ -637,6 +665,7 @@ typedef DWORD (APIENTRY *PF_AddConnectNotify) (
+@@ -637,6 +663,7 @@ typedef DWORD (APIENTRY *PF_AddConnectNotify) (
      _In_    LPNOTIFYADD  lpAddInfo
      );
  
@@ -220,7 +218,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  CancelConnectNotify (
      _Inout_ LPNOTIFYINFO   lpNotifyInfo,
-@@ -659,6 +688,7 @@ typedef DWORD (APIENTRY *PF_CancelConnectNotify) (
+@@ -659,6 +686,7 @@ typedef DWORD (APIENTRY *PF_CancelConnectNotify) (
  #define WNPERMC_AUDIT 0x00000002
  #define WNPERMC_OWNER 0x00000004
  
@@ -228,7 +226,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPFMXGetPermCaps (
      _In_ LPWSTR lpDriveName
-@@ -675,6 +705,7 @@ typedef DWORD (APIENTRY *PF_NPFMXGetPermCaps) (
+@@ -675,6 +703,7 @@ typedef DWORD (APIENTRY *PF_NPFMXGetPermCaps) (
  #define WNPERM_DLG_AUDIT  1
  #define WNPERM_DLG_OWNER  2
  
@@ -236,7 +234,7 @@ index 3e99aab7..3fb478b1 100644
  DWORD APIENTRY
  NPFMXEditPerm (
      _In_ LPWSTR lpDriveName,
-@@ -688,6 +719,7 @@ typedef DWORD (APIENTRY *PF_NPFMXEditPerm) (
+@@ -688,6 +717,7 @@ typedef DWORD (APIENTRY *PF_NPFMXEditPerm) (
      _In_ DWORD  nDialogType
      );
  

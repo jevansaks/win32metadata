@@ -15,9 +15,7 @@
 
 #include <sdkddkver.h>
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 // begin_ntifs
 #ifndef __SSPI_H__

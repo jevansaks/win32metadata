@@ -9,9 +9,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef _OLECTL_H_
 #define _OLECTL_H_

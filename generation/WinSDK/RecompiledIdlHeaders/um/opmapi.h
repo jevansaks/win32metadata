@@ -67,9 +67,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #ifndef OPM_API_DEFINED
 #define OPM_API_DEFINED
 #pragma region Desktop Family

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/spcollec.h b/generation/WinSDK/RecompiledIdlHeaders/um/spcollec.h
-index fd7dfe47..f8022b1d 100644
+index fd7dfe47..6b7de42f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/spcollec.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/spcollec.h
-@@ -25,6 +25,9 @@
+@@ -25,6 +25,7 @@
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -583,6 +586,7 @@ HRESULT CSPArray<TYPE, ARG_TYPE>::InsertAt(int nIndex, ARG_TYPE newElement, int
+@@ -583,6 +584,7 @@ HRESULT CSPArray<TYPE, ARG_TYPE>::InsertAt(int nIndex, ARG_TYPE newElement, int
      {
          // inserting in the middle of the array
          int nOldSize = m_nSize;

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h
-index 9399b3a0..8d46b09a 100644
+index 9399b3a0..10bbb13c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h
-@@ -17,6 +17,9 @@ Environment:
+@@ -17,6 +17,7 @@ Environment:
  --*/
  
  #include <windef.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if (NTDDI_VERSION >= NTDDI_WIN8)
  
-@@ -69,6 +72,8 @@ typedef enum {
+@@ -69,6 +70,8 @@ typedef enum {
  
  // Compression routines
  
@@ -21,7 +19,7 @@ index 9399b3a0..8d46b09a 100644
  BOOL
  WINAPI
  CreateCompressor (
-@@ -77,6 +82,8 @@ CreateCompressor (
+@@ -77,6 +80,8 @@ CreateCompressor (
      _Out_ PCOMPRESSOR_HANDLE CompressorHandle
      );
  
@@ -30,7 +28,7 @@ index 9399b3a0..8d46b09a 100644
  BOOL
  WINAPI
  SetCompressorInformation (
-@@ -86,6 +93,8 @@ SetCompressorInformation (
+@@ -86,6 +91,8 @@ SetCompressorInformation (
      _In_ SIZE_T CompressInformationSize
      );
  
@@ -39,7 +37,7 @@ index 9399b3a0..8d46b09a 100644
  BOOL
  WINAPI
  QueryCompressorInformation (
-@@ -95,6 +104,8 @@ QueryCompressorInformation (
+@@ -95,6 +102,8 @@ QueryCompressorInformation (
      _In_ SIZE_T CompressInformationSize
      );
  
@@ -48,7 +46,7 @@ index 9399b3a0..8d46b09a 100644
  BOOL
  WINAPI
  Compress (
-@@ -106,12 +117,16 @@ Compress (
+@@ -106,12 +115,16 @@ Compress (
      _Out_ PSIZE_T CompressedDataSize
      );
  
@@ -65,7 +63,7 @@ index 9399b3a0..8d46b09a 100644
  BOOL
  WINAPI
  CloseCompressor (
-@@ -120,6 +135,8 @@ CloseCompressor (
+@@ -120,6 +133,8 @@ CloseCompressor (
  
  // Decompression routines
  
@@ -74,7 +72,7 @@ index 9399b3a0..8d46b09a 100644
  BOOL
  WINAPI
  CreateDecompressor (
-@@ -128,6 +145,8 @@ CreateDecompressor (
+@@ -128,6 +143,8 @@ CreateDecompressor (
      _Out_ PDECOMPRESSOR_HANDLE DecompressorHandle
      );
  
@@ -83,7 +81,7 @@ index 9399b3a0..8d46b09a 100644
  BOOL
  WINAPI
  SetDecompressorInformation (
-@@ -137,6 +156,8 @@ SetDecompressorInformation (
+@@ -137,6 +154,8 @@ SetDecompressorInformation (
      _In_ SIZE_T CompressInformationSize
      );
  
@@ -92,7 +90,7 @@ index 9399b3a0..8d46b09a 100644
  BOOL
  WINAPI
  QueryDecompressorInformation (
-@@ -146,6 +167,8 @@ QueryDecompressorInformation (
+@@ -146,6 +165,8 @@ QueryDecompressorInformation (
      _In_ SIZE_T CompressInformationSize
      );
  
@@ -101,7 +99,7 @@ index 9399b3a0..8d46b09a 100644
  BOOL
  WINAPI
  Decompress (
-@@ -157,12 +180,16 @@ Decompress (
+@@ -157,12 +178,16 @@ Decompress (
      _Out_opt_ PSIZE_T UncompressedDataSize
      );
  

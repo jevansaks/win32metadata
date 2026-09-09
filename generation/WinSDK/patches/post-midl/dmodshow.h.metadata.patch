@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dmodshow.h b/generation/WinSDK/RecompiledIdlHeaders/um/dmodshow.h
-index 0048d111..60e71771 100644
+index 0048d111..c699fc83 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/dmodshow.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/dmodshow.h
-@@ -68,6 +68,9 @@ extern "C"{
+@@ -68,6 +68,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  DEFINE_GUID(CLSID_DMOWrapperFilter, 0x94297043,0xbd82,0x4dfd,0xb0,0xde,0x81,0x77,0x73,0x9c,0x6d,0x20);
-@@ -88,6 +91,7 @@ EXTERN_C const IID IID_IDMOWrapperFilter;
+@@ -88,6 +89,7 @@ EXTERN_C const IID IID_IDMOWrapperFilter;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

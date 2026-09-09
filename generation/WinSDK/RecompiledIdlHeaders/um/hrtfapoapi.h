@@ -10,6 +10,7 @@
 #define __HRTFAPOAPI_INCLUDED__
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 #include <float.h>
 
 #pragma region Application Family
@@ -158,6 +159,7 @@ STDAPI CreateHrtfApo(
 //
 #undef INTERFACE
 #define INTERFACE IXAPOHrtfParameters
+_Win32_metadata_supported_os_(windows10.0.10240)
 DECLARE_INTERFACE_IID_(IXAPOHrtfParameters, IUnknown, "15B3CD66-E9DE-4464-B6E6-2BC3CF63D455")
 {
     // IUnknown

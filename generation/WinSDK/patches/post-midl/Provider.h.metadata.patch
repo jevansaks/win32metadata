@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Provider.h b/generation/WinSDK/RecompiledIdlHeaders/um/Provider.h
-index a6986599..5d3865b3 100644
+index a6986599..460b6d62 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Provider.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Provider.h
-@@ -16,6 +16,9 @@
+@@ -16,6 +16,7 @@
  #define _PROVIDER_H__
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -67,12 +70,14 @@ protected:
+@@ -67,12 +68,14 @@ protected:
      // you will be given an object with the key properties filled in
      // you need to fill in all of the rest of the properties, or
      // return WBEM_E_NOT_FOUND if the object doesn't exist.
@@ -27,7 +25,7 @@ index a6986599..5d3865b3 100644
      virtual HRESULT GetObject(_Inout_ CInstance *pInstance, long lFlags, _In_ CFrameworkQuery &Query);
  
      // If a provider wants to process queries, they should override this
-@@ -153,6 +158,7 @@ private:
+@@ -153,6 +156,7 @@ private:
      // by the framework entrypoint functions
  
      /* Interfaces For Use by the Framework         */

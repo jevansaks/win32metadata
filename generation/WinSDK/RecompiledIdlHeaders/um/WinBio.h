@@ -23,9 +23,7 @@ Revision History:
 #ifndef _WINBIO_H_9B9AD1F6_97B1_4647_923D_583FD7428C4C_
 #define _WINBIO_H_9B9AD1F6_97B1_4647_923D_583FD7428C4C_
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)

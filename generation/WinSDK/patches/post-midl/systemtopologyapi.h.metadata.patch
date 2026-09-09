@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/systemtopologyapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/systemtopologyapi.h
-index 51093188..7bb10605 100644
+index 51093188..2d898607 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/systemtopologyapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/systemtopologyapi.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  
  #include <apiset.h>
  #include <apisetcconv.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #include <minwindef.h>
  #include <minwinbase.h>
  
-@@ -25,6 +28,8 @@ extern "C" {
+@@ -25,6 +26,8 @@ extern "C" {
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -21,7 +19,7 @@ index 51093188..7bb10605 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -40,6 +45,7 @@ GetNumaHighestNodeNumber(
+@@ -40,6 +43,7 @@ GetNumaHighestNodeNumber(
  
  #if _WIN32_WINNT >= 0x0601
  
@@ -29,7 +27,7 @@ index 51093188..7bb10605 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -67,6 +73,7 @@ GetNumaNodeProcessorMask2(
+@@ -67,6 +71,7 @@ GetNumaNodeProcessorMask2(
  
  #if _WIN32_WINNT >= 0x0601
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winppi.h b/generation/WinSDK/RecompiledIdlHeaders/um/winppi.h
-index 00e500ba..dcb47295 100644
+index 00e500ba..1a90be51 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winppi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winppi.h
-@@ -17,6 +17,9 @@ Abstract:
+@@ -17,6 +17,7 @@ Abstract:
  
  #ifndef _WINPPI_
  #define _WINPPI_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -28,7 +31,8 @@ typedef int (CALLBACK* EMFPLAYPROC)( HDC, INT, HANDLE );
+@@ -28,7 +29,8 @@ typedef int (CALLBACK* EMFPLAYPROC)( HDC, INT, HANDLE );
  HANDLE WINAPI GdiGetSpoolFileHandle(
      LPWSTR     pwszPrinterName,
      LPDEVMODEW pDevmode,

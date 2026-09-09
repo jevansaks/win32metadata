@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WiaVideo.h b/generation/WinSDK/RecompiledIdlHeaders/um/WiaVideo.h
-index f7308320..a493e700 100644
+index f7308320..7a136f28 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WiaVideo.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WiaVideo.h
-@@ -79,6 +79,9 @@ extern "C"{
+@@ -79,6 +79,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef /* [public][public] */ 
-@@ -108,6 +111,7 @@ EXTERN_C const IID IID_IWiaVideo;
+@@ -108,6 +109,7 @@ EXTERN_C const IID IID_IWiaVideo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index f7308320..a493e700 100644
      MIDL_INTERFACE("D52920AA-DB88-41F0-946C-E00DC0A19CFA")
      IWiaVideo : public IUnknown
      {
-@@ -366,9 +370,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -366,9 +368,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  HWND_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

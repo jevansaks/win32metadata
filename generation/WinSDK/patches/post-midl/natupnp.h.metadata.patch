@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/natupnp.h b/generation/WinSDK/RecompiledIdlHeaders/um/natupnp.h
-index 2feadec9..6fa51f68 100644
+index 2feadec9..8ca9d88c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/natupnp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/natupnp.h
-@@ -136,6 +136,9 @@ extern "C"{
+@@ -136,6 +136,7 @@ extern "C"{
  //  MODULE: natupnp.h
  //
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -160,6 +163,7 @@ EXTERN_C const IID IID_IUPnPNAT;
+@@ -160,6 +161,7 @@ EXTERN_C const IID IID_IUPnPNAT;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 2feadec9..6fa51f68 100644
      MIDL_INTERFACE("B171C812-CC76-485A-94D8-B6B3A2794E99")
      IUPnPNAT : public IDispatch
      {
-@@ -335,6 +339,7 @@ EXTERN_C const IID IID_INATEventManager;
+@@ -335,6 +337,7 @@ EXTERN_C const IID IID_INATEventManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 2feadec9..6fa51f68 100644
      MIDL_INTERFACE("624BD588-9060-4109-B0B0-1ADBBCAC32DF")
      INATEventManager : public IDispatch
      {
-@@ -497,6 +502,7 @@ EXTERN_C const IID IID_INATExternalIPAddressCallback;
+@@ -497,6 +500,7 @@ EXTERN_C const IID IID_INATExternalIPAddressCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 2feadec9..6fa51f68 100644
      MIDL_INTERFACE("9C416740-A34E-446F-BA06-ABD04C3149AE")
      INATExternalIPAddressCallback : public IUnknown
      {
-@@ -584,6 +590,7 @@ EXTERN_C const IID IID_INATNumberOfEntriesCallback;
+@@ -584,6 +588,7 @@ EXTERN_C const IID IID_INATNumberOfEntriesCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 2feadec9..6fa51f68 100644
      MIDL_INTERFACE("C83A0A74-91EE-41B6-B67A-67E0F00BBD78")
      INATNumberOfEntriesCallback : public IUnknown
      {
-@@ -1246,6 +1253,7 @@ EXTERN_C const IID IID_IStaticPortMappingCollection;
+@@ -1246,6 +1251,7 @@ EXTERN_C const IID IID_IStaticPortMappingCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 2feadec9..6fa51f68 100644
      MIDL_INTERFACE("CD1F3E77-66D6-4664-82C7-36DBB641D0F1")
      IStaticPortMappingCollection : public IDispatch
      {
-@@ -1483,6 +1491,7 @@ EXTERN_C const IID IID_IStaticPortMapping;
+@@ -1483,6 +1489,7 @@ EXTERN_C const IID IID_IStaticPortMapping;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 2feadec9..6fa51f68 100644
      MIDL_INTERFACE("6F10711F-729B-41E5-93B8-F21D0F818DF1")
      IStaticPortMapping : public IDispatch
      {
-@@ -1787,9 +1796,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -1787,9 +1794,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

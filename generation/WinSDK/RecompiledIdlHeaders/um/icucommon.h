@@ -3,9 +3,7 @@
 
 #if (NTDDI_VERSION >= NTDDI_WIN10_RS2)
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef SUPPRESS_LEGACY_ICU_HEADER_WARNINGS
 

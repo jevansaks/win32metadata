@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tokenbinding.h b/generation/WinSDK/RecompiledIdlHeaders/um/tokenbinding.h
-index b1e06df7..cb3c61cb 100644
+index b1e06df7..505ed51c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/tokenbinding.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/tokenbinding.h
-@@ -18,6 +18,9 @@
+@@ -18,6 +18,7 @@
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -69,6 +72,7 @@ typedef struct TOKENBINDING_KEY_TYPES{
+@@ -69,6 +70,7 @@ typedef struct TOKENBINDING_KEY_TYPES{
      TOKENBINDING_KEY_PARAMETERS_TYPE *keyType;
  }TOKENBINDING_KEY_TYPES;
  
@@ -20,7 +18,7 @@ index b1e06df7..cb3c61cb 100644
  STDAPI_(SECURITY_STATUS)
  TokenBindingGenerateBinding(
      _In_ TOKENBINDING_KEY_PARAMETERS_TYPE keyType,
-@@ -83,6 +87,7 @@ TokenBindingGenerateBinding(
+@@ -83,6 +85,7 @@ TokenBindingGenerateBinding(
      _Outptr_opt_ TOKENBINDING_RESULT_DATA **resultData
  );
  
@@ -28,7 +26,7 @@ index b1e06df7..cb3c61cb 100644
  STDAPI_(SECURITY_STATUS)
  TokenBindingGenerateMessage(
      _In_count_(tokenBindingsCount) const void *tokenBindings[],
-@@ -92,6 +97,7 @@ TokenBindingGenerateMessage(
+@@ -92,6 +95,7 @@ TokenBindingGenerateMessage(
      _Out_ DWORD *tokenBindingMessageSize
  );
  
@@ -36,7 +34,7 @@ index b1e06df7..cb3c61cb 100644
  STDAPI_(SECURITY_STATUS)
  TokenBindingVerifyMessage(
      _In_reads_bytes_(tokenBindingMessageSize) const void *tokenBindingMessage,
-@@ -102,24 +108,29 @@ TokenBindingVerifyMessage(
+@@ -102,24 +106,29 @@ TokenBindingVerifyMessage(
      _Outptr_ TOKENBINDING_RESULT_LIST **resultList
  );
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceConnectApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceConnectApi.h
-index 309f7129..b7549650 100644
+index 309f7129..21a08162 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceConnectApi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceConnectApi.h
-@@ -94,6 +94,9 @@ extern "C"{
+@@ -94,6 +94,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -253,6 +256,7 @@ EXTERN_C const IID IID_IPortableDeviceConnector;
+@@ -253,6 +254,7 @@ EXTERN_C const IID IID_IPortableDeviceConnector;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

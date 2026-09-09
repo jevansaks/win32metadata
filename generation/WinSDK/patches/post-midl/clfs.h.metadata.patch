@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/clfs.h b/generation/WinSDK/RecompiledIdlHeaders/shared/clfs.h
-index c2a789cd..7a197397 100644
+index c2a789cd..8e567d0b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/clfs.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/clfs.h
-@@ -21,6 +21,9 @@
+@@ -21,6 +21,7 @@
  =============================================================================*/
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or BootableSku Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_BOOTABLESKU)
-@@ -929,6 +932,7 @@ extern "C"
+@@ -929,6 +930,7 @@ extern "C"
  //
  //-----------------------------------------------------------------------------
  
@@ -20,7 +18,7 @@ index c2a789cd..7a197397 100644
  CLFSUSER_API BOOLEAN NTAPI
  ClfsLsnEqual
  (
-@@ -958,6 +962,7 @@ ClfsLsnEqual
+@@ -958,6 +960,7 @@ ClfsLsnEqual
  //
  //-----------------------------------------------------------------------------
  
@@ -28,7 +26,7 @@ index c2a789cd..7a197397 100644
  CLFSUSER_API BOOLEAN NTAPI
  ClfsLsnLess
  (
-@@ -987,6 +992,7 @@ ClfsLsnLess
+@@ -987,6 +990,7 @@ ClfsLsnLess
  //
  //-----------------------------------------------------------------------------
  
@@ -36,7 +34,7 @@ index c2a789cd..7a197397 100644
  CLFSUSER_API BOOLEAN NTAPI
  ClfsLsnGreater
  (
-@@ -1016,6 +1022,7 @@ ClfsLsnGreater
+@@ -1016,6 +1020,7 @@ ClfsLsnGreater
  //
  //-----------------------------------------------------------------------------
  

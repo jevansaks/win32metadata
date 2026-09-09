@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h
-index 3da8b639..0504c975 100644
+index 3da8b639..bcec1ed5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h
-@@ -8,6 +8,9 @@
+@@ -8,6 +8,7 @@
  \**************************************************************************/
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -43,6 +46,7 @@
+@@ -43,6 +44,7 @@
  
  #endif
  
@@ -20,7 +18,7 @@ index 3da8b639..0504c975 100644
  BOOL
  APIENTRY
  DdCreateDirectDrawObject(
-@@ -53,6 +57,7 @@ DdCreateDirectDrawObject(
+@@ -53,6 +55,7 @@ DdCreateDirectDrawObject(
  typedef struct _D3DHAL_CALLBACKS FAR *LPD3DHAL_CALLBACKS;
  typedef struct _D3DHAL_GLOBALDRIVERDATA FAR *LPD3DHAL_GLOBALDRIVERDATA;
  
@@ -28,7 +26,7 @@ index 3da8b639..0504c975 100644
  BOOL
  APIENTRY
  DdQueryDirectDrawObject(
-@@ -69,12 +74,14 @@ DdQueryDirectDrawObject(
+@@ -69,12 +72,14 @@ DdQueryDirectDrawObject(
      LPVIDMEM                    pvmList            // Can be NULL
      );
  
@@ -43,7 +41,7 @@ index 3da8b639..0504c975 100644
  BOOL
  APIENTRY
  DdCreateSurfaceObject(
-@@ -82,12 +89,14 @@ DdCreateSurfaceObject(
+@@ -82,12 +87,14 @@ DdCreateSurfaceObject(
      BOOL                      bPrimarySurface
      );
  
@@ -58,7 +56,7 @@ index 3da8b639..0504c975 100644
  BOOL
  APIENTRY
  DdResetVisrgn(
-@@ -95,6 +104,7 @@ DdResetVisrgn(
+@@ -95,6 +102,7 @@ DdResetVisrgn(
      HWND                      hWnd
      );
  
@@ -66,7 +64,7 @@ index 3da8b639..0504c975 100644
  HDC
  APIENTRY
  DdGetDC(
-@@ -102,12 +112,14 @@ DdGetDC(
+@@ -102,12 +110,14 @@ DdGetDC(
      LPPALETTEENTRY            pColorTable
      );
  
@@ -81,7 +79,7 @@ index 3da8b639..0504c975 100644
  HBITMAP
  APIENTRY
  DdCreateDIBSection(
-@@ -119,6 +131,7 @@ DdCreateDIBSection(
+@@ -119,6 +129,7 @@ DdCreateDIBSection(
      DWORD             dwOffset
      );
  
@@ -89,7 +87,7 @@ index 3da8b639..0504c975 100644
  BOOL
  APIENTRY
  DdReenableDirectDrawObject(
-@@ -126,6 +139,7 @@ DdReenableDirectDrawObject(
+@@ -126,6 +137,7 @@ DdReenableDirectDrawObject(
      BOOL*                   pbNewMode
      );
  
@@ -97,7 +95,7 @@ index 3da8b639..0504c975 100644
  BOOL
  APIENTRY
  DdAttachSurface(
-@@ -133,6 +147,7 @@ DdAttachSurface(
+@@ -133,6 +145,7 @@ DdAttachSurface(
      LPDDRAWI_DDRAWSURFACE_LCL   pSurfaceTo
      );
  
@@ -105,7 +103,7 @@ index 3da8b639..0504c975 100644
  VOID
  APIENTRY
  DdUnattachSurface(
-@@ -140,12 +155,14 @@ DdUnattachSurface(
+@@ -140,12 +153,14 @@ DdUnattachSurface(
      LPDDRAWI_DDRAWSURFACE_LCL   pSurfaceAttached
      );
  
@@ -120,7 +118,7 @@ index 3da8b639..0504c975 100644
  HANDLE
  APIENTRY
  DdGetDxHandle(
-@@ -154,6 +171,7 @@ DdGetDxHandle(
+@@ -154,6 +169,7 @@ DdGetDxHandle(
      BOOL			bRelease
      );
  
@@ -128,7 +126,7 @@ index 3da8b639..0504c975 100644
  BOOL
  APIENTRY
  DdSetGammaRamp(
-@@ -164,6 +182,7 @@ DdSetGammaRamp(
+@@ -164,6 +180,7 @@ DdSetGammaRamp(
  
  
  

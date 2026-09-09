@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wdspxe.h b/generation/WinSDK/RecompiledIdlHeaders/um/wdspxe.h
-index 6cfa722c..6c478305 100644
+index 6cfa722c..c4d6037d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wdspxe.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wdspxe.h
-@@ -15,6 +15,9 @@ Abstract:
+@@ -15,6 +15,7 @@ Abstract:
  #ifndef __WDSPXE_H__
  #define __WDSPXE_H__
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -252,6 +255,7 @@ typedef ULONG PXE_PROVIDER_ATTRIBUTE;
+@@ -252,6 +253,7 @@ typedef ULONG PXE_PROVIDER_ATTRIBUTE;
  //
  // Provider Registration and Enumeration APIs
  //
@@ -20,7 +18,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeProviderRegister (
-@@ -262,12 +266,14 @@ PxeProviderRegister (
+@@ -262,12 +264,14 @@ PxeProviderRegister (
      _Out_opt_ PHKEY phProviderKey
      );
  
@@ -35,7 +33,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeProviderQueryIndex (
-@@ -275,12 +281,14 @@ PxeProviderQueryIndex (
+@@ -275,12 +279,14 @@ PxeProviderQueryIndex (
      _Out_ PULONG puIndex
      );
  
@@ -50,7 +48,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeProviderEnumNext (
-@@ -288,12 +296,14 @@ PxeProviderEnumNext (
+@@ -288,12 +294,14 @@ PxeProviderEnumNext (
      _Out_ PPXE_PROVIDER *ppProvider
      );
  
@@ -65,7 +63,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PxeProviderFreeInfo (
      _In_ PPXE_PROVIDER pProvider
-@@ -302,6 +312,7 @@ PxeProviderFreeInfo (
+@@ -302,6 +310,7 @@ PxeProviderFreeInfo (
  //
  // Callback Registration
  //
@@ -73,7 +71,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeRegisterCallback (
-@@ -314,6 +325,7 @@ PxeRegisterCallback (
+@@ -314,6 +323,7 @@ PxeRegisterCallback (
  //
  // UDP Send/Boot Action
  //
@@ -81,7 +79,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeSendReply (
-@@ -326,6 +338,7 @@ PxeSendReply (
+@@ -326,6 +336,7 @@ PxeSendReply (
  //
  // Notify of Async Processing
  //
@@ -89,7 +87,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeAsyncRecvDone (
-@@ -337,6 +350,7 @@ PxeAsyncRecvDone (
+@@ -337,6 +348,7 @@ PxeAsyncRecvDone (
  // Trace
  //
  
@@ -97,7 +95,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeTrace (
-@@ -358,6 +372,8 @@ PxeTraceV (
+@@ -358,6 +370,8 @@ PxeTraceV (
  //
  // Packet Allocation
  //
@@ -106,7 +104,7 @@ index 6cfa722c..6c478305 100644
  PVOID
  PXEAPI
  PxePacketAllocate (
-@@ -366,6 +382,7 @@ PxePacketAllocate (
+@@ -366,6 +380,7 @@ PxePacketAllocate (
      _In_ ULONG uSize
      );
  
@@ -114,7 +112,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxePacketFree (
-@@ -377,6 +394,7 @@ PxePacketFree (
+@@ -377,6 +392,7 @@ PxePacketFree (
  //
  // Provider Attributes
  //
@@ -122,7 +120,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeProviderSetAttribute (
-@@ -389,6 +407,7 @@ PxeProviderSetAttribute (
+@@ -389,6 +405,7 @@ PxeProviderSetAttribute (
  //
  // Dhcp Functions
  //
@@ -130,7 +128,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpInitialize (
-@@ -399,6 +418,7 @@ PxeDhcpInitialize (
+@@ -399,6 +416,7 @@ PxeDhcpInitialize (
      _Out_ PULONG puReplyPacketLen
      );
  
@@ -138,7 +136,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpv6Initialize (
-@@ -409,6 +429,7 @@ PxeDhcpv6Initialize (
+@@ -409,6 +427,7 @@ PxeDhcpv6Initialize (
      _Out_ PULONG pcbReplyUsed
      );
  
@@ -146,7 +144,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpAppendOption (
-@@ -420,6 +441,7 @@ PxeDhcpAppendOption (
+@@ -420,6 +439,7 @@ PxeDhcpAppendOption (
      _In_reads_bytes_opt_(bOptionLen) PVOID pValue
      );
  
@@ -154,7 +152,7 @@ index 6cfa722c..6c478305 100644
  _Success_(return == ERROR_SUCCESS)
  DWORD
  PXEAPI
-@@ -432,6 +454,7 @@ PxeDhcpv6AppendOption (
+@@ -432,6 +452,7 @@ PxeDhcpv6AppendOption (
      _In_reads_bytes_(cbOption) PVOID pOption
      );
  
@@ -162,7 +160,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpAppendOptionRaw (
-@@ -442,6 +465,7 @@ PxeDhcpAppendOptionRaw (
+@@ -442,6 +463,7 @@ PxeDhcpAppendOptionRaw (
      _In_reads_bytes_(uBufferLen) PVOID pBuffer
      );
  
@@ -170,7 +168,7 @@ index 6cfa722c..6c478305 100644
  _Success_(return == ERROR_SUCCESS)
  DWORD
  PXEAPI
-@@ -453,6 +477,7 @@ PxeDhcpv6AppendOptionRaw (
+@@ -453,6 +475,7 @@ PxeDhcpv6AppendOptionRaw (
      _In_reads_bytes_(cbBuffer) PVOID pBuffer
      );
  
@@ -178,7 +176,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpIsValid (
-@@ -462,6 +487,7 @@ PxeDhcpIsValid (
+@@ -462,6 +485,7 @@ PxeDhcpIsValid (
      _Out_opt_ PBOOL pbPxeOptionPresent
      );
  
@@ -186,7 +184,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpv6IsValid (
-@@ -471,6 +497,7 @@ PxeDhcpv6IsValid (
+@@ -471,6 +495,7 @@ PxeDhcpv6IsValid (
      _Out_opt_ PBOOL pbPxeOptionPresent
      );
  
@@ -194,7 +192,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpGetOptionValue (
-@@ -482,6 +509,7 @@ PxeDhcpGetOptionValue (
+@@ -482,6 +507,7 @@ PxeDhcpGetOptionValue (
      _Outptr_opt_result_bytebuffer_(*pbOptionLen) PVOID *ppOptionValue
      );
  
@@ -202,7 +200,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpv6GetOptionValue (
-@@ -493,6 +521,7 @@ PxeDhcpv6GetOptionValue (
+@@ -493,6 +519,7 @@ PxeDhcpv6GetOptionValue (
      _Outptr_opt_result_bytebuffer_(*pwOptionLen) PVOID *ppOptionValue
      );
  
@@ -210,7 +208,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpGetVendorOptionValue (
-@@ -504,6 +533,7 @@ PxeDhcpGetVendorOptionValue (
+@@ -504,6 +531,7 @@ PxeDhcpGetVendorOptionValue (
      _Outptr_opt_result_bytebuffer_(*pbOptionLen) PVOID *ppOptionValue
      );
  
@@ -218,7 +216,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpv6GetVendorOptionValue (
-@@ -516,6 +546,7 @@ PxeDhcpv6GetVendorOptionValue (
+@@ -516,6 +544,7 @@ PxeDhcpv6GetVendorOptionValue (
      _Outptr_opt_result_bytebuffer_(*pwOptionLen) PVOID *ppOptionValue
      );
  
@@ -226,7 +224,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpv6ParseRelayForw (
-@@ -528,6 +559,7 @@ PxeDhcpv6ParseRelayForw (
+@@ -528,6 +557,7 @@ PxeDhcpv6ParseRelayForw (
      _Out_ PULONG pcbInnerPacket
      );
  
@@ -234,7 +232,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeDhcpv6CreateRelayRepl (
-@@ -543,6 +575,7 @@ PxeDhcpv6CreateRelayRepl (
+@@ -543,6 +573,7 @@ PxeDhcpv6CreateRelayRepl (
  //
  // Server Information
  //
@@ -242,7 +240,7 @@ index 6cfa722c..6c478305 100644
  DWORD
  PXEAPI
  PxeGetServerInfo (
-@@ -551,6 +584,7 @@ PxeGetServerInfo (
+@@ -551,6 +582,7 @@ PxeGetServerInfo (
      _In_ ULONG uBufferLen
      );
  

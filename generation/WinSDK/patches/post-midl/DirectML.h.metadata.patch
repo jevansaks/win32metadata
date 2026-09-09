@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DirectML.h b/generation/WinSDK/RecompiledIdlHeaders/um/DirectML.h
-index 3bd1921b..2e679a34 100644
+index 3bd1921b..5039624e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/DirectML.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/DirectML.h
-@@ -2,6 +2,9 @@
+@@ -2,6 +2,7 @@
  
  #ifndef DIRECTML_H
  #define DIRECTML_H
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma once
  
  #ifdef _GAMING_XBOX_SCARLETT
-@@ -2284,6 +2287,7 @@ enum DML_CREATE_DEVICE_FLAGS
+@@ -2284,6 +2285,7 @@ enum DML_CREATE_DEVICE_FLAGS
  
  DEFINE_ENUM_FLAG_OPERATORS(DML_CREATE_DEVICE_FLAGS)
  

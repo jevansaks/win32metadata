@@ -18,9 +18,7 @@ Environment:
 --*/
 
 #pragma once
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #ifndef RC_INVOKED
 
 #include "TraceLoggingProvider.h"
@@ -432,14 +430,12 @@ void _tlgWriteActivityAutoStop(
     TraceLoggingHProvider provider,
     _In_ GUID const* pActivityId)
 {
-_Win32_metadata_supported_os_(windows10.0.10240)
     TraceLoggingWriteActivity(
         provider,
         "ActivityStoppedAutomatically",
         pActivityId,
         NULL,
         TraceLoggingOpcode(2 /* WINEVENT_OPCODE_STOP */),
-_Win32_metadata_supported_os_(windows10.0.10240)
         TraceLoggingKeyword(keyword),
         TraceLoggingLevel(level));
 }

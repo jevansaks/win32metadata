@@ -2,9 +2,7 @@
 //    Copyright (C) Microsoft.  All rights reserved.
 //
 // OLE reconciliation interface definitions.
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma once
 

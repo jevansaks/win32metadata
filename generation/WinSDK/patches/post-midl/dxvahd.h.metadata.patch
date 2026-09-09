@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dxvahd.h b/generation/WinSDK/RecompiledIdlHeaders/um/dxvahd.h
-index 5835b704..55b4d61f 100644
+index 5835b704..7725086f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/dxvahd.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/dxvahd.h
-@@ -73,6 +73,9 @@ extern "C"{
+@@ -73,6 +73,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if 0
-@@ -510,6 +513,7 @@ EXTERN_C const IID IID_IDXVAHD_Device;
+@@ -510,6 +511,7 @@ EXTERN_C const IID IID_IDXVAHD_Device;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 5835b704..55b4d61f 100644
      MIDL_INTERFACE("95f12dfd-d77e-49be-815f-57d579634d6d")
      IDXVAHD_Device : public IUnknown
      {
-@@ -748,6 +752,7 @@ EXTERN_C const IID IID_IDXVAHD_VideoProcessor;
+@@ -748,6 +750,7 @@ EXTERN_C const IID IID_IDXVAHD_VideoProcessor;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 5835b704..55b4d61f 100644
      MIDL_INTERFACE("95f4edf4-6e03-4cd7-be1b-3075d665aa52")
      IDXVAHD_VideoProcessor : public IUnknown
      {
-@@ -1132,6 +1137,7 @@ typedef struct _DXVAHDETW_DESTROYVIDEOPROCESSOR
+@@ -1132,6 +1135,7 @@ typedef struct _DXVAHDETW_DESTROYVIDEOPROCESSOR
  
  
  

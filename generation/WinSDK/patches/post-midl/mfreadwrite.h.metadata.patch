@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.h b/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.h
-index c1647f60..e1c3aefa 100644
+index c1647f60..f79d8c1b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.h
-@@ -130,6 +130,9 @@ extern "C"{
+@@ -130,6 +130,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (WINVER >= _WIN32_WINNT_WIN7) 
  #pragma region Application or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
-@@ -150,6 +153,7 @@ EXTERN_C const IID IID_IMFReadWriteClassFactory;
+@@ -150,6 +151,7 @@ EXTERN_C const IID IID_IMFReadWriteClassFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index c1647f60..e1c3aefa 100644
      MIDL_INTERFACE("E7FE2E12-661C-40DA-92F9-4F002AB67627")
      IMFReadWriteClassFactory : public IUnknown
      {
-@@ -275,14 +279,17 @@ EXTERN_C const IID IID_IMFReadWriteClassFactory;
+@@ -275,14 +277,17 @@ EXTERN_C const IID IID_IMFReadWriteClassFactory;
  /* [local] */ 
  
  EXTERN_GUID(CLSID_MFSourceReader, 0x1777133c, 0x0881, 0x411b, 0xa5, 0x77, 0xad, 0x54, 0x5f, 0x07, 0x14, 0xc4);
@@ -38,7 +36,7 @@ index c1647f60..e1c3aefa 100644
  STDAPI MFCreateSourceReaderFromMediaSource(
      _In_ IMFMediaSource *pMediaSource,
      _In_opt_ IMFAttributes *pAttributes,
-@@ -354,6 +361,7 @@ EXTERN_C const IID IID_IMFSourceReader;
+@@ -354,6 +359,7 @@ EXTERN_C const IID IID_IMFSourceReader;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -46,7 +44,7 @@ index c1647f60..e1c3aefa 100644
      MIDL_INTERFACE("70ae66f2-c809-4e4f-8915-bdcb406b7993")
      IMFSourceReader : public IUnknown
      {
-@@ -643,6 +651,7 @@ EXTERN_C const IID IID_IMFSourceReaderEx;
+@@ -643,6 +649,7 @@ EXTERN_C const IID IID_IMFSourceReaderEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -54,7 +52,7 @@ index c1647f60..e1c3aefa 100644
      MIDL_INTERFACE("7b981cf0-560e-4116-9875-b099895f23d7")
      IMFSourceReaderEx : public IMFSourceReader
      {
-@@ -933,6 +942,7 @@ EXTERN_C const IID IID_IMFSourceReaderCallback;
+@@ -933,6 +940,7 @@ EXTERN_C const IID IID_IMFSourceReaderCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -62,7 +60,7 @@ index c1647f60..e1c3aefa 100644
      MIDL_INTERFACE("deec8d99-fa1d-4d82-84c2-2c8969944867")
      IMFSourceReaderCallback : public IUnknown
      {
-@@ -1197,11 +1207,13 @@ EXTERN_C const IID IID_IMFSourceReaderCallback2;
+@@ -1197,11 +1205,13 @@ EXTERN_C const IID IID_IMFSourceReaderCallback2;
  /* [local] */ 
  
  EXTERN_GUID(CLSID_MFSinkWriter, 0xa3bbfb17, 0x8273, 0x4e52, 0x9e, 0x0e, 0x97, 0x39, 0xdc, 0x88, 0x79, 0x90);
@@ -76,7 +74,7 @@ index c1647f60..e1c3aefa 100644
  STDAPI MFCreateSinkWriterFromMediaSink(
      _In_ IMFMediaSink *pMediaSink,
      _In_opt_ IMFAttributes *pAttributes,
-@@ -1266,6 +1278,7 @@ EXTERN_C const IID IID_IMFSinkWriter;
+@@ -1266,6 +1276,7 @@ EXTERN_C const IID IID_IMFSinkWriter;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index c1647f60..e1c3aefa 100644
      MIDL_INTERFACE("3137f1cd-fe5e-4805-a5d8-fb477448cb3d")
      IMFSinkWriter : public IUnknown
      {
-@@ -1524,6 +1537,7 @@ EXTERN_C const IID IID_IMFSinkWriterEx;
+@@ -1524,6 +1535,7 @@ EXTERN_C const IID IID_IMFSinkWriterEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index c1647f60..e1c3aefa 100644
      MIDL_INTERFACE("588d72ab-5Bc1-496a-8714-b70617141b25")
      IMFSinkWriterEx : public IMFSinkWriter
      {
-@@ -1739,6 +1753,7 @@ EXTERN_C const IID IID_IMFSinkWriterEncoderConfig;
+@@ -1739,6 +1751,7 @@ EXTERN_C const IID IID_IMFSinkWriterEncoderConfig;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index c1647f60..e1c3aefa 100644
      MIDL_INTERFACE("17C3779E-3CDE-4EDE-8C60-3899F5F53AD6")
      IMFSinkWriterEncoderConfig : public IUnknown
      {
-@@ -1860,6 +1875,7 @@ EXTERN_C const IID IID_IMFSinkWriterCallback;
+@@ -1860,6 +1873,7 @@ EXTERN_C const IID IID_IMFSinkWriterCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

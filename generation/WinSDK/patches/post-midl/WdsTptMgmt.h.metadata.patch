@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WdsTptMgmt.h b/generation/WinSDK/RecompiledIdlHeaders/um/WdsTptMgmt.h
-index e32751c6..10b64ee4 100644
+index e32751c6..f90a44ec 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WdsTptMgmt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WdsTptMgmt.h
-@@ -495,6 +495,9 @@ extern "C"{
+@@ -495,6 +495,7 @@ extern "C"{
  //--------------------------------------------------------------------------
  //
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -662,6 +665,7 @@ EXTERN_C const IID IID_IWdsTransportCacheable;
+@@ -662,6 +663,7 @@ EXTERN_C const IID IID_IWdsTransportCacheable;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("46AD894B-0BAB-47DC-84B2-7B553F1D8F80")
      IWdsTransportCacheable : public IDispatch
      {
-@@ -838,6 +842,7 @@ EXTERN_C const IID IID_IWdsTransportCollection;
+@@ -838,6 +840,7 @@ EXTERN_C const IID IID_IWdsTransportCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("B8BA4B1A-2FF4-43AB-996C-B2B10A91A6EB")
      IWdsTransportCollection : public IDispatch
      {
-@@ -1017,6 +1022,7 @@ EXTERN_C const IID IID_IWdsTransportManager;
+@@ -1017,6 +1020,7 @@ EXTERN_C const IID IID_IWdsTransportManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("5B0D35F5-1B13-4AFD-B878-6526DC340B5D")
      IWdsTransportManager : public IDispatch
      {
-@@ -1170,6 +1176,7 @@ EXTERN_C const IID IID_IWdsTransportServer;
+@@ -1170,6 +1174,7 @@ EXTERN_C const IID IID_IWdsTransportServer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("09CCD093-830D-4344-A30A-73AE8E8FCA90")
      IWdsTransportServer : public IDispatch
      {
-@@ -1373,6 +1380,7 @@ EXTERN_C const IID IID_IWdsTransportServer2;
+@@ -1373,6 +1378,7 @@ EXTERN_C const IID IID_IWdsTransportServer2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("256e999f-6df4-4538-81b9-857b9ab8fb47")
      IWdsTransportServer2 : public IWdsTransportServer
      {
-@@ -1569,6 +1577,7 @@ EXTERN_C const IID IID_IWdsTransportSetupManager;
+@@ -1569,6 +1575,7 @@ EXTERN_C const IID IID_IWdsTransportSetupManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("F7238425-EFA8-40A4-AEF9-C98D969C0B75")
      IWdsTransportSetupManager : public IDispatch
      {
-@@ -1782,6 +1791,7 @@ EXTERN_C const IID IID_IWdsTransportSetupManager2;
+@@ -1782,6 +1789,7 @@ EXTERN_C const IID IID_IWdsTransportSetupManager2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("02BE79DA-7E9E-4366-8B6E-2AA9A91BE47F")
      IWdsTransportSetupManager2 : public IWdsTransportSetupManager
      {
-@@ -1996,6 +2006,7 @@ EXTERN_C const IID IID_IWdsTransportConfigurationManager;
+@@ -1996,6 +2004,7 @@ EXTERN_C const IID IID_IWdsTransportConfigurationManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("84CC4779-42DD-4792-891E-1321D6D74B44")
      IWdsTransportConfigurationManager : public IDispatch
      {
-@@ -2233,6 +2244,7 @@ EXTERN_C const IID IID_IWdsTransportConfigurationManager2;
+@@ -2233,6 +2242,7 @@ EXTERN_C const IID IID_IWdsTransportConfigurationManager2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("D0D85CAF-A153-4F1D-A9DD-96F431C50717")
      IWdsTransportConfigurationManager2 : public IWdsTransportConfigurationManager
      {
-@@ -2456,6 +2468,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceManager;
+@@ -2456,6 +2466,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("3E22D9F6-3777-4D98-83E1-F98696717BA3")
      IWdsTransportNamespaceManager : public IDispatch
      {
-@@ -2663,6 +2676,7 @@ EXTERN_C const IID IID_IWdsTransportTftpManager;
+@@ -2663,6 +2674,7 @@ EXTERN_C const IID IID_IWdsTransportTftpManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("1327a7c8-ae8a-4fb3-8150-136227c37e9a")
      IWdsTransportTftpManager : public IDispatch
      {
-@@ -2812,6 +2826,7 @@ EXTERN_C const IID IID_IWdsTransportServicePolicy;
+@@ -2812,6 +2824,7 @@ EXTERN_C const IID IID_IWdsTransportServicePolicy;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("B9468578-9F2B-48CC-B27A-A60799C2750C")
      IWdsTransportServicePolicy : public IWdsTransportCacheable
      {
-@@ -3159,6 +3174,7 @@ EXTERN_C const IID IID_IWdsTransportServicePolicy2;
+@@ -3159,6 +3172,7 @@ EXTERN_C const IID IID_IWdsTransportServicePolicy2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("65C19E5C-AA7E-4B91-8944-91E0E5572797")
      IWdsTransportServicePolicy2 : public IWdsTransportServicePolicy
      {
-@@ -3525,6 +3541,7 @@ EXTERN_C const IID IID_IWdsTransportDiagnosticsPolicy;
+@@ -3525,6 +3539,7 @@ EXTERN_C const IID IID_IWdsTransportDiagnosticsPolicy;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("13B33EFC-7856-4F61-9A59-8DE67B6B87B6")
      IWdsTransportDiagnosticsPolicy : public IWdsTransportCacheable
      {
-@@ -3744,6 +3761,7 @@ EXTERN_C const IID IID_IWdsTransportMulticastSessionPolicy;
+@@ -3744,6 +3759,7 @@ EXTERN_C const IID IID_IWdsTransportMulticastSessionPolicy;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("4E5753CF-68EC-4504-A951-4A003266606B")
      IWdsTransportMulticastSessionPolicy : public IWdsTransportCacheable
      {
-@@ -4015,6 +4033,7 @@ EXTERN_C const IID IID_IWdsTransportNamespace;
+@@ -4015,6 +4031,7 @@ EXTERN_C const IID IID_IWdsTransportNamespace;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("FA561F57-FBEF-4ED3-B056-127CB1B33B84")
      IWdsTransportNamespace : public IDispatch
      {
-@@ -4416,6 +4435,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceAutoCast;
+@@ -4416,6 +4433,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceAutoCast;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("AD931A72-C4BD-4C41-8FBC-59C9C748DF9E")
      IWdsTransportNamespaceAutoCast : public IWdsTransportNamespace
      {
-@@ -4738,6 +4758,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceScheduledCast;
+@@ -4738,6 +4756,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceScheduledCast;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("3840CECF-D76C-416E-A4CC-31C741D2874B")
      IWdsTransportNamespaceScheduledCast : public IWdsTransportNamespace
      {
-@@ -5069,6 +5090,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceScheduledCastManualStart;
+@@ -5069,6 +5088,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceScheduledCastManualStart;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("013E6E4C-E6A7-4FB5-B7FF-D9F5DA805C31")
      IWdsTransportNamespaceScheduledCastManualStart : public IWdsTransportNamespaceScheduledCast
      {
-@@ -5399,6 +5421,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceScheduledCastAutoStart;
+@@ -5399,6 +5419,7 @@ EXTERN_C const IID IID_IWdsTransportNamespaceScheduledCastAutoStart;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -172,7 +170,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("D606AF3D-EA9C-4219-961E-7491D618D9B9")
      IWdsTransportNamespaceScheduledCastAutoStart : public IWdsTransportNamespaceScheduledCast
      {
-@@ -5781,6 +5804,7 @@ EXTERN_C const IID IID_IWdsTransportContent;
+@@ -5781,6 +5802,7 @@ EXTERN_C const IID IID_IWdsTransportContent;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -180,7 +178,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("D405D711-0296-4AB4-A860-AC7D32E65798")
      IWdsTransportContent : public IDispatch
      {
-@@ -5978,6 +6002,7 @@ EXTERN_C const IID IID_IWdsTransportSession;
+@@ -5978,6 +6000,7 @@ EXTERN_C const IID IID_IWdsTransportSession;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -188,7 +186,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("F4EFEA88-65B1-4F30-A4B9-2793987796FB")
      IWdsTransportSession : public IDispatch
      {
-@@ -6214,6 +6239,7 @@ EXTERN_C const IID IID_IWdsTransportClient;
+@@ -6214,6 +6237,7 @@ EXTERN_C const IID IID_IWdsTransportClient;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -196,7 +194,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("B5DBC93A-CABE-46CA-837F-3E44E93C6545")
      IWdsTransportClient : public IDispatch
      {
-@@ -6506,6 +6532,7 @@ EXTERN_C const IID IID_IWdsTransportTftpClient;
+@@ -6506,6 +6530,7 @@ EXTERN_C const IID IID_IWdsTransportTftpClient;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -204,7 +202,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("b022d3ae-884d-4d85-b146-53320e76ef62")
      IWdsTransportTftpClient : public IDispatch
      {
-@@ -6733,6 +6760,7 @@ EXTERN_C const IID IID_IWdsTransportContentProvider;
+@@ -6733,6 +6758,7 @@ EXTERN_C const IID IID_IWdsTransportContentProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -212,7 +210,7 @@ index e32751c6..10b64ee4 100644
      MIDL_INTERFACE("B9489F24-F219-4ACF-AAD7-265C7C08A6AE")
      IWdsTransportContentProvider : public IDispatch
      {
-@@ -7106,9 +7134,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -7106,9 +7132,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

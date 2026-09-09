@@ -6,9 +6,7 @@
  */
 
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef __INTSHCUT_H__
 #define __INTSHCUT_H__

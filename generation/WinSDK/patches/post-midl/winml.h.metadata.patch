@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winml.h b/generation/WinSDK/RecompiledIdlHeaders/um/winml.h
-index 24c36237..aeabac6c 100644
+index 24c36237..b1e0a17d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winml.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winml.h
-@@ -32,6 +32,9 @@
+@@ -32,6 +32,7 @@
  
  #ifndef __winml_h__
  #define __winml_h__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if defined(_MSC_VER) && (_MSC_VER >= 1020)
  #pragma once
-@@ -291,6 +294,7 @@ EXTERN_C const IID IID_IWinMLModel;
+@@ -291,6 +292,7 @@ EXTERN_C const IID IID_IWinMLModel;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 24c36237..aeabac6c 100644
      MIDL_INTERFACE("e2eeb6a9-f31f-4055-a521-e30b5b33664a")
      IWinMLModel : public IUnknown
      {
-@@ -441,6 +445,7 @@ EXTERN_C const IID IID_IWinMLEvaluationContext;
+@@ -441,6 +443,7 @@ EXTERN_C const IID IID_IWinMLEvaluationContext;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 24c36237..aeabac6c 100644
      MIDL_INTERFACE("95848f9e-583d-4054-af12-916387cd8426")
      IWinMLEvaluationContext : public IUnknown
      {
-@@ -562,6 +567,7 @@ EXTERN_C const IID IID_IWinMLRuntime;
+@@ -562,6 +565,7 @@ EXTERN_C const IID IID_IWinMLRuntime;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 24c36237..aeabac6c 100644
      MIDL_INTERFACE("a0425329-40ae-48d9-bce3-829ef7b8a41a")
      IWinMLRuntime : public IUnknown
      {
-@@ -697,6 +703,7 @@ EXTERN_C const IID IID_IWinMLRuntimeFactory;
+@@ -697,6 +701,7 @@ EXTERN_C const IID IID_IWinMLRuntimeFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

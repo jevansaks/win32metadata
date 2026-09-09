@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/audioenginebaseapo.h b/generation/WinSDK/RecompiledIdlHeaders/um/audioenginebaseapo.h
-index 165158b9..5601f6df 100644
+index 165158b9..378c859a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/audioenginebaseapo.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/audioenginebaseapo.h
-@@ -147,6 +147,9 @@ extern "C"{
+@@ -147,6 +147,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  //
-@@ -1622,51 +1625,97 @@ typedef /* [public] */ struct __MIDL___MIDL_itf_audioenginebaseapo_0000_0012_000
+@@ -1622,51 +1623,97 @@ typedef /* [public] */ struct __MIDL___MIDL_itf_audioenginebaseapo_0000_0012_000
      IPropertyStore *pFxProperties;
      } 	AudioFXExtensionParams;
  

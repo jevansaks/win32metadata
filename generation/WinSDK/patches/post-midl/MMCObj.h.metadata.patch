@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MMCObj.h b/generation/WinSDK/RecompiledIdlHeaders/um/MMCObj.h
-index 2148b623..3a34928a 100644
+index 2148b623..5469f814 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/MMCObj.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/MMCObj.h
-@@ -244,6 +244,9 @@ extern "C"{
+@@ -244,6 +244,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #ifndef MMC_VER
-@@ -391,6 +394,7 @@ EXTERN_C const IID IID_ISnapinProperties;
+@@ -391,6 +392,7 @@ EXTERN_C const IID IID_ISnapinProperties;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 2148b623..3a34928a 100644
      MIDL_INTERFACE("F7889DA9-4A02-4837-BF89-1A6F2A021010")
      ISnapinProperties : public IUnknown
      {
-@@ -516,6 +520,7 @@ EXTERN_C const IID IID_ISnapinPropertiesCallback;
+@@ -516,6 +518,7 @@ EXTERN_C const IID IID_ISnapinPropertiesCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 2148b623..3a34928a 100644
      MIDL_INTERFACE("A50FA2E5-7E61-45EB-A8D4-9A07B3E851A8")
      ISnapinPropertiesCallback : public IUnknown
      {
-@@ -5697,9 +5702,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -5697,9 +5700,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

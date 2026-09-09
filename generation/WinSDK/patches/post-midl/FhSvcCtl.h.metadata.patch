@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FhSvcCtl.h b/generation/WinSDK/RecompiledIdlHeaders/um/FhSvcCtl.h
-index 3d015885..fa3d2154 100644
+index 3d015885..8450cb48 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/FhSvcCtl.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/FhSvcCtl.h
-@@ -26,6 +26,9 @@ Environment:
+@@ -26,6 +26,7 @@ Environment:
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -49,6 +52,7 @@ typedef enum {
+@@ -49,6 +50,7 @@ typedef enum {
  
  DECLARE_HANDLE (FH_SERVICE_PIPE_HANDLE);
  
@@ -20,7 +18,7 @@ index 3d015885..fa3d2154 100644
  __declspec(deprecated("FhServiceOpenPipe is deprecated and might not work on all platforms. For more info, see MSDN."))
  HRESULT
  WINAPI
-@@ -57,6 +61,7 @@ FhServiceOpenPipe(
+@@ -57,6 +59,7 @@ FhServiceOpenPipe(
      _Out_ FH_SERVICE_PIPE_HANDLE *Pipe
      );
  
@@ -28,7 +26,7 @@ index 3d015885..fa3d2154 100644
  __declspec(deprecated("FhServiceClosePipe is deprecated and might not work on all platforms. For more info, see MSDN."))
  HRESULT
  WINAPI
-@@ -64,6 +69,7 @@ FhServiceClosePipe(
+@@ -64,6 +67,7 @@ FhServiceClosePipe(
      _In_ FH_SERVICE_PIPE_HANDLE Pipe
      );
  
@@ -36,7 +34,7 @@ index 3d015885..fa3d2154 100644
  __declspec(deprecated("FhServiceStartBackup is deprecated and might not work on all platforms. For more info, see MSDN."))
  HRESULT
  WINAPI
-@@ -72,6 +78,7 @@ FhServiceStartBackup(
+@@ -72,6 +76,7 @@ FhServiceStartBackup(
      _In_ BOOL LowPriorityIo
      );
  
@@ -44,7 +42,7 @@ index 3d015885..fa3d2154 100644
  __declspec(deprecated("FhServiceStopBackup is deprecated and might not work on all platforms. For more info, see MSDN."))
  HRESULT
  WINAPI
-@@ -80,6 +87,7 @@ FhServiceStopBackup(
+@@ -80,6 +85,7 @@ FhServiceStopBackup(
      _In_ BOOL StopTracking
      );
  
@@ -52,7 +50,7 @@ index 3d015885..fa3d2154 100644
  __declspec(deprecated("FhServiceReloadConfiguration is deprecated and might not work on all platforms. For more info, see MSDN."))
  HRESULT
  WINAPI
-@@ -87,6 +95,7 @@ FhServiceReloadConfiguration(
+@@ -87,6 +93,7 @@ FhServiceReloadConfiguration(
      _In_ FH_SERVICE_PIPE_HANDLE Pipe
      );
  
@@ -60,7 +58,7 @@ index 3d015885..fa3d2154 100644
  __declspec(deprecated("FhServiceBlockBackup is deprecated and might not work on all platforms. For more info, see MSDN."))
  HRESULT
  WINAPI
-@@ -94,6 +103,7 @@ FhServiceBlockBackup(
+@@ -94,6 +101,7 @@ FhServiceBlockBackup(
      _In_ FH_SERVICE_PIPE_HANDLE Pipe
      );
  

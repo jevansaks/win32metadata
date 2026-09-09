@@ -1,14 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/namedpipeapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/namedpipeapi.h
-index b533a8a2..701e6fa1 100644
+index b533a8a2..4f199cf2 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/namedpipeapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/namedpipeapi.h
-@@ -18,12 +18,17 @@
+@@ -18,12 +18,15 @@
  #include <minwindef.h>
  #include <minwinbase.h>
  
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #ifdef __cplusplus
  extern "C" {
  #endif
@@ -20,7 +18,7 @@ index b533a8a2..701e6fa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -34,6 +39,8 @@ CreatePipe(
+@@ -34,6 +37,8 @@ CreatePipe(
      _In_ DWORD nSize
      );
  
@@ -29,7 +27,7 @@ index b533a8a2..701e6fa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -42,6 +49,8 @@ ConnectNamedPipe(
+@@ -42,6 +47,8 @@ ConnectNamedPipe(
      _Inout_opt_ LPOVERLAPPED lpOverlapped
      );
  
@@ -38,7 +36,7 @@ index b533a8a2..701e6fa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -49,6 +58,8 @@ DisconnectNamedPipe(
+@@ -49,6 +56,8 @@ DisconnectNamedPipe(
      _In_ HANDLE hNamedPipe
      );
  
@@ -47,7 +45,7 @@ index b533a8a2..701e6fa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -59,6 +70,8 @@ SetNamedPipeHandleState(
+@@ -59,6 +68,8 @@ SetNamedPipeHandleState(
      _In_opt_ LPDWORD lpCollectDataTimeout
      );
  
@@ -56,7 +54,7 @@ index b533a8a2..701e6fa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -75,6 +88,8 @@ PeekNamedPipe(
+@@ -75,6 +86,8 @@ PeekNamedPipe(
  
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -65,7 +63,7 @@ index b533a8a2..701e6fa1 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -143,6 +158,8 @@ GetNamedPipeClientComputerNameW(
+@@ -143,6 +156,8 @@ GetNamedPipeClientComputerNameW(
  #define GetNamedPipeClientComputerName  GetNamedPipeClientComputerNameW
  #endif
  
@@ -74,7 +72,7 @@ index b533a8a2..701e6fa1 100644
  WINADVAPI
  _Must_inspect_result_
  BOOL
-@@ -156,6 +173,8 @@ ImpersonateNamedPipeClient(
+@@ -156,6 +171,8 @@ ImpersonateNamedPipeClient(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/realtimeapiset.h b/generation/WinSDK/RecompiledIdlHeaders/um/realtimeapiset.h
-index c06884e9..cef54551 100644
+index c06884e9..06660bd2 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/realtimeapiset.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/realtimeapiset.h
-@@ -12,6 +12,9 @@
+@@ -12,6 +12,7 @@
  
  #ifndef _APISETREALTIME_
  #define _APISETREALTIME_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <apiset.h>
  #include <apisetcconv.h>
-@@ -26,6 +29,8 @@ extern "C" {
+@@ -26,6 +27,8 @@ extern "C" {
  
  #if (_WIN32_WINNT >= 0x0600)
  
@@ -21,7 +19,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -34,6 +39,8 @@ QueryThreadCycleTime(
+@@ -34,6 +37,8 @@ QueryThreadCycleTime(
      _Out_ PULONG64 CycleTime
      );
  
@@ -30,7 +28,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -42,6 +49,8 @@ QueryProcessCycleTime(
+@@ -42,6 +47,8 @@ QueryProcessCycleTime(
      _Out_ PULONG64 CycleTime
      );
  
@@ -39,7 +37,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -54,6 +63,7 @@ QueryIdleProcessorCycleTime(
+@@ -54,6 +61,7 @@ QueryIdleProcessorCycleTime(
  
  #if (_WIN32_WINNT >= 0x0601)
  
@@ -47,7 +45,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -71,6 +81,7 @@ QueryIdleProcessorCycleTimeEx(
+@@ -71,6 +79,7 @@ QueryIdleProcessorCycleTimeEx(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -55,7 +53,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -78,6 +89,7 @@ QueryInterruptTimePrecise(
+@@ -78,6 +87,7 @@ QueryInterruptTimePrecise(
      _Out_ PULONGLONG lpInterruptTimePrecise
      );
  
@@ -63,7 +61,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -85,6 +97,7 @@ QueryUnbiasedInterruptTimePrecise(
+@@ -85,6 +95,7 @@ QueryUnbiasedInterruptTimePrecise(
      _Out_ PULONGLONG lpUnbiasedInterruptTimePrecise
      );
  
@@ -71,7 +69,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -94,6 +107,7 @@ QueryInterruptTime(
+@@ -94,6 +105,7 @@ QueryInterruptTime(
  
  #if (_WIN32_WINNT >= 0x0601)
  
@@ -79,7 +77,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -103,6 +117,7 @@ QueryUnbiasedInterruptTime(
+@@ -103,6 +115,7 @@ QueryUnbiasedInterruptTime(
  
  #endif // (_WIN32_WINNT >= 0x0601)
  
@@ -87,7 +85,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  HRESULT
  WINAPI
-@@ -110,6 +125,7 @@ QueryAuxiliaryCounterFrequency(
+@@ -110,6 +123,7 @@ QueryAuxiliaryCounterFrequency(
      _Out_ PULONGLONG lpAuxiliaryCounterFrequency
      );
  
@@ -95,7 +93,7 @@ index c06884e9..cef54551 100644
  WINBASEAPI
  HRESULT
  WINAPI
-@@ -119,6 +135,7 @@ ConvertAuxiliaryCounterToPerformanceCounter(
+@@ -119,6 +133,7 @@ ConvertAuxiliaryCounterToPerformanceCounter(
      _Out_opt_ PULONGLONG lpConversionError
      );
  

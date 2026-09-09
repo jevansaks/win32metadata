@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winternl.h b/generation/WinSDK/RecompiledIdlHeaders/um/winternl.h
-index 724dd027..c5bcf7b7 100644
+index 724dd027..75809b7f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winternl.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winternl.h
-@@ -30,6 +30,9 @@
+@@ -30,6 +30,7 @@
  #ifndef _WINTERNL_
  #define _WINTERNL_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -460,6 +463,7 @@ typedef struct __PUBLIC_OBJECT_TYPE_INFORMATION {
+@@ -460,6 +461,7 @@ typedef struct __PUBLIC_OBJECT_TYPE_INFORMATION {
  // use the Win32 API instead
  //     CloseHandle
  //
@@ -20,7 +18,7 @@ index 724dd027..c5bcf7b7 100644
  __kernel_entry NTSTATUS
  NTAPI
  NtClose (
-@@ -586,6 +590,7 @@ NtSetInformationKey (
+@@ -586,6 +588,7 @@ NtSetInformationKey (
  // use the Win32 API instead
  //     DeviceIoControl
  //
@@ -28,7 +26,7 @@ index 724dd027..c5bcf7b7 100644
  __kernel_entry NTSTATUS
  NTAPI
  NtDeviceIoControlFile (
-@@ -605,6 +610,7 @@ NtDeviceIoControlFile (
+@@ -605,6 +608,7 @@ NtDeviceIoControlFile (
  // use the Win32 API instead
  //     WaitForSingleObjectEx
  //
@@ -36,7 +34,7 @@ index 724dd027..c5bcf7b7 100644
  NTSTATUS
  NTAPI
  NtWaitForSingleObject (
-@@ -629,6 +635,7 @@ RtlIsNameLegalDOS8Dot3 (
+@@ -629,6 +633,7 @@ RtlIsNameLegalDOS8Dot3 (
  // This function might be needed for some of the internal Windows functions,
  // defined in this header file.
  //
@@ -44,7 +42,7 @@ index 724dd027..c5bcf7b7 100644
  _When_(Status < 0, _Out_range_(>, 0))
  _When_(Status >= 0, _Out_range_(==, 0))
  ULONG
-@@ -760,18 +767,21 @@ RtlTimeToSecondsSince1970 (
+@@ -760,18 +765,21 @@ RtlTimeToSecondsSince1970 (
  // These APIs might be need for some of the internal Windows functions,
  // defined in this header file.
  //
@@ -66,7 +64,7 @@ index 724dd027..c5bcf7b7 100644
  VOID
  NTAPI
  RtlFreeOemString(
-@@ -806,6 +816,7 @@ RtlInitAnsiStringEx (
+@@ -806,6 +814,7 @@ RtlInitAnsiStringEx (
      PCSZ SourceString
      );
  
@@ -74,7 +72,7 @@ index 724dd027..c5bcf7b7 100644
  VOID
  NTAPI
  RtlInitUnicodeString (
-@@ -813,6 +824,7 @@ RtlInitUnicodeString (
+@@ -813,6 +822,7 @@ RtlInitUnicodeString (
      PCWSTR SourceString
      );
  
@@ -82,7 +80,7 @@ index 724dd027..c5bcf7b7 100644
  NTSTATUS
  NTAPI
  RtlAnsiStringToUnicodeString (
-@@ -821,6 +833,7 @@ RtlAnsiStringToUnicodeString (
+@@ -821,6 +831,7 @@ RtlAnsiStringToUnicodeString (
      BOOLEAN AllocateDestinationString
      );
  
@@ -90,7 +88,7 @@ index 724dd027..c5bcf7b7 100644
  NTSTATUS
  NTAPI
  RtlUnicodeStringToAnsiString (
-@@ -829,6 +842,7 @@ RtlUnicodeStringToAnsiString (
+@@ -829,6 +840,7 @@ RtlUnicodeStringToAnsiString (
      BOOLEAN AllocateDestinationString
      );
  
@@ -98,7 +96,7 @@ index 724dd027..c5bcf7b7 100644
  NTSTATUS
  NTAPI
  RtlUnicodeStringToOemString(
-@@ -843,6 +857,7 @@ RtlUnicodeStringToOemString(
+@@ -843,6 +855,7 @@ RtlUnicodeStringToOemString(
  //     set CodePage to CP_ACP
  //     set cbMultiByte to 0
  //
@@ -106,7 +104,7 @@ index 724dd027..c5bcf7b7 100644
  NTSTATUS
  NTAPI
  RtlUnicodeToMultiByteSize(
-@@ -855,6 +870,7 @@ RtlUnicodeToMultiByteSize(
+@@ -855,6 +868,7 @@ RtlUnicodeToMultiByteSize(
  // Use the C runtime function instead
  //     strtol
  //
@@ -114,7 +112,7 @@ index 724dd027..c5bcf7b7 100644
  NTSTATUS
  NTAPI
  RtlCharToInteger (
-@@ -867,6 +883,7 @@ RtlCharToInteger (
+@@ -867,6 +881,7 @@ RtlCharToInteger (
  // use the Win32 API instead
  //     ConvertSidToStringSid
  //

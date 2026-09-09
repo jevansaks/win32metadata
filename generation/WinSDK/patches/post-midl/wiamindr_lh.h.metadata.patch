@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wiamindr_lh.h b/generation/WinSDK/RecompiledIdlHeaders/um/wiamindr_lh.h
-index 56babd4a..3c5989ac 100644
+index 56babd4a..04f2cab4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wiamindr_lh.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wiamindr_lh.h
-@@ -90,6 +90,9 @@ extern "C"{
+@@ -90,6 +90,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -1075,9 +1078,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -1075,9 +1076,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/workspaceax.h b/generation/WinSDK/RecompiledIdlHeaders/um/workspaceax.h
-index 864c5716..917ec08a 100644
+index 864c5716..88793e26 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/workspaceax.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/workspaceax.h
-@@ -73,6 +73,9 @@ extern "C"{
+@@ -73,6 +73,7 @@ extern "C"{
  //
  //--------------------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -91,6 +94,7 @@ EXTERN_C const IID IID_IWorkspaceResTypeRegistry;
+@@ -91,6 +92,7 @@ EXTERN_C const IID IID_IWorkspaceResTypeRegistry;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 864c5716..917ec08a 100644
      MIDL_INTERFACE("1D428C79-6E2E-4351-A361-C0401A03A0BA")
      IWorkspaceResTypeRegistry : public IDispatch
      {
-@@ -300,14 +304,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -300,14 +302,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

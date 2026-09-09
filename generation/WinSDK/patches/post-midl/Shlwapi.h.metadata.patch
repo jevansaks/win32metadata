@@ -1,19 +1,17 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h
-index 7181edc8..833dbeb7 100644
+index 7181edc8..e2eb680c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h
-@@ -10,6 +10,10 @@
+@@ -10,6 +10,8 @@
  \*****************************************************************************/
  
  
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
 +
  #ifndef _INC_SHLWAPI
  #define _INC_SHLWAPI
  
-@@ -108,33 +112,55 @@ extern "C" {
+@@ -108,33 +110,55 @@ extern "C" {
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
  #ifdef USE_STRICT_CONST
@@ -69,7 +67,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(PWSTR)    StrDupW(_In_ PCWSTR pszSrch);
  
  #if (NTDDI_VERSION >= NTDDI_VISTASP1)
-@@ -162,57 +188,99 @@ enum tagSFBS_FLAGS
+@@ -162,57 +186,99 @@ enum tagSFBS_FLAGS
  };
  typedef int SFBS_FLAGS;
  
@@ -169,7 +167,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(PWSTR)    StrStrNIW(_In_ PCWSTR pszFirst, _In_ PCWSTR pszSrch, UINT cchMax);
  #endif // _WIN32_IE_IE60
  #endif
-@@ -220,33 +288,54 @@ LWSTDAPI_(PWSTR)    StrStrNIW(_In_ PCWSTR pszFirst, _In_ PCWSTR pszSrch, UINT cc
+@@ -220,33 +286,54 @@ LWSTDAPI_(PWSTR)    StrStrNIW(_In_ PCWSTR pszFirst, _In_ PCWSTR pszSrch, UINT cc
  #define STIF_DEFAULT        0x00000000L
  #define STIF_SUPPORT_HEX    0x00000001L
  typedef int STIF_FLAGS;
@@ -224,7 +222,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPIV_(int)     wnsprintfW(_Out_writes_(cchDest) PWSTR pszDest, _In_ int cchDest, _In_ _Printf_format_string_ PCWSTR pszFmt, ...);
  
  #define StrIntlEqNA( s1, s2, nChar) StrIsIntlEqualA( TRUE, s1, s2, nChar)
-@@ -254,14 +343,18 @@ LWSTDAPIV_(int)     wnsprintfW(_Out_writes_(cchDest) PWSTR pszDest, _In_ int cch
+@@ -254,14 +341,18 @@ LWSTDAPIV_(int)     wnsprintfW(_Out_writes_(cchDest) PWSTR pszDest, _In_ int cch
  #define StrIntlEqNIA(s1, s2, nChar) StrIsIntlEqualA(FALSE, s1, s2, nChar)
  #define StrIntlEqNIW(s1, s2, nChar) StrIsIntlEqualW(FALSE, s1, s2, nChar)
  
@@ -243,7 +241,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI StrRetToBufW(_Inout_ STRRET *pstr, _In_opt_ PCUITEMID_CHILD pidl, _Out_writes_(cchBuf) LPWSTR pszBuf, UINT cchBuf);
  #ifdef UNICODE
  #define StrRetToBuf  StrRetToBufW
-@@ -271,7 +364,9 @@ LWSTDAPI StrRetToBufW(_Inout_ STRRET *pstr, _In_opt_ PCUITEMID_CHILD pidl, _Out_
+@@ -271,7 +362,9 @@ LWSTDAPI StrRetToBufW(_Inout_ STRRET *pstr, _In_opt_ PCUITEMID_CHILD pidl, _Out_
  
  // helper to duplicate a string using the task allocator
  
@@ -253,7 +251,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI SHStrDupW(_In_ LPCWSTR psz, _Outptr_result_nullonfailure_ LPWSTR *ppwsz);
  #ifdef UNICODE
  #define SHStrDup  SHStrDupW
-@@ -284,12 +379,14 @@ LWSTDAPI SHStrDupW(_In_ LPCWSTR psz, _Outptr_result_nullonfailure_ LPWSTR *ppwsz
+@@ -284,12 +377,14 @@ LWSTDAPI SHStrDupW(_In_ LPCWSTR psz, _Outptr_result_nullonfailure_ LPWSTR *ppwsz
  #pragma warning(disable:6387)
  
  // make the above helper function a bit easier to use in the HRESULT world
@@ -268,7 +266,7 @@ index 7181edc8..833dbeb7 100644
  inline HRESULT SHLocalStrDupA(_In_ PCSTR psz, _Outptr_result_maybenull_ PSTR *ppsz)
  {
      *ppsz = StrDupA(psz);
-@@ -305,8 +402,11 @@ inline HRESULT SHLocalStrDupA(_In_ PCSTR psz, _Outptr_result_maybenull_ PSTR *pp
+@@ -305,8 +400,11 @@ inline HRESULT SHLocalStrDupA(_In_ PCSTR psz, _Outptr_result_maybenull_ PSTR *pp
  #endif
  #endif // __cplusplus
  
@@ -280,7 +278,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI StrRetToBSTR(_Inout_ STRRET *pstr, _In_opt_ PCUITEMID_CHILD pidl, _Outptr_ BSTR *pbstr);
  
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
-@@ -315,6 +415,7 @@ LWSTDAPI StrRetToBSTR(_Inout_ STRRET *pstr, _In_opt_ PCUITEMID_CHILD pidl, _Outp
+@@ -315,6 +413,7 @@ LWSTDAPI StrRetToBSTR(_Inout_ STRRET *pstr, _In_opt_ PCUITEMID_CHILD pidl, _Outp
  #pragma region Desktop or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -288,7 +286,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI SHLoadIndirectString(_In_ PCWSTR pszSource, _Out_writes_(cchOutBuf) PWSTR pszOutBuf, _In_ UINT cchOutBuf, _Reserved_ void **ppvReserved);
  
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
-@@ -324,7 +425,9 @@ LWSTDAPI SHLoadIndirectString(_In_ PCWSTR pszSource, _Out_writes_(cchOutBuf) PWS
+@@ -324,7 +423,9 @@ LWSTDAPI SHLoadIndirectString(_In_ PCWSTR pszSource, _Out_writes_(cchOutBuf) PWS
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
  #if (_WIN32_IE >= _WIN32_IE_IE60SP2)
@@ -298,7 +296,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(BOOL) IsCharSpaceW(WCHAR wch);
  #ifdef UNICODE
  #define IsCharSpace  IsCharSpaceW
-@@ -332,7 +435,9 @@ LWSTDAPI_(BOOL) IsCharSpaceW(WCHAR wch);
+@@ -332,7 +433,9 @@ LWSTDAPI_(BOOL) IsCharSpaceW(WCHAR wch);
  #define IsCharSpace  IsCharSpaceA
  #endif // !UNICODE
  
@@ -308,7 +306,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(int)  StrCmpCW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2);
  #ifdef UNICODE
  #define StrCmpC  StrCmpCW
-@@ -340,7 +445,9 @@ LWSTDAPI_(int)  StrCmpCW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2);
+@@ -340,7 +443,9 @@ LWSTDAPI_(int)  StrCmpCW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2);
  #define StrCmpC  StrCmpCA
  #endif // !UNICODE
  
@@ -318,7 +316,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(int)  StrCmpICW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2);
  #ifdef UNICODE
  #define StrCmpIC  StrCmpICW
-@@ -420,15 +527,19 @@ LWSTDAPI_(int)  StrCmpICW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2);
+@@ -420,15 +525,19 @@ LWSTDAPI_(int)  StrCmpICW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2);
  #endif
  
  // StrCmp*C* - Compare strings using C runtime collation rules.
@@ -338,7 +336,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(int)  StrCmpNICW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2, int nChar);
  #ifdef UNICODE
  #define StrCmpNIC  StrCmpNICW
-@@ -440,7 +551,9 @@ LWSTDAPI_(int)  StrCmpNICW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2, int nChar
+@@ -440,7 +549,9 @@ LWSTDAPI_(int)  StrCmpNICW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2, int nChar
  // Backward compatible to NT's non-standard naming (strictly
  // for comctl32)
  //
@@ -348,7 +346,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(BOOL)     IntlStrEqWorkerW(BOOL fCaseSens, _In_reads_(nChar) LPCWSTR lpString1, _In_reads_(nChar) LPCWSTR lpString2, int nChar);
  
  #define IntlStrEqNA( s1, s2, nChar) IntlStrEqWorkerA( TRUE, s1, s2, nChar)
-@@ -519,45 +632,69 @@ LWSTDAPI_(BOOL)     IntlStrEqWorkerW(BOOL fCaseSens, _In_reads_(nChar) LPCWSTR l
+@@ -519,45 +630,69 @@ LWSTDAPI_(BOOL)     IntlStrEqWorkerW(BOOL fCaseSens, _In_reads_(nChar) LPCWSTR l
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -418,7 +416,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(BOOL)     PathFileExistsW(_In_ LPCWSTR pszPath);
  #ifdef UNICODE
  #define PathFileExists  PathFileExistsW
-@@ -565,21 +702,27 @@ LWSTDAPI_(BOOL)     PathFileExistsW(_In_ LPCWSTR pszPath);
+@@ -565,21 +700,27 @@ LWSTDAPI_(BOOL)     PathFileExistsW(_In_ LPCWSTR pszPath);
  #define PathFileExists  PathFileExistsA
  #endif // !UNICODE
  #ifdef USE_STRICT_CONST
@@ -446,7 +444,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LPCWSTR)  PathFindNextComponentW(_In_ LPCWSTR pszPath);
  #ifdef UNICODE
  #define PathFindNextComponent  PathFindNextComponentW
-@@ -587,21 +730,27 @@ LWSTDAPI_(LPCWSTR)  PathFindNextComponentW(_In_ LPCWSTR pszPath);
+@@ -587,21 +728,27 @@ LWSTDAPI_(LPCWSTR)  PathFindNextComponentW(_In_ LPCWSTR pszPath);
  #define PathFindNextComponent  PathFindNextComponentA
  #endif // !UNICODE
  #else
@@ -474,7 +472,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LPWSTR)  PathFindNextComponentW(_In_ LPCWSTR pszPath);
  #ifdef UNICODE
  #define PathFindNextComponent  PathFindNextComponentW
-@@ -609,9 +758,13 @@ LWSTDAPI_(LPWSTR)  PathFindNextComponentW(_In_ LPCWSTR pszPath);
+@@ -609,9 +756,13 @@ LWSTDAPI_(LPWSTR)  PathFindNextComponentW(_In_ LPCWSTR pszPath);
  #define PathFindNextComponent  PathFindNextComponentA
  #endif // !UNICODE
  #endif
@@ -488,7 +486,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LPCWSTR) PathFindSuffixArrayW(_In_ LPCWSTR pszPath, _In_reads_(iArraySize) const LPCWSTR *apszSuffix, _In_ int iArraySize);
  #ifdef UNICODE
  #define PathFindSuffixArray  PathFindSuffixArrayW
-@@ -619,7 +772,9 @@ LWSTDAPI_(LPCWSTR) PathFindSuffixArrayW(_In_ LPCWSTR pszPath, _In_reads_(iArrayS
+@@ -619,7 +770,9 @@ LWSTDAPI_(LPCWSTR) PathFindSuffixArrayW(_In_ LPCWSTR pszPath, _In_reads_(iArrayS
  #define PathFindSuffixArray  PathFindSuffixArrayA
  #endif // !UNICODE
  #ifdef USE_STRICT_CONST
@@ -498,7 +496,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LPCWSTR)  PathGetArgsW(_In_ LPCWSTR pszPath);
  #ifdef UNICODE
  #define PathGetArgs  PathGetArgsW
-@@ -627,7 +782,9 @@ LWSTDAPI_(LPCWSTR)  PathGetArgsW(_In_ LPCWSTR pszPath);
+@@ -627,7 +780,9 @@ LWSTDAPI_(LPCWSTR)  PathGetArgsW(_In_ LPCWSTR pszPath);
  #define PathGetArgs  PathGetArgsA
  #endif // !UNICODE
  #else
@@ -508,7 +506,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LPWSTR)  PathGetArgsW(_In_ LPCWSTR pszPath);
  #ifdef UNICODE
  #define PathGetArgs  PathGetArgsW
-@@ -635,14 +792,18 @@ LWSTDAPI_(LPWSTR)  PathGetArgsW(_In_ LPCWSTR pszPath);
+@@ -635,14 +790,18 @@ LWSTDAPI_(LPWSTR)  PathGetArgsW(_In_ LPCWSTR pszPath);
  #define PathGetArgs  PathGetArgsA
  #endif // !UNICODE
  #endif
@@ -527,7 +525,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(UINT)     PathGetCharTypeW(_In_ WCHAR ch);
  
  // Return flags for PathGetCharType
-@@ -652,102 +813,134 @@ LWSTDAPI_(UINT)     PathGetCharTypeW(_In_ WCHAR ch);
+@@ -652,102 +811,134 @@ LWSTDAPI_(UINT)     PathGetCharTypeW(_In_ WCHAR ch);
  #define GCT_WILD                0x0004
  #define GCT_SEPARATOR           0x0008
  
@@ -662,7 +660,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(BOOL)     PathMatchSpecW(_In_ LPCWSTR pszFile, _In_ LPCWSTR pszSpec);
  
  #if (_WIN32_IE >= _WIN32_IE_IE70)
-@@ -756,39 +949,65 @@ LWSTDAPI_(BOOL)     PathMatchSpecW(_In_ LPCWSTR pszFile, _In_ LPCWSTR pszSpec);
+@@ -756,39 +947,65 @@ LWSTDAPI_(BOOL)     PathMatchSpecW(_In_ LPCWSTR pszFile, _In_ LPCWSTR pszSpec);
  #define PMSF_MULTIPLE          0x00000001
  #define PMSF_DONT_STRIP_SPACES 0x00010000  // modifies either of the above
  
@@ -728,7 +726,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LPCWSTR)  PathSkipRootW(_In_ LPCWSTR pszPath);
  #ifdef UNICODE
  #define PathSkipRoot  PathSkipRootW
-@@ -796,7 +1015,9 @@ LWSTDAPI_(LPCWSTR)  PathSkipRootW(_In_ LPCWSTR pszPath);
+@@ -796,7 +1013,9 @@ LWSTDAPI_(LPCWSTR)  PathSkipRootW(_In_ LPCWSTR pszPath);
  #define PathSkipRoot  PathSkipRootA
  #endif // !UNICODE
  #else
@@ -738,7 +736,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LPWSTR)  PathSkipRootW(_In_ LPCWSTR pszPath);
  #ifdef UNICODE
  #define PathSkipRoot  PathSkipRootW
-@@ -804,51 +1025,67 @@ LWSTDAPI_(LPWSTR)  PathSkipRootW(_In_ LPCWSTR pszPath);
+@@ -804,51 +1023,67 @@ LWSTDAPI_(LPWSTR)  PathSkipRootW(_In_ LPCWSTR pszPath);
  #define PathSkipRoot  PathSkipRootA
  #endif // !UNICODE
  #endif
@@ -806,7 +804,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(BOOL)     PathUnExpandEnvStringsW(_In_ LPCWSTR pszPath, _Out_writes_(cchBuf) LPWSTR pszBuf, _In_ UINT cchBuf);
  #ifdef UNICODE
  #define PathUnExpandEnvStrings  PathUnExpandEnvStringsW
-@@ -1014,40 +1251,71 @@ typedef enum
+@@ -1014,40 +1249,71 @@ typedef enum
  #define URL_APPLY_FORCEAPPLY            0x00000008
  
  
@@ -878,7 +876,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI                UrlFixupW(_In_ PCWSTR pcszUrl, _Out_writes_(cchMax) PWSTR pszTranslatedUrl, DWORD cchMax);
  
  #ifdef UNICODE
-@@ -1114,7 +1382,9 @@ typedef PARSEDURLA PARSEDURL;
+@@ -1114,7 +1380,9 @@ typedef PARSEDURLA PARSEDURL;
  typedef PPARSEDURLA PPARSEDURL;
  #endif // UNICODE
  
@@ -888,7 +886,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI            ParseURLW(_In_ LPCWSTR pcszURL, _Inout_ PARSEDURLW * ppu);
  #ifdef UNICODE
  #define ParseURL  ParseURLW
-@@ -1142,33 +1412,41 @@ LWSTDAPI            ParseURLW(_In_ LPCWSTR pcszURL, _Inout_ PARSEDURLW * ppu);
+@@ -1142,33 +1410,41 @@ LWSTDAPI            ParseURLW(_In_ LPCWSTR pcszURL, _Inout_ PARSEDURLW * ppu);
  // SHDeleteEmptyKey mimics RegDeleteKey as it behaves on NT.
  // SHDeleteKey mimics RegDeleteKey as it behaves on Win95.
  
@@ -930,7 +928,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LSTATUS)    SHGetValueA(
      _In_                       HKEY hkey,
      _In_opt_                   LPCSTR  pszSubKey,
-@@ -1176,6 +1454,7 @@ LWSTDAPI_(LSTATUS)    SHGetValueA(
+@@ -1176,6 +1452,7 @@ LWSTDAPI_(LSTATUS)    SHGetValueA(
      _Out_opt_                  DWORD    *pdwType,
      _Out_writes_bytes_opt_(*pcbData) void     *pvData,
      _Inout_opt_                DWORD    *pcbData);
@@ -938,7 +936,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LSTATUS)    SHGetValueW(
      _In_                       HKEY hkey,
      _In_opt_                   LPCWSTR  pszSubKey,
-@@ -1188,8 +1467,10 @@ LWSTDAPI_(LSTATUS)    SHGetValueW(
+@@ -1188,8 +1465,10 @@ LWSTDAPI_(LSTATUS)    SHGetValueW(
  #else
  #define SHGetValue  SHGetValueA
  #endif // !UNICODE
@@ -949,7 +947,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LSTATUS)    SHSetValueW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubKey, _In_opt_ LPCWSTR pszValue, _In_ DWORD dwType,
      _In_reads_bytes_opt_(cbData) LPCVOID pvData, _In_ DWORD cbData);
  #ifdef UNICODE
-@@ -1414,9 +1695,11 @@ typedef int SRRF;
+@@ -1414,9 +1693,11 @@ typedef int SRRF;
  //
  //      BOOL bExists = ERROR_SUCCESS == SHRegGetValue(hkey, NULL, TEXT("MyValue"), SRRF_RT_ANY, NULL, NULL, NULL)
  
@@ -961,7 +959,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LSTATUS) SHRegGetValueW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubKey, _In_opt_ LPCWSTR pszValue,
      _In_ SRRF srrfFlags, _Out_opt_ DWORD *pdwType, _Out_writes_bytes_to_opt_(*pcbData,*pcbData) void *pvData,
      _Inout_opt_ DWORD *pcbData);
-@@ -1426,12 +1709,15 @@ LWSTDAPI_(LSTATUS) SHRegGetValueW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubKey, _I
+@@ -1426,12 +1707,15 @@ LWSTDAPI_(LSTATUS) SHRegGetValueW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubKey, _I
  #define SHRegGetValue  SHRegGetValueA
  #endif // !UNICODE
  
@@ -977,7 +975,7 @@ index 7181edc8..833dbeb7 100644
  STDAPI_(BOOL) SHRegGetBoolValueFromHKCUHKLM(_In_ PCWSTR pszKey, _In_opt_ PCWSTR pszValue, _In_ BOOL fDefault);
  #endif  // (_WIN32_IE >= 0x0602)
  
-@@ -1442,6 +1728,7 @@ STDAPI_(BOOL) SHRegGetBoolValueFromHKCUHKLM(_In_ PCWSTR pszKey, _In_opt_ PCWSTR
+@@ -1442,6 +1726,7 @@ STDAPI_(BOOL) SHRegGetBoolValueFromHKCUHKLM(_In_ PCWSTR pszKey, _In_opt_ PCWSTR
  // Additionally, if the data type is REG_EXPAND_SZ these functions will
  // go ahead and expand out the string, and "massage" the returned *pdwType
  // to be REG_SZ.
@@ -985,7 +983,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LSTATUS) SHQueryValueExA(
      _In_                       HKEY      hkey,
      _In_opt_                   LPCSTR  pszValue,
-@@ -1456,6 +1743,7 @@ LWSTDAPI_(LSTATUS) SHQueryValueExA(
+@@ -1456,6 +1741,7 @@ LWSTDAPI_(LSTATUS) SHQueryValueExA(
  // Additionally, if the data type is REG_EXPAND_SZ these functions will
  // go ahead and expand out the string, and "massage" the returned *pdwType
  // to be REG_SZ.
@@ -993,7 +991,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LSTATUS) SHQueryValueExW(
      _In_                       HKEY      hkey,
      _In_opt_                   LPCWSTR  pszValue,
-@@ -1471,26 +1759,38 @@ LWSTDAPI_(LSTATUS) SHQueryValueExW(
+@@ -1471,26 +1757,38 @@ LWSTDAPI_(LSTATUS) SHQueryValueExW(
  
  // Enumeration functions support.
  
@@ -1032,7 +1030,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LSTATUS)    SHRegSetPathW(_In_ HKEY hKey, _In_opt_ LPCWSTR pcszSubKey, _In_opt_ LPCWSTR pcszValue, _In_ LPCWSTR pcszPath, _In_ DWORD dwFlags);
  
  #ifdef UNICODE
-@@ -1540,10 +1840,15 @@ typedef enum
+@@ -1540,10 +1838,15 @@ typedef enum
  typedef HANDLE HUSKEY;  // HUSKEY is a Handle to a User Specific KEY.
  typedef HUSKEY *PHUSKEY;
  
@@ -1048,7 +1046,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LSTATUS)     SHRegQueryUSValueA(
      _In_                                      HUSKEY  hUSKey,
      _In_opt_                                  LPCSTR  pszValue,
-@@ -1553,6 +1858,7 @@ LWSTDAPI_(LSTATUS)     SHRegQueryUSValueA(
+@@ -1553,6 +1856,7 @@ LWSTDAPI_(LSTATUS)     SHRegQueryUSValueA(
      _In_                                      BOOL    fIgnoreHKCU,
      _In_reads_bytes_opt_(dwDefaultDataSize)        void *  pvDefaultData,
      _In_opt_                                  DWORD   dwDefaultDataSize);
@@ -1056,7 +1054,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LSTATUS)     SHRegQueryUSValueW(
      _In_                                      HUSKEY  hUSKey,
      _In_opt_                                  LPCWSTR  pszValue,
-@@ -1562,26 +1868,40 @@ LWSTDAPI_(LSTATUS)     SHRegQueryUSValueW(
+@@ -1562,26 +1866,40 @@ LWSTDAPI_(LSTATUS)     SHRegQueryUSValueW(
      _In_                                      BOOL    fIgnoreHKCU,
      _In_reads_bytes_opt_(dwDefaultDataSize)        void *  pvDefaultData,
      _In_opt_                                  DWORD   dwDefaultDataSize);
@@ -1097,7 +1095,7 @@ index 7181edc8..833dbeb7 100644
  STDAPI_(LSTATUS) SHRegGetUSValueA(
      _In_                                      LPCSTR  pszSubKey,
      _In_opt_                                  LPCSTR  pszValue,
-@@ -1591,6 +1911,7 @@ STDAPI_(LSTATUS) SHRegGetUSValueA(
+@@ -1591,6 +1909,7 @@ STDAPI_(LSTATUS) SHRegGetUSValueA(
      _In_                                      BOOL    fIgnoreHKCU,
      _In_reads_bytes_opt_(dwDefaultDataSize)        void   *pvDefaultData,
      _In_                                      DWORD   dwDefaultDataSize);
@@ -1105,7 +1103,7 @@ index 7181edc8..833dbeb7 100644
  STDAPI_(LSTATUS) SHRegGetUSValueW(
      _In_                                      LPCWSTR  pszSubKey,
      _In_opt_                                  LPCWSTR  pszValue,
-@@ -1600,8 +1921,11 @@ STDAPI_(LSTATUS) SHRegGetUSValueW(
+@@ -1600,8 +1919,11 @@ STDAPI_(LSTATUS) SHRegGetUSValueW(
      _In_                                      BOOL    fIgnoreHKCU,
      _In_reads_bytes_opt_(dwDefaultDataSize)        void   *pvDefaultData,
      _In_                                      DWORD   dwDefaultDataSize);
@@ -1117,7 +1115,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(int)         SHRegGetIntW(_In_ HKEY hk, _In_opt_ PCWSTR pwzKey, _In_ int iDefault);
  
  #ifdef UNICODE
-@@ -1631,7 +1955,9 @@ LWSTDAPI_(int)         SHRegGetIntW(_In_ HKEY hk, _In_opt_ PCWSTR pwzKey, _In_ i
+@@ -1631,7 +1953,9 @@ LWSTDAPI_(int)         SHRegGetIntW(_In_ HKEY hk, _In_opt_ PCWSTR pwzKey, _In_ i
  #define SHRegSetUSValue         SHRegSetUSValueA
  #endif
  
@@ -1127,7 +1125,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(BOOL) SHRegGetBoolUSValueW(_In_ LPCWSTR pszSubKey, _In_opt_ LPCWSTR pszValue, _In_ BOOL fIgnoreHKCU, _In_ BOOL fDefault);
  #ifdef UNICODE
  #define SHRegGetBoolUSValue  SHRegGetBoolUSValueW
-@@ -1783,6 +2109,7 @@ DEFINE_ENUM_FLAG_OPERATORS(FILETYPEATTRIBUTEFLAGS)
+@@ -1783,6 +2107,7 @@ DEFINE_ENUM_FLAG_OPERATORS(FILETYPEATTRIBUTEFLAGS)
  #undef INTERFACE
  #define INTERFACE IQueryAssociations
  
@@ -1135,7 +1133,7 @@ index 7181edc8..833dbeb7 100644
  DECLARE_INTERFACE_IID_( IQueryAssociations, IUnknown, "c46ca590-3c3f-11d2-bee6-0000f805ca57" )
  {
      // IQueryAssociations methods
-@@ -1796,31 +2123,39 @@ DECLARE_INTERFACE_IID_( IQueryAssociations, IUnknown, "c46ca590-3c3f-11d2-bee6-0
+@@ -1796,31 +2121,39 @@ DECLARE_INTERFACE_IID_( IQueryAssociations, IUnknown, "c46ca590-3c3f-11d2-bee6-0
  
  // use CLSID_QueryAssociations for clsid, object implements IQueryAssociations
  // AssocCreateForClasses() is the more functional version of this API
@@ -1175,7 +1173,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI AssocQueryKeyW(_In_ ASSOCF flags, _In_ ASSOCKEY key, _In_ LPCWSTR pszAssoc, _In_opt_ LPCWSTR pszExtra, _Out_ HKEY *phkeyOut);
  #ifdef UNICODE
  #define AssocQueryKey  AssocQueryKeyW
-@@ -1843,11 +2178,13 @@ LWSTDAPI AssocQueryKeyW(_In_ ASSOCF flags, _In_ ASSOCKEY key, _In_ LPCWSTR pszAs
+@@ -1843,11 +2176,13 @@ LWSTDAPI AssocQueryKeyW(_In_ ASSOCF flags, _In_ ASSOCKEY key, _In_ LPCWSTR pszAs
  //      then it checks the editflags for the file type looking for the FTA_AlwaysUnsafe bit.
  //      then it checks Safer policies.
  //
@@ -1189,7 +1187,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI AssocGetPerceivedType(_In_ PCWSTR pszExt, _Out_ PERCEIVED *ptype, _Out_ PERCEIVEDFLAG *pflag, _Outptr_opt_ PWSTR *ppszType);
  #endif
  
-@@ -1874,14 +2211,18 @@ LWSTDAPI AssocGetPerceivedType(_In_ PCWSTR pszExt, _Out_ PERCEIVED *ptype, _Out_
+@@ -1874,14 +2209,18 @@ LWSTDAPI AssocGetPerceivedType(_In_ PCWSTR pszExt, _Out_ PERCEIVED *ptype, _Out_
  typedef interface IStream IStream;
  #endif  /* __IStream_FWD_DEFINED__ */
  
@@ -1208,7 +1206,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(IStream *) SHOpenRegStream2W(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubkey, _In_opt_ LPCWSTR pszValue, _In_ DWORD grfMode);
  #ifdef UNICODE
  #define SHOpenRegStream2  SHOpenRegStream2W
-@@ -1892,7 +2233,9 @@ LWSTDAPI_(IStream *) SHOpenRegStream2W(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubke
+@@ -1892,7 +2231,9 @@ LWSTDAPI_(IStream *) SHOpenRegStream2W(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubke
  #undef SHOpenRegStream
  #define SHOpenRegStream SHOpenRegStream2
  
@@ -1218,7 +1216,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI SHCreateStreamOnFileW(_In_ LPCWSTR pszFile, _In_ DWORD grfMode, _Outptr_ IStream **ppstm);
  #ifdef UNICODE
  #define SHCreateStreamOnFile  SHCreateStreamOnFileW
-@@ -1903,10 +2246,12 @@ LWSTDAPI SHCreateStreamOnFileW(_In_ LPCWSTR pszFile, _In_ DWORD grfMode, _Outptr
+@@ -1903,10 +2244,12 @@ LWSTDAPI SHCreateStreamOnFileW(_In_ LPCWSTR pszFile, _In_ DWORD grfMode, _Outptr
  
  #if (_WIN32_IE >= 0x0600)
  
@@ -1231,7 +1229,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(IStream *) SHCreateMemStream(_In_reads_bytes_opt_(cbInit) const BYTE *pInit, _In_ UINT cbInit);
  
  
-@@ -1933,7 +2278,9 @@ LWSTDAPI_(IStream *) SHCreateMemStream(_In_reads_bytes_opt_(cbInit) const BYTE *
+@@ -1933,7 +2276,9 @@ LWSTDAPI_(IStream *) SHCreateMemStream(_In_reads_bytes_opt_(cbInit) const BYTE *
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
  
  #if (_WIN32_IE >= 0x0603)
@@ -1241,7 +1239,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI GetAcceptLanguagesW(_Out_writes_to_(*pcchLanguages, *pcchLanguages) LPWSTR pszLanguages, _Inout_ DWORD *pcchLanguages);
  #ifdef UNICODE
  #define GetAcceptLanguages  GetAcceptLanguagesW
-@@ -1972,17 +2319,25 @@ LWSTDAPI GetAcceptLanguagesW(_Out_writes_to_(*pcchLanguages, *pcchLanguages) LPW
+@@ -1972,17 +2317,25 @@ LWSTDAPI GetAcceptLanguagesW(_Out_writes_to_(*pcchLanguages, *pcchLanguages) LPW
  #define SPMODE_EVENTTRACE 0x00008000 // Event Tracing for Windows Enabled
  #endif
  
@@ -1267,7 +1265,7 @@ index 7181edc8..833dbeb7 100644
      LWSTDAPI IUnknown_QueryService(_In_opt_ IUnknown* punk, _In_ REFGUID guidService, _In_ REFIID riid, _COM_Outptr_ void ** ppvOut);
  
  
-@@ -1991,9 +2346,13 @@ DWORD WINAPI StopWatchFlush(void);
+@@ -1991,9 +2344,13 @@ DWORD WINAPI StopWatchFlush(void);
  #undef IStream_Write
  #endif
  
@@ -1281,7 +1279,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI IStream_Size(_In_ IStream *pstm, _Out_ ULARGE_INTEGER *pui);
  
  // ocidl.h
-@@ -2002,20 +2361,26 @@ LWSTDAPI IStream_Size(_In_ IStream *pstm, _Out_ ULARGE_INTEGER *pui);
+@@ -2002,20 +2359,26 @@ LWSTDAPI IStream_Size(_In_ IStream *pstm, _Out_ ULARGE_INTEGER *pui);
  typedef interface IConnectionPoint IConnectionPoint;
  #endif  /* __IConnectionPoint_FWD_DEFINED__ */
  
@@ -1308,7 +1306,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI IStream_Copy(_In_ IStream *pstmFrom, _In_ IStream *pstmTo, DWORD cb);
  
  #endif // (_WIN32_IE >= _WIN32_IE_IE70)
-@@ -2035,6 +2400,7 @@ LWSTDAPI IStream_Copy(_In_ IStream *pstmFrom, _In_ IStream *pstmTo, DWORD cb);
+@@ -2035,6 +2398,7 @@ LWSTDAPI IStream_Copy(_In_ IStream *pstmFrom, _In_ IStream *pstmTo, DWORD cb);
  #define SHGVSPB_USERDEFAULTS        (SHGVSPB_PERUSER | SHGVSPB_ALLFOLDERS)
  #define SHGVSPB_GLOBALDEFAULTS      (SHGVSPB_ALLUSERS | SHGVSPB_ALLFOLDERS)
  
@@ -1316,7 +1314,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI SHGetViewStatePropertyBag(_In_opt_ PCIDLIST_ABSOLUTE pidl, _In_opt_ PCWSTR pszBagName, DWORD dwFlags, _In_ REFIID riid, _Outptr_ void **ppv);
  #endif  // (_WIN32_IE >= 0x0600)
  
-@@ -2052,7 +2418,9 @@ LWSTDAPI SHGetViewStatePropertyBag(_In_opt_ PCIDLIST_ABSOLUTE pidl, _In_opt_ PCW
+@@ -2052,7 +2416,9 @@ LWSTDAPI SHGetViewStatePropertyBag(_In_opt_ PCIDLIST_ABSOLUTE pidl, _In_opt_ PCW
  #define FDTF_RTLDATE            0x00000200      // Right To Left reading order
  #define FDTF_NOAUTOREADINGORDER 0x00000400      // Don't detect reading order automatically. Useful if you will be converting to Ansi and don't want Unicode reading order characters
  
@@ -1326,7 +1324,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(int)  SHFormatDateTimeW(_In_ const FILETIME UNALIGNED * pft, _Inout_opt_ DWORD * pdwFlags, _Out_writes_(cchBuf) LPWSTR pszBuf, UINT cchBuf);
  #ifdef UNICODE
  #define SHFormatDateTime  SHFormatDateTimeW
-@@ -2066,12 +2434,16 @@ LWSTDAPI_(int)  SHFormatDateTimeW(_In_ const FILETIME UNALIGNED * pft, _Inout_op
+@@ -2066,12 +2432,16 @@ LWSTDAPI_(int)  SHFormatDateTimeW(_In_ const FILETIME UNALIGNED * pft, _Inout_op
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -1343,7 +1341,7 @@ index 7181edc8..833dbeb7 100644
  _Success_(return > 0)
  LWSTDAPI_(int)  SHUnicodeToUnicode(_In_ PCWSTR pwzSrc, _Out_writes_(cwchBuf) PWSTR pwzDst, _In_ int cwchBuf);
  
-@@ -2095,7 +2467,9 @@ LWSTDAPI_(int)  SHUnicodeToUnicode(_In_ PCWSTR pwzSrc, _Out_writes_(cwchBuf) PWS
+@@ -2095,7 +2465,9 @@ LWSTDAPI_(int)  SHUnicodeToUnicode(_In_ PCWSTR pwzSrc, _Out_writes_(cwchBuf) PWS
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
  
@@ -1353,7 +1351,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(int) SHMessageBoxCheckW(_In_opt_ HWND hwnd, _In_ LPCWSTR pszText, _In_ LPCWSTR pszCaption, UINT uType, int iDefault, _In_ LPCWSTR pszRegVal);
  #ifdef UNICODE
  #define SHMessageBoxCheck  SHMessageBoxCheckW
-@@ -2105,8 +2479,10 @@ LWSTDAPI_(int) SHMessageBoxCheckW(_In_opt_ HWND hwnd, _In_ LPCWSTR pszText, _In_
+@@ -2105,8 +2477,10 @@ LWSTDAPI_(int) SHMessageBoxCheckW(_In_opt_ HWND hwnd, _In_ LPCWSTR pszText, _In_
  
  
  // Prevents hang do to hung window on broadcast
@@ -1364,7 +1362,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(LRESULT) SHSendMessageBroadcastW(_In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam);
  #ifdef UNICODE
  #define SHSendMessageBroadcast  SHSendMessageBroadcastW
-@@ -2114,7 +2490,9 @@ LWSTDAPI_(LRESULT) SHSendMessageBroadcastW(_In_ UINT uMsg, _In_ WPARAM wParam, _
+@@ -2114,7 +2488,9 @@ LWSTDAPI_(LRESULT) SHSendMessageBroadcastW(_In_ UINT uMsg, _In_ WPARAM wParam, _
  #define SHSendMessageBroadcast  SHSendMessageBroadcastA
  #endif // !UNICODE
  
@@ -1374,7 +1372,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(WCHAR) SHStripMneumonicW(_Inout_ LPWSTR pszMenu);
  #ifdef UNICODE
  #define SHStripMneumonic  SHStripMneumonicW
-@@ -2165,6 +2543,7 @@ LWSTDAPI_(WCHAR) SHStripMneumonicW(_Inout_ LPWSTR pszMenu);
+@@ -2165,6 +2541,7 @@ LWSTDAPI_(WCHAR) SHStripMneumonicW(_Inout_ LPWSTR pszMenu);
  #define OS_MEDIACENTER              35          // eHome Freestyle Project
  #define OS_APPLIANCE                36          // Windows .NET Appliance Server
  
@@ -1382,7 +1380,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(BOOL) IsOS(DWORD dwOS);
  
  #endif // NO_SHLWAPI_ISOS
-@@ -2241,8 +2620,11 @@ typedef enum
+@@ -2241,8 +2618,11 @@ typedef enum
  } SHGLOBALCOUNTER;
  
  #if (NTDDI_VERSION >= NTDDI_WIN7)
@@ -1394,7 +1392,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(long) SHGlobalCounterDecrement(const SHGLOBALCOUNTER id);
  #endif // (NTDDI_VERSION >= NTDDI_WIN7)
  
-@@ -2251,13 +2633,20 @@ LWSTDAPI_(long) SHGlobalCounterDecrement(const SHGLOBALCOUNTER id);
+@@ -2251,13 +2631,20 @@ LWSTDAPI_(long) SHGlobalCounterDecrement(const SHGLOBALCOUNTER id);
  
  
  #if (_WIN32_IE >= 0x0603)
@@ -1415,7 +1413,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(UINT) WhichPlatform(void);
  
  // Return values of WhichPlatform
-@@ -2344,6 +2733,7 @@ typedef const QITAB *LPCQITAB;
+@@ -2344,6 +2731,7 @@ typedef const QITAB *LPCQITAB;
  
  #define QITABENT(Cthis, Ifoo) QITABENTMULTI(Cthis, Ifoo, Ifoo)
  
@@ -1423,7 +1421,7 @@ index 7181edc8..833dbeb7 100644
  STDAPI QISearch(_Inout_ void* that, _In_ LPCQITAB pqit, _In_ REFIID riid, _COM_Outptr_ void **ppv);
  
  #ifndef STATIC_CAST
-@@ -2375,11 +2765,14 @@ STDAPI QISearch(_Inout_ void* that, _In_ LPCQITAB pqit, _In_ REFIID riid, _COM_O
+@@ -2375,11 +2763,14 @@ STDAPI QISearch(_Inout_ void* that, _In_ LPCQITAB pqit, _In_ REFIID riid, _COM_O
  
  // Types for SHIsLowMemoryMachine
  #define ILMM_IE4    0       // 1997-era machine
@@ -1438,7 +1436,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI        SHGetInverseCMAP(_Out_writes_bytes_(cbMap) BYTE *pbMap, ULONG cbMap);
  
  
-@@ -2411,14 +2804,19 @@ LWSTDAPI        SHGetInverseCMAP(_Out_writes_bytes_(cbMap) BYTE *pbMap, ULONG cb
+@@ -2411,14 +2802,19 @@ LWSTDAPI        SHGetInverseCMAP(_Out_writes_bytes_(cbMap) BYTE *pbMap, ULONG cb
  #define SHACF_AUTOAPPEND_FORCE_ON       0x40000000  // Ignore the registry default and force the feature on. (Also know as AutoComplete)
  #define SHACF_AUTOAPPEND_FORCE_OFF      0x80000000  // Ignore the registry default and force the feature off. (Also know as AutoComplete)
  
@@ -1458,7 +1456,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(BOOL) SHSkipJunction(_In_opt_ IBindCtx* pbc, _In_ const CLSID *pclsid);
  
  enum
-@@ -2455,15 +2853,22 @@ enum
+@@ -2455,15 +2851,22 @@ enum
  
  typedef DWORD SHCT_FLAGS;   // SHCreateThread flags values
  
@@ -1481,7 +1479,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI SHReleaseThreadRef(void); // release a CTF_THREAD_REF reference earlier than the return of pfnThreadProc
  #endif // _WIN32_IE_IE60
  
-@@ -2472,10 +2877,14 @@ LWSTDAPI SHReleaseThreadRef(void); // release a CTF_THREAD_REF reference earlier
+@@ -2472,10 +2875,14 @@ LWSTDAPI SHReleaseThreadRef(void); // release a CTF_THREAD_REF reference earlier
  //====== GDI helper functions  ================================================
  //
  
@@ -1496,7 +1494,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(COLORREF) ColorAdjustLuma(COLORREF clrRGB, int n, BOOL fScale);
  
  
-@@ -2528,11 +2937,13 @@ typedef struct _DLLVERSIONINFO2
+@@ -2528,11 +2935,13 @@ typedef struct _DLLVERSIONINFO2
  typedef HRESULT (CALLBACK* DLLGETVERSIONPROC)(DLLVERSIONINFO *);
  
  // DllInstall (to be implemented by self-installing DLLs)
@@ -1510,7 +1508,7 @@ index 7181edc8..833dbeb7 100644
  LWSTDAPI_(BOOL) IsInternetESCEnabled(void);
  #endif // (_WIN32_IE >= 0x0602)
  
-@@ -2563,126 +2974,156 @@ LWSTDAPI_(BOOL) IsInternetESCEnabled(void);
+@@ -2563,126 +2972,156 @@ LWSTDAPI_(BOOL) IsInternetESCEnabled(void);
  //=============================================================================
  // C++ versions to help detect "const" violations
  

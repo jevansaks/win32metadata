@@ -7,9 +7,7 @@ extern "C" {
 #endif
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #include <time.h>
 
 #if _MSC_VER > 1000

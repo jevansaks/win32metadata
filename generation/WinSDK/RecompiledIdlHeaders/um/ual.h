@@ -10,9 +10,7 @@
 
 #include <winapifamily.h>
 #include <winsock2.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if defined (_MSC_VER)
 #pragma once

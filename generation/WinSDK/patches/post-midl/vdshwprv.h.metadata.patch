@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vdshwprv.h b/generation/WinSDK/RecompiledIdlHeaders/um/vdshwprv.h
-index 9832e71b..32b0f4bb 100644
+index 9832e71b..9a5d5173 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/vdshwprv.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/vdshwprv.h
-@@ -319,6 +319,9 @@ extern "C"{
+@@ -319,6 +319,7 @@ extern "C"{
  //
  //---------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #include <winapifamily.h>
-@@ -1019,6 +1022,7 @@ EXTERN_C const IID IID_IEnumVdsObject;
+@@ -1019,6 +1020,7 @@ EXTERN_C const IID IID_IEnumVdsObject;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("118610b7-8d94-4030-b5b8-500889788e4e")
      IEnumVdsObject : public IUnknown
      {
-@@ -1149,6 +1153,7 @@ EXTERN_C const IID IID_IVdsAsync;
+@@ -1149,6 +1151,7 @@ EXTERN_C const IID IID_IVdsAsync;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("d5d23b6d-5a55-4492-9889-397a3c2d2dbc")
      IVdsAsync : public IUnknown
      {
-@@ -1266,6 +1271,7 @@ EXTERN_C const IID IID_IVdsAdviseSink;
+@@ -1266,6 +1269,7 @@ EXTERN_C const IID IID_IVdsAdviseSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("8326cd1d-cf59-4936-b786-5efc08798e25")
      IVdsAdviseSink : public IUnknown
      {
-@@ -1355,6 +1361,7 @@ EXTERN_C const IID IID_IVdsProvider;
+@@ -1355,6 +1359,7 @@ EXTERN_C const IID IID_IVdsProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("10c5e575-7984-4e81-a56b-431f5f92ae42")
      IVdsProvider : public IUnknown
      {
-@@ -1442,6 +1449,7 @@ EXTERN_C const IID IID_IVdsProviderSupport;
+@@ -1442,6 +1447,7 @@ EXTERN_C const IID IID_IVdsProviderSupport;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("1732be13-e8f9-4a03-bfbc-5f616aa66ce1")
      IVdsProviderSupport : public IUnknown
      {
-@@ -1546,6 +1554,7 @@ EXTERN_C const IID IID_IVdsProviderPrivate;
+@@ -1546,6 +1552,7 @@ EXTERN_C const IID IID_IVdsProviderPrivate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("11f3cd41-b7e8-48ff-9472-9dff018aa292")
      IVdsProviderPrivate : public IUnknown
      {
-@@ -2392,6 +2401,7 @@ EXTERN_C const IID IID_IVdsHwProvider;
+@@ -2392,6 +2399,7 @@ EXTERN_C const IID IID_IVdsHwProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("d99bdaae-b13a-4178-9fdb-e27f16b4603e")
      IVdsHwProvider : public IUnknown
      {
-@@ -2497,6 +2507,7 @@ EXTERN_C const IID IID_IVdsHwProviderType;
+@@ -2497,6 +2505,7 @@ EXTERN_C const IID IID_IVdsHwProviderType;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("3e0f5166-542d-4fc6-947a-012174240b7e")
      IVdsHwProviderType : public IUnknown
      {
-@@ -2584,6 +2595,7 @@ EXTERN_C const IID IID_IVdsHwProviderType2;
+@@ -2584,6 +2593,7 @@ EXTERN_C const IID IID_IVdsHwProviderType2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("8190236f-c4d0-4e81-8011-d69512fcc984")
      IVdsHwProviderType2 : public IUnknown
      {
-@@ -2671,6 +2683,7 @@ EXTERN_C const IID IID_IVdsHwProviderStoragePools;
+@@ -2671,6 +2681,7 @@ EXTERN_C const IID IID_IVdsHwProviderStoragePools;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("d5b5937a-f188-4c79-b86c-11c920ad11b8")
      IVdsHwProviderStoragePools : public IUnknown
      {
-@@ -2828,6 +2841,7 @@ EXTERN_C const IID IID_IVdsSubSystem;
+@@ -2828,6 +2839,7 @@ EXTERN_C const IID IID_IVdsSubSystem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("6fcee2d3-6d90-4f91-80e2-a5c7caaca9d8")
      IVdsSubSystem : public IUnknown
      {
-@@ -3118,6 +3132,7 @@ EXTERN_C const IID IID_IVdsSubSystem2;
+@@ -3118,6 +3130,7 @@ EXTERN_C const IID IID_IVdsSubSystem2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("be666735-7800-4a77-9d9c-40f85b87e292")
      IVdsSubSystem2 : public IUnknown
      {
-@@ -3296,6 +3311,7 @@ EXTERN_C const IID IID_IVdsSubSystemNaming;
+@@ -3296,6 +3309,7 @@ EXTERN_C const IID IID_IVdsSubSystemNaming;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("0d70faa3-9cd4-4900-aa20-6981b6aafc75")
      IVdsSubSystemNaming : public IUnknown
      {
-@@ -3383,6 +3399,7 @@ EXTERN_C const IID IID_IVdsSubSystemIscsi;
+@@ -3383,6 +3397,7 @@ EXTERN_C const IID IID_IVdsSubSystemIscsi;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("0027346f-40d0-4b45-8cec-5906dc0380c8")
      IVdsSubSystemIscsi : public IUnknown
      {
-@@ -3517,6 +3534,7 @@ EXTERN_C const IID IID_IVdsSubSystemInterconnect;
+@@ -3517,6 +3532,7 @@ EXTERN_C const IID IID_IVdsSubSystemInterconnect;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("9e6fa560-c141-477b-83ba-0b6c38f7febf")
      IVdsSubSystemInterconnect : public IUnknown
      {
-@@ -3604,6 +3622,7 @@ EXTERN_C const IID IID_IVdsControllerPort;
+@@ -3604,6 +3620,7 @@ EXTERN_C const IID IID_IVdsControllerPort;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("18691d0d-4e7f-43e8-92e4-cf44beeed11c")
      IVdsControllerPort : public IUnknown
      {
-@@ -3739,6 +3758,7 @@ EXTERN_C const IID IID_IVdsController;
+@@ -3739,6 +3756,7 @@ EXTERN_C const IID IID_IVdsController;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("cb53d96e-dffb-474a-a078-790d1e2bc082")
      IVdsController : public IUnknown
      {
-@@ -3909,6 +3929,7 @@ EXTERN_C const IID IID_IVdsControllerControllerPort;
+@@ -3909,6 +3927,7 @@ EXTERN_C const IID IID_IVdsControllerControllerPort;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("ca5d735f-6bae-42c0-b30e-f2666045ce71")
      IVdsControllerControllerPort : public IUnknown
      {
-@@ -3996,6 +4017,7 @@ EXTERN_C const IID IID_IVdsDrive;
+@@ -3996,6 +4015,7 @@ EXTERN_C const IID IID_IVdsDrive;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("ff24efa4-aade-4b6b-898b-eaa6a20887c7")
      IVdsDrive : public IUnknown
      {
-@@ -4152,6 +4174,7 @@ EXTERN_C const IID IID_IVdsDrive2;
+@@ -4152,6 +4172,7 @@ EXTERN_C const IID IID_IVdsDrive2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -172,7 +170,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("60b5a730-addf-4436-8ca7-5769e2d1ffa4")
      IVdsDrive2 : public IUnknown
      {
-@@ -4239,6 +4262,7 @@ EXTERN_C const IID IID_IVdsLun;
+@@ -4239,6 +4260,7 @@ EXTERN_C const IID IID_IVdsLun;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -180,7 +178,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("3540a9c7-e60f-4111-a840-8bba6c2c83d8")
      IVdsLun : public IUnknown
      {
-@@ -4574,6 +4598,7 @@ EXTERN_C const IID IID_IVdsLun2;
+@@ -4574,6 +4596,7 @@ EXTERN_C const IID IID_IVdsLun2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -188,7 +186,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("e5b3a735-9efb-499a-8071-4394d9ee6fcb")
      IVdsLun2 : public IUnknown
      {
-@@ -4674,6 +4699,7 @@ EXTERN_C const IID IID_IVdsLunNaming;
+@@ -4674,6 +4697,7 @@ EXTERN_C const IID IID_IVdsLunNaming;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -196,7 +194,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("907504cb-6b4e-4d88-a34d-17ba661fbb06")
      IVdsLunNaming : public IUnknown
      {
-@@ -4761,6 +4787,7 @@ EXTERN_C const IID IID_IVdsLunNumber;
+@@ -4761,6 +4785,7 @@ EXTERN_C const IID IID_IVdsLunNumber;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -204,7 +202,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("d3f95e46-54b3-41f9-b678-0f1871443a08")
      IVdsLunNumber : public IUnknown
      {
-@@ -4848,6 +4875,7 @@ EXTERN_C const IID IID_IVdsLunControllerPorts;
+@@ -4848,6 +4873,7 @@ EXTERN_C const IID IID_IVdsLunControllerPorts;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -212,7 +210,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("451fe266-da6d-406a-bb60-82e534f85aeb")
      IVdsLunControllerPorts : public IUnknown
      {
-@@ -4960,6 +4988,7 @@ EXTERN_C const IID IID_IVdsLunMpio;
+@@ -4960,6 +4986,7 @@ EXTERN_C const IID IID_IVdsLunMpio;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -220,7 +218,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("7c5fbae3-333a-48a1-a982-33c15788cde3")
      IVdsLunMpio : public IUnknown
      {
-@@ -5106,6 +5135,7 @@ EXTERN_C const IID IID_IVdsLunIscsi;
+@@ -5106,6 +5133,7 @@ EXTERN_C const IID IID_IVdsLunIscsi;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -228,7 +226,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("0d7c1e64-b59b-45ae-b86a-2c2cc6a42067")
      IVdsLunIscsi : public IUnknown
      {
-@@ -5210,6 +5240,7 @@ EXTERN_C const IID IID_IVdsLunPlex;
+@@ -5210,6 +5238,7 @@ EXTERN_C const IID IID_IVdsLunPlex;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -236,7 +234,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("0ee1a790-5d2e-4abb-8c99-c481e8be2138")
      IVdsLunPlex : public IUnknown
      {
-@@ -5353,6 +5384,7 @@ EXTERN_C const IID IID_IVdsIscsiPortal;
+@@ -5353,6 +5382,7 @@ EXTERN_C const IID IID_IVdsIscsiPortal;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -244,7 +242,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("7fa1499d-ec85-4a8a-a47b-ff69201fcd34")
      IVdsIscsiPortal : public IUnknown
      {
-@@ -5534,6 +5566,7 @@ EXTERN_C const IID IID_IVdsIscsiTarget;
+@@ -5534,6 +5564,7 @@ EXTERN_C const IID IID_IVdsIscsiTarget;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -252,7 +250,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("aa8f5055-83e5-4bcc-aa73-19851a36a849")
      IVdsIscsiTarget : public IUnknown
      {
-@@ -5750,6 +5783,7 @@ EXTERN_C const IID IID_IVdsIscsiPortalGroup;
+@@ -5750,6 +5781,7 @@ EXTERN_C const IID IID_IVdsIscsiPortalGroup;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -260,7 +258,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("fef5f89d-a3dd-4b36-bf28-e7dde045c593")
      IVdsIscsiPortalGroup : public IUnknown
      {
-@@ -5910,6 +5944,7 @@ EXTERN_C const IID IID_IVdsStoragePool;
+@@ -5910,6 +5942,7 @@ EXTERN_C const IID IID_IVdsStoragePool;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -268,7 +266,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("932ca8cf-0eb3-4ba8-9620-22665d7f8450")
      IVdsStoragePool : public IUnknown
      {
-@@ -6066,6 +6101,7 @@ EXTERN_C const IID IID_IVdsMaintenance;
+@@ -6066,6 +6099,7 @@ EXTERN_C const IID IID_IVdsMaintenance;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -276,7 +274,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("daebeef3-8523-47ed-a2b9-05cecce2a1ae")
      IVdsMaintenance : public IUnknown
      {
-@@ -6201,6 +6237,7 @@ EXTERN_C const IID IID_IVdsHwProviderPrivate;
+@@ -6201,6 +6235,7 @@ EXTERN_C const IID IID_IVdsHwProviderPrivate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -284,7 +282,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("98f17bf3-9f33-4f12-8714-8b4075092c2e")
      IVdsHwProviderPrivate : public IUnknown
      {
-@@ -6296,6 +6333,7 @@ EXTERN_C const IID IID_IVdsHwProviderPrivateMpio;
+@@ -6296,6 +6331,7 @@ EXTERN_C const IID IID_IVdsHwProviderPrivateMpio;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -292,7 +290,7 @@ index 9832e71b..32b0f4bb 100644
      MIDL_INTERFACE("310a7715-ac2b-4c6f-9827-3d742f351676")
      IVdsHwProviderPrivateMpio : public IUnknown
      {
-@@ -6401,6 +6439,7 @@ EXTERN_C const IID IID_IVdsAdmin;
+@@ -6401,6 +6437,7 @@ EXTERN_C const IID IID_IVdsAdmin;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

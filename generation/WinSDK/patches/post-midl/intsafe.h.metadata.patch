@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/intsafe.h b/generation/WinSDK/RecompiledIdlHeaders/shared/intsafe.h
-index 412182be..fdabeecd 100644
+index 412182be..a5577c3f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/intsafe.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/intsafe.h
-@@ -10,6 +10,9 @@
+@@ -10,6 +10,7 @@
  #define _INTSAFE_H_INCLUDED_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  
  #if (_MSC_VER > 1000)
-@@ -374,6 +377,7 @@ C_ASSERT(sizeof(UINT_PTR) == sizeof(ULONG_PTR));
+@@ -374,6 +375,7 @@ C_ASSERT(sizeof(UINT_PTR) == sizeof(ULONG_PTR));
  //
  // INT8 -> UCHAR conversion
  //
@@ -20,7 +18,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -400,6 +404,7 @@ Int8ToUChar(
+@@ -400,6 +402,7 @@ Int8ToUChar(
  //
  // INT8 -> UINT8 conversion
  //
@@ -28,7 +26,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -431,6 +436,7 @@ Int8ToUInt8(
+@@ -431,6 +434,7 @@ Int8ToUInt8(
  //
  // INT8 -> USHORT conversion
  //
@@ -36,7 +34,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -467,6 +473,7 @@ Int8ToUShort(
+@@ -467,6 +471,7 @@ Int8ToUShort(
  //
  // INT8 -> UINT conversion
  //
@@ -44,7 +42,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -498,6 +505,7 @@ Int8ToUInt(
+@@ -498,6 +503,7 @@ Int8ToUInt(
  //
  // INT8 -> UINT_PTR conversion
  //
@@ -52,7 +50,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -524,6 +532,7 @@ Int8ToUIntPtr(
+@@ -524,6 +530,7 @@ Int8ToUIntPtr(
  //
  // INT8 -> ULONG conversion
  //
@@ -60,7 +58,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -550,6 +559,7 @@ Int8ToULong(
+@@ -550,6 +557,7 @@ Int8ToULong(
  //
  // INT8 -> ULONG_PTR conversion
  //
@@ -68,7 +66,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -586,6 +596,7 @@ Int8ToULongPtr(
+@@ -586,6 +594,7 @@ Int8ToULongPtr(
  //
  // INT8 -> ULONGLONG conversion
  //
@@ -76,7 +74,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -642,6 +653,7 @@ Int8ToULongLong(
+@@ -642,6 +651,7 @@ Int8ToULongLong(
  //
  // UINT8 -> INT8 conversion
  //
@@ -84,7 +82,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -668,6 +680,7 @@ UInt8ToInt8(
+@@ -668,6 +678,7 @@ UInt8ToInt8(
  //
  // UINT8 -> CHAR conversion
  //
@@ -92,7 +90,7 @@ index 412182be..fdabeecd 100644
  __forceinline
  HRESULT
  UInt8ToChar(
-@@ -685,6 +698,7 @@ UInt8ToChar(
+@@ -685,6 +696,7 @@ UInt8ToChar(
  //
  // BYTE -> INT8 conversion
  //
@@ -100,7 +98,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -711,6 +725,7 @@ ByteToInt8(
+@@ -711,6 +723,7 @@ ByteToInt8(
  //
  // BYTE -> CHAR conversion
  //
@@ -108,7 +106,7 @@ index 412182be..fdabeecd 100644
  __forceinline
  HRESULT
  ByteToChar(
-@@ -728,6 +743,7 @@ ByteToChar(
+@@ -728,6 +741,7 @@ ByteToChar(
  //
  // SHORT -> INT8 conversion
  //
@@ -116,7 +114,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -796,6 +812,7 @@ ShortToChar(
+@@ -796,6 +810,7 @@ ShortToChar(
  //
  // SHORT -> UINT8 conversion
  //
@@ -124,7 +122,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -863,6 +880,7 @@ ShortToUShort(
+@@ -863,6 +878,7 @@ ShortToUShort(
  //
  // SHORT -> UINT conversion
  //
@@ -132,7 +130,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -894,6 +912,7 @@ ShortToUInt(
+@@ -894,6 +910,7 @@ ShortToUInt(
  //
  // SHORT -> UINT_PTR conversion
  //
@@ -140,7 +138,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -920,6 +939,7 @@ ShortToUIntPtr(
+@@ -920,6 +937,7 @@ ShortToUIntPtr(
  //
  // SHORT -> ULONG conversion
  //
@@ -148,7 +146,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -946,6 +966,7 @@ ShortToULong(
+@@ -946,6 +964,7 @@ ShortToULong(
  //
  // SHORT -> ULONG_PTR conversion
  //
@@ -156,7 +154,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -977,6 +998,7 @@ ShortToULongPtr(
+@@ -977,6 +996,7 @@ ShortToULongPtr(
  //
  // SHORT -> DWORD_PTR conversion
  //
@@ -164,7 +162,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1003,6 +1025,7 @@ ShortToDWordPtr(
+@@ -1003,6 +1023,7 @@ ShortToDWordPtr(
  //
  // SHORT -> ULONGLONG conversion
  //
@@ -172,7 +170,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1169,6 +1192,7 @@ ShortToULongLong(
+@@ -1169,6 +1190,7 @@ ShortToULongLong(
  //
  // USHORT -> INT8 conversion
  //
@@ -180,7 +178,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1237,6 +1261,7 @@ UShortToChar(
+@@ -1237,6 +1259,7 @@ UShortToChar(
  //
  // USHORT -> UINT8 conversion
  //
@@ -188,7 +186,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1369,6 +1394,7 @@ UShortToShort(
+@@ -1369,6 +1392,7 @@ UShortToShort(
  //
  // INT -> INT8 conversion
  //
@@ -196,7 +194,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1442,6 +1468,7 @@ IntToChar(
+@@ -1442,6 +1466,7 @@ IntToChar(
  //
  // INT -> UINT8 conversion
  //
@@ -204,7 +202,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1791,6 +1818,7 @@ IntToULongLong(
+@@ -1791,6 +1816,7 @@ IntToULongLong(
  //
  // INT_PTR -> INT8 conversion
  //
@@ -212,7 +210,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1817,6 +1845,7 @@ IntPtrToInt8(
+@@ -1817,6 +1843,7 @@ IntPtrToInt8(
  //
  // INT_PTR -> UCHAR conversion
  //
@@ -220,7 +218,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1843,6 +1872,7 @@ IntPtrToUChar(
+@@ -1843,6 +1870,7 @@ IntPtrToUChar(
  //
  // INT_PTR -> CHAR conversion
  //
@@ -228,7 +226,7 @@ index 412182be..fdabeecd 100644
  __forceinline
  HRESULT
  IntPtrToChar(
-@@ -1859,6 +1889,7 @@ IntPtrToChar(
+@@ -1859,6 +1887,7 @@ IntPtrToChar(
  //
  // INT_PTR -> UINT8 conversion
  //
@@ -236,7 +234,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1890,6 +1921,7 @@ IntPtrToUInt8(
+@@ -1890,6 +1919,7 @@ IntPtrToUInt8(
  //
  // INT_PTR -> SHORT conversion
  //
@@ -244,7 +242,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -1921,6 +1953,7 @@ IntPtrToShort(
+@@ -1921,6 +1951,7 @@ IntPtrToShort(
  //
  // INT_PTR -> USHORT conversion
  //
@@ -252,7 +250,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2063,6 +2096,7 @@ IntPtrToLong(
+@@ -2063,6 +2094,7 @@ IntPtrToLong(
  //
  // INT_PTR -> LONG_PTR conversion
  //
@@ -260,7 +258,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2207,6 +2241,7 @@ IntPtrToULongLong(
+@@ -2207,6 +2239,7 @@ IntPtrToULongLong(
  //
  // UINT -> INT8 conversion
  //
@@ -268,7 +266,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2275,6 +2310,7 @@ UIntToChar(
+@@ -2275,6 +2308,7 @@ UIntToChar(
  //
  // UINT -> UINT8 conversion
  //
@@ -276,7 +274,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2561,6 +2597,7 @@ UIntToLongPtr(
+@@ -2561,6 +2595,7 @@ UIntToLongPtr(
  //
  // UINT_PTR -> INT8 conversion
  //
@@ -284,7 +282,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2587,6 +2624,7 @@ UIntPtrToInt8(
+@@ -2587,6 +2622,7 @@ UIntPtrToInt8(
  //
  // UINT_PTR -> UCHAR conversion
  //
@@ -292,7 +290,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2613,6 +2651,7 @@ UIntPtrToUChar(
+@@ -2613,6 +2649,7 @@ UIntPtrToUChar(
  //
  // UINT_PTR -> CHAR conversion
  //
@@ -300,7 +298,7 @@ index 412182be..fdabeecd 100644
  __forceinline
  HRESULT
  UIntPtrToChar(
-@@ -2629,6 +2668,7 @@ UIntPtrToChar(
+@@ -2629,6 +2666,7 @@ UIntPtrToChar(
  //
  // UINT_PTR -> UINT8 conversion
  //
@@ -308,7 +306,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2660,6 +2700,7 @@ UIntPtrToUInt8(
+@@ -2660,6 +2698,7 @@ UIntPtrToUInt8(
  //
  // UINT_PTR -> SHORT conversion
  //
@@ -316,7 +314,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2686,6 +2727,7 @@ UIntPtrToShort(
+@@ -2686,6 +2725,7 @@ UIntPtrToShort(
  //
  // UINT_PTR -> INT16 conversion
  //
@@ -324,7 +322,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2712,6 +2754,7 @@ UIntPtrToInt16(
+@@ -2712,6 +2752,7 @@ UIntPtrToInt16(
  //
  // UINT_PTR -> USHORT conversion
  //
@@ -332,7 +330,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2738,6 +2781,7 @@ UIntPtrToUShort(
+@@ -2738,6 +2779,7 @@ UIntPtrToUShort(
  //
  // UINT_PTR -> UINT16 conversion
  //
@@ -340,7 +338,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2927,6 +2971,7 @@ UIntPtrToULong(
+@@ -2927,6 +2969,7 @@ UIntPtrToULong(
  #ifdef _WIN64
  #define UIntPtrToLongLong   ULongLongToLongLong
  #else
@@ -348,7 +346,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -2962,6 +3007,7 @@ UIntPtrToLongLong(
+@@ -2962,6 +3005,7 @@ UIntPtrToLongLong(
  //
  // LONG -> INT8 conversion
  //
@@ -356,7 +354,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -3030,6 +3076,7 @@ LongToChar(
+@@ -3030,6 +3074,7 @@ LongToChar(
  //
  // LONG -> UINT8 conversion
  //
@@ -364,7 +362,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -3354,6 +3401,7 @@ LongToULongLong(
+@@ -3354,6 +3399,7 @@ LongToULongLong(
  //
  // LONG_PTR -> INT8 conversion
  //
@@ -372,7 +370,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -3380,6 +3428,7 @@ LongPtrToInt8(
+@@ -3380,6 +3426,7 @@ LongPtrToInt8(
  //
  // LONG_PTR -> UCHAR conversion
  //
@@ -380,7 +378,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -3406,6 +3455,7 @@ LongPtrToUChar(
+@@ -3406,6 +3453,7 @@ LongPtrToUChar(
  //
  // LONG_PTR -> CHAR conversion
  //
@@ -388,7 +386,7 @@ index 412182be..fdabeecd 100644
  __forceinline
  HRESULT
  LongPtrToChar(
-@@ -3422,6 +3472,7 @@ LongPtrToChar(
+@@ -3422,6 +3470,7 @@ LongPtrToChar(
  //
  // LONG_PTR -> UINT8 conversion
  //
@@ -396,7 +394,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -3453,6 +3504,7 @@ LongPtrToUInt8(
+@@ -3453,6 +3502,7 @@ LongPtrToUInt8(
  //
  // LONG_PTR -> SHORT conversion
  //
@@ -404,7 +402,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -3484,6 +3536,7 @@ LongPtrToShort(
+@@ -3484,6 +3534,7 @@ LongPtrToShort(
  //
  // LONG_PTR -> USHORT conversion
  //
@@ -412,7 +410,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -3760,6 +3813,7 @@ LongPtrToULongLong(
+@@ -3760,6 +3811,7 @@ LongPtrToULongLong(
  //
  // ULONG -> INT8 conversion
  //
@@ -420,7 +418,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -3828,6 +3882,7 @@ ULongToChar(
+@@ -3828,6 +3880,7 @@ ULongToChar(
  //
  // ULONG -> UINT8 conversion
  //
@@ -428,7 +426,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4069,6 +4124,7 @@ ULongToLongPtr(
+@@ -4069,6 +4122,7 @@ ULongToLongPtr(
  //
  // ULONG_PTR -> INT8 conversion
  //
@@ -436,7 +434,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4095,6 +4151,7 @@ ULongPtrToInt8(
+@@ -4095,6 +4149,7 @@ ULongPtrToInt8(
  //
  // ULONG_PTR -> UCHAR conversion
  //
@@ -444,7 +442,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4121,6 +4178,7 @@ ULongPtrToUChar(
+@@ -4121,6 +4176,7 @@ ULongPtrToUChar(
  //
  // ULONG_PTR -> CHAR conversion
  //
@@ -452,7 +450,7 @@ index 412182be..fdabeecd 100644
  __forceinline
  HRESULT
  ULongPtrToChar(
-@@ -4137,6 +4195,7 @@ ULongPtrToChar(
+@@ -4137,6 +4193,7 @@ ULongPtrToChar(
  //
  // ULONG_PTR -> UINT8 conversion
  //
@@ -460,7 +458,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4168,6 +4227,7 @@ ULongPtrToUInt8(
+@@ -4168,6 +4225,7 @@ ULongPtrToUInt8(
  //
  // ULONG_PTR -> SHORT conversion
  //
@@ -468,7 +466,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4199,6 +4259,7 @@ ULongPtrToShort(
+@@ -4199,6 +4257,7 @@ ULongPtrToShort(
  //
  // ULONG_PTR -> USHORT conversion
  //
@@ -476,7 +474,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4668,6 +4729,7 @@ ULongPtrToLongLong(
+@@ -4668,6 +4727,7 @@ ULongPtrToLongLong(
  //
  // LONGLONG -> INT8 conversion
  //
@@ -484,7 +482,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4694,6 +4756,7 @@ LongLongToInt8(
+@@ -4694,6 +4754,7 @@ LongLongToInt8(
  //
  // LONGLONG -> UCHAR conversion
  //
@@ -492,7 +490,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4720,6 +4783,7 @@ LongLongToUChar(
+@@ -4720,6 +4781,7 @@ LongLongToUChar(
  //
  // LONGLONG -> CHAR conversion
  //
@@ -500,7 +498,7 @@ index 412182be..fdabeecd 100644
  __forceinline
  HRESULT
  LongLongToChar(
-@@ -4736,6 +4800,7 @@ LongLongToChar(
+@@ -4736,6 +4798,7 @@ LongLongToChar(
  //
  // LONGLONG -> UINT8 conversion
  //
@@ -508,7 +506,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4767,6 +4832,7 @@ LongLongToUInt8(
+@@ -4767,6 +4830,7 @@ LongLongToUInt8(
  //
  // LONGLONG -> SHORT conversion
  //
@@ -516,7 +514,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4798,6 +4864,7 @@ LongLongToShort(
+@@ -4798,6 +4862,7 @@ LongLongToShort(
  //
  // LONGLONG -> USHORT conversion
  //
@@ -524,7 +522,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4834,6 +4901,7 @@ LongLongToUShort(
+@@ -4834,6 +4899,7 @@ LongLongToUShort(
  //
  // LONGLONG -> INT conversion
  //
@@ -532,7 +530,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4866,6 +4934,7 @@ LongLongToInt(
+@@ -4866,6 +4932,7 @@ LongLongToInt(
  // LONGLONG -> INT_PTR conversion
  //
  #ifdef _WIN64
@@ -540,7 +538,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4883,6 +4952,7 @@ LongLongToIntPtr(
+@@ -4883,6 +4950,7 @@ LongLongToIntPtr(
  //
  // LONGLONG -> UINT conversion
  //
@@ -548,7 +546,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4923,6 +4993,7 @@ LongLongToUInt(
+@@ -4923,6 +4991,7 @@ LongLongToUInt(
  //
  // LONGLONG -> LONG conversion
  //
@@ -556,7 +554,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4950,6 +5021,7 @@ LongLongToLong(
+@@ -4950,6 +5019,7 @@ LongLongToLong(
  // LONGLONG -> LONG_PTR conversion
  //
  #ifdef _WIN64
@@ -564,7 +562,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -4967,6 +5039,7 @@ LongLongToLongPtr(
+@@ -4967,6 +5037,7 @@ LongLongToLongPtr(
  //
  // LONGLONG -> ULONG conversion
  //
@@ -572,7 +570,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -5012,6 +5085,7 @@ LongLongToULong(
+@@ -5012,6 +5083,7 @@ LongLongToULong(
  //
  // LONGLONG -> ULONGLONG conversion
  //
@@ -580,7 +578,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -5368,6 +5442,7 @@ LongLongToULongLong(
+@@ -5368,6 +5440,7 @@ LongLongToULongLong(
  //
  // ULONGLONG -> INT8 conversion
  //
@@ -588,7 +586,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -5394,6 +5469,7 @@ ULongLongToInt8(
+@@ -5394,6 +5467,7 @@ ULongLongToInt8(
  //
  // ULONGLONG -> UCHAR conversion
  //
@@ -596,7 +594,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -5420,6 +5496,7 @@ ULongLongToUChar(
+@@ -5420,6 +5494,7 @@ ULongLongToUChar(
  //
  // ULONGLONG -> CHAR conversion
  //
@@ -604,7 +602,7 @@ index 412182be..fdabeecd 100644
  __forceinline
  HRESULT
  ULongLongToChar(
-@@ -5436,6 +5513,7 @@ ULongLongToChar(
+@@ -5436,6 +5511,7 @@ ULongLongToChar(
  //
  // ULONGLONG -> UINT8 conversion
  //
@@ -612,7 +610,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -5467,6 +5545,7 @@ ULongLongToUInt8(
+@@ -5467,6 +5543,7 @@ ULongLongToUInt8(
  //
  // ULONGLONG -> SHORT conversion
  //
@@ -620,7 +618,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -5498,6 +5577,7 @@ ULongLongToShort(
+@@ -5498,6 +5575,7 @@ ULongLongToShort(
  //
  // ULONGLONG -> USHORT conversion
  //
@@ -628,7 +626,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -6896,6 +6976,7 @@ ULongLongToLongLong(
+@@ -6896,6 +6974,7 @@ ULongLongToLongLong(
  //
  // UINT8 addition
  //
@@ -636,7 +634,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -7227,6 +7308,7 @@ ULongLongAdd(
+@@ -7227,6 +7306,7 @@ ULongLongAdd(
  //
  // UINT8 subtraction
  //
@@ -644,7 +642,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -7560,6 +7642,7 @@ ULongLongSub(
+@@ -7560,6 +7640,7 @@ ULongLongSub(
  //
  // UINT8 multiplication
  //
@@ -652,7 +650,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -7956,6 +8039,7 @@ __Multiply128(
+@@ -7956,6 +8037,7 @@ __Multiply128(
  //
  // INT8 Addition
  //
@@ -660,7 +658,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -7972,6 +8056,7 @@ Int8Add(
+@@ -7972,6 +8054,7 @@ Int8Add(
  //
  // SHORT Addition
  //
@@ -668,7 +666,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -7993,6 +8078,7 @@ ShortAdd(
+@@ -7993,6 +8076,7 @@ ShortAdd(
  //
  // INT Addition
  //
@@ -676,7 +674,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8017,6 +8103,7 @@ IntAdd(
+@@ -8017,6 +8101,7 @@ IntAdd(
  #ifdef _WIN64
  #define IntPtrAdd   LongLongAdd
  #else
@@ -684,7 +682,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8034,6 +8121,7 @@ IntPtrAdd(
+@@ -8034,6 +8119,7 @@ IntPtrAdd(
  //
  // LONG Addition
  //
@@ -692,7 +690,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8058,6 +8146,7 @@ LongAdd(
+@@ -8058,6 +8144,7 @@ LongAdd(
  #ifdef _WIN64
  #define LongPtrAdd   LongLongAdd
  #else
@@ -700,7 +698,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8075,6 +8164,7 @@ LongPtrAdd(
+@@ -8075,6 +8162,7 @@ LongPtrAdd(
  //
  // LONGLONG Addition
  //
@@ -708,7 +706,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8132,6 +8222,7 @@ LongLongAdd(
+@@ -8132,6 +8220,7 @@ LongLongAdd(
  #ifdef _WIN64
  #define PtrdiffTAdd LongLongAdd
  #else
@@ -716,7 +714,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8152,6 +8243,7 @@ PtrdiffTAdd(
+@@ -8152,6 +8241,7 @@ PtrdiffTAdd(
  #ifdef _WIN64
  #define SSIZETAdd   LongLongAdd
  #else
@@ -724,7 +722,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8174,6 +8266,7 @@ SSIZETAdd(
+@@ -8174,6 +8264,7 @@ SSIZETAdd(
  //
  // INT8 Subtraction
  //
@@ -732,7 +730,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8190,6 +8283,7 @@ Int8Sub(
+@@ -8190,6 +8281,7 @@ Int8Sub(
  //
  // SHORT Subtraction
  //
@@ -740,7 +738,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8211,6 +8305,7 @@ ShortSub(
+@@ -8211,6 +8303,7 @@ ShortSub(
  //
  // INT Subtraction
  //
@@ -748,7 +746,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8235,6 +8330,7 @@ IntSub(
+@@ -8235,6 +8328,7 @@ IntSub(
  #ifdef _WIN64
  #define IntPtrSub  LongLongSub
  #else
@@ -756,7 +754,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8252,6 +8348,7 @@ IntPtrSub(
+@@ -8252,6 +8346,7 @@ IntPtrSub(
  //
  // LONG Subtraction
  //
@@ -764,7 +762,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8276,6 +8373,7 @@ LongSub(
+@@ -8276,6 +8371,7 @@ LongSub(
  #ifdef _WIN64
  #define LongPtrSub  LongLongSub
  #else
@@ -772,7 +770,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8293,6 +8391,7 @@ LongPtrSub(
+@@ -8293,6 +8389,7 @@ LongPtrSub(
  //
  // LongLongSub
  //
@@ -780,7 +778,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8351,6 +8450,7 @@ LongLongSub(
+@@ -8351,6 +8448,7 @@ LongLongSub(
  #ifdef _WIN64
  #define PtrdiffTSub LongLongSub
  #else
@@ -788,7 +786,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8371,6 +8471,7 @@ PtrdiffTSub(
+@@ -8371,6 +8469,7 @@ PtrdiffTSub(
  #ifdef _WIN64
  #define SSIZETSub  LongLongSub
  #else
@@ -796,7 +794,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8392,6 +8493,7 @@ SSIZETSub(
+@@ -8392,6 +8491,7 @@ SSIZETSub(
  //
  // INT8 multiplication
  //
@@ -804,7 +802,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8408,6 +8510,7 @@ Int8Mult(
+@@ -8408,6 +8508,7 @@ Int8Mult(
  //
  // SHORT multiplication
  //
@@ -812,7 +810,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8429,6 +8532,7 @@ ShortMult(
+@@ -8429,6 +8530,7 @@ ShortMult(
  //
  // INT multiplication
  //
@@ -820,7 +818,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8453,6 +8557,7 @@ IntMult(
+@@ -8453,6 +8555,7 @@ IntMult(
  #ifdef _WIN64
  #define IntPtrMult   LongLongMult
  #else
@@ -828,7 +826,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8470,6 +8575,7 @@ IntPtrMult(
+@@ -8470,6 +8573,7 @@ IntPtrMult(
  //
  // LONG multiplication
  //
@@ -836,7 +834,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8494,6 +8600,7 @@ LongMult(
+@@ -8494,6 +8598,7 @@ LongMult(
  #ifdef _WIN64
  #define LongPtrMult LongLongMult
  #else
@@ -844,7 +842,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8511,6 +8618,7 @@ LongPtrMult(
+@@ -8511,6 +8616,7 @@ LongPtrMult(
  //
  // LONGLONG multiplication
  //
@@ -852,7 +850,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8626,6 +8734,7 @@ LongLongMult(
+@@ -8626,6 +8732,7 @@ LongLongMult(
  #ifdef _WIN64
  #define PtrdiffTMult    LongLongMult
  #else
@@ -860,7 +858,7 @@ index 412182be..fdabeecd 100644
  _Must_inspect_result_
  __inline
  HRESULT
-@@ -8646,6 +8755,7 @@ PtrdiffTMult(
+@@ -8646,6 +8753,7 @@ PtrdiffTMult(
  #ifdef _WIN64
  #define SSIZETMult  LongLongMult
  #else

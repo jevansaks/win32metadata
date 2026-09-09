@@ -7,9 +7,7 @@
 //
 //===========================================================================
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma once
 #include <winapifamily.h>

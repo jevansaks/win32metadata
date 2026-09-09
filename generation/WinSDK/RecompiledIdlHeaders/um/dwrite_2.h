@@ -7,9 +7,7 @@
 //
 //----------------------------------------------------------------------------
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef DWRITE_2_H_INCLUDED
 #define DWRITE_2_H_INCLUDED

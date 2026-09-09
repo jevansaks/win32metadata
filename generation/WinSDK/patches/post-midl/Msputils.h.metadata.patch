@@ -1,14 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msputils.h b/generation/WinSDK/RecompiledIdlHeaders/um/Msputils.h
-index f02fca52..471514db 100644
+index f02fca52..a38a3f0b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Msputils.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Msputils.h
-@@ -15,6 +15,9 @@ Abstract:
+@@ -15,6 +15,7 @@ Abstract:
  #ifndef __MSPUTILS_H_
  #define __MSPUTILS_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)

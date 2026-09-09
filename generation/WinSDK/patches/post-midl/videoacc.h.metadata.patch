@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/videoacc.h b/generation/WinSDK/RecompiledIdlHeaders/um/videoacc.h
-index cf2f2bdd..63bddfa8 100644
+index cf2f2bdd..d64df6aa 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/videoacc.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/videoacc.h
-@@ -73,6 +73,9 @@ extern "C"{
+@@ -73,6 +73,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  //
-@@ -123,6 +126,7 @@ EXTERN_C const IID IID_IAMVideoAcceleratorNotify;
+@@ -123,6 +124,7 @@ EXTERN_C const IID IID_IAMVideoAcceleratorNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index cf2f2bdd..63bddfa8 100644
      MIDL_INTERFACE("256A6A21-FBAD-11d1-82BF-00A0C9696C8F")
      IAMVideoAcceleratorNotify : public IUnknown
      {
-@@ -248,6 +252,7 @@ EXTERN_C const IID IID_IAMVideoAccelerator;
+@@ -248,6 +250,7 @@ EXTERN_C const IID IID_IAMVideoAccelerator;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

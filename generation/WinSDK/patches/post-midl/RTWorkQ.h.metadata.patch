@@ -1,20 +1,18 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h b/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h
-index 086c4026..fed76aee 100644
+index 086c4026..2b4df96c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h
-@@ -18,6 +18,11 @@
+@@ -18,6 +18,9 @@
  #if !defined(__RTWORKQ_H__)
  #define __RTWORKQ_H__
  
 +#include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
 +
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -69,45 +74,72 @@ typedef struct tagRTWQASYNCRESULT : public IRtwqAsyncResult
+@@ -69,45 +72,72 @@ typedef struct tagRTWQASYNCRESULT : public IRtwqAsyncResult
      HANDLE hEvent;
  }   RTWQASYNCRESULT;
  
@@ -87,7 +85,7 @@ index 086c4026..fed76aee 100644
  STDAPI RtwqGetWorkQueueMMCSSPriority(DWORD workQueueId, _Out_ LONG* priority);
  
  interface DECLSPEC_UUID("63d9255a-7ff1-4b61-8faf-ed6460dacf2b") DECLSPEC_NOVTABLE
-@@ -117,15 +149,22 @@ interface DECLSPEC_UUID("63d9255a-7ff1-4b61-8faf-ed6460dacf2b") DECLSPEC_NOVTABL
+@@ -117,15 +147,22 @@ interface DECLSPEC_UUID("63d9255a-7ff1-4b61-8faf-ed6460dacf2b") DECLSPEC_NOVTABL
      STDMETHOD(ShutdownStart)()=0;
      STDMETHOD(ShutdownComplete)()=0;
  };

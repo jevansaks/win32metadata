@@ -1,7 +1,5 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef _DWMAPI_H_
 #define _DWMAPI_H_

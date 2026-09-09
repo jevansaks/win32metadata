@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdclient.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdclient.h
-index 48b5d7df..5932ad54 100644
+index 48b5d7df..c42d271c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdclient.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdclient.h
-@@ -118,6 +118,9 @@ extern "C"{
+@@ -118,6 +118,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -130,12 +133,14 @@ extern "C"{
+@@ -130,12 +131,14 @@ extern "C"{
  
  
  
@@ -27,7 +25,7 @@ index 48b5d7df..5932ad54 100644
  HRESULT WINAPI
  WSDCreateDeviceProxyAdvanced(
      _In_ LPCWSTR pszDeviceId,
-@@ -144,6 +149,7 @@ WSDCreateDeviceProxyAdvanced(
+@@ -144,6 +147,7 @@ WSDCreateDeviceProxyAdvanced(
      IWSDXMLContext* pContext,
      _Outptr_ IWSDDeviceProxy** ppDeviceProxy);
  #if (WINVER >= _WIN32_WINNT_WIN7)
@@ -35,7 +33,7 @@ index 48b5d7df..5932ad54 100644
  HRESULT WINAPI
  WSDCreateDeviceProxy2(
      _In_ LPCWSTR pszDeviceId,
-@@ -169,6 +175,7 @@ EXTERN_C const IID IID_IWSDEndpointProxy;
+@@ -169,6 +173,7 @@ EXTERN_C const IID IID_IWSDEndpointProxy;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -43,7 +41,7 @@ index 48b5d7df..5932ad54 100644
      MIDL_INTERFACE("1860d430-b24c-4975-9f90-dbb39baa24ec")
      IWSDEndpointProxy : public IUnknown
      {
-@@ -362,6 +369,7 @@ EXTERN_C const IID IID_IWSDMetadataExchange;
+@@ -362,6 +367,7 @@ EXTERN_C const IID IID_IWSDMetadataExchange;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -51,7 +49,7 @@ index 48b5d7df..5932ad54 100644
      MIDL_INTERFACE("06996d57-1d67-4928-9307-3d7833fdb846")
      IWSDMetadataExchange : public IUnknown
      {
-@@ -449,6 +457,7 @@ EXTERN_C const IID IID_IWSDServiceProxy;
+@@ -449,6 +455,7 @@ EXTERN_C const IID IID_IWSDServiceProxy;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -59,7 +57,7 @@ index 48b5d7df..5932ad54 100644
      MIDL_INTERFACE("d4c7fb9c-03ab-4175-9d67-094fafebf487")
      IWSDServiceProxy : public IWSDMetadataExchange
      {
-@@ -649,6 +658,7 @@ EXTERN_C const IID IID_IWSDServiceProxyEventing;
+@@ -649,6 +656,7 @@ EXTERN_C const IID IID_IWSDServiceProxyEventing;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -67,7 +65,7 @@ index 48b5d7df..5932ad54 100644
      MIDL_INTERFACE("f9279d6d-1012-4a94-b8cc-fd35d2202bfe")
      IWSDServiceProxyEventing : public IWSDServiceProxy
      {
-@@ -1186,6 +1196,7 @@ EXTERN_C const IID IID_IWSDDeviceProxy;
+@@ -1186,6 +1194,7 @@ EXTERN_C const IID IID_IWSDDeviceProxy;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -75,7 +73,7 @@ index 48b5d7df..5932ad54 100644
      MIDL_INTERFACE("eee0c031-c578-4c0e-9a3b-973c35f409db")
      IWSDDeviceProxy : public IUnknown
      {
-@@ -1414,6 +1425,7 @@ EXTERN_C const IID IID_IWSDAsyncResult;
+@@ -1414,6 +1423,7 @@ EXTERN_C const IID IID_IWSDAsyncResult;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -83,7 +81,7 @@ index 48b5d7df..5932ad54 100644
      MIDL_INTERFACE("11a9852a-8dd8-423e-b537-9356db4fbfb8")
      IWSDAsyncResult : public IUnknown
      {
-@@ -1575,6 +1587,7 @@ EXTERN_C const IID IID_IWSDAsyncCallback;
+@@ -1575,6 +1585,7 @@ EXTERN_C const IID IID_IWSDAsyncCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -91,7 +89,7 @@ index 48b5d7df..5932ad54 100644
      MIDL_INTERFACE("a63e109d-ce72-49e2-ba98-e845f5ee1666")
      IWSDAsyncCallback : public IUnknown
      {
-@@ -1666,6 +1679,7 @@ EXTERN_C const IID IID_IWSDEventingStatus;
+@@ -1666,6 +1677,7 @@ EXTERN_C const IID IID_IWSDEventingStatus;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

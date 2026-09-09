@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/bits2_0.h b/generation/WinSDK/RecompiledIdlHeaders/um/bits2_0.h
-index a092c7fa..1ba354f9 100644
+index a092c7fa..bdb32b98 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/bits2_0.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/bits2_0.h
-@@ -100,6 +100,9 @@ extern "C"{
+@@ -100,6 +100,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define BG_LENGTH_TO_EOF     (UINT64)(-1)
-@@ -130,6 +133,7 @@ EXTERN_C const IID IID_IBackgroundCopyJob3;
+@@ -130,6 +131,7 @@ EXTERN_C const IID IID_IBackgroundCopyJob3;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index a092c7fa..1ba354f9 100644
      MIDL_INTERFACE("443c8934-90ff-48ed-bcde-26f5c7450042")
      IBackgroundCopyJob3 : public IBackgroundCopyJob2
      {
-@@ -638,6 +642,7 @@ EXTERN_C const IID IID_IBackgroundCopyFile2;
+@@ -638,6 +640,7 @@ EXTERN_C const IID IID_IBackgroundCopyFile2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

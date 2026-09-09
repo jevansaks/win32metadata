@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h
-index ecfb21f9..e6ee191a 100644
+index ecfb21f9..d95105d8 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h
-@@ -16,6 +16,9 @@ Abstract:
+@@ -16,6 +16,7 @@ Abstract:
  #define _WINHTTPX_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
-@@ -1584,6 +1587,8 @@ typedef struct _WINHTTP_CURRENT_USER_IE_PROXY_CONFIG
+@@ -1584,6 +1585,8 @@ typedef struct _WINHTTP_CURRENT_USER_IE_PROXY_CONFIG
  // prototypes
  //
  
@@ -21,7 +19,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  WINHTTP_STATUS_CALLBACK
  WINAPI
-@@ -1595,6 +1600,8 @@ WinHttpSetStatusCallback
+@@ -1595,6 +1598,8 @@ WinHttpSetStatusCallback
      IN DWORD_PTR dwReserved
  );
  
@@ -30,7 +28,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1604,6 +1611,8 @@ WinHttpTimeFromSystemTime
+@@ -1604,6 +1609,8 @@ WinHttpTimeFromSystemTime
      _Out_writes_bytes_(WINHTTP_TIME_FORMAT_BUFSIZE) LPWSTR pwszTime // output string buffer
  );
  
@@ -39,7 +37,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1613,6 +1622,8 @@ WinHttpTimeToSystemTime
+@@ -1613,6 +1620,8 @@ WinHttpTimeToSystemTime
      _Out_ SYSTEMTIME *pst           // output in GMT time
  );
  
@@ -48,7 +46,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1624,6 +1635,8 @@ WinHttpCrackUrl
+@@ -1624,6 +1633,8 @@ WinHttpCrackUrl
      _Inout_ LPURL_COMPONENTS lpUrlComponents
  );
  
@@ -57,7 +55,7 @@ index ecfb21f9..e6ee191a 100644
  _Success_(return != FALSE)
  WINHTTPAPI
  BOOL
-@@ -1642,9 +1655,15 @@ WinHttpCreateUrl
+@@ -1642,9 +1653,15 @@ WinHttpCreateUrl
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -73,7 +71,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI BOOL WINAPI WinHttpSetDefaultProxyConfiguration( IN WINHTTP_PROXY_INFO * pProxyInfo);
  
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
-@@ -1653,6 +1672,8 @@ WINHTTPAPI BOOL WINAPI WinHttpSetDefaultProxyConfiguration( IN WINHTTP_PROXY_INF
+@@ -1653,6 +1670,8 @@ WINHTTPAPI BOOL WINAPI WinHttpSetDefaultProxyConfiguration( IN WINHTTP_PROXY_INF
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -82,7 +80,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  HINTERNET
  WINAPI
-@@ -1665,6 +1686,8 @@ WinHttpOpen
+@@ -1665,6 +1684,8 @@ WinHttpOpen
      _In_ DWORD dwFlags
  );
  
@@ -91,7 +89,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1673,6 +1696,8 @@ WinHttpCloseHandle
+@@ -1673,6 +1694,8 @@ WinHttpCloseHandle
      IN HINTERNET hInternet
  );
  
@@ -100,7 +98,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  HINTERNET
  WINAPI
-@@ -1684,6 +1709,8 @@ WinHttpConnect
+@@ -1684,6 +1707,8 @@ WinHttpConnect
      IN DWORD dwReserved
  );
  
@@ -109,7 +107,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1709,6 +1736,8 @@ WinHttpReadDataEx
+@@ -1709,6 +1734,8 @@ WinHttpReadDataEx
      _In_reads_bytes_opt_(cbProperty) PVOID pvProperty
  );
  
@@ -118,7 +116,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1720,6 +1749,8 @@ WinHttpWriteData
+@@ -1720,6 +1747,8 @@ WinHttpWriteData
      OUT LPDWORD lpdwNumberOfBytesWritten
  );
  
@@ -127,7 +125,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1729,6 +1760,8 @@ WinHttpQueryDataAvailable
+@@ -1729,6 +1758,8 @@ WinHttpQueryDataAvailable
      __out_data_source(NETWORK) LPDWORD lpdwNumberOfBytesAvailable
  );
  
@@ -136,7 +134,7 @@ index ecfb21f9..e6ee191a 100644
  _Success_(return != FALSE)
  WINHTTPAPI
  BOOL
-@@ -1741,6 +1774,8 @@ WinHttpQueryOption
+@@ -1741,6 +1772,8 @@ WinHttpQueryOption
      IN OUT LPDWORD lpdwBufferLength
  );
  
@@ -145,7 +143,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1767,6 +1802,8 @@ WinHttpSetOption
+@@ -1767,6 +1800,8 @@ WinHttpSetOption
      _In_ DWORD dwBufferLength
  );
  
@@ -154,7 +152,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1807,6 +1844,8 @@ WinHttpIsHostInProxyBypassList
+@@ -1807,6 +1842,8 @@ WinHttpIsHostInProxyBypassList
  // prototypes
  //
  
@@ -163,7 +161,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  HINTERNET
  WINAPI
-@@ -1821,6 +1860,8 @@ WinHttpOpenRequest
+@@ -1821,6 +1858,8 @@ WinHttpOpenRequest
      IN DWORD dwFlags
  );
  
@@ -172,7 +170,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1847,6 +1888,8 @@ WinHttpAddRequestHeadersEx
+@@ -1847,6 +1886,8 @@ WinHttpAddRequestHeadersEx
      _In_reads_(cHeaders) WINHTTP_EXTENDED_HEADER *pHeaders
  );
  
@@ -181,7 +179,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1861,6 +1904,8 @@ WinHttpSendRequest
+@@ -1861,6 +1902,8 @@ WinHttpSendRequest
      IN DWORD_PTR dwContext
  );
  
@@ -190,7 +188,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1881,6 +1926,8 @@ WinHttpSetCredentials
+@@ -1881,6 +1924,8 @@ WinHttpSetCredentials
      IN LPVOID      pAuthParams
  );
  
@@ -199,7 +197,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1914,6 +1961,8 @@ WinHttpQueryAuthParams
+@@ -1914,6 +1959,8 @@ WinHttpQueryAuthParams
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -208,7 +206,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1923,6 +1972,8 @@ WinHttpReceiveResponse
+@@ -1923,6 +1970,8 @@ WinHttpReceiveResponse
      IN LPVOID lpReserved
  );
  
@@ -217,7 +215,7 @@ index ecfb21f9..e6ee191a 100644
  _Success_(return != FALSE)
  WINHTTPAPI
  BOOL
-@@ -1979,6 +2030,8 @@ WinHttpFreeQueryConnectionGroupResult
+@@ -1979,6 +2028,8 @@ WinHttpFreeQueryConnectionGroupResult
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -226,7 +224,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1988,6 +2041,8 @@ WinHttpDetectAutoProxyConfigUrl
+@@ -1988,6 +2039,8 @@ WinHttpDetectAutoProxyConfigUrl
      _Outptr_result_maybenull_ LPWSTR * ppwstrAutoConfigUrl
  );
  
@@ -235,7 +233,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1999,6 +2054,7 @@ WinHttpGetProxyForUrl
+@@ -1999,6 +2052,7 @@ WinHttpGetProxyForUrl
      OUT WINHTTP_PROXY_INFO *        pProxyInfo
  );
  
@@ -243,7 +241,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2008,6 +2064,7 @@ WinHttpCreateProxyResolver
+@@ -2008,6 +2062,7 @@ WinHttpCreateProxyResolver
      _Out_ HINTERNET *phResolver
  );
  
@@ -251,7 +249,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2032,6 +2089,7 @@ WinHttpGetProxyForUrlEx2
+@@ -2032,6 +2087,7 @@ WinHttpGetProxyForUrlEx2
      _In_opt_ DWORD_PTR pContext
  );
  
@@ -259,7 +257,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2050,6 +2108,7 @@ WinHttpGetProxyResultEx
+@@ -2050,6 +2106,7 @@ WinHttpGetProxyResultEx
      _Out_ WINHTTP_PROXY_RESULT_EX *pProxyResultEx
  );
  
@@ -267,7 +265,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  VOID
  WINAPI
-@@ -2066,6 +2125,7 @@ WinHttpFreeProxyResultEx
+@@ -2066,6 +2123,7 @@ WinHttpFreeProxyResultEx
      _Inout_ WINHTTP_PROXY_RESULT_EX *pProxyResultEx
  );
  
@@ -275,7 +273,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2075,6 +2135,8 @@ WinHttpResetAutoProxy
+@@ -2075,6 +2133,8 @@ WinHttpResetAutoProxy
      _In_ DWORD dwFlags
  );
  
@@ -284,7 +282,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -2181,6 +2243,8 @@ typedef struct _WINHTTP_WEB_SOCKET_STATUS
+@@ -2181,6 +2241,8 @@ typedef struct _WINHTTP_WEB_SOCKET_STATUS
  #define WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH 123
  #define WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE 15000
  
@@ -293,7 +291,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  HINTERNET
  WINAPI
-@@ -2190,6 +2254,7 @@ WinHttpWebSocketCompleteUpgrade
+@@ -2190,6 +2252,7 @@ WinHttpWebSocketCompleteUpgrade
      _In_opt_ DWORD_PTR pContext
  );
  
@@ -301,7 +299,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2201,6 +2266,7 @@ WinHttpWebSocketSend
+@@ -2201,6 +2264,7 @@ WinHttpWebSocketSend
      _In_ DWORD dwBufferLength
  );
  
@@ -309,7 +307,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2213,6 +2279,7 @@ WinHttpWebSocketReceive
+@@ -2213,6 +2277,7 @@ WinHttpWebSocketReceive
      _Out_ WINHTTP_WEB_SOCKET_BUFFER_TYPE *peBufferType
  );
  
@@ -317,7 +315,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2224,6 +2291,7 @@ WinHttpWebSocketShutdown
+@@ -2224,6 +2289,7 @@ WinHttpWebSocketShutdown
      _In_range_(0, WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH) DWORD dwReasonLength
  );
  
@@ -325,7 +323,7 @@ index ecfb21f9..e6ee191a 100644
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2235,6 +2303,7 @@ WinHttpWebSocketClose
+@@ -2235,6 +2301,7 @@ WinHttpWebSocketClose
      _In_range_(0, WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH) DWORD dwReasonLength
  );
  

@@ -24,9 +24,7 @@
 #pragma once
 #endif
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -209,6 +207,7 @@ typedef enum _SI_PAGE_ACTIVATED
 
 #undef INTERFACE
 #define INTERFACE   ISecurityInformation
+_Win32_metadata_supported_os_(windows5.1.2600)
 DECLARE_INTERFACE_IID_(ISecurityInformation, IUnknown, "965FC360-16FF-11d0-91CB-00AA00BBB723")
 {
     // *** IUnknown methods ***
@@ -239,6 +238,7 @@ typedef ISecurityInformation *LPSECURITYINFO;
 
 #undef INTERFACE
 #define INTERFACE   ISecurityInformation2
+_Win32_metadata_supported_os_(windows5.1.2600)
 DECLARE_INTERFACE_IID_(ISecurityInformation2, IUnknown, "c3ccfdb4-6f88-11d2-a3ce-00c04fb1782a")
 {
     // *** IUnknown methods ***
@@ -271,6 +271,7 @@ typedef struct _SID_INFO_LIST
 
 #undef INTERFACE
 #define INTERFACE   IEffectivePermission
+_Win32_metadata_supported_os_(windows5.1.2600)
 DECLARE_INTERFACE_IID_(IEffectivePermission, IUnknown, "3853DC76-9F35-407c-88A1-D19344365FBC")
 {
     // *** IUnknown methods ***
@@ -292,6 +293,7 @@ typedef IEffectivePermission *LPEFFECTIVEPERMISSION;
 
 #undef INTERFACE
 #define INTERFACE   ISecurityObjectTypeInfo
+_Win32_metadata_supported_os_(windows5.1.2600)
 DECLARE_INTERFACE_IID_(ISecurityObjectTypeInfo, IUnknown, "FC3066EB-79EF-444b-9111-D18A75EBF2FA")
 {
     // *** IUnknown methods ***
@@ -310,6 +312,7 @@ typedef ISecurityObjectTypeInfo *LPSecurityObjectTypeInfo;
 // Support for separation or read-only ACL viewer and elevated ACL editor
 #undef INTERFACE
 #define INTERFACE   ISecurityInformation3
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_IID_(ISecurityInformation3, IUnknown, "E2CDC9CC-31BD-4f8f-8C8B-B641AF516A1A")
 {
     // *** IUnknown methods ***
@@ -354,6 +357,7 @@ typedef struct _EFFPERM_RESULT_LIST
 
 #undef INTERFACE
 #define INTERFACE   ISecurityInformation4
+_Win32_metadata_supported_os_(windows8.0)
 DECLARE_INTERFACE_IID_(ISecurityInformation4, IUnknown, "EA961070-CD14-4621-ACE4-F63C03E583E4")
 {
     // *** IUnknown methods ***
@@ -371,6 +375,7 @@ typedef ISecurityInformation4 *LPSECURITYINFO4;
 
 #undef INTERFACE
 #define INTERFACE   IEffectivePermission
+_Win32_metadata_supported_os_(windows8.0)
 DECLARE_INTERFACE_IID_(IEffectivePermission2, IUnknown, "941FABCA-DD47-4FCA-90BB-B0E10255F20D")
 {
     // *** IUnknown methods ***

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appserviceinterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/appserviceinterop.h
-index 33742703..c73fd381 100644
+index 33742703..fec12298 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/appserviceinterop.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/appserviceinterop.h
-@@ -75,6 +75,9 @@ extern "C"{
+@@ -75,6 +75,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (NTDDI_VERSION >= NTDDI_WIN10_RS2)
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -288,14 +291,22 @@ extern RPC_IF_HANDLE __MIDL_itf_appserviceinterop_0000_0002_v0_0_s_ifspec;
+@@ -288,14 +289,22 @@ extern RPC_IF_HANDLE __MIDL_itf_appserviceinterop_0000_0002_v0_0_s_ifspec;
  
  /* Additional Prototypes for ALL interfaces */
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fltUser.h b/generation/WinSDK/RecompiledIdlHeaders/um/fltUser.h
-index 5bcd819e..7135cd8d 100644
+index 5bcd819e..ef7c23bd 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fltUser.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fltUser.h
-@@ -19,6 +19,9 @@ Environment:
+@@ -19,6 +19,7 @@ Environment:
  #ifndef __FLTUSER_H__
  #define __FLTUSER_H__
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -234,6 +237,7 @@ FilterFindFirst (
+@@ -234,6 +235,7 @@ FilterFindFirst (
      _In_ DWORD dwBufferSize,
      _Out_ LPDWORD lpBytesReturned,
      _Out_ LPHANDLE lpFilterFind
@@ -20,7 +18,7 @@ index 5bcd819e..7135cd8d 100644
      );
  
  _Must_inspect_result_
-@@ -264,6 +268,7 @@ FilterVolumeFindFirst (
+@@ -264,6 +266,7 @@ FilterVolumeFindFirst (
      _In_ DWORD dwBufferSize,
      _Out_ LPDWORD lpBytesReturned,
      _Out_ PHANDLE lpVolumeFind
@@ -28,7 +26,7 @@ index 5bcd819e..7135cd8d 100644
      );
  
  _Must_inspect_result_
-@@ -297,6 +302,7 @@ FilterInstanceFindFirst (
+@@ -297,6 +300,7 @@ FilterInstanceFindFirst (
      _In_ DWORD dwBufferSize,
      _Out_ LPDWORD lpBytesReturned,
      _Out_ LPHANDLE lpFilterInstanceFind
@@ -36,7 +34,7 @@ index 5bcd819e..7135cd8d 100644
      );
  
  _Must_inspect_result_
-@@ -332,6 +338,7 @@ FilterVolumeInstanceFindFirst (
+@@ -332,6 +336,7 @@ FilterVolumeInstanceFindFirst (
      _In_ DWORD dwBufferSize,
      _Out_ LPDWORD lpBytesReturned,
      _Out_ LPHANDLE lpVolumeInstanceFind
@@ -44,7 +42,7 @@ index 5bcd819e..7135cd8d 100644
      );
  
  _Must_inspect_result_
-@@ -430,6 +437,7 @@ FilterGetMessage (
+@@ -430,6 +435,7 @@ FilterGetMessage (
      _Inout_opt_ LPOVERLAPPED lpOverlapped
      );
  

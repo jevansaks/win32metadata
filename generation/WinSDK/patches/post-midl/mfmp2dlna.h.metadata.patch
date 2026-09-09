@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfmp2dlna.h b/generation/WinSDK/RecompiledIdlHeaders/um/mfmp2dlna.h
-index ca9ff919..e6c7d544 100644
+index ca9ff919..1920274e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mfmp2dlna.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfmp2dlna.h
-@@ -66,6 +66,9 @@ extern "C"{
+@@ -66,6 +66,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if (WINVER >= _WIN32_WINNT_WIN7) 
-@@ -85,6 +88,7 @@ EXTERN_C const IID IID_IMFDLNASinkInit;
+@@ -85,6 +86,7 @@ EXTERN_C const IID IID_IMFDLNASinkInit;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothapis.h b/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothapis.h
-index b36ff097..5bb5c4c5 100644
+index b36ff097..229ae2b5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothapis.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/bluetoothapis.h
-@@ -5,6 +5,9 @@
+@@ -5,6 +5,7 @@
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -133,6 +136,8 @@ typedef HANDLE      HBLUETOOTH_RADIO_FIND;
+@@ -133,6 +134,8 @@ typedef HANDLE      HBLUETOOTH_RADIO_FIND;
  //      any other
  //          Success. The return handle is valid and phRadio points to a valid handle.
  //
@@ -21,7 +19,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  _Success_(return != NULL)
  HBLUETOOTH_RADIO_FIND
-@@ -172,6 +177,8 @@ BluetoothFindFirstRadio(
+@@ -172,6 +175,8 @@ BluetoothFindFirstRadio(
  //
  //          other Win32 errors
  //
@@ -30,7 +28,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  _Success_(return)
  BOOL
-@@ -199,6 +206,8 @@ BluetoothFindNextRadio(
+@@ -199,6 +204,8 @@ BluetoothFindNextRadio(
  //          ERROR_INVALID_HANDLE
  //              The handle is NULL.
  //
@@ -39,7 +37,7 @@ index b36ff097..5bb5c4c5 100644
  BOOL
  WINAPI
  BluetoothFindRadioClose(
-@@ -251,6 +260,8 @@ typedef struct _BLUETOOTH_RADIO_INFO {
+@@ -251,6 +258,8 @@ typedef struct _BLUETOOTH_RADIO_INFO {
  //
  //      other Win32 error codes.
  //
@@ -48,7 +46,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -418,6 +429,8 @@ typedef HANDLE      HBLUETOOTH_DEVICE_FIND;
+@@ -418,6 +427,8 @@ typedef HANDLE      HBLUETOOTH_DEVICE_FIND;
  //      any other value
  //          Success. The return handle is valid and pbtdi points to valid data.
  //
@@ -57,7 +55,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  _Success_(return != NULL)
  HBLUETOOTH_DEVICE_FIND
-@@ -462,6 +475,8 @@ BluetoothFindFirstDevice(
+@@ -462,6 +473,8 @@ BluetoothFindFirstDevice(
  //
  //          other Win32 errors
  //
@@ -66,7 +64,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  BOOL
  WINAPI
-@@ -488,6 +503,8 @@ BluetoothFindNextDevice(
+@@ -488,6 +501,8 @@ BluetoothFindNextDevice(
  //          ERROR_INVALID_HANDLE
  //              The handle is NULL.
  //
@@ -75,7 +73,7 @@ index b36ff097..5bb5c4c5 100644
  BOOL
  WINAPI
  BluetoothFindDeviceClose(
-@@ -532,6 +549,7 @@ BluetoothFindDeviceClose(
+@@ -532,6 +547,7 @@ BluetoothFindDeviceClose(
  //
  //      other error codes
  //
@@ -83,7 +81,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -567,6 +585,7 @@ BluetoothGetDeviceInfo(
+@@ -567,6 +583,7 @@ BluetoothGetDeviceInfo(
  //
  //      other Win32 error codes.
  //
@@ -91,7 +89,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -587,6 +606,7 @@ BluetoothUpdateDeviceRecord(
+@@ -587,6 +604,7 @@ BluetoothUpdateDeviceRecord(
  //          The device was not found. If no Bluetooth radio is installed,
  //          the devices could not be enumerated or removed.
  //
@@ -99,7 +97,7 @@ index b36ff097..5bb5c4c5 100644
  DWORD
  WINAPI
  BluetoothRemoveDevice(
-@@ -706,6 +726,8 @@ typedef struct _BLUETOOTH_SELECT_DEVICE_PARAMS {
+@@ -706,6 +724,8 @@ typedef struct _BLUETOOTH_SELECT_DEVICE_PARAMS {
  //
  //          other WIN32 errors
  //
@@ -108,7 +106,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  BOOL
  WINAPI
-@@ -727,6 +749,7 @@ BluetoothSelectDevices(
+@@ -727,6 +747,7 @@ BluetoothSelectDevices(
  //      FALSE
  //          Nothing to free.
  //
@@ -116,7 +114,7 @@ index b36ff097..5bb5c4c5 100644
  BOOL
  WINAPI
  BluetoothSelectDevicesFree(
-@@ -761,6 +784,8 @@ BluetoothSelectDevicesFree(
+@@ -761,6 +782,8 @@ BluetoothSelectDevicesFree(
  //          Failure. The property page was not displayed. Check GetLastError
  //          for more details.
  //
@@ -125,7 +123,7 @@ index b36ff097..5bb5c4c5 100644
  BOOL
  WINAPI
  BluetoothDisplayDeviceProperties(
-@@ -849,6 +874,7 @@ BluetoothDisplayDeviceProperties(
+@@ -849,6 +872,7 @@ BluetoothDisplayDeviceProperties(
  //          { BTH_ERROR_UNSPECIFIED_ERROR,      ERROR_NOT_READY },
  //          { BTH_ERROR_LOCAL_HOST_TERMINATED_CONNECTION, ERROR_VC_DISCONNECTED },
  //
@@ -133,7 +131,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -967,6 +993,7 @@ typedef struct _BLUETOOTH_PASSKEY_INFO {
+@@ -967,6 +991,7 @@ typedef struct _BLUETOOTH_PASSKEY_INFO {
  //          { BTH_ERROR_UNSPECIFIED_ERROR,      ERROR_NOT_READY },
  //          { BTH_ERROR_LOCAL_HOST_TERMINATED_CONNECTION, ERROR_VC_DISCONNECTED },
  //
@@ -141,7 +139,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -1023,6 +1050,7 @@ BluetoothAuthenticateDeviceEx(
+@@ -1023,6 +1048,7 @@ BluetoothAuthenticateDeviceEx(
  //      other WIN32 error
  //          Failure. Return value is the error code.
  //
@@ -149,7 +147,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -1092,6 +1120,7 @@ BluetoothAuthenticateMultipleDevices(
+@@ -1092,6 +1118,7 @@ BluetoothAuthenticateMultipleDevices(
  //      other WIN32 error
  //          The call failed.
  //
@@ -157,7 +155,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -1134,6 +1163,7 @@ BluetoothSetServiceState(
+@@ -1134,6 +1161,7 @@ BluetoothSetServiceState(
  //      other WIN32 errors
  //          The call failed.
  //
@@ -165,7 +163,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  _Success_(return == ERROR_SUCCESS)
  DWORD
-@@ -1175,6 +1205,7 @@ BluetoothEnumerateInstalledServices(
+@@ -1175,6 +1203,7 @@ BluetoothEnumerateInstalledServices(
  //          State was not changed. If the caller specified NULL for hRadio, all
  //          of the radios did not accept the state change.
  //
@@ -173,7 +171,7 @@ index b36ff097..5bb5c4c5 100644
  BOOL
  WINAPI
  BluetoothEnableDiscovery(
-@@ -1200,6 +1231,7 @@ BluetoothEnableDiscovery(
+@@ -1200,6 +1229,7 @@ BluetoothEnableDiscovery(
  //      FALSE
  //          No radios are discoverable.
  //
@@ -181,7 +179,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  BOOL
  WINAPI
-@@ -1236,6 +1268,7 @@ BluetoothIsDiscoverable(
+@@ -1236,6 +1266,7 @@ BluetoothIsDiscoverable(
  //          State was not changed. If the caller specified NULL for hRadio, all
  //          of the radios did not accept the state change.
  //
@@ -189,7 +187,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  BOOL
  WINAPI
-@@ -1262,6 +1295,7 @@ BluetoothEnableIncomingConnections(
+@@ -1262,6 +1293,7 @@ BluetoothEnableIncomingConnections(
  //      FALSE
  //          No radios are allowing incoming connections.
  //
@@ -197,7 +195,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  BOOL
  WINAPI
-@@ -1314,6 +1348,8 @@ typedef BOOL (CALLBACK *PFN_AUTHENTICATION_CALLBACK)(LPVOID pvParam, PBLUETOOTH_
+@@ -1314,6 +1346,8 @@ typedef BOOL (CALLBACK *PFN_AUTHENTICATION_CALLBACK)(LPVOID pvParam, PBLUETOOTH_
  //      other Win32 error.
  //          Failure. The registration handle is invalid.
  //
@@ -206,7 +204,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -1372,6 +1408,7 @@ typedef BOOL (CALLBACK *PFN_AUTHENTICATION_CALLBACK_EX)(_In_opt_ LPVOID pvParam,
+@@ -1372,6 +1406,7 @@ typedef BOOL (CALLBACK *PFN_AUTHENTICATION_CALLBACK_EX)(_In_opt_ LPVOID pvParam,
  //      other Win32 error.
  //          Failure. The registration handle is invalid.
  //
@@ -214,7 +212,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -1407,6 +1444,8 @@ BluetoothRegisterForAuthenticationEx(
+@@ -1407,6 +1442,8 @@ BluetoothRegisterForAuthenticationEx(
  //
  //          other Win32 errors.
  //
@@ -223,7 +221,7 @@ index b36ff097..5bb5c4c5 100644
  BOOL
  WINAPI
  BluetoothUnregisterAuthentication(
-@@ -1446,6 +1485,7 @@ BluetoothUnregisterAuthentication(
+@@ -1446,6 +1483,7 @@ BluetoothUnregisterAuthentication(
  //
  //      other Win32 error codes
  //
@@ -231,7 +229,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -1517,6 +1557,7 @@ typedef struct _BLUETOOTH_AUTHENTICATE_RESPONSE {
+@@ -1517,6 +1555,7 @@ typedef struct _BLUETOOTH_AUTHENTICATE_RESPONSE {
  //
  //      other Win32 error codes
  //
@@ -239,7 +237,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -1637,6 +1678,7 @@ typedef struct _SDP_ELEMENT_DATA {
+@@ -1637,6 +1676,7 @@ typedef struct _SDP_ELEMENT_DATA {
  //      ERROR_SUCCESS
  //          the sdp element was parsed correctly
  //
@@ -247,7 +245,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  _Success_(return == ERROR_SUCCESS)
  DWORD
-@@ -1708,6 +1750,7 @@ typedef HANDLE HBLUETOOTH_CONTAINER_ELEMENT;
+@@ -1708,6 +1748,7 @@ typedef HANDLE HBLUETOOTH_CONTAINER_ELEMENT;
  // }
  //
  //
@@ -255,7 +253,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  _Success_(return == ERROR_SUCCESS)
  DWORD
-@@ -1762,6 +1805,7 @@ BluetoothSdpGetContainerElementData(
+@@ -1762,6 +1803,7 @@ BluetoothSdpGetContainerElementData(
  //      printf("record handle is 0x%x\n", data.data.uint32);
  // }
  //
@@ -263,7 +261,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  _Success_(return == ERROR_SUCCESS)
  DWORD
-@@ -1849,6 +1893,7 @@ typedef struct _SDP_STRING_TYPE_DATA {
+@@ -1849,6 +1891,7 @@ typedef struct _SDP_STRING_TYPE_DATA {
  //
  //      Other HRESULTs returned by COM
  //
@@ -271,7 +269,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  _Success_(return == 0)
  DWORD
-@@ -1898,6 +1943,8 @@ typedef BOOL (CALLBACK *PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK)(
+@@ -1898,6 +1941,8 @@ typedef BOOL (CALLBACK *PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK)(
  //
  #define BluetoothEnumAttributes BluetoothSdpEnumAttributes
  
@@ -280,7 +278,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  BOOL
  WINAPI
-@@ -1916,6 +1963,7 @@ BluetoothSdpEnumAttributes(
+@@ -1916,6 +1961,7 @@ BluetoothSdpEnumAttributes(
  // The following APIs are only available on Vista or later
  //
  
@@ -288,7 +286,7 @@ index b36ff097..5bb5c4c5 100644
  _Must_inspect_result_
  DWORD
  WINAPI
-@@ -1948,6 +1996,7 @@ BluetoothSetLocalServiceInfo(
+@@ -1948,6 +1994,7 @@ BluetoothSetLocalServiceInfo(
  //
  // Note this function is only exported in version 2.1 and later.
  //

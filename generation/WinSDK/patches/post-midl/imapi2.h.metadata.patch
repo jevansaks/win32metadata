@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/imapi2.h b/generation/WinSDK/RecompiledIdlHeaders/um/imapi2.h
-index 06e7bfd2..cb90f853 100644
+index 06e7bfd2..d577802d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/imapi2.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/imapi2.h
-@@ -577,6 +577,9 @@ extern "C"{
+@@ -577,6 +577,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -920,6 +923,7 @@ EXTERN_C const IID IID_IDiscMaster2;
+@@ -920,6 +921,7 @@ EXTERN_C const IID IID_IDiscMaster2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354130-7F64-5B0F-8F00-5D77AFBE261E")
      IDiscMaster2 : public IDispatch
      {
-@@ -1114,6 +1118,7 @@ EXTERN_C const IID IID_DDiscMaster2Events;
+@@ -1114,6 +1116,7 @@ EXTERN_C const IID IID_DDiscMaster2Events;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354131-7F64-5B0F-8F00-5D77AFBE261E")
      DDiscMaster2Events : public IDispatch
      {
-@@ -1316,6 +1321,7 @@ EXTERN_C const IID IID_IDiscRecorder2Ex;
+@@ -1316,6 +1319,7 @@ EXTERN_C const IID IID_IDiscRecorder2Ex;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354132-7F64-5B0F-8F00-5D77AFBE261E")
      IDiscRecorder2Ex : public IUnknown
      {
-@@ -1735,6 +1741,7 @@ EXTERN_C const IID IID_IDiscRecorder2;
+@@ -1735,6 +1739,7 @@ EXTERN_C const IID IID_IDiscRecorder2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354133-7F64-5B0F-8F00-5D77AFBE261E")
      IDiscRecorder2 : public IDispatch
      {
-@@ -2116,6 +2123,7 @@ EXTERN_C const IID IID_IWriteEngine2;
+@@ -2116,6 +2121,7 @@ EXTERN_C const IID IID_IWriteEngine2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354135-7F64-5B0F-8F00-5D77AFBE261E")
      IWriteEngine2 : public IDispatch
      {
-@@ -2430,6 +2438,7 @@ EXTERN_C const IID IID_IWriteEngine2EventArgs;
+@@ -2430,6 +2436,7 @@ EXTERN_C const IID IID_IWriteEngine2EventArgs;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354136-7F64-5B0F-8F00-5D77AFBE261E")
      IWriteEngine2EventArgs : public IDispatch
      {
-@@ -2652,6 +2661,7 @@ EXTERN_C const IID IID_DWriteEngine2Events;
+@@ -2652,6 +2659,7 @@ EXTERN_C const IID IID_DWriteEngine2Events;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354137-7F64-5B0F-8F00-5D77AFBE261E")
      DWriteEngine2Events : public IDispatch
      {
-@@ -2818,6 +2828,7 @@ EXTERN_C const IID IID_IDiscFormat2;
+@@ -2818,6 +2826,7 @@ EXTERN_C const IID IID_IDiscFormat2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354152-8F64-5B0F-8F00-5D77AFBE261E")
      IDiscFormat2 : public IDispatch
      {
-@@ -3030,6 +3041,7 @@ EXTERN_C const IID IID_IDiscFormat2Erase;
+@@ -3030,6 +3039,7 @@ EXTERN_C const IID IID_IDiscFormat2Erase;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354156-8F64-5B0F-8F00-5D77AFBE261E")
      IDiscFormat2Erase : public IDiscFormat2
      {
-@@ -3312,6 +3324,7 @@ EXTERN_C const IID IID_DDiscFormat2EraseEvents;
+@@ -3312,6 +3322,7 @@ EXTERN_C const IID IID_DDiscFormat2EraseEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("2735413A-7F64-5B0F-8F00-5D77AFBE261E")
      DDiscFormat2EraseEvents : public IDispatch
      {
-@@ -3502,6 +3515,7 @@ EXTERN_C const IID IID_IDiscFormat2Data;
+@@ -3502,6 +3513,7 @@ EXTERN_C const IID IID_IDiscFormat2Data;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354153-9F64-5B0F-8F00-5D77AFBE261E")
      IDiscFormat2Data : public IDiscFormat2
      {
-@@ -4064,6 +4078,7 @@ EXTERN_C const IID IID_DDiscFormat2DataEvents;
+@@ -4064,6 +4076,7 @@ EXTERN_C const IID IID_DDiscFormat2DataEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("2735413C-7F64-5B0F-8F00-5D77AFBE261E")
      DDiscFormat2DataEvents : public IDispatch
      {
-@@ -4229,6 +4244,7 @@ EXTERN_C const IID IID_IDiscFormat2DataEventArgs;
+@@ -4229,6 +4242,7 @@ EXTERN_C const IID IID_IDiscFormat2DataEventArgs;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("2735413D-7F64-5B0F-8F00-5D77AFBE261E")
      IDiscFormat2DataEventArgs : public IWriteEngine2EventArgs
      {
-@@ -4495,6 +4511,7 @@ EXTERN_C const IID IID_IDiscFormat2TrackAtOnce;
+@@ -4495,6 +4509,7 @@ EXTERN_C const IID IID_IDiscFormat2TrackAtOnce;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354154-8F64-5B0F-8F00-5D77AFBE261E")
      IDiscFormat2TrackAtOnce : public IDiscFormat2
      {
-@@ -4970,6 +4987,7 @@ EXTERN_C const IID IID_DDiscFormat2TrackAtOnceEvents;
+@@ -4970,6 +4985,7 @@ EXTERN_C const IID IID_DDiscFormat2TrackAtOnceEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("2735413F-7F64-5B0F-8F00-5D77AFBE261E")
      DDiscFormat2TrackAtOnceEvents : public IDispatch
      {
-@@ -5136,6 +5154,7 @@ EXTERN_C const IID IID_IDiscFormat2TrackAtOnceEventArgs;
+@@ -5136,6 +5152,7 @@ EXTERN_C const IID IID_IDiscFormat2TrackAtOnceEventArgs;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354140-7F64-5B0F-8F00-5D77AFBE261E")
      IDiscFormat2TrackAtOnceEventArgs : public IWriteEngine2EventArgs
      {
-@@ -5401,6 +5420,7 @@ EXTERN_C const IID IID_IDiscFormat2RawCD;
+@@ -5401,6 +5418,7 @@ EXTERN_C const IID IID_IDiscFormat2RawCD;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354155-8F64-5B0F-8F00-5D77AFBE261E")
      IDiscFormat2RawCD : public IDiscFormat2
      {
-@@ -5871,6 +5891,7 @@ EXTERN_C const IID IID_DDiscFormat2RawCDEvents;
+@@ -5871,6 +5889,7 @@ EXTERN_C const IID IID_DDiscFormat2RawCDEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354142-7F64-5B0F-8F00-5D77AFBE261E")
      DDiscFormat2RawCDEvents : public IDispatch
      {
-@@ -6037,6 +6058,7 @@ EXTERN_C const IID IID_IDiscFormat2RawCDEventArgs;
+@@ -6037,6 +6056,7 @@ EXTERN_C const IID IID_IDiscFormat2RawCDEventArgs;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354143-7F64-5B0F-8F00-5D77AFBE261E")
      IDiscFormat2RawCDEventArgs : public IWriteEngine2EventArgs
      {
-@@ -6263,6 +6285,7 @@ EXTERN_C const IID IID_IBurnVerification;
+@@ -6263,6 +6283,7 @@ EXTERN_C const IID IID_IBurnVerification;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -172,7 +170,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("D2FFD834-958B-426d-8470-2A13879C6A91")
      IBurnVerification : public IUnknown
      {
-@@ -6373,6 +6396,7 @@ EXTERN_C const IID IID_IWriteSpeedDescriptor;
+@@ -6373,6 +6394,7 @@ EXTERN_C const IID IID_IWriteSpeedDescriptor;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -180,7 +178,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354144-7F64-5B0F-8F00-5D77AFBE261E")
      IWriteSpeedDescriptor : public IDispatch
      {
-@@ -6553,6 +6577,7 @@ EXTERN_C const IID IID_IMultisession;
+@@ -6553,6 +6575,7 @@ EXTERN_C const IID IID_IMultisession;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -188,7 +186,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354150-7F64-5B0F-8F00-5D77AFBE261E")
      IMultisession : public IDispatch
      {
-@@ -6749,6 +6774,7 @@ EXTERN_C const IID IID_IMultisessionSequential;
+@@ -6749,6 +6772,7 @@ EXTERN_C const IID IID_IMultisessionSequential;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -196,7 +194,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354151-7F64-5B0F-8F00-5D77AFBE261E")
      IMultisessionSequential : public IMultisession
      {
-@@ -6974,6 +7000,7 @@ EXTERN_C const IID IID_IMultisessionSequential2;
+@@ -6974,6 +6998,7 @@ EXTERN_C const IID IID_IMultisessionSequential2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -204,7 +202,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("B507CA22-2204-11DD-966A-001AA01BBC58")
      IMultisessionSequential2 : public IMultisessionSequential
      {
-@@ -7206,6 +7233,7 @@ EXTERN_C const IID IID_IMultisessionRandomWrite;
+@@ -7206,6 +7231,7 @@ EXTERN_C const IID IID_IMultisessionRandomWrite;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -212,7 +210,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("B507CA23-2204-11DD-966A-001AA01BBC58")
      IMultisessionRandomWrite : public IMultisession
      {
-@@ -7409,6 +7437,7 @@ EXTERN_C const IID IID_IStreamPseudoRandomBased;
+@@ -7409,6 +7435,7 @@ EXTERN_C const IID IID_IStreamPseudoRandomBased;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -220,7 +218,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354145-7F64-5B0F-8F00-5D77AFBE261E")
      IStreamPseudoRandomBased : public IStream
      {
-@@ -7670,6 +7699,7 @@ EXTERN_C const IID IID_IStreamConcatenate;
+@@ -7670,6 +7697,7 @@ EXTERN_C const IID IID_IStreamConcatenate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -228,7 +226,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354146-7F64-5B0F-8F00-5D77AFBE261E")
      IStreamConcatenate : public IStream
      {
-@@ -7935,6 +7965,7 @@ EXTERN_C const IID IID_IStreamInterleave;
+@@ -7935,6 +7963,7 @@ EXTERN_C const IID IID_IStreamInterleave;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -236,7 +234,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("27354147-7F64-5B0F-8F00-5D77AFBE261E")
      IStreamInterleave : public IStream
      {
-@@ -8177,6 +8208,7 @@ EXTERN_C const IID IID_IRawCDImageCreator;
+@@ -8177,6 +8206,7 @@ EXTERN_C const IID IID_IRawCDImageCreator;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -244,7 +242,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("25983550-9D65-49CE-B335-40630D901227")
      IRawCDImageCreator : public IDispatch
      {
-@@ -8565,6 +8597,7 @@ EXTERN_C const IID IID_IRawCDImageTrackInfo;
+@@ -8565,6 +8595,7 @@ EXTERN_C const IID IID_IRawCDImageTrackInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -252,7 +250,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("25983551-9D65-49CE-B335-40630D901227")
      IRawCDImageTrackInfo : public IDispatch
      {
-@@ -8860,6 +8893,7 @@ EXTERN_C const IID IID_IBlockRange;
+@@ -8860,6 +8891,7 @@ EXTERN_C const IID IID_IBlockRange;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -260,7 +258,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("B507CA25-2204-11DD-966A-001AA01BBC58")
      IBlockRange : public IDispatch
      {
-@@ -9027,6 +9061,7 @@ EXTERN_C const IID IID_IBlockRangeList;
+@@ -9027,6 +9059,7 @@ EXTERN_C const IID IID_IBlockRangeList;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -268,7 +266,7 @@ index 06e7bfd2..cb90f853 100644
      MIDL_INTERFACE("B507CA26-2204-11DD-966A-001AA01BBC58")
      IBlockRangeList : public IDispatch
      {
-@@ -9363,14 +9398,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -9363,14 +9396,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

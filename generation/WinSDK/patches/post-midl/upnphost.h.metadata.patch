@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/upnphost.h b/generation/WinSDK/RecompiledIdlHeaders/um/upnphost.h
-index 534f6468..12391c31 100644
+index 534f6468..dee8a70d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/upnphost.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/upnphost.h
-@@ -201,6 +201,9 @@ extern "C"{
+@@ -201,6 +201,7 @@ extern "C"{
  //
  //--------------------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -244,6 +247,7 @@ EXTERN_C const IID IID_IUPnPEventSink;
+@@ -244,6 +245,7 @@ EXTERN_C const IID IID_IUPnPEventSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 534f6468..12391c31 100644
      MIDL_INTERFACE("204810b4-73b2-11d4-bf42-00b0d0118b56")
      IUPnPEventSink : public IUnknown
      {
-@@ -348,6 +352,7 @@ EXTERN_C const IID IID_IUPnPEventSource;
+@@ -348,6 +350,7 @@ EXTERN_C const IID IID_IUPnPEventSource;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 534f6468..12391c31 100644
      MIDL_INTERFACE("204810b5-73b2-11d4-bf42-00b0d0118b56")
      IUPnPEventSource : public IUnknown
      {
-@@ -448,6 +453,7 @@ EXTERN_C const IID IID_IUPnPRegistrar;
+@@ -448,6 +451,7 @@ EXTERN_C const IID IID_IUPnPRegistrar;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 534f6468..12391c31 100644
      MIDL_INTERFACE("204810b6-73b2-11d4-bf42-00b0d0118b56")
      IUPnPRegistrar : public IUnknown
      {
-@@ -668,6 +674,7 @@ EXTERN_C const IID IID_IUPnPReregistrar;
+@@ -668,6 +672,7 @@ EXTERN_C const IID IID_IUPnPReregistrar;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 534f6468..12391c31 100644
      MIDL_INTERFACE("204810b7-73b2-11d4-bf42-00b0d0118b56")
      IUPnPReregistrar : public IUnknown
      {
-@@ -812,6 +819,7 @@ EXTERN_C const IID IID_IUPnPDeviceControl;
+@@ -812,6 +817,7 @@ EXTERN_C const IID IID_IUPnPDeviceControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 534f6468..12391c31 100644
      MIDL_INTERFACE("204810ba-73b2-11d4-bf42-00b0d0118b56")
      IUPnPDeviceControl : public IUnknown
      {
-@@ -1015,6 +1023,7 @@ EXTERN_C const IID IID_IUPnPDeviceProvider;
+@@ -1015,6 +1021,7 @@ EXTERN_C const IID IID_IUPnPDeviceProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 534f6468..12391c31 100644
      MIDL_INTERFACE("204810b8-73b2-11d4-bf42-00b0d0118b56")
      IUPnPDeviceProvider : public IUnknown
      {
-@@ -1111,6 +1120,7 @@ EXTERN_C const IID IID_IUPnPRemoteEndpointInfo;
+@@ -1111,6 +1118,7 @@ EXTERN_C const IID IID_IUPnPRemoteEndpointInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 534f6468..12391c31 100644
      MIDL_INTERFACE("c92eb863-0269-4aff-9c72-75321bba2952")
      IUPnPRemoteEndpointInfo : public IUnknown
      {
-@@ -1282,14 +1292,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -1282,14 +1290,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

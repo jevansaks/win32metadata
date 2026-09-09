@@ -32,6 +32,7 @@
 
 #ifndef __inspectable_h__
 #define __inspectable_h__
+#include <win32metadata_annotations.h>
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -102,6 +103,7 @@ EXTERN_C const IID IID_IInspectable;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+_Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("AF86E2E0-B12D-4c6a-9C5A-D7AA65101E90")
     IInspectable : public IUnknown
     {

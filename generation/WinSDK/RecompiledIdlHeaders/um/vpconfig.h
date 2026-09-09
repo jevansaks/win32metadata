@@ -12,6 +12,7 @@
 #define __IVPConfig__
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -21,6 +22,7 @@ extern "C" {
 #endif
 
 // IVPBaseConfig
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IVPBaseConfig, IUnknown)
 {
     // gets the various connection information structures (guid, portwidth)
@@ -108,6 +110,7 @@ DECLARE_INTERFACE_(IVPBaseConfig, IUnknown)
 };
 
 // IVPConfig
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IVPConfig, IVPBaseConfig)
 {
 	// the mixer uses this function to determine if the callee wants

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PrintManagerInterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/PrintManagerInterop.h
-index 5da6e589..05dbd8c5 100644
+index 5da6e589..5984ab55 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/PrintManagerInterop.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/PrintManagerInterop.h
-@@ -67,6 +67,9 @@ extern "C"{
+@@ -67,6 +67,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (NTDDI_VERSION >= NTDDI_WIN8)
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -86,6 +89,7 @@ EXTERN_C const IID IID_IPrintManagerInterop;
+@@ -86,6 +87,7 @@ EXTERN_C const IID IID_IPrintManagerInterop;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

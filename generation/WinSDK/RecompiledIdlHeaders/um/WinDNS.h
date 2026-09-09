@@ -24,9 +24,7 @@ Revision History:
 #ifndef _WINDNS_INCLUDED_
 #define _WINDNS_INCLUDED_
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #include <windnsdef.h>
 
 #pragma region Desktop Family or OneCore Family or Games Family

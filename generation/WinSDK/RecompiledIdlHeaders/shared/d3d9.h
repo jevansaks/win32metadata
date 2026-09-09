@@ -7,9 +7,7 @@
  *
  ****************************************************************************/
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef _D3D9_H_
 #define _D3D9_H_

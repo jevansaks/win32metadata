@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PrinterExtension.h b/generation/WinSDK/RecompiledIdlHeaders/um/PrinterExtension.h
-index e67e92b5..d5ff80cd 100644
+index e67e92b5..cb527d29 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/PrinterExtension.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/PrinterExtension.h
-@@ -32,6 +32,9 @@
+@@ -32,6 +32,7 @@
  
  #ifndef __printerextension_h__
  #define __printerextension_h__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if defined(_MSC_VER) && (_MSC_VER >= 1020)
  #pragma once
-@@ -8361,14 +8364,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -8361,14 +8362,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

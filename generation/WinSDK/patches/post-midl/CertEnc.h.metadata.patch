@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CertEnc.h b/generation/WinSDK/RecompiledIdlHeaders/um/CertEnc.h
-index 63a04aab..51c71dfe 100644
+index 63a04aab..e4cfac2e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/CertEnc.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/CertEnc.h
-@@ -216,6 +216,9 @@ extern "C"{
+@@ -216,6 +216,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -234,6 +237,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray;
+@@ -234,6 +235,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 63a04aab..51c71dfe 100644
      MIDL_INTERFACE("12a88820-7494-11d0-8816-00a0c903b83c")
      ICertEncodeStringArray : public IDispatch
      {
-@@ -253,7 +257,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray;
+@@ -253,7 +255,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray;
          
          virtual HRESULT STDMETHODCALLTYPE Reset( 
              /* [in] */ LONG Count,
@@ -29,7 +27,7 @@ index 63a04aab..51c71dfe 100644
          
          virtual HRESULT STDMETHODCALLTYPE SetValue( 
              /* [in] */ LONG Index,
-@@ -352,7 +356,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray;
+@@ -352,7 +354,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray;
          HRESULT ( STDMETHODCALLTYPE *Reset )( 
              __RPC__in ICertEncodeStringArray * This,
              /* [in] */ LONG Count,
@@ -38,7 +36,7 @@ index 63a04aab..51c71dfe 100644
          
          DECLSPEC_XFGVIRT(ICertEncodeStringArray, SetValue)
          HRESULT ( STDMETHODCALLTYPE *SetValue )( 
-@@ -546,7 +550,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray2;
+@@ -546,7 +548,7 @@ EXTERN_C const IID IID_ICertEncodeStringArray2;
          HRESULT ( STDMETHODCALLTYPE *Reset )( 
              __RPC__in ICertEncodeStringArray2 * This,
              /* [in] */ LONG Count,
@@ -47,7 +45,7 @@ index 63a04aab..51c71dfe 100644
          
          DECLSPEC_XFGVIRT(ICertEncodeStringArray, SetValue)
          HRESULT ( STDMETHODCALLTYPE *SetValue )( 
-@@ -657,6 +661,7 @@ EXTERN_C const IID IID_ICertEncodeLongArray;
+@@ -657,6 +659,7 @@ EXTERN_C const IID IID_ICertEncodeLongArray;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -55,7 +53,7 @@ index 63a04aab..51c71dfe 100644
      MIDL_INTERFACE("15e2f230-a0a2-11d0-8821-00a0c903b83c")
      ICertEncodeLongArray : public IDispatch
      {
-@@ -1058,6 +1063,7 @@ EXTERN_C const IID IID_ICertEncodeDateArray;
+@@ -1058,6 +1061,7 @@ EXTERN_C const IID IID_ICertEncodeDateArray;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -63,7 +61,7 @@ index 63a04aab..51c71dfe 100644
      MIDL_INTERFACE("2f9469a0-a470-11d0-8821-00a0c903b83c")
      ICertEncodeDateArray : public IDispatch
      {
-@@ -1459,6 +1465,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo;
+@@ -1459,6 +1463,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -71,7 +69,7 @@ index 63a04aab..51c71dfe 100644
      MIDL_INTERFACE("01958640-bbff-11d0-8825-00a0c903b83c")
      ICertEncodeCRLDistInfo : public IDispatch
      {
-@@ -1493,7 +1500,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo;
+@@ -1493,7 +1498,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo;
          virtual HRESULT STDMETHODCALLTYPE SetNameEntry( 
              /* [in] */ LONG DistPointIndex,
              /* [in] */ LONG NameIndex,
@@ -80,7 +78,7 @@ index 63a04aab..51c71dfe 100644
              /* [in] */ __RPC__in const BSTR strName) = 0;
          
          virtual HRESULT STDMETHODCALLTYPE Encode( 
-@@ -1610,7 +1617,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo;
+@@ -1610,7 +1615,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo;
              __RPC__in ICertEncodeCRLDistInfo * This,
              /* [in] */ LONG DistPointIndex,
              /* [in] */ LONG NameIndex,
@@ -89,7 +87,7 @@ index 63a04aab..51c71dfe 100644
              /* [in] */ __RPC__in const BSTR strName);
          
          DECLSPEC_XFGVIRT(ICertEncodeCRLDistInfo, Encode)
-@@ -1826,7 +1833,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo2;
+@@ -1826,7 +1831,7 @@ EXTERN_C const IID IID_ICertEncodeCRLDistInfo2;
              __RPC__in ICertEncodeCRLDistInfo2 * This,
              /* [in] */ LONG DistPointIndex,
              /* [in] */ LONG NameIndex,
@@ -98,7 +96,7 @@ index 63a04aab..51c71dfe 100644
              /* [in] */ __RPC__in const BSTR strName);
          
          DECLSPEC_XFGVIRT(ICertEncodeCRLDistInfo, Encode)
-@@ -1950,6 +1957,7 @@ EXTERN_C const IID IID_ICertEncodeAltName;
+@@ -1950,6 +1955,7 @@ EXTERN_C const IID IID_ICertEncodeAltName;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -106,7 +104,7 @@ index 63a04aab..51c71dfe 100644
      MIDL_INTERFACE("1c9a8c70-1271-11d1-9bd4-00c04fb683fa")
      ICertEncodeAltName : public IDispatch
      {
-@@ -1973,7 +1981,7 @@ EXTERN_C const IID IID_ICertEncodeAltName;
+@@ -1973,7 +1979,7 @@ EXTERN_C const IID IID_ICertEncodeAltName;
          
          virtual HRESULT STDMETHODCALLTYPE SetNameEntry( 
              /* [in] */ LONG NameIndex,
@@ -115,7 +113,7 @@ index 63a04aab..51c71dfe 100644
              /* [in] */ __RPC__in const BSTR strName) = 0;
          
          virtual HRESULT STDMETHODCALLTYPE Encode( 
-@@ -2075,7 +2083,7 @@ EXTERN_C const IID IID_ICertEncodeAltName;
+@@ -2075,7 +2081,7 @@ EXTERN_C const IID IID_ICertEncodeAltName;
          HRESULT ( STDMETHODCALLTYPE *SetNameEntry )( 
              __RPC__in ICertEncodeAltName * This,
              /* [in] */ LONG NameIndex,
@@ -124,7 +122,7 @@ index 63a04aab..51c71dfe 100644
              /* [in] */ __RPC__in const BSTR strName);
          
          DECLSPEC_XFGVIRT(ICertEncodeAltName, Encode)
-@@ -2281,7 +2289,7 @@ EXTERN_C const IID IID_ICertEncodeAltName2;
+@@ -2281,7 +2287,7 @@ EXTERN_C const IID IID_ICertEncodeAltName2;
          HRESULT ( STDMETHODCALLTYPE *SetNameEntry )( 
              __RPC__in ICertEncodeAltName2 * This,
              /* [in] */ LONG NameIndex,
@@ -133,7 +131,7 @@ index 63a04aab..51c71dfe 100644
              /* [in] */ __RPC__in const BSTR strName);
          
          DECLSPEC_XFGVIRT(ICertEncodeAltName, Encode)
-@@ -2408,6 +2416,7 @@ EXTERN_C const IID IID_ICertEncodeBitString;
+@@ -2408,6 +2414,7 @@ EXTERN_C const IID IID_ICertEncodeBitString;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -141,7 +139,7 @@ index 63a04aab..51c71dfe 100644
      MIDL_INTERFACE("6db525be-1278-11d1-9bd4-00c04fb683fa")
      ICertEncodeBitString : public IDispatch
      {
-@@ -2855,9 +2864,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -2855,9 +2862,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

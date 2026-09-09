@@ -13,9 +13,7 @@
     1.  See XAPO.h for the rules governing XAPO interface behaviour.        */
 
 #pragma once
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 //--------------<D-E-F-I-N-I-T-I-O-N-S>-------------------------------------//
 #include "XAPO.h"

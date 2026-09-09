@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinWlx.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinWlx.h
-index cdb335d1..84d0a65f 100644
+index cdb335d1..6166a155 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WinWlx.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinWlx.h
-@@ -31,6 +31,9 @@ Revision History:
+@@ -31,6 +31,7 @@ Revision History:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -594,6 +597,7 @@ typedef struct _WLX_CONSOLESWITCH_CREDENTIALS_INFO {
+@@ -594,6 +595,7 @@ typedef struct _WLX_CONSOLESWITCH_CREDENTIALS_INFO {
  //                                                                    //
  ////////////////////////////////////////////////////////////////////////
  
@@ -20,7 +18,7 @@ index cdb335d1..84d0a65f 100644
  BOOL
  WINAPI
  WlxNegotiate(
-@@ -601,6 +605,7 @@ WlxNegotiate(
+@@ -601,6 +603,7 @@ WlxNegotiate(
      PDWORD                  pdwDllVersion
      );
  
@@ -28,7 +26,7 @@ index cdb335d1..84d0a65f 100644
  BOOL
  WINAPI
  WlxInitialize(
-@@ -611,6 +616,7 @@ WlxInitialize(
+@@ -611,6 +614,7 @@ WlxInitialize(
      PVOID *                 pWlxContext
      );
  
@@ -36,7 +34,7 @@ index cdb335d1..84d0a65f 100644
  VOID
  WINAPI
  WlxDisplaySASNotice(
-@@ -618,6 +624,7 @@ WlxDisplaySASNotice(
+@@ -618,6 +622,7 @@ WlxDisplaySASNotice(
      );
  
  
@@ -44,7 +42,7 @@ index cdb335d1..84d0a65f 100644
  int
  WINAPI
  WlxLoggedOutSAS(
-@@ -631,6 +638,7 @@ WlxLoggedOutSAS(
+@@ -631,6 +636,7 @@ WlxLoggedOutSAS(
      PVOID *                 pProfile
      );
  
@@ -52,7 +50,7 @@ index cdb335d1..84d0a65f 100644
  BOOL
  WINAPI
  WlxActivateUserShell(
-@@ -640,6 +648,7 @@ WlxActivateUserShell(
+@@ -640,6 +646,7 @@ WlxActivateUserShell(
      PVOID                   pEnvironment
      );
  
@@ -60,7 +58,7 @@ index cdb335d1..84d0a65f 100644
  int
  WINAPI
  WlxLoggedOnSAS(
-@@ -648,12 +657,14 @@ WlxLoggedOnSAS(
+@@ -648,12 +655,14 @@ WlxLoggedOnSAS(
      PVOID                   pReserved
      );
  
@@ -75,7 +73,7 @@ index cdb335d1..84d0a65f 100644
  int
  WINAPI
  WlxWkstaLockedSAS(
-@@ -661,18 +672,21 @@ WlxWkstaLockedSAS(
+@@ -661,18 +670,21 @@ WlxWkstaLockedSAS(
      DWORD                   dwSasType
      );
  
@@ -97,7 +95,7 @@ index cdb335d1..84d0a65f 100644
  VOID
  WINAPI
  WlxLogoff(
-@@ -680,6 +694,7 @@ WlxLogoff(
+@@ -680,6 +692,7 @@ WlxLogoff(
      );
  
  
@@ -105,7 +103,7 @@ index cdb335d1..84d0a65f 100644
  VOID
  WINAPI
  WlxShutdown(
-@@ -691,12 +706,14 @@ WlxShutdown(
+@@ -691,12 +704,14 @@ WlxShutdown(
  //
  // NEW for version 1.1
  //
@@ -120,7 +118,7 @@ index cdb335d1..84d0a65f 100644
  BOOL
  WINAPI
  WlxStartApplication(
-@@ -710,6 +727,7 @@ WlxStartApplication(
+@@ -710,6 +725,7 @@ WlxStartApplication(
  // New for 1.3
  //
  
@@ -128,7 +126,7 @@ index cdb335d1..84d0a65f 100644
  BOOL
  WINAPI
  WlxNetworkProviderLoad(
-@@ -721,6 +739,7 @@ WlxNetworkProviderLoad(
+@@ -721,6 +737,7 @@ WlxNetworkProviderLoad(
  #define STATUSMSG_OPTION_NOANIMATION    0x00000001
  #define STATUSMSG_OPTION_SETFOREGROUND  0x00000002
  
@@ -136,7 +134,7 @@ index cdb335d1..84d0a65f 100644
  BOOL
  WINAPI
  WlxDisplayStatusMessage(
-@@ -731,6 +750,7 @@ WlxDisplayStatusMessage(
+@@ -731,6 +748,7 @@ WlxDisplayStatusMessage(
      PWSTR                   pMessage
      );
  
@@ -144,7 +142,7 @@ index cdb335d1..84d0a65f 100644
  BOOL
  WINAPI
  WlxGetStatusMessage(
-@@ -740,6 +760,7 @@ WlxGetStatusMessage(
+@@ -740,6 +758,7 @@ WlxGetStatusMessage(
      DWORD                   dwBufferSize
      );
  
@@ -152,7 +150,7 @@ index cdb335d1..84d0a65f 100644
  BOOL
  WINAPI
  WlxRemoveStatusMessage(
-@@ -750,6 +771,7 @@ WlxRemoveStatusMessage(
+@@ -750,6 +769,7 @@ WlxRemoveStatusMessage(
  //
  // New for 1.4
  //

@@ -5,11 +5,11 @@
 `generation/WinSDK/supportedOS.rsp` is a `--with-attribute` sidecar: one line per
 declared name mapping to a C# `[SupportedOSPlatform("windowsX.Y.ZZZZ")]` attribute.
 Unlike the `WithSetLastError.rsp`/`emitter.settings.rsp` tranches (functions only),
-this sidecar also covers **types** - COM interfaces (`MIDL_INTERFACE` declarations)
-and property-key constant macros (`DEFINE_PROPERTYKEY`) - alongside free functions.
-The same shift-left goal applies: every fact should live as an inline
-`_Win32_metadata_supported_os_(<version>)` annotation directly on the producer's
-declaration in the owning SDK header.
+this sidecar also covers **types** - COM interfaces (declared via several distinct
+idioms - see Phase 3 below) and property-key constant macros (`DEFINE_PROPERTYKEY`)
+- alongside free functions. The same shift-left goal applies: every fact should
+live as an inline `_Win32_metadata_supported_os_(<version>)` annotation directly
+on the producer's declaration in the owning SDK header.
 
 The rsp originally contained **17,248** API-specific entries. 106 headers already
 carried 3,776 pre-existing `_Win32_metadata_supported_os_` annotations from prior
@@ -159,3 +159,169 @@ dropped. No entries were removed without either (a) confirming an exact-version
 match at every real declaration location, (b) confirming a partial match where the
 only uncovered "locations" were non-declaration artifacts, or (c) confirming the
 name is a pure macro incapable of carrying a declaration-level annotation.
+
+## Phase 3: Fixing the WIN32METADATA/Kernel gap, expanding COM idiom detection,
+## resolving all version conflicts, and dead-entry classification
+
+### `WIN32METADATA` never defined anywhere - the real root cause of the Kernel gap
+
+Root-caused the Phase 2 `Kernel`-partition regression: `WIN32METADATA` is **never
+defined** by the scraper via any `-D`/`--additional` flag in any rsp (exhaustive
+case-sensitive search across every `.rsp` in the repo confirms this). Every header
+using `_Win32_metadata_*` macros only works because `win32metadata_annotations.h`
+defines them as harmless no-ops when `WIN32METADATA`/`__clang__` aren't both set -
+**provided the header is reachable at all**. `minwindef.h`/`windef.h` already
+included it **unconditionally** (no `#if defined(WIN32METADATA)` guard around the
+`#include`), which is why every `windows.h`-chain (user-mode) partition worked:
+they reach `win32metadata_annotations.h` transitively through `minwindef.h`
+regardless of the (always-false) `WIN32METADATA` condition. `Kernel/main.cpp`
+intentionally omits the whole `windows.h` chain (kernel-mode code has no use for
+it), so it never reached the guard's `#include` and the macros were left
+completely undefined, causing the raw annotation text to fail to parse.
+
+**Fix:** made `#include <win32metadata_annotations.h>` unconditional everywhere,
+matching the existing `minwindef.h`/`windef.h` precedent - removed the
+`#if defined(WIN32METADATA) ... #endif` wrapper from all 779 occurrences of the
+guard across the header tree (safe: the file is `#pragma once`-guarded and its
+own internal `#if defined(WIN32METADATA) && defined(__clang__)` still gates the
+*real* attribute macro; only the *reachability* of a no-op fallback definition
+changes). Verified with `ScrapeHeaders -p:PartitionFilter=Kernel` before and
+after. Re-added the `IsEqualGUID` (`guiddef.h`) and `Int64ShllMod32`/
+`Int64ShraMod32`/`Int64ShrlMod32` (`ntdef.h`, both the prototype and `__inline`
+bodies) annotations that had been reverted in Phase 2; all now scrape
+successfully via `Kernel` (and `TransactionServer` for `guiddef.h`).
+
+### New false-positive classes found and fixed
+
+- **Identifiers inside string literals.** `_WINSOCK_DEPRECATED_BY("WSARecv()")`-style
+  deprecation hints matched as if `WSARecv(` were a real call/declaration site.
+  Fixed by blanking double-quoted string-literal contents before pattern matching.
+- **`return <cast>(NAME(...))` forwarding/alias calls**, e.g.
+  `return reinterpret_cast<PIDLIST_ABSOLUTE>(ILClone(pidl))` inside `ILCloneFull`'s
+  inline body - misattributed `ILClone`'s annotation onto `ILCloneFull`'s
+  declaration line since the original "does the prefix look like an expression"
+  check computed the wrong string span (an off-by-one in how the delimiter
+  character captured by the scanning regex was excluded from the prefix).
+  Fixed the offset and broadened the "`return` leading into a call" exclusion to
+  cover cast-wrapped calls, while keeping it narrow enough to not exclude genuine
+  SAL clauses like `_Success_(return != NULL)` on a real declaration line.
+- **Multi-line call-argument lists with trailing commas** (e.g. `MAKELANGID(...)`
+  as one argument deep inside a multi-line `FormatMessageA(...)` call) look like a
+  continued declaration specifier to the "does this look like a declaration
+  context" heuristic (no line ends in `;`/`{`/`}` until the enclosing call
+  statement). Found and fixed by direct inspection of the two affected locations
+  (`WS2tcpip.h` `gai_strerrorA`/`gai_strerrorW`); not generalized into the scanner
+  given its rarity, but documented here for future scanner work.
+- **Trailing line-comments hiding a real statement/block terminator**, e.g.
+  `} // extern C++` not being recognized as ending in `}` because the comment
+  came after it - caused two insertions to land after a stray `}` instead of
+  immediately before the real declaration (`Unknwn.h`/`Unknwnbase.h`
+  `IUnknown_QueryInterface_Proxy`). Fixed by stripping trailing `//` comments
+  before checking for a terminator in all three
+  declaration-context/coverage-range walkers.
+- **Overly broad `STDMETHODCALLTYPE` exclusion.** The exclusion (originally meant
+  to skip COM vtable function-pointer slots and virtual interface methods) was
+  skipping *any* line mentioning `STDMETHODCALLTYPE`, including genuine free
+  functions that use it as a plain calling-convention keyword (e.g.
+  `HRESULT STDMETHODCALLTYPE WMCreateReader(...)`, `ULONG STDMETHODCALLTYPE
+  IUnknown_AddRef_Proxy(...)`). Narrowed to specifically match the vtable
+  function-pointer shape (`( STDMETHODCALLTYPE *Name )`) and the `virtual ...
+  STDMETHODCALLTYPE` interface-method shape, leaving plain free-function
+  declarations detectable.
+- A full post-fix audit cross-referencing every `_Win32_metadata_supported_os_`
+  annotation in every touched header against the original 17,248-entry list
+  (by name and version) found and fixed all remaining misplacements described
+  above; the remaining "no real declaration found" audit residue was two
+  legitimate idioms the audit's own quick parser didn't recognize (C-style
+  vtable-only interface fallback bodies, and `interface NAME : public Base`
+  without a preceding `MIDL_INTERFACE`), verified correct by direct inspection.
+
+### New COM/declaration idioms detected
+
+- `DECLARE_INTERFACE_IID_(NAME, Base, "guid")` / `DECLARE_INTERFACE_IID(NAME, "guid")`
+  / `DECLARE_INTERFACE_(NAME, Base)` / `DECLARE_INTERFACE(NAME)` - the pre-MIDL
+  C-vtable interface-declaration macro family (`ShlObj.h`/`ShlObj_core.h` etc.).
+- `#define INTERFACE NAME` followed a few lines later by a `DECLARE_INTERFACE...`
+  invocation referencing the literal token `INTERFACE` (older shell/COM headers)
+  - annotation goes on the `#define INTERFACE NAME` line itself.
+- `interface <TAG>_DECLARE_INTERFACE("guid") NAME : public Base` - a single-line
+  DirectX/DirectWrite interface idiom (`DX_DECLARE_INTERFACE` in `d2d1*.h`,
+  `DWRITE_DECLARE_INTERFACE` in `dwrite*.h`), generalized to match any
+  `*_DECLARE_INTERFACE` macro name.
+- `typedef struct <tag> NAME;` plain typedef-to-a-real-type alias (e.g.
+  `typedef struct fd_set FD_SET;` in `winsock.h`) - used only when `NAME` (not
+  the lowercase tag) is itself the rsp-tracked public name with no other
+  reachable declaration.
+- A curated allowlist of "ABI-level" `winrt/` headers (`activation.h`,
+  `activationregistration.h`, `hstring.h`, `inspectable.h`, `roapi.h`,
+  `roerrorapi.h`, `winstring.h`) was included in the scan, narrowly reversing the
+  blanket `winrt/` exclusion for just these free-function/base-interface headers
+  (the exclusion's original purpose - avoiding COM/WinRT *projection* method-name
+  collisions such as `GetClassName`/`SendMessage` - does not apply to these
+  foundational, non-projection ABI headers).
+
+### Dead/vestigial sidecar entries (removed, no header change)
+
+Cross-referenced every remaining name against the full generated C# output of a
+complete `ScrapeHeaders` run across all 323 partitions (`AllJoyn`/`WinRT.AllJoyn`
+excluded as the pre-existing toolchain blocker) using exact-identifier matching
+(not substring). **952 entries** never correspond to any currently-generated
+metadata member and were removed with no header change:
+- **935 confirmed `#define` function-like/object-like macros** (the
+  `Button_*`/`ComboBox_*`/`DateTime_*`/`Edit_*`/`Animate_*` SendMessage-wrapper
+  families in `CommCtrl.h`, `CLUSCTL_*`/`CLUSPROP_*`/`CLUSTER_*` cluster
+  control-code macros in `ClusApi.h`, and similar) - win32metadata does not
+  project function-like macros as P/Invoke members at all (verified: none of
+  these names appear anywhere in the generated output, not even as a
+  `--with-attribute`-driven synthetic member), so the sidecar entries were
+  already permanently inert before this tranche even began.
+- **13 names absent from every header in the current SDK tree entirely**
+  (`CIBuildQueryNode`/`CIBuildQueryTree`/`CICreateCommand`/`CIMakeICommand`/
+  `CIRestrictionToFullTree`/`CITextToFullTree{,Ex}`/`CITextToSelectTree{,Ex}`/
+  `LocateCatalogsA`/`LocateCatalogsW` - old Content Index/Indexing Service query
+  APIs documented against `ntquery.h` per `scripts/ApiInfo.csv`, and
+  `IRDPViewerRenderingSurface`/`IWRdsRemoteFXGraphicsConnection` - RDP interfaces
+  documented against `rdpencomapi.h`/`wtsprotocol.h`). Both source headers still
+  exist in the current SDK snapshot but no longer declare these specific names -
+  they were removed from the public SDK surface at some point before the
+  19041-based snapshot this repo scrapes. No verified original signature was
+  available to safely fabricate a "guarded metadata-only legacy" declaration
+  without risking an incorrect shape, so these were documented and removed
+  rather than guessed at.
+- **2 names (`GetActivationFactory`, `RoGetActivatableClassRegistration`) exist
+  only as C++/WinRT projection helpers under `winrt/wrl/`** (not the ABI-level
+  headers allowlisted above) - out of scope for a Win32 ABI metadata surface.
+
+### Duplicate-declaration version conflicts (all resolved, none left in the rsp)
+
+All 14 names with two real, distinct declarations carrying different
+pre-existing `_Win32_metadata_supported_os_` values were resolved by selecting
+the authoritative value and normalizing the other declaration in place (not by
+retaining a sidecar entry):
+- `WSAAsyncGetProtoByName`, `WSAAsyncGetProtoByNumber`, `WSAAsyncGetServByName`,
+  `WSAAsyncGetServByPort`: declared in both legacy `winsock.h` (`windows5.0`) and
+  `WinSock2.h` (previously `windows8.1`, next to a `_WINSOCK_DEPRECATED_BY(...)`
+  marker). The deprecation marker reflects when the replacement API was
+  recommended, not when the function itself was introduced - Winsock async
+  helpers have existed since the original Windows Sockets 1.1 surface. Normalized
+  `WinSock2.h`'s value to `windows5.0` to match the canonical `winsock.h`
+  declaration.
+- `WSARecvDisconnect`, `WSASendDisconnect`: single declaration in `WinSock2.h`,
+  incorrectly annotated `windows8.1` (again next to a `_WINSOCK_DEPRECATED_BY`
+  marker) for a core WinSock2 overlapped-I/O function that has existed since
+  WinSock2's introduction. Normalized to `windows5.0` to match the rsp.
+- `ILClone`, `WSAEventSelect`, `WSARecv`, `GetAddrInfoExW`, `getnameinfo`,
+  `GetNameInfoW`, `MAKELANGID`, `TraceLoggingWriteActivity`: all were **false
+  conflicts** caused by the false-positive classes described above (bogus
+  locations inside string literals, cast-wrapped forwarding calls, or - for
+  `TraceLoggingWriteActivity`, a pure macro - a misplaced annotation inside an
+  unrelated template function's body). No header content needed to change beyond
+  removing the bogus insertion; the real declaration(s) already carried (or, for
+  `TraceLoggingWriteActivity`, could never carry) the correct value.
+
+## Residual state (final)
+
+`supportedOS.rsp` contains **50** entries (down from 17,248 originally, 1,370 at
+the start of this phase). All remaining entries are being worked through
+individually to reach zero; see the runlog for the final accounting once
+complete.

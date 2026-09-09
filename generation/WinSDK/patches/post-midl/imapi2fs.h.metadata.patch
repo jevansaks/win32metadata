@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/imapi2fs.h b/generation/WinSDK/RecompiledIdlHeaders/um/imapi2fs.h
-index 70252b17..d09ba0a0 100644
+index 70252b17..67b36658 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/imapi2fs.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/imapi2fs.h
-@@ -376,6 +376,9 @@ extern "C"{
+@@ -376,6 +376,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define IMAPI2FS_BOOT_ENTRY_COUNT_MAX    32
-@@ -432,6 +435,7 @@ EXTERN_C const IID IID_IBootOptions;
+@@ -432,6 +433,7 @@ EXTERN_C const IID IID_IBootOptions;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FD4-975B-59BE-A960-9A2A262853A5")
      IBootOptions : public IDispatch
      {
-@@ -685,6 +689,7 @@ EXTERN_C const IID IID_IProgressItem;
+@@ -685,6 +687,7 @@ EXTERN_C const IID IID_IProgressItem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FD5-975B-59BE-A960-9A2A262853A5")
      IProgressItem : public IDispatch
      {
-@@ -873,6 +878,7 @@ EXTERN_C const IID IID_IEnumProgressItems;
+@@ -873,6 +876,7 @@ EXTERN_C const IID IID_IEnumProgressItems;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FD6-975B-59BE-A960-9A2A262853A5")
      IEnumProgressItems : public IUnknown
      {
-@@ -1019,6 +1025,7 @@ EXTERN_C const IID IID_IProgressItems;
+@@ -1019,6 +1023,7 @@ EXTERN_C const IID IID_IProgressItems;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FD7-975B-59BE-A960-9A2A262853A5")
      IProgressItems : public IDispatch
      {
-@@ -1245,6 +1252,7 @@ EXTERN_C const IID IID_IFileSystemImageResult;
+@@ -1245,6 +1250,7 @@ EXTERN_C const IID IID_IFileSystemImageResult;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FD8-975B-59BE-A960-9A2A262853A5")
      IFileSystemImageResult : public IDispatch
      {
-@@ -1446,6 +1454,7 @@ EXTERN_C const IID IID_IFileSystemImageResult2;
+@@ -1446,6 +1452,7 @@ EXTERN_C const IID IID_IFileSystemImageResult2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("B507CA29-2204-11DD-966A-001AA01BBC58")
      IFileSystemImageResult2 : public IFileSystemImageResult
      {
-@@ -1639,6 +1648,7 @@ EXTERN_C const IID IID_IFsiItem;
+@@ -1639,6 +1646,7 @@ EXTERN_C const IID IID_IFsiItem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FD9-975B-59BE-A960-9A2A262853A5")
      IFsiItem : public IDispatch
      {
-@@ -1939,6 +1949,7 @@ EXTERN_C const IID IID_IEnumFsiItems;
+@@ -1939,6 +1947,7 @@ EXTERN_C const IID IID_IEnumFsiItems;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FDA-975B-59BE-A960-9A2A262853A5")
      IEnumFsiItems : public IUnknown
      {
-@@ -2085,6 +2096,7 @@ EXTERN_C const IID IID_IFsiFileItem;
+@@ -2085,6 +2094,7 @@ EXTERN_C const IID IID_IFsiFileItem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FDB-975B-59BE-A960-9A2A262853A5")
      IFsiFileItem : public IFsiItem
      {
-@@ -2408,6 +2420,7 @@ EXTERN_C const IID IID_IFsiFileItem2;
+@@ -2408,6 +2418,7 @@ EXTERN_C const IID IID_IFsiFileItem2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("199D0C19-11E1-40eb-8EC2-C8C822A07792")
      IFsiFileItem2 : public IFsiFileItem
      {
-@@ -2779,6 +2792,7 @@ EXTERN_C const IID IID_IFsiNamedStreams;
+@@ -2779,6 +2790,7 @@ EXTERN_C const IID IID_IFsiNamedStreams;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("ED79BA56-5294-4250-8D46-F9AECEE23459")
      IFsiNamedStreams : public IDispatch
      {
-@@ -2963,6 +2977,7 @@ EXTERN_C const IID IID_IFsiDirectoryItem;
+@@ -2963,6 +2975,7 @@ EXTERN_C const IID IID_IFsiDirectoryItem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FDC-975B-59BE-A960-9A2A262853A5")
      IFsiDirectoryItem : public IFsiItem
      {
-@@ -3354,6 +3369,7 @@ EXTERN_C const IID IID_IFsiDirectoryItem2;
+@@ -3354,6 +3367,7 @@ EXTERN_C const IID IID_IFsiDirectoryItem2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("F7FB4B9B-6D96-4d7b-9115-201B144811EF")
      IFsiDirectoryItem2 : public IFsiDirectoryItem
      {
-@@ -3717,6 +3733,7 @@ EXTERN_C const IID IID_IFileSystemImage;
+@@ -3717,6 +3731,7 @@ EXTERN_C const IID IID_IFileSystemImage;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FE1-975B-59BE-A960-9A2A262853A5")
      IFileSystemImage : public IDispatch
      {
-@@ -4455,6 +4472,7 @@ EXTERN_C const IID IID_IFileSystemImage2;
+@@ -4455,6 +4470,7 @@ EXTERN_C const IID IID_IFileSystemImage2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("D7644B2C-1537-4767-B62F-F1387B02DDFD")
      IFileSystemImage2 : public IFileSystemImage
      {
-@@ -5042,6 +5060,7 @@ EXTERN_C const IID IID_IFileSystemImage3;
+@@ -5042,6 +5058,7 @@ EXTERN_C const IID IID_IFileSystemImage3;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("7CFF842C-7E97-4807-8304-910DD8F7C051")
      IFileSystemImage3 : public IFileSystemImage2
      {
-@@ -5671,6 +5690,7 @@ EXTERN_C const IID IID_DFileSystemImageEvents;
+@@ -5671,6 +5688,7 @@ EXTERN_C const IID IID_DFileSystemImageEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("2C941FDF-975B-59BE-A960-9A2A262853A5")
      DFileSystemImageEvents : public IDispatch
      {
-@@ -5841,6 +5861,7 @@ EXTERN_C const IID IID_DFileSystemImageImportEvents;
+@@ -5841,6 +5859,7 @@ EXTERN_C const IID IID_DFileSystemImageImportEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("D25C30F9-4087-4366-9E24-E55BE286424B")
      DFileSystemImageImportEvents : public IDispatch
      {
-@@ -6014,6 +6035,7 @@ EXTERN_C const IID IID_IIsoImageManager;
+@@ -6014,6 +6033,7 @@ EXTERN_C const IID IID_IIsoImageManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index 70252b17..d09ba0a0 100644
      MIDL_INTERFACE("6CA38BE5-FBBB-4800-95A1-A438865EB0D4")
      IIsoImageManager : public IDispatch
      {
-@@ -6361,14 +6383,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -6361,14 +6381,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

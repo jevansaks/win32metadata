@@ -1,14 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/socketapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/socketapi.h
-index f7e843f9..65d312be 100644
+index f7e843f9..7f8605c9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/socketapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/socketapi.h
-@@ -24,12 +24,16 @@ extern "C"
+@@ -24,12 +24,14 @@ extern "C"
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Application Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)

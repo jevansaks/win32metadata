@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NTSecPKG.h b/generation/WinSDK/RecompiledIdlHeaders/um/NTSecPKG.h
-index c55db342..4f97c987 100644
+index c55db342..b8d61254 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/NTSecPKG.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/NTSecPKG.h
-@@ -19,6 +19,9 @@ Revision History:
+@@ -19,6 +19,7 @@ Revision History:
  #define _NTSECPKG_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -1266,7 +1269,10 @@ typedef NTSTATUS
+@@ -1266,7 +1267,10 @@ typedef NTSTATUS
  typedef NTSTATUS
  (NTAPI LSA_DUPLICATE_HANDLE)(
      _In_ HANDLE     SourceHandle,
@@ -24,7 +22,7 @@ index c55db342..4f97c987 100644
  
  
  typedef NTSTATUS
-@@ -1286,7 +1292,10 @@ typedef HANDLE
+@@ -1286,7 +1290,10 @@ typedef HANDLE
      _In_ PVOID ThreadParameter,
      _In_ ULONG CreationFlags,
      _Out_ PULONG ThreadId
@@ -36,7 +34,7 @@ index c55db342..4f97c987 100644
  
  
  typedef NTSTATUS
-@@ -1336,7 +1345,10 @@ typedef NTSTATUS
+@@ -1336,7 +1343,10 @@ typedef NTSTATUS
      _In_ PUNICODE_STRING AuthorityName,
      _In_opt_ PUNICODE_STRING Workstation,
      _In_opt_ PUNICODE_STRING ProfilePath,
@@ -48,7 +46,7 @@ index c55db342..4f97c987 100644
      _Out_ PNTSTATUS SubStatus
      );
  
-@@ -1357,7 +1369,10 @@ typedef NTSTATUS
+@@ -1357,7 +1367,10 @@ typedef NTSTATUS
      _In_opt_ PUNICODE_STRING ProfilePath,
      _In_ PVOID SessionInformation,
      _In_ SECPKG_SESSIONINFO_TYPE SessionInformationType,
@@ -60,7 +58,7 @@ index c55db342..4f97c987 100644
      _Out_ PNTSTATUS SubStatus
      );
  
-@@ -1591,8 +1606,19 @@ typedef NTSTATUS
+@@ -1591,8 +1604,19 @@ typedef NTSTATUS
  #define NOTIFY_CLASS_DOMAIN_CHANGE      3
  #define NOTIFY_CLASS_REGISTRY_CHANGE    4
  
@@ -81,7 +79,7 @@ index c55db342..4f97c987 100644
      LSA_SEC_HANDLE  PackageId;
      SECURITY_STRING PackageName;
  } SECPKG_EVENT_PACKAGE_CHANGE, * PSECPKG_EVENT_PACKAGE_CHANGE;
-@@ -1638,6 +1664,9 @@ NTSTATUS
+@@ -1638,6 +1662,9 @@ NTSTATUS
  (NTAPI LSA_OPEN_TOKEN_BY_LOGON_ID)(
      _In_ PLUID LogonId,
      _Out_ HANDLE *RetTokenHandle
@@ -91,7 +89,7 @@ index c55db342..4f97c987 100644
      );
  
  typedef
-@@ -1829,6 +1858,7 @@ extern "C"
+@@ -1829,6 +1856,7 @@ extern "C"
  {
  #endif
  
@@ -99,7 +97,7 @@ index c55db342..4f97c987 100644
  NTSTATUS
  CredMarshalTargetInfo (
      _In_        PCREDENTIAL_TARGET_INFORMATIONW InTargetInfo,
-@@ -2446,6 +2476,9 @@ typedef NTSTATUS
+@@ -2446,6 +2474,9 @@ typedef NTSTATUS
  (NTAPI SpGetContextTokenFn)(
      _In_ LSA_SEC_HANDLE ContextHandle,
      _Out_ PHANDLE ImpersonationToken
@@ -109,7 +107,7 @@ index c55db342..4f97c987 100644
      );
  
  
-@@ -2454,7 +2487,10 @@ typedef NTSTATUS
+@@ -2454,7 +2485,10 @@ typedef NTSTATUS
      _In_        LSA_SEC_HANDLE phContext,             // (in) context to export
      _In_        ULONG          fFlags,                // (in) option flags
      _Out_       PSecBuffer     pPackedContext,        // (out) marshalled context
@@ -121,7 +119,7 @@ index c55db342..4f97c987 100644
      );
  
  typedef NTSTATUS
-@@ -2744,7 +2780,10 @@ typedef NTSTATUS
+@@ -2744,7 +2778,10 @@ typedef NTSTATUS
  typedef NTSTATUS
  (NTAPI KspGetTokenFn)(
      _In_ LSA_SEC_HANDLE ContextId,

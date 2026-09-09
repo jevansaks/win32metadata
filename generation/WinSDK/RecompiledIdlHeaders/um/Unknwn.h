@@ -89,9 +89,7 @@ extern "C"{
 #pragma once
 #endif
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
@@ -144,6 +142,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
             END_INTERFACE
         };
     } // extern C++
+_Win32_metadata_supported_os_(windows5.0)
     HRESULT STDMETHODCALLTYPE IUnknown_QueryInterface_Proxy(
         IUnknown __RPC_FAR * This,
         /* [in] */ REFIID riid,
@@ -155,6 +154,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
         PRPC_MESSAGE _pRpcMessage,
         DWORD *_pdwStubPhase);
     
+_Win32_metadata_supported_os_(windows5.0)
     ULONG STDMETHODCALLTYPE IUnknown_AddRef_Proxy(
         IUnknown __RPC_FAR * This);
     
@@ -164,6 +164,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
         PRPC_MESSAGE _pRpcMessage,
         DWORD *_pdwStubPhase);
     
+_Win32_metadata_supported_os_(windows5.0)
     ULONG STDMETHODCALLTYPE IUnknown_Release_Proxy(
         IUnknown __RPC_FAR * This);
     
@@ -248,6 +249,7 @@ EXTERN_C const IID IID_IUnknown;
 
 
 
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE IUnknown_QueryInterface_Proxy( 
     IUnknown * This,
     /* [annotation][in] */ 
@@ -263,6 +265,7 @@ void __RPC_STUB IUnknown_QueryInterface_Stub(
     DWORD *_pdwStubPhase);
 
 
+_Win32_metadata_supported_os_(windows5.0)
 ULONG STDMETHODCALLTYPE IUnknown_AddRef_Proxy( 
     IUnknown * This);
 
@@ -274,6 +277,7 @@ void __RPC_STUB IUnknown_AddRef_Stub(
     DWORD *_pdwStubPhase);
 
 
+_Win32_metadata_supported_os_(windows5.0)
 ULONG STDMETHODCALLTYPE IUnknown_Release_Proxy( 
     IUnknown * This);
 

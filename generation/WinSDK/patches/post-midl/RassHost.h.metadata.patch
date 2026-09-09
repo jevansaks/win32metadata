@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h b/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h
-index 18ab38ca..90c89f60 100644
+index 18ab38ca..f2d7a9c1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h
-@@ -20,6 +20,9 @@ Abstract:
+@@ -20,6 +20,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -78,6 +81,7 @@ typedef DWORD (WINAPI *RASSECURITYPROC)();
+@@ -78,6 +79,7 @@ typedef DWORD (WINAPI *RASSECURITYPROC)();
  // the security dialog
  //
  
@@ -20,7 +18,7 @@ index 18ab38ca..90c89f60 100644
  VOID WINAPI
  RasSecurityDialogComplete(
      IN SECURITY_MESSAGE * pSecMsg       // Pointer to the above info. structure
-@@ -90,6 +94,7 @@ RasSecurityDialogComplete(
+@@ -90,6 +92,7 @@ RasSecurityDialogComplete(
  // Should return errors from winerror.h or raserror.h
  //
  
@@ -28,7 +26,7 @@ index 18ab38ca..90c89f60 100644
  DWORD WINAPI
  RasSecurityDialogBegin(
      IN HPORT  hPort,        // RAS handle to port
-@@ -113,6 +118,7 @@ RasSecurityDialogBegin(
+@@ -113,6 +116,7 @@ RasSecurityDialogBegin(
  // Should return errors from winerror.h or raserror.h
  //
  
@@ -36,7 +34,7 @@ index 18ab38ca..90c89f60 100644
  DWORD WINAPI
  RasSecurityDialogEnd(
      IN HPORT    hPort           // RAS handle to port.
-@@ -126,6 +132,8 @@ RasSecurityDialogEnd(
+@@ -126,6 +130,8 @@ RasSecurityDialogEnd(
  // Will return errors from winerror.h or raserror.h
  //
  
@@ -45,7 +43,7 @@ index 18ab38ca..90c89f60 100644
  DWORD WINAPI
  RasSecurityDialogSend(
      IN HPORT    hPort,          // RAS handle to port.
-@@ -138,6 +146,8 @@ RasSecurityDialogSend(
+@@ -138,6 +144,8 @@ RasSecurityDialogSend(
  // Will return errors from winerror.h or raserror.h
  //
  
@@ -54,7 +52,7 @@ index 18ab38ca..90c89f60 100644
  DWORD WINAPI
  RasSecurityDialogReceive(
      IN HPORT    hPort,          // RAS handle to port.
-@@ -153,6 +163,7 @@ RasSecurityDialogReceive(
+@@ -153,6 +161,7 @@ RasSecurityDialogReceive(
  // Will return errors from winerror.h or raserror.h
  //
  

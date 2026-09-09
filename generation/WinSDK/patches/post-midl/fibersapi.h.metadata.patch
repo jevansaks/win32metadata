@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fibersapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/fibersapi.h
-index 870fbeab..d19bc4cc 100644
+index 870fbeab..3e0e7647 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fibersapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fibersapi.h
-@@ -12,6 +12,9 @@
+@@ -12,6 +12,7 @@
  
  #ifndef _FIBERS_H_
  #define _FIBERS_H_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <apiset.h>
  #include <apisetcconv.h>
-@@ -30,6 +33,8 @@ extern "C" {
+@@ -30,6 +31,8 @@ extern "C" {
  #define FLS_OUT_OF_INDEXES ((DWORD)0xFFFFFFFF)
  #endif
  
@@ -21,7 +19,7 @@ index 870fbeab..d19bc4cc 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -37,6 +42,8 @@ FlsAlloc(
+@@ -37,6 +40,8 @@ FlsAlloc(
      _In_opt_ PFLS_CALLBACK_FUNCTION lpCallback
      );
  
@@ -30,7 +28,7 @@ index 870fbeab..d19bc4cc 100644
  WINBASEAPI
  PVOID
  WINAPI
-@@ -44,6 +51,8 @@ FlsGetValue(
+@@ -44,6 +49,8 @@ FlsGetValue(
      _In_ DWORD dwFlsIndex
      );
  
@@ -39,7 +37,7 @@ index 870fbeab..d19bc4cc 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -52,6 +61,8 @@ FlsSetValue(
+@@ -52,6 +59,8 @@ FlsSetValue(
      _In_opt_ PVOID lpFlsData
      );
  
@@ -48,7 +46,7 @@ index 870fbeab..d19bc4cc 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -69,6 +80,7 @@ FlsFree(
+@@ -69,6 +78,7 @@ FlsFree(
  
  #if (_WIN32_WINNT >= 0x0600)
  

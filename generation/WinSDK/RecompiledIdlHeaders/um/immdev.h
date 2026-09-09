@@ -7,9 +7,7 @@
 
 #ifndef _IMMDEV_
 #define _IMMDEV_
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 
 #ifdef __cplusplus

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vdssys.h b/generation/WinSDK/RecompiledIdlHeaders/um/vdssys.h
-index 0f54f80a..54972056 100644
+index 0f54f80a..57f3469b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/vdssys.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/vdssys.h
-@@ -56,6 +56,9 @@ extern "C"{
+@@ -56,6 +56,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if (WINVER >= _WIN32_WINNT_WIN7)
-@@ -178,6 +181,7 @@ enum _OPEN_VIRTUAL_DISK_FLAG
+@@ -178,6 +179,7 @@ enum _OPEN_VIRTUAL_DISK_FLAG
          OPEN_VIRTUAL_DISK_FLAG_SUPPORT_ENCRYPTED_FILES	= 0x800
      } 	OPEN_VIRTUAL_DISK_FLAG;
  
@@ -20,7 +18,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall OpenVirtualDisk( 
      PVIRTUAL_STORAGE_TYPE VirtualStorageType,
      PCWSTR Path,
-@@ -280,6 +284,7 @@ enum _CREATE_VIRTUAL_DISK_FLAG
+@@ -280,6 +282,7 @@ enum _CREATE_VIRTUAL_DISK_FLAG
          CREATE_VIRTUAL_DISK_FLAG_SUPPORT_SPARSE_FILES_ANY_FS	= 0x400
      } 	CREATE_VIRTUAL_DISK_FLAG;
  
@@ -28,7 +26,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall CreateVirtualDisk( 
      PVIRTUAL_STORAGE_TYPE VirtualStorageType,
      PCWSTR Path,
-@@ -335,6 +340,7 @@ enum _ATTACH_VIRTUAL_DISK_FLAG
+@@ -335,6 +338,7 @@ enum _ATTACH_VIRTUAL_DISK_FLAG
          ATTACH_VIRTUAL_DISK_FLAG_AT_BOOT	= 0x400
      } 	ATTACH_VIRTUAL_DISK_FLAG;
  
@@ -36,7 +34,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall AttachVirtualDisk( 
      HANDLE VirtualDiskHandle,
      PSECURITY_DESCRIPTOR SecurityDescriptor,
-@@ -349,11 +355,13 @@ enum _DETACH_VIRTUAL_DISK_FLAG
+@@ -349,11 +353,13 @@ enum _DETACH_VIRTUAL_DISK_FLAG
          DETACH_VIRTUAL_DISK_FLAG_NONE	= 0
      } 	DETACH_VIRTUAL_DISK_FLAG;
  
@@ -50,7 +48,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall GetVirtualDiskPhysicalPath( 
      HANDLE VirtualDiskHandle,
      PULONG DiskPathSizeInBytes,
-@@ -435,6 +443,7 @@ enum _GET_STORAGE_DEPENDENCY_FLAG
+@@ -435,6 +441,7 @@ enum _GET_STORAGE_DEPENDENCY_FLAG
          GET_STORAGE_DEPENDENCY_FLAG_DISK_HANDLE	= 0x2
      } 	GET_STORAGE_DEPENDENCY_FLAG;
  
@@ -58,7 +56,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall GetStorageDependencyInformation( 
      HANDLE ObjectHandle,
      GET_STORAGE_DEPENDENCY_FLAG Flags,
-@@ -508,6 +517,7 @@ typedef struct _GET_VIRTUAL_DISK_INFO
+@@ -508,6 +515,7 @@ typedef struct _GET_VIRTUAL_DISK_INFO
  
  typedef struct _GET_VIRTUAL_DISK_INFO *PGET_VIRTUAL_DISK_INFO;
  
@@ -66,7 +64,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall GetVirtualDiskInformation( 
      HANDLE VirtualDiskHandle,
      PULONG VirtualDiskInfoSize,
-@@ -552,27 +562,32 @@ typedef struct _SET_VIRTUAL_DISK_INFO
+@@ -552,27 +560,32 @@ typedef struct _SET_VIRTUAL_DISK_INFO
  
  typedef struct _SET_VIRTUAL_DISK_INFO *PSET_VIRTUAL_DISK_INFO;
  
@@ -99,7 +97,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall DeleteVirtualDiskMetadata( 
      HANDLE VirtualDiskHandle,
      const GUID *Item);
-@@ -586,6 +601,7 @@ typedef struct _VIRTUAL_DISK_PROGRESS
+@@ -586,6 +599,7 @@ typedef struct _VIRTUAL_DISK_PROGRESS
  
  typedef struct _VIRTUAL_DISK_PROGRESS *PVIRTUAL_DISK_PROGRESS;
  
@@ -107,7 +105,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall GetVirtualDiskOperationProgress( 
      HANDLE VirtualDiskHandle,
      LPOVERLAPPED Overlapped,
-@@ -620,6 +636,7 @@ enum _COMPACT_VIRTUAL_DISK_FLAG
+@@ -620,6 +634,7 @@ enum _COMPACT_VIRTUAL_DISK_FLAG
          COMPACT_VIRTUAL_DISK_FLAG_NO_BLOCK_MOVES	= 0x2
      } 	COMPACT_VIRTUAL_DISK_FLAG;
  
@@ -115,7 +113,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall CompactVirtualDisk( 
      HANDLE VirtualDiskHandle,
      COMPACT_VIRTUAL_DISK_FLAG Flags,
-@@ -659,6 +676,7 @@ enum _MERGE_VIRTUAL_DISK_FLAG
+@@ -659,6 +674,7 @@ enum _MERGE_VIRTUAL_DISK_FLAG
          MERGE_VIRTUAL_DISK_FLAG_NONE	= 0
      } 	MERGE_VIRTUAL_DISK_FLAG;
  
@@ -123,7 +121,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall MergeVirtualDisk( 
      HANDLE VirtualDiskHandle,
      MERGE_VIRTUAL_DISK_FLAG Flags,
-@@ -693,6 +711,7 @@ enum _EXPAND_VIRTUAL_DISK_FLAG
+@@ -693,6 +709,7 @@ enum _EXPAND_VIRTUAL_DISK_FLAG
          EXPAND_VIRTUAL_DISK_FLAG_NOTIFY_CHANGE	= 0x1
      } 	EXPAND_VIRTUAL_DISK_FLAG;
  
@@ -131,7 +129,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall ExpandVirtualDisk( 
      HANDLE VirtualDiskHandle,
      EXPAND_VIRTUAL_DISK_FLAG Flags,
-@@ -728,6 +747,7 @@ enum _RESIZE_VIRTUAL_DISK_FLAG
+@@ -728,6 +745,7 @@ enum _RESIZE_VIRTUAL_DISK_FLAG
          RESIZE_VIRTUAL_DISK_FLAG_RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE	= 0x2
      } 	RESIZE_VIRTUAL_DISK_FLAG;
  
@@ -139,7 +137,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall ResizeVirtualDisk( 
      HANDLE VirtualDiskHandle,
      RESIZE_VIRTUAL_DISK_FLAG Flags,
-@@ -765,15 +785,18 @@ enum _MIRROR_VIRTUAL_DISK_FLAG
+@@ -765,15 +783,18 @@ enum _MIRROR_VIRTUAL_DISK_FLAG
          MIRROR_VIRTUAL_DISK_FLAG_IS_LIVE_MIGRATION	= 0x8
      } 	MIRROR_VIRTUAL_DISK_FLAG;
  
@@ -158,7 +156,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall AddVirtualDiskParent( 
      HANDLE VirtualDiskHandle,
      PCWSTR ParentPath);
-@@ -974,6 +997,7 @@ typedef struct _RAW_SCSI_VIRTUAL_DISK_RESPONSE
+@@ -974,6 +995,7 @@ typedef struct _RAW_SCSI_VIRTUAL_DISK_RESPONSE
  
  typedef struct _RAW_SCSI_VIRTUAL_DISK_RESPONSE *PRAW_SCSI_VIRTUAL_DISK_RESPONSE;
  
@@ -166,7 +164,7 @@ index 0f54f80a..54972056 100644
  DWORD __stdcall QueryChangesVirtualDisk( 
      HANDLE VirtualDiskHandle,
      PCWSTR ChangeTrackingId,
-@@ -984,26 +1008,31 @@ DWORD __stdcall QueryChangesVirtualDisk(
+@@ -984,26 +1006,31 @@ DWORD __stdcall QueryChangesVirtualDisk(
      PULONG RangeCount,
      PULONG64 ProcessedLength);
  

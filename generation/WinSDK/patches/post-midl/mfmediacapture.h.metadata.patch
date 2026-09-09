@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfmediacapture.h b/generation/WinSDK/RecompiledIdlHeaders/um/mfmediacapture.h
-index 632f9dcf..eaed6371 100644
+index 632f9dcf..37807bf7 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mfmediacapture.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfmediacapture.h
-@@ -80,6 +80,9 @@ extern "C"{
+@@ -80,6 +80,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (NTDDI_VERSION >= NTDDI_WIN8)
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
  
-@@ -98,6 +101,7 @@ EXTERN_C const IID IID_IAdvancedMediaCaptureInitializationSettings;
+@@ -98,6 +99,7 @@ EXTERN_C const IID IID_IAdvancedMediaCaptureInitializationSettings;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 632f9dcf..eaed6371 100644
      MIDL_INTERFACE("3DE21209-8BA6-4f2a-A577-2819B56FF14D")
      IAdvancedMediaCaptureInitializationSettings : public IUnknown
      {
-@@ -185,6 +189,7 @@ EXTERN_C const IID IID_IAdvancedMediaCaptureSettings;
+@@ -185,6 +187,7 @@ EXTERN_C const IID IID_IAdvancedMediaCaptureSettings;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 632f9dcf..eaed6371 100644
      MIDL_INTERFACE("24E0485F-A33E-4aa1-B564-6019B1D14F65")
      IAdvancedMediaCaptureSettings : public IUnknown
      {
-@@ -272,6 +277,7 @@ EXTERN_C const IID IID_IAdvancedMediaCapture;
+@@ -272,6 +275,7 @@ EXTERN_C const IID IID_IAdvancedMediaCapture;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

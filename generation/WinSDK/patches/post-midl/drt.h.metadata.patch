@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/drt.h b/generation/WinSDK/RecompiledIdlHeaders/um/drt.h
-index e3841852..40ca0b1d 100644
+index e3841852..89d64653 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/drt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/drt.h
-@@ -18,6 +18,9 @@
+@@ -18,6 +18,7 @@
  #ifndef _DRT_H_
  #define _DRT_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -425,6 +428,8 @@ typedef const DRT_EVENT_DATA *PCDRT_EVENT_DATA;
+@@ -425,6 +426,8 @@ typedef const DRT_EVENT_DATA *PCDRT_EVENT_DATA;
  //////////////////////////////////////////////////////////////////////////////
  // DRT Default Module Management APIs
  
@@ -21,7 +19,7 @@ index e3841852..40ca0b1d 100644
  HRESULT WINAPI DrtCreatePnrpBootstrapResolver(
      _In_        BOOL   fPublish,
      _In_        PCWSTR pwzPeerName,
-@@ -432,19 +437,27 @@ HRESULT WINAPI DrtCreatePnrpBootstrapResolver(
+@@ -432,19 +435,27 @@ HRESULT WINAPI DrtCreatePnrpBootstrapResolver(
      _In_opt_    PCWSTR pwzPublishingIdentity,
      _Out_       DRT_BOOTSTRAP_PROVIDER** ppResolver);
  
@@ -49,7 +47,7 @@ index e3841852..40ca0b1d 100644
  HRESULT WINAPI DrtCreateIpv6UdpTransport(
                  DRT_SCOPE scope,
                  ULONG dwScopeId,
-@@ -452,43 +465,63 @@ HRESULT WINAPI DrtCreateIpv6UdpTransport(
+@@ -452,43 +463,63 @@ HRESULT WINAPI DrtCreateIpv6UdpTransport(
      _Inout_     USHORT *pwPort,
      _Out_       HDRT_TRANSPORT *phTransport);
  
@@ -113,7 +111,7 @@ index e3841852..40ca0b1d 100644
  HRESULT WINAPI DrtGetEventData(
      _In_        HDRT hDrt,
      _In_        ULONG          ulEventDataLen,
-@@ -497,23 +530,31 @@ HRESULT WINAPI DrtGetEventData(
+@@ -497,23 +528,31 @@ HRESULT WINAPI DrtGetEventData(
  //////////////////////////////////////////////////////////////////////////////
  // DRT Key Registration APIs
  
@@ -145,7 +143,7 @@ index e3841852..40ca0b1d 100644
  HRESULT WINAPI DrtStartSearch(
      _In_        HDRT hDrt,
      _In_        DRT_DATA *pKey,
-@@ -523,38 +564,54 @@ HRESULT WINAPI DrtStartSearch(
+@@ -523,38 +562,54 @@ HRESULT WINAPI DrtStartSearch(
      _In_opt_    const PVOID pvContext,
      _Out_       HDRT_SEARCH_CONTEXT* hSearchContext);
  

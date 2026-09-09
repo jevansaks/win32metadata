@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMMsg.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMMsg.h
-index 10b72b4d..34c50f2b 100644
+index 10b72b4d..0dabfd4d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/LMMsg.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMMsg.h
-@@ -29,6 +29,9 @@ Abstract:
+@@ -29,6 +29,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -42,12 +45,14 @@ extern "C" {
+@@ -42,12 +43,14 @@ extern "C" {
  // Function Prototypes
  //
  
@@ -27,7 +25,7 @@ index 10b72b4d..34c50f2b 100644
  NET_API_STATUS NET_API_FUNCTION
  NetMessageNameEnum (
      _In_opt_  LPCWSTR  servername,
-@@ -59,6 +64,7 @@ NetMessageNameEnum (
+@@ -59,6 +62,7 @@ NetMessageNameEnum (
      _Out_     LPDWORD  resume_handle
      );
  
@@ -35,7 +33,7 @@ index 10b72b4d..34c50f2b 100644
  NET_API_STATUS NET_API_FUNCTION
  NetMessageNameGetInfo (
      _In_opt_  LPCWSTR  servername,
-@@ -67,12 +73,14 @@ NetMessageNameGetInfo (
+@@ -67,12 +71,14 @@ NetMessageNameGetInfo (
      _In_      LPBYTE  *bufptr
      );
  

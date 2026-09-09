@@ -1,0 +1,53 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmgmt.h b/generation/WinSDK/RecompiledIdlHeaders/um/appmgmt.h
+index a9a5794f..152cb104 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/appmgmt.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/appmgmt.h
+@@ -10,6 +10,8 @@
+ //
+ //*************************************************************
+ 
++#include <win32metadata_annotations.h>
++
+ #ifndef _APPMGMT_H_
+ #define _APPMGMT_H_
+ 
+@@ -127,6 +129,7 @@ typedef struct _APPCATEGORYINFOLIST
+ #define WINAPI
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD WINAPI
+ InstallApplication(
+ #if !defined(__midl)
+@@ -135,6 +138,7 @@ InstallApplication(
+ 	PINSTALLDATA pInstallInfo
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD WINAPI
+ UninstallApplication(
+ #if !defined(__midl)
+@@ -160,6 +164,7 @@ CommandLineFromMsiDescriptor(
+     DWORD *     CommandLineLength
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD WINAPI
+ GetManagedApplications(
+ #if !defined(__midl)
+@@ -184,6 +189,7 @@ GetManagedApplications(
+ 	PMANAGEDAPPLICATION* prgManagedApps
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD WINAPI
+ GetLocalManagedApplications(
+ #if !defined(__midl)
+@@ -216,6 +222,7 @@ GetLocalManagedApplicationData(
+ 	LPWSTR *            SupportUrl
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD WINAPI
+ GetManagedApplicationCategories(
+ #if !defined(__midl)

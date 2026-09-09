@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
-index 63307cd1..52b7ea3a 100644
+index 63307cd1..1340569a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  //+---------------------------------------------------------------------------
  //
  //  Microsoft Windows
-@@ -23,6 +26,23 @@
+@@ -23,6 +24,23 @@
  extern "C" {
  #endif
  
@@ -34,7 +32,7 @@ index 63307cd1..52b7ea3a 100644
  #ifndef WINAPI
  #define WINAPI __stdcall
  #endif
-@@ -306,7 +326,9 @@ typedef BCryptBufferDesc* PNCryptBufferDesc;
+@@ -306,7 +324,9 @@ typedef BCryptBufferDesc* PNCryptBufferDesc;
  //
  
  typedef ULONG_PTR NCRYPT_HANDLE;
@@ -44,7 +42,7 @@ index 63307cd1..52b7ea3a 100644
  typedef ULONG_PTR NCRYPT_KEY_HANDLE;
  typedef ULONG_PTR NCRYPT_HASH_HANDLE;
  typedef ULONG_PTR NCRYPT_SECRET_HANDLE;
-@@ -691,11 +713,14 @@ typedef struct _NCRYPT_TPM_PLATFORM_ATTESTATION_STATEMENT
+@@ -691,11 +711,14 @@ typedef struct _NCRYPT_TPM_PLATFORM_ATTESTATION_STATEMENT
  #define NCRYPT_IGNORE_DEVICE_STATE_FLAG         0x00001000  // NCryptOpenStorageProvider
  #endif // (NTDDI_VERSION >= NTDDI_WINBLUE)
  
@@ -60,7 +58,7 @@ index 63307cd1..52b7ea3a 100644
      _In_opt_ LPCWSTR pszProviderName,
      _In_    DWORD   dwFlags);
  
-@@ -720,24 +745,26 @@ NCryptOpenStorageProvider(
+@@ -720,24 +743,26 @@ NCryptOpenStorageProvider(
  typedef struct _NCryptAlgorithmName
  {
      LPWSTR  pszName;
@@ -90,7 +88,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -755,10 +782,11 @@ typedef struct NCryptKeyName
+@@ -755,10 +780,11 @@ typedef struct NCryptKeyName
  {
      LPWSTR  pszName;
      LPWSTR  pszAlgid;
@@ -103,7 +101,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -767,7 +795,7 @@ NCryptEnumKeys(
+@@ -767,7 +793,7 @@ NCryptEnumKeys(
      _In_opt_ LPCWSTR pszScope,
      _Outptr_ NCryptKeyName **ppKeyName,
      _Inout_ PVOID * ppEnumState,
@@ -112,7 +110,7 @@ index 63307cd1..52b7ea3a 100644
  
  
  
-@@ -780,6 +808,7 @@ typedef struct NCryptProviderName
+@@ -780,6 +806,7 @@ typedef struct NCryptProviderName
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -120,7 +118,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -793,6 +822,7 @@ NCryptEnumStorageProviders(
+@@ -793,6 +820,7 @@ NCryptEnumStorageProviders(
  #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  #pragma endregion
  
@@ -128,7 +126,7 @@ index 63307cd1..52b7ea3a 100644
  SECURITY_STATUS
  WINAPI
  NCryptFreeBuffer(
-@@ -810,15 +840,18 @@ NCryptFreeBuffer(
+@@ -810,15 +838,18 @@ NCryptFreeBuffer(
  #define NCRYPT_EXTENDED_ERRORS_FLAG     0x10000000
  #endif
  
@@ -150,7 +148,7 @@ index 63307cd1..52b7ea3a 100644
  
  
  
-@@ -826,16 +859,19 @@ NCryptOpenKey(
+@@ -826,16 +857,19 @@ NCryptOpenKey(
  #define NCRYPT_MACHINE_KEY_FLAG         0x00000020
  #define NCRYPT_OVERWRITE_KEY_FLAG       0x00000080
  
@@ -173,7 +171,7 @@ index 63307cd1..52b7ea3a 100644
  
  
  
-@@ -1241,6 +1277,7 @@ typedef struct __NCRYPT_PCP_RAW_POLICYDIGEST
+@@ -1241,6 +1275,7 @@ typedef struct __NCRYPT_PCP_RAW_POLICYDIGEST
  // NCryptGetProperty flags
  #define NCRYPT_PERSIST_ONLY_FLAG        0x40000000
  
@@ -181,7 +179,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  _Success_( return == 0 )
  SECURITY_STATUS
-@@ -1259,6 +1296,7 @@ NCryptGetProperty(
+@@ -1259,6 +1294,7 @@ NCryptGetProperty(
  #define NCRYPT_PERSIST_FLAG             0x80000000
  #define NCRYPT_PERSIST_ONLY_FLAG        0x40000000
  
@@ -189,7 +187,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1267,22 +1305,24 @@ NCryptSetProperty(
+@@ -1267,22 +1303,24 @@ NCryptSetProperty(
      _In_    LPCWSTR pszProperty,
      _In_reads_bytes_(cbInput) PBYTE pbInput,
      _In_    DWORD   cbInput,
@@ -216,7 +214,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1294,10 +1334,11 @@ NCryptEncrypt(
+@@ -1294,10 +1332,11 @@ NCryptEncrypt(
      _Out_writes_bytes_to_opt_(cbOutput, *pcbResult) PBYTE pbOutput,
      _In_    DWORD   cbOutput,
      _Out_   DWORD * pcbResult,
@@ -229,7 +227,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1309,7 +1350,7 @@ NCryptDecrypt(
+@@ -1309,7 +1348,7 @@ NCryptDecrypt(
      _Out_writes_bytes_to_opt_(cbOutput, *pcbResult) PBYTE pbOutput,
      _In_    DWORD   cbOutput,
      _Out_   DWORD * pcbResult,
@@ -238,7 +236,7 @@ index 63307cd1..52b7ea3a 100644
  
  
  
-@@ -1423,6 +1464,7 @@ typedef struct _NCRYPT_PQ_BLOB
+@@ -1423,6 +1462,7 @@ typedef struct _NCRYPT_PQ_BLOB
  #define NCRYPT_DO_NOT_FINALIZE_FLAG     0x00000400
  #define NCRYPT_EXPORT_LEGACY_FLAG       0x00000800
  
@@ -246,7 +244,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1431,13 +1473,16 @@ NCryptImportKey(
+@@ -1431,13 +1471,16 @@ NCryptImportKey(
      _In_opt_ NCRYPT_KEY_HANDLE hImportKey,
      _In_    LPCWSTR pszBlobType,
      _In_opt_ NCryptBufferDesc *pParameterList,
@@ -265,7 +263,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1449,10 +1494,11 @@ NCryptExportKey(
+@@ -1449,10 +1492,11 @@ NCryptExportKey(
      _Out_writes_bytes_to_opt_(cbOutput, *pcbResult) PBYTE pbOutput,
      _In_    DWORD   cbOutput,
      _Out_   DWORD * pcbResult,
@@ -278,7 +276,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1464,10 +1510,11 @@ NCryptSignHash(
+@@ -1464,10 +1508,11 @@ NCryptSignHash(
      _Out_writes_bytes_to_opt_(cbSignature, *pcbResult) PBYTE pbSignature,
      _In_    DWORD   cbSignature,
      _Out_   DWORD * pcbResult,
@@ -291,7 +289,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1478,10 +1525,11 @@ NCryptVerifySignature(
+@@ -1478,10 +1523,11 @@ NCryptVerifySignature(
      _In_    DWORD   cbHashValue,
      _In_reads_bytes_(cbSignature) PBYTE pbSignature,
      _In_    DWORD   cbSignature,
@@ -304,7 +302,7 @@ index 63307cd1..52b7ea3a 100644
  SECURITY_STATUS
  WINAPI
  NCryptDeleteKey(
-@@ -1490,6 +1538,7 @@ NCryptDeleteKey(
+@@ -1490,6 +1536,7 @@ NCryptDeleteKey(
  
  
  
@@ -312,7 +310,7 @@ index 63307cd1..52b7ea3a 100644
  SECURITY_STATUS
  WINAPI
  NCryptFreeObject(
-@@ -1499,20 +1548,26 @@ NCryptFreeObject(
+@@ -1499,20 +1546,26 @@ NCryptFreeObject(
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -342,7 +340,7 @@ index 63307cd1..52b7ea3a 100644
      _In_    DWORD   dwFlags);
  
  #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -1527,30 +1582,35 @@ NCryptTranslateHandle(
+@@ -1527,30 +1580,35 @@ NCryptTranslateHandle(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -381,7 +379,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1567,6 +1627,7 @@ NCryptDeriveKey(
+@@ -1567,6 +1625,7 @@ NCryptDeriveKey(
  
  #if (NTDDI_VERSION >= NTDDI_WIN8)
  
@@ -389,7 +387,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1583,6 +1644,7 @@ NCryptKeyDerivation(
+@@ -1583,6 +1642,7 @@ NCryptKeyDerivation(
  
  #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
  
@@ -397,7 +395,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1601,6 +1663,7 @@ NCryptCreateClaim(
+@@ -1601,6 +1661,7 @@ NCryptCreateClaim(
  
  #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
  
@@ -405,7 +403,7 @@ index 63307cd1..52b7ea3a 100644
  _Check_return_
  SECURITY_STATUS
  WINAPI
-@@ -1623,6 +1686,115 @@ NCryptVerifyClaim(
+@@ -1623,6 +1684,115 @@ NCryptVerifyClaim(
  #define NCRYPT_KEY_STORAGE_INTERFACE_VERSION_4 BCRYPT_MAKE_INTERFACE_VERSION(4,0)
  
  

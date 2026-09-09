@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SensorsApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/SensorsApi.h
-index b785a60d..30ae1343 100644
+index b785a60d..03a54bed 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/SensorsApi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/SensorsApi.h
-@@ -159,6 +159,9 @@ extern "C"{
+@@ -159,6 +159,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef /* [public][public][public][public] */ 
-@@ -253,6 +256,7 @@ EXTERN_C const IID IID_ISensorManager;
+@@ -253,6 +254,7 @@ EXTERN_C const IID IID_ISensorManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index b785a60d..30ae1343 100644
      MIDL_INTERFACE("BD77DB67-45A8-42DC-8D00-6DCF15F8377A")
      ISensorManager : public IUnknown
      {
-@@ -391,6 +395,7 @@ EXTERN_C const IID IID_ILocationPermissions;
+@@ -391,6 +393,7 @@ EXTERN_C const IID IID_ILocationPermissions;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index b785a60d..30ae1343 100644
      MIDL_INTERFACE("D5FB0A7F-E74E-44f5-8E02-4806863A274F")
      ILocationPermissions : public IUnknown
      {
-@@ -486,6 +491,7 @@ EXTERN_C const IID IID_ISensorCollection;
+@@ -486,6 +489,7 @@ EXTERN_C const IID IID_ISensorCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index b785a60d..30ae1343 100644
      MIDL_INTERFACE("23571E11-E545-4DD8-A337-B89BF44B10DF")
      ISensorCollection : public IUnknown
      {
-@@ -625,6 +631,7 @@ EXTERN_C const IID IID_ISensor;
+@@ -625,6 +629,7 @@ EXTERN_C const IID IID_ISensor;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index b785a60d..30ae1343 100644
      MIDL_INTERFACE("5FA08F80-2657-458E-AF75-46F73FA6AC5C")
      ISensor : public IUnknown
      {
-@@ -877,6 +884,7 @@ EXTERN_C const IID IID_ISensorDataReport;
+@@ -877,6 +882,7 @@ EXTERN_C const IID IID_ISensorDataReport;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index b785a60d..30ae1343 100644
      MIDL_INTERFACE("0AB9DF9B-C4B5-4796-8898-0470706A2E1D")
      ISensorDataReport : public IUnknown
      {
-@@ -987,6 +995,7 @@ EXTERN_C const IID IID_ISensorManagerEvents;
+@@ -987,6 +993,7 @@ EXTERN_C const IID IID_ISensorManagerEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index b785a60d..30ae1343 100644
      MIDL_INTERFACE("9B3B0B86-266A-4AAD-B21F-FDE5501001B7")
      ISensorManagerEvents : public IUnknown
      {
-@@ -1073,6 +1082,7 @@ EXTERN_C const IID IID_ISensorEvents;
+@@ -1073,6 +1080,7 @@ EXTERN_C const IID IID_ISensorEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index b785a60d..30ae1343 100644
      MIDL_INTERFACE("5D8DCC91-4641-47E7-B7C3-B74F48A6C391")
      ISensorEvents : public IUnknown
      {
-@@ -1257,9 +1267,13 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -1257,9 +1265,13 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  
@@ -82,7 +80,7 @@ index b785a60d..30ae1343 100644
  void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  
  unsigned long             __RPC_USER  HWND_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HWND * ); 
-@@ -1267,9 +1281,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+@@ -1267,9 +1279,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
  unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

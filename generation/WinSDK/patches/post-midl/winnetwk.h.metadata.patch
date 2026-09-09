@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h
-index 35e5990c..dc190217 100644
+index 35e5990c..b73f37e1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  /*++
  
-@@ -162,6 +165,7 @@ typedef LPNETRESOURCEA LPNETRESOURCE;
+@@ -162,6 +163,7 @@ typedef LPNETRESOURCEA LPNETRESOURCE;
  
  #endif
  
@@ -18,7 +16,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetAddConnectionA(
-@@ -169,6 +173,7 @@ WNetAddConnectionA(
+@@ -169,6 +171,7 @@ WNetAddConnectionA(
      _In_opt_ LPCSTR   lpPassword,
      _In_opt_ LPCSTR   lpLocalName
      );
@@ -26,7 +24,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetAddConnectionW(
-@@ -182,6 +187,7 @@ WNetAddConnectionW(
+@@ -182,6 +185,7 @@ WNetAddConnectionW(
  #define WNetAddConnection  WNetAddConnectionA
  #endif // !UNICODE
  
@@ -34,7 +32,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetAddConnection2A(
-@@ -190,6 +196,7 @@ WNetAddConnection2A(
+@@ -190,6 +194,7 @@ WNetAddConnection2A(
      _In_opt_ LPCSTR       lpUserName,
      _In_     DWORD          dwFlags
      );
@@ -42,7 +40,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetAddConnection2W(
-@@ -204,6 +211,7 @@ WNetAddConnection2W(
+@@ -204,6 +209,7 @@ WNetAddConnection2W(
  #define WNetAddConnection2  WNetAddConnection2A
  #endif // !UNICODE
  
@@ -50,7 +48,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetAddConnection3A(
-@@ -213,6 +221,7 @@ WNetAddConnection3A(
+@@ -213,6 +219,7 @@ WNetAddConnection3A(
      _In_opt_ LPCSTR       lpUserName,
      _In_     DWORD          dwFlags
      );
@@ -58,7 +56,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetAddConnection3W(
-@@ -258,12 +267,14 @@ WNetAddConnection4W(
+@@ -258,12 +265,14 @@ WNetAddConnection4W(
  #endif // !UNICODE
  #endif //(_WIN32_WINNT >= _WIN32_WINNT_WIN10)
  
@@ -73,7 +71,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetCancelConnectionW(
-@@ -276,6 +287,7 @@ WNetCancelConnectionW(
+@@ -276,6 +285,7 @@ WNetCancelConnectionW(
  #define WNetCancelConnection  WNetCancelConnectionA
  #endif // !UNICODE
  
@@ -81,7 +79,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetCancelConnection2A(
-@@ -283,6 +295,7 @@ WNetCancelConnection2A(
+@@ -283,6 +293,7 @@ WNetCancelConnection2A(
      _In_ DWORD    dwFlags,
      _In_ BOOL     fForce
      );
@@ -89,7 +87,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetCancelConnection2W(
-@@ -296,6 +309,7 @@ WNetCancelConnection2W(
+@@ -296,6 +307,7 @@ WNetCancelConnection2W(
  #define WNetCancelConnection2  WNetCancelConnection2A
  #endif // !UNICODE
  
@@ -97,7 +95,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetConnectionA(
-@@ -303,6 +317,7 @@ WNetGetConnectionA(
+@@ -303,6 +315,7 @@ WNetGetConnectionA(
      _Out_writes_opt_(*lpnLength) LPSTR  lpRemoteName,
      _Inout_ LPDWORD lpnLength
      );
@@ -105,7 +103,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetConnectionW(
-@@ -333,6 +348,7 @@ WNetRestoreSingleConnectionW(
+@@ -333,6 +346,7 @@ WNetRestoreSingleConnectionW(
      );
  
  #else
@@ -113,7 +111,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetRestoreConnectionW(
-@@ -349,6 +365,7 @@ WNetRestoreConnectionW(
+@@ -349,6 +363,7 @@ WNetRestoreConnectionW(
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
  #if(WINVER >= 0x0400)
@@ -121,7 +119,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetUseConnectionA(
-@@ -361,6 +378,7 @@ WNetUseConnectionA(
+@@ -361,6 +376,7 @@ WNetUseConnectionA(
      _Inout_opt_ LPDWORD lpBufferSize,
      _Out_opt_ LPDWORD   lpResult
      );
@@ -129,7 +127,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetUseConnectionW(
-@@ -420,6 +438,7 @@ WNetUseConnection4W(
+@@ -420,6 +436,7 @@ WNetUseConnection4W(
  //
  //  Network Connection Dialogs.
  //
@@ -137,7 +135,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetConnectionDialog(
-@@ -427,6 +446,7 @@ WNetConnectionDialog(
+@@ -427,6 +444,7 @@ WNetConnectionDialog(
      _In_ DWORD dwType
      );
  
@@ -145,7 +143,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetDisconnectDialog(
-@@ -470,11 +490,13 @@ typedef LPCONNECTDLGSTRUCTA LPCONNECTDLGSTRUCT;
+@@ -470,11 +488,13 @@ typedef LPCONNECTDLGSTRUCTA LPCONNECTDLGSTRUCT;
  #define CONNDLG_PERSIST     0x00000010 /* Force persistent connection */
  #define CONNDLG_NOT_PERSIST 0x00000020 /* Force connection NOT persistent */
  
@@ -159,7 +157,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetConnectionDialog1W(
-@@ -511,11 +533,13 @@ typedef LPDISCDLGSTRUCTA LPDISCDLGSTRUCT;
+@@ -511,11 +531,13 @@ typedef LPDISCDLGSTRUCTA LPDISCDLGSTRUCT;
  #define DISC_UPDATE_PROFILE         0x00000001
  #define DISC_NO_FORCE               0x00000040
  
@@ -173,7 +171,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetDisconnectDialog1W(
-@@ -532,6 +556,7 @@ WNetDisconnectDialog1W(
+@@ -532,6 +554,7 @@ WNetDisconnectDialog1W(
  //  Network Browsing.
  //
  
@@ -181,7 +179,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetOpenEnumA(
-@@ -540,7 +565,9 @@ WNetOpenEnumA(
+@@ -540,7 +563,9 @@ WNetOpenEnumA(
      _In_  DWORD          dwUsage,
      _In_opt_ LPNETRESOURCEA lpNetResource,
      _Out_ LPHANDLE       lphEnum
@@ -191,7 +189,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetOpenEnumW(
-@@ -549,6 +576,7 @@ WNetOpenEnumW(
+@@ -549,6 +574,7 @@ WNetOpenEnumW(
      _In_  DWORD          dwUsage,
      _In_opt_ LPNETRESOURCEW lpNetResource,
      _Out_ LPHANDLE       lphEnum
@@ -199,7 +197,7 @@ index 35e5990c..dc190217 100644
      );
  #ifdef UNICODE
  #define WNetOpenEnum  WNetOpenEnumW
-@@ -556,6 +584,7 @@ WNetOpenEnumW(
+@@ -556,6 +582,7 @@ WNetOpenEnumW(
  #define WNetOpenEnum  WNetOpenEnumA
  #endif // !UNICODE
  
@@ -207,7 +205,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetEnumResourceA(
-@@ -564,6 +593,7 @@ WNetEnumResourceA(
+@@ -564,6 +591,7 @@ WNetEnumResourceA(
      _Out_writes_bytes_(*lpBufferSize) LPVOID  lpBuffer,
      _Inout_ LPDWORD lpBufferSize
      );
@@ -215,7 +213,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetEnumResourceW(
-@@ -578,6 +608,7 @@ WNetEnumResourceW(
+@@ -578,6 +606,7 @@ WNetEnumResourceW(
  #define WNetEnumResource  WNetEnumResourceA
  #endif // !UNICODE
  
@@ -223,7 +221,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetCloseEnum(
-@@ -585,6 +616,7 @@ WNetCloseEnum(
+@@ -585,6 +614,7 @@ WNetCloseEnum(
      );
  
  #if(WINVER >= 0x0400)
@@ -231,7 +229,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetResourceParentA(
-@@ -592,6 +624,7 @@ WNetGetResourceParentA(
+@@ -592,6 +622,7 @@ WNetGetResourceParentA(
      _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
      _Inout_ LPDWORD lpcbBuffer
      );
@@ -239,7 +237,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetResourceParentW(
-@@ -605,6 +638,7 @@ WNetGetResourceParentW(
+@@ -605,6 +636,7 @@ WNetGetResourceParentW(
  #define WNetGetResourceParent  WNetGetResourceParentA
  #endif // !UNICODE
  
@@ -247,7 +245,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetResourceInformationA(
-@@ -613,6 +647,7 @@ WNetGetResourceInformationA(
+@@ -613,6 +645,7 @@ WNetGetResourceInformationA(
      _Inout_ LPDWORD lpcbBuffer,
      _Outptr_ LPSTR *lplpSystem
      );
@@ -255,7 +253,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetResourceInformationW(
-@@ -667,6 +702,7 @@ typedef REMOTE_NAME_INFOA REMOTE_NAME_INFO;
+@@ -667,6 +700,7 @@ typedef REMOTE_NAME_INFOA REMOTE_NAME_INFO;
  typedef LPREMOTE_NAME_INFOA LPREMOTE_NAME_INFO;
  #endif // UNICODE
  
@@ -263,7 +261,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetUniversalNameA(
-@@ -675,6 +711,7 @@ WNetGetUniversalNameA(
+@@ -675,6 +709,7 @@ WNetGetUniversalNameA(
      _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
      _Inout_ LPDWORD lpBufferSize
      );
@@ -271,7 +269,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetUniversalNameW(
-@@ -692,6 +729,7 @@ WNetGetUniversalNameW(
+@@ -692,6 +727,7 @@ WNetGetUniversalNameW(
  //
  //  Authentication and Logon/Logoff.
  //
@@ -279,7 +277,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetUserA(
-@@ -702,6 +740,7 @@ WNetGetUserA(
+@@ -702,6 +738,7 @@ WNetGetUserA(
  //
  //  Authentication and Logon/Logoff.
  //
@@ -287,7 +285,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetUserW(
-@@ -730,6 +769,7 @@ WNetGetUserW(
+@@ -730,6 +767,7 @@ WNetGetUserW(
  
  
  #if(WINVER >= 0x0400)
@@ -295,7 +293,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetProviderNameA(
-@@ -737,6 +777,7 @@ WNetGetProviderNameA(
+@@ -737,6 +775,7 @@ WNetGetProviderNameA(
      _Out_writes_(*lpBufferSize) LPSTR lpProviderName,
      _Inout_ LPDWORD lpBufferSize
      );
@@ -303,7 +301,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetProviderNameW(
-@@ -765,12 +806,14 @@ typedef struct _NETINFOSTRUCT{
+@@ -765,12 +804,14 @@ typedef struct _NETINFOSTRUCT{
  #define NETINFO_DISKRED     0x00000004  /* Provider requires disk redirections to connect */
  #define NETINFO_PRINTERRED  0x00000008  /* Provider requires printer redirections to connect */
  
@@ -318,7 +316,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetNetworkInformationW(
-@@ -789,6 +832,8 @@ WNetGetNetworkInformationW(
+@@ -789,6 +830,8 @@ WNetGetNetworkInformationW(
  //  Error handling.
  //
  
@@ -327,7 +325,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetLastErrorA(
-@@ -798,6 +843,8 @@ WNetGetLastErrorA(
+@@ -798,6 +841,8 @@ WNetGetLastErrorA(
      _Out_writes_(nNameBufSize) LPSTR  lpNameBuf,
      _In_ DWORD      nNameBufSize
      );
@@ -336,7 +334,7 @@ index 35e5990c..dc190217 100644
  _Check_return_
  DWORD APIENTRY
  WNetGetLastErrorW(
-@@ -895,12 +942,14 @@ typedef struct _NETCONNECTINFOSTRUCT{
+@@ -895,12 +940,14 @@ typedef struct _NETCONNECTINFOSTRUCT{
  #define WNCON_SLOWLINK          0x00000004
  #define WNCON_DYNAMIC           0x00000008
  

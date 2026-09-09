@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/audiomediatype.h b/generation/WinSDK/RecompiledIdlHeaders/um/audiomediatype.h
-index 5f40e3c8..5d4819e9 100644
+index 5f40e3c8..af2fe475 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/audiomediatype.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/audiomediatype.h
-@@ -68,6 +68,9 @@ extern "C"{
+@@ -68,6 +68,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if !defined( _UNCOMPRESSEDAUDIOFORMAT_ )
-@@ -221,6 +224,7 @@ EXTERN_C const IID IID_IAudioMediaType;
+@@ -221,6 +222,7 @@ EXTERN_C const IID IID_IAudioMediaType;
  //
  // CreateAudioMediaType
  //
@@ -20,7 +18,7 @@ index 5f40e3c8..5d4819e9 100644
  STDAPI CreateAudioMediaType(
      const WAVEFORMATEX* pAudioFormat,
      UINT32 cbAudioFormatSize,
-@@ -229,6 +233,7 @@ STDAPI CreateAudioMediaType(
+@@ -229,6 +231,7 @@ STDAPI CreateAudioMediaType(
  //
  // CreateAudioMediaTypeFromUncompressedAudioFormat
  //

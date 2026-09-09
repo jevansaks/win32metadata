@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ftpext.h b/generation/WinSDK/RecompiledIdlHeaders/um/ftpext.h
-index ce080fb9..c95f8149 100644
+index ce080fb9..a547a132 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ftpext.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ftpext.h
-@@ -193,6 +193,9 @@ Module Name: ftpext.h
+@@ -193,6 +193,7 @@ Module Name: ftpext.h
  
  --*/
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  /* [uuid] */ struct  DECLSPEC_UUID("9e04226f-e38c-419e-a448-62de3b3a8f43") CONFIGURATION_ENTRY
-@@ -1742,9 +1745,13 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -1742,9 +1743,13 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

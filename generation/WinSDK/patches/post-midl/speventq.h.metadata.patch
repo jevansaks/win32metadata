@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/speventq.h b/generation/WinSDK/RecompiledIdlHeaders/um/speventq.h
-index 201f44a3..229de27a 100644
+index 201f44a3..d7e8eaa2 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/speventq.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/speventq.h
-@@ -10,6 +10,9 @@
+@@ -10,6 +10,7 @@
  #define SPEventQ_h
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -216,6 +219,7 @@ public:
+@@ -216,6 +217,7 @@ public:
                  pSerEvent->SerializedlParam = sizeof(T);
                  break;
  

@@ -1,0 +1,83 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h
+index 15d6aa13..8fa7642f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h
+@@ -2,6 +2,7 @@
+ 
+ #ifndef __ROAPI_H_
+ #define __ROAPI_H_
++#include <win32metadata_annotations.h>
+ 
+ #ifdef _MSC_VER
+ #pragma once
+@@ -53,6 +54,7 @@ typedef HRESULT (STDAPICALLTYPE * PFNGETACTIVATIONFACTORY)(HSTRING, IActivationF
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
+ // forward declarations of the dllexport'd versions
++_Win32_metadata_supported_os_(windows8.0)
+ ROAPI
+ _Check_return_
+ HRESULT
+@@ -61,12 +63,14 @@ RoInitialize(
+     _In_ RO_INIT_TYPE initType
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ ROAPI
+ void
+ WINAPI
+ RoUninitialize(
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ ROAPI
+ _Check_return_
+ HRESULT
+@@ -76,6 +80,7 @@ RoActivateInstance(
+     _COM_Outptr_ IInspectable** instance
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ ROAPI
+ _Check_return_
+ HRESULT
+@@ -87,6 +92,7 @@ RoRegisterActivationFactories(
+     _Out_ RO_REGISTRATION_COOKIE* cookie
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ ROAPI
+ void
+ WINAPI
+@@ -94,6 +100,7 @@ RoRevokeActivationFactories(
+     _In_ RO_REGISTRATION_COOKIE cookie
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ ROAPI
+ _Check_return_
+ HRESULT
+@@ -107,6 +114,7 @@ RoGetActivationFactory(
+ typedef interface IApartmentShutdown IApartmentShutdown;
+ DECLARE_HANDLE(APARTMENT_SHUTDOWN_REGISTRATION_COOKIE);
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ ROAPI
+ _Check_return_
+ HRESULT
+@@ -117,6 +125,7 @@ RoRegisterForApartmentShutdown(
+     _Out_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE* regCookie
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ ROAPI
+ _Check_return_
+ HRESULT
+@@ -125,6 +134,7 @@ RoUnregisterForApartmentShutdown(
+     _In_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE regCookie
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ ROAPI
+ _Check_return_
+ HRESULT

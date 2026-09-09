@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/EmptyVC.h b/generation/WinSDK/RecompiledIdlHeaders/um/EmptyVC.h
-index 8b0e537d..7f589e2e 100644
+index 8b0e537d..3b7435df 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/EmptyVC.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/EmptyVC.h
-@@ -93,6 +93,9 @@ extern "C"{
+@@ -93,6 +93,7 @@ extern "C"{
  //=--------------------------------------------------------------------------=
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #pragma comment(lib,"uuid.lib")
-@@ -138,6 +141,7 @@ EXTERN_C const IID IID_IEmptyVolumeCacheCallBack;
+@@ -138,6 +139,7 @@ EXTERN_C const IID IID_IEmptyVolumeCacheCallBack;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 8b0e537d..7f589e2e 100644
      MIDL_INTERFACE("6E793361-73C6-11D0-8469-00AA00442901")
      IEmptyVolumeCacheCallBack : public IUnknown
      {
-@@ -271,6 +275,7 @@ EXTERN_C const IID IID_IEmptyVolumeCache;
+@@ -271,6 +273,7 @@ EXTERN_C const IID IID_IEmptyVolumeCache;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 8b0e537d..7f589e2e 100644
      MIDL_INTERFACE("8FCE5227-04DA-11d1-A004-00805F8ABE06")
      IEmptyVolumeCache : public IUnknown
      {
-@@ -447,6 +452,7 @@ EXTERN_C const IID IID_IEmptyVolumeCache2;
+@@ -447,6 +450,7 @@ EXTERN_C const IID IID_IEmptyVolumeCache2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

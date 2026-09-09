@@ -1,14 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dxcore_interface.h b/generation/WinSDK/RecompiledIdlHeaders/um/dxcore_interface.h
-index c3cc962f..22f08fb1 100644
+index c3cc962f..e00c72df 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/dxcore_interface.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/dxcore_interface.h
-@@ -6,6 +6,9 @@
+@@ -6,6 +6,7 @@
  
  #ifndef __dxcore_interface_h__
  #define __dxcore_interface_h__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifndef COM_NO_WINDOWS_H
  #include "windows.h"

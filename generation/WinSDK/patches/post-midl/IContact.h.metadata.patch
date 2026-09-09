@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IContact.h b/generation/WinSDK/RecompiledIdlHeaders/um/IContact.h
-index 32e2b7ed..8c5d9d79 100644
+index 32e2b7ed..311ac669 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/IContact.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/IContact.h
-@@ -119,6 +119,9 @@ extern "C"{
+@@ -119,6 +119,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -141,6 +144,7 @@ EXTERN_C const IID IID_IContactManager;
+@@ -141,6 +142,7 @@ EXTERN_C const IID IID_IContactManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 32e2b7ed..8c5d9d79 100644
      MIDL_INTERFACE("ad553d98-deb1-474a-8e17-fc0c2075b738")
      IContactManager : public IUnknown
      {
-@@ -305,6 +309,7 @@ EXTERN_C const IID IID_IContactCollection;
+@@ -305,6 +307,7 @@ EXTERN_C const IID IID_IContactCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 32e2b7ed..8c5d9d79 100644
      MIDL_INTERFACE("b6afa338-d779-11d9-8bde-f66bad1e3f3a")
      IContactCollection : public IUnknown
      {
-@@ -411,6 +416,7 @@ EXTERN_C const IID IID_IContactProperties;
+@@ -411,6 +414,7 @@ EXTERN_C const IID IID_IContactProperties;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 32e2b7ed..8c5d9d79 100644
      MIDL_INTERFACE("70dd27dd-5cbd-46e8-bef0-23b6b346288f")
      IContactProperties : public IUnknown
      {
-@@ -774,6 +780,7 @@ EXTERN_C const IID IID_IContact;
+@@ -774,6 +778,7 @@ EXTERN_C const IID IID_IContact;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 32e2b7ed..8c5d9d79 100644
      MIDL_INTERFACE("F941B671-BDA7-4f77-884A-F46462F226A7")
      IContact : public IUnknown
      {
-@@ -908,6 +915,7 @@ EXTERN_C const IID IID_IContactPropertyCollection;
+@@ -908,6 +913,7 @@ EXTERN_C const IID IID_IContactPropertyCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ctfspui.h b/generation/WinSDK/RecompiledIdlHeaders/um/ctfspui.h
-index fab7fbf6..a725c006 100644
+index fab7fbf6..e404eb13 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ctfspui.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ctfspui.h
-@@ -87,6 +87,9 @@ extern "C"{
+@@ -87,6 +87,7 @@ extern "C"{
  
  #include <windows.h>
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -114,6 +117,7 @@ EXTERN_C const IID IID_ITfSpeechUIServer;
+@@ -114,6 +115,7 @@ EXTERN_C const IID IID_ITfSpeechUIServer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

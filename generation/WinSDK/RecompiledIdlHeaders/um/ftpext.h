@@ -193,9 +193,7 @@ Module Name: ftpext.h
 
 --*/
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 /* [uuid] */ struct  DECLSPEC_UUID("9e04226f-e38c-419e-a448-62de3b3a8f43") CONFIGURATION_ENTRY

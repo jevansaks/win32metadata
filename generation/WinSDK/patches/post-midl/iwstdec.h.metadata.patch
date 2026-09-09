@@ -1,0 +1,20 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/iwstdec.h b/generation/WinSDK/RecompiledIdlHeaders/um/iwstdec.h
+index 7573a64a..4d1fcebb 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/iwstdec.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/iwstdec.h
+@@ -10,6 +10,7 @@
+ #ifndef __IWSTDEC__
+ #define __IWSTDEC__
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -58,6 +59,7 @@ extern "C" {
+ //
+ //  WST Decoder standard COM interface
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DECLARE_INTERFACE_(IAMWstDecoder, IUnknown)
+ {
+ 	//

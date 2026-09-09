@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/corrEngine.h b/generation/WinSDK/RecompiledIdlHeaders/um/corrEngine.h
-index 639d94ec..ff7335a9 100644
+index 639d94ec..7568b299 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/corrEngine.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/corrEngine.h
-@@ -85,6 +85,9 @@ extern "C"{
+@@ -85,6 +85,7 @@ extern "C"{
  //
  //---------------------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -380,9 +383,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -380,9 +381,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

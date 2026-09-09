@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/eapmethodauthenticatorapis.h b/generation/WinSDK/RecompiledIdlHeaders/um/eapmethodauthenticatorapis.h
-index a7cc11b3..bcf9e86a 100644
+index a7cc11b3..b6d90882 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/eapmethodauthenticatorapis.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/eapmethodauthenticatorapis.h
-@@ -12,6 +12,9 @@
+@@ -12,6 +12,7 @@
  #define EAP_METHOD_AUTHENTICATOR_APIS_H
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -215,14 +218,19 @@ extern "C"
+@@ -215,14 +216,19 @@ extern "C"
      //
      // EAP Functions
      //
@@ -32,7 +30,7 @@ index a7cc11b3..bcf9e86a 100644
      DWORD EapMethodAuthenticatorBeginSession(
          // Flags to qualify the authentication process.
          _In_ DWORD dwFlags,
-@@ -247,6 +255,7 @@ extern "C"
+@@ -247,6 +253,7 @@ extern "C"
          // the failure. This will be null on a successful call.
          _Outptr_ EAP_ERROR** ppEapError);
  
@@ -40,7 +38,7 @@ index a7cc11b3..bcf9e86a 100644
      DWORD EapMethodAuthenticatorUpdateInnerMethodParams(
          // context handle as returned from a successful call to
          // EapAuthenticatorBeginSession
-@@ -263,6 +272,7 @@ extern "C"
+@@ -263,6 +270,7 @@ extern "C"
      // The authenticator calls this any time it receives a packet that the eaphost
      // needs to process. This should be called only after a successful call to
      // EapAuthenticatorBeginSession.
@@ -48,7 +46,7 @@ index a7cc11b3..bcf9e86a 100644
      DWORD EapMethodAuthenticatorReceivePacket(
          // context handle as returned from a successful call to
          // EapAuthenticatorBeginSession
-@@ -281,6 +291,7 @@ extern "C"
+@@ -281,6 +289,7 @@ extern "C"
          // the failure. This will be null on a successful call.
          _Outptr_ EAP_ERROR** ppEapError);
  
@@ -56,7 +54,7 @@ index a7cc11b3..bcf9e86a 100644
      DWORD EapMethodAuthenticatorSendPacket(
          // context handle as returned from a successful call to
          // EapHostAuthenticatorBeginSession
-@@ -304,6 +315,7 @@ extern "C"
+@@ -304,6 +313,7 @@ extern "C"
      // Returns an array of attributes that the caller needs to act on.
      // The supplicant will call this when a call to
      // EapHostAuthenticatorProcessRequestPacket returns EapHostAuthenticatorResponseRespond.
@@ -64,7 +62,7 @@ index a7cc11b3..bcf9e86a 100644
      DWORD EapMethodAuthenticatorGetAttributes(
          // context handle as returned from a successful call to
          // EapHostAuthenticatorBeginSession
-@@ -314,6 +326,7 @@ extern "C"
+@@ -314,6 +324,7 @@ extern "C"
  
      // Sets an array of attributes that the caller wants the eap method to act
      // on.
@@ -72,7 +70,7 @@ index a7cc11b3..bcf9e86a 100644
      DWORD EapMethodAuthenticatorSetAttributes(
          // context handle as returned from a successful call to
          // EapHostAuthenticatorBeginSession
-@@ -335,6 +348,7 @@ extern "C"
+@@ -335,6 +346,7 @@ extern "C"
      //    this method with a failure.
      // 2. The server can choose to terminate an authentication with a failure in the middle of
      //    an authentication.
@@ -80,7 +78,7 @@ index a7cc11b3..bcf9e86a 100644
      DWORD EapMethodAuthenticatorGetResult(
          // context handle as returned from a successful call to
          // EapHostPeerBeginSession
-@@ -348,6 +362,7 @@ extern "C"
+@@ -348,6 +360,7 @@ extern "C"
  
      // Ends the authentication session. This cleans up any state that the eap
      // method or eaphost might be keeping.
@@ -88,7 +86,7 @@ index a7cc11b3..bcf9e86a 100644
      DWORD EapMethodAuthenticatorEndSession(
          // context handle as returned from a successful call to
          // EapHostPeerBeginSession. This will be set to NULL on a successful call.
-@@ -356,12 +371,14 @@ extern "C"
+@@ -356,12 +369,14 @@ extern "C"
          // the failure. This will be null on a successful call.
          _Outptr_ EAP_ERROR** ppEapError);
  

@@ -1,0 +1,29 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h b/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h
+index 5d9abcee..ef5aa760 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h
+@@ -14,6 +14,8 @@
+  *
+  */
+ 
++#include <win32metadata_annotations.h>
++
+ #ifndef _TEXTSERV_H
+ #define _TEXTSERV_H
+ 
+@@ -490,6 +492,7 @@ typedef int PROPERTYID;
+  *
+  *	@base	public | IUnknown 
+  */
++_Win32_metadata_supported_os_(windows8.0)
+ interface IRicheditUiaOverrides : public IUnknown
+ {
+ 	virtual HRESULT STDMETHODCALLTYPE GetPropertyOverrideValue(
+@@ -502,6 +505,7 @@ interface IRicheditUiaOverrides : public IUnknown
+ //------------------------------------------------------------------------
+ 
+ // Text Services factory
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI CreateTextServices(
+ 	IUnknown *punkOuter,
+ 	ITextHost *pITextHost,

@@ -1,19 +1,17 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.h
-index adf54c90..2c624520 100644
+index adf54c90..435dcf68 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.h
-@@ -33,6 +33,10 @@
+@@ -33,6 +33,8 @@
  #ifndef __mmdeviceapi_h__
  #define __mmdeviceapi_h__
  
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
 +
  #if defined(_MSC_VER) && (_MSC_VER >= 1020)
  #pragma once
  #endif
-@@ -151,6 +155,31 @@ extern "C"{
+@@ -151,6 +153,31 @@ extern "C"{
  #define DEVICE_STATE_NOTPRESENT  0x00000004
  #define DEVICE_STATE_UNPLUGGED   0x00000008
  #define DEVICE_STATEMASK_ALL     0x0000000f
@@ -45,7 +43,7 @@ index adf54c90..2c624520 100644
  #ifdef DEFINE_PROPERTYKEY
  #undef DEFINE_PROPERTYKEY
  #endif
-@@ -159,25 +188,43 @@ extern "C"{
+@@ -159,25 +186,43 @@ extern "C"{
  #else
  #define DEFINE_PROPERTYKEY(name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8, pid) EXTERN_C const PROPERTYKEY name
  #endif // INITGUID
@@ -89,7 +87,7 @@ index adf54c90..2c624520 100644
  DEFINE_PROPERTYKEY(PKEY_AudioEndpointSettings_LaunchContract, 0x14242002, 0x0320, 0x4de4, 0x95, 0x55, 0xa7, 0xd8, 0x2b, 0x73, 0xc2, 0x86, 1);
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef struct tagDIRECTX_AUDIO_ACTIVATION_PARAMS
-@@ -269,6 +316,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
+@@ -269,6 +314,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -97,7 +95,7 @@ index adf54c90..2c624520 100644
      MIDL_INTERFACE("7991EEC9-7E89-4D85-8390-6C703CEC60C0")
      IMMNotificationClient : public IUnknown
      {
-@@ -277,7 +325,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
+@@ -277,7 +323,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
              /* [annotation][in] */ 
              _In_  LPCWSTR pwstrDeviceId,
              /* [annotation][in] */ 
@@ -106,7 +104,7 @@ index adf54c90..2c624520 100644
          
          virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE OnDeviceAdded( 
              /* [annotation][in] */ 
-@@ -332,7 +380,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
+@@ -332,7 +378,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
              /* [annotation][in] */ 
              _In_  LPCWSTR pwstrDeviceId,
              /* [annotation][in] */ 
@@ -115,7 +113,7 @@ index adf54c90..2c624520 100644
          
          DECLSPEC_XFGVIRT(IMMNotificationClient, OnDeviceAdded)
          /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *OnDeviceAdded )( 
-@@ -424,6 +472,7 @@ EXTERN_C const IID IID_IMMDevice;
+@@ -424,6 +470,7 @@ EXTERN_C const IID IID_IMMDevice;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -123,7 +121,7 @@ index adf54c90..2c624520 100644
      MIDL_INTERFACE("D666063F-1587-4E43-81F1-B948E807363F")
      IMMDevice : public IUnknown
      {
-@@ -450,7 +499,7 @@ EXTERN_C const IID IID_IMMDevice;
+@@ -450,7 +497,7 @@ EXTERN_C const IID IID_IMMDevice;
          
          virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetState( 
              /* [annotation][out] */ 
@@ -132,7 +130,7 @@ index adf54c90..2c624520 100644
          
      };
      
-@@ -507,7 +556,7 @@ EXTERN_C const IID IID_IMMDevice;
+@@ -507,7 +554,7 @@ EXTERN_C const IID IID_IMMDevice;
          /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *GetState )( 
              IMMDevice * This,
              /* [annotation][out] */ 
@@ -141,7 +139,7 @@ index adf54c90..2c624520 100644
          
          END_INTERFACE
      } IMMDeviceVtbl;
-@@ -566,6 +615,7 @@ EXTERN_C const IID IID_IMMDeviceCollection;
+@@ -566,6 +613,7 @@ EXTERN_C const IID IID_IMMDeviceCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -149,7 +147,7 @@ index adf54c90..2c624520 100644
      MIDL_INTERFACE("0BD7A1BE-7A1A-44DB-8397-CC5392387B5E")
      IMMDeviceCollection : public IUnknown
      {
-@@ -670,6 +720,7 @@ EXTERN_C const IID IID_IMMEndpoint;
+@@ -670,6 +718,7 @@ EXTERN_C const IID IID_IMMEndpoint;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -157,7 +155,7 @@ index adf54c90..2c624520 100644
      MIDL_INTERFACE("1BE09788-6894-4089-8586-9A2A6C265AC5")
      IMMEndpoint : public IUnknown
      {
-@@ -757,6 +808,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
+@@ -757,6 +806,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -165,7 +163,7 @@ index adf54c90..2c624520 100644
      MIDL_INTERFACE("A95664D2-9614-4F35-A746-DE8DB63617E6")
      IMMDeviceEnumerator : public IUnknown
      {
-@@ -765,7 +817,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
+@@ -765,7 +815,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
              /* [annotation][in] */ 
              _In_  EDataFlow dataFlow,
              /* [annotation][in] */ 
@@ -174,7 +172,7 @@ index adf54c90..2c624520 100644
              /* [annotation][out] */ 
              _Out_  IMMDeviceCollection **ppDevices) = 0;
          
-@@ -822,7 +874,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
+@@ -822,7 +872,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
              /* [annotation][in] */ 
              _In_  EDataFlow dataFlow,
              /* [annotation][in] */ 
@@ -183,7 +181,7 @@ index adf54c90..2c624520 100644
              /* [annotation][out] */ 
              _Out_  IMMDeviceCollection **ppDevices);
          
-@@ -1042,6 +1094,7 @@ EXTERN_C const IID IID_IActivateAudioInterfaceCompletionHandler;
+@@ -1042,6 +1092,7 @@ EXTERN_C const IID IID_IActivateAudioInterfaceCompletionHandler;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -191,7 +189,7 @@ index adf54c90..2c624520 100644
      MIDL_INTERFACE("41D949AB-9862-444A-80F6-C261334DA5EB")
      IActivateAudioInterfaceCompletionHandler : public IUnknown
      {
-@@ -1129,6 +1182,7 @@ EXTERN_C const IID IID_IActivateAudioInterfaceAsyncOperation;
+@@ -1129,6 +1180,7 @@ EXTERN_C const IID IID_IActivateAudioInterfaceAsyncOperation;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -199,7 +197,7 @@ index adf54c90..2c624520 100644
      MIDL_INTERFACE("72A22D78-CDE4-431D-B8CC-843A71199B6D")
      IActivateAudioInterfaceAsyncOperation : public IUnknown
      {
-@@ -1222,6 +1276,7 @@ EXTERN_C const IID IID_IActivateAudioInterfaceAsyncOperation;
+@@ -1222,6 +1274,7 @@ EXTERN_C const IID IID_IActivateAudioInterfaceAsyncOperation;
  // * activation parameters specific to the interface being activated
  // and asynchronously returns a pointer to the specified interface
  // ----------------------------------------------------------------------
@@ -207,7 +205,7 @@ index adf54c90..2c624520 100644
  STDAPI ActivateAudioInterfaceAsync(
      _In_ LPCWSTR deviceInterfacePath,
      _In_ REFIID riid,
-@@ -1572,4 +1627,3 @@ extern RPC_IF_HANDLE __MIDL_itf_mmdeviceapi_0000_0011_v0_0_s_ifspec;
+@@ -1572,4 +1625,3 @@ extern RPC_IF_HANDLE __MIDL_itf_mmdeviceapi_0000_0011_v0_0_s_ifspec;
  
  #endif
  

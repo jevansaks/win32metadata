@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/filtereg.h b/generation/WinSDK/RecompiledIdlHeaders/um/filtereg.h
-index 11ffaac9..2a206b68 100644
+index 11ffaac9..9e0aa8e8 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/filtereg.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/filtereg.h
-@@ -75,6 +75,9 @@ extern "C"{
+@@ -75,6 +75,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  EXTERN_C const CLSID CLSID_FilterRegistration;
-@@ -102,6 +105,7 @@ EXTERN_C const IID IID_ILoadFilter;
+@@ -102,6 +103,7 @@ EXTERN_C const IID IID_ILoadFilter;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

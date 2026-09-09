@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vsadmin.h b/generation/WinSDK/RecompiledIdlHeaders/um/vsadmin.h
-index 6bb390bd..9b44e63b 100644
+index 6bb390bd..03042687 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/vsadmin.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/vsadmin.h
-@@ -87,6 +87,9 @@ extern "C"{
+@@ -87,6 +87,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -105,6 +108,7 @@ EXTERN_C const IID IID_IVssAdmin;
+@@ -105,6 +106,7 @@ EXTERN_C const IID IID_IVssAdmin;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

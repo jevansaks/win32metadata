@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FhCfg.h b/generation/WinSDK/RecompiledIdlHeaders/um/FhCfg.h
-index 8562f9b2..4d7ea151 100644
+index 8562f9b2..4e015a39 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/FhCfg.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/FhCfg.h
-@@ -119,6 +119,9 @@ extern "C"{
+@@ -119,6 +119,7 @@ extern "C"{
  /*                                                                             */
  /*******************************************************************************/
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if NTDDI_VERSION >= NTDDI_WIN8
-@@ -159,6 +162,7 @@ EXTERN_C const IID IID_IFhTarget;
+@@ -159,6 +160,7 @@ EXTERN_C const IID IID_IFhTarget;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 8562f9b2..4d7ea151 100644
      MIDL_INTERFACE("D87965FD-2BAD-4657-BD3B-9567EB300CED")
      IFhTarget : public IUnknown
      {
-@@ -276,6 +280,7 @@ EXTERN_C const IID IID_IFhScopeIterator;
+@@ -276,6 +278,7 @@ EXTERN_C const IID IID_IFhScopeIterator;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 8562f9b2..4d7ea151 100644
      MIDL_INTERFACE("3197ABCE-532A-44C6-8615-F3666566A720")
      IFhScopeIterator : public IUnknown
      {
-@@ -436,6 +441,7 @@ EXTERN_C const IID IID_IFhConfigMgr;
+@@ -436,6 +439,7 @@ EXTERN_C const IID IID_IFhConfigMgr;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 8562f9b2..4d7ea151 100644
      MIDL_INTERFACE("6A5FEA5B-BF8F-4EE5-B8C3-44D8A0D7331C")
      IFhConfigMgr : public IUnknown
      {
-@@ -729,6 +735,7 @@ EXTERN_C const IID IID_IFhReassociation;
+@@ -729,6 +733,7 @@ EXTERN_C const IID IID_IFhReassociation;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 8562f9b2..4d7ea151 100644
      MIDL_INTERFACE("6544A28A-F68D-47ac-91EF-16B2B36AA3EE")
      IFhReassociation : public IUnknown
      {
-@@ -918,9 +925,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -918,9 +923,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

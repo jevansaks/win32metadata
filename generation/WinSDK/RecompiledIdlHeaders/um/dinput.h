@@ -11,9 +11,7 @@
 #define __DINPUT_INCLUDED__
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef DIJ_RINGZERO
 

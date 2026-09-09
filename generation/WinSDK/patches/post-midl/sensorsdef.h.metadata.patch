@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/sensorsdef.h b/generation/WinSDK/RecompiledIdlHeaders/shared/sensorsdef.h
-index 614cfa59..476c3857 100644
+index 614cfa59..2c80a247 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/sensorsdef.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/sensorsdef.h
-@@ -27,6 +27,9 @@ Abstract:
+@@ -27,6 +27,7 @@ Abstract:
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -117,89 +120,124 @@ DEFINE_GUID(GUID_SensorType_HingeAngle, 0x82358065, 0xf4c4, 0x4da1, 0xb2, 0x72,
+@@ -117,89 +118,124 @@ DEFINE_GUID(GUID_SensorType_HingeAngle, 0x82358065, 0xf4c4, 0x4da1, 0xb2, 0x72,
  // {D4247382-969D-4F24-BB14-FB9671870BBF}
  
  // Sensor Enumeration Properties (2-19)
@@ -137,7 +135,7 @@ index 614cfa59..476c3857 100644
  DEFINE_PROPERTYKEY(DEVPKEY_Sensor_HumanPresence_MaxDetectablePersonsCount,
      0xd4247382, 0x969d, 0x4f24, 0xbb, 0x14, 0xfb, 0x96, 0x71, 0x87, 0xb, 0xbf, 83); //[VT_UI4]
  
-@@ -210,231 +248,330 @@ DEFINE_PROPERTYKEY(DEVPKEY_Sensor_HumanPresence_MaxDetectablePersonsCount,
+@@ -210,231 +246,330 @@ DEFINE_PROPERTYKEY(DEVPKEY_Sensor_HumanPresence_MaxDetectablePersonsCount,
  // {C458F8A7-4AE8-4777-9607-2E9BDD65110A}
  
  // Common Data-Fields (2-9)

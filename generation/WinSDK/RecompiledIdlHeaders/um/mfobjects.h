@@ -33,9 +33,7 @@
 #ifndef __mfobjects_h__
 #define __mfobjects_h__
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once

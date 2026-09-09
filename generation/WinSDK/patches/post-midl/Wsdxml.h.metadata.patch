@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdxml.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdxml.h
-index e552d958..d24c11a1 100644
+index e552d958..6ebc1b8d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdxml.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdxml.h
-@@ -67,6 +67,9 @@ extern "C"{
+@@ -67,6 +67,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -210,11 +213,13 @@ enum __MIDL___MIDL_itf_wsdxml_0000_0000_0001
+@@ -210,11 +211,13 @@ enum __MIDL___MIDL_itf_wsdxml_0000_0000_0001
  #define WSDXML_TYPE_ENCODING(typeIndex,layerNumber) ((((DWORD)layerNumber) << 28) | typeIndex)
  #define WSDXML_NAMESPACE_ENCODING(namespaceIndex,layerNumber) ((((WORD)layerNumber) << 12) | namespaceIndex)
  #define WSDXML_NAME_ENCODING(nameIndex,nameSpaceEncoding) ((((DWORD)nameSpaceEncoding) << 16) | nameIndex)
@@ -26,7 +24,7 @@ index e552d958..d24c11a1 100644
  HRESULT WINAPI
  WSDXMLCreateContext(
      _Outptr_ IWSDXMLContext** ppContext);
-@@ -234,6 +239,7 @@ EXTERN_C const IID IID_IWSDXMLContext;
+@@ -234,6 +237,7 @@ EXTERN_C const IID IID_IWSDXMLContext;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h b/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h
-index 4340cf3e..87fb90f6 100644
+index 4340cf3e..ff2f70e9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h
-@@ -18,6 +18,9 @@ Contents:   Definitions and prototypes for the TBS (TPM Base Services) for
+@@ -18,6 +18,7 @@ Contents:   Definitions and prototypes for the TBS (TPM Base Services) for
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or SecureStartup Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_SECURESTARTUP)
-@@ -94,20 +97,27 @@ typedef struct tdTBS_CONTEXT_PARAMS
+@@ -94,20 +95,27 @@ typedef struct tdTBS_CONTEXT_PARAMS
  } TBS_CONTEXT_PARAMS, *PTBS_CONTEXT_PARAMS;
  typedef const TBS_CONTEXT_PARAMS *PCTBS_CONTEXT_PARAMS;
  
@@ -42,7 +40,7 @@ index 4340cf3e..87fb90f6 100644
  TBS_RESULT WINAPI
  Tbsip_Submit_Command(
      _In_ TBS_HCONTEXT hContext,
-@@ -118,10 +128,12 @@ Tbsip_Submit_Command(
+@@ -118,10 +126,12 @@ Tbsip_Submit_Command(
      _Out_writes_bytes_(*pcbResult) PBYTE pabResult,
      _Inout_ PUINT32 pcbResult);
  
@@ -55,7 +53,7 @@ index 4340cf3e..87fb90f6 100644
  TBS_RESULT WINAPI
  Tbsi_Physical_Presence_Command(
      _In_ TBS_HCONTEXT hContext,
-@@ -134,6 +146,7 @@ Tbsi_Physical_Presence_Command(
+@@ -134,6 +144,7 @@ Tbsi_Physical_Presence_Command(
  
  #if (NTDDI_VERSION >= NTDDI_VISTASP1)
  
@@ -63,7 +61,7 @@ index 4340cf3e..87fb90f6 100644
  _Success_(return == TBS_SUCCESS)
  TBS_RESULT WINAPI
  Tbsi_Get_TCG_Log(
-@@ -213,11 +226,13 @@ typedef struct _TPM_DEVICE_INFO
+@@ -213,11 +224,13 @@ typedef struct _TPM_DEVICE_INFO
  typedef const TPM_DEVICE_INFO *PCTPM_DEVICE_INFO;
  #endif //TPM_VERSION_UNKNOWN
  
@@ -77,7 +75,7 @@ index 4340cf3e..87fb90f6 100644
  _Success_(return == TBS_SUCCESS)
  TBS_RESULT WINAPI
  Tbsi_Get_OwnerAuth(
-@@ -226,6 +241,7 @@ Tbsi_Get_OwnerAuth(
+@@ -226,6 +239,7 @@ Tbsi_Get_OwnerAuth(
      _Out_writes_bytes_to_opt_(*pOutputBufLen, *pOutputBufLen) PBYTE pOutputBuf,
      _Inout_  PUINT32 pOutputBufLen);
  
@@ -85,7 +83,7 @@ index 4340cf3e..87fb90f6 100644
  TBS_RESULT WINAPI
  Tbsi_Revoke_Attestation();
  
-@@ -282,6 +298,7 @@ Tbsi_Create_Windows_Key(
+@@ -282,6 +296,7 @@ Tbsi_Create_Windows_Key(
  #define TBS_TCGLOG_DRTM_RESUME      5
  // (User mode only) Returns the DRTM log associated with the current resume from hibernation
  

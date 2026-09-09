@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msdrm.h b/generation/WinSDK/RecompiledIdlHeaders/um/msdrm.h
-index 21104f6c..b85789ad 100644
+index 21104f6c..80247621 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/msdrm.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/msdrm.h
-@@ -4,6 +4,9 @@
+@@ -4,6 +4,7 @@
  #define __MSDRM_H_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -461,6 +464,7 @@ DRMEXPORT HRESULT UDAPICALL DRMGetSignedIssuanceLicense(
+@@ -461,6 +462,7 @@ DRMEXPORT HRESULT UDAPICALL DRMGetSignedIssuanceLicense(
  
                                  IN      VOID*        pvContext);//Optional
  
@@ -20,7 +18,7 @@ index 21104f6c..b85789ad 100644
  DRMEXPORT HRESULT UDAPICALL DRMGetSignedIssuanceLicenseEx(
                                  DRMENVHANDLE                hEnv,
                                  DRMPUBHANDLE                hIssuanceLicense,
-@@ -608,14 +612,17 @@ DRMEXPORT HRESULT UDAPICALL DRMGetIntervalTime(
+@@ -608,14 +610,17 @@ DRMEXPORT HRESULT UDAPICALL DRMGetIntervalTime(
  
  DRMEXPORT HRESULT UDAPICALL DRMRepair();
  

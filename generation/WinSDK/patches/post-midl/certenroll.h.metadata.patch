@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/certenroll.h b/generation/WinSDK/RecompiledIdlHeaders/um/certenroll.h
-index 01b99d48..f8de5db1 100644
+index 01b99d48..4f07ffbc 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/certenroll.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/certenroll.h
-@@ -1679,6 +1679,9 @@ extern "C"{
+@@ -1679,6 +1679,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if defined(MIDL_PASS)
-@@ -2229,6 +2232,7 @@ EXTERN_C const IID IID_IObjectId;
+@@ -2229,6 +2230,7 @@ EXTERN_C const IID IID_IObjectId;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab300-217d-11da-b2a4-000e7bbb2b09")
      IObjectId : public IDispatch
      {
-@@ -2454,6 +2458,7 @@ EXTERN_C const IID IID_IObjectIds;
+@@ -2454,6 +2456,7 @@ EXTERN_C const IID IID_IObjectIds;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab301-217d-11da-b2a4-000e7bbb2b09")
      IObjectIds : public IDispatch
      {
-@@ -2658,6 +2663,7 @@ EXTERN_C const IID IID_IBinaryConverter;
+@@ -2658,6 +2661,7 @@ EXTERN_C const IID IID_IBinaryConverter;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab302-217d-11da-b2a4-000e7bbb2b09")
      IBinaryConverter : public IDispatch
      {
-@@ -3050,6 +3056,7 @@ EXTERN_C const IID IID_IX500DistinguishedName;
+@@ -3050,6 +3054,7 @@ EXTERN_C const IID IID_IX500DistinguishedName;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab303-217d-11da-b2a4-000e7bbb2b09")
      IX500DistinguishedName : public IDispatch
      {
-@@ -3272,6 +3279,7 @@ EXTERN_C const IID IID_IX509EnrollmentStatus;
+@@ -3272,6 +3277,7 @@ EXTERN_C const IID IID_IX509EnrollmentStatus;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab304-217d-11da-b2a4-000e7bbb2b09")
      IX509EnrollmentStatus : public IDispatch
      {
-@@ -3601,6 +3609,7 @@ EXTERN_C const IID IID_ICspAlgorithm;
+@@ -3601,6 +3607,7 @@ EXTERN_C const IID IID_ICspAlgorithm;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab305-217d-11da-b2a4-000e7bbb2b09")
      ICspAlgorithm : public IDispatch
      {
-@@ -3842,6 +3851,7 @@ EXTERN_C const IID IID_ICspAlgorithms;
+@@ -3842,6 +3849,7 @@ EXTERN_C const IID IID_ICspAlgorithms;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab306-217d-11da-b2a4-000e7bbb2b09")
      ICspAlgorithms : public IDispatch
      {
-@@ -4079,6 +4089,7 @@ EXTERN_C const IID IID_ICspInformation;
+@@ -4079,6 +4087,7 @@ EXTERN_C const IID IID_ICspInformation;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab307-217d-11da-b2a4-000e7bbb2b09")
      ICspInformation : public IDispatch
      {
-@@ -4403,6 +4414,7 @@ EXTERN_C const IID IID_ICspInformations;
+@@ -4403,6 +4412,7 @@ EXTERN_C const IID IID_ICspInformations;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab308-217d-11da-b2a4-000e7bbb2b09")
      ICspInformations : public IDispatch
      {
-@@ -4674,6 +4686,7 @@ EXTERN_C const IID IID_ICspStatus;
+@@ -4674,6 +4684,7 @@ EXTERN_C const IID IID_ICspStatus;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab309-217d-11da-b2a4-000e7bbb2b09")
      ICspStatus : public IDispatch
      {
-@@ -4880,6 +4893,7 @@ EXTERN_C const IID IID_ICspStatuses;
+@@ -4880,6 +4891,7 @@ EXTERN_C const IID IID_ICspStatuses;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab30a-217d-11da-b2a4-000e7bbb2b09")
      ICspStatuses : public IDispatch
      {
-@@ -5149,6 +5163,7 @@ EXTERN_C const IID IID_IX509PublicKey;
+@@ -5149,6 +5161,7 @@ EXTERN_C const IID IID_IX509PublicKey;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab30b-217d-11da-b2a4-000e7bbb2b09")
      IX509PublicKey : public IDispatch
      {
-@@ -5418,6 +5433,7 @@ EXTERN_C const IID IID_IX509PrivateKey;
+@@ -5418,6 +5431,7 @@ EXTERN_C const IID IID_IX509PrivateKey;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab30c-217d-11da-b2a4-000e7bbb2b09")
      IX509PrivateKey : public IDispatch
      {
-@@ -7179,6 +7195,7 @@ EXTERN_C const IID IID_IX509Extension;
+@@ -7179,6 +7193,7 @@ EXTERN_C const IID IID_IX509Extension;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab30d-217d-11da-b2a4-000e7bbb2b09")
      IX509Extension : public IDispatch
      {
-@@ -7367,6 +7384,7 @@ EXTERN_C const IID IID_IX509Extensions;
+@@ -7367,6 +7382,7 @@ EXTERN_C const IID IID_IX509Extensions;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab30e-217d-11da-b2a4-000e7bbb2b09")
      IX509Extensions : public IDispatch
      {
-@@ -7608,6 +7626,7 @@ EXTERN_C const IID IID_IX509ExtensionKeyUsage;
+@@ -7608,6 +7624,7 @@ EXTERN_C const IID IID_IX509ExtensionKeyUsage;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab30f-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionKeyUsage : public IX509Extension
      {
-@@ -7814,6 +7833,7 @@ EXTERN_C const IID IID_IX509ExtensionEnhancedKeyUsage;
+@@ -7814,6 +7831,7 @@ EXTERN_C const IID IID_IX509ExtensionEnhancedKeyUsage;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab310-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionEnhancedKeyUsage : public IX509Extension
      {
-@@ -8020,6 +8040,7 @@ EXTERN_C const IID IID_IX509ExtensionTemplateName;
+@@ -8020,6 +8038,7 @@ EXTERN_C const IID IID_IX509ExtensionTemplateName;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab311-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionTemplateName : public IX509Extension
      {
-@@ -8226,6 +8247,7 @@ EXTERN_C const IID IID_IX509ExtensionTemplate;
+@@ -8226,6 +8245,7 @@ EXTERN_C const IID IID_IX509ExtensionTemplate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -164,7 +162,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab312-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionTemplate : public IX509Extension
      {
-@@ -8483,6 +8505,7 @@ EXTERN_C const IID IID_IAlternativeName;
+@@ -8483,6 +8503,7 @@ EXTERN_C const IID IID_IAlternativeName;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -172,7 +170,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab313-217d-11da-b2a4-000e7bbb2b09")
      IAlternativeName : public IDispatch
      {
-@@ -8701,6 +8724,7 @@ EXTERN_C const IID IID_IAlternativeNames;
+@@ -8701,6 +8722,7 @@ EXTERN_C const IID IID_IAlternativeNames;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -180,7 +178,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab314-217d-11da-b2a4-000e7bbb2b09")
      IAlternativeNames : public IDispatch
      {
-@@ -8894,6 +8918,7 @@ EXTERN_C const IID IID_IX509ExtensionAlternativeNames;
+@@ -8894,6 +8916,7 @@ EXTERN_C const IID IID_IX509ExtensionAlternativeNames;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -188,7 +186,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab315-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionAlternativeNames : public IX509Extension
      {
-@@ -9100,6 +9125,7 @@ EXTERN_C const IID IID_IX509ExtensionBasicConstraints;
+@@ -9100,6 +9123,7 @@ EXTERN_C const IID IID_IX509ExtensionBasicConstraints;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -196,7 +194,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab316-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionBasicConstraints : public IX509Extension
      {
-@@ -9319,6 +9345,7 @@ EXTERN_C const IID IID_IX509ExtensionSubjectKeyIdentifier;
+@@ -9319,6 +9343,7 @@ EXTERN_C const IID IID_IX509ExtensionSubjectKeyIdentifier;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -204,7 +202,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab317-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionSubjectKeyIdentifier : public IX509Extension
      {
-@@ -9529,6 +9556,7 @@ EXTERN_C const IID IID_IX509ExtensionAuthorityKeyIdentifier;
+@@ -9529,6 +9554,7 @@ EXTERN_C const IID IID_IX509ExtensionAuthorityKeyIdentifier;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -212,7 +210,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab318-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionAuthorityKeyIdentifier : public IX509Extension
      {
-@@ -9739,6 +9767,7 @@ EXTERN_C const IID IID_ISmimeCapability;
+@@ -9739,6 +9765,7 @@ EXTERN_C const IID IID_ISmimeCapability;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -220,7 +218,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab319-217d-11da-b2a4-000e7bbb2b09")
      ISmimeCapability : public IDispatch
      {
-@@ -9901,6 +9930,7 @@ EXTERN_C const IID IID_ISmimeCapabilities;
+@@ -9901,6 +9928,7 @@ EXTERN_C const IID IID_ISmimeCapabilities;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -228,7 +226,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab31a-217d-11da-b2a4-000e7bbb2b09")
      ISmimeCapabilities : public IDispatch
      {
-@@ -10116,6 +10146,7 @@ EXTERN_C const IID IID_IX509ExtensionSmimeCapabilities;
+@@ -10116,6 +10144,7 @@ EXTERN_C const IID IID_IX509ExtensionSmimeCapabilities;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -236,7 +234,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab31b-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionSmimeCapabilities : public IX509Extension
      {
-@@ -10339,6 +10370,7 @@ EXTERN_C const IID IID_IPolicyQualifier;
+@@ -10339,6 +10368,7 @@ EXTERN_C const IID IID_IPolicyQualifier;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -244,7 +242,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab31c-217d-11da-b2a4-000e7bbb2b09")
      IPolicyQualifier : public IDispatch
      {
-@@ -10525,6 +10557,7 @@ EXTERN_C const IID IID_IPolicyQualifiers;
+@@ -10525,6 +10555,7 @@ EXTERN_C const IID IID_IPolicyQualifiers;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -252,7 +250,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab31d-217d-11da-b2a4-000e7bbb2b09")
      IPolicyQualifiers : public IDispatch
      {
-@@ -10718,6 +10751,7 @@ EXTERN_C const IID IID_ICertificatePolicy;
+@@ -10718,6 +10749,7 @@ EXTERN_C const IID IID_ICertificatePolicy;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -260,7 +258,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab31e-217d-11da-b2a4-000e7bbb2b09")
      ICertificatePolicy : public IDispatch
      {
-@@ -10878,6 +10912,7 @@ EXTERN_C const IID IID_ICertificatePolicies;
+@@ -10878,6 +10910,7 @@ EXTERN_C const IID IID_ICertificatePolicies;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -268,7 +266,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab31f-217d-11da-b2a4-000e7bbb2b09")
      ICertificatePolicies : public IDispatch
      {
-@@ -11071,6 +11106,7 @@ EXTERN_C const IID IID_IX509ExtensionCertificatePolicies;
+@@ -11071,6 +11104,7 @@ EXTERN_C const IID IID_IX509ExtensionCertificatePolicies;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -276,7 +274,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab320-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionCertificatePolicies : public IX509Extension
      {
-@@ -11277,6 +11313,7 @@ EXTERN_C const IID IID_IX509ExtensionMSApplicationPolicies;
+@@ -11277,6 +11311,7 @@ EXTERN_C const IID IID_IX509ExtensionMSApplicationPolicies;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -284,7 +282,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab321-217d-11da-b2a4-000e7bbb2b09")
      IX509ExtensionMSApplicationPolicies : public IX509Extension
      {
-@@ -11483,6 +11520,7 @@ EXTERN_C const IID IID_IX509Attribute;
+@@ -11483,6 +11518,7 @@ EXTERN_C const IID IID_IX509Attribute;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -292,7 +290,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab322-217d-11da-b2a4-000e7bbb2b09")
      IX509Attribute : public IDispatch
      {
-@@ -11649,6 +11687,7 @@ EXTERN_C const IID IID_IX509Attributes;
+@@ -11649,6 +11685,7 @@ EXTERN_C const IID IID_IX509Attributes;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -300,7 +298,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab323-217d-11da-b2a4-000e7bbb2b09")
      IX509Attributes : public IDispatch
      {
-@@ -11842,6 +11881,7 @@ EXTERN_C const IID IID_IX509AttributeExtensions;
+@@ -11842,6 +11879,7 @@ EXTERN_C const IID IID_IX509AttributeExtensions;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -308,7 +306,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab324-217d-11da-b2a4-000e7bbb2b09")
      IX509AttributeExtensions : public IX509Attribute
      {
-@@ -12058,6 +12098,7 @@ EXTERN_C const IID IID_IX509AttributeClientId;
+@@ -12058,6 +12096,7 @@ EXTERN_C const IID IID_IX509AttributeClientId;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -316,7 +314,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab325-217d-11da-b2a4-000e7bbb2b09")
      IX509AttributeClientId : public IX509Attribute
      {
-@@ -12287,6 +12328,7 @@ EXTERN_C const IID IID_IX509AttributeRenewalCertificate;
+@@ -12287,6 +12326,7 @@ EXTERN_C const IID IID_IX509AttributeRenewalCertificate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -324,7 +322,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab326-217d-11da-b2a4-000e7bbb2b09")
      IX509AttributeRenewalCertificate : public IX509Attribute
      {
-@@ -12481,6 +12523,7 @@ EXTERN_C const IID IID_IX509AttributeArchiveKey;
+@@ -12481,6 +12521,7 @@ EXTERN_C const IID IID_IX509AttributeArchiveKey;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -332,7 +330,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab327-217d-11da-b2a4-000e7bbb2b09")
      IX509AttributeArchiveKey : public IX509Attribute
      {
-@@ -12703,6 +12746,7 @@ EXTERN_C const IID IID_IX509AttributeArchiveKeyHash;
+@@ -12703,6 +12744,7 @@ EXTERN_C const IID IID_IX509AttributeArchiveKeyHash;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -340,7 +338,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab328-217d-11da-b2a4-000e7bbb2b09")
      IX509AttributeArchiveKeyHash : public IX509Attribute
      {
-@@ -12897,6 +12941,7 @@ EXTERN_C const IID IID_IX509AttributeOSVersion;
+@@ -12897,6 +12939,7 @@ EXTERN_C const IID IID_IX509AttributeOSVersion;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -348,7 +346,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab32a-217d-11da-b2a4-000e7bbb2b09")
      IX509AttributeOSVersion : public IX509Attribute
      {
-@@ -13087,6 +13132,7 @@ EXTERN_C const IID IID_IX509AttributeCspProvider;
+@@ -13087,6 +13130,7 @@ EXTERN_C const IID IID_IX509AttributeCspProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -356,7 +354,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab32b-217d-11da-b2a4-000e7bbb2b09")
      IX509AttributeCspProvider : public IX509Attribute
      {
-@@ -13307,6 +13353,7 @@ EXTERN_C const IID IID_ICryptAttribute;
+@@ -13307,6 +13351,7 @@ EXTERN_C const IID IID_ICryptAttribute;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -364,7 +362,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab32c-217d-11da-b2a4-000e7bbb2b09")
      ICryptAttribute : public IDispatch
      {
-@@ -13478,6 +13525,7 @@ EXTERN_C const IID IID_ICryptAttributes;
+@@ -13478,6 +13523,7 @@ EXTERN_C const IID IID_ICryptAttributes;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -372,7 +370,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab32d-217d-11da-b2a4-000e7bbb2b09")
      ICryptAttributes : public IDispatch
      {
-@@ -13808,6 +13856,7 @@ EXTERN_C const IID IID_ICertProperty;
+@@ -13808,6 +13854,7 @@ EXTERN_C const IID IID_ICertProperty;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -380,7 +378,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab32e-217d-11da-b2a4-000e7bbb2b09")
      ICertProperty : public IDispatch
      {
-@@ -14028,6 +14077,7 @@ EXTERN_C const IID IID_ICertProperties;
+@@ -14028,6 +14075,7 @@ EXTERN_C const IID IID_ICertProperties;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -388,7 +386,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab32f-217d-11da-b2a4-000e7bbb2b09")
      ICertProperties : public IDispatch
      {
-@@ -14236,6 +14286,7 @@ EXTERN_C const IID IID_ICertPropertyFriendlyName;
+@@ -14236,6 +14284,7 @@ EXTERN_C const IID IID_ICertPropertyFriendlyName;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -396,7 +394,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab330-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyFriendlyName : public ICertProperty
      {
-@@ -14450,6 +14501,7 @@ EXTERN_C const IID IID_ICertPropertyDescription;
+@@ -14450,6 +14499,7 @@ EXTERN_C const IID IID_ICertPropertyDescription;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -404,7 +402,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab331-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyDescription : public ICertProperty
      {
-@@ -14664,6 +14716,7 @@ EXTERN_C const IID IID_ICertPropertyAutoEnroll;
+@@ -14664,6 +14714,7 @@ EXTERN_C const IID IID_ICertPropertyAutoEnroll;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -412,7 +410,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab332-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyAutoEnroll : public ICertProperty
      {
-@@ -14878,6 +14931,7 @@ EXTERN_C const IID IID_ICertPropertyRequestOriginator;
+@@ -14878,6 +14929,7 @@ EXTERN_C const IID IID_ICertPropertyRequestOriginator;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -420,7 +418,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab333-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyRequestOriginator : public ICertProperty
      {
-@@ -15101,6 +15155,7 @@ EXTERN_C const IID IID_ICertPropertySHA1Hash;
+@@ -15101,6 +15153,7 @@ EXTERN_C const IID IID_ICertPropertySHA1Hash;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -428,7 +426,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab334-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertySHA1Hash : public ICertProperty
      {
-@@ -15319,6 +15374,7 @@ EXTERN_C const IID IID_ICertPropertyKeyProvInfo;
+@@ -15319,6 +15372,7 @@ EXTERN_C const IID IID_ICertPropertyKeyProvInfo;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -436,7 +434,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab336-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyKeyProvInfo : public ICertProperty
      {
-@@ -15533,6 +15589,7 @@ EXTERN_C const IID IID_ICertPropertyArchived;
+@@ -15533,6 +15587,7 @@ EXTERN_C const IID IID_ICertPropertyArchived;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -444,7 +442,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab337-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyArchived : public ICertProperty
      {
-@@ -15747,6 +15804,7 @@ EXTERN_C const IID IID_ICertPropertyBackedUp;
+@@ -15747,6 +15802,7 @@ EXTERN_C const IID IID_ICertPropertyBackedUp;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -452,7 +450,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab338-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyBackedUp : public ICertProperty
      {
-@@ -15985,6 +16043,7 @@ EXTERN_C const IID IID_ICertPropertyEnrollment;
+@@ -15985,6 +16041,7 @@ EXTERN_C const IID IID_ICertPropertyEnrollment;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -460,7 +458,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab339-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyEnrollment : public ICertProperty
      {
-@@ -16238,6 +16297,7 @@ EXTERN_C const IID IID_ICertPropertyRenewal;
+@@ -16238,6 +16295,7 @@ EXTERN_C const IID IID_ICertPropertyRenewal;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -468,7 +466,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab33a-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyRenewal : public ICertProperty
      {
-@@ -16471,6 +16531,7 @@ EXTERN_C const IID IID_ICertPropertyArchivedKeyHash;
+@@ -16471,6 +16529,7 @@ EXTERN_C const IID IID_ICertPropertyArchivedKeyHash;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -476,7 +474,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab33b-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyArchivedKeyHash : public ICertProperty
      {
-@@ -16715,6 +16776,7 @@ EXTERN_C const IID IID_ICertPropertyEnrollmentPolicyServer;
+@@ -16715,6 +16774,7 @@ EXTERN_C const IID IID_ICertPropertyEnrollmentPolicyServer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -484,7 +482,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab34a-217d-11da-b2a4-000e7bbb2b09")
      ICertPropertyEnrollmentPolicyServer : public ICertProperty
      {
-@@ -17020,6 +17082,7 @@ EXTERN_C const IID IID_IX509SignatureInformation;
+@@ -17020,6 +17080,7 @@ EXTERN_C const IID IID_IX509SignatureInformation;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -492,7 +490,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab33c-217d-11da-b2a4-000e7bbb2b09")
      IX509SignatureInformation : public IDispatch
      {
-@@ -17296,6 +17359,7 @@ EXTERN_C const IID IID_ISignerCertificate;
+@@ -17296,6 +17357,7 @@ EXTERN_C const IID IID_ISignerCertificate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -500,7 +498,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab33d-217d-11da-b2a4-000e7bbb2b09")
      ISignerCertificate : public IDispatch
      {
-@@ -17552,6 +17616,7 @@ EXTERN_C const IID IID_ISignerCertificates;
+@@ -17552,6 +17614,7 @@ EXTERN_C const IID IID_ISignerCertificates;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -508,7 +506,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab33e-217d-11da-b2a4-000e7bbb2b09")
      ISignerCertificates : public IDispatch
      {
-@@ -17758,6 +17823,7 @@ EXTERN_C const IID IID_IX509NameValuePair;
+@@ -17758,6 +17821,7 @@ EXTERN_C const IID IID_IX509NameValuePair;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -516,7 +514,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab33f-217d-11da-b2a4-000e7bbb2b09")
      IX509NameValuePair : public IDispatch
      {
-@@ -17920,6 +17986,7 @@ EXTERN_C const IID IID_IX509NameValuePairs;
+@@ -17920,6 +17984,7 @@ EXTERN_C const IID IID_IX509NameValuePairs;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -524,7 +522,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab340-217d-11da-b2a4-000e7bbb2b09")
      IX509NameValuePairs : public IDispatch
      {
-@@ -18157,6 +18224,7 @@ EXTERN_C const IID IID_IX509CertificateTemplate;
+@@ -18157,6 +18222,7 @@ EXTERN_C const IID IID_IX509CertificateTemplate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -532,7 +530,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("54244A13-555A-4e22-896D-1B0E52F76406")
      IX509CertificateTemplate : public IDispatch
      {
-@@ -18297,6 +18365,7 @@ EXTERN_C const IID IID_IX509CertificateTemplates;
+@@ -18297,6 +18363,7 @@ EXTERN_C const IID IID_IX509CertificateTemplates;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -540,7 +538,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("13b79003-2181-11da-b2a4-000e7bbb2b09")
      IX509CertificateTemplates : public IDispatch
      {
-@@ -18533,6 +18602,7 @@ EXTERN_C const IID IID_IX509CertificateTemplateWritable;
+@@ -18533,6 +18600,7 @@ EXTERN_C const IID IID_IX509CertificateTemplateWritable;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -548,7 +546,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("F49466A7-395A-4e9e-B6E7-32B331600DC0")
      IX509CertificateTemplateWritable : public IDispatch
      {
-@@ -18746,6 +18816,7 @@ EXTERN_C const IID IID_ICertificationAuthority;
+@@ -18746,6 +18814,7 @@ EXTERN_C const IID IID_ICertificationAuthority;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -556,7 +554,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("835D1F61-1E95-4bc8-B4D3-976C42B968F7")
      ICertificationAuthority : public IDispatch
      {
-@@ -18886,6 +18957,7 @@ EXTERN_C const IID IID_ICertificationAuthorities;
+@@ -18886,6 +18955,7 @@ EXTERN_C const IID IID_ICertificationAuthorities;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -564,7 +562,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("13b79005-2181-11da-b2a4-000e7bbb2b09")
      ICertificationAuthorities : public IDispatch
      {
-@@ -19139,6 +19211,7 @@ EXTERN_C const IID IID_IX509EnrollmentPolicyServer;
+@@ -19139,6 +19209,7 @@ EXTERN_C const IID IID_IX509EnrollmentPolicyServer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -572,7 +570,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("13b79026-2181-11da-b2a4-000e7bbb2b09")
      IX509EnrollmentPolicyServer : public IDispatch
      {
-@@ -19546,6 +19619,7 @@ EXTERN_C const IID IID_IX509PolicyServerUrl;
+@@ -19546,6 +19617,7 @@ EXTERN_C const IID IID_IX509PolicyServerUrl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -580,7 +578,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("884e204a-217d-11da-b2a4-000e7bbb2b09")
      IX509PolicyServerUrl : public IDispatch
      {
-@@ -19842,6 +19916,7 @@ EXTERN_C const IID IID_IX509PolicyServerListManager;
+@@ -19842,6 +19914,7 @@ EXTERN_C const IID IID_IX509PolicyServerListManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -588,7 +586,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("884e204b-217d-11da-b2a4-000e7bbb2b09")
      IX509PolicyServerListManager : public IDispatch
      {
-@@ -20092,6 +20167,7 @@ EXTERN_C const IID IID_IX509CertificateRequest;
+@@ -20092,6 +20165,7 @@ EXTERN_C const IID IID_IX509CertificateRequest;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -596,7 +594,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab341-217d-11da-b2a4-000e7bbb2b09")
      IX509CertificateRequest : public IDispatch
      {
-@@ -20513,6 +20589,7 @@ EXTERN_C const IID IID_IX509CertificateRequestPkcs10;
+@@ -20513,6 +20587,7 @@ EXTERN_C const IID IID_IX509CertificateRequestPkcs10;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -604,7 +602,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab342-217d-11da-b2a4-000e7bbb2b09")
      IX509CertificateRequestPkcs10 : public IX509CertificateRequest
      {
-@@ -21177,6 +21254,7 @@ EXTERN_C const IID IID_IX509CertificateRequestPkcs10V2;
+@@ -21177,6 +21252,7 @@ EXTERN_C const IID IID_IX509CertificateRequestPkcs10V2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -612,7 +610,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab35b-217d-11da-b2a4-000e7bbb2b09")
      IX509CertificateRequestPkcs10V2 : public IX509CertificateRequestPkcs10
      {
-@@ -23328,6 +23406,7 @@ EXTERN_C const IID IID_IX509CertificateRequestCertificate;
+@@ -23328,6 +23404,7 @@ EXTERN_C const IID IID_IX509CertificateRequestCertificate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -620,7 +618,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab343-217d-11da-b2a4-000e7bbb2b09")
      IX509CertificateRequestCertificate : public IX509CertificateRequestPkcs10
      {
-@@ -24021,6 +24100,7 @@ EXTERN_C const IID IID_IX509CertificateRequestCertificate2;
+@@ -24021,6 +24098,7 @@ EXTERN_C const IID IID_IX509CertificateRequestCertificate2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -628,7 +626,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab35a-217d-11da-b2a4-000e7bbb2b09")
      IX509CertificateRequestCertificate2 : public IX509CertificateRequestCertificate
      {
-@@ -24734,6 +24814,7 @@ EXTERN_C const IID IID_IX509CertificateRequestPkcs7;
+@@ -24734,6 +24812,7 @@ EXTERN_C const IID IID_IX509CertificateRequestPkcs7;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -636,7 +634,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab344-217d-11da-b2a4-000e7bbb2b09")
      IX509CertificateRequestPkcs7 : public IX509CertificateRequest
      {
-@@ -25164,6 +25245,7 @@ EXTERN_C const IID IID_IX509CertificateRequestPkcs7V2;
+@@ -25164,6 +25243,7 @@ EXTERN_C const IID IID_IX509CertificateRequestPkcs7V2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -644,7 +642,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab35c-217d-11da-b2a4-000e7bbb2b09")
      IX509CertificateRequestPkcs7V2 : public IX509CertificateRequestPkcs7
      {
-@@ -25613,6 +25695,7 @@ EXTERN_C const IID IID_IX509CertificateRequestCmc;
+@@ -25613,6 +25693,7 @@ EXTERN_C const IID IID_IX509CertificateRequestCmc;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -652,7 +650,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab345-217d-11da-b2a4-000e7bbb2b09")
      IX509CertificateRequestCmc : public IX509CertificateRequestPkcs7
      {
-@@ -26279,6 +26362,7 @@ EXTERN_C const IID IID_IX509CertificateRequestCmc2;
+@@ -26279,6 +26360,7 @@ EXTERN_C const IID IID_IX509CertificateRequestCmc2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -660,7 +658,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab35d-217d-11da-b2a4-000e7bbb2b09")
      IX509CertificateRequestCmc2 : public IX509CertificateRequestCmc
      {
-@@ -26964,6 +27048,7 @@ EXTERN_C const IID IID_IX509Enrollment;
+@@ -26964,6 +27046,7 @@ EXTERN_C const IID IID_IX509Enrollment;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -668,7 +666,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab346-217d-11da-b2a4-000e7bbb2b09")
      IX509Enrollment : public IDispatch
      {
-@@ -27362,6 +27447,7 @@ EXTERN_C const IID IID_IX509Enrollment2;
+@@ -27362,6 +27445,7 @@ EXTERN_C const IID IID_IX509Enrollment2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -676,7 +674,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab350-217d-11da-b2a4-000e7bbb2b09")
      IX509Enrollment2 : public IX509Enrollment
      {
-@@ -27770,6 +27856,7 @@ EXTERN_C const IID IID_IX509EnrollmentHelper;
+@@ -27770,6 +27854,7 @@ EXTERN_C const IID IID_IX509EnrollmentHelper;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -684,7 +682,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab351-217d-11da-b2a4-000e7bbb2b09")
      IX509EnrollmentHelper : public IDispatch
      {
-@@ -27965,6 +28052,7 @@ EXTERN_C const IID IID_IX509EnrollmentWebClassFactory;
+@@ -27965,6 +28050,7 @@ EXTERN_C const IID IID_IX509EnrollmentWebClassFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -692,7 +690,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab349-217d-11da-b2a4-000e7bbb2b09")
      IX509EnrollmentWebClassFactory : public IDispatch
      {
-@@ -28105,6 +28193,7 @@ EXTERN_C const IID IID_IX509MachineEnrollmentFactory;
+@@ -28105,6 +28191,7 @@ EXTERN_C const IID IID_IX509MachineEnrollmentFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -700,7 +698,7 @@ index 01b99d48..f8de5db1 100644
      MIDL_INTERFACE("728ab352-217d-11da-b2a4-000e7bbb2b09")
      IX509MachineEnrollmentFactory : public IDispatch
      {
-@@ -31301,14 +31390,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -31301,14 +31388,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

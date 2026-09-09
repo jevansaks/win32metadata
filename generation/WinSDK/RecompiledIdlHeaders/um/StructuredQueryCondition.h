@@ -82,9 +82,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 typedef /* [v1_enum] */ 
 enum tagCONDITION_TYPE
     {

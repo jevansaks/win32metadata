@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMDFS.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMDFS.h
-index 86ac9f1a..89aa29d9 100644
+index 86ac9f1a..4e370c3a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/LMDFS.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMDFS.h
-@@ -28,6 +28,9 @@ Notes:
+@@ -28,6 +28,7 @@ Notes:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -640,6 +643,7 @@ typedef struct _DFS_INFO_300 {
+@@ -640,6 +641,7 @@ typedef struct _DFS_INFO_300 {
  // Add a new volume or additional storage for an existing volume at
  // DfsEntryPath.
  //
@@ -20,7 +18,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsAdd(
      _In_ LPWSTR     DfsEntryPath,   // DFS entry path for this added volume or storage
-@@ -659,6 +663,7 @@ NetDfsAdd(
+@@ -659,6 +661,7 @@ NetDfsAdd(
  // Setup/teardown API's for standard and FtDfs roots.
  //
  
@@ -28,7 +26,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsAddStdRoot(
      _In_ LPWSTR     ServerName,     // Server to remote to
-@@ -667,6 +672,7 @@ NetDfsAddStdRoot(
+@@ -667,6 +670,7 @@ NetDfsAddStdRoot(
      _In_  DWORD     Flags           // Flags for operation.  Zero for no flags.
  );
  
@@ -36,7 +34,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsRemoveStdRoot(
      _In_  LPWSTR ServerName,        // Server to remote to
-@@ -674,6 +680,7 @@ NetDfsRemoveStdRoot(
+@@ -674,6 +678,7 @@ NetDfsRemoveStdRoot(
      _Reserved_  DWORD  Flags        // Flags for operation.  Zero for no flags.
  );
  
@@ -44,7 +42,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsAddFtRoot(
      _In_ LPWSTR         ServerName,     // Server to remote to
-@@ -684,6 +691,7 @@ NetDfsAddFtRoot(
+@@ -684,6 +689,7 @@ NetDfsAddFtRoot(
  );
  
  
@@ -52,7 +50,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsRemoveFtRoot(
      _In_ LPWSTR         ServerName,     // Server to remote to
-@@ -692,6 +700,7 @@ NetDfsRemoveFtRoot(
+@@ -692,6 +698,7 @@ NetDfsRemoveFtRoot(
      _Reserved_ DWORD    Flags           // Flags for operation.  Zero for no flags.
  );
  
@@ -60,7 +58,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsRemoveFtRootForced(
      _In_  LPWSTR        DomainName,     // Name of domain the server is in
-@@ -742,6 +751,7 @@ typedef struct {
+@@ -742,6 +749,7 @@ typedef struct {
  // DfsEntryPath. When applied to the last storage in a volume, removes
  // the volume from the DFS.
  //
@@ -68,7 +66,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsRemove(
      _In_ LPWSTR     DfsEntryPath,       // DFS entry path for this added volume or storage
-@@ -755,6 +765,7 @@ NetDfsRemove(
+@@ -755,6 +763,7 @@ NetDfsRemove(
  //
  // Valid levels are 1-5, 200, 300
  //
@@ -76,7 +74,7 @@ index 86ac9f1a..89aa29d9 100644
  _When_(Level == 1, _At_(Buffer, _Outptr_result_bytebuffer_(*EntriesRead * sizeof(DFS_INFO_1))))
  _When_(Level == 2, _At_(Buffer, _Outptr_result_bytebuffer_(*EntriesRead * sizeof(DFS_INFO_2))))
  _When_(Level == 3, _At_(Buffer, _Outptr_result_bytebuffer_(*EntriesRead * sizeof(DFS_INFO_3))))
-@@ -783,6 +794,7 @@ NetDfsEnum(
+@@ -783,6 +792,7 @@ NetDfsEnum(
  //
  // Valid levels are 1-5, 100
  //
@@ -84,7 +82,7 @@ index 86ac9f1a..89aa29d9 100644
  _When_(Level == 1, _At_(Buffer, _Outptr_result_bytebuffer_(sizeof(DFS_INFO_1))))
  _When_(Level == 2, _At_(Buffer, _Outptr_result_bytebuffer_(sizeof(DFS_INFO_2))))
  _When_(Level == 3, _At_(Buffer, _Outptr_result_bytebuffer_(sizeof(DFS_INFO_3))))
-@@ -813,6 +825,7 @@ NetDfsGetInfo(
+@@ -813,6 +823,7 @@ NetDfsGetInfo(
  // Valid levels are 100, 101 and 102
  //
  
@@ -92,7 +90,7 @@ index 86ac9f1a..89aa29d9 100644
  _When_(Level == 101, _At_(Buffer, _In_reads_bytes_(sizeof(DFS_INFO_101))))
  NET_API_STATUS NET_API_FUNCTION
  NetDfsSetInfo(
-@@ -831,6 +844,7 @@ NetDfsSetInfo(
+@@ -831,6 +842,7 @@ NetDfsSetInfo(
  //
  // Valid levels are 1-4
  //
@@ -100,7 +98,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsGetClientInfo(
      _In_ LPWSTR         DfsEntryPath,   // DFS entry path for the volume
-@@ -849,6 +863,7 @@ NetDfsGetClientInfo(
+@@ -849,6 +861,7 @@ NetDfsGetClientInfo(
  // Valid levels are 101 and 102.
  //
  
@@ -108,7 +106,7 @@ index 86ac9f1a..89aa29d9 100644
  _When_(Level == 101, _At_(Buffer, _In_reads_bytes_(sizeof(DFS_INFO_101))))
  NET_API_STATUS NET_API_FUNCTION
  NetDfsSetClientInfo(
-@@ -865,6 +880,7 @@ NetDfsSetClientInfo(
+@@ -865,6 +878,7 @@ NetDfsSetClientInfo(
  //
  
  
@@ -116,7 +114,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsMove(
      _In_ LPWSTR     OldDfsEntryPath,    // Current DFS entry path for this volume
-@@ -900,6 +916,7 @@ NetDfsRename(
+@@ -900,6 +914,7 @@ NetDfsRename(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -124,7 +122,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsAddRootTarget(
      _In_        LPWSTR  pDfsPath,
-@@ -917,6 +934,7 @@ NetDfsAddRootTarget(
+@@ -917,6 +932,7 @@ NetDfsAddRootTarget(
  #define DFS_FORCE_REMOVE    0x80000000
  #endif
  
@@ -132,7 +130,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsRemoveRootTarget(
      _In_        LPWSTR  pDfsPath,
-@@ -924,6 +942,7 @@ NetDfsRemoveRootTarget(
+@@ -924,6 +940,7 @@ NetDfsRemoveRootTarget(
      _In_        ULONG   Flags
      );
  
@@ -140,7 +138,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsGetSecurity(
      _In_ LPWSTR                                                         DfsEntryPath,
-@@ -932,6 +951,7 @@ NetDfsGetSecurity(
+@@ -932,6 +949,7 @@ NetDfsGetSecurity(
      _Out_ LPDWORD                                                       lpcbSecurityDescriptor
  );
  
@@ -148,7 +146,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsSetSecurity(
      _In_ LPWSTR                 DfsEntryPath,
-@@ -939,6 +959,7 @@ NetDfsSetSecurity(
+@@ -939,6 +957,7 @@ NetDfsSetSecurity(
      _In_ PSECURITY_DESCRIPTOR   pSecurityDescriptor
  );
  
@@ -156,7 +154,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsGetStdContainerSecurity(
      _In_ LPWSTR                                                         MachineName,
-@@ -947,6 +968,7 @@ NetDfsGetStdContainerSecurity(
+@@ -947,6 +966,7 @@ NetDfsGetStdContainerSecurity(
      _Out_ LPDWORD                                                       lpcbSecurityDescriptor
  );
  
@@ -164,7 +162,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsSetStdContainerSecurity(
      _In_ LPWSTR                 MachineName,
-@@ -954,6 +976,7 @@ NetDfsSetStdContainerSecurity(
+@@ -954,6 +974,7 @@ NetDfsSetStdContainerSecurity(
      _In_ PSECURITY_DESCRIPTOR   pSecurityDescriptor
  );
      
@@ -172,7 +170,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsGetFtContainerSecurity(
      _In_ LPWSTR                                                         DomainName,
-@@ -962,6 +985,7 @@ NetDfsGetFtContainerSecurity(
+@@ -962,6 +983,7 @@ NetDfsGetFtContainerSecurity(
      _Out_ LPDWORD                                                       lpcbSecurityDescriptor
  );
  
@@ -180,7 +178,7 @@ index 86ac9f1a..89aa29d9 100644
  NET_API_STATUS NET_API_FUNCTION
  NetDfsSetFtContainerSecurity(
      _In_ LPWSTR                 DomainName,
-@@ -1015,6 +1039,7 @@ typedef struct _DFS_SUPPORTED_NAMESPACE_VERSION_INFO {
+@@ -1015,6 +1037,7 @@ typedef struct _DFS_SUPPORTED_NAMESPACE_VERSION_INFO {
  } DFS_SUPPORTED_NAMESPACE_VERSION_INFO, *PDFS_SUPPORTED_NAMESPACE_VERSION_INFO;
  
  

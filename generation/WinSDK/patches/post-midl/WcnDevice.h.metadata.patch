@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WcnDevice.h b/generation/WinSDK/RecompiledIdlHeaders/um/WcnDevice.h
-index 5cf1abc0..5506f77d 100644
+index 5cf1abc0..9f2a3c84 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WcnDevice.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WcnDevice.h
-@@ -99,6 +99,9 @@ Abstract:
+@@ -99,6 +99,7 @@ Abstract:
  
  --*/
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if NTDDI_VERSION >= NTDDI_WIN7
-@@ -158,6 +161,7 @@ EXTERN_C const IID IID_IWCNDevice;
+@@ -158,6 +159,7 @@ EXTERN_C const IID IID_IWCNDevice;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 5cf1abc0..5506f77d 100644
      MIDL_INTERFACE("C100BE9C-D33A-4a4b-BF23-BBEF4663D017")
      IWCNDevice : public IUnknown
      {
-@@ -392,6 +396,7 @@ EXTERN_C const IID IID_IWCNConnectNotify;
+@@ -392,6 +394,7 @@ EXTERN_C const IID IID_IWCNConnectNotify;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/interlockedapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/interlockedapi.h
-index b1a09336..c8725295 100644
+index b1a09336..e084e184 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/interlockedapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/interlockedapi.h
-@@ -12,6 +12,9 @@
+@@ -12,6 +12,7 @@
  
  #ifndef _INTERLOCKAPI_H_
  #define _INTERLOCKAPI_H_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <apiset.h>
  #include <apisetcconv.h>
-@@ -45,6 +48,7 @@ extern "C" {
+@@ -45,6 +46,7 @@ extern "C" {
  
  #if defined(_SLIST_HEADER_) && !defined(_NTOSP_)
  
@@ -20,7 +18,7 @@ index b1a09336..c8725295 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -52,6 +56,7 @@ InitializeSListHead(
+@@ -52,6 +54,7 @@ InitializeSListHead(
      _Out_ PSLIST_HEADER ListHead
      );
  
@@ -28,7 +26,7 @@ index b1a09336..c8725295 100644
  WINBASEAPI
  PSLIST_ENTRY
  WINAPI
-@@ -59,6 +64,7 @@ InterlockedPopEntrySList(
+@@ -59,6 +62,7 @@ InterlockedPopEntrySList(
      _Inout_ PSLIST_HEADER ListHead
      );
  
@@ -36,7 +34,7 @@ index b1a09336..c8725295 100644
  WINBASEAPI
  PSLIST_ENTRY
  WINAPI
-@@ -71,6 +77,7 @@ InterlockedPushEntrySList(
+@@ -71,6 +75,7 @@ InterlockedPushEntrySList(
  
  #define InterlockedPushListSList InterlockedPushListSListEx
  
@@ -44,7 +42,7 @@ index b1a09336..c8725295 100644
  WINBASEAPI
  PSLIST_ENTRY
  WINAPI
-@@ -83,6 +90,7 @@ InterlockedPushListSListEx(
+@@ -83,6 +88,7 @@ InterlockedPushListSListEx(
  
  #endif // (NTDDI_VERSION >= NTDDI_WIN8)
  
@@ -52,7 +50,7 @@ index b1a09336..c8725295 100644
  WINBASEAPI
  PSLIST_ENTRY
  WINAPI
-@@ -90,6 +98,7 @@ InterlockedFlushSList(
+@@ -90,6 +96,7 @@ InterlockedFlushSList(
      _Inout_ PSLIST_HEADER ListHead
      );
  

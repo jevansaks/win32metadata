@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tsuserex.h b/generation/WinSDK/RecompiledIdlHeaders/um/tsuserex.h
-index cff82730..4ceca08d 100644
+index cff82730..f046d5ff 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/tsuserex.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/tsuserex.h
-@@ -88,6 +88,9 @@ extern "C"{
+@@ -88,6 +88,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -124,6 +127,7 @@ EXTERN_C const IID IID_IADsTSUserEx;
+@@ -124,6 +125,7 @@ EXTERN_C const IID IID_IADsTSUserEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

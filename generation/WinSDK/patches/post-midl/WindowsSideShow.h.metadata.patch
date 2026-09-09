@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsSideShow.h b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsSideShow.h
-index 04dc4b94..4b93c5aa 100644
+index 04dc4b94..bb98195a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsSideShow.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsSideShow.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -51,18 +54,31 @@ DEFINE_GUID(SIDESHOW_ENDPOINT_ICAL,                     0x4dff36b5, 0x9dde, 0x4f
+@@ -51,18 +52,31 @@ DEFINE_GUID(SIDESHOW_ENDPOINT_ICAL,                     0x4dff36b5, 0x9dde, 0x4f
  // {8ABC88A8-857B-4ad7-A35A-B5942F492B99}
  DEFINE_GUID(SIDESHOW_CAPABILITY_DEVICE_PROPERTIES,          0x8abc88a8, 0x857b, 0x4ad7, 0xa3, 0x5a, 0xb5, 0x94, 0x2f, 0x49, 0x2b, 0x99);
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DiagnosticDataQuery.h b/generation/WinSDK/RecompiledIdlHeaders/um/DiagnosticDataQuery.h
-index af75d69d..179544a3 100644
+index af75d69d..cdfa9ca1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/DiagnosticDataQuery.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/DiagnosticDataQuery.h
-@@ -1,6 +1,9 @@
+@@ -1,6 +1,7 @@
  // Copyright (c) Microsoft Corporation
  
  #pragma once
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <diagnosticdataquerytypes.h>
  
-@@ -16,20 +19,25 @@ extern "C" {
+@@ -16,20 +17,25 @@ extern "C" {
  #endif // __cplusplus
  
  // Caller is expected to destroy hSession with DdqCloseSession
@@ -38,7 +36,7 @@ index af75d69d..179544a3 100644
  STDAPI DdqGetDiagnosticRecordStats(
      _In_ HDIAGNOSTIC_DATA_QUERY_SESSION hSession,
      _In_ DIAGNOSTIC_DATA_SEARCH_CRITERIA const* searchCriteria,
-@@ -38,64 +46,78 @@ STDAPI DdqGetDiagnosticRecordStats(
+@@ -38,64 +44,78 @@ STDAPI DdqGetDiagnosticRecordStats(
      _Out_ INT64* maxRowId);
  
  // Caller is expected to free payload with CoTaskMemFree()
@@ -117,7 +115,7 @@ index af75d69d..179544a3 100644
  STDAPI DdqIsDiagnosticRecordSampledIn(
      _In_ HDIAGNOSTIC_DATA_QUERY_SESSION hSession,
      _In_ const GUID* providerGroup,
-@@ -108,6 +130,7 @@ STDAPI DdqIsDiagnosticRecordSampledIn(
+@@ -108,6 +128,7 @@ STDAPI DdqIsDiagnosticRecordSampledIn(
      _Out_ BOOL* isSampledIn);
  
  // Invoke DdqFreeDiagnosticRecordPage() to free record
@@ -125,7 +123,7 @@ index af75d69d..179544a3 100644
  STDAPI DdqGetDiagnosticRecordPage(
      _In_ HDIAGNOSTIC_DATA_QUERY_SESSION hSession,
      _In_ DIAGNOSTIC_DATA_SEARCH_CRITERIA* const searchCriteria,
-@@ -116,44 +139,54 @@ STDAPI DdqGetDiagnosticRecordPage(
+@@ -116,44 +137,54 @@ STDAPI DdqGetDiagnosticRecordPage(
      _In_ INT64 baseRowId,
      _Out_ HDIAGNOSTIC_RECORD* hRecord);
  
@@ -180,7 +178,7 @@ index af75d69d..179544a3 100644
  STDAPI DdqExtractDiagnosticReport(
      _In_ HDIAGNOSTIC_DATA_QUERY_SESSION hSession,
      _In_ UINT32 reportStoreType,
-@@ -161,6 +194,7 @@ STDAPI DdqExtractDiagnosticReport(
+@@ -161,6 +192,7 @@ STDAPI DdqExtractDiagnosticReport(
      _In_ PCWSTR destinationPath);
  
  // Caller is expected to free tagStats with CoTaskMemFree()
@@ -188,7 +186,7 @@ index af75d69d..179544a3 100644
  STDAPI DdqGetDiagnosticRecordTagDistribution(
      _In_ HDIAGNOSTIC_DATA_QUERY_SESSION hSession,
      _In_reads_(producerNameCount) PCWSTR* producerNames,
-@@ -169,6 +203,7 @@ STDAPI DdqGetDiagnosticRecordTagDistribution(
+@@ -169,6 +201,7 @@ STDAPI DdqGetDiagnosticRecordTagDistribution(
      _Out_ UINT32* statCount);
  
  // Caller is expected to free binaryStats with CoTaskMemFree()
@@ -196,7 +194,7 @@ index af75d69d..179544a3 100644
  STDAPI DdqGetDiagnosticRecordBinaryDistribution(
      _In_ HDIAGNOSTIC_DATA_QUERY_SESSION hSession,
      _In_reads_(producerNameCount) PCWSTR* producerNames,
-@@ -177,16 +212,19 @@ STDAPI DdqGetDiagnosticRecordBinaryDistribution(
+@@ -177,16 +210,19 @@ STDAPI DdqGetDiagnosticRecordBinaryDistribution(
      _Outptr_result_buffer_all_(*statCount) DIAGNOSTIC_DATA_EVENT_BINARY_STATS** binaryStats,
      _Out_ UINT32* statCount);
  

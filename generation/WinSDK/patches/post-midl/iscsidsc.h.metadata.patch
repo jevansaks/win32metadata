@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/iscsidsc.h b/generation/WinSDK/RecompiledIdlHeaders/um/iscsidsc.h
-index 477836f8..77d02747 100644
+index 477836f8..c5cff348 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/iscsidsc.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/iscsidsc.h
-@@ -21,6 +21,9 @@
+@@ -21,6 +21,7 @@
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -855,10 +858,12 @@ typedef struct
+@@ -855,10 +856,12 @@ typedef struct
  
  #if ! (defined(MIDL_PASS))
  
@@ -25,7 +23,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API GetIScsiTargetInformationW(
      IN _In_ PWSTR TargetName,
      IN _In_opt_ PWSTR DiscoveryMechanism,
-@@ -867,6 +872,7 @@ ISDSC_STATUS ISDSC_API GetIScsiTargetInformationW(
+@@ -867,6 +870,7 @@ ISDSC_STATUS ISDSC_API GetIScsiTargetInformationW(
      OUT PVOID Buffer
      );
  
@@ -33,7 +31,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API GetIScsiTargetInformationA(
      IN _In_ PSTR TargetName,
      IN _In_opt_ PSTR DiscoveryMechanism,
-@@ -881,6 +887,7 @@ ISDSC_STATUS ISDSC_API GetIScsiTargetInformationA(
+@@ -881,6 +885,7 @@ ISDSC_STATUS ISDSC_API GetIScsiTargetInformationA(
  #define GetIScsiTargetInformation GetIScsiTargetInformationA
  #endif // UNICODE
  
@@ -41,7 +39,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API AddIScsiConnectionW(
      IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
      IN PVOID Reserved,
-@@ -893,6 +900,7 @@ ISDSC_STATUS ISDSC_API AddIScsiConnectionW(
+@@ -893,6 +898,7 @@ ISDSC_STATUS ISDSC_API AddIScsiConnectionW(
      OUT OPTIONAL PISCSI_UNIQUE_CONNECTION_ID ConnectionId
      );
      
@@ -49,7 +47,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API AddIScsiConnectionA(
      IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
      IN PVOID Reserved,
-@@ -912,17 +920,20 @@ ISDSC_STATUS ISDSC_API AddIScsiConnectionA(
+@@ -912,17 +918,20 @@ ISDSC_STATUS ISDSC_API AddIScsiConnectionA(
  #endif // UNICODE
  
  
@@ -70,7 +68,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportIScsiTargetsA(
      IN BOOLEAN ForceUpdate,
      IN OUT PULONG BufferSize,
-@@ -936,6 +947,7 @@ ISDSC_STATUS ISDSC_API ReportIScsiTargetsA(
+@@ -936,6 +945,7 @@ ISDSC_STATUS ISDSC_API ReportIScsiTargetsA(
  #endif
  
  
@@ -78,7 +76,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API AddIScsiStaticTargetW(
      IN _In_ PWSTR TargetName,
      IN OPTIONAL _In_opt_ PWSTR TargetAlias,
-@@ -946,6 +958,7 @@ ISDSC_STATUS ISDSC_API AddIScsiStaticTargetW(
+@@ -946,6 +956,7 @@ ISDSC_STATUS ISDSC_API AddIScsiStaticTargetW(
      IN OPTIONAL PISCSI_TARGET_PORTAL_GROUPW PortalGroup
      );
  
@@ -86,7 +84,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API AddIScsiStaticTargetA(
      IN _In_ PSTR TargetName,
      IN OPTIONAL _In_opt_ PSTR TargetAlias,
-@@ -962,10 +975,12 @@ ISDSC_STATUS ISDSC_API AddIScsiStaticTargetA(
+@@ -962,10 +973,12 @@ ISDSC_STATUS ISDSC_API AddIScsiStaticTargetA(
  #define AddIScsiStaticTarget AddIScsiStaticTargetA
  #endif
  
@@ -99,7 +97,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API RemoveIScsiStaticTargetA(
      IN _In_ PSTR TargetName
      );
-@@ -976,6 +991,7 @@ ISDSC_STATUS ISDSC_API RemoveIScsiStaticTargetA(
+@@ -976,6 +989,7 @@ ISDSC_STATUS ISDSC_API RemoveIScsiStaticTargetA(
  #define RemoveIScsiStaticTarget RemoveIScsiStaticTargetA
  #endif
  
@@ -107,7 +105,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalW(
      IN OPTIONAL _In_opt_ PWSTR InitiatorInstance,
      IN OPTIONAL ULONG InitiatorPortNumber,
-@@ -984,6 +1000,7 @@ ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalW(
+@@ -984,6 +998,7 @@ ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalW(
      IN PISCSI_TARGET_PORTALW Portal
      );
  
@@ -115,7 +113,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalA(
      IN OPTIONAL _In_opt_ PSTR InitiatorInstance,
      IN OPTIONAL ULONG InitiatorPortNumber,
-@@ -998,12 +1015,14 @@ ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalA(
+@@ -998,12 +1013,14 @@ ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalA(
  #define AddIScsiSendTargetPortal AddIScsiSendTargetPortalA
  #endif
  
@@ -130,7 +128,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API RemoveIScsiSendTargetPortalA(
      IN OPTIONAL PSTR _In_opt_ InitiatorInstance,
      IN OPTIONAL ULONG InitiatorPortNumber,
-@@ -1016,12 +1035,14 @@ ISDSC_STATUS ISDSC_API RemoveIScsiSendTargetPortalA(
+@@ -1016,12 +1033,14 @@ ISDSC_STATUS ISDSC_API RemoveIScsiSendTargetPortalA(
  #define RemoveIScsiSendTargetPortal RemoveIScsiSendTargetPortalA
  #endif
  
@@ -145,7 +143,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API RefreshIScsiSendTargetPortalA(
      IN OPTIONAL PSTR _In_opt_ InitiatorInstance,
      IN OPTIONAL ULONG InitiatorPortNumber,
-@@ -1035,11 +1056,13 @@ ISDSC_STATUS ISDSC_API RefreshIScsiSendTargetPortalA(
+@@ -1035,11 +1054,13 @@ ISDSC_STATUS ISDSC_API RefreshIScsiSendTargetPortalA(
  #endif
  
  
@@ -159,7 +157,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsA(
      IN OUT PULONG PortalCount,
      IN OUT PISCSI_TARGET_PORTAL_INFOA PortalInfo
-@@ -1050,12 +1073,14 @@ ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsA(
+@@ -1050,12 +1071,14 @@ ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsA(
  #define ReportIScsiSendTargetPortals ReportIScsiSendTargetPortalsA
  #endif
  
@@ -174,7 +172,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsExA(
      OUT PULONG PortalCount,
      IN OUT PULONG PortalInfoSize,
-@@ -1068,6 +1093,7 @@ ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsExA(
+@@ -1068,6 +1091,7 @@ ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsExA(
  #endif
  
  
@@ -182,7 +180,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API LoginIScsiTargetW(
      IN _In_ PWSTR TargetName,
      IN BOOLEAN IsInformationalSession,
-@@ -1084,6 +1110,7 @@ ISDSC_STATUS ISDSC_API LoginIScsiTargetW(
+@@ -1084,6 +1108,7 @@ ISDSC_STATUS ISDSC_API LoginIScsiTargetW(
      OUT PISCSI_UNIQUE_CONNECTION_ID UniqueConnectionId
      );
  
@@ -190,7 +188,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API LoginIScsiTargetA(
      IN PSTR _In_ TargetName,
      IN BOOLEAN IsInformationalSession,
-@@ -1107,12 +1134,14 @@ ISDSC_STATUS ISDSC_API LoginIScsiTargetA(
+@@ -1107,12 +1132,14 @@ ISDSC_STATUS ISDSC_API LoginIScsiTargetA(
  #endif
  
  
@@ -205,7 +203,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportIScsiPersistentLoginsA(
      OUT ULONG *Count,
      IN OUT PPERSISTENT_ISCSI_LOGIN_INFOA PersistentLoginInfo,
-@@ -1127,10 +1156,12 @@ ISDSC_STATUS ISDSC_API ReportIScsiPersistentLoginsA(
+@@ -1127,10 +1154,12 @@ ISDSC_STATUS ISDSC_API ReportIScsiPersistentLoginsA(
  
  
                                      
@@ -218,7 +216,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetW(
      IN PWSTR _In_ InitiatorInstance,
      IN OPTIONAL ULONG InitiatorPortNumber,
-@@ -1138,6 +1169,7 @@ ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetW(
+@@ -1138,6 +1167,7 @@ ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetW(
      IN PISCSI_TARGET_PORTALW Portal
      );
  
@@ -226,7 +224,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetA(
      IN PSTR _In_ InitiatorInstance,
      IN OPTIONAL ULONG InitiatorPortNumber,
-@@ -1151,6 +1183,7 @@ ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetA(
+@@ -1151,6 +1181,7 @@ ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetA(
  #define RemoveIScsiPersistentTarget RemoveIScsiPersistentTargetA
  #endif
  
@@ -234,7 +232,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API SendScsiInquiry(
      IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
      IN ULONGLONG Lun,
-@@ -1163,6 +1196,7 @@ ISDSC_STATUS ISDSC_API SendScsiInquiry(
+@@ -1163,6 +1194,7 @@ ISDSC_STATUS ISDSC_API SendScsiInquiry(
      OUT PUCHAR SenseBuffer
      );
  
@@ -242,7 +240,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API SendScsiReadCapacity(
      IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
      IN ULONGLONG Lun,
-@@ -1173,6 +1207,7 @@ ISDSC_STATUS ISDSC_API SendScsiReadCapacity(
+@@ -1173,6 +1205,7 @@ ISDSC_STATUS ISDSC_API SendScsiReadCapacity(
      OUT PUCHAR SenseBuffer
      );
  
@@ -250,7 +248,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API SendScsiReportLuns(
      IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
      OUT PUCHAR ScsiStatus,
-@@ -1182,11 +1217,13 @@ ISDSC_STATUS ISDSC_API SendScsiReportLuns(
+@@ -1182,11 +1215,13 @@ ISDSC_STATUS ISDSC_API SendScsiReportLuns(
      OUT PUCHAR SenseBuffer
      );
  
@@ -264,7 +262,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportIScsiInitiatorListA(
      IN OUT PULONG BufferSize,
      OUT _Inout_updates_opt_(*BufferSize) PCHAR Buffer
-@@ -1199,12 +1236,14 @@ ISDSC_STATUS ISDSC_API ReportIScsiInitiatorListA(
+@@ -1199,12 +1234,14 @@ ISDSC_STATUS ISDSC_API ReportIScsiInitiatorListA(
  #endif
  
  
@@ -279,7 +277,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportActiveIScsiTargetMappingsA(
      IN OUT PULONG BufferSize,
      OUT PULONG MappingCount,
-@@ -1217,6 +1256,7 @@ ISDSC_STATUS ISDSC_API ReportActiveIScsiTargetMappingsA(
+@@ -1217,6 +1254,7 @@ ISDSC_STATUS ISDSC_API ReportActiveIScsiTargetMappingsA(
  #define ReportActiveIScsiTargetMappings ReportActiveIScsiTargetMappingsA
  #endif
  
@@ -287,7 +285,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressW(
      IN OPTIONAL _In_opt_ PWSTR InitiatorName,
      IN ULONG InitiatorPortNumber,
-@@ -1225,6 +1265,7 @@ ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressW(
+@@ -1225,6 +1263,7 @@ ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressW(
      IN BOOLEAN Persist
      );
      
@@ -295,7 +293,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressA(
      IN OPTIONAL _In_opt_ PSTR InitiatorName,
      IN ULONG InitiatorPortNumber,
-@@ -1240,6 +1281,7 @@ ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressA(
+@@ -1240,6 +1279,7 @@ ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressA(
  #endif
  
  
@@ -303,7 +301,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API SetIScsiIKEInfoW(
      IN OPTIONAL _In_opt_ PWSTR InitiatorName,
      IN ULONG InitiatorPortNumber,
-@@ -1247,6 +1289,7 @@ ISDSC_STATUS ISDSC_API SetIScsiIKEInfoW(
+@@ -1247,6 +1287,7 @@ ISDSC_STATUS ISDSC_API SetIScsiIKEInfoW(
      IN BOOLEAN Persist
      );
  
@@ -311,7 +309,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API SetIScsiIKEInfoA(
      IN OPTIONAL _In_opt_ PSTR InitiatorName,
      IN ULONG InitiatorPortNumber,
-@@ -1260,6 +1303,7 @@ ISDSC_STATUS ISDSC_API SetIScsiIKEInfoA(
+@@ -1260,6 +1301,7 @@ ISDSC_STATUS ISDSC_API SetIScsiIKEInfoA(
  #define SetIScsiIKEInfo SetIScsiIKEInfoA
  #endif
  
@@ -319,7 +317,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API GetIScsiIKEInfoW(
      IN OPTIONAL _In_opt_ PWSTR InitiatorName,
      IN ULONG InitiatorPortNumber,
-@@ -1267,6 +1311,7 @@ ISDSC_STATUS ISDSC_API GetIScsiIKEInfoW(
+@@ -1267,6 +1309,7 @@ ISDSC_STATUS ISDSC_API GetIScsiIKEInfoW(
      IN OUT PIKE_AUTHENTICATION_INFORMATION AuthInfo
      );
  
@@ -327,7 +325,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API GetIScsiIKEInfoA(
      IN OPTIONAL _In_opt_ PSTR InitiatorName,
      IN ULONG InitiatorPortNumber,
-@@ -1280,26 +1325,31 @@ ISDSC_STATUS ISDSC_API GetIScsiIKEInfoA(
+@@ -1280,26 +1323,31 @@ ISDSC_STATUS ISDSC_API GetIScsiIKEInfoA(
  #define GetIScsiIKEInfo GetIScsiIKEInfoA
  #endif
  
@@ -359,7 +357,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API SetIScsiInitiatorNodeNameA(
      IN OPTIONAL _In_opt_ PSTR InitiatorNodeName
      );
-@@ -1310,10 +1360,12 @@ ISDSC_STATUS ISDSC_API SetIScsiInitiatorNodeNameA(
+@@ -1310,10 +1358,12 @@ ISDSC_STATUS ISDSC_API SetIScsiInitiatorNodeNameA(
  #define SetIScsiInitiatorNodeName SetIScsiInitiatorNodeNameA
  #endif
  
@@ -372,7 +370,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API GetIScsiInitiatorNodeNameA(
       _Out_writes_(MAX_ISCSI_NAME_LEN+1) PCHAR  InitiatorNodeName
      );
-@@ -1324,10 +1376,12 @@ ISDSC_STATUS ISDSC_API GetIScsiInitiatorNodeNameA(
+@@ -1324,10 +1374,12 @@ ISDSC_STATUS ISDSC_API GetIScsiInitiatorNodeNameA(
  #define GetIScsiInitiatorNodeName GetIScsiInitiatorNodeNameA
  #endif
  
@@ -385,7 +383,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API AddISNSServerA(
      IN _In_ PSTR Address
      );
-@@ -1339,10 +1393,12 @@ ISDSC_STATUS ISDSC_API AddISNSServerA(
+@@ -1339,10 +1391,12 @@ ISDSC_STATUS ISDSC_API AddISNSServerA(
  #endif
  
  
@@ -398,7 +396,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API RemoveISNSServerA(
      IN _In_ PSTR Address
      );
-@@ -1352,10 +1408,12 @@ ISDSC_STATUS ISDSC_API RemoveISNSServerA(
+@@ -1352,10 +1406,12 @@ ISDSC_STATUS ISDSC_API RemoveISNSServerA(
  #define RemoveISNSServer RemoveISNSServerA
  #endif
  
@@ -411,7 +409,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API RefreshISNSServerA(
      IN _In_ PSTR Address
      );
-@@ -1365,11 +1423,13 @@ ISDSC_STATUS ISDSC_API RefreshISNSServerA(
+@@ -1365,11 +1421,13 @@ ISDSC_STATUS ISDSC_API RefreshISNSServerA(
  #define RefreshISNSServer RefreshISNSServerA
  #endif
  
@@ -425,7 +423,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportISNSServerListA(
      IN OUT PULONG BufferSizeInChar,
      OUT _Out_writes_opt_(*BufferSizeInChar) PCHAR Buffer
-@@ -1382,12 +1442,14 @@ ISDSC_STATUS ISDSC_API ReportISNSServerListA(
+@@ -1382,12 +1440,14 @@ ISDSC_STATUS ISDSC_API ReportISNSServerListA(
  
  
  
@@ -440,7 +438,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API GetIScsiSessionListA(
      IN OUT ULONG *BufferSize,
      OUT ULONG *SessionCount,
-@@ -1405,12 +1467,14 @@ ISDSC_STATUS ISDSC_API GetIScsiSessionListEx (
+@@ -1405,12 +1465,14 @@ ISDSC_STATUS ISDSC_API GetIScsiSessionListEx (
      OUT OPTIONAL PISCSI_SESSION_INFO_EX  SessionInfo
  );
  
@@ -455,7 +453,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API GetDevicesForIScsiSessionA(
      IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
      IN OUT ULONG *DeviceCount,
-@@ -1426,13 +1490,16 @@ ISDSC_STATUS ISDSC_API GetDevicesForIScsiSessionA(
+@@ -1426,13 +1488,16 @@ ISDSC_STATUS ISDSC_API GetDevicesForIScsiSessionA(
  ISDSC_STATUS ISDSC_API SetupPersistentIScsiVolumes(
      );
  
@@ -472,7 +470,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API AddPersistentIScsiDeviceA(
      IN _In_ PSTR DevicePath
  );
-@@ -1443,10 +1510,12 @@ ISDSC_STATUS ISDSC_API AddPersistentIScsiDeviceA(
+@@ -1443,10 +1508,12 @@ ISDSC_STATUS ISDSC_API AddPersistentIScsiDeviceA(
  #define AddPersistentIScsiDevice AddPersistentIScsiDeviceA
  #endif
  
@@ -485,7 +483,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API RemovePersistentIScsiDeviceA(
      IN _In_ PSTR DevicePath
  );
-@@ -1457,14 +1526,17 @@ ISDSC_STATUS ISDSC_API RemovePersistentIScsiDeviceA(
+@@ -1457,14 +1524,17 @@ ISDSC_STATUS ISDSC_API RemovePersistentIScsiDeviceA(
  #define RemovePersistentIScsiDevice RemovePersistentIScsiDeviceA
  #endif
  
@@ -503,7 +501,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportPersistentIScsiDevicesA(
      IN OUT PULONG BufferSizeInChar,
      OUT _Out_writes_opt_(*BufferSizeInChar) PCHAR Buffer
-@@ -1476,6 +1548,7 @@ ISDSC_STATUS ISDSC_API ReportPersistentIScsiDevicesA(
+@@ -1476,6 +1546,7 @@ ISDSC_STATUS ISDSC_API ReportPersistentIScsiDevicesA(
  #define ReportPersistentIScsiDevices ReportPersistentIScsiDevicesA
  #endif
  
@@ -511,7 +509,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsW(
      IN OPTIONAL _In_opt_ PWSTR InitiatorName,
      IN PWSTR _In_ TargetName,
-@@ -1484,6 +1557,7 @@ ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsW(
+@@ -1484,6 +1555,7 @@ ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsW(
      OUT PISCSI_TARGET_PORTALW Portals
      );
  
@@ -519,7 +517,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsA(
      IN OPTIONAL _In_opt_ PSTR InitiatorName,
      IN PSTR _In_ TargetName,
-@@ -1498,10 +1572,12 @@ ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsA(
+@@ -1498,10 +1570,12 @@ ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsA(
  #define ReportIScsiTargetPortals ReportIScsiTargetPortalsA
  #endif
  
@@ -532,7 +530,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API AddRadiusServerA(
      IN _In_ PSTR Address
      );
-@@ -1513,10 +1589,12 @@ ISDSC_STATUS ISDSC_API AddRadiusServerA(
+@@ -1513,10 +1587,12 @@ ISDSC_STATUS ISDSC_API AddRadiusServerA(
  #endif
  
  
@@ -545,7 +543,7 @@ index 477836f8..77d02747 100644
  ISDSC_STATUS ISDSC_API RemoveRadiusServerA(
      IN _In_ PSTR Address
      );
-@@ -1527,11 +1605,13 @@ ISDSC_STATUS ISDSC_API RemoveRadiusServerA(
+@@ -1527,11 +1603,13 @@ ISDSC_STATUS ISDSC_API RemoveRadiusServerA(
  #endif
  
  

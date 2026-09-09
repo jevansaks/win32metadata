@@ -9,9 +9,7 @@
 #ifndef _MINWINBASE_
 #define _MINWINBASE_
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if     ( _MSC_VER >= 800 )
 #pragma warning(disable:4514)

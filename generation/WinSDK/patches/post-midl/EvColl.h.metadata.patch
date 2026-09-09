@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h b/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h
-index 64679132..cb4f6fd8 100644
+index 64679132..83afab4d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h
-@@ -16,6 +16,9 @@ Abstract:
+@@ -16,6 +16,7 @@ Abstract:
  #ifndef __EVCOLL_H__
  #define __EVCOLL_H__
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -179,10 +182,13 @@ typedef enum _EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS
+@@ -179,10 +180,13 @@ typedef enum _EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS
  } EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS;
  
  
@@ -26,7 +24,7 @@ index 64679132..cb4f6fd8 100644
  BOOL WINAPI EcEnumNextSubscription( 
      EC_HANDLE SubscriptionEnum,
      DWORD SubscriptionNameBufferSize,
-@@ -191,12 +197,15 @@ BOOL WINAPI EcEnumNextSubscription(
+@@ -191,12 +195,15 @@ BOOL WINAPI EcEnumNextSubscription(
      _Out_ PDWORD SubscriptionNameBufferUsed
      );
  
@@ -42,7 +40,7 @@ index 64679132..cb4f6fd8 100644
  BOOL WINAPI EcSetSubscriptionProperty( 
      EC_HANDLE Subscription,
      EC_SUBSCRIPTION_PROPERTY_ID PropertyId,
-@@ -204,6 +213,7 @@ BOOL WINAPI EcSetSubscriptionProperty(
+@@ -204,6 +211,7 @@ BOOL WINAPI EcSetSubscriptionProperty(
      PEC_VARIANT PropertyValue
      );
  
@@ -50,7 +48,7 @@ index 64679132..cb4f6fd8 100644
  BOOL WINAPI EcGetSubscriptionProperty( 
      EC_HANDLE Subscription,
      EC_SUBSCRIPTION_PROPERTY_ID PropertyId,
-@@ -213,21 +223,25 @@ BOOL WINAPI EcGetSubscriptionProperty(
+@@ -213,21 +221,25 @@ BOOL WINAPI EcGetSubscriptionProperty(
      _Out_ PDWORD PropertyValueBufferUsed 
      );
  
@@ -76,7 +74,7 @@ index 64679132..cb4f6fd8 100644
  BOOL WINAPI EcSetObjectArrayProperty( 
      EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, 
      EC_SUBSCRIPTION_PROPERTY_ID PropertyId,
-@@ -236,6 +250,7 @@ BOOL WINAPI EcSetObjectArrayProperty(
+@@ -236,6 +248,7 @@ BOOL WINAPI EcSetObjectArrayProperty(
      PEC_VARIANT PropertyValue
      );
   
@@ -84,7 +82,7 @@ index 64679132..cb4f6fd8 100644
  BOOL WINAPI EcGetObjectArrayProperty( 
      EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, 
      EC_SUBSCRIPTION_PROPERTY_ID PropertyId,
-@@ -246,16 +261,19 @@ BOOL WINAPI EcGetObjectArrayProperty(
+@@ -246,16 +259,19 @@ BOOL WINAPI EcGetObjectArrayProperty(
      _Out_ PDWORD PropertyValueBufferUsed 
      );
  
@@ -104,7 +102,7 @@ index 64679132..cb4f6fd8 100644
  BOOL WINAPI EcGetSubscriptionRunTimeStatus( 
      LPCWSTR SubscriptionName,
      EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID StatusInfoId,
-@@ -266,12 +284,14 @@ BOOL WINAPI EcGetSubscriptionRunTimeStatus(
+@@ -266,12 +282,14 @@ BOOL WINAPI EcGetSubscriptionRunTimeStatus(
      _Out_ PDWORD StatusValueBufferUsed 
      );
  

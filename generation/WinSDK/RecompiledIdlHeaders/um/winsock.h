@@ -1,7 +1,5 @@
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 
 /* WINSOCK.H--definitions to be used with the WINSOCK.DLL
@@ -1111,6 +1109,7 @@ typedef struct linger LINGER;
 typedef struct linger *PLINGER;
 typedef struct linger FAR *LPLINGER;
 
+_Win32_metadata_supported_os_(windows5.0)
 typedef struct fd_set FD_SET;
 typedef struct fd_set *PFD_SET;
 typedef struct fd_set FAR *LPFD_SET;

@@ -19,9 +19,7 @@ Environment:
 #define _WINSVC_
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 //
 // Define API decoration for direct importing of DLL references.

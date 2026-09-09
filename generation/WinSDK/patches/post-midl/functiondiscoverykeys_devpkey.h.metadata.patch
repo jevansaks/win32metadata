@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys_devpkey.h b/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys_devpkey.h
-index 6122f310..232bcc20 100644
+index 6122f310..0c097c6b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys_devpkey.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys_devpkey.h
-@@ -33,6 +33,9 @@ Revision History:
+@@ -33,6 +33,7 @@ Revision History:
  --*/
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop and Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
-@@ -44,119 +47,198 @@ Revision History:
+@@ -44,119 +45,198 @@ Revision History:
  // _NAME
  //
  
@@ -211,7 +209,7 @@ index 6122f310..232bcc20 100644
  DEFINE_PROPERTYKEY(PKEY_Device_SafeRemovalRequiredOverride, 0xafd97640,  0x86a3, 0x4210, 0xb6, 0x7c, 0x28, 0x9c, 0x41, 0xaa, 0xbe, 0x55, 3);// DEVPROP_TYPE_BOOLEAN
  
  
-@@ -164,56 +246,85 @@ DEFINE_PROPERTYKEY(PKEY_Device_SafeRemovalRequiredOverride, 0xafd97640,  0x86a3,
+@@ -164,56 +244,85 @@ DEFINE_PROPERTYKEY(PKEY_Device_SafeRemovalRequiredOverride, 0xafd97640,  0x86a3,
  // Device properties that were set by the driver package that was installed
  // on the device.
  //

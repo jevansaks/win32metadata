@@ -11,6 +11,7 @@
 #define __IVPNotify__
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -20,6 +21,7 @@ extern "C" {
 #endif
 
 // interface IVPBaseNotify
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IVPBaseNotify, IUnknown)
 {
 	// this function initializes the reconnection to the decoder. 
@@ -29,6 +31,7 @@ DECLARE_INTERFACE_(IVPBaseNotify, IUnknown)
 };
 
 // interface IVPNotify
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IVPNotify, IVPBaseNotify)
 {
     // function to set the mode (bob, weave etc)
@@ -43,6 +46,7 @@ DECLARE_INTERFACE_(IVPNotify, IVPBaseNotify)
 };
 
 // interface IVPNotify
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IVPNotify2, IVPNotify)
 {
 // function to set the mode (bob, weave etc)

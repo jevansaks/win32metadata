@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shellapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/shellapi.h
-index 8b447db0..405d736e 100644
+index 8b447db0..34c0f3cf 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/shellapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/shellapi.h
-@@ -1,3 +1,7 @@
-+#if defined(WIN32METADATA)
+@@ -1,3 +1,5 @@
 +#include <win32metadata_annotations.h>
-+#endif
 +
  #include <winapifamily.h>
  
  /*****************************************************************************\
-@@ -65,6 +69,8 @@ extern "C" {            /* Assume C declarations for C++ */
+@@ -65,6 +67,8 @@ extern "C" {            /* Assume C declarations for C++ */
  #pragma region Desktop Family or Gaming Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
  
@@ -19,7 +17,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(LPWSTR *)  CommandLineToArgvW(_In_ LPCWSTR lpCmdLine, _Out_ int* pNumArgs);
  
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES) */
-@@ -78,8 +84,10 @@ SHSTDAPI_(LPWSTR *)  CommandLineToArgvW(_In_ LPCWSTR lpCmdLine, _Out_ int* pNumA
+@@ -78,8 +82,10 @@ SHSTDAPI_(LPWSTR *)  CommandLineToArgvW(_In_ LPCWSTR lpCmdLine, _Out_ int* pNumA
  
  DECLARE_HANDLE(HDROP);
  
@@ -30,7 +28,7 @@ index 8b447db0..405d736e 100644
  _Success_(return != 0)
  SHSTDAPI_(UINT) DragQueryFileW(_In_ HDROP hDrop, _In_ UINT iFile, _Out_writes_opt_(cch) LPWSTR lpszFile, _In_ UINT cch);
  #ifdef UNICODE
-@@ -87,12 +95,17 @@ SHSTDAPI_(UINT) DragQueryFileW(_In_ HDROP hDrop, _In_ UINT iFile, _Out_writes_op
+@@ -87,12 +93,17 @@ SHSTDAPI_(UINT) DragQueryFileW(_In_ HDROP hDrop, _In_ UINT iFile, _Out_writes_op
  #else
  #define DragQueryFile  DragQueryFileA
  #endif // !UNICODE
@@ -48,7 +46,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(HINSTANCE) ShellExecuteW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR lpOperation, _In_ LPCWSTR lpFile, _In_opt_ LPCWSTR lpParameters,
      _In_opt_ LPCWSTR lpDirectory, _In_ INT nShowCmd);
  #ifdef UNICODE
-@@ -100,8 +113,10 @@ SHSTDAPI_(HINSTANCE) ShellExecuteW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR lpOperat
+@@ -100,8 +111,10 @@ SHSTDAPI_(HINSTANCE) ShellExecuteW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR lpOperat
  #else
  #define ShellExecute  ShellExecuteA
  #endif // !UNICODE
@@ -59,7 +57,7 @@ index 8b447db0..405d736e 100644
  _Success_(return > 32) // SE_ERR_DLLNOTFOUND
  SHSTDAPI_(HINSTANCE) FindExecutableW(_In_ LPCWSTR lpFile, _In_opt_ LPCWSTR lpDirectory, _Out_writes_(MAX_PATH) LPWSTR lpResult);
  #ifdef UNICODE
-@@ -110,29 +125,38 @@ SHSTDAPI_(HINSTANCE) FindExecutableW(_In_ LPCWSTR lpFile, _In_opt_ LPCWSTR lpDir
+@@ -110,29 +123,38 @@ SHSTDAPI_(HINSTANCE) FindExecutableW(_In_ LPCWSTR lpFile, _In_opt_ LPCWSTR lpDir
  #define FindExecutable  FindExecutableA
  #endif // !UNICODE
  
@@ -98,7 +96,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(HICON) ExtractIconW(_Reserved_ HINSTANCE hInst, _In_ LPCWSTR pszExeFileName, UINT nIconIndex);
  #ifdef UNICODE
  #define ExtractIcon  ExtractIconW
-@@ -216,13 +240,16 @@ typedef struct _AppBarData
+@@ -216,13 +238,16 @@ typedef struct _AppBarData
  } APPBARDATA, *PAPPBARDATA;
  
  
@@ -115,7 +113,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(DWORD)   DoEnvironmentSubstW(_Inout_updates_(cchSrc) LPWSTR pszSrc, UINT cchSrc);
  #ifdef UNICODE
  #define DoEnvironmentSubst  DoEnvironmentSubstW
-@@ -231,7 +258,11 @@ SHSTDAPI_(DWORD)   DoEnvironmentSubstW(_Inout_updates_(cchSrc) LPWSTR pszSrc, UI
+@@ -231,7 +256,11 @@ SHSTDAPI_(DWORD)   DoEnvironmentSubstW(_Inout_updates_(cchSrc) LPWSTR pszSrc, UI
  #endif // !UNICODE
  
  #define EIRESID(x) (-1 * (int)(x))
@@ -127,7 +125,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(UINT) ExtractIconExW(_In_ LPCWSTR lpszFile, int nIconIndex, _Out_writes_opt_(nIcons) HICON *phiconLarge, _Out_writes_opt_(nIcons) HICON *phiconSmall, UINT nIcons);
  #ifdef UNICODE
  #define ExtractIconEx  ExtractIconExW
-@@ -321,13 +352,18 @@ typedef SHFILEOPSTRUCTA SHFILEOPSTRUCT;
+@@ -321,13 +350,18 @@ typedef SHFILEOPSTRUCTA SHFILEOPSTRUCT;
  typedef LPSHFILEOPSTRUCTA LPSHFILEOPSTRUCT;
  #endif
  
@@ -146,7 +144,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(void) SHFreeNameMappings(_In_opt_ HANDLE hNameMappings);
  
  typedef struct _SHNAMEMAPPINGA
-@@ -499,7 +535,11 @@ typedef SHELLEXECUTEINFOA SHELLEXECUTEINFO;
+@@ -499,7 +533,11 @@ typedef SHELLEXECUTEINFOA SHELLEXECUTEINFO;
  typedef LPSHELLEXECUTEINFOA LPSHELLEXECUTEINFO;
  #endif // UNICODE
  
@@ -158,7 +156,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(BOOL) ShellExecuteExW(_Inout_ SHELLEXECUTEINFOW *pExecInfo);
  #ifdef UNICODE
  #define ShellExecuteEx  ShellExecuteExW
-@@ -526,11 +566,14 @@ typedef struct _SHCREATEPROCESSINFOW
+@@ -526,11 +564,14 @@ typedef struct _SHCREATEPROCESSINFOW
      LPPROCESS_INFORMATION lpProcessInformation;
  } SHCREATEPROCESSINFOW, *PSHCREATEPROCESSINFOW;
  
@@ -173,7 +171,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI SHEvaluateSystemCommandTemplate(_In_ PCWSTR pszCmdTemplate, _Outptr_ PWSTR *ppszApplication, _Outptr_opt_ PWSTR *ppszCommandLine, _Outptr_opt_ PWSTR *ppszParameters);
  //
  //  SHEvaluateSystemCommandTemplate()
-@@ -894,6 +937,7 @@ typedef struct ASSOCIATIONELEMENT
+@@ -894,6 +935,7 @@ typedef struct ASSOCIATIONELEMENT
  
  // the object returned from this API implements IQueryAssociations
  
@@ -181,7 +179,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI AssocCreateForClasses(_In_reads_(cClasses) const ASSOCIATIONELEMENT *rgClasses, ULONG cClasses, _In_ REFIID riid, _COM_Outptr_ void **ppv);
  
  /* #if 0 // SAMPLE CODE
-@@ -959,14 +1003,18 @@ typedef struct _SHQUERYRBINFO {
+@@ -959,14 +1001,18 @@ typedef struct _SHQUERYRBINFO {
  #define SHERB_NOSOUND           0x00000004
  
  
@@ -200,7 +198,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI SHEmptyRecycleBinW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR pszRootPath, DWORD dwFlags);
  #ifdef UNICODE
  #define SHEmptyRecycleBin  SHEmptyRecycleBinW
-@@ -999,11 +1047,13 @@ typedef enum
+@@ -999,11 +1045,13 @@ typedef enum
  #endif
  } QUERY_USER_NOTIFICATION_STATE;
  
@@ -214,7 +212,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI SHGetPropertyStoreForWindow(_In_ HWND hwnd, _In_ REFIID riid, _Outptr_ void** ppv);
  #endif
  
-@@ -1182,7 +1232,9 @@ typedef struct _NOTIFYICONIDENTIFIER {
+@@ -1182,7 +1230,9 @@ typedef struct _NOTIFYICONIDENTIFIER {
  } NOTIFYICONIDENTIFIER, *PNOTIFYICONIDENTIFIER;
  
  
@@ -224,7 +222,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(BOOL) Shell_NotifyIconW(DWORD dwMessage, _In_ PNOTIFYICONDATAW lpData);
  #ifdef UNICODE
  #define Shell_NotifyIcon  Shell_NotifyIconW
-@@ -1191,6 +1243,7 @@ SHSTDAPI_(BOOL) Shell_NotifyIconW(DWORD dwMessage, _In_ PNOTIFYICONDATAW lpData)
+@@ -1191,6 +1241,7 @@ SHSTDAPI_(BOOL) Shell_NotifyIconW(DWORD dwMessage, _In_ PNOTIFYICONDATAW lpData)
  #endif // !UNICODE
  
  #if (NTDDI_VERSION >= NTDDI_WIN7)
@@ -232,7 +230,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI Shell_NotifyIconGetRect(_In_ const NOTIFYICONIDENTIFIER* identifier, _Out_ RECT* iconLocation);
  #endif // (NTDDI_VERSION >= NTDDI_WIN7)
  
-@@ -1269,8 +1322,10 @@ typedef SHFILEINFOA SHFILEINFO;
+@@ -1269,8 +1320,10 @@ typedef SHFILEINFOA SHFILEINFO;
  #define SHGFI_OVERLAYINDEX      0x000000040     // Get the index of the overlay
                                                  // in the upper 8 bits of the iIcon
  
@@ -243,7 +241,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(DWORD_PTR) SHGetFileInfoW(_In_ LPCWSTR pszPath, DWORD dwFileAttributes, _Inout_updates_bytes_opt_(cbFileInfo) SHFILEINFOW *psfi,
      UINT cbFileInfo, UINT uFlags);
  #ifdef UNICODE
-@@ -1404,6 +1459,7 @@ typedef enum SHSTOCKICONID
+@@ -1404,6 +1457,7 @@ typedef enum SHSTOCKICONID
  
  #define SIID_INVALID ((SHSTOCKICONID)-1)
  
@@ -251,7 +249,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI SHGetStockIconInfo(SHSTOCKICONID siid, UINT uFlags, _Inout_ SHSTOCKICONINFO *psii);
  
  #endif // (NTDDI_VERSION >= NTDDI_VISTA)
-@@ -1412,8 +1468,10 @@ SHSTDAPI SHGetStockIconInfo(SHSTOCKICONID siid, UINT uFlags, _Inout_ SHSTOCKICON
+@@ -1412,8 +1466,10 @@ SHSTDAPI SHGetStockIconInfo(SHSTOCKICONID siid, UINT uFlags, _Inout_ SHSTOCKICON
  #if (NTDDI_VERSION >= NTDDI_WIN2K)
  #define SHGetDiskFreeSpace SHGetDiskFreeSpaceEx
  
@@ -262,7 +260,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(BOOL) SHGetDiskFreeSpaceExW(_In_ LPCWSTR pszDirectoryName, _Out_opt_ ULARGE_INTEGER* pulFreeBytesAvailableToCaller,
      _Out_opt_ ULARGE_INTEGER* pulTotalNumberOfBytes, _Out_opt_ ULARGE_INTEGER* pulTotalNumberOfFreeBytes);
  #ifdef UNICODE
-@@ -1421,8 +1479,10 @@ SHSTDAPI_(BOOL) SHGetDiskFreeSpaceExW(_In_ LPCWSTR pszDirectoryName, _Out_opt_ U
+@@ -1421,8 +1477,10 @@ SHSTDAPI_(BOOL) SHGetDiskFreeSpaceExW(_In_ LPCWSTR pszDirectoryName, _Out_opt_ U
  #else
  #define SHGetDiskFreeSpaceEx  SHGetDiskFreeSpaceExA
  #endif // !UNICODE
@@ -273,7 +271,7 @@ index 8b447db0..405d736e 100644
  _Success_(return != 0)
  SHSTDAPI_(BOOL) SHGetNewLinkInfoW(_In_ LPCWSTR pszLinkTo, _In_ LPCWSTR pszDir, _Out_writes_(MAX_PATH) LPWSTR pszName, _Out_ BOOL *pfMustCopy, _In_ UINT uFlags);
  #ifdef UNICODE
-@@ -1456,7 +1516,9 @@ SHSTDAPI_(BOOL) SHGetNewLinkInfoW(_In_ LPCWSTR pszLinkTo, _In_ LPCWSTR pszDir, _
+@@ -1456,7 +1514,9 @@ SHSTDAPI_(BOOL) SHGetNewLinkInfoW(_In_ LPCWSTR pszLinkTo, _In_ LPCWSTR pszDir, _
  
  // deprecated, instead invoke verbs on printers/netprinters using IContextMenu or ShellExecute()
  
@@ -283,7 +281,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(BOOL) SHInvokePrinterCommandW(_In_opt_ HWND hwnd, UINT uAction, _In_ LPCWSTR lpBuf1, _In_opt_ LPCWSTR lpBuf2, BOOL fModal);
  #ifdef UNICODE
  #define SHInvokePrinterCommand  SHInvokePrinterCommandW
-@@ -1509,6 +1571,7 @@ typedef POPEN_PRINTER_PROPS_INFOA POPEN_PRINTER_PROPS_INFO;
+@@ -1509,6 +1569,7 @@ typedef POPEN_PRINTER_PROPS_INFOA POPEN_PRINTER_PROPS_INFO;
  // Returns:
  //      S_OK
  //
@@ -291,7 +289,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI SHLoadNonloadedIconOverlayIdentifiers(void);
  
  //
-@@ -1530,6 +1593,7 @@ SHSTDAPI SHLoadNonloadedIconOverlayIdentifiers(void);
+@@ -1530,6 +1591,7 @@ SHSTDAPI SHLoadNonloadedIconOverlayIdentifiers(void);
  //     Both OFFLINE_STATUS_LOCAL and OFFLINE_STATUS_REMOTE may be returned,
  //     indicating "open in both places." This is common when the server is online.
  //
@@ -299,7 +297,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI SHIsFileAvailableOffline(_In_ PCWSTR pwszPath, _Out_opt_ DWORD *pdwStatus);
  
  #define OFFLINE_STATUS_LOCAL        0x0001  // If open, it's open locally
-@@ -1543,13 +1607,16 @@ SHSTDAPI SHIsFileAvailableOffline(_In_ PCWSTR pwszPath, _Out_opt_ DWORD *pdwStat
+@@ -1543,13 +1605,16 @@ SHSTDAPI SHIsFileAvailableOffline(_In_ PCWSTR pwszPath, _Out_opt_ DWORD *pdwStat
  #if (NTDDI_VERSION >= NTDDI_WINXP)
  //  sets the specified path to use the string resource
  //  as the UI instead of the file system name
@@ -316,7 +314,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI SHGetLocalizedName(_In_ PCWSTR pszPath, _Out_writes_(cch) PWSTR pszResModule, UINT cch, _Out_ int *pidsRes);
  #endif // (NTDDI_VERSION >= NTDDI_VISTA)
  
-@@ -1579,12 +1646,16 @@ SHSTDAPI SHGetLocalizedName(_In_ PCWSTR pszPath, _Out_writes_(cch) PWSTR pszResM
+@@ -1579,12 +1644,16 @@ SHSTDAPI SHGetLocalizedName(_In_ PCWSTR pszPath, _Out_writes_(cch) PWSTR pszResM
  #define LWSTDAPIV_(type)  STDAPIV_(type)
  #endif
  
@@ -333,7 +331,7 @@ index 8b447db0..405d736e 100644
  LWSTDAPIV_(int) ShellMessageBoxW(
      _In_opt_ HINSTANCE hAppInst,
      _In_opt_ HWND hWnd,
-@@ -1610,7 +1681,9 @@ SHSTDAPI_(BOOL) IsLFNDriveW(_In_opt_ LPCWSTR pszPath);
+@@ -1610,7 +1679,9 @@ SHSTDAPI_(BOOL) IsLFNDriveW(_In_opt_ LPCWSTR pszPath);
  
  #if         _WIN32_IE >= 0x0600
  
@@ -343,7 +341,7 @@ index 8b447db0..405d736e 100644
  STDAPI SHEnumerateUnreadMailAccountsW(_In_opt_ HKEY hKeyUser, DWORD dwIndex, _Out_writes_(cchMailAddress) LPWSTR pszMailAddress, int cchMailAddress);
  #ifdef UNICODE
  #define SHEnumerateUnreadMailAccounts  SHEnumerateUnreadMailAccountsW
-@@ -1618,6 +1691,7 @@ STDAPI SHEnumerateUnreadMailAccountsW(_In_opt_ HKEY hKeyUser, DWORD dwIndex, _Ou
+@@ -1618,6 +1689,7 @@ STDAPI SHEnumerateUnreadMailAccountsW(_In_opt_ HKEY hKeyUser, DWORD dwIndex, _Ou
  #define SHEnumerateUnreadMailAccounts  SHEnumerateUnreadMailAccountsA
  #endif // !UNICODE
  STDAPI SHGetUnreadMailCountA(_In_opt_ HKEY hKeyUser, _In_opt_ LPCSTR pszMailAddress, _Out_opt_ DWORD *pdwCount, _Out_opt_ FILETIME *pFileTime, _Out_writes_opt_(cchShellExecuteCommand) LPSTR pszShellExecuteCommand, int cchShellExecuteCommand);
@@ -351,7 +349,7 @@ index 8b447db0..405d736e 100644
  STDAPI SHGetUnreadMailCountW(_In_opt_ HKEY hKeyUser, _In_opt_ LPCWSTR pszMailAddress, _Out_opt_ DWORD *pdwCount, _Out_opt_ FILETIME *pFileTime, _Out_writes_opt_(cchShellExecuteCommand) LPWSTR pszShellExecuteCommand, int cchShellExecuteCommand);
  #ifdef UNICODE
  #define SHGetUnreadMailCount  SHGetUnreadMailCountW
-@@ -1625,6 +1699,7 @@ STDAPI SHGetUnreadMailCountW(_In_opt_ HKEY hKeyUser, _In_opt_ LPCWSTR pszMailAdd
+@@ -1625,6 +1697,7 @@ STDAPI SHGetUnreadMailCountW(_In_opt_ HKEY hKeyUser, _In_opt_ LPCWSTR pszMailAdd
  #define SHGetUnreadMailCount  SHGetUnreadMailCountA
  #endif // !UNICODE
  STDAPI SHSetUnreadMailCountA(_In_ LPCSTR pszMailAddress, DWORD dwCount, _In_ LPCSTR pszShellExecuteCommand);
@@ -359,7 +357,7 @@ index 8b447db0..405d736e 100644
  STDAPI SHSetUnreadMailCountW(_In_ LPCWSTR pszMailAddress, DWORD dwCount, _In_ LPCWSTR pszShellExecuteCommand);
  #ifdef UNICODE
  #define SHSetUnreadMailCount  SHSetUnreadMailCountW
-@@ -1635,12 +1710,14 @@ STDAPI SHSetUnreadMailCountW(_In_ LPCWSTR pszMailAddress, DWORD dwCount, _In_ LP
+@@ -1635,12 +1708,14 @@ STDAPI SHSetUnreadMailCountW(_In_ LPCWSTR pszMailAddress, DWORD dwCount, _In_ LP
  #endif  /*  _WIN32_IE >= 0x0600     */
  
  #if (_WIN32_IE >= 0x0601)
@@ -374,7 +372,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI SHGetImageList(_In_ int iImageList, _In_ REFIID riid, _Outptr_ void **ppvObj);
  #endif // (NTDDI_VERSION >= NTDDI_WINXP)
  
-@@ -1689,6 +1766,7 @@ typedef HRESULT (STDMETHODCALLTYPE *PFNSHOWSHAREFOLDERUIW)(_In_opt_ HWND hwndPar
+@@ -1689,6 +1764,7 @@ typedef HRESULT (STDMETHODCALLTYPE *PFNSHOWSHAREFOLDERUIW)(_In_opt_ HWND hwndPar
  
  // Instantiation
  #define WC_NETADDRESS L"msctls_netaddress"
@@ -382,7 +380,7 @@ index 8b447db0..405d736e 100644
  SHSTDAPI_(BOOL) InitNetworkAddressControl(void);
  
  // Address Control Messages
-@@ -1730,6 +1808,7 @@ typedef struct tagNC_ADDRESS
+@@ -1730,6 +1806,7 @@ typedef struct tagNC_ADDRESS
  #if (NTDDI_VERSION >= NTDDI_VISTA)
  // Returns the type of media (CD, DVD, Blank, etc) that is in the drive.
  // dwMediaContent is set to a combination of ARCONTENT flags.

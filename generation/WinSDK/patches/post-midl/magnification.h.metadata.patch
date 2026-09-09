@@ -1,19 +1,17 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/magnification.h b/generation/WinSDK/RecompiledIdlHeaders/um/magnification.h
-index 5fb9f4f7..8bf81e36 100644
+index 5fb9f4f7..5a41417b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/magnification.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/magnification.h
-@@ -7,6 +7,10 @@
+@@ -7,6 +7,8 @@
  // -------------------------------------------------------------
  
  
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
 +
  #ifndef _INC_MAGNIFIER
  #define _INC_MAGNIFIER
  
-@@ -72,25 +76,45 @@ typedef struct tagMAGCOLOREFFECT
+@@ -72,25 +74,45 @@ typedef struct tagMAGCOLOREFFECT
  typedef BOOL (CALLBACK* MagImageScalingCallback)(HWND hwnd, void * srcdata, MAGIMAGEHEADER srcheader, void * destdata, MAGIMAGEHEADER destheader, RECT unclipped, RECT clipped, HRGN dirty );
  
  // Public Functions

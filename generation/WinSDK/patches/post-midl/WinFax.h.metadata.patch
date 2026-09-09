@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h
-index f0c668af..b2055b59 100644
+index f0c668af..d641e19a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h
-@@ -19,6 +19,9 @@ Abstract:
+@@ -19,6 +19,7 @@ Abstract:
  #define _FAXAPI_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -825,19 +828,25 @@ typedef PFAX_CONTEXT_INFOA PFAX_CONTEXT_INFO;
+@@ -825,19 +826,25 @@ typedef PFAX_CONTEXT_INFOA PFAX_CONTEXT_INFO;
  // prototypes
  //
  
@@ -38,7 +36,7 @@ index f0c668af..b2055b59 100644
      );
  #ifdef UNICODE
  #define FaxConnectFaxServer  FaxConnectFaxServerW
-@@ -887,6 +896,7 @@ FaxOpenPort(
+@@ -887,6 +894,7 @@ FaxOpenPort(
      IN  DWORD DeviceId,
      IN  DWORD Flags,
      OUT LPHANDLE FaxPortHandle
@@ -46,7 +44,7 @@ index f0c668af..b2055b59 100644
      );
  
  typedef BOOL
-@@ -897,6 +907,7 @@ typedef BOOL
+@@ -897,6 +905,7 @@ typedef BOOL
      OUT LPHANDLE FaxPortHandle
      );
  
@@ -54,7 +52,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -904,6 +915,7 @@ FaxCompleteJobParamsA(
+@@ -904,6 +913,7 @@ FaxCompleteJobParamsA(
      IN OUT PFAX_JOB_PARAMA *JobParams,
      IN OUT PFAX_COVERPAGE_INFOA *CoverpageInfo
      );
@@ -62,7 +60,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -935,6 +947,8 @@ typedef BOOL
+@@ -935,6 +945,8 @@ typedef BOOL
  
  
  
@@ -71,7 +69,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -945,6 +959,8 @@ FaxSendDocumentA(
+@@ -945,6 +957,8 @@ FaxSendDocumentA(
      IN const FAX_COVERPAGE_INFOA *CoverpageInfo, OPTIONAL
      OUT LPDWORD FaxJobId OPTIONAL
      );
@@ -80,7 +78,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1005,6 +1021,8 @@ typedef BOOL
+@@ -1005,6 +1019,8 @@ typedef BOOL
  #define PFAX_RECIPIENT_CALLBACK  PFAX_RECIPIENT_CALLBACKA
  #endif // !UNICODE
  
@@ -89,7 +87,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1015,6 +1033,8 @@ FaxSendDocumentForBroadcastA(
+@@ -1015,6 +1031,8 @@ FaxSendDocumentForBroadcastA(
      IN PFAX_RECIPIENT_CALLBACKA FaxRecipientCallback,
      IN LPVOID Context
      );
@@ -98,7 +96,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1053,6 +1073,8 @@ typedef BOOL
+@@ -1053,6 +1071,8 @@ typedef BOOL
  #define PFAXSENDDOCUMENTFORBROADCAST  PFAXSENDDOCUMENTFORBROADCASTA
  #endif // !UNICODE
  
@@ -107,7 +105,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1061,6 +1083,8 @@ FaxEnumJobsA(
+@@ -1061,6 +1081,8 @@ FaxEnumJobsA(
      OUT PFAX_JOB_ENTRYA *JobEntry,
      OUT LPDWORD JobsReturned
      );
@@ -116,7 +114,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1094,6 +1118,8 @@ typedef BOOL
+@@ -1094,6 +1116,8 @@ typedef BOOL
  #endif // !UNICODE
  
  
@@ -125,7 +123,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1102,6 +1128,8 @@ FaxGetJobA(
+@@ -1102,6 +1126,8 @@ FaxGetJobA(
     IN  DWORD JobId,
     OUT PFAX_JOB_ENTRYA *JobEntry
     );
@@ -134,7 +132,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1134,6 +1162,8 @@ typedef BOOL
+@@ -1134,6 +1160,8 @@ typedef BOOL
  #define PFAXGETJOB  PFAXGETJOBA
  #endif // !UNICODE
  
@@ -143,7 +141,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1143,6 +1173,8 @@ FaxSetJobA(
+@@ -1143,6 +1171,8 @@ FaxSetJobA(
     IN DWORD Command,
     IN const FAX_JOB_ENTRYA *JobEntry
     );
@@ -152,7 +150,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1200,6 +1232,8 @@ typedef BOOL
+@@ -1200,6 +1230,8 @@ typedef BOOL
     OUT LPDWORD ImageHeight
     );
  
@@ -161,7 +159,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1207,6 +1241,8 @@ FaxGetDeviceStatusA(
+@@ -1207,6 +1239,8 @@ FaxGetDeviceStatusA(
      IN  HANDLE FaxPortHandle,
      OUT PFAX_DEVICE_STATUSA *DeviceStatus
      );
@@ -170,7 +168,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1251,6 +1287,8 @@ typedef BOOL
+@@ -1251,6 +1285,8 @@ typedef BOOL
      IN DWORD JobId
      );
  
@@ -179,7 +177,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1258,6 +1296,8 @@ FaxGetConfigurationA(
+@@ -1258,6 +1294,8 @@ FaxGetConfigurationA(
      IN  HANDLE FaxHandle,
      OUT PFAX_CONFIGURATIONA *FaxConfig
      );
@@ -188,7 +186,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1287,6 +1327,8 @@ typedef BOOL
+@@ -1287,6 +1325,8 @@ typedef BOOL
  #define PFAXGETCONFIGURATION  PFAXGETCONFIGURATIONA
  #endif // !UNICODE
  
@@ -197,7 +195,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1294,6 +1336,8 @@ FaxSetConfigurationA(
+@@ -1294,6 +1334,8 @@ FaxSetConfigurationA(
      IN  HANDLE FaxHandle,
      IN  const FAX_CONFIGURATIONA *FaxConfig
      );
@@ -206,7 +204,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1323,6 +1367,8 @@ typedef BOOL
+@@ -1323,6 +1365,8 @@ typedef BOOL
  #define PFAXSETCONFIGURATION  PFAXSETCONFIGURATIONA
  #endif // !UNICODE
  
@@ -215,7 +213,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1331,6 +1377,8 @@ FaxGetLoggingCategoriesA(
+@@ -1331,6 +1375,8 @@ FaxGetLoggingCategoriesA(
      OUT PFAX_LOG_CATEGORYA *Categories,
      OUT LPDWORD NumberCategories
      );
@@ -224,7 +222,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1363,6 +1411,8 @@ typedef BOOL
+@@ -1363,6 +1409,8 @@ typedef BOOL
  #define PFAXGETLOGGINGCATEGORIES  PFAXGETLOGGINGCATEGORIESA
  #endif // !UNICODE
  
@@ -233,7 +231,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1371,6 +1421,8 @@ FaxSetLoggingCategoriesA(
+@@ -1371,6 +1419,8 @@ FaxSetLoggingCategoriesA(
      IN  const FAX_LOG_CATEGORYA *Categories,
      IN  DWORD NumberCategories
      );
@@ -242,7 +240,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1403,6 +1455,8 @@ typedef BOOL
+@@ -1403,6 +1453,8 @@ typedef BOOL
  #define PFAXSETLOGGINGCATEGORIES  PFAXSETLOGGINGCATEGORIESA
  #endif // !UNICODE
  
@@ -251,7 +249,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1411,6 +1465,8 @@ FaxEnumPortsA(
+@@ -1411,6 +1463,8 @@ FaxEnumPortsA(
      OUT PFAX_PORT_INFOA *PortInfo,
      OUT LPDWORD PortsReturned
      );
@@ -260,7 +258,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1443,6 +1499,8 @@ typedef BOOL
+@@ -1443,6 +1497,8 @@ typedef BOOL
  #define PFAXENUMPORTS  PFAXENUMPORTSA
  #endif // !UNICODE
  
@@ -269,7 +267,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1450,6 +1508,8 @@ FaxGetPortA(
+@@ -1450,6 +1506,8 @@ FaxGetPortA(
      IN  HANDLE FaxPortHandle,
      OUT PFAX_PORT_INFOA *PortInfo
      );
@@ -278,7 +276,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1479,6 +1539,8 @@ typedef BOOL
+@@ -1479,6 +1537,8 @@ typedef BOOL
  #define PFAXGETPORT  PFAXGETPORTA
  #endif // !UNICODE
  
@@ -287,7 +285,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1486,6 +1548,8 @@ FaxSetPortA(
+@@ -1486,6 +1546,8 @@ FaxSetPortA(
      IN  HANDLE FaxPortHandle,
      IN  const FAX_PORT_INFOA *PortInfo
      );
@@ -296,7 +294,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1515,6 +1579,8 @@ typedef BOOL
+@@ -1515,6 +1577,8 @@ typedef BOOL
  #define PFAXSETPORT  PFAXSETPORTA
  #endif // !UNICODE
  
@@ -305,7 +303,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1523,6 +1589,8 @@ FaxEnumRoutingMethodsA(
+@@ -1523,6 +1587,8 @@ FaxEnumRoutingMethodsA(
      OUT PFAX_ROUTING_METHODA *RoutingMethod,
      OUT LPDWORD MethodsReturned
      );
@@ -314,7 +312,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1555,6 +1623,8 @@ typedef BOOL
+@@ -1555,6 +1621,8 @@ typedef BOOL
  #define PFAXENUMROUTINGMETHODS  PFAXENUMROUTINGMETHODSA
  #endif // !UNICODE
  
@@ -323,7 +321,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1563,6 +1633,8 @@ FaxEnableRoutingMethodA(
+@@ -1563,6 +1631,8 @@ FaxEnableRoutingMethodA(
      IN  LPCSTR RoutingGuid,
      IN  BOOL Enabled
      );
@@ -332,7 +330,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1596,6 +1668,8 @@ typedef BOOL
+@@ -1596,6 +1666,8 @@ typedef BOOL
  #endif // !UNICODE
  
  
@@ -341,7 +339,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1604,6 +1678,8 @@ FaxEnumGlobalRoutingInfoA(
+@@ -1604,6 +1676,8 @@ FaxEnumGlobalRoutingInfoA(
      OUT PFAX_GLOBAL_ROUTING_INFOA *RoutingInfo,
      OUT LPDWORD MethodsReturned
      );
@@ -350,7 +348,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1636,6 +1712,8 @@ typedef BOOL
+@@ -1636,6 +1710,8 @@ typedef BOOL
  #define PFAXENUMGLOBALROUTINGINFO  PFAXENUMGLOBALROUTINGINFOA
  #endif // !UNICODE
  
@@ -359,7 +357,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1643,6 +1721,8 @@ FaxSetGlobalRoutingInfoA(
+@@ -1643,6 +1719,8 @@ FaxSetGlobalRoutingInfoA(
      IN  HANDLE FaxHandle,
      IN  const FAX_GLOBAL_ROUTING_INFOA *RoutingInfo
      );
@@ -368,7 +366,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1672,6 +1752,8 @@ typedef BOOL
+@@ -1672,6 +1750,8 @@ typedef BOOL
  #define PFAXSETGLOBALROUTINGINFO  PFAXSETGLOBALROUTINGINFOA
  #endif // !UNICODE
  
@@ -377,7 +375,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1681,6 +1763,8 @@ FaxGetRoutingInfoA(
+@@ -1681,6 +1761,8 @@ FaxGetRoutingInfoA(
      OUT LPBYTE *RoutingInfoBuffer,
      OUT LPDWORD RoutingInfoBufferSize
      );
@@ -386,7 +384,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1717,6 +1801,8 @@ typedef BOOL
+@@ -1717,6 +1799,8 @@ typedef BOOL
  #endif // !UNICODE
  
  
@@ -395,7 +393,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1726,6 +1812,8 @@ FaxSetRoutingInfoA(
+@@ -1726,6 +1810,8 @@ FaxSetRoutingInfoA(
      IN  const BYTE *RoutingInfoBuffer,
      IN  DWORD RoutingInfoBufferSize
      );
@@ -404,7 +402,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1794,6 +1882,8 @@ typedef VOID
+@@ -1794,6 +1880,8 @@ typedef VOID
      LPVOID Buffer
      );
  
@@ -413,7 +411,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1803,6 +1893,8 @@ FaxStartPrintJobA(
+@@ -1803,6 +1891,8 @@ FaxStartPrintJobA(
      OUT LPDWORD FaxJobId,
      OUT PFAX_CONTEXT_INFOA FaxContextInfo
      );
@@ -422,7 +420,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1838,6 +1930,8 @@ typedef BOOL
+@@ -1838,6 +1928,8 @@ typedef BOOL
  #define PFAXSTARTPRINTJOB  PFAXSTARTPRINTJOBA
  #endif // !UNICODE
  
@@ -431,7 +429,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1845,6 +1939,8 @@ FaxPrintCoverPageA(
+@@ -1845,6 +1937,8 @@ FaxPrintCoverPageA(
      IN const FAX_CONTEXT_INFOA *FaxContextInfo,
      IN const FAX_COVERPAGE_INFOA *CoverPageInfo
      );
@@ -440,7 +438,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1875,6 +1971,8 @@ typedef BOOL
+@@ -1875,6 +1969,8 @@ typedef BOOL
  #endif // !UNICODE
  
  
@@ -449,7 +447,7 @@ index f0c668af..b2055b59 100644
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1927,6 +2025,8 @@ typedef BOOL
+@@ -1927,6 +2023,8 @@ typedef BOOL
  #define PFAX_ROUTING_INSTALLATION_CALLBACK PFAX_ROUTING_INSTALLATION_CALLBACKW
  
  

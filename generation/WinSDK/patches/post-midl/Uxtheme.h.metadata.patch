@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h
-index 2ce29c89..f053ec33 100644
+index 2ce29c89..aad3f989 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h
-@@ -10,6 +10,9 @@
+@@ -10,6 +10,7 @@
  #define _UXTHEME_H_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -43,6 +46,7 @@ typedef HANDLE HTHEME;          // handle to a section of theme data for class
+@@ -43,6 +44,7 @@ typedef HANDLE HTHEME;          // handle to a section of theme data for class
  //  HWND hwnd - The handle to the Target window that will receive feedback
  //                                                                                                 
  //---------------------------------------------------------------------------
@@ -20,7 +18,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL) 
  BeginPanningFeedback(
  _In_ HWND hwnd); 
-@@ -74,6 +78,7 @@ _In_ HWND hwnd);
+@@ -74,6 +76,7 @@ _In_ HWND hwnd);
  //        the second call would be with the parameter as 20 pixels as opposed to 10
  //   Eg : UpdatePanningFeedback(hwnd, 10, 10, TRUE)
  // 
@@ -28,7 +26,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL)
  UpdatePanningFeedback(
  	_In_ HWND hwnd,
-@@ -97,6 +102,7 @@ UpdatePanningFeedback(
+@@ -97,6 +100,7 @@ UpdatePanningFeedback(
  //                      Either ways the method will try to restore the moved window.
  //                      The latter case exists for compatibility with legacy apps. 
  //
@@ -36,7 +34,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL)
  EndPanningFeedback(
  	_In_ HWND hwnd, 
-@@ -157,6 +163,7 @@ DEFINE_ENUM_FLAG_OPERATORS(TA_PROPERTY_FLAG);
+@@ -157,6 +161,7 @@ DEFINE_ENUM_FLAG_OPERATORS(TA_PROPERTY_FLAG);
  //  pcbSizeOut                  - pointer to a DWORD buffer to receive the returned 
  //                                byte size
  //
@@ -44,7 +42,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI GetThemeAnimationProperty(
      _In_ HTHEME hTheme,
      _In_ int iStoryboardId,
-@@ -252,6 +259,7 @@ typedef struct TA_TRANSFORM_CLIP
+@@ -252,6 +257,7 @@ typedef struct TA_TRANSFORM_CLIP
  //  pcbSizeOut                      - pointer to a DWORD buffer to receive returned
  //                                    byte-size of transform operation struct
  //
@@ -52,7 +50,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI GetThemeAnimationTransform(
      _In_ HTHEME hTheme,
      _In_ int iStoryboardId,
-@@ -298,6 +306,7 @@ typedef struct TA_CUBIC_BEZIER
+@@ -298,6 +304,7 @@ typedef struct TA_CUBIC_BEZIER
  //  pcbSizeOut                      - pointer to a DWORD buffer to receive byte-size of
  //                                    the timing function struct
  //                                      
@@ -60,7 +58,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI GetThemeTimingFunction(
      _In_ HTHEME hTheme,
      _In_ int iTimingFunctionId,
-@@ -343,6 +352,7 @@ THEMEAPI GetThemeTimingFunction(
+@@ -343,6 +350,7 @@ THEMEAPI GetThemeTimingFunction(
  //                        that will be used.  Otherwise, we fall back on 
  //                        the normal Button entry.
  //---------------------------------------------------------------------------
@@ -68,7 +66,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(HTHEME)
  OpenThemeData(
      _In_opt_ HWND hwnd,
-@@ -354,6 +364,26 @@ OpenThemeData(
+@@ -354,6 +362,26 @@ OpenThemeData(
  #define OTD_VALIDBITS           (OTD_FORCE_RECT_SIZING | \
                                   OTD_NONCLIENT)
  
@@ -95,7 +93,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(HTHEME)
  OpenThemeDataForDpi(
      _In_opt_ HWND hwnd,
-@@ -395,11 +425,12 @@ OpenThemeDataForDpi(
+@@ -395,11 +423,12 @@ OpenThemeDataForDpi(
  //  dwFlags              - allows certain overrides of std features
  //                         (see OTD_XXX defines above)
  //---------------------------------------------------------------------------
@@ -109,7 +107,7 @@ index 2ce29c89..f053ec33 100644
      );
  
  //---------------------------------------------------------------------------
-@@ -412,6 +443,7 @@ OpenThemeDataEx(
+@@ -412,6 +441,7 @@ OpenThemeDataEx(
  //  hTheme              - open theme data handle (returned from prior call
  //                        to OpenThemeData() API).
  //---------------------------------------------------------------------------
@@ -117,7 +115,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  CloseThemeData(
      _In_ HTHEME hTheme
-@@ -451,6 +483,7 @@ CloseThemeData(
+@@ -451,6 +481,7 @@ CloseThemeData(
  //  pRect               - defines the size/location of the part
  //  pClipRect           - optional clipping rect (don't draw outside it)
  //------------------------------------------------------------------------
@@ -125,7 +123,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  DrawThemeBackground(
      _In_ HTHEME hTheme,
-@@ -503,6 +536,7 @@ typedef struct _DTBGOPTS
+@@ -503,6 +534,7 @@ typedef struct _DTBGOPTS
  //  pRect               - defines the size/location of the part
  //  pOptions            - ptr to optional params
  //------------------------------------------------------------------------
@@ -133,7 +131,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  DrawThemeBackgroundEx(
      _In_ HTHEME hTheme,
-@@ -533,6 +567,7 @@ DrawThemeBackgroundEx(
+@@ -533,6 +565,7 @@ DrawThemeBackgroundEx(
  //  dwTextFlags2        - additional drawing options 
  //  pRect               - defines the size/location of the part
  //-------------------------------------------------------------------------
@@ -141,7 +139,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  DrawThemeText(
      _In_ HTHEME hTheme,
-@@ -559,6 +594,7 @@ DrawThemeText(
+@@ -559,6 +592,7 @@ DrawThemeText(
  //      pBoundingRect   - the outer RECT of the part being drawn
  //      pContentRect    - RECT to receive the content area
  //-------------------------------------------------------------------------
@@ -149,7 +147,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeBackgroundContentRect(
      _In_ HTHEME hTheme,
-@@ -581,6 +617,7 @@ GetThemeBackgroundContentRect(
+@@ -581,6 +615,7 @@ GetThemeBackgroundContentRect(
  //      pContentRect    - RECT that defines the content area
  //      pBoundingRect   - RECT to receive the overall size/location of part
  //-------------------------------------------------------------------------
@@ -157,7 +155,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeBackgroundExtent(
      _In_ HTHEME hTheme,
-@@ -606,6 +643,7 @@ GetThemeBackgroundExtent(
+@@ -606,6 +641,7 @@ GetThemeBackgroundExtent(
  //  pRect               - the RECT used to draw the part
  //  pRegion             - receives handle to calculated region
  //-------------------------------------------------------------------------
@@ -165,7 +163,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeBackgroundRegion(
      _In_ HTHEME hTheme,
-@@ -634,6 +672,7 @@ enum THEMESIZE
+@@ -634,6 +670,7 @@ enum THEMESIZE
  //  eSize               - the type of size to be retreived
  //  psz                 - receives the specified size of the part 
  //-------------------------------------------------------------------------
@@ -173,7 +171,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemePartSize(
      _In_ HTHEME hTheme,
-@@ -659,6 +698,7 @@ GetThemePartSize(
+@@ -659,6 +696,7 @@ GetThemePartSize(
  //  pszBoundingRect     - optional: to control layout of text
  //  pszExtentRect       - receives the RECT for text size/location
  //-------------------------------------------------------------------------
@@ -181,7 +179,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeTextExtent(
      _In_ HTHEME hTheme,
-@@ -683,6 +723,7 @@ GetThemeTextExtent(
+@@ -683,6 +721,7 @@ GetThemeTextExtent(
  //  iStateId            - state number (of the part) 
  //  ptm                 - receives the font info
  //-------------------------------------------------------------------------
@@ -189,7 +187,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeTextMetrics(
      _In_ HTHEME hTheme,
-@@ -726,6 +767,54 @@ GetThemeTextMetrics(
+@@ -726,6 +765,54 @@ GetThemeTextMetrics(
  // This option is mutually exclusive with HTTB_SIZINGTEMPLATE, which takes precedence.
  #define HTTB_SYSTEMSIZINGMARGINS    0x00000200
  
@@ -244,7 +242,7 @@ index 2ce29c89..f053ec33 100644
  //-------------------------------------------------------------------------
  //  HitTestThemeBackground()
  //                      - returns a HitTestCode (a subset of the values 
-@@ -750,13 +839,14 @@ GetThemeTextMetrics(
+@@ -750,13 +837,14 @@ GetThemeTextMetrics(
  //                        HTRIGHT, HTTOPRIGHT, HTBOTTOMRIGHT,
  //                        HTTOP, HTBOTTOM, HTCLIENT
  //-------------------------------------------------------------------------
@@ -260,7 +258,7 @@ index 2ce29c89..f053ec33 100644
      _In_ LPCRECT pRect,
      _In_opt_ HRGN hrgn,
      _In_ POINT ptTest,
-@@ -775,6 +865,7 @@ HitTestThemeBackground(
+@@ -775,6 +863,7 @@ HitTestThemeBackground(
  //  uFlags              - Same as DrawEdge() API
  //  pContentRect        - Receives the interior rect if (uFlags & BF_ADJUST)
  //------------------------------------------------------------------------
@@ -268,7 +266,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  DrawThemeEdge(
      _In_ HTHEME hTheme,
-@@ -799,6 +890,7 @@ DrawThemeEdge(
+@@ -799,6 +888,7 @@ DrawThemeEdge(
  //  himl                - handle to IMAGELIST 
  //  iImageIndex         - index into IMAGELIST (which icon to draw)
  //------------------------------------------------------------------------
@@ -276,7 +274,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  DrawThemeIcon(
      _In_ HTHEME hTheme,
-@@ -818,6 +910,7 @@ DrawThemeIcon(
+@@ -818,6 +908,7 @@ DrawThemeIcon(
  //  iPartId             - part number to find definition for
  //  iStateId            - state number of part
  //---------------------------------------------------------------------------
@@ -284,7 +282,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL)
  IsThemePartDefined(
      _In_ HTHEME hTheme,
-@@ -835,6 +928,7 @@ IsThemePartDefined(
+@@ -835,6 +926,7 @@ IsThemePartDefined(
  //  iPartId             - part number 
  //  iStateId            - state number of part
  //---------------------------------------------------------------------------
@@ -292,7 +290,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL)
  IsThemeBackgroundPartiallyTransparent(
      _In_ HTHEME hTheme,
-@@ -868,6 +962,7 @@ IsThemeBackgroundPartiallyTransparent(
+@@ -868,6 +960,7 @@ IsThemeBackgroundPartiallyTransparent(
  //  iPropId             - the property number to get the value for
  //  pColor              - receives the value of the property
  //-----------------------------------------------------------------------
@@ -300,7 +298,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeColor(
      _In_ HTHEME hTheme,
-@@ -888,6 +983,7 @@ GetThemeColor(
+@@ -888,6 +981,7 @@ GetThemeColor(
  //  iPropId             - the property number to get the value for
  //  piVal               - receives the value of the property
  //-----------------------------------------------------------------------
@@ -308,7 +306,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeMetric(
      _In_ HTHEME hTheme,
-@@ -908,6 +1004,7 @@ GetThemeMetric(
+@@ -908,6 +1002,7 @@ GetThemeMetric(
  //  pszBuff             - receives the string property value
  //  cchMaxBuffChars     - max. number of chars allowed in pszBuff
  //-----------------------------------------------------------------------
@@ -316,7 +314,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeString(
      _In_ HTHEME hTheme,
-@@ -927,6 +1024,7 @@ GetThemeString(
+@@ -927,6 +1022,7 @@ GetThemeString(
  //  iPropId             - the property number to get the value for
  //  pfVal               - receives the value of the property
  //-----------------------------------------------------------------------
@@ -324,7 +322,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeBool(
      _In_ HTHEME hTheme,
-@@ -945,6 +1043,7 @@ GetThemeBool(
+@@ -945,6 +1041,7 @@ GetThemeBool(
  //  iPropId             - the property number to get the value for
  //  piVal               - receives the value of the property
  //-----------------------------------------------------------------------
@@ -332,7 +330,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeInt(
      _In_ HTHEME hTheme,
-@@ -963,6 +1062,7 @@ GetThemeInt(
+@@ -963,6 +1060,7 @@ GetThemeInt(
  //  iPropId             - the property number to get the value for
  //  piVal               - receives the value of the enum (cast to int*)
  //-----------------------------------------------------------------------
@@ -340,7 +338,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeEnumValue(
      _In_ HTHEME hTheme,
-@@ -982,6 +1082,7 @@ GetThemeEnumValue(
+@@ -982,6 +1080,7 @@ GetThemeEnumValue(
  //  iPropId             - the property number to get the value for
  //  pPoint              - receives the value of the position property
  //-----------------------------------------------------------------------
@@ -348,7 +346,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemePosition(
      _In_ HTHEME hTheme,
-@@ -1002,6 +1103,7 @@ GetThemePosition(
+@@ -1002,6 +1101,7 @@ GetThemePosition(
  //  pFont               - receives the value of the LOGFONT property
  //                        (scaled for the current logical screen dpi) 
  //-----------------------------------------------------------------------
@@ -356,7 +354,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeFont(
      _In_ HTHEME hTheme,
-@@ -1021,6 +1123,7 @@ GetThemeFont(
+@@ -1021,6 +1121,7 @@ GetThemeFont(
  //  iPropId             - the property number to get the value for
  //  pRect               - receives the value of the RECT property
  //-----------------------------------------------------------------------
@@ -364,7 +362,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeRect(
      _In_ HTHEME hTheme,
-@@ -1050,6 +1153,7 @@ typedef struct _MARGINS
+@@ -1050,6 +1151,7 @@ typedef struct _MARGINS
  //      prc             - RECT for area to be drawn into
  //      pMargins        - receives the value of the MARGINS property
  //-----------------------------------------------------------------------
@@ -372,7 +370,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeMargins(
      _In_ HTHEME hTheme,
-@@ -1082,6 +1186,7 @@ typedef struct _INTLIST
+@@ -1082,6 +1184,7 @@ typedef struct _INTLIST
  //      iPropId         - the property number to get the value for
  //      pIntList        - receives the value of the INTLIST property
  //-----------------------------------------------------------------------
@@ -380,7 +378,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeIntList(
      _In_ HTHEME hTheme,
-@@ -1112,6 +1217,7 @@ enum PROPERTYORIGIN
+@@ -1112,6 +1215,7 @@ enum PROPERTYORIGIN
  //  iPropId             - the property number to search for
  //  pOrigin             - receives the value of the property origin
  //-----------------------------------------------------------------------
@@ -388,7 +386,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemePropertyOrigin(
      _In_ HTHEME hTheme,
-@@ -1149,6 +1255,7 @@ GetThemePropertyOrigin(
+@@ -1149,6 +1253,7 @@ GetThemePropertyOrigin(
  // the specified window, you can pass an empty string (L"") so it 
  // won't match any section entries.
  //---------------------------------------------------------------------------
@@ -396,7 +394,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  SetWindowTheme(
      _In_ HWND hwnd,
-@@ -1167,6 +1274,7 @@ SetWindowTheme(
+@@ -1167,6 +1272,7 @@ SetWindowTheme(
  //  pszThemeFileName    - output buffer to receive the filename
  //  cchMaxBuffChars     - the size of the return buffer, in chars
  //---------------------------------------------------------------------------
@@ -404,7 +402,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeFilename(
      _In_ HTHEME hTheme,
-@@ -1186,6 +1294,7 @@ GetThemeFilename(
+@@ -1186,6 +1292,7 @@ GetThemeFilename(
  //
  //  iColorId            - the system color index defined in winuser.h
  //---------------------------------------------------------------------------
@@ -412,7 +410,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(COLORREF)
  GetThemeSysColor(
      _In_opt_ HTHEME hTheme,
-@@ -1203,6 +1312,7 @@ GetThemeSysColor(
+@@ -1203,6 +1310,7 @@ GetThemeSysColor(
  //
  //  iColorId            - the system color index defined in winuser.h
  //---------------------------------------------------------------------------
@@ -420,7 +418,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(HBRUSH)
  GetThemeSysColorBrush(
      _In_opt_ HTHEME hTheme,
-@@ -1219,6 +1329,7 @@ GetThemeSysColorBrush(
+@@ -1219,6 +1327,7 @@ GetThemeSysColorBrush(
  //  iBoolId             - the TMT_XXX BOOL number (first BOOL
  //                        is TMT_FLATMENUS)
  //---------------------------------------------------------------------------
@@ -428,7 +426,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL)
  GetThemeSysBool(
      _In_opt_ HTHEME hTheme,
-@@ -1250,6 +1361,7 @@ GetThemeSysBool(
+@@ -1250,6 +1359,7 @@ GetThemeSysBool(
  //                        when hTheme is NULL, iSizeId is passed directly
  //                        to the GetSystemMetrics() function
  //---------------------------------------------------------------------------
@@ -436,7 +434,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(int)
  GetThemeSysSize(
      _In_opt_ HTHEME hTheme,
-@@ -1269,6 +1381,7 @@ GetThemeSysSize(
+@@ -1269,6 +1379,7 @@ GetThemeSysSize(
  //  plf                 - ptr to LOGFONT to receive the font value.
  //                        (scaled for the current logical screen dpi) 
  //---------------------------------------------------------------------------
@@ -444,7 +442,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeSysFont(
      _In_opt_ HTHEME hTheme,
-@@ -1290,6 +1403,7 @@ GetThemeSysFont(
+@@ -1290,6 +1401,7 @@ GetThemeSysFont(
  //
  //  cchMaxStringChars   - max. number of chars that pszStringBuff can hold
  //---------------------------------------------------------------------------
@@ -452,7 +450,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeSysString(
      _In_ HTHEME hTheme,
-@@ -1311,6 +1425,7 @@ GetThemeSysString(
+@@ -1311,6 +1423,7 @@ GetThemeSysString(
  //
  //  piValue             - ptr to int to receive value
  //---------------------------------------------------------------------------
@@ -460,7 +458,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeSysInt(
      _In_ HTHEME hTheme,
-@@ -1325,6 +1440,7 @@ GetThemeSysInt(
+@@ -1325,6 +1438,7 @@ GetThemeSysInt(
  //                        use the API "IsAppThemed()" to test if a theme is
  //                        active for the calling process.
  //---------------------------------------------------------------------------
@@ -468,7 +466,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL)
  IsThemeActive(
      VOID
-@@ -1334,6 +1450,7 @@ IsThemeActive(
+@@ -1334,6 +1448,7 @@ IsThemeActive(
  //  IsAppThemed()       - returns TRUE if a theme is active and available to
  //                        the current process
  //---------------------------------------------------------------------------
@@ -476,7 +474,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL)
  IsAppThemed(
      VOID
-@@ -1346,6 +1463,7 @@ IsAppThemed(
+@@ -1346,6 +1461,7 @@ IsAppThemed(
  //
  //      hwnd            - the window to get the HTHEME of
  //---------------------------------------------------------------------------
@@ -484,7 +482,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(HTHEME)
  GetWindowTheme(
      _In_ HWND hwnd
-@@ -1385,6 +1503,7 @@ GetWindowTheme(
+@@ -1385,6 +1501,7 @@ GetWindowTheme(
  //                     ETDT_ENABLETAB to enable the theme-defined background 
  //                          texturing using the Tab texture
  //---------------------------------------------------------------------------
@@ -492,7 +490,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  EnableThemeDialogTexture(
      _In_ HWND hwnd,
-@@ -1398,6 +1517,7 @@ EnableThemeDialogTexture(
+@@ -1398,6 +1515,7 @@ EnableThemeDialogTexture(
  //
  //      hdlg         - the window handle of the target dialog
  //---------------------------------------------------------------------------
@@ -500,7 +498,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL)
  IsThemeDialogTextureEnabled(
      _In_ HWND hwnd
-@@ -1413,11 +1533,24 @@ IsThemeDialogTextureEnabled(
+@@ -1413,11 +1531,24 @@ IsThemeDialogTextureEnabled(
                                   STAP_ALLOW_CONTROLS | \
                                   STAP_ALLOW_WEBCONTENT)
  
@@ -526,7 +524,7 @@ index 2ce29c89..f053ec33 100644
  GetThemeAppProperties(
      VOID
      );
-@@ -1428,9 +1561,10 @@ GetThemeAppProperties(
+@@ -1428,9 +1559,10 @@ GetThemeAppProperties(
  //
  //      dwFlags         - the flag values to be set
  //---------------------------------------------------------------------------
@@ -538,7 +536,7 @@ index 2ce29c89..f053ec33 100644
      );
  
  //---------------------------------------------------------------------------
-@@ -1450,6 +1584,7 @@ SetThemeAppProperties(
+@@ -1450,6 +1582,7 @@ SetThemeAppProperties(
  //                        (not the display name)
  //  cchMaxSizeChars     - max chars allowed in pszSizeBuff
  //---------------------------------------------------------------------------
@@ -546,7 +544,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI GetCurrentThemeName(
      _Out_writes_(cchMaxNameChars) LPWSTR pszThemeFileName,
      _In_ int cchMaxNameChars,
-@@ -1464,6 +1599,7 @@ THEMEAPI GetCurrentThemeName(
+@@ -1464,6 +1597,7 @@ THEMEAPI GetCurrentThemeName(
  #define SZ_THDOCPROP_TOOLTIP        L"ToolTip"
  #define SZ_THDOCPROP_AUTHOR         L"author"
  
@@ -554,7 +552,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeDocumentationProperty(
      _In_ LPCWSTR pszThemeName,
-@@ -1500,6 +1636,7 @@ GetThemeDocumentationProperty(
+@@ -1500,6 +1634,7 @@ GetThemeDocumentationProperty(
  //  prc                 - (optional) rect that defines the area to be 
  //                        drawn (CHILD coordinates)
  //---------------------------------------------------------------------------
@@ -562,7 +560,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  DrawThemeParentBackground(
      _In_ HWND hwnd,
-@@ -1516,6 +1653,7 @@ DrawThemeParentBackground(
+@@ -1516,6 +1651,7 @@ DrawThemeParentBackground(
  //                      - if TRUE, enable themeing and, if user previously
  //                        had a theme active, make it active now.
  //---------------------------------------------------------------------------
@@ -570,7 +568,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  EnableTheming(
      _In_ BOOL fEnable
-@@ -1526,12 +1664,52 @@ EnableTheming(
+@@ -1526,12 +1662,52 @@ EnableTheming(
  #define GBF_VALIDBITS   (GBF_DIRECT | \
                           GBF_COPY)
  
@@ -623,7 +621,7 @@ index 2ce29c89..f053ec33 100644
  //---------------------------------------------------------------------------
  // DrawThemeParentBackgroundEx()
  //                      - used by partially-transparent or alpha-blended
-@@ -1559,11 +1737,12 @@ EnableTheming(
+@@ -1559,11 +1735,12 @@ EnableTheming(
  //
  //  Return value        - S_OK if something was painted, S_FALSE if not.
  //---------------------------------------------------------------------------
@@ -637,7 +635,7 @@ index 2ce29c89..f053ec33 100644
      _In_opt_ const RECT* prc
      );
  
-@@ -1589,6 +1768,7 @@ typedef struct _WTA_OPTIONS
+@@ -1589,6 +1766,7 @@ typedef struct _WTA_OPTIONS
                                     WTNCA_NOSYSMENU | \
                                     WTNCA_NOMIRRORHELP)
  
@@ -645,7 +643,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  SetWindowThemeAttribute(
      _In_ HWND hwnd,
-@@ -1597,6 +1777,7 @@ SetWindowThemeAttribute(
+@@ -1597,6 +1775,7 @@ SetWindowThemeAttribute(
      _In_ DWORD cbAttribute
      );
  
@@ -653,7 +651,7 @@ index 2ce29c89..f053ec33 100644
  __inline HRESULT SetWindowThemeNonClientAttributes(HWND hwnd, DWORD dwMask, DWORD dwAttributes)    
  {
      WTA_OPTIONS wta;
-@@ -1677,6 +1858,7 @@ typedef struct _DTTOPTS
+@@ -1677,6 +1856,7 @@ typedef struct _DTTOPTS
  
  #if (NTDDI_VERSION >= NTDDI_VISTA)
  
@@ -661,7 +659,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  DrawThemeTextEx(
      _In_ HTHEME hTheme,
-@@ -1704,13 +1886,14 @@ DrawThemeTextEx(
+@@ -1704,13 +1884,14 @@ DrawThemeTextEx(
  //                    file when iPropId==TMT_DISKSTREAM (use GetCurrentThemeName 
  //                    and LoadLibraryEx(LOAD_LIBRARY_AS_DATAFILE)
  //-----------------------------------------------------------------------
@@ -677,7 +675,7 @@ index 2ce29c89..f053ec33 100644
      _Out_ HBITMAP* phBitmap
      );
  
-@@ -1727,6 +1910,7 @@ GetThemeBitmap(
+@@ -1727,6 +1908,7 @@ GetThemeBitmap(
  //                    file when iPropId==TMT_DISKSTREAM (use GetCurrentThemeName 
  //                    and LoadLibraryEx(LOAD_LIBRARY_AS_DATAFILE)
  //-----------------------------------------------------------------------
@@ -685,7 +683,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetThemeStream(
      _In_ HTHEME hTheme,
-@@ -1744,6 +1928,7 @@ GetThemeStream(
+@@ -1744,6 +1926,7 @@ GetThemeStream(
  //                        Should be called prior to BeginBufferedPaint,
  //                        and should have a matching BufferedPaintUnInit.
  //------------------------------------------------------------------------
@@ -693,7 +691,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  BufferedPaintInit(
      VOID
-@@ -1754,6 +1939,7 @@ BufferedPaintInit(
+@@ -1754,6 +1937,7 @@ BufferedPaintInit(
  //                          Should be called once for each call to BufferedPaintInit,
  //                          when calls to BeginBufferedPaint are no longer needed.
  //------------------------------------------------------------------------
@@ -701,7 +699,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  BufferedPaintUnInit(
      VOID
-@@ -1817,6 +2003,8 @@ typedef struct _BP_PAINTPARAMS
+@@ -1817,6 +2001,8 @@ typedef struct _BP_PAINTPARAMS
      const BLENDFUNCTION *       pBlendFunction;
  } BP_PAINTPARAMS, *PBP_PAINTPARAMS;
  
@@ -710,7 +708,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(_Success_(return != NULL) HPAINTBUFFER)
  BeginBufferedPaint(
      _In_ HDC hdcTarget,
-@@ -1833,6 +2021,7 @@ BeginBufferedPaint(
+@@ -1833,6 +2019,7 @@ BeginBufferedPaint(
  //    hBufferedPaint   - handle to buffered paint context
  //    fUpdateTarget    - update target DC
  //------------------------------------------------------------------------
@@ -718,7 +716,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  EndBufferedPaint(
      _In_ HPAINTBUFFER hBufferedPaint,
-@@ -1845,6 +2034,7 @@ EndBufferedPaint(
+@@ -1845,6 +2032,7 @@ EndBufferedPaint(
  //    hBufferedPaint             - handle to buffered paint context
  //    prc                        - pointer to receive target rectangle
  //------------------------------------------------------------------------
@@ -726,7 +724,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetBufferedPaintTargetRect(
      _In_ HPAINTBUFFER hBufferedPaint,
-@@ -1856,6 +2046,7 @@ GetBufferedPaintTargetRect(
+@@ -1856,6 +2044,7 @@ GetBufferedPaintTargetRect(
  //
  //    hBufferedPaint           - handle to buffered paint context
  //------------------------------------------------------------------------
@@ -734,7 +732,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(HDC)
  GetBufferedPaintTargetDC(
      _In_ HPAINTBUFFER hBufferedPaint
-@@ -1866,6 +2057,7 @@ GetBufferedPaintTargetDC(
+@@ -1866,6 +2055,7 @@ GetBufferedPaintTargetDC(
  //
  //    hBufferedPaint     - handle to buffered paint context
  //------------------------------------------------------------------------
@@ -742,7 +740,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(HDC)
  GetBufferedPaintDC(
      _In_ HPAINTBUFFER hBufferedPaint
-@@ -1879,6 +2071,7 @@ GetBufferedPaintDC(
+@@ -1879,6 +2069,7 @@ GetBufferedPaintDC(
  //    pcxRow               - pointer to receive width of buffer bitmap, in pixels;
  //                           this value may not necessarily be equal to the buffer width
  //------------------------------------------------------------------------
@@ -750,7 +748,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  GetBufferedPaintBits(
      _In_ HPAINTBUFFER hBufferedPaint,
-@@ -1892,6 +2085,7 @@ GetBufferedPaintBits(
+@@ -1892,6 +2083,7 @@ GetBufferedPaintBits(
  //    hBufferedPaint     - handle to buffered paint context
  //    prc                - rectangle to clear; NULL specifies entire buffer
  //------------------------------------------------------------------------
@@ -758,7 +756,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  BufferedPaintClear(
      _In_ HPAINTBUFFER hBufferedPaint,
-@@ -1905,6 +2099,7 @@ BufferedPaintClear(
+@@ -1905,6 +2097,7 @@ BufferedPaintClear(
  //    prc                   - rectangle to set alpha in; NULL specifies entire buffer
  //    alpha                 - alpha value to set in the given rectangle
  //------------------------------------------------------------------------
@@ -766,7 +764,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  BufferedPaintSetAlpha(
      _In_ HPAINTBUFFER hBufferedPaint,
-@@ -1920,6 +2115,7 @@ BufferedPaintSetAlpha(
+@@ -1920,6 +2113,7 @@ BufferedPaintSetAlpha(
  //
  //    hwnd                           - window on which to stop all animations
  //------------------------------------------------------------------------
@@ -774,7 +772,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI
  BufferedPaintStopAllAnimations(
      _In_ HWND hwnd
-@@ -1927,6 +2123,7 @@ BufferedPaintStopAllAnimations(
+@@ -1927,6 +2121,7 @@ BufferedPaintStopAllAnimations(
  
  typedef HANDLE HANIMATIONBUFFER;  // handle to a buffered paint animation
  
@@ -782,7 +780,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(HANIMATIONBUFFER)
  BeginBufferedAnimation(
      _In_ HWND hwnd,
-@@ -1939,12 +2136,14 @@ BeginBufferedAnimation(
+@@ -1939,12 +2134,14 @@ BeginBufferedAnimation(
      _Out_ HDC *phdcTo
      );
  
@@ -797,7 +795,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL)
  BufferedPaintRenderAnimation(
      _In_ HWND hwnd,
-@@ -1956,6 +2155,7 @@ BufferedPaintRenderAnimation(
+@@ -1956,6 +2153,7 @@ BufferedPaintRenderAnimation(
  // process (themes are active). 
  // Roughly equivalent to "DwmIsCompositionEnabled() && IsAppthemed()"
  //----------------------------------------------------------------------------
@@ -805,7 +803,7 @@ index 2ce29c89..f053ec33 100644
  THEMEAPI_(BOOL) IsCompositionActive();
  
  //------------------------------------------------------------------------
-@@ -1969,6 +2169,7 @@ THEMEAPI_(BOOL) IsCompositionActive();
+@@ -1969,6 +2167,7 @@ THEMEAPI_(BOOL) IsCompositionActive();
  //  iPropId             - property id 
  //  pdwDuration         - receives the transition duration
  //------------------------------------------------------------------------

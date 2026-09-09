@@ -15,9 +15,7 @@
 
 #include <apiset.h>
 #include <apisetcconv.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifdef _CONTRACT_GEN
 #include <nt.h>

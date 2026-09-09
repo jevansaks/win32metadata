@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Filter.h b/generation/WinSDK/RecompiledIdlHeaders/um/Filter.h
-index a127b353..be3339a3 100644
+index a127b353..fa731483 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Filter.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Filter.h
-@@ -81,6 +81,9 @@ extern "C"{
+@@ -81,6 +81,7 @@ extern "C"{
  //
  //--------------------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if !defined(_TAGFULLPROPSPEC_DEFINED_)
-@@ -194,6 +197,7 @@ EXTERN_C const IID IID_IFilter;
+@@ -194,6 +195,7 @@ EXTERN_C const IID IID_IFilter;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index a127b353..be3339a3 100644
      MIDL_INTERFACE("89BCB740-6119-101A-BCB7-00DD010655AF")
      IFilter : public IUnknown
      {
-@@ -553,14 +557,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -553,14 +555,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

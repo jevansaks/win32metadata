@@ -1,14 +1,12 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/netfw.h b/generation/WinSDK/RecompiledIdlHeaders/um/netfw.h
-index cc07341b..35d85b17 100644
+index cc07341b..9c09d5b6 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/netfw.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/netfw.h
-@@ -396,9 +396,13 @@ extern "C"{
+@@ -396,9 +396,11 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -16,7 +14,7 @@ index cc07341b..35d85b17 100644
  HRESULT
  WINAPI
  NetworkIsolationSetupAppContainerBinaries (
-@@ -485,6 +489,7 @@ typedef void (CALLBACK *PAC_CHANGES_CALLBACK_FN) (
+@@ -485,6 +487,7 @@ typedef void (CALLBACK *PAC_CHANGES_CALLBACK_FN) (
      _In_ const INET_FIREWALL_AC_CHANGE *pChange
      );
  
@@ -24,7 +22,7 @@ index cc07341b..35d85b17 100644
  DWORD
  WINAPI
  NetworkIsolationRegisterForAppContainerChanges(
-@@ -493,23 +498,28 @@ NetworkIsolationRegisterForAppContainerChanges(
+@@ -493,23 +496,28 @@ NetworkIsolationRegisterForAppContainerChanges(
      _In_opt_ PVOID context,
      _Out_ HANDLE *registrationObject
      );
@@ -53,7 +51,7 @@ index cc07341b..35d85b17 100644
  DWORD
  WINAPI
  NetworkIsolationEnumAppContainers(
-@@ -517,12 +527,14 @@ NetworkIsolationEnumAppContainers(
+@@ -517,12 +525,14 @@ NetworkIsolationEnumAppContainers(
      _Out_ DWORD *pdwNumPublicAppCs,
      _Outptr_result_buffer_(*pdwNumPublicAppCs) PINET_FIREWALL_APP_CONTAINER *ppPublicAppCs 
      );
@@ -68,7 +66,7 @@ index cc07341b..35d85b17 100644
  DWORD
  WINAPI
  NetworkIsolationSetAppContainerConfig(
-@@ -540,6 +552,7 @@ typedef enum _NETISO_ERROR_TYPE
+@@ -540,6 +550,7 @@ typedef enum _NETISO_ERROR_TYPE
      NETISO_ERROR_TYPE_MAX                       = 0x04
  } NETISO_ERROR_TYPE;
  #endif //__NET_ISOLATION_DIAG_TYPES__
@@ -76,7 +74,7 @@ index cc07341b..35d85b17 100644
  DWORD
  WINAPI
  NetworkIsolationDiagnoseConnectFailureAndGetInfo(
-@@ -555,6 +568,8 @@ typedef void (CALLBACK *PNETISO_EDP_ID_CALLBACK_FN) (
+@@ -555,6 +566,8 @@ typedef void (CALLBACK *PNETISO_EDP_ID_CALLBACK_FN) (
      );
  #define NETISO_GEID_FOR_WDAG 0x01
  #define NETISO_GEID_FOR_NEUTRAL_AWARE 0x02
@@ -85,7 +83,7 @@ index cc07341b..35d85b17 100644
  DWORD
  WINAPI
  NetworkIsolationGetEnterpriseIdAsync(
-@@ -564,6 +579,8 @@ NetworkIsolationGetEnterpriseIdAsync(
+@@ -564,6 +577,8 @@ NetworkIsolationGetEnterpriseIdAsync(
      _In_   PNETISO_EDP_ID_CALLBACK_FN callback,
      _Out_  HANDLE *hOperation 
      );
@@ -94,7 +92,7 @@ index cc07341b..35d85b17 100644
  DWORD
  WINAPI
  NetworkIsolationGetEnterpriseIdClose(
-@@ -664,6 +681,7 @@ EXTERN_C const IID IID_INetFwRemoteAdminSettings;
+@@ -664,6 +679,7 @@ EXTERN_C const IID IID_INetFwRemoteAdminSettings;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -102,7 +100,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("D4BECDDF-6F73-4A83-B832-9C66874CD20E")
      INetFwRemoteAdminSettings : public IDispatch
      {
-@@ -904,6 +922,7 @@ EXTERN_C const IID IID_INetFwIcmpSettings;
+@@ -904,6 +920,7 @@ EXTERN_C const IID IID_INetFwIcmpSettings;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -110,7 +108,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("A6207B2E-7CDD-426A-951E-5E1CBC5AFEAD")
      INetFwIcmpSettings : public IDispatch
      {
-@@ -1300,6 +1319,7 @@ EXTERN_C const IID IID_INetFwOpenPort;
+@@ -1300,6 +1317,7 @@ EXTERN_C const IID IID_INetFwOpenPort;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -118,7 +116,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("E0483BA0-47FF-4D9C-A6D6-7741D0B195F7")
      INetFwOpenPort : public IDispatch
      {
-@@ -1631,6 +1651,7 @@ EXTERN_C const IID IID_INetFwOpenPorts;
+@@ -1631,6 +1649,7 @@ EXTERN_C const IID IID_INetFwOpenPorts;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -126,7 +124,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("C0E9D7FA-E07E-430A-B19A-090CE82D92E2")
      INetFwOpenPorts : public IDispatch
      {
-@@ -1844,6 +1865,7 @@ EXTERN_C const IID IID_INetFwService;
+@@ -1844,6 +1863,7 @@ EXTERN_C const IID IID_INetFwService;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -134,7 +132,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("79FD57C8-908E-4A36-9888-D5B3F0A444CF")
      INetFwService : public IDispatch
      {
-@@ -2136,6 +2158,7 @@ EXTERN_C const IID IID_INetFwServices;
+@@ -2136,6 +2156,7 @@ EXTERN_C const IID IID_INetFwServices;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -142,7 +140,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("79649BB4-903E-421B-94C9-79848E79F6EE")
      INetFwServices : public IDispatch
      {
-@@ -2315,6 +2338,7 @@ EXTERN_C const IID IID_INetFwAuthorizedApplication;
+@@ -2315,6 +2336,7 @@ EXTERN_C const IID IID_INetFwAuthorizedApplication;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -150,7 +148,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("B5E64FFA-C2C5-444E-A301-FB5E00018050")
      INetFwAuthorizedApplication : public IDispatch
      {
-@@ -2607,6 +2631,7 @@ EXTERN_C const IID IID_INetFwAuthorizedApplications;
+@@ -2607,6 +2629,7 @@ EXTERN_C const IID IID_INetFwAuthorizedApplications;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -158,7 +156,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("644EFD52-CCF9-486C-97A2-39F352570B30")
      INetFwAuthorizedApplications : public IDispatch
      {
-@@ -2812,6 +2837,7 @@ EXTERN_C const IID IID_INetFwRule;
+@@ -2812,6 +2835,7 @@ EXTERN_C const IID IID_INetFwRule;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -166,7 +164,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("AF230D27-BABA-4E42-ACED-F524F22CFCE2")
      INetFwRule : public IDispatch
      {
-@@ -3416,6 +3442,7 @@ EXTERN_C const IID IID_INetFwRule2;
+@@ -3416,6 +3440,7 @@ EXTERN_C const IID IID_INetFwRule2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -174,7 +172,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("9C27C8DA-189B-4DDE-89F7-8B39A316782C")
      INetFwRule2 : public INetFwRule
      {
-@@ -3903,6 +3930,7 @@ EXTERN_C const IID IID_INetFwRule3;
+@@ -3903,6 +3928,7 @@ EXTERN_C const IID IID_INetFwRule3;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -182,7 +180,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("B21563FF-D696-4222-AB46-4E89B73AB34A")
      INetFwRule3 : public INetFwRule2
      {
-@@ -4539,6 +4567,7 @@ EXTERN_C const IID IID_INetFwRules;
+@@ -4539,6 +4565,7 @@ EXTERN_C const IID IID_INetFwRules;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -190,7 +188,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("9C4C6277-5027-441E-AFAE-CA1F542DA009")
      INetFwRules : public IDispatch
      {
-@@ -4744,6 +4773,7 @@ EXTERN_C const IID IID_INetFwServiceRestriction;
+@@ -4744,6 +4771,7 @@ EXTERN_C const IID IID_INetFwServiceRestriction;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -198,7 +196,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("8267BBE3-F890-491C-B7B6-2DB1EF0E5D2B")
      INetFwServiceRestriction : public IDispatch
      {
-@@ -4939,6 +4969,7 @@ EXTERN_C const IID IID_INetFwProfile;
+@@ -4939,6 +4967,7 @@ EXTERN_C const IID IID_INetFwProfile;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -206,7 +204,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("174A0DDA-E9F9-449D-993B-21AB667CA456")
      INetFwProfile : public IDispatch
      {
-@@ -5257,6 +5288,7 @@ EXTERN_C const IID IID_INetFwPolicy;
+@@ -5257,6 +5286,7 @@ EXTERN_C const IID IID_INetFwPolicy;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -214,7 +212,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("D46D2478-9AC9-4008-9DC7-5563CE5536CC")
      INetFwPolicy : public IDispatch
      {
-@@ -5423,6 +5455,7 @@ EXTERN_C const IID IID_INetFwPolicy2;
+@@ -5423,6 +5453,7 @@ EXTERN_C const IID IID_INetFwPolicy2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -222,7 +220,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("98325047-C671-4174-8D81-DEFCD3F03186")
      INetFwPolicy2 : public IDispatch
      {
-@@ -5917,6 +5950,7 @@ EXTERN_C const IID IID_INetFwMgr;
+@@ -5917,6 +5948,7 @@ EXTERN_C const IID IID_INetFwMgr;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -230,7 +228,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("F7898AF5-CAC4-4632-A2EC-DA06E5111AF2")
      INetFwMgr : public IDispatch
      {
-@@ -6154,6 +6188,7 @@ EXTERN_C const IID IID_INetFwProduct;
+@@ -6154,6 +6186,7 @@ EXTERN_C const IID IID_INetFwProduct;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -238,7 +236,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("71881699-18f4-458b-b892-3ffce5e07f75")
      INetFwProduct : public IDispatch
      {
-@@ -6355,6 +6390,7 @@ EXTERN_C const IID IID_INetFwProducts;
+@@ -6355,6 +6388,7 @@ EXTERN_C const IID IID_INetFwProducts;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -246,7 +244,7 @@ index cc07341b..35d85b17 100644
      MIDL_INTERFACE("39EB36E0-2097-40BD-8AF2-63A13B525362")
      INetFwProducts : public IDispatch
      {
-@@ -6646,14 +6682,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -6646,14 +6680,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

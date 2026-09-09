@@ -17,9 +17,7 @@ Abstract:
 #define __ACCESS_CONTROL_API__
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 
 #include <windows.h>

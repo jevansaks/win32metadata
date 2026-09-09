@@ -9,9 +9,7 @@
 //
 //----------------------------------------------------------------------------
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if !defined(_COML2API_H_)
 #define _COML2API_H_

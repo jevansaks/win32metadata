@@ -35,9 +35,7 @@
 #include <ntrtl.h>
 #include <nturtl.h>
 #include <windows.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #endif // defined(_CONTRACT_GEN)
 
 #ifdef __cplusplus

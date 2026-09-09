@@ -32,9 +32,7 @@
 
 #ifndef __d3dcommon_h__
 #define __d3dcommon_h__
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -638,6 +636,7 @@ enum _D3D_INCLUDE_TYPE
 typedef interface ID3DInclude ID3DInclude;
 #undef INTERFACE
 #define INTERFACE ID3DInclude
+_Win32_metadata_supported_os_(windows6.1)
 DECLARE_INTERFACE(ID3DInclude)
 {
     STDMETHOD(Open)(THIS_ D3D_INCLUDE_TYPE IncludeType, LPCSTR pFileName, LPCVOID pParentData, LPCVOID *ppData, UINT *pBytes) PURE;

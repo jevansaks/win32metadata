@@ -12,9 +12,7 @@
 
 #ifndef _APISETNAMESPACE_
 #define _APISETNAMESPACE_
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #include <apiset.h>
 #include <apisetcconv.h>

@@ -185,9 +185,7 @@
 
 #ifndef INCLUDED_FDI
 #define INCLUDED_FDI    1
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #include <specstrings.h>
 typedef _Null_terminated_ char* LPSTR;

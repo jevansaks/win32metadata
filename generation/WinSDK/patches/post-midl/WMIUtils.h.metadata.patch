@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WMIUtils.h b/generation/WinSDK/RecompiledIdlHeaders/um/WMIUtils.h
-index 3e853a9c..6d86f192 100644
+index 3e853a9c..a3b4dc58 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WMIUtils.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WMIUtils.h
-@@ -113,6 +113,9 @@ extern "C"{
+@@ -113,6 +113,7 @@ extern "C"{
  /*                                                                             */
  /*******************************************************************************/
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family or WinMgmt Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WINMGMT)
  
-@@ -192,6 +195,7 @@ EXTERN_C const IID IID_IWbemPathKeyList;
+@@ -192,6 +193,7 @@ EXTERN_C const IID IID_IWbemPathKeyList;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 3e853a9c..6d86f192 100644
      MIDL_INTERFACE("9AE62877-7544-4bb0-AA26-A13824659ED6")
      IWbemPathKeyList : public IUnknown
      {
-@@ -480,6 +484,7 @@ EXTERN_C const IID IID_IWbemPath;
+@@ -480,6 +482,7 @@ EXTERN_C const IID IID_IWbemPath;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 3e853a9c..6d86f192 100644
      MIDL_INTERFACE("3BC15AF2-736C-477e-9E51-238AF8667DCC")
      IWbemPath : public IUnknown
      {
-@@ -972,6 +977,7 @@ EXTERN_C const IID IID_IWbemQuery;
+@@ -972,6 +975,7 @@ EXTERN_C const IID IID_IWbemQuery;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

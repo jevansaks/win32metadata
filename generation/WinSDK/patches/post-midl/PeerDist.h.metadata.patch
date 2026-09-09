@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h b/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h
-index 5e6276bb..65a74b9a 100644
+index 5e6276bb..32f1fa58 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h
-@@ -21,6 +21,9 @@ Abstract:
+@@ -21,6 +21,7 @@ Abstract:
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -92,21 +95,25 @@ typedef HANDLE      PEERDIST_STREAM_HANDLE;
+@@ -92,21 +93,25 @@ typedef HANDLE      PEERDIST_STREAM_HANDLE;
  typedef PEERDIST_STREAM_HANDLE *     PPEERDIST_STREAM_HANDLE;
  
  
@@ -38,7 +36,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistRegisterForStatusChangeNotification(
          _In_     PEERDIST_INSTANCE_HANDLE hPeerDist,
          _In_opt_ HANDLE hCompletionPort,
-@@ -115,10 +122,13 @@ DWORD WINAPI PeerDistRegisterForStatusChangeNotification(
+@@ -115,10 +120,13 @@ DWORD WINAPI PeerDistRegisterForStatusChangeNotification(
          _Out_    PEERDIST_STATUS * pPeerDistStatus
          );
  
@@ -52,7 +50,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistServerPublishStream(
          _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
               DWORD cbContentIdentifier,
-@@ -130,6 +140,7 @@ DWORD WINAPI PeerDistServerPublishStream(
+@@ -130,6 +138,7 @@ DWORD WINAPI PeerDistServerPublishStream(
          _Out_ PPEERDIST_STREAM_HANDLE phStream
          );
  
@@ -60,7 +58,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistServerPublishAddToStream(
          _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
          _In_ PEERDIST_STREAM_HANDLE hStream,
-@@ -138,23 +149,27 @@ DWORD WINAPI PeerDistServerPublishAddToStream(
+@@ -138,23 +147,27 @@ DWORD WINAPI PeerDistServerPublishAddToStream(
          _In_ LPOVERLAPPED lpOverlapped
          );
  
@@ -88,7 +86,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistServerOpenContentInformation(
          _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
               DWORD cbContentIdentifier,
-@@ -166,6 +181,7 @@ DWORD WINAPI PeerDistServerOpenContentInformation(
+@@ -166,6 +179,7 @@ DWORD WINAPI PeerDistServerOpenContentInformation(
          _Out_ PPEERDIST_CONTENTINFO_HANDLE phContentInfo
          );
  
@@ -96,7 +94,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistServerRetrieveContentInformation(
          _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
          _In_ PEERDIST_CONTENTINFO_HANDLE hContentInfo,
-@@ -174,11 +190,14 @@ DWORD WINAPI PeerDistServerRetrieveContentInformation(
+@@ -174,11 +188,14 @@ DWORD WINAPI PeerDistServerRetrieveContentInformation(
          _In_ LPOVERLAPPED lpOverlapped  // Offset and OffsetHigh are offset into content info
          );
  
@@ -111,7 +109,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistServerCancelAsyncOperation(
          _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
               DWORD cbContentIdentifier,
-@@ -186,6 +205,7 @@ DWORD WINAPI PeerDistServerCancelAsyncOperation(
+@@ -186,6 +203,7 @@ DWORD WINAPI PeerDistServerCancelAsyncOperation(
          _In_ LPOVERLAPPED pOverlapped
          );
  
@@ -119,7 +117,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistClientOpenContent(
          _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
          _In_ PCPEERDIST_CONTENT_TAG pContentTag,
-@@ -194,11 +214,13 @@ DWORD WINAPI PeerDistClientOpenContent(
+@@ -194,11 +212,13 @@ DWORD WINAPI PeerDistClientOpenContent(
          _Out_ PPEERDIST_CONTENT_HANDLE phContentHandle
          );
  
@@ -133,7 +131,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistClientAddContentInformation(
          _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
          _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
-@@ -207,12 +229,14 @@ DWORD WINAPI PeerDistClientAddContentInformation(
+@@ -207,12 +227,14 @@ DWORD WINAPI PeerDistClientAddContentInformation(
          _In_ LPOVERLAPPED lpOverlapped
          );
  
@@ -148,7 +146,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistClientAddData(
          _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
          _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
-@@ -221,6 +245,7 @@ DWORD WINAPI PeerDistClientAddData(
+@@ -221,6 +243,7 @@ DWORD WINAPI PeerDistClientAddData(
          _In_ LPOVERLAPPED lpOverlapped
          );
  
@@ -156,7 +154,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistClientBlockRead(
          _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
          _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
-@@ -230,6 +255,7 @@ DWORD WINAPI PeerDistClientBlockRead(
+@@ -230,6 +253,7 @@ DWORD WINAPI PeerDistClientBlockRead(
          _In_ LPOVERLAPPED lpOverlapped
          );
  
@@ -164,7 +162,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistClientStreamRead(
          _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
          _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
-@@ -239,6 +265,7 @@ DWORD WINAPI PeerDistClientStreamRead(
+@@ -239,6 +263,7 @@ DWORD WINAPI PeerDistClientStreamRead(
          _In_ LPOVERLAPPED lpOverlapped
          );
  
@@ -172,7 +170,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistClientFlushContent(
          _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
          _In_ PCPEERDIST_CONTENT_TAG pContentTag,
-@@ -247,6 +274,8 @@ DWORD WINAPI PeerDistClientFlushContent(
+@@ -247,6 +272,8 @@ DWORD WINAPI PeerDistClientFlushContent(
          _In_ LPOVERLAPPED lpOverlapped
          );
  
@@ -181,7 +179,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistClientCancelAsyncOperation(
          _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
          _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
-@@ -292,11 +321,13 @@ typedef struct _PEERDIST_CLIENT_BASIC_INFO {
+@@ -292,11 +319,13 @@ typedef struct _PEERDIST_CLIENT_BASIC_INFO {
  
  #ifndef MIDL_PASS
  
@@ -195,7 +193,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistRegisterForStatusChangeNotificationEx(
          _In_      PEERDIST_INSTANCE_HANDLE hPeerDist,
          _In_opt_  HANDLE hCompletionPort,
-@@ -305,12 +336,14 @@ DWORD WINAPI PeerDistRegisterForStatusChangeNotificationEx(
+@@ -305,12 +334,14 @@ DWORD WINAPI PeerDistRegisterForStatusChangeNotificationEx(
          _Inout_ PEERDIST_STATUS_INFO *pPeerDistStatus
          );
  
@@ -210,7 +208,7 @@ index 5e6276bb..65a74b9a 100644
  DWORD WINAPI PeerDistServerOpenContentInformationEx(
          _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
               DWORD cbContentIdentifier,
-@@ -323,6 +356,7 @@ DWORD WINAPI PeerDistServerOpenContentInformationEx(
+@@ -323,6 +354,7 @@ DWORD WINAPI PeerDistServerOpenContentInformationEx(
          _Out_ PPEERDIST_CONTENTINFO_HANDLE phContentInfo
          );
  

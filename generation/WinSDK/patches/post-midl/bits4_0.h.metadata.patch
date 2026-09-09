@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/bits4_0.h b/generation/WinSDK/RecompiledIdlHeaders/um/bits4_0.h
-index 24509159..eb8c81ce 100644
+index 24509159..806c63c1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/bits4_0.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/bits4_0.h
-@@ -103,6 +103,9 @@ extern "C"{
+@@ -103,6 +103,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -123,6 +126,7 @@ EXTERN_C const IID IID_IBitsTokenOptions;
+@@ -123,6 +124,7 @@ EXTERN_C const IID IID_IBitsTokenOptions;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 24509159..eb8c81ce 100644
      MIDL_INTERFACE("9a2584c3-f7d2-457a-9a5e-22b67bffc7d2")
      IBitsTokenOptions : public IUnknown
      {
-@@ -252,6 +256,7 @@ EXTERN_C const IID IID_IBackgroundCopyFile4;
+@@ -252,6 +254,7 @@ EXTERN_C const IID IID_IBackgroundCopyFile4;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

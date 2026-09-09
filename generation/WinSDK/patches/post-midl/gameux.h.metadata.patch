@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gameux.h b/generation/WinSDK/RecompiledIdlHeaders/um/gameux.h
-index 65e7795b..c1995169 100644
+index 65e7795b..35dd9858 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gameux.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gameux.h
-@@ -113,6 +113,9 @@ extern "C"{
+@@ -113,6 +113,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define ID_GDF_XML __GDF_XML
-@@ -758,9 +761,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -758,9 +759,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

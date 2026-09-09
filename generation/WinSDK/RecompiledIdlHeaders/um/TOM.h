@@ -6,9 +6,7 @@
  /* File created by MIDL compiler version 8.00.0594 */
 /* @@MIDL_FILE_HEADING(  ) */
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma warning( disable: 4049 )  /* more than 64k source lines */
 

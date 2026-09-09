@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winver.h b/generation/WinSDK/RecompiledIdlHeaders/um/winver.h
-index 8618aa1a..bf2be4f1 100644
+index 8618aa1a..e382f73c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winver.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winver.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  /*****************************************************************************\
  *                                                                             *
-@@ -31,6 +34,7 @@ extern "C" {
+@@ -31,6 +32,7 @@ extern "C" {
  
  /* ----- Function prototypes ----- */
  
@@ -18,7 +16,7 @@ index 8618aa1a..bf2be4f1 100644
  DWORD
  APIENTRY
  VerFindFileA(
-@@ -43,6 +47,7 @@ VerFindFileA(
+@@ -43,6 +45,7 @@ VerFindFileA(
          _Out_writes_(*puDestDirLen)  LPSTR szDestDir,
          _Inout_                      PUINT puDestDirLen
          );
@@ -26,7 +24,7 @@ index 8618aa1a..bf2be4f1 100644
  DWORD
  APIENTRY
  VerFindFileW(
-@@ -71,6 +76,7 @@ VerFindFileW(
+@@ -71,6 +74,7 @@ VerFindFileW(
  
  #ifndef RC_INVOKED
  
@@ -34,7 +32,7 @@ index 8618aa1a..bf2be4f1 100644
  DWORD
  APIENTRY
  VerInstallFileA(
-@@ -83,6 +89,7 @@ VerInstallFileA(
+@@ -83,6 +87,7 @@ VerInstallFileA(
          _Out_writes_(*puTmpFileLen)  LPSTR szTmpFile,
          _Inout_                      PUINT puTmpFileLen
          );
@@ -42,7 +40,7 @@ index 8618aa1a..bf2be4f1 100644
  DWORD
  APIENTRY
  VerInstallFileW(
-@@ -112,6 +119,8 @@ VerInstallFileW(
+@@ -112,6 +117,8 @@ VerInstallFileW(
  #ifndef RC_INVOKED
  
  /* Returns size of version info in bytes */
@@ -51,7 +49,7 @@ index 8618aa1a..bf2be4f1 100644
  DWORD
  APIENTRY
  GetFileVersionInfoSizeA(
-@@ -119,6 +128,8 @@ GetFileVersionInfoSizeA(
+@@ -119,6 +126,8 @@ GetFileVersionInfoSizeA(
          _Out_opt_ LPDWORD lpdwHandle       /* Information for use by GetFileVersionInfo */
          );
  /* Returns size of version info in bytes */
@@ -60,7 +58,7 @@ index 8618aa1a..bf2be4f1 100644
  DWORD
  APIENTRY
  GetFileVersionInfoSizeW(
-@@ -132,6 +143,8 @@ GetFileVersionInfoSizeW(
+@@ -132,6 +141,8 @@ GetFileVersionInfoSizeW(
  #endif // !UNICODE
  
  /* Read version info into buffer */
@@ -69,7 +67,7 @@ index 8618aa1a..bf2be4f1 100644
  BOOL
  APIENTRY
  GetFileVersionInfoA(
-@@ -141,6 +154,8 @@ GetFileVersionInfoA(
+@@ -141,6 +152,8 @@ GetFileVersionInfoA(
          _Out_writes_bytes_(dwLen) LPVOID lpData            /* Buffer to place the data structure */
          );
  /* Read version info into buffer */
@@ -78,7 +76,7 @@ index 8618aa1a..bf2be4f1 100644
  BOOL
  APIENTRY
  GetFileVersionInfoW(
-@@ -155,7 +170,11 @@ GetFileVersionInfoW(
+@@ -155,7 +168,11 @@ GetFileVersionInfoW(
  #define GetFileVersionInfo  GetFileVersionInfoA
  #endif // !UNICODE
  
@@ -90,7 +88,7 @@ index 8618aa1a..bf2be4f1 100644
  DWORD APIENTRY GetFileVersionInfoSizeExW(_In_ DWORD dwFlags, _In_ LPCWSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
  #ifdef UNICODE
  #define GetFileVersionInfoSizeEx  GetFileVersionInfoSizeExW
-@@ -163,11 +182,15 @@ DWORD APIENTRY GetFileVersionInfoSizeExW(_In_ DWORD dwFlags, _In_ LPCWSTR lpwstr
+@@ -163,11 +180,15 @@ DWORD APIENTRY GetFileVersionInfoSizeExW(_In_ DWORD dwFlags, _In_ LPCWSTR lpwstr
  #define GetFileVersionInfoSizeEx  GetFileVersionInfoSizeExA
  #endif // !UNICODE
  
@@ -106,7 +104,7 @@ index 8618aa1a..bf2be4f1 100644
  BOOL APIENTRY GetFileVersionInfoExW(_In_ DWORD dwFlags,
                                      _In_ LPCWSTR lpwstrFilename,
                                      _Reserved_ DWORD dwHandle,
-@@ -200,6 +223,7 @@ BOOL APIENTRY GetFileVersionInfoExW(_In_ DWORD dwFlags,
+@@ -200,6 +221,7 @@ BOOL APIENTRY GetFileVersionInfoExW(_In_ DWORD dwFlags,
  
  #ifndef RC_INVOKED
  
@@ -114,7 +112,7 @@ index 8618aa1a..bf2be4f1 100644
  DWORD
  APIENTRY
  VerLanguageNameA(
-@@ -207,6 +231,7 @@ VerLanguageNameA(
+@@ -207,6 +229,7 @@ VerLanguageNameA(
          _Out_writes_(cchLang) LPSTR szLang,
          _In_                  DWORD cchLang
          );
@@ -122,7 +120,7 @@ index 8618aa1a..bf2be4f1 100644
  DWORD
  APIENTRY
  VerLanguageNameW(
-@@ -220,6 +245,7 @@ VerLanguageNameW(
+@@ -220,6 +243,7 @@ VerLanguageNameW(
  #define VerLanguageName  VerLanguageNameA
  #endif // !UNICODE
  
@@ -130,7 +128,7 @@ index 8618aa1a..bf2be4f1 100644
  BOOL
  APIENTRY
  VerQueryValueA(
-@@ -228,6 +254,7 @@ VerQueryValueA(
+@@ -228,6 +252,7 @@ VerQueryValueA(
          _Outptr_result_buffer_(_Inexpressible_("buffer can be PWSTR or DWORD*")) LPVOID * lplpBuffer,
          _Out_ PUINT puLen
          );

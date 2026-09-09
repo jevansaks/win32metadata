@@ -5,9 +5,7 @@
 /* at Fri Nov 14 05:07:21 1997
  */
 //@@MIDL_FILE_HEADING(  )
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #include "rpc.h"
 #include "rpcndr.h"

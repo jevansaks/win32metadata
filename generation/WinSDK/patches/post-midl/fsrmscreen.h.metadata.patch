@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fsrmscreen.h b/generation/WinSDK/RecompiledIdlHeaders/um/fsrmscreen.h
-index 659a0b0f..4c84ed4b 100644
+index 659a0b0f..927c5fd8 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fsrmscreen.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fsrmscreen.h
-@@ -131,6 +131,9 @@ extern "C"{
+@@ -131,6 +131,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -179,6 +182,7 @@ EXTERN_C const IID IID_IFsrmFileGroup;
+@@ -179,6 +180,7 @@ EXTERN_C const IID IID_IFsrmFileGroup;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("8dd04909-0e34-4d55-afaa-89e1f1a1bbb9")
      IFsrmFileGroup : public IFsrmObject
      {
-@@ -435,6 +439,7 @@ EXTERN_C const IID IID_IFsrmFileGroupImported;
+@@ -435,6 +437,7 @@ EXTERN_C const IID IID_IFsrmFileGroupImported;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("ad55f10b-5f11-4be7-94ef-d9ee2e470ded")
      IFsrmFileGroupImported : public IFsrmFileGroup
      {
-@@ -694,6 +699,7 @@ EXTERN_C const IID IID_IFsrmFileGroupManager;
+@@ -694,6 +697,7 @@ EXTERN_C const IID IID_IFsrmFileGroupManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("426677d5-018c-485c-8a51-20b86d00bdc4")
      IFsrmFileGroupManager : public IDispatch
      {
-@@ -915,6 +921,7 @@ EXTERN_C const IID IID_IFsrmFileScreenBase;
+@@ -915,6 +919,7 @@ EXTERN_C const IID IID_IFsrmFileScreenBase;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("f3637e80-5b22-4a2b-a637-bbb642b41cfc")
      IFsrmFileScreenBase : public IFsrmObject
      {
-@@ -1175,6 +1182,7 @@ EXTERN_C const IID IID_IFsrmFileScreen;
+@@ -1175,6 +1180,7 @@ EXTERN_C const IID IID_IFsrmFileScreen;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("5f6325d3-ce88-4733-84c1-2d6aefc5ea07")
      IFsrmFileScreen : public IFsrmFileScreenBase
      {
-@@ -1488,6 +1496,7 @@ EXTERN_C const IID IID_IFsrmFileScreenException;
+@@ -1488,6 +1494,7 @@ EXTERN_C const IID IID_IFsrmFileScreenException;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("bee7ce02-df77-4515-9389-78f01c5afc1a")
      IFsrmFileScreenException : public IFsrmObject
      {
-@@ -1705,6 +1714,7 @@ EXTERN_C const IID IID_IFsrmFileScreenManager;
+@@ -1705,6 +1712,7 @@ EXTERN_C const IID IID_IFsrmFileScreenManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("ff4fa04e-5a94-4bda-a3a0-d5b4d3c52eba")
      IFsrmFileScreenManager : public IDispatch
      {
-@@ -1990,6 +2000,7 @@ EXTERN_C const IID IID_IFsrmFileScreenTemplate;
+@@ -1990,6 +1998,7 @@ EXTERN_C const IID IID_IFsrmFileScreenTemplate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("205bebf8-dd93-452a-95a6-32b566b35828")
      IFsrmFileScreenTemplate : public IFsrmFileScreenBase
      {
-@@ -2285,6 +2296,7 @@ EXTERN_C const IID IID_IFsrmFileScreenTemplateImported;
+@@ -2285,6 +2294,7 @@ EXTERN_C const IID IID_IFsrmFileScreenTemplateImported;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("e1010359-3e5d-4ecd-9fe4-ef48622fdf30")
      IFsrmFileScreenTemplateImported : public IFsrmFileScreenTemplate
      {
-@@ -2587,6 +2599,7 @@ EXTERN_C const IID IID_IFsrmFileScreenTemplateManager;
+@@ -2587,6 +2597,7 @@ EXTERN_C const IID IID_IFsrmFileScreenTemplateManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 659a0b0f..4c84ed4b 100644
      MIDL_INTERFACE("cfe36cba-1949-4e74-a14f-f1d580ceaf13")
      IFsrmFileScreenTemplateManager : public IDispatch
      {
-@@ -2824,19 +2837,31 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -2824,19 +2835,31 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

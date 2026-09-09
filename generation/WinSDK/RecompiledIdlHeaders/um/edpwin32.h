@@ -14,9 +14,7 @@
 
 #ifndef _EDPWIN32_H_
 #define _EDPWIN32_H_
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef NT_INCLUDED
 #include <winnt.h>

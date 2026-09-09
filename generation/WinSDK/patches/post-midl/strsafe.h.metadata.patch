@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/strsafe.h b/generation/WinSDK/RecompiledIdlHeaders/shared/strsafe.h
-index bb675c4c..414a7235 100644
+index bb675c4c..79dda8b4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/strsafe.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/strsafe.h
-@@ -20,6 +20,9 @@
+@@ -20,6 +20,7 @@
  #include <stdarg.h>         // for va_start, etc.
  #include <specstrings.h>    // for _In_, etc.
  #include <winapifamily.h>   // for WINAPI_FAMILY_PARTITION()
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if !defined(_W64)
  #if !defined(__midl) && (defined(_X86_) || defined(_M_IX86) || defined(_ARM_) || defined(_M_ARM)) && (_MSC_VER >= 1300)
-@@ -534,6 +537,7 @@ return value of this function.
+@@ -534,6 +535,7 @@ return value of this function.
  #endif // !UNICODE
  
  
@@ -20,7 +18,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCopyA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -562,6 +566,7 @@ STRSAFEAPI
+@@ -562,6 +564,7 @@ STRSAFEAPI
  
  
  
@@ -28,7 +26,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCopyW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -673,6 +678,7 @@ return value of this function.
+@@ -673,6 +676,7 @@ return value of this function.
  #endif // !UNICODE
  
  
@@ -36,7 +34,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCopyA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -705,6 +711,7 @@ STRSAFEAPI
+@@ -705,6 +709,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable : __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -44,7 +42,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCopyW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -846,6 +853,7 @@ return value of this function
+@@ -846,6 +851,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -52,7 +50,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCopyExA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -968,6 +976,7 @@ STRSAFEAPI
+@@ -968,6 +974,7 @@ STRSAFEAPI
  
  
  
@@ -60,7 +58,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCopyExW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -1200,6 +1209,7 @@ return value of this function
+@@ -1200,6 +1207,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -68,7 +66,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCopyExA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -1327,6 +1337,7 @@ STRSAFEAPI
+@@ -1327,6 +1335,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -76,7 +74,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCopyExW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -1537,6 +1548,7 @@ return value of this function.
+@@ -1537,6 +1546,7 @@ return value of this function.
  #endif // !UNICODE
  
  
@@ -84,7 +82,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCopyNA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -1575,6 +1587,7 @@ STRSAFEAPI
+@@ -1575,6 +1585,7 @@ STRSAFEAPI
  
  
  
@@ -92,7 +90,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCopyNW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -1699,6 +1712,7 @@ return value of this function.
+@@ -1699,6 +1710,7 @@ return value of this function.
  #endif // !UNICODE
  
  
@@ -100,7 +98,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCopyNA(
              _Out_writes_bytes_(cbDest) STRSAFE_LPSTR pszDest,
-@@ -1739,6 +1753,7 @@ STRSAFEAPI
+@@ -1739,6 +1751,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable : __WARNING_POTENTIAL_BUFFER_OVERFLOW_HIGH_PRIORITY)
  
@@ -108,7 +106,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCopyNW(
              _Out_writes_bytes_(cbDest) STRSAFE_LPWSTR pszDest,
-@@ -1897,6 +1912,7 @@ return value of this function
+@@ -1897,6 +1910,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -116,7 +114,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCopyNExA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -2020,6 +2036,7 @@ STRSAFEAPI
+@@ -2020,6 +2034,7 @@ STRSAFEAPI
  
  
  
@@ -124,7 +122,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCopyNExW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -2260,6 +2277,7 @@ return value of this function
+@@ -2260,6 +2275,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -132,7 +130,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCopyNExA(
              _Out_writes_bytes_(cbDest) STRSAFE_LPSTR pszDest,
-@@ -2385,6 +2403,7 @@ STRSAFEAPI
+@@ -2385,6 +2401,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable : __WARNING_POTENTIAL_BUFFER_OVERFLOW_HIGH_PRIORITY)
  
@@ -140,7 +138,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCopyNExW(
              _Out_writes_bytes_(cbDest) STRSAFE_LPWSTR pszDest,
-@@ -2584,6 +2603,7 @@ return value of this function
+@@ -2584,6 +2601,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -148,7 +146,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCatA(
              _Inout_updates_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -2612,6 +2632,7 @@ STRSAFEAPI
+@@ -2612,6 +2630,7 @@ STRSAFEAPI
  
  
  
@@ -156,7 +154,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCatW(
              _Inout_updates_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -2717,6 +2738,7 @@ return value of this function
+@@ -2717,6 +2736,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -164,7 +162,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCatA(
              _Inout_updates_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -2746,6 +2768,7 @@ STRSAFEAPI
+@@ -2746,6 +2766,7 @@ STRSAFEAPI
  
  
  
@@ -172,7 +170,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCatW(
              _Inout_updates_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -2888,6 +2911,7 @@ return value of this function
+@@ -2888,6 +2909,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -180,7 +178,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCatExA(
              _Inout_updates_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -2999,6 +3023,7 @@ STRSAFEAPI
+@@ -2999,6 +3021,7 @@ STRSAFEAPI
  
  
  
@@ -188,7 +186,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCatExW(
              _Inout_updates_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -3223,6 +3248,7 @@ return value of this function
+@@ -3223,6 +3246,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -196,7 +194,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCatExA(
              _Inout_updates_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -3331,6 +3357,7 @@ STRSAFEAPI
+@@ -3331,6 +3355,7 @@ STRSAFEAPI
  
  
  
@@ -204,7 +202,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCatExW(
              _Inout_updates_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -3520,6 +3547,7 @@ return value of this function
+@@ -3520,6 +3545,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -212,7 +210,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCatNA(
              _Inout_updates_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -3556,6 +3584,7 @@ STRSAFEAPI
+@@ -3556,6 +3582,7 @@ STRSAFEAPI
  
  
  
@@ -220,7 +218,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCatNW(
              _Inout_updates_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -3675,6 +3704,7 @@ return value of this function
+@@ -3675,6 +3702,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -228,7 +226,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCatNA(
              _Inout_updates_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -3714,6 +3744,7 @@ STRSAFEAPI
+@@ -3714,6 +3742,7 @@ STRSAFEAPI
  
  
  
@@ -236,7 +234,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCatNW(
              _Inout_updates_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -3869,6 +3900,7 @@ return value of this function
+@@ -3869,6 +3898,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -244,7 +242,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCatNExA(
              _Inout_updates_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -3981,6 +4013,7 @@ STRSAFEAPI
+@@ -3981,6 +4011,7 @@ STRSAFEAPI
  
  
  
@@ -252,7 +250,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchCatNExW(
              _Inout_updates_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -4209,6 +4242,7 @@ return value of this function
+@@ -4209,6 +4240,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -260,7 +258,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCatNExA(
              _Inout_updates_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -4322,6 +4356,7 @@ STRSAFEAPI
+@@ -4322,6 +4354,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable : __WARNING_POTENTIAL_BUFFER_OVERFLOW_HIGH_PRIORITY)
  
@@ -268,7 +266,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbCatNExW(
              _Inout_updates_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -4516,6 +4551,7 @@ return value of this function
+@@ -4516,6 +4549,7 @@ return value of this function
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -276,7 +274,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchVPrintfA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -4550,6 +4586,7 @@ STRSAFEAPI
+@@ -4550,6 +4584,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -284,7 +282,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchVPrintfW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -4619,6 +4656,7 @@ STRSAFEAPI
+@@ -4619,6 +4654,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -292,7 +290,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchVPrintf_lA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -4651,6 +4689,7 @@ STRSAFEAPI
+@@ -4651,6 +4687,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -300,7 +298,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchVPrintf_lW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -4762,6 +4801,7 @@ return value of this function
+@@ -4762,6 +4799,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -308,7 +306,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbVPrintfA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -4795,6 +4835,7 @@ STRSAFEAPI
+@@ -4795,6 +4833,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable : __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -316,7 +314,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbVPrintfW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -4865,6 +4906,7 @@ STRSAFEAPI
+@@ -4865,6 +4904,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -324,7 +322,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbVPrintf_lA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -4895,6 +4937,7 @@ STRSAFEAPI
+@@ -4895,6 +4935,7 @@ STRSAFEAPI
  
  
  
@@ -332,7 +330,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbVPrintf_lW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -5006,6 +5049,7 @@ return value of this function
+@@ -5006,6 +5047,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -340,7 +338,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchPrintfA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -5041,6 +5085,7 @@ STRSAFEAPI
+@@ -5041,6 +5083,7 @@ STRSAFEAPI
  
  
  
@@ -348,7 +346,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchPrintfW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -5114,6 +5159,7 @@ STRSAFEAPI
+@@ -5114,6 +5157,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -356,7 +354,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchPrintf_lA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -5152,6 +5198,7 @@ STRSAFEAPI
+@@ -5152,6 +5196,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -364,7 +362,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchPrintf_lW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -5269,6 +5316,7 @@ return value of this function
+@@ -5269,6 +5314,7 @@ return value of this function
  #endif // !UNICODE
  
  
@@ -372,7 +370,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbPrintfA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -5308,6 +5356,7 @@ STRSAFEAPI
+@@ -5308,6 +5354,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable : __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -380,7 +378,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbPrintfW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -5384,6 +5433,7 @@ STRSAFEAPI
+@@ -5384,6 +5431,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -388,7 +386,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbPrintf_lA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -5420,6 +5470,7 @@ STRSAFEAPI
+@@ -5420,6 +5468,7 @@ STRSAFEAPI
  
  
  
@@ -396,7 +394,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbPrintf_lW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -5571,6 +5622,7 @@ return value of this function
+@@ -5571,6 +5620,7 @@ return value of this function
  #pragma warning(push)
  #pragma warning(disable : __WARNING_INCORRECT_ANNOTATION)
  
@@ -404,7 +402,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchPrintfExA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -5704,6 +5756,7 @@ STRSAFEAPI
+@@ -5704,6 +5754,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable : __WARNING_INCORRECT_ANNOTATION)
  
@@ -412,7 +410,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchPrintfExW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -5875,6 +5928,7 @@ STRSAFEAPI
+@@ -5875,6 +5926,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -420,7 +418,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchPrintf_lExA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -6006,6 +6060,7 @@ STRSAFEAPI
+@@ -6006,6 +6058,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -428,7 +426,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchPrintf_lExW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -6251,6 +6306,7 @@ return value of this function
+@@ -6251,6 +6304,7 @@ return value of this function
  #pragma warning(push)
  #pragma warning(disable : __WARNING_INCORRECT_ANNOTATION)
  
@@ -436,7 +434,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbPrintfExA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -6387,6 +6443,7 @@ STRSAFEAPI
+@@ -6387,6 +6441,7 @@ STRSAFEAPI
  #pragma warning(disable : __WARNING_INCORRECT_ANNOTATION)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -444,7 +442,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbPrintfExW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -6558,6 +6615,7 @@ STRSAFEAPI
+@@ -6558,6 +6613,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -452,7 +450,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbPrintf_lExA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -6686,6 +6744,7 @@ STRSAFEAPI
+@@ -6686,6 +6742,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -460,7 +458,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbPrintf_lExW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -6930,6 +6989,7 @@ return value of this function
+@@ -6930,6 +6987,7 @@ return value of this function
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  #pragma warning(disable : __WARNING_INCORRECT_ANNOTATION)
  
@@ -468,7 +466,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchVPrintfExA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -7059,6 +7119,7 @@ STRSAFEAPI
+@@ -7059,6 +7117,7 @@ STRSAFEAPI
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  #pragma warning(disable : __WARNING_INCORRECT_ANNOTATION)
  
@@ -476,7 +474,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchVPrintfExW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -7225,6 +7286,7 @@ STRSAFEAPI
+@@ -7225,6 +7284,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -484,7 +482,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchVPrintf_lExA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -7351,6 +7413,7 @@ STRSAFEAPI
+@@ -7351,6 +7411,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -492,7 +490,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchVPrintf_lExW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -7591,6 +7654,7 @@ return value of this function
+@@ -7591,6 +7652,7 @@ return value of this function
  #pragma warning(push)
  #pragma warning(disable : __WARNING_INCORRECT_ANNOTATION)
  
@@ -500,7 +498,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbVPrintfExA(
              _Out_writes_bytes_(cbDest) STRSAFE_LPSTR pszDest,
-@@ -7717,6 +7781,7 @@ STRSAFEAPI
+@@ -7717,6 +7779,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable : __WARNING_INCORRECT_ANNOTATION)
  
@@ -508,7 +506,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbVPrintfExW(
              _Out_writes_bytes_(cbDest) STRSAFE_LPWSTR pszDest,
-@@ -7876,6 +7941,7 @@ STRSAFEAPI
+@@ -7876,6 +7939,7 @@ STRSAFEAPI
  #endif // !UNICODE
  
  
@@ -516,7 +514,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbVPrintf_lExA(
              _Out_writes_bytes_(cbDest) STRSAFE_LPSTR pszDest,
-@@ -7997,6 +8063,7 @@ STRSAFEAPI
+@@ -7997,6 +8061,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -524,7 +522,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbVPrintf_lExW(
              _Out_writes_bytes_(cbDest) STRSAFE_LPWSTR pszDest,
-@@ -8193,6 +8260,7 @@ return value of this function.
+@@ -8193,6 +8258,7 @@ return value of this function.
  #endif // !UNICODE
  
  
@@ -532,7 +530,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchGetsA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -8216,6 +8284,7 @@ STRSAFEAPI
+@@ -8216,6 +8282,7 @@ STRSAFEAPI
  
  
  
@@ -540,7 +538,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchGetsW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -8315,6 +8384,7 @@ return value of this function.
+@@ -8315,6 +8382,7 @@ return value of this function.
  #endif // !UNICODE
  
  
@@ -548,7 +546,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbGetsA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -8339,6 +8409,7 @@ STRSAFEAPI
+@@ -8339,6 +8407,7 @@ STRSAFEAPI
  
  
  
@@ -556,7 +554,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbGetsW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -8466,6 +8537,7 @@ return value of this function.
+@@ -8466,6 +8535,7 @@ return value of this function.
  #endif // !UNICODE
  
  
@@ -564,7 +562,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchGetsExA(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -8569,6 +8641,7 @@ STRSAFEAPI
+@@ -8569,6 +8639,7 @@ STRSAFEAPI
  
  
  
@@ -572,7 +570,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCchGetsExW(
              _Out_writes_(cchDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -8775,6 +8848,7 @@ return value of this function.
+@@ -8775,6 +8846,7 @@ return value of this function.
  #endif // !UNICODE
  
  
@@ -580,7 +578,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbGetsExA(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPSTR pszDest,
-@@ -8878,6 +8952,7 @@ STRSAFEAPI
+@@ -8878,6 +8950,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable: __WARNING_POSTCONDITION_NULLTERMINATION_VIOLATION)
  
@@ -588,7 +586,7 @@ index bb675c4c..414a7235 100644
  STRSAFEAPI
      StringCbGetsExW(
              _Out_writes_bytes_(cbDest) _Always_(_Post_z_) STRSAFE_LPWSTR pszDest,
-@@ -9048,6 +9123,7 @@ return value of this function.
+@@ -9048,6 +9121,7 @@ return value of this function.
  #pragma warning(push)
  #pragma warning(disable:__WARNING_POTENTIAL_RANGE_POSTCONDITION_VIOLATION)
  
@@ -596,7 +594,7 @@ index bb675c4c..414a7235 100644
  _Must_inspect_result_
  STRSAFEAPI
      StringCchLengthA(
-@@ -9081,6 +9157,7 @@ STRSAFEAPI
+@@ -9081,6 +9155,7 @@ STRSAFEAPI
  #pragma warning(push)
  #pragma warning(disable:__WARNING_POTENTIAL_RANGE_POSTCONDITION_VIOLATION)
  
@@ -604,7 +602,7 @@ index bb675c4c..414a7235 100644
  _Must_inspect_result_
  STRSAFEAPI
      StringCchLengthW(
-@@ -9177,6 +9254,7 @@ return value of this function.
+@@ -9177,6 +9252,7 @@ return value of this function.
  #endif // !UNICODE
  
  
@@ -612,7 +610,7 @@ index bb675c4c..414a7235 100644
  _Must_inspect_result_
  STRSAFEAPI
      StringCbLengthA(
-@@ -9215,6 +9293,7 @@ STRSAFEAPI
+@@ -9215,6 +9291,7 @@ STRSAFEAPI
  
  
  

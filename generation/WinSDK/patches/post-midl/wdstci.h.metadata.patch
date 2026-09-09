@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wdstci.h b/generation/WinSDK/RecompiledIdlHeaders/um/wdstci.h
-index 960cab9b..3f817530 100644
+index 960cab9b..04e75528 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wdstci.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wdstci.h
-@@ -20,6 +20,9 @@ Environment:
+@@ -20,6 +20,7 @@ Environment:
  #ifndef _WDSTCI_H
  #define _WDSTCI_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -220,12 +223,14 @@ typedef struct _WDS_TRANSPORTCLIENT_CALLBACKS
+@@ -220,12 +221,14 @@ typedef struct _WDS_TRANSPORTCLIENT_CALLBACKS
  
  //----------------------------------------------------------------- Functions.
  
@@ -27,7 +25,7 @@ index 960cab9b..3f817530 100644
  DWORD
  WDSTCIAPI
  WdsTransportClientInitializeSession (
-@@ -234,6 +239,7 @@ WdsTransportClientInitializeSession (
+@@ -234,6 +237,7 @@ WdsTransportClientInitializeSession (
      _Out_ PHANDLE hSessionKey
      );
  
@@ -35,7 +33,7 @@ index 960cab9b..3f817530 100644
  DWORD
  WDSTCIAPI
  WdsTransportClientRegisterCallback (
-@@ -242,12 +248,14 @@ WdsTransportClientRegisterCallback (
+@@ -242,12 +246,14 @@ WdsTransportClientRegisterCallback (
      _In_ PVOID pfnCallback
      );
  
@@ -50,7 +48,7 @@ index 960cab9b..3f817530 100644
  DWORD
  WDSTCIAPI
  WdsTransportClientCompleteReceive (
-@@ -256,6 +264,7 @@ WdsTransportClientCompleteReceive (
+@@ -256,6 +262,7 @@ WdsTransportClientCompleteReceive (
      _In_ PULARGE_INTEGER pullOffset
      );
  
@@ -58,7 +56,7 @@ index 960cab9b..3f817530 100644
  DWORD
  WDSTCIAPI
  WdsTransportClientCancelSession (
-@@ -269,6 +278,7 @@ WdsTransportClientCancelSessionEx (
+@@ -269,6 +276,7 @@ WdsTransportClientCancelSessionEx (
      _In_ DWORD dwErrorCode
      );
  
@@ -66,7 +64,7 @@ index 960cab9b..3f817530 100644
  DWORD
  WDSTCIAPI
  WdsTransportClientWaitForCompletion (
-@@ -276,6 +286,7 @@ WdsTransportClientWaitForCompletion (
+@@ -276,6 +284,7 @@ WdsTransportClientWaitForCompletion (
      _In_ ULONG uTimeout
      );
  
@@ -74,7 +72,7 @@ index 960cab9b..3f817530 100644
  DWORD
  WDSTCIAPI
  WdsTransportClientQueryStatus (
-@@ -284,24 +295,28 @@ WdsTransportClientQueryStatus (
+@@ -284,24 +293,28 @@ WdsTransportClientQueryStatus (
      _Out_ PULONG puErrorCode
      );
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ChString.h b/generation/WinSDK/RecompiledIdlHeaders/um/ChString.h
-index 992fb4d3..6fbdcd8d 100644
+index 992fb4d3..f69fb185 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ChString.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ChString.h
-@@ -16,6 +16,9 @@
+@@ -16,6 +16,7 @@
  #define _CHSTRING_H
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -85,6 +88,7 @@ class POLARITY CHString
+@@ -85,6 +86,7 @@ class POLARITY CHString
  
          // Helper function used to load resource into lpszBuf buffer.
  #ifdef FRAMEWORK_ALLOW_DEPRECATED
@@ -20,7 +18,7 @@ index 992fb4d3..6fbdcd8d 100644
          int LoadStringW(UINT nID, _In_reads_(nMaxBuf)  LPWSTR lpszBuf, UINT nMaxBuf) throw ( CHeap_Exception ) ;
  #endif
  
-@@ -180,6 +184,7 @@ class POLARITY CHString
+@@ -180,6 +182,7 @@ class POLARITY CHString
  // Load string from resource file.
  
  #ifdef FRAMEWORK_ALLOW_DEPRECATED
@@ -28,7 +26,7 @@ index 992fb4d3..6fbdcd8d 100644
          BOOL LoadStringW(UINT nID) throw ( CHeap_Exception ) ;
  #endif
  
-@@ -239,12 +244,14 @@ class POLARITY CHString
+@@ -239,12 +242,14 @@ class POLARITY CHString
  // format using FormatMessage API on passed string
          // Warning: if you pass string inserts to this function, they must
          // be LPCSTRs on Win9x and LPCWSTRs on NT.

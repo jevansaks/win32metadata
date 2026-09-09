@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/UPnP.h b/generation/WinSDK/RecompiledIdlHeaders/um/UPnP.h
-index b54e1a83..59c4822b 100644
+index b54e1a83..10e4b98b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/UPnP.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/UPnP.h
-@@ -330,6 +330,9 @@ extern "C"{
+@@ -330,6 +330,7 @@ extern "C"{
  //
  //--------------------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #pragma warning(push)
-@@ -417,6 +420,7 @@ EXTERN_C const IID IID_IUPnPDeviceFinder;
+@@ -417,6 +418,7 @@ EXTERN_C const IID IID_IUPnPDeviceFinder;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("ADDA3D55-6F72-4319-BFF9-18600A539B10")
      IUPnPDeviceFinder : public IDispatch
      {
-@@ -642,6 +646,7 @@ EXTERN_C const IID IID_IUPnPAddressFamilyControl;
+@@ -642,6 +644,7 @@ EXTERN_C const IID IID_IUPnPAddressFamilyControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("E3BF6178-694E-459F-A5A6-191EA0FFA1C7")
      IUPnPAddressFamilyControl : public IUnknown
      {
-@@ -742,6 +747,7 @@ EXTERN_C const IID IID_IUPnPHttpHeaderControl;
+@@ -742,6 +745,7 @@ EXTERN_C const IID IID_IUPnPHttpHeaderControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("0405AF4F-8B5C-447C-80F2-B75984A31F3C")
      IUPnPHttpHeaderControl : public IUnknown
      {
-@@ -829,6 +835,7 @@ EXTERN_C const IID IID_IUPnPDeviceFinderCallback;
+@@ -829,6 +833,7 @@ EXTERN_C const IID IID_IUPnPDeviceFinderCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("415A984A-88B3-49F3-92AF-0508BEDF0D6C")
      IUPnPDeviceFinderCallback : public IUnknown
      {
-@@ -950,6 +957,7 @@ EXTERN_C const IID IID_IUPnPServices;
+@@ -950,6 +955,7 @@ EXTERN_C const IID IID_IUPnPServices;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("3F8C8E9E-9A7A-4DC8-BC41-FF31FA374956")
      IUPnPServices : public IDispatch
      {
-@@ -1129,6 +1137,7 @@ EXTERN_C const IID IID_IUPnPService;
+@@ -1129,6 +1135,7 @@ EXTERN_C const IID IID_IUPnPService;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("A295019C-DC65-47DD-90DC-7FE918A1AB44")
      IUPnPService : public IDispatch
      {
-@@ -1359,6 +1368,7 @@ EXTERN_C const IID IID_IUPnPAsyncResult;
+@@ -1359,6 +1366,7 @@ EXTERN_C const IID IID_IUPnPAsyncResult;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("4D65FD08-D13E-4274-9C8B-DD8D028C8644")
      IUPnPAsyncResult : public IUnknown
      {
-@@ -1446,6 +1456,7 @@ EXTERN_C const IID IID_IUPnPServiceAsync;
+@@ -1446,6 +1454,7 @@ EXTERN_C const IID IID_IUPnPServiceAsync;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("098BDAF5-5EC1-49e7-A260-B3A11DD8680C")
      IUPnPServiceAsync : public IUnknown
      {
-@@ -1685,6 +1696,7 @@ EXTERN_C const IID IID_IUPnPServiceCallback;
+@@ -1685,6 +1694,7 @@ EXTERN_C const IID IID_IUPnPServiceCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("31fadca9-ab73-464b-b67d-5c1d0f83c8b8")
      IUPnPServiceCallback : public IUnknown
      {
-@@ -1793,6 +1805,7 @@ EXTERN_C const IID IID_IUPnPServiceEnumProperty;
+@@ -1793,6 +1803,7 @@ EXTERN_C const IID IID_IUPnPServiceEnumProperty;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("38873B37-91BB-49f4-B249-2E8EFBB8A816")
      IUPnPServiceEnumProperty : public IUnknown
      {
-@@ -1880,6 +1893,7 @@ EXTERN_C const IID IID_IUPnPServiceDocumentAccess;
+@@ -1880,6 +1891,7 @@ EXTERN_C const IID IID_IUPnPServiceDocumentAccess;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("21905529-0A5E-4589-825D-7E6D87EA6998")
      IUPnPServiceDocumentAccess : public IUnknown
      {
-@@ -1980,6 +1994,7 @@ EXTERN_C const IID IID_IUPnPDevices;
+@@ -1980,6 +1992,7 @@ EXTERN_C const IID IID_IUPnPDevices;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("FDBC0C73-BDA3-4C66-AC4F-F2D96FDAD68C")
      IUPnPDevices : public IDispatch
      {
-@@ -2159,6 +2174,7 @@ EXTERN_C const IID IID_IUPnPDevice;
+@@ -2159,6 +2172,7 @@ EXTERN_C const IID IID_IUPnPDevice;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("3D44D0D1-98C9-4889-ACD1-F9D674BF2221")
      IUPnPDevice : public IDispatch
      {
-@@ -2558,6 +2574,7 @@ EXTERN_C const IID IID_IUPnPDeviceDocumentAccess;
+@@ -2558,6 +2572,7 @@ EXTERN_C const IID IID_IUPnPDeviceDocumentAccess;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("E7772804-3287-418e-9072-CF2B47238981")
      IUPnPDeviceDocumentAccess : public IUnknown
      {
-@@ -2645,6 +2662,7 @@ EXTERN_C const IID IID_IUPnPDeviceDocumentAccessEx;
+@@ -2645,6 +2660,7 @@ EXTERN_C const IID IID_IUPnPDeviceDocumentAccessEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("C4BC4050-6178-4BD1-A4B8-6398321F3247")
      IUPnPDeviceDocumentAccessEx : public IUnknown
      {
-@@ -2732,6 +2750,7 @@ EXTERN_C const IID IID_IUPnPDescriptionDocument;
+@@ -2732,6 +2748,7 @@ EXTERN_C const IID IID_IUPnPDescriptionDocument;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("11d1c1b2-7daa-4c9e-9595-7f82ed206d1e")
      IUPnPDescriptionDocument : public IDispatch
      {
-@@ -2963,6 +2982,7 @@ EXTERN_C const IID IID_IUPnPDeviceFinderAddCallbackWithInterface;
+@@ -2963,6 +2980,7 @@ EXTERN_C const IID IID_IUPnPDeviceFinderAddCallbackWithInterface;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("983dfc0b-1796-44df-8975-ca545b620ee5")
      IUPnPDeviceFinderAddCallbackWithInterface : public IUnknown
      {
-@@ -3058,6 +3078,7 @@ EXTERN_C const IID IID_IUPnPDescriptionDocumentCallback;
+@@ -3058,6 +3076,7 @@ EXTERN_C const IID IID_IUPnPDescriptionDocumentCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index b54e1a83..59c4822b 100644
      MIDL_INTERFACE("77394c69-5486-40d6-9bc3-4991983e02da")
      IUPnPDescriptionDocumentCallback : public IUnknown
      {
-@@ -3237,14 +3258,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -3237,14 +3256,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

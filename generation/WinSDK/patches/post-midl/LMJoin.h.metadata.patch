@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMJoin.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMJoin.h
-index 0bb4c7b5..1f4ebf9a 100644
+index 0bb4c7b5..d49371f0 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/LMJoin.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMJoin.h
-@@ -28,6 +28,9 @@ Notes:
+@@ -28,6 +28,7 @@ Notes:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -173,6 +176,7 @@ typedef struct _DSREG_JOIN_INFO
+@@ -173,6 +174,7 @@ typedef struct _DSREG_JOIN_INFO
  //
  // Joins a machine to the domain.
  //
@@ -20,7 +18,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetJoinDomain(
-@@ -184,6 +188,7 @@ NetJoinDomain(
+@@ -184,6 +186,7 @@ NetJoinDomain(
      _In_ DWORD   fJoinOptions
      );
  
@@ -28,7 +26,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetUnjoinDomain(
-@@ -193,6 +198,7 @@ NetUnjoinDomain(
+@@ -193,6 +196,7 @@ NetUnjoinDomain(
      _In_ DWORD   fUnjoinOptions
      );
  
@@ -36,7 +34,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetRenameMachineInDomain(
-@@ -206,6 +212,7 @@ NetRenameMachineInDomain(
+@@ -206,6 +210,7 @@ NetRenameMachineInDomain(
  //
  // Determine the validity of a name
  //
@@ -44,7 +42,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetValidateName(
-@@ -219,6 +226,7 @@ NetValidateName(
+@@ -219,6 +224,7 @@ NetValidateName(
  //
  // Determines the list of OUs that the client can create a machine account in
  //
@@ -52,7 +50,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetGetJoinableOUs(
-@@ -238,6 +246,7 @@ NetGetJoinableOUs(
+@@ -238,6 +244,7 @@ NetGetJoinableOUs(
  
  #define NET_IGNORE_UNSUPPORTED_FLAGS  0x01
  
@@ -60,7 +58,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetAddAlternateComputerName(
-@@ -248,6 +257,7 @@ NetAddAlternateComputerName(
+@@ -248,6 +255,7 @@ NetAddAlternateComputerName(
      _In_ ULONG Reserved
      );
  
@@ -68,7 +66,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetRemoveAlternateComputerName(
-@@ -258,6 +268,7 @@ NetRemoveAlternateComputerName(
+@@ -258,6 +266,7 @@ NetRemoveAlternateComputerName(
      _In_ ULONG Reserved
      );
  
@@ -76,7 +74,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetSetPrimaryComputerName(
-@@ -281,6 +292,7 @@ typedef enum _NET_COMPUTER_NAME_TYPE {
+@@ -281,6 +290,7 @@ typedef enum _NET_COMPUTER_NAME_TYPE {
      NetComputerNameTypeMax
  } NET_COMPUTER_NAME_TYPE, *PNET_COMPUTER_NAME_TYPE;
  
@@ -84,7 +82,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetEnumerateComputerNames(
-@@ -344,6 +356,7 @@ NetEnumerateComputerNames(
+@@ -344,6 +354,7 @@ NetEnumerateComputerNames(
  //
  #define NETSETUP_PROVISION_CHECK_PWD_ONLY         0x80000000
  
@@ -92,7 +90,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetProvisionComputerAccount(
-@@ -359,6 +372,7 @@ NetProvisionComputerAccount(
+@@ -359,6 +370,7 @@ NetProvisionComputerAccount(
                     LPWSTR *pProvisionTextData
  );
  
@@ -100,7 +98,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetRequestOfflineDomainJoin(
-@@ -398,6 +412,7 @@ typedef struct _NETSETUP_PROVISIONING_PARAMS
+@@ -398,6 +410,7 @@ typedef struct _NETSETUP_PROVISIONING_PARAMS
      LPWSTR  lpPrimaryDNSDomain;     //  _In_
  } NETSETUP_PROVISIONING_PARAMS, *PNETSETUP_PROVISIONING_PARAMS;
  
@@ -108,7 +106,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetCreateProvisioningPackage(
-@@ -408,6 +423,7 @@ NetCreateProvisioningPackage(
+@@ -408,6 +421,7 @@ NetCreateProvisioningPackage(
      _Outptr_opt_result_maybenull_z_ LPWSTR *ppPackageTextData
      );
  
@@ -116,7 +114,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  NET_API_STATUS
  NET_API_FUNCTION
  NetRequestProvisioningPackageInstall(
-@@ -428,6 +444,7 @@ NetRequestProvisioningPackageInstall(
+@@ -428,6 +442,7 @@ NetRequestProvisioningPackageInstall(
  
  #if(_WIN32_WINNT >= _WIN32_WINNT_WIN10)
  
@@ -124,7 +122,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  HRESULT
  NET_API_FUNCTION
  NetGetAadJoinInformation(
-@@ -435,6 +452,7 @@ NetGetAadJoinInformation(
+@@ -435,6 +450,7 @@ NetGetAadJoinInformation(
      _Outptr_result_maybenull_ PDSREG_JOIN_INFO *ppJoinInfo
      );
  
@@ -132,7 +130,7 @@ index 0bb4c7b5..1f4ebf9a 100644
  VOID
  NET_API_FUNCTION
  NetFreeAadJoinInformation(
-@@ -464,6 +482,7 @@ typedef enum _NETSETUP_JOIN_STATUS {
+@@ -464,6 +480,7 @@ typedef enum _NETSETUP_JOIN_STATUS {
  //
  // Determines whether a workstation is joined to a domain or not
  //

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h b/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
-index 7bbb693e..13f62acf 100644
+index 7bbb693e..2fe4b811 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  
  #include <sdkddkver.h>
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  // begin_ntifs
  #ifndef __SSPI_H__
-@@ -29,6 +32,27 @@
+@@ -29,6 +30,27 @@
  extern "C" {
  #endif
  
@@ -40,7 +38,7 @@ index 7bbb693e..13f62acf 100644
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
-@@ -1303,6 +1327,7 @@ typedef void
+@@ -1303,6 +1325,7 @@ typedef void
  #define SECPKG_CONTEXT_EXPORT_TO_KERNEL         0x00000004      // Context is to be transferred to the kernel
  
  
@@ -48,7 +46,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  AcquireCredentialsHandleW(
-@@ -1313,7 +1338,7 @@ AcquireCredentialsHandleW(
+@@ -1313,7 +1336,7 @@ AcquireCredentialsHandleW(
      _In_opt_  LPWSTR pszPrincipal,                // Name of principal
      _In_      LPWSTR pszPackage,                  // Name of package
  #endif
@@ -57,7 +55,7 @@ index 7bbb693e..13f62acf 100644
      _In_opt_  void * pvLogonId,                   // Pointer to logon ID
      _In_opt_  void * pAuthData,                   // Package specific data
      _In_opt_  SEC_GET_KEY_FN pGetKeyFn,           // Pointer to GetKey() func
-@@ -1341,11 +1366,12 @@ typedef SECURITY_STATUS
+@@ -1341,11 +1364,12 @@ typedef SECURITY_STATUS
  
  // end_ntifs
  
@@ -71,7 +69,7 @@ index 7bbb693e..13f62acf 100644
      _In_opt_  void * pvLogonId,                   // Pointer to logon ID
      _In_opt_  void * pAuthData,                   // Package specific data
      _In_opt_  SEC_GET_KEY_FN pGetKeyFn,           // Pointer to GetKey() func
-@@ -1376,6 +1402,7 @@ typedef SECURITY_STATUS
+@@ -1376,6 +1400,7 @@ typedef SECURITY_STATUS
  
  // begin_ntifs
  
@@ -79,7 +77,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  FreeCredentialsHandle(
-@@ -1478,11 +1505,13 @@ typedef void (*SspiAsyncNotifyCallback)(
+@@ -1478,11 +1503,13 @@ typedef void (*SspiAsyncNotifyCallback)(
  //
  // Return a newly initialized context.
  //
@@ -93,7 +91,7 @@ index 7bbb693e..13f62acf 100644
  void SspiFreeAsyncContext(
      _In_opt_ SspiAsyncContext* Handle
  );
-@@ -1493,6 +1522,7 @@ void SspiFreeAsyncContext(
+@@ -1493,6 +1520,7 @@ void SspiFreeAsyncContext(
  //
  // If the context is invalid or currently in use, an error will be returned.
  //
@@ -101,7 +99,7 @@ index 7bbb693e..13f62acf 100644
  NTSTATUS SspiReinitAsyncContext(
      _Inout_ SspiAsyncContext* Handle
  );
-@@ -1500,6 +1530,7 @@ NTSTATUS SspiReinitAsyncContext(
+@@ -1500,6 +1528,7 @@ NTSTATUS SspiReinitAsyncContext(
  //
  // Installs a callback which will be notified on async call completion.
  //
@@ -109,7 +107,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SspiSetAsyncNotifyCallback(
      _In_ SspiAsyncContext* Context,
      _In_ SspiAsyncNotifyCallback Callback,
-@@ -1510,6 +1541,7 @@ SECURITY_STATUS SspiSetAsyncNotifyCallback(
+@@ -1510,6 +1539,7 @@ SECURITY_STATUS SspiSetAsyncNotifyCallback(
  // Determines if the given async context requires notification on completion
  // of the call.
  //
@@ -117,7 +115,7 @@ index 7bbb693e..13f62acf 100644
  BOOLEAN SspiAsyncContextRequiresNotify(
      _In_ SspiAsyncContext* AsyncContext
  );
-@@ -1518,10 +1550,12 @@ BOOLEAN SspiAsyncContextRequiresNotify(
+@@ -1518,10 +1548,12 @@ BOOLEAN SspiAsyncContextRequiresNotify(
  // Gets the current status of an async call. Until the call is completed,
  // status will be SEC_I_ASYNC_CALL_PENDING.
  //
@@ -130,7 +128,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SspiAcquireCredentialsHandleAsyncW(
      _Inout_   SspiAsyncContext* AsyncContext,
  #if ISSP_MODE == 0
-@@ -1540,6 +1574,7 @@ SECURITY_STATUS SspiAcquireCredentialsHandleAsyncW(
+@@ -1540,6 +1572,7 @@ SECURITY_STATUS SspiAcquireCredentialsHandleAsyncW(
      _In_opt_  PTimeStamp ptsExpiry                      // (out) Lifetime (optional)
  );
  
@@ -138,7 +136,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SspiAcquireCredentialsHandleAsyncA(
      _Inout_   SspiAsyncContext* AsyncContext,
      _In_opt_  LPSTR pszPrincipal,                       // Name of principal
-@@ -1553,6 +1588,7 @@ SECURITY_STATUS SspiAcquireCredentialsHandleAsyncA(
+@@ -1553,6 +1586,7 @@ SECURITY_STATUS SspiAcquireCredentialsHandleAsyncA(
      _In_opt_  PTimeStamp ptsExpiry                      // (out) Lifetime (optional)
  );
  
@@ -146,7 +144,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SspiInitializeSecurityContextAsyncW(
      _Inout_     SspiAsyncContext* AsyncContext,
      _In_opt_    PCredHandle phCredential,               // Cred to base context
-@@ -1573,6 +1609,7 @@ SECURITY_STATUS SspiInitializeSecurityContextAsyncW(
+@@ -1573,6 +1607,7 @@ SECURITY_STATUS SspiInitializeSecurityContextAsyncW(
      _In_opt_    PTimeStamp ptsExpiry                    // (out) Life span (OPT)
  );
  
@@ -154,7 +152,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SspiInitializeSecurityContextAsyncA(
      _Inout_     SspiAsyncContext* AsyncContext,
      _In_opt_    PCredHandle phCredential,               // Cred to base context
-@@ -1589,6 +1626,7 @@ SECURITY_STATUS SspiInitializeSecurityContextAsyncA(
+@@ -1589,6 +1624,7 @@ SECURITY_STATUS SspiInitializeSecurityContextAsyncA(
      _In_opt_    PTimeStamp ptsExpiry                    // (out) Life span (OPT)
  );
  
@@ -162,7 +160,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SspiAcceptSecurityContextAsync(
      _Inout_   SspiAsyncContext* AsyncContext,
      _In_opt_  PCredHandle phCredential,               // Cred to base context
-@@ -1602,11 +1640,13 @@ SECURITY_STATUS SspiAcceptSecurityContextAsync(
+@@ -1602,11 +1638,13 @@ SECURITY_STATUS SspiAcceptSecurityContextAsync(
      _In_opt_  PTimeStamp ptsExpiry                    // (out) Life span (OPT)
  );
  
@@ -176,7 +174,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SspiDeleteSecurityContextAsync(
      _Inout_   SspiAsyncContext* AsyncContext,
      _In_      PCtxtHandle phContext                     // Context to delete
-@@ -1636,6 +1676,7 @@ SECURITY_STATUS SspiDeleteSecurityContextAsync(
+@@ -1636,6 +1674,7 @@ SECURITY_STATUS SspiDeleteSecurityContextAsync(
  
  #if ISSP_MODE != 0
  
@@ -184,7 +182,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  ChangeAccountPasswordW(
      _In_    SEC_WCHAR *  pszPackageName,
-@@ -1662,6 +1703,7 @@ typedef SECURITY_STATUS
+@@ -1662,6 +1701,7 @@ typedef SECURITY_STATUS
  
  
  
@@ -192,7 +190,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  ChangeAccountPasswordA(
      _In_    SEC_CHAR *  pszPackageName,
-@@ -1703,6 +1745,7 @@ typedef SECURITY_STATUS
+@@ -1703,6 +1743,7 @@ typedef SECURITY_STATUS
  ///
  ////////////////////////////////////////////////////////////////////////
  
@@ -200,7 +198,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  InitializeSecurityContextW(
-@@ -1713,7 +1756,7 @@ InitializeSecurityContextW(
+@@ -1713,7 +1754,7 @@ InitializeSecurityContextW(
  #else
      _In_opt_ SEC_WCHAR * pszTargetName,         // Name of target
  #endif
@@ -209,7 +207,7 @@ index 7bbb693e..13f62acf 100644
      _In_        unsigned long Reserved1,                // Reserved, MBZ
      _In_        unsigned long TargetDataRep,            // Data rep of target
      _In_opt_    PSecBufferDesc pInput,                  // Input Buffers
-@@ -1722,7 +1765,8 @@ InitializeSecurityContextW(
+@@ -1722,7 +1763,8 @@ InitializeSecurityContextW(
      _Inout_opt_ PSecBufferDesc pOutput,                 // (inout) Output Buffers
      _Out_       unsigned long * pfContextAttr,  // (out) Context attrs
      _Out_opt_   PTimeStamp ptsExpiry                    // (out) Life span (OPT)
@@ -219,7 +217,7 @@ index 7bbb693e..13f62acf 100644
  
  typedef SECURITY_STATUS
  (SEC_ENTRY * INITIALIZE_SECURITY_CONTEXT_FN_W)(
-@@ -1745,12 +1789,13 @@ typedef SECURITY_STATUS
+@@ -1745,12 +1787,13 @@ typedef SECURITY_STATUS
  
  // end_ntifs
  
@@ -234,7 +232,7 @@ index 7bbb693e..13f62acf 100644
      _In_        unsigned long Reserved1,                // Reserved, MBZ
      _In_        unsigned long TargetDataRep,            // Data rep of target
      _In_opt_    PSecBufferDesc pInput,                  // Input Buffers
-@@ -1786,19 +1831,21 @@ typedef SECURITY_STATUS
+@@ -1786,19 +1829,21 @@ typedef SECURITY_STATUS
  
  // begin_ntifs
  
@@ -258,7 +256,7 @@ index 7bbb693e..13f62acf 100644
  
  typedef SECURITY_STATUS
  (SEC_ENTRY * ACCEPT_SECURITY_CONTEXT_FN)(
-@@ -1812,6 +1859,7 @@ typedef SECURITY_STATUS
+@@ -1812,6 +1857,7 @@ typedef SECURITY_STATUS
      unsigned long *,
      PTimeStamp);
  
@@ -266,7 +264,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  CompleteAuthToken(
      _In_ PCtxtHandle phContext,              // Context to complete
-@@ -1823,6 +1871,7 @@ typedef SECURITY_STATUS
+@@ -1823,6 +1869,7 @@ typedef SECURITY_STATUS
      PCtxtHandle,
      PSecBufferDesc);
  
@@ -274,7 +272,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  _Check_return_
  SECURITY_STATUS SEC_ENTRY
-@@ -1835,6 +1884,7 @@ typedef SECURITY_STATUS
+@@ -1835,6 +1882,7 @@ typedef SECURITY_STATUS
      PCtxtHandle);
  
  
@@ -282,7 +280,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  RevertSecurityContext(
-@@ -1846,6 +1896,7 @@ typedef SECURITY_STATUS
+@@ -1846,6 +1894,7 @@ typedef SECURITY_STATUS
      PCtxtHandle);
  
  
@@ -290,7 +288,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  QuerySecurityContextToken(
-@@ -1857,6 +1908,7 @@ typedef SECURITY_STATUS
+@@ -1857,6 +1906,7 @@ typedef SECURITY_STATUS
  (SEC_ENTRY * QUERY_SECURITY_CONTEXT_TOKEN_FN)(
      PCtxtHandle, void * *);
  
@@ -298,7 +296,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  DeleteSecurityContext(
-@@ -1867,6 +1919,7 @@ typedef SECURITY_STATUS
+@@ -1867,6 +1917,7 @@ typedef SECURITY_STATUS
  (SEC_ENTRY * DELETE_SECURITY_CONTEXT_FN)(
      PCtxtHandle);
  
@@ -306,7 +304,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  ApplyControlToken(
-@@ -1878,11 +1931,12 @@ typedef SECURITY_STATUS
+@@ -1878,11 +1929,12 @@ typedef SECURITY_STATUS
  (SEC_ENTRY * APPLY_CONTROL_TOKEN_FN)(
      PCtxtHandle, PSecBufferDesc);
  
@@ -320,7 +318,7 @@ index 7bbb693e..13f62acf 100644
      _Out_ void * pBuffer              // Buffer for attributes
      );
  
-@@ -1892,10 +1946,11 @@ typedef SECURITY_STATUS
+@@ -1892,10 +1944,11 @@ typedef SECURITY_STATUS
      unsigned long,
      void *);
  
@@ -333,7 +331,7 @@ index 7bbb693e..13f62acf 100644
      _Out_writes_bytes_(cbBuffer) void * pBuffer,    // Buffer for attributes
      _In_  unsigned long cbBuffer              // Length of buffer
      );
-@@ -1909,10 +1964,11 @@ typedef SECURITY_STATUS
+@@ -1909,10 +1962,11 @@ typedef SECURITY_STATUS
  
  // end_ntifs
  
@@ -346,7 +344,7 @@ index 7bbb693e..13f62acf 100644
      _Out_ void * pBuffer              // Buffer for attributes
      );
  
-@@ -1922,10 +1978,11 @@ typedef SECURITY_STATUS
+@@ -1922,10 +1976,11 @@ typedef SECURITY_STATUS
      unsigned long,
      void *);
  
@@ -359,7 +357,7 @@ index 7bbb693e..13f62acf 100644
      _Out_writes_bytes_(cbBuffer) void * pBuffer,    // Buffer for attributes
      _In_  unsigned long cbBuffer              // Length of buffer
      );
-@@ -1953,10 +2010,11 @@ typedef SECURITY_STATUS
+@@ -1953,10 +2008,11 @@ typedef SECURITY_STATUS
  
  #if (OSVER(NTDDI_VERSION) > NTDDI_WIN2K)
  
@@ -372,7 +370,7 @@ index 7bbb693e..13f62acf 100644
      _In_reads_bytes_(cbBuffer) void * pBuffer, // Buffer for attributes
      _In_ unsigned long cbBuffer                   // Size (in bytes) of Buffer
      );
-@@ -1972,10 +2030,11 @@ typedef SECURITY_STATUS
+@@ -1972,10 +2028,11 @@ typedef SECURITY_STATUS
  
  // end_ntifs
  
@@ -385,7 +383,7 @@ index 7bbb693e..13f62acf 100644
      _In_reads_bytes_(cbBuffer) void * pBuffer, // Buffer for attributes
      _In_ unsigned long cbBuffer                   // Size (in bytes) of Buffer
      );
-@@ -1997,6 +2056,7 @@ typedef SECURITY_STATUS
+@@ -1997,6 +2054,7 @@ typedef SECURITY_STATUS
  
  // begin_ntifs
  
@@ -393,7 +391,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  QueryCredentialsAttributesW(
-@@ -2028,6 +2088,7 @@ typedef SECURITY_STATUS
+@@ -2028,6 +2086,7 @@ typedef SECURITY_STATUS
  
  // end_ntifs
  
@@ -401,7 +399,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  QueryCredentialsAttributesA(
      _In_    PCredHandle phCredential,           // Credential to query
-@@ -2073,6 +2134,7 @@ typedef SECURITY_STATUS
+@@ -2073,6 +2132,7 @@ typedef SECURITY_STATUS
  
  #if NTDDI_VERSION > NTDDI_WS03
  
@@ -409,7 +407,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  SetCredentialsAttributesW(
-@@ -2093,6 +2155,7 @@ typedef SECURITY_STATUS
+@@ -2093,6 +2153,7 @@ typedef SECURITY_STATUS
  
  // end_ntifs
  
@@ -417,7 +415,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  SetCredentialsAttributesA(
      _In_ PCredHandle phCredential,                // Credential to Set
-@@ -2118,6 +2181,7 @@ typedef SECURITY_STATUS
+@@ -2118,6 +2179,7 @@ typedef SECURITY_STATUS
  
  // begin_ntifs
  
@@ -425,7 +423,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  FreeContextBuffer(
      _Inout_ PVOID pvContextBuffer      // buffer to free
-@@ -2161,6 +2225,7 @@ SecFreeCallContext(
+@@ -2161,6 +2223,7 @@ SecFreeCallContext(
  ////
  //////////////////////////////////////////////////////////////////
  
@@ -433,7 +431,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  MakeSignature(
-@@ -2178,6 +2243,7 @@ typedef SECURITY_STATUS
+@@ -2178,6 +2241,7 @@ typedef SECURITY_STATUS
      unsigned long);
  
  
@@ -441,7 +439,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  VerifySignature(
-@@ -2198,6 +2264,7 @@ typedef SECURITY_STATUS
+@@ -2198,6 +2262,7 @@ typedef SECURITY_STATUS
  #define SECQOP_WRAP_NO_ENCRYPT      0x80000001
  #define SECQOP_WRAP_OOB_DATA        0x40000000
  
@@ -449,7 +447,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  EncryptMessage( _In_    PCtxtHandle         phContext,
                  _In_    unsigned long       fQOP,
-@@ -2209,6 +2276,7 @@ typedef SECURITY_STATUS
+@@ -2209,6 +2274,7 @@ typedef SECURITY_STATUS
      PCtxtHandle, unsigned long, PSecBufferDesc, unsigned long);
  
  
@@ -457,7 +455,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  DecryptMessage( _In_      PCtxtHandle         phContext,
                  _In_      PSecBufferDesc      pMessage,
-@@ -2231,6 +2299,7 @@ typedef SECURITY_STATUS
+@@ -2231,6 +2297,7 @@ typedef SECURITY_STATUS
  ////
  ///////////////////////////////////////////////////////////////////////////
  
@@ -465,7 +463,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  EnumerateSecurityPackagesW(
-@@ -2245,6 +2314,7 @@ typedef SECURITY_STATUS
+@@ -2245,6 +2312,7 @@ typedef SECURITY_STATUS
  
  // end_ntifs
  
@@ -473,7 +471,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  EnumerateSecurityPackagesA(
      _Out_       unsigned long * pcPackages,     // Receives num. packages
-@@ -2266,6 +2336,7 @@ typedef SECURITY_STATUS
+@@ -2266,6 +2334,7 @@ typedef SECURITY_STATUS
  
  // begin_ntifs
  
@@ -481,7 +479,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  QuerySecurityPackageInfoW(
-@@ -2288,6 +2359,7 @@ typedef SECURITY_STATUS
+@@ -2288,6 +2357,7 @@ typedef SECURITY_STATUS
  
  // end_ntifs
  
@@ -489,7 +487,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  QuerySecurityPackageInfoA(
      _In_        LPSTR pszPackageName,           // Name of package
-@@ -2362,11 +2434,12 @@ DelegateSecurityContext(
+@@ -2362,11 +2432,12 @@ DelegateSecurityContext(
  ///////////////////////////////////////////////////////////////////////////
  
  
@@ -503,7 +501,7 @@ index 7bbb693e..13f62acf 100644
      _Out_ PSecBuffer           pPackedContext,        // (out) marshalled context
      _Out_ void * * pToken             // (out, optional) token handle for impersonation
      );
-@@ -2379,6 +2452,7 @@ typedef SECURITY_STATUS
+@@ -2379,6 +2450,7 @@ typedef SECURITY_STATUS
      void * *
      );
  
@@ -511,7 +509,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  SECURITY_STATUS SEC_ENTRY
  ImportSecurityContextW(
-@@ -2405,6 +2479,7 @@ typedef SECURITY_STATUS
+@@ -2405,6 +2477,7 @@ typedef SECURITY_STATUS
      );
  
  // end_ntifs
@@ -519,7 +517,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS SEC_ENTRY
  ImportSecurityContextA(
      _In_  LPSTR                pszPackage,
-@@ -2693,6 +2768,7 @@ typedef struct _SECURITY_FUNCTION_TABLE_A {
+@@ -2693,6 +2766,7 @@ typedef struct _SECURITY_FUNCTION_TABLE_A {
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -527,7 +525,7 @@ index 7bbb693e..13f62acf 100644
  PSecurityFunctionTableA SEC_ENTRY
  InitSecurityInterfaceA(
      void
-@@ -2703,6 +2779,7 @@ typedef PSecurityFunctionTableA
+@@ -2703,6 +2777,7 @@ typedef PSecurityFunctionTableA
  
  // begin_ntifs
  
@@ -535,7 +533,7 @@ index 7bbb693e..13f62acf 100644
  KSECDDDECLSPEC
  PSecurityFunctionTableW SEC_ENTRY
  InitSecurityInterfaceW(
-@@ -2730,6 +2807,7 @@ typedef PSecurityFunctionTableW
+@@ -2730,6 +2805,7 @@ typedef PSecurityFunctionTableW
  //
  
  
@@ -543,7 +541,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SaslEnumerateProfilesA(
-@@ -2737,6 +2815,7 @@ SaslEnumerateProfilesA(
+@@ -2737,6 +2813,7 @@ SaslEnumerateProfilesA(
      _Out_       ULONG * ProfileCount
      );
  
@@ -551,7 +549,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SaslEnumerateProfilesW(
-@@ -2751,6 +2830,7 @@ SaslEnumerateProfilesW(
+@@ -2751,6 +2828,7 @@ SaslEnumerateProfilesW(
  #endif
  
  
@@ -559,7 +557,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SaslGetProfilePackageA(
-@@ -2759,6 +2839,7 @@ SaslGetProfilePackageA(
+@@ -2759,6 +2837,7 @@ SaslGetProfilePackageA(
      );
  
  
@@ -567,7 +565,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SaslGetProfilePackageW(
-@@ -2772,6 +2853,7 @@ SaslGetProfilePackageW(
+@@ -2772,6 +2851,7 @@ SaslGetProfilePackageW(
  #define SaslGetProfilePackage   SaslGetProfilePackageA
  #endif
  
@@ -575,7 +573,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SaslIdentifyPackageA(
-@@ -2779,6 +2861,7 @@ SaslIdentifyPackageA(
+@@ -2779,6 +2859,7 @@ SaslIdentifyPackageA(
      _Outptr_ PSecPkgInfoA * PackageInfo
      );
  
@@ -583,7 +581,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SaslIdentifyPackageW(
-@@ -2792,13 +2875,14 @@ SaslIdentifyPackageW(
+@@ -2792,13 +2873,14 @@ SaslIdentifyPackageW(
  #define SaslIdentifyPackage SaslIdentifyPackageA
  #endif
  
@@ -599,7 +597,7 @@ index 7bbb693e..13f62acf 100644
      _In_        unsigned long               Reserved1,          // Reserved, MBZ
      _In_        unsigned long               TargetDataRep,      // Data rep of target
      _In_opt_    PSecBufferDesc              pInput,             // Input Buffers
-@@ -2809,13 +2893,14 @@ SaslInitializeSecurityContextW(
+@@ -2809,13 +2891,14 @@ SaslInitializeSecurityContextW(
      _Out_opt_   PTimeStamp                  ptsExpiry           // (out) Life span (OPT)
      );
  
@@ -615,7 +613,7 @@ index 7bbb693e..13f62acf 100644
      _In_        unsigned long               Reserved1,          // Reserved, MBZ
      _In_        unsigned long               TargetDataRep,      // Data rep of target
      _In_opt_    PSecBufferDesc              pInput,             // Input Buffers
-@@ -2833,13 +2918,14 @@ SaslInitializeSecurityContextA(
+@@ -2833,13 +2916,14 @@ SaslInitializeSecurityContextA(
  #endif
  
  
@@ -631,7 +629,7 @@ index 7bbb693e..13f62acf 100644
      _In_        unsigned long               TargetDataRep,      // Target Data Rep
      _Inout_opt_ PCtxtHandle                 phNewContext,       // (out) New context handle
      _Inout_opt_ PSecBufferDesc              pOutput,            // (inout) Output buffers
-@@ -2858,6 +2944,7 @@ typedef enum _SASL_AUTHZID_STATE {
+@@ -2858,6 +2942,7 @@ typedef enum _SASL_AUTHZID_STATE {
      Sasl_AuthZIDProcessed             // AuthZID Strings processed by Application or SSP
  } SASL_AUTHZID_STATE ;
  
@@ -639,7 +637,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SaslSetContextOption(
-@@ -2868,6 +2955,7 @@ SaslSetContextOption(
+@@ -2868,6 +2953,7 @@ SaslSetContextOption(
      );
  
  
@@ -647,7 +645,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SaslGetContextOption(
-@@ -3197,6 +3285,7 @@ typedef PSEC_WINNT_AUTH_IDENTITY_INFO PSEC_WINNT_AUTH_IDENTITY_OPAQUE;
+@@ -3197,6 +3283,7 @@ typedef PSEC_WINNT_AUTH_IDENTITY_INFO PSEC_WINNT_AUTH_IDENTITY_OPAQUE;
  // Use SspiFreeAuthIdentity() to free the buffer returned
  // in ppAuthIdentity.
  
@@ -655,7 +653,7 @@ index 7bbb693e..13f62acf 100644
  unsigned long
  SEC_ENTRY
  SspiPromptForCredentialsW(
-@@ -3217,6 +3306,7 @@ SspiPromptForCredentialsW(
+@@ -3217,6 +3304,7 @@ SspiPromptForCredentialsW(
  // Use SspiFreeAuthIdentity() to free the buffer returned
  // in ppAuthIdentity.
  
@@ -663,7 +661,7 @@ index 7bbb693e..13f62acf 100644
  unsigned long
  SEC_ENTRY
  SspiPromptForCredentialsA(
-@@ -3358,6 +3448,7 @@ typedef struct _SEC_WINNT_AUTH_SHORT_VECTOR
+@@ -3358,6 +3446,7 @@ typedef struct _SEC_WINNT_AUTH_SHORT_VECTOR
  
  // free the returned memory using SspiLocalFree
  
@@ -671,7 +669,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiGetCredUIContext(
-@@ -3366,8 +3457,12 @@ SspiGetCredUIContext(
+@@ -3366,8 +3455,12 @@ SspiGetCredUIContext(
     _In_opt_ LUID* LogonId, // use this LogonId, the caller must be localsystem to supply a logon id
     _Outptr_ PSEC_WINNT_CREDUI_CONTEXT_VECTOR* CredUIContexts,
     _Out_opt_ HANDLE* TokenHandle
@@ -684,7 +682,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiUpdateCredentials(
-@@ -3421,6 +3516,7 @@ typedef struct _SEC_WINNT_AUTH_PACKED_CREDENTIALS_EX {
+@@ -3421,6 +3514,7 @@ typedef struct _SEC_WINNT_AUTH_PACKED_CREDENTIALS_EX {
  // free the returned memory using SspiLocalFree
  //
  
@@ -692,7 +690,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiUnmarshalCredUIContext(
-@@ -3438,6 +3534,7 @@ SspiUnmarshalCredUIContext(
+@@ -3438,6 +3532,7 @@ SspiUnmarshalCredUIContext(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -700,7 +698,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiPrepareForCredRead(
-@@ -3447,6 +3544,7 @@ SspiPrepareForCredRead(
+@@ -3447,6 +3542,7 @@ SspiPrepareForCredRead(
      _Outptr_ PCWSTR* ppszCredmanTargetName
      );
  
@@ -708,7 +706,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiPrepareForCredWrite(
-@@ -3469,12 +3567,14 @@ SspiPrepareForCredWrite(
+@@ -3469,12 +3565,14 @@ SspiPrepareForCredWrite(
  #define SEC_WINNT_AUTH_IDENTITY_ENCRYPT_SAME_PROCESS      0x2
  #define SEC_WINNT_AUTH_IDENTITY_ENCRYPT_FOR_SYSTEM        0x4
  
@@ -723,7 +721,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiEncryptAuthIdentityEx(
-@@ -3482,12 +3582,14 @@ SspiEncryptAuthIdentityEx(
+@@ -3482,12 +3580,14 @@ SspiEncryptAuthIdentityEx(
      _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
      );
  
@@ -738,7 +736,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiDecryptAuthIdentityEx(
-@@ -3495,6 +3597,7 @@ SspiDecryptAuthIdentityEx(
+@@ -3495,6 +3595,7 @@ SspiDecryptAuthIdentityEx(
      _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE EncryptedAuthData
      );
  
@@ -746,7 +744,7 @@ index 7bbb693e..13f62acf 100644
  BOOLEAN
  SEC_ENTRY
  SspiIsAuthIdentityEncrypted(
-@@ -3519,6 +3622,7 @@ SspiIsAuthIdentityEncrypted(
+@@ -3519,6 +3620,7 @@ SspiIsAuthIdentityEncrypted(
  // free the returned memory using SspiLocalFree()
  //
  
@@ -754,7 +752,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiEncodeAuthIdentityAsStrings(
-@@ -3528,6 +3632,7 @@ SspiEncodeAuthIdentityAsStrings(
+@@ -3528,6 +3630,7 @@ SspiEncodeAuthIdentityAsStrings(
      _Outptr_opt_result_maybenull_ PCWSTR* ppszPackedCredentialsString
      );
  
@@ -762,7 +760,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiValidateAuthIdentity(
-@@ -3538,6 +3643,7 @@ SspiValidateAuthIdentity(
+@@ -3538,6 +3641,7 @@ SspiValidateAuthIdentity(
  // free the returned memory using SspiFreeAuthIdentity()
  //
  
@@ -770,7 +768,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiCopyAuthIdentity(
-@@ -3550,18 +3656,21 @@ SspiCopyAuthIdentity(
+@@ -3550,18 +3654,21 @@ SspiCopyAuthIdentity(
  // Internally calls SspiZeroAuthIdentity().
  //
  
@@ -792,7 +790,7 @@ index 7bbb693e..13f62acf 100644
  VOID
  SEC_ENTRY
  SspiLocalFree(
-@@ -3573,6 +3682,7 @@ SspiLocalFree(
+@@ -3573,6 +3680,7 @@ SspiLocalFree(
  // which zeroes out the credentials blob before freeing it
  //
  
@@ -800,7 +798,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiEncodeStringsAsAuthIdentity(
-@@ -3582,6 +3692,7 @@ SspiEncodeStringsAsAuthIdentity(
+@@ -3582,6 +3690,7 @@ SspiEncodeStringsAsAuthIdentity(
      _Outptr_ _When_(return != 0, __drv_allocatesMem(Mem)) PSEC_WINNT_AUTH_IDENTITY_OPAQUE* ppAuthIdentity
      );
  
@@ -808,7 +806,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiCompareAuthIdentities(
-@@ -3596,6 +3707,7 @@ SspiCompareAuthIdentities(
+@@ -3596,6 +3705,7 @@ SspiCompareAuthIdentities(
  // free the returned memory using SspiLocalFree()
  //
  
@@ -816,7 +814,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiMarshalAuthIdentity(
-@@ -3608,6 +3720,7 @@ SspiMarshalAuthIdentity(
+@@ -3608,6 +3718,7 @@ SspiMarshalAuthIdentity(
  // free the returned auth identity using SspiFreeAuthIdentity()
  //
  
@@ -824,7 +822,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiUnmarshalAuthIdentity(
-@@ -3626,6 +3739,7 @@ SspiUnmarshalAuthIdentity(
+@@ -3626,6 +3737,7 @@ SspiUnmarshalAuthIdentity(
  
  #if (NTDDI_VERSION >= NTDDI_WIN7)
  
@@ -832,7 +830,7 @@ index 7bbb693e..13f62acf 100644
  BOOLEAN
  SEC_ENTRY
  SspiIsPromptingNeeded(
-@@ -3642,6 +3756,7 @@ SspiIsPromptingNeeded(
+@@ -3642,6 +3754,7 @@ SspiIsPromptingNeeded(
  
  #if (NTDDI_VERSION >= NTDDI_WIN7)
  
@@ -840,7 +838,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiGetTargetHostName(
-@@ -3649,6 +3764,7 @@ SspiGetTargetHostName(
+@@ -3649,6 +3762,7 @@ SspiGetTargetHostName(
      _Outptr_ PWSTR* pszHostName
      );
  
@@ -848,7 +846,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  SspiExcludePackage(
-@@ -3685,7 +3801,7 @@ SspiSetChannelBindingFlags(
+@@ -3685,7 +3799,7 @@ SspiSetChannelBindingFlags(
  
  typedef struct _SECURITY_PACKAGE_OPTIONS {
      unsigned long   Size;
@@ -857,7 +855,7 @@ index 7bbb693e..13f62acf 100644
      unsigned long   Flags;
      unsigned long   SignatureSize;
      void *  Signature;
-@@ -3697,6 +3813,7 @@ typedef struct _SECURITY_PACKAGE_OPTIONS {
+@@ -3697,6 +3811,7 @@ typedef struct _SECURITY_PACKAGE_OPTIONS {
  
  #define SECPKG_OPTIONS_PERMANENT    0x00000001
  
@@ -865,7 +863,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  AddSecurityPackageA(
-@@ -3704,6 +3821,7 @@ AddSecurityPackageA(
+@@ -3704,6 +3819,7 @@ AddSecurityPackageA(
      _In_opt_ PSECURITY_PACKAGE_OPTIONS pOptions
      );
  
@@ -873,7 +871,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  AddSecurityPackageW(
-@@ -3717,12 +3835,14 @@ AddSecurityPackageW(
+@@ -3717,12 +3833,14 @@ AddSecurityPackageW(
  #define AddSecurityPackage  AddSecurityPackageA
  #endif
  
@@ -888,7 +886,7 @@ index 7bbb693e..13f62acf 100644
  SECURITY_STATUS
  SEC_ENTRY
  DeleteSecurityPackageW(
-@@ -3738,6 +3858,487 @@ DeleteSecurityPackageW(
+@@ -3738,6 +3856,487 @@ DeleteSecurityPackageW(
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
  #pragma endregion
  

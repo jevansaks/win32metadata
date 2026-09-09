@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h
-index 5228924d..f5ca511b 100644
+index 5228924d..be95d24a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h
-@@ -16,6 +16,9 @@ Abstract:
+@@ -16,6 +16,7 @@ Abstract:
  #define _INC_NEWDEV
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -37,6 +40,8 @@ extern "C" {
+@@ -37,6 +38,8 @@ extern "C" {
  
  #if (WINVER >= _WIN32_WINNT_WIN2K)
  
@@ -21,7 +19,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  UpdateDriverForPlugAndPlayDevicesA(
-@@ -47,6 +52,8 @@ UpdateDriverForPlugAndPlayDevicesA(
+@@ -47,6 +50,8 @@ UpdateDriverForPlugAndPlayDevicesA(
      _Out_opt_ PBOOL bRebootRequired
      );
  
@@ -30,7 +28,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  UpdateDriverForPlugAndPlayDevicesW(
-@@ -74,6 +81,36 @@ UpdateDriverForPlugAndPlayDevicesW(
+@@ -74,6 +79,36 @@ UpdateDriverForPlugAndPlayDevicesW(
  #define DIIDFLAG_INSTALLCOPYINFDRIVERS  0x00000008      // Install any extra INFs specified via CopyInf directive.
  #define DIIDFLAG_BITS                   0x0000000F
  
@@ -67,7 +65,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  DiInstallDevice(
-@@ -81,7 +118,7 @@ DiInstallDevice(
+@@ -81,7 +116,7 @@ DiInstallDevice(
      _In_      HDEVINFO DeviceInfoSet,
      _In_      PSP_DEVINFO_DATA DeviceInfoData,
      _In_opt_  PSP_DRVINFO_DATA DriverInfoData,
@@ -76,7 +74,7 @@ index 5228924d..f5ca511b 100644
      _Out_opt_ PBOOL NeedReboot
      );
  
-@@ -125,6 +162,8 @@ DiInstallDevice(
+@@ -125,6 +160,8 @@ DiInstallDevice(
  
  #endif // (WINVER >= _WIN32_WINNT_WINBLUE)
  
@@ -85,7 +83,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  DiInstallDriverW(
-@@ -134,6 +173,8 @@ DiInstallDriverW(
+@@ -134,6 +171,8 @@ DiInstallDriverW(
      _Out_opt_ PBOOL NeedReboot
      );
  
@@ -94,7 +92,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  DiInstallDriverA(
-@@ -153,6 +194,8 @@ DiInstallDriverA(
+@@ -153,6 +192,8 @@ DiInstallDriverA(
  
  
  #if (WINVER >= _WIN32_WINNT_WIN7)
@@ -103,7 +101,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  DiUninstallDevice(
-@@ -176,6 +219,8 @@ DiUninstallDevice(
+@@ -176,6 +217,8 @@ DiUninstallDevice(
  #define DIURFLAG_VALID              (DIURFLAG_NO_REMOVE_INF |\
                                       DIURFLAG_RESERVED      )
  
@@ -112,7 +110,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  DiUninstallDriverW(
-@@ -185,6 +230,7 @@ DiUninstallDriverW(
+@@ -185,6 +228,7 @@ DiUninstallDriverW(
      _Out_opt_ PBOOL NeedReboot
      );
  
@@ -120,7 +118,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  DiUninstallDriverA(
-@@ -203,6 +249,8 @@ DiUninstallDriverA(
+@@ -203,6 +247,8 @@ DiUninstallDriverA(
  
  
  #if (WINVER >= _WIN32_WINNT_LONGHORN)
@@ -129,7 +127,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  DiShowUpdateDevice(
-@@ -221,6 +269,8 @@ DiShowUpdateDevice(
+@@ -221,6 +267,8 @@ DiShowUpdateDevice(
  #define ROLLBACK_BITS                   0x00000001
  
  
@@ -138,7 +136,7 @@ index 5228924d..f5ca511b 100644
  BOOL
  WINAPI
  DiRollbackDriver(
-@@ -254,4 +304,3 @@ DiShowUpdateDriver(
+@@ -254,4 +302,3 @@ DiShowUpdateDriver(
  #pragma endregion
  
  #endif // _INC_NEWDEV

@@ -1,0 +1,20 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/amaudio.h b/generation/WinSDK/RecompiledIdlHeaders/um/amaudio.h
+index 625ad9b3..283dfdea 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/amaudio.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/amaudio.h
+@@ -10,6 +10,7 @@
+ #ifndef __AMAUDIO__
+ #define __AMAUDIO__
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -31,6 +32,7 @@ extern "C" {
+ #undef INTERFACE
+ #define INTERFACE IAMDirectSound
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMDirectSound,IUnknown)
+ {
+     /* IUnknown methods */

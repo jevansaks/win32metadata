@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h
-index a599200b..8edde869 100644
+index a599200b..491b21a9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h
-@@ -18,6 +18,9 @@
+@@ -18,6 +18,7 @@
  #include <minwindef.h>
  #include <minwinbase.h>
  
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #ifdef __cplusplus
  extern "C" {
  #endif
-@@ -38,6 +41,7 @@ extern "C" {
+@@ -38,6 +39,7 @@ extern "C" {
  #define INVALID_SET_FILE_POINTER ((DWORD)-1)
  #define INVALID_FILE_ATTRIBUTES ((DWORD)-1)
  
@@ -20,7 +18,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  LONG
  WINAPI
-@@ -46,6 +50,8 @@ CompareFileTime(
+@@ -46,6 +48,8 @@ CompareFileTime(
      _In_ CONST FILETIME* lpFileTime2
      );
  
@@ -29,7 +27,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -54,6 +60,8 @@ CreateDirectoryA(
+@@ -54,6 +58,8 @@ CreateDirectoryA(
      _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes
      );
  
@@ -38,7 +36,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -74,6 +82,8 @@ CreateDirectoryW(
+@@ -74,6 +80,8 @@ CreateDirectoryW(
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -47,7 +45,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -87,6 +97,8 @@ CreateFileA(
+@@ -87,6 +95,8 @@ CreateFileA(
      _In_opt_ HANDLE hTemplateFile
      );
  
@@ -56,7 +54,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -112,6 +124,8 @@ CreateFileW(
+@@ -112,6 +122,8 @@ CreateFileW(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -65,7 +63,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -131,6 +145,8 @@ DefineDosDeviceW(
+@@ -131,6 +143,8 @@ DefineDosDeviceW(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -74,7 +72,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -138,6 +154,8 @@ DeleteFileA(
+@@ -138,6 +152,8 @@ DeleteFileA(
      _In_ LPCSTR lpFileName
      );
  
@@ -83,7 +81,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -157,6 +175,8 @@ DeleteFileW(
+@@ -157,6 +173,8 @@ DeleteFileW(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -92,7 +90,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -174,6 +194,8 @@ DeleteVolumeMountPointW(
+@@ -174,6 +192,8 @@ DeleteVolumeMountPointW(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -101,7 +99,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -188,6 +210,8 @@ FileTimeToLocalFileTime(
+@@ -188,6 +208,8 @@ FileTimeToLocalFileTime(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -110,7 +108,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -201,6 +225,8 @@ FindClose(
+@@ -201,6 +223,8 @@ FindClose(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -119,7 +117,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -208,6 +234,8 @@ FindCloseChangeNotification(
+@@ -208,6 +232,8 @@ FindCloseChangeNotification(
      _In_ HANDLE hChangeHandle
      );
  
@@ -128,7 +126,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -215,8 +243,11 @@ FindFirstChangeNotificationA(
+@@ -215,8 +241,11 @@ FindFirstChangeNotificationA(
      _In_ LPCSTR lpPathName,
      _In_ BOOL bWatchSubtree,
      _In_ DWORD dwNotifyFilter
@@ -141,7 +139,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -224,7 +255,8 @@ FindFirstChangeNotificationW(
+@@ -224,7 +253,8 @@ FindFirstChangeNotificationW(
      _In_ LPCWSTR lpPathName,
      _In_ BOOL bWatchSubtree,
      _In_ DWORD dwNotifyFilter
@@ -151,7 +149,7 @@ index a599200b..8edde869 100644
  
  #ifdef UNICODE
  #define FindFirstChangeNotification  FindFirstChangeNotificationW
-@@ -238,21 +270,27 @@ FindFirstChangeNotificationW(
+@@ -238,21 +268,27 @@ FindFirstChangeNotificationW(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -181,7 +179,7 @@ index a599200b..8edde869 100644
  
  #ifdef UNICODE
  #define FindFirstFile  FindFirstFileW
-@@ -262,6 +300,8 @@ FindFirstFileW(
+@@ -262,6 +298,8 @@ FindFirstFileW(
  
  #if (_WIN32_WINNT >= 0x0400)
  
@@ -190,7 +188,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -272,8 +312,11 @@ FindFirstFileExA(
+@@ -272,8 +310,11 @@ FindFirstFileExA(
      _In_ FINDEX_SEARCH_OPS fSearchOp,
      _Reserved_ LPVOID lpSearchFilter,
      _In_ DWORD dwAdditionalFlags
@@ -203,7 +201,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -284,7 +327,8 @@ FindFirstFileExW(
+@@ -284,7 +325,8 @@ FindFirstFileExW(
      _In_ FINDEX_SEARCH_OPS fSearchOp,
      _Reserved_ LPVOID lpSearchFilter,
      _In_ DWORD dwAdditionalFlags
@@ -213,7 +211,7 @@ index a599200b..8edde869 100644
  
  #ifdef UNICODE
  #define FindFirstFileEx  FindFirstFileExW
-@@ -300,18 +344,23 @@ FindFirstFileExW(
+@@ -300,18 +342,23 @@ FindFirstFileExW(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -238,7 +236,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -325,6 +374,8 @@ FindNextChangeNotification(
+@@ -325,6 +372,8 @@ FindNextChangeNotification(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -247,7 +245,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -333,6 +384,8 @@ FindNextFileA(
+@@ -333,6 +382,8 @@ FindNextFileA(
      _Out_ LPWIN32_FIND_DATAA lpFindFileData
      );
  
@@ -256,7 +254,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -353,6 +406,8 @@ FindNextFileW(
+@@ -353,6 +404,8 @@ FindNextFileW(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -265,7 +263,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -366,6 +421,8 @@ FindNextVolumeW(
+@@ -366,6 +419,8 @@ FindNextVolumeW(
  #define FindNextVolume FindNextVolumeW
  #endif
  
@@ -274,7 +272,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -379,6 +436,8 @@ FindVolumeClose(
+@@ -379,6 +434,8 @@ FindVolumeClose(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -283,7 +281,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -386,6 +445,8 @@ FlushFileBuffers(
+@@ -386,6 +443,8 @@ FlushFileBuffers(
      _In_ HANDLE hFile
      );
  
@@ -292,7 +290,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -397,6 +458,8 @@ GetDiskFreeSpaceA(
+@@ -397,6 +456,8 @@ GetDiskFreeSpaceA(
      _Out_opt_ LPDWORD lpTotalNumberOfClusters
      );
  
@@ -301,7 +299,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -414,6 +477,8 @@ GetDiskFreeSpaceW(
+@@ -414,6 +475,8 @@ GetDiskFreeSpaceW(
  #define GetDiskFreeSpace  GetDiskFreeSpaceA
  #endif // !UNICODE
  
@@ -310,7 +308,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -424,6 +489,8 @@ GetDiskFreeSpaceExA(
+@@ -424,6 +487,8 @@ GetDiskFreeSpaceExA(
      _Out_opt_ PULARGE_INTEGER lpTotalNumberOfFreeBytes
      );
  
@@ -319,7 +317,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -565,6 +632,7 @@ GetDiskSpaceInformationW(
+@@ -565,6 +630,7 @@ GetDiskSpaceInformationW(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -327,7 +325,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  UINT
  WINAPI
-@@ -572,6 +640,7 @@ GetDriveTypeA(
+@@ -572,6 +638,7 @@ GetDriveTypeA(
      _In_opt_ LPCSTR lpRootPathName
      );
  
@@ -335,7 +333,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  UINT
  WINAPI
-@@ -594,6 +663,8 @@ typedef struct _WIN32_FILE_ATTRIBUTE_DATA {
+@@ -594,6 +661,8 @@ typedef struct _WIN32_FILE_ATTRIBUTE_DATA {
      DWORD nFileSizeLow;
  } WIN32_FILE_ATTRIBUTE_DATA, *LPWIN32_FILE_ATTRIBUTE_DATA;
  
@@ -344,7 +342,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -601,6 +672,8 @@ GetFileAttributesA(
+@@ -601,6 +670,8 @@ GetFileAttributesA(
      _In_ LPCSTR lpFileName
      );
  
@@ -353,7 +351,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -614,6 +687,8 @@ GetFileAttributesW(
+@@ -614,6 +685,8 @@ GetFileAttributesW(
  #define GetFileAttributes  GetFileAttributesA
  #endif // !UNICODE
  
@@ -362,7 +360,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -623,6 +698,8 @@ GetFileAttributesExA(
+@@ -623,6 +696,8 @@ GetFileAttributesExA(
      _Out_writes_bytes_(sizeof(WIN32_FILE_ATTRIBUTE_DATA)) LPVOID lpFileInformation
      );
  
@@ -371,7 +369,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -651,6 +728,8 @@ typedef struct _BY_HANDLE_FILE_INFORMATION {
+@@ -651,6 +726,8 @@ typedef struct _BY_HANDLE_FILE_INFORMATION {
      DWORD nFileIndexLow;
  } BY_HANDLE_FILE_INFORMATION, *PBY_HANDLE_FILE_INFORMATION, *LPBY_HANDLE_FILE_INFORMATION;
  
@@ -380,7 +378,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -665,6 +744,8 @@ GetFileInformationByHandle(
+@@ -665,6 +742,8 @@ GetFileInformationByHandle(
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -389,7 +387,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -679,6 +760,8 @@ GetFileSize(
+@@ -679,6 +758,8 @@ GetFileSize(
  #pragma region Application Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -398,7 +396,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -687,6 +770,8 @@ GetFileSizeEx(
+@@ -687,6 +768,8 @@ GetFileSizeEx(
      _Out_ PLARGE_INTEGER lpFileSize
      );
  
@@ -407,7 +405,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -696,6 +781,8 @@ GetFileType(
+@@ -696,6 +779,8 @@ GetFileType(
  
  #if (_WIN32_WINNT >= 0x0600)
  
@@ -416,7 +414,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -706,6 +793,8 @@ GetFinalPathNameByHandleA(
+@@ -706,6 +791,8 @@ GetFinalPathNameByHandleA(
      _In_ DWORD dwFlags
      );
  
@@ -425,7 +423,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -724,6 +813,8 @@ GetFinalPathNameByHandleW(
+@@ -724,6 +811,8 @@ GetFinalPathNameByHandleW(
  
  #endif // (_WIN32_WINNT >= 0x0600)
  
@@ -434,7 +432,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -734,6 +825,8 @@ GetFileTime(
+@@ -734,6 +823,8 @@ GetFileTime(
      _Out_opt_ LPFILETIME lpLastWriteTime
      );
  
@@ -443,7 +441,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  _Success_(return != 0 && return < nBufferLength)
  DWORD
-@@ -749,6 +842,8 @@ GetFullPathNameW(
+@@ -749,6 +840,8 @@ GetFullPathNameW(
  #define GetFullPathName  GetFullPathNameW
  #endif
  
@@ -452,7 +450,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  _Success_(return != 0 && return < nBufferLength)
  DWORD
-@@ -764,6 +859,8 @@ GetFullPathNameA(
+@@ -764,6 +857,8 @@ GetFullPathNameA(
  #define GetFullPathName GetFullPathNameA
  #endif
  
@@ -461,7 +459,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -777,6 +874,8 @@ GetLogicalDrives(
+@@ -777,6 +872,8 @@ GetLogicalDrives(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -470,7 +468,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -795,6 +894,8 @@ GetLogicalDriveStringsW(
+@@ -795,6 +892,8 @@ GetLogicalDriveStringsW(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -479,7 +477,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  _Success_(return != 0 && return < cchBuffer)
  DWORD
-@@ -809,6 +910,8 @@ GetLongPathNameA(
+@@ -809,6 +908,8 @@ GetLongPathNameA(
  #define GetLongPathName GetLongPathNameA
  #endif
  
@@ -488,7 +486,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  _Success_(return != 0 && return < cchBuffer)
  DWORD
-@@ -841,6 +944,8 @@ AreShortNamesEnabled(
+@@ -841,6 +942,8 @@ AreShortNamesEnabled(
  
  #endif // (NTDDI_VERSION >= NTDDI_WIN10_FE)
  
@@ -497,7 +495,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  _Success_(return != 0 && return < cchBuffer)
  DWORD
-@@ -861,6 +966,8 @@ GetShortPathNameW(
+@@ -861,6 +964,8 @@ GetShortPathNameW(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -506,7 +504,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  UINT
  WINAPI
-@@ -883,6 +990,8 @@ GetTempFileNameW(
+@@ -883,6 +988,8 @@ GetTempFileNameW(
  
  #if (_WIN32_WINNT >= 0x0600)
  
@@ -515,7 +513,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -899,6 +1008,8 @@ GetVolumeInformationByHandleW(
+@@ -899,6 +1006,8 @@ GetVolumeInformationByHandleW(
  
  #endif /* _WIN32_WINNT >=  0x0600 */
  
@@ -524,7 +522,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -917,6 +1028,8 @@ GetVolumeInformationW(
+@@ -917,6 +1026,8 @@ GetVolumeInformationW(
  #define GetVolumeInformation  GetVolumeInformationW
  #endif
  
@@ -533,7 +531,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -930,6 +1043,8 @@ GetVolumePathNameW(
+@@ -930,6 +1041,8 @@ GetVolumePathNameW(
  #define GetVolumePathName  GetVolumePathNameW
  #endif
  
@@ -542,7 +540,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -938,6 +1053,8 @@ LocalFileTimeToFileTime(
+@@ -938,6 +1051,8 @@ LocalFileTimeToFileTime(
      _Out_ LPFILETIME lpFileTime
      );
  
@@ -551,7 +549,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -949,6 +1066,8 @@ LockFile(
+@@ -949,6 +1064,8 @@ LockFile(
      _In_ DWORD nNumberOfBytesToLockHigh
      );
  
@@ -560,7 +558,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -967,6 +1086,8 @@ LockFileEx(
+@@ -967,6 +1084,8 @@ LockFileEx(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -569,7 +567,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -986,6 +1107,8 @@ QueryDosDeviceW(
+@@ -986,6 +1105,8 @@ QueryDosDeviceW(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -578,7 +576,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  _Must_inspect_result_
  BOOL
-@@ -998,6 +1121,8 @@ ReadFile(
+@@ -998,6 +1119,8 @@ ReadFile(
      _Inout_opt_ LPOVERLAPPED lpOverlapped
      );
  
@@ -587,7 +585,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  _Must_inspect_result_
  BOOL
-@@ -1010,6 +1135,8 @@ ReadFileEx(
+@@ -1010,6 +1133,8 @@ ReadFileEx(
      _In_ LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine
      );
  
@@ -596,7 +594,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  _Must_inspect_result_
  BOOL
-@@ -1022,6 +1149,8 @@ ReadFileScatter(
+@@ -1022,6 +1147,8 @@ ReadFileScatter(
      _Inout_ LPOVERLAPPED lpOverlapped
      );
  
@@ -605,7 +603,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1029,6 +1158,8 @@ RemoveDirectoryA(
+@@ -1029,6 +1156,8 @@ RemoveDirectoryA(
      _In_ LPCSTR lpPathName
      );
  
@@ -614,7 +612,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1042,6 +1173,8 @@ RemoveDirectoryW(
+@@ -1042,6 +1171,8 @@ RemoveDirectoryW(
  #define RemoveDirectory  RemoveDirectoryA
  #endif // !UNICODE
  
@@ -623,7 +621,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1049,6 +1182,8 @@ SetEndOfFile(
+@@ -1049,6 +1180,8 @@ SetEndOfFile(
      _In_ HANDLE hFile
      );
  
@@ -632,7 +630,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1057,6 +1192,8 @@ SetFileAttributesA(
+@@ -1057,6 +1190,8 @@ SetFileAttributesA(
      _In_ DWORD dwFileAttributes
      );
  
@@ -641,7 +639,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1073,6 +1210,8 @@ SetFileAttributesW(
+@@ -1073,6 +1208,8 @@ SetFileAttributesW(
  
  #if (_WIN32_WINNT >= 0x0600)
  
@@ -650,7 +648,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1085,6 +1224,8 @@ SetFileInformationByHandle(
+@@ -1085,6 +1222,8 @@ SetFileInformationByHandle(
  
  #endif
  
@@ -659,7 +657,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -1095,6 +1236,8 @@ SetFilePointer(
+@@ -1095,6 +1234,8 @@ SetFilePointer(
      _In_ DWORD dwMoveMethod
      );
  
@@ -668,7 +666,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1105,6 +1248,8 @@ SetFilePointerEx(
+@@ -1105,6 +1246,8 @@ SetFilePointerEx(
      _In_ DWORD dwMoveMethod
      );
  
@@ -677,7 +675,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1117,6 +1262,8 @@ SetFileTime(
+@@ -1117,6 +1260,8 @@ SetFileTime(
  
  #if _WIN32_WINNT >= 0x0501
  
@@ -686,7 +684,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1127,6 +1274,8 @@ SetFileValidData(
+@@ -1127,6 +1272,8 @@ SetFileValidData(
  
  #endif // (_WIN32_WINNT >= 0x0501)
  
@@ -695,7 +693,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1138,6 +1287,8 @@ UnlockFile(
+@@ -1138,6 +1285,8 @@ UnlockFile(
      _In_ DWORD nNumberOfBytesToUnlockHigh
      );
  
@@ -704,7 +702,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1149,6 +1300,8 @@ UnlockFileEx(
+@@ -1149,6 +1298,8 @@ UnlockFileEx(
      _Inout_ LPOVERLAPPED lpOverlapped
      );
  
@@ -713,7 +711,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1160,6 +1313,8 @@ WriteFile(
+@@ -1160,6 +1311,8 @@ WriteFile(
      _Inout_opt_ LPOVERLAPPED lpOverlapped
      );
  
@@ -722,7 +720,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1171,6 +1326,8 @@ WriteFileEx(
+@@ -1171,6 +1324,8 @@ WriteFileEx(
      _In_ LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine
      );
  
@@ -731,7 +729,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1182,6 +1339,8 @@ WriteFileGather(
+@@ -1182,6 +1337,8 @@ WriteFileGather(
      _Inout_ LPOVERLAPPED lpOverlapped
      );
  
@@ -740,7 +738,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -1200,6 +1359,8 @@ GetTempPathW(
+@@ -1200,6 +1357,8 @@ GetTempPathW(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -749,7 +747,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1221,6 +1382,8 @@ GetVolumeNameForVolumeMountPointW(
+@@ -1221,6 +1380,8 @@ GetVolumeNameForVolumeMountPointW(
  
  #if (_WIN32_WINNT >= 0x0501)
  
@@ -758,7 +756,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1254,6 +1417,8 @@ typedef struct _CREATEFILE2_EXTENDED_PARAMETERS {
+@@ -1254,6 +1415,8 @@ typedef struct _CREATEFILE2_EXTENDED_PARAMETERS {
      HANDLE hTemplateFile;
  } CREATEFILE2_EXTENDED_PARAMETERS, *PCREATEFILE2_EXTENDED_PARAMETERS, *LPCREATEFILE2_EXTENDED_PARAMETERS;
  
@@ -767,7 +765,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -1275,6 +1440,8 @@ CreateFile2(
+@@ -1275,6 +1438,8 @@ CreateFile2(
  
  #if (_WIN32_WINNT >= 0x0600)
  
@@ -776,7 +774,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1288,6 +1455,8 @@ SetFileIoOverlappedRange(
+@@ -1288,6 +1453,8 @@ SetFileIoOverlappedRange(
  
  #if _WIN32_WINNT >= 0x0501
  
@@ -785,7 +783,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -1296,6 +1465,8 @@ GetCompressedFileSizeA(
+@@ -1296,6 +1463,8 @@ GetCompressedFileSizeA(
      _Out_opt_ LPDWORD lpFileSizeHigh
      );
  
@@ -794,7 +792,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -1328,6 +1499,8 @@ typedef struct _WIN32_FIND_STREAM_DATA {
+@@ -1328,6 +1497,8 @@ typedef struct _WIN32_FIND_STREAM_DATA {
  
  } WIN32_FIND_STREAM_DATA, *PWIN32_FIND_STREAM_DATA;
  
@@ -803,7 +801,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -1336,8 +1509,11 @@ FindFirstStreamW(
+@@ -1336,8 +1507,11 @@ FindFirstStreamW(
      _In_ STREAM_INFO_LEVELS InfoLevel,
      _Out_writes_bytes_(sizeof(WIN32_FIND_STREAM_DATA)) LPVOID lpFindStreamData,
      _Reserved_ DWORD dwFlags
@@ -816,7 +814,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  APIENTRY
-@@ -1354,6 +1530,7 @@ FindNextStreamW(
+@@ -1354,6 +1528,7 @@ FindNextStreamW(
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -824,7 +822,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1367,6 +1544,8 @@ AreFileApisANSI(
+@@ -1367,6 +1542,8 @@ AreFileApisANSI(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -833,7 +831,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -1387,6 +1566,8 @@ GetTempPathA(
+@@ -1387,6 +1564,8 @@ GetTempPathA(
  
  #if _WIN32_WINNT >= 0x0600
  
@@ -842,7 +840,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -1395,8 +1576,11 @@ FindFirstFileNameW(
+@@ -1395,8 +1574,11 @@ FindFirstFileNameW(
      _In_ DWORD dwFlags,
      _Inout_ LPDWORD StringLength,
      _Out_writes_(*StringLength) PWSTR LinkName
@@ -855,7 +853,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  APIENTRY
-@@ -1414,6 +1598,8 @@ FindNextFileNameW(
+@@ -1414,6 +1596,8 @@ FindNextFileNameW(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -864,7 +862,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -1438,6 +1624,8 @@ GetVolumeInformationA(
+@@ -1438,6 +1622,8 @@ GetVolumeInformationA(
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -873,7 +871,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  UINT
  WINAPI
-@@ -1457,6 +1645,7 @@ GetTempFileNameA(
+@@ -1457,6 +1643,7 @@ GetTempFileNameA(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -881,7 +879,7 @@ index a599200b..8edde869 100644
  WINBASEAPI
  VOID
  WINAPI
-@@ -1464,6 +1653,7 @@ SetFileApisToOEM(
+@@ -1464,6 +1651,7 @@ SetFileApisToOEM(
      VOID
      );
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vsprov.h b/generation/WinSDK/RecompiledIdlHeaders/um/vsprov.h
-index d259f1be..97981db8 100644
+index d259f1be..cdc4cff4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/vsprov.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/vsprov.h
-@@ -104,6 +104,9 @@ extern "C"{
+@@ -104,6 +104,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -126,6 +129,7 @@ EXTERN_C const IID IID_IVssSoftwareSnapshotProvider;
+@@ -126,6 +127,7 @@ EXTERN_C const IID IID_IVssSoftwareSnapshotProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index d259f1be..97981db8 100644
      MIDL_INTERFACE("609e123e-2c5a-44d3-8f01-0b1d9a47d1ff")
      IVssSoftwareSnapshotProvider : public IUnknown
      {
-@@ -398,6 +402,7 @@ EXTERN_C const IID IID_IVssProviderCreateSnapshotSet;
+@@ -398,6 +400,7 @@ EXTERN_C const IID IID_IVssProviderCreateSnapshotSet;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index d259f1be..97981db8 100644
      MIDL_INTERFACE("5F894E5B-1E39-4778-8E23-9ABAD9F0E08C")
      IVssProviderCreateSnapshotSet : public IUnknown
      {
-@@ -567,6 +572,7 @@ EXTERN_C const IID IID_IVssProviderNotifications;
+@@ -567,6 +570,7 @@ EXTERN_C const IID IID_IVssProviderNotifications;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index d259f1be..97981db8 100644
      MIDL_INTERFACE("E561901F-03A5-4afe-86D0-72BAEECE7004")
      IVssProviderNotifications : public IUnknown
      {
-@@ -667,6 +673,7 @@ EXTERN_C const IID IID_IVssHardwareSnapshotProvider;
+@@ -667,6 +671,7 @@ EXTERN_C const IID IID_IVssHardwareSnapshotProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index d259f1be..97981db8 100644
      MIDL_INTERFACE("9593A157-44E9-4344-BBEB-44FBF9B06B10")
      IVssHardwareSnapshotProvider : public IUnknown
      {
-@@ -883,6 +890,7 @@ EXTERN_C const IID IID_IVssHardwareSnapshotProviderEx;
+@@ -883,6 +888,7 @@ EXTERN_C const IID IID_IVssHardwareSnapshotProviderEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index d259f1be..97981db8 100644
      MIDL_INTERFACE("7F5BA925-CDB1-4d11-A71F-339EB7E709FD")
      IVssHardwareSnapshotProviderEx : public IVssHardwareSnapshotProvider
      {
-@@ -1128,6 +1136,7 @@ EXTERN_C const IID IID_IVssFileShareSnapshotProvider;
+@@ -1128,6 +1134,7 @@ EXTERN_C const IID IID_IVssFileShareSnapshotProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index d259f1be..97981db8 100644
      MIDL_INTERFACE("c8636060-7c2e-11df-8c4a-0800200c9a66")
      IVssFileShareSnapshotProvider : public IUnknown
      {
-@@ -1391,9 +1400,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -1391,9 +1398,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

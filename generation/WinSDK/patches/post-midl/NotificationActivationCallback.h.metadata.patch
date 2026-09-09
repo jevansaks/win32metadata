@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NotificationActivationCallback.h b/generation/WinSDK/RecompiledIdlHeaders/um/NotificationActivationCallback.h
-index 8964580e..685ca06a 100644
+index 8964580e..40f6dcd3 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/NotificationActivationCallback.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/NotificationActivationCallback.h
-@@ -66,6 +66,9 @@ extern "C"{
+@@ -66,6 +66,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  #if (NTDDI_VERSION >= NTDDI_WIN10)
  typedef struct NOTIFICATION_USER_INPUT_DATA
-@@ -90,6 +93,7 @@ EXTERN_C const IID IID_INotificationActivationCallback;
+@@ -90,6 +91,7 @@ EXTERN_C const IID IID_INotificationActivationCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

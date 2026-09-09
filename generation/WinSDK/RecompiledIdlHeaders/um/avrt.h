@@ -1,7 +1,5 @@
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 

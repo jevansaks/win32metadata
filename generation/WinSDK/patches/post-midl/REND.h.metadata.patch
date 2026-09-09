@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/REND.h b/generation/WinSDK/RecompiledIdlHeaders/um/REND.h
-index 9ac316e9..092645cc 100644
+index 9ac316e9..0d670819 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/REND.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/REND.h
-@@ -178,6 +178,9 @@ extern "C"{
+@@ -178,6 +178,7 @@ extern "C"{
  
  /* Copyright (c) Microsoft Corporation. All rights reserved. */
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define	IDISPDIROBJECT	( 0x10000 )
-@@ -2141,14 +2144,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -2141,14 +2142,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

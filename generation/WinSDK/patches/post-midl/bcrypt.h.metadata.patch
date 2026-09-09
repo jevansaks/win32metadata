@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h
-index a89e9d42..a7b8c8bd 100644
+index a89e9d42..1011a834 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h
-@@ -18,6 +18,9 @@
+@@ -18,6 +18,7 @@
  #define __BCRYPT_H__
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if _MSC_VER >= 1200
  #pragma warning(push)
-@@ -28,6 +31,37 @@
+@@ -28,6 +29,37 @@
  extern "C" {
  #endif
  
@@ -50,7 +48,7 @@ index a89e9d42..a7b8c8bd 100644
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
-@@ -449,9 +483,13 @@ typedef struct _BCryptBufferDesc {
+@@ -449,9 +481,13 @@ typedef struct _BCryptBufferDesc {
  //
  
  typedef PVOID BCRYPT_HANDLE;
@@ -64,7 +62,7 @@ index a89e9d42..a7b8c8bd 100644
  typedef PVOID BCRYPT_SECRET_HANDLE;
  
  //
-@@ -485,7 +523,7 @@ typedef struct _BCRYPT_KEY_BLOB
+@@ -485,7 +521,7 @@ typedef struct _BCRYPT_KEY_BLOB
  
  typedef struct _BCRYPT_RSAKEY_BLOB
  {
@@ -73,7 +71,7 @@ index a89e9d42..a7b8c8bd 100644
      ULONG   BitLength;
      ULONG   cbPublicExp;
      ULONG   cbModulus;
-@@ -618,7 +656,7 @@ typedef struct _BCRYPT_ECCFULLKEY_BLOB
+@@ -618,7 +654,7 @@ typedef struct _BCRYPT_ECCFULLKEY_BLOB
  
  typedef struct _BCRYPT_DH_KEY_BLOB
  {
@@ -82,7 +80,7 @@ index a89e9d42..a7b8c8bd 100644
      ULONG   cbKey;
  } BCRYPT_DH_KEY_BLOB, *PBCRYPT_DH_KEY_BLOB;
  
-@@ -655,7 +693,7 @@ typedef _Struct_size_bytes_(cbLength) struct _BCRYPT_DH_PARAMETER_HEADER
+@@ -655,7 +691,7 @@ typedef _Struct_size_bytes_(cbLength) struct _BCRYPT_DH_PARAMETER_HEADER
  
  typedef struct _BCRYPT_DSA_KEY_BLOB
  {
@@ -91,7 +89,7 @@ index a89e9d42..a7b8c8bd 100644
      ULONG   cbKey;
      UCHAR   Count[4];
      UCHAR   Seed[20];
-@@ -678,7 +716,7 @@ typedef enum
+@@ -678,7 +714,7 @@ typedef enum
  
  typedef struct _BCRYPT_DSA_KEY_BLOB_V2
  {
@@ -100,7 +98,7 @@ index a89e9d42..a7b8c8bd 100644
      ULONG                                   cbKey;
      HASHALGORITHM_ENUM                      hashAlgorithm;
      DSAFIPSVERSION_ENUM                     standardVersion;
-@@ -1207,14 +1245,17 @@ typedef struct _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT
+@@ -1207,14 +1243,17 @@ typedef struct _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT
  #define BCRYPT_ENABLE_INCOMPATIBLE_FIPS_CHECKS	0x00000100
  #endif
  
@@ -120,7 +118,7 @@ index a89e9d42..a7b8c8bd 100644
  
  
  
-@@ -1246,11 +1287,12 @@ typedef struct _BCRYPT_ALGORITHM_IDENTIFIER
+@@ -1246,11 +1285,12 @@ typedef struct _BCRYPT_ALGORITHM_IDENTIFIER
  } BCRYPT_ALGORITHM_IDENTIFIER;
  // certenrolls_end
  
@@ -134,7 +132,7 @@ index a89e9d42..a7b8c8bd 100644
      _Out_   ULONG   *pAlgCount,
      _Out_   BCRYPT_ALGORITHM_IDENTIFIER **ppAlgList,
      _In_    ULONG   dwFlags);
-@@ -1260,6 +1302,7 @@ typedef struct _BCRYPT_PROVIDER_NAME
+@@ -1260,6 +1300,7 @@ typedef struct _BCRYPT_PROVIDER_NAME
      LPWSTR  pszProviderName;
  } BCRYPT_PROVIDER_NAME;
  
@@ -142,7 +140,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1275,6 +1318,7 @@ BCryptEnumProviders(
+@@ -1275,6 +1316,7 @@ BCryptEnumProviders(
  #define BCRYPT_PUBLIC_KEY_FLAG                  0x00000001
  #define BCRYPT_PRIVATE_KEY_FLAG                 0x00000002
  
@@ -150,7 +148,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1287,6 +1331,7 @@ BCryptGetProperty(
+@@ -1287,6 +1329,7 @@ BCryptGetProperty(
      _In_                                        ULONG   dwFlags);
  
  
@@ -158,7 +156,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1298,6 +1343,7 @@ BCryptSetProperty(
+@@ -1298,6 +1341,7 @@ BCryptSetProperty(
      _In_                    ULONG   dwFlags);
  
  
@@ -166,7 +164,7 @@ index a89e9d42..a7b8c8bd 100644
  NTSTATUS
  WINAPI
  BCryptCloseAlgorithmProvider(
-@@ -1305,6 +1351,7 @@ BCryptCloseAlgorithmProvider(
+@@ -1305,6 +1349,7 @@ BCryptCloseAlgorithmProvider(
      _In_    ULONG   dwFlags);
  
  
@@ -174,7 +172,7 @@ index a89e9d42..a7b8c8bd 100644
  VOID
  WINAPI
  BCryptFreeBuffer(
-@@ -1314,12 +1361,15 @@ BCryptFreeBuffer(
+@@ -1314,12 +1359,15 @@ BCryptFreeBuffer(
  //
  // Primitive encryption functions.
  //
@@ -191,7 +189,7 @@ index a89e9d42..a7b8c8bd 100644
      _Out_writes_bytes_all_opt_(cbKeyObject)  PUCHAR   pbKeyObject,
      _In_                                ULONG   cbKeyObject,
      _In_reads_bytes_(cbSecret)               PUCHAR   pbSecret,
-@@ -1327,16 +1377,20 @@ BCryptGenerateSymmetricKey(
+@@ -1327,16 +1375,20 @@ BCryptGenerateSymmetricKey(
      _In_                                ULONG   dwFlags);
  
  
@@ -213,7 +211,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1350,9 +1404,10 @@ BCryptEncrypt(
+@@ -1350,9 +1402,10 @@ BCryptEncrypt(
      _Out_writes_bytes_to_opt_(cbOutput, *pcbResult) PUCHAR   pbOutput,
      _In_                                        ULONG   cbOutput,
      _Out_                                       ULONG   *pcbResult,
@@ -225,7 +223,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1366,9 +1421,10 @@ BCryptDecrypt(
+@@ -1366,9 +1419,10 @@ BCryptDecrypt(
      _Out_writes_bytes_to_opt_(cbOutput, *pcbResult) PUCHAR   pbOutput,
      _In_                                        ULONG   cbOutput,
      _Out_                                       ULONG   *pcbResult,
@@ -237,7 +235,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1382,6 +1438,7 @@ BCryptExportKey(
+@@ -1382,6 +1436,7 @@ BCryptExportKey(
      _In_                                        ULONG   dwFlags);
  
  
@@ -245,7 +243,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1389,7 +1446,9 @@ BCryptImportKey(
+@@ -1389,7 +1444,9 @@ BCryptImportKey(
      _In_                                BCRYPT_ALG_HANDLE hAlgorithm,
      _In_opt_                            BCRYPT_KEY_HANDLE hImportKey,
      _In_z_                              LPCWSTR pszBlobType,
@@ -256,7 +254,7 @@ index a89e9d42..a7b8c8bd 100644
      _Out_writes_bytes_all_opt_(cbKeyObject)  PUCHAR   pbKeyObject,
      _In_                                ULONG   cbKeyObject,
      _In_reads_bytes_(cbInput)                PUCHAR   pbInput,
-@@ -1405,6 +1464,7 @@ BCryptImportKey(
+@@ -1405,6 +1462,7 @@ BCryptImportKey(
  #define BCRYPT_KEY_VALIDATION_REGENERATE        0x00000020  // BCryptImportKeyPair
  #endif
  
@@ -264,7 +262,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1412,23 +1472,29 @@ BCryptImportKeyPair(
+@@ -1412,23 +1470,29 @@ BCryptImportKeyPair(
      _In_                            BCRYPT_ALG_HANDLE hAlgorithm,
      _In_opt_                        BCRYPT_KEY_HANDLE hImportKey,
      _In_z_                          LPCWSTR pszBlobType,
@@ -296,7 +294,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1437,18 +1503,21 @@ BCryptFinalizeKeyPair(
+@@ -1437,18 +1501,21 @@ BCryptFinalizeKeyPair(
      _In_    ULONG   dwFlags);
  
  
@@ -318,7 +316,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1460,9 +1529,10 @@ BCryptSignHash(
+@@ -1460,9 +1527,10 @@ BCryptSignHash(
      _Out_writes_bytes_to_opt_(cbOutput, *pcbResult) PUCHAR   pbOutput,
      _In_                                        ULONG   cbOutput,
      _Out_                                       ULONG   *pcbResult,
@@ -330,7 +328,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1473,19 +1543,23 @@ BCryptVerifySignature(
+@@ -1473,19 +1541,23 @@ BCryptVerifySignature(
      _In_                        ULONG   cbHash,
      _In_reads_bytes_(cbSignature)    PUCHAR   pbSignature,
      _In_                        ULONG   cbSignature,
@@ -356,7 +354,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1500,6 +1574,7 @@ BCryptDeriveKey(
+@@ -1500,6 +1572,7 @@ BCryptDeriveKey(
  
  
  #if (NTDDI_VERSION >= NTDDI_WIN8)
@@ -364,7 +362,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1516,12 +1591,15 @@ BCryptKeyDerivation(
+@@ -1516,12 +1589,15 @@ BCryptKeyDerivation(
  //
  // Primitive hashing functions.
  //
@@ -381,7 +379,7 @@ index a89e9d42..a7b8c8bd 100644
      _Out_writes_bytes_all_opt_(cbHashObject) PUCHAR   pbHashObject,
      _In_                                ULONG   cbHashObject,
      _In_reads_bytes_opt_(cbSecret)           PUCHAR   pbSecret,   // optional
-@@ -1529,6 +1607,7 @@ BCryptCreateHash(
+@@ -1529,6 +1605,7 @@ BCryptCreateHash(
      _In_                                ULONG   dwFlags);
  
  
@@ -389,7 +387,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1539,6 +1618,7 @@ BCryptHashData(
+@@ -1539,6 +1616,7 @@ BCryptHashData(
      _In_                    ULONG   dwFlags);
  
  
@@ -397,7 +395,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1550,12 +1630,15 @@ BCryptFinishHash(
+@@ -1550,12 +1628,15 @@ BCryptFinishHash(
  
  
  #if (NTDDI_VERSION > NTDDI_WINBLUE || (NTDDI_VERSION == NTDDI_WINBLUE && defined(WINBLUE_KBSPRING14)))
@@ -414,7 +412,7 @@ index a89e9d42..a7b8c8bd 100644
      _In_                                        ULONG               nHashes,
      _Out_writes_bytes_all_opt_(cbHashObject)    PUCHAR              pbHashObject,
      _In_                                        ULONG               cbHashObject,
-@@ -1563,6 +1646,7 @@ BCryptCreateMultiHash(
+@@ -1563,6 +1644,7 @@ BCryptCreateMultiHash(
      _In_                                        ULONG               cbSecret,   // optional
      _In_                                        ULONG               dwFlags);
  
@@ -422,7 +420,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1575,17 +1659,21 @@ BCryptProcessMultiOperations(
+@@ -1575,17 +1657,21 @@ BCryptProcessMultiOperations(
  #endif
  
  
@@ -445,7 +443,7 @@ index a89e9d42..a7b8c8bd 100644
  NTSTATUS
  WINAPI
  BCryptDestroyHash(
-@@ -1593,6 +1681,7 @@ BCryptDestroyHash(
+@@ -1593,6 +1679,7 @@ BCryptDestroyHash(
  
  
  #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
@@ -453,7 +451,7 @@ index a89e9d42..a7b8c8bd 100644
  NTSTATUS
  WINAPI
  BCryptHash(
-@@ -1615,6 +1704,7 @@ BCryptHash(
+@@ -1615,6 +1702,7 @@ BCryptHash(
  #define BCRYPT_RNG_USE_ENTROPY_IN_BUFFER    0x00000001
  #define BCRYPT_USE_SYSTEM_PREFERRED_RNG     0x00000002
  
@@ -461,7 +459,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1622,13 +1712,14 @@ BCryptGenRandom(
+@@ -1622,13 +1710,14 @@ BCryptGenRandom(
      _In_opt_                        BCRYPT_ALG_HANDLE   hAlgorithm,
      _Out_writes_bytes_(cbBuffer)    PUCHAR  pbBuffer,
      _In_                            ULONG   cbBuffer,
@@ -477,7 +475,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1642,6 +1733,7 @@ BCryptDeriveKeyCapi(
+@@ -1642,6 +1731,7 @@ BCryptDeriveKeyCapi(
  
  
  #if (NTDDI_VERSION >= NTDDI_WIN7)
@@ -485,7 +483,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1791,8 +1883,8 @@ typedef struct _BCRYPT_INTERFACE_VERSION
+@@ -1791,8 +1881,8 @@ typedef struct _BCRYPT_INTERFACE_VERSION
  
  typedef struct _CRYPT_INTERFACE_REG
  {
@@ -496,7 +494,7 @@ index a89e9d42..a7b8c8bd 100644
  
      ULONG cFunctions;
      PWSTR *rgpszFunctions;
-@@ -1831,7 +1923,7 @@ CRYPT_PROVIDERS, *PCRYPT_PROVIDERS;
+@@ -1831,7 +1921,7 @@ CRYPT_PROVIDERS, *PCRYPT_PROVIDERS;
  
  typedef struct _CRYPT_CONTEXT_CONFIG
  {
@@ -505,7 +503,7 @@ index a89e9d42..a7b8c8bd 100644
      ULONG dwReserved;
  }
  CRYPT_CONTEXT_CONFIG, *PCRYPT_CONTEXT_CONFIG;
-@@ -1880,7 +1972,7 @@ CRYPT_PROPERTY_REF, *PCRYPT_PROPERTY_REF;
+@@ -1880,7 +1970,7 @@ CRYPT_PROPERTY_REF, *PCRYPT_PROPERTY_REF;
  typedef struct _CRYPT_IMAGE_REF
  {
      PWSTR pszImage;
@@ -514,7 +512,7 @@ index a89e9d42..a7b8c8bd 100644
  }
  CRYPT_IMAGE_REF, *PCRYPT_IMAGE_REF;
  
-@@ -1918,16 +2010,18 @@ CRYPT_PROVIDER_REFS, *PCRYPT_PROVIDER_REFS;
+@@ -1918,16 +2008,18 @@ CRYPT_PROVIDER_REFS, *PCRYPT_PROVIDER_REFS;
  #ifndef KERNEL_MODE_CNG
  
  
@@ -535,7 +533,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -1938,127 +2032,140 @@ BCryptEnumRegisteredProviders(
+@@ -1938,127 +2030,140 @@ BCryptEnumRegisteredProviders(
  //
  // Context Configuration Functions
  //
@@ -697,7 +695,7 @@ index a89e9d42..a7b8c8bd 100644
      _In_z_ LPCWSTR pszFunction,
      _In_z_ LPCWSTR pszProperty,
      _Inout_ ULONG* pcbValue,
-@@ -2071,6 +2178,7 @@ BCryptQueryContextFunctionProperty(
+@@ -2071,6 +2176,7 @@ BCryptQueryContextFunctionProperty(
  //
  
  #ifdef KERNEL_MODE_CNG
@@ -705,7 +703,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS
  WINAPI
-@@ -2078,20 +2186,26 @@ BCryptRegisterConfigChangeNotify(
+@@ -2078,20 +2184,26 @@ BCryptRegisterConfigChangeNotify(
      _In_ PRKEVENT pEvent);
  
  #else
@@ -733,7 +731,7 @@ index a89e9d42..a7b8c8bd 100644
  NTSTATUS
  WINAPI
  BCryptUnregisterConfigChangeNotify(
-@@ -2101,6 +2215,7 @@ BCryptUnregisterConfigChangeNotify(
+@@ -2101,6 +2213,7 @@ BCryptUnregisterConfigChangeNotify(
  //
  // Provider Resolution Functions
  //
@@ -741,7 +739,7 @@ index a89e9d42..a7b8c8bd 100644
  _Must_inspect_result_
  NTSTATUS WINAPI
  BCryptResolveProviders(
-@@ -2108,8 +2223,8 @@ BCryptResolveProviders(
+@@ -2108,8 +2221,8 @@ BCryptResolveProviders(
      _In_opt_ ULONG dwInterface,
      _In_opt_z_ LPCWSTR pszFunction,
      _In_opt_z_ LPCWSTR pszProvider,
@@ -752,7 +750,7 @@ index a89e9d42..a7b8c8bd 100644
      _Inout_ ULONG* pcbBuffer,
      _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_PROVIDER_REFS *ppBuffer);
  
-@@ -2122,6 +2237,7 @@ BCryptResolveProviders(
+@@ -2122,6 +2235,7 @@ BCryptResolveProviders(
  //
  // Miscellaneous queries about the crypto environment
  //
@@ -760,7 +758,7 @@ index a89e9d42..a7b8c8bd 100644
  NTSTATUS
  WINAPI
  BCryptGetFipsAlgorithmMode(
-@@ -2143,6 +2259,257 @@ CngGetFipsAlgorithmMode(
+@@ -2143,6 +2257,257 @@ CngGetFipsAlgorithmMode(
  #pragma endregion
  
  

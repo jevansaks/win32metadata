@@ -43,9 +43,7 @@ Abstract:
 #endif
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #include <pshpack8.h>
 #include <basetsd.h>

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SrRestorePtApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/SrRestorePtApi.h
-index 3a782d47..eb52e375 100644
+index 3a782d47..87140746 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/SrRestorePtApi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/SrRestorePtApi.h
-@@ -14,6 +14,9 @@ Abstract:
+@@ -14,6 +14,7 @@ Abstract:
  #define _SRRESTOREPTAPI_H
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -137,6 +140,7 @@ extern "C" {
+@@ -137,6 +138,7 @@ extern "C" {
  //
  // ERROR_ALREADY_EXISTS       If this is a nested restore point
  
@@ -20,7 +18,7 @@ index 3a782d47..eb52e375 100644
  BOOL __stdcall
  SRSetRestorePointA(
                    _In_ PRESTOREPOINTINFOA  pRestorePtSpec,// [in] Restore Point specification
-@@ -144,6 +148,7 @@ SRSetRestorePointA(
+@@ -144,6 +146,7 @@ SRSetRestorePointA(
                    );
  
  
@@ -28,7 +26,7 @@ index 3a782d47..eb52e375 100644
  BOOL __stdcall
  SRSetRestorePointW(
                    _In_ PRESTOREPOINTINFOW pRestorePtSpec,
-@@ -157,6 +162,8 @@ SRSetRestorePointInternal(
+@@ -157,6 +160,8 @@ SRSetRestorePointInternal(
                    _In_ BOOL           fForceSurrogate
                    );
  

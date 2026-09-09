@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceApi.h
-index 0a1d043d..e2d020a9 100644
+index 0a1d043d..89d308a8 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceApi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceApi.h
-@@ -298,6 +298,9 @@ extern "C"{
+@@ -298,6 +298,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (_WIN32_WINNT >= 0x0501) // XP and later
  #pragma region Application Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
-@@ -1009,6 +1012,7 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
+@@ -1009,6 +1010,7 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 0a1d043d..e2d020a9 100644
      MIDL_INTERFACE("9b4add96-f6bf-4034-8708-eca72bf10554")
      IPortableDeviceContent2 : public IPortableDeviceContent
      {
-@@ -2291,6 +2295,7 @@ EXTERN_C const IID IID_IPortableDeviceUnitsStream;
+@@ -2291,6 +2293,7 @@ EXTERN_C const IID IID_IPortableDeviceUnitsStream;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 0a1d043d..e2d020a9 100644
      MIDL_INTERFACE("5e98025f-bfc4-47a2-9a5f-bc900a507c67")
      IPortableDeviceUnitsStream : public IUnknown
      {
-@@ -2718,6 +2723,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceManager;
+@@ -2718,6 +2721,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 0a1d043d..e2d020a9 100644
      MIDL_INTERFACE("a8abc4e9-a84a-47a9-80b3-c5d9b172a961")
      IPortableDeviceServiceManager : public IUnknown
      {
-@@ -2834,6 +2840,7 @@ EXTERN_C const IID IID_IPortableDeviceService;
+@@ -2834,6 +2838,7 @@ EXTERN_C const IID IID_IPortableDeviceService;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 0a1d043d..e2d020a9 100644
      MIDL_INTERFACE("d3bd3a44-d7b5-40a9-98b7-2fa4d01dec08")
      IPortableDeviceService : public IUnknown
      {
-@@ -3067,6 +3074,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceCapabilities;
+@@ -3067,6 +3072,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceCapabilities;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 0a1d043d..e2d020a9 100644
      MIDL_INTERFACE("24dbd89d-413e-43e0-bd5b-197f3c56c886")
      IPortableDeviceServiceCapabilities : public IUnknown
      {
-@@ -3401,6 +3409,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceMethods;
+@@ -3401,6 +3407,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceMethods;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 0a1d043d..e2d020a9 100644
      MIDL_INTERFACE("e20333c9-fd34-412d-a381-cc6f2d820df7")
      IPortableDeviceServiceMethods : public IUnknown
      {
-@@ -3530,6 +3539,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceMethodCallback;
+@@ -3530,6 +3537,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceMethodCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 0a1d043d..e2d020a9 100644
      MIDL_INTERFACE("c424233c-afce-4828-a756-7ed7a2350083")
      IPortableDeviceServiceMethodCallback : public IUnknown
      {
-@@ -3812,6 +3822,7 @@ EXTERN_C const IID IID_IPortableDeviceDispatchFactory;
+@@ -3812,6 +3820,7 @@ EXTERN_C const IID IID_IPortableDeviceDispatchFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 0a1d043d..e2d020a9 100644
      MIDL_INTERFACE("5e1eafc3-e3d7-4132-96fa-759c0f9d1e0f")
      IPortableDeviceDispatchFactory : public IUnknown
      {
-@@ -3915,6 +3926,7 @@ EXTERN_C const IID IID_IPortableDeviceWebControl;
+@@ -3915,6 +3924,7 @@ EXTERN_C const IID IID_IPortableDeviceWebControl;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/VersionHelpers.h b/generation/WinSDK/RecompiledIdlHeaders/um/VersionHelpers.h
-index e4541b52..924a335d 100644
+index e4541b52..d3c6ea31 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/VersionHelpers.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/VersionHelpers.h
-@@ -9,6 +9,9 @@
+@@ -9,6 +9,7 @@
  *                                                                 *
  ******************************************************************/
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef _MSC_VER
  #pragma once
-@@ -36,10 +39,12 @@
+@@ -36,10 +37,12 @@
  
  #endif // __cplusplus
  
@@ -25,7 +23,7 @@ index e4541b52..924a335d 100644
      DWORDLONG        const dwlConditionMask = VerSetConditionMask(
          VerSetConditionMask(
          VerSetConditionMask(
-@@ -54,66 +59,77 @@ IsWindowsVersionOrGreater(WORD wMajorVersion, WORD wMinorVersion, WORD wServiceP
+@@ -54,66 +57,77 @@ IsWindowsVersionOrGreater(WORD wMajorVersion, WORD wMinorVersion, WORD wServiceP
      return VerifyVersionInfoW(&osvi, VER_MAJORVERSION | VER_MINORVERSION | VER_SERVICEPACKMAJOR, dwlConditionMask) != FALSE;
  }
  
@@ -103,7 +101,7 @@ index e4541b52..924a335d 100644
  VERSIONHELPERAPI
  IsWindows8Point1OrGreater()
  {
-@@ -126,12 +142,14 @@ IsWindowsThresholdOrGreater()
+@@ -126,12 +140,14 @@ IsWindowsThresholdOrGreater()
      return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINTHRESHOLD), LOBYTE(_WIN32_WINNT_WINTHRESHOLD), 0);
  }
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PlayToManagerInterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/PlayToManagerInterop.h
-index 5d1f388a..3eaae1fb 100644
+index 5d1f388a..acd6eb62 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/PlayToManagerInterop.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/PlayToManagerInterop.h
-@@ -66,6 +66,9 @@ extern "C"{
+@@ -66,6 +66,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if (NTDDI_VERSION >= NTDDI_WIN8)
-@@ -85,6 +88,7 @@ EXTERN_C const IID IID_IPlayToManagerInterop;
+@@ -85,6 +86,7 @@ EXTERN_C const IID IID_IPlayToManagerInterop;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -33,9 +33,7 @@ extern "C" {
 
 #include <ctype.h>  
 #include <winapifamily.h>  
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 //
 // Anywhere that NOINITALL is defined, warning 4845 should be disabled. This warning

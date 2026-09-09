@@ -8,9 +8,7 @@
 
 #ifndef _INC_PROPKEY
 #define _INC_PROPKEY
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef DEFINE_API_PKEY
 #define DEFINE_API_PKEY(name, managed_name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8, pid) \

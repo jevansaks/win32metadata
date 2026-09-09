@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/adhoc.h b/generation/WinSDK/RecompiledIdlHeaders/um/adhoc.h
-index e5c05bf9..853c9736 100644
+index e5c05bf9..accba4a5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/adhoc.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/adhoc.h
-@@ -147,6 +147,9 @@ extern "C"{
+@@ -147,6 +147,7 @@ extern "C"{
  //
  //--------------------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  EXTERN_C const CLSID CLSID_AdHocManager;
-@@ -211,6 +214,7 @@ EXTERN_C const IID IID_IDot11AdHocManager;
+@@ -211,6 +212,7 @@ EXTERN_C const IID IID_IDot11AdHocManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index e5c05bf9..853c9736 100644
      MIDL_INTERFACE("8F10CC26-CF0D-42a0-ACBE-E2DE7007384D")
      IDot11AdHocManager : public IUnknown
      {
-@@ -390,6 +394,7 @@ EXTERN_C const IID IID_IDot11AdHocManagerNotificationSink;
+@@ -390,6 +392,7 @@ EXTERN_C const IID IID_IDot11AdHocManagerNotificationSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index e5c05bf9..853c9736 100644
      MIDL_INTERFACE("8F10CC27-CF0D-42a0-ACBE-E2DE7007384D")
      IDot11AdHocManagerNotificationSink : public IUnknown
      {
-@@ -516,6 +521,7 @@ EXTERN_C const IID IID_IEnumDot11AdHocNetworks;
+@@ -516,6 +519,7 @@ EXTERN_C const IID IID_IEnumDot11AdHocNetworks;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index e5c05bf9..853c9736 100644
      MIDL_INTERFACE("8F10CC28-CF0D-42a0-ACBE-E2DE7007384D")
      IEnumDot11AdHocNetworks : public IUnknown
      {
-@@ -646,6 +652,7 @@ EXTERN_C const IID IID_IDot11AdHocNetwork;
+@@ -646,6 +650,7 @@ EXTERN_C const IID IID_IDot11AdHocNetwork;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index e5c05bf9..853c9736 100644
      MIDL_INTERFACE("8F10CC29-CF0D-42a0-ACBE-E2DE7007384D")
      IDot11AdHocNetwork : public IUnknown
      {
-@@ -884,6 +891,7 @@ EXTERN_C const IID IID_IDot11AdHocNetworkNotificationSink;
+@@ -884,6 +889,7 @@ EXTERN_C const IID IID_IDot11AdHocNetworkNotificationSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index e5c05bf9..853c9736 100644
      MIDL_INTERFACE("8F10CC2A-CF0D-42a0-ACBE-E2DE7007384D")
      IDot11AdHocNetworkNotificationSink : public IUnknown
      {
-@@ -980,6 +988,7 @@ EXTERN_C const IID IID_IDot11AdHocInterface;
+@@ -980,6 +986,7 @@ EXTERN_C const IID IID_IDot11AdHocInterface;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index e5c05bf9..853c9736 100644
      MIDL_INTERFACE("8F10CC2B-CF0D-42a0-ACBE-E2DE7007384D")
      IDot11AdHocInterface : public IUnknown
      {
-@@ -1175,6 +1184,7 @@ EXTERN_C const IID IID_IEnumDot11AdHocInterfaces;
+@@ -1175,6 +1182,7 @@ EXTERN_C const IID IID_IEnumDot11AdHocInterfaces;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index e5c05bf9..853c9736 100644
      MIDL_INTERFACE("8F10CC2C-CF0D-42a0-ACBE-E2DE7007384D")
      IEnumDot11AdHocInterfaces : public IUnknown
      {
-@@ -1305,6 +1315,7 @@ EXTERN_C const IID IID_IEnumDot11AdHocSecuritySettings;
+@@ -1305,6 +1313,7 @@ EXTERN_C const IID IID_IEnumDot11AdHocSecuritySettings;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index e5c05bf9..853c9736 100644
      MIDL_INTERFACE("8F10CC2D-CF0D-42a0-ACBE-E2DE7007384D")
      IEnumDot11AdHocSecuritySettings : public IUnknown
      {
-@@ -1435,6 +1446,7 @@ EXTERN_C const IID IID_IDot11AdHocSecuritySettings;
+@@ -1435,6 +1444,7 @@ EXTERN_C const IID IID_IDot11AdHocSecuritySettings;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index e5c05bf9..853c9736 100644
      MIDL_INTERFACE("8F10CC2E-CF0D-42a0-ACBE-E2DE7007384D")
      IDot11AdHocSecuritySettings : public IUnknown
      {
-@@ -1535,6 +1547,7 @@ EXTERN_C const IID IID_IDot11AdHocInterfaceNotificationSink;
+@@ -1535,6 +1545,7 @@ EXTERN_C const IID IID_IDot11AdHocInterfaceNotificationSink;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

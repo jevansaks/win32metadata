@@ -66,9 +66,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #if (NTDDI_VERSION >= NTDDI_WIN10)
 typedef struct NOTIFICATION_USER_INPUT_DATA

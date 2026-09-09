@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/xamlOM.h b/generation/WinSDK/RecompiledIdlHeaders/um/xamlOM.h
-index 64e01289..f6b4df51 100644
+index 64e01289..39e4125e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/xamlOM.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/xamlOM.h
-@@ -32,6 +32,9 @@
+@@ -32,6 +32,7 @@
  
  #ifndef __xamlom_h__
  #define __xamlom_h__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if defined(_MSC_VER) && (_MSC_VER >= 1020)
  #pragma once
-@@ -121,6 +124,7 @@ extern "C"{
+@@ -121,6 +122,7 @@ extern "C"{
  #define E_NOTFOUND HRESULT_FROM_WIN32(ERROR_NOT_FOUND)
  #define E_UNKNOWNTYPE MAKE_HRESULT(SEVERITY_ERROR, FACILITY_XAML, 40L)
  _Check_return_ HRESULT InitializeXamlDiagnostic(_In_ LPCWSTR endPointName, _In_ DWORD pid, _In_ LPCWSTR wszDllXamlDiagnostics, _In_ LPCWSTR wszTAPDllName,  _In_ CLSID tapClsid);
@@ -20,7 +18,7 @@ index 64e01289..f6b4df51 100644
  _Check_return_ HRESULT InitializeXamlDiagnosticsEx(_In_ LPCWSTR endPointName, _In_ DWORD pid, _In_ LPCWSTR wszDllXamlDiagnostics, _In_ LPCWSTR wszTAPDllName, _In_ CLSID tapClsid, _In_ LPCWSTR wszInitializationData);
  typedef MIDL_uhyper InstanceHandle;
  
-@@ -273,6 +277,7 @@ EXTERN_C const IID IID_IVisualTreeServiceCallback;
+@@ -273,6 +275,7 @@ EXTERN_C const IID IID_IVisualTreeServiceCallback;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 64e01289..f6b4df51 100644
      MIDL_INTERFACE("AA7A8931-80E4-4FEC-8F3B-553F87B4966E")
      IVisualTreeServiceCallback : public IUnknown
      {
-@@ -368,6 +373,7 @@ EXTERN_C const IID IID_IVisualTreeServiceCallback2;
+@@ -368,6 +371,7 @@ EXTERN_C const IID IID_IVisualTreeServiceCallback2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 64e01289..f6b4df51 100644
      MIDL_INTERFACE("BAD9EB88-AE77-4397-B948-5FA2DB0A19EA")
      IVisualTreeServiceCallback2 : public IVisualTreeServiceCallback
      {
-@@ -775,6 +781,7 @@ EXTERN_C const IID IID_IXamlDiagnostics;
+@@ -775,6 +779,7 @@ EXTERN_C const IID IID_IXamlDiagnostics;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 64e01289..f6b4df51 100644
      MIDL_INTERFACE("18C9E2B6-3F43-4116-9F2B-FF935D7770D2")
      IXamlDiagnostics : public IUnknown
      {
-@@ -973,6 +980,7 @@ EXTERN_C const IID IID_IBitmapData;
+@@ -973,6 +978,7 @@ EXTERN_C const IID IID_IBitmapData;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 64e01289..f6b4df51 100644
      MIDL_INTERFACE("d1a34ef2-cad8-4635-a3d2-fcda8d3f3caf")
      IBitmapData : public IUnknown
      {
-@@ -1111,6 +1119,7 @@ EXTERN_C const IID IID_IVisualTreeService2;
+@@ -1111,6 +1117,7 @@ EXTERN_C const IID IID_IVisualTreeService2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 64e01289..f6b4df51 100644
      MIDL_INTERFACE("130F5136-EC43-4F61-89C7-9801A36D2E95")
      IVisualTreeService2 : public IVisualTreeService
      {
-@@ -1420,6 +1429,7 @@ EXTERN_C const IID IID_IVisualTreeService3;
+@@ -1420,6 +1427,7 @@ EXTERN_C const IID IID_IVisualTreeService3;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 64e01289..f6b4df51 100644
      MIDL_INTERFACE("0E79C6E0-85A0-4BE8-B41A-655CF1FD19BD")
      IVisualTreeService3 : public IVisualTreeService2
      {
-@@ -1793,14 +1803,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -1793,14 +1801,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

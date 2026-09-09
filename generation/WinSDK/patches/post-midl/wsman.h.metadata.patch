@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wsman.h b/generation/WinSDK/RecompiledIdlHeaders/um/wsman.h
-index 88b1f126..e3e7d4dc 100644
+index 88b1f126..63276636 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wsman.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wsman.h
-@@ -8,6 +8,9 @@
+@@ -8,6 +8,7 @@
  #ifndef _WSMAN_H_
  #define _WSMAN_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or WinMgmt Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WINMGMT)
-@@ -285,6 +288,7 @@ typedef struct WSMAN_API *WSMAN_API_HANDLE;
+@@ -285,6 +286,7 @@ typedef struct WSMAN_API *WSMAN_API_HANDLE;
  // Returns a nonzero error code upon failure
  // -----------------------------------------------------------------------------
  // 
@@ -20,7 +18,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManInitialize(
      DWORD flags,
      _Out_ WSMAN_API_HANDLE *apiHandle
-@@ -299,6 +303,7 @@ DWORD WINAPI WSManInitialize(
+@@ -299,6 +301,7 @@ DWORD WINAPI WSManInitialize(
  // Returns non zero error code upon failure
  // -----------------------------------------------------------------------------
  // 
@@ -28,7 +26,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManDeinitialize(
      _Inout_opt_ WSMAN_API_HANDLE apiHandle,
      DWORD flags
-@@ -319,6 +324,7 @@ DWORD WINAPI WSManDeinitialize(
+@@ -319,6 +322,7 @@ DWORD WINAPI WSManDeinitialize(
  //  the messageLengthUsed parameter contains the requested size of the buffer.
  // -----------------------------------------------------------------------------
  //
@@ -36,7 +34,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManGetErrorMessage(
      _In_ WSMAN_API_HANDLE apiHandle,
      _Reserved_ DWORD flags,            // reserved for future use; must be 0
-@@ -380,6 +386,7 @@ typedef struct WSMAN_SESSION *WSMAN_SESSION_HANDLE;
+@@ -380,6 +384,7 @@ typedef struct WSMAN_SESSION *WSMAN_SESSION_HANDLE;
  // Returns a non zero error code upon failure
  // -----------------------------------------------------------------------------
  //
@@ -44,7 +42,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManCreateSession(
      _In_ WSMAN_API_HANDLE apiHandle,
      _In_opt_ PCWSTR connection,                         // if NULL, then connection will default to localhost
-@@ -396,6 +403,7 @@ DWORD WINAPI WSManCreateSession(
+@@ -396,6 +401,7 @@ DWORD WINAPI WSManCreateSession(
  // Returns a non zero error code upon failure
  // -----------------------------------------------------------------------------
  //
@@ -52,7 +50,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManCloseSession(
      _Inout_opt_ WSMAN_SESSION_HANDLE session,
      DWORD flags
-@@ -469,6 +477,7 @@ typedef enum WSManSessionOption WSManSessionOption;
+@@ -469,6 +475,7 @@ typedef enum WSManSessionOption WSManSessionOption;
  //  Returns a non zero error code upon failure
  // -----------------------------------------------------------------------------
  // 
@@ -60,7 +58,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManSetSessionOption(
      _In_ WSMAN_SESSION_HANDLE session,
      WSManSessionOption option,
-@@ -481,6 +490,7 @@ DWORD WINAPI WSManSetSessionOption(
+@@ -481,6 +488,7 @@ DWORD WINAPI WSManSetSessionOption(
  //  Returns a non zero error code upon failure
  // -----------------------------------------------------------------------------
  // 
@@ -68,7 +66,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManGetSessionOptionAsDword(
      _In_ WSMAN_SESSION_HANDLE session,
      WSManSessionOption option,
-@@ -493,6 +503,7 @@ DWORD WINAPI WSManGetSessionOptionAsDword(
+@@ -493,6 +501,7 @@ DWORD WINAPI WSManGetSessionOptionAsDword(
  //  Returns a non zero error code upon failure
  // -----------------------------------------------------------------------------
  // 
@@ -76,7 +74,7 @@ index 88b1f126..e3e7d4dc 100644
  _Success_(return == NO_ERROR)
  DWORD WINAPI WSManGetSessionOptionAsString(
      _In_ WSMAN_SESSION_HANDLE session,
-@@ -564,6 +575,7 @@ enum WSManCallbackFlags
+@@ -564,6 +573,7 @@ enum WSManCallbackFlags
  //  after the callback returns.
  // -----------------------------------------------------------------------------
  //
@@ -84,7 +82,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManCloseOperation(
      _Inout_opt_ WSMAN_OPERATION_HANDLE operationHandle,
      DWORD flags
-@@ -874,6 +886,7 @@ typedef struct _WSMAN_SHELL_ASYNC
+@@ -874,6 +884,7 @@ typedef struct _WSMAN_SHELL_ASYNC
  // WSManCreateShell API - wxf:Create
  // -----------------------------------------------------------------------------
  //
@@ -92,7 +90,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManCreateShell(
  
      _Inout_ WSMAN_SESSION_HANDLE session,
-@@ -904,6 +917,7 @@ typedef struct _WSMAN_COMMAND_ARG_SET
+@@ -904,6 +915,7 @@ typedef struct _WSMAN_COMMAND_ARG_SET
  
  } WSMAN_COMMAND_ARG_SET;
  
@@ -100,7 +98,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManRunShellCommand(
  
      _Inout_ WSMAN_SHELL_HANDLE shell,
-@@ -930,6 +944,7 @@ void WINAPI WSManRunShellCommand(
+@@ -930,6 +942,7 @@ void WINAPI WSManRunShellCommand(
  #define WSMAN_SIGNAL_SHELL_CODE_CTRL_C WSMAN_SHELL_NS L"/signal/ctrl_c"
  #define WSMAN_SIGNAL_SHELL_CODE_CTRL_BREAK WSMAN_SHELL_NS L"/signal/ctrl_break"
  
@@ -108,7 +106,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManSignalShell(
  
      _In_ WSMAN_SHELL_HANDLE shell,
-@@ -946,6 +961,7 @@ void WINAPI WSManSignalShell(
+@@ -946,6 +959,7 @@ void WINAPI WSManSignalShell(
  // -----------------------------------------------------------------------------
  //
  
@@ -116,7 +114,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManReceiveShellOutput(
  
      _Inout_ WSMAN_SHELL_HANDLE shell,
-@@ -961,6 +977,7 @@ void WINAPI WSManReceiveShellOutput(
+@@ -961,6 +975,7 @@ void WINAPI WSManReceiveShellOutput(
  //  WSManSendShellInput API - rsp:Send
  // -----------------------------------------------------------------------------
  //
@@ -124,7 +122,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManSendShellInput(
  
      _In_ WSMAN_SHELL_HANDLE shell,
-@@ -986,6 +1003,7 @@ void WINAPI WSManSendShellInput(
+@@ -986,6 +1001,7 @@ void WINAPI WSManSendShellInput(
  //  is called with WSMAN_FLAG_CALLBACK_END_OF_OPERATION flag as result of this operation
  // -----------------------------------------------------------------------------
  //
@@ -132,7 +130,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManCloseCommand(
      _Inout_opt_ WSMAN_COMMAND_HANDLE commandHandle,
      DWORD flags,
-@@ -1004,6 +1022,7 @@ void WINAPI WSManCloseCommand(
+@@ -1004,6 +1020,7 @@ void WINAPI WSManCloseCommand(
  //  WSMAN_FLAG_CALLBACK_END_OF_OPERATION flag as result of this operation
  // -----------------------------------------------------------------------------
  //
@@ -140,7 +138,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManCloseShell(
      _Inout_opt_ WSMAN_SHELL_HANDLE shellHandle,
      DWORD flags,
-@@ -1018,6 +1037,7 @@ void WINAPI WSManCloseShell(
+@@ -1018,6 +1035,7 @@ void WINAPI WSManCloseShell(
  // WSManCreateShellEx API - wxf:Create with specific shell Id.
  // -----------------------------------------------------------------------------
  //
@@ -148,7 +146,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManCreateShellEx(
      _Inout_ WSMAN_SESSION_HANDLE session,
      DWORD flags,  
-@@ -1035,6 +1055,7 @@ void WINAPI WSManCreateShellEx(
+@@ -1035,6 +1053,7 @@ void WINAPI WSManCreateShellEx(
  // WSManRunShellCommandEx API - rsp:Command with specific command Id.
  // -----------------------------------------------------------------------------
  //
@@ -156,7 +154,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManRunShellCommandEx(
  
      _Inout_ WSMAN_SHELL_HANDLE shell,
-@@ -1052,6 +1073,7 @@ void WINAPI WSManRunShellCommandEx(
+@@ -1052,6 +1071,7 @@ void WINAPI WSManRunShellCommandEx(
  // WSManDisconnectShell API - rsp:Disconnect
  // -----------------------------------------------------------------------------
  //
@@ -164,7 +162,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManDisconnectShell(
      _Inout_ WSMAN_SHELL_HANDLE shell,
      DWORD flags,  
-@@ -1064,6 +1086,7 @@ void WINAPI WSManDisconnectShell(
+@@ -1064,6 +1084,7 @@ void WINAPI WSManDisconnectShell(
  // WSManReconnectShell API - rsp:Disconnect
  // -----------------------------------------------------------------------------
  //
@@ -172,7 +170,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManReconnectShell(
      _Inout_ WSMAN_SHELL_HANDLE shell,
      DWORD flags,  
-@@ -1078,6 +1101,7 @@ void WINAPI WSManReconnectShell(
+@@ -1078,6 +1099,7 @@ void WINAPI WSManReconnectShell(
  // WSManRunShellCommand is used to report the completion of this operation
  // -----------------------------------------------------------------------------
  //
@@ -180,7 +178,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManReconnectShellCommand(
      _Inout_ WSMAN_COMMAND_HANDLE commandHandle,
      DWORD flags,  
-@@ -1089,6 +1113,7 @@ void WINAPI WSManReconnectShellCommand(
+@@ -1089,6 +1111,7 @@ void WINAPI WSManReconnectShellCommand(
  // WSManConnectShell API - rsp:Connect
  // -----------------------------------------------------------------------------
  //
@@ -188,7 +186,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManConnectShell(
      _Inout_ WSMAN_SESSION_HANDLE session,
      DWORD flags,  
-@@ -1105,6 +1130,7 @@ void WINAPI WSManConnectShell(
+@@ -1105,6 +1128,7 @@ void WINAPI WSManConnectShell(
  // WSManConnectShellCommand API - rsp:Connect
  // -----------------------------------------------------------------------------
  //
@@ -196,7 +194,7 @@ index 88b1f126..e3e7d4dc 100644
  void WINAPI WSManConnectShellCommand(
      _Inout_ WSMAN_SHELL_HANDLE shell,
      DWORD flags,  
-@@ -1187,6 +1213,7 @@ typedef struct _WSMAN_PLUGIN_REQUEST
+@@ -1187,6 +1211,7 @@ typedef struct _WSMAN_PLUGIN_REQUEST
  // errors being generated.
  // -----------------------------------------------------------------------------
  //
@@ -204,7 +202,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManPluginReportContext(
      _In_ WSMAN_PLUGIN_REQUEST *requestDetails,
      _In_ DWORD flags,
-@@ -1235,6 +1262,7 @@ typedef VOID (WINAPI *WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT)(
+@@ -1235,6 +1260,7 @@ typedef VOID (WINAPI *WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT)(
  #define WSMAN_FLAG_RECEIVE_FLUSH               2
  #define WSMAN_FLAG_RECEIVE_RESULT_DATA_BOUNDARY 4
  
@@ -212,7 +210,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManPluginReceiveResult(
      _In_ WSMAN_PLUGIN_REQUEST *requestDetails,
      _In_ DWORD flags,
-@@ -1260,6 +1288,7 @@ DWORD WINAPI WSManPluginReceiveResult(
+@@ -1260,6 +1286,7 @@ DWORD WINAPI WSManPluginReceiveResult(
  // - to supply open Xml content in certain wsman responses like rsp:ConnectResponse
  // -----------------------------------------------------------------------------
  //
@@ -220,7 +218,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManPluginOperationComplete(
      _In_ WSMAN_PLUGIN_REQUEST *requestDetails,
      _In_ DWORD flags,
-@@ -1287,6 +1316,7 @@ DWORD WINAPI WSManPluginOperationComplete(
+@@ -1287,6 +1314,7 @@ DWORD WINAPI WSManPluginOperationComplete(
  #define WSMAN_PLUGIN_PARAMS_GET_REQUESTED_DATA_LOCALE 6 /* Returns WSMAN_DATA_TEXT */
  
  
@@ -228,7 +226,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManPluginGetOperationParameters ( 
      _In_ WSMAN_PLUGIN_REQUEST *requestDetails,
      _In_ DWORD flags,
-@@ -1355,6 +1385,7 @@ DWORD WINAPI WSManPluginReportCompletion(
+@@ -1355,6 +1383,7 @@ DWORD WINAPI WSManPluginReportCompletion(
  // not call the operation complete method for some time.  
  // -----------------------------------------------------------------------------
  //
@@ -236,7 +234,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManPluginFreeRequestDetails(_In_ WSMAN_PLUGIN_REQUEST *requestDetails);
  
  //
-@@ -1594,6 +1625,7 @@ typedef VOID (WINAPI * WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT)(
+@@ -1594,6 +1623,7 @@ typedef VOID (WINAPI * WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT)(
  // Authorization Plug-in Callback methods
  // -----------------------------------------------------------------------------
  //
@@ -244,7 +242,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManPluginAuthzUserComplete ( 
      _In_ WSMAN_SENDER_DETAILS *senderDetails,
      _In_ DWORD flags,
-@@ -1604,6 +1636,7 @@ DWORD WINAPI WSManPluginAuthzUserComplete (
+@@ -1604,6 +1634,7 @@ DWORD WINAPI WSManPluginAuthzUserComplete (
      _In_opt_ PCWSTR extendedErrorInformation
      );
  
@@ -252,7 +250,7 @@ index 88b1f126..e3e7d4dc 100644
  DWORD WINAPI WSManPluginAuthzOperationComplete ( 
      _In_ WSMAN_SENDER_DETAILS *senderDetails,
      _In_ DWORD flags,
-@@ -1612,6 +1645,7 @@ DWORD WINAPI WSManPluginAuthzOperationComplete (
+@@ -1612,6 +1643,7 @@ DWORD WINAPI WSManPluginAuthzOperationComplete (
      _In_opt_ PCWSTR extendedErrorInformation
      );
  

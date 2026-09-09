@@ -11,9 +11,7 @@
 
 #ifndef GUID_DEFINED
 #define GUID_DEFINED
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #if defined(__midl)
 typedef struct {
     unsigned long  Data1;
@@ -159,6 +157,7 @@ __inline int InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
       ((unsigned long *) &rguid1)[3] == ((unsigned long *) &rguid2)[3]);
 }
 
+_Win32_metadata_supported_os_(windows5.0)
 __inline int IsEqualGUID(REFGUID rguid1, REFGUID rguid2)
 {
     return !memcmp(&rguid1, &rguid2, sizeof(GUID));

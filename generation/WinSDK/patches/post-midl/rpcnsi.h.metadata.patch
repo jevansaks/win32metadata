@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/rpcnsi.h b/generation/WinSDK/RecompiledIdlHeaders/um/rpcnsi.h
-index aaafec15..c788ed74 100644
+index aaafec15..0721224a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/rpcnsi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/rpcnsi.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  /*++
  
-@@ -41,6 +44,7 @@ typedef void __RPC_FAR * RPC_NS_HANDLE;
+@@ -41,6 +42,7 @@ typedef void __RPC_FAR * RPC_NS_HANDLE;
  
  /* Server APIs */
  
@@ -18,7 +16,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsBindingExportA(
      _In_ unsigned long EntryNameSyntax,
-@@ -51,6 +55,7 @@ RpcNsBindingExportA(
+@@ -51,6 +53,7 @@ RpcNsBindingExportA(
      );
  
  
@@ -26,7 +24,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsBindingUnexportA(
      _In_ unsigned long EntryNameSyntax,
-@@ -61,6 +66,7 @@ RpcNsBindingUnexportA(
+@@ -61,6 +64,7 @@ RpcNsBindingUnexportA(
  
  #ifdef RPC_UNICODE_SUPPORTED
  
@@ -34,7 +32,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsBindingExportW(
      _In_ unsigned long EntryNameSyntax,
-@@ -70,6 +76,7 @@ RpcNsBindingExportW(
+@@ -70,6 +74,7 @@ RpcNsBindingExportW(
      _In_opt_ UUID_VECTOR __RPC_FAR *ObjectUuidVec
      );
  
@@ -42,7 +40,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsBindingUnexportW(
      _In_ unsigned long EntryNameSyntax,
-@@ -82,6 +89,7 @@ RpcNsBindingUnexportW(
+@@ -82,6 +87,7 @@ RpcNsBindingUnexportW(
  
  /* Server PnP APIs */
  
@@ -50,7 +48,7 @@ index aaafec15..c788ed74 100644
  RPC_STATUS RPC_ENTRY
  RpcNsBindingExportPnPA(
      _In_ unsigned long EntryNameSyntax,
-@@ -90,6 +98,7 @@ RpcNsBindingExportPnPA(
+@@ -90,6 +96,7 @@ RpcNsBindingExportPnPA(
      _In_opt_ UUID_VECTOR *ObjectVector
      );
  
@@ -58,7 +56,7 @@ index aaafec15..c788ed74 100644
  RPC_STATUS RPC_ENTRY
  RpcNsBindingUnexportPnPA(
      _In_ unsigned long EntryNameSyntax,
-@@ -100,6 +109,7 @@ RpcNsBindingUnexportPnPA(
+@@ -100,6 +107,7 @@ RpcNsBindingUnexportPnPA(
  
  #ifdef RPC_UNICODE_SUPPORTED
  
@@ -66,7 +64,7 @@ index aaafec15..c788ed74 100644
  RPC_STATUS RPC_ENTRY
  RpcNsBindingExportPnPW(
      _In_ unsigned long EntryNameSyntax,
-@@ -108,6 +118,7 @@ RpcNsBindingExportPnPW(
+@@ -108,6 +116,7 @@ RpcNsBindingExportPnPW(
      _In_opt_ UUID_VECTOR *ObjectVector
      );
  
@@ -74,7 +72,7 @@ index aaafec15..c788ed74 100644
  RPC_STATUS RPC_ENTRY
  RpcNsBindingUnexportPnPW(
      _In_ unsigned long EntryNameSyntax,
-@@ -120,6 +131,7 @@ RpcNsBindingUnexportPnPW(
+@@ -120,6 +129,7 @@ RpcNsBindingUnexportPnPW(
  
  /* Client APIs */
  
@@ -82,7 +80,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsBindingLookupBeginA(
      _In_ unsigned long EntryNameSyntax,
-@@ -132,6 +144,7 @@ RpcNsBindingLookupBeginA(
+@@ -132,6 +142,7 @@ RpcNsBindingLookupBeginA(
  
  #ifdef RPC_UNICODE_SUPPORTED
  
@@ -90,7 +88,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsBindingLookupBeginW(
      _In_ unsigned long EntryNameSyntax,
-@@ -143,12 +156,14 @@ RpcNsBindingLookupBeginW(
+@@ -143,12 +154,14 @@ RpcNsBindingLookupBeginW(
      );
  #endif
  
@@ -105,7 +103,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsBindingLookupDone(
      IN OUT RPC_NS_HANDLE __RPC_FAR * LookupContext
-@@ -156,12 +171,14 @@ RpcNsBindingLookupDone(
+@@ -156,12 +169,14 @@ RpcNsBindingLookupDone(
  
  /* Group APIs */
  
@@ -120,7 +118,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsGroupMbrAddA(
      _In_ unsigned long GroupNameSyntax,
-@@ -170,6 +187,7 @@ RpcNsGroupMbrAddA(
+@@ -170,6 +185,7 @@ RpcNsGroupMbrAddA(
      _In_ RPC_CSTR MemberName
      );
  
@@ -128,7 +126,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsGroupMbrRemoveA(
      _In_ unsigned long GroupNameSyntax,
-@@ -178,6 +196,7 @@ RpcNsGroupMbrRemoveA(
+@@ -178,6 +194,7 @@ RpcNsGroupMbrRemoveA(
      _In_ RPC_CSTR MemberName
      );
  
@@ -136,7 +134,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsGroupMbrInqBeginA(
      _In_ unsigned long GroupNameSyntax,
-@@ -186,6 +205,7 @@ RpcNsGroupMbrInqBeginA(
+@@ -186,6 +203,7 @@ RpcNsGroupMbrInqBeginA(
      _Out_ RPC_NS_HANDLE __RPC_FAR *InquiryContext
      );
  
@@ -144,7 +142,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsGroupMbrInqNextA(
      _Inout_ RPC_NS_HANDLE InquiryContext,
-@@ -194,12 +214,14 @@ RpcNsGroupMbrInqNextA(
+@@ -194,12 +212,14 @@ RpcNsGroupMbrInqNextA(
  
  #ifdef RPC_UNICODE_SUPPORTED
  
@@ -159,7 +157,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsGroupMbrAddW(
      _In_ unsigned long GroupNameSyntax,
-@@ -208,6 +230,7 @@ RpcNsGroupMbrAddW(
+@@ -208,6 +228,7 @@ RpcNsGroupMbrAddW(
      _In_ RPC_WSTR MemberName
      );
  
@@ -167,7 +165,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsGroupMbrRemoveW(
      _In_ unsigned long GroupNameSyntax,
-@@ -216,6 +239,7 @@ RpcNsGroupMbrRemoveW(
+@@ -216,6 +237,7 @@ RpcNsGroupMbrRemoveW(
      _In_ RPC_WSTR MemberName
      );
  
@@ -175,7 +173,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsGroupMbrInqBeginW(
      _In_ unsigned long GroupNameSyntax,
-@@ -224,6 +248,7 @@ RpcNsGroupMbrInqBeginW(
+@@ -224,6 +246,7 @@ RpcNsGroupMbrInqBeginW(
      _Out_ RPC_NS_HANDLE __RPC_FAR *InquiryContext
      );
  
@@ -183,7 +181,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsGroupMbrInqNextW(
      _Inout_ RPC_NS_HANDLE InquiryContext,
-@@ -232,6 +257,7 @@ RpcNsGroupMbrInqNextW(
+@@ -232,6 +255,7 @@ RpcNsGroupMbrInqNextW(
  
  #endif
  
@@ -191,7 +189,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsGroupMbrInqDone(
      IN OUT RPC_NS_HANDLE __RPC_FAR * InquiryContext
-@@ -239,12 +265,14 @@ RpcNsGroupMbrInqDone(
+@@ -239,12 +263,14 @@ RpcNsGroupMbrInqDone(
  
  /* Profile APIs */
  
@@ -206,7 +204,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsProfileEltAddA(
      _In_ unsigned long ProfileNameSyntax,
-@@ -256,6 +284,7 @@ RpcNsProfileEltAddA(
+@@ -256,6 +282,7 @@ RpcNsProfileEltAddA(
      _In_opt_ RPC_CSTR Annotation
      );
  
@@ -214,7 +212,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsProfileEltRemoveA(
      _In_ unsigned long ProfileNameSyntax,
-@@ -265,6 +294,7 @@ RpcNsProfileEltRemoveA(
+@@ -265,6 +292,7 @@ RpcNsProfileEltRemoveA(
      _In_ RPC_CSTR MemberName
      );
  
@@ -222,7 +220,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsProfileEltInqBeginA(
      _In_ unsigned long ProfileNameSyntax,
-@@ -277,6 +307,7 @@ RpcNsProfileEltInqBeginA(
+@@ -277,6 +305,7 @@ RpcNsProfileEltInqBeginA(
      _Out_ RPC_NS_HANDLE __RPC_FAR *InquiryContext
      );
  
@@ -230,7 +228,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsProfileEltInqNextA(
      _In_ RPC_NS_HANDLE InquiryContext,
-@@ -288,12 +319,14 @@ RpcNsProfileEltInqNextA(
+@@ -288,12 +317,14 @@ RpcNsProfileEltInqNextA(
  
  #ifdef RPC_UNICODE_SUPPORTED
  
@@ -245,7 +243,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsProfileEltAddW(
      _In_ unsigned long ProfileNameSyntax,
-@@ -305,6 +338,7 @@ RpcNsProfileEltAddW(
+@@ -305,6 +336,7 @@ RpcNsProfileEltAddW(
      _In_opt_ RPC_WSTR Annotation
      );
  
@@ -253,7 +251,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsProfileEltRemoveW(
      _In_ unsigned long ProfileNameSyntax,
-@@ -314,6 +348,7 @@ RpcNsProfileEltRemoveW(
+@@ -314,6 +346,7 @@ RpcNsProfileEltRemoveW(
      _In_ RPC_WSTR MemberName
      );
  
@@ -261,7 +259,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsProfileEltInqBeginW(
      _In_ unsigned long ProfileNameSyntax,
-@@ -326,6 +361,7 @@ RpcNsProfileEltInqBeginW(
+@@ -326,6 +359,7 @@ RpcNsProfileEltInqBeginW(
      _Out_ RPC_NS_HANDLE __RPC_FAR *InquiryContext
      );
  
@@ -269,7 +267,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsProfileEltInqNextW(
      _In_ RPC_NS_HANDLE InquiryContext,
-@@ -337,6 +373,7 @@ RpcNsProfileEltInqNextW(
+@@ -337,6 +371,7 @@ RpcNsProfileEltInqNextW(
  
  #endif
  
@@ -277,7 +275,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsProfileEltInqDone(
      IN OUT RPC_NS_HANDLE __RPC_FAR * InquiryContext
-@@ -344,6 +381,7 @@ RpcNsProfileEltInqDone(
+@@ -344,6 +379,7 @@ RpcNsProfileEltInqDone(
  
  /* Entry object APIs */
  
@@ -285,7 +283,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsEntryObjectInqBeginA(
      _In_ unsigned long EntryNameSyntax,
-@@ -353,6 +391,7 @@ RpcNsEntryObjectInqBeginA(
+@@ -353,6 +389,7 @@ RpcNsEntryObjectInqBeginA(
  
  #ifdef RPC_UNICODE_SUPPORTED
  
@@ -293,7 +291,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsEntryObjectInqBeginW(
      _In_ unsigned long EntryNameSyntax,
-@@ -362,12 +401,14 @@ RpcNsEntryObjectInqBeginW(
+@@ -362,12 +399,14 @@ RpcNsEntryObjectInqBeginW(
  
  #endif
  
@@ -308,7 +306,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsEntryObjectInqDone(
      IN OUT RPC_NS_HANDLE __RPC_FAR * InquiryContext
-@@ -375,6 +416,7 @@ RpcNsEntryObjectInqDone(
+@@ -375,6 +414,7 @@ RpcNsEntryObjectInqDone(
  
  /* Management and MISC APIs */
  
@@ -316,7 +314,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsEntryExpandNameA(
      _In_ unsigned long EntryNameSyntax,
-@@ -382,6 +424,7 @@ RpcNsEntryExpandNameA(
+@@ -382,6 +422,7 @@ RpcNsEntryExpandNameA(
      _Out_ RPC_CSTR __RPC_FAR *ExpandedName
      );
  
@@ -324,7 +322,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsMgmtBindingUnexportA(
      _In_ unsigned long EntryNameSyntax,
-@@ -391,18 +434,21 @@ RpcNsMgmtBindingUnexportA(
+@@ -391,18 +432,21 @@ RpcNsMgmtBindingUnexportA(
      _In_opt_ UUID_VECTOR __RPC_FAR *ObjectUuidVec
      );
  
@@ -346,7 +344,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsMgmtEntryInqIfIdsA(
      _In_ unsigned long EntryNameSyntax,
-@@ -410,17 +456,20 @@ RpcNsMgmtEntryInqIfIdsA(
+@@ -410,17 +454,20 @@ RpcNsMgmtEntryInqIfIdsA(
      _Out_ RPC_IF_ID_VECTOR __RPC_FAR * __RPC_FAR *IfIdVec
      );
  
@@ -367,7 +365,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsMgmtSetExpAge(
      IN unsigned long ExpirationAge
-@@ -428,6 +477,7 @@ RpcNsMgmtSetExpAge(
+@@ -428,6 +475,7 @@ RpcNsMgmtSetExpAge(
  
  #ifdef RPC_UNICODE_SUPPORTED
  
@@ -375,7 +373,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsEntryExpandNameW(
      _In_ unsigned long EntryNameSyntax,
-@@ -435,6 +485,7 @@ RpcNsEntryExpandNameW(
+@@ -435,6 +483,7 @@ RpcNsEntryExpandNameW(
      _Out_ RPC_WSTR __RPC_FAR *ExpandedName
      );
  
@@ -383,7 +381,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsMgmtBindingUnexportW(
      _In_ unsigned long EntryNameSyntax,
-@@ -444,18 +495,21 @@ RpcNsMgmtBindingUnexportW(
+@@ -444,18 +493,21 @@ RpcNsMgmtBindingUnexportW(
      _In_opt_ UUID_VECTOR __RPC_FAR *ObjectUuidVec
      );
  
@@ -405,7 +403,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsMgmtEntryInqIfIdsW(
      _In_ unsigned long EntryNameSyntax,
-@@ -467,6 +521,7 @@ RpcNsMgmtEntryInqIfIdsW(
+@@ -467,6 +519,7 @@ RpcNsMgmtEntryInqIfIdsW(
  
  /* Client API's implemented in wrappers. */
  
@@ -413,7 +411,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsBindingImportBeginA(
      _In_ unsigned long EntryNameSyntax,
-@@ -478,6 +533,7 @@ RpcNsBindingImportBeginA(
+@@ -478,6 +531,7 @@ RpcNsBindingImportBeginA(
  
  #ifdef RPC_UNICODE_SUPPORTED
  
@@ -421,7 +419,7 @@ index aaafec15..c788ed74 100644
  RPCNSAPI RPC_STATUS RPC_ENTRY
  RpcNsBindingImportBeginW(
      _In_ unsigned long EntryNameSyntax,
-@@ -489,17 +545,20 @@ RpcNsBindingImportBeginW(
+@@ -489,17 +543,20 @@ RpcNsBindingImportBeginW(
  
  #endif
  

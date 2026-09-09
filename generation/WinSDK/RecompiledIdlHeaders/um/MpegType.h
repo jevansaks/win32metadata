@@ -10,6 +10,7 @@
 #ifndef __MPEGTYPE__
 #define __MPEGTYPE__
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -63,6 +64,7 @@ typedef struct tagAM_MPEGSYSTEMTYPE
 #define AM_MPEG_AUDIO_DUAL_LEFT  1
 #define AM_MPEG_AUDIO_DUAL_RIGHT 2
 
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IMpegAudioDecoder, IUnknown) {
 
     STDMETHOD(get_FrequencyDivider) (THIS_

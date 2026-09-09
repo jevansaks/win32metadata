@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsplp.h b/generation/WinSDK/RecompiledIdlHeaders/um/winsplp.h
-index 65bd9b11..9f538f2e 100644
+index 65bd9b11..1c32580a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winsplp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winsplp.h
-@@ -19,6 +19,9 @@ Revision History:
+@@ -19,6 +19,7 @@ Revision History:
  #ifndef _WINSPLP_
  #define _WINSPLP_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -1843,7 +1846,8 @@ HANDLE
+@@ -1843,7 +1844,8 @@ HANDLE
  CreatePrinterIC(
      _In_        HANDLE      hPrinter,
      _In_opt_    LPDEVMODEW  pDevMode

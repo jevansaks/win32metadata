@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/datetimeapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/datetimeapi.h
-index 57f76415..0b51d71c 100644
+index 57f76415..b9198163 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/datetimeapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/datetimeapi.h
-@@ -12,6 +12,9 @@
+@@ -12,6 +12,7 @@
  
  #ifndef _DATETIMEAPI_H_
  #define _DATETIMEAPI_H_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <apiset.h>
  #include <apisetcconv.h>
-@@ -26,6 +29,8 @@ extern "C" {
+@@ -26,6 +27,8 @@ extern "C" {
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
  // For Windows Vista and above GetDateFormatEx is preferred
@@ -21,7 +19,7 @@ index 57f76415..0b51d71c 100644
  WINBASEAPI
  int
  WINAPI
-@@ -38,6 +43,8 @@ GetDateFormatA(
+@@ -38,6 +41,8 @@ GetDateFormatA(
      _In_ int cchDate
      );
  
@@ -30,7 +28,7 @@ index 57f76415..0b51d71c 100644
  WINBASEAPI
  int
  WINAPI
-@@ -57,6 +64,8 @@ GetDateFormatW(
+@@ -57,6 +62,8 @@ GetDateFormatW(
  #endif // !UNICODE
  
  // For Windows Vista and above GetTimeFormatEx is preferred
@@ -39,7 +37,7 @@ index 57f76415..0b51d71c 100644
  WINBASEAPI
  int
  WINAPI
-@@ -69,6 +78,8 @@ GetTimeFormatA(
+@@ -69,6 +76,8 @@ GetTimeFormatA(
      _In_ int cchTime
      );
  
@@ -48,7 +46,7 @@ index 57f76415..0b51d71c 100644
  WINBASEAPI
  int
  WINAPI
-@@ -93,6 +104,8 @@ GetTimeFormatW(
+@@ -93,6 +102,8 @@ GetTimeFormatW(
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -57,7 +55,7 @@ index 57f76415..0b51d71c 100644
  WINBASEAPI
  int
  WINAPI
-@@ -105,6 +118,8 @@ GetTimeFormatEx(
+@@ -105,6 +116,8 @@ GetTimeFormatEx(
      _In_ int cchTime
      );
  
@@ -66,7 +64,7 @@ index 57f76415..0b51d71c 100644
  WINBASEAPI
  int
  WINAPI
-@@ -126,6 +141,8 @@ GetDateFormatEx(
+@@ -126,6 +139,8 @@ GetDateFormatEx(
  
  #define GetDurationFormatEx_DEFINED
  

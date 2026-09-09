@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsCeip.h b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsCeip.h
-index 57c59bce..782f2e16 100644
+index 57c59bce..57df3ecb 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsCeip.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsCeip.h
-@@ -17,6 +17,9 @@ Abstract:
+@@ -17,6 +17,7 @@ Abstract:
  #endif // _MSC_VER
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -27,6 +30,7 @@ extern "C" {
+@@ -27,6 +28,7 @@ extern "C" {
  
  #if (NTDDI_VERSION >= NTDDI_WIN8)
  

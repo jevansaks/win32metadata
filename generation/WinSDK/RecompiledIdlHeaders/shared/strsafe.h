@@ -20,9 +20,7 @@
 #include <stdarg.h>         // for va_start, etc.
 #include <specstrings.h>    // for _In_, etc.
 #include <winapifamily.h>   // for WINAPI_FAMILY_PARTITION()
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if !defined(_W64)
 #if !defined(__midl) && (defined(_X86_) || defined(_M_IX86) || defined(_ARM_) || defined(_M_ARM)) && (_MSC_VER >= 1300)

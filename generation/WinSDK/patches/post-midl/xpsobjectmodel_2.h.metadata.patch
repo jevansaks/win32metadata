@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/xpsobjectmodel_2.h b/generation/WinSDK/RecompiledIdlHeaders/um/xpsobjectmodel_2.h
-index b7062527..f0efd40a 100644
+index b7062527..9f0b9212 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/xpsobjectmodel_2.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/xpsobjectmodel_2.h
-@@ -32,6 +32,9 @@
+@@ -32,6 +32,7 @@
  
  #ifndef __xpsobjectmodel_2_h__
  #define __xpsobjectmodel_2_h__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if defined(_MSC_VER) && (_MSC_VER >= 1020)
  #pragma once
-@@ -99,6 +102,7 @@ EXTERN_C const IID IID_IXpsOMPackageWriter3D;
+@@ -99,6 +100,7 @@ EXTERN_C const IID IID_IXpsOMPackageWriter3D;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index b7062527..f0efd40a 100644
      MIDL_INTERFACE("e8a45033-640e-43fa-9bdf-fddeaa31c6a0")
      IXpsOMPackageWriter3D : public IXpsOMPackageWriter
      {
-@@ -269,6 +273,7 @@ EXTERN_C const IID IID_IXpsDocumentPackageTarget3D;
+@@ -269,6 +271,7 @@ EXTERN_C const IID IID_IXpsDocumentPackageTarget3D;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspath.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspath.h
-index ac4b7ae2..22de0f7a 100644
+index ac4b7ae2..35cd7252 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspath.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspath.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  #ifndef _GDIPLUSPATH_H
  #define _GDIPLUSPATH_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -161,6 +164,7 @@ public:
+@@ -161,6 +162,7 @@ public:
          return SetStatus(DllExports::GdipStartPathFigure(nativePath));
      }
  

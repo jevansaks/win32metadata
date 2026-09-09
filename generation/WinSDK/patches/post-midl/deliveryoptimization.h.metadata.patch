@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/deliveryoptimization.h b/generation/WinSDK/RecompiledIdlHeaders/um/deliveryoptimization.h
-index 7e2f905f..a976a0a5 100644
+index 7e2f905f..4e6ac432 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/deliveryoptimization.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/deliveryoptimization.h
-@@ -92,6 +92,9 @@ extern "C"{
+@@ -92,6 +92,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -589,9 +592,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -589,9 +590,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fontsub.h b/generation/WinSDK/RecompiledIdlHeaders/um/fontsub.h
-index c62f2f1a..5b8998b5 100644
+index c62f2f1a..e59eb351 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fontsub.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fontsub.h
-@@ -9,6 +9,9 @@
+@@ -9,6 +9,7 @@
  #ifndef FONTSUB_DOT_H_DEFINED
  #define FONTSUB_DOT_H_DEFINED
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -26,6 +29,7 @@ typedef void *(__cdecl *CFP_ALLOCPROC)(size_t);
+@@ -26,6 +27,7 @@ typedef void *(__cdecl *CFP_ALLOCPROC)(size_t);
  typedef void *(__cdecl *CFP_REALLOCPROC)(void *, size_t);
  typedef void (__cdecl *CFP_FREEPROC)(void *);
  
@@ -20,7 +18,7 @@ index c62f2f1a..5b8998b5 100644
  unsigned long __cdecl CreateFontPackage(
  	CONST unsigned char * puchSrcBuffer, /* input TTF or TTC buffer */
  	CONST unsigned long ulSrcBufferSize, /* size of input TTF or TTC buffer data */
-@@ -71,6 +75,7 @@ unsigned long __cdecl CreateFontPackage(
+@@ -71,6 +73,7 @@ unsigned long __cdecl CreateFontPackage(
  #define TTFCFP_FLAGS_TTC 0x0004  /* if bit off, its a TTF */
  #define TTFCFP_FLAGS_GLYPHLIST 0x0008 /* if bit off, list is characters */
  

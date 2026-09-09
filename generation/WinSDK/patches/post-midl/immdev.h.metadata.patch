@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/immdev.h b/generation/WinSDK/RecompiledIdlHeaders/um/immdev.h
-index 07427bc1..0f3b299d 100644
+index 07427bc1..0ba5b036 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/immdev.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/immdev.h
-@@ -7,6 +7,9 @@
+@@ -7,6 +7,7 @@
  
  #ifndef _IMMDEV_
  #define _IMMDEV_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  
  #ifdef __cplusplus
-@@ -223,7 +226,9 @@ typedef BOOL    (CALLBACK* IMCENUMPROC)(HIMC, LPARAM);
+@@ -223,7 +224,9 @@ typedef BOOL    (CALLBACK* IMCENUMPROC)(HIMC, LPARAM);
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -22,7 +20,7 @@ index 07427bc1..0f3b299d 100644
  HKL  WINAPI ImmInstallIMEW(_In_ LPCWSTR lpszIMEFileName, _In_ LPCWSTR lpszLayoutText);
  #ifdef UNICODE
  #define ImmInstallIME  ImmInstallIMEW
-@@ -231,9 +236,12 @@ HKL  WINAPI ImmInstallIMEW(_In_ LPCWSTR lpszIMEFileName, _In_ LPCWSTR lpszLayout
+@@ -231,9 +234,12 @@ HKL  WINAPI ImmInstallIMEW(_In_ LPCWSTR lpszIMEFileName, _In_ LPCWSTR lpszLayout
  #define ImmInstallIME  ImmInstallIMEA
  #endif // !UNICODE
  
@@ -35,7 +33,7 @@ index 07427bc1..0f3b299d 100644
  UINT WINAPI ImmGetDescriptionW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszDescription, IN UINT uBufLen);
  #ifdef UNICODE
  #define ImmGetDescription  ImmGetDescriptionW
-@@ -241,7 +249,9 @@ UINT WINAPI ImmGetDescriptionW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszDesc
+@@ -241,7 +247,9 @@ UINT WINAPI ImmGetDescriptionW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszDesc
  #define ImmGetDescription  ImmGetDescriptionA
  #endif // !UNICODE
  
@@ -45,7 +43,7 @@ index 07427bc1..0f3b299d 100644
  UINT WINAPI ImmGetIMEFileNameW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszFileName, IN UINT uBufLen);
  #ifdef UNICODE
  #define ImmGetIMEFileName  ImmGetIMEFileNameW
-@@ -249,22 +259,33 @@ UINT WINAPI ImmGetIMEFileNameW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszFile
+@@ -249,22 +257,33 @@ UINT WINAPI ImmGetIMEFileNameW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszFile
  #define ImmGetIMEFileName  ImmGetIMEFileNameA
  #endif // !UNICODE
  
@@ -79,7 +77,7 @@ index 07427bc1..0f3b299d 100644
  LONG  WINAPI ImmGetCompositionStringW(IN HIMC, IN DWORD, _Out_writes_bytes_opt_(dwBufLen) LPVOID lpBuf, IN DWORD dwBufLen);
  #ifdef UNICODE
  #define ImmGetCompositionString  ImmGetCompositionStringW
-@@ -272,7 +293,9 @@ LONG  WINAPI ImmGetCompositionStringW(IN HIMC, IN DWORD, _Out_writes_bytes_opt_(
+@@ -272,7 +291,9 @@ LONG  WINAPI ImmGetCompositionStringW(IN HIMC, IN DWORD, _Out_writes_bytes_opt_(
  #define ImmGetCompositionString  ImmGetCompositionStringA
  #endif // !UNICODE
  
@@ -89,7 +87,7 @@ index 07427bc1..0f3b299d 100644
  BOOL  WINAPI ImmSetCompositionStringW(IN HIMC, IN DWORD dwIndex, _In_reads_bytes_opt_(dwCompLen) LPVOID lpComp, IN DWORD dwCompLen, _In_reads_bytes_opt_(dwReadLen) LPVOID lpRead, IN DWORD dwReadLen);
  #ifdef UNICODE
  #define ImmSetCompositionString  ImmSetCompositionStringW
-@@ -280,7 +303,9 @@ BOOL  WINAPI ImmSetCompositionStringW(IN HIMC, IN DWORD dwIndex, _In_reads_bytes
+@@ -280,7 +301,9 @@ BOOL  WINAPI ImmSetCompositionStringW(IN HIMC, IN DWORD dwIndex, _In_reads_bytes
  #define ImmSetCompositionString  ImmSetCompositionStringA
  #endif // !UNICODE
  
@@ -99,7 +97,7 @@ index 07427bc1..0f3b299d 100644
  DWORD WINAPI ImmGetCandidateListCountW(IN HIMC, _Out_ LPDWORD lpdwListCount);
  #ifdef UNICODE
  #define ImmGetCandidateListCount  ImmGetCandidateListCountW
-@@ -288,7 +313,9 @@ DWORD WINAPI ImmGetCandidateListCountW(IN HIMC, _Out_ LPDWORD lpdwListCount);
+@@ -288,7 +311,9 @@ DWORD WINAPI ImmGetCandidateListCountW(IN HIMC, _Out_ LPDWORD lpdwListCount);
  #define ImmGetCandidateListCount  ImmGetCandidateListCountA
  #endif // !UNICODE
  
@@ -109,7 +107,7 @@ index 07427bc1..0f3b299d 100644
  DWORD WINAPI ImmGetCandidateListW(IN HIMC, IN DWORD deIndex, _Out_writes_bytes_opt_(dwBufLen) LPCANDIDATELIST lpCandList, IN DWORD dwBufLen);
  #ifdef UNICODE
  #define ImmGetCandidateList  ImmGetCandidateListW
-@@ -296,7 +323,9 @@ DWORD WINAPI ImmGetCandidateListW(IN HIMC, IN DWORD deIndex, _Out_writes_bytes_o
+@@ -296,7 +321,9 @@ DWORD WINAPI ImmGetCandidateListW(IN HIMC, IN DWORD deIndex, _Out_writes_bytes_o
  #define ImmGetCandidateList  ImmGetCandidateListA
  #endif // !UNICODE
  
@@ -119,7 +117,7 @@ index 07427bc1..0f3b299d 100644
  DWORD WINAPI ImmGetGuideLineW(_In_ HIMC, _In_ DWORD dwIndex, _Out_writes_bytes_opt_(dwBufLen) LPWSTR lpBuf, _In_ DWORD dwBufLen);
  #ifdef UNICODE
  #define ImmGetGuideLine  ImmGetGuideLineW
-@@ -304,13 +333,19 @@ DWORD WINAPI ImmGetGuideLineW(_In_ HIMC, _In_ DWORD dwIndex, _Out_writes_bytes_o
+@@ -304,13 +331,19 @@ DWORD WINAPI ImmGetGuideLineW(_In_ HIMC, _In_ DWORD dwIndex, _Out_writes_bytes_o
  #define ImmGetGuideLine  ImmGetGuideLineA
  #endif // !UNICODE
  
@@ -139,7 +137,7 @@ index 07427bc1..0f3b299d 100644
  BOOL WINAPI ImmGetCompositionFontW(IN HIMC, _Out_ LPLOGFONTW lplf);
  #ifdef UNICODE
  #define ImmGetCompositionFont  ImmGetCompositionFontW
-@@ -318,7 +353,9 @@ BOOL WINAPI ImmGetCompositionFontW(IN HIMC, _Out_ LPLOGFONTW lplf);
+@@ -318,7 +351,9 @@ BOOL WINAPI ImmGetCompositionFontW(IN HIMC, _Out_ LPLOGFONTW lplf);
  #define ImmGetCompositionFont  ImmGetCompositionFontA
  #endif // !UNICODE
  
@@ -149,7 +147,7 @@ index 07427bc1..0f3b299d 100644
  BOOL WINAPI ImmSetCompositionFontW(IN HIMC, _In_ LPLOGFONTW lplf);
  #ifdef UNICODE
  #define ImmSetCompositionFont  ImmSetCompositionFontW
-@@ -327,7 +364,9 @@ BOOL WINAPI ImmSetCompositionFontW(IN HIMC, _In_ LPLOGFONTW lplf);
+@@ -327,7 +362,9 @@ BOOL WINAPI ImmSetCompositionFontW(IN HIMC, _In_ LPLOGFONTW lplf);
  #endif // !UNICODE
  #endif  // defined(_WINGDI_) && !defined(NOGDI)
  
@@ -159,7 +157,7 @@ index 07427bc1..0f3b299d 100644
  BOOL    WINAPI ImmConfigureIMEW(IN HKL, IN HWND, IN DWORD, IN LPVOID);
  #ifdef UNICODE
  #define ImmConfigureIME  ImmConfigureIMEW
-@@ -335,7 +374,9 @@ BOOL    WINAPI ImmConfigureIMEW(IN HKL, IN HWND, IN DWORD, IN LPVOID);
+@@ -335,7 +372,9 @@ BOOL    WINAPI ImmConfigureIMEW(IN HKL, IN HWND, IN DWORD, IN LPVOID);
  #define ImmConfigureIME  ImmConfigureIMEA
  #endif // !UNICODE
  
@@ -169,7 +167,7 @@ index 07427bc1..0f3b299d 100644
  LRESULT WINAPI ImmEscapeW(IN HKL, IN HIMC, IN UINT, IN LPVOID);
  #ifdef UNICODE
  #define ImmEscape  ImmEscapeW
-@@ -343,7 +384,9 @@ LRESULT WINAPI ImmEscapeW(IN HKL, IN HIMC, IN UINT, IN LPVOID);
+@@ -343,7 +382,9 @@ LRESULT WINAPI ImmEscapeW(IN HKL, IN HIMC, IN UINT, IN LPVOID);
  #define ImmEscape  ImmEscapeA
  #endif // !UNICODE
  
@@ -179,7 +177,7 @@ index 07427bc1..0f3b299d 100644
  DWORD   WINAPI ImmGetConversionListW(IN HKL, IN HIMC, _In_ LPCWSTR lpSrc, _Out_writes_bytes_(dwBufLen) LPCANDIDATELIST lpDst, IN DWORD dwBufLen, IN UINT uFlag);
  #ifdef UNICODE
  #define ImmGetConversionList  ImmGetConversionListW
-@@ -351,16 +394,25 @@ DWORD   WINAPI ImmGetConversionListW(IN HKL, IN HIMC, _In_ LPCWSTR lpSrc, _Out_w
+@@ -351,16 +392,25 @@ DWORD   WINAPI ImmGetConversionListW(IN HKL, IN HIMC, _In_ LPCWSTR lpSrc, _Out_w
  #define ImmGetConversionList  ImmGetConversionListA
  #endif // !UNICODE
  
@@ -205,7 +203,7 @@ index 07427bc1..0f3b299d 100644
  BOOL WINAPI ImmIsUIMessageW(IN HWND, IN UINT, IN WPARAM, IN LPARAM);
  #ifdef UNICODE
  #define ImmIsUIMessage  ImmIsUIMessageW
-@@ -368,6 +420,7 @@ BOOL WINAPI ImmIsUIMessageW(IN HWND, IN UINT, IN WPARAM, IN LPARAM);
+@@ -368,6 +418,7 @@ BOOL WINAPI ImmIsUIMessageW(IN HWND, IN UINT, IN WPARAM, IN LPARAM);
  #define ImmIsUIMessage  ImmIsUIMessageA
  #endif // !UNICODE
  
@@ -213,7 +211,7 @@ index 07427bc1..0f3b299d 100644
  UINT WINAPI ImmGetVirtualKey(IN HWND);
  
  typedef int (CALLBACK *REGISTERWORDENUMPROCA)(_In_ LPCSTR lpszReading, DWORD, _In_ LPCSTR lpszString, LPVOID);
-@@ -378,7 +431,9 @@ typedef int (CALLBACK *REGISTERWORDENUMPROCW)(_In_ LPCWSTR lpszReading, DWORD, _
+@@ -378,7 +429,9 @@ typedef int (CALLBACK *REGISTERWORDENUMPROCW)(_In_ LPCWSTR lpszReading, DWORD, _
  #define REGISTERWORDENUMPROC  REGISTERWORDENUMPROCA
  #endif // !UNICODE
  
@@ -223,7 +221,7 @@ index 07427bc1..0f3b299d 100644
  BOOL WINAPI ImmRegisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_ LPCWSTR lpszRegister);
  #ifdef UNICODE
  #define ImmRegisterWord  ImmRegisterWordW
-@@ -386,7 +441,9 @@ BOOL WINAPI ImmRegisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_ LP
+@@ -386,7 +439,9 @@ BOOL WINAPI ImmRegisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_ LP
  #define ImmRegisterWord  ImmRegisterWordA
  #endif // !UNICODE
  
@@ -233,7 +231,7 @@ index 07427bc1..0f3b299d 100644
  BOOL WINAPI ImmUnregisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_ LPCWSTR lpszUnregister);
  #ifdef UNICODE
  #define ImmUnregisterWord  ImmUnregisterWordW
-@@ -394,7 +451,9 @@ BOOL WINAPI ImmUnregisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_
+@@ -394,7 +449,9 @@ BOOL WINAPI ImmUnregisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_
  #define ImmUnregisterWord  ImmUnregisterWordA
  #endif // !UNICODE
  
@@ -243,7 +241,7 @@ index 07427bc1..0f3b299d 100644
  UINT WINAPI ImmGetRegisterWordStyleW(IN HKL, IN UINT nItem, _Out_writes_(nItem) LPSTYLEBUFW lpStyleBuf);
  #ifdef UNICODE
  #define ImmGetRegisterWordStyle  ImmGetRegisterWordStyleW
-@@ -402,7 +461,9 @@ UINT WINAPI ImmGetRegisterWordStyleW(IN HKL, IN UINT nItem, _Out_writes_(nItem)
+@@ -402,7 +459,9 @@ UINT WINAPI ImmGetRegisterWordStyleW(IN HKL, IN UINT nItem, _Out_writes_(nItem)
  #define ImmGetRegisterWordStyle  ImmGetRegisterWordStyleA
  #endif // !UNICODE
  
@@ -253,7 +251,7 @@ index 07427bc1..0f3b299d 100644
  UINT WINAPI ImmEnumRegisterWordW(IN HKL, IN REGISTERWORDENUMPROCW, _In_opt_ LPCWSTR lpszReading, IN DWORD, _In_opt_ LPCWSTR lpszRegister, IN LPVOID);
  #ifdef UNICODE
  #define ImmEnumRegisterWord  ImmEnumRegisterWordW
-@@ -411,9 +472,13 @@ UINT WINAPI ImmEnumRegisterWordW(IN HKL, IN REGISTERWORDENUMPROCW, _In_opt_ LPCW
+@@ -411,9 +470,13 @@ UINT WINAPI ImmEnumRegisterWordW(IN HKL, IN REGISTERWORDENUMPROCW, _In_opt_ LPCW
  #endif // !UNICODE
  
  #if (WINVER >= 0x040A)
@@ -267,7 +265,7 @@ index 07427bc1..0f3b299d 100644
  DWORD WINAPI ImmGetImeMenuItemsW(IN HIMC, IN DWORD, IN DWORD, _Out_opt_ LPIMEMENUITEMINFOW lpImeParentMenu, _Out_writes_bytes_opt_(dwSize) LPIMEMENUITEMINFOW lpImeMenu, IN DWORD dwSize);
  #ifdef UNICODE
  #define ImmGetImeMenuItems  ImmGetImeMenuItemsW
-@@ -421,10 +486,12 @@ DWORD WINAPI ImmGetImeMenuItemsW(IN HIMC, IN DWORD, IN DWORD, _Out_opt_ LPIMEMEN
+@@ -421,10 +484,12 @@ DWORD WINAPI ImmGetImeMenuItemsW(IN HIMC, IN DWORD, IN DWORD, _Out_opt_ LPIMEMEN
  #define ImmGetImeMenuItems  ImmGetImeMenuItemsA
  #endif // !UNICODE
  
@@ -280,7 +278,7 @@ index 07427bc1..0f3b299d 100644
  BOOL WINAPI ImmDisableLegacyIME(void);
  #endif /* WINVER >= 0x0602 */
  
-@@ -921,7 +988,9 @@ BOOL WINAPI ImmGenerateMessage(IN HIMC);
+@@ -921,7 +986,9 @@ BOOL WINAPI ImmGenerateMessage(IN HIMC);
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  

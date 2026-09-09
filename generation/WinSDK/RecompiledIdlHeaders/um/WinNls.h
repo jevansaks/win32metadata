@@ -18,9 +18,7 @@ Abstract:
 #define _WINNLS_
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 
 #ifdef __cplusplus

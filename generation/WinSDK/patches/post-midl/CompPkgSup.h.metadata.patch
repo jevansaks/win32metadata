@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CompPkgSup.h b/generation/WinSDK/RecompiledIdlHeaders/um/CompPkgSup.h
-index cc7ae4bd..da59b5b7 100644
+index cc7ae4bd..7c390230 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/CompPkgSup.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/CompPkgSup.h
-@@ -17,6 +17,9 @@
+@@ -17,6 +17,7 @@
  
  #if !defined(__COMPPKGSUP_H__)
  #define __COMPPKGSUP_H__
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -34,16 +37,24 @@
+@@ -34,16 +35,24 @@
  #define ABI
  #endif
  

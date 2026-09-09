@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Icm.h b/generation/WinSDK/RecompiledIdlHeaders/um/Icm.h
-index cf2fa06e..cf174e7c 100644
+index cf2fa06e..c213202e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Icm.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Icm.h
-@@ -21,6 +21,9 @@ Revision History:
+@@ -21,6 +21,7 @@ Revision History:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Modern Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
-@@ -337,6 +340,7 @@ typedef BMFORMAT *PBMFORMAT, *LPBMFORMAT;
+@@ -337,6 +338,7 @@ typedef BMFORMAT *PBMFORMAT, *LPBMFORMAT;
  // Callback function definition
  //
  
@@ -20,7 +18,7 @@ index cf2fa06e..cf174e7c 100644
  typedef BOOL (WINAPI *PBMCALLBACKFN)(ULONG, ULONG, LPARAM);
  typedef PBMCALLBACKFN LPBMCALLBACKFN;
  
-@@ -752,7 +756,9 @@ HPROFILE   WINAPI OpenColorProfileW(_In_ PPROFILE pProfile, DWORD dwDesiredAcces
+@@ -752,7 +754,9 @@ HPROFILE   WINAPI OpenColorProfileW(_In_ PPROFILE pProfile, DWORD dwDesiredAcces
  BOOL       WINAPI CloseColorProfile(_In_opt_ HPROFILE hProfile);
  BOOL       WINAPI GetColorProfileFromHandle(_In_ HPROFILE hProfile, _Out_writes_bytes_opt_(*pcbProfile) PBYTE pProfile, _Inout_ PDWORD pcbProfile);
  BOOL       WINAPI IsColorProfileValid(_In_ HPROFILE hProfile, _Out_ PBOOL pbValid);
@@ -30,7 +28,7 @@ index cf2fa06e..cf174e7c 100644
  BOOL       WINAPI CreateProfileFromLogColorSpaceW(_In_ LPLOGCOLORSPACEW pLogColorSpace, _Outptr_result_buffer_(_Inexpressible_(GlobalSize(*pProfile))) PBYTE* pProfile);
  BOOL       WINAPI GetCountColorProfileElements(_In_ HPROFILE hProfile, _Out_ PDWORD pnElementCount);
  BOOL       WINAPI GetColorProfileHeader(_In_ HPROFILE hProfile, _Out_ PPROFILEHEADER pHeader);
-@@ -769,6 +775,7 @@ BOOL       WINAPI GetPS2ColorRenderingDictionary(_In_ HPROFILE hProfile, DWORD d
+@@ -769,6 +773,7 @@ BOOL       WINAPI GetPS2ColorRenderingDictionary(_In_ HPROFILE hProfile, DWORD d
  BOOL       WINAPI GetNamedProfileInfo(_In_ HPROFILE hProfile, _Inout_updates_bytes_(sizeof(NAMED_PROFILE_INFO)) PNAMED_PROFILE_INFO pNamedProfileInfo);
  BOOL       WINAPI ConvertColorNameToIndex(_In_ HPROFILE hProfile, _In_reads_(dwCount) PCOLOR_NAME paColorName, _Out_writes_(dwCount) PDWORD paIndex, DWORD dwCount);
  BOOL       WINAPI ConvertIndexToColorName(_In_ HPROFILE hProfile, _In_reads_(dwCount) PDWORD paIndex, _Out_writes_(dwCount) PCOLOR_NAME paColorName, DWORD dwCount);
@@ -38,7 +36,7 @@ index cf2fa06e..cf174e7c 100644
  BOOL       WINAPI CreateDeviceLinkProfile(_In_reads_(nProfiles) PHPROFILE hProfile, DWORD nProfiles, _In_reads_(nIntents) PDWORD padwIntent, DWORD nIntents, DWORD dwFlags, _Outptr_result_buffer_(_Inexpressible_(GlobalSize(*pProfileData))) PBYTE* pProfileData, DWORD indexPreferredCMM);
  HTRANSFORM WINAPI CreateColorTransformA(_In_ LPLOGCOLORSPACEA pLogColorSpace, _In_ HPROFILE hDestProfile, _In_ HPROFILE hTargetProfile, DWORD dwFlags);
  HTRANSFORM WINAPI CreateColorTransformW(_In_ LPLOGCOLORSPACEW pLogColorSpace, _In_ HPROFILE hDestProfile, _In_ HPROFILE hTargetProfile, DWORD dwFlags);
-@@ -1102,6 +1109,8 @@ BOOL WINAPI CMConvertIndexToColorName(
+@@ -1102,6 +1107,8 @@ BOOL WINAPI CMConvertIndexToColorName(
                            DWORD dwCount
      );
  

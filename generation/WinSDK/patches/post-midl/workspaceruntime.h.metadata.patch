@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/workspaceruntime.h b/generation/WinSDK/RecompiledIdlHeaders/um/workspaceruntime.h
-index 904d9ab3..16bdad4a 100644
+index 904d9ab3..ebe1deea 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/workspaceruntime.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/workspaceruntime.h
-@@ -141,6 +141,9 @@ extern "C"{
+@@ -141,6 +141,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define WKS_FLAG_CLEAR_CREDS_ON_LAST_RESOURCE 1
-@@ -162,6 +165,7 @@ EXTERN_C const IID IID_IWorkspace;
+@@ -162,6 +163,7 @@ EXTERN_C const IID IID_IWorkspace;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 904d9ab3..16bdad4a 100644
      MIDL_INTERFACE("B922BBB8-4C55-4FEA-8496-BEB0B44285E5")
      IWorkspace : public IUnknown
      {
-@@ -279,6 +283,7 @@ EXTERN_C const IID IID_IWorkspace2;
+@@ -279,6 +281,7 @@ EXTERN_C const IID IID_IWorkspace2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 904d9ab3..16bdad4a 100644
      MIDL_INTERFACE("96D8D7CF-783E-4286-834C-EBC0E95F783C")
      IWorkspace2 : public IWorkspace
      {
-@@ -416,6 +421,7 @@ EXTERN_C const IID IID_IWorkspace3;
+@@ -416,6 +419,7 @@ EXTERN_C const IID IID_IWorkspace3;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 904d9ab3..16bdad4a 100644
      MIDL_INTERFACE("1BECBE4A-D654-423B-AFEB-BE8D532C13C6")
      IWorkspace3 : public IWorkspace2
      {
-@@ -594,6 +600,7 @@ EXTERN_C const IID IID_IWorkspaceRegistration;
+@@ -594,6 +598,7 @@ EXTERN_C const IID IID_IWorkspaceRegistration;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 904d9ab3..16bdad4a 100644
      MIDL_INTERFACE("B922BBB8-4C55-4FEA-8496-BEB0B44285E6")
      IWorkspaceRegistration : public IUnknown
      {
-@@ -698,6 +705,7 @@ EXTERN_C const IID IID_IWorkspaceRegistration2;
+@@ -698,6 +703,7 @@ EXTERN_C const IID IID_IWorkspaceRegistration2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 904d9ab3..16bdad4a 100644
      MIDL_INTERFACE("CF59F654-39BB-44D8-94D0-4635728957E9")
      IWorkspaceRegistration2 : public IWorkspaceRegistration
      {
-@@ -835,6 +843,7 @@ EXTERN_C const IID IID_IWorkspaceScriptable;
+@@ -835,6 +841,7 @@ EXTERN_C const IID IID_IWorkspaceScriptable;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 904d9ab3..16bdad4a 100644
      MIDL_INTERFACE("EFEA49A2-DDA5-429D-8F42-B23B92C4C347")
      IWorkspaceScriptable : public IDispatch
      {
-@@ -1094,6 +1103,7 @@ EXTERN_C const IID IID_IWorkspaceScriptable2;
+@@ -1094,6 +1101,7 @@ EXTERN_C const IID IID_IWorkspaceScriptable2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 904d9ab3..16bdad4a 100644
      MIDL_INTERFACE("EFEA49A2-DDA5-429D-8F42-B33BA2C4C348")
      IWorkspaceScriptable2 : public IWorkspaceScriptable
      {
-@@ -1372,6 +1382,7 @@ EXTERN_C const IID IID_IWorkspaceScriptable3;
+@@ -1372,6 +1380,7 @@ EXTERN_C const IID IID_IWorkspaceScriptable3;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 904d9ab3..16bdad4a 100644
      MIDL_INTERFACE("531E6512-2CBF-4BD2-80A5-D90A71636A9A")
      IWorkspaceScriptable3 : public IWorkspaceScriptable2
      {
-@@ -1678,6 +1689,7 @@ EXTERN_C const IID IID_IWorkspaceReportMessage;
+@@ -1678,6 +1687,7 @@ EXTERN_C const IID IID_IWorkspaceReportMessage;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 904d9ab3..16bdad4a 100644
      MIDL_INTERFACE("a7c06739-500f-4e8c-99a8-2bd6955899eb")
      IWorkspaceReportMessage : public IUnknown
      {
-@@ -1980,14 +1992,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -1980,14 +1990,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

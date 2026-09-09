@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/bits1_5.h b/generation/WinSDK/RecompiledIdlHeaders/um/bits1_5.h
-index 894eb21b..3127cacf 100644
+index 894eb21b..09c915fb 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/bits1_5.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/bits1_5.h
-@@ -85,6 +85,9 @@ extern "C"{
+@@ -85,6 +85,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -149,6 +152,7 @@ EXTERN_C const IID IID_IBackgroundCopyJob2;
+@@ -149,6 +150,7 @@ EXTERN_C const IID IID_IBackgroundCopyJob2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

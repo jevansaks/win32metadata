@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h b/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h
-index e003287d..83089607 100644
+index e003287d..1f8d52a7 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h
-@@ -27,6 +27,9 @@ Abstract:
+@@ -27,6 +27,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -100,12 +103,16 @@ enum FAXROUTE_ENABLE {
+@@ -100,12 +101,16 @@ enum FAXROUTE_ENABLE {
  // prototypes
  //
  
@@ -29,7 +27,7 @@ index e003287d..83089607 100644
  BOOL WINAPI
  FaxRouteDeviceEnable(
      IN  LPCWSTR RoutingGuid,
-@@ -113,12 +120,16 @@ FaxRouteDeviceEnable(
+@@ -113,12 +118,16 @@ FaxRouteDeviceEnable(
      IN  LONG Enabled
      );
  
@@ -46,7 +44,7 @@ index e003287d..83089607 100644
  BOOL WINAPI
  FaxRouteGetRoutingInfo(
      IN  LPCWSTR RoutingGuid,
-@@ -127,6 +138,8 @@ FaxRouteGetRoutingInfo(
+@@ -127,6 +136,8 @@ FaxRouteGetRoutingInfo(
      OUT LPDWORD RoutingInfoSize
      );
  

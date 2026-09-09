@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msdasql_interfaces.h b/generation/WinSDK/RecompiledIdlHeaders/um/msdasql_interfaces.h
-index c47a43f0..05c2dfb9 100644
+index c47a43f0..2659aa04 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/msdasql_interfaces.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/msdasql_interfaces.h
-@@ -82,6 +82,9 @@ extern "C"{
+@@ -82,6 +82,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -413,9 +416,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -413,9 +414,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

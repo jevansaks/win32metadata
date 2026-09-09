@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ntlsa.h b/generation/WinSDK/RecompiledIdlHeaders/um/ntlsa.h
-index 86649a4b..3dc615db 100644
+index 86649a4b..ed3074e5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ntlsa.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ntlsa.h
-@@ -19,6 +19,9 @@ Revision History:
+@@ -19,6 +19,7 @@ Revision History:
  #define _NTLSA_
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -1043,6 +1046,7 @@ typedef enum _POLICY_AUDIT_EVENT_TYPE {
+@@ -1043,6 +1044,7 @@ typedef enum _POLICY_AUDIT_EVENT_TYPE {
  #ifndef _NTLSA_IFS_
  // begin_ntifs
  
@@ -20,7 +18,7 @@ index 86649a4b..3dc615db 100644
  _IRQL_requires_same_
  _IRQL_requires_max_(PASSIVE_LEVEL)
  NTSTATUS
-@@ -1058,6 +1062,7 @@ LsaRegisterLogonProcess (
+@@ -1058,6 +1060,7 @@ LsaRegisterLogonProcess (
  // However, the function has always been there, so it is okay to use
  // even on w2k
  //
@@ -28,7 +26,7 @@ index 86649a4b..3dc615db 100644
  _IRQL_requires_same_
  _IRQL_requires_max_(PASSIVE_LEVEL)
  NTSTATUS
-@@ -1081,6 +1086,7 @@ LsaLogonUser (
+@@ -1081,6 +1084,7 @@ LsaLogonUser (
  
  // end_ntifs
  
@@ -36,7 +34,7 @@ index 86649a4b..3dc615db 100644
  _IRQL_requires_same_
  _IRQL_requires_max_(PASSIVE_LEVEL)
  NTSTATUS
-@@ -1093,6 +1099,7 @@ LsaLookupAuthenticationPackage (
+@@ -1093,6 +1097,7 @@ LsaLookupAuthenticationPackage (
  
  // begin_ntifs
  
@@ -44,7 +42,7 @@ index 86649a4b..3dc615db 100644
  _IRQL_requires_same_
  NTSTATUS
  NTAPI
-@@ -1102,6 +1109,7 @@ LsaFreeReturnBuffer (
+@@ -1102,6 +1107,7 @@ LsaFreeReturnBuffer (
  
  // end_ntifs
  
@@ -52,7 +50,7 @@ index 86649a4b..3dc615db 100644
  _IRQL_requires_same_
  _IRQL_requires_max_(PASSIVE_LEVEL)
  NTSTATUS
-@@ -1116,6 +1124,7 @@ LsaCallAuthenticationPackage (
+@@ -1116,6 +1122,7 @@ LsaCallAuthenticationPackage (
      _Out_opt_ PNTSTATUS ProtocolStatus
      );
  
@@ -60,7 +58,7 @@ index 86649a4b..3dc615db 100644
  _IRQL_requires_same_
  _IRQL_requires_max_(PASSIVE_LEVEL)
  NTSTATUS
-@@ -1124,6 +1133,7 @@ LsaDeregisterLogonProcess (
+@@ -1124,6 +1131,7 @@ LsaDeregisterLogonProcess (
      _In_ HANDLE LsaHandle
      );
  
@@ -68,7 +66,7 @@ index 86649a4b..3dc615db 100644
  _IRQL_requires_same_
  _IRQL_requires_max_(PASSIVE_LEVEL)
  NTSTATUS
-@@ -3094,12 +3104,14 @@ typedef struct _LSA_ENUMERATION_INFORMATION {
+@@ -3094,12 +3102,14 @@ typedef struct _LSA_ENUMERATION_INFORMATION {
  ////////////////////////////////////////////////////////////////////////////
  
  
@@ -83,7 +81,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaClose(
-@@ -3195,6 +3207,7 @@ typedef struct _SECURITY_LOGON_SESSION_DATA {
+@@ -3195,6 +3205,7 @@ typedef struct _SECURITY_LOGON_SESSION_DATA {
  #endif
  } SECURITY_LOGON_SESSION_DATA, * PSECURITY_LOGON_SESSION_DATA;
  
@@ -91,7 +89,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaEnumerateLogonSessions(
-@@ -3202,6 +3215,7 @@ LsaEnumerateLogonSessions(
+@@ -3202,6 +3213,7 @@ LsaEnumerateLogonSessions(
      _Out_ PLUID * LogonSessionList
      );
  
@@ -99,7 +97,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaGetLogonSessionData(
-@@ -3219,6 +3233,7 @@ LsaGetLogonSessionData(
+@@ -3219,6 +3231,7 @@ LsaGetLogonSessionData(
  ///////////////////////////////////////////////////////////////////////////////
  
  // begin_ntsecapi
@@ -107,7 +105,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaOpenPolicy(
-@@ -3363,6 +3378,7 @@ LsaSetCAPs(
+@@ -3363,6 +3376,7 @@ LsaSetCAPs(
      _In_ ULONG Flags
      );
  
@@ -115,7 +113,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaGetAppliedCAPIDs(
-@@ -3371,6 +3387,7 @@ LsaGetAppliedCAPIDs(
+@@ -3371,6 +3385,7 @@ LsaGetAppliedCAPIDs(
      _Out_ PULONG CAPIDCount
      );
  
@@ -123,7 +121,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaQueryCAPs(
-@@ -3384,6 +3401,7 @@ LsaQueryCAPs(
+@@ -3384,6 +3399,7 @@ LsaQueryCAPs(
  
  // begin_ntsecapi
  
@@ -131,7 +129,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaQueryInformationPolicy(
-@@ -3392,6 +3410,7 @@ LsaQueryInformationPolicy(
+@@ -3392,6 +3408,7 @@ LsaQueryInformationPolicy(
      _Out_ PVOID *Buffer
      );
  
@@ -139,7 +137,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaSetInformationPolicy(
-@@ -3400,6 +3419,7 @@ LsaSetInformationPolicy(
+@@ -3400,6 +3417,7 @@ LsaSetInformationPolicy(
      _In_ PVOID Buffer
      );
  
@@ -147,7 +145,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaQueryDomainInformationPolicy(
-@@ -3408,6 +3428,7 @@ LsaQueryDomainInformationPolicy(
+@@ -3408,6 +3426,7 @@ LsaQueryDomainInformationPolicy(
      _Out_ PVOID *Buffer
      );
  
@@ -155,7 +153,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaSetDomainInformationPolicy(
-@@ -3417,6 +3438,7 @@ LsaSetDomainInformationPolicy(
+@@ -3417,6 +3436,7 @@ LsaSetDomainInformationPolicy(
      );
  
  
@@ -163,7 +161,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaRegisterPolicyChangeNotification(
-@@ -3424,6 +3446,7 @@ LsaRegisterPolicyChangeNotification(
+@@ -3424,6 +3444,7 @@ LsaRegisterPolicyChangeNotification(
      _In_ HANDLE  NotificationEventHandle
      );
  
@@ -171,7 +169,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaUnregisterPolicyChangeNotification(
-@@ -3470,6 +3493,7 @@ LsaCreateTrustedDomain(
+@@ -3470,6 +3491,7 @@ LsaCreateTrustedDomain(
  
  // begin_ntsecapi
  
@@ -179,7 +177,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaEnumerateTrustedDomains(
-@@ -3494,6 +3518,7 @@ LsaEnumeratePrivileges(
+@@ -3494,6 +3516,7 @@ LsaEnumeratePrivileges(
  
  // begin_ntsecapi
  
@@ -187,7 +185,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaLookupNames(
-@@ -3505,6 +3530,7 @@ LsaLookupNames(
+@@ -3505,6 +3528,7 @@ LsaLookupNames(
      );
  
  #if (_WIN32_WINNT >= 0x0501)
@@ -195,7 +193,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaLookupNames2(
-@@ -3517,6 +3543,7 @@ LsaLookupNames2(
+@@ -3517,6 +3541,7 @@ LsaLookupNames2(
      );
  #endif
  
@@ -203,7 +201,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaLookupSids(
-@@ -3527,6 +3554,7 @@ LsaLookupSids(
+@@ -3527,6 +3552,7 @@ LsaLookupSids(
      _Out_ PLSA_TRANSLATED_NAME *Names
      );
  
@@ -211,7 +209,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaLookupSids2(
-@@ -3742,6 +3770,7 @@ LsaQuerySecret(
+@@ -3742,6 +3768,7 @@ LsaQuerySecret(
  //                                                                     //
  /////////////////////////////////////////////////////////////////////////
  
@@ -219,7 +217,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaLookupPrivilegeValue(
-@@ -3814,6 +3843,7 @@ LsaGetRemoteUserName(
+@@ -3814,6 +3841,7 @@ LsaGetRemoteUserName(
  // This new API returns all the accounts with a certain privilege
  //
  
@@ -227,7 +225,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaEnumerateAccountsWithUserRight(
-@@ -3828,6 +3858,7 @@ LsaEnumerateAccountsWithUserRight(
+@@ -3828,6 +3856,7 @@ LsaEnumerateAccountsWithUserRight(
  // to open the account first and passing in an account handle
  //
  
@@ -235,7 +233,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaEnumerateAccountRights(
-@@ -3837,6 +3868,7 @@ LsaEnumerateAccountRights(
+@@ -3837,6 +3866,7 @@ LsaEnumerateAccountRights(
      _Out_ PULONG CountOfRights
      );
  
@@ -243,7 +241,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaAddAccountRights(
-@@ -3846,6 +3878,7 @@ LsaAddAccountRights(
+@@ -3846,6 +3876,7 @@ LsaAddAccountRights(
      _In_ ULONG CountOfRights
      );
  
@@ -251,7 +249,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaRemoveAccountRights(
-@@ -3862,6 +3895,7 @@ LsaRemoveAccountRights(
+@@ -3862,6 +3893,7 @@ LsaRemoveAccountRights(
  //                                                                           //
  ///////////////////////////////////////////////////////////////////////////////
  
@@ -259,7 +257,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaOpenTrustedDomainByName(
-@@ -3872,6 +3906,7 @@ LsaOpenTrustedDomainByName(
+@@ -3872,6 +3904,7 @@ LsaOpenTrustedDomainByName(
      );
  
  
@@ -267,7 +265,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaQueryTrustedDomainInfo(
-@@ -3881,6 +3916,7 @@ LsaQueryTrustedDomainInfo(
+@@ -3881,6 +3914,7 @@ LsaQueryTrustedDomainInfo(
      _Out_ PVOID *Buffer
      );
  
@@ -275,7 +273,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaSetTrustedDomainInformation(
-@@ -3890,6 +3926,7 @@ LsaSetTrustedDomainInformation(
+@@ -3890,6 +3924,7 @@ LsaSetTrustedDomainInformation(
      _In_ PVOID Buffer
      );
  
@@ -283,7 +281,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaDeleteTrustedDomain(
-@@ -3897,6 +3934,7 @@ LsaDeleteTrustedDomain(
+@@ -3897,6 +3932,7 @@ LsaDeleteTrustedDomain(
      _In_ PSID TrustedDomainSid
      );
  
@@ -291,7 +289,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaQueryTrustedDomainInfoByName(
-@@ -3906,6 +3944,7 @@ LsaQueryTrustedDomainInfoByName(
+@@ -3906,6 +3942,7 @@ LsaQueryTrustedDomainInfoByName(
      _Out_ PVOID *Buffer
      );
  
@@ -299,7 +297,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaSetTrustedDomainInfoByName(
-@@ -3915,6 +3954,7 @@ LsaSetTrustedDomainInfoByName(
+@@ -3915,6 +3952,7 @@ LsaSetTrustedDomainInfoByName(
      _In_ PVOID Buffer
      );
  
@@ -307,7 +305,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaEnumerateTrustedDomainsEx(
-@@ -3925,6 +3965,7 @@ LsaEnumerateTrustedDomainsEx(
+@@ -3925,6 +3963,7 @@ LsaEnumerateTrustedDomainsEx(
      _Out_ PULONG CountReturned
      );
  
@@ -315,7 +313,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaCreateTrustedDomainEx(
-@@ -3936,6 +3977,7 @@ LsaCreateTrustedDomainEx(
+@@ -3936,6 +3975,7 @@ LsaCreateTrustedDomainEx(
      );
  
  #if (_WIN32_WINNT >= 0x0501)
@@ -323,7 +321,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaQueryForestTrustInformation(
-@@ -3944,6 +3986,7 @@ LsaQueryForestTrustInformation(
+@@ -3944,6 +3984,7 @@ LsaQueryForestTrustInformation(
      _Out_ PLSA_FOREST_TRUST_INFORMATION * ForestTrustInfo
      );
  
@@ -331,7 +329,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaSetForestTrustInformation(
-@@ -3975,6 +4018,7 @@ LsaForestTrustFindMatch(
+@@ -3975,6 +4016,7 @@ LsaForestTrustFindMatch(
  // the SSI_SECRET_NAME secret)
  //
  
@@ -339,7 +337,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaStorePrivateData(
-@@ -3983,6 +4027,7 @@ LsaStorePrivateData(
+@@ -3983,6 +4025,7 @@ LsaStorePrivateData(
      _In_opt_ PLSA_UNICODE_STRING PrivateData
      );
  
@@ -347,7 +345,7 @@ index 86649a4b..3dc615db 100644
  NTSTATUS
  NTAPI
  LsaRetrievePrivateData(
-@@ -3992,6 +4037,7 @@ LsaRetrievePrivateData(
+@@ -3992,6 +4035,7 @@ LsaRetrievePrivateData(
      );
  
  

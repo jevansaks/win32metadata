@@ -1,0 +1,28 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/HtmlHelp.h b/generation/WinSDK/RecompiledIdlHeaders/um/HtmlHelp.h
+index 5f2fd73f..61d35881 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/HtmlHelp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/HtmlHelp.h
+@@ -14,6 +14,7 @@
+ #define __HTMLHELP_H__
+ 
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -370,6 +371,7 @@ typedef struct tagHHNTRACK
+     HH_WINTYPE* phhWinType; // Current window type structure
+ } HHNTRACK;
+ 
++_Win32_metadata_import_library_("hhctrl.ocx")
+ HWND
+ WINAPI
+ HtmlHelpA(
+@@ -379,6 +381,7 @@ HtmlHelpA(
+     _In_ DWORD_PTR dwData
+     );
+ 
++_Win32_metadata_import_library_("hhctrl.ocx")
+ HWND
+ WINAPI
+ HtmlHelpW(

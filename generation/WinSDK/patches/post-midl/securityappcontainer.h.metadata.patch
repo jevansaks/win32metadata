@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securityappcontainer.h b/generation/WinSDK/RecompiledIdlHeaders/um/securityappcontainer.h
-index fa464659..519a69da 100644
+index fa464659..fb477e20 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/securityappcontainer.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/securityappcontainer.h
-@@ -15,6 +15,9 @@
+@@ -15,6 +15,7 @@
  
  #include <apiset.h>
  #include <apisetcconv.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <minwindef.h>
  #include <minwinbase.h>
-@@ -32,6 +35,8 @@ extern "C" {
+@@ -32,6 +33,8 @@ extern "C" {
  // Token Extension APIs
  //
  

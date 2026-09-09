@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsxs.h b/generation/WinSDK/RecompiledIdlHeaders/um/winsxs.h
-index 2abaff60..cd66d76a 100644
+index 2abaff60..6b2c8a47 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winsxs.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winsxs.h
-@@ -92,6 +92,9 @@ extern "C"{
+@@ -92,6 +92,7 @@ extern "C"{
  //=--------------------------------------------------------------------------=
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #pragma comment(lib,"uuid.lib")
-@@ -235,6 +238,7 @@ EXTERN_C const IID IID_IAssemblyName;
+@@ -235,6 +236,7 @@ EXTERN_C const IID IID_IAssemblyName;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 2abaff60..cd66d76a 100644
      MIDL_INTERFACE("CD193BC0-B4BC-11d2-9833-00C04FC31D2E")
      IAssemblyName : public IUnknown
      {
-@@ -445,6 +449,7 @@ EXTERN_C const IID IID_IAssemblyCacheItem;
+@@ -445,6 +447,7 @@ EXTERN_C const IID IID_IAssemblyCacheItem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 2abaff60..cd66d76a 100644
      MIDL_INTERFACE("9e3aaeb4-d1cd-11d2-bab9-00c04f8eceae")
      IAssemblyCacheItem : public IUnknown
      {
-@@ -561,6 +566,7 @@ EXTERN_C const IID IID_IAssemblyCache;
+@@ -561,6 +564,7 @@ EXTERN_C const IID IID_IAssemblyCache;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 2abaff60..cd66d76a 100644
      MIDL_INTERFACE("e707dcde-d1cd-11d2-bab9-00c04f8eceae")
      IAssemblyCache : public IUnknown
      {
-@@ -708,7 +714,9 @@ enum __MIDL___MIDL_itf_winsxs_0000_0003_0001
+@@ -708,7 +712,9 @@ enum __MIDL___MIDL_itf_winsxs_0000_0003_0001
          CANOF_SET_DEFAULT_VALUES	= 0x2
      } 	CREATE_ASM_NAME_OBJ_FLAGS;
  

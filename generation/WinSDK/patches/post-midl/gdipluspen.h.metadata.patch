@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspen.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspen.h
-index 06a7edf9..ad076a2b 100644
+index 06a7edf9..f8fbabe5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspen.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspen.h
-@@ -14,6 +14,9 @@
+@@ -14,6 +14,7 @@
  #ifndef _GDIPLUSPEN_H
  #define _GDIPLUSPEN_H
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -188,12 +191,14 @@ public:
+@@ -188,12 +189,14 @@ public:
                                                      &(customCap->nativeCap)));
      }
  

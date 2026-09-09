@@ -76,9 +76,7 @@ extern "C"{
 //
 //--------------------------------------------------------------------------
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 EXTERN_GUID( CLSID_ClientNetManager, 0xCD12A3CE,0x9C42,0x11D2,0xBE,0xED,0x00,0x60,0x08,0x2F,0x20,0x54  );

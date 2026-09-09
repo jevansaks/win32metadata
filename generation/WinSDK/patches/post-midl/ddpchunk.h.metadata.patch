@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddpchunk.h b/generation/WinSDK/RecompiledIdlHeaders/um/ddpchunk.h
-index 6a655235..6370794c 100644
+index 6a655235..620edb1c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ddpchunk.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ddpchunk.h
-@@ -74,6 +74,9 @@ extern "C"{
+@@ -74,6 +74,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -372,9 +375,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -372,9 +373,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

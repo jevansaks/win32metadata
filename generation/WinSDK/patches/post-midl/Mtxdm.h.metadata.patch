@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Mtxdm.h b/generation/WinSDK/RecompiledIdlHeaders/um/Mtxdm.h
-index ebb371bc..241fa57e 100644
+index ebb371bc..be479c47 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Mtxdm.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Mtxdm.h
-@@ -3,6 +3,9 @@
+@@ -3,6 +3,7 @@
  #ifndef __MTXDM_H__
  #define __MTXDM_H__
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -22,6 +25,7 @@ extern "C"{
+@@ -22,6 +23,7 @@ extern "C"{
  // GetDispenserManager
  // A Dispenser calls this API to get a reference to DispenserManager.
  //

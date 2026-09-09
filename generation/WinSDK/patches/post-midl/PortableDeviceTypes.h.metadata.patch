@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceTypes.h b/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceTypes.h
-index 647882a3..a6a4c2bd 100644
+index 647882a3..24681c08 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceTypes.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/PortableDeviceTypes.h
-@@ -156,6 +156,9 @@ extern "C"{
+@@ -156,6 +156,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (_WIN32_WINNT >= 0x0501) // XP and later
  #pragma region Application Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
-@@ -1646,14 +1649,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -1646,14 +1647,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

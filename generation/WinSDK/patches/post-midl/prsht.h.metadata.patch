@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/prsht.h b/generation/WinSDK/RecompiledIdlHeaders/um/prsht.h
-index 94df403e..0cab7f69 100644
+index 94df403e..42f7f779 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/prsht.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/prsht.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  /*****************************************************************************\
  *                                                                             *
-@@ -582,12 +585,19 @@ typedef LPCPROPSHEETHEADERW_V2      LPCPROPSHEETHEADERW;
+@@ -582,12 +583,19 @@ typedef LPCPROPSHEETHEADERW_V2      LPCPROPSHEETHEADERW;
  #define PSCB_BUTTONPRESSED 3
  #endif  // NTDDI_VERSION >= NTDDI_WINXP
  
@@ -30,7 +28,7 @@ index 94df403e..0cab7f69 100644
  WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetW(LPCPROPSHEETHEADERW);
  
  #ifdef UNICODE
-@@ -600,6 +610,7 @@ WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetW(LPCPROPSHEETHEADERW);
+@@ -600,6 +608,7 @@ WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetW(LPCPROPSHEETHEADERW);
  
  
  

@@ -1,7 +1,5 @@
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifdef _MSC_VER
 #pragma once

@@ -15,9 +15,7 @@ Revision History:
 --*/
 #ifndef _PRINTASYNCNOTIFY_H_
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -80,6 +78,7 @@ typedef GUID PrintAsyncNotificationType;
 
 #undef  INTERFACE
 #define INTERFACE IPrintAsyncNotifyDataObject
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_(IPrintAsyncNotifyDataObject, IUnknown)
 {
     STDMETHOD(QueryInterface)(
@@ -112,6 +111,7 @@ typedef interface IPrintAsyncNotifyCallback IPrintAsyncNotifyCallback;
 
 #undef  INTERFACE
 #define INTERFACE IPrintAsyncNotifyChannel
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_(IPrintAsyncNotifyChannel, IUnknown)
 {
     STDMETHOD(QueryInterface)(
@@ -142,6 +142,7 @@ DECLARE_INTERFACE_(IPrintAsyncNotifyChannel, IUnknown)
 
 #undef  INTERFACE
 #define INTERFACE IPrintAsyncNotifyCallback
+_Win32_metadata_supported_os_(windows6.0.6000)
 DECLARE_INTERFACE_(IPrintAsyncNotifyCallback, IUnknown)
 {
     STDMETHOD(QueryInterface)(

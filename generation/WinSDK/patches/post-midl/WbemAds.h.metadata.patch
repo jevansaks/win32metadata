@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WbemAds.h b/generation/WinSDK/RecompiledIdlHeaders/um/WbemAds.h
-index d71bdd22..6c18d19c 100644
+index d71bdd22..e672448d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WbemAds.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WbemAds.h
-@@ -94,6 +94,9 @@ extern "C"{
+@@ -94,6 +94,7 @@ extern "C"{
  /*                                                                             */
  /*******************************************************************************/
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family or WinMgmt Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WINMGMT)
  
-@@ -313,9 +316,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -313,9 +314,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

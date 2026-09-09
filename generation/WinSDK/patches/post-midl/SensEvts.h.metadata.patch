@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SensEvts.h b/generation/WinSDK/RecompiledIdlHeaders/um/SensEvts.h
-index 0d202e98..eff8a7cd 100644
+index 0d202e98..e9793ed0 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/SensEvts.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/SensEvts.h
-@@ -95,6 +95,9 @@ extern "C"{
+@@ -95,6 +95,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -133,6 +136,7 @@ EXTERN_C const IID IID_ISensNetwork;
+@@ -133,6 +134,7 @@ EXTERN_C const IID IID_ISensNetwork;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 0d202e98..eff8a7cd 100644
      MIDL_INTERFACE("d597bab1-5b9f-11d1-8dd2-00aa004abd5e")
      ISensNetwork : public IDispatch
      {
-@@ -370,6 +374,7 @@ EXTERN_C const IID IID_ISensOnNow;
+@@ -370,6 +372,7 @@ EXTERN_C const IID IID_ISensOnNow;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 0d202e98..eff8a7cd 100644
      MIDL_INTERFACE("d597bab2-5b9f-11d1-8dd2-00aa004abd5e")
      ISensOnNow : public IDispatch
      {
-@@ -541,6 +546,7 @@ EXTERN_C const IID IID_ISensLogon;
+@@ -541,6 +544,7 @@ EXTERN_C const IID IID_ISensLogon;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 0d202e98..eff8a7cd 100644
      MIDL_INTERFACE("d597bab3-5b9f-11d1-8dd2-00aa004abd5e")
      ISensLogon : public IDispatch
      {
-@@ -768,6 +774,7 @@ EXTERN_C const IID IID_ISensLogon2;
+@@ -768,6 +772,7 @@ EXTERN_C const IID IID_ISensLogon2;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

@@ -1,0 +1,20 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/il21dec.h b/generation/WinSDK/RecompiledIdlHeaders/um/il21dec.h
+index bf6c443f..2f1bedc7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/il21dec.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/il21dec.h
+@@ -10,6 +10,7 @@
+ #ifndef __IL21DEC__
+ #define __IL21DEC__
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -59,6 +60,7 @@ extern "C" {
+ //
+ //  Line 21 Decoder standard COM interface
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMLine21Decoder, IUnknown)
+ {
+     //

@@ -1,0 +1,92 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/qnetwork.h b/generation/WinSDK/RecompiledIdlHeaders/um/qnetwork.h
+index 963695c5..8bc24054 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/qnetwork.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/qnetwork.h
+@@ -2,6 +2,7 @@
+ /* Interface to type library: QuartzNetTypeLib */
+ 
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #ifndef _QuartzNetTypeLib_H_
+ #define _QuartzNetTypeLib_H_
+@@ -20,6 +21,7 @@ DEFINE_GUID(IID_IAMNetShowConfig,0xFA2AA8F1L,0x8B62,0x11D0,0xA5,0x20,0x00,0x00,0
+ #undef INTERFACE
+ #define INTERFACE IAMNetShowConfig
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMNetShowConfig, IDispatch)
+ {
+ BEGIN_INTERFACE
+@@ -90,6 +92,7 @@ DEFINE_GUID(IID_IAMChannelInfo,0xFA2AA8F2L,0x8B62,0x11D0,0xA5,0x20,0x00,0x00,0x0
+ #undef INTERFACE
+ #define INTERFACE IAMChannelInfo
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMChannelInfo, IDispatch)
+ {
+ BEGIN_INTERFACE
+@@ -144,6 +147,7 @@ DEFINE_GUID(IID_IAMNetworkStatus,0xFA2AA8F3L,0x8B62,0x11D0,0xA5,0x20,0x00,0x00,0
+ #undef INTERFACE
+ #define INTERFACE IAMNetworkStatus
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMNetworkStatus, IDispatch)
+ {
+ BEGIN_INTERFACE
+@@ -209,6 +213,7 @@ DEFINE_GUID(IID_IAMExtendedSeeking,0xFA2AA8F9L,0x8B62,0x11D0,0xA5,0x20,0x00,0x00
+ #undef INTERFACE
+ #define INTERFACE IAMExtendedSeeking
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMExtendedSeeking, IDispatch)
+ {
+ BEGIN_INTERFACE
+@@ -264,6 +269,7 @@ DEFINE_GUID(IID_IAMNetShowExProps,0xFA2AA8F5L,0x8B62,0x11D0,0xA5,0x20,0x00,0x00,
+ #undef INTERFACE
+ #define INTERFACE IAMNetShowExProps
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMNetShowExProps, IDispatch)
+ {
+ BEGIN_INTERFACE
+@@ -321,6 +327,7 @@ DEFINE_GUID(IID_IAMExtendedErrorInfo,0xFA2AA8F6L,0x8B62,0x11D0,0xA5,0x20,0x00,0x
+ #undef INTERFACE
+ #define INTERFACE IAMExtendedErrorInfo
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMExtendedErrorInfo, IDispatch)
+ {
+ BEGIN_INTERFACE
+@@ -372,6 +379,7 @@ DEFINE_GUID(IID_IAMMediaContent,0xFA2AA8F4L,0x8B62,0x11D0,0xA5,0x20,0x00,0x00,0x
+ #undef INTERFACE
+ #define INTERFACE IAMMediaContent
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMMediaContent, IDispatch)
+ {
+ BEGIN_INTERFACE
+@@ -433,6 +441,7 @@ DEFINE_GUID(IID_IAMMediaContent2,0xCE8F78C1L,0x74D9,0x11D2,0xB0,0x9D,0x00,0xA0,0
+ #undef INTERFACE
+ #define INTERFACE IAMMediaContent2
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMMediaContent2, IDispatch)
+ {
+ BEGIN_INTERFACE
+@@ -484,6 +493,7 @@ DEFINE_GUID(IID_IAMNetShowPreroll,0xAAE7E4E2L,0x6388,0x11D1,0x8D,0x93,0x00,0x60,
+ #undef INTERFACE
+ #define INTERFACE IAMNetShowPreroll
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_INTERFACE_(IAMNetShowPreroll, IDispatch)
+ {
+ BEGIN_INTERFACE
+@@ -534,6 +544,7 @@ DEFINE_GUID(IID_IDShowPlugin,0x4746B7C8L,0x700E,0x11D1,0xBE,0xCC,0x00,0xC0,0x4F,
+ #undef INTERFACE
+ #define INTERFACE IDShowPlugin
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DECLARE_INTERFACE_(IDShowPlugin, IUnknown)
+ {
+ BEGIN_INTERFACE

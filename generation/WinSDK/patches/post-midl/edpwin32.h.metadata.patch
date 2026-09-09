@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/edpwin32.h b/generation/WinSDK/RecompiledIdlHeaders/um/edpwin32.h
-index bb97cba3..dd1a9aa7 100644
+index bb97cba3..f2447f6a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/edpwin32.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/edpwin32.h
-@@ -14,6 +14,9 @@
+@@ -14,6 +14,7 @@
  
  #ifndef _EDPWIN32_H_
  #define _EDPWIN32_H_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifndef NT_INCLUDED
  #include <winnt.h>
-@@ -24,6 +27,7 @@
+@@ -24,6 +25,7 @@
  
  #if NTDDI_VERSION >= NTDDI_WIN10_TH2
  

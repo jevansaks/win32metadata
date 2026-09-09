@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Certif.h b/generation/WinSDK/RecompiledIdlHeaders/um/Certif.h
-index 43ecd4fc..f87862e7 100644
+index 43ecd4fc..518f6768 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Certif.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Certif.h
-@@ -74,6 +74,9 @@ extern "C"{
+@@ -74,6 +74,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define	ENUMEXT_OBJECTID	( 0x1 )
-@@ -94,6 +97,7 @@ EXTERN_C const IID IID_ICertServerPolicy;
+@@ -94,6 +95,7 @@ EXTERN_C const IID IID_ICertServerPolicy;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 43ecd4fc..f87862e7 100644
      MIDL_INTERFACE("aa000922-ffbe-11cf-8800-00a0c903b83c")
      ICertServerPolicy : public IDispatch
      {
-@@ -395,6 +399,7 @@ EXTERN_C const IID IID_ICertServerExit;
+@@ -395,6 +397,7 @@ EXTERN_C const IID IID_ICertServerExit;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 43ecd4fc..f87862e7 100644
      MIDL_INTERFACE("4ba9eb90-732c-11d0-8816-00a0c903b83c")
      ICertServerExit : public IDispatch
      {
-@@ -675,14 +680,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -675,14 +678,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/networkisolation.h b/generation/WinSDK/RecompiledIdlHeaders/um/networkisolation.h
-index 040e1d7f..914308e9 100644
+index 040e1d7f..d400a5ad 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/networkisolation.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/networkisolation.h
-@@ -10,6 +10,9 @@
+@@ -10,6 +10,7 @@
  
  #ifndef _NETISO_H_
  #define _NETISO_H_
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #include <apiset.h>
  #include <apisetcconv.h>
-@@ -97,6 +100,7 @@ typedef void (CALLBACK *PAC_CHANGES_CALLBACK_FN) (
+@@ -97,6 +98,7 @@ typedef void (CALLBACK *PAC_CHANGES_CALLBACK_FN) (
      _In_ const INET_FIREWALL_AC_CHANGE *pChange
      );
  
@@ -20,7 +18,7 @@ index 040e1d7f..914308e9 100644
  HRESULT
  WINAPI
  NetworkIsolationSetupAppContainerBinaries(
-@@ -109,6 +113,7 @@ NetworkIsolationSetupAppContainerBinaries(
+@@ -109,6 +111,7 @@ NetworkIsolationSetupAppContainerBinaries(
      _In_ DWORD binariesCount
      );
  
@@ -28,7 +26,7 @@ index 040e1d7f..914308e9 100644
  DWORD
  WINAPI
  NetworkIsolationRegisterForAppContainerChanges(
-@@ -118,6 +123,7 @@ NetworkIsolationRegisterForAppContainerChanges(
+@@ -118,6 +121,7 @@ NetworkIsolationRegisterForAppContainerChanges(
      _Out_ HANDLE* registrationObject
      );
  
@@ -36,7 +34,7 @@ index 040e1d7f..914308e9 100644
  DWORD
  WINAPI
  NetworkIsolationUnregisterForAppContainerChanges(
-@@ -132,12 +138,14 @@ NetworkIsolationUnregisterForAppContainerChanges(
+@@ -132,12 +136,14 @@ NetworkIsolationUnregisterForAppContainerChanges(
  //    API_SAL("_Outptr_") IEnumVARIANT ** newEnum
  //    );
  
@@ -51,7 +49,7 @@ index 040e1d7f..914308e9 100644
  DWORD
  WINAPI
  NetworkIsolationEnumAppContainers(
-@@ -146,6 +154,7 @@ NetworkIsolationEnumAppContainers(
+@@ -146,6 +152,7 @@ NetworkIsolationEnumAppContainers(
      _Outptr_result_buffer_(*pdwNumPublicAppCs) PINET_FIREWALL_APP_CONTAINER* ppPublicAppCs
      );
  
@@ -59,7 +57,7 @@ index 040e1d7f..914308e9 100644
  DWORD
  WINAPI
  NetworkIsolationGetAppContainerConfig(
-@@ -153,6 +162,7 @@ NetworkIsolationGetAppContainerConfig(
+@@ -153,6 +160,7 @@ NetworkIsolationGetAppContainerConfig(
      _Outptr_result_buffer_(*pdwNumPublicAppCs) PSID_AND_ATTRIBUTES* appContainerSids
      );
  
@@ -67,7 +65,7 @@ index 040e1d7f..914308e9 100644
  DWORD
  WINAPI
  NetworkIsolationSetAppContainerConfig(
-@@ -177,6 +187,7 @@ NetworkIsolationDiagnoseConnectFailure(
+@@ -177,6 +185,7 @@ NetworkIsolationDiagnoseConnectFailure(
      __in LPCWSTR wszServerName
      );
  

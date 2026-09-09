@@ -15,9 +15,7 @@ extern "C" {
 #endif
 
 #include <wincontypes.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 // ...
 

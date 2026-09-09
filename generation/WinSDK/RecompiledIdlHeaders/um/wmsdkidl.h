@@ -717,9 +717,7 @@ extern "C"{
 //
 //=========================================================================
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 typedef unsigned __int64 QWORD;
@@ -2196,20 +2194,34 @@ EXTERN_GUID( WMT_DMOCATEGORY_AUDIO_WATERMARK, 0x65221c5a, 0xfa75, 0x4b39, 0xb5, 
 EXTERN_GUID( WMT_DMOCATEGORY_VIDEO_WATERMARK, 0x187cc922, 0x8efc, 0x4404, 0x9d, 0xaf, 0x63, 0xf4, 0x83, 0x0d, 0xf1, 0xbc );
 #define WM_MAX_VIDEO_STREAMS            0x3f
 #define WM_MAX_STREAMS                  0x3f
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMIsContentProtected( const WCHAR *pwszFileName, BOOL *pfIsProtected );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateWriter( IUnknown* pUnkCert, IWMWriter **ppWriter );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateReader( IUnknown* pUnkCert, DWORD dwRights, IWMReader **ppReader );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateSyncReader( IUnknown* pUnkCert, DWORD dwRights, IWMSyncReader **ppSyncReader );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateEditor( IWMMetadataEditor **ppEditor );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateIndexer( IWMIndexer **ppIndexer );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateBackupRestorer( IUnknown *pCallback, IWMLicenseBackup **ppBackup );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateProfileManager( IWMProfileManager **ppProfileManager );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateWriterFileSink( IWMWriterFileSink **ppSink );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateWriterNetworkSink( IWMWriterNetworkSink **ppSink );
+_Win32_metadata_supported_os_(windows5.0)
 HRESULT STDMETHODCALLTYPE WMCreateWriterPushSink( IWMWriterPushSink **ppSink );
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT STDMETHODCALLTYPE WMCreateDeviceRegistration( IWMDeviceRegistration **ppDevReg );
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT STDMETHODCALLTYPE WMCreateDRMTranscryptor( IWMDRMTranscryptor **ppTranscryptor );
 HRESULT STDMETHODCALLTYPE WMCreateDRMTranscryptionManager( IWMDRMTranscryptionManager **ppTranscryptionManager );
+_Win32_metadata_supported_os_(windows5.1.2600)
 HRESULT STDMETHODCALLTYPE WMCreateLicenseRevocationAgent( IUnknown *pCallback, IWMLicenseRevocationAgent ** ppLicenseRevocationAgent );
 
 

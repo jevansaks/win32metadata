@@ -165,9 +165,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 //=--------------------------------------------------------------------------=
 // ctfutb.h
 

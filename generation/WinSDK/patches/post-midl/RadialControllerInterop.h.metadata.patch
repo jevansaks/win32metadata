@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RadialControllerInterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/RadialControllerInterop.h
-index 4cff1ee6..e6007381 100644
+index 4cff1ee6..4a51b7b3 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RadialControllerInterop.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RadialControllerInterop.h
-@@ -80,6 +80,9 @@ extern "C"{
+@@ -80,6 +80,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (NTDDI_VERSION >= NTDDI_WIN10_RS1)
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -99,6 +102,7 @@ EXTERN_C const IID IID_IRadialControllerInterop;
+@@ -99,6 +100,7 @@ EXTERN_C const IID IID_IRadialControllerInterop;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 4cff1ee6..e6007381 100644
      MIDL_INTERFACE("1B0535C9-57AD-45C1-9D79-AD5C34360513")
      IRadialControllerInterop : public IInspectable
      {
-@@ -220,6 +224,7 @@ EXTERN_C const IID IID_IRadialControllerConfigurationInterop;
+@@ -220,6 +222,7 @@ EXTERN_C const IID IID_IRadialControllerConfigurationInterop;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

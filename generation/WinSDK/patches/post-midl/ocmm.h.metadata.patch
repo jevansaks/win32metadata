@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocmm.h b/generation/WinSDK/RecompiledIdlHeaders/um/ocmm.h
-index 9e405aed..5bd81419 100644
+index 9e405aed..7773359a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ocmm.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ocmm.h
-@@ -127,6 +127,9 @@ extern "C"{
+@@ -127,6 +127,7 @@ extern "C"{
  //=--------------------------------------------------------------------------=
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define SURFACE_LOCK_EXCLUSIVE        0x01
-@@ -1270,9 +1273,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -1270,9 +1271,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

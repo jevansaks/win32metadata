@@ -6,9 +6,7 @@
 
 #ifndef __dxcore_interface_h__
 #define __dxcore_interface_h__
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef COM_NO_WINDOWS_H
 #include "windows.h"

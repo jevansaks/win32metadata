@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/efswrtinterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/efswrtinterop.h
-index 5767d9a0..4a65670e 100644
+index 5767d9a0..404b2bfd 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/efswrtinterop.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/efswrtinterop.h
-@@ -81,6 +81,9 @@ extern "C"{
+@@ -81,6 +81,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -851,9 +854,13 @@ extern RPC_IF_HANDLE __MIDL_itf_efswrtinterop_0000_0003_v0_0_s_ifspec;
+@@ -851,9 +852,13 @@ extern RPC_IF_HANDLE __MIDL_itf_efswrtinterop_0000_0003_v0_0_s_ifspec;
  
  /* Additional Prototypes for ALL interfaces */
  
@@ -26,7 +24,7 @@ index 5767d9a0..4a65670e 100644
  void                      __RPC_USER  HSTRING_UserFree(     __RPC__in unsigned long *, __RPC__in HSTRING * ); 
  
  unsigned long             __RPC_USER  HWND_UserSize(     __RPC__in unsigned long *, unsigned long            , __RPC__in HWND * ); 
-@@ -861,9 +868,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -861,9 +866,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  HWND_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

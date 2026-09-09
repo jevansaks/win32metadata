@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msimeapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/msimeapi.h
-index 37cabdbf..6d585990 100644
+index 37cabdbf..73cbafdf 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/msimeapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/msimeapi.h
-@@ -69,6 +69,9 @@ extern "C"{
+@@ -69,6 +69,7 @@ extern "C"{
  #pragma once
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if (NTDDI_VERSION >= NTDDI_WIN8)
-@@ -88,6 +91,7 @@ EXTERN_C const IID IID_IImePlugInDictDictionaryList;
+@@ -88,6 +89,7 @@ EXTERN_C const IID IID_IImePlugInDictDictionaryList;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 37cabdbf..6d585990 100644
      MIDL_INTERFACE("98752974-b0a6-489b-8f6f-bff3769c8eeb")
      IImePlugInDictDictionaryList : public IUnknown
      {
-@@ -218,14 +222,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -218,14 +220,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

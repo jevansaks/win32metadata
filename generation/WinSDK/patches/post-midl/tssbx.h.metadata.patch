@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tssbx.h b/generation/WinSDK/RecompiledIdlHeaders/um/tssbx.h
-index 406f7d2e..06a61df2 100644
+index 406f7d2e..a25077e2 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/tssbx.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/tssbx.h
-@@ -67,6 +67,9 @@ extern "C"{
+@@ -67,6 +67,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -192,6 +195,7 @@ EXTERN_C const IID IID_IWTSSBPlugin;
+@@ -192,6 +193,7 @@ EXTERN_C const IID IID_IWTSSBPlugin;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

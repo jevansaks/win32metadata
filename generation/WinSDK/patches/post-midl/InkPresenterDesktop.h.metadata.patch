@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/InkPresenterDesktop.h b/generation/WinSDK/RecompiledIdlHeaders/um/InkPresenterDesktop.h
-index 163c02f7..6ddcb15e 100644
+index 163c02f7..af923379 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/InkPresenterDesktop.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/InkPresenterDesktop.h
-@@ -103,6 +103,9 @@ extern "C"{
+@@ -103,6 +103,7 @@ extern "C"{
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
-@@ -122,6 +125,7 @@ EXTERN_C const IID IID_IInkCommitRequestHandler;
+@@ -122,6 +123,7 @@ EXTERN_C const IID IID_IInkCommitRequestHandler;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 163c02f7..6ddcb15e 100644
      MIDL_INTERFACE("fabea3fc-b108-45b6-a9fc-8d08fa9f85cf")
      IInkCommitRequestHandler : public IUnknown
      {
-@@ -205,6 +209,7 @@ EXTERN_C const IID IID_IInkPresenterDesktop;
+@@ -205,6 +207,7 @@ EXTERN_C const IID IID_IInkPresenterDesktop;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 163c02f7..6ddcb15e 100644
      MIDL_INTERFACE("73f3c0d9-2e8b-48f3-895e-20cbd27b723b")
      IInkPresenterDesktop : public IUnknown
      {
-@@ -352,6 +357,7 @@ EXTERN_C const IID IID_IInkHostWorkItem;
+@@ -352,6 +355,7 @@ EXTERN_C const IID IID_IInkHostWorkItem;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 163c02f7..6ddcb15e 100644
      MIDL_INTERFACE("ccda0a9a-1b78-4632-bb96-97800662e26c")
      IInkHostWorkItem : public IUnknown
      {
-@@ -435,6 +441,7 @@ EXTERN_C const IID IID_IInkDesktopHost;
+@@ -435,6 +439,7 @@ EXTERN_C const IID IID_IInkDesktopHost;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

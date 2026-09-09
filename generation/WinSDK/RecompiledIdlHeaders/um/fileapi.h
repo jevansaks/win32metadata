@@ -18,9 +18,7 @@
 #include <minwindef.h>
 #include <minwinbase.h>
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #ifdef __cplusplus
 extern "C" {
 #endif

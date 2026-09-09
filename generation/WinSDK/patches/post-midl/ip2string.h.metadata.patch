@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/ip2string.h b/generation/WinSDK/RecompiledIdlHeaders/shared/ip2string.h
-index 700cd58e..84c6ff79 100644
+index 700cd58e..3c25217a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/ip2string.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/ip2string.h
-@@ -31,6 +31,9 @@ Environment:
+@@ -31,6 +31,7 @@ Environment:
  #define __IP2STRING__
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -50,6 +53,7 @@ struct in6_addr;
+@@ -50,6 +51,7 @@ struct in6_addr;
  union _DL_EUI48;
  typedef union _DL_EUI48 DL_EUI48, *PDL_EUI48;
  
@@ -20,7 +18,7 @@ index 700cd58e..84c6ff79 100644
  NTSYSAPI
  PSTR
  NTAPI
-@@ -58,6 +62,7 @@ RtlIpv4AddressToStringA (
+@@ -58,6 +60,7 @@ RtlIpv4AddressToStringA (
      _Out_writes_(16) PSTR S
      );
  
@@ -28,7 +26,7 @@ index 700cd58e..84c6ff79 100644
  NTSYSAPI
  PSTR
  NTAPI
-@@ -66,6 +71,7 @@ RtlIpv6AddressToStringA (
+@@ -66,6 +69,7 @@ RtlIpv6AddressToStringA (
      _Out_writes_(46) PSTR S
      );
  
@@ -36,7 +34,7 @@ index 700cd58e..84c6ff79 100644
  NTSYSAPI
  PSTR
  NTAPI
-@@ -95,6 +101,7 @@ RtlIpv6AddressToStringExA(
+@@ -95,6 +99,7 @@ RtlIpv6AddressToStringExA(
      _Inout_ PULONG AddressStringLength
      );
  
@@ -44,7 +42,7 @@ index 700cd58e..84c6ff79 100644
  NTSYSAPI
  PWSTR
  NTAPI
-@@ -103,6 +110,7 @@ RtlIpv4AddressToStringW (
+@@ -103,6 +108,7 @@ RtlIpv4AddressToStringW (
      _Out_writes_(16) PWSTR S
      );
  
@@ -52,7 +50,7 @@ index 700cd58e..84c6ff79 100644
  NTSYSAPI
  PWSTR
  NTAPI
-@@ -111,6 +119,7 @@ RtlIpv6AddressToStringW (
+@@ -111,6 +117,7 @@ RtlIpv6AddressToStringW (
      _Out_writes_(46) PWSTR S
      );
  
@@ -60,7 +58,7 @@ index 700cd58e..84c6ff79 100644
  NTSYSAPI
  PWSTR
  NTAPI
-@@ -119,6 +128,7 @@ RtlEthernetAddressToStringW (
+@@ -119,6 +126,7 @@ RtlEthernetAddressToStringW (
      _Out_writes_(18) PWSTR S
      );
  
@@ -68,7 +66,7 @@ index 700cd58e..84c6ff79 100644
  NTSYSAPI
  NTSTATUS
  NTAPI
-@@ -129,6 +139,7 @@ RtlIpv4AddressToStringExW(
+@@ -129,6 +137,7 @@ RtlIpv4AddressToStringExW(
      _Inout_ PULONG AddressStringLength
      );
  
@@ -76,7 +74,7 @@ index 700cd58e..84c6ff79 100644
  NTSYSAPI
  NTSTATUS
  NTAPI
-@@ -140,6 +151,7 @@ RtlIpv6AddressToStringExW(
+@@ -140,6 +149,7 @@ RtlIpv6AddressToStringExW(
      _Inout_ PULONG AddressStringLength
      );
  
@@ -84,7 +82,7 @@ index 700cd58e..84c6ff79 100644
  _Must_inspect_result_
  NTSYSAPI
  NTSTATUS
-@@ -151,6 +163,7 @@ RtlIpv4StringToAddressA (
+@@ -151,6 +161,7 @@ RtlIpv4StringToAddressA (
      _Out_ struct in_addr *Addr
      );
  
@@ -92,7 +90,7 @@ index 700cd58e..84c6ff79 100644
  _Must_inspect_result_
  NTSYSAPI
  NTSTATUS
-@@ -161,6 +174,7 @@ RtlIpv6StringToAddressA (
+@@ -161,6 +172,7 @@ RtlIpv6StringToAddressA (
      _Out_ struct in6_addr *Addr
      );
  
@@ -100,7 +98,7 @@ index 700cd58e..84c6ff79 100644
  _Must_inspect_result_
  NTSYSAPI
  NTSTATUS
-@@ -193,6 +207,7 @@ RtlIpv6StringToAddressExA (
+@@ -193,6 +205,7 @@ RtlIpv6StringToAddressExA (
      _Out_ PUSHORT Port
      );
  
@@ -108,7 +106,7 @@ index 700cd58e..84c6ff79 100644
  _Must_inspect_result_
  NTSYSAPI
  NTSTATUS
-@@ -204,6 +219,7 @@ RtlIpv4StringToAddressW (
+@@ -204,6 +217,7 @@ RtlIpv4StringToAddressW (
      _Out_ struct in_addr *Addr
      );
  
@@ -116,7 +114,7 @@ index 700cd58e..84c6ff79 100644
  _Must_inspect_result_
  NTSYSAPI
  NTSTATUS
-@@ -214,6 +230,7 @@ RtlIpv6StringToAddressW (
+@@ -214,6 +228,7 @@ RtlIpv6StringToAddressW (
      _Out_ struct in6_addr *Addr
      );
  
@@ -124,7 +122,7 @@ index 700cd58e..84c6ff79 100644
  _Must_inspect_result_
  NTSYSAPI
  NTSTATUS
-@@ -224,6 +241,7 @@ RtlEthernetStringToAddressW (
+@@ -224,6 +239,7 @@ RtlEthernetStringToAddressW (
      _Out_ DL_EUI48 *Addr
      );
  
@@ -132,7 +130,7 @@ index 700cd58e..84c6ff79 100644
  _Must_inspect_result_
  NTSYSAPI
  NTSTATUS
-@@ -235,6 +253,7 @@ RtlIpv4StringToAddressExW (
+@@ -235,6 +251,7 @@ RtlIpv4StringToAddressExW (
      _Out_ PUSHORT Port
      );
  

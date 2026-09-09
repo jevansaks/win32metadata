@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/bdaiface.h b/generation/WinSDK/RecompiledIdlHeaders/um/bdaiface.h
-index 127b48d8..f41bf713 100644
+index 127b48d8..b54cf7b5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/bdaiface.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/bdaiface.h
-@@ -411,6 +411,9 @@ extern "C"{
+@@ -411,6 +411,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #pragma warning(push)
-@@ -2805,6 +2808,7 @@ EXTERN_C const IID IID_IBDA_AutoDemodulateEx;
+@@ -2805,6 +2806,7 @@ EXTERN_C const IID IID_IBDA_AutoDemodulateEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("34518D13-1182-48e6-B28F-B24987787326")
      IBDA_AutoDemodulateEx : public IBDA_AutoDemodulate
      {
-@@ -4170,6 +4174,7 @@ EXTERN_C const IID IID_IEnumPIDMap;
+@@ -4170,6 +4172,7 @@ EXTERN_C const IID IID_IEnumPIDMap;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("afb6c2a2-2c41-11d3-8a60-0000f81e0e4a")
      IEnumPIDMap : public IUnknown
      {
-@@ -4298,6 +4303,7 @@ EXTERN_C const IID IID_IMPEG2PIDMap;
+@@ -4298,6 +4301,7 @@ EXTERN_C const IID IID_IMPEG2PIDMap;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("afb6c2a1-2c41-11d3-8a60-0000f81e0e4a")
      IMPEG2PIDMap : public IUnknown
      {
-@@ -4595,6 +4601,7 @@ EXTERN_C const IID IID_IBDA_EasMessage;
+@@ -4595,6 +4599,7 @@ EXTERN_C const IID IID_IBDA_EasMessage;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("D806973D-3EBE-46de-8FBB-6358FE784208")
      IBDA_EasMessage : public IUnknown
      {
-@@ -4791,6 +4798,7 @@ EXTERN_C const IID IID_IBDA_ConditionalAccess;
+@@ -4791,6 +4796,7 @@ EXTERN_C const IID IID_IBDA_ConditionalAccess;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("CD51F1E0-7BE9-4123-8482-A2A796C0A6B0")
      IBDA_ConditionalAccess : public IUnknown
      {
-@@ -5166,6 +5174,7 @@ EXTERN_C const IID IID_IBDA_DRM;
+@@ -5166,6 +5172,7 @@ EXTERN_C const IID IID_IBDA_DRM;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("F98D88B0-1992-4cd6-A6D9-B9AFAB99330D")
      IBDA_DRM : public IUnknown
      {
-@@ -5427,6 +5436,7 @@ EXTERN_C const IID IID_IBDA_ConditionalAccessEx;
+@@ -5427,6 +5434,7 @@ EXTERN_C const IID IID_IBDA_ConditionalAccessEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("497C3418-23CB-44ba-BB62-769F506FCEA7")
      IBDA_ConditionalAccessEx : public IUnknown
      {
-@@ -5623,6 +5633,7 @@ EXTERN_C const IID IID_IBDA_ISDBConditionalAccess;
+@@ -5623,6 +5631,7 @@ EXTERN_C const IID IID_IBDA_ISDBConditionalAccess;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("5E68C627-16C2-4e6c-B1E2-D00170CDAA0F")
      IBDA_ISDBConditionalAccess : public IUnknown
      {
-@@ -5727,6 +5738,7 @@ EXTERN_C const IID IID_IBDA_EventingService;
+@@ -5727,6 +5736,7 @@ EXTERN_C const IID IID_IBDA_EventingService;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("207C413F-00DC-4c61-BAD6-6FEE1FF07064")
      IBDA_EventingService : public IUnknown
      {
-@@ -5960,6 +5972,7 @@ EXTERN_C const IID IID_IBDA_Encoder;
+@@ -5960,6 +5970,7 @@ EXTERN_C const IID IID_IBDA_Encoder;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("3a8bad59-59fe-4559-a0ba-396cfaa98ae3")
      IBDA_Encoder : public IUnknown
      {
-@@ -6270,6 +6283,7 @@ EXTERN_C const IID IID_IBDA_FDC;
+@@ -6270,6 +6281,7 @@ EXTERN_C const IID IID_IBDA_FDC;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("138adc7e-58ae-437f-b0b4-c9fe19d5b4ac")
      IBDA_FDC : public IUnknown
      {
-@@ -6479,6 +6493,7 @@ EXTERN_C const IID IID_IBDA_GuideDataDeliveryService;
+@@ -6479,6 +6491,7 @@ EXTERN_C const IID IID_IBDA_GuideDataDeliveryService;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("C0AFCB73-23E7-4bc6-BAFA-FDC167B4719F")
      IBDA_GuideDataDeliveryService : public IUnknown
      {
-@@ -7247,6 +7262,7 @@ EXTERN_C const IID IID_IBDA_DRIDRMService;
+@@ -7247,6 +7260,7 @@ EXTERN_C const IID IID_IBDA_DRIDRMService;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("1F9BC2A5-44A3-4c52-AAB1-0BBCE5A1381D")
      IBDA_DRIDRMService : public IUnknown
      {
-@@ -7583,6 +7599,7 @@ EXTERN_C const IID IID_IBDA_MUX;
+@@ -7583,6 +7597,7 @@ EXTERN_C const IID IID_IBDA_MUX;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("942AAFEC-4C05-4c74-B8EB-8706C2A4943F")
      IBDA_MUX : public IUnknown
      {
-@@ -7813,6 +7830,7 @@ EXTERN_C const IID IID_IBDA_UserActivityService;
+@@ -7813,6 +7828,7 @@ EXTERN_C const IID IID_IBDA_UserActivityService;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("53B14189-E478-4b7a-A1FF-506DB4B99DFE")
      IBDA_UserActivityService : public IUnknown
      {
-@@ -7931,6 +7949,7 @@ EXTERN_C const IID IID_IESEvent;
+@@ -7931,6 +7947,7 @@ EXTERN_C const IID IID_IESEvent;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("1F0E5357-AF43-44e6-8547-654C645145D2")
      IESEvent : public IUnknown
      {
-@@ -8070,6 +8089,7 @@ EXTERN_C const IID IID_IESEvents;
+@@ -8070,6 +8087,7 @@ EXTERN_C const IID IID_IESEvents;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -148,7 +146,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("ABD414BF-CFE5-4e5e-AF5B-4B4E49C5BFEB")
      IESEvents : public IUnknown
      {
-@@ -8161,6 +8181,7 @@ EXTERN_C const IID IID_IBroadcastEvent;
+@@ -8161,6 +8179,7 @@ EXTERN_C const IID IID_IBroadcastEvent;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -156,7 +154,7 @@ index 127b48d8..f41bf713 100644
      MIDL_INTERFACE("3B21263F-26E8-489d-AAC4-924F7EFD9511")
      IBroadcastEvent : public IUnknown
      {
-@@ -8374,14 +8395,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+@@ -8374,14 +8393,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
  unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
  void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
  

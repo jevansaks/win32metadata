@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/p2p.h b/generation/WinSDK/RecompiledIdlHeaders/um/p2p.h
-index ee3438c2..458bc1e7 100644
+index ee3438c2..69c013ea 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/p2p.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/p2p.h
-@@ -28,6 +28,9 @@
+@@ -28,6 +28,7 @@
  #ifndef _P2P_H_
  #define _P2P_H_
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -365,33 +368,40 @@ typedef struct peer_security_interface_tag {
+@@ -365,33 +366,40 @@ typedef struct peer_security_interface_tag {
  /////////////////////////////////////////////////////////////////////////////
  // API Definitions
  
@@ -53,7 +51,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphCreate(
                  _In_    PPEER_GRAPH_PROPERTIES          pGraphProperties,
-@@ -399,6 +409,7 @@ HRESULT WINAPI PeerGraphCreate(
+@@ -399,6 +407,7 @@ HRESULT WINAPI PeerGraphCreate(
                  _In_opt_ PPEER_SECURITY_INTERFACE       pSecurityInterface,
                  _Out_   HGRAPH                          * phGraph);
  
@@ -61,7 +59,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphOpen(
                  _In_  PCWSTR                                            pwzGraphId,
-@@ -409,6 +420,7 @@ HRESULT WINAPI PeerGraphOpen(
+@@ -409,6 +418,7 @@ HRESULT WINAPI PeerGraphOpen(
                  _In_reads_opt_(cRecordTypeSyncPrecedence) const GUID   * pRecordTypeSyncPrecedence,
                  _Out_ HGRAPH                                            * phGraph);
  
@@ -69,7 +67,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphListen(
                  _In_  HGRAPH        hGraph,
-@@ -416,6 +428,7 @@ HRESULT WINAPI PeerGraphListen(
+@@ -416,6 +426,7 @@ HRESULT WINAPI PeerGraphListen(
                  _In_opt_  DWORD     dwScopeId,
                  _In_opt_  WORD      wPort);
  
@@ -77,7 +75,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphConnect(
                  _In_  HGRAPH            hGraph,
-@@ -423,26 +436,31 @@ HRESULT WINAPI PeerGraphConnect(
+@@ -423,26 +434,31 @@ HRESULT WINAPI PeerGraphConnect(
                  _In_  PPEER_ADDRESS     pAddress,
                  _Out_ ULONGLONG         * pullConnectionId);
  
@@ -109,7 +107,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphSetProperties(
                  _In_  HGRAPH                    hGraph,
-@@ -450,6 +468,7 @@ HRESULT WINAPI PeerGraphSetProperties(
+@@ -450,6 +466,7 @@ HRESULT WINAPI PeerGraphSetProperties(
  
  // Eventing interfaces
  
@@ -117,7 +115,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphRegisterEvent(
                  _In_  HGRAPH                    hGraph,
-@@ -458,10 +477,12 @@ HRESULT WINAPI PeerGraphRegisterEvent(
+@@ -458,10 +475,12 @@ HRESULT WINAPI PeerGraphRegisterEvent(
                  _In_reads_(cEventRegistrations) PEER_GRAPH_EVENT_REGISTRATION  * pEventRegistrations,
                  _Out_ HPEEREVENT                * phPeerEvent);
  
@@ -130,7 +128,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphGetEventData(
                  _In_  HPEEREVENT                    hPeerEvent,
-@@ -470,29 +491,34 @@ HRESULT WINAPI PeerGraphGetEventData(
+@@ -470,29 +489,34 @@ HRESULT WINAPI PeerGraphGetEventData(
  
  // Data Storage
  
@@ -165,7 +163,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphEnumRecords(
                  _In_  HGRAPH            hGraph,
-@@ -500,22 +526,26 @@ HRESULT WINAPI PeerGraphEnumRecords(
+@@ -500,22 +524,26 @@ HRESULT WINAPI PeerGraphEnumRecords(
                  _In_opt_  PCWSTR        pwzPeerId,
                  _Out_ HPEERENUM         * phPeerEnum);
  
@@ -192,7 +190,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphValidateDeferredRecords(
                  _In_  HGRAPH                        hGraph,
-@@ -525,6 +555,7 @@ HRESULT WINAPI PeerGraphValidateDeferredRecords(
+@@ -525,6 +553,7 @@ HRESULT WINAPI PeerGraphValidateDeferredRecords(
  
  // Node/Connection interfaces
  
@@ -200,7 +198,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphOpenDirectConnection(
                  _In_  HGRAPH            hGraph,
-@@ -532,6 +563,7 @@ HRESULT WINAPI PeerGraphOpenDirectConnection(
+@@ -532,6 +561,7 @@ HRESULT WINAPI PeerGraphOpenDirectConnection(
                  _In_  PPEER_ADDRESS     pAddress,
                  _Out_ ULONGLONG         * pullConnectionId);
  
@@ -208,7 +206,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphSendData(
                  _In_  HGRAPH                hGraph,
-@@ -540,45 +572,53 @@ HRESULT WINAPI PeerGraphSendData(
+@@ -540,45 +570,53 @@ HRESULT WINAPI PeerGraphSendData(
                  _In_  ULONG                 cbData,
                  _In_reads_bytes_(cbData) PVOID   pvData);
  
@@ -262,7 +260,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGraphUniversalTimeToPeerTime(
                  _In_  HGRAPH       hGraph,
-@@ -599,21 +639,25 @@ HRESULT WINAPI PeerGraphUniversalTimeToPeerTime(
+@@ -599,21 +637,25 @@ HRESULT WINAPI PeerGraphUniversalTimeToPeerTime(
  
  #include <wincrypt.h>
  
@@ -288,7 +286,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerEndEnumeration(
                  _In_  HPEERENUM    hPeerEnum);
-@@ -848,19 +892,23 @@ typedef struct peer_name_pair_tag {
+@@ -848,19 +890,23 @@ typedef struct peer_name_pair_tag {
  
  #ifndef MIDL_PASS
  
@@ -312,7 +310,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupOpen(
                  _In_  PCWSTR       pwzIdentity,
-@@ -868,6 +916,7 @@ HRESULT WINAPI PeerGroupOpen(
+@@ -868,6 +914,7 @@ HRESULT WINAPI PeerGroupOpen(
                  _In_opt_  PCWSTR   pwzCloud,
                  _Out_ HGROUP       * phGroup);
  
@@ -320,7 +318,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupJoin(
                  _In_  PCWSTR        pwzIdentity,
-@@ -877,6 +926,7 @@ HRESULT WINAPI PeerGroupJoin(
+@@ -877,6 +924,7 @@ HRESULT WINAPI PeerGroupJoin(
  
  
  #if NTDDI_VERSION >= NTDDI_VISTA
@@ -328,7 +326,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupPasswordJoin(
                  _In_  PCWSTR        pwzIdentity,
-@@ -886,11 +936,13 @@ HRESULT WINAPI PeerGroupPasswordJoin(
+@@ -886,11 +934,13 @@ HRESULT WINAPI PeerGroupPasswordJoin(
                  _Out_ HGROUP        * phGroup);
  #endif
  
@@ -342,7 +340,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupConnectByAddress(
                  _In_  HGROUP                            hGroup,
-@@ -898,15 +950,18 @@ HRESULT WINAPI PeerGroupConnectByAddress(
+@@ -898,15 +948,18 @@ HRESULT WINAPI PeerGroupConnectByAddress(
                  _In_reads_(cAddresses) PPEER_ADDRESS   pAddresses);
  #endif
  
@@ -361,7 +359,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupCreateInvitation(
                  _In_  HGROUP                        hGroup,
-@@ -917,32 +972,38 @@ HRESULT WINAPI PeerGroupCreateInvitation(
+@@ -917,32 +970,38 @@ HRESULT WINAPI PeerGroupCreateInvitation(
                  _Outptr_ PWSTR                   * ppwzInvitation);
  
  #if NTDDI_VERSION >= NTDDI_VISTA
@@ -400,7 +398,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupEnumMembers(
                  _In_  HGROUP        hGroup,
-@@ -950,6 +1011,7 @@ HRESULT WINAPI PeerGroupEnumMembers(
+@@ -950,6 +1009,7 @@ HRESULT WINAPI PeerGroupEnumMembers(
                  _In_opt_ PCWSTR     pwzIdentity,
                  _Out_ HPEERENUM     * phPeerEnum);
  
@@ -408,7 +406,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupOpenDirectConnection(
                  _In_  HGROUP            hGroup,
-@@ -957,17 +1019,20 @@ HRESULT WINAPI PeerGroupOpenDirectConnection(
+@@ -957,17 +1017,20 @@ HRESULT WINAPI PeerGroupOpenDirectConnection(
                  _In_  PPEER_ADDRESS     pAddress,
                  _Out_ ULONGLONG         * pullConnectionId);
  
@@ -429,7 +427,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupSendData(
                  _In_  HGROUP                hGroup,
-@@ -979,6 +1044,7 @@ HRESULT WINAPI PeerGroupSendData(
+@@ -979,6 +1042,7 @@ HRESULT WINAPI PeerGroupSendData(
  
  // Eventing interfaces
  
@@ -437,7 +435,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupRegisterEvent(
                  _In_  HGROUP                hGroup,
-@@ -987,10 +1053,12 @@ HRESULT WINAPI PeerGroupRegisterEvent(
+@@ -987,10 +1051,12 @@ HRESULT WINAPI PeerGroupRegisterEvent(
                  _In_reads_(cEventRegistration) PEER_GROUP_EVENT_REGISTRATION   * pEventRegistrations,
                  _Out_ HPEEREVENT            * phPeerEvent);
  
@@ -450,7 +448,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupGetEventData(
                  _In_  HPEEREVENT                    hPeerEvent,
-@@ -999,50 +1067,59 @@ HRESULT WINAPI PeerGroupGetEventData(
+@@ -999,50 +1065,59 @@ HRESULT WINAPI PeerGroupGetEventData(
  
  // Data Storage
  
@@ -510,7 +508,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupIssueCredentials(
                  _In_ HGROUP                     hGroup,
-@@ -1051,12 +1128,14 @@ HRESULT WINAPI PeerGroupIssueCredentials(
+@@ -1051,12 +1126,14 @@ HRESULT WINAPI PeerGroupIssueCredentials(
                  _In_ DWORD                      dwFlags,
                  _Outptr_opt_ PWSTR           * ppwzInvitation);
  
@@ -525,7 +523,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupImportConfig(
                  _In_ PCWSTR         pwzXML,
-@@ -1065,12 +1144,14 @@ HRESULT WINAPI PeerGroupImportConfig(
+@@ -1065,12 +1142,14 @@ HRESULT WINAPI PeerGroupImportConfig(
                  _Outptr_ PWSTR   * ppwzIdentity,
                  _Outptr_ PWSTR   * ppwzGroup);
  
@@ -540,7 +538,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerGroupUniversalTimeToPeerTime(
                  _In_  HGROUP       hGroup,
-@@ -1099,6 +1180,7 @@ HRESULT WINAPI PeerGroupResumePasswordAuthentication(
+@@ -1099,6 +1178,7 @@ HRESULT WINAPI PeerGroupResumePasswordAuthentication(
  
  // API Definitions
  
@@ -548,7 +546,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerIdentityCreate(
                  _In_opt_  PCWSTR        pwzClassifier,
-@@ -1106,57 +1188,68 @@ HRESULT WINAPI PeerIdentityCreate(
+@@ -1106,57 +1186,68 @@ HRESULT WINAPI PeerIdentityCreate(
                  _In_opt_  HCRYPTPROV    hCryptProv,
                  _Outptr_ PWSTR       * ppwzIdentity);
  
@@ -617,7 +615,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerIdentityGetDefault(
                  _Outptr_ PWSTR   * ppwzPeerName);
-@@ -1264,22 +1357,27 @@ typedef PPEER_PEOPLE_NEAR_ME *PPPEER_PEOPLE_NEAR_ME;
+@@ -1264,22 +1355,27 @@ typedef PPEER_PEOPLE_NEAR_ME *PPPEER_PEOPLE_NEAR_ME;
  /////////////////////////////////////////////////////////////////////////////
  // APIs
  
@@ -645,7 +643,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabGetSigninOptions(
                  _Out_  DWORD    * pdwSigninOptions);
-@@ -1353,6 +1451,7 @@ typedef const PEER_APPLICATION_REGISTRATION_INFO * PCPEER_APPLICATION_REGISTRATI
+@@ -1353,6 +1449,7 @@ typedef const PEER_APPLICATION_REGISTRATION_INFO * PCPEER_APPLICATION_REGISTRATI
  // API's
  
  // AppInvite sender side API's
@@ -653,7 +651,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabAsyncInviteContact(
                      _In_opt_ PCPEER_CONTACT             pcContact,
-@@ -1361,19 +1460,23 @@ HRESULT WINAPI PeerCollabAsyncInviteContact(
+@@ -1361,19 +1458,23 @@ HRESULT WINAPI PeerCollabAsyncInviteContact(
                      _In_opt_  HANDLE                    hEvent,
                      _Out_opt_ HANDLE                    * phInvitation);
  
@@ -677,7 +675,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabInviteContact(
                      _In_opt_     PCPEER_CONTACT             pcContact,
-@@ -1381,6 +1484,7 @@ HRESULT WINAPI PeerCollabInviteContact(
+@@ -1381,6 +1482,7 @@ HRESULT WINAPI PeerCollabInviteContact(
                      _In_  PCPEER_INVITATION                 pcInvitation,
                      _Outptr_ PPEER_INVITATION_RESPONSE   * ppResponse);
  
@@ -685,7 +683,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabAsyncInviteEndpoint(
                      _In_  PCPEER_ENDPOINT               pcEndpoint,
-@@ -1388,6 +1492,7 @@ HRESULT WINAPI PeerCollabAsyncInviteEndpoint(
+@@ -1388,6 +1490,7 @@ HRESULT WINAPI PeerCollabAsyncInviteEndpoint(
                      _In_opt_  HANDLE                    hEvent,
                      _Out_opt_ HANDLE                    * phInvitation);
  
@@ -693,7 +691,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabInviteEndpoint(
                      _In_  PCPEER_ENDPOINT                   pcEndpoint,
-@@ -1395,27 +1500,32 @@ HRESULT WINAPI PeerCollabInviteEndpoint(
+@@ -1395,27 +1498,32 @@ HRESULT WINAPI PeerCollabInviteEndpoint(
                      _Outptr_ PPEER_INVITATION_RESPONSE   * ppResponse);
  
  // AppInvite receiver side API's
@@ -726,7 +724,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabEnumApplicationRegistrationInfo(
                      _In_  PEER_APPLICATION_REGISTRATION_TYPE      registrationType,
-@@ -1459,67 +1569,81 @@ typedef const PEER_PRESENCE_INFO * PCPEER_PRESENCE_INFO;
+@@ -1459,67 +1567,81 @@ typedef const PEER_PRESENCE_INFO * PCPEER_PRESENCE_INFO;
  // API's
  
  // Subscriber
@@ -808,7 +806,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabDeleteObject(
                  _In_ const GUID              * pObjectId);
-@@ -1669,6 +1793,7 @@ typedef struct peer_event_request_status_changed_data_tag {
+@@ -1669,6 +1791,7 @@ typedef struct peer_event_request_status_changed_data_tag {
  /////////////////////////////////////////////////////////////////////////////
  // API's
  
@@ -816,7 +814,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabRegisterEvent(
                  _In_ HANDLE                       hEvent,
-@@ -1676,11 +1801,13 @@ HRESULT WINAPI PeerCollabRegisterEvent(
+@@ -1676,11 +1799,13 @@ HRESULT WINAPI PeerCollabRegisterEvent(
                  _In_reads_(cEventRegistration) PEER_COLLAB_EVENT_REGISTRATION * pEventRegistrations,
                  _Out_ HPEEREVENT                  *phPeerEvent);
  
@@ -830,7 +828,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabUnregisterEvent(
                  _In_ HPEEREVENT                         hPeerEvent);
-@@ -1694,6 +1821,7 @@ HRESULT WINAPI PeerCollabUnregisterEvent(
+@@ -1694,6 +1819,7 @@ HRESULT WINAPI PeerCollabUnregisterEvent(
  /////////////////////////////////////////////////////////////////////////////
  // API's
  
@@ -838,7 +836,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabEnumPeopleNearMe(
                  _Out_ HPEERENUM                 *phPeerEnum);
-@@ -1707,33 +1835,40 @@ HRESULT WINAPI PeerCollabEnumPeopleNearMe(
+@@ -1707,33 +1833,40 @@ HRESULT WINAPI PeerCollabEnumPeopleNearMe(
  /////////////////////////////////////////////////////////////////////////////
  // API's
  
@@ -879,7 +877,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerCollabParseContact(
                  _In_        PCWSTR              pwzContactData,
-@@ -1796,38 +1931,46 @@ typedef struct peer_pnrp_registration_info_tag {
+@@ -1796,38 +1929,46 @@ typedef struct peer_pnrp_registration_info_tag {
  /////////////////////////////////////////////////////////////////////////////
  // API's
  
@@ -926,7 +924,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerPnrpResolve(
                    _In_ PCWSTR                           pcwzPeerName,
-@@ -1835,6 +1978,7 @@ HRESULT WINAPI PeerPnrpResolve(
+@@ -1835,6 +1976,7 @@ HRESULT WINAPI PeerPnrpResolve(
                    _Inout_ ULONG                         *pcEndpoints,
                    _Outptr_result_buffer_(*pcEndpoints) PPEER_PNRP_ENDPOINT_INFO  *ppEndpoints);
  
@@ -934,7 +932,7 @@ index ee3438c2..458bc1e7 100644
  NOT_BUILD_WINDOWS_DEPRECATE
  HRESULT WINAPI PeerPnrpStartResolve(
                    _In_  PCWSTR          pcwzPeerName,
-@@ -1843,16 +1987,19 @@ HRESULT WINAPI PeerPnrpStartResolve(
+@@ -1843,16 +1985,19 @@ HRESULT WINAPI PeerPnrpStartResolve(
                    _In_  HANDLE          hEvent,
                    _Out_ HRESOLUTION    *phResolve);
  

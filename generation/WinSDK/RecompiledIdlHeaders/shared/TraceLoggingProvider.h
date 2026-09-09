@@ -76,9 +76,7 @@ TLG_HAVE_EVENT_SET_INFORMATION macro.
 #ifndef _traceloggingprovider_
 #define _traceloggingprovider_
 #pragma once
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #include <evntprov.h>
 

@@ -1,16 +1,14 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/getprocesshandlefromhwnd.h b/generation/WinSDK/RecompiledIdlHeaders/um/getprocesshandlefromhwnd.h
-index a474f92c..c2f72954 100644
+index a474f92c..1422f666 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/getprocesshandlefromhwnd.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/getprocesshandlefromhwnd.h
-@@ -1,4 +1,7 @@
+@@ -1,4 +1,5 @@
  #include <windows.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #ifdef __cplusplus
  extern "C" {
-@@ -6,7 +9,8 @@ extern "C" {
+@@ -6,7 +7,8 @@ extern "C" {
  
  HANDLE WINAPI GetProcessHandleFromHwnd(
    _In_ HWND hwnd

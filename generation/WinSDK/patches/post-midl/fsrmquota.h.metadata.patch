@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fsrmquota.h b/generation/WinSDK/RecompiledIdlHeaders/um/fsrmquota.h
-index af5efb6b..0143be23 100644
+index af5efb6b..5618a89d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fsrmquota.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fsrmquota.h
-@@ -124,6 +124,9 @@ extern "C"{
+@@ -124,6 +124,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -180,6 +183,7 @@ EXTERN_C const IID IID_IFsrmQuotaBase;
+@@ -180,6 +181,7 @@ EXTERN_C const IID IID_IFsrmQuotaBase;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index af5efb6b..0143be23 100644
      MIDL_INTERFACE("1568a795-3924-4118-b74b-68d8f0fa5daf")
      IFsrmQuotaBase : public IFsrmObject
      {
-@@ -504,6 +508,7 @@ EXTERN_C const IID IID_IFsrmQuotaObject;
+@@ -504,6 +506,7 @@ EXTERN_C const IID IID_IFsrmQuotaObject;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index af5efb6b..0143be23 100644
      MIDL_INTERFACE("42dc3511-61d5-48ae-b6dc-59fc00c0a8d6")
      IFsrmQuotaObject : public IFsrmQuotaBase
      {
-@@ -859,6 +864,7 @@ EXTERN_C const IID IID_IFsrmQuota;
+@@ -859,6 +862,7 @@ EXTERN_C const IID IID_IFsrmQuota;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index af5efb6b..0143be23 100644
      MIDL_INTERFACE("377f739d-9647-4b8e-97d2-5ffce6d759cd")
      IFsrmQuota : public IFsrmQuotaObject
      {
-@@ -1248,6 +1254,7 @@ EXTERN_C const IID IID_IFsrmAutoApplyQuota;
+@@ -1248,6 +1252,7 @@ EXTERN_C const IID IID_IFsrmAutoApplyQuota;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index af5efb6b..0143be23 100644
      MIDL_INTERFACE("f82e5729-6aba-4740-bfc7-c7f58f75fb7b")
      IFsrmAutoApplyQuota : public IFsrmQuotaObject
      {
-@@ -1627,6 +1634,7 @@ EXTERN_C const IID IID_IFsrmQuotaManager;
+@@ -1627,6 +1632,7 @@ EXTERN_C const IID IID_IFsrmQuotaManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index af5efb6b..0143be23 100644
      MIDL_INTERFACE("8bb68c7d-19d8-4ffb-809e-be4fc1734014")
      IFsrmQuotaManager : public IDispatch
      {
-@@ -1967,6 +1975,7 @@ EXTERN_C const IID IID_IFsrmQuotaManagerEx;
+@@ -1967,6 +1973,7 @@ EXTERN_C const IID IID_IFsrmQuotaManagerEx;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index af5efb6b..0143be23 100644
      MIDL_INTERFACE("4846cb01-d430-494f-abb4-b1054999fb09")
      IFsrmQuotaManagerEx : public IFsrmQuotaManager
      {
-@@ -2257,6 +2266,7 @@ EXTERN_C const IID IID_IFsrmQuotaTemplate;
+@@ -2257,6 +2264,7 @@ EXTERN_C const IID IID_IFsrmQuotaTemplate;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index af5efb6b..0143be23 100644
      MIDL_INTERFACE("a2efab31-295e-46bb-b976-e86d58b52e8b")
      IFsrmQuotaTemplate : public IFsrmQuotaBase
      {
-@@ -2594,6 +2604,7 @@ EXTERN_C const IID IID_IFsrmQuotaTemplateImported;
+@@ -2594,6 +2602,7 @@ EXTERN_C const IID IID_IFsrmQuotaTemplateImported;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index af5efb6b..0143be23 100644
      MIDL_INTERFACE("9a2bf113-a329-44cc-809a-5c00fce8da40")
      IFsrmQuotaTemplateImported : public IFsrmQuotaTemplate
      {
-@@ -2938,6 +2949,7 @@ EXTERN_C const IID IID_IFsrmQuotaTemplateManager;
+@@ -2938,6 +2947,7 @@ EXTERN_C const IID IID_IFsrmQuotaTemplateManager;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index af5efb6b..0143be23 100644
      MIDL_INTERFACE("4173ac41-172d-4d52-963c-fdc7e415f717")
      IFsrmQuotaTemplateManager : public IDispatch
      {
-@@ -3175,19 +3187,31 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -3175,19 +3185,31 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

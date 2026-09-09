@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wmnetsourcecreator.h b/generation/WinSDK/RecompiledIdlHeaders/um/wmnetsourcecreator.h
-index 5ad89f82..9f5bda97 100644
+index 5ad89f82..8ec13bca 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wmnetsourcecreator.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wmnetsourcecreator.h
-@@ -76,6 +76,9 @@ extern "C"{
+@@ -76,6 +76,7 @@ extern "C"{
  //
  //--------------------------------------------------------------------------
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  EXTERN_GUID( CLSID_ClientNetManager, 0xCD12A3CE,0x9C42,0x11D2,0xBE,0xED,0x00,0x60,0x08,0x2F,0x20,0x54  );
-@@ -311,9 +314,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -311,9 +312,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

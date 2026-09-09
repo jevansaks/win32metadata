@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddpdataport.h b/generation/WinSDK/RecompiledIdlHeaders/um/ddpdataport.h
-index aa51dca8..667ad2ca 100644
+index aa51dca8..d2e01904 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ddpdataport.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ddpdataport.h
-@@ -101,6 +101,9 @@ extern "C"{
+@@ -101,6 +101,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -699,9 +702,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -699,9 +700,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

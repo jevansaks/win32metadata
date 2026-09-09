@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/htiframe.h b/generation/WinSDK/RecompiledIdlHeaders/um/htiframe.h
-index 01c269f2..f3ec76a6 100644
+index 01c269f2..f1f4f6c9 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/htiframe.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/htiframe.h
-@@ -99,6 +99,9 @@ extern "C"{
+@@ -99,6 +99,7 @@ extern "C"{
  //=--------------------------------------------------------------------------=
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #pragma comment(lib,"uuid.lib")
-@@ -727,9 +730,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+@@ -727,9 +728,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
  unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
  void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  

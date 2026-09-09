@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wmcodecdsp.h b/generation/WinSDK/RecompiledIdlHeaders/um/wmcodecdsp.h
-index b36031db..69e5e8ce 100644
+index b36031db..ef5032c5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wmcodecdsp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wmcodecdsp.h
-@@ -1396,6 +1396,9 @@ extern "C"{
+@@ -1396,6 +1396,7 @@ extern "C"{
  //
  //=========================================================================
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef 
-@@ -1626,6 +1629,7 @@ EXTERN_C const IID IID_IWMVideoDecoderHurryup;
+@@ -1626,6 +1627,7 @@ EXTERN_C const IID IID_IWMVideoDecoderHurryup;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("352bb3bd-2d4d-4323-9e71-dcdcfbd53ca6")
      IWMVideoDecoderHurryup : public IUnknown
      {
-@@ -1721,6 +1725,7 @@ EXTERN_C const IID IID_IWMVideoForceKeyFrame;
+@@ -1721,6 +1723,7 @@ EXTERN_C const IID IID_IWMVideoForceKeyFrame;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("9F8496BE-5B9A-41b9-A9E8-F21CD80596C2")
      IWMVideoForceKeyFrame : public IUnknown
      {
-@@ -1803,6 +1808,7 @@ EXTERN_C const IID IID_IWMCodecStrings;
+@@ -1803,6 +1806,7 @@ EXTERN_C const IID IID_IWMCodecStrings;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("A7B2504B-E58A-47fb-958B-CAC7165A057D")
      IWMCodecStrings : public IUnknown
      {
-@@ -1914,6 +1920,7 @@ EXTERN_C const IID IID_IWMCodecProps;
+@@ -1914,6 +1918,7 @@ EXTERN_C const IID IID_IWMCodecProps;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("2573e11a-f01a-4fdd-a98d-63b8e0ba9589")
      IWMCodecProps : public IUnknown
      {
-@@ -2025,6 +2032,7 @@ EXTERN_C const IID IID_IWMCodecLeakyBucket;
+@@ -2025,6 +2030,7 @@ EXTERN_C const IID IID_IWMCodecLeakyBucket;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -52,7 +50,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("A81BA647-6227-43b7-B231-C7B15135DD7D")
      IWMCodecLeakyBucket : public IUnknown
      {
-@@ -2142,6 +2150,7 @@ EXTERN_C const IID IID_IWMCodecOutputTimestamp;
+@@ -2142,6 +2148,7 @@ EXTERN_C const IID IID_IWMCodecOutputTimestamp;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -60,7 +58,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("B72ADF95-7ADC-4a72-BC05-577D8EA6BF68")
      IWMCodecOutputTimestamp : public IUnknown
      {
-@@ -2226,6 +2235,7 @@ EXTERN_C const IID IID_IWMVideoDecoderReconBuffer;
+@@ -2226,6 +2233,7 @@ EXTERN_C const IID IID_IWMVideoDecoderReconBuffer;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -68,7 +66,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("45BDA2AC-88E2-4923-98BA-3949080711A3")
      IWMVideoDecoderReconBuffer : public IUnknown
      {
-@@ -2332,6 +2342,7 @@ EXTERN_C const IID IID_IWMCodecPrivateData;
+@@ -2332,6 +2340,7 @@ EXTERN_C const IID IID_IWMCodecPrivateData;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -76,7 +74,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("73F0BE8E-57F7-4f01-AA66-9F57340CFE0E")
      IWMCodecPrivateData : public IUnknown
      {
-@@ -2429,6 +2440,7 @@ EXTERN_C const IID IID_IWMSampleExtensionSupport;
+@@ -2429,6 +2438,7 @@ EXTERN_C const IID IID_IWMSampleExtensionSupport;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -84,7 +82,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("9bca9884-0604-4c2a-87da-793ff4d586c3")
      IWMSampleExtensionSupport : public IUnknown
      {
-@@ -2515,6 +2527,7 @@ EXTERN_C const IID IID_IWMResamplerProps;
+@@ -2515,6 +2525,7 @@ EXTERN_C const IID IID_IWMResamplerProps;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -92,7 +90,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("E7E9984F-F09F-4da4-903F-6E2E0EFE56B5")
      IWMResamplerProps : public IUnknown
      {
-@@ -2610,6 +2623,7 @@ EXTERN_C const IID IID_IWMResizerProps;
+@@ -2610,6 +2621,7 @@ EXTERN_C const IID IID_IWMResizerProps;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -100,7 +98,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("57665D4C-0414-4faa-905B-10E546F81C33")
      IWMResizerProps : public IUnknown
      {
-@@ -3081,6 +3095,7 @@ EXTERN_C const IID IID_IWMColorConvProps;
+@@ -3081,6 +3093,7 @@ EXTERN_C const IID IID_IWMColorConvProps;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -108,7 +106,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("E6A49E22-C099-421d-AAD3-C061FB4AE85B")
      IWMColorConvProps : public IUnknown
      {
-@@ -3992,6 +4007,7 @@ EXTERN_C const IID IID_ITocEntry;
+@@ -3992,6 +4005,7 @@ EXTERN_C const IID IID_ITocEntry;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -116,7 +114,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("F22F5E06-585C-4def-8523-6555CFBC0CB3")
      ITocEntry : public IUnknown
      {
-@@ -4169,6 +4185,7 @@ EXTERN_C const IID IID_ITocEntryList;
+@@ -4169,6 +4183,7 @@ EXTERN_C const IID IID_ITocEntryList;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -124,7 +122,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("3A8CCCBD-0EFD-43a3-B838-F38A552BA237")
      ITocEntryList : public IUnknown
      {
-@@ -4303,6 +4320,7 @@ EXTERN_C const IID IID_IToc;
+@@ -4303,6 +4318,7 @@ EXTERN_C const IID IID_IToc;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -132,7 +130,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("D6F05441-A919-423b-91A0-89D5B4A8AB77")
      IToc : public IUnknown
      {
-@@ -4511,6 +4529,7 @@ EXTERN_C const IID IID_ITocCollection;
+@@ -4511,6 +4527,7 @@ EXTERN_C const IID IID_ITocCollection;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -140,7 +138,7 @@ index b36031db..69e5e8ce 100644
      MIDL_INTERFACE("23fee831-ae96-42df-b170-25a04847a3ca")
      ITocCollection : public IUnknown
      {
-@@ -4645,6 +4664,7 @@ EXTERN_C const IID IID_ITocParser;
+@@ -4645,6 +4662,7 @@ EXTERN_C const IID IID_ITocParser;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

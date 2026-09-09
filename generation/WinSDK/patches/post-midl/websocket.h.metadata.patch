@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/websocket.h b/generation/WinSDK/RecompiledIdlHeaders/um/websocket.h
-index b1fa92da..088b2da6 100644
+index b1fa92da..4b302bf1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/websocket.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/websocket.h
-@@ -25,6 +25,9 @@ extern "C"
+@@ -25,6 +25,7 @@ extern "C"
  #endif
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -120,11 +123,13 @@ typedef union _WEB_SOCKET_BUFFER
+@@ -120,11 +121,13 @@ typedef union _WEB_SOCKET_BUFFER
      } CloseStatus;
  } WEB_SOCKET_BUFFER, *PWEB_SOCKET_BUFFER;
  
@@ -26,7 +24,7 @@ index b1fa92da..088b2da6 100644
  HRESULT WINAPI WebSocketBeginClientHandshake(
      _In_ WEB_SOCKET_HANDLE hWebSocket,
      _In_reads_opt_(ulSubprotocolCount) PCSTR *pszSubprotocols,
-@@ -136,6 +141,7 @@ HRESULT WINAPI WebSocketBeginClientHandshake(
+@@ -136,6 +139,7 @@ HRESULT WINAPI WebSocketBeginClientHandshake(
      _Out_writes_(*pulAdditionalHeaderCount) PWEB_SOCKET_HTTP_HEADER *pAdditionalHeaders,
      _Out_ ULONG *pulAdditionalHeaderCount);
  
@@ -34,7 +32,7 @@ index b1fa92da..088b2da6 100644
  HRESULT WINAPI WebSocketEndClientHandshake(
      _In_ WEB_SOCKET_HANDLE hWebSocket,
      _In_reads_(ulReponseHeaderCount) const PWEB_SOCKET_HTTP_HEADER pResponseHeaders,
-@@ -144,11 +150,13 @@ HRESULT WINAPI WebSocketEndClientHandshake(
+@@ -144,11 +148,13 @@ HRESULT WINAPI WebSocketEndClientHandshake(
      _Inout_opt_ ULONG *pulSelectedExtensionCount,
      _Inout_opt_ ULONG *pulSelectedSubprotocol);
  
@@ -48,7 +46,7 @@ index b1fa92da..088b2da6 100644
  HRESULT WINAPI WebSocketBeginServerHandshake(
      _In_ WEB_SOCKET_HANDLE hWebSocket,
      _In_opt_ PCSTR pszSubprotocolSelected,
-@@ -159,20 +167,24 @@ HRESULT WINAPI WebSocketBeginServerHandshake(
+@@ -159,20 +165,24 @@ HRESULT WINAPI WebSocketBeginServerHandshake(
      _Out_writes_(*pulResponseHeaderCount) PWEB_SOCKET_HTTP_HEADER *pResponseHeaders,
      _Out_ ULONG* pulResponseHeaderCount);
  
@@ -73,7 +71,7 @@ index b1fa92da..088b2da6 100644
  HRESULT WINAPI WebSocketGetAction(
      _In_ WEB_SOCKET_HANDLE hWebSocket,
      _In_ WEB_SOCKET_ACTION_QUEUE eActionQueue,
-@@ -183,17 +195,21 @@ HRESULT WINAPI WebSocketGetAction(
+@@ -183,17 +193,21 @@ HRESULT WINAPI WebSocketGetAction(
      _Out_opt_ PVOID *pvApplicationContext,
      _Out_ PVOID *pvActionContext);
  

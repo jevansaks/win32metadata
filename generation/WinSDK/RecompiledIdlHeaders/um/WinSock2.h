@@ -18,9 +18,7 @@
 
 #pragma once
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if !defined(_WINSOCK_DEPRECATED_BY)
 #if ((defined(_WINSOCK_DEPRECATED_NO_WARNINGS) || defined(BUILD_WINDOWS)) && !defined(_WINSOCK_DEPRECATE_WARNINGS)) || defined(MIDL_PASS)
@@ -2583,7 +2581,7 @@ int
 #endif /* INCL_WINSOCK_API_TYPEDEFS */
 
 #if INCL_WINSOCK_API_PROTOTYPES
-_Win32_metadata_supported_os_(windows8.1)
+_Win32_metadata_supported_os_(windows5.0)
 _Win32_metadata_set_last_error_
 _WINSOCK_DEPRECATED_BY("getservbyname()")
 WINSOCK_API_LINKAGE
@@ -2613,7 +2611,7 @@ HANDLE
 #endif /* INCL_WINSOCK_API_TYPEDEFS */
 
 #if INCL_WINSOCK_API_PROTOTYPES
-_Win32_metadata_supported_os_(windows8.1)
+_Win32_metadata_supported_os_(windows5.0)
 _Win32_metadata_set_last_error_
 _WINSOCK_DEPRECATED_BY("getservbyport()")
 WINSOCK_API_LINKAGE
@@ -2643,7 +2641,7 @@ HANDLE
 #endif /* INCL_WINSOCK_API_TYPEDEFS */
 
 #if INCL_WINSOCK_API_PROTOTYPES
-_Win32_metadata_supported_os_(windows8.1)
+_Win32_metadata_supported_os_(windows5.0)
 _Win32_metadata_set_last_error_
 _WINSOCK_DEPRECATED_BY("getprotobyname()")
 WINSOCK_API_LINKAGE
@@ -2671,7 +2669,7 @@ HANDLE
 #endif /* INCL_WINSOCK_API_TYPEDEFS */
 
 #if INCL_WINSOCK_API_PROTOTYPES
-_Win32_metadata_supported_os_(windows8.1)
+_Win32_metadata_supported_os_(windows5.0)
 _Win32_metadata_set_last_error_
 _WINSOCK_DEPRECATED_BY("getprotobynumber()")
 WINSOCK_API_LINKAGE
@@ -3365,7 +3363,7 @@ int
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if INCL_WINSOCK_API_PROTOTYPES
-_Win32_metadata_supported_os_(windows8.1)
+_Win32_metadata_supported_os_(windows5.0)
 _Win32_metadata_set_last_error_
 _WINSOCK_DEPRECATED_BY("WSARecv()")
 WINSOCK_API_LINKAGE
@@ -3496,7 +3494,7 @@ WSASendMsg(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if INCL_WINSOCK_API_PROTOTYPES
-_Win32_metadata_supported_os_(windows8.1)
+_Win32_metadata_supported_os_(windows5.0)
 _Win32_metadata_set_last_error_
 _WINSOCK_DEPRECATED_BY("WSASend()")
 WINSOCK_API_LINKAGE
@@ -4474,6 +4472,7 @@ typedef struct linger LINGER;
 typedef struct linger *PLINGER;
 typedef struct linger FAR *LPLINGER;
 
+_Win32_metadata_supported_os_(windows5.0)
 typedef struct fd_set FD_SET;
 typedef struct fd_set *PFD_SET;
 typedef struct fd_set FAR *LPFD_SET;

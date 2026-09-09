@@ -1,0 +1,44 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/activationregistration.h b/generation/WinSDK/RecompiledIdlHeaders/winrt/activationregistration.h
+index c24cdde2..49ae7b97 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/activationregistration.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/activationregistration.h
+@@ -28,6 +28,7 @@
+ #endif /*COM_NO_WINDOWS_H*/
+ #ifndef __activationregistration_h__
+ #define __activationregistration_h__
++#include <win32metadata_annotations.h>
+ #ifndef __activationregistration_p_h__
+ #define __activationregistration_p_h__
+ 
+@@ -479,6 +480,7 @@ namespace ABI {
+     namespace Windows {
+         namespace Foundation {
+             /* [contract, pointer_default(unique), uuid("9BBCAE23-3DD6-49C3-B63C-1C587E7A6A67"), object, version] */
++_Win32_metadata_supported_os_(windows8.1)
+             MIDL_INTERFACE("9BBCAE23-3DD6-49C3-B63C-1C587E7A6A67")
+             IActivatableClassRegistration : public IInspectable
+             {
+@@ -528,6 +530,7 @@ namespace ABI {
+     namespace Windows {
+         namespace Foundation {
+             /* [contract, pointer_default(ref), uuid("C8AA04F6-66C6-46A3-8FE6-F56BE7DDC091"), object, version] */
++_Win32_metadata_supported_os_(windows8.1)
+             MIDL_INTERFACE("C8AA04F6-66C6-46A3-8FE6-F56BE7DDC091")
+             IDllServerActivatableClassRegistration : public IInspectable
+             {
+@@ -568,6 +571,7 @@ namespace ABI {
+     namespace Windows {
+         namespace Foundation {
+             /* [contract, pointer_default(ref), uuid("9308C3C5-C2AC-49D1-A024-660A2BB5D5AC"), object, version] */
++_Win32_metadata_supported_os_(windows8.1)
+             MIDL_INTERFACE("9308C3C5-C2AC-49D1-A024-660A2BB5D5AC")
+             IExeServerActivatableClassRegistration : public IInspectable
+             {
+@@ -605,6 +609,7 @@ namespace ABI {
+     namespace Windows {
+         namespace Foundation {
+             /* [contract, pointer_default(unique), uuid("EC734A06-0401-4317-BAC1-3B7E207242E3"), object, version] */
++_Win32_metadata_supported_os_(windows8.1)
+             MIDL_INTERFACE("EC734A06-0401-4317-BAC1-3B7E207242E3")
+             IExeServerRegistration : public IInspectable
+             {

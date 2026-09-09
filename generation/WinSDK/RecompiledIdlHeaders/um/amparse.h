@@ -11,6 +11,7 @@
 #ifndef __AMPARSE__
 #define __AMPARSE__
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -27,6 +28,7 @@ DEFINE_GUID(IID_IAMParse,
 //
 //  Parser interface - supported by MPEG-2 splitter filter
 //
+_Win32_metadata_supported_os_(windows5.1.2600)
 DECLARE_INTERFACE_(IAMParse, IUnknown) {
     STDMETHOD(GetParseTime) (THIS_
                              _Out_ REFERENCE_TIME *prtCurrent

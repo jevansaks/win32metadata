@@ -41,9 +41,7 @@
 #define _INC_VFW
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -2105,6 +2103,7 @@ extern "C" {            /* Assume C declarations for C++ */
 #undef  INTERFACE
 #define INTERFACE   IAVIStream
 
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IAVIStream, IUnknown)
 {
     // *** IUnknown methods ***
@@ -2149,6 +2148,7 @@ typedef       IAVIStream FAR* PAVISTREAM;
 #undef  INTERFACE
 #define INTERFACE   IAVIStreaming
 
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IAVIStreaming, IUnknown)
 {
     // *** IUnknown methods ***
@@ -2171,6 +2171,7 @@ typedef       IAVIStreaming FAR* PAVISTREAMING;
 #undef  INTERFACE
 #define INTERFACE   IAVIEditStream
 
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IAVIEditStream, IUnknown)
 {
     // *** IUnknown methods ***
@@ -2214,6 +2215,7 @@ typedef IAVIPersistFile FAR* PAVIPERSISTFILE;
 #define INTERFACE   IAVIFile
 #define PAVIFILE IAVIFile FAR*
 
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IAVIFile, IUnknown)
 {
     // *** IUnknown methods ***
@@ -2255,6 +2257,7 @@ typedef       IAVIFile FAR* PAVIFILE;
 #define INTERFACE   IGetFrame
 #define PGETFRAME   IGetFrame FAR*
 
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_INTERFACE_(IGetFrame, IUnknown)
 {
     // *** IUnknown methods ***

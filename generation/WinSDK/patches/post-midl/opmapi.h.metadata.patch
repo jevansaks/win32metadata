@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/opmapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/opmapi.h
-index ea341a5e..23acd996 100644
+index ea341a5e..9489e6a2 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/opmapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/opmapi.h
-@@ -67,6 +67,9 @@ extern "C"{
+@@ -67,6 +67,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #ifndef OPM_API_DEFINED
  #define OPM_API_DEFINED
  #pragma region Desktop Family
-@@ -441,6 +444,7 @@ EXTERN_C const IID IID_IOPMVideoOutput;
+@@ -441,6 +442,7 @@ EXTERN_C const IID IID_IOPMVideoOutput;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index ea341a5e..23acd996 100644
      MIDL_INTERFACE("0A15159D-41C7-4456-93E1-284CD61D4E8D")
      IOPMVideoOutput : public IUnknown
      {
-@@ -618,12 +622,14 @@ typedef enum {
+@@ -618,12 +620,14 @@ typedef enum {
  #define GetBusType( ulBusTypeAndImplementation )                        ((ulBusTypeAndImplementation) & OPM_BUS_TYPE_MASK)
  #define GetBusImplementation( ulBusTypeAndImplementation )              (((ulBusTypeAndImplementation) & OPM_BUS_IMPLEMENTATION_MODIFIER_MASK) >> 16) 
  #define IsNonStandardBusImplementation( ulBusTypeAndImplementation )    ((ulBusTypeAndImplementation) & OPM_BUS_IMPLEMENTATION_MODIFIER_NON_STANDARD) 
@@ -35,7 +33,7 @@ index ea341a5e..23acd996 100644
  STDAPI OPMGetVideoOutputForTarget(                                                          
      _In_ LUID* pAdapterLuid,                                                                
      _In_ ULONG VidPnTarget,                                                                 
-@@ -631,6 +637,7 @@ STDAPI OPMGetVideoOutputForTarget(
+@@ -631,6 +635,7 @@ STDAPI OPMGetVideoOutputForTarget(
      _COM_Outptr_ IOPMVideoOutput** ppOPMVideoOutput                                         
      );                                                                                      
  #ifndef DO_NOT_USE_DIRECTX_OR_DXVA2

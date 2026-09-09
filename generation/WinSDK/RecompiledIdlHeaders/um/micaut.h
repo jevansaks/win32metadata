@@ -87,9 +87,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 typedef /* [public][uuid] */  DECLSPEC_UUID("D7803AF6-B018-4a42-AE48-B2D2319BCB05") 

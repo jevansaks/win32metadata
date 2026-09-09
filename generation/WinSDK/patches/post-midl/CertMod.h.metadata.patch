@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CertMod.h b/generation/WinSDK/RecompiledIdlHeaders/um/CertMod.h
-index 190395b4..ea08f6ef 100644
+index 190395b4..ea6628ff 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/CertMod.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/CertMod.h
-@@ -67,6 +67,9 @@ extern "C"{
+@@ -67,6 +67,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #define	CMM_REFRESHONLY	( 0x1 )
-@@ -103,6 +106,7 @@ EXTERN_C const IID IID_ICertManageModule;
+@@ -103,6 +104,7 @@ EXTERN_C const IID IID_ICertManageModule;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index 190395b4..ea08f6ef 100644
      MIDL_INTERFACE("e7d7ad42-bd3d-11d1-9a4d-00c04fc297eb")
      ICertManageModule : public IDispatch
      {
-@@ -329,14 +333,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -329,14 +331,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

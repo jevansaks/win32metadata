@@ -310,9 +310,7 @@ extern "C"{
 //
 //--------------------------------------------------------------------------
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 #if (NTDDI_VERSION >= NTDDI_WIN7)
 //+-------------------------------------------------------------------------
 //

@@ -637,9 +637,7 @@ extern "C"{
 //----------------------------------------------------------------------------
 
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #if defined(_WIN64) || defined(_ARM_)
 #include <pshpack8.h>	// 8-byte structure packing

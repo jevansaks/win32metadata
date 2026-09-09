@@ -14,9 +14,7 @@
  *
  */
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifndef _TEXTSERV_H
 #define _TEXTSERV_H

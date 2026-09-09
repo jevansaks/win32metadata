@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IdentityProvider.h b/generation/WinSDK/RecompiledIdlHeaders/um/IdentityProvider.h
-index a13fa24b..af7f1ea1 100644
+index a13fa24b..4877a62a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/IdentityProvider.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/IdentityProvider.h
-@@ -132,6 +132,9 @@ extern "C"{
+@@ -132,6 +132,7 @@ extern "C"{
  /* [local] */ 
  
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  #if 0
-@@ -169,6 +172,7 @@ EXTERN_C const IID IID_IIdentityAdvise;
+@@ -169,6 +170,7 @@ EXTERN_C const IID IID_IIdentityAdvise;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -20,7 +18,7 @@ index a13fa24b..af7f1ea1 100644
      MIDL_INTERFACE("4e982fed-d14b-440c-b8d6-bb386453d386")
      IIdentityAdvise : public IUnknown
      {
-@@ -350,6 +354,7 @@ EXTERN_C const IID IID_IIdentityProvider;
+@@ -350,6 +352,7 @@ EXTERN_C const IID IID_IIdentityProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -28,7 +26,7 @@ index a13fa24b..af7f1ea1 100644
      MIDL_INTERFACE("0d1b9e0c-e8ba-4f55-a81b-bce934b948f5")
      IIdentityProvider : public IUnknown
      {
-@@ -780,6 +785,7 @@ EXTERN_C const IID IID_IAssociatedIdentityProvider;
+@@ -780,6 +783,7 @@ EXTERN_C const IID IID_IAssociatedIdentityProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -36,7 +34,7 @@ index a13fa24b..af7f1ea1 100644
      MIDL_INTERFACE("2af066b3-4cbb-4cba-a798-204b6af68cc0")
      IAssociatedIdentityProvider : public IUnknown
      {
-@@ -1066,6 +1072,7 @@ EXTERN_C const IID IID_IConnectedIdentityProvider;
+@@ -1066,6 +1070,7 @@ EXTERN_C const IID IID_IConnectedIdentityProvider;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      
@@ -44,7 +42,7 @@ index a13fa24b..af7f1ea1 100644
      MIDL_INTERFACE("B7417B54-E08C-429b-96C8-678D1369ECB1")
      IConnectedIdentityProvider : public IUnknown
      {
-@@ -1622,9 +1629,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -1622,9 +1627,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  
@@ -58,7 +56,7 @@ index a13fa24b..af7f1ea1 100644
  void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
  
  unsigned long             __RPC_USER  HWND_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HWND * ); 
-@@ -1632,14 +1643,22 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+@@ -1632,14 +1641,22 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
  unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
  void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
  

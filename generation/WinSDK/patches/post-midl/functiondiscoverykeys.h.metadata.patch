@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys.h b/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys.h
-index a244c69f..a381fcd9 100644
+index a244c69f..0a08c9c8 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys.h
-@@ -4,6 +4,9 @@
+@@ -4,6 +4,7 @@
  
  #pragma once
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -16,6 +19,7 @@
+@@ -16,6 +17,7 @@
  #include <FunctionDiscoveryKeys_devpkey.h>
  
  /* 08c0c253-a154-4746-9005-82de5317148b */
@@ -20,7 +18,7 @@ index a244c69f..a381fcd9 100644
  DEFINE_PROPERTYKEY(PKEY_FunctionInstance, 0x08c0c253, 0xa154, 0x4746, 0x90, 0x05, 0x82, 0xde, 0x53, 0x17, 0x14, 0x8b, 0x00000001);  // VT_UNKNOWN
  
  // FMTID_FD = {904b03a2-471d-423c-a584-f3483238a146}
-@@ -38,61 +42,112 @@ DEFINE_GUID(FMTID_DeviceInterface, 0x53808008, 0x07BB, 0x4661, 0xBC, 0x3C, 0xB5,
+@@ -38,61 +40,112 @@ DEFINE_GUID(FMTID_DeviceInterface, 0x53808008, 0x07BB, 0x4661, 0xBC, 0x3C, 0xB5,
  
  DEFINE_API_PKEY(PKEY_DeviceInterface_DevicePath, DevicePath    , 0x53808008, 0x07BB, 0x4661, 0xBC, 0x3C, 0xB5, 0x95, 0x3E, 0x70, 0x85, 0x60, 0x00000001); //    VT_LPWSTR
  
@@ -133,7 +131,7 @@ index a244c69f..a381fcd9 100644
  DEFINE_PROPERTYKEY(PKEY_Pairing_IsWifiOnlyDevice, 0x8807cae6, 0x7db6, 0x4f10, 0x8e, 0xe4, 0x43, 0x5e, 0xaa, 0x13, 0x92, 0xbc, 0x0000010);    // VT_BOOL
  
  // DiscoveryMethod values
-@@ -111,6 +166,7 @@ DEFINE_PROPERTYKEY(PKEY_Pairing_IsWifiOnlyDevice, 0x8807cae6, 0x7db6, 0x4f10, 0x
+@@ -111,6 +164,7 @@ DEFINE_PROPERTYKEY(PKEY_Pairing_IsWifiOnlyDevice, 0x8807cae6, 0x7db6, 0x4f10, 0x
  //  Name:     System.Device.BIOSVersion -- PKEY_Device_BIOSVersion
  //  Type:     String -- VT_LPWSTR  (For variants: VT_BSTR)  Legacy code may treat this as VT_BSTR.
  //  FormatID: EAEE7F1D-6A33-44D1-9441-5F46DEF23198, 9
@@ -141,7 +139,7 @@ index a244c69f..a381fcd9 100644
  DEFINE_PROPERTYKEY(PKEY_Device_BIOSVersion, 0xEAEE7F1D, 0x6A33, 0x44D1, 0x94, 0x41, 0x5F, 0x46, 0xDE, 0xF2, 0x31, 0x98, 9);
  
  DEFINE_API_PKEY(PKEY_Write_Time,            WriteTime          , 0xf53b7e1c, 0x77e0, 0x4450, 0x8c, 0x5f, 0xa7, 0x6c, 0xc7, 0xfd, 0xe0, 0x58, 0x00000100); //    VT_FILETIME
-@@ -151,36 +207,54 @@ DEFINE_API_PKEY(PKEY_PUBSVCS_NETWORK_PROFILES_DEFAULT, PUBSVCS_NETWORK_PROFILES_
+@@ -151,36 +205,54 @@ DEFINE_API_PKEY(PKEY_PUBSVCS_NETWORK_PROFILES_DEFAULT, PUBSVCS_NETWORK_PROFILES_
  // FMTID_PNPX = {656A3BB3-ECC0-43FD-8477-4AE0404A96CD}
  DEFINE_GUID(FMTID_PNPX, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD);
          // from Discovery messages
@@ -196,7 +194,7 @@ index a244c69f..a381fcd9 100644
  DEFINE_PROPERTYKEY(PKEY_PNPX_DeviceCertHash, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00007003);   // VT_LPWSTR
  
  
-@@ -202,19 +276,31 @@ DEFINE_PROPERTYKEY(PKEY_PNPX_DeviceCertHash, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0
+@@ -202,19 +274,31 @@ DEFINE_PROPERTYKEY(PKEY_PNPX_DeviceCertHash, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0
  #define PNPX_DEVICECATEGORY_HOME_SECURITY_SYSTEM             L"HomeSecurity"
  #define PNPX_DEVICECATEGORY_OTHER                            L"Other"
  
@@ -228,7 +226,7 @@ index a244c69f..a381fcd9 100644
  DEFINE_PROPERTYKEY(PKEY_PNPX_ServiceEventSubUrl, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x4006);    // VT_LPWSTR 
  
          // Association DB PKEYs
-@@ -223,23 +309,32 @@ DEFINE_API_PKEY(PKEY_PNPX_AssociationState, AssociationState, 0x656A3BB3, 0xECC0
+@@ -223,23 +307,32 @@ DEFINE_API_PKEY(PKEY_PNPX_AssociationState, AssociationState, 0x656A3BB3, 0xECC0
  DEFINE_API_PKEY(PKEY_PNPX_AssociatedInstanceId, AssociatedInstanceId, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00000003); // VT_LPWSTR
  DEFINE_API_PKEY(PKEY_PNPX_LastNotificationTime, LastNotificationTime, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00000004); // VT_DATE
          // for Computer Discovery
@@ -261,7 +259,7 @@ index a244c69f..a381fcd9 100644
  DEFINE_PROPERTYKEY(PKEY_PNPX_InstallState, 0x4FC5077E, 0xB686, 0x44BE, 0x93, 0xE3, 0x86, 0xCA, 0xFE, 0x36, 0x8C, 0xCD, 0x00000004); // VT_UI4 | VT_VECTOR
  #define PNPX_INSTALLSTATE_NOTINSTALLED  0   // vector length = 1
  #define PNPX_INSTALLSTATE_INSTALLED     1   // vector length = 3, CM_Get_DevNode_Status in 2nd and 3rd elements
-@@ -247,37 +342,61 @@ DEFINE_PROPERTYKEY(PKEY_PNPX_InstallState, 0x4FC5077E, 0xB686, 0x44BE, 0x93, 0xE
+@@ -247,37 +340,61 @@ DEFINE_PROPERTYKEY(PKEY_PNPX_InstallState, 0x4FC5077E, 0xB686, 0x44BE, 0x93, 0xE
  #define PNPX_INSTALLSTATE_FAILED        3   // vector length = 3, CM_Get_DevNode_Status in 2nd and 3rd elements
  
  // Other
@@ -323,7 +321,7 @@ index a244c69f..a381fcd9 100644
  DEFINE_PROPERTYKEY(PKEY_WCN_RegistrarType, 0x88190b8b, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x0000000f); // VT_INT
  
  //-----------------------------------------------------------------------------
-@@ -293,71 +412,85 @@ DEFINE_PROPERTYKEY(PKEY_WCN_RegistrarType, 0x88190b8b, 0x4684, 0x11da, 0xa2, 0x6
+@@ -293,71 +410,85 @@ DEFINE_PROPERTYKEY(PKEY_WCN_RegistrarType, 0x88190b8b, 0x4684, 0x11da, 0xa2, 0x6
  //-----------------------------------------------------------------------------
  // Hardware properties
  

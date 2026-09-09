@@ -18,9 +18,7 @@
 
 #pragma once
 #include <winapifamily.h>
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -1080,7 +1078,6 @@ inline void __stdcall wiauDbgErrorHr(HRESULT hr, _In_ LPCSTR fname, _In_ LPCSTR 
         wiauDbgHelper("ERROR ", fname, fmt, marker);
         va_end(marker);
 
-_Win32_metadata_supported_os_(windows5.1.2600)
         CHAR szError[MAX_PATH]; \
         if(!FormatMessageA(WIAUDBG_MFMT_FLAGS, NULL, hr, 0, szError, MAX_PATH, NULL))
         {

@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ondemandconnroutehelper.h b/generation/WinSDK/RecompiledIdlHeaders/um/ondemandconnroutehelper.h
-index 0bc62537..db6eadd5 100644
+index 0bc62537..779988d7 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ondemandconnroutehelper.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ondemandconnroutehelper.h
-@@ -9,6 +9,9 @@
+@@ -9,6 +9,7 @@
  
  #include <winapifamily.h>
  #include <unknwn.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -19,12 +22,16 @@
+@@ -19,12 +20,16 @@
  #pragma once
  #endif
  
@@ -30,7 +28,7 @@ index 0bc62537..db6eadd5 100644
  STDAPI OnDemandUnRegisterNotification(_In_ HANDLE registrationHandle);
  
  #endif // NTDDI_VERSION >= NTDDI_WINBLUE
-@@ -86,6 +93,7 @@ typedef struct _NET_INTERFACE_CONTEXT_TABLE
+@@ -86,6 +91,7 @@ typedef struct _NET_INTERFACE_CONTEXT_TABLE
  //
  // FAILED(HRESULT)  - Returned in case of failures that are outside the control of the implementation.
  //
@@ -38,7 +36,7 @@ index 0bc62537..db6eadd5 100644
  STDAPI GetInterfaceContextTableForHostName(
      _In_opt_ PCWSTR HostName,
      _In_opt_ PCWSTR ProxyName,
-@@ -102,6 +110,7 @@ STDAPI GetInterfaceContextTableForHostName(
+@@ -102,6 +108,7 @@ STDAPI GetInterfaceContextTableForHostName(
  //
  // InterfaceContextTable                - Interface context table retrieved using GetInterfaceContextTableForHostName.
  //

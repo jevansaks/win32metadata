@@ -25,9 +25,7 @@
 
 #include <mmsyscom.h> // mm common definitions
 
-#if defined(WIN32METADATA)
 #include <win32metadata_annotations.h>
-#endif
 
 #ifdef __cplusplus
 extern "C" {

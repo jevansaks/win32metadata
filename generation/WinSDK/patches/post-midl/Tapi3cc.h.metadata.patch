@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Tapi3cc.h b/generation/WinSDK/RecompiledIdlHeaders/um/Tapi3cc.h
-index 44815654..b689b8f0 100644
+index 44815654..2693d757 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Tapi3cc.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Tapi3cc.h
-@@ -173,6 +173,9 @@ extern "C"{
+@@ -173,6 +173,7 @@ extern "C"{
  
  /* Copyright (c) Microsoft Corporation. All rights reserved. */
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  typedef 
-@@ -3339,14 +3342,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+@@ -3339,14 +3340,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
  unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
  void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
  

@@ -1,19 +1,17 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1helper.h b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1helper.h
-index cafbfc02..632180d5 100644
+index cafbfc02..a94ad6ab 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1helper.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1helper.h
-@@ -10,6 +10,10 @@
+@@ -10,6 +10,8 @@
      Description: Helper files over the D2D interfaces and APIs.
  
  \*=========================================================================*/
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
 +
  #pragma once
  
  #ifndef _D2D1_HELPER_H_
-@@ -30,6 +34,7 @@ namespace D2D1
+@@ -30,6 +32,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_MATRIX_3X2_F
@@ -21,7 +19,7 @@ index cafbfc02..632180d5 100644
      IdentityMatrix();
  
      //
-@@ -54,6 +59,7 @@ namespace D2D1
+@@ -54,6 +57,7 @@ namespace D2D1
      static
      COM_DECLSPEC_NOTHROW
      inline
@@ -29,7 +27,7 @@ index cafbfc02..632180d5 100644
      FLOAT FloatMax()
      {
          #ifdef FLT_MAX
-@@ -83,6 +89,7 @@ namespace D2D1
+@@ -83,6 +87,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_POINT_2F
@@ -37,7 +35,7 @@ index cafbfc02..632180d5 100644
      Point2F(
          FLOAT x = 0.f,
          FLOAT y = 0.f
-@@ -94,6 +101,7 @@ namespace D2D1
+@@ -94,6 +99,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_POINT_2U
@@ -45,7 +43,7 @@ index cafbfc02..632180d5 100644
      Point2U(
          UINT32 x = 0,
          UINT32 y = 0
-@@ -119,6 +127,7 @@ namespace D2D1
+@@ -119,6 +125,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_SIZE_F
@@ -53,7 +51,7 @@ index cafbfc02..632180d5 100644
      SizeF(
          FLOAT width = 0.f,
          FLOAT height = 0.f
-@@ -130,6 +139,7 @@ namespace D2D1
+@@ -130,6 +137,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_SIZE_U
@@ -61,7 +59,7 @@ index cafbfc02..632180d5 100644
      SizeU(
          UINT32 width = 0,
          UINT32 height = 0
-@@ -157,6 +167,7 @@ namespace D2D1
+@@ -157,6 +165,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_RECT_F
@@ -69,7 +67,7 @@ index cafbfc02..632180d5 100644
      RectF(
          FLOAT left = 0.f,
          FLOAT top = 0.f,
-@@ -170,6 +181,7 @@ namespace D2D1
+@@ -170,6 +179,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_RECT_U
@@ -77,7 +75,7 @@ index cafbfc02..632180d5 100644
      RectU(
          UINT32 left = 0,
          UINT32 top = 0,
-@@ -183,6 +195,7 @@ namespace D2D1
+@@ -183,6 +193,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_RECT_F
@@ -85,7 +83,7 @@ index cafbfc02..632180d5 100644
      InfiniteRect()
      {
          D2D1_RECT_F rect = { -FloatMax(), -FloatMax(), FloatMax(),  FloatMax() };
-@@ -193,6 +206,7 @@ namespace D2D1
+@@ -193,6 +204,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_ARC_SEGMENT
@@ -93,7 +91,7 @@ index cafbfc02..632180d5 100644
      ArcSegment(
          _In_ CONST D2D1_POINT_2F &point,
          _In_ CONST D2D1_SIZE_F &size,
-@@ -209,6 +223,7 @@ namespace D2D1
+@@ -209,6 +221,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_BEZIER_SEGMENT
@@ -101,7 +99,7 @@ index cafbfc02..632180d5 100644
      BezierSegment(
          _In_ CONST D2D1_POINT_2F &point1,
          _In_ CONST D2D1_POINT_2F &point2,
-@@ -223,6 +238,7 @@ namespace D2D1
+@@ -223,6 +236,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_ELLIPSE
@@ -109,7 +107,7 @@ index cafbfc02..632180d5 100644
      Ellipse(
          _In_ CONST D2D1_POINT_2F &center,
          FLOAT radiusX,
-@@ -241,6 +257,7 @@ namespace D2D1
+@@ -241,6 +255,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_ROUNDED_RECT
@@ -117,7 +115,7 @@ index cafbfc02..632180d5 100644
      RoundedRect(
          _In_ CONST D2D1_RECT_F &rect,
          FLOAT radiusX,
-@@ -259,6 +276,7 @@ namespace D2D1
+@@ -259,6 +274,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_BRUSH_PROPERTIES
@@ -125,7 +123,7 @@ index cafbfc02..632180d5 100644
      BrushProperties(
          _In_ FLOAT opacity = 1.0,
          _In_ CONST D2D1_MATRIX_3X2_F &transform = D2D1::IdentityMatrix()
-@@ -275,6 +293,7 @@ namespace D2D1
+@@ -275,6 +291,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_GRADIENT_STOP
@@ -133,7 +131,7 @@ index cafbfc02..632180d5 100644
      GradientStop(
          FLOAT position,
          _In_ CONST D2D1_COLOR_F &color
-@@ -288,6 +307,7 @@ namespace D2D1
+@@ -288,6 +305,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_QUADRATIC_BEZIER_SEGMENT
@@ -141,7 +139,7 @@ index cafbfc02..632180d5 100644
      QuadraticBezierSegment(
          _In_ CONST D2D1_POINT_2F &point1,
          _In_ CONST D2D1_POINT_2F &point2
-@@ -301,6 +321,7 @@ namespace D2D1
+@@ -301,6 +319,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_STROKE_STYLE_PROPERTIES
@@ -149,7 +147,7 @@ index cafbfc02..632180d5 100644
      StrokeStyleProperties(
          D2D1_CAP_STYLE startCap = D2D1_CAP_STYLE_FLAT,
          D2D1_CAP_STYLE endCap = D2D1_CAP_STYLE_FLAT,
-@@ -327,6 +348,7 @@ namespace D2D1
+@@ -327,6 +346,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_BITMAP_BRUSH_PROPERTIES
@@ -157,7 +155,7 @@ index cafbfc02..632180d5 100644
      BitmapBrushProperties(
          D2D1_EXTEND_MODE extendModeX = D2D1_EXTEND_MODE_CLAMP,
          D2D1_EXTEND_MODE extendModeY = D2D1_EXTEND_MODE_CLAMP,
-@@ -345,6 +367,7 @@ namespace D2D1
+@@ -345,6 +365,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES
@@ -165,7 +163,7 @@ index cafbfc02..632180d5 100644
      LinearGradientBrushProperties(
          _In_ CONST D2D1_POINT_2F &startPoint,
          _In_ CONST D2D1_POINT_2F &endPoint
-@@ -361,6 +384,7 @@ namespace D2D1
+@@ -361,6 +382,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES
@@ -173,7 +171,7 @@ index cafbfc02..632180d5 100644
      RadialGradientBrushProperties(
          _In_ CONST D2D1_POINT_2F &center,
          _In_ CONST D2D1_POINT_2F &gradientOriginOffset,
-@@ -384,6 +408,7 @@ namespace D2D1
+@@ -384,6 +406,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_PIXEL_FORMAT
@@ -181,7 +179,7 @@ index cafbfc02..632180d5 100644
      PixelFormat(
          _In_ DXGI_FORMAT dxgiFormat = DXGI_FORMAT_UNKNOWN,
          _In_ D2D1_ALPHA_MODE alphaMode = D2D1_ALPHA_MODE_UNKNOWN
-@@ -403,6 +428,7 @@ namespace D2D1
+@@ -403,6 +426,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_BITMAP_PROPERTIES
@@ -189,7 +187,7 @@ index cafbfc02..632180d5 100644
      BitmapProperties(
          CONST D2D1_PIXEL_FORMAT &pixelFormat = D2D1::PixelFormat(),
          FLOAT dpiX = 96.0f,
-@@ -424,6 +450,7 @@ namespace D2D1
+@@ -424,6 +448,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_RENDER_TARGET_PROPERTIES
@@ -197,7 +195,7 @@ index cafbfc02..632180d5 100644
      RenderTargetProperties(
          D2D1_RENDER_TARGET_TYPE type =  D2D1_RENDER_TARGET_TYPE_DEFAULT,
          _In_ CONST D2D1_PIXEL_FORMAT &pixelFormat = D2D1::PixelFormat(),
-@@ -448,6 +475,7 @@ namespace D2D1
+@@ -448,6 +473,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_HWND_RENDER_TARGET_PROPERTIES
@@ -205,7 +203,7 @@ index cafbfc02..632180d5 100644
      HwndRenderTargetProperties(
          _In_ HWND hwnd,
          _In_ D2D1_SIZE_U pixelSize = D2D1::Size(static_cast<UINT32>(0), static_cast<UINT32>(0)),
-@@ -466,6 +494,7 @@ namespace D2D1
+@@ -466,6 +492,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_LAYER_PARAMETERS
@@ -213,7 +211,7 @@ index cafbfc02..632180d5 100644
      LayerParameters(
          _In_ CONST D2D1_RECT_F &contentBounds = D2D1::InfiniteRect(),
          _In_opt_ ID2D1Geometry *geometricMask = NULL,
-@@ -492,6 +521,7 @@ namespace D2D1
+@@ -492,6 +519,7 @@ namespace D2D1
      COM_DECLSPEC_NOTHROW
      D2D1FORCEINLINE
      D2D1_DRAWING_STATE_DESCRIPTION
@@ -221,7 +219,7 @@ index cafbfc02..632180d5 100644
      DrawingStateDescription(
          D2D1_ANTIALIAS_MODE antialiasMode = D2D1_ANTIALIAS_MODE_PER_PRIMITIVE,
          D2D1_TEXT_ANTIALIAS_MODE textAntialiasMode = D2D1_TEXT_ANTIALIAS_MODE_DEFAULT,
-@@ -988,6 +1018,7 @@ namespace D2D1
+@@ -988,6 +1016,7 @@ namespace D2D1
          return Matrix3x2F::ReinterpretBaseType(&matrix)->TransformPoint(point);
      }
  

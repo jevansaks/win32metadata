@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fxsutility.h b/generation/WinSDK/RecompiledIdlHeaders/um/fxsutility.h
-index 41bb83ad..6ff0dc7c 100644
+index 41bb83ad..b43a8a88 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fxsutility.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fxsutility.h
-@@ -23,6 +23,9 @@ Abstract:
+@@ -23,6 +23,7 @@ Abstract:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -36,7 +39,9 @@ typedef enum {
+@@ -36,7 +37,9 @@ typedef enum {
  	  SEND_TO_FAX_RECIPIENT_ATTACHMENT
  } SendToMode;
  

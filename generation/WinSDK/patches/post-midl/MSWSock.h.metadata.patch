@@ -1,18 +1,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MSWSock.h b/generation/WinSDK/RecompiledIdlHeaders/um/MSWSock.h
-index 848fdbd9..9c191b86 100644
+index 848fdbd9..22ee0ac3 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/MSWSock.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/MSWSock.h
-@@ -22,6 +22,9 @@ Revision History:
+@@ -22,6 +22,7 @@ Revision History:
  #pragma once
  #endif
  #include <winapifamily.h>
-+#if defined(WIN32METADATA)
 +#include <win32metadata_annotations.h>
-+#endif
  
  #if !defined(_WINSOCK_DEPRECATED_BY)
  #if ((defined(_WINSOCK_DEPRECATED_NO_WARNINGS) || defined(BUILD_WINDOWS)) && !defined(_WINSOCK_DEPRECATE_WARNINGS)) || defined(MIDL_PASS)
-@@ -125,6 +128,8 @@ extern "C" {
+@@ -125,6 +126,8 @@ extern "C" {
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -21,7 +19,7 @@ index 848fdbd9..9c191b86 100644
  _WINSOCK_DEPRECATED_BY("WSARecv()")
  #if(_WIN32_WINNT < 0x0600)
  int
-@@ -136,6 +141,7 @@ WSARecvEx(
+@@ -136,6 +139,7 @@ WSARecvEx(
      _Inout_ int FAR *flags
      );
  #else //(_WIN32_WINNT < 0x0600)
@@ -29,7 +27,7 @@ index 848fdbd9..9c191b86 100644
  INT
  PASCAL FAR
  WSARecvEx(
-@@ -162,6 +168,7 @@ typedef struct _TRANSMIT_FILE_BUFFERS {
+@@ -162,6 +166,7 @@ typedef struct _TRANSMIT_FILE_BUFFERS {
  #define TF_USE_SYSTEM_THREAD  0x10
  #define TF_USE_KERNEL_APC     0x20
  
@@ -37,7 +35,7 @@ index 848fdbd9..9c191b86 100644
  BOOL
  PASCAL FAR
  TransmitFile (
-@@ -174,6 +181,7 @@ TransmitFile (
+@@ -174,6 +179,7 @@ TransmitFile (
      _In_  DWORD dwReserved
      );
  
@@ -45,7 +43,7 @@ index 848fdbd9..9c191b86 100644
  BOOL
  PASCAL FAR
  AcceptEx (
-@@ -187,6 +195,7 @@ AcceptEx (
+@@ -187,6 +193,7 @@ AcceptEx (
      _Inout_ LPOVERLAPPED lpOverlapped
      );
  

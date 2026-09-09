@@ -1,0 +1,162 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/winstring.h b/generation/WinSDK/RecompiledIdlHeaders/winrt/winstring.h
+index 8a01ea07..2f9fd540 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/winstring.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/winstring.h
+@@ -2,6 +2,7 @@
+ 
+ #ifndef __WINSTRING_H_
+ #define __WINSTRING_H_
++#include <win32metadata_annotations.h>
+ 
+ #ifdef _MSC_VER
+ #pragma once
+@@ -21,6 +22,7 @@
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsCreateString(
+     _In_reads_opt_(length) PCNZWCH sourceString,
+@@ -28,6 +30,7 @@ WindowsCreateString(
+     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* string
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsCreateStringReference(
+     _In_reads_opt_(length+1) PCWSTR sourceString,
+@@ -36,39 +39,46 @@ WindowsCreateStringReference(
+     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* string
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsDeleteString(
+     _In_opt_ HSTRING string
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsDuplicateString(
+     _In_opt_ HSTRING string,
+     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI_(UINT32)
+ WindowsGetStringLen(
+     _In_opt_ HSTRING string
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI_(PCWSTR)
+ WindowsGetStringRawBuffer(
+     _In_opt_ HSTRING string,
+     _Out_opt_ UINT32* length
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI_(BOOL)
+ WindowsIsStringEmpty(
+     _In_opt_ HSTRING string
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsStringHasEmbeddedNull(
+     _In_opt_ HSTRING string,
+     _Out_ BOOL* hasEmbedNull
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsCompareStringOrdinal(
+     _In_opt_ HSTRING string1,
+@@ -76,6 +86,7 @@ WindowsCompareStringOrdinal(
+     _Out_ INT32* result
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsSubstring(
+     _In_opt_ HSTRING string,
+@@ -83,6 +94,7 @@ WindowsSubstring(
+     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsSubstringWithSpecifiedLength(
+     _In_opt_ HSTRING string,
+@@ -91,6 +103,7 @@ WindowsSubstringWithSpecifiedLength(
+     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsConcatString(
+     _In_opt_ HSTRING string1,
+@@ -98,6 +111,7 @@ WindowsConcatString(
+     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsReplaceString(
+     _In_opt_ HSTRING string,
+@@ -106,6 +120,7 @@ WindowsReplaceString(
+     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsTrimStringStart(
+     _In_opt_ HSTRING string,
+@@ -113,6 +128,7 @@ WindowsTrimStringStart(
+     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsTrimStringEnd(
+     _In_opt_ HSTRING string,
+@@ -121,6 +137,7 @@ WindowsTrimStringEnd(
+     );
+ 
+ // Two-phase construction
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsPreallocateStringBuffer(
+     UINT32 length,
+@@ -128,12 +145,14 @@ WindowsPreallocateStringBuffer(
+     _Outptr_ _Result_nullonfailure_ HSTRING_BUFFER* bufferHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsPromoteStringBuffer(
+     _In_ HSTRING_BUFFER bufferHandle,
+     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* string
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsDeleteStringBuffer(
+     _In_opt_ HSTRING_BUFFER bufferHandle
+@@ -198,6 +217,7 @@ HSTRING_UserFree(
+ 
+ // HSTRING Inspection
+ typedef HRESULT (WINAPI *PINSPECT_HSTRING_CALLBACK)(_In_ void* context, UINT_PTR readAddress, UINT32 length, _Out_writes_(length) BYTE* buffer);
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsInspectString(
+     _In_ UINT_PTR targetHString,
+@@ -210,6 +230,7 @@ WindowsInspectString(
+ 
+ // HSTRING Inspection 2
+ typedef HRESULT (WINAPI *PINSPECT_HSTRING_CALLBACK2)(_In_ void* context, UINT64 readAddress, UINT32 length, _Out_writes_(length) BYTE* buffer);
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI
+ WindowsInspectString2(
+     _In_ UINT64 targetHString,
