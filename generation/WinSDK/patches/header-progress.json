@@ -9591,8 +9591,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/DsGetDC.h.md",
+      "last_updated": "09/09/2026 02:00:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(DsGetDcCloseW) annotations on DsGetDcOpenA/DsGetDcOpenW's RetGetDcContext out-param in RecompiledIdlHeaders/um/DsGetDC.h. Consolidated into DsGetDC.h.metadata.patch against the d154186c baseline (no prior patch existed). DsGetDcNameA's Net API buffer output remains clean. See docs/copilot/header-reports/DsGetDC.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/ActiveDirectory/main.cpp",
@@ -12834,8 +12834,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fltuser.h.md",
+      "last_updated": "09/09/2026 02:00:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on FilterFindFirst/FilterVolumeFindFirst/FilterInstanceFindFirst/FilterVolumeInstanceFindFirst's out-params in RecompiledIdlHeaders/um/fltUser.h. Corrected prior 'generic HANDLE, not fixable' conclusion - the Function::Parameter mechanism is scoped to the named function+param, not to HANDLE globally. Consolidated into fltUser.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/fltuser.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Ifsk/main.cpp",
@@ -14778,8 +14778,8 @@
       "evidence": [
         "docs/copilot/header-reports/IcmpAPI.h.md generation/WinSDK/patches/post-midl/IcmpAPI.h.set-last-error.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
       ],
-      "last_updated": "2026-09-03T02:30:00Z",
-      "notes": "Classified retained artifact in existing-patches-14.",
+      "last_updated": "09/09/2026 02:00:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(IcmpCloseHandle) annotations on IcmpCreateFile/Icmp6CreateFile's return declarations in RecompiledIdlHeaders/um/IcmpAPI.h. Consolidated the pre-existing set-last-error patch and this new annotation into one IcmpAPI.h.metadata.patch against the d154186c baseline; removed the old IcmpAPI.h.set-last-error.patch. See docs/copilot/header-reports/icmpapi.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/IpHlp/main.cpp",
@@ -27981,8 +27981,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/perflib.h.md",
+      "last_updated": "09/09/2026 02:00:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on PerfOpenQueryHandle/PerfStartProvider/PerfStartProviderEx's out-params (both PerfStartProvider redeclarations annotated) in RecompiledIdlHeaders/um/perflib.h. Consolidated into perflib.h.metadata.patch against the d154186c baseline (no prior patch existed). PerfCreateInstance/PerfDeleteInstance remain genuinely unrepresentable (multi-arg close). See docs/copilot/header-reports/perflib.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Perf/main.cpp",

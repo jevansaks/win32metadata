@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T08:16:12Z
+- Generated: 2026-09-09T08:25:44Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -329,7 +329,7 @@
 | `dsattrib.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsattrib.h.md |
 | `dsclient.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dsclient.h.md |
 | `dsconf.h` | Audio.DirectMusic | matched |  | 09/02/2026 22:06:03 | Constants/enum only, no functions. |
-| `DsGetDC.h` | ActiveDirectory | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/DsGetDC.h.md |
+| `DsGetDC.h` | ActiveDirectory | matched |  | 09/09/2026 02:00:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(DsGetDcCloseW) annotations on DsGetDcOpenA/DsGetDcOpenW's RetGetDcContext out-param in RecompiledIdlHeaders/um/DsGetDC.h. Consolidated into DsGetDC.h.metadata.patch against the d154186c baseline (no prior patch existed). DsGetDcNameA's Net API buffer output remains clean. See docs/copilot/header-reports/DsGetDC.h.md |
 | `dshow.h` | Media.DShow | matched |  | 09/02/2026 19:28:18 | Pure umbrella redirect; all sub-headers already individually tracked. |
 | `dshowasf.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dshowasf.h.md |
 | `dskquota.h` | Fs, Shell | matched | copilot | 09/03/2026 01:10:00 | Classified retained artifact in existing-patches-09. |
@@ -434,7 +434,7 @@
 | `filterpipeline.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/filterpipeline.h.md |
 | `filterr.h` | IndexSrv | matched |  | 09/02/2026 19:14:35 | HRESULT error-code constants only, no functions. |
 | `fltdefs.h` | FileHistory, IpHlp | matched |  |  | Genuine producer-site fix: added INTERFACE_HANDLE autoTypes.json entry (CloseApi=PfDeleteInterface). FILTER_HANDLE left unannotated (bulk-array removal, no single-handle CloseApi). See docs/copilot/header-reports/fltdefs.h.md |
-| `fltuser.h` | Ifsk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fltuser.h.md |
+| `fltuser.h` | Ifsk | matched |  | 09/09/2026 02:00:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on FilterFindFirst/FilterVolumeFindFirst/FilterInstanceFindFirst/FilterVolumeInstanceFindFirst's out-params in RecompiledIdlHeaders/um/fltUser.h. Corrected prior 'generic HANDLE, not fixable' conclusion - the Function::Parameter mechanism is scoped to the named function+param, not to HANDLE globally. Consolidated into fltUser.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/fltuser.h.md |
 | `fontsub.h` | Gdi | matched |  | 09/02/2026 21:52:12 | Buffer allocation delegated entirely to caller-supplied callbacks, no opaque handle. |
 | `fsrm.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrm.h.md |
 | `fsrmenums.h` | Fsrm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/fsrmenums.h.md |
@@ -505,7 +505,7 @@
 | `icftypes.h` | WindowsFirewall | matched |  | 09/02/2026 20:22:05 | Enums + MIDL boilerplate only, no functions. |
 | `ichannelcredentials.h` | Com.ChannelCreds, ComOle | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/ichannelcredentials.h.md |
 | `Icm.h` | Wcs | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
-| `icmpapi.h` | IpHlp | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-14. |
+| `icmpapi.h` | IpHlp | matched | copilot | 09/09/2026 02:00:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(IcmpCloseHandle) annotations on IcmpCreateFile/Icmp6CreateFile's return declarations in RecompiledIdlHeaders/um/IcmpAPI.h. Consolidated the pre-existing set-last-error patch and this new annotation into one IcmpAPI.h.metadata.patch against the d154186c baseline; removed the old IcmpAPI.h.set-last-error.patch. See docs/copilot/header-reports/icmpapi.h.md |
 | `icontact.h` | WinContacts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontact.h.md |
 | `icontactproperties.h` | WinContacts | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/icontactproperties.h.md |
 | `icontentprefetchertasktrigger.h` | Wsw | matched |  | 09/02/2026 21:01:40 | COM/WinRT interface method only, out of scope. |
@@ -858,7 +858,7 @@
 | `peerdist.h` | P2p | matched |  |  | Genuine producer-site fix: added 4 autoTypes.json entries (PEERDIST_INSTANCE_HANDLE/STREAM/CONTENTINFO/CONTENT_HANDLE). See docs/copilot/header-reports/peerdist.h.md |
 | `peninputpanel.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/peninputpanel.h.md |
 | `perceptiondevicecore.h` | MixedReality | matched |  | 09/02/2026 18:23:41 | Data structs + GUID constant only, no functions. |
-| `perflib.h` | Perf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/perflib.h.md |
+| `perflib.h` | Perf | matched |  | 09/09/2026 02:00:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on PerfOpenQueryHandle/PerfStartProvider/PerfStartProviderEx's out-params (both PerfStartProvider redeclarations annotated) in RecompiledIdlHeaders/um/perflib.h. Consolidated into perflib.h.metadata.patch against the d154186c baseline (no prior patch existed). PerfCreateInstance/PerfDeleteInstance remain genuinely unrepresentable (multi-arg close). See docs/copilot/header-reports/perflib.h.md |
 | `perhist.h` | InternetExplorer | matched |  | 09/02/2026 21:04:56 | COM interface method only, out of scope. |
 | `persist.h` | Search | matched |  | 09/02/2026 18:06:26 | Constants only, no functions. |
 | `photoacquire.h` | PicAcq, Setup | matched |  | 09/02/2026 16:34:06 | All functions are MIDL RPC marshalling stubs (BSTR/HBITMAP/HICON/HWND/LPSAFEARRAY_User*); pass-through of externally-owned handles only. |

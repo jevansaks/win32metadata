@@ -15,6 +15,9 @@ Abstract:
 
 #pragma once
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -207,6 +210,7 @@ PerfStartProvider(
     _In_     LPGUID          ProviderGuid,
     _In_opt_ PERFLIBREQUEST  ControlCallback,
     _Out_    HANDLE        * phProvider
+        _Win32_metadata_raii_free_(PerfStopProvider)
 );
 
 // Start PERFLIB V2 provider with customized memory allocation/free routines.
@@ -228,6 +232,7 @@ PerfStartProviderEx(
     _In_ LPGUID ProviderGuid,
     _In_opt_ PPERF_PROVIDER_CONTEXT ProviderContext,
     _Out_ PHANDLE Provider
+        _Win32_metadata_raii_free_(PerfStopProvider)
     );
 
 ULONG WINAPI
@@ -235,6 +240,7 @@ PerfStartProvider(
     _In_ LPGUID ProviderGuid,
     _In_opt_ PERFLIBREQUEST ControlCallback,
     _Out_ PHANDLE Provider
+        _Win32_metadata_raii_free_(PerfStopProvider)
     );
 
 ULONG WINAPI
@@ -812,6 +818,7 @@ WINAPI
 PerfOpenQueryHandle(
     _In_opt_z_ LPCWSTR szMachine,
     _Out_ HANDLE * phQuery
+        _Win32_metadata_raii_free_(PerfCloseQueryHandle)
     );
 
 /*

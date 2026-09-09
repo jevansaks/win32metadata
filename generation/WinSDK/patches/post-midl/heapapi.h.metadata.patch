@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/heapapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/heapapi.h
-index 54c1445d..b104d858 100644
+index 54c1445d..661086bb 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/heapapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/heapapi.h
 @@ -15,6 +15,9 @@
@@ -20,15 +20,19 @@ index 54c1445d..b104d858 100644
  WINBASEAPI
  _Ret_maybenull_
  HANDLE
-@@ -63,6 +67,7 @@ HeapCreate(
+@@ -61,8 +65,10 @@ HeapCreate(
+     _In_ DWORD flOptions,
+     _In_ SIZE_T dwInitialSize,
      _In_ SIZE_T dwMaximumSize
-     );
+-    );
++    )
++    _Win32_metadata_raii_free_(HeapDestroy);
  
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  WINAPI
-@@ -96,6 +101,7 @@ HeapReAlloc(
+@@ -96,6 +102,7 @@ HeapReAlloc(
      _In_ SIZE_T dwBytes
      );
  
@@ -36,7 +40,7 @@ index 54c1445d..b104d858 100644
  WINBASEAPI
  _Success_(return != FALSE)
  BOOL
-@@ -115,6 +121,7 @@ HeapSize(
+@@ -115,6 +122,7 @@ HeapSize(
      _In_ LPCVOID lpMem
      );
  
@@ -44,7 +48,7 @@ index 54c1445d..b104d858 100644
  WINBASEAPI
  HANDLE
  WINAPI
-@@ -122,6 +129,7 @@ GetProcessHeap(
+@@ -122,6 +130,7 @@ GetProcessHeap(
      VOID
      );
  
@@ -52,7 +56,7 @@ index 54c1445d..b104d858 100644
  WINBASEAPI
  SIZE_T
  WINAPI
-@@ -130,6 +138,7 @@ HeapCompact(
+@@ -130,6 +139,7 @@ HeapCompact(
      _In_ DWORD dwFlags
      );
  
@@ -60,7 +64,7 @@ index 54c1445d..b104d858 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -175,6 +184,7 @@ HeapSummary(
+@@ -175,6 +185,7 @@ HeapSummary(
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -68,7 +72,7 @@ index 54c1445d..b104d858 100644
  WINBASEAPI
  DWORD
  WINAPI
-@@ -183,6 +193,7 @@ GetProcessHeaps(
+@@ -183,6 +194,7 @@ GetProcessHeaps(
      _Out_writes_to_(NumberOfHeaps,return) PHANDLE ProcessHeaps
      );
  
@@ -76,7 +80,7 @@ index 54c1445d..b104d858 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -190,6 +201,7 @@ HeapLock(
+@@ -190,6 +202,7 @@ HeapLock(
      _In_ HANDLE hHeap
      );
  
@@ -84,7 +88,7 @@ index 54c1445d..b104d858 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -203,6 +215,7 @@ HeapUnlock(
+@@ -203,6 +216,7 @@ HeapUnlock(
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -92,7 +96,7 @@ index 54c1445d..b104d858 100644
  WINBASEAPI
  BOOL
  WINAPI
-@@ -211,6 +224,7 @@ HeapWalk(
+@@ -211,6 +225,7 @@ HeapWalk(
      _Inout_ LPPROCESS_HEAP_ENTRY lpEntry
      );
  

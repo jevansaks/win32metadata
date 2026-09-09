@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h
-index d864f1eb..2774490c 100644
+index d864f1eb..bacb1a2e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h
 @@ -28,6 +28,9 @@ Notes:
@@ -12,7 +12,7 @@ index d864f1eb..2774490c 100644
  
  //
  // Establish DLL function linkage if supported by the current build
-@@ -75,6 +78,7 @@ extern "C" {
+@@ -75,12 +78,14 @@ extern "C" {
  //
  //--
  
@@ -20,7 +20,15 @@ index d864f1eb..2774490c 100644
  IPHLPAPI_DLL_LINKAGE
  HANDLE
  WINAPI
-@@ -104,6 +108,7 @@ IcmpCreateFile(
+ IcmpCreateFile(
+     VOID
+-    );
++    )
++    _Win32_metadata_raii_free_(IcmpCloseHandle);
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINXP)
+ //++
+@@ -104,12 +109,14 @@ IcmpCreateFile(
  //
  //--
  
@@ -28,7 +36,15 @@ index d864f1eb..2774490c 100644
  IPHLPAPI_DLL_LINKAGE
  HANDLE
  WINAPI
-@@ -133,6 +138,7 @@ Icmp6CreateFile(
+ Icmp6CreateFile(
+     VOID
+-    );
++    )
++    _Win32_metadata_raii_free_(IcmpCloseHandle);
+ #endif
+ 
+ //++
+@@ -133,6 +140,7 @@ Icmp6CreateFile(
  //
  //--
  
@@ -36,7 +52,7 @@ index d864f1eb..2774490c 100644
  IPHLPAPI_DLL_LINKAGE
  BOOL
  WINAPI
-@@ -194,6 +200,7 @@ IcmpCloseHandle(
+@@ -194,6 +202,7 @@ IcmpCloseHandle(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -44,7 +60,7 @@ index d864f1eb..2774490c 100644
  IPHLPAPI_DLL_LINKAGE
  DWORD
  WINAPI
-@@ -283,6 +290,7 @@ IcmpSendEcho(
+@@ -283,6 +292,7 @@ IcmpSendEcho(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -52,7 +68,7 @@ index d864f1eb..2774490c 100644
  IPHLPAPI_DLL_LINKAGE
  DWORD
  WINAPI
-@@ -312,6 +320,7 @@ IcmpSendEcho2(
+@@ -312,6 +322,7 @@ IcmpSendEcho2(
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
  #if (NTDDI_VERSION >= NTDDI_VISTASP1)
@@ -60,7 +76,7 @@ index d864f1eb..2774490c 100644
  IPHLPAPI_DLL_LINKAGE
  DWORD
  WINAPI
-@@ -343,6 +352,7 @@ IcmpSendEcho2Ex(
+@@ -343,6 +354,7 @@ IcmpSendEcho2Ex(
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
  #if (NTDDI_VERSION >= NTDDI_WINXP)
@@ -68,7 +84,7 @@ index d864f1eb..2774490c 100644
  IPHLPAPI_DLL_LINKAGE
  DWORD
  WINAPI
-@@ -397,6 +407,7 @@ Icmp6SendEcho2(
+@@ -397,6 +409,7 @@ Icmp6SendEcho2(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -76,7 +92,7 @@ index d864f1eb..2774490c 100644
  IPHLPAPI_DLL_LINKAGE
  DWORD
  WINAPI
-@@ -407,6 +418,7 @@ IcmpParseReplies(
+@@ -407,6 +420,7 @@ IcmpParseReplies(
      );
  
  #if (NTDDI_VERSION >= NTDDI_WINXP)

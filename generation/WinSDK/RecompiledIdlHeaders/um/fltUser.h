@@ -19,6 +19,9 @@ Environment:
 #ifndef __FLTUSER_H__
 #define __FLTUSER_H__
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -234,6 +237,7 @@ FilterFindFirst (
     _In_ DWORD dwBufferSize,
     _Out_ LPDWORD lpBytesReturned,
     _Out_ LPHANDLE lpFilterFind
+        _Win32_metadata_raii_free_(FilterFindClose)
     );
 
 _Must_inspect_result_
@@ -264,6 +268,7 @@ FilterVolumeFindFirst (
     _In_ DWORD dwBufferSize,
     _Out_ LPDWORD lpBytesReturned,
     _Out_ PHANDLE lpVolumeFind
+        _Win32_metadata_raii_free_(FilterVolumeFindClose)
     );
 
 _Must_inspect_result_
@@ -297,6 +302,7 @@ FilterInstanceFindFirst (
     _In_ DWORD dwBufferSize,
     _Out_ LPDWORD lpBytesReturned,
     _Out_ LPHANDLE lpFilterInstanceFind
+        _Win32_metadata_raii_free_(FilterInstanceFindClose)
     );
 
 _Must_inspect_result_
@@ -332,6 +338,7 @@ FilterVolumeInstanceFindFirst (
     _In_ DWORD dwBufferSize,
     _Out_ LPDWORD lpBytesReturned,
     _Out_ LPHANDLE lpVolumeInstanceFind
+        _Win32_metadata_raii_free_(FilterVolumeInstanceFindClose)
     );
 
 _Must_inspect_result_

@@ -84,7 +84,8 @@ HANDLE
 WINAPI
 IcmpCreateFile(
     VOID
-    );
+    )
+    _Win32_metadata_raii_free_(IcmpCloseHandle);
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
 //++
@@ -114,7 +115,8 @@ HANDLE
 WINAPI
 Icmp6CreateFile(
     VOID
-    );
+    )
+    _Win32_metadata_raii_free_(IcmpCloseHandle);
 #endif
 
 //++

@@ -3887,3 +3887,44 @@ Batch 6 (5 headers, 5 entries): `consoleapi2.h`, `winsplp.h`,
   only), so only its per-header report was created.
 - Running total: 41 of 106 RAIIFree sidecar entries migrated across 30
   headers; 65 entries across 14 headers remain.
+
+## 2026-09-09T02:03:00Z - Sidecar-removal tranche batch 7 of N
+
+Batch 7 (5 headers, 12 entries): `DsGetDC.h`, `fltUser.h`,
+`heapapi.h`, `IcmpAPI.h`, `perflib.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `DsGetDcOpenA`/`DsGetDcOpenW` (`RetGetDcContext` out-param),
+  `FilterFindFirst`/`FilterVolumeFindFirst`/`FilterInstanceFindFirst`/
+  `FilterVolumeInstanceFindFirst` (out-param), `HeapCreate` (return),
+  `IcmpCreateFile`/`Icmp6CreateFile` (return), `PerfOpenQueryHandle`
+  (`phQuery` out-param), `PerfStartProvider`/`PerfStartProviderEx`
+  (out-param - `PerfStartProvider` is redeclared twice with differently
+  named out-params, `phProvider` then `Provider`; both declarations were
+  annotated for safety regardless of which one the scraper treats as
+  canonical).
+- `heapapi.h` and `IcmpAPI.h` had existing `zzz-set-last-error`/
+  `set-last-error` patches; consolidated each with its new annotation into
+  one `metadata.patch` and removed the old patch files. `DsGetDC.h`,
+  `fltUser.h`, and `perflib.h` had no prior patch and got the
+  `win32metadata_annotations.h` guard added explicitly.
+- Removed all 12 corresponding sidecar entries from `emitter.settings.rsp`.
+- Corrected `fltuser.h`'s per-header report: it previously concluded all
+  four find-first functions were unfixable generic-`HANDLE` cases, but
+  sidecar entries had already been added for them in an earlier batch
+  without updating this report - now reconciled and migrated inline.
+  Similarly corrected `DsGetDC.h`'s report, which predated the
+  `DsGetDcOpenA`/`DsGetDcOpenW` fix entirely.
+- Validation: same pristine-checkout-and-replay method as prior batches -
+  all 5 headers match byte-for-byte. `ScrapeHeaders -p:ScanArch=crossarch`
+  for ActiveDirectory, Ifsk, Memory, IpHlp (per-arch x64/x86/arm64), and Perf
+  (per-arch) all succeeded with 0 errors.
+- Post-edit self-audit: `Select-String -Pattern RAIIFree | Group-Object`
+  on `emitter.settings.rsp` confirms zero duplicate lines after this batch
+  (65 - 12 = 53, matches exactly).
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` for the 4
+  tracked headers (`DsGetDC.h`, `fltuser.h`, `icmpapi.h`,
+  `perflib.h`) and per-header reports for all 5. `heapapi.h` is not
+  part of the 1403-item ledger (reached via partition `settings.rsp`
+  `IncludeRoot` only), so only its per-header report was created.
+- Running total: 53 of 106 RAIIFree sidecar entries migrated across 35
+  headers; 53 entries across 9 headers remain.

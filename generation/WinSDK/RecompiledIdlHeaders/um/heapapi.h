@@ -65,7 +65,8 @@ HeapCreate(
     _In_ DWORD flOptions,
     _In_ SIZE_T dwInitialSize,
     _In_ SIZE_T dwMaximumSize
-    );
+    )
+    _Win32_metadata_raii_free_(HeapDestroy);
 
 _Win32_metadata_set_last_error_
 WINBASEAPI
