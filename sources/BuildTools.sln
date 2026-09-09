@@ -60,7 +60,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinSDK", "WinSDK", "{8ADADA
 		..\generation\WinSDK\scraper.settings.rsp = ..\generation\WinSDK\scraper.settings.rsp
 		..\generation\WinSDK\supportedOS.rsp = ..\generation\WinSDK\supportedOS.rsp
 		..\generation\WinSDK\Windows.Win32.proj = ..\generation\WinSDK\Windows.Win32.proj
-		..\generation\WinSDK\WithSetLastError.rsp = ..\generation\WinSDK\WithSetLastError.rsp
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C3EAC69E-9456-4B3A-9BFD-41D387716EE2}"
