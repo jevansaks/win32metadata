@@ -1,0 +1,39 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CompPkgSup.h b/generation/WinSDK/RecompiledIdlHeaders/um/CompPkgSup.h
+index cc7ae4bd..da59b5b7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/CompPkgSup.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/CompPkgSup.h
+@@ -17,6 +17,9 @@
+ 
+ #if !defined(__COMPPKGSUP_H__)
+ #define __COMPPKGSUP_H__
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -34,16 +37,24 @@
+ #define ABI
+ #endif
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI InstantiateComponentFromPackage(_In_ HSTRING classId, _In_ HSTRING packageFullName, _COM_Outptr_ IInspectable** instance);
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI RegisterServerForPMP(_In_ HSTRING serverClassId, _In_ IClassFactory *classFactory, _Out_ LPVOID *token);
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI UnregisterServerForPMP(_In_ LPVOID token);
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI GetServerForPMP(_In_ HSTRING serverClassId, _COM_Outptr_ IUnknown **unknown);
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI AreDvdCodecsEnabled();
+ STDAPI RequireNetworkDuringMediaTaskCompletion(_In_ BOOL requireNetwork, _Out_opt_ DWORD* requireCount);
+ STDAPI_(DWORD) GetNetworkRequestCount();
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI GetMediaExtensionCommunicationFactory(_Outptr_ LPVOID* factory);
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI_(BOOL) IsMediaBehaviorEnabled(_In_ GUID mediaBehavior);
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI  GetMediaComponentPackageInfo( _In_ bool trustedOnly, _In_ HSTRING category,
+     _COM_Outptr_ ABI::Windows::Foundation::Collections::IVector<ABI::Windows::Foundation::Collections::IPropertySet*> **codecPropertiesVector);
+ #if (NTDDI_VERSION >= NTDDI_WIN11_GA)

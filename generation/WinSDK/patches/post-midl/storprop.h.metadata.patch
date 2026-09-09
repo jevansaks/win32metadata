@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/storprop.h b/generation/WinSDK/RecompiledIdlHeaders/um/storprop.h
+index 16819b8e..ffe3476e 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/storprop.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/storprop.h
+@@ -18,6 +18,9 @@ Revision History:
+ #ifndef __STORPROP_H__
+ #define __STORPROP_H__
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -67,19 +70,23 @@ CdromCddaInfo(
+     IN OUT PULONG BufferSize
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ CdromKnownGoodDigitalPlayback(IN HDEVINFO HDevInfo,
+                               IN PSP_DEVINFO_DATA DevInfoData);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ CdromEnableDigitalPlayback(IN HDEVINFO DevInfo,
+                            IN PSP_DEVINFO_DATA DevInfoData,
+                            IN BOOLEAN ForceUnknown);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ CdromDisableDigitalPlayback( IN HDEVINFO DevInfo,
+                              IN PSP_DEVINFO_DATA DevInfoData);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ CdromIsDigitalPlaybackEnabled(
+     IN  HDEVINFO DevInfo,

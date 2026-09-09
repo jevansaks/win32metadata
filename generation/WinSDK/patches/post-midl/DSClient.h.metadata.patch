@@ -1,0 +1,34 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h b/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h
+index d141dde2..ec7311e8 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/DSClient.h
+@@ -3,6 +3,9 @@
+ //
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -459,7 +462,9 @@ typedef struct
+ // API exported for browsing for containers.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(int) DsBrowseForContainerW(_Inout_ PDSBROWSEINFOW pInfo);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(int) DsBrowseForContainerA(_Inout_ PDSBROWSEINFOA pInfo);
+ 
+ #ifdef UNICODE
+@@ -471,7 +476,9 @@ STDAPI_(int) DsBrowseForContainerA(_Inout_ PDSBROWSEINFOA pInfo);
+ 
+ // NOTE: these are here to keep old clients building - remove soon
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(HICON) DsGetIcon(DWORD dwFlags, LPCWSTR pszObjectClass, INT cxImage, INT cyImage);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI DsGetFriendlyClassName(LPCWSTR pszObjectClass, _Out_writes_(cchBuffer) LPWSTR pszBuffer, UINT cchBuffer);
+ 
+ 

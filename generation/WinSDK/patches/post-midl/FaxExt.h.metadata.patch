@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FaxExt.h b/generation/WinSDK/RecompiledIdlHeaders/um/FaxExt.h
-index 42ee87d8..3bbd18ed 100644
+index 42ee87d8..10617105 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/FaxExt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/FaxExt.h
 @@ -24,6 +24,9 @@ Abstract:
@@ -12,7 +12,39 @@ index 42ee87d8..3bbd18ed 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -95,7 +98,8 @@ FaxExtRegisterForEvents (
+@@ -48,6 +51,7 @@ typedef enum
+ //
+ // Prototype of FaxExtGetData
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD
+ WINAPI
+ FaxExtGetData (
+@@ -62,6 +66,7 @@ typedef DWORD (CALLBACK *PFAX_EXT_GET_DATA) (DWORD, FAX_ENUM_DEVICE_ID_SOURCE, L
+ //
+ // Prototype of FaxExtSetData
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD
+ WINAPI
+ FaxExtSetData (
+@@ -74,6 +79,7 @@ FaxExtSetData (
+ );
+ typedef DWORD (CALLBACK *PFAX_EXT_SET_DATA) (HINSTANCE, DWORD, FAX_ENUM_DEVICE_ID_SOURCE, LPCWSTR, LPBYTE, DWORD);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT
+ WINAPI
+ FaxExtConfigChange (
+@@ -87,6 +93,7 @@ typedef HRESULT (WINAPI *PFAX_EXT_CONFIG_CHANGE) (DWORD, LPCWSTR, LPBYTE, DWORD)
+ //
+ // Prototype of FaxExtRegisterForEvents
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HANDLE
+ WINAPI
+ FaxExtRegisterForEvents (
+@@ -95,12 +102,14 @@ FaxExtRegisterForEvents (
      FAX_ENUM_DEVICE_ID_SOURCE   DevIdSrc,       // The source of the device id
      LPCWSTR                     lpcwstrDataGUID,// GUID of data
      PFAX_EXT_CONFIG_CHANGE      lpConfigChangeCallback
@@ -22,3 +54,25 @@ index 42ee87d8..3bbd18ed 100644
  typedef HANDLE (CALLBACK *PFAX_EXT_REGISTER_FOR_EVENTS) (HINSTANCE, DWORD, FAX_ENUM_DEVICE_ID_SOURCE, LPCWSTR, PFAX_EXT_CONFIG_CHANGE);
  
  //
+ // Prototype of FaxExtUnregisterForEvents
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD
+ WINAPI
+ FaxExtUnregisterForEvents (
+@@ -111,6 +120,7 @@ typedef DWORD (CALLBACK *PFAX_EXT_UNREGISTER_FOR_EVENTS) (HANDLE);
+ //
+ // Prototype of FaxExtFreeBuffer
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ VOID
+ WINAPI
+ FaxExtFreeBuffer (
+@@ -121,6 +131,7 @@ typedef VOID (CALLBACK *PFAX_EXT_FREE_BUFFER) (LPVOID);
+ //
+ // The extension should implement and export the following function:
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT
+ WINAPI
+ FaxExtInitializeConfig (

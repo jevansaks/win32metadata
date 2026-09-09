@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoveryproviderhelper.h b/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoveryproviderhelper.h
+index a080bf20..c3518fdc 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoveryproviderhelper.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoveryproviderhelper.h
+@@ -4,6 +4,9 @@
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -38,6 +41,7 @@ public:
+     //    pIUnk: Interface proxy to enable callbacks on
+     //
+     // Returns: S_OK on success, appropriate HRESULT otherwise
++_Win32_metadata_supported_os_(windows5.0)
+     static HRESULT CoSetProxyBlanket( IUnknown *pIUnk )
+     {
+         HRESULT hr = S_OK;

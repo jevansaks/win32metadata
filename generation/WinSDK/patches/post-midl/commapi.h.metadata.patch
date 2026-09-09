@@ -1,0 +1,192 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/commapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/commapi.h
+index 9f7b4795..3ad4f77a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/commapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/commapi.h
+@@ -18,6 +18,9 @@
+ #include <windows.h>
+ #include <winbase.h>
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -26,6 +29,8 @@ extern "C" {
+ #pragma region Desktop Family or OneCore or App Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -33,6 +38,8 @@ ClearCommBreak(
+     _In_ HANDLE hFile
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -42,6 +49,8 @@ ClearCommError(
+     _Out_opt_ LPCOMSTAT lpStat
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -51,6 +60,8 @@ SetupComm(
+     _In_ DWORD dwOutQueue
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -59,6 +70,8 @@ EscapeCommFunction(
+     _In_ DWORD dwFunc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ _Success_(return != FALSE)
+ BOOL
+@@ -69,6 +82,8 @@ GetCommConfig(
+     _Inout_ LPDWORD lpdwSize
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -77,6 +92,8 @@ GetCommMask(
+     _Out_ LPDWORD lpEvtMask
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -85,6 +102,8 @@ GetCommModemStatus(
+     _Out_ LPDWORD lpModemStat
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -93,6 +112,8 @@ GetCommProperties(
+     _Inout_ LPCOMMPROP lpCommProp
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -101,6 +122,8 @@ GetCommState(
+     _Out_ LPDCB lpDCB
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -109,6 +132,8 @@ GetCommTimeouts(
+     _Out_ LPCOMMTIMEOUTS lpCommTimeouts
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -117,6 +142,8 @@ PurgeComm(
+     _In_ DWORD dwFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -124,6 +151,8 @@ SetCommBreak(
+     _In_ HANDLE hFile
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -133,6 +162,8 @@ SetCommConfig(
+     _In_ DWORD dwSize
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -141,6 +172,8 @@ SetCommMask(
+     _In_ DWORD dwEvtMask
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -149,6 +182,8 @@ SetCommState(
+     _In_ LPDCB lpDCB
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -157,6 +192,8 @@ SetCommTimeouts(
+     _In_ LPCOMMTIMEOUTS lpCommTimeouts
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -165,6 +202,8 @@ TransmitCommChar(
+     _In_ char cChar
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -174,6 +213,7 @@ WaitCommEvent(
+     _Inout_opt_ LPOVERLAPPED lpOverlapped
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ WINBASEAPI
+ HANDLE
+ WINAPI
+@@ -183,6 +223,7 @@ OpenCommPort(
+     _In_ DWORD dwFlagsAndAttributes
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.17134)
+ WINBASEAPI
+ ULONG
+ WINAPI

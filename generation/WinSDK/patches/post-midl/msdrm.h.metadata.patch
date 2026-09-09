@@ -1,0 +1,40 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msdrm.h b/generation/WinSDK/RecompiledIdlHeaders/um/msdrm.h
+index 21104f6c..b85789ad 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/msdrm.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/msdrm.h
+@@ -4,6 +4,9 @@
+ #define __MSDRM_H_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -461,6 +464,7 @@ DRMEXPORT HRESULT UDAPICALL DRMGetSignedIssuanceLicense(
+ 
+                                 IN      VOID*        pvContext);//Optional
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DRMEXPORT HRESULT UDAPICALL DRMGetSignedIssuanceLicenseEx(
+                                 DRMENVHANDLE                hEnv,
+                                 DRMPUBHANDLE                hIssuanceLicense,
+@@ -608,14 +612,17 @@ DRMEXPORT HRESULT UDAPICALL DRMGetIntervalTime(
+ 
+ DRMEXPORT HRESULT UDAPICALL DRMRepair();
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DRMEXPORT HRESULT UDAPICALL DRMRegisterProtectedWindow(
+ 								IN		DRMENVHANDLE hEnv,
+ 								IN		HWND hwnd);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DRMEXPORT HRESULT UDAPICALL DRMIsWindowProtected(
+ 								IN		HWND	hwnd,
+ 								OUT		BOOL*	pfProtected);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DRMEXPORT HRESULT UDAPICALL DRMAcquireIssuanceLicenseTemplate(
+ 								IN		DRMHSESSION	hClient,
+ 								IN		UINT uFlags,

@@ -1,0 +1,62 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsStorageCOM.h b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsStorageCOM.h
+index 16bef8c9..dd4444ad 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsStorageCOM.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsStorageCOM.h
+@@ -109,6 +109,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -127,6 +130,7 @@ EXTERN_C const IID IID_IRandomAccessStreamFileAccessMode;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.10240)
+     MIDL_INTERFACE("332E5848-2E15-458E-85C4-C911C0C3D6F4")
+     IRandomAccessStreamFileAccessMode : public IUnknown
+     {
+@@ -214,6 +218,7 @@ EXTERN_C const IID IID_IUnbufferedFileHandleOplockCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.10240)
+     MIDL_INTERFACE("D1019A0E-6243-4329-8497-2E75894D7710")
+     IUnbufferedFileHandleOplockCallback : public IUnknown
+     {
+@@ -297,6 +302,7 @@ EXTERN_C const IID IID_IUnbufferedFileHandleProvider;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.10240)
+     MIDL_INTERFACE("A65C9109-42AB-4B94-A7B1-DD2E4E68515E")
+     IUnbufferedFileHandleProvider : public IUnknown
+     {
+@@ -454,6 +460,7 @@ EXTERN_C const IID IID_IOplockBreakingHandler;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.10240)
+     MIDL_INTERFACE("826ABE3D-3ACD-47D3-84F2-88AAEDCF6304")
+     IOplockBreakingHandler : public IUnknown
+     {
+@@ -537,6 +544,7 @@ EXTERN_C const IID IID_IStorageItemHandleAccess;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.10240)
+     MIDL_INTERFACE("5CA296B2-2C25-4D22-B785-B885C8201E6A")
+     IStorageItemHandleAccess : public IUnknown
+     {
+@@ -636,6 +644,7 @@ EXTERN_C const IID IID_IStorageFolderHandleAccess;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.10240)
+     MIDL_INTERFACE("DF19938F-5462-48A0-BE65-D2A3271A08D6")
+     IStorageFolderHandleAccess : public IUnknown
+     {

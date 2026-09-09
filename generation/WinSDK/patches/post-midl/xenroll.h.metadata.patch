@@ -1,0 +1,93 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/xenroll.h b/generation/WinSDK/RecompiledIdlHeaders/um/xenroll.h
+index a8894e05..03105e81 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/xenroll.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/xenroll.h
+@@ -134,6 +134,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -152,6 +155,7 @@ EXTERN_C const IID IID_ICEnroll;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("43F8F288-7A20-11D0-8F06-00C04FC295E1")
+     ICEnroll : public IDispatch
+     {
+@@ -911,6 +915,7 @@ EXTERN_C const IID IID_ICEnroll2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("704ca730-c90b-11d1-9bec-00c04fc295e1")
+     ICEnroll2 : public ICEnroll
+     {
+@@ -1563,6 +1568,7 @@ EXTERN_C const IID IID_ICEnroll3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("c28c2d95-b7de-11d2-a421-00c04f79fe8e")
+     ICEnroll3 : public ICEnroll2
+     {
+@@ -2359,6 +2365,7 @@ EXTERN_C const IID IID_ICEnroll4;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("c1f1188a-2eb5-4a80-841b-7e729a356d90")
+     ICEnroll4 : public ICEnroll3
+     {
+@@ -3537,6 +3544,7 @@ EXTERN_C const IID IID_IEnroll;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("acaa7838-4585-11d1-ab57-00c04fc295e1")
+     IEnroll : public IUnknown
+     {
+@@ -4394,6 +4402,7 @@ EXTERN_C const IID IID_IEnroll2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("c080e199-b7df-11d2-a421-00c04f79fe8e")
+     IEnroll2 : public IEnroll
+     {
+@@ -5241,6 +5250,7 @@ EXTERN_C const IID IID_IEnroll4;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("f8053fe5-78f4-448f-a0db-41d61b73446b")
+     IEnroll4 : public IEnroll2
+     {
+@@ -6522,14 +6532,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

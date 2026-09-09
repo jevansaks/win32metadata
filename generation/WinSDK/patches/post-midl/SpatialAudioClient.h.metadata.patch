@@ -1,0 +1,62 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioClient.h b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioClient.h
+index ea37bcb1..7aa9cd0d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioClient.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioClient.h
+@@ -119,6 +119,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Application and Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
+ typedef /* [v1_enum] */ 
+@@ -304,6 +307,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectBase;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("CCE0B8F2-8D4D-4EFB-A8CF-3D6ECF1C30E0")
+     ISpatialAudioObjectBase : public IUnknown
+     {
+@@ -434,6 +438,7 @@ EXTERN_C const IID IID_ISpatialAudioObject;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("DDE28967-521B-46E5-8F00-BD6F2BC8AB1D")
+     ISpatialAudioObject : public ISpatialAudioObjectBase
+     {
+@@ -581,6 +586,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectRenderStreamBase;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("FEAAF403-C1D8-450D-AA05-E0CCEE7502A8")
+     ISpatialAudioObjectRenderStreamBase : public IUnknown
+     {
+@@ -738,6 +744,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectRenderStream;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("BAB5F473-B423-477B-85F5-B5A332A04153")
+     ISpatialAudioObjectRenderStream : public ISpatialAudioObjectRenderStreamBase
+     {
+@@ -889,6 +896,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectRenderStreamNotify;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("DDDF83E6-68D7-4C70-883F-A1836AFB4A50")
+     ISpatialAudioObjectRenderStreamNotify : public IUnknown
+     {
+@@ -984,6 +992,7 @@ EXTERN_C const IID IID_ISpatialAudioClient;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("BBF8E066-AAAA-49BE-9A4D-FD2A858EA27F")
+     ISpatialAudioClient : public IUnknown
+     {

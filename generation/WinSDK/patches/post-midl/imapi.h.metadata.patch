@@ -1,0 +1,68 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/imapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/imapi.h
+index 8261d3f0..c8ca3192 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/imapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/imapi.h
+@@ -146,6 +146,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ // this assert will cause compilation breaks in clients whose code would cause stack corruption
+@@ -197,6 +200,7 @@ EXTERN_C const IID IID_IDiscRecorder;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("85AC9776-CA88-4cf2-894E-09598C078A41")
+     IDiscRecorder : public IUnknown
+     {
+@@ -689,6 +693,7 @@ EXTERN_C const IID IID_IRedbookDiscMaster;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("E3BC42CD-4E5C-11D3-9144-00104BA11C5E")
+     IRedbookDiscMaster : public IUnknown
+     {
+@@ -850,6 +855,7 @@ EXTERN_C const IID IID_IJolietDiscMaster;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("E3BC42CE-4E5C-11D3-9144-00104BA11C5E")
+     IJolietDiscMaster : public IUnknown
+     {
+@@ -991,6 +997,7 @@ EXTERN_C const IID IID_IDiscMasterProgressEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("EC9E51C1-4E5D-11D3-9144-00104BA11C5E")
+     IDiscMasterProgressEvents : public IUnknown
+     {
+@@ -1167,6 +1174,7 @@ EXTERN_C const IID IID_IDiscMaster;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("520CCA62-51A5-11D3-9144-00104BA11C5E")
+     IDiscMaster : public IUnknown
+     {
+@@ -1416,9 +1424,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
+ void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
+ /* end of Additional Prototypes */

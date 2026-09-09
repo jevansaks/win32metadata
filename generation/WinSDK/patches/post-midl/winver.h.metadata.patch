@@ -1,0 +1,140 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winver.h b/generation/WinSDK/RecompiledIdlHeaders/um/winver.h
+index 8618aa1a..bf2be4f1 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/winver.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/winver.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /*****************************************************************************\
+ *                                                                             *
+@@ -31,6 +34,7 @@ extern "C" {
+ 
+ /* ----- Function prototypes ----- */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ VerFindFileA(
+@@ -43,6 +47,7 @@ VerFindFileA(
+         _Out_writes_(*puDestDirLen)  LPSTR szDestDir,
+         _Inout_                      PUINT puDestDirLen
+         );
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ VerFindFileW(
+@@ -71,6 +76,7 @@ VerFindFileW(
+ 
+ #ifndef RC_INVOKED
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ VerInstallFileA(
+@@ -83,6 +89,7 @@ VerInstallFileA(
+         _Out_writes_(*puTmpFileLen)  LPSTR szTmpFile,
+         _Inout_                      PUINT puTmpFileLen
+         );
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ VerInstallFileW(
+@@ -112,6 +119,8 @@ VerInstallFileW(
+ #ifndef RC_INVOKED
+ 
+ /* Returns size of version info in bytes */
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ DWORD
+ APIENTRY
+ GetFileVersionInfoSizeA(
+@@ -119,6 +128,8 @@ GetFileVersionInfoSizeA(
+         _Out_opt_ LPDWORD lpdwHandle       /* Information for use by GetFileVersionInfo */
+         );
+ /* Returns size of version info in bytes */
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ DWORD
+ APIENTRY
+ GetFileVersionInfoSizeW(
+@@ -132,6 +143,8 @@ GetFileVersionInfoSizeW(
+ #endif // !UNICODE
+ 
+ /* Read version info into buffer */
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ APIENTRY
+ GetFileVersionInfoA(
+@@ -141,6 +154,8 @@ GetFileVersionInfoA(
+         _Out_writes_bytes_(dwLen) LPVOID lpData            /* Buffer to place the data structure */
+         );
+ /* Read version info into buffer */
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ APIENTRY
+ GetFileVersionInfoW(
+@@ -155,7 +170,11 @@ GetFileVersionInfoW(
+ #define GetFileVersionInfo  GetFileVersionInfoA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ DWORD APIENTRY GetFileVersionInfoSizeExA(_In_ DWORD dwFlags, _In_ LPCSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ DWORD APIENTRY GetFileVersionInfoSizeExW(_In_ DWORD dwFlags, _In_ LPCWSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
+ #ifdef UNICODE
+ #define GetFileVersionInfoSizeEx  GetFileVersionInfoSizeExW
+@@ -163,11 +182,15 @@ DWORD APIENTRY GetFileVersionInfoSizeExW(_In_ DWORD dwFlags, _In_ LPCWSTR lpwstr
+ #define GetFileVersionInfoSizeEx  GetFileVersionInfoSizeExA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL APIENTRY GetFileVersionInfoExA(_In_ DWORD dwFlags,
+                                     _In_ LPCSTR lpwstrFilename,
+                                     _Reserved_ DWORD dwHandle,
+                                     _In_ DWORD dwLen,
+                                     _Out_writes_bytes_(dwLen) LPVOID lpData);
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL APIENTRY GetFileVersionInfoExW(_In_ DWORD dwFlags,
+                                     _In_ LPCWSTR lpwstrFilename,
+                                     _Reserved_ DWORD dwHandle,
+@@ -200,6 +223,7 @@ BOOL APIENTRY GetFileVersionInfoExW(_In_ DWORD dwFlags,
+ 
+ #ifndef RC_INVOKED
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ VerLanguageNameA(
+@@ -207,6 +231,7 @@ VerLanguageNameA(
+         _Out_writes_(cchLang) LPSTR szLang,
+         _In_                  DWORD cchLang
+         );
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ VerLanguageNameW(
+@@ -220,6 +245,7 @@ VerLanguageNameW(
+ #define VerLanguageName  VerLanguageNameA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ VerQueryValueA(
+@@ -228,6 +254,7 @@ VerQueryValueA(
+         _Outptr_result_buffer_(_Inexpressible_("buffer can be PWSTR or DWORD*")) LPVOID * lplpBuffer,
+         _Out_ PUINT puLen
+         );
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ VerQueryValueW(

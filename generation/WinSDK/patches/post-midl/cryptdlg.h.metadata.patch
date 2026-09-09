@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cryptdlg.h b/generation/WinSDK/RecompiledIdlHeaders/um/cryptdlg.h
-index b6e314ea..d772823e 100644
+index b6e314ea..1f577478 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/cryptdlg.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/cryptdlg.h
 @@ -16,6 +16,9 @@
@@ -12,19 +12,61 @@ index b6e314ea..d772823e 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -153,6 +156,7 @@ typedef CERT_SELECT_STRUCT_A CERT_SELECT_STRUCT;
+@@ -153,6 +156,8 @@ typedef CERT_SELECT_STRUCT_A CERT_SELECT_STRUCT;
  typedef PCERT_SELECT_STRUCT_A PCERT_SELECT_STRUCT;
  #endif // UNICODE
  
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  CRYPTDLGAPI
  BOOL
  WINAPI
-@@ -162,6 +166,7 @@ CertSelectCertificateA(
+@@ -162,6 +167,8 @@ CertSelectCertificateA(
  #ifdef MAC
  #define CertSelectCertificate CertSelectCertificateA
  #else   // !MAC
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  CRYPTDLGAPI
  BOOL
+ WINAPI
+@@ -248,6 +255,7 @@ typedef CERT_VIEWPROPERTIES_STRUCT_A CERT_VIEWPROPERTIES_STRUCT;
+ typedef PCERT_VIEWPROPERTIES_STRUCT_A PCERT_VIEWPROPERTIES_STRUCT;
+ #endif // UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ CRYPTDLGAPI
+ BOOL
+ WINAPI
+@@ -257,6 +265,7 @@ CertViewPropertiesA(
+ #ifdef MAC
+ #define CertViewProperties CertViewPropertiesA
+ #else   // !MAC
++_Win32_metadata_supported_os_(windows5.1.2600)
+ CRYPTDLGAPI
+ BOOL
+ WINAPI
+@@ -309,6 +318,7 @@ typedef struct tagCMFLTR {
+ //
+ //   Get a formatted friendly name for a certificate
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ CRYPTDLGAPI
+ DWORD
+ WINAPI
+@@ -317,6 +327,7 @@ GetFriendlyNameOfCertA(
+     _Out_writes_to_opt_(cch, return) LPSTR pch,
+     _In_ DWORD cch
+     );
++_Win32_metadata_supported_os_(windows5.1.2600)
+ CRYPTDLGAPI
+ DWORD
+ WINAPI
+@@ -444,6 +455,7 @@ typedef struct _CTL_MODIFY_REQUEST {
+     DWORD               dwError;        // Operation error code
+ } CTL_MODIFY_REQUEST, * PCTL_MODIFY_REQUEST;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ CRYPTDLGAPI
+ HRESULT
  WINAPI

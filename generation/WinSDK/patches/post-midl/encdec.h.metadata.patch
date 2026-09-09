@@ -1,0 +1,70 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/encdec.h b/generation/WinSDK/RecompiledIdlHeaders/um/encdec.h
+index 71f234aa..78a8c367 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/encdec.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/encdec.h
+@@ -213,6 +213,9 @@ extern "C"{
+ //--------------------------------------------------------------------------
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #pragma warning(push)
+@@ -639,6 +642,7 @@ EXTERN_C const IID IID_IETFilterConfig;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("C4C4C4D1-0049-4E2B-98FB-9537F6CE516D")
+     IETFilterConfig : public IUnknown
+     {
+@@ -739,6 +743,7 @@ EXTERN_C const IID IID_IDTFilterConfig;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("C4C4C4D2-0049-4E2B-98FB-9537F6CE516D")
+     IDTFilterConfig : public IUnknown
+     {
+@@ -1222,6 +1227,7 @@ EXTERN_C const IID IID_IETFilter;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("C4C4C4B1-0049-4E2B-98FB-9537F6CE516D")
+     IETFilter : public IUnknown
+     {
+@@ -1506,6 +1512,7 @@ EXTERN_C const IID IID_IDTFilter;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("C4C4C4B2-0049-4E2B-98FB-9537F6CE516D")
+     IDTFilter : public IUnknown
+     {
+@@ -1708,6 +1715,7 @@ EXTERN_C const IID IID_IDTFilter2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("C4C4C4B4-0049-4E2B-98FB-9537F6CE516D")
+     IDTFilter2 : public IDTFilter
+     {
+@@ -1906,6 +1914,7 @@ EXTERN_C const IID IID_IDTFilter3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("513998cc-e929-4cdf-9fbd-bad1e0314866")
+     IDTFilter3 : public IDTFilter2
+     {
+@@ -2271,6 +2280,7 @@ EXTERN_C const IID IID_IXDSCodec;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("C4C4C4B3-0049-4E2B-98FB-9537F6CE516D")
+     IXDSCodec : public IUnknown
+     {

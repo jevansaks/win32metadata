@@ -1,0 +1,104 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/prntvpt.h b/generation/WinSDK/RecompiledIdlHeaders/um/prntvpt.h
+index 36840505..afcb430f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/prntvpt.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/prntvpt.h
+@@ -17,6 +17,9 @@ Abstract:
+ #define _PRNPTNTV_H_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -77,38 +80,48 @@ typedef enum
+ } EPrintTicketScope;
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT WINAPI
+ PTQuerySchemaVersionSupport(
+             _In_        PCWSTR       pszPrinterName,
+             _Out_       DWORD       *pMaxVersion
+             );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT WINAPI
+ PTOpenProvider( 
+             _In_        PCWSTR       pszPrinterName,
+                         DWORD        dwVersion,
+             _Out_       HPTPROVIDER *phProvider
++                _Win32_metadata_invalid_handle_(0)
++                _Win32_metadata_raii_free_(PTCloseProvider)
+             );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT WINAPI
+ PTOpenProviderEx( 
+             _In_  PCWSTR       pszPrinterName,
+                   DWORD        dwMaxVersion,
+                   DWORD        dwPrefVersion,
+-            _Out_ HPTPROVIDER *phProvider,
++            _Out_ HPTPROVIDER *phProvider
++                _Win32_metadata_invalid_handle_(0)
++                _Win32_metadata_raii_free_(PTCloseProvider),
+             _Out_ DWORD       *pUsedVersion
+             );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT WINAPI
+ PTCloseProvider(
+             _In_  HPTPROVIDER hProvider
+             );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT WINAPI
+ PTReleaseMemory(
+     _In_ PVOID pBuffer
+     );
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT WINAPI
+ PTGetPrintCapabilities( 
+             _In_            HPTPROVIDER         hProvider,
+@@ -117,6 +130,7 @@ PTGetPrintCapabilities(
+             _Out_opt_       BSTR               *pbstrErrorMessage
+             );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ HRESULT WINAPI
+ PTGetPrintDeviceCapabilities(
+     _In_            HPTPROVIDER         hProvider,
+@@ -125,6 +139,7 @@ PTGetPrintDeviceCapabilities(
+     _Out_opt_       BSTR               *pbstrErrorMessage
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ HRESULT WINAPI
+ PTGetPrintDeviceResources(
+     _In_            HPTPROVIDER         hProvider,
+@@ -134,6 +149,7 @@ PTGetPrintDeviceResources(
+     _Out_opt_       BSTR               *pbstrErrorMessage
+ );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT WINAPI
+ PTMergeAndValidatePrintTicket(
+             _In_            HPTPROVIDER        hProvider,
+@@ -144,6 +160,7 @@ PTMergeAndValidatePrintTicket(
+             _Out_opt_       BSTR              *pbstrErrorMessage 
+             );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT WINAPI
+ PTConvertPrintTicketToDevMode( 
+             _In_                     HPTPROVIDER          hProvider,
+@@ -155,6 +172,7 @@ PTConvertPrintTicketToDevMode(
+             _Out_opt_                BSTR                *pbstrErrorMessage 
+             );
+         
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT WINAPI
+ PTConvertDevModeToPrintTicket( 
+             _In_        HPTPROVIDER        hProvider,

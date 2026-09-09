@@ -1,0 +1,46 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ndhelper.h b/generation/WinSDK/RecompiledIdlHeaders/um/ndhelper.h
+index 2696f662..a52dd46f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ndhelper.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ndhelper.h
+@@ -96,6 +96,9 @@ extern "C"{
+ 
+ // Copyright (C) Microsoft Corporation. All rights reserved.
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #if ( _MSC_VER >= 800 )
+@@ -185,6 +188,7 @@ EXTERN_C const IID IID_INetDiagHelper;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("c0b35746-ebf5-11d8-bbe9-505054503030")
+     INetDiagHelper : public IUnknown
+     {
+@@ -576,6 +580,7 @@ EXTERN_C const IID IID_INetDiagHelperUtilFactory;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("104613FB-BC57-4178-95BA-88809698354A")
+     INetDiagHelperUtilFactory : public IUnknown
+     {
+@@ -676,6 +681,7 @@ EXTERN_C const IID IID_INetDiagHelperEx;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("972DAB4D-E4E3-4fc6-AE54-5F65CCDE4A15")
+     INetDiagHelperEx : public IUnknown
+     {
+@@ -806,6 +812,7 @@ EXTERN_C const IID IID_INetDiagHelperInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("c0b35747-ebf5-11d8-bbe9-505054503030")
+     INetDiagHelperInfo : public IUnknown
+     {

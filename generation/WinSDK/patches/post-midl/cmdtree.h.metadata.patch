@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cmdtree.h b/generation/WinSDK/RecompiledIdlHeaders/um/cmdtree.h
+index 9e0c6c93..086586e8 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/cmdtree.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/cmdtree.h
+@@ -80,6 +80,9 @@ extern "C"{
+ //----------------------------------------------------------------------------
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #if defined(_WIN64) || defined(_ARM_)
+@@ -647,6 +650,7 @@ EXTERN_C const IID IID_ICommandTree;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("0c733a87-2a1c-11ce-ade5-00aa0044773d")
+     ICommandTree : public IUnknown
+     {
+@@ -802,6 +806,7 @@ EXTERN_C const IID IID_IQuery;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("0c733a51-2a1c-11ce-ade5-00aa0044773d")
+     IQuery : public ICommandTree
+     {

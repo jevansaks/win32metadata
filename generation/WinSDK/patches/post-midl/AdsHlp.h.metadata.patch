@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
-index 3b1817e9..9b0fe1c6 100644
+index 3b1817e9..6a77a4ab 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
 @@ -1,4 +1,7 @@
@@ -10,11 +10,138 @@ index 3b1817e9..9b0fe1c6 100644
  //+---------------------------------------------------------------------------
  //
  //  Microsoft Windows
-@@ -80,6 +83,7 @@ ADsOpenObject(
+@@ -24,6 +27,7 @@ extern "C" {
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ ADsGetObject(
+     LPCWSTR lpszPathName,
+@@ -32,17 +36,20 @@ ADsGetObject(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ ADsBuildEnumerator(
+     IADsContainer *pADsContainer,
+     IEnumVARIANT   **ppEnumVariant
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ ADsFreeEnumerator(
+     IEnumVARIANT *pEnumVariant
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ ADsEnumerateNext(
+     IEnumVARIANT *pEnumVariant,
+@@ -51,6 +58,7 @@ ADsEnumerateNext(
+     ULONG FAR    *pcElementsFetched
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ ADsBuildVarArrayStr(
+     _In_reads_(dwPathNames) LPWSTR * lppPathNames,
+@@ -58,6 +66,7 @@ ADsBuildVarArrayStr(
+     VARIANT * pVar
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ ADsBuildVarArrayInt(
+     LPDWORD    lpdwObjectTypes,
+@@ -66,6 +75,7 @@ ADsBuildVarArrayInt(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ ADsOpenObject(
+     LPCWSTR lpszPathName,
+@@ -80,6 +90,8 @@ ADsOpenObject(
  // Helper functions for extended error support
  //
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  HRESULT WINAPI
  ADsGetLastError(
      OUT     LPDWORD lpError,
+@@ -89,6 +101,7 @@ ADsGetLastError(
+     IN      DWORD   dwNameBufLen
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ VOID WINAPI
+ ADsSetLastError(
+     IN  DWORD   dwErr,
+@@ -101,16 +114,19 @@ VOID WINAPI
+ ADsFreeAllErrorRecords(
+     VOID);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ LPVOID WINAPI
+ AllocADsMem(
+     DWORD cb
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI
+ FreeADsMem(
+    LPVOID pMem
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ LPVOID WINAPI
+ ReallocADsMem(
+    LPVOID pOldMem,
+@@ -118,17 +134,20 @@ ReallocADsMem(
+    DWORD cbNew
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ LPWSTR WINAPI
+ AllocADsStr(
+     LPCWSTR pStr
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI
+ FreeADsStr(
+    _In_ LPWSTR pStr
+ );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI
+ ReallocADsStr(
+    _Inout_ LPWSTR *ppStr,
+@@ -136,6 +155,7 @@ ReallocADsStr(
+ );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ ADsEncodeBinaryData (
+    PBYTE   pbSrcData,
+@@ -176,6 +196,7 @@ AdsFreeAdsValues(
+ // security descriptor and also to convert a binary SD to 
+ // IADsSecurityDescriptor.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ BinarySDToSecurityDescriptor(
+     PSECURITY_DESCRIPTOR  pSecurityDescriptor,
+@@ -186,6 +207,7 @@ BinarySDToSecurityDescriptor(
+     DWORD dwFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ SecurityDescriptorToBinarySD(
+     VARIANT vVarSecDes,

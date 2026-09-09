@@ -1,0 +1,372 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ras.h b/generation/WinSDK/RecompiledIdlHeaders/um/Ras.h
+index 0d914ac1..7711e8a9 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Ras.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Ras.h
+@@ -31,6 +31,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or CmdLineTools Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_CMDTOOLS)
+@@ -1910,147 +1913,209 @@ RASCUSTOMSCRIPTEXTENSIONS
+ 
+ /* External RAS API function prototypes.
+ */
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasDialA( _In_opt_ LPRASDIALEXTENSIONS, _In_opt_ LPCSTR, _In_ LPRASDIALPARAMSA, _In_ DWORD,
+                          _In_opt_ LPVOID, _Out_ LPHRASCONN );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasDialW( _In_opt_ LPRASDIALEXTENSIONS, _In_opt_ LPCWSTR, _In_ LPRASDIALPARAMSW, _In_ DWORD,
+                          _In_opt_ LPVOID, _Out_ LPHRASCONN );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEnumConnectionsA( _Inout_opt_ LPRASCONNA, _Inout_ LPDWORD, _Out_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEnumConnectionsW( _Inout_opt_ LPRASCONNW, _Inout_ LPDWORD, _Out_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEnumEntriesA( _In_opt_ LPCSTR, _In_opt_ LPCSTR, _Inout_opt_ LPRASENTRYNAMEA, _Inout_ LPDWORD,
+                                 _Out_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEnumEntriesW( _In_opt_ LPCWSTR, _In_opt_ LPCWSTR, _Inout_opt_ LPRASENTRYNAMEW, _Inout_ LPDWORD,
+                                 _Out_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetConnectStatusA( _In_ HRASCONN, _Inout_ LPRASCONNSTATUSA );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetConnectStatusW( _In_ HRASCONN, _Inout_ LPRASCONNSTATUSW );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetErrorStringA( _In_ UINT ResourceId, _Out_writes_(InBufSize) LPSTR lpszString, _In_ DWORD  InBufSize);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetErrorStringW( _In_ UINT ResourceId, _Out_writes_(InBufSize) LPWSTR lpszString, _In_ DWORD  InBufSize);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasHangUpA( _In_ HRASCONN );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasHangUpW( _In_ HRASCONN );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetProjectionInfoA( _In_ HRASCONN, _In_ RASPROJECTION, _Out_ LPVOID, _Inout_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetProjectionInfoW( _In_ HRASCONN, _In_ RASPROJECTION, _Out_ LPVOID, _Inout_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasCreatePhonebookEntryA( _In_ HWND, _In_opt_ LPCSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasCreatePhonebookEntryW( _In_ HWND, _In_opt_ LPCWSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEditPhonebookEntryA( _In_ HWND, _In_opt_ LPCSTR, _In_ LPCSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEditPhonebookEntryW( _In_ HWND, _In_opt_ LPCWSTR, _In_ LPCWSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetEntryDialParamsA( _In_opt_ LPCSTR, _In_ LPRASDIALPARAMSA, _In_ BOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetEntryDialParamsW( _In_opt_ LPCWSTR, _In_ LPRASDIALPARAMSW, _In_ BOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetEntryDialParamsA( _In_opt_ LPCSTR, _Inout_ LPRASDIALPARAMSA, _Out_ LPBOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetEntryDialParamsW( _In_opt_ LPCWSTR, _Inout_ LPRASDIALPARAMSW, _Out_ LPBOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEnumDevicesA( _Inout_opt_ LPRASDEVINFOA, _Inout_ LPDWORD, _Out_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEnumDevicesW( _Inout_opt_ LPRASDEVINFOW, _Inout_ LPDWORD, _Out_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetCountryInfoA( _Inout_opt_ LPRASCTRYINFOA, _Inout_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetCountryInfoW( _Inout_opt_ LPRASCTRYINFOW, _Inout_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetEntryPropertiesA( _In_opt_ LPCSTR, _In_ LPCSTR, _Inout_opt_ LPRASENTRYA, _Inout_ LPDWORD, _Out_opt_ LPBYTE, _Inout_opt_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetEntryPropertiesW( _In_opt_ LPCWSTR, _In_ LPCWSTR, _Inout_opt_ LPRASENTRYW, _Inout_ LPDWORD, _Out_opt_ LPBYTE, _Inout_opt_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetEntryPropertiesA( _In_opt_ LPCSTR, _In_ LPCSTR, _In_ LPRASENTRYA, _In_ DWORD, _In_opt_ LPBYTE, _In_ DWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetEntryPropertiesW( _In_opt_ LPCWSTR, _In_ LPCWSTR, _In_ LPRASENTRYW, _In_ DWORD, _In_opt_ LPBYTE, _In_ DWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasRenameEntryA( _In_opt_ LPCSTR, _In_ LPCSTR, _In_ LPCSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasRenameEntryW( _In_opt_ LPCWSTR, _In_ LPCWSTR, _In_ LPCWSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasDeleteEntryA( _In_opt_ LPCSTR, _In_ LPCSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasDeleteEntryW( _In_opt_ LPCWSTR, _In_ LPCWSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasValidateEntryNameA( _In_opt_ LPCSTR, _In_ LPCSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasValidateEntryNameW( _In_opt_ LPCWSTR, _In_ LPCWSTR );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasConnectionNotificationA( _In_ HRASCONN, _In_ HANDLE, _In_ DWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasConnectionNotificationW( _In_ HRASCONN, _In_ HANDLE, _In_ DWORD );
+ 
+ #if (WINVER >= 0x401)
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetSubEntryHandleA( _In_ HRASCONN, _In_ DWORD, _Out_ LPHRASCONN );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetSubEntryHandleW( _In_ HRASCONN, _In_ DWORD, _Out_ LPHRASCONN );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetCredentialsA( _In_opt_ LPCSTR, _In_ LPCSTR, _Inout_ LPRASCREDENTIALSA );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetCredentialsW( _In_opt_ LPCWSTR, _In_ LPCWSTR, _Inout_ LPRASCREDENTIALSW );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetCredentialsA( _In_opt_ LPCSTR, _In_ LPCSTR, _In_ LPRASCREDENTIALSA, _In_ BOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetCredentialsW( _In_opt_ LPCWSTR, _In_ LPCWSTR, _In_ LPRASCREDENTIALSW, _In_ BOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetSubEntryPropertiesA( _In_opt_ LPCSTR, _In_ LPCSTR, _In_ DWORD,
+                     _Inout_opt_  LPRASSUBENTRYA, _Inout_opt_ LPDWORD, _Out_opt_  LPBYTE, _Inout_opt_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetSubEntryPropertiesW( _In_opt_ LPCWSTR, _In_ LPCWSTR, _In_ DWORD,
+                     _Inout_opt_ LPRASSUBENTRYW, _Inout_opt_ LPDWORD, _Out_opt_ LPBYTE, _Inout_opt_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetSubEntryPropertiesA( _In_opt_ LPCSTR, _In_ LPCSTR, _In_ DWORD,
+                     _In_ LPRASSUBENTRYA, _In_ DWORD, _In_opt_  LPBYTE, _In_ DWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetSubEntryPropertiesW( _In_opt_ LPCWSTR, _In_ LPCWSTR, _In_ DWORD,
+                     _In_ LPRASSUBENTRYW, _In_ DWORD, _In_opt_  LPBYTE, _In_ DWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetAutodialAddressA( _In_opt_ LPCSTR, _In_opt_ LPDWORD, _Inout_opt_ LPRASAUTODIALENTRYA,
+                                        _Inout_ LPDWORD, _Out_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetAutodialAddressW( _In_opt_ LPCWSTR, _In_opt_ LPDWORD, _Inout_opt_ LPRASAUTODIALENTRYW,
+                                        _Inout_ LPDWORD, _Out_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetAutodialAddressA( _In_opt_   LPCSTR, _In_ DWORD, _In_opt_   LPRASAUTODIALENTRYA,
+                                        _In_ DWORD, _In_ DWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetAutodialAddressW( _In_opt_   LPCWSTR, _In_ DWORD, _In_opt_   LPRASAUTODIALENTRYW,
+                                        _In_ DWORD, _In_ DWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEnumAutodialAddressesA(
+     _Inout_updates_bytes_opt_(*lpdwcbRasAutodialAddresses) LPSTR *lppRasAutodialAddresses,
+     _Inout_  LPDWORD lpdwcbRasAutodialAddresses,
+     _Out_    LPDWORD lpdwcRasAutodialAddresses);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasEnumAutodialAddressesW(
+     _Inout_updates_bytes_opt_(*lpdwcbRasAutodialAddresses) LPWSTR *lppRasAutodialAddresses,
+     _Inout_  LPDWORD lpdwcbRasAutodialAddresses,
+     _Out_    LPDWORD lpdwcRasAutodialAddresses);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetAutodialEnableA( _In_ DWORD, _Out_ LPBOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetAutodialEnableW( _In_ DWORD, _Out_ LPBOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetAutodialEnableA( _In_ DWORD, _In_ BOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetAutodialEnableW( _In_ DWORD, _In_ BOOL );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetAutodialParamA( _In_ DWORD, _Out_ LPVOID, _Inout_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetAutodialParamW( _In_ DWORD, _Out_ LPVOID, _Inout_ LPDWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetAutodialParamA( _In_ DWORD, _In_ LPVOID, _In_ DWORD );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetAutodialParamW( _In_ DWORD, _In_ LPVOID, _In_ DWORD );
+ 
+ DWORD APIENTRY RasGetPCscf(_Out_ LPWSTR lpszPCscf);
+@@ -2106,21 +2171,27 @@ typedef DWORD (WINAPI *RasCustomDeleteEntryNotifyFn) (
+ #define RCD_Eap         0x00000002
+ #define RCD_Logon       0x00000004
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasInvokeEapUI( _In_ HRASCONN, _In_ DWORD, _In_ LPRASDIALEXTENSIONS, _In_ HWND);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetLinkStatistics(_In_ HRASCONN hRasConn,
+                                     _In_ DWORD dwSubEntry,
+                                     _Inout_ RAS_STATS *lpStatistics );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetConnectionStatistics( _In_ HRASCONN hRasConn,
+                                            _Inout_ RAS_STATS *lpStatistics );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasClearLinkStatistics(_In_ HRASCONN hRasConn,
+                                       _In_ DWORD dwSubEntry);
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasClearConnectionStatistics( _In_ HRASCONN hRasConn );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetEapUserDataA(
+                    _In_opt_ HANDLE hToken,
+                    _In_opt_ LPCSTR pszPhonebook,
+@@ -2129,6 +2200,7 @@ DWORD APIENTRY RasGetEapUserDataA(
+                    _Inout_ DWORD *pdwSizeofEapData );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetEapUserDataW(
+                    _In_opt_ HANDLE  hToken,
+                    _In_opt_ LPCWSTR pszPhonebook,
+@@ -2136,6 +2208,7 @@ DWORD APIENTRY RasGetEapUserDataW(
+                    _Out_opt_ BYTE    *pbEapData,
+                    _Inout_ DWORD *pdwSizeofEapData );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetEapUserDataA(
+                    _In_opt_ HANDLE hToken,
+                    _In_opt_ LPCSTR pszPhonebook,
+@@ -2143,6 +2216,7 @@ DWORD APIENTRY RasSetEapUserDataA(
+                    _In_ BYTE   *pbEapData,
+                    _In_ DWORD dwSizeofEapData );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetEapUserDataW(
+                    _In_opt_ HANDLE  hToken,
+                    _In_opt_ LPCWSTR pszPhonebook,
+@@ -2150,6 +2224,7 @@ DWORD APIENTRY RasSetEapUserDataW(
+                    _In_ BYTE    *pbEapData,
+                    _In_ DWORD dwSizeofEapData );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetCustomAuthDataA(
+                    _In_opt_ LPCSTR pszPhonebook,
+                    _In_ LPCSTR pszEntry,
+@@ -2157,12 +2232,14 @@ DWORD APIENTRY RasGetCustomAuthDataA(
+                    _Inout_ DWORD  *pdwSizeofCustomAuthData );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetCustomAuthDataW(
+                    _In_opt_ LPCWSTR pszPhonebook,
+                    _In_ LPCWSTR pszEntry,
+                    _Out_writes_bytes_opt_(*pdwSizeofCustomAuthData) BYTE    *pbCustomAuthData,
+                    _Inout_ DWORD   *pdwSizeofCustomAuthData );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetCustomAuthDataA(
+                    _In_opt_ LPCSTR pszPhonebook,
+                    _In_ LPCSTR pszEntry,
+@@ -2170,12 +2247,14 @@ DWORD APIENTRY RasSetCustomAuthDataA(
+                    _In_ DWORD  dwSizeofCustomAuthData
+                    );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasSetCustomAuthDataW(
+                    _In_opt_ LPCWSTR pszPhonebook,
+                    _In_ LPCWSTR pszEntry,
+                    _In_reads_bytes_(dwSizeofCustomAuthData) BYTE    *pbCustomAuthData,
+                    _In_ DWORD   dwSizeofCustomAuthData
+                    );
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetEapUserIdentityW(
+                    _In_opt_ LPCWSTR              pszPhonebook,
+                    _In_ LPCWSTR                  pszEntry,
+@@ -2183,6 +2262,7 @@ DWORD APIENTRY RasGetEapUserIdentityW(
+                    _In_ HWND                     hwnd,
+                    _Out_ LPRASEAPUSERIDENTITYW*  ppRasEapUserIdentity
+ );
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD APIENTRY RasGetEapUserIdentityA(
+                    _In_opt_ LPCSTR                   pszPhonebook,
+                    _In_ LPCSTR                   pszEntry,
+@@ -2190,9 +2270,11 @@ DWORD APIENTRY RasGetEapUserIdentityA(
+                    _In_ HWND                     hwnd,
+                    _Out_ LPRASEAPUSERIDENTITYA*   ppRasEapUserIdentity
+ );
++_Win32_metadata_supported_os_(windows5.0)
+ VOID APIENTRY RasFreeEapUserIdentityW(
+                    _In_ LPRASEAPUSERIDENTITYW    pRasEapUserIdentity
+ );
++_Win32_metadata_supported_os_(windows5.0)
+ VOID APIENTRY RasFreeEapUserIdentityA(
+                    _In_ LPRASEAPUSERIDENTITYA    pRasEapUserIdentity
+ );
+@@ -2200,11 +2282,13 @@ VOID APIENTRY RasFreeEapUserIdentityA(
+ 
+ #if (WINVER >= 0x501)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD APIENTRY  RasDeleteSubEntryA(
+                 _In_opt_ LPCSTR pszPhonebook,
+                 _In_ LPCSTR pszEntry,
+                 _In_ DWORD  dwSubentryId );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD APIENTRY  RasDeleteSubEntryW(
+                 _In_opt_ LPCWSTR pszPhonebook,
+                 _In_ LPCWSTR pszEntry,
+@@ -2216,6 +2300,7 @@ DWORD APIENTRY  RasDeleteSubEntryW(
+ 
+ #ifdef USES_RAS_QUARANTINE_APIS
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD APIENTRY
+ RasGetNapStatus(
+         _In_ HRASCONN hRasconn,
+@@ -2244,6 +2329,7 @@ RASUPDATECONN
+ 
+ #define LPRASUPDATECONN  RASUPDATECONN*
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD APIENTRY
+ RasUpdateConnection(
+         _In_ HRASCONN        hrasconn,
+@@ -2251,6 +2337,7 @@ RasUpdateConnection(
+ 
+ /* Ras Projection information for PPP or IKEv2
+ */
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD APIENTRY
+ RasGetProjectionInfoEx(
+         _In_ HRASCONN              hrasconn,

@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wdstpdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wdstpdi.h
-index a8690521..5783bb8b 100644
+index a8690521..7beb9649 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wdstpdi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wdstpdi.h
 @@ -20,6 +20,9 @@ Environment:
@@ -12,19 +12,154 @@ index a8690521..5783bb8b 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -127,6 +130,7 @@ WDSTRANSPORTPROVIDERAPI
+@@ -114,6 +117,7 @@ typedef struct _WDS_TRANSPORTPROVIDER_SETTINGS
+ 
+ //---Functions the provider must implement (required callbacks)---
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderInitialize(
+@@ -122,13 +126,16 @@ WdsTransportProviderInitialize(
+     _In_ ULONG ulLength
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
  WdsTransportProviderCreateInstance(
      _In_ PCWSTR pwszConfigString,
      _Out_ PHANDLE phInstance
 +        _Win32_metadata_raii_free_(WdsTransportProviderCloseInstance)
  );
  
++_Win32_metadata_supported_os_(windowsserver2008)
  HRESULT
-@@ -144,6 +148,7 @@ WdsTransportProviderOpenContent(
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderCompareContent(
+@@ -138,14 +145,17 @@ WdsTransportProviderCompareContent(
+     _Out_ PBOOL pbContentMatches
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderOpenContent(
      _In_ HANDLE hInstance,
      _In_ PCWSTR pwszContentName,
      _Out_ PHANDLE phContent
 +        _Win32_metadata_raii_free_(WdsTransportProviderCloseContent)
  );
  
++_Win32_metadata_supported_os_(windowsserver2008)
  HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderGetContentMetadata(
+@@ -154,6 +164,7 @@ WdsTransportProviderGetContentMetadata(
+     _Out_ PULONG pulLength
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderUserAccessCheck(
+@@ -162,6 +173,7 @@ WdsTransportProviderUserAccessCheck(
+     _Out_ PBOOL pbAccessAllowed
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderGetContentSize(
+@@ -169,6 +181,7 @@ WdsTransportProviderGetContentSize(
+     _Out_ PULARGE_INTEGER pContentSize
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderReadContent(
+@@ -179,18 +192,21 @@ WdsTransportProviderReadContent(
+     _In_ PVOID pvUserData
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderCloseContent(
+     _In_ HANDLE hContent
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderCloseInstance(
+     _In_ HANDLE hInstance
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderShutdown(
+@@ -198,11 +214,13 @@ WdsTransportProviderShutdown(
+ 
+ //---Functions the provider may implement (optional callbacks)-------
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderDumpState(
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSTRANSPORTPROVIDERAPI
+ WdsTransportProviderRefreshSettings(
+@@ -210,6 +228,7 @@ WdsTransportProviderRefreshSettings(
+ 
+ //---Functions provided by the multicast server----------------------
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSMCSAPI
+ WdsTransportServerRegisterCallback(
+@@ -218,6 +237,7 @@ WdsTransportServerRegisterCallback(
+     _In_ PVOID pfnCallback
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSMCSAPI
+ WdsTransportServerCompleteRead(
+@@ -227,6 +247,7 @@ WdsTransportServerCompleteRead(
+     _In_ HRESULT hReadResult
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSMCSAPI
+ WdsTransportServerTrace(
+@@ -236,6 +257,7 @@ WdsTransportServerTrace(
+     ...
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSMCSAPI
+ WdsTransportServerTraceV(
+@@ -245,6 +267,7 @@ WdsTransportServerTraceV(
+     _In_ va_list Params
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ PVOID
+ WDSMCSAPI
+ WdsTransportServerAllocateBuffer(
+@@ -252,6 +275,7 @@ WdsTransportServerAllocateBuffer(
+     _In_ ULONG ulBufferSize
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2008)
+ HRESULT
+ WDSMCSAPI
+ WdsTransportServerFreeBuffer(

@@ -1,0 +1,14 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/guiddef.h b/generation/WinSDK/RecompiledIdlHeaders/shared/guiddef.h
+index 07ed1a05..d6bd3975 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/guiddef.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/guiddef.h
+@@ -11,6 +11,9 @@
+ 
+ #ifndef GUID_DEFINED
+ #define GUID_DEFINED
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #if defined(__midl)
+ typedef struct {
+     unsigned long  Data1;

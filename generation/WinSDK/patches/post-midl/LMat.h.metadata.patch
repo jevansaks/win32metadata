@@ -1,0 +1,46 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMat.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMat.h
+index 2e59e296..0631ad9a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/LMat.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMat.h
+@@ -33,6 +33,9 @@ Revision History:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -108,6 +111,7 @@ typedef struct _AT_ENUM {
+     LPWSTR  Command;
+ } AT_ENUM, *PAT_ENUM, *LPAT_ENUM;
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetScheduleJobAdd(
+     IN      LPCWSTR         Servername  OPTIONAL,
+@@ -115,6 +119,7 @@ NetScheduleJobAdd(
+     OUT     LPDWORD         JobId
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetScheduleJobDel(
+     IN      LPCWSTR         Servername  OPTIONAL,
+@@ -122,6 +127,7 @@ NetScheduleJobDel(
+     IN      DWORD           MaxJobId
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetScheduleJobEnum(
+     IN      LPCWSTR         Servername              OPTIONAL,
+@@ -132,6 +138,7 @@ NetScheduleJobEnum(
+     IN OUT  LPDWORD         ResumeHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetScheduleJobGetInfo(
+     IN      LPCWSTR         Servername              OPTIONAL,

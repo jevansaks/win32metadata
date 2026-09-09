@@ -1,0 +1,78 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/swdevice.h b/generation/WinSDK/RecompiledIdlHeaders/um/swdevice.h
+index 050a6a4d..ae1f3d47 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/swdevice.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/swdevice.h
+@@ -16,6 +16,9 @@ Abstract:
+ #endif
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <devpropdef.h>
+ #include <swdevicedef.h>
+@@ -38,6 +41,7 @@ typedef VOID (WINAPI *SW_DEVICE_CREATE_CALLBACK)(
+     _In_opt_ PVOID pContext,
+     _In_opt_ PCWSTR pszDeviceInstanceId);
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ _Check_return_ HRESULT WINAPI
+ SwDeviceCreate(
+     _In_ PCWSTR pszEnumeratorName,
+@@ -49,17 +53,20 @@ SwDeviceCreate(
+     _In_opt_ PVOID pContext,
+     _Out_ PHSWDEVICE phSwDevice);
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ VOID WINAPI
+ SwDeviceClose(
+     _In_ HSWDEVICE hSwDevice);
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINBLUE)
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Check_return_ HRESULT WINAPI
+ SwDeviceSetLifetime(
+     _In_ HSWDEVICE hSwDevice,
+     _In_ SW_DEVICE_LIFETIME Lifetime);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Check_return_ HRESULT WINAPI
+ SwDeviceGetLifetime(
+     _In_ HSWDEVICE hSwDevice,
+@@ -67,12 +74,14 @@ SwDeviceGetLifetime(
+ 
+ #endif
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ _Check_return_ HRESULT WINAPI
+ SwDevicePropertySet(
+     _In_ HSWDEVICE hSwDevice,
+     _In_ ULONG cPropertyCount,
+     _In_reads_(cPropertyCount) const DEVPROPERTY *pProperties);
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ _Check_return_ HRESULT WINAPI
+ SwDeviceInterfaceRegister(
+     _In_ HSWDEVICE hSwDevice,
+@@ -83,16 +92,19 @@ SwDeviceInterfaceRegister(
+     _In_ BOOL fEnabled,
+     _Outptr_result_maybenull_ PWSTR* ppszDeviceInterfaceId);
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ VOID WINAPI
+ SwMemFree(
+     _In_ PVOID pMem);
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ _Check_return_ HRESULT WINAPI
+ SwDeviceInterfaceSetState(
+     _In_ HSWDEVICE hSwDevice,
+     _In_ PCWSTR pszDeviceInterfaceId,
+     _In_ BOOL fEnabled);
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ _Check_return_ HRESULT WINAPI
+ SwDeviceInterfacePropertySet(
+     _In_ HSWDEVICE hSwDevice,

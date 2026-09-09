@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gb18030.h b/generation/WinSDK/RecompiledIdlHeaders/um/gb18030.h
-index 1ef27e11..7d0a890c 100644
+index 1ef27e11..60c01489 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/gb18030.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/gb18030.h
 @@ -1,6 +1,9 @@
@@ -12,10 +12,11 @@ index 1ef27e11..7d0a890c 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -95,6 +98,7 @@
+@@ -95,6 +98,8 @@
  //
  ////////////////////////////////////////////////////////////////////////////
  
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  STDAPI_(DWORD) NlsDllCodePageTranslation(
      DWORD CodePage,

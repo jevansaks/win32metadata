@@ -1,0 +1,128 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/syncregistration.h b/generation/WinSDK/RecompiledIdlHeaders/um/syncregistration.h
+index 39ab87d7..f36e796f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/syncregistration.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/syncregistration.h
+@@ -177,6 +177,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -198,27 +201,49 @@ extern "C"{
+ #define SYNC_PROVIDER_CONFIGUI_CONFIGURATION_VERSION ((DWORD)0x00000001)
+ #define SYNC_32_BIT_SUPPORTED ((DWORD)0x00000001)
+ #define SYNC_64_BIT_SUPPORTED ((DWORD)0x00000002)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_INSTANCEID, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 2);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_CLSID, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 3);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_CONFIGUI, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 4);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_CONTENTTYPE, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 5);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_CAPABILITIES, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 6);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_SUPPORTED_ARCHITECTURE, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 7);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_NAME, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 8);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_DESCRIPTION, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 9);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_TOOLTIPS, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 10);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PROVIDER_ICON, 0x84179e61, 0x60f6, 0x4c1c, 0x88, 0xed, 0xf1, 0xc5, 0x31, 0xb3, 0x2b, 0xda, 11);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_INSTANCEID, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 2);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_CLSID, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 3);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_CONTENTTYPE, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 4);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_CAPABILITIES, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 5);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_SUPPORTED_ARCHITECTURE, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 6);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_IS_GLOBAL, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 7);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_NAME, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 8);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_DESCRIPTION, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 9);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_TOOLTIPS, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 10);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_ICON, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 11);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_MENUITEM_NOUI, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 12);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_CONFIGUI_MENUITEM, 0x554b24ea, 0xe8e3, 0x45ba, 0x93, 0x52, 0xdf, 0xb5, 0x61, 0xe1, 0x71, 0xe4, 13);
+ typedef struct _SyncProviderConfiguration
+     {
+@@ -258,6 +283,7 @@ EXTERN_C const IID IID_ISyncProviderRegistration;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("cb45953b-7624-47bc-a472-eb8cac6b222e")
+     ISyncProviderRegistration : public IUnknown
+     {
+@@ -547,6 +573,7 @@ EXTERN_C const IID IID_IEnumSyncProviderConfigUIInfos;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("f6be2602-17c6-4658-a2d7-68ed3330f641")
+     IEnumSyncProviderConfigUIInfos : public IUnknown
+     {
+@@ -666,6 +693,7 @@ EXTERN_C const IID IID_IEnumSyncProviderInfos;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("a04ba850-5eb1-460d-a973-393fcb608a11")
+     IEnumSyncProviderInfos : public IUnknown
+     {
+@@ -785,6 +813,7 @@ EXTERN_C const IID IID_ISyncProviderInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("1ee135de-88a4-4504-b0d0-f7920d7e5ba6")
+     ISyncProviderInfo : public IPropertyStore
+     {
+@@ -914,6 +943,7 @@ EXTERN_C const IID IID_ISyncProviderConfigUIInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("214141ae-33d7-4d8d-8e37-f227e880ce50")
+     ISyncProviderConfigUIInfo : public IPropertyStore
+     {
+@@ -1043,6 +1073,7 @@ EXTERN_C const IID IID_ISyncProviderConfigUI;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("7b0705f6-cbcd-4071-ab05-3bdc364d4a0c")
+     ISyncProviderConfigUI : public IUnknown
+     {
+@@ -1172,6 +1203,7 @@ EXTERN_C const IID IID_IRegisteredSyncProvider;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("913bcf76-47c1-40b5-a896-5e8a9c414c14")
+     IRegisteredSyncProvider : public IUnknown
+     {
+@@ -1300,6 +1332,7 @@ EXTERN_C const IID IID_ISyncRegistrationChange;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("eea0d9ae-6b29-43b4-9e70-e3ae33bb2c3b")
+     ISyncRegistrationChange : public IUnknown
+     {

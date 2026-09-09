@@ -1,0 +1,90 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/joystickapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/joystickapi.h
+index f9288eb7..3c93290f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/joystickapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/joystickapi.h
+@@ -12,6 +12,9 @@
+ 
+ #ifndef _JOYSTICKAPI_H_
+ #define _JOYSTICKAPI_H_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -326,6 +329,7 @@ typedef struct joyinfoex_tag {
+ /* joystick function prototypes */
+ 
+ #if (WINVER >= 0x0400)
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -336,6 +340,7 @@ joyGetPosEx(
+ 
+ #endif /* WINVER >= 0x0400 */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ UINT
+ WINAPI
+@@ -354,6 +359,7 @@ joyGetDevCapsA(
+     _In_ UINT cbjc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -370,9 +376,11 @@ joyGetDevCapsW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI joyGetDevCaps(UINT uJoyID, LPJOYCAPS pjc, UINT cbjc);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -381,6 +389,7 @@ joyGetPos(
+     _Out_ LPJOYINFO pji
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -389,6 +398,7 @@ joyGetThreshold(
+     _Out_ LPUINT puThreshold
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -396,6 +406,7 @@ joyReleaseCapture(
+     _In_ UINT uJoyID
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -406,6 +417,7 @@ joySetCapture(
+     _In_ BOOL fChanged
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -415,6 +427,7 @@ joySetThreshold(
+     );
+ 
+ #if (WINVER >= 0x0400)
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI

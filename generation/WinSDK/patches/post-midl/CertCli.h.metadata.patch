@@ -1,0 +1,85 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CertCli.h b/generation/WinSDK/RecompiledIdlHeaders/um/CertCli.h
+index 30283c32..0d4dca6e 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/CertCli.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/CertCli.h
+@@ -162,6 +162,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -180,6 +183,7 @@ EXTERN_C const IID IID_ICertGetConfig;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("c7ea09c0-ce17-11d0-8833-00a0c903b83c")
+     ICertGetConfig : public IDispatch
+     {
+@@ -320,6 +324,7 @@ EXTERN_C const IID IID_ICertConfig;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("372fce34-4324-11d0-8810-00a0c903b83c")
+     ICertConfig : public IDispatch
+     {
+@@ -497,6 +502,7 @@ EXTERN_C const IID IID_ICertConfig2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("7a18edde-7e78-4163-8ded-78e2c9cee924")
+     ICertConfig2 : public ICertConfig
+     {
+@@ -671,6 +677,7 @@ EXTERN_C const IID IID_ICertRequest;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("014e4840-5523-11d0-8812-00a0c903b83c")
+     ICertRequest : public IDispatch
+     {
+@@ -895,6 +902,7 @@ EXTERN_C const IID IID_ICertRequest2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("a4772988-4a85-4fa9-824e-b5cf5c16405a")
+     ICertRequest2 : public ICertRequest
+     {
+@@ -1209,6 +1217,7 @@ EXTERN_C const IID IID_ICertRequest3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("AFC8F92B-33A2-4861-BF36-2933B7CD67B3")
+     ICertRequest3 : public ICertRequest2
+     {
+@@ -1927,14 +1936,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

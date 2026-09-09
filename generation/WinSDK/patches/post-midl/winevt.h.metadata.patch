@@ -1,0 +1,326 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winevt.h b/generation/WinSDK/RecompiledIdlHeaders/um/winevt.h
+index a5d8211d..fcbd9d55 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/winevt.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/winevt.h
+@@ -15,6 +15,9 @@ Abstract:
+ #ifndef __WINEVT_H__
+ #define __WINEVT_H__
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or EventLogService Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_EVENTLOGSERVICE)
+@@ -154,6 +157,8 @@ typedef struct _EVT_RPC_LOGIN
+ 
+ 
+ // Timeout and Flags must currently be 0
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtOpenSession(
+@@ -169,6 +174,8 @@ EvtOpenSession(
+ //
+ ////////////////////////////////////////////////////////////////////////////////
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -177,12 +184,15 @@ EvtClose(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ EvtCancel(
+     _In_opt_ EVT_HANDLE Object
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -223,6 +233,8 @@ typedef enum _EVT_SEEK_FLAGS
+ } EVT_SEEK_FLAGS;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtQuery(
+@@ -232,6 +244,8 @@ EvtQuery(
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -245,6 +259,8 @@ EvtNext(
+     );
+ 
+ // Timeout must currently be 0
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ EvtSeek(
+@@ -286,6 +302,8 @@ typedef DWORD (WINAPI *EVT_SUBSCRIBE_CALLBACK)(
+     _Maybenull_ PVOID UserContext,
+     _In_ EVT_HANDLE Event );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtSubscribe(
+@@ -345,6 +363,8 @@ typedef enum _EVT_RENDER_FLAGS
+ 
+  } EVT_RENDER_FLAGS;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtCreateRenderContext(
+@@ -353,6 +373,8 @@ EvtCreateRenderContext(
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -382,6 +404,8 @@ typedef enum _EVT_FORMAT_MESSAGE_FLAGS
+ 
+ 
+ // PublisherMetadata is NULL for forwarded events
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -423,6 +447,8 @@ typedef enum _EVT_LOG_PROPERTY_ID
+ 
+ } EVT_LOG_PROPERTY_ID;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtOpenLog(
+@@ -431,6 +457,8 @@ EvtOpenLog(
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -442,6 +470,8 @@ EvtGetLogInfo(
+     _Out_ PDWORD PropertyValueBufferUsed
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ EvtClearLog(
+@@ -461,6 +491,8 @@ typedef enum _EVT_EXPORTLOG_FLAGS
+ 
+ } EVT_EXPORTLOG_FLAGS;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ EvtExportLog(
+@@ -472,6 +504,8 @@ EvtExportLog(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ EvtArchiveExportedLog(
+@@ -546,6 +580,8 @@ typedef enum _EVT_CHANNEL_SID_TYPE
+ } EVT_CHANNEL_SID_TYPE;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtOpenChannelEnum(
+@@ -553,6 +589,8 @@ EvtOpenChannelEnum(
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -563,6 +601,8 @@ EvtNextChannelPath(
+     _Out_ PDWORD ChannelPathBufferUsed
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtOpenChannelConfig(
+@@ -572,6 +612,8 @@ EvtOpenChannelConfig(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ EvtSaveChannelConfig(
+@@ -579,6 +621,8 @@ EvtSaveChannelConfig(
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ EvtSetChannelConfigProperty(
+@@ -588,6 +632,8 @@ EvtSetChannelConfigProperty(
+     _In_ PEVT_VARIANT PropertyValue
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -654,6 +700,8 @@ typedef enum _EVT_PUBLISHER_METADATA_PROPERTY_ID
+ } EVT_PUBLISHER_METADATA_PROPERTY_ID;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtOpenPublisherEnum(
+@@ -661,6 +709,8 @@ EvtOpenPublisherEnum(
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -671,6 +721,8 @@ EvtNextPublisherId(
+     _Out_ PDWORD PublisherIdBufferUsed
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtOpenPublisherMetadata(
+@@ -681,6 +733,8 @@ EvtOpenPublisherMetadata(
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -715,6 +769,8 @@ typedef enum _EVT_EVENT_METADATA_PROPERTY_ID
+ } EVT_EVENT_METADATA_PROPERTY_ID;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtOpenEventMetadataEnum(
+@@ -722,6 +778,8 @@ EvtOpenEventMetadataEnum(
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtNextEventMetadata(
+@@ -729,6 +787,8 @@ EvtNextEventMetadata(
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -750,6 +810,8 @@ EvtGetEventMetadataProperty(
+ typedef HANDLE EVT_OBJECT_ARRAY_PROPERTY_HANDLE;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -758,6 +820,8 @@ EvtGetObjectArraySize(
+     _Out_ PDWORD ObjectArraySize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -805,6 +869,8 @@ typedef enum _EVT_EVENT_PROPERTY_ID
+ } EVT_EVENT_PROPERTY_ID;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI
+@@ -816,12 +882,16 @@ EvtGetQueryInfo(
+     _Out_ PDWORD PropertyValueBufferUsed
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ EVT_HANDLE
+ WINAPI
+ EvtCreateBookmark(
+     _In_opt_z_ LPCWSTR BookmarkXml
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ EvtUpdateBookmark(
+@@ -829,6 +899,8 @@ EvtUpdateBookmark(
+     _In_ EVT_HANDLE Event
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ _Success_(return != 0)
+ BOOL
+ WINAPI

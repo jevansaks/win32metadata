@@ -1,0 +1,14 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MapiUnicodeHelp.h b/generation/WinSDK/RecompiledIdlHeaders/um/MapiUnicodeHelp.h
+index eb2ded50..6c9bc213 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/MapiUnicodeHelp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/MapiUnicodeHelp.h
+@@ -14,6 +14,9 @@
+ #pragma once
+ #include <new>
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #include <Shellapi.h>
+ 
+ #pragma region Desktop Family

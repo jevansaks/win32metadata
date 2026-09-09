@@ -1,0 +1,271 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/netfw.h b/generation/WinSDK/RecompiledIdlHeaders/um/netfw.h
+index cc07341b..35d85b17 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/netfw.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/netfw.h
+@@ -396,9 +396,13 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT
+ WINAPI
+ NetworkIsolationSetupAppContainerBinaries (
+@@ -485,6 +489,7 @@ typedef void (CALLBACK *PAC_CHANGES_CALLBACK_FN) (
+     _In_ const INET_FIREWALL_AC_CHANGE *pChange
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationRegisterForAppContainerChanges(
+@@ -493,23 +498,28 @@ NetworkIsolationRegisterForAppContainerChanges(
+     _In_opt_ PVOID context,
+     _Out_ HANDLE *registrationObject
+     );
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationUnregisterForAppContainerChanges(
+     _In_ HANDLE registrationObject 
+     );
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_import_library_("Firewallapi.dll")
+ HRESULT
+ WINAPI
+ NetworkIsolationEnumerateAppContainerRules(
+     _Outptr_ IEnumVARIANT ** newEnum
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationFreeAppContainers(
+     _In_ PINET_FIREWALL_APP_CONTAINER pPublicAppCs 
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationEnumAppContainers(
+@@ -517,12 +527,14 @@ NetworkIsolationEnumAppContainers(
+     _Out_ DWORD *pdwNumPublicAppCs,
+     _Outptr_result_buffer_(*pdwNumPublicAppCs) PINET_FIREWALL_APP_CONTAINER *ppPublicAppCs 
+     );
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationGetAppContainerConfig(
+     _Out_ DWORD *pdwNumPublicAppCs,
+     _Outptr_result_buffer_(*pdwNumPublicAppCs) PSID_AND_ATTRIBUTES *appContainerSids
+     );
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationSetAppContainerConfig(
+@@ -540,6 +552,7 @@ typedef enum _NETISO_ERROR_TYPE
+     NETISO_ERROR_TYPE_MAX                       = 0x04
+ } NETISO_ERROR_TYPE;
+ #endif //__NET_ISOLATION_DIAG_TYPES__
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationDiagnoseConnectFailureAndGetInfo(
+@@ -555,6 +568,8 @@ typedef void (CALLBACK *PNETISO_EDP_ID_CALLBACK_FN) (
+     );
+ #define NETISO_GEID_FOR_WDAG 0x01
+ #define NETISO_GEID_FOR_NEUTRAL_AWARE 0x02
++_Win32_metadata_supported_os_(windows10.0.10240)
++_Win32_metadata_import_library_("Firewallapi.dll")
+ DWORD
+ WINAPI
+ NetworkIsolationGetEnterpriseIdAsync(
+@@ -564,6 +579,8 @@ NetworkIsolationGetEnterpriseIdAsync(
+     _In_   PNETISO_EDP_ID_CALLBACK_FN callback,
+     _Out_  HANDLE *hOperation 
+     );
++_Win32_metadata_supported_os_(windows10.0.10240)
++_Win32_metadata_import_library_("Firewallapi.dll")
+ DWORD
+ WINAPI
+ NetworkIsolationGetEnterpriseIdClose(
+@@ -664,6 +681,7 @@ EXTERN_C const IID IID_INetFwRemoteAdminSettings;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("D4BECDDF-6F73-4A83-B832-9C66874CD20E")
+     INetFwRemoteAdminSettings : public IDispatch
+     {
+@@ -904,6 +922,7 @@ EXTERN_C const IID IID_INetFwIcmpSettings;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("A6207B2E-7CDD-426A-951E-5E1CBC5AFEAD")
+     INetFwIcmpSettings : public IDispatch
+     {
+@@ -1300,6 +1319,7 @@ EXTERN_C const IID IID_INetFwOpenPort;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("E0483BA0-47FF-4D9C-A6D6-7741D0B195F7")
+     INetFwOpenPort : public IDispatch
+     {
+@@ -1631,6 +1651,7 @@ EXTERN_C const IID IID_INetFwOpenPorts;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("C0E9D7FA-E07E-430A-B19A-090CE82D92E2")
+     INetFwOpenPorts : public IDispatch
+     {
+@@ -1844,6 +1865,7 @@ EXTERN_C const IID IID_INetFwService;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("79FD57C8-908E-4A36-9888-D5B3F0A444CF")
+     INetFwService : public IDispatch
+     {
+@@ -2136,6 +2158,7 @@ EXTERN_C const IID IID_INetFwServices;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("79649BB4-903E-421B-94C9-79848E79F6EE")
+     INetFwServices : public IDispatch
+     {
+@@ -2315,6 +2338,7 @@ EXTERN_C const IID IID_INetFwAuthorizedApplication;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("B5E64FFA-C2C5-444E-A301-FB5E00018050")
+     INetFwAuthorizedApplication : public IDispatch
+     {
+@@ -2607,6 +2631,7 @@ EXTERN_C const IID IID_INetFwAuthorizedApplications;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("644EFD52-CCF9-486C-97A2-39F352570B30")
+     INetFwAuthorizedApplications : public IDispatch
+     {
+@@ -2812,6 +2837,7 @@ EXTERN_C const IID IID_INetFwRule;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("AF230D27-BABA-4E42-ACED-F524F22CFCE2")
+     INetFwRule : public IDispatch
+     {
+@@ -3416,6 +3442,7 @@ EXTERN_C const IID IID_INetFwRule2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("9C27C8DA-189B-4DDE-89F7-8B39A316782C")
+     INetFwRule2 : public INetFwRule
+     {
+@@ -3903,6 +3930,7 @@ EXTERN_C const IID IID_INetFwRule3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("B21563FF-D696-4222-AB46-4E89B73AB34A")
+     INetFwRule3 : public INetFwRule2
+     {
+@@ -4539,6 +4567,7 @@ EXTERN_C const IID IID_INetFwRules;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("9C4C6277-5027-441E-AFAE-CA1F542DA009")
+     INetFwRules : public IDispatch
+     {
+@@ -4744,6 +4773,7 @@ EXTERN_C const IID IID_INetFwServiceRestriction;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8267BBE3-F890-491C-B7B6-2DB1EF0E5D2B")
+     INetFwServiceRestriction : public IDispatch
+     {
+@@ -4939,6 +4969,7 @@ EXTERN_C const IID IID_INetFwProfile;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("174A0DDA-E9F9-449D-993B-21AB667CA456")
+     INetFwProfile : public IDispatch
+     {
+@@ -5257,6 +5288,7 @@ EXTERN_C const IID IID_INetFwPolicy;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("D46D2478-9AC9-4008-9DC7-5563CE5536CC")
+     INetFwPolicy : public IDispatch
+     {
+@@ -5423,6 +5455,7 @@ EXTERN_C const IID IID_INetFwPolicy2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("98325047-C671-4174-8D81-DEFCD3F03186")
+     INetFwPolicy2 : public IDispatch
+     {
+@@ -5917,6 +5950,7 @@ EXTERN_C const IID IID_INetFwMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("F7898AF5-CAC4-4632-A2EC-DA06E5111AF2")
+     INetFwMgr : public IDispatch
+     {
+@@ -6154,6 +6188,7 @@ EXTERN_C const IID IID_INetFwProduct;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("71881699-18f4-458b-b892-3ffce5e07f75")
+     INetFwProduct : public IDispatch
+     {
+@@ -6355,6 +6390,7 @@ EXTERN_C const IID IID_INetFwProducts;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("39EB36E0-2097-40BD-8AF2-63A13B525362")
+     INetFwProducts : public IDispatch
+     {
+@@ -6646,14 +6682,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/httpcach.h b/generation/WinSDK/RecompiledIdlHeaders/um/httpcach.h
+index bccadf1e..af66acd1 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/httpcach.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/httpcach.h
+@@ -4,6 +4,9 @@
+ #ifndef _HTTPCACH_H_
+ #define _HTTPCACH_H_
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -78,6 +81,7 @@ public:
+         return FILE_CACHE_NAME;
+     }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+     virtual
+     PCWSTR
+     GetPath(

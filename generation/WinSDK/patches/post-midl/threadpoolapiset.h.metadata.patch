@@ -1,84 +1,320 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/threadpoolapiset.h b/generation/WinSDK/RecompiledIdlHeaders/um/threadpoolapiset.h
-index c0e871bb..f624a78e 100644
+index c0e871bb..2123934b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/threadpoolapiset.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/threadpoolapiset.h
-@@ -42,6 +42,7 @@ VOID
+@@ -12,6 +12,9 @@
+ 
+ #ifndef _THREADPOOLAPISET_H_
+ #define _THREADPOOLAPISET_H_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -42,6 +45,8 @@ VOID
  
  #if (_WIN32_WINNT >= 0x0600)
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  _Must_inspect_result_
  PTP_POOL
-@@ -58,6 +59,7 @@ SetThreadpoolThreadMaximum(
+@@ -50,6 +55,7 @@ CreateThreadpool(
+     _Reserved_ PVOID reserved
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -58,6 +64,8 @@ SetThreadpoolThreadMaximum(
      _In_ DWORD cthrdMost
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  WINAPI
-@@ -66,6 +68,7 @@ SetThreadpoolThreadMinimum(
+@@ -66,6 +74,8 @@ SetThreadpoolThreadMinimum(
      _In_ DWORD cthrdMic
      );
  
++_Win32_metadata_supported_os_(windows6.1)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  WINAPI
-@@ -74,6 +77,7 @@ SetThreadpoolStackInformation(
+@@ -74,6 +84,8 @@ SetThreadpoolStackInformation(
      _In_ PTP_POOL_STACK_INFORMATION ptpsi
      );
  
++_Win32_metadata_supported_os_(windows6.1)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  WINAPI
-@@ -89,6 +93,7 @@ CloseThreadpool(
+@@ -82,6 +94,7 @@ QueryThreadpoolStackInformation(
+     _Out_ PTP_POOL_STACK_INFORMATION ptpsi
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -89,6 +102,8 @@ CloseThreadpool(
      _Inout_ PTP_POOL ptpp
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  _Must_inspect_result_
  PTP_CLEANUP_GROUP
-@@ -168,6 +173,7 @@ DisassociateCurrentThreadFromCallback(
+@@ -97,6 +112,7 @@ CreateThreadpoolCleanupGroup(
+     VOID
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -106,6 +122,7 @@ CloseThreadpoolCleanupGroupMembers(
+     _Inout_opt_ PVOID pvCleanupContext
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -113,6 +130,7 @@ CloseThreadpoolCleanupGroup(
+     _Inout_ PTP_CLEANUP_GROUP ptpcg
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -121,6 +139,7 @@ SetEventWhenCallbackReturns(
+     _In_ HANDLE evt
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -130,6 +149,7 @@ ReleaseSemaphoreWhenCallbackReturns(
+     _In_ DWORD crel
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -138,6 +158,7 @@ ReleaseMutexWhenCallbackReturns(
+     _In_ HANDLE mut
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -146,6 +167,7 @@ LeaveCriticalSectionWhenCallbackReturns(
+     _Inout_ PCRITICAL_SECTION pcs
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -154,6 +176,7 @@ FreeLibraryWhenCallbackReturns(
+     _In_ HMODULE mod
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -161,6 +184,7 @@ CallbackMayRunLong(
      _Inout_ PTP_CALLBACK_INSTANCE pci
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -168,6 +192,8 @@ DisassociateCurrentThreadFromCallback(
+     _Inout_ PTP_CALLBACK_INSTANCE pci
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  _Must_inspect_result_
  BOOL
-@@ -178,6 +184,7 @@ TrySubmitThreadpoolCallback(
+@@ -178,6 +204,8 @@ TrySubmitThreadpoolCallback(
      _In_opt_ PTP_CALLBACK_ENVIRON pcbe
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  _Must_inspect_result_
  PTP_WORK
-@@ -210,6 +217,7 @@ CloseThreadpoolWork(
+@@ -188,6 +216,7 @@ CreateThreadpoolWork(
+     _In_opt_ PTP_CALLBACK_ENVIRON pcbe
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -195,6 +224,7 @@ SubmitThreadpoolWork(
      _Inout_ PTP_WORK pwk
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -203,6 +233,7 @@ WaitForThreadpoolWorkCallbacks(
+     _In_ BOOL fCancelPendingCallbacks
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -210,6 +241,8 @@ CloseThreadpoolWork(
+     _Inout_ PTP_WORK pwk
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  _Must_inspect_result_
  PTP_TIMER
-@@ -252,6 +260,7 @@ CloseThreadpoolTimer(
+@@ -220,6 +253,7 @@ CreateThreadpoolTimer(
+     _In_opt_ PTP_CALLBACK_ENVIRON pcbe
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -230,6 +264,7 @@ SetThreadpoolTimer(
+     _In_opt_ DWORD msWindowLength
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -237,6 +272,7 @@ IsThreadpoolTimerSet(
      _Inout_ PTP_TIMER pti
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -245,6 +281,7 @@ WaitForThreadpoolTimerCallbacks(
+     _In_ BOOL fCancelPendingCallbacks
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -252,6 +289,8 @@ CloseThreadpoolTimer(
+     _Inout_ PTP_TIMER pti
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  _Must_inspect_result_
  PTP_WAIT
-@@ -286,6 +295,7 @@ CloseThreadpoolWait(
+@@ -262,6 +301,7 @@ CreateThreadpoolWait(
+     _In_opt_ PTP_CALLBACK_ENVIRON pcbe
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -271,6 +311,7 @@ SetThreadpoolWait(
+     _In_opt_ PFILETIME pftTimeout
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -279,6 +320,7 @@ WaitForThreadpoolWaitCallbacks(
+     _In_ BOOL fCancelPendingCallbacks
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -286,6 +328,8 @@ CloseThreadpoolWait(
      _Inout_ PTP_WAIT pwa
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  _Must_inspect_result_
  PTP_IO
+@@ -297,6 +341,7 @@ CreateThreadpoolIo(
+     _In_opt_ PTP_CALLBACK_ENVIRON pcbe
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -304,6 +349,7 @@ StartThreadpoolIo(
+     _Inout_ PTP_IO pio
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -311,6 +357,7 @@ CancelThreadpoolIo(
+     _Inout_ PTP_IO pio
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -319,6 +366,7 @@ WaitForThreadpoolIoCallbacks(
+     _In_ BOOL fCancelPendingCallbacks
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -332,6 +380,7 @@ CloseThreadpoolIo(
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -342,6 +391,7 @@ SetThreadpoolTimerEx(
+     _In_opt_ DWORD msWindowLength
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ WINBASEAPI
+ BOOL
+ WINAPI

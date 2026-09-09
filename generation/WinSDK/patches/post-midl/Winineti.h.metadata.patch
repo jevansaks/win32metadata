@@ -1,0 +1,237 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h
+index d951d495..eb802901 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h
+@@ -1,5 +1,8 @@
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -1042,6 +1045,8 @@ URLCACHEAPI_(DWORD) CommitUrlCacheEntryBinaryBlob(
+ #define INTERNET_CACHE_CONTAINER_SHARE_READ (0x100)
+ #define INTERNET_CACHE_CONTAINER_SHARE_READ_WRITE (0x300)
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI CreateUrlCacheContainerA(
+     _In_ LPCSTR Name,
+     _In_ LPCSTR lpCachePrefix,
+@@ -1052,6 +1057,8 @@ BOOLAPI CreateUrlCacheContainerA(
+     _Reserved_ LPVOID pvBuffer,
+     _Reserved_ LPDWORD cbBuffer
+     );
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI CreateUrlCacheContainerW(
+     _In_ LPCWSTR Name,
+     _In_ LPCWSTR lpCachePrefix,
+@@ -1068,10 +1075,14 @@ BOOLAPI CreateUrlCacheContainerW(
+ #define CreateUrlCacheContainer  CreateUrlCacheContainerA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI DeleteUrlCacheContainerA(
+     _In_ LPCSTR Name,
+     _In_ DWORD dwOptions
+     );
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI DeleteUrlCacheContainerW(
+     _In_ LPCWSTR Name,
+     _In_ DWORD dwOptions
+@@ -1161,11 +1172,15 @@ typedef enum {
+ } WININET_SYNC_MODE;
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI FreeUrlCacheSpaceA(
+     _In_opt_ LPCSTR lpszCachePath,
+     _In_ DWORD dwSize,
+     _In_ DWORD dwFilter
+     );
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI FreeUrlCacheSpaceW(
+     _In_opt_ LPCWSTR lpszCachePath,
+     _In_ DWORD dwSize,
+@@ -1229,12 +1244,16 @@ DWORD UrlCacheGetGlobalCacheSize(
+ #define CACHE_CONFIG_CONTENT_USAGE_FC                                0x00002000
+ #define CACHE_CONFIG_STICKY_CONTENT_USAGE_FC                         0x00004000
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOLAPI
+ GetUrlCacheConfigInfoA(
+     _Inout_ LPINTERNET_CACHE_CONFIG_INFOA lpCacheConfigInfo,
+     _Reserved_ LPDWORD lpcbCacheConfigInfo,
+     _In_ DWORD dwFieldControl
+     );
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOLAPI
+ GetUrlCacheConfigInfoW(
+     _Inout_ LPINTERNET_CACHE_CONFIG_INFOW lpCacheConfigInfo,
+@@ -1737,6 +1756,7 @@ UrlCacheServer(
+ // Autodial APIs
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ INTERNETAPI_(DWORD) InternetDialA(
+     _In_ HWND     hwndParent,
+     _In_opt_ LPSTR   lpszConnectoid,
+@@ -1745,6 +1765,7 @@ INTERNETAPI_(DWORD) InternetDialA(
+     _Reserved_ DWORD    dwReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ INTERNETAPI_(DWORD) InternetDialW(
+     _In_ HWND     hwndParent,
+     _In_opt_ LPWSTR   lpszConnectoid,
+@@ -1759,6 +1780,7 @@ INTERNETAPI_(DWORD) InternetDialW(
+ #ifdef _WINX32_
+ #define InternetDial  InternetDialA
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ INTERNETAPI_(DWORD) InternetDial(
+     _In_ HWND     hwndParent,
+     _In_opt_ LPSTR   lpszConnectoid,
+@@ -1775,6 +1797,7 @@ INTERNETAPI_(DWORD) InternetDial(
+ #define INTERNET_DIAL_SHOW_OFFLINE     0x4000
+ #define INTERNET_DIAL_UNATTENDED       0x8000
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ INTERNETAPI_(DWORD) InternetHangUp(
+     _In_   DWORD_PTR    dwConnection,
+     _Reserved_ DWORD        dwReserved);
+@@ -1783,12 +1806,16 @@ INTERNETAPI_(DWORD) InternetHangUp(
+ #define INTERENT_GOONLINE_NOPROMPT 0x00000002
+ #define INTERENT_GOONLINE_MASK     0x00000003
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI InternetGoOnlineA(
+     _In_opt_ LPCSTR lpszURL,
+     _In_ HWND     hwndParent,
+     _In_ DWORD    dwFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI InternetGoOnlineW(
+     _In_opt_ LPCWSTR lpszURL,
+     _In_ HWND     hwndParent,
+@@ -1801,6 +1828,8 @@ BOOLAPI InternetGoOnlineW(
+ #ifdef _WINX32_
+ #define InternetGoOnline  InternetGoOnlineA
+ #else
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI InternetGoOnline(
+     _In_opt_ LPSTR   lpszURL,
+     _In_ HWND     hwndParent,
+@@ -1809,6 +1838,8 @@ BOOLAPI InternetGoOnline(
+ #endif // _WINX32_
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI InternetAutodial(
+     _In_       DWORD  dwFlags,
+     _In_opt_ HWND   hwndParent);
+@@ -1821,13 +1852,19 @@ BOOLAPI InternetAutodial(
+ 
+ 
+ #define INTERNET_AUTODIAL_FLAGS_MASK (INTERNET_AUTODIAL_FORCE_ONLINE | INTERNET_AUTODIAL_FORCE_UNATTENDED | INTERNET_AUTODIAL_FAILIFSECURITYCHECK | INTERNET_AUTODIAL_OVERRIDE_NET_PRESENT)
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI InternetAutodialHangup(
+     _Reserved_ DWORD    dwReserved);
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI InternetGetConnectedState(
+     _Out_  LPDWORD  lpdwFlags,
+     _Reserved_ DWORD    dwReserved);
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI
+ InternetGetConnectedStateExA(
+     _Out_opt_ LPDWORD lpdwFlags,
+@@ -1836,6 +1873,8 @@ InternetGetConnectedStateExA(
+     _Reserved_ DWORD dwReserved
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI
+ InternetGetConnectedStateExW(
+     _Out_opt_ LPDWORD lpdwFlags,
+@@ -1880,16 +1919,21 @@ ReadGuidsForConnectedNetworks(
+ #define INTERNET_AUTOPROXY_INIT_MASK (INTERNET_AUTOPROXY_INIT_DEFAULT|INTERNET_AUTOPROXY_INIT_DOWNLOADSYNC|INTERNET_AUTOPROXY_INIT_QUERYSTATE|INTERNET_AUTOPROXY_INIT_ONLYQUERY)
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI InternetInitializeAutoProxyDll(
+     _In_ DWORD dwReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI DetectAutoProxyUrl(
+     _Out_writes_(cchAutoProxyUrl) PSTR pszAutoProxyUrl,
+     _In_ DWORD cchAutoProxyUrl,
+     _In_ DWORD dwDetectFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOLAPI CreateMD5SSOHash (
+     _In_ PWSTR    pszChallengeInfo,
+     _In_ PWSTR    pwszRealm,
+@@ -1903,6 +1947,8 @@ BOOLAPI CreateMD5SSOHash (
+ #ifdef _WINX32_
+ #define InternetGetConnectedStateEx  InternetGetConnectedStateExA
+ #else
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ BOOLAPI InternetGetConnectedStateEx(
+     _Out_ LPDWORD lpdwFlags,
+     _Out_writes_opt_(dwNameLen) LPSTR lpszConnectionName,
+@@ -2107,12 +2153,14 @@ BOOLAPI IsDomainLegalCookieDomainW(    // in "wininet\http\cookie.cxx"
+ #endif // !UNICODE
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOLAPI InternetEnumPerSiteCookieDecisionA(
+     _Out_writes_to_(*pcSiteNameSize, *pcSiteNameSize) LPSTR pszSiteName,
+     _Inout_ unsigned long *pcSiteNameSize,
+     _Out_ unsigned long *pdwDecision,
+     _In_ unsigned long dwIndex
+ );
++_Win32_metadata_supported_os_(windows5.0)
+ BOOLAPI InternetEnumPerSiteCookieDecisionW(
+     _Out_writes_to_(*pcSiteNameSize, *pcSiteNameSize) LPWSTR pszSiteName,
+     _Inout_ unsigned long *pcSiteNameSize,
+@@ -2145,6 +2193,7 @@ BOOLAPI InternetEnumPerSiteCookieDecisionW(
+ #define PRIVACY_TYPE_FIRST_PARTY        0
+ #define PRIVACY_TYPE_THIRD_PARTY        1
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ INTERNETAPI_(DWORD)
+ PrivacySetZonePreferenceW(
+     _In_ DWORD       dwZone,
+@@ -2153,6 +2202,7 @@ PrivacySetZonePreferenceW(
+     _In_opt_ LPCWSTR     pszPreference
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ INTERNETAPI_(DWORD)
+ PrivacyGetZonePreferenceW(
+     _In_ DWORD dwZone,

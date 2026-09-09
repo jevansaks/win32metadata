@@ -1,0 +1,523 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
+index 63307cd1..52b7ea3a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ //+---------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -23,6 +26,23 @@
+ extern "C" {
+ #endif
+ 
++#if defined(WIN32METADATA)
++enum class CERT_KEY_SPEC : int;
++#else
++typedef DWORD CERT_KEY_SPEC;
++#endif
++
++#if defined(WIN32METADATA)
++enum class NCRYPT_OPERATION : int;
++enum class NCRYPT_FLAGS : int;
++enum class NCRYPT_ALGORITHM_NAME_CLASS : int;
++#else
++typedef DWORD NCRYPT_OPERATION;
++typedef DWORD NCRYPT_FLAGS;
++typedef DWORD NCRYPT_ALGORITHM_NAME_CLASS;
++#endif
++
++
+ #ifndef WINAPI
+ #define WINAPI __stdcall
+ #endif
+@@ -306,7 +326,9 @@ typedef BCryptBufferDesc* PNCryptBufferDesc;
+ //
+ 
+ typedef ULONG_PTR NCRYPT_HANDLE;
++_Win32_metadata_also_usable_for_(NCRYPT_HANDLE)
+ typedef ULONG_PTR NCRYPT_PROV_HANDLE;
++_Win32_metadata_also_usable_for_(NCRYPT_HANDLE)
+ typedef ULONG_PTR NCRYPT_KEY_HANDLE;
+ typedef ULONG_PTR NCRYPT_HASH_HANDLE;
+ typedef ULONG_PTR NCRYPT_SECRET_HANDLE;
+@@ -691,11 +713,14 @@ typedef struct _NCRYPT_TPM_PLATFORM_ATTESTATION_STATEMENT
+ #define NCRYPT_IGNORE_DEVICE_STATE_FLAG         0x00001000  // NCryptOpenStorageProvider
+ #endif // (NTDDI_VERSION >= NTDDI_WINBLUE)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+ NCryptOpenStorageProvider(
+-    _Out_   NCRYPT_PROV_HANDLE *phProvider,
++    _Out_   NCRYPT_PROV_HANDLE *phProvider
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptFreeObject),
+     _In_opt_ LPCWSTR pszProviderName,
+     _In_    DWORD   dwFlags);
+ 
+@@ -720,24 +745,26 @@ NCryptOpenStorageProvider(
+ typedef struct _NCryptAlgorithmName
+ {
+     LPWSTR  pszName;
+-    DWORD   dwClass;            // the CNG interface that supports this algorithm
+-    DWORD   dwAlgOperations;    // the types of operations supported by this algorithm
++    NCRYPT_ALGORITHM_NAME_CLASS   dwClass;            // the CNG interface that supports this algorithm
++    NCRYPT_OPERATION   dwAlgOperations;    // the types of operations supported by this algorithm
+     DWORD   dwFlags;
+ } NCryptAlgorithmName;
+ // certenrolls_end
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+ NCryptEnumAlgorithms(
+     _In_    NCRYPT_PROV_HANDLE hProvider,
+-    _In_    DWORD   dwAlgOperations,
++    _In_    NCRYPT_OPERATION   dwAlgOperations,
+     _Out_   DWORD * pdwAlgCount,
+     _Outptr_result_buffer_(*pdwAlgCount) NCryptAlgorithmName **ppAlgList,
+     _In_    DWORD   dwFlags);
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -755,10 +782,11 @@ typedef struct NCryptKeyName
+ {
+     LPWSTR  pszName;
+     LPWSTR  pszAlgid;
+-    DWORD   dwLegacyKeySpec;
++    CERT_KEY_SPEC   dwLegacyKeySpec;
+     DWORD   dwFlags;
+ } NCryptKeyName;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -767,7 +795,7 @@ NCryptEnumKeys(
+     _In_opt_ LPCWSTR pszScope,
+     _Outptr_ NCryptKeyName **ppKeyName,
+     _Inout_ PVOID * ppEnumState,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
+@@ -780,6 +808,7 @@ typedef struct NCryptProviderName
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -793,6 +822,7 @@ NCryptEnumStorageProviders(
+ #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ #pragma endregion
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ SECURITY_STATUS
+ WINAPI
+ NCryptFreeBuffer(
+@@ -810,15 +840,18 @@ NCryptFreeBuffer(
+ #define NCRYPT_EXTENDED_ERRORS_FLAG     0x10000000
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+ NCryptOpenKey(
+     _In_    NCRYPT_PROV_HANDLE hProvider,
+-    _Out_   NCRYPT_KEY_HANDLE *phKey,
++    _Out_   NCRYPT_KEY_HANDLE *phKey
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptFreeObject),
+     _In_    LPCWSTR pszKeyName,
+-    _In_opt_ DWORD  dwLegacyKeySpec,
+-    _In_    DWORD   dwFlags);
++    _In_opt_ CERT_KEY_SPEC  dwLegacyKeySpec,
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
+@@ -826,16 +859,19 @@ NCryptOpenKey(
+ #define NCRYPT_MACHINE_KEY_FLAG         0x00000020
+ #define NCRYPT_OVERWRITE_KEY_FLAG       0x00000080
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+ NCryptCreatePersistedKey(
+     _In_    NCRYPT_PROV_HANDLE hProvider,
+-    _Out_   NCRYPT_KEY_HANDLE *phKey,
++    _Out_   NCRYPT_KEY_HANDLE *phKey
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptFreeObject),
+     _In_    LPCWSTR pszAlgId,
+     _In_opt_ LPCWSTR pszKeyName,
+-    _In_    DWORD   dwLegacyKeySpec,
+-    _In_    DWORD   dwFlags);
++    _In_    CERT_KEY_SPEC   dwLegacyKeySpec,
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
+@@ -1241,6 +1277,7 @@ typedef struct __NCRYPT_PCP_RAW_POLICYDIGEST
+ // NCryptGetProperty flags
+ #define NCRYPT_PERSIST_ONLY_FLAG        0x40000000
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ _Success_( return == 0 )
+ SECURITY_STATUS
+@@ -1259,6 +1296,7 @@ NCryptGetProperty(
+ #define NCRYPT_PERSIST_FLAG             0x80000000
+ #define NCRYPT_PERSIST_ONLY_FLAG        0x40000000
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1267,22 +1305,24 @@ NCryptSetProperty(
+     _In_    LPCWSTR pszProperty,
+     _In_reads_bytes_(cbInput) PBYTE pbInput,
+     _In_    DWORD   cbInput,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
+ // NCryptFinalizeKey flags
+ #define     NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG   0x00000200
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+ NCryptFinalizeKey(
+     _In_    NCRYPT_KEY_HANDLE hKey,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1294,10 +1334,11 @@ NCryptEncrypt(
+     _Out_writes_bytes_to_opt_(cbOutput, *pcbResult) PBYTE pbOutput,
+     _In_    DWORD   cbOutput,
+     _Out_   DWORD * pcbResult,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1309,7 +1350,7 @@ NCryptDecrypt(
+     _Out_writes_bytes_to_opt_(cbOutput, *pcbResult) PBYTE pbOutput,
+     _In_    DWORD   cbOutput,
+     _Out_   DWORD * pcbResult,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
+@@ -1423,6 +1464,7 @@ typedef struct _NCRYPT_PQ_BLOB
+ #define NCRYPT_DO_NOT_FINALIZE_FLAG     0x00000400
+ #define NCRYPT_EXPORT_LEGACY_FLAG       0x00000800
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1431,13 +1473,16 @@ NCryptImportKey(
+     _In_opt_ NCRYPT_KEY_HANDLE hImportKey,
+     _In_    LPCWSTR pszBlobType,
+     _In_opt_ NCryptBufferDesc *pParameterList,
+-    _Out_   NCRYPT_KEY_HANDLE *phKey,
++    _Out_   NCRYPT_KEY_HANDLE *phKey
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptFreeObject),
+     _In_reads_bytes_(cbData) PBYTE pbData,
+     _In_    DWORD   cbData,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1449,10 +1494,11 @@ NCryptExportKey(
+     _Out_writes_bytes_to_opt_(cbOutput, *pcbResult) PBYTE pbOutput,
+     _In_    DWORD   cbOutput,
+     _Out_   DWORD * pcbResult,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1464,10 +1510,11 @@ NCryptSignHash(
+     _Out_writes_bytes_to_opt_(cbSignature, *pcbResult) PBYTE pbSignature,
+     _In_    DWORD   cbSignature,
+     _Out_   DWORD * pcbResult,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1478,10 +1525,11 @@ NCryptVerifySignature(
+     _In_    DWORD   cbHashValue,
+     _In_reads_bytes_(cbSignature) PBYTE pbSignature,
+     _In_    DWORD   cbSignature,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ SECURITY_STATUS
+ WINAPI
+ NCryptDeleteKey(
+@@ -1490,6 +1538,7 @@ NCryptDeleteKey(
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ SECURITY_STATUS
+ WINAPI
+ NCryptFreeObject(
+@@ -1499,20 +1548,26 @@ NCryptFreeObject(
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL
+ WINAPI
+ NCryptIsKeyHandle(
+     _In_    NCRYPT_KEY_HANDLE hKey);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+ NCryptTranslateHandle(
+-    _Out_opt_ NCRYPT_PROV_HANDLE *phProvider,
+-    _Out_   NCRYPT_KEY_HANDLE *phKey,
++    _Out_opt_ NCRYPT_PROV_HANDLE *phProvider
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptFreeObject),
++    _Out_   NCRYPT_KEY_HANDLE *phKey
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptFreeObject),
+     _In_    HCRYPTPROV hLegacyProv,
+     _In_opt_ HCRYPTKEY hLegacyKey,
+-    _In_opt_ DWORD  dwLegacyKeySpec,
++    _In_opt_ CERT_KEY_SPEC  dwLegacyKeySpec,
+     _In_    DWORD   dwFlags);
+ 
+ #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -1527,30 +1582,35 @@ NCryptTranslateHandle(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+ NCryptNotifyChangeKey(
+     _In_    NCRYPT_PROV_HANDLE hProvider,
+     _Inout_ HANDLE *phEvent,
+-    _In_    DWORD   dwFlags);
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
+ #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ #pragma endregion
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+ NCryptSecretAgreement(
+     _In_    NCRYPT_KEY_HANDLE hPrivKey,
+     _In_    NCRYPT_KEY_HANDLE hPubKey,
+-    _Out_   NCRYPT_SECRET_HANDLE *phAgreedSecret,
+-    _In_    DWORD   dwFlags);
++    _Out_   NCRYPT_SECRET_HANDLE *phAgreedSecret
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptFreeObject),
++    _In_    NCRYPT_FLAGS   dwFlags);
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1567,6 +1627,7 @@ NCryptDeriveKey(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1583,6 +1644,7 @@ NCryptKeyDerivation(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1601,6 +1663,7 @@ NCryptCreateClaim(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ _Check_return_
+ SECURITY_STATUS
+ WINAPI
+@@ -1623,6 +1686,115 @@ NCryptVerifyClaim(
+ #define NCRYPT_KEY_STORAGE_INTERFACE_VERSION_4 BCRYPT_MAKE_INTERFACE_VERSION(4,0)
+ 
+ 
++
++#ifdef WIN32METADATA
++#pragma push_macro("NCRYPT_CIPHER_OPERATION")
++#pragma push_macro("NCRYPT_HASH_OPERATION")
++#pragma push_macro("NCRYPT_ASYMMETRIC_ENCRYPTION_OPERATION")
++#pragma push_macro("NCRYPT_SECRET_AGREEMENT_OPERATION")
++#pragma push_macro("NCRYPT_SIGNATURE_OPERATION")
++#undef NCRYPT_CIPHER_OPERATION
++#undef NCRYPT_HASH_OPERATION
++#undef NCRYPT_ASYMMETRIC_ENCRYPTION_OPERATION
++#undef NCRYPT_SECRET_AGREEMENT_OPERATION
++#undef NCRYPT_SIGNATURE_OPERATION
++enum class
++    [[clang::flag_enum]]
++    NCRYPT_OPERATION : int
++{
++    NCRYPT_CIPHER_OPERATION = 1,
++    NCRYPT_HASH_OPERATION = 2,
++    NCRYPT_ASYMMETRIC_ENCRYPTION_OPERATION = 4,
++    NCRYPT_SECRET_AGREEMENT_OPERATION = 8,
++    NCRYPT_SIGNATURE_OPERATION = 0x10,
++};
++#pragma pop_macro("NCRYPT_SIGNATURE_OPERATION")
++#pragma pop_macro("NCRYPT_SECRET_AGREEMENT_OPERATION")
++#pragma pop_macro("NCRYPT_ASYMMETRIC_ENCRYPTION_OPERATION")
++#pragma pop_macro("NCRYPT_HASH_OPERATION")
++#pragma pop_macro("NCRYPT_CIPHER_OPERATION")
++
++#pragma push_macro("NCRYPT_SILENT_FLAG")
++#pragma push_macro("NCRYPT_NO_PADDING_FLAG")
++#pragma push_macro("NCRYPT_PAD_OAEP_FLAG")
++#pragma push_macro("NCRYPT_PAD_PKCS1_FLAG")
++#pragma push_macro("NCRYPT_REGISTER_NOTIFY_FLAG")
++#pragma push_macro("NCRYPT_UNREGISTER_NOTIFY_FLAG")
++#pragma push_macro("NCRYPT_MACHINE_KEY_FLAG")
++#pragma push_macro("NCRYPT_UNPROTECT_NO_DECRYPT")
++#pragma push_macro("NCRYPT_OVERWRITE_KEY_FLAG")
++#pragma push_macro("NCRYPT_NO_KEY_VALIDATION")
++#pragma push_macro("NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG")
++#pragma push_macro("NCRYPT_PAD_PSS_FLAG")
++#pragma push_macro("NCRYPT_PERSIST_FLAG")
++#pragma push_macro("NCRYPT_PERSIST_ONLY_FLAG")
++#undef NCRYPT_SILENT_FLAG
++#undef NCRYPT_NO_PADDING_FLAG
++#undef NCRYPT_PAD_OAEP_FLAG
++#undef NCRYPT_PAD_PKCS1_FLAG
++#undef NCRYPT_REGISTER_NOTIFY_FLAG
++#undef NCRYPT_UNREGISTER_NOTIFY_FLAG
++#undef NCRYPT_MACHINE_KEY_FLAG
++#undef NCRYPT_UNPROTECT_NO_DECRYPT
++#undef NCRYPT_OVERWRITE_KEY_FLAG
++#undef NCRYPT_NO_KEY_VALIDATION
++#undef NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG
++#undef NCRYPT_PAD_PSS_FLAG
++#undef NCRYPT_PERSIST_FLAG
++#undef NCRYPT_PERSIST_ONLY_FLAG
++enum class
++    [[clang::flag_enum]]
++    NCRYPT_FLAGS : int
++{
++    NCRYPT_SILENT_FLAG = 0x40,
++    NCRYPT_NO_PADDING_FLAG = 1,
++    NCRYPT_PAD_OAEP_FLAG = 4,
++    NCRYPT_PAD_PKCS1_FLAG = 2,
++    NCRYPT_REGISTER_NOTIFY_FLAG = 1,
++    NCRYPT_UNREGISTER_NOTIFY_FLAG = 2,
++    NCRYPT_MACHINE_KEY_FLAG = 0x20,
++    NCRYPT_UNPROTECT_NO_DECRYPT = 1,
++    NCRYPT_OVERWRITE_KEY_FLAG = 0x80,
++    NCRYPT_NO_KEY_VALIDATION = 8,
++    NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG = 0x200,
++    NCRYPT_PAD_PSS_FLAG = 8,
++    NCRYPT_PERSIST_FLAG = -2147483648,
++    NCRYPT_PERSIST_ONLY_FLAG = 0x40000000,
++};
++#pragma pop_macro("NCRYPT_PERSIST_ONLY_FLAG")
++#pragma pop_macro("NCRYPT_PERSIST_FLAG")
++#pragma pop_macro("NCRYPT_PAD_PSS_FLAG")
++#pragma pop_macro("NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG")
++#pragma pop_macro("NCRYPT_NO_KEY_VALIDATION")
++#pragma pop_macro("NCRYPT_OVERWRITE_KEY_FLAG")
++#pragma pop_macro("NCRYPT_UNPROTECT_NO_DECRYPT")
++#pragma pop_macro("NCRYPT_MACHINE_KEY_FLAG")
++#pragma pop_macro("NCRYPT_UNREGISTER_NOTIFY_FLAG")
++#pragma pop_macro("NCRYPT_REGISTER_NOTIFY_FLAG")
++#pragma pop_macro("NCRYPT_PAD_PKCS1_FLAG")
++#pragma pop_macro("NCRYPT_PAD_OAEP_FLAG")
++#pragma pop_macro("NCRYPT_NO_PADDING_FLAG")
++#pragma pop_macro("NCRYPT_SILENT_FLAG")
++
++#pragma push_macro("NCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE")
++#pragma push_macro("NCRYPT_SECRET_AGREEMENT_INTERFACE")
++#pragma push_macro("NCRYPT_SIGNATURE_INTERFACE")
++#undef NCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE
++#undef NCRYPT_SECRET_AGREEMENT_INTERFACE
++#undef NCRYPT_SIGNATURE_INTERFACE
++enum class
++    NCRYPT_ALGORITHM_NAME_CLASS : int
++{
++    NCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE = 3,
++    NCRYPT_SECRET_AGREEMENT_INTERFACE,
++    NCRYPT_SIGNATURE_INTERFACE,
++};
++#pragma pop_macro("NCRYPT_SIGNATURE_INTERFACE")
++#pragma pop_macro("NCRYPT_SECRET_AGREEMENT_INTERFACE")
++#pragma pop_macro("NCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE")
++
++#endif
++
+ #ifdef __cplusplus
+ }       // Balance extern "C" above
+ #endif

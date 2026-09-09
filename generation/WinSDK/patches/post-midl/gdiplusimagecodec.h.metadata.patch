@@ -1,0 +1,46 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusimagecodec.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusimagecodec.h
+index 86b19b7d..25c02c9a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusimagecodec.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusimagecodec.h
+@@ -15,6 +15,9 @@
+ #ifndef _GDIPLUSIMAGECODEC_H
+ #define _GDIPLUSIMAGECODEC_H
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -24,6 +27,7 @@
+ // Codec Management APIs
+ //--------------------------------------------------------------------------
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ inline Status 
+ GetImageDecodersSize(
+     _Out_ UINT *numDecoders,
+@@ -33,6 +37,7 @@ GetImageDecodersSize(
+ }
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ inline Status 
+ GetImageDecoders(
+     _In_ UINT numDecoders,
+@@ -43,6 +48,7 @@ GetImageDecoders(
+ }
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ inline Status 
+ GetImageEncodersSize(
+     _Out_ UINT *numEncoders, 
+@@ -52,6 +58,7 @@ GetImageEncodersSize(
+ }
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ inline Status 
+ GetImageEncoders(
+     _In_ UINT numEncoders,

@@ -1,0 +1,261 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WdsClientApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/WdsClientApi.h
+index 8cc8d89c..0b0a3733 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WdsClientApi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WdsClientApi.h
+@@ -22,6 +22,9 @@ Environment:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -54,6 +57,7 @@ typedef struct tagWDS_CLI_CRED
+ //
+ // General functions
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliClose( 
+@@ -68,12 +72,14 @@ VOID
+ );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliRegisterTrace(
+     _In_opt_ PFN_WdsCliTraceFunction pfn );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT
+ WDSCLIAPI
+ WdsCliFreeStringArray(
+@@ -83,29 +89,34 @@ WdsCliFreeStringArray(
+ //
+ // Image enumeration functions
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliFindFirstImage(
+     _In_ HANDLE hSession,
+     _Out_ PHANDLE phFindHandle );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliFindNextImage(
+     _In_ HANDLE Handle );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetEnumerationFlags(
+     _In_ HANDLE Handle,
+     _Out_ PDWORD pdwFlags );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageHandleFromFindHandle(
+     _In_ HANDLE FindHandle,
+     _Out_ PHANDLE phImageHandle );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageHandleFromTransferHandle(
+@@ -160,6 +171,8 @@ typedef enum _WDS_CLI_IMAGE_PARAM_TYPE
+ //
+ // Session functions
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ HRESULT
+ WDSCLIAPI
+ WdsCliCreateSession(
+@@ -167,6 +180,7 @@ WdsCliCreateSession(
+     _In_opt_ PWDS_CLI_CRED pCred,
+     _Out_ PHANDLE phSession );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliAuthorizeSession(
+@@ -176,6 +190,7 @@ WdsCliAuthorizeSession(
+ //
+ // Client -> Server Logging functions
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliInitializeLog(
+@@ -184,6 +199,7 @@ WdsCliInitializeLog(
+     _In_ PWSTR pwszClientId,
+     _In_ PWSTR pwszClientAddress );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliLog(
+@@ -242,12 +258,14 @@ enum
+ // Image information functions
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageName(
+     _In_ HANDLE hIfh, 
+     _Out_ PWSTR *ppwszValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageDescription(
+@@ -267,12 +285,14 @@ WdsCliGetImageFiles(
+     _Outptr_result_buffer_(*pdwCount) LPWSTR **pppwszFiles,
+    _Out_ PDWORD pdwCount );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageLanguage(
+     _In_ HANDLE hIfh, 
+     _Out_ PWSTR *ppwszValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageLanguages(
+@@ -280,54 +300,63 @@ WdsCliGetImageLanguages(
+     _Outptr_result_buffer_(*pdwNumValues) PTSTR **pppszValues,
+     _Out_ PDWORD pdwNumValues );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageVersion(
+     _In_ HANDLE hIfh, 
+     _Out_ PWSTR *ppwszValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImagePath(
+     _In_ HANDLE hIfh,
+     _Out_ PWSTR *ppwszValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageIndex(
+     _In_ HANDLE hIfh,
+     _Out_ PDWORD pdwValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageArchitecture(
+     _In_ HANDLE hIfh,
+     _Out_ PDWORD pdwValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageLastModifiedTime(
+     _In_ HANDLE hIfh,
+     _Out_ PSYSTEMTIME *ppSysTimeValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageSize(
+     _In_ HANDLE hIfh,
+     _Out_ PULONGLONG pullValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageHalName(
+     _In_ HANDLE hIfh,
+     _Out_ PWSTR *ppwszValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageGroup(
+     _In_ HANDLE hIfh,
+     _Out_ PWSTR *ppwszValue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetImageNamespace(
+@@ -368,6 +397,7 @@ enum
+ };
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetTransferSize(
+@@ -386,6 +416,7 @@ WDSCLIAPI
+ WdsCliSetTransferBufferSize(
+     _In_ ULONG ulSizeInBytes );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliTransferImage(
+@@ -397,6 +428,7 @@ WdsCliTransferImage(
+     _In_opt_ PVOID pvUserData,
+     _Out_ PHANDLE phTransfer );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliTransferFile(
+@@ -410,11 +442,13 @@ WdsCliTransferFile(
+     _In_opt_ PVOID pvUserData,
+     _Out_ PHANDLE phTransfer );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliCancelTransfer(
+     _In_ HANDLE hTransfer );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WDSCLIAPI
+ WdsCliWaitForTransfer(
+@@ -423,6 +457,7 @@ WdsCliWaitForTransfer(
+ //
+ // Dynamic Driver Provisioning functions
+ //
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT
+ WDSCLIAPI
+ WdsCliObtainDriverPackages(
+@@ -432,6 +467,7 @@ WdsCliObtainDriverPackages(
+     _Out_ ULONG *pulCount    
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT
+ WDSCLIAPI
+ WdsCliObtainDriverPackagesEx (
+@@ -442,6 +478,7 @@ WdsCliObtainDriverPackagesEx (
+     _Out_ ULONG* pulCount
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT
+ WDSCLIAPI
+ WdsCliGetDriverQueryXml (

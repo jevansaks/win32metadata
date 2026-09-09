@@ -1,0 +1,164 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CluAdmEx.h b/generation/WinSDK/RecompiledIdlHeaders/um/CluAdmEx.h
+index b1200a75..99a77657 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/CluAdmEx.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/CluAdmEx.h
+@@ -179,6 +179,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ typedef 
+@@ -210,6 +213,7 @@ EXTERN_C const IID IID_IGetClusterUIInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE50-FC6B-11CF-B5F5-00A0C90AB505")
+     IGetClusterUIInfo : public IUnknown
+     {
+@@ -328,6 +332,7 @@ EXTERN_C const IID IID_IGetClusterDataInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE51-FC6B-11CF-B5F5-00A0C90AB505")
+     IGetClusterDataInfo : public IUnknown
+     {
+@@ -437,6 +442,7 @@ EXTERN_C const IID IID_IGetClusterObjectInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE52-FC6B-11CF-B5F5-00A0C90AB505")
+     IGetClusterObjectInfo : public IUnknown
+     {
+@@ -545,6 +551,7 @@ EXTERN_C const IID IID_IGetClusterNodeInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE53-FC6B-11CF-B5F5-00A0C90AB505")
+     IGetClusterNodeInfo : public IUnknown
+     {
+@@ -632,6 +639,7 @@ EXTERN_C const IID IID_IGetClusterGroupInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE54-FC6B-11CF-B5F5-00A0C90AB505")
+     IGetClusterGroupInfo : public IUnknown
+     {
+@@ -719,6 +727,7 @@ EXTERN_C const IID IID_IGetClusterResourceInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE55-FC6B-11CF-B5F5-00A0C90AB505")
+     IGetClusterResourceInfo : public IUnknown
+     {
+@@ -848,6 +857,7 @@ EXTERN_C const IID IID_IGetClusterNetworkInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE56-FC6B-11CF-B5F5-00A0C90AB505")
+     IGetClusterNetworkInfo : public IUnknown
+     {
+@@ -935,6 +945,7 @@ EXTERN_C const IID IID_IGetClusterNetInterfaceInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE57-FC6B-11CF-B5F5-00A0C90AB505")
+     IGetClusterNetInterfaceInfo : public IUnknown
+     {
+@@ -1022,6 +1033,7 @@ EXTERN_C const IID IID_IWCPropertySheetCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("97DEDE60-FC6B-11CF-B5F5-00A0C90AB505")
+     IWCPropertySheetCallback : public IUnknown
+     {
+@@ -1109,6 +1121,7 @@ EXTERN_C const IID IID_IWEExtendPropertySheet;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("97DEDE61-FC6B-11CF-B5F5-00A0C90AB505")
+     IWEExtendPropertySheet : public IUnknown
+     {
+@@ -1200,6 +1213,7 @@ EXTERN_C const IID IID_IWCWizardCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE62-FC6B-11CF-B5F5-00A0C90AB505")
+     IWCWizardCallback : public IUnknown
+     {
+@@ -1304,6 +1318,7 @@ EXTERN_C const IID IID_IWEExtendWizard;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE63-FC6B-11CF-B5F5-00A0C90AB505")
+     IWEExtendWizard : public IUnknown
+     {
+@@ -1395,6 +1410,7 @@ EXTERN_C const IID IID_IWCContextMenuCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE64-FC6B-11CF-B5F5-00A0C90AB505")
+     IWCContextMenuCallback : public IUnknown
+     {
+@@ -1498,6 +1514,7 @@ EXTERN_C const IID IID_IWEExtendContextMenu;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE65-FC6B-11CF-B5F5-00A0C90AB505")
+     IWEExtendContextMenu : public IUnknown
+     {
+@@ -1589,6 +1606,7 @@ EXTERN_C const IID IID_IWEInvokeCommand;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE66-FC6B-11CF-B5F5-00A0C90AB505")
+     IWEInvokeCommand : public IUnknown
+     {
+@@ -1680,6 +1698,7 @@ EXTERN_C const IID IID_IWCWizard97Callback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE67-FC6B-11CF-B5F5-00A0C90AB505")
+     IWCWizard97Callback : public IUnknown
+     {
+@@ -1784,6 +1803,7 @@ EXTERN_C const IID IID_IWEExtendWizard97;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2003)
+     MIDL_INTERFACE("97DEDE68-FC6B-11CF-B5F5-00A0C90AB505")
+     IWEExtendWizard97 : public IUnknown
+     {
+@@ -1881,9 +1901,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
+ void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
+ /* end of Additional Prototypes */

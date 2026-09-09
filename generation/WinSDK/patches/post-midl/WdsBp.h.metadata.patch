@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h b/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h
-index 8d1a1367..86337408 100644
+index 8d1a1367..583ff58e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h
 @@ -20,6 +20,9 @@ Environment:
@@ -12,27 +12,65 @@ index 8d1a1367..86337408 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -148,6 +151,7 @@ WdsBpParseInitialize (
+@@ -141,6 +144,7 @@ extern "C"
+ // APIs.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSBPAPI
+ WdsBpParseInitialize (
+@@ -148,8 +152,10 @@ WdsBpParseInitialize (
      _In_ ULONG uPacketLen,
      _Out_opt_ PBYTE pbPacketType,
      _Out_ HANDLE *phHandle
 +        _Win32_metadata_raii_free_(WdsBpCloseHandle)
      );
  
++_Win32_metadata_supported_os_(windows8.0)
  DWORD
-@@ -157,6 +161,7 @@ WdsBpParseInitializev6 (
+ WDSBPAPI
+ WdsBpParseInitializev6 (
+@@ -157,21 +163,26 @@ WdsBpParseInitializev6 (
      _In_ ULONG uPacketLen,
      _Out_opt_ PBYTE pbPacketType,
      _Out_ HANDLE *phHandle
 +        _Win32_metadata_raii_free_(WdsBpCloseHandle)
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
  DWORD
-@@ -164,6 +169,7 @@ WDSBPAPI
+ WDSBPAPI
  WdsBpInitialize (
      _In_ BYTE bPacketType,
      _Out_ HANDLE *phHandle
 +        _Win32_metadata_raii_free_(WdsBpCloseHandle)
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
  DWORD
+ WDSBPAPI
+ WdsBpCloseHandle (
+     _In_ HANDLE hHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WDSBPAPI
+@@ -183,6 +194,7 @@ WdsBpQueryOption (
+     _Out_opt_ PULONG puBytes
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSBPAPI
+ WdsBpAddOption (
+@@ -192,6 +204,7 @@ WdsBpAddOption (
+     _In_reads_bytes_(uValueLen) PVOID pValue
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WDSBPAPI

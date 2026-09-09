@@ -1,0 +1,280 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/imm.h b/generation/WinSDK/RecompiledIdlHeaders/um/imm.h
+index 377e71b8..25064f6d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/imm.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/imm.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /**********************************************************************/
+ /*      imm.h - Input Method Manager definitions                      */
+@@ -224,7 +227,9 @@ typedef BOOL    (CALLBACK* IMCENUMPROC)(HIMC, LPARAM);
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HKL  WINAPI ImmInstallIMEA(_In_ LPCSTR lpszIMEFileName, _In_ LPCSTR lpszLayoutText);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HKL  WINAPI ImmInstallIMEW(_In_ LPCWSTR lpszIMEFileName, _In_ LPCWSTR lpszLayoutText);
+ #ifdef UNICODE
+ #define ImmInstallIME  ImmInstallIMEW
+@@ -232,9 +237,12 @@ HKL  WINAPI ImmInstallIMEW(_In_ LPCWSTR lpszIMEFileName, _In_ LPCWSTR lpszLayout
+ #define ImmInstallIME  ImmInstallIMEA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HWND WINAPI ImmGetDefaultIMEWnd(IN HWND);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ UINT WINAPI ImmGetDescriptionA(IN HKL, _Out_writes_opt_(uBufLen) LPSTR lpszDescription, IN UINT uBufLen);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ UINT WINAPI ImmGetDescriptionW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszDescription, IN UINT uBufLen);
+ #ifdef UNICODE
+ #define ImmGetDescription  ImmGetDescriptionW
+@@ -242,7 +250,9 @@ UINT WINAPI ImmGetDescriptionW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszDesc
+ #define ImmGetDescription  ImmGetDescriptionA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ UINT WINAPI ImmGetIMEFileNameA(IN HKL, _Out_writes_opt_(uBufLen) LPSTR lpszFileName, IN UINT uBufLen);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ UINT WINAPI ImmGetIMEFileNameW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszFileName, IN UINT uBufLen);
+ #ifdef UNICODE
+ #define ImmGetIMEFileName  ImmGetIMEFileNameW
+@@ -250,22 +260,33 @@ UINT WINAPI ImmGetIMEFileNameW(IN HKL, _Out_writes_opt_(uBufLen) LPWSTR lpszFile
+ #define ImmGetIMEFileName  ImmGetIMEFileNameA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD WINAPI ImmGetProperty(IN HKL, IN DWORD);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmIsIME(IN HKL);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmSimulateHotKey(IN HWND, IN DWORD);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HIMC WINAPI ImmCreateContext(void);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmDestroyContext(IN HIMC);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HIMC WINAPI ImmGetContext(IN HWND);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmReleaseContext(IN HWND, IN HIMC);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HIMC WINAPI ImmAssociateContext(IN HWND, IN HIMC);
+ #if (WINVER >= 0x040A)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmAssociateContextEx(_In_ HWND, _In_ HIMC, _In_ DWORD);
+ #endif /* WINVER >= 0x040A */
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG  WINAPI ImmGetCompositionStringA(IN HIMC, IN DWORD, _Out_writes_bytes_opt_(dwBufLen) LPVOID lpBuf, IN DWORD dwBufLen);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG  WINAPI ImmGetCompositionStringW(IN HIMC, IN DWORD, _Out_writes_bytes_opt_(dwBufLen) LPVOID lpBuf, IN DWORD dwBufLen);
+ #ifdef UNICODE
+ #define ImmGetCompositionString  ImmGetCompositionStringW
+@@ -273,7 +294,9 @@ LONG  WINAPI ImmGetCompositionStringW(IN HIMC, IN DWORD, _Out_writes_bytes_opt_(
+ #define ImmGetCompositionString  ImmGetCompositionStringA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL  WINAPI ImmSetCompositionStringA(IN HIMC, IN DWORD dwIndex, _In_reads_bytes_opt_(dwCompLen) LPVOID lpComp, IN DWORD dwCompLen, _In_reads_bytes_opt_(dwReadLen) LPVOID lpRead, IN DWORD dwReadLen);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL  WINAPI ImmSetCompositionStringW(IN HIMC, IN DWORD dwIndex, _In_reads_bytes_opt_(dwCompLen) LPVOID lpComp, IN DWORD dwCompLen, _In_reads_bytes_opt_(dwReadLen) LPVOID lpRead, IN DWORD dwReadLen);
+ #ifdef UNICODE
+ #define ImmSetCompositionString  ImmSetCompositionStringW
+@@ -281,7 +304,9 @@ BOOL  WINAPI ImmSetCompositionStringW(IN HIMC, IN DWORD dwIndex, _In_reads_bytes
+ #define ImmSetCompositionString  ImmSetCompositionStringA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD WINAPI ImmGetCandidateListCountA(IN HIMC, _Out_ LPDWORD lpdwListCount);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD WINAPI ImmGetCandidateListCountW(IN HIMC, _Out_ LPDWORD lpdwListCount);
+ #ifdef UNICODE
+ #define ImmGetCandidateListCount  ImmGetCandidateListCountW
+@@ -289,7 +314,9 @@ DWORD WINAPI ImmGetCandidateListCountW(IN HIMC, _Out_ LPDWORD lpdwListCount);
+ #define ImmGetCandidateListCount  ImmGetCandidateListCountA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD WINAPI ImmGetCandidateListA(IN HIMC, IN DWORD deIndex, _Out_writes_bytes_opt_(dwBufLen) LPCANDIDATELIST lpCandList, IN DWORD dwBufLen);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD WINAPI ImmGetCandidateListW(IN HIMC, IN DWORD deIndex, _Out_writes_bytes_opt_(dwBufLen) LPCANDIDATELIST lpCandList, IN DWORD dwBufLen);
+ #ifdef UNICODE
+ #define ImmGetCandidateList  ImmGetCandidateListW
+@@ -297,7 +324,9 @@ DWORD WINAPI ImmGetCandidateListW(IN HIMC, IN DWORD deIndex, _Out_writes_bytes_o
+ #define ImmGetCandidateList  ImmGetCandidateListA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD WINAPI ImmGetGuideLineA(_In_ HIMC, _In_ DWORD dwIndex, _Out_writes_bytes_opt_(dwBufLen) LPSTR lpBuf, _In_ DWORD dwBufLen);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD WINAPI ImmGetGuideLineW(_In_ HIMC, _In_ DWORD dwIndex, _Out_writes_bytes_opt_(dwBufLen) LPWSTR lpBuf, _In_ DWORD dwBufLen);
+ #ifdef UNICODE
+ #define ImmGetGuideLine  ImmGetGuideLineW
+@@ -305,13 +334,19 @@ DWORD WINAPI ImmGetGuideLineW(_In_ HIMC, _In_ DWORD dwIndex, _Out_writes_bytes_o
+ #define ImmGetGuideLine  ImmGetGuideLineA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmGetConversionStatus(IN HIMC, _Out_opt_ LPDWORD lpfdwConversion, _Out_opt_ LPDWORD lpfdwSentence);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmSetConversionStatus(IN HIMC, IN DWORD, IN DWORD);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmGetOpenStatus(IN HIMC);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmSetOpenStatus(IN HIMC, IN BOOL);
+ 
+ #if defined(_WINGDI_) && !defined(NOGDI)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmGetCompositionFontA(IN HIMC, _Out_ LPLOGFONTA lplf);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmGetCompositionFontW(IN HIMC, _Out_ LPLOGFONTW lplf);
+ #ifdef UNICODE
+ #define ImmGetCompositionFont  ImmGetCompositionFontW
+@@ -319,7 +354,9 @@ BOOL WINAPI ImmGetCompositionFontW(IN HIMC, _Out_ LPLOGFONTW lplf);
+ #define ImmGetCompositionFont  ImmGetCompositionFontA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmSetCompositionFontA(IN HIMC, _In_ LPLOGFONTA lplf);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmSetCompositionFontW(IN HIMC, _In_ LPLOGFONTW lplf);
+ #ifdef UNICODE
+ #define ImmSetCompositionFont  ImmSetCompositionFontW
+@@ -328,7 +365,9 @@ BOOL WINAPI ImmSetCompositionFontW(IN HIMC, _In_ LPLOGFONTW lplf);
+ #endif // !UNICODE
+ #endif  // defined(_WINGDI_) && !defined(NOGDI)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL    WINAPI ImmConfigureIMEA(IN HKL, IN HWND, IN DWORD, IN LPVOID);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL    WINAPI ImmConfigureIMEW(IN HKL, IN HWND, IN DWORD, IN LPVOID);
+ #ifdef UNICODE
+ #define ImmConfigureIME  ImmConfigureIMEW
+@@ -336,7 +375,9 @@ BOOL    WINAPI ImmConfigureIMEW(IN HKL, IN HWND, IN DWORD, IN LPVOID);
+ #define ImmConfigureIME  ImmConfigureIMEA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LRESULT WINAPI ImmEscapeA(IN HKL, IN HIMC, IN UINT, IN LPVOID);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LRESULT WINAPI ImmEscapeW(IN HKL, IN HIMC, IN UINT, IN LPVOID);
+ #ifdef UNICODE
+ #define ImmEscape  ImmEscapeW
+@@ -344,7 +385,9 @@ LRESULT WINAPI ImmEscapeW(IN HKL, IN HIMC, IN UINT, IN LPVOID);
+ #define ImmEscape  ImmEscapeA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD   WINAPI ImmGetConversionListA(IN HKL, IN HIMC, _In_ LPCSTR lpSrc, _Out_writes_bytes_(dwBufLen) LPCANDIDATELIST lpDst, IN DWORD dwBufLen, IN UINT uFlag);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD   WINAPI ImmGetConversionListW(IN HKL, IN HIMC, _In_ LPCWSTR lpSrc, _Out_writes_bytes_(dwBufLen) LPCANDIDATELIST lpDst, IN DWORD dwBufLen, IN UINT uFlag);
+ #ifdef UNICODE
+ #define ImmGetConversionList  ImmGetConversionListW
+@@ -352,16 +395,25 @@ DWORD   WINAPI ImmGetConversionListW(IN HKL, IN HIMC, _In_ LPCWSTR lpSrc, _Out_w
+ #define ImmGetConversionList  ImmGetConversionListA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL    WINAPI ImmNotifyIME(IN HIMC, IN DWORD dwAction, IN DWORD dwIndex, IN DWORD dwValue);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmGetStatusWindowPos(IN HIMC, _Out_ LPPOINT lpptPos);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmSetStatusWindowPos(IN HIMC, _In_ LPPOINT lpptPos);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmGetCompositionWindow(IN HIMC, _Out_ LPCOMPOSITIONFORM lpCompForm);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmSetCompositionWindow(IN HIMC, _In_ LPCOMPOSITIONFORM lpCompForm);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmGetCandidateWindow(IN HIMC, IN DWORD, _Out_ LPCANDIDATEFORM lpCandidate);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmSetCandidateWindow(IN HIMC, _In_ LPCANDIDATEFORM lpCandidate);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmIsUIMessageA(IN HWND, IN UINT, IN WPARAM, IN LPARAM);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmIsUIMessageW(IN HWND, IN UINT, IN WPARAM, IN LPARAM);
+ #ifdef UNICODE
+ #define ImmIsUIMessage  ImmIsUIMessageW
+@@ -369,6 +421,7 @@ BOOL WINAPI ImmIsUIMessageW(IN HWND, IN UINT, IN WPARAM, IN LPARAM);
+ #define ImmIsUIMessage  ImmIsUIMessageA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ UINT WINAPI ImmGetVirtualKey(IN HWND);
+ 
+ typedef int (CALLBACK *REGISTERWORDENUMPROCA)(_In_ LPCSTR lpszReading, DWORD, _In_ LPCSTR lpszString, LPVOID);
+@@ -379,7 +432,9 @@ typedef int (CALLBACK *REGISTERWORDENUMPROCW)(_In_ LPCWSTR lpszReading, DWORD, _
+ #define REGISTERWORDENUMPROC  REGISTERWORDENUMPROCA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmRegisterWordA(IN HKL, _In_ LPCSTR lpszReading, IN DWORD, _In_ LPCSTR lpszRegister);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmRegisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_ LPCWSTR lpszRegister);
+ #ifdef UNICODE
+ #define ImmRegisterWord  ImmRegisterWordW
+@@ -387,7 +442,9 @@ BOOL WINAPI ImmRegisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_ LP
+ #define ImmRegisterWord  ImmRegisterWordA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmUnregisterWordA(IN HKL, _In_ LPCSTR lpszReading, IN DWORD, _In_ LPCSTR lpszUnregister);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmUnregisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_ LPCWSTR lpszUnregister);
+ #ifdef UNICODE
+ #define ImmUnregisterWord  ImmUnregisterWordW
+@@ -395,7 +452,9 @@ BOOL WINAPI ImmUnregisterWordW(IN HKL, _In_ LPCWSTR lpszReading, IN DWORD, _In_
+ #define ImmUnregisterWord  ImmUnregisterWordA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ UINT WINAPI ImmGetRegisterWordStyleA(IN HKL, IN UINT nItem, _Out_writes_(nItem) LPSTYLEBUFA lpStyleBuf);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ UINT WINAPI ImmGetRegisterWordStyleW(IN HKL, IN UINT nItem, _Out_writes_(nItem) LPSTYLEBUFW lpStyleBuf);
+ #ifdef UNICODE
+ #define ImmGetRegisterWordStyle  ImmGetRegisterWordStyleW
+@@ -403,7 +462,9 @@ UINT WINAPI ImmGetRegisterWordStyleW(IN HKL, IN UINT nItem, _Out_writes_(nItem)
+ #define ImmGetRegisterWordStyle  ImmGetRegisterWordStyleA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ UINT WINAPI ImmEnumRegisterWordA(IN HKL, IN REGISTERWORDENUMPROCA, _In_opt_ LPCSTR lpszReading, IN DWORD, _In_opt_ LPCSTR lpszRegister, IN LPVOID);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ UINT WINAPI ImmEnumRegisterWordW(IN HKL, IN REGISTERWORDENUMPROCW, _In_opt_ LPCWSTR lpszReading, IN DWORD, _In_opt_ LPCWSTR lpszRegister, IN LPVOID);
+ #ifdef UNICODE
+ #define ImmEnumRegisterWord  ImmEnumRegisterWordW
+@@ -412,9 +473,13 @@ UINT WINAPI ImmEnumRegisterWordW(IN HKL, IN REGISTERWORDENUMPROCW, _In_opt_ LPCW
+ #endif // !UNICODE
+ 
+ #if (WINVER >= 0x040A)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmDisableIME(IN DWORD);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmEnumInputContext(DWORD idThread, IMCENUMPROC lpfn, LPARAM lParam);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD WINAPI ImmGetImeMenuItemsA(IN HIMC, IN DWORD, IN DWORD, _Out_opt_ LPIMEMENUITEMINFOA lpImeParentMenu, _Out_writes_bytes_opt_(dwSize) LPIMEMENUITEMINFOA lpImeMenu, IN DWORD dwSize);
++_Win32_metadata_supported_os_(windows5.1.2600)
+ DWORD WINAPI ImmGetImeMenuItemsW(IN HIMC, IN DWORD, IN DWORD, _Out_opt_ LPIMEMENUITEMINFOW lpImeParentMenu, _Out_writes_bytes_opt_(dwSize) LPIMEMENUITEMINFOW lpImeMenu, IN DWORD dwSize);
+ #ifdef UNICODE
+ #define ImmGetImeMenuItems  ImmGetImeMenuItemsW
+@@ -422,10 +487,12 @@ DWORD WINAPI ImmGetImeMenuItemsW(IN HIMC, IN DWORD, IN DWORD, _Out_opt_ LPIMEMEN
+ #define ImmGetImeMenuItems  ImmGetImeMenuItemsA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL WINAPI ImmDisableTextFrameService(DWORD idThread);
+ #endif /* WINVER >= 0x040A */
+ 
+ #if (WINVER >= 0x0602)
++_Win32_metadata_supported_os_(windows8.0)
+ BOOL WINAPI ImmDisableLegacyIME(void);
+ #endif /* WINVER >= 0x0602 */
+ 

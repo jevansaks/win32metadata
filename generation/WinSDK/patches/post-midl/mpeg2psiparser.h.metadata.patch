@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mpeg2psiparser.h b/generation/WinSDK/RecompiledIdlHeaders/um/mpeg2psiparser.h
+index 5b52d510..8c815c97 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mpeg2psiparser.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mpeg2psiparser.h
+@@ -111,6 +111,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -1422,6 +1425,7 @@ EXTERN_C const IID IID_IPSITables;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("919F24C5-7B14-42ac-A4B0-2AE08DAF00AC")
+     IPSITables : public IUnknown
+     {

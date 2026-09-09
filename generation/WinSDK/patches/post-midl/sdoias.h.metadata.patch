@@ -1,0 +1,54 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/sdoias.h b/generation/WinSDK/RecompiledIdlHeaders/um/sdoias.h
+index 293d1c4d..adf8e032 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/sdoias.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/sdoias.h
+@@ -117,6 +117,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -819,6 +822,7 @@ EXTERN_C const IID IID_ISdoMachine;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("479F6E75-49A2-11d2-8ECA-00C04FC2F519")
+     ISdoMachine : public IDispatch
+     {
+@@ -1387,6 +1391,7 @@ EXTERN_C const IID IID_ISdoServiceControl;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("479F6E74-49A2-11d2-8ECA-00C04FC2F519")
+     ISdoServiceControl : public IDispatch
+     {
+@@ -1563,6 +1568,7 @@ EXTERN_C const IID IID_ISdo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("56BC53DE-96DB-11D1-BF3F-000000000000")
+     ISdo : public IDispatch
+     {
+@@ -1794,6 +1800,7 @@ EXTERN_C const IID IID_ISdoCollection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("56BC53E2-96DB-11D1-BF3F-000000000000")
+     ISdoCollection : public IDispatch
+     {
+@@ -2299,6 +2306,7 @@ EXTERN_C const IID IID_ISdoDictionaryOld;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("d432e5f4-53d8-11d2-9a3a-00c04fb998ac")
+     ISdoDictionaryOld : public IDispatch
+     {

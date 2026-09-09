@@ -1,0 +1,54 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ehstorapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/ehstorapi.h
+index edc74fd5..520fcf6f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ehstorapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ehstorapi.h
+@@ -153,6 +153,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #if (_WIN32_WINNT >= 0x0501) // XP and later
+@@ -203,6 +206,7 @@ EXTERN_C const IID IID_IEnumEnhancedStorageACT;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("09b224bd-1335-4631-a7ff-cfd3a92646d7")
+     IEnumEnhancedStorageACT : public IUnknown
+     {
+@@ -321,6 +325,7 @@ EXTERN_C const IID IID_IEnhancedStorageACT;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("6e7781f4-e0f2-4239-b976-a01abab52930")
+     IEnhancedStorageACT : public IUnknown
+     {
+@@ -477,6 +482,7 @@ EXTERN_C const IID IID_IEnhancedStorageACT2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("4DA57D2E-8EB3-41f6-A07E-98B52B88242B")
+     IEnhancedStorageACT2 : public IEnhancedStorageACT
+     {
+@@ -833,6 +839,7 @@ EXTERN_C const IID IID_IEnhancedStorageSilo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("5aef78c6-2242-4703-bf49-44b29357a359")
+     IEnhancedStorageSilo : public IUnknown
+     {
+@@ -992,6 +999,7 @@ EXTERN_C const IID IID_IEnhancedStorageSiloAction;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("b6f7f311-206f-4ff8-9c4b-27efee77a86f")
+     IEnhancedStorageSiloAction : public IUnknown
+     {

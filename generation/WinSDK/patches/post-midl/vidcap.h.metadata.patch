@@ -1,0 +1,54 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.h b/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.h
+index c22d729f..ca6f1f08 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.h
+@@ -95,6 +95,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #include "ks.h"
+@@ -126,6 +129,7 @@ EXTERN_C const IID IID_IKsTopologyInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("720D4AC0-7533-11D0-A5D6-28DB04C10000")
+     IKsTopologyInfo : public IUnknown
+     {
+@@ -332,6 +336,7 @@ EXTERN_C const IID IID_ISelector;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("1ABDAECA-68B6-4F83-9371-B413907C7B9F")
+     ISelector : public IUnknown
+     {
+@@ -445,6 +450,7 @@ EXTERN_C const IID IID_ICameraControl;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("2BA1785D-4D1B-44EF-85E8-C7F1D3F20184")
+     ICameraControl : public IUnknown
+     {
+@@ -1574,6 +1580,7 @@ EXTERN_C const IID IID_IVideoProcAmp;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("4050560E-42A7-413a-85C2-09269A2D0F44")
+     IVideoProcAmp : public IUnknown
+     {
+@@ -2475,6 +2482,7 @@ EXTERN_C const IID IID_IKsNodeControl;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("11737C14-24A7-4bb5-81A0-0D003813B0C4")
+     IKsNodeControl : public IUnknown
+     {

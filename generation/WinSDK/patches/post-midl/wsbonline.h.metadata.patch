@@ -1,0 +1,26 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wsbonline.h b/generation/WinSDK/RecompiledIdlHeaders/um/wsbonline.h
+index b6968506..a8a87288 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wsbonline.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wsbonline.h
+@@ -16,6 +16,9 @@ Abstract:
+ #pragma once
+ #endif // _MSC_VER
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -68,8 +71,11 @@ typedef struct _WSB_OB_REGISTRATION_INFO {
+ } WSB_OB_REGISTRATION_INFO;
+ 
+ //APIs
++_Win32_metadata_supported_os_(windowsserver2012)
+ HRESULT WINAPI RegisterOnlineBackupWithWindowsServerBackup(_In_ IN WSB_OB_REGISTRATION_INFO  *pOBRegistrationInfo);
++_Win32_metadata_supported_os_(windowsserver2012)
+ HRESULT WINAPI DeregisterOnlineBackupFromWindowsServerBackup(_In_ IN GUID guidSnapinId);
++_Win32_metadata_supported_os_(windowsserver2012)
+ HRESULT WINAPI UpdateOBStatusInWindowsServerBackup(_In_ IN WSB_OB_STATUS_INFO *pOBRegistrationInfo);
+ 
+ 

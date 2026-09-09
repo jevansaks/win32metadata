@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/avrt.h b/generation/WinSDK/RecompiledIdlHeaders/um/avrt.h
-index 845a2291..cc6c0a27 100644
+index 845a2291..f9401fd1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/avrt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/avrt.h
 @@ -1,4 +1,7 @@
@@ -10,26 +10,28 @@ index 845a2291..cc6c0a27 100644
  
  /*++ BUILD Version: 0001    // Increment this if a change has global effects
  
-@@ -51,6 +54,7 @@ typedef enum _AVRT_PRIORITY
+@@ -51,6 +54,8 @@ typedef enum _AVRT_PRIORITY
  
  #define AVRTAPI DECLSPEC_IMPORT
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != NULL)
  AVRTAPI
  HANDLE
-@@ -58,7 +62,9 @@ WINAPI
+@@ -58,7 +63,10 @@ WINAPI
  AvSetMmThreadCharacteristicsA (
      _In_ LPCSTR TaskName,
      _Inout_ LPDWORD TaskIndex
 -    );
 +    )
 +    _Win32_metadata_raii_free_(AvRevertMmThreadCharacteristics);
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != NULL)
  AVRTAPI
  HANDLE
-@@ -66,13 +72,15 @@ WINAPI
+@@ -66,13 +74,16 @@ WINAPI
  AvSetMmThreadCharacteristicsW (
      _In_ LPCWSTR TaskName,
      _Inout_ LPDWORD TaskIndex
@@ -42,22 +44,24 @@ index 845a2291..cc6c0a27 100644
  #define AvSetMmThreadCharacteristics  AvSetMmThreadCharacteristicsA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != NULL)
  AVRTAPI
  HANDLE
-@@ -81,7 +89,9 @@ AvSetMmMaxThreadCharacteristicsA (
+@@ -81,7 +92,10 @@ AvSetMmMaxThreadCharacteristicsA (
      _In_ LPCSTR FirstTask,
      _In_ LPCSTR SecondTask,
      _Inout_ LPDWORD TaskIndex
 -    );
 +    )
 +    _Win32_metadata_raii_free_(AvRevertMmThreadCharacteristics);
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != NULL)
  AVRTAPI
  HANDLE
-@@ -90,13 +100,15 @@ AvSetMmMaxThreadCharacteristicsW (
+@@ -90,13 +104,16 @@ AvSetMmMaxThreadCharacteristicsW (
      _In_ LPCWSTR FirstTask,
      _In_ LPCWSTR SecondTask,
      _Inout_ LPDWORD TaskIndex
@@ -70,22 +74,25 @@ index 845a2291..cc6c0a27 100644
  #define AvSetMmMaxThreadCharacteristics  AvSetMmMaxThreadCharacteristicsA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI
  BOOL
-@@ -105,6 +117,7 @@ AvRevertMmThreadCharacteristics (
+@@ -105,6 +122,8 @@ AvRevertMmThreadCharacteristics (
      _In_ HANDLE AvrtHandle
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI
  BOOL
-@@ -120,34 +133,40 @@ AvSetMmThreadPriority (
+@@ -120,34 +139,43 @@ AvSetMmThreadPriority (
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI
@@ -100,6 +107,7 @@ index 845a2291..cc6c0a27 100644
      _In_opt_ PLARGE_INTEGER Timeout
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI
@@ -114,6 +122,7 @@ index 845a2291..cc6c0a27 100644
      _In_opt_ PLARGE_INTEGER Timeout,
      _In_ LPCSTR TaskName
      );
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI
@@ -126,10 +135,11 @@ index 845a2291..cc6c0a27 100644
      _In_ PLARGE_INTEGER Period,
      _Inout_ GUID *ThreadOrderingGuid,
      _In_opt_ PLARGE_INTEGER Timeout,
-@@ -159,16 +178,19 @@ AvRtCreateThreadOrderingGroupExW (
+@@ -159,16 +187,21 @@ AvRtCreateThreadOrderingGroupExW (
  #define AvRtCreateThreadOrderingGroupEx  AvRtCreateThreadOrderingGroupExA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI
@@ -143,30 +153,34 @@ index 845a2291..cc6c0a27 100644
      _In_ BOOL Before
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI
  BOOL
-@@ -177,6 +199,7 @@ AvRtWaitOnThreadOrderingGroup (
+@@ -177,6 +210,8 @@ AvRtWaitOnThreadOrderingGroup (
      _In_ HANDLE Context
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI
  BOOL
-@@ -185,6 +208,7 @@ AvRtLeaveThreadOrderingGroup (
+@@ -185,6 +220,8 @@ AvRtLeaveThreadOrderingGroup (
      _In_ HANDLE Context
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI
  BOOL
-@@ -193,6 +217,7 @@ AvRtDeleteThreadOrderingGroup (
+@@ -193,6 +230,8 @@ AvRtDeleteThreadOrderingGroup (
      _In_ HANDLE Context
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Success_(return != FALSE)
  AVRTAPI

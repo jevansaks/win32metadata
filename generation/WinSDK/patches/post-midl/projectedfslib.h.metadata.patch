@@ -1,0 +1,160 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h
+index b6a6f4d5..5fa3554b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h
+@@ -37,6 +37,9 @@ Abstract:
+ #pragma warning(disable:4201) // nameless struct/union
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -140,6 +143,7 @@ typedef struct PRJ_STARTVIRTUALIZING_OPTIONS
+     UINT32 NotificationMappingsCount;
+ } PRJ_STARTVIRTUALIZING_OPTIONS;
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjStartVirtualizing(
+     _In_ PCWSTR virtualizationRootPath,
+@@ -149,11 +153,13 @@ PrjStartVirtualizing(
+     _Outptr_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT* namespaceVirtualizationContext
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI_(void)
+ PrjStopVirtualizing(
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjClearNegativePathCache(
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
+@@ -166,6 +172,7 @@ typedef struct PRJ_VIRTUALIZATION_INSTANCE_INFO
+     UINT32 WriteAlignment;
+ } PRJ_VIRTUALIZATION_INSTANCE_INFO;
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjGetVirtualizationInstanceInfo(
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
+@@ -187,6 +194,7 @@ typedef struct PRJ_PLACEHOLDER_VERSION_INFO
+     UINT8 ContentID[PRJ_PLACEHOLDER_ID_LENGTH];
+ } PRJ_PLACEHOLDER_VERSION_INFO;
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjMarkDirectoryAsPlaceholder(
+     _In_ PCWSTR rootPathName,
+@@ -231,6 +239,7 @@ typedef struct PRJ_PLACEHOLDER_INFO
+     UINT8 VariableData[1];
+ } PRJ_PLACEHOLDER_INFO;
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjWritePlaceholderInfo(
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
+@@ -239,6 +248,7 @@ PrjWritePlaceholderInfo(
+     _In_ UINT32 placeholderInfoSize
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.19041)
+ STDAPI
+ PrjWritePlaceholderInfo2(
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
+@@ -273,6 +283,7 @@ typedef enum PRJ_UPDATE_FAILURE_CAUSES
+ 
+ DEFINE_ENUM_FLAG_OPERATORS(PRJ_UPDATE_FAILURE_CAUSES);
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjUpdateFileIfNeeded(
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
+@@ -283,6 +294,7 @@ PrjUpdateFileIfNeeded(
+     _Out_opt_ PRJ_UPDATE_FAILURE_CAUSES* failureReason
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjDeleteFile(
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
+@@ -291,6 +303,7 @@ PrjDeleteFile(
+     _Out_opt_ PRJ_UPDATE_FAILURE_CAUSES* failureReason
+    );
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjWriteFileData(
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
+@@ -311,18 +324,21 @@ typedef enum PRJ_FILE_STATE
+ 
+ DEFINE_ENUM_FLAG_OPERATORS(PRJ_FILE_STATE);
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjGetOnDiskFileState(
+     _In_ PCWSTR destinationFileName,
+     _Out_ PRJ_FILE_STATE* fileState
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI_(void*)
+ PrjAllocateAlignedBuffer (
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
+     _In_ size_t size
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI_(void)
+ PrjFreeAlignedBuffer (
+     _In_ void* buffer
+@@ -469,6 +485,7 @@ typedef struct PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS {
+ 
+ } PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS;
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjCompleteCommand(
+     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
+@@ -481,6 +498,7 @@ PrjCompleteCommand(
+ 
+ #pragma region Enumeration APIs
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI
+ PrjFillDirEntryBuffer(
+     _In_ PCWSTR fileName,
+@@ -488,6 +506,7 @@ PrjFillDirEntryBuffer(
+     _In_ PRJ_DIR_ENTRY_BUFFER_HANDLE dirEntryBufferHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.19041)
+ STDAPI
+ PrjFillDirEntryBuffer2(
+     _In_ PRJ_DIR_ENTRY_BUFFER_HANDLE dirEntryBufferHandle,
+@@ -496,18 +515,21 @@ PrjFillDirEntryBuffer2(
+     _In_opt_ PRJ_EXTENDED_INFO* extendedInfo
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI_(BOOLEAN)
+ PrjFileNameMatch (
+     _In_ PCWSTR fileNameToCheck,
+     _In_ PCWSTR pattern
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI_(int)
+ PrjFileNameCompare (
+     _In_ PCWSTR fileName1,
+     _In_ PCWSTR fileName2
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.17763)
+ STDAPI_(BOOLEAN)
+ PrjDoesNameContainWildCards (
+     _In_ LPCWSTR fileName

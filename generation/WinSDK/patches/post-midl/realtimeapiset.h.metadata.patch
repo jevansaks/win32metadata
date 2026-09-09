@@ -1,28 +1,105 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/realtimeapiset.h b/generation/WinSDK/RecompiledIdlHeaders/um/realtimeapiset.h
-index c06884e9..ddf534dd 100644
+index c06884e9..cef54551 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/realtimeapiset.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/realtimeapiset.h
-@@ -26,6 +26,7 @@ extern "C" {
+@@ -12,6 +12,9 @@
+ 
+ #ifndef _APISETREALTIME_
+ #define _APISETREALTIME_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -26,6 +29,8 @@ extern "C" {
  
  #if (_WIN32_WINNT >= 0x0600)
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  WINAPI
-@@ -34,6 +35,7 @@ QueryThreadCycleTime(
+@@ -34,6 +39,8 @@ QueryThreadCycleTime(
      _Out_ PULONG64 CycleTime
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  WINAPI
-@@ -42,6 +44,7 @@ QueryProcessCycleTime(
+@@ -42,6 +49,8 @@ QueryProcessCycleTime(
      _Out_ PULONG64 CycleTime
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
+ WINAPI
+@@ -54,6 +63,7 @@ QueryIdleProcessorCycleTime(
+ 
+ #if (_WIN32_WINNT >= 0x0601)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -71,6 +81,7 @@ QueryIdleProcessorCycleTimeEx(
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -78,6 +89,7 @@ QueryInterruptTimePrecise(
+     _Out_ PULONGLONG lpInterruptTimePrecise
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -85,6 +97,7 @@ QueryUnbiasedInterruptTimePrecise(
+     _Out_ PULONGLONG lpUnbiasedInterruptTimePrecise
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -94,6 +107,7 @@ QueryInterruptTime(
+ 
+ #if (_WIN32_WINNT >= 0x0601)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -103,6 +117,7 @@ QueryUnbiasedInterruptTime(
+ 
+ #endif // (_WIN32_WINNT >= 0x0601)
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ WINBASEAPI
+ HRESULT
+ WINAPI
+@@ -110,6 +125,7 @@ QueryAuxiliaryCounterFrequency(
+     _Out_ PULONGLONG lpAuxiliaryCounterFrequency
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ WINBASEAPI
+ HRESULT
+ WINAPI
+@@ -119,6 +135,7 @@ ConvertAuxiliaryCounterToPerformanceCounter(
+     _Out_opt_ PULONGLONG lpConversionError
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ WINBASEAPI
+ HRESULT
  WINAPI

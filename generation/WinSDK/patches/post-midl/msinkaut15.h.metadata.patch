@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msinkaut15.h b/generation/WinSDK/RecompiledIdlHeaders/um/msinkaut15.h
+index f83eafee..52d20458 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/msinkaut15.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/msinkaut15.h
+@@ -97,6 +97,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #include <TPCError.h> // for Tablet PC Error codes
+@@ -374,6 +377,7 @@ EXTERN_C const IID IID_IInkDivisionResult;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("2DBEC0A7-74C7-4B38-81EB-AA8EF0C24900")
+     IInkDivisionResult : public IDispatch
+     {
+@@ -525,6 +529,7 @@ EXTERN_C const IID IID_IInkDivisionUnit;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("85AEE342-48B0-4244-9DD5-1ED435410FAB")
+     IInkDivisionUnit : public IDispatch
+     {
+@@ -696,6 +701,7 @@ EXTERN_C const IID IID_IInkDivisionUnits;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("1BB5DDC2-31CC-4135-AB82-2C66C9F00C41")
+     IInkDivisionUnits : public IDispatch
+     {

@@ -1,0 +1,28 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Iwamreg.h b/generation/WinSDK/RecompiledIdlHeaders/um/Iwamreg.h
+index 1e4b48b3..cdd9c3c5 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Iwamreg.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Iwamreg.h
+@@ -98,6 +98,9 @@ Module Name: iwamreg.h
+                                                                                 
+ --*/
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #ifndef __WAMREG_IADM__IID
+@@ -613,9 +616,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  unsigned long *, unsigned char *,
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal(unsigned long *, unsigned char *, BSTR * ); 
+ void                      __RPC_USER  BSTR_UserFree(     unsigned long *, BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     unsigned long *, unsigned long            , BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  unsigned long *, unsigned char *, BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(unsigned long *, unsigned char *, BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     unsigned long *, BSTR * ); 
+ 
+ /* end of Additional Prototypes */

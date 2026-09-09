@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wsbapp.h b/generation/WinSDK/RecompiledIdlHeaders/um/wsbapp.h
+index 1fe5276a..b2d0d5db 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wsbapp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wsbapp.h
+@@ -81,6 +81,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -100,6 +103,7 @@ EXTERN_C const IID IID_IWsbApplicationBackupSupport;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("1EFF3510-4A27-46ad-B9E0-08332F0F4F6D")
+     IWsbApplicationBackupSupport : public IUnknown
+     {
+@@ -211,6 +215,7 @@ EXTERN_C const IID IID_IWsbApplicationRestoreSupport;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("8D3BDB38-4EE8-4718-85F9-C7DBC4AB77AA")
+     IWsbApplicationRestoreSupport : public IUnknown
+     {
+@@ -377,6 +382,7 @@ EXTERN_C const IID IID_IWsbApplicationAsync;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("0843F6F7-895C-44a6-B0C2-05A5022AA3A1")
+     IWsbApplicationAsync : public IUnknown
+     {

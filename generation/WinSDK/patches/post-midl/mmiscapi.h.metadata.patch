@@ -1,0 +1,268 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmiscapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/mmiscapi.h
+index f91b63b4..8191aa6c 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mmiscapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mmiscapi.h
+@@ -12,6 +12,9 @@
+ 
+ #ifndef _MMISCAPI_H_
+ #define _MMISCAPI_H_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -95,6 +98,7 @@ typedef struct tagDRVCONFIGINFO {
+ 
+ typedef LRESULT (CALLBACK* DRIVERPROC)(DWORD_PTR, HDRVR, UINT, LPARAM, LPARAM);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ LRESULT
+ WINAPI
+@@ -104,6 +108,7 @@ CloseDriver(
+     _In_ LPARAM lParam2
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ HDRVR
+ WINAPI
+@@ -113,6 +118,7 @@ OpenDriver(
+     _In_ LPARAM lParam2
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ LRESULT
+ WINAPI
+@@ -123,6 +129,7 @@ SendDriverMessage(
+     _In_ LPARAM lParam2
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ HMODULE
+ WINAPI
+@@ -130,6 +137,7 @@ DrvGetModuleHandle(
+     _In_ HDRVR hDriver
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ HMODULE
+ WINAPI
+@@ -137,6 +145,7 @@ GetDriverModuleHandle(
+     _In_ HDRVR hDriver
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ LRESULT
+ WINAPI
+@@ -152,7 +161,9 @@ DefDriverProc(
+ LRESULT   WINAPI DrvClose(HDRVR hdrvr, LPARAM lParam1, LPARAM lParam2);
+ HDRVR     WINAPI DrvOpen(LPCSTR szDriverName, LPCSTR szSectionName, LPARAM lParam2);
+ LRESULT   WINAPI DrvSendMessage(HDRVR hdrvr, UINT uMsg, LPARAM lParam1, LPARAM lParam2);
++_Win32_metadata_supported_os_(windows5.0)
+ HINSTANCE WINAPI DrvGetModuleHandle(HDRVR hdrvr);
++_Win32_metadata_supported_os_(windows5.0)
+ LRESULT   WINAPI DrvDefDriverProc(DWORD dwDriverIdentifier, HDRVR hdrvr, UINT uMsg, LPARAM lParam1, LPARAM lParam2);
+ #define DefDriverProc DrvDefDriverProc
+ #endif /* ifdef _WIN32 */
+@@ -175,6 +186,7 @@ LRESULT   WINAPI DrvDefDriverProc(DWORD dwDriverIdentifier, HDRVR hdrvr, UINT uM
+                       Driver Helper function moved from mmddk.h
+ 
+ ***************************************************************************/
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DriverCallback(
+@@ -192,6 +204,7 @@ DriverCallback(
+   Sound schemes
+ 
+ ****************************************************************************/LONG
++_Win32_metadata_supported_os_(windows8.1)
+ WINAPI
+ sndOpenSound(
+     _In_ LPCWSTR EventName,
+@@ -382,6 +395,7 @@ typedef const MMCKINFO *LPCMMCKINFO;
+ /* MMIO function prototypes */
+ #ifdef _WIN32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ FOURCC
+ WINAPI
+@@ -390,6 +404,7 @@ mmioStringToFOURCCA(
+     _In_ UINT uFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ FOURCC
+ WINAPI
+@@ -403,6 +418,7 @@ mmioStringToFOURCCW(
+ #else
+ #define mmioStringToFOURCC  mmioStringToFOURCCA
+ #endif // !UNICODE
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ LPMMIOPROC
+ WINAPI
+@@ -412,6 +428,7 @@ mmioInstallIOProcA(
+     _In_ DWORD dwFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ LPMMIOPROC
+ WINAPI
+@@ -426,6 +443,7 @@ mmioInstallIOProcW(
+ #else
+ #define mmioInstallIOProc  mmioInstallIOProcA
+ #endif // !UNICODE
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ HMMIO
+ WINAPI
+@@ -435,6 +453,7 @@ mmioOpenA(
+     _In_ DWORD fdwOpen
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ HMMIO
+ WINAPI
+@@ -449,6 +468,7 @@ mmioOpenW(
+ #else
+ #define mmioOpen  mmioOpenA
+ #endif // !UNICODE
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -459,6 +479,7 @@ mmioRenameA(
+     _In_ DWORD fdwRename
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -475,14 +496,19 @@ mmioRenameW(
+ #define mmioRename  mmioRenameA
+ #endif // !UNICODE
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ FOURCC WINAPI mmioStringToFOURCC( LPCSTR sz, UINT uFlags);
++_Win32_metadata_supported_os_(windows5.0)
+ LPMMIOPROC WINAPI mmioInstallIOProc( FOURCC fccIOProc, LPMMIOPROC pIOProc, DWORD dwFlags);
++_Win32_metadata_supported_os_(windows5.0)
+ HMMIO WINAPI mmioOpen(_Inout_opt_ LPSTR pszFileName, LPMMIOINFO pmmioinfo, DWORD fdwOpen);
+ #if (WINVER >= 0x030a)
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI mmioRename( _In_ LPCSTR pszFileName, _In_ LPCSTR pszNewFileName, _In_opt_ const MMIOINFO FAR* pmmioinfo, _In_ DWORD fdwRename);
+ #endif /* ifdef WINVER >= 0x030a */
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -491,6 +517,7 @@ mmioClose(
+     _In_ UINT fuClose
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ LONG
+ WINAPI
+@@ -500,6 +527,7 @@ mmioRead(
+     _In_ LONG cch
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ LONG
+ WINAPI
+@@ -509,6 +537,7 @@ mmioWrite(
+     _In_ LONG cch
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ LONG
+ WINAPI
+@@ -518,6 +547,7 @@ mmioSeek(
+     _In_ int iOrigin
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -527,6 +557,7 @@ mmioGetInfo(
+     _In_ UINT fuInfo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -536,6 +567,7 @@ mmioSetInfo(
+     _In_ UINT fuInfo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -546,6 +578,7 @@ mmioSetBuffer(
+     _In_ UINT fuBuffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -554,6 +587,7 @@ mmioFlush(
+     _In_ UINT fuFlush
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -563,6 +597,7 @@ mmioAdvance(
+     _In_ UINT fuAdvance
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ LRESULT
+ WINAPI
+@@ -573,6 +608,7 @@ mmioSendMessage(
+     _In_opt_ LPARAM lParam2
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -583,6 +619,7 @@ mmioDescend(
+     _In_ UINT fuDescend
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -592,6 +629,7 @@ mmioAscend(
+     _In_ UINT fuAscend
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI

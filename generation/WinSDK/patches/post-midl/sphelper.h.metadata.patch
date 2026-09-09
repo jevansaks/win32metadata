@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/sphelper.h b/generation/WinSDK/RecompiledIdlHeaders/um/sphelper.h
+index ab6664df..5225febe 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/sphelper.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/sphelper.h
+@@ -10,6 +10,9 @@
+ #define SPHelper_h
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -187,6 +190,7 @@ public:
+ 
+         if ((unsigned int) cch != cch)
+         {
++_Win32_metadata_supported_os_(windows5.1.2600)
+             _ASSERT((unsigned int) cch == cch);    // Too long
+             SetLastError(ERROR_ARITHMETIC_OVERFLOW);
+             return MAXDWORD;
+@@ -2484,6 +2488,7 @@ public:
+                 pSerEvent->SerializedlParam = sizeof(T);
+                 break;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+             case SPET_LPARAM_IS_STRING:
+                 StringCchCopyW ((WCHAR *)(pSerEvent + 1), wcslen ((WCHAR*) lParam) + 1, (WCHAR*)lParam);
+                 pSerEvent->SerializedlParam = sizeof(T);
+@@ -3069,6 +3074,7 @@ inline HRESULT CreatePhraseFromWordArray(const WCHAR ** ppWords, ULONG cWords,
+         else
+         {
+             //It is the simple format, only have one form, use it for everything.
++_Win32_metadata_supported_os_(windows5.1.2600)
+             StringCchCopyW ( pText, cTotalChars - (pText - dsText), ppWords[i] );
+             pText += wcslen( p ) + 1;
+ 

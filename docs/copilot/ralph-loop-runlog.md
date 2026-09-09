@@ -4268,3 +4268,59 @@ removed with no substitute) + 982 + 2 = 984 migrated to inline
 first batch plus `wingdi.h`/`mscat.h` re-touched in the final batch, already
 counted in the 63) = 3365 accounted for. Residual API entries in
 `WithSetLastError.rsp`: **0**.
+
+## supportedOS.rsp sidecar-removal tranche
+
+Started the next sidecar-removal tranche: `generation/WinSDK/supportedOS.rsp`,
+17,248 API-specific `--with-attribute` entries mapping names to
+`SupportedOSPlatform("windowsX.Y.ZZZZ")`. Unlike the function-only RAIIFree/
+SetLastError tranches, this sidecar also covers COM interface types and
+`DEFINE_PROPERTYKEY` macro-expansion constants.
+
+**Phase 1 (prior commit):** a function-only declaration scanner found 3,196
+already-covered entries and removed them as pure reconciliation. Residual:
+14,052.
+
+**Phase 2 (this batch):** extended the scanner with COM-interface detection
+(`MIDL_INTERFACE("guid")` / `NAME : public Base`), raising locatable names from
+12,338 to 15,903 of 17,247. Found and fixed two new false-positive classes at
+this larger scale: (1) bare call-site pollution for ubiquitous APIs like
+`CoTaskMemFree`/`CoCreateInstance` called from inline helper bodies throughout
+hundreds of headers (fixed via an expression-context prefix check plus a
+preceding-line-terminator check); (2) `return !EXPR(...)`/`return !!EXPR(...)`
+forwarding-shim calls slipping past the exclusion filters and producing
+annotations inserted inside function bodies (103 instances across 26 files,
+found via a post-insertion sweep and reverted; in all but one case the same
+name's real declaration elsewhere already had a correct annotation, so no
+coverage was lost).
+
+Migrated/reconciled 12,682 more entries across 660 touched headers. Found and
+closed a correctness gap: `DEFINE_PROPERTYKEY` is a single rsp entry applied by
+the scraper to *every* macro-expansion site tree-wide, not just `propkey.h`;
+annotated the remaining ~510 invocations across 14 more headers before removing
+the sidecar entry, to avoid silently dropping the attribute from those other
+files' property-key constants.
+
+Added the `win32metadata_annotations.h` guard to every touched header lacking
+it. Consolidated all 660 headers' complete change sets into
+`<header>.metadata.patch` (581 new, 79 updated) against `d154186c`; all replay
+byte-for-byte. Ran `ScrapeHeaders -p:ScanArch=crossarch` across all 240
+reachable partitions (`AllJoyn` excluded, pre-existing blocker) in 5 batches -
+all succeeded with 0 errors, after reverting a genuine infrastructure-gap
+regression: annotating `ntdef.h`/`guiddef.h` broke the `Kernel` partition scrape
+because its `main.cpp` intentionally omits the `windows.h`-family include chain
+that (via a mechanism not identified via static search in the time available)
+appears to be required for `WIN32METADATA` to be defined during scraping,
+without which `win32metadata_annotations.h` never gets included and
+`_Win32_metadata_supported_os_` is left as unexpandable raw source text. Two of
+the three affected names (`Int64Shl{l,ra,rl}Mod32`) have an alternate,
+user-mode-reachable declaration in `winnt.h` that already works correctly; the
+third (`IsEqualGUID`) has no alternate and remains a documented blocker.
+
+**Residual: 1,370 of 17,248 original entries remain in `supportedOS.rsp`**:
+1,355 names not locatable by the current scanner (COM interfaces using a
+different declaration idiom, `SendMessage`-wrapper macros, cluster/manifest
+constant macros), 14 names with a genuine pre-existing multi-declaration
+version conflict predating this tranche, and 1 Kernel-mode-scrape-context
+blocker (`IsEqualGUID`). See `docs/copilot/supportedos-migration.md` for the
+complete accounting and exact blocker documentation.

@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/rpcssl.h b/generation/WinSDK/RecompiledIdlHeaders/um/rpcssl.h
+index 6a6fc481..c6f94bab 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/rpcssl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/rpcssl.h
+@@ -14,6 +14,9 @@
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -31,6 +34,7 @@ extern "C" {
+ #define RpcCertGeneratePrincipalName RpcCertGeneratePrincipalNameA
+ #endif /* UNICODE */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ RPCRTAPI
+ RPC_STATUS
+ RPC_ENTRY
+@@ -41,6 +45,7 @@ RpcCertGeneratePrincipalNameW(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ RPCRTAPI
+ RPC_STATUS
+ RPC_ENTRY
+@@ -52,6 +57,7 @@ RpcCertGeneratePrincipalNameA(
+ 
+ #else /* RPC_UNICODE_SUPPORTED */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ RPCRTAPI
+ RPC_STATUS
+ RPC_ENTRY

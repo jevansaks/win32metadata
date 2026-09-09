@@ -1,0 +1,105 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wdstci.h b/generation/WinSDK/RecompiledIdlHeaders/um/wdstci.h
+index 960cab9b..3f817530 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wdstci.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wdstci.h
+@@ -20,6 +20,9 @@ Environment:
+ #ifndef _WDSTCI_H
+ #define _WDSTCI_H
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -220,12 +223,14 @@ typedef struct _WDS_TRANSPORTCLIENT_CALLBACKS
+ 
+ //----------------------------------------------------------------- Functions.
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientInitialize (
+     VOID
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientInitializeSession (
+@@ -234,6 +239,7 @@ WdsTransportClientInitializeSession (
+     _Out_ PHANDLE hSessionKey
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientRegisterCallback (
+@@ -242,12 +248,14 @@ WdsTransportClientRegisterCallback (
+     _In_ PVOID pfnCallback
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientStartSession (
+     _In_ HANDLE hSessionKey
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientCompleteReceive (
+@@ -256,6 +264,7 @@ WdsTransportClientCompleteReceive (
+     _In_ PULARGE_INTEGER pullOffset
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientCancelSession (
+@@ -269,6 +278,7 @@ WdsTransportClientCancelSessionEx (
+     _In_ DWORD dwErrorCode
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientWaitForCompletion (
+@@ -276,6 +286,7 @@ WdsTransportClientWaitForCompletion (
+     _In_ ULONG uTimeout
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientQueryStatus (
+@@ -284,24 +295,28 @@ WdsTransportClientQueryStatus (
+     _Out_ PULONG puErrorCode
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientCloseSession (
+     _In_ HANDLE hSessionKey
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientAddRefBuffer (
+     _In_ PVOID pvBuffer
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientReleaseBuffer (
+     _In_ PVOID pvBuffer
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WDSTCIAPI
+ WdsTransportClientShutdown (

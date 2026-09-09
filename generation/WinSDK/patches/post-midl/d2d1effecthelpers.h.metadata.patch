@@ -1,0 +1,14 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1effecthelpers.h b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1effecthelpers.h
+index f7dd4685..b08a17ee 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1effecthelpers.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1effecthelpers.h
+@@ -11,6 +11,9 @@
+ #define _D2D1_EFFECT_HELPERS_H_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Application Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)

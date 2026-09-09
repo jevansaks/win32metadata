@@ -1,0 +1,212 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ctffunc.h b/generation/WinSDK/RecompiledIdlHeaders/um/ctffunc.h
+index 0ff97292..47e34189 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ctffunc.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ctffunc.h
+@@ -242,6 +242,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ //=--------------------------------------------------------------------------=
+ // ctffunc.h
+ 
+@@ -297,6 +300,7 @@ EXTERN_C const IID IID_ITfCandidateString;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("581f317e-fd9d-443f-b972-ed00467c5d40")
+     ITfCandidateString : public IUnknown
+     {
+@@ -397,6 +401,7 @@ EXTERN_C const IID IID_IEnumTfCandidates;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("defb1926-6c80-4ce8-87d4-d6b72b812bde")
+     IEnumTfCandidates : public IUnknown
+     {
+@@ -535,6 +540,7 @@ EXTERN_C const IID IID_ITfCandidateList;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("a3ad50fb-9bdb-49e3-a843-6c76520fbf5d")
+     ITfCandidateList : public IUnknown
+     {
+@@ -669,6 +675,7 @@ EXTERN_C const IID IID_ITfFnReconversion;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("4cea93c0-0a58-11d3-8df0-00105a2799b5")
+     ITfFnReconversion : public ITfFunction
+     {
+@@ -832,6 +839,7 @@ EXTERN_C const IID IID_ITfFnPlayBack;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("a3a416a4-0f64-11d3-b5b7-00c04fc324a1")
+     ITfFnPlayBack : public ITfFunction
+     {
+@@ -950,6 +958,7 @@ EXTERN_C const IID IID_ITfFnLangProfileUtil;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("A87A8574-A6C1-4E15-99F0-3D3965F548EB")
+     ITfFnLangProfileUtil : public ITfFunction
+     {
+@@ -1060,6 +1069,7 @@ EXTERN_C const IID IID_ITfFnConfigure;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("88f567c6-1757-49f8-a1b2-89234c1eeff9")
+     ITfFnConfigure : public ITfFunction
+     {
+@@ -1165,6 +1175,7 @@ EXTERN_C const IID IID_ITfFnConfigureRegisterWord;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("bb95808a-6d8f-4bca-8400-5390b586aedf")
+     ITfFnConfigureRegisterWord : public ITfFunction
+     {
+@@ -1274,6 +1285,7 @@ EXTERN_C const IID IID_ITfFnConfigureRegisterEudc;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("b5e26ff5-d7ad-4304-913f-21a2ed95a1b0")
+     ITfFnConfigureRegisterEudc : public ITfFunction
+     {
+@@ -1383,6 +1395,7 @@ EXTERN_C const IID IID_ITfFnShowHelp;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("5AB1D30C-094D-4C29-8EA5-0BF59BE87BF3")
+     ITfFnShowHelp : public ITfFunction
+     {
+@@ -1480,6 +1493,7 @@ EXTERN_C const IID IID_ITfFnBalloon;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("3BAB89E4-5FBE-45F4-A5BC-DCA36AD225A8")
+     ITfFnBalloon : public IUnknown
+     {
+@@ -1598,6 +1612,7 @@ EXTERN_C const IID IID_ITfFnGetSAPIObject;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("5c0ab7ea-167d-4f59-bfb5-4693755e90ca")
+     ITfFnGetSAPIObject : public ITfFunction
+     {
+@@ -1711,6 +1726,7 @@ EXTERN_C const IID IID_ITfFnPropertyUIStatus;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("2338AC6E-2B9D-44C0-A75E-EE64F256B3BD")
+     ITfFnPropertyUIStatus : public ITfFunction
+     {
+@@ -2191,6 +2207,7 @@ EXTERN_C const IID IID_ITfFnLMProcessor;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("7AFBF8E7-AC4B-4082-B058-890899D3A010")
+     ITfFnLMProcessor : public ITfFunction
+     {
+@@ -2406,6 +2423,7 @@ EXTERN_C const IID IID_ITfFnLMInternal;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("04B825B1-AC9A-4F7B-B5AD-C7168F1EE445")
+     ITfFnLMInternal : public ITfFnLMProcessor
+     {
+@@ -2615,6 +2633,7 @@ EXTERN_C const IID IID_IEnumTfLatticeElements;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56988052-47DA-4A05-911A-E3D941F17145")
+     IEnumTfLatticeElements : public IUnknown
+     {
+@@ -2745,6 +2764,7 @@ EXTERN_C const IID IID_ITfLMLattice;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("D4236675-A5BF-4570-9D42-5D6D7B02D59B")
+     ITfLMLattice : public IUnknown
+     {
+@@ -2857,6 +2877,7 @@ EXTERN_C const IID IID_ITfFnAdviseText;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("3527268B-7D53-4DD9-92B7-7296AE461249")
+     ITfFnAdviseText : public ITfFunction
+     {
+@@ -2979,6 +3000,7 @@ EXTERN_C const IID IID_ITfFnSearchCandidateProvider;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("87a2ad8f-f27b-4920-8501-67602280175d")
+     ITfFnSearchCandidateProvider : public ITfFunction
+     {
+@@ -3122,6 +3144,7 @@ EXTERN_C const IID IID_ITfIntegratableCandidateListUIElement;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("C7A6F54F-B180-416F-B2BF-7BF2E4683D7B")
+     ITfIntegratableCandidateListUIElement : public IUnknown
+     {
+@@ -3273,6 +3296,7 @@ EXTERN_C const IID IID_ITfFnGetPreferredTouchKeyboardLayout;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("5F309A41-590A-4ACC-A97F-D8EFFF13FDFC")
+     ITfFnGetPreferredTouchKeyboardLayout : public ITfFunction
+     {
+@@ -3372,6 +3396,7 @@ EXTERN_C const IID IID_ITfFnGetLinguisticAlternates;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.1)
+     MIDL_INTERFACE("ea163ce2-7a65-4506-82a3-c528215da64e")
+     ITfFnGetLinguisticAlternates : public ITfFunction
+     {
+@@ -3473,6 +3498,7 @@ EXTERN_C const IID IID_IUIManagerEventSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.1)
+     MIDL_INTERFACE("cd91d690-a7e8-4265-9b38-8bb3bbaba7de")
+     IUIManagerEventSink : public IUnknown
+     {
+@@ -3641,9 +3667,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
+ unsigned char * __RPC_USER  HWND_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
+ void                      __RPC_USER  HWND_UserFree(     __RPC__in unsigned long *, __RPC__in HWND * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
+ unsigned long             __RPC_USER  HWND_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HWND * ); 

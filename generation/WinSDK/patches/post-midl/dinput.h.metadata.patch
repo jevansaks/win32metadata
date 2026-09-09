@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h b/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h
+index 9c5c40ef..d66f77fd 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h
+@@ -11,6 +11,9 @@
+ #define __DINPUT_INCLUDED__
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifndef DIJ_RINGZERO
+ 
+@@ -4347,6 +4350,7 @@ extern "C" {
+  * and should be reloaded from the registery.
+  * dwFlags is reserved and should be set to zero
+  */
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI MMRESULT WINAPI joyConfigChanged( DWORD dwFlags );
+ 
+ #ifndef DIJ_RINGZERO

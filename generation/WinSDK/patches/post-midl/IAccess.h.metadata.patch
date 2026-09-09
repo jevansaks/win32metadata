@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IAccess.h b/generation/WinSDK/RecompiledIdlHeaders/um/IAccess.h
+index 9e8e2b3b..b2cc3184 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/IAccess.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/IAccess.h
+@@ -83,6 +83,9 @@ extern "C"{
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ typedef PACTRL_ACCESSW PACTRL_ACCESSW_ALLOCATE_ALL_NODES;
+@@ -106,6 +109,7 @@ EXTERN_C const IID IID_IAccessControl;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("EEDD23E0-8410-11CE-A1C3-08002B2B8D8F")
+     IAccessControl : public IUnknown
+     {

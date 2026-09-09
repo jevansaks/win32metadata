@@ -1,0 +1,170 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/traffic.h b/generation/WinSDK/RecompiledIdlHeaders/shared/traffic.h
+index 8e028e77..92765847 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/traffic.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/traffic.h
+@@ -19,6 +19,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or Traffic Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_TRAFFIC)
+@@ -273,6 +276,7 @@ typedef struct _ENUMERATION_BUFFER {
+ // Interface Function Definitions
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcRegisterClient(
+@@ -282,6 +286,7 @@ TcRegisterClient(
+     _Out_ PHANDLE                 pClientHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcEnumerateInterfaces(
+@@ -290,6 +295,7 @@ TcEnumerateInterfaces(
+     _Out_   PTC_IFC_DESCRIPTOR  InterfaceBuffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcOpenInterfaceA(
+@@ -299,6 +305,7 @@ TcOpenInterfaceA(
+     _Out_ PHANDLE         pIfcHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcOpenInterfaceW(
+@@ -308,12 +315,14 @@ TcOpenInterfaceW(
+     _Out_ PHANDLE         pIfcHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcCloseInterface(
+     _In_ HANDLE       IfcHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcQueryInterface(
+@@ -324,6 +333,7 @@ TcQueryInterface(
+     _Out_writes_bytes_(*pBufferSize) PVOID       Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcSetInterface(
+@@ -333,6 +343,7 @@ TcSetInterface(
+     _In_reads_bytes_(BufferSize) PVOID       Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcQueryFlowA(
+@@ -342,6 +353,7 @@ TcQueryFlowA(
+     _Out_writes_bytes_(*pBufferSize) PVOID       Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcQueryFlowW(
+@@ -351,6 +363,7 @@ TcQueryFlowW(
+     _Out_writes_bytes_(*pBufferSize) PVOID       Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcSetFlowA(
+@@ -360,6 +373,7 @@ TcSetFlowA(
+     _In_reads_bytes_(BufferSize) PVOID       Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcSetFlowW(
+@@ -369,6 +383,7 @@ TcSetFlowW(
+     _In_reads_bytes_(BufferSize) PVOID       Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcAddFlow(
+@@ -379,6 +394,7 @@ TcAddFlow(
+     _Out_ PHANDLE         pFlowHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcGetFlowNameA(
+@@ -387,6 +403,7 @@ TcGetFlowNameA(
+     _Out_writes_(StrSize) LPSTR   pFlowName
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcGetFlowNameW(
+@@ -395,6 +412,7 @@ TcGetFlowNameW(
+     _Out_writes_(StrSize) LPWSTR  pFlowName
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcModifyFlow(   
+@@ -402,6 +420,7 @@ TcModifyFlow(
+     _In_ PTC_GEN_FLOW    pGenericFlow
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcAddFilter(
+@@ -410,24 +429,28 @@ TcAddFilter(
+     _Out_ PHANDLE         pFilterHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcDeregisterClient(
+     _In_ HANDLE          ClientHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcDeleteFlow(
+     _In_ HANDLE          FlowHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcDeleteFilter(
+     _In_ HANDLE          FilterHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ TcEnumerateFlows(   

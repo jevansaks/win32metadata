@@ -1,0 +1,158 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cryptxml.h b/generation/WinSDK/RecompiledIdlHeaders/um/cryptxml.h
+index 44880d55..c241069b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/cryptxml.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/cryptxml.h
+@@ -11,6 +11,9 @@
+ --------------------------------------------------------------------*/
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or Appx Deployment Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_APPXDEPLOYMENT)
+@@ -1258,6 +1261,7 @@ typedef struct _CRYPT_XML_DOC_CTXT{
+  encapsulated by the handle is fully released.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1272,6 +1276,7 @@ CryptXmlClose(
+  default Transform Chain Engine.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT
+ WINAPI
+@@ -1312,6 +1317,7 @@ CryptXmlGetTransforms(
+  	[out] Handle to the Signature object.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT
+ WINAPI
+@@ -1354,6 +1360,7 @@ CryptXmlOpenToEncode(
+  	[out] Handle to the Document Context object.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT
+ WINAPI
+@@ -1404,6 +1411,7 @@ CryptXmlOpenToDecode(
+     Otherwise, use CRYPT_XML_FLAG_ADD_OBJECT_CREATE_COPY flag to create in-memory copy.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1459,6 +1467,7 @@ CryptXmlAddObject(
+     [out] Pointer to a Reference Handle.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1508,6 +1517,7 @@ Remarks:
+     The CryptXmlDigestReference function always calls pDataProviderIn->fpnClose.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1541,6 +1551,7 @@ CryptXmlDigestReference(
+  must be NULL.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1652,13 +1663,14 @@ typedef enum
+     [in] Specifies the canonicalization method.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+ CryptXmlSign(
+     _In_            HCRYPTXML           hSignature,
+     _In_opt_        HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hKey,
+-                    DWORD               dwKeySpec,
++                    CERT_KEY_SPEC               dwKeySpec,
+                     DWORD               dwFlags,
+                     CRYPT_XML_KEYINFO_SPEC dwKeyInfoSpec,
+     _In_opt_        const void          *pvKeyInfoSpec,
+@@ -1686,6 +1698,7 @@ CryptXmlSign(
+         [out] Pointer to BCRYPT_KEY_HANDLE that receives imported key handle.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1713,6 +1726,7 @@ CryptXmlImportPublicKey(
+         CRYPT_XML_FLAG_DISABLE_EXTENSIONS
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1729,6 +1743,7 @@ CryptXmlVerifySignature(
+  a handle to Document Context. 
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1744,6 +1759,7 @@ CryptXmlGetDocContext(
+  by a handle to Signature.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1758,6 +1774,7 @@ CryptXmlGetSignature(
+ The CryptXmlGetReference function returns data structure encapsulated 
+ by a handle to Reference.
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1773,6 +1790,7 @@ The CryptXmlGetStatus function returns a CRYPT_XML_STATUS for array
+ of Signature, single Signature, Reference or Manifest.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT 
+ WINAPI 
+@@ -1804,6 +1822,7 @@ CryptXmlGetStatus(
+     [in, callback] An application-defined callback to receive constructed XML.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT
+ WINAPI
+@@ -1890,6 +1909,7 @@ struct _CRYPT_XML_ALGORITHM_INFO
+     The caller must free ppAlgInfo by calling LocalFree()
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_( return == 0 )
+ HRESULT
+ WINAPI 

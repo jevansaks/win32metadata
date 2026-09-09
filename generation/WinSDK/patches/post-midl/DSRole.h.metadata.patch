@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h b/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h
+index 2f506077..88197649 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h
+@@ -20,6 +20,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -107,6 +110,7 @@ typedef struct _DSROLE_OPERATION_STATE_INFO {
+ 
+ } DSROLE_OPERATION_STATE_INFO, *PDSROLE_OPERATION_STATE_INFO;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ WINAPI
+ DsRoleGetPrimaryDomainInformation(
+@@ -115,6 +119,7 @@ DsRoleGetPrimaryDomainInformation(
+     OUT PBYTE *Buffer 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ VOID
+ WINAPI
+ DsRoleFreeMemory(

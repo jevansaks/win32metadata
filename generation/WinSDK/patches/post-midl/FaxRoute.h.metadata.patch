@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h b/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h
-index e003287d..32c80a94 100644
+index e003287d..83089607 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h
 @@ -27,6 +27,9 @@ Abstract:
@@ -12,10 +12,11 @@ index e003287d..32c80a94 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -100,12 +103,14 @@ enum FAXROUTE_ENABLE {
+@@ -100,12 +103,16 @@ enum FAXROUTE_ENABLE {
  // prototypes
  //
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  BOOL WINAPI
  FaxRouteInitialize(
@@ -23,14 +24,16 @@ index e003287d..32c80a94 100644
      IN PFAX_ROUTE_CALLBACKROUTINES FaxRouteCallbackRoutines
      );
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  BOOL WINAPI
  FaxRouteDeviceEnable(
      IN  LPCWSTR RoutingGuid,
-@@ -113,12 +118,14 @@ FaxRouteDeviceEnable(
+@@ -113,12 +120,16 @@ FaxRouteDeviceEnable(
      IN  LONG Enabled
      );
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  BOOL WINAPI
  FaxRouteDeviceChangeNotification(
@@ -38,14 +41,16 @@ index e003287d..32c80a94 100644
      IN  BOOL  NewDevice
      );
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  BOOL WINAPI
  FaxRouteGetRoutingInfo(
      IN  LPCWSTR RoutingGuid,
-@@ -127,6 +134,7 @@ FaxRouteGetRoutingInfo(
+@@ -127,6 +138,8 @@ FaxRouteGetRoutingInfo(
      OUT LPDWORD RoutingInfoSize
      );
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  BOOL WINAPI
  FaxRouteSetRoutingInfo(

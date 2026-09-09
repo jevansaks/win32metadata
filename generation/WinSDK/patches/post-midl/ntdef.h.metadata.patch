@@ -1,0 +1,14 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/ntdef.h b/generation/WinSDK/RecompiledIdlHeaders/shared/ntdef.h
+index 981e5252..2a1f7774 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/ntdef.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/ntdef.h
+@@ -23,6 +23,9 @@ Abstract:
+ 
+ #include <ctype.h>  // winnt ntndis
+ #include <winapifamily.h>  // winnt
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ // begin_winnt begin_ntoshvp begin_ntddk
+ 

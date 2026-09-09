@@ -1,0 +1,1011 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h
+index d92b69cd..7292ae16 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h
+@@ -18,6 +18,9 @@
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #if !defined(_WINSOCK_DEPRECATED_BY)
+ #if ((defined(_WINSOCK_DEPRECATED_NO_WARNINGS) || defined(BUILD_WINDOWS)) && !defined(_WINSOCK_DEPRECATE_WARNINGS)) || defined(MIDL_PASS)
+@@ -138,6 +141,7 @@ typedef struct fd_set {
+         SOCKET  fd_array[FD_SETSIZE];   /* an array of SOCKETs */
+ } fd_set;
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ extern int PASCAL FAR __WSAFDIsSet(SOCKET fd, fd_set FAR *);
+ 
+ #define FD_CLR(fd, set) do { \
+@@ -1626,6 +1630,8 @@ typedef struct pollfd {
+ /* Socket function prototypes */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ _Must_inspect_result_
+ SOCKET
+@@ -1649,6 +1655,8 @@ SOCKET
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -1670,6 +1678,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -1687,6 +1697,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -1708,6 +1720,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -1731,6 +1745,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -1752,6 +1768,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -1773,6 +1791,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -1798,6 +1818,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ u_long
+ WSAAPI
+@@ -1815,6 +1837,8 @@ u_long
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ u_short
+ WSAAPI
+@@ -1832,6 +1856,8 @@ u_short
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("inet_pton() or InetPton()")
+ WINSOCK_API_LINKAGE
+ unsigned long
+@@ -1850,6 +1876,8 @@ unsigned long
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("inet_ntop() or InetNtop()")
+ WINSOCK_API_LINKAGE
+ char FAR *
+@@ -1892,6 +1920,7 @@ char FAR *
+ 
+ 
+ #ifndef htonll
++_Win32_metadata_supported_os_(windows8.1)
+ __inline unsigned __int64 htonll ( unsigned __int64 Value )
+ {
+ 	const unsigned __int64 Retval = _WS2_32_WINSOCK_SWAP_LONGLONG (Value);
+@@ -1900,6 +1929,7 @@ __inline unsigned __int64 htonll ( unsigned __int64 Value )
+ #endif /* htonll */
+ 
+ #ifndef ntohll
++_Win32_metadata_supported_os_(windows8.1)
+ __inline unsigned __int64 ntohll ( unsigned __int64 Value )
+ {
+ 	const unsigned __int64 Retval = _WS2_32_WINSOCK_SWAP_LONGLONG (Value);
+@@ -1908,6 +1938,7 @@ __inline unsigned __int64 ntohll ( unsigned __int64 Value )
+ #endif /* ntohll */
+ 
+ #ifndef htonf
++_Win32_metadata_supported_os_(windows8.1)
+ __inline unsigned __int32 htonf ( float Value )
+ {
+ 	unsigned __int32 Tempval;
+@@ -1919,6 +1950,7 @@ __inline unsigned __int32 htonf ( float Value )
+ #endif /* htonf */
+ 
+ #ifndef ntohf
++_Win32_metadata_supported_os_(windows8.1)
+ __inline float ntohf ( unsigned __int32 Value )
+ {
+ 	const unsigned __int32 Tempval = _WS2_32_WINSOCK_SWAP_LONG (Value);
+@@ -1929,6 +1961,7 @@ __inline float ntohf ( unsigned __int32 Value )
+ #endif /* ntohf */
+ 
+ #ifndef htond
++_Win32_metadata_supported_os_(windows8.1)
+ __inline unsigned __int64 htond ( double Value )
+ {
+ 	unsigned __int64 Tempval;
+@@ -1940,6 +1973,7 @@ __inline unsigned __int64 htond ( double Value )
+ #endif /* htond */
+ 
+ #ifndef ntohd
++_Win32_metadata_supported_os_(windows8.1)
+ __inline double ntohd ( unsigned __int64 Value )
+ {
+ 	const unsigned __int64 Tempval = _WS2_32_WINSOCK_SWAP_LONGLONG (Value);
+@@ -1951,6 +1985,8 @@ __inline double ntohd ( unsigned __int64 Value )
+ #endif /* NO_EXTRA_HTON_FUNCTIONS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -1970,6 +2006,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ u_long
+ WSAAPI
+@@ -1987,6 +2025,8 @@ u_long
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ u_short
+ WSAAPI
+@@ -2004,6 +2044,8 @@ u_short
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2027,6 +2069,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2054,6 +2098,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2079,6 +2125,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2102,6 +2150,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2129,6 +2179,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2154,6 +2206,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2173,6 +2227,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ _Must_inspect_result_
+ SOCKET
+@@ -2198,6 +2254,8 @@ SOCKET
+ /* Database function prototypes */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("getnameinfo() or GetNameInfoW()")
+ WINSOCK_API_LINKAGE
+ struct hostent FAR *
+@@ -2220,6 +2278,8 @@ struct hostent FAR *
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("getaddrinfo() or GetAddrInfoW()")
+ WINSOCK_API_LINKAGE
+ struct hostent FAR *
+@@ -2238,6 +2298,8 @@ struct hostent FAR *
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2258,6 +2320,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2278,6 +2342,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ struct servent FAR *
+ WSAAPI
+@@ -2297,6 +2363,8 @@ struct servent FAR *
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ struct servent FAR *
+ WSAAPI
+@@ -2316,6 +2384,8 @@ struct servent FAR *
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ struct protoent FAR *
+ WSAAPI
+@@ -2333,6 +2403,8 @@ struct protoent FAR *
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ struct protoent FAR *
+ WSAAPI
+@@ -2352,6 +2424,8 @@ struct protoent FAR *
+ /* Microsoft Windows Extension function prototypes */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ _Must_inspect_result_
+ int
+@@ -2373,6 +2447,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2390,6 +2466,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ void
+ WSAAPI
+@@ -2407,6 +2485,8 @@ void
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2427,6 +2507,7 @@ int
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("Winsock 2")
+ WINSOCK_API_LINKAGE
+ BOOL
+@@ -2445,6 +2526,7 @@ BOOL
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("Winsock 2")
+ WINSOCK_API_LINKAGE
+ int
+@@ -2463,6 +2545,7 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("Winsock 2")
+ WINSOCK_API_LINKAGE
+ FARPROC
+@@ -2481,6 +2564,7 @@ FARPROC
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("Winsock 2")
+ WINSOCK_API_LINKAGE
+ int
+@@ -2499,6 +2583,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("getservbyname()")
+ WINSOCK_API_LINKAGE
+ HANDLE
+@@ -2527,6 +2613,8 @@ HANDLE
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("getservbyport()")
+ WINSOCK_API_LINKAGE
+ HANDLE
+@@ -2555,6 +2643,8 @@ HANDLE
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("getprotobyname()")
+ WINSOCK_API_LINKAGE
+ HANDLE
+@@ -2581,6 +2671,8 @@ HANDLE
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("getprotobynumber()")
+ WINSOCK_API_LINKAGE
+ HANDLE
+@@ -2607,6 +2699,8 @@ HANDLE
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("GetAddrInfoExW()")
+ WINSOCK_API_LINKAGE
+ HANDLE
+@@ -2633,6 +2727,8 @@ HANDLE
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("getnameinfo() or GetNameInfoW()")
+ WINSOCK_API_LINKAGE
+ HANDLE
+@@ -2663,6 +2759,8 @@ HANDLE
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED
+ WINSOCK_API_LINKAGE
+ int
+@@ -2681,6 +2779,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAEventSelect()")
+ WINSOCK_API_LINKAGE
+ int
+@@ -2710,6 +2810,8 @@ int
+ /* WinSock 2 API new function prototypes */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ _Must_inspect_result_
+ SOCKET
+@@ -2737,6 +2839,8 @@ SOCKET
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ BOOL
+ WSAAPI
+@@ -2754,6 +2858,8 @@ BOOL
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2776,6 +2882,8 @@ WSAConnect(
+ #define WSAConnectByName    WSAConnectByNameA
+ #endif
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ BOOL
+ PASCAL
+ WSAConnectByNameW(
+@@ -2789,6 +2897,8 @@ WSAConnectByNameW(
+     _In_opt_ const struct timeval * timeout,
+     _Reserved_ LPWSAOVERLAPPED Reserved);
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAConnectByNameW()")
+ BOOL
+ PASCAL
+@@ -2803,6 +2913,8 @@ WSAConnectByNameA(
+     _In_opt_ const struct timeval * timeout,
+     _Reserved_ LPWSAOVERLAPPED Reserved);
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ BOOL
+ PASCAL
+ WSAConnectByList(
+@@ -2831,6 +2943,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ WSAEVENT
+ WSAAPI
+@@ -2848,6 +2962,8 @@ WSAEVENT
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSADuplicateSocketW()")
+ WINSOCK_API_LINKAGE
+ int
+@@ -2858,6 +2974,8 @@ WSADuplicateSocketA(
+     _Out_ LPWSAPROTOCOL_INFOA lpProtocolInfo
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2897,6 +3015,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2918,6 +3038,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAEnumProtocolsW()")
+ WINSOCK_API_LINKAGE
+ int
+@@ -2928,6 +3050,8 @@ WSAEnumProtocolsA(
+     _Inout_ LPDWORD lpdwBufferLength
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2967,6 +3091,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -2988,6 +3114,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ BOOL
+ WSAAPI
+@@ -3016,6 +3144,8 @@ BOOL
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED
+ WINSOCK_API_LINKAGE
+ BOOL
+@@ -3041,6 +3171,8 @@ BOOL
+ #pragma endregion
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3062,6 +3194,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3083,6 +3217,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3116,6 +3252,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ SOCKET
+ WSAAPI
+@@ -3147,6 +3285,8 @@ SOCKET
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3168,6 +3308,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3189,6 +3331,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3221,6 +3365,8 @@ int
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSARecv()")
+ WINSOCK_API_LINKAGE
+ int
+@@ -3244,6 +3390,8 @@ int
+ #pragma endregion
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3277,6 +3425,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ BOOL
+ WSAAPI
+@@ -3294,6 +3444,8 @@ BOOL
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3324,6 +3476,8 @@ int
+ 
+ #if(_WIN32_WINNT >= 0x0600)
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3342,6 +3496,8 @@ WSASendMsg(
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSASend()")
+ WINSOCK_API_LINKAGE
+ int
+@@ -3365,6 +3521,8 @@ int
+ #pragma endregion
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI
+@@ -3398,6 +3556,8 @@ int
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ BOOL
+ WSAAPI
+@@ -3416,6 +3576,8 @@ BOOL
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSASocketW()")
+ WINSOCK_API_LINKAGE
+ _Must_inspect_result_
+@@ -3430,6 +3592,8 @@ WSASocketA(
+     _In_ DWORD dwFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ _Must_inspect_result_
+ SOCKET
+@@ -3482,6 +3646,8 @@ SOCKET
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ DWORD
+ WSAAPI
+@@ -3508,6 +3674,8 @@ DWORD
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAAddressToStringW()")
+ WINSOCK_API_LINKAGE
+ INT
+@@ -3520,6 +3688,8 @@ WSAAddressToStringA(
+     _Inout_  LPDWORD             lpdwAddressStringLength
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3567,6 +3737,8 @@ INT
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAStringToAddressW()")
+ WINSOCK_API_LINKAGE
+ INT
+@@ -3579,6 +3751,8 @@ WSAStringToAddressA(
+     _Inout_ LPINT               lpAddressLength
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3629,6 +3803,8 @@ INT
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSALookupServiceBeginW()")
+ WINSOCK_API_LINKAGE
+ INT
+@@ -3639,6 +3815,8 @@ WSALookupServiceBeginA(
+     _Out_ LPHANDLE       lphLookup
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3680,6 +3858,8 @@ INT
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSALookupServiceNextW()")
+ WINSOCK_API_LINKAGE
+ INT
+@@ -3691,6 +3871,8 @@ WSALookupServiceNextA(
+     _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSAQUERYSETA lpqsResults
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3735,6 +3917,8 @@ INT
+ 
+ #if(_WIN32_WINNT >= 0x0501)
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3767,6 +3951,8 @@ INT
+ #endif //(_WIN32_WINNT >= 0x0501)
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3787,6 +3973,8 @@ INT
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAInstallServiceClassW()")
+ WINSOCK_API_LINKAGE
+ INT
+@@ -3794,6 +3982,8 @@ WSAAPI
+ WSAInstallServiceClassA(
+     _In_  LPWSASERVICECLASSINFOA   lpServiceClassInfo
+     );
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3826,6 +4016,8 @@ INT
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3848,6 +4040,8 @@ INT
+ #if INCL_WINSOCK_API_PROTOTYPES
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAGetServiceClassInfoW()")
+ WINSOCK_API_LINKAGE
+ INT
+@@ -3861,6 +4055,8 @@ WSAGetServiceClassInfoA(
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
+ #pragma endregion
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3907,6 +4103,8 @@ INT
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAEnumNameSpaceProvidersW()")
+ WINSOCK_API_LINKAGE
+ INT
+@@ -3916,6 +4114,8 @@ WSAEnumNameSpaceProvidersA(
+     _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOA lpnspBuffer
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -3931,6 +4131,8 @@ WSAEnumNameSpaceProvidersW(
+ #endif /* !UNICODE */
+ 
+ #if(_WIN32_WINNT >= 0x0600 )
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAEnumNameSpaceProvidersW()")
+ WINSOCK_API_LINKAGE
+ INT
+@@ -3940,6 +4142,8 @@ WSAEnumNameSpaceProvidersExA(
+     _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOEXA lpnspBuffer
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -4006,6 +4210,8 @@ INT
+ #if INCL_WINSOCK_API_PROTOTYPES
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSAGetServiceClassNameByClassIdW()")
+ WINSOCK_API_LINKAGE
+ _Success_(return == 0) INT
+@@ -4018,6 +4224,8 @@ WSAGetServiceClassNameByClassIdA(
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
+ #pragma endregion
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ _Success_(return == 0) INT
+ WSAAPI
+@@ -4061,6 +4269,8 @@ INT
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ _WINSOCK_DEPRECATED_BY("WSASetServiceW()")
+ WINSOCK_API_LINKAGE
+ INT
+@@ -4071,6 +4281,8 @@ WSASetServiceA(
+     _In_ DWORD dwControlFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -4110,6 +4322,8 @@ INT
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ INT
+ WSAAPI
+@@ -4132,6 +4346,8 @@ INT
+ 
+ #if(_WIN32_WINNT >= 0x0600)
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_metadata_supported_os_(windows8.1)
++_Win32_metadata_set_last_error_
+ WINSOCK_API_LINKAGE
+ int
+ WSAAPI

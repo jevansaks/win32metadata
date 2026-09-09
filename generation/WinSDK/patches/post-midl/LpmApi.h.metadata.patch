@@ -1,0 +1,70 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LpmApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/LpmApi.h
+index 609f3d40..96b46647 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/LpmApi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/LpmApi.h
+@@ -60,6 +60,9 @@ Revision History:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -1090,6 +1093,7 @@ typedef struct lpminitinfo {
+ // Current PCM version number
+ #define PCM_VERSION_1    1
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ LPM_Initialize (
+@@ -1110,6 +1114,7 @@ LPM_Initialize (
+     
+ ***************************************/
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ LPM_Deinitialize (    
+@@ -1137,6 +1142,7 @@ LPM_Deinitialize (
+ #define LPM_RESULT_READY    0
+ #define LPM_RESULT_DEFER    1
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ LPM_AdmitRsvpMsg (
+@@ -1166,6 +1172,7 @@ LPM_AdmitRsvpMsg (
+ 
+ // Function return values are defined in LPM_AdmitResvMsg section
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ LPM_GetRsvpObjects (
+@@ -1200,6 +1207,7 @@ LPM_GetRsvpObjects (
+ #define FLOW_DURATION       5
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ APIENTRY
+ LPM_DeleteState(
+@@ -1238,6 +1246,7 @@ typedef struct lpmiptable {
+ 
+ } LPMIPTABLE;
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ LPM_IpAddressTable (
+@@ -1258,6 +1267,7 @@ LPM_IpAddressTable (
+ #define RESOURCES_ALLOCATED             1
+ #define RESOURCES_MODIFIED              2
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ APIENTRY
+ LPM_CommitResv (

@@ -1,0 +1,166 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fsrm.h b/generation/WinSDK/RecompiledIdlHeaders/um/fsrm.h
+index 243476a5..bdabf2e8 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/fsrm.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/fsrm.h
+@@ -165,6 +165,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -255,6 +258,7 @@ EXTERN_C const IID IID_IFsrmObject;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("22bcef93-4a3f-4183-89f9-2f8b8a628aee")
+     IFsrmObject : public IDispatch
+     {
+@@ -448,6 +452,7 @@ EXTERN_C const IID IID_IFsrmCollection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("f76fbf3b-8ddd-4b42-b05a-cb1c3ff1fee8")
+     IFsrmCollection : public IDispatch
+     {
+@@ -683,6 +688,7 @@ EXTERN_C const IID IID_IFsrmMutableCollection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("1bb617b8-3886-49dc-af82-a6c90fa35dda")
+     IFsrmMutableCollection : public IFsrmCollection
+     {
+@@ -939,6 +945,7 @@ EXTERN_C const IID IID_IFsrmCommittableCollection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("96deb3b5-8b91-4a2a-9d93-80a35d8aa847")
+     IFsrmCommittableCollection : public IFsrmMutableCollection
+     {
+@@ -1197,6 +1204,7 @@ EXTERN_C const IID IID_IFsrmAction;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("6cd6408a-ae60-463b-9ef1-e117534d69dc")
+     IFsrmAction : public IDispatch
+     {
+@@ -1394,6 +1402,7 @@ EXTERN_C const IID IID_IFsrmActionEmail;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("d646567d-26ae-4caa-9f84-4e0aad207fca")
+     IFsrmActionEmail : public IFsrmAction
+     {
+@@ -1756,6 +1765,7 @@ EXTERN_C const IID IID_IFsrmActionEmail2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("8276702f-2532-4839-89bf-4872609a2ea4")
+     IFsrmActionEmail2 : public IFsrmActionEmail
+     {
+@@ -2089,6 +2099,7 @@ EXTERN_C const IID IID_IFsrmActionReport;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("2dbe63c4-b340-48a0-a5b0-158e07fc567e")
+     IFsrmActionReport : public IFsrmAction
+     {
+@@ -2321,6 +2332,7 @@ EXTERN_C const IID IID_IFsrmActionEventLog;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("4c8f96c3-5d94-4f37-a4f4-f56ab463546f")
+     IFsrmActionEventLog : public IFsrmAction
+     {
+@@ -2553,6 +2565,7 @@ EXTERN_C const IID IID_IFsrmActionCommand;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("12937789-e247-4917-9c20-f3ee9c7ee783")
+     IFsrmActionCommand : public IFsrmAction
+     {
+@@ -2915,6 +2928,7 @@ EXTERN_C const IID IID_IFsrmSetting;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("f411d4fd-14be-4260-8c40-03b7c95e608a")
+     IFsrmSetting : public IDispatch
+     {
+@@ -3228,6 +3242,7 @@ EXTERN_C const IID IID_IFsrmPathMapper;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("6f4dbfff-6920-4821-a6c3-b7e94c1fd60c")
+     IFsrmPathMapper : public IDispatch
+     {
+@@ -3381,6 +3396,7 @@ EXTERN_C const IID IID_IFsrmExportImport;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("efcb0ab1-16c4-4a79-812c-725614c3306b")
+     IFsrmExportImport : public IDispatch
+     {
+@@ -3655,6 +3671,7 @@ EXTERN_C const IID IID_IFsrmDerivedObjectsResult;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("39322a2d-38ee-4d0d-8095-421a80849a82")
+     IFsrmDerivedObjectsResult : public IDispatch
+     {
+@@ -3817,6 +3834,7 @@ EXTERN_C const IID IID_IFsrmAccessDeniedRemediationClient;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("40002314-590B-45A5-8E1B-8C05DA527E52")
+     IFsrmAccessDeniedRemediationClient : public IDispatch
+     {
+@@ -4006,19 +4024,31 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  LPSAFEARRAY_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

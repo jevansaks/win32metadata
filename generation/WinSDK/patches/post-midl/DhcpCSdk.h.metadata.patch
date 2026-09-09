@@ -1,0 +1,66 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DhcpCSdk.h b/generation/WinSDK/RecompiledIdlHeaders/um/DhcpCSdk.h
+index 5a94a301..b1245788 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/DhcpCSdk.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/DhcpCSdk.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /*++
+ 
+@@ -215,18 +218,21 @@ typedef struct _DHCPCAPI_CLASSID {                // defines a client class id.
+ #define     DHCPCAPI_REQUEST_CANCEL               0x08 // cancel request
+ #define     DHCPCAPI_REQUEST_MASK                 0x0F // allowed flags..
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ DhcpCApiInitialize(
+     OUT     LPDWORD                Version
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ APIENTRY
+ DhcpCApiCleanup(
+     VOID
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD                                             // win32 status
+ APIENTRY
+ DhcpRequestParams(                                // request parameters of client
+@@ -247,6 +253,7 @@ DhcpRequestParams(                                // request parameters of clien
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD                                             // win32 status
+ APIENTRY
+ DhcpUndoRequestParams(                            // undo the effect of a persistent request -- currently undo from registry
+@@ -257,6 +264,7 @@ DhcpUndoRequestParams(                            // undo the effect of a persis
+ );
+ 
+ #define     DHCPCAPI_REGISTER_HANDLE_EVENT        0x01 // handle returned is to an event
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD                                             // win32 status
+ APIENTRY
+ DhcpRegisterParamChange(                          // notify if a parameter has changed
+@@ -269,6 +277,7 @@ DhcpRegisterParamChange(                          // notify if a parameter has c
+ );
+ 
+ #define     DHCPCAPI_DEREGISTER_HANDLE_EVENT      0x01 // de-register handle that is an event
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ DhcpDeRegisterParamChange(                        // undo the registration
+@@ -277,6 +286,7 @@ DhcpDeRegisterParamChange(                        // undo the registration
+     IN      LPVOID                 Event          // handle to event returned by DhcpRegisterParamChange.
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ DhcpRemoveDNSRegistrations(

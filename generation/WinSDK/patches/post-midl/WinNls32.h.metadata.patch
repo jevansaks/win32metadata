@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls32.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinNls32.h
+index a1199bd1..2183f5bf 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls32.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinNls32.h
+@@ -17,6 +17,9 @@ Abstract:
+ #define _WINNLS32_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -85,6 +88,7 @@ BOOL  WINAPI IMPSetIMEW( IN HWND, IN LPIMEPROW);
+ #endif // !UNICODE
+ 
+ UINT  WINAPI WINNLSGetIMEHotkey( IN HWND);
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL  WINAPI WINNLSEnableIME( IN HWND, IN BOOL);
+ BOOL  WINAPI WINNLSGetEnableStatus( IN HWND);
+ 

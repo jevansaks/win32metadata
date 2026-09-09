@@ -1,0 +1,329 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/evntrace.h b/generation/WinSDK/RecompiledIdlHeaders/shared/evntrace.h
+index 72f9d730..cb2a7fa0 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/evntrace.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/evntrace.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /*++
+ 
+@@ -1725,6 +1728,7 @@ extern "C" {
+ // Use the routine below to start an event trace session
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1740,6 +1744,7 @@ StartTraceW (
+ #pragma region Desktop Family or OneCore Family or GameCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1759,6 +1764,7 @@ StartTraceA (
+ // Use the routine below to stop an event trace session
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1774,6 +1780,7 @@ StopTraceW (
+ #pragma region Desktop Family or OneCore Family or GameCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1793,6 +1800,7 @@ StopTraceA (
+ // Use the routine below to query the properties of an event trace session
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1808,6 +1816,7 @@ QueryTraceW (
+ #pragma region Desktop Family or OneCore Family or GameCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1821,6 +1830,7 @@ QueryTraceA (
+ // Use the routine below to update certain properties of an event trace session
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1830,6 +1840,7 @@ UpdateTraceW (
+     _Inout_ PEVENT_TRACE_PROPERTIES Properties
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1851,6 +1862,7 @@ UpdateTraceA (
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (WINVER >= _WIN32_WINNT_WINXP)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1868,6 +1880,7 @@ FlushTraceW (
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (WINVER >= _WIN32_WINNT_WINXP)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1887,6 +1900,7 @@ FlushTraceA (
+ //
+ // Generic trace control routine
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1903,6 +1917,7 @@ ControlTraceW (
+ #pragma region Desktop Family or OneCore Family or GameCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1913,6 +1928,7 @@ ControlTraceA (
+     _In_ ULONG ControlCode
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1922,6 +1938,7 @@ QueryAllTracesW (
+     _Out_ PULONG LoggerCount
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1941,6 +1958,7 @@ QueryAllTracesA (
+ // Data Provider Enable APIs
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -1963,6 +1981,7 @@ EnableTrace (
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (WINVER >= _WIN32_WINNT_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2010,6 +2029,7 @@ typedef struct _ENABLE_TRACE_PARAMETERS {
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2403,6 +2423,7 @@ typedef enum _TRACE_QUERY_INFO_CLASS {
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (WINVER >= _WIN32_WINNT_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2460,6 +2481,7 @@ typedef struct TRACE_CONTEXT_REGISTER_INFO {
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2472,6 +2494,7 @@ TraceSetInformation (
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN8)
++_Win32_metadata_supported_os_(windows8.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2504,6 +2527,7 @@ TraceConfigureLastBranchRecord (
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2534,6 +2558,7 @@ typedef ULONG64 TRACEGUID_HANDLE;
+ // Use the routine below to generate and record an event trace
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2548,6 +2573,7 @@ TraceEvent (
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2568,6 +2594,7 @@ TraceEventInstance (
+ // Use the routine below to register a guid for tracing.
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2588,6 +2615,7 @@ RegisterTraceGuidsW (
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2603,6 +2631,7 @@ RegisterTraceGuidsA (
+     );
+ 
+ #if (WINVER >= _WIN32_WINNT_WINXP)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2619,6 +2648,7 @@ EnumerateTraceGuids (
+ #pragma region Application Family or OneCore Family or GameCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2626,6 +2656,8 @@ UnregisterTraceGuids (
+     _In_ TRACEGUID_HANDLE RegistrationHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ EXTERN_C
+ TRACELOGGER_HANDLE
+ WMIAPI
+@@ -2633,6 +2665,8 @@ GetTraceLoggerHandle (
+     _In_ PVOID Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ EXTERN_C
+ UCHAR
+ WMIAPI
+@@ -2640,6 +2674,8 @@ GetTraceEnableLevel (
+     _In_ TRACELOGGER_HANDLE TraceHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2657,6 +2693,8 @@ GetTraceEnableFlags (
+ #pragma region Application Family or OneCore Family or GameCore family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ EXTERN_C
+ ETW_APP_DECLSPEC_DEPRECATED
+ PROCESSTRACE_HANDLE
+@@ -2665,6 +2703,7 @@ OpenTraceW (
+     _Inout_ PEVENT_TRACE_LOGFILEW Logfile
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ETW_APP_DECLSPEC_DEPRECATED
+ ULONG
+@@ -2676,6 +2715,7 @@ ProcessTrace (
+     _In_opt_ LPFILETIME EndTime
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ETW_APP_DECLSPEC_DEPRECATED
+ ULONG
+@@ -2787,6 +2827,7 @@ typedef struct _ETW_TRACE_PARTITION_INFORMATION_V2 {
+ } ETW_TRACE_PARTITION_INFORMATION_V2, *PETW_TRACE_PARTITION_INFORMATION_V2;
+ 
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ EXTERN_C
+ ETW_APP_DECLSPEC_DEPRECATED
+ ULONG
+@@ -2811,6 +2852,8 @@ QueryTraceProcessingHandle (
+ // Data Consumer APIs and structures start here
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ EXTERN_C
+ PROCESSTRACE_HANDLE
+ WMIAPI
+@@ -2818,6 +2861,7 @@ OpenTraceA (
+     _Inout_ PEVENT_TRACE_LOGFILEA Logfile
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2826,6 +2870,7 @@ SetTraceCallback (
+     _In_ PEVENT_CALLBACK EventCallback
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ EXTERN_C
+ ULONG
+ WMIAPI
+@@ -2843,6 +2888,7 @@ RemoveTraceCallback (
+ #pragma region Application Family or OneCore Family or GameCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ EXTERN_C
+ ULONG
+ __cdecl
+@@ -2860,6 +2906,7 @@ TraceMessage (
+ #pragma region Desktop Family or OneCore Family or GameCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ EXTERN_C
+ ULONG
+ TraceMessageVa (

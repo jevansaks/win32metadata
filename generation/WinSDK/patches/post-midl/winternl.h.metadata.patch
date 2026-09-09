@@ -1,0 +1,124 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winternl.h b/generation/WinSDK/RecompiledIdlHeaders/um/winternl.h
+index 724dd027..c5bcf7b7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/winternl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/winternl.h
+@@ -30,6 +30,9 @@
+ #ifndef _WINTERNL_
+ #define _WINTERNL_
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -460,6 +463,7 @@ typedef struct __PUBLIC_OBJECT_TYPE_INFORMATION {
+ // use the Win32 API instead
+ //     CloseHandle
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ __kernel_entry NTSTATUS
+ NTAPI
+ NtClose (
+@@ -586,6 +590,7 @@ NtSetInformationKey (
+ // use the Win32 API instead
+ //     DeviceIoControl
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ __kernel_entry NTSTATUS
+ NTAPI
+ NtDeviceIoControlFile (
+@@ -605,6 +610,7 @@ NtDeviceIoControlFile (
+ // use the Win32 API instead
+ //     WaitForSingleObjectEx
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ NTSTATUS
+ NTAPI
+ NtWaitForSingleObject (
+@@ -629,6 +635,7 @@ RtlIsNameLegalDOS8Dot3 (
+ // This function might be needed for some of the internal Windows functions,
+ // defined in this header file.
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _When_(Status < 0, _Out_range_(>, 0))
+ _When_(Status >= 0, _Out_range_(==, 0))
+ ULONG
+@@ -760,18 +767,21 @@ RtlTimeToSecondsSince1970 (
+ // These APIs might be need for some of the internal Windows functions,
+ // defined in this header file.
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ NTAPI
+ RtlFreeAnsiString (
+     PANSI_STRING AnsiString
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ NTAPI
+ RtlFreeUnicodeString (
+     PUNICODE_STRING UnicodeString
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ NTAPI
+ RtlFreeOemString(
+@@ -806,6 +816,7 @@ RtlInitAnsiStringEx (
+     PCSZ SourceString
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ NTAPI
+ RtlInitUnicodeString (
+@@ -813,6 +824,7 @@ RtlInitUnicodeString (
+     PCWSTR SourceString
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NTSTATUS
+ NTAPI
+ RtlAnsiStringToUnicodeString (
+@@ -821,6 +833,7 @@ RtlAnsiStringToUnicodeString (
+     BOOLEAN AllocateDestinationString
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NTSTATUS
+ NTAPI
+ RtlUnicodeStringToAnsiString (
+@@ -829,6 +842,7 @@ RtlUnicodeStringToAnsiString (
+     BOOLEAN AllocateDestinationString
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NTSTATUS
+ NTAPI
+ RtlUnicodeStringToOemString(
+@@ -843,6 +857,7 @@ RtlUnicodeStringToOemString(
+ //     set CodePage to CP_ACP
+ //     set cbMultiByte to 0
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ NTSTATUS
+ NTAPI
+ RtlUnicodeToMultiByteSize(
+@@ -855,6 +870,7 @@ RtlUnicodeToMultiByteSize(
+ // Use the C runtime function instead
+ //     strtol
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ NTSTATUS
+ NTAPI
+ RtlCharToInteger (
+@@ -867,6 +883,7 @@ RtlCharToInteger (
+ // use the Win32 API instead
+ //     ConvertSidToStringSid
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ RtlConvertSidToUnicodeString (

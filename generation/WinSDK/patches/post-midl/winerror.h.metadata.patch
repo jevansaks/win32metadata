@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/winerror.h b/generation/WinSDK/RecompiledIdlHeaders/shared/winerror.h
+index b93300dd..53672c4b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/winerror.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/winerror.h
+@@ -8,6 +8,9 @@
+ 
+ #ifndef _WINERROR_
+ #define _WINERROR_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #if defined (_MSC_VER) && (_MSC_VER >= 1020) && !defined(__midl)
+ #pragma once
+@@ -30344,6 +30347,7 @@ typedef _Return_type_success_(return >= 0) long HRESULT;
+ #if defined(__cplusplus) && _MSC_VER >= 1900 && !defined(SORTPP_PASS)
+ constexpr
+ #endif
++_Win32_metadata_supported_os_(windows5.0)
+ FORCEINLINE _Translates_Win32_to_HRESULT_(x) HRESULT HRESULT_FROM_WIN32(unsigned long x) { return (HRESULT)(x) <= 0 ? (HRESULT)(x) : (HRESULT) (((x) & 0x0000FFFF) | (FACILITY_WIN32 << 16) | 0x80000000);}
+ #else
+ #define HRESULT_FROM_WIN32(x) __HRESULT_FROM_WIN32(x)

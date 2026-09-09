@@ -1,0 +1,94 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wsmandisp.h b/generation/WinSDK/RecompiledIdlHeaders/um/wsmandisp.h
+index 1a680550..1f24c4e4 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wsmandisp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wsmandisp.h
+@@ -257,6 +257,9 @@ extern "C"{
+ /*                                                             */
+ /***************************************************************/
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family or WinMgmt Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WINMGMT)
+ 
+@@ -351,6 +354,7 @@ EXTERN_C const IID IID_IWSMan;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("190D8637-5CD3-496d-AD24-69636BB5A3B5")
+     IWSMan : public IDispatch
+     {
+@@ -551,6 +555,7 @@ EXTERN_C const IID IID_IWSManEx;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("2D53BDAA-798E-49e6-A1AA-74D01256F411")
+     IWSManEx : public IWSMan
+     {
+@@ -998,6 +1003,7 @@ EXTERN_C const IID IID_IWSManEx2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("1D1B5AE0-42D9-4021-8261-3987619512E9")
+     IWSManEx2 : public IWSManEx
+     {
+@@ -1375,6 +1381,7 @@ EXTERN_C const IID IID_IWSManEx3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("6400E966-011D-4eac-8474-049E0848AFAD")
+     IWSManEx3 : public IWSManEx2
+     {
+@@ -1840,6 +1847,7 @@ EXTERN_C const IID IID_IWSManConnectionOptions;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("F704E861-9E52-464f-B786-DA5EB2320FDD")
+     IWSManConnectionOptions : public IDispatch
+     {
+@@ -2015,6 +2023,7 @@ EXTERN_C const IID IID_IWSManConnectionOptionsEx;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("EF43EDF7-2A48-4d93-9526-8BD6AB6D4A6B")
+     IWSManConnectionOptionsEx : public IWSManConnectionOptions
+     {
+@@ -2205,6 +2214,7 @@ EXTERN_C const IID IID_IWSManConnectionOptionsEx2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("F500C9EC-24EE-48ab-B38D-FC9A164C658E")
+     IWSManConnectionOptionsEx2 : public IWSManConnectionOptionsEx
+     {
+@@ -2504,6 +2514,7 @@ EXTERN_C const IID IID_IWSManSession;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("FC84FC58-1286-40c4-9DA0-C8EF6EC241E0")
+     IWSManSession : public IDispatch
+     {
+@@ -2868,6 +2879,7 @@ EXTERN_C const IID IID_IWSManEnumerator;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("F3457CA9-ABB9-4fa5-B850-90E8CA300E7F")
+     IWSManEnumerator : public IDispatch
+     {
+@@ -3043,6 +3055,7 @@ EXTERN_C const IID IID_IWSManResourceLocator;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("A7A1BA28-DE41-466a-AD0A-C4059EAD7428")
+     IWSManResourceLocator : public IDispatch
+     {

@@ -1,0 +1,62 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/httpserv.h b/generation/WinSDK/RecompiledIdlHeaders/um/httpserv.h
+index 54b2ef39..351d2132 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/httpserv.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/httpserv.h
+@@ -4,6 +4,9 @@
+ #ifndef _HTTPSERV_H_
+ #define _HTTPSERV_H_
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -370,6 +373,7 @@ public:
+ class __declspec(uuid("d7fe3d77-68bc-4d4a-851f-eec9fb68017c"))
+ IScriptMapInfo
+ {
++_Win32_metadata_supported_os_(windows5.0)
+ public:
+     virtual
+     PCWSTR
+@@ -1548,6 +1552,7 @@ IHttpContext
+         VOID
+     ) const = 0;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+     virtual
+     HRESULT
+     CloneContext(
+@@ -1593,6 +1598,7 @@ IHttpContext
+         _Out_   DWORD **    ppDiffedVariableIndices
+     ) = 0;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+     virtual
+     HRESULT
+     CancelIo(
+@@ -1944,6 +1950,7 @@ public:
+         _Out_ DWORD *           pSecondsToLive
+     ) const = 0;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+     virtual
+     HRESULT
+     AccessCheck(
+@@ -2472,6 +2479,7 @@ public:
+         VOID
+     ) const = 0;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+     virtual
+     VOID
+     SetFlags(
+@@ -2769,6 +2777,7 @@ public:
+ class __declspec(uuid("2111f8d6-0c41-4ff7-bd45-5c04c7e91a73"))
+ IGlobalApplicationPreloadProvider : public IHttpEventProvider
+ {
++_Win32_metadata_supported_os_(windows5.1.2600)
+ public:
+     virtual
+     HRESULT

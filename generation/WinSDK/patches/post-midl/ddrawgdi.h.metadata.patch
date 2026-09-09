@@ -1,0 +1,138 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h
+index 3da8b639..0504c975 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h
+@@ -8,6 +8,9 @@
+ \**************************************************************************/
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -43,6 +46,7 @@
+ 
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdCreateDirectDrawObject(
+@@ -53,6 +57,7 @@ DdCreateDirectDrawObject(
+ typedef struct _D3DHAL_CALLBACKS FAR *LPD3DHAL_CALLBACKS;
+ typedef struct _D3DHAL_GLOBALDRIVERDATA FAR *LPD3DHAL_GLOBALDRIVERDATA;
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdQueryDirectDrawObject(
+@@ -69,12 +74,14 @@ DdQueryDirectDrawObject(
+     LPVIDMEM                    pvmList            // Can be NULL
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdDeleteDirectDrawObject(
+     LPDDRAWI_DIRECTDRAW_GBL   pDirectDrawGlobal
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdCreateSurfaceObject(
+@@ -82,12 +89,14 @@ DdCreateSurfaceObject(
+     BOOL                      bPrimarySurface
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdDeleteSurfaceObject(
+     LPDDRAWI_DDRAWSURFACE_LCL pSurfaceLocal
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdResetVisrgn(
+@@ -95,6 +104,7 @@ DdResetVisrgn(
+     HWND                      hWnd
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ HDC
+ APIENTRY
+ DdGetDC(
+@@ -102,12 +112,14 @@ DdGetDC(
+     LPPALETTEENTRY            pColorTable
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdReleaseDC(
+     LPDDRAWI_DDRAWSURFACE_LCL pSurfaceLocal
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ HBITMAP
+ APIENTRY
+ DdCreateDIBSection(
+@@ -119,6 +131,7 @@ DdCreateDIBSection(
+     DWORD             dwOffset
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdReenableDirectDrawObject(
+@@ -126,6 +139,7 @@ DdReenableDirectDrawObject(
+     BOOL*                   pbNewMode
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdAttachSurface(
+@@ -133,6 +147,7 @@ DdAttachSurface(
+     LPDDRAWI_DDRAWSURFACE_LCL   pSurfaceTo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ APIENTRY
+ DdUnattachSurface(
+@@ -140,12 +155,14 @@ DdUnattachSurface(
+     LPDDRAWI_DDRAWSURFACE_LCL   pSurfaceAttached
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ ULONG
+ APIENTRY
+ DdQueryDisplaySettingsUniqueness(
+     VOID
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ HANDLE
+ APIENTRY
+ DdGetDxHandle(
+@@ -154,6 +171,7 @@ DdGetDxHandle(
+     BOOL			bRelease
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ APIENTRY
+ DdSetGammaRamp(
+@@ -164,6 +182,7 @@ DdSetGammaRamp(
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD 
+ APIENTRY
+ DdSwapTextureHandles(

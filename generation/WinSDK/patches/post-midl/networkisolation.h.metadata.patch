@@ -1,0 +1,77 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/networkisolation.h b/generation/WinSDK/RecompiledIdlHeaders/um/networkisolation.h
+index 040e1d7f..914308e9 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/networkisolation.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/networkisolation.h
+@@ -10,6 +10,9 @@
+ 
+ #ifndef _NETISO_H_
+ #define _NETISO_H_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -97,6 +100,7 @@ typedef void (CALLBACK *PAC_CHANGES_CALLBACK_FN) (
+     _In_ const INET_FIREWALL_AC_CHANGE *pChange
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT
+ WINAPI
+ NetworkIsolationSetupAppContainerBinaries(
+@@ -109,6 +113,7 @@ NetworkIsolationSetupAppContainerBinaries(
+     _In_ DWORD binariesCount
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationRegisterForAppContainerChanges(
+@@ -118,6 +123,7 @@ NetworkIsolationRegisterForAppContainerChanges(
+     _Out_ HANDLE* registrationObject
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationUnregisterForAppContainerChanges(
+@@ -132,12 +138,14 @@ NetworkIsolationUnregisterForAppContainerChanges(
+ //    API_SAL("_Outptr_") IEnumVARIANT ** newEnum
+ //    );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationFreeAppContainers(
+     _In_ PINET_FIREWALL_APP_CONTAINER pPublicAppCs
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationEnumAppContainers(
+@@ -146,6 +154,7 @@ NetworkIsolationEnumAppContainers(
+     _Outptr_result_buffer_(*pdwNumPublicAppCs) PINET_FIREWALL_APP_CONTAINER* ppPublicAppCs
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationGetAppContainerConfig(
+@@ -153,6 +162,7 @@ NetworkIsolationGetAppContainerConfig(
+     _Outptr_result_buffer_(*pdwNumPublicAppCs) PSID_AND_ATTRIBUTES* appContainerSids
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationSetAppContainerConfig(
+@@ -177,6 +187,7 @@ NetworkIsolationDiagnoseConnectFailure(
+     __in LPCWSTR wszServerName
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ NetworkIsolationDiagnoseConnectFailureAndGetInfo(

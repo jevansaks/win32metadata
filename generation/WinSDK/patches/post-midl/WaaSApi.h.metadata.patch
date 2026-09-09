@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WaaSApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/WaaSApi.h
+index 3c6e2c9d..db5895f7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WaaSApi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WaaSApi.h
+@@ -87,6 +87,9 @@ extern "C"{
+ #endif
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -105,6 +108,7 @@ EXTERN_C const IID IID_IWaaSAssessor;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("2347bbef-1a3b-45a4-902d-3e09c269b45e")
+     IWaaSAssessor : public IUnknown
+     {

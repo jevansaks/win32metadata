@@ -1,8 +1,18 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h
-index 7134e305..3a4fcb1a 100644
+index 7134e305..a2aa1e82 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h
-@@ -34,7 +34,8 @@ CreatePrivateNamespaceW(
+@@ -12,6 +12,9 @@
+ 
+ #ifndef _APISETNAMESPACE_
+ #define _APISETNAMESPACE_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -34,7 +37,8 @@ CreatePrivateNamespaceW(
      _In_opt_ LPSECURITY_ATTRIBUTES lpPrivateNamespaceAttributes,
      _In_ LPVOID lpBoundaryDescriptor,
      _In_ LPCWSTR lpAliasPrefix
@@ -12,7 +22,7 @@ index 7134e305..3a4fcb1a 100644
  
  WINBASEAPI
  HANDLE
-@@ -42,8 +43,10 @@ WINAPI
+@@ -42,8 +46,11 @@ WINAPI
  OpenPrivateNamespaceW(
      _In_ LPVOID lpBoundaryDescriptor,
      _In_ LPCWSTR lpAliasPrefix
@@ -20,11 +30,12 @@ index 7134e305..3a4fcb1a 100644
 +    )
 +    _Win32_metadata_raii_free_(ClosePrivateNamespace);
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOLEAN
  WINAPI
-@@ -58,8 +61,10 @@ WINAPI
+@@ -58,8 +65,11 @@ WINAPI
  CreateBoundaryDescriptorW(
      _In_ LPCWSTR Name,
      _In_ ULONG Flags
@@ -32,7 +43,16 @@ index 7134e305..3a4fcb1a 100644
 +    )
 +    _Win32_metadata_raii_free_(DeleteBoundaryDescriptor);
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
+ WINAPI
+@@ -68,6 +78,7 @@ AddSIDToBoundaryDescriptor(
+     _In_ PSID RequiredSid
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINBASEAPI
+ VOID
  WINAPI

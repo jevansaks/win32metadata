@@ -1,0 +1,14 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Mspcoll.h b/generation/WinSDK/RecompiledIdlHeaders/um/Mspcoll.h
+index 6e3a0fee..fede4990 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Mspcoll.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Mspcoll.h
+@@ -7,6 +7,9 @@
+ #ifndef _MSPCOLL_H_
+ #define _MSPCOLL_H_
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)

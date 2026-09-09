@@ -1,0 +1,54 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/xpsobjectmodel_1.h b/generation/WinSDK/RecompiledIdlHeaders/um/xpsobjectmodel_1.h
+index deaa02dc..c76aedfb 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/xpsobjectmodel_1.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/xpsobjectmodel_1.h
+@@ -96,6 +96,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ //+-------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -132,6 +135,7 @@ EXTERN_C const IID IID_IXpsOMObjectFactory1;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("0a91b617-d612-4181-bf7c-be5824e9cc8f")
+     IXpsOMObjectFactory1 : public IXpsOMObjectFactory
+     {
+@@ -998,6 +1002,7 @@ EXTERN_C const IID IID_IXpsOMPackage1;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("95a9435e-12bb-461b-8e7f-c6adb04cd96a")
+     IXpsOMPackage1 : public IXpsOMPackage
+     {
+@@ -1234,6 +1239,7 @@ EXTERN_C const IID IID_IXpsOMPage1;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("305b60ef-6892-4dda-9cbb-3aa65974508a")
+     IXpsOMPage1 : public IXpsOMPage
+     {
+@@ -1564,6 +1570,7 @@ EXTERN_C const IID IID_IXpsDocumentPackageTarget;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("3b0b6d38-53ad-41da-b212-d37637a6714e")
+     IXpsDocumentPackageTarget : public IUnknown
+     {
+@@ -1685,6 +1692,7 @@ EXTERN_C const IID IID_IXpsOMRemoteDictionaryResource1;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("BF8FC1D4-9D46-4141-BA5F-94BB9250D041")
+     IXpsOMRemoteDictionaryResource1 : public IXpsOMRemoteDictionaryResource
+     {

@@ -1,0 +1,264 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h b/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h
+index bd1d0751..60dd6db6 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h
+@@ -19,6 +19,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -267,6 +270,7 @@ typedef struct {
+ //                                                                           //
+ ///////////////////////////////////////////////////////////////////////////////
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ SNMP_FUNC_TYPE
+ SnmpExtensionInit(
+@@ -275,18 +279,21 @@ SnmpExtensionInit(
+     AsnObjectIdentifier * pFirstSupportedRegion
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ SNMP_FUNC_TYPE
+ SnmpExtensionInitEx(
+     AsnObjectIdentifier * pNextSupportedRegion
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ SNMP_FUNC_TYPE
+ SnmpExtensionMonitor(
+     LPVOID            pAgentMgmtData
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ SNMP_FUNC_TYPE
+ SnmpExtensionQuery(
+@@ -296,6 +303,7 @@ SnmpExtensionQuery(
+     AsnInteger32 *    pErrorIndex
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ SNMP_FUNC_TYPE
+ SnmpExtensionQueryEx(
+@@ -307,6 +315,7 @@ SnmpExtensionQueryEx(
+     AsnInteger32 *    pErrorIndex
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ SNMP_FUNC_TYPE
+ SnmpExtensionTrap(
+@@ -317,6 +326,7 @@ SnmpExtensionTrap(
+     SnmpVarBindList *     pVarBindList
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpExtensionClose(
+@@ -375,6 +385,7 @@ typedef VOID (SNMP_FUNC_TYPE * PFNSNMPEXTENSIONCLOSE)(
+ //                                                                           //
+ ///////////////////////////////////////////////////////////////////////////////
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilOidCpy(
+@@ -382,6 +393,8 @@ SnmpUtilOidCpy(
+     AsnObjectIdentifier * pOidSrc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilOidAppend(
+@@ -389,6 +402,7 @@ SnmpUtilOidAppend(
+     AsnObjectIdentifier * pOidSrc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilOidNCmp(
+@@ -397,6 +411,7 @@ SnmpUtilOidNCmp(
+     UINT                  nSubIds
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilOidCmp(
+@@ -404,12 +419,14 @@ SnmpUtilOidCmp(
+     AsnObjectIdentifier * pOid2
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilOidFree(
+     AsnObjectIdentifier * pOid
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilOctetsCmp(
+@@ -417,6 +434,7 @@ SnmpUtilOctetsCmp(
+     AsnOctetString * pOctets2
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilOctetsNCmp(
+@@ -425,6 +443,7 @@ SnmpUtilOctetsNCmp(
+     UINT             nChars
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilOctetsCpy(
+@@ -432,12 +451,14 @@ SnmpUtilOctetsCpy(
+     AsnOctetString * pOctetsSrc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilOctetsFree(
+     AsnOctetString * pOctets
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilAsnAnyCpy(
+@@ -445,12 +466,14 @@ SnmpUtilAsnAnyCpy(
+     AsnAny * pAnySrc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilAsnAnyFree(
+     AsnAny * pAny
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilVarBindCpy(
+@@ -458,12 +481,14 @@ SnmpUtilVarBindCpy(
+     SnmpVarBind * pVbSrc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilVarBindFree(
+     SnmpVarBind * pVb
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ SNMPAPI
+ SNMP_FUNC_TYPE
+ SnmpUtilVarBindListCpy(
+@@ -471,24 +496,28 @@ SnmpUtilVarBindListCpy(
+     SnmpVarBindList * pVblSrc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilVarBindListFree(
+     SnmpVarBindList * pVbl
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilMemFree(
+     LPVOID pMem
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LPVOID
+ SNMP_FUNC_TYPE
+ SnmpUtilMemAlloc(
+     UINT nBytes
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LPVOID
+ SNMP_FUNC_TYPE
+ SnmpUtilMemReAlloc(
+@@ -496,12 +525,14 @@ SnmpUtilMemReAlloc(
+     UINT   nBytes
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LPSTR
+ SNMP_FUNC_TYPE
+ SnmpUtilOidToA(
+     IN AsnObjectIdentifier *Oid
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LPSTR
+ SNMP_FUNC_TYPE
+ SnmpUtilIdsToA(
+@@ -509,29 +540,34 @@ SnmpUtilIdsToA(
+     IN UINT IdLength
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilPrintOid(
+     IN AsnObjectIdentifier *Oid
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilPrintAsnAny(
+     AsnAny * pAny
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ SNMP_FUNC_TYPE
+ SnmpSvcGetUptime(
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpSvcSetLogLevel(
+     INT nLogLevel
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpSvcSetLogType(
+@@ -562,6 +598,7 @@ SnmpSvcSetLogType(
+ //                                                                           //
+ ///////////////////////////////////////////////////////////////////////////////
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilDbgPrint(

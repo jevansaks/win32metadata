@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dshowasf.h b/generation/WinSDK/RecompiledIdlHeaders/um/dshowasf.h
+index 90e4b5d9..4d944157 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dshowasf.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dshowasf.h
+@@ -96,6 +96,9 @@ extern "C"{
+ //
+ //=========================================================================
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ EXTERN_GUID( IID_IConfigAsfWriter2,0x7989ccaa, 0x53f0, 0x44f0, 0x88, 0x4a, 0xf3, 0xb0, 0x3f, 0x6a, 0xe0, 0x66 );
+@@ -328,6 +331,7 @@ EXTERN_C const IID IID_IConfigAsfWriter;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("45086030-F7E4-486a-B504-826BB5792A3B")
+     IConfigAsfWriter : public IUnknown
+     {
+@@ -506,6 +510,7 @@ EXTERN_C const IID IID_IConfigAsfWriter2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("7989CCAA-53F0-44f0-884A-F3B03F6AE066")
+     IConfigAsfWriter2 : public IConfigAsfWriter
+     {

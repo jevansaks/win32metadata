@@ -1,0 +1,54 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/timeapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/timeapi.h
+index 15bd8318..a08f0d79 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/timeapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/timeapi.h
+@@ -12,6 +12,9 @@
+ 
+ #ifndef _TIMERAPI_H_
+ #define _TIMERAPI_H_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -44,6 +47,7 @@ typedef struct timecaps_tag {
+ } TIMECAPS, *PTIMECAPS, NEAR *NPTIMECAPS, FAR *LPTIMECAPS;
+ 
+ /* timer function prototypes */
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -54,6 +58,7 @@ timeGetSystemTime(
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ DWORD
+ WINAPI
+@@ -63,6 +68,7 @@ timeGetTime(
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -71,6 +77,7 @@ timeGetDevCaps(
+     _In_ UINT cbtc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -78,6 +85,7 @@ timeBeginPeriod(
+     _In_ UINT uPeriod
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI

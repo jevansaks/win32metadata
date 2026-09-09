@@ -1,0 +1,94 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/adhoc.h b/generation/WinSDK/RecompiledIdlHeaders/um/adhoc.h
+index e5c05bf9..853c9736 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/adhoc.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/adhoc.h
+@@ -147,6 +147,9 @@ extern "C"{
+ //
+ //--------------------------------------------------------------------------
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ EXTERN_C const CLSID CLSID_AdHocManager;
+@@ -211,6 +214,7 @@ EXTERN_C const IID IID_IDot11AdHocManager;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC26-CF0D-42a0-ACBE-E2DE7007384D")
+     IDot11AdHocManager : public IUnknown
+     {
+@@ -390,6 +394,7 @@ EXTERN_C const IID IID_IDot11AdHocManagerNotificationSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC27-CF0D-42a0-ACBE-E2DE7007384D")
+     IDot11AdHocManagerNotificationSink : public IUnknown
+     {
+@@ -516,6 +521,7 @@ EXTERN_C const IID IID_IEnumDot11AdHocNetworks;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC28-CF0D-42a0-ACBE-E2DE7007384D")
+     IEnumDot11AdHocNetworks : public IUnknown
+     {
+@@ -646,6 +652,7 @@ EXTERN_C const IID IID_IDot11AdHocNetwork;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC29-CF0D-42a0-ACBE-E2DE7007384D")
+     IDot11AdHocNetwork : public IUnknown
+     {
+@@ -884,6 +891,7 @@ EXTERN_C const IID IID_IDot11AdHocNetworkNotificationSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC2A-CF0D-42a0-ACBE-E2DE7007384D")
+     IDot11AdHocNetworkNotificationSink : public IUnknown
+     {
+@@ -980,6 +988,7 @@ EXTERN_C const IID IID_IDot11AdHocInterface;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC2B-CF0D-42a0-ACBE-E2DE7007384D")
+     IDot11AdHocInterface : public IUnknown
+     {
+@@ -1175,6 +1184,7 @@ EXTERN_C const IID IID_IEnumDot11AdHocInterfaces;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC2C-CF0D-42a0-ACBE-E2DE7007384D")
+     IEnumDot11AdHocInterfaces : public IUnknown
+     {
+@@ -1305,6 +1315,7 @@ EXTERN_C const IID IID_IEnumDot11AdHocSecuritySettings;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC2D-CF0D-42a0-ACBE-E2DE7007384D")
+     IEnumDot11AdHocSecuritySettings : public IUnknown
+     {
+@@ -1435,6 +1446,7 @@ EXTERN_C const IID IID_IDot11AdHocSecuritySettings;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC2E-CF0D-42a0-ACBE-E2DE7007384D")
+     IDot11AdHocSecuritySettings : public IUnknown
+     {
+@@ -1535,6 +1547,7 @@ EXTERN_C const IID IID_IDot11AdHocInterfaceNotificationSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8F10CC2F-CF0D-42a0-ACBE-E2DE7007384D")
+     IDot11AdHocInterfaceNotificationSink : public IUnknown
+     {

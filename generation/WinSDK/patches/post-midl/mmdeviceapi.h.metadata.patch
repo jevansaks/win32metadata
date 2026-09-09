@@ -1,0 +1,214 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.h
+index adf54c90..2c624520 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.h
+@@ -33,6 +33,10 @@
+ #ifndef __mmdeviceapi_h__
+ #define __mmdeviceapi_h__
+ 
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #if defined(_MSC_VER) && (_MSC_VER >= 1020)
+ #pragma once
+ #endif
+@@ -151,6 +155,31 @@ extern "C"{
+ #define DEVICE_STATE_NOTPRESENT  0x00000004
+ #define DEVICE_STATE_UNPLUGGED   0x00000008
+ #define DEVICE_STATEMASK_ALL     0x0000000f
++#ifdef WIN32METADATA
++#pragma push_macro("DEVICE_STATE_ACTIVE")
++#pragma push_macro("DEVICE_STATE_DISABLED")
++#pragma push_macro("DEVICE_STATE_NOTPRESENT")
++#pragma push_macro("DEVICE_STATE_UNPLUGGED")
++#undef DEVICE_STATE_ACTIVE
++#undef DEVICE_STATE_DISABLED
++#undef DEVICE_STATE_NOTPRESENT
++#undef DEVICE_STATE_UNPLUGGED
++enum class
++    _Win32_metadata_associated_constant_(DEVICE_STATEMASK_ALL)
++    DEVICE_STATE : int
++{
++    DEVICE_STATE_ACTIVE = 0x00000001,
++    DEVICE_STATE_DISABLED = 0x00000002,
++    DEVICE_STATE_NOTPRESENT = 0x00000004,
++    DEVICE_STATE_UNPLUGGED = 0x00000008,
++};
++#pragma pop_macro("DEVICE_STATE_UNPLUGGED")
++#pragma pop_macro("DEVICE_STATE_NOTPRESENT")
++#pragma pop_macro("DEVICE_STATE_DISABLED")
++#pragma pop_macro("DEVICE_STATE_ACTIVE")
++#else
++typedef DWORD DEVICE_STATE;
++#endif
+ #ifdef DEFINE_PROPERTYKEY
+ #undef DEFINE_PROPERTYKEY
+ #endif
+@@ -159,25 +188,43 @@ extern "C"{
+ #else
+ #define DEFINE_PROPERTYKEY(name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8, pid) EXTERN_C const PROPERTYKEY name
+ #endif // INITGUID
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_FormFactor, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 0); 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_ControlPanelPageProvider, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 1); 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_Association, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 2);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_PhysicalSpeakers, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 3);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_GUID, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 4);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_Disable_SysFx, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 5);
+ #define ENDPOINT_SYSFX_ENABLED          0x00000000  // System Effects are enabled.
+ #define ENDPOINT_SYSFX_DISABLED         0x00000001  // System Effects are disabled.
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_FullRangeSpeakers, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 6);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_Supports_EventDriven_Mode, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 7);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_JackSubType, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 8);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_Default_VolumeInDb, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 9);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_Max_VolumeInDb, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 10);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpoint_Min_VolumeInDb, 0x1da5d803, 0xd492, 0x4edd, 0x8c, 0x23, 0xe0, 0xc0, 0xff, 0xee, 0x7f, 0x0e, 11);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEngine_DeviceFormat, 0xf19f064d, 0x82c, 0x4e27, 0xbc, 0x73, 0x68, 0x82, 0xa1, 0xbb, 0x8e, 0x4c, 0); 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEngine_OEMFormat, 0xe4870e26, 0x3cc5, 0x4cd2, 0xba, 0x46, 0xca, 0xa, 0x9a, 0x70, 0xed, 0x4, 3); 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpointLogo_IconEffects, 0xf1ab780d, 0x2010, 0x4ed3, 0xa3, 0xa6, 0x8b, 0x87, 0xf0, 0xf0, 0xc4, 0x76, 0);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpointLogo_IconPath, 0xf1ab780d, 0x2010, 0x4ed3, 0xa3, 0xa6, 0x8b, 0x87, 0xf0, 0xf0, 0xc4, 0x76, 1);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpointSettings_MenuText, 0x14242002, 0x0320, 0x4de4, 0x95, 0x55, 0xa7, 0xd8, 0x2b, 0x73, 0xc2, 0x86, 0);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEndpointSettings_LaunchContract, 0x14242002, 0x0320, 0x4de4, 0x95, 0x55, 0xa7, 0xd8, 0x2b, 0x73, 0xc2, 0x86, 1);
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ typedef struct tagDIRECTX_AUDIO_ACTIVATION_PARAMS
+@@ -269,6 +316,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("7991EEC9-7E89-4D85-8390-6C703CEC60C0")
+     IMMNotificationClient : public IUnknown
+     {
+@@ -277,7 +325,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
+             /* [annotation][in] */ 
+             _In_  LPCWSTR pwstrDeviceId,
+             /* [annotation][in] */ 
+-            _In_  DWORD dwNewState) = 0;
++            _In_  DEVICE_STATE dwNewState) = 0;
+         
+         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE OnDeviceAdded( 
+             /* [annotation][in] */ 
+@@ -332,7 +380,7 @@ EXTERN_C const IID IID_IMMNotificationClient;
+             /* [annotation][in] */ 
+             _In_  LPCWSTR pwstrDeviceId,
+             /* [annotation][in] */ 
+-            _In_  DWORD dwNewState);
++            _In_  DEVICE_STATE dwNewState);
+         
+         DECLSPEC_XFGVIRT(IMMNotificationClient, OnDeviceAdded)
+         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *OnDeviceAdded )( 
+@@ -424,6 +472,7 @@ EXTERN_C const IID IID_IMMDevice;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("D666063F-1587-4E43-81F1-B948E807363F")
+     IMMDevice : public IUnknown
+     {
+@@ -450,7 +499,7 @@ EXTERN_C const IID IID_IMMDevice;
+         
+         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE GetState( 
+             /* [annotation][out] */ 
+-            _Out_  DWORD *pdwState) = 0;
++            _Out_  DEVICE_STATE *pdwState) = 0;
+         
+     };
+     
+@@ -507,7 +556,7 @@ EXTERN_C const IID IID_IMMDevice;
+         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *GetState )( 
+             IMMDevice * This,
+             /* [annotation][out] */ 
+-            _Out_  DWORD *pdwState);
++            _Out_  DEVICE_STATE *pdwState);
+         
+         END_INTERFACE
+     } IMMDeviceVtbl;
+@@ -566,6 +615,7 @@ EXTERN_C const IID IID_IMMDeviceCollection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("0BD7A1BE-7A1A-44DB-8397-CC5392387B5E")
+     IMMDeviceCollection : public IUnknown
+     {
+@@ -670,6 +720,7 @@ EXTERN_C const IID IID_IMMEndpoint;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("1BE09788-6894-4089-8586-9A2A6C265AC5")
+     IMMEndpoint : public IUnknown
+     {
+@@ -757,6 +808,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("A95664D2-9614-4F35-A746-DE8DB63617E6")
+     IMMDeviceEnumerator : public IUnknown
+     {
+@@ -765,7 +817,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
+             /* [annotation][in] */ 
+             _In_  EDataFlow dataFlow,
+             /* [annotation][in] */ 
+-            _In_  DWORD dwStateMask,
++            _In_  DEVICE_STATE dwStateMask,
+             /* [annotation][out] */ 
+             _Out_  IMMDeviceCollection **ppDevices) = 0;
+         
+@@ -822,7 +874,7 @@ EXTERN_C const IID IID_IMMDeviceEnumerator;
+             /* [annotation][in] */ 
+             _In_  EDataFlow dataFlow,
+             /* [annotation][in] */ 
+-            _In_  DWORD dwStateMask,
++            _In_  DEVICE_STATE dwStateMask,
+             /* [annotation][out] */ 
+             _Out_  IMMDeviceCollection **ppDevices);
+         
+@@ -1042,6 +1094,7 @@ EXTERN_C const IID IID_IActivateAudioInterfaceCompletionHandler;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("41D949AB-9862-444A-80F6-C261334DA5EB")
+     IActivateAudioInterfaceCompletionHandler : public IUnknown
+     {
+@@ -1129,6 +1182,7 @@ EXTERN_C const IID IID_IActivateAudioInterfaceAsyncOperation;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("72A22D78-CDE4-431D-B8CC-843A71199B6D")
+     IActivateAudioInterfaceAsyncOperation : public IUnknown
+     {
+@@ -1222,6 +1276,7 @@ EXTERN_C const IID IID_IActivateAudioInterfaceAsyncOperation;
+ // * activation parameters specific to the interface being activated
+ // and asynchronously returns a pointer to the specified interface
+ // ----------------------------------------------------------------------
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI ActivateAudioInterfaceAsync(
+     _In_ LPCWSTR deviceInterfacePath,
+     _In_ REFIID riid,
+@@ -1572,4 +1627,3 @@ extern RPC_IF_HANDLE __MIDL_itf_mmdeviceapi_0000_0011_v0_0_s_ifspec;
+ 
+ #endif
+ 
+-

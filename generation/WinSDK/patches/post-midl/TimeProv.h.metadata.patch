@@ -1,0 +1,36 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TimeProv.h b/generation/WinSDK/RecompiledIdlHeaders/um/TimeProv.h
+index 1263e513..0f0292ca 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/TimeProv.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/TimeProv.h
+@@ -10,6 +10,9 @@
+ #ifndef TIMEPROV_H
+ #define TIMEPROV_H
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -226,18 +229,21 @@ typedef void * TimeProvHandle;
+ //--------------------------------------------------------------------
+ // functions that a Time Provider must implement and export
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT __stdcall
+     TimeProvOpen(
+         _In_ IN PWSTR wszName,
+         _In_ IN TimeProvSysCallbacks * pSysCallbacks,  // copy this data, do not free it!
+         _Out_ OUT TimeProvHandle * phTimeProv);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT __stdcall
+     TimeProvCommand(
+         _In_ IN TimeProvHandle hTimeProv,
+         _In_ IN TimeProvCmd eCmd,
+         _In_ IN TimeProvArgs pvArgs);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HRESULT __stdcall
+     TimeProvClose(
+         _In_ IN TimeProvHandle hTimeProv);

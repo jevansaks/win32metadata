@@ -1,8 +1,25 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h b/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h
-index 55a0ce89..e8946449 100644
+index 55a0ce89..859316c7 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h
-@@ -509,6 +509,7 @@ WINAPI
+@@ -14,6 +14,9 @@ Abstract:
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -503,12 +506,14 @@ QOS_SUBTRACT_OVERHEAD(
+ //          exception for the qWave service. Please see the developer guidelines 
+ //          and MSFT firewall documentation for more details.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
  QOSCreateHandle(
      _In_    PQOS_VERSION    Version,
      _Out_   PHANDLE         QOSHandle
@@ -10,3 +27,83 @@ index 55a0ce89..e8946449 100644
  );
  
  //
+@@ -538,6 +543,7 @@ QOSCreateHandle(
+ //  If the function fails, the return value is zero. To get extended error 
+ //  information, call GetLastError.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
+@@ -595,6 +601,7 @@ QOSCloseHandle(
+ //          you've specified. It could be that the other host does does not 
+ //          have the required components or that it is not on the same link.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
+@@ -629,6 +636,7 @@ QOSStartTrackingClient(
+ //  If the function fails, the return value is zero. To get extended error 
+ //  information, call GetLastError.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
+@@ -674,6 +682,7 @@ QOSStopTrackingClient(
+ //          The caller does not have the administrator rights required 
+ //          to perform this call.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
+@@ -817,6 +826,7 @@ QOSEnumerateFlows(
+ //          you've specified. It could be that the other host does does not 
+ //          have the required components or that it is not on the same link.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
+@@ -880,6 +890,7 @@ QOSAddSocketToFlow(
+ //      ERROR_NOT_FOUND
+ //          Invalid FlowId specified
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
+@@ -984,6 +995,7 @@ QOSRemoveSocketFromFlow(
+ //          The caller does not have the administrator rights required 
+ //          to perform this call.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
+@@ -1106,6 +1118,7 @@ QOSSetFlow(
+ //          qWave has erred on the side of caution as it waits for more data
+ //          before ascertaining the state of the network.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
+@@ -1227,6 +1240,7 @@ QOSQueryFlow(
+ //          network which the qWave subsystem does not have. Obtaining this
+ //          information on your network is currently not supported.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI
+@@ -1273,6 +1287,7 @@ QOSNotifyFlow(
+ //  If the function fails, the return value is zero. To get extended error 
+ //  information, call GetLastError.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ExternC
+ BOOL
+ WINAPI

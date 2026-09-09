@@ -1,0 +1,134 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dsparse.h b/generation/WinSDK/RecompiledIdlHeaders/um/dsparse.h
+index d794031b..784a53f0 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dsparse.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dsparse.h
+@@ -27,6 +27,9 @@ Notes:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Familyy or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -98,6 +101,7 @@ typedef enum _DS_MANGLE_FOR {
+ //
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ _Success_(return == ERROR_SUCCESS)
+ DSPARSE
+@@ -113,6 +117,7 @@ DsMakeSpnW(
+     _Out_writes_to_opt_(*pcSpnLength, *pcSpnLength) LPWSTR pszSpn
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ _Success_(return == ERROR_SUCCESS)
+ DSPARSE
+@@ -160,6 +165,7 @@ DsMakeSpnA(
+ // All arguments except pszSpn are optional.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ DSPARSE
+ DWORD
+@@ -175,6 +181,7 @@ DsCrackSpnA(
+     _Out_opt_ USHORT *pInstancePort
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ DSPARSE
+ DWORD
+@@ -261,6 +268,7 @@ Return Value:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ _Success_(return == 0)
+ DSPARSE
+@@ -273,6 +281,7 @@ DsQuoteRdnValueW(
+     _Out_writes_to_(*pcQuotedRdnValueLength, *pcQuotedRdnValueLength) LPWCH    psQuotedRdnValue
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ _Success_(return == 0)
+ DSPARSE
+@@ -371,6 +380,7 @@ Return Value:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ _Success_(return == 0)
+ DSPARSE
+@@ -383,6 +393,7 @@ DsUnquoteRdnValueW(
+     _Out_writes_to_ (*pcUnquotedRdnValueLength, *pcUnquotedRdnValueLength) LPWCH    psUnquotedRdnValue
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ _Success_(return == 0)
+ DSPARSE
+@@ -493,6 +504,7 @@ Return Value:
+         All output parameters are undefined.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Check_return_
+ _Success_(return == 0)
+ DSPARSE
+@@ -547,6 +559,7 @@ Return Value:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DSPARSE
+ BOOL
+ WINAPI
+@@ -557,6 +570,7 @@ DsCrackUnquotedMangledRdnW(
+      _Out_opt_ DS_MANGLE_FOR *peDsMangleFor
+      );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DSPARSE
+ BOOL
+ WINAPI
+@@ -622,6 +636,7 @@ Return Value:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DSPARSE
+ BOOL
+ WINAPI
+@@ -631,6 +646,7 @@ DsIsMangledRdnValueW(
+     DS_MANGLE_FOR eDsMangleForDesired
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DSPARSE
+ BOOL
+ WINAPI
+@@ -680,6 +696,7 @@ Return Value:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DSPARSE
+ BOOL
+ WINAPI
+@@ -688,6 +705,7 @@ DsIsMangledDnA(
+     DS_MANGLE_FOR eDsMangleFor
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DSPARSE
+ BOOL
+ WINAPI

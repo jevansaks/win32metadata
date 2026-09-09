@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioHrtf.h b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioHrtf.h
+index 106958d4..fca0bac9 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioHrtf.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialAudioHrtf.h
+@@ -76,6 +76,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Application and Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
+ typedef 
+@@ -191,6 +194,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectForHrtf;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("D7436ADE-1978-4E14-ABA0-555BD8EB83B4")
+     ISpatialAudioObjectForHrtf : public ISpatialAudioObjectBase
+     {
+@@ -390,6 +394,7 @@ EXTERN_C const IID IID_ISpatialAudioObjectRenderStreamForHrtf;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("E08DEEF9-5363-406E-9FDC-080EE247BBE0")
+     ISpatialAudioObjectRenderStreamForHrtf : public ISpatialAudioObjectRenderStreamBase
+     {

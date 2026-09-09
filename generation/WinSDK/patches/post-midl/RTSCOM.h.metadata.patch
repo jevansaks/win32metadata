@@ -1,0 +1,94 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RTSCOM.h b/generation/WinSDK/RecompiledIdlHeaders/um/RTSCOM.h
+index 2c06791a..141c01aa 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/RTSCOM.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/RTSCOM.h
+@@ -177,6 +177,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -283,6 +286,7 @@ EXTERN_C const IID IID_IRealTimeStylus;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("A8BB5D22-3144-4a7b-93CD-F34A16BE513A")
+     IRealTimeStylus : public IUnknown
+     {
+@@ -729,6 +733,7 @@ EXTERN_C const IID IID_IRealTimeStylus2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("B5F2A6CD-3179-4a3e-B9C4-BB5865962BE2")
+     IRealTimeStylus2 : public IUnknown
+     {
+@@ -824,6 +829,7 @@ EXTERN_C const IID IID_IRealTimeStylus3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("D70230A3-6986-4051-B57A-1CF69F4D9DB5")
+     IRealTimeStylus3 : public IUnknown
+     {
+@@ -919,6 +925,7 @@ EXTERN_C const IID IID_IRealTimeStylusSynchronization;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("AA87EAB8-AB4A-4cea-B5CB-46D84C6A2509")
+     IRealTimeStylusSynchronization : public IUnknown
+     {
+@@ -1014,6 +1021,7 @@ EXTERN_C const IID IID_IStrokeBuilder;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("A5FD4E2D-C44B-4092-9177-260905EB672B")
+     IStrokeBuilder : public IUnknown
+     {
+@@ -1191,6 +1199,7 @@ EXTERN_C const IID IID_IStylusPlugin;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("A81436D8-4757-4fd1-A185-133F97C6C545")
+     IStylusPlugin : public IUnknown
+     {
+@@ -1545,6 +1554,7 @@ EXTERN_C const IID IID_IStylusSyncPlugin;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("A157B174-482F-4d71-A3F6-3A41DDD11BE9")
+     IStylusSyncPlugin : public IStylusPlugin
+     {
+@@ -1802,6 +1812,7 @@ EXTERN_C const IID IID_IStylusAsyncPlugin;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("A7CCA85A-31BC-4cd2-AADC-3289A3AF11C8")
+     IStylusAsyncPlugin : public IStylusPlugin
+     {
+@@ -2059,6 +2070,7 @@ EXTERN_C const IID IID_IDynamicRenderer;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("A079468E-7165-46f9-B7AF-98AD01A93009")
+     IDynamicRenderer : public IUnknown
+     {
+@@ -2295,6 +2307,7 @@ EXTERN_C const IID IID_IGestureRecognizer;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("AE9EF86B-7054-45e3-AE22-3174DC8811B7")
+     IGestureRecognizer : public IUnknown
+     {

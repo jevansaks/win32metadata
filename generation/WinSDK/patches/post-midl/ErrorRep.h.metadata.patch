@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ErrorRep.h b/generation/WinSDK/RecompiledIdlHeaders/um/ErrorRep.h
-index 1d84bdeb..880b98ba 100644
+index 1d84bdeb..a4227f14 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ErrorRep.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ErrorRep.h
 @@ -18,6 +18,9 @@ extern "C" {
@@ -12,13 +12,26 @@ index 1d84bdeb..880b98ba 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -40,7 +43,9 @@ typedef enum tagEFaultRepRetVal
+@@ -38,9 +41,14 @@ typedef enum tagEFaultRepRetVal
+     frrvErrDoubleFault,
+ } EFaultRepRetVal;
  
++_Win32_metadata_supported_os_(windows5.1.2600)
  EFaultRepRetVal APIENTRY ReportFault(_In_ LPEXCEPTION_POINTERS pep, _In_ DWORD dwOpt);
  
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  BOOL            APIENTRY AddERExcludedApplicationA(_In_ LPCSTR szApplication);
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  BOOL            APIENTRY AddERExcludedApplicationW(_In_ LPCWSTR wszApplication);
  
  
+@@ -59,6 +67,7 @@ typedef EFaultRepRetVal (APIENTRY *pfn_ADDEREXCLUDEDAPPLICATIONW)(_In_ LPCWSTR);
+ // 
+ //+++++++++++++++++++++ Hang reporting api ++++++++++++++++++++++++++++++++
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT 
+ WINAPI
+ WerReportHang(

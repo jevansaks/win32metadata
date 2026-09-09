@@ -1,0 +1,93 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ProcessSnapshot.h b/generation/WinSDK/RecompiledIdlHeaders/um/ProcessSnapshot.h
+index 2afedd9b..b5f9c708 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ProcessSnapshot.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ProcessSnapshot.h
+@@ -363,6 +363,9 @@ typedef struct
+ } PSS_ALLOCATOR;
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region App Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+@@ -370,6 +373,7 @@ typedef struct
+ #if (NTDDI_VERSION >= NTDDI_WINBLUE)
+ 
+ // Win32 APIs.
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssCaptureSnapshot(
+@@ -379,6 +383,7 @@ PssCaptureSnapshot(
+     _Out_ HPSS* SnapshotHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssFreeSnapshot(
+@@ -386,6 +391,7 @@ PssFreeSnapshot(
+     _In_ HPSS SnapshotHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssQuerySnapshot(
+@@ -395,6 +401,7 @@ PssQuerySnapshot(
+     _In_ DWORD BufferLength
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssWalkSnapshot(
+@@ -405,6 +412,7 @@ PssWalkSnapshot(
+     _In_ DWORD BufferLength
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssDuplicateSnapshot(
+@@ -416,6 +424,7 @@ PssDuplicateSnapshot(
+     );
+ 
+ // Win32 walk marker management.
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssWalkMarkerCreate(
+@@ -423,12 +432,14 @@ PssWalkMarkerCreate(
+     _Out_ HPSSWALK* WalkMarkerHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssWalkMarkerFree(
+     _In_ HPSSWALK WalkMarkerHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssWalkMarkerGetPosition(
+@@ -436,6 +447,7 @@ PssWalkMarkerGetPosition(
+     _Out_ ULONG_PTR *Position
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssWalkMarkerSetPosition(
+@@ -443,6 +455,7 @@ PssWalkMarkerSetPosition(
+     _In_ ULONG_PTR Position
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ _Success_(return == ERROR_SUCCESS)
+ STDAPI_(DWORD)
+ PssWalkMarkerSeekToBeginning(

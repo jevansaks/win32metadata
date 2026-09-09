@@ -1,0 +1,93 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winefs.h b/generation/WinSDK/RecompiledIdlHeaders/um/winefs.h
+index 30e1a95a..9009cbc5 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/winefs.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/winefs.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ //+---------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -318,6 +321,7 @@ typedef struct _ENCRYPTION_PROTECTOR_LIST {
+ //----------------------------------------------------------------------------------/
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINADVAPI
+ DWORD
+ WINAPI
+@@ -327,6 +331,7 @@ QueryUsersOnEncryptedFile(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINADVAPI
+ DWORD
+ WINAPI
+@@ -336,6 +341,7 @@ QueryRecoveryAgentsOnEncryptedFile(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINADVAPI
+ DWORD
+ WINAPI
+@@ -344,6 +350,7 @@ RemoveUsersFromEncryptedFile(
+     _In_    PENCRYPTION_CERTIFICATE_HASH_LIST   pHashes
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINADVAPI
+ DWORD
+ WINAPI
+@@ -358,6 +365,7 @@ AddUsersToEncryptedFile(
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINADVAPI
+ DWORD
+ WINAPI
+@@ -367,6 +375,7 @@ SetUserFileEncryptionKey(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINADVAPI
+ DWORD
+ WINAPI
+@@ -391,6 +400,7 @@ SetUserFileEncryptionKeyEx(
+ 
+ #endif // #if (NTDDI_VERSION >= NTDDI_VISTA) 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINADVAPI
+ VOID
+ WINAPI
+@@ -398,6 +408,8 @@ FreeEncryptionCertificateHashList(
+     _In_    PENCRYPTION_CERTIFICATE_HASH_LIST       pUsers
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINADVAPI
+ BOOL
+ WINAPI
+@@ -412,6 +424,7 @@ EncryptionDisable(
+ // in WS03 to use a CONST SECURITY_ATTRIBUTES structure
+ #if (NTDDI_VERSION >= NTDDI_WS03)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINADVAPI
+ DWORD
+ WINAPI
+@@ -427,6 +440,7 @@ DuplicateEncryptionInfoFile(
+ #elif (NTDDI_VERSION >= NTDDI_WINXP)
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINADVAPI
+ DWORD
+ WINAPI

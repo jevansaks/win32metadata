@@ -1,0 +1,60 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdhost.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdhost.h
+index 987609ba..7e929eb7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdhost.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdhost.h
+@@ -83,6 +83,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -90,11 +93,13 @@ extern "C"{
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDCreateDeviceHost(
+     _In_ LPCWSTR pszLocalId,
+     IWSDXMLContext* pContext,
+     _Outptr_ IWSDDeviceHost** ppDeviceHost);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDCreateDeviceHostAdvanced(
+     _In_ LPCWSTR pszLocalId,
+@@ -103,6 +108,7 @@ WSDCreateDeviceHostAdvanced(
+     DWORD dwHostAddressCount,
+     _Outptr_ IWSDDeviceHost** ppDeviceHost);
+ #if (WINVER >= _WIN32_WINNT_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WSDCreateDeviceHost2(
+     _In_ LPCWSTR pszLocalId,
+@@ -127,6 +133,7 @@ EXTERN_C const IID IID_IWSDDeviceHost;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("917fe891-3d13-4138-9809-934c8abeb12c")
+     IWSDDeviceHost : public IUnknown
+     {
+@@ -419,6 +426,7 @@ EXTERN_C const IID IID_IWSDDeviceHostNotify;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("b5bee9f9-eeda-41fe-96f7-f45e14990fb0")
+     IWSDDeviceHostNotify : public IUnknown
+     {
+@@ -510,6 +518,7 @@ EXTERN_C const IID IID_IWSDServiceMessaging;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("94974cf4-0cab-460d-a3f6-7a0ad623c0e6")
+     IWSDServiceMessaging : public IUnknown
+     {

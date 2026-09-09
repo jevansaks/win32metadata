@@ -1,0 +1,150 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Mgm.h b/generation/WinSDK/RecompiledIdlHeaders/um/Mgm.h
+index af9a7ff9..a2548e9b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Mgm.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Mgm.h
+@@ -17,6 +17,9 @@
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -315,6 +318,7 @@ typedef struct _SOURCE_GROUP_ENTRY {
+ // Routing protocol registration / de-registration API
+ //============================================================================
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmRegisterMProtocol(
+     IN          PROUTING_PROTOCOL_CONFIG    prpiInfo,
+@@ -323,6 +327,7 @@ MgmRegisterMProtocol(
+     OUT         HANDLE  *                   phProtocol
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmDeRegisterMProtocol(
+     IN          HANDLE                      hProtocol
+@@ -333,6 +338,7 @@ MgmDeRegisterMProtocol(
+ // Interface ownership API
+ //============================================================================
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmTakeInterfaceOwnership(
+     IN          HANDLE                      hProtocol,
+@@ -341,6 +347,7 @@ MgmTakeInterfaceOwnership(
+ );
+ 
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmReleaseInterfaceOwnership(
+     IN          HANDLE                      hProtocol,
+@@ -348,6 +355,7 @@ MgmReleaseInterfaceOwnership(
+     IN          DWORD                       dwIfNextHopAddr
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGetProtocolOnInterface(
+     IN          DWORD                       dwIfIndex,
+@@ -364,6 +372,7 @@ MgmGetProtocolOnInterface(
+ #define         MGM_JOIN_STATE_FLAG         0x00000001
+ #define         MGM_FORWARD_STATE_FLAG      0x00000002
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmAddGroupMembershipEntry(
+     IN              HANDLE                  hProtocol,
+@@ -376,6 +385,7 @@ MgmAddGroupMembershipEntry(
+     IN              DWORD                   dwFlags
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmDeleteGroupMembershipEntry(
+     IN              HANDLE                  hProtocol,
+@@ -399,6 +409,7 @@ MgmDeleteGroupMembershipEntry(
+ // MFE enumeration API
+ //----------------------------------------------------------------------------
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGetMfe(
+     IN              PMIB_IPMCAST_MFE        pimm,
+@@ -406,6 +417,7 @@ MgmGetMfe(
+     IN  OUT         PBYTE                   pbBuffer
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGetFirstMfe(
+     IN  OUT         PDWORD                  pdwBufferSize,
+@@ -414,6 +426,7 @@ MgmGetFirstMfe(
+ );
+ 
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGetNextMfe(
+     IN              PMIB_IPMCAST_MFE        pimmStart,
+@@ -436,6 +449,7 @@ MgmGetNextMfe(
+ #define         MGM_MFE_STATS_1             0x00000002
+ 
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGetMfeStats(
+     IN              PMIB_IPMCAST_MFE        pimm,
+@@ -444,6 +458,7 @@ MgmGetMfeStats(
+     IN              DWORD                   dwFlags
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGetFirstMfeStats(
+     IN  OUT         PDWORD                  pdwBufferSize,
+@@ -453,6 +468,7 @@ MgmGetFirstMfeStats(
+ );
+ 
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGetNextMfeStats(
+     IN              PMIB_IPMCAST_MFE        pimmStart,
+@@ -466,6 +482,7 @@ MgmGetNextMfeStats(
+ // Group menbership entry enumeration API
+ //----------------------------------------------------------------------------
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGroupEnumerationStart(
+     IN              HANDLE                  hProtocol,
+@@ -473,6 +490,7 @@ MgmGroupEnumerationStart(
+     OUT             HANDLE *                phEnumHandle
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGroupEnumerationGetNext(
+     IN              HANDLE                  hEnum,
+@@ -481,6 +499,7 @@ MgmGroupEnumerationGetNext(
+     IN  OUT         PDWORD                  pdwNumEntries
+ );
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmGroupEnumerationEnd(
+     IN              HANDLE                  hEnum
+@@ -493,6 +512,7 @@ MgmGroupEnumerationEnd(
+ //
+ //-----------------------------------------------------------------
+ 
++_Win32_metadata_supported_os_(windowsserver2000)
+ DWORD
+ MgmSetMfe(
+     IN              HANDLE                  hProtocol,

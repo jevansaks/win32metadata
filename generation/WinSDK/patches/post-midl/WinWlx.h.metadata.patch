@@ -1,0 +1,162 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinWlx.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinWlx.h
+index cdb335d1..84d0a65f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinWlx.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinWlx.h
+@@ -31,6 +31,9 @@ Revision History:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -594,6 +597,7 @@ typedef struct _WLX_CONSOLESWITCH_CREDENTIALS_INFO {
+ //                                                                    //
+ ////////////////////////////////////////////////////////////////////////
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxNegotiate(
+@@ -601,6 +605,7 @@ WlxNegotiate(
+     PDWORD                  pdwDllVersion
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxInitialize(
+@@ -611,6 +616,7 @@ WlxInitialize(
+     PVOID *                 pWlxContext
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ VOID
+ WINAPI
+ WlxDisplaySASNotice(
+@@ -618,6 +624,7 @@ WlxDisplaySASNotice(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ int
+ WINAPI
+ WlxLoggedOutSAS(
+@@ -631,6 +638,7 @@ WlxLoggedOutSAS(
+     PVOID *                 pProfile
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxActivateUserShell(
+@@ -640,6 +648,7 @@ WlxActivateUserShell(
+     PVOID                   pEnvironment
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ int
+ WINAPI
+ WlxLoggedOnSAS(
+@@ -648,12 +657,14 @@ WlxLoggedOnSAS(
+     PVOID                   pReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ VOID
+ WINAPI
+ WlxDisplayLockedNotice(
+     PVOID                   pWlxContext
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ int
+ WINAPI
+ WlxWkstaLockedSAS(
+@@ -661,18 +672,21 @@ WlxWkstaLockedSAS(
+     DWORD                   dwSasType
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxIsLockOk(
+     PVOID                   pWlxContext
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxIsLogoffOk(
+     PVOID                   pWlxContext
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ VOID
+ WINAPI
+ WlxLogoff(
+@@ -680,6 +694,7 @@ WlxLogoff(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ VOID
+ WINAPI
+ WlxShutdown(
+@@ -691,12 +706,14 @@ WlxShutdown(
+ //
+ // NEW for version 1.1
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxScreenSaverNotify(
+     PVOID                   pWlxContext,
+     BOOL *                  pSecure);
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxStartApplication(
+@@ -710,6 +727,7 @@ WlxStartApplication(
+ // New for 1.3
+ //
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxNetworkProviderLoad(
+@@ -721,6 +739,7 @@ WlxNetworkProviderLoad(
+ #define STATUSMSG_OPTION_NOANIMATION    0x00000001
+ #define STATUSMSG_OPTION_SETFOREGROUND  0x00000002
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxDisplayStatusMessage(
+@@ -731,6 +750,7 @@ WlxDisplayStatusMessage(
+     PWSTR                   pMessage
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxGetStatusMessage(
+@@ -740,6 +760,7 @@ WlxGetStatusMessage(
+     DWORD                   dwBufferSize
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxRemoveStatusMessage(
+@@ -750,6 +771,7 @@ WlxRemoveStatusMessage(
+ //
+ // New for 1.4
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ WlxGetConsoleSwitchCredentials (

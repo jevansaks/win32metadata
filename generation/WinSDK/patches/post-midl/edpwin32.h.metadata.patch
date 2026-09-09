@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/edpwin32.h b/generation/WinSDK/RecompiledIdlHeaders/um/edpwin32.h
+index bb97cba3..dd1a9aa7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/edpwin32.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/edpwin32.h
+@@ -14,6 +14,9 @@
+ 
+ #ifndef _EDPWIN32_H_
+ #define _EDPWIN32_H_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifndef NT_INCLUDED
+ #include <winnt.h>
+@@ -24,6 +27,7 @@
+ 
+ #if NTDDI_VERSION >= NTDDI_WIN10_TH2
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI ProtectFileToEnterpriseIdentity(
+     _In_ PCWSTR fileOrFolderPath,
+     _In_ PCWSTR identity

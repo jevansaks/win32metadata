@@ -1,0 +1,205 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tdh.h b/generation/WinSDK/RecompiledIdlHeaders/um/tdh.h
+index 7f299ee7..6d8c178d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/tdh.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/tdh.h
+@@ -19,6 +19,9 @@ Abstract:
+ #ifndef __TDH_H__
+ #define __TDH_H__
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -720,6 +723,7 @@ typedef struct _PAYLOAD_FILTER_PREDICATE {
+ 
+ #if (WINVER >= _WIN32_WINNT_WINBLUE)
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ TDHSTATUS
+ __stdcall
+ TdhCreatePayloadFilter(
+@@ -731,12 +735,14 @@ TdhCreatePayloadFilter(
+     _Outptr_result_maybenull_ PVOID* PayloadFilter
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ TDHSTATUS
+ __stdcall
+ TdhDeletePayloadFilter(
+     _Inout_ PVOID* PayloadFilter
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ TDHSTATUS
+ __stdcall
+ TdhAggregatePayloadFilters(
+@@ -746,6 +752,7 @@ TdhAggregatePayloadFilters(
+     _Out_ PEVENT_FILTER_DESCRIPTOR EventFilterDescriptor
+     );
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ TDHSTATUS
+ __stdcall
+ TdhCleanupPayloadEventFilterDescriptor(
+@@ -857,6 +864,7 @@ typedef struct _TDH_CONTEXT {
+ } TDH_CONTEXT;
+ typedef TDH_CONTEXT *PTDH_CONTEXT;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ TDHSTATUS
+ __stdcall
+ TdhGetEventInformation(
+@@ -867,6 +875,7 @@ TdhGetEventInformation(
+     _Inout_ PULONG BufferSize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ TDHSTATUS
+ __stdcall
+ TdhGetEventMapInformation(
+@@ -876,6 +885,7 @@ TdhGetEventMapInformation(
+     _Inout_ ULONG* pBufferSize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ TDHSTATUS
+ __stdcall
+ TdhGetPropertySize(
+@@ -887,6 +897,7 @@ TdhGetPropertySize(
+     _Out_ ULONG* pPropertySize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ TDHSTATUS
+ __stdcall
+ TdhGetProperty(
+@@ -899,6 +910,7 @@ TdhGetProperty(
+     _Out_writes_bytes_(BufferSize) PBYTE pBuffer
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ TDHSTATUS
+ __stdcall
+ TdhEnumerateProviders(
+@@ -929,6 +941,7 @@ TdhEnumerateProvidersForDecodingSource(
+     );
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ TDHSTATUS
+ __stdcall
+ TdhQueryProviderFieldInformation(
+@@ -939,6 +952,7 @@ TdhQueryProviderFieldInformation(
+     _Inout_ ULONG* pBufferSize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ TDHSTATUS
+ __stdcall
+ TdhEnumerateProviderFieldInformation(
+@@ -955,6 +969,7 @@ TdhEnumerateProviderFieldInformation(
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ TDHSTATUS
+ __stdcall
+ TdhEnumerateProviderFilters(
+@@ -973,6 +988,7 @@ TdhEnumerateProviderFilters(
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ TDHSTATUS
+ __stdcall
+ TdhLoadManifest(
+@@ -990,6 +1006,7 @@ TdhLoadManifestFromMemory(
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ TDHSTATUS
+ __stdcall
+ TdhUnloadManifest(
+@@ -1007,6 +1024,7 @@ TdhUnloadManifestFromMemory(
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ TDHSTATUS
+ __stdcall
+ TdhFormatProperty(
+@@ -1031,6 +1049,7 @@ TdhFormatProperty(
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN8)
++_Win32_metadata_supported_os_(windows8.0)
+ TDHSTATUS
+ __stdcall
+ TdhOpenDecodingHandle(
+@@ -1039,6 +1058,7 @@ TdhOpenDecodingHandle(
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN8)
++_Win32_metadata_supported_os_(windows8.0)
+ TDHSTATUS
+ __stdcall
+ TdhSetDecodingParameter(
+@@ -1048,6 +1068,7 @@ TdhSetDecodingParameter(
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN8)
++_Win32_metadata_supported_os_(windows8.0)
+ TDHSTATUS
+ __stdcall
+ TdhGetDecodingParameter(
+@@ -1057,6 +1078,7 @@ TdhGetDecodingParameter(
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN8)
++_Win32_metadata_supported_os_(windows8.0)
+ TDHSTATUS
+ __stdcall
+ TdhGetWppProperty(
+@@ -1069,6 +1091,7 @@ TdhGetWppProperty(
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN8)
++_Win32_metadata_supported_os_(windows8.0)
+ TDHSTATUS
+ __stdcall
+ TdhGetWppMessage(
+@@ -1080,6 +1103,7 @@ TdhGetWppMessage(
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN8)
++_Win32_metadata_supported_os_(windows8.0)
+ TDHSTATUS
+ __stdcall
+ TdhCloseDecodingHandle(
+@@ -1088,6 +1112,7 @@ TdhCloseDecodingHandle(
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN8)
++_Win32_metadata_supported_os_(windows8.0)
+ TDHSTATUS
+ __stdcall
+ TdhLoadManifestFromBinary(
+@@ -1102,6 +1127,7 @@ TdhLoadManifestFromBinary(
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (WINVER >= _WIN32_WINNT_WINBLUE)
++_Win32_metadata_supported_os_(windows8.1)
+ TDHSTATUS
+ __stdcall
+ TdhEnumerateManifestProviderEvents(
+@@ -1112,6 +1138,7 @@ TdhEnumerateManifestProviderEvents(
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_WINBLUE)
++_Win32_metadata_supported_os_(windows8.1)
+ TDHSTATUS
+ __stdcall
+ TdhGetManifestEventInformation(

@@ -1,0 +1,182 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fsrmpipeline.h b/generation/WinSDK/RecompiledIdlHeaders/um/fsrmpipeline.h
+index ad384552..c9b98953 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/fsrmpipeline.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/fsrmpipeline.h
+@@ -179,6 +179,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -253,6 +256,7 @@ EXTERN_C const IID IID_IFsrmPropertyDefinition;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("ede0150f-e9a3-419c-877c-01fe5d24c5d3")
+     IFsrmPropertyDefinition : public IFsrmObject
+     {
+@@ -561,6 +565,7 @@ EXTERN_C const IID IID_IFsrmPropertyDefinition2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("47782152-d16c-4229-b4e1-0ddfe308b9f6")
+     IFsrmPropertyDefinition2 : public IFsrmPropertyDefinition
+     {
+@@ -895,6 +900,7 @@ EXTERN_C const IID IID_IFsrmPropertyDefinitionValue;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("E946D148-BD67-4178-8E22-1C44925ED710")
+     IFsrmPropertyDefinitionValue : public IDispatch
+     {
+@@ -1083,6 +1089,7 @@ EXTERN_C const IID IID_IFsrmProperty;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("4a73fee4-4102-4fcc-9ffb-38614f9ee768")
+     IFsrmProperty : public IDispatch
+     {
+@@ -1271,6 +1278,7 @@ EXTERN_C const IID IID_IFsrmRule;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("cb0df960-16f5-4495-9079-3f9360d831df")
+     IFsrmRule : public IFsrmObject
+     {
+@@ -1605,6 +1613,7 @@ EXTERN_C const IID IID_IFsrmClassificationRule;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("afc052c2-5315-45ab-841b-c6db0e120148")
+     IFsrmClassificationRule : public IFsrmRule
+     {
+@@ -1970,6 +1979,7 @@ EXTERN_C const IID IID_IFsrmPipelineModuleDefinition;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("515c1277-2c81-440e-8fcf-367921ed4f59")
+     IFsrmPipelineModuleDefinition : public IFsrmObject
+     {
+@@ -2395,6 +2405,7 @@ EXTERN_C const IID IID_IFsrmClassifierModuleDefinition;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("bb36ea26-6318-4b8c-8592-f72dd602e7a5")
+     IFsrmClassifierModuleDefinition : public IFsrmPipelineModuleDefinition
+     {
+@@ -2823,6 +2834,7 @@ EXTERN_C const IID IID_IFsrmStorageModuleDefinition;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("15a81350-497d-4aba-80e9-d4dbcc5521fe")
+     IFsrmStorageModuleDefinition : public IFsrmPipelineModuleDefinition
+     {
+@@ -3251,6 +3263,7 @@ EXTERN_C const IID IID_IFsrmClassificationManager;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("d2dc89da-ee91-48a0-85d8-cc72a56f7d04")
+     IFsrmClassificationManager : public IDispatch
+     {
+@@ -3822,6 +3835,7 @@ EXTERN_C const IID IID_IFsrmClassificationManager2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("0004c1c9-127e-4765-ba07-6a3147bca112")
+     IFsrmClassificationManager2 : public IFsrmClassificationManager
+     {
+@@ -4271,6 +4285,7 @@ EXTERN_C const IID IID_IFsrmPropertyBag;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("774589d1-d300-4f7a-9a24-f7b766800250")
+     IFsrmPropertyBag : public IDispatch
+     {
+@@ -4696,6 +4711,7 @@ EXTERN_C const IID IID_IFsrmPropertyBag2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("0e46bdbd-2402-4fed-9c30-9266e6eb2cc9")
+     IFsrmPropertyBag2 : public IFsrmPropertyBag
+     {
+@@ -5060,6 +5076,7 @@ EXTERN_C const IID IID_IFsrmPipelineModuleImplementation;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("b7907906-2b02-4cb5-84a9-fdf54613d6cd")
+     IFsrmPipelineModuleImplementation : public IDispatch
+     {
+@@ -5224,6 +5241,7 @@ EXTERN_C const IID IID_IFsrmClassifierModuleImplementation;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("4c968fc6-6edb-4051-9c18-73b7291ae106")
+     IFsrmClassifierModuleImplementation : public IFsrmPipelineModuleImplementation
+     {
+@@ -5489,6 +5507,7 @@ EXTERN_C const IID IID_IFsrmStorageModuleImplementation;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("0af4a0da-895a-4e50-8712-a96724bcec64")
+     IFsrmStorageModuleImplementation : public IFsrmPipelineModuleImplementation
+     {
+@@ -5683,6 +5702,7 @@ EXTERN_C const IID IID_IFsrmPipelineModuleConnector;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("c16014f3-9aa1-46b3-b0a7-ab146eb205f2")
+     IFsrmPipelineModuleConnector : public IDispatch
+     {
+@@ -5904,19 +5924,31 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  LPSAFEARRAY_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

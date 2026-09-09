@@ -1,0 +1,247 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h
+index 436ffd83..61995449 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /*++
+ 
+@@ -435,6 +438,7 @@ typedef enum _WER_CONSENT
+     WerConsentMax
+ }WER_CONSENT;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerReportCreate(
+@@ -444,6 +448,7 @@ WerReportCreate(
+     _Out_ HREPORT *phReportHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerReportSetParameter(
+@@ -453,6 +458,7 @@ WerReportSetParameter(
+     _In_ PCWSTR pwzValue
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerReportAddFile(
+@@ -462,6 +468,7 @@ WerReportAddFile(
+     _In_ DWORD  dwFileFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerReportSetUIOption(
+@@ -470,6 +477,7 @@ WerReportSetUIOption(
+     _In_ PCWSTR pwzValue
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerReportSubmit(
+@@ -513,6 +521,7 @@ typedef enum _WER_DUMP_TYPE
+     WerDumpTypeMax = 5
+ } WER_DUMP_TYPE;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerReportAddDump(
+@@ -525,6 +534,7 @@ WerReportAddDump(
+     _In_ DWORD dwFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerReportCloseHandle(
+@@ -600,6 +610,7 @@ WerReportCloseHandle(
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerRegisterFile(
+@@ -608,12 +619,14 @@ WerRegisterFile(
+     _In_ DWORD dwFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerUnregisterFile(
+     _In_ PCWSTR pwzFilePath
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerRegisterMemoryBlock(
+@@ -621,29 +634,34 @@ WerRegisterMemoryBlock(
+     _In_ DWORD dwSize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerUnregisterMemoryBlock(
+     _In_ PVOID pvAddress
+     );
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+ STDAPI
+ WerRegisterExcludedMemoryBlock(
+     _In_ const void* address,
+     _In_ DWORD size
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ STDAPI
+ WerUnregisterExcludedMemoryBlock(
+     _In_ const void* address
+     );
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+ STDAPI
+ WerRegisterCustomMetadata(
+     _In_ PCWSTR key,
+     _In_ PCWSTR value
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ STDAPI
+ WerUnregisterCustomMetadata(
+     _In_ PCWSTR key
+@@ -655,22 +673,26 @@ WerUnregisterCustomMetadata(
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ STDAPI
+ WerRegisterAdditionalProcess(
+     _In_ DWORD processId,
+     _In_ DWORD captureExtraInfoForThreadId
+     );
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+ STDAPI
+ WerUnregisterAdditionalProcess(
+     _In_ DWORD processId
+     );
+     
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ WerRegisterAppLocalDump(
+     _In_ PCWSTR localAppDataRelativePath
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ WerUnregisterAppLocalDump();
+ 
+@@ -685,12 +707,14 @@ WerSetMaxProcessHoldMilliseconds(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerSetFlags(
+     _In_ DWORD dwFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerGetFlags(
+@@ -707,6 +731,7 @@ WerGetFlags(
+ //
+ // ++++++++++++++++++++++++++ Application Setup APIs ++++++++++++++++++++++++++++++++++++++
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerAddExcludedApplication(
+@@ -714,6 +739,7 @@ WerAddExcludedApplication(
+     _In_ BOOL bAllUsers
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ WerRemoveExcludedApplication(
+@@ -733,6 +759,7 @@ WerRemoveExcludedApplication(
+ 
+ #define WER_MAX_REGISTERED_RUNTIME_EXCEPTION_MODULES 16
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT
+ WINAPI
+ WerRegisterRuntimeExceptionModule(
+@@ -740,6 +767,7 @@ WerRegisterRuntimeExceptionModule(
+     _In_ PVOID pContext
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT
+ WINAPI
+ WerUnregisterRuntimeExceptionModule(
+@@ -952,6 +980,7 @@ typedef struct _WER_REPORT_METADATA_V3
+     ULONGLONG LegacyBucketId;
+ } WER_REPORT_METADATA_V3, *PWER_REPORT_METADATA_V3;
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WerStoreOpen(
+@@ -959,12 +988,14 @@ WerStoreOpen(
+     _Out_ PHREPORTSTORE phReportStore
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ __control_entrypoint(DllExport)
+ VOID
+ WerStoreClose(
+     _In_opt_ _Post_invalid_ HREPORTSTORE hReportStore
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WerStoreGetFirstReportKey(
+@@ -972,6 +1003,7 @@ WerStoreGetFirstReportKey(
+     _Outptr_result_maybenull_z_ PCWSTR* ppszReportKey
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WerStoreGetNextReportKey(
+@@ -979,6 +1011,7 @@ WerStoreGetNextReportKey(
+     _Outptr_result_maybenull_z_ PCWSTR* ppszReportKey
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WerStoreQueryReportMetadataV2(
+@@ -995,6 +1028,7 @@ WerStoreQueryReportMetadataV3(
+     _Out_ PWER_REPORT_METADATA_V3 pReportMetadata
+ );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ __control_entrypoint(DllExport)
+ VOID
+ WerFreeString(

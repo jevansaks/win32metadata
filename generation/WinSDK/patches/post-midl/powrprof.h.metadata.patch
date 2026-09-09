@@ -1,0 +1,533 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/powrprof.h b/generation/WinSDK/RecompiledIdlHeaders/um/powrprof.h
+index 6a4a1b56..32558453 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/powrprof.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/powrprof.h
+@@ -18,6 +18,9 @@
+ #include <powerbase.h>
+ #include <powersetting.h>
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -205,29 +208,39 @@ typedef PWRSCHEMESENUMPROC_V1 *PWRSCHEMESENUMPROC;
+ 
+ // Public function prototypes
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ GetPwrDiskSpindownRange(
+     _Out_ PUINT puiMax,
+     _Out_ PUINT puiMin
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ EnumPwrSchemes(
+     _In_ PWRSCHEMESENUMPROC lpfn,
+     _In_ LPARAM lParam
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ ReadGlobalPwrPolicy(
+     _In_ PGLOBAL_POWER_POLICY pGlobalPowerPolicy
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ ReadPwrScheme(
+     _In_ UINT uiID,
+     _Out_ PPOWER_POLICY pPowerPolicy
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ WritePwrScheme(
+     _In_ PUINT puiID,
+@@ -236,21 +249,29 @@ WritePwrScheme(
+     _In_ PPOWER_POLICY lpScheme
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ WriteGlobalPwrPolicy(
+         _In_ PGLOBAL_POWER_POLICY pGlobalPowerPolicy
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ DeletePwrScheme(
+         _In_ UINT uiID
+         );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ GetActivePwrScheme(
+         _Out_ PUINT puiID
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ SetActivePwrScheme(
+     _In_ UINT uiID,
+@@ -258,16 +279,19 @@ SetActivePwrScheme(
+     _In_opt_ PPOWER_POLICY pPowerPolicy
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ STDAPI_(BOOLEAN)
+ IsPwrSuspendAllowed(
+         VOID
+         );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ STDAPI_(BOOLEAN)
+ IsPwrHibernateAllowed(
+         VOID
+         );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ STDAPI_(BOOLEAN)
+ IsPwrShutdownAllowed(
+         VOID
+@@ -278,6 +302,8 @@ IsAdminOverrideActive(
+     _In_ PADMINISTRATOR_POWER_POLICY papp
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ SetSuspendState(
+     _In_ BOOLEAN bHibernate,
+@@ -285,12 +311,16 @@ SetSuspendState(
+     _In_ BOOLEAN bWakeupEventsDisabled
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ GetCurrentPowerPolicies(
+     _Out_ PGLOBAL_POWER_POLICY pGlobalPowerPolicy,
+     _Out_ PPOWER_POLICY pPowerPolicy
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ CanUserWritePwrScheme(
+         VOID
+@@ -300,6 +330,8 @@ CanUserWritePwrScheme(
+ //
+ // deprecated.
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ ReadProcessorPwrScheme(
+     _In_ UINT uiID,
+@@ -311,6 +343,8 @@ ReadProcessorPwrScheme(
+ //
+ // deprecated.
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ STDAPI_(BOOLEAN)
+ WriteProcessorPwrScheme(
+     _In_ UINT uiID,
+@@ -409,6 +443,7 @@ typedef struct _DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS {
+ 
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ STDAPI_(BOOLEAN)
+ PowerIsSettingRangeDefined (
+     _In_opt_ CONST GUID *SubKeyGuid OPTIONAL,
+@@ -418,6 +453,7 @@ PowerIsSettingRangeDefined (
+ 
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ STDAPI_(DWORD)
+ PowerSettingAccessCheckEx (
+     _In_ POWER_DATA_ACCESSOR AccessFlags,
+@@ -428,6 +464,7 @@ PowerSettingAccessCheckEx (
+ 
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerSettingAccessCheck (
+     _In_ POWER_DATA_ACCESSOR AccessFlags,
+@@ -467,6 +504,7 @@ PowerSetUserConfiguredDCPowerMode(
+ // Read functions.
+ //
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadACValueIndex (
+     _In_opt_ HKEY RootPowerKey,
+@@ -478,6 +516,7 @@ PowerReadACValueIndex (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadDCValueIndex (
+     _In_opt_ HKEY RootPowerKey,
+@@ -489,6 +528,7 @@ PowerReadDCValueIndex (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadFriendlyName (
+     _In_opt_ HKEY RootPowerKey,
+@@ -501,6 +541,7 @@ PowerReadFriendlyName (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadDescription (
+     _In_opt_ HKEY RootPowerKey,
+@@ -513,6 +554,7 @@ PowerReadDescription (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadPossibleValue (
+     _In_opt_ HKEY RootPowerKey,
+@@ -526,6 +568,7 @@ PowerReadPossibleValue (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadPossibleFriendlyName (
+     _In_opt_ HKEY RootPowerKey,
+@@ -538,6 +581,7 @@ PowerReadPossibleFriendlyName (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadPossibleDescription (
+     _In_opt_ HKEY RootPowerKey,
+@@ -550,6 +594,7 @@ PowerReadPossibleDescription (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadValueMin (
+     _In_opt_ HKEY RootPowerKey,
+@@ -560,6 +605,7 @@ PowerReadValueMin (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadValueMax (
+     _In_opt_ HKEY RootPowerKey,
+@@ -570,6 +616,7 @@ PowerReadValueMax (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadValueIncrement (
+     _In_opt_ HKEY RootPowerKey,
+@@ -580,6 +627,7 @@ PowerReadValueIncrement (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadValueUnitsSpecifier (
+     _In_opt_ HKEY RootPowerKey,
+@@ -591,6 +639,7 @@ PowerReadValueUnitsSpecifier (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadACDefaultIndex (
+     _In_opt_ HKEY RootPowerKey,
+@@ -602,6 +651,7 @@ PowerReadACDefaultIndex (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadDCDefaultIndex (
+     _In_opt_ HKEY RootPowerKey,
+@@ -613,6 +663,7 @@ PowerReadDCDefaultIndex (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadIconResourceSpecifier (
+     _In_opt_ HKEY RootPowerKey,
+@@ -625,6 +676,7 @@ PowerReadIconResourceSpecifier (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReadSettingAttributes (
+     _In_opt_ CONST GUID *SubGroupGuid,
+@@ -636,6 +688,7 @@ PowerReadSettingAttributes (
+ // Write functions.
+ //
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteFriendlyName (
+     _In_opt_ HKEY RootPowerKey,
+@@ -648,6 +701,7 @@ PowerWriteFriendlyName (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteDescription (
+     _In_opt_ HKEY RootPowerKey,
+@@ -660,6 +714,7 @@ PowerWriteDescription (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWritePossibleValue (
+     _In_opt_ HKEY RootPowerKey,
+@@ -673,6 +728,7 @@ PowerWritePossibleValue (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWritePossibleFriendlyName (
+     _In_opt_ HKEY RootPowerKey,
+@@ -685,6 +741,7 @@ PowerWritePossibleFriendlyName (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWritePossibleDescription (
+     _In_opt_ HKEY RootPowerKey,
+@@ -697,6 +754,7 @@ PowerWritePossibleDescription (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteValueMin (
+     _In_opt_ HKEY RootPowerKey,
+@@ -707,6 +765,7 @@ PowerWriteValueMin (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteValueMax (
+     _In_opt_ HKEY RootPowerKey,
+@@ -717,6 +776,7 @@ PowerWriteValueMax (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteValueIncrement (
+     _In_opt_ HKEY RootPowerKey,
+@@ -727,6 +787,7 @@ PowerWriteValueIncrement (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteValueUnitsSpecifier (
+     _In_opt_ HKEY RootPowerKey,
+@@ -738,6 +799,7 @@ PowerWriteValueUnitsSpecifier (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteACDefaultIndex (
+     _In_opt_ HKEY RootSystemPowerKey,
+@@ -749,6 +811,7 @@ PowerWriteACDefaultIndex (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteDCDefaultIndex (
+     _In_opt_ HKEY RootSystemPowerKey,
+@@ -760,6 +823,7 @@ PowerWriteDCDefaultIndex (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteIconResourceSpecifier (
+     _In_opt_ HKEY RootPowerKey,
+@@ -772,6 +836,7 @@ PowerWriteIconResourceSpecifier (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerWriteSettingAttributes (
+     _In_opt_ CONST GUID *SubGroupGuid,
+@@ -781,6 +846,7 @@ PowerWriteSettingAttributes (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerDuplicateScheme (
+     _In_opt_ HKEY RootPowerKey,
+@@ -790,6 +856,7 @@ PowerDuplicateScheme (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerImportPowerScheme (
+     _In_opt_ HKEY RootPowerKey,
+@@ -799,6 +866,7 @@ PowerImportPowerScheme (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerDeleteScheme (
+     _In_opt_ HKEY RootPowerKey,
+@@ -807,6 +875,7 @@ PowerDeleteScheme (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerRemovePowerSetting (
+    _In_ CONST GUID *PowerSettingSubKeyGuid,
+@@ -815,6 +884,7 @@ PowerRemovePowerSetting (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerCreateSetting (
+     _In_opt_ HKEY RootSystemPowerKey,
+@@ -824,6 +894,7 @@ PowerCreateSetting (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerCreatePossibleSetting (
+     _In_opt_ HKEY RootSystemPowerKey,
+@@ -837,6 +908,7 @@ PowerCreatePossibleSetting (
+ // Enumerate Functions.
+ //
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerEnumerate (
+     _In_opt_ HKEY RootPowerKey,
+@@ -868,6 +940,7 @@ PowerOpenSystemPowerKey (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerCanRestoreIndividualDefaultPowerScheme (
+     _In_ CONST GUID *SchemeGuid
+@@ -875,6 +948,7 @@ PowerCanRestoreIndividualDefaultPowerScheme (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerRestoreIndividualDefaultPowerScheme (
+     _In_ CONST GUID *SchemeGuid
+@@ -882,6 +956,7 @@ PowerRestoreIndividualDefaultPowerScheme (
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerRestoreDefaultPowerSchemes(
+     VOID
+@@ -889,6 +964,7 @@ PowerRestoreDefaultPowerSchemes(
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ PowerReplaceDefaultPowerSchemes(
+     VOID
+@@ -896,6 +972,7 @@ PowerReplaceDefaultPowerSchemes(
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(POWER_PLATFORM_ROLE)
+ PowerDeterminePlatformRole(
+     VOID
+@@ -1046,6 +1123,7 @@ PowerDeterminePlatformRole(
+ // Function prototypes
+ //
+ #if (NTDDI_VERSION >= NTDDI_WS03)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(BOOLEAN)
+ DevicePowerEnumDevices(
+     _In_ ULONG  QueryIndex,
+@@ -1057,6 +1135,8 @@ DevicePowerEnumDevices(
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_WS03)
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ STDAPI_(DWORD)
+ DevicePowerSetDeviceState(
+     _In_ LPCWSTR DeviceDescription,
+@@ -1066,6 +1146,7 @@ DevicePowerSetDeviceState(
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_WS03)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(BOOLEAN)
+ DevicePowerOpen(
+     _In_opt_ ULONG DebugMask
+@@ -1073,6 +1154,7 @@ DevicePowerOpen(
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_WS03)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(BOOLEAN)
+ DevicePowerClose(
+     VOID
+@@ -1095,6 +1177,7 @@ typedef struct _THERMAL_EVENT {
+ } THERMAL_EVENT, *PTHERMAL_EVENT; 
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINBLUE)
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI_(DWORD)
+ PowerReportThermalEvent (
+     _In_ PTHERMAL_EVENT Event

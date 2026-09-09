@@ -1,0 +1,52 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMMsg.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMMsg.h
+index 10b72b4d..34c50f2b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/LMMsg.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMMsg.h
+@@ -29,6 +29,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -42,12 +45,14 @@ extern "C" {
+ // Function Prototypes
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetMessageNameAdd (
+     _In_opt_  LPCWSTR  servername,
+     _In_      LPCWSTR  msgname
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetMessageNameEnum (
+     _In_opt_  LPCWSTR  servername,
+@@ -59,6 +64,7 @@ NetMessageNameEnum (
+     _Out_     LPDWORD  resume_handle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetMessageNameGetInfo (
+     _In_opt_  LPCWSTR  servername,
+@@ -67,12 +73,14 @@ NetMessageNameGetInfo (
+     _In_      LPBYTE  *bufptr
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetMessageNameDel (
+     _In_opt_  LPCWSTR  servername,
+     _In_      LPCWSTR  msgname
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetMessageBufferSend (
+     _In_opt_  LPCWSTR servername,

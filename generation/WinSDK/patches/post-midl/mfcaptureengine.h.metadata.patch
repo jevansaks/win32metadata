@@ -1,0 +1,102 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.h b/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.h
+index 3259a665..c2ef5ff5 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.h
+@@ -137,6 +137,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #if (WINVER >= _WIN32_WINNT_WIN7) 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -258,6 +261,7 @@ EXTERN_C const IID IID_IMFCaptureEngineOnEventCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("aeda51c0-9025-4983-9012-de597b88b089")
+     IMFCaptureEngineOnEventCallback : public IUnknown
+     {
+@@ -345,6 +349,7 @@ EXTERN_C const IID IID_IMFCaptureEngineOnSampleCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("52150b82-ab39-4467-980f-e48bf0822ecd")
+     IMFCaptureEngineOnSampleCallback : public IUnknown
+     {
+@@ -432,6 +437,7 @@ EXTERN_C const IID IID_IMFCaptureSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("72d6135b-35e9-412c-b926-fd5265f2a885")
+     IMFCaptureSink : public IUnknown
+     {
+@@ -591,6 +597,7 @@ EXTERN_C const IID IID_IMFCaptureRecordSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("3323b55a-f92a-4fe2-8edc-e9bfc0634d77")
+     IMFCaptureRecordSink : public IMFCaptureSink
+     {
+@@ -815,6 +822,7 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("77346cfd-5b49-4d73-ace0-5b52a859f2e0")
+     IMFCapturePreviewSink : public IMFCaptureSink
+     {
+@@ -1082,6 +1090,7 @@ EXTERN_C const IID IID_IMFCapturePhotoSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("d2d43cc8-48bb-4aa7-95db-10c06977e777")
+     IMFCapturePhotoSink : public IMFCaptureSink
+     {
+@@ -1251,6 +1260,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("439a42a8-0d2c-4505-be83-f79b2a05d5c4")
+     IMFCaptureSource : public IUnknown
+     {
+@@ -1572,6 +1582,7 @@ EXTERN_C const IID IID_IMFCaptureEngine;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("a6bba433-176b-48b2-b375-53aa03473207")
+     IMFCaptureEngine : public IUnknown
+     {
+@@ -1763,6 +1774,7 @@ EXTERN_C const IID IID_IMFCaptureEngineClassFactory;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("8f02d140-56fc-4302-a705-3a97c78be779")
+     IMFCaptureEngineClassFactory : public IUnknown
+     {
+@@ -1867,6 +1879,7 @@ EXTERN_C const IID IID_IMFCaptureEngineOnSampleCallback2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.1)
+     MIDL_INTERFACE("e37ceed7-340f-4514-9f4d-9c2ae026100b")
+     IMFCaptureEngineOnSampleCallback2 : public IMFCaptureEngineOnSampleCallback
+     {
+@@ -1964,6 +1977,7 @@ EXTERN_C const IID IID_IMFCaptureSink2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.1)
+     MIDL_INTERFACE("f9e4219e-6197-4b5e-b888-bee310ab2c59")
+     IMFCaptureSink2 : public IMFCaptureSink
+     {

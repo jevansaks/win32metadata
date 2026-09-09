@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winconp.h b/generation/WinSDK/RecompiledIdlHeaders/um/winconp.h
-index d761cec6..51b2c1f1 100644
+index d761cec6..076fc0b0 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winconp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winconp.h
 @@ -15,6 +15,9 @@ extern "C" {
@@ -32,3 +32,11 @@ index d761cec6..51b2c1f1 100644
  
  // ...
  
+@@ -424,6 +429,7 @@ GetConsoleInputWaitHandle(
+ #define PID_CONSOLE_TERMINALSCROLLING       13
+ 
+ #define CONSOLE_PROPKEY(name, id) \
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(name, 0x0C570607, 0x0396, 0x43DE, 0x9D, 0x61, 0xE3, 0x21, 0xD7, 0xDF, 0x50, 0x26, id);
+ 
+ CONSOLE_PROPKEY(PKEY_Console_ForceV2,                   PID_CONSOLE_FORCEV2);

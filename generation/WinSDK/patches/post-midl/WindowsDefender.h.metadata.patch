@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsDefender.h b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsDefender.h
+index 1f1019bb..5c282453 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WindowsDefender.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WindowsDefender.h
+@@ -16,6 +16,9 @@
+ #pragma once
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -41,6 +44,7 @@ extern "C" {
+ //
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WDStatus(
+     _Out_ BOOL* pfEnabled);
+@@ -74,6 +78,7 @@ WDStatus(
+ //
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WDEnable(
+     _In_ BOOL  fEnable);

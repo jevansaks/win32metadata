@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugin2com.h b/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugin2com.h
+index 22b2a7b3..1c0bb30d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugin2com.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugin2com.h
+@@ -68,6 +68,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -120,6 +123,7 @@ EXTERN_C const IID IID_ItsPubPlugin2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("FA4CE418-AAD7-4ec6-BAD1-0A321BA465D5")
+     ItsPubPlugin2 : public ItsPubPlugin
+     {

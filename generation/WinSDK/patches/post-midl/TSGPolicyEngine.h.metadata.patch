@@ -1,0 +1,60 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TSGPolicyEngine.h b/generation/WinSDK/RecompiledIdlHeaders/um/TSGPolicyEngine.h
+index 56e4a88a..ddc2236b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/TSGPolicyEngine.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/TSGPolicyEngine.h
+@@ -88,6 +88,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ typedef /* [public][public][public][public] */ 
+@@ -179,6 +182,7 @@ EXTERN_C const IID IID_ITSGAuthorizeConnectionSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("c27ece33-7781-4318-98ef-1cf2da7b7005")
+     ITSGAuthorizeConnectionSink : public IUnknown
+     {
+@@ -298,6 +302,7 @@ EXTERN_C const IID IID_ITSGAuthorizeResourceSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("feddfcd4-fa12-4435-ae55-7ad1a9779af7")
+     ITSGAuthorizeResourceSink : public IUnknown
+     {
+@@ -409,6 +414,7 @@ EXTERN_C const IID IID_ITSGPolicyEngine;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("8bc24f08-6223-42f4-a5b4-8e37cd135bbd")
+     ITSGPolicyEngine : public IUnknown
+     {
+@@ -615,6 +621,7 @@ EXTERN_C const IID IID_ITSGAccountingEngine;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("4ce2a0c9-e874-4f1a-86f4-06bbb9115338")
+     ITSGAccountingEngine : public IUnknown
+     {
+@@ -712,9 +719,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
+ void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
+ /* end of Additional Prototypes */

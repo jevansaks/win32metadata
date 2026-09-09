@@ -1,0 +1,357 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mbnapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/mbnapi.h
+index ec798f4d..0e37fefc 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mbnapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mbnapi.h
+@@ -683,6 +683,9 @@ extern "C"{
+ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -1329,6 +1332,7 @@ EXTERN_C const IID IID_IMbnConnection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-200D-4BBB-AAEE-338E368AF6FA")
+     IMbnConnection : public IUnknown
+     {
+@@ -1503,6 +1507,7 @@ EXTERN_C const IID IID_IMbnConnectionEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-200E-4BBB-AAEE-338E368AF6FA")
+     IMbnConnectionEvents : public IUnknown
+     {
+@@ -1654,6 +1659,7 @@ EXTERN_C const IID IID_IMbnInterface;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2001-4BBB-AAEE-338E368AF6FA")
+     IMbnInterface : public IUnknown
+     {
+@@ -1876,6 +1882,7 @@ EXTERN_C const IID IID_IMbnInterfaceEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2002-4BBB-AAEE-338E368AF6FA")
+     IMbnInterfaceEvents : public IUnknown
+     {
+@@ -2079,6 +2086,7 @@ EXTERN_C const IID IID_IMbnInterfaceManager;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-201B-4BBB-AAEE-338E368AF6FA")
+     IMbnInterfaceManager : public IUnknown
+     {
+@@ -2188,6 +2196,7 @@ EXTERN_C const IID IID_IMbnInterfaceManagerEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-201C-4BBB-AAEE-338E368AF6FA")
+     IMbnInterfaceManagerEvents : public IUnknown
+     {
+@@ -2297,6 +2306,7 @@ EXTERN_C const IID IID_IMbnRegistration;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2009-4BBB-AAEE-338E368AF6FA")
+     IMbnRegistration : public IUnknown
+     {
+@@ -2504,6 +2514,7 @@ EXTERN_C const IID IID_IMbnRegistrationEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-200A-4BBB-AAEE-338E368AF6FA")
+     IMbnRegistrationEvents : public IUnknown
+     {
+@@ -2647,6 +2658,7 @@ EXTERN_C const IID IID_IMbnConnectionManager;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-201D-4BBB-AAEE-338E368AF6FA")
+     IMbnConnectionManager : public IUnknown
+     {
+@@ -2756,6 +2768,7 @@ EXTERN_C const IID IID_IMbnConnectionManagerEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-201E-4BBB-AAEE-338E368AF6FA")
+     IMbnConnectionManagerEvents : public IUnknown
+     {
+@@ -2865,6 +2878,7 @@ EXTERN_C const IID IID_IMbnPinManager;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2005-4BBB-AAEE-338E368AF6FA")
+     IMbnPinManager : public IUnknown
+     {
+@@ -2987,6 +3001,7 @@ EXTERN_C const IID IID_IMbnPinManagerEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2006-4BBB-AAEE-338E368AF6FA")
+     IMbnPinManagerEvents : public IUnknown
+     {
+@@ -3108,6 +3123,7 @@ EXTERN_C const IID IID_IMbnPinEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2008-4BBB-AAEE-338E368AF6FA")
+     IMbnPinEvents : public IUnknown
+     {
+@@ -3310,6 +3326,7 @@ EXTERN_C const IID IID_IMbnSubscriberInformation;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("459ECC43-BCF5-11DC-A8A8-001321F1405F")
+     IMbnSubscriberInformation : public IUnknown
+     {
+@@ -3426,6 +3443,7 @@ EXTERN_C const IID IID_IMbnSignal;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2003-4BBB-AAEE-338E368AF6FA")
+     IMbnSignal : public IUnknown
+     {
+@@ -3531,6 +3549,7 @@ EXTERN_C const IID IID_IMbnSignalEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2004-4BBB-AAEE-338E368AF6FA")
+     IMbnSignalEvents : public IUnknown
+     {
+@@ -3627,6 +3646,7 @@ EXTERN_C const IID IID_IMbnConnectionContext;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-200B-4BBB-AAEE-338E368AF6FA")
+     IMbnConnectionContext : public IUnknown
+     {
+@@ -3742,6 +3762,7 @@ EXTERN_C const IID IID_IMbnConnectionContextEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-200C-4BBB-AAEE-338E368AF6FA")
+     IMbnConnectionContextEvents : public IUnknown
+     {
+@@ -3859,6 +3880,7 @@ EXTERN_C const IID IID_IMbnConnectionProfileManager;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-200F-4BBB-AAEE-338E368AF6FA")
+     IMbnConnectionProfileManager : public IUnknown
+     {
+@@ -3989,6 +4011,7 @@ EXTERN_C const IID IID_IMbnConnectionProfile;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2010-4BBB-AAEE-338E368AF6FA")
+     IMbnConnectionProfile : public IUnknown
+     {
+@@ -4105,6 +4128,7 @@ EXTERN_C const IID IID_IMbnConnectionProfileEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2011-4BBB-AAEE-338E368AF6FA")
+     IMbnConnectionProfileEvents : public IUnknown
+     {
+@@ -4201,6 +4225,7 @@ EXTERN_C const IID IID_IMbnSmsConfiguration;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2012-4BBB-AAEE-338E368AF6FA")
+     IMbnSmsConfiguration : public IUnknown
+     {
+@@ -4354,6 +4379,7 @@ EXTERN_C const IID IID_IMbnSmsReadMsgPdu;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2013-4BBB-AAEE-338E368AF6FA")
+     IMbnSmsReadMsgPdu : public IUnknown
+     {
+@@ -4481,6 +4507,7 @@ EXTERN_C const IID IID_IMbnSmsReadMsgTextCdma;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2014-4BBB-AAEE-338E368AF6FA")
+     IMbnSmsReadMsgTextCdma : public IUnknown
+     {
+@@ -4652,6 +4679,7 @@ EXTERN_C const IID IID_IMbnSms;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2015-4BBB-AAEE-338E368AF6FA")
+     IMbnSms : public IUnknown
+     {
+@@ -4879,6 +4907,7 @@ EXTERN_C const IID IID_IMbnSmsEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2016-4BBB-AAEE-338E368AF6FA")
+     IMbnSmsEvents : public IUnknown
+     {
+@@ -5105,6 +5134,7 @@ EXTERN_C const IID IID_IMbnServiceActivation;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2017-4BBB-AAEE-338E368AF6FA")
+     IMbnServiceActivation : public IUnknown
+     {
+@@ -5205,6 +5235,7 @@ EXTERN_C const IID IID_IMbnServiceActivationEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2018-4BBB-AAEE-338E368AF6FA")
+     IMbnServiceActivationEvents : public IUnknown
+     {
+@@ -5317,6 +5348,7 @@ EXTERN_C const IID IID_IMbnVendorSpecificOperation;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2019-4BBB-AAEE-338E368AF6FA")
+     IMbnVendorSpecificOperation : public IUnknown
+     {
+@@ -5415,6 +5447,7 @@ EXTERN_C const IID IID_IMbnVendorSpecificEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-201A-4BBB-AAEE-338E368AF6FA")
+     IMbnVendorSpecificEvents : public IUnknown
+     {
+@@ -5536,6 +5569,7 @@ EXTERN_C const IID IID_IMbnConnectionProfileManagerEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-201F-4BBB-AAEE-338E368AF6FA")
+     IMbnConnectionProfileManagerEvents : public IUnknown
+     {
+@@ -5645,6 +5679,7 @@ EXTERN_C const IID IID_IMbnRadio;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCCCCAB6-201F-4BBB-AAEE-338E368AF6FA")
+     IMbnRadio : public IUnknown
+     {
+@@ -5767,6 +5802,7 @@ EXTERN_C const IID IID_IMbnRadioEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCDDDAB6-201F-4BBB-AAEE-338E368AF6FA")
+     IMbnRadioEvents : public IUnknown
+     {
+@@ -5884,6 +5920,7 @@ EXTERN_C const IID IID_IMbnMultiCarrier;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("DCBBBAB6-2020-4BBB-AAEE-338E368AF6FA")
+     IMbnMultiCarrier : public IUnknown
+     {
+@@ -6047,6 +6084,7 @@ EXTERN_C const IID IID_IMbnMultiCarrierEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("DCDDDAB6-2021-4BBB-AAEE-338E368AF6FA")
+     IMbnMultiCarrierEvents : public IUnknown
+     {
+@@ -6315,6 +6353,7 @@ EXTERN_C const IID IID_IMbnDeviceServicesManager;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("20A26258-6811-4478-AC1D-13324E45E41C")
+     IMbnDeviceServicesManager : public IUnknown
+     {
+@@ -6413,6 +6452,7 @@ EXTERN_C const IID IID_IMbnDeviceServicesContext;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("FC5AC347-1592-4068-80BB-6A57580150D8")
+     IMbnDeviceServicesContext : public IUnknown
+     {
+@@ -6546,6 +6586,7 @@ EXTERN_C const IID IID_IMbnDeviceServicesEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("0A900C19-6824-4E97-B76E-CF239D0CA642")
+     IMbnDeviceServicesEvents : public IUnknown
+     {
+@@ -6872,6 +6913,7 @@ EXTERN_C const IID IID_IMbnDeviceService;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("B3BB9A71-DC70-4BE9-A4DA-7886AE8B191B")
+     IMbnDeviceService : public IUnknown
+     {
+@@ -7211,6 +7253,7 @@ EXTERN_C const IID IID_IMbnPin;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DCBBBAB6-2007-4BBB-AAEE-338E368AF6FA")
+     IMbnPin : public IUnknown
+     {
+@@ -7464,14 +7507,22 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal(  __RPC__in unsigned long *,
+ unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
+ void                      __RPC_USER  LPSAFEARRAY_UserFree(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  LPSAFEARRAY_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
+ 
+ /* end of Additional Prototypes */

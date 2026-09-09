@@ -1,0 +1,58 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Dhcpv6cSdk.h b/generation/WinSDK/RecompiledIdlHeaders/um/Dhcpv6cSdk.h
+index 89149bba..f925402d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Dhcpv6cSdk.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Dhcpv6cSdk.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /*++
+ 
+@@ -150,18 +153,21 @@ typedef struct _DHCPV6PrefixLeaseInformation {
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ VOID
+ APIENTRY
+ Dhcpv6CApiInitialize(
+     OUT     LPDWORD                Version
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ VOID
+ APIENTRY
+ Dhcpv6CApiCleanup(
+     VOID
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD                                             // win32 status
+ APIENTRY
+ Dhcpv6RequestParams(                                // request parameters of client
+@@ -180,6 +186,7 @@ IN OUT  LPDWORD                		pSize
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ APIENTRY
+ Dhcpv6RequestPrefix(
+@@ -189,6 +196,7 @@ IN OUT LPDHCPV6PrefixLeaseInformation	prefixleaseInfo,
+ _Out_ DWORD* 			pdwTimeToWait
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ APIENTRY
+ Dhcpv6RenewPrefix(
+@@ -199,6 +207,7 @@ _Out_ DWORD* 			pdwTimeToWait,
+ IN DWORD 				bValidatePrefix
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DWORD
+ APIENTRY
+ Dhcpv6ReleasePrefix(

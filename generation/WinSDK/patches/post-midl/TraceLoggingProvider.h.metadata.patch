@@ -1,0 +1,54 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/TraceLoggingProvider.h b/generation/WinSDK/RecompiledIdlHeaders/shared/TraceLoggingProvider.h
+index 2437f438..fd2bc1d1 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/TraceLoggingProvider.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/TraceLoggingProvider.h
+@@ -76,6 +76,9 @@ TLG_HAVE_EVENT_SET_INFORMATION macro.
+ #ifndef _traceloggingprovider_
+ #define _traceloggingprovider_
+ #pragma once
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <evntprov.h>
+ 
+@@ -771,6 +774,7 @@ diagnosis of programming errors). In production, errors from
+ TraceLoggingRegister should usually be ignored unless event logging is
+ security-critical.
+ */
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _IRQL_requires_max_(PASSIVE_LEVEL)
+ TLG_INLINE
+ TLG_STATUS _tlg_CALL
+@@ -2860,6 +2864,7 @@ TraceLoggingRegister(
+     return TraceLoggingRegisterEx(hProvider, TLG_NULL, TLG_NULL);
+ }
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _IRQL_requires_max_(PASSIVE_LEVEL)
+ TLG_INLINE
+ TLG_STATUS _tlg_CALL
+@@ -2967,6 +2972,7 @@ TraceLoggingSetInformation(
+             _In_ EVENT_INFO_CLASS InformationClass,
+             _In_reads_bytes_opt_(InformationLength) PVOID EventInformation,
+             _In_ ULONG InformationLength);
++_Win32_metadata_supported_os_(windows5.1.2600)
+         PFEventSetInformation pfEventSetInformation =
+             (PFEventSetInformation)GetProcAddress(hEventing, "EventSetInformation");
+         if (pfEventSetInformation)
+@@ -3305,6 +3311,7 @@ _tlgCreate1Sz(
+         cb = sizeof(CH);
+     }
+ #pragma warning(suppress: 26018) // Analysis doesn't know that _traits::length(pch) returns strlen.
++_Win32_metadata_supported_os_(windows6.0.6000)
+     EventDataDescCreate(pDesc, pch, cb);
+ }
+ 
+@@ -3703,6 +3710,7 @@ struct _tlgWrapBuffer
+     {
+         EventDataDescCreate(&pDesc[0], &pDesc[1].Size, 2);
+ #pragma warning(suppress: 26018) // Buffer length bounded by Ptr->Length.
++_Win32_metadata_supported_os_(windows6.0.6000)
+         EventDataDescCreate(&pDesc[1], Ptr->Buffer, static_cast<UINT16>(Ptr->Length));
+         return pDesc;
+     }

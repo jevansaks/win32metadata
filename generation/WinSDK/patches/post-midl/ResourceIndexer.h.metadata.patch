@@ -1,8 +1,22 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h b/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h
-index 2c153a65..6f9c188d 100644
+index 2c153a65..6909f0c7 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h
-@@ -26,7 +26,8 @@ typedef struct
+@@ -7,6 +7,9 @@
+ #define RESOURCEINDEXER_H
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -23,13 +26,17 @@ typedef struct
+     PWSTR value;
+ } IndexedResourceQualifier;
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
  STDAPI CreateResourceIndexer(
      _In_ PCWSTR projectRoot,
      _In_opt_ PCWSTR extensionDllPath,
@@ -10,5 +24,18 @@ index 2c153a65..6f9c188d 100644
 +    _Outptr_ PVOID* ppResourceIndexer
 +        _Win32_metadata_raii_free_(DestroyResourceIndexer));
  
++_Win32_metadata_supported_os_(windows10.0.10240)
  void DestroyResourceIndexer(_In_opt_ PVOID resourceIndexer);
  
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI IndexFilePath(
+     _In_ PVOID resourceIndexer,
+     _In_ PCWSTR filePath,
+@@ -37,6 +44,7 @@ STDAPI IndexFilePath(
+     _Out_ ULONG* pQualifierCount,
+     _Out_writes_(*pQualifierCount) IndexedResourceQualifier** ppQualifiers);
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ void DestroyIndexedResults(
+     _In_opt_ PWSTR resourceUri,
+     _In_ ULONG qualifierCount,

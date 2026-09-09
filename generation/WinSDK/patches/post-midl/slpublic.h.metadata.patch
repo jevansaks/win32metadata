@@ -1,0 +1,422 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/slpublic.h b/generation/WinSDK/RecompiledIdlHeaders/um/slpublic.h
+index 7f240e50..6e5a3ff7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/slpublic.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/slpublic.h
+@@ -17,6 +17,9 @@ Abstract:
+ #define _SLPUBLIC_H_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -233,6 +236,7 @@ typedef struct _tagSL_NONGENUINE_UI_OPTIONS
+ 
+ #define SL_DEFAULT_MIGRATION_ENCRYPTOR_URI                  L"msft:spp/migrationencryptor/tokenact/1.0"
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -253,6 +257,7 @@ Return Error:
+     E_INVALIDARG
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -275,6 +280,7 @@ Return Error:
+     E_INVALIDARG
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -323,6 +329,7 @@ Return Error:
+     SL_E_PKEY_INVALID_UPGRADE
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -380,6 +387,7 @@ Return Error:
+     SL_E_MISMATCHED_PRODUCT_SKU
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -408,6 +416,7 @@ Return Error:
+     SL_E_PKEY_NOT_INSTALLED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -446,6 +455,7 @@ Return Error:
+     SL_E_INVALID_LICENSE
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -475,6 +485,7 @@ Return Error:
+     SL_E_LICENSE_FILE_NOT_INSTALLED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -518,6 +529,7 @@ Return Error:
+     SL_E_PRODUCT_SKU_NOT_INSTALLED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -570,6 +582,7 @@ Return Error:
+     SL_E_VALUE_NOT_FOUND
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -627,6 +640,7 @@ Return Error:
+     
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -679,6 +693,7 @@ Return Error:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -725,6 +740,7 @@ Return Error:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -767,6 +783,7 @@ Return Error:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -799,6 +816,7 @@ Return Error:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -865,6 +883,7 @@ Return Error:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -939,6 +958,7 @@ Return Error:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1014,6 +1034,7 @@ Return Error:
+     Network errors
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1125,6 +1146,7 @@ Return Error:
+ --*/
+ 
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1160,6 +1182,7 @@ Return Error:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1192,6 +1215,7 @@ Return Error:
+     SL_E_PKEY_NOT_INSTALLED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1253,6 +1277,7 @@ Return Error:
+     TODO: (ADA) more error codes here.
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1288,6 +1313,7 @@ Return Error:
+     SL_E_PRODUCT_SKU_NOT_INSTALLED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1353,6 +1379,7 @@ Return Error:
+     
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1396,6 +1423,7 @@ Return Error:
+     
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1431,6 +1459,7 @@ Return Error:
+     SL_E_VALUE_NOT_FOUND
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1463,6 +1492,7 @@ Return Error:
+     SL_E_OPERATION_NOT_ALLOWED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1552,6 +1582,7 @@ Return Error:
+     SL_E_NOT_SUPPORT
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1590,6 +1621,7 @@ Return Error:
+     SL_E_LICENSE_FILE_NOT_INSTALLED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1624,6 +1656,7 @@ Return Error:
+     SL_E_LICENSE_FILE_NOT_INSTALLED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1657,6 +1690,7 @@ Return Error:
+     SL_E_EVENT_NOT_REGISTERED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1698,6 +1732,7 @@ Return Error:
+     SL_E_INVALID_EVENT_ID
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -1741,6 +1776,7 @@ Return Error:
+     SL_E_EVENT_NOT_REGISTERED
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT 
+ WINAPI
+ SLGetWindowsInformation(
+@@ -1781,6 +1817,7 @@ Return Error:
+     
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT 
+ WINAPI
+ SLGetWindowsInformationDWORD(
+@@ -1809,6 +1846,7 @@ Return Error:
+     
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ SLIsGenuineLocal(
+@@ -1849,6 +1887,7 @@ Return Error:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT
+ WINAPI
+ SLIsGenuineLocalEx(
+@@ -1892,6 +1931,7 @@ Return Error:
+ --*/
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ SLAcquireGenuineTicket(
+@@ -1938,6 +1978,7 @@ Return Error:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ SLSetGenuineInformation(
+@@ -2005,6 +2046,7 @@ Return Value:
+         of specified value name
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT
+ WINAPI
+ SLGetReferralInformation(
+@@ -2060,6 +2102,7 @@ Arguments:
+           The value to store
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -2098,6 +2141,7 @@ Arguments:
+           The number of bytes that will be stored.  This must be equal to 3.
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -2132,6 +2176,7 @@ Return Error:
+     E_INVALIDARG
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -2173,6 +2218,7 @@ Return Error:
+     SL_E_RIGHT_NOT_GRANTED                   if the policy list is empty
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -2209,6 +2255,7 @@ Return Error:
+     SL_E_APPLICATION_POLICIES_MISSING   if the policy list doesn't exist
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -2235,6 +2282,7 @@ Return Error:
+     SL_E_APPLICATION_POLICIES_NOT_LOADED     if the policy context was not found
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -2274,6 +2322,7 @@ Return Value:
+         The authentication data (challenge) is not set
+ --*/  
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ __control_entrypoint(DllExport)
+ HRESULT
+ WINAPI
+@@ -2312,6 +2361,7 @@ Return Value:
+ 
+ --*/                
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT
+ WINAPI
+ SLGetGenuineInformation(
+@@ -2380,6 +2430,7 @@ Return Value:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT
+ WINAPI
+ SLGetGenuineInformationEx(
+@@ -2423,6 +2474,7 @@ Return Value:
+         The Application licensing state is non-genuine
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT
+ WINAPI
+ SLGatherMigrationBlob(
+@@ -2513,6 +2565,7 @@ Return Error:
+         
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT
+ WINAPI
+ SLDepositMigrationBlob(
+@@ -2593,6 +2646,7 @@ Return Error:
+     Other error codes.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI
+ SLQueryLicenseValueFromApp(
+     _In_                        PCWSTR                      valueName,

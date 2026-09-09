@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/processtopologyapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/processtopologyapi.h
+index da3fe7dd..9b96899a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/processtopologyapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/processtopologyapi.h
+@@ -12,6 +12,9 @@
+ 
+ #ifndef _PROCESSTOPOLOGYAPI_H_
+ #define _PROCESSTOPOLOGYAPI_H_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -27,6 +30,7 @@ extern "C" {
+ 
+ #if (_WIN32_WINNT >= 0x0601)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -46,6 +50,7 @@ GetProcessGroupAffinity(
+ 
+ #if (_WIN32_WINNT >= 0x0601)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -54,6 +59,7 @@ GetThreadGroupAffinity(
+     _Out_ PGROUP_AFFINITY GroupAffinity
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ WINBASEAPI
+ BOOL
+ WINAPI

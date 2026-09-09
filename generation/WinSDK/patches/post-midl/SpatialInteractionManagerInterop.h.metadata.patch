@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialInteractionManagerInterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialInteractionManagerInterop.h
+index 80fc22b7..98a181cb 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/SpatialInteractionManagerInterop.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/SpatialInteractionManagerInterop.h
+@@ -66,6 +66,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #if (NTDDI_VERSION >= NTDDI_WIN10_RS2)
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -85,6 +88,7 @@ EXTERN_C const IID IID_ISpatialInteractionManagerInterop;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("5C4EE536-6A98-4B86-A170-587013D6FD4B")
+     ISpatialInteractionManagerInterop : public IInspectable
+     {

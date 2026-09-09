@@ -1,0 +1,44 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdattachment.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdattachment.h
+index b4ac50cb..b6820d32 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdattachment.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdattachment.h
+@@ -80,11 +80,15 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDCreateOutboundAttachment(
+     _Outptr_ IWSDOutboundAttachment** ppAttachment);
+@@ -104,6 +108,7 @@ EXTERN_C const IID IID_IWSDAttachment;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("5d55a616-9df8-4b09-b156-9ba351a48b76")
+     IWSDAttachment : public IUnknown
+     {
+@@ -178,6 +183,7 @@ EXTERN_C const IID IID_IWSDOutboundAttachment;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("aa302f8d-5a22-4ba5-b392-aa8486f4c15d")
+     IWSDOutboundAttachment : public IWSDAttachment
+     {
+@@ -292,6 +298,7 @@ EXTERN_C const IID IID_IWSDInboundAttachment;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("5bd6ca65-233c-4fb8-9f7a-2641619655c9")
+     IWSDInboundAttachment : public IWSDAttachment
+     {

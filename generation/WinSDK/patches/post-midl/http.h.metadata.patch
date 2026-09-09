@@ -1,0 +1,326 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSDK/RecompiledIdlHeaders/um/http.h
+index 75abc5a5..19b034fc 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/http.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/http.h
+@@ -22,6 +22,9 @@ Revision History:
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -2997,6 +3000,7 @@ typedef enum _HTTP_FEATURE_ID
+ 
+ // NOTE: MUST be called once before all other APIs
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3008,6 +3012,7 @@ HttpInitialize(
+ 
+ // NOTE: MUST be called after final API call returns.
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3027,6 +3032,7 @@ HttpTerminate(
+ // HttpCreateHttpHandle() API.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3044,6 +3050,7 @@ HttpCreateHttpHandle(
+ // created by the HttpCreateRequestQueue API.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3055,6 +3062,7 @@ HttpCreateRequestQueue(
+     OUT PHANDLE RequestQueueHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3062,6 +3070,7 @@ HttpCloseRequestQueue(
+     IN HANDLE RequestQueueHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3074,6 +3083,7 @@ HttpSetRequestQueueProperty(
+     _Reserved_ PVOID Reserved2
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3114,6 +3124,7 @@ HttpQueryRequestProperty(
+     _In_opt_ LPOVERLAPPED Overlapped
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3127,6 +3138,7 @@ HttpShutdownRequestQueue(
+ // SSL APIs.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3146,6 +3158,7 @@ HttpReceiveClientCertificate(
+ // Server Session APIs.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3155,6 +3168,7 @@ HttpCreateServerSession(
+     _Reserved_ IN ULONG Reserved
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3162,6 +3176,7 @@ HttpCloseServerSession(
+     IN HTTP_SERVER_SESSION_ID ServerSessionId
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ _Success_(return == NO_ERROR)
+ ULONG
+@@ -3174,6 +3189,7 @@ HttpQueryServerSessionProperty(
+     _Out_opt_ PULONG ReturnLength
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3190,6 +3206,7 @@ HttpSetServerSessionProperty(
+ // Url Configuration APIs. Can only be used for V1 request queues.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3199,6 +3216,7 @@ HttpAddUrl(
+     _Reserved_ PVOID Reserved
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3213,6 +3231,7 @@ HttpRemoveUrl(
+ // Url Group APIs.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3222,6 +3241,7 @@ HttpCreateUrlGroup(
+     _Reserved_ IN ULONG Reserved
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3229,6 +3249,7 @@ HttpCloseUrlGroup(
+     IN HTTP_URL_GROUP_ID UrlGroupId
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3239,6 +3260,7 @@ HttpAddUrlToUrlGroup(
+     _Reserved_ IN ULONG Reserved
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3248,6 +3270,7 @@ HttpRemoveUrlFromUrlGroup(
+     IN ULONG Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3258,6 +3281,7 @@ HttpSetUrlGroupProperty(
+     IN ULONG PropertyInformationLength
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ _Success_(return == NO_ERROR)
+ ULONG
+@@ -3274,6 +3298,7 @@ HttpQueryUrlGroupProperty(
+ 
+ #if _WIN32_WINNT >= _WIN32_WINNT_WIN8
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3290,6 +3315,7 @@ HttpPrepareUrl(
+ // HTTP Server I/O APIs.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3303,6 +3329,7 @@ HttpReceiveHttpRequest(
+     IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3318,6 +3345,7 @@ HttpReceiveRequestEntityBody(
+ 
+ #if _WIN32_WINNT >= 0x0600
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3336,6 +3364,7 @@ HttpSendHttpResponse(
+ 
+ #else // _WIN32_WINNT >= 0x0600
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3356,6 +3385,7 @@ HttpSendHttpResponse(
+ 
+ #if _WIN32_WINNT >= 0x0600
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3374,6 +3404,7 @@ HttpSendResponseEntityBody(
+ 
+ #else // _WIN32_WINNT >= 0x0600
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3393,6 +3424,7 @@ HttpSendResponseEntityBody(
+ 
+ #endif // _WIN32_WINNT >= 0x0600
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3405,6 +3437,7 @@ HttpDeclarePush(
+     _In_opt_ PHTTP_REQUEST_HEADERS Headers
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3426,6 +3459,7 @@ HttpWaitForDisconnectEx(
+     IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3435,6 +3469,7 @@ HttpCancelHttpRequest(
+     IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3477,6 +3512,7 @@ HttpFindUrlGroupId(
+ // Cache manipulation APIs.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3487,6 +3523,7 @@ HttpFlushResponseCache(
+     IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3498,6 +3535,7 @@ HttpAddFragmentToCache(
+     IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3515,6 +3553,7 @@ HttpReadFragmentFromCache(
+ // Server configuration APIs
+ //
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3526,6 +3565,7 @@ HttpSetServiceConfiguration(
+     _Reserved_ LPOVERLAPPED pOverlapped
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.15063)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3537,6 +3577,7 @@ HttpUpdateServiceConfiguration(
+     _Reserved_ LPOVERLAPPED Overlapped
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3548,6 +3589,7 @@ HttpDeleteServiceConfiguration(
+     _Reserved_ LPOVERLAPPED pOverlapped
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI

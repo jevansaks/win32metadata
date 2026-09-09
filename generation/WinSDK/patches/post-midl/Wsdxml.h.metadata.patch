@@ -1,0 +1,36 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdxml.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdxml.h
+index e552d958..d24c11a1 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdxml.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdxml.h
+@@ -67,6 +67,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -210,11 +213,13 @@ enum __MIDL___MIDL_itf_wsdxml_0000_0000_0001
+ #define WSDXML_TYPE_ENCODING(typeIndex,layerNumber) ((((DWORD)layerNumber) << 28) | typeIndex)
+ #define WSDXML_NAMESPACE_ENCODING(namespaceIndex,layerNumber) ((((WORD)layerNumber) << 12) | namespaceIndex)
+ #define WSDXML_NAME_ENCODING(nameIndex,nameSpaceEncoding) ((((DWORD)nameSpaceEncoding) << 16) | nameIndex)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDXMLGetNameFromBuiltinNamespace(
+     _In_ LPCWSTR pszNamespace,
+     _In_ LPCWSTR pszName,
+     _Outptr_ WSDXML_NAME** ppName);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDXMLCreateContext(
+     _Outptr_ IWSDXMLContext** ppContext);
+@@ -234,6 +239,7 @@ EXTERN_C const IID IID_IWSDXMLContext;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("75d8f3ee-3e5a-43b4-a15a-bcf6887460c0")
+     IWSDXMLContext : public IUnknown
+     {

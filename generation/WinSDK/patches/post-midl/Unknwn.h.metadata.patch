@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwn.h b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwn.h
+index 4c533f04..e3c83d17 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwn.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwn.h
+@@ -89,6 +89,9 @@ extern "C"{
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+@@ -460,6 +463,7 @@ EXTERN_C const IID IID_IClassFactory;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("00000001-0000-0000-C000-000000000046")
+     IClassFactory : public IUnknown
+     {

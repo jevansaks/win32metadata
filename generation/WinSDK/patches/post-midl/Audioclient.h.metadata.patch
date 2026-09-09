@@ -1,0 +1,102 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.h b/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.h
+index e93bcfd8..e4861790 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.h
+@@ -181,6 +181,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #if 0
+ typedef /* [hidden][restricted] */ LONGLONG REFERENCE_TIME;
+ 
+@@ -244,6 +247,7 @@ EXTERN_C const IID IID_IAudioClient;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("1CB9AD4C-DBFA-4c32-B178-C2F568A703B2")
+     IAudioClient : public IUnknown
+     {
+@@ -498,6 +502,7 @@ EXTERN_C const IID IID_IAudioClient2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("726778CD-F60A-4eda-82DE-E47610CD78AA")
+     IAudioClient2 : public IAudioClient
+     {
+@@ -781,6 +786,7 @@ EXTERN_C const IID IID_IAudioClient3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.10240)
+     MIDL_INTERFACE("7ED4EE07-8E67-4CD4-8C1A-2B7A5987AD42")
+     IAudioClient3 : public IAudioClient2
+     {
+@@ -1083,6 +1089,7 @@ EXTERN_C const IID IID_IAudioRenderClient;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("F294ACFC-3146-4483-A7BF-ADDCA7C260E2")
+     IAudioRenderClient : public IUnknown
+     {
+@@ -1191,6 +1198,7 @@ EXTERN_C const IID IID_IAudioCaptureClient;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("C8ADBD64-E71E-48a0-A4DE-185C395CD317")
+     IAudioCaptureClient : public IUnknown
+     {
+@@ -1329,6 +1337,7 @@ EXTERN_C const IID IID_IAudioClock;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("CD63314F-3FBA-4a1b-812C-EF96358728E7")
+     IAudioClock : public IUnknown
+     {
+@@ -1455,6 +1464,7 @@ EXTERN_C const IID IID_IAudioClock2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("6f49ff73-6727-49ac-a008-d98cf5e70048")
+     IAudioClock2 : public IUnknown
+     {
+@@ -1555,6 +1565,7 @@ EXTERN_C const IID IID_IAudioClockAdjustment;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("f6e4c0a0-46d9-4fb8-be21-57a3ef2b626c")
+     IAudioClockAdjustment : public IUnknown
+     {
+@@ -1651,6 +1662,7 @@ EXTERN_C const IID IID_ISimpleAudioVolume;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("87CE5498-68D6-44E5-9215-6DA47EF883D8")
+     ISimpleAudioVolume : public IUnknown
+     {
+@@ -2217,6 +2229,7 @@ EXTERN_C const IID IID_IAudioStreamVolume;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("93014887-242D-4068-8A15-CF5E93B90FE3")
+     IAudioStreamVolume : public IUnknown
+     {
+@@ -2582,6 +2595,7 @@ EXTERN_C const IID IID_IChannelAudioVolume;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("1C158861-B533-4B30-B1CF-E853E51C59B8")
+     IChannelAudioVolume : public IUnknown
+     {

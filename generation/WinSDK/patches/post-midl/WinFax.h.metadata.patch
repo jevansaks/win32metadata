@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h
-index f0c668af..47bc9c09 100644
+index f0c668af..b2055b59 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h
 @@ -19,6 +19,9 @@ Abstract:
@@ -12,10 +12,11 @@ index f0c668af..47bc9c09 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -825,19 +828,23 @@ typedef PFAX_CONTEXT_INFOA PFAX_CONTEXT_INFO;
+@@ -825,19 +828,25 @@ typedef PFAX_CONTEXT_INFOA PFAX_CONTEXT_INFO;
  // prototypes
  //
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
@@ -25,6 +26,7 @@ index f0c668af..47bc9c09 100644
      OUT LPHANDLE FaxHandle
 +        _Win32_metadata_raii_free_(FaxClose)
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
@@ -36,7 +38,7 @@ index f0c668af..47bc9c09 100644
      );
  #ifdef UNICODE
  #define FaxConnectFaxServer  FaxConnectFaxServerW
-@@ -887,6 +894,7 @@ FaxOpenPort(
+@@ -887,6 +896,7 @@ FaxOpenPort(
      IN  DWORD DeviceId,
      IN  DWORD Flags,
      OUT LPHANDLE FaxPortHandle
@@ -44,354 +46,414 @@ index f0c668af..47bc9c09 100644
      );
  
  typedef BOOL
-@@ -935,6 +943,7 @@ typedef BOOL
+@@ -897,6 +907,7 @@ typedef BOOL
+     OUT LPHANDLE FaxPortHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINFAXAPI
+ BOOL
+ WINAPI
+@@ -904,6 +915,7 @@ FaxCompleteJobParamsA(
+     IN OUT PFAX_JOB_PARAMA *JobParams,
+     IN OUT PFAX_COVERPAGE_INFOA *CoverpageInfo
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ WINFAXAPI
+ BOOL
+ WINAPI
+@@ -935,6 +947,8 @@ typedef BOOL
  
  
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -945,6 +954,7 @@ FaxSendDocumentA(
+@@ -945,6 +959,8 @@ FaxSendDocumentA(
      IN const FAX_COVERPAGE_INFOA *CoverpageInfo, OPTIONAL
      OUT LPDWORD FaxJobId OPTIONAL
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1005,6 +1015,7 @@ typedef BOOL
+@@ -1005,6 +1021,8 @@ typedef BOOL
  #define PFAX_RECIPIENT_CALLBACK  PFAX_RECIPIENT_CALLBACKA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1015,6 +1026,7 @@ FaxSendDocumentForBroadcastA(
+@@ -1015,6 +1033,8 @@ FaxSendDocumentForBroadcastA(
      IN PFAX_RECIPIENT_CALLBACKA FaxRecipientCallback,
      IN LPVOID Context
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1053,6 +1065,7 @@ typedef BOOL
+@@ -1053,6 +1073,8 @@ typedef BOOL
  #define PFAXSENDDOCUMENTFORBROADCAST  PFAXSENDDOCUMENTFORBROADCASTA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1061,6 +1074,7 @@ FaxEnumJobsA(
+@@ -1061,6 +1083,8 @@ FaxEnumJobsA(
      OUT PFAX_JOB_ENTRYA *JobEntry,
      OUT LPDWORD JobsReturned
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1094,6 +1108,7 @@ typedef BOOL
+@@ -1094,6 +1118,8 @@ typedef BOOL
  #endif // !UNICODE
  
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1102,6 +1117,7 @@ FaxGetJobA(
+@@ -1102,6 +1128,8 @@ FaxGetJobA(
     IN  DWORD JobId,
     OUT PFAX_JOB_ENTRYA *JobEntry
     );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1134,6 +1150,7 @@ typedef BOOL
+@@ -1134,6 +1162,8 @@ typedef BOOL
  #define PFAXGETJOB  PFAXGETJOBA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1143,6 +1160,7 @@ FaxSetJobA(
+@@ -1143,6 +1173,8 @@ FaxSetJobA(
     IN DWORD Command,
     IN const FAX_JOB_ENTRYA *JobEntry
     );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1200,6 +1218,7 @@ typedef BOOL
+@@ -1200,6 +1232,8 @@ typedef BOOL
     OUT LPDWORD ImageHeight
     );
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1207,6 +1226,7 @@ FaxGetDeviceStatusA(
+@@ -1207,6 +1241,8 @@ FaxGetDeviceStatusA(
      IN  HANDLE FaxPortHandle,
      OUT PFAX_DEVICE_STATUSA *DeviceStatus
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1251,6 +1271,7 @@ typedef BOOL
+@@ -1251,6 +1287,8 @@ typedef BOOL
      IN DWORD JobId
      );
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1258,6 +1279,7 @@ FaxGetConfigurationA(
+@@ -1258,6 +1296,8 @@ FaxGetConfigurationA(
      IN  HANDLE FaxHandle,
      OUT PFAX_CONFIGURATIONA *FaxConfig
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1287,6 +1309,7 @@ typedef BOOL
+@@ -1287,6 +1327,8 @@ typedef BOOL
  #define PFAXGETCONFIGURATION  PFAXGETCONFIGURATIONA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1294,6 +1317,7 @@ FaxSetConfigurationA(
+@@ -1294,6 +1336,8 @@ FaxSetConfigurationA(
      IN  HANDLE FaxHandle,
      IN  const FAX_CONFIGURATIONA *FaxConfig
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1323,6 +1347,7 @@ typedef BOOL
+@@ -1323,6 +1367,8 @@ typedef BOOL
  #define PFAXSETCONFIGURATION  PFAXSETCONFIGURATIONA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1331,6 +1356,7 @@ FaxGetLoggingCategoriesA(
+@@ -1331,6 +1377,8 @@ FaxGetLoggingCategoriesA(
      OUT PFAX_LOG_CATEGORYA *Categories,
      OUT LPDWORD NumberCategories
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1363,6 +1389,7 @@ typedef BOOL
+@@ -1363,6 +1411,8 @@ typedef BOOL
  #define PFAXGETLOGGINGCATEGORIES  PFAXGETLOGGINGCATEGORIESA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1371,6 +1398,7 @@ FaxSetLoggingCategoriesA(
+@@ -1371,6 +1421,8 @@ FaxSetLoggingCategoriesA(
      IN  const FAX_LOG_CATEGORYA *Categories,
      IN  DWORD NumberCategories
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1403,6 +1431,7 @@ typedef BOOL
+@@ -1403,6 +1455,8 @@ typedef BOOL
  #define PFAXSETLOGGINGCATEGORIES  PFAXSETLOGGINGCATEGORIESA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1411,6 +1440,7 @@ FaxEnumPortsA(
+@@ -1411,6 +1465,8 @@ FaxEnumPortsA(
      OUT PFAX_PORT_INFOA *PortInfo,
      OUT LPDWORD PortsReturned
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1443,6 +1473,7 @@ typedef BOOL
+@@ -1443,6 +1499,8 @@ typedef BOOL
  #define PFAXENUMPORTS  PFAXENUMPORTSA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1450,6 +1481,7 @@ FaxGetPortA(
+@@ -1450,6 +1508,8 @@ FaxGetPortA(
      IN  HANDLE FaxPortHandle,
      OUT PFAX_PORT_INFOA *PortInfo
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1479,6 +1511,7 @@ typedef BOOL
+@@ -1479,6 +1539,8 @@ typedef BOOL
  #define PFAXGETPORT  PFAXGETPORTA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1486,6 +1519,7 @@ FaxSetPortA(
+@@ -1486,6 +1548,8 @@ FaxSetPortA(
      IN  HANDLE FaxPortHandle,
      IN  const FAX_PORT_INFOA *PortInfo
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1515,6 +1549,7 @@ typedef BOOL
+@@ -1515,6 +1579,8 @@ typedef BOOL
  #define PFAXSETPORT  PFAXSETPORTA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1523,6 +1558,7 @@ FaxEnumRoutingMethodsA(
+@@ -1523,6 +1589,8 @@ FaxEnumRoutingMethodsA(
      OUT PFAX_ROUTING_METHODA *RoutingMethod,
      OUT LPDWORD MethodsReturned
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1555,6 +1591,7 @@ typedef BOOL
+@@ -1555,6 +1623,8 @@ typedef BOOL
  #define PFAXENUMROUTINGMETHODS  PFAXENUMROUTINGMETHODSA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1563,6 +1600,7 @@ FaxEnableRoutingMethodA(
+@@ -1563,6 +1633,8 @@ FaxEnableRoutingMethodA(
      IN  LPCSTR RoutingGuid,
      IN  BOOL Enabled
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1596,6 +1634,7 @@ typedef BOOL
+@@ -1596,6 +1668,8 @@ typedef BOOL
  #endif // !UNICODE
  
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1604,6 +1643,7 @@ FaxEnumGlobalRoutingInfoA(
+@@ -1604,6 +1678,8 @@ FaxEnumGlobalRoutingInfoA(
      OUT PFAX_GLOBAL_ROUTING_INFOA *RoutingInfo,
      OUT LPDWORD MethodsReturned
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1636,6 +1676,7 @@ typedef BOOL
+@@ -1636,6 +1712,8 @@ typedef BOOL
  #define PFAXENUMGLOBALROUTINGINFO  PFAXENUMGLOBALROUTINGINFOA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1643,6 +1684,7 @@ FaxSetGlobalRoutingInfoA(
+@@ -1643,6 +1721,8 @@ FaxSetGlobalRoutingInfoA(
      IN  HANDLE FaxHandle,
      IN  const FAX_GLOBAL_ROUTING_INFOA *RoutingInfo
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1672,6 +1714,7 @@ typedef BOOL
+@@ -1672,6 +1752,8 @@ typedef BOOL
  #define PFAXSETGLOBALROUTINGINFO  PFAXSETGLOBALROUTINGINFOA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1681,6 +1724,7 @@ FaxGetRoutingInfoA(
+@@ -1681,6 +1763,8 @@ FaxGetRoutingInfoA(
      OUT LPBYTE *RoutingInfoBuffer,
      OUT LPDWORD RoutingInfoBufferSize
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1717,6 +1761,7 @@ typedef BOOL
+@@ -1717,6 +1801,8 @@ typedef BOOL
  #endif // !UNICODE
  
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1726,6 +1771,7 @@ FaxSetRoutingInfoA(
+@@ -1726,6 +1812,8 @@ FaxSetRoutingInfoA(
      IN  const BYTE *RoutingInfoBuffer,
      IN  DWORD RoutingInfoBufferSize
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1794,6 +1840,7 @@ typedef VOID
+@@ -1794,6 +1882,8 @@ typedef VOID
      LPVOID Buffer
      );
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1803,6 +1850,7 @@ FaxStartPrintJobA(
+@@ -1803,6 +1893,8 @@ FaxStartPrintJobA(
      OUT LPDWORD FaxJobId,
      OUT PFAX_CONTEXT_INFOA FaxContextInfo
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1838,6 +1886,7 @@ typedef BOOL
+@@ -1838,6 +1930,8 @@ typedef BOOL
  #define PFAXSTARTPRINTJOB  PFAXSTARTPRINTJOBA
  #endif // !UNICODE
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1845,6 +1894,7 @@ FaxPrintCoverPageA(
+@@ -1845,6 +1939,8 @@ FaxPrintCoverPageA(
      IN const FAX_CONTEXT_INFOA *FaxContextInfo,
      IN const FAX_COVERPAGE_INFOA *CoverPageInfo
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1875,6 +1925,7 @@ typedef BOOL
+@@ -1875,6 +1971,8 @@ typedef BOOL
  #endif // !UNICODE
  
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL
  WINAPI
-@@ -1927,6 +1978,7 @@ typedef BOOL
+@@ -1927,6 +2025,8 @@ typedef BOOL
  #define PFAX_ROUTING_INSTALLATION_CALLBACK PFAX_ROUTING_INSTALLATION_CALLBACKW
  
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  WINFAXAPI
  BOOL

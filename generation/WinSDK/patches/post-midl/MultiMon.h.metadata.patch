@@ -1,0 +1,46 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MultiMon.h b/generation/WinSDK/RecompiledIdlHeaders/um/MultiMon.h
+index efedd7d2..a0b4a959 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/MultiMon.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/MultiMon.h
+@@ -15,6 +15,9 @@
+ //=============================================================================
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -203,6 +206,7 @@ BOOL InitMultipleMonitorStubs(void)
+         (*(FARPROC*)&g_pfnMonitorFromPoint    = GetProcAddress(hUser32,"MonitorFromPoint")) != NULL &&
+         (*(FARPROC*)&g_pfnEnumDisplayMonitors = GetProcAddress(hUser32,"EnumDisplayMonitors")) != NULL &&
+ #ifdef UNICODE
++_Win32_metadata_supported_os_(windows5.1.2600)
+         (*(FARPROC*)&g_pfnEnumDisplayDevices  = GetProcAddress(hUser32,"EnumDisplayDevicesW")) != NULL &&
+         (*(FARPROC*)&g_pfnGetMonitorInfo      = g_fMultimonPlatformNT ? GetProcAddress(hUser32,"GetMonitorInfoW") : 
+                                                 GetProcAddress(hUser32,"GetMonitorInfoA")) != NULL
+@@ -357,6 +361,7 @@ xGetMonitorInfo(HMONITOR hMonitor, _Inout_ LPMONITORINFO lpMonitorInfo)
+         if (lpMonitorInfo->cbSize >= sizeof(MONITORINFOEX))
+         {
+ #ifdef UNICODE
++_Win32_metadata_supported_os_(windows5.0)
+             MultiByteToWideChar(CP_ACP, 0, "DISPLAY", -1, ((MONITORINFOEX*)lpMonitorInfo)->szDevice, (sizeof(((MONITORINFOEX*)lpMonitorInfo)->szDevice)/sizeof(TCHAR)));
+ #else // UNICODE
+ #if _MULTIMON_USE_SECURE_CRT
+@@ -405,6 +410,7 @@ xEnumDisplayMonitors(
+ 
+         switch (GetClipBox(hdcOptionalForPainting, &rcClip))
+         {
++_Win32_metadata_supported_os_(windows5.0)
+         default:
+             if (!GetDCOrgEx(hdcOptionalForPainting, &ptOrg))
+                 return FALSE;
+@@ -457,6 +463,7 @@ xEnumDisplayDevices(
+         return FALSE;
+ 
+ #ifdef UNICODE
++_Win32_metadata_supported_os_(windows5.0)
+     MultiByteToWideChar(CP_ACP, 0, "DISPLAY", -1, lpDisplayDevice->DeviceName, (sizeof(lpDisplayDevice->DeviceName)/sizeof(TCHAR)));
+     MultiByteToWideChar(CP_ACP, 0, "DISPLAY", -1, lpDisplayDevice->DeviceString, (sizeof(lpDisplayDevice->DeviceString)/sizeof(TCHAR)));
+ #else // UNICODE

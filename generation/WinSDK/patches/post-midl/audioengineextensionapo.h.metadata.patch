@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/audioengineextensionapo.h b/generation/WinSDK/RecompiledIdlHeaders/um/audioengineextensionapo.h
+index 7301dc89..0bf41006 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/audioengineextensionapo.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/audioengineextensionapo.h
+@@ -102,6 +102,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #ifdef DEFINE_PROPERTYKEY
+@@ -563,6 +566,7 @@ typedef struct AUDIO_MICROPHONE_BOOST_NOTIFICATION
+     BOOL mute;
+     } 	AUDIO_MICROPHONE_BOOST_NOTIFICATION;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_AudioEnvironment_SpatialAudioActive, 0x4AFB7B88, 0xA653, 0x44A5, 0x99, 0xDB, 0x68, 0x7F, 0xD7, 0x4A, 0xF0, 0xBB, 2);
+ typedef struct AUDIO_ENVIRONMENT_STATE_CHANGE_NOTIFICATION
+     {

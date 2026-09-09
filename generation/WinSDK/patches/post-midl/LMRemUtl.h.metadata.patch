@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMRemUtl.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMRemUtl.h
+index a10a168e..ed6fdbe7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/LMRemUtl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMRemUtl.h
+@@ -26,6 +26,9 @@ Environment:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -57,6 +60,7 @@ typedef LPWSTR LPDESC;
+ // Function Prototypes
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ _Success_( return == 0 )
+ NET_API_STATUS NET_API_FUNCTION
+@@ -65,6 +69,7 @@ NetRemoteTOD (
+     _Outptr_result_bytebuffer_(sizeof(TIME_OF_DAY_INFO)) LPBYTE *BufferPtr
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NET_API_STATUS NET_API_FUNCTION
+ NetRemoteComputerSupports(
+     IN LPCWSTR UncServerName OPTIONAL,   // Must start with "\\".

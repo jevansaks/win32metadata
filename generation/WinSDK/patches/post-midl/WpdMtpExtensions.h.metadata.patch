@@ -1,0 +1,116 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WpdMtpExtensions.h b/generation/WinSDK/RecompiledIdlHeaders/um/WpdMtpExtensions.h
+index b2c9f598..54a03884 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WpdMtpExtensions.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WpdMtpExtensions.h
+@@ -11,6 +11,9 @@
+ //=============================================================================
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Application Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
+@@ -29,6 +32,7 @@ DEFINE_GUID( WPD_CATEGORY_MTP_EXT_VENDOR_OPERATIONS , 0x4d545058, 0x1a2e, 0x4106
+ // Inputs:  None
+ // Outputs: WPD_PROPERTY_MTP_EXT_VENDOR_OPERATION_CODES: an IPortableDevicePropVariantCollection (of VT_UI4)
+ //                                which contains all vendor-extended operation codes 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_GET_SUPPORTED_VENDOR_OPCODES , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 11 ); 
+ 
+ //
+@@ -39,6 +43,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_GET_SUPPORTED_VENDOR_OPCODES , 0x4d54505
+ //                                                 which identifies the required params for the vendor operation code.
+ // Outputs: WPD_PROPERTY_MTP_EXT_RESPONSE_CODE: [VT_UI4] the response code to the vendor operation code, and 
+ //          WPD_PROPERTY_MTP_EXT_RESPONSE_PARAMS: An IPortableDevicePropVariantCollection (of VT_UI4) identifying response params if any (could be empty)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITHOUT_DATA_PHASE , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 12 ); 
+ 
+ //
+@@ -51,6 +56,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITHOUT_DATA_PHASE , 0x4
+ //                                                         if Devie reports unknown datasize (0xFFFFFFFF), call ReadData() repeatedly until a short chunk received
+ //          WPD_PROPERTY_MTP_EXT_OPTIMAL_TRANSFER_BUFFER_SIZE: [VT_UI4] Returns the optimal size of the transfer buffer
+ //          WPD_PROPERTY_MTP_EXT_TRANSFER_CONTEXT: [VT_LPWSTR] Returned as a context idetifier for subsequent data transfer 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_READ , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 13 ); 
+ 
+ //
+@@ -62,6 +68,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_READ , 0x4d
+ //          WPD_PROPERTY_MTP_EXT_TRANSFER_TOTAL_DATA_SIZE: [VT_UI8] Specifies the total data size in bytes (excluding any overhead) to be sent to device
+ // Outputs: WPD_PROPERTY_MTP_EXT_OPTIMAL_TRANSFER_BUFFER_SIZE: [VT_UI4] Returns the optimal size of the transfer buffer
+ //          WPD_PROPERTY_MTP_EXT_TRANSFER_CONTEXT: [VT_LPWSTR] Returned as a context idetifier for subsequent data transfer 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_WRITE , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 14 );
+ 
+ //
+@@ -73,6 +80,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_EXECUTE_COMMAND_WITH_DATA_TO_WRITE , 0x4
+ // Outputs: WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_READ: [VT_UI4] returns actual number of bytes (no overhead) received from device in a read call 
+ //          WPD_PROPERTY_MTP_EXT_TRANSFER_DATA: [VT_VECTOR|VT_UI1] Returns the buffer with received data
+ //          
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_READ_DATA , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 15 ); 
+ 
+ //
+@@ -83,6 +91,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_READ_DATA , 0x4d545058, 0x1a2e, 0x4106,
+ //          WPD_PROPERTY_MTP_EXT_TRANSFER_DATA: [VT_VECTOR|VT_UI1] specifies the buffer which contains the data to send to device 
+ // Outputs: WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_WRITTEN: [VT_UI4] returns actual number of bytes (no overhead) sent to device in a write call 
+ //    
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_WRITE_DATA , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 16 );
+ 
+ //
+@@ -93,6 +102,7 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_WRITE_DATA , 0x4d545058, 0x1a2e, 0x4106,
+ // Outputs: WPD_PROPERTY_MTP_EXT_RESPONSE_CODE: [VT_UI4] the response code to the vendor operation code, and 
+ //          WPD_PROPERTY_MTP_EXT_RESPONSE_PARAMS: An IPortableDevicePropVariantCollection (of VT_UI4) identifying response params if any (could be empty)
+ //  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_END_DATA_TRANSFER , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 17 );  
+ 
+ //
+@@ -100,22 +110,37 @@ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_END_DATA_TRANSFER , 0x4d545058, 0x1a2e,
+ // Usage:   retrieves the vendor extension description string (as defined by DeviceInfo dataset)
+ // Inputs:  None
+ // Outputs: WPD_PROPERTY_MTP_EXT_VENDOR_EXTENSION_DESCRIPTION: [VT_LPWSTR] contains the vendor extension description string 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_COMMAND_MTP_EXT_GET_VENDOR_EXTENSION_DESCRIPTION , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 18 ); 
+ 
+ // Command Parameters 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_OPERATION_CODE , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1001 );    // [ VT_UI4 ] : Input param which identifies the vendor-extended MTP operation code
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_OPERATION_PARAMS , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1002 );    // [ VT_UNKNOWN ] : Input IPortableDevicePropVariantCollection (of VT_UI4) specifying the params for the vendor operation
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_RESPONSE_CODE , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1003 );    // [ VT_UI4 ] : Output param which identifies the response code for the vendor operation
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_RESPONSE_PARAMS , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1004 );    // [ VT_UNKNOWN ] : Returns an IPortableDevicePropVariantCollection (of VT_UI4) of response params for the vendor operation
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_VENDOR_OPERATION_CODES , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1005 );    // [ VT_UNKNOWN ] : Returns an IPortableDevicePropVariantCollection (of VT_UI4) of Vendor-extended MTP codes 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_TRANSFER_CONTEXT , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1006 );    // [ VT_LPWSTR ] : Returned as a context idetifier (a string value) for subsequent data transfer 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_TRANSFER_TOTAL_DATA_SIZE , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1007 );    // [ VT_UI8 ] : Input (when writing data) or output (when reading data) param which specifies total data size in bytes (excluding any overhead)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_TO_READ , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1008 ); // [ VT_UI4 ] : Input param specifying the number of bytes to read from device in a series of read calls 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_READ , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1009 ); // [ VT_UI4 ] : Output param specifying the actual number of bytes (no overhead) received from device in a read call 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_TO_WRITE , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1010 ); // [ VT_UI4 ] : Input specifying the number of bytes to send to device in a series of write calls
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_TRANSFER_NUM_BYTES_WRITTEN , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1011 ); // [ VT_UI4 ] : Returns the actual number of bytes (no overhead) sent to device in a write call 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_TRANSFER_DATA , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1012 ); // [ VT_VECTOR|VT_UI1 ] : Stores the binary data to transfer from/to device
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_OPTIMAL_TRANSFER_BUFFER_SIZE , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1013 ); // [ VT_UI4 ] : Returns the optimal size of the transfer buffer
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_VENDOR_EXTENSION_DESCRIPTION , 0x4d545058, 0x1a2e, 0x4106, 0xa3, 0x57, 0x77, 0x1e, 0x8, 0x19, 0xfc, 0x56 , 1014 ); // [ VT_LPWSTR ] : Returns vendor extension description string
+ 
+ 
+@@ -176,6 +201,7 @@ DEFINE_GUID( WPD_EVENT_MTP_VENDOR_EXTENDED_EVENTS , 0x00000000, 0x5738, 0x4ff2,
+ // If there is no parameters for the event, the collection will be empty.
+ //
+ //	{4D545058-EF88-4e4d-95C3-4F327F728A96}
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPD_PROPERTY_MTP_EXT_EVENT_PARAMS , 0x4d545058, 0xef88, 0x4e4d, 0x95, 0xc3, 0x4f, 0x32, 0x7f, 0x72, 0x8a, 0x96 , 1011 );    // [ VT_UNKNOWN ] : Returns an IPortableDevicePropVariantCollection (of VT_UI4) of event params for a vendor-extended event
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */

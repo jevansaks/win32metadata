@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wmsecure.h b/generation/WinSDK/RecompiledIdlHeaders/um/wmsecure.h
+index afdfc614..c193e065 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wmsecure.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wmsecure.h
+@@ -90,6 +90,9 @@ extern "C"{
+ //
+ //=========================================================================
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ EXTERN_GUID( IID_IWMAuthorizer,     0xd9b67d36, 0xa9ad, 0x4eb4, 0xba, 0xef, 0xdb, 0x28, 0x4e, 0xf5, 0x50, 0x4c );
+@@ -111,6 +114,7 @@ EXTERN_C const IID IID_IWMAuthorizer;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("D9B67D36-A9AD-4eb4-BAEF-DB284EF5504C")
+     IWMAuthorizer : public IUnknown
+     {
+@@ -240,6 +244,7 @@ EXTERN_C const IID IID_IWMSecureChannel;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("2720598A-D0F2-4189-BD10-91C46EF0936F")
+     IWMSecureChannel : public IWMAuthorizer
+     {
+@@ -501,6 +506,7 @@ EXTERN_C const IID IID_IWMGetSecureChannel;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("94bc0598-c3d2-11d3-bedf-00c04f612986")
+     IWMGetSecureChannel : public IUnknown
+     {

@@ -1,0 +1,46 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/peninputpanel.h b/generation/WinSDK/RecompiledIdlHeaders/um/peninputpanel.h
+index f4e7df88..4e8a0d75 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/peninputpanel.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/peninputpanel.h
+@@ -154,6 +154,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -828,6 +831,7 @@ EXTERN_C const IID IID_IHandwrittenTextInsertion;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("56FDEA97-ECD6-43e7-AA3A-816BE7785860")
+     IHandwrittenTextInsertion : public IUnknown
+     {
+@@ -947,6 +951,7 @@ EXTERN_C const IID IID_ITextInputPanelEventSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("27560408-8e64-4fe1-804e-421201584b31")
+     ITextInputPanelEventSink : public IUnknown
+     {
+@@ -1172,6 +1177,7 @@ EXTERN_C const IID IID_ITextInputPanel;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("6b6a65a5-6af3-46c2-b6ea-56cd1f80df71")
+     ITextInputPanel : public IUnknown
+     {
+@@ -1643,6 +1649,7 @@ EXTERN_C const IID IID_ITextInputPanelRunInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("9F424568-1920-48cc-9811-A993CBF5ADBA")
+     ITextInputPanelRunInfo : public IUnknown
+     {

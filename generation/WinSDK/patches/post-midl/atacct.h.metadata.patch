@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/atacct.h b/generation/WinSDK/RecompiledIdlHeaders/um/atacct.h
+index 1f4cf58e..b9def2b0 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/atacct.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/atacct.h
+@@ -18,6 +18,9 @@ Revision History:
+ #ifndef _ATACCT_H_
+ #define _ATACCT_H_
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -27,6 +30,7 @@ Revision History:
+ extern "C" {
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI
+ GetNetScheduleAccountInformation(
+     IN    LPCWSTR pwszServerName,
+@@ -34,6 +38,7 @@ GetNetScheduleAccountInformation(
+     OUT _Out_writes_(ccAccount)  WCHAR wszAccount[]
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI
+ SetNetScheduleAccountInformation(
+     IN    LPCWSTR pwszServerName,

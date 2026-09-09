@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wct.h b/generation/WinSDK/RecompiledIdlHeaders/um/wct.h
-index d3441432..b61cba80 100644
+index d3441432..955ef732 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wct.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wct.h
 @@ -21,6 +21,9 @@ History:
@@ -12,10 +12,11 @@ index d3441432..b61cba80 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -105,13 +108,15 @@ typedef VOID (CALLBACK *PWAITCHAINCALLBACK) (
+@@ -105,14 +108,18 @@ typedef VOID (CALLBACK *PWAITCHAINCALLBACK) (
  #define WCT_ASYNC_OPEN_FLAG 0x1
  #define WCTP_OPEN_ALL_FLAGS (WCT_ASYNC_OPEN_FLAG)
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Check_return_
  WINADVAPI
@@ -27,13 +28,24 @@ index d3441432..b61cba80 100644
 +    )
 +    _Win32_metadata_raii_free_(CloseThreadWaitChainSession);
  
++_Win32_metadata_supported_os_(windows6.0.6000)
  WINADVAPI
  VOID WINAPI
-@@ -125,6 +130,7 @@ CloseThreadWaitChainSession (
+ CloseThreadWaitChainSession (
+@@ -125,6 +132,8 @@ CloseThreadWaitChainSession (
  #define WCT_NETWORK_IO_FLAG      0x8
  #define WCTP_GETINFO_ALL_FLAGS (WCT_OUT_OF_PROC_FLAG|WCT_OUT_OF_PROC_COM_FLAG|WCT_OUT_OF_PROC_CS_FLAG)
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _Check_return_
  WINADVAPI
  BOOL WINAPI
+@@ -141,6 +150,7 @@ GetThreadWaitChain (
+ typedef HRESULT (*PCOGETCALLSTATE)(int, PULONG);
+ typedef HRESULT (*PCOGETACTIVATIONSTATE)(GUID, DWORD, DWORD*);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINADVAPI
+ VOID WINAPI
+ RegisterWaitChainCOMCallback (

@@ -1,0 +1,20 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcdcep.h b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcdcep.h
+index 2c1cb293..46cf5df9 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcdcep.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcdcep.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /*++
+ 
+@@ -549,6 +552,7 @@ I_RpcBindingInqMarshalledTargetInfo (
+ #endif // (NTDDI_VERSION >= NTDDI_WS03)
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINXP)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ RPCRTAPI
+ RPC_STATUS
+ RPC_ENTRY

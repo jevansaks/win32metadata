@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/baseaudioprocessingobject.h b/generation/WinSDK/RecompiledIdlHeaders/um/baseaudioprocessingobject.h
+index bf510589..9b947a2c 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/baseaudioprocessingobject.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/baseaudioprocessingobject.h
+@@ -7,6 +7,9 @@
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -39,6 +42,7 @@ extern "C"
+     //      S_OK  - pMemory points to allocated memory.
+     //      E_OUTOFMEMORY - No memory is available.
+     //
++_Win32_metadata_supported_os_(windows6.0.6000)
+     _Success_(return == S_OK)
+     STDAPI AERT_Allocate(_In_ size_t size, _Outptr_result_bytebuffer_(size) void **pMemory);
+ 
+@@ -51,6 +55,7 @@ extern "C"
+     // Return codes:
+     //      S_OK
+     //
++_Win32_metadata_supported_os_(windows6.0.6000)
+     STDAPI AERT_Free(_In_ void *pMemory);
+ }
+ 
+@@ -265,6 +270,7 @@ public:
+         HRESULT hResult = StringCbCopyW(m_Properties.szFriendlyName, sizeof(m_Properties.szFriendlyName), pszFriendlyName);
+         _ASSERTE(S_OK == hResult);     // nothing to do here except assert
+         hResult = StringCbCopyW(m_Properties.szCopyrightInfo, sizeof(m_Properties.szCopyrightInfo), pszCopyrightInfo);
++_Win32_metadata_supported_os_(windows5.1.2600)
+         _ASSERTE(S_OK == hResult);     // nothing to do here except assert
+ #else
+         StringCbCopyW(m_Properties.szFriendlyName, sizeof(m_Properties.szFriendlyName), pszFriendlyName);

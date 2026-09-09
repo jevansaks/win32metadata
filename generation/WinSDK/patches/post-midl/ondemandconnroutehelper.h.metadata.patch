@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ondemandconnroutehelper.h b/generation/WinSDK/RecompiledIdlHeaders/um/ondemandconnroutehelper.h
-index 0bc62537..c6b3c7f5 100644
+index 0bc62537..db6eadd5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ondemandconnroutehelper.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ondemandconnroutehelper.h
 @@ -9,6 +9,9 @@
@@ -12,13 +12,37 @@ index 0bc62537..c6b3c7f5 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -23,7 +26,8 @@ STDAPI OnDemandGetRoutingHint(_In_ PCWSTR destinationHostName, _Out_ DWORD* inte
+@@ -19,12 +22,16 @@
+ #pragma once
+ #endif
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI OnDemandGetRoutingHint(_In_ PCWSTR destinationHostName, _Out_ DWORD* interfaceIndex);
  
  typedef void(WINAPI* ONDEMAND_NOTIFICATION_CALLBACK)(_In_opt_ void*);
  
 -STDAPI OnDemandRegisterNotification(_In_ ONDEMAND_NOTIFICATION_CALLBACK callback, _In_opt_ void* callbackContext, _Out_ HANDLE* registrationHandle);
++_Win32_metadata_supported_os_(windows8.1)
 +STDAPI OnDemandRegisterNotification(_In_ ONDEMAND_NOTIFICATION_CALLBACK callback, _In_opt_ void* callbackContext, _Out_ HANDLE* registrationHandle
 +    _Win32_metadata_raii_free_(OnDemandUnRegisterNotification));
  
++_Win32_metadata_supported_os_(windows8.1)
  STDAPI OnDemandUnRegisterNotification(_In_ HANDLE registrationHandle);
  
+ #endif // NTDDI_VERSION >= NTDDI_WINBLUE
+@@ -86,6 +93,7 @@ typedef struct _NET_INTERFACE_CONTEXT_TABLE
+ //
+ // FAILED(HRESULT)  - Returned in case of failures that are outside the control of the implementation.
+ //
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI GetInterfaceContextTableForHostName(
+     _In_opt_ PCWSTR HostName,
+     _In_opt_ PCWSTR ProxyName,
+@@ -102,6 +110,7 @@ STDAPI GetInterfaceContextTableForHostName(
+ //
+ // InterfaceContextTable                - Interface context table retrieved using GetInterfaceContextTableForHostName.
+ //
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI_(void) FreeInterfaceContextTable(_In_ NET_INTERFACE_CONTEXT_TABLE* InterfaceContextTable);
+ 
+ #endif // NTDDI_VERSION >= NTDDI_WINTHRESHOLD

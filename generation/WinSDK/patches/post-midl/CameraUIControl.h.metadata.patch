@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CameraUIControl.h b/generation/WinSDK/RecompiledIdlHeaders/um/CameraUIControl.h
+index 3b99868b..90d6a82b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/CameraUIControl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/CameraUIControl.h
+@@ -32,6 +32,9 @@
+ 
+ #ifndef __camerauicontrol_h__
+ #define __camerauicontrol_h__
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #if defined(_MSC_VER) && (_MSC_VER >= 1020)
+ #pragma once
+@@ -157,6 +160,7 @@ EXTERN_C const IID IID_ICameraUIControlEventCallback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("1BFA0C2C-FBCD-4776-BDA4-88BF974E74F4")
+     ICameraUIControlEventCallback : public IUnknown
+     {
+@@ -284,6 +288,7 @@ EXTERN_C const IID IID_ICameraUIControl;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("B8733ADF-3D68-4b8f-BB08-E28A0BED0376")
+     ICameraUIControl : public IUnknown
+     {

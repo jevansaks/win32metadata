@@ -1,0 +1,123 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/t2embapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/t2embapi.h
+index 8bf5b74d..d6f86d44 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/t2embapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/t2embapi.h
+@@ -10,6 +10,9 @@
+ #define __t2embapi__
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -178,6 +181,7 @@ typedef struct
+ 
+ /* Font Embedding APIs ----------------------------------------------------*/
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTEmbedFont
+ (
+     _In_ HDC       hDC,                    // device-context handle
+@@ -196,6 +200,7 @@ LONG WINAPI TTEmbedFont
+     _In_opt_ TTEMBEDINFO* pTTEmbedInfo         // optional security
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTEmbedFontFromFileA
+ (
+     _In_    HDC       hDC,                    // device-context handle
+@@ -216,6 +221,7 @@ LONG WINAPI TTEmbedFontFromFileA
+     _In_opt_ TTEMBEDINFO* pTTEmbedInfo         // optional security
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTLoadEmbeddedFont
+ (
+     _Out_ HANDLE*   phFontReference,            // on completion, contains handle to identify embedded font installed
+@@ -231,6 +237,7 @@ LONG WINAPI TTLoadEmbeddedFont
+     _In_opt_ TTLOADINFO* pTTLoadInfo                // optional security
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTGetEmbeddedFontInfo
+ (   
+     _In_ ULONG     ulFlags,                  // flags specifying the request
+@@ -242,6 +249,7 @@ LONG WINAPI TTGetEmbeddedFontInfo
+     _In_opt_ TTLOADINFO* pTTLoadInfo             // optional security
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTDeleteEmbeddedFont
+ (
+     _In_ HANDLE    hFontReference,   // Reference to font value provided by load functions                                       
+@@ -249,6 +257,7 @@ LONG WINAPI TTDeleteEmbeddedFont
+     _Out_ ULONG*    pulStatus
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTGetEmbeddingType
+ (
+     _In_ HDC         hDC,                   // device context handle
+@@ -256,6 +265,7 @@ LONG WINAPI TTGetEmbeddingType
+                                        // embedding status
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTCharToUnicode
+ (   
+     _In_ HDC         hDC,                // device context handle
+@@ -266,6 +276,7 @@ LONG WINAPI TTCharToUnicode
+     _In_ ULONG       ulFlags             // Control flags
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTRunValidationTests
+ (
+     _In_ HDC                         hDC,        // device context handle
+@@ -275,18 +286,21 @@ LONG WINAPI TTRunValidationTests
+ 
+ /* Font Enabling APIs -----------------------------------------------------*/
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTIsEmbeddingEnabled
+ (
+     _In_ HDC                     hDC,            // device context handle
+     _Out_ BOOL*           pbEnabled       // upon completion will indicate if enabled
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTIsEmbeddingEnabledForFacename
+ (
+     _In_ LPCSTR           lpszFacename,   // facename
+     _Out_ BOOL*           pbEnabled       // upon completion will indicate if enabled
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTEnableEmbeddingForFacename
+ (                                   // If fEnable != 0, it removes the indicated
+     _In_ LPCSTR           lpszFacename,   // typeface name from the "embedding
+@@ -294,6 +308,7 @@ LONG WINAPI TTEnableEmbeddingForFacename
+ );                                  // indicated typeface name in the "embedding
+                                     // exclusion list".
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTEmbedFontEx
+ (
+     _In_ HDC       hDC,                    // device-context handle
+@@ -312,12 +327,14 @@ LONG WINAPI TTEmbedFontEx
+     _In_opt_ TTEMBEDINFO* pTTEmbedInfo         // optional security
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTRunValidationTestsEx
+ (
+     _In_ HDC                         hDC,        // device context handle
+     _In_ TTVALIDATIONTESTSPARAMSEX*  pTestParam  // 
+ );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LONG WINAPI TTGetNewFontName
+ (
+     _In_                  HANDLE* phFontReference,    // contains handle to identify embedded font installed

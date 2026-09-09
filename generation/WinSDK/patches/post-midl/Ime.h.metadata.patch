@@ -1,0 +1,24 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ime.h b/generation/WinSDK/RecompiledIdlHeaders/um/Ime.h
+index ab8f1e90..576e21b3 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Ime.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Ime.h
+@@ -17,6 +17,9 @@ Abstract:
+ #define _IME_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -32,7 +35,9 @@ typedef unsigned int UINT;
+ 
+ #define IME_MAXPROCESS 32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ LRESULT WINAPI SendIMEMessageExA( IN HWND, IN LPARAM);
++_Win32_metadata_supported_os_(windows5.0)
+ LRESULT WINAPI SendIMEMessageExW( IN HWND, IN LPARAM);
+ #ifdef UNICODE
+ #define SendIMEMessageEx  SendIMEMessageExW

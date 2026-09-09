@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/manipulations.h b/generation/WinSDK/RecompiledIdlHeaders/um/manipulations.h
+index afd74395..fb36b1e0 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/manipulations.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/manipulations.h
+@@ -97,6 +97,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ typedef /* [v1_enum] */ 
+@@ -143,6 +146,7 @@ EXTERN_C const IID IID__IManipulationEvents;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("4f62c8da-9c53-4b22-93df-927a862bbb03")
+     _IManipulationEvents : public IUnknown
+     {
+@@ -328,6 +332,7 @@ EXTERN_C const IID IID_IInertiaProcessor;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("18b00c6d-c5ee-41b1-90a9-9d4a929095ad")
+     IInertiaProcessor : public IUnknown
+     {
+@@ -1035,6 +1040,7 @@ EXTERN_C const IID IID_IManipulationProcessor;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("A22AC519-8300-48a0-BEF4-F1BE8737DBA4")
+     IManipulationProcessor : public IUnknown
+     {

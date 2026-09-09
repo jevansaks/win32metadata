@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h b/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h
-index 086c4026..089a58ee 100644
+index 086c4026..fed76aee 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h
 @@ -18,6 +18,11 @@
@@ -14,16 +14,99 @@ index 086c4026..089a58ee 100644
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -122,10 +127,12 @@ STDAPI RtwqUnregisterPlatformEvents(_In_ IRtwqPlatformEvents* platformEvents);
+@@ -69,45 +74,72 @@ typedef struct tagRTWQASYNCRESULT : public IRtwqAsyncResult
+     HANDLE hEvent;
+ }   RTWQASYNCRESULT;
  
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqStartup();
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqShutdown();
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqLockWorkQueue(_In_ DWORD workQueueId);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqUnlockWorkQueue(_In_ DWORD workQueueId);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqLockSharedWorkQueue(_In_ PCWSTR usageClass, _In_ LONG basePriority, _Inout_ DWORD* taskId, _Out_ DWORD* id);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqJoinWorkQueue(DWORD workQueueId, HANDLE hFile, _Out_ HANDLE* out);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqUnjoinWorkQueue(DWORD workQueueId, HANDLE hFile);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqCreateAsyncResult(_In_ IUnknown* appObject, _In_ IRtwqAsyncCallback* callback, _In_ IUnknown* appState, _Out_ IRtwqAsyncResult** asyncResult);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqInvokeCallback(IRtwqAsyncResult* result);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqLockPlatform();
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqUnlockPlatform();
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqRegisterPlatformWithMMCSS(_In_ PCWSTR usageClass, _Inout_ DWORD* taskId, _In_ LONG lPriority);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqUnregisterPlatformFromMMCSS();
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqPutWorkItem(DWORD dwQueue, LONG lPriority, _In_ IRtwqAsyncResult* result);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqPutWaitingWorkItem(HANDLE hEvent, LONG lPriority, _In_ IRtwqAsyncResult* result, _Out_opt_ RTWQWORKITEM_KEY* key);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqAllocateSerialWorkQueue(_In_ DWORD workQueueIdIn, _Out_ DWORD* workQueueIdOut);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqScheduleWorkItem(IRtwqAsyncResult* result, INT64 Timeout, _Out_opt_ RTWQWORKITEM_KEY* key);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqAddPeriodicCallback(RTWQPERIODICCALLBACK Callback, IUnknown* context, _Out_opt_ DWORD* key);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqRemovePeriodicCallback(DWORD dwKey);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqCancelWorkItem(RTWQWORKITEM_KEY Key);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqAllocateWorkQueue(_In_ RTWQ_WORKQUEUE_TYPE WorkQueueType, _Out_ DWORD* workQueueId);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqBeginRegisterWorkQueueWithMMCSS(DWORD workQueueId, _In_ PCWSTR usageClass, DWORD dwTaskId, LONG lPriority, _In_ IRtwqAsyncCallback* doneCallback, _In_ IUnknown* doneState);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqBeginUnregisterWorkQueueWithMMCSS(DWORD workQueueId, _In_ IRtwqAsyncCallback* doneCallback, _In_ IUnknown* doneState);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqEndRegisterWorkQueueWithMMCSS(_In_ IRtwqAsyncResult* result, _Out_ DWORD* taskId);
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqGetWorkQueueMMCSSClass(DWORD workQueueId, _Out_writes_to_opt_(*usageClassLength,*usageClassLength)  PWSTR usageClass, _Inout_  DWORD* usageClassLength);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqGetWorkQueueMMCSSTaskId(DWORD workQueueId, _Out_ DWORD* taskId);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqGetWorkQueueMMCSSPriority(DWORD workQueueId, _Out_ LONG* priority);
+ 
+ interface DECLSPEC_UUID("63d9255a-7ff1-4b61-8faf-ed6460dacf2b") DECLSPEC_NOVTABLE
+@@ -117,15 +149,22 @@ interface DECLSPEC_UUID("63d9255a-7ff1-4b61-8faf-ed6460dacf2b") DECLSPEC_NOVTABL
+     STDMETHOD(ShutdownStart)()=0;
+     STDMETHOD(ShutdownComplete)()=0;
+ };
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqRegisterPlatformEvents(_In_ IRtwqPlatformEvents* platformEvents);
++_Win32_metadata_supported_os_(windows8.1)
+ STDAPI RtwqUnregisterPlatformEvents(_In_ IRtwqPlatformEvents* platformEvents);
+ 
++_Win32_metadata_supported_os_(windows8.1)
  STDAPI RtwqSetLongRunning(DWORD workQueueId, BOOL enable);
  
 -STDAPI RtwqSetDeadline(DWORD workQueueId, LONGLONG deadlineInHNS, _Out_ HANDLE* pRequest);
++_Win32_metadata_supported_os_(windows10.0.10240)
 +STDAPI RtwqSetDeadline(DWORD workQueueId, LONGLONG deadlineInHNS, _Out_ HANDLE* pRequest
 +    _Win32_metadata_raii_free_(RtwqCancelDeadline));
  // TODO: switch to RS define once it exists (see: 5312604)
  #if (WINVER >= _WIN32_WINNT_WIN10)
 -STDAPI RtwqSetDeadline2(DWORD workQueueId, LONGLONG deadlineInHNS, LONGLONG preDeadlineInHNS, _Out_ HANDLE* pRequest);
++_Win32_metadata_supported_os_(windows10.0.10240)
 +STDAPI RtwqSetDeadline2(DWORD workQueueId, LONGLONG deadlineInHNS, LONGLONG preDeadlineInHNS, _Out_ HANDLE* pRequest
 +    _Win32_metadata_raii_free_(RtwqCancelDeadline));
  #endif // (WINVER > _WIN32_WINNT_WIN10)

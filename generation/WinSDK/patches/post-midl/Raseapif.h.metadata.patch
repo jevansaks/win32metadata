@@ -1,0 +1,54 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Raseapif.h b/generation/WinSDK/RecompiledIdlHeaders/um/Raseapif.h
+index 491c4807..2f644d6f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Raseapif.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Raseapif.h
+@@ -20,6 +20,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -688,6 +691,7 @@ extern "C"
+     // registry via the Path value.
+     //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+     DWORD APIENTRY RasEapGetInfo(_In_ DWORD dwEapTypeId, _Out_ PPP_EAP_INFO* pEapInfo);
+ 
+     //
+@@ -696,6 +700,7 @@ extern "C"
+     // values.
+     //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+     DWORD APIENTRY RasEapFreeMemory(_In_ BYTE* pMemory);
+ 
+     //
+@@ -704,6 +709,7 @@ extern "C"
+     // value.
+     //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+     DWORD APIENTRY RasEapInvokeInteractiveUI(
+         _In_ DWORD dwEapTypeId,
+         _In_ HWND hwndParent,
+@@ -717,6 +723,7 @@ extern "C"
+     // 3rd party EAP dll installed in the registry via the ConfigUIPath value.
+     //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+     DWORD APIENTRY RasEapInvokeConfigUI(
+         _In_ DWORD dwEapTypeId,
+         _In_ HWND hwndParent,
+@@ -731,6 +738,7 @@ extern "C"
+     // 3rd party EAP dll installed in the registry via the IdentityPath value.
+     //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+     DWORD APIENTRY RasEapGetIdentity(
+         _In_ DWORD dwEapTypeId,
+         _In_ HWND hwndParent,

@@ -1,0 +1,32 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/profileapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/profileapi.h
+index bc0f2580..2a7a3836 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/profileapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/profileapi.h
+@@ -17,6 +17,9 @@
+ #include <apisetcconv.h>
+ #include <minwindef.h>
+ 
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -28,6 +31,8 @@ extern "C" {
+ // Performance counter API's
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -35,6 +40,8 @@ QueryPerformanceCounter(
+     _Out_ LARGE_INTEGER* lpPerformanceCount
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI

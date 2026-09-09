@@ -1,0 +1,46 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cscapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/cscapi.h
+index e1d0c29a..8e22bed1 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/cscapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/cscapi.h
+@@ -21,6 +21,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -34,6 +37,7 @@ Abstract:
+ // If *pbRebootRequired returns TRUE, a system restart is necessary to 
+ // complete the operation.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ OfflineFilesEnable(
+     _In_ BOOL bEnable, 
+@@ -45,6 +49,7 @@ OfflineFilesEnable(
+ // Start Offline Files feature if it's available. 
+ // If the feature is not available then a ERROR_NOT_SUPPORTED error is returned.
+ //
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI_(DWORD)
+ OfflineFilesStart(
+     );
+@@ -58,6 +63,7 @@ OfflineFilesStart(
+ //  - enabled/disabled describes the configured state as last successfully set by 
+ //    OfflineFilesEnable().
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI_(DWORD)
+ OfflineFilesQueryStatus(
+     _Out_opt_ BOOL *pbActive,
+@@ -78,6 +84,7 @@ OfflineFilesQueryStatus(
+ //    If the status is inactive/enabled/available then the OfflineFilesStart function
+ //    can be used to transition the Offline Files feature to active state (no reboot required). 
+ //
++_Win32_metadata_supported_os_(windows8.0)
+ STDAPI_(DWORD)
+ OfflineFilesQueryStatusEx(
+     _Out_opt_ BOOL *pbActive,

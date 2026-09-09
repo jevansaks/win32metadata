@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/inputpaneinterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/inputpaneinterop.h
+index 4d0535ae..646dd8f7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/inputpaneinterop.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/inputpaneinterop.h
+@@ -66,6 +66,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #if (NTDDI_VERSION >= NTDDI_WIN10_RS1)
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -85,6 +88,7 @@ EXTERN_C const IID IID_IInputPaneInterop;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.14393)
+     MIDL_INTERFACE("75CF2C57-9195-4931-8332-F0B409E916AF")
+     IInputPaneInterop : public IInspectable
+     {

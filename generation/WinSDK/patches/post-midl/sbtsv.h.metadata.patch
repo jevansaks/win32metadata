@@ -1,0 +1,310 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/sbtsv.h b/generation/WinSDK/RecompiledIdlHeaders/um/sbtsv.h
+index 5d6ad2eb..eb1e03e7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/sbtsv.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/sbtsv.h
+@@ -293,6 +293,9 @@ extern "C"{
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ typedef /* [v1_enum] */ 
+@@ -357,6 +360,7 @@ EXTERN_C const IID IID_ITsSbPlugin;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("48cd7406-caab-465f-a5d6-baa863b9ea4f")
+     ITsSbPlugin : public IUnknown
+     {
+@@ -465,6 +469,7 @@ EXTERN_C const IID IID_ITsSbResourcePlugin;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("EA8DB42C-98ED-4535-A88B-2A164F35490F")
+     ITsSbResourcePlugin : public ITsSbPlugin
+     {
+@@ -562,6 +567,7 @@ EXTERN_C const IID IID_ITsSbServiceNotification;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("86CB68AE-86E0-4F57-8A64-BB7406BC5550")
+     ITsSbServiceNotification : public IUnknown
+     {
+@@ -654,6 +660,7 @@ EXTERN_C const IID IID_ITsSbLoadBalancing;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("24329274-9EB7-11DC-AE98-F2B456D89593")
+     ITsSbLoadBalancing : public ITsSbPlugin
+     {
+@@ -768,6 +775,7 @@ EXTERN_C const IID IID_ITsSbPlacement;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("DAADEE5F-6D32-480E-9E36-DDAB2329F06D")
+     ITsSbPlacement : public ITsSbPlugin
+     {
+@@ -882,6 +890,7 @@ EXTERN_C const IID IID_ITsSbOrchestration;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("64FC1172-9EB7-11DC-8B00-3ABA56D89593")
+     ITsSbOrchestration : public ITsSbPlugin
+     {
+@@ -996,6 +1005,7 @@ EXTERN_C const IID IID_ITsSbEnvironment;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("8c87f7f7-bf51-4a5c-87bf-8e94fb6e2256")
+     ITsSbEnvironment : public IUnknown
+     {
+@@ -1122,6 +1132,7 @@ EXTERN_C const IID IID_ITsSbLoadBalanceResult;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("24FDB7AC-FEA6-11DC-9672-9A8956D89593")
+     ITsSbLoadBalanceResult : public IUnknown
+     {
+@@ -1209,6 +1220,7 @@ EXTERN_C const IID IID_ITsSbTarget;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("16616ECC-272D-411D-B324-126893033856")
+     ITsSbTarget : public IUnknown
+     {
+@@ -1538,6 +1550,7 @@ EXTERN_C const IID IID_ITsSbSession;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("D453AAC7-B1D8-4C5E-BA34-9AFB4C8C5510")
+     ITsSbSession : public IUnknown
+     {
+@@ -1833,6 +1846,7 @@ EXTERN_C const IID IID_ITsSbResourceNotification;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("65D3E85A-C39B-11DC-B92D-3CD255D89593")
+     ITsSbResourceNotification : public IUnknown
+     {
+@@ -1958,6 +1972,7 @@ EXTERN_C const IID IID_ITsSbResourceNotificationEx;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("A8A47FDE-CA91-44D2-B897-3AA28A43B2B7")
+     ITsSbResourceNotificationEx : public IUnknown
+     {
+@@ -2111,6 +2126,7 @@ EXTERN_C const IID IID_ITsSbTaskInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("523D1083-89BE-48DD-99EA-04E82FFA7265")
+     ITsSbTaskInfo : public IUnknown
+     {
+@@ -2302,6 +2318,7 @@ EXTERN_C const IID IID_ITsSbTaskPlugin;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("FA22EF0F-8705-41BE-93BC-44BDBCF1C9C4")
+     ITsSbTaskPlugin : public ITsSbPlugin
+     {
+@@ -2433,6 +2450,7 @@ EXTERN_C const IID IID_ITsSbPropertySet;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("5c025171-bb1e-4baf-a212-6d5e9774b33b")
+     ITsSbPropertySet : public IPropertyBag
+     {
+@@ -2532,6 +2550,7 @@ EXTERN_C const IID IID_ITsSbPluginPropertySet;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("95006e34-7eff-4b6c-bb40-49a4fda7cea6")
+     ITsSbPluginPropertySet : public ITsSbPropertySet
+     {
+@@ -2632,6 +2651,7 @@ EXTERN_C const IID IID_ITsSbClientConnectionPropertySet;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("E51995B0-46D6-11DD-AA21-CEDC55D89593")
+     ITsSbClientConnectionPropertySet : public ITsSbPropertySet
+     {
+@@ -2732,6 +2752,7 @@ EXTERN_C const IID IID_ITsSbTargetPropertySet;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("f7bda5d6-994c-4e11-a079-2763b61830ac")
+     ITsSbTargetPropertySet : public ITsSbPropertySet
+     {
+@@ -2832,6 +2853,7 @@ EXTERN_C const IID IID_ITsSbEnvironmentPropertySet;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("D0D1BF7E-7ACF-11DD-A243-E51156D89593")
+     ITsSbEnvironmentPropertySet : public ITsSbPropertySet
+     {
+@@ -2932,6 +2954,7 @@ EXTERN_C const IID IID_ITsSbBaseNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("808a6537-1282-4989-9e09-f43938b71722")
+     ITsSbBaseNotifySink : public IUnknown
+     {
+@@ -3036,6 +3059,7 @@ EXTERN_C const IID IID_ITsSbPluginNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("44dfe30b-c3be-40f5-bf82-7a95bb795adf")
+     ITsSbPluginNotifySink : public ITsSbBaseNotifySink
+     {
+@@ -3153,6 +3177,7 @@ EXTERN_C const IID IID_ITsSbLoadBalancingNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("5F8A8297-3244-4E6A-958A-27C822C1E141")
+     ITsSbLoadBalancingNotifySink : public ITsSbBaseNotifySink
+     {
+@@ -3265,6 +3290,7 @@ EXTERN_C const IID IID_ITsSbPlacementNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("68A0C487-2B4F-46C2-94A1-6CE685183634")
+     ITsSbPlacementNotifySink : public ITsSbBaseNotifySink
+     {
+@@ -3373,6 +3399,7 @@ EXTERN_C const IID IID_ITsSbOrchestrationNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("36c37d61-926b-442f-bca5-118c6d50dcf2")
+     ITsSbOrchestrationNotifySink : public ITsSbBaseNotifySink
+     {
+@@ -3481,6 +3508,7 @@ EXTERN_C const IID IID_ITsSbTaskPluginNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("6AAF899E-C2EC-45EE-AA37-45E60895261A")
+     ITsSbTaskPluginNotifySink : public ITsSbBaseNotifySink
+     {
+@@ -3672,6 +3700,7 @@ EXTERN_C const IID IID_ITsSbClientConnection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("18857499-AD61-4B1B-B7DF-CBCD41FB8338")
+     ITsSbClientConnection : public IUnknown
+     {
+@@ -3949,6 +3978,7 @@ EXTERN_C const IID IID_ITsSbProvider;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("87A4098F-6D7B-44DD-BC17-8CE44E370D52")
+     ITsSbProvider : public IUnknown
+     {
+@@ -4228,6 +4258,7 @@ EXTERN_C const IID IID_ITsSbResourcePluginStore;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("5C38F65F-BCF1-4036-A6BF-9E3CCCAE0B63")
+     ITsSbResourcePluginStore : public IUnknown
+     {
+@@ -4844,6 +4875,7 @@ EXTERN_C const IID IID_ITsSbFilterPluginStore;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("85b44b0f-ed78-413f-9702-fa6d3b5ee755")
+     ITsSbFilterPluginStore : public IUnknown
+     {
+@@ -4957,6 +4989,7 @@ EXTERN_C const IID IID_ITsSbGlobalStore;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("9AB60F7B-BD72-4D9F-8A3A-A0EA5574E635")
+     ITsSbGlobalStore : public IUnknown
+     {
+@@ -5218,6 +5251,7 @@ EXTERN_C const IID IID_ITsSbProvisioningPluginNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("aca87a8e-818b-4581-a032-49c3dfb9c701")
+     ITsSbProvisioningPluginNotifySink : public IUnknown
+     {
+@@ -5394,6 +5428,7 @@ EXTERN_C const IID IID_ITsSbProvisioning;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2012)
+     MIDL_INTERFACE("2f6f0dbb-9e4f-462b-9c3f-fccc3dcb6232")
+     ITsSbProvisioning : public ITsSbPlugin
+     {
+@@ -5569,6 +5604,7 @@ EXTERN_C const IID IID_ITsSbGenericNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2016)
+     MIDL_INTERFACE("4c4c8c4f-300b-46ad-9164-8468a7e7568c")
+     ITsSbGenericNotifySink : public IUnknown
+     {
+@@ -5685,19 +5721,31 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  LPSAFEARRAY_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  LPSAFEARRAY_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out LPSAFEARRAY * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

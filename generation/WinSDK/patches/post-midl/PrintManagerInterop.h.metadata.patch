@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PrintManagerInterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/PrintManagerInterop.h
+index 5da6e589..05dbd8c5 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/PrintManagerInterop.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/PrintManagerInterop.h
+@@ -67,6 +67,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -86,6 +89,7 @@ EXTERN_C const IID IID_IPrintManagerInterop;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("c5435a42-8d43-4e7b-a68a-ef311e392087")
+     IPrintManagerInterop : public IInspectable
+     {

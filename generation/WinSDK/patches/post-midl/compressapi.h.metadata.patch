@@ -1,0 +1,120 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h
+index 9399b3a0..8d46b09a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h
+@@ -17,6 +17,9 @@ Environment:
+ --*/
+ 
+ #include <windef.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
+@@ -69,6 +72,8 @@ typedef enum {
+ 
+ // Compression routines
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ CreateCompressor (
+@@ -77,6 +82,8 @@ CreateCompressor (
+     _Out_ PCOMPRESSOR_HANDLE CompressorHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ SetCompressorInformation (
+@@ -86,6 +93,8 @@ SetCompressorInformation (
+     _In_ SIZE_T CompressInformationSize
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ QueryCompressorInformation (
+@@ -95,6 +104,8 @@ QueryCompressorInformation (
+     _In_ SIZE_T CompressInformationSize
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Compress (
+@@ -106,12 +117,16 @@ Compress (
+     _Out_ PSIZE_T CompressedDataSize
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ ResetCompressor (
+     _In_ COMPRESSOR_HANDLE CompressorHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ CloseCompressor (
+@@ -120,6 +135,8 @@ CloseCompressor (
+ 
+ // Decompression routines
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ CreateDecompressor (
+@@ -128,6 +145,8 @@ CreateDecompressor (
+     _Out_ PDECOMPRESSOR_HANDLE DecompressorHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ SetDecompressorInformation (
+@@ -137,6 +156,8 @@ SetDecompressorInformation (
+     _In_ SIZE_T CompressInformationSize
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ QueryDecompressorInformation (
+@@ -146,6 +167,8 @@ QueryDecompressorInformation (
+     _In_ SIZE_T CompressInformationSize
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Decompress (
+@@ -157,12 +180,16 @@ Decompress (
+     _Out_opt_ PSIZE_T UncompressedDataSize
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ ResetDecompressor (
+     _In_ DECOMPRESSOR_HANDLE DecompressorHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ CloseDecompressor (

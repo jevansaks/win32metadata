@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h
-index 2171807b..dfe56d16 100644
+index 2171807b..2ba81487 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h
 @@ -21,6 +21,9 @@ Abstract:
@@ -12,11 +12,255 @@ index 2171807b..dfe56d16 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION( WINAPI_PARTITION_DESKTOP )
-@@ -766,6 +769,7 @@ CfOpenFileWithOplock (
+@@ -132,6 +135,7 @@ typedef struct CF_PLATFORM_INFO {
+     DWORD IntegrationNumber;
+ } CF_PLATFORM_INFO;
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfGetPlatformInfo (
+     _Out_ CF_PLATFORM_INFO *PlatformVersion
+@@ -254,6 +258,7 @@ typedef struct CF_SYNC_REGISTRATION {
+     GUID ProviderId;
+ } CF_SYNC_REGISTRATION;
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfRegisterSyncRoot (
+     _In_ LPCWSTR SyncRootPath,
+@@ -262,6 +267,7 @@ CfRegisterSyncRoot (
+     _In_ CF_REGISTER_FLAGS RegisterFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfUnregisterSyncRoot (
+     _In_ LPCWSTR SyncRootPath
+@@ -518,6 +524,7 @@ typedef enum CF_CONNECT_FLAGS {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_CONNECT_FLAGS );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfConnectSyncRoot (
+     _In_ LPCWSTR SyncRootPath,
+@@ -527,17 +534,20 @@ CfConnectSyncRoot (
+     _Out_ CF_CONNECTION_KEY *ConnectionKey
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfDisconnectSyncRoot (
+     _In_ CF_CONNECTION_KEY ConnectionKey
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfGetTransferKey(
+     _In_ HANDLE FileHandle,
+     _Out_ CF_TRANSFER_KEY* TransferKey
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI_(VOID)
+ CfReleaseTransferKey(
+     _In_ HANDLE FileHandle,
+@@ -700,6 +710,7 @@ typedef struct CF_OPERATION_PARAMETERS {
+ 
+ #pragma warning( pop )
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfExecute(
+     _In_ CONST CF_OPERATION_INFO *OpInfo,
+@@ -707,12 +718,14 @@ CfExecute(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfUpdateSyncProviderStatus(
+     _In_ CF_CONNECTION_KEY ConnectionKey,
+     _In_ CF_SYNC_PROVIDER_STATUS ProviderStatus
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfQuerySyncProviderStatus(
+     _In_ CF_CONNECTION_KEY ConnectionKey,
+@@ -722,6 +735,7 @@ CfQuerySyncProviderStatus(
+ #pragma endregion
+ 
+ 
++_Win32_metadata_supported_os_(windows10.0.17134)
+ STDAPI
+ CfReportSyncStatus(
+     _In_ LPCWSTR SyncRootPath,
+@@ -742,6 +756,7 @@ typedef enum CF_CREATE_FLAGS {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_CREATE_FLAGS );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfCreatePlaceholders (
+     _In_ LPCWSTR BaseDirectoryPath,
+@@ -761,28 +776,34 @@ typedef enum CF_OPEN_FILE_FLAGS {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_OPEN_FILE_FLAGS );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfOpenFileWithOplock (
      _In_ LPCWSTR FilePath,
      _In_ CF_OPEN_FILE_FLAGS Flags,
      _Out_ PHANDLE ProtectedHandle
 +        _Win32_metadata_raii_free_(CfCloseHandle)
      );
  
++_Win32_metadata_supported_os_(windows10.0.16299)
  STDAPI_( BOOLEAN )
+ CfReferenceProtectedHandle (
+     _In_ HANDLE ProtectedHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI_( HANDLE )
+ CfGetWin32HandleFromProtectedHandle (
+     _In_ HANDLE ProtectedHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI_( VOID )
+ CfReleaseProtectedHandle(
+     _In_ HANDLE ProtectedHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI_(VOID)
+ CfCloseHandle(
+     _In_ HANDLE FileHandle
+@@ -804,6 +825,7 @@ typedef enum CF_CONVERT_FLAGS {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_CONVERT_FLAGS );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfConvertToPlaceholder (
+     _In_ HANDLE FileHandle,
+@@ -831,6 +853,7 @@ typedef enum CF_UPDATE_FLAGS {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_UPDATE_FLAGS );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfUpdatePlaceholder (
+     _In_ HANDLE FileHandle,
+@@ -850,6 +873,7 @@ typedef enum CF_REVERT_FLAGS {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_REVERT_FLAGS );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfRevertPlaceholder (
+     _In_ HANDLE FileHandle,
+@@ -863,6 +887,7 @@ typedef enum CF_HYDRATE_FLAGS {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_HYDRATE_FLAGS );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfHydratePlaceholder (
+     _In_ HANDLE FileHandle,
+@@ -905,6 +930,7 @@ typedef enum CF_SET_PIN_FLAGS {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_SET_PIN_FLAGS );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfSetPinState (
+     _In_ HANDLE FileHandle,
+@@ -924,6 +950,7 @@ typedef enum CF_SET_IN_SYNC_FLAGS {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_SET_IN_SYNC_FLAGS );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfSetInSyncState (
+     _In_ HANDLE FileHandle,
+@@ -932,12 +959,14 @@ CfSetInSyncState (
+     _Inout_opt_ USN *InSyncUsn
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfSetCorrelationVector (
+     _In_ HANDLE FileHandle,
+     _In_ const PCORRELATION_VECTOR CorrelationVector
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfGetCorrelationVector (
+     _In_ HANDLE FileHandle,
+@@ -957,18 +986,21 @@ typedef enum CF_PLACEHOLDER_STATE {
+ 
+ DEFINE_ENUM_FLAG_OPERATORS( CF_PLACEHOLDER_STATE );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI_( CF_PLACEHOLDER_STATE )
+ CfGetPlaceholderStateFromAttributeTag (
+     _In_ DWORD FileAttributes,
+     _In_ DWORD ReparseTag
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI_( CF_PLACEHOLDER_STATE )
+ CfGetPlaceholderStateFromFileInfo (
+     _In_ LPCVOID InfoBuffer,
+     _In_ FILE_INFO_BY_HANDLE_CLASS InfoClass
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI_( CF_PLACEHOLDER_STATE )
+ CfGetPlaceholderStateFromFindData (
+     _In_ CONST WIN32_FIND_DATA *FindData
+@@ -1015,6 +1047,7 @@ typedef struct CF_PLACEHOLDER_STANDARD_INFO {
+ 
+ } CF_PLACEHOLDER_STANDARD_INFO;
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfGetPlaceholderInfo (
+     _In_ HANDLE FileHandle,
+@@ -1080,6 +1113,7 @@ typedef struct CF_SYNC_ROOT_STANDARD_INFO {
+ } CF_SYNC_ROOT_STANDARD_INFO;
+ 
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfGetSyncRootInfoByPath(
+     _In_ LPCWSTR FilePath,
+@@ -1089,6 +1123,7 @@ CfGetSyncRootInfoByPath(
+     _Out_opt_ DWORD *ReturnedLength
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfGetSyncRootInfoByHandle(
+     _In_ HANDLE FileHandle,
+@@ -1106,6 +1141,7 @@ typedef enum CF_PLACEHOLDER_RANGE_INFO_CLASS {
+ 
+ } CF_PLACEHOLDER_RANGE_INFO_CLASS;
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfGetPlaceholderRangeInfo (
+     _In_ HANDLE FileHandle,
+@@ -1140,6 +1176,7 @@ CfGetPlaceholderRangeInfoForHydration(
+ 
+ #pragma region Progress APIs
+ 
++_Win32_metadata_supported_os_(windows10.0.16299)
+ STDAPI
+ CfReportProviderProgress (
+     _In_ CF_CONNECTION_KEY ConnectionKey,

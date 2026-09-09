@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PlayToManagerInterop.h b/generation/WinSDK/RecompiledIdlHeaders/um/PlayToManagerInterop.h
+index 5d1f388a..3eaae1fb 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/PlayToManagerInterop.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/PlayToManagerInterop.h
+@@ -66,6 +66,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+@@ -85,6 +88,7 @@ EXTERN_C const IID IID_IPlayToManagerInterop;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("24394699-1F2C-4EB3-8CD7-0EC1DA42A540")
+     IPlayToManagerInterop : public IInspectable
+     {

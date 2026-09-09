@@ -1,0 +1,139 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/control.h b/generation/WinSDK/RecompiledIdlHeaders/um/control.h
+index be335c74..d38cdfe9 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/control.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/control.h
+@@ -29,6 +29,23 @@
+ #ifndef __control_h__
+ #define __control_h__
+ 
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#pragma push_macro("OATRUE")
++#pragma push_macro("OAFALSE")
++#undef OATRUE
++#undef OAFALSE
++enum class OA_BOOL : int
++{
++    OATRUE = -1,
++    OAFALSE = 0,
++};
++#pragma pop_macro("OAFALSE")
++#pragma pop_macro("OATRUE")
++#else
++typedef long OA_BOOL;
++#endif
++
+ #if defined(_MSC_VER) && (_MSC_VER >= 1020)
+ #pragma once
+ #endif
+@@ -363,6 +380,7 @@ DEFINE_GUID(IID_IMediaControl,0x56a868b1,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf,
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56a868b1-0ad4-11ce-b03a-0020af0ba770")
+     IMediaControl : public IDispatch
+     {
+@@ -585,6 +603,7 @@ DEFINE_GUID(IID_IMediaEvent,0x56a868b6,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf,0x
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56a868b6-0ad4-11ce-b03a-0020af0ba770")
+     IMediaEvent : public IDispatch
+     {
+@@ -790,6 +809,7 @@ DEFINE_GUID(IID_IMediaEventEx,0x56a868c0,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf,
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56a868c0-0ad4-11ce-b03a-0020af0ba770")
+     IMediaEventEx : public IMediaEvent
+     {
+@@ -1009,6 +1029,7 @@ DEFINE_GUID(IID_IMediaPosition,0x56a868b2,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56a868b2-0ad4-11ce-b03a-0020af0ba770")
+     IMediaPosition : public IDispatch
+     {
+@@ -1257,6 +1278,7 @@ DEFINE_GUID(IID_IBasicAudio,0x56a868b3,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf,0x
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56a868b3-0ad4-11ce-b03a-0020af0ba770")
+     IBasicAudio : public IDispatch
+     {
+@@ -1428,6 +1450,7 @@ DEFINE_GUID(IID_IVideoWindow,0x56a868b4,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf,0
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56a868b4-0ad4-11ce-b03a-0020af0ba770")
+     IVideoWindow : public IDispatch
+     {
+@@ -1558,7 +1581,7 @@ DEFINE_GUID(IID_IVideoWindow,0x56a868b4,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf,0
+             /* [out] */ __RPC__out long *pHeight) = 0;
+         
+         virtual HRESULT STDMETHODCALLTYPE HideCursor( 
+-            /* [in] */ long HideCursor) = 0;
++            /* [in] */ OA_BOOL HideCursor) = 0;
+         
+         virtual HRESULT STDMETHODCALLTYPE IsCursorHidden( 
+             /* [out] */ __RPC__out long *CursorHidden) = 0;
+@@ -1830,7 +1853,7 @@ DEFINE_GUID(IID_IVideoWindow,0x56a868b4,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf,0
+         DECLSPEC_XFGVIRT(IVideoWindow, HideCursor)
+         HRESULT ( STDMETHODCALLTYPE *HideCursor )( 
+             __RPC__in IVideoWindow * This,
+-            /* [in] */ long HideCursor);
++            /* [in] */ OA_BOOL HideCursor);
+         
+         DECLSPEC_XFGVIRT(IVideoWindow, IsCursorHidden)
+         HRESULT ( STDMETHODCALLTYPE *IsCursorHidden )( 
+@@ -2012,6 +2035,7 @@ DEFINE_GUID(IID_IBasicVideo,0x56a868b5,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf,0x
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56a868b5-0ad4-11ce-b03a-0020af0ba770")
+     IBasicVideo : public IDispatch
+     {
+@@ -2517,6 +2541,7 @@ DEFINE_GUID(IID_IBasicVideo2,0x329bb360,0xf6ea,0x11d1,0x90,0x38,0x00,0xa0,0xc9,0
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("329bb360-f6ea-11d1-9038-00a0c9697298")
+     IBasicVideo2 : public IBasicVideo
+     {
+@@ -2927,6 +2952,7 @@ DEFINE_GUID(IID_IDeferredCommand,0x56a868b8,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0x
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56a868b8-0ad4-11ce-b03a-0020af0ba770")
+     IDeferredCommand : public IUnknown
+     {
+@@ -3042,6 +3068,7 @@ DEFINE_GUID(IID_IQueueCommand,0x56a868b7,0x0ad4,0x11ce,0xb0,0x3a,0x00,0x20,0xaf,
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("56a868b7-0ad4-11ce-b03a-0020af0ba770")
+     IQueueCommand : public IUnknown
+     {
+@@ -3960,6 +3987,7 @@ DEFINE_GUID(IID_IAMStats,0xbc9bcf80,0xdcd2,0x11d2,0xab,0xf6,0x00,0xa0,0xc9,0x05,
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("bc9bcf80-dcd2-11d2-abf6-00a0c905f375")
+     IAMStats : public IDispatch
+     {
+@@ -4185,4 +4213,3 @@ DEFINE_GUID(IID_IAMStats,0xbc9bcf80,0xdcd2,0x11d2,0xab,0xf6,0x00,0xa0,0xc9,0x05,
+ 
+ #endif
+ 
+-

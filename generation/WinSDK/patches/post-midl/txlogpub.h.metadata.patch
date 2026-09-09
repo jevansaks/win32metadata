@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/txlogpub.h b/generation/WinSDK/RecompiledIdlHeaders/um/txlogpub.h
+index b2d6fca3..fb0be889 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/txlogpub.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/txlogpub.h
+@@ -79,6 +79,9 @@ extern "C"{
+ //
+ //--------------------------------------------------------------------------
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -134,6 +137,7 @@ EXTERN_C const IID IID_ILog;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("FF222117-0C6C-11d2-B89A-00C04FB9618A")
+     ILog : public IUnknown
+     {
+@@ -366,6 +370,7 @@ EXTERN_C const IID IID_IFileBasedLogInit;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("00951E8C-1294-11d1-97E4-00C04FB9618A")
+     IFileBasedLogInit : public IUnknown
+     {

@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vss.h b/generation/WinSDK/RecompiledIdlHeaders/um/vss.h
+index cb189e1a..bf760cc5 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/vss.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/vss.h
+@@ -74,6 +74,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -421,6 +424,7 @@ EXTERN_C const IID IID_IVssEnumObject;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("AE1C7110-2F60-11d3-8A39-00C04F72D8E3")
+     IVssEnumObject : public IUnknown
+     {
+@@ -551,6 +555,7 @@ EXTERN_C const IID IID_IVssAsync;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("507C37B4-CF5B-4e95-B0AF-14EB9767467E")
+     IVssAsync : public IUnknown
+     {

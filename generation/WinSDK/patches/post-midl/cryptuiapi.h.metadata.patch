@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cryptuiapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/cryptuiapi.h
-index e5fec800..cc392c6a 100644
+index e5fec800..e03fb019 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/cryptuiapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/cryptuiapi.h
 @@ -16,6 +16,9 @@
@@ -12,31 +12,82 @@ index e5fec800..cc392c6a 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -708,6 +711,7 @@ typedef const CRYPTUI_VIEWCERTIFICATE_STRUCTA *PCCRYPTUI_VIEWCERTIFICATE_STRUCTA
+@@ -43,6 +46,7 @@ extern "C" {
+ //
+ //  dwFlags currently isn't used and should be set to 0.
+ //-----------------------------------------------------------------------------
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _Success_(return == TRUE)
+ BOOL
+ WINAPI
+@@ -75,6 +79,7 @@ CryptUIDlgViewContext(
+ //
+ //  dwFlags currently isn't used and should be set to 0.
+ //-----------------------------------------------------------------------------
++_Win32_metadata_supported_os_(windows5.1.2600)
+ PCCERT_CONTEXT
+ WINAPI
+ CryptUIDlgSelectCertificateFromStore(
+@@ -126,6 +131,7 @@ typedef struct {
+ //
+ //
+ //-----------------------------------------------------------------------------
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT
+ WINAPI
+ CertSelectionGetSerializedBlob(
+@@ -192,6 +198,7 @@ typedef const CRYPTUI_CERT_MGR_STRUCT *PCCRYPTUI_CERT_MGR_STRUCT;
+ //                                    structure.
+ //
+ //-----------------------------------------------------------------------------
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _Success_(return == TRUE)
+ BOOL
+ WINAPI
+@@ -542,6 +549,7 @@ typedef const CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT *PCCRYPTUI_WIZ_DIGITAL_SIGN_CONTE
+ //                                    blob.
+ //
+ //-----------------------------------------------------------------------------
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _Success_(return == TRUE)
+ BOOL
+ WINAPI
+@@ -553,6 +561,7 @@ CryptUIWizDigitalSign(
+     _Outptr_opt_        PCCRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT  *ppSignContext
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _Success_(return == TRUE)
+ BOOL
+ WINAPI
+@@ -708,6 +717,8 @@ typedef const CRYPTUI_VIEWCERTIFICATE_STRUCTA *PCCRYPTUI_VIEWCERTIFICATE_STRUCTA
  //                                 if any properties have been changed on certs in the chain
  //                                 while the dialog was open
  //
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  _Success_(return == TRUE)
  BOOL
  WINAPI
-@@ -716,6 +720,7 @@ CryptUIDlgViewCertificateW(
+@@ -716,6 +727,8 @@ CryptUIDlgViewCertificateW(
          _Out_ BOOL                                *pfPropertiesChanged  // OPTIONAL
          );
  
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  _Success_(return == TRUE)
  BOOL
  WINAPI
-@@ -862,6 +867,7 @@ typedef const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO *PCCRYPTUI_WIZ_EXPORT_CERTCONT
+@@ -862,6 +875,8 @@ typedef const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO *PCCRYPTUI_WIZ_EXPORT_CERTCONT
  //                                          is being exported.  See above table for values, if this is non-NULL
  //                                          the values are displayed to the user as the default choices.
  //------------------------------------------------------------------------
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  _Success_(return == TRUE)
  BOOL
  WINAPI
-@@ -909,7 +915,7 @@ typedef struct _CRYPTUI_WIZ_IMPORT_SUBJECT_INFO
+@@ -909,7 +924,7 @@ typedef struct _CRYPTUI_WIZ_IMPORT_SUBJECT_INFO
          HCERTSTORE          hCertStore;
      };
  
@@ -45,10 +96,11 @@ index e5fec800..cc392c6a 100644
                                                  //Ignored otherwise
                                                  //This is the same flag for PFXImportCertStore
      LPCWSTR                 pwszPassword;       //Required if pwszFileName contains a PFX BLOB.
-@@ -997,6 +1003,7 @@ typedef const CRYPTUI_WIZ_IMPORT_SRC_INFO *PCCRYPTUI_WIZ_IMPORT_SRC_INFO;
+@@ -997,6 +1012,8 @@ typedef const CRYPTUI_WIZ_IMPORT_SRC_INFO *PCCRYPTUI_WIZ_IMPORT_SRC_INFO;
  //                                          flag CERT_STORE_SET_LOCALIZED_NAME_FLAG.  If NULL, the wizard will prompt user to select
  //                                          a certificate store.
  //------------------------------------------------------------------------
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  _Success_(return == TRUE)
  BOOL

@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfspatialaudio.h b/generation/WinSDK/RecompiledIdlHeaders/um/mfspatialaudio.h
+index 7a5b1ee3..7ed52e40 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mfspatialaudio.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfspatialaudio.h
+@@ -32,6 +32,9 @@
+ 
+ #ifndef __mfspatialaudio_h__
+ #define __mfspatialaudio_h__
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #if defined(_MSC_VER) && (_MSC_VER >= 1020)
+ #pragma once
+@@ -92,6 +95,7 @@ EXTERN_C const IID IID_IMFSpatialAudioObjectBuffer;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("d396ec8c-605e-4249-978d-72ad1c312872")
+     IMFSpatialAudioObjectBuffer : public IMFMediaBuffer
+     {
+@@ -279,6 +283,7 @@ EXTERN_C const IID IID_IMFSpatialAudioSample;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows10.0.15063)
+     MIDL_INTERFACE("abf28a9B-3393-4290-ba79-5ffc46d986b2")
+     IMFSpatialAudioSample : public IMFSample
+     {

@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h
-index 35e5990c..b58a8960 100644
+index 35e5990c..dc190217 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h
 @@ -1,4 +1,7 @@
@@ -10,15 +10,188 @@ index 35e5990c..b58a8960 100644
  
  /*++
  
-@@ -540,6 +543,7 @@ WNetOpenEnumA(
+@@ -162,6 +165,7 @@ typedef LPNETRESOURCEA LPNETRESOURCE;
+ 
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetAddConnectionA(
+@@ -169,6 +173,7 @@ WNetAddConnectionA(
+     _In_opt_ LPCSTR   lpPassword,
+     _In_opt_ LPCSTR   lpLocalName
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetAddConnectionW(
+@@ -182,6 +187,7 @@ WNetAddConnectionW(
+ #define WNetAddConnection  WNetAddConnectionA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetAddConnection2A(
+@@ -190,6 +196,7 @@ WNetAddConnection2A(
+     _In_opt_ LPCSTR       lpUserName,
+     _In_     DWORD          dwFlags
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetAddConnection2W(
+@@ -204,6 +211,7 @@ WNetAddConnection2W(
+ #define WNetAddConnection2  WNetAddConnection2A
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetAddConnection3A(
+@@ -213,6 +221,7 @@ WNetAddConnection3A(
+     _In_opt_ LPCSTR       lpUserName,
+     _In_     DWORD          dwFlags
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetAddConnection3W(
+@@ -258,12 +267,14 @@ WNetAddConnection4W(
+ #endif // !UNICODE
+ #endif //(_WIN32_WINNT >= _WIN32_WINNT_WIN10)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetCancelConnectionA(
+     _In_ LPCSTR lpName,
+     _In_ BOOL     fForce
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetCancelConnectionW(
+@@ -276,6 +287,7 @@ WNetCancelConnectionW(
+ #define WNetCancelConnection  WNetCancelConnectionA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetCancelConnection2A(
+@@ -283,6 +295,7 @@ WNetCancelConnection2A(
+     _In_ DWORD    dwFlags,
+     _In_ BOOL     fForce
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetCancelConnection2W(
+@@ -296,6 +309,7 @@ WNetCancelConnection2W(
+ #define WNetCancelConnection2  WNetCancelConnection2A
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetConnectionA(
+@@ -303,6 +317,7 @@ WNetGetConnectionA(
+     _Out_writes_opt_(*lpnLength) LPSTR  lpRemoteName,
+     _Inout_ LPDWORD lpnLength
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetConnectionW(
+@@ -333,6 +348,7 @@ WNetRestoreSingleConnectionW(
+     );
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetRestoreConnectionW(
+@@ -349,6 +365,7 @@ WNetRestoreConnectionW(
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if(WINVER >= 0x0400)
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetUseConnectionA(
+@@ -361,6 +378,7 @@ WNetUseConnectionA(
+     _Inout_opt_ LPDWORD lpBufferSize,
+     _Out_opt_ LPDWORD   lpResult
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetUseConnectionW(
+@@ -420,6 +438,7 @@ WNetUseConnection4W(
+ //
+ //  Network Connection Dialogs.
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetConnectionDialog(
+@@ -427,6 +446,7 @@ WNetConnectionDialog(
+     _In_ DWORD dwType
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetDisconnectDialog(
+@@ -470,11 +490,13 @@ typedef LPCONNECTDLGSTRUCTA LPCONNECTDLGSTRUCT;
+ #define CONNDLG_PERSIST     0x00000010 /* Force persistent connection */
+ #define CONNDLG_NOT_PERSIST 0x00000020 /* Force connection NOT persistent */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetConnectionDialog1A(
+     _Inout_ LPCONNECTDLGSTRUCTA lpConnDlgStruct
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetConnectionDialog1W(
+@@ -511,11 +533,13 @@ typedef LPDISCDLGSTRUCTA LPDISCDLGSTRUCT;
+ #define DISC_UPDATE_PROFILE         0x00000001
+ #define DISC_NO_FORCE               0x00000040
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetDisconnectDialog1A(
+     _In_ LPDISCDLGSTRUCTA lpConnDlgStruct
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetDisconnectDialog1W(
+@@ -532,6 +556,7 @@ WNetDisconnectDialog1W(
+ //  Network Browsing.
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetOpenEnumA(
+@@ -540,7 +565,9 @@ WNetOpenEnumA(
      _In_  DWORD          dwUsage,
      _In_opt_ LPNETRESOURCEA lpNetResource,
      _Out_ LPHANDLE       lphEnum
 +        _Win32_metadata_raii_free_(WNetCloseEnum)
      );
++_Win32_metadata_supported_os_(windows5.0)
  _Check_return_
  DWORD APIENTRY
-@@ -549,6 +553,7 @@ WNetOpenEnumW(
+ WNetOpenEnumW(
+@@ -549,6 +576,7 @@ WNetOpenEnumW(
      _In_  DWORD          dwUsage,
      _In_opt_ LPNETRESOURCEW lpNetResource,
      _Out_ LPHANDLE       lphEnum
@@ -26,19 +199,155 @@ index 35e5990c..b58a8960 100644
      );
  #ifdef UNICODE
  #define WNetOpenEnum  WNetOpenEnumW
-@@ -789,6 +794,7 @@ WNetGetNetworkInformationW(
+@@ -556,6 +584,7 @@ WNetOpenEnumW(
+ #define WNetOpenEnum  WNetOpenEnumA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetEnumResourceA(
+@@ -564,6 +593,7 @@ WNetEnumResourceA(
+     _Out_writes_bytes_(*lpBufferSize) LPVOID  lpBuffer,
+     _Inout_ LPDWORD lpBufferSize
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetEnumResourceW(
+@@ -578,6 +608,7 @@ WNetEnumResourceW(
+ #define WNetEnumResource  WNetEnumResourceA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetCloseEnum(
+@@ -585,6 +616,7 @@ WNetCloseEnum(
+     );
+ 
+ #if(WINVER >= 0x0400)
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetResourceParentA(
+@@ -592,6 +624,7 @@ WNetGetResourceParentA(
+     _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
+     _Inout_ LPDWORD lpcbBuffer
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetResourceParentW(
+@@ -605,6 +638,7 @@ WNetGetResourceParentW(
+ #define WNetGetResourceParent  WNetGetResourceParentA
+ #endif // !UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetResourceInformationA(
+@@ -613,6 +647,7 @@ WNetGetResourceInformationA(
+     _Inout_ LPDWORD lpcbBuffer,
+     _Outptr_ LPSTR *lplpSystem
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetResourceInformationW(
+@@ -667,6 +702,7 @@ typedef REMOTE_NAME_INFOA REMOTE_NAME_INFO;
+ typedef LPREMOTE_NAME_INFOA LPREMOTE_NAME_INFO;
+ #endif // UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetUniversalNameA(
+@@ -675,6 +711,7 @@ WNetGetUniversalNameA(
+     _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
+     _Inout_ LPDWORD lpBufferSize
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetUniversalNameW(
+@@ -692,6 +729,7 @@ WNetGetUniversalNameW(
+ //
+ //  Authentication and Logon/Logoff.
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetUserA(
+@@ -702,6 +740,7 @@ WNetGetUserA(
+ //
+ //  Authentication and Logon/Logoff.
+ //
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetUserW(
+@@ -730,6 +769,7 @@ WNetGetUserW(
+ 
+ 
+ #if(WINVER >= 0x0400)
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetProviderNameA(
+@@ -737,6 +777,7 @@ WNetGetProviderNameA(
+     _Out_writes_(*lpBufferSize) LPSTR lpProviderName,
+     _Inout_ LPDWORD lpBufferSize
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetProviderNameW(
+@@ -765,12 +806,14 @@ typedef struct _NETINFOSTRUCT{
+ #define NETINFO_DISKRED     0x00000004  /* Provider requires disk redirections to connect */
+ #define NETINFO_PRINTERRED  0x00000008  /* Provider requires printer redirections to connect */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetNetworkInformationA(
+     _In_  LPCSTR        lpProvider,
+     _Out_ LPNETINFOSTRUCT lpNetInfoStruct
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetNetworkInformationW(
+@@ -789,6 +832,8 @@ WNetGetNetworkInformationW(
  //  Error handling.
  //
  
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  _Check_return_
  DWORD APIENTRY
  WNetGetLastErrorA(
-@@ -798,6 +804,7 @@ WNetGetLastErrorA(
+@@ -798,6 +843,8 @@ WNetGetLastErrorA(
      _Out_writes_(nNameBufSize) LPSTR  lpNameBuf,
      _In_ DWORD      nNameBufSize
      );
++_Win32_metadata_supported_os_(windows5.0)
 +_Win32_metadata_set_last_error_
  _Check_return_
  DWORD APIENTRY
  WNetGetLastErrorW(
+@@ -895,12 +942,14 @@ typedef struct _NETCONNECTINFOSTRUCT{
+ #define WNCON_SLOWLINK          0x00000004
+ #define WNCON_DYNAMIC           0x00000008
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ MultinetGetConnectionPerformanceA(
+     _In_  LPNETRESOURCEA lpNetResource,
+     _Out_ LPNETCONNECTINFOSTRUCT lpNetConnectInfoStruct
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ _Check_return_
+ DWORD APIENTRY
+ MultinetGetConnectionPerformanceW(

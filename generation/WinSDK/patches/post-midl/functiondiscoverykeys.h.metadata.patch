@@ -1,0 +1,411 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys.h b/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys.h
+index a244c69f..a381fcd9 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/functiondiscoverykeys.h
+@@ -4,6 +4,9 @@
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -16,6 +19,7 @@
+ #include <FunctionDiscoveryKeys_devpkey.h>
+ 
+ /* 08c0c253-a154-4746-9005-82de5317148b */
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_FunctionInstance, 0x08c0c253, 0xa154, 0x4746, 0x90, 0x05, 0x82, 0xde, 0x53, 0x17, 0x14, 0x8b, 0x00000001);  // VT_UNKNOWN
+ 
+ // FMTID_FD = {904b03a2-471d-423c-a584-f3483238a146}
+@@ -38,61 +42,112 @@ DEFINE_GUID(FMTID_DeviceInterface, 0x53808008, 0x07BB, 0x4661, 0xBC, 0x3C, 0xB5,
+ 
+ DEFINE_API_PKEY(PKEY_DeviceInterface_DevicePath, DevicePath    , 0x53808008, 0x07BB, 0x4661, 0xBC, 0x3C, 0xB5, 0x95, 0x3E, 0x70, 0x85, 0x60, 0x00000001); //    VT_LPWSTR
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Address,                  0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000033);  // VT_LPWSTR or VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_DiscoveryMethod,          0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000034);  // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsEncrypted,              0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000035);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsAuthenticated,          0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000036);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsConnected,              0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000037);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsPaired,                 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000038);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Icon,                     0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000039);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Version,                  0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000041);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Last_Seen,                0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000042);  // VT_FIELTIME
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Last_Connected,           0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000043);  // VT_FILETIME
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsShowInDisconnectedState, 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000044);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsLocalMachine,           0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000046);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_MetadataPath,             0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000047);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsMetadataSearchInProgress, 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000048);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_MetadataChecksum,         0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000049);  // VT_UI1 | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsNotInterestingForDisplay, 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000004A);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_LaunchDeviceStageOnDeviceConnect, 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000004C);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_LaunchDeviceStageFromExplorer, 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000004D);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_BaselineExperienceId,     0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000004E);  // VT_CLSID
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsDeviceUniquelyIdentifiable, 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000004F);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_AssociationArray,         0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000050);  // VT_LPWSTR  | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_DeviceDescription1,       0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000051);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_DeviceDescription2,       0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000052);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsNotWorkingProperly,     0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000053);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsSharedDevice,           0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000054);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsNetworkDevice,          0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000055);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_IsDefaultDevice,          0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000056);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_MetadataCabinet,          0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000057);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_RequiresPairingElevation, 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000058);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_ExperienceId,             0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000059);  // VT_CLSID
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Category,                 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000005A);  // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Category_Desc_Singular,   0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000005B);  // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Category_Desc_Plural,     0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000005C);  // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Category_Icon,            0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000005D);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_CategoryGroup_Desc,       0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000005E);  // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_CategoryGroup_Icon,       0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x0000005F);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_PrimaryCategory,          0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000061);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_UnpairUninstall,          0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000062);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_RequiresUninstallElevation, 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000063);  // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_DeviceFunctionSubRank,    0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000064);  // VT_UI4
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_AlwaysShowDeviceAsConnected, 0x78c34fc8, 0x104a, 0x4aca, 0x9e, 0xa4, 0x52, 0x4d, 0x52, 0x99, 0x6e, 0x57, 0x00000065);  // VT_BOOL
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_FriendlyName,             0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003000);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_Manufacturer,             0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00002000);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_ModelName,                0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00002002);  // VT_LPWSTR (localizable)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_ModelNumber,              0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00002003);  // VT_LPWSTR
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_DeviceDisplay_InstallInProgress,        0x83da6326, 0x97a6, 0x4088, 0x94, 0x53, 0xa1, 0x92, 0x3f, 0x57, 0x3b, 0x29, 9);     // DEVPROP_TYPE_BOOLEAN
+ 
+ // FMTID_Pairing = {8807CAE6-7DB6-4f10-8EE4-435EAA1392BC}
+ DEFINE_GUID(FMTID_Pairing, 0x8807cae6, 0x7db6, 0x4f10, 0x8e, 0xe4, 0x43, 0x5e, 0xaa, 0x13, 0x92, 0xbc);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Pairing_ListItemText, 0x8807cae6, 0x7db6, 0x4f10, 0x8e, 0xe4, 0x43, 0x5e, 0xaa, 0x13, 0x92, 0xbc, 0x0000001);        // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Pairing_ListItemDescription, 0x8807cae6, 0x7db6, 0x4f10, 0x8e, 0xe4, 0x43, 0x5e, 0xaa, 0x13, 0x92, 0xbc, 0x0000002); // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Pairing_ListItemIcon, 0x8807cae6, 0x7db6, 0x4f10, 0x8e, 0xe4, 0x43, 0x5e, 0xaa, 0x13, 0x92, 0xbc, 0x0000003);        // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Pairing_ListItemDefault, 0x8807cae6, 0x7db6, 0x4f10, 0x8e, 0xe4, 0x43, 0x5e, 0xaa, 0x13, 0x92, 0xbc, 0x0000004);     // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Pairing_IsWifiOnlyDevice, 0x8807cae6, 0x7db6, 0x4f10, 0x8e, 0xe4, 0x43, 0x5e, 0xaa, 0x13, 0x92, 0xbc, 0x0000010);    // VT_BOOL
+ 
+ // DiscoveryMethod values
+@@ -111,6 +166,7 @@ DEFINE_PROPERTYKEY(PKEY_Pairing_IsWifiOnlyDevice, 0x8807cae6, 0x7db6, 0x4f10, 0x
+ //  Name:     System.Device.BIOSVersion -- PKEY_Device_BIOSVersion
+ //  Type:     String -- VT_LPWSTR  (For variants: VT_BSTR)  Legacy code may treat this as VT_BSTR.
+ //  FormatID: EAEE7F1D-6A33-44D1-9441-5F46DEF23198, 9
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Device_BIOSVersion, 0xEAEE7F1D, 0x6A33, 0x44D1, 0x94, 0x41, 0x5F, 0x46, 0xDE, 0xF2, 0x31, 0x98, 9);
+ 
+ DEFINE_API_PKEY(PKEY_Write_Time,            WriteTime          , 0xf53b7e1c, 0x77e0, 0x4450, 0x8c, 0x5f, 0xa7, 0x6c, 0xc7, 0xfd, 0xe0, 0x58, 0x00000100); //    VT_FILETIME
+@@ -151,36 +207,54 @@ DEFINE_API_PKEY(PKEY_PUBSVCS_NETWORK_PROFILES_DEFAULT, PUBSVCS_NETWORK_PROFILES_
+ // FMTID_PNPX = {656A3BB3-ECC0-43FD-8477-4AE0404A96CD}
+ DEFINE_GUID(FMTID_PNPX, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD);
+         // from Discovery messages
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_GlobalIdentity, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00001000);   // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_Types, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00001001);   // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_Scopes, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00001002);   // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_XAddrs, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00001003);   // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_MetadataVersion, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00001004);   // VT_UI8
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ID, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00001005);   // VT_LPWSTR
+ 
+         // for Directed Discovery
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_RemoteAddress, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00001006);   // VT_LPWSTR
+         // for installable ssdp root devices
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_RootProxy, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00001007);   // VT_BOOL
+ 
+ 
+         // from ThisModel metadata
+ #define PKEY_PNPX_Manufacturer PKEY_DeviceDisplay_Manufacturer // Deprecated! Please use PKEY_DeviceDisplay_Manufacturer
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ManufacturerUrl,          0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00002001);  // VT_LPWSTR
+ #define PKEY_PNPX_ModelName PKEY_DeviceDisplay_ModelName // Deprecated! Please use PKEY_DeviceDisplay_ModelName
+ #define PKEY_PNPX_ModelNumber PKEY_DeviceDisplay_ModelNumber //Depricated! Please use PKEY_DeviceDisplayModelNumber
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ModelUrl,                 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00002004);  // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_Upc,                      0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00002005);   // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_PresentationUrl,          0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00002006);   // VT_LPWSTR
+         // from ThisDevice metadata
+ #define PKEY_PNPX_FriendlyName PKEY_DeviceDisplay_FriendlyName // Deprecated! Please use PKEY_DeviceDisplay_Name
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_FirmwareVersion, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003001);   // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_SerialNumber, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003002);   // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_DeviceCategory, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003004);  // VT_LPWSTR | VT_VECTOR
+ 
+     // for secure devices
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_SecureChannel, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00007001);   // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_CompactSignature, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00007002);   // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_DeviceCertHash, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00007003);   // VT_LPWSTR
+ 
+ 
+@@ -202,19 +276,31 @@ DEFINE_PROPERTYKEY(PKEY_PNPX_DeviceCertHash, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0
+ #define PNPX_DEVICECATEGORY_HOME_SECURITY_SYSTEM             L"HomeSecurity"
+ #define PNPX_DEVICECATEGORY_OTHER                            L"Other"
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_DeviceCategory_Desc, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003005);   // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_Category_Desc_NonPlural,  0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003010);   // VT_LPWSTR | VT_VECTOR
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_PhysicalAddress, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003006);   // VT_UI1 | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_NetworkInterfaceLuid, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003007);   // VT_UI8
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_NetworkInterfaceGuid, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003008);   // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_IpAddress, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00003009);   // VT_LPWSTR | VT_VECTOR
+         // from Relationship metadata
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ServiceAddress, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00004000);   // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ServiceId, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00004001);   // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ServiceTypes, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00004002);   // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ServiceControlUrl, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x4004);    // VT_LPWSTR 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ServiceDescUrl, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x4005);    // VT_LPWSTR 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ServiceEventSubUrl, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x4006);    // VT_LPWSTR 
+ 
+         // Association DB PKEYs
+@@ -223,23 +309,32 @@ DEFINE_API_PKEY(PKEY_PNPX_AssociationState, AssociationState, 0x656A3BB3, 0xECC0
+ DEFINE_API_PKEY(PKEY_PNPX_AssociatedInstanceId, AssociatedInstanceId, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00000003); // VT_LPWSTR
+ DEFINE_API_PKEY(PKEY_PNPX_LastNotificationTime, LastNotificationTime, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00000004); // VT_DATE
+         // for Computer Discovery
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_DomainName, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00005000);   // VT_LPWSTR
+ // Use PKEY_ComputerName (propkey.h) DEFINE_PROPERTYKEY(PKEY_PNPX_MachineName, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00005001);   // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_ShareName, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00005002);   // VT_LPWSTR
+ 
+     // SSDP Provider custom properties
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_SSDP_AltLocationInfo, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00006000);   // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_SSDP_DevLifeTime, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00006001);   // VT_UI4
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_SSDP_NetworkInterface, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00006002);   // VT_BOOL
+ 
+ // FMTID_PNPXDynamicProperty = {4FC5077E-B686-44BE-93E3-86CAFE368CCD}
+ DEFINE_GUID(FMTID_PNPXDynamicProperty, 0x4FC5077E, 0xB686, 0x44BE, 0x93, 0xE3, 0x86, 0xCA, 0xFE, 0x36, 0x8C, 0xCD);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_Installable, 0x4FC5077E, 0xB686, 0x44BE, 0x93, 0xE3, 0x86, 0xCA, 0xFE, 0x36, 0x8C, 0xCD, 0x00000001); // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_Associated, 0x4FC5077E, 0xB686, 0x44BE, 0x93, 0xE3, 0x86, 0xCA, 0xFE, 0x36, 0x8C, 0xCD, 0x00000002); // VT_BOOL
+ // PKEY_PNPX_Installed is deprecated this PKEY really represents Associated state
+ #define PKEY_PNPX_Installed PKEY_PNPX_Associated    // Deprecated! Please use PKEY_PNPX_Associated
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_CompatibleTypes, 0x4FC5077E, 0xB686, 0x44BE, 0x93, 0xE3, 0x86, 0xCA, 0xFE, 0x36, 0x8C, 0xCD, 0x00000003); // VT_LPWSTR | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_InstallState, 0x4FC5077E, 0xB686, 0x44BE, 0x93, 0xE3, 0x86, 0xCA, 0xFE, 0x36, 0x8C, 0xCD, 0x00000004); // VT_UI4 | VT_VECTOR
+ #define PNPX_INSTALLSTATE_NOTINSTALLED  0   // vector length = 1
+ #define PNPX_INSTALLSTATE_INSTALLED     1   // vector length = 3, CM_Get_DevNode_Status in 2nd and 3rd elements
+@@ -247,37 +342,61 @@ DEFINE_PROPERTYKEY(PKEY_PNPX_InstallState, 0x4FC5077E, 0xB686, 0x44BE, 0x93, 0xE
+ #define PNPX_INSTALLSTATE_FAILED        3   // vector length = 3, CM_Get_DevNode_Status in 2nd and 3rd elements
+ 
+ // Other
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_Removable, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00007000);   // VT_BOOL
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_PNPX_IPBusEnumerated, 0x656A3BB3, 0xECC0, 0x43FD, 0x84, 0x77, 0x4A, 0xE0, 0x40, 0x4A, 0x96, 0xCD, 0x00007010);   // VT_BOOL
+ 
+     // WNET Provider properties
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WNET_Scope, 0xdebda43a, 0x37b3, 0x4383, 0x91, 0xE7, 0x44, 0x98, 0xda, 0x29, 0x95, 0xab, 0x00000001); // VT_UINT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WNET_Type, 0xdebda43a, 0x37b3, 0x4383, 0x91, 0xE7, 0x44, 0x98, 0xda, 0x29, 0x95, 0xab, 0x00000002); // VT_UINT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WNET_DisplayType, 0xdebda43a, 0x37b3, 0x4383, 0x91, 0xE7, 0x44, 0x98, 0xda, 0x29, 0x95, 0xab, 0x00000003); // VT_UINT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WNET_Usage, 0xdebda43a, 0x37b3, 0x4383, 0x91, 0xE7, 0x44, 0x98, 0xda, 0x29, 0x95, 0xab, 0x00000004); // VT_UINT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WNET_LocalName, 0xdebda43a, 0x37b3, 0x4383, 0x91, 0xE7, 0x44, 0x98, 0xda, 0x29, 0x95, 0xab, 0x00000005); // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WNET_RemoteName, 0xdebda43a, 0x37b3, 0x4383, 0x91, 0xE7, 0x44, 0x98, 0xda, 0x29, 0x95, 0xab, 0x00000006); // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WNET_Comment, 0xdebda43a, 0x37b3, 0x4383, 0x91, 0xE7, 0x44, 0x98, 0xda, 0x29, 0x95, 0xab, 0x00000007); // VT_LPWSTR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WNET_Provider, 0xdebda43a, 0x37b3, 0x4383, 0x91, 0xE7, 0x44, 0x98, 0xda, 0x29, 0x95, 0xab, 0x00000008); // VT_LPWSTR
+ 
+ 
+     // WCN Provider properties
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_Version, 0x88190b80, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x00000001); // VT_UI1
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_RequestType, 0x88190b81, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x00000002); // VT_INT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_AuthType, 0x88190b82, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x00000003); // VT_INT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_EncryptType, 0x88190b83, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x00000004); // VT_INT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_ConnType, 0x88190b84, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x00000005); // VT_INT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_ConfigMethods, 0x88190b85, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x00000006); // VT_INT
+ // map WCN DeviceType to PKEY_PNPX_DeviceCategory
+ //DEFINE_PROPERTYKEY(PKEY_WCN_DeviceType, 0x88190b86, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x00000007); // VT_INT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_RfBand, 0x88190b87, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x00000008); // VT_INT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_AssocState, 0x88190b88, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x00000009); // VT_INT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_ConfigError, 0x88190b89, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x0000000a); // VT_INT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_ConfigState, 0x88190b89, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x0000000b); // VT_UI1
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_DevicePasswordId, 0x88190b89, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x0000000c); // VT_INT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_OSVersion, 0x88190b89, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x0000000d); // VT_UINT
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_VendorExtension, 0x88190b8a, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x0000000e); // VT_UI1 | VT_VECTOR
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_WCN_RegistrarType, 0x88190b8b, 0x4684, 0x11da, 0xa2, 0x6a, 0x00, 0x02, 0xb3, 0x98, 0x8e, 0x81, 0x0000000f); // VT_INT
+ 
+ //-----------------------------------------------------------------------------
+@@ -293,71 +412,85 @@ DEFINE_PROPERTYKEY(PKEY_WCN_RegistrarType, 0x88190b8b, 0x4684, 0x11da, 0xa2, 0x6
+ //-----------------------------------------------------------------------------
+ // Hardware properties
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_Devinst, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 4097);
+ 
+ //  Name:     System.Hardware.DisplayAttribute -- PKEY_Hardware_DisplayAttribute
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 5
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_DisplayAttribute, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 5);
+ 
+ //  Name:     System.Hardware.DriverDate -- PKEY_Hardware_DriverDate
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 11
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_DriverDate, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 11);
+ 
+ //  Name:     System.Hardware.DriverProvider -- PKEY_Hardware_DriverProvider
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 10
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_DriverProvider, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 10);
+ 
+ //  Name:     System.Hardware.DriverVersion -- PKEY_Hardware_DriverVersion
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 9
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_DriverVersion, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 9);
+ 
+ //  Name:     System.Hardware.Function -- PKEY_Hardware_Function
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 4099
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_Function, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 4099);
+ 
+ //  Name:     System.Hardware.Icon -- PKEY_Hardware_Icon
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 3
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_Icon, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 3);
+ 
+ //  Name:     System.Hardware.Image -- PKEY_Hardware_Image
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 4098
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_Image, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 4098);
+ 
+ //  Name:     System.Hardware.Manufacturer -- PKEY_Hardware_Manufacturer
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 6
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_Manufacturer, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 6);
+ 
+ //  Name:     System.Hardware.Model -- PKEY_Hardware_Model
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 7
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_Model, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 7);
+ 
+ //  Name:     System.Hardware.Name -- PKEY_Hardware_Name
+ //  Type:     String -- VT_LPWSTR  (For variants: VT_BSTR)
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 2
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_Name, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 2);
+ 
+ //  Name:     System.Hardware.SerialNumber -- PKEY_Hardware_SerialNumber
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 8
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_SerialNumber, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 8);
+ 
+ //  Name:     System.Hardware.ShellAttributes -- PKEY_Hardware_ShellAttributes
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 4100
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_ShellAttributes, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 4100);
+ 
+ //  Name:     System.Hardware.Status -- PKEY_Hardware_Status
+ //  Type:     Unspecified -- VT_NULL
+ //  FormatID: 5EAF3EF2-E0CA-4598-BF06-71ED1D9DD953, 4096
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(PKEY_Hardware_Status, 0x5EAF3EF2, 0xE0CA, 0x4598, 0xBF, 0x06, 0x71, 0xED, 0x1D, 0x9D, 0xD9, 0x53, 4096);
+ 
+ 

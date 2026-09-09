@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h b/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h
-index d71e0a91..89377f84 100644
+index d71e0a91..d3c4d78f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h
 @@ -15,6 +15,9 @@ Abstract:
@@ -12,7 +12,13 @@ index d71e0a91..89377f84 100644
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -207,6 +210,7 @@ PerfStartProvider(
+@@ -202,11 +205,13 @@ WINAPI
+ // Usually PerfSetCounterSetInfo() calls is automatically generated PerfAutoStartUp() function (generated
+ // by schema generation/parsing tool) to inform PERFLIB the layout of specific counterset.
+ //
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfStartProvider(
      _In_     LPGUID          ProviderGuid,
      _In_opt_ PERFLIBREQUEST  ControlCallback,
      _Out_    HANDLE        * phProvider
@@ -20,39 +26,151 @@ index d71e0a91..89377f84 100644
  );
  
  // Start PERFLIB V2 provider with customized memory allocation/free routines.
-@@ -228,6 +232,7 @@ PerfStartProviderEx(
+@@ -223,25 +228,31 @@ typedef struct _PROVIDER_CONTEXT {
+     LPVOID         pMemContext;
+ } PERF_PROVIDER_CONTEXT, * PPERF_PROVIDER_CONTEXT;
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfStartProviderEx(
      _In_ LPGUID ProviderGuid,
      _In_opt_ PPERF_PROVIDER_CONTEXT ProviderContext,
      _Out_ PHANDLE Provider
 +        _Win32_metadata_raii_free_(PerfStopProvider)
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
  ULONG WINAPI
-@@ -235,6 +240,7 @@ PerfStartProvider(
+ PerfStartProvider(
      _In_ LPGUID ProviderGuid,
      _In_opt_ PERFLIBREQUEST ControlCallback,
      _Out_ PHANDLE Provider
 +        _Win32_metadata_raii_free_(PerfStopProvider)
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
  ULONG WINAPI
-@@ -249,6 +255,7 @@ PerfSetCounterSetInfo(
+ PerfStopProvider(
+     _In_ HANDLE ProviderHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfSetCounterSetInfo(
+     _In_ HANDLE ProviderHandle,
+@@ -249,6 +260,8 @@ PerfSetCounterSetInfo(
      _In_ ULONG TemplateSize
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  PPERF_COUNTERSET_INSTANCE WINAPI
  PerfCreateInstance(
      _In_ HANDLE ProviderHandle,
-@@ -263,6 +270,7 @@ PerfDeleteInstance(
+@@ -257,12 +270,15 @@ PerfCreateInstance(
+     _In_ ULONG Id
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfDeleteInstance(
+     _In_ HANDLE Provider,
      _In_ PPERF_COUNTERSET_INSTANCE InstanceBlock
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  PPERF_COUNTERSET_INSTANCE WINAPI
  PerfQueryInstance(
      _In_ HANDLE ProviderHandle,
-@@ -812,6 +820,7 @@ WINAPI
+@@ -271,6 +287,7 @@ PerfQueryInstance(
+     _In_ ULONG Id
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfSetCounterRefValue(
+     _In_ HANDLE Provider,
+@@ -279,6 +296,7 @@ PerfSetCounterRefValue(
+     _In_ PVOID Address
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfSetULongCounterValue(
+     _In_ HANDLE Provider,
+@@ -287,6 +305,7 @@ PerfSetULongCounterValue(
+     _In_ ULONG Value
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfSetULongLongCounterValue(
+     _In_ HANDLE Provider,
+@@ -295,6 +314,7 @@ PerfSetULongLongCounterValue(
+     _In_ ULONGLONG Value
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfIncrementULongCounterValue(
+     _In_ HANDLE Provider,
+@@ -303,6 +323,7 @@ PerfIncrementULongCounterValue(
+     _In_ ULONG Value
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfIncrementULongLongCounterValue(
+     _In_ HANDLE Provider,
+@@ -311,6 +332,7 @@ PerfIncrementULongLongCounterValue(
+     _In_ ULONGLONG Value
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfDecrementULongCounterValue(
+     _In_ HANDLE Provider,
+@@ -319,6 +341,7 @@ PerfDecrementULongCounterValue(
+     _In_ ULONG Value
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ ULONG WINAPI
+ PerfDecrementULongLongCounterValue(
+     _In_ HANDLE Provider,
+@@ -671,6 +694,7 @@ returned by the function.
+ - Other: On return, the value *pcCounterSetIdsActual is undefined and should
+   not be used.
+ */
++_Win32_metadata_supported_os_(windows10.0.14393)
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI
+@@ -719,6 +743,7 @@ of a PERF_INSTANCE_HEADER immediately followed by a nul-terminated utf-16le
+ instance name, followed by padding so that the size of the
+ PERF_INSTANCE_HEADER block is a multiple of 8.
+ */
++_Win32_metadata_supported_os_(windows10.0.14393)
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI
+@@ -775,6 +800,7 @@ Remarks:
+ See the PerfRegInfoType enum for the types of data that can be requested and
+ the formats of the data returned for each type of request.
+ */
++_Win32_metadata_supported_os_(windows10.0.14393)
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI
+@@ -806,12 +832,14 @@ phQuery:
+ Receives the query handle. The handle should be closed with
+ PerfCloseQueryHandle when it is no longer needed.
+ */
++_Win32_metadata_supported_os_(windows10.0.14393)
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI
  PerfOpenQueryHandle(
      _In_opt_z_ LPCWSTR szMachine,
      _Out_ HANDLE * phQuery
@@ -60,3 +178,43 @@ index d71e0a91..89377f84 100644
      );
  
  /*
+@@ -822,6 +850,7 @@ Closes a query handle that was opened by PerfOpenQueryHandle.
+ hQuery:
+ The query handle to be closed.
+ */
++_Win32_metadata_supported_os_(windows10.0.14393)
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI
+@@ -864,6 +893,7 @@ The size of each block (including the PERF_COUNTER_IDENTIFIER, InstanceName,
+ and padding) is determined by the PERF_COUNTER_IDENTIFIER Size field, which
+ will be a multiple of 8 bytes.
+ */
++_Win32_metadata_supported_os_(windows10.0.14393)
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI
+@@ -908,6 +938,7 @@ structure followed by a sequence of PERF_COUNTER_HEADER blocks. See the
+ description of the PERF_DATA_HEADER and PERF_COUNTER_HEADER structures for
+ details.
+ */
++_Win32_metadata_supported_os_(windows10.0.14393)
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI
+@@ -963,6 +994,7 @@ PerfAddCounters will attempt to add one counter specification to the query for
+ each PERF_COUNTER_IDENTIFIER block, and will update the Status field of each
+ block with the result of the attempt.
+ */
++_Win32_metadata_supported_os_(windows10.0.14393)
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI
+@@ -999,6 +1031,7 @@ PerfDeleteCounters will attempt to remove one counter specification from the
+ query for each PERF_COUNTER_IDENTIFIER block, and will update the Status field
+ of each block with the result of the attempt.
+ */
++_Win32_metadata_supported_os_(windows10.0.14393)
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI

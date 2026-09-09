@@ -1,0 +1,43 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RasDlg.h b/generation/WinSDK/RecompiledIdlHeaders/um/RasDlg.h
+index 571416aa..b8e8d7bb 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/RasDlg.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/RasDlg.h
+@@ -24,6 +24,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -249,22 +252,28 @@ typedef BOOL (WINAPI *RasCustomEntryDlgFn) (
+ 
+ /* RAS common dialog API prototypes.
+ */
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL APIENTRY RasPhonebookDlgA(
+     _In_opt_ LPSTR lpszPhonebook, _In_opt_ LPSTR lpszEntry, LPRASPBDLGA lpInfo );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL APIENTRY RasPhonebookDlgW(
+     _In_opt_ LPWSTR lpszPhonebook, _In_opt_ LPWSTR lpszEntry, LPRASPBDLGW lpInfo );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL APIENTRY RasEntryDlgA(
+     _In_opt_ LPSTR lpszPhonebook, _In_opt_ LPSTR lpszEntry, LPRASENTRYDLGA lpInfo );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL APIENTRY RasEntryDlgW(
+     _In_opt_ LPWSTR lpszPhonebook, _In_opt_ LPWSTR lpszEntry, LPRASENTRYDLGW lpInfo );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL APIENTRY RasDialDlgA(
+     _In_opt_ LPSTR lpszPhonebook, _In_opt_ LPSTR lpszEntry, _In_opt_ LPSTR lpszPhoneNumber,
+     _Inout_ LPRASDIALDLG lpInfo );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL APIENTRY RasDialDlgW(
+     _In_opt_ LPWSTR lpszPhonebook, _In_opt_ LPWSTR lpszEntry, _In_opt_ LPWSTR lpszPhoneNumber,
+     _Inout_ LPRASDIALDLG lpInfo );

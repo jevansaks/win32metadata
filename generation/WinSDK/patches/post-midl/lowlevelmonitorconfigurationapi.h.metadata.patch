@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/lowlevelmonitorconfigurationapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/lowlevelmonitorconfigurationapi.h
-index 576d053d..532396f5 100644
+index 576d053d..733d0ce6 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/lowlevelmonitorconfigurationapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/lowlevelmonitorconfigurationapi.h
 @@ -5,6 +5,9 @@
@@ -12,32 +12,40 @@ index 576d053d..532396f5 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -32,6 +35,7 @@ typedef enum _MC_VCP_CODE_TYPE
+@@ -32,6 +35,8 @@ typedef enum _MC_VCP_CODE_TYPE
  
  } MC_VCP_CODE_TYPE, *LPMC_VCP_CODE_TYPE;
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _BOOL WINAPI GetVCPFeatureAndVCPFeatureReply
      (
      HANDLE hMonitor,
-@@ -43,10 +47,13 @@ _BOOL WINAPI GetVCPFeatureAndVCPFeatureReply
+@@ -41,12 +46,19 @@ _BOOL WINAPI GetVCPFeatureAndVCPFeatureReply
+     _Out_opt_ LPDWORD pdwMaximumValue
+     );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
  _BOOL WINAPI SetVCPFeature( HANDLE hMonitor, BYTE bVCPCode, DWORD dwNewValue );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _BOOL WINAPI SaveCurrentSettings( HANDLE hMonitor );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _BOOL WINAPI GetCapabilitiesStringLength( HANDLE hMonitor, _Out_ LPDWORD pdwCapabilitiesStringLengthInCharacters );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _BOOL WINAPI CapabilitiesRequestAndCapabilitiesReply 
      (
      HANDLE hMonitor, 
-@@ -54,6 +61,7 @@ _BOOL WINAPI CapabilitiesRequestAndCapabilitiesReply
+@@ -54,6 +66,8 @@ _BOOL WINAPI CapabilitiesRequestAndCapabilitiesReply
      DWORD dwCapabilitiesStringLengthInCharacters
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  _BOOL WINAPI GetTimingReport( HANDLE hMonitor, _Out_ LPMC_TIMING_REPORT pmtrMonitorTimingReport );
  

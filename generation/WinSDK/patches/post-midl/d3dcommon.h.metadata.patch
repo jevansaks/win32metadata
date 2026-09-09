@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d3dcommon.h b/generation/WinSDK/RecompiledIdlHeaders/um/d3dcommon.h
+index 359a1763..0ff88429 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/d3dcommon.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/d3dcommon.h
+@@ -32,6 +32,9 @@
+ 
+ #ifndef __d3dcommon_h__
+ #define __d3dcommon_h__
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #if defined(_MSC_VER) && (_MSC_VER >= 1020)
+ #pragma once
+@@ -521,6 +524,7 @@ EXTERN_C const IID IID_ID3DDestructionNotifier;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("a06eb39a-50da-425b-8c31-4eecd6c270f3")
+     ID3DDestructionNotifier : public IUnknown
+     {

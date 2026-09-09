@@ -1,0 +1,148 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ctfutb.h b/generation/WinSDK/RecompiledIdlHeaders/um/ctfutb.h
+index 41e6a160..972928e9 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ctfutb.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ctfutb.h
+@@ -165,6 +165,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ //=--------------------------------------------------------------------------=
+ // ctfutb.h
+ 
+@@ -263,6 +266,7 @@ EXTERN_C const IID IID_ITfLangBarMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("87955690-e627-11d2-8ddb-00105a2799b5")
+     ITfLangBarMgr : public IUnknown
+     {
+@@ -506,6 +510,7 @@ EXTERN_C const IID IID_ITfLangBarEventSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("18a4e900-e0ae-11d2-afdd-00105a2799b5")
+     ITfLangBarEventSink : public IUnknown
+     {
+@@ -678,6 +683,7 @@ EXTERN_C const IID IID_ITfLangBarItemSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("57dbe1a0-de25-11d2-afdd-00105a2799b5")
+     ITfLangBarItemSink : public IUnknown
+     {
+@@ -765,6 +771,7 @@ EXTERN_C const IID IID_IEnumTfLangBarItems;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("583f34d0-de25-11d2-afdd-00105a2799b5")
+     IEnumTfLangBarItems : public IUnknown
+     {
+@@ -922,6 +929,7 @@ EXTERN_C const IID IID_ITfLangBarItemMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("ba468c55-9956-4fb1-a59d-52a7dd7cc6aa")
+     ITfLangBarItemMgr : public IUnknown
+     {
+@@ -1224,6 +1232,7 @@ EXTERN_C const IID IID_ITfLangBarItem;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("73540d69-edeb-4ee9-96c9-23aa30b25916")
+     ITfLangBarItem : public IUnknown
+     {
+@@ -1362,6 +1371,7 @@ EXTERN_C const IID IID_ITfSystemLangBarItemSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("1449d9ab-13cf-4687-aa3e-8d8b18574396")
+     ITfSystemLangBarItemSink : public IUnknown
+     {
+@@ -1462,6 +1472,7 @@ EXTERN_C const IID IID_ITfSystemLangBarItem;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("1e13e9ec-6b33-4d4a-b5eb-8a92f029f356")
+     ITfSystemLangBarItem : public IUnknown
+     {
+@@ -1566,6 +1577,7 @@ EXTERN_C const IID IID_ITfSystemLangBarItemText;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("5c4ce0e5-ba49-4b52-ac6b-3b397b4f701f")
+     ITfSystemLangBarItemText : public IUnknown
+     {
+@@ -1670,6 +1682,7 @@ EXTERN_C const IID IID_ITfSystemDeviceTypeLangBarItem;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("45672eb9-9059-46a2-838d-4530355f6a77")
+     ITfSystemDeviceTypeLangBarItem : public IUnknown
+     {
+@@ -1793,6 +1806,7 @@ EXTERN_C const IID IID_ITfLangBarItemButton;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("28c7f1d0-de25-11d2-afdd-00105a2799b5")
+     ITfLangBarItemButton : public ITfLangBarItem
+     {
+@@ -1977,6 +1991,7 @@ EXTERN_C const IID IID_ITfLangBarItemBitmapButton;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("a26a0525-3fae-4fa0-89ee-88a964f9f1b5")
+     ITfLangBarItemBitmapButton : public ITfLangBarItem
+     {
+@@ -2194,6 +2209,7 @@ EXTERN_C const IID IID_ITfLangBarItemBitmap;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("73830352-d722-4179-ada5-f045c98df355")
+     ITfLangBarItemBitmap : public ITfLangBarItem
+     {
+@@ -2398,6 +2414,7 @@ EXTERN_C const IID IID_ITfLangBarItemBalloon;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("01C2D285-D3C7-4B7B-B5B5-D97411D0C283")
+     ITfLangBarItemBalloon : public ITfLangBarItem
+     {
+@@ -2582,6 +2599,7 @@ EXTERN_C const IID IID_ITfMenu;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6F8A98E4-AAA0-4F15-8C5B-07E0DF0A3DD8")
+     ITfMenu : public IUnknown
+     {
+@@ -2715,9 +2733,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
+ unsigned char * __RPC_USER  HWND_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
+ void                      __RPC_USER  HWND_UserFree(     __RPC__in unsigned long *, __RPC__in HWND * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
+ unsigned long             __RPC_USER  HBITMAP_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HBITMAP * ); 

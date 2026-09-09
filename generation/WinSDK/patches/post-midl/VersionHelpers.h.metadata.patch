@@ -1,0 +1,120 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/VersionHelpers.h b/generation/WinSDK/RecompiledIdlHeaders/um/VersionHelpers.h
+index e4541b52..924a335d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/VersionHelpers.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/VersionHelpers.h
+@@ -9,6 +9,9 @@
+ *                                                                 *
+ ******************************************************************/
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifdef _MSC_VER
+ #pragma once
+@@ -36,10 +39,12 @@
+ 
+ #endif // __cplusplus
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ VERSIONHELPERAPI
+ IsWindowsVersionOrGreater(WORD wMajorVersion, WORD wMinorVersion, WORD wServicePackMajor)
+ {
+     OSVERSIONINFOEXW osvi = { sizeof(osvi), 0, 0, 0, 0, {0}, 0, 0 };
++_Win32_metadata_supported_os_(windows5.0)
+     DWORDLONG        const dwlConditionMask = VerSetConditionMask(
+         VerSetConditionMask(
+         VerSetConditionMask(
+@@ -54,66 +59,77 @@ IsWindowsVersionOrGreater(WORD wMajorVersion, WORD wMinorVersion, WORD wServiceP
+     return VerifyVersionInfoW(&osvi, VER_MAJORVERSION | VER_MINORVERSION | VER_SERVICEPACKMAJOR, dwlConditionMask) != FALSE;
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindowsXPOrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINXP), LOBYTE(_WIN32_WINNT_WINXP), 0);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindowsXPSP1OrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINXP), LOBYTE(_WIN32_WINNT_WINXP), 1);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindowsXPSP2OrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINXP), LOBYTE(_WIN32_WINNT_WINXP), 2);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindowsXPSP3OrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINXP), LOBYTE(_WIN32_WINNT_WINXP), 3);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindowsVistaOrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_VISTA), LOBYTE(_WIN32_WINNT_VISTA), 0);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindowsVistaSP1OrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_VISTA), LOBYTE(_WIN32_WINNT_VISTA), 1);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindowsVistaSP2OrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_VISTA), LOBYTE(_WIN32_WINNT_VISTA), 2);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindows7OrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WIN7), LOBYTE(_WIN32_WINNT_WIN7), 0);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindows7SP1OrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WIN7), LOBYTE(_WIN32_WINNT_WIN7), 1);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindows8OrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WIN8), LOBYTE(_WIN32_WINNT_WIN8), 0);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindows8Point1OrGreater()
+ {
+@@ -126,12 +142,14 @@ IsWindowsThresholdOrGreater()
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINTHRESHOLD), LOBYTE(_WIN32_WINNT_WINTHRESHOLD), 0);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindows10OrGreater()
+ {
+     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINTHRESHOLD), LOBYTE(_WIN32_WINNT_WINTHRESHOLD), 0);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VERSIONHELPERAPI
+ IsWindowsServer()
+ {

@@ -1,0 +1,76 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TextStor.h b/generation/WinSDK/RecompiledIdlHeaders/um/TextStor.h
+index 45ad73d5..82b621e6 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/TextStor.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/TextStor.h
+@@ -101,6 +101,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Application Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
+ 
+@@ -303,6 +306,7 @@ EXTERN_C const IID IID_ITextStoreACP;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("28888fe3-c2a0-483a-a3ea-8cb1ce51ff3d")
+     ITextStoreACP : public IUnknown
+     {
+@@ -1007,6 +1011,7 @@ EXTERN_C const IID IID_ITextStoreACP2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("f86ad89f-5fe4-4b8d-bb9f-ef3797a84f1f")
+     ITextStoreACP2 : public IUnknown
+     {
+@@ -1682,6 +1687,7 @@ EXTERN_C const IID IID_ITextStoreACPSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("22d44c94-a419-4542-a272-ae26093ececf")
+     ITextStoreACPSink : public IUnknown
+     {
+@@ -1894,6 +1900,7 @@ EXTERN_C const IID IID_IAnchor;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("0feb7e34-5a60-4356-8ef7-abdec2ff7cf8")
+     IAnchor : public IUnknown
+     {
+@@ -2139,6 +2146,7 @@ EXTERN_C const IID IID_ITextStoreAnchor;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("9b2077b0-5f18-4dec-bee9-3cc722f5dfe0")
+     ITextStoreAnchor : public IUnknown
+     {
+@@ -2820,6 +2828,7 @@ EXTERN_C const IID IID_ITextStoreAnchorSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e905-2021-11d2-93e0-0060b067b86e")
+     ITextStoreAnchorSink : public IUnknown
+     {
+@@ -3036,9 +3045,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+ unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
+ void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

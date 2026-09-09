@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dbdao.h b/generation/WinSDK/RecompiledIdlHeaders/um/dbdao.h
+index 254dbccd..e8d16833 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dbdao.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dbdao.h
+@@ -36,6 +36,9 @@ Microsoft Data Access Objects SDK product.
+ #include <daogetrw.h>
+ #include <dbdaoid.h>
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -228,6 +231,7 @@ class DLLEXPORT CdbDBEngine : public CdbObject
+ 	LONG							GetDefaultType			(VOID);
+ 	VOID                            SetLoginTimeout         (SHORT s);
+ 	SHORT                           GetLoginTimeout         (VOID);
++_Win32_metadata_supported_os_(windows5.0)
+ 	CString                         GetVersion              (VOID);
+ 	CString                         GetSystemDB             (VOID);
+ 	VOID                            SetSystemDB             (LPCTSTR pstr);
+@@ -325,6 +329,7 @@ class DLLEXPORT CdbDatabase : public CdbObject
+ 	VOID                    SetQueryTimeout         (SHORT s);
+ 	BOOL                    GetTransactions         (VOID);
+ 	BOOL                    GetUpdatable            (VOID);
++_Win32_metadata_supported_os_(windows5.0)
+ 	CString                 GetVersion              (VOID);
+ 	LONG                    GetRecordsAffected      (VOID);
+ 	CdbConnection			GetConnection			(VOID);

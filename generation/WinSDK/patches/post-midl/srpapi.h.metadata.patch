@@ -1,12 +1,80 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h
-index ee75494a..2c9979a2 100644
+index ee75494a..d1b4c87f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h
-@@ -53,6 +53,7 @@ STDAPI
+@@ -8,6 +8,9 @@
+ 
+ #ifndef _APISETSRPEXT_
+ #define _APISETSRPEXT_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -49,23 +52,28 @@ typedef struct HTHREAD_NETWORK_CONTEXT
+     HANDLE ThreadContext;
+ } HTHREAD_NETWORK_CONTEXT;
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI
  SrpCreateThreadNetworkContext(
      _In_ PCWSTR enterpriseId,
      _Out_ HTHREAD_NETWORK_CONTEXT* threadNetworkContext
 +        _Win32_metadata_raii_free_(SrpCloseThreadNetworkContext)
      );
  
++_Win32_metadata_supported_os_(windows10.0.10240)
  STDAPI
+ SrpCloseThreadNetworkContext(
+     _Inout_ HTHREAD_NETWORK_CONTEXT* threadNetworkContext
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI
+ SrpSetTokenEnterpriseId(
+     _In_ HANDLE tokenHandle,
+     _In_opt_ PCWSTR enterpriseId
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI
+ SrpGetEnterpriseIds(
+     _In_ HANDLE tokenHandle,
+@@ -74,11 +82,13 @@ SrpGetEnterpriseIds(
+     _Out_ PULONG enterpriseIdCount
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI
+ SrpEnablePermissiveModeFileEncryption(
+     _In_opt_ PCWSTR enterpriseId
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI
+ SrpDisablePermissiveModeFileEncryption(
+     VOID
+@@ -96,12 +106,14 @@ typedef enum
+ 
+ DEFINE_ENUM_FLAG_OPERATORS(ENTERPRISE_DATA_POLICIES);
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI
+ SrpGetEnterprisePolicy(
+     _In_ HANDLE tokenHandle,
+     _Out_ ENTERPRISE_DATA_POLICIES* policyFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ NTSTATUS
+ SrpIsTokenService(
+     _In_ HANDLE TokenHandle,
+@@ -118,6 +130,7 @@ SrpIsTokenService(
+ 
+ #include <appmodel.h>
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ STDAPI
+ SrpDoesPolicyAllowAppExecution(
+     _In_ const PACKAGE_ID* packageId,

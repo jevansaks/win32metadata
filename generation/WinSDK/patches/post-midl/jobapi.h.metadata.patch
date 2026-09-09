@@ -1,0 +1,23 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/jobapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/jobapi.h
+index a4364d75..e3c56586 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/jobapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/jobapi.h
+@@ -15,6 +15,9 @@
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #include <minwindef.h>
+ #include <minwinbase.h>
+ 
+@@ -27,6 +30,8 @@ extern "C" {
+ 
+ #if (_WIN32_WINNT >= 0x0501)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI

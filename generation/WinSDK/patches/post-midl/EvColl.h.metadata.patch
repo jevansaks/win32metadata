@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h b/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h
-index 64679132..b53fff8e 100644
+index 64679132..cb4f6fd8 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h
 @@ -16,6 +16,9 @@ Abstract:
@@ -12,19 +12,110 @@ index 64679132..b53fff8e 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -179,6 +182,7 @@ typedef enum _EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS
+@@ -179,10 +182,13 @@ typedef enum _EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS
  } EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS;
  
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  EC_HANDLE WINAPI EcOpenSubscriptionEnum(
      DWORD Flags 
      );
-@@ -191,6 +195,7 @@ BOOL WINAPI EcEnumNextSubscription(
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcEnumNextSubscription( 
+     EC_HANDLE SubscriptionEnum,
+     DWORD SubscriptionNameBufferSize,
+@@ -191,12 +197,15 @@ BOOL WINAPI EcEnumNextSubscription(
      _Out_ PDWORD SubscriptionNameBufferUsed
      );
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  EC_HANDLE WINAPI EcOpenSubscription(
      LPCWSTR SubscriptionName,
      DWORD AccessMask,
+     DWORD Flags 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcSetSubscriptionProperty( 
+     EC_HANDLE Subscription,
+     EC_SUBSCRIPTION_PROPERTY_ID PropertyId,
+@@ -204,6 +213,7 @@ BOOL WINAPI EcSetSubscriptionProperty(
+     PEC_VARIANT PropertyValue
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcGetSubscriptionProperty( 
+     EC_HANDLE Subscription,
+     EC_SUBSCRIPTION_PROPERTY_ID PropertyId,
+@@ -213,21 +223,25 @@ BOOL WINAPI EcGetSubscriptionProperty(
+     _Out_ PDWORD PropertyValueBufferUsed 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcSaveSubscription( 
+     EC_HANDLE Subscription,
+     DWORD Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcDeleteSubscription(
+     LPCWSTR SubscriptionName,
+     DWORD   Flags 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcGetObjectArraySize( 
+     EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray,
+     _Out_ PDWORD ObjectArraySize 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcSetObjectArrayProperty( 
+     EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, 
+     EC_SUBSCRIPTION_PROPERTY_ID PropertyId,
+@@ -236,6 +250,7 @@ BOOL WINAPI EcSetObjectArrayProperty(
+     PEC_VARIANT PropertyValue
+     );
+  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcGetObjectArrayProperty( 
+     EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, 
+     EC_SUBSCRIPTION_PROPERTY_ID PropertyId,
+@@ -246,16 +261,19 @@ BOOL WINAPI EcGetObjectArrayProperty(
+     _Out_ PDWORD PropertyValueBufferUsed 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcInsertObjectArrayElement( 
+     EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, 
+     DWORD ArrayIndex 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcRemoveObjectArrayElement( 
+     EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, 
+     DWORD ArrayIndex 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcGetSubscriptionRunTimeStatus( 
+     LPCWSTR SubscriptionName,
+     EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID StatusInfoId,
+@@ -266,12 +284,14 @@ BOOL WINAPI EcGetSubscriptionRunTimeStatus(
+     _Out_ PDWORD StatusValueBufferUsed 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcRetrySubscription(
+     LPCWSTR SubscriptionName,
+     LPCWSTR EventSourceName,
+     DWORD Flags 
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ BOOL WINAPI EcClose( 
+     EC_HANDLE Object
+     );

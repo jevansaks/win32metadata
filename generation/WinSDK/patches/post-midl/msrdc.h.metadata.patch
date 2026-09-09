@@ -1,0 +1,150 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msrdc.h b/generation/WinSDK/RecompiledIdlHeaders/um/msrdc.h
+index 84f97480..891483cf 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/msrdc.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/msrdc.h
+@@ -371,6 +371,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #define	RDCE_TABLE_FULL	( 0x80040001 )
+@@ -532,6 +535,7 @@ EXTERN_C const IID IID_IRdcGeneratorParameters;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A71-9DBC-11DA-9E3F-0011114AE311")
+     IRdcGeneratorParameters : public IUnknown
+     {
+@@ -670,6 +674,7 @@ EXTERN_C const IID IID_IRdcGeneratorFilterMaxParameters;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A72-9DBC-11DA-9E3F-0011114AE311")
+     IRdcGeneratorFilterMaxParameters : public IUnknown
+     {
+@@ -796,6 +801,7 @@ EXTERN_C const IID IID_IRdcGenerator;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A73-9DBC-11DA-9E3F-0011114AE311")
+     IRdcGenerator : public IUnknown
+     {
+@@ -920,6 +926,7 @@ EXTERN_C const IID IID_IRdcFileReader;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A74-9DBC-11DA-9E3F-0011114AE311")
+     IRdcFileReader : public IUnknown
+     {
+@@ -1049,6 +1056,7 @@ EXTERN_C const IID IID_IRdcFileWriter;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A75-9DBC-11DA-9E3F-0011114AE311")
+     IRdcFileWriter : public IRdcFileReader
+     {
+@@ -1198,6 +1206,7 @@ EXTERN_C const IID IID_IRdcSignatureReader;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A76-9DBC-11DA-9E3F-0011114AE311")
+     IRdcSignatureReader : public IUnknown
+     {
+@@ -1302,6 +1311,7 @@ EXTERN_C const IID IID_IRdcComparator;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A77-9DBC-11DA-9E3F-0011114AE311")
+     IRdcComparator : public IUnknown
+     {
+@@ -1405,6 +1415,7 @@ EXTERN_C const IID IID_IRdcLibrary;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A78-9DBC-11DA-9E3F-0011114AE311")
+     IRdcLibrary : public IUnknown
+     {
+@@ -1614,6 +1625,7 @@ EXTERN_C const IID IID_ISimilarityReportProgress;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A7A-9DBC-11DA-9E3F-0011114AE311")
+     ISimilarityReportProgress : public IUnknown
+     {
+@@ -1701,6 +1713,7 @@ EXTERN_C const IID IID_ISimilarityTableDumpState;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A7B-9DBC-11DA-9E3F-0011114AE311")
+     ISimilarityTableDumpState : public IUnknown
+     {
+@@ -1800,6 +1813,7 @@ EXTERN_C const IID IID_ISimilarityTraitsMappedView;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A7C-9DBC-11DA-9E3F-0011114AE311")
+     ISimilarityTraitsMappedView : public IUnknown
+     {
+@@ -1934,6 +1948,7 @@ EXTERN_C const IID IID_ISimilarityTraitsMapping;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A7D-9DBC-11DA-9E3F-0011114AE311")
+     ISimilarityTraitsMapping : public IUnknown
+     {
+@@ -2127,6 +2142,7 @@ EXTERN_C const IID IID_ISimilarityTraitsTable;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A7E-9DBC-11DA-9E3F-0011114AE311")
+     ISimilarityTraitsTable : public IUnknown
+     {
+@@ -2330,6 +2346,7 @@ EXTERN_C const IID IID_ISimilarityFileIdTable;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A7F-9DBC-11DA-9E3F-0011114AE311")
+     ISimilarityFileIdTable : public IUnknown
+     {
+@@ -2529,6 +2546,7 @@ EXTERN_C const IID IID_IRdcSimilarityGenerator;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A80-9DBC-11DA-9E3F-0011114AE311")
+     IRdcSimilarityGenerator : public IUnknown
+     {
+@@ -2625,6 +2643,7 @@ EXTERN_C const IID IID_IFindSimilarResults;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A81-9DBC-11DA-9E3F-0011114AE311")
+     IFindSimilarResults : public IUnknown
+     {
+@@ -2729,6 +2748,7 @@ EXTERN_C const IID IID_ISimilarity;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("96236A83-9DBC-11DA-9E3F-0011114AE311")
+     ISimilarity : public IUnknown
+     {

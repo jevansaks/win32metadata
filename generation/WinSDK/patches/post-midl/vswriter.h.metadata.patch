@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vswriter.h b/generation/WinSDK/RecompiledIdlHeaders/um/vswriter.h
+index 1f7de49f..1c5588a0 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/vswriter.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/vswriter.h
+@@ -13,6 +13,9 @@ Abstract:
+ #define __CVSS_WRITER_H_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -1382,6 +1385,7 @@ public:
+ 
+ 
+ extern "C"  {
++_Win32_metadata_supported_os_(windows6.1)
+     HRESULT STDAPICALLTYPE CreateVssExpressWriterInternal
+         (
+         _Out_ IVssExpressWriter **ppWriter
+@@ -1389,6 +1393,7 @@ extern "C"  {
+ }
+ 
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ inline HRESULT  CreateVssExpressWriter
+     (
+     _Out_ IVssExpressWriter **ppWriter

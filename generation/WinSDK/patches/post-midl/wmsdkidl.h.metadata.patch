@@ -1,0 +1,126 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wmsdkidl.h b/generation/WinSDK/RecompiledIdlHeaders/um/wmsdkidl.h
+index 6132846e..f7f7bd11 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wmsdkidl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wmsdkidl.h
+@@ -717,6 +717,9 @@ extern "C"{
+ //
+ //=========================================================================
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ typedef unsigned __int64 QWORD;
+@@ -2764,6 +2767,7 @@ EXTERN_C const IID IID_IWMDRMWriter;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("d6ea5dd0-12a0-43f4-90ab-a3fd451e6a07")
+     IWMDRMWriter : public IUnknown
+     {
+@@ -2946,6 +2950,7 @@ EXTERN_C const IID IID_IWMDRMWriter2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("38ee7a94-40e2-4e10-aa3f-33fd3210ed5b")
+     IWMDRMWriter2 : public IWMDRMWriter
+     {
+@@ -3096,6 +3101,7 @@ EXTERN_C const IID IID_IWMDRMWriter3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("a7184082-a4aa-4dde-ac9c-e75dbd1117ce")
+     IWMDRMWriter3 : public IWMDRMWriter2
+     {
+@@ -5532,6 +5538,7 @@ EXTERN_C const IID IID_IWMDRMEditor;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("FF130EBC-A6C3-42A6-B401-C3382C3E08B3")
+     IWMDRMEditor : public IUnknown
+     {
+@@ -16372,6 +16379,7 @@ EXTERN_C const IID IID_IWMDRMReader;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("D2827540-3EE7-432c-B14C-DC17F085D3B3")
+     IWMDRMReader : public IUnknown
+     {
+@@ -16612,6 +16620,7 @@ EXTERN_C const IID IID_IWMDRMReader2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("befe7a75-9f1d-4075-b9d9-a3c37bda49a0")
+     IWMDRMReader2 : public IWMDRMReader
+     {
+@@ -16827,6 +16836,7 @@ EXTERN_C const IID IID_IWMDRMReader3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("e08672de-f1e7-4ff4-a0a3-fc4b08e4caf8")
+     IWMDRMReader3 : public IWMDRMReader2
+     {
+@@ -18661,6 +18671,7 @@ EXTERN_C const IID IID_IWMLicenseBackup;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("05E5AC9F-3FB6-4508-BB43-A4067BA1EBE8")
+     IWMLicenseBackup : public IUnknown
+     {
+@@ -18761,6 +18772,7 @@ EXTERN_C const IID IID_IWMLicenseRestore;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("C70B6334-A22E-4efb-A245-15E65A004A13")
+     IWMLicenseRestore : public IUnknown
+     {
+@@ -18861,6 +18873,7 @@ EXTERN_C const IID IID_IWMBackupRestoreProps;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("3C8E0DA6-996F-4ff3-A1AF-4838F9377E2E")
+     IWMBackupRestoreProps : public IUnknown
+     {
+@@ -19931,6 +19944,7 @@ EXTERN_C const IID IID_IWMDeviceRegistration;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("f6211f03-8d21-4e94-93e6-8510805f2d99")
+     IWMDeviceRegistration : public IUnknown
+     {
+@@ -20399,6 +20413,7 @@ EXTERN_C const IID IID_IWMProximityDetection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("6A9FD8EE-B651-4bf0-B849-7D4ECE79A2B1")
+     IWMProximityDetection : public IUnknown
+     {
+@@ -20514,6 +20529,7 @@ EXTERN_C const IID IID_IWMDRMMessageParser;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("A73A0072-25A0-4c99-B4A5-EDE8101A6C39")
+     IWMDRMMessageParser : public IUnknown
+     {
+@@ -20642,6 +20658,7 @@ EXTERN_C const IID IID_IWMDRMTranscryptor;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.1.2600)
+     MIDL_INTERFACE("69059850-6E6F-4bb2-806F-71863DDFC471")
+     IWMDRMTranscryptor : public IUnknown
+     {

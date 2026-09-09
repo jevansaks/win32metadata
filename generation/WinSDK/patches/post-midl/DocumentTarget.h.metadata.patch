@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DocumentTarget.h b/generation/WinSDK/RecompiledIdlHeaders/um/DocumentTarget.h
+index 657cdc9d..c3b7c163 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/DocumentTarget.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/DocumentTarget.h
+@@ -32,6 +32,9 @@
+ 
+ #ifndef __documenttarget_h__
+ #define __documenttarget_h__
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #if defined(_MSC_VER) && (_MSC_VER >= 1020)
+ #pragma once
+@@ -157,6 +160,7 @@ EXTERN_C const IID IID_IPrintDocumentPackageTarget;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("1b8efec4-3019-4c27-964e-367202156906")
+     IPrintDocumentPackageTarget : public IUnknown
+     {
+@@ -413,6 +417,7 @@ EXTERN_C const IID IID_IPrintDocumentPackageStatusEvent;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("ed90c8ad-5c34-4d05-a1ec-0e8a9b3ad7af")
+     IPrintDocumentPackageStatusEvent : public IDispatch
+     {
+@@ -562,6 +567,7 @@ EXTERN_C const IID IID_IPrintDocumentPackageTargetFactory;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("d2959bf7-b31b-4a3d-9600-712eb1335ba4")
+     IPrintDocumentPackageTargetFactory : public IUnknown
+     {

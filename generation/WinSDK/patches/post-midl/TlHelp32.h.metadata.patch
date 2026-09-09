@@ -1,0 +1,156 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TlHelp32.h b/generation/WinSDK/RecompiledIdlHeaders/um/TlHelp32.h
+index ff4742c8..e4693a0d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/TlHelp32.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/TlHelp32.h
+@@ -17,6 +17,9 @@
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -29,6 +32,8 @@ extern "C" {            /* Assume C declarations for C++ */
+ 
+ /****** Shapshot function **********************************************/
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ HANDLE
+ WINAPI
+ CreateToolhelp32Snapshot(
+@@ -78,6 +83,8 @@ typedef HEAPLIST32 *  LPHEAPLIST32;
+ #define HF32_DEFAULT      1  // process's default heap
+ #define HF32_SHARED       2  // is shared heap
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Heap32ListFirst(
+@@ -85,6 +92,8 @@ Heap32ListFirst(
+     LPHEAPLIST32 lphl
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Heap32ListNext(
+@@ -113,6 +122,8 @@ typedef HEAPENTRY32 *  LPHEAPENTRY32;
+ #define LF32_FREE     0x00000002
+ #define LF32_MOVEABLE 0x00000004
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Heap32First(
+@@ -121,12 +132,15 @@ Heap32First(
+     ULONG_PTR th32HeapID
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Heap32Next(
+     LPHEAPENTRY32 lphe
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL
+ WINAPI
+ Toolhelp32ReadProcessMemory(
+@@ -155,6 +169,8 @@ typedef struct tagPROCESSENTRY32W
+ typedef PROCESSENTRY32W *  PPROCESSENTRY32W;
+ typedef PROCESSENTRY32W *  LPPROCESSENTRY32W;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Process32FirstW(
+@@ -162,6 +178,8 @@ Process32FirstW(
+     LPPROCESSENTRY32W lppe
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Process32NextW(
+@@ -185,6 +203,8 @@ typedef struct tagPROCESSENTRY32
+ typedef PROCESSENTRY32 *  PPROCESSENTRY32;
+ typedef PROCESSENTRY32 *  LPPROCESSENTRY32;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Process32First(
+@@ -192,6 +212,8 @@ Process32First(
+     LPPROCESSENTRY32 lppe
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Process32Next(
+@@ -222,6 +244,8 @@ typedef struct tagTHREADENTRY32
+ typedef THREADENTRY32 *  PTHREADENTRY32;
+ typedef THREADENTRY32 *  LPTHREADENTRY32;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Thread32First(
+@@ -229,6 +253,8 @@ Thread32First(
+     LPTHREADENTRY32 lpte
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Thread32Next(
+@@ -254,6 +280,8 @@ typedef struct tagMODULEENTRY32W
+ typedef MODULEENTRY32W *  PMODULEENTRY32W;
+ typedef MODULEENTRY32W *  LPMODULEENTRY32W;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Module32FirstW(
+@@ -261,6 +289,8 @@ Module32FirstW(
+     LPMODULEENTRY32W lpme
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Module32NextW(
+@@ -289,6 +319,8 @@ typedef MODULEENTRY32 *  LPMODULEENTRY32;
+ // in th32ProcessID's process context.
+ //
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Module32First(
+@@ -296,6 +328,8 @@ Module32First(
+     LPMODULEENTRY32 lpme
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ Module32Next(

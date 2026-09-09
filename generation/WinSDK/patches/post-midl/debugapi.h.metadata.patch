@@ -1,51 +1,99 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/debugapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/debugapi.h
-index 951aa660..7fc348ea 100644
+index 951aa660..6aeac90e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/debugapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/debugapi.h
-@@ -74,6 +74,7 @@ OutputDebugStringW(
+@@ -12,6 +12,9 @@
+ 
+ #ifndef _APISETDEBUG_
+ #define _APISETDEBUG_
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -26,6 +29,7 @@ extern "C" {
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (_WIN32_WINNT >= 0x0400) || (_WIN32_WINDOWS > 0x0400)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -41,6 +45,7 @@ IsDebuggerPresent(
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -48,6 +53,7 @@ DebugBreak(
+     VOID
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -55,6 +61,7 @@ OutputDebugStringA(
+     _In_opt_ LPCSTR lpOutputString
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ WINBASEAPI
+ VOID
+ WINAPI
+@@ -74,6 +81,8 @@ OutputDebugStringW(
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  APIENTRY
-@@ -83,6 +84,7 @@ ContinueDebugEvent(
+@@ -83,6 +92,8 @@ ContinueDebugEvent(
      _In_ DWORD dwContinueStatus
      );
  
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  APIENTRY
-@@ -91,6 +93,7 @@ WaitForDebugEvent(
+@@ -91,6 +102,8 @@ WaitForDebugEvent(
      _In_ DWORD dwMilliseconds
      );
  
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  APIENTRY
-@@ -98,6 +101,7 @@ DebugActiveProcess(
+@@ -98,6 +111,8 @@ DebugActiveProcess(
      _In_ DWORD dwProcessId
      );
  
++_Win32_metadata_supported_os_(windows5.1.2600)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  APIENTRY
-@@ -113,6 +117,7 @@ DebugActiveProcessStop(
+@@ -113,6 +128,8 @@ DebugActiveProcessStop(
  
  #if (_WIN32_WINNT >= 0x0501)
  
++_Win32_metadata_supported_os_(windows6.0.6000)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL
  WINAPI
-@@ -129,6 +134,7 @@ CheckRemoteDebuggerPresent(
+@@ -129,6 +146,8 @@ CheckRemoteDebuggerPresent(
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
++_Win32_metadata_supported_os_(windows10.0.10240)
 +_Win32_metadata_set_last_error_
  WINBASEAPI
  BOOL

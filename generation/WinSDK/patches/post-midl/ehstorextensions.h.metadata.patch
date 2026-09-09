@@ -1,0 +1,526 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ehstorextensions.h b/generation/WinSDK/RecompiledIdlHeaders/um/ehstorextensions.h
+index 6dcad845..57c49a8d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ehstorextensions.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ehstorextensions.h
+@@ -18,6 +18,9 @@ Environment:
+ 
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -72,6 +75,7 @@ DEFINE_GUID(
+ //      ENHANCED_STORAGE_PROPERTY_IS_AUTHENTICATION_SILO [VT_BOOLEAN] - TRUE if an Auth-C silo, FALSE otherwise
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_SILO_IS_AUTHENTICATION_SILO,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -90,6 +94,7 @@ DEFINE_PROPERTYKEY(
+ //      ENHANCED_STORAGE_PROPERTY_AUTHENTICATION_STATE [VT_UI4]
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_SILO_GET_AUTHENTICATION_STATE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -106,6 +111,7 @@ DEFINE_PROPERTYKEY(
+ //     WPD_PROPERTY_COMMON_HRESULT
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_SILO_ENUMERATE_SILOS,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -134,6 +140,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_HOST_CERTIFICATE_AUTHENTICATION,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -155,6 +162,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_DEVICE_CERTIFICATE_AUTHENTICATION,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -173,6 +181,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_ADMIN_CERTIFICATE_AUTHENTICATION,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -190,6 +199,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_INITIALIZE_TO_MANUFACTURER_STATE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -208,6 +218,7 @@ DEFINE_PROPERTYKEY(
+ //      ENHANCED_STORAGE_PROPERTY_STORED_CERTIFICATE_COUNT [VT_UINT]
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_GET_CERTIFICATE_COUNT,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -231,6 +242,7 @@ DEFINE_PROPERTYKEY(
+ //      ENHANCED_STORAGE_PROPERTY_CERTIFICATE_LENGTH [VT_UINT]
+ //      ENHANCED_STORAGE_PROPERTY_CERTIFICATE [VT_VECTOR | VT_UI1]
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_GET_CERTIFICATE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -252,6 +264,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_SET_CERTIFICATE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -270,6 +283,7 @@ DEFINE_PROPERTYKEY(
+ //      ENHANCED_STORAGE_PROPERTY_CERTIFICATE_REQUEST [VT_VECTOR | VT_UI1]
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_CREATE_CERTIFICATE_REQUEST,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -287,6 +301,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_UNAUTHENTICATION,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -305,6 +320,7 @@ DEFINE_PROPERTYKEY(
+ //      ENHANCED_STORAGE_PROPERTY_CERTIFICATE_SILO_CAPABILITY [VT_VECTOR | VT_UI1]
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_GET_SILO_CAPABILITY,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -328,6 +344,7 @@ DEFINE_PROPERTYKEY(
+ //      - ENHANCED_STORAGE_CAPABILITY_CERTIFICATE_EXTENSION_PARSING [ VT_BOOL ]
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_GET_SILO_CAPABILITIES,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -345,6 +362,7 @@ DEFINE_PROPERTYKEY(
+ //      [optional] ENHANCED_STORAGE_PROPERTY_CERTIFICATE_ACT_FRIENDLY_NAME [VT_LPWSTR]
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_GET_ACT_FRIENDLY_NAME,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -362,6 +380,7 @@ DEFINE_PROPERTYKEY(
+ //      ENHANCED_STORAGE_PROPERTY_CERTIFICATE_SILO_GUID [VT_LPWSTR]
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_CERT_GET_SILO_GUID,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -387,6 +406,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT - status code for the operation
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_PASSWORD_AUTHORIZE_ACT_ACCESS,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -406,6 +426,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT - status code for the operation
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_PASSWORD_UNAUTHORIZE_ACT_ACCESS,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -427,6 +448,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT - status code for the operation
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_PASSWORD_QUERY_INFORMATION,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -444,6 +466,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT - status code for the operation
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_PASSWORD_CONFIG_ADMINISTRATOR,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -464,6 +487,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT - status code for the operation
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_PASSWORD_CREATE_USER,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -480,6 +504,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT - status code for the operation
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_PASSWORD_DELETE_USER,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -502,6 +527,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT - status code for the operation
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_PASSWORD_CHANGE_PASSWORD,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -520,6 +546,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT - status code for the operation
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_PASSWORD_INITIALIZE_USER_PASSWORD,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -536,6 +563,7 @@ DEFINE_PROPERTYKEY(
+ //      WPD_PROPERTY_COMMON_HRESULT - status code for the operation
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_COMMAND_PASSWORD_START_INITIALIZE_TO_MANUFACTURER_STATE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -553,6 +581,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_UI4 ] Authentication status of the Enhanced Storage Silo
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_AUTHENTICATION_STATE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -571,6 +600,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BOOL ] Is this silo an authentication silo? 
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_IS_AUTHENTICATION_SILO,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -581,6 +611,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BOOL ] TRUE: temporary, FALSE: persistent
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_TEMPORARY_UNAUTHENTICATION,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -597,6 +628,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_UI4 ] Maximum number of password authentication failures
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_MAX_AUTH_FAILURES,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -607,6 +639,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BLOB ] The password to send or set
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_PASSWORD,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -617,6 +650,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BLOB ] The password used for changing password.
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_OLD_PASSWORD,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -627,6 +661,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BOOL ] TRUE: user, FALSE: admin
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_PASSWORD_INDICATOR,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -637,6 +672,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BOOL ] TRUE: user, FALSE: admin
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_NEW_PASSWORD_INDICATOR,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -647,6 +683,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BLOB ] The new password.  Used to re-set the password
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_NEW_PASSWORD,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -657,6 +694,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_LPCSTR ] The user hint
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_USER_HINT,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -667,6 +705,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_LPCSTR ] The friendly user name
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_USER_NAME,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -677,6 +716,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_LPCSTR ] The admin hint
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_ADMIN_HINT,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -687,6 +727,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_LPCSTR ] The friendly name for the silo
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_SILO_NAME,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c, 
+@@ -697,6 +738,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BOOL ] Flag to indicate if silo friendly name is given
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_SILO_FRIENDLYNAME_SPECIFIED,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -707,6 +749,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BLOB ] The password silo information
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_PASSWORD_SILO_INFO,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -717,6 +760,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BLOB ] Security Identifier for the password silo device
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_SECURITY_IDENTIFIER,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -727,6 +771,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_UINT ] Query Silo Type
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_QUERY_SILO_TYPE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -737,6 +782,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_BLOB ] Query Silo Properties result
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_QUERY_SILO_RESULTS,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -796,6 +842,7 @@ typedef struct _ENHANCED_STORAGE_PASSWORD_SILO_INFORMATION {
+ //   [ VT_UINT ] The number of certificate slots available on the device
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_MAX_CERTIFICATE_COUNT,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -806,6 +853,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_UINT ] The number of certificate slots in use on the device
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_STORED_CERTIFICATE_COUNT,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -816,6 +864,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_UINT ] The index for the certificate slot on the device
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE_INDEX,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -826,6 +875,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_UINT ] The type of certificate
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE_TYPE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -846,6 +896,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_UINT ] The validation policy for the certificate
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_VALIDATION_POLICY,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -872,6 +923,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_UINT ] The index of the next valid cert
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_NEXT_CERTIFICATE_INDEX,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -882,6 +934,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_UINT ] The index of the next valid cert of same type
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_NEXT_CERTIFICATE_OF_TYPE_INDEX,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -892,6 +945,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_UINT ] Length of the certificate in bytes
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE_LENGTH,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -902,6 +956,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_VECTOR | VT_UI1 ] The certificate buffer in X.509 format
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -912,6 +967,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_VECTOR | VT_UI1 ] The certificate request buffer
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE_REQUEST,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -922,6 +978,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_UINT ] Silo capability type
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE_CAPABILITY_TYPE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -932,6 +989,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_VECTOR | VT_UINT ] The "raw" capability data return from the silo
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE_SILO_CAPABILITY,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -942,6 +1000,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_UNKNOWN ] The certificate silo capabilities returned in a collection
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE_SILO_CAPABILITIES,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -973,6 +1032,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_LPWSTR ] The certificate silo's ACT friendly name
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE_ACT_FRIENDLY_NAME,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -983,6 +1043,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_LPWSTR ] The certificate silo GUID
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_CERTIFICATE_SILO_GUID,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -993,6 +1054,7 @@ DEFINE_PROPERTYKEY(
+ //   [ VT_UINT ] The index for the signer certificate slot on the device
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_PROPERTY_SIGNER_CERTIFICATE_INDEX,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -1011,6 +1073,7 @@ DEFINE_PROPERTYKEY(
+ //  [VT_LPWSTR] Semi-colon delimited string of hash algorithm identifiers
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_CAPABILITY_HASH_ALGS,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -1021,6 +1084,7 @@ DEFINE_PROPERTYKEY(
+ //  [VT_LPWSTR] Semi-colon delimited string of asymmetric key cryptography supported
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_CAPABILITY_ASYMMETRIC_KEY_CRYPTOGRAPHY,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -1031,6 +1095,7 @@ DEFINE_PROPERTYKEY(
+ //  [VT_LPWSTR] Semi-colon delimited string of signing algorithm identifiers
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_CAPABILITY_SIGNING_ALGS,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -1041,6 +1106,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_BOOL ] Boolean indicating whether silo can render user data unusable
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_CAPABILITY_RENDER_USER_DATA_UNUSABLE,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,
+@@ -1051,6 +1117,7 @@ DEFINE_PROPERTYKEY(
+ //  [ VT_BOOL ] Boolean indicating whether certificate extension fields are supported
+ // 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY(
+     ENHANCED_STORAGE_CAPABILITY_CERTIFICATE_EXTENSION_PARSING,
+     0x91248166, 0xb832, 0x4ad4, 0xba, 0xa4, 0x7c, 0xa0, 0xb6, 0xb2, 0x79, 0x8c,

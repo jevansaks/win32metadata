@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h
-index 594858a0..4a52d476 100644
+index 594858a0..c84d9f15 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h
 @@ -19,6 +19,9 @@ Abstract:
@@ -12,7 +12,11 @@ index 594858a0..4a52d476 100644
  
  #pragma region Desktop Family or WNV Package
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WNV)
-@@ -117,7 +120,8 @@ extern "C" {
+@@ -114,11 +117,14 @@ typedef struct _WNV_REDIRECT_PARAM {
+ #ifdef __cplusplus
+ extern "C" {
+ #endif  // __cplusplus
++_Win32_metadata_supported_os_(windowsserver2012)
  HANDLE
  WINAPI
  WnvOpen(
@@ -20,5 +24,7 @@ index 594858a0..4a52d476 100644
 +    )
 +    _Win32_metadata_raii_free_(CloseHandle);
  
++_Win32_metadata_supported_os_(windowsserver2012)
  ULONG
  WINAPI
+ WnvRequestNotification (

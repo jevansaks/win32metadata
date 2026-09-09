@@ -1,8 +1,18 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ratings.h b/generation/WinSDK/RecompiledIdlHeaders/um/Ratings.h
-index 0f5f2d60..07f22d2b 100644
+index 0f5f2d60..739af191 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Ratings.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Ratings.h
-@@ -29,10 +29,12 @@ STDAPI RatingFreeDetails(_In_opt_ void *pRatingDetails);
+@@ -8,6 +8,9 @@
+ #define _RATINGS_H_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -29,10 +32,12 @@ STDAPI RatingFreeDetails(_In_opt_ void *pRatingDetails);
  STDAPI RatingObtainCancel(HANDLE hRatingObtainQuery);
  STDAPI RatingObtainQuery(LPCSTR pszTargetUrl, DWORD dwUserData,
      void (*fCallback)(DWORD dwUserData, HRESULT hr, LPCSTR pszRating, void *lpvRatingDetails),

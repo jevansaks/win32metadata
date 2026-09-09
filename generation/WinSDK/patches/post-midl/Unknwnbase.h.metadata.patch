@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h
+index 536b6de0..7414583f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h
+@@ -80,6 +80,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ //+-------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -460,6 +463,7 @@ EXTERN_C const IID IID_IClassFactory;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("00000001-0000-0000-C000-000000000046")
+     IClassFactory : public IUnknown
+     {

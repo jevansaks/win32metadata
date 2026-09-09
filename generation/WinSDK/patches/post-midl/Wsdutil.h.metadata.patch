@@ -1,0 +1,118 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdutil.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdutil.h
+index ac2ddfa7..60c5cfd6 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Wsdutil.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wsdutil.h
+@@ -12,6 +12,9 @@
+ //--------------------------------------------------------------------------
+ #pragma once
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -43,12 +46,14 @@ extern "C" {
+ #define WSDAPI_OPTION_TRACE_XML_TO_FILE 0x0003
+ #endif
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDSetConfigurationOption(
+     DWORD dwOption,
+     _In_reads_bytes_(cbInBuffer) LPVOID pVoid,
+     DWORD cbInBuffer);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDGetConfigurationOption(
+     DWORD dwOption,
+@@ -59,20 +64,24 @@ WSDGetConfigurationOption(
+ // Linked memory
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ void * WINAPI 
+ WSDAllocateLinkedMemory(
+     void* pParent, 
+     size_t cbSize);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ void WINAPI
+ WSDFreeLinkedMemory(
+     void *pVoid);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ void WINAPI
+ WSDAttachLinkedMemory(
+     void* pParent,
+     void* pChild);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ void WINAPI
+ WSDDetachLinkedMemory(
+     void* pVoid);
+@@ -83,12 +92,14 @@ WSDDetachLinkedMemory(
+ 
+ typedef struct _WSDXML_ELEMENT WSDXML_ELEMENT; 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDXMLBuildAnyForSingleElement(
+     WSDXML_NAME* pElementName, 
+     _In_opt_ LPCWSTR pszText, 
+     _Outptr_ WSDXML_ELEMENT** ppAny);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDXMLGetValueFromAny(
+     _In_ LPCWSTR pszNamespace,
+@@ -96,20 +107,24 @@ WSDXMLGetValueFromAny(
+     WSDXML_ELEMENT* pAny, 
+     _Outptr_ LPCWSTR* ppszValue);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDXMLAddSibling(
+     WSDXML_ELEMENT* pFirst,
+     WSDXML_ELEMENT* pSecond);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDXMLAddChild(
+     WSDXML_ELEMENT* pParent,
+     WSDXML_ELEMENT* pChild);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDXMLCleanupElement(
+     WSDXML_ELEMENT* pAny);    
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDGenerateFault(
+     _In_ LPCWSTR pszCode,
+@@ -119,6 +134,7 @@ WSDGenerateFault(
+     _In_ IWSDXMLContext* pContext,
+     _Outptr_ WSD_SOAP_FAULT** ppFault);
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT WINAPI
+ WSDGenerateFaultEx(
+     _In_ WSDXML_NAME* pCode, 
+@@ -128,6 +144,7 @@ WSDGenerateFaultEx(
+     _Outptr_ WSD_SOAP_FAULT** ppFault);
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN7)
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WSDUriEncode(
+     _In_reads_(cchSource) LPCWSTR source,
+@@ -135,6 +152,7 @@ WSDUriEncode(
+     _Out_writes_(*cchDestOut) LPWSTR *destOut,
+     _Out_opt_ DWORD *cchDestOut);
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WSDUriDecode(
+     _In_reads_(cchSource) LPCWSTR source,

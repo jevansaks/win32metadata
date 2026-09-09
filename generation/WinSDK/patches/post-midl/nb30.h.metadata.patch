@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/nb30.h b/generation/WinSDK/RecompiledIdlHeaders/um/nb30.h
+index c93bc2a4..7fda7c72 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/nb30.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/nb30.h
+@@ -19,6 +19,9 @@
+ #endif
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -302,6 +305,7 @@ typedef struct _ACTION_HEADER {
+  * Usage: result = Netbios( pncb );                             *
+  ****************************************************************/
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ UCHAR
+ APIENTRY
+ Netbios(

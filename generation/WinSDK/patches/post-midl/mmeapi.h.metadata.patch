@@ -1,0 +1,1113 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h
+index 93079425..d0720d68 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h
+@@ -25,10 +25,22 @@
+ 
+ #include <mmsyscom.h> // mm common definitions
+ 
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+ 
++#ifdef WIN32METADATA
++enum class MIDI_WAVE_OPEN_TYPE : unsigned int;
++enum class MIXERLINE_COMPONENTTYPE : int;
++#else
++typedef DWORD MIDI_WAVE_OPEN_TYPE;
++typedef DWORD MIXERLINE_COMPONENTTYPE;
++#endif
++
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -338,6 +350,7 @@ typedef struct tWAVEFORMATEX
+ typedef const WAVEFORMATEX FAR *LPCWAVEFORMATEX;
+ 
+ /* waveform audio function prototypes */
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ UINT
+ WINAPI
+@@ -372,10 +385,12 @@ waveOutGetDevCapsW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI MMRESULT WINAPI waveOutGetDevCaps( UINT uDeviceID, LPWAVEOUTCAPS pwoc, UINT cbwoc);
+ #endif
+ 
+ #if (WINVER >= 0x0400)
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -384,6 +399,7 @@ waveOutGetVolume(
+     _Out_ LPDWORD pdwVolume
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -393,7 +409,9 @@ waveOutSetVolume(
+     );
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI MMRESULT WINAPI waveOutGetVolume(UINT uId, LPDWORD pdwVolume);
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI MMRESULT WINAPI waveOutSetVolume(UINT uId, DWORD dwVolume);
+ #endif
+ 
+@@ -424,9 +442,11 @@ waveOutGetErrorTextW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI waveOutGetErrorText(MMRESULT mmrError, LPSTR pszText, UINT cchText);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -436,9 +456,10 @@ waveOutOpen(
+     _In_ LPCWAVEFORMATEX pwfx,
+     _In_opt_ DWORD_PTR dwCallback,
+     _In_opt_ DWORD_PTR dwInstance,
+-    _In_ DWORD fdwOpen
++    _In_ MIDI_WAVE_OPEN_TYPE fdwOpen
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -446,6 +467,7 @@ waveOutClose(
+     _In_ HWAVEOUT hwo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -455,6 +477,7 @@ waveOutPrepareHeader(
+     _In_ UINT cbwh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -464,6 +487,7 @@ waveOutUnprepareHeader(
+     _In_ UINT cbwh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -473,6 +497,7 @@ waveOutWrite(
+     _In_ UINT cbwh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -480,6 +505,7 @@ waveOutPause(
+     _In_ HWAVEOUT hwo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -487,6 +513,7 @@ waveOutRestart(
+     _In_ HWAVEOUT hwo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -494,6 +521,7 @@ waveOutReset(
+     _In_ HWAVEOUT hwo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -501,6 +529,7 @@ waveOutBreakLoop(
+     _In_ HWAVEOUT hwo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -510,6 +539,7 @@ waveOutGetPosition(
+     _In_ UINT cbmmt
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -518,6 +548,7 @@ waveOutGetPitch(
+     _Out_ LPDWORD pdwPitch
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -526,6 +557,7 @@ waveOutSetPitch(
+     _In_ DWORD dwPitch
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -534,6 +566,7 @@ waveOutGetPlaybackRate(
+     _Out_ LPDWORD pdwRate
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -542,6 +575,7 @@ waveOutSetPlaybackRate(
+     _In_ DWORD dwRate
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -552,6 +586,7 @@ waveOutGetID(
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -563,10 +598,12 @@ waveOutMessage(
+     );
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD WINAPI waveOutMessage(HWAVEOUT hwo, UINT uMsg, DWORD dw1, DWORD dw2);
+ #endif
+ #endif /* ifdef WINVER >= 0x030a */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ UINT
+ WINAPI
+@@ -601,6 +638,7 @@ waveInGetDevCapsW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI waveInGetDevCaps(UINT uDeviceID, LPWAVEINCAPS pwic, UINT cbwic);
+ #endif
+ 
+@@ -631,9 +669,11 @@ waveInGetErrorTextW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI waveInGetErrorText(MMRESULT mmrError, LPSTR pszText, UINT cchText);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -643,9 +683,10 @@ waveInOpen(
+     _In_ LPCWAVEFORMATEX pwfx,
+     _In_opt_ DWORD_PTR dwCallback,
+     _In_opt_ DWORD_PTR dwInstance,
+-    _In_ DWORD fdwOpen
++    _In_ MIDI_WAVE_OPEN_TYPE fdwOpen
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -653,6 +694,7 @@ waveInClose(
+     _In_ HWAVEIN hwi
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -662,6 +704,7 @@ waveInPrepareHeader(
+     _In_ UINT cbwh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -671,6 +714,7 @@ waveInUnprepareHeader(
+     _In_ UINT cbwh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -680,6 +724,7 @@ waveInAddBuffer(
+     _In_ UINT cbwh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -687,6 +732,7 @@ waveInStart(
+     _In_ HWAVEIN hwi
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -694,6 +740,7 @@ waveInStop(
+     _In_ HWAVEIN hwi
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -701,6 +748,7 @@ waveInReset(
+     _In_ HWAVEIN hwi
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -710,6 +758,7 @@ waveInGetPosition(
+     _In_ UINT cbmmt
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -720,6 +769,7 @@ waveInGetID(
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -731,6 +781,7 @@ waveInMessage(
+     );
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD WINAPI waveInMessage(HWAVEIN hwi, UINT uMsg, DWORD dw1, DWORD dw2);
+ #endif
+ #endif /* ifdef WINVER >= 0x030a */
+@@ -797,6 +848,82 @@ typedef WORD FAR *LPKEYARRAY;
+ #define MIDI_IO_STATUS      0x00000020L
+ #endif /* WINVER >= 0x0400 */
+ 
++#ifdef WIN32METADATA
++#pragma push_macro("CALLBACK_NULL")
++#pragma push_macro("CALLBACK_WINDOW")
++#pragma push_macro("CALLBACK_TASK")
++#pragma push_macro("CALLBACK_FUNCTION")
++#ifdef _WIN32
++#pragma push_macro("CALLBACK_THREAD")
++#pragma push_macro("CALLBACK_EVENT")
++#endif
++#pragma push_macro("WAVE_FORMAT_QUERY")
++#pragma push_macro("WAVE_ALLOWSYNC")
++#if (WINVER >= 0x0400)
++#pragma push_macro("WAVE_MAPPED")
++#pragma push_macro("WAVE_FORMAT_DIRECT")
++#pragma push_macro("WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE")
++#pragma push_macro("MIDI_IO_STATUS")
++#endif
++#undef CALLBACK_NULL
++#undef CALLBACK_WINDOW
++#undef CALLBACK_TASK
++#undef CALLBACK_FUNCTION
++#ifdef _WIN32
++#undef CALLBACK_THREAD
++#undef CALLBACK_EVENT
++#endif
++#undef WAVE_FORMAT_QUERY
++#undef WAVE_ALLOWSYNC
++#if (WINVER >= 0x0400)
++#undef WAVE_MAPPED
++#undef WAVE_FORMAT_DIRECT
++#undef WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE
++#undef MIDI_IO_STATUS
++#endif
++enum class
++    _Win32_metadata_associated_constant_(CALLBACK_TYPEMASK)
++#if (WINVER >= 0x0400)
++    _Win32_metadata_associated_constant_(WAVE_FORMAT_DIRECT_QUERY)
++#endif
++    [[clang::flag_enum]]
++    MIDI_WAVE_OPEN_TYPE : unsigned int
++{
++    CALLBACK_NULL = 0x00000000,
++    CALLBACK_WINDOW = 0x00010000,
++    CALLBACK_TASK = 0x00020000,
++    CALLBACK_FUNCTION = 0x00030000,
++#ifdef _WIN32
++    CALLBACK_THREAD = 0x00020000,
++    CALLBACK_EVENT = 0x00050000,
++#endif
++    WAVE_FORMAT_QUERY = 0x0001,
++    WAVE_ALLOWSYNC = 0x0002,
++#if (WINVER >= 0x0400)
++    WAVE_MAPPED = 0x0004,
++    WAVE_FORMAT_DIRECT = 0x0008,
++    WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = 0x0010,
++    MIDI_IO_STATUS = 0x00000020,
++#endif
++};
++#if (WINVER >= 0x0400)
++#pragma pop_macro("MIDI_IO_STATUS")
++#pragma pop_macro("WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE")
++#pragma pop_macro("WAVE_FORMAT_DIRECT")
++#pragma pop_macro("WAVE_MAPPED")
++#endif
++#pragma pop_macro("WAVE_ALLOWSYNC")
++#pragma pop_macro("WAVE_FORMAT_QUERY")
++#ifdef _WIN32
++#pragma pop_macro("CALLBACK_EVENT")
++#pragma pop_macro("CALLBACK_THREAD")
++#endif
++#pragma pop_macro("CALLBACK_FUNCTION")
++#pragma pop_macro("CALLBACK_TASK")
++#pragma pop_macro("CALLBACK_WINDOW")
++#pragma pop_macro("CALLBACK_NULL")
++#endif
++
+ /* flags for wFlags parm of midiOutCachePatches(), midiOutCacheDrumPatches() */
+ #define MIDI_CACHE_ALL      1
+ #define MIDI_CACHE_BESTFIT  2
+@@ -1087,6 +1214,7 @@ typedef struct midiproptempo_tag
+ #endif /* WINVER >= 0x0400 */
+ 
+ /* MIDI function prototypes */
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ UINT
+ WINAPI
+@@ -1095,6 +1223,7 @@ midiOutGetNumDevs(
+     );
+ 
+ #if (WINVER >= 0x0400)
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1107,6 +1236,7 @@ midiStreamOpen(
+     _In_ DWORD fdwOpen
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1114,6 +1244,7 @@ midiStreamClose(
+     _In_ HMIDISTRM hms
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1123,6 +1254,7 @@ midiStreamProperty(
+     _In_ DWORD dwProperty
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1132,6 +1264,7 @@ midiStreamPosition(
+     _In_ UINT cbmmt
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1141,6 +1274,7 @@ midiStreamOut(
+     _In_ UINT cbmh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1148,6 +1282,7 @@ midiStreamPause(
+     _In_ HMIDISTRM hms
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1155,6 +1290,7 @@ midiStreamRestart(
+     _In_ HMIDISTRM hms
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1163,6 +1299,7 @@ midiStreamStop(
+     );
+ 
+ #ifdef _WIN32
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1172,6 +1309,7 @@ midiConnect(
+     _In_opt_ LPVOID pReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1186,6 +1324,7 @@ midiDisconnect(
+ 
+ #ifdef _WIN32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1195,6 +1334,7 @@ midiOutGetDevCapsA(
+     _In_ UINT cbmoc
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1211,10 +1351,12 @@ midiOutGetDevCapsW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI midiOutGetDevCaps(UINT uDeviceID, LPMIDIOUTCAPS pmoc, UINT cbmoc);
+ #endif
+ 
+ #if (WINVER >= 0x0400)
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1223,6 +1365,7 @@ midiOutGetVolume(
+     _Out_ LPDWORD pdwVolume
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1232,12 +1375,15 @@ midiOutSetVolume(
+     );
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI MMRESULT WINAPI midiOutGetVolume(UINT uId, LPDWORD pdwVolume);
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI MMRESULT WINAPI midiOutSetVolume(UINT uId, DWORD dwVolume);
+ #endif
+ 
+ #ifdef _WIN32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1247,6 +1393,7 @@ midiOutGetErrorTextA(
+     _In_ UINT cchText
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1263,9 +1410,11 @@ midiOutGetErrorTextW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI MMRESULT WINAPI midiOutGetErrorText(MMRESULT mmrError, LPSTR pszText, UINT cchText);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1274,9 +1423,10 @@ midiOutOpen(
+     _In_ UINT uDeviceID,
+     _In_opt_ DWORD_PTR dwCallback,
+     _In_opt_ DWORD_PTR dwInstance,
+-    _In_ DWORD fdwOpen
++    _In_ MIDI_WAVE_OPEN_TYPE fdwOpen
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1284,6 +1434,7 @@ midiOutClose(
+     _In_ HMIDIOUT hmo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1293,6 +1444,7 @@ midiOutPrepareHeader(
+     _In_ UINT cbmh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1302,6 +1454,7 @@ midiOutUnprepareHeader(
+     _In_ UINT cbmh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1310,6 +1463,7 @@ midiOutShortMsg(
+     _In_ DWORD dwMsg
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1319,6 +1473,7 @@ midiOutLongMsg(
+     _In_ UINT cbmh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1326,6 +1481,7 @@ midiOutReset(
+     _In_ HMIDIOUT hmo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1336,6 +1492,7 @@ midiOutCachePatches(
+     _In_ UINT fuCache
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1346,6 +1503,7 @@ midiOutCacheDrumPatches(
+     _In_ UINT fuCache
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1356,6 +1514,7 @@ midiOutGetID(
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1367,10 +1526,12 @@ midiOutMessage(
+     );
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD WINAPI midiOutMessage(HMIDIOUT hmo, UINT uMsg, DWORD dw1, DWORD dw2);
+ #endif
+ #endif /* ifdef WINVER >= 0x030a */
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ UINT
+ WINAPI
+@@ -1380,6 +1541,7 @@ midiInGetNumDevs(
+ 
+ #ifdef _WIN32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1389,6 +1551,7 @@ midiInGetDevCapsA(
+     _In_ UINT cbmic
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1403,6 +1566,7 @@ midiInGetDevCapsW(
+ #else
+ #define midiInGetDevCaps  midiInGetDevCapsA
+ #endif // !UNICODE
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1412,6 +1576,7 @@ midiInGetErrorTextA(
+     _In_ UINT cchText
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1428,10 +1593,13 @@ midiInGetErrorTextW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI midiInGetDevCaps(UINT uDeviceID, LPMIDIINCAPS pmic, UINT cbmic);
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI MMRESULT WINAPI midiInGetErrorText(MMRESULT mmrError, _Out_writes_(cchText) LPSTR pszText, UINT cchText);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1440,9 +1608,10 @@ midiInOpen(
+     _In_ UINT uDeviceID,
+     _In_opt_ DWORD_PTR dwCallback,
+     _In_opt_ DWORD_PTR dwInstance,
+-    _In_ DWORD fdwOpen
++    _In_ MIDI_WAVE_OPEN_TYPE fdwOpen
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1450,6 +1619,7 @@ midiInClose(
+     _In_ HMIDIIN hmi
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1459,6 +1629,7 @@ midiInPrepareHeader(
+     _In_ UINT cbmh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1468,6 +1639,7 @@ midiInUnprepareHeader(
+     _In_ UINT cbmh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1477,6 +1649,7 @@ midiInAddBuffer(
+     _In_ UINT cbmh
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1484,6 +1657,7 @@ midiInStart(
+     _In_ HMIDIIN hmi
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1491,6 +1665,7 @@ midiInStop(
+     _In_ HMIDIIN hmi
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1498,6 +1673,7 @@ midiInReset(
+     _In_ HMIDIIN hmi
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1508,6 +1684,7 @@ midiInGetID(
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1519,6 +1696,7 @@ midiInMessage(
+     );
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD WINAPI midiInMessage(HMIDIIN hmi, UINT uMsg, DWORD dw1, DWORD dw2);
+ #endif
+ #endif /* ifdef WINVER >= 0x030a */
+@@ -1623,6 +1801,7 @@ typedef struct auxcaps_tag {
+ #define AUXCAPS_LRVOLUME        0x0002  /* separate left-right volume control */
+ 
+ /* auxiliary audio function prototypes */
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ UINT
+ WINAPI
+@@ -1632,6 +1811,7 @@ auxGetNumDevs(
+ 
+ #ifdef _WIN32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1641,6 +1821,7 @@ auxGetDevCapsA(
+     _In_ UINT cbac
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1657,8 +1838,10 @@ auxGetDevCapsW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI auxGetDevCaps(UINT uDeviceID, LPAUXCAPS pac, UINT cbac);
+ #endif
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1667,6 +1850,7 @@ auxSetVolume(
+     _In_ DWORD dwVolume
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1677,6 +1861,7 @@ auxGetVolume(
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1688,6 +1873,7 @@ auxOutMessage(
+     );
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD WINAPI auxOutMessage(UINT uDeviceID, UINT uMsg, DWORD dw1, DWORD dw2);
+ #endif
+ #endif /* ifdef WINVER >= 0x030a */
+@@ -1732,6 +1918,7 @@ typedef HMIXER     FAR *LPHMIXER;
+ #define MIXER_OBJECTF_HMIDIIN   (MIXER_OBJECTF_HANDLE|MIXER_OBJECTF_MIDIIN)
+ #define MIXER_OBJECTF_AUX       0x50000000L
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ UINT
+ WINAPI
+@@ -1811,6 +1998,7 @@ typedef struct tMIXERCAPS {
+ 
+ #ifdef _WIN32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1820,6 +2008,7 @@ mixerGetDevCapsA(
+     _In_ UINT cbmxcaps
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1836,9 +2025,11 @@ mixerGetDevCapsW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI mixerGetDevCaps(UINT uMxId, LPMIXERCAPS pmxcaps, UINT cbmxcaps);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1850,6 +2041,7 @@ mixerOpen(
+     _In_ DWORD fdwOpen
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1857,6 +2049,7 @@ mixerClose(
+     _In_ HMIXER hmx
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ DWORD
+ WINAPI
+@@ -1876,7 +2069,7 @@ typedef struct tagMIXERLINEA {
+     DWORD       dwLineID;               /* unique line id for mixer device */
+     DWORD       fdwLine;                /* state/information about line */
+     DWORD_PTR   dwUser;                 /* driver specific information */
+-    DWORD       dwComponentType;        /* component type line connects to */
++    MIXERLINE_COMPONENTTYPE dwComponentType; /* component type line connects to */
+     DWORD       cChannels;              /* number of channels line supports */
+     DWORD       cConnections;           /* number of connections [possible] */
+     DWORD       cControls;              /* number of controls at this line */
+@@ -1898,7 +2091,7 @@ typedef struct tagMIXERLINEW {
+     DWORD       dwLineID;               /* unique line id for mixer device */
+     DWORD       fdwLine;                /* state/information about line */
+     DWORD_PTR   dwUser;                 /* driver specific information */
+-    DWORD       dwComponentType;        /* component type line connects to */
++    MIXERLINE_COMPONENTTYPE dwComponentType; /* component type line connects to */
+     DWORD       cChannels;              /* number of channels line supports */
+     DWORD       cConnections;           /* number of connections [possible] */
+     DWORD       cControls;              /* number of controls at this line */
+@@ -1988,6 +2181,92 @@ typedef struct tMIXERLINE {
+ #define MIXERLINE_COMPONENTTYPE_SRC_ANALOG      (MIXERLINE_COMPONENTTYPE_SRC_FIRST + 10)
+ #define MIXERLINE_COMPONENTTYPE_SRC_LAST        (MIXERLINE_COMPONENTTYPE_SRC_FIRST + 10)
+ 
++#ifdef WIN32METADATA
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_DST_DIGITAL")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_DST_HEADPHONES")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_DST_LINE")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_DST_MONITOR")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_DST_SPEAKERS")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_DST_TELEPHONE")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_DST_UNDEFINED")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_DST_VOICEIN")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_DST_WAVEIN")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_ANALOG")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_DIGITAL")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_LINE")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED")
++#pragma push_macro("MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT")
++#undef MIXERLINE_COMPONENTTYPE_DST_DIGITAL
++#undef MIXERLINE_COMPONENTTYPE_DST_HEADPHONES
++#undef MIXERLINE_COMPONENTTYPE_DST_LINE
++#undef MIXERLINE_COMPONENTTYPE_DST_MONITOR
++#undef MIXERLINE_COMPONENTTYPE_DST_SPEAKERS
++#undef MIXERLINE_COMPONENTTYPE_DST_TELEPHONE
++#undef MIXERLINE_COMPONENTTYPE_DST_UNDEFINED
++#undef MIXERLINE_COMPONENTTYPE_DST_VOICEIN
++#undef MIXERLINE_COMPONENTTYPE_DST_WAVEIN
++#undef MIXERLINE_COMPONENTTYPE_SRC_ANALOG
++#undef MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY
++#undef MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC
++#undef MIXERLINE_COMPONENTTYPE_SRC_DIGITAL
++#undef MIXERLINE_COMPONENTTYPE_SRC_LINE
++#undef MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE
++#undef MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER
++#undef MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER
++#undef MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE
++#undef MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED
++#undef MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT
++enum class MIXERLINE_COMPONENTTYPE : int
++{
++    MIXERLINE_COMPONENTTYPE_DST_DIGITAL = 1,
++    MIXERLINE_COMPONENTTYPE_DST_HEADPHONES = 5,
++    MIXERLINE_COMPONENTTYPE_DST_LINE = 2,
++    MIXERLINE_COMPONENTTYPE_DST_MONITOR = 3,
++    MIXERLINE_COMPONENTTYPE_DST_SPEAKERS = 4,
++    MIXERLINE_COMPONENTTYPE_DST_TELEPHONE = 6,
++    MIXERLINE_COMPONENTTYPE_DST_UNDEFINED = 0,
++    MIXERLINE_COMPONENTTYPE_DST_VOICEIN = 8,
++    MIXERLINE_COMPONENTTYPE_DST_WAVEIN = 7,
++    MIXERLINE_COMPONENTTYPE_SRC_ANALOG = 0x100A,
++    MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY = 0x1009,
++    MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC = 0x1005,
++    MIXERLINE_COMPONENTTYPE_SRC_DIGITAL = 0x1001,
++    MIXERLINE_COMPONENTTYPE_SRC_LINE = 0x1002,
++    MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE = 0x1003,
++    MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER = 0x1007,
++    MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER = 0x1004,
++    MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE = 0x1006,
++    MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED = 0x1000,
++    MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT = 0x1008,
++};
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_LINE")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_DIGITAL")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_SRC_ANALOG")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_DST_WAVEIN")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_DST_VOICEIN")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_DST_UNDEFINED")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_DST_TELEPHONE")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_DST_SPEAKERS")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_DST_MONITOR")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_DST_LINE")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_DST_HEADPHONES")
++#pragma pop_macro("MIXERLINE_COMPONENTTYPE_DST_DIGITAL")
++#endif
++
+ /* */
+ /*  MIXERLINE.Target.dwType */
+ /* */
+@@ -2001,6 +2280,7 @@ typedef struct tMIXERLINE {
+ 
+ #ifdef _WIN32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -2010,6 +2290,7 @@ mixerGetLineInfoA(
+     _In_ DWORD fdwInfo
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -2026,6 +2307,7 @@ mixerGetLineInfoW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI mixerGetLineInfo(HMIXEROBJ hmxobj, LPMIXERLINE pmxl, DWORD fdwInfo);
+ #endif
+ 
+@@ -2037,6 +2319,7 @@ MMRESULT WINAPI mixerGetLineInfo(HMIXEROBJ hmxobj, LPMIXERLINE pmxl, DWORD fdwIn
+ 
+ #define MIXER_GETLINEINFOF_QUERYMASK        0x0000000FL
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -2275,6 +2558,7 @@ typedef struct tMIXERLINECONTROLS {
+ /* */
+ #ifdef _WIN32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -2284,6 +2568,7 @@ mixerGetLineControlsA(
+     _In_ DWORD fdwControls
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -2300,6 +2585,7 @@ mixerGetLineControlsW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI mixerGetLineControls(HMIXEROBJ hmxobj, LPMIXERLINECONTROLS pmxlc, DWORD fdwControls);
+ #endif
+ 
+@@ -2379,6 +2665,7 @@ typedef struct tMIXERCONTROLDETAILS_UNSIGNED {
+ 
+ #ifdef _WIN32
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -2388,6 +2675,7 @@ mixerGetControlDetailsA(
+     _In_ DWORD fdwDetails
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -2404,6 +2692,7 @@ mixerGetControlDetailsW(
+ #endif // !UNICODE
+ 
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ MMRESULT WINAPI mixerGetControlDetails(HMIXEROBJ hmxobj, LPMIXERCONTROLDETAILS pmxcd, DWORD fdwDetails);
+ #endif
+ 
+@@ -2412,6 +2701,7 @@ MMRESULT WINAPI mixerGetControlDetails(HMIXEROBJ hmxobj, LPMIXERCONTROLDETAILS p
+ 
+ #define MIXER_GETCONTROLDETAILSF_QUERYMASK  0x0000000FL
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -2436,4 +2726,3 @@ mixerSetControlDetails(
+ #endif
+ 
+ #endif // _MMEAPI_H_
+-

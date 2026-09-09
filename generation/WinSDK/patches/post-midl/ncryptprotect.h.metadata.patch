@@ -1,0 +1,151 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h b/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h
+index 2d30728c..c24bf86d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h
+@@ -21,6 +21,9 @@
+ #endif
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+@@ -175,6 +178,7 @@ DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE );
+ 
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptRegisterProtectionDescriptorName(
+@@ -218,6 +222,7 @@ NCryptRegisterProtectionDescriptorName(
+     
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptQueryProtectionDescriptorName(
+@@ -261,12 +266,16 @@ NCryptQueryProtectionDescriptorName(
+     NTE_BAD_TYPE
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptCreateProtectionDescriptor(
+     _In_            LPCWSTR                             pwszDescriptorString,
+                     DWORD                               dwFlags,
+     _Out_           NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptCloseProtectionDescriptor)
+     );
+ 
+ //
+@@ -294,6 +303,7 @@ NCryptCreateProtectionDescriptor(
+     NTE_INVALID_HANDLE
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptCloseProtectionDescriptor(
+@@ -355,6 +365,7 @@ NCryptCloseProtectionDescriptor(
+ //
+ #define NCRYPT_PROTECTION_INFO_TYPE_DESCRIPTOR_STRING   0x00000001  // LPWSTR
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ _Success_(return == 0)
+ _When_(dwInfoType == NCRYPT_PROTECTION_INFO_TYPE_DESCRIPTOR_STRING,
+        _At_((LPWSTR*)ppvInfo, _Outptr_result_nullonfailure_))
+@@ -420,6 +431,7 @@ NCryptGetProtectionDescriptorInfo(
+     NTE_BAD_TYPE
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptProtectSecret(
+@@ -498,11 +510,15 @@ NCryptProtectSecret(
+     no actual decryption will occur.
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptUnprotectSecret(
+-    _Out_opt_       NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor,
+-     _In_            DWORD                               dwFlags,
++    _Out_opt_       NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptCloseProtectionDescriptor),
++     _In_            NCRYPT_FLAGS                               dwFlags,
+     _In_reads_bytes_(cbProtectedBlob)
+                     const BYTE                          *pbProtectedBlob,
+                     ULONG                               cbProtectedBlob,
+@@ -627,6 +643,7 @@ typedef struct NCRYPT_PROTECT_STREAM_INFO {
+     NTE_BAD_TYPE
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptStreamOpenToProtect(
+@@ -635,6 +652,9 @@ NCryptStreamOpenToProtect(
+     _In_opt_        HWND                    hWnd,
+     _In_            NCRYPT_PROTECT_STREAM_INFO          *pStreamInfo,
+     _Out_           NCRYPT_STREAM_HANDLE                *phStream
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptStreamClose)
+     );
+ 
+ /****************************************************************************
+@@ -672,6 +692,7 @@ NCryptStreamOpenToProtect(
+     NTE_DECRYPTION_FAILURE
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptStreamOpenToUnprotect(
+@@ -679,6 +700,9 @@ NCryptStreamOpenToUnprotect(
+                     DWORD                               dwFlags,
+     _In_opt_        HWND                hWnd,
+     _Out_           NCRYPT_STREAM_HANDLE                *phStream
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptStreamClose)
+     );
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+@@ -796,6 +820,9 @@ NCryptStreamOpenToUnprotectEx(
+                     DWORD                               dwFlags,
+     _In_opt_        HWND                                hWnd,
+     _Out_           NCRYPT_STREAM_HANDLE                *phStream
++        _Win32_metadata_invalid_handle_(-1)
++        _Win32_metadata_invalid_handle_(0)
++        _Win32_metadata_raii_free_(NCryptStreamClose)
+ );
+ 
+ #endif
+@@ -837,6 +864,7 @@ NCryptStreamOpenToUnprotectEx(
+     NTE_DECRYPTION_FAILURE
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptStreamUpdate(
+@@ -863,6 +891,7 @@ NCryptStreamUpdate(
+     NTE_INVALID_HANDLE
+ 
+ ****************************************************************************/
++_Win32_metadata_supported_os_(windows8.0)
+ SECURITY_STATUS
+ WINAPI
+ NCryptStreamClose(

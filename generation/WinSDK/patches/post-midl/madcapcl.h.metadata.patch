@@ -1,0 +1,67 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h b/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h
+index 0e710e25..a0dd47df 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h
+@@ -7,6 +7,9 @@ extern "C" {
+ #endif
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #include <time.h>
+ 
+ #if _MSC_VER > 1000
+@@ -205,24 +208,28 @@ Members:
+ 
+ --*/
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ McastApiStartup(
+     IN  OUT  PDWORD   Version
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ APIENTRY
+ McastApiCleanup(
+     VOID
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ McastGenUID(
+     IN OUT LPMCAST_CLIENT_UID    pRequestID
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ McastEnumerateScopes(
+@@ -233,6 +240,7 @@ McastEnumerateScopes(
+     OUT    PDWORD               pScopeCount
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ McastRequestAddress(
+@@ -243,6 +251,7 @@ McastRequestAddress(
+     IN OUT PMCAST_LEASE_RESPONSE    pAddrResponse
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ McastRenewAddress(
+@@ -252,6 +261,7 @@ McastRenewAddress(
+     IN OUT PMCAST_LEASE_RESPONSE    pRenewResponse
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DWORD
+ APIENTRY
+ McastReleaseAddress(

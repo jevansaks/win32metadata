@@ -1,0 +1,1527 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winldap.h b/generation/WinSDK/RecompiledIdlHeaders/um/Winldap.h
+index 637626b5..58c30105 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Winldap.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Winldap.h
+@@ -50,6 +50,9 @@ Environments :
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -596,13 +599,19 @@ typedef struct ldapmodA {
+ //  multi-thread: ldap_open*, ldap_init*, and ldap_sslinit* calls are safe.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_openW( _In_ const PWSTR HostName, ULONG PortNumber );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_openA( _In_ const PSTR HostName, ULONG PortNumber );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_initW( _In_ const PWSTR HostName, ULONG PortNumber );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_initA( _In_ const PSTR HostName, ULONG PortNumber );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_sslinitW( _In_ PWSTR HostName, ULONG PortNumber, int secure );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_sslinitA( _In_ PSTR HostName, ULONG PortNumber, int secure );
+ 
+ //
+@@ -612,6 +621,7 @@ WINLDAPAPI LDAP * LDAPAPI ldap_sslinitA( _In_ PSTR HostName, ULONG PortNumber, i
+ //  will call it internally if it hasn't already been called.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_connect(  LDAP *ld,
+                                         struct l_timeval  *timeout
+                                         );
+@@ -624,8 +634,11 @@ WINLDAPAPI ULONG LDAPAPI ldap_connect(  LDAP *ld,
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_open( _In_ PSTR HostName, ULONG PortNumber );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_init( _In_ PSTR HostName, ULONG PortNumber );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_sslinit( _In_ PSTR HostName, ULONG PortNumber, int secure );
+ 
+ #endif
+@@ -640,7 +653,11 @@ WINLDAPAPI LDAP * LDAPAPI ldap_sslinit( _In_ PSTR HostName, ULONG PortNumber, in
+ //  multi-thread: cldap_open* calls are safe.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ WINLDAPAPI LDAP * LDAPAPI cldap_openW( _In_ PWSTR HostName, ULONG PortNumber );
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ WINLDAPAPI LDAP * LDAPAPI cldap_openA( _In_ PSTR HostName, ULONG PortNumber );
+ 
+ 
+@@ -650,6 +667,8 @@ WINLDAPAPI LDAP * LDAPAPI cldap_openA( _In_ PSTR HostName, ULONG PortNumber );
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ WINLDAPAPI LDAP * LDAPAPI cldap_open( _In_ PSTR HostName, ULONG PortNumber );
+ 
+ #endif
+@@ -667,7 +686,9 @@ WINLDAPAPI LDAP * LDAPAPI cldap_open( _In_ PSTR HostName, ULONG PortNumber );
+ //                stucture after it's been freed.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_unbind( LDAP *ld );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_unbind_s( LDAP *ld ); // calls ldap_unbind
+ 
+ //
+@@ -680,10 +701,14 @@ WINLDAPAPI ULONG LDAPAPI ldap_unbind_s( LDAP *ld ); // calls ldap_unbind
+ //                connection as a whole.  beware if threads share connections.
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_get_option( LDAP *ld, int option, void *outvalue );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_get_optionW( LDAP *ld, int option, void *outvalue );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_set_option( LDAP *ld, int option, const void *invalue );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_set_optionW( LDAP *ld, int option, const void *invalue );
+ 
+ #if LDAP_UNICODE
+@@ -904,14 +929,22 @@ WINLDAPAPI ULONG LDAPAPI ldap_set_optionW( LDAP *ld, int option, const void *inv
+ //                and try to mulithread binds with other operations.
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_simple_bindW( LDAP *ld, _In_opt_ PWSTR dn, _In_opt_ PWSTR passwd );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_simple_bindA( LDAP *ld, _In_opt_ PSTR dn, _In_opt_ PSTR passwd );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_simple_bind_sW( LDAP *ld, _In_opt_ PWSTR dn, _In_opt_ PWSTR passwd );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_simple_bind_sA( LDAP *ld, _In_opt_ PSTR dn, _In_opt_ PSTR passwd );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_bindW( LDAP *ld, _In_opt_ PWSTR dn, _In_opt_ PWCHAR cred, ULONG method );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_bindA( LDAP *ld, _In_opt_ PSTR dn, _In_opt_ PCHAR cred, ULONG method );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_bind_sW( LDAP *ld, _In_opt_ PWSTR dn, _In_opt_ PWCHAR cred, ULONG method );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_bind_sA( LDAP *ld, _In_opt_ PSTR dn, _In_opt_ PCHAR cred, ULONG method );
+ 
+ 
+@@ -921,6 +954,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_bind_sA( LDAP *ld, _In_opt_ PSTR dn, _In_opt_ PCHA
+ // sent back from the server.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+  WINLDAPAPI INT LDAPAPI ldap_sasl_bindA(
+          LDAP  *ExternalHandle,
+          _In_ const  PSTR DistName,
+@@ -931,6 +965,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_bind_sA( LDAP *ld, _In_opt_ PSTR dn, _In_opt_ PCHA
+          int *MessageNumber
+          );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+  WINLDAPAPI INT LDAPAPI ldap_sasl_bindW(
+          LDAP  *ExternalHandle,
+          _In_ const PWSTR DistName,
+@@ -941,6 +976,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_bind_sA( LDAP *ld, _In_opt_ PSTR dn, _In_opt_ PCHA
+          int *MessageNumber
+          );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+  WINLDAPAPI INT LDAPAPI ldap_sasl_bind_sA(
+          LDAP  *ExternalHandle,
+          _In_ const PSTR DistName,
+@@ -951,6 +987,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_bind_sA( LDAP *ld, _In_opt_ PSTR dn, _In_opt_ PCHA
+          PBERVAL *ServerData
+          );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+  WINLDAPAPI INT LDAPAPI ldap_sasl_bind_sW(
+          LDAP  *ExternalHandle,
+          _In_ const PWSTR DistName,
+@@ -975,10 +1012,14 @@ WINLDAPAPI ULONG LDAPAPI ldap_bind_sA( LDAP *ld, _In_opt_ PSTR dn, _In_opt_ PCHA
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_simple_bind( LDAP *ld, _In_opt_ const PSTR dn, _In_opt_ const PSTR passwd );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_simple_bind_s( LDAP *ld, _In_opt_ const PSTR dn, _In_opt_ const PSTR passwd );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_bind( LDAP *ld, _In_opt_ const PSTR dn, _In_opt_ const PCHAR cred, ULONG method );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_bind_s( LDAP *ld, _In_opt_ const PSTR dn, _In_opt_ const PCHAR cred, ULONG method );
+ 
+ #define ldap_sasl_bind ldap_sasl_bindA
+@@ -1009,6 +1050,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_bind_s( LDAP *ld, _In_opt_ const PSTR dn, _In_opt_
+ //                ldap_search_s and ldap_search_ext* calls are thread safe.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_searchW(
+         LDAP                  *ld,
+         _In_opt_ const PWSTR  base,     // distinguished name or ""
+@@ -1017,6 +1059,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_searchW(
+         _In_ PZPWSTR          attrs,        // pointer to an array of PCHAR attribute names
+         ULONG                 attrsonly       // boolean on whether to only return attr names
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_searchA(
+         LDAP                  *ld,
+         _In_opt_ const PSTR   base,     // distinguished name or ""
+@@ -1026,6 +1069,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_searchA(
+         ULONG                 attrsonly       // boolean on whether to only return attr names
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_sW(
+         LDAP                    *ld,
+         _In_opt_ const PWSTR    base,
+@@ -1035,6 +1079,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_sW(
+         ULONG                   attrsonly,
+         _Outptr_result_maybenull_ LDAPMessage     **res
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_sA(
+         LDAP                    *ld,
+         _In_opt_ const PSTR     base,
+@@ -1045,6 +1090,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_sA(
+         _Outptr_result_maybenull_ LDAPMessage     **res
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_stW(
+         LDAP                    *ld,
+         _In_opt_ const PWSTR    base,
+@@ -1055,6 +1101,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_stW(
+         struct l_timeval        *timeout,
+         _Outptr_result_maybenull_ PLDAPMessage     *res
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_stA(
+         LDAP                    *ld,
+         _In_opt_ const PSTR     base,
+@@ -1067,6 +1114,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_stA(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_extW(
+         LDAP                    *ld,
+         _In_opt_ const PWSTR    base,
+@@ -1081,6 +1129,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_extW(
+         ULONG                   *MessageNumber
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_extA(
+         LDAP                    *ld,
+         _In_opt_ const PSTR     base,
+@@ -1095,6 +1144,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_extA(
+         ULONG                   *MessageNumber
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_ext_sW(
+         LDAP                    *ld,
+         _In_opt_ const PWSTR    base,
+@@ -1109,6 +1159,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_ext_sW(
+         _Outptr_result_maybenull_ PLDAPMessage    *res
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_ext_sA(
+         LDAP                    *ld,
+         _In_opt_ const PSTR     base,
+@@ -1134,6 +1185,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_ext_sA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search(
+         LDAP            *ld,
+         _In_opt_ PSTR   base,           // distinguished name or ""
+@@ -1143,6 +1195,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search(
+         ULONG           attrsonly       // boolean on whether to only return attr names
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_s(
+         LDAP            *ld,
+         _In_opt_ PSTR   base,
+@@ -1153,6 +1206,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_s(
+         _Outptr_result_maybenull_ PLDAPMessage    *res
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_st(
+         LDAP            *ld,
+         _In_opt_ PSTR   base,
+@@ -1164,6 +1218,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_st(
+         _Outptr_result_maybenull_ PLDAPMessage    *res
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_ext(
+         LDAP            *ld,
+         _In_opt_ PSTR   base,
+@@ -1178,6 +1233,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_ext(
+         ULONG           *MessageNumber
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_ext_s(
+         LDAP            *ld,
+         _In_opt_ PSTR   base,
+@@ -1199,12 +1255,14 @@ WINLDAPAPI ULONG LDAPAPI ldap_search_ext_s(
+ //  is invalid or LDAP_SUCCESS if it's ok.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI
+ ldap_check_filterW(
+         LDAP    *ld,
+         _In_ PWSTR  SearchFilter
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI
+ ldap_check_filterA(
+         LDAP    *ld,
+@@ -1233,12 +1291,17 @@ ldap_check_filterA(
+ //                ldap_modify_s and ldap_modify_ext* calls are thread safe.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modifyW( LDAP *ld, _In_ PWSTR dn, LDAPModW *mods[] );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modifyA( LDAP *ld, _In_ PSTR dn, LDAPModA *mods[] );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify_sW( LDAP *ld, _In_ PWSTR dn, LDAPModW *mods[] );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify_sA( LDAP *ld, _In_ PSTR dn, LDAPModA *mods[] );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify_extW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1248,6 +1311,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_modify_extW(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify_extA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1257,6 +1321,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_modify_extA(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify_ext_sW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1265,6 +1330,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_modify_ext_sW(
+         PLDAPControlW   *ClientControls
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify_ext_sA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1283,9 +1349,12 @@ WINLDAPAPI ULONG LDAPAPI ldap_modify_ext_sA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify( LDAP *ld, _In_ PSTR dn, LDAPModA *mods[] );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify_s( LDAP *ld, _In_ PSTR dn, LDAPModA *mods[] );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify_ext(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1295,6 +1364,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_modify_ext(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modify_ext_s(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1340,12 +1410,14 @@ WINLDAPAPI ULONG LDAPAPI ldap_modify_ext_s(
+ //                Use ldap_rename_ext instead, as these are thread safe.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn2W (
+     LDAP    *ExternalHandle,
+     _In_ const PWSTR  DistinguishedName,
+     _In_ const PWSTR  NewDistinguishedName,
+     INT     DeleteOldRdn
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn2A (
+     LDAP    *ExternalHandle,
+     _In_ const PSTR   DistinguishedName,
+@@ -1357,23 +1429,27 @@ WINLDAPAPI ULONG LDAPAPI ldap_modrdn2A (
+ //  ldap_modrdn simply calls ldap_modrdn2 with a value of 1 for DeleteOldRdn.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdnW (
+     LDAP    *ExternalHandle,
+     _In_ const PWSTR   DistinguishedName,
+     _In_ const PWSTR   NewDistinguishedName
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdnA (
+     LDAP    *ExternalHandle,
+     _In_ const PSTR   DistinguishedName,
+     _In_ const PSTR   NewDistinguishedName
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn2_sW (
+     LDAP    *ExternalHandle,
+     _In_ const PWSTR   DistinguishedName,
+     _In_ const PWSTR   NewDistinguishedName,
+     INT     DeleteOldRdn
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn2_sA (
+     LDAP    *ExternalHandle,
+     _In_ const PSTR   DistinguishedName,
+@@ -1381,11 +1457,13 @@ WINLDAPAPI ULONG LDAPAPI ldap_modrdn2_sA (
+     INT     DeleteOldRdn
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn_sW (
+     LDAP    *ExternalHandle,
+     _In_ const PWSTR   DistinguishedName,
+     _In_ const PWSTR   NewDistinguishedName
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn_sA (
+     LDAP    *ExternalHandle,
+     _In_ const PSTR   DistinguishedName,
+@@ -1401,23 +1479,27 @@ WINLDAPAPI ULONG LDAPAPI ldap_modrdn_sA (
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn2 (
+     LDAP    *ExternalHandle,
+     _In_ const PSTR   DistinguishedName,
+     _In_ const PSTR   NewDistinguishedName,
+     INT     DeleteOldRdn
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn (
+     LDAP    *ExternalHandle,
+     _In_ const PSTR   DistinguishedName,
+     _In_ const PSTR   NewDistinguishedName
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn2_s (
+     LDAP    *ExternalHandle,
+     _In_ const PSTR   DistinguishedName,
+     _In_ const PSTR   NewDistinguishedName,
+     INT     DeleteOldRdn
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_modrdn_s (
+     LDAP    *ExternalHandle,
+     _In_ const PSTR   DistinguishedName,
+@@ -1431,6 +1513,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_modrdn_s (
+ //  parent from the RDN, for clarity.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_rename_extW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1442,6 +1525,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_rename_extW(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_rename_extA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1453,6 +1537,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_rename_extA(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_rename_ext_sW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1463,6 +1548,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_rename_ext_sW(
+         PLDAPControlW   *ClientControls
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_rename_ext_sA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1492,6 +1578,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_rename_ext_sA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_rename_ext(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1503,6 +1590,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_rename_ext(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_rename_ext_s(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1529,12 +1617,17 @@ WINLDAPAPI ULONG LDAPAPI ldap_rename_ext_s(
+ //                ldap_add_s and ldap_add_ext* calls are thread safe.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_addW( LDAP *ld, _In_ PWSTR dn, LDAPModW *attrs[] );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_addA( LDAP *ld, _In_ PSTR dn, LDAPModA *attrs[] );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add_sW( LDAP *ld, _In_ PWSTR dn, LDAPModW *attrs[] );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add_sA( LDAP *ld, _In_ PSTR dn, LDAPModA *attrs[] );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add_extW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1544,6 +1637,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_add_extW(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add_extA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1553,6 +1647,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_add_extA(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add_ext_sW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1561,6 +1656,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_add_ext_sW(
+         PLDAPControlW   *ClientControls
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add_ext_sA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1579,9 +1675,12 @@ WINLDAPAPI ULONG LDAPAPI ldap_add_ext_sA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add( LDAP *ld, _In_ PSTR dn, LDAPMod *attrs[] );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add_s( LDAP *ld, _In_ PSTR dn, LDAPMod *attrs[] );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add_ext(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1591,6 +1690,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_add_ext(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_add_ext_s(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1618,10 +1718,14 @@ WINLDAPAPI ULONG LDAPAPI ldap_add_ext_s(
+ //
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compareW( LDAP *ld, _In_ const PWSTR dn, _In_ const PWSTR attr, _In_ PWSTR value );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compareA( LDAP *ld, _In_ const PSTR dn, _In_ const PSTR attr, _In_ PSTR value );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare_sW( LDAP *ld, _In_ const PWSTR dn, _In_ const PWSTR attr, _In_ PWSTR value );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare_sA( LDAP *ld, _In_ const PSTR dn, _In_ const PSTR attr, _In_ PSTR value );
+ 
+ #if LDAP_UNICODE
+@@ -1631,7 +1735,9 @@ WINLDAPAPI ULONG LDAPAPI ldap_compare_sA( LDAP *ld, _In_ const PSTR dn, _In_ con
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare( LDAP *ld, _In_ const PSTR dn, _In_ const PSTR attr, _In_ PSTR value );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare_s( LDAP *ld, _In_ const PSTR dn, _In_ const PSTR attr, _In_ PSTR value );
+ 
+ #endif
+@@ -1646,6 +1752,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_compare_s( LDAP *ld, _In_ const PSTR dn, _In_ cons
+ //  berval Data will be used.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare_extW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1657,6 +1764,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_compare_extW(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare_extA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1668,6 +1776,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_compare_extA(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare_ext_sW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1678,6 +1787,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_compare_ext_sW(
+         PLDAPControlW   *ClientControls
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare_ext_sA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1695,6 +1805,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_compare_ext_sA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare_ext(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1706,6 +1817,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_compare_ext(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_compare_ext_s(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1734,12 +1846,17 @@ WINLDAPAPI ULONG LDAPAPI ldap_compare_ext_s(
+ //
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_deleteW( LDAP *ld, _In_ const PWSTR dn );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_deleteA( LDAP *ld, _In_ const PSTR dn );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete_sW( LDAP *ld, _In_ const PWSTR dn );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete_sA( LDAP *ld, _In_ const PSTR dn );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete_extW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1748,6 +1865,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_delete_extW(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete_extA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1756,6 +1874,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_delete_extA(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete_ext_sW(
+         LDAP *ld,
+         _In_ const PWSTR dn,
+@@ -1763,6 +1882,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_delete_ext_sW(
+         PLDAPControlW   *ClientControls
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete_ext_sA(
+         LDAP *ld,
+         _In_ const PSTR dn,
+@@ -1779,9 +1899,12 @@ WINLDAPAPI ULONG LDAPAPI ldap_delete_ext_sA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete( LDAP *ld, _In_ PSTR dn );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete_s( LDAP *ld, _In_ PSTR dn );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete_ext(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1790,6 +1913,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_delete_ext(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_delete_ext_s(
+         LDAP *ld,
+         const PSTR dn,
+@@ -1807,6 +1931,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_delete_ext_s(
+ 
+ //  multi-thread: ldap_abandon calls are thread safe
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_abandon( LDAP *ld, ULONG msgid );
+ 
+ 
+@@ -1834,6 +1959,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_abandon( LDAP *ld, ULONG msgid );
+ 
+ //  multi-thread: ldap_result calls are thread safe
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_result(
+         LDAP                    *ld,
+         ULONG                   msgid,
+@@ -1842,6 +1968,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_result(
+         _Outptr_result_maybenull_ PLDAPMessage     *res
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_msgfree( LDAPMessage *res );
+ 
+ //
+@@ -1851,6 +1978,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_msgfree( LDAPMessage *res );
+ 
+ //  multi-thread: ldap_result2error call is thread safe
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_result2error(
+         LDAP            *ld,
+         LDAPMessage     *res,
+@@ -1866,6 +1994,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_result2error(
+ 
+ //  multi-thread: ldap_parse_result call is thread safe
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_resultW (
+         LDAP *Connection,
+         LDAPMessage *ResultMessage,
+@@ -1877,6 +2006,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_resultW (
+         BOOLEAN Freeit
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_resultA (
+         LDAP *Connection,
+         LDAPMessage *ResultMessage,
+@@ -1888,6 +2018,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_resultA (
+         BOOLEAN Freeit
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_extended_resultA (
+         LDAP           *Connection,
+         LDAPMessage    *ResultMessage,      // returned by server
+@@ -1896,6 +2027,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_extended_resultA (
+         BOOLEAN         Freeit              // Don't need the message anymore
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_extended_resultW (
+         LDAP           *Connection,
+         LDAPMessage    *ResultMessage,      // returned by server
+@@ -1904,18 +2036,22 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_extended_resultW (
+         BOOLEAN         Freeit              // Don't need the message anymore
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_controls_freeA (
+         LDAPControlA **Controls
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_control_freeA (
+         LDAPControlA *Controls
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_controls_freeW (
+         LDAPControlW **Control
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_control_freeW (
+         LDAPControlW *Control
+         );
+@@ -1924,10 +2060,12 @@ WINLDAPAPI ULONG LDAPAPI ldap_control_freeW (
+ // ldap_free_controls are old, use ldap_controls_free
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_free_controlsW (
+         LDAPControlW **Controls
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_free_controlsA (
+         LDAPControlA **Controls
+         );
+@@ -1944,6 +2082,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_free_controlsA (
+ 
+ #define ldap_parse_extended_result ldap_parse_extended_resultA
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_result (
+         LDAP *Connection,
+         LDAPMessage *ResultMessage,
+@@ -1955,14 +2094,17 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_result (
+         BOOLEAN Freeit
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_controls_free (
+         LDAPControlA **Controls
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_control_free (
+         LDAPControlA *Control
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_free_controls (
+         LDAPControlA **Controls
+         );
+@@ -1974,7 +2116,9 @@ WINLDAPAPI ULONG LDAPAPI ldap_free_controls (
+ //  string should not be freed.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PWCHAR LDAPAPI ldap_err2stringW( ULONG err );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_err2stringA( ULONG err );
+ 
+ #if LDAP_UNICODE
+@@ -1983,6 +2127,7 @@ WINLDAPAPI PCHAR LDAPAPI ldap_err2stringA( ULONG err );
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_err2string( ULONG err );
+ 
+ #endif
+@@ -1991,6 +2136,7 @@ WINLDAPAPI PCHAR LDAPAPI ldap_err2string( ULONG err );
+ //  ldap_perror does nothing and is here just for compatibility.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI void LDAPAPI ldap_perror( LDAP *ld, _In_ const PCHAR msg );
+ 
+ //
+@@ -1998,6 +2144,7 @@ WINLDAPAPI void LDAPAPI ldap_perror( LDAP *ld, _In_ const PCHAR msg );
+ //  freed so should not be freed explicitly.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAPMessage *LDAPAPI ldap_first_entry( LDAP *ld, LDAPMessage *res );
+ 
+ //
+@@ -2005,6 +2152,7 @@ WINLDAPAPI LDAPMessage *LDAPAPI ldap_first_entry( LDAP *ld, LDAPMessage *res );
+ //  freed so should not be freed explicitly.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAPMessage *LDAPAPI ldap_next_entry( LDAP *ld, LDAPMessage *entry );
+ 
+ //
+@@ -2012,6 +2160,7 @@ WINLDAPAPI LDAPMessage *LDAPAPI ldap_next_entry( LDAP *ld, LDAPMessage *entry );
+ //  to a server request.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_count_entries( LDAP *ld, LDAPMessage *res );
+ 
+ //
+@@ -2031,12 +2180,14 @@ typedef struct berelement {
+ //  multi-threaded apps) so it should not be freed.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PWCHAR LDAPAPI ldap_first_attributeW(
+         LDAP            *ld,
+         LDAPMessage     *entry,
+         BerElement      **ptr
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_first_attributeA(
+         LDAP            *ld,
+         LDAPMessage     *entry,
+@@ -2049,6 +2200,7 @@ WINLDAPAPI PCHAR LDAPAPI ldap_first_attributeA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_first_attribute(
+         LDAP            *ld,
+         LDAPMessage     *entry,
+@@ -2061,12 +2213,14 @@ WINLDAPAPI PCHAR LDAPAPI ldap_first_attribute(
+ //  freed.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PWCHAR LDAPAPI ldap_next_attributeW(
+         LDAP            *ld,
+         LDAPMessage     *entry,
+         BerElement      *ptr
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_next_attributeA(
+         LDAP            *ld,
+         LDAPMessage     *entry,
+@@ -2080,6 +2234,7 @@ WINLDAPAPI PCHAR LDAPAPI ldap_next_attributeA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_next_attribute(
+         LDAP            *ld,
+         LDAPMessage     *entry,
+@@ -2099,11 +2254,13 @@ WINLDAPAPI PCHAR LDAPAPI ldap_next_attribute(
+ //  ldap_value_free.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI _Ret_maybenull_ PWCHAR *LDAPAPI ldap_get_valuesW(
+         LDAP              *ld,
+         LDAPMessage       *entry,
+         _In_ const PWSTR  attr
+         );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI _Ret_maybenull_ PCHAR *LDAPAPI ldap_get_valuesA(
+         LDAP            *ld,
+         LDAPMessage     *entry,
+@@ -2116,6 +2273,7 @@ WINLDAPAPI _Ret_maybenull_ PCHAR *LDAPAPI ldap_get_valuesA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI _Ret_maybenull_ PCHAR *LDAPAPI ldap_get_values(
+         LDAP            *ld,
+         LDAPMessage     *entry,
+@@ -2138,11 +2296,13 @@ WINLDAPAPI _Ret_maybenull_ PCHAR *LDAPAPI ldap_get_values(
+ //  ldap_value_free_len.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI struct berval **LDAPAPI ldap_get_values_lenW (
+     LDAP            *ExternalHandle,
+     LDAPMessage     *Message,
+     _In_ const PWSTR          attr
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI struct berval **LDAPAPI ldap_get_values_lenA (
+     LDAP            *ExternalHandle,
+     LDAPMessage     *Message,
+@@ -2155,6 +2315,7 @@ WINLDAPAPI struct berval **LDAPAPI ldap_get_values_lenA (
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI struct berval **LDAPAPI ldap_get_values_len (
+     LDAP            *ExternalHandle,
+     LDAPMessage     *Message,
+@@ -2168,7 +2329,9 @@ WINLDAPAPI struct berval **LDAPAPI ldap_get_values_len (
+ //  Return the number of values in a list returned by ldap_get_values.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_count_valuesW( _In_opt_z_ PWCHAR *vals );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_count_valuesA( _In_opt_z_ PCHAR *vals );
+ 
+ #if LDAP_UNICODE
+@@ -2177,6 +2340,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_count_valuesA( _In_opt_z_ PCHAR *vals );
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_count_values( _In_opt_z_ PCHAR *vals );
+ 
+ #endif
+@@ -2187,13 +2351,16 @@ WINLDAPAPI ULONG LDAPAPI ldap_count_values( _In_opt_z_ PCHAR *vals );
+ //  Return the number of values in a list returned by ldap_get_values_len.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_count_values_len( struct berval **vals );
+ 
+ //
+ //  Free structures returned by ldap_get_values.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_value_freeW( _In_opt_z_ PWCHAR *vals );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_value_freeA( _In_opt_z_ PCHAR *vals );
+ 
+ #if LDAP_UNICODE
+@@ -2202,6 +2369,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_value_freeA( _In_opt_z_ PCHAR *vals );
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_value_free( _In_opt_z_ PCHAR *vals );
+ 
+ #endif
+@@ -2212,6 +2380,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_value_free( _In_opt_z_ PCHAR *vals );
+ //  Free structures returned by ldap_get_values_len.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_value_free_len( struct berval **vals );
+ 
+ //
+@@ -2219,7 +2388,9 @@ WINLDAPAPI ULONG LDAPAPI ldap_value_free_len( struct berval **vals );
+ //  by calling ldap_memfree.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PWCHAR LDAPAPI ldap_get_dnW( LDAP *ld, LDAPMessage *entry );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_get_dnA( LDAP *ld, LDAPMessage *entry );
+ 
+ #if LDAP_UNICODE
+@@ -2228,6 +2399,7 @@ WINLDAPAPI PCHAR LDAPAPI ldap_get_dnA( LDAP *ld, LDAPMessage *entry );
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_get_dn( LDAP *ld, LDAPMessage *entry );
+ 
+ #endif
+@@ -2238,7 +2410,9 @@ WINLDAPAPI PCHAR LDAPAPI ldap_get_dn( LDAP *ld, LDAPMessage *entry );
+ //  calling ldap_value_free.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PWCHAR *LDAPAPI ldap_explode_dnW( _In_ const PWSTR dn, ULONG notypes );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR *LDAPAPI ldap_explode_dnA( _In_ const PSTR dn, ULONG notypes );
+ 
+ #if LDAP_UNICODE
+@@ -2247,6 +2421,7 @@ WINLDAPAPI PCHAR *LDAPAPI ldap_explode_dnA( _In_ const PSTR dn, ULONG notypes );
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR *LDAPAPI ldap_explode_dn( _In_ const PSTR dn, ULONG notypes );
+ 
+ #endif
+@@ -2257,7 +2432,9 @@ WINLDAPAPI PCHAR *LDAPAPI ldap_explode_dn( _In_ const PSTR dn, ULONG notypes );
+ //  ldap_memfree.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PWCHAR LDAPAPI ldap_dn2ufnW( _In_ const PWSTR dn );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_dn2ufnA( _In_ const PSTR dn );
+ 
+ #if LDAP_UNICODE
+@@ -2266,6 +2443,7 @@ WINLDAPAPI PCHAR LDAPAPI ldap_dn2ufnA( _In_ const PSTR dn );
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI PCHAR LDAPAPI ldap_dn2ufn( _In_ const PSTR dn );
+ 
+ #endif
+@@ -2277,9 +2455,12 @@ WINLDAPAPI PCHAR LDAPAPI ldap_dn2ufn( _In_ const PSTR dn );
+ //  values that you've gotten from ldap_open, ldap_get_values, etc.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI VOID LDAPAPI ldap_memfreeW( _In_ PWCHAR Block );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI VOID LDAPAPI ldap_memfreeA( _In_ PCHAR Block );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI VOID LDAPAPI ber_bvfree( struct berval *bv );
+ 
+ #if LDAP_UNICODE
+@@ -2288,6 +2469,7 @@ WINLDAPAPI VOID LDAPAPI ber_bvfree( struct berval *bv );
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI VOID LDAPAPI ldap_memfree( _In_ PCHAR Block );
+ 
+ #endif
+@@ -2304,10 +2486,12 @@ WINLDAPAPI VOID LDAPAPI ldap_memfree( _In_ PCHAR Block );
+ //  to ldap_memfree.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_ufn2dnW (
+     _In_ const PWSTR ufn,
+     _Outptr_ PWSTR *pDn
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_ufn2dnA (
+     _In_ const PSTR ufn,
+     _Outptr_ PSTR *pDn
+@@ -2319,6 +2503,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_ufn2dnA (
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_ufn2dn (
+     _In_ const PSTR ufn,
+     _Outptr_ PSTR *pDn
+@@ -2426,6 +2611,7 @@ typedef struct ldap_apifeature_infoW {
+ //  free all resources)
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_cleanup (
+     HANDLE hInstance
+     );
+@@ -2458,12 +2644,14 @@ WINLDAPAPI ULONG LDAPAPI ldap_cleanup (
+ //  be used for attributes that really are raw binary.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_escape_filter_elementW (
+    _In_reads_bytes_(sourceLength) PCHAR   sourceFilterElement,
+    ULONG   sourceLength,
+    _Out_writes_bytes_opt_(destLength) PWCHAR   destFilterElement,
+    ULONG   destLength
+    );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_escape_filter_elementA (
+    _In_reads_bytes_(sourceLength) PCHAR   sourceFilterElement,
+    ULONG   sourceLength,
+@@ -2477,6 +2665,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_escape_filter_elementA (
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_escape_filter_element (
+    _In_reads_bytes_(sourceLength) PCHAR   sourceFilterElement,
+    ULONG   sourceLength,
+@@ -2505,6 +2694,8 @@ WINLDAPAPI VOID LDAPAPI ldap_set_dbg_routine( DBGPRINT DebugPrintRoutine );
+ //
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ WINLDAPAPI int LDAPAPI
+ LdapUTF8ToUnicode(
+     _In_reads_(cchSrc) LPCSTR lpSrcStr,
+@@ -2513,6 +2704,8 @@ LdapUTF8ToUnicode(
+     int cchDest
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ WINLDAPAPI
+ int LDAPAPI
+ LdapUnicodeToUTF8(
+@@ -2570,6 +2763,7 @@ typedef struct ldapsortkeyA {
+ //  Use this one rather than ldap_encode_sort_control as this is per RFC.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_create_sort_controlA (
+         PLDAP           ExternalHandle,
+         PLDAPSortKeyA  *SortKeys,
+@@ -2577,6 +2771,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_create_sort_controlA (
+         PLDAPControlA  *Control
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_create_sort_controlW (
+         PLDAP           ExternalHandle,
+         PLDAPSortKeyW  *SortKeys,
+@@ -2589,6 +2784,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_create_sort_controlW (
+ //  to free the attribute value, if it's returned.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_sort_controlA (
+         PLDAP           ExternalHandle,
+         PLDAPControlA  *Control,
+@@ -2596,6 +2792,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_sort_controlA (
+         _Outptr_opt_result_maybenull_ PCHAR          *Attribute
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_sort_controlW (
+         PLDAP           ExternalHandle,
+         PLDAPControlW  *Control,
+@@ -2610,6 +2807,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_sort_controlW (
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_create_sort_control (
+         PLDAP           ExternalHandle,
+         PLDAPSortKeyA  *SortKeys,
+@@ -2617,6 +2815,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_create_sort_control (
+         PLDAPControlA  *Control
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_sort_control (
+         PLDAP           ExternalHandle,
+         PLDAPControlA  *Control,
+@@ -2634,6 +2833,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_sort_control (
+ //  ldap_create_sort_control defined above.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_encode_sort_controlW (
+         PLDAP           ExternalHandle,
+         PLDAPSortKeyW  *SortKeys,
+@@ -2641,6 +2841,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_encode_sort_controlW (
+         BOOLEAN Criticality
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_encode_sort_controlA (
+         PLDAP           ExternalHandle,
+         PLDAPSortKeyA  *SortKeys,
+@@ -2654,6 +2855,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_encode_sort_controlA (
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_encode_sort_control (
+         PLDAP           ExternalHandle,
+         PLDAPSortKeyA  *SortKeys,
+@@ -2668,6 +2870,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_encode_sort_control (
+ //  ldap_create_page_control.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_create_page_controlW(
+         PLDAP           ExternalHandle,
+         ULONG           PageSize,
+@@ -2676,6 +2879,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_create_page_controlW(
+         PLDAPControlW  *Control
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_create_page_controlA(
+         PLDAP           ExternalHandle,
+         ULONG           PageSize,
+@@ -2684,6 +2888,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_create_page_controlA(
+         PLDAPControlA  *Control
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_page_controlW (
+         PLDAP           ExternalHandle,
+         PLDAPControlW  *ServerControls,
+@@ -2691,6 +2896,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_page_controlW (
+         struct berval  **Cookie     // Use ber_bvfree to free
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_page_controlA (
+         PLDAP           ExternalHandle,
+         PLDAPControlA  *ServerControls,
+@@ -2705,6 +2911,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_page_controlA (
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_create_page_control(
+         PLDAP           ExternalHandle,
+         ULONG           PageSize,
+@@ -2713,6 +2920,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_create_page_control(
+         PLDAPControlA  *Control
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_page_control (
+         PLDAP           ExternalHandle,
+         PLDAPControlA  *ServerControls,
+@@ -2756,6 +2964,8 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_page_control (
+ #define LDAP_PAGED_RESULT_OID_STRING "1.2.840.113556.1.4.319"
+ #define LDAP_PAGED_RESULT_OID_STRING_W L"1.2.840.113556.1.4.319"
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_pageW(
+         PLDAP           ExternalHandle,
+         _In_ const PWSTR    DistinguishedName,
+@@ -2770,6 +2980,8 @@ WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_pageW(
+         PLDAPSortKeyW  *SortKeys
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_pageA(
+         PLDAP           ExternalHandle,
+         _In_ const PSTR     DistinguishedName,
+@@ -2790,6 +3002,8 @@ WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_pageA(
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
++_Win32_metadata_set_last_error_
+ WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_page(
+         PLDAP           ExternalHandle,
+         const PSTR      DistinguishedName,
+@@ -2806,6 +3020,7 @@ WINLDAPAPI PLDAPSearch LDAPAPI ldap_search_init_page(
+ 
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_get_next_page(
+         PLDAP           ExternalHandle,
+         PLDAPSearch     SearchHandle,
+@@ -2813,6 +3028,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_get_next_page(
+         ULONG          *MessageNumber
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_get_next_page_s(
+         PLDAP           ExternalHandle,
+         PLDAPSearch     SearchHandle,
+@@ -2822,6 +3038,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_get_next_page_s(
+         LDAPMessage     **Results
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_get_paged_count(
+         PLDAP           ExternalHandle,
+         PLDAPSearch     SearchBlock,
+@@ -2829,6 +3046,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_get_paged_count(
+         PLDAPMessage    Results
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_search_abandon_page(
+         PLDAP           ExternalHandle,
+         PLDAPSearch     SearchBlock
+@@ -2872,6 +3090,7 @@ typedef struct ldapvlvinfo {
+ } LDAPVLVInfo, *PLDAPVLVInfo;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI INT LDAPAPI ldap_create_vlv_controlW (
+         PLDAP             ExternalHandle,
+         PLDAPVLVInfo      VlvInfo,
+@@ -2879,6 +3098,7 @@ WINLDAPAPI INT LDAPAPI ldap_create_vlv_controlW (
+         PLDAPControlW    *Control
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI INT LDAPAPI ldap_create_vlv_controlA (
+         PLDAP             ExternalHandle,
+         PLDAPVLVInfo      VlvInfo,
+@@ -2886,6 +3106,7 @@ WINLDAPAPI INT LDAPAPI ldap_create_vlv_controlA (
+         PLDAPControlA    *Control
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI INT LDAPAPI ldap_parse_vlv_controlW (
+         PLDAP            ExternalHandle,
+         PLDAPControlW   *Control,
+@@ -2895,6 +3116,7 @@ WINLDAPAPI INT LDAPAPI ldap_parse_vlv_controlW (
+         PINT             ErrCode
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI INT LDAPAPI ldap_parse_vlv_controlA (
+         PLDAP             ExternalHandle,
+         PLDAPControlA    *Control,
+@@ -2940,6 +3162,7 @@ WINLDAPAPI INT LDAPAPI ldap_parse_vlv_controlA (
+ // The operation has a default timeout of about 30 seconds.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_start_tls_sW (
+     IN   PLDAP          ExternalHandle,
+     OUT  PULONG         ServerReturnValue,
+@@ -2949,6 +3172,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_start_tls_sW (
+ );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_start_tls_sA (
+     IN   PLDAP          ExternalHandle,
+     OUT  PULONG         ServerReturnValue,
+@@ -2970,6 +3194,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_start_tls_sA (
+ // The operation has a default timeout of about 30 seconds.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI BOOLEAN LDAPAPI ldap_stop_tls_s (
+     IN  PLDAP ExternalHandle
+  );
+@@ -3009,6 +3234,7 @@ WINLDAPAPI BOOLEAN LDAPAPI ldap_stop_tls_s (
+ //  freed so should not be freed explicitly.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAPMessage *LDAPAPI ldap_first_reference( LDAP *ld, LDAPMessage *res );
+ 
+ //
+@@ -3016,6 +3242,7 @@ WINLDAPAPI LDAPMessage *LDAPAPI ldap_first_reference( LDAP *ld, LDAPMessage *res
+ //  freed so should not be freed explicitly.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAPMessage *LDAPAPI ldap_next_reference( LDAP *ld, LDAPMessage *entry );
+ 
+ //
+@@ -3023,18 +3250,21 @@ WINLDAPAPI LDAPMessage *LDAPAPI ldap_next_reference( LDAP *ld, LDAPMessage *entr
+ //  response to a search request.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_count_references( LDAP *ld, LDAPMessage *res );
+ 
+ //
+ //  We return the list of subordinate referrals in a search response message.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_referenceW (
+         LDAP *Connection,
+         LDAPMessage *ResultMessage,
+         _Outptr_ PWCHAR **Referrals                   // free with ldap_value_freeW
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_referenceA (
+         LDAP *Connection,
+         LDAPMessage *ResultMessage,
+@@ -3047,6 +3277,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_referenceA (
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_parse_reference (
+         LDAP *Connection,
+         LDAPMessage *ResultMessage,
+@@ -3066,6 +3297,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_parse_reference (
+ //  These are thread safe.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_extended_operationW(
+         LDAP *ld,
+         _In_ const PWSTR Oid,
+@@ -3075,6 +3307,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_extended_operationW(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_extended_operationA(
+         LDAP *ld,
+         _In_ const PSTR Oid,
+@@ -3084,6 +3317,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_extended_operationA(
+         ULONG           *MessageNumber
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_extended_operation_sA (
+         LDAP            *ExternalHandle,
+         _In_ PSTR           Oid,
+@@ -3094,6 +3328,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_extended_operation_sA (
+         struct berval   **ReturnedData
+         );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_extended_operation_sW (
+         LDAP            *ExternalHandle,
+         _In_ PWSTR          Oid,
+@@ -3113,6 +3348,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_extended_operation_sW (
+ 
+ #else
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_extended_operation(
+         LDAP *ld,
+         const PSTR Oid,
+@@ -3126,6 +3362,7 @@ WINLDAPAPI ULONG LDAPAPI ldap_extended_operation(
+ 
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI ldap_close_extended_op(
+         LDAP    *ld,
+         ULONG   MessageNumber
+@@ -3214,9 +3451,9 @@ typedef ULONG (_cdecl DEREFERENCECONNECTION)(
+ typedef struct LdapReferralCallback {
+ 
+     ULONG   SizeOfCallbacks;        // set to sizeof( LDAP_REFERRAL_CALLBACK )
+-    QUERYFORCONNECTION *QueryForConnection;
+-    NOTIFYOFNEWCONNECTION *NotifyRoutine;
+-    DEREFERENCECONNECTION *DereferenceRoutine;
++    QUERYFORCONNECTION *QueryForConnection _Win32_metadata_reduce_pointer_level_;
++    NOTIFYOFNEWCONNECTION *NotifyRoutine _Win32_metadata_reduce_pointer_level_;
++    DEREFERENCECONNECTION *DereferenceRoutine _Win32_metadata_reduce_pointer_level_;
+ 
+ } LDAP_REFERRAL_CALLBACK, *PLDAP_REFERRAL_CALLBACK;
+ 
+@@ -3225,12 +3462,14 @@ typedef struct LdapReferralCallback {
+ //  LdapGetLastError();
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI LdapGetLastError( VOID );
+ 
+ //
+ //  Translate from LdapError to closest Win32 error code.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI ULONG LDAPAPI LdapMapErrorToWin32( ULONG LdapError );
+ 
+ //
+@@ -3289,6 +3528,7 @@ typedef BOOLEAN (_cdecl VERIFYSERVERCERT) (
+ //  came from.  It can return NULL if the connection has already been freed.
+ //
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ WINLDAPAPI LDAP * LDAPAPI ldap_conn_from_msg (
+     LDAP *PrimaryConn,
+     LDAPMessage *res

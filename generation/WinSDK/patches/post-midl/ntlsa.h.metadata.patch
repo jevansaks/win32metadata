@@ -1,0 +1,357 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ntlsa.h b/generation/WinSDK/RecompiledIdlHeaders/um/ntlsa.h
+index 86649a4b..3dc615db 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ntlsa.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ntlsa.h
+@@ -19,6 +19,9 @@ Revision History:
+ #define _NTLSA_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -1043,6 +1046,7 @@ typedef enum _POLICY_AUDIT_EVENT_TYPE {
+ #ifndef _NTLSA_IFS_
+ // begin_ntifs
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _IRQL_requires_same_
+ _IRQL_requires_max_(PASSIVE_LEVEL)
+ NTSTATUS
+@@ -1058,6 +1062,7 @@ LsaRegisterLogonProcess (
+ // However, the function has always been there, so it is okay to use
+ // even on w2k
+ //
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _IRQL_requires_same_
+ _IRQL_requires_max_(PASSIVE_LEVEL)
+ NTSTATUS
+@@ -1081,6 +1086,7 @@ LsaLogonUser (
+ 
+ // end_ntifs
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _IRQL_requires_same_
+ _IRQL_requires_max_(PASSIVE_LEVEL)
+ NTSTATUS
+@@ -1093,6 +1099,7 @@ LsaLookupAuthenticationPackage (
+ 
+ // begin_ntifs
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _IRQL_requires_same_
+ NTSTATUS
+ NTAPI
+@@ -1102,6 +1109,7 @@ LsaFreeReturnBuffer (
+ 
+ // end_ntifs
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _IRQL_requires_same_
+ _IRQL_requires_max_(PASSIVE_LEVEL)
+ NTSTATUS
+@@ -1116,6 +1124,7 @@ LsaCallAuthenticationPackage (
+     _Out_opt_ PNTSTATUS ProtocolStatus
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _IRQL_requires_same_
+ _IRQL_requires_max_(PASSIVE_LEVEL)
+ NTSTATUS
+@@ -1124,6 +1133,7 @@ LsaDeregisterLogonProcess (
+     _In_ HANDLE LsaHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _IRQL_requires_same_
+ _IRQL_requires_max_(PASSIVE_LEVEL)
+ NTSTATUS
+@@ -3094,12 +3104,14 @@ typedef struct _LSA_ENUMERATION_INFORMATION {
+ ////////////////////////////////////////////////////////////////////////////
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaFreeMemory(
+     _In_opt_ PVOID Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaClose(
+@@ -3195,6 +3207,7 @@ typedef struct _SECURITY_LOGON_SESSION_DATA {
+ #endif
+ } SECURITY_LOGON_SESSION_DATA, * PSECURITY_LOGON_SESSION_DATA;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaEnumerateLogonSessions(
+@@ -3202,6 +3215,7 @@ LsaEnumerateLogonSessions(
+     _Out_ PLUID * LogonSessionList
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaGetLogonSessionData(
+@@ -3219,6 +3233,7 @@ LsaGetLogonSessionData(
+ ///////////////////////////////////////////////////////////////////////////////
+ 
+ // begin_ntsecapi
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaOpenPolicy(
+@@ -3363,6 +3378,7 @@ LsaSetCAPs(
+     _In_ ULONG Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSTATUS
+ NTAPI
+ LsaGetAppliedCAPIDs(
+@@ -3371,6 +3387,7 @@ LsaGetAppliedCAPIDs(
+     _Out_ PULONG CAPIDCount
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSTATUS
+ NTAPI
+ LsaQueryCAPs(
+@@ -3384,6 +3401,7 @@ LsaQueryCAPs(
+ 
+ // begin_ntsecapi
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaQueryInformationPolicy(
+@@ -3392,6 +3410,7 @@ LsaQueryInformationPolicy(
+     _Out_ PVOID *Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaSetInformationPolicy(
+@@ -3400,6 +3419,7 @@ LsaSetInformationPolicy(
+     _In_ PVOID Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaQueryDomainInformationPolicy(
+@@ -3408,6 +3428,7 @@ LsaQueryDomainInformationPolicy(
+     _Out_ PVOID *Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaSetDomainInformationPolicy(
+@@ -3417,6 +3438,7 @@ LsaSetDomainInformationPolicy(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaRegisterPolicyChangeNotification(
+@@ -3424,6 +3446,7 @@ LsaRegisterPolicyChangeNotification(
+     _In_ HANDLE  NotificationEventHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaUnregisterPolicyChangeNotification(
+@@ -3470,6 +3493,7 @@ LsaCreateTrustedDomain(
+ 
+ // begin_ntsecapi
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaEnumerateTrustedDomains(
+@@ -3494,6 +3518,7 @@ LsaEnumeratePrivileges(
+ 
+ // begin_ntsecapi
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaLookupNames(
+@@ -3505,6 +3530,7 @@ LsaLookupNames(
+     );
+ 
+ #if (_WIN32_WINNT >= 0x0501)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaLookupNames2(
+@@ -3517,6 +3543,7 @@ LsaLookupNames2(
+     );
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaLookupSids(
+@@ -3527,6 +3554,7 @@ LsaLookupSids(
+     _Out_ PLSA_TRANSLATED_NAME *Names
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSTATUS
+ NTAPI
+ LsaLookupSids2(
+@@ -3742,6 +3770,7 @@ LsaQuerySecret(
+ //                                                                     //
+ /////////////////////////////////////////////////////////////////////////
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ NTSTATUS
+ NTAPI
+ LsaLookupPrivilegeValue(
+@@ -3814,6 +3843,7 @@ LsaGetRemoteUserName(
+ // This new API returns all the accounts with a certain privilege
+ //
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaEnumerateAccountsWithUserRight(
+@@ -3828,6 +3858,7 @@ LsaEnumerateAccountsWithUserRight(
+ // to open the account first and passing in an account handle
+ //
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaEnumerateAccountRights(
+@@ -3837,6 +3868,7 @@ LsaEnumerateAccountRights(
+     _Out_ PULONG CountOfRights
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaAddAccountRights(
+@@ -3846,6 +3878,7 @@ LsaAddAccountRights(
+     _In_ ULONG CountOfRights
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaRemoveAccountRights(
+@@ -3862,6 +3895,7 @@ LsaRemoveAccountRights(
+ //                                                                           //
+ ///////////////////////////////////////////////////////////////////////////////
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaOpenTrustedDomainByName(
+@@ -3872,6 +3906,7 @@ LsaOpenTrustedDomainByName(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaQueryTrustedDomainInfo(
+@@ -3881,6 +3916,7 @@ LsaQueryTrustedDomainInfo(
+     _Out_ PVOID *Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaSetTrustedDomainInformation(
+@@ -3890,6 +3926,7 @@ LsaSetTrustedDomainInformation(
+     _In_ PVOID Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaDeleteTrustedDomain(
+@@ -3897,6 +3934,7 @@ LsaDeleteTrustedDomain(
+     _In_ PSID TrustedDomainSid
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaQueryTrustedDomainInfoByName(
+@@ -3906,6 +3944,7 @@ LsaQueryTrustedDomainInfoByName(
+     _Out_ PVOID *Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaSetTrustedDomainInfoByName(
+@@ -3915,6 +3954,7 @@ LsaSetTrustedDomainInfoByName(
+     _In_ PVOID Buffer
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaEnumerateTrustedDomainsEx(
+@@ -3925,6 +3965,7 @@ LsaEnumerateTrustedDomainsEx(
+     _Out_ PULONG CountReturned
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaCreateTrustedDomainEx(
+@@ -3936,6 +3977,7 @@ LsaCreateTrustedDomainEx(
+     );
+ 
+ #if (_WIN32_WINNT >= 0x0501)
++_Win32_metadata_supported_os_(windowsserver2003)
+ NTSTATUS
+ NTAPI
+ LsaQueryForestTrustInformation(
+@@ -3944,6 +3986,7 @@ LsaQueryForestTrustInformation(
+     _Out_ PLSA_FOREST_TRUST_INFORMATION * ForestTrustInfo
+     );
+ 
++_Win32_metadata_supported_os_(windowsserver2003)
+ NTSTATUS
+ NTAPI
+ LsaSetForestTrustInformation(
+@@ -3975,6 +4018,7 @@ LsaForestTrustFindMatch(
+ // the SSI_SECRET_NAME secret)
+ //
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaStorePrivateData(
+@@ -3983,6 +4027,7 @@ LsaStorePrivateData(
+     _In_opt_ PLSA_UNICODE_STRING PrivateData
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSTATUS
+ NTAPI
+ LsaRetrievePrivateData(
+@@ -3992,6 +4037,7 @@ LsaRetrievePrivateData(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ ULONG
+ NTAPI
+ LsaNtStatusToWinError(

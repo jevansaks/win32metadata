@@ -1,0 +1,314 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/azroles.h b/generation/WinSDK/RecompiledIdlHeaders/um/azroles.h
+index 5bf4911c..bfca5d15 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/azroles.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/azroles.h
+@@ -572,6 +572,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ //
+@@ -681,6 +684,7 @@ EXTERN_C const IID IID_IAzAuthorizationStore;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("edbd9ca9-9b82-4f6a-9e8b-98301e450f14")
+     IAzAuthorizationStore : public IDispatch
+     {
+@@ -1437,6 +1441,7 @@ EXTERN_C const IID IID_IAzAuthorizationStore2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("b11e5584-d577-4273-b6c5-0973e0f8e80d")
+     IAzAuthorizationStore2 : public IAzAuthorizationStore
+     {
+@@ -2037,6 +2042,7 @@ EXTERN_C const IID IID_IAzAuthorizationStore3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("abc08425-0c86-4fa0-9be3-7189956c926e")
+     IAzAuthorizationStore3 : public IAzAuthorizationStore2
+     {
+@@ -2687,6 +2693,7 @@ EXTERN_C const IID IID_IAzApplication;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("987bc7c7-b813-4d27-bede-6ba5ae867e95")
+     IAzApplication : public IDispatch
+     {
+@@ -3593,6 +3600,7 @@ EXTERN_C const IID IID_IAzApplication2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("086a68af-a249-437c-b18d-d4d86d6a9660")
+     IAzApplication2 : public IAzApplication
+     {
+@@ -4295,6 +4303,7 @@ EXTERN_C const IID IID_IAzApplications;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("929b11a9-95c5-4a84-a29a-20ad42c2f16c")
+     IAzApplications : public IDispatch
+     {
+@@ -4457,6 +4466,7 @@ EXTERN_C const IID IID_IAzOperation;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("5e56b24f-ea01-4d61-be44-c49b5e4eaf74")
+     IAzOperation : public IDispatch
+     {
+@@ -4726,6 +4736,7 @@ EXTERN_C const IID IID_IAzOperations;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("90ef9c07-9706-49d9-af80-0438a5f3ec35")
+     IAzOperations : public IDispatch
+     {
+@@ -4888,6 +4899,7 @@ EXTERN_C const IID IID_IAzTask;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("cb94e592-2e0e-4a6c-a336-b89a6dc1e388")
+     IAzTask : public IDispatch
+     {
+@@ -5327,6 +5339,7 @@ EXTERN_C const IID IID_IAzTasks;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("b338ccab-4c85-4388-8c0a-c58592bad398")
+     IAzTasks : public IDispatch
+     {
+@@ -5489,6 +5502,7 @@ EXTERN_C const IID IID_IAzScope;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("00e52487-e08d-4514-b62e-877d5645f5ab")
+     IAzScope : public IDispatch
+     {
+@@ -6098,6 +6112,7 @@ EXTERN_C const IID IID_IAzScopes;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("78e14853-9f5e-406d-9b91-6bdba6973510")
+     IAzScopes : public IDispatch
+     {
+@@ -6260,6 +6275,7 @@ EXTERN_C const IID IID_IAzApplicationGroup;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("f1b744cd-58a6-4e06-9fbf-36f6d779e21e")
+     IAzApplicationGroup : public IDispatch
+     {
+@@ -6781,6 +6797,7 @@ EXTERN_C const IID IID_IAzApplicationGroups;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("4ce66ad5-9f3c-469d-a911-b99887a7e685")
+     IAzApplicationGroups : public IDispatch
+     {
+@@ -6943,6 +6960,7 @@ EXTERN_C const IID IID_IAzRole;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("859e0d8d-62d7-41d8-a034-c0cd5d43fdfa")
+     IAzRole : public IDispatch
+     {
+@@ -7405,6 +7423,7 @@ EXTERN_C const IID IID_IAzRoles;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("95e0f119-13b4-4dae-b65f-2f7d60d822e4")
+     IAzRoles : public IDispatch
+     {
+@@ -7567,6 +7586,7 @@ EXTERN_C const IID IID_IAzClientContext;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("eff1f00b-488a-466d-afd9-a401c5f9eef5")
+     IAzClientContext : public IDispatch
+     {
+@@ -7859,6 +7879,7 @@ EXTERN_C const IID IID_IAzClientContext2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windowsserver2008)
+     MIDL_INTERFACE("2b0c92b8-208a-488a-8f81-e4edb22111cd")
+     IAzClientContext2 : public IAzClientContext
+     {
+@@ -8176,6 +8197,7 @@ EXTERN_C const IID IID_IAzBizRuleContext;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("e192f17d-d59f-455e-a152-940316cd77b2")
+     IAzBizRuleContext : public IDispatch
+     {
+@@ -8349,6 +8371,7 @@ EXTERN_C const IID IID_IAzBizRuleParameters;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("fc17685f-e25d-4dcd-bae1-276ec9533cb5")
+     IAzBizRuleParameters : public IDispatch
+     {
+@@ -8546,6 +8569,7 @@ EXTERN_C const IID IID_IAzBizRuleInterfaces;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("e94128c7-e9da-44cc-b0bd-53036f3aab3d")
+     IAzBizRuleInterfaces : public IDispatch
+     {
+@@ -8749,6 +8773,7 @@ EXTERN_C const IID IID_IAzClientContext3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("11894fde-1deb-4b4b-8907-6d1cda1f5d4f")
+     IAzClientContext3 : public IAzClientContext2
+     {
+@@ -9151,6 +9176,7 @@ EXTERN_C const IID IID_IAzScope2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("ee9fe8c9-c9f3-40e2-aa12-d1d8599727fd")
+     IAzScope2 : public IAzScope
+     {
+@@ -9711,6 +9737,7 @@ EXTERN_C const IID IID_IAzApplication3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("181c845e-7196-4a7d-ac2e-020c0bb7a303")
+     IAzApplication3 : public IAzApplication2
+     {
+@@ -10571,6 +10598,7 @@ EXTERN_C const IID IID_IAzOperation2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("1f5ea01f-44a2-4184-9c48-a75b4dcc8ccc")
+     IAzOperation2 : public IAzOperation
+     {
+@@ -10815,6 +10843,7 @@ EXTERN_C const IID IID_IAzRoleDefinitions;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("881f25a5-d755-4550-957a-d503a3b34001")
+     IAzRoleDefinitions : public IDispatch
+     {
+@@ -10977,6 +11006,7 @@ EXTERN_C const IID IID_IAzRoleDefinition;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("d97fcea1-2599-44f1-9fc3-58e9fbe09466")
+     IAzRoleDefinition : public IAzTask
+     {
+@@ -11374,6 +11404,7 @@ EXTERN_C const IID IID_IAzRoleAssignment;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("55647d31-0d5a-4fa3-b4ac-2b5f9ad5ab76")
+     IAzRoleAssignment : public IAzRole
+     {
+@@ -11781,6 +11812,7 @@ EXTERN_C const IID IID_IAzRoleAssignments;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("9c80b900-fceb-4d73-a0f4-c83b0bbf2481")
+     IAzRoleAssignments : public IDispatch
+     {
+@@ -11943,6 +11975,7 @@ EXTERN_C const IID IID_IAzPrincipalLocator;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("e5c3507d-ad6a-4992-9c7f-74ab480b44cc")
+     IAzPrincipalLocator : public IDispatch
+     {
+@@ -12092,6 +12125,7 @@ EXTERN_C const IID IID_IAzNameResolver;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("504d0f15-73e2-43df-a870-a64f40714f53")
+     IAzNameResolver : public IDispatch
+     {
+@@ -12249,6 +12283,7 @@ EXTERN_C const IID IID_IAzObjectPicker;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("63130a48-699a-42d8-bf01-c62ac3fb79f9")
+     IAzObjectPicker : public IDispatch
+     {
+@@ -12406,6 +12441,7 @@ EXTERN_C const IID IID_IAzApplicationGroup2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("3f0613fc-b71a-464e-a11d-5b881a56cefa")
+     IAzApplicationGroup2 : public IAzApplicationGroup
+     {
+@@ -12892,6 +12928,7 @@ EXTERN_C const IID IID_IAzTask2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("03a9a5ee-48c8-4832-9025-aad503c46526")
+     IAzTask2 : public IAzTask
+     {
+@@ -13449,9 +13486,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
+ unsigned long             __RPC_USER  HWND_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HWND * ); 
+@@ -13459,9 +13500,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+ unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
+ void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

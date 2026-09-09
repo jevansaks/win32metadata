@@ -1,0 +1,782 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msctf.h b/generation/WinSDK/RecompiledIdlHeaders/um/msctf.h
+index 455d0f27..da630879 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/msctf.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/msctf.h
+@@ -699,6 +699,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ //=--------------------------------------------------------------------------=
+ // msctf.h
+ 
+@@ -756,12 +759,19 @@ extern "C" {
+ #define TF_RCM_VKEY                             0x00000002
+ #define TF_RCM_HINT_READING_LENGTH              0x00000004
+ #define TF_RCM_HINT_COLLISION                   0x00000008
++_Win32_metadata_supported_os_(windows5.0)
+ HRESULT WINAPI TF_CreateThreadMgr(ITfThreadMgr **pptim);
++_Win32_metadata_supported_os_(windows5.0)
+ HRESULT WINAPI TF_GetThreadMgr(ITfThreadMgr **pptim);
++_Win32_metadata_supported_os_(windows5.0)
+ HRESULT WINAPI TF_CreateInputProcessorProfiles(ITfInputProcessorProfiles **ppipr);
++_Win32_metadata_supported_os_(windows5.0)
+ HRESULT WINAPI TF_CreateDisplayAttributeMgr(ITfDisplayAttributeMgr **ppdam);
++_Win32_metadata_supported_os_(windows5.0)
+ HRESULT WINAPI TF_CreateLangBarMgr(ITfLangBarMgr **pppbm);
++_Win32_metadata_supported_os_(windows5.0)
+ HRESULT WINAPI TF_CreateLangBarItemMgr(ITfLangBarItemMgr **pplbim);
++_Win32_metadata_supported_os_(windows5.0)
+ HRESULT WINAPI TF_CreateCategoryMgr(ITfCategoryMgr **ppcat);
+ 
+ EXTERN_C const GUID GUID_PROP_TEXTOWNER;
+@@ -1072,6 +1082,7 @@ EXTERN_C const IID IID_ITfThreadMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e801-2021-11d2-93e0-0060b067b86e")
+     ITfThreadMgr : public IUnknown
+     {
+@@ -1297,6 +1308,7 @@ EXTERN_C const IID IID_ITfThreadMgrEx;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("3e90ade3-7594-4cb0-bb58-69628f5f458c")
+     ITfThreadMgrEx : public ITfThreadMgr
+     {
+@@ -1517,6 +1529,7 @@ EXTERN_C const IID IID_ITfThreadMgr2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("0ab198ef-6477-4ee8-8812-6780edb82d5e")
+     ITfThreadMgr2 : public IUnknown
+     {
+@@ -1781,6 +1794,7 @@ EXTERN_C const IID IID_ITfThreadMgrEventSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e80e-2021-11d2-93e0-0060b067b86e")
+     ITfThreadMgrEventSink : public IUnknown
+     {
+@@ -1936,6 +1950,7 @@ EXTERN_C const IID IID_ITfConfigureSystemKeystrokeFeed;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("0d2c969a-bc9c-437c-84ee-951c49b1a764")
+     ITfConfigureSystemKeystrokeFeed : public IUnknown
+     {
+@@ -2028,6 +2043,7 @@ EXTERN_C const IID IID_IEnumTfDocumentMgrs;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e808-2021-11d2-93e0-0060b067b86e")
+     IEnumTfDocumentMgrs : public IUnknown
+     {
+@@ -2160,6 +2176,7 @@ EXTERN_C const IID IID_ITfDocumentMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e7f4-2021-11d2-93e0-0060b067b86e")
+     ITfDocumentMgr : public IUnknown
+     {
+@@ -2328,6 +2345,7 @@ EXTERN_C const IID IID_IEnumTfContexts;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("8f1a7ea6-1654-4502-a86e-b2902344d507")
+     IEnumTfContexts : public IUnknown
+     {
+@@ -2458,6 +2476,7 @@ EXTERN_C const IID IID_ITfCompositionView;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("D7540241-F9A1-4364-BEFC-DBCD2C4395B7")
+     ITfCompositionView : public IUnknown
+     {
+@@ -2558,6 +2577,7 @@ EXTERN_C const IID IID_IEnumITfCompositionView;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("5EFD22BA-7838-46CB-88E2-CADB14124F8F")
+     IEnumITfCompositionView : public IUnknown
+     {
+@@ -2688,6 +2708,7 @@ EXTERN_C const IID IID_ITfComposition;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("20168D64-5A8F-4A5A-B7BD-CFA29F4D0FD9")
+     ITfComposition : public IUnknown
+     {
+@@ -2822,6 +2843,7 @@ EXTERN_C const IID IID_ITfCompositionSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("A781718C-579A-4B15-A280-32B8577ACC5E")
+     ITfCompositionSink : public IUnknown
+     {
+@@ -2913,6 +2935,7 @@ EXTERN_C const IID IID_ITfContextComposition;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("D40C8AAE-AC92-4FC7-9A11-0EE0E23AA39B")
+     ITfContextComposition : public IUnknown
+     {
+@@ -3071,6 +3094,7 @@ EXTERN_C const IID IID_ITfContextOwnerCompositionServices;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("86462810-593B-4916-9764-19C08E9CE110")
+     ITfContextOwnerCompositionServices : public ITfContextComposition
+     {
+@@ -3211,6 +3235,7 @@ EXTERN_C const IID IID_ITfContextOwnerCompositionSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("5F20AA40-B57A-4F34-96AB-3576F377CC79")
+     ITfContextOwnerCompositionSink : public IUnknown
+     {
+@@ -3332,6 +3357,7 @@ EXTERN_C const IID IID_ITfContextView;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("2433bf8e-0f9b-435c-ba2c-180611978c30")
+     ITfContextView : public IUnknown
+     {
+@@ -3660,6 +3686,7 @@ EXTERN_C const IID IID_ITfContext;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e7fd-2021-11d2-93e0-0060b067b86e")
+     ITfContext : public IUnknown
+     {
+@@ -4021,6 +4048,7 @@ EXTERN_C const IID IID_ITfQueryEmbedded;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("0fab9bdb-d250-4169-84e5-6be118fdd7a8")
+     ITfQueryEmbedded : public IUnknown
+     {
+@@ -4122,6 +4150,7 @@ EXTERN_C const IID IID_ITfInsertAtSelection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("55ce16ba-3014-41c1-9ceb-fade1446ac6c")
+     ITfInsertAtSelection : public IUnknown
+     {
+@@ -4250,6 +4279,7 @@ EXTERN_C const IID IID_ITfCleanupContextSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("01689689-7acb-4e9b-ab7c-7ea46b12b522")
+     ITfCleanupContextSink : public IUnknown
+     {
+@@ -4341,6 +4371,7 @@ EXTERN_C const IID IID_ITfCleanupContextDurationSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("45c35144-154e-4797-bed8-d33ae7bf8794")
+     ITfCleanupContextDurationSink : public IUnknown
+     {
+@@ -4445,6 +4476,7 @@ EXTERN_C const IID IID_ITfReadOnlyProperty;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("17d49a3d-f8b8-4b2f-b254-52319dd64c53")
+     ITfReadOnlyProperty : public IUnknown
+     {
+@@ -4601,6 +4633,7 @@ EXTERN_C const IID IID_IEnumTfPropertyValue;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("8ed8981b-7c10-4d7d-9fb3-ab72e9c75f72")
+     IEnumTfPropertyValue : public IUnknown
+     {
+@@ -4743,6 +4776,7 @@ EXTERN_C const IID IID_ITfMouseTracker;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("09d146cd-a544-4132-925b-7afa8ef322d0")
+     ITfMouseTracker : public IUnknown
+     {
+@@ -4851,6 +4885,7 @@ EXTERN_C const IID IID_ITfMouseTrackerACP;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("3bdd78e2-c16e-47fd-b883-ce6facc1a208")
+     ITfMouseTrackerACP : public IUnknown
+     {
+@@ -4959,6 +4994,7 @@ EXTERN_C const IID IID_ITfMouseSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("a1adaaa2-3a24-449d-ac96-5183e7f5c217")
+     ITfMouseSink : public IUnknown
+     {
+@@ -5072,6 +5108,7 @@ EXTERN_C const IID IID_ITfEditRecord;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("42d4d099-7c1a-4a89-b836-6c6f22160df0")
+     ITfEditRecord : public IUnknown
+     {
+@@ -5184,6 +5221,7 @@ EXTERN_C const IID IID_ITfTextEditSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("8127d409-ccd3-4683-967a-b43d5b482bf7")
+     ITfTextEditSink : public IUnknown
+     {
+@@ -5299,6 +5337,7 @@ EXTERN_C const IID IID_ITfTextLayoutSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("2af2d06a-dd5b-4927-a0b4-54f19c91fade")
+     ITfTextLayoutSink : public IUnknown
+     {
+@@ -5394,6 +5433,7 @@ EXTERN_C const IID IID_ITfStatusSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6b7d8d73-b267-4f69-b32e-1ca321ce4f45")
+     ITfStatusSink : public IUnknown
+     {
+@@ -5485,6 +5525,7 @@ EXTERN_C const IID IID_ITfEditTransactionSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("708fbf70-b520-416b-b06c-2c41ab44f8ba")
+     ITfEditTransactionSink : public IUnknown
+     {
+@@ -5585,6 +5626,7 @@ EXTERN_C const IID IID_ITfContextOwner;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e80c-2021-11d2-93e0-0060b067b86e")
+     ITfContextOwner : public IUnknown
+     {
+@@ -5773,6 +5815,7 @@ EXTERN_C const IID IID_ITfContextOwnerServices;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("b23eb630-3e1c-11d3-a745-0050040ab407")
+     ITfContextOwnerServices : public IUnknown
+     {
+@@ -5978,6 +6021,7 @@ EXTERN_C const IID IID_ITfContextKeyEventSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("0552ba5d-c835-4934-bf50-846aaa67432f")
+     ITfContextKeyEventSink : public IUnknown
+     {
+@@ -6148,6 +6192,7 @@ EXTERN_C const IID IID_ITfEditSession;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e803-2021-11d2-93e0-0060b067b86e")
+     ITfEditSession : public IUnknown
+     {
+@@ -6268,6 +6313,7 @@ EXTERN_C const IID IID_ITfRange;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e7ff-2021-11d2-93e0-0060b067b86e")
+     ITfRange : public IUnknown
+     {
+@@ -6812,6 +6858,7 @@ EXTERN_C const IID IID_ITfRangeACP;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("057a6296-029b-4154-b79a-0d461d4ea94c")
+     ITfRangeACP : public ITfRange
+     {
+@@ -7211,6 +7258,7 @@ EXTERN_C const IID IID_ITextStoreACPServices;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e901-2021-11d2-93e0-0060b067b86e")
+     ITextStoreACPServices : public IUnknown
+     {
+@@ -7369,6 +7417,7 @@ EXTERN_C const IID IID_ITfRangeBackup;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("463a506d-6992-49d2-9b88-93d55e70bb16")
+     ITfRangeBackup : public IUnknown
+     {
+@@ -7462,6 +7511,7 @@ EXTERN_C const IID IID_ITfPropertyStore;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6834b120-88cb-11d2-bf45-00105a2799b5")
+     ITfPropertyStore : public IUnknown
+     {
+@@ -7677,6 +7727,7 @@ EXTERN_C const IID IID_IEnumTfRanges;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("f99d3f40-8e32-11d2-bf46-00105a2799b5")
+     IEnumTfRanges : public IUnknown
+     {
+@@ -7817,6 +7868,7 @@ EXTERN_C const IID IID_ITfCreatePropertyStore;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("2463fbf0-b0af-11d2-afc5-00105a2799b5")
+     ITfCreatePropertyStore : public IUnknown
+     {
+@@ -7957,6 +8009,7 @@ EXTERN_C const IID IID_ITfPersistentPropertyLoaderACP;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("4ef89150-0807-11d3-8df0-00105a2799b5")
+     ITfPersistentPropertyLoaderACP : public IUnknown
+     {
+@@ -8048,6 +8101,7 @@ EXTERN_C const IID IID_ITfProperty;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("e2449660-9542-11d2-bf46-00105a2799b5")
+     ITfProperty : public ITfReadOnlyProperty
+     {
+@@ -8251,6 +8305,7 @@ EXTERN_C const IID IID_IEnumTfProperties;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("19188cb0-aca9-11d2-afc5-00105a2799b5")
+     IEnumTfProperties : public IUnknown
+     {
+@@ -8381,6 +8436,7 @@ EXTERN_C const IID IID_ITfCompartment;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("bb08f7a9-607a-4384-8623-056892b64371")
+     ITfCompartment : public IUnknown
+     {
+@@ -8485,6 +8541,7 @@ EXTERN_C const IID IID_ITfCompartmentEventSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("743abd5f-f26d-48df-8cc5-238492419b64")
+     ITfCompartmentEventSink : public IUnknown
+     {
+@@ -8572,6 +8629,7 @@ EXTERN_C const IID IID_ITfCompartmentMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("7dcf57ac-18ad-438b-824d-979bffb74b7c")
+     ITfCompartmentMgr : public IUnknown
+     {
+@@ -8693,6 +8751,7 @@ EXTERN_C const IID IID_ITfFunction;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("db593490-098f-11d3-8df0-00105a2799b5")
+     ITfFunction : public IUnknown
+     {
+@@ -8780,6 +8839,7 @@ EXTERN_C const IID IID_ITfFunctionProvider;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("101d6610-0990-11d3-8df0-00105a2799b5")
+     ITfFunctionProvider : public IUnknown
+     {
+@@ -8901,6 +8961,7 @@ EXTERN_C const IID IID_IEnumTfFunctionProviders;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("e4b24db0-0990-11d3-8df0-00105a2799b5")
+     IEnumTfFunctionProviders : public IUnknown
+     {
+@@ -9043,6 +9104,7 @@ EXTERN_C const IID IID_ITfInputProcessorProfiles;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("1F02B6C5-7842-4EE6-8A0B-9A24183A95CA")
+     ITfInputProcessorProfiles : public IUnknown
+     {
+@@ -9491,6 +9553,7 @@ EXTERN_C const IID IID_ITfInputProcessorProfilesEx;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("892f230f-fe00-4a41-a98e-fcd6de0d35ef")
+     ITfInputProcessorProfilesEx : public ITfInputProcessorProfiles
+     {
+@@ -9831,6 +9894,7 @@ EXTERN_C const IID IID_ITfInputProcessorProfileSubstituteLayout;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("4fd67194-1002-4513-bff2-c0ddf6258552")
+     ITfInputProcessorProfileSubstituteLayout : public IUnknown
+     {
+@@ -9930,6 +9994,7 @@ EXTERN_C const IID IID_ITfActiveLanguageProfileNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("b246cb75-a93e-4652-bf8c-b3fe0cfd7e57")
+     ITfActiveLanguageProfileNotifySink : public IUnknown
+     {
+@@ -10025,6 +10090,7 @@ EXTERN_C const IID IID_IEnumTfLanguageProfiles;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("3d61bf11-ac5f-42c8-a4cb-931bcc28c744")
+     IEnumTfLanguageProfiles : public IUnknown
+     {
+@@ -10167,6 +10233,7 @@ EXTERN_C const IID IID_ITfLanguageProfileNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("43c9fe15-f494-4c17-9de2-b8a4ac350aa8")
+     ITfLanguageProfileNotifySink : public IUnknown
+     {
+@@ -10288,6 +10355,7 @@ EXTERN_C const IID IID_ITfInputProcessorProfileMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("71c6e74c-0f28-11d8-a82a-00065b84435c")
+     ITfInputProcessorProfileMgr : public IUnknown
+     {
+@@ -10594,6 +10662,7 @@ EXTERN_C const IID IID_IEnumTfInputProcessorProfiles;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("71c6e74d-0f28-11d8-a82a-00065b84435c")
+     IEnumTfInputProcessorProfiles : public IUnknown
+     {
+@@ -10724,6 +10793,7 @@ EXTERN_C const IID IID_ITfInputProcessorProfileActivationSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("71c6e74e-0f28-11d8-a82a-00065b84435c")
+     ITfInputProcessorProfileActivationSink : public IUnknown
+     {
+@@ -10849,6 +10919,7 @@ EXTERN_C const IID IID_ITfKeystrokeMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e7f0-2021-11d2-93e0-0060b067b86e")
+     ITfKeystrokeMgr : public IUnknown
+     {
+@@ -11201,6 +11272,7 @@ EXTERN_C const IID IID_ITfKeyEventSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e7f5-2021-11d2-93e0-0060b067b86e")
+     ITfKeyEventSink : public IUnknown
+     {
+@@ -11409,6 +11481,7 @@ EXTERN_C const IID IID_ITfKeyTraceEventSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("1cd4c13b-1c36-4191-a70a-7f3e611f367d")
+     ITfKeyTraceEventSink : public IUnknown
+     {
+@@ -11517,6 +11590,7 @@ EXTERN_C const IID IID_ITfPreservedKeyNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6f77c993-d2b1-446e-853e-5912efc8a286")
+     ITfPreservedKeyNotifySink : public IUnknown
+     {
+@@ -11616,6 +11690,7 @@ EXTERN_C const IID IID_ITfMessagePump;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("8f1b8ad8-0b6b-4874-90c5-bd76011e8f7c")
+     ITfMessagePump : public IUnknown
+     {
+@@ -11814,6 +11889,7 @@ EXTERN_C const IID IID_ITfThreadFocusSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("c0f1db0c-3a20-405c-a303-96b6010a885f")
+     ITfThreadFocusSink : public IUnknown
+     {
+@@ -11906,6 +11982,7 @@ EXTERN_C const IID IID_ITfTextInputProcessor;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("aa80e7f7-2021-11d2-93e0-0060b067b86e")
+     ITfTextInputProcessor : public IUnknown
+     {
+@@ -12006,6 +12083,7 @@ EXTERN_C const IID IID_ITfTextInputProcessorEx;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("6e4e2102-f9cd-433d-b496-303ce03a6507")
+     ITfTextInputProcessorEx : public ITfTextInputProcessor
+     {
+@@ -12120,6 +12198,7 @@ EXTERN_C const IID IID_ITfClientId;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("d60a7b49-1b9f-4be2-b702-47e9dc05dec3")
+     ITfClientId : public IUnknown
+     {
+@@ -12273,6 +12352,7 @@ EXTERN_C const IID IID_ITfDisplayAttributeInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("70528852-2f26-4aea-8c96-215150578932")
+     ITfDisplayAttributeInfo : public IUnknown
+     {
+@@ -12408,6 +12488,7 @@ EXTERN_C const IID IID_IEnumTfDisplayAttributeInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("7cef04d7-cb75-4e80-a7ab-5f5bc7d332de")
+     IEnumTfDisplayAttributeInfo : public IUnknown
+     {
+@@ -12538,6 +12619,7 @@ EXTERN_C const IID IID_ITfDisplayAttributeProvider;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("fee47777-163c-4769-996a-6e9c50ad8f54")
+     ITfDisplayAttributeProvider : public IUnknown
+     {
+@@ -12642,6 +12724,7 @@ EXTERN_C const IID IID_ITfDisplayAttributeMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("8ded7393-5db1-475c-9e71-a39111b0ff67")
+     ITfDisplayAttributeMgr : public IUnknown
+     {
+@@ -12759,6 +12842,7 @@ EXTERN_C const IID IID_ITfDisplayAttributeNotifySink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("ad56f402-e162-4f25-908f-7d577cf9bda9")
+     ITfDisplayAttributeNotifySink : public IUnknown
+     {
+@@ -12842,6 +12926,7 @@ EXTERN_C const IID IID_ITfCategoryMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("c3acefb5-f69d-4905-938f-fcadcf4be830")
+     ITfCategoryMgr : public IUnknown
+     {
+@@ -13196,6 +13281,7 @@ EXTERN_C const IID IID_ITfSource;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("4ea48a35-60ae-446f-8fd6-e6a8d82459f7")
+     ITfSource : public IUnknown
+     {
+@@ -13304,6 +13390,7 @@ EXTERN_C const IID IID_ITfSourceSingle;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("73131f9c-56a9-49dd-b0ee-d046633f7528")
+     ITfSourceSingle : public IUnknown
+     {
+@@ -13416,6 +13503,7 @@ EXTERN_C const IID IID_ITfUIElementMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("ea1ea135-19df-11d7-a6d2-00065b84435c")
+     ITfUIElementMgr : public IUnknown
+     {
+@@ -13567,6 +13655,7 @@ EXTERN_C const IID IID_IEnumTfUIElements;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("887aa91e-acba-4931-84da-3c5208cf543f")
+     IEnumTfUIElements : public IUnknown
+     {
+@@ -13697,6 +13786,7 @@ EXTERN_C const IID IID_ITfUIElementSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("ea1ea136-19df-11d7-a6d2-00065b84435c")
+     ITfUIElementSink : public IUnknown
+     {
+@@ -13814,6 +13904,7 @@ EXTERN_C const IID IID_ITfUIElement;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("ea1ea137-19df-11d7-a6d2-00065b84435c")
+     ITfUIElement : public IUnknown
+     {
+@@ -13940,6 +14031,7 @@ EXTERN_C const IID IID_ITfCandidateListUIElement;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("ea1ea138-19df-11d7-a6d2-00065b84435c")
+     ITfCandidateListUIElement : public ITfUIElement
+     {
+@@ -14171,6 +14263,7 @@ EXTERN_C const IID IID_ITfCandidateListUIElementBehavior;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("85fad185-58ce-497a-9460-355366b64b9a")
+     ITfCandidateListUIElementBehavior : public ITfCandidateListUIElement
+     {
+@@ -14394,6 +14487,7 @@ EXTERN_C const IID IID_ITfReadingInformationUIElement;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("ea1ea139-19df-11d7-a6d2-00065b84435c")
+     ITfReadingInformationUIElement : public ITfUIElement
+     {
+@@ -14595,6 +14689,7 @@ EXTERN_C const IID IID_ITfTransitoryExtensionUIElement;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("858f956a-972f-42a2-a2f2-0321e1abe209")
+     ITfTransitoryExtensionUIElement : public ITfUIElement
+     {
+@@ -14719,6 +14814,7 @@ EXTERN_C const IID IID_ITfTransitoryExtensionSink;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("a615096f-1c57-4813-8a15-55ee6e5a839c")
+     ITfTransitoryExtensionSink : public IUnknown
+     {
+@@ -14822,6 +14918,7 @@ EXTERN_C const IID IID_ITfToolTipUIElement;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("52b18b5c-555d-46b2-b00a-fa680144fbdb")
+     ITfToolTipUIElement : public ITfUIElement
+     {
+@@ -14946,6 +15043,7 @@ EXTERN_C const IID IID_ITfReverseConversionList;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("151d69f0-86f4-4674-b721-56911e797f47")
+     ITfReverseConversionList : public IUnknown
+     {
+@@ -15050,6 +15148,7 @@ EXTERN_C const IID IID_ITfReverseConversion;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("a415e162-157d-417d-8a8c-0ab26c7d2781")
+     ITfReverseConversion : public IUnknown
+     {
+@@ -15141,6 +15240,7 @@ EXTERN_C const IID IID_ITfReverseConversionMgr;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("b643c236-c493-41b6-abb3-692412775cc4")
+     ITfReverseConversionMgr : public IUnknown
+     {
+@@ -15277,9 +15377,13 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
+ unsigned long             __RPC_USER  CLIPFORMAT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in CLIPFORMAT * ); 
+@@ -15292,9 +15396,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal64(  __RPC__in unsigned long *, __RP
+ unsigned char * __RPC_USER  HWND_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
+ void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned long *, __RPC__in HWND * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

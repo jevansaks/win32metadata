@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinDNS.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinDNS.h
-index 8513e017..974bb9bc 100644
+index 8513e017..0e53b46e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WinDNS.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinDNS.h
 @@ -24,6 +24,9 @@ Revision History:
@@ -12,15 +12,128 @@ index 8513e017..974bb9bc 100644
  #include <windnsdef.h>
  
  #pragma region Desktop Family or OneCore Family or Games Family
-@@ -1109,6 +1112,7 @@ DnsAcquireContextHandle_W(
+@@ -412,6 +415,7 @@ DNS_CONFIG_TYPE;
+ //
+ #define DNS_CONFIG_FLAG_ALLOC   (0x00000001)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsQueryConfig(
+@@ -528,6 +532,7 @@ typedef struct DNS_PROXY_INFORMATION {
+ //  conversion enum.
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ PDNS_RECORD
+ WINAPI
+ DnsRecordCopyEx(
+@@ -536,6 +541,7 @@ DnsRecordCopyEx(
+     _In_    DNS_CHARSET     CharSetOut
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ PDNS_RECORD
+ WINAPI
+ DnsRecordSetCopyEx(
+@@ -567,6 +573,7 @@ DnsRecordSetCopyEx(
+ //  DnsRecordCopy API and compare copies.
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ WINAPI
+ DnsRecordCompare(
+@@ -574,6 +581,7 @@ DnsRecordCompare(
+     _In_            PDNS_RECORD     pRecord2
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ WINAPI
+ DnsRecordSetCompare(
+@@ -587,6 +595,7 @@ DnsRecordSetCompare(
+ //  Detach next record set from record list
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ PDNS_RECORD
+ DnsRecordSetDetach(
+     _Inout_         PDNS_RECORD     pRecordList
+@@ -626,6 +635,7 @@ typedef enum
+ }
+ DNS_FREE_TYPE;
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ VOID
+ WINAPI
+ DnsFree(
+@@ -642,6 +652,7 @@ DnsFree(
+ #if(_WIN32_WINNT >= 0x0501)
+ #define DnsRecordListFree(p,t)  DnsFree(p,DnsFreeRecordList)
+ #else
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ WINAPI
+ DnsRecordListFree(
+@@ -763,6 +774,7 @@ DnsIsFlatRecord(
+ 
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsQuery_A(
+@@ -774,6 +786,7 @@ DnsQuery_A(
+     _Outptr_opt_result_maybenull_ PVOID *         pReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsQuery_UTF8(
+@@ -785,6 +798,7 @@ DnsQuery_UTF8(
+     _Outptr_opt_result_maybenull_ PVOID *         pReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsQuery_W(
+@@ -899,6 +913,7 @@ typedef struct DECLSPEC_ALIGN(8) _DNS_QUERY_CANCEL
+ }
+ DNS_QUERY_CANCEL, *PDNS_QUERY_CANCEL;
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DNS_STATUS
+ WINAPI
+ DnsQueryEx(
+@@ -907,6 +922,7 @@ DnsQueryEx(
+     _Inout_opt_ PDNS_QUERY_CANCEL   pCancelHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DNS_STATUS
+ WINAPI
+ DnsCancelQuery(
+@@ -1103,20 +1119,24 @@ DnsCancelQueryRaw(
+ //  the future.
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsAcquireContextHandle_W(
      _In_            DWORD           CredentialFlags,
      _In_opt_        PVOID           Credentials,
      _Outptr_     PHANDLE         pContext
 +        _Win32_metadata_raii_free_(DnsReleaseContextHandle)
      );
  
++_Win32_metadata_supported_os_(windows5.0)
  DNS_STATUS
-@@ -1117,6 +1121,7 @@ DnsAcquireContextHandle_A(
+ WINAPI
+ DnsAcquireContextHandle_A(
      _In_            DWORD           CredentialFlags,
      _In_opt_        PVOID           Credentials,
      _Outptr_     PHANDLE         pContext
@@ -28,64 +141,253 @@ index 8513e017..974bb9bc 100644
      );
  
  #ifdef UNICODE
-@@ -1748,6 +1753,7 @@ typedef struct _DNS_SERVICE_BROWSE_REQUEST
+@@ -1125,6 +1145,7 @@ DnsAcquireContextHandle_A(
+ #define DnsAcquireContextHandle DnsAcquireContextHandle_A
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ VOID
+ WINAPI
+ DnsReleaseContextHandle(
+@@ -1135,6 +1156,7 @@ DnsReleaseContextHandle(
+ //  Dynamic Update API
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsModifyRecordsInSet_W(
+@@ -1146,6 +1168,7 @@ DnsModifyRecordsInSet_W(
+     _Inout_opt_     PVOID           pReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsModifyRecordsInSet_A(
+@@ -1157,6 +1180,7 @@ DnsModifyRecordsInSet_A(
+     _Inout_opt_     PVOID           pReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsModifyRecordsInSet_UTF8(
+@@ -1175,6 +1199,7 @@ DnsModifyRecordsInSet_UTF8(
+ #endif
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsReplaceRecordSetW(
+@@ -1185,6 +1210,7 @@ DnsReplaceRecordSetW(
+     _Inout_opt_     PVOID           pReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsReplaceRecordSetA(
+@@ -1195,6 +1221,7 @@ DnsReplaceRecordSetA(
+     _Inout_opt_     PVOID           pReserved
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsReplaceRecordSetUTF8(
+@@ -1230,18 +1257,21 @@ typedef enum _DNS_NAME_FORMAT
+ DNS_NAME_FORMAT;
+ 
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ DnsValidateName_W(
+     _In_    PCWSTR          pszName,
+     _In_    DNS_NAME_FORMAT Format
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ DnsValidateName_A(
+     _In_    PCSTR           pszName,
+     _In_    DNS_NAME_FORMAT Format
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ DnsValidateName_UTF8(
+     _In_    PCSTR           pszName,
+@@ -1272,6 +1302,7 @@ DnsValidateName_UTF8(
+ // Winsock2.h must be included before windns.h to use the validate server function
+ #ifdef _WS2DEF_
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DNS_STATUS
+ DnsValidateServerStatus(
+     _In_        PSOCKADDR   server,
+@@ -1285,6 +1316,7 @@ DnsValidateServerStatus(
+ //  DNS name comparison
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ WINAPI
+ DnsNameCompare_A(
+@@ -1292,6 +1324,7 @@ DnsNameCompare_A(
+     _In_    PCSTR           pName2
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ WINAPI
+ DnsNameCompare_W(
+@@ -1311,6 +1344,7 @@ DnsNameCompare_W(
+ //  DNS message "roll-your-own" routines
+ //
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ WINAPI
+ DnsWriteQuestionToBuffer_W(
+@@ -1322,6 +1356,7 @@ DnsWriteQuestionToBuffer_W(
+     _In_        BOOL                fRecursionDesired
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ BOOL
+ WINAPI
+ DnsWriteQuestionToBuffer_UTF8(
+@@ -1333,6 +1368,7 @@ DnsWriteQuestionToBuffer_UTF8(
+     _In_        BOOL                fRecursionDesired
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsExtractRecordsFromMessage_W(
+@@ -1341,6 +1377,7 @@ DnsExtractRecordsFromMessage_W(
+     _Outptr_     PDNS_RECORD *       ppRecord
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ DNS_STATUS
+ WINAPI
+ DnsExtractRecordsFromMessage_UTF8(
+@@ -1355,6 +1392,7 @@ DnsExtractRecordsFromMessage_UTF8(
+ //  DNS name resolution policy table
+ //
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ DnsGetProxyInformation(
+@@ -1365,6 +1403,7 @@ DnsGetProxyInformation(
+     _In_opt_    void *                          completionContext
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ VOID
+ WINAPI
+ DnsFreeProxyName(
+@@ -1675,6 +1714,7 @@ typedef struct _DNS_SERVICE_INSTANCE
+ 
+ #ifndef __midl
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ PDNS_SERVICE_INSTANCE
+ WINAPI
+ DnsServiceConstructInstance(
+@@ -1690,12 +1730,14 @@ DnsServiceConstructInstance(
+     _In_reads_(dwPropertiesCount) PCWSTR *values
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ PDNS_SERVICE_INSTANCE
+ WINAPI
+ DnsServiceCopyInstance(
+     _In_ PDNS_SERVICE_INSTANCE pOrig
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ VOID
+ WINAPI
+ DnsServiceFreeInstance(
+@@ -1748,6 +1790,8 @@ typedef struct _DNS_SERVICE_BROWSE_REQUEST
  
  #pragma warning(pop)
  
++_Win32_metadata_supported_os_(windows10.0.10240)
 +_Win32_metadata_set_last_error_
  DNS_STATUS
  WINAPI
  DnsServiceBrowse(
-@@ -1755,6 +1761,7 @@ DnsServiceBrowse(
+@@ -1755,6 +1799,8 @@ DnsServiceBrowse(
      _Inout_ PDNS_SERVICE_CANCEL            pCancel
      );
  
++_Win32_metadata_supported_os_(windows10.0.10240)
 +_Win32_metadata_set_last_error_
  DNS_STATUS
  WINAPI
  DnsServiceBrowseCancel(
-@@ -1784,6 +1791,7 @@ typedef struct _DNS_SERVICE_RESOLVE_REQUEST{
+@@ -1784,6 +1830,8 @@ typedef struct _DNS_SERVICE_RESOLVE_REQUEST{
      PVOID pQueryContext;
  } DNS_SERVICE_RESOLVE_REQUEST, *PDNS_SERVICE_RESOLVE_REQUEST;
  
++_Win32_metadata_supported_os_(windows10.0.10240)
 +_Win32_metadata_set_last_error_
  DNS_STATUS
  WINAPI
  DnsServiceResolve(
-@@ -1791,6 +1799,7 @@ DnsServiceResolve(
+@@ -1791,6 +1839,8 @@ DnsServiceResolve(
      _Inout_ PDNS_SERVICE_CANCEL             pCancel
      );
  
++_Win32_metadata_supported_os_(windows10.0.10240)
 +_Win32_metadata_set_last_error_
  DNS_STATUS
  WINAPI
  DnsServiceResolveCancel(
-@@ -1822,6 +1831,7 @@ typedef struct _DNS_SERVICE_REGISTER_REQUEST{
+@@ -1822,6 +1872,8 @@ typedef struct _DNS_SERVICE_REGISTER_REQUEST{
      BOOL unicastEnabled;
  } DNS_SERVICE_REGISTER_REQUEST, *PDNS_SERVICE_REGISTER_REQUEST;
  
++_Win32_metadata_supported_os_(windows10.0.10240)
 +_Win32_metadata_set_last_error_
  DWORD
  WINAPI
  DnsServiceRegister(
-@@ -1829,6 +1839,7 @@ DnsServiceRegister(
+@@ -1829,6 +1881,8 @@ DnsServiceRegister(
      _Inout_opt_ PDNS_SERVICE_CANCEL             pCancel
      );
  
++_Win32_metadata_supported_os_(windows10.0.10240)
 +_Win32_metadata_set_last_error_
  DWORD
  WINAPI
  DnsServiceDeRegister(
-@@ -1877,11 +1888,13 @@ typedef struct _MDNS_QUERY_REQUEST
+@@ -1836,6 +1890,7 @@ DnsServiceDeRegister(
+     _Inout_opt_ PDNS_SERVICE_CANCEL             pCancel
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ DWORD
+ WINAPI
+ DnsServiceRegisterCancel(
+@@ -1877,11 +1932,15 @@ typedef struct _MDNS_QUERY_REQUEST
      ULONG                   ulResendCount;   // Reserved
  } MDNS_QUERY_REQUEST, *PMDNS_QUERY_REQUEST;
  
++_Win32_metadata_supported_os_(windows10.0.10240)
 +_Win32_metadata_set_last_error_
  DNS_STATUS WINAPI DnsStartMulticastQuery(
      _In_        PMDNS_QUERY_REQUEST pQueryRequest,
      _Inout_     PMDNS_QUERY_HANDLE pHandle
      );
  
++_Win32_metadata_supported_os_(windows10.0.10240)
 +_Win32_metadata_set_last_error_
  DNS_STATUS WINAPI DnsStopMulticastQuery(
      _Inout_     PMDNS_QUERY_HANDLE pHandle

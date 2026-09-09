@@ -1,0 +1,222 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/virtdisk.h b/generation/WinSDK/RecompiledIdlHeaders/um/virtdisk.h
+index eca95e90..5a3978b6 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/virtdisk.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/virtdisk.h
+@@ -24,6 +24,9 @@ Environment:
+ #define VIRT_DISK_API_DEF
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or VHD Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_VHD)
+@@ -205,6 +208,7 @@ typedef enum _OPEN_VIRTUAL_DISK_FLAG
+ DEFINE_ENUM_FLAG_OPERATORS(OPEN_VIRTUAL_DISK_FLAG);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ OpenVirtualDisk(
+@@ -394,6 +398,7 @@ DEFINE_ENUM_FLAG_OPERATORS(CREATE_VIRTUAL_DISK_FLAG);
+ #endif
+ 
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ CreateVirtualDisk(
+@@ -496,6 +501,7 @@ typedef enum _ATTACH_VIRTUAL_DISK_FLAG
+ DEFINE_ENUM_FLAG_OPERATORS(ATTACH_VIRTUAL_DISK_FLAG);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ AttachVirtualDisk(
+@@ -528,6 +534,7 @@ typedef enum _DETACH_VIRTUAL_DISK_FLAG
+ DEFINE_ENUM_FLAG_OPERATORS(DETACH_VIRTUAL_DISK_FLAG);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ DetachVirtualDisk(
+@@ -542,6 +549,7 @@ DetachVirtualDisk(
+ // GetVirtualDiskPhysicalPath
+ //
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ GetVirtualDiskPhysicalPath(
+@@ -713,6 +721,7 @@ DEFINE_ENUM_FLAG_OPERATORS(GET_STORAGE_DEPENDENCY_FLAG);
+ 
+ #if !defined(VIRTDISK_DEFINE_FLAGS)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ GetStorageDependencyInformation(
+@@ -815,6 +824,7 @@ typedef struct _GET_VIRTUAL_DISK_INFO
+ 
+ #define VIRTUAL_DISK_MAXIMUM_CHANGE_TRACKING_ID_LENGTH 256
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -879,6 +889,7 @@ typedef struct _SET_VIRTUAL_DISK_INFO
+ } SET_VIRTUAL_DISK_INFO, *PSET_VIRTUAL_DISK_INFO;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ SetVirtualDiskInformation(
+@@ -889,6 +900,7 @@ SetVirtualDiskInformation(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ EnumerateVirtualDiskMetadata(
+@@ -898,6 +910,7 @@ EnumerateVirtualDiskMetadata(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ GetVirtualDiskMetadata(
+@@ -908,6 +921,7 @@ GetVirtualDiskMetadata(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ SetVirtualDiskMetadata(
+@@ -918,6 +932,7 @@ SetVirtualDiskMetadata(
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ DeleteVirtualDiskMetadata(
+@@ -940,6 +955,7 @@ typedef struct _VIRTUAL_DISK_PROGRESS
+ } VIRTUAL_DISK_PROGRESS, *PVIRTUAL_DISK_PROGRESS;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD WINAPI
+ GetVirtualDiskOperationProgress(
+     _In_      HANDLE                 VirtualDiskHandle,
+@@ -990,6 +1006,7 @@ typedef enum _COMPACT_VIRTUAL_DISK_FLAG
+ DEFINE_ENUM_FLAG_OPERATORS(COMPACT_VIRTUAL_DISK_FLAG);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ CompactVirtualDisk(
+@@ -1049,6 +1066,7 @@ typedef enum _MERGE_VIRTUAL_DISK_FLAG
+ DEFINE_ENUM_FLAG_OPERATORS(MERGE_VIRTUAL_DISK_FLAG);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ MergeVirtualDisk(
+@@ -1100,6 +1118,7 @@ typedef enum _EXPAND_VIRTUAL_DISK_FLAG
+ DEFINE_ENUM_FLAG_OPERATORS(EXPAND_VIRTUAL_DISK_FLAG);
+ #endif
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ DWORD
+ WINAPI
+ ExpandVirtualDisk(
+@@ -1161,6 +1180,7 @@ DEFINE_ENUM_FLAG_OPERATORS(RESIZE_VIRTUAL_DISK_FLAG);
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ ResizeVirtualDisk(
+@@ -1217,6 +1237,7 @@ DEFINE_ENUM_FLAG_OPERATORS(MIRROR_VIRTUAL_DISK_FLAG);
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ MirrorVirtualDisk(
+@@ -1235,6 +1256,7 @@ MirrorVirtualDisk(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ BreakMirrorVirtualDisk(
+@@ -1249,6 +1271,7 @@ BreakMirrorVirtualDisk(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ DWORD
+ WINAPI
+ AddVirtualDiskParent(
+@@ -1474,6 +1497,7 @@ typedef struct _RAW_SCSI_VIRTUAL_DISK_RESPONSE
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ DWORD
+ WINAPI
+ QueryChangesVirtualDisk (
+@@ -1487,6 +1511,7 @@ QueryChangesVirtualDisk (
+     _Out_ PULONG64 ProcessedLength
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ DWORD
+ WINAPI
+ TakeSnapshotVhdSet (
+@@ -1495,6 +1520,7 @@ TakeSnapshotVhdSet (
+     _In_ TAKE_SNAPSHOT_VHDSET_FLAG Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ DWORD
+ WINAPI
+ DeleteSnapshotVhdSet (
+@@ -1503,6 +1529,7 @@ DeleteSnapshotVhdSet (
+     _In_ DELETE_SNAPSHOT_VHDSET_FLAG Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ DWORD
+ WINAPI
+ ModifyVhdSet (
+@@ -1511,6 +1538,7 @@ ModifyVhdSet (
+     _In_ MODIFY_VHDSET_FLAG Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ DWORD
+ WINAPI
+ ApplySnapshotVhdSet (
+@@ -1519,6 +1547,7 @@ ApplySnapshotVhdSet (
+     _In_ APPLY_SNAPSHOT_VHDSET_FLAG Flags
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ DWORD
+ WINAPI
+ RawSCSIVirtualDisk(

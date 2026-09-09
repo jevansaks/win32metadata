@@ -1,0 +1,1017 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cfgmgr32.h b/generation/WinSDK/RecompiledIdlHeaders/um/cfgmgr32.h
+index f78c08c8..1c5caef0 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/cfgmgr32.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/cfgmgr32.h
+@@ -20,6 +20,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family, OneCore Family, or App Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
+@@ -1388,6 +1391,7 @@ typedef __callback DWORD (CALLBACK *PCM_NOTIFY_CALLBACK)(
+ // Function prototypes
+ //--------------------------------------------------------------
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1398,6 +1402,7 @@ CM_Add_Empty_Log_Conf(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1418,6 +1423,7 @@ CM_Add_IDA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1437,6 +1443,7 @@ CM_Add_ID_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1465,6 +1472,7 @@ CM_Add_Range(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1477,6 +1485,7 @@ CM_Add_Res_Des(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1498,6 +1507,7 @@ CM_Connect_MachineA(
+     _Out_ PHMACHINE     phMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1583,6 +1593,7 @@ CM_Create_Range_List(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1612,6 +1623,7 @@ CM_Delete_Class_Key_Ex(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1684,6 +1696,7 @@ CM_Detect_Resource_Conflict_Ex(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1711,6 +1724,7 @@ CM_Disable_DevNode_Ex(
+ 
+ #define CM_Disable_DevInst_Ex    CM_Disable_DevNode_Ex
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1733,6 +1747,7 @@ CM_Dup_Range_List(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1760,6 +1775,7 @@ CM_Enable_DevNode_Ex(
+ 
+ #define CM_Enable_DevInst_Ex     CM_Enable_DevNode_Ex
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1769,6 +1785,7 @@ CM_Enumerate_Classes(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1789,6 +1806,7 @@ CM_Enumerate_EnumeratorsA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1810,6 +1828,7 @@ CM_Enumerate_Enumerators_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1853,6 +1872,7 @@ CM_First_Range(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1861,6 +1881,7 @@ CM_Free_Log_Conf(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1870,6 +1891,7 @@ CM_Free_Log_Conf_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1885,6 +1907,7 @@ CM_Free_Range_List(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1894,6 +1917,7 @@ CM_Free_Res_Des(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1904,6 +1928,7 @@ CM_Free_Res_Des_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1917,6 +1942,7 @@ CM_Free_Res_Des_Handle(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -1932,6 +1958,7 @@ CM_Get_Child(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2048,6 +2075,7 @@ CM_Get_Class_Key_Name_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2063,6 +2091,7 @@ CM_Get_Depth(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2089,6 +2118,7 @@ CM_Get_Device_IDA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2122,6 +2152,7 @@ CM_Get_Device_ID_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2145,6 +2176,7 @@ CM_Get_Device_ID_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2155,6 +2187,7 @@ CM_Get_Device_ID_ListA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2188,6 +2221,7 @@ CM_Get_Device_ID_List_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2211,6 +2245,7 @@ CM_Get_Device_ID_List_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2220,6 +2255,7 @@ CM_Get_Device_ID_List_SizeA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2251,6 +2287,7 @@ CM_Get_Device_ID_List_Size_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2273,6 +2310,7 @@ CM_Get_Device_ID_List_Size_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2288,6 +2326,7 @@ CM_Get_Device_ID_Size(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2306,6 +2345,7 @@ CM_Get_Device_ID_Size_Ex(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2328,6 +2368,7 @@ CM_Get_DevNode_PropertyW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2351,6 +2392,7 @@ CM_Get_DevNode_Property_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2367,6 +2409,7 @@ CM_Get_DevNode_Property_Keys(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2398,6 +2441,7 @@ CM_Get_DevNode_Registry_PropertyA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2536,6 +2580,7 @@ CM_Get_DevNode_Custom_Property_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2554,6 +2599,7 @@ CM_Get_DevNode_Status(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2567,6 +2613,7 @@ CM_Get_DevNode_Status_Ex(
+ 
+ #define CM_Get_DevInst_Status_Ex CM_Get_DevNode_Status_Ex
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2576,6 +2623,7 @@ CM_Get_First_Log_Conf(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2657,6 +2705,7 @@ CM_Get_Hardware_Profile_Info_ExW(
+ #define CM_Get_Hardware_Profile_Info_Ex   CM_Get_Hardware_Profile_Info_ExA
+ #endif // UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2667,6 +2716,7 @@ CM_Get_HW_Prof_FlagsA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2677,6 +2727,7 @@ CM_Get_HW_Prof_FlagsW(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2688,6 +2739,7 @@ CM_Get_HW_Prof_Flags_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2718,6 +2770,7 @@ CM_Get_Device_Interface_AliasA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2767,6 +2820,7 @@ CM_Get_Device_Interface_Alias_ExW(
+ #pragma region Desktop Family, OneCore Family, or App Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2778,6 +2832,7 @@ CM_Get_Device_Interface_ListA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2836,6 +2891,7 @@ CM_Get_Device_Interface_List_ExW(
+ #pragma region Desktop Family, OneCore Family, or App Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2846,6 +2902,7 @@ CM_Get_Device_Interface_List_SizeA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2904,6 +2961,7 @@ CM_Get_Device_Interface_List_Size_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2926,6 +2984,7 @@ CM_Get_Device_Interface_PropertyW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2949,6 +3008,7 @@ CM_Get_Device_Interface_Property_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2969,6 +3029,7 @@ CM_Get_Device_Interface_Property_KeysW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -2992,6 +3053,7 @@ CM_Get_Device_Interface_Property_Keys_ExW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3001,6 +3063,7 @@ CM_Get_Log_Conf_Priority(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3011,6 +3074,7 @@ CM_Get_Log_Conf_Priority_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3020,6 +3084,7 @@ CM_Get_Next_Log_Conf(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3036,6 +3101,7 @@ CM_Get_Next_Log_Conf_Ex(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3051,6 +3117,7 @@ CM_Get_Parent(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3061,6 +3128,7 @@ CM_Get_Parent_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3071,6 +3139,7 @@ CM_Get_Res_Des_Data(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3082,6 +3151,7 @@ CM_Get_Res_Des_Data_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3091,6 +3161,7 @@ CM_Get_Res_Des_Data_Size(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3107,6 +3178,7 @@ CM_Get_Res_Des_Data_Size_Ex(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3122,6 +3194,7 @@ CM_Get_Sibling(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3132,6 +3205,8 @@ CM_Get_Sibling_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ CMAPI
+ WORD
+ WINAPI
+@@ -3139,6 +3214,8 @@ CM_Get_Version(
+     VOID
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
++_Win32_metadata_set_last_error_
+ CMAPI
+ WORD
+ WINAPI
+@@ -3147,6 +3224,7 @@ CM_Get_Version_Ex(
+     );
+ 
+ #if (WINVER >= _WIN32_WINNT_WINXP)
++_Win32_metadata_supported_os_(windows5.1.2600)
+ CMAPI
+ BOOL
+ WINAPI
+@@ -3154,6 +3232,7 @@ CM_Is_Version_Available(
+     _In_  WORD          wVersion
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ CMAPI
+ BOOL
+ WINAPI
+@@ -3189,6 +3268,7 @@ CM_Invert_Range_List(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3198,6 +3278,7 @@ CM_Locate_DevNodeA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3232,6 +3313,7 @@ CM_Locate_DevNode_ExA(
+     _In_  ULONG         ulFlags,
+     _In_opt_ HMACHINE   hMachine
+     );
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3262,6 +3344,7 @@ CM_Merge_Range_List(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3274,6 +3357,7 @@ CM_Modify_Res_Des(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3319,6 +3403,7 @@ CM_Next_Range(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3330,6 +3415,7 @@ CM_Get_Next_Res_Des(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3360,6 +3446,7 @@ CM_Open_Class_KeyA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3422,6 +3509,7 @@ CM_Open_Class_Key_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3465,6 +3553,7 @@ CM_Open_DevNode_Key_Ex(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3476,6 +3565,7 @@ CM_Open_Device_Interface_KeyA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3499,6 +3589,7 @@ CM_Open_Device_Interface_KeyW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3511,6 +3602,7 @@ CM_Open_Device_Interface_Key_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3543,6 +3635,7 @@ CM_Delete_Device_Interface_KeyA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3563,6 +3656,7 @@ CM_Delete_Device_Interface_KeyW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3572,6 +3666,7 @@ CM_Delete_Device_Interface_Key_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3673,6 +3768,7 @@ CM_Query_And_Remove_SubTreeA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3708,6 +3804,7 @@ CM_Query_And_Remove_SubTree_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3749,6 +3846,7 @@ CM_Request_Device_Eject_ExA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3760,6 +3858,7 @@ CM_Request_Device_EjectW(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3780,6 +3879,7 @@ CM_Request_Device_Eject_ExW(
+ #define CM_Request_Device_Eject_Ex CM_Request_Device_Eject_ExA
+ #endif // UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3788,6 +3888,7 @@ CM_Reenumerate_DevNode(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3857,6 +3958,7 @@ CM_Register_Device_Interface_ExW(
+ #define CM_Register_Device_Interface_Ex CM_Register_Device_Interface_ExA
+ #endif // UNICODE
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3867,6 +3969,7 @@ CM_Set_DevNode_Problem_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3965,6 +4068,7 @@ CM_Remove_SubTree_Ex(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -3987,6 +4091,7 @@ CM_Set_DevNode_PropertyW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4023,6 +4128,7 @@ CM_Set_DevNode_Registry_PropertyA(
+     _In_  ULONG         ulFlags
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4092,6 +4198,7 @@ CM_Set_DevNode_Registry_Property_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4114,6 +4221,7 @@ CM_Set_Device_Interface_PropertyW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4139,6 +4247,7 @@ CM_Set_Device_Interface_Property_ExW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4146,6 +4255,7 @@ CM_Is_Dock_Station_Present(
+     _Out_ PBOOL         pbPresent
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4154,6 +4264,7 @@ CM_Is_Dock_Station_Present_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4161,6 +4272,7 @@ CM_Request_Eject_PC(
+     VOID
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4224,6 +4336,7 @@ CM_Set_HW_Prof_Flags_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4267,6 +4380,7 @@ CM_Test_Range_Available(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4383,6 +4497,7 @@ CM_Set_HW_Prof_Ex(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4396,6 +4511,7 @@ CM_Query_Resource_Conflict_List(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4403,6 +4519,7 @@ CM_Free_Resource_Conflict_Handle(
+     _In_  CONFLICT_LIST clConflictList
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4420,6 +4537,7 @@ CM_Get_Resource_Conflict_DetailsA(
+     _Inout_ PCONFLICT_DETAILS_A pConflictDetails
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4443,6 +4561,7 @@ CM_Get_Resource_Conflict_DetailsW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4465,6 +4584,7 @@ CM_Get_Class_PropertyW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4488,6 +4608,7 @@ CM_Get_Class_Property_ExW(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4504,6 +4625,7 @@ CM_Get_Class_Property_Keys(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4521,6 +4643,7 @@ CM_Get_Class_Property_Keys_Ex(
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4543,6 +4666,7 @@ CM_Set_Class_PropertyW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4582,6 +4706,7 @@ CM_Get_Class_Registry_PropertyA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4607,6 +4732,7 @@ CM_Set_Class_Registry_PropertyA(
+     _In_opt_ HMACHINE   hMachine
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4636,6 +4762,8 @@ CM_Set_Class_Registry_PropertyW(
+ #if (WINVER >= _WIN32_WINNT_WIN2K)
+ #define CM_WaitNoPendingInstallEvents CMP_WaitNoPendingInstallEvents
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_set_last_error_
+ DWORD
+ WINAPI
+ CM_WaitNoPendingInstallEvents(
+@@ -4651,6 +4779,7 @@ CM_WaitNoPendingInstallEvents(
+ 
+ #if (WINVER >= _WIN32_WINNT_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4661,6 +4790,7 @@ CM_Register_Notification(
+     _Out_   PHCMNOTIFICATION        pNotifyContext
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ CMAPI
+ CONFIGRET
+ WINAPI
+@@ -4676,6 +4806,7 @@ CM_Unregister_Notification(
+ // CONFIGRET to Win32 error mapping routine
+ //
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ CMAPI
+ DWORD
+ WINAPI

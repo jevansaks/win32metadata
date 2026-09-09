@@ -1,0 +1,411 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBio.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinBio.h
+index ddd3af2d..3b9eb761 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinBio.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinBio.h
+@@ -23,6 +23,9 @@ Revision History:
+ #ifndef _WINBIO_H_9B9AD1F6_97B1_4647_923D_583FD7428C4C_
+ #define _WINBIO_H_9B9AD1F6_97B1_4647_923D_583FD7428C4C_
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -249,6 +252,7 @@ VOID
+ // Capability discovery
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioEnumServiceProviders(
+     _In_ WINBIO_BIOMETRIC_TYPE Factor,
+@@ -256,6 +260,7 @@ WinBioEnumServiceProviders(
+     _Out_ SIZE_T *BspCount
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioEnumBiometricUnits(
+     _In_ WINBIO_BIOMETRIC_TYPE Factor,
+@@ -263,6 +268,7 @@ WinBioEnumBiometricUnits(
+     _Out_ SIZE_T *UnitCount
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioEnumDatabases(
+     _In_ WINBIO_BIOMETRIC_TYPE Factor,
+@@ -275,6 +281,7 @@ WinBioEnumDatabases(
+ // Asynchronous capability discovery
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT WINAPI
+ WinBioAsyncOpenFramework(
+     _In_ WINBIO_ASYNC_NOTIFICATION_METHOD NotificationMethod,
+@@ -286,29 +293,34 @@ WinBioAsyncOpenFramework(
+     _Out_opt_ WINBIO_FRAMEWORK_HANDLE *FrameworkHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT WINAPI
+ WinBioCloseFramework(
+     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT WINAPI
+ WinBioAsyncEnumServiceProviders(
+     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle,
+     _In_ WINBIO_BIOMETRIC_TYPE Factor
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT WINAPI
+ WinBioAsyncEnumBiometricUnits(
+     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle,
+     _In_ WINBIO_BIOMETRIC_TYPE Factor
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT WINAPI
+ WinBioAsyncEnumDatabases(
+     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle,
+     _In_ WINBIO_BIOMETRIC_TYPE Factor
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT WINAPI
+ WinBioAsyncMonitorFrameworkChanges(
+     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle,
+@@ -320,6 +332,7 @@ WinBioAsyncMonitorFrameworkChanges(
+ // Session management
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioOpenSession(
+     _In_ WINBIO_BIOMETRIC_TYPE Factor,
+@@ -334,6 +347,7 @@ WinBioOpenSession(
+ //
+ // Asynchronous sessions...
+ //
++_Win32_metadata_supported_os_(windows8.0)
+ HRESULT WINAPI
+ WinBioAsyncOpenSession(
+     _In_ WINBIO_BIOMETRIC_TYPE Factor,
+@@ -351,6 +365,7 @@ WinBioAsyncOpenSession(
+     _Out_opt_ WINBIO_SESSION_HANDLE *SessionHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioCloseSession(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle
+@@ -362,6 +377,7 @@ WinBioCloseSession(
+ // High-level biometric operations
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioVerify(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -382,6 +398,7 @@ VOID
+     _In_ WINBIO_REJECT_DETAIL RejectDetail
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioVerifyWithCallback(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -391,6 +408,7 @@ WinBioVerifyWithCallback(
+     _In_opt_ PVOID VerifyCallbackContext
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioIdentify(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -411,6 +429,7 @@ VOID
+     _In_ WINBIO_REJECT_DETAIL RejectDetail
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioIdentifyWithCallback(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -418,11 +437,13 @@ WinBioIdentifyWithCallback(
+     _In_opt_ PVOID IdentifyCallbackContext
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioWait(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioCancel(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle
+@@ -434,6 +455,7 @@ WinBioCancel(
+ // Sensor-location operations
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioLocateSensor(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -448,6 +470,7 @@ VOID
+     _In_ WINBIO_UNIT_ID UnitId
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioLocateSensorWithCallback(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -460,6 +483,7 @@ WinBioLocateSensorWithCallback(
+ // Enrollment operations
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioEnrollBegin(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -469,6 +493,7 @@ WinBioEnrollBegin(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ HRESULT WINAPI
+ WinBioEnrollSelect(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -477,6 +502,7 @@ WinBioEnrollSelect(
+ 
+ #endif // (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioEnrollCapture(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -491,6 +517,7 @@ VOID
+     _In_ WINBIO_REJECT_DETAIL RejectDetail
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioEnrollCaptureWithCallback(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -498,6 +525,7 @@ WinBioEnrollCaptureWithCallback(
+     _In_opt_ PVOID EnrollCallbackContext
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioEnrollCommit(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -505,11 +533,13 @@ WinBioEnrollCommit(
+     _Out_opt_ BOOLEAN *IsNewTemplate
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioEnrollDiscard(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioEnumEnrollments(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -548,6 +578,7 @@ VOID
+     _In_ PWINBIO_EVENT Event
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioRegisterEventMonitor(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -556,6 +587,7 @@ WinBioRegisterEventMonitor(
+     _In_opt_ PVOID EventCallbackContext
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioUnregisterEventMonitor(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle
+@@ -563,6 +595,7 @@ WinBioUnregisterEventMonitor(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ HRESULT WINAPI
+ WinBioMonitorPresence(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -577,6 +610,7 @@ WinBioMonitorPresence(
+ // Raw biometric operations
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioCaptureSample(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -599,6 +633,7 @@ VOID
+     _In_ WINBIO_REJECT_DETAIL RejectDetail
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioCaptureSampleWithCallback(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -614,6 +649,7 @@ WinBioCaptureSampleWithCallback(
+ // Storage management
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioDeleteTemplate(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -628,18 +664,21 @@ WinBioDeleteTemplate(
+ // Extension interface
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioLockUnit(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+     _In_ WINBIO_UNIT_ID UnitId
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioUnlockUnit(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+     _In_ WINBIO_UNIT_ID UnitId
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioControlUnit(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -654,6 +693,7 @@ WinBioControlUnit(
+     _Out_opt_ ULONG *OperationStatus
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioControlUnitPrivileged(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -674,6 +714,7 @@ WinBioControlUnitPrivileged(
+ // Get/set property operations
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioGetProperty(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -686,6 +727,7 @@ WinBioGetProperty(
+     _Out_opt_ SIZE_T *PropertyBufferSize
+     );
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ HRESULT WINAPI
+ WinBioSetProperty(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle,
+@@ -704,6 +746,7 @@ WinBioSetProperty(
+ // Resource management
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioFree(
+     _In_ PVOID Address
+@@ -715,6 +758,7 @@ WinBioFree(
+ // Credential management
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ WinBioSetCredential(
+     _In_ WINBIO_CREDENTIAL_TYPE Type,
+@@ -723,23 +767,27 @@ WinBioSetCredential(
+     _In_ WINBIO_CREDENTIAL_FORMAT Format
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioRemoveCredential(
+     _In_ WINBIO_IDENTITY Identity,
+     _In_ WINBIO_CREDENTIAL_TYPE Type
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioRemoveAllCredentials(
+     void
+     );
+ 
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioRemoveAllDomainCredentials(
+     void
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioGetCredentialState(
+     _In_ WINBIO_IDENTITY Identity,
+@@ -747,6 +795,7 @@ WinBioGetCredentialState(
+     _Out_ WINBIO_CREDENTIAL_STATE *CredentialState
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioLogonIdentifiedUser(
+     _In_ WINBIO_SESSION_HANDLE SessionHandle
+@@ -760,6 +809,7 @@ WinBioLogonIdentifiedUser(
+ //
+ ///////////////////////////////////////////////////////////////////////////////
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ HRESULT WINAPI
+ WinBioGetEnrolledFactors(
+     _In_ WINBIO_IDENTITY *AccountOwner,
+@@ -773,18 +823,21 @@ WinBioGetEnrolledFactors(
+ // Settings
+ //
+ ///////////////////////////////////////////////////////////////////////////////
++_Win32_metadata_supported_os_(windows6.1)
+ VOID WINAPI
+ WinBioGetEnabledSetting(
+     _Out_ BOOLEAN* Value,
+     _Out_ PWINBIO_SETTING_SOURCE_TYPE Source
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ VOID WINAPI
+ WinBioGetLogonSetting(
+     _Out_ BOOLEAN* Value,
+     _Out_ PWINBIO_SETTING_SOURCE_TYPE Source
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ VOID WINAPI
+ WinBioGetDomainLogonSetting(
+     _Out_ BOOLEAN* Value,
+@@ -802,11 +855,13 @@ WinBioIsESSCapable(
+ //
+ ///////////////////////////////////////////////////////////////////////////////
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioAcquireFocus(
+     void
+     );
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ HRESULT WINAPI
+ WinBioReleaseFocus(
+     void

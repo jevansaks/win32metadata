@@ -1,0 +1,62 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h b/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h
+index e9da7395..0e646ec4 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h
+@@ -162,6 +162,9 @@ DEFINE_GUID(IID_IRSOPInformation, 0x9a5a81b5, 0xd9c7, 0x49ef, 0x9d, 0x11, 0xdd,
+ #ifndef _GPEDIT_H_
+ #define _GPEDIT_H_
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -706,6 +709,7 @@ typedef IRSOPInformation *LPRSOPINFORMATION;
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ GPEDITAPI
+ HRESULT
+ WINAPI
+@@ -728,6 +732,7 @@ CreateGPOLink(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ GPEDITAPI
+ HRESULT
+ WINAPI
+@@ -748,6 +753,7 @@ DeleteGPOLink(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ GPEDITAPI
+ HRESULT
+ WINAPI
+@@ -796,6 +802,7 @@ typedef struct tag_GPOBROWSEINFO
+ } GPOBROWSEINFO, *LPGPOBROWSEINFO;
+ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ GPEDITAPI
+ HRESULT
+ WINAPI
+@@ -819,6 +826,7 @@ BrowseForGPO(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ GPEDITAPI
+ HRESULT
+ WINAPI
+@@ -844,6 +852,7 @@ ImportRSoPData(
+ //
+ //=============================================================================
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ GPEDITAPI
+ HRESULT
+ WINAPI

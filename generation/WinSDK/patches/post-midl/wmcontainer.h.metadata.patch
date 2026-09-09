@@ -1,0 +1,253 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wmcontainer.h b/generation/WinSDK/RecompiledIdlHeaders/um/wmcontainer.h
+index 49ef5845..aa526871 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wmcontainer.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wmcontainer.h
+@@ -129,6 +129,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Application Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
+ 
+@@ -148,6 +151,7 @@ EXTERN_C const IID IID_IMFASFContentInfo;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("B1DCA5CD-D5DA-4451-8E9E-DB5C59914EAD")
+     IMFASFContentInfo : public IUnknown
+     {
+@@ -321,6 +325,7 @@ EXTERN_C const IID IID_IMFASFContentInfo;
+ /* interface __MIDL_itf_wmcontainer_0000_0001 */
+ /* [local] */ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreateASFContentInfo( 
+         /* out */     IMFASFContentInfo     **ppIContentInfo);
+ 
+@@ -342,6 +347,7 @@ EXTERN_C const IID IID_IMFASFProfile;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("D267BF6A-028B-4e0d-903D-43F0EF82D0D4")
+     IMFASFProfile : public IMFAttributes
+     {
+@@ -935,6 +941,7 @@ EXTERN_C const IID IID_IMFASFStreamConfig;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("9E8AE8D2-DBBD-4200-9ACA-06E6DF484913")
+     IMFASFStreamConfig : public IMFAttributes
+     {
+@@ -1450,6 +1457,7 @@ EXTERN_C const IID IID_IMFASFMutualExclusion;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("12558291-E399-11D5-BC2A-00B0D0F3F4AB")
+     IMFASFMutualExclusion : public IUnknown
+     {
+@@ -1657,6 +1665,7 @@ EXTERN_C const IID IID_IMFASFStreamPrioritization;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("699bdc27-bbaf-49ff-8e38-9c39c9b5e088")
+     IMFASFStreamPrioritization : public IUnknown
+     {
+@@ -1838,6 +1847,7 @@ EXTERN_C const IID IID_IMFASFIndexer;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("53590F48-DC3B-4297-813F-787761AD7B3E")
+     IMFASFIndexer : public IUnknown
+     {
+@@ -2117,8 +2127,10 @@ EXTERN_C const IID IID_IMFASFIndexer;
+ /* interface __MIDL_itf_wmcontainer_0000_0006 */
+ /* [local] */ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreateASFIndexer( 
+         /* out */     IMFASFIndexer         **ppIIndexer);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreateASFIndexerByteStream( 
+         /* in */      IMFByteStream         *pIContentByteStream,
+         /* in */      QWORD                  cbIndexStartOffset,
+@@ -2128,6 +2140,12 @@ STDAPI MFCreateASFIndexerByteStream(
+ extern RPC_IF_HANDLE __MIDL_itf_wmcontainer_0000_0006_v0_0_c_ifspec;
+ extern RPC_IF_HANDLE __MIDL_itf_wmcontainer_0000_0006_v0_0_s_ifspec;
+ 
++typedef enum ASF_STATUSFLAGS
++{
++    ASF_STATUSFLAGS_INCOMPLETE = 0x1,
++    ASF_STATUSFLAGS_NONFATAL_ERROR = 0x2
++} ASF_STATUSFLAGS;
++
+ #ifndef __IMFASFSplitter_INTERFACE_DEFINED__
+ #define __IMFASFSplitter_INTERFACE_DEFINED__
+ 
+@@ -2139,6 +2157,7 @@ EXTERN_C const IID IID_IMFASFSplitter;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("12558295-E399-11D5-BC2A-00B0D0F3F4AB")
+     IMFASFSplitter : public IUnknown
+     {
+@@ -2177,7 +2196,7 @@ EXTERN_C const IID IID_IMFASFSplitter;
+         
+         virtual HRESULT STDMETHODCALLTYPE GetNextSample( 
+             /* [annotation][out] */ 
+-            _Out_  DWORD *pdwStatusFlags,
++            _Out_  ASF_STATUSFLAGS *pdwStatusFlags,
+             /* [annotation][out] */ 
+             _Out_  WORD *pwStreamNumber,
+             /* [annotation][out] */ 
+@@ -2262,7 +2281,7 @@ EXTERN_C const IID IID_IMFASFSplitter;
+         HRESULT ( STDMETHODCALLTYPE *GetNextSample )( 
+             IMFASFSplitter * This,
+             /* [annotation][out] */ 
+-            _Out_  DWORD *pdwStatusFlags,
++            _Out_  ASF_STATUSFLAGS *pdwStatusFlags,
+             /* [annotation][out] */ 
+             _Out_  WORD *pwStreamNumber,
+             /* [annotation][out] */ 
+@@ -2342,6 +2361,7 @@ EXTERN_C const IID IID_IMFASFSplitter;
+ /* interface __MIDL_itf_wmcontainer_0000_0007 */
+ /* [local] */ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreateASFSplitter( 
+         /* out */     IMFASFSplitter        **ppISplitter);
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
+@@ -2390,11 +2410,14 @@ EXTERN_GUID(MF_PD_ASF_INFO_HAS_VIDEO, 0x80e62296, 0x2296, 0x4a44, 0xb3, 0x1c, 0x
+ EXTERN_GUID(MF_PD_ASF_INFO_HAS_NON_AUDIO_VIDEO, 0x80e62297, 0x2296, 0x4a44, 0xb3, 0x1c, 0xd1, 0x3, 0xc6, 0xfe, 0xd2, 0x3c);
+ EXTERN_GUID(MF_ASFPROFILE_MINPACKETSIZE, 0x22587626, 0x47de, 0x4168, 0x87, 0xf5, 0xb5, 0xaa, 0x9b, 0x12, 0xa8, 0xf0);
+ EXTERN_GUID(MF_ASFPROFILE_MAXPACKETSIZE, 0x22587627, 0x47de, 0x4168, 0x87, 0xf5, 0xb5, 0xaa, 0x9b, 0x12, 0xa8, 0xf0);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreateASFProfile( 
+         /* out */     IMFASFProfile         **ppIProfile);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreateASFProfileFromPresentationDescriptor( 
+         /* in  */     IMFPresentationDescriptor  *pIPD,
+         /* out */     IMFASFProfile             **ppIProfile);
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreatePresentationDescriptorFromASFProfile( 
+         /* in  */     IMFASFProfile              *pIProfile,
+         /* out */     IMFPresentationDescriptor **ppIPD);
+@@ -2419,13 +2442,6 @@ enum MFASF_SPLITTERFLAGS
+         MFASF_SPLITTER_WMDRM	= 0x2
+     } 	MFASF_SPLITTERFLAGS;
+ 
+-typedef 
+-enum ASF_STATUSFLAGS
+-    {
+-        ASF_STATUSFLAGS_INCOMPLETE	= 0x1,
+-        ASF_STATUSFLAGS_NONFATAL_ERROR	= 0x2
+-    } 	ASF_STATUSFLAGS;
+-
+ EXTERN_GUID(MFASFSPLITTER_PACKET_BOUNDARY, 0xfe584a05, 0xe8d6, 0x42e3, 0xb1, 0x76, 0xf1, 0x21, 0x17, 0x5, 0xfb, 0x6f);
+ typedef 
+ enum MFASF_MULTIPLEXERFLAGS
+@@ -2455,6 +2471,7 @@ EXTERN_C const IID IID_IMFASFMultiplexer;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("57BDD80A-9B38-4838-B737-C58F670D7D4F")
+     IMFASFMultiplexer : public IUnknown
+     {
+@@ -2650,6 +2667,7 @@ EXTERN_C const IID IID_IMFASFMultiplexer;
+ /* interface __MIDL_itf_wmcontainer_0000_0008 */
+ /* [local] */ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreateASFMultiplexer( 
+         /* out */     IMFASFMultiplexer     **ppIMultiplexer);
+ #if (WINVER >= _WIN32_WINNT_WIN7) 
+@@ -2690,6 +2708,7 @@ EXTERN_C const IID IID_IMFASFStreamSelector;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("d01bad4a-4fa0-4a60-9349-c27e62da9d41")
+     IMFASFStreamSelector : public IUnknown
+     {
+@@ -2994,36 +3013,43 @@ EXTERN_C const IID IID_IMFASFStreamSelector;
+ /* interface __MIDL_itf_wmcontainer_0000_0009 */
+ /* [local] */ 
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreateASFStreamSelector( 
+     /* in */ IMFASFProfile *pIASFProfile, 
+     /* out */ IMFASFStreamSelector **ppSelector );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI
+ MFCreateASFMediaSink(
+     IMFByteStream *pIByteStream,
+     IMFMediaSink** ppIMediaSink
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ STDAPI MFCreateASFMediaSinkActivate(
+     LPCWSTR pwszFileName,
+     IMFASFContentInfo *pContentInfo,
+     IMFActivate** ppIActivate
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT STDMETHODCALLTYPE
+ MFCreateWMVEncoderActivate(
+     IMFMediaType * pMediaType, 
+     IPropertyStore * pEncodingConfigurationProperties, 
+     IMFActivate ** ppActivate 
+     );
++_Win32_metadata_supported_os_(windows6.0.6000)
+ HRESULT STDMETHODCALLTYPE
+ MFCreateWMAEncoderActivate(
+     IMFMediaType * pMediaType, 
+     IPropertyStore * pEncodingConfigurationProperties, 
+     IMFActivate ** ppActivate 
+     );
++_Win32_metadata_supported_os_(windows6.1)
+ STDAPI
+ MFCreateASFStreamingMediaSink(
+     IMFByteStream *pIByteStream,
+     IMFMediaSink** ppIMediaSink
+     );
++_Win32_metadata_supported_os_(windows6.1)
+ STDAPI MFCreateASFStreamingMediaSinkActivate(
+     IMFActivate *pByteStreamActivate,
+     IMFASFContentInfo *pContentInfo,
+@@ -3069,6 +3095,7 @@ EXTERN_C const IID IID_IMFDRMNetHelper;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("3D1FF0EA-679A-4190-8D46-7FA69E8C7E15")
+     IMFDRMNetHelper : public IUnknown
+     {
+@@ -3196,9 +3223,13 @@ unsigned char * __RPC_USER  BSTR_UserMarshal(  __RPC__in unsigned long *, __RPC_
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
+ void                      __RPC_USER  BSTR_UserFree(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
+ /* end of Additional Prototypes */
+@@ -3208,5 +3239,3 @@ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned lo
+ #endif
+ 
+ #endif
+-
+-

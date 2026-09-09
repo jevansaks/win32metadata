@@ -1,0 +1,92 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wpcapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wpcapi.h
+index 53e82275..585bfd47 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wpcapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wpcapi.h
+@@ -159,6 +159,9 @@ extern "C"{
+ /*                                                                             */
+ /*******************************************************************************/
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -177,6 +180,7 @@ EXTERN_C const IID IID_IWPCProviderState;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("50B6A267-C4BD-450b-ADB5-759073837C9E")
+     IWPCProviderState : public IUnknown
+     {
+@@ -282,6 +286,7 @@ EXTERN_C const IID IID_IWPCProviderConfig;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("BEF54196-2D02-4a26-B6E5-D65AF295D0F1")
+     IWPCProviderConfig : public IUnknown
+     {
+@@ -417,6 +422,7 @@ EXTERN_C const IID IID_IWPCSettings;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("8FDF6CA1-0189-47e4-B670-1A8A4636E340")
+     IWPCSettings : public IUnknown
+     {
+@@ -523,6 +529,7 @@ EXTERN_C const IID IID_IWPCGamesSettings;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("95E87780-E158-489e-B452-BBB850790715")
+     IWPCGamesSettings : public IWPCSettings
+     {
+@@ -649,6 +656,7 @@ EXTERN_C const IID IID_IWPCWebSettings;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("FFCCBDB8-0992-4c30-B0F1-1CBB09C240AA")
+     IWPCWebSettings : public IWPCSettings
+     {
+@@ -792,6 +800,7 @@ EXTERN_C const IID IID_IWindowsParentalControlsCore;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("4FF40A0F-3F3B-4d7c-A41B-4F39D7B44D05")
+     IWindowsParentalControlsCore : public IUnknown
+     {
+@@ -915,6 +924,7 @@ EXTERN_C const IID IID_IWindowsParentalControls;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.0.6000)
+     MIDL_INTERFACE("28B4D88B-E072-49e6-804D-26EDBE21A7B9")
+     IWindowsParentalControls : public IWindowsParentalControlsCore
+     {
+@@ -1037,6 +1047,7 @@ EXTERN_C const IID IID_IWPCProviderSupport;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("41EBA572-23ED-4779-BEC1-8DF96206C44C")
+     IWPCProviderSupport : public IUnknown
+     {
+@@ -1167,9 +1178,13 @@ unsigned char * __RPC_USER  HWND_UserMarshal(  __RPC__in unsigned long *, __RPC_
+ unsigned char * __RPC_USER  HWND_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out HWND * ); 
+ void                      __RPC_USER  HWND_UserFree(     __RPC__in unsigned long *, __RPC__in HWND * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
+ unsigned long             __RPC_USER  HWND_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in HWND * ); 

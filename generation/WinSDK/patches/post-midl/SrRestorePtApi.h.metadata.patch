@@ -1,0 +1,39 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SrRestorePtApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/SrRestorePtApi.h
+index 3a782d47..eb52e375 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/SrRestorePtApi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/SrRestorePtApi.h
+@@ -14,6 +14,9 @@ Abstract:
+ #define _SRRESTOREPTAPI_H
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -137,6 +140,7 @@ extern "C" {
+ //
+ // ERROR_ALREADY_EXISTS       If this is a nested restore point
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL __stdcall
+ SRSetRestorePointA(
+                   _In_ PRESTOREPOINTINFOA  pRestorePtSpec,// [in] Restore Point specification
+@@ -144,6 +148,7 @@ SRSetRestorePointA(
+                   );
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ BOOL __stdcall
+ SRSetRestorePointW(
+                   _In_ PRESTOREPOINTINFOW pRestorePtSpec,
+@@ -157,6 +162,8 @@ SRSetRestorePointInternal(
+                   _In_ BOOL           fForceSurrogate
+                   );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
++_Win32_metadata_import_library_("SrClient.dll")
+ DWORD __stdcall
+ SRRemoveRestorePoint(DWORD dwRPNum);
+ 

@@ -1,0 +1,69 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MsXml6.h b/generation/WinSDK/RecompiledIdlHeaders/um/MsXml6.h
+index 53920ef1..dd619d56 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/MsXml6.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/MsXml6.h
+@@ -940,6 +940,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ //+-------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -26430,6 +26433,7 @@ EXTERN_C const IID IID_IXMLHTTPRequest2Callback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("A44A9299-E321-40DE-8866-341B41669162")
+     IXMLHTTPRequest2Callback : public IUnknown
+     {
+@@ -26593,6 +26597,7 @@ EXTERN_C const IID IID_IXMLHTTPRequest2;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("E5D37DC0-552A-4D52-9CC0-A14D546FBD04")
+     IXMLHTTPRequest2 : public IUnknown
+     {
+@@ -26856,6 +26861,7 @@ EXTERN_C const IID IID_IXMLHTTPRequest3Callback;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.1)
+     MIDL_INTERFACE("b9e57830-8c6c-4a6f-9c13-47772bb047bb")
+     IXMLHTTPRequest3Callback : public IXMLHTTPRequest2Callback
+     {
+@@ -27034,6 +27040,7 @@ EXTERN_C const IID IID_IXMLHTTPRequest3;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.1)
+     MIDL_INTERFACE("a1c9feee-0617-4f23-9d58-8961ea43567c")
+     IXMLHTTPRequest3 : public IXMLHTTPRequest2
+     {
+@@ -27256,14 +27263,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

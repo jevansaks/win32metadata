@@ -1,0 +1,117 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FaxCom.h b/generation/WinSDK/RecompiledIdlHeaders/um/FaxCom.h
+index b4e59300..dd55c7a4 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/FaxCom.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/FaxCom.h
+@@ -250,6 +250,9 @@ extern "C"{
+ /* [local] */ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+@@ -268,6 +271,7 @@ EXTERN_C const IID IID_IFaxTiff;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("b19bb45f-b91c-11d1-83e1-00c04fb6e984")
+     IFaxTiff : public IDispatch
+     {
+@@ -529,6 +533,7 @@ EXTERN_C const IID IID_IFaxServer;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("D73733C7-CC80-11D0-B225-00C04FB6C2F5")
+     IFaxServer : public IDispatch
+     {
+@@ -1019,6 +1024,7 @@ EXTERN_C const IID IID_IFaxPort;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("D73733CC-CC80-11D0-B225-00C04FB6C2F5")
+     IFaxPort : public IDispatch
+     {
+@@ -1333,6 +1339,7 @@ EXTERN_C const IID IID_IFaxPorts;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("D73733D5-CC80-11D0-B225-00C04FB6C2F5")
+     IFaxPorts : public IDispatch
+     {
+@@ -1484,6 +1491,7 @@ EXTERN_C const IID IID_IFaxRoutingMethod;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("2199F5F3-CEFC-11D0-A341-0000F800E68D")
+     IFaxRoutingMethod : public IDispatch
+     {
+@@ -1721,6 +1729,7 @@ EXTERN_C const IID IID_IFaxRoutingMethods;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("2199F5F5-CEFC-11D0-A341-0000F800E68D")
+     IFaxRoutingMethods : public IDispatch
+     {
+@@ -1872,6 +1881,7 @@ EXTERN_C const IID IID_IFaxStatus;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("8B97E605-D054-11D0-B226-00C04FB6C2F5")
+     IFaxStatus : public IDispatch
+     {
+@@ -2217,6 +2227,7 @@ EXTERN_C const IID IID_IFaxDoc;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("FA21F4C5-5C4C-11D1-83CF-00C04FB6E984")
+     IFaxDoc : public IDispatch
+     {
+@@ -3114,6 +3125,7 @@ EXTERN_C const IID IID_IFaxJobs;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("55DABFD3-5C9E-11D1-B791-000000000000")
+     IFaxJobs : public IDispatch
+     {
+@@ -3265,6 +3277,7 @@ EXTERN_C const IID IID_IFaxJob;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("55DABFD5-5C9E-11D1-B791-000000000000")
+     IFaxJob : public IDispatch
+     {
+@@ -3679,14 +3692,22 @@ unsigned char * __RPC_USER  VARIANT_UserMarshal(  __RPC__in unsigned long *, __R
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
+ void                      __RPC_USER  VARIANT_UserFree(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  BSTR_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  BSTR_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out BSTR * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  BSTR_UserFree64(     __RPC__in unsigned long *, __RPC__in BSTR * ); 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned long             __RPC_USER  VARIANT_UserSize64(     __RPC__in unsigned long *, unsigned long            , __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserMarshal64(  __RPC__in unsigned long *, __RPC__inout_xcount(0) unsigned char *, __RPC__in VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(__RPC__in unsigned long *, __RPC__in_xcount(0) unsigned char *, __RPC__out VARIANT * ); 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned long *, __RPC__in VARIANT * ); 
+ 
+ /* end of Additional Prototypes */

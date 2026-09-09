@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fltUser.h b/generation/WinSDK/RecompiledIdlHeaders/um/fltUser.h
-index 5bcd819e..b0f38f1d 100644
+index 5bcd819e..7135cd8d 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/fltUser.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/fltUser.h
 @@ -19,6 +19,9 @@ Environment:
@@ -44,3 +44,11 @@ index 5bcd819e..b0f38f1d 100644
      );
  
  _Must_inspect_result_
+@@ -430,6 +437,7 @@ FilterGetMessage (
+     _Inout_opt_ LPOVERLAPPED lpOverlapped
+     );
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ _Must_inspect_result_
+ HRESULT
+ WINAPI

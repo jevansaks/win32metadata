@@ -1,0 +1,110 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/UIRibbon.h b/generation/WinSDK/RecompiledIdlHeaders/um/UIRibbon.h
+index e52f742b..44a0f50d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/UIRibbon.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/UIRibbon.h
+@@ -176,6 +176,9 @@ extern "C"{
+ //
+ //****************************************************************************
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ #pragma warning(push)
+@@ -351,6 +354,7 @@ EXTERN_C const IID IID_IUISimplePropertySet;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("c205bb48-5b1c-4219-a106-15bd0a5f24e2")
+     IUISimplePropertySet : public IUnknown
+     {
+@@ -446,6 +450,7 @@ EXTERN_C const IID IID_IUIRibbon;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("803982ab-370a-4f7e-a9e7-8784036a6e26")
+     IUIRibbon : public IUnknown
+     {
+@@ -592,6 +597,7 @@ EXTERN_C const IID IID_IUIFramework;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("F4F0385D-6872-43a8-AD09-4C339CB3F5C5")
+     IUIFramework : public IUnknown
+     {
+@@ -858,6 +864,7 @@ EXTERN_C const IID IID_IUIEventLogger;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("ec3e1034-dbf4-41a1-95d5-03e0f1026e05")
+     IUIEventLogger : public IUnknown
+     {
+@@ -945,6 +952,7 @@ EXTERN_C const IID IID_IUIEventingManager;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("3BE6EA7F-9A9B-4198-9368-9B0F923BD534")
+     IUIEventingManager : public IUnknown
+     {
+@@ -1036,6 +1044,7 @@ EXTERN_C const IID IID_IUIContextualUI;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("EEA11F37-7C46-437c-8E55-B52122B29293")
+     IUIContextualUI : public IUnknown
+     {
+@@ -1127,6 +1136,7 @@ EXTERN_C const IID IID_IUICollection;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("DF4F45BF-6F9D-4dd7-9D68-D8F9CD18C4DB")
+     IUICollection : public IUnknown
+     {
+@@ -1339,6 +1349,7 @@ EXTERN_C const IID IID_IUICollectionChangedEvent;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("6502AE91-A14D-44b5-BBD0-62AACC581D52")
+     IUICollectionChangedEvent : public IUnknown
+     {
+@@ -1448,6 +1459,7 @@ EXTERN_C const IID IID_IUICommandHandler;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("75ae0a2d-dc03-4c9f-8883-069660d0beb6")
+     IUICommandHandler : public IUnknown
+     {
+@@ -1619,6 +1631,7 @@ EXTERN_C const IID IID_IUIApplication;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("D428903C-729A-491d-910D-682A08FF2522")
+     IUIApplication : public IUnknown
+     {
+@@ -1760,6 +1773,7 @@ EXTERN_C const IID IID_IUIImage;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("23c8c838-4de6-436b-ab01-5554bb7c30dd")
+     IUIImage : public IUnknown
+     {
+@@ -1858,6 +1872,7 @@ EXTERN_C const IID IID_IUIImageFromBitmap;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows6.1)
+     MIDL_INTERFACE("18aba7f3-4c1c-4ba2-bf6c-f5c3326fa816")
+     IUIImageFromBitmap : public IUnknown
+     {

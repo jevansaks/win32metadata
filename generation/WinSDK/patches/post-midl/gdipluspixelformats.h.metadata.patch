@@ -1,0 +1,51 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspixelformats.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspixelformats.h
+index c5e3063d..139ca27f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspixelformats.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdipluspixelformats.h
+@@ -15,6 +15,9 @@
+ #ifndef _GDIPLUSPIXELFORMATS_H
+ #define _GDIPLUSPIXELFORMATS_H
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -73,24 +76,28 @@ typedef INT PixelFormat;
+ #define    PixelFormat32bppCMYK       (15 | (32 << 8))
+ #define    PixelFormatMax             16
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ inline UINT
+ GetPixelFormatSize(PixelFormat pixfmt)
+ {
+     return (pixfmt >> 8) & 0xff;
+ }
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ inline BOOL
+ IsIndexedPixelFormat(PixelFormat pixfmt)
+ {
+     return (pixfmt & PixelFormatIndexed) != 0;
+ }
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ inline BOOL
+ IsAlphaPixelFormat(PixelFormat pixfmt)
+ {
+    return (pixfmt & PixelFormatAlpha) != 0;
+ }
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ inline BOOL
+ IsExtendedPixelFormat(PixelFormat pixfmt)
+ {
+@@ -105,6 +112,7 @@ IsExtendedPixelFormat(PixelFormat pixfmt)
+ //   PixelFormat64bppPARGB
+ //--------------------------------------------------------------------------
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ inline BOOL
+ IsCanonicalPixelFormat(PixelFormat pixfmt)
+ {

@@ -1,0 +1,574 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnt.h b/generation/WinSDK/RecompiledIdlHeaders/um/winnt.h
+index 03d3705f..c1462ea8 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/winnt.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/winnt.h
+@@ -33,6 +33,9 @@ extern "C" {
+ 
+ #include <ctype.h>  
+ #include <winapifamily.h>  
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ //
+ // Anywhere that NOINITALL is defined, warning 4845 should be disabled. This warning
+@@ -1028,6 +1031,7 @@ typedef DWORDLONG *PDWORDLONG;
+ #define UInt32x32To64(a, b) ((unsigned __int64)(((unsigned __int64)((unsigned int)(a))) * ((unsigned int)(b))))
+ 
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ ULONGLONG
+ NTAPI
+ Int64ShllMod32 (
+@@ -1035,6 +1039,7 @@ Int64ShllMod32 (
+     _In_ DWORD ShiftCount
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONGLONG
+ NTAPI
+ Int64ShraMod32 (
+@@ -1042,6 +1047,7 @@ Int64ShraMod32 (
+     _In_ DWORD ShiftCount
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ ULONGLONG
+ NTAPI
+ Int64ShrlMod32 (
+@@ -1054,6 +1060,7 @@ Int64ShrlMod32 (
+ #endif
+ #pragma warning(disable:4035 4793)               // re-enable below
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __inline ULONGLONG
+ NTAPI
+ Int64ShllMod32 (
+@@ -1070,6 +1077,7 @@ Int64ShllMod32 (
+     }
+ }
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __inline LONGLONG
+ NTAPI
+ Int64ShraMod32 (
+@@ -1086,6 +1094,7 @@ Int64ShraMod32 (
+     }
+ }
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __inline ULONGLONG
+ NTAPI
+ Int64ShrlMod32 (
+@@ -3147,16 +3156,19 @@ _BitScanReverse64 (
+ #define InterlockedDecrementSizeTNoFence(a) InterlockedDecrement64((LONG64 *)a)
+ #endif // !defined(_M_ARM64EC)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ SHORT
+ InterlockedIncrement16 (
+     _Inout_ _Interlocked_operand_ SHORT volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ SHORT
+ InterlockedDecrement16 (
+     _Inout_ _Interlocked_operand_ SHORT volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ SHORT
+ InterlockedCompareExchange16 (
+     _Inout_ _Interlocked_operand_ SHORT volatile *Destination,
+@@ -3200,22 +3212,26 @@ InterlockedXor64 (
+     _In_ LONG64 Value
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ InterlockedIncrement (
+     _Inout_ _Interlocked_operand_ LONG volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ InterlockedDecrement (
+     _Inout_ _Interlocked_operand_ LONG volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ InterlockedExchange (
+     _Inout_ _Interlocked_operand_ LONG volatile *Target,
+     _In_ LONG Value
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ InterlockedExchangeAdd (
+     _Inout_ _Interlocked_operand_ LONG volatile *Addend,
+@@ -3237,6 +3253,7 @@ InterlockedAdd (
+ 
+ #endif // !defined(_X86AMD64_)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ InterlockedCompareExchange (
+     _Inout_ _Interlocked_operand_ LONG volatile *Destination,
+@@ -3244,22 +3261,26 @@ InterlockedCompareExchange (
+     _In_ LONG Comperand
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ LONG64
+ InterlockedIncrement64 (
+     _Inout_ _Interlocked_operand_ LONG64 volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ LONG64
+ InterlockedDecrement64 (
+     _Inout_ _Interlocked_operand_ LONG64 volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ LONG64
+ InterlockedExchange64 (
+     _Inout_ _Interlocked_operand_ LONG64 volatile *Target,
+     _In_ LONG64 Value
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ LONG64
+ InterlockedExchangeAdd64 (
+     _Inout_ _Interlocked_operand_ LONG64 volatile *Addend,
+@@ -3281,6 +3302,7 @@ _InlineInterlockedAdd64 (
+ 
+ #endif // !defined(_X86AMD64_)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ LONG64
+ InterlockedCompareExchange64 (
+     _Inout_ _Interlocked_operand_ LONG64 volatile *Destination,
+@@ -3288,6 +3310,7 @@ InterlockedCompareExchange64 (
+     _In_ LONG64 Comperand
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ BOOLEAN
+ InterlockedCompareExchange128 (
+     _Inout_ _Interlocked_operand_ LONG64 volatile *Destination,
+@@ -3296,6 +3319,7 @@ InterlockedCompareExchange128 (
+     _Inout_ LONG64 *ComparandResult
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _Ret_writes_(_Inexpressible_(Unknown)) PVOID
+ InterlockedCompareExchangePointer (
+     _Inout_ _At_(*Destination,
+@@ -3306,6 +3330,7 @@ InterlockedCompareExchangePointer (
+     _In_opt_ PVOID Comperand
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _Ret_writes_(_Inexpressible_(Unknown)) PVOID
+ InterlockedExchangePointer(
+     _Inout_ _At_(*Target,
+@@ -3357,12 +3382,14 @@ InterlockedExchangePointer(
+ #define InterlockedExchangeNoFence16 InterlockedExchange16
+ #define InterlockedExchangeAcquire16 InterlockedExchange16
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ CHAR
+ InterlockedExchange8 (
+     _Inout_ _Interlocked_operand_ CHAR volatile *Target,
+     _In_ CHAR Value
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ SHORT
+ InterlockedExchange16 (
+     _Inout_ _Interlocked_operand_ SHORT volatile *Destination,
+@@ -4640,6 +4667,7 @@ extern "C" {
+ 
+ #define SpeculationFence() NOP_FUNCTION
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ FORCEINLINE
+ VOID
+ YieldProcessor (
+@@ -5175,6 +5203,7 @@ ReadPMC (
+ #endif // defined(_M_ARM) && !defined(RC_INVOKED) && !defined(MIDL_PASS) && !defined(_M_CEE_PURE)
+ 
+ #if defined(_M_CEE_PURE)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ FORCEINLINE
+ VOID
+ YieldProcessor (
+@@ -5820,6 +5849,7 @@ _BitTestAndSet64(__int64 *Base, __int64 Index)
+ 
+ #define SpeculationFence() NOP_FUNCTION
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ FORCEINLINE
+ VOID
+ MemoryBarrier (
+@@ -5836,6 +5866,7 @@ MemoryBarrier (
+ #define _DataSynchronizationBarrier()        __dsb(_ARM64_BARRIER_SY)
+ #define _InstructionSynchronizationBarrier() __isb(_ARM64_BARRIER_SY)
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ FORCEINLINE
+ VOID
+ YieldProcessor (
+@@ -6623,6 +6654,7 @@ _mm_setcsr (
+ #endif // !defined(_M_CEE_PURE)
+ 
+ #if defined(_M_CEE_PURE)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ FORCEINLINE
+ VOID
+ YieldProcessor (
+@@ -7059,8 +7091,11 @@ typedef struct DECLSPEC_ALIGN(16) DECLSPEC_NOINITALL _ARM64EC_NT_CONTEXT {
+ 
+ #if defined(_ARM64EC_) && !defined(RC_INVOKED) && !defined(MIDL_PASS)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ C_ASSERT(FIELD_OFFSET(ARM64EC_NT_CONTEXT, X8) == FIELD_OFFSET(CONTEXT, Rax));
++_Win32_metadata_supported_os_(windows5.0)
+ C_ASSERT(FIELD_OFFSET(ARM64EC_NT_CONTEXT, Lr) == FIELD_OFFSET(CONTEXT, FltSave.FloatRegisters));
++_Win32_metadata_supported_os_(windows5.0)
+ C_ASSERT(FIELD_OFFSET(ARM64EC_NT_CONTEXT, V) == FIELD_OFFSET(CONTEXT, Xmm0));
+ 
+ #endif // defined(_ARM64EC_) && !defined(RC_INVOKED) && !defined(MIDL_PASS)
+@@ -7622,16 +7657,19 @@ _InlineBitScanReverse64 (
+ #define InterlockedCompareExchangeRelease64 _InterlockedCompareExchange64
+ #define InterlockedCompareExchangeNoFence64 _InterlockedCompareExchange64
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ SHORT
+ InterlockedIncrement16 (
+     _Inout_ _Interlocked_operand_ SHORT volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ SHORT
+ InterlockedDecrement16 (
+     _Inout_ _Interlocked_operand_ SHORT volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ SHORT
+ InterlockedCompareExchange16 (
+     _Inout_ _Interlocked_operand_ SHORT volatile *Destination,
+@@ -7639,6 +7677,7 @@ InterlockedCompareExchange16 (
+     _In_ SHORT Comperand
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ LONG64
+ InterlockedCompareExchange64 (
+     _Inout_ _Interlocked_operand_ LONG64 volatile *Destination,
+@@ -7718,18 +7757,21 @@ InterlockedXor (
+     _In_ LONG Value
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ CDECL_NON_WVMPURE
+ InterlockedIncrement (
+     _Inout_ _Interlocked_operand_ LONG volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ CDECL_NON_WVMPURE
+ InterlockedDecrement (
+     _Inout_ _Interlocked_operand_ LONG volatile *Addend
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ __cdecl
+ InterlockedExchange (
+@@ -7737,6 +7779,7 @@ InterlockedExchange (
+     _In_ LONG Value
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ __cdecl
+ InterlockedExchangeAdd (
+@@ -7756,6 +7799,7 @@ _InlineInterlockedAdd (
+     return InterlockedExchangeAdd(Addend, Value) + Value;
+ }
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ LONG
+ CDECL_NON_WVMPURE
+ InterlockedCompareExchange (
+@@ -7833,12 +7877,14 @@ _InlineInterlockedCompareExchangePointer (
+ #define InterlockedExchangeNoFence16 InterlockedExchange16
+ #define InterlockedExchangeAcquire16 InterlockedExchange16
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ CHAR
+ InterlockedExchange8 (
+     _Inout_ _Interlocked_operand_ CHAR volatile *Target,
+     _In_ CHAR Value
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ SHORT
+ InterlockedExchange16 (
+     _Inout_ _Interlocked_operand_ SHORT volatile *Destination,
+@@ -8325,6 +8371,7 @@ _mm_pause (
+ #pragma warning(push)
+ #pragma prefast(disable: 6001 28113, "The barrier variable is accessed only to create a side effect.")
+ #pragma warning(disable: 4793)
++_Win32_metadata_supported_os_(windows6.0.6000)
+ FORCEINLINE
+ VOID
+ MemoryBarrier (
+@@ -8411,7 +8458,9 @@ __rdtsc (
+ 
+ #if !defined(_MANAGED)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __inline PVOID GetFiberData( void )    { return *(PVOID *) (ULONG_PTR) __readfsdword (0x10);}
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __inline PVOID GetCurrentFiber( void ) { return (PVOID) (ULONG_PTR) __readfsdword (0x10);}
+ 
+ #endif // !defined(_MANAGED)
+@@ -22235,6 +22284,7 @@ typedef struct IMAGE_COR20_HEADER
+ 
+ #if (NTDDI_VERSION > NTDDI_WINXP)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSYSAPI
+ _Success_(return != 0)
+ WORD  
+@@ -22250,6 +22300,7 @@ RtlCaptureStackBackTrace(
+ 
+ #if (NTDDI_VERSION > NTDDI_WIN2K)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSYSAPI
+ VOID
+ NTAPI
+@@ -22314,6 +22365,7 @@ typedef struct _UNWIND_HISTORY_TABLE {
+ #pragma region Application or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSYSAPI
+ VOID
+ NTAPI
+@@ -22368,6 +22420,7 @@ RtlInstallFunctionTableCallback(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSYSAPI
+ DWORD   
+ NTAPI
+@@ -22380,6 +22433,7 @@ RtlAddGrowableFunctionTable(
+     _In_ ULONG_PTR RangeEnd
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSYSAPI
+ VOID
+ NTAPI
+@@ -22388,6 +22442,7 @@ RtlGrowFunctionTable(
+     _In_ DWORD NewEntryCount
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSYSAPI
+ VOID
+ NTAPI
+@@ -22505,6 +22560,7 @@ RtlInstallFunctionTableCallback(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSYSAPI
+ DWORD   
+ NTAPI
+@@ -22517,6 +22573,7 @@ RtlAddGrowableFunctionTable(
+     _In_ ULONG_PTR RangeEnd
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSYSAPI
+ VOID
+ NTAPI
+@@ -22525,6 +22582,7 @@ RtlGrowFunctionTable(
+     _In_ DWORD NewEntryCount
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSYSAPI
+ VOID
+ NTAPI
+@@ -22631,6 +22689,7 @@ RtlInstallFunctionTableCallback(
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSYSAPI
+ DWORD   
+ NTAPI
+@@ -22643,6 +22702,7 @@ RtlAddGrowableFunctionTable(
+     _In_ ULONG_PTR RangeEnd
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSYSAPI
+ VOID
+ NTAPI
+@@ -22651,6 +22711,7 @@ RtlGrowFunctionTable(
+     _In_ DWORD NewEntryCount
+     );
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ NTSYSAPI
+ VOID
+ NTAPI
+@@ -22915,6 +22976,7 @@ typedef union _SLIST_HEADER {
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSYSAPI
+ VOID
+ NTAPI
+@@ -22922,6 +22984,7 @@ RtlInitializeSListHead (
+     _Out_ PSLIST_HEADER ListHead
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ _Must_inspect_result_
+ NTSYSAPI
+ PSLIST_ENTRY
+@@ -22930,6 +22993,7 @@ RtlFirstEntrySList (
+     _In_ const SLIST_HEADER *ListHead
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSYSAPI
+ PSLIST_ENTRY
+ NTAPI
+@@ -22937,6 +23001,7 @@ RtlInterlockedPopEntrySList (
+     _Inout_ PSLIST_HEADER ListHead
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSYSAPI
+ PSLIST_ENTRY
+ NTAPI
+@@ -22955,6 +23020,7 @@ RtlInterlockedPushListSListEx (
+     _In_ DWORD Count
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSYSAPI
+ PSLIST_ENTRY
+ NTAPI
+@@ -22962,6 +23028,7 @@ RtlInterlockedFlushSList (
+     _Inout_ PSLIST_HEADER ListHead
+     );
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ NTSYSAPI
+ WORD  
+ NTAPI
+@@ -23617,6 +23684,7 @@ typedef LPOSVERSIONINFOEXA LPOSVERSIONINFOEX;
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN2K)
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ NTSYSAPI
+ ULONGLONG
+ NTAPI
+@@ -26148,6 +26216,7 @@ typedef struct _TP_IO TP_IO, *PTP_IO;
+ 
+ #if defined(_M_AMD64) && !defined(_M_ARM64EC) && !defined(__midl)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ __forceinline
+ struct _TEB *
+ NtCurrentTeb (
+@@ -26284,6 +26353,7 @@ NtReadCurrentTebUlonglong (
+ 
+ #endif // defined(_KERNEL_MODE)
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __forceinline
+ PVOID
+ GetCurrentFiber (
+@@ -26294,6 +26364,7 @@ GetCurrentFiber (
+     return (PVOID)__readgsqword(FIELD_OFFSET(NT_TIB, FiberData));
+ }
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __forceinline
+ PVOID
+ GetFiberData (
+@@ -26309,6 +26380,7 @@ GetFiberData (
+ 
+ #if defined(_M_ARM) && !defined(__midl) && !defined(_M_CEE_PURE)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ __forceinline
+ struct _TEB *
+ NtCurrentTeb (
+@@ -26318,6 +26390,7 @@ NtCurrentTeb (
+     return (struct _TEB *)(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW);
+ }
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __forceinline
+ PVOID
+ GetCurrentFiber (
+@@ -26327,6 +26400,7 @@ GetCurrentFiber (
+     return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->FiberData;
+ }
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __forceinline
+ PVOID
+ GetFiberData (
+@@ -26342,6 +26416,7 @@ GetFiberData (
+ 
+ #if (defined(_M_ARM64) || defined(_M_ARM64EC)) && !defined(__midl) && !defined(_M_CEE_PURE)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ __forceinline
+ struct _TEB *
+ NtCurrentTeb (
+@@ -26431,6 +26506,7 @@ NtReadCurrentTebUlonglong (
+ 
+ #endif
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __forceinline
+ PVOID
+ GetCurrentFiber (
+@@ -26440,6 +26516,7 @@ GetCurrentFiber (
+     return NtReadCurrentTebPVOID(FIELD_OFFSET(NT_TIB, FiberData));
+ }
+ 
++_Win32_metadata_supported_os_(windows5.1.2600)
+ __forceinline
+ PVOID
+ GetFiberData (
+@@ -26459,6 +26536,7 @@ GetFiberData (
+ 
+ #if !defined(_M_CEE_PURE)
+ 
++_Win32_metadata_supported_os_(windows6.1)
+ __inline
+ struct _TEB*
+ NtCurrentTeb(

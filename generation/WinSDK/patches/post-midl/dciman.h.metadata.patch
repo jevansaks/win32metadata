@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dciman.h b/generation/WinSDK/RecompiledIdlHeaders/um/dciman.h
-index ed208816..bf959e53 100644
+index ed208816..5495827f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/dciman.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/dciman.h
 @@ -16,6 +16,9 @@
@@ -12,13 +12,54 @@ index ed208816..bf959e53 100644
  
  #ifdef __cplusplus
      #define __inline inline
-@@ -38,7 +41,8 @@ DECLARE_HANDLE(HWINWATCH);  // context handle for WinWatch instance
+@@ -38,9 +41,13 @@ DECLARE_HANDLE(HWINWATCH);  // context handle for WinWatch instance
  /****************************************************************************
   ***************************************************************************/
  
 -extern HDC WINAPI DCIOpenProvider(void);
++_Win32_metadata_supported_os_(windows5.0)
 +extern HDC WINAPI DCIOpenProvider(void)
 +    _Win32_metadata_raii_free_(DCICloseProvider);
++_Win32_metadata_supported_os_(windows5.0)
  extern void WINAPI DCICloseProvider(HDC hdc);
  
++_Win32_metadata_supported_os_(windows5.0)
  extern int WINAPI DCICreatePrimary(HDC hdc, LPDCISURFACEINFO FAR *lplpSurface);
+ extern int WINAPI DCICreateOffscreen(HDC hdc, DWORD dwCompression, DWORD dwRedMask,
+     DWORD dwGreenMask, DWORD dwBlueMask, DWORD dwWidth, DWORD dwHeight,
+@@ -78,8 +85,11 @@ extern BOOL WINAPI WinWatchNotify(HWINWATCH hWW, WINWATCHNOTIFYPROC NotifyCallba
+ /****************************************************************************
+  helper functions to call DCIMAN16.DLL
+  ***************************************************************************/
++_Win32_metadata_supported_os_(windows5.0)
+ extern void WINAPI DCIEndAccess(LPDCISURFACEINFO pdci);
++_Win32_metadata_supported_os_(windows5.0)
+ extern DCIRVAL WINAPI DCIBeginAccess(LPDCISURFACEINFO pdci, int x, int y, int dx, int dy);
++_Win32_metadata_supported_os_(windows5.0)
+ extern void WINAPI DCIDestroy(LPDCISURFACEINFO pdci);
+ extern DCIRVAL WINAPI DCIDraw(LPDCIOFFSCREEN pdci);
+ extern DCIRVAL WINAPI DCISetClipList(LPDCIOFFSCREEN pdci, LPRGNDATA prd);
+@@ -93,6 +103,7 @@ extern int WINAPI DCISendCommand(HDC hdc, VOID FAR *pcmd, int nSize, VOID FAR *
+ /****************************************************************************
+  helper macros to call DCI callbacks
+  ***************************************************************************/
++_Win32_metadata_supported_os_(windows5.0)
+ __inline void DCIDestroy(LPDCISURFACEINFO pdci)
+ {
+ 	if( pdci->DestroySurface != NULL ) {
+@@ -100,6 +111,7 @@ __inline void DCIDestroy(LPDCISURFACEINFO pdci)
+ 	}
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ __inline void DCIEndAccess(LPDCISURFACEINFO pdci)
+ {
+ 	if( pdci->EndAccess != NULL ) {
+@@ -107,6 +119,7 @@ __inline void DCIEndAccess(LPDCISURFACEINFO pdci)
+ 	}
+ }
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ __inline DCIRVAL DCIBeginAccess(LPDCISURFACEINFO pdci, int x, int y, int dx, int dy)
+ {
+     RECT rc;

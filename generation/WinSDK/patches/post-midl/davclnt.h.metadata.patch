@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/davclnt.h b/generation/WinSDK/RecompiledIdlHeaders/um/davclnt.h
-index fe6f3a2e..2bbb2ccb 100644
+index fe6f3a2e..55a9fcdf 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/davclnt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/davclnt.h
 @@ -18,6 +18,9 @@ Revision History:
@@ -12,7 +12,12 @@ index fe6f3a2e..2bbb2ccb 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -84,7 +87,8 @@ _Success_(return == ERROR_SUCCESS)
+@@ -80,11 +83,13 @@ typedef DWORD (CALLBACK *PFNDAVAUTHCALLBACK)(
+     _Out_ PFNDAVAUTHCALLBACK_FREECRED *pFreeCred    // Callback to free the memory allocated for creds by the callback
+ );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
  DWORD
  WINAPI
  DavAddConnection(
@@ -22,7 +27,75 @@ index fe6f3a2e..2bbb2ccb 100644
      _In_ LPCWSTR RemoteName,
      _In_opt_ LPCWSTR UserName,
      _In_opt_ LPCWSTR Password,
-@@ -161,7 +165,8 @@ DavCancelConnectionsToServer(
+@@ -92,6 +97,7 @@ DavAddConnection(
+     _In_ DWORD CertSize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -99,6 +105,7 @@ DavDeleteConnection(
+     _In_ HANDLE ConnectionHandle
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -108,6 +115,7 @@ DavGetUNCFromHTTPPath (
+     _Inout_ LPDWORD lpSize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -117,6 +125,7 @@ DavGetHTTPFromUNCPath (
+     _Inout_ LPDWORD lpSize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -126,6 +135,7 @@ DavGetTheLockOwnerOfTheFile(
+     _Inout_ PULONG LockOwnerNameLengthInBytes
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -136,6 +146,7 @@ DavGetExtendedError(
+     _Inout_ DWORD *cChSize
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -143,6 +154,7 @@ DavFlushFile(
+     _In_ HANDLE hFile
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -150,6 +162,7 @@ DavInvalidateCache(
+     _In_ LPCWSTR URLName
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+ WINAPI
+@@ -158,11 +171,14 @@ DavCancelConnectionsToServer(
+     _In_ BOOL fForce
+     );
+ 
++_Win32_metadata_supported_os_(windows6.0.6000)
  OPAQUE_HANDLE
  WINAPI
  DavRegisterAuthCallback(_In_ PFNDAVAUTHCALLBACK CallBack,
@@ -30,5 +103,7 @@ index fe6f3a2e..2bbb2ccb 100644
 +                        _In_ ULONG Version)
 +    _Win32_metadata_raii_free_(DavUnregisterAuthCallback);
  
++_Win32_metadata_supported_os_(windows6.0.6000)
  VOID
  WINAPI
+ DavUnregisterAuthCallback(_In_ OPAQUE_HANDLE hCallback);

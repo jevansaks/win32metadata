@@ -1,0 +1,102 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/MDMRegistration.h b/generation/WinSDK/RecompiledIdlHeaders/um/MDMRegistration.h
+index fd9e0a6e..7ea7e731 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/MDMRegistration.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/MDMRegistration.h
+@@ -29,6 +29,9 @@ Notes:
+ #endif
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ #include <winerror.h>
+ 
+ #pragma region Desktop Family
+@@ -168,6 +171,7 @@ Return Value:
+ HRESULT indicating success or failure.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ GetDeviceRegistrationInfo(
+     _In_  REGISTRATION_INFORMATION_CLASS DeviceInformationClass,
+@@ -191,6 +195,7 @@ Return Value:
+     HRESULT indicating success or failure.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ IsDeviceRegisteredWithManagement(
+     _Out_ BOOL *pfIsDeviceRegisteredWithManagement,
+@@ -213,6 +218,7 @@ Return Value:
+     HRESULT indicating success or failure.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ IsManagementRegistrationAllowed(
+     _Out_ BOOL *pfIsManagementRegistrationAllowed
+@@ -251,6 +257,7 @@ Return Value:
+     HRESULT indicating success or failure.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ SetManagedExternally(
+     _In_ BOOL IsManagedExternally
+@@ -274,6 +281,7 @@ Return Value:
+     ppMgmtInfo - Struct containing MDM service URIs
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ DiscoverManagementService(
+     _In_z_              LPCWSTR                         pszUPN,
+@@ -297,6 +305,7 @@ Return Value:
+ HRESULT indicating success or failure.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ RegisterDeviceWithManagementUsingAADCredentials(HANDLE UserToken);
+ 
+@@ -317,6 +326,7 @@ Return Value:
+ HRESULT indicating success or failure.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ RegisterDeviceWithManagementUsingAADDeviceCredentials();
+ 
+@@ -359,6 +369,7 @@ Return Value:
+     HRESULT indicating success or failure.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ RegisterDeviceWithManagement(
+     _In_z_                  LPCWSTR     pszUPN,
+@@ -381,6 +392,7 @@ Return Value:
+     HRESULT indicating success or failure.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ UnregisterDeviceWithManagement(
+     _In_opt_z_ LPCWSTR enrollmentID
+@@ -453,6 +465,7 @@ Return Value:
+     HRESULT indicating success or failure.
+ 
+ --*/
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ GetManagementAppHyperlink(
+     _In_ DWORD cchHyperlink,
+@@ -479,6 +492,7 @@ Return Value:
+     ppMgmtInfo - Struct containing MDM service URIs
+ --*/
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ HRESULT WINAPI
+ DiscoverManagementServiceEx(
+     _In_z_              LPCWSTR                         pszUPN,

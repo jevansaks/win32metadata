@@ -1,0 +1,32 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WpdShellExtension.h b/generation/WinSDK/RecompiledIdlHeaders/um/WpdShellExtension.h
+index e8b832b8..11193b1a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WpdShellExtension.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WpdShellExtension.h
+@@ -12,6 +12,9 @@
+ 
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -34,11 +37,17 @@ DEFINE_GUID( CLSID_WPD_NAMESPACE_EXTENSION , 0x35786d3c, 0xb075, 0x49b9, 0x88, 0
+ DEFINE_GUID( WPDNSE_OBJECT_PROPERTIES_V1 , 0x34d71409, 0x4b47, 0x4d80, 0xaa, 0xac, 0x3a, 0x28, 0xa4, 0xa3, 0xb3, 0xe6 ); 
+ 
+ // Properties 
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPDNSE_OBJECT_HAS_CONTACT_PHOTO , 0x34d71409, 0x4b47, 0x4d80, 0xaa, 0xac, 0x3a, 0x28, 0xa4, 0xa3, 0xb3, 0xe6 , 2 ); // [ VT_BOOL ] Indicates whether the object has a contact photo resource.  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPDNSE_OBJECT_HAS_THUMBNAIL , 0x34d71409, 0x4b47, 0x4d80, 0xaa, 0xac, 0x3a, 0x28, 0xa4, 0xa3, 0xb3, 0xe6 , 3 ); // [ VT_BOOL ] Indicates whether the object has a thumbnail resource.  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPDNSE_OBJECT_HAS_ICON , 0x34d71409, 0x4b47, 0x4d80, 0xaa, 0xac, 0x3a, 0x28, 0xa4, 0xa3, 0xb3, 0xe6 , 4 ); // [ VT_BOOL ] Indicates whether the object has an icon resource.  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPDNSE_OBJECT_HAS_AUDIO_CLIP , 0x34d71409, 0x4b47, 0x4d80, 0xaa, 0xac, 0x3a, 0x28, 0xa4, 0xa3, 0xb3, 0xe6 , 5 ); // [ VT_BOOL ] Indicates whether the object has a voice annotation resource.  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPDNSE_OBJECT_HAS_ALBUM_ART , 0x34d71409, 0x4b47, 0x4d80, 0xaa, 0xac, 0x3a, 0x28, 0xa4, 0xa3, 0xb3, 0xe6 , 6 ); // [ VT_BOOL ] Indicates whether the object has an album art resource.  
++_Win32_metadata_supported_os_(windows6.0.6000)
+ DEFINE_PROPERTYKEY( WPDNSE_OBJECT_OPTIMAL_READ_BLOCK_SIZE , 0x34d71409, 0x4b47, 0x4d80, 0xaa, 0xac, 0x3a, 0x28, 0xa4, 0xa3, 0xb3, 0xe6 , 7 ); // [ VT_UI4 ] The optimal buffer size clients can use to read data chunks of the default resource.  
+ 
+ /**************************************************************************** 
