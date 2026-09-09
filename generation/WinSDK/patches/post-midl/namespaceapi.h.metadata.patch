@@ -1,0 +1,34 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h
+index 7134e305..c4c45905 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h
+@@ -34,7 +34,8 @@ CreatePrivateNamespaceW(
+     _In_opt_ LPSECURITY_ATTRIBUTES lpPrivateNamespaceAttributes,
+     _In_ LPVOID lpBoundaryDescriptor,
+     _In_ LPCWSTR lpAliasPrefix
+-    );
++    )
++    _Win32_metadata_raii_free_(ClosePrivateNamespace);
+ 
+ WINBASEAPI
+ HANDLE
+@@ -42,7 +43,8 @@ WINAPI
+ OpenPrivateNamespaceW(
+     _In_ LPVOID lpBoundaryDescriptor,
+     _In_ LPCWSTR lpAliasPrefix
+-    );
++    )
++    _Win32_metadata_raii_free_(ClosePrivateNamespace);
+ 
+ WINBASEAPI
+ BOOLEAN
+@@ -58,7 +60,8 @@ WINAPI
+ CreateBoundaryDescriptorW(
+     _In_ LPCWSTR Name,
+     _In_ ULONG Flags
+-    );
++    )
++    _Win32_metadata_raii_free_(DeleteBoundaryDescriptor);
+ 
+ WINBASEAPI
+ BOOL

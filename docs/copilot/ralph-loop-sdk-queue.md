@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-05T00:17:52Z
+- Generated: 2026-09-09T07:33:04Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -152,7 +152,7 @@
 | `certreqd.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certreqd.h.md |
 | `certsrv.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certsrv.h.md |
 | `certview.h` | Certificates | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/certview.h.md |
-| `cfapi.h` | Cloudapi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfapi.h.md |
+| `cfapi.h` | Cloudapi | matched |  | 09/09/2026 00:00:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(CfCloseHandle) annotation on CfOpenFileWithOplock's ProtectedHandle out-parameter in RecompiledIdlHeaders/um/cfapi.h. Consolidated into cfapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/cfapi.h.md |
 | `cfg.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfg.h.md |
 | `cfgmgr32.h` | DevInst | matched | copilot | 09/02/2026 19:25:46 | Classified retained artifact in existing-patches-01. |
 | `cierror.h` | Foundation | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cierror.h.md |
@@ -497,7 +497,7 @@
 | `hvsocket.h` | Hypervisor | matched |  | 09/02/2026 19:50:38 | Constants/structs only, no functions. |
 | `hwebcore.h` | Iis | matched |  | 09/02/2026 19:37:21 | Dynamically-loaded function-pointer typedefs only, no scrapable extern functions. |
 | `hypervdevicevirtualization.h` | Hypervisor | matched |  | 09/02/2026 21:43:41 | Fixed genuine gap: added new autoTypes.json entry for HDV_HOST (CloseApi=HdvTeardownDeviceHost). |
-| `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | matched |  |  | Producer-site fix: I_CryptInstallAsn1Module returns HCRYPTASN1MODULE (typedef DWORD) directly, released via I_CryptUninstallAsn1Module. Added I_CryptInstallAsn1Module::return=[RAIIFree("I_CryptUninstallAsn1Module")]. Same corrected reasoning as getprocesshandlefromhwnd.h. See docs/copilot/header-reports/i_cryptasn1tls.h.md |
+| `i_cryptasn1tls.h` | Security.Cryptography, Security.Cryptography.UI | matched |  | 09/09/2026 00:00:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(I_CryptUninstallAsn1Module) annotation on I_CryptInstallAsn1Module's return declaration in RecompiledIdlHeaders/um/i_cryptasn1tls.h. Consolidated into i_cryptasn1tls.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/i_cryptasn1tls.h.md |
 | `iaccess.h` | TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iaccess.h.md |
 | `iadmext.h` | Iis | matched |  | 09/02/2026 19:06:16 | COM interface, not HANDLE-family. |
 | `iadmw.h` | Iis | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/iadmw.h.md |
@@ -1195,7 +1195,7 @@
 | `wcnapi.h` | Wcn | matched |  | 09/02/2026 17:01:48 | Redirect-only; 0 functions in entire Wcn partition, no DECLARE_HANDLE. |
 | `wcnfunctiondiscoverykeys.h` | Wcn | matched |  | 09/02/2026 17:35:31 | GUID/PROPERTYKEY constants only, no functions. |
 | `wcsplugin.h` | Wcs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wcsplugin.h.md |
-| `wct.h` | Base, Debug | matched |  |  | Producer-site fix: OpenThreadWaitChainSession returns HWCT (typedef LPVOID) directly, released via CloseThreadWaitChainSession. Added OpenThreadWaitChainSession::return=[RAIIFree("CloseThreadWaitChainSession")]. See docs/copilot/header-reports/wct.h.md |
+| `wct.h` | Base, Debug | matched |  | 09/09/2026 00:00:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(CloseThreadWaitChainSession) annotation on OpenThreadWaitChainSession's return declaration in RecompiledIdlHeaders/um/wct.h. Consolidated into wct.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/wct.h.md |
 | `WDBGEXTS.H` | Debug.Extensions | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/WDBGEXTS.H.md |
 | `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |
 | `wdmguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdmguid.h.md |

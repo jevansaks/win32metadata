@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h
+index 2171807b..dfe56d16 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/cfapi.h
+@@ -21,6 +21,9 @@ Abstract:
+ #endif
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION( WINAPI_PARTITION_DESKTOP )
+@@ -766,6 +769,7 @@ CfOpenFileWithOplock (
+     _In_ LPCWSTR FilePath,
+     _In_ CF_OPEN_FILE_FLAGS Flags,
+     _Out_ PHANDLE ProtectedHandle
++        _Win32_metadata_raii_free_(CfCloseHandle)
+     );
+ 
+ STDAPI_( BOOLEAN )

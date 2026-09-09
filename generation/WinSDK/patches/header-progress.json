@@ -4154,8 +4154,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/cfapi.h.md",
+      "last_updated": "09/09/2026 00:00:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(CfCloseHandle) annotation on CfOpenFileWithOplock's ProtectedHandle out-parameter in RecompiledIdlHeaders/um/cfapi.h. Consolidated into cfapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/cfapi.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Cloudapi/main.cpp",
@@ -14526,8 +14526,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Producer-site fix: I_CryptInstallAsn1Module returns HCRYPTASN1MODULE (typedef DWORD) directly, released via I_CryptUninstallAsn1Module. Added I_CryptInstallAsn1Module::return=[RAIIFree(\"I_CryptUninstallAsn1Module\")]. Same corrected reasoning as getprocesshandlefromhwnd.h. See docs/copilot/header-reports/i_cryptasn1tls.h.md",
+      "last_updated": "09/09/2026 00:00:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(I_CryptUninstallAsn1Module) annotation on I_CryptInstallAsn1Module's return declaration in RecompiledIdlHeaders/um/i_cryptasn1tls.h. Consolidated into i_cryptasn1tls.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/i_cryptasn1tls.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -40193,8 +40193,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Producer-site fix: OpenThreadWaitChainSession returns HWCT (typedef LPVOID) directly, released via CloseThreadWaitChainSession. Added OpenThreadWaitChainSession::return=[RAIIFree(\"CloseThreadWaitChainSession\")]. See docs/copilot/header-reports/wct.h.md",
+      "last_updated": "09/09/2026 00:00:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(CloseThreadWaitChainSession) annotation on OpenThreadWaitChainSession's return declaration in RecompiledIdlHeaders/um/wct.h. Consolidated into wct.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/wct.h.md",
       "sources": [
         {
           "source": "partition-main",

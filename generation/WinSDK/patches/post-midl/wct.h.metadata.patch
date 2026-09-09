@@ -1,0 +1,24 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wct.h b/generation/WinSDK/RecompiledIdlHeaders/um/wct.h
+index d3441432..a1919031 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wct.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wct.h
+@@ -21,6 +21,9 @@ History:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -111,7 +114,8 @@ HWCT WINAPI
+ OpenThreadWaitChainSession (
+     _In_ DWORD Flags,
+     _In_opt_ PWAITCHAINCALLBACK callback
+-    );
++    )
++    _Win32_metadata_raii_free_(CloseThreadWaitChainSession);
+ 
+ WINADVAPI
+ VOID WINAPI

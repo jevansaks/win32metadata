@@ -11,6 +11,9 @@
 #ifndef __I_CRYPTASN1TLS_H__
 #define __I_CRYPTASN1TLS_H__
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -50,7 +53,8 @@ I_CryptInstallAsn1Module(
     IN ASN1module_t pMod,
     IN DWORD dwFlags,
     IN void *pvReserved
-    );
+    )
+    _Win32_metadata_raii_free_(I_CryptUninstallAsn1Module);
 
 
 //+-------------------------------------------------------------------------

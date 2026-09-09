@@ -3675,3 +3675,45 @@ blocked (AdsProp.h, dmemmgr.h, UserEnv.h, physicalmonitorenumerationapi.h, MSAJT
 headers moved blocked -> accepted-normalized. esent.h/icu.h/icui18n.h untouched (different, larger
 blocker shape - out of scope for this mechanical-fix tranche). The 28 AllJoyn parser-limitation
 blockers untouched except MSAJTransport.h's ownership evidence.**
+
+## 2026-09-09T00:00:00Z - Sidecar-removal tranche: RAIIFree category, batch 1 of N
+
+Starting a new work item distinct from the header-progress ledger audit above:
+moving the 106 Function::param=[RAIIFree("Closer")] memberRemap entries in
+generation/WinSDK/emitter.settings.rsp into inline ABI-neutral
+_Win32_metadata_raii_free_(Closer) annotations directly on the SDK producer
+declarations in generation/WinSDK/RecompiledIdlHeaders, one consolidated
+<header>.metadata.patch per affected header against the pristine d154186c
+baseline. These 106 entries span 42 distinct headers; most were originally
+added as the accepted fix for header-progress ledger items in earlier batches
+(see notes on e.g. `wtsapi32.h`, `avrt.h`, `srpapi.h` above) - this
+tranche pushes that fix from the sidecar into source, as originally intended.
+
+Batch 1 (5 headers, 7 entries): `wct.h`, `namespaceapi.h`,
+`i_cryptasn1tls.h`, `cfapi.h`, `getprocesshandlefromhwnd.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `OpenThreadWaitChainSession` (return), `CreatePrivateNamespaceW`
+  (return), `OpenPrivateNamespaceW` (return), `CreateBoundaryDescriptorW`
+  (return), `I_CryptInstallAsn1Module` (return), `CfOpenFileWithOplock`
+  (`ProtectedHandle` out-param), `GetProcessHandleFromHwnd` (return).
+- None of these 5 headers had a prior post-midl patch, so each got a new
+  `<header>.metadata.patch` (no old per-reason patches to remove).
+  `namespaceapi.h` already transitively includes the
+  `win32metadata_annotations.h` guard via `minwindef.h`/`minwinbase.h`;
+  the other 4 headers had the guard block added explicitly.
+- Removed all 7 corresponding sidecar entries from `emitter.settings.rsp`.
+- Validation: reconstructed each header's pristine `d154186c` baseline in
+  the real working-tree path, applied the new consolidated patch, and
+  confirmed a byte-for-byte match against the committed (annotated) header for
+  all 5 headers. `ScrapeHeaders` with `-p:ScanArch=crossarch` succeeded
+  with 0 errors for the affected partitions (Cloudapi, Threading, Base,
+  Debug - scraped per-arch as x64/x86/arm64 automatically under crossarch -
+  Security.Cryptography, Security.Cryptography.UI).
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` notes for the
+  3 tracked entries (`wct.h`, `i_cryptasn1tls.h`, `cfapi.h`) and the
+  per-header reports for all 5 headers. `namespaceapi.h` and
+  `getprocesshandlefromhwnd.h` are not part of the 1403-item header-progress
+  ledger (reached only via partition `settings.rsp` `IncludeRoot`, not a
+  `main.cpp` include), so only their per-header report files were updated.
+- Remaining: 99 of 106 RAIIFree sidecar entries across 37 headers still to
+  migrate in subsequent batches of this tranche.
