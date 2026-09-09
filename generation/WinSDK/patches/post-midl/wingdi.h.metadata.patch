@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
-index 9cc979f2..1093927c 100644
+index 9cc979f2..02510e25 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
 @@ -1,4 +1,7 @@
@@ -126,7 +126,15 @@ index 9cc979f2..1093927c 100644
  WINGDIAPI UINT  WINAPI GetEnhMetaFilePixelFormat(   _In_ HENHMETAFILE hemf,
                                                      _In_ UINT cbBuffer,
                                                      _Out_writes_bytes_opt_(cbBuffer) PIXELFORMATDESCRIPTOR *ppfd);
-@@ -6327,22 +6348,32 @@ typedef struct tagEMRTRANSPARENTBLT
+@@ -5041,6 +5062,7 @@ WINGDIAPI BOOL WINAPI CombineTransform( _Out_ LPXFORM lpxfOut, _In_ CONST XFORM
+ #define GDI__DIBSIZE(bi) (GDI_DIBWIDTHBYTES(bi) * (DWORD)(bi).biHeight)
+ #define GDI_DIBSIZE(bi) ((bi).biHeight < 0 ? (-1)*(GDI__DIBSIZE(bi)) : GDI__DIBSIZE(bi))
+ 
++_Win32_metadata_set_last_error_
+ WINGDIAPI _Success_(return != NULL) HBITMAP WINAPI CreateDIBSection(
+     _In_opt_        HDC               hdc,
+     _In_            CONST BITMAPINFO *pbmi,
+@@ -6327,22 +6349,32 @@ typedef struct tagEMRTRANSPARENTBLT
  
  // OpenGL wgl prototypes
  
@@ -159,7 +167,7 @@ index 9cc979f2..1093927c 100644
  WINGDIAPI BOOL  WINAPI SwapBuffers(HDC);
  
  typedef struct _POINTFLOAT {
-@@ -6360,8 +6391,10 @@ typedef struct _GLYPHMETRICSFLOAT {
+@@ -6360,8 +6392,10 @@ typedef struct _GLYPHMETRICSFLOAT {
  
  #define WGL_FONT_LINES      0
  #define WGL_FONT_POLYGONS   1
@@ -170,7 +178,7 @@ index 9cc979f2..1093927c 100644
  WINGDIAPI BOOL  WINAPI wglUseFontOutlinesW(HDC, DWORD, DWORD, DWORD, FLOAT,
                                             FLOAT, int, LPGLYPHMETRICSFLOAT);
  #ifdef UNICODE
-@@ -6448,11 +6481,15 @@ typedef struct tagLAYERPLANEDESCRIPTOR { // lpd
+@@ -6448,11 +6482,15 @@ typedef struct tagLAYERPLANEDESCRIPTOR { // lpd
  
  WINGDIAPI BOOL  WINAPI wglDescribeLayerPlane(HDC, int, int, UINT,
                                               LPLAYERPLANEDESCRIPTOR);

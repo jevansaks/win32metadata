@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mscat.h b/generation/WinSDK/RecompiledIdlHeaders/um/mscat.h
-index 23be69c9..ef7abe61 100644
+index 23be69c9..aad4d009 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mscat.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mscat.h
 @@ -22,6 +22,9 @@
@@ -84,7 +84,23 @@ index 23be69c9..ef7abe61 100644
  _Success_(return != FALSE)
  extern BOOL WINAPI CryptCATAdminCalcHashFromFileHandle2(
      _In_        HCATADMIN   hCatAdmin,
-@@ -906,6 +918,7 @@ extern HCATINFO WINAPI CryptCATAdminAddCatalog(
+@@ -872,6 +884,7 @@ extern BOOL WINAPI CryptCATAdminCalcHashFromFileHandle2(
+ //
+ 
+ #if (NTDDI_VERSION < NTDDI_WINBLUE)
++_Win32_metadata_set_last_error_
+ extern HCATINFO WINAPI CryptCATAdminAddCatalog(
+     _In_ HCATADMIN hCatAdmin,
+     _In_ PWSTR pwszCatalogFile,
+@@ -879,6 +892,7 @@ extern HCATINFO WINAPI CryptCATAdminAddCatalog(
+     _Reserved_ DWORD dwFlags
+     );
+ #else
++_Win32_metadata_set_last_error_
+ extern HCATINFO WINAPI CryptCATAdminAddCatalog(
+     _In_ HCATADMIN hCatAdmin,
+     _In_ PWSTR pwszCatalogFile,
+@@ -906,6 +920,7 @@ extern HCATINFO WINAPI CryptCATAdminAddCatalog(
  //      of the catalog file, ex. "foo.cat", and not a fully qualified path
  //      name
  //
@@ -92,7 +108,7 @@ index 23be69c9..ef7abe61 100644
  extern BOOL WINAPI CryptCATAdminRemoveCatalog(IN HCATADMIN hCatAdmin,
                                                IN LPCWSTR pwszCatalogFile,
                                                IN DWORD dwFlags);
-@@ -930,6 +943,7 @@ extern BOOL WINAPI CryptCATAdminRemoveCatalog(IN HCATADMIN hCatAdmin,
+@@ -930,6 +945,7 @@ extern BOOL WINAPI CryptCATAdminRemoveCatalog(IN HCATADMIN hCatAdmin,
  //      the dwFlags parameter is reserved for future use and must be assigned
  //      to NULL.
  //
@@ -100,7 +116,7 @@ index 23be69c9..ef7abe61 100644
  _Success_(return != FALSE)
  extern BOOL WINAPI CryptCATCatalogInfoFromContext(
      _In_    HCATINFO hCatInfo,
-@@ -959,6 +973,7 @@ extern BOOL WINAPI CryptCATCatalogInfoFromContext(
+@@ -959,6 +975,7 @@ extern BOOL WINAPI CryptCATCatalogInfoFromContext(
  //      the dwFlags parameter is reserved for future use and must be assigned
  //      to NULL.
  //

@@ -30,6 +30,21 @@ cumulative `generation/WinSDK/patches/post-midl/wingdi.h.metadata.patch`
 against the pristine `d154186c` SDK baseline; removed the now-superseded
 `wingdi.h.callback-canonical-name.patch`.
 
+## Ownership Analysis (WithSetLastError.rsp final tranche update)
+`CreateDIBSection` sets last error on failure per its `_Success_(return != NULL)`
+contract; migrated the sidecar `WithSetLastError.rsp` fact to an inline
+`_Win32_metadata_set_last_error_` annotation immediately above its declaration:
+```
+_Win32_metadata_set_last_error_
+WINGDIAPI _Success_(return != NULL) HBITMAP WINAPI CreateDIBSection(
+```
+This was one of the last 2 genuinely-uncovered entries surviving a fresh
+coverage re-check of the 143 previously-reported residual `WithSetLastError.rsp`
+entries (141 of the 143 were already covered by pre-existing annotations from
+the prior migration batch and were removed from the rsp as pure reconciliation
+with no header changes). Re-consolidated into the same
+`wingdi.h.metadata.patch` against the `d154186c` baseline.
+
 ## Validation
 - Patch replay: `git apply` of `wingdi.h.metadata.patch` against the
   `d154186c` baseline reproduces the current committed header byte-for-byte.

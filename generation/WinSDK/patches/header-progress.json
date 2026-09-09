@@ -22860,8 +22860,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "CORRECTED: added HCATADMIN autoTypes.json entry (CloseApi CryptCATAdminReleaseContext) after HACMDRIVER precedent proved reserved-flags 2-param close functions are tolerated. HCATINFO remains blocked (needs external HCATADMIN context). See docs/copilot/header-reports/mscat.h.md",
+      "last_updated": "2026-09-09 10:50:36",
+      "notes": "CORRECTED: added HCATADMIN autoTypes.json entry (CloseApi CryptCATAdminReleaseContext) after HACMDRIVER precedent proved reserved-flags 2-param close functions are tolerated. HCATINFO remains blocked (needs external HCATADMIN context). See docs/copilot/header-reports/mscat.h.md [WithSetLastError final tranche] Migrated CryptCATAdminAddCatalog last-error fact from WithSetLastError.rsp to inline _Win32_metadata_set_last_error_ annotations on both NTDDI_VERSION-guarded declaration branches; re-consolidated into mscat.h.metadata.patch.",
       "sources": [
         {
           "source": "partition-main",
@@ -45181,8 +45181,8 @@
       "evidence": [
         "docs/copilot/header-reports/wingdi.h.md generation/WinSDK/patches/post-midl/wingdi.h.callback-canonical-name.patch git apply --check --reverse passed docs/copilot/shift-left-metadata-worklog.md"
       ],
-      "last_updated": "09/09/2026 02:20:00",
-      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on CreateMetaFileA/W (DeleteMetaFile) and CreateEnhMetaFileA/W (DeleteEnhMetaFile) return declarations in RecompiledIdlHeaders/um/wingdi.h. Consolidated the pre-existing callback-canonical-name patch and these new annotations into one wingdi.h.metadata.patch against the d154186c baseline; removed the old wingdi.h.callback-canonical-name.patch. See docs/copilot/header-reports/wingdi.h.md",
+      "last_updated": "2026-09-09 10:50:36",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on CreateMetaFileA/W (DeleteMetaFile) and CreateEnhMetaFileA/W (DeleteEnhMetaFile) return declarations in RecompiledIdlHeaders/um/wingdi.h. Consolidated the pre-existing callback-canonical-name patch and these new annotations into one wingdi.h.metadata.patch against the d154186c baseline; removed the old wingdi.h.callback-canonical-name.patch. See docs/copilot/header-reports/wingdi.h.md [WithSetLastError final tranche] Also migrated CreateDIBSection last-error fact from WithSetLastError.rsp to inline _Win32_metadata_set_last_error_ annotation; re-consolidated into wingdi.h.metadata.patch.",
       "sources": [
         {
           "source": "partition-main",

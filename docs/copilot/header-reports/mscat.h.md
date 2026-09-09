@@ -40,3 +40,32 @@ Producer-site fix applied for `HCATADMIN` (corrected from an
 over-cautious initial block). `HCATINFO` remains unrepresentable
 (external-context-dependent close); `CryptCATOpen`/`Close` use the
 generic `HANDLE` type (blocker-class 2).
+
+## WithSetLastError.rsp final tranche update
+
+`CryptCATAdminAddCatalog` sets last error on failure (returns `NULL`
+`HCATINFO` on failure per its doc contract). Migrated the sidecar
+`WithSetLastError.rsp` fact to an inline `_Win32_metadata_set_last_error_`
+annotation on both `#if (NTDDI_VERSION < NTDDI_WINBLUE)` / `#else`
+declaration branches (each conditional branch requires its own
+annotation instance per this project's convention):
+```
+#if (NTDDI_VERSION < NTDDI_WINBLUE)
+_Win32_metadata_set_last_error_
+extern HCATINFO WINAPI CryptCATAdminAddCatalog(
+    ...
+#else
+_Win32_metadata_set_last_error_
+extern HCATINFO WINAPI CryptCATAdminAddCatalog(
+    ...
+#endif
+```
+This was one of the last 2 genuinely-uncovered entries surviving a fresh
+coverage re-check of the 143 previously-reported residual `WithSetLastError.rsp`
+entries (141 of the 143 were already covered by pre-existing annotations
+from the prior migration batch and were removed from the rsp as pure
+reconciliation with no header changes). Re-consolidated into
+`mscat.h.metadata.patch` against the `d154186c` baseline; validated via
+patch replay (byte-for-byte) and `ScrapeHeaders -p:ScanArch=crossarch
+-p:PartitionFilter=Security.Cryptography.Catalog%3BSecurity.Cryptography.Sip`
+→ Build succeeded, 0 Error(s).

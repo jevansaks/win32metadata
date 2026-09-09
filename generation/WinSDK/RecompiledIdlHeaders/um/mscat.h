@@ -884,6 +884,7 @@ extern BOOL WINAPI CryptCATAdminCalcHashFromFileHandle2(
 //
 
 #if (NTDDI_VERSION < NTDDI_WINBLUE)
+_Win32_metadata_set_last_error_
 extern HCATINFO WINAPI CryptCATAdminAddCatalog(
     _In_ HCATADMIN hCatAdmin,
     _In_ PWSTR pwszCatalogFile,
@@ -891,6 +892,7 @@ extern HCATINFO WINAPI CryptCATAdminAddCatalog(
     _Reserved_ DWORD dwFlags
     );
 #else
+_Win32_metadata_set_last_error_
 extern HCATINFO WINAPI CryptCATAdminAddCatalog(
     _In_ HCATADMIN hCatAdmin,
     _In_ PWSTR pwszCatalogFile,

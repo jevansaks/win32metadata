@@ -4200,3 +4200,71 @@ tranche):**
 rather than left unexamined. See `docs/copilot/withsetlasterror-migration.md`
 for the complete accounting (counts, exact header list, exact removed
 per-reason patches, exact excluded blocker names).
+
+## WithSetLastError.rsp sidecar-removal tranche - final batch (last 143 entries)
+
+Finished driving `generation/WinSDK/WithSetLastError.rsp` to zero API
+entries, per the follow-up instruction to not stop with residual API
+metadata.
+
+**Re-verification before touching anything:** rebuilt the declaration-
+anchored coverage scanner (same false-positive taxonomy as the prior batch)
+and re-ran it against the *current* HEAD state of the 143 reported residual
+entries, rather than trusting the count/list as still-accurate. This
+surfaced a bookkeeping gap in the prior batch: its final rsp update only
+removed the 982 names it had actually migrated in that pass, not the full,
+larger "already covered" set its own more-accurate v4 scanner had by then
+computed. Result: **141 of the 143** were already fully represented by
+pre-existing annotations (mostly from the same earlier migration commit)
+and were removed from the rsp as pure reconciliation - no header changes.
+
+**Only 2 entries were genuinely uncovered:**
+- `CreateDIBSection` (`wingdi.h`) - a single-line declaration
+  `WINGDIAPI _Success_(return != NULL) HBITMAP WINAPI CreateDIBSection(...)`
+  that the prior batch's scanner missed: its "skip if prefix looks like an
+  assignment expression" heuristic false-triggered on the bare `=` inside
+  `_Success_(return != NULL)` (a comparison `!=`, not an assignment).
+  Migrated to an inline `_Win32_metadata_set_last_error_` line directly
+  above the declaration.
+- `CryptCATAdminAddCatalog` (`mscat.h`) - a version-guarded `#if
+  (NTDDI_VERSION < NTDDI_WINBLUE) / #else` redeclaration pair. This name had
+  been queued for annotation in the prior batch's plan but the edit did not
+  survive into the final insertion pass; both declaration branches now carry
+  their own annotation line.
+
+Both fixes were consolidated into the pre-existing `wingdi.h.metadata.patch`
+and `mscat.h.metadata.patch` (both headers already had a consolidated patch
+from earlier tranches), validated via byte-for-byte patch replay from the
+pristine `d154186c` baseline, and validated via `ScrapeHeaders
+-p:ScanArch=crossarch -p:PartitionFilter=DataXchg%3BDirect3D9%3BGdi%3BIntl%3B
+Media.DShow%3BTablet%3BWcs%3BSecurity.Cryptography.Catalog%3BSecurity.Cryptography.Sip`
+- Build succeeded, 0 Error(s) (pre-existing, unrelated cross-partition remap
+warnings for `Security.Cryptography.Sip`/`wincrypt.h`/`schannel.h` observed,
+not caused by this change).
+
+**End state:** `WithSetLastError.rsp` reached **zero** API entries. Since an
+empty rsp (just its `--with-setlasterror` header line, no values) is
+behaviorally identical to the flag being entirely absent, the file itself
+and its `<ScraperRsp Include="WithSetLastError.rsp"/>` line in
+`generation/WinSDK/Windows.Win32.proj` were both removed. Confirmed no other
+build file (`sdk.targets`, `MetadataTasks/*.cs`) references
+`WithSetLastError.rsp` directly - `ResponseFiles` are consumed generically
+via MSBuild's `@rsp` mechanism from the `ScraperRsp`/`FinalScraperRsp` item
+groups. The unrelated audit/regeneration helper script
+`scripts/CreateWithSetLastError.ps1` was left untouched (it is not invoked
+by the build; it is a standalone tool for re-deriving a candidate list from
+Microsoft Docs UID metadata and is out of scope for this tranche).
+
+Updated `docs/copilot/withsetlasterror-migration.md`'s "Residual state"
+section, `docs/copilot/header-reports/wingdi.h.md` and
+`docs/copilot/header-reports/mscat.h.md` with the final annotations, and
+`generation/WinSDK/patches/header-progress.json` notes for both headers.
+
+**Final tally for the entire WithSetLastError.rsp tranche (both batches):**
+3365 original entries -> 2231 + 141 = 2372 redundant (already covered, no
+header change) + 9 non-representable blockers (macros/interface types,
+removed with no substitute) + 982 + 2 = 984 migrated to inline
+`_Win32_metadata_set_last_error_` annotations across 64 headers (63 from the
+first batch plus `wingdi.h`/`mscat.h` re-touched in the final batch, already
+counted in the 63) = 3365 accounted for. Residual API entries in
+`WithSetLastError.rsp`: **0**.

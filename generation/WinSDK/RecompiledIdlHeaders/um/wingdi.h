@@ -5062,6 +5062,7 @@ WINGDIAPI BOOL WINAPI CombineTransform( _Out_ LPXFORM lpxfOut, _In_ CONST XFORM 
 #define GDI__DIBSIZE(bi) (GDI_DIBWIDTHBYTES(bi) * (DWORD)(bi).biHeight)
 #define GDI_DIBSIZE(bi) ((bi).biHeight < 0 ? (-1)*(GDI__DIBSIZE(bi)) : GDI__DIBSIZE(bi))
 
+_Win32_metadata_set_last_error_
 WINGDIAPI _Success_(return != NULL) HBITMAP WINAPI CreateDIBSection(
     _In_opt_        HDC               hdc,
     _In_            CONST BITMAPINFO *pbmi,
