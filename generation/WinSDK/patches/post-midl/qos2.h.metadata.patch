@@ -1,0 +1,12 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h b/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h
+index 55a0ce89..e8946449 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/qos2.h
+@@ -509,6 +509,7 @@ WINAPI
+ QOSCreateHandle(
+     _In_    PQOS_VERSION    Version,
+     _Out_   PHANDLE         QOSHandle
++        _Win32_metadata_raii_free_(QOSCloseHandle)
+ );
+ 
+ //

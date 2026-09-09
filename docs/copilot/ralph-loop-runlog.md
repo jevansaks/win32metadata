@@ -3769,3 +3769,35 @@ Batch 3 (5 headers, 5 entries): `Mprapi.h`, `Mq.h`,
   ledger).
 - Running total: 18 of 106 RAIIFree sidecar entries migrated across 15
   headers; 88 entries across 32 headers remain.
+
+## 2026-09-09T01:07:00Z - Sidecar-removal tranche batch 4 of N
+
+Batch 4 (5 headers, 6 entries): `qos2.h`, `Ratings.h`,
+`ResourceIndexer.h`, `RTWorkQ.h`, `srpapi.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `QOSCreateHandle` (`QOSHandle` out-param), `RatingObtainQuery`/
+  `RatingObtainQueryW` (`phRatingObtainQuery` out-param),
+  `CreateResourceIndexer` (`ppResourceIndexer` out-param),
+  `RtwqSetDeadline`/`RtwqSetDeadline2` (`pRequest` out-param),
+  `SrpCreateThreadNetworkContext` (`threadNetworkContext` out-param).
+- None of these 5 headers had a prior post-midl patch. `qos2.h` (via
+  `ws2tcpip.h`), `Ratings.h` (via `Shlwapi.h`), `ResourceIndexer.h`
+  (via `windows.h` -> `WinBase.h`), and `srpapi.h` (via
+  `minwindef.h`/`minwinbase.h`) already transitively include the
+  `win32metadata_annotations.h` guard; `RTWorkQ.h` had no unconditional
+  include carrying the guard and got the guard block (plus a
+  `#include <winapifamily.h>`, which it also lacked) added explicitly
+  right after its own include guard.
+- Removed all 6 corresponding sidecar entries from `emitter.settings.rsp`.
+- Validation: same pristine-checkout-and-replay method as prior batches -
+  all 5 headers match byte-for-byte. `ScrapeHeaders -p:ScanArch=crossarch`
+  for Qos, InternetExplorer, MenuRc (per-arch x64/x86/arm64), Threading, and
+  Edp all succeeded with 0 errors.
+- `RTWorkQ.h`'s `RtwqJoinWorkQueue` two-argument-release gap (documented
+  in a prior batch) is unrelated to this tranche - it was never a sidecar
+  entry - and remains open.
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` and
+  per-header reports for all 5 headers (all 5 are part of the 1403-item
+  ledger).
+- Running total: 24 of 106 RAIIFree sidecar entries migrated across 20
+  headers; 82 entries across 27 headers remain.

@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T07:48:19Z
+- Generated: 2026-09-09T07:54:45Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -910,7 +910,7 @@
 | `pwm.h` | PWM | matched | copilot | 09/02/2026 23:20:00 | No patch needed; data-structure-only header verified via live scrape. |
 | `qmgr.h` | Bits | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qmgr.h.md |
 | `qnetwork.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qnetwork.h.md |
-| `qos2.h` | Qos | matched |  |  | Producer-site fix: added inline RAIIFree(QOSCloseHandle) annotation on QOSCreateHandle::QOSHandle in emitter.settings.rsp. See docs/copilot/header-reports/qos2.h.md |
+| `qos2.h` | Qos | matched |  | 09/09/2026 01:05:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(QOSCloseHandle) annotation on QOSCreateHandle's QOSHandle out-param in RecompiledIdlHeaders/um/qos2.h. Consolidated into qos2.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/qos2.h.md |
 | `qospol.h` | Qos | matched |  | 09/02/2026 17:48:13 | Data struct + constants only, no functions. |
 | `qossp.h` | Qos | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/qossp.h.md |
 | `query.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/query.h.md |
@@ -921,7 +921,7 @@
 | `raseapif.h` | Eap | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raseapif.h.md |
 | `raserror.h` | RRas | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/raserror.h.md |
 | `rasshost.h` | RRas | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
-| `ratings.h` | InternetExplorer | matched |  |  | Producer-site fix: RatingObtainQuery(W) produce a generic HANDLE via direct out-param (_Out_opt_ HANDLE *phRatingObtainQuery), consumed by RatingObtainCancel. Added RatingObtainQuery::phRatingObtainQuery and RatingObtainQueryW::phRatingObtainQuery =[RAIIFree("RatingObtainCancel")]. See docs/copilot/header-reports/ratings.h.md |
+| `ratings.h` | InternetExplorer | matched |  | 09/09/2026 01:05:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(RatingObtainCancel) annotations on RatingObtainQuery/RatingObtainQueryW's phRatingObtainQuery out-params in RecompiledIdlHeaders/um/Ratings.h. Consolidated into Ratings.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/ratings.h.md |
 | `rdpappcontainerclient.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rdpappcontainerclient.h.md |
 | `rdpencomapi.h` | Rdp, TermServ | matched | copilot | 09/03/2026 05:00:00 | No patch needed; COM interface only. |
 | `realtimeapiset.h` | Base | matched |  | 09/02/2026 18:59:13 | HANDLE is a caller-supplied input, not produced here. |
@@ -938,7 +938,7 @@
 | `rend.h` | Tapi3 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rend.h.md |
 | `rendezvoussession.h` | RemoteAssist | matched | copilot | 09/03/2026 05:15:00 | No patch needed; no function surface. |
 | `resapi.h` | MsCs | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/resapi.h.md |
-| `resourceindexer.h` | MenuRc | matched |  |  | Producer-site fix: CreateResourceIndexer/DestroyResourceIndexer form a genuine ownership pair via out-param (_Outptr_ PVOID* ppResourceIndexer). Added CreateResourceIndexer::ppResourceIndexer=[RAIIFree("DestroyResourceIndexer")]. Prior blocker claim (bare PVOID out-param cannot be annotated without a new named handle typedef) was incorrect - the existing Function::Param=[RAIIFree(...)] mechanism is scoped to this specific function+parameter, not to PVOID globally (precedent: DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]). See docs/copilot/header-reports/resourceindexer.h.md |
+| `resourceindexer.h` | MenuRc | matched |  | 09/09/2026 01:05:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(DestroyResourceIndexer) annotation on CreateResourceIndexer's ppResourceIndexer out-param in RecompiledIdlHeaders/um/ResourceIndexer.h. Consolidated into ResourceIndexer.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/resourceindexer.h.md |
 | `restartmanager.h` | RstMgr | matched | copilot | 09/03/2026 04:35:00 | No patch needed; no ownership-relevant handle type. |
 | `restrictederrorinfo.h` | WinRT | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/restrictederrorinfo.h.md |
 | `richedit.h` | Controls.RichEdit | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
@@ -968,7 +968,7 @@
 | `rtmv2.h` | RRas | matched | copilot | 09/03/2026 00:00:00 | Classified retained artifact in existing-patches-27. |
 | `rtscom.h` | Tablet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtscom.h.md |
 | `rtutils.h` | NetMgmt | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/rtutils.h.md |
-| `rtworkq.h` | Threading | matched |  |  | Producer-site fix (partial): RtwqSetDeadline/RtwqSetDeadline2 produce a HANDLE via out-param pRequest released via RtwqCancelDeadline (unary). Added both entries. RtwqJoinWorkQueue's out-param is intentionally left unannotated: its consumer RtwqUnjoinWorkQueue requires an additional workQueueId argument beyond the produced cookie, which the established unary RAIIFree free-function convention (68 existing precedents, all single-argument) cannot express - a narrower, genuine gap, not blocking. See docs/copilot/header-reports/RTWorkQ.h.md |
+| `rtworkq.h` | Threading | matched |  | 09/09/2026 01:05:00 | Producer-site fix (partial), consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(RtwqCancelDeadline) annotations on RtwqSetDeadline/RtwqSetDeadline2's pRequest out-params in RecompiledIdlHeaders/um/RTWorkQ.h. Consolidated into RTWorkQ.h.metadata.patch against the d154186c baseline (no prior patch existed). RtwqJoinWorkQueue's two-argument-release gap remains open, unrelated to this sidecar-removal tranche. See docs/copilot/header-reports/RTWorkQ.h.md |
 | `sapiddk.h` | Speech | matched |  |  | Investigated; SAPI device-driver-kit COM interfaces only, no free functions, no ownership metadata gap. See docs/copilot/header-reports/sapiddk.h.md |
 | `sas.h` | Identity | matched |  | 09/02/2026 16:53:36 | SendSAS(BOOL) - no handle involved. |
 | `sbe.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sbe.h.md |
@@ -1041,7 +1041,7 @@
 | `sqlspi.h` | Search | matched |  | 09/02/2026 21:27:04 | No function produces the generic ODBC handle type; all reference it as pre-owned input. |
 | `sqltypes.h` | Search | matched |  | 09/02/2026 21:24:15 | Type definitions only, no functions. |
 | `sqlucode.h` | Search | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sqlucode.h.md |
-| `srpapi.h` | Edp | matched |  |  | Producer-site fix: SrpCreateThreadNetworkContext's out-param (HTHREAD_NETWORK_CONTEXT* threadNetworkContext) is itself released via SrpCloseThreadNetworkContext (same pointer type, unary). Added SrpCreateThreadNetworkContext::threadNetworkContext=[RAIIFree("SrpCloseThreadNetworkContext")]. Prior 'generic-type-nested-in-struct' blocker claim was incorrect - the out-param is the struct pointer itself (function-parameter position), not a bare field requiring struct-field-level annotation. See docs/copilot/header-reports/srpapi.h.md |
+| `srpapi.h` | Edp | matched |  | 09/09/2026 01:05:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(SrpCloseThreadNetworkContext) annotation on SrpCreateThreadNetworkContext's threadNetworkContext out-param in RecompiledIdlHeaders/um/srpapi.h. Consolidated into srpapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/srpapi.h.md |
 | `srrestoreptapi.h` | Sr | matched | copilot | 09/03/2026 01:00:00 | Classified retained artifact in existing-patches-31. |
 | `sslprovider.h` | Security.Cryptography | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/sslprovider.h.md |
 | `sspi.h` | Certificates, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/02/2026 20:35:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. |

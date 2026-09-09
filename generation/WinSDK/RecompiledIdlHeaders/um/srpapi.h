@@ -53,6 +53,7 @@ STDAPI
 SrpCreateThreadNetworkContext(
     _In_ PCWSTR enterpriseId,
     _Out_ HTHREAD_NETWORK_CONTEXT* threadNetworkContext
+        _Win32_metadata_raii_free_(SrpCloseThreadNetworkContext)
     );
 
 STDAPI

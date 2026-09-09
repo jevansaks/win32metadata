@@ -29,10 +29,12 @@ STDAPI RatingFreeDetails(_In_opt_ void *pRatingDetails);
 STDAPI RatingObtainCancel(HANDLE hRatingObtainQuery);
 STDAPI RatingObtainQuery(LPCSTR pszTargetUrl, DWORD dwUserData,
     void (*fCallback)(DWORD dwUserData, HRESULT hr, LPCSTR pszRating, void *lpvRatingDetails),
-    _Out_opt_ HANDLE *phRatingObtainQuery);
+    _Out_opt_ HANDLE *phRatingObtainQuery
+        _Win32_metadata_raii_free_(RatingObtainCancel));
 STDAPI RatingObtainQueryW(LPCWSTR pszTargetUrl, DWORD dwUserData,
     void (*fCallback)(DWORD dwUserData, HRESULT hr, LPCWSTR pszRating, void *lpvRatingDetails),
-    _Out_opt_ HANDLE *phRatingObtainQuery);
+    _Out_opt_ HANDLE *phRatingObtainQuery
+        _Win32_metadata_raii_free_(RatingObtainCancel));
 STDAPI RatingSetupUI(HWND hDlg, LPCSTR pszUsername);
 STDAPI RatingSetupUIW(HWND hDlg, LPCWSTR pszUsername);
 #ifdef _INC_COMMCTRL

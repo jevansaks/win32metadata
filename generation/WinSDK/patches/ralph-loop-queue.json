@@ -8104,8 +8104,8 @@
     "partition": "Qos",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: added inline RAIIFree(QOSCloseHandle) annotation on QOSCreateHandle::QOSHandle in emitter.settings.rsp. See docs/copilot/header-reports/qos2.h.md",
+    "last_updated": "09/09/2026 01:05:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(QOSCloseHandle) annotation on QOSCreateHandle's QOSHandle out-param in RecompiledIdlHeaders/um/qos2.h. Consolidated into qos2.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/qos2.h.md",
     "_source": "header-progress"
   },
   {
@@ -8203,8 +8203,8 @@
     "partition": "InternetExplorer",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: RatingObtainQuery(W) produce a generic HANDLE via direct out-param (_Out_opt_ HANDLE *phRatingObtainQuery), consumed by RatingObtainCancel. Added RatingObtainQuery::phRatingObtainQuery and RatingObtainQueryW::phRatingObtainQuery =[RAIIFree(\"RatingObtainCancel\")]. See docs/copilot/header-reports/ratings.h.md",
+    "last_updated": "09/09/2026 01:05:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(RatingObtainCancel) annotations on RatingObtainQuery/RatingObtainQueryW's phRatingObtainQuery out-params in RecompiledIdlHeaders/um/Ratings.h. Consolidated into Ratings.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/ratings.h.md",
     "_source": "header-progress"
   },
   {
@@ -8356,8 +8356,8 @@
     "partition": "MenuRc",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: CreateResourceIndexer/DestroyResourceIndexer form a genuine ownership pair via out-param (_Outptr_ PVOID* ppResourceIndexer). Added CreateResourceIndexer::ppResourceIndexer=[RAIIFree(\"DestroyResourceIndexer\")]. Prior blocker claim (bare PVOID out-param cannot be annotated without a new named handle typedef) was incorrect - the existing Function::Param=[RAIIFree(...)] mechanism is scoped to this specific function+parameter, not to PVOID globally (precedent: DnsAcquireContextHandle_A::pContext=[RAIIFree(...)]). See docs/copilot/header-reports/resourceindexer.h.md",
+    "last_updated": "09/09/2026 01:05:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(DestroyResourceIndexer) annotation on CreateResourceIndexer's ppResourceIndexer out-param in RecompiledIdlHeaders/um/ResourceIndexer.h. Consolidated into ResourceIndexer.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/resourceindexer.h.md",
     "_source": "header-progress"
   },
   {
@@ -8626,8 +8626,8 @@
     "partition": "Threading",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix (partial): RtwqSetDeadline/RtwqSetDeadline2 produce a HANDLE via out-param pRequest released via RtwqCancelDeadline (unary). Added both entries. RtwqJoinWorkQueue's out-param is intentionally left unannotated: its consumer RtwqUnjoinWorkQueue requires an additional workQueueId argument beyond the produced cookie, which the established unary RAIIFree free-function convention (68 existing precedents, all single-argument) cannot express - a narrower, genuine gap, not blocking. See docs/copilot/header-reports/RTWorkQ.h.md",
+    "last_updated": "09/09/2026 01:05:00",
+    "notes": "Producer-site fix (partial), consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(RtwqCancelDeadline) annotations on RtwqSetDeadline/RtwqSetDeadline2's pRequest out-params in RecompiledIdlHeaders/um/RTWorkQ.h. Consolidated into RTWorkQ.h.metadata.patch against the d154186c baseline (no prior patch existed). RtwqJoinWorkQueue's two-argument-release gap remains open, unrelated to this sidecar-removal tranche. See docs/copilot/header-reports/RTWorkQ.h.md",
     "_source": "header-progress"
   },
   {
@@ -9283,8 +9283,8 @@
     "partition": "Edp",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: SrpCreateThreadNetworkContext's out-param (HTHREAD_NETWORK_CONTEXT* threadNetworkContext) is itself released via SrpCloseThreadNetworkContext (same pointer type, unary). Added SrpCreateThreadNetworkContext::threadNetworkContext=[RAIIFree(\"SrpCloseThreadNetworkContext\")]. Prior 'generic-type-nested-in-struct' blocker claim was incorrect - the out-param is the struct pointer itself (function-parameter position), not a bare field requiring struct-field-level annotation. See docs/copilot/header-reports/srpapi.h.md",
+    "last_updated": "09/09/2026 01:05:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(SrpCloseThreadNetworkContext) annotation on SrpCreateThreadNetworkContext's threadNetworkContext out-param in RecompiledIdlHeaders/um/srpapi.h. Consolidated into srpapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/srpapi.h.md",
     "_source": "header-progress"
   },
   {

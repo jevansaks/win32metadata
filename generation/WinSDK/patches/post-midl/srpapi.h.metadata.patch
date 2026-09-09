@@ -1,0 +1,12 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h
+index ee75494a..2c9979a2 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/srpapi.h
+@@ -53,6 +53,7 @@ STDAPI
+ SrpCreateThreadNetworkContext(
+     _In_ PCWSTR enterpriseId,
+     _Out_ HTHREAD_NETWORK_CONTEXT* threadNetworkContext
++        _Win32_metadata_raii_free_(SrpCloseThreadNetworkContext)
+     );
+ 
+ STDAPI

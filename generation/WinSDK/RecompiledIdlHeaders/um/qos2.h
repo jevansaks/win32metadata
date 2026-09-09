@@ -509,6 +509,7 @@ WINAPI
 QOSCreateHandle(
     _In_    PQOS_VERSION    Version,
     _Out_   PHANDLE         QOSHandle
+        _Win32_metadata_raii_free_(QOSCloseHandle)
 );
 
 //

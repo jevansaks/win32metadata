@@ -26,7 +26,8 @@ typedef struct
 STDAPI CreateResourceIndexer(
     _In_ PCWSTR projectRoot,
     _In_opt_ PCWSTR extensionDllPath,
-    _Outptr_ PVOID* ppResourceIndexer);
+    _Outptr_ PVOID* ppResourceIndexer
+        _Win32_metadata_raii_free_(DestroyResourceIndexer));
 
 void DestroyResourceIndexer(_In_opt_ PVOID resourceIndexer);
 

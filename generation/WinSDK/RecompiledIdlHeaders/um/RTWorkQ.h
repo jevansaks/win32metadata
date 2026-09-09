@@ -18,6 +18,11 @@
 #if !defined(__RTWORKQ_H__)
 #define __RTWORKQ_H__
 
+#include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
+
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
@@ -122,10 +127,12 @@ STDAPI RtwqUnregisterPlatformEvents(_In_ IRtwqPlatformEvents* platformEvents);
 
 STDAPI RtwqSetLongRunning(DWORD workQueueId, BOOL enable);
 
-STDAPI RtwqSetDeadline(DWORD workQueueId, LONGLONG deadlineInHNS, _Out_ HANDLE* pRequest);
+STDAPI RtwqSetDeadline(DWORD workQueueId, LONGLONG deadlineInHNS, _Out_ HANDLE* pRequest
+    _Win32_metadata_raii_free_(RtwqCancelDeadline));
 // TODO: switch to RS define once it exists (see: 5312604)
 #if (WINVER >= _WIN32_WINNT_WIN10)
-STDAPI RtwqSetDeadline2(DWORD workQueueId, LONGLONG deadlineInHNS, LONGLONG preDeadlineInHNS, _Out_ HANDLE* pRequest);
+STDAPI RtwqSetDeadline2(DWORD workQueueId, LONGLONG deadlineInHNS, LONGLONG preDeadlineInHNS, _Out_ HANDLE* pRequest
+    _Win32_metadata_raii_free_(RtwqCancelDeadline));
 #endif // (WINVER > _WIN32_WINNT_WIN10)
 STDAPI RtwqCancelDeadline(_In_ HANDLE pRequest);
 

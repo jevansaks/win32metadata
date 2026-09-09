@@ -1,0 +1,14 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h b/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h
+index 2c153a65..6f9c188d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ResourceIndexer.h
+@@ -26,7 +26,8 @@ typedef struct
+ STDAPI CreateResourceIndexer(
+     _In_ PCWSTR projectRoot,
+     _In_opt_ PCWSTR extensionDllPath,
+-    _Outptr_ PVOID* ppResourceIndexer);
++    _Outptr_ PVOID* ppResourceIndexer
++        _Win32_metadata_raii_free_(DestroyResourceIndexer));
+ 
+ void DestroyResourceIndexer(_In_opt_ PVOID resourceIndexer);
+ 
