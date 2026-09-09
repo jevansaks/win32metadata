@@ -3830,3 +3830,26 @@ Batch 5 (5 headers, 8 entries): `WdsBp.h`, `wdstpdi.h`, `winconp.h`,
   ledger).
 - Running total: 32 of 106 RAIIFree sidecar entries migrated across 25
   headers; 74 entries across 17 headers remain.
+
+## 2026-09-09T01:35:00Z - Sidecar-removal tranche: fix duplicate-line regression from batch 5
+
+Self-audit of `emitter.settings.rsp` after batch 5 found that the edit
+removing `FaxConnectFaxServerA`/`FaxConnectFaxServerW`/`FaxOpenPort`
+(replacing a contiguous block) had accidentally duplicated the adjacent,
+untouched `WTSOpenServerA::return=[RAIIFree("WTSCloseServer")]` and
+`WTSOpenServerW::return=[RAIIFree("WTSCloseServer")]` lines (each appeared
+twice consecutively). This was a pure sidecar-file text-editing mistake, not
+a header/patch issue - no `RecompiledIdlHeaders` file or `.metadata.patch`
+was affected, and neither function is part of this tranche's scope.
+Corrected by removing the duplicate pair. Verified via full-file dedup:
+`emitter.settings.rsp` now has exactly 70 `RAIIFree` lines, all unique
+(106 original - 36 true removals so far = 70 - matches exactly; before the
+fix the file had 72 due to the 2 duplicate lines). Re-ran
+`Select-String -Pattern RAIIFree | Group-Object` to confirm zero remaining
+duplicates.
+
+**Corrected running total: 36 of 106 RAIIFree sidecar entries migrated
+across 25 headers (batches 1-5); 70 entries across 17 headers remain.**
+This corrects the smaller per-batch entry counts stated in the batch 4 and
+batch 5 log entries above (batch 4 migrated 7 entries, not 6 -
+`QOSCreateHandle` was included; batch 5 migrated 11 entries, not 8).
