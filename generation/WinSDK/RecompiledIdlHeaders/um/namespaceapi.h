@@ -46,6 +46,7 @@ OpenPrivateNamespaceW(
     )
     _Win32_metadata_raii_free_(ClosePrivateNamespace);
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOLEAN
 WINAPI
@@ -63,6 +64,7 @@ CreateBoundaryDescriptorW(
     )
     _Win32_metadata_raii_free_(DeleteBoundaryDescriptor);
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI

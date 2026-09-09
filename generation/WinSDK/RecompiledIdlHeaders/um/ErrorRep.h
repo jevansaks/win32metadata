@@ -18,6 +18,9 @@ extern "C" {
 #endif
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -40,7 +43,9 @@ typedef enum tagEFaultRepRetVal
 
 EFaultRepRetVal APIENTRY ReportFault(_In_ LPEXCEPTION_POINTERS pep, _In_ DWORD dwOpt);
 
+_Win32_metadata_set_last_error_
 BOOL            APIENTRY AddERExcludedApplicationA(_In_ LPCSTR szApplication);
+_Win32_metadata_set_last_error_
 BOOL            APIENTRY AddERExcludedApplicationW(_In_ LPCWSTR wszApplication);
 
 

@@ -1469,6 +1469,7 @@ typedef struct _MINIDUMP_CALLBACK_INFORMATION {
 
 #define RVA_TO_ADDR(Mapping,Rva) ((PVOID)(((ULONG_PTR) (Mapping)) + (Rva)))
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 MiniDumpWriteDump(

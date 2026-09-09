@@ -975,6 +975,7 @@ MapViewOfFileNuma2(
 
 #if !defined(MIDL_PASS)
 
+_Win32_metadata_set_last_error_
 FORCEINLINE
 _Ret_maybenull_  __out_data_source(FILE)
 PVOID

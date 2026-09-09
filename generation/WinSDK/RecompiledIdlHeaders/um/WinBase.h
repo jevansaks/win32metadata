@@ -1089,6 +1089,7 @@ wWinMain(
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Success_(return != NULL)
 _Post_writable_byte_size_(dwBytes)
@@ -1106,6 +1107,7 @@ GlobalAlloc(
 #pragma region Application or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_reallocated_bytes_(hMem, dwBytes)
 DECLSPEC_ALLOCATOR
@@ -1123,6 +1125,7 @@ GlobalReAlloc (
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 SIZE_T
 WINAPI
@@ -1130,6 +1133,7 @@ GlobalSize (
     _In_ HGLOBAL hMem
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1137,6 +1141,7 @@ GlobalUnlock(
     _In_ HGLOBAL hMem
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 LPVOID
@@ -1151,6 +1156,7 @@ GlobalLock (
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 UINT
 WINAPI
@@ -1158,6 +1164,7 @@ GlobalFlags (
     _In_ HGLOBAL hMem
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 HGLOBAL
@@ -1172,6 +1179,7 @@ GlobalHandle (
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 _Success_(return==0)
@@ -1236,6 +1244,7 @@ GlobalMemoryStatus(
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Success_(return != NULL)
 _Post_writable_byte_size_(uBytes)
@@ -1247,6 +1256,7 @@ LocalAlloc(
     _In_ SIZE_T uBytes
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_reallocated_bytes_(hMem, uBytes)
 DECLSPEC_ALLOCATOR
@@ -1264,6 +1274,7 @@ LocalReAlloc(
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 LPVOID
@@ -1278,6 +1289,7 @@ LocalLock(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 HLOCAL
@@ -1292,6 +1304,7 @@ LocalHandle(
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1305,6 +1318,7 @@ LocalUnlock(
 #pragma region Desktop or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 SIZE_T
 WINAPI
@@ -1318,6 +1332,7 @@ LocalSize(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 UINT
 WINAPI
@@ -1331,6 +1346,7 @@ LocalFlags(
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Success_(return==0)
 _Ret_maybenull_
@@ -1539,6 +1555,7 @@ DeleteFiber(
 
 #if (_WIN32_WINNT >= 0x0501)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1548,6 +1565,7 @@ ConvertFiberToThread(
 
 #endif
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 LPVOID
@@ -1560,6 +1578,7 @@ CreateFiberEx(
     _In_opt_ LPVOID lpParameter
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 LPVOID
@@ -1575,6 +1594,7 @@ ConvertThreadToFiberEx(
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 LPVOID
@@ -1585,6 +1605,7 @@ CreateFiber(
     _In_opt_ LPVOID lpParameter
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 LPVOID
@@ -1657,6 +1678,7 @@ typedef struct _UMS_SYSTEM_THREAD_INFORMATION {
     } DUMMYUNIONNAME;
 } UMS_SYSTEM_THREAD_INFORMATION, *PUMS_SYSTEM_THREAD_INFORMATION;
 
+_Win32_metadata_set_last_error_
 _Must_inspect_result_
 WINBASEAPI
 BOOL
@@ -1665,6 +1687,7 @@ CreateUmsCompletionList(
     _Outptr_ PUMS_COMPLETION_LIST* UmsCompletionList
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1674,6 +1697,7 @@ DequeueUmsCompletionListItems(
     _Out_ PUMS_CONTEXT* UmsThreadList
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1682,6 +1706,7 @@ GetUmsCompletionListEvent(
     _Inout_ PHANDLE UmsCompletionEvent
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1689,6 +1714,7 @@ ExecuteUmsThread(
     _Inout_ PUMS_CONTEXT UmsThread
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1696,6 +1722,7 @@ UmsThreadYield(
     _In_ PVOID SchedulerParam
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1703,6 +1730,7 @@ DeleteUmsCompletionList(
     _In_ PUMS_COMPLETION_LIST UmsCompletionList
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 PUMS_CONTEXT
 WINAPI
@@ -1710,6 +1738,7 @@ GetCurrentUmsThread(
     VOID
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 PUMS_CONTEXT
 WINAPI
@@ -1717,6 +1746,7 @@ GetNextUmsListItem(
     _Inout_ PUMS_CONTEXT UmsContext
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1728,6 +1758,7 @@ QueryUmsThreadInformation(
     _Out_opt_ PULONG ReturnLength
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1738,6 +1769,7 @@ SetUmsThreadInformation(
     _In_ ULONG UmsThreadInformationLength
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1745,6 +1777,7 @@ DeleteUmsThreadContext(
     _In_ PUMS_CONTEXT UmsThread
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1752,6 +1785,7 @@ CreateUmsThreadContext(
     _Outptr_ PUMS_CONTEXT *lpUmsThread
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1781,6 +1815,7 @@ GetUmsSystemThreadInformation(
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 DWORD_PTR
 WINAPI
@@ -1988,6 +2023,7 @@ Wow64GetThreadSelectorEntry(
 
 #endif // !defined(MIDL_PASS)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1995,6 +2031,7 @@ DebugSetProcessKillOnExit(
     _In_ BOOL KillOnExit
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -2018,6 +2055,7 @@ DebugBreakProcess (
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -2025,6 +2063,7 @@ PulseEvent(
     _In_ HANDLE hEvent
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
@@ -2039,6 +2078,7 @@ InitAtomTable(
     _In_ DWORD nSize
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
@@ -2508,6 +2548,7 @@ DosDateTimeToFileTime(
 #define FORMAT_MESSAGE_ALLOCATE_BUFFER 0x00000100
 
 #if !defined(MIDL_PASS)
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Success_(return != 0)
 DWORD
@@ -2523,6 +2564,7 @@ FormatMessageA(
     _In_     DWORD nSize,
     _In_opt_ va_list *Arguments
     );
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Success_(return != 0)
 DWORD
@@ -2546,6 +2588,7 @@ FormatMessageW(
 
 #if defined(_M_CEE)
 #undef FormatMessage
+_Win32_metadata_set_last_error_
 __inline
 DWORD
 FormatMessage(
@@ -3250,6 +3293,7 @@ OpenMutexA(
 #define OpenMutex  OpenMutexA
 #endif
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 HANDLE
@@ -3319,6 +3363,7 @@ OpenWaitableTimerA(
 
 #if (_WIN32_WINNT >= 0x0600)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 HANDLE
@@ -4520,12 +4565,14 @@ EndUpdateResourceW(
 
 #define ATOM_FLAG_GLOBAL 0x2
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
 GlobalAddAtomA(
     _In_opt_ LPCSTR lpString
     );
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
@@ -4538,6 +4585,7 @@ GlobalAddAtomW(
 #define GlobalAddAtom  GlobalAddAtomA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
@@ -4545,6 +4593,7 @@ GlobalAddAtomExA(
     _In_opt_ LPCSTR lpString,
     _In_ DWORD Flags
     );
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
@@ -4558,12 +4607,14 @@ GlobalAddAtomExW(
 #define GlobalAddAtomEx  GlobalAddAtomExA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
 GlobalFindAtomA(
     _In_opt_ LPCSTR lpString
     );
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
@@ -4576,6 +4627,7 @@ GlobalFindAtomW(
 #define GlobalFindAtom  GlobalFindAtomA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 UINT
 WINAPI
@@ -4584,6 +4636,7 @@ GlobalGetAtomNameA(
     _Out_writes_to_(nSize, return + 1) LPSTR lpBuffer,
     _In_ int nSize
     );
+_Win32_metadata_set_last_error_
 WINBASEAPI
 UINT
 WINAPI
@@ -4598,12 +4651,14 @@ GlobalGetAtomNameW(
 #define GlobalGetAtomName  GlobalGetAtomNameA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
 AddAtomA(
     _In_opt_ LPCSTR lpString
     );
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
@@ -4616,12 +4671,14 @@ AddAtomW(
 #define AddAtom  AddAtomA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
 FindAtomA(
     _In_opt_ LPCSTR lpString
     );
+_Win32_metadata_set_last_error_
 WINBASEAPI
 ATOM
 WINAPI
@@ -4634,6 +4691,7 @@ FindAtomW(
 #define FindAtom  FindAtomA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 UINT
 WINAPI
@@ -4642,6 +4700,7 @@ GetAtomNameA(
     _Out_writes_to_(nSize, return + 1) LPSTR lpBuffer,
     _In_ int nSize
     );
+_Win32_metadata_set_last_error_
 WINBASEAPI
 UINT
 WINAPI
@@ -7427,6 +7486,7 @@ IsBadHugeWritePtr(
     _In_     UINT_PTR ucb
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -8087,6 +8147,7 @@ IsTokenUntrusted(
 
 #if (_WIN32_WINNT >= 0x0500)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -8099,6 +8160,7 @@ RegisterWaitForSingleObject(
     _In_        ULONG dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 BOOL
@@ -8107,6 +8169,7 @@ UnregisterWait(
     _In_ HANDLE WaitHandle
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -8257,6 +8320,7 @@ SetThreadpoolCallbackPersistent(
 //  Private Namespaces support
 //
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 HANDLE
@@ -8295,6 +8359,7 @@ OpenPrivateNamespaceA(
 //  Boundary descriptors support
 //
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Ret_maybenull_
 HANDLE
@@ -8317,6 +8382,7 @@ CreateBoundaryDescriptorA(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -8512,6 +8578,7 @@ GetSystemPowerStatus(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -9854,6 +9921,7 @@ ReplacePartitionUnit (
 
 #if (_WIN32_WINNT >= 0x0600)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -9878,6 +9946,7 @@ RemoveSecureMemoryCacheCallback(
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 _Must_inspect_result_
 WINBASEAPI
 BOOL
@@ -9894,6 +9963,7 @@ CopyContext(
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 WINBASEAPI
 BOOL
@@ -9913,6 +9983,7 @@ InitializeContext(
 
 #if (NTDDI_VERSION >= NTDDI_WIN10_RS5)
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 WINBASEAPI
 BOOL

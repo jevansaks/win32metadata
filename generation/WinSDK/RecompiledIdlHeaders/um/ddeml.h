@@ -1,6 +1,9 @@
 
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 /*++ BUILD Version: 0001 // Increment this if a change has global effects --*/
 
@@ -356,6 +359,7 @@ DdeEnableCallback(
     _In_ HCONV hConv,
     _In_ UINT wCmd);
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 DdeImpersonateClient(

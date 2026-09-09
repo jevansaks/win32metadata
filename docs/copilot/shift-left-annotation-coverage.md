@@ -17,7 +17,7 @@ Primary consumer fixture:
 
 | Category | Header representation | Consumer evidence | SDK integration evidence | Status |
 | --- | --- | --- | --- | --- |
-| Last error | `_Win32_metadata_set_last_error_` | Clang fixture and P/Invoke flag round trip | `SetupAPI.h.zzz-set-last-error.patch` | Proven |
+| Last error | `_Win32_metadata_set_last_error_` | Clang fixture and P/Invoke flag round trip | `WinBase.h.metadata.patch` (consolidated); see `docs/copilot/withsetlasterror-migration.md` for the full sidecar-removal tranche | Proven |
 | Import library | `_Win32_metadata_import_library_("x.dll")` | Override regression and precedence test | `winsvc.h.import-library-overrides.patch` | Proven |
 | Supported OS | `_Win32_metadata_supported_os_(windows...)` | Function, record, enum fixture | DirectX and Shell/COM/UI batches | Proven |
 | Errors as success | `_Win32_metadata_errors_as_success_` | Function fixture | Representative consumer fixture | Proven |

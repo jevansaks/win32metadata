@@ -69,6 +69,7 @@ extern "C" {            /* Assume C declarations for C++ */
 #pragma region Desktop Family or Gaming Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 SHSTDAPI_(LPWSTR *)  CommandLineToArgvW(_In_ LPCWSTR lpCmdLine, _Out_ int* pNumArgs);
 
@@ -257,8 +258,10 @@ SHSTDAPI_(DWORD)   DoEnvironmentSubstW(_Inout_updates_(cchSrc) LPWSTR pszSrc, UI
 #endif // !UNICODE
 
 #define EIRESID(x) (-1 * (int)(x))
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 SHSTDAPI_(UINT) ExtractIconExA(_In_ LPCSTR lpszFile, int nIconIndex, _Out_writes_opt_(nIcons) HICON *phiconLarge, _Out_writes_opt_(nIcons) HICON *phiconSmall, UINT nIcons);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 SHSTDAPI_(UINT) ExtractIconExW(_In_ LPCWSTR lpszFile, int nIconIndex, _Out_writes_opt_(nIcons) HICON *phiconLarge, _Out_writes_opt_(nIcons) HICON *phiconSmall, UINT nIcons);
 #ifdef UNICODE
@@ -349,8 +352,10 @@ typedef SHFILEOPSTRUCTA SHFILEOPSTRUCT;
 typedef LPSHFILEOPSTRUCTA LPSHFILEOPSTRUCT;
 #endif
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 SHSTDAPI_(int) SHFileOperationA(_Inout_ LPSHFILEOPSTRUCTA lpFileOp);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 SHSTDAPI_(int) SHFileOperationW(_Inout_ LPSHFILEOPSTRUCTW lpFileOp);
 #ifdef UNICODE
@@ -530,8 +535,10 @@ typedef SHELLEXECUTEINFOA SHELLEXECUTEINFO;
 typedef LPSHELLEXECUTEINFOA LPSHELLEXECUTEINFO;
 #endif // UNICODE
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 SHSTDAPI_(BOOL) ShellExecuteExA(_Inout_ SHELLEXECUTEINFOA *pExecInfo);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 SHSTDAPI_(BOOL) ShellExecuteExW(_Inout_ SHELLEXECUTEINFOW *pExecInfo);
 #ifdef UNICODE
@@ -559,6 +566,7 @@ typedef struct _SHCREATEPROCESSINFOW
     LPPROCESS_INFORMATION lpProcessInformation;
 } SHCREATEPROCESSINFOW, *PSHCREATEPROCESSINFOW;
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 SHSTDAPI_(BOOL) SHCreateProcessAsUserW(_Inout_ PSHCREATEPROCESSINFOW pscpi);
 #endif // (NTDDI_VERSION >= NTDDI_WIN2K)
@@ -1638,6 +1646,7 @@ SHSTDAPI SHGetLocalizedName(_In_ PCWSTR pszPath, _Out_writes_(cch) PWSTR pszResM
 #define LWSTDAPIV_(type)  STDAPIV_(type)
 #endif
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 LWSTDAPIV_(int) ShellMessageBoxA(
     _In_opt_ HINSTANCE hAppInst,
@@ -1645,6 +1654,7 @@ LWSTDAPIV_(int) ShellMessageBoxA(
     _In_ LPCSTR lpcText,
     _In_opt_ LPCSTR lpcTitle,
     _In_ UINT fuStyle, ...);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 LWSTDAPIV_(int) ShellMessageBoxW(
     _In_opt_ HINSTANCE hAppInst,

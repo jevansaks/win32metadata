@@ -1,0 +1,102 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mssip.h b/generation/WinSDK/RecompiledIdlHeaders/um/mssip.h
+index 1d42720f..02db83d6 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mssip.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mssip.h
+@@ -15,6 +15,9 @@
+ #ifndef MSSIP_H
+ #define MSSIP_H
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+@@ -275,9 +278,10 @@ typedef struct SIP_INDIRECT_DATA_
+ //                                      enough to hold the data.  pcbSignedDataMsg
+ //                                      contains the required size.
+ //
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPGetSignedDataMsg(
+                                 IN      SIP_SUBJECTINFO *pSubjectInfo,
+-                                OUT     DWORD           *pdwEncodingType,
++                                OUT     CERT_QUERY_ENCODING_TYPE           *pdwEncodingType,
+                                 IN      DWORD           dwIndex,
+                                 IN OUT  DWORD           *pcbSignedDataMsg,
+                                 OUT     BYTE            *pbSignedDataMsg);
+@@ -321,9 +325,10 @@ typedef BOOL (WINAPI * pCryptSIPGetSignedDataMsg)(
+ //                                      indirect data (hash).  Then, call the
+ //                                      'put' function again.
+ //
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPPutSignedDataMsg(
+                                 IN      SIP_SUBJECTINFO *pSubjectInfo,
+-                                IN      DWORD           dwEncodingType,
++                                IN      CERT_QUERY_ENCODING_TYPE           dwEncodingType,
+                                 OUT     DWORD           *pdwIndex,
+                                 IN      DWORD           cbSignedDataMsg,
+                                 IN      BYTE            *pbSignedDataMsg);
+@@ -356,6 +361,7 @@ typedef BOOL (WINAPI * pCryptSIPPutSignedDataMsg)(
+ //      ERROR_BAD_FORMAT:               file/data format is not correct
+ //                                      for the requested SIP.
+ //
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPCreateIndirectData(
+                                 IN      SIP_SUBJECTINFO     *pSubjectInfo,
+                                 IN OUT  DWORD               *pcbIndirectData,
+@@ -389,6 +395,7 @@ typedef BOOL (WINAPI * pCryptSIPCreateIndirectData)(
+ //      ERROR_INVALID_PARAMETER:        bad argument passed in
+ //      ERROR_BAD_FORMAT:               file/data format is not correct
+ //                                      for the requested SIP.
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPVerifyIndirectData(
+                                 IN      SIP_SUBJECTINFO     *pSubjectInfo,
+                                 IN      SIP_INDIRECT_DATA   *pIndirectData);
+@@ -415,6 +422,7 @@ typedef BOOL (WINAPI * pCryptSIPVerifyIndirectData)(
+ //      ERROR_BAD_FORMAT:               file/data format is not correct
+ //                                      for the requested SIP.
+ //
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPRemoveSignedDataMsg(
+                                 IN      SIP_SUBJECTINFO     *pSubjectInfo,
+                                 IN      DWORD               dwIndex);
+@@ -490,6 +498,7 @@ typedef struct SIP_ADD_NEWPROVIDER_
+ //      TRUE:                           No fatal errors
+ //      FALSE:                          Errors occured.  See GetLastError()
+ //
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPLoad(IN const GUID               *pgSubject,     // GUID for the requried sip
+                                 IN DWORD                    dwFlags,        // Reserved - MUST BE ZERO
+                                 IN OUT SIP_DISPATCH_INFO    *pSipDispatch); // Table of functions
+@@ -505,6 +514,7 @@ extern BOOL WINAPI CryptSIPLoad(IN const GUID               *pgSubject,     // G
+ //      TRUE:                           No fatal errors
+ //      FALSE:                          Errors occured.  See GetLastError()
+ //
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPRetrieveSubjectGuid(IN LPCWSTR FileName,   // wide file name
+                                                IN OPTIONAL HANDLE hFileIn,     // or handle of open file
+                                                OUT GUID *pgSubject);           // defined SIP's GUID
+@@ -522,6 +532,7 @@ extern BOOL WINAPI CryptSIPRetrieveSubjectGuid(IN LPCWSTR FileName,   // wide fi
+ //      TRUE:                           No fatal errors
+ //      FALSE:                          Errors occured.  See GetLastError()
+ //
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPRetrieveSubjectGuidForCatalogFile(IN LPCWSTR FileName,   // wide file name
+                                                              IN OPTIONAL HANDLE hFileIn,     // or handle of open file
+                                                              OUT GUID *pgSubject);           // defined SIP's GUID
+@@ -536,6 +547,7 @@ extern BOOL WINAPI CryptSIPRetrieveSubjectGuidForCatalogFile(IN LPCWSTR FileName
+ //      TRUE:                           No fatal errors
+ //      FALSE:                          Errors occured.  See GetLastError()
+ //
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPAddProvider(IN SIP_ADD_NEWPROVIDER *psNewProv);
+ 
+ //////////////////////////////////////////////////////////////////////////////
+@@ -547,6 +559,7 @@ extern BOOL WINAPI CryptSIPAddProvider(IN SIP_ADD_NEWPROVIDER *psNewProv);
+ //      TRUE:                           No fatal errors
+ //      FALSE:                          Errors occured.  See GetLastError()
+ //
++_Win32_metadata_set_last_error_
+ extern BOOL WINAPI CryptSIPRemoveProvider(IN GUID *pgProv);
+ 
+ //////////////////////////////////////////////////////////////////////////////

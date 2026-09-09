@@ -24,6 +24,9 @@
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -419,7 +422,9 @@ EXTERN_GUID(IID_ISecurityInformation4, 0xea961070, 0xcd14, 0x4621, 0xac, 0xe4, 0
 EXTERN_GUID(IID_IEffectivePermission2, 0x941fabca, 0xdd47, 0x4fca, 0x90, 0xbb, 0xb0, 0xe1, 0x2, 0x55, 0xf2, 0xd);
 #endif // (NTDDI_VERSION >= NTDDI_WIN8)
 
+_Win32_metadata_set_last_error_
 HPROPSHEETPAGE ACLUIAPI CreateSecurityPage(_In_ LPSECURITYINFO psi );
+_Win32_metadata_set_last_error_
 BOOL ACLUIAPI EditSecurity(_In_ HWND hwndOwner,
                            _In_ LPSECURITYINFO psi );
 

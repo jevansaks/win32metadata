@@ -210,8 +210,10 @@ STDAPI          AccessibleObjectFromPoint(_In_ POINT ptScreen, _Outptr_ IAccessi
 _Win32_metadata_supported_os_(windows5.0)
 STDAPI          AccessibleChildren (_In_ IAccessible* paccContainer, _In_ LONG iChildStart, _In_ LONG cChildren, _Out_writes_(cChildren) VARIANT* rgvarChildren, _Out_ LONG* pcObtained);
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 STDAPI_(UINT)   GetRoleTextA(_In_ DWORD lRole, _Out_writes_opt_(cchRoleMax) LPSTR lpszRole, _In_ UINT cchRoleMax);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 STDAPI_(UINT)   GetRoleTextW(_In_ DWORD lRole, _Out_writes_opt_(cchRoleMax) LPWSTR lpszRole, _In_ UINT cchRoleMax);
 
@@ -221,8 +223,10 @@ STDAPI_(UINT)   GetRoleTextW(_In_ DWORD lRole, _Out_writes_opt_(cchRoleMax) LPWS
 #define GetRoleText     GetRoleTextA
 #endif // UNICODE
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 STDAPI_(UINT)   GetStateTextA(_In_ DWORD lStateBit, _Out_writes_opt_(cchState) LPSTR lpszState, _In_ UINT cchState);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 STDAPI_(UINT)   GetStateTextW(_In_ DWORD lStateBit, _Out_writes_opt_(cchState) LPWSTR lpszState, _In_ UINT cchState);
 #ifdef UNICODE

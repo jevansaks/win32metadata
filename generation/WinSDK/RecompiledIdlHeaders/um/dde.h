@@ -17,6 +17,9 @@
 #endif
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #if _MSC_VER >= 1200
 #pragma warning(push)
@@ -177,6 +180,7 @@ typedef struct {
  * DDE SECURITY
  */
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 DdeSetQualityOfService(
@@ -184,6 +188,7 @@ DdeSetQualityOfService(
     CONST SECURITY_QUALITY_OF_SERVICE *pqosNew,
     PSECURITY_QUALITY_OF_SERVICE pqosPrev);
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 ImpersonateDdeClientWindow(

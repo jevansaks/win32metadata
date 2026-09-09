@@ -18,6 +18,9 @@ Abstract:
 
 #pragma once
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -79,6 +82,7 @@ Return Value:
 --*/
 
 // ANSI version
+_Win32_metadata_set_last_error_
 HINSTANCE __stdcall LoadMUILibraryA(
     _In_ PCSTR pszFullModuleName,
     _In_ DWORD dwLangConvention,
@@ -86,6 +90,7 @@ HINSTANCE __stdcall LoadMUILibraryA(
     );
 
 // Wide char version
+_Win32_metadata_set_last_error_
 HINSTANCE __stdcall LoadMUILibraryW(
     _In_ PCWSTR pszFullModuleName,
     _In_ DWORD dwLangConvention,
@@ -122,6 +127,7 @@ Return Value:
     information, call GetLastError.
 
 --*/
+_Win32_metadata_set_last_error_
 BOOL __stdcall FreeMUILibrary(
     _In_ HMODULE hResModule
     );
@@ -160,6 +166,7 @@ Return Value:
     To get extended error information, call GetLastError.
 
 --*/
+_Win32_metadata_set_last_error_
 BOOL __stdcall GetUILanguageFallbackList(
     _Out_writes_opt_(cchFallbackList)   PWSTR       pFallbackList,
     _In_                                ULONG       cchFallbackList,

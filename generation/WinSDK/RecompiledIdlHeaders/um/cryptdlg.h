@@ -16,6 +16,9 @@
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -153,6 +156,7 @@ typedef CERT_SELECT_STRUCT_A CERT_SELECT_STRUCT;
 typedef PCERT_SELECT_STRUCT_A PCERT_SELECT_STRUCT;
 #endif // UNICODE
 
+_Win32_metadata_set_last_error_
 CRYPTDLGAPI
 BOOL
 WINAPI
@@ -162,6 +166,7 @@ CertSelectCertificateA(
 #ifdef MAC
 #define CertSelectCertificate CertSelectCertificateA
 #else   // !MAC
+_Win32_metadata_set_last_error_
 CRYPTDLGAPI
 BOOL
 WINAPI

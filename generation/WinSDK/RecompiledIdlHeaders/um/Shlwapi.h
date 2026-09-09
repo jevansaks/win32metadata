@@ -663,8 +663,10 @@ LWSTDAPI_(LPWSTR)  PathBuildRootW(_Out_writes_(4) LPWSTR pszRoot, int iDrive);
 #else
 #define PathBuildRoot  PathBuildRootA
 #endif // !UNICODE
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 LWSTDAPI_(BOOL)     PathCanonicalizeA(_Out_writes_(MAX_PATH) LPSTR pszBuf, _In_ LPCSTR pszPath);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 LWSTDAPI_(BOOL)     PathCanonicalizeW(_Out_writes_(MAX_PATH) LPWSTR pszBuf, _In_ LPCWSTR pszPath);
 _Win32_metadata_supported_os_(windows5.0)
@@ -688,8 +690,10 @@ _Win32_metadata_supported_os_(windows5.0)
 LWSTDAPI_(int)      PathCommonPrefixA(_In_ LPCSTR pszFile1, _In_ LPCSTR pszFile2, _Out_writes_opt_(MAX_PATH) LPSTR achPath);
 _Win32_metadata_supported_os_(windows5.0)
 LWSTDAPI_(int)      PathCommonPrefixW(_In_ LPCWSTR pszFile1, _In_ LPCWSTR pszFile2, _Out_writes_opt_(MAX_PATH) LPWSTR achPath);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 LWSTDAPI_(BOOL)     PathFileExistsA(_In_ LPCSTR pszPath);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 LWSTDAPI_(BOOL)     PathFileExistsW(_In_ LPCWSTR pszPath);
 #ifdef UNICODE
@@ -2631,10 +2635,12 @@ LWSTDAPI_(long) SHGlobalCounterDecrement(const SHGLOBALCOUNTER id);
 #if (_WIN32_IE >= 0x0603)
 _Win32_metadata_supported_os_(windows5.1.2600)
 LWSTDAPI_(HANDLE)   SHAllocShared(_In_reads_bytes_opt_(dwSize) const void *pvData, _In_ DWORD dwSize, _In_ DWORD dwProcessId);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 LWSTDAPI_(BOOL)     SHFreeShared(_In_ HANDLE hData, _In_ DWORD dwProcessId);
 _Win32_metadata_supported_os_(windows5.1.2600)
 LWSTDAPI_(void *)   SHLockShared(_In_ HANDLE hData, _In_ DWORD dwProcessId);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 LWSTDAPI_(BOOL)     SHUnlockShared(_In_reads_(_Inexpressible_("header-preceded")) void *pvData);
 #endif // _WIN32_IE >= 0x0603
@@ -2847,8 +2853,10 @@ enum
 
 typedef DWORD SHCT_FLAGS;   // SHCreateThread flags values
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 LWSTDAPI_(BOOL) SHCreateThread(_In_ LPTHREAD_START_ROUTINE pfnThreadProc, _In_opt_ void *pData, _In_ SHCT_FLAGS flags, _In_opt_ LPTHREAD_START_ROUTINE pfnCallback);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows6.0.6000)
 LWSTDAPI_(BOOL) SHCreateThreadWithHandle(_In_ LPTHREAD_START_ROUTINE pfnThreadProc, _In_opt_ void *pData, _In_ SHCT_FLAGS flags, _In_opt_ LPTHREAD_START_ROUTINE pfnCallback, _Out_opt_ HANDLE *pHandle);
 

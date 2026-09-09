@@ -109,6 +109,7 @@ _Win32_metadata_supported_os_(windows8.0)
 BOOL WINAPI MagSetFullscreenColorEffect(_In_ PMAGCOLOREFFECT pEffect);
 _Win32_metadata_supported_os_(windows8.0)
 BOOL WINAPI MagGetFullscreenColorEffect(_Out_ PMAGCOLOREFFECT pEffect);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows8.0)
 BOOL WINAPI MagSetInputTransform(_In_ BOOL fEnabled, _In_ const LPRECT pRectSource, _In_ const LPRECT pRectDest);
 _Win32_metadata_supported_os_(windows8.0)

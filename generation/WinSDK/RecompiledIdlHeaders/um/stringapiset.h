@@ -27,6 +27,7 @@ extern "C" {
 
 #if (WINVER >= 0x0600)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 int
 WINAPI
@@ -42,6 +43,7 @@ CompareStringEx(
     _Reserved_ LPARAM lParam
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 int
 WINAPI
@@ -71,6 +73,7 @@ CompareStringW(
 #define CompareString  CompareStringW
 #endif
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 int
 WINAPI
@@ -86,6 +89,7 @@ FoldStringW(
 #define FoldString  FoldStringW
 #endif
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -101,6 +105,7 @@ GetStringTypeExW(
 #define GetStringTypeEx  GetStringTypeExW
 #endif
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -115,6 +120,7 @@ GetStringTypeW(
 //  NLS Code Page Dependent APIs.
 //
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Success_(return != 0)
          _When_((cbMultiByte == -1) && (cchWideChar != 0), _Post_equal_to_(_String_length_(lpWideCharStr)+1))
@@ -129,6 +135,7 @@ MultiByteToWideChar(
     _In_ int cchWideChar
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Success_(return != 0)
          _When_((cchWideChar == -1) && (cbMultiByte != 0), _Post_equal_to_(_String_length_(lpMultiByteStr)+1))

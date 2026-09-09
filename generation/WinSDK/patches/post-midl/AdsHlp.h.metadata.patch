@@ -1,0 +1,20 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
+index 3b1817e9..9b0fe1c6 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ //+---------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -80,6 +83,7 @@ ADsOpenObject(
+ // Helper functions for extended error support
+ //
+ 
++_Win32_metadata_set_last_error_
+ HRESULT WINAPI
+ ADsGetLastError(
+     OUT     LPDWORD lpError,

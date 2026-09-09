@@ -46,6 +46,7 @@ LoadPackagedLibrary(
 
 #if (_WIN32_WINNT >= 0x0602)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI

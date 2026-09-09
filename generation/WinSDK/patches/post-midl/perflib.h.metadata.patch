@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h b/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h
-index d71e0a91..49e8531b 100644
+index d71e0a91..89377f84 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h
 @@ -15,6 +15,9 @@ Abstract:
@@ -36,7 +36,23 @@ index d71e0a91..49e8531b 100644
      );
  
  ULONG WINAPI
-@@ -812,6 +818,7 @@ WINAPI
+@@ -249,6 +255,7 @@ PerfSetCounterSetInfo(
+     _In_ ULONG TemplateSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ PPERF_COUNTERSET_INSTANCE WINAPI
+ PerfCreateInstance(
+     _In_ HANDLE ProviderHandle,
+@@ -263,6 +270,7 @@ PerfDeleteInstance(
+     _In_ PPERF_COUNTERSET_INSTANCE InstanceBlock
+     );
+ 
++_Win32_metadata_set_last_error_
+ PPERF_COUNTERSET_INSTANCE WINAPI
+ PerfQueryInstance(
+     _In_ HANDLE ProviderHandle,
+@@ -812,6 +820,7 @@ WINAPI
  PerfOpenQueryHandle(
      _In_opt_z_ LPCWSTR szMachine,
      _Out_ HANDLE * phQuery

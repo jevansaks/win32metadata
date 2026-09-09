@@ -54,6 +54,7 @@ typedef enum _AVRT_PRIORITY
 
 #define AVRTAPI DECLSPEC_IMPORT
 
+_Win32_metadata_set_last_error_
 _Success_(return != NULL)
 AVRTAPI
 HANDLE
@@ -63,6 +64,7 @@ AvSetMmThreadCharacteristicsA (
     _Inout_ LPDWORD TaskIndex
     )
     _Win32_metadata_raii_free_(AvRevertMmThreadCharacteristics);
+_Win32_metadata_set_last_error_
 _Success_(return != NULL)
 AVRTAPI
 HANDLE
@@ -78,6 +80,7 @@ AvSetMmThreadCharacteristicsW (
 #define AvSetMmThreadCharacteristics  AvSetMmThreadCharacteristicsA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 _Success_(return != NULL)
 AVRTAPI
 HANDLE
@@ -88,6 +91,7 @@ AvSetMmMaxThreadCharacteristicsA (
     _Inout_ LPDWORD TaskIndex
     )
     _Win32_metadata_raii_free_(AvRevertMmThreadCharacteristics);
+_Win32_metadata_set_last_error_
 _Success_(return != NULL)
 AVRTAPI
 HANDLE
@@ -104,6 +108,7 @@ AvSetMmMaxThreadCharacteristicsW (
 #define AvSetMmMaxThreadCharacteristics  AvSetMmMaxThreadCharacteristicsA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL
@@ -112,6 +117,7 @@ AvRevertMmThreadCharacteristics (
     _In_ HANDLE AvrtHandle
     );
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL
@@ -127,6 +133,7 @@ AvSetMmThreadPriority (
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL
@@ -139,6 +146,7 @@ AvRtCreateThreadOrderingGroup (
     _In_opt_ PLARGE_INTEGER Timeout
     );
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL
@@ -151,6 +159,7 @@ AvRtCreateThreadOrderingGroupExA (
     _In_opt_ PLARGE_INTEGER Timeout,
     _In_ LPCSTR TaskName
     );
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL
@@ -169,6 +178,7 @@ AvRtCreateThreadOrderingGroupExW (
 #define AvRtCreateThreadOrderingGroupEx  AvRtCreateThreadOrderingGroupExA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL
@@ -180,6 +190,7 @@ AvRtJoinThreadOrderingGroup (
     _In_ BOOL Before
     );
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL
@@ -188,6 +199,7 @@ AvRtWaitOnThreadOrderingGroup (
     _In_ HANDLE Context
     );
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL
@@ -196,6 +208,7 @@ AvRtLeaveThreadOrderingGroup (
     _In_ HANDLE Context
     );
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL
@@ -204,6 +217,7 @@ AvRtDeleteThreadOrderingGroup (
     _In_ HANDLE Context
     );
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 AVRTAPI
 BOOL

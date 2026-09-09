@@ -1804,12 +1804,14 @@ typedef struct _COLORMAP {
     COLORREF to;
 } COLORMAP, *LPCOLORMAP;
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows6.0.6000)
 WINCOMMCTRLAPI HWND WINAPI CreateToolbarEx(HWND hwnd, DWORD ws, UINT wID, int nBitmaps,
                         HINSTANCE hBMInst, UINT_PTR wBMID, LPCTBBUTTON lpButtons,
                         int iNumButtons, int dxButton, int dyButton,
                         int dxBitmap, int dyBitmap, UINT uStructSize);
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows6.0.6000)
 WINCOMMCTRLAPI HBITMAP WINAPI CreateMappedBitmap(HINSTANCE hInstance, INT_PTR idBitmap,
                                   UINT wFlags, _In_opt_ LPCOLORMAP lpColorMap,
@@ -3106,8 +3108,10 @@ WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC, LPCRECT lprc, LPCSTR pszText
 _Win32_metadata_supported_os_(windows6.0.6000)
 WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC, LPCRECT lprc, LPCWSTR pszText, UINT uFlags);
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows6.0.6000)
 WINCOMMCTRLAPI HWND WINAPI CreateStatusWindowA(LONG style, LPCSTR lpszText, HWND hwndParent, UINT wID);
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows6.0.6000)
 WINCOMMCTRLAPI HWND WINAPI CreateStatusWindowW(LONG style, LPCWSTR lpszText, HWND hwndParent, UINT wID);
 

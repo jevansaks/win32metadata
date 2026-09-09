@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h b/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h
+index 64679132..b53fff8e 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/EvColl.h
+@@ -16,6 +16,9 @@ Abstract:
+ #ifndef __EVCOLL_H__
+ #define __EVCOLL_H__
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -179,6 +182,7 @@ typedef enum _EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS
+ } EC_SUBSCRIPTION_RUNTIME_STATUS_ACTIVE_STATUS;
+ 
+ 
++_Win32_metadata_set_last_error_
+ EC_HANDLE WINAPI EcOpenSubscriptionEnum(
+     DWORD Flags 
+     );
+@@ -191,6 +195,7 @@ BOOL WINAPI EcEnumNextSubscription(
+     _Out_ PDWORD SubscriptionNameBufferUsed
+     );
+ 
++_Win32_metadata_set_last_error_
+ EC_HANDLE WINAPI EcOpenSubscription(
+     LPCWSTR SubscriptionName,
+     DWORD AccessMask,

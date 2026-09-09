@@ -5,6 +5,9 @@
 #define LowLevelMonitorConfigurationAPI_h
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -32,6 +35,7 @@ typedef enum _MC_VCP_CODE_TYPE
 
 } MC_VCP_CODE_TYPE, *LPMC_VCP_CODE_TYPE;
 
+_Win32_metadata_set_last_error_
 _BOOL WINAPI GetVCPFeatureAndVCPFeatureReply
     (
     HANDLE hMonitor,
@@ -43,10 +47,13 @@ _BOOL WINAPI GetVCPFeatureAndVCPFeatureReply
 
 _BOOL WINAPI SetVCPFeature( HANDLE hMonitor, BYTE bVCPCode, DWORD dwNewValue );
 
+_Win32_metadata_set_last_error_
 _BOOL WINAPI SaveCurrentSettings( HANDLE hMonitor );
 
+_Win32_metadata_set_last_error_
 _BOOL WINAPI GetCapabilitiesStringLength( HANDLE hMonitor, _Out_ LPDWORD pdwCapabilitiesStringLengthInCharacters );
 
+_Win32_metadata_set_last_error_
 _BOOL WINAPI CapabilitiesRequestAndCapabilitiesReply 
     (
     HANDLE hMonitor, 
@@ -54,6 +61,7 @@ _BOOL WINAPI CapabilitiesRequestAndCapabilitiesReply
     DWORD dwCapabilitiesStringLengthInCharacters
     );
 
+_Win32_metadata_set_last_error_
 _BOOL WINAPI GetTimingReport( HANDLE hMonitor, _Out_ LPMC_TIMING_REPORT pmtrMonitorTimingReport );
 
 #pragma pack( pop )

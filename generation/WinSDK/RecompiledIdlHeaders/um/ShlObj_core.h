@@ -2460,6 +2460,7 @@ SHSTDAPI_(BOOL) PathIsExe(_In_ PCWSTR pszPath);
 _Win32_metadata_supported_os_(windows5.1.2600)
 SHSTDAPI_(int) PathCleanupSpec(_In_opt_ PCWSTR pszDir, _Inout_ PWSTR pszSpec);
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 SHSTDAPI_(int) PathResolve(_Inout_updates_(MAX_PATH) PWSTR pszPath, _In_opt_ PZPCWSTR dirs, UINT fFlags);
 _Win32_metadata_supported_os_(windows5.0)

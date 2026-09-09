@@ -1,0 +1,1453 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h b/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h
+index 0199850f..44cf3e29 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h
+@@ -25,6 +25,9 @@ Revision History:
+ #endif
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #define NONGAMESPARTITIONS WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WER
+ 
+@@ -138,6 +141,7 @@ typedef BOOL
+     _In_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ SymFindDebugInfoFile(
+@@ -155,6 +159,7 @@ typedef BOOL
+     _In_ PVOID  CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ SymFindDebugInfoFileW(
+@@ -165,6 +170,7 @@ SymFindDebugInfoFileW(
+     _In_opt_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ FindDebugInfoFile (
+@@ -173,6 +179,7 @@ FindDebugInfoFile (
+     _Out_writes_(MAX_PATH + 1) PSTR DebugFilePath
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ FindDebugInfoFileEx (
+@@ -183,6 +190,7 @@ FindDebugInfoFileEx (
+     _In_opt_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ FindDebugInfoFileExW (
+@@ -199,6 +207,7 @@ typedef BOOL
+     _In_ PVOID context
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFindFileInPath(
+@@ -220,6 +229,7 @@ typedef BOOL
+     _In_ PVOID context
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFindFileInPathW(
+@@ -242,6 +252,7 @@ typedef BOOL
+     _In_opt_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ SymFindExecutableImage(
+@@ -259,6 +270,7 @@ typedef BOOL
+     _In_opt_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ SymFindExecutableImageW(
+@@ -269,6 +281,7 @@ SymFindExecutableImageW(
+     _In_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ FindExecutableImage(
+@@ -277,6 +290,7 @@ FindExecutableImage(
+     _Out_writes_(MAX_PATH + 1) PSTR ImageFilePath
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ FindExecutableImageEx(
+@@ -287,6 +301,7 @@ FindExecutableImageEx(
+     _In_opt_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ HANDLE
+ IMAGEAPI
+ FindExecutableImageExW(
+@@ -297,12 +312,14 @@ FindExecutableImageExW(
+     _In_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ PIMAGE_NT_HEADERS
+ IMAGEAPI
+ ImageNtHeader (
+     _In_ PVOID Base
+     );
+ 
++_Win32_metadata_set_last_error_
+ PVOID
+ IMAGEAPI
+ ImageDirectoryEntryToDataEx (
+@@ -313,6 +330,7 @@ ImageDirectoryEntryToDataEx (
+     _Out_opt_ PIMAGE_SECTION_HEADER *FoundHeader
+     );
+ 
++_Win32_metadata_set_last_error_
+ PVOID
+ IMAGEAPI
+ ImageDirectoryEntryToData (
+@@ -322,6 +340,7 @@ ImageDirectoryEntryToData (
+     _Out_ PULONG Size
+     );
+ 
++_Win32_metadata_set_last_error_
+ PIMAGE_SECTION_HEADER
+ IMAGEAPI
+ ImageRvaToSection(
+@@ -330,6 +349,7 @@ ImageRvaToSection(
+     _In_ ULONG Rva
+     );
+ 
++_Win32_metadata_set_last_error_
+ PVOID
+ IMAGEAPI
+ ImageRvaToVa(
+@@ -389,6 +409,7 @@ typedef struct _IMAGE_DEBUG_INFORMATION {
+ } IMAGE_DEBUG_INFORMATION, *PIMAGE_DEBUG_INFORMATION;
+ 
+ 
++_Win32_metadata_set_last_error_
+ PIMAGE_DEBUG_INFORMATION
+ IMAGEAPI
+ MapDebugInformation(
+@@ -398,6 +419,7 @@ MapDebugInformation(
+     _In_ ULONG ImageBase
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ UnmapDebugInformation(
+@@ -406,6 +428,7 @@ UnmapDebugInformation(
+ 
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SearchTreeForFile(
+@@ -414,6 +437,7 @@ SearchTreeForFile(
+     _Out_writes_(MAX_PATH + 1) PSTR OutputPathBuffer
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SearchTreeForFileW(
+@@ -428,6 +452,7 @@ typedef BOOL
+     _In_opt_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ EnumDirTree(
+@@ -445,6 +470,7 @@ typedef BOOL
+     _In_opt_ PVOID CallerData
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ EnumDirTreeW(
+@@ -456,6 +482,7 @@ EnumDirTreeW(
+     _In_opt_ PVOID data
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ MakeSureDirectoryPathExists(
+@@ -485,6 +512,7 @@ MakeSureDirectoryPathExists(
+ #define UNDNAME_NO_ARGUMENTS             (0x2000)  // Don't undecorate arguments to function
+ #define UNDNAME_NO_SPECIAL_SYMS          (0x4000)  // Don't undecorate special names (v-table, vcall, vector xxx, metatype, etc)
+ 
++_Win32_metadata_set_last_error_
+ DWORD
+ IMAGEAPI
+ WINAPI
+@@ -495,6 +523,7 @@ UnDecorateSymbolName(
+     _In_ DWORD flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ DWORD
+ IMAGEAPI
+ WINAPI
+@@ -1055,6 +1084,7 @@ ImagehlpApiVersionEx(
+     _In_ LPAPI_VERSION AppVersion
+     );
+ 
++_Win32_metadata_set_last_error_
+ DWORD
+ IMAGEAPI
+ GetTimestampForLoadedLibrary(
+@@ -1707,6 +1737,7 @@ typedef struct _IMAGEHLP_JIT_SYMBOL_MAP {
+ 
+ // If dbghelp ever needs to display graphical UI, it will use this as the parent window.
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSetParentWindow(
+@@ -1719,6 +1750,7 @@ SymGetParentWindow(
+     _Out_ HWND * pHwnd
+     );
+ 
++_Win32_metadata_set_last_error_
+ PCHAR
+ IMAGEAPI
+ SymSetHomeDirectory(
+@@ -1726,6 +1758,7 @@ SymSetHomeDirectory(
+     _In_opt_ PCSTR dir
+     );
+ 
++_Win32_metadata_set_last_error_
+ PWSTR
+ IMAGEAPI
+ SymSetHomeDirectoryW(
+@@ -1733,6 +1766,7 @@ SymSetHomeDirectoryW(
+     _In_opt_ PCWSTR dir
+     );
+ 
++_Win32_metadata_set_last_error_
+ PCHAR
+ IMAGEAPI
+ SymGetHomeDirectory(
+@@ -1741,6 +1775,7 @@ SymGetHomeDirectory(
+     _In_ size_t size
+     );
+ 
++_Win32_metadata_set_last_error_
+ PWSTR
+ IMAGEAPI
+ SymGetHomeDirectoryW(
+@@ -1761,6 +1796,7 @@ typedef struct _OMAP {
+     ULONG  rvaTo;
+ } OMAP, *POMAP;
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetOmaps(
+@@ -1848,6 +1884,7 @@ SymGetOptions(
+     VOID
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymCleanup(
+@@ -1876,6 +1913,7 @@ SymSetExtendedOption(_In_ IMAGEHLP_EXTENDED_OPTIONS option, _In_ BOOL value);
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymMatchString(
+@@ -1892,6 +1930,7 @@ SymMatchStringA(
+     _In_ BOOL fCase
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymMatchStringW(
+@@ -1909,6 +1948,7 @@ typedef BOOL
+ // for backwards compatibility - don't use this
+ #define PSYM_ENUMSOURCFILES_CALLBACK PSYM_ENUMSOURCEFILES_CALLBACK
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSourceFiles(
+@@ -1925,6 +1965,7 @@ typedef BOOL
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSourceFilesW(
+@@ -1935,6 +1976,7 @@ SymEnumSourceFilesW(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumerateModules64(
+@@ -1943,6 +1985,7 @@ SymEnumerateModules64(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumerateModulesW64(
+@@ -1954,6 +1997,7 @@ SymEnumerateModulesW64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymEnumerateModules SymEnumerateModules64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumerateModules(
+@@ -1963,6 +2007,7 @@ SymEnumerateModules(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ EnumerateLoadedModulesEx(
+@@ -1971,6 +2016,7 @@ EnumerateLoadedModulesEx(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ EnumerateLoadedModulesExW(
+@@ -1979,6 +2025,7 @@ EnumerateLoadedModulesExW(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ EnumerateLoadedModules64(
+@@ -1987,6 +2034,7 @@ EnumerateLoadedModules64(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ EnumerateLoadedModulesW64(
+@@ -1998,6 +2046,7 @@ EnumerateLoadedModulesW64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define EnumerateLoadedModules EnumerateLoadedModules64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ EnumerateLoadedModules(
+@@ -2007,6 +2056,7 @@ EnumerateLoadedModules(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ PVOID
+ IMAGEAPI
+ SymFunctionTableAccess64(
+@@ -2032,6 +2082,7 @@ SymFunctionTableAccess64AccessRoutines(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymFunctionTableAccess SymFunctionTableAccess64
+ #else
++_Win32_metadata_set_last_error_
+ PVOID
+ IMAGEAPI
+ SymFunctionTableAccess(
+@@ -2055,6 +2106,7 @@ SymGetUnwindInfo(
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetModuleInfo64(
+@@ -2063,6 +2115,7 @@ SymGetModuleInfo64(
+     _Out_ PIMAGEHLP_MODULE64 ModuleInfo
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetModuleInfoW64(
+@@ -2075,6 +2128,7 @@ SymGetModuleInfoW64(
+ #define SymGetModuleInfo   SymGetModuleInfo64
+ #define SymGetModuleInfoW  SymGetModuleInfoW64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetModuleInfo(
+@@ -2083,6 +2137,7 @@ SymGetModuleInfo(
+     _Out_ PIMAGEHLP_MODULE ModuleInfo
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetModuleInfoW(
+@@ -2092,6 +2147,7 @@ SymGetModuleInfoW(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ DWORD64
+ IMAGEAPI
+ SymGetModuleBase64(
+@@ -2102,6 +2158,7 @@ SymGetModuleBase64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymGetModuleBase SymGetModuleBase64
+ #else
++_Win32_metadata_set_last_error_
+ DWORD
+ IMAGEAPI
+ SymGetModuleBase(
+@@ -2142,6 +2199,7 @@ typedef BOOL
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumLines(
+@@ -2159,6 +2217,7 @@ typedef BOOL
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumLinesW(
+@@ -2176,6 +2235,7 @@ SymEnumLinesW(
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineFromAddr64(
+@@ -2191,6 +2251,7 @@ SymGetLineFromAddr64(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineFromAddrW64(
+@@ -2200,6 +2261,7 @@ SymGetLineFromAddrW64(
+     _Out_ PIMAGEHLP_LINEW64 Line
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineFromInlineContext(
+@@ -2211,6 +2273,7 @@ SymGetLineFromInlineContext(
+     _Out_ PIMAGEHLP_LINE64 Line64
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineFromInlineContextW(
+@@ -2222,6 +2285,7 @@ SymGetLineFromInlineContextW(
+     _Out_ PIMAGEHLP_LINEW64 Line
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSourceLines(
+@@ -2235,6 +2299,7 @@ SymEnumSourceLines(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSourceLinesW(
+@@ -2276,6 +2341,7 @@ SymCompareInlineTrace(
+     _In_ DWORD64 RetAddress2
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymQueryInlineTrace(
+@@ -2300,6 +2366,7 @@ SymQueryInlineTrace(
+ #define SymGetLineFromAddr SymGetLineFromAddr64
+ #define SymGetLineFromAddrW SymGetLineFromAddrW64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineFromAddr(
+@@ -2319,6 +2386,7 @@ SymGetLineFromAddrW(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineFromName64(
+@@ -2330,6 +2398,7 @@ SymGetLineFromName64(
+     _Inout_ PIMAGEHLP_LINE64 Line
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineFromNameW64(
+@@ -2344,6 +2413,7 @@ SymGetLineFromNameW64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymGetLineFromName SymGetLineFromName64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineFromName(
+@@ -2356,6 +2426,7 @@ SymGetLineFromName(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineNext64(
+@@ -2363,6 +2434,7 @@ SymGetLineNext64(
+     _Inout_ PIMAGEHLP_LINE64 Line
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineNextW64(
+@@ -2373,6 +2445,7 @@ SymGetLineNextW64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymGetLineNext SymGetLineNext64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLineNext(
+@@ -2388,6 +2461,7 @@ SymGetLineNextW(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLinePrev64(
+@@ -2395,6 +2469,7 @@ SymGetLinePrev64(
+     _Inout_ PIMAGEHLP_LINE64 Line
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLinePrevW64(
+@@ -2405,6 +2480,7 @@ SymGetLinePrevW64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymGetLinePrev SymGetLinePrev64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetLinePrev(
+@@ -2420,6 +2496,7 @@ SymGetLinePrevW(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ ULONG
+ IMAGEAPI
+ SymGetFileLineOffsets64(
+@@ -2430,6 +2507,7 @@ SymGetFileLineOffsets64(
+     _In_ ULONG BufferLines
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymMatchFileName(
+@@ -2439,6 +2517,7 @@ SymMatchFileName(
+     _Outptr_opt_ PSTR *MatchStop
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymMatchFileNameW(
+@@ -2448,6 +2527,7 @@ SymMatchFileNameW(
+     _Outptr_opt_ PWSTR *MatchStop
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceFile(
+@@ -2459,6 +2539,7 @@ SymGetSourceFile(
+     _In_ DWORD Size
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceFileW(
+@@ -2470,6 +2551,7 @@ SymGetSourceFileW(
+     _In_ DWORD Size
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceFileToken(
+@@ -2492,6 +2574,7 @@ SymGetSourceFileTokenByTokenName(
+     _Out_ DWORD *Size
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceFileChecksumW(
+@@ -2504,6 +2587,7 @@ SymGetSourceFileChecksumW(
+     _Out_ DWORD *pActualBytesWritten
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceFileChecksum(
+@@ -2516,6 +2600,7 @@ SymGetSourceFileChecksum(
+     _Out_ DWORD *pActualBytesWritten
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceFileTokenW(
+@@ -2538,6 +2623,7 @@ SymGetSourceFileTokenByTokenNameW(
+     _Out_ DWORD *Size
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceFileFromToken(
+@@ -2559,6 +2645,7 @@ SymGetSourceFileFromTokenByTokenName(
+     _In_ DWORD Size
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceFileFromTokenW(
+@@ -2580,6 +2667,7 @@ SymGetSourceFileFromTokenByTokenNameW(
+     _In_ DWORD Size
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceVarFromToken(
+@@ -2591,6 +2679,7 @@ SymGetSourceVarFromToken(
+     _In_ DWORD Size
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSourceVarFromTokenW(
+@@ -2604,6 +2693,7 @@ SymGetSourceVarFromTokenW(
+ 
+ typedef BOOL (CALLBACK *PENUMSOURCEFILETOKENSCALLBACK)(_In_ PVOID token,  _In_ size_t size);
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSourceFileTokens(
+@@ -2618,6 +2708,7 @@ SymEnumSourceFileTokens(
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymInitialize(
+@@ -2626,6 +2717,7 @@ SymInitialize(
+     _In_ BOOL fInvadeProcess
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymInitializeW(
+@@ -2646,6 +2738,7 @@ SymInitializeW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSearchPath(
+@@ -2654,6 +2747,7 @@ SymGetSearchPath(
+     _In_ DWORD SearchPathLength
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSearchPathW(
+@@ -2662,6 +2756,7 @@ SymGetSearchPathW(
+     _In_ DWORD SearchPathLength
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSetSearchPath(
+@@ -2675,6 +2770,7 @@ SymSetSearchPath(
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSetSearchPathW(
+@@ -2692,6 +2788,7 @@ SymSetSearchPathW(
+ #define SLMFLAG_ALT_INDEX   0x2
+ #define SLMFLAG_NO_SYMBOLS  0x4
+ 
++_Win32_metadata_set_last_error_
+ DWORD64
+ IMAGEAPI
+ SymLoadModuleEx(
+@@ -2711,6 +2808,7 @@ SymLoadModuleEx(
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ DWORD64
+ IMAGEAPI
+ SymLoadModuleExW(
+@@ -2730,6 +2828,7 @@ SymLoadModuleExW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymUnloadModule64(
+@@ -2740,6 +2839,7 @@ SymUnloadModule64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymUnloadModule SymUnloadModule64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymUnloadModule(
+@@ -2748,6 +2848,7 @@ SymUnloadModule(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymUnDName64(
+@@ -2759,6 +2860,7 @@ SymUnDName64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymUnDName SymUnDName64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymUnDName(
+@@ -2768,6 +2870,7 @@ SymUnDName(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymRegisterCallback64(
+@@ -2776,6 +2879,7 @@ SymRegisterCallback64(
+     _In_ ULONG64 UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymRegisterCallbackW64(
+@@ -2784,6 +2888,7 @@ SymRegisterCallbackW64(
+     _In_ ULONG64 UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymRegisterFunctionEntryCallback64(
+@@ -2796,6 +2901,7 @@ SymRegisterFunctionEntryCallback64(
+ #define SymRegisterCallback SymRegisterCallback64
+ #define SymRegisterFunctionEntryCallback SymRegisterFunctionEntryCallback64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymRegisterCallback(
+@@ -2804,6 +2910,7 @@ SymRegisterCallback(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymRegisterFunctionEntryCallback(
+@@ -2901,6 +3008,7 @@ typedef struct _IMAGEHLP_STACK_FRAME
+ typedef VOID IMAGEHLP_CONTEXT, *PIMAGEHLP_CONTEXT;
+ 
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSetContext(
+@@ -2909,6 +3017,7 @@ SymSetContext(
+     _In_opt_ PIMAGEHLP_CONTEXT Context
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSetScopeFromAddr(
+@@ -2916,6 +3025,7 @@ SymSetScopeFromAddr(
+     _In_ ULONG64 Address
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSetScopeFromInlineContext(
+@@ -2924,6 +3034,7 @@ SymSetScopeFromInlineContext(
+     _In_ ULONG InlineContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSetScopeFromIndex(
+@@ -2938,6 +3049,7 @@ typedef BOOL
+     _In_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumProcesses(
+@@ -2951,6 +3063,7 @@ SymEnumProcesses(
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromAddr(
+@@ -2960,6 +3073,7 @@ SymFromAddr(
+     _Inout_ PSYMBOL_INFO Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromAddrW(
+@@ -2975,6 +3089,7 @@ SymFromAddrW(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromInlineContext(
+@@ -2985,6 +3100,7 @@ SymFromInlineContext(
+     _Inout_ PSYMBOL_INFO Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromInlineContextW(
+@@ -2995,6 +3111,7 @@ SymFromInlineContextW(
+     _Inout_ PSYMBOL_INFOW Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromToken(
+@@ -3004,6 +3121,7 @@ SymFromToken(
+     _Inout_ PSYMBOL_INFO Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromTokenW(
+@@ -3013,6 +3131,7 @@ SymFromTokenW(
+     _Inout_ PSYMBOL_INFOW Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymNext(
+@@ -3020,6 +3139,7 @@ SymNext(
+     _Inout_ PSYMBOL_INFO si
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymNextW(
+@@ -3027,6 +3147,7 @@ SymNextW(
+     _Inout_ PSYMBOL_INFOW siw
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymPrev(
+@@ -3034,6 +3155,7 @@ SymPrev(
+     _Inout_ PSYMBOL_INFO si
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymPrevW(
+@@ -3047,6 +3169,7 @@ SymPrevW(
+ // expressions.  That way you can search across modules
+ // and differentiate between identically named symbols.
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromName(
+@@ -3055,6 +3178,7 @@ SymFromName(
+     _Inout_ PSYMBOL_INFO Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromNameW(
+@@ -3073,6 +3197,7 @@ typedef BOOL
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSymbols(
+@@ -3083,6 +3208,7 @@ SymEnumSymbols(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSymbolsEx(
+@@ -3101,6 +3227,7 @@ typedef BOOL
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSymbolsW(
+@@ -3111,6 +3238,7 @@ SymEnumSymbolsW(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSymbolsExW(
+@@ -3122,6 +3250,7 @@ SymEnumSymbolsExW(
+     _In_ DWORD Options
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSymbolsForAddr(
+@@ -3131,6 +3260,7 @@ SymEnumSymbolsForAddr(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumSymbolsForAddrW(
+@@ -3145,6 +3275,7 @@ SymEnumSymbolsForAddrW(
+ #define SYMSEARCH_GLOBALSONLY   0X04    // search only for global symbols
+ #define SYMSEARCH_ALLITEMS      0X08    // search for everything in the pdb, not just normal scoped symbols
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSearch(
+@@ -3159,6 +3290,7 @@ SymSearch(
+     _In_ DWORD Options
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSearchW(
+@@ -3173,6 +3305,7 @@ SymSearchW(
+     _In_ DWORD Options
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetScope(
+@@ -3182,6 +3315,7 @@ SymGetScope(
+     _Inout_ PSYMBOL_INFO Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetScopeW(
+@@ -3191,6 +3325,7 @@ SymGetScopeW(
+     _Inout_ PSYMBOL_INFOW Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromIndex(
+@@ -3200,6 +3335,7 @@ SymFromIndex(
+     _Inout_ PSYMBOL_INFO Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymFromIndexW(
+@@ -3269,6 +3405,7 @@ typedef struct _TI_GET_DISCRIMINATEDUNION_TAG_RANGES_PARAMS {
+     DISCRIMINATEDUNION_TAG_VALUE Range[1];
+ } TI_GET_DISCRIMINATEDUNION_TAG_RANGES_PARAMS;
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetTypeInfo(
+@@ -3303,6 +3440,7 @@ typedef struct _IMAGEHLP_GET_TYPE_INFO_PARAMS {
+     OUT PULONG64 ReqsValid OPTIONAL;
+ } IMAGEHLP_GET_TYPE_INFO_PARAMS, *PIMAGEHLP_GET_TYPE_INFO_PARAMS;
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetTypeInfoEx(
+@@ -3311,6 +3449,7 @@ SymGetTypeInfoEx(
+     _Inout_ PIMAGEHLP_GET_TYPE_INFO_PARAMS Params
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumTypes(
+@@ -3320,6 +3459,7 @@ SymEnumTypes(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumTypesW(
+@@ -3329,6 +3469,7 @@ SymEnumTypesW(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumTypesByName(
+@@ -3339,6 +3480,7 @@ SymEnumTypesByName(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymEnumTypesByNameW(
+@@ -3349,6 +3491,7 @@ SymEnumTypesByNameW(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetTypeFromName(
+@@ -3358,6 +3501,7 @@ SymGetTypeFromName(
+     _Inout_ PSYMBOL_INFO Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetTypeFromNameW(
+@@ -3367,6 +3511,7 @@ SymGetTypeFromNameW(
+     _Inout_ PSYMBOL_INFOW Symbol
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymAddSymbol(
+@@ -3378,6 +3523,7 @@ SymAddSymbol(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymAddSymbolW(
+@@ -3389,6 +3535,7 @@ SymAddSymbolW(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymDeleteSymbol(
+@@ -3399,6 +3546,7 @@ SymDeleteSymbol(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymDeleteSymbolW(
+@@ -3415,6 +3563,7 @@ SymDeleteSymbolW(
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymRefreshModuleList(
+@@ -3427,6 +3576,7 @@ SymRefreshModuleList(
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymAddSourceStream(
+@@ -3451,6 +3601,7 @@ SymAddSourceStreamA(
+ 
+ typedef BOOL (WINAPI *SYMADDSOURCESTREAMA)(HANDLE, ULONG64, PCSTR, PBYTE, size_t);
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymAddSourceStreamW(
+@@ -3461,6 +3612,7 @@ SymAddSourceStreamW(
+     _In_ size_t Size
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSrvIsStoreW(
+@@ -3468,6 +3620,7 @@ SymSrvIsStoreW(
+     _In_ PCWSTR path
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSrvIsStore(
+@@ -3475,6 +3628,7 @@ SymSrvIsStore(
+     _In_ PCSTR path
+     );
+ 
++_Win32_metadata_set_last_error_
+ PCSTR
+ IMAGEAPI
+ SymSrvDeltaName(
+@@ -3485,6 +3639,7 @@ SymSrvDeltaName(
+     _In_ PCSTR File2
+     );
+ 
++_Win32_metadata_set_last_error_
+ PCWSTR
+ IMAGEAPI
+ SymSrvDeltaNameW(
+@@ -3495,6 +3650,7 @@ SymSrvDeltaNameW(
+     _In_ PCWSTR File2
+     );
+ 
++_Win32_metadata_set_last_error_
+ PCSTR
+ IMAGEAPI
+ SymSrvGetSupplement(
+@@ -3504,6 +3660,7 @@ SymSrvGetSupplement(
+     _In_ PCSTR File
+     );
+ 
++_Win32_metadata_set_last_error_
+ PCWSTR
+ IMAGEAPI
+ SymSrvGetSupplementW(
+@@ -3513,6 +3670,7 @@ SymSrvGetSupplementW(
+     _In_ PCWSTR File
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSrvGetFileIndexes(
+@@ -3523,6 +3681,7 @@ SymSrvGetFileIndexes(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSrvGetFileIndexesW(
+@@ -3533,6 +3692,7 @@ SymSrvGetFileIndexesW(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSrvGetFileIndexStringW(
+@@ -3544,6 +3704,7 @@ SymSrvGetFileIndexStringW(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSrvGetFileIndexString(
+@@ -3581,6 +3742,7 @@ typedef struct {
+     DWORD age;
+ } SYMSRV_INDEX_INFOW, *PSYMSRV_INDEX_INFOW;
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSrvGetFileIndexInfo(
+@@ -3589,6 +3751,7 @@ SymSrvGetFileIndexInfo(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymSrvGetFileIndexInfoW(
+@@ -3597,6 +3760,7 @@ SymSrvGetFileIndexInfoW(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ PCSTR
+ IMAGEAPI
+ SymSrvStoreSupplement(
+@@ -3607,6 +3771,7 @@ SymSrvStoreSupplement(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ PCWSTR
+ IMAGEAPI
+ SymSrvStoreSupplementW(
+@@ -3617,6 +3782,7 @@ SymSrvStoreSupplementW(
+     _In_ DWORD Flags
+     );
+ 
++_Win32_metadata_set_last_error_
+ PCSTR
+ IMAGEAPI
+ SymSrvStoreFile(
+@@ -3632,6 +3798,7 @@ SymSrvStoreFile(
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ PCWSTR
+ IMAGEAPI
+ SymSrvStoreFileW(
+@@ -3657,6 +3824,7 @@ typedef enum {
+     sfMax
+ } IMAGEHLP_SF_TYPE;
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymbolFile(
+@@ -3670,6 +3838,7 @@ SymGetSymbolFile(
+     _In_ size_t cDbgFile
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymbolFileW(
+@@ -3721,6 +3890,7 @@ DbgHelpCreateUserDumpW(
+ #pragma region Desktop Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymFromAddr64(
+@@ -3734,6 +3904,7 @@ SymGetSymFromAddr64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymGetSymFromAddr SymGetSymFromAddr64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymFromAddr(
+@@ -3756,6 +3927,7 @@ SymGetSymFromAddr(
+ // expressions.  That way you can search across modules
+ // and differentiate between identically named symbols.
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymFromName64(
+@@ -3767,6 +3939,7 @@ SymGetSymFromName64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymGetSymFromName SymGetSymFromName64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymFromName(
+@@ -4061,6 +4234,7 @@ SymEnumSym(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ DBHLP_DEPRECIATED
+ BOOL
+ IMAGEAPI
+@@ -4071,6 +4245,7 @@ SymEnumerateSymbols64(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ DBHLP_DEPRECIATED
+ BOOL
+ IMAGEAPI
+@@ -4086,6 +4261,7 @@ SymEnumerateSymbolsW64(
+ #define SymEnumerateSymbols SymEnumerateSymbols64
+ #define SymEnumerateSymbolsW SymEnumerateSymbolsW64
+ #else
++_Win32_metadata_set_last_error_
+ DBHLP_DEPRECIATED
+ BOOL
+ IMAGEAPI
+@@ -4096,6 +4272,7 @@ SymEnumerateSymbols(
+     _In_opt_ PVOID UserContext
+     );
+ 
++_Win32_metadata_set_last_error_
+ DBHLP_DEPRECIATED
+ BOOL
+ IMAGEAPI
+@@ -4109,6 +4286,7 @@ SymEnumerateSymbolsW(
+ 
+ // use SymLoadModuleEx
+ 
++_Win32_metadata_set_last_error_
+ DWORD64
+ IMAGEAPI
+ SymLoadModule64(
+@@ -4123,6 +4301,7 @@ SymLoadModule64(
+ #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
+ #define SymLoadModule SymLoadModule64
+ #else
++_Win32_metadata_set_last_error_
+ DWORD
+ IMAGEAPI
+ SymLoadModule(
+@@ -4135,6 +4314,7 @@ SymLoadModule(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymNext64(
+@@ -4153,6 +4333,7 @@ SymGetSymNextW64(
+ #define SymGetSymNext SymGetSymNext64
+ #define SymGetSymNextW SymGetSymNextW64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymNext(
+@@ -4168,6 +4349,7 @@ SymGetSymNextW(
+     );
+ #endif
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymPrev64(
+@@ -4186,6 +4368,7 @@ SymGetSymPrevW64(
+ #define SymGetSymPrev SymGetSymPrev64
+ #define SymGetSymPrevW SymGetSymPrevW64
+ #else
++_Win32_metadata_set_last_error_
+ BOOL
+ IMAGEAPI
+ SymGetSymPrev(

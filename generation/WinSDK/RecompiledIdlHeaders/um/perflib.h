@@ -255,6 +255,7 @@ PerfSetCounterSetInfo(
     _In_ ULONG TemplateSize
     );
 
+_Win32_metadata_set_last_error_
 PPERF_COUNTERSET_INSTANCE WINAPI
 PerfCreateInstance(
     _In_ HANDLE ProviderHandle,
@@ -269,6 +270,7 @@ PerfDeleteInstance(
     _In_ PPERF_COUNTERSET_INSTANCE InstanceBlock
     );
 
+_Win32_metadata_set_last_error_
 PPERF_COUNTERSET_INSTANCE WINAPI
 PerfQueryInstance(
     _In_ HANDLE ProviderHandle,

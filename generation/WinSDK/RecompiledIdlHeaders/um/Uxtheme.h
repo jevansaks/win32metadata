@@ -2003,6 +2003,7 @@ typedef struct _BP_PAINTPARAMS
     const BLENDFUNCTION *       pBlendFunction;
 } BP_PAINTPARAMS, *PBP_PAINTPARAMS;
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows6.0.6000)
 THEMEAPI_(_Success_(return != NULL) HPAINTBUFFER)
 BeginBufferedPaint(

@@ -11,6 +11,9 @@
 
 #ifndef __DPAPI_H__
 #define __DPAPI_H__
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #if (_MSC_VER > 1020)
 #pragma once
@@ -178,6 +181,7 @@ typedef struct  _CRYPTPROTECT_PROMPTSTRUCT
 #pragma region App Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 DPAPI_IMP
 BOOL
 WINAPI
@@ -191,6 +195,7 @@ CryptProtectData(
     _Out_           DATA_BLOB*      pDataOut            // out encr blob
     );
 
+_Win32_metadata_set_last_error_
 DPAPI_IMP
 BOOL
 WINAPI
@@ -250,6 +255,7 @@ CryptUnprotectDataNoUI(
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
 
+_Win32_metadata_set_last_error_
 DPAPI_IMP
 BOOL
 WINAPI
@@ -306,6 +312,7 @@ CryptUpdateProtectedState(
 #pragma region App Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 DPAPI_IMP
 BOOL
 WINAPI
@@ -315,6 +322,7 @@ CryptProtectMemory(
     _In_            DWORD           dwFlags
     );
 
+_Win32_metadata_set_last_error_
 DPAPI_IMP
 BOOL
 WINAPI

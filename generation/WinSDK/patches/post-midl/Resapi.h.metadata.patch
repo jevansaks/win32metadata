@@ -1,0 +1,150 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Resapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/Resapi.h
+index 41c2817b..9568fb63 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Resapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Resapi.h
+@@ -15,6 +15,9 @@ Revision History:
+ --*/
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or FailoverCluster Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_CLUSTER)
+@@ -1514,6 +1517,7 @@ typedef DWORD
+     _In_ DWORD cbInPropertyListSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ PWSTR
+ WINAPI
+ ResUtilDupString(
+@@ -1542,6 +1546,7 @@ typedef DWORD
+     _Out_ LPDWORD pcbOutValueSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ LPWSTR
+ WINAPI
+ ResUtilGetSzValue(
+@@ -1555,6 +1560,7 @@ typedef LPWSTR
+     IN LPCWSTR pszValueName
+     );
+ 
++_Win32_metadata_set_last_error_
+ LPWSTR
+ WINAPI
+ ResUtilGetExpandSzValue(
+@@ -1874,6 +1880,7 @@ typedef DWORD
+     OUT LPDWORD pcbPropertyListSize
+     );
+ 
++_Win32_metadata_set_last_error_
+ LPVOID
+ WINAPI
+ ResUtilGetEnvironmentWithNetName(
+@@ -1896,6 +1903,7 @@ typedef DWORD
+     IN LPVOID lpEnvironment
+     );
+ 
++_Win32_metadata_set_last_error_
+ LPWSTR
+ WINAPI
+ ResUtilExpandEnvironmentStrings(
+@@ -2269,6 +2277,7 @@ typedef DWORD
+     IN PVOID                    pParameter
+     );
+ 
++_Win32_metadata_set_last_error_
+ HRESOURCE
+ WINAPI
+ ResUtilGetResourceDependency(
+@@ -2282,6 +2291,7 @@ typedef HRESOURCE
+     IN LPCWSTR      lpszResourceType
+     );
+ 
++_Win32_metadata_set_last_error_
+ HRESOURCE
+ WINAPI
+ ResUtilGetResourceDependencyByName(
+@@ -2299,6 +2309,7 @@ typedef HRESOURCE
+     IN BOOL     bRecurse
+     );
+ 
++_Win32_metadata_set_last_error_
+ HRESOURCE
+ WINAPI
+ ResUtilGetResourceDependencyByClass(
+@@ -2316,6 +2327,7 @@ typedef HRESOURCE
+     IN BOOL                         bRecurse
+     );
+ 
++_Win32_metadata_set_last_error_
+ HRESOURCE
+ WINAPI
+ ResUtilGetResourceNameDependency(
+@@ -2355,6 +2367,7 @@ DWORD
+     _Inout_ DWORD *pcchNetwork
+     );
+ 
++_Win32_metadata_set_last_error_
+ _Success_( return == ERROR_SUCCESS )
+ DWORD
+ WINAPI
+@@ -2488,6 +2501,7 @@ typedef enum _CLUSTER_ROLE_STATE {
+     ClusterRoleUnclustered
+ } CLUSTER_ROLE_STATE;
+ 
++_Win32_metadata_set_last_error_
+ _Success_(return >= 0) // != ClusterRoleUnknown
+ CLUSTER_ROLE_STATE
+ WINAPI
+@@ -2508,6 +2522,7 @@ typedef BOOL
+     _In_ LPCWSTR lpszPathName
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ ClusterGetVolumePathName(
+@@ -2523,6 +2538,7 @@ typedef BOOL
+     _In_   DWORD cchBufferLength
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL
+ WINAPI
+ ClusterGetVolumeNameForVolumeMountPoint(
+@@ -2612,6 +2628,7 @@ typedef DWORD
+     IN DWORD                    dwDesiredAccess
+     );
+ 
++_Win32_metadata_set_last_error_
+ HRESOURCE
+ WINAPI
+ ResUtilGetResourceDependencyEx(
+@@ -2627,6 +2644,7 @@ typedef HRESOURCE
+     IN DWORD        dwDesiredAccess
+     );
+ 
++_Win32_metadata_set_last_error_
+ HRESOURCE
+ WINAPI
+ ResUtilGetResourceDependencyByNameEx(
+@@ -2646,6 +2664,7 @@ typedef HRESOURCE
+     IN DWORD    dwDesiredAccess
+     );
+ 
++_Win32_metadata_set_last_error_
+ HRESOURCE
+ WINAPI
+ ResUtilGetResourceDependencyByClassEx(
+@@ -2665,6 +2684,7 @@ typedef HRESOURCE
+     IN DWORD                        dwDesiredAccess
+     );
+ 
++_Win32_metadata_set_last_error_
+ HRESOURCE
+ WINAPI
+ ResUtilGetResourceNameDependencyEx(

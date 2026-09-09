@@ -321,6 +321,7 @@ _Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(HGLOBAL) OleGetIconOfClass(IN REFCLSID rclsid, _In_opt_ LPOLESTR lpszLabel,
                                         IN BOOL fUseTypeAsLabel);
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 WINOLEAPI_(HGLOBAL) OleMetafilePictFromIconAndLabel(IN HICON hIcon, _In_ LPOLESTR lpszLabel,
                                         _In_ LPOLESTR lpszSourceFile, IN UINT iIconIndex);

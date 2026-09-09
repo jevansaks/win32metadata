@@ -32,6 +32,9 @@
 #endif
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -1182,6 +1185,7 @@ typedef struct _CMS_DH_KEY_INFO {
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1192,6 +1196,7 @@ CryptAcquireContextA(
     _In_        DWORD       dwProvType,
     _In_        DWORD       dwFlags
     );
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1214,6 +1219,7 @@ CryptAcquireContextW(
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1228,6 +1234,7 @@ CryptReleaseContext(
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1238,6 +1245,7 @@ CryptGenKey(
     _Out_   HCRYPTKEY   *phKey
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1249,6 +1257,7 @@ CryptDeriveKey(
     _Out_   HCRYPTKEY   *phKey
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1256,6 +1265,7 @@ CryptDestroyKey(
     _In_    HCRYPTKEY   hKey
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1266,6 +1276,7 @@ CryptSetKeyParam(
     _In_    DWORD       dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1277,6 +1288,7 @@ CryptGetKeyParam(
     _In_                                            DWORD   dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1287,6 +1299,7 @@ CryptSetHashParam(
     _In_    DWORD       dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1298,6 +1311,7 @@ CryptGetHashParam(
     _In_                                        DWORD   dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1308,6 +1322,7 @@ CryptSetProvParam(
     _In_    DWORD       dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1319,6 +1334,7 @@ CryptGetProvParam(
     _In_                                            DWORD   dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1328,6 +1344,7 @@ CryptGenRandom(
     _Inout_updates_bytes_(dwLen)   BYTE    *pbBuffer
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1337,6 +1354,7 @@ CryptGetUserKey(
     _Out_   HCRYPTKEY   *phUserKey
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1349,6 +1367,7 @@ CryptExportKey(
     _Inout_                                         DWORD   *pdwDataLen
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1361,6 +1380,7 @@ CryptImportKey(
     _Out_                   HCRYPTKEY   *phKey
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1374,6 +1394,7 @@ CryptEncrypt(
     _In_                                            DWORD   dwBufLen
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1386,6 +1407,7 @@ CryptDecrypt(
     _Inout_                                         DWORD       *pdwDataLen
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1397,6 +1419,7 @@ CryptCreateHash(
     _Out_   HCRYPTHASH  *phHash
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1407,6 +1430,7 @@ CryptHashData(
     _In_                    DWORD   dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1416,6 +1440,7 @@ CryptHashSessionKey(
     _In_    DWORD   dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1423,6 +1448,7 @@ CryptDestroyHash(
     _In_    HCRYPTHASH  hHash
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1434,6 +1460,7 @@ CryptSignHashA(
     _Out_writes_bytes_to_opt_(*pdwSigLen, *pdwSigLen) BYTE        *pbSignature,
     _Inout_                                       DWORD       *pdwSigLen
     );
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1451,6 +1478,7 @@ CryptSignHashW(
 #define CryptSignHash  CryptSignHashA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1462,6 +1490,7 @@ CryptVerifySignatureA(
     _In_opt_                LPCSTR    szDescription,
     _In_                    DWORD       dwFlags
     );
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1479,6 +1508,7 @@ CryptVerifySignatureW(
 #define CryptVerifySignature  CryptVerifySignatureA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1486,6 +1516,7 @@ CryptSetProviderA(
     _In_    LPCSTR    pszProvName,
     _In_    DWORD       dwProvType
     );
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1499,6 +1530,7 @@ CryptSetProviderW(
 #define CryptSetProvider  CryptSetProviderA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1508,6 +1540,7 @@ CryptSetProviderExA(
     _Reserved_  DWORD *pdwReserved,
     _In_        DWORD dwFlags
     );
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1523,6 +1556,7 @@ CryptSetProviderExW(
 #define CryptSetProviderEx  CryptSetProviderExA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1533,6 +1567,7 @@ CryptGetDefaultProviderA(
     _Out_writes_bytes_to_opt_(*pcbProvName, *pcbProvName)   LPSTR pszProvName,
     _Inout_                                         DWORD   *pcbProvName
     );
+_Win32_metadata_set_last_error_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1549,6 +1584,7 @@ CryptGetDefaultProviderW(
 #define CryptGetDefaultProvider  CryptGetDefaultProviderA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1560,6 +1596,7 @@ CryptEnumProviderTypesA(
     _Out_writes_bytes_to_opt_(*pcbTypeName, *pcbTypeName)   LPSTR szTypeName,
     _Inout_                                         DWORD   *pcbTypeName
     );
+_Win32_metadata_set_last_error_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1577,6 +1614,7 @@ CryptEnumProviderTypesW(
 #define CryptEnumProviderTypes  CryptEnumProviderTypesA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1588,6 +1626,7 @@ CryptEnumProvidersA(
     _Out_writes_bytes_to_opt_(*pcbProvName, *pcbProvName)   LPSTR szProvName,
     _Inout_                                             DWORD   *pcbProvName
     );
+_Win32_metadata_set_last_error_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1605,6 +1644,7 @@ CryptEnumProvidersW(
 #define CryptEnumProviders  CryptEnumProvidersA
 #endif // !UNICODE
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1614,6 +1654,7 @@ CryptContextAddRef(
     _In_        DWORD       dwFlags
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -1624,6 +1665,7 @@ CryptDuplicateKey(
     _Out_       HCRYPTKEY   *phKey
     );
 
+_Win32_metadata_set_last_error_
 WINADVAPI
 BOOL
 WINAPI
@@ -2732,6 +2774,7 @@ typedef struct _CRYPT_CSP_PROVIDER {
 //  for the lpszStructType, the hex dump of the encoded BLOB will be returned.
 //  User can set the flag CRYPT_FORMAT_STR_NO_HEX to disable the hex dump.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -2831,6 +2874,7 @@ typedef struct _CRYPT_ENCODE_PARA {
 } CRYPT_ENCODE_PARA, *PCRYPT_ENCODE_PARA;
 
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -2844,6 +2888,7 @@ CryptEncodeObjectEx(
     _Inout_ DWORD *pcbEncoded
     );
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -2936,6 +2981,7 @@ typedef struct _CRYPT_DECODE_PARA {
     PFN_CRYPT_FREE          pfnFree;            // OPTIONAL
 } CRYPT_DECODE_PARA, *PCRYPT_DECODE_PARA;
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -2951,6 +2997,7 @@ CryptDecodeObjectEx(
     );
 
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6095,6 +6142,7 @@ CryptInitOIDFunctionSet(
 //  the registered function might handle a new special case and call the
 //  pre-installed function to handle the remaining cases.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -6118,6 +6166,7 @@ CryptGetOIDFunctionAddress(
 //  names. The list is terminated with an empty (L"\0") Dll file name.
 //  For example: L"first.dll" L"\0" L"second.dll" L"\0" L"\0"
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -6306,6 +6355,7 @@ CryptSetOIDFunctionValue(
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6344,6 +6394,7 @@ typedef BOOL (WINAPI *PFN_CRYPT_ENUM_OID_FUNC)(
 //
 //  String types are UNICODE.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -7502,6 +7553,7 @@ typedef struct _CMSG_STREAM_INFO {
 //  The pStreamInfo parameter needs to be set to stream the encoded message
 //  output.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 HCRYPTMSG
 WINAPI
@@ -7522,6 +7574,7 @@ CryptMsgOpenToEncode(
 //  the data to be updated. Note, this might not be the exact length. However,
 //  it will always be greater than or equal to the actual length.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -7546,6 +7599,7 @@ CryptMsgCalculateEncodedLength(
 //  The pStreamInfo parameter needs to be set to stream the decoded content
 //  output.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 HCRYPTMSG
 WINAPI
@@ -7573,6 +7627,7 @@ CryptMsgDuplicate(
 //
 //  LastError is preserved unless FALSE is returned.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -7589,6 +7644,7 @@ CryptMsgClose(
 //  is completed. The encoded/decoded content and the decoded parameters
 //  are valid until the open and all duplicated handles are closed.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -7623,6 +7679,7 @@ CryptMsgUpdate(
 //
 //  See below for a list of the parameters to get.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -8161,6 +8218,7 @@ typedef struct _CMSG_CMS_RECIPIENT_INFO {
 //  See below for a list of the control operations and their pvCtrlPara
 //  type definition.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -8569,6 +8627,7 @@ typedef struct _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA {
 //  The only fields referenced from pciCountersigner are SerialNumber, Issuer,
 //  and SubjectPublicKeyInfo.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CryptMsgVerifyCountersignatureEncoded(
@@ -8592,6 +8651,7 @@ CryptMsgVerifyCountersignatureEncoded(
 //  The signer can be a CERT_PUBLIC_KEY_INFO, certificate context or a
 //  chain context.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CryptMsgVerifyCountersignatureEncodedEx(
@@ -8618,6 +8678,7 @@ CryptMsgVerifyCountersignatureEncodedEx(
 //
 //  dwIndex is a zero-based index of the SignerInfo to be countersigned.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CryptMsgCountersign(
@@ -8633,6 +8694,7 @@ CryptMsgCountersign(
 //  attribute in the unauthenticated attributes of a signed-data or
 //  signed-and-enveloped-data message.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CryptMsgCountersignEncoded(
@@ -10673,6 +10735,7 @@ typedef struct _CERT_LDAP_STORE_OPENED_PARA {
 //      attribute.
 //
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Must_inspect_result_
 HCERTSTORE
@@ -11115,6 +11178,7 @@ CertDuplicateStore(
 //      Note, the default (without "_A" or "_W") is UNICODE.
 //
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -11157,6 +11221,7 @@ CertSaveStore(
 //  LastError is preserved unless CERT_CLOSE_STORE_CHECK_FLAG is set and FALSE
 //  is returned.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -11177,6 +11242,7 @@ CertCloseStore(
 //  The returned certificate might not be valid. Normally, it would be
 //  verified when getting its issuer certificate (CertGetIssuerCertificateFromStore).
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
@@ -11203,6 +11269,7 @@ CertGetSubjectCertificateFromStore(
 //  NOTE: a NON-NULL pPrevCertContext is always CertFreeCertificateContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
@@ -11235,6 +11302,7 @@ CertEnumCertificatesInStore(
 //  NOTE: a NON-NULL pPrevCertContext is always CertFreeCertificateContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
@@ -11608,6 +11676,7 @@ CertFindCertificateInStore(
 //  For a verification check failure, a pointer to the issuer's CERT_CONTEXT
 //  is still returned and SetLastError isn't updated.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
@@ -11628,6 +11697,7 @@ CertGetIssuerCertificateFromStore(
 //
 //  For a verification check failure, SUCCESS is still returned.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -11661,6 +11731,7 @@ CertDuplicateCertificateContext(
 //  CertSetCertificateContextProperty and CertGetCertificateContextProperty can be called
 //  to store properties for the certificate.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
@@ -11824,6 +11895,7 @@ CertFreeCertificateContext(
 //  CERT_SET_PROPERTY_IGNORE_PERSIST_ERROR_FLAG can be set to ignore any
 //  provider write errors and always update the cached context's property.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -11901,6 +11973,7 @@ CertSetCertificateContextProperty(
 //
 //  For all other PROP_IDs, pvData points to an encoded array of bytes.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -11955,6 +12028,7 @@ CertEnumCertificateContextProperties(
 //  CTL_ENTRY_FROM_PROP_CHAIN_FLAG can be set in dwFlags, to force the
 //  inclusion of the chain building hash properties as attributes.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -11984,6 +12058,7 @@ CertCreateCTLEntryFromCertificateContextProperties(
 //
 //  CERT_SET_PROPERTY_IGNORE_PERSIST_ERROR_FLAG may be set in dwFlags.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12051,6 +12126,7 @@ CertSetCertificateContextPropertiesFromCTLEntry(
 //  For a verification check failure, a pointer to the first or next
 //  CRL_CONTEXT is still returned and SetLastError isn't updated.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCRL_CONTEXT
 WINAPI
@@ -12077,6 +12153,7 @@ CertGetCRLFromStore(
 //  NOTE: a NON-NULL pPrevCrlContext is always CertFreeCRLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCRL_CONTEXT
 WINAPI
@@ -12108,6 +12185,7 @@ CertEnumCRLsInStore(
 //  NOTE: a NON-NULL pPrevCrlContext is always CertFreeCRLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCRL_CONTEXT
 WINAPI
@@ -12233,6 +12311,7 @@ CertDuplicateCRLContext(
 //  CertSetCRLContextProperty and CertGetCRLContextProperty can be called
 //  to store properties for the CRL.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCRL_CONTEXT
 WINAPI
@@ -12260,6 +12339,7 @@ CertFreeCRLContext(
 //
 //  Same Property Ids and semantics as CertSetCertificateContextProperty.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12278,6 +12358,7 @@ CertSetCRLContextProperty(
 //  CERT_SHA1_HASH_PROP_ID, CERT_MD5_HASH_PROP_ID or
 //  CERT_SIGNATURE_HASH_PROP_ID is the predefined property of most interest.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12410,6 +12491,7 @@ CertIsValidCRLForCertificate(
 //  ppCertContext can be NULL, indicating the caller isn't interested
 //  in getting the CERT_CONTEXT of the added or existing certificate.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -12480,6 +12562,7 @@ CertAddEncodedCertificateToStore(
 //  ppStoreContext can be NULL, indicating the caller isn't interested
 //  in getting the CERT_CONTEXT of the added or existing certificate.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -12534,6 +12617,7 @@ CertAddCertificateContextToStore(
 //  returned it must be freed by calling CertFreeCertificateContext or
 //  CertFreeCRLContext.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -12564,6 +12648,7 @@ CertAddSerializedElementToStore(
 //  NOTE: the pCertContext is always CertFreeCertificateContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12587,6 +12672,7 @@ CertDeleteCertificateFromStore(
 //  ppCrlContext can be NULL, indicating the caller isn't interested
 //  in getting the CRL_CONTEXT of the added or existing CRL.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -12620,6 +12706,7 @@ CertAddEncodedCRLToStore(
 //  ppStoreContext can be NULL, indicating the caller isn't interested
 //  in getting the CRL_CONTEXT of the added or existing CRL.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -12643,6 +12730,7 @@ CertAddCRLContextToStore(
 //  NOTE: the pCrlContext is always CertFreeCRLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12654,6 +12742,7 @@ CertDeleteCRLFromStore(
 //  Serialize the certificate context's encoded certificate and its
 //  properties.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12668,6 +12757,7 @@ CertSerializeCertificateStoreElement(
 //+-------------------------------------------------------------------------
 //  Serialize the CRL context's encoded CRL and its properties.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12708,6 +12798,7 @@ CertDuplicateCTLContext(
 //  CertSetCTLContextProperty and CertGetCTLContextProperty can be called
 //  to store properties for the CTL.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCTL_CONTEXT
 WINAPI
@@ -12735,6 +12826,7 @@ CertFreeCTLContext(
 //
 //  Same Property Ids and semantics as CertSetCertificateContextProperty.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12753,6 +12845,7 @@ CertSetCTLContextProperty(
 //  CERT_SHA1_HASH_PROP_ID or CERT_NEXT_UPDATE_LOCATION_PROP_ID are the
 //  predefined properties of most interest.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12790,6 +12883,7 @@ CertEnumCTLContextProperties(
 //  NOTE: a NON-NULL pPrevCtlContext is always CertFreeCTLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCTL_CONTEXT
 WINAPI
@@ -12816,6 +12910,7 @@ CertEnumCTLsInStore(
 //
 //  dwEncodingType isn't used for either of the above SubjectTypes.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCTL_ENTRY
 WINAPI
@@ -12861,6 +12956,7 @@ typedef struct _CTL_ANY_SUBJECT_INFO {
 //  NOTE: a NON-NULL pPrevCtlContext is always CertFreeCTLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCTL_CONTEXT
 WINAPI
@@ -12966,6 +13062,7 @@ typedef struct _CTL_FIND_SUBJECT_PARA {
 //  ppCtlContext can be NULL, indicating the caller isn't interested
 //  in getting the CTL_CONTEXT of the added or existing CTL.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -12999,6 +13096,7 @@ CertAddEncodedCTLToStore(
 //  ppStoreContext can be NULL, indicating the caller isn't interested
 //  in getting the CTL_CONTEXT of the added or existing CTL.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13013,6 +13111,7 @@ CertAddCTLContextToStore(
 //+-------------------------------------------------------------------------
 //  Serialize the CTL context's encoded CTL and its properties.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13035,6 +13134,7 @@ CertSerializeCTLStoreElement(
 //  NOTE: the pCtlContext is always CertFreeCTLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13043,6 +13143,7 @@ CertDeleteCTLFromStore(
     );
 
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13054,6 +13155,7 @@ CertAddCertificateLinkToStore(
     _Outptr_opt_ PCCERT_CONTEXT *ppStoreContext
     );
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13065,6 +13167,7 @@ CertAddCRLLinkToStore(
     _Outptr_opt_ PCCRL_CONTEXT *ppStoreContext
     );
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13095,6 +13198,7 @@ CertRemoveStoreFromCollection(
     );
 
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13254,6 +13358,7 @@ CertSetStoreProperty(
 //  If the property doesn't exist, returns FALSE and sets LastError to
 //  CRYPT_E_NOT_FOUND.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13327,6 +13432,7 @@ typedef struct _CERT_CREATE_CONTEXT_PARA {
 //  free context API. The context can be duplicated by calling the
 //  appropriate duplicate context API.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 const void *
 WINAPI
@@ -13701,6 +13807,7 @@ CertEnumSystemStore(
 //  If the system store location only supports system stores and doesn't
 //  support physical stores, LastError is set to ERROR_CALL_NOT_IMPLEMENTED.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13763,6 +13870,7 @@ CertEnumPhysicalStore(
 //  If the CERT_FIND_PROP_ONLY_ENHKEY_USAGE_FLAG is set, then, only get the
 //  property.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13782,6 +13890,7 @@ CertGetEnhancedKeyUsage(
 //+-------------------------------------------------------------------------
 //  Set the enhanced key usage property for the certificate.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13793,6 +13902,7 @@ CertSetEnhancedKeyUsage(
 //+-------------------------------------------------------------------------
 //  Add the usage identifier to the certificate's enhanced key usage property.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13806,6 +13916,7 @@ CertAddEnhancedKeyUsageIdentifier(
 //  Remove the usage identifier from the certificate's enhanced key usage
 //  property.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13828,6 +13939,7 @@ CertRemoveEnhancedKeyUsageIdentifier(
 //  If each cert is good for all possible usages then the cNumOIDs is set to -1.
 //
 //----------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13868,6 +13980,7 @@ CertGetValidUsages(
 //  interested in getting the CertContext and/or index of the signer.
 //--------------------------------------------------------------------------
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return == TRUE)
 BOOL
@@ -13900,6 +14013,7 @@ CryptMsgGetAndVerifySigner(
 //  CMSG_CMS_ENCAPSULATED_CTL_FLAG can be set to encode a CMS compatible
 //  V3 SignedData message.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13929,6 +14043,7 @@ CryptMsgSignCTL(
 //  CMSG_CMS_ENCAPSULATED_CTL_FLAG can be set to encode a CMS compatible
 //  V3 SignedData message.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14082,6 +14197,7 @@ typedef struct _CTL_VERIFY_USAGE_STATUS {
 //      CRYPT_E_NOT_IN_CTL
 //      CRYPT_E_NO_TRUSTED_SIGNER
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14313,6 +14429,7 @@ typedef struct _CERT_REVOCATION_STATUS {
 //  advancing the start of the context array to the returned dwIndex and
 //  decrementing the count of remaining contexts.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14401,6 +14518,7 @@ CertVerifyRevocation(
 //  Returns TRUE if the integer blobs are identical after removing leading
 //  0 or 0xFF bytes.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CertCompareIntegerBlob(
@@ -14463,6 +14581,7 @@ CertCompareCertificateName(
 //  CERT_UNICODE_IS_RDN_ATTRS_FLAG should be set if the pRDN was initialized
 //  with unicode strings as for CryptEncodeObject(X509_UNICODE_NAME).
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14501,6 +14620,7 @@ CertComparePublicKeyInfo(
 //
 //  Returns 0 if unable to determine the key's length.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -14524,6 +14644,7 @@ CertGetPublicKeyLength(
 //  hCryptProv specifies the crypto provider to use to verify the signature.
 //  It doesn't need to use a private key.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Must_inspect_result_
 BOOL
@@ -14561,6 +14682,7 @@ CryptVerifyCertificateSignature(
 //  to verify this no signature case. If any other dwIssuerType is
 //  specified, the verify will fail with LastError set to E_INVALIDARG.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Must_inspect_result_
 BOOL
@@ -14683,6 +14805,7 @@ typedef struct _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO {
 //  The SigningCert can be NULL to only check if the CNG hash algorithm is
 //  strong.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14699,6 +14822,7 @@ CertIsStrongHashToSign(
 //  hCryptProv specifies the crypto provider to use to compute the hash.
 //  It doesn't need to use a private key.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14720,6 +14844,7 @@ CryptHashToBeSigned(
 //  Algid specifies the CAPI hash algorithm to use. If Algid is 0, then, the
 //  default hash algorithm (currently SHA1) is used.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14744,6 +14869,7 @@ CryptHashCertificate(
 //+-------------------------------------------------------------------------
 //  Hash the encoded content using the CNG hash algorithm provider.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -14777,6 +14903,7 @@ CryptHashCertificate2(
 //  dwKeySpec isn't used and hCryptProvOrNCryptKey can be NULL where an
 //  appropriate default provider will be used for hashing.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14808,6 +14935,7 @@ CryptSignCertificate(
 //  dwKeySpec isn't used and hCryptProv can be NULL where an appropriate
 //  default provider will be used for hashing.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15041,6 +15169,7 @@ CertFindRDNAttr(
 //  cbKeyUsage bytes are copied into *pbKeyUsage. Any remaining uncopied
 //  bytes are zeroed.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15086,6 +15215,7 @@ typedef void *HCRYPTDEFAULTCONTEXT;
 //  not CryptReleaseContext'ed if CryptUninstallDefaultContext is
 //  called.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15139,6 +15269,7 @@ typedef struct _CRYPT_DEFAULT_CONTEXT_MULTI_OID_PARA {
 //  set, if any other threads are currently using this context,
 //  this function will block until they finish.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15155,6 +15286,7 @@ CryptUninstallDefaultContext(
 //  Calls CryptExportPublicKeyInfoEx with pszPublicKeyObjId = NULL,
 //  dwFlags = 0 and pvAuxInfo = NULL.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15195,6 +15327,7 @@ CryptExportPublicKeyInfo(
 //      CRYPT_OID_USE_CURVE_PARAMETERS_FOR_ENCODE_FLAG
 //--------------------------------------------------------------------------
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15289,6 +15422,7 @@ typedef BOOL (WINAPI *PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC) 
 //  Calls CryptImportPublicKeyInfoEx with aiKeyAlg = 0, dwFlags = 0 and
 //  pvAuxInfo = NULL.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15315,6 +15449,7 @@ CryptImportPublicKeyInfo(
 //--------------------------------------------------------------------------
 #define CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_FUNC   "CryptDllImportPublicKeyInfoEx"
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15351,6 +15486,7 @@ CryptImportPublicKeyInfoEx(
 //  dwFlags can also have BCRYPT_NO_KEY_VALIDATION OR'd in. This flag is
 //  passed to BCryptImportKeyPair.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15467,6 +15603,7 @@ typedef BOOL (WINAPI *PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC) (
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15522,6 +15659,7 @@ CryptAcquireCertificatePrivateKey(
 //  The above CRYPT_ACQUIRE_NCRYPT_KEY_FLAGS can also be set. The default
 //  is CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15577,6 +15715,7 @@ typedef BOOL (WINAPI *PFN_IMPORT_PRIV_KEY_FUNC) (
 // pvAuxInfo - This parameter is reserved for future use and should be set
 //             to NULL in the interim.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15608,6 +15747,7 @@ typedef BOOL (WINAPI *PFN_EXPORT_PRIV_KEY_FUNC) (
 //
 //  Export the private key in PKCS8 format
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15649,6 +15789,7 @@ CryptExportPKCS8(
 // pcbPrivateKeyBlob - A pointer to a DWORD that contains the size, in bytes,
 //                                         of the private key blob being exported.
 //+-------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15671,6 +15812,7 @@ CryptExportPKCS8Ex(
 //
 //  The public key info is encoded and then hashed.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15993,6 +16135,7 @@ CertNameToStrW(
 
 //+-------------------------------------------------------------------------
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16007,6 +16150,7 @@ CertStrToNameA(
     );
 //+-------------------------------------------------------------------------
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16526,6 +16670,7 @@ typedef struct _CRYPT_KEY_VERIFY_MESSAGE_PARA {
 //  If fDetachedSignature is TRUE, the "to be signed" content isn't included
 //  in the encoded signed blob.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16575,6 +16720,7 @@ CryptSignMessage(
 //  Note, an alternative way to get the certificates and CRLs from a
 //  signed message is to call CryptGetMessageCertificates.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16592,6 +16738,7 @@ CryptVerifyMessageSignature(
 //  Returns the count of signers in the signed message. For no signers, returns
 //  0. For an error returns -1 with LastError updated accordingly.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 LONG
 WINAPI
@@ -16605,6 +16752,7 @@ CryptGetMessageSignerCount(
 //  Returns the cert store containing the message's certs and CRLs.
 //  For an error, returns NULL with LastError updated.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 HCERTSTORE
 WINAPI
@@ -16623,6 +16771,7 @@ CryptGetMessageCertificates(
 //  The "to be signed" content is passed in separately. No
 //  decoded output. Otherwise, identical to CryptVerifyMessageSignature.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16640,6 +16789,7 @@ CryptVerifyDetachedMessageSignature(
 //+-------------------------------------------------------------------------
 //  Encrypts the message for the recipient(s).
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16667,6 +16817,7 @@ CryptEncryptMessage(
 //  ppXchgCert can be NULL, indicating the caller isn't interested
 //  in getting the CertContext used to decrypt.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16686,6 +16837,7 @@ CryptDecryptMessage(
 //  Note: this isn't the CMSG_SIGNED_AND_ENVELOPED. Its a CMSG_SIGNED
 //  inside of an CMSG_ENVELOPED.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16727,6 +16879,7 @@ CryptSignAndEncryptMessage(
 //  The message always needs to be decrypted to allow access to the
 //  signed message. Therefore, if ppXchgCert != NULL, its always updated.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16774,6 +16927,7 @@ CryptDecryptAndVerifyMessageSignature(
 //      CryptVerifyMessageSignature.
 //  For CMSG_HASHED: verifies the hash and returns decoded content.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16803,6 +16957,7 @@ CryptDecodeMessage(
 //  pcbHashedBlob or pcbComputedHash can be NULL, indicating the caller
 //  isn't interested in getting the output.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16824,6 +16979,7 @@ CryptHashMessage(
 //  pcbToBeHashed or pcbComputedHash can be NULL,
 //  indicating the caller isn't interested in getting the output.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16845,6 +17001,7 @@ CryptVerifyMessageHash(
 //  pcbComputedHash can be NULL, indicating the caller isn't interested
 //  in getting the output.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16865,6 +17022,7 @@ CryptVerifyDetachedMessageHash(
 //
 //  Normally used until a certificate has been created for the key.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16889,6 +17047,7 @@ CryptSignMessageWithKey(
 //  pcbDecoded can be NULL, indicating the caller isn't interested
 //  in getting the decoded content.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16933,6 +17092,7 @@ CryptVerifyMessageSignatureWithKey(
 //--------------------------------------------------------------------------
 
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 HCERTSTORE
 WINAPI
@@ -16942,6 +17102,7 @@ CertOpenSystemStoreA(
     )
     _Win32_metadata_invalid_handle_(-1)
     _Win32_metadata_invalid_handle_(0);
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 HCERTSTORE
 WINAPI
@@ -16963,6 +17124,7 @@ CertOpenSystemStoreW(
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16971,6 +17133,7 @@ CertAddEncodedCertificateToSystemStoreA(
     _In_reads_bytes_(cbCertEncoded) const BYTE *    pbCertEncoded,
     _In_ DWORD           cbCertEncoded
     );
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17160,6 +17323,7 @@ FindCertsByIssuer(
 //  If the *pbObject is of type CERT_QUERY_CONTENT_PKCS10 or CERT_QUERY_CONTENT_PFX, CryptQueryObject
 //  will not return anything in *phCertstore, *phMsg, or *ppvContext.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -18008,6 +18172,7 @@ typedef struct _CRYPT_URL_INFO {
     DWORD   *rgcGroupEntry;
 } CRYPT_URL_INFO, *PCRYPT_URL_INFO;
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -18197,6 +18362,7 @@ typedef struct _CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO {
 } CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO,
     *PCRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO;
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return == TRUE)
 BOOL
@@ -18341,6 +18507,7 @@ CryptFlushTimeValidObject (
 //      CRYPT_OID_USE_CURVE_NAME_FOR_ENCODE_FLAG
 //      CRYPT_OID_USE_CURVE_PARAMETERS_FOR_ENCODE_FLAG
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
@@ -18393,6 +18560,7 @@ CertCreateSelfSignCertificate(
 //  can also be set to specify the name of a remote computer to be searched
 //  instead of the local machine.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -18434,6 +18602,7 @@ CryptGetKeyIdentifierProperty(
 //  exists. For an existing property, FALSE is returned with LastError set to
 //  CRYPT_E_EXISTS.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -18486,6 +18655,7 @@ typedef BOOL (WINAPI *PFN_CRYPT_ENUM_KEYID_PROP)(
 //  Key Identifiers. Set pwszComputerName, to enumerate Key Identifiers on
 //  a remote computer.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -18510,6 +18680,7 @@ CryptEnumKeyIdentifierProperties(
 //  public key Object Identifier. pszPubKeyOID can be set to override
 //  the default OID obtained from the aiKeyAlg.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -19642,6 +19813,7 @@ typedef struct _CERT_CHAIN_ENGINE_CONFIG {
 #define CERT_CHAIN_EXCLUSIVE_ENABLE_CA_FLAG                 0x00000001
 #endif
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -19670,6 +19842,7 @@ CertFreeCertificateChainEngine (
 // the engine and updates the engine caches.
 //
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -20110,6 +20283,7 @@ typedef struct _CERT_CHAIN_PARA {
 // dwInfoStatus.
 #define CERT_CHAIN_ENABLE_DISALLOWED_CA             0x00020000
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -20950,6 +21124,7 @@ typedef struct _CT_EXTRA_CERT_CHAIN_POLICY_STATUS {
 // *pdwSkip returns the character count of skipped strings, optional
 // *pdwFlags returns the actual format used in the conversion, optional
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 _Success_(return)
 WINCRYPT32STRINGAPI
 BOOL
@@ -20976,6 +21151,7 @@ CryptStringToBinaryA(
 // *pdwSkip returns the character count of skipped strings, optional
 // *pdwFlags returns the actual format used in the conversion, optional
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 _Success_(return)
 WINCRYPT32STRINGAPI
 BOOL
@@ -21176,6 +21352,7 @@ CRYPT_PKCS12_PBE_PARAMS;
 //                                           except, we won't fallback to
 //                                           using the password to decrypt.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 HCERTSTORE
 WINAPI
@@ -21303,6 +21480,7 @@ PFXVerifyPassword(
 //  the memory pointed to by pPFX->pbData is updated with the encoded bytes
 //  and pPFX->cbData is updated with the encoded byte length.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -21375,6 +21553,7 @@ typedef struct _PKCS12_PBES2_EXPORT_PARAMS
 //  This is an old API kept for compatibility with IE4 clients. New applications
 //  should call the above PfxExportCertStoreEx for enhanced security.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -21494,6 +21673,7 @@ typedef struct _CERT_SERVER_OCSP_RESPONSE_OPEN_PARA {
 //  CertCloseServerOcspResponse() must be called to close the returned
 //  handle.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 HCERT_SERVER_OCSP_RESPONSE
 WINAPI
@@ -21628,6 +21808,7 @@ CertFreeServerOcspResponseContext(
 //  *ppwszMimeType is always NULL for the biometric types. For success,
 //  the caller must always check if non-NULL before dereferencing.
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -21732,6 +21913,7 @@ typedef const CERT_SELECT_CRITERIA*     PCCERT_SELECT_CRITERIA;
 //  the matching ones based on the flags and selection criteria.
 //--------------------------------------------------------------------------
 
+_Win32_metadata_set_last_error_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -21933,6 +22115,7 @@ typedef struct _CRYPT_TIMESTAMP_PARA
 //     if fRequestCerts value is TRUE.
 //
 //--------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CryptRetrieveTimeStamp(
@@ -21998,6 +22181,7 @@ CryptRetrieveTimeStamp(
 //    The caller should also build a chain for ppTsSigner and validate the trust.
 //--------------------------------------------------------------------------
 
+_Win32_metadata_set_last_error_
 _Success_(return == TRUE)
 BOOL
 WINAPI

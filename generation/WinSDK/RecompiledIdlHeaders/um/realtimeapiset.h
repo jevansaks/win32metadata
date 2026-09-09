@@ -26,6 +26,7 @@ extern "C" {
 
 #if (_WIN32_WINNT >= 0x0600)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -34,6 +35,7 @@ QueryThreadCycleTime(
     _Out_ PULONG64 CycleTime
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -42,6 +44,7 @@ QueryProcessCycleTime(
     _Out_ PULONG64 CycleTime
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI

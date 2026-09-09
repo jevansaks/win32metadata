@@ -34,6 +34,9 @@ Notes:
 #include "SCardErr.h"
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -486,6 +489,7 @@ SCardFreeMemory(
     _In_ LPCVOID pvMem);
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_metadata_set_last_error_
 extern WINSCARDAPI HANDLE WINAPI
 SCardAccessStartedEvent(void);
 

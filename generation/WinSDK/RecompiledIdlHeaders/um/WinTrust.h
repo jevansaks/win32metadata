@@ -16,6 +16,9 @@
 #define WINTRUST_H
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family or Wintrust Package
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WINTRUST)
@@ -1095,6 +1098,7 @@ typedef struct _CRYPT_PROVIDER_DEFUSAGE
 //      TRUE:                           No fatal errors
 //      FALSE:                          Errors occured.  See GetLastError()
 //
+_Win32_metadata_set_last_error_
 extern BOOL WINAPI  WintrustAddActionID(_In_ GUID *pgActionID,
                                         _In_ DWORD fdwFlags,
                                         _In_ CRYPT_REGISTER_ACTIONID *psProvInfo);
@@ -1144,6 +1148,7 @@ extern BOOL WINAPI WintrustLoadFunctionPointers(GUID *pgActionID, CRYPT_PROVIDER
 //      TRUE                            success.
 //      FALSE                           fail.
 //
+_Win32_metadata_set_last_error_
 extern BOOL WINAPI              WintrustAddDefaultForUsage(_In_ const char *pszUsageOID,
                                                            _In_ CRYPT_PROVIDER_REGDEFUSAGE *psDefUsage);
 
@@ -1162,6 +1167,7 @@ extern BOOL WINAPI              WintrustAddDefaultForUsage(_In_ const char *pszU
 //
 #define                             DWACTION_ALLOCANDFILL           1
 #define                             DWACTION_FREE                   2
+_Win32_metadata_set_last_error_
 extern BOOL WINAPI              WintrustGetDefaultForUsage(_In_ DWORD dwAction,
                                                            _In_ const char *pszUsageOID,
                                                            _Inout_ CRYPT_PROVIDER_DEFUSAGE *psUsage);

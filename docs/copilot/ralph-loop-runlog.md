@@ -4107,3 +4107,96 @@ unaffected by and out of scope for this tranche.
 - Residual sidecar entries: 0. Residual blockers introduced by this
   tranche: 0 (the one narrower, pre-existing `RtwqJoinWorkQueue` gap
   predates this tranche and was never a sidecar entry).
+
+## 2026-09-09T03:30:00Z - New sidecar-removal tranche: WithSetLastError.rsp (3365 API entries)
+
+Starting a new sidecar-removal tranche, same shift-left goal as the RAIIFree
+tranche above but for `generation/WinSDK/WithSetLastError.rsp` - a flat
+list of 3365 API names (plus one `--with-setlasterror` header line) passed
+to the scraper, versus `emitter.settings.rsp`'s `--memberRemap` format.
+
+**Phase 1 - reconciliation (redundant entries already covered by existing
+header annotations):**
+- Built a declaration-anchored scanner (not a naive forward-scan from each
+  annotation) that locates every name's real producer declaration(s) via
+  the SDK header tree and checks whether `_Win32_metadata_set_last_error_`
+  already sits in its immediate prefix block (also walking through
+  `#if`/`#elif`/`#else` guards so one annotation shared by a
+  version-guarded pair of redeclarations is still detected).
+- First pass (naive forward-scan heuristic) removed 1981 entries but had a
+  false-positive bug: SAL annotations/calling-convention macros shaped like
+  `IDENTIFIER(` (`_Success_(...)`, `_WINSOCK_DEPRECATED_BY(...)`,
+  `STDAPI_(rettype)`) were mistaken for the real function name, silently
+  under-counting coverage (e.g. `ConvertSidToStringSidA`, `WSARecvEx`
+  were misclassified as uncovered even though already annotated).
+  Corrected via `docs/copilot/ralph-loop-runlog.md`-documented fixes:
+  excluded identifiers matching `^_[A-Z]` or `API_?$` as annotation/
+  linkage-macro false positives, and widened the coverage-check walk to
+  pass through conditional-compilation guards. Final corrected pass:
+  **2231 entries removed** as redundant (up from the initial, buggy 1981).
+- **Phase 2** - 9 entries are not real functions at all (2 preprocessor
+  macros `HasOverlappedIoCompleted`/`PropSheet_GetResult`; 7 COM
+  interface *type* names `IEnroll`/6x `IGetCluster*Info`) - removed
+  with no substitute, documented as non-representable blockers rather than
+  silently dropped.
+- Net after phases 1-2: rsp reduced from 3365 to 1125 entries requiring
+  producer-site migration.
+
+**Phase 3 - producer-site migration (982 of the 1125 migrated this
+tranche):**
+- Built a from-scratch declaration index (separate from the coverage
+  scanner) with an extensive false-positive elimination pipeline, each rule
+  validated by an explicit self-test before being trusted at scale:
+  SAL/specstrings infra headers excluded; `.idl` `cpp_quote` duplicates
+  of a real `.h` declaration dropped in favor of the `.h`; comment
+  prose (both `//` and inline/multi-line `/* */`) excluded; backslash-
+  continued multi-line macro bodies excluded (e.g. `windowsx.h`'s
+  `GlobalLockPtr`/`GlobalUnlockPtr` macros calling the real
+  `GlobalLock`/`GlobalUnlock`); the entire `winrt/` directory
+  excluded (COM/WinRT projection interface methods sharing a common name
+  with a real Win32 function, e.g. `GetClassName`, `SendMessage`,
+  `CompareStringOrdinal`); `STDMETHODCALLTYPE` COM vtable methods in
+  regular `um/` COM headers excluded; `return NAME(...)` forwarding-
+  shim call sites excluded (e.g. `WinBase.h`'s inline `FormatMessage`
+  dispatching to `FormatMessageA`/`W`). A brace-nesting-depth approach
+  to detect "inside a function body" was attempted and **reverted** after
+  it caused 93 false regressions (unreliable across this codebase's
+  legacy/heterogeneous formatting) in favor of these narrower, individually
+  validated rules plus a small number of manually-confirmed exceptions
+  (`FormatMessageA`/`W`, `LocalFree`, `MultiByteToWideChar`,
+  `GlobalFlags`, `CryptCATAdminAddCatalog`'s `#if`/`#else` pair).
+- Final automated dry-run confirmed zero would-be-duplicate insertions
+  before touching any file; post-insertion sweep confirmed zero adjacent
+  duplicate annotation lines anywhere in the tree.
+- **982 entries migrated across 63 headers** (1165 insertion locations;
+  ~187 names needed two locations for legitimate duplicate declarations -
+  mostly the classic `DbgHelp.h`/`ImageHlp.h` legacy-compatibility
+  pattern, ~180 pairs). Full header list and per-header consolidation
+  details in `docs/copilot/withsetlasterror-migration.md`.
+- Consolidated every touched header's complete change set (this tranche's
+  new annotations plus all pre-existing per-reason patches, including
+  RAIIFree-tranche annotations for headers like `avrt.h`/`WinBase.h`/
+  `wct.h`/`WtsApi32.h`/`wingdi.h`/`perflib.h`/`ShlObj_core.h`)
+  into one cumulative `<header>.metadata.patch` per header against the
+  pristine `d154186c` baseline; removed 20 now-superseded per-reason
+  patches.
+- Added the `win32metadata_annotations.h` guard explicitly to 30 of the
+  63 headers that lacked it and had no transitive path to it; the other 33
+  already had it or get it transitively via `minwindef.h`/`minwinbase.h`/
+  `windows.h`.
+
+**Validation:**
+- All 63 consolidated patches replay byte-for-byte from pristine
+  `d154186c`.
+- `ScrapeHeaders -p:ScanArch=crossarch` run across all 71 partitions
+  reachable from the touched headers, batched into 5 `PartitionFilter`
+  groups (using `%3B`-encoded semicolons, since PowerShell consumes a
+  literal `;` before MSBuild sees it) - all succeeded with 0 errors.
+  `AllJoyn` excluded as a pre-existing, unrelated toolchain blocker
+  (`__builtin_verbose_trap`), documented in the prior RAIIFree tranche.
+
+**Residual: 143 of 3365 original entries remain in
+`WithSetLastError.rsp`** (down from 3365), queued for a follow-up batch
+rather than left unexamined. See `docs/copilot/withsetlasterror-migration.md`
+for the complete accounting (counts, exact header list, exact removed
+per-reason patches, exact excluded blocker names).

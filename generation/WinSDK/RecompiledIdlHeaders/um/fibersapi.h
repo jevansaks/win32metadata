@@ -30,6 +30,7 @@ extern "C" {
 #define FLS_OUT_OF_INDEXES ((DWORD)0xFFFFFFFF)
 #endif
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 DWORD
 WINAPI
@@ -37,6 +38,7 @@ FlsAlloc(
     _In_opt_ PFLS_CALLBACK_FUNCTION lpCallback
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 PVOID
 WINAPI
@@ -44,6 +46,7 @@ FlsGetValue(
     _In_ DWORD dwFlsIndex
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -52,6 +55,7 @@ FlsSetValue(
     _In_opt_ PVOID lpFlsData
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI

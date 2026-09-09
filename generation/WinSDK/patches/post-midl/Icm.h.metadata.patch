@@ -1,0 +1,30 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Icm.h b/generation/WinSDK/RecompiledIdlHeaders/um/Icm.h
+index cf2fa06e..83242e47 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Icm.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Icm.h
+@@ -21,6 +21,9 @@ Revision History:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Modern Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
+@@ -337,6 +340,7 @@ typedef BMFORMAT *PBMFORMAT, *LPBMFORMAT;
+ // Callback function definition
+ //
+ 
++_Win32_metadata_canonical_name_(LPBMCALLBACKFN)
+ typedef BOOL (WINAPI *PBMCALLBACKFN)(ULONG, ULONG, LPARAM);
+ typedef PBMCALLBACKFN LPBMCALLBACKFN;
+ 
+@@ -1102,6 +1106,7 @@ BOOL WINAPI CMConvertIndexToColorName(
+                           DWORD dwCount
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL WINAPI CMCreateDeviceLinkProfile(
+     _In_reads_(nProfiles)                          PHPROFILE pahProfiles,    // array of profile handles
+                                                     DWORD nProfiles,          // profile handle array size

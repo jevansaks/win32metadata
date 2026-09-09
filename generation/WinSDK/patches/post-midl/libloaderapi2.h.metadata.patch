@@ -1,0 +1,12 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi2.h b/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi2.h
+index 105eee55..7c6e6111 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi2.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi2.h
+@@ -46,6 +46,7 @@ LoadPackagedLibrary(
+ 
+ #if (_WIN32_WINNT >= 0x0602)
+ 
++_Win32_metadata_set_last_error_
+ WINBASEAPI
+ BOOL
+ WINAPI

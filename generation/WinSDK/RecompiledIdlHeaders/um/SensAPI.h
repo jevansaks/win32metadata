@@ -32,6 +32,9 @@ Revision History:
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -67,18 +70,21 @@ typedef struct tagQOCINFO
 
 #if !defined(__midl)
 
+_Win32_metadata_set_last_error_
 BOOL APIENTRY
 IsDestinationReachableA(
     LPCSTR lpszDestination,
     LPQOCINFO lpQOCInfo
     );
 
+_Win32_metadata_set_last_error_
 BOOL APIENTRY
 IsDestinationReachableW(
     LPCWSTR lpszDestination,
     LPQOCINFO lpQOCInfo
     );
 
+_Win32_metadata_set_last_error_
 BOOL APIENTRY
 IsNetworkAlive(
     LPDWORD lpdwFlags

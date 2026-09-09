@@ -16,6 +16,9 @@
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -708,6 +711,7 @@ typedef const CRYPTUI_VIEWCERTIFICATE_STRUCTA *PCCRYPTUI_VIEWCERTIFICATE_STRUCTA
 //                                 if any properties have been changed on certs in the chain
 //                                 while the dialog was open
 //
+_Win32_metadata_set_last_error_
 _Success_(return == TRUE)
 BOOL
 WINAPI
@@ -716,6 +720,7 @@ CryptUIDlgViewCertificateW(
         _Out_ BOOL                                *pfPropertiesChanged  // OPTIONAL
         );
 
+_Win32_metadata_set_last_error_
 _Success_(return == TRUE)
 BOOL
 WINAPI
@@ -862,6 +867,7 @@ typedef const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO *PCCRYPTUI_WIZ_EXPORT_CERTCONT
 //                                          is being exported.  See above table for values, if this is non-NULL
 //                                          the values are displayed to the user as the default choices.
 //------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 _Success_(return == TRUE)
 BOOL
 WINAPI
@@ -997,6 +1003,7 @@ typedef const CRYPTUI_WIZ_IMPORT_SRC_INFO *PCCRYPTUI_WIZ_IMPORT_SRC_INFO;
 //                                          flag CERT_STORE_SET_LOCALIZED_NAME_FLAG.  If NULL, the wizard will prompt user to select
 //                                          a certificate store.
 //------------------------------------------------------------------------
+_Win32_metadata_set_last_error_
 _Success_(return == TRUE)
 BOOL
 WINAPI

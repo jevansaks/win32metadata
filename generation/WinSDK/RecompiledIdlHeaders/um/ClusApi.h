@@ -79,6 +79,9 @@ Revision History:
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family or FailoverCluster Package
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_CLUSTER)
@@ -658,6 +661,7 @@ typedef DWORD
     _Out_       LPDWORD pdwClusterState
     );
 
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 OpenCluster(
@@ -670,6 +674,7 @@ typedef HCLUSTER
     );
 
 #if (CLUSAPI_VERSION >= CLUSAPI_VERSION_SERVER2008R2)
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 OpenClusterEx(
@@ -1304,6 +1309,7 @@ typedef struct _CLUSTER_MEMBERSHIP_INFO {
 //
 // V2 Notifications DLL Functions
 //
+_Win32_metadata_set_last_error_
 HCHANGE
 WINAPI
 CreateClusterNotifyPortV2(
@@ -1397,6 +1403,7 @@ typedef DWORD
 //
 // Begin original notification DLL function defs
 //
+_Win32_metadata_set_last_error_
 HCHANGE
 WINAPI
 CreateClusterNotifyPort(
@@ -1500,6 +1507,7 @@ typedef enum CLUSTER_ENUM {
 #endif // _CLUSTER_API_TYPES_
 
 #if ( !MIDL_PASS && !__midl )
+_Win32_metadata_set_last_error_
 HCLUSENUM
 WINAPI
 ClusterOpenEnum(
@@ -1557,6 +1565,7 @@ typedef DWORD
 
 #if (CLUSAPI_VERSION >= CLUSAPI_VERSION_SERVER2008R2)
 
+_Win32_metadata_set_last_error_
 HCLUSENUMEX
 WINAPI
 ClusterOpenEnumEx(
@@ -1622,6 +1631,7 @@ typedef DWORD
 #define CLUSGROUPSET_STATUS_OS_HEARTBEAT                                            0x0000000000000004
 #define CLUSGROUPSET_STATUS_APPLICATION_READY                                       0x0000000000000008
 
+_Win32_metadata_set_last_error_
 HGROUPSET
 WINAPI
 CreateClusterGroupSet(
@@ -1635,6 +1645,7 @@ typedef HGROUPSET
     _In_ LPCWSTR lpszGroupSetName
     );
 
+_Win32_metadata_set_last_error_
 HGROUPSET
 WINAPI
 OpenClusterGroupSet(
@@ -1648,6 +1659,7 @@ typedef HGROUPSET
     _In_ LPCWSTR lpszGroupSetName
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CloseClusterGroupSet(
@@ -2075,6 +2087,7 @@ typedef DWORD
 
 #endif
 
+_Win32_metadata_set_last_error_
 HGROUPSETENUM
 WINAPI
     ClusterGroupSetOpenEnum(
@@ -2103,6 +2116,7 @@ ClusterGroupSetCloseEnum(
     IN HGROUPSETENUM hGroupSetEnum
     );
 
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 GetClusterFromGroupSet(
@@ -2371,6 +2385,7 @@ typedef enum CLUSTER_NODE_FAILBACK_STATUS {
 //
 
 #if ( !MIDL_PASS && !__midl )
+_Win32_metadata_set_last_error_
 HNODE
 WINAPI
 OpenClusterNode(
@@ -2385,6 +2400,7 @@ typedef HNODE
     );
 
 #if (CLUSAPI_VERSION >= CLUSAPI_VERSION_SERVER2008R2)
+_Win32_metadata_set_last_error_
 HNODE
 WINAPI
 OpenClusterNodeEx(
@@ -2418,6 +2434,7 @@ typedef HNODE
     );
 #endif
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CloseClusterNode(
@@ -2429,6 +2446,7 @@ typedef BOOL
     _In_ HNODE hNode
     );
 
+_Win32_metadata_set_last_error_
 CLUSTER_NODE_STATE
 WINAPI
 GetClusterNodeState(
@@ -2459,6 +2477,7 @@ typedef DWORD
 #define GetCurrentClusterNodeId(_lpszNodeId_, _lpcchName_) \
     GetClusterNodeId(NULL, (_lpszNodeId_), (_lpcchName_))
 
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 GetClusterFromNode(
@@ -2503,6 +2522,7 @@ typedef DWORD
     _In_ HNODE hNode
     );
 
+_Win32_metadata_set_last_error_
 HNETINTERFACEENUM
 WINAPI
 ClusterNetInterfaceOpenEnum(
@@ -2527,6 +2547,7 @@ ClusterNetInterfaceCloseEnum(
   _In_ HNETINTERFACEENUM hNetInterfaceEnum
 );
 
+_Win32_metadata_set_last_error_
 HNODEENUM
 WINAPI
 ClusterNodeOpenEnum(
@@ -2542,6 +2563,7 @@ typedef HNODEENUM
 
 #if (CLUSAPI_VERSION >= CLUSAPI_VERSION_SERVER2008R2)
 
+_Win32_metadata_set_last_error_
 HNODEENUMEX
 WINAPI
 ClusterNodeOpenEnumEx(
@@ -2684,6 +2706,7 @@ typedef DWORD
 //
 
 #if ( !MIDL_PASS && !__midl )
+_Win32_metadata_set_last_error_
 HKEY
 WINAPI
 GetClusterResourceTypeKey(
@@ -2786,6 +2809,7 @@ typedef struct _CLUSTER_RESOURCE_ENUM_ITEM {
 #endif // _CLUSTER_API_TYPES_
 
 #if ( !MIDL_PASS && !__midl )
+_Win32_metadata_set_last_error_
 HGROUP
 WINAPI
 CreateClusterGroup(
@@ -2799,6 +2823,7 @@ typedef HGROUP
     _In_ LPCWSTR lpszGroupName
     );
 
+_Win32_metadata_set_last_error_
 HGROUP
 WINAPI
 OpenClusterGroup(
@@ -2813,6 +2838,7 @@ typedef HGROUP
     );
 
 #if (CLUSAPI_VERSION >= CLUSAPI_VERSION_SERVER2008R2)
+_Win32_metadata_set_last_error_
 HGROUP
 WINAPI
 OpenClusterGroupEx(
@@ -3033,6 +3059,7 @@ typedef DWORD
 #define CLUSRES_STATUS_APPLICATION_READY                                       0x0000000000000100
 #define CLUSRES_STATUS_OFFLINE_NOT_LOCAL_DISK_OWNER                            0x0000000000000200
 
+_Win32_metadata_set_last_error_
 HRESENUMEX
 WINAPI
 ClusterResourceOpenEnumEx(
@@ -3280,6 +3307,7 @@ typedef DWORD
 
 #endif // (CLUSAPI_VERSION >= CLUSAPI_VERSION_WINDOWS8)
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CloseClusterGroup(
@@ -3291,6 +3319,7 @@ typedef BOOL
     _In_ HGROUP hGroup
     );
 
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 GetClusterFromGroup(
@@ -3302,6 +3331,7 @@ typedef HCLUSTER
     _In_ HGROUP hGroup
     );
 
+_Win32_metadata_set_last_error_
 _Success_(return >= 0) //!= ClusterGroupStateUnknown
 CLUSTER_GROUP_STATE
 WINAPI
@@ -3471,6 +3501,7 @@ typedef DWORD
 
 #endif
 
+_Win32_metadata_set_last_error_
 HGROUPENUM
 WINAPI
 ClusterGroupOpenEnum(
@@ -3585,6 +3616,7 @@ typedef enum CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE {
 //
 
 #if ( !MIDL_PASS && !__midl )
+_Win32_metadata_set_last_error_
 HRESOURCE
 WINAPI
 CreateClusterResource(
@@ -3625,6 +3657,7 @@ typedef HRESOURCE
 
 #endif
 
+_Win32_metadata_set_last_error_
 HRESOURCE
 WINAPI
 OpenClusterResource(
@@ -3639,6 +3672,7 @@ typedef HRESOURCE
     );
 
 #if (CLUSAPI_VERSION >= CLUSAPI_VERSION_SERVER2008R2)
+_Win32_metadata_set_last_error_
 HRESOURCE
 WINAPI
 OpenClusterResourceEx(
@@ -3657,6 +3691,7 @@ typedef HRESOURCE
     );
 #endif
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CloseClusterResource(
@@ -3668,6 +3703,7 @@ typedef BOOL
     HRESOURCE hResource
     );
 
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 GetClusterFromResource(
@@ -3707,6 +3743,7 @@ typedef DWORD
 
 #endif
 
+_Win32_metadata_set_last_error_
 _Success_(return >= 0) // != ClusterResourceStateUnknown
 CLUSTER_RESOURCE_STATE
 WINAPI
@@ -4052,6 +4089,7 @@ typedef DWORD
     );
 
 #if (CLUSAPI_VERSION >= CLUSAPI_VERSION_SERVER2008R2)
+_Win32_metadata_set_last_error_
 DWORD
 WINAPI
 ClusterSharedVolumeSetSnapshotState(
@@ -4396,6 +4434,7 @@ typedef DWORD
 
 #endif
 
+_Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 BOOL
 WINAPI
@@ -6863,6 +6902,7 @@ typedef enum CLUSTER_RESOURCE_TYPE_ENUM {
 #endif // _CLUSTER_API_TYPES_
 
 #if ( !MIDL_PASS && !__midl )
+_Win32_metadata_set_last_error_
 HRESENUM
 WINAPI
 ClusterResourceOpenEnum(
@@ -6994,6 +7034,7 @@ typedef DWORD
 
 #endif
 
+_Win32_metadata_set_last_error_
 HRESTYPEENUM
 WINAPI
 ClusterResourceTypeOpenEnum(
@@ -7092,6 +7133,7 @@ typedef enum CLUSTER_NETWORK_ROLE {
 //
 
 #if ( !MIDL_PASS && !__midl )
+_Win32_metadata_set_last_error_
 HNETWORK
 WINAPI
 OpenClusterNetwork(
@@ -7106,6 +7148,7 @@ typedef HNETWORK
     );
 
 #if (CLUSAPI_VERSION >= CLUSAPI_VERSION_SERVER2008R2)
+_Win32_metadata_set_last_error_
 HNETWORK
 WINAPI
 OpenClusterNetworkEx(
@@ -7124,6 +7167,7 @@ typedef HNETWORK
     );
 #endif
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CloseClusterNetwork(
@@ -7135,6 +7179,7 @@ typedef BOOL
     _In_ HNETWORK hNetwork
     );
 
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 GetClusterFromNetwork(
@@ -7146,6 +7191,7 @@ typedef HCLUSTER
     _In_ HNETWORK hNetwork
     );
 
+_Win32_metadata_set_last_error_
 HNETWORKENUM
 WINAPI
 ClusterNetworkOpenEnum(
@@ -7201,6 +7247,7 @@ typedef DWORD
     _In_ HNETWORKENUM hNetworkEnum
     );
 
+_Win32_metadata_set_last_error_
 CLUSTER_NETWORK_STATE
 WINAPI
 GetClusterNetworkState(
@@ -7338,6 +7385,7 @@ typedef enum CLUSTER_NETINTERFACE_STATE {
 //
 
 #if ( !MIDL_PASS && !__midl )
+_Win32_metadata_set_last_error_
 HNETINTERFACE
 WINAPI
 OpenClusterNetInterface(
@@ -7352,6 +7400,7 @@ typedef HNETINTERFACE
     );
 
 #if (CLUSAPI_VERSION >= CLUSAPI_VERSION_SERVER2008R2)
+_Win32_metadata_set_last_error_
 HNETINTERFACE
 WINAPI
 OpenClusterNetInterfaceEx(
@@ -7401,6 +7450,7 @@ typedef DWORD
     _Inout_ LPDWORD lpcchInterfaceName
     );
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 CloseClusterNetInterface(
@@ -7412,6 +7462,7 @@ typedef BOOL
     _In_ HNETINTERFACE hNetInterface
     );
 
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 GetClusterFromNetInterface(
@@ -7423,6 +7474,7 @@ typedef HCLUSTER
     _In_ HNETINTERFACE hNetInterface
     );
 
+_Win32_metadata_set_last_error_
 CLUSTER_NETINTERFACE_STATE
 WINAPI
 GetClusterNetInterfaceState(
@@ -7498,6 +7550,7 @@ typedef DWORD
 //
 
 #if ( !MIDL_PASS && !__midl )
+_Win32_metadata_set_last_error_
 HKEY
 WINAPI
 GetClusterKey(
@@ -7511,6 +7564,7 @@ typedef HKEY
      REGSAM samDesired
      );
 
+_Win32_metadata_set_last_error_
 HKEY
 WINAPI
 GetClusterGroupKey(
@@ -7524,6 +7578,7 @@ typedef HKEY
     REGSAM samDesired
     );
 
+_Win32_metadata_set_last_error_
 HKEY
 WINAPI
 GetClusterResourceKey(
@@ -7537,6 +7592,7 @@ typedef HKEY
     REGSAM samDesired
     );
 
+_Win32_metadata_set_last_error_
 HKEY
 WINAPI
 GetClusterNodeKey(
@@ -7550,6 +7606,7 @@ typedef HKEY
     REGSAM samDesired
     );
 
+_Win32_metadata_set_last_error_
 HKEY
 WINAPI
 GetClusterNetworkKey(
@@ -7563,6 +7620,7 @@ typedef HKEY
     _In_ REGSAM samDesired
     );
 
+_Win32_metadata_set_last_error_
 HKEY
 WINAPI
 GetClusterNetInterfaceKey(
@@ -7708,6 +7766,7 @@ typedef LONG
     _Out_ PFILETIME lpftLastWriteTime
     );
 
+_Win32_metadata_set_last_error_
 DWORD
 WINAPI
 ClusterRegSetValue(
@@ -8161,6 +8220,7 @@ typedef BOOL
     _In_opt_ PCWSTR                 lpszObjectName,
     DWORD                           dwStatus );
 
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 CreateCluster(
@@ -8176,6 +8236,7 @@ typedef HCLUSTER
     _In_opt_ PVOID              pvCallbackArg
     );
 
+_Win32_metadata_set_last_error_
 HCLUSTER
 WINAPI
 CreateClusterCNOless(
@@ -8280,6 +8341,7 @@ RegisterClusterResourceTypeNotifyV2 (
     __in  DWORD_PTR dwNotifyKey
     );
 
+_Win32_metadata_set_last_error_
 HNODE
 WINAPI
 AddClusterNode(

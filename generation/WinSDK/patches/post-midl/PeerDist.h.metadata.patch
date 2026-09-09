@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h b/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h
+index 5e6276bb..91f13f86 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h
+@@ -21,6 +21,9 @@ Abstract:
+ #endif
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -115,6 +118,7 @@ DWORD WINAPI PeerDistRegisterForStatusChangeNotification(
+         _Out_    PEERDIST_STATUS * pPeerDistStatus
+         );
+ 
++_Win32_metadata_set_last_error_
+ DWORD WINAPI PeerDistUnregisterForStatusChangeNotification(
+     _In_ PEERDIST_INSTANCE_HANDLE hPeerDist
+     );
+@@ -179,6 +183,7 @@ DWORD WINAPI PeerDistServerCloseContentInformation(
+         _In_ PEERDIST_CONTENTINFO_HANDLE hContentInfo
+         );
+ 
++_Win32_metadata_set_last_error_
+ DWORD WINAPI PeerDistServerCancelAsyncOperation(
+         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
+              DWORD cbContentIdentifier,
+@@ -247,6 +252,7 @@ DWORD WINAPI PeerDistClientFlushContent(
+         _In_ LPOVERLAPPED lpOverlapped
+         );
+ 
++_Win32_metadata_set_last_error_
+ DWORD WINAPI PeerDistClientCancelAsyncOperation(
+         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
+         _In_ PEERDIST_CONTENT_HANDLE hContentHandle,

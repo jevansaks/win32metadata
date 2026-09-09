@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
-index 9cc979f2..058c0b8a 100644
+index 9cc979f2..1093927c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
 @@ -1,4 +1,7 @@
@@ -30,7 +30,19 @@ index 9cc979f2..058c0b8a 100644
  typedef int (CALLBACK* OLDFONTENUMPROCW)(CONST LOGFONTW *, CONST VOID *, DWORD, LPARAM);
  #ifdef UNICODE
  #define OLDFONTENUMPROC  OLDFONTENUMPROCW
-@@ -3919,8 +3926,10 @@ WINGDIAPI HDC     WINAPI CreateICW( _In_opt_ LPCWSTR pszDriver, _In_opt_ LPCWSTR
+@@ -3861,9 +3868,11 @@ WINGDIAPI int WINAPI AddFontResourceW(_In_ LPCWSTR);
+ 
+  WINGDIAPI BOOL  WINAPI AnimatePalette( _In_ HPALETTE hPal, _In_ UINT iStartIndex, _In_  UINT cEntries, _In_reads_(cEntries) CONST PALETTEENTRY * ppe);
+  WINGDIAPI BOOL  WINAPI Arc( _In_ HDC hdc, _In_ int x1, _In_ int y1, _In_ int x2, _In_ int y2, _In_ int x3, _In_ int y3, _In_ int x4, _In_ int y4);
++_Win32_metadata_set_last_error_
+  WINGDIAPI BOOL  WINAPI BitBlt( _In_ HDC hdc, _In_ int x, _In_ int y, _In_ int cx, _In_ int cy, _In_opt_ HDC hdcSrc, _In_ int x1, _In_ int y1, _In_ DWORD rop);
+ WINGDIAPI BOOL  WINAPI CancelDC( _In_ HDC hdc);
+  WINGDIAPI BOOL  WINAPI Chord( _In_ HDC hdc, _In_ int x1, _In_ int y1, _In_ int x2, _In_ int y2, _In_ int x3, _In_ int y3, _In_ int x4, _In_ int y4);
++_Win32_metadata_set_last_error_
+ WINGDIAPI int   WINAPI ChoosePixelFormat( _In_ HDC hdc, _In_ CONST PIXELFORMATDESCRIPTOR *ppfd);
+ WINGDIAPI HMETAFILE  WINAPI CloseMetaFile( _In_ HDC hdc);
+ WINGDIAPI int     WINAPI CombineRgn( _In_opt_ HRGN hrgnDst, _In_opt_ HRGN hrgnSrc1, _In_opt_ HRGN hrgnSrc2, _In_ int iMode);
+@@ -3919,8 +3928,10 @@ WINGDIAPI HDC     WINAPI CreateICW( _In_opt_ LPCWSTR pszDriver, _In_opt_ LPCWSTR
  #else
  #define CreateIC  CreateICA
  #endif // !UNICODE
@@ -43,7 +55,57 @@ index 9cc979f2..058c0b8a 100644
  #ifdef UNICODE
  #define CreateMetaFile  CreateMetaFileW
  #else
-@@ -4923,8 +4932,10 @@ WINGDIAPI HENHMETAFILE WINAPI CopyEnhMetaFileW( _In_ HENHMETAFILE hEnh, _In_opt_
+@@ -3937,7 +3948,9 @@ WINGDIAPI HRGN    WINAPI CreatePolyPolygonRgn(  _In_ CONST POINT *pptl,
+ WINGDIAPI HRGN    WINAPI CreateRectRgn( _In_ int x1, _In_ int y1, _In_ int x2, _In_ int y2);
+ WINGDIAPI HRGN    WINAPI CreateRectRgnIndirect( _In_ CONST RECT *lprect);
+ WINGDIAPI HRGN    WINAPI CreateRoundRectRgn( _In_ int x1, _In_ int y1, _In_ int x2, _In_ int y2, _In_ int w, _In_ int h);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL    WINAPI CreateScalableFontResourceA( _In_ DWORD fdwHidden, _In_ LPCSTR lpszFont, _In_ LPCSTR lpszFile, _In_opt_ LPCSTR lpszPath);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL    WINAPI CreateScalableFontResourceW( _In_ DWORD fdwHidden, _In_ LPCWSTR lpszFont, _In_ LPCWSTR lpszFile, _In_opt_ LPCWSTR lpszPath);
+ #ifdef UNICODE
+ #define CreateScalableFontResource  CreateScalableFontResourceW
+@@ -3949,6 +3962,7 @@ WINGDIAPI HBRUSH  WINAPI CreateSolidBrush( _In_ COLORREF color);
+ WINGDIAPI BOOL WINAPI DeleteDC( _In_ HDC hdc);
+ WINGDIAPI BOOL WINAPI DeleteMetaFile( _In_ HMETAFILE hmf);
+  WINGDIAPI BOOL WINAPI DeleteObject( _In_ HGDIOBJ ho);
++_Win32_metadata_set_last_error_
+ WINGDIAPI int  WINAPI DescribePixelFormat(  _In_ HDC hdc,
+                                             _In_ int iPixelFormat,
+                                             _In_ UINT nBytes,
+@@ -4277,6 +4291,7 @@ WINGDIAPI UINT  WINAPI GetPaletteEntries(   _In_ HPALETTE hpal,
+                                             _In_ UINT cEntries,
+                                             _Out_writes_to_opt_(cEntries,return) LPPALETTEENTRY pPalEntries);
+ WINGDIAPI COLORREF WINAPI GetPixel( _In_ HDC hdc, _In_ int x, _In_ int y);
++_Win32_metadata_set_last_error_
+ WINGDIAPI int   WINAPI GetPixelFormat( _In_ HDC hdc);
+ WINGDIAPI int   WINAPI GetPolyFillMode( _In_ HDC hdc);
+ WINGDIAPI BOOL  WINAPI GetRasterizerCaps(   _Out_writes_bytes_(cjBytes) LPRASTERIZER_STATUS lpraststat,
+@@ -4385,6 +4400,7 @@ GetTextExtentExPointW(
+ #if(WINVER >= 0x0400)
+ WINGDIAPI int WINAPI GetTextCharset( _In_ HDC hdc);
+ WINGDIAPI int WINAPI GetTextCharsetInfo( _In_ HDC hdc, _Out_opt_ LPFONTSIGNATURE lpSig, _In_ DWORD dwFlags);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL WINAPI TranslateCharsetInfo( _Inout_ DWORD FAR *lpSrc,  _Out_ LPCHARSETINFO lpCs, _In_ DWORD dwFlags);
+ WINGDIAPI DWORD WINAPI GetFontLanguageInfo( _In_ HDC hdc);
+ WINGDIAPI DWORD WINAPI GetCharacterPlacementA(  _In_ HDC hdc, _In_reads_(nCount) LPCSTR lpString, _In_ int nCount, _In_ int nMexExtent, _Inout_ LPGCP_RESULTSA lpResults, _In_ DWORD dwFlags);
+@@ -4688,6 +4704,7 @@ WINGDIAPI int   WINAPI SetGraphicsMode(_In_ HDC hdc, _In_ int iMode);
+ 
+ #if(WINVER >= 0x0500)
+  WINGDIAPI DWORD WINAPI SetLayout(_In_ HDC hdc, _In_ DWORD l);
++_Win32_metadata_set_last_error_
+ WINGDIAPI DWORD WINAPI GetLayout(_In_ HDC hdc);
+ #endif /* WINVER >= 0x0500 */
+ 
+@@ -4698,6 +4715,7 @@ WINGDIAPI HMETAFILE   WINAPI SetMetaFileBitsEx(_In_ UINT cbBuffer, _In_reads_byt
+                                             _In_reads_(cEntries) CONST PALETTEENTRY *pPalEntries);
+  WINGDIAPI COLORREF WINAPI SetPixel(_In_ HDC hdc, _In_ int x, _In_ int y, _In_ COLORREF color);
+ WINGDIAPI BOOL   WINAPI SetPixelV(_In_ HDC hdc, _In_ int x, _In_ int y, _In_ COLORREF color);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI SetPixelFormat(_In_ HDC hdc, _In_ int format, _In_ CONST PIXELFORMATDESCRIPTOR * ppfd);
+  WINGDIAPI int   WINAPI SetPolyFillMode(_In_ HDC hdc, _In_ int mode);
+  WINGDIAPI BOOL  WINAPI StretchBlt(_In_ HDC hdcDest, _In_ int xDest, _In_ int yDest, _In_ int wDest, _In_ int hDest, _In_opt_ HDC hdcSrc, _In_ int xSrc, _In_ int ySrc, _In_ int wSrc, _In_ int hSrc, _In_ DWORD rop);
+@@ -4923,8 +4941,10 @@ WINGDIAPI HENHMETAFILE WINAPI CopyEnhMetaFileW( _In_ HENHMETAFILE hEnh, _In_opt_
  #else
  #define CopyEnhMetaFile  CopyEnhMetaFileA
  #endif // !UNICODE
@@ -56,3 +118,71 @@ index 9cc979f2..058c0b8a 100644
  #ifdef UNICODE
  #define CreateEnhMetaFile  CreateEnhMetaFileW
  #else
+@@ -4961,6 +4981,7 @@ WINGDIAPI UINT  WINAPI GetEnhMetaFilePaletteEntries(_In_ HENHMETAFILE hemf,
+                                                     _In_ UINT nNumEntries,
+                                                     _Out_writes_opt_(nNumEntries) LPPALETTEENTRY lpPaletteEntries);
+ 
++_Win32_metadata_set_last_error_
+ WINGDIAPI UINT  WINAPI GetEnhMetaFilePixelFormat(   _In_ HENHMETAFILE hemf,
+                                                     _In_ UINT cbBuffer,
+                                                     _Out_writes_bytes_opt_(cbBuffer) PIXELFORMATDESCRIPTOR *ppfd);
+@@ -6327,22 +6348,32 @@ typedef struct tagEMRTRANSPARENTBLT
+ 
+ // OpenGL wgl prototypes
+ 
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglCopyContext(HGLRC, HGLRC, UINT);
++_Win32_metadata_set_last_error_
+ WINGDIAPI HGLRC WINAPI wglCreateContext(HDC);
++_Win32_metadata_set_last_error_
+ WINGDIAPI HGLRC WINAPI wglCreateLayerContext(HDC, int);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglDeleteContext(HGLRC);
+ WINGDIAPI HGLRC WINAPI wglGetCurrentContext(VOID);
+ WINGDIAPI HDC   WINAPI wglGetCurrentDC(VOID);
++_Win32_metadata_set_last_error_
+ WINGDIAPI PROC  WINAPI wglGetProcAddress(LPCSTR);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglMakeCurrent(HDC, HGLRC);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglShareLists(HGLRC, HGLRC);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglUseFontBitmapsA(HDC, DWORD, DWORD, DWORD);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglUseFontBitmapsW(HDC, DWORD, DWORD, DWORD);
+ #ifdef UNICODE
+ #define wglUseFontBitmaps  wglUseFontBitmapsW
+ #else
+ #define wglUseFontBitmaps  wglUseFontBitmapsA
+ #endif // !UNICODE
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI SwapBuffers(HDC);
+ 
+ typedef struct _POINTFLOAT {
+@@ -6360,8 +6391,10 @@ typedef struct _GLYPHMETRICSFLOAT {
+ 
+ #define WGL_FONT_LINES      0
+ #define WGL_FONT_POLYGONS   1
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglUseFontOutlinesA(HDC, DWORD, DWORD, DWORD, FLOAT,
+                                            FLOAT, int, LPGLYPHMETRICSFLOAT);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglUseFontOutlinesW(HDC, DWORD, DWORD, DWORD, FLOAT,
+                                            FLOAT, int, LPGLYPHMETRICSFLOAT);
+ #ifdef UNICODE
+@@ -6448,11 +6481,15 @@ typedef struct tagLAYERPLANEDESCRIPTOR { // lpd
+ 
+ WINGDIAPI BOOL  WINAPI wglDescribeLayerPlane(HDC, int, int, UINT,
+                                              LPLAYERPLANEDESCRIPTOR);
++_Win32_metadata_set_last_error_
+ WINGDIAPI int   WINAPI wglSetLayerPaletteEntries(HDC, int, int, int,
+                                                  CONST COLORREF *);
++_Win32_metadata_set_last_error_
+ WINGDIAPI int   WINAPI wglGetLayerPaletteEntries(HDC, int, int, int,
+                                                  COLORREF *);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglRealizeLayerPalette(HDC, int, BOOL);
++_Win32_metadata_set_last_error_
+ WINGDIAPI BOOL  WINAPI wglSwapLayerBuffers(HDC, UINT);
+ 
+ #if (WINVER >= 0x0500)

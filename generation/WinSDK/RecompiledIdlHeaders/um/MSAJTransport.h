@@ -6,6 +6,9 @@
 
 #ifndef _MSAJ_TRANSPORT_API_H
 #define _MSAJ_TRANSPORT_API_H
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #ifdef _MSC_VER 
 #pragma once 
@@ -22,16 +25,19 @@ extern "C" {
 
 #define ALLJOYN_NAMED_PIPE_CONNECT_SPEC     L"npipe:"
 
+_Win32_metadata_set_last_error_
 HANDLE
 WINAPI
 AllJoynConnectToBus(
     _In_opt_ PCWSTR connectionSpec);
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI
 AllJoynCloseBusHandle(
     _In_ HANDLE busHandle);
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI 
 AllJoynSendToBus(
@@ -41,6 +47,7 @@ AllJoynSendToBus(
     _Out_opt_ PDWORD bytesTransferred,
     _Inout_ PVOID reserved);
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI 
 AllJoynReceiveFromBus(
@@ -55,6 +62,7 @@ AllJoynReceiveFromBus(
 #define ALLJOYN_WRITE_READY     0x2
 #define ALLJOYN_DISCONNECTED    0x4
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI 
 AllJoynEventSelect(
@@ -62,6 +70,7 @@ AllJoynEventSelect(
     _In_ HANDLE eventHandle,
     _In_ DWORD eventTypes);
 
+_Win32_metadata_set_last_error_
 BOOL
 WINAPI 
 AllJoynEnumEvents(

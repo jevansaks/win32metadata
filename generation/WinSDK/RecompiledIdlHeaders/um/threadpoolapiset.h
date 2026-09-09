@@ -42,6 +42,7 @@ VOID
 
 #if (_WIN32_WINNT >= 0x0600)
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 PTP_POOL
@@ -58,6 +59,7 @@ SetThreadpoolThreadMaximum(
     _In_ DWORD cthrdMost
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -66,6 +68,7 @@ SetThreadpoolThreadMinimum(
     _In_ DWORD cthrdMic
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -74,6 +77,7 @@ SetThreadpoolStackInformation(
     _In_ PTP_POOL_STACK_INFORMATION ptpsi
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 BOOL
 WINAPI
@@ -89,6 +93,7 @@ CloseThreadpool(
     _Inout_ PTP_POOL ptpp
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 PTP_CLEANUP_GROUP
@@ -168,6 +173,7 @@ DisassociateCurrentThreadFromCallback(
     _Inout_ PTP_CALLBACK_INSTANCE pci
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 BOOL
@@ -178,6 +184,7 @@ TrySubmitThreadpoolCallback(
     _In_opt_ PTP_CALLBACK_ENVIRON pcbe
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 PTP_WORK
@@ -210,6 +217,7 @@ CloseThreadpoolWork(
     _Inout_ PTP_WORK pwk
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 PTP_TIMER
@@ -252,6 +260,7 @@ CloseThreadpoolTimer(
     _Inout_ PTP_TIMER pti
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 PTP_WAIT
@@ -286,6 +295,7 @@ CloseThreadpoolWait(
     _Inout_ PTP_WAIT pwa
     );
 
+_Win32_metadata_set_last_error_
 WINBASEAPI
 _Must_inspect_result_
 PTP_IO

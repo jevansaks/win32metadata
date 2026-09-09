@@ -1,8 +1,39 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h b/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h
-index 8b686f40..18f69f14 100644
+index 8b686f40..70e1a6cd 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h
-@@ -141,7 +141,8 @@ BOOL WINAPI
+@@ -27,6 +27,9 @@ Abstract:
+ #pragma once
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -116,6 +119,7 @@ typedef void
+     IN DWORD_PTR dwParam3
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL WINAPI
+ FaxDevInitialize(
+     IN  HLINEAPP LineAppHandle,
+@@ -128,6 +132,7 @@ HRESULT WINAPI FaxDevShutdown(
+     void
+ );
+ 
++_Win32_metadata_set_last_error_
+ BOOL WINAPI
+ FaxDevVirtualDeviceCreation(
+     OUT LPDWORD DeviceCount,
+@@ -137,15 +142,18 @@ FaxDevVirtualDeviceCreation(
+     IN  ULONG_PTR CompletionKey
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL WINAPI
  FaxDevStartJob(
      IN  HLINE LineHandle,
      IN  DWORD DeviceId,
@@ -12,3 +43,40 @@ index 8b686f40..18f69f14 100644
      IN  HANDLE CompletionPortHandle,
      IN  ULONG_PTR CompletionKey
      );
+ 
++_Win32_metadata_set_last_error_
+ BOOL WINAPI
+ FaxDevEndJob(
+     IN  HANDLE FaxHandle
+@@ -159,6 +167,7 @@ typedef BOOL
+     IN DWORD Reserved2
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL WINAPI
+ FaxDevSend(
+     IN  HANDLE FaxHandle,
+@@ -168,6 +177,7 @@ FaxDevSend(
+ 
+ #define FAXDEVRECEIVE_SIZE 4096
+ 
++_Win32_metadata_set_last_error_
+ BOOL WINAPI
+ FaxDevReceive(
+     IN  HANDLE FaxHandle,
+@@ -177,6 +187,7 @@ FaxDevReceive(
+ 
+ #define FAXDEVREPORTSTATUS_SIZE 4096
+ 
++_Win32_metadata_set_last_error_
+ BOOL WINAPI
+ FaxDevReportStatus(
+     IN  HANDLE FaxHandle OPTIONAL,
+@@ -185,6 +196,7 @@ FaxDevReportStatus(
+     OUT LPDWORD FaxStatusSizeRequired
+     );
+ 
++_Win32_metadata_set_last_error_
+ BOOL WINAPI
+ FaxDevAbortOperation(
+     IN  HANDLE FaxHandle

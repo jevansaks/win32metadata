@@ -1,0 +1,22 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winscard.h b/generation/WinSDK/RecompiledIdlHeaders/um/winscard.h
+index 45ec4f8b..6defe8b1 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/winscard.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/winscard.h
+@@ -34,6 +34,9 @@ Notes:
+ #include "SCardErr.h"
+ #endif
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #ifdef __cplusplus
+ extern "C" {
+@@ -486,6 +489,7 @@ SCardFreeMemory(
+     _In_ LPCVOID pvMem);
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINXP)
++_Win32_metadata_set_last_error_
+ extern WINSCARDAPI HANDLE WINAPI
+ SCardAccessStartedEvent(void);
+ 

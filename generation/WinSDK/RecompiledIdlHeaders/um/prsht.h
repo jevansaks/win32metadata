@@ -592,9 +592,11 @@ WINCOMMCTRLAPI HPROPSHEETPAGE WINAPI CreatePropertySheetPageW(LPCPROPSHEETPAGEW 
 _Win32_metadata_supported_os_(windows6.0.6000)
 WINCOMMCTRLAPI BOOL           WINAPI DestroyPropertySheetPage(HPROPSHEETPAGE);
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows6.0.6000)
 WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetA(LPCPROPSHEETHEADERA);
 
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows6.0.6000)
 WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetW(LPCPROPSHEETHEADERW);
 

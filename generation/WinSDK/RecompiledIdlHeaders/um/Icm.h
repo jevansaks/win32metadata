@@ -1106,6 +1106,7 @@ BOOL WINAPI CMConvertIndexToColorName(
                           DWORD dwCount
     );
 
+_Win32_metadata_set_last_error_
 BOOL WINAPI CMCreateDeviceLinkProfile(
     _In_reads_(nProfiles)                          PHPROFILE pahProfiles,    // array of profile handles
                                                     DWORD nProfiles,          // profile handle array size

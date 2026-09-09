@@ -3725,6 +3725,7 @@ GetMessageW(
 
 #if defined(_M_CEE)
 #undef GetMessage
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 __inline
 BOOL
@@ -4042,6 +4043,7 @@ SendMessageW(
 
 #if defined(_M_CEE)
 #undef SendMessage
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 __inline
 LRESULT
@@ -10180,6 +10182,7 @@ MessageBoxW(
 
 #if defined(_M_CEE)
 #undef MessageBox
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 __inline
 int
@@ -11298,6 +11301,7 @@ GetClassNameW(
 
 #if defined(_M_CEE)
 #undef GetClassName
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.0)
 __inline
 int

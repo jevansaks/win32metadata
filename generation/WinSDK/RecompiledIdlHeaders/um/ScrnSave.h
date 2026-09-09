@@ -140,6 +140,7 @@ BOOL WINAPI ScreenSaverConfigureDialog (HWND hDlg, UINT message, WPARAM wParam, 
  * registering that is required should be done here, or return TRUE if none
  * is needed...
  */
+_Win32_metadata_set_last_error_
 _Win32_metadata_supported_os_(windows5.1.2600)
 BOOL WINAPI RegisterDialogClasses (HANDLE hInst);
 
