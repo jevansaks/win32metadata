@@ -18957,6 +18957,7 @@ _Win32_metadata_supported_os_(windows5.0)
 // Note: Because this interface was not defined as a proper interface it is
 //       supported under C++ only. Methods aren't stdcall.
 EXTERN_GUID(IID_IAMFilterGraphCallback,0x56a868fd,0x0ad4,0x11ce,0xb0,0xa3,0x0,0x20,0xaf,0x0b,0xa7,0x70);
+_Win32_metadata_supported_os_(windows5.0)
 interface IAMFilterGraphCallback : public IUnknown
 {
     // S_OK means rendering complete, S_FALSE means retry now.

@@ -1,0 +1,20 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/amxmlgraphbuilder.h b/generation/WinSDK/RecompiledIdlHeaders/um/amxmlgraphbuilder.h
+index 5c6e2c30..f9161d77 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/amxmlgraphbuilder.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/amxmlgraphbuilder.h
+@@ -1,6 +1,7 @@
+ // Copyright (c) Microsoft Corporation.  All Rights Reserved.
+ 
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -9,6 +10,7 @@
+ DEFINE_GUID(IID_IXMLGraphBuilder, 
+ 0x1bb05960, 0x5fbf, 0x11d2, 0xa5, 0x21, 0x44, 0xdf, 0x7, 0xc1, 0x0, 0x0);
+ 
++_Win32_metadata_supported_os_(windows5.0)
+ interface IXMLGraphBuilder : IUnknown
+ {
+     STDMETHOD(BuildFromXML) (IGraphBuilder *pGraph, IXMLElement *pxml) = 0;

@@ -8,6 +8,7 @@
 
 #ifndef __ROREGISTRATIONAPI_H_
 #define __ROREGISTRATIONAPI_H_
+#include <win32metadata_annotations.h>
 
 #ifdef _MSC_VER
 #pragma once
@@ -61,6 +62,7 @@ RoGetActivatableClassRegistration(
     _COM_Outptr_ PActivatableClassRegistration* activatableClassRegistration
     );
 
+_Win32_metadata_supported_os_(windows8.0)
 ROAPI
 _On_failure_(_At_(*activatableClassIds, _Post_ _Null_))
 _Check_return_

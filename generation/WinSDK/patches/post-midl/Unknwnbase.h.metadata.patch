@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h
-index 536b6de0..cd450890 100644
+index 536b6de0..b28635c4 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.h
 @@ -80,6 +80,7 @@ extern "C"{
@@ -10,7 +10,15 @@ index 536b6de0..cd450890 100644
  //+-------------------------------------------------------------------------
  //
  //  Microsoft Windows
-@@ -141,6 +142,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
+@@ -113,6 +114,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
+     EXTERN_C const IID IID_IUnknown;
+     extern "C++"
+     {
++_Win32_metadata_supported_os_(windows5.0)
+         MIDL_INTERFACE("00000000-0000-0000-C000-000000000046")
+         IUnknown
+         {
+@@ -141,6 +143,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
              END_INTERFACE
          };
      } // extern C++
@@ -18,7 +26,7 @@ index 536b6de0..cd450890 100644
      HRESULT STDMETHODCALLTYPE IUnknown_QueryInterface_Proxy(
          IUnknown __RPC_FAR * This,
          /* [in] */ REFIID riid,
-@@ -152,6 +154,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
+@@ -152,6 +155,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
          PRPC_MESSAGE _pRpcMessage,
          DWORD *_pdwStubPhase);
      
@@ -26,7 +34,7 @@ index 536b6de0..cd450890 100644
      ULONG STDMETHODCALLTYPE IUnknown_AddRef_Proxy(
          IUnknown __RPC_FAR * This);
      
-@@ -161,6 +164,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
+@@ -161,6 +165,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
          PRPC_MESSAGE _pRpcMessage,
          DWORD *_pdwStubPhase);
      
@@ -34,7 +42,15 @@ index 536b6de0..cd450890 100644
      ULONG STDMETHODCALLTYPE IUnknown_Release_Proxy(
          IUnknown __RPC_FAR * This);
      
-@@ -245,6 +249,7 @@ EXTERN_C const IID IID_IUnknown;
+@@ -175,6 +180,7 @@ EXTERN_C const IID IID_IUnknown;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows5.0)
+     MIDL_INTERFACE("00000000-0000-0000-C000-000000000046")
+     IUnknown
+     {
+@@ -245,6 +251,7 @@ EXTERN_C const IID IID_IUnknown;
  
  
  
@@ -42,7 +58,7 @@ index 536b6de0..cd450890 100644
  HRESULT STDMETHODCALLTYPE IUnknown_QueryInterface_Proxy( 
      IUnknown * This,
      /* [annotation][in] */ 
-@@ -260,6 +265,7 @@ void __RPC_STUB IUnknown_QueryInterface_Stub(
+@@ -260,6 +267,7 @@ void __RPC_STUB IUnknown_QueryInterface_Stub(
      DWORD *_pdwStubPhase);
  
  
@@ -50,7 +66,7 @@ index 536b6de0..cd450890 100644
  ULONG STDMETHODCALLTYPE IUnknown_AddRef_Proxy( 
      IUnknown * This);
  
-@@ -271,6 +277,7 @@ void __RPC_STUB IUnknown_AddRef_Stub(
+@@ -271,6 +279,7 @@ void __RPC_STUB IUnknown_AddRef_Stub(
      DWORD *_pdwStubPhase);
  
  
@@ -58,7 +74,7 @@ index 536b6de0..cd450890 100644
  ULONG STDMETHODCALLTYPE IUnknown_Release_Proxy( 
      IUnknown * This);
  
-@@ -460,6 +467,7 @@ EXTERN_C const IID IID_IClassFactory;
+@@ -460,6 +469,7 @@ EXTERN_C const IID IID_IClassFactory;
  
  #if defined(__cplusplus) && !defined(CINTERFACE)
      

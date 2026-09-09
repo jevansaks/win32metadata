@@ -5,6 +5,7 @@
 
 #ifndef __RO_METADATA_H__
 #define __RO_METADATA_H__
+#include <win32metadata_annotations.h>
 
 #if NTDDI_VERSION >= NTDDI_WIN8
 
@@ -12,6 +13,7 @@
 // Arguments:
 //    rclsid - Only CLSID_CorMetaDataDispenser supported.
 //    riid   - Interfaces supported: IID_IMetaDataDispenser, IID_IMetaDataDispenserEx.
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI MetaDataGetDispenser(
         __in REFCLSID            rclsid, 
         __in REFIID              riid, 

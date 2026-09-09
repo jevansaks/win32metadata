@@ -1,0 +1,36 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/WeakReference.h b/generation/WinSDK/RecompiledIdlHeaders/winrt/WeakReference.h
+index 71c46115..f60bbd2b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/WeakReference.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/WeakReference.h
+@@ -32,6 +32,7 @@
+ 
+ #ifndef __weakreference_h__
+ #define __weakreference_h__
++#include <win32metadata_annotations.h>
+ 
+ #if defined(_MSC_VER) && (_MSC_VER >= 1020)
+ #pragma once
+@@ -90,6 +91,7 @@ extern RPC_IF_HANDLE __MIDL_itf_weakreference_0000_0000_v0_0_s_ifspec;
+     EXTERN_C const IID IID_IWeakReference;
+     extern "C++"
+     {
++_Win32_metadata_supported_os_(windows8.0)
+         MIDL_INTERFACE("00000037-0000-0000-C000-000000000046")
+         IWeakReference : public IUnknown
+         {
+@@ -114,6 +116,7 @@ EXTERN_C const IID IID_IWeakReference;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("00000037-0000-0000-C000-000000000046")
+     IWeakReference : public IUnknown
+     {
+@@ -209,6 +212,7 @@ EXTERN_C const IID IID_IWeakReferenceSource;
+ 
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
++_Win32_metadata_supported_os_(windows8.0)
+     MIDL_INTERFACE("00000038-0000-0000-C000-000000000046")
+     IWeakReferenceSource : public IUnknown
+     {

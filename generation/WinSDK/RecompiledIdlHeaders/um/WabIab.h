@@ -20,6 +20,7 @@
 #ifndef WABIAB_H
 #define WABIAB_H
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -131,6 +132,7 @@
 
 #undef		 INTERFACE
 #define		 INTERFACE  IAddrBook
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_MAPI_INTERFACE_(IAddrBook, IMAPIProp)
 {
 	BEGIN_INTERFACE	

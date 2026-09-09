@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using Windows.Win32.Foundation.Metadata;
 using static Windows.Win32.System.SystemServices.Apis;
@@ -7,6 +7,7 @@ namespace Windows.Win32.Graphics.DirectWrite
 {
     public static unsafe partial class Apis
     {
+        [SupportedOSPlatform("windows6.1")]
         public static uint DWRITE_MAKE_OPENTYPE_TAG(byte a, byte b, byte c, byte d) => ((uint)d << 24) | ((uint)c << 16) | ((uint)b << 8) | a;
 
         public static DWRITE_FONT_AXIS_TAG DWRITE_MAKE_FONT_AXIS_TAG(byte a, byte b, byte c, byte d) => (DWRITE_FONT_AXIS_TAG)DWRITE_MAKE_OPENTYPE_TAG(a, b, c, d);

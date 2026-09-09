@@ -101,10 +101,11 @@ sidecar has been fully migrated and removed.
 
 OS version support is applied via the `_Win32_metadata_supported_os_(version)`
 inline header annotation on the owning SDK declaration (see
-`docs/copilot/supportedos-migration.md`); `supportedOS.rsp` has been reduced from
-17,248 to a small residual of documented blockers (COM interfaces not yet
-matched by the declaration scanner, pre-existing version conflicts, and one
-Kernel-mode-scrape-context gap).
+`docs/copilot/supportedos-migration.md`); the former `supportedOS.rsp` sidecar
+has been fully migrated and removed. One computed constant
+(`DWRITE_MAKE_OPENTYPE_TAG`) is implemented as hand-written C# rather than
+scraped from a header, so its OS-version fact is a `[SupportedOSPlatform]`
+attribute directly in `generation/WinSDK/manual/DirectWrite.cs`.
 
 ---
 
@@ -266,7 +267,7 @@ Several sidecar files provide metadata that isn't (yet) expressible in headers:
 | `autoTypes.json` | Handle type definitions | Proposed: header annotations |
 | `emitter.settings.rsp` | Member remaps, enum additions | Proposed: header annotations |
 | ~~`WithSetLastError.rsp`~~ | SetLastError functions | Done: `_Win32_metadata_set_last_error_` (sidecar removed) |
-| `supportedOS.rsp` | OS version requirements | Mostly done: `_Win32_metadata_supported_os_(...)` (17,248 → 1,370 residual blockers) |
+| ~~`supportedOS.rsp`~~ | OS version requirements | Done: `_Win32_metadata_supported_os_(...)` (sidecar removed) |
 | `libMappings.rsp` | Function→DLL mappings | Auto-generated from .lib files |
 | `documentationMappings.rsp` | Documentation URLs | Stays (external data) |
 | `functionPointerFixups.json` | Fn ptr name fixes | Mostly auto-derived |

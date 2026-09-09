@@ -1,0 +1,28 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WabApi.h b/generation/WinSDK/RecompiledIdlHeaders/um/WabApi.h
+index 4385315f..f6cb3608 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WabApi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WabApi.h
+@@ -4,6 +4,7 @@
+ #ifndef _WABAPI_H_
+ #define _WABAPI_H_
+ #include <winapifamily.h>
++#include <win32metadata_annotations.h>
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -76,6 +77,7 @@ typedef struct _WABACTIONITEM * LPWABACTIONITEM;
+ 
+ #undef           INTERFACE
+ #define          INTERFACE      IWABObject
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_MAPI_INTERFACE_(IWABObject, IUnknown)
+ {
+         BEGIN_INTERFACE
+@@ -279,6 +281,7 @@ typedef struct _WABEXTDISPLAY
+ 
+ #undef           INTERFACE
+ #define          INTERFACE      IWABExtInit
++_Win32_metadata_supported_os_(windows5.0)
+ DECLARE_MAPI_INTERFACE_(IWABExtInit, IUnknown)
+ {
+         BEGIN_INTERFACE

@@ -32,6 +32,7 @@
 
 #ifndef __rdpappcontainerclient_h__
 #define __rdpappcontainerclient_h__
+#include <win32metadata_annotations.h>
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -182,6 +183,7 @@ EXTERN_C const IID IID_IRemoteDesktopClientSettings;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+_Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("48A0F2A7-2713-431f-BBAC-6F4558E7D64D")
     IRemoteDesktopClientSettings : public IDispatch
     {
@@ -381,6 +383,7 @@ EXTERN_C const IID IID_IRemoteDesktopClientActions;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+_Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("7D54BC4E-1028-45d4-8B0A-B9B6BFFBA176")
     IRemoteDesktopClientActions : public IDispatch
     {
@@ -556,6 +559,7 @@ EXTERN_C const IID IID_IRemoteDesktopClientTouchPointer;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+_Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("260ec22d-8cbc-44b5-9e88-2a37f6c93ae9")
     IRemoteDesktopClientTouchPointer : public IDispatch
     {
@@ -760,6 +764,7 @@ EXTERN_C const IID IID_IRemoteDesktopClient;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+_Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("57D25668-625A-4905-BE4E-304CAA13F89C")
     IRemoteDesktopClient : public IDispatch
     {

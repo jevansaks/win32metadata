@@ -4377,3 +4377,55 @@ conflicts entirely explained by the false-positive classes above.
 
 Result: `supportedOS.rsp` reduced from 1,370 to 50 entries in this phase.
 Continuing to zero.
+
+## supportedOS.rsp tranche - phase 4 (final): reached zero, sidecar removed
+
+Closed the last 50 entries. Added detection for six more idioms/cases: the
+`DECLARE_MAPI_INTERFACE_`/`_IID_` macro variant (`WabApi.h`/`WabIab.h` MAPI
+interfaces), bare `interface NAME : [public] Base` with no preceding macro at
+all (`IXMLGraphBuilder`, `IAMFilterGraphCallback`), single- and two-line
+`interface DECLSPEC_UUID("guid") NAME : public Base` (`TextServ.h`'s Rich Edit
+UIA interfaces; `RTWorkQ.h`'s Rtwq interfaces, which wrap to a second line via
+an extra `DECLSPEC_NOVTABLE` qualifier - handled by direct inspection given
+only 3 instances), and `MIDL_INTERFACE("guid") NAME` with **no base class at
+all** for `IUnknown` itself (every other interface pattern required a
+`: public Base` clause, which the root interface doesn't have). Extended the
+ABI-level `winrt/` allowlist with 9 more foundational headers (also fixed a
+case-sensitivity bug in the allowlist match).
+
+Verified and removed the last dead/vestigial macros (`MAKE_HRESULT`,
+`SelectFont`, `RGB`, `MAKELCID`) and one more absent-from-current-SDK name
+(`IAppxPackageReader2`, documented against `appxpackaging.h` per
+`scripts/ApiInfo.csv` but no longer declared there in this SDK snapshot - no
+signature fabricated). Found that `DWRITE_MAKE_OPENTYPE_TAG` is implemented as
+hand-written C# (`generation/WinSDK/manual/DirectWrite.cs`), not scraped from
+any header - applied `[SupportedOSPlatform("windows6.1")]` directly to that
+method, matching the existing precedent in `manual/VirtualDiskService.cs`.
+
+**`supportedOS.rsp` reached zero API-specific entries and was deleted**, along
+with its `<ScraperRsp Include="supportedOS.rsp"/>` reference in
+`Windows.Win32.proj` and its Solution Items entry in `sources/BuildTools.sln`.
+Updated `docs/architecture.md`/`docs/spec.md` to stop referencing the removed
+sidecar. Consolidated the final 19 touched headers into
+`<header>.metadata.patch`, validated byte-for-byte replay, and ran
+`ScrapeHeaders -p:ScanArch=crossarch` across all newly-reachable partitions
+(`Threading`, `Controls.RichEdit`, `IMapi`, `Tapi3`, `Media.DShow`,
+`Media.DShow.Xml`, `Media.KernelStreaming`, `MsTv`, `WmFormat`, `WinRT`,
+`TermServ`, `WinRT.Metadata`, `Debug.WebApp`, `Com`, `TransactionServer`,
+`Rpc`, `Wab`, `WinRT.Printing`) - 0 errors.
+
+**Final tally for the complete `supportedOS.rsp` tranche (all 4 phases):**
+17,248 original entries → 3,447 reconciled as already-covered (no header
+change), 952 dead/vestigial macros removed (no header change), 14 names
+documented as absent from the current SDK tree and removed (no header change,
+no fabricated signatures), 14 duplicate-declaration version conflicts resolved
+by normalizing the authoritative header value (no sidecar entries retained),
+1 name resolved via a hand-written-C# attribute instead of a header
+annotation, and the remaining ~12,820 entries migrated to inline
+`_Win32_metadata_supported_os_(version)` header annotations. Residual API
+entries in `supportedOS.rsp`: **0**. The file itself has been removed.
+
+This completes both the `WithSetLastError.rsp` and `supportedOS.rsp`
+sidecar-removal tranches; combined with the earlier `emitter.settings.rsp`
+RAIIFree tranche, all three of this project's originally-scoped sidecar
+categories are now fully migrated to inline header annotations.

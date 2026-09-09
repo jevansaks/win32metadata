@@ -1,0 +1,51 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/rometadataresolution.h b/generation/WinSDK/RecompiledIdlHeaders/winrt/rometadataresolution.h
+index 53bd22d6..0de1a227 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/rometadataresolution.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/rometadataresolution.h
+@@ -8,6 +8,7 @@
+ #pragma once
+ 
+ #include <cor.h>
++#include <win32metadata_annotations.h>
+ #include <activation.h>
+ #include <hstring.h>
+ 
+@@ -40,6 +41,7 @@ typedef __x_ABI_CWindows_CStorage_CStreams_CIPropertySetSerializer __IPropertySe
+ 
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
++_Win32_metadata_supported_os_(windows8.0)
+ _Check_return_ extern "C" HRESULT WINAPI RoGetMetaDataFile(
+     _In_ const HSTRING name,
+     _In_opt_ IMetaDataDispenserEx *metaDataDispenser,
+@@ -47,6 +49,7 @@ _Check_return_ extern "C" HRESULT WINAPI RoGetMetaDataFile(
+     _Outptr_opt_ IMetaDataImport2 **metaDataImport,
+     _Out_opt_ mdTypeDef *typeDefToken);
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ _When_(return == S_OK, _At_(typeNameParts, _Outptr_result_buffer_(*partsCount)))
+ _When_(return != S_OK, _At_(typeNameParts, _Outptr_))
+ _Success_(return == S_OK)
+@@ -55,6 +58,7 @@ _Check_return_  extern "C" HRESULT WINAPI RoParseTypeName(
+     _Out_ DWORD *partsCount,
+     _Out_writes_(*partsCount) HSTRING **typeNameParts);
+ 
++_Win32_metadata_supported_os_(windows8.0)
+ _Check_return_ extern "C" HRESULT WINAPI RoResolveNamespace(
+     _In_opt_ const HSTRING name,
+     _In_opt_ const HSTRING windowsMetaDataDir,
+@@ -67,12 +71,14 @@ _Check_return_ extern "C" HRESULT WINAPI RoResolveNamespace(
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN10_RS5)
++_Win32_metadata_supported_os_(windows10.0.10240)
+ _Check_return_ STDAPI RoIsApiContractPresent(
+     _In_ PCWSTR name,
+     _In_ UINT16 majorVersion,
+     _In_ UINT16 minorVersion,
+     _Out_ BOOL* present);
+ 
++_Win32_metadata_supported_os_(windows10.0.10240)
+ _Check_return_ STDAPI RoIsApiContractMajorVersionPresent(
+     _In_ PCWSTR name,
+     _In_ UINT16 majorVersion,

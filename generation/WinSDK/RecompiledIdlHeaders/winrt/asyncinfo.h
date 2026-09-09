@@ -32,6 +32,7 @@
 
 #ifndef __asyncinfo_h__
 #define __asyncinfo_h__
+#include <win32metadata_annotations.h>
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -111,6 +112,7 @@ EXTERN_C const IID IID_IAsyncInfo;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+_Win32_metadata_supported_os_(windows8.0)
     MIDL_INTERFACE("00000036-0000-0000-C000-000000000046")
     IAsyncInfo : public IInspectable
     {

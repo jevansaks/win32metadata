@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h b/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h
-index 086c4026..2b4df96c 100644
+index 086c4026..e2708f3f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/RTWorkQ.h
 @@ -18,6 +18,9 @@
@@ -12,7 +12,23 @@ index 086c4026..2b4df96c 100644
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
-@@ -69,45 +72,72 @@ typedef struct tagRTWQASYNCRESULT : public IRtwqAsyncResult
+@@ -43,6 +46,7 @@ typedef enum
+     RTWQ_MULTITHREADED_WORKQUEUE = 2,   // multithreaded MTA
+ }   RTWQ_WORKQUEUE_TYPE;
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ interface DECLSPEC_UUID("ac6b7889-0740-4d51-8619-905994a55cc6") DECLSPEC_NOVTABLE
+     IRtwqAsyncResult : public IUnknown
+ {
+@@ -53,6 +57,7 @@ interface DECLSPEC_UUID("ac6b7889-0740-4d51-8619-905994a55cc6") DECLSPEC_NOVTABL
+     STDMETHOD_(IUnknown *, GetStateNoAddRef)()=0;
+ };
+ 
++_Win32_metadata_supported_os_(windows8.1)
+ interface DECLSPEC_UUID("a27003cf-2354-4f2a-8d6a-ab7cff15437e") DECLSPEC_NOVTABLE
+     IRtwqAsyncCallback : public IUnknown
+ {
+@@ -69,47 +74,75 @@ typedef struct tagRTWQASYNCRESULT : public IRtwqAsyncResult
      HANDLE hEvent;
  }   RTWQASYNCRESULT;
  
@@ -84,8 +100,11 @@ index 086c4026..2b4df96c 100644
 +_Win32_metadata_supported_os_(windows8.1)
  STDAPI RtwqGetWorkQueueMMCSSPriority(DWORD workQueueId, _Out_ LONG* priority);
  
++_Win32_metadata_supported_os_(windows8.1)
  interface DECLSPEC_UUID("63d9255a-7ff1-4b61-8faf-ed6460dacf2b") DECLSPEC_NOVTABLE
-@@ -117,15 +147,22 @@ interface DECLSPEC_UUID("63d9255a-7ff1-4b61-8faf-ed6460dacf2b") DECLSPEC_NOVTABL
+     IRtwqPlatformEvents : public IUnknown
+ {
+@@ -117,15 +150,22 @@ interface DECLSPEC_UUID("63d9255a-7ff1-4b61-8faf-ed6460dacf2b") DECLSPEC_NOVTABL
      STDMETHOD(ShutdownStart)()=0;
      STDMETHOD(ShutdownComplete)()=0;
  };

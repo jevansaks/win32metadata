@@ -6,6 +6,7 @@
 
 #ifndef _ROBUFFER_H
 #define _ROBUFFER_H
+#include <win32metadata_annotations.h>
 
 #ifdef _CONTRACT_GEN
 #include <nt.h>
@@ -16,6 +17,7 @@
 #include <apisetcconv.h>
 #include <objidl.h>
 
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI
 RoGetBufferMarshaler(
     _Outptr_ IMarshal** bufferMarshaler

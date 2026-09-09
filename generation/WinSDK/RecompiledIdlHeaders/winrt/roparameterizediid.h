@@ -6,6 +6,7 @@
 
 #ifndef _ROPARAMETERIXEDIID_H
 #define _ROPARAMETERIXEDIID_H
+#include <win32metadata_annotations.h>
 
 #ifdef _CONTRACT_GEN
 #include <nt.h>
@@ -65,6 +66,7 @@ struct IRoMetaDataLocator
     ) const = 0;
 };
 
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI
 RoGetParameterizedTypeInstanceIID(
     UINT32 nameElementCount,
@@ -74,11 +76,13 @@ RoGetParameterizedTypeInstanceIID(
     _Outptr_opt_ ROPARAMIIDHANDLE* pExtra
     );
 
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI_(void)
 RoFreeParameterizedTypeExtra(
     _In_ ROPARAMIIDHANDLE extra
     );
 
+_Win32_metadata_supported_os_(windows8.0)
 STDAPI_(PCSTR)
 RoParameterizedTypeExtraGetTypeSignature(
     _In_ ROPARAMIIDHANDLE extra

@@ -7,6 +7,7 @@
  */
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -1369,6 +1370,7 @@ typedef struct _SRestriction
 
 #undef       INTERFACE
 #define      INTERFACE  IMAPITable
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_MAPI_INTERFACE_(IMAPITable, IUnknown)
 {
     BEGIN_INTERFACE
@@ -1637,6 +1639,7 @@ typedef struct _flaglist
 
 #undef       INTERFACE
 #define      INTERFACE  IABContainer
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_MAPI_INTERFACE_(IABContainer, IMAPIContainer)
 {
     BEGIN_INTERFACE
@@ -1717,6 +1720,7 @@ DECLARE_MAPI_INTERFACE_(IABContainer, IMAPIContainer)
 
 #undef       INTERFACE
 #define      INTERFACE  IMailUser
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_MAPI_INTERFACE_(IMailUser, IMAPIProp)
 {
     BEGIN_INTERFACE
@@ -1749,6 +1753,7 @@ DECLARE_MAPI_INTERFACE_(IMailUser, IMAPIProp)
 
 #undef       INTERFACE
 #define      INTERFACE  IDistList
+_Win32_metadata_supported_os_(windows5.0)
 DECLARE_MAPI_INTERFACE_(IDistList, IMAPIContainer)
 {
     BEGIN_INTERFACE

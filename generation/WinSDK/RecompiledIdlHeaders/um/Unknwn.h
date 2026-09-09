@@ -114,6 +114,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
     EXTERN_C const IID IID_IUnknown;
     extern "C++"
     {
+_Win32_metadata_supported_os_(windows5.0)
         MIDL_INTERFACE("00000000-0000-0000-C000-000000000046")
         IUnknown
         {
@@ -179,6 +180,7 @@ EXTERN_C const IID IID_IUnknown;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
+_Win32_metadata_supported_os_(windows5.0)
     MIDL_INTERFACE("00000000-0000-0000-C000-000000000046")
     IUnknown
     {

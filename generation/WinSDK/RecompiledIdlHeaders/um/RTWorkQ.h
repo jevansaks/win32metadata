@@ -46,6 +46,7 @@ typedef enum
     RTWQ_MULTITHREADED_WORKQUEUE = 2,   // multithreaded MTA
 }   RTWQ_WORKQUEUE_TYPE;
 
+_Win32_metadata_supported_os_(windows8.1)
 interface DECLSPEC_UUID("ac6b7889-0740-4d51-8619-905994a55cc6") DECLSPEC_NOVTABLE
     IRtwqAsyncResult : public IUnknown
 {
@@ -56,6 +57,7 @@ interface DECLSPEC_UUID("ac6b7889-0740-4d51-8619-905994a55cc6") DECLSPEC_NOVTABL
     STDMETHOD_(IUnknown *, GetStateNoAddRef)()=0;
 };
 
+_Win32_metadata_supported_os_(windows8.1)
 interface DECLSPEC_UUID("a27003cf-2354-4f2a-8d6a-ab7cff15437e") DECLSPEC_NOVTABLE
     IRtwqAsyncCallback : public IUnknown
 {
@@ -140,6 +142,7 @@ STDAPI RtwqGetWorkQueueMMCSSTaskId(DWORD workQueueId, _Out_ DWORD* taskId);
 _Win32_metadata_supported_os_(windows8.1)
 STDAPI RtwqGetWorkQueueMMCSSPriority(DWORD workQueueId, _Out_ LONG* priority);
 
+_Win32_metadata_supported_os_(windows8.1)
 interface DECLSPEC_UUID("63d9255a-7ff1-4b61-8faf-ed6460dacf2b") DECLSPEC_NOVTABLE
     IRtwqPlatformEvents : public IUnknown
 {

@@ -58,7 +58,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinSDK", "WinSDK", "{8ADADA
 		..\generation\WinSDK\requiredNamespacesForNames.rsp = ..\generation\WinSDK\requiredNamespacesForNames.rsp
 		..\generation\WinSDK\scraper.header.txt = ..\generation\WinSDK\scraper.header.txt
 		..\generation\WinSDK\scraper.settings.rsp = ..\generation\WinSDK\scraper.settings.rsp
-		..\generation\WinSDK\supportedOS.rsp = ..\generation\WinSDK\supportedOS.rsp
 		..\generation\WinSDK\Windows.Win32.proj = ..\generation\WinSDK\Windows.Win32.proj
 	EndProjectSection
 EndProject
