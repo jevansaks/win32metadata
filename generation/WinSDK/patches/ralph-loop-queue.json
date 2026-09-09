@@ -9022,8 +9022,8 @@
     "partition": "ActiveDirectory, Lwef, Properties, Shell",
     "status": "matched",
     "owner": "copilot",
-    "last_updated": "2026-09-03T00:45:00Z",
-    "notes": "Classified retained artifact in existing-patches-30.",
+    "last_updated": "09/09/2026 02:20:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(SHChangeNotification_Unlock) annotation on SHChangeNotification_Lock's return declaration in RecompiledIdlHeaders/um/ShlObj_core.h. Consolidated the pre-existing supported-os patch and this new annotation into one ShlObj_core.h.metadata.patch against the d154186c baseline; removed the old ShlObj_core.h.zzz-supported-os.patch. See docs/copilot/header-reports/shlobj_core.h.md",
     "_source": "header-progress"
   },
   {
@@ -11101,8 +11101,8 @@
     "partition": "Dns, IpHlp",
     "status": "matched",
     "owner": "copilot",
-    "last_updated": "2026-09-03T02:00:00Z",
-    "notes": "Classified retained artifact in existing-patches-35.",
+    "last_updated": "09/09/2026 02:20:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(DnsReleaseContextHandle) annotations on DnsAcquireContextHandle_A/W's pContext out-param in RecompiledIdlHeaders/um/WinDNS.h. Consolidated the pre-existing set-last-error patch and these new annotations into one WinDNS.h.metadata.patch against the d154186c baseline; removed the old WinDNS.h.set-last-error.patch. See docs/copilot/header-reports/windns.h.md",
     "_source": "header-progress"
   },
   {
@@ -11434,8 +11434,8 @@
     "partition": "DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs",
     "status": "matched",
     "owner": "copilot",
-    "last_updated": "2026-09-03T02:15:00Z",
-    "notes": "Classified retained artifact in existing-patches-36.",
+    "last_updated": "09/09/2026 02:20:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on CreateMetaFileA/W (DeleteMetaFile) and CreateEnhMetaFileA/W (DeleteEnhMetaFile) return declarations in RecompiledIdlHeaders/um/wingdi.h. Consolidated the pre-existing callback-canonical-name patch and these new annotations into one wingdi.h.metadata.patch against the d154186c baseline; removed the old wingdi.h.callback-canonical-name.patch. See docs/copilot/header-reports/wingdi.h.md",
     "_source": "header-progress"
   },
   {
@@ -11524,8 +11524,8 @@
     "partition": "Wnet",
     "status": "matched",
     "owner": "copilot",
-    "last_updated": "2026-09-03T02:30:00Z",
-    "notes": "Classified retained artifact in existing-patches-37.",
+    "last_updated": "09/09/2026 02:20:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(WNetCloseEnum) annotations on WNetOpenEnumA/W's lphEnum out-param in RecompiledIdlHeaders/um/winnetwk.h. Consolidated the pre-existing set-last-error patch and these new annotations into one winnetwk.h.metadata.patch against the d154186c baseline; removed the old winnetwk.h.set-last-error.patch. See docs/copilot/header-reports/winnetwk.h.md",
     "_source": "header-progress"
   },
   {
@@ -11776,8 +11776,8 @@
     "partition": "Ndis, NWifi",
     "status": "matched",
     "owner": "copilot",
-    "last_updated": "2026-09-03T02:50:00Z",
-    "notes": "Classified retained artifact in existing-patches-38.",
+    "last_updated": "09/09/2026 02:20:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(WlanCloseHandle) annotation on WlanOpenHandle's phClientHandle out-param in RecompiledIdlHeaders/um/wlanapi.h. Consolidated the pre-existing set-last-error patch and this new annotation into one wlanapi.h.metadata.patch against the d154186c baseline; removed the old wlanapi.h.set-last-error.patch. See docs/copilot/header-reports/wlanapi.h.md",
     "_source": "header-progress"
   },
   {

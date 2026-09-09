@@ -3926,8 +3926,10 @@ WINGDIAPI HDC     WINAPI CreateICW( _In_opt_ LPCWSTR pszDriver, _In_opt_ LPCWSTR
 #else
 #define CreateIC  CreateICA
 #endif // !UNICODE
-WINGDIAPI HDC     WINAPI CreateMetaFileA( _In_opt_ LPCSTR pszFile);
-WINGDIAPI HDC     WINAPI CreateMetaFileW( _In_opt_ LPCWSTR pszFile);
+WINGDIAPI HDC     WINAPI CreateMetaFileA( _In_opt_ LPCSTR pszFile)
+    _Win32_metadata_raii_free_(DeleteMetaFile);
+WINGDIAPI HDC     WINAPI CreateMetaFileW( _In_opt_ LPCWSTR pszFile)
+    _Win32_metadata_raii_free_(DeleteMetaFile);
 #ifdef UNICODE
 #define CreateMetaFile  CreateMetaFileW
 #else
@@ -4930,8 +4932,10 @@ WINGDIAPI HENHMETAFILE WINAPI CopyEnhMetaFileW( _In_ HENHMETAFILE hEnh, _In_opt_
 #else
 #define CopyEnhMetaFile  CopyEnhMetaFileA
 #endif // !UNICODE
-WINGDIAPI HDC   WINAPI CreateEnhMetaFileA( _In_opt_ HDC hdc, _In_opt_ LPCSTR lpFilename, _In_opt_ CONST RECT *lprc, _In_opt_ LPCSTR lpDesc);
-WINGDIAPI HDC   WINAPI CreateEnhMetaFileW( _In_opt_ HDC hdc, _In_opt_ LPCWSTR lpFilename, _In_opt_ CONST RECT *lprc, _In_opt_ LPCWSTR lpDesc);
+WINGDIAPI HDC   WINAPI CreateEnhMetaFileA( _In_opt_ HDC hdc, _In_opt_ LPCSTR lpFilename, _In_opt_ CONST RECT *lprc, _In_opt_ LPCSTR lpDesc)
+    _Win32_metadata_raii_free_(DeleteEnhMetaFile);
+WINGDIAPI HDC   WINAPI CreateEnhMetaFileW( _In_opt_ HDC hdc, _In_opt_ LPCWSTR lpFilename, _In_opt_ CONST RECT *lprc, _In_opt_ LPCWSTR lpDesc)
+    _Win32_metadata_raii_free_(DeleteEnhMetaFile);
 #ifdef UNICODE
 #define CreateEnhMetaFile  CreateEnhMetaFileW
 #else

@@ -543,6 +543,7 @@ WNetOpenEnumA(
     _In_  DWORD          dwUsage,
     _In_opt_ LPNETRESOURCEA lpNetResource,
     _Out_ LPHANDLE       lphEnum
+        _Win32_metadata_raii_free_(WNetCloseEnum)
     );
 _Check_return_
 DWORD APIENTRY
@@ -552,6 +553,7 @@ WNetOpenEnumW(
     _In_  DWORD          dwUsage,
     _In_opt_ LPNETRESOURCEW lpNetResource,
     _Out_ LPHANDLE       lphEnum
+        _Win32_metadata_raii_free_(WNetCloseEnum)
     );
 #ifdef UNICODE
 #define WNetOpenEnum  WNetOpenEnumW

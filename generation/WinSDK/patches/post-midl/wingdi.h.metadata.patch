@@ -1,0 +1,58 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
+index 9cc979f2..058c0b8a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h
+@@ -1,4 +1,7 @@
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ /**************************************************************************
+ *                                                                         *
+@@ -3803,7 +3806,9 @@ typedef struct tagPIXELFORMATDESCRIPTOR
+ #ifdef STRICT
+ 
+ #if !defined(NOTEXTMETRIC)
++_Win32_metadata_canonical_name_(FONTENUMPROCA)
+ typedef int (CALLBACK* OLDFONTENUMPROCA)(CONST LOGFONTA *, CONST TEXTMETRICA *, DWORD, LPARAM);
++_Win32_metadata_canonical_name_(FONTENUMPROCW)
+ typedef int (CALLBACK* OLDFONTENUMPROCW)(CONST LOGFONTW *, CONST TEXTMETRICW *, DWORD, LPARAM);
+ #ifdef UNICODE
+ #define OLDFONTENUMPROC  OLDFONTENUMPROCW
+@@ -3811,7 +3816,9 @@ typedef int (CALLBACK* OLDFONTENUMPROCW)(CONST LOGFONTW *, CONST TEXTMETRICW *,
+ #define OLDFONTENUMPROC  OLDFONTENUMPROCA
+ #endif // !UNICODE
+ #else
++_Win32_metadata_canonical_name_(FONTENUMPROCA)
+ typedef int (CALLBACK* OLDFONTENUMPROCA)(CONST LOGFONTA *, CONST VOID *, DWORD, LPARAM);
++_Win32_metadata_canonical_name_(FONTENUMPROCW)
+ typedef int (CALLBACK* OLDFONTENUMPROCW)(CONST LOGFONTW *, CONST VOID *, DWORD, LPARAM);
+ #ifdef UNICODE
+ #define OLDFONTENUMPROC  OLDFONTENUMPROCW
+@@ -3919,8 +3926,10 @@ WINGDIAPI HDC     WINAPI CreateICW( _In_opt_ LPCWSTR pszDriver, _In_opt_ LPCWSTR
+ #else
+ #define CreateIC  CreateICA
+ #endif // !UNICODE
+-WINGDIAPI HDC     WINAPI CreateMetaFileA( _In_opt_ LPCSTR pszFile);
+-WINGDIAPI HDC     WINAPI CreateMetaFileW( _In_opt_ LPCWSTR pszFile);
++WINGDIAPI HDC     WINAPI CreateMetaFileA( _In_opt_ LPCSTR pszFile)
++    _Win32_metadata_raii_free_(DeleteMetaFile);
++WINGDIAPI HDC     WINAPI CreateMetaFileW( _In_opt_ LPCWSTR pszFile)
++    _Win32_metadata_raii_free_(DeleteMetaFile);
+ #ifdef UNICODE
+ #define CreateMetaFile  CreateMetaFileW
+ #else
+@@ -4923,8 +4932,10 @@ WINGDIAPI HENHMETAFILE WINAPI CopyEnhMetaFileW( _In_ HENHMETAFILE hEnh, _In_opt_
+ #else
+ #define CopyEnhMetaFile  CopyEnhMetaFileA
+ #endif // !UNICODE
+-WINGDIAPI HDC   WINAPI CreateEnhMetaFileA( _In_opt_ HDC hdc, _In_opt_ LPCSTR lpFilename, _In_opt_ CONST RECT *lprc, _In_opt_ LPCSTR lpDesc);
+-WINGDIAPI HDC   WINAPI CreateEnhMetaFileW( _In_opt_ HDC hdc, _In_opt_ LPCWSTR lpFilename, _In_opt_ CONST RECT *lprc, _In_opt_ LPCWSTR lpDesc);
++WINGDIAPI HDC   WINAPI CreateEnhMetaFileA( _In_opt_ HDC hdc, _In_opt_ LPCSTR lpFilename, _In_opt_ CONST RECT *lprc, _In_opt_ LPCSTR lpDesc)
++    _Win32_metadata_raii_free_(DeleteEnhMetaFile);
++WINGDIAPI HDC   WINAPI CreateEnhMetaFileW( _In_opt_ HDC hdc, _In_opt_ LPCWSTR lpFilename, _In_opt_ CONST RECT *lprc, _In_opt_ LPCWSTR lpDesc)
++    _Win32_metadata_raii_free_(DeleteEnhMetaFile);
+ #ifdef UNICODE
+ #define CreateEnhMetaFile  CreateEnhMetaFileW
+ #else

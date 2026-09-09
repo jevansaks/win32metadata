@@ -2289,7 +2289,8 @@ typedef enum
 } SCNRT_STATUS;
 
 _Win32_metadata_supported_os_(windows5.0)
-SHSTDAPI_(HANDLE) SHChangeNotification_Lock(_In_ HANDLE hChange, DWORD dwProcId, _Outptr_opt_result_buffer_(2) PIDLIST_ABSOLUTE **pppidl, _Out_opt_ LONG *plEvent);
+SHSTDAPI_(HANDLE) SHChangeNotification_Lock(_In_ HANDLE hChange, DWORD dwProcId, _Outptr_opt_result_buffer_(2) PIDLIST_ABSOLUTE **pppidl, _Out_opt_ LONG *plEvent)
+    _Win32_metadata_raii_free_(SHChangeNotification_Unlock);
 _Win32_metadata_supported_os_(windows5.0)
 SHSTDAPI_(BOOL) SHChangeNotification_Unlock(_In_ HANDLE hLock);
 // The pidls that are given to the view via the ChangeNotifyEvents are simple Pidls,

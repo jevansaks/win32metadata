@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wlanapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wlanapi.h
-index 3b444d9b..96aa3025 100644
+index 3b444d9b..aa206444 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wlanapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wlanapi.h
 @@ -25,6 +25,9 @@ Revision History:
@@ -12,7 +12,15 @@ index 3b444d9b..96aa3025 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -1570,6 +1573,7 @@ WlanReasonCodeToString(
+@@ -1230,6 +1233,7 @@ WlanOpenHandle(
+     _Reserved_ PVOID pReserved,
+     _Out_ PDWORD pdwNegotiatedVersion,
+     _Out_ PHANDLE phClientHandle
++        _Win32_metadata_raii_free_(WlanCloseHandle)
+ );
+ 
+ DWORD WINAPI
+@@ -1570,6 +1574,7 @@ WlanReasonCodeToString(
      _Reserved_ PVOID pReserved
  );
  

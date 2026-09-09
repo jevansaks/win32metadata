@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinDNS.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinDNS.h
-index 8513e017..94ba049d 100644
+index 8513e017..974bb9bc 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WinDNS.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinDNS.h
 @@ -24,6 +24,9 @@ Revision History:
@@ -12,7 +12,23 @@ index 8513e017..94ba049d 100644
  #include <windnsdef.h>
  
  #pragma region Desktop Family or OneCore Family or Games Family
-@@ -1748,6 +1751,7 @@ typedef struct _DNS_SERVICE_BROWSE_REQUEST
+@@ -1109,6 +1112,7 @@ DnsAcquireContextHandle_W(
+     _In_            DWORD           CredentialFlags,
+     _In_opt_        PVOID           Credentials,
+     _Outptr_     PHANDLE         pContext
++        _Win32_metadata_raii_free_(DnsReleaseContextHandle)
+     );
+ 
+ DNS_STATUS
+@@ -1117,6 +1121,7 @@ DnsAcquireContextHandle_A(
+     _In_            DWORD           CredentialFlags,
+     _In_opt_        PVOID           Credentials,
+     _Outptr_     PHANDLE         pContext
++        _Win32_metadata_raii_free_(DnsReleaseContextHandle)
+     );
+ 
+ #ifdef UNICODE
+@@ -1748,6 +1753,7 @@ typedef struct _DNS_SERVICE_BROWSE_REQUEST
  
  #pragma warning(pop)
  
@@ -20,7 +36,7 @@ index 8513e017..94ba049d 100644
  DNS_STATUS
  WINAPI
  DnsServiceBrowse(
-@@ -1755,6 +1759,7 @@ DnsServiceBrowse(
+@@ -1755,6 +1761,7 @@ DnsServiceBrowse(
      _Inout_ PDNS_SERVICE_CANCEL            pCancel
      );
  
@@ -28,7 +44,7 @@ index 8513e017..94ba049d 100644
  DNS_STATUS
  WINAPI
  DnsServiceBrowseCancel(
-@@ -1784,6 +1789,7 @@ typedef struct _DNS_SERVICE_RESOLVE_REQUEST{
+@@ -1784,6 +1791,7 @@ typedef struct _DNS_SERVICE_RESOLVE_REQUEST{
      PVOID pQueryContext;
  } DNS_SERVICE_RESOLVE_REQUEST, *PDNS_SERVICE_RESOLVE_REQUEST;
  
@@ -36,7 +52,7 @@ index 8513e017..94ba049d 100644
  DNS_STATUS
  WINAPI
  DnsServiceResolve(
-@@ -1791,6 +1797,7 @@ DnsServiceResolve(
+@@ -1791,6 +1799,7 @@ DnsServiceResolve(
      _Inout_ PDNS_SERVICE_CANCEL             pCancel
      );
  
@@ -44,7 +60,7 @@ index 8513e017..94ba049d 100644
  DNS_STATUS
  WINAPI
  DnsServiceResolveCancel(
-@@ -1822,6 +1829,7 @@ typedef struct _DNS_SERVICE_REGISTER_REQUEST{
+@@ -1822,6 +1831,7 @@ typedef struct _DNS_SERVICE_REGISTER_REQUEST{
      BOOL unicastEnabled;
  } DNS_SERVICE_REGISTER_REQUEST, *PDNS_SERVICE_REGISTER_REQUEST;
  
@@ -52,7 +68,7 @@ index 8513e017..94ba049d 100644
  DWORD
  WINAPI
  DnsServiceRegister(
-@@ -1829,6 +1837,7 @@ DnsServiceRegister(
+@@ -1829,6 +1839,7 @@ DnsServiceRegister(
      _Inout_opt_ PDNS_SERVICE_CANCEL             pCancel
      );
  
@@ -60,7 +76,7 @@ index 8513e017..94ba049d 100644
  DWORD
  WINAPI
  DnsServiceDeRegister(
-@@ -1877,11 +1886,13 @@ typedef struct _MDNS_QUERY_REQUEST
+@@ -1877,11 +1888,13 @@ typedef struct _MDNS_QUERY_REQUEST
      ULONG                   ulResendCount;   // Reserved
  } MDNS_QUERY_REQUEST, *PMDNS_QUERY_REQUEST;
  

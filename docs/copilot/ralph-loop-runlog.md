@@ -3928,3 +3928,35 @@ Batch 7 (5 headers, 12 entries): `DsGetDC.h`, `fltUser.h`,
   `IncludeRoot` only), so only its per-header report was created.
 - Running total: 53 of 106 RAIIFree sidecar entries migrated across 35
   headers; 53 entries across 9 headers remain.
+
+## 2026-09-09T02:22:00Z - Sidecar-removal tranche batch 8 of N
+
+Batch 8 (5 headers, 10 entries): `WinDNS.h`, `winnetwk.h`,
+`ShlObj_core.h`, `wlanapi.h`, `wingdi.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `DnsAcquireContextHandle_A`/`DnsAcquireContextHandle_W` (`pContext`
+  out-param), `WNetOpenEnumA`/`WNetOpenEnumW` (`lphEnum` out-param,
+  leaving the unrelated `::return=WIN32_ERROR` entries for the same
+  functions untouched), `SHChangeNotification_Lock` (return),
+  `WlanOpenHandle` (`phClientHandle` out-param),
+  `CreateMetaFileA`/`CreateMetaFileW`/`CreateEnhMetaFileA`/
+  `CreateEnhMetaFileW` (return).
+- All 5 headers already had an existing patch (`set-last-error`,
+  `zzz-supported-os`, or `callback-canonical-name`); each was
+  consolidated together with its new annotation into one
+  `<header>.metadata.patch` and the old patch file removed.
+- Removed all 10 corresponding sidecar `RAIIFree` entries from
+  `emitter.settings.rsp`.
+- Validation: same pristine-checkout-and-replay method as prior batches -
+  all 5 headers match byte-for-byte. `ScrapeHeaders -p:ScanArch=crossarch`
+  for Dns, IpHlp (both per-arch x64/x86/arm64), Wnet, ActiveDirectory, Lwef,
+  Properties, Shell (per-arch), Ndis, NWifi, DataXchg, Direct3D9 (per-arch),
+  Gdi, Intl, Media.DShow, Tablet, and Wcs all succeeded with 0 errors.
+- Post-edit self-audit: zero duplicate `RAIIFree` lines in
+  `emitter.settings.rsp` (53 - 10 = 43, matches exactly).
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` and
+  per-header reports for all 5 headers (all 5 are part of the 1403-item
+  ledger).
+- Running total: 63 of 106 RAIIFree sidecar entries migrated across 40
+  headers; 43 entries across 4 headers remain (`avrt.h`, `fileapi.h`,
+  `WinBase.h`, `WtsApi32.h`).

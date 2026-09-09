@@ -1112,6 +1112,7 @@ DnsAcquireContextHandle_W(
     _In_            DWORD           CredentialFlags,
     _In_opt_        PVOID           Credentials,
     _Outptr_     PHANDLE         pContext
+        _Win32_metadata_raii_free_(DnsReleaseContextHandle)
     );
 
 DNS_STATUS
@@ -1120,6 +1121,7 @@ DnsAcquireContextHandle_A(
     _In_            DWORD           CredentialFlags,
     _In_opt_        PVOID           Credentials,
     _Outptr_     PHANDLE         pContext
+        _Win32_metadata_raii_free_(DnsReleaseContextHandle)
     );
 
 #ifdef UNICODE

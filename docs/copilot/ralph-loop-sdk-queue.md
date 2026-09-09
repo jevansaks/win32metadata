@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T08:25:44Z
+- Generated: 2026-09-09T08:37:32Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -1012,7 +1012,7 @@
 | `shimgdata.h` | Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shldisp.h` | Lwef, Shell | matched | copilot | 09/03/2026 00:30:00 | Classified retained artifact in existing-patches-29. |
 | `shlguid.h` | Shell | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/shlguid.h.md |
-| `shlobj_core.h` | ActiveDirectory, Lwef, Properties, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
+| `shlobj_core.h` | ActiveDirectory, Lwef, Properties, Shell | matched | copilot | 09/09/2026 02:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(SHChangeNotification_Unlock) annotation on SHChangeNotification_Lock's return declaration in RecompiledIdlHeaders/um/ShlObj_core.h. Consolidated the pre-existing supported-os patch and this new annotation into one ShlObj_core.h.metadata.patch against the d154186c baseline; removed the old ShlObj_core.h.zzz-supported-os.patch. See docs/copilot/header-reports/shlobj_core.h.md |
 | `shlobj.h` | Controls, Lwef, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shlwapi.h` | Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
 | `shobjidl_core.h` | Properties, Search, Shell | matched | copilot | 09/03/2026 00:45:00 | Classified retained artifact in existing-patches-30. |
@@ -1243,7 +1243,7 @@
 | `winddi.h` | Display, IO, Printing, TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddi.h.md |
 | `winddiui.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddiui.h.md |
 | `windef.h` | Foundation, Gdi, WinAuto | matched | copilot | 09/02/2026 19:18:45 | Closed in shared-handle-policy-01; current windows-rs full test target is blocked by missing PartitionSpec.include_main_file initializers. |
-| `windns.h` | Dns, IpHlp | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
+| `windns.h` | Dns, IpHlp | matched | copilot | 09/09/2026 02:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(DnsReleaseContextHandle) annotations on DnsAcquireContextHandle_A/W's pContext out-param in RecompiledIdlHeaders/um/WinDNS.h. Consolidated the pre-existing set-last-error patch and these new annotations into one WinDNS.h.metadata.patch against the d154186c baseline; removed the old WinDNS.h.set-last-error.patch. See docs/copilot/header-reports/windns.h.md |
 | `windnsdef.h` | Dns | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windnsdef.h.md |
 | `windot11.h` | Ndis, NWifi | matched |  |  | Investigated; no functions in header (driver spec structs only), no ownership metadata gap. See docs/copilot/header-reports/windot11.h.md |
 | `windows.ai.machinelearning.native.h` | WinRT.ML | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/windows.ai.machinelearning.native.h.md |
@@ -1280,7 +1280,7 @@
 | `winerror.h` | Direct2D, DXCore, Dxgi, Dxgi.Common, Foundation, Rpc, TaskSchd, TransactionServer, UiAnimation, Wes | matched |  |  | Investigated; error-code constants only, no functions. See docs/copilot/header-reports/winerror.h.md |
 | `winevt.h` | Wes | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winfax.h` | Fax | matched |  | 09/09/2026 01:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(FaxClose) annotations on FaxConnectFaxServerA/W and FaxOpenPort's out-params in RecompiledIdlHeaders/um/WinFax.h. Consolidated into WinFax.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/winfax.h.md |
-| `wingdi.h` | DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
+| `wingdi.h` | DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs | matched | copilot | 09/09/2026 02:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on CreateMetaFileA/W (DeleteMetaFile) and CreateEnhMetaFileA/W (DeleteEnhMetaFile) return declarations in RecompiledIdlHeaders/um/wingdi.h. Consolidated the pre-existing callback-canonical-name patch and these new annotations into one wingdi.h.metadata.patch against the d154186c baseline; removed the old wingdi.h.callback-canonical-name.patch. See docs/copilot/header-reports/wingdi.h.md |
 | `winhttp.h` | HttpServer, WinHttp | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `WinHvEmulation.h` | Hypervisor | matched |  | 09/02/2026 20:13:28 | Fixed genuine gap: added new autoTypes.json entry for WHV_EMULATOR_HANDLE (CloseApi=WHvEmulatorDestroyEmulator). |
 | `WinHvPlatform.h` | Hypervisor | matched |  |  | Genuine producer-site fix: added WHV_TRIGGER_HANDLE and WHV_NOTIFICATION_PORT_HANDLE autoTypes.json entries. See docs/copilot/header-reports/WinHvPlatform.h.md |
@@ -1290,7 +1290,7 @@
 | `winldap.h` | Ldap | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winmeta.h` | TraceLogging | matched | copilot | 09/03/2026 03:20:00 | No patch needed; constant-only header verified via live scrape. |
 | `winml.h` | MachineLearning | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winml.h.md |
-| `winnetwk.h` | Wnet | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
+| `winnetwk.h` | Wnet | matched | copilot | 09/09/2026 02:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(WNetCloseEnum) annotations on WNetOpenEnumA/W's lphEnum out-param in RecompiledIdlHeaders/um/winnetwk.h. Consolidated the pre-existing set-last-error patch and these new annotations into one winnetwk.h.metadata.patch against the d154186c baseline; removed the old winnetwk.h.set-last-error.patch. See docs/copilot/header-reports/winnetwk.h.md |
 | `winnls.h` | Intl | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winnls.h.md |
 | `winnls32.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:23:41 | HWND is an input; IME info struct is caller-allocated, not a handle. |
 | `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | matched |  |  | Investigated; foundational type/macro definitions only, no functions or handle typedefs. See docs/copilot/header-reports/winnt.h.md |
@@ -1318,7 +1318,7 @@
 | `winuser.h` | Base, Controls, DataXchg, DlgBox, Dwm, FileHistory, Gdi, Input.Ime, Intl, IO, MenuRc, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Shell, TermServ, WinAuto, WinProg, WinTouch | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winver.h` | Fs | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
 | `winwlx.h` | Security.WinWlx | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winwlx.h.md |
-| `wlanapi.h` | Ndis, NWifi | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
+| `wlanapi.h` | Ndis, NWifi | matched | copilot | 09/09/2026 02:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(WlanCloseHandle) annotation on WlanOpenHandle's phClientHandle out-param in RecompiledIdlHeaders/um/wlanapi.h. Consolidated the pre-existing set-last-error patch and this new annotation into one wlanapi.h.metadata.patch against the d154186c baseline; removed the old wlanapi.h.set-last-error.patch. See docs/copilot/header-reports/wlanapi.h.md |
 | `wlanihv.h` | NWifi | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wlanihv.h.md |
 | `wlanihvtypes.h` | NWifi | matched |  | 09/02/2026 18:15:12 | Data structs + constants only, no functions. |
 | `wlantypes.h` | Ndis, NWifi | matched |  | 09/02/2026 20:19:39 | Enums/structs only, no functions. |

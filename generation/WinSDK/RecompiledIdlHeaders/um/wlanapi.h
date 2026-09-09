@@ -1233,6 +1233,7 @@ WlanOpenHandle(
     _Reserved_ PVOID pReserved,
     _Out_ PDWORD pdwNegotiatedVersion,
     _Out_ PHANDLE phClientHandle
+        _Win32_metadata_raii_free_(WlanCloseHandle)
 );
 
 DWORD WINAPI
