@@ -3,6 +3,9 @@
 //
 #pragma once
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -70,7 +73,8 @@ typedef enum _WSC_SECURITY_PROVIDER_HEALTH
 
 
 STDAPI WscRegisterForChanges(LPVOID Reserved, 
-                             PHANDLE phCallbackRegistration,
+                             PHANDLE phCallbackRegistration
+                                 _Win32_metadata_raii_free_(WscUnRegisterChanges),
                              LPTHREAD_START_ROUTINE lpCallbackAddress, 
                              PVOID pContext);
 

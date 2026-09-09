@@ -3857,3 +3857,33 @@ across 25 headers (batches 1-5); 70 entries across 19 headers remain**
 This corrects the smaller per-batch entry counts stated in the batch 4 and
 batch 5 log entries above (batch 4 migrated 7 entries, not 6 -
 `QOSCreateHandle` was included; batch 5 migrated 11 entries, not 8).
+
+## 2026-09-09T01:47:00Z - Sidecar-removal tranche batch 6 of N
+
+Batch 6 (5 headers, 5 entries): `consoleapi2.h`, `winsplp.h`,
+`wnvapi.h`, `Wscapi.h`, `wslapi.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `CreateConsoleScreenBuffer` (return), `CreatePrinterIC` (return),
+  `WnvOpen` (return), `WscRegisterForChanges`
+  (`phCallbackRegistration` out-param), `WslLaunch` (`process`
+  out-param).
+- `consoleapi2.h` had an existing `consoleapi2.h.set-last-error.patch`;
+  consolidated it together with the new annotation into one
+  `consoleapi2.h.metadata.patch` and removed the old patch file. The
+  other 4 headers had no prior patch and got the
+  `win32metadata_annotations.h` guard added explicitly.
+- Removed all 5 corresponding sidecar entries from `emitter.settings.rsp`
+  (left the unrelated `CreatePrinterIC::hPrinter=PRINTER_HANDLE`
+  type-override entry untouched).
+- Validation: same pristine-checkout-and-replay method as prior batches -
+  all 5 headers match byte-for-byte, including the consolidated
+  `consoleapi2.h`. `ScrapeHeaders -p:ScanArch=crossarch` for Console,
+  Printing (per-arch x64/x86/arm64), wnv, FileHistory, SecurityCenter, and
+  Wsl all succeeded with 0 errors.
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` for the 4
+  tracked headers (`winsplp.h`, `wnvapi.h`, `wscapi.h`, `wslapi.h`)
+  and per-header reports for all 5. `consoleapi2.h` is not part of the
+  1403-item ledger (reached via partition `settings.rsp` `IncludeRoot`
+  only), so only its per-header report was created.
+- Running total: 41 of 106 RAIIFree sidecar entries migrated across 30
+  headers; 65 entries across 14 headers remain.

@@ -15,6 +15,9 @@
 
 #include <apiset.h>
 #include <apisetcconv.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #ifdef _CONTRACT_GEN
 #include <nt.h>
@@ -98,6 +101,7 @@ WslLaunch(
     _In_ HANDLE stdOut,
     _In_ HANDLE stdErr,
     _Out_ HANDLE* process
+        _Win32_metadata_raii_free_(CloseHandle)
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SERVER) */

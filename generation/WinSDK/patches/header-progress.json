@@ -46317,8 +46317,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Producer-site fix: added inline RAIIFree(DeletePrinterIC) annotation on CreatePrinterIC::return in emitter.settings.rsp. See docs/copilot/header-reports/winsplp.h.md",
+      "last_updated": "09/09/2026 01:45:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(DeletePrinterIC) annotation on CreatePrinterIC's return declaration in RecompiledIdlHeaders/um/winsplp.h. Consolidated into winsplp.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/winsplp.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Printing/main.cpp",
@@ -47795,8 +47795,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Producer-site fix: WnvOpen returns a generic HANDLE directly; confirmed (MSDN) it is released via CloseHandle, not WnvRequestNotification as previously misattributed. Added WnvOpen::return=[RAIIFree(\"CloseHandle\")]. See docs/copilot/header-reports/wnvapi.h.md",
+      "last_updated": "09/09/2026 01:45:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(CloseHandle) annotation on WnvOpen's return declaration in RecompiledIdlHeaders/um/wnvapi.h. Consolidated into wnvapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/wnvapi.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/wnv/main.cpp",
@@ -48327,8 +48327,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Producer-site fix: WscRegisterForChanges produces a HANDLE via out-param phCallbackRegistration released via WscUnRegisterChanges. Added WscRegisterForChanges::phCallbackRegistration=[RAIIFree(\"WscUnRegisterChanges\")]. See docs/copilot/header-reports/Wscapi.h.md",
+      "last_updated": "09/09/2026 01:45:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(WscUnRegisterChanges) annotation on WscRegisterForChanges's phCallbackRegistration out-param in RecompiledIdlHeaders/um/Wscapi.h. Consolidated into Wscapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/Wscapi.h.md",
       "sources": [
         {
           "source": "partition-main",
@@ -48722,8 +48722,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Producer-site fix: WslLaunch produces a process HANDLE via a direct out-param (_Out_ HANDLE* process). Added WslLaunch::process=[RAIIFree(\"CloseHandle\")]. Same corrected reasoning as resourceindexer.h - per-function param annotation does not apply globally to HANDLE. See docs/copilot/header-reports/wslapi.h.md",
+      "last_updated": "09/09/2026 01:45:00",
+      "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(CloseHandle) annotation on WslLaunch's process out-param in RecompiledIdlHeaders/um/wslapi.h. Consolidated into wslapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/wslapi.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Wsl/main.cpp",

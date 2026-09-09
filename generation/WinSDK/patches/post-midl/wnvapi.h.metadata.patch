@@ -1,0 +1,24 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h
+index 594858a0..4a52d476 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wnvapi.h
+@@ -19,6 +19,9 @@ Abstract:
+ #endif  // _MSC_VER
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family or WNV Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WNV)
+@@ -117,7 +120,8 @@ extern "C" {
+ HANDLE
+ WINAPI
+ WnvOpen(
+-    );
++    )
++    _Win32_metadata_raii_free_(CloseHandle);
+ 
+ ULONG
+ WINAPI

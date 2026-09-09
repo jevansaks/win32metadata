@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T08:02:00Z
+- Generated: 2026-09-09T08:16:12Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -1305,7 +1305,7 @@
 | `winsnmp.h` | Snmp | matched |  |  | Genuine producer-site fix: added 5 autoTypes.json entries (HSNMP_SESSION/ENTITY/CONTEXT/PDU/VBL). See docs/copilot/header-reports/winsnmp.h.md |
 | `WinSock.h` | Fsrm, TermServ, WinSock | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsock2.h` | ActiveDirectory, HttpServer, IpHlp, P2p, Qos, Ual, WindowsFilteringPlatform, WinHttp, WinSock, wnv | matched | copilot | 09/03/2026 02:50:00 | Classified retained artifact in existing-patches-38. |
-| `winsplp.h` | Printing | matched |  |  | Producer-site fix: added inline RAIIFree(DeletePrinterIC) annotation on CreatePrinterIC::return in emitter.settings.rsp. See docs/copilot/header-reports/winsplp.h.md |
+| `winsplp.h` | Printing | matched |  | 09/09/2026 01:45:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(DeletePrinterIC) annotation on CreatePrinterIC's return declaration in RecompiledIdlHeaders/um/winsplp.h. Consolidated into winsplp.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/winsplp.h.md |
 | `winspool.h` | Gdi, Printing | matched | copilot | 09/02/2026 22:05:00 | Audited under corrected shared-handle policy (165b5f09, 7335ddc4); already compliant, no code changes required. Not part of the original 11-header audit set (discovered as an additional resource-ownership patch). |
 | `winstring.h` | WinRT | matched |  | 09/02/2026 20:07:23 | HSTRING/HSTRING_BUFFER already correctly covered via existing autoTypes.json entries. |
 | `winsvc.h` | Services | matched | copilot | 09/02/2026 21:45:00 | Corrected typedef-owned ownership violation found during resource-ownership audit (10 producer sites across 2 handle types). |
@@ -1345,7 +1345,7 @@
 | `wmsinternaladminnetsource.h` | WmFormat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsinternaladminnetsource.h.md |
 | `wmsysprf.h` | Wmp | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wmsysprf.h.md |
 | `wnnc.h` | Ifsk | matched |  | 09/02/2026 19:19:02 | Constants only, no functions. |
-| `wnvapi.h` | wnv | matched |  |  | Producer-site fix: WnvOpen returns a generic HANDLE directly; confirmed (MSDN) it is released via CloseHandle, not WnvRequestNotification as previously misattributed. Added WnvOpen::return=[RAIIFree("CloseHandle")]. See docs/copilot/header-reports/wnvapi.h.md |
+| `wnvapi.h` | wnv | matched |  | 09/09/2026 01:45:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(CloseHandle) annotation on WnvOpen's return declaration in RecompiledIdlHeaders/um/wnvapi.h. Consolidated into wnvapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/wnvapi.h.md |
 | `wofapi.h` | Fs | matched |  | 09/02/2026 20:31:37 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `workspaceax.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/workspaceax.h.md |
 | `workspaceruntime.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/workspaceruntime.h.md |
@@ -1364,7 +1364,7 @@
 | `wsbapperror.h` | Wsb | matched |  | 09/02/2026 18:35:09 | HRESULT error-code constants/macros only, no functions. |
 | `wsbonline.h` | Wsb | matched |  | 09/02/2026 18:32:46 | Struct/GUID input-only API, no handle. |
 | `wsbonlineerror.h` | Wsb | matched |  | 09/02/2026 18:44:05 | HRESULT error-code constants/macros only, no functions. |
-| `wscapi.h` | FileHistory, SecurityCenter | matched |  |  | Producer-site fix: WscRegisterForChanges produces a HANDLE via out-param phCallbackRegistration released via WscUnRegisterChanges. Added WscRegisterForChanges::phCallbackRegistration=[RAIIFree("WscUnRegisterChanges")]. See docs/copilot/header-reports/Wscapi.h.md |
+| `wscapi.h` | FileHistory, SecurityCenter | matched |  | 09/09/2026 01:45:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(WscUnRegisterChanges) annotation on WscRegisterForChanges's phCallbackRegistration out-param in RecompiledIdlHeaders/um/Wscapi.h. Consolidated into Wscapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/Wscapi.h.md |
 | `wsdapi.h` | WebServicesOnDevices | matched |  | 09/02/2026 17:13:02 | Redirect-only; 32 functions all COM-factory/memory-helper pairs (void*, not HANDLE), no DECLARE_HANDLE. |
 | `wsdattachment.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdattachment.h.md |
 | `wsdbase.h` | FunctionDiscovery | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsdbase.h.md |
@@ -1379,7 +1379,7 @@
 | `wshisotp.h` | WinSock | matched |  | 09/02/2026 19:09:17 | Data struct + constants/macro only, no functions. |
 | `wsipv6ok.h` | WinSock | matched |  | 09/02/2026 19:06:16 | Macro redefinitions only, no declarations. |
 | `wsipx.h` | WinSock | matched |  | 09/02/2026 18:09:40 | Data struct + constants only, no functions. |
-| `wslapi.h` | Wsl | matched |  |  | Producer-site fix: WslLaunch produces a process HANDLE via a direct out-param (_Out_ HANDLE* process). Added WslLaunch::process=[RAIIFree("CloseHandle")]. Same corrected reasoning as resourceindexer.h - per-function param annotation does not apply globally to HANDLE. See docs/copilot/header-reports/wslapi.h.md |
+| `wslapi.h` | Wsl | matched |  | 09/09/2026 01:45:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(CloseHandle) annotation on WslLaunch's process out-param in RecompiledIdlHeaders/um/wslapi.h. Consolidated into wslapi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/wslapi.h.md |
 | `wsman.h` | WinRm | matched |  |  | Producer-site fix: filled missing CloseApi on WSMAN_API_HANDLE/WSMAN_SESSION_HANDLE/WSMAN_OPERATION_HANDLE. WSMAN_COMMAND_HANDLE/WSMAN_SHELL_HANDLE blocked (mandatory async param). See docs/copilot/header-reports/wsman.h.md |
 | `wsmandisp.h` | WinRm | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wsmandisp.h.md |
 | `wsmerror.h` | WinRm | matched |  |  | Investigated; error-code constants only, no functions, no ownership metadata gap. See docs/copilot/header-reports/wsmerror.h.md |

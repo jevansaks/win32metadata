@@ -114,7 +114,8 @@ CreateConsoleScreenBuffer(
     _In_opt_ CONST SECURITY_ATTRIBUTES* lpSecurityAttributes,
     _In_ DWORD dwFlags,
     _Reserved_ LPVOID lpScreenBufferData
-    );
+    )
+    _Win32_metadata_raii_free_(CloseHandle);
 
 _Win32_metadata_set_last_error_
 WINBASEAPI
