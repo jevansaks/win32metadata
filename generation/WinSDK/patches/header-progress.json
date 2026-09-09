@@ -2598,8 +2598,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Producer-site fix: AvSetMmThreadCharacteristics(A/W)/AvSetMmMaxThreadCharacteristics(A/W) return a HANDLE released via AvRevertMmThreadCharacteristics; AvRtCreateThreadOrderingGroup(ExA/ExW) produce a HANDLE via out-param Context released via AvRtDeleteThreadOrderingGroup; AvRtJoinThreadOrderingGroup produces Context released via AvRtLeaveThreadOrderingGroup. Added 8 emitter.settings.rsp entries. See docs/copilot/header-reports/avrt.h.md",
+      "last_updated": "09/09/2026 02:35:00",
+      "notes": "Producer-site fix, consolidated: moved 8 emitter.settings.rsp sidecar entries to inline _Win32_metadata_raii_free_ annotations on AvSetMmThreadCharacteristicsA/W, AvSetMmMaxThreadCharacteristicsA/W (return), AvRtCreateThreadOrderingGroup/ExA/ExW, AvRtJoinThreadOrderingGroup (Context out-param) in RecompiledIdlHeaders/um/avrt.h. Consolidated into avrt.h.metadata.patch against the d154186c baseline (no prior patch existed). Unrelated AVRT_THREAD_ORDERING_GROUP_HANDLE*/AVRT_TASK_HANDLE type-override entries untouched. See docs/copilot/header-reports/avrt.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/Threading/main.cpp",
@@ -48930,8 +48930,8 @@
       "blocker": "",
       "assumptions": [],
       "evidence": [],
-      "last_updated": "",
-      "notes": "Producer-site fix: added 4 inline RAIIFree return-value annotations for WTSOpenServerA/W/ExA/ExW in emitter.settings.rsp. See docs/copilot/header-reports/wtsapi32.h.md",
+      "last_updated": "09/09/2026 02:35:00",
+      "notes": "Producer-site fix, consolidated: moved 6 emitter.settings.rsp sidecar entries to inline _Win32_metadata_raii_free_ annotations on WTSOpenServerA/W/ExA/ExW and WTSVirtualChannelOpen/OpenEx return declarations in RecompiledIdlHeaders/um/WtsApi32.h. Consolidated into WtsApi32.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/wtsapi32.h.md",
       "sources": {
         "source": "partition-main",
         "source_file": "generation/WinSDK/Partitions/TermServ/main.cpp",

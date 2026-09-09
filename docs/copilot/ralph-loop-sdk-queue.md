@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T08:37:32Z
+- Generated: 2026-09-09T08:43:00Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -96,7 +96,7 @@
 | `avifmt.h` | Media.DShow | matched |  | 09/02/2026 21:55:32 | Constants/structs only, no functions. |
 | `aviriff.h` | Media.DShow | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/aviriff.h.md |
 | `avrfsdk.h` | ApplicationVerifier, FileHistory | matched |  | 09/02/2026 19:02:46 | HANDLE is a caller-supplied input; diagnostic handle fields are plain ULONG64. |
-| `avrt.h` | Threading | matched |  |  | Producer-site fix: AvSetMmThreadCharacteristics(A/W)/AvSetMmMaxThreadCharacteristics(A/W) return a HANDLE released via AvRevertMmThreadCharacteristics; AvRtCreateThreadOrderingGroup(ExA/ExW) produce a HANDLE via out-param Context released via AvRtDeleteThreadOrderingGroup; AvRtJoinThreadOrderingGroup produces Context released via AvRtLeaveThreadOrderingGroup. Added 8 emitter.settings.rsp entries. See docs/copilot/header-reports/avrt.h.md |
+| `avrt.h` | Threading | matched |  | 09/09/2026 02:35:00 | Producer-site fix, consolidated: moved 8 emitter.settings.rsp sidecar entries to inline _Win32_metadata_raii_free_ annotations on AvSetMmThreadCharacteristicsA/W, AvSetMmMaxThreadCharacteristicsA/W (return), AvRtCreateThreadOrderingGroup/ExA/ExW, AvRtJoinThreadOrderingGroup (Context out-param) in RecompiledIdlHeaders/um/avrt.h. Consolidated into avrt.h.metadata.patch against the d154186c baseline (no prior patch existed). Unrelated AVRT_THREAD_ORDERING_GROUP_HANDLE*/AVRT_TASK_HANDLE type-override entries untouched. See docs/copilot/header-reports/avrt.h.md |
 | `azroles.h` | Authorization, Authorization.UI | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/azroles.h.md |
 | `batclass.h` | Power | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/batclass.h.md |
 | `bcp47mrm.h` | Intl | matched |  | 09/02/2026 16:53:36 | No handle-producing functions. |
@@ -1387,7 +1387,7 @@
 | `wsnwlink.h` | WinSock | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
 | `wsrm.h` | WinSock | matched |  | 09/02/2026 20:34:23 | Socket-option constants only, no functions. |
 | `wsvns.h` | WinSock | matched |  | 09/02/2026 17:41:54 | Data struct + constants only, no functions. |
-| `wtsapi32.h` | TermServ | matched |  |  | Producer-site fix: added 4 inline RAIIFree return-value annotations for WTSOpenServerA/W/ExA/ExW in emitter.settings.rsp. See docs/copilot/header-reports/wtsapi32.h.md |
+| `wtsapi32.h` | TermServ | matched |  | 09/09/2026 02:35:00 | Producer-site fix, consolidated: moved 6 emitter.settings.rsp sidecar entries to inline _Win32_metadata_raii_free_ annotations on WTSOpenServerA/W/ExA/ExW and WTSVirtualChannelOpen/OpenEx return declarations in RecompiledIdlHeaders/um/WtsApi32.h. Consolidated into WtsApi32.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/wtsapi32.h.md |
 | `wtsdefs.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtsdefs.h.md |
 | `wtshintapi.h` | TermServ | matched |  | 09/02/2026 19:12:01 | HWND is an input; render hint ID is a plain UINT64, not a HANDLE. |
 | `wtsprotocol.h` | TermServ | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wtsprotocol.h.md |

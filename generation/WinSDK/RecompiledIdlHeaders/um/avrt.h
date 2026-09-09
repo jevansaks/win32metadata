@@ -1,4 +1,7 @@
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
@@ -58,7 +61,8 @@ WINAPI
 AvSetMmThreadCharacteristicsA (
     _In_ LPCSTR TaskName,
     _Inout_ LPDWORD TaskIndex
-    );
+    )
+    _Win32_metadata_raii_free_(AvRevertMmThreadCharacteristics);
 _Success_(return != NULL)
 AVRTAPI
 HANDLE
@@ -66,7 +70,8 @@ WINAPI
 AvSetMmThreadCharacteristicsW (
     _In_ LPCWSTR TaskName,
     _Inout_ LPDWORD TaskIndex
-    );
+    )
+    _Win32_metadata_raii_free_(AvRevertMmThreadCharacteristics);
 #ifdef UNICODE
 #define AvSetMmThreadCharacteristics  AvSetMmThreadCharacteristicsW
 #else
@@ -81,7 +86,8 @@ AvSetMmMaxThreadCharacteristicsA (
     _In_ LPCSTR FirstTask,
     _In_ LPCSTR SecondTask,
     _Inout_ LPDWORD TaskIndex
-    );
+    )
+    _Win32_metadata_raii_free_(AvRevertMmThreadCharacteristics);
 _Success_(return != NULL)
 AVRTAPI
 HANDLE
@@ -90,7 +96,8 @@ AvSetMmMaxThreadCharacteristicsW (
     _In_ LPCWSTR FirstTask,
     _In_ LPCWSTR SecondTask,
     _Inout_ LPDWORD TaskIndex
-    );
+    )
+    _Win32_metadata_raii_free_(AvRevertMmThreadCharacteristics);
 #ifdef UNICODE
 #define AvSetMmMaxThreadCharacteristics  AvSetMmMaxThreadCharacteristicsW
 #else
@@ -125,7 +132,8 @@ AVRTAPI
 BOOL
 WINAPI
 AvRtCreateThreadOrderingGroup (
-    _Out_ PHANDLE Context,
+    _Out_ PHANDLE Context
+        _Win32_metadata_raii_free_(AvRtDeleteThreadOrderingGroup),
     _In_ PLARGE_INTEGER Period,
     _Inout_ GUID *ThreadOrderingGuid,
     _In_opt_ PLARGE_INTEGER Timeout
@@ -136,7 +144,8 @@ AVRTAPI
 BOOL
 WINAPI
 AvRtCreateThreadOrderingGroupExA (
-    _Out_ PHANDLE Context,
+    _Out_ PHANDLE Context
+        _Win32_metadata_raii_free_(AvRtDeleteThreadOrderingGroup),
     _In_ PLARGE_INTEGER Period,
     _Inout_ GUID *ThreadOrderingGuid,
     _In_opt_ PLARGE_INTEGER Timeout,
@@ -147,7 +156,8 @@ AVRTAPI
 BOOL
 WINAPI
 AvRtCreateThreadOrderingGroupExW (
-    _Out_ PHANDLE Context,
+    _Out_ PHANDLE Context
+        _Win32_metadata_raii_free_(AvRtDeleteThreadOrderingGroup),
     _In_ PLARGE_INTEGER Period,
     _Inout_ GUID *ThreadOrderingGuid,
     _In_opt_ PLARGE_INTEGER Timeout,
@@ -164,7 +174,8 @@ AVRTAPI
 BOOL
 WINAPI
 AvRtJoinThreadOrderingGroup (
-    _Out_ PHANDLE Context,
+    _Out_ PHANDLE Context
+        _Win32_metadata_raii_free_(AvRtLeaveThreadOrderingGroup),
     _In_ GUID *ThreadOrderingGuid,
     _In_ BOOL Before
     );

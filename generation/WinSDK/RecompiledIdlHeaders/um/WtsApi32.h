@@ -15,6 +15,9 @@
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -883,25 +886,29 @@ HANDLE
 WINAPI
 WTSOpenServerW(
     _In_ LPWSTR pServerName
-    );
+    )
+    _Win32_metadata_raii_free_(WTSCloseServer);
 
 HANDLE
 WINAPI
 WTSOpenServerA(
     _In_ LPSTR pServerName
-    );
+    )
+    _Win32_metadata_raii_free_(WTSCloseServer);
 
 HANDLE
 WINAPI
 WTSOpenServerExW(
     _In_ LPWSTR pServerName
-    );
+    )
+    _Win32_metadata_raii_free_(WTSCloseServer);
 
 HANDLE
 WINAPI
 WTSOpenServerExA(
     _In_ LPSTR pServerName
-    );
+    )
+    _Win32_metadata_raii_free_(WTSCloseServer);
 
 #ifdef UNICODE
 #define WTSOpenServer WTSOpenServerW
@@ -1175,7 +1182,8 @@ WTSVirtualChannelOpen(
     IN HANDLE hServer,
     IN DWORD SessionId,
     _In_ LPSTR pVirtualName   /* ascii name */
-    );
+    )
+    _Win32_metadata_raii_free_(WTSVirtualChannelClose);
 
 #define WTS_CHANNEL_OPTION_DYNAMIC          0x00000001       // dynamic channel
 #define WTS_CHANNEL_OPTION_DYNAMIC_PRI_LOW  0x00000000   // priorities
@@ -1190,7 +1198,8 @@ WTSVirtualChannelOpenEx(
                      IN DWORD SessionId,
                      _In_ LPSTR pVirtualName,   /* ascii name */
                      IN DWORD flags
-                     );
+                     )
+    _Win32_metadata_raii_free_(WTSVirtualChannelClose);
 
 BOOL
 WINAPI

@@ -3960,3 +3960,32 @@ Batch 8 (5 headers, 10 entries): `WinDNS.h`, `winnetwk.h`,
 - Running total: 63 of 106 RAIIFree sidecar entries migrated across 40
   headers; 43 entries across 4 headers remain (`avrt.h`, `fileapi.h`,
   `WinBase.h`, `WtsApi32.h`).
+
+## 2026-09-09T02:37:00Z - Sidecar-removal tranche batch 9 of N
+
+Batch 9 (2 headers, 14 entries): `avrt.h`, `WtsApi32.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `AvSetMmThreadCharacteristicsA`/`AvSetMmThreadCharacteristicsW`/
+  `AvSetMmMaxThreadCharacteristicsA`/`AvSetMmMaxThreadCharacteristicsW`
+  (return), `AvRtCreateThreadOrderingGroup`/`ExA`/`ExW`,
+  `AvRtJoinThreadOrderingGroup` (`Context` out-param),
+  `WTSOpenServerA`/`W`/`ExA`/`ExW`,
+  `WTSVirtualChannelOpen`/`WTSVirtualChannelOpenEx` (return).
+- Both headers had no prior patch and got the
+  `win32metadata_annotations.h` guard added explicitly. Left the unrelated
+  `AvRtCreateThreadOrderingGroup*::Context=AVRT_THREAD_ORDERING_GROUP_HANDLE*`,
+  `AvSetMm*::return=AVRT_TASK_HANDLE`, and
+  `WTSVirtualChannelOpen::hServer=[Optional][Reserved]` type/SAL-override
+  entries untouched.
+- Removed all 14 corresponding sidecar entries from
+  `emitter.settings.rsp`.
+- Validation: same pristine-checkout-and-replay method as prior batches -
+  both headers match byte-for-byte. `ScrapeHeaders -p:ScanArch=crossarch`
+  for Threading and TermServ both succeeded with 0 errors.
+- Post-edit self-audit: zero duplicate `RAIIFree` lines in
+  `emitter.settings.rsp` (43 - 14 = 29, matches exactly).
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` and
+  per-header reports for both headers (both are part of the 1403-item
+  ledger).
+- Running total: 77 of 106 RAIIFree sidecar entries migrated across 42
+  headers; 29 entries across 2 headers remain (`fileapi.h`, `WinBase.h`).
