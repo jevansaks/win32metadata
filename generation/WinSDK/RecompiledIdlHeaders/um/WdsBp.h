@@ -20,6 +20,9 @@ Environment:
 #ifndef __WDSBP_H__
 #define __WDSBP_H__
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -148,6 +151,7 @@ WdsBpParseInitialize (
     _In_ ULONG uPacketLen,
     _Out_opt_ PBYTE pbPacketType,
     _Out_ HANDLE *phHandle
+        _Win32_metadata_raii_free_(WdsBpCloseHandle)
     );
 
 DWORD
@@ -157,6 +161,7 @@ WdsBpParseInitializev6 (
     _In_ ULONG uPacketLen,
     _Out_opt_ PBYTE pbPacketType,
     _Out_ HANDLE *phHandle
+        _Win32_metadata_raii_free_(WdsBpCloseHandle)
     );
 
 DWORD
@@ -164,6 +169,7 @@ WDSBPAPI
 WdsBpInitialize (
     _In_ BYTE bPacketType,
     _Out_ HANDLE *phHandle
+        _Win32_metadata_raii_free_(WdsBpCloseHandle)
     );
 
 DWORD

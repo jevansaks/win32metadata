@@ -15,6 +15,9 @@ extern "C" {
 #endif
 
 #include <wincontypes.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 // ...
 
@@ -379,7 +382,8 @@ OpenConsoleW(
     _In_ LPWSTR lpConsoleDevice,
     _In_ DWORD dwDesiredAccess,
     _In_ BOOL bInheritHandle,
-    _In_ DWORD dwShareMode);
+    _In_ DWORD dwShareMode)
+    _Win32_metadata_raii_free_(CloseConsoleHandle);
 
 HANDLE
 APIENTRY
@@ -387,7 +391,8 @@ DuplicateConsoleHandle(
     _In_ HANDLE hSourceHandle,
     _In_ DWORD dwDesiredAccess,
     _In_ BOOL bInheritHandle,
-    _In_ DWORD dwOptions);
+    _In_ DWORD dwOptions)
+    _Win32_metadata_raii_free_(CloseConsoleHandle);
 
 // ...
 

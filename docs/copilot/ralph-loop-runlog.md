@@ -3801,3 +3801,32 @@ Batch 4 (5 headers, 6 entries): `qos2.h`, `Ratings.h`,
   ledger).
 - Running total: 24 of 106 RAIIFree sidecar entries migrated across 20
   headers; 82 entries across 27 headers remain.
+
+## 2026-09-09T01:22:00Z - Sidecar-removal tranche batch 5 of N
+
+Batch 5 (5 headers, 8 entries): `WdsBp.h`, `wdstpdi.h`, `winconp.h`,
+`WinFax.h`, `winppi.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `WdsBpParseInitialize`/`WdsBpParseInitializev6`/`WdsBpInitialize`
+  (`phHandle` out-param), `WdsTransportProviderCreateInstance`
+  (`phInstance` out-param), `WdsTransportProviderOpenContent`
+  (`phContent` out-param), `OpenConsoleW`/`DuplicateConsoleHandle`
+  (return), `FaxConnectFaxServerA`/`FaxConnectFaxServerW`/`FaxOpenPort`
+  (out-param), `GdiGetSpoolFileHandle` (return).
+- None of these 5 headers had a prior post-midl patch; all 5 got the
+  `win32metadata_annotations.h` guard block added explicitly (none
+  transitively included a header that already carried it).
+- Removed all 8 corresponding sidecar entries from `emitter.settings.rsp`.
+- Corrected `winconp.h`'s per-header report: it previously concluded
+  `OpenConsoleW`/`DuplicateConsoleHandle` were unfixable generic-`HANDLE`
+  cases, but a sidecar entry had already been added for them in an earlier
+  batch without updating this report - now reconciled and migrated inline.
+- Validation: same pristine-checkout-and-replay method as prior batches -
+  all 5 headers match byte-for-byte. `ScrapeHeaders -p:ScanArch=crossarch`
+  for Wds, Console, Fax, and Printing (per-arch x64/x86/arm64) all succeeded
+  with 0 errors.
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` and
+  per-header reports for all 5 headers (all 5 are part of the 1403-item
+  ledger).
+- Running total: 32 of 106 RAIIFree sidecar entries migrated across 25
+  headers; 74 entries across 17 headers remain.

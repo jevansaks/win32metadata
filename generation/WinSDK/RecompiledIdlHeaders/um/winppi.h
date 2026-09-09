@@ -17,6 +17,9 @@ Abstract:
 
 #ifndef _WINPPI_
 #define _WINPPI_
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -28,7 +31,8 @@ typedef int (CALLBACK* EMFPLAYPROC)( HDC, INT, HANDLE );
 HANDLE WINAPI GdiGetSpoolFileHandle(
     LPWSTR     pwszPrinterName,
     LPDEVMODEW pDevmode,
-    LPWSTR     pwszDocName);
+    LPWSTR     pwszDocName)
+    _Win32_metadata_raii_free_(GdiDeleteSpoolFileHandle);
 
 BOOL WINAPI GdiDeleteSpoolFileHandle(
     HANDLE     SpoolFileHandle);

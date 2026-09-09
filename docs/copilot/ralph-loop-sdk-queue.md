@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T07:54:45Z
+- Generated: 2026-09-09T08:02:00Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -1199,12 +1199,12 @@
 | `WDBGEXTS.H` | Debug.Extensions | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/WDBGEXTS.H.md |
 | `wdigest.h` | Identity | matched |  | 09/02/2026 17:27:04 | String constants only, no functions. |
 | `wdmguid.h` | DevInst | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdmguid.h.md |
-| `wdsbp.h` | Wds | matched |  |  | Producer-site fix: WdsBpParseInitialize/WdsBpParseInitializev6/WdsBpInitialize each produce a HANDLE via out-param phHandle released via WdsBpCloseHandle. Added 3 emitter.settings.rsp entries. See docs/copilot/header-reports/WdsBp.h.md |
+| `wdsbp.h` | Wds | matched |  | 09/09/2026 01:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(WdsBpCloseHandle) annotations on WdsBpParseInitialize/WdsBpParseInitializev6/WdsBpInitialize's phHandle out-params in RecompiledIdlHeaders/um/WdsBp.h. Consolidated into WdsBp.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/WdsBp.h.md |
 | `wdsclientapi.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdsmcerr.h` | Wds | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdsmcerr.h.md |
 | `wdspxe.h` | Wds | matched | copilot | 09/03/2026 01:45:00 | Classified retained artifact in existing-patches-34. |
 | `wdstci.h` | Wds | matched |  | 09/02/2026 20:53:10 | Constants/enums/structs only, no functions. |
-| `wdstpdi.h` | Wds | matched |  |  | Producer-site fix: WdsTransportProviderCreateInstance/WdsTransportProviderOpenContent produce a HANDLE via out-param (phInstance/phContent) released via WdsTransportProviderCloseInstance/WdsTransportProviderCloseContent respectively. Added both entries. See docs/copilot/header-reports/wdstpdi.h.md |
+| `wdstpdi.h` | Wds | matched |  | 09/09/2026 01:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on WdsTransportProviderCreateInstance's phInstance and WdsTransportProviderOpenContent's phContent out-params in RecompiledIdlHeaders/um/wdstpdi.h. Consolidated into wdstpdi.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/wdstpdi.h.md |
 | `wdstptmgmt.h` | Wds | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/WdsTptMgmt.h.md |
 | `wdstptmgmtmsg.h` | Wds | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wdstptmgmtmsg.h.md |
 | `weakreference.h` | WinRT | matched |  | 09/02/2026 21:24:15 | COM/WinRT interface methods only, out of scope. |
@@ -1237,7 +1237,7 @@
 | `wincodec.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincodecsdk.h` | Wic | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincon.h` | Console | matched |  |  | Producer-site fix: three return-value HANDLE producers in the Console partition (CreateConsoleScreenBuffer/OpenConsoleW/DuplicateConsoleHandle, declared in consoleapi2.h/winconp.h pulled in by wincon.h). Added CreateConsoleScreenBuffer::return=[RAIIFree("CloseHandle")] (per MSDN, console screen buffer handles close via CloseHandle) and OpenConsoleW::return / DuplicateConsoleHandle::return=[RAIIFree("CloseConsoleHandle")] (internal winconp.h consumer). See docs/copilot/header-reports/wincon.h.md |
-| `winconp.h` | Console | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winconp.h.md |
+| `winconp.h` | Console | matched |  | 09/09/2026 01:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(CloseConsoleHandle) annotations on OpenConsoleW/DuplicateConsoleHandle's return declarations in RecompiledIdlHeaders/um/winconp.h. Consolidated into winconp.h.metadata.patch against the d154186c baseline (no prior patch existed). RegisterConsoleVDM's bare PVOID outputs remain a narrower, genuine gap. See docs/copilot/header-reports/winconp.h.md |
 | `wincred.h` | Certificates, Credentials, Identity, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.Cryptography.UI, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
 | `wincrypt.h` | NetMgmt, Rpc, Security.Cryptography, Security.Cryptography.UI | matched | copilot | 09/02/2026 22:40:00 | Corrected typedef-owned ownership violation found during resource-ownership audit; final header in the 11-header audit set (all now compliant). Verified compatible with co-resident zz-crypto-security-enums patch via full replay. |
 | `winddi.h` | Display, IO, Printing, TransactionServer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winddi.h.md |
@@ -1279,7 +1279,7 @@
 | `winenclave.h` | Enclave | matched | copilot | 09/03/2026 03:20:00 | No patch needed; verified via live scrape and static review. |
 | `winerror.h` | Direct2D, DXCore, Dxgi, Dxgi.Common, Foundation, Rpc, TaskSchd, TransactionServer, UiAnimation, Wes | matched |  |  | Investigated; error-code constants only, no functions. See docs/copilot/header-reports/winerror.h.md |
 | `winevt.h` | Wes | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
-| `winfax.h` | Fax | matched |  |  | Producer-site fix: added 3 inline RAIIFree(FaxClose) annotations in emitter.settings.rsp. See docs/copilot/header-reports/winfax.h.md |
+| `winfax.h` | Fax | matched |  | 09/09/2026 01:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_(FaxClose) annotations on FaxConnectFaxServerA/W and FaxOpenPort's out-params in RecompiledIdlHeaders/um/WinFax.h. Consolidated into WinFax.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/winfax.h.md |
 | `wingdi.h` | DataXchg, Direct3D9, Gdi, Intl, Media.DShow, Tablet, Wcs | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `winhttp.h` | HttpServer, WinHttp | matched | copilot | 09/03/2026 02:15:00 | Classified retained artifact in existing-patches-36. |
 | `WinHvEmulation.h` | Hypervisor | matched |  | 09/02/2026 20:13:28 | Fixed genuine gap: added new autoTypes.json entry for WHV_EMULATOR_HANDLE (CloseApi=WHvEmulatorDestroyEmulator). |
@@ -1295,7 +1295,7 @@
 | `winnls32.h` | FileHistory, WinProg | matched |  | 09/02/2026 18:23:41 | HWND is an input; IME info struct is caller-allocated, not a handle. |
 | `winnt.h` | Backup, Base, Display, DXCore, Dxgi, Dxgi.Common, FileHistory, Fs, Identity, Input.Ime, Intl, IO, JobObjects, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shell, Shutdown, Threading, WinProg | matched |  |  | Investigated; foundational type/macro definitions only, no functions or handle typedefs. See docs/copilot/header-reports/winnt.h.md |
 | `winperf.h` | Perf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winperf.h.md |
-| `winppi.h` | Printing | matched |  |  | Producer-site fix: GdiGetSpoolFileHandle returns a spool-file HANDLE released via GdiDeleteSpoolFileHandle. Added GdiGetSpoolFileHandle::return=[RAIIFree("GdiDeleteSpoolFileHandle")]. GdiGetPageHandle intentionally left unannotated - confirmed (web search of driver docs) it is a borrowed handle scoped to the current page/document with no separate free API. See docs/copilot/header-reports/winppi.h.md |
+| `winppi.h` | Printing | matched |  | 09/09/2026 01:20:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(GdiDeleteSpoolFileHandle) annotation on GdiGetSpoolFileHandle's return declaration in RecompiledIdlHeaders/um/winppi.h. Consolidated into winppi.h.metadata.patch against the d154186c baseline (no prior patch existed; GdiGetPageHandle remains intentionally unannotated - borrowed handle, no free API). See docs/copilot/header-reports/winppi.h.md |
 | `winreg.h` | Registry | matched | copilot | 09/03/2026 02:30:00 | Classified retained artifact in existing-patches-37. |
 | `winsafer.h` | Security.AppLocker | matched | copilot | 09/02/2026 21:05:00 | Corrected typedef-owned ownership violation found during resource-ownership audit. |
 | `winsatcominterfacei.h` | WinSat | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winsatcominterfacei.h.md |

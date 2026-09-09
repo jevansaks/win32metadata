@@ -20,6 +20,9 @@ Environment:
 #ifndef _WDSTPDI_H
 #define _WDSTPDI_H
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -127,6 +130,7 @@ WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderCreateInstance(
     _In_ PCWSTR pwszConfigString,
     _Out_ PHANDLE phInstance
+        _Win32_metadata_raii_free_(WdsTransportProviderCloseInstance)
 );
 
 HRESULT
@@ -144,6 +148,7 @@ WdsTransportProviderOpenContent(
     _In_ HANDLE hInstance,
     _In_ PCWSTR pwszContentName,
     _Out_ PHANDLE phContent
+        _Win32_metadata_raii_free_(WdsTransportProviderCloseContent)
 );
 
 HRESULT

@@ -1,0 +1,38 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h
+index f0c668af..d7fb3eb7 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinFax.h
+@@ -19,6 +19,9 @@ Abstract:
+ #define _FAXAPI_
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -831,6 +834,7 @@ WINAPI
+ FaxConnectFaxServerA(
+     IN  LPCSTR MachineName OPTIONAL,
+     OUT LPHANDLE FaxHandle
++        _Win32_metadata_raii_free_(FaxClose)
+     );
+ WINFAXAPI
+ BOOL
+@@ -838,6 +842,7 @@ WINAPI
+ FaxConnectFaxServerW(
+     IN  LPCWSTR MachineName OPTIONAL,
+     OUT LPHANDLE FaxHandle
++        _Win32_metadata_raii_free_(FaxClose)
+     );
+ #ifdef UNICODE
+ #define FaxConnectFaxServer  FaxConnectFaxServerW
+@@ -887,6 +892,7 @@ FaxOpenPort(
+     IN  DWORD DeviceId,
+     IN  DWORD Flags,
+     OUT LPHANDLE FaxPortHandle
++        _Win32_metadata_raii_free_(FaxClose)
+     );
+ 
+ typedef BOOL
