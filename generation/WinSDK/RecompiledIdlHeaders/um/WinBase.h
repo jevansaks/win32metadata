@@ -4449,7 +4449,8 @@ WINAPI
 BeginUpdateResourceA(
     _In_ LPCSTR pFileName,
     _In_ BOOL bDeleteExistingResources
-    );
+    )
+    _Win32_metadata_raii_free_(EndUpdateResourceA);
 _Win32_metadata_set_last_error_
 WINBASEAPI
 HANDLE
@@ -4457,7 +4458,8 @@ WINAPI
 BeginUpdateResourceW(
     _In_ LPCWSTR pFileName,
     _In_ BOOL bDeleteExistingResources
-    );
+    )
+    _Win32_metadata_raii_free_(EndUpdateResourceW);
 #ifdef UNICODE
 #define BeginUpdateResource  BeginUpdateResourceW
 #else
@@ -5755,7 +5757,8 @@ FindFirstFileTransactedA(
     _Reserved_ LPVOID lpSearchFilter,
     _In_       DWORD dwAdditionalFlags,
     _In_       HANDLE hTransaction
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 _Win32_metadata_set_last_error_
 WINBASEAPI
 HANDLE
@@ -5768,7 +5771,8 @@ FindFirstFileTransactedW(
     _Reserved_ LPVOID lpSearchFilter,
     _In_       DWORD dwAdditionalFlags,
     _In_       HANDLE hTransaction
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 #ifdef UNICODE
 #define FindFirstFileTransacted  FindFirstFileTransactedW
 #else
@@ -6491,7 +6495,8 @@ FindFirstStreamTransactedW (
     _Out_writes_bytes_(sizeof(WIN32_FIND_STREAM_DATA)) LPVOID lpFindStreamData,
     _Reserved_ DWORD dwFlags,
     _In_       HANDLE hTransaction
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 
 _Win32_metadata_set_last_error_
 WINBASEAPI
@@ -6503,7 +6508,8 @@ FindFirstFileNameTransactedW (
     _Inout_  LPDWORD StringLength,
     _Out_writes_(*StringLength) PWSTR LinkName,
     _In_opt_ HANDLE hTransaction
-    );
+    )
+    _Win32_metadata_raii_free_(FindClose);
 
 #endif
 
@@ -6848,7 +6854,8 @@ WINAPI
 OpenEventLogA (
     _In_opt_ LPCSTR lpUNCServerName,
     _In_     LPCSTR lpSourceName
-    );
+    )
+    _Win32_metadata_raii_free_(CloseEventLog);
 _Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 WINADVAPI
@@ -6857,7 +6864,8 @@ WINAPI
 OpenEventLogW (
     _In_opt_ LPCWSTR lpUNCServerName,
     _In_     LPCWSTR lpSourceName
-    );
+    )
+    _Win32_metadata_raii_free_(CloseEventLog);
 #ifdef UNICODE
 #define OpenEventLog  OpenEventLogW
 #else
@@ -6878,7 +6886,8 @@ WINAPI
 RegisterEventSourceA (
     _In_opt_ LPCSTR lpUNCServerName,
     _In_     LPCSTR lpSourceName
-    );
+    )
+    _Win32_metadata_raii_free_(DeregisterEventSource);
 _Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 WINADVAPI
@@ -6887,7 +6896,8 @@ WINAPI
 RegisterEventSourceW (
     _In_opt_ LPCWSTR lpUNCServerName,
     _In_     LPCWSTR lpSourceName
-    );
+    )
+    _Win32_metadata_raii_free_(DeregisterEventSource);
 #ifdef UNICODE
 #define RegisterEventSource  RegisterEventSourceW
 #else
@@ -6908,7 +6918,8 @@ WINAPI
 OpenBackupEventLogA (
     _In_opt_ LPCSTR lpUNCServerName,
     _In_     LPCSTR lpFileName
-    );
+    )
+    _Win32_metadata_raii_free_(CloseEventLog);
 _Win32_metadata_set_last_error_
 _Success_(return != FALSE)
 WINADVAPI
@@ -6917,7 +6928,8 @@ WINAPI
 OpenBackupEventLogW (
     _In_opt_ LPCWSTR lpUNCServerName,
     _In_     LPCWSTR lpFileName
-    );
+    )
+    _Win32_metadata_raii_free_(CloseEventLog);
 #ifdef UNICODE
 #define OpenBackupEventLog  OpenBackupEventLogW
 #else
@@ -8253,7 +8265,8 @@ CreatePrivateNamespaceA(
     _In_opt_ LPSECURITY_ATTRIBUTES lpPrivateNamespaceAttributes,
     _In_     LPVOID lpBoundaryDescriptor,
     _In_     LPCSTR lpAliasPrefix
-    );
+    )
+    _Win32_metadata_raii_free_(ClosePrivateNamespace);
 
 #ifndef UNICODE
 #define CreatePrivateNamespace CreatePrivateNamespaceA
@@ -8268,7 +8281,8 @@ WINAPI
 OpenPrivateNamespaceA(
     _In_     LPVOID lpBoundaryDescriptor,
     _In_     LPCSTR lpAliasPrefix
-    );
+    )
+    _Win32_metadata_raii_free_(ClosePrivateNamespace);
 
 #ifndef UNICODE
 #define OpenPrivateNamespace OpenPrivateNamespaceA
@@ -8288,7 +8302,8 @@ APIENTRY
 CreateBoundaryDescriptorA(
     _In_ LPCSTR Name,
     _In_ ULONG Flags
-    );
+    )
+    _Win32_metadata_raii_free_(DeleteBoundaryDescriptor);
 
 #ifndef UNICODE
 #define CreateBoundaryDescriptor CreateBoundaryDescriptorA
@@ -8572,7 +8587,8 @@ WINAPI
 FindFirstVolumeA(
     _Out_writes_(cchBufferLength) LPSTR lpszVolumeName,
     _In_ DWORD cchBufferLength
-    );
+    )
+    _Win32_metadata_raii_free_(FindVolumeClose);
 #ifndef UNICODE
 #define FindFirstVolume FindFirstVolumeA
 #endif
@@ -8604,7 +8620,8 @@ FindFirstVolumeMountPointA(
     _In_ LPCSTR lpszRootPathName,
     _Out_writes_(cchBufferLength) LPSTR lpszVolumeMountPoint,
     _In_ DWORD cchBufferLength
-    );
+    )
+    _Win32_metadata_raii_free_(FindVolumeMountPointClose);
 _Win32_metadata_set_last_error_
 WINBASEAPI
 HANDLE
@@ -8613,7 +8630,8 @@ FindFirstVolumeMountPointW(
     _In_ LPCWSTR lpszRootPathName,
     _Out_writes_(cchBufferLength) LPWSTR lpszVolumeMountPoint,
     _In_ DWORD cchBufferLength
-    );
+    )
+    _Win32_metadata_raii_free_(FindVolumeMountPointClose);
 #ifdef UNICODE
 #define FindFirstVolumeMountPoint FindFirstVolumeMountPointW
 #else
@@ -8814,14 +8832,16 @@ HANDLE
 WINAPI
 CreateActCtxA(
     _In_ PCACTCTXA pActCtx
-    );
+    )
+    _Win32_metadata_raii_free_(ReleaseActCtx);
 _Win32_metadata_set_last_error_
 WINBASEAPI
 HANDLE
 WINAPI
 CreateActCtxW(
     _In_ PCACTCTXW pActCtx
-    );
+    )
+    _Win32_metadata_raii_free_(ReleaseActCtx);
 #ifdef UNICODE
 #define CreateActCtx  CreateActCtxW
 #else

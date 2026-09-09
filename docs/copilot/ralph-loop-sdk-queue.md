@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T08:47:35Z
+- Generated: 2026-09-09T08:58:52Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -1227,7 +1227,7 @@
 | `wiatwcmp.h` | Wia | matched |  | 09/02/2026 18:00:53 | Data struct + constants only, no functions. |
 | `wiavideo.h` | Wia | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/wiavideo.h.md |
 | `wiawsdsc.h` | Wia | matched |  | 09/02/2026 18:35:09 | Property-ID constants only, no functions. |
-| `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | matched | copilot | 09/03/2026 02:00:00 | Classified retained artifact in existing-patches-35. |
+| `winbase.h` | Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc, Registry, Security, Security.AppLocker, Security.ConfigurationSnapin, Security.Cryptography.Catalog, Security.Cryptography.Sip, Security.DiagnosticDataQuery, Security.DirectoryServices, Security.LicenseProtection, Security.Tpm, Security.WinTrust, Security.WinWlx, Setup, Shutdown, TermServ, WinProg | matched | copilot | 09/09/2026 03:15:00 | Producer-site fix, consolidated (FINAL header of the RAIIFree sidecar-removal tranche): moved 20 emitter.settings.rsp sidecar entries to inline _Win32_metadata_raii_free_ annotations on BeginUpdateResourceA/W, CreateActCtxA/W, CreateBoundaryDescriptorA, CreatePrivateNamespaceA, OpenPrivateNamespaceA, FindFirstFileTransactedA/W, FindFirstStreamTransactedW, FindFirstFileNameTransactedW, FindFirstVolumeA, FindFirstVolumeMountPointA/W, OpenEventLogA/W, OpenBackupEventLogA/W, RegisterEventSourceA/W in RecompiledIdlHeaders/um/WinBase.h. Consolidated all 3 pre-existing patches (callback-canonical-name, service-security-set-last-error, zzz-set-last-error) and these 20 new annotations into one WinBase.h.metadata.patch against the d154186c baseline; removed the 3 old per-reason patches. emitter.settings.rsp now has zero RAIIFree sidecar entries. See docs/copilot/header-reports/winbase.h.md |
 | `winber.h` | Ldap | matched |  |  | Genuine producer-site fix: added BerElement autoTypes.json entry (CloseApi=ber_free), matching sibling PLDAPSearch's typedef-struct ValueType convention. See docs/copilot/header-reports/winber.h.md |
 | `winbio_adapter.h` | SecBitomet | matched |  |  | Investigated; WinBio adapter plugin function-pointer-typedef contract (blocker class 4), no ownership metadata gap. See docs/copilot/header-reports/winbio_adapter.h.md |
 | `winbio_err.h` | SecBitomet | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/winbio_err.h.md |

@@ -4019,3 +4019,91 @@ Batch 10 (1 header, 9 entries): `fileapi.h`.
   per-header report.
 - Running total: 86 of 106 RAIIFree sidecar entries migrated across 43
   headers; 20 entries across 1 header remain (`WinBase.h`).
+
+## 2026-09-09T03:17:00Z - Sidecar-removal tranche batch 11 of 11 (FINAL) - tranche complete
+
+Batch 11 (1 header, 20 entries): `WinBase.h` - the last header in the
+RAIIFree sidecar-removal tranche.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `BeginUpdateResourceA`/`W`, `CreateActCtxA`/`W`,
+  `CreateBoundaryDescriptorA`, `CreatePrivateNamespaceA`,
+  `OpenPrivateNamespaceA`, `FindFirstFileTransactedA`/`W`,
+  `FindFirstStreamTransactedW`, `FindFirstFileNameTransactedW`,
+  `FindFirstVolumeA`, `FindFirstVolumeMountPointA`/`W`,
+  `OpenEventLogA`/`W`, `OpenBackupEventLogA`/`W`,
+  `RegisterEventSourceA`/`W` (return, all 20 entries).
+- This header had three existing per-reason patches
+  (`callback-canonical-name`, `service-security-set-last-error`,
+  `zzz-set-last-error`); consolidated all three together with the 20 new
+  annotations into one cumulative `WinBase.h.metadata.patch` and removed
+  all three old patch files.
+- Removed all 20 remaining sidecar entries from `emitter.settings.rsp`.
+  **`emitter.settings.rsp` now contains zero `RAIIFree` memberRemap
+  entries** - the entire category has been migrated to inline
+  ABI-neutral source annotations.
+- Validation: same pristine-checkout-and-replay method as prior batches -
+  the header matches byte-for-byte. `ScrapeHeaders -p:ScanArch=crossarch`
+  was run individually for all 24 partitions that include `WinBase.h`
+  (Base, DataXchg, FileHistory, Fs, Identity, Input.Ime, Intl, IO, MenuRc,
+  Registry, Security, Security.AppLocker, Security.ConfigurationSnapin,
+  Security.Cryptography.Catalog, Security.Cryptography.Sip,
+  Security.DiagnosticDataQuery, Security.DirectoryServices,
+  Security.LicenseProtection, Security.Tpm, Security.WinTrust,
+  Security.WinWlx, Setup, Shutdown, TermServ, WinProg) - all succeeded with
+  0 errors (MenuRc and WinProg scraped per-arch as x64/x86/arm64
+  automatically under crossarch).
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` and the
+  per-header report.
+
+### Tranche summary (batches 1-11, plus the duplicate-line fix)
+
+All 106 API-specific `RAIIFree` memberRemap entries originally present in
+`generation/WinSDK/emitter.settings.rsp` have been moved to inline
+`_Win32_metadata_raii_free_(...)` annotations on the actual SDK producer
+return/out-parameter declarations across **44 headers**:
+`wct.h`, `namespaceapi.h`, `i_cryptasn1tls.h`, `cfapi.h`,
+`getprocesshandlefromhwnd.h`, `davclnt.h`, `dciman.h`, `FaxDev.h`,
+`FaxExt.h`, `WabUtil.h`, `Mprapi.h`, `Mq.h`,
+`ondemandconnroutehelper.h`, `powersetting.h`, `prnasnot.h`,
+`qos2.h`, `Ratings.h`, `ResourceIndexer.h`, `RTWorkQ.h`,
+`srpapi.h`, `WdsBp.h`, `wdstpdi.h`, `winconp.h`, `WinFax.h`,
+`winppi.h`, `consoleapi2.h`, `winsplp.h`, `wnvapi.h`, `Wscapi.h`,
+`wslapi.h`, `DsGetDC.h`, `fltUser.h`, `heapapi.h`, `IcmpAPI.h`,
+`perflib.h`, `WinDNS.h`, `winnetwk.h`, `ShlObj_core.h`,
+`wlanapi.h`, `wingdi.h`, `avrt.h`, `WtsApi32.h`, `fileapi.h`,
+`WinBase.h`. Each header now has exactly one cumulative
+`<header>.metadata.patch` against the pristine `d154186c` SDK baseline;
+every pre-existing per-reason patch for these headers
+(`set-last-error`, `zzz-supported-os`, `callback-canonical-name`,
+etc.) was consolidated into that same file and the old patch files removed.
+No shared typedefs were annotated - every annotation sits on a specific
+function's return value or a specific out-parameter, matching the
+established `Function::return`/`Function::Parameter` scoping already
+used by the 68 precedents this project started from.
+
+**Residual entries/blockers: none.** Every one of the 106 original entries
+was successfully migrated; none needed to be left in the sidecar.
+`RtwqJoinWorkQueue` (`RTWorkQ.h`) has a separate, pre-existing,
+narrower gap (its release function needs an extra caller-supplied argument
+beyond the produced handle, which the unary `RAIIFree` convention cannot
+express) - it was never a sidecar entry in the first place, so it is
+unaffected by and out of scope for this tranche.
+
+**Counts:**
+- RAIIFree entries removed from `emitter.settings.rsp`: 106 of 106 (100%).
+- Headers patched/consolidated: 44 (42 originally identified via
+  `RecompiledIdlHeaders` lookup, plus `consoleapi2.h` and
+  `WabUtil.h`/`heapapi.h` which are reached only via partition
+  `settings.rsp` `IncludeRoot` and were discovered during
+  implementation).
+- Pre-existing per-reason patches consolidated and removed: 11
+  (`consoleapi2.h.set-last-error`, `heapapi.h.zzz-set-last-error`,
+  `IcmpAPI.h.set-last-error`, `WinDNS.h.set-last-error`,
+  `winnetwk.h.set-last-error`, `ShlObj_core.h.zzz-supported-os`,
+  `wlanapi.h.set-last-error`, `wingdi.h.callback-canonical-name`,
+  `fileapi.h.set-last-error`, `WinBase.h.callback-canonical-name`,
+  `WinBase.h.service-security-set-last-error`,
+  `WinBase.h.zzz-set-last-error` - 12 files, corrected count).
+- Residual sidecar entries: 0. Residual blockers introduced by this
+  tranche: 0 (the one narrower, pre-existing `RtwqJoinWorkQueue` gap
+  predates this tranche and was never a sidecar entry).
