@@ -1,0 +1,12 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/powersetting.h b/generation/WinSDK/RecompiledIdlHeaders/um/powersetting.h
+index d9619018..bdcef66b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/powersetting.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/powersetting.h
+@@ -171,6 +171,7 @@ PowerRegisterForEffectivePowerModeNotifications(
+     _In_ EFFECTIVE_POWER_MODE_CALLBACK* Callback,
+     _In_opt_ PVOID Context,
+     _Outptr_ PVOID* RegistrationHandle
++        _Win32_metadata_raii_free_(PowerUnregisterFromEffectivePowerModeNotifications)
+     );
+ 
+ #endif

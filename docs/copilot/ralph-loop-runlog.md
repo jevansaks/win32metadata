@@ -3742,3 +3742,30 @@ Batch 2 (5 headers, 6 entries): `davclnt.h`, `dciman.h`, `FaxDev.h`,
   only), so only its per-header report was created.
 - Running total: 13 of 106 RAIIFree sidecar entries migrated across 10
   headers; 93 entries across 37 headers remain.
+
+## 2026-09-09T00:52:00Z - Sidecar-removal tranche batch 3 of N
+
+Batch 3 (5 headers, 5 entries): `Mprapi.h`, `Mq.h`,
+`ondemandconnroutehelper.h`, `powersetting.h`, `prnasnot.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `MprConfigServerConnect` (`phMprConfig` out-param), `MQCreateCursor`
+  (`phCursor` out-param), `OnDemandRegisterNotification`
+  (`registrationHandle` out-param),
+  `PowerRegisterForEffectivePowerModeNotifications` (`RegistrationHandle`
+  out-param), `RegisterForPrintAsyncNotifications` (`phNotify` out-param).
+- None of these 5 headers had a prior post-midl patch. `powersetting.h`
+  (via `minwindef.h`) and `prnasnot.h` (via `windows.h` ->
+  `WinBase.h`) already transitively include the
+  `win32metadata_annotations.h` guard; `Mprapi.h`, `Mq.h`, and
+  `ondemandconnroutehelper.h` got the guard block added explicitly.
+- Removed all 5 corresponding sidecar entries from `emitter.settings.rsp`.
+- Validation: same pristine-checkout-and-replay method as prior batches -
+  all 5 headers match byte-for-byte. `ScrapeHeaders -p:ScanArch=crossarch`
+  for RRas (per-arch x64/x86/arm64), MessageQueuing, Nla,
+  WindowsConnectionManager, Power, Gdi, and Printing (per-arch) all succeeded
+  with 0 errors.
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` and
+  per-header reports for all 5 headers (all 5 are part of the 1403-item
+  ledger).
+- Running total: 18 of 106 RAIIFree sidecar entries migrated across 15
+  headers; 88 entries across 32 headers remain.

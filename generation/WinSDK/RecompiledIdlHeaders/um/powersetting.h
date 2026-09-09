@@ -171,6 +171,7 @@ PowerRegisterForEffectivePowerModeNotifications(
     _In_ EFFECTIVE_POWER_MODE_CALLBACK* Callback,
     _In_opt_ PVOID Context,
     _Outptr_ PVOID* RegistrationHandle
+        _Win32_metadata_raii_free_(PowerUnregisterFromEffectivePowerModeNotifications)
     );
 
 #endif

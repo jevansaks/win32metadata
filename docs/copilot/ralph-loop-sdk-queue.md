@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T07:41:02Z
+- Generated: 2026-09-09T07:48:19Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -692,9 +692,9 @@
 | `mpeg2psiparser.h` | Media.DShow, MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2psiparser.h.md |
 | `mpeg2structs.h` | MsTv | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/mpeg2structs.h.md |
 | `mpegtype.h` | Media.DShow | matched |  | 09/02/2026 19:21:35 | COM interface with plain-value parameters only, no handle. |
-| `mprapi.h` | RRas | matched |  |  | Producer-site fix: added MPR_SERVER_HANDLE autoTypes.json entry and MprConfigServerConnect inline RAIIFree. See docs/copilot/header-reports/mprapi.h.md |
+| `mprapi.h` | RRas | matched |  | 09/09/2026 00:50:00 | Producer-site fix, consolidated: added MPR_SERVER_HANDLE autoTypes.json entry; moved MprConfigServerConnect's inline RAIIFree(MprConfigServerDisconnect) from emitter.settings.rsp sidecar to the phMprConfig out-param in RecompiledIdlHeaders/um/Mprapi.h. Consolidated into Mprapi.h.metadata.patch against the d154186c baseline. See docs/copilot/header-reports/mprapi.h.md |
 | `mprerror.h` | Foundation | matched |  | 09/02/2026 21:59:01 | Constants only, no functions. |
-| `mq.h` | MessageQueuing | matched |  |  | Producer-site fix: added QUEUEHANDLE autoTypes.json entry (CloseApi MQCloseQueue) and MQCreateCursor::phCursor inline RAIIFree(MQCloseCursor). See docs/copilot/header-reports/mq.h.md |
+| `mq.h` | MessageQueuing | matched |  | 09/09/2026 00:50:00 | Producer-site fix, consolidated: added QUEUEHANDLE autoTypes.json entry (CloseApi MQCloseQueue); moved MQCreateCursor's inline RAIIFree(MQCloseCursor) from emitter.settings.rsp sidecar to the phCursor out-param in RecompiledIdlHeaders/um/Mq.h. Consolidated into Mq.h.metadata.patch against the d154186c baseline. See docs/copilot/header-reports/mq.h.md |
 | `mqoai.h` | MessageQueuing | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/MqOaI.h.md |
 | `mrmresourceindexer.h` | MenuRc | matched |  | 09/02/2026 22:02:59 | Transparent wrapper struct, not an opaque handle type representable by the annotation mechanism. |
 | `msaatext.h` | Tsf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/msaatext.h.md |
@@ -840,7 +840,7 @@
 | `oledlg.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oleidl.h` | Com, Com.CallObj, Com.ChannelCreds, Com.Urlmon, ComOle, Shell, TransactionServer | matched | copilot | 09/03/2026 04:30:00 | Classified retained artifact in existing-patches-22. |
 | `oletx2xa.h` | DTC | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/oletx2xa.h.md |
-| `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | matched |  |  | Producer-site fix: OnDemandRegisterNotification produces a HANDLE via out-param registrationHandle released via OnDemandUnRegisterNotification. Added OnDemandRegisterNotification::registrationHandle=[RAIIFree("OnDemandUnRegisterNotification")]. See docs/copilot/header-reports/ondemandconnroutehelper.h.md |
+| `ondemandconnroutehelper.h` | Nla, WindowsConnectionManager | matched |  | 09/09/2026 00:50:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(OnDemandUnRegisterNotification) annotation on OnDemandRegisterNotification's registrationHandle out-param in RecompiledIdlHeaders/um/ondemandconnroutehelper.h. Consolidated into ondemandconnroutehelper.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/ondemandconnroutehelper.h.md |
 | `oobenotification.h` | WindowsSetupAndMigration | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
 | `openservice.h` | InternetExplorer | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/openservice.h.md |
 | `opmapi.h` | Mf | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/opmapi.h.md |
@@ -876,7 +876,7 @@
 | `portabledeviceconnectapi.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledeviceconnectapi.h.md |
 | `portabledevicetypes.h` | WpdSdk | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/portabledevicetypes.h.md |
 | `powerbase.h` | Power | matched | copilot | 09/02/2026 22:05:00 | Classified retained artifact in existing-patches-23. |
-| `powersetting.h` | Power | matched |  |  | Producer-site fix: PowerRegisterForEffectivePowerModeNotifications produces a generic PVOID via out-param RegistrationHandle released via PowerUnregisterFromEffectivePowerModeNotifications. Added the RAIIFree entry (HPOWERNOTIFY portion was already fixed in a prior batch). See docs/copilot/header-reports/powersetting.h.md |
+| `powersetting.h` | Power | matched |  | 09/09/2026 00:50:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(PowerUnregisterFromEffectivePowerModeNotifications) annotation on PowerRegisterForEffectivePowerModeNotifications's RegistrationHandle out-param in RecompiledIdlHeaders/um/powersetting.h. Consolidated into powersetting.h.metadata.patch against the d154186c baseline (HPOWERNOTIFY remains a separate autoTypes.json entry). See docs/copilot/header-reports/powersetting.h.md |
 | `powrprof.h` | Power | matched | copilot | 09/02/2026 22:50:00 | Classified retained artifact in existing-patches-26. |
 | `prcomoem.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/prcomoem.h.md |
 | `prdrvcom.h` | Printing | matched |  | 09/02/2026 20:34:23 | COM interface methods only, out of scope. |
@@ -888,7 +888,7 @@
 | `PrintManagerInterop.h` | WinRT.Printing | matched |  | 09/02/2026 21:32:46 | COM/WinRT interop interface method only, out of scope. |
 | `printoem.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/printoem.h.md |
 | `printpreview.h` | Printing | matched |  | 09/02/2026 20:49:21 | COM interface method only, out of scope. |
-| `prnasnot.h` | Gdi, Printing | matched |  |  | Producer-site fix: RegisterForPrintAsyncNotifications produces a HANDLE via out-param phNotify released via UnRegisterForPrintAsyncNotifications. Added RegisterForPrintAsyncNotifications::phNotify=[RAIIFree("UnRegisterForPrintAsyncNotifications")]. See docs/copilot/header-reports/prnasnot.h.md |
+| `prnasnot.h` | Gdi, Printing | matched |  | 09/09/2026 00:50:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(UnRegisterForPrintAsyncNotifications) annotation on RegisterForPrintAsyncNotifications's phNotify out-param in RecompiledIdlHeaders/um/prnasnot.h. Consolidated into prnasnot.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/prnasnot.h.md |
 | `prnasntp.h` | Printing | matched | copilot | 09/02/2026 22:20:00 | Classified retained artifact in existing-patches-24. |
 | `prntfont.h` | Printing | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/prntfont.h.md |
 | `prntvpt.h` | Gdi, PrintTicket | matched | copilot | 09/02/2026 23:20:00 | New resource-ownership patch created and verified via live re-scrape (build-level validation); supported-os left unresolved due to ambiguous/uncorroborated documentation. |

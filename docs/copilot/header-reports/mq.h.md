@@ -18,13 +18,32 @@
    (not a distinct typedef) — a semantically specific "MSMQ cursor
    handle", closed via single-arg `MQCloseCursor(HANDLE)`. Directly
    analogous to the `CfOpenFileWithOplock`/`QOSCreateHandle`
-   precedent. **No existing inline `emitter.settings.rsp`
-   annotation** — added
-   `MQCreateCursor::phCursor=[RAIIFree("MQCloseCursor")]`.
+   precedent.
 
-Validated via `dotnet build generation/WinSDK -c Release
--p:ScanArch=x64 -t:ScrapeHeaders -p:PartitionFilter=MessageQueuing` →
-0 errors.
+## Ownership Analysis (sidecar-removal tranche update)
+Moved from `emitter.settings.rsp` memberRemap to an inline ABI-neutral
+annotation directly on the producer out-parameter in
+`RecompiledIdlHeaders/um/Mq.h`:
+```
+MQCreateCursor(
+    _In_ QUEUEHANDLE hQueue,
+    _Out_ PHANDLE phCursor
+        _Win32_metadata_raii_free_(MQCloseCursor)
+    );
+```
+Added the `#if defined(WIN32METADATA) #include <win32metadata_annotations.h>
+#endif` guard block (no prior patch existed for this header). The former
+sidecar entry `MQCreateCursor::phCursor=[RAIIFree("MQCloseCursor")]` was
+removed from `emitter.settings.rsp`. Consolidated into a single new
+`generation/WinSDK/patches/post-midl/Mq.h.metadata.patch` against the
+pristine `d154186c` SDK baseline. `QUEUEHANDLE` remains a separate
+type-level `autoTypes.json` entry, unaffected by this change.
+
+## Validation
+- Patch replay: `git apply` of `Mq.h.metadata.patch` against the `d154186c`
+  baseline reproduces the current committed header byte-for-byte.
+- ScrapeHeaders (MessageQueuing, `-p:ScanArch=crossarch`): Build succeeded,
+  0 Error(s).
 
 ## Conclusion
 

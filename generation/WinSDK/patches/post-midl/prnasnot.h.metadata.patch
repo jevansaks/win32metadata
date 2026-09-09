@@ -1,0 +1,12 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/prnasnot.h b/generation/WinSDK/RecompiledIdlHeaders/um/prnasnot.h
+index 5b0cae8d..b0cc4b47 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/prnasnot.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/prnasnot.h
+@@ -179,6 +179,7 @@ RegisterForPrintAsyncNotifications(
+              PrintAsyncNotifyConversationStyle eConversationStyle,
+     _In_     IPrintAsyncNotifyCallback*        pCallback,
+     _Out_    HANDLE*                           phNotify
++        _Win32_metadata_raii_free_(UnRegisterForPrintAsyncNotifications)
+     );
+ 
+ HRESULT

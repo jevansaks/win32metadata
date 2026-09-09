@@ -6142,8 +6142,8 @@
     "partition": "RRas",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: added MPR_SERVER_HANDLE autoTypes.json entry and MprConfigServerConnect inline RAIIFree. See docs/copilot/header-reports/mprapi.h.md",
+    "last_updated": "09/09/2026 00:50:00",
+    "notes": "Producer-site fix, consolidated: added MPR_SERVER_HANDLE autoTypes.json entry; moved MprConfigServerConnect's inline RAIIFree(MprConfigServerDisconnect) from emitter.settings.rsp sidecar to the phMprConfig out-param in RecompiledIdlHeaders/um/Mprapi.h. Consolidated into Mprapi.h.metadata.patch against the d154186c baseline. See docs/copilot/header-reports/mprapi.h.md",
     "_source": "header-progress"
   },
   {
@@ -6160,8 +6160,8 @@
     "partition": "MessageQueuing",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: added QUEUEHANDLE autoTypes.json entry (CloseApi MQCloseQueue) and MQCreateCursor::phCursor inline RAIIFree(MQCloseCursor). See docs/copilot/header-reports/mq.h.md",
+    "last_updated": "09/09/2026 00:50:00",
+    "notes": "Producer-site fix, consolidated: added QUEUEHANDLE autoTypes.json entry (CloseApi MQCloseQueue); moved MQCreateCursor's inline RAIIFree(MQCloseCursor) from emitter.settings.rsp sidecar to the phCursor out-param in RecompiledIdlHeaders/um/Mq.h. Consolidated into Mq.h.metadata.patch against the d154186c baseline. See docs/copilot/header-reports/mq.h.md",
     "_source": "header-progress"
   },
   {
@@ -7474,8 +7474,8 @@
     "partition": "Nla, WindowsConnectionManager",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: OnDemandRegisterNotification produces a HANDLE via out-param registrationHandle released via OnDemandUnRegisterNotification. Added OnDemandRegisterNotification::registrationHandle=[RAIIFree(\"OnDemandUnRegisterNotification\")]. See docs/copilot/header-reports/ondemandconnroutehelper.h.md",
+    "last_updated": "09/09/2026 00:50:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(OnDemandUnRegisterNotification) annotation on OnDemandRegisterNotification's registrationHandle out-param in RecompiledIdlHeaders/um/ondemandconnroutehelper.h. Consolidated into ondemandconnroutehelper.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/ondemandconnroutehelper.h.md",
     "_source": "header-progress"
   },
   {
@@ -7798,8 +7798,8 @@
     "partition": "Power",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: PowerRegisterForEffectivePowerModeNotifications produces a generic PVOID via out-param RegistrationHandle released via PowerUnregisterFromEffectivePowerModeNotifications. Added the RAIIFree entry (HPOWERNOTIFY portion was already fixed in a prior batch). See docs/copilot/header-reports/powersetting.h.md",
+    "last_updated": "09/09/2026 00:50:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(PowerUnregisterFromEffectivePowerModeNotifications) annotation on PowerRegisterForEffectivePowerModeNotifications's RegistrationHandle out-param in RecompiledIdlHeaders/um/powersetting.h. Consolidated into powersetting.h.metadata.patch against the d154186c baseline (HPOWERNOTIFY remains a separate autoTypes.json entry). See docs/copilot/header-reports/powersetting.h.md",
     "_source": "header-progress"
   },
   {
@@ -7906,8 +7906,8 @@
     "partition": "Gdi, Printing",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: RegisterForPrintAsyncNotifications produces a HANDLE via out-param phNotify released via UnRegisterForPrintAsyncNotifications. Added RegisterForPrintAsyncNotifications::phNotify=[RAIIFree(\"UnRegisterForPrintAsyncNotifications\")]. See docs/copilot/header-reports/prnasnot.h.md",
+    "last_updated": "09/09/2026 00:50:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(UnRegisterForPrintAsyncNotifications) annotation on RegisterForPrintAsyncNotifications's phNotify out-param in RecompiledIdlHeaders/um/prnasnot.h. Consolidated into prnasnot.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/prnasnot.h.md",
     "_source": "header-progress"
   },
   {

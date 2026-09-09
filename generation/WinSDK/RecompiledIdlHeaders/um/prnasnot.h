@@ -179,6 +179,7 @@ RegisterForPrintAsyncNotifications(
              PrintAsyncNotifyConversationStyle eConversationStyle,
     _In_     IPrintAsyncNotifyCallback*        pCallback,
     _Out_    HANDLE*                           phNotify
+        _Win32_metadata_raii_free_(UnRegisterForPrintAsyncNotifications)
     );
 
 HRESULT
