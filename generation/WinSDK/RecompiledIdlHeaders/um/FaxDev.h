@@ -141,7 +141,8 @@ BOOL WINAPI
 FaxDevStartJob(
     IN  HLINE LineHandle,
     IN  DWORD DeviceId,
-    OUT PHANDLE FaxHandle,
+    OUT PHANDLE FaxHandle
+        _Win32_metadata_raii_free_(FaxDevEndJob),
     IN  HANDLE CompletionPortHandle,
     IN  ULONG_PTR CompletionKey
     );

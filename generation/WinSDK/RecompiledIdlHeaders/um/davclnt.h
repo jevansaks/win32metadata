@@ -18,6 +18,9 @@ Revision History:
 #define _DAV_CLNT_H_
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -84,7 +87,8 @@ _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
 DavAddConnection(
-    _Inout_ HANDLE *ConnectionHandle,
+    _Inout_ HANDLE *ConnectionHandle
+        _Win32_metadata_raii_free_(DavDeleteConnection),
     _In_ LPCWSTR RemoteName,
     _In_opt_ LPCWSTR UserName,
     _In_opt_ LPCWSTR Password,
@@ -161,7 +165,8 @@ DavCancelConnectionsToServer(
 OPAQUE_HANDLE
 WINAPI
 DavRegisterAuthCallback(_In_ PFNDAVAUTHCALLBACK CallBack,
-                        _In_ ULONG Version);
+                        _In_ ULONG Version)
+    _Win32_metadata_raii_free_(DavUnregisterAuthCallback);
 
 VOID
 WINAPI

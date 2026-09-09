@@ -1,0 +1,14 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h b/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h
+index 8b686f40..18f69f14 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h
+@@ -141,7 +141,8 @@ BOOL WINAPI
+ FaxDevStartJob(
+     IN  HLINE LineHandle,
+     IN  DWORD DeviceId,
+-    OUT PHANDLE FaxHandle,
++    OUT PHANDLE FaxHandle
++        _Win32_metadata_raii_free_(FaxDevEndJob),
+     IN  HANDLE CompletionPortHandle,
+     IN  ULONG_PTR CompletionKey
+     );

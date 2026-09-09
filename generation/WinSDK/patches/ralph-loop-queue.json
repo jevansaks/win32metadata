@@ -2164,8 +2164,8 @@
     "partition": "WebDav",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: DavAddConnection populates HANDLE *ConnectionHandle released via DavDeleteConnection; DavRegisterAuthCallback returns OPAQUE_HANDLE (DWORD) released via DavUnregisterAuthCallback. Added DavAddConnection::ConnectionHandle and DavRegisterAuthCallback::return =[RAIIFree(...)]. See docs/copilot/header-reports/davclnt.h.md",
+    "last_updated": "09/09/2026 00:37:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on DavAddConnection's ConnectionHandle out-param and DavRegisterAuthCallback's return in RecompiledIdlHeaders/um/davclnt.h. Consolidated into davclnt.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/davclnt.h.md",
     "_source": "header-progress"
   },
   {
@@ -2227,8 +2227,8 @@
     "partition": "FileHistory, WinProg",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: DCIOpenProvider returns HDC released via DCICloseProvider. Added DCIOpenProvider::return=[RAIIFree(\"DCICloseProvider\")]. (HWINWATCH portion already fixed in a prior batch via autoTypes.json.) See docs/copilot/header-reports/dciman.h.md",
+    "last_updated": "09/09/2026 00:37:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(DCICloseProvider) annotation on DCIOpenProvider's return declaration in RecompiledIdlHeaders/um/dciman.h. Consolidated into dciman.h.metadata.patch against the d154186c baseline (no prior patch existed; HWINWATCH remains a separate autoTypes.json entry). See docs/copilot/header-reports/dciman.h.md",
     "_source": "header-progress"
   },
   {
@@ -3649,8 +3649,8 @@
     "partition": "Fax",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: FaxDevStartJob produces a HANDLE via out-param FaxHandle released via FaxDevEndJob. Added FaxDevStartJob::FaxHandle=[RAIIFree(\"FaxDevEndJob\")]. See docs/copilot/header-reports/FaxDev.h.md",
+    "last_updated": "09/09/2026 00:37:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(FaxDevEndJob) annotation on FaxDevStartJob's FaxHandle out-param in RecompiledIdlHeaders/um/FaxDev.h. Consolidated into FaxDev.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/FaxDev.h.md",
     "_source": "header-progress"
   },
   {
@@ -3658,8 +3658,8 @@
     "partition": "Fax",
     "status": "matched",
     "owner": "",
-    "last_updated": "",
-    "notes": "Producer-site fix: FaxExtRegisterForEvents returns a HANDLE released via FaxExtUnregisterForEvents. Added FaxExtRegisterForEvents::return=[RAIIFree(\"FaxExtUnregisterForEvents\")]. See docs/copilot/header-reports/faxext.h.md",
+    "last_updated": "09/09/2026 00:37:00",
+    "notes": "Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(FaxExtUnregisterForEvents) annotation on FaxExtRegisterForEvents's return declaration in RecompiledIdlHeaders/um/FaxExt.h. Consolidated into FaxExt.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/faxext.h.md",
     "_source": "header-progress"
   },
   {

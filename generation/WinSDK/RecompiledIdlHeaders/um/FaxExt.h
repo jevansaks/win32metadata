@@ -24,6 +24,9 @@ Abstract:
 #pragma once
 #endif
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -95,7 +98,8 @@ FaxExtRegisterForEvents (
     FAX_ENUM_DEVICE_ID_SOURCE   DevIdSrc,       // The source of the device id
     LPCWSTR                     lpcwstrDataGUID,// GUID of data
     PFAX_EXT_CONFIG_CHANGE      lpConfigChangeCallback
-);
+)
+    _Win32_metadata_raii_free_(FaxExtUnregisterForEvents);
 typedef HANDLE (CALLBACK *PFAX_EXT_REGISTER_FOR_EVENTS) (HINSTANCE, DWORD, FAX_ENUM_DEVICE_ID_SOURCE, LPCWSTR, PFAX_EXT_CONFIG_CHANGE);
 
 //

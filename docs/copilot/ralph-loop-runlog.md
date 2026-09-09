@@ -3717,3 +3717,28 @@ Batch 1 (5 headers, 7 entries): `wct.h`, `namespaceapi.h`,
   `main.cpp` include), so only their per-header report files were updated.
 - Remaining: 99 of 106 RAIIFree sidecar entries across 37 headers still to
   migrate in subsequent batches of this tranche.
+
+## 2026-09-09T00:40:00Z - Sidecar-removal tranche batch 2 of N
+
+Batch 2 (5 headers, 6 entries): `davclnt.h`, `dciman.h`, `FaxDev.h`,
+`FaxExt.h`, `WabUtil.h`.
+- Added inline `_Win32_metadata_raii_free_(...)` annotations for
+  `DavAddConnection` (`ConnectionHandle` out-param), `DavRegisterAuthCallback`
+  (return), `DCIOpenProvider` (return), `FaxDevStartJob` (`FaxHandle`
+  out-param), `FaxExtRegisterForEvents` (return), `FtgRegisterIdleRoutine`
+  (return).
+- None of these 5 headers had a prior post-midl patch. `FaxDev.h` already
+  transitively includes the `win32metadata_annotations.h` guard via
+  `commctrl.h`; the other 4 got the guard block added explicitly.
+- Removed all 6 corresponding sidecar entries from `emitter.settings.rsp`.
+- Validation: same pristine-checkout-and-replay method as batch 1 - all 5
+  headers match byte-for-byte. `ScrapeHeaders -p:ScanArch=crossarch` for
+  WebDav, FileHistory, WinProg (per-arch x64/x86/arm64 automatically), Fax,
+  and Wab all succeeded with 0 errors.
+- Updated `header-progress.json`/`ralph-loop-sdk-queue.md` for the 4
+  tracked headers (`davclnt.h`, `dciman.h`, `FaxDev.h`, `faxext.h`)
+  and per-header reports for all 5. `WabUtil.h` is not part of the
+  1403-item ledger (reached via partition `settings.rsp` `IncludeRoot`
+  only), so only its per-header report was created.
+- Running total: 13 of 106 RAIIFree sidecar entries migrated across 10
+  headers; 93 entries across 37 headers remain.

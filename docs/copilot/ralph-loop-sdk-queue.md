@@ -1,6 +1,6 @@
 # Ralph Loop SDK Header Queue
 
-- Generated: 2026-09-09T07:33:04Z
+- Generated: 2026-09-09T07:41:02Z
 - Source: `generation/WinSDK/patches/header-progress.json` (authoritative, one row per unique header)
 - Total headers: 1403
 - Matched: 1367
@@ -250,14 +250,14 @@
 | `d3dshadercacheregistration.h` | Direct3D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dshadercacheregistration.h.md |
 | `d3dtypes.h` | Direct3D9 | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/d3dtypes.h.md |
 | `datetimeapi.h` | Intl | matched |  | 09/02/2026 19:19:02 | String/buffer formatting API only, no handle. |
-| `davclnt.h` | WebDav | matched |  |  | Producer-site fix: DavAddConnection populates HANDLE *ConnectionHandle released via DavDeleteConnection; DavRegisterAuthCallback returns OPAQUE_HANDLE (DWORD) released via DavUnregisterAuthCallback. Added DavAddConnection::ConnectionHandle and DavRegisterAuthCallback::return =[RAIIFree(...)]. See docs/copilot/header-reports/davclnt.h.md |
+| `davclnt.h` | WebDav | matched |  | 09/09/2026 00:37:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to inline _Win32_metadata_raii_free_ annotations on DavAddConnection's ConnectionHandle out-param and DavRegisterAuthCallback's return in RecompiledIdlHeaders/um/davclnt.h. Consolidated into davclnt.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/davclnt.h.md |
 | `DbgEng.h` | Debug.Extensions | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DbgEng.h.md |
 | `dbghelp.h` | FileHistory, WinProg | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbghelp.h.md |
 | `DbgModel.h` | Debug.Extensions | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/DbgModel.h.md |
 | `dbgprop.h` | Debug | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbgprop.h.md |
 | `dbt.h` | MenuRc | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dbt.h.md |
 | `dciddi.h` | Direct2D | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/dciddi.h.md |
-| `dciman.h` | FileHistory, WinProg | matched |  |  | Producer-site fix: DCIOpenProvider returns HDC released via DCICloseProvider. Added DCIOpenProvider::return=[RAIIFree("DCICloseProvider")]. (HWINWATCH portion already fixed in a prior batch via autoTypes.json.) See docs/copilot/header-reports/dciman.h.md |
+| `dciman.h` | FileHistory, WinProg | matched |  | 09/09/2026 00:37:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(DCICloseProvider) annotation on DCIOpenProvider's return declaration in RecompiledIdlHeaders/um/dciman.h. Consolidated into dciman.h.metadata.patch against the d154186c baseline (no prior patch existed; HWINWATCH remains a separate autoTypes.json entry). See docs/copilot/header-reports/dciman.h.md |
 | `dcommon.h` | Direct2D, Direct2D.Common, DirectWrite | matched |  | 09/02/2026 22:06:03 | Enums/forward declaration only, no functions. |
 | `dcomp.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
 | `dcompanimation.h` | DirectComp | matched | copilot | 09/03/2026 00:55:00 | Classified retained artifact in existing-patches-08. |
@@ -415,8 +415,8 @@
 | `extensionvalidation.h` | InternetExplorer | matched |  | 09/02/2026 21:17:15 | COM interface + enums only, no extern functions. |
 | `extsfns.h` | Debug.Extensions | matched |  |  | Investigated; clean, no ownership metadata gap. See docs/copilot/header-reports/extsfns.h.md |
 | `faxcomex.h` | Fax | matched |  |  | Investigated; COM vtable methods only, no free functions. See docs/copilot/header-reports/FaxComEx.h.md |
-| `faxdev.h` | Fax | matched |  |  | Producer-site fix: FaxDevStartJob produces a HANDLE via out-param FaxHandle released via FaxDevEndJob. Added FaxDevStartJob::FaxHandle=[RAIIFree("FaxDevEndJob")]. See docs/copilot/header-reports/FaxDev.h.md |
-| `faxext.h` | Fax | matched |  |  | Producer-site fix: FaxExtRegisterForEvents returns a HANDLE released via FaxExtUnregisterForEvents. Added FaxExtRegisterForEvents::return=[RAIIFree("FaxExtUnregisterForEvents")]. See docs/copilot/header-reports/faxext.h.md |
+| `faxdev.h` | Fax | matched |  | 09/09/2026 00:37:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(FaxDevEndJob) annotation on FaxDevStartJob's FaxHandle out-param in RecompiledIdlHeaders/um/FaxDev.h. Consolidated into FaxDev.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/FaxDev.h.md |
+| `faxext.h` | Fax | matched |  | 09/09/2026 00:37:00 | Producer-site fix, consolidated: moved from emitter.settings.rsp sidecar to an inline _Win32_metadata_raii_free_(FaxExtUnregisterForEvents) annotation on FaxExtRegisterForEvents's return declaration in RecompiledIdlHeaders/um/FaxExt.h. Consolidated into FaxExt.h.metadata.patch against the d154186c baseline (no prior patch existed). See docs/copilot/header-reports/faxext.h.md |
 | `faxmmc.h` | Fax | matched |  | 09/02/2026 17:58:11 | GUID/string constants only, no functions. |
 | `faxroute.h` | Fax | matched |  | 09/02/2026 19:50:38 | No function produces an opaque handle; HANDLE params are pre-owned caller inputs. |
 | `fci.h` | Cabinets | matched |  |  | Genuine producer-site fix: added new HFCI autoTypes.json entry (CloseApi=FCIDestroy). See docs/copilot/header-reports/fci.h.md |

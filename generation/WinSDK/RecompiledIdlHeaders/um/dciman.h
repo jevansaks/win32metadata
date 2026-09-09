@@ -16,6 +16,9 @@
 #endif
 
 #include <winapifamily.h>
+#if defined(WIN32METADATA)
+#include <win32metadata_annotations.h>
+#endif
 
 #ifdef __cplusplus
     #define __inline inline
@@ -38,7 +41,8 @@ DECLARE_HANDLE(HWINWATCH);  // context handle for WinWatch instance
 /****************************************************************************
  ***************************************************************************/
 
-extern HDC WINAPI DCIOpenProvider(void);
+extern HDC WINAPI DCIOpenProvider(void)
+    _Win32_metadata_raii_free_(DCICloseProvider);
 extern void WINAPI DCICloseProvider(HDC hdc);
 
 extern int WINAPI DCICreatePrimary(HDC hdc, LPDCISURFACEINFO FAR *lplpSurface);

@@ -1,0 +1,24 @@
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WabUtil.h b/generation/WinSDK/RecompiledIdlHeaders/um/WabUtil.h
+index 42e41eb0..b826ffeb 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WabUtil.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WabUtil.h
+@@ -8,6 +8,9 @@
+  */
+ 
+ #include <winapifamily.h>
++#if defined(WIN32METADATA)
++#include <win32metadata_annotations.h>
++#endif
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+@@ -433,7 +436,8 @@ MAPIDeinitIdle (VOID);
+ 
+ STDAPI_(FTG)
+ FtgRegisterIdleRoutine (PFNIDLE lpfnIdle, LPVOID lpvIdleParam,
+-	short priIdle, ULONG csecIdle, USHORT iroIdle);
++	short priIdle, ULONG csecIdle, USHORT iroIdle)
++	_Win32_metadata_raii_free_(DeregisterIdleRoutine);
+ 
+ /*
+  *	DeregisterIdleRoutine
