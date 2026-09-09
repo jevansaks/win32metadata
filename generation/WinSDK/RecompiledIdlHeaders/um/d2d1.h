@@ -3769,7 +3769,6 @@ D2D1CreateFactory(
 }
 
 
-_Win32_metadata_supported_os_(windows6.1)
 template<class Factory>
 COM_DECLSPEC_NOTHROW
 HRESULT
@@ -3785,7 +3784,6 @@ D2D1CreateFactory(
             reinterpret_cast<void **>(factory));
 }
 
-_Win32_metadata_supported_os_(windows6.1)
 template<class Factory>
 COM_DECLSPEC_NOTHROW
 HRESULT

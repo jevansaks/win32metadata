@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WS2tcpip.h b/generation/WinSDK/RecompiledIdlHeaders/um/WS2tcpip.h
-index 0808320a..34a6e6ac 100644
+index 0808320a..7da8a330 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/WS2tcpip.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/WS2tcpip.h
 @@ -23,6 +23,7 @@
@@ -215,20 +215,7 @@ index 0808320a..34a6e6ac 100644
  WS2TCPIP_INLINE
  INT
  WSAGetIPUserMtu(
-@@ -978,10 +1009,12 @@ WSAGetIPUserMtu(
-     Error = getsockopt(Socket, SOL_SOCKET, SO_PROTOCOL_INFO, (PCHAR)&Info, &InfoSize);
-     if (Error != SOCKET_ERROR) {
-         if (Info.iAddressFamily == AF_INET) {
-+_Win32_metadata_supported_os_(windows8.1)
-             Error =
-                 getsockopt(Socket, IPPROTO_IP, IP_USER_MTU, (PCHAR)Mtu, &OptSize);
- #if(_WIN32_WINNT >= 0x0501)
-         } else if (Info.iAddressFamily == AF_INET6) {
-+_Win32_metadata_supported_os_(windows8.1)
-             Error =
-                 getsockopt(Socket, IPPROTO_IPV6, IPV6_USER_MTU, (PCHAR)Mtu, &OptSize);
- #endif //(_WIN32_WINNT >= 0x0501)
-@@ -994,6 +1027,7 @@ WSAGetIPUserMtu(
+@@ -994,6 +1025,7 @@ WSAGetIPUserMtu(
      return Error;
  }
  
@@ -236,20 +223,7 @@ index 0808320a..34a6e6ac 100644
  WS2TCPIP_INLINE
  INT
  WSASetIPUserMtu(
-@@ -1008,10 +1042,12 @@ WSASetIPUserMtu(
-     Error = getsockopt(Socket, SOL_SOCKET, SO_PROTOCOL_INFO, (PCHAR)&Info, &InfoSize);
-     if (Error != SOCKET_ERROR) {
-         if (Info.iAddressFamily == AF_INET) {
-+_Win32_metadata_supported_os_(windows8.1)
-             Error =
-                 setsockopt(Socket, IPPROTO_IP, IP_USER_MTU, (PCHAR)&Mtu, sizeof(Mtu));
- #if(_WIN32_WINNT >= 0x0501)
-         } else if (Info.iAddressFamily == AF_INET6) {
-+_Win32_metadata_supported_os_(windows8.1)
-             Error =
-                 setsockopt(Socket, IPPROTO_IPV6, IPV6_USER_MTU, (PCHAR)&Mtu, sizeof(Mtu));
- #endif //(_WIN32_WINNT >= 0x0501)
-@@ -1029,6 +1065,7 @@ WSASetIPUserMtu(
+@@ -1029,6 +1061,7 @@ WSASetIPUserMtu(
  // TCP_ICMP_ERROR_SOURCE_ADDRESS socket options.
  //
  
@@ -257,7 +231,7 @@ index 0808320a..34a6e6ac 100644
  WS2TCPIP_INLINE
  INT
  WSAGetFailConnectOnIcmpError(
-@@ -1041,6 +1078,7 @@ WSAGetFailConnectOnIcmpError(
+@@ -1041,6 +1074,7 @@ WSAGetFailConnectOnIcmpError(
                        (CHAR*)Enabled, &OptSize);
  }
  
@@ -265,7 +239,7 @@ index 0808320a..34a6e6ac 100644
  WS2TCPIP_INLINE
  INT
  WSASetFailConnectOnIcmpError(
-@@ -1052,6 +1090,7 @@ WSASetFailConnectOnIcmpError(
+@@ -1052,6 +1086,7 @@ WSASetFailConnectOnIcmpError(
                        (CHAR*)&Enabled, sizeof(Enabled));
  }
  
@@ -273,7 +247,7 @@ index 0808320a..34a6e6ac 100644
  WS2TCPIP_INLINE
  INT
  WSAGetIcmpErrorInfo(
-@@ -1077,6 +1116,7 @@ WSAGetIcmpErrorInfo(
+@@ -1077,6 +1112,7 @@ WSAGetIcmpErrorInfo(
  // socket options.
  //
  
@@ -281,7 +255,7 @@ index 0808320a..34a6e6ac 100644
  WS2TCPIP_INLINE
  INT
  WSAGetUdpSendMessageSize(
-@@ -1090,6 +1130,7 @@ WSAGetUdpSendMessageSize(
+@@ -1090,6 +1126,7 @@ WSAGetUdpSendMessageSize(
                        &OptSize);
  }
  
@@ -289,7 +263,7 @@ index 0808320a..34a6e6ac 100644
  WS2TCPIP_INLINE
  INT
  WSASetUdpSendMessageSize(
-@@ -1101,6 +1142,7 @@ WSASetUdpSendMessageSize(
+@@ -1101,6 +1138,7 @@ WSASetUdpSendMessageSize(
                        sizeof(MsgSize));
  }
  
@@ -297,7 +271,7 @@ index 0808320a..34a6e6ac 100644
  WS2TCPIP_INLINE
  INT
  WSAGetUdpRecvMaxCoalescedSize(
-@@ -1114,6 +1156,7 @@ WSAGetUdpRecvMaxCoalescedSize(
+@@ -1114,6 +1152,7 @@ WSAGetUdpRecvMaxCoalescedSize(
                        (PCHAR)MaxCoalescedMsgSize, &OptSize);
  }
  
@@ -305,33 +279,7 @@ index 0808320a..34a6e6ac 100644
  WS2TCPIP_INLINE
  INT
  WSASetUdpRecvMaxCoalescedSize(
-@@ -1146,10 +1189,12 @@ WSAGetRecvIPEcn(
-     Error = getsockopt(Socket, SOL_SOCKET, SO_PROTOCOL_INFO, (PCHAR)&Info, &InfoSize);
-     if (Error != SOCKET_ERROR) {
-         if (Info.iAddressFamily == AF_INET) {
-+_Win32_metadata_supported_os_(windows8.1)
-             Error =
-                 getsockopt(Socket, IPPROTO_IP, IP_RECVECN, (PCHAR)Enabled, &OptSize);
- #if(_WIN32_WINNT >= 0x0501)
-         } else if (Info.iAddressFamily == AF_INET6) {
-+_Win32_metadata_supported_os_(windows8.1)
-             Error =
-                 getsockopt(Socket, IPPROTO_IPV6, IPV6_RECVECN, (PCHAR)Enabled, &OptSize);
- #endif //(_WIN32_WINNT >= 0x0501)
-@@ -1176,10 +1221,12 @@ WSASetRecvIPEcn(
-     Error = getsockopt(Socket, SOL_SOCKET, SO_PROTOCOL_INFO, (PCHAR)&Info, &InfoSize);
-     if (Error != SOCKET_ERROR) {
-         if (Info.iAddressFamily == AF_INET) {
-+_Win32_metadata_supported_os_(windows8.1)
-             Error =
-                 setsockopt(Socket, IPPROTO_IP, IP_RECVECN, (PCHAR)&Enabled, sizeof(Enabled));
- #if(_WIN32_WINNT >= 0x0501)
-         } else if (Info.iAddressFamily == AF_INET6) {
-+_Win32_metadata_supported_os_(windows8.1)
-             Error =
-                 setsockopt(Socket, IPPROTO_IPV6, IPV6_RECVECN, (PCHAR)&Enabled, sizeof(Enabled));
- #endif //(_WIN32_WINNT >= 0x0501)
-@@ -1229,6 +1276,8 @@ WSASetReceivedProcessorOption(
+@@ -1229,6 +1268,8 @@ WSASetReceivedProcessorOption(
  // Secure socket API definitions
  //
  
@@ -340,7 +288,7 @@ index 0808320a..34a6e6ac 100644
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -1240,6 +1289,8 @@ WSASetSocketSecurity (
+@@ -1240,6 +1281,8 @@ WSASetSocketSecurity (
     _In_opt_ LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine
  );
  
@@ -349,7 +297,7 @@ index 0808320a..34a6e6ac 100644
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -1253,6 +1304,8 @@ WSAQuerySocketSecurity (
+@@ -1253,6 +1296,8 @@ WSAQuerySocketSecurity (
     _In_opt_ LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine
  );
  
@@ -358,7 +306,7 @@ index 0808320a..34a6e6ac 100644
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -1264,6 +1317,8 @@ WSASetSocketPeerTargetName (
+@@ -1264,6 +1309,8 @@ WSASetSocketPeerTargetName (
     _In_opt_ LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine
  );
  
@@ -367,7 +315,7 @@ index 0808320a..34a6e6ac 100644
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -1275,6 +1330,8 @@ WSADeleteSocketPeerTargetName (
+@@ -1275,6 +1322,8 @@ WSADeleteSocketPeerTargetName (
     _In_opt_ LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine
  );
  
@@ -376,7 +324,7 @@ index 0808320a..34a6e6ac 100644
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -1284,6 +1341,8 @@ WSAImpersonateSocketPeer (
+@@ -1284,6 +1333,8 @@ WSAImpersonateSocketPeer (
     _In_ ULONG PeerAddrLen
  );
  

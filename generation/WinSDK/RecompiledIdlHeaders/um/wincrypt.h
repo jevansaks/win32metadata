@@ -48,7 +48,7 @@ enum class CERT_QUERY_FORMAT_TYPE_FLAGS : unsigned int;
 enum class CERT_QUERY_ENCODING_TYPE : unsigned int;
 enum class CERT_RDN_ATTR_VALUE_TYPE : int;
 enum class CERT_STRING_TYPE : int;
-enum class CERT_KEY_SPEC : int;
+enum class CERT_KEY_SPEC : unsigned int;
 enum class CRYPT_STRING : int;
 enum class CRYPT_IMPORT_PUBLIC_KEY_FLAGS : int;
 enum class CRYPT_OBJECT_LOCATOR_RELEASE_REASON : int;
@@ -23221,7 +23221,7 @@ enum class
 #undef AT_SIGNATURE
 #undef CERT_NCRYPT_KEY_SPEC
 enum class
-    CERT_KEY_SPEC : int
+    CERT_KEY_SPEC : unsigned int
 {
     AT_KEYEXCHANGE = 1,
     AT_SIGNATURE = 2,

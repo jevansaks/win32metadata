@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h
-index c5a1f165..d464d9ec 100644
+index c5a1f165..9b641a28 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h
 @@ -32,11 +32,113 @@
@@ -22,7 +22,7 @@ index c5a1f165..d464d9ec 100644
 +enum class CERT_QUERY_ENCODING_TYPE : unsigned int;
 +enum class CERT_RDN_ATTR_VALUE_TYPE : int;
 +enum class CERT_STRING_TYPE : int;
-+enum class CERT_KEY_SPEC : int;
++enum class CERT_KEY_SPEC : unsigned int;
 +enum class CRYPT_STRING : int;
 +enum class CRYPT_IMPORT_PUBLIC_KEY_FLAGS : int;
 +enum class CRYPT_OBJECT_LOCATOR_RELEASE_REASON : int;
@@ -3708,7 +3708,7 @@ index c5a1f165..d464d9ec 100644
 +#undef AT_SIGNATURE
 +#undef CERT_NCRYPT_KEY_SPEC
 +enum class
-+    CERT_KEY_SPEC : int
++    CERT_KEY_SPEC : unsigned int
 +{
 +    AT_KEYEXCHANGE = 1,
 +    AT_SIGNATURE = 2,

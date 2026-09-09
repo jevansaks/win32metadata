@@ -1009,12 +1009,10 @@ WSAGetIPUserMtu(
     Error = getsockopt(Socket, SOL_SOCKET, SO_PROTOCOL_INFO, (PCHAR)&Info, &InfoSize);
     if (Error != SOCKET_ERROR) {
         if (Info.iAddressFamily == AF_INET) {
-_Win32_metadata_supported_os_(windows8.1)
             Error =
                 getsockopt(Socket, IPPROTO_IP, IP_USER_MTU, (PCHAR)Mtu, &OptSize);
 #if(_WIN32_WINNT >= 0x0501)
         } else if (Info.iAddressFamily == AF_INET6) {
-_Win32_metadata_supported_os_(windows8.1)
             Error =
                 getsockopt(Socket, IPPROTO_IPV6, IPV6_USER_MTU, (PCHAR)Mtu, &OptSize);
 #endif //(_WIN32_WINNT >= 0x0501)
@@ -1042,12 +1040,10 @@ WSASetIPUserMtu(
     Error = getsockopt(Socket, SOL_SOCKET, SO_PROTOCOL_INFO, (PCHAR)&Info, &InfoSize);
     if (Error != SOCKET_ERROR) {
         if (Info.iAddressFamily == AF_INET) {
-_Win32_metadata_supported_os_(windows8.1)
             Error =
                 setsockopt(Socket, IPPROTO_IP, IP_USER_MTU, (PCHAR)&Mtu, sizeof(Mtu));
 #if(_WIN32_WINNT >= 0x0501)
         } else if (Info.iAddressFamily == AF_INET6) {
-_Win32_metadata_supported_os_(windows8.1)
             Error =
                 setsockopt(Socket, IPPROTO_IPV6, IPV6_USER_MTU, (PCHAR)&Mtu, sizeof(Mtu));
 #endif //(_WIN32_WINNT >= 0x0501)
@@ -1189,12 +1185,10 @@ WSAGetRecvIPEcn(
     Error = getsockopt(Socket, SOL_SOCKET, SO_PROTOCOL_INFO, (PCHAR)&Info, &InfoSize);
     if (Error != SOCKET_ERROR) {
         if (Info.iAddressFamily == AF_INET) {
-_Win32_metadata_supported_os_(windows8.1)
             Error =
                 getsockopt(Socket, IPPROTO_IP, IP_RECVECN, (PCHAR)Enabled, &OptSize);
 #if(_WIN32_WINNT >= 0x0501)
         } else if (Info.iAddressFamily == AF_INET6) {
-_Win32_metadata_supported_os_(windows8.1)
             Error =
                 getsockopt(Socket, IPPROTO_IPV6, IPV6_RECVECN, (PCHAR)Enabled, &OptSize);
 #endif //(_WIN32_WINNT >= 0x0501)
@@ -1221,12 +1215,10 @@ WSASetRecvIPEcn(
     Error = getsockopt(Socket, SOL_SOCKET, SO_PROTOCOL_INFO, (PCHAR)&Info, &InfoSize);
     if (Error != SOCKET_ERROR) {
         if (Info.iAddressFamily == AF_INET) {
-_Win32_metadata_supported_os_(windows8.1)
             Error =
                 setsockopt(Socket, IPPROTO_IP, IP_RECVECN, (PCHAR)&Enabled, sizeof(Enabled));
 #if(_WIN32_WINNT >= 0x0501)
         } else if (Info.iAddressFamily == AF_INET6) {
-_Win32_metadata_supported_os_(windows8.1)
             Error =
                 setsockopt(Socket, IPPROTO_IPV6, IPV6_RECVECN, (PCHAR)&Enabled, sizeof(Enabled));
 #endif //(_WIN32_WINNT >= 0x0501)

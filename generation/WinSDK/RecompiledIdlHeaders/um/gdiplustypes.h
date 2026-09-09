@@ -141,7 +141,6 @@ _Return_type_success_(return == 0) enum Status
 
 class SizeF
 {
-_Win32_metadata_supported_os_(windows6.1)
 public:
     SizeF()
     {

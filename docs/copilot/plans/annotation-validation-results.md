@@ -2,6 +2,9 @@
 
 *Validated: March 2026*
 *ClangSharp: v17.0.1 and v18.1.0.4 | Clang: via libclang | Platform: x64*
+*Update (September 2026): ClangSharp v18.1.0.4 has been adopted and
+`WIN32METADATA` is now genuinely defined during scraping - see the
+"Activation Landed" section below.*
 
 ---
 
@@ -15,6 +18,68 @@ ClangSharp v18.1.0.4+ (via PR [#552](https://github.com/dotnet/ClangSharp/pull/5
 adds `[NativeAnnotation("...")]` support that preserves annotate attributes on
 **all declaration types**. We validated this — every proposed annotation works.
 **Upgrading to v18+ is the path forward.**
+
+---
+
+## Activation Landed (September 2026)
+
+Both recommendations above have been implemented in
+`sources/Win32MetadataScraper/Win32MetadataScraper.csproj` (ClangSharp/
+ClangSharp.Interop/ClangSharp.PInvokeGenerator bumped to 18.1.0.4; libclang/
+libClangSharp to 18.1.3.x) and
+`sources/GeneratorSdk/tools/assets/scraper/baseSettings.rsp` (`-DWIN32METADATA=1`
+added to the real scraper's Clang args, matching windows-rs's own
+`-DWIN32METADATA=1` activation in `crates/tools/win32/src/main.rs`).
+
+Turning this on for real surfaced several previously-latent, genuine header
+bugs that had never been compiled with the annotation macros expanding (see
+`docs/copilot/ralph-loop-runlog.md`, "foundational WIN32METADATA activation"
+entry, for the full list and fixes): an `enum class ... : int` narrowing
+overflow in `wincrypt.h`/`ncrypt.h`, several `_Win32_metadata_supported_os_`
+annotations misplaced mid-statement inside inline function bodies in
+`ws2tcpip.h`, two misplaced immediately before a C++ access specifier
+(`public:`) in `GdiplusTypes.h`/`httpserv.h`, and two misplaced immediately
+before a `template<...>` declaration in `d2d1.h`. All fixed at the header
+level; none were previously-functioning behavior (the annotations were
+syntactically present but semantically inert before this change, so nothing
+regressed).
+
+`sources/ClangSharpSourceToWinmd/MetadataSyntaxTreeCleaner.cs` now processes
+`[NativeAnnotation("win32metadata:...")]` (added via
+`CreateAttributeListForNativeAnnotation` and
+`ApplyWin32MetadataDllImportOverrides`), converting each into the real winmd
+custom attribute from `generation/WinSDK/manual/Metadata.cs` (`RAIIFree`,
+`InvalidHandleValue`, `SupportedOSPlatform`, `StaticLibrary`,
+`CanReturnErrorsAsSuccess`, `CanReturnMultipleSuccessValues`, `Agile`,
+`Retained`, `NotNullTerminated`, `NullNullTerminated`, `IgnoreIfReturn`,
+`AlsoUsableFor`, `ProjectAs`, `AssociatedEnum`, `AssociatedConstant`,
+`NativeInheritance`, `StructSizeField`, `NativeEncoding`, `Ansi`, `Unicode`,
+`Const`, `Reserved`, `RetVal`, `In`, `Out`, `Optional`, `NativeArrayInfo`,
+`MemorySize`), or - for `set_last_error`/`import_library` - modifying the
+sibling `[DllImport(...)]` attribute directly (`SetLastError = true`, or
+overriding the import-library name; header annotations are authoritative over
+import-library scanning, matching the precedent from the
+`libMappingsManual.rsp` tranche). `canonical_name`/`reduce_pointer_level`
+remain handled by the separate, necessarily-earlier
+`RemapDiscovery.MergeAnnotatedFixups` AST-read pass in
+`Win32MetadataScraper` (these are structural facts - delegate identity and
+pointer-level - that must be resolved before `PInvokeGenerator.GenerateBindings`
+runs, not post-hoc metadata attributes; this mirrors how
+`InvalidHandleValueAttribute`'s `[AttributeUsage]` was extended to also allow
+`Parameter`/`ReturnValue`, not just `Struct`, since producer-site annotation
+placement - not handle-typedef-level placement - is now the norm per this
+document's design).
+
+Validated via `tests/ClangSharpSourceToWinmdTests/Win32MetadataAnnotationTests.cs`
+(`ImportLibraryAnnotation_OverridesEmptyDllImportName`,
+`SetLastErrorAnnotation_SetsDllImportSetLastError`,
+`RaiiFreeAndInvalidHandleAnnotations_BecomeRealAttributesOnParameter`), and
+against real generated output (`P2p.h`'s `PeerGraphStartup`, previously
+deleted entirely for having an empty scanned import-library name, now
+correctly rescued and emitted with `[DllImport("P2PGRAPH.dll", ...)]` and
+`[SupportedOSPlatform("windows5.1.2600")]`; `bcrypt.h`'s
+`BCryptOpenAlgorithmProvider`, whose `phAlgorithm` parameter now correctly
+carries `[InvalidHandleValue(0)]` and `[RAIIFree("BCryptCloseAlgorithmProvider")]`).
 
 ---
 

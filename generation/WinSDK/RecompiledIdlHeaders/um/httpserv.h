@@ -371,7 +371,6 @@ public:
 class __declspec(uuid("d7fe3d77-68bc-4d4a-851f-eec9fb68017c"))
 IScriptMapInfo
 {
-_Win32_metadata_supported_os_(windows5.0)
 public:
     virtual
     PCWSTR
@@ -2775,7 +2774,6 @@ public:
 class __declspec(uuid("2111f8d6-0c41-4ff7-bd45-5c04c7e91a73"))
 IGlobalApplicationPreloadProvider : public IHttpEventProvider
 {
-_Win32_metadata_supported_os_(windows5.1.2600)
 public:
     virtual
     HRESULT

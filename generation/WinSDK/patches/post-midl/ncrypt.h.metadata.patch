@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
-index 63307cd1..1340569a 100644
+index 63307cd1..7397d2c5 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h
 @@ -1,4 +1,5 @@
@@ -13,7 +13,7 @@ index 63307cd1..1340569a 100644
  #endif
  
 +#if defined(WIN32METADATA)
-+enum class CERT_KEY_SPEC : int;
++enum class CERT_KEY_SPEC : unsigned int;
 +#else
 +typedef DWORD CERT_KEY_SPEC;
 +#endif

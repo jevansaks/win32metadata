@@ -471,6 +471,11 @@ namespace ClangSharpSourceToWinmd
                     {
                         return this.CreateAttributeListForSal(node);
                     }
+
+                    case "NativeAnnotation":
+                    {
+                        return this.CreateAttributeListForNativeAnnotation(node, firstAttr);
+                    }
                 }
 
                 return base.VisitAttributeList(node);
@@ -585,6 +590,112 @@ namespace ClangSharpSourceToWinmd
                 return base.VisitDelegateDeclaration(node);
             }
 
+            /// <summary>
+            /// Reads <c>[NativeAnnotation("win32metadata:set_last_error")]</c> and
+            /// <c>[NativeAnnotation("win32metadata:import_library=dll.dll")]</c> - produced by
+            /// ClangSharp v18+ from the <c>_Win32_metadata_set_last_error_</c> /
+            /// <c>_Win32_metadata_import_library_</c> header annotations - directly off the
+            /// method's original, not-yet-visited attribute lists. Must be called before
+            /// <c>base.VisitMethodDeclaration</c> runs: the recursive visit below rewrites (and,
+            /// for these two keys, deletes - see <see cref="Win32MetadataKeysHandledElsewhere"/>)
+            /// these same NativeAnnotation attribute lists, so the facts would otherwise be gone
+            /// by the time <see cref="ApplyWin32MetadataDllImportOverrides"/> could use them.
+            /// </summary>
+            private static (bool WantsSetLastError, string ImportLibraryOverride) ExtractWin32MetadataDllImportFacts(MethodDeclarationSyntax node)
+            {
+                bool wantsSetLastError = false;
+                string importLibraryOverride = null;
+
+                foreach (var attrList in node.AttributeLists)
+                {
+                    // Only method-level (not "[return: ...]") annotations apply here.
+                    if (attrList.Target != null)
+                    {
+                        continue;
+                    }
+
+                    foreach (var attr in attrList.Attributes)
+                    {
+                        if (attr.Name.ToString() != "NativeAnnotation" || attr.ArgumentList == null)
+                        {
+                            continue;
+                        }
+
+                        string text = EncodeHelpers.RemoveQuotes(attr.ArgumentList.Arguments[0].ToString());
+                        if (text == "win32metadata:set_last_error")
+                        {
+                            wantsSetLastError = true;
+                        }
+                        else if (text.StartsWith("win32metadata:import_library=", StringComparison.Ordinal))
+                        {
+                            importLibraryOverride = text.Substring("win32metadata:import_library=".Length);
+                        }
+                    }
+                }
+
+                return (wantsSetLastError, importLibraryOverride);
+            }
+
+            /// <summary>
+            /// Applies the facts extracted by <see cref="ExtractWin32MetadataDllImportFacts"/> to
+            /// the method's sibling <c>[DllImport(...)]</c> attribute: setting
+            /// <c>SetLastError = true</c>, and/or overriding the import-library name (which
+            /// otherwise comes from import-library scanning - header annotations are authoritative
+            /// over scanning). Must be called after <c>base.VisitMethodDeclaration</c> has already
+            /// run: mutating <c>node</c> (via any <c>With*</c> call) detaches it from the original
+            /// tree, which would break <c>.Parent</c>-based lookups (e.g. <c>GetFullName</c>) that
+            /// still need to run against this same subtree if done any earlier.
+            /// </summary>
+            private static MethodDeclarationSyntax ApplyWin32MetadataDllImportOverrides(
+                MethodDeclarationSyntax node, bool wantsSetLastError, string importLibraryOverride)
+            {
+                if (!wantsSetLastError && importLibraryOverride == null)
+                {
+                    return node;
+                }
+
+                var dllImportAttr = SyntaxUtils.GetAttribute(node.AttributeLists, "DllImport");
+                if (dllImportAttr == null)
+                {
+                    return node;
+                }
+
+                var newArguments = new List<AttributeArgumentSyntax>(dllImportAttr.ArgumentList.Arguments);
+
+                if (importLibraryOverride != null)
+                {
+                    newArguments[0] = SyntaxFactory.AttributeArgument(
+                        SyntaxFactory.LiteralExpression(
+                            SyntaxKind.StringLiteralExpression,
+                            SyntaxFactory.Literal(importLibraryOverride)));
+                }
+
+                if (wantsSetLastError)
+                {
+                    bool alreadyHasSetLastError = newArguments.Any(a =>
+                        a.NameEquals != null && a.NameEquals.Name.Identifier.Text == "SetLastError");
+
+                    if (!alreadyHasSetLastError)
+                    {
+                        newArguments.Add(
+                            SyntaxFactory.AttributeArgument(
+                                SyntaxFactory.LiteralExpression(SyntaxKind.TrueLiteralExpression))
+                                .WithNameEquals(SyntaxFactory.NameEquals("SetLastError")));
+                    }
+                }
+
+                var newDllImportAttr = dllImportAttr.WithArgumentList(
+                    SyntaxFactory.AttributeArgumentList(SyntaxFactory.SeparatedList(newArguments)));
+
+                var dllImportAttrList = (AttributeListSyntax)dllImportAttr.Parent;
+                var newAttributeLists = node.AttributeLists.Replace(
+                    dllImportAttrList,
+                    dllImportAttrList.WithAttributes(
+                        dllImportAttrList.Attributes.Replace(dllImportAttr, newDllImportAttr)));
+
+                return node.WithAttributeLists(newAttributeLists);
+            }
+
             public override SyntaxNode VisitMethodDeclaration(MethodDeclarationSyntax node)
             {
                 var dllImportAttr = SyntaxUtils.GetAttribute(node.AttributeLists, "DllImport");
@@ -593,8 +704,14 @@ namespace ClangSharpSourceToWinmd
                 // Trim the leading and trailing quotes.
                 dllName = dllName?.Substring(1, dllName.Length - 2);
 
-                // Skip methods where we weren't given an import lib name. Should we warn the caller?
-                if (dllImportAttr != null && string.IsNullOrEmpty(dllName))
+                var (wantsSetLastError, importLibraryOverride) = ExtractWin32MetadataDllImportFacts(node);
+
+                // Skip methods where we weren't given an import lib name and no
+                // win32metadata:import_library annotation supplies one instead (header
+                // annotations are authoritative over import-library scanning - see
+                // _Win32_metadata_import_library_ in win32metadata_annotations.h).
+                // Should we warn the caller?
+                if (dllImportAttr != null && string.IsNullOrEmpty(dllName) && importLibraryOverride == null)
                 {
                     return null;
                 }
@@ -635,6 +752,20 @@ namespace ClangSharpSourceToWinmd
                 var isInterface = node.Parent is StructDeclarationSyntax;
 
                 node = (MethodDeclarationSyntax)base.VisitMethodDeclaration(node);
+
+                // Apply win32metadata:set_last_error / win32metadata:import_library overrides to
+                // the [DllImport(...)] attribute. This must happen after base.VisitMethodDeclaration
+                // (all descendant/child rewriting is complete by now) - calling any With*() mutation
+                // on `node` earlier detaches it from the original tree, which breaks the
+                // GetFullName()-based .Parent lookups that VisitParameter (among others) still needs
+                // to perform on this same subtree during the recursive descent above.
+                node = ApplyWin32MetadataDllImportOverrides(node, wantsSetLastError, importLibraryOverride);
+                if (dllImportAttr != null)
+                {
+                    var updatedDllImportAttr = SyntaxUtils.GetAttribute(node.AttributeLists, "DllImport");
+                    dllName = updatedDllImportAttr?.ArgumentList.Arguments[0].ToString();
+                    dllName = dllName?.Substring(1, dllName.Length - 2);
+                }
 
                 // Add Ansi or Unicode attributes to -A/-W APIs.
                 if ((name.EndsWith("A") && this.apiNamesToNamespaces.ContainsKey($"{name[0..^1]}W")) ||
@@ -884,6 +1015,109 @@ namespace ClangSharpSourceToWinmd
                         ret.WithTarget(
                             SyntaxFactory.AttributeTargetSpecifier(
                                 SyntaxFactory.Token(SyntaxKind.ReturnKeyword)));
+                }
+
+                return ret;
+            }
+
+            /// <summary>
+            /// Keys handled elsewhere in the pipeline, not here:
+            /// <c>canonical_name</c>/<c>reduce_pointer_level</c> are consumed directly from
+            /// the Clang AST at scrape time by <c>RemapDiscovery</c> (they change delegate
+            /// identity/pointer levels, which must happen before PInvokeGenerator runs, not
+            /// as a post-hoc winmd custom attribute). <c>set_last_error</c>/<c>import_library</c>
+            /// modify the sibling <c>[DllImport(...)]</c> attribute and are consumed in
+            /// <see cref="VisitMethodDeclaration"/> before this attribute list is visited.
+            /// </summary>
+            private static readonly HashSet<string> Win32MetadataKeysHandledElsewhere = new HashSet<string>(StringComparer.Ordinal)
+            {
+                "canonical_name",
+                "reduce_pointer_level",
+                "set_last_error",
+                "import_library",
+            };
+
+            /// <summary>
+            /// Converts a <c>[NativeAnnotation("win32metadata:key")]</c> or
+            /// <c>[NativeAnnotation("win32metadata:key=value")]</c> attribute - produced by
+            /// ClangSharp v18+ for every <c>__attribute__((annotate(...)))</c> found on the
+            /// declaration, including the <c>_Win32_metadata_*</c> vocabulary in
+            /// win32metadata_annotations.h - into the equivalent real winmd custom attribute
+            /// from Windows.Win32.Foundation.Metadata (generation/WinSDK/manual/Metadata.cs).
+            /// Non-"win32metadata:"-prefixed NativeAnnotation attributes (SAL, emitted
+            /// alongside CppAttributeList which already processes SAL fully) are dropped as
+            /// redundant noise.
+            /// </summary>
+            private SyntaxNode CreateAttributeListForNativeAnnotation(AttributeListSyntax node, AttributeSyntax nativeAnnotationAttr)
+            {
+                string text = nativeAnnotationAttr.ArgumentList.Arguments[0].ToString();
+                text = EncodeHelpers.RemoveQuotes(text);
+
+                const string prefix = "win32metadata:";
+                if (!text.StartsWith(prefix, StringComparison.Ordinal))
+                {
+                    return null;
+                }
+
+                string rest = text.Substring(prefix.Length);
+                int eq = rest.IndexOf('=');
+                string key = eq >= 0 ? rest.Substring(0, eq) : rest;
+                string value = eq >= 0 ? rest.Substring(eq + 1) : null;
+
+                if (Win32MetadataKeysHandledElsewhere.Contains(key))
+                {
+                    return null;
+                }
+
+                string attrName;
+                string argList = null;
+
+                switch (key)
+                {
+                    case "supported_os": attrName = "SupportedOSPlatform"; argList = $"(\"{value}\")"; break;
+                    case "static_library": attrName = "StaticLibrary"; argList = $"(\"{value}\")"; break;
+                    case "can_return_errors_as_success": attrName = "CanReturnErrorsAsSuccess"; break;
+                    case "can_return_multiple_success_values": attrName = "CanReturnMultipleSuccessValues"; break;
+                    case "agile": attrName = "Agile"; break;
+                    case "raii_free": attrName = "RAIIFree"; argList = $"(\"{value}\")"; break;
+                    case "invalid_handle": attrName = "InvalidHandleValue"; argList = $"({value})"; break;
+                    case "not_null_terminated": attrName = "NotNullTerminated"; break;
+                    case "null_null_terminated": attrName = "NullNullTerminated"; break;
+                    case "retained": attrName = "Retained"; break;
+                    case "ignore_if_return": attrName = "IgnoreIfReturn"; argList = $"(\"{value}\")"; break;
+                    case "also_usable_for": attrName = "AlsoUsableFor"; argList = $"(\"{value}\")"; break;
+                    case "project_as": attrName = "ProjectAs"; argList = $"(\"{value}\")"; break;
+                    case "associated_enum": attrName = "AssociatedEnum"; argList = $"(\"{value}\")"; break;
+                    case "associated_constant": attrName = "AssociatedConstant"; argList = $"(\"{value}\")"; break;
+                    case "native_inheritance": attrName = "NativeInheritance"; argList = $"(\"{value}\")"; break;
+                    case "struct_size_field": attrName = "StructSizeField"; argList = $"(\"{value}\")"; break;
+                    case "native_encoding": attrName = "NativeEncoding"; argList = $"(\"{value}\")"; break;
+                    case "ansi": attrName = "Ansi"; break;
+                    case "unicode": attrName = "Unicode"; break;
+                    case "const": attrName = "Const"; break;
+                    case "reserved": attrName = "Reserved"; break;
+                    case "retval": attrName = "RetVal"; break;
+                    case "in": attrName = "In"; break;
+                    case "out": attrName = "Out"; break;
+                    case "optional": attrName = "Optional"; break;
+                    case "array_count_param": attrName = "NativeArrayInfo"; argList = $"(CountParamIndex = {value})"; break;
+                    case "array_count_const": attrName = "NativeArrayInfo"; argList = $"(CountConst = {value})"; break;
+                    case "array_count_field": attrName = "NativeArrayInfo"; argList = $"(CountFieldName = \"{value}\")"; break;
+                    case "memory_size_param": attrName = "MemorySize"; argList = $"(BytesParamIndex = {value})"; break;
+                    default:
+                        // Unknown/removed-from-vocabulary key - drop rather than emit invalid syntax.
+                        return null;
+                }
+
+                var newAttr = SyntaxFactory.Attribute(
+                    SyntaxFactory.ParseName(attrName),
+                    argList != null ? SyntaxFactory.ParseAttributeArgumentList(argList) : null);
+
+                var ret = SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(newAttr));
+
+                if (node.Target != null)
+                {
+                    ret = ret.WithTarget(node.Target);
                 }
 
                 return ret;

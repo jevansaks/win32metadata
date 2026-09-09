@@ -143,7 +143,7 @@ public class IgnoreIfReturnAttribute : Attribute
     }
 }
 
-[AttributeUsage(AttributeTargets.Struct, AllowMultiple = true, Inherited = true)]
+[AttributeUsage(AttributeTargets.Struct | AttributeTargets.Parameter | AttributeTargets.ReturnValue, AllowMultiple = true, Inherited = true)]
 public class InvalidHandleValueAttribute : Attribute
 {
     public InvalidHandleValueAttribute(long Value)

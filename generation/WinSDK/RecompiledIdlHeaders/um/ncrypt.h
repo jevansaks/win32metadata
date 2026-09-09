@@ -25,7 +25,7 @@ extern "C" {
 #endif
 
 #if defined(WIN32METADATA)
-enum class CERT_KEY_SPEC : int;
+enum class CERT_KEY_SPEC : unsigned int;
 #else
 typedef DWORD CERT_KEY_SPEC;
 #endif

@@ -4581,3 +4581,91 @@ also used by the `GeneratorSampleDebug` sample project, not specific to this
 repo's now-empty sidecar). Updated `docs/generationOptions.md`,
 `CONTRIBUTING.md`, `docs/spec.md`, and `.github/copilot-instructions.md` to
 describe the inline-annotation approach instead of the removed sidecar.
+
+## Foundational WIN32METADATA activation (source of truth end-to-end)
+
+Fixed the root cause identified at the end of the previous tranche: the
+scraper never actually defined `WIN32METADATA`, so every `_Win32_metadata_*`
+annotation from all prior tranches expanded to nothing. Rather than keep the
+narrow, ad hoc `_WIN32META_ANNOTATION_SCRAPE_` workaround (limited to 2 of
+~30 annotation kinds) added last tranche, did the real fix:
+
+1. **Upgraded ClangSharp** (`ClangSharp`/`ClangSharp.Interop`/
+   `ClangSharp.PInvokeGenerator`) from 17.0.1 to **18.1.0.4** (libclang/
+   libClangSharp to 18.1.3.x) in `Win32MetadataScraper.csproj`. v17 only
+   preserves `__attribute__((annotate(...)))` on parameters; v18 adds
+   `[NativeAnnotation("...")]` support for every declaration type. Verified
+   this is a drop-in replacement: full test suite and real partition scrapes
+   behave identically apart from annotations now surviving.
+2. **Defined `-DWIN32METADATA=1`** for real in
+   `sources/GeneratorSdk/tools/assets/scraper/baseSettings.rsp` - the single,
+   real, shared macro gate (removed the parallel `_WIN32META_ANNOTATION_SCRAPE_`
+   macro; `_Win32_metadata_canonical_name_`/`_Win32_metadata_reduce_pointer_level_`
+   now use the same `_WIN32META_ANNOTATION_` gate as every other annotation).
+   This matches windows-rs's own activation contract - `crates/tools/win32/src/main.rs`
+   already passes `-DWIN32METADATA=1` for its own, independent Rust scraper -
+   so no windows-rs changes were needed.
+3. **Fixed every diagnostic exposed** scraping all 323 partitions
+   (crossarch): a real, previously-uncompiled `enum class CERT_KEY_SPEC : int`
+   narrowing overflow (`0xFFFFFFFFu` doesn't fit signed `int`) across 3
+   forward-declaration/definition copies in `wincrypt.h`/`ncrypt.h`; 8
+   `_Win32_metadata_supported_os_` annotations mis-copied mid-statement
+   inside inline-function bodies in `ws2tcpip.h`; 2 annotations misplaced
+   immediately before a C++ access specifier (`public:`) in
+   `GdiplusTypes.h`/`httpserv.h` (silently making subsequent members
+   private); 2 misplaced immediately before a `template<...>` in `d2d1.h`
+   (removed, since templates aren't P/Invoke-able). Result: **0 scrape
+   errors across 321/323 partitions** (the pre-existing, unrelated
+   `AllJoyn`/`WinRT.AllJoyn` `__builtin_verbose_trap` blocker is the only
+   exclusion).
+4. **Implemented emitter-side consumption**: `MetadataSyntaxTreeCleaner.cs`
+   gained a `NativeAnnotation` case converting `win32metadata:*` text into
+   the real custom attribute from `generation/WinSDK/manual/Metadata.cs`
+   (RAIIFree, InvalidHandleValue, SupportedOSPlatform, StaticLibrary,
+   CanReturnErrorsAsSuccess, CanReturnMultipleSuccessValues, Agile, Retained,
+   NotNullTerminated, NullNullTerminated, IgnoreIfReturn, AlsoUsableFor,
+   ProjectAs, AssociatedEnum, AssociatedConstant, NativeInheritance,
+   StructSizeField, NativeEncoding, Ansi, Unicode, Const, Reserved, RetVal,
+   In, Out, Optional, NativeArrayInfo, MemorySize), plus a dedicated
+   `set_last_error`/`import_library` path that modifies the sibling
+   `[DllImport(...)]` attribute directly (and rescues methods the emitter
+   otherwise deletes for having an empty scanned import-library name).
+   Extended `InvalidHandleValueAttribute`'s `[AttributeUsage]` to also permit
+   `Parameter`/`ReturnValue`. `canonical_name`/`reduce_pointer_level` remain
+   on the separate, necessarily-earlier `RemapDiscovery` AST-read pass
+   (structural facts that must resolve before `PInvokeGenerator.GenerateBindings`
+   runs, not post-hoc attributes). Hit and fixed two Roslyn immutable-tree
+   pitfalls: mutating `node` via `With*()` detaches it from the tree,
+   breaking later `.Parent`-based lookups still needed in the same visit
+   (fixed by splitting fact-extraction, before `base.VisitMethodDeclaration`,
+   from fact-application, after); and the "delete methods with an empty
+   scanned import-library name" guard needed to consult the annotation
+   override before deciding to delete, not after.
+5. Added `tests/ClangSharpSourceToWinmdTests/Win32MetadataAnnotationTests.cs`
+   (3 tests, passing), and validated against real generated output: `P2p.h`'s
+   `PeerGraphStartup` (previously deleted for an empty scanned import
+   library, now rescued with `[DllImport("P2PGRAPH.dll", ...)]`/
+   `[SupportedOSPlatform("windows5.1.2600")]`) and `bcrypt.h`'s
+   `BCryptOpenAlgorithmProvider` (`phAlgorithm` now carries
+   `[InvalidHandleValue(0)]`/`[RAIIFree("BCryptCloseAlgorithmProvider")]`).
+
+**Validation:** `dotnet build BuildTools` (0 errors); full test suite
+(Win32MetadataScraperTests 44/44, MetadataUtils.Tests 17/17,
+ClangSharpSourceToWinmdTests 9/9 including 3 new tests); `ScrapeHeaders
+-p:ScanArch=crossarch` across all 321 non-AllJoyn partitions (0 errors);
+representative annotation-to-attribute confirmed in real generated
+intermediate C# for RAIIFree, InvalidHandleValue, SupportedOSPlatform,
+SetLastError, and ImportLibrary.
+
+**Known remaining blocker (pre-existing, unrelated):** a full local
+`EmitWinmd` run currently fails independent of this change -
+`generation/WinSDK/autoTypes.json`'s `CLFS_MGMT_CLIENT` entry references
+`ClfsMgmtRegisterManagedClient`/`ClfsMgmtDeregisterManagedClient`, guarded by
+`WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_BOOTABLESKU)`
+in `clfsmgmt.h` and never reachable under this repo's standard
+`-DWINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP` scrape config, regardless of
+partition selection (confirmed unrelated: `autoTypes.json` has no diff on
+this branch, and the gap reproduces identically whether or not `Fs`, the
+owning partition, is included). This blocks a complete local `EmitWinmd` run
+and thus full winmd-level confirmation in this session; flagged for separate
+follow-up.

@@ -1,5 +1,5 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1.h b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1.h
-index ecf2adca..897aff77 100644
+index ecf2adca..28deb042 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/d2d1.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/d2d1.h
 @@ -5,6 +5,8 @@
@@ -313,19 +313,3 @@ index ecf2adca..897aff77 100644
  D2D1CreateFactory(
      _In_ D2D1_FACTORY_TYPE factoryType,
      _In_ REFIID riid,
-@@ -3729,6 +3769,7 @@ D2D1CreateFactory(
- }
- 
- 
-+_Win32_metadata_supported_os_(windows6.1)
- template<class Factory>
- COM_DECLSPEC_NOTHROW
- HRESULT
-@@ -3744,6 +3785,7 @@ D2D1CreateFactory(
-             reinterpret_cast<void **>(factory));
- }
- 
-+_Win32_metadata_supported_os_(windows6.1)
- template<class Factory>
- COM_DECLSPEC_NOTHROW
- HRESULT
