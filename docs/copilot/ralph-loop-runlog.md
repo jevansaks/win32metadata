@@ -3849,7 +3849,11 @@ fix the file had 72 due to the 2 duplicate lines). Re-ran
 duplicates.
 
 **Corrected running total: 36 of 106 RAIIFree sidecar entries migrated
-across 25 headers (batches 1-5); 70 entries across 17 headers remain.**
+across 25 headers (batches 1-5); 70 entries across 19 headers remain**
+(`avrt.h`, `WinBase.h`, `consoleapi2.h`, `wingdi.h`, `winsplp.h`,
+`WinDNS.h`, `DsGetDC.h`, `fltUser.h`, `fileapi.h`, `heapapi.h`,
+`IcmpAPI.h`, `perflib.h`, `ShlObj_core.h`, `wlanapi.h`, `winnetwk.h`,
+`wnvapi.h`, `Wscapi.h`, `wslapi.h`, `WtsApi32.h`).
 This corrects the smaller per-batch entry counts stated in the batch 4 and
 batch 5 log entries above (batch 4 migrated 7 entries, not 6 -
 `QOSCreateHandle` was included; batch 5 migrated 11 entries, not 8).
