@@ -117,8 +117,12 @@ body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap
 
 <section class="slide" id="context">
 <div class="kicker">Context</div>
-<h2>Language projections read Win32 metadata; headers steer it for now</h2>
-<div class="flow lanes" style="margin-top:4px">
+<h2>Win32 metadata: a standard API definition with safety annotations</h2>
+<ul class="tight">
+<li><b>A standard definition of the headers.</b> <code>Windows.Win32.winmd</code> describes every function, struct, enum, constant and COM interface in ECMA-335 metadata, as WinRT does, with its DLL and exact types. Projections read it instead of parsing C.</li>
+<li><b>An expanded set of safety annotations.</b> What SAL doesn't say: last error, handle ownership, constant groups, meaningful <code>HRESULT</code>s, retained pointers.</li>
+</ul>
+<div class="flow lanes">
 <div class="lane">Now</div>
 <div class="box">SDK headers<br>with annotations</div>
 <div class="arrow">&#8594;</div>
@@ -133,29 +137,27 @@ body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap
 <div class="row"><div class="box">CsWin32<br>C#</div><div class="box">windows-rs<br>Rust</div><div class="box">cppwin32<br>C++</div></div>
 </div>
 <ul class="tight">
-<li><a href="https://github.com/microsoft/win32metadata"><b>win32metadata</b></a> scrapes the SDK headers into <code>Windows.Win32.winmd</code> and ships it on NuGet as <a href="https://www.nuget.org/packages/Microsoft.Windows.SDK.Win32Metadata/"><code>Microsoft.Windows.SDK.Win32Metadata</code></a>.</li>
-<li><a href="https://github.com/microsoft/CsWin32"><b>CsWin32</b></a> generates C# P/Invoke and COM interop source from that package.</li>
-<li><a href="https://github.com/microsoft/windows-rs"><b>windows-rs</b></a> scrapes the same headers with windows-clang into its own winmd and generates the <code>windows</code> and <code>windows-sys</code> crates from it.</li>
+<li><a href="https://github.com/microsoft/win32metadata"><b>win32metadata</b></a> builds it from the SDK headers and ships it on <a href="https://www.nuget.org/packages/Microsoft.Windows.SDK.Win32Metadata/">NuGet</a>; <a href="https://github.com/microsoft/CsWin32"><b>CsWin32</b></a> generates C# P/Invoke and COM interop from it. <a href="https://github.com/microsoft/windows-rs"><b>windows-rs</b></a> builds its own from the same headers with windows-clang for the <code>windows</code> and <code>windows-sys</code> crates.</li>
 <li><b>For now</b>, headers stay the source of truth; annotations in them steer the metadata.</li>
-<li><b>Later</b>, the SDK is metadata-first: metadata is the source of truth. C++ consumes it through <a href="https://github.com/microsoft/cppwin32">cppwin32</a>, which generates headers from it as C++/WinRT does for WinRT.</li>
+<li><b>Later</b>, the SDK is metadata-first. C++ consumes it through <a href="https://github.com/microsoft/cppwin32">cppwin32</a>, which generates headers from it as C++/WinRT does for WinRT.</li>
 </ul>
 </section>
 
 <section class="slide" id="summary">
 <div class="kicker">Summary</div>
-<h2>Projection facts move into the headers that declare the APIs</h2>
+<h2>Expanding safety annotations to cover what SAL doesn't</h2>
 <div class="cols">
 <div class="stack">
-<h3>Facts a C prototype doesn't state</h3>
+<h3>What SAL doesn't cover today</h3>
 <ul class="tight">
-<li>Sets the last error</li>
-<li>Minimum OS version</li>
-<li>Import library, when the import-library scan can't find it</li>
-<li>Who owns a returned handle, how it's released, which values mean failure</li>
-<li>Which named constants a <code>DWORD</code> takes</li>
-<li>Success <code>HRESULT</code>s the caller must see</li>
-<li>Pointers the callee keeps, buffers that point into themselves</li>
-<li>Which COM out parameter is the logical return value</li>
+<li><b>Last error.</b> Whether the function reports failure details through <code>GetLastError</code>.</li>
+<li><b>Minimum OS.</b> The first Windows release with the API.</li>
+<li><b>Import library.</b> The DLL, when no import library exports the function.</li>
+<li><b>Handle ownership.</b> Who closes a returned handle, with what, and which values mean failure.</li>
+<li><b>Constant groups.</b> Which named constants a <code>DWORD</code> parameter or field takes.</li>
+<li><b>Meaningful <code>HRESULT</code>s.</b> Success and failure codes the caller has to see.</li>
+<li><b>Pointer lifetimes.</b> Pointers the callee keeps; buffers that point into themselves.</li>
+<li><b>COM return value.</b> Which out parameter is the logical result.</li>
 </ul>
 </div>
 <div class="stack">
@@ -164,7 +166,6 @@ body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap
 <li><code>_Win32_*_</code> annotations, placed like SAL. <code>sal.h</code> includes them.</li>
 <li>Active only under <code>WIN32METADATA</code> with Clang. Empty everywhere else: no ABI or codegen change.</li>
 <li>One winmd per SDK version, generated from that SDK's headers.</li>
-<li>Robots write the first pass as patches, ported logically to each file's os.2020 source. Owners keep it current.</li>
 <li>Spec reviewed with partner teams (<a href="https://github.com/microsoft/win32metadata/pull/2295">#2295</a>, <a href="https://github.com/microsoft/win32metadata/pull/2368">#2368</a>). <a href="https://github.com/microsoft/win32metadata/pull/2363">#2363</a> extends it.</li>
 </ul>
 </div>
@@ -172,11 +173,12 @@ body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap
 </section>
 
 <section class="slide" id="sidecars">
-<div class="kicker">Today</div>
-<h2>CreateFileW today: five files, none of them the header</h2>
+<div class="kicker">The problem</div>
+<h2>Today the annotations are an afterthought</h2>
+<p>win32metadata adds them after the API ships, in sidecar files that API owners never see.</p>
 <div class="cols">
 <div class="stack">
-<div class="label"><code>generation/WinSDK</code> at <code>a1de5ac</code></div>
+<div class="label">CreateFileW: five sidecars in <code>generation/WinSDK</code> at <code>a1de5ac</code></div>
 <script type="text/plain" data-lang="jsonc" data-size="xs">
 // WithSetLastError.rsp:437
 CreateFileW
@@ -214,33 +216,28 @@ CreateFileW=SupportedOSPlatform("windows5.1.2600")
 <tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/autoTypes.json"><code>autoTypes.json</code></a></td><td>444 typedefs</td></tr>
 <tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/enums.json"><code>enums.json</code></a></td><td>1,072 enums</td></tr>
 </table>
-<p class="note">All maintained by win32metadata, away from the declarations. <code>autoTypes.json</code> states one close function and one set of failure values for every <code>HANDLE</code> from every API.</p>
+<p class="note"><code>autoTypes.json</code> states one close function and one set of failure values for every <code>HANDLE</code> from every API.</p>
 </div>
 </div>
 </section>
 
 <section class="slide" id="plan">
 <div class="kicker">The plan</div>
-<h2>Robots stage the facts as header patches; the SDK carries them</h2>
+<h2>Three steps from sidecars to annotated SDK headers</h2>
 <div class="flow" style="margin-top:4px">
-<div class="col"><div class="box">win32metadata<br>sidecars</div><div class="box">SDK headers<br>and IDL</div></div>
+<div class="box">1. Tooling reads<br>annotations from headers</div>
 <div class="arrow">&#8594;</div>
-<div class="box">Robots<br>patch, apply, generate,<br>inspect the winmd</div>
+<div class="box tmp">2. Patches against<br>the current SDK</div>
 <div class="arrow">&#8594;</div>
-<div class="box tmp">Patches<br>delta per file</div>
-<div class="arrow">&#8594;</div>
-<div class="box">os.2020 owning source<br><code>.w</code>, <code>.h</code>, <code>.api</code>/<code>.apx</code>, <code>.idl</code></div>
+<div class="box">3. os.2020<br>applies them logically</div>
 <div class="arrow">&#8594;</div>
 <div class="col"><div class="box out">Annotated<br>SDK headers</div><div class="box out">One winmd<br>per SDK version</div></div>
 </div>
-<div class="grid2">
-<p><b>Bootstrap.</b> Extend the <a href="https://github.com/microsoft/win32metadata/pull/2363">#2363</a> toolchain to the full vocabulary and produce the annotated headers plus a matching winmd. Then hand off to the next-generation Clang-AST generator and delete the old tool.</p>
-<p><b>Robot loop.</b> About a week of robot time stages every sidecar fact as a header patch.</p>
-<p><b>Transport.</b> Logical, not literal. A patch is the reviewed intent against the SDK file. A provenance map finds the os.2020 source, and its generator (HSPLIT, APIMD, ApiSet, MIDL) carries the change. Success is the same effective facts, not the same bytes. A trial port of 11 pilot files reproduced 8; PSAPI, TimeZone and WSL need generator-aware lowering.</p>
-<p><b>Shape changes.</b> Some winmd shapes change (see the <a href="#walkback-abi">walk-backs</a>). CsWin32 absorbs most of it; its generated code stays largely the same.</p>
-<p><b>One winmd per SDK.</b> Replaces the amalgamated winmd. Ships in the contracts package or its own. Forward only: older SDKs keep today's win32metadata.</p>
-<p><b>os.2020 checks.</b> A cheap soundness scan at check-in. Full generation (about an hour) post-build or conditionally.</p>
-</div>
+<ol>
+<li><b>Expand the tooling.</b> win32metadata reads annotations out of the headers as well as the sidecars (<a href="https://github.com/microsoft/win32metadata/pull/2363">#2363</a>).</li>
+<li><b>Patch the current SDK.</b> A set of patches moves the sidecar facts into the SDK headers and IDL. <a href="https://github.com/microsoft/win32metadata/pull/2365">#2365</a> is the pilot: 13 headers and IDL files.</li>
+<li><b>Transport into os.2020.</b> Each patch is applied logically to the source that generates the header: <code>.w</code>, <code>.h</code>, <code>.api</code>/<code>.apx</code> or <code>.idl</code>.</li>
+</ol>
 </section>
 
 <section class="slide" id="rules">
@@ -301,10 +298,6 @@ CreateFileW=SupportedOSPlatform("windows5.1.2600")
  #define TRUNCATE_EXISTING   5
 +_Win32_Enum_(FILE_CREATION_DISPOSITION, DWORD, CREATE_NEW, CREATE_ALWAYS,
 +    OPEN_EXISTING, OPEN_ALWAYS, TRUNCATE_EXISTING);
-+#ifdef WIN32METADATA
-+typedef DWORD FILE_FLAGS_AND_ATTRIBUTES; // group declared later
-+#include <handleapi.h>                   // CloseHandle, for RAIIFree
-+#endif
 ...
  WINBASEAPI
 +_Win32_SupportedOS_WindowsXP_
@@ -325,8 +318,29 @@ CreateFileW=SupportedOSPlatform("windows5.1.2600")
      _In_opt_ HANDLE hTemplateFile
      );
 </script>
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/winnt.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ #define FILE_SHARE_READ                 0x00000001
+ #define FILE_SHARE_WRITE                0x00000002
+ #define FILE_SHARE_DELETE               0x00000004
++_Win32_FlagsEnum_(FILE_SHARE_MODE, DWORD,
++    FILE_SHARE_READ, FILE_SHARE_WRITE, FILE_SHARE_DELETE);
+</script>
 </div>
 <div class="stack">
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/winbase.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ #define SECURITY_SQOS_PRESENT      0x00100000
+ #define SECURITY_VALID_SQOS_FLAGS  0x001F0000
++_Win32_FlagsEnum_(FILE_FLAGS_AND_ATTRIBUTES, DWORD,
++    FILE_ATTRIBUTE_READONLY, FILE_ATTRIBUTE_HIDDEN,
+...
++    FILE_FLAG_WRITE_THROUGH, FILE_FLAG_OVERLAPPED,
+...
++    PIPE_ACCESS_INBOUND, PIPE_ACCESS_OUTBOUND,
+...
++    SECURITY_SQOS_PRESENT, SECURITY_VALID_SQOS_FLAGS);
+</script>
 <div class="label"><span class="badge out">winmd</span></div>
 <script type="text/plain" data-lang="cs" data-size="xs">
 [DllImport("KERNEL32.dll", ExactSpelling = true,
@@ -346,8 +360,7 @@ public static extern HANDLE CreateFileW(
     [Optional][In] HANDLE hTemplateFile);
 </script>
 <ul class="tight">
-<li>Replaces every entry on <a href="#sidecars">CreateFileW today</a>.</li>
-<li>Close functions and groups are declared before use. <code>FILE_SHARE_MODE</code> is grouped in <code>winnt.h</code>.</li>
+<li>Replaces every <a href="#sidecars">sidecar entry</a> for CreateFileW.</li>
 </ul>
 </div>
 </div>
@@ -415,7 +428,7 @@ public enum CREATE_TOOLHELP_SNAPSHOT_FLAGS : uint
 </script>
 <ul class="tight">
 <li>The group is used before its <code>#define</code>s, so it's forward-declared under <code>WIN32METADATA</code>.</li>
-<li>Ownership still comes from <code>autoTypes.json</code> in the pilot. <code>_Win32_RAIIFree_(CloseHandle, -1)</code> lands with the rollout.</li>
+<li>Ownership still comes from <code>autoTypes.json</code> in the pilot. Annotated, it's <code>_Win32_RAIIFree_(CloseHandle, -1)</code>, as on <a href="#createfile">CreateFileW</a>.</li>
 </ul>
 </div>
 </div>
@@ -488,7 +501,7 @@ public static extern BOOL MagSetInputTransform(
 <section class="slide" id="importlib">
 <div class="kicker">ImportLibrary</div>
 <h2>Import library, only where the scan can't find it</h2>
-<div class="cols w60">
+<div class="cols">
 <div class="stack">
 <div class="label"><span class="badge real">#2365</span> <code>um/wslapi.h</code></div>
 <script type="text/plain" data-lang="diff" data-size="xs">
@@ -542,6 +555,8 @@ public static extern uint VerifierEnumerateResource(
     [In][Out] void* EnumerationContext);
 </script>
 <ul class="tight">
+<li>No import library in SDK 10.0.26100 exports either function.</li>
+<li><code>VerifierEnumerateResource</code> is <a href="https://learn.microsoft.com/en-us/windows/win32/api/avrfsdk/nf-avrfsdk-verifierenumerateresource">documented</a> as having no import library; callers use <code>LoadLibrary</code> and <code>GetProcAddress</code>. The annotation records that in the header.</li>
 <li>Different export name or ordinal: <code>_Win32_ImportLibrary_("dll", "Export")</code>, <code>_Win32_ImportLibrary_("dll", 12)</code>.</li>
 <li>Replaces <code>--with-librarypath</code> in <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/scraper.settings.rsp#L4"><code>scraper.settings.rsp</code> line 4</a> and <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/Partitions/Wsl/settings.rsp#L4-L10"><code>Partitions/Wsl/settings.rsp</code> lines 4&#8211;10</a>.</li>
 </ul>
@@ -725,7 +740,7 @@ public static extern BOOL ChangeServiceConfigW(
 <h2>Fields work the same way; storage sets the width</h2>
 <div class="cols w60">
 <div class="stack">
-<div class="label"><span class="badge real">#2365</span> <code>um/Xinput.h</code></div>
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/Xinput.h</code></div>
 <script type="text/plain" data-lang="diff" data-size="xs">
 +_Win32_Enum_(XINPUT_DEVTYPE, BYTE,
 +    XINPUT_DEVTYPE_GAMEPAD);
@@ -737,15 +752,14 @@ public static extern BOOL ChangeServiceConfigW(
 +    XINPUT_CAPS_PMD_SUPPORTED,
 +    XINPUT_CAPS_NO_NAVIGATION);
 ...
-
  typedef struct _XINPUT_CAPABILITIES
  {
--    BYTE                                Type;
--    BYTE                                SubType;
--    WORD                                Flags;
-+    _Win32_AssociatedEnum_(XINPUT_DEVTYPE) BYTE                                Type;
-+    _Win32_AssociatedEnum_(XINPUT_DEVSUBTYPE) BYTE                                SubType;
-+    _Win32_AssociatedEnum_(XINPUT_CAPABILITIES_FLAGS) WORD                                Flags;
++    _Win32_AssociatedEnum_(XINPUT_DEVTYPE)
+     BYTE                                Type;
++    _Win32_AssociatedEnum_(XINPUT_DEVSUBTYPE)
+     BYTE                                SubType;
++    _Win32_AssociatedEnum_(XINPUT_CAPABILITIES_FLAGS)
+     WORD                                Flags;
      XINPUT_GAMEPAD                      Gamepad;
      XINPUT_VIBRATION                    Vibration;
  } XINPUT_CAPABILITIES, *PXINPUT_CAPABILITIES;
@@ -789,7 +803,7 @@ public struct XINPUT_CAPABILITIES
 
 <section class="slide" id="preserve">
 <div class="kicker">PreserveResult</div>
-<h2>Success codes that carry meaning reach the caller</h2>
+<h2>Non-obvious HRESULT returns</h2>
 <div class="cols w60">
 <div class="stack">
 <div class="label"><span class="badge real">#2365</span> <code>um/propidlbase.idl</code></div>
@@ -809,8 +823,9 @@ public struct XINPUT_CAPABILITIES
              IN DWORD dwOKEffects, OUT LPDWORD pdwEffect);
 </script>
 <ul class="tight">
-<li><code>S_FALSE</code> from <code>Next</code> and <code>Skip</code>, and <code>DRAGDROP_S_*</code> from <code>DoDragDrop</code>, aren't collapsed into success.</li>
-<li>Replaces <code>[CanReturnMultipleSuccessValues]</code> in <code>emitter.settings.rsp</code> (<a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L405">405</a>, <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L446-L447">446&#8211;447</a>).</li>
+<li><code>S_FALSE</code> from <code>Next</code> and <code>Skip</code>, and <code>DRAGDROP_S_*</code> from <code>DoDragDrop</code>, reach the caller instead of collapsing to success.</li>
+<li>So do expected failures, like <code>DXGI_ERROR_NOT_FOUND</code> from <code>IDXGIFactory1::EnumAdapters1</code> past the last adapter.</li>
+<li>Replaces <code>[CanReturnMultipleSuccessValues]</code> (<a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L405">405</a>, <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L446-L447">446&#8211;447</a>) and <code>[CanReturnErrorsAsSuccess]</code> (<a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L1014">1014</a>) in <code>emitter.settings.rsp</code>.</li>
 </ul>
 </div>
 <div class="stack">
@@ -842,7 +857,7 @@ public static extern HRESULT DoDragDrop(...);
 
 <section class="slide" id="idl">
 <div class="kicker">AnnotateInterface &#183; AnnotateMethod</div>
-<h2>Patches in IDL</h2>
+<h2>MIDL doesn't carry annotations into headers faithfully</h2>
 <div class="cols">
 <div class="stack">
 <div class="label"><span class="badge real">#2365</span> <code>um/waasapi.idl</code></div>
@@ -903,9 +918,9 @@ public uint ulKind;
 public ushort vt;
 </script>
 <ul class="tight">
-<li>Fields and <code>[local]</code> methods: <code>[annotation("&#8230;")]</code>, the same way SAL gets into IDL.</li>
-<li>Interfaces and methods: <code>_Win32_AnnotateInterface_</code> and <code>_Win32_AnnotateMethod_</code>, outside the body. MIDL rejects them inside.</li>
-<li>Constant groups: <code>cpp_quote("_Win32_Enum_(&#8230;)")</code>. <code>[retval]</code> is native.</li>
+<li>MIDL rejects <code>[annotation]</code> on interfaces (MIDL2072) and warns on remotable methods (MIDL2495), so <code>_Win32_AnnotateInterface_</code> and <code>_Win32_AnnotateMethod_</code> go outside the interface.</li>
+<li>Fields and <code>[local]</code> methods take <code>[annotation("&#8230;")]</code>, but it overrides SAL instead of adding to it, so it has to carry both.</li>
+<li>Constant groups go through <code>cpp_quote</code>. <code>[retval]</code> reaches the header only as a comment, which the tooling reads.</li>
 </ul>
 </div>
 </div>
