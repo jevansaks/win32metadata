@@ -1,0 +1,1273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Win32 metadata annotations in SDK headers: walkthrough for API owners</title>
+<style>
+:root{--fg:#1f2328;--muted:#59636e;--accent:#0b63c5;--ann:#8250df;--code-bg:#f6f8fa;--border:#d0d7de;--add-bg:#e6ffec;--add-fg:#116329;--del-bg:#ffebe9;--del-fg:#a40e26;--hunk-bg:#ddf4ff;--hunk-fg:#0550ae;--mono:"Cascadia Mono","Cascadia Code",Consolas,"Courier New",monospace}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#2b2f36;color:var(--fg);font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+a{color:var(--accent)}
+#progress{position:fixed;left:0;top:0;height:4px;width:0;background:#4c9aff;z-index:3;transition:width .2s}
+#deck{position:fixed;inset:0 0 48px 0;overflow:hidden}
+.slide{position:absolute;left:50%;top:50%;width:1280px;height:720px;margin:-360px 0 0 -640px;transform:scale(var(--scale,1));background:#fff;padding:34px 56px 50px;display:none;flex-direction:column;gap:14px;overflow:hidden;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.slide.active{display:flex}
+.kicker{font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.slide h2{margin:0;font-size:34px;line-height:1.15;font-weight:650}
+.slide h3{margin:0;font-size:20px;font-weight:650}
+.slide p,.slide li{margin:0;font-size:21px;line-height:1.4}
+.slide ul,.slide ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+.slide .tight li,.slide .tight p{font-size:18px;line-height:1.35}
+.slide .tight{gap:6px}
+.note{font-size:17px!important;color:var(--muted)}
+.slide code{font-family:var(--mono);font-size:.86em;background:#eff1f3;border-radius:4px;padding:.05em .3em}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;min-height:0;align-items:start}
+.cols.w60{grid-template-columns:3fr 2fr}
+.cols.w40{grid-template-columns:2fr 3fr}
+.cols.w70{grid-template-columns:7fr 3fr}
+.stack{display:flex;flex-direction:column;gap:10px;min-width:0}
+.label{display:flex;gap:8px;align-items:center;font-size:14px;font-weight:600;color:var(--muted)}
+.badge{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.badge.real{color:#116329;border-color:#4ac26b;background:#dafbe1}
+.badge.adhoc{color:#7d4e00;border-color:#d4a72c;background:#fff8c5}
+.badge.illus{color:#6639ba;border-color:#c297ff;background:#fbefff}
+.badge.out{color:#0550ae;border-color:#80ccff;background:#ddf4ff}
+.badge.bad{color:#a40e26;border-color:#ff8182;background:#ffebe9}
+pre.code{margin:0;min-width:0;background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font:14px/1.38 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
+pre.code.s{font-size:12.5px}
+pre.code.xs{font-size:11.5px;line-height:1.32}
+pre.code code{font:inherit;background:none;padding:0}
+pre.code .ln{display:block;min-height:1.32em;padding-left:2ch;text-indent:-2ch}
+.ln.add{background:var(--add-bg)}.ln.add .mk{color:var(--add-fg)}
+.ln.del{background:var(--del-bg)}.ln.del .mk{color:var(--del-fg)}
+.ln.hunk{color:var(--hunk-fg);background:var(--hunk-bg)}
+.ln.meta{color:var(--muted);font-weight:600}
+.ln.gap{color:var(--muted)}
+.t-ann{color:var(--ann);font-weight:700}
+.t-com{color:#6e7781;font-style:italic}
+.t-str{color:#0a3069}
+.t-pp{color:#953800}
+.t-kw{color:#cf222e}
+.t-attr,.t-key,.t-num{color:#0550ae}
+.t-attr{font-weight:600}
+.t-op{color:#cf222e;font-weight:700}
+.slide table{border-collapse:collapse;width:100%;font-size:16.5px;line-height:1.35}
+.slide th,.slide td{border-bottom:1px solid var(--border);padding:6px 10px;text-align:left;vertical-align:top}
+.slide th{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.slide table.sm{font-size:15px}
+.slide table.sm td,.slide table.sm th{padding:4px 8px}
+.slide table.card th{width:96px;white-space:nowrap;vertical-align:baseline}
+.slide table.card td{vertical-align:baseline}
+.foot{position:absolute;left:56px;right:56px;bottom:16px;display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.callout{border-left:4px solid var(--accent);background:#f3f8ff;padding:10px 14px;border-radius:0 8px 8px 0}
+.callout.warn{border-color:#d4a72c;background:#fff8c5}
+.callout p{font-size:18px}
+.slide.title{justify-content:center;gap:18px;color:#fff;background:linear-gradient(135deg,#0b2b55 0%,#0b63c5 100%)}
+.slide.title h1{margin:0;font-size:54px;line-height:1.1}
+.slide.title p{color:#dbe9ff}
+.slide.title a{color:#fff}
+.slide.title .foot{color:#b9d3ff}
+.slide.title code{background:rgba(255,255,255,.16);color:#fff}
+.slide.divider{justify-content:center;background:#f3f8ff}
+.slide.divider h2{font-size:46px}
+.flow{display:flex;align-items:center;justify-content:center;gap:8px}
+.flow .col{display:flex;flex-direction:column;gap:12px}
+.flow .box{border:2px solid var(--accent);border-radius:10px;padding:10px 12px;background:#f3f8ff;font-size:16px;line-height:1.3;text-align:center}
+.flow .box.tmp{border-style:dashed;border-color:#d4a72c;background:#fff8c5}
+.flow .box.out{border-color:#116329;background:#dafbe1}
+.flow .arrow{font-size:26px;color:var(--muted)}
+.flow.lanes{justify-content:flex-start}
+.flow .lane{flex:none;width:84px;font-size:15px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.flow .row{display:flex;gap:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
+.grid2 p{font-size:17.5px;line-height:1.35}
+#nav{position:fixed;left:0;right:0;bottom:0;height:48px;display:flex;align-items:center;justify-content:center;gap:16px;color:#e6edf3;font-size:14px}
+#nav button{background:#3d444d;color:#fff;border:0;border-radius:6px;padding:6px 14px;font-size:14px;cursor:pointer}
+#nav button:hover{background:#4d5561}
+#check-report{display:none}
+body.check{background:#fff}
+body.check #deck{position:static}
+body.check .slide{position:relative;left:auto;top:auto;margin:0 0 16px;transform:none;display:flex}
+body.check #nav,body.check #progress{display:none}
+body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{height:auto;background:#fff}
+  #deck{position:static}
+  .slide{position:relative;left:auto;top:auto;margin:0;transform:none!important;display:flex!important;box-shadow:none;border-radius:0;break-after:page;page-break-after:always}
+  #nav,#progress{display:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<main id="deck">
+
+<section class="slide title" id="title">
+<div class="kicker" style="color:#b9d3ff">Windows SDK API owners &#183; plan of record</div>
+<h1>Win32 metadata annotations<br>in SDK headers</h1>
+<p style="font-size:26px">What changes in your headers, annotation by annotation, and the winmd each change produces</p>
+<p style="font-size:18px"><a href="https://github.com/microsoft/win32metadata/pull/2368">#2368</a> spec (merged) &#183; <a href="https://github.com/microsoft/win32metadata/pull/2363">#2363</a> toolchain &#183; <a href="https://github.com/microsoft/win32metadata/pull/2365">#2365</a> pilot, 13 headers and IDL files</p>
+<p style="font-size:16px"><span class="badge real">#2365</span> verbatim from the pilot &#160;&#160; <span class="badge illus">Illustrative</span> written for this deck against SDK 10.0.26100 &#160;&#160; <span class="badge out">winmd</span> ILSpy view, trimmed</p>
+<p style="font-size:16px">Companion document: <a href="sdk-owner-annotation-walkthrough.md">sdk-owner-annotation-walkthrough.md</a></p>
+</section>
+
+<section class="slide" id="context">
+<div class="kicker">Context</div>
+<h2>Language projections read Win32 metadata; headers steer it for now</h2>
+<div class="flow lanes" style="margin-top:4px">
+<div class="lane">Now</div>
+<div class="box">SDK headers<br>with annotations</div>
+<div class="arrow">&#8594;</div>
+<div class="col"><div class="box out">win32metadata<br><code>Windows.Win32.winmd</code></div><div class="box out">windows-clang<br><code>Windows.Win32.winmd</code></div></div>
+<div class="arrow">&#8594;</div>
+<div class="col"><div class="box">CsWin32<br>C#</div><div class="box">windows-rs<br>Rust</div></div>
+</div>
+<div class="flow lanes">
+<div class="lane">Later</div>
+<div class="box out">Metadata-first<br>SDK</div>
+<div class="arrow">&#8594;</div>
+<div class="row"><div class="box">CsWin32<br>C#</div><div class="box">windows-rs<br>Rust</div><div class="box">cppwin32<br>C++</div></div>
+</div>
+<ul class="tight">
+<li><a href="https://github.com/microsoft/win32metadata"><b>win32metadata</b></a> scrapes the SDK headers into <code>Windows.Win32.winmd</code> and ships it on NuGet as <a href="https://www.nuget.org/packages/Microsoft.Windows.SDK.Win32Metadata/"><code>Microsoft.Windows.SDK.Win32Metadata</code></a>.</li>
+<li><a href="https://github.com/microsoft/CsWin32"><b>CsWin32</b></a> generates C# P/Invoke and COM interop source from that package.</li>
+<li><a href="https://github.com/microsoft/windows-rs"><b>windows-rs</b></a> scrapes the same headers with windows-clang into its own winmd and generates the <code>windows</code> and <code>windows-sys</code> crates from it.</li>
+<li><b>For now</b>, headers stay the source of truth; annotations in them steer the metadata.</li>
+<li><b>Later</b>, the SDK is metadata-first: metadata is the source of truth. C++ consumes it through <a href="https://github.com/microsoft/cppwin32">cppwin32</a>, which generates headers from it as C++/WinRT does for WinRT.</li>
+</ul>
+</section>
+
+<section class="slide" id="summary">
+<div class="kicker">Summary</div>
+<h2>Projection facts move into the headers that declare the APIs</h2>
+<div class="cols">
+<div class="stack">
+<h3>Facts a C prototype doesn't state</h3>
+<ul class="tight">
+<li>Sets the last error</li>
+<li>Minimum OS version</li>
+<li>Import library, when the import-library scan can't find it</li>
+<li>Who owns a returned handle, how it's released, which values mean failure</li>
+<li>Which named constants a <code>DWORD</code> takes</li>
+<li>Success <code>HRESULT</code>s the caller must see</li>
+<li>Pointers the callee keeps, buffers that point into themselves</li>
+<li>Which COM out parameter is the logical return value</li>
+</ul>
+</div>
+<div class="stack">
+<h3>How</h3>
+<ul class="tight">
+<li><code>_Win32_*_</code> annotations, placed like SAL. <code>sal.h</code> includes them.</li>
+<li>Active only under <code>WIN32METADATA</code> with Clang. Empty everywhere else: no ABI or codegen change.</li>
+<li>One winmd per SDK version, generated from that SDK's headers.</li>
+<li>Robots write the first pass as patches, ported logically to each file's os.2020 source. Owners keep it current.</li>
+<li>Spec reviewed with partner teams (<a href="https://github.com/microsoft/win32metadata/pull/2295">#2295</a>, <a href="https://github.com/microsoft/win32metadata/pull/2368">#2368</a>). <a href="https://github.com/microsoft/win32metadata/pull/2363">#2363</a> extends it.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="slide" id="sidecars">
+<div class="kicker">Today</div>
+<h2>CreateFileW today: five files, none of them the header</h2>
+<div class="cols">
+<div class="stack">
+<div class="label"><code>generation/WinSDK</code> at <code>a1de5ac</code></div>
+<script type="text/plain" data-lang="jsonc" data-size="xs">
+// WithSetLastError.rsp:437
+CreateFileW
+// supportedOS.rsp:3284
+CreateFileW=SupportedOSPlatform("windows5.1.2600")
+// enums.json:2311
+{ "name": "FILE_CREATION_DISPOSITION",
+  "members": [ { "name": "CREATE_NEW", "value": "1" }, ... ],
+  "uses": [ { "method": "CreateFileW",
+              "parameter": "dwCreationDisposition" }, ... ] }
+// enums.json:2362
+{ "name": "FILE_SHARE_MODE", "flags": true, ...
+  "uses": [ { "method": "CreateFileW",
+              "parameter": "dwShareMode" }, ... ] }
+// enums.json:6907
+{ "addUsesTo": "FILE_FLAGS_AND_ATTRIBUTES", "flags": true,
+  "uses": [ { "method": "CreateFileW",
+              "parameter": "dwFlagsAndAttributes" }, ... ] }
+// manual/FileSystem.cs:26 (hand-written C#)
+[Flags] public enum FILE_FLAGS_AND_ATTRIBUTES : uint { ... }
+// autoTypes.json:26 (every HANDLE, from every API)
+{ "Name": "HANDLE", "CloseApi": "CloseHandle",
+  "InvalidHandleValues": [ -1, 0 ], ... }
+</script>
+</div>
+<div class="stack">
+<table class="sm">
+<tr><th>Sidecar</th><th>Entries</th></tr>
+<tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/WithSetLastError.rsp"><code>WithSetLastError.rsp</code></a></td><td>~3,400 functions</td></tr>
+<tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/supportedOS.rsp"><code>supportedOS.rsp</code></a></td><td>~17,200 APIs</td></tr>
+<tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/libMappingsManual.rsp"><code>libMappingsManual.rsp</code></a></td><td>~400 functions</td></tr>
+<tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp"><code>emitter.settings.rsp</code></a></td><td>2,511 member fixups</td></tr>
+<tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/scraper.settings.rsp"><code>scraper.settings.rsp</code></a></td><td>727 lines</td></tr>
+<tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/ConstantsScraper.settings.rsp"><code>ConstantsScraper.settings.rsp</code></a></td><td>617 lines</td></tr>
+<tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/autoTypes.json"><code>autoTypes.json</code></a></td><td>444 typedefs</td></tr>
+<tr><td><a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/enums.json"><code>enums.json</code></a></td><td>1,072 enums</td></tr>
+</table>
+<p class="note">All maintained by win32metadata, away from the declarations. <code>autoTypes.json</code> states one close function and one set of failure values for every <code>HANDLE</code> from every API.</p>
+</div>
+</div>
+</section>
+
+<section class="slide" id="plan">
+<div class="kicker">The plan</div>
+<h2>Robots stage the facts as header patches; the SDK carries them</h2>
+<div class="flow" style="margin-top:4px">
+<div class="col"><div class="box">win32metadata<br>sidecars</div><div class="box">SDK headers<br>and IDL</div></div>
+<div class="arrow">&#8594;</div>
+<div class="box">Robots<br>patch, apply, generate,<br>inspect the winmd</div>
+<div class="arrow">&#8594;</div>
+<div class="box tmp">Patches<br>delta per file</div>
+<div class="arrow">&#8594;</div>
+<div class="box">os.2020 owning source<br><code>.w</code>, <code>.h</code>, <code>.api</code>/<code>.apx</code>, <code>.idl</code></div>
+<div class="arrow">&#8594;</div>
+<div class="col"><div class="box out">Annotated<br>SDK headers</div><div class="box out">One winmd<br>per SDK version</div></div>
+</div>
+<div class="grid2">
+<p><b>Bootstrap.</b> Extend the <a href="https://github.com/microsoft/win32metadata/pull/2363">#2363</a> toolchain to the full vocabulary and produce the annotated headers plus a matching winmd. Then hand off to the next-generation Clang-AST generator and delete the old tool.</p>
+<p><b>Robot loop.</b> About a week of robot time stages every sidecar fact as a header patch.</p>
+<p><b>Transport.</b> Logical, not literal. A patch is the reviewed intent against the SDK file. A provenance map finds the os.2020 source, and its generator (HSPLIT, APIMD, ApiSet, MIDL) carries the change. Success is the same effective facts, not the same bytes. A trial port of 11 pilot files reproduced 8; PSAPI, TimeZone and WSL need generator-aware lowering.</p>
+<p><b>Shape changes.</b> Some winmd shapes change (see the <a href="#walkback-abi">walk-backs</a>). CsWin32 absorbs most of it; its generated code stays largely the same.</p>
+<p><b>One winmd per SDK.</b> Replaces the amalgamated winmd. Ships in the contracts package or its own. Forward only: older SDKs keep today's win32metadata.</p>
+<p><b>os.2020 checks.</b> A cheap soundness scan at check-in. Full generation (about an hour) post-build or conditionally.</p>
+</div>
+</section>
+
+<section class="slide" id="rules">
+<div class="kicker">Ground rules</div>
+<h2>Annotations record semantic facts and encodings that make the API safer to call</h2>
+<div class="cols w60">
+<ul class="tight">
+<li><b>State what's true today.</b> An annotation never changes behavior or the ABI.</li>
+<li><b>Native form first.</b> SAL, MIDL <code>[retval]</code>, <code>[[deprecated]]</code>, <code>enum class</code> where the API is already scoped, <code>[[clang::flag_enum]]</code>. A <code>_Win32_*_</code> macro only where C and C++ have no form.</li>
+<li><b>Facts belong to the API.</b> Failure values, ownership and enum associations go on the function, parameter or field they describe, not on a shared type.</li>
+<li><b>Native types stay native.</b> A <code>DWORD</code> stays a <code>DWORD</code> with an associated enum. No invented handle types.</li>
+<li><b>Validation is strict.</b> Duplicate, misplaced or malformed annotations fail generation.</li>
+</ul>
+<div class="stack">
+<h3>Not carried forward</h3>
+<table class="sm">
+<tr><td><code>Agile</code></td><td>Dropped. The thread-safety claim isn't reliable.</td></tr>
+<tr><td><code>DoNotRelease</code>, <code>FreeWith</code></td><td>No <code>RAIIFree</code> means borrowed. Allocations carry <code>RAIIFree</code> on the producer.</td></tr>
+<tr><td><code>NativeArrayInfo</code>, <code>MemorySize</code>, <code>NotNullTerminated</code></td><td>Derived from SAL. Still in the winmd.</td></tr>
+<tr><td><code>IgnoreIfReturn</code>, <code>NativeInheritance</code>, <code>ProjectAs</code>, <code>NativeEncoding</code>, <code>CanonicalName</code>, <code>ReducePointerLevel</code></td><td>Dropped.</td></tr>
+<tr><td>APIs removed from the SDK</td><td>Omitted. Older winmds keep them.</td></tr>
+</table>
+</div>
+</div>
+</section>
+
+<section class="slide" id="glance">
+<div class="kicker">Vocabulary</div>
+<h2>Annotations at a glance</h2>
+<table class="sm">
+<tr><th>Annotation</th><th>Goes on</th><th>winmd</th></tr>
+<tr><td><a href="#createfile"><code>_Win32_SetLastError_</code></a></td><td>functions</td><td><code>SetLastError = true</code></td></tr>
+<tr><td><a href="#supportedos"><code>_Win32_SupportedOS_&lt;OS&gt;_</code></a>, <code>_BEGIN_(&lt;OS&gt;)</code> &#8230; <code>_END_()</code></td><td>any declaration, or a region</td><td><code>[SupportedOSPlatform]</code></td></tr>
+<tr><td><a href="#importlib"><code>_Win32_ImportLibrary_("dll"[, export])</code></a></td><td>functions the import-library scan can't map</td><td><code>DllImport("dll")</code></td></tr>
+<tr><td><a href="#ownership"><code>_Win32_RAIIFree_(close, invalid...)</code></a>, <code>_Win32_RAIIFree_Handle_(close)</code></td><td>handle-returning functions, handle out parameters</td><td><code>[RAIIFree]</code>, <code>[InvalidHandleValue]</code></td></tr>
+<tr><td><a href="#ownership"><code>_Win32_AlsoUsableFor_(type)</code></a></td><td>handle typedefs</td><td><code>[AlsoUsableFor]</code></td></tr>
+<tr><td><a href="#enum-groups"><code>_Win32_Enum_(name, storage, ...)</code></a>, <code>_Win32_FlagsEnum_(...)</code></td><td>groups of <code>#define</code> constants</td><td><code>[ScopedEnum] enum</code>,<br><code>[ScopedEnum] [Flags] enum</code></td></tr>
+<tr><td><a href="#enum-groups"><code>_Win32_AssociatedEnum_(name)</code></a></td><td>parameters, fields, return values</td><td><code>[AssociatedEnum]</code> on the native type</td></tr>
+<tr><td><a href="#assoc-const"><code>_Win32_AssociatedConstant_(name)</code></a></td><td>enum groups</td><td><code>[AssociatedConstant]</code></td></tr>
+<tr><td><a href="#preserve"><code>_Win32_PreserveResult_</code></a></td><td>functions, COM methods</td><td><code>[PreserveSig]</code></td></tr>
+<tr><td><a href="#pointers"><code>_Win32_Retained_</code></a></td><td>pointer parameters</td><td><code>[Retained]</code></td></tr>
+<tr><td><a href="#pointers"><code>_Win32_ContainsInteriorPointers_</code></a></td><td>caller-owned buffers</td><td><code>[ContainsInteriorPointers]</code></td></tr>
+<tr><td><a href="#idl"><code>[retval]</code></a>, <code>_Win32_Retval_</code></td><td>COM out parameters (IDL, C++)</td><td><code>[RetVal]</code></td></tr>
+<tr><td><a href="#idl"><code>_Win32_AnnotateInterface_</code></a>, <code>_Win32_AnnotateMethod_</code></td><td>IDL, outside the interface body</td><td>the wrapped annotation</td></tr>
+<tr><td><a href="#metaonly"><code>[[deprecated]]</code></a></td><td>fields, guarded by <code>WIN32METADATA</code></td><td><code>[Obsolete]</code></td></tr>
+</table>
+</section>
+
+<section class="slide" id="createfile">
+<div class="kicker">Canonical example</div>
+<h2>CreateFileW: every fact in the header</h2>
+<div class="cols w60">
+<div class="stack">
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/fileapi.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ #define CREATE_NEW          1
+...
+ #define TRUNCATE_EXISTING   5
++_Win32_Enum_(FILE_CREATION_DISPOSITION, DWORD, CREATE_NEW, CREATE_ALWAYS,
++    OPEN_EXISTING, OPEN_ALWAYS, TRUNCATE_EXISTING);
++#ifdef WIN32METADATA
++typedef DWORD FILE_FLAGS_AND_ATTRIBUTES; // group declared later
++#include <handleapi.h>                   // CloseHandle, for RAIIFree
++#endif
+...
+ WINBASEAPI
++_Win32_SupportedOS_WindowsXP_
++_Win32_SetLastError_
++_Win32_RAIIFree_(CloseHandle, -1)
+ HANDLE
+ WINAPI
+ CreateFileW(
+     _In_ LPCWSTR lpFileName,
+     _In_ DWORD dwDesiredAccess,
+-    _In_ DWORD dwShareMode,
++    _In_ _Win32_AssociatedEnum_(FILE_SHARE_MODE) DWORD dwShareMode,
+     _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+-    _In_ DWORD dwCreationDisposition,
+-    _In_ DWORD dwFlagsAndAttributes,
++    _In_ _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) DWORD dwCreationDisposition,
++    _In_ _Win32_AssociatedEnum_(FILE_FLAGS_AND_ATTRIBUTES) DWORD dwFlagsAndAttributes,
+     _In_opt_ HANDLE hTemplateFile
+     );
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[DllImport("KERNEL32.dll", ExactSpelling = true,
+    PreserveSig = false, SetLastError = true)]
+[SupportedOSPlatform("windows5.1.2600")]
+[return: RAIIFree("CloseHandle")]
+[return: InvalidHandleValue(-1L)]
+public static extern HANDLE CreateFileW(
+    [In][Const] PWSTR lpFileName,
+    [In] uint dwDesiredAccess,
+    [In][AssociatedEnum("FILE_SHARE_MODE")] uint dwShareMode,
+    [Optional][In] SECURITY_ATTRIBUTES* lpSecurityAttributes,
+    [In][AssociatedEnum("FILE_CREATION_DISPOSITION")]
+        uint dwCreationDisposition,
+    [In][AssociatedEnum("FILE_FLAGS_AND_ATTRIBUTES")]
+        uint dwFlagsAndAttributes,
+    [Optional][In] HANDLE hTemplateFile);
+</script>
+<ul class="tight">
+<li>Replaces every entry on <a href="#sidecars">CreateFileW today</a>.</li>
+<li>Close functions and groups are declared before use. <code>FILE_SHARE_MODE</code> is grouped in <code>winnt.h</code>.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="slide" id="toolhelp">
+<div class="kicker">SetLastError &#183; SupportedOS &#183; FlagsEnum</div>
+<h2>CreateToolhelp32Snapshot in the pilot</h2>
+<div class="cols w60">
+<div class="stack">
+<div class="label"><span class="badge real">#2365</span> <code>um/TlHelp32.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
++#ifdef WIN32METADATA
++typedef DWORD CREATE_TOOLHELP_SNAPSHOT_FLAGS;
++#endif
++
++_Win32_SupportedOS_WindowsXP_
++_Win32_SetLastError_
+ HANDLE
+ WINAPI
+ CreateToolhelp32Snapshot(
+-    DWORD dwFlags,
++    _Win32_AssociatedEnum_(CREATE_TOOLHELP_SNAPSHOT_FLAGS) DWORD dwFlags,
+     DWORD th32ProcessID
+     );
+...
+ #define TH32CS_SNAPMODULE32 0x00000010
+ #define TH32CS_SNAPALL      (TH32CS_SNAPHEAPLIST | TH32CS_SNAPPROCESS | TH32CS_SNAPTHREAD | TH32CS_SNAPMODULE)
+ #define TH32CS_INHERIT      0x80000000
++
++_Win32_FlagsEnum_(CREATE_TOOLHELP_SNAPSHOT_FLAGS, DWORD,
++    TH32CS_INHERIT,
++    TH32CS_SNAPALL,
++    TH32CS_SNAPHEAPLIST,
++    TH32CS_SNAPMODULE,
++    TH32CS_SNAPMODULE32,
++    TH32CS_SNAPPROCESS,
++    TH32CS_SNAPTHREAD);
++
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[DllImport("KERNEL32.dll", ExactSpelling = true,
+    PreserveSig = false, SetLastError = true)]
+[SupportedOSPlatform("windows5.1.2600")]
+public static extern HANDLE CreateToolhelp32Snapshot(
+    [In][AssociatedEnum("CREATE_TOOLHELP_SNAPSHOT_FLAGS")]
+        uint dwFlags,
+    [In] uint th32ProcessID);
+
+[ScopedEnum]
+[Flags]
+public enum CREATE_TOOLHELP_SNAPSHOT_FLAGS : uint
+{
+    TH32CS_INHERIT = 0x80000000u,
+    TH32CS_SNAPALL = 0xFu,
+    TH32CS_SNAPHEAPLIST = 1u,
+    TH32CS_SNAPMODULE = 8u,
+    TH32CS_SNAPMODULE32 = 0x10u,
+    TH32CS_SNAPPROCESS = 2u,
+    TH32CS_SNAPTHREAD = 4u
+}
+</script>
+<ul class="tight">
+<li>The group is used before its <code>#define</code>s, so it's forward-declared under <code>WIN32METADATA</code>.</li>
+<li>Ownership still comes from <code>autoTypes.json</code> in the pilot. <code>_Win32_RAIIFree_(CloseHandle, -1)</code> lands with the rollout.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="slide" id="supportedos">
+<div class="kicker">SupportedOS</div>
+<h2>Minimum OS, per declaration or per region</h2>
+<div class="cols w60">
+<div class="stack">
+<div class="label"><span class="badge real">#2365</span> <code>um/timezoneapi.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ WINBASEAPI
+ _Success_(return != FALSE)
++_Win32_SupportedOS_Windows2000_
++_Win32_SetLastError_
+ BOOL
+ WINAPI
+ SystemTimeToTzSpecificLocalTime(
+...
+     _Out_ LPSYSTEMTIME lpLocalTime
+     );
+</script>
+<div class="label"><span class="badge real">#2365</span> <code>um/magnification.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
++_Win32_SupportedOS_BEGIN_(WindowsVista)
+ BOOL WINAPI MagInitialize();
+...
+ BOOL WINAPI MagGetColorEffect(HWND hwnd, PMAGCOLOREFFECT pEffect);
++_Win32_SupportedOS_END_()
++_Win32_SupportedOS_BEGIN_(Windows8)
+ BOOL WINAPI MagSetFullscreenTransform(_In_ float magLevel, _In_ int xOffset, _In_ int yOffset);
+...
++_Win32_SetLastError_
+ BOOL WINAPI MagSetInputTransform(_In_ BOOL fEnabled, _In_ const LPRECT pRectSource, _In_ const LPRECT pRectDest);
+...
++_Win32_SupportedOS_END_()
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[DllImport("KERNEL32.dll", ExactSpelling = true,
+    PreserveSig = false, SetLastError = true)]
+[SupportedOSPlatform("windows5.0")]
+public static extern BOOL SystemTimeToTzSpecificLocalTime(
+    [Optional][In][Const]
+        TIME_ZONE_INFORMATION* lpTimeZoneInformation,
+    [In][Const] SYSTEMTIME* lpUniversalTime,
+    [Out] SYSTEMTIME* lpLocalTime);
+
+[DllImport("MAGNIFICATION.dll", ExactSpelling = true,
+    PreserveSig = false)]
+[SupportedOSPlatform("windows6.0.6000")]
+public static extern BOOL MagInitialize();
+
+[DllImport("MAGNIFICATION.dll", ExactSpelling = true,
+    PreserveSig = false, SetLastError = true)]
+[SupportedOSPlatform("windows8.0")]
+public static extern BOOL MagSetInputTransform(
+    [In] BOOL fEnabled,
+    [In][Const] RECT* pRectSource,
+    [In][Const] RECT* pRectDest);
+</script>
+<p class="note">The OS is part of the macro name, from a fixed menu: <code>Windows2000</code> through <code>Windows81</code>, builds <code>10240</code> through <code>19041</code>, <code>Server2000</code> through <code>Server2016</code>. A new release adds a macro.</p>
+</div>
+</div>
+</section>
+
+<section class="slide" id="importlib">
+<div class="kicker">ImportLibrary</div>
+<h2>Import library, only where the scan can't find it</h2>
+<div class="cols w60">
+<div class="stack">
+<div class="label"><span class="badge real">#2365</span> <code>um/wslapi.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ /* Determines if a distribution is already registered */
++_Win32_ImportLibrary_("Api-ms-win-wsl-api-l1-1-0.dll")
+ BOOL
+ WslIsDistributionRegistered(
+     _In_ PCWSTR distributionName
+     );
+</script>
+<div class="label"><span class="badge real">#2365</span> <code>um/avrfsdk.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ #define AVRF_ENUM_RESOURCES_FLAGS_SUSPEND             0x00000001
+ #define AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES 0x00000002
+
++
++_Win32_FlagsEnum_(VERIFIER_ENUM_RESOURCE_FLAGS, ULONG,
++    AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES,
++    AVRF_ENUM_RESOURCES_FLAGS_SUSPEND);
++
++_Win32_ImportLibrary_("verifier.dll")
+ ULONG NTAPI
+ VerifierEnumerateResource(
+     HANDLE Process,
+-    ULONG  Flags,
+-    ULONG  ResourceType,
++    _Win32_AssociatedEnum_(VERIFIER_ENUM_RESOURCE_FLAGS) ULONG  Flags,
++    _Win32_AssociatedEnum_(enum eAvrfResourceTypes) ULONG  ResourceType,
+     AVRF_RESOURCE_ENUMERATE_CALLBACK ResourceCallback,
+     PVOID  EnumerationContext
+     );
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[DllImport("Api-ms-win-wsl-api-l1-1-0.dll",
+    ExactSpelling = true, PreserveSig = false)]
+public static extern BOOL WslIsDistributionRegistered(
+    [In][Const] PWSTR distributionName);
+
+[DllImport("verifier.dll", ExactSpelling = true,
+    PreserveSig = false)]
+public static extern uint VerifierEnumerateResource(
+    [In] HANDLE Process,
+    [In][AssociatedEnum("VERIFIER_ENUM_RESOURCE_FLAGS")]
+        uint Flags,
+    [In][AssociatedEnum("eAvrfResourceTypes")]
+        uint ResourceType,
+    [In] AVRF_RESOURCE_ENUMERATE_CALLBACK ResourceCallback,
+    [In][Out] void* EnumerationContext);
+</script>
+<ul class="tight">
+<li>Different export name or ordinal: <code>_Win32_ImportLibrary_("dll", "Export")</code>, <code>_Win32_ImportLibrary_("dll", 12)</code>.</li>
+<li>Replaces <code>--with-librarypath</code> in <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/scraper.settings.rsp#L4"><code>scraper.settings.rsp</code> line 4</a> and <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/Partitions/Wsl/settings.rsp#L4-L10"><code>Partitions/Wsl/settings.rsp</code> lines 4&#8211;10</a>.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="slide" id="ownership">
+<div class="kicker">RAIIFree &#183; AlsoUsableFor</div>
+<h2>Ownership goes on the producer, not the type</h2>
+<div class="cols w60">
+<div class="stack">
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/synchapi.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ WINBASEAPI
+ _Ret_maybenull_
++_Win32_RAIIFree_(CloseHandle, 0)
+ HANDLE
+ WINAPI
+ CreateEventW(
+</script>
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/libloaderapi.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ WINBASEAPI
+ _Ret_maybenull_
++_Win32_RAIIFree_(FreeLibrary, 0)
+ HMODULE
+ WINAPI
+ LoadLibraryExW(
+</script>
+<div class="label"><span class="badge illus">Illustrative</span> <code>shared/minwindef.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ DECLARE_HANDLE(HINSTANCE);
++_Win32_AlsoUsableFor_(HINSTANCE)
+ typedef HINSTANCE HMODULE;      /* HMODULEs can be used in place of HINSTANCEs */
+</script>
+<ul class="tight">
+<li>Failure values are per API: <code>-1</code> for <code>CreateFileW</code>, <code>0</code> for <code>CreateEventW</code> and <code>LoadLibraryExW</code>.</li>
+<li>No <code>RAIIFree</code> means borrowed. <code>_Win32_RAIIFree_Handle_(close)</code> is <code>(close, -1, 0)</code>.</li>
+</ul>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span> today</div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[RAIIFree("CloseHandle")]
+[InvalidHandleValue(-1L)]
+[InvalidHandleValue(0L)]
+[NativeTypedef]
+public struct HANDLE { public void* Value; }
+
+[return: DoNotRelease]
+public static extern HANDLE GetProcessHeap();
+</script>
+<div class="label"><span class="badge out">winmd</span> <span class="badge illus">Illustrative</span> after</div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[NativeTypedef]
+public struct HANDLE { public void* Value; }
+
+[return: RAIIFree("CloseHandle")]
+[return: InvalidHandleValue(0L)]
+public static extern HANDLE CreateEventW(...);
+
+[return: RAIIFree("FreeLibrary")]
+[return: InvalidHandleValue(0L)]
+public static extern HMODULE LoadLibraryExW(...);
+
+[AlsoUsableFor("HINSTANCE")]
+[NativeTypedef]
+public struct HMODULE { public void* Value; }
+
+// No RAIIFree: borrowed
+public static extern HANDLE GetProcessHeap();
+</script>
+</div>
+</div>
+</section>
+
+<section class="slide" id="enum-groups">
+<div class="kicker">Enum &#183; FlagsEnum &#183; AssociatedEnum</div>
+<h2>Name the constant group; associate it where it's used</h2>
+<div class="label"><span class="badge real">#2365</span> <code>um/magnification.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ #define MW_FILTERMODE_EXCLUDE   0
+ #define MW_FILTERMODE_INCLUDE   1
+
++_Win32_Enum_(MW_FILTERMODE, DWORD,
++    MW_FILTERMODE_EXCLUDE,
++    MW_FILTERMODE_INCLUDE);
+...
+-BOOL WINAPI MagSetWindowFilterList(HWND hwnd, DWORD dwFilterMode, int count, HWND *pHWND );
+-int  WINAPI MagGetWindowFilterList(HWND hwnd, DWORD *pdwFilterMode, int count, HWND *pHWND );
++BOOL WINAPI MagSetWindowFilterList(HWND hwnd, _Win32_AssociatedEnum_(MW_FILTERMODE) DWORD dwFilterMode, int count, HWND *pHWND );
++int  WINAPI MagGetWindowFilterList(HWND hwnd, _Win32_AssociatedEnum_(MW_FILTERMODE) DWORD *pdwFilterMode, int count, HWND *pHWND );
+</script>
+<div class="cols">
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[ScopedEnum]
+public enum MW_FILTERMODE : uint
+{
+    MW_FILTERMODE_EXCLUDE,
+    MW_FILTERMODE_INCLUDE
+}
+
+[DllImport("MAGNIFICATION.dll", ExactSpelling = true,
+    PreserveSig = false)]
+[SupportedOSPlatform("windows6.0.6000")]
+public static extern BOOL MagSetWindowFilterList(
+    [In] HWND hwnd,
+    [In][AssociatedEnum("MW_FILTERMODE")] uint dwFilterMode,
+    [In] int count,
+    [In][Out] HWND* pHWND);
+</script>
+</div>
+<ul class="tight">
+<li><code>_Win32_Enum_(name, storage, members...)</code> becomes a scoped enum. <code>storage</code> is the native type and sets its width.</li>
+<li><code>AssociatedEnum</code> names the group, including on out pointers.</li>
+<li>Existing C enums: <code>_Win32_AssociatedEnum_(enum VARENUM)</code>.</li>
+</ul>
+</div>
+</section>
+
+<section class="slide" id="assoc-const">
+<div class="kicker">AssociatedConstant</div>
+<h2>Three enums share SERVICE_NO_CHANGE, so it stays global</h2>
+<div class="cols">
+<div class="stack">
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/winnt.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ #define SERVICE_BOOT_START             0x00000000
+ #define SERVICE_SYSTEM_START           0x00000001
+ #define SERVICE_AUTO_START             0x00000002
+ #define SERVICE_DEMAND_START           0x00000003
+ #define SERVICE_DISABLED               0x00000004
++_Win32_AssociatedConstant_(SERVICE_NO_CHANGE)
++_Win32_Enum_(SERVICE_START_TYPE, DWORD,
++    SERVICE_BOOT_START, SERVICE_SYSTEM_START, SERVICE_AUTO_START,
++    SERVICE_DEMAND_START, SERVICE_DISABLED);
+</script>
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/winsvc.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ ChangeServiceConfigW(
+     _In_        SC_HANDLE    hService,
+-    _In_        DWORD        dwServiceType,
+-    _In_        DWORD        dwStartType,
+-    _In_        DWORD        dwErrorControl,
++    _In_ _Win32_AssociatedEnum_(ENUM_SERVICE_TYPE) DWORD dwServiceType,
++    _In_ _Win32_AssociatedEnum_(SERVICE_START_TYPE) DWORD dwStartType,
++    _In_ _Win32_AssociatedEnum_(SERVICE_ERROR) DWORD dwErrorControl,
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[ScopedEnum]
+[AssociatedConstant("SERVICE_NO_CHANGE")]
+public enum SERVICE_START_TYPE : uint
+{
+    SERVICE_BOOT_START,
+    SERVICE_SYSTEM_START,
+    SERVICE_AUTO_START,
+    SERVICE_DEMAND_START,
+    SERVICE_DISABLED
+}
+
+public static extern BOOL ChangeServiceConfigW(
+    [In] SC_HANDLE hService,
+    [In][AssociatedEnum("ENUM_SERVICE_TYPE")] uint dwServiceType,
+    [In][AssociatedEnum("SERVICE_START_TYPE")] uint dwStartType,
+    [In][AssociatedEnum("SERVICE_ERROR")] uint dwErrorControl,
+    ...);
+</script>
+<p class="note"><code>ENUM_SERVICE_TYPE</code> and <code>SERVICE_ERROR</code> carry the same annotation. CsWin32 emits it as a member of each: <code>SERVICE_START_TYPE.SERVICE_NO_CHANGE</code>.</p>
+</div>
+</div>
+</section>
+
+<section class="slide" id="enum-fields">
+<div class="kicker">AssociatedEnum on fields</div>
+<h2>Fields work the same way; storage sets the width</h2>
+<div class="cols w60">
+<div class="stack">
+<div class="label"><span class="badge real">#2365</span> <code>um/Xinput.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
++_Win32_Enum_(XINPUT_DEVTYPE, BYTE,
++    XINPUT_DEVTYPE_GAMEPAD);
+...
++_Win32_FlagsEnum_(XINPUT_CAPABILITIES_FLAGS, WORD,
++    XINPUT_CAPS_VOICE_SUPPORTED,
++    XINPUT_CAPS_FFB_SUPPORTED,
++    XINPUT_CAPS_WIRELESS,
++    XINPUT_CAPS_PMD_SUPPORTED,
++    XINPUT_CAPS_NO_NAVIGATION);
+...
+
+ typedef struct _XINPUT_CAPABILITIES
+ {
+-    BYTE                                Type;
+-    BYTE                                SubType;
+-    WORD                                Flags;
++    _Win32_AssociatedEnum_(XINPUT_DEVTYPE) BYTE                                Type;
++    _Win32_AssociatedEnum_(XINPUT_DEVSUBTYPE) BYTE                                SubType;
++    _Win32_AssociatedEnum_(XINPUT_CAPABILITIES_FLAGS) WORD                                Flags;
+     XINPUT_GAMEPAD                      Gamepad;
+     XINPUT_VIBRATION                    Vibration;
+ } XINPUT_CAPABILITIES, *PXINPUT_CAPABILITIES;
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[ScopedEnum]
+public enum XINPUT_DEVTYPE : byte
+{
+    XINPUT_DEVTYPE_GAMEPAD = 1
+}
+
+[ScopedEnum]
+[Flags]
+public enum XINPUT_CAPABILITIES_FLAGS : ushort
+{
+    XINPUT_CAPS_VOICE_SUPPORTED = 4,
+    XINPUT_CAPS_FFB_SUPPORTED = 1,
+    XINPUT_CAPS_WIRELESS = 2,
+    XINPUT_CAPS_PMD_SUPPORTED = 8,
+    XINPUT_CAPS_NO_NAVIGATION = 0x10
+}
+
+public struct XINPUT_CAPABILITIES
+{
+    [AssociatedEnum("XINPUT_DEVTYPE")]
+    public byte Type;
+    [AssociatedEnum("XINPUT_DEVSUBTYPE")]
+    public byte SubType;
+    [AssociatedEnum("XINPUT_CAPABILITIES_FLAGS")]
+    public ushort Flags;
+    public XINPUT_GAMEPAD Gamepad;
+    public XINPUT_VIBRATION Vibration;
+}
+</script>
+</div>
+</div>
+</section>
+
+<section class="slide" id="preserve">
+<div class="kicker">PreserveResult</div>
+<h2>Success codes that carry meaning reach the caller</h2>
+<div class="cols w60">
+<div class="stack">
+<div class="label"><span class="badge real">#2365</span> <code>um/propidlbase.idl</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ typedef [unique] IPropertyStorage * LPPROPERTYSTORAGE;
+
++_Win32_AnnotateMethod_(IEnumSTATPROPSTG::Next, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IEnumSTATPROPSTG::Skip, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IEnumSTATPROPSETSTG::Next, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IEnumSTATPROPSETSTG::Skip, _Win32_PreserveResult_)
+</script>
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/ole2.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ WINOLEAPI  RevokeDragDrop(IN HWND hwnd);
++_Win32_PreserveResult_
+ WINOLEAPI  DoDragDrop(IN LPDATAOBJECT pDataObj, IN LPDROPSOURCE pDropSource,
+             IN DWORD dwOKEffects, OUT LPDWORD pdwEffect);
+</script>
+<ul class="tight">
+<li><code>S_FALSE</code> from <code>Next</code> and <code>Skip</code>, and <code>DRAGDROP_S_*</code> from <code>DoDragDrop</code>, aren't collapsed into success.</li>
+<li>Replaces <code>[CanReturnMultipleSuccessValues]</code> in <code>emitter.settings.rsp</code> (<a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L405">405</a>, <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L446-L447">446&#8211;447</a>).</li>
+</ul>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+public interface IEnumSTATPROPSTG : IUnknown
+{
+    [PreserveSig]
+    HRESULT Next([In] uint celt,
+        [Out][NativeArrayInfo(CountParamIndex = 0)]
+            STATPROPSTG* rgelt,
+        [Optional][Out] uint* pceltFetched);
+
+    [PreserveSig]
+    HRESULT Skip([In] uint celt);
+
+    HRESULT Reset();
+    HRESULT Clone([Out] IEnumSTATPROPSTG* ppenum);
+}
+
+// No PreserveSig = false: DRAGDROP_S_* reach the caller
+[DllImport("OLE32.dll", ExactSpelling = true)]
+[SupportedOSPlatform("windows5.0")]
+public static extern HRESULT DoDragDrop(...);
+</script>
+</div>
+</div>
+</section>
+
+<section class="slide" id="idl">
+<div class="kicker">AnnotateInterface &#183; AnnotateMethod</div>
+<h2>Patches in IDL</h2>
+<div class="cols">
+<div class="stack">
+<div class="label"><span class="badge real">#2365</span> <code>um/waasapi.idl</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ cpp_quote("#include <winapifamily.h>")
++#include <sal.h>
+...
+ import "WaaSAPITypes.idl";
+
++_Win32_AnnotateInterface_(IWaaSAssessor, _Win32_SupportedOS_15063_)
++
+ [
+     object,
+     uuid(2347bbef-1a3b-45a4-902d-3e09c269b45e),
+</script>
+<div class="label"><span class="badge real">#2365</span> <code>um/propidlbase.idl</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ struct tag_inner_PROPVARIANT
+ {
+-    VARTYPE vt;
++    [annotation("_Win32_AssociatedEnum_(enum VARENUM)")] VARTYPE vt;
+...
+ const ULONG PRSPEC_LPWSTR = 0;
+ const ULONG PRSPEC_PROPID = 1;
+
++cpp_quote("_Win32_Enum_(PROPSPEC_KIND, ULONG, PRSPEC_LPWSTR, PRSPEC_PROPID);")
++
+ typedef struct tagPROPSPEC
+ {
+
+-    ULONG   ulKind;
++    [annotation("_Win32_AssociatedEnum_(PROPSPEC_KIND)")] ULONG   ulKind;
+     [switch_is(ulKind)] union
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[SupportedOSPlatform("windows10.0.15063")]
+public interface IWaaSAssessor : IUnknown
+{
+    HRESULT GetOSUpdateAssessment(
+        [Out][RetVal] OSUpdateAssessment* result);
+}
+
+[ScopedEnum] public enum PROPSPEC_KIND : uint
+{
+    PRSPEC_LPWSTR,
+    PRSPEC_PROPID
+}
+
+// PROPSPEC
+[AssociatedEnum("PROPSPEC_KIND")]
+public uint ulKind;
+
+// PROPVARIANT (inner struct)
+[AssociatedEnum("VARENUM")]
+public ushort vt;
+</script>
+<ul class="tight">
+<li>Fields and <code>[local]</code> methods: <code>[annotation("&#8230;")]</code>, the same way SAL gets into IDL.</li>
+<li>Interfaces and methods: <code>_Win32_AnnotateInterface_</code> and <code>_Win32_AnnotateMethod_</code>, outside the body. MIDL rejects them inside.</li>
+<li>Constant groups: <code>cpp_quote("_Win32_Enum_(&#8230;)")</code>. <code>[retval]</code> is native.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="slide" id="pointers">
+<div class="kicker">ContainsInteriorPointers &#183; Retained</div>
+<h2>Pointer lifetimes SAL doesn't state</h2>
+<div class="label"><span class="badge real">#2365</span> <code>um/winhttp.h</code> &#183; <code>WinHttpQueryHeadersEx</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+     _In_ UINT uiCodePage,
+     _Inout_opt_ PDWORD pdwIndex,
+     _In_opt_ PWINHTTP_HEADER_NAME pHeaderName,
+-    _Out_writes_bytes_to_opt_(*pdwBufferLength, *pdwBufferLength) PVOID pBuffer,
++    _Out_writes_bytes_to_opt_(*pdwBufferLength, *pdwBufferLength) _Win32_ContainsInteriorPointers_ PVOID pBuffer,
+     _Inout_ PDWORD pdwBufferLength,
+     _Out_writes_opt_(*pdwHeadersCount) PWINHTTP_EXTENDED_HEADER *ppHeaders,
+     _Out_ PDWORD pdwHeadersCount
+</script>
+<div class="cols w60">
+<div class="stack">
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/ioapiset.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ DeviceIoControl(
+...
+     _Out_opt_ LPDWORD lpBytesReturned,
+-    _Inout_opt_ LPOVERLAPPED lpOverlapped
++    _Inout_opt_ _Win32_Retained_ LPOVERLAPPED lpOverlapped
+     );
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+// WinHttpQueryHeadersEx
+    [Optional][Out][MemorySize(BytesParamIndex = 7)]
+    [ContainsInteriorPointers] void* pBuffer,
+
+// DeviceIoControl
+    [Optional][In][Out][Retained] OVERLAPPED* lpOverlapped
+</script>
+<ul class="tight">
+<li>Interior pointers: returned pointers can point into the caller's buffer. Keep it alive and in place while they're in use.</li>
+<li>Retained: the API may use the pointer after it returns.</li>
+</ul>
+</div>
+</div>
+<p class="note">Replaces <code>emitter.settings.rsp</code> lines <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L2537">2537</a> and <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L1863">1863</a>.</p>
+</section>
+
+<section class="slide" id="metaonly">
+<div class="kicker">Native C++ under <code>WIN32METADATA</code></div>
+<h2>Typed constants and <code>[[deprecated]]</code> need no new macro</h2>
+<div class="cols">
+<div class="stack">
+<div class="label"><span class="badge real">#2365</span> <code>um/winhttp.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
++#ifdef WIN32METADATA
++#pragma push_macro("INTERNET_DEFAULT_PORT")
++#undef INTERNET_DEFAULT_PORT
++constexpr INTERNET_PORT INTERNET_DEFAULT_PORT = 0;
++#pragma pop_macro("INTERNET_DEFAULT_PORT")
+...
++#endif
+</script>
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/winnt.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+     DWORD   SizeOfHeapCommit;
++#ifdef WIN32METADATA
++    [[deprecated]]
++#endif
+     DWORD   LoaderFlags;
+     DWORD   NumberOfRvaAndSizes;
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+public const ushort INTERNET_DEFAULT_PORT = 0;
+
+// IMAGE_OPTIONAL_HEADER32 and IMAGE_OPTIONAL_HEADER64
+[Obsolete]
+public uint LoaderFlags;
+</script>
+<ul class="tight">
+<li>A guarded <code>constexpr</code> gives the constant its type. <code>pop_macro</code> keeps the ordinary <code>#define</code>.</li>
+<li>Replaces <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/ConstantsScraper.settings.rsp#L80"><code>ConstantsScraper.settings.rsp</code> line 80</a> and <a href="https://github.com/microsoft/win32metadata/blob/a1de5ac241651d4b4c7f533dd94184d83b5271c9/generation/WinSDK/emitter.settings.rsp#L334-L335"><code>emitter.settings.rsp</code> lines 334&#8211;335</a>.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="slide" id="walkback-abi">
+<div class="kicker">Walking back win32metadata ABI differences</div>
+<h2>Enum-typed parameters and fields return to the native type</h2>
+<div class="cols">
+<div class="stack">
+<div class="label"><span class="badge real">#2365</span> <code>um/winhttp.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ WINHTTPAPI
+ HINTERNET
+ WINAPI
+ WinHttpOpen
+ (
+     _In_opt_z_ LPCWSTR pszAgentW,
+-    _In_ DWORD dwAccessType,
++    _In_ _Win32_AssociatedEnum_(WINHTTP_ACCESS_TYPE) DWORD dwAccessType,
+     _In_opt_z_ LPCWSTR pszProxyW,
+     _In_opt_z_ LPCWSTR pszProxyBypassW,
+     _In_ DWORD dwFlags
+ );
+</script>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span> today</div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+public static extern void* WinHttpOpen(
+    [Optional][In][Const] PWSTR pszAgentW,
+    [In] WINHTTP_ACCESS_TYPE dwAccessType,
+    ...);
+</script>
+<div class="label"><span class="badge out">winmd</span> <span class="badge real">#2365</span></div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+public static extern void* WinHttpOpen(
+    [Optional][In][Const] PWSTR pszAgentW,
+    [In][AssociatedEnum("WINHTTP_ACCESS_TYPE")] uint dwAccessType,
+    ...);
+</script>
+</div>
+</div>
+<div class="label">winmd comparer output, <a href="https://github.com/microsoft/win32metadata/pull/2365">#2365</a></div>
+<script type="text/plain" data-lang="text" data-size="xs">
+Windows.Win32.Networking.WinHttp.Apis.WinHttpOpen : parameter 2 (dwAccessType) : [In] => [AssociatedEnum(WINHTTP_ACCESS_TYPE),In]
+Windows.Win32.Networking.WinHttp.Apis.WinHttpOpen : parameter 2 (dwAccessType)...Windows.Win32.Networking.WinHttp.WINHTTP_ACCESS_TYPE => System.UInt32
+Windows.Win32.Networking.WinHttp.WINHTTP_PROXY_INFO.dwAccessType :  => [AssociatedEnum(WINHTTP_ACCESS_TYPE)]
+Windows.Win32.Networking.WinHttp.WINHTTP_PROXY_INFO.dwAccessType...Windows.Win32.Networking.WinHttp.WINHTTP_ACCESS_TYPE => System.UInt32
+</script>
+<ul class="tight">
+<li>The enum stays, linked by <code>[AssociatedEnum]</code>. Widths, values and names don't change.</li>
+<li>The pilot reverts 27 sites. Repo-wide: 2,327 uses (1,563 parameters, 764 fields) across 1,011 enums. CsWin32 absorbs most of it.</li>
+</ul>
+</section>
+
+<section class="slide" id="walkback-handles">
+<div class="kicker">Reverting win32metadata handle types</div>
+<h2>Invented handle types become the native type</h2>
+<div class="cols">
+<div class="stack">
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/winspool.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
++#ifdef WIN32METADATA
++BOOL WINAPI ClosePrinter(_In_ HANDLE hPrinter);
++#endif
+ BOOL
+ WINAPI
+ OpenPrinterW(
+ _In_opt_    LPWSTR             pPrinterName,
+-_Out_       LPHANDLE            phPrinter,
++_Out_ _Win32_RAIIFree_Handle_(ClosePrinter) LPHANDLE phPrinter,
+ _In_opt_    LPPRINTER_DEFAULTSW pDefault
+ );
+</script>
+<ul class="tight">
+<li>23 <code>[MetadataTypedef]</code> types today: WFP 14, ETW 3, print 2, AVRT 2, HTTP 1, file mapping 1.</li>
+<li>The 20 with a close function move it to <code>RAIIFree</code> on their producers.</li>
+</ul>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">winmd</span> today</div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[RAIIFree("ClosePrinter")]
+[InvalidHandleValue(-1L)]
+[InvalidHandleValue(0L)]
+[MetadataTypedef]
+public struct PRINTER_HANDLE { public void* Value; }
+
+public static extern BOOL OpenPrinterW(
+    [Optional][In][Const] PWSTR pPrinterName,
+    [Out] PRINTER_HANDLE* phPrinter,
+    [Optional][In] PRINTER_DEFAULTSW* pDefault);
+
+public static extern BOOL ClosePrinter(
+    [In] PRINTER_HANDLE hPrinter);
+</script>
+<div class="label"><span class="badge out">winmd</span> <span class="badge illus">Illustrative</span> after</div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+public static extern BOOL OpenPrinterW(
+    [Optional][In][Const] PWSTR pPrinterName,
+    [Out][RAIIFree("ClosePrinter")]
+    [InvalidHandleValue(-1L)][InvalidHandleValue(0L)]
+        HANDLE* phPrinter,
+    [Optional][In] PRINTER_DEFAULTSW* pDefault);
+
+public static extern BOOL ClosePrinter(
+    [In] HANDLE hPrinter);
+</script>
+</div>
+</div>
+</section>
+
+<section class="slide" id="asks">
+<div class="kicker">Next steps</div>
+<h2>What we need from this group</h2>
+<ol style="gap:18px">
+<li><b>Awareness</b> that annotations are coming to your headers and IDL files.</li>
+<li><b>Approval</b> of the annotation PRs we generate.</li>
+<li><b>Any other feedback.</b></li>
+</ol>
+</section>
+
+</main>
+<nav id="nav" aria-label="Slide navigation">
+<button type="button" id="prev" aria-label="Previous slide">&#8592; Prev</button>
+<span id="count">1 / 1</span>
+<button type="button" id="next" aria-label="Next slide">Next &#8594;</button>
+</nav>
+<pre id="check-report"></pre>
+<script>
+(function () {
+  'use strict';
+  var slides = Array.prototype.slice.call(document.querySelectorAll('#deck > .slide'));
+  var N = slides.length;
+  var ENT = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' };
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return ENT[c]; }); }
+  function compile(rules) {
+    return {
+      re: new RegExp(rules.map(function (r) { return '(' + r[1].source + ')'; }).join('|'), 'g'),
+      names: rules.map(function (r) { return r[0]; })
+    };
+  }
+  var LANGS = {
+    cpp: compile([
+      ['com', /\/\/.*$|\/\*.*?(?:\*\/|$)/],
+      ['str', /L?"(?:[^"\\]|\\.)*"/],
+      ['ann', /\b_Win32_\w+/],
+      ['pp', /^\s*#\s*\w+/],
+      ['kw', /\b(?:typedef|struct|enum|union|class|const|constexpr|void|virtual|interface|static|extern|__declspec|deprecated|flag_enum|MIDL_INTERFACE)\b/]
+    ]),
+    cs: compile([
+      ['com', /\/\/.*$/],
+      ['str', /"(?:[^"\\]|\\.)*"/],
+      ['attr', /\[[A-Z]\w*|(?<=\[return:\s*)[A-Z]\w*|(?<=,\s*)[A-Z]\w*(?=[(\]])/],
+      ['kw', /\b(?:public|internal|static|extern|unsafe|partial|struct|enum|class|interface|const|readonly|ref|out|in|void|bool|byte|sbyte|short|ushort|int|uint|long|ulong|char|nint|nuint|string|delegate|new)\b/]
+    ]),
+    text: compile([
+      ['com', /^#.*$/],
+      ['op', /=>/],
+      ['ann', /AssociatedEnum\([^)]*\)/]
+    ]),
+    jsonc: compile([
+      ['com', /\/\/.*$/],
+      ['key', /"(?:[^"\\]|\\.)*"(?=\s*:)/],
+      ['str', /"(?:[^"\\]|\\.)*"/],
+      ['num', /-?\b\d+\b/]
+    ])
+  };
+  function hl(line, lang) {
+    var c = LANGS[lang];
+    if (!c) return esc(line);
+    var out = '', last = 0, m;
+    c.re.lastIndex = 0;
+    while ((m = c.re.exec(line)) !== null) {
+      if (m[0] === '') { c.re.lastIndex++; continue; }
+      var k = 1;
+      while (k < m.length && m[k] === undefined) k++;
+      out += esc(line.slice(last, m.index)) + '<span class="t-' + c.names[k - 1] + '">' + esc(m[0]) + '</span>';
+      last = m.index + m[0].length;
+    }
+    return out + esc(line.slice(last));
+  }
+  function diffLine(l) {
+    if (/^(?:--- (?:a\/|\/dev\/null)|\+\+\+ (?:b\/|\/dev\/null)|diff --git |index [0-9a-f])/.test(l)) return '<span class="ln meta">' + esc(l) + '</span>';
+    if (/^@@/.test(l)) return '<span class="ln hunk">' + esc(l) + '</span>';
+    if (l === '...') return '<span class="ln gap">...</span>';
+    var c0 = l.charAt(0);
+    var cls = c0 === '+' ? 'add' : c0 === '-' ? 'del' : 'ctx';
+    var mk = (c0 === '+' || c0 === '-' || c0 === ' ') ? c0 : '';
+    return '<span class="ln ' + cls + '"><span class="mk">' + esc(mk) + '</span>' + hl(l.slice(mk.length), 'cpp') + '</span>';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('script[type="text/plain"]'), function (sc) {
+    var lang = sc.getAttribute('data-lang') || 'text';
+    var lines = sc.textContent.replace(/^\r?\n/, '').replace(/\s+$/, '').split(/\r?\n/);
+    var pre = document.createElement('pre');
+    pre.className = ('code ' + (sc.getAttribute('data-size') || '')).trim();
+    pre.innerHTML = '<code>' + lines.map(function (l) {
+      return lang === 'diff' ? diffLine(l) : '<span class="ln">' + hl(l, lang) + '</span>';
+    }).join('') + '</code>';
+    sc.parentNode.replaceChild(pre, sc);
+  });
+  slides.forEach(function (s, i) {
+    var f = document.createElement('div');
+    f.className = 'foot';
+    f.innerHTML = '<span>Win32 metadata annotations in SDK headers</span><span>' + (i + 1) + ' / ' + N + '</span>';
+    s.appendChild(f);
+  });
+
+  var cur = 0;
+  function indexFromHash() {
+    var h = decodeURIComponent(location.hash.slice(1));
+    if (/^\d+$/.test(h)) return Math.min(N, Math.max(1, +h)) - 1;
+    for (var i = 0; i < N; i++) if (h && slides[i].id === h) return i;
+    return cur;
+  }
+  function show(i) {
+    i = Math.max(0, Math.min(N - 1, i));
+    slides[cur].classList.remove('active');
+    cur = i;
+    slides[cur].classList.add('active');
+    document.getElementById('count').textContent = (cur + 1) + ' / ' + N;
+    document.getElementById('progress').style.width = ((cur + 1) / N * 100) + '%';
+    var want = '#' + (cur + 1);
+    if (location.hash !== want) { try { history.replaceState(null, '', want); } catch (e) { /* file: URLs in some browsers */ } }
+  }
+  function fit() {
+    var s = Math.min(window.innerWidth / 1300, (window.innerHeight - 48) / 740);
+    document.getElementById('deck').style.setProperty('--scale', s.toFixed(4));
+  }
+  function check() {
+    var rep = [], bad = 0;
+    slides.forEach(function (s, i) {
+      var r = s.getBoundingClientRect(), maxB = 0, maxR = 0, probs = [];
+      Array.prototype.forEach.call(s.querySelectorAll('*'), function (el) {
+        if (el.closest('.foot')) return;
+        var b = el.getBoundingClientRect();
+        if (!b.width && !b.height) return;
+        maxB = Math.max(maxB, b.bottom - r.top);
+        maxR = Math.max(maxR, b.right - r.left);
+      });
+      if (maxB > 682) probs.push('content bottom ' + Math.round(maxB) + 'px > 682');
+      if (maxR > 1228) probs.push('content right ' + Math.round(maxR) + 'px > 1228');
+      Array.prototype.forEach.call(s.querySelectorAll('pre'), function (p, j) {
+        if (p.scrollWidth > p.clientWidth + 1) probs.push('pre ' + (j + 1) + ' scrolls horizontally');
+      });
+      var t = s.querySelector('h1,h2');
+      var name = 'slide ' + (i + 1) + ' (' + (t ? t.textContent : s.id) + ')';
+      if (probs.length) { bad++; rep.push('PROBLEM ' + name + ': ' + probs.join('; ')); }
+      else rep.push('ok ' + name + ': bottom ' + Math.round(maxB));
+    });
+    document.getElementById('check-report').textContent = 'CHECK slides=' + N + ' problems=' + bad + '\n' + rep.join('\n');
+  }
+
+  if (/(?:^|&)check(?:=|&|$)/.test(location.search.slice(1))) {
+    document.body.classList.add('check');
+    window.addEventListener('load', function () { (document.fonts ? document.fonts.ready : Promise.resolve()).then(check); });
+    return;
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var k = e.key, d = 0;
+    if (k === 'ArrowRight' || k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)) d = 1;
+    else if (k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)) d = -1;
+    else if (k === 'Home') { show(0); e.preventDefault(); return; }
+    else if (k === 'End') { show(N - 1); e.preventDefault(); return; }
+    if (d) { show(cur + d); e.preventDefault(); }
+  });
+  document.getElementById('prev').addEventListener('click', function () { this.blur(); show(cur - 1); });
+  document.getElementById('next').addEventListener('click', function () { this.blur(); show(cur + 1); });
+  window.addEventListener('hashchange', function () { show(indexFromHash()); });
+  window.addEventListener('resize', fit);
+  fit();
+  show(indexFromHash());
+})();
+</script>
+</body>
+</html>
