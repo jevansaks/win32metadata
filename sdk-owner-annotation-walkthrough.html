@@ -120,7 +120,7 @@ body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap
 <h2>Win32 metadata: a standard API definition with safety annotations</h2>
 <ul class="tight">
 <li><b>A standard definition of the headers.</b> <code>Windows.Win32.winmd</code> describes every function, struct, enum, constant and COM interface in ECMA-335 metadata, as WinRT does, with its DLL and exact types. Projections read it instead of parsing C.</li>
-<li><b>An expanded set of safety annotations.</b> What SAL doesn't say: last error, handle ownership, constant groups, meaningful <code>HRESULT</code>s, retained pointers.</li>
+<li><b>An expanded set of safety annotations.</b> What SAL doesn't say: last error, handle ownership, constant groups, retained pointers.</li>
 </ul>
 <div class="flow lanes">
 <div class="lane">Now</div>
@@ -155,7 +155,6 @@ body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap
 <li><b>Import library.</b> The DLL, when no import library exports the function.</li>
 <li><b>Handle ownership.</b> Who closes a returned handle, with what, and which values mean failure.</li>
 <li><b>Constant groups.</b> Which named constants a <code>DWORD</code> parameter or field takes.</li>
-<li><b>Meaningful <code>HRESULT</code>s.</b> Success and failure codes the caller has to see.</li>
 <li><b>Pointer lifetimes.</b> Pointers the callee keeps; buffers that point into themselves.</li>
 <li><b>COM return value.</b> Which out parameter is the logical result.</li>
 </ul>
