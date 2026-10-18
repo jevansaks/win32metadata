@@ -117,7 +117,7 @@ body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap
 
 <section class="slide" id="context">
 <div class="kicker">Context</div>
-<h2>Win32 metadata: a standard API definition with safety annotations</h2>
+<h2>Win32 metadata is a standard API definition with safety annotations</h2>
 <ul class="tight">
 <li><b>A standard definition of the headers.</b> <code>Windows.Win32.winmd</code> describes every function, struct, enum, constant and COM interface in ECMA-335 metadata, as WinRT does, with its DLL and exact types. Projections read it instead of parsing C.</li>
 <li><b>An expanded set of safety annotations.</b> What SAL doesn't say: last error, handle ownership, constant groups, retained pointers.</li>
@@ -241,7 +241,7 @@ CreateFileW=SupportedOSPlatform("windows5.1.2600")
 
 <section class="slide" id="rules">
 <div class="kicker">Ground rules</div>
-<h2>Annotations record semantic facts and encodings that make the API safer to call</h2>
+<h2>Annotations describe the API as it ships</h2>
 <div class="cols w60">
 <ul class="tight">
 <li><b>State what's true today.</b> An annotation never changes behavior or the ABI.</li>
@@ -265,7 +265,7 @@ CreateFileW=SupportedOSPlatform("windows5.1.2600")
 
 <section class="slide" id="glance">
 <div class="kicker">Vocabulary</div>
-<h2>Annotations at a glance</h2>
+<h2>Where each annotation goes and what it becomes in the winmd</h2>
 <table class="sm">
 <tr><th>Annotation</th><th>Goes on</th><th>winmd</th></tr>
 <tr><td><a href="#createfile"><code>_Win32_SetLastError_</code></a></td><td>functions</td><td><code>SetLastError = true</code></td></tr>
@@ -287,7 +287,7 @@ CreateFileW=SupportedOSPlatform("windows5.1.2600")
 
 <section class="slide" id="createfile">
 <div class="kicker">Canonical example</div>
-<h2>CreateFileW: every fact in the header</h2>
+<h2>CreateFileW, fully annotated</h2>
 <div class="cols w60">
 <div class="stack">
 <div class="label"><span class="badge illus">Illustrative</span> <code>um/fileapi.h</code></div>
@@ -499,7 +499,7 @@ public static extern BOOL MagSetInputTransform(
 
 <section class="slide" id="importlib">
 <div class="kicker">ImportLibrary</div>
-<h2>Import library, only where the scan can't find it</h2>
+<h2>DLL names for functions with no import library</h2>
 <div class="cols">
 <div class="stack">
 <div class="label"><span class="badge real">#2365</span> <code>um/wslapi.h</code></div>
@@ -565,7 +565,7 @@ public static extern uint VerifierEnumerateResource(
 
 <section class="slide" id="ownership">
 <div class="kicker">RAIIFree &#183; AlsoUsableFor</div>
-<h2>Ownership goes on the producer, not the type</h2>
+<h2>Ownership goes on each function that produces a handle</h2>
 <div class="cols w60">
 <div class="stack">
 <div class="label"><span class="badge illus">Illustrative</span> <code>um/synchapi.h</code></div>
@@ -635,7 +635,7 @@ public static extern HANDLE GetProcessHeap();
 
 <section class="slide" id="enum-groups">
 <div class="kicker">Enum &#183; FlagsEnum &#183; AssociatedEnum</div>
-<h2>Name the constant group; associate it where it's used</h2>
+<h2>Constant groups become enums linked to the parameters that take them</h2>
 <div class="label"><span class="badge real">#2365</span> <code>um/magnification.h</code></div>
 <script type="text/plain" data-lang="diff" data-size="xs">
  #define MW_FILTERMODE_EXCLUDE   0
@@ -736,7 +736,7 @@ public static extern BOOL ChangeServiceConfigW(
 
 <section class="slide" id="enum-fields">
 <div class="kicker">AssociatedEnum on fields</div>
-<h2>Fields work the same way; storage sets the width</h2>
+<h2>BYTE and WORD fields link to enums of the same width</h2>
 <div class="cols w60">
 <div class="stack">
 <div class="label"><span class="badge illus">Illustrative</span> <code>um/Xinput.h</code></div>
@@ -1013,7 +1013,7 @@ public uint LoaderFlags;
 </section>
 
 <section class="slide" id="walkback-abi">
-<div class="kicker">Walking back win32metadata ABI differences</div>
+<div class="kicker">Walking back win32metadata enum types</div>
 <h2>Enum-typed parameters and fields return to the native type</h2>
 <div class="cols">
 <div class="stack">
@@ -1064,7 +1064,7 @@ Windows.Win32.Networking.WinHttp.WINHTTP_PROXY_INFO.dwAccessType...Windows.Win32
 </section>
 
 <section class="slide" id="walkback-handles">
-<div class="kicker">Reverting win32metadata handle types</div>
+<div class="kicker">Walking back win32metadata handle types</div>
 <h2>Invented handle types become the native type</h2>
 <div class="cols">
 <div class="stack">
