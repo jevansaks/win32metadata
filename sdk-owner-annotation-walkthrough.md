@@ -16,16 +16,19 @@ Win32 metadata is a standard API definition with safety annotations.
 - **An expanded set of safety annotations.** What SAL doesn't say: last error, handle ownership, constant groups, retained pointers.
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph Now
+        direction LR
         H["SDK headers with annotations"] --> W1["win32metadata: Windows.Win32.winmd"] --> C1["CsWin32 (C#)"]
         H --> W2["windows-clang: Windows.Win32.winmd"] --> R1["windows-rs (Rust)"]
     end
     subgraph Later
+        direction LR
         M["Metadata-first SDK"] --> C2["CsWin32 (C#)"]
         M --> R2["windows-rs (Rust)"]
         M --> P["cppwin32 (C++)"]
     end
+    Now ~~~ Later
 ```
 
 - **[win32metadata](https://github.com/microsoft/win32metadata)** builds it from the SDK headers and ships it on NuGet as [`Microsoft.Windows.SDK.Win32Metadata`](https://www.nuget.org/packages/Microsoft.Windows.SDK.Win32Metadata/). **[CsWin32](https://github.com/microsoft/CsWin32)** generates C# P/Invoke and COM interop from it.
