@@ -27,6 +27,7 @@ a{color:var(--accent)}
 .cols.w60{grid-template-columns:3fr 2fr}
 .cols.w40{grid-template-columns:2fr 3fr}
 .cols.w70{grid-template-columns:7fr 3fr}
+.cols.c3{grid-template-columns:1fr 1fr 1.25fr;align-items:stretch}
 .stack{display:flex;flex-direction:column;gap:10px;min-width:0}
 .label{display:flex;gap:8px;align-items:center;font-size:14px;font-weight:600;color:var(--muted)}
 .badge{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid;border-radius:999px;padding:2px 9px;white-space:nowrap}
@@ -798,6 +799,60 @@ public struct XINPUT_CAPABILITIES
 </script>
 </div>
 </div>
+</section>
+
+<section class="slide" id="enum-widths">
+<div class="kicker">AssociatedEnum across widths</div>
+<h2>FONT_CHARSET is a BYTE in LOGFONTW and a DWORD in CreateFontW</h2>
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/wingdi.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ typedef struct tagLOGFONTW
+ {
+...
++    _Win32_AssociatedEnum_(FONT_CHARSET)
+     BYTE      lfCharSet;
+...
+ #define BALTIC_CHARSET          186
++_Win32_Enum_(FONT_CHARSET, BYTE,
++    ANSI_CHARSET, DEFAULT_CHARSET, SYMBOL_CHARSET, SHIFTJIS_CHARSET, HANGEUL_CHARSET, HANGUL_CHARSET, GB2312_CHARSET, CHINESEBIG5_CHARSET, OEM_CHARSET,
++    JOHAB_CHARSET, HEBREW_CHARSET, ARABIC_CHARSET, GREEK_CHARSET, TURKISH_CHARSET, VIETNAMESE_CHARSET, THAI_CHARSET, EASTEUROPE_CHARSET, RUSSIAN_CHARSET,
++    MAC_CHARSET, BALTIC_CHARSET);
+...
+ WINGDIAPI HFONT   WINAPI CreateFontW( _In_ int cHeight, _In_ int cWidth, _In_ int cEscapement, _In_ int cOrientation, _In_ int cWeight, _In_ DWORD bItalic,
+-                             _In_ DWORD bUnderline, _In_ DWORD bStrikeOut, _In_ DWORD iCharSet, _In_ DWORD iOutPrecision, _In_ DWORD iClipPrecision,
++                             _In_ DWORD bUnderline, _In_ DWORD bStrikeOut, _In_ _Win32_AssociatedEnum_(FONT_CHARSET) DWORD iCharSet,
++                             _In_ DWORD iOutPrecision, _In_ DWORD iClipPrecision,
+                              _In_ DWORD iQuality, _In_ DWORD iPitchAndFamily, _In_opt_ LPCWSTR pszFaceName);
+</script>
+<div class="label"><span class="badge out">winmd</span></div>
+<div class="cols c3">
+<script type="text/plain" data-lang="cs" data-size="xs">
+[ScopedEnum]
+public enum FONT_CHARSET : byte
+{
+    ANSI_CHARSET = 0,
+    DEFAULT_CHARSET = 1,
+    ...
+    BALTIC_CHARSET = 186
+}
+</script>
+<script type="text/plain" data-lang="cs" data-size="xs">
+public struct LOGFONTW
+{
+    ...
+    [AssociatedEnum("FONT_CHARSET")]
+    public byte lfCharSet;
+    ...
+}
+</script>
+<script type="text/plain" data-lang="cs" data-size="xs">
+public static extern HFONT CreateFontW(
+    ...
+    [In][AssociatedEnum("FONT_CHARSET")] uint iCharSet,
+    ...);
+</script>
+</div>
+<p class="note">No one storage type matches both uses, so each keeps its native type. Storage stays <code>BYTE</code>, as in today's metadata.</p>
 </section>
 
 <section class="slide" id="preserve">

@@ -675,6 +675,60 @@ public struct XINPUT_CAPABILITIES
 }
 ```
 
+### AssociatedEnum across widths
+
+`FONT_CHARSET` is a `BYTE` in `LOGFONTW` and a `DWORD` in `CreateFontW`.
+
+`um/wingdi.h`, illustrative:
+
+```diff
+ typedef struct tagLOGFONTW
+ {
+...
++    _Win32_AssociatedEnum_(FONT_CHARSET)
+     BYTE      lfCharSet;
+...
+ #define BALTIC_CHARSET          186
++_Win32_Enum_(FONT_CHARSET, BYTE,
++    ANSI_CHARSET, DEFAULT_CHARSET, SYMBOL_CHARSET, SHIFTJIS_CHARSET, HANGEUL_CHARSET, HANGUL_CHARSET, GB2312_CHARSET, CHINESEBIG5_CHARSET, OEM_CHARSET,
++    JOHAB_CHARSET, HEBREW_CHARSET, ARABIC_CHARSET, GREEK_CHARSET, TURKISH_CHARSET, VIETNAMESE_CHARSET, THAI_CHARSET, EASTEUROPE_CHARSET, RUSSIAN_CHARSET,
++    MAC_CHARSET, BALTIC_CHARSET);
+...
+ WINGDIAPI HFONT   WINAPI CreateFontW( _In_ int cHeight, _In_ int cWidth, _In_ int cEscapement, _In_ int cOrientation, _In_ int cWeight, _In_ DWORD bItalic,
+-                             _In_ DWORD bUnderline, _In_ DWORD bStrikeOut, _In_ DWORD iCharSet, _In_ DWORD iOutPrecision, _In_ DWORD iClipPrecision,
++                             _In_ DWORD bUnderline, _In_ DWORD bStrikeOut, _In_ _Win32_AssociatedEnum_(FONT_CHARSET) DWORD iCharSet,
++                             _In_ DWORD iOutPrecision, _In_ DWORD iClipPrecision,
+                              _In_ DWORD iQuality, _In_ DWORD iPitchAndFamily, _In_opt_ LPCWSTR pszFaceName);
+```
+
+winmd:
+
+```cs
+[ScopedEnum]
+public enum FONT_CHARSET : byte
+{
+    ANSI_CHARSET = 0,
+    DEFAULT_CHARSET = 1,
+    ...
+    BALTIC_CHARSET = 186
+}
+
+public struct LOGFONTW
+{
+    ...
+    [AssociatedEnum("FONT_CHARSET")]
+    public byte lfCharSet;
+    ...
+}
+
+public static extern HFONT CreateFontW(
+    ...
+    [In][AssociatedEnum("FONT_CHARSET")] uint iCharSet,
+    ...);
+```
+
+No one storage type matches both uses, so each keeps its native type. Storage stays `BYTE`, as in today's metadata.
+
 ### PreserveResult
 
 Non-obvious HRESULT returns.
