@@ -112,7 +112,7 @@ body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap
 <h1>Win32 metadata annotations<br>in SDK headers</h1>
 <p style="font-size:26px">What changes in your headers, annotation by annotation, and the winmd each change produces</p>
 <p style="font-size:18px"><a href="https://github.com/microsoft/win32metadata/pull/2368">#2368</a> spec (merged) &#183; <a href="https://github.com/microsoft/win32metadata/pull/2363">#2363</a> toolchain &#183; <a href="https://github.com/microsoft/win32metadata/pull/2365">#2365</a> pilot, 13 headers and IDL files</p>
-<p style="font-size:16px"><span class="badge real">#2365</span> verbatim from the pilot &#160;&#160; <span class="badge illus">Illustrative</span> written for this deck against SDK 10.0.26100 &#160;&#160; <span class="badge out">winmd</span> ILSpy view, trimmed</p>
+<p style="font-size:16px"><span class="badge real">#2365</span> verbatim from the pilot &#160;&#160; <span class="badge illus">Illustrative</span> written for this deck against SDK 10.0.26100 &#160;&#160; <span class="badge out">winmd</span> ILSpy view, trimmed &#160;&#160; <span class="badge out">CsWin32</span> generated, trimmed &#160;&#160; <span class="badge illus">Proposed</span> sketch, not shipped</p>
 <p style="font-size:16px">Companion document: <a href="https://github.com/jevansaks/win32metadata/blob/gh-pages/sdk-owner-annotation-walkthrough.md">sdk-owner-annotation-walkthrough.md</a></p>
 </section>
 
@@ -168,6 +168,137 @@ body.check #check-report{display:block;margin:0;padding:8px;white-space:pre-wrap
 <li>One winmd per SDK version, generated from that SDK's headers.</li>
 <li>Spec reviewed with partner teams (<a href="https://github.com/microsoft/win32metadata/pull/2295">#2295</a>, <a href="https://github.com/microsoft/win32metadata/pull/2368">#2368</a>). <a href="https://github.com/microsoft/win32metadata/pull/2363">#2363</a> extends it.</li>
 </ul>
+</div>
+</div>
+</section>
+
+<section class="slide" id="proj-messagebox">
+<div class="kicker">Projections</div>
+<h2>MessageBoxW, projected to C# and C++</h2>
+<div class="cols w40">
+<div class="stack">
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/winuser.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ #define MB_MISCMASK                 0x0000C000L
++_Win32_FlagsEnum_(MESSAGEBOX_STYLE, UINT,
++    MB_OK, MB_OKCANCEL, MB_ABORTRETRYIGNORE, MB_YESNOCANCEL,
+...
++    MB_ICONMASK, MB_DEFMASK, MB_MODEMASK, MB_MISCMASK);
+...
+ WINUSERAPI
++_Win32_SetLastError_
++_Win32_AssociatedEnum_(MESSAGEBOX_RESULT)
+ int
+ WINAPI
+ MessageBoxW(
+     _In_opt_ HWND hWnd,
+     _In_opt_ LPCWSTR lpText,
+     _In_opt_ LPCWSTR lpCaption,
+-    _In_ UINT uType);
++    _In_ _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) UINT uType);
+...
+ #endif /* WINVER >= 0x0501 */
++_Win32_Enum_(MESSAGEBOX_RESULT, int,
++    IDOK, IDCANCEL, IDABORT, IDRETRY, IDIGNORE, IDYES, IDNO,
++    IDCLOSE, IDHELP, IDTRYAGAIN, IDCONTINUE, IDTIMEOUT);
+</script>
+<ul class="tight">
+<li>Today <code>MessageBoxW(&#8230;, SW_SHOW)</code> compiles: <code>SW_SHOW</code> is 5, the value of <code>MB_RETRYCANCEL</code>. Neither projection accepts it.</li>
+<li><code>_Win32_SetLastError_</code> makes CsWin32 capture the last error, so <code>new Win32Exception()</code> reports why the call returned 0.</li>
+</ul>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">CsWin32</span> 0.3.367, trimmed</div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[DllImport("USER32.dll", EntryPoint = "MessageBoxW", SetLastError = true)]
+static extern MESSAGEBOX_RESULT MessageBox(HWND hWnd, PCWSTR lpText,
+    PCWSTR lpCaption, MESSAGEBOX_STYLE uType);
+// Overload: pins both strings, then calls the extern.
+static MESSAGEBOX_RESULT MessageBox(HWND hWnd, string lpText,
+    string lpCaption, MESSAGEBOX_STYLE uType);
+
+var r = PInvoke.MessageBox(HWND.Null, "Discard changes?", "Editor",
+    MESSAGEBOX_STYLE.MB_YESNO | MESSAGEBOX_STYLE.MB_ICONWARNING);
+if (r == 0) throw new Win32Exception();
+</script>
+<div class="label"><span class="badge illus">Proposed</span> re-imagined cppwin32</div>
+<script type="text/plain" data-lang="cxx" data-size="xs">
+namespace win32::UI::WindowsAndMessaging
+{
+    enum class MESSAGEBOX_STYLE : uint32_t { MB_OK = 0x0, MB_OKCANCEL = 0x1, /* ... */ };
+    constexpr MESSAGEBOX_STYLE operator|(MESSAGEBOX_STYLE, MESSAGEBOX_STYLE) noexcept;
+    enum class MESSAGEBOX_RESULT : int32_t { IDOK = 1, IDCANCEL = 2, /* ... */ };
+
+    inline MESSAGEBOX_RESULT MessageBoxW(HWND hWnd, PCWSTR lpText,
+        PCWSTR lpCaption, MESSAGEBOX_STYLE uType) noexcept
+    {
+        return MESSAGEBOX_RESULT(abi::MessageBoxW(hWnd, lpText, lpCaption, uint32_t(uType)));
+    }
+}
+
+auto r = MessageBoxW(nullptr, L"Discard changes?", L"Editor",
+    MESSAGEBOX_STYLE::MB_YESNO | MESSAGEBOX_STYLE::MB_ICONWARNING);
+if (r == MESSAGEBOX_RESULT{}) throw_last_error();
+</script>
+</div>
+</div>
+</section>
+
+<section class="slide" id="proj-cocreate">
+<div class="kicker">Projections</div>
+<h2>CoCreateInstance, projected to C# and C++</h2>
+<div class="cols w40">
+<div class="stack">
+<div class="label"><span class="badge illus">Illustrative</span> <code>um/combaseapi.h</code></div>
+<script type="text/plain" data-lang="diff" data-size="xs">
+ _Check_return_ WINOLEAPI
+ CoCreateInstance(
+     _In_ REFCLSID rclsid,
+     _In_opt_ LPUNKNOWN pUnkOuter,
+-    _In_ DWORD dwClsContext,
++    _In_ _Win32_AssociatedEnum_(CLSCTX) DWORD dwClsContext,
+     _In_ REFIID riid,
+     _COM_Outptr_ _At_(*ppv, _Post_readable_size_(_Inexpressible_(varies))) LPVOID  FAR * ppv
+     );
+</script>
+<ul class="tight">
+<li><code>_COM_Outptr_</code> after <code>REFIID</code> is existing SAL. Both projections take the IID from the type and return a typed object.</li>
+<li>No <code>_Win32_PreserveResult_</code>, and <code>S_OK</code> is the only success code, so the C++ wrapper throws on failure and returns the object.</li>
+<li>C++/WinRT (<code>winrt::create_instance</code>) and WIL (<code>wil::CoCreateInstance</code>) hand-write this wrapper. A generator could emit it for every function with these annotations.</li>
+</ul>
+</div>
+<div class="stack">
+<div class="label"><span class="badge out">CsWin32</span> 0.3.367, trimmed</div>
+<script type="text/plain" data-lang="cs" data-size="xs">
+[DllImport("OLE32.dll")]
+static extern HRESULT CoCreateInstance(Guid* rclsid,
+    [MarshalAs(UnmanagedType.IUnknown)] object pUnkOuter, CLSCTX dwClsContext,
+    Guid* riid, [MarshalAs(UnmanagedType.IUnknown)] out object ppv);
+// Overload: riid is typeof(T).GUID; ppv is cast to T.
+static HRESULT CoCreateInstance<T>(in Guid rclsid, object pUnkOuter,
+    CLSCTX dwClsContext, out T ppv) where T : class;
+
+PInvoke.CoCreateInstance(typeof(FileOpenDialog).GUID, null,
+    CLSCTX.CLSCTX_INPROC_SERVER, out IFileOpenDialog dialog).ThrowOnFailure();
+</script>
+<div class="label"><span class="badge illus">Proposed</span> re-imagined cppwin32</div>
+<script type="text/plain" data-lang="cxx" data-size="xs">
+namespace win32::System::Com
+{
+    template <typename T>
+    com_ptr<T> CoCreateInstance(guid const& rclsid, IUnknown* pUnkOuter,
+        CLSCTX dwClsContext)
+    {
+        com_ptr<T> ppv;
+        check_hresult(abi::CoCreateInstance(rclsid, pUnkOuter,
+            uint32_t(dwClsContext), guid_of<T>(), ppv.put_void()));
+        return ppv;
+    }
+}
+
+auto dialog = CoCreateInstance<IFileOpenDialog>(guid_of<FileOpenDialog>(),
+    nullptr, CLSCTX::CLSCTX_INPROC_SERVER);
+</script>
 </div>
 </div>
 </section>
@@ -1212,6 +1343,11 @@ public static extern BOOL ClosePrinter(
       ['ann', /\b_Win32_\w+/],
       ['pp', /^\s*#\s*\w+/],
       ['kw', /\b(?:typedef|struct|enum|union|class|const|constexpr|void|virtual|interface|static|extern|__declspec|deprecated|flag_enum|MIDL_INTERFACE)\b/]
+    ]),
+    cxx: compile([
+      ['com', /\/\/.*$|\/\*.*?(?:\*\/|$)/],
+      ['str', /L?"(?:[^"\\]|\\.)*"/],
+      ['kw', /\b(?:namespace|template|typename|struct|enum|class|const|constexpr|inline|auto|return|if|throw|noexcept|operator|void|nullptr)\b/]
     ]),
     cs: compile([
       ['com', /\/\/.*$/],

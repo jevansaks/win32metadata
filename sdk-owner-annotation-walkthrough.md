@@ -6,7 +6,7 @@ Plan of record for Windows SDK API owners: what changes in your headers, annotat
 - Toolchain: [#2363](https://github.com/microsoft/win32metadata/pull/2363)
 - Pilot: [#2365](https://github.com/microsoft/win32metadata/pull/2365), 13 headers and IDL files
 
-Sample labels: **#2365** is verbatim from the pilot. **Illustrative** is written for this document against SDK 10.0.26100. **winmd** is the ILSpy view of the final winmd, trimmed.
+Sample labels: **#2365** is verbatim from the pilot. **Illustrative** is written for this document against SDK 10.0.26100. **winmd** is the ILSpy view of the final winmd, trimmed. **CsWin32** is CsWin32 0.3.367 output, trimmed. **Proposed** is a sketch of a re-imagined cppwin32, not shipped.
 
 ## Context
 
@@ -56,6 +56,135 @@ How:
 - Active only under `WIN32METADATA` with Clang. Empty everywhere else: no ABI or codegen change.
 - One winmd per SDK version, generated from that SDK's headers.
 - Spec reviewed with partner teams ([#2295](https://github.com/microsoft/win32metadata/pull/2295), [#2368](https://github.com/microsoft/win32metadata/pull/2368)). [#2363](https://github.com/microsoft/win32metadata/pull/2363) extends it.
+
+## Projections
+
+### MessageBoxW
+
+MessageBoxW, projected to C# and C++.
+
+`um/winuser.h`, illustrative:
+
+```diff
+ #define MB_MISCMASK                 0x0000C000L
++_Win32_FlagsEnum_(MESSAGEBOX_STYLE, UINT,
++    MB_OK, MB_OKCANCEL, MB_ABORTRETRYIGNORE, MB_YESNOCANCEL,
+...
++    MB_ICONMASK, MB_DEFMASK, MB_MODEMASK, MB_MISCMASK);
+...
+ WINUSERAPI
++_Win32_SetLastError_
++_Win32_AssociatedEnum_(MESSAGEBOX_RESULT)
+ int
+ WINAPI
+ MessageBoxW(
+     _In_opt_ HWND hWnd,
+     _In_opt_ LPCWSTR lpText,
+     _In_opt_ LPCWSTR lpCaption,
+-    _In_ UINT uType);
++    _In_ _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) UINT uType);
+...
+ #endif /* WINVER >= 0x0501 */
++_Win32_Enum_(MESSAGEBOX_RESULT, int,
++    IDOK, IDCANCEL, IDABORT, IDRETRY, IDIGNORE, IDYES, IDNO,
++    IDCLOSE, IDHELP, IDTRYAGAIN, IDCONTINUE, IDTIMEOUT);
+```
+
+CsWin32 0.3.367, trimmed:
+
+```cs
+[DllImport("USER32.dll", EntryPoint = "MessageBoxW", SetLastError = true)]
+static extern MESSAGEBOX_RESULT MessageBox(HWND hWnd, PCWSTR lpText,
+    PCWSTR lpCaption, MESSAGEBOX_STYLE uType);
+// Overload: pins both strings, then calls the extern.
+static MESSAGEBOX_RESULT MessageBox(HWND hWnd, string lpText,
+    string lpCaption, MESSAGEBOX_STYLE uType);
+
+var r = PInvoke.MessageBox(HWND.Null, "Discard changes?", "Editor",
+    MESSAGEBOX_STYLE.MB_YESNO | MESSAGEBOX_STYLE.MB_ICONWARNING);
+if (r == 0) throw new Win32Exception();
+```
+
+Proposed, re-imagined cppwin32:
+
+```cpp
+namespace win32::UI::WindowsAndMessaging
+{
+    enum class MESSAGEBOX_STYLE : uint32_t { MB_OK = 0x0, MB_OKCANCEL = 0x1, /* ... */ };
+    constexpr MESSAGEBOX_STYLE operator|(MESSAGEBOX_STYLE, MESSAGEBOX_STYLE) noexcept;
+    enum class MESSAGEBOX_RESULT : int32_t { IDOK = 1, IDCANCEL = 2, /* ... */ };
+
+    inline MESSAGEBOX_RESULT MessageBoxW(HWND hWnd, PCWSTR lpText,
+        PCWSTR lpCaption, MESSAGEBOX_STYLE uType) noexcept
+    {
+        return MESSAGEBOX_RESULT(abi::MessageBoxW(hWnd, lpText, lpCaption, uint32_t(uType)));
+    }
+}
+
+auto r = MessageBoxW(nullptr, L"Discard changes?", L"Editor",
+    MESSAGEBOX_STYLE::MB_YESNO | MESSAGEBOX_STYLE::MB_ICONWARNING);
+if (r == MESSAGEBOX_RESULT{}) throw_last_error();
+```
+
+- Today `MessageBoxW(…, SW_SHOW)` compiles: `SW_SHOW` is 5, the value of `MB_RETRYCANCEL`. Neither projection accepts it.
+- `_Win32_SetLastError_` makes CsWin32 capture the last error, so `new Win32Exception()` reports why the call returned 0.
+
+### CoCreateInstance
+
+CoCreateInstance, projected to C# and C++.
+
+`um/combaseapi.h`, illustrative:
+
+```diff
+ _Check_return_ WINOLEAPI
+ CoCreateInstance(
+     _In_ REFCLSID rclsid,
+     _In_opt_ LPUNKNOWN pUnkOuter,
+-    _In_ DWORD dwClsContext,
++    _In_ _Win32_AssociatedEnum_(CLSCTX) DWORD dwClsContext,
+     _In_ REFIID riid,
+     _COM_Outptr_ _At_(*ppv, _Post_readable_size_(_Inexpressible_(varies))) LPVOID  FAR * ppv
+     );
+```
+
+CsWin32 0.3.367, trimmed:
+
+```cs
+[DllImport("OLE32.dll")]
+static extern HRESULT CoCreateInstance(Guid* rclsid,
+    [MarshalAs(UnmanagedType.IUnknown)] object pUnkOuter, CLSCTX dwClsContext,
+    Guid* riid, [MarshalAs(UnmanagedType.IUnknown)] out object ppv);
+// Overload: riid is typeof(T).GUID; ppv is cast to T.
+static HRESULT CoCreateInstance<T>(in Guid rclsid, object pUnkOuter,
+    CLSCTX dwClsContext, out T ppv) where T : class;
+
+PInvoke.CoCreateInstance(typeof(FileOpenDialog).GUID, null,
+    CLSCTX.CLSCTX_INPROC_SERVER, out IFileOpenDialog dialog).ThrowOnFailure();
+```
+
+Proposed, re-imagined cppwin32:
+
+```cpp
+namespace win32::System::Com
+{
+    template <typename T>
+    com_ptr<T> CoCreateInstance(guid const& rclsid, IUnknown* pUnkOuter,
+        CLSCTX dwClsContext)
+    {
+        com_ptr<T> ppv;
+        check_hresult(abi::CoCreateInstance(rclsid, pUnkOuter,
+            uint32_t(dwClsContext), guid_of<T>(), ppv.put_void()));
+        return ppv;
+    }
+}
+
+auto dialog = CoCreateInstance<IFileOpenDialog>(guid_of<FileOpenDialog>(),
+    nullptr, CLSCTX::CLSCTX_INPROC_SERVER);
+```
+
+- `_COM_Outptr_` after `REFIID` is existing SAL. Both projections take the IID from the type and return a typed object.
+- No `_Win32_PreserveResult_`, and `S_OK` is the only success code, so the C++ wrapper throws on failure and returns the object.
+- C++/WinRT (`winrt::create_instance`) and WIL (`wil::CoCreateInstance`) hand-write this wrapper. A generator could emit it for every function with these annotations.
 
 ## The problem
 
