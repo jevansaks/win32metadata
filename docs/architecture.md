@@ -81,12 +81,14 @@ Owner review remains required independently of successful automation.
 
 Run `.\scripts\TestTooling.ps1` for all three tooling suites. Both this entry
 point and `.\scripts\DoTests.ps1` reject missing, empty or failing TRX results.
-Run `node --test .github/tests/*.test.cjs` for workflow/verdict regression tests.
-After building tooling, `node --test .github/tests/migration-emission.cjs`
-performs three real emissions of identical fixture inputs, records raw and
-normalized hashes, and verifies that every byte outside the two normalized
-fields is still observed. This is repeated-emission evidence, not full-SDK
-determinism or performance evidence.
+The existing MSTest emitter suite now includes workflow/verdict guardrail tests,
+three real emissions of identical fixture inputs, raw/normalized hash evidence,
+and checks that every byte outside the two normalized fields remains observed.
+`TestTooling.ps1` builds the CLI through normal test project references and
+executes this coverage without a separate BuildTools prerequisite. Repeated
+fixture emission is not full-SDK determinism or performance evidence.
+Node remains scoped to the pre-existing API-comment workflow tests:
+`node --test .github/tests/pr-api-diff-comment.test.cjs`.
 
 `.\scripts\TestMigrationQualification.ps1 -ReferenceDirectory <checkout>`
 requires a separate checkout at
@@ -110,11 +112,17 @@ spikes. The proposed five-pair warm WinHttp/Foundation/Com pilot and its median
 10%/one-second budget are not implemented in this infrastructure layer.
 
 The drift gate compares the entire final winmd rather than relying on the
-decompiler dump or semantic comparison helper. It normalizes only the Module
+decompiler dump or semantic comparison helper. Existing WinmdUtils commands
+`compareBinary`, `qualifyMigration`, and `verifyMigrationEvidence` use the BCL
+`PEReader`/`MetadataReader` and receipt validation; there is no handwritten
+PE/metadata table parser or additional project/package. The comparer normalizes only the Module
 MVID (the emitter calls `Guid.NewGuid`) and the COFF PE creation timestamp
 (`ManagedPEBuilder` defaults); assembly version is fixed before emission.
 There are no approved semantic differences or exclusion masks. Any other
 nondeterminism fails qualification and must be investigated, not masked.
+This compatibility normalization is temporary until emitter determinism lands
+and a deterministic reference is deliberately reviewed; neither side is silently
+replaced with candidate output.
 
 Actions retains TRX, source/input SHA receipts, SDK content and toolchain hashes,
 output winmds/hashes, raw timing/memory samples, target-phase binlogs and drift

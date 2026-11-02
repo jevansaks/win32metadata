@@ -8,7 +8,7 @@ $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath("$PSScriptRoot\..")
 $ReferenceDirectory = [IO.Path]::GetFullPath($ReferenceDirectory)
 $ResultsDirectory = [IO.Path]::GetFullPath($ResultsDirectory)
-$judge = "$root\.github\scripts\migration-qualification.cjs"
+$judge = "$root\bin\Release\net10.0\WinmdUtils.dll"
 $referenceSha = '86ed37b2846440297afb087c4718acd1a1fb4ad8'
 New-Item -ItemType Directory -Force $ResultsDirectory | Out-Null
 
@@ -192,11 +192,11 @@ try {
         }
         $driftFile = "$ResultsDirectory\pair-$pair-drift.json"
         $receipt.pairs += $samples
-        Invoke-Native node @($judge, 'compare', "$ResultsDirectory\pair-$pair-reference.winmd",
-            "$ResultsDirectory\pair-$pair-candidate.winmd", $driftFile)
+        Invoke-Native dotnet @($judge, 'compareBinary', '--first', "$ResultsDirectory\pair-$pair-reference.winmd",
+            '--second', "$ResultsDirectory\pair-$pair-candidate.winmd", '--output', $driftFile)
         $samples.drift = Get-Content -Raw $driftFile | ConvertFrom-Json -AsHashtable
         $receipt | ConvertTo-Json -Depth 20 | Set-Content "$ResultsDirectory\receipt.json"
-        & node $judge verdict "$ResultsDirectory\receipt.json" "$ResultsDirectory\verdict.json"
+        & dotnet $judge qualifyMigration --receipt "$ResultsDirectory\receipt.json" --output "$ResultsDirectory\verdict.json"
         if ($LASTEXITCODE -eq 0) { $receipt.passed = $true; break }
         if ($LASTEXITCODE -ne 1) { throw 'Qualification judge failed.' }
     }

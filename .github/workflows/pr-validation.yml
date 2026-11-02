@@ -40,7 +40,7 @@ jobs:
           persist-credentials: false
 
       - name: Test API diff comment workflow
-        run: node --test .github/tests/*.test.cjs
+        run: node --test .github/tests/pr-api-diff-comment.test.cjs
 
   tooling-tests:
     name: Tooling tests
@@ -58,9 +58,6 @@ jobs:
       - name: Run all tooling tests
         shell: pwsh
         run: .\scripts\TestTooling.ps1
-      - name: Verify repeated-emission comparison
-        shell: pwsh
-        run: node --test .github/tests/migration-emission.cjs
       - name: Retain tooling evidence
         if: always()
         uses: ./.github/actions/upload-artifact-with-retry
@@ -108,24 +105,40 @@ jobs:
     name: Migration qualification
     needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification]
     if: always() && github.repository == 'jevansaks/win32metadata'
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
+          fetch-depth: 0
           persist-credentials: false
       - name: Require every qualification dependency
         env:
           NEEDS: ${{ toJSON(needs) }}
+        shell: pwsh
         run: |
-          node -e 'const {aggregate} = require("./.github/scripts/migration-qualification.cjs"); const result = aggregate(Object.fromEntries(Object.entries(JSON.parse(process.env.NEEDS)).map(([k,v]) => [k,v.result]))); console.log(result); if (!result.passed) process.exit(1);'
+          $needs = $env:NEEDS | ConvertFrom-Json -AsHashtable
+          foreach ($name in 'changes', 'workflow-tests', 'tooling-tests', 'scrape', 'build-test', 'qualification') {
+            if ($needs[$name].result -ne 'success') {
+              throw "Required dependency $name did not succeed: $($needs[$name].result)"
+            }
+          }
       - name: Verify retained qualification receipt
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: migration-evidence
           path: evidence
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          global-json-file: global.json
+
       - name: Verify receipt and output binding
-        run: node .github/scripts/verify-migration-evidence.cjs evidence
+        shell: pwsh
+        run: |
+          dotnet build sources\WinmdUtils -c Release --verbosity quiet
+          if ($LASTEXITCODE -ne 0) { throw 'Qualification verifier build failed.' }
+          dotnet bin\Release\net10.0\WinmdUtils.dll verifyMigrationEvidence --directory evidence
+          if ($LASTEXITCODE -ne 0) { throw 'Retained qualification evidence is invalid.' }
 
   changes:
     name: Detect build changes
@@ -401,7 +414,7 @@ jobs:
         if: github.repository == 'jevansaks/win32metadata' && github.event_name == 'pull_request'
         shell: pwsh
         run: |
-          node .github/scripts/verify-migration-evidence.cjs bin\baseline-artifact
+          dotnet bin\Release\net10.0\WinmdUtils.dll verifyMigrationEvidence --directory bin\baseline-artifact
           if ($LASTEXITCODE -ne 0) { throw 'Frozen reference evidence is invalid.' }
           Copy-Item bin\baseline-artifact\pair-1-reference.winmd bin\baseline-artifact\Windows.Win32.winmd
 
