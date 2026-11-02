@@ -42,6 +42,8 @@ test('required checks cover every PR base without path-based omission', () => {
     ['workflow-tests', 'Workflow regression tests'], ['build-test', "'Build, test, package'"]
   ]) assert.match(jobs.get(job), new RegExp(`^    name: ${name}$`, 'm'));
   assert.doesNotMatch(jobs.get('tooling-tests'), /^    (needs|if):/m);
+  assert.match(jobs.get('tooling-tests'), /fetch-depth: 0/);
+  assert.match(jobs.get('tooling-tests'), /lfs: true/);
   assert.match(jobs.get('changes'), /context\.repo\.owner === 'jevansaks'/);
   assert.match(jobs.get('workflow-tests'), /node --test \.github\/tests\/\*\.test\.cjs/);
 });
@@ -257,6 +259,7 @@ function dotnet {
 `;
       const result = spawnSync('pwsh', ['-NoProfile', '-NonInteractive', '-Command', script], { encoding: 'utf8' });
       assert.equal(result.status === 0, name === 'nonempty passing suites', result.stdout + result.stderr);
+      assert.ok(fs.statSync(path.join(directory, 'tooling.log')).size > 0, 'Failures must retain a transcript');
     } finally { fs.rmSync(directory, { recursive: true, force: true }); }
   });
 }
