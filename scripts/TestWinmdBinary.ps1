@@ -14,8 +14,13 @@ if (!$SkipInstallTools.IsPresent)
 Write-Host "*** Running tests on .winmd" -ForegroundColor Blue
 
 $windowsWin32TestsDir = "$rootDir\tests\Windows.Win32.Tests"
-dotnet test $windowsWin32TestsDir -c:Release
-ThrowOnNativeProcessError
+$resultsDirectory = "$binDir\winmd-tests"
+New-Item -ItemType Directory -Force $resultsDirectory | Out-Null
+$trx = "$resultsDirectory\Windows.Win32.Tests.trx"
+if (Test-Path $trx) { Remove-Item $trx }
+dotnet test $windowsWin32TestsDir -c:Release --logger 'trx;LogFileName=Windows.Win32.Tests.trx' --results-directory $resultsDirectory
+if ($LASTEXITCODE -ne 0) { throw "Winmd tests failed (exit $LASTEXITCODE)." }
+Assert-TestResults $trx
 
 Write-Host "`n`e[32mTesting .winmd succeeded`e[0m"
 

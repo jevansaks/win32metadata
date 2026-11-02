@@ -69,6 +69,66 @@ This class walks the final C# abstract syntax trees (AST) and writes each node t
 
 ## WinmdGenerator
 
+### Fork migration qualification
+
+In `jevansaks/win32metadata`, PR validation runs on every PR base, including
+stacked topic branches. `feature/header-annotations` requires the exact checks
+`Migration qualification`, `Tooling tests`, `Workflow regression tests`, and
+`Build, test, package`. Fork documentation changes also run the full checks;
+upstream documentation-only build skipping remains supported. Missing, failed,
+cancelled or unexpectedly skipped dependencies never pass the migration gate.
+Owner review remains required independently of successful automation.
+
+Run `.\scripts\TestTooling.ps1` for all three tooling suites. Both this entry
+point and `.\scripts\DoTests.ps1` reject missing, empty or failing TRX results.
+Run `node --test .github/tests/*.test.cjs` for workflow/verdict regression tests.
+After building tooling, `node --test .github/tests/migration-emission.cjs`
+performs three real emissions of identical fixture inputs, records raw and
+normalized hashes, and verifies that every byte outside the two normalized
+fields is still observed. This is repeated-emission evidence, not full-SDK
+determinism or performance evidence.
+
+`.\scripts\TestMigrationQualification.ps1 -ReferenceDirectory <checkout>`
+requires a separate checkout at
+`86ed37b2846440297afb087c4718acd1a1fb4ad8`. It freshly generates the baseline
+and candidate from identical legacy inputs, with SDK `10.0.28000.2705`,
+ClangSharp `21.1.8.4`, winmd version `1.0.0.0`, two scraper workers, one MSBuild
+node and the existing single-TU-per-partition/architecture behavior. Restoring,
+building tools, queue delay, packages and samples are outside the timed region.
+Generated markers/sources and the output winmd are removed before each sample.
+The measured command runs cross-architecture header and constant scraping
+through final emission, not just an isolated partition or tooling tests.
+
+The initial blocking budgets are a confirmed full-generation wall-time increase
+greater than 10% and process-tree working-set increase greater than 15%.
+One paired sample is normally sufficient; a breach requires confirmation, with
+at most three paired samples and alternating execution order. An unresolved
+two-sample result fails; three samples resolve the majority. Memory is the
+maximum **sampled** sum of live child-process working sets, sampled after each
+CIM query plus a 500ms delay; it is not an instantaneous peak and may miss brief
+spikes. The proposed five-pair warm WinHttp/Foundation/Com pilot and its median
+10%/one-second budget are not implemented in this infrastructure layer.
+
+The drift gate compares the entire final winmd rather than relying on the
+decompiler dump or semantic comparison helper. It normalizes only the Module
+MVID (the emitter calls `Guid.NewGuid`) and the COFF PE creation timestamp
+(`ManagedPEBuilder` defaults); assembly version is fixed before emission.
+There are no approved semantic differences or exclusion masks. Any other
+nondeterminism fails qualification and must be investigated, not masked.
+
+Actions retains TRX, source/input SHA receipts, SDK content and toolchain hashes,
+output winmds/hashes, raw timing/memory samples, target-phase binlogs and drift
+reports, with a linked summary on success and failure. The aggregate downloads
+and rechecks evidence and candidate SHA binding. The fork API-comment baseline
+is this newly generated frozen reference, never an arbitrary latest successful
+branch artifact or last-release fallback. The existing upstream informational
+API comparison is separate from blocking migration qualification.
+
+Future layers can extend the explicit reference/candidate pair to A/B/C inputs
+after separately approving and documenting a source migration. They must not
+replace the frozen reference or budgets with PR output, introduce broad
+approved-difference masks, or treat a selected scrape as final-winmd e2e.
+
 The WinmdGenerator packages the Scraper and Emitter tooling into an [MSBuild project SDK](https://learn.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) that acts as the interface for converting C/C++ projects to winmds for use with language projections.
 
 The WinmdGenerator tooling is published to nuget.org as [Microsoft.Windows.WinmdGenerator](https://www.nuget.org/packages/Microsoft.Windows.WinmdGenerator/). As an MSBuild project SDK, it enables a no-code project file based configuration interface for generating winmd files from arbitrary C/C++ projects.
