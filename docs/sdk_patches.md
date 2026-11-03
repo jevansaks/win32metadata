@@ -1,5 +1,62 @@
 # SDK header patches
 
+## Remaining shell COM outputs
+
+This shell slice audits all 185 remaining `ComOutPtr` records against the
+physical declarations in every selected Shell traversal owner. It retires
+16 exact records, leaving 169 active records; it changes no representation,
+import, namespace, availability, enum, callback, or lifetime mechanism.
+
+| Owning input | Exact retired selectors |
+|---|---|
+| `ShObjIdl_core.idl` | `SHCreateAssociationRegistration::ppv`, `SHCreateDefaultExtractIcon::ppv`, `SHAssocEnumHandlersForProtocolByApplication::enumHandlers`, `IShellMenu::GetShellFolder::ppv` |
+| `ShObjIdl.idl` | `INameSpaceTreeControlEvents::OnBeforeContextMenu::ppv`, `INameSpaceTreeControlEvents::OnAfterContextMenu::ppv` |
+| `ShlObj_core.h` | `SHCoCreateInstance::ppv`, `SHCreateDataObject::ppv`, `SHCreateDefaultContextMenu::ppv`, `SHCreateFileExtractIconW::ppv` |
+| `shellapi.h` | `AssocCreateForClasses::ppv`, `SHGetImageList::ppvObj` |
+| `Shlwapi.h` | `AssocCreate::ppv`, `IQueryAssociations::GetEnum::ppvOut` |
+| `ShlObj.h` | `IDockingWindowFrame::FindToolbar::ppv` |
+| `shdeprecated.h` | `IBrowserService2::CreateBrowserPropSheetExt::ppv` |
+
+Authoritative IDL edits use existing `_COM_Outptr_` SAL in `cpp_quote`
+declarations or the existing MIDL `annotation` attribute, preserving `out`,
+`iid_is`, other SAL and native guards. The five header-only owners have no
+shipped IDL in SDK `10.0.28000.2705`; their edits are post-MIDL patches.
+`AssocCreateForClasses` already carries `_COM_Outptr_` in the shipped SDK:
+its final-winmd proof permits removing the redundant sidecar without a native
+edit. The unbacked ANSI `SHCreateFileExtractIconA` variant remains unchanged.
+The three inherited browser C vtables and `ITrackShellMenu`'s inherited
+`GetShellFolder` vtable copy in `shdeprecated.h` carry the same facts as their
+owning C++ methods. No proxy, template, or inline output declaration is added.
+
+The audit explicitly retains the shell-owned storage operation
+`StgMakeUniqueName`, the generic `IUnknown_GetSite`, `IUnknown_QueryService`
+and `QISearch` helpers, and the seven HLink hyperlink operations. Controls'
+image-list operations and unrelated generic COM, graphics, media, MSHTML,
+automation and storage remain outside this logical shell family. No removed
+SDK APIs or headers are restored. Existing `CanReturn*` sidecars remain active;
+the 17 non-equivalent PreserveResult replacements remain inactive.
+
+`ShellComOutputHeaderTests` compares actual old native declarations plus legacy
+sidecars against patched-header-only declarations through the final winmd on
+x86, x64 and arm64. It checks every selected final custom-attribute payload,
+direction, optionality, retval absence and pointer depth as well as complete
+output bytes. The SDK owner fixture applies the real per-file patches,
+converts imports and runs production MIDL options for both shell IDL owners,
+then compares complete checked-in header bytes and replays all selected
+declarations to final winmd. A focused same-path native fixture calls all
+selected functions/methods and inherited vtable copies in C and C++, in both
+include orders and all three architectures; original, patched and
+`WIN32METADATA` object bytes must match apart from the COFF timestamp.
+The earlier native no-op fixtures are unchanged. Expected old declarations
+come from the unique reachable introduction commit's parent for this fixture,
+not a pinned mutable stack commit. The selected SDK patch replay passes the
+complete package include root as `MidlInputRoot`, so source ownership is checked
+against all shipped IDL inputs rather than only selected copies.
+Ordinary CI still generates one normal candidate and compares against
+an already-produced target winmd, with its existing disclosed fallback.
+
+## Patch ingestion
+
 SDK ingestion supports PR2248's per-file unified diffs and `git apply` mechanism.
 `generation/WinSDK/patches/pre-midl/<owning-file>.patch` modifies copied IDL
 or included headers **before** IDL-to-SAL conversion and MIDL compilation.

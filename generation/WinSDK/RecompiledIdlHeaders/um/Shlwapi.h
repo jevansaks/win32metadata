@@ -1790,13 +1790,13 @@ DECLARE_INTERFACE_IID_( IQueryAssociations, IUnknown, "c46ca590-3c3f-11d2-bee6-0
     STDMETHOD (GetString)(THIS_ _In_ ASSOCF flags, _In_ ASSOCSTR str, _In_opt_ LPCWSTR pszExtra, _Out_writes_opt_(*pcchOut) LPWSTR pszOut, _Inout_ DWORD *pcchOut) PURE;
     STDMETHOD (GetKey)(THIS_ _In_ ASSOCF flags, _In_ ASSOCKEY key, _In_opt_ LPCWSTR pszExtra, _Out_ HKEY *phkeyOut) PURE;
     STDMETHOD (GetData)(THIS_ _In_ ASSOCF flags, _In_ ASSOCDATA data, _In_opt_ LPCWSTR pszExtra, _Out_writes_bytes_opt_(*pcbOut) void * pvOut, _Inout_opt_ DWORD *pcbOut) PURE;
-    STDMETHOD (GetEnum)(THIS_ _In_ ASSOCF flags, _In_ ASSOCENUM assocenum, _In_opt_ LPCWSTR pszExtra, _In_ REFIID riid, _Outptr_ void **ppvOut) PURE;
+    STDMETHOD (GetEnum)(THIS_ _In_ ASSOCF flags, _In_ ASSOCENUM assocenum, _In_opt_ LPCWSTR pszExtra, _In_ REFIID riid, _COM_Outptr_ void **ppvOut) PURE;
 };
 
 
 // use CLSID_QueryAssociations for clsid, object implements IQueryAssociations
 // AssocCreateForClasses() is the more functional version of this API
-LWSTDAPI AssocCreate(_In_ CLSID clsid, _In_ REFIID riid, _Outptr_ void **ppv);
+LWSTDAPI AssocCreate(_In_ CLSID clsid, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 
 // Retrieve an array of class keys from an IQueryAssociations object
 // if the caller is just interested in the primary class key,

@@ -1648,7 +1648,7 @@ STDAPI_(BOOL)   SHTestTokenMembership(_In_opt_ HANDLE hToken, ULONG ulRID);
 #if         _WIN32_IE >= 0x0600
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
-SHSTDAPI SHGetImageList(_In_ int iImageList, _In_ REFIID riid, _Outptr_ void **ppvObj);
+SHSTDAPI SHGetImageList(_In_ int iImageList, _In_ REFIID riid, _COM_Outptr_ void **ppvObj);
 #endif // (NTDDI_VERSION >= NTDDI_WINXP)
 
 

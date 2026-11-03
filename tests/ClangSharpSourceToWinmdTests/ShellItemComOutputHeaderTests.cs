@@ -54,11 +54,12 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             string expected = string.Join("\n", original.Split('\n')
-                .Where(line => !Selectors.Concat(PropertyComOutputHeaderTests.Selectors).Any(selector => line == selector + "=[ComOutPtr]")));
+                .Where(line => !Selectors.Concat(PropertyComOutputHeaderTests.Selectors).Concat(ShellComOutputHeaderTests.Selectors)
+                    .Any(selector => line == selector + "=[ComOutPtr]")));
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
             Assert.AreEqual(expected, current);
-            Assert.AreEqual(185, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(169, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
 
             foreach (var owner in new[] { ("ShObjIdl_core.h", ItemFunctions), ("ShlObj_core.h", BindingFunctions) })
             {
@@ -137,7 +138,7 @@ namespace ClangSharpSourceToWinmdTests
                         expected = expected.Replace(definition.Value, changed);
                     }
                 }
-                CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(expected), File.ReadAllBytes(Path.Combine(
+                CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(ShellComOutputHeaderTests.PatchOwner(owner, expected)), File.ReadAllBytes(Path.Combine(
                     LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)),
                     "No encoding, newline, or unrelated native changes: " + owner);
             }
