@@ -116,6 +116,57 @@ Concrete pre-existing projection boundaries remain explicit:
 - Scoped defaults remain later work; AST acceptance alone is not final-winmd
   coverage or authorization to add a new availability floor.
 
+## Result and lifetime marker support
+
+`_Win32_Retained_` and `_Win32_ContainsInteriorPointers_` already have the
+parameter pilot's reader-to-final-winmd support. The core-owner inventory is
+exhausted: WinHTTP's `WinHttpQueryHeadersEx::pBuffer` interior-buffer fact and
+the adjacent File I/O `ReadFileEx::lpOverlapped` / `WriteFileEx::lpOverlapped`
+retention facts are already in the headers. No remaining matching lifetime
+selector (including wildcard supplies) exists in WinHTTP, Foundation, or COM
+core owners. Other partitions' lifetime sidecars remain untouched.
+
+The support-only result layer adds `_Win32_PreserveResult_`, transporting the
+exact valueless `Win32Metadata.PreserveResult` payload through the existing
+`NativeAnnotation` carrier into `System.Runtime.InteropServices.PreserveSig`.
+The existing emitter encodes it as `MethodImplAttributes.PreserveSig`, not a
+custom attribute or a return-parameter annotation. It neither transforms the
+native HRESULT nor changes native/MIDL retval handling. Equal legacy and header
+facts emit the same complete winmd bytes.
+
+The marker is accepted only on function/method declarations without bodies,
+before their return type and calling convention. MIDL's standard
+`[annotation("_Win32_PreserveResult_")]` method attribute emits the marker after
+`virtual` but before the return type; that native spelling is also accepted.
+Typedefs, callbacks, records, fields, parameters, valued/malformed payloads,
+expression arguments, duplicate markers, and late-only redeclarations fail
+with native source locations. Ordinary compilation still sees an empty macro.
+
+There are **no production API changes or sidecar retirements** in this layer.
+The result inventory must include the differently named existing facts:
+prototype [microsoft/win32metadata#2365](https://github.com/microsoft/win32metadata/pull/2365)'s
+14 COM methods plus CoInitialize, CoInitializeEx, and CoGetTreatAsClass all have
+`CanReturnMultipleSuccessValues` sidecars. Other existing selectors include
+`IUnknown::QueryInterface=[CanReturnErrorsAsSuccess]`, inherited IsDirty sites,
+and the adjacent `IEnumVARIANT::Next` / `Skip` family. These are existing facts,
+not new semantic additions or an exhausted result category.
+
+The current emitter writes those two legacy contracts as distinct custom
+attributes, without setting PreserveSig. Replacing either with PreserveResult
+removes that custom attribute and adds the implementation flag: it is **not**
+an exact final-winmd migration. CsWin32's `UsePreserveSigForComMethod` accepts
+either custom attribute or that flag for COM projection, but that does not make
+the metadata shapes identical or establish equivalent behavior in all consumers.
+The spec's valueless PreserveResult transport cannot recover which legacy
+attribute was present. A focused final-winmd test proves the non-equivalence
+and that retaining a legacy sidecar alongside the marker preserves its custom
+attribute. All legacy selectors remain unchanged; all 17 prototype production
+annotations remain inactive. No prototype patch slices are selected.
+Test-only annotations on the shipped CoInitialize declaration and
+ISequentialStream::Read prove the capability without changing those SDK owners.
+The IDL fixture authors only a temporary copy, runs normal conversion and MIDL,
+then verifies the actual generated method through the final emitter.
+
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
 `git diff` with repository-relative paths under
 `generation/WinSDK/RecompiledIdlHeaders/{um,shared,winrt,ucrt}/`.

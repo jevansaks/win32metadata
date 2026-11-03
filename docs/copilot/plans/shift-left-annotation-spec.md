@@ -58,8 +58,11 @@ The ingested SDK defines the vocabulary in
 The initial C# production pilot enables `_Win32_SetLastError_`, with the
 exact valueless payload `Win32Metadata.SetLastError`. It uses the pinned
 PInvokeGenerator's `WithSetLastErrors` configuration hook without reparsing the
-translation unit. Other owned payloads remain unsupported and are diagnosed;
-the broader vocabulary below is not a statement of pilot coverage.
+translation unit. Additional supported families, including the support-only
+`_Win32_PreserveResult_` transport, are documented in
+[SDK header patches](../../sdk_patches.md). Other owned payloads remain
+unsupported and are diagnosed; the broader vocabulary below is not a statement
+of production annotation coverage.
 The next [grouped parameter pilot](../../sdk_parameter_pilot.md) reuses the same
 single-parse/SAL/emission boundaries for one-for-one moves and documents its
 retired selectors, actual SDK owners, native semantic corrections, and exact gaps.

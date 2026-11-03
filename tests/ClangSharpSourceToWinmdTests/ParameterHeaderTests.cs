@@ -297,7 +297,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual((ushort)1, blob.ReadUInt16(), "Custom attribute prolog");
         }
 
-        private static string AttributeName(MetadataReader reader, CustomAttribute attribute)
+        internal static string AttributeName(MetadataReader reader, CustomAttribute attribute)
         {
             if (attribute.Constructor.Kind == HandleKind.MethodDefinition)
                 return reader.GetString(reader.GetTypeDefinition(reader.GetMethodDefinition(
