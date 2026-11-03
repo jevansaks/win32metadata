@@ -5,6 +5,7 @@ import "dxgicommon.idl";
 import "dxgitype.idl";
 
 cpp_quote("#include <winapifamily.h>")
+cpp_quote("#include <win32metadata_annotations.h>")
 
 //--------------------------------------------------------------------------------------------------------
 // DXGI API-only types
@@ -337,7 +338,7 @@ interface IDXGIAdapter : IDXGIObject
     HRESULT EnumOutputs(
         [in] UINT Output,
         [in, out, annotation("_COM_Outptr_")] IDXGIOutput **ppOutput );
-    HRESULT GetDesc( [out, annotation("_Out_")] DXGI_ADAPTER_DESC *pDesc );
+    HRESULT GetDesc( [out, annotation("_Out_ _Win32_Retval_")] DXGI_ADAPTER_DESC *pDesc );
     HRESULT CheckInterfaceSupport(
         [in, annotation("_In_")] REFGUID InterfaceName,
         [out, annotation("_Out_")] LARGE_INTEGER * pUMDVersion );

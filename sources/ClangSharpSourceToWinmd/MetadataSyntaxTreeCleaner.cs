@@ -159,8 +159,9 @@ namespace ClangSharpSourceToWinmd
 
                 if (this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Type.ToString(), out string newType, out string newName))
                 {
-
+                    var ownedNames = GetOwnedAnnotationNames(node.AttributeLists);
                     node = (ParameterSyntax)base.VisitParameter(node);
+                    VerifyOwnedRemaps(fullName, ownedNames, node.AttributeLists, listAttributes);
                     node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes));
 
                     if (newName != null)
@@ -185,6 +186,28 @@ namespace ClangSharpSourceToWinmd
                 }
 
                 return node;
+            }
+
+            private static string[] GetOwnedAnnotationNames(SyntaxList<AttributeListSyntax> attributes) =>
+                attributes.SelectMany(list => list.Attributes)
+                    .Where(attribute => attribute.Name.ToString() == "NativeAnnotation")
+                    .Select(attribute => (attribute.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?.Token.ValueText)
+                    .Where(payload => payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal) &&
+                        payload != ParameterAnnotation.Owner + "SetLastError")
+                    .Select(payload => ParameterAnnotation.Parse(payload).AttributeName).ToArray();
+
+            private static void VerifyOwnedRemaps(string fullName, string[] ownedNames,
+                SyntaxList<AttributeListSyntax> attributes, List<AttributeSyntax> remaps)
+            {
+                foreach (var ownedName in ownedNames)
+                {
+                    var existing = attributes.SelectMany(list => list.Attributes)
+                        .Single(attribute => attribute.Name.ToString() == ownedName);
+                    foreach (var remap in remaps ?? Enumerable.Empty<AttributeSyntax>())
+                        if (remap.Name.ToString() == ownedName + EncodeHelpers.AttributeToRemoveSuffix ||
+                            remap.Name.ToString() == ownedName && !SyntaxFactory.AreEquivalent(existing, remap))
+                            throw new FormatException($"{fullName}: legacy remap conflicts with native {ownedName}.");
+                }
             }
 
             public override SyntaxNode VisitStructDeclaration(StructDeclarationSyntax node)
@@ -469,6 +492,23 @@ namespace ClangSharpSourceToWinmd
 
                     case "NativeAnnotation":
                     {
+                        var payload = (firstAttr.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?.Token.ValueText;
+                        if (payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal))
+                        {
+                            if (payload == ParameterAnnotation.Owner + "SetLastError") return null;
+                            var annotation = ParameterAnnotation.Parse(payload);
+                            if (node.Parent is not ParameterSyntax &&
+                                !(annotation.Kind == ParameterAnnotationKind.AssociatedEnum && node.Parent is MethodDeclarationSyntax))
+                                throw new FormatException($"Owned parameter annotation on an invalid generated target: {payload}");
+                            var args = annotation.EnumName == null ? null :
+                                SyntaxFactory.AttributeArgumentList(SyntaxFactory.SingletonSeparatedList(
+                                    SyntaxFactory.AttributeArgument(SyntaxFactory.LiteralExpression(
+                                        SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(annotation.EnumName)))));
+                            var result = SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
+                                SyntaxFactory.Attribute(SyntaxFactory.ParseName(annotation.AttributeName), args)));
+                            return node.Parent is MethodDeclarationSyntax ?
+                                result.WithTarget(SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.ReturnKeyword))) : result;
+                        }
                         return null;
                     }
 
@@ -638,7 +678,7 @@ namespace ClangSharpSourceToWinmd
                 }
 
                 var isInterface = node.Parent is StructDeclarationSyntax;
-
+                var ownedReturnNames = GetOwnedAnnotationNames(node.AttributeLists);
                 node = (MethodDeclarationSyntax)base.VisitMethodDeclaration(node);
 
                 // Add Ansi or Unicode attributes to -A/-W APIs.
@@ -685,6 +725,7 @@ namespace ClangSharpSourceToWinmd
                 // Find remap info for the return parameter for this method and apply any that we find
                 if (this.GetRemapInfo(returnFullName, node.AttributeLists, out var listAttributes, nodeReturnType, out var newType, out _))
                 {
+                    VerifyOwnedRemaps(returnFullName, ownedReturnNames, node.AttributeLists, listAttributes);
                     var target = SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.ReturnKeyword));
                     node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes, target));
 
@@ -1200,6 +1241,8 @@ namespace ClangSharpSourceToWinmd
                 {
                     foreach (var attr in salArgsText.Split('^'))
                     {
+                        // Owned annotations are also transported individually as NativeAnnotation.
+                        if (!attr.StartsWith("Name=SAL_", StringComparison.Ordinal)) continue;
                         var salAttr = SalAttribute.CreateFromCppAttribute(attr);
                         if (salAttr != null)
                         {

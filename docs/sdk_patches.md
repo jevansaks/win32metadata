@@ -6,8 +6,10 @@ or included headers **before** IDL-to-SAL conversion and MIDL compilation.
 `post-midl/<owning-file>.patch` modifies the final header copies **after**
 MIDL output and the existing compatibility-header restores.
 
-Ingestion selects `post-midl/winhttp.h.patch` by default for SDK
-`10.0.28000.2705`. Generation uses the checked-in result in
+Ingestion defaults to the evaluated `SdkHeaderPatch` items in
+`generation/WinSDK/Windows.Win32.proj` for SDK `10.0.28000.2705`.
+The grouped [parameter pilot](sdk_parameter_pilot.md) selects four owning
+headers and three owning IDLs. Generation uses the checked-in result in
 `RecompiledIdlHeaders`; it does not apply patches during scraping. Explicit
 selections replace the default list, so retain the WinHttp patch when adding others:
 
@@ -39,10 +41,15 @@ unions the discovered names with the legacy generator `WithSetLastErrors` list.
 It still parses one translation unit and passes that same unit to the generator.
 Unknown/malformed owned payloads, arguments, non-import targets, and non-prefix
 placement fail with native source locations; unrelated annotations are left alone.
-This pilot covers **SetLastError only**, not typedefs, enums, or resource ownership.
+The grouped parameter layer reuses these boundaries for native SAL and four
+small owned facts; its exact coverage and deliberate gaps are documented in
+[the parameter pilot](sdk_parameter_pilot.md). It does not enable the broad
+annotation recipe, enum construction, typedef recovery, or resource ownership.
 The focused WinHttp fixture replays the owning-header patch and checks the exact
 three sidecar deletions. Header-to-winmd fixtures compare complete output bytes
 between legacy and header annotations, without a measurement or receipt framework.
+The grouped fixture replays all seven owning patches against package-original
+SDK files and checks their complete bytes against the reingested owners.
 Full validation uses ordinary CI generation and comparison to an existing target
 winmd; this migration does not add SDK scrapes or paired benchmark builds.
 

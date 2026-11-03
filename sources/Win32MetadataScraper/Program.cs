@@ -175,8 +175,9 @@ class Program
             Debug.Assert(translationUnit is not null);
 
             // ── Walk AST to discover all typedef-tag and function pointer relationships ──
-            var annotations = new LastErrorAnnotations();
+            var annotations = new HeaderAnnotations();
             var discovery = RemapDiscovery.WalkTranslationUnit(translationUnit.TranslationUnitDecl, annotations.Visit);
+            annotations.ValidateEnumAssociations();
 
             // Resolve tag remaps using disambiguation, then apply opt-outs for
             // compatibility cases where we intentionally keep the historical public name.

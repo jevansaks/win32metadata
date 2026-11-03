@@ -2,7 +2,7 @@
 Param(
     [Parameter(Mandatory=$true)]
     [string]$Version,
-    [string[]]$SelectedPatches = @('post-midl/winhttp.h.patch')
+    [string[]]$SelectedPatches = $null
 )
 
 . "$PSScriptRoot\CommonUtils.ps1"

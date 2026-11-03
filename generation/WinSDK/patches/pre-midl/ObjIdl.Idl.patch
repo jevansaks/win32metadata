@@ -1,0 +1,38 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.Idl
+index c7c6f492..d34f4e7e 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.Idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.Idl
+@@ -1,4 +1,5 @@
+ cpp_quote("#include <winapifamily.h>")
++cpp_quote("#include <win32metadata_annotations.h>")
+ 
+ //+-------------------------------------------------------------------------
+ //
+@@ -538,7 +539,7 @@ interface IMoniker : IPersistStream
+         [in, unique, annotation("_In_")] IBindCtx *pbc,
+         [in, unique, annotation("_In_opt_")] IMoniker *pmkToLeft,
+         [in, annotation("_In_")] REFIID riidResult,
+-        [out, iid_is(riidResult), annotation("_Outptr_")] void **ppvResult);
++        [out, iid_is(riidResult), annotation("_COM_Outptr_")] void **ppvResult);
+ 
+     [call_as(BindToObject)]
+     HRESULT RemoteBindToObject(
+@@ -552,7 +553,7 @@ interface IMoniker : IPersistStream
+         [in, unique, annotation("_In_")] IBindCtx *pbc,
+         [in, unique, annotation("_In_opt_")] IMoniker *pmkToLeft,
+         [in, annotation("_In_")] REFIID riid,
+-        [out, iid_is(riid), annotation("_Outptr_")] void **ppvObj);
++        [out, iid_is(riid), annotation("_COM_Outptr_")] void **ppvObj);
+ 
+     [call_as(BindToStorage)]
+     HRESULT RemoteBindToStorage(
+@@ -759,7 +760,7 @@ interface IStorage : IUnknown
+         [in, string] const OLECHAR * pwcsName,
+         [in, unique] IStorage *pstgDest,
+         [in, string] const OLECHAR *pwcsNewName,
+-        [in] DWORD grfFlags);
++        [in, annotation("_In_ _Win32_AssociatedEnum_(STGMOVE)")] DWORD grfFlags);
+ 
+     HRESULT Commit(
+         [in] DWORD grfCommitFlags);

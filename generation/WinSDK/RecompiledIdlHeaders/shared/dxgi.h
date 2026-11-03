@@ -160,6 +160,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 #define DXGI_CPU_ACCESS_NONE    ( 0 )
 #define DXGI_CPU_ACCESS_DYNAMIC    ( 1 )
 #define DXGI_CPU_ACCESS_READ_WRITE    ( 2 )
@@ -1363,7 +1364,7 @@ EXTERN_C const IID IID_IDXGIAdapter;
         
         virtual HRESULT STDMETHODCALLTYPE GetDesc( 
             /* [annotation][out] */ 
-            _Out_  DXGI_ADAPTER_DESC *pDesc) = 0;
+            _Out_ _Win32_Retval_  DXGI_ADAPTER_DESC *pDesc) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE CheckInterfaceSupport( 
             /* [annotation][in] */ 
@@ -1444,7 +1445,7 @@ EXTERN_C const IID IID_IDXGIAdapter;
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             IDXGIAdapter * This,
             /* [annotation][out] */ 
-            _Out_  DXGI_ADAPTER_DESC *pDesc);
+            _Out_ _Win32_Retval_  DXGI_ADAPTER_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGIAdapter, CheckInterfaceSupport)
         HRESULT ( STDMETHODCALLTYPE *CheckInterfaceSupport )( 
@@ -2909,7 +2910,7 @@ EXTERN_C const IID IID_IDXGIAdapter1;
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             IDXGIAdapter1 * This,
             /* [annotation][out] */ 
-            _Out_  DXGI_ADAPTER_DESC *pDesc);
+            _Out_ _Win32_Retval_  DXGI_ADAPTER_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGIAdapter, CheckInterfaceSupport)
         HRESULT ( STDMETHODCALLTYPE *CheckInterfaceSupport )( 

@@ -1,10 +1,11 @@
 param(
-    [string[]]$SelectedPatches = @('post-midl/winhttp.h.patch')
+    [string[]]$SelectedPatches = $null
 )
 
 . "$PSScriptRoot\CommonUtils.ps1"
 
 Install-BuildTools
+if ($null -eq $SelectedPatches) { $SelectedPatches = Get-SdkHeaderPatchSelections }
 
 $cppPkgPath = Get-WinSdkCppPkgPath
 $sdkBinDir = "$cppPkgPath\c\bin\$([System.IO.Path]::GetFileName($cppPkgPath) -replace "\d+$", "0")\x86"

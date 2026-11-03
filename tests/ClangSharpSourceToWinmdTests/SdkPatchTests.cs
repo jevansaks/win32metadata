@@ -265,6 +265,40 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
+        public void ParameterPilot_AllSelectedOwnersReplayByteForByte()
+        {
+            using var fixture = new Fixture();
+            var owners = new[]
+            {
+                ("post-midl/winhttp.h.patch", "um", "winhttp.h"),
+                ("post-midl/combaseapi.h.patch", "um", "combaseapi.h"),
+                ("post-midl/objbase.h.patch", "um", "objbase.h"),
+                ("post-midl/fileapi.h.patch", "um", "fileapi.h"),
+                ("pre-midl/ObjIdl.Idl.patch", "um", "ObjIdl.Idl"),
+                ("pre-midl/ObjIdlbase.Idl.patch", "um", "ObjIdlbase.Idl"),
+                ("pre-midl/dxgi.idl.patch", "shared", "dxgi.idl"),
+            };
+            string copy = ". " + Quote(Script("CommonUtils.ps1")) + "; $sdk = Get-WinSdkCppPkgPath; ";
+            foreach (var owner in owners)
+                copy += "$destination = " + Quote(System.IO.Path.Combine(fixture.Headers, owner.Item2, owner.Item3)) +
+                    "; New-Item -ItemType Directory -Force (Split-Path $destination) | Out-Null; " +
+                    "Copy-Item -LiteralPath (Join-Path $sdk " +
+                    Quote("c\\include\\10.0.28000.0\\" + owner.Item2 + "\\" + owner.Item3) + ") -Destination $destination; ";
+            var copied = fixture.Run(copy);
+            Assert.AreEqual(0, copied.ExitCode, copied.Output);
+            string selections = string.Join("','", owners.Select(owner => owner.Item1));
+            string patches = System.IO.Path.Combine(Root(), "generation", "WinSDK", "patches");
+            fixture.Apply("pre-midl", selections, true, patchRoot: patches);
+            fixture.Apply("post-midl", selections, true, patchRoot: patches);
+            foreach (var owner in owners)
+                CollectionAssert.AreEqual(File.ReadAllBytes(System.IO.Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", owner.Item2, owner.Item3)),
+                    File.ReadAllBytes(System.IO.Path.Combine(fixture.Headers, owner.Item2, owner.Item3)), owner.Item1);
+            StringAssert.Contains(File.ReadAllText(Script("RecompileIdlFilesForScraping.ps1")),
+                "$SelectedPatches = Get-SdkHeaderPatchSelections");
+        }
+
+        [TestMethod]
         public void IngestionHooks_BindCopiedInputsAndFinalOutputs()
         {
             string script = File.ReadAllText(Script("RecompileIdlFilesForScraping.ps1"));
