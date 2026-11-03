@@ -12,7 +12,11 @@ try {
     foreach ($suite in 'MetadataUtils.Tests', 'Win32MetadataScraperTests', 'ClangSharpSourceToWinmdTests') {
         $trx = Join-Path $ResultsDirectory "$suite.trx"
         if (Test-Path $trx) { Remove-Item $trx }
-        & dotnet test "$PSScriptRoot\..\tests\$suite" -c Release --logger "trx;LogFileName=$suite.trx" --results-directory $ResultsDirectory
+        $filter = @()
+        if ($suite -eq 'ClangSharpSourceToWinmdTests') {
+            $filter = @('--filter', 'FullyQualifiedName!~ClangSharpSourceToWinmdTests.SdkPatchTests')
+        }
+        & dotnet test "$PSScriptRoot\..\tests\$suite" -c Release @filter --logger "trx;LogFileName=$suite.trx" --results-directory $ResultsDirectory
         if ($LASTEXITCODE -ne 0) { throw "$suite failed (exit $LASTEXITCODE)." }
         Assert-TestResults $trx
     }

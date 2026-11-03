@@ -34,7 +34,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.IsFalse(workflow.Contains("migration-evidence"));
             Assert.IsFalse(workflow.Contains("  qualification:"));
             string aggregate = Job(workflow, "migration");
-            StringAssert.Contains(aggregate, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, api-diff]");
+            StringAssert.Contains(aggregate, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, api-diff, sdk-patch-tests]");
             StringAssert.Contains(aggregate, "if: always() && github.repository == 'jevansaks/win32metadata'");
             Assert.IsFalse(aggregate.Contains("dotnet"));
             Assert.IsFalse(aggregate.Contains("actions/checkout"));
