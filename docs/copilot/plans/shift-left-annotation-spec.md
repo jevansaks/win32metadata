@@ -219,6 +219,41 @@ _Win32_SupportedOS_10240_
 typedef BOOL(WINAPI *PUBLIC_CALLBACK)(DWORD value);
 ```
 
+The C# callback recovery layer reads existing native typedef relationships in the
+same ClangSharp translation unit used for binding generation. A directly declared
+pointer-to-function typedef supplies the delegate name and complete signature.
+Its direct same-level aliases use that delegate; pointer-adding aliases use
+`DELEGATE*`, preserving the additional native indirection through final winmd
+emission. Existing explicit legacy renaming of the defining callback retains the
+legacy resolution path. Bare function typedef fixups are unchanged.
+
+This retires the `LPWINHTTP_STATUS_CALLBACK` exclusion and the two callback remaps
+in `Partitions/WinHttp/settings.rsp`. The shipped `winhttp.h` declarations need no
+new annotations or patch. Upstream PR #2365's slice guarding the LP alias out of
+`WIN32METADATA` is deliberately not imported: it hides the native pointer-adding
+declaration this layer must recover. The existing owning WinHTTP patch is unchanged.
+
+`CallbackHeaderTests` reads the callback and `WinHttpSetStatusCallback` declarations
+from SDK `10.0.28000.2705`, verifies them against the ingested header, and runs
+those exact declaration slices through the production scraper and winmd emitter.
+It verifies all callback parameters, pointer-sized context, Winapi/StdCall
+convention, and the setter signature on x86, x64, and ARM64 in C and C++.
+A separate use-site fixture exercises the LP alias, which the shipped API does
+not use; another exercises a same-level alias. These are not full-SDK qualification.
+Matching/retired-selector winmd comparisons and deterministic native object
+comparisons observe raw bytes without masks.
+
+Scalar typedef identity is not recovered by this callback layer. `VARTYPE` is
+`unsigned short` in `wtypes.h` and `WTypes.Idl`; it is not the distinct 32-bit
+`VARENUM` declaration. PInvokeGenerator erases its named declaration while retaining
+16-bit use-site storage. The existing `autoTypes` path creates wrapper structs
+from configuration; it is not an AST scalar-typedef transport. Recovering scalar
+identity and genuine `_Win32_AlsoUsableFor_` metadata on such typedefs therefore
+requires a separate emission capability. Those sidecars remain, and owned
+typedef annotations are still diagnosed rather than silently lost. Alias chains,
+namespace-qualified callback identity, annotated alias declarations, synthetic
+enums, namespace coloring, and handle/producer representation are not claimed here.
+
 ## Attribute solution matrix
 
 | winmd semantic | Header syntax | Valid target and consumer behavior |

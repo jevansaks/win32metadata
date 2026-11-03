@@ -48,6 +48,8 @@ public class DiscoveryResult
     /// <summary>Names of typedefs whose underlying type is PointerType → FunctionProtoType (already a pointer).</summary>
     public HashSet<string> FnPointerFunctionTypedefs { get; } = new();
 
+    internal HashSet<string> NonGlobalTypedefs { get; } = new(StringComparer.Ordinal);
+
     /// <summary>All fn proto typedef names (bare + pointer). Convenience accessor.</summary>
     public IEnumerable<string> FnProtoTypedefNames => FnBareFunctionTypedefs.Concat(FnPointerFunctionTypedefs);
 }
@@ -68,6 +70,9 @@ public class ResolvedRemaps
 
     /// <summary>Function pointer typedef names that need pointer level reduction in the emitter.</summary>
     public HashSet<string> ReducePointerLevel { get; set; } = new();
+
+    /// <summary>Native callback alias storage expressed through the defining delegate.</summary>
+    public Dictionary<string, string> FnPtrTypes { get; } = new(StringComparer.Ordinal);
 }
 
 public static class RemapDiscovery
@@ -244,18 +249,18 @@ public static class RemapDiscovery
     ///   typedef CALLBACK *LPCALLBACK;      // pointer alias (adds *)
     /// → remap proto→alias, exclude alias, reducePointerLevel alias
     ///
-    /// Already-pointer typedefs with a pointer-adding alias also generate fixups:
+    /// Already-pointer typedefs keep their defining name and native indirection:
     ///   typedef DWORD (*ACMDRIVERPROC)(...);  // already a pointer
     ///   typedef ACMDRIVERPROC *LPACMDRIVERPROC; // adds another *
-    /// → remap proto→alias, exclude alias, reducePointerLevel alias
+    /// → preserve proto, exclude alias, use proto* for alias references
     ///
-    /// Already-pointer typedefs with same-level aliases (typedef PFOO LPFOO) are
-    /// left to manual configuration — the AST alone cannot determine which name
-    /// should be canonical.
+    /// Same-level aliases refer to the defining callback without adding a pointer.
+    /// Explicit legacy renaming of the defining callback retains the old fixup path.
     /// </summary>
     public static ResolvedRemaps ResolveFunctionPointerFixups(
         DiscoveryResult discovery,
-        ISet<string> configuredExcludes = null)
+        ISet<string> configuredExcludes = null,
+        IReadOnlyDictionary<string, string> configuredRemaps = null)
     {
         configuredExcludes ??= new HashSet<string>(StringComparer.Ordinal);
         var result = new ResolvedRemaps();
@@ -280,11 +285,18 @@ public static class RemapDiscovery
             result.ReducePointerLevel.Add(aliasName);
         }
 
-        // Pass 2: already-pointer typedefs with pointer-adding aliases
-        // e.g., typedef LRESULT (*ACMDRIVERPROC)(...); typedef ACMDRIVERPROC *LPACMDRIVERPROC;
-        // The alias adds another *, so reducePointerLevel is needed.
+        // A delegate already represents one native function pointer. Do not rename
+        // it to a pointer-to-pointer alias or reduce that alias's extra indirection.
         foreach (var protoName in discovery.FnPointerFunctionTypedefs)
         {
+            if (!configuredExcludes.Contains(protoName) && !discovery.NonGlobalTypedefs.Contains(protoName) &&
+                (configuredRemaps == null || !configuredRemaps.TryGetValue(protoName, out var remap) || remap == protoName))
+            {
+                PreserveAliases(discovery.FnProtoToPointerTypedefs, "*");
+                PreserveAliases(discovery.FnSameLevelAliases, "");
+                continue;
+            }
+
             if (!discovery.FnProtoToPointerTypedefs.TryGetValue(protoName, out var ptrAliasNames))
                 continue;
 
@@ -298,10 +310,22 @@ public static class RemapDiscovery
             result.FnPtrRemaps[protoName] = aliasName;
             result.FnPtrExcludes.Add(aliasName);
             result.ReducePointerLevel.Add(aliasName);
-        }
 
-        // Already-pointer typedefs with same-level aliases (typedef PFOO LPFOO)
-        // are NOT auto-discovered — left to manual configuration.
+            void PreserveAliases(Dictionary<string, List<string>> aliases, string indirection)
+            {
+                if (!aliases.TryGetValue(protoName, out var names)) return;
+                result.FnPtrRemaps[protoName] = protoName;
+                foreach (string name in names)
+                {
+                    if (discovery.NonGlobalTypedefs.Contains(name)) continue;
+                    if (configuredRemaps != null && configuredRemaps.TryGetValue(name, out var aliasRemap) &&
+                        aliasRemap != name && aliasRemap != protoName)
+                        throw new FormatException($"Configured remap for callback alias '{name}' conflicts with native callback '{protoName}'.");
+                    result.FnPtrExcludes.Add(name);
+                    result.FnPtrTypes[name] = protoName + indirection;
+                }
+            }
+        }
 
         return result;
     }
@@ -330,6 +354,9 @@ public static class RemapDiscovery
         visitDeclaration?.Invoke(decl);
         if (decl is TypedefDecl typedefDecl)
         {
+            var nativeContext = typedefDecl.DeclContext;
+            while (nativeContext is LinkageSpecDecl linkage) nativeContext = linkage.DeclContext;
+            if (nativeContext is not TranslationUnitDecl) result.NonGlobalTypedefs.Add(typedefDecl.Name);
             var underlyingType = UnwrapType(typedefDecl.UnderlyingType);
 
             if (underlyingType is TagType tagType)
@@ -435,4 +462,3 @@ public static class RemapDiscovery
     }
 }
 }
-

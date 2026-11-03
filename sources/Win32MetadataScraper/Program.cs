@@ -189,7 +189,7 @@ class Program
                 configuredAutoRemapExcludes);
 
             // Resolve function pointer fixups
-            var fnPtrResult = RemapDiscovery.ResolveFunctionPointerFixups(discovery, configuredExcludes);
+            var fnPtrResult = RemapDiscovery.ResolveFunctionPointerFixups(discovery, configuredExcludes, configuredRemaps);
             var preservedFnPtrLevels = settings.GetValueOrDefault("--preserve-auto-fnptr-level") ?? new List<string>();
             foreach (string name in preservedFnPtrLevels)
             {
@@ -217,6 +217,14 @@ class Program
             foreach (string name in annotations.FunctionNames)
                 lastErrorNames.Add(mergedRemaps.GetValueOrDefault(name) ?? name);
             settings["--with-setlasterror"] = lastErrorNames.ToList();
+            var callbackTypes = ParseKeyValuePairs(settings.GetValueOrDefault("--with-type"));
+            foreach (var alias in fnPtrResult.FnPtrTypes)
+            {
+                if (callbackTypes.TryGetValue(alias.Key, out string configuredType) && configuredType != alias.Value)
+                    throw new FormatException($"Configured type for callback alias '{alias.Key}' conflicts with native storage '{alias.Value}'.");
+                callbackTypes[alias.Key] = alias.Value;
+            }
+            settings["--with-type"] = callbackTypes.Select(pair => $"{pair.Key}={pair.Value}").ToList();
             var config = CreateConfig(settings, ns, outputFile, headerFile, configOptions, mergedRemaps, allExcludes);
 
             var capturedStreams = new Dictionary<string, MemoryStream>();
