@@ -250,6 +250,9 @@ public static class Apis {
             StringAssert.Contains(build, @".\scripts\DoPackages.ps1 -skipInstallTools");
             StringAssert.Contains(build, @".\scripts\DoSamples.ps1 -skipInstallTools");
             StringAssert.Contains(build, @".\scripts\DoTests.ps1 -SkipInstallTools");
+            foreach (string script in new[] { "DoPackages", "DoSamples", "DoTests" })
+                StringAssert.Matches(build, new Regex(@"run: \|\n          \. \.\\scripts\\CommonUtils\.ps1\n          Install-VsDevShell\n          \.\\scripts\\" + script + @"\.ps1 -[sS]kipInstallTools\n"),
+                    "Each Actions step has a fresh shell and must initialize VS even when reusing binaries.");
             Assert.IsFalse(build.Contains("BuildMetadataBin.ps1 -assetsScrapedSeparately -skipInstallTools"),
                 "Metadata emission must prepare the tools before later steps reuse them.");
             foreach (string artifact in new[] { "build-winmd", "build_logs", "full-test-results", "NuGetPackages" })

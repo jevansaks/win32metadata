@@ -170,6 +170,7 @@ try {
     $hardware = @(
         $processors | ForEach-Object { "CPU: $($_.Name); logical cores: $($_.NumberOfLogicalProcessors)" }
         "Total RAM bytes: $($memory.TotalPhysicalMemory)"
+        "Runner image OS: $env:ImageOS; image version: $env:ImageVersion"
         'Effective qualification scraper workers: 2; MSBuild nodes: 1; ScanArch: crossarch'
     )
     $hardware | Set-Content "$ResultsDirectory\runner-hardware.txt"

@@ -86,7 +86,7 @@ for both paths, verifies the frozen reference and emits the existing API diff an
 canonical winmd artifacts. The migration aggregate also requires that job to
 succeed. This overlaps build work with measurement without changing per-emission
 budgets, reference selection or documentation-change qualification.
-Qualification setup logs CPU model, logical cores, RAM and effective worker
+Qualification setup logs CPU model, logical cores, RAM, runner image and effective worker
 settings in `runner-hardware.txt`, without hostname or receipt-schema changes.
 
 Run `.\scripts\TestTooling.ps1` for all three tooling suites. Both this entry

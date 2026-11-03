@@ -389,17 +389,26 @@ jobs:
       - name: Package
         if: needs.changes.outputs.build_needed == 'true'
         shell: pwsh
-        run: .\scripts\DoPackages.ps1 -skipInstallTools
+        run: |
+          . .\scripts\CommonUtils.ps1
+          Install-VsDevShell
+          .\scripts\DoPackages.ps1 -skipInstallTools
 
       - name: Build samples
         if: needs.changes.outputs.build_needed == 'true'
         shell: pwsh
-        run: .\scripts\DoSamples.ps1 -skipInstallTools
+        run: |
+          . .\scripts\CommonUtils.ps1
+          Install-VsDevShell
+          .\scripts\DoSamples.ps1 -skipInstallTools
 
       - name: Run tests
         if: needs.changes.outputs.build_needed == 'true'
         shell: pwsh
-        run: .\scripts\DoTests.ps1 -SkipInstallTools
+        run: |
+          . .\scripts\CommonUtils.ps1
+          Install-VsDevShell
+          .\scripts\DoTests.ps1 -SkipInstallTools
 
       - name: Retain emitted winmd for comparison
         uses: ./.github/actions/upload-artifact-with-retry
