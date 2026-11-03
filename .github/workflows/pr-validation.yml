@@ -89,6 +89,8 @@ jobs:
           New-Item -ItemType Directory -Force $results | Out-Null
           $trx = Join-Path $results 'sdk-patches.trx'
           if (Test-Path $trx) { Remove-Item $trx }
+          dotnet restore BuildTools --configfile nuget.Config
+          if ($LASTEXITCODE -ne 0) { throw "SDK fixture dependency restore failed (exit $LASTEXITCODE)." }
           dotnet test tests\ClangSharpSourceToWinmdTests -c Release --filter 'FullyQualifiedName~ClangSharpSourceToWinmdTests.SdkPatchTests' --logger 'trx;LogFileName=sdk-patches.trx' --results-directory $results
           if ($LASTEXITCODE -ne 0) { throw "SDK patch tests failed (exit $LASTEXITCODE)." }
           Assert-TestResults $trx

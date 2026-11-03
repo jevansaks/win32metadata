@@ -77,6 +77,8 @@ job. Its path filter includes ingestion scripts, patch assets/fixtures, the two
 proof inputs, and relevant build configuration. Unrelated PRs skip this job
 without starting a runner. Renamed paths are checked on both sides; incomplete
 file lists fail closed by running the tests. Manual and push runs also run them.
+The selective job restores existing BuildTools package dependencies for its
+real SDK/MIDL fixtures; it does not build tools or regenerate a full SDK.
 `TestTooling.ps1` (also called by `DoTests.ps1`) excludes `SdkPatchTests`, so they
 do not add runtime to ordinary tooling or the serial build/test/package job.
 The existing required aggregate check (retaining the **Migration qualification**
