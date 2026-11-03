@@ -439,15 +439,17 @@ inactive because their metadata shapes differ.
 legacy sidecars against header-only final winmd bytes on x86/x64/ARM64.
 It reuses the shell fixture's exact Out/nonoptional/nonretval, `void**` and
 singleton custom-attribute blob assertions and checks equal-sidecar
-deduplication. The original source is the existing reachable SDK ancestor
-`c16762d41f1bd641ff8c4389ebf16ee50747129f`, not a movable
-stack branch SHA; all selected original native files and sidecar rows match
-that immutable SDK-update ancestor. An explicit ancestry assertion requires
-it to be reachable from the tested head, including CI's clean full-history
-branch fetch. The complete corpus audit accounts for the preceding sixteen
-parameter-pilot retirements as well as the core/URLMon/shell layers. Byte audits prove
+deduplication. Original native files and sidecars come from the parent of the
+property fixture's single reachable introduction commit, following the
+core/URLMon/shell baseline mechanism. No pre-rebase parent or SDK-update SHA
+is pinned. An explicit ancestry assertion requires the resolved baseline to
+be reachable from the tested head, including CI's clean full-history branch
+fetch. The complete corpus audit compares the original 205-record corpus
+with the remaining 185 and requires every independent sidecar to be unchanged.
+Byte audits prove
 only the intended SAL substitutions and preserve native encoding/newlines.
-The existing selected-SDK replay fixture now patches both IDLs, runs actual
+The existing selected-SDK replay fixture retains the full `MidlInputRoot`
+ownership check for both phases, patches both IDLs, runs actual
 MIDL for both owners, checks every owning file byte-for-byte, and runs the
 fresh outputs through final emission on all three architectures. The existing
 shell native fixture retains its original checks and additionally compiles

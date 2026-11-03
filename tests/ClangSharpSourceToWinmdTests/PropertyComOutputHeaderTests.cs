@@ -11,7 +11,17 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class PropertyComOutputHeaderTests
     {
-        internal const string SdkAncestor = "c16762d41f1bd641ff8c4389ebf16ee50747129f";
+        internal static string PreRetirementCommit(string root)
+        {
+            var introduction = LastErrorHeaderTests.Run("git", "-C", root, "log", "--diff-filter=A",
+                "--format=%H", "HEAD", "--", "tests/ClangSharpSourceToWinmdTests/PropertyComOutputHeaderTests.cs");
+            Assert.AreEqual(0, introduction.ExitCode, introduction.Output);
+            string[] commits = introduction.Output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(1, commits.Length, "Expected one reachable introduction of the property output migration fixture.");
+            var parent = LastErrorHeaderTests.Run("git", "-C", root, "rev-parse", commits[0] + "^");
+            Assert.AreEqual(0, parent.ExitCode, parent.Output);
+            return parent.Output.Trim();
+        }
         internal static readonly string[] PropertyFunctions =
         {
             "PSCreateAdapterFromPropertyStore::ppv", "PSCreateDelayedMultiplexPropertyStore::ppv",
@@ -40,27 +50,19 @@ namespace ClangSharpSourceToWinmdTests
         public void CompleteOwnerInventory_RetiresOnlyTwentyExactRecords()
         {
             string original = ReadOriginal("emitter.settings.rsp").Replace("\r\n", "\n");
+            string parent = PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot());
             var ancestry = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(),
-                "merge-base", "--is-ancestor", SdkAncestor, "HEAD");
-            Assert.AreEqual(0, ancestry.ExitCode, "The selected SDK fixture must be reachable in a clean branch fetch. " + ancestry.Output);
-            Assert.AreEqual(253, original.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
-            string[] pilot = {
-                "CoGetDefaultContext::ppv", "IAddrExclusionControl::GetCurrentAddrExclusionList::ppEnumerator",
-                "IAsyncManager::GetCallContext::pInterface", "IGlobalInterfaceTable::GetInterfaceFromGlobal::ppv",
-                "IInternalUnknown::QueryInternalInterface::ppv", "IMarshal::UnmarshalInterface::ppv",
-                "IRpcChannelBuffer3::GetCallContext::pInterface", "CreateDataCache::ppv", "BindMoniker::ppvResult",
-                "CoGetObject::ppv", "CoGetObjectContext::ppv", "CoGetClassObject::ppv", "CoGetCallContext::ppInterface",
-                "CoGetCancelObject::ppUnk", "IMoniker::BindToObject::ppvResult", "IMoniker::BindToStorage::ppvObj",
-            };
-            string[] previous = pilot.Concat(ComOutputHeaderTests.Selectors).Concat(UrlMonComOutputHeaderTests.Selectors)
-                .Concat(ShellItemComOutputHeaderTests.Selectors).ToArray();
-            string[] records = original.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal) &&
-                !previous.Any(selector => line == selector + "=[ComOutPtr]")).ToArray();
+                "merge-base", "--is-ancestor", parent, "HEAD");
+            Assert.AreEqual(0, ancestry.ExitCode, "The pre-retirement fixture must be reachable in a clean branch fetch. " + ancestry.Output);
+            string[] records = original.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray();
             Assert.AreEqual(205, records.Length);
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
+            Assert.AreEqual(string.Join("\n", original.Split('\n').Where(line =>
+                !Selectors.Any(selector => line == selector + "=[ComOutPtr]"))), current,
+                "Preserve all independent sidecars exactly.");
             CollectionAssert.AreEqual(records.Where(line => !Selectors.Any(selector => line == selector + "=[ComOutPtr]")).ToArray(),
                 current.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
                 "Retire only the twenty exact records from the complete remaining corpus.");
@@ -221,10 +223,10 @@ struct IBindCtx : IUnknown {};
 
         internal static string ReadOriginal(string path, bool checkoutBytes = false)
         {
-            // Reachable SDK ancestor, not a movable stack parent; selected declarations are unchanged there.
+            string parent = PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot());
             string[] arguments = checkoutBytes
-                ? new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "cat-file", "--filters", SdkAncestor + ":generation/WinSDK/" + path }
-                : new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "show", SdkAncestor + ":generation/WinSDK/" + path };
+                ? new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "cat-file", "--filters", parent + ":generation/WinSDK/" + path }
+                : new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "show", parent + ":generation/WinSDK/" + path };
             var result = LastErrorHeaderTests.Run("git", arguments);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             return result.Output;
