@@ -1,5 +1,68 @@
 # SDK header patches
 
+## CLR hosting and metadata activation outputs
+
+This layer audits all **100** parent `ComOutPtr` records against every physical
+header in the `ClrHosting` and `WinRT.Metadata` traversals. The complete direct
+output family has **10 facts**: **9 complete retirements, 1 partial retirement,
+0 newly retained boundaries**, leaving **90** active `ComOutPtr` records.
+`CLRCreateInstance::ppInterface=[Out][ComOutPtr]` becomes exactly
+`CLRCreateInstance::ppInterface=[Out]`; the independent direction fact is not
+retired along with the COM-output attribute.
+
+| Owning native input | Exact migrated selectors |
+|---|---|
+| `um/mscoree.h` | `ClrCreateManagedInstance::ppObject`, `CorBindToCurrentRuntime::ppv`, `CorBindToRuntime::ppv`, `CorBindToRuntimeByCfg::ppv`, `CorBindToRuntimeEx::ppv`, `CorBindToRuntimeHost::ppv`, `ICLRControl::GetCLRManager::ppObject`, `IHostControl::GetHostManager::ppObject` |
+| `um/metahost.h` | `CLRCreateInstance::ppInterface` |
+| `winrt/rometadata.h` | `MetaDataGetDispenser::ppv` |
+
+All three owners are header-only in this ingestion. SDK `10.0.28000.2705`
+ships `rometadata.h`, but none of the corresponding IDLs. `mscoree.h` and
+`metahost.h` are already-existing `AdditionalHeaders` compatibility inputs
+copied before patch application; the SDK no longer ships either header.
+Their original compatibility inputs remain unchanged. The post-MIDL patches
+apply to the actual copied outputs after ingestion. No missing SDK IDL or
+header is reconstructed or restored.
+
+Only standard `_COM_Outptr_` SAL is added/replaced, at **12 physical sites**:
+eight function declarations and both C++/C-vtable materializations of each
+manager method. Existing guards, IID comments, pointer depth/type, calling
+conventions and all unrelated native bytes stay intact. The complete traversal
+audit finds no selected inherited, inline/template, proxy or local/remote
+counterpart requiring another edit. `CLRCreateInstanceFnPtr` and
+`CreateInterfaceFnPtr` are separate callback facts and remain unchanged.
+
+`ClrComOutputHeaderTests` extracts the actual original/patched declarations
+and proves complete final-winmd byte equality on x86/x64/arm64, including
+the retained independent `[Out]` record, redundant legacy records, exact
+`void**` shape, output-only flags and singleton custom-attribute payload/order.
+Its raw-byte proof permits only the selected SAL edits. Original native and
+legacy records use reachable immutable SDK ancestor
+`c16762d41f1bd641ff8c4389ebf16ee50747129f`, not a movable stack parent.
+`SdkPatchTests` byte-matches those originals to the actual SDK/compatibility
+inputs, replays all three actual patches and feeds their complete output
+through final emission for each target. There is no applicable MIDL generation.
+
+The same-path native proof compiles all complete headers and calls all ten
+sites in C/C++ on x86/x64/arm64, in both hosting-first and Windows/metadata-first
+include orders. Original, patched and `WIN32METADATA` builds compare every
+object byte except the COFF timestamp. The unchanged compatibility header
+lacks its own `IManagedObject` forward declaration in C; the fixture supplies
+only that forward declaration, identically in all three modes. Existing native
+no-op proofs are preserved, and production integrity assertions cover all ten
+selected sites. No annotation transport, identity mapping or canonicalizer changes.
+
+All inherited boundaries remain active: DWrite's independent exact `void**`
+override, `IWeakReference::Resolve`'s combined shape record, the existing
+`IAgileReference` shape boundary, and the presentation method's custom-attribute
+**row-order-only** boundary. Production `CanReturn*` remains active and all
+17 PreserveResult replacements remain inactive. Other service, debugging,
+DirectShow/audio, imaging/controls, accessibility, ActiveDirectory and callback
+families stay outside this layer. Ordinary CI still generates one normal
+candidate against an already-produced exact-target winmd, with the existing
+explicitly disclosed fallback and visible missing-baseline/diff failure.
+There is no extra full-SDK/reference generation or workflow change.
+
 ## COM+ transaction, activity and interception service outputs
 
 This layer audits all **114** parent `ComOutPtr` records against the actual

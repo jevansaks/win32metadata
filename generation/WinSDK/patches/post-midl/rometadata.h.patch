@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/rometadata.h b/generation/WinSDK/RecompiledIdlHeaders/winrt/rometadata.h
+index 39641a9b..0c3bbe20 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/rometadata.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/rometadata.h
+@@ -15,7 +15,7 @@
+ STDAPI MetaDataGetDispenser(
+         __in REFCLSID            rclsid, 
+         __in REFIID              riid, 
+-        __deref_out LPVOID FAR * ppv);
++        _COM_Outptr_ LPVOID FAR * ppv);
+ 
+ #endif //NTDDI_VERSION >= NTDDI_WIN8
+ 
