@@ -100,6 +100,119 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual("prefix\nstale\nsuffix\n", File.ReadAllText(second));
         }
 
+        [DataTestMethod]
+        [DataRow("pre-midl")]
+        [DataRow("post-midl")]
+        public void RegeneratedHeaders_AreRejectedUsingCompleteInputsBeforeAnyWrites(string phase)
+        {
+            using var fixture = new Fixture();
+            string source = Path.Combine(fixture.Path, "sdk");
+            Directory.CreateDirectory(Path.Combine(source, "um"));
+            foreach (string owner in new[] { "parent", "child" })
+            {
+                File.WriteAllText(Path.Combine(source, "um", owner + ".idl"),
+                    owner == "parent" ? "import \"child.idl\";\n" : "typedef int Child;\n");
+                File.WriteAllText(Path.Combine(source, "um", owner + ".h"), "/* File created by MIDL compiler */\n");
+            }
+            string first = fixture.Header("direct.h", Encoding.ASCII.GetBytes("prefix\nbefore\nsuffix\n"));
+            string generated = fixture.Header("child.h", File.ReadAllBytes(Path.Combine(source, "um", "child.h")));
+            fixture.Patch(phase + "/direct.h.patch", "um/direct.h");
+            fixture.Patch(phase + "/child.h.patch", "um/child.h");
+            var result = fixture.Run($"& {Quote(Script("ApplySDKPatches.ps1"))} -Phase {Quote(phase)} " +
+                $"-HeaderRoot {Quote(fixture.Headers)} -MidlInputRoot {Quote(source)} -SdkVersion {Quote(Version)} " +
+                $"-PatchRoot {Quote(fixture.Patches)} -SelectedPatches @('{phase}/direct.h.patch','{phase}/child.h.patch')");
+            Assert.AreNotEqual(0, result.ExitCode, result.Output);
+            StringAssert.Contains(result.Output, "authoritative IDL um/child.idl");
+            Assert.AreEqual("prefix\nbefore\nsuffix\n", File.ReadAllText(first));
+            Assert.AreEqual("/* File created by MIDL compiler */\n", File.ReadAllText(generated));
+        }
+
+        [DataTestMethod]
+        [DataRow("winsync", false, true)]
+        [DataRow("filterpipeline", false, true)]
+        [DataRow("wincrypt", true, true)]
+        [DataRow("direct", true, false)]
+        public void DirectHeaders_RemainAllowedDespiteHistoricalBannerOrExcludedIdl(string owner, bool idl, bool banner)
+        {
+            using var fixture = new Fixture();
+            string before = (banner ? "/* File created by MIDL compiler */" : "prefix") + "\nbefore\nsuffix\n";
+            string target = fixture.Header(owner + ".h", Encoding.ASCII.GetBytes(before));
+            if (idl) fixture.Header(owner + ".idl", Encoding.ASCII.GetBytes("typedef int Direct;\n"));
+            fixture.Patch("post-midl/" + owner + ".h.patch", "um/" + owner + ".h");
+            fixture.Apply("post-midl", "post-midl/" + owner + ".h.patch", success: true);
+            Assert.AreEqual(before.Replace("\nbefore\n", "\nafter\n"), File.ReadAllText(target));
+        }
+
+        [TestMethod]
+        public void CapturedOutputMap_RejectsRenamedHeadersWithoutGuessingOwnerBasename()
+        {
+            using var fixture = new Fixture();
+            string target = fixture.Header("renamed.h", Encoding.ASCII.GetBytes("prefix\nbefore\nsuffix\n"));
+            fixture.Patch("post-midl/renamed.h.patch", "um/renamed.h");
+            var result = fixture.Run($"& {Quote(Script("ApplySDKPatches.ps1"))} -Phase post-midl " +
+                $"-HeaderRoot {Quote(fixture.Headers)} -SdkVersion {Quote(Version)} -PatchRoot {Quote(fixture.Patches)} " +
+                "-SelectedPatches @('post-midl/renamed.h.patch') " +
+                "-MidlOutputs @(@{ Idl='shared/authoritative.idl'; Header='UM/RENAMED.H' })");
+            Assert.AreNotEqual(0, result.ExitCode, result.Output);
+            StringAssert.Contains(result.Output, "shared/authoritative.idl");
+            Assert.AreEqual("prefix\nbefore\nsuffix\n", File.ReadAllText(target));
+        }
+
+        [TestMethod]
+        public void SelectedSdk_ClassificationDistinguishesActualOutputsFromHistoricalBanners()
+        {
+            using var fixture = new Fixture();
+            var result = fixture.Run(
+                "$packages = if ($env:NUGET_PACKAGES) { $env:NUGET_PACKAGES } else { Join-Path $env:USERPROFILE '.nuget\\packages' }; " +
+                "$include = Join-Path $packages 'microsoft.windows.sdk.cpp\\10.0.28000.2705\\c\\include\\10.0.28000.0'; " +
+                "if (!(Test-Path -LiteralPath $include)) { throw \"Required SDK inputs missing: $include\" }; " +
+                "$outputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) + " -HeaderRoot $include); " +
+                "foreach ($owner in 'objidl', 'objidlbase') { " +
+                "if (@($outputs | Where-Object { $_.Header -ieq \"um/$owner.h\" }).Count -ne 1) { throw \"Missing actual output: $owner\" } }; " +
+                "foreach ($owner in 'winsync', 'filterpipeline', 'sapi51', 'sapi53', 'imapi', 'IE12Plugin', 'Ole2', 'OleCtl', 'coml2api', 'wincrypt') { " +
+                "if (!(Test-Path -LiteralPath (Join-Path $include \"um\\$owner.h\"))) { throw \"Expected direct header missing: $owner\" }; " +
+                "if ($outputs.Header -icontains \"um/$owner.h\") { throw \"Incorrectly classified direct header: $owner\" } }");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+        }
+
+        [TestMethod]
+        public void IncludedIdlFact_SurvivesActualMidlInMultipleQueuedOwners()
+        {
+            using var fixture = new Fixture();
+            fixture.Header("child.idl", Encoding.ASCII.GetBytes("cpp_quote(\"// prefix\")\ncpp_quote(\"// before\")\ncpp_quote(\"// suffix\")\n"));
+            fixture.Header("imported.idl", Encoding.ASCII.GetBytes("typedef int Imported;\n"));
+            foreach (string owner in new[] { "parent", "second" })
+            {
+                fixture.Header(owner + ".idl", Encoding.ASCII.GetBytes(
+                    "import \"imported.idl\";\n#include \"child.idl\"\n" +
+                    "[uuid(431fcd36-4281-4fa2-b194-895046acde58)]\ninterface " + owner + " { void Method([in] Imported value); }\n"));
+                fixture.Header(owner + ".h", Encoding.ASCII.GetBytes("/* File created by MIDL compiler */\n"));
+            }
+            string patch = fixture.Patch("pre-midl/child.idl.patch", "um/child.idl");
+            File.WriteAllText(patch, File.ReadAllText(patch)
+                .Replace("-before\n+after\n suffix\n", "-cpp_quote(\"// before\")\n+cpp_quote(\"// after\")\n cpp_quote(\"// suffix\")\n"));
+            fixture.Apply("pre-midl", "pre-midl/child.idl.patch", success: true);
+            string converted = Path.Combine(fixture.Path, "converted");
+            Directory.CreateDirectory(converted);
+            var result = fixture.Run(
+                ". " + Quote(Script("CommonUtils.ps1")) + "; " +
+                "$packages = if ($env:NUGET_PACKAGES) { $env:NUGET_PACKAGES } else { Join-Path $env:USERPROFILE '.nuget\\packages' }; " +
+                "$midl = Join-Path $packages 'microsoft.windows.sdk.cpp\\10.0.28000.2705\\c\\bin\\10.0.28000.0\\x86\\midl.exe'; " +
+                "if (!(Test-Path -LiteralPath $midl)) { throw \"Required SDK MIDL missing: $midl\" }; " +
+                "$env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); " +
+                "$inputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) + " -HeaderRoot " + Quote(fixture.Headers) + " -IncludeUnqueued); " +
+                "foreach ($input in $inputs) { & " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) +
+                " (Join-Path " + Quote(fixture.Headers) + " $input.Idl) (Join-Path " + Quote(converted) + " ([IO.Path]::GetFileName($input.Idl))) }; " +
+                "$outputs = @($inputs | Where-Object { $_.Header }); if ($outputs.Count -ne 2) { throw 'Incorrect owner queue' }; " +
+                "foreach ($output in $outputs) { & $midl (Join-Path " + Quote(converted) + " ([IO.Path]::GetFileName($output.Idl))) " +
+                "/out " + Quote(converted) + " /header (Join-Path " + Quote(fixture.Headers) + " $output.Header) " +
+                "/no_warn /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8 /I " + Quote(converted) +
+                "; if ($LASTEXITCODE -ne 0) { throw \"MIDL failed: $LASTEXITCODE\" } }");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            foreach (string owner in new[] { "parent", "second" })
+                StringAssert.Contains(File.ReadAllText(Path.Combine(fixture.Headers, "um", owner + ".h")), "// after");
+        }
+
         [TestMethod]
         public void ReparseTarget_IsRejectedWithoutFollowingLink()
         {
@@ -158,6 +271,10 @@ namespace ClangSharpSourceToWinmdTests
             int post = script.IndexOf("-Phase post-midl -HeaderRoot $recompiledIdlHeadersDir", StringComparison.Ordinal);
             Assert.IsTrue(pre > script.IndexOf("Copy-Item \"$windowsWin32ProjectRoot\\AdditionalHeaders", StringComparison.Ordinal));
             Assert.IsTrue(pre < script.IndexOf("& $PSScriptRoot\\ConvertMidlAttributesToSalAnnotations.ps1", StringComparison.Ordinal));
+            Assert.IsTrue(script.IndexOf("$midlOutputs = @($midlInputs", StringComparison.Ordinal) < pre);
+            StringAssert.Contains(script, "$midlOutputs | ForEach-Object -ThrottleLimit");
+            StringAssert.Contains(script, "Copy-Item $outputHeader $destination");
+            Assert.AreEqual(2, script.Split("-MidlOutputs $midlOutputs").Length - 1);
             Assert.IsTrue(post > script.LastIndexOf("Copy-Item $outputHeader", StringComparison.Ordinal));
             Assert.IsTrue(post > script.LastIndexOf("git restore", StringComparison.Ordinal));
             Assert.AreEqual(2, script.Split("-SdkVersion ([IO.Path]::GetFileName($cppPkgPath)) -SelectedPatches $SelectedPatches").Length - 1);
@@ -179,7 +296,7 @@ namespace ClangSharpSourceToWinmdTests
             StringAssert.Contains(workflow, "const sdkPatchesNeeded = fileListIncomplete || changedPaths.some");
             StringAssert.Contains(workflow, "file.previous_filename, file.filename");
             foreach (string path in new[] { "scripts/ApplySDKPatches.ps1", "scripts/UpdateSDK.ps1",
-                "scripts/RecompileIdlFilesForScraping.ps1", "generation/WinSDK/patches/",
+                "scripts/RecompileIdlFilesForScraping.ps1", "scripts/Get-SDKMidlOutputs.ps1", "generation/WinSDK/patches/",
                 "tests/ClangSharpSourceToWinmdTests/SdkPatchFixtures/" })
                 StringAssert.Contains(workflow, $"'{path}'");
             StringAssert.Contains(workflow, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, api-diff, sdk-patch-tests]");
@@ -226,7 +343,7 @@ namespace ClangSharpSourceToWinmdTests
         {
             public string Path { get; } = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "sdk-patch-tests-" + Guid.NewGuid().ToString("N"));
             public string Headers => System.IO.Path.Combine(Path, "headers");
-            private string Patches => System.IO.Path.Combine(Path, "patches");
+            public string Patches => System.IO.Path.Combine(Path, "patches");
 
             public Fixture() { Directory.CreateDirectory(Headers); Directory.CreateDirectory(Patches); }
             public string Header(string owner, byte[] bytes)

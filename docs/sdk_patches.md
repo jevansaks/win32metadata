@@ -40,6 +40,23 @@ Each phase is staged before copying results back, so a failed hunk leaves that
 phase's authoritative files untouched. Failure stops ingestion; rerun from fresh
 SDK copies after fixing the patch.
 
+Header patches in either phase cannot target outputs in the production MIDL
+regeneration queue. Patch the authoritative IDL in `pre-midl` instead, including
+IDL incorporated through imports or includes. Ingestion captures the queue once
+after SDK, Direct3D, and AdditionalHeaders copies and before patches, then uses
+the same IDL/output paths for compilation, copy-back, and both phase guards.
+The existing exclusions (including `wincrypt.idl`) still apply. A historical
+MIDL banner alone does not make a header an output: headers without a queued
+shipped source, such as `winsync.h`, remain valid direct-header targets.
+AdditionalHeaders and restored compatibility inputs are not reclassified as
+shipped SDK sources by this guard.
+
+Standalone application derives the same queue from `HeaderRoot`. If replaying
+against a subset of headers, pass `-MidlInputRoot` pointing to the complete
+copied ingestion input tree; a header-only subset cannot establish ownership.
+Ingestion passes its captured `MidlOutputs` directly so renamed output paths
+are checked without guessing the IDL's basename.
+
 Target bytes are not decoded/re-encoded. Patch line endings are matched to each
 target's LF or CRLF format; UTF-8 BOMs and legacy byte encodings are preserved.
 UTF-16 and mixed line endings are explicitly unsupported. When the SDK changes,
