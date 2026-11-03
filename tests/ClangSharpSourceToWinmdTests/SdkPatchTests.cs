@@ -278,7 +278,7 @@ namespace ClangSharpSourceToWinmdTests
                 ("pre-midl/ObjIdlbase.Idl.patch", "um", "ObjIdlbase.Idl"),
                 ("pre-midl/dxgi.idl.patch", "shared", "dxgi.idl"),
             };
-            string copy = ". " + Quote(Script("CommonUtils.ps1")) + "; $sdk = Get-WinSdkCppPkgPath; ";
+            string copy = "$sdk = " + Quote(LastErrorHeaderTests.SdkPackagePath()) + "; ";
             foreach (var owner in owners)
                 copy += "$destination = " + Quote(System.IO.Path.Combine(fixture.Headers, owner.Item2, owner.Item3)) +
                     "; New-Item -ItemType Directory -Force (Split-Path $destination) | Out-Null; " +
@@ -368,12 +368,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(0, result.ExitCode, result.Output);
         }
 
-        private static string Root()
-        {
-            var directory = new DirectoryInfo(AppContext.BaseDirectory);
-            while (directory != null && !File.Exists(System.IO.Path.Combine(directory.FullName, "DoAll.ps1"))) directory = directory.Parent;
-            return directory?.FullName ?? throw new InvalidOperationException("Repository root not found.");
-        }
+        private static string Root() => LastErrorHeaderTests.RepositoryRoot();
 
         private static string Script(string name) => System.IO.Path.Combine(Root(), "scripts", name);
         private static string Quote(string value) => "'" + value.Replace("'", "''") + "'";

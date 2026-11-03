@@ -142,3 +142,14 @@ attribute blobs, and existing-enum associations in the complete header-only
 winmd. A fresh selected-owner scrape with the final canonical-declaration guard
 passed in 30.615 seconds: five normal common-lane partitions and WinHttp on
 x86, x64, and arm64. These selected-owner results do not replace full hosted CI.
+
+The test project explicitly declares the same pinned SDK package used by the
+production build, with a generated path property and no imported build/runtime
+assets. Its shared SDK-path helper reuses the existing repository-root locator
+and NuGet-property reader. SDK replay therefore needs only the test project's
+restore, not aggregate `BuildTools.proj` properties or a workflow setup
+workaround. The parallel lane, selection, timeouts, required-dependency
+enforcement, and qualification gates remain unchanged.
+With aggregate NuGet properties deliberately absent, the parent tooling suites
+passed 195 tests and the separate SDK replay suite passed all 24 tests. The
+header/emitter suite took 79 seconds and SDK replay took 36 seconds.
