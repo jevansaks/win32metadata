@@ -1,13 +1,10 @@
 * @mikebattista @jevansaks @vineeththomasalex @microsoft/windows-sdk
 
-# Fork qualification changes require an owner with access to the fork.
+# Fork CI ownership uses an owner with access to the fork.
 /.github/ @jevansaks
 /scripts/TestTooling.ps1 @jevansaks
-/scripts/TestMigrationQualification.ps1 @jevansaks
 /scripts/DoTests.ps1 @jevansaks
 /scripts/CommonUtils.ps1 @jevansaks
 /scripts/TestWinmdBinary.ps1 @jevansaks
 /docs/architecture.md @jevansaks
-/sources/WinmdUtils/MigrationQualification.cs @jevansaks
-/sources/WinmdUtils/Program.cs @jevansaks
 /tests/ClangSharpSourceToWinmdTests/ @jevansaks

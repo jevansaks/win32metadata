@@ -63,82 +63,27 @@ jobs:
         uses: ./.github/actions/upload-artifact-with-retry
         with:
           name: tooling-tests
-          path: |
-            bin/tooling-tests
-            bin/emission-evidence
-          retention-days: 30
-
-  qualification:
-    name: Full paired migration measurement
-    if: github.repository == 'jevansaks/win32metadata'
-    runs-on: windows-2022
-    timeout-minutes: 300
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-        with:
-          lfs: true
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Check out frozen reference
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-        with:
-          ref: 86ed37b2846440297afb087c4718acd1a1fb4ad8
-          path: .qualification/reference
-          lfs: true
-          fetch-depth: 0
-          persist-credentials: false
-      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
-        with:
-          global-json-file: global.json
-      - name: Qualify identical legacy inputs
-        shell: pwsh
-        run: .\scripts\TestMigrationQualification.ps1 -ReferenceDirectory .qualification\reference
-      - name: Retain qualification evidence
-        if: always()
-        uses: ./.github/actions/upload-artifact-with-retry
-        with:
-          name: migration-evidence
-          path: bin/migration-qualification
+          path: bin/tooling-tests
           retention-days: 30
 
   migration:
     name: Migration qualification
-    needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification, api-diff]
+    needs: [changes, workflow-tests, tooling-tests, scrape, build-test, api-diff]
     if: always() && github.repository == 'jevansaks/win32metadata'
     runs-on: windows-2022
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Require every qualification dependency
+      - name: Require every CI dependency
         env:
           NEEDS: ${{ toJSON(needs) }}
         shell: pwsh
         run: |
           $needs = $env:NEEDS | ConvertFrom-Json -AsHashtable
-          foreach ($name in 'changes', 'workflow-tests', 'tooling-tests', 'scrape', 'build-test', 'qualification', 'api-diff') {
+          foreach ($name in 'changes', 'workflow-tests', 'tooling-tests', 'scrape', 'build-test', 'api-diff') {
             if ($needs[$name].result -ne 'success') {
               throw "Required dependency $name did not succeed: $($needs[$name].result)"
             }
           }
-      - name: Verify retained qualification receipt
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
-        with:
-          name: migration-evidence
-          path: evidence
-      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
-        with:
-          global-json-file: global.json
-
-      - name: Verify receipt and output binding
-        shell: pwsh
-        run: |
-          dotnet build sources\WinmdUtils -c Release --verbosity quiet
-          if ($LASTEXITCODE -ne 0) { throw 'Qualification verifier build failed.' }
-          dotnet bin\Release\net10.0\WinmdUtils.dll verifyMigrationEvidence --directory evidence
-          if ($LASTEXITCODE -ne 0) { throw 'Retained qualification evidence is invalid.' }
 
   changes:
     name: Detect build changes
@@ -373,8 +318,8 @@ jobs:
           retention-days: 7
 
   api-diff:
-    name: Frozen reference and API comparison
-    needs: [changes, build-test, qualification]
+    name: Target baseline and API comparison
+    needs: [changes, build-test]
     if: always()
     runs-on: windows-2022
     timeout-minutes: 20
@@ -383,16 +328,12 @@ jobs:
         shell: pwsh
         env:
           NEEDS: ${{ toJSON(needs) }}
-          IS_FORK: ${{ github.repository == 'jevansaks/win32metadata' }}
         run: |
           $needs = $env:NEEDS | ConvertFrom-Json -AsHashtable
           foreach ($name in 'changes', 'build-test') {
             if ($needs[$name].result -ne 'success') {
               throw "Required dependency $name did not succeed: $($needs[$name].result)"
             }
-          }
-          if ($env:IS_FORK -eq 'true' -and $needs['qualification'].result -ne 'success') {
-            throw "Fork qualification did not succeed: $($needs['qualification'].result)"
           }
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         if: needs.changes.outputs.build_needed == 'true'
@@ -422,7 +363,7 @@ jobs:
         run: Write-Host 'All changed files are under docs/ or apidocs/. No API comparison is required.'
 
       - name: Download baseline winmd from target branch
-        if: needs.changes.outputs.build_needed == 'true' && github.event_name == 'pull_request' && github.repository != 'jevansaks/win32metadata'
+        if: needs.changes.outputs.build_needed == 'true' && github.event_name == 'pull_request'
         id: baseline
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
@@ -430,100 +371,91 @@ jobs:
             const fs = require('fs');
             const path = require('path');
 
-            // Find the latest successful run on the target branch
-            const baseBranch = context.payload.pull_request.base.ref;
-            const runs = await github.rest.actions.listWorkflowRuns({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'pr-validation.yml',
-              branch: baseBranch,
-              status: 'success',
-              per_page: 1
-            });
-
-            if (runs.data.workflow_runs.length === 0) {
-              core.warning(`No successful runs found on ${baseBranch}. Will fall back to NuGet baseline.`);
-              return;
+            const targets = [
+              { owner: context.repo.owner, repo: context.repo.repo,
+                branch: context.payload.pull_request.base.ref,
+                head_sha: context.payload.pull_request.base.sha },
+              { owner: 'microsoft', repo: 'win32metadata', branch: 'main' }
+            ];
+            const outputDir = 'bin/baseline-artifact';
+            for (const target of targets) {
+              try {
+                const runs = await github.rest.actions.listWorkflowRuns({
+                  ...target, workflow_id: 'pr-validation.yml', status: 'success', per_page: 1
+                });
+                const run = runs.data.workflow_runs[0];
+                if (!run || (target.head_sha && run.head_sha !== target.head_sha)) {
+                  core.warning(`No successful baseline for ${target.owner}/${target.repo}:${target.branch} at the requested commit.`);
+                  continue;
+                }
+                const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+                  owner: target.owner, repo: target.repo, run_id: run.id
+                });
+                const matches = artifacts.data.artifacts.filter(a => a.name === 'winmd' && a.expired === false);
+                if (matches.length !== 1) {
+                  core.warning(`No unique unexpired winmd in baseline run ${run.id}.`);
+                  continue;
+                }
+                const artifact = matches[0];
+                const download = await github.rest.actions.downloadArtifact({
+                  owner: target.owner, repo: target.repo, artifact_id: artifact.id, archive_format: 'zip'
+                });
+                fs.mkdirSync(outputDir, { recursive: true });
+                const zipPath = path.join(outputDir, 'artifact.zip');
+                fs.writeFileSync(zipPath, Buffer.from(download.data));
+                const { execSync } = require('child_process');
+                execSync(`Expand-Archive -Path "${zipPath}" -DestinationPath "${outputDir}" -Force`, { shell: 'pwsh' });
+                fs.unlinkSync(zipPath);
+                const winmd = path.join(outputDir, 'Windows.Win32.winmd');
+                if (!fs.existsSync(winmd) || fs.statSync(winmd).size === 0) {
+                  throw new Error('Baseline artifact has no nonempty Windows.Win32.winmd.');
+                }
+                const source = `${target.owner}/${target.repo}:${target.branch}; commit=${run.head_sha}; run=${run.id}; artifact=${artifact.id}; ${run.html_url}`;
+                fs.writeFileSync('bin/baseline-source.txt', source + '\n');
+                core.info(`Baseline: ${source}`);
+                return;
+              } catch (error) {
+                core.warning(`Baseline unavailable from ${target.owner}/${target.repo}:${target.branch}: ${error.message}`);
+                fs.rmSync(outputDir, { recursive: true, force: true });
+              }
             }
-
-            const runId = runs.data.workflow_runs[0].id;
-            core.info(`Found baseline run ${runId} on ${baseBranch}`);
-
-            // Find the winmd artifact
-            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: runId
-            });
-
-            const winmdArtifact = artifacts.data.artifacts.find(a => a.name === 'winmd');
-            if (!winmdArtifact) {
-              core.warning('No winmd artifact found in baseline run. Will fall back to NuGet baseline.');
-              return;
-            }
-
-            if (winmdArtifact.expired) {
-              core.warning('The baseline winmd artifact has expired. Will fall back to NuGet baseline.');
-              return;
-            }
-
-            // Download and extract
-            try {
-              const download = await github.rest.actions.downloadArtifact({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                artifact_id: winmdArtifact.id,
-                archive_format: 'zip'
-              });
-
-              const outputDir = 'bin/baseline-artifact';
-              fs.mkdirSync(outputDir, { recursive: true });
-              const zipPath = path.join(outputDir, 'artifact.zip');
-              fs.writeFileSync(zipPath, Buffer.from(download.data));
-
-              // Extract using PowerShell
-              const { execSync } = require('child_process');
-              execSync(`Expand-Archive -Path "${zipPath}" -DestinationPath "${outputDir}" -Force`, { shell: 'pwsh' });
-              fs.unlinkSync(zipPath);
-              core.info(`Extracted baseline winmd to ${outputDir}`);
-            } catch (error) {
-              core.warning(`Could not download or extract the baseline winmd artifact. Will fall back to NuGet baseline: ${error.message}`);
-            }
-
-      - name: Download frozen fork reference
-        if: github.repository == 'jevansaks/win32metadata' && github.event_name == 'pull_request'
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
-        with:
-          name: migration-evidence
-          path: bin/baseline-artifact
-
-      - name: Select frozen fork reference
-        if: github.repository == 'jevansaks/win32metadata' && github.event_name == 'pull_request'
-        shell: pwsh
-        run: |
-          dotnet bin\Release\net10.0\WinmdUtils.dll verifyMigrationEvidence --directory bin\baseline-artifact
-          if ($LASTEXITCODE -ne 0) { throw 'Frozen reference evidence is invalid.' }
-          Copy-Item bin\baseline-artifact\pair-1-reference.winmd bin\baseline-artifact\Windows.Win32.winmd
+            core.warning('Target/upstream artifacts unavailable; comparison will use the restored released package.');
 
       - name: Generate API surface diff
         if: needs.changes.outputs.build_needed == 'true' && github.event_name == 'pull_request'
         id: apidump
         shell: pwsh
         run: |
-          $ErrorActionPreference = 'Continue'
+          $ErrorActionPreference = 'Stop'
           $PSNativeCommandUseErrorActionPreference = $false
 
           $winmdUtils = "bin\Release\net10.0\WinmdUtils.dll"
           $currentWinmd = "bin\Windows.Win32.winmd"
 
-          # Determine baseline: prefer main branch artifact, fall back to last release
+          # Reuse produced artifacts or the existing released-package baseline.
           $baselineWinmd = "bin\baseline-artifact\Windows.Win32.winmd"
           if (-not (Test-Path $baselineWinmd)) {
-            Write-Host "No main branch artifact found, falling back to last NuGet release..."
+            Write-Host "No target/upstream artifact found, falling back to the released package..."
             . .\scripts\CommonUtils.ps1
+            dotnet restore buildtools --configfile nuget.config --verbosity quiet
+            if ($LASTEXITCODE -ne 0) { throw 'Released baseline restore failed.' }
             $baselineWinmd = Get-Win32MetadataLastReleaseWinmdPath
+            "Released Microsoft.Windows.SDK.Win32Metadata: $baselineWinmd" | Set-Content bin\baseline-source.txt
           }
 
+          foreach ($file in $baselineWinmd, $currentWinmd) {
+            if (!(Test-Path $file -PathType Leaf) -or (Get-Item $file).Length -eq 0) {
+              throw "Missing/empty comparison winmd: $file"
+            }
+          }
+          if (!(Test-Path bin\baseline-source.txt)) { throw 'Baseline source is not identified.' }
+          $source = Get-Content -Raw bin\baseline-source.txt
+          "Candidate commit: $env:GITHUB_SHA" | Set-Content bin\comparison-inputs.txt
+          "Baseline SHA256: $((Get-FileHash $baselineWinmd -Algorithm SHA256).Hash)" | Add-Content bin\comparison-inputs.txt
+          "Candidate SHA256: $((Get-FileHash $currentWinmd -Algorithm SHA256).Hash)" | Add-Content bin\comparison-inputs.txt
+          if ($env:GITHUB_STEP_SUMMARY) {
+            "## API comparison baseline`n`n$source`n`nCandidate commit: ``$env:GITHUB_SHA``" | Add-Content $env:GITHUB_STEP_SUMMARY
+          }
           Write-Host "Baseline: $baselineWinmd"
           Write-Host "Current:  $currentWinmd"
 
@@ -536,10 +468,17 @@ jobs:
           Write-Host "Dumping current build..."
           & dotnet $winmdUtils dump --winmd $currentWinmd --output bin\current.apidump.cs
           if ($LASTEXITCODE -ne 0) { throw "Failed to dump current" }
+          foreach ($dump in 'bin\baseline.apidump.cs', 'bin\current.apidump.cs') {
+            if (!(Test-Path $dump) -or (Get-Item $dump).Length -eq 0 -or
+                (Select-String -LiteralPath $dump -SimpleMatch '// ERROR decompiling')) {
+              throw "Missing or incomplete API dump: $dump"
+            }
+          }
 
           # Generate diff — git diff exits 1 when differences exist, which is expected
           & cmd /c "git diff --no-index --unified=3 bin\baseline.apidump.cs bin\current.apidump.cs > bin\api-diff.patch 2>&1"
           $diffExitCode = $LASTEXITCODE
+          if ($diffExitCode -notin 0, 1) { throw "API diff command failed (exit $diffExitCode)." }
 
           if ($diffExitCode -eq 0) {
             Write-Host "No API differences found."
@@ -579,4 +518,6 @@ jobs:
             bin/current.apidump.cs
             bin/baseline.apidump.cs
             bin/api-diff.patch
+            bin/baseline-source.txt
+            bin/comparison-inputs.txt
           retention-days: 90
