@@ -1,0 +1,37 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h
+index d9e7285c..b28b2233 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h
+@@ -1056,7 +1056,7 @@ STDAPI SHGetKnownFolderItem(_In_ REFKNOWNFOLDERID rfid,
+                             _In_ KNOWN_FOLDER_FLAG flags,
+                             _In_opt_ HANDLE hToken,
+                             _In_ REFIID riid,
+-                            _Outptr_ void **ppv);
++                            _COM_Outptr_ void **ppv);
+ #endif // NTDDI_WIN7
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN2K)
+@@ -3400,18 +3400,18 @@ SHSTDAPI_(void) SHGetSettings(_Out_ SHELLFLAGSTATE *psfs, DWORD dwMask);
+ // Given a pidl, you can get an interface pointer (as specified by riid) of the pidl's parent folder (in ppv)
+ // If ppidlLast is non-NULL, you can also get the pidl of the last item.
+ //
+-SHSTDAPI SHBindToParent(_In_ PCIDLIST_ABSOLUTE pidl, _In_ REFIID riid, _Outptr_ void **ppv, _Outptr_opt_ PCUITEMID_CHILD *ppidlLast);
++SHSTDAPI SHBindToParent(_In_ PCIDLIST_ABSOLUTE pidl, _In_ REFIID riid, _COM_Outptr_ void **ppv, _Outptr_opt_ PCUITEMID_CHILD *ppidlLast);
+ 
+ #if (NTDDI_VERSION >= NTDDI_VISTA)
+ 
+ // Same as SHBindToParent, except you also specify which root to use.
+-SHSTDAPI SHBindToFolderIDListParent(_In_opt_ IShellFolder *psfRoot, _In_ PCUIDLIST_RELATIVE pidl, _In_ REFIID riid, _Outptr_ void **ppv, _Outptr_opt_ PCUITEMID_CHILD *ppidlLast);
++SHSTDAPI SHBindToFolderIDListParent(_In_opt_ IShellFolder *psfRoot, _In_ PCUIDLIST_RELATIVE pidl, _In_ REFIID riid, _COM_Outptr_ void **ppv, _Outptr_opt_ PCUITEMID_CHILD *ppidlLast);
+ 
+ // same as SHBindToFolderIDListParent but with a IBindCtx *pbc;
+-SHSTDAPI SHBindToFolderIDListParentEx(_In_opt_ IShellFolder *psfRoot, _In_ PCUIDLIST_RELATIVE pidl, _In_opt_ IBindCtx *ppbc, _In_ REFIID riid, _Outptr_ void **ppv, _Outptr_opt_ PCUITEMID_CHILD *ppidlLast);
++SHSTDAPI SHBindToFolderIDListParentEx(_In_opt_ IShellFolder *psfRoot, _In_ PCUIDLIST_RELATIVE pidl, _In_opt_ IBindCtx *ppbc, _In_ REFIID riid, _COM_Outptr_ void **ppv, _Outptr_opt_ PCUITEMID_CHILD *ppidlLast);
+ 
+ // helper function that gets the desktop object, then calls BindToObject on that
+-SHSTDAPI SHBindToObject(_In_opt_ IShellFolder *psf, _In_ PCUIDLIST_RELATIVE pidl, _In_opt_ IBindCtx *pbc, _In_ REFIID riid, _Outptr_ void **ppv);
++SHSTDAPI SHBindToObject(_In_opt_ IShellFolder *psf, _In_ PCUIDLIST_RELATIVE pidl, _In_opt_ IBindCtx *pbc, _In_ REFIID riid, _COM_Outptr_ void **ppv);
+ 
+ #endif // NTDDI_VISTA
+ 

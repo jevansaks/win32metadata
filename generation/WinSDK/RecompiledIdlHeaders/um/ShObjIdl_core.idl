@@ -2743,18 +2743,18 @@ cpp_quote("SHSTDAPI_(PIDLIST_ABSOLUTE) SHSimpleIDListFromPath(_In_ PCWSTR pszPat
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 cpp_quote("// CLSID_ShellItem create and init helper APIs. produce IShellItem derived interfaces from these different expressions of an item")
-cpp_quote("SHSTDAPI SHCreateItemFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ REFIID riid, _Outptr_ void **ppv);")
-cpp_quote("SHSTDAPI SHCreateItemFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ REFIID riid, _Outptr_ void **ppv);")
-cpp_quote("SHSTDAPI SHCreateItemWithParent(_In_opt_ PCIDLIST_ABSOLUTE pidlParent, _In_opt_ IShellFolder *psfParent, _In_ PCUITEMID_CHILD pidl, _In_ REFIID riid, _Outptr_ void **ppvItem);")
-cpp_quote("SHSTDAPI SHCreateItemFromRelativeName(_In_ IShellItem *psiParent, _In_ PCWSTR pszName, _In_opt_ IBindCtx* pbc, _In_ REFIID riid, _Outptr_ void **ppv);")
+cpp_quote("SHSTDAPI SHCreateItemFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
+cpp_quote("SHSTDAPI SHCreateItemFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
+cpp_quote("SHSTDAPI SHCreateItemWithParent(_In_opt_ PCIDLIST_ABSOLUTE pidlParent, _In_opt_ IShellFolder *psfParent, _In_ PCUITEMID_CHILD pidl, _In_ REFIID riid, _COM_Outptr_ void **ppvItem);")
+cpp_quote("SHSTDAPI SHCreateItemFromRelativeName(_In_ IShellItem *psiParent, _In_ PCWSTR pszName, _In_opt_ IBindCtx* pbc, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
 cpp_quote("#endif  // (_WIN32_IE >= _WIN32_IE_IE70)")
 
 cpp_quote("#if (NTDDI_VERSION >= NTDDI_VISTA)")
-cpp_quote("SHSTDAPI SHCreateItemInKnownFolder(_In_ REFKNOWNFOLDERID kfid, DWORD dwKFFlags, _In_opt_ PCWSTR pszItem, _In_ REFIID riid, _Outptr_ void **ppv);")
+cpp_quote("SHSTDAPI SHCreateItemInKnownFolder(_In_ REFKNOWNFOLDERID kfid, DWORD dwKFFlags, _In_opt_ PCWSTR pszItem, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
 cpp_quote("// get the IDList expression from an object, works with objects that support IPersistIDlist or IPersistIDlist like CLSID_ShellItem and most shell folders")
 cpp_quote("SHSTDAPI SHGetIDListFromObject(_In_ IUnknown *punk, _Outptr_ PIDLIST_ABSOLUTE *ppidl);")
 cpp_quote("// similar to SHGetIDListFromObject but returns an IShellItem-based object (preferred for performance if the IDList is already bound to a folder)")
-cpp_quote("SHSTDAPI SHGetItemFromObject(_In_ IUnknown *punk, _In_ REFIID riid, _Outptr_ void **ppv);")
+cpp_quote("SHSTDAPI SHGetItemFromObject(_In_ IUnknown *punk, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
 
 cpp_quote("// these APIs return object that support IPropertyStore or related interfaces")
 cpp_quote("SHSTDAPI SHGetPropertyStoreFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Outptr_ void **ppv);")
@@ -2774,7 +2774,7 @@ typedef [v1_enum] enum DATAOBJ_GET_ITEM_FLAGS
 } DATAOBJ_GET_ITEM_FLAGS;
 cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(DATAOBJ_GET_ITEM_FLAGS)")
 // returns IShellItem and other interfaces that CLSID_ShellItem implements
-cpp_quote("STDAPI SHGetItemFromDataObject(_In_ IDataObject *pdtobj, _In_ DATAOBJ_GET_ITEM_FLAGS dwFlags, _In_ REFIID riid, _Outptr_ void **ppv);")
+cpp_quote("STDAPI SHGetItemFromDataObject(_In_ IDataObject *pdtobj, _In_ DATAOBJ_GET_ITEM_FLAGS dwFlags, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
 cpp_quote("#endif // (NTDDI_VERSION >= NTDDI_WIN7)")
 
 // New for Vista, but used by downlevel code
@@ -3174,7 +3174,7 @@ interface ITransferSource : IUnknown
         [in, annotation("_In_")] IShellItem *psi,
         [in, annotation("_In_")] TRANSFER_SOURCE_FLAGS flags,
         [in, annotation("_In_")] REFIID riid,
-        [out, iid_is(riid), annotation("_Outptr_")] void **ppv);
+        [out, iid_is(riid), annotation("_COM_Outptr_")] void **ppv);
 
     // Move the item within the volume/namespace, returning the shell item
     // in its new location.
@@ -3387,10 +3387,10 @@ interface ITransferDestination : IUnknown
         [in, annotation("_In_")] TRANSFER_SOURCE_FLAGS flags,
         // ppvItem should be an IShellItem or derived interface
         [in, annotation("_In_")] REFIID riidItem,
-        [out, iid_is(riidItem), annotation("_Outptr_")] void **ppvItem,
+        [out, iid_is(riidItem), annotation("_COM_Outptr_")] void **ppvItem,
         // ppvResources should be an IShellItemResources or derived interface
         [in, annotation("_In_")] REFIID riidResources,
-        [out, iid_is(riidResources), annotation("_Outptr_")] void **ppvResources);
+        [out, iid_is(riidResources), annotation("_COM_Outptr_")] void **ppvResources);
 }
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
@@ -3528,9 +3528,9 @@ interface IShellItemArray : IUnknown
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 cpp_quote("SHSTDAPI SHCreateShellItemArray(_In_opt_ PCIDLIST_ABSOLUTE pidlParent, _In_opt_ IShellFolder *psf, _In_ UINT cidl, _In_reads_opt_(cidl) PCUITEMID_CHILD_ARRAY ppidl, _Outptr_ IShellItemArray **ppsiItemArray);")
-cpp_quote("SHSTDAPI SHCreateShellItemArrayFromDataObject(_In_ IDataObject *pdo, _In_ REFIID riid, _Outptr_ void **ppv);")
+cpp_quote("SHSTDAPI SHCreateShellItemArrayFromDataObject(_In_ IDataObject *pdo, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
 cpp_quote("SHSTDAPI SHCreateShellItemArrayFromIDLists(_In_ UINT cidl, _In_reads_(cidl) PCIDLIST_ABSOLUTE_ARRAY rgpidl, _Outptr_ IShellItemArray **ppsiItemArray);")
-cpp_quote("SHSTDAPI SHCreateShellItemArrayFromShellItem(_In_ IShellItem *psi, _In_ REFIID riid, _Outptr_ void **ppv);")
+cpp_quote("SHSTDAPI SHCreateShellItemArrayFromShellItem(_In_ IShellItem *psi, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
 cpp_quote("#endif  // (_WIN32_IE >= _WIN32_IE_IE70)")
 
 [
