@@ -80,6 +80,15 @@ cancelled or unexpectedly skipped dependencies never pass the migration gate.
 The fork does not require a second reviewer. User sign-off still precedes
 coordinator-managed merges; successful automation alone does not authorize merging.
 
+Build, package, samples and structural tests start as soon as all scrape artifacts
+are ready, independently of paired measurement. A downstream comparison job waits
+for both paths, verifies the frozen reference and emits the existing API diff and
+canonical winmd artifacts. The migration aggregate also requires that job to
+succeed. This overlaps build work with measurement without changing per-emission
+budgets, reference selection or documentation-change qualification.
+Qualification setup logs CPU model, logical cores, RAM and effective worker
+settings in `runner-hardware.txt`, without hostname or receipt-schema changes.
+
 Run `.\scripts\TestTooling.ps1` for all three tooling suites. Both this entry
 point and `.\scripts\DoTests.ps1` reject missing, empty or failing TRX results.
 The existing MSTest emitter suite now includes workflow/verdict guardrail tests,

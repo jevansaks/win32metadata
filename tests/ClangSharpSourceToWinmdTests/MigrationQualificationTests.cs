@@ -17,7 +17,7 @@ namespace ClangSharpSourceToWinmdTests
         private static readonly string Hash = new string('a', 64);
         private static readonly string CandidateSha = new string('b', 40);
         private static readonly string[] Dependencies =
-            { "changes", "workflow-tests", "tooling-tests", "scrape", "build-test", "qualification" };
+            { "changes", "workflow-tests", "tooling-tests", "scrape", "build-test", "qualification", "api-diff" };
 
         [TestMethod]
         public void RepeatedEmission_OnlyMvidAndTimestampAreNormalized()
@@ -235,14 +235,39 @@ public static class Apis {
             Assert.AreEqual(1, Regex.Matches(workflow, @"run: node ").Count, "Node is reserved for the existing API-comment tests.");
             StringAssert.Contains(Job(workflow, "changes"), "context.repo.owner === 'jevansaks'");
             string migration = Job(workflow, "migration");
-            StringAssert.Contains(migration, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification]");
+            StringAssert.Contains(migration, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification, api-diff]");
             StringAssert.Contains(migration, "if: always() && github.repository == 'jevansaks/win32metadata'");
             StringAssert.Contains(migration, "verifyMigrationEvidence --directory evidence");
             StringAssert.Contains(migration, "fetch-depth: 0");
             string build = Job(workflow, "build-test");
             StringAssert.Contains(build, "if: always()");
-            foreach (string dependency in new[] { "changes", "scrape", "qualification" })
+            StringAssert.Contains(build, "needs: [changes, scrape]");
+            Assert.IsFalse(build.Contains("needs.qualification"));
+            foreach (string dependency in new[] { "changes", "scrape" })
                 StringAssert.Contains(build, $"needs.{dependency}.result != 'success'");
+            foreach (string script in new[] { "BuildMetadataBin", "DoPackages", "DoSamples", "DoTests" })
+                StringAssert.Contains(build, $@".\scripts\{script}.ps1");
+            StringAssert.Contains(build, @".\scripts\DoPackages.ps1 -skipInstallTools");
+            StringAssert.Contains(build, @".\scripts\DoSamples.ps1 -skipInstallTools");
+            StringAssert.Contains(build, @".\scripts\DoTests.ps1 -SkipInstallTools");
+            Assert.IsFalse(build.Contains("BuildMetadataBin.ps1 -assetsScrapedSeparately -skipInstallTools"),
+                "Metadata emission must prepare the tools before later steps reuse them.");
+            foreach (string artifact in new[] { "build-winmd", "build_logs", "full-test-results", "NuGetPackages" })
+                StringAssert.Contains(build, $"name: {artifact}\n");
+            Assert.IsFalse(build.Contains("Download frozen fork reference"));
+            string comparison = Job(workflow, "api-diff");
+            StringAssert.Contains(comparison, "needs: [changes, build-test, qualification]");
+            StringAssert.Contains(comparison, "    if: always()\n");
+            StringAssert.Contains(comparison, "name: Documentation-only change\n");
+            StringAssert.Contains(comparison, "if: needs.changes.outputs.build_needed != 'true'\n");
+            StringAssert.Matches(build, new Regex(@"name: Retain emitted winmd for comparison\n        uses: [^\n]+\n        if: always\(\) && needs.changes.outputs.build_needed == 'true'\n"));
+            StringAssert.Contains(comparison, "name: build-winmd\n");
+            StringAssert.Contains(comparison, "name: migration-evidence\n");
+            StringAssert.Contains(comparison, "verifyMigrationEvidence --directory bin\\baseline-artifact");
+            StringAssert.Contains(comparison, "name: Generate API surface diff");
+            StringAssert.Contains(comparison, "name: winmd\n");
+            StringAssert.Contains(comparison, "name: api-diff\n");
+            StringAssert.Contains(comparison, "retention-days: 90");
             StringAssert.Contains(Job(workflow, "scrape"), "arch: [x64, x86, arm64]");
             foreach (string arch in new[] { "x64", "x86", "arm64" })
                 StringAssert.Contains(build, $"name: generated_{arch}");
@@ -261,6 +286,40 @@ public static class Apis {
             string owners = File.ReadAllText(Path.Combine(root, ".github", "CODEOWNERS"));
             StringAssert.Contains(owners, "/.github/ @jevansaks");
             StringAssert.Contains(owners, "/sources/WinmdUtils/MigrationQualification.cs @jevansaks");
+        }
+
+        [TestMethod]
+        public void ComparisonDependencies_FailClosedWithoutBlockingIndependentBuild()
+        {
+                string workflow = File.ReadAllText(Path.Combine(RepositoryRoot(), ".github", "workflows", "pr-validation.yml")).Replace("\r\n", "\n");
+                string block = Job(workflow, "api-diff");
+                Match match = Regex.Match(block, @"name: Require comparison dependencies.*?        run: \|\n(?<script>(?:          [^\n]*\n)+)", RegexOptions.Singleline);
+                Assert.IsTrue(match.Success);
+                string script = Regex.Replace(match.Groups["script"].Value, "^          ", "", RegexOptions.Multiline);
+                var results = new[] { "changes", "build-test", "qualification" }.ToDictionary(name => name, _ => new { result = "success" });
+                Assert.AreEqual(0, Run("pwsh", new[] { "-NoProfile", "-NonInteractive", "-Command", script },
+                    new Dictionary<string, string> { ["NEEDS"] = JsonSerializer.Serialize(results), ["IS_FORK"] = "true" }).ExitCode);
+                foreach (string dependency in results.Keys)
+                {
+                    foreach (string state in new[] { "skipped", "failure", "cancelled", "missing" })
+                    {
+                        var changed = new Dictionary<string, object>();
+                        foreach (string name in results.Keys)
+                        {
+                            if (name == dependency && state == "missing") continue;
+                            changed[name] = new { result = name == dependency ? state : "success" };
+                        }
+
+                        Assert.AreNotEqual(0, Run("pwsh", new[] { "-NoProfile", "-NonInteractive", "-Command", script },
+                            new Dictionary<string, string> { ["NEEDS"] = JsonSerializer.Serialize(changed), ["IS_FORK"] = "true" }).ExitCode,
+                            $"{dependency}: {state}");
+                    }
+                }
+
+                results["qualification"] = new { result = "skipped" };
+                Assert.AreEqual(0, Run("pwsh", new[] { "-NoProfile", "-NonInteractive", "-Command", script },
+                    new Dictionary<string, string> { ["NEEDS"] = JsonSerializer.Serialize(results), ["IS_FORK"] = "false" }).ExitCode,
+                    "Upstream keeps its existing non-migration comparison.");
         }
 
         [TestMethod]

@@ -58,7 +58,7 @@ function fixture(documentationOnly = false) {
       created_at: '2026-10-15T19:18:11Z'
     }],
     jobs: [{
-      name: 'Build, test, package',
+      name: 'Frozen reference and API comparison',
       run_id: 38792701013,
       run_attempt: 1,
       head_sha: 'f13cd4266f5e89a019643a89488769d57ce1a090',
