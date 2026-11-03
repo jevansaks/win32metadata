@@ -1,0 +1,52 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/handleapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/handleapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/handleapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/handleapi.h
+@@ -14,6 +14,7 @@
+ #define _APISETHANDLE_
+ 
+ #include <apiset.h>
++#include <win32metadata_annotations.h>
+ #include <apisetcconv.h>
+ #include <minwindef.h>
+ 
+@@ -32,6 +33,7 @@
+ //
+ // Prototypes
+ //
++_Win32_SupportedOS_Windows2000_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -39,6 +41,7 @@
+     _In_ _Post_ptr_invalid_ HANDLE hObject
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -58,6 +61,7 @@
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
++_Win32_SupportedOS_10240_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -72,6 +76,7 @@
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_SupportedOS_Windows2000_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -80,6 +85,7 @@
+     _Out_ LPDWORD lpdwFlags
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINBASEAPI
+ BOOL
+ WINAPI

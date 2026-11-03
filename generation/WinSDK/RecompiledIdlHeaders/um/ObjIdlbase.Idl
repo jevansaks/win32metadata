@@ -1,5 +1,10 @@
 cpp_quote("#include <winapifamily.h>")
 cpp_quote("#include <win32metadata_annotations.h>")
+cpp_quote("#if defined(__cplusplus) && !defined(CINTERFACE)")
+cpp_quote("struct _Win32_SupportedOS_Windows2000_ IMalloc;")
+cpp_quote("struct _Win32_SupportedOS_Windows2000_ ISequentialStream;")
+cpp_quote("struct _Win32_SupportedOS_Windows2000_ IStream;")
+cpp_quote("#endif")
 
 //+-------------------------------------------------------------------------
 //

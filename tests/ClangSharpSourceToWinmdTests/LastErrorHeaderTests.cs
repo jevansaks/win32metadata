@@ -341,12 +341,15 @@ typedef char VerifyPointerSize[(sizeof(void*) == {pointerSize}) ? 1 : -1];
 extern ""C"" {{
 #endif
 _Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 {Declaration}
 #define Low 1
 #define High 0x80000000UL
 _Win32_Enum_(Access, unsigned long, Low);
 _Win32_FlagsEnum_(Options, unsigned long, Low, High);
-enum Option {{ One = 1 }};
+enum _Win32_SupportedOS_Windows7_ Option {{ One = 1 }};
+struct _Win32_SupportedOS_WindowsVista_ Record {{ int value; }};
+typedef _Win32_SupportedOS_Windows8_ int (__stdcall *AvailabilityCallback)(int);
 _Win32_AssociatedEnum_(Option) int __stdcall ParameterAbi(
     _Win32_Retained_ void* buffer, _Win32_Retval_ int* result,
     _Win32_ContainsInteriorPointers_ void* interior, _Win32_AssociatedEnum_(Option) unsigned long option);

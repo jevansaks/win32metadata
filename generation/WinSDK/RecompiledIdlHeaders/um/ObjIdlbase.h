@@ -522,6 +522,11 @@ extern "C"{
 
 #include <winapifamily.h>
 #include <win32metadata_annotations.h>
+#if defined(__cplusplus) && !defined(CINTERFACE)
+struct _Win32_SupportedOS_Windows2000_ IMalloc;
+struct _Win32_SupportedOS_Windows2000_ ISequentialStream;
+struct _Win32_SupportedOS_Windows2000_ IStream;
+#endif
 //+-------------------------------------------------------------------------
 //+-------------------------------------------------------------------------
 //

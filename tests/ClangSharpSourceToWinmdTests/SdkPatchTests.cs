@@ -274,6 +274,8 @@ namespace ClangSharpSourceToWinmdTests
                 ("post-midl/combaseapi.h.patch", "um", "combaseapi.h"),
                 ("post-midl/objbase.h.patch", "um", "objbase.h"),
                 ("post-midl/fileapi.h.patch", "um", "fileapi.h"),
+                ("post-midl/errhandlingapi.h.patch", "um", "errhandlingapi.h"),
+                ("post-midl/handleapi.h.patch", "um", "handleapi.h"),
                 ("pre-midl/ObjIdl.Idl.patch", "um", "ObjIdl.Idl"),
                 ("pre-midl/ObjIdlbase.Idl.patch", "um", "ObjIdlbase.Idl"),
                 ("pre-midl/dxgi.idl.patch", "shared", "dxgi.idl"),
@@ -305,6 +307,117 @@ namespace ClangSharpSourceToWinmdTests
                     File.ReadAllBytes(System.IO.Path.Combine(fixture.Headers, owner.Item2, owner.Item3)), owner.Item1);
             StringAssert.Contains(File.ReadAllText(Script("RecompileIdlFilesForScraping.ps1")),
                 "$SelectedPatches = Get-SdkHeaderPatchSelections");
+        }
+
+        [DataTestMethod]
+        [DataRow("ObjIdl")]
+        [DataRow("ObjIdlbase")]
+        public void ExplicitAvailability_IdlSourceReplaysOnRealSelectedSdkOutput(string owner)
+        {
+            using var fixture = new Fixture();
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = System.IO.Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            fixture.Header(owner + ".Idl", File.ReadAllBytes(System.IO.Path.Combine(include, "um", owner + ".Idl")));
+            string patches = System.IO.Path.Combine(Root(), "generation", "WinSDK", "patches");
+            fixture.Apply("pre-midl", "pre-midl/" + owner + ".Idl.patch", true, patchRoot: patches, midlInputRoot: include);
+            if (owner == "ObjIdl")
+            {
+                fixture.Header("ObjIdlbase.Idl", File.ReadAllBytes(System.IO.Path.Combine(include, "um", "ObjIdlbase.Idl")));
+                fixture.Apply("pre-midl", "pre-midl/ObjIdlbase.Idl.patch", true, patchRoot: patches, midlInputRoot: include);
+            }
+            string converted = System.IO.Path.Combine(fixture.Path, "converted");
+            Directory.CreateDirectory(converted);
+            string idl = System.IO.Path.Combine(converted, owner.ToLowerInvariant() + ".idl");
+            string header = System.IO.Path.Combine(fixture.Headers, "um", owner.ToLowerInvariant() + ".h");
+            if (owner == "ObjIdl")
+            {
+                var conversion = fixture.Run("& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
+                    Quote(System.IO.Path.Combine(fixture.Headers, "um", "ObjIdlbase.Idl")) + " " +
+                    Quote(System.IO.Path.Combine(converted, "objidlbase.idl")));
+                Assert.AreEqual(0, conversion.ExitCode, conversion.Output);
+            }
+            foreach (string dependency in new[] { "unknwnbase.idl", "wtypesbase.idl", "unknwn.idl", "wtypes.idl" })
+            {
+                var conversion = fixture.Run("& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
+                    Quote(System.IO.Path.Combine(include, dependency.StartsWith("wtypes", StringComparison.Ordinal) ? "shared" : "um", dependency)) + " " +
+                    Quote(System.IO.Path.Combine(converted, dependency)));
+                Assert.AreEqual(0, conversion.ExitCode, conversion.Output);
+            }
+            var result = fixture.Run("& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
+                Quote(System.IO.Path.Combine(fixture.Headers, "um", owner + ".Idl")) + " " + Quote(idl) + "; " +
+                ". " + Quote(Script("CommonUtils.ps1")) + "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); " +
+                "& " + Quote(System.IO.Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                " " + Quote(idl) + " /out " + Quote(converted) + " /header " + Quote(header) +
+                " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
+                " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
+                " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
+                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                " /I " + Quote(converted) + " /I " + Quote(System.IO.Path.Combine(include, "um")) +
+                " /I " + Quote(System.IO.Path.Combine(include, "shared")) +
+                " /I " + Quote(System.IO.Path.Combine(include, "winrt")) +
+                " /I " + Quote(System.IO.Path.Combine(Root(), "scripts", "inc")) + "; exit $LASTEXITCODE");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Assert.IsFalse(File.Exists(System.IO.Path.Combine(patches, "post-midl", owner + ".h.patch")));
+            string expectedHeader = System.IO.Path.Combine(Root(), "generation", "WinSDK",
+                "RecompiledIdlHeaders", "um", owner + ".h");
+            var expectedLines = File.ReadAllLines(expectedHeader);
+            var actualLines = File.ReadAllLines(header);
+            string differences = string.Join("\n", expectedLines.Zip(actualLines, (expected, actual) => (expected, actual))
+                .Where(pair => pair.expected != pair.actual).Take(3).Select(pair => pair.expected + "\nACTUAL: " + pair.actual));
+            CollectionAssert.AreEqual(File.ReadAllBytes(expectedHeader), File.ReadAllBytes(header), differences);
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+                SupportedOSHeaderTests.AssertMidlAvailability(File.ReadAllText(header), File.ReadAllText(expectedHeader), target);
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", "/TC")]
+        [DataRow("x64", "/TC")]
+        [DataRow("arm64", "/TC")]
+        [DataRow("x86", "/TP")]
+        [DataRow("x64", "/TP")]
+        [DataRow("arm64", "/TP")]
+        public void ExplicitAvailability_SelectedSdkNativeBuildIsANoOp(string arch, string language)
+        {
+            using var fixture = new Fixture();
+            string include = System.IO.Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            foreach (string owner in new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h", "combaseapi.h", "objbase.h" })
+                fixture.Header(owner, File.ReadAllBytes(System.IO.Path.Combine(include, "um", owner)));
+            string patches = System.IO.Path.Combine(Root(), "generation", "WinSDK", "patches");
+            fixture.Apply("post-midl", string.Join("','", new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h",
+                "combaseapi.h", "objbase.h" }.Select(owner => "post-midl/" + owner + ".patch")), true,
+                patchRoot: patches, midlInputRoot: include);
+            foreach (string owner in new[] { "ObjIdl.h", "ObjIdlbase.h" })
+                fixture.Header(owner, File.ReadAllBytes(System.IO.Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", "um", owner)));
+            File.Copy(System.IO.Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders",
+                "shared", "win32metadata_annotations.h"), System.IO.Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
+            File.Copy(System.IO.Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"),
+                System.IO.Path.Combine(fixture.Headers, "sal.h"));
+            string source = System.IO.Path.Combine(fixture.Path, "native.c");
+            File.WriteAllText(source, "#include <windows.h>\n#include <winhttp.h>\n#include <objbase.h>\n#include <ObjIdlbase.h>\n" +
+                "DWORD (WINAPI *error_signature)(void) = &GetLastError;\n" +
+                "BOOL (WINAPI *winhttp_signature)(void) = &WinHttpCheckPlatform;\n" +
+                "DWORD (WINAPI *com_signature)(void) = &CoGetCurrentProcess;\n");
+            string obj = System.IO.Path.Combine(fixture.Path, "native.obj");
+            var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
+                "; $vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
+                "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; " +
+                "foreach ($mode in 'ordinary', 'metadata') { & $compiler /nologo /c " + language + " " + Quote(source) +
+                " " + Quote("/Fo" + obj) + " " + Quote("/I" + System.IO.Path.Combine(fixture.Headers, "um")) +
+                " " + Quote("/I" + fixture.Headers) + " \"/I$vcInclude\"" +
+                " " + Quote("/I" + System.IO.Path.Combine(include, "um")) +
+                " " + Quote("/I" + System.IO.Path.Combine(include, "shared")) +
+                " " + Quote("/I" + System.IO.Path.Combine(include, "ucrt")) +
+                " /DWINVER=0x0A00 /D_WIN32_WINNT=0x0A00 /DNTDDI_VERSION=0x0A00000C" +
+                " $(if ($mode -eq 'metadata') { '/DWIN32METADATA' }); " +
+                "if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Copy-Item -LiteralPath " + Quote(obj) +
+                " -Destination (Join-Path " + Quote(fixture.Path) + " ($mode + '.obj')) }");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            byte[] ordinary = File.ReadAllBytes(System.IO.Path.Combine(fixture.Path, "ordinary.obj"));
+            byte[] metadata = File.ReadAllBytes(System.IO.Path.Combine(fixture.Path, "metadata.obj"));
+            Array.Clear(ordinary, 4, 4);
+            Array.Clear(metadata, 4, 4);
+            CollectionAssert.AreEqual(ordinary, metadata);
         }
 
         [TestMethod]

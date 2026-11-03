@@ -1,15 +1,19 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl
-index 6bb84999..dfc0db05 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl
-@@ -1,4 +1,5 @@
+@@ -1,4 +1,10 @@
  cpp_quote("#include <winapifamily.h>")
 +cpp_quote("#include <win32metadata_annotations.h>")
++cpp_quote("#if defined(__cplusplus) && !defined(CINTERFACE)")
++cpp_quote("struct _Win32_SupportedOS_Windows2000_ IMalloc;")
++cpp_quote("struct _Win32_SupportedOS_Windows2000_ ISequentialStream;")
++cpp_quote("struct _Win32_SupportedOS_Windows2000_ IStream;")
++cpp_quote("#endif")
  
  //+-------------------------------------------------------------------------
  //
-@@ -150,7 +151,7 @@ interface IMarshal : IUnknown
+@@ -150,7 +156,7 @@ interface IMarshal : IUnknown
      (
          [in, unique, annotation("_In_")] IStream *pStm,
          [in, annotation("_In_")] REFIID riid,
@@ -18,7 +22,7 @@ index 6bb84999..dfc0db05 100644
      );
  
      HRESULT ReleaseMarshalData
-@@ -362,7 +363,7 @@ interface IInternalUnknown : IUnknown
+@@ -362,7 +368,7 @@ interface IInternalUnknown : IUnknown
  {
      HRESULT QueryInternalInterface(
             [in, annotation("_In_")]  REFIID riid,
@@ -27,7 +31,7 @@ index 6bb84999..dfc0db05 100644
  }
  
  cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
-@@ -556,14 +557,14 @@ interface IStream : ISequentialStream
+@@ -556,14 +562,14 @@ interface IStream : ISequentialStream
          [out] ULARGE_INTEGER *pcbWritten);
  
      HRESULT Commit(
@@ -44,7 +48,7 @@ index 6bb84999..dfc0db05 100644
  
      HRESULT UnlockRegion(
          [in] ULARGE_INTEGER libOffset,
-@@ -572,7 +573,7 @@ interface IStream : ISequentialStream
+@@ -572,7 +578,7 @@ interface IStream : ISequentialStream
  
      HRESULT Stat(
          [out] STATSTG *pstatstg,
@@ -53,7 +57,7 @@ index 6bb84999..dfc0db05 100644
  
      HRESULT Clone(
          [out] IStream **ppstm);
-@@ -715,7 +716,7 @@ interface IRpcChannelBuffer3 : IRpcChannelBuffer2
+@@ -715,7 +721,7 @@ interface IRpcChannelBuffer3 : IRpcChannelBuffer2
      (
          [in, annotation("_In_")]  RPCOLEMESSAGE *pMsg,
          [in, annotation("_In_")]  REFIID riid,
@@ -62,7 +66,7 @@ index 6bb84999..dfc0db05 100644
      );
  
      HRESULT GetDestCtxEx
-@@ -993,7 +994,7 @@ interface IClientSecurity : IUnknown
+@@ -993,7 +999,7 @@ interface IClientSecurity : IUnknown
          [out, annotation("_Out_opt_")] DWORD              *pAuthnLevel,
          [out, annotation("_Out_opt_")] DWORD              *pImpLevel,
          [out, annotation("_Outptr_result_maybenull_")] void        **pAuthInfo,
@@ -71,7 +75,7 @@ index 6bb84999..dfc0db05 100644
      );
  
      HRESULT SetBlanket
-@@ -1006,7 +1007,7 @@ interface IClientSecurity : IUnknown
+@@ -1006,7 +1012,7 @@ interface IClientSecurity : IUnknown
          [in, annotation("_In_")] DWORD                     dwAuthnLevel,
          [in, annotation("_In_")] DWORD                     dwImpLevel,
          [in, annotation("_In_opt_")] void                 *pAuthInfo,
@@ -80,7 +84,7 @@ index 6bb84999..dfc0db05 100644
      );
  
      HRESULT CopyProxy
-@@ -1216,7 +1217,7 @@ interface IGlobalInterfaceTable : IUnknown
+@@ -1216,7 +1222,7 @@ interface IGlobalInterfaceTable : IUnknown
      (
          [in, annotation("_In_")]  DWORD          dwCookie,
          [in, annotation("_In_")]  REFIID         riid,
@@ -89,7 +93,7 @@ index 6bb84999..dfc0db05 100644
      );
  };
  
-@@ -1321,7 +1322,7 @@ interface IAsyncManager : IUnknown
+@@ -1321,7 +1327,7 @@ interface IAsyncManager : IUnknown
      HRESULT CompleteCall  ( [in, annotation("_In_")] HRESULT Result );
      HRESULT GetCallContext( 
          [in, annotation("_In_")] REFIID riid, 
@@ -98,7 +102,7 @@ index 6bb84999..dfc0db05 100644
      HRESULT GetState      ( [out, annotation("_Out_")] ULONG *pulStateFlags);
  }
  
-@@ -1406,7 +1407,7 @@ interface IAddrExclusionControl : IUnknown
+@@ -1406,7 +1412,7 @@ interface IAddrExclusionControl : IUnknown
  
      HRESULT GetCurrentAddrExclusionList(
          [in, annotation("_In_")]REFIID riid, 

@@ -241,6 +241,9 @@ class Program
             foreach (string name in annotations.FunctionNames)
                 lastErrorNames.Add(mergedRemaps.GetValueOrDefault(name) ?? name);
             settings["--with-setlasterror"] = lastErrorNames.ToList();
+            var supportedAttributes = settings.GetValueOrDefault("--with-attribute") ?? new List<string>();
+            annotations.MergeSupportedFunctions(supportedAttributes, mergedRemaps);
+            settings["--with-attribute"] = supportedAttributes;
             var callbackTypes = ParseKeyValuePairs(settings.GetValueOrDefault("--with-type"));
             foreach (var alias in fnPtrResult.FnPtrTypes)
             {
