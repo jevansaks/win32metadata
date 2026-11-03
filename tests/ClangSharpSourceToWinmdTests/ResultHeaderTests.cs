@@ -69,6 +69,8 @@ namespace ClangSharpSourceToWinmdTests
             AssertResult(output, "Read", true);
             AssertResult(output, "Write", false);
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(new Dictionary<string, string>
+                { ["ISequentialStream::Read"] = "[PreserveSig]" })));
         }
 
         [TestMethod]
@@ -99,7 +101,9 @@ _Win32_PreserveResult_ virtual int __stdcall Method(_Out_ _Win32_Retval_ int* va
 
         [DataTestMethod]
         [DataRow("_Win32_PreserveResult_ typedef int Alias;")]
+        [DataRow("_Win32_PreserveResult_ typedef int (__stdcall *Callback)(void);")]
         [DataRow("struct _Win32_PreserveResult_ Value { int field; };")]
+        [DataRow("enum _Win32_PreserveResult_ Value { One = 1 };")]
         [DataRow("struct Value { _Win32_PreserveResult_ int field; };")]
         [DataRow("int __stdcall Example(_Win32_PreserveResult_ int* value);")]
         [DataRow("int __stdcall _Win32_PreserveResult_ Example(void);")]
