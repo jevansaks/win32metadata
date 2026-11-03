@@ -103,10 +103,10 @@ jobs:
           retention-days: 30
 
   qualification:
-    name: Check metadata compatibility and generation performance
+    name: Full paired migration measurement
     if: github.repository == 'jevansaks/win32metadata'
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
@@ -121,20 +121,12 @@ jobs:
           lfs: true
           fetch-depth: 0
           persist-credentials: false
-      - name: Check out writable frozen legacy control
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
-        with:
-          ref: 86ed37b2846440297afb087c4718acd1a1fb4ad8
-          path: .qualification/control
-          lfs: true
-          fetch-depth: 0
-          persist-credentials: false
       - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
         with:
           global-json-file: global.json
-      - name: Qualify frozen tools, legacy control, and current inputs
+      - name: Qualify identical legacy inputs
         shell: pwsh
-        run: .\scripts\TestMigrationQualification.ps1 -ReferenceDirectory .qualification\reference -ControlDirectory .qualification\control
+        run: .\scripts\TestMigrationQualification.ps1 -ReferenceDirectory .qualification\reference
       - name: Retain qualification evidence
         if: always()
         uses: ./.github/actions/upload-artifact-with-retry

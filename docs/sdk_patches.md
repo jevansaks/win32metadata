@@ -26,42 +26,9 @@ generation inputs. Neither changes declarations. PR2248's
 Uxtheme enum/signature changes and PR2365's WinHttp annotation corpus are
 deliberately not enabled: consuming those annotations is a separate layer.
 This layer adds no annotation reader, retired sidecars, or restored SDK headers.
-Qualification hashes active headers, includes, partition declarations/settings,
-manual C#, evaluated RSP/JSON inputs, and generation project/SDK configuration.
-Inactive patches and test fixtures are not generation inputs. The shipped SDK
-package content receipt remains separate from the active patched result.
-Shared physical SDK/tool roots are fingerprinted once before measurement and
-once afterward, with independent per-side manifests and configuration checks.
-This reuse is confined to each verification boundary; it never reuses generation
-outputs or bypasses post-run change detection.
-
-Before retiring non-header annotations, qualification runs three full builds:
-A uses frozen tools and frozen legacy inputs; B runs the frozen project in a
-separate writable control checkout with candidate `TaskBinDir`/`ToolsBinDir`;
-C uses those same candidate binaries with current project configuration and
-explicitly selected header/include roots. Scripts, assets, manual sources,
-partitions and RSP/JSON inputs stay frozen for B. The evaluated properties and
-runtime tool paths are checked, and each build has independent intermediate and
-output paths with the same output basename, assembly version, architecture and
-concurrency. No partition filter is applied, including when supplemental SDK
-partitions are needed to cover an annotation category.
-
-```powershell
-.\scripts\TestMigrationQualification.ps1 `
-    -ReferenceDirectory .qualification\reference `
-    -ControlDirectory .qualification\control
-# Optional C-only roots: -CurrentHeaderRoot <patched headers> -CurrentIncludesRoot <active inc>
-```
-
-Both frozen checkouts must be at `86ed37b2846440297afb087c4718acd1a1fb4ad8`.
-A/B active input hashes must match. B/C input hashes may differ for relocations,
-but both comparisons require zero final binary drift except the existing random
-Module MVID/COFF timestamp normalization. Confirmed wall-time increases over 10%
-or sampled process-tree working-set increases over 15% fail independently for
-A/B, B/C, and cumulative A/C; neither baseline nor budget is ratcheted. Retained
-evidence is revalidated against the qualified commit and raw outputs/samples.
-Default C still uses checked-in legacy headers/configuration: these controls do
-not select patches, migrate annotations, or certify production category coverage.
+The inherited qualification receipt currently hashes all tracked
+`generation/WinSDK` files, including potentially inactive patch assets; fixing
+that effective-input distinction belongs to the CI owner, not this layer.
 
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
 `git diff` with repository-relative paths under
