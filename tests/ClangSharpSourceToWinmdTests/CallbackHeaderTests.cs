@@ -292,12 +292,7 @@ VOID CALLBACK Caller(void) { (*address)(0, 0, 0, 0, 0); }
         private static string ShippedDeclarations()
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
-            string script = ". '" + Path.Combine(root, "scripts", "CommonUtils.ps1").Replace("'", "''") +
-                "'; Join-Path (Get-WinSdkCppPkgPath 6>$null) 'c\\include\\10.0.28000.0\\um\\winhttp.h'";
-            var located = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command", script);
-            Assert.AreEqual(0, located.ExitCode, located.Output);
-            string path = located.Output.Trim();
-            StringAssert.Contains(path, "10.0.28000.2705");
+            string path = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0", "um", "winhttp.h");
             string shipped = File.ReadAllText(path);
             string current = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", "winhttp.h"));
             string callback = Slice(shipped, @"typedef\s+VOID\s+\(CALLBACK \* WINHTTP_STATUS_CALLBACK\)[\s\S]*?typedef WINHTTP_STATUS_CALLBACK \* LPWINHTTP_STATUS_CALLBACK;");
