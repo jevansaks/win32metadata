@@ -176,7 +176,22 @@ class Program
 
             // ── Walk AST to discover all typedef-tag and function pointer relationships ──
             var annotations = new HeaderAnnotations();
-            var discovery = RemapDiscovery.WalkTranslationUnit(translationUnit.TranslationUnitDecl, annotations.Visit);
+            var traversalNames = new HashSet<string>(
+                (settings.GetValueOrDefault("--traverse") ?? new List<string>()).Select(Path.GetFullPath),
+                StringComparer.OrdinalIgnoreCase);
+            var callbacksOutsideTraversal = new HashSet<string>(StringComparer.Ordinal);
+            var discovery = RemapDiscovery.WalkTranslationUnit(translationUnit.TranslationUnitDecl, declaration =>
+            {
+                annotations.Visit(declaration);
+                if (declaration is TypedefDecl typedef && traversalNames.Count != 0 &&
+                    RemapDiscovery.UnwrapType(typedef.UnderlyingType) is PointerType pointer &&
+                    RemapDiscovery.UnwrapType(pointer.PointeeType) is FunctionProtoType)
+                {
+                    typedef.Location.GetPresumedLocation(out var fileName, out _, out _);
+                    if (fileName.ToString().Length == 0 || !traversalNames.Contains(Path.GetFullPath(fileName.ToString())))
+                        callbacksOutsideTraversal.Add(typedef.Name);
+                }
+            });
             annotations.ValidateEnumAssociations();
 
             // Resolve tag remaps using disambiguation, then apply opt-outs for
@@ -189,7 +204,8 @@ class Program
                 configuredAutoRemapExcludes);
 
             // Resolve function pointer fixups
-            var fnPtrResult = RemapDiscovery.ResolveFunctionPointerFixups(discovery, configuredExcludes);
+            var fnPtrResult = RemapDiscovery.ResolveFunctionPointerFixups(
+                discovery, configuredExcludes, configuredRemaps, callbacksOutsideTraversal);
             var preservedFnPtrLevels = settings.GetValueOrDefault("--preserve-auto-fnptr-level") ?? new List<string>();
             foreach (string name in preservedFnPtrLevels)
             {
@@ -217,6 +233,14 @@ class Program
             foreach (string name in annotations.FunctionNames)
                 lastErrorNames.Add(mergedRemaps.GetValueOrDefault(name) ?? name);
             settings["--with-setlasterror"] = lastErrorNames.ToList();
+            var callbackTypes = ParseKeyValuePairs(settings.GetValueOrDefault("--with-type"));
+            foreach (var alias in fnPtrResult.FnPtrTypes)
+            {
+                if (callbackTypes.TryGetValue(alias.Key, out string configuredType) && configuredType != alias.Value)
+                    throw new FormatException($"Configured type for callback alias '{alias.Key}' conflicts with native storage '{alias.Value}'.");
+                callbackTypes[alias.Key] = alias.Value;
+            }
+            settings["--with-type"] = callbackTypes.Select(pair => $"{pair.Key}={pair.Value}").ToList();
             var config = CreateConfig(settings, ns, outputFile, headerFile, configOptions, mergedRemaps, allExcludes);
 
             var capturedStreams = new Dictionary<string, MemoryStream>();
@@ -263,7 +287,11 @@ class Program
             // Write auto-discovered remaps + fn ptr remaps to sidecar file
             var allAutoRemaps = new Dictionary<string, string>(autoRemaps);
             foreach (var kv in fnPtrResult.FnPtrRemaps)
-                allAutoRemaps[kv.Key] = kv.Value;
+            {
+                // Self-remaps select a local delegate, not a global type rename.
+                if (kv.Key != kv.Value)
+                    allAutoRemaps[kv.Key] = kv.Value;
+            }
 
             if (allAutoRemaps.Count > 0 || fnPtrResult.FnPtrExcludes.Count > 0 || fnPtrResult.ReducePointerLevel.Count > 0 || preservedFnPtrLevels.Count > 0)
             {

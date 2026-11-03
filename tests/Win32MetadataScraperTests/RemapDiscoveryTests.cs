@@ -641,47 +641,48 @@ namespace Win32MetadataScraperTests
             // Should NOT be in FnProtoToPointerTypedefs (which is for pointer-adding aliases)
             Assert.False(discovery.FnProtoToPointerTypedefs.ContainsKey("PTHREAD_START_ROUTINE"));
 
-            // Resolution: same-level aliases for already-pointer types → no fixup generated
+            // Unmigrated same-level aliases keep their existing public names.
             var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
                 typedef unsigned long (*PTHREAD_START_ROUTINE)(void* lpThreadParameter);
                 typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
             ");
-            Assert.Empty(result.FnPtrRemaps);
+            Assert.Empty(result.FnPtrTypes);
         }
 
         // ── Ambiguous pointer targets skipped ────────────────────────────────
 
         [Fact]
-        public void FnPtr_AlreadyPointer_NoAutoFixupGenerated()
+        public void FnPtr_AlreadyPointer_ExplicitLegacyNameIsPreserved()
         {
             // Pattern from winnt.h:
             //   typedef DWORD (*PEXCEPTION_ROUTINE)(...);   // already a fn pointer
             //   typedef PEXCEPTION_ROUTINE EXCEPTION_ROUTINE;  // non-pointer alias
-            // Discovery intentionally skips auto-fixing this shape because the AST
-            // alone does not tell us which public name should win. The repo's
-            // current baseline still canonicalizes this one manually with:
+            // An explicit historical public name is still respected:
             //   --exclude PEXCEPTION_ROUTINE
             //   --remap PEXCEPTION_ROUTINE=EXCEPTION_ROUTINE
-            var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
+            var discovery = HeaderSnippetParser.ParseAndDiscover(@"
                 typedef unsigned long (*PEXCEPTION_ROUTINE)(void* EstablisherFrame, unsigned long long DispatcherContext);
                 typedef PEXCEPTION_ROUTINE EXCEPTION_ROUTINE;
             ");
 
+            var result = Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery,
+                new HashSet<string> { "PEXCEPTION_ROUTINE" },
+                new Dictionary<string, string> { ["PEXCEPTION_ROUTINE"] = "EXCEPTION_ROUTINE" });
+            Assert.Empty(result.FnPtrTypes);
             Assert.Empty(result.FnPtrRemaps);
         }
 
         [Fact]
-        public void FnPtr_BothHavePointerPrefix_NoFixupForAlreadyPointer()
+        public void FnPtr_BothHavePointerPrefix_KeepsUnmigratedAliases()
         {
             // When the proto is already a pointer (typedef DWORD (*P...)(...))
-            // and the alias is a typedef-to-typedef, no fixup is generated —
-            // both names are valid aliases for the same pointer-to-function type.
+            // the alias is a typedef-to-typedef with no additional pointer.
             var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
                 typedef unsigned long (*PTHREAD_START_ROUTINE)(void* lpThreadParameter);
                 typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
             ");
 
-            Assert.Empty(result.FnPtrRemaps);
+            Assert.Empty(result.FnPtrTypes);
         }
 
         [Fact]
@@ -690,26 +691,25 @@ namespace Win32MetadataScraperTests
             // Pattern from powrprof.h:
             //   typedef BOOLEAN (CALLBACK* PWRSCHEMESENUMPROC_V2)(UINT, DWORD, ...);
             //   typedef PWRSCHEMESENUMPROC_V2 PWRSCHEMESENUMPROC;
-            // Both names are valid aliases — no fixup generated.
+            // The existing projected alias name is not automatically replaced.
             var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
                 typedef unsigned char (*PWRSCHEMESENUMPROC_V2)(unsigned int uiIndex, unsigned long dwName);
                 typedef PWRSCHEMESENUMPROC_V2 PWRSCHEMESENUMPROC;
             ");
 
-            Assert.Empty(result.FnPtrRemaps);
+            Assert.Empty(result.FnPtrTypes);
         }
 
         [Fact]
         public void FnPtr_AlreadyPointer_PrefixedProtoWithPrefixedAlias()
         {
             // Pattern from patchapi.h — both are already-pointer aliases.
-            // No fixup generated.
             var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
                 typedef int (*PPATCH_PROGRESS_CALLBACK)(void* CallbackContext, unsigned long CurrentPosition, unsigned long MaximumPosition);
                 typedef PPATCH_PROGRESS_CALLBACK PATCH_PROGRESS_CALLBACK;
             ");
 
-            Assert.Empty(result.FnPtrRemaps);
+            Assert.Empty(result.FnPtrTypes);
         }
 
         [Fact]
@@ -770,29 +770,59 @@ namespace Win32MetadataScraperTests
             //   typedef LRESULT (*ACMDRIVERPROC)(...);
             //   typedef ACMDRIVERPROC *LPACMDRIVERPROC;
             // ACMDRIVERPROC is already a pointer-to-function. LPACMDRIVERPROC adds
-            // another * level. This should generate remap + exclude + reducePointerLevel.
+            // another * level, which must remain in the emitted signature.
             var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
                 typedef long (*ACMDRIVERPROC)(unsigned long dwId, unsigned int uMsg);
                 typedef ACMDRIVERPROC *LPACMDRIVERPROC;
             ");
 
             Assert.True(result.FnPtrRemaps.ContainsKey("ACMDRIVERPROC"));
-            Assert.Equal("LPACMDRIVERPROC", result.FnPtrRemaps["ACMDRIVERPROC"]);
+            Assert.Equal("ACMDRIVERPROC", result.FnPtrRemaps["ACMDRIVERPROC"]);
             Assert.Contains("LPACMDRIVERPROC", result.FnPtrExcludes);
-            Assert.Contains("LPACMDRIVERPROC", result.ReducePointerLevel);
+            Assert.Equal("ACMDRIVERPROC*", result.FnPtrTypes["LPACMDRIVERPROC"]);
+            Assert.Empty(result.ReducePointerLevel);
         }
 
         [Fact]
-        public void FnPtr_AlreadyPointer_SameLevelAlias_NoFixup()
+        public void FnPtr_AlreadyPointer_SameLevelAlias_NoPointerReduction()
         {
             // Pattern: typedef DWORD (*PFOO)(...); typedef PFOO LPFOO;
-            // Same-level alias — no fixup generated (needs manual curation).
+            // Same-level alias — preserve the native function-pointer depth.
             var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
                 typedef unsigned long (*PFOO)(void* param);
                 typedef PFOO LPFOO;
             ");
 
-            Assert.Empty(result.FnPtrRemaps);
+            Assert.Empty(result.FnPtrTypes);
+            Assert.Empty(result.ReducePointerLevel);
+        }
+
+        [Fact]
+        public void FnPtr_SameLevelAlias_ExplicitRemapSelectsDefiningCallback()
+        {
+            var discovery = HeaderSnippetParser.ParseAndDiscover(@"
+                typedef int (*CALLBACK)(int value);
+                typedef CALLBACK SAMECALLBACK;
+            ");
+            var result = Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery,
+                configuredRemaps: new Dictionary<string, string> { ["SAMECALLBACK"] = "CALLBACK" });
+            Assert.Equal("CALLBACK", result.FnPtrTypes["SAMECALLBACK"]);
+            Assert.Empty(result.ReducePointerLevel);
+        }
+
+        [Fact]
+        public void FnPtr_NamespaceQualifiedIdentity_DoesNotUseUnqualifiedTypeOverrides()
+        {
+            var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
+                namespace Example {
+                    extern ""C"" {
+                        typedef int (*CALLBACK)(int value);
+                        typedef CALLBACK SAMECALLBACK;
+                    }
+                }
+            ");
+            Assert.Empty(result.FnPtrTypes);
+            Assert.Empty(result.FnPtrExcludes);
         }
     }
 
