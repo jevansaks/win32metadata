@@ -121,7 +121,7 @@ output equality, SDK/tool/current-commit receipts, all-architecture production
 CI, and the existing independent time/memory confirmation budgets. No missing
 attribute, type, or signature exclusion is added.
 
-## Local production evidence
+## Archived local production evidence before predecessor sync
 
 Full cross-architecture generation with candidate tools produced identical
 complete winmd files for legacy headers/legacy selectors and patched
@@ -153,3 +153,11 @@ enforcement, and qualification gates remain unchanged.
 With aggregate NuGet properties deliberately absent, the parent tooling suites
 passed 195 tests and the separate SDK replay suite passed all 24 tests. The
 header/emitter suite took 79 seconds and SDK replay took 36 seconds.
+
+After replaying this layer onto PR5
+`02c2674df78907d149cada750810385d8ff38651`, local tooling passed 199 tests
+(132 header/emitter tests in 92 seconds) and SDK replay passed all 24 tests in
+35 seconds. All 38 selector deletions, seven owning patches, shared SDK
+fixture, pre-measurement replay, and fresh after-receipt checks remain intact.
+The archived production timings and prior hosted passes above are not
+qualification for the synchronized head; fresh commit-bound CI is required.
