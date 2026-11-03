@@ -71,6 +71,14 @@ then emit and compare final metadata on **all three targets**. Their existing
 SDK/package paths already resolve once. Native ABI fixtures are unchanged;
 no workflow, limit, environment or coverage adjustment is made.
 
+A second hosted attempt spent over three minutes in checkout, SDK setup,
+restore and compilation, again reaching the unchanged ten-minute limit
+without an assertion failure. The common test SDK helper now resolves the
+same declared package path once per testhost process instead of spawning
+PowerShell for each lookup. Every lookup still checks the exact pinned
+version and directory existence; actual SDK files, native compilers, MIDL,
+patch replay and all architecture-specific emission assertions are uncached.
+
 ## Imaging, acquisition and image-list direct COM outputs
 
 This layer audits all **88** parent `ComOutPtr` records against every physical
