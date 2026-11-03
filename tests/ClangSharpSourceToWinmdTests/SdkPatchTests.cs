@@ -588,11 +588,8 @@ namespace ClangSharpSourceToWinmdTests
             CollectionAssert.AreEqual(outputs[1], outputs[2]);
         }
 
-        [DataTestMethod]
-        [DataRow("i686-pc-windows-msvc")]
-        [DataRow("x86_64-pc-windows-msvc")]
-        [DataRow("aarch64-pc-windows-msvc")]
-        public void ShellItemOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner(string target)
+        [TestMethod]
+        public void ShellItemOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner()
         {
             using var fixture = new Fixture();
             string sdk = LastErrorHeaderTests.SdkPackagePath();
@@ -646,9 +643,12 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string owner in new[] { "propsys.h", "ShObjIdl_core.h", "ShObjIdl.h" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
-            ShellItemComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
-            PropertyComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
-            ShellComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+            {
+                ShellItemComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+                PropertyComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+                ShellComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+            }
         }
 
         [DataTestMethod]
@@ -796,11 +796,8 @@ namespace ClangSharpSourceToWinmdTests
             UrlMonComOutputHeaderTests.AssertShippedDeclarations("x86_64-pc-windows-msvc", Path.Combine(fixture.Headers, "um"));
         }
 
-        [DataTestMethod]
-        [DataRow("i686-pc-windows-msvc")]
-        [DataRow("x86_64-pc-windows-msvc")]
-        [DataRow("aarch64-pc-windows-msvc")]
-        public void DirectXOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner(string target)
+        [TestMethod]
+        public void DirectXOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner()
         {
             using var fixture = new Fixture();
             string sdk = LastErrorHeaderTests.SdkPackagePath();
@@ -888,7 +885,8 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string owner in new[] { "d3d10.h", "d3d10_1.h", "d3d12.h", "Presentation.h" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
-            DirectXComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+                DirectXComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
         }
 
         [DataTestMethod]

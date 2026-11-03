@@ -63,6 +63,14 @@ is introduced; ordinary CI builds one three-architecture candidate and
 compares an existing exact-parent artifact when available, disclosing any
 main/released fallback separately from focused byte equivalence.
 
+The first hosted candidate reached the existing ten-minute SDK-test job limit
+without an assertion failure. The inherited shell-item and DirectX SDK fixtures
+now use the established audio/MF pattern: replay identical architecture-independent
+production MIDL once, retaining every original owner/patch/header-byte assertion,
+then emit and compare final metadata on **all three targets**. Their existing
+SDK/package paths already resolve once. Native ABI fixtures are unchanged;
+no workflow, limit, environment or coverage adjustment is made.
+
 ## Imaging, acquisition and image-list direct COM outputs
 
 This layer audits all **88** parent `ComOutPtr` records against every physical
