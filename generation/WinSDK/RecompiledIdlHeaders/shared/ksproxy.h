@@ -852,7 +852,7 @@ DECLARE_INTERFACE_(IKsTopology, IUnknown)
         _In_ ACCESS_MASK DesiredAccess,
         _In_opt_ IUnknown* UnkOuter,
         _In_ REFGUID InterfaceId,
-        _Out_ LPVOID* Interface
+        _COM_Outptr_ LPVOID* Interface
     ) PURE;
 };
 

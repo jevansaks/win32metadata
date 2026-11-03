@@ -21179,7 +21179,7 @@ EXTERN_C const IID IID_IWMReaderAccelerator;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppvCodecInterface) = 0;
+            _COM_Outptr_  void **ppvCodecInterface) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Notify( 
             /* [annotation][in] */ 
@@ -21220,7 +21220,7 @@ EXTERN_C const IID IID_IWMReaderAccelerator;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppvCodecInterface);
+            _COM_Outptr_  void **ppvCodecInterface);
         
         DECLSPEC_XFGVIRT(IWMReaderAccelerator, Notify)
         HRESULT ( STDMETHODCALLTYPE *Notify )( 

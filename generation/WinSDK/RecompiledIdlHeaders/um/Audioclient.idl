@@ -573,7 +573,7 @@ interface IAudioClient : IUnknown
     //  IAudioViewManagerService
     //  IAcousticEchoCancellationControl
     //
-    HRESULT GetService([in, annotation("_In_")] REFIID riid, [out, iid_is(riid), annotation("_Out_")] void **ppv);
+    HRESULT GetService([in, annotation("_In_")] REFIID riid, [out, iid_is(riid), annotation("_COM_Outptr_")] void **ppv);
 
 
 }

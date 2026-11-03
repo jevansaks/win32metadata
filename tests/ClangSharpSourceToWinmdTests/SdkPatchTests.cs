@@ -1427,6 +1427,149 @@ namespace ClangSharpSourceToWinmdTests
             CollectionAssert.AreEqual(outputs[1], outputs[2]);
         }
 
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void AudioOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner(string target)
+        {
+            using var fixture = new Fixture();
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
+            foreach (string path in AudioComOutputHeaderTests.Idls.Select(name => "um/" + name)
+                .Concat(new[] { "um/dsound.h", "shared/ksproxy.h" }))
+            {
+                byte[] original = File.ReadAllBytes(Path.Combine(include, path.Replace('/', Path.DirectorySeparatorChar)));
+                CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
+                    "RecompiledIdlHeaders/" + path), original, "Immutable ancestor matches selected SDK: " + path);
+                string destination = Path.Combine(fixture.Headers, path.Replace('/', Path.DirectorySeparatorChar));
+                Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
+                File.WriteAllBytes(destination, original);
+            }
+            foreach (string absent in new[] { "um/dsound.idl", "shared/ksproxy.idl" })
+                Assert.IsFalse(File.Exists(Path.Combine(include, absent.Replace('/', Path.DirectorySeparatorChar))));
+            string selection = string.Join("','", AudioComOutputHeaderTests.Idls.Select(name => "pre-midl/" + name + ".patch")
+                .Concat(new[] { "post-midl/dsound.h.patch", "post-midl/ksproxy.h.patch" }));
+            fixture.Apply("pre-midl", selection, true, patchRoot: patches);
+            fixture.Apply("post-midl", selection, true, patchRoot: patches);
+            foreach (string idl in AudioComOutputHeaderTests.Idls)
+                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", "um", idl)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", idl)), idl);
+
+            string converted = Path.Combine(fixture.Path, "converted");
+            Directory.CreateDirectory(converted);
+            var pending = new System.Collections.Generic.Queue<string>(AudioComOutputHeaderTests.Idls.Concat(new[] { "strmif.idl" }));
+            var seen = new System.Collections.Generic.HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            string command = "";
+            while (pending.Count > 0)
+            {
+                string name = pending.Dequeue();
+                if (!seen.Add(name)) continue;
+                string input = AudioComOutputHeaderTests.Idls.Contains(name, StringComparer.OrdinalIgnoreCase) ?
+                    Path.Combine(fixture.Headers, "um", name) :
+                    new[] { "um", "shared", "winrt" }.Select(area => Path.Combine(include, area, name)).Single(File.Exists);
+                foreach (Match match in Regex.Matches(File.ReadAllText(input),
+                    @"(?im)^\s*(?:import\s+|#include\s*)[""<]([^"">]+\.idl)["">]"))
+                    pending.Enqueue(match.Groups[1].Value);
+                command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
+                    Quote(input) + " " + Quote(Path.Combine(converted, name)) + "; ";
+            }
+            Assert.AreEqual(33, seen.Count, "Bounded actual selected/imported/included IDL closure.");
+            var conversion = fixture.Run(command);
+            Assert.AreEqual(0, conversion.ExitCode, conversion.Output);
+            command = ". " + Quote(Script("CommonUtils.ps1")) +
+                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); ";
+            foreach (string name in new[] { "mmdeviceapi", "audioclient", "devicetopology", "strmif", "vidcap", "wmsdkidl" })
+                command += "& " + Quote(Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                    " " + Quote(Path.Combine(converted, name + ".idl")) + " /out " + Quote(converted) +
+                    " /header " + Quote(Path.Combine(fixture.Headers, "um", name + ".h")) +
+                    " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
+                    " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
+                    " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
+                    " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
+                    " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
+                    "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
+            var result = fixture.Run(command);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            foreach (var owner in AudioComOutputHeaderTests.Owners)
+                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))),
+                    File.ReadAllBytes(Path.Combine(fixture.Headers, owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+            AudioComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", "/TC", false)]
+        [DataRow("x64", "/TC", false)]
+        [DataRow("arm64", "/TC", false)]
+        [DataRow("x86", "/TP", false)]
+        [DataRow("x64", "/TP", false)]
+        [DataRow("arm64", "/TP", false)]
+        [DataRow("x86", "/TC", true)]
+        [DataRow("x64", "/TC", true)]
+        [DataRow("arm64", "/TC", true)]
+        [DataRow("x86", "/TP", true)]
+        [DataRow("x64", "/TP", true)]
+        [DataRow("arm64", "/TP", true)]
+        public void AudioOutput_NativeBuildIsANoOp(string arch, string language, bool audioFirst)
+        {
+            using var fixture = new Fixture();
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            foreach (var owner in AudioComOutputHeaderTests.Owners)
+                fixture.Header(Path.GetFileName(owner.Path), PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path));
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
+                "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
+            string source = Path.Combine(fixture.Path, "native.c");
+            File.WriteAllText(source, "#define COBJMACROS\n#ifdef __cplusplus\n#define __STREAMS__\n#endif\n" +
+                (audioFirst ? "#include <mmdeviceapi.h>\n#include <audioclient.h>\n" : "#include <windows.h>\n") +
+                "#include <mmsystem.h>\n#include <ks.h>\n#include <ksmedia.h>\n#include <strmif.h>\n" +
+                "#include <mmdeviceapi.h>\n#include <audioclient.h>\n#include <devicetopology.h>\n#include <dsound.h>\n" +
+                "#include <ksproxy.h>\n#include <vidcap.h>\n#include <wmsdkidl.h>\n" +
+                "HRESULT NativeCalls(IMMDevice* device, IAudioClient* client, IAudioClient2* client2, IAudioClient3* client3,\n" +
+                "IPart* part, IDirectSoundBuffer8* sound, IDirectSoundCaptureBuffer8* capture,\n" +
+                "ICaptureGraphBuilder* graph, ICaptureGraphBuilder2* graph2, IDvdGraphBuilder* dvd,\n" +
+                "IKsTopology* topology, IKsTopologyInfo* info, IWMReaderAccelerator* reader, REFIID iid, void** output) {\n" +
+                "#ifdef __cplusplus\n#define CALL(object, method, ...) object->method(__VA_ARGS__)\n" +
+                "#else\n#define CALL(object, method, ...) object->lpVtbl->method(object, __VA_ARGS__)\n#endif\n" +
+                "return CALL(device, Activate, iid, 0, 0, output) + CALL(client, GetService, iid, output) +\n" +
+                "CALL(client2, GetService, iid, output) + CALL(client3, GetService, iid, output) +\n" +
+                "CALL(part, Activate, 0, iid, output) + CALL(sound, GetObjectInPath, iid, 0, iid, output) +\n" +
+                "CALL(capture, GetObjectInPath, iid, 0, iid, output) + CALL(graph, FindInterface, 0, 0, iid, output) +\n" +
+                "CALL(graph2, FindInterface, 0, 0, 0, iid, output) + CALL(dvd, GetDvdInterface, iid, output) +\n" +
+                "CALL(topology, CreateNodeInstance, 0, 0, 0, 0, iid, output) + CALL(info, CreateNodeInstance, 0, iid, output) +\n" +
+                "CALL(reader, GetCodecInterface, 0, iid, output);\n}\n");
+            string obj = Path.Combine(fixture.Path, "native.obj");
+            string replacements = string.Join("; ", AudioComOutputHeaderTests.Owners.Select(owner => "Copy-Item -LiteralPath " +
+                Quote(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))) +
+                " -Destination " + Quote(Path.Combine(fixture.Headers, "um", Path.GetFileName(owner.Path)))));
+            var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
+                "; $vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
+                "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; " +
+                "foreach ($mode in 'baseline', 'ordinary', 'metadata') { if ($mode -eq 'ordinary') { " + replacements + " }; " +
+                "& $compiler /nologo /c " + language + " " + Quote(source) + " " + Quote("/Fo" + obj) +
+                " " + Quote("/I" + Path.Combine(fixture.Headers, "um")) + " " + Quote("/I" + fixture.Headers) +
+                " \"/I$vcInclude\" " + Quote("/I" + Path.Combine(include, "um")) +
+                " " + Quote("/I" + Path.Combine(include, "shared")) + " " + Quote("/I" + Path.Combine(include, "ucrt")) +
+                " " + Quote("/I" + Path.Combine(include, "winrt")) +
+                " /DWINVER=0x0A00 /D_WIN32_WINNT=0x0A00 /DNTDDI_VERSION=0x0A00000C" +
+                " $(if ($mode -eq 'metadata') { '/DWIN32METADATA' }); " +
+                "if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Copy-Item -LiteralPath " + Quote(obj) +
+                " -Destination (Join-Path " + Quote(fixture.Path) + " ($mode + '.obj')) }");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            byte[][] outputs = new[] { "baseline", "ordinary", "metadata" }
+                .Select(mode => File.ReadAllBytes(Path.Combine(fixture.Path, mode + ".obj"))).ToArray();
+            foreach (byte[] bytes in outputs)
+            {
+                Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
+                Array.Clear(bytes, 4, 4);
+            }
+            CollectionAssert.AreEqual(outputs[0], outputs[1]);
+            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+        }
+
         private static string Direct3DPackagePath()
         {
             var result = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",

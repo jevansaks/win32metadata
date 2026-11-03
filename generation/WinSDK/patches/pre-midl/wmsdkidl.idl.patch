@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wmsdkidl.idl b/generation/WinSDK/RecompiledIdlHeaders/um/wmsdkidl.idl
+index eb0664bf..3cc5d60f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wmsdkidl.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wmsdkidl.idl
+@@ -5470,7 +5470,7 @@ interface IWMReaderAccelerator : IUnknown
+ {
+     HRESULT GetCodecInterface( [in]             DWORD  dwOutputNum,
+                                [in]             REFIID riid,
+-                               [out] void     **ppvCodecInterface );
++                               [out, annotation("_COM_Outptr_")] void     **ppvCodecInterface );
+ 
+     HRESULT Notify( [in]  DWORD             dwOutputNum,
+                     [in]  WM_MEDIA_TYPE    *pSubtype );

@@ -3148,7 +3148,7 @@ EXTERN_C const IID IID_IPart;
             /* [annotation][in] */ 
             _In_  REFIID refiid,
             /* [annotation][iid_is][out] */ 
-            _Out_opt_  void **ppvObject) = 0;
+            _COM_Outptr_opt_  void **ppvObject) = 0;
         
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE RegisterControlChangeCallback( 
             /* [annotation][in] */ 
@@ -3255,7 +3255,7 @@ EXTERN_C const IID IID_IPart;
             /* [annotation][in] */ 
             _In_  REFIID refiid,
             /* [annotation][iid_is][out] */ 
-            _Out_opt_  void **ppvObject);
+            _COM_Outptr_opt_  void **ppvObject);
         
         DECLSPEC_XFGVIRT(IPart, RegisterControlChangeCallback)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *RegisterControlChangeCallback )( 
