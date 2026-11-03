@@ -319,11 +319,11 @@ namespace ClangSharpSourceToWinmdTests
             string include = System.IO.Path.Combine(sdk, "c", "include", "10.0.28000.0");
             fixture.Header(owner + ".Idl", File.ReadAllBytes(System.IO.Path.Combine(include, "um", owner + ".Idl")));
             string patches = System.IO.Path.Combine(Root(), "generation", "WinSDK", "patches");
-            fixture.Apply("pre-midl", "pre-midl/" + owner + ".Idl.patch", true, patchRoot: patches);
+            fixture.Apply("pre-midl", "pre-midl/" + owner + ".Idl.patch", true, patchRoot: patches, midlInputRoot: include);
             if (owner == "ObjIdl")
             {
                 fixture.Header("ObjIdlbase.Idl", File.ReadAllBytes(System.IO.Path.Combine(include, "um", "ObjIdlbase.Idl")));
-                fixture.Apply("pre-midl", "pre-midl/ObjIdlbase.Idl.patch", true, patchRoot: patches);
+                fixture.Apply("pre-midl", "pre-midl/ObjIdlbase.Idl.patch", true, patchRoot: patches, midlInputRoot: include);
             }
             string converted = System.IO.Path.Combine(fixture.Path, "converted");
             Directory.CreateDirectory(converted);
@@ -384,7 +384,8 @@ namespace ClangSharpSourceToWinmdTests
                 fixture.Header(owner, File.ReadAllBytes(System.IO.Path.Combine(include, "um", owner)));
             string patches = System.IO.Path.Combine(Root(), "generation", "WinSDK", "patches");
             fixture.Apply("post-midl", string.Join("','", new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h",
-                "combaseapi.h", "objbase.h" }.Select(owner => "post-midl/" + owner + ".patch")), true, patchRoot: patches);
+                "combaseapi.h", "objbase.h" }.Select(owner => "post-midl/" + owner + ".patch")), true,
+                patchRoot: patches, midlInputRoot: include);
             foreach (string owner in new[] { "ObjIdl.h", "ObjIdlbase.h" })
                 fixture.Header(owner, File.ReadAllBytes(System.IO.Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)));
