@@ -440,8 +440,12 @@ legacy sidecars against header-only final winmd bytes on x86/x64/ARM64.
 It reuses the shell fixture's exact Out/nonoptional/nonretval, `void**` and
 singleton custom-attribute blob assertions and checks equal-sidecar
 deduplication. The original source is the existing reachable SDK ancestor
-`35af22694a9b9de4d89dbc6ea11aa6b861c94577`, not this layer's movable
-parent SHA; the selected original declarations match it. Byte audits prove
+`c16762d41f1bd641ff8c4389ebf16ee50747129f`, not a movable
+stack branch SHA; all selected original native files and sidecar rows match
+that immutable SDK-update ancestor. An explicit ancestry assertion requires
+it to be reachable from the tested head, including CI's clean full-history
+branch fetch. The complete corpus audit accounts for the preceding sixteen
+parameter-pilot retirements as well as the core/URLMon/shell layers. Byte audits prove
 only the intended SAL substitutions and preserve native encoding/newlines.
 The existing selected-SDK replay fixture now patches both IDLs, runs actual
 MIDL for both owners, checks every owning file byte-for-byte, and runs the

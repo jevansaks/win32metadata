@@ -11,6 +11,7 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class PropertyComOutputHeaderTests
     {
+        internal const string SdkAncestor = "c16762d41f1bd641ff8c4389ebf16ee50747129f";
         internal static readonly string[] PropertyFunctions =
         {
             "PSCreateAdapterFromPropertyStore::ppv", "PSCreateDelayedMultiplexPropertyStore::ppv",
@@ -39,18 +40,32 @@ namespace ClangSharpSourceToWinmdTests
         public void CompleteOwnerInventory_RetiresOnlyTwentyExactRecords()
         {
             string original = ReadOriginal("emitter.settings.rsp").Replace("\r\n", "\n");
-            string[] previous = ComOutputHeaderTests.Selectors.Concat(UrlMonComOutputHeaderTests.Selectors)
+            var ancestry = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(),
+                "merge-base", "--is-ancestor", SdkAncestor, "HEAD");
+            Assert.AreEqual(0, ancestry.ExitCode, "The selected SDK fixture must be reachable in a clean branch fetch. " + ancestry.Output);
+            Assert.AreEqual(253, original.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            string[] pilot = {
+                "CoGetDefaultContext::ppv", "IAddrExclusionControl::GetCurrentAddrExclusionList::ppEnumerator",
+                "IAsyncManager::GetCallContext::pInterface", "IGlobalInterfaceTable::GetInterfaceFromGlobal::ppv",
+                "IInternalUnknown::QueryInternalInterface::ppv", "IMarshal::UnmarshalInterface::ppv",
+                "IRpcChannelBuffer3::GetCallContext::pInterface", "CreateDataCache::ppv", "BindMoniker::ppvResult",
+                "CoGetObject::ppv", "CoGetObjectContext::ppv", "CoGetClassObject::ppv", "CoGetCallContext::ppInterface",
+                "CoGetCancelObject::ppUnk", "IMoniker::BindToObject::ppvResult", "IMoniker::BindToStorage::ppvObj",
+            };
+            string[] previous = pilot.Concat(ComOutputHeaderTests.Selectors).Concat(UrlMonComOutputHeaderTests.Selectors)
                 .Concat(ShellItemComOutputHeaderTests.Selectors).ToArray();
             string[] records = original.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal) &&
                 !previous.Any(selector => line == selector + "=[ComOutPtr]")).ToArray();
             Assert.AreEqual(205, records.Length);
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
-            string expected = string.Join("\n", original.Split('\n').Where(line =>
-                !previous.Concat(Selectors).Any(selector => line == selector + "=[ComOutPtr]")));
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
-            Assert.AreEqual(expected, current, "Preserve every independent Out, result and unrelated sidecar.");
+            CollectionAssert.AreEqual(records.Where(line => !Selectors.Any(selector => line == selector + "=[ComOutPtr]")).ToArray(),
+                current.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
+                "Retire only the twenty exact records from the complete remaining corpus.");
+            CollectionAssert.AreEqual(original.Split('\n').Where(IndependentContract).ToArray(),
+                current.Split('\n').Where(IndependentContract).ToArray(), "Preserve independent Out and result contracts.");
             Assert.AreEqual(185, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
 
             var retained = new Dictionary<string, string[]>
@@ -95,6 +110,9 @@ namespace ClangSharpSourceToWinmdTests
             string sdkUm = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0", "um");
             foreach (string owner in new[] { "shellapi.idl", "Shlwapi.idl" })
                 Assert.IsFalse(File.Exists(Path.Combine(sdkUm, owner)), "Genuinely header-only owner: " + owner);
+
+            static bool IndependentContract(string line) => line.Contains("[Out]", StringComparison.Ordinal) ||
+                line.Contains("[CanReturn", StringComparison.Ordinal);
         }
 
         [TestMethod]
@@ -205,8 +223,8 @@ struct IBindCtx : IUnknown {};
         {
             // Reachable SDK ancestor, not a movable stack parent; selected declarations are unchanged there.
             string[] arguments = checkoutBytes
-                ? new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "cat-file", "--filters", ComOutputHeaderTests.Parent + ":generation/WinSDK/" + path }
-                : new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "show", ComOutputHeaderTests.Parent + ":generation/WinSDK/" + path };
+                ? new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "cat-file", "--filters", SdkAncestor + ":generation/WinSDK/" + path }
+                : new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "show", SdkAncestor + ":generation/WinSDK/" + path };
             var result = LastErrorHeaderTests.Run("git", arguments);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             return result.Output;

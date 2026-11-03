@@ -499,14 +499,19 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             string parent = ShellItemComOutputHeaderTests.PreRetirementCommit(Root());
-            foreach (string owner in new[] { "ShObjIdl.h", "ShObjIdl_core.h", "ShlObj.h", "ShlObj_core.h",
-                "propsys.h", "shellapi.h", "Shlwapi.h" })
+            foreach (string owner in new[] { "ShObjIdl.h", "ShObjIdl_core.h", "ShlObj.h", "ShlObj_core.h" })
             {
                 var original = LastErrorHeaderTests.Run("git", "-C", Root(), "cat-file", "--filters",
                     parent + ":generation/WinSDK/RecompiledIdlHeaders/um/" + owner);
                 Assert.AreEqual(0, original.ExitCode, original.Output);
                 Assert.IsTrue(original.Output.All(character => character <= 127), owner);
                 fixture.Header(owner, Encoding.ASCII.GetBytes(original.Output));
+            }
+            foreach (string owner in new[] { "propsys.h", "shellapi.h", "Shlwapi.h" })
+            {
+                string original = PropertyComOutputHeaderTests.ReadOriginal("RecompiledIdlHeaders/um/" + owner, checkoutBytes: true);
+                Assert.IsTrue(original.All(character => character <= 127), owner);
+                fixture.Header(owner, Encoding.ASCII.GetBytes(original));
             }
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
