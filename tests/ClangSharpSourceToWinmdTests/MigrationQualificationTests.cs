@@ -235,7 +235,7 @@ public static class Apis {
             Assert.AreEqual(1, Regex.Matches(workflow, @"run: node ").Count, "Node is reserved for the existing API-comment tests.");
             StringAssert.Contains(Job(workflow, "changes"), "context.repo.owner === 'jevansaks'");
             string migration = Job(workflow, "migration");
-            StringAssert.Contains(migration, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification]");
+            StringAssert.Contains(migration, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification, sdk-patch-tests]");
             StringAssert.Contains(migration, "if: always() && github.repository == 'jevansaks/win32metadata'");
             StringAssert.Contains(migration, "verifyMigrationEvidence --directory evidence");
             StringAssert.Contains(migration, "fetch-depth: 0");

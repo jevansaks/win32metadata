@@ -68,6 +68,40 @@ jobs:
             bin/emission-evidence
           retention-days: 30
 
+  sdk-patch-tests:
+    name: SDK patch application tests
+    needs: [changes]
+    if: needs.changes.outputs.sdk_patches_needed == 'true'
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          lfs: true
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          global-json-file: global.json
+      - name: Run SDK patch application tests
+        shell: pwsh
+        run: |
+          . .\scripts\CommonUtils.ps1
+          $results = Join-Path $rootDir 'bin\sdk-patch-tests'
+          New-Item -ItemType Directory -Force $results | Out-Null
+          $trx = Join-Path $results 'sdk-patches.trx'
+          if (Test-Path $trx) { Remove-Item $trx }
+          dotnet test tests\ClangSharpSourceToWinmdTests -c Release --filter 'FullyQualifiedName~ClangSharpSourceToWinmdTests.SdkPatchTests' --logger 'trx;LogFileName=sdk-patches.trx' --results-directory $results
+          if ($LASTEXITCODE -ne 0) { throw "SDK patch tests failed (exit $LASTEXITCODE)." }
+          Assert-TestResults $trx
+      - name: Retain SDK patch test results
+        if: always()
+        uses: ./.github/actions/upload-artifact-with-retry
+        with:
+          name: sdk-patch-tests
+          path: bin/sdk-patch-tests
+          retention-days: 30
+
   qualification:
     name: Full paired migration measurement
     if: github.repository == 'jevansaks/win32metadata'
@@ -103,7 +137,7 @@ jobs:
 
   migration:
     name: Migration qualification
-    needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification]
+    needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification, sdk-patch-tests]
     if: always() && github.repository == 'jevansaks/win32metadata'
     runs-on: windows-2022
     timeout-minutes: 10
@@ -122,6 +156,21 @@ jobs:
             if ($needs[$name].result -ne 'success') {
               throw "Required dependency $name did not succeed: $($needs[$name].result)"
             }
+          }
+      - name: Require SDK tests for ingestion changes
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+          SDK_PATCHES_NEEDED: ${{ needs.changes.outputs.sdk_patches_needed }}
+        shell: pwsh
+        run: |
+          $needs = $env:NEEDS | ConvertFrom-Json -AsHashtable
+          $result = $needs['sdk-patch-tests'].result
+          if ($env:SDK_PATCHES_NEEDED -eq 'true') {
+            if ($result -ne 'success') { throw "Required SDK patch tests did not succeed: $result" }
+          } elseif ($env:SDK_PATCHES_NEEDED -eq 'false') {
+            if ($result -ne 'skipped') { throw "Unexpected SDK patch test state for unrelated changes: $result" }
+          } else {
+            throw 'Missing or invalid SDK patch change detection.'
           }
       - name: Verify retained qualification receipt
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
@@ -146,6 +195,7 @@ jobs:
     timeout-minutes: 10
     outputs:
       build_needed: ${{ steps.filter.outputs.build_needed }}
+      sdk_patches_needed: ${{ steps.filter.outputs.sdk_patches_needed }}
 
     steps:
       - name: Check changed paths
@@ -153,8 +203,9 @@ jobs:
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
           script: |
-            if (context.repo.owner === 'jevansaks' || context.eventName !== 'pull_request') {
+            if (context.eventName !== 'pull_request') {
               core.setOutput('build_needed', 'true');
+              core.setOutput('sdk_patches_needed', 'true');
               return;
             }
 
@@ -173,9 +224,30 @@ jobs:
             const buildFiles = [...new Set(changedPaths)]
               .filter(file => !ignoredPrefixes.some(prefix => file.startsWith(prefix)));
             const fileListIncomplete = files.length < context.payload.pull_request.changed_files;
-            const buildNeeded = fileListIncomplete || buildFiles.length !== 0;
+            const sdkPatchFiles = new Set([
+              '.github/workflows/pr-validation.yml',
+              'scripts/ApplySDKPatches.ps1', 'scripts/UpdateSDK.ps1',
+              'scripts/RecompileIdlFilesForScraping.ps1',
+              'scripts/ConvertMidlAttributesToSalAnnotations.ps1',
+              'scripts/CommonUtils.ps1', 'scripts/TestTooling.ps1',
+              'tests/ClangSharpSourceToWinmdTests/SdkPatchTests.cs',
+              'tests/ClangSharpSourceToWinmdTests/ClangSharpSourceToWinmdTests.csproj',
+              'generation/WinSDK/RecompiledIdlHeaders/um/amstream.idl',
+              'generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h',
+              'BuildTools/BuildTools.proj', 'Directory.Build.props',
+              'Directory.Build.targets', 'global.json', 'nuget.config'
+            ]);
+            const sdkPatchPrefixes = [
+              'generation/WinSDK/patches/',
+              'tests/ClangSharpSourceToWinmdTests/SdkPatchFixtures/',
+              '.github/actions/upload-artifact-with-retry/'
+            ];
+            const sdkPatchesNeeded = fileListIncomplete || changedPaths.some(file =>
+              sdkPatchFiles.has(file) || sdkPatchPrefixes.some(prefix => file.startsWith(prefix)));
+            const buildNeeded = context.repo.owner === 'jevansaks' || fileListIncomplete || buildFiles.length !== 0;
 
             core.setOutput('build_needed', buildNeeded.toString());
+            core.setOutput('sdk_patches_needed', sdkPatchesNeeded.toString());
             await core.summary
               .addHeading(buildNeeded ? 'Full validation required' : 'Documentation-only change')
               .addRaw(fileListIncomplete

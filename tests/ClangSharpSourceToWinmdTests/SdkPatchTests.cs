@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClangSharpSourceToWinmdTests
@@ -161,6 +163,53 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(2, script.Split("-SdkVersion ([IO.Path]::GetFileName($cppPkgPath)) -SelectedPatches $SelectedPatches").Length - 1);
             StringAssert.Contains(File.ReadAllText(Script("UpdateSDK.ps1")),
                 ". \"$PSScriptRoot\\RecompileIdlFilesForScraping.ps1\" -SelectedPatches $SelectedPatches");
+        }
+
+        [TestMethod]
+        public void CiLane_IsParallelSelectiveAndEnforcedByExistingRequiredGate()
+        {
+            string workflow = File.ReadAllText(Path.Combine(Root(), ".github", "workflows", "pr-validation.yml")).Replace("\r\n", "\n");
+            string job = Regex.Match(workflow, @"^  sdk-patch-tests:\n(?<job>.*?)(?=^  \S)", RegexOptions.Multiline | RegexOptions.Singleline).Groups["job"].Value;
+            StringAssert.Contains(job, "needs: [changes]");
+            StringAssert.Contains(job, "if: needs.changes.outputs.sdk_patches_needed == 'true'");
+            StringAssert.Contains(job, "--filter 'FullyQualifiedName~ClangSharpSourceToWinmdTests.SdkPatchTests'");
+            Assert.IsFalse(job.Contains("continue-on-error:", StringComparison.Ordinal));
+            StringAssert.Contains(File.ReadAllText(Script("TestTooling.ps1")),
+                "'FullyQualifiedName!~ClangSharpSourceToWinmdTests.SdkPatchTests'");
+            StringAssert.Contains(workflow, "const sdkPatchesNeeded = fileListIncomplete || changedPaths.some");
+            StringAssert.Contains(workflow, "file.previous_filename, file.filename");
+            foreach (string path in new[] { "scripts/ApplySDKPatches.ps1", "scripts/UpdateSDK.ps1",
+                "scripts/RecompileIdlFilesForScraping.ps1", "generation/WinSDK/patches/",
+                "tests/ClangSharpSourceToWinmdTests/SdkPatchFixtures/" })
+                StringAssert.Contains(workflow, $"'{path}'");
+            StringAssert.Contains(workflow, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification, sdk-patch-tests]");
+
+            Match block = Regex.Match(workflow,
+                @"name: Require SDK tests for ingestion changes.*?        run: \|\n(?<script>(?:          [^\n]*\n)+)",
+                RegexOptions.Singleline);
+            Assert.IsTrue(block.Success);
+            string script = Regex.Replace(block.Groups["script"].Value, "^          ", "", RegexOptions.Multiline);
+            var cases = new[]
+            {
+                new { needed = "true", result = "success", fails = false },
+                new { needed = "false", result = "skipped", fails = false },
+                new { needed = "true", result = "failure", fails = true },
+                new { needed = "true", result = "skipped", fails = true },
+                new { needed = "true", result = "cancelled", fails = true },
+                new { needed = "true", result = "", fails = true },
+                new { needed = "", result = "success", fails = true },
+                new { needed = "false", result = "success", fails = true },
+                new { needed = "false", result = "", fails = true }
+            };
+            using var fixture = new Fixture();
+            var result = fixture.Run(
+                $"$gate = [scriptblock]::Create({Quote(script)}); $cases = {Quote(JsonSerializer.Serialize(cases))} | ConvertFrom-Json; " +
+                "foreach ($case in $cases) { " +
+                "$env:SDK_PATCHES_NEEDED = $case.needed; " +
+                "$env:NEEDS = @{ 'sdk-patch-tests' = @{ result = $case.result } } | ConvertTo-Json; " +
+                "$failed = $false; try { & $gate } catch { $failed = $true }; " +
+                "if ($failed -ne $case.fails) { throw \"Unexpected SDK gate outcome: $($case | ConvertTo-Json -Compress)\" } }");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
         }
 
         private static string Root()

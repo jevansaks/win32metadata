@@ -49,14 +49,28 @@ UTF-16 and mixed line endings are explicitly unsupported. When the SDK changes,
 regenerate the patch against fresh copied inputs and update its version line;
 do not silently skip it or broaden hunk matching.
 
-Focused tests run in the existing emitter MSTest project, including phase
+Focused tests live in the existing emitter MSTest project, including phase
 selection, conversion survival, unchanged proof declarations, hook placement,
 encoding/line endings, and negative cases:
 
 ```powershell
 dotnet test tests\ClangSharpSourceToWinmdTests -c Release --filter SdkPatchTests
-.\scripts\TestTooling.ps1
 ```
+
+In PR validation, the `sdk-patch-tests` job runs these tests parallel to scraping,
+tooling tests, and full paired qualification after the shared change-detection
+job. Its path filter includes ingestion scripts, patch assets/fixtures, the two
+proof inputs, and relevant build configuration. Unrelated PRs skip this job
+without starting a runner. Renamed paths are checked on both sides; incomplete
+file lists fail closed by running the tests. Manual and push runs also run them.
+`TestTooling.ps1` (also called by `DoTests.ps1`) excludes `SdkPatchTests`, so they
+do not add runtime to ordinary tooling or the serial build/test/package job.
+The already-required **Migration qualification** check requires this job to
+succeed for relevant changes, accepting a skipped job only when change detection
+explicitly reports no relevant changes. Failed/cancelled/missing results cannot
+pass that gate. No new required status context is needed, so unrelated PRs cannot
+get stuck waiting for a workflow that never ran. Existing qualification evidence,
+the other required checks, and approval policy remain unchanged.
 
 Original mechanism and proof:
 [microsoft/win32metadata#2248](https://github.com/microsoft/win32metadata/pull/2248),
