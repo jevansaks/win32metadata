@@ -268,6 +268,47 @@ an explicit input plus COM output yields In|Out, rather than a new conflict
 policy. Matching legacy COM facts deduplicate. Production winmd integrity
 checks cover these twelve exact sites alongside the earlier pilot.
 
+## URLMon binding and activation output pointers
+
+The URLMon layer inventories all 225 remaining ComOutPtr records against the
+selected SDK's actual `UrlMon.Idl` and `urlmon.h` owners and retires exactly
+three: `IBindHost::MonikerBindToObject::ppvObj`,
+`IBindHost::MonikerBindToStorage::ppvObj`, and
+`CoGetClassObjectFromURL::ppv`. The remaining corpus is 222 records.
+No wildcard selector supplies any of these facts; the two type-override records
+containing `void**` are not wildcard selectors. Hlink and Media Foundation
+declarations are separate physical owners, not additional URLMon inventory.
+
+One `pre-midl/UrlMon.Idl.patch` owns all edits. The activation function is an
+existing `#pragma midl_echo` declaration: only its `_Outptr_` becomes
+`_COM_Outptr_`. Both local binding methods already have `[out]`; explicit
+native `annotation("_COM_Outptr_")` carries their existing COM-output fact
+without changing their local/RPC signatures. Their remote `call_as` methods
+already have `[out, iid_is(riid)]` and are unchanged. No retval, optionality,
+pointer depth, or independent sidecar is changed.
+
+MIDL propagates each local annotation into the complete C++ definition, C
+vtable, and local proxy declaration. There is one complete guarded IBindHost
+definition in this owner, not a second alternative hidden behind its forward.
+The local proxies have no production import mapping and the existing emitter
+omits unmapped imports; the focused fixture uses that same empty default and
+the actual activation mapping, asserting the proxies stay absent from final
+metadata. No new exclusion, import override, reader, or compatibility fallback
+is introduced to conceal those generated annotations.
+
+`UrlMonComOutputHeaderTests` compare the reachable parent's original native
+declarations plus all three legacy facts with header-only final winmd bytes on
+x86/x64/ARM64, inspect exact attribute blobs, output flags and double-pointer
+signatures, and check matching sidecars deduplicate. A byte-level assertion
+allows only the seven generated-header SAL substitutions and three IDL edits,
+preserving all other bytes and line endings. The existing real-SDK patch/MIDL
+fixture now replays URLMon too. The native no-op fixture compiles C and C++
+on all three architectures, with URLMon included before or after its COM
+dependencies, and compares original/patched/metadata-defined object bytes.
+The production integrity test asserts all three retired facts. Existing result
+contracts and the IAgileReference, callback, and MsHtml boundaries stay active
+and outside this layer.
+
 ## Patch format and validation
 
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal

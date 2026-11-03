@@ -555,7 +555,7 @@ STDAPI CoGetClassObjectFromURL( _In_ REFCLSID rCLASSID,
             _In_ LPCWSTR szCODE, DWORD dwFileVersionMS, 
             DWORD dwFileVersionLS, _In_ LPCWSTR szTYPE,
             _In_ LPBINDCTX pBindCtx, DWORD dwClsContext,
-            _Reserved_ LPVOID pvReserved, REFIID riid, _Outptr_ LPVOID * ppv);
+            _Reserved_ LPVOID pvReserved, REFIID riid, _COM_Outptr_ LPVOID * ppv);
 STDAPI IEInstallScope(_Out_ LPDWORD pdwScope);
 STDAPI FaultInIEFeature( HWND hWnd,
             _In_ uCLSSPEC *pClassSpec,
@@ -5213,7 +5213,7 @@ EXTERN_C const IID IID_IBindHost;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppvObj) = 0;
+            _COM_Outptr_  void **ppvObj) = 0;
         
         virtual /* [local] */ HRESULT STDMETHODCALLTYPE MonikerBindToObject( 
             /* [annotation][in] */ 
@@ -5225,7 +5225,7 @@ EXTERN_C const IID IID_IBindHost;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppvObj) = 0;
+            _COM_Outptr_  void **ppvObj) = 0;
         
     };
     
@@ -5276,7 +5276,7 @@ EXTERN_C const IID IID_IBindHost;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppvObj);
+            _COM_Outptr_  void **ppvObj);
         
         DECLSPEC_XFGVIRT(IBindHost, MonikerBindToObject)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *MonikerBindToObject )( 
@@ -5290,7 +5290,7 @@ EXTERN_C const IID IID_IBindHost;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppvObj);
+            _COM_Outptr_  void **ppvObj);
         
         END_INTERFACE
     } IBindHostVtbl;
@@ -12148,7 +12148,7 @@ void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned lo
     /* [annotation][in] */ 
     _In_  REFIID riid,
     /* [annotation][out] */ 
-    _Out_  void **ppvObj);
+    _COM_Outptr_  void **ppvObj);
 
 
 /* [call_as] */ HRESULT STDMETHODCALLTYPE IBindHost_MonikerBindToStorage_Stub( 
@@ -12175,7 +12175,7 @@ void                      __RPC_USER  HWND_UserFree64(     __RPC__in unsigned lo
     /* [annotation][in] */ 
     _In_  REFIID riid,
     /* [annotation][out] */ 
-    _Out_  void **ppvObj);
+    _COM_Outptr_  void **ppvObj);
 
 
 /* [call_as] */ HRESULT STDMETHODCALLTYPE IBindHost_MonikerBindToObject_Stub( 

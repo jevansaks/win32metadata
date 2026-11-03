@@ -1,0 +1,31 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/UrlMon.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/UrlMon.Idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/UrlMon.Idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/UrlMon.Idl
+@@ -148,7 +148,7 @@
+ #pragma midl_echo("            _In_ LPCWSTR szCODE, DWORD dwFileVersionMS, ")
+ #pragma midl_echo("            DWORD dwFileVersionLS, _In_ LPCWSTR szTYPE,")
+ #pragma midl_echo("            _In_ LPBINDCTX pBindCtx, DWORD dwClsContext,")
+-#pragma midl_echo("            _Reserved_ LPVOID pvReserved, REFIID riid, _Outptr_ LPVOID * ppv);")
++#pragma midl_echo("            _Reserved_ LPVOID pvReserved, REFIID riid, _COM_Outptr_ LPVOID * ppv);")
+ 
+ #pragma midl_echo("STDAPI IEInstallScope(_Out_ LPDWORD pdwScope);")
+ 
+@@ -2097,7 +2097,7 @@
+             [in]    IBindCtx            *pBC,
+             [in]    IBindStatusCallback *pBSC,
+             [in]    REFIID              riid,
+-            [out]   void                **ppvObj);
++            [out, annotation("_COM_Outptr_")]   void                **ppvObj);
+ 
+         [call_as(MonikerBindToStorage)]
+         HRESULT RemoteMonikerBindToStorage(
+@@ -2113,7 +2113,7 @@
+             [in]    IBindCtx            *pBC,
+             [in]    IBindStatusCallback *pBSC,
+             [in]    REFIID              riid,
+-            [out]   void                **ppvObj);
++            [out, annotation("_COM_Outptr_")]   void                **ppvObj);
+ 
+         [call_as(MonikerBindToObject)]
+         HRESULT RemoteMonikerBindToObject(

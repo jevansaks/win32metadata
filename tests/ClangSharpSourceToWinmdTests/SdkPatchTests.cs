@@ -398,13 +398,19 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [DataTestMethod]
-        [DataRow("x86", "/TC")]
-        [DataRow("x64", "/TC")]
-        [DataRow("arm64", "/TC")]
-        [DataRow("x86", "/TP")]
-        [DataRow("x64", "/TP")]
-        [DataRow("arm64", "/TP")]
-        public void ExplicitAvailability_SelectedSdkNativeBuildIsANoOp(string arch, string language)
+        [DataRow("x86", "/TC", false)]
+        [DataRow("x64", "/TC", false)]
+        [DataRow("arm64", "/TC", false)]
+        [DataRow("x86", "/TP", false)]
+        [DataRow("x64", "/TP", false)]
+        [DataRow("arm64", "/TP", false)]
+        [DataRow("x86", "/TC", true)]
+        [DataRow("x64", "/TC", true)]
+        [DataRow("arm64", "/TC", true)]
+        [DataRow("x86", "/TP", true)]
+        [DataRow("x64", "/TP", true)]
+        [DataRow("arm64", "/TP", true)]
+        public void ExplicitAvailability_SelectedSdkNativeBuildIsANoOp(string arch, string language, bool urlmonFirst)
         {
             using var fixture = new Fixture();
             string include = System.IO.Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
@@ -415,16 +421,17 @@ namespace ClangSharpSourceToWinmdTests
             fixture.Apply("post-midl", string.Join("','", new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h",
                 "combaseapi.h", "objbase.h", "HtmlHelp.h", "webauthnplugin.h", "coml2api.h", "Ole2.h", "OleCtl.h" }
                 .Select(owner => "post-midl/" + owner + ".patch")), true, patchRoot: patches, midlInputRoot: include);
-            foreach (string owner in new[] { "ObjIdl.h", "ObjIdlbase.h", "Unknwnbase.h", "Unknwn.h", "servprov.h", "ocidl.h" })
+            foreach (string owner in new[] { "ObjIdl.h", "ObjIdlbase.h", "Unknwnbase.h", "Unknwn.h", "servprov.h", "ocidl.h", "urlmon.h" })
                 fixture.Header(owner, File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)));
             File.Copy(System.IO.Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders",
                 "shared", "win32metadata_annotations.h"), System.IO.Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
             File.Copy(System.IO.Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"),
                 System.IO.Path.Combine(fixture.Headers, "sal.h"));
             string source = System.IO.Path.Combine(fixture.Path, "native.c");
-            File.WriteAllText(source, "#define COBJMACROS\n#include <windows.h>\n#include <winhttp.h>\n#include <objbase.h>\n#include <ObjIdlbase.h>\n" +
+            File.WriteAllText(source, "#define COBJMACROS\n" + (urlmonFirst ? "#include <urlmon.h>\n" : "") +
+                "#include <windows.h>\n#include <winhttp.h>\n#include <objbase.h>\n#include <ObjIdlbase.h>\n" +
                 "#include <ole2.h>\n#include <olectl.h>\n#include <coml2api.h>\n#include <servprov.h>\n" +
-                "#include <HtmlHelp.h>\n#include <webauthn.h>\n#include <webauthnplugin.h>\n" +
+                "#include <HtmlHelp.h>\n#include <webauthn.h>\n#include <webauthnplugin.h>\n#include <urlmon.h>\n" +
                 "HWND (WINAPI *html_signature)(HWND, LPCWSTR, UINT, DWORD_PTR) = &HtmlHelpW;\n" +
                 "HRESULT (WINAPI *plugin_signature)(REFCLSID, AUTHENTICATOR_STATE*) = &WebAuthNPluginGetAuthenticatorState;\n" +
                 "DWORD (WINAPI *error_signature)(void) = &GetLastError;\n" +
@@ -440,6 +447,11 @@ namespace ClangSharpSourceToWinmdTests
                 "HRESULT (WINAPI *ole_load)(LPSTREAM, LONG, BOOL, REFIID, LPVOID*) = &OleLoadPicture;\n" +
                 "HRESULT (WINAPI *ole_path)(LPOLESTR, LPUNKNOWN, DWORD, OLE_COLOR, REFIID, LPVOID*) = &OleLoadPicturePath;\n" +
                 "HRESULT (STDMETHODCALLTYPE *unknown_proxy)(IUnknown*, REFIID, void**) = &IUnknown_QueryInterface_Proxy;\n" +
+                "HRESULT (WINAPI *url_activation)(REFCLSID, LPCWSTR, DWORD, DWORD, LPCWSTR, LPBINDCTX, DWORD, LPVOID, REFIID, LPVOID*) = &CoGetClassObjectFromURL;\n" +
+                "HRESULT __stdcall BindHostCall(IBindHost* host, IMoniker* moniker, IBindCtx* context, IBindStatusCallback* callback, REFIID riid, void** output) {\n" +
+                "#ifdef __cplusplus\nreturn host->MonikerBindToObject(moniker, context, callback, riid, output) + host->MonikerBindToStorage(moniker, context, callback, riid, output);\n" +
+                "#else\nreturn IBindHost_MonikerBindToObject(host, moniker, context, callback, riid, output) + IBindHost_MonikerBindToStorage(host, moniker, context, callback, riid, output);\n" +
+                "#endif\n}\n" +
                 "HRESULT __stdcall FactoryCall(IClassFactory2* factory, IServiceProvider* provider, REFIID riid, void** output) {\n" +
                 "#ifdef __cplusplus\nreturn factory->CreateInstanceLic(0, 0, riid, 0, output) + provider->QueryService(riid, riid, output);\n" +
                 "#else\nreturn IClassFactory2_CreateInstanceLic(factory, 0, 0, riid, 0, output) + IServiceProvider_QueryService(provider, riid, riid, output);\n" +
@@ -476,14 +488,14 @@ namespace ClangSharpSourceToWinmdTests
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
             foreach (string owner in new[] { "coml2api.h", "Ole2.h", "OleCtl.h",
-                "ocidl.Idl", "ServProv.Idl", "Unknwnbase.Idl" })
+                "ocidl.Idl", "ServProv.Idl", "Unknwnbase.Idl", "UrlMon.Idl" })
                 fixture.Header(owner, File.ReadAllBytes(Path.Combine(include, "um", owner)));
             string selections = "post-midl/coml2api.h.patch','post-midl/Ole2.h.patch','post-midl/OleCtl.h.patch'," +
-                "'pre-midl/ocidl.Idl.patch','pre-midl/ServProv.Idl.patch','pre-midl/Unknwnbase.Idl.patch";
+                "'pre-midl/ocidl.Idl.patch','pre-midl/ServProv.Idl.patch','pre-midl/Unknwnbase.Idl.patch','pre-midl/UrlMon.Idl.patch";
             fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             foreach (string owner in new[] { "coml2api.h", "Ole2.h", "OleCtl.h",
-                "ocidl.Idl", "ServProv.Idl", "Unknwnbase.Idl" })
+                "ocidl.Idl", "ServProv.Idl", "Unknwnbase.Idl", "UrlMon.Idl" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)),
                     File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
@@ -502,7 +514,7 @@ namespace ClangSharpSourceToWinmdTests
             }
             command += ". " + Quote(Script("CommonUtils.ps1")) +
                 "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); ";
-            foreach (string owner in new[] { "unknwnbase", "unknwn", "servprov", "ocidl" })
+            foreach (string owner in new[] { "unknwnbase", "unknwn", "servprov", "urlmon", "ocidl" })
                 command += "& " + Quote(Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
                     " " + Quote(Path.Combine(converted, owner + ".idl")) + " /out " + Quote(converted) +
                     " /header " + Quote(Path.Combine(fixture.Headers, "um", owner + ".h")) +
@@ -516,11 +528,19 @@ namespace ClangSharpSourceToWinmdTests
                     "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
             var result = fixture.Run(command);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            foreach (string owner in new[] { "Unknwnbase.h", "Unknwn.h", "servprov.h", "ocidl.h" })
+            foreach (string owner in new[] { "Unknwnbase.h", "Unknwn.h", "servprov.h", "urlmon.h", "ocidl.h" })
+            {
+                string expected = Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner);
+                string actual = Path.Combine(fixture.Headers, "um", owner);
+                string differences = string.Join("\n", File.ReadAllLines(expected).Zip(File.ReadAllLines(actual))
+                    .Where(pair => pair.First != pair.Second).Take(3)
+                    .Select(pair => "EXPECTED: " + pair.First + "\nACTUAL: " + pair.Second));
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)),
-                    File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
+                    File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner + "\n" + differences);
+            }
             ComOutputHeaderTests.AssertShippedDeclarations("x86_64-pc-windows-msvc", Path.Combine(fixture.Headers, "um"));
+            UrlMonComOutputHeaderTests.AssertShippedDeclarations("x86_64-pc-windows-msvc", Path.Combine(fixture.Headers, "um"));
         }
 
         [TestMethod]

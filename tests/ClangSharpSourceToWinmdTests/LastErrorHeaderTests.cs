@@ -242,7 +242,7 @@ namespace ClangSharpSourceToWinmdTests
             public (int ExitCode, string Output) Scrape(string header, string target = "x86_64-pc-windows-msvc",
                 bool legacy = false, string? remap = null, bool repeatInclude = false, bool metadata = true, string language = "c++",
                 bool sal = false, bool transitive = false, string extraSettings = "", string? includedHeader = null,
-                string? scraperPath = null)
+                string? scraperPath = null, string libraryPath = "test.dll")
             {
                 if (File.Exists(this.GeneratedSource)) File.Delete(this.GeneratedSource);
                 if (sal)
@@ -280,7 +280,7 @@ Test
 --traverse
 {Path.Combine(this.directory, transitive ? "inner.h" : "input.h")}
 --libraryPath
-test.dll
+{libraryPath}
 --methodClassName
 Apis
 --config

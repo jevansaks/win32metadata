@@ -47,7 +47,8 @@ namespace Windows.Win32.Tests
                     "OleCreateFontIndirect::lplpvObj", "OleCreatePictureIndirect::lplpvObj",
                     "OleLoadPicture::lplpvObj", "OleLoadPicturePath::ppvRet",
                     "IClassFactory2::CreateInstanceLic::ppvObj", "IServiceProvider::QueryService::ppvObject",
-                    "IUnknown_QueryInterface_Proxy::ppvObject" }),
+                    "IUnknown_QueryInterface_Proxy::ppvObject", "CoGetClassObjectFromURL::ppv",
+                    "IBindHost::MonikerBindToObject::ppvObj", "IBindHost::MonikerBindToStorage::ppvObj" }),
                 ("ReservedAttribute", ParameterAttributes.In | ParameterAttributes.Optional, new[] {
                     "CoAllowSetForegroundWindow::lpvReserved", "CoDisableCallCancellation::pReserved",
                     "CoEnableCallCancellation::pReserved", "CoInitialize::pvReserved", "CoInitializeEx::pvReserved",
@@ -101,7 +102,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(50, checkedSelectors);
+            Assert.Equal(53, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {
