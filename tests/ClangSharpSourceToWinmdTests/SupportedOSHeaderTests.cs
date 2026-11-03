@@ -63,7 +63,6 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("typedef _Win32_SupportedOS_WindowsXP_ int Scalar;")]
         [DataRow("typedef int (*Callback)(int); typedef _Win32_SupportedOS_WindowsXP_ Callback Alias;")]
         [DataRow("struct Record { int value; }; typedef _Win32_SupportedOS_WindowsXP_ struct Record Alias;")]
-        [DataRow("int Example(void);\n_Win32_SupportedOS_WindowsXP_ int Example(void);")]
         [DataRow("__attribute__((annotate(\"Win32Metadata.SupportedOSPlatform(\\\"windows5.0\\\")\", 1))) int Example(void);")]
         public void ConflictingAndUnsupportedTargets_FailWithoutOutput(string header)
         {
@@ -80,9 +79,34 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new LastErrorHeaderTests.Fixture();
             var result = fixture.Scrape("_Win32_SupportedOS_WindowsXP_ int Example(void);", sal: true,
                 extraSettings: "--with-attribute\nExample=SupportedOSPlatform(\"windows6.1\")");
+            Assert.AreNotEqual(0, result.ExitCode, result.Output);
+            StringAssert.Contains(result.Output, "Legacy SupportedOSPlatform conflicts");
+            StringAssert.Contains(result.Output, "input.h:");
+            Assert.IsFalse(File.Exists(fixture.GeneratedSource));
+        }
+
+        [DataTestMethod]
+        [DataRow(false)]
+        [DataRow(true)]
+        public void EarlierUnannotatedNativeHeader_StillEmitsFinalFunctionAvailability(bool remap)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var baseline = fixture.Scrape("int __stdcall Example(void);", sal: true,
+                remap: remap ? "Renamed" : null,
+                extraSettings: "--with-attribute\n" + (remap ? "Renamed" : "Example") +
+                    "=SupportedOSPlatform(\"windows5.1.2600\")");
+            Assert.AreEqual(0, baseline.ExitCode, baseline.Output);
+            byte[] expected = File.ReadAllBytes(fixture.Emit());
+            var result = fixture.Scrape("_Win32_SupportedOS_WindowsXP_ int __stdcall Example(void);", sal: true,
+                includedHeader: "int __stdcall Example(void);", remap: remap ? "Renamed" : null);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            var error = Assert.ThrowsException<AggregateException>(() => fixture.Emit());
-            StringAssert.Contains(error.ToString(), "Legacy SupportedOSPlatform conflicts");
+            string output = fixture.Emit();
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(method => reader.GetString(method.Name) == (remap ? "Renamed" : "Example"));
+            Assert.AreEqual("windows5.1.2600", Platform(reader, method.GetCustomAttributes().ToArray()));
         }
 
         [TestMethod]

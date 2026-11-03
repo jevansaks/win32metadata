@@ -18,6 +18,21 @@ namespace Win32MetadataScraper
         public Dictionary<string, EnumObject> EnumGroups { get; } = new(StringComparer.Ordinal);
         public Dictionary<string, (string Type, string Value)> EnumConstants { get; } = new(StringComparer.Ordinal);
         private readonly Dictionary<string, ClangSharp.Type> enumStorage = new(StringComparer.Ordinal);
+        private readonly Dictionary<string, (string Version, Attr Attribute)> supportedFunctions = new(StringComparer.Ordinal);
+
+        public void MergeSupportedFunctions(List<string> attributes, IReadOnlyDictionary<string, string> remaps)
+        {
+            foreach (var fact in this.supportedFunctions)
+            {
+                string name = remaps.GetValueOrDefault(fact.Key) ?? fact.Key;
+                string value = $"SupportedOSPlatform(\"{fact.Value.Version}\")";
+                foreach (string configured in attributes.Where(a => a.StartsWith(name + "=SupportedOSPlatform", StringComparison.Ordinal)))
+                    if (configured != name + "=" + value)
+                        throw Error(fact.Value.Attribute, $"Legacy SupportedOSPlatform conflicts with native availability for '{name}'.");
+                if (!attributes.Contains(name + "=" + value))
+                    attributes.Add(name + "=" + value);
+            }
+        }
 
         public void Visit(Decl declaration)
         {
@@ -99,10 +114,15 @@ namespace Win32MetadataScraper
                 RemapDiscovery.UnwrapType(alias.UnderlyingType) is not PointerType pointer ||
                 RemapDiscovery.UnwrapType(pointer.PointeeType) is not FunctionProtoType))
                 throw Error(attribute, "SupportedOSPlatform typedefs require a projected callback; scalar and record aliases have no independent emitted use site. Annotate the owning record or enum instead.");
-            if (declaration is FunctionDecl redeclaration &&
-                !redeclaration.CanonicalDecl.Attrs.Any(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
-                    a.Spelling == attribute.Spelling))
-                throw Error(attribute, "SupportedOSPlatform must appear on the first native function declaration; late-only annotations are not emitted by PInvokeGenerator.");
+            if (declaration is FunctionDecl imported && declaration is not CXXMethodDecl)
+            {
+                if (this.supportedFunctions.TryGetValue(imported.Name, out var existing) && existing.Version != version)
+                    throw Error(attribute, $"Conflicting SupportedOSPlatform annotations on redeclarations of '{imported.Name}'.");
+                this.supportedFunctions[imported.Name] = (version, attribute);
+            }
+            else if (declaration is CXXMethodDecl method &&
+                !method.CanonicalDecl.Attrs.Any(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate && a.Spelling == attribute.Spelling))
+                throw Error(attribute, "SupportedOSPlatform must appear on the first native method declaration; late-only method annotations are not emitted by PInvokeGenerator.");
             foreach (var other in declaration.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
                 a.Spelling.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal)))
             {

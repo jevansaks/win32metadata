@@ -74,6 +74,10 @@ delegate type use sites, on x86, x64, and arm64. The reader validates the canoni
 version payload, declaration kind, arguments, and conflicting redeclarations.
 The existing `NativeAnnotation` transport is consumed by the ordinary emitter;
 equal header/legacy values emit one attribute, conflicting legacy attributes fail.
+Ordinary function facts also merge into the existing generator `WithAttributes`
+configuration after native-name remapping. This preserves a fact when another
+header supplies an earlier unannotated declaration (as with `PropVariantCopy`),
+without requiring a second SDK parse or annotation patches on every redeclaration.
 Ordinary MSVC C/C++ builds, including `WIN32METADATA` without Clang, see empty helpers.
 
 The three COM interface definitions use `post-midl/ObjIdlbase.h.patch`, after the
@@ -89,9 +93,11 @@ Concrete pre-existing projection boundaries remain explicit:
   independent projected availability use site. Annotating them fails; annotate the
   owning record/enum or the direct callback-pointer typedef instead. This layer
   does not add scalar identity or change callback alias recovery.
-- A function or method annotation must be on its first native declaration.
-  Late-only annotations are not reliably transported by PInvokeGenerator and fail
-  at the native source location instead of being silently dropped.
+- An ordinary function annotation can appear after an unannotated declaration;
+  final-winmd tests cover an earlier header and remapped public names. A method
+  annotation must be on its first native method declaration; late-only method
+  annotations are not reliably transported by PInvokeGenerator and fail at the
+  native source location instead of being silently dropped.
 - Ordinary legacy `SupportedOSPlatform` cleanup still removes attributes from
   interface methods. An explicitly authored native method annotation uses the
   owned transport and survives at the emitted method, not its return parameter.
