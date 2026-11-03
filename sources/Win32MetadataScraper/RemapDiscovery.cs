@@ -254,7 +254,7 @@ public static class RemapDiscovery
     ///   typedef ACMDRIVERPROC *LPACMDRIVERPROC; // adds another *
     /// → preserve proto, exclude alias, use proto* for alias references
     ///
-    /// Same-level aliases refer to the defining callback without adding a pointer.
+    /// Explicit same-level alias remaps refer to the defining callback without adding a pointer.
     /// Explicit legacy renaming of the defining callback retains the old fixup path.
     /// </summary>
     public static ResolvedRemaps ResolveFunctionPointerFixups(
@@ -319,13 +319,19 @@ public static class RemapDiscovery
             void PreserveAliases(Dictionary<string, List<string>> aliases, string indirection)
             {
                 if (!aliases.TryGetValue(protoName, out var names)) return;
-                result.FnPtrRemaps[protoName] = protoName;
                 foreach (string name in names)
                 {
                     if (discovery.NonGlobalTypedefs.Contains(name)) continue;
+                    // Same-level aliases have no ABI defect to correct. Keep their
+                    // public names unless configuration explicitly selects the owner.
+                    if (indirection.Length == 0 &&
+                        (configuredRemaps == null || !configuredRemaps.TryGetValue(name, out var selectedName) ||
+                         selectedName != protoName))
+                        continue;
                     if (configuredRemaps != null && configuredRemaps.TryGetValue(name, out var aliasRemap) &&
                         aliasRemap != name && aliasRemap != protoName)
                         throw new FormatException($"Configured remap for callback alias '{name}' conflicts with native callback '{protoName}'.");
+                    result.FnPtrRemaps[protoName] = protoName;
                     result.FnPtrExcludes.Add(name);
                     result.FnPtrTypes[name] = protoName + indirection;
                 }

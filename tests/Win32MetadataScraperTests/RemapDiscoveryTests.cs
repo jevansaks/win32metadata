@@ -641,12 +641,12 @@ namespace Win32MetadataScraperTests
             // Should NOT be in FnProtoToPointerTypedefs (which is for pointer-adding aliases)
             Assert.False(discovery.FnProtoToPointerTypedefs.ContainsKey("PTHREAD_START_ROUTINE"));
 
-            // Same-level aliases use the complete defining callback.
+            // Unmigrated same-level aliases keep their existing public names.
             var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
                 typedef unsigned long (*PTHREAD_START_ROUTINE)(void* lpThreadParameter);
                 typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
             ");
-            Assert.Equal("PTHREAD_START_ROUTINE", result.FnPtrTypes["LPTHREAD_START_ROUTINE"]);
+            Assert.Empty(result.FnPtrTypes);
         }
 
         // ── Ambiguous pointer targets skipped ────────────────────────────────
@@ -673,7 +673,7 @@ namespace Win32MetadataScraperTests
         }
 
         [Fact]
-        public void FnPtr_BothHavePointerPrefix_PreservesDefiningName()
+        public void FnPtr_BothHavePointerPrefix_KeepsUnmigratedAliases()
         {
             // When the proto is already a pointer (typedef DWORD (*P...)(...))
             // the alias is a typedef-to-typedef with no additional pointer.
@@ -682,7 +682,7 @@ namespace Win32MetadataScraperTests
                 typedef PTHREAD_START_ROUTINE LPTHREAD_START_ROUTINE;
             ");
 
-            Assert.Equal("PTHREAD_START_ROUTINE", result.FnPtrTypes["LPTHREAD_START_ROUTINE"]);
+            Assert.Empty(result.FnPtrTypes);
         }
 
         [Fact]
@@ -691,13 +691,13 @@ namespace Win32MetadataScraperTests
             // Pattern from powrprof.h:
             //   typedef BOOLEAN (CALLBACK* PWRSCHEMESENUMPROC_V2)(UINT, DWORD, ...);
             //   typedef PWRSCHEMESENUMPROC_V2 PWRSCHEMESENUMPROC;
-            // The declaration with the native prototype supplies the signature.
+            // The existing projected alias name is not automatically replaced.
             var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
                 typedef unsigned char (*PWRSCHEMESENUMPROC_V2)(unsigned int uiIndex, unsigned long dwName);
                 typedef PWRSCHEMESENUMPROC_V2 PWRSCHEMESENUMPROC;
             ");
 
-            Assert.Equal("PWRSCHEMESENUMPROC_V2", result.FnPtrTypes["PWRSCHEMESENUMPROC"]);
+            Assert.Empty(result.FnPtrTypes);
         }
 
         [Fact]
@@ -709,7 +709,7 @@ namespace Win32MetadataScraperTests
                 typedef PPATCH_PROGRESS_CALLBACK PATCH_PROGRESS_CALLBACK;
             ");
 
-            Assert.Equal("PPATCH_PROGRESS_CALLBACK", result.FnPtrTypes["PATCH_PROGRESS_CALLBACK"]);
+            Assert.Empty(result.FnPtrTypes);
         }
 
         [Fact]
@@ -793,7 +793,20 @@ namespace Win32MetadataScraperTests
                 typedef PFOO LPFOO;
             ");
 
-            Assert.Equal("PFOO", result.FnPtrTypes["LPFOO"]);
+            Assert.Empty(result.FnPtrTypes);
+            Assert.Empty(result.ReducePointerLevel);
+        }
+
+        [Fact]
+        public void FnPtr_SameLevelAlias_ExplicitRemapSelectsDefiningCallback()
+        {
+            var discovery = HeaderSnippetParser.ParseAndDiscover(@"
+                typedef int (*CALLBACK)(int value);
+                typedef CALLBACK SAMECALLBACK;
+            ");
+            var result = Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery,
+                configuredRemaps: new Dictionary<string, string> { ["SAMECALLBACK"] = "CALLBACK" });
+            Assert.Equal("CALLBACK", result.FnPtrTypes["SAMECALLBACK"]);
             Assert.Empty(result.ReducePointerLevel);
         }
 

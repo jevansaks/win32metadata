@@ -95,7 +95,8 @@ namespace ClangSharpSourceToWinmdTests
         {
             using var fixture = new LastErrorHeaderTests.Fixture();
             var result = fixture.Scrape("typedef int (__stdcall *CALLBACK)(unsigned short value);\n" +
-                "typedef CALLBACK SAMECALLBACK;\nvoid __stdcall Example(CALLBACK value, SAMECALLBACK same);", target, sal: true);
+                "typedef CALLBACK SAMECALLBACK;\nvoid __stdcall Example(CALLBACK value, SAMECALLBACK same);", target, sal: true,
+                extraSettings: "--remap\nSAMECALLBACK=CALLBACK");
             Assert.AreEqual(0, result.ExitCode, result.Output);
             using var pe = new PEReader(File.OpenRead(fixture.Emit()));
             var reader = pe.GetMetadataReader();
@@ -121,11 +122,43 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
+        public void UnmigratedSameLevelAliases_KeepExistingConsumerNames()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(
+                "typedef int (__stdcall *NAMEENUMPROCA)(char* name, long long context);\n" +
+                "typedef int (__stdcall *NAMEENUMPROCW)(unsigned short* name, long long context);\n" +
+                "typedef NAMEENUMPROCA DESKTOPENUMPROCA;\ntypedef NAMEENUMPROCW DESKTOPENUMPROCW;\n" +
+                "typedef NAMEENUMPROCA WINSTAENUMPROCA;\ntypedef NAMEENUMPROCW WINSTAENUMPROCW;\n" +
+                "void __stdcall EnumDesktopsA(DESKTOPENUMPROCA callback);\n" +
+                "void __stdcall EnumDesktopsW(DESKTOPENUMPROCW callback);\n" +
+                "void __stdcall EnumWindowStationsA(WINSTAENUMPROCA callback);\n" +
+                "void __stdcall EnumWindowStationsW(WINSTAENUMPROCW callback);");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            foreach (var pair in new[] {
+                ("EnumDesktopsA", "DESKTOPENUMPROCA"), ("EnumDesktopsW", "DESKTOPENUMPROCW"),
+                ("EnumWindowStationsA", "WINSTAENUMPROCA"), ("EnumWindowStationsW", "WINSTAENUMPROCW") })
+            {
+                var callback = reader.TypeDefinitions.Single(handle =>
+                    reader.GetString(reader.GetTypeDefinition(handle).Name) == pair.Item2);
+                var signature = reader.GetBlobReader(Method(reader, pair.Item1).Signature);
+                signature.ReadSignatureHeader();
+                Assert.AreEqual(1, signature.ReadCompressedInteger());
+                Assert.AreEqual(SignatureTypeCode.Void, signature.ReadSignatureTypeCode());
+                AssertCallback(ref signature, callback);
+                Assert.AreEqual(0, signature.RemainingBytes);
+            }
+        }
+
+        [TestMethod]
         public void SameLevelAlias_WithoutDirectUseOfDefiningCallback()
         {
             using var fixture = new LastErrorHeaderTests.Fixture();
             var result = fixture.Scrape("typedef void* (__stdcall *PENCLAVE_ROUTINE)(void* parameter);\n" +
-                "typedef PENCLAVE_ROUTINE LPENCLAVE_ROUTINE;\nvoid __stdcall CallEnclave(LPENCLAVE_ROUTINE routine);");
+                "typedef PENCLAVE_ROUTINE LPENCLAVE_ROUTINE;\nvoid __stdcall CallEnclave(LPENCLAVE_ROUTINE routine);",
+                extraSettings: "--remap\nLPENCLAVE_ROUTINE=PENCLAVE_ROUTINE");
             Assert.AreEqual(0, result.ExitCode, result.Output);
             using var pe = new PEReader(File.OpenRead(fixture.Emit()));
             var reader = pe.GetMetadataReader();

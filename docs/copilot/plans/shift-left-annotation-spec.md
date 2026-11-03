@@ -222,7 +222,9 @@ typedef BOOL(WINAPI *PUBLIC_CALLBACK)(DWORD value);
 The C# callback recovery layer reads existing native typedef relationships in the
 same ClangSharp translation unit used for binding generation. A directly declared
 pointer-to-function typedef supplies the delegate name and complete signature.
-Its direct same-level aliases use that delegate; pointer-adding aliases use
+Its direct same-level aliases use that delegate only when an existing explicit
+alias remap selects it; unmigrated same-level aliases retain their public names.
+Pointer-adding aliases use
 `DELEGATE*`, preserving the additional native indirection through final winmd
 emission. Existing explicit legacy renaming of the defining callback retains the
 legacy resolution path. Bare function typedef fixups are unchanged.
