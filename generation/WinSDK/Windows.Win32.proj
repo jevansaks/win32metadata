@@ -23,6 +23,9 @@
     <SdkHeaderPatch Include="patches\pre-midl\ObjIdl.Idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\ObjIdlbase.Idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\dxgi.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\ocidl.Idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\ServProv.Idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\Unknwnbase.Idl.patch"/>
     <ScraperRsp Include="scraper.settings.rsp"/>
     <ScraperRsp Include="libMappings.rsp"/>
     <ScraperRsp Include="libMappingsManual.rsp"/>

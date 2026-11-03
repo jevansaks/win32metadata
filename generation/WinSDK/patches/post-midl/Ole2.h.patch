@@ -1,0 +1,27 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h
+@@ -190,7 +190,7 @@
+ 
+ WINOLEAPI  OleSave(_In_ LPPERSISTSTORAGE pPS, _In_ LPSTORAGE pStg, _In_ BOOL fSameAsLoad);
+ 
+-WINOLEAPI  OleLoadFromStream( IN LPSTREAM pStm, IN REFIID iidInterface, OUT LPVOID FAR* ppvObj);
++WINOLEAPI  OleLoadFromStream( IN LPSTREAM pStm, IN REFIID iidInterface, _COM_Outptr_ LPVOID FAR* ppvObj);
+ WINOLEAPI  OleSaveToStream( IN LPPERSISTSTREAM pPStm, IN LPSTREAM pStm );
+ 
+ 
+@@ -252,11 +252,11 @@
+ WINOLEAPI          CreateOleAdviseHolder(_Out_ LPOLEADVISEHOLDER FAR* ppOAHolder);
+ 
+ WINOLEAPI          OleCreateDefaultHandler(IN REFCLSID clsid, IN LPUNKNOWN pUnkOuter,
+-                    IN REFIID riid, OUT LPVOID FAR* lplpObj);
++                    IN REFIID riid, _COM_Outptr_ LPVOID FAR* lplpObj);
+ 
+ WINOLEAPI          OleCreateEmbeddingHelper(IN REFCLSID clsid, IN LPUNKNOWN pUnkOuter,
+                     IN DWORD flags, IN LPCLASSFACTORY pCF,
+-                    IN REFIID riid, OUT LPVOID FAR* lplpObj);
++                    IN REFIID riid, _COM_Outptr_ LPVOID FAR* lplpObj);
+ 
+ WINOLEAPI_(BOOL)   IsAccelerator(IN HACCEL hAccel, IN int cAccelEntries, IN LPMSG lpMsg,
+                                         OUT WORD FAR* lpwCmd);

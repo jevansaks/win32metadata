@@ -144,7 +144,7 @@ typedef /* [unique] */ IUnknown *LPUNKNOWN;
     HRESULT STDMETHODCALLTYPE IUnknown_QueryInterface_Proxy(
         IUnknown __RPC_FAR * This,
         /* [in] */ REFIID riid,
-        /* [iid_is][out] */ __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);
+        /* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject);
     
     void __RPC_STUB IUnknown_QueryInterface_Stub(
         IRpcStubBuffer *This,

@@ -212,6 +212,64 @@ ordinary patched, and `WIN32METADATA` object bytes apart from COFF timestamps.
 This layer adds no workflow, full-SDK local scrape, reference build, or
 comparison framework; ordinary CI remains the normal candidate producer.
 
+## Core COM output pointers
+
+The next parameter slice retires exactly twelve existing `=[ComOutPtr]`
+records, using native `_COM_Outptr_` SAL and the existing SAL-to-winmd path.
+It adds no custom COM annotation or reader, and retains the single production
+translation-unit parse. SDK `10.0.28000.2705` establishes these actual owners:
+
+| Owning input / partition | Exact retired selectors |
+|---|---|
+| `coml2api.h` / Com.StructuredStorage | `StgCreateStorageEx::ppObjectOpen`, `StgOpenStorageEx::ppObjectOpen` |
+| `Ole2.h` / ComOle | `OleCreateDefaultHandler::lplpObj`, `OleCreateEmbeddingHelper::lplpObj`, `OleLoadFromStream::ppvObj` |
+| `OleCtl.h` / ComOle | `OleCreateFontIndirect::lplpvObj`, `OleCreatePictureIndirect::lplpvObj`, `OleLoadPicture::lplpvObj`, `OleLoadPicturePath::ppvRet` |
+| `ocidl.Idl` / ComOle | `IClassFactory2::CreateInstanceLic::ppvObj` |
+| `ServProv.Idl` / Com | `IServiceProvider::QueryService::ppvObject` |
+| `Unknwnbase.Idl` / Com | `IUnknown_QueryInterface_Proxy::ppvObject` |
+
+The first three are post-MIDL patches. The last three are pre-MIDL patches;
+checked-in headers are regenerated, not independently patched. `Unknwnbase.Idl`
+supplies both physical `Unknwn.h` and `Unknwnbase.h` variants. `ServProv.Idl`
+also contains a `cpp_quote` C++ alternative that must be annotated alongside
+the ordinary MIDL method; its unrelated template helper and remote proxy are
+unchanged. The IClassFactory2 native source already says `[out, iid_is(riid)]`;
+its explicit RPC annotation previously prevented the converter from adding COM
+SAL. Replacing that explicit annotation preserves the caller-required output
+storage and nullable result distinction, with no optional-parameter change.
+PR2365's `OleCreatePictureIndirect` SAL hunk is reused without its unrelated
+input-direction or availability changes. Its comment-only ComOutPtr facts are
+not a supported transport and are not copied.
+
+The complete sidecar count falls from 237 to 225. No wildcard supplies the
+retired facts. The separate `OleCreatePictureIndirect::lplpvObj=[Out]`
+record stays intact. The preceding parameter pilot's sixteen COM moves are
+not reintroduced. `IAgileReference::Resolve` remains active because native
+retval recovery would change metadata shape; `LPFNGETCLASSOBJECT` is a
+separate callback mechanism. IClassFactoryEx belongs to MsHtml/MsHtmHst.Idl,
+not the core activation owner family. IBindHost references in ocidl are not
+definitions: its MonikerBindToObject/Storage methods belong to urlmon.
+The remaining graphics, media, shell, CLR and other owner families are
+out of scope, not unavailable SDK APIs. No selected declaration was unavailable.
+OleLoadPictureEx has no existing ComOutPtr selector and is not changed.
+
+`ComOutputHeaderTests` emit final winmd for every selected declaration on
+x86/x64/ARM64, compare all bytes with the reachable parent's actual declarations
+plus the twelve old sidecars, and inspect singleton attribute blobs and flags.
+SDK-dependent aggregate types in those bounded fixtures are only dependency
+stubs; complete SDK C/C++ compilation independently checks all native signatures
+and vtable calls against shipped/ordinary/metadata-on object bytes.
+Real selected-SDK IDL conversion and MIDL output replay every physical owner
+byte-for-byte and feed those fresh declarations through final emission.
+Negative fixtures distinguish borrowed/unmarked/ordinary outputs, nullable
+results from optional storage, deep pointers and wrong-site SAL; malformed SAL
+remains a compiler diagnostic. Existing native SAL composition is preserved:
+an explicit input plus COM output yields In|Out, rather than a new conflict
+policy. Matching legacy COM facts deduplicate. Production winmd integrity
+checks cover these twelve exact sites alongside the earlier pilot.
+
+## Patch format and validation
+
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
 `git diff` with repository-relative paths under
 `generation/WinSDK/RecompiledIdlHeaders/{um,shared,winrt,ucrt}/`.

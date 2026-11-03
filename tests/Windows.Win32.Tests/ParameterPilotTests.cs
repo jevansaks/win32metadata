@@ -41,7 +41,13 @@ namespace Windows.Win32.Tests
                     "IInternalUnknown::QueryInternalInterface::ppv", "IMarshal::UnmarshalInterface::ppv",
                     "IRpcChannelBuffer3::GetCallContext::pInterface", "CreateDataCache::ppv", "BindMoniker::ppvResult",
                     "CoGetObject::ppv", "CoGetObjectContext::ppv", "CoGetClassObject::ppv", "CoGetCallContext::ppInterface",
-                    "CoGetCancelObject::ppUnk", "IMoniker::BindToObject::ppvResult", "IMoniker::BindToStorage::ppvObj" }),
+                    "CoGetCancelObject::ppUnk", "IMoniker::BindToObject::ppvResult", "IMoniker::BindToStorage::ppvObj",
+                    "StgCreateStorageEx::ppObjectOpen", "StgOpenStorageEx::ppObjectOpen",
+                    "OleCreateDefaultHandler::lplpObj", "OleCreateEmbeddingHelper::lplpObj", "OleLoadFromStream::ppvObj",
+                    "OleCreateFontIndirect::lplpvObj", "OleCreatePictureIndirect::lplpvObj",
+                    "OleLoadPicture::lplpvObj", "OleLoadPicturePath::ppvRet",
+                    "IClassFactory2::CreateInstanceLic::ppvObj", "IServiceProvider::QueryService::ppvObject",
+                    "IUnknown_QueryInterface_Proxy::ppvObject" }),
                 ("ReservedAttribute", ParameterAttributes.In | ParameterAttributes.Optional, new[] {
                     "CoAllowSetForegroundWindow::lpvReserved", "CoDisableCallCancellation::pReserved",
                     "CoEnableCallCancellation::pReserved", "CoInitialize::pvReserved", "CoInitializeEx::pvReserved",
@@ -95,7 +101,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(38, checkedSelectors);
+            Assert.Equal(50, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {

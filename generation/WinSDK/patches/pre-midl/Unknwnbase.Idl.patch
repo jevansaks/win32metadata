@@ -1,0 +1,13 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.Idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.Idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.Idl
+@@ -82,7 +82,7 @@
+ cpp_quote("    HRESULT STDMETHODCALLTYPE IUnknown_QueryInterface_Proxy(")
+ cpp_quote("        IUnknown __RPC_FAR * This,")
+ cpp_quote("        /* [in] */ REFIID riid,")
+-cpp_quote("        /* [iid_is][out] */ __RPC__deref_out void __RPC_FAR *__RPC_FAR *ppvObject);")
++cpp_quote("        /* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject);")
+ cpp_quote("    ")
+ cpp_quote("    void __RPC_STUB IUnknown_QueryInterface_Stub(")
+ cpp_quote("        IRpcStubBuffer *This,")
