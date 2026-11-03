@@ -98,7 +98,43 @@ function Get-ActiveInputEntries([hashtable]$Build, [hashtable]$Configuration) {
     }
 }
 
-function Get-Receipt([hashtable]$Build, [string]$Name) {
+function Get-RootFingerprint([string]$Directory, [string[]]$Files, [hashtable]$BoundaryFingerprints) {
+    $rootPath = [IO.Path]::GetFullPath((Resolve-Path -LiteralPath $Directory).Path).TrimEnd('\')
+    if ([IO.File]::GetAttributes($rootPath) -band [IO.FileAttributes]::ReparsePoint) {
+        throw "Cannot share fingerprints through a reparse-point root: $rootPath"
+    }
+    $names = @($Files | ForEach-Object {
+        $path = [IO.Path]::GetFullPath([IO.Path]::Combine($rootPath, $_.Replace('/', '\')))
+        if (!$path.StartsWith($rootPath + '\', [StringComparison]::OrdinalIgnoreCase)) {
+            throw "Fingerprint file is outside its physical root: $_"
+        }
+        [IO.Path]::GetRelativePath($rootPath, $path).Replace('\', '/')
+    })
+    [Array]::Sort($names, [StringComparer]::Ordinal)
+    $fileList = $names -join "`n"
+    if ($BoundaryFingerprints.ContainsKey($rootPath)) {
+        $fingerprint = $BoundaryFingerprints[$rootPath]
+        if ($fingerprint.FileList -cne $fileList) {
+            throw "Conflicting file lists for shared physical root: $rootPath"
+        }
+        return $fingerprint
+    }
+    $hashes = [Collections.Generic.Dictionary[string,string]]::new([StringComparer]::Ordinal)
+    foreach ($name in $names) {
+        $hashes[$name] = (Get-FileHash -Algorithm SHA256 -LiteralPath ([IO.Path]::Combine($rootPath, $name.Replace('/', '\')))).Hash
+    }
+    $fingerprint = @{ FileList = $fileList; Hashes = $hashes }
+    $BoundaryFingerprints[$rootPath] = $fingerprint
+    return $fingerprint
+}
+
+function Assert-UnchangedReceipt([hashtable]$Before, [hashtable]$After, [string]$Name) {
+    foreach ($field in 'sourceSha', 'toolSourceSha', 'toolHash', 'inputHash', 'sdkHash', 'toolchainHash') {
+        if ($Before[$field] -ne $After[$field]) { throw "Input/tool changed during qualification: $Name $field" }
+    }
+}
+
+function Get-Receipt([hashtable]$Build, [string]$Name, [hashtable]$BoundaryFingerprints) {
     $Directory = $Build.Directory
     Push-Location $Directory
     try {
@@ -130,8 +166,10 @@ function Get-Receipt([hashtable]$Build, [string]$Name) {
                 Join-Path $_ $library.path
             } | Where-Object { Test-Path $_ -PathType Container })
             if ($package.Count -ne 1) { throw "Missing/ambiguous restored SDK: $key" }
+            $fingerprint = Get-RootFingerprint $package[0] $library.files $BoundaryFingerprints
             foreach ($file in $library.files | Sort-Object) {
-                $sdkEntries += "$key/$file $((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $package[0] $file)).Hash)"
+                $relative = [IO.Path]::GetRelativePath($package[0], [IO.Path]::Combine($package[0], $file.Replace('/', '\'))).Replace('\', '/')
+                $sdkEntries += "$key/$file $($fingerprint.Hashes[$relative])"
             }
         }
         $clangAssets = Get-Content -Raw "$($Build.ToolDirectory)\obj\Win32MetadataScraper\project.assets.json" | ConvertFrom-Json -AsHashtable
@@ -148,10 +186,13 @@ function Get-Receipt([hashtable]$Build, [string]$Name) {
         # Bind the complete runnable tool directory, including deps/runtimeconfig,
         # RID scraper builds, and native clang libraries, rather than version labels.
         $toolsFile = "$ResultsDirectory\$Name-tools.sha256"
-        [IO.Directory]::EnumerateFiles($Build.Tools, '*', [IO.SearchOption]::AllDirectories) |
-            Sort-Object -CaseSensitive | ForEach-Object {
-                "$([IO.Path]::GetRelativePath($Build.Tools, $_).Replace('\', '/')) $((Get-FileHash -Algorithm SHA256 -LiteralPath $_).Hash)"
-            } | Set-Content $toolsFile
+        $toolFiles = @([IO.Directory]::EnumerateFiles($Build.Tools, '*', [IO.SearchOption]::AllDirectories) |
+            ForEach-Object { [IO.Path]::GetRelativePath($Build.Tools, $_) })
+        $toolFingerprint = Get-RootFingerprint $Build.Tools $toolFiles $BoundaryFingerprints
+        $toolFiles | Sort-Object -CaseSensitive | ForEach-Object {
+            $relative = $_.Replace('\', '/')
+            "$relative $($toolFingerprint.Hashes[$relative])"
+        } | Set-Content $toolsFile
         $toolchain = @(& dotnet --list-sdks)
         if ($LASTEXITCODE -ne 0) { throw 'Cannot identify dotnet toolchain.' }
         $toolchain += "VSINSTALLDIR=$env:VSINSTALLDIR"
@@ -309,6 +350,7 @@ try {
         '--configfile', "$ControlDirectory\nuget.config")
     Invoke-Native dotnet @('restore', "$ControlDirectory\BuildTools", '--configfile', "$ControlDirectory\nuget.config")
     $builds = @{}
+    $beforeFingerprints = @{}
     foreach ($side in 'reference', 'control', 'candidate') {
         $directory = switch ($side) { reference { $ReferenceDirectory } control { $ControlDirectory } candidate { $root } }
         $toolDirectory = if ($side -eq 'reference') { $ReferenceDirectory } else { $root }
@@ -319,7 +361,7 @@ try {
             Headers = if ($side -eq 'candidate') { $CurrentHeaderRoot } else { "$directory\generation\WinSDK\RecompiledIdlHeaders" }
             Includes = if ($side -eq 'candidate') { $CurrentIncludesRoot } else { "$directory\generation\WinSDK\inc" }
         }
-        $receipt[$side] = Get-Receipt $builds[$side] $side
+        $receipt[$side] = Get-Receipt $builds[$side] $side $beforeFingerprints
     }
     $receipt.candidateSha = $receipt.candidate.sourceSha
     if ($receipt.reference.inputHash -ne $receipt.control.inputHash -or
@@ -353,11 +395,11 @@ try {
         $receipt | ConvertTo-Json -Depth 20 | Set-Content "$ResultsDirectory\receipt.json"
         & dotnet $judge qualifyMigration --receipt "$ResultsDirectory\receipt.json" --output "$ResultsDirectory\verdict.json"
         if ($LASTEXITCODE -eq 0) {
+            # Never reuse a pre-measurement fingerprint at the post-run boundary.
+            $afterFingerprints = @{}
             foreach ($side in 'reference', 'control', 'candidate') {
-                $after = Get-Receipt $builds[$side] "$side-after"
-                foreach ($field in 'sourceSha', 'toolSourceSha', 'toolHash', 'inputHash', 'sdkHash', 'toolchainHash') {
-                    if ($receipt[$side][$field] -ne $after[$field]) { throw "Input/tool changed during qualification: $side $field" }
-                }
+                $after = Get-Receipt $builds[$side] "$side-after" $afterFingerprints
+                Assert-UnchangedReceipt $receipt[$side] $after $side
             }
             $receipt.passed = $true
             break

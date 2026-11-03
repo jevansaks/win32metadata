@@ -228,6 +228,104 @@ if ($current.Properties.SdkIncRoot -ne $build.Headers) {{ throw 'Explicit C head
         }
 
         [DataTestMethod]
+        [DataRow("sdkHash")]
+        [DataRow("toolHash")]
+        public void SharedRootFingerprints_ReuseOnlyWithinBoundaryAndRejectPostRunChanges(string changedField)
+        {
+            using var directory = new TemporaryDirectory();
+            string script = LoadQualificationFunctions() + $@"
+$base = '{Quote(directory.Path)}'
+$sdk = ""$base\sdk""
+$tools = ""$base\tools""
+New-Item -ItemType Directory -Force ""$sdk\include"", $tools | Out-Null
+'sdk header' | Set-Content ""$sdk\include\A.h""
+'sdk file' | Set-Content ""$sdk\z.h""
+'tool binary' | Set-Content ""$tools\tool.dll""
+$script:reads = 0
+function Get-FileHash {{
+  param([string]$Algorithm, [string]$LiteralPath)
+  $script:reads++
+  Microsoft.PowerShell.Utility\Get-FileHash -Algorithm $Algorithm -LiteralPath $LiteralPath
+}}
+$pre = @{{}}
+$sdkFingerprint = Get-RootFingerprint $sdk @('z.h', 'include/A.h') $pre
+$toolFingerprint = Get-RootFingerprint $tools @('tool.dll') $pre
+foreach ($side in 'reference', 'control', 'candidate') {{
+  $sharedSdk = Get-RootFingerprint ""$sdk\."" @('include\A.h', 'z.h') $pre
+  $sharedTool = Get-RootFingerprint $tools @('tool.dll') $pre
+  $sharedSdk.Hashes.Keys | Sort-Object | ForEach-Object {{
+    ""SDK/$_ $($sharedSdk.Hashes[$_])""
+  }} | Set-Content ""$base\$side-sdk.sha256""
+  ""tool.dll $($sharedTool.Hashes['tool.dll'])"" | Set-Content ""$base\$side-tools.sha256""
+}}
+if ($script:reads -ne 3) {{ throw 'Shared roots were hashed more than once at the pre boundary.' }}
+foreach ($side in 'control', 'candidate') {{
+  foreach ($kind in 'sdk', 'tools') {{
+    if ((Get-Content ""$base\reference-$kind.sha256"" -Raw) -cne (Get-Content ""$base\$side-$kind.sha256"" -Raw)) {{
+      throw 'Independent per-side manifests changed shared content.'
+    }}
+  }}
+}}
+$before = @{{ sourceSha = 'source'; toolSourceSha = 'tools'; inputHash = 'inputs'; toolchainHash = 'chain'; sdkHash = $sdkFingerprint.Hashes['include/A.h']; toolHash = $toolFingerprint.Hashes['tool.dll'] }}
+$post = @{{}}
+$unchanged = $before.Clone()
+$unchanged.sdkHash = (Get-RootFingerprint $sdk @('z.h', 'include/A.h') $post).Hashes['include/A.h']
+$unchanged.toolHash = (Get-RootFingerprint $tools @('tool.dll') $post).Hashes['tool.dll']
+Assert-UnchangedReceipt $before $unchanged candidate
+if ($script:reads -ne 6) {{ throw 'Post boundary did not freshly fingerprint both roots.' }}
+$changedPath = if ('{changedField}' -eq 'sdkHash') {{ ""$sdk\include\A.h"" }} else {{ ""$tools\tool.dll"" }}
+'changed' | Set-Content $changedPath
+$nextBoundary = @{{}}
+$changed = $before.Clone()
+$changed.sdkHash = (Get-RootFingerprint $sdk @('z.h', 'include/A.h') $nextBoundary).Hashes['include/A.h']
+$changed.toolHash = (Get-RootFingerprint $tools @('tool.dll') $nextBoundary).Hashes['tool.dll']
+try {{
+  Assert-UnchangedReceipt $before $changed candidate
+  throw 'Post-run content change accepted.'
+}} catch {{
+  if (!$_.Exception.Message.Contains('candidate {changedField}')) {{ throw }}
+}}
+Write-Output 'Shared boundary and post-run checks passed.'
+";
+            var result = Run("pwsh", new[] { "-NoProfile", "-NonInteractive", "-Command", script });
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+        }
+
+        [TestMethod]
+        public void SharedRootFingerprints_DoNotAliasDifferentRootsOrConflictingFileLists()
+        {
+            using var directory = new TemporaryDirectory();
+            string script = LoadQualificationFunctions() + $@"
+$base = '{Quote(directory.Path)}'
+foreach ($name in 'first', 'second') {{
+  New-Item -ItemType Directory ""$base\$name"" | Out-Null
+  $name | Set-Content ""$base\$name\header.h""
+}}
+$boundary = @{{}}
+$first = Get-RootFingerprint ""$base\first"" @('header.h') $boundary
+$second = Get-RootFingerprint ""$base\second"" @('header.h') $boundary
+if ($boundary.Count -ne 2 -or $first.Hashes['header.h'] -eq $second.Hashes['header.h']) {{
+  throw 'Different physical roots shared a fingerprint.'
+}}
+try {{
+  Get-RootFingerprint ""$base\first"" @('header.h', 'extra.h') $boundary
+  throw 'Conflicting shared-root file list accepted.'
+}} catch {{
+  if (!$_.Exception.Message.StartsWith('Conflicting file lists')) {{ throw }}
+}}
+try {{
+  Get-RootFingerprint ""$base\first"" @('..\second\header.h') $boundary
+  throw 'File outside root accepted.'
+}} catch {{
+  if (!$_.Exception.Message.Contains('outside its physical root')) {{ throw }}
+}}
+Write-Output 'Distinct root and file-list checks passed.'
+";
+            var result = Run("pwsh", new[] { "-NoProfile", "-NonInteractive", "-Command", script });
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+        }
+
+        [DataTestMethod]
         [DataRow("referenceSha")]
         [DataRow("reference")]
         [DataRow("sourceSha")]

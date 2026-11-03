@@ -30,6 +30,10 @@ Qualification hashes active headers, includes, partition declarations/settings,
 manual C#, evaluated RSP/JSON inputs, and generation project/SDK configuration.
 Inactive patches and test fixtures are not generation inputs. The shipped SDK
 package content receipt remains separate from the active patched result.
+Shared physical SDK/tool roots are fingerprinted once before measurement and
+once afterward, with independent per-side manifests and configuration checks.
+This reuse is confined to each verification boundary; it never reuses generation
+outputs or bypasses post-run change detection.
 
 Before retiring non-header annotations, qualification runs three full builds:
 A uses frozen tools and frozen legacy inputs; B runs the frozen project in a
