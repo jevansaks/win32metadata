@@ -55,7 +55,7 @@ jobs:
               attempt_number: workflowRun.run_attempt,
               per_page: 100
             });
-            const buildJobs = jobs.filter(job => job.name === 'Build, test, package');
+            const buildJobs = jobs.filter(job => job.name === 'Frozen reference and API comparison');
             if (buildJobs.length !== 1) {
               throw new Error(`Expected one build job for run ${workflowRun.id}, attempt ${workflowRun.run_attempt}.`);
             }

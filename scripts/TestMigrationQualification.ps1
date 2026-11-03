@@ -165,6 +165,15 @@ try {
         throw 'Reference checkout does not match the pinned snapshot.'
     }
     if ($ReferenceDirectory -eq $root) { throw 'Reference must be a separate checkout.' }
+    $processors = @(Get-CimInstance Win32_Processor -Property Name, NumberOfLogicalProcessors)
+    $memory = Get-CimInstance Win32_ComputerSystem -Property TotalPhysicalMemory
+    $hardware = @(
+        $processors | ForEach-Object { "CPU: $($_.Name); logical cores: $($_.NumberOfLogicalProcessors)" }
+        "Total RAM bytes: $($memory.TotalPhysicalMemory)"
+        'Effective qualification scraper workers: 2; MSBuild nodes: 1; ScanArch: crossarch'
+    )
+    $hardware | Set-Content "$ResultsDirectory\runner-hardware.txt"
+    $hardware | ForEach-Object { Write-Host $_ }
     # Preparation and restores are deliberately outside the measured region.
     foreach ($directory in $ReferenceDirectory, $root) {
         Push-Location $directory
