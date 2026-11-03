@@ -103,7 +103,7 @@ jobs:
           retention-days: 30
 
   qualification:
-    name: Full A/B/C migration measurement
+    name: Check metadata compatibility and generation performance
     if: github.repository == 'jevansaks/win32metadata'
     runs-on: windows-2022
     timeout-minutes: 360

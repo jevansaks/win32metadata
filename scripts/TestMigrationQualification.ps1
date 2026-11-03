@@ -186,7 +186,7 @@ function Measure-Generation([hashtable]$Build, [string]$Name, [int]$Pair) {
     $info.RedirectStandardOutput = $true
     $info.RedirectStandardError = $true
     foreach ($argument in @('msbuild') + (Get-GenerationArguments $Build $obj $output) +
-        @('-t:EmitWinmd', "-bl:$prefix.binlog")) {
+        @('-t:EmitWinmd', '-verbosity:normal', "-bl:$prefix.binlog")) {
         $info.ArgumentList.Add($argument)
     }
     $process = [Diagnostics.Process]::new()
@@ -274,7 +274,7 @@ $receipt = @{
     referenceSha = $referenceSha; candidateSha = $null
     sdkVersion = '10.0.28000.2705'; clangSharpVersion = '21.1.8.4'
     pairs = @(); passed = $false
-    pilot = 'Not implemented: full paired generation/emission is the initial blocking measurement.'
+    pilot = 'No production annotations have been migrated yet; this check does not certify annotation-category coverage.'
 }
 try {
     if ((& git -C $ReferenceDirectory rev-parse HEAD).Trim() -ne $referenceSha -or $LASTEXITCODE -ne 0) {
@@ -372,7 +372,7 @@ try {
     $receipt | ConvertTo-Json -Depth 20 | Set-Content "$ResultsDirectory\receipt.json"
     if ($env:GITHUB_STEP_SUMMARY) {
         @"
-## Migration qualification
+## Metadata compatibility and generation performance
 
 Passed: **$($receipt.passed)**
 

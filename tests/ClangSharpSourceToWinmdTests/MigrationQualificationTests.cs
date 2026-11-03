@@ -172,7 +172,7 @@ Write-Output 'Active input checks passed.'
             }
 
             var restore = Run("dotnet", new[] { "restore", Path.Combine(directory.Path, "generation", "WinSDK", "Windows.Win32.proj"),
-                "--configfile", Path.Combine(RepositoryRoot(), "nuget.config"), "--verbosity", "quiet" });
+                "--configfile", Path.Combine(RepositoryRoot(), "nuget.config"), "--verbosity", "quiet" }, timeoutSeconds: 180);
             Assert.AreEqual(0, restore.ExitCode, restore.Output);
             string script = LoadQualificationFunctions() + $@"
 $ResultsDirectory = '{Quote(directory.Path)}'
@@ -198,6 +198,33 @@ if ($current.Properties.SdkIncRoot -ne $build.Headers) {{ throw 'Explicit C head
 ";
             var result = Run("pwsh", new[] { "-NoProfile", "-NonInteractive", "-Command", script });
             Assert.AreEqual(0, result.ExitCode, result.Output);
+        }
+
+        [TestMethod]
+        public void RealEmission_NormalVerbosityRecordsTheSelectedToolCommand()
+        {
+            using var directory = new TemporaryDirectory();
+            using var fixture = new CrossArchMetadataTests.MetadataFixture();
+            string source = Path.GetDirectoryName(fixture.Generate("",
+                "public struct Value { public int Number; }", ""))!;
+            string project = Path.Combine(directory.Path, "Emission.proj");
+            File.WriteAllText(project, @"<Project>
+  <UsingTask TaskName=""MetadataTasks.EmitWinmd"" AssemblyFile=""$(TaskBinDir)\MetadataTasks.dll"" />
+  <Target Name=""EmitWinmd"">
+    <EmitWinmd ToolsBinDir=""$(ToolsBinDir)"" EmitterSourceDir=""$(SourceDir)""
+      WinmdVersion=""1.0.0.0"" OutputWinmd=""$(OutputWinmd)"" Win32WinmdBinDir=""$(ToolsBinDir)""
+      MSBuildProjectDirectory=""$(MSBuildProjectDirectory)"" Libs="""" />
+  </Target>
+</Project>");
+            string tools = AppContext.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
+            string output = Path.Combine(directory.Path, "Windows.Win32.winmd");
+            var result = Run("dotnet", new[] { "msbuild", project, "-t:EmitWinmd", "-verbosity:normal",
+                $"-p:TaskBinDir={tools}", $"-p:ToolsBinDir={tools}", $"-p:SourceDir={source}", $"-p:OutputWinmd={output}" });
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Assert.IsTrue(new FileInfo(output).Length > 0);
+            StringAssert.Contains(result.Output, Path.Combine(tools, "ClangSharpSourceToWinmd.dll"));
+            StringAssert.Contains(File.ReadAllText(Path.Combine(RepositoryRoot(), "scripts", "TestMigrationQualification.ps1")),
+                "'-t:EmitWinmd', '-verbosity:normal'");
         }
 
         [DataTestMethod]
@@ -602,7 +629,8 @@ foreach ($definition in $ast.FindAll({{ param($node) $node -is [Management.Autom
             throw new DirectoryNotFoundException("Cannot locate qualification workflow/test scripts.");
         }
 
-        private static (int ExitCode, string Output) Run(string executable, string[] arguments, Dictionary<string, string>? environment = null)
+        private static (int ExitCode, string Output) Run(string executable, string[] arguments,
+            Dictionary<string, string>? environment = null, int timeoutSeconds = 60)
         {
             using var process = new Process();
             process.StartInfo = new ProcessStartInfo(executable)
@@ -616,10 +644,10 @@ foreach ($definition in $ast.FindAll({{ param($node) $node -is [Management.Autom
             Assert.IsTrue(process.Start());
             var stdout = process.StandardOutput.ReadToEndAsync();
             var stderr = process.StandardError.ReadToEndAsync();
-            if (!process.WaitForExit(60000))
+            if (!process.WaitForExit(timeoutSeconds * 1000))
             {
                 process.Kill(true);
-                Assert.Fail($"Qualification test child exceeded one minute: {executable}");
+                Assert.Fail($"Qualification test child exceeded {timeoutSeconds} seconds: {executable}");
             }
 
             return (process.ExitCode, stdout.GetAwaiter().GetResult() + stderr.GetAwaiter().GetResult());

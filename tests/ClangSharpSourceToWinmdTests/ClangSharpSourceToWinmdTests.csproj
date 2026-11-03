@@ -18,5 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\sources\ClangSharpSourceToWinmd\ClangSharpSourceToWinmd.csproj" />
     <ProjectReference Include="..\..\sources\WinmdUtils\WinmdUtils.csproj" />
+    <ProjectReference Include="..\..\sources\GeneratorSdk\MetadataTasks\MetadataTasks.csproj" />
   </ItemGroup>
 </Project>
