@@ -56,7 +56,7 @@ namespace ClangSharpSourceToWinmdTests
                 byte[] output = File.ReadAllBytes(winmd);
                 if (legacyOutput == null) legacyOutput = output;
                 if (mode.Header)
-                    Assert.IsTrue(WinmdUtilsProgram.MigrationQualification.Compare(legacyOutput, output).Equal,
+                    CollectionAssert.AreEqual(legacyOutput, output,
                         "Header relocation must preserve the complete winmd byte-for-byte.");
             }
         }
@@ -136,7 +136,7 @@ namespace ClangSharpSourceToWinmdTests
             var header = fixture.Scrape("_Win32_SetLastError_\n" + Declaration, language: "c");
             Assert.AreEqual(0, header.ExitCode, header.Output);
             byte[] actual = File.ReadAllBytes(fixture.Emit());
-            Assert.IsTrue(WinmdUtilsProgram.MigrationQualification.Compare(expected, actual).Equal);
+            CollectionAssert.AreEqual(expected, actual);
         }
 
         [DataTestMethod]
@@ -156,15 +156,14 @@ namespace ClangSharpSourceToWinmdTests
             var reader = pe.GetMetadataReader();
             Assert.IsFalse(ImportedMethods(reader).Single()
                 .GetImport().Attributes.HasFlag(MethodImportAttributes.SetLastError));
-            Assert.IsTrue(WinmdUtilsProgram.MigrationQualification.Compare(baselineOutput,
-                File.ReadAllBytes(winmd)).Equal);
+            CollectionAssert.AreEqual(baselineOutput, File.ReadAllBytes(winmd));
         }
 
         [TestMethod]
         public void WinHttpOwningPatch_ReplaysOnlyTheReviewedHeaderEdits()
         {
             string root = RepositoryRoot();
-            const string legacyReference = WinmdUtilsProgram.MigrationQualification.LegacyReferenceSha;
+            const string legacyReference = "86ed37b2846440297afb087c4718acd1a1fb4ad8";
             var ancestry = Run("git", "-C", root, "merge-base", "--is-ancestor", legacyReference, "HEAD");
             Assert.AreEqual(0, ancestry.ExitCode, "The frozen legacy fixture must be reachable from the tested commit. " + ancestry.Output);
             string current = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", "winhttp.h"));

@@ -40,51 +40,11 @@ It still parses one translation unit and passes that same unit to the generator.
 Unknown/malformed owned payloads, arguments, non-import targets, and non-prefix
 placement fail with native source locations; unrelated annotations are left alone.
 This pilot covers **SetLastError only**, not typedefs, enums, or resource ownership.
-Qualification hashes active headers, includes, partition declarations/settings,
-manual C#, evaluated RSP/JSON inputs, and generation project/SDK configuration.
-The selected WinHttp patch is also bound as an evaluated input. Inactive patches
-and test fixtures are not generation inputs. The shipped SDK
-package content receipt remains separate from the active patched result.
-Shared physical SDK/tool roots are fingerprinted once before measurement and
-once afterward, with independent per-side manifests and configuration checks.
-This reuse is confined to each verification boundary; it never reuses generation
-outputs or bypasses post-run change detection.
-
-Before retiring non-header annotations, qualification runs three full builds:
-A uses frozen tools and frozen legacy inputs; B runs the frozen project in a
-separate writable control checkout with candidate `TaskBinDir`/`ToolsBinDir`;
-C uses those same candidate binaries with current project configuration and
-explicitly selected header/include roots. Scripts, assets, manual sources,
-partitions and RSP/JSON inputs stay frozen for B. The evaluated properties and
-runtime tool paths are checked, and each build has independent intermediate and
-output paths with the same output basename, assembly version, architecture and
-concurrency. No partition filter is applied, including when supplemental SDK
-partitions are needed to cover an annotation category.
-
-```powershell
-.\scripts\TestMigrationQualification.ps1 `
-    -ReferenceDirectory .qualification\reference `
-    -ControlDirectory .qualification\control
-# Optional C-only roots: -CurrentHeaderRoot <patched headers> -CurrentIncludesRoot <active inc>
-```
-
-Both frozen A/B checkouts must be at `043261f38d94d53b2438b0ffadb836f194c34a73`.
-The predecessor also retains the original `86ed37b2846440297afb087c4718acd1a1fb4ad8`
-checkout to qualify the explicit legacy-to-deterministic transition.
-A/B active input hashes must match. B/C input hashes may differ for relocations,
-but both comparisons require byte-identical final winmd output, including MVID
-and COFF timestamp. The legacy transition is separately verified; its exception
-does not apply to the reader or header migration. Confirmed wall-time increases over 10%
-or sampled process-tree working-set increases over 15% fail independently for
-A/B, B/C, and cumulative A/C; neither baseline nor budget is ratcheted. Retained
-evidence is revalidated against the qualified commit and raw outputs/samples.
-C uses the checked-in patched header result and the three RSP deletions. Before
-measurement, qualification replays the selected patch against the restored SDK's
-owning header, checks it against the selected C header root and helper, verifies
-the exact three legacy deletions, and retains `selected-sdk-patches.json`.
-A and B retain their strictly frozen legacy inputs. Full generation and the
-existing independent A/B, B/C, and cumulative A/C budgets remain required; the
-focused WinHttp scrape is not a substitute for that gate.
+The focused WinHttp fixture replays the owning-header patch and checks the exact
+three sidecar deletions. Header-to-winmd fixtures compare complete output bytes
+between legacy and header annotations, without a measurement or receipt framework.
+Full validation uses ordinary CI generation and comparison to an existing target
+winmd; this migration does not add SDK scrapes or paired benchmark builds.
 
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
 `git diff` with repository-relative paths under
