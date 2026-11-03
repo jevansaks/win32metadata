@@ -171,7 +171,7 @@ StgCreateStorageEx(
     _Inout_opt_ STGOPTIONS* pStgOptions,
     _In_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor,
     _In_ REFIID riid,
-    _Outptr_ void** ppObjectOpen
+    _COM_Outptr_ void** ppObjectOpen
     );
 
 _Check_return_
@@ -184,7 +184,7 @@ StgOpenStorageEx(
     _Inout_opt_ STGOPTIONS* pStgOptions,
     _In_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor,
     _In_ REFIID riid,
-    _Outptr_ void** ppObjectOpen
+    _COM_Outptr_ void** ppObjectOpen
     );
 
 #ifndef _STGCREATEPROPSTG_DEFINED_

@@ -109,7 +109,7 @@ typedef /* [unique] */  __RPC_unique_pointer IServiceProvider *LPSERVICEPROVIDER
             virtual /* [local] */ HRESULT STDMETHODCALLTYPE QueryService( 
                 /* [in] */ _In_ REFGUID guidService,
                 /* [in] */ _In_ REFIID riid,
-                /* [out] */ _Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject) = 0;
+                /* [out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject) = 0;
             
             template <class Q>
             HRESULT STDMETHODCALLTYPE QueryService(_In_ REFGUID guidService, _Outptr_ Q** pp)
@@ -147,7 +147,7 @@ EXTERN_C const IID IID_IServiceProvider;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **ppvObject) = 0;
+            _COM_Outptr_  void **ppvObject) = 0;
         
     };
     
@@ -182,7 +182,7 @@ EXTERN_C const IID IID_IServiceProvider;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **ppvObject);
+            _COM_Outptr_  void **ppvObject);
         
         END_INTERFACE
     } IServiceProviderVtbl;
@@ -258,7 +258,7 @@ extern RPC_IF_HANDLE __MIDL_itf_servprov_0000_0001_v0_0_s_ifspec;
     /* [annotation][in] */ 
     _In_  REFIID riid,
     /* [annotation][out] */ 
-    _Outptr_  void **ppvObject);
+    _COM_Outptr_  void **ppvObject);
 
 
 /* [call_as] */ HRESULT STDMETHODCALLTYPE IServiceProvider_QueryService_Stub( 

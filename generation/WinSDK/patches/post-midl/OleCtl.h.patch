@@ -1,0 +1,30 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h b/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h
+@@ -433,13 +433,13 @@
+     COLORREF* lpcolorref);
+ 
+ WINOLECTLAPI OleCreateFontIndirect(LPFONTDESC lpFontDesc, REFIID riid,
+-    LPVOID FAR* lplpvObj);
++    _COM_Outptr_ LPVOID FAR* lplpvObj);
+ 
+ WINOLECTLAPI OleCreatePictureIndirect(LPPICTDESC lpPictDesc, REFIID riid,
+-    BOOL fOwn, LPVOID FAR* lplpvObj);
++    BOOL fOwn, _COM_Outptr_ LPVOID FAR* lplpvObj);
+ 
+ WINOLECTLAPI OleLoadPicture(LPSTREAM lpstream, LONG lSize, BOOL fRunmode,
+-    REFIID riid, LPVOID FAR* lplpvObj);
++    REFIID riid, _COM_Outptr_ LPVOID FAR* lplpvObj);
+ 
+ WINOLECTLAPI OleLoadPictureEx(LPSTREAM lpstream, LONG lSize, BOOL fRunmode,
+     REFIID riid, DWORD xSizeDesired, DWORD ySizeDesired, DWORD dwFlags,
+@@ -450,7 +450,7 @@
+ 				  DWORD     dwReserved,
+ 				  OLE_COLOR clrReserved,
+ 				  REFIID    riid,
+-				  LPVOID *  ppvRet );
++				  _COM_Outptr_ LPVOID *  ppvRet );
+ 
+ WINOLECTLAPI OleLoadPictureFile(VARIANT varFileName,
+     LPDISPATCH* lplpdispPicture);

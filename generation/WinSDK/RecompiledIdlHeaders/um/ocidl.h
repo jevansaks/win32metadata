@@ -1081,7 +1081,7 @@ EXTERN_C const IID IID_IClassFactory2;
             /* [annotation][in] */ 
             __RPC__in  BSTR bstrKey,
             /* [annotation][iid_is][out] */ 
-            __RPC__deref_out_opt  PVOID *ppvObj) = 0;
+            _COM_Outptr_  PVOID *ppvObj) = 0;
         
     };
     
@@ -1150,7 +1150,7 @@ EXTERN_C const IID IID_IClassFactory2;
             /* [annotation][in] */ 
             __RPC__in  BSTR bstrKey,
             /* [annotation][iid_is][out] */ 
-            __RPC__deref_out_opt  PVOID *ppvObj);
+            _COM_Outptr_  PVOID *ppvObj);
         
         END_INTERFACE
     } IClassFactory2Vtbl;
@@ -7889,7 +7889,7 @@ void                      __RPC_USER  VARIANT_UserFree64(     __RPC__in unsigned
     /* [annotation][in] */ 
     __RPC__in  BSTR bstrKey,
     /* [annotation][iid_is][out] */ 
-    __RPC__deref_out_opt  PVOID *ppvObj);
+    _COM_Outptr_  PVOID *ppvObj);
 
 
 /* [call_as] */ HRESULT STDMETHODCALLTYPE IClassFactory2_CreateInstanceLic_Stub( 

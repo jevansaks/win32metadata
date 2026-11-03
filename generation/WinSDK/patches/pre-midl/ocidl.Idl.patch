@@ -1,0 +1,13 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl
+@@ -369,7 +369,7 @@
+                 [in, annotation("_Reserved_")] IUnknown * pUnkReserved,
+                 [in, annotation("__RPC__in")] REFIID riid,
+                 [in, annotation("__RPC__in")] BSTR bstrKey,
+-                [out, iid_is(riid), annotation("__RPC__deref_out_opt")] PVOID * ppvObj
++                [out, iid_is(riid), annotation("_COM_Outptr_")] PVOID * ppvObj
+             );
+ 
+     [call_as(CreateInstanceLic)]

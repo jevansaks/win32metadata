@@ -1,0 +1,22 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl
+@@ -57,7 +57,7 @@
+ cpp_quote("            virtual /* [local] */ HRESULT STDMETHODCALLTYPE QueryService( ")
+ cpp_quote("                /* [in] */ _In_ REFGUID guidService,")
+ cpp_quote("                /* [in] */ _In_ REFIID riid,")
+-cpp_quote("                /* [out] */ _Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject) = 0;")
++cpp_quote("                /* [out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject) = 0;")
+ cpp_quote("            ")
+ cpp_quote("            template <class Q>")
+ cpp_quote("            HRESULT STDMETHODCALLTYPE QueryService(_In_ REFGUID guidService, _Outptr_ Q** pp)")
+@@ -84,7 +84,7 @@
+     HRESULT QueryService(
+         [in, annotation("_In_")] REFGUID guidService,
+         [in, annotation("_In_")] REFIID riid,
+-        [out, annotation("_Outptr_")] void ** ppvObject);
++        [out, annotation("_COM_Outptr_")] void ** ppvObject);
+ 
+     [call_as(QueryService)]
+     HRESULT RemoteQueryService(
