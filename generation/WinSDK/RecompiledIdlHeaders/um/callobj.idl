@@ -344,7 +344,7 @@ interface ICallFrameAPIs {
 		[in]   REFIID iidIntercepted,
 		[in]   IUnknown* punkOuter, 
 		[in]   REFIID iid,
-		[out]  void** ppv
+		[out, annotation("_COM_Outptr_")]  void** ppv
 	);
 
 
@@ -354,7 +354,7 @@ interface ICallFrameAPIs {
 		[in]   IUnknown* punkOuter,
 		[in]   ITypeInfo* typeInfo,
 		[in]   REFIID iid,        
-		[out]  void** ppv         
+		[out, annotation("_COM_Outptr_")]  void** ppv         
 	);
 };
 

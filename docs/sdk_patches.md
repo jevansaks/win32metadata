@@ -1,5 +1,65 @@
 # SDK header patches
 
+## COM+ transaction, activity and interception service outputs
+
+This layer audits all **114** parent `ComOutPtr` records against the actual
+physical owners in every `Cos`, `DTC`, `Com.CallObj` and `TransactionServer`
+traversal. The complete service family contains **14 facts**, all retired as
+complete records: **0 partial records, 0 newly retained boundaries**, leaving
+**100** active records. No other facts are introduced.
+
+| Owning native input | Exact migrated selectors |
+|---|---|
+| `ComSvcs.h` (post-MIDL) | `ITransactionContextEx::CreateInstance::pObject`, `ICreateWithTipTransactionEx::CreateInstance::pObject`, `ICreateWithTransactionEx::CreateInstance::pObject`, `CoCreateActivity::ppObj`, `IComTrackingInfoCollection::Item::ppv`, `ICreateWithLocalTransaction::CreateInstanceWithSysTx::pObject`, `IObjectContext::CreateInstance::ppv`, `IServicePool::GetObject::ppv`, `MTSCreateActivity::ppobj` |
+| `TxDtc.h` (post-MIDL) | `IGetDispenser::GetDispenser::ppvObject`, `IResourceManager::GetDistributedTransactionManager::ppvObject`, `IResourceManagerFactory2::CreateEx::ppvResMgr` |
+| `callobj.idl` (pre-MIDL) | `CoGetInterceptor::ppv`, `CoGetInterceptorFromTypeInfo::ppv` |
+
+The pinned SDK ships neither `ComSvcs.idl` / `autosvcs.idl` nor `TxDtc.idl`.
+Their actual shipped headers are therefore authoritative post-MIDL owners;
+`TxCoord.idl` does not own the resource-manager declarations. `Mtx.h`,
+`TxCtx.h` and `Mtxdm.h` forward to `ComSvcs.h`, not independent definitions.
+All selected C++ methods and C-vtable copies are updated, including
+`IResourceManager2` and `IResourceManagerRejoinable` inherited entries. No
+selected proxy, local/remote counterpart, inline or template declaration is
+left behind or newly invented. Standard `_COM_Outptr_result_maybenull_`
+preserves the existing `__RPC__deref_out_opt` nullable result; ordinary
+outputs use `_COM_Outptr_`. Existing MIDL `out`/`iid_is`/`retval` comments,
+native types, guards, imports, result and implementation flags remain intact.
+Comment-only retval facts are not newly recovered.
+
+`ServiceComOutputHeaderTests` extracts actual original/patched declarations,
+uses shipped RPC SAL, and proves exact final-winmd byte equality against
+original native declarations plus legacy sidecars on x86/x64/arm64. It
+checks every selected output flag, singleton attribute payload, pointer
+depth/type and absence of newly inferred retval metadata; redundant sidecars
+also yield identical bytes. Original inputs come from immutable SDK ancestor
+`c16762d41f1bd641ff8c4389ebf16ee50747129f`, with reachable-ancestry and
+test-owned SDK `10.0.28000.2705` byte-match assertions. No movable parent
+object is added as a fixture dependency. Raw byte assertions preserve all
+unselected bytes, CRLF and trailing blank lines.
+
+`SdkPatchTests` applies the real per-file patches, runs normal IDL conversion
+and production MIDL for `callobj.idl`, checks complete owning output bytes,
+and feeds all replayed selected declarations through final emission on all
+three targets. Same-path native C/C++ original/patched/`WIN32METADATA`
+comparisons call every selected site and inherited resource-manager entry
+on x86/x64/arm64 in both include orders; object bytes match except for the
+COFF timestamp. Earlier native no-op fixtures remain unchanged. Production
+metadata integrity checks cover all 14 retired selectors.
+
+The remaining 100 records retain their exact prior meaning: storage, CLR
+hosting/metadata, generic COM helpers, automation/HTML, DirectShow/audio/WIC,
+Controls/hyperlink/UI/graphics, callbacks and unrelated service consumers are
+outside this native family. Independent `Out` lines stay active. DWrite's
+exact `void**` representation override, graphics callbacks and the presentation
+custom-attribute **row-order-only** boundary remain untouched. Production
+`CanReturn*` remains active and the 17 PreserveResult replacements inactive.
+No removed SDK API/header is restored, and no global canonicalization or
+new metadata mechanism is added. Ordinary CI still generates one normal
+candidate and compares it with an already-produced exact-parent winmd, with
+the existing honestly disclosed main/release fallback and visible missing-source
+failure. No additional full-SDK generation or workflow is introduced.
+
 ## Media Foundation COM outputs
 
 This layer audits all **144** parent `ComOutPtr` records against every shipped

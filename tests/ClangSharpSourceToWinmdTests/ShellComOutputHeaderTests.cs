@@ -60,17 +60,17 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
-            Assert.AreEqual(MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", original.Split('\n').Where(line =>
-                !Selectors.Any(selector => line == selector + "=[ComOutPtr]"))))), current,
+            Assert.AreEqual(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", original.Split('\n').Where(line =>
+                !Selectors.Any(selector => line == selector + "=[ComOutPtr]")))))), current,
                 "Preserve all independent sidecars exactly.");
-            CollectionAssert.AreEqual(MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", records.Where(line =>
-                !Selectors.Any(selector => line == selector + "=[ComOutPtr]"))) + "\n")).Split('\n')
+            CollectionAssert.AreEqual(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", records.Where(line =>
+                !Selectors.Any(selector => line == selector + "=[ComOutPtr]"))) + "\n"))).Split('\n')
                     .Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
                 current.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
                 "Retire only the sixteen exact records from the complete remaining corpus.");
             CollectionAssert.AreEqual(original.Split('\n').Where(IndependentContract).ToArray(),
                 current.Split('\n').Where(IndependentContract).ToArray(), "Preserve independent Out and result contracts.");
-            Assert.AreEqual(114, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(100, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
 
             var found = new HashSet<string>(StringComparer.Ordinal);
             var files = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(), "ls-tree", "-r",

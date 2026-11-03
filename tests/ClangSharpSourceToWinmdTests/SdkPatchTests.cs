@@ -1166,6 +1166,135 @@ namespace ClangSharpSourceToWinmdTests
             CollectionAssert.AreEqual(outputs[1], outputs[2]);
         }
 
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void ServiceOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner(string target)
+        {
+            using var fixture = new Fixture();
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
+            foreach (string owner in new[] { "ComSvcs.h", "TxDtc.h", "callobj.idl" })
+            {
+                byte[] original = File.ReadAllBytes(Path.Combine(include, "um", owner));
+                CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
+                    "RecompiledIdlHeaders/um/" + owner), original, "Immutable ancestor matches selected SDK: " + owner);
+                fixture.Header(owner, original);
+            }
+            foreach (string absent in new[] { "ComSvcs.idl", "autosvcs.idl", "TxDtc.idl" })
+                Assert.IsFalse(File.Exists(Path.Combine(include, "um", absent)), "Header-only shipped owner: " + absent);
+            const string selections = "pre-midl/callobj.idl.patch','post-midl/ComSvcs.h.patch','post-midl/TxDtc.h.patch";
+            fixture.Apply("pre-midl", selections, true, patchRoot: patches);
+            fixture.Apply("post-midl", selections, true, patchRoot: patches);
+            foreach (string owner in new[] { "ComSvcs.h", "TxDtc.h", "callobj.idl" })
+                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
+
+            string converted = Path.Combine(fixture.Path, "converted");
+            Directory.CreateDirectory(converted);
+            string command = "";
+            foreach (string dependency in new[] { "wtypesbase.idl", "wtypes.idl", "unknwnbase.idl", "unknwn.idl",
+                "objidlbase.idl", "objidl.idl", "oaidl.idl", "callobj.idl" })
+            {
+                string input = dependency == "callobj.idl" ? Path.Combine(fixture.Headers, "um", dependency) :
+                    Path.Combine(include, dependency.StartsWith("wtypes", StringComparison.Ordinal) ? "shared" : "um", dependency);
+                command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
+                    Quote(input) + " " + Quote(Path.Combine(converted, dependency)) + "; ";
+            }
+            var conversion = fixture.Run(command);
+            Assert.AreEqual(0, conversion.ExitCode, conversion.Output);
+            var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
+                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); & " +
+                Quote(Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                " " + Quote(Path.Combine(converted, "callobj.idl")) + " /out " + Quote(converted) +
+                " /header " + Quote(Path.Combine(fixture.Headers, "um", "callobj.h")) +
+                " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
+                " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
+                " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
+                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
+                " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
+                " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) + "; exit $LASTEXITCODE");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                "RecompiledIdlHeaders", "um", "callobj.h")), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", "callobj.h")));
+            ServiceComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", "/TC", false)]
+        [DataRow("x64", "/TC", false)]
+        [DataRow("arm64", "/TC", false)]
+        [DataRow("x86", "/TP", false)]
+        [DataRow("x64", "/TP", false)]
+        [DataRow("arm64", "/TP", false)]
+        [DataRow("x86", "/TC", true)]
+        [DataRow("x64", "/TC", true)]
+        [DataRow("arm64", "/TC", true)]
+        [DataRow("x86", "/TP", true)]
+        [DataRow("x64", "/TP", true)]
+        [DataRow("arm64", "/TP", true)]
+        public void ServiceOutput_NativeBuildIsANoOp(string arch, string language, bool serviceFirst)
+        {
+            using var fixture = new Fixture();
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string[] owners = ServiceComOutputHeaderTests.Owners.Select(owner => owner.Owner).ToArray();
+            foreach (string owner in owners)
+                fixture.Header(owner, PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/" + owner));
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
+                "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
+            string source = Path.Combine(fixture.Path, "native.c");
+            File.WriteAllText(source, "#define COBJMACROS\n" +
+                (serviceFirst ? "#include <txctx.h>\n#include <callobj.h>\n" : "#include <windows.h>\n#include <txdtc.h>\n") +
+                string.Join("\n", owners.Select(owner => "#include <" + owner + ">")) +
+                "\n#include <mtx.h>\n#include <mtxdm.h>\n#include <txctx.h>\n#include <callobj.h>\n" +
+                "HRESULT NativeCalls(ITransactionContextEx* context, ICreateWithTransactionEx* transaction,\n" +
+                "ICreateWithTipTransactionEx* tip, ICreateWithLocalTransaction* local, IObjectContext* objectContext,\n" +
+                "IComTrackingInfoCollection* tracking, IServicePool* pool, IGetDispenser* dispenser,\n" +
+                "IResourceManager* manager, IResourceManager2* manager2, IResourceManagerRejoinable* rejoinable,\n" +
+                "IResourceManagerFactory2* factory, REFCLSID clsid, REFIID iid, void** output) {\n" +
+                "#ifdef __cplusplus\n#define CALL(object, method, ...) object->method(__VA_ARGS__)\n" +
+                "#else\n#define CALL(object, method, ...) object->lpVtbl->method(object, __VA_ARGS__)\n#endif\n" +
+                "return CALL(context, CreateInstance, clsid, iid, output) + CALL(transaction, CreateInstance, 0, clsid, iid, output) +\n" +
+                "CALL(tip, CreateInstance, 0, clsid, iid, output) + CALL(local, CreateInstanceWithSysTx, 0, clsid, iid, output) +\n" +
+                "CALL(objectContext, CreateInstance, clsid, iid, output) + CALL(tracking, Item, 0, iid, output) +\n" +
+                "CALL(pool, GetObject, iid, output) + CALL(dispenser, GetDispenser, iid, output) +\n" +
+                "CALL(manager, GetDistributedTransactionManager, iid, output) +\n" +
+                "CALL(manager2, GetDistributedTransactionManager, iid, output) +\n" +
+                "CALL(rejoinable, GetDistributedTransactionManager, iid, output) + CALL(factory, CreateEx, 0, 0, 0, iid, output) +\n" +
+                "CoCreateActivity(0, iid, output) + MTSCreateActivity(iid, output) +\n" +
+                "CoGetInterceptor(iid, 0, iid, output) + CoGetInterceptorFromTypeInfo(iid, 0, 0, iid, output);\n}\n");
+            string obj = Path.Combine(fixture.Path, "native.obj");
+            string replacements = string.Join("; ", owners.Select(owner => "Copy-Item -LiteralPath " +
+                Quote(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)) +
+                " -Destination " + Quote(Path.Combine(fixture.Headers, "um", owner))));
+            var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
+                "; $vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
+                "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; " +
+                "foreach ($mode in 'baseline', 'ordinary', 'metadata') { if ($mode -eq 'ordinary') { " + replacements + " }; " +
+                "& $compiler /nologo /c " + language + " " + Quote(source) + " " + Quote("/Fo" + obj) +
+                " " + Quote("/I" + Path.Combine(fixture.Headers, "um")) + " " + Quote("/I" + fixture.Headers) +
+                " \"/I$vcInclude\" " + Quote("/I" + Path.Combine(include, "um")) +
+                " " + Quote("/I" + Path.Combine(include, "shared")) + " " + Quote("/I" + Path.Combine(include, "ucrt")) +
+                " " + Quote("/I" + Path.Combine(include, "winrt")) +
+                " /DWINVER=0x0A00 /D_WIN32_WINNT=0x0A00 /DNTDDI_VERSION=0x0A00000C" +
+                " $(if ($mode -eq 'metadata') { '/DWIN32METADATA' }); " +
+                "if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Copy-Item -LiteralPath " + Quote(obj) +
+                " -Destination (Join-Path " + Quote(fixture.Path) + " ($mode + '.obj')) }");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            byte[][] outputs = new[] { "baseline", "ordinary", "metadata" }
+                .Select(mode => File.ReadAllBytes(Path.Combine(fixture.Path, mode + ".obj"))).ToArray();
+            foreach (byte[] bytes in outputs)
+            {
+                Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
+                Array.Clear(bytes, 4, 4);
+            }
+            CollectionAssert.AreEqual(outputs[0], outputs[1]);
+            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+        }
+
         private static string Direct3DPackagePath()
         {
             var result = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",

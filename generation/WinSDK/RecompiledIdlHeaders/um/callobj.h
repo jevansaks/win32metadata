@@ -1405,7 +1405,7 @@ HRESULT __stdcall CoGetInterceptor(
     /* [annotation][in] */ 
     _In_  REFIID iid,
     /* [annotation][out] */ 
-    _Out_  void **ppv);
+    _COM_Outptr_  void **ppv);
 
 HRESULT __stdcall CoGetInterceptorFromTypeInfo( 
     /* [annotation][in] */ 
@@ -1417,7 +1417,7 @@ HRESULT __stdcall CoGetInterceptorFromTypeInfo(
     /* [annotation][in] */ 
     _In_  REFIID iid,
     /* [annotation][out] */ 
-    _Out_  void **ppv);
+    _COM_Outptr_  void **ppv);
 
 
 
