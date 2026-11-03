@@ -9603,17 +9603,17 @@ EXTERN_C const IID IID_IShellItem;
 SHSTDAPI_(PIDLIST_ABSOLUTE) SHSimpleIDListFromPath(_In_ PCWSTR pszPath);
 #if (_WIN32_IE >= _WIN32_IE_IE70)
 // CLSID_ShellItem create and init helper APIs. produce IShellItem derived interfaces from these different expressions of an item
-SHSTDAPI SHCreateItemFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ REFIID riid, _Outptr_ void **ppv);
-SHSTDAPI SHCreateItemFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ REFIID riid, _Outptr_ void **ppv);
-SHSTDAPI SHCreateItemWithParent(_In_opt_ PCIDLIST_ABSOLUTE pidlParent, _In_opt_ IShellFolder *psfParent, _In_ PCUITEMID_CHILD pidl, _In_ REFIID riid, _Outptr_ void **ppvItem);
-SHSTDAPI SHCreateItemFromRelativeName(_In_ IShellItem *psiParent, _In_ PCWSTR pszName, _In_opt_ IBindCtx* pbc, _In_ REFIID riid, _Outptr_ void **ppv);
+SHSTDAPI SHCreateItemFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ REFIID riid, _COM_Outptr_ void **ppv);
+SHSTDAPI SHCreateItemFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ REFIID riid, _COM_Outptr_ void **ppv);
+SHSTDAPI SHCreateItemWithParent(_In_opt_ PCIDLIST_ABSOLUTE pidlParent, _In_opt_ IShellFolder *psfParent, _In_ PCUITEMID_CHILD pidl, _In_ REFIID riid, _COM_Outptr_ void **ppvItem);
+SHSTDAPI SHCreateItemFromRelativeName(_In_ IShellItem *psiParent, _In_ PCWSTR pszName, _In_opt_ IBindCtx* pbc, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 #endif  // (_WIN32_IE >= _WIN32_IE_IE70)
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-SHSTDAPI SHCreateItemInKnownFolder(_In_ REFKNOWNFOLDERID kfid, DWORD dwKFFlags, _In_opt_ PCWSTR pszItem, _In_ REFIID riid, _Outptr_ void **ppv);
+SHSTDAPI SHCreateItemInKnownFolder(_In_ REFKNOWNFOLDERID kfid, DWORD dwKFFlags, _In_opt_ PCWSTR pszItem, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 // get the IDList expression from an object, works with objects that support IPersistIDlist or IPersistIDlist like CLSID_ShellItem and most shell folders
 SHSTDAPI SHGetIDListFromObject(_In_ IUnknown *punk, _Outptr_ PIDLIST_ABSOLUTE *ppidl);
 // similar to SHGetIDListFromObject but returns an IShellItem-based object (preferred for performance if the IDList is already bound to a folder)
-SHSTDAPI SHGetItemFromObject(_In_ IUnknown *punk, _In_ REFIID riid, _Outptr_ void **ppv);
+SHSTDAPI SHGetItemFromObject(_In_ IUnknown *punk, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 // these APIs return object that support IPropertyStore or related interfaces
 SHSTDAPI SHGetPropertyStoreFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Outptr_ void **ppv);
 SHSTDAPI SHGetPropertyStoreFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Outptr_ void **ppv);
@@ -9631,7 +9631,7 @@ enum DATAOBJ_GET_ITEM_FLAGS
     } 	DATAOBJ_GET_ITEM_FLAGS;
 
 DEFINE_ENUM_FLAG_OPERATORS(DATAOBJ_GET_ITEM_FLAGS)
-STDAPI SHGetItemFromDataObject(_In_ IDataObject *pdtobj, _In_ DATAOBJ_GET_ITEM_FLAGS dwFlags, _In_ REFIID riid, _Outptr_ void **ppv);
+STDAPI SHGetItemFromDataObject(_In_ IDataObject *pdtobj, _In_ DATAOBJ_GET_ITEM_FLAGS dwFlags, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 #endif // (NTDDI_VERSION >= NTDDI_WIN7)
 #define STR_GPS_HANDLERPROPERTIESONLY      L"GPS_HANDLERPROPERTIESONLY"
 #define STR_GPS_FASTPROPERTIESONLY         L"GPS_FASTPROPERTIESONLY"
@@ -10626,7 +10626,7 @@ EXTERN_C const IID IID_ITransferSource;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE MoveItem( 
             /* [annotation][in] */ 
@@ -10755,7 +10755,7 @@ EXTERN_C const IID IID_ITransferSource;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(ITransferSource, MoveItem)
         HRESULT ( STDMETHODCALLTYPE *MoveItem )( 
@@ -11338,11 +11338,11 @@ EXTERN_C const IID IID_ITransferDestination;
             /* [annotation][in] */ 
             _In_  REFIID riidItem,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppvItem,
+            _COM_Outptr_  void **ppvItem,
             /* [annotation][in] */ 
             _In_  REFIID riidResources,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppvResources) = 0;
+            _COM_Outptr_  void **ppvResources) = 0;
         
     };
     
@@ -11397,11 +11397,11 @@ EXTERN_C const IID IID_ITransferDestination;
             /* [annotation][in] */ 
             _In_  REFIID riidItem,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppvItem,
+            _COM_Outptr_  void **ppvItem,
             /* [annotation][in] */ 
             _In_  REFIID riidResources,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppvResources);
+            _COM_Outptr_  void **ppvResources);
         
         END_INTERFACE
     } ITransferDestinationVtbl;
@@ -12091,9 +12091,9 @@ EXTERN_C const IID IID_IShellItemArray;
 
 #if (_WIN32_IE >= _WIN32_IE_IE70)
 SHSTDAPI SHCreateShellItemArray(_In_opt_ PCIDLIST_ABSOLUTE pidlParent, _In_opt_ IShellFolder *psf, _In_ UINT cidl, _In_reads_opt_(cidl) PCUITEMID_CHILD_ARRAY ppidl, _Outptr_ IShellItemArray **ppsiItemArray);
-SHSTDAPI SHCreateShellItemArrayFromDataObject(_In_ IDataObject *pdo, _In_ REFIID riid, _Outptr_ void **ppv);
+SHSTDAPI SHCreateShellItemArrayFromDataObject(_In_ IDataObject *pdo, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 SHSTDAPI SHCreateShellItemArrayFromIDLists(_In_ UINT cidl, _In_reads_(cidl) PCIDLIST_ABSOLUTE_ARRAY rgpidl, _Outptr_ IShellItemArray **ppsiItemArray);
-SHSTDAPI SHCreateShellItemArrayFromShellItem(_In_ IShellItem *psi, _In_ REFIID riid, _Outptr_ void **ppv);
+SHSTDAPI SHCreateShellItemArrayFromShellItem(_In_ IShellItem *psi, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 #endif  // (_WIN32_IE >= _WIN32_IE_IE70)
 
 

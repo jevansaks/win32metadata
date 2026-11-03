@@ -48,7 +48,14 @@ namespace Windows.Win32.Tests
                     "OleLoadPicture::lplpvObj", "OleLoadPicturePath::ppvRet",
                     "IClassFactory2::CreateInstanceLic::ppvObj", "IServiceProvider::QueryService::ppvObject",
                     "IUnknown_QueryInterface_Proxy::ppvObject", "CoGetClassObjectFromURL::ppv",
-                    "IBindHost::MonikerBindToObject::ppvObj", "IBindHost::MonikerBindToStorage::ppvObj" }),
+                    "IBindHost::MonikerBindToObject::ppvObj", "IBindHost::MonikerBindToStorage::ppvObj",
+                    "SHCreateItemFromIDList::ppv", "SHCreateItemFromParsingName::ppv",
+                    "SHCreateItemWithParent::ppvItem", "SHCreateItemFromRelativeName::ppv",
+                    "SHCreateItemInKnownFolder::ppv", "SHGetItemFromObject::ppv", "SHGetItemFromDataObject::ppv",
+                    "SHCreateShellItemArrayFromDataObject::ppv", "SHCreateShellItemArrayFromShellItem::ppv",
+                    "SHGetKnownFolderItem::ppv", "SHBindToParent::ppv", "SHBindToFolderIDListParent::ppv",
+                    "SHBindToFolderIDListParentEx::ppv", "SHBindToObject::ppv", "ITransferSource::OpenItem::ppv",
+                    "ITransferDestination::CreateItem::ppvItem", "ITransferDestination::CreateItem::ppvResources" }),
                 ("ReservedAttribute", ParameterAttributes.In | ParameterAttributes.Optional, new[] {
                     "CoAllowSetForegroundWindow::lpvReserved", "CoDisableCallCancellation::pReserved",
                     "CoEnableCallCancellation::pReserved", "CoInitialize::pvReserved", "CoInitializeEx::pvReserved",
@@ -102,7 +109,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(53, checkedSelectors);
+            Assert.Equal(70, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {

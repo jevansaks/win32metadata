@@ -309,6 +309,80 @@ The production integrity test asserts all three retired facts. Existing result
 contracts and the IAgileReference, callback, and MsHtml boundaries stay active
 and outside this layer.
 
+## Shell item construction and folder/object binding
+
+This layer inventories the 222-record ComOutPtr corpus at the reachable parent
+of its fixture-introduction commit against the real selected SDK
+owners and retires seventeen exact `=[ComOutPtr]` records, leaving 205.
+The eleven initial leads expand to item-array construction, known-folder item
+retrieval, and the paired transfer create/open methods:
+
+| Authoritative owning input | Retired selectors |
+|---|---|
+| `ShObjIdl_core.idl` | `SHCreateItemFromIDList::ppv`, `SHCreateItemFromParsingName::ppv`, `SHCreateItemWithParent::ppvItem`, `SHCreateItemFromRelativeName::ppv`, `SHCreateItemInKnownFolder::ppv`, `SHGetItemFromObject::ppv`, `SHGetItemFromDataObject::ppv` |
+| `ShObjIdl_core.idl` | `SHCreateShellItemArrayFromDataObject::ppv`, `SHCreateShellItemArrayFromShellItem::ppv` |
+| `ShObjIdl_core.idl` | `ITransferSource::OpenItem::ppv`, `ITransferDestination::CreateItem::ppvItem`, `ITransferDestination::CreateItem::ppvResources` |
+| Header-only `ShlObj_core.h` | `SHGetKnownFolderItem::ppv`, `SHBindToParent::ppv`, `SHBindToFolderIDListParent::ppv`, `SHBindToFolderIDListParentEx::ppv`, `SHBindToObject::ppv` |
+
+One pre-MIDL patch changes the nine existing `cpp_quote` function declarations
+and three explicit MIDL parameter annotations to native `_COM_Outptr_`.
+The transfer methods retain their original `[out, iid_is(...)]` contracts.
+Selected MIDL regenerates `ShObjIdl_core.h`: nine function declarations and
+six C++/C-vtable parameter sites change. Both transfer interfaces have one
+complete guarded definition plus forwards; these local methods have no proxy
+declarations. The five header-only declarations use a post-MIDL patch: the SDK
+does not ship `ShlObj_core.idl`. `ShObjIdl.idl` imports the core IDL; its inline
+calls are references, not duplicate declarations. `ShlObj.h` likewise does not
+redeclare these functions. No selected function has a template or inline
+overload. All other native bytes and line endings are preserved.
+
+The inventory deliberately retains the independent shell property-store,
+association/handler, extract-icon, generic activation, data-object creation,
+context-menu/view, docking/menu, and unique-storage-name contracts. Their
+presence in the same headers does not make them item construction/binding.
+Of eighteen corpus records actually declared in `ShObjIdl_core`, twelve move;
+the six retained selectors are `SHCreateAssociationRegistration::ppv`,
+`SHCreateDefaultExtractIcon::ppv`,
+`SHAssocEnumHandlersForProtocolByApplication::enumHandlers`,
+`IShellMenu::GetShellFolder::ppv`, `SHGetPropertyStoreFromIDList::ppv`, and
+`SHGetPropertyStoreFromParsingName::ppv`. Of ten actually declared in
+`ShlObj_core.h`, five move; `SHCoCreateInstance::ppv`,
+`SHCreateDataObject::ppv`, `SHCreateDefaultContextMenu::ppv`,
+`SHCreateFileExtractIconW::ppv`, and `StgMakeUniqueName::ppv` stay active.
+The two context-menu event records in `ShObjIdl` and the docking toolbar record
+in `ShlObj.h` also stay active. Token mentions in comments or inline calls
+(including IQueryAssociations) are not counted as owning declarations.
+The transfer destination's resource output stays paired with its item output;
+source opening belongs to that same create/open protocol. Typed item factories
+without a legacy ComOutPtr record, including `SHCreateShellItem`,
+`SHCreateShellItemArray`, and `SHCreateShellItemArrayFromIDLists`, are unchanged.
+No wildcard or independent Out/result/enum/type record is removed; in particular
+the `SHCreateItemInKnownFolder::dwKFFlags` associated enum stays active.
+IAgileReference, callback, MsHtml, and result-representation boundaries remain
+unchanged.
+
+`ShellItemComOutputHeaderTests` emit the actual selected native declarations
+through final winmd on x86/x64/ARM64, comparing every byte against the reachable
+parent's native declarations plus all seventeen legacy facts. This parent is
+resolved from reachable fixture-introduction ancestry, not a frozen pre-rebase
+commit. Replay validates source ownership against the complete selected SDK
+`MidlInputRoot`, including the core IDL output and the direct binding header.
+They inspect
+singleton custom-attribute blobs, exact Out/nonoptional/nonretval flags and
+double-pointer signatures, and verify matching sidecars deduplicate. Dependency
+types are bounded fixture stubs, not replacement API declarations. Real selected
+SDK patch replay and selected MIDL reproduce every owning file byte-for-byte,
+then replay those fresh declarations through final emission on all three
+architectures. A focused native C/C++ no-op fixture covers every selected
+function signature and both transfer vtable calls across x86/x64/ARM64, with
+shell/URLMon headers before or after their COM dependencies. It compares exact
+parent-native versus patched ordinary/metadata object bytes, excluding only COFF
+timestamps. Both use identical include paths and parent SAL helpers: changing
+header paths changes MSVC UUID COMDAT ordering independently of SAL. The original
+SDK/core/URLMon no-op fixture is unchanged. Production metadata
+integrity checks cover all seventeen sites. No reader, transport, compatibility
+override, import exclusion, workflow, or extra full-SDK generation is added.
+
 ## Patch format and validation
 
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
