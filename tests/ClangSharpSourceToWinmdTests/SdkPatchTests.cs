@@ -164,7 +164,8 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             var result = fixture.Run(
                 ". " + Quote(Script("CommonUtils.ps1")) + "; " +
-                "$include = Join-Path (Get-WinSdkCppPkgPath) 'c\\include\\10.0.28000.0'; " +
+                "$sdk = Get-NugetPropsProperty -name PkgMicrosoft_Windows_SDK_CPP -projectName ClangSharpSourceToWinmdTests.csproj; " +
+                "$include = Join-Path $sdk 'c\\include\\10.0.28000.0'; " +
                 "if (!(Test-Path -LiteralPath $include)) { throw \"Required SDK inputs missing: $include\" }; " +
                 "$outputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) + " -HeaderRoot $include); " +
                 "foreach ($owner in 'objidl', 'objidlbase') { " +
@@ -196,7 +197,8 @@ namespace ClangSharpSourceToWinmdTests
             Directory.CreateDirectory(converted);
             var result = fixture.Run(
                 ". " + Quote(Script("CommonUtils.ps1")) + "; " +
-                "$midl = Join-Path (Get-WinSdkCppPkgPath) 'c\\bin\\10.0.28000.0\\x86\\midl.exe'; " +
+                "$sdk = Get-NugetPropsProperty -name PkgMicrosoft_Windows_SDK_CPP -projectName ClangSharpSourceToWinmdTests.csproj; " +
+                "$midl = Join-Path $sdk 'c\\bin\\10.0.28000.0\\x86\\midl.exe'; " +
                 "if (!(Test-Path -LiteralPath $midl)) { throw \"Required SDK MIDL missing: $midl\" }; " +
                 "$env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); " +
                 "$inputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) + " -HeaderRoot " + Quote(fixture.Headers) + " -IncludeUnqueued); " +
@@ -289,9 +291,10 @@ namespace ClangSharpSourceToWinmdTests
             StringAssert.Contains(job, "needs: [changes]");
             StringAssert.Contains(job, "if: needs.changes.outputs.sdk_patches_needed == 'true'");
             StringAssert.Contains(job, "--filter 'FullyQualifiedName~ClangSharpSourceToWinmdTests.SdkPatchTests'");
-            StringAssert.Contains(job, "dotnet restore BuildTools --configfile nuget.Config");
-            Assert.IsTrue(job.IndexOf("dotnet restore BuildTools", StringComparison.Ordinal) <
-                job.IndexOf("dotnet test tests\\ClangSharpSourceToWinmdTests", StringComparison.Ordinal));
+            string project = File.ReadAllText(Path.Combine(Root(), "tests", "ClangSharpSourceToWinmdTests", "ClangSharpSourceToWinmdTests.csproj"));
+            StringAssert.Contains(project, "<PackageReference Include=\"Microsoft.Windows.SDK.CPP\" Version=\"" + Version + "\"");
+            StringAssert.Contains(project, "GeneratePathProperty=\"true\" IncludeAssets=\"none\" PrivateAssets=\"all\"");
+            Assert.IsFalse(job.Contains("dotnet restore BuildTools", StringComparison.Ordinal));
             Assert.IsFalse(job.Contains("continue-on-error:", StringComparison.Ordinal));
             StringAssert.Contains(File.ReadAllText(Script("TestTooling.ps1")),
                 "'FullyQualifiedName!~ClangSharpSourceToWinmdTests.SdkPatchTests'");
