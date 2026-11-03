@@ -3138,9 +3138,6 @@ WinHttpQueryAuthSchemes
 WinHttpQueryDataAvailable
 WinHttpQueryHeaders
 WinHttpQueryOption
-WinHttpReadData
-WinHttpReceiveResponse
-WinHttpSendRequest
 WinHttpSetCredentials
 WinHttpSetDefaultProxyConfiguration
 WinHttpSetOption

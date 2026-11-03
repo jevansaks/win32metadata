@@ -16,6 +16,7 @@ Abstract:
 #define _WINHTTPX_
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1684,6 +1685,7 @@ WinHttpConnect
     IN DWORD dwReserved
 );
 
+_Win32_SetLastError_
 WINHTTPAPI
 BOOL
 WINAPI
@@ -1847,6 +1849,7 @@ WinHttpAddRequestHeadersEx
     _In_reads_(cHeaders) WINHTTP_EXTENDED_HEADER *pHeaders
 );
 
+_Win32_SetLastError_
 WINHTTPAPI
 BOOL
 WINAPI
@@ -1914,6 +1917,7 @@ WinHttpQueryAuthParams
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 WINHTTPAPI
 BOOL
 WINAPI

@@ -6,12 +6,14 @@ or included headers **before** IDL-to-SAL conversion and MIDL compilation.
 `post-midl/<owning-file>.patch` modifies the final header copies **after**
 MIDL output and the existing compatibility-header restores.
 
-No patches are selected by default. Generation continues using the checked-in
-`RecompiledIdlHeaders`; it does not discover or apply patch assets during scraping.
-When a supported metadata slice supplies production patches, select them explicitly:
+Ingestion selects `post-midl/winhttp.h.patch` by default for SDK
+`10.0.28000.2705`. Generation uses the checked-in result in
+`RecompiledIdlHeaders`; it does not apply patches during scraping. Explicit
+selections replace the default list, so retain the WinHttp patch when adding others:
 
 ```powershell
 .\scripts\RecompileIdlFilesForScraping.ps1 -SelectedPatches @(
+    'post-midl/winhttp.h.patch',
     'pre-midl/example.idl.patch',
     'post-midl/example.h.patch'
 )
@@ -23,9 +25,26 @@ MIDL emits that comment in `amstream.h`. The header proof adds only a comment
 at PR2248's Uxtheme hook context. These fixtures live under the existing emitter
 test project, are applied only to temporary SDK roots, and are not production
 generation inputs. Neither changes declarations. PR2248's
-Uxtheme enum/signature changes and PR2365's WinHttp annotation corpus are
-deliberately not enabled: consuming those annotations is a separate layer.
-This layer adds no annotation reader, retired sidecars, or restored SDK headers.
+Uxtheme enum/signature changes and the rest of PR2365's WinHttp annotation corpus
+are deliberately not enabled.
+
+The production WinHttp patch adds the shared helper include and prefixes only
+`WinHttpReadData`, `WinHttpReceiveResponse`, and `WinHttpSendRequest` with
+`_Win32_SetLastError_`. These are the only entries removed from
+`WithSetLastError.rsp`. The helper emits `Win32Metadata.SetLastError` under
+`WIN32METADATA` and Clang, and is empty during ordinary compilation. Ingestion
+preserves the reviewed helper before replacing the generated header tree.
+The scraper validates owned annotations during its existing AST walk, then
+unions the discovered names with the legacy generator `WithSetLastErrors` list.
+It still parses one translation unit and passes that same unit to the generator.
+Unknown/malformed owned payloads, arguments, non-import targets, and non-prefix
+placement fail with native source locations; unrelated annotations are left alone.
+This pilot covers **SetLastError only**, not typedefs, enums, or resource ownership.
+The focused WinHttp fixture replays the owning-header patch and checks the exact
+three sidecar deletions. Header-to-winmd fixtures compare complete output bytes
+between legacy and header annotations, without a measurement or receipt framework.
+Full validation uses ordinary CI generation and comparison to an existing target
+winmd; this migration does not add SDK scrapes or paired benchmark builds.
 
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
 `git diff` with repository-relative paths under
@@ -69,6 +88,8 @@ encoding/line endings, and negative cases:
 
 ```powershell
 dotnet test tests\ClangSharpSourceToWinmdTests -c Release --filter SdkPatchTests
+dotnet test tests\ClangSharpSourceToWinmdTests -c Release --filter LastErrorHeaderTests
+.\scripts\TestTooling.ps1
 ```
 
 In PR validation, the `sdk-patch-tests` job runs these tests parallel to scraping,
