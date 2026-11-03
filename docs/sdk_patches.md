@@ -57,6 +57,13 @@ cannot bypass the selected owner. Existing original fixtures and the COM+
 forwarding-header repair are preserved. Production integrity assertions
 cover all fifteen retired selectors.
 
+The inherited Media Foundation SDK replay follows the same architecture-
+independent production-MIDL-once pattern as the repaired audio parent and
+this imaging fixture. Every original owner, patch, regenerated-header byte
+check and all three architecture-specific final emissions remain covered.
+This removes redundant fixture setup/generation rather than changing the
+existing SDK job's timeout, workflow or coverage.
+
 All independent `Out`, type, callback, enum, namespace, import and RAII
 mechanisms remain unchanged. Production `CanReturn*` remains active and
 all 17 PreserveResult replacements remain inactive. DWrite's exact

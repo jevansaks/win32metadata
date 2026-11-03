@@ -988,14 +988,13 @@ namespace ClangSharpSourceToWinmdTests
             CollectionAssert.AreEqual(outputs[1], outputs[2]);
         }
 
-        [DataTestMethod]
-        [DataRow("i686-pc-windows-msvc")]
-        [DataRow("x86_64-pc-windows-msvc")]
-        [DataRow("aarch64-pc-windows-msvc")]
-        public void MediaFoundationOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner(string target)
+        [TestMethod]
+        public void MediaFoundationOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner()
         {
             using var fixture = new Fixture();
-            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            string direct3D = Direct3DPackagePath();
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
             string midlInputs = Path.Combine(fixture.Path, "sdk");
             foreach (string folder in new[] { "um", "shared" })
@@ -1041,7 +1040,7 @@ namespace ClangSharpSourceToWinmdTests
                 string patched = Path.Combine(fixture.Headers, "um", dependency);
                 string input = File.Exists(patched) ? patched :
                     dependency == "d3d12.idl" || dependency == "D3D12MarkerApiEnums.idl" ?
-                    Path.Combine(Direct3DPackagePath(), "build", "native", "include", dependency) :
+                    Path.Combine(direct3D, "build", "native", "include", dependency) :
                     Path.Combine(include, dependency.StartsWith("wtypes", StringComparison.Ordinal) ||
                         dependency == "dxgiformat.idl" ? "shared" : "um", dependency);
                 command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
@@ -1053,7 +1052,7 @@ namespace ClangSharpSourceToWinmdTests
             {
                 var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
                     "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); & " +
-                    Quote(Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                    Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
                     " " + Quote(Path.Combine(converted, owner.ToLowerInvariant())) + " /out " + Quote(converted) +
                     " /header " + Quote(Path.Combine(fixture.Headers, "um", Path.ChangeExtension(owner, "h").ToLowerInvariant())) +
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
@@ -1068,7 +1067,8 @@ namespace ClangSharpSourceToWinmdTests
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", header)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", header)), header);
             }
-            MediaFoundationComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+                MediaFoundationComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
         }
 
         [DataTestMethod]
