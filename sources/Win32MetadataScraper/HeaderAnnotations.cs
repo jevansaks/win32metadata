@@ -19,6 +19,13 @@ namespace Win32MetadataScraper
         public Dictionary<string, (string Type, string Value)> EnumConstants { get; } = new(StringComparer.Ordinal);
         private readonly Dictionary<string, ClangSharp.Type> enumStorage = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (string Version, Attr Attribute)> supportedFunctions = new(StringComparer.Ordinal);
+        private readonly Dictionary<string, (string Module, Attr Attribute)> importLibraries = new(StringComparer.Ordinal);
+
+        public void MergeImportLibraries(Dictionary<string, string> libraries, IReadOnlyDictionary<string, string> remaps)
+        {
+            foreach (var fact in this.importLibraries)
+                libraries[remaps.GetValueOrDefault(fact.Key) ?? fact.Key] = fact.Value.Module;
+        }
 
         public void MergeSupportedFunctions(List<string> attributes, IReadOnlyDictionary<string, string> remaps)
         {
@@ -47,6 +54,11 @@ namespace Win32MetadataScraper
                     continue;
 
                 string payload = attribute.Spelling;
+                if (payload.StartsWith(Owner + "ImportLibrary", StringComparison.Ordinal))
+                {
+                    this.VisitImportLibrary(declaration, attribute);
+                    continue;
+                }
                 if (payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
                 {
                     this.VisitSupportedOS(declaration, attribute);
@@ -106,6 +118,26 @@ namespace Win32MetadataScraper
                     GetIntegerStorage(storage, association.Attribute) != GetIntegerStorage(association.Storage, association.Attribute)))
                     throw Error(association.Attribute, $"AssociatedEnum storage conflicts with enum group '{association.EnumName}'.");
             }
+        }
+
+        private void VisitImportLibrary(Decl declaration, Attr attribute)
+        {
+            var match = Regex.Match(attribute.Spelling,
+                "^Win32Metadata\\.ImportLibrary\\(\"([A-Za-z0-9_][A-Za-z0-9_.-]*)\"\\)$");
+            if (!match.Success || attribute.CursorChildren.Any())
+                throw Error(attribute, "ImportLibrary requires one quoted module filename and no Clang expression arguments.");
+            if (declaration is not FunctionDecl function || declaration is CXXMethodDecl || function.HasBody)
+                throw Error(attribute, "ImportLibrary requires an imported function declaration without a body.");
+            attribute.Extent.Start.GetExpansionLocation(out var attributeFile, out _, out _, out uint attributeOffset);
+            declaration.Extent.Start.GetExpansionLocation(out var declarationFile, out _, out _, out _);
+            declaration.Extent.End.GetExpansionLocation(out _, out _, out _, out uint declarationEnd);
+            if (attributeFile.Equals(declarationFile) &&
+                attributeOffset > GetDeclarationStart(function, attribute) && attributeOffset < declarationEnd)
+                throw Error(attribute, "ImportLibrary must precede the complete function declaration.");
+            string module = match.Groups[1].Value;
+            if (this.importLibraries.TryGetValue(function.Name, out var existing) && existing.Module != module)
+                throw Error(attribute, $"Conflicting ImportLibrary annotations on redeclarations of '{function.Name}'.");
+            this.importLibraries[function.Name] = (module, attribute);
         }
 
         private void VisitSupportedOS(Decl declaration, Attr attribute)

@@ -14,6 +14,7 @@
 #define __HTMLHELP_H__
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -370,7 +371,7 @@ typedef struct tagHHNTRACK
     HH_WINTYPE* phhWinType; // Current window type structure
 } HHNTRACK;
 
-HWND
+_Win32_ImportLibrary_("hhctrl.ocx") HWND
 WINAPI
 HtmlHelpA(
     _In_opt_ HWND hwndCaller,
@@ -379,7 +380,7 @@ HtmlHelpA(
     _In_ DWORD_PTR dwData
     );
 
-HWND
+_Win32_ImportLibrary_("hhctrl.ocx") HWND
 WINAPI
 HtmlHelpW(
     _In_opt_ HWND hwndCaller,

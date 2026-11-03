@@ -27,6 +27,7 @@ SOFTWARE
 #pragma once
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
@@ -57,6 +58,8 @@ typedef enum _PLUGIN_AUTHENTICATOR_STATE
     AuthenticatorState_Enabled
 } AUTHENTICATOR_STATE;
 
+// WebAuthnPlugin.dll/lib does not ship; these APIs are exported by webauthn.dll.
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginGetAuthenticatorState(
@@ -136,18 +139,21 @@ typedef struct _WEBAUTHN_PLUGIN_ADD_AUTHENTICATOR_RESPONSE {
 } WEBAUTHN_PLUGIN_ADD_AUTHENTICATOR_RESPONSE, *PWEBAUTHN_PLUGIN_ADD_AUTHENTICATOR_RESPONSE;
 typedef const WEBAUTHN_PLUGIN_ADD_AUTHENTICATOR_RESPONSE *PCWEBAUTHN_PLUGIN_ADD_AUTHENTICATOR_RESPONSE;
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginAddAuthenticator(
     _In_ PCWEBAUTHN_PLUGIN_ADD_AUTHENTICATOR_OPTIONS pPluginAddAuthenticatorOptions,
     _Outptr_result_maybenull_ PWEBAUTHN_PLUGIN_ADD_AUTHENTICATOR_RESPONSE* ppPluginAddAuthenticatorResponse);
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginAddAuthenticator2(
     _In_ PCWEBAUTHN_PLUGIN_ADD_AUTHENTICATOR_OPTIONS_2 pPluginAddAuthenticatorOptions,
     _Outptr_result_maybenull_ PWEBAUTHN_PLUGIN_ADD_AUTHENTICATOR_RESPONSE* ppPluginAddAuthenticatorResponse);
 
+_Win32_ImportLibrary_("webauthn.dll")
 void
 WINAPI
 WebAuthNPluginFreeAddAuthenticatorResponse(
@@ -157,6 +163,7 @@ WebAuthNPluginFreeAddAuthenticatorResponse(
 // Plugin Authenticator API: WebAuthNRemovePluginAuthenticator: Remove Plugin Authenticator
 //
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginRemoveAuthenticator(
@@ -225,11 +232,13 @@ typedef struct _WEBAUTHN_PLUGIN_UPDATE_AUTHENTICATOR_DETAILS_2 {
 } WEBAUTHN_PLUGIN_UPDATE_AUTHENTICATOR_DETAILS_2, *PWEBAUTHN_PLUGIN_UPDATE_AUTHENTICATOR_DETAILS_2;
 typedef const WEBAUTHN_PLUGIN_UPDATE_AUTHENTICATOR_DETAILS_2 *PCWEBAUTHN_PLUGIN_UPDATE_AUTHENTICATOR_DETAILS_2;
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginUpdateAuthenticatorDetails(
     _In_ PCWEBAUTHN_PLUGIN_UPDATE_AUTHENTICATOR_DETAILS pPluginUpdateAuthenticatorDetails);
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginUpdateAuthenticatorDetails2(
@@ -270,6 +279,7 @@ typedef struct _WEBAUTHN_PLUGIN_CREDENTIAL_DETAILS {
 } WEBAUTHN_PLUGIN_CREDENTIAL_DETAILS, *PWEBAUTHN_PLUGIN_CREDENTIAL_DETAILS;
 typedef const WEBAUTHN_PLUGIN_CREDENTIAL_DETAILS *PCWEBAUTHN_PLUGIN_CREDENTIAL_DETAILS;
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginAuthenticatorAddCredentials(
@@ -281,6 +291,7 @@ WebAuthNPluginAuthenticatorAddCredentials(
 // Plugin Authenticator API: WebAuthNPluginAuthenticatorRemoveCredentials: Remove Credential Metadata for Browser AutoFill Scenarios
 //
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginAuthenticatorRemoveCredentials(
@@ -292,6 +303,7 @@ WebAuthNPluginAuthenticatorRemoveCredentials(
 // Plugin Authenticator API: WebAuthNPluginAuthenticatorRemoveAllCredentials: Remove All Credential Metadata for Browser AutoFill Scenarios
 //
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginAuthenticatorRemoveAllCredentials(
@@ -301,6 +313,7 @@ WebAuthNPluginAuthenticatorRemoveAllCredentials(
 // Plugin Authenticator API: WebAuthNPluginAuthenticatorGetAllCredentials: Get All Credential Metadata cached for Browser AutoFill Scenarios
 //
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginAuthenticatorGetAllCredentials(
@@ -312,6 +325,7 @@ WebAuthNPluginAuthenticatorGetAllCredentials(
 // Plugin Authenticator API: WebAuthNPluginAuthenticatorFreeCredentialDetailsArray: Free Credential Metadata cached for Browser AutoFill Scenarios
 //
 
+_Win32_ImportLibrary_("webauthn.dll")
 void
 WINAPI
 WebAuthNPluginAuthenticatorFreeCredentialDetailsArray(
@@ -367,6 +381,7 @@ typedef struct _WEBAUTHN_PLUGIN_USER_VERIFICATION_REQUEST_2 {
 } WEBAUTHN_PLUGIN_USER_VERIFICATION_REQUEST_2, *PWEBAUTHN_PLUGIN_USER_VERIFICATION_REQUEST_2;
 typedef const WEBAUTHN_PLUGIN_USER_VERIFICATION_REQUEST_2 *PCWEBAUTHN_PLUGIN_USER_VERIFICATION_REQUEST_2;
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginPerformUserVerification(
@@ -374,6 +389,7 @@ WebAuthNPluginPerformUserVerification(
     _Out_ DWORD* pcbResponse,
     _Outptr_result_buffer_maybenull_(*pcbResponse) PBYTE* ppbResponse);
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginPerformUserVerification2(
@@ -381,17 +397,20 @@ WebAuthNPluginPerformUserVerification2(
     _Out_ DWORD* pcbResponse,
     _Outptr_result_buffer_maybenull_(*pcbResponse) PBYTE* ppbResponse);
 
+_Win32_ImportLibrary_("webauthn.dll")
 void
 WINAPI
 WebAuthNPluginFreeUserVerificationResponse(
     _In_opt_ PBYTE ppbResponse);
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginGetUserVerificationCount(
     _In_ REFCLSID rclsid,
     _Out_ DWORD* pdwVerificationCount);
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginGetUserVerificationPublicKey(
@@ -399,6 +418,7 @@ WebAuthNPluginGetUserVerificationPublicKey(
     _Out_ DWORD* pcbPublicKey,
     _Outptr_result_bytebuffer_(*pcbPublicKey) PBYTE* ppbPublicKey); // Free using WebAuthNPluginFreePublicKeyResponse
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginGetOperationSigningPublicKey(
@@ -406,6 +426,7 @@ WebAuthNPluginGetOperationSigningPublicKey(
     _Out_ DWORD* pcbOpSignPubKey,
     _Outptr_result_buffer_maybenull_(*pcbOpSignPubKey) PBYTE* ppbOpSignPubKey); // Free using WebAuthNPluginFreePublicKeyResponse
 
+_Win32_ImportLibrary_("webauthn.dll")
 void WINAPI WebAuthNPluginFreePublicKeyResponse(
     _In_opt_ PBYTE pbOpSignPubKey);
 
@@ -553,6 +574,7 @@ typedef struct _WEBAUTHN_CTAPCBOR_MAKE_CREDENTIAL_REQUEST {
 typedef const WEBAUTHN_CTAPCBOR_MAKE_CREDENTIAL_REQUEST *PCWEBAUTHN_CTAPCBOR_MAKE_CREDENTIAL_REQUEST;
 
 _Success_(return == S_OK)
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNEncodeMakeCredentialResponse(
@@ -562,6 +584,7 @@ WebAuthNEncodeMakeCredentialResponse(
     );
 
 _Success_(return == S_OK)
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNDecodeMakeCredentialRequest(
@@ -570,6 +593,7 @@ WebAuthNDecodeMakeCredentialRequest(
     _Outptr_ PWEBAUTHN_CTAPCBOR_MAKE_CREDENTIAL_REQUEST* ppMakeCredentialRequest
     );
 
+_Win32_ImportLibrary_("webauthn.dll")
 void
 WINAPI
 WebAuthNFreeDecodedMakeCredentialRequest(
@@ -637,6 +661,7 @@ typedef struct _WEBAUTHN_CTAPCBOR_GET_ASSERTION_REQUEST {
 typedef const WEBAUTHN_CTAPCBOR_GET_ASSERTION_REQUEST *PCWEBAUTHN_CTAPCBOR_GET_ASSERTION_REQUEST;
 
 _Success_(return == S_OK)
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNDecodeGetAssertionRequest(
@@ -645,6 +670,7 @@ WebAuthNDecodeGetAssertionRequest(
     _Outptr_ PWEBAUTHN_CTAPCBOR_GET_ASSERTION_REQUEST* ppGetAssertionRequest
     );
 
+_Win32_ImportLibrary_("webauthn.dll")
 void
 WINAPI
 WebAuthNFreeDecodedGetAssertionRequest(
@@ -677,6 +703,7 @@ typedef struct _WEBAUTHN_CTAPCBOR_GET_ASSERTION_RESPONSE {
 typedef const WEBAUTHN_CTAPCBOR_GET_ASSERTION_RESPONSE *PCWEBAUTHN_CTAPCBOR_GET_ASSERTION_RESPONSE;
 
 _Success_(return == S_OK)
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNEncodeGetAssertionResponse(
@@ -687,6 +714,7 @@ WebAuthNEncodeGetAssertionResponse(
 
 typedef void (CALLBACK* WEBAUTHN_PLUGIN_STATUS_CHANGE_CALLBACK )(void* context);
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginRegisterStatusChangeCallback(
@@ -696,6 +724,7 @@ WebAuthNPluginRegisterStatusChangeCallback(
     _Out_ DWORD* pdwRegister
     );
 
+_Win32_ImportLibrary_("webauthn.dll")
 HRESULT
 WINAPI
 WebAuthNPluginUnregisterStatusChangeCallback(

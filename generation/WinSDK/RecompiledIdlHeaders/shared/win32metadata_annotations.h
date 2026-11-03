@@ -9,6 +9,7 @@
 
 #define _Win32_SetLastError_ _WIN32META_ANNOTATION_("SetLastError")
 #define _Win32_PreserveResult_ _WIN32META_ANNOTATION_("PreserveResult")
+#define _Win32_ImportLibrary_(module) _WIN32META_ANNOTATION_("ImportLibrary(" #module ")")
 #define _Win32_SupportedOS_Windows2000_ _WIN32META_ANNOTATION_("SupportedOSPlatform(\"windows5.0\")")
 #define _Win32_SupportedOS_WindowsXP_ _WIN32META_ANNOTATION_("SupportedOSPlatform(\"windows5.1.2600\")")
 #define _Win32_SupportedOS_WindowsVista_ _WIN32META_ANNOTATION_("SupportedOSPlatform(\"windows6.0.6000\")")
