@@ -1242,6 +1242,8 @@ namespace ClangSharpSourceToWinmdTests
             string[] owners = ServiceComOutputHeaderTests.Owners.Select(owner => owner.Owner).ToArray();
             foreach (string owner in owners)
                 fixture.Header(owner, PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/" + owner));
+            foreach (string forwarder in new[] { "TxCtx.h", "Mtx.h", "Mtxdm.h" })
+                fixture.Header(forwarder, File.ReadAllBytes(Path.Combine(include, "um", forwarder)));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
                 "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
