@@ -322,6 +322,15 @@ namespace ClangSharpSourceToWinmd
 
                 string localName = node.Declaration.Variables.First().Identifier.ValueText;
 
+                if (node.Modifiers.ToString() == "public const")
+                {
+                    // Only generated header backing constants must survive until expression binding.
+                    if (node.SyntaxTree.FilePath.EndsWith(".headerConstants.modified.cs", StringComparison.Ordinal))
+                        return node;
+                    if (this.enumMemberNames.Contains(localName))
+                        return null;
+                }
+
                 string fullName = GetFullNameWithoutArchSuffix(node);
 
                 this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Declaration.Type.ToString(), out string newType, out string newName);

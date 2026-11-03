@@ -513,6 +513,8 @@ Rules:
   constants remain available during C# constant binding, but their
   duplicate `Apis` fields are omitted at final-winmd emission. Shared constituent
   names can appear in multiple projected groups without native name collisions.
+  Only this generated backing source bypasses early enum-member constant removal;
+  legacy and manual sources retain their existing binding and suppression behavior.
 - Use `enum class` only when the SDK declaration is already scoped or a new native API
   intentionally defines scoped semantics; do not use it merely to wrap constants.
 - Metadata-only constants use guarded annotated `constexpr`/`const` declarations while

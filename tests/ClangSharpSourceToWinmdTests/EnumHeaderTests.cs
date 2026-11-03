@@ -329,6 +329,57 @@ int __stdcall Example(void);", sal: true);
             Assert.AreEqual(header, Decompile(fixture.Emit()));
         }
 
+        [DataTestMethod]
+        [DataRow(false)]
+        [DataRow(true)]
+        public void LegacyEnumReferencesAndManualExpressions_PreserveExistingBinding(bool headerGroup)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(Constants + (headerGroup ? Groups : "") +
+                "int __stdcall Example(void);", sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string manual = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "manual", "WinSock.cs"));
+            string pollin = Regex.Match(manual, @"public const ushort POLLIN = [^;]+;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(pollin));
+            File.WriteAllText(Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "Legacy.enums.cs"), @"
+using System;
+using static Legacy.Foundation.Apis;
+using static Legacy.Foundation.WAIT_EVENT;
+namespace Legacy.Foundation {
+    public enum WAIT_EVENT : uint { WAIT_OBJECT_0 = 0, WAIT_IO_COMPLETION = 192 }
+    public static partial class Apis {
+        public const uint WAIT_OBJECT_0 = 0;
+        public const uint WAIT_IO_COMPLETION = 192;
+        public const int StillPublic = 42;
+    }
+}
+namespace Legacy.WinSock {
+    public enum WSA_ERROR {
+        WSA_WAIT_EVENT_0 = (int)(WAIT_OBJECT_0),
+        WSA_WAIT_IO_COMPLETION = (int)(WAIT_IO_COMPLETION)
+    }
+    [Flags] public enum WSAPOLL_EVENT_FLAGS : short {
+        POLLRDNORM = 0x0100, POLLRDBAND = 0x0200, POLLIN = (POLLRDNORM | POLLRDBAND)
+    }
+    public static partial class Apis { " + pollin + @" }
+}");
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var types = reader.TypeDefinitions.Select(reader.GetTypeDefinition).ToArray();
+            var error = types.Single(t => reader.GetString(t.Name) == "WSA_ERROR");
+            CollectionAssert.AreEqual(new[] { 0, 192 }, error.GetFields().Select(reader.GetFieldDefinition)
+                .Where(f => !f.GetDefaultValue().IsNil).Select(f => reader.GetBlobReader(
+                    reader.GetConstant(f.GetDefaultValue()).Value).ReadInt32()).ToArray());
+            var flags = types.Single(t => reader.GetString(t.Name) == "WSAPOLL_EVENT_FLAGS");
+            var field = flags.GetFields().Select(reader.GetFieldDefinition).Single(f => reader.GetString(f.Name) == "POLLIN");
+            Assert.AreEqual((short)0x0300, reader.GetBlobReader(reader.GetConstant(field.GetDefaultValue()).Value).ReadInt16());
+            var apiFields = types.Where(t => reader.GetString(t.Name) == "Apis").SelectMany(t => t.GetFields())
+                .Select(reader.GetFieldDefinition).Select(f => reader.GetString(f.Name)).ToArray();
+            Assert.IsTrue(apiFields.Contains("StillPublic"));
+            Assert.IsFalse(apiFields.Any(name => name is "WAIT_OBJECT_0" or "WAIT_IO_COMPLETION" or "POLLIN"));
+        }
+
         private static string Decompile(string path) =>
             string.Join("\n", CSharpSyntaxTree.ParseText(new CSharpDecompiler(path,
                 new DecompilerSettings { ThrowOnAssemblyResolveErrors = false }).DecompileWholeModuleAsString())
