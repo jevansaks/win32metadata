@@ -69,7 +69,7 @@ This class walks the final C# abstract syntax trees (AST) and writes each node t
 
 ## WinmdGenerator
 
-### Fork migration qualification
+### Fork CI guardrails
 
 In `jevansaks/win32metadata`, PR validation runs on every PR base, including
 stacked topic branches. `feature/header-annotations` requires the exact checks
@@ -80,72 +80,35 @@ cancelled or unexpectedly skipped dependencies never pass the migration gate.
 The fork does not require a second reviewer. User sign-off still precedes
 coordinator-managed merges; successful automation alone does not authorize merging.
 
-Build, package, samples and structural tests start as soon as all scrape artifacts
-are ready, independently of paired measurement. A downstream comparison job waits
-for both paths, verifies the frozen reference and emits the existing API diff and
-canonical winmd artifacts. The migration aggregate also requires that job to
-succeed. This overlaps build work with measurement without changing per-emission
-budgets, reference selection or documentation-change qualification.
-Qualification setup logs CPU model, logical cores, RAM, runner image and effective worker
-settings in `runner-hardware.txt`, without hostname or receipt-schema changes.
+Only the ordinary candidate CI generation runs: three architecture scrapes,
+followed by emission, packages, samples and structural tests. No additional
+reference/candidate SDK generations, paired measurements, confirmation rounds
+or performance receipt framework are run. `Migration qualification` is only a
+cheap fail-closed aggregate of these ordinary CI jobs and API comparison.
 
 Run `.\scripts\TestTooling.ps1` for all three tooling suites. Both this entry
 point and `.\scripts\DoTests.ps1` reject missing, empty or failing TRX results.
-The existing MSTest emitter suite now includes workflow/verdict guardrail tests,
-three real emissions of identical fixture inputs, raw/normalized hash evidence,
-and checks that every byte outside the two normalized fields remains observed.
+The existing MSTest emitter suite includes ordinary workflow/dependency and
+TRX guardrail tests alongside its existing metadata tests.
 `TestTooling.ps1` builds the CLI through normal test project references and
-executes this coverage without a separate BuildTools prerequisite. Repeated
-fixture emission is not full-SDK determinism or performance evidence.
+executes this coverage without a separate BuildTools prerequisite.
 Node remains scoped to the pre-existing API-comment workflow tests:
 `node --test .github/tests/pr-api-diff-comment.test.cjs`.
 
-`.\scripts\TestMigrationQualification.ps1 -ReferenceDirectory <checkout>`
-requires a separate checkout at
-`86ed37b2846440297afb087c4718acd1a1fb4ad8`. It freshly generates the baseline
-and candidate from identical legacy inputs, with SDK `10.0.28000.2705`,
-ClangSharp `21.1.8.4`, winmd version `1.0.0.0`, two scraper workers, one MSBuild
-node and the existing single-TU-per-partition/architecture behavior. Restoring,
-building tools, queue delay, packages and samples are outside the timed region.
-Generated markers/sources and the output winmd are removed before each sample.
-The measured command runs cross-architecture header and constant scraping
-through final emission, not just an isolated partition or tooling tests.
+The API comparison reuses an already-produced winmd from successful target-branch
+CI at the PR base commit. If unavailable, it tries successful upstream
+`microsoft/win32metadata` main CI, then the existing released-package baseline.
+The selected repository/branch/commit/run/artifact or released package path is
+recorded in `baseline-source.txt`; actual baseline/candidate hashes and candidate
+commit are retained in `comparison-inputs.txt`. Missing outputs, dump failures
+and comparison command errors fail CI; API differences themselves are retained
+for review. This uses the existing WinmdUtils API dump and release helper, not
+a binary-normalization or provenance framework.
 
-The initial blocking budgets are a confirmed full-generation wall-time increase
-greater than 10% and process-tree working-set increase greater than 15%.
-One paired sample is normally sufficient; a breach requires confirmation, with
-at most three paired samples and alternating execution order. An unresolved
-two-sample result fails; three samples resolve the majority. Memory is the
-maximum **sampled** sum of live child-process working sets, sampled after each
-CIM query plus a 500ms delay; it is not an instantaneous peak and may miss brief
-spikes. The proposed five-pair warm WinHttp/Foundation/Com pilot and its median
-10%/one-second budget are not implemented in this infrastructure layer.
-
-The drift gate compares the entire final winmd rather than relying on the
-decompiler dump or semantic comparison helper. Existing WinmdUtils commands
-`compareBinary`, `qualifyMigration`, and `verifyMigrationEvidence` use the BCL
-`PEReader`/`MetadataReader` and receipt validation; there is no handwritten
-PE/metadata table parser or additional project/package. The comparer normalizes only the Module
-MVID (the emitter calls `Guid.NewGuid`) and the COFF PE creation timestamp
-(`ManagedPEBuilder` defaults); assembly version is fixed before emission.
-There are no approved semantic differences or exclusion masks. Any other
-nondeterminism fails qualification and must be investigated, not masked.
-This compatibility normalization is temporary until emitter determinism lands
-and a deterministic reference is deliberately reviewed; neither side is silently
-replaced with candidate output.
-
-Actions retains TRX, source/input SHA receipts, SDK content and toolchain hashes,
-output winmds/hashes, raw timing/memory samples, target-phase binlogs and drift
-reports, with a linked summary on success and failure. The aggregate downloads
-and rechecks evidence and candidate SHA binding. The fork API-comment baseline
-is this newly generated frozen reference, never an arbitrary latest successful
-branch artifact or last-release fallback. The existing upstream informational
-API comparison is separate from blocking migration qualification.
-
-Future layers can extend the explicit reference/candidate pair to A/B/C inputs
-after separately approving and documenting a source migration. They must not
-replace the frozen reference or budgets with PR output, introduce broad
-approved-difference masks, or treat a selected scrape as final-winmd e2e.
+Each reused-tools package/sample/test Actions step initializes its own VS
+developer environment. It avoids redundant tool compilation while retaining
+the package script's post-pack rebuild. Actions retains tooling/full-test TRX,
+logs, candidate winmd, packages, API dumps/diff and baseline source information.
 
 The WinmdGenerator packages the Scraper and Emitter tooling into an [MSBuild project SDK](https://learn.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) that acts as the interface for converting C/C++ projects to winmds for use with language projections.
 

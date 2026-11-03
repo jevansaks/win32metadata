@@ -26,9 +26,6 @@ generation inputs. Neither changes declarations. PR2248's
 Uxtheme enum/signature changes and PR2365's WinHttp annotation corpus are
 deliberately not enabled: consuming those annotations is a separate layer.
 This layer adds no annotation reader, retired sidecars, or restored SDK headers.
-The inherited qualification receipt currently hashes all tracked
-`generation/WinSDK` files, including potentially inactive patch assets; fixing
-that effective-input distinction belongs to the CI owner, not this layer.
 
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
 `git diff` with repository-relative paths under
@@ -58,19 +55,22 @@ dotnet test tests\ClangSharpSourceToWinmdTests -c Release --filter SdkPatchTests
 ```
 
 In PR validation, the `sdk-patch-tests` job runs these tests parallel to scraping,
-tooling tests, and full paired qualification after the shared change-detection
+tooling tests, and ordinary candidate builds after the shared change-detection
 job. Its path filter includes ingestion scripts, patch assets/fixtures, the two
 proof inputs, and relevant build configuration. Unrelated PRs skip this job
 without starting a runner. Renamed paths are checked on both sides; incomplete
 file lists fail closed by running the tests. Manual and push runs also run them.
 `TestTooling.ps1` (also called by `DoTests.ps1`) excludes `SdkPatchTests`, so they
 do not add runtime to ordinary tooling or the serial build/test/package job.
-The already-required **Migration qualification** check requires this job to
+The existing required aggregate check (retaining the **Migration qualification**
+status name for compatibility) requires this job to
 succeed for relevant changes, accepting a skipped job only when change detection
 explicitly reports no relevant changes. Failed/cancelled/missing results cannot
 pass that gate. No new required status context is needed, so unrelated PRs cannot
-get stuck waiting for a workflow that never ran. Existing qualification evidence,
-the other required checks, and approval policy remain unchanged.
+get stuck waiting for a workflow that never ran. This is an ordinary CI status
+aggregate, not a measurement or receipt verifier. CI compares the candidate
+against an already-produced target/upstream/release winmd; there are no additional
+reference/paired SDK generations or performance qualification passes.
 
 Original mechanism and proof:
 [microsoft/win32metadata#2248](https://github.com/microsoft/win32metadata/pull/2248),
