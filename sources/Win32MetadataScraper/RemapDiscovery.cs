@@ -260,7 +260,8 @@ public static class RemapDiscovery
     public static ResolvedRemaps ResolveFunctionPointerFixups(
         DiscoveryResult discovery,
         ISet<string> configuredExcludes = null,
-        IReadOnlyDictionary<string, string> configuredRemaps = null)
+        IReadOnlyDictionary<string, string> configuredRemaps = null,
+        ISet<string> callbacksOutsideTraversal = null)
     {
         configuredExcludes ??= new HashSet<string>(StringComparer.Ordinal);
         var result = new ResolvedRemaps();
@@ -289,6 +290,10 @@ public static class RemapDiscovery
         // it to a pointer-to-pointer alias or reduce that alias's extra indirection.
         foreach (var protoName in discovery.FnPointerFunctionTypedefs)
         {
+            // A transitive header may supply a callback owned by another partition.
+            // Do not redirect its uses to a declaration this partition cannot emit.
+            if (callbacksOutsideTraversal?.Contains(protoName) == true)
+                continue;
             if (!configuredExcludes.Contains(protoName) && !discovery.NonGlobalTypedefs.Contains(protoName) &&
                 (configuredRemaps == null || !configuredRemaps.TryGetValue(protoName, out var remap) || remap == protoName))
             {

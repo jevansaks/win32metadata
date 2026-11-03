@@ -227,6 +227,15 @@ Its direct same-level aliases use that delegate; pointer-adding aliases use
 emission. Existing explicit legacy renaming of the defining callback retains the
 legacy resolution path. Bare function typedef fixups are unchanged.
 
+Recovery applies only when the defining callback is in the partition's explicit
+header traversal (or no traversal restriction is configured). A typedef reached
+only through a transitive include may belong to another partition; its existing
+projection is left alone rather than redirecting uses to a delegate that this
+partition cannot emit. The Enclave regression exercises `LPENCLAVE_ROUTINE` from
+an untraversed `minwinbase.h` owner through final winmd compilation.
+Self-remaps used to select a local delegate are not exported as global type
+renames in the existing generated remap sidecar.
+
 This retires the `LPWINHTTP_STATUS_CALLBACK` exclusion and the two callback remaps
 in `Partitions/WinHttp/settings.rsp`. The shipped `winhttp.h` declarations need no
 new annotations or patch. Upstream PR #2365's slice guarding the LP alias out of

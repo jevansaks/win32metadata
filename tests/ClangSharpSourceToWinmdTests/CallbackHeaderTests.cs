@@ -121,6 +121,43 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
+        public void SameLevelAlias_WithoutDirectUseOfDefiningCallback()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape("typedef void* (__stdcall *PENCLAVE_ROUTINE)(void* parameter);\n" +
+                "typedef PENCLAVE_ROUTINE LPENCLAVE_ROUTINE;\nvoid __stdcall CallEnclave(LPENCLAVE_ROUTINE routine);");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            Assert.IsTrue(reader.TypeDefinitions.Select(reader.GetTypeDefinition).Any(type =>
+                reader.GetString(type.Name) == "PENCLAVE_ROUTINE"));
+            Assert.IsFalse(fixture.DiscoveredRemaps.Contains("PENCLAVE_ROUTINE=PENCLAVE_ROUTINE"));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void TransitiveCallbackOwner_DoesNotRedirectToAnUnemittedDelegate(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape("void __stdcall CallEnclave(LPENCLAVE_ROUTINE routine);", target,
+                includedHeader: "typedef void* (__stdcall *PENCLAVE_ROUTINE)(void* parameter);\n" +
+                    "typedef PENCLAVE_ROUTINE LPENCLAVE_ROUTINE;");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            Assert.IsFalse(reader.TypeDefinitions.Select(reader.GetTypeDefinition).Any(type =>
+                reader.GetString(type.Name) == "PENCLAVE_ROUTINE"));
+            var signature = reader.GetBlobReader(Method(reader, "CallEnclave").Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(1, signature.ReadCompressedInteger());
+            Assert.AreEqual(SignatureTypeCode.Void, signature.ReadSignatureTypeCode());
+            Assert.AreEqual(SignatureTypeCode.IntPtr, signature.ReadSignatureTypeCode());
+            Assert.AreEqual(0, signature.RemainingBytes);
+        }
+
+        [TestMethod]
         public void AliasStorage_IsPreservedInReturnFieldsAndAdditionalPointers()
         {
             using var fixture = new LastErrorHeaderTests.Fixture();
