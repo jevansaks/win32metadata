@@ -1,6 +1,6 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h
-index ecfb21f9..7b208d93 100644
+index ecfb21f9..7bb6ce78 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h
 @@ -16,6 +16,7 @@ Abstract:
@@ -11,7 +11,54 @@ index ecfb21f9..7b208d93 100644
  
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
-@@ -1684,6 +1685,7 @@ WinHttpConnect
+@@ -90,6 +91,15 @@ typedef INTERNET_PORT * LPINTERNET_PORT;
+                                                  SECURITY_FLAG_IGNORE_CERT_DATE_INVALID)
+ 
+ 
++_Win32_FlagsEnum_(WINHTTP_OPEN_REQUEST_FLAGS, DWORD,
++    WINHTTP_FLAG_BYPASS_PROXY_CACHE,
++    WINHTTP_FLAG_ESCAPE_DISABLE,
++    WINHTTP_FLAG_ESCAPE_DISABLE_QUERY,
++    WINHTTP_FLAG_ESCAPE_PERCENT,
++    WINHTTP_FLAG_NULL_CODEPAGE,
++    WINHTTP_FLAG_REFRESH,
++    WINHTTP_FLAG_SECURE);
++
+ //
+ // WINHTTP_ASYNC_RESULT - this structure is returned to the application via
+ // the callback with WINHTTP_CALLBACK_STATUS_REQUEST_COMPLETE. It is not sufficient to
+@@ -196,7 +206,7 @@ typedef LPURL_COMPONENTS LPURL_COMPONENTSW;
+ 
+ typedef struct _WINHTTP_PROXY_INFO
+ {
+-    DWORD  dwAccessType;      // see WINHTTP_ACCESS_* types below
++    _Win32_AssociatedEnum_(WINHTTP_ACCESS_TYPE) DWORD  dwAccessType;      // see WINHTTP_ACCESS_* types below
+     LPWSTR lpszProxy;         // proxy server list
+     LPWSTR lpszProxyBypass;   // proxy bypass list
+ } WINHTTP_PROXY_INFO, *LPWINHTTP_PROXY_INFO, *PWINHTTP_PROXY_INFO;
+@@ -1355,6 +1365,12 @@ typedef WINHTTP_STATUS_CALLBACK * LPWINHTTP_STATUS_CALLBACK;
+ #define WINHTTP_ACCESS_TYPE_NAMED_PROXY                 3
+ #define WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY             4
+ 
++_Win32_Enum_(WINHTTP_ACCESS_TYPE, DWORD,
++    WINHTTP_ACCESS_TYPE_NO_PROXY,
++    WINHTTP_ACCESS_TYPE_DEFAULT_PROXY,
++    WINHTTP_ACCESS_TYPE_NAMED_PROXY,
++    WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY);
++
+ // WinHttpOpen prettifiers for optional parameters
+ #define WINHTTP_NO_PROXY_NAME     NULL
+ #define WINHTTP_NO_PROXY_BYPASS   NULL
+@@ -1659,7 +1675,7 @@ WINAPI
+ WinHttpOpen
+ (
+     _In_opt_z_ LPCWSTR pszAgentW,
+-    _In_ DWORD dwAccessType,
++    _In_ _Win32_AssociatedEnum_(WINHTTP_ACCESS_TYPE) DWORD dwAccessType,
+     _In_opt_z_ LPCWSTR pszProxyW,
+     _In_opt_z_ LPCWSTR pszProxyBypassW,
+     _In_ DWORD dwFlags
+@@ -1684,6 +1700,7 @@ WinHttpConnect
      IN DWORD dwReserved
  );
  
@@ -19,7 +66,16 @@ index ecfb21f9..7b208d93 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1847,6 +1849,7 @@ WinHttpAddRequestHeadersEx
+@@ -1818,7 +1835,7 @@ WinHttpOpenRequest
+     IN LPCWSTR pwszVersion,
+     IN LPCWSTR pwszReferrer OPTIONAL,
+     IN LPCWSTR FAR * ppwszAcceptTypes OPTIONAL,
+-    IN DWORD dwFlags
++    IN _Win32_AssociatedEnum_(WINHTTP_OPEN_REQUEST_FLAGS) DWORD dwFlags
+ );
+ 
+ WINHTTPAPI
+@@ -1847,6 +1864,7 @@ WinHttpAddRequestHeadersEx
      _In_reads_(cHeaders) WINHTTP_EXTENDED_HEADER *pHeaders
  );
  
@@ -27,7 +83,7 @@ index ecfb21f9..7b208d93 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1914,6 +1917,7 @@ WinHttpQueryAuthParams
+@@ -1914,6 +1932,7 @@ WinHttpQueryAuthParams
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -35,7 +91,7 @@ index ecfb21f9..7b208d93 100644
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1948,7 +1952,7 @@ WinHttpQueryHeadersEx
+@@ -1948,7 +1967,7 @@ WinHttpQueryHeadersEx
      _In_ UINT uiCodePage,
      _Inout_opt_ PDWORD pdwIndex,
      _In_opt_ PWINHTTP_HEADER_NAME pHeaderName,

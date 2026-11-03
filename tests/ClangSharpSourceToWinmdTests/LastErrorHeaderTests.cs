@@ -178,6 +178,7 @@ namespace ClangSharpSourceToWinmdTests
                 var apply = Run("pwsh", "-NoProfile", "-NonInteractive", "-File",
                     Path.Combine(root, "scripts", "ApplySDKPatches.ps1"),
                     "-Phase", "post-midl", "-HeaderRoot", directory, "-SdkVersion", "10.0.28000.2705",
+                    "-MidlInputRoot", Path.Combine(SdkPackagePath(), "c", "include", "10.0.28000.0"),
                     "-SelectedPatches", "post-midl/winhttp.h.patch");
                 Assert.AreEqual(0, apply.ExitCode, apply.Output);
                 Assert.AreEqual(current.Replace("\r\n", "\n"), File.ReadAllText(header).Replace("\r\n", "\n"));
@@ -240,7 +241,8 @@ namespace ClangSharpSourceToWinmdTests
 
             public (int ExitCode, string Output) Scrape(string header, string target = "x86_64-pc-windows-msvc",
                 bool legacy = false, string? remap = null, bool repeatInclude = false, bool metadata = true, string language = "c++",
-                bool sal = false, bool transitive = false, string extraSettings = "", string? includedHeader = null)
+                bool sal = false, bool transitive = false, string extraSettings = "", string? includedHeader = null,
+                string? scraperPath = null)
             {
                 if (File.Exists(this.GeneratedSource)) File.Delete(this.GeneratedSource);
                 if (sal)
@@ -294,7 +296,7 @@ generate-cpp-attributes
 {(remap != null ? "--remap\nExample=" + remap : "")}
 {extraSettings}
 ");
-                string scraper = Path.Combine(AppContext.BaseDirectory,
+                string scraper = scraperPath ?? Path.Combine(AppContext.BaseDirectory,
                     RuntimeInformation.RuntimeIdentifier, "Win32MetadataScraper.dll");
                 Assert.IsTrue(File.Exists(scraper), "Missing production RID scraper: " + scraper);
                 return Run("dotnet", scraper, Path.Combine(this.directory, "remaps.rsp"), "@" + rsp);
@@ -317,6 +319,19 @@ generate-cpp-attributes
                 return output;
             }
 
+            public Dictionary<string, string> ScrapeConstants(string? enums = null)
+            {
+                string path = Path.Combine(this.directory, "enums.json");
+                if (enums != null) File.WriteAllText(path, enums);
+                var remaps = new Dictionary<string, string>();
+                MetadataUtils.ConstantsScraper.ScrapeConstants(enums == null ? Array.Empty<string>() : new[] { path },
+                    "Test", Path.GetDirectoryName(this.GeneratedSource)!, "using System;", new HashSet<string>(),
+                    new Dictionary<string, string> { [Path.Combine(this.directory, "input.h")] = "Test" },
+                    new Dictionary<string, string>(), remaps, new Dictionary<string, string>(),
+                    new Dictionary<string, string>());
+                return remaps;
+            }
+
             public void AssertNativeAbi(string arch, int pointerSize, string language)
             {
                 string source = Path.Combine(this.directory, "abi.c");
@@ -327,6 +342,10 @@ extern ""C"" {{
 #endif
 _Win32_SetLastError_
 {Declaration}
+#define Low 1
+#define High 0x80000000UL
+_Win32_Enum_(Access, unsigned long, Low);
+_Win32_FlagsEnum_(Options, unsigned long, Low, High);
 enum Option {{ One = 1 }};
 _Win32_AssociatedEnum_(Option) int __stdcall ParameterAbi(
     _Win32_Retained_ void* buffer, _Win32_Retval_ int* result,

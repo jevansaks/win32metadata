@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using ClangSharp;
 using ClangSharp.Interop;
 using MetadataUtils;
@@ -11,8 +13,11 @@ namespace Win32MetadataScraper
     {
         private const string Owner = "Win32Metadata.";
         public HashSet<string> FunctionNames { get; } = new(StringComparer.Ordinal);
-        private readonly List<(Attr Attribute, string EnumName)> enumAssociations = new();
+        private readonly List<(Attr Attribute, string EnumName, ClangSharp.Type Storage)> enumAssociations = new();
         private readonly HashSet<string> nativeEnums = new(StringComparer.Ordinal);
+        public Dictionary<string, EnumObject> EnumGroups { get; } = new(StringComparer.Ordinal);
+        public Dictionary<string, (string Type, string Value)> EnumConstants { get; } = new(StringComparer.Ordinal);
+        private readonly Dictionary<string, ClangSharp.Type> enumStorage = new(StringComparer.Ordinal);
 
         public void Visit(Decl declaration)
         {
@@ -27,6 +32,12 @@ namespace Win32MetadataScraper
                     continue;
 
                 string payload = attribute.Spelling;
+                if (payload.StartsWith(Owner + "Enum(", StringComparison.Ordinal) ||
+                    payload.StartsWith(Owner + "FlagsEnum(", StringComparison.Ordinal))
+                {
+                    this.VisitEnumGroup(declaration, attribute);
+                    continue;
+                }
                 if (payload != Owner + "SetLastError")
                 {
                     this.VisitParameterAnnotation(declaration, attribute, ref declarationStart);
@@ -57,9 +68,89 @@ namespace Win32MetadataScraper
         public void ValidateEnumAssociations()
         {
             foreach (var association in this.enumAssociations)
+            {
                 if (!this.nativeEnums.Contains(association.EnumName))
                     throw Error(association.Attribute, $"AssociatedEnum requires an existing native enum '{association.EnumName}'.");
+                if (this.enumStorage.TryGetValue(association.EnumName, out var storage) &&
+                    (association.Storage is not BuiltinType ||
+                    GetIntegerStorage(storage, association.Attribute) != GetIntegerStorage(association.Storage, association.Attribute)))
+                    throw Error(association.Attribute, $"AssociatedEnum storage conflicts with enum group '{association.EnumName}'.");
+            }
         }
+
+        private void VisitEnumGroup(Decl declaration, Attr attribute)
+        {
+            if (declaration is not TypedefDecl alias ||
+                (alias.DeclContext is not TranslationUnitDecl && alias.DeclContext is not LinkageSpecDecl))
+                throw Error(attribute, "Enum groups require an unscoped storage typedef.");
+            if (alias.Attrs.Count(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
+                (a.Spelling.StartsWith(Owner + "Enum(", StringComparison.Ordinal) ||
+                a.Spelling.StartsWith(Owner + "FlagsEnum(", StringComparison.Ordinal))) != 1)
+                throw Error(attribute, "Duplicate or conflicting enum group annotations.");
+            var storage = alias.UnderlyingType.CanonicalType;
+            if (storage is EnumType)
+                throw Error(attribute, "Enum groups require native integer storage, not an existing enum type.");
+            string type = GetIntegerStorage(storage, attribute);
+            var match = Regex.Match(attribute.Spelling, @"^Win32Metadata\.(FlagsEnum|Enum)\((.*)\)$");
+            if (!match.Success) throw Error(attribute, "Malformed enum group annotation.");
+            var names = match.Groups[2].Value.Split(',').Select(n => n.Trim()).ToArray();
+            var arguments = attribute.CursorChildren.ToArray();
+            if (names.Length == 0 || names.Length != arguments.Length ||
+                names.Any(n => !Regex.IsMatch(n, @"^[A-Za-z_][A-Za-z_0-9]*$")) ||
+                names.Distinct(StringComparer.Ordinal).Count() != names.Length)
+                throw Error(attribute, "Enum groups require one unique constituent name per Clang expression argument.");
+            var group = new EnumObject { name = alias.Name, type = type, flags = match.Groups[1].Value == "FlagsEnum" };
+            for (int i = 0; i < names.Length; i++)
+            {
+                using var value = arguments[i].Handle.Evaluate;
+                if (value.Kind != CXEvalResultKind.CXEval_Int || arguments[i] is not Expr expression)
+                    throw Error(attribute, $"Enum constituent '{names[i]}' is not a supported integer constant expression.");
+                ulong bits = value.IsUnsignedInt ? value.AsUnsigned : unchecked((ulong)value.AsLongLong);
+                // Keep the compiler-typed constituent available to dependent constants.
+                // The projected enum independently converts it to its authored storage.
+                string constantType = GetIntegerStorage(expression.Type.CanonicalType, attribute);
+                var constant = (Type: constantType, Value: FormatInteger(bits, constantType));
+                if (this.EnumConstants.TryGetValue(names[i], out var existing) && existing != constant)
+                    throw Error(attribute, $"Conflicting native values for enum constituent '{names[i]}'.");
+                this.EnumConstants[names[i]] = constant;
+                group.members.Add(new EnumObject.Member { name = names[i], value = FormatInteger(bits, type) });
+            }
+            if (this.EnumGroups.ContainsKey(alias.Name))
+                throw Error(attribute, $"Duplicate enum group '{alias.Name}'.");
+            this.EnumGroups.Add(alias.Name, group);
+            this.enumStorage.Add(alias.Name, storage);
+            this.nativeEnums.Add(alias.Name);
+        }
+
+        private static string GetIntegerStorage(ClangSharp.Type storage, Attr attribute)
+        {
+            if (storage is EnumType nativeEnum) storage = nativeEnum.Decl.IntegerType.CanonicalType;
+            return storage.Kind switch
+            {
+                CXTypeKind.CXType_Char_U or CXTypeKind.CXType_UChar => "byte",
+                CXTypeKind.CXType_Char_S or CXTypeKind.CXType_SChar => "sbyte",
+                CXTypeKind.CXType_UShort => "ushort",
+                CXTypeKind.CXType_Short => "short",
+                CXTypeKind.CXType_UInt or CXTypeKind.CXType_ULong when storage.Handle.SizeOf == 4 => "uint",
+                CXTypeKind.CXType_Int or CXTypeKind.CXType_Long when storage.Handle.SizeOf == 4 => "int",
+                CXTypeKind.CXType_ULongLong or CXTypeKind.CXType_ULong when storage.Handle.SizeOf == 8 => "ulong",
+                CXTypeKind.CXType_LongLong or CXTypeKind.CXType_Long when storage.Handle.SizeOf == 8 => "long",
+                _ => throw Error(attribute, "Enum groups require supported native integer storage (8, 16, 32 or 64 bits)."),
+            };
+        }
+
+        private static string FormatInteger(ulong bits, string type) =>
+            type switch
+            {
+                "byte" => unchecked((byte)bits).ToString(CultureInfo.InvariantCulture),
+                "sbyte" => unchecked((sbyte)bits).ToString(CultureInfo.InvariantCulture),
+                "ushort" => unchecked((ushort)bits).ToString(CultureInfo.InvariantCulture),
+                "short" => unchecked((short)bits).ToString(CultureInfo.InvariantCulture),
+                "uint" => unchecked((uint)bits).ToString(CultureInfo.InvariantCulture),
+                "int" => unchecked((int)bits).ToString(CultureInfo.InvariantCulture),
+                "ulong" => bits.ToString(CultureInfo.InvariantCulture) + "UL",
+                _ => unchecked((long)bits).ToString(CultureInfo.InvariantCulture) + "L",
+            };
 
         private void VisitParameterAnnotation(Decl declaration, Attr attribute, ref uint? declarationStart)
         {
@@ -69,7 +160,8 @@ namespace Win32MetadataScraper
             if (attribute.CursorChildren.Any())
                 throw Error(attribute, $"{attribute.Spelling} accepts no Clang expression arguments.");
             bool returnValue = declaration is FunctionDecl && annotation.Kind == ParameterAnnotationKind.AssociatedEnum;
-            if (declaration is not ParmVarDecl && !returnValue)
+            bool fieldValue = declaration is FieldDecl && annotation.Kind == ParameterAnnotationKind.AssociatedEnum;
+            if (declaration is not ParmVarDecl && !returnValue && !fieldValue)
                 throw Error(attribute, $"{attribute.Spelling} requires a parameter declaration.");
             if (declaration is ParmVarDecl redeclaredParameter && redeclaredParameter.DeclContext is FunctionDecl function)
             {
@@ -105,13 +197,14 @@ namespace Win32MetadataScraper
             if (annotation.Kind == ParameterAnnotationKind.AssociatedEnum)
             {
                 ClangSharp.Type storage = declaration is ParmVarDecl enumParameter ?
-                    enumParameter.Type.CanonicalType : ((FunctionDecl)declaration).ReturnType.CanonicalType;
+                    enumParameter.Type.CanonicalType : declaration is FieldDecl enumField ?
+                    enumField.Type.CanonicalType : ((FunctionDecl)declaration).ReturnType.CanonicalType;
                 if (storage is PointerType pointer) storage = pointer.PointeeType.CanonicalType;
                 if (storage is not EnumType && (storage is not BuiltinType ||
                     storage.Kind < CXTypeKind.CXType_Bool || storage.Kind > CXTypeKind.CXType_UInt128 &&
                     (storage.Kind < CXTypeKind.CXType_Char_S || storage.Kind > CXTypeKind.CXType_Int128)))
                     throw Error(attribute, "AssociatedEnum requires integer or native enum storage, optionally through one pointer.");
-                this.enumAssociations.Add((attribute, annotation.EnumName));
+                this.enumAssociations.Add((attribute, annotation.EnumName, storage));
             }
         }
 

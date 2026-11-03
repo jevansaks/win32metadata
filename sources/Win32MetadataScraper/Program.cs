@@ -176,6 +176,7 @@ class Program
 
             // ── Walk AST to discover all typedef-tag and function pointer relationships ──
             var annotations = new HeaderAnnotations();
+            var emittedEnumNames = new HashSet<string>(StringComparer.Ordinal);
             var traversalNames = new HashSet<string>(
                 (settings.GetValueOrDefault("--traverse") ?? new List<string>()).Select(Path.GetFullPath),
                 StringComparer.OrdinalIgnoreCase);
@@ -183,6 +184,13 @@ class Program
             var discovery = RemapDiscovery.WalkTranslationUnit(translationUnit.TranslationUnitDecl, declaration =>
             {
                 annotations.Visit(declaration);
+                if (declaration is TypedefDecl group && annotations.EnumGroups.ContainsKey(group.Name))
+                {
+                    group.Location.GetPresumedLocation(out var fileName, out _, out _);
+                    if (traversalNames.Count == 0 ||
+                        traversalNames.Contains(Path.GetFullPath(fileName.ToString())))
+                        emittedEnumNames.Add(group.Name);
+                }
                 if (declaration is TypedefDecl typedef && traversalNames.Count != 0 &&
                     RemapDiscovery.UnwrapType(typedef.UnderlyingType) is PointerType pointer &&
                     RemapDiscovery.UnwrapType(pointer.PointeeType) is FunctionProtoType)
@@ -269,6 +277,29 @@ class Program
                     string generatedSource = Encoding.UTF8.GetString(kvp.Value.ToArray());
                     File.WriteAllText(kvp.Key, NormalizeGeneratedSource(generatedSource, kvp.Key), new UTF8Encoding(false));
                 }
+
+                string enumOutput = Path.ChangeExtension(outputFile, ".headerEnums.cs");
+                if (File.Exists(enumOutput)) File.Delete(enumOutput);
+                using (var writer = new MetadataUtils.EnumWriter(enumOutput, ns, "using System;", useConstants: false))
+                    foreach (string name in emittedEnumNames.OrderBy(n => n, StringComparer.Ordinal))
+                    {
+                        var group = annotations.EnumGroups[name];
+                        group.@namespace = ns;
+                        writer.AddEnum(group);
+                    }
+            string constantsOutput = Path.ChangeExtension(outputFile, ".headerConstants.cs");
+            if (File.Exists(constantsOutput)) File.Delete(constantsOutput);
+            if (emittedEnumNames.Count != 0)
+            {
+                    using var stream = File.Create(constantsOutput);
+                    using var writer = new MetadataUtils.ConstantWriter(stream, ns, "using System;", new Dictionary<string, string>());
+                    foreach (string name in emittedEnumNames.SelectMany(name => annotations.EnumGroups[name].members)
+                        .Select(member => member.name).Distinct(StringComparer.Ordinal).OrderBy(name => name, StringComparer.Ordinal))
+                    {
+                        var constant = annotations.EnumConstants[name];
+                        writer.AddValue(constant.Type, name, constant.Value);
+                    }
+            }
 
                 // Write diagnostics
                 foreach (var diag in generator.Diagnostics)

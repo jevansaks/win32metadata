@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\MetadataUtils\ParameterAnnotation.cs" Link="ParameterAnnotation.cs" />
+    <ProjectReference Include="..\MetadataUtils\MetadataUtils.csproj" />
     <PackageReference Include="ClangSharp" Version="21.1.8.4" />
     <PackageReference Include="ClangSharp.Interop" Version="21.1.8.4" />
     <PackageReference Include="ClangSharp.PInvokeGenerator" Version="21.1.8.4" />

@@ -6,6 +6,8 @@ using System.IO.Abstractions;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace MetadataUtils
 {
@@ -92,6 +94,7 @@ namespace MetadataUtils
             private Dictionary<string, string> writtenConstants;
 
             private List<EnumObject> enumObjectsFromJsons = new();
+            private HashSet<string> headerEnumMemberNames = new(StringComparer.Ordinal);
             private Dictionary<string, string> withTypes;
             private Dictionary<string, string> withAttributes;
 
@@ -484,6 +487,9 @@ namespace MetadataUtils
             {
                 // Load the enums scraped from the docs
                 this.enumObjectsFromJsons = this.LoadEnumsFromJsonFiles(enumJsonFiles);
+                this.headerEnumMemberNames = Directory.GetFiles(this.scraperOutputDir, "*.headerEnums.cs", SearchOption.AllDirectories)
+                    .SelectMany(EnumObject.LoadFromFile).SelectMany(group => group.members)
+                    .Select(member => member.name).ToHashSet(StringComparer.Ordinal);
 
                 // Load a map from member names to enum obj
                 this.LoadMemberNameToEnumObjMap(this.enumObjectsFromJsons);
@@ -1020,7 +1026,7 @@ namespace MetadataUtils
 
                         // If we haven't used the member to update an enum, skip it...
                         // ...unless it's an HRESULT. Always emit them as constants too
-                        if (match.Success && (!updatedEnum || nativeTypeName != null))
+                        if (match.Success && (!updatedEnum || nativeTypeName != null || this.headerEnumMemberNames.Contains(name)))
                         {
                             // Only add the constant if it's not part of a manual enum
                             if (!manualEnumMemberNames.Contains(name))
@@ -1094,6 +1100,14 @@ namespace MetadataUtils
             private void WriteEnumsAndRemaps(
                 Dictionary<string, string> remaps)
             {
+                var headerEnums = new Dictionary<string, List<EnumObject>>(StringComparer.Ordinal);
+                foreach (string file in Directory.GetFiles(this.scraperOutputDir, "*.headerEnums.cs", SearchOption.AllDirectories))
+                    foreach (var group in EnumObject.LoadFromFile(file))
+                    {
+                        if (!headerEnums.TryGetValue(group.name, out var existing))
+                            headerEnums.Add(group.name, existing = new List<EnumObject>());
+                        existing.Add(group);
+                    }
                 // Output the enums and the rsp entries that map parameters and fields to use
                 // enum names
                 var enumRemapsFileName = Path.Combine(this.scraperOutputDir, "enumsRemap.rsp");
@@ -1106,6 +1120,10 @@ namespace MetadataUtils
                     // For each enum object...
                     foreach (EnumObject obj in this.enumObjectsFromJsons)
                     {
+                        List<EnumObject> headerEnum = null;
+                        bool headerAuthored = obj.name != null && headerEnums.TryGetValue(obj.name, out headerEnum);
+                        if (headerAuthored)
+                            foreach (var group in headerEnum) VerifyHeaderEnum(group, obj);
                         string foundNamespace = obj.@namespace;
                         List<string> remapsToAdd = new List<string>();
                         int remapCount = 0;
@@ -1186,7 +1204,11 @@ namespace MetadataUtils
                             this.namespacesToEnumWriters.Add(foundNamespace, enumWriter);
                         }
 
-                        if (obj.name != null)
+                        if (headerAuthored)
+                        {
+                            addedEnum = true;
+                        }
+                        else if (obj.name != null)
                         {
                             if (this.writtenConstants.ContainsKey(obj.name))
                             {
@@ -1230,6 +1252,34 @@ namespace MetadataUtils
                     this.output.AddRange(this.suggestedEnumRenames);
                     this.suggestedEnumRenames.Clear();
                 }
+            }
+
+            private static void VerifyHeaderEnum(EnumObject header, EnumObject legacy)
+            {
+                if (header.flags != legacy.flags || legacy.autoPopulate != null ||
+                    (legacy.@namespace != null && header.@namespace != legacy.@namespace))
+                    throw new FormatException($"Enum group '{header.name}' conflicts with the header definition.");
+                var headerValues = GetEnumValues(header);
+                var legacyValues = GetEnumValues(legacy);
+                if (headerValues.Type != legacyValues.Type || headerValues.Values.Count != legacyValues.Values.Count ||
+                    headerValues.Values.Any(pair => !legacyValues.Values.TryGetValue(pair.Key, out var value) || !Equals(pair.Value, value)))
+                    throw new FormatException($"Enum group '{header.name}' storage, members or values conflict with the header definition.");
+            }
+
+            private static (SpecialType Type, Dictionary<string, object> Values) GetEnumValues(EnumObject group)
+            {
+                if (group.members.Any(member => member.value == null))
+                    throw new FormatException($"Enum group '{group.name}' contains a missing constituent value.");
+                var tree = CSharpSyntaxTree.ParseText("using System;\n" + EnumWriter.GetDeclaration(group));
+                var compilation = CSharpCompilation.Create("EnumDefinition", new[] { tree },
+                    new[] { MetadataReference.CreateFromFile(typeof(object).Assembly.Location) },
+                    new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+                var errors = compilation.GetDiagnostics().Where(d => d.Severity == DiagnosticSeverity.Error).ToArray();
+                if (errors.Length != 0)
+                    throw new FormatException($"Enum group '{group.name}' has unsupported constituent expressions: {string.Join("; ", errors.Select(d => d.ToString()))}");
+                var symbol = compilation.GetTypeByMetadataName(group.name);
+                return (symbol.EnumUnderlyingType.SpecialType, symbol.GetMembers().OfType<IFieldSymbol>()
+                    .Where(field => field.HasConstantValue).ToDictionary(field => field.Name, field => field.ConstantValue, StringComparer.Ordinal));
             }
 
             private class RegexConstMaker

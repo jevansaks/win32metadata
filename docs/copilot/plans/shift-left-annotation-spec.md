@@ -49,9 +49,9 @@ The ingested SDK defines the vocabulary in
 
 ```cpp
 #if defined(WIN32METADATA) && defined(__clang__)
-#define _WIN32META_ANNOTATION_(text) __attribute__((annotate("Win32Metadata." text)))
+#define _WIN32META_ANNOTATION_(...) __attribute__((annotate("Win32Metadata." __VA_ARGS__)))
 #else
-#define _WIN32META_ANNOTATION_(text)
+#define _WIN32META_ANNOTATION_(...)
 #endif
 ```
 
@@ -464,38 +464,73 @@ PCH behavior.
 
 ## Enum and constant migration
 
-Synthetic bags of constants from `enums.json` become guarded unscoped SDK enum
-declarations. Normal compilation must preserve the original integer ABI:
+Synthetic bags of constants from `enums.json` use the retained header helpers,
+in their original `(name, storage, constituents...)` order:
 
 ```cpp
-#ifdef WIN32METADATA
-#pragma push_macro("MODE_A")
-#undef MODE_A
-enum MODE : DWORD {
-    MODE_A = 1,
-};
-#pragma pop_macro("MODE_A")
-#else
-typedef DWORD MODE;
-#endif
+_Win32_Enum_(WINHTTP_ACCESS_TYPE, DWORD,
+    WINHTTP_ACCESS_TYPE_NO_PROXY,
+    WINHTTP_ACCESS_TYPE_DEFAULT_PROXY,
+    WINHTTP_ACCESS_TYPE_NAMED_PROXY,
+    WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY);
+
+_Win32_FlagsEnum_(WINHTTP_OPEN_REQUEST_FLAGS, DWORD,
+    WINHTTP_FLAG_BYPASS_PROXY_CACHE,
+    WINHTTP_FLAG_ESCAPE_DISABLE,
+    WINHTTP_FLAG_ESCAPE_DISABLE_QUERY,
+    WINHTTP_FLAG_ESCAPE_PERCENT,
+    WINHTTP_FLAG_NULL_CODEPAGE,
+    WINHTTP_FLAG_REFRESH,
+    WINHTTP_FLAG_SECURE);
 ```
 
 Rules:
 
-- Use the original underlying integer type.
-- Balance every `push_macro` with `pop_macro`.
-- Prefer changing metadata parameter/field types directly to the enum in the
-  `WIN32METADATA` branch.
-- Use `AssociatedEnum` only when direct typing is impossible.
-- Preserve complete existing constant names as unscoped enum members so generated
-  consuming code does not require scoped-name changes.
-- Keep loose constants such as `SERVICE_NO_CHANGE` global and use repeatable
-  `AssociatedConstant` annotations on each related enum. Do not duplicate the same
-  unscoped enumerator name in multiple enums.
+- In metadata-enabled Clang, each helper declares an annotated storage typedef.
+  The payload retains constituent names and Clang evaluates its corresponding
+  expression arguments in the same translation unit. No macro is undefined or
+  replaced, and no native enum enumerators are injected.
+- Outside metadata-enabled Clang the entire helper is empty, including when MSVC
+  defines `WIN32METADATA`. Native APIs keep their original scalar types and ABI.
+- Use the original integer storage (8, 16, 32 or 64 bits). Clang values are converted
+  to that storage before `EnumObject`/`EnumWriter` emission, including signed and
+  high-bit values. Duplicate names, malformed/cardinality mismatches, unsupported
+  storage, missing constituents and noninteger expressions are errors.
+- The projected enum is unscoped and preserves complete existing member names.
+  Flags helpers emit `FlagsAttribute`; ordinary helpers do not.
+- `_Win32_AssociatedEnum_` on parameters, returns and fields identifies the group
+  without changing the native declaration's type. Its storage must match the
+  group. For these synthetic groups the C# emitter uses the group type, retaining
+  pointer depth and the former consumer signature; genuine native enum associations
+  keep their existing behavior. Conflicting legacy use-site types are errors.
+- The scraper's per-partition `.headerEnums.cs` is generated from header facts and
+  enters the existing architecture merge and final-winmd pipeline. Legacy-only
+  groups still work. Exact matching legacy definitions are validated and not
+  duplicated; differing flags, storage, members or values cannot override a header.
+  There is no wildcard fallback to retired groups.
+- `.headerConstants.cs` uses the existing `ConstantWriter` to retain compiler-typed
+  constituent values, independently of each group's storage conversion. These
+  constants remain available during C# constant binding, but their
+  duplicate `Apis` fields are omitted at final-winmd emission. Shared constituent
+  names can appear in multiple projected groups without native name collisions.
+  Only this generated backing source bypasses early enum-member constant removal;
+  legacy and manual sources retain their existing binding and suppression behavior.
 - Use `enum class` only when the SDK declaration is already scoped or a new native API
   intentionally defines scoped semantics; do not use it merely to wrap constants.
 - Metadata-only constants use guarded annotated `constexpr`/`const` declarations while
   preserving the ordinary macro.
+
+The production slice retires `WINHTTP_ACCESS_TYPE` and
+`WINHTTP_OPEN_REQUEST_FLAGS` from `generation/WinSDK/enums.json`, including all
+three selectors (`WinHttpOpen::dwAccessType`, `WINHTTP_PROXY_INFO::dwAccessType`,
+and `WinHttpOpenRequest::dwFlags`). The existing owning `post-midl/winhttp.h.patch`
+contains the definitions and associations. Focused tests compare final metadata
+from these actual header slices with the predecessor's legacy groups on x86,
+x64 and ARM64: the two enums, all eleven values, flags, storage and consumer
+signatures are unchanged. `WIN_HTTP_CREATE_URL_FLAGS` has shared WinInet uses;
+the credentials group has a legacy constituent spelling discrepancy; the internet
+scheme group renames constituents. Those separate migrations are not silently
+folded into this matching slice.
 
 ## HANDLE ownership
 

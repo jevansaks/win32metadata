@@ -143,6 +143,7 @@ namespace MetadataUtils
                     EnumObject enumObject = new EnumObject();
                     enumObject.@namespace = this.currentNamespace;
                     enumObject.name = node.Identifier.ValueText;
+                    enumObject.type = node.BaseList?.Types.Single().Type.ToString() ?? "int";
                     enumObject.flags = node.AttributeLists.Any(list => list.Attributes.Any(attr => attr.Name.ToString().StartsWith("Flags")));
                     enumObject.FromCSharp = true;
 

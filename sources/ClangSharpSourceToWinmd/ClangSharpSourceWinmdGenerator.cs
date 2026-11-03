@@ -81,7 +81,6 @@ namespace ClangSharpSourceToWinmd
             this.compilation = compilation;
             this.reducePointerLevels = reducePointerLevels;
             this.forceGuidConsts = forceGuidConsts;
-
             foreach (var pair in typeImports)
             {
                 string name = pair.Key;
@@ -1296,6 +1295,9 @@ namespace ClangSharpSourceToWinmd
                 var fieldVariable = field.Declaration.Variables.First();
                 IFieldSymbol fieldSymbol = (IFieldSymbol)model.GetDeclaredSymbol(fieldVariable);
                 string name = FixFinalName(fieldSymbol.Name);
+                if (className == "Apis" && fieldSymbol.IsConst &&
+                    field.SyntaxTree.FilePath.EndsWith(".headerConstants.modified.cs", StringComparison.Ordinal))
+                    continue;
 
                 FieldAttributes fieldAttributes;
 
@@ -1531,6 +1533,10 @@ namespace ClangSharpSourceToWinmd
                     fieldDefinition = firstField;
                 }
             }
+
+            if (node.Identifier.ValueText == "Apis" && methodDefinition.IsNil && fieldDefinition.IsNil &&
+                partialDefs.Any(def => def.SyntaxTree.FilePath.EndsWith(".headerConstants.modified.cs", StringComparison.Ordinal)))
+                return;
 
             var model = this.GetModel(node);
             var symbol = model.GetDeclaredSymbol(node);
