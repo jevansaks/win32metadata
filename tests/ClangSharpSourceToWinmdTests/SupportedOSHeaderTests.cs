@@ -124,50 +124,104 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [DataTestMethod]
-        [DataRow("IMalloc", false)]
-        [DataRow("IMalloc", true)]
-        [DataRow("ISequentialStream", false)]
-        [DataRow("ISequentialStream", true)]
-        [DataRow("IStream", false)]
-        [DataRow("IStream", true)]
-        public void ShippedMidlDefinitions_EitherIncludeOrderPreservesFinalAvailability(string name, bool baseFirst)
+        [DataRow("i686-pc-windows-msvc", false)]
+        [DataRow("i686-pc-windows-msvc", true)]
+        [DataRow("x86_64-pc-windows-msvc", false)]
+        [DataRow("x86_64-pc-windows-msvc", true)]
+        [DataRow("aarch64-pc-windows-msvc", false)]
+        [DataRow("aarch64-pc-windows-msvc", true)]
+        public void ShippedMidlDefinitions_EitherIncludeOrderPreservesFinalAvailability(string target, bool baseFirst)
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
-            string Definition(string owner)
+            string Header(string owner) => File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner));
+            AssertMidlAvailability(Header(baseFirst ? "ObjIdlbase.h" : "ObjIdl.h"),
+                Header(baseFirst ? "ObjIdl.h" : "ObjIdlbase.h"), target);
+        }
+
+        internal static void AssertMidlAvailability(string firstHeader, string secondHeader, string target)
+        {
+            string Definitions(string text)
             {
-                string text = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner));
-                var prefix = Regex.Match(text, @"MIDL_INTERFACE\([^\r\n]+\)\s+(?:_Win32_SupportedOS_\w+_\s+)?" +
-                    name + @"\s*:\s*public\s+\w+");
-                Assert.IsTrue(prefix.Success, owner + ": " + name);
-                return "#ifndef __" + name + "_INTERFACE_DEFINED__\n#define __" + name +
-                    "_INTERFACE_DEFINED__\n" + prefix.Value + " { virtual int __stdcall Method(void) = 0; };\n#endif\n";
+                string declarations = "";
+                foreach (string name in new[] { "IMalloc", "ISequentialStream", "IStream" })
+                {
+                    var forward = Regex.Match(text, @"struct _Win32_SupportedOS_Windows2000_ " + name + @";");
+                    Assert.IsTrue(forward.Success, name);
+                    var definition = Regex.Match(text, @"MIDL_INTERFACE\([^\r\n]+\)\s+" +
+                        name + @"\s*:\s*public\s+\w+\s*\{.*?\r?\n    \};", RegexOptions.Singleline);
+                    Assert.IsTrue(definition.Success, name);
+                    declarations += forward.Value + "\n#ifndef __" + name + "_INTERFACE_DEFINED__\n#define __" + name +
+                        "_INTERFACE_DEFINED__\n" + definition.Value + "\n#endif\n";
+                }
+                return declarations;
             }
             string header = @"
 #define MIDL_INTERFACE(id) struct __declspec(uuid(id)) __declspec(novtable)
+#define STDMETHODCALLTYPE __stdcall
+typedef long HRESULT;
+typedef unsigned long DWORD;
+typedef unsigned long ULONG;
+typedef __SIZE_TYPE__ SIZE_T;
+struct GUID { unsigned long Data1; unsigned short Data2, Data3; unsigned char Data4[8]; };
+typedef const GUID& REFIID;
+struct LARGE_INTEGER { long long QuadPart; };
+struct ULARGE_INTEGER { unsigned long long QuadPart; };
+struct STATSTG { unsigned long type; };
+enum STGC { STGC_DEFAULT = 0 };
+enum LOCKTYPE { LOCK_WRITE = 1 };
+enum STATFLAG { STATFLAG_DEFAULT = 0 };
 MIDL_INTERFACE(""00000000-0000-0000-C000-000000000046"")
-IUnknown { virtual int __stdcall Query(void) = 0; };
+IUnknown {
+    virtual HRESULT __stdcall QueryInterface(REFIID riid, void** value) = 0;
+    virtual ULONG __stdcall AddRef(void) = 0;
+    virtual ULONG __stdcall Release(void) = 0;
+};
 ";
-            if (name == "IStream")
-                header += "struct ISequentialStream : public IUnknown { virtual int __stdcall Read(void) = 0; };\n";
-            header += "typedef struct " + name + " " + name + ";\n";
-            header += Definition(baseFirst ? "ObjIdlbase.h" : "ObjIdl.h");
-            header += Definition(baseFirst ? "ObjIdl.h" : "ObjIdlbase.h");
+            header += Definitions(firstHeader) + Definitions(secondHeader);
             using var fixture = new LastErrorHeaderTests.Fixture();
             var baseline = fixture.Scrape(header.Replace("_Win32_SupportedOS_Windows2000_", ""), sal: true,
+                target: target,
                 extraSettings: "--config\ngenerate-native-inheritance-attribute\n--with-attribute\n" +
-                    name + "=SupportedOSPlatform(\"windows5.0\")");
+                    string.Join("\n", new[] { "IMalloc", "ISequentialStream", "IStream" }
+                        .Select(name => name + "=SupportedOSPlatform(\"windows5.0\")")));
             Assert.AreEqual(0, baseline.ExitCode, baseline.Output);
             byte[] expected = File.ReadAllBytes(fixture.Emit());
-            var result = fixture.Scrape(header, sal: true,
+            var result = fixture.Scrape(header, target, sal: true,
                 extraSettings: "--config\ngenerate-native-inheritance-attribute");
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit();
             using var pe = new PEReader(File.OpenRead(output));
             var reader = pe.GetMetadataReader();
-            var type = reader.TypeDefinitions.Select(reader.GetTypeDefinition)
-                .Single(type => reader.GetString(type.Name) == name);
-            Assert.AreEqual("windows5.0", Platform(reader, type.GetCustomAttributes().ToArray()));
+            foreach (var expectedType in new[] { ("IMalloc", 6), ("ISequentialStream", 2), ("IStream", 9) })
+            {
+                var type = reader.TypeDefinitions.Select(reader.GetTypeDefinition)
+                    .Single(type => reader.GetString(type.Name) == expectedType.Item1);
+                Assert.AreEqual("windows5.0", Platform(reader, type.GetCustomAttributes().ToArray()));
+                Assert.AreEqual(expectedType.Item2, type.GetMethods().Count, expectedType.Item1);
+                foreach (var method in type.GetMethods().Select(reader.GetMethodDefinition))
+                    Assert.IsNull(Platform(reader, method.GetCustomAttributes().ToArray()), reader.GetString(method.Name));
+            }
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
+        }
+
+        [TestMethod]
+        public void AnnotatedForwardDeclaration_ReachesFinalInterface()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+struct _Win32_SupportedOS_Windows2000_ IMalloc;
+struct __declspec(uuid(""00000000-0000-0000-C000-000000000046"")) IUnknown {
+    virtual int __stdcall Query(void) = 0;
+};
+struct __declspec(uuid(""00000002-0000-0000-C000-000000000046"")) IMalloc : public IUnknown {
+    virtual int __stdcall Method(void) = 0;
+};", sal: true, extraSettings: "--config\ngenerate-native-inheritance-attribute");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var type = reader.TypeDefinitions.Select(reader.GetTypeDefinition)
+                .Single(type => reader.GetString(type.Name) == "IMalloc");
+            Assert.AreEqual("windows5.0", Platform(reader, type.GetCustomAttributes().ToArray()));
         }
 
         [DataTestMethod]
@@ -212,16 +266,19 @@ IUnknown { virtual int __stdcall Query(void) = 0; };
             {
                 string path = "generation/WinSDK/RecompiledIdlHeaders/um/" + owner;
                 string current = File.ReadAllText(Path.Combine(root, path.Replace('/', Path.DirectorySeparatorChar))).Replace("\r\n", "\n");
-                Assert.AreEqual(Legacy(path), Regex.Replace(current, @"(?m)^[ \t]*_Win32_SupportedOS_\w+_\n", "")
+                string unannotated = Regex.Replace(current,
+                    @"#if defined\(__cplusplus\) && !defined\(CINTERFACE\)\n(?:struct _Win32_SupportedOS_Windows2000_ \w+;\n){3}#endif\n", "");
+                Assert.AreEqual(Legacy(path), Regex.Replace(unannotated, @"(?m)^[ \t]*_Win32_SupportedOS_\w+_\n", "")
                     .Replace("#include <win32metadata_annotations.h>\n",
                         Legacy(path).Contains("#include <win32metadata_annotations.h>\n") ? "#include <win32metadata_annotations.h>\n" : ""));
-                foreach (Match match in Regex.Matches(current, @"(?m)^[ \t]*_Win32_SupportedOS_(\w+)_\n([^;]+;)"))
+                foreach (Match match in Regex.Matches(current,
+                    @"(?m)^[ \t]*(?:struct )?_Win32_SupportedOS_(\w+)_(?:\n| )([^;]+;)"))
                 {
                     declarationCount++;
                     string declaration = match.Groups[2].Value;
                     string name;
                     if (owner is "ObjIdlbase.h" or "ObjIdl.h")
-                        name = Regex.Match(declaration, @"^\s*(\w+)\s*:").Groups[1].Value;
+                        name = Regex.Match(declaration, @"^(\w+);").Groups[1].Value;
                     else
                     {
                         declaration = Regex.Replace(declaration, @"//[^\r\n]*|/\*.*?\*/", "", RegexOptions.Singleline);
@@ -236,6 +293,11 @@ IUnknown { virtual int __stdcall Query(void) = 0; };
             }
             Assert.AreEqual(178, retired.Count);
             Assert.AreEqual(182, declarationCount);
+            foreach (string owner in new[] { "ObjIdl", "ObjIdlbase" })
+                Assert.IsFalse(File.Exists(Path.Combine(root, "generation", "WinSDK", "patches", "post-midl", owner + ".h.patch")));
+            string idl = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", "ObjIdlbase.Idl"));
+            foreach (string name in new[] { "IMalloc", "ISequentialStream", "IStream" })
+                StringAssert.Contains(idl, "cpp_quote(\"struct _Win32_SupportedOS_Windows2000_ " + name + ";\")");
             foreach (var fact in retired)
                 StringAssert.Contains(oldSidecar, fact.Key + "=" + fact.Value + "\n");
             string expected = string.Join("\n", oldSidecar.Split('\n').Where(line =>

@@ -312,7 +312,7 @@ namespace ClangSharpSourceToWinmdTests
         [DataTestMethod]
         [DataRow("ObjIdl")]
         [DataRow("ObjIdlbase")]
-        public void ExplicitAvailability_PostMidlOwnerReplaysOnRealSelectedSdkOutput(string owner)
+        public void ExplicitAvailability_IdlSourceReplaysOnRealSelectedSdkOutput(string owner)
         {
             using var fixture = new Fixture();
             string sdk = LastErrorHeaderTests.SdkPackagePath();
@@ -357,7 +357,7 @@ namespace ClangSharpSourceToWinmdTests
                 " /I " + Quote(System.IO.Path.Combine(include, "winrt")) +
                 " /I " + Quote(System.IO.Path.Combine(Root(), "scripts", "inc")) + "; exit $LASTEXITCODE");
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            fixture.Apply("post-midl", "post-midl/" + owner + ".h.patch", true, patchRoot: patches);
+            Assert.IsFalse(File.Exists(System.IO.Path.Combine(patches, "post-midl", owner + ".h.patch")));
             string expectedHeader = System.IO.Path.Combine(Root(), "generation", "WinSDK",
                 "RecompiledIdlHeaders", "um", owner + ".h");
             var expectedLines = File.ReadAllLines(expectedHeader);
@@ -365,6 +365,8 @@ namespace ClangSharpSourceToWinmdTests
             string differences = string.Join("\n", expectedLines.Zip(actualLines, (expected, actual) => (expected, actual))
                 .Where(pair => pair.expected != pair.actual).Take(3).Select(pair => pair.expected + "\nACTUAL: " + pair.actual));
             CollectionAssert.AreEqual(File.ReadAllBytes(expectedHeader), File.ReadAllBytes(header), differences);
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+                SupportedOSHeaderTests.AssertMidlAvailability(File.ReadAllText(header), File.ReadAllText(expectedHeader), target);
         }
 
         [DataTestMethod]

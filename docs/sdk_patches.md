@@ -60,11 +60,11 @@ The explicit-availability layer reuses the specification's fixed
 It moves 178 distinct `supportedOS.rsp` facts to 182 native declarations:
 38 WinHTTP functions, all 16 sidecar-backed error-handling functions, all five
 handle functions, 82 `combaseapi.h` functions, 35 `objbase.h` functions, and
-the `IMalloc`, `ISequentialStream`, and `IStream` interface definitions in both
-`ObjIdl.h` and `ObjIdlbase.h`.
+the `IMalloc`, `ISequentialStream`, and `IStream` interface identities in both
+`ObjIdl.h` and `ObjIdlbase.h`, annotated through IDL-generated forward declarations.
 `CoFileTimeNow` is declared in both COM function owners and carries the same fact
 at both declarations. The three interfaces share definition guards across their
-two owners, so both definitions must carry the fact regardless of include order.
+two header owners, so both must receive the fact regardless of include order.
 Only the exact matching sidecar lines are retired.
 Functions with no existing availability fact remain unannotated; native version
 guards alone do not authorize an inferred minimum version.
@@ -83,12 +83,19 @@ header supplies an earlier unannotated declaration (as with `PropVariantCopy`),
 without requiring a second SDK parse or annotation patches on every redeclaration.
 Ordinary MSVC C/C++ builds, including `WIN32METADATA` without Clang, see empty helpers.
 
-The COM interface definitions use `post-midl/ObjIdl.h.patch` and
-`post-midl/ObjIdlbase.h.patch`, after the existing pre-MIDL parameter edits and
-normal MIDL compilation. Focused fixtures replay each selected SDK IDL, its
-converted imports, the production MIDL options, and its final patch, then compare
-the complete header bytes. Final-winmd fixtures exercise both owners' actual
-declaration prefixes in either include order under their shared definition guards.
+COM availability is authored only in `pre-midl/ObjIdlbase.Idl.patch` alongside
+the existing pre-MIDL parameter edits. Its existing `cpp_quote` block emits
+C++-only annotated forward declarations of the three existing interface identities;
+Clang propagates the attributes to their definitions. `ObjIdl.Idl` textually includes
+`objidlbase.idl`, so the same authoritative facts survive into both header owners.
+Neither generated header has a post-MIDL patch. Keeping the declarations in the
+existing quote block also avoids introducing additional MIDL RPC interface handles.
+Focused fixtures replay each selected SDK IDL, its converted imports, and the
+production MIDL options, then compare the complete regenerated header bytes
+without postprocessing. Those fresh MIDL outputs feed final-winmd fixtures with
+the complete selected interface bodies on x86, x64, and arm64. Both include orders
+preserve the exact legacy metadata, interface identities and method counts, with
+one type-level floor and no method-level leakage.
 Native fixtures compile the selected SDK owners as C and C++ on all three
 architectures and compare object bytes apart from the COFF timestamp.
 

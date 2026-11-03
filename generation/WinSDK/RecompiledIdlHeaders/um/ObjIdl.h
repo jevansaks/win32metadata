@@ -836,6 +836,11 @@ extern "C"{
 #endif
 #include <winapifamily.h>
 #include <win32metadata_annotations.h>
+#if defined(__cplusplus) && !defined(CINTERFACE)
+struct _Win32_SupportedOS_Windows2000_ IMalloc;
+struct _Win32_SupportedOS_Windows2000_ ISequentialStream;
+struct _Win32_SupportedOS_Windows2000_ IStream;
+#endif
 //+-------------------------------------------------------------------------
 //+-------------------------------------------------------------------------
 //
@@ -1570,7 +1575,6 @@ EXTERN_C const IID IID_IMalloc;
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
     MIDL_INTERFACE("00000002-0000-0000-C000-000000000046")
-    _Win32_SupportedOS_Windows2000_
     IMalloc : public IUnknown
     {
     public:
@@ -2571,7 +2575,6 @@ EXTERN_C const IID IID_ISequentialStream;
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
     MIDL_INTERFACE("0c733a30-2a1c-11ce-ade5-00aa0044773d")
-    _Win32_SupportedOS_Windows2000_
     ISequentialStream : public IUnknown
     {
     public:
@@ -2764,7 +2767,6 @@ EXTERN_C const IID IID_IStream;
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
     MIDL_INTERFACE("0000000c-0000-0000-C000-000000000046")
-    _Win32_SupportedOS_Windows2000_
     IStream : public ISequentialStream
     {
     public:
