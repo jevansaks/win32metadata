@@ -124,6 +124,53 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [DataTestMethod]
+        [DataRow("IMalloc", false)]
+        [DataRow("IMalloc", true)]
+        [DataRow("ISequentialStream", false)]
+        [DataRow("ISequentialStream", true)]
+        [DataRow("IStream", false)]
+        [DataRow("IStream", true)]
+        public void ShippedMidlDefinitions_EitherIncludeOrderPreservesFinalAvailability(string name, bool baseFirst)
+        {
+            string root = LastErrorHeaderTests.RepositoryRoot();
+            string Definition(string owner)
+            {
+                string text = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner));
+                var prefix = Regex.Match(text, @"MIDL_INTERFACE\([^\r\n]+\)\s+(?:_Win32_SupportedOS_\w+_\s+)?" +
+                    name + @"\s*:\s*public\s+\w+");
+                Assert.IsTrue(prefix.Success, owner + ": " + name);
+                return "#ifndef __" + name + "_INTERFACE_DEFINED__\n#define __" + name +
+                    "_INTERFACE_DEFINED__\n" + prefix.Value + " { virtual int __stdcall Method(void) = 0; };\n#endif\n";
+            }
+            string header = @"
+#define MIDL_INTERFACE(id) struct __declspec(uuid(id)) __declspec(novtable)
+MIDL_INTERFACE(""00000000-0000-0000-C000-000000000046"")
+IUnknown { virtual int __stdcall Query(void) = 0; };
+";
+            if (name == "IStream")
+                header += "struct ISequentialStream : public IUnknown { virtual int __stdcall Read(void) = 0; };\n";
+            header += "typedef struct " + name + " " + name + ";\n";
+            header += Definition(baseFirst ? "ObjIdlbase.h" : "ObjIdl.h");
+            header += Definition(baseFirst ? "ObjIdl.h" : "ObjIdlbase.h");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var baseline = fixture.Scrape(header.Replace("_Win32_SupportedOS_Windows2000_", ""), sal: true,
+                extraSettings: "--config\ngenerate-native-inheritance-attribute\n--with-attribute\n" +
+                    name + "=SupportedOSPlatform(\"windows5.0\")");
+            Assert.AreEqual(0, baseline.ExitCode, baseline.Output);
+            byte[] expected = File.ReadAllBytes(fixture.Emit());
+            var result = fixture.Scrape(header, sal: true,
+                extraSettings: "--config\ngenerate-native-inheritance-attribute");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string output = fixture.Emit();
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            var type = reader.TypeDefinitions.Select(reader.GetTypeDefinition)
+                .Single(type => reader.GetString(type.Name) == name);
+            Assert.AreEqual("windows5.0", Platform(reader, type.GetCustomAttributes().ToArray()));
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
+        }
+
+        [DataTestMethod]
         [DataRow(false)]
         [DataRow(true)]
         public void NativeVersionGuardsWithoutAnnotations_DoNotInventAvailability(bool metadata)
@@ -157,10 +204,11 @@ namespace ClangSharpSourceToWinmdTests
                 .Cast<Match>().ToDictionary(match => match.Groups[1].Value, match => match.Groups[2].Value);
             Assert.AreEqual(20, versions.Count);
             var retired = new Dictionary<string, string>();
+            int declarationCount = 0;
             string oldSidecar = Legacy("generation/WinSDK/supportedOS.rsp");
             var oldNames = Regex.Matches(oldSidecar, @"(?m)^(\w+)=").Cast<Match>()
                 .Select(match => match.Groups[1].Value).ToHashSet(StringComparer.Ordinal);
-            foreach (string owner in new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h", "combaseapi.h", "objbase.h", "ObjIdlbase.h" })
+            foreach (string owner in new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h", "combaseapi.h", "objbase.h", "ObjIdlbase.h", "ObjIdl.h" })
             {
                 string path = "generation/WinSDK/RecompiledIdlHeaders/um/" + owner;
                 string current = File.ReadAllText(Path.Combine(root, path.Replace('/', Path.DirectorySeparatorChar))).Replace("\r\n", "\n");
@@ -169,9 +217,10 @@ namespace ClangSharpSourceToWinmdTests
                         Legacy(path).Contains("#include <win32metadata_annotations.h>\n") ? "#include <win32metadata_annotations.h>\n" : ""));
                 foreach (Match match in Regex.Matches(current, @"(?m)^[ \t]*_Win32_SupportedOS_(\w+)_\n([^;]+;)"))
                 {
+                    declarationCount++;
                     string declaration = match.Groups[2].Value;
                     string name;
-                    if (owner == "ObjIdlbase.h")
+                    if (owner is "ObjIdlbase.h" or "ObjIdl.h")
                         name = Regex.Match(declaration, @"^\s*(\w+)\s*:").Groups[1].Value;
                     else
                     {
@@ -186,6 +235,7 @@ namespace ClangSharpSourceToWinmdTests
                 }
             }
             Assert.AreEqual(178, retired.Count);
+            Assert.AreEqual(182, declarationCount);
             foreach (var fact in retired)
                 StringAssert.Contains(oldSidecar, fact.Key + "=" + fact.Value + "\n");
             string expected = string.Join("\n", oldSidecar.Split('\n').Where(line =>

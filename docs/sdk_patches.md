@@ -57,12 +57,15 @@ winmd; this migration does not add SDK scrapes or paired benchmark builds.
 
 The explicit-availability layer reuses the specification's fixed
 `_Win32_SupportedOS_*_` menu, with no scoped defaults or new representation.
-It moves 178 distinct `supportedOS.rsp` facts to 179 native declarations:
+It moves 178 distinct `supportedOS.rsp` facts to 182 native declarations:
 38 WinHTTP functions, all 16 sidecar-backed error-handling functions, all five
 handle functions, 82 `combaseapi.h` functions, 35 `objbase.h` functions, and
-the `IMalloc`, `ISequentialStream`, and `IStream` interface definitions.
+the `IMalloc`, `ISequentialStream`, and `IStream` interface definitions in both
+`ObjIdl.h` and `ObjIdlbase.h`.
 `CoFileTimeNow` is declared in both COM function owners and carries the same fact
-at both declarations. Only the exact matching sidecar lines are retired.
+at both declarations. The three interfaces share definition guards across their
+two owners, so both definitions must carry the fact regardless of include order.
+Only the exact matching sidecar lines are retired.
 Functions with no existing availability fact remain unannotated; native version
 guards alone do not authorize an inferred minimum version.
 
@@ -80,10 +83,12 @@ header supplies an earlier unannotated declaration (as with `PropVariantCopy`),
 without requiring a second SDK parse or annotation patches on every redeclaration.
 Ordinary MSVC C/C++ builds, including `WIN32METADATA` without Clang, see empty helpers.
 
-The three COM interface definitions use `post-midl/ObjIdlbase.h.patch`, after the
-existing pre-MIDL parameter edits and normal MIDL compilation. A focused fixture
-replays the selected SDK IDL, its two converted imports, the production MIDL
-options, and that final patch, then compares the complete header bytes.
+The COM interface definitions use `post-midl/ObjIdl.h.patch` and
+`post-midl/ObjIdlbase.h.patch`, after the existing pre-MIDL parameter edits and
+normal MIDL compilation. Focused fixtures replay each selected SDK IDL, its
+converted imports, the production MIDL options, and its final patch, then compare
+the complete header bytes. Final-winmd fixtures exercise both owners' actual
+declaration prefixes in either include order under their shared definition guards.
 Native fixtures compile the selected SDK owners as C and C++ on all three
 architectures and compare object bytes apart from the COFF timestamp.
 

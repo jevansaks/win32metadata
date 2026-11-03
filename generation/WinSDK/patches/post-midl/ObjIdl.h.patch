@@ -1,0 +1,28 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.h b/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.h
+@@ -1570,6 +1570,7 @@
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
+     MIDL_INTERFACE("00000002-0000-0000-C000-000000000046")
++    _Win32_SupportedOS_Windows2000_
+     IMalloc : public IUnknown
+     {
+     public:
+@@ -2570,6 +2571,7 @@
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
+     MIDL_INTERFACE("0c733a30-2a1c-11ce-ade5-00aa0044773d")
++    _Win32_SupportedOS_Windows2000_
+     ISequentialStream : public IUnknown
+     {
+     public:
+@@ -2762,6 +2764,7 @@
+ #if defined(__cplusplus) && !defined(CINTERFACE)
+     
+     MIDL_INTERFACE("0000000c-0000-0000-C000-000000000046")
++    _Win32_SupportedOS_Windows2000_
+     IStream : public ISequentialStream
+     {
+     public:
