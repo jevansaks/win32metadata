@@ -164,8 +164,11 @@ namespace ClangSharpSourceToWinmdTests
         public void WinHttpOwningPatch_ReplaysOnlyTheReviewedHeaderEdits()
         {
             string root = RepositoryRoot();
+            const string legacyReference = WinmdUtilsProgram.MigrationQualification.LegacyReferenceSha;
+            var ancestry = Run("git", "-C", root, "merge-base", "--is-ancestor", legacyReference, "HEAD");
+            Assert.AreEqual(0, ancestry.ExitCode, "The frozen legacy fixture must be reachable from the tested commit. " + ancestry.Output);
             string current = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", "winhttp.h"));
-            var origin = Run("git", "show", "2317365af902dca1c8b356808015ec954397e949:generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h");
+            var origin = Run("git", "-C", root, "show", $"{legacyReference}:generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h");
             Assert.AreEqual(0, origin.ExitCode, origin.Output);
             string directory = Path.Combine(Path.GetTempPath(), "winhttp-patch-" + Guid.NewGuid().ToString("N"));
             Directory.CreateDirectory(Path.Combine(directory, "um"));
@@ -180,7 +183,7 @@ namespace ClangSharpSourceToWinmdTests
                 Assert.AreEqual(0, apply.ExitCode, apply.Output);
                 Assert.AreEqual(current.Replace("\r\n", "\n"), File.ReadAllText(header).Replace("\r\n", "\n"));
                 Assert.AreEqual(3, current.Split("_Win32_SetLastError_").Length - 1);
-                var legacy = Run("git", "show", "2317365af902dca1c8b356808015ec954397e949:generation/WinSDK/WithSetLastError.rsp");
+                var legacy = Run("git", "-C", root, "show", $"{legacyReference}:generation/WinSDK/WithSetLastError.rsp");
                 Assert.AreEqual(0, legacy.ExitCode, legacy.Output);
                 var removed = new[] { "WinHttpReadData", "WinHttpReceiveResponse", "WinHttpSendRequest" };
                 string expected = string.Join("\n", legacy.Output.Replace("\r\n", "\n").Split('\n')
