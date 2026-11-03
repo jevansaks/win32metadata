@@ -148,7 +148,7 @@ cpp_quote("#endif")
 #pragma midl_echo("            _In_ LPCWSTR szCODE, DWORD dwFileVersionMS, ")
 #pragma midl_echo("            DWORD dwFileVersionLS, _In_ LPCWSTR szTYPE,")
 #pragma midl_echo("            _In_ LPBINDCTX pBindCtx, DWORD dwClsContext,")
-#pragma midl_echo("            _Reserved_ LPVOID pvReserved, REFIID riid, _Outptr_ LPVOID * ppv);")
+#pragma midl_echo("            _Reserved_ LPVOID pvReserved, REFIID riid, _COM_Outptr_ LPVOID * ppv);")
 
 #pragma midl_echo("STDAPI IEInstallScope(_Out_ LPDWORD pdwScope);")
 
@@ -2097,7 +2097,7 @@ interface IBindHost : IUnknown
             [in]    IBindCtx            *pBC,
             [in]    IBindStatusCallback *pBSC,
             [in]    REFIID              riid,
-            [out]   void                **ppvObj);
+            [out, annotation("_COM_Outptr_")]   void                **ppvObj);
 
         [call_as(MonikerBindToStorage)]
         HRESULT RemoteMonikerBindToStorage(
@@ -2113,7 +2113,7 @@ interface IBindHost : IUnknown
             [in]    IBindCtx            *pBC,
             [in]    IBindStatusCallback *pBSC,
             [in]    REFIID              riid,
-            [out]   void                **ppvObj);
+            [out, annotation("_COM_Outptr_")]   void                **ppvObj);
 
         [call_as(MonikerBindToObject)]
         HRESULT RemoteMonikerBindToObject(
