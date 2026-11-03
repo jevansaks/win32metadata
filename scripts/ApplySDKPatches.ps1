@@ -5,7 +5,9 @@ param(
     [Parameter(Mandatory)][string]$HeaderRoot,
     [Parameter(Mandatory)][string]$SdkVersion,
     [string[]]$SelectedPatches = @(),
-    [string]$PatchRoot = "$PSScriptRoot\..\generation\WinSDK\patches"
+    [string]$PatchRoot = "$PSScriptRoot\..\generation\WinSDK\patches",
+    [string]$MidlInputRoot = $HeaderRoot,
+    [object[]]$MidlOutputs
 )
 
 $ErrorActionPreference = 'Stop'
@@ -59,6 +61,13 @@ function Assert-Hunks([string]$Text, [string]$Path) {
 
 $HeaderRoot = (Resolve-Path -LiteralPath $HeaderRoot).Path
 $PatchRoot = (Resolve-Path -LiteralPath $PatchRoot).Path
+if (!$PSBoundParameters.ContainsKey('MidlOutputs')) {
+    $MidlOutputs = @(& "$PSScriptRoot\Get-SDKMidlOutputs.ps1" -HeaderRoot $MidlInputRoot)
+}
+$generatedHeaders = [Collections.Generic.Dictionary[string,string]]::new([StringComparer]::OrdinalIgnoreCase)
+foreach ($output in $MidlOutputs) {
+    $generatedHeaders[$output.Header] = $output.Idl
+}
 $seen = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 $targets = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 $patches = @()
@@ -92,6 +101,9 @@ foreach ($selection in $SelectedPatches) {
     }
     Assert-Hunks $text $path
     $target = Assert-RegularPath $HeaderRoot $relative
+    if ($generatedHeaders.ContainsKey($relative)) {
+        throw "SDK patch $selection targets regenerated header $relative. Patch authoritative IDL $($generatedHeaders[$relative]) in pre-midl instead."
+    }
     if ($patchPhase -eq $Phase) {
         $patches += @{ Selection = $selection; Relative = $relative; Target = $target; Text = $text }
     }
