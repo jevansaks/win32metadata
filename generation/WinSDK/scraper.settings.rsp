@@ -1,5 +1,7 @@
 --config
 exclude-empty-records
+--additional
+-DWIN32METADATA
 --with-librarypath
 VerifierEnumerateResource=verifier.dll
 --with-type

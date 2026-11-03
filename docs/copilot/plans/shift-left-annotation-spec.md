@@ -49,11 +49,17 @@ The ingested SDK defines the vocabulary in
 
 ```cpp
 #if defined(WIN32METADATA) && defined(__clang__)
-#define _WIN32META_ANNOTATION_(text) __attribute__((annotate(text)))
+#define _WIN32META_ANNOTATION_(text) __attribute__((annotate("Win32Metadata." text)))
 #else
 #define _WIN32META_ANNOTATION_(text)
 #endif
 ```
+
+The current C# production pilot enables only `_Win32_SetLastError_`, with the
+exact valueless payload `Win32Metadata.SetLastError`. It uses the pinned
+PInvokeGenerator's `WithSetLastErrors` configuration hook without reparsing the
+translation unit. Other owned payloads remain unsupported and are diagnosed;
+the broader vocabulary below is not a statement of pilot coverage.
 
 Lifecycle metadata uses one variadic source annotation:
 

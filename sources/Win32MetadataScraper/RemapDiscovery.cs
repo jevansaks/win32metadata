@@ -76,10 +76,10 @@ public static class RemapDiscovery
     /// Walks the AST starting from the given declaration to collect all typedef-tag
     /// relationships and function pointer typedef pairs.
     /// </summary>
-    public static DiscoveryResult WalkTranslationUnit(Decl rootDecl)
+    public static DiscoveryResult WalkTranslationUnit(Decl rootDecl, Action<Decl> visitDeclaration = null)
     {
         var result = new DiscoveryResult();
-        WalkDecl(rootDecl, result);
+        WalkDecl(rootDecl, result, visitDeclaration);
         return result;
     }
 
@@ -325,8 +325,9 @@ public static class RemapDiscovery
         }
     }
 
-    private static void WalkDecl(Decl decl, DiscoveryResult result)
+    private static void WalkDecl(Decl decl, DiscoveryResult result, Action<Decl> visitDeclaration)
     {
+        visitDeclaration?.Invoke(decl);
         if (decl is TypedefDecl typedefDecl)
         {
             var underlyingType = UnwrapType(typedefDecl.UnderlyingType);
@@ -418,7 +419,7 @@ public static class RemapDiscovery
             // Walk Decls first (direct declarations)
             foreach (var child in context.Decls)
             {
-                WalkDecl(child, result);
+                WalkDecl(child, result, visitDeclaration);
             }
 
             // Also walk CursorChildren to find typedefs from transitively included
@@ -427,12 +428,11 @@ public static class RemapDiscovery
             {
                 if (cursor is TypedefDecl && !context.Decls.Contains((Decl)cursor))
                 {
-                    WalkDecl((Decl)cursor, result);
+                    WalkDecl((Decl)cursor, result, visitDeclaration);
                 }
             }
         }
     }
 }
 }
-
 

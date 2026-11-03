@@ -1,5 +1,5 @@
 param(
-    [string[]]$SelectedPatches = @()
+    [string[]]$SelectedPatches = @('post-midl/winhttp.h.patch')
 )
 
 . "$PSScriptRoot\CommonUtils.ps1"
@@ -31,6 +31,7 @@ if (!$env:Path.Contains($vcDirPath)) {
     $env:Path += ";$vcDirPath"
 }
 
+$annotationHelpers = [IO.File]::ReadAllBytes("$windowsWin32ProjectRoot\RecompiledIdlHeaders\shared\win32metadata_annotations.h")
 Write-Host "Cleaning $recompiledIdlHeadersDir and $recompiledIdlHeadersScratchDir..."
 Reset-Directory $recompiledIdlHeadersDir
 Reset-Directory $recompiledIdlHeadersScratchDir
@@ -40,6 +41,7 @@ Copy-Item "$sdkIncludeDir\um" "$recompiledIdlHeadersDir" -Recurse
 Copy-Item "$sdkIncludeDir\shared" "$recompiledIdlHeadersDir" -Recurse
 Copy-Item "$sdkIncludeDir\winrt" "$recompiledIdlHeadersDir" -Recurse
 Copy-Item "$sdkIncludeDir\ucrt" "$recompiledIdlHeadersDir" -Recurse
+[IO.File]::WriteAllBytes("$recompiledIdlHeadersDir\shared\win32metadata_annotations.h", $annotationHelpers)
 
 Write-Host "Copying D3D headers from $d3dIncludeDir to $recompiledIdlHeadersDir..."
 Copy-Item "$d3dIncludeDir\*.*" "$recompiledIdlHeadersDir\um" -Exclude "dxgiformat.*" -Recurse

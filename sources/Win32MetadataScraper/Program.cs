@@ -175,7 +175,8 @@ class Program
             Debug.Assert(translationUnit is not null);
 
             // ── Walk AST to discover all typedef-tag and function pointer relationships ──
-            var discovery = RemapDiscovery.WalkTranslationUnit(translationUnit.TranslationUnitDecl);
+            var annotations = new LastErrorAnnotations();
+            var discovery = RemapDiscovery.WalkTranslationUnit(translationUnit.TranslationUnitDecl, annotations.Visit);
 
             // Resolve tag remaps using disambiguation, then apply opt-outs for
             // compatibility cases where we intentionally keep the historical public name.
@@ -210,6 +211,11 @@ class Program
             }
 
             // ── Run PInvokeGenerator with merged remaps on the same TranslationUnit ──
+            var lastErrorNames = new HashSet<string>(
+                settings.GetValueOrDefault("--with-setlasterror") ?? new List<string>(), StringComparer.Ordinal);
+            foreach (string name in annotations.FunctionNames)
+                lastErrorNames.Add(mergedRemaps.GetValueOrDefault(name) ?? name);
+            settings["--with-setlasterror"] = lastErrorNames.ToList();
             var config = CreateConfig(settings, ns, outputFile, headerFile, configOptions, mergedRemaps, allExcludes);
 
             var capturedStreams = new Dictionary<string, MemoryStream>();
