@@ -240,7 +240,8 @@ namespace ClangSharpSourceToWinmdTests
 
             public (int ExitCode, string Output) Scrape(string header, string target = "x86_64-pc-windows-msvc",
                 bool legacy = false, string? remap = null, bool repeatInclude = false, bool metadata = true, string language = "c++",
-                bool sal = false, bool transitive = false, string extraSettings = "", string? includedHeader = null)
+                bool sal = false, bool transitive = false, string extraSettings = "", string? includedHeader = null,
+                string? scraperPath = null)
             {
                 if (File.Exists(this.GeneratedSource)) File.Delete(this.GeneratedSource);
                 if (sal)
@@ -294,7 +295,7 @@ generate-cpp-attributes
 {(remap != null ? "--remap\nExample=" + remap : "")}
 {extraSettings}
 ");
-                string scraper = Path.Combine(AppContext.BaseDirectory,
+                string scraper = scraperPath ?? Path.Combine(AppContext.BaseDirectory,
                     RuntimeInformation.RuntimeIdentifier, "Win32MetadataScraper.dll");
                 Assert.IsTrue(File.Exists(scraper), "Missing production RID scraper: " + scraper);
                 return Run("dotnet", scraper, Path.Combine(this.directory, "remaps.rsp"), "@" + rsp);

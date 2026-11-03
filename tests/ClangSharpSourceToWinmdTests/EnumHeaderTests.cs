@@ -6,6 +6,7 @@ using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.CSharp;
@@ -21,6 +22,36 @@ namespace ClangSharpSourceToWinmdTests
         private const string Constants = "#define Low 1\n#define High 0x80000000UL\n#define Both (Low | High)\n";
         private const string Groups = "_Win32_FlagsEnum_(Options, unsigned long, Low, High, Both);\n";
         private const string Legacy = "{\"items\":[{\"namespace\":\"Test\",\"name\":\"Options\",\"flags\":true,\"members\":[{\"name\":\"Low\"},{\"name\":\"High\"},{\"name\":\"Both\"}]}]}";
+
+        [DataTestMethod]
+        [DataRow(false)]
+        [DataRow(true)]
+        public void PackagedScraper_HasItsRuntimeDependencies(bool headerGroup)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string root = LastErrorHeaderTests.RepositoryRoot();
+            string package = Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "package");
+            var manifest = XDocument.Load(Path.Combine(root, "sources", "GeneratorSdk", "nuget", "BuildSdk.nuspec"));
+            foreach (var file in manifest.Descendants("file").Where(file =>
+                ((string)file.Attribute("target")!).TrimEnd('\\').Equals(@"tools\net10.0\win-x64", StringComparison.OrdinalIgnoreCase)))
+            {
+                string source = Path.Combine(AppContext.BaseDirectory, Path.GetRelativePath(
+                    Path.Combine(root, "bin", "release", "net10.0"), Path.Combine(root, (string)file.Attribute("src")!)));
+                string target = Path.Combine(package, (string)file.Attribute("target")!);
+                Directory.CreateDirectory(target);
+                string[] inputs = Directory.GetFiles(Path.GetDirectoryName(source)!, Path.GetFileName(source));
+                Assert.IsTrue(inputs.Length > 0, "Missing package input: " + source);
+                foreach (string input in inputs)
+                    File.Copy(input, Path.Combine(target, Path.GetFileName(input)), true);
+            }
+            string scraper = Path.Combine(package, "tools", "net10.0", "win-x64", "Win32MetadataScraper.dll");
+            var result = fixture.Scrape(Constants + (headerGroup ? Groups : "") +
+                "int __stdcall Example(void);", sal: true, scraperPath: scraper);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string declarations = Decompile(fixture.Emit());
+            StringAssert.Contains(declarations, "extern int Example");
+            Assert.AreEqual(headerGroup, declarations.Contains("enum Options", StringComparison.Ordinal));
+        }
 
         [DataTestMethod]
         [DataRow("i686-pc-windows-msvc")]
