@@ -26,6 +26,7 @@ runs:
         name: ${{ inputs.name }}
         path: ${{ inputs.path }}
         retention-days: ${{ inputs.retention-days }}
+        if-no-files-found: error
 
     - name: Wait before retry
       if: steps.upload.outcome == 'failure'
@@ -41,4 +42,5 @@ runs:
         name: ${{ inputs.name }}
         path: ${{ inputs.path }}
         retention-days: ${{ inputs.retention-days }}
+        if-no-files-found: error
         overwrite: true

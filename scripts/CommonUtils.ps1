@@ -30,6 +30,19 @@ function ThrowOnNativeProcessError
     }
 }
 
+function Assert-TestResults([string]$Trx)
+{
+    if (!(Test-Path $Trx -PathType Leaf)) { throw "Test run did not produce a TRX: $Trx" }
+    [xml]$results = Get-Content -Raw $Trx
+    $counters = $results.TestRun.ResultSummary.Counters
+    if (!$counters -or [int]$counters.executed -le 0 -or [int]$counters.failed -ne 0 -or
+        [int]$counters.passed -ne [int]$counters.executed -or
+        $results.TestRun.ResultSummary.outcome -ne 'Completed') {
+        throw "Test run did not execute nonempty, entirely passing results: $Trx"
+    }
+    Write-Host "$Trx : $($counters.executed) executed, $($counters.failed) failed."
+}
+
 if (Test-Path -Path $binDir -PathType leaf)
 {
     Remove-Item $binDir

@@ -58,7 +58,7 @@ function fixture(documentationOnly = false) {
       created_at: '2026-10-15T19:18:11Z'
     }],
     jobs: [{
-      name: 'Build, test, package',
+      name: 'Target baseline and API comparison',
       run_id: 38792701013,
       run_attempt: 1,
       head_sha: 'f13cd4266f5e89a019643a89488769d57ce1a090',
@@ -182,7 +182,9 @@ for (const [name, patch, expectedOutputs] of [
     try {
       const baselineDirectory = path.join(directory, 'bin', 'baseline-artifact');
       mkdirSync(baselineDirectory, { recursive: true });
-      writeFileSync(path.join(baselineDirectory, 'Windows.Win32.winmd'), '');
+      writeFileSync(path.join(baselineDirectory, 'Windows.Win32.winmd'), 'baseline fixture');
+      writeFileSync(path.join(directory, 'bin', 'Windows.Win32.winmd'), 'candidate fixture');
+      writeFileSync(path.join(directory, 'bin', 'baseline-source.txt'), 'fixture target commit');
       writeFileSync(path.join(directory, 'expected.patch'), patch);
       const outputFile = path.join(directory, 'step-output.txt');
       const step = validationSteps.get('Generate API surface diff');
@@ -191,7 +193,11 @@ for (const [name, patch, expectedOutputs] of [
       assert.notEqual(start, -1, 'Missing inline diff producer');
       const producer = step.slice(start + marker.length).replace(/^ {10}/gm, '');
       const commands = String.raw`
-        function dotnet { $global:LASTEXITCODE = 0 }
+        function dotnet {
+          $output = $args[([Array]::IndexOf($args, '--output') + 1)]
+          'fixture API dump' | Set-Content $output
+          $global:LASTEXITCODE = 0
+        }
         function cmd {
           if ($args.Count -ne 2 -or $args[0] -ne '/c' -or
               $args[1] -ne 'git diff --no-index --unified=3 bin\baseline.apidump.cs bin\current.apidump.cs > bin\api-diff.patch 2>&1') {

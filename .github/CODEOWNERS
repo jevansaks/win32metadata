@@ -1,1 +1,10 @@
 * @mikebattista @jevansaks @vineeththomasalex @microsoft/windows-sdk
+
+# Fork CI ownership uses an owner with access to the fork.
+/.github/ @jevansaks
+/scripts/TestTooling.ps1 @jevansaks
+/scripts/DoTests.ps1 @jevansaks
+/scripts/CommonUtils.ps1 @jevansaks
+/scripts/TestWinmdBinary.ps1 @jevansaks
+/docs/architecture.md @jevansaks
+/tests/ClangSharpSourceToWinmdTests/ @jevansaks

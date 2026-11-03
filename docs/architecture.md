@@ -69,6 +69,47 @@ This class walks the final C# abstract syntax trees (AST) and writes each node t
 
 ## WinmdGenerator
 
+### Fork CI guardrails
+
+In `jevansaks/win32metadata`, PR validation runs on every PR base, including
+stacked topic branches. `feature/header-annotations` requires the exact checks
+`Migration qualification`, `Tooling tests`, `Workflow regression tests`, and
+`Build, test, package`. Fork documentation changes also run the full checks;
+upstream documentation-only build skipping remains supported. Missing, failed,
+cancelled or unexpectedly skipped dependencies never pass the migration gate.
+The fork does not require a second reviewer. User sign-off still precedes
+coordinator-managed merges; successful automation alone does not authorize merging.
+
+Only the ordinary candidate CI generation runs: three architecture scrapes,
+followed by emission, packages, samples and structural tests. No additional
+reference/candidate SDK generations, paired measurements, confirmation rounds
+or performance receipt framework are run. `Migration qualification` is only a
+cheap fail-closed aggregate of these ordinary CI jobs and API comparison.
+
+Run `.\scripts\TestTooling.ps1` for all three tooling suites. Both this entry
+point and `.\scripts\DoTests.ps1` reject missing, empty or failing TRX results.
+The existing MSTest emitter suite includes ordinary workflow/dependency and
+TRX guardrail tests alongside its existing metadata tests.
+`TestTooling.ps1` builds the CLI through normal test project references and
+executes this coverage without a separate BuildTools prerequisite.
+Node remains scoped to the pre-existing API-comment workflow tests:
+`node --test .github/tests/pr-api-diff-comment.test.cjs`.
+
+The API comparison reuses an already-produced winmd from successful target-branch
+CI at the PR base commit. If unavailable, it tries successful upstream
+`microsoft/win32metadata` main CI, then the existing released-package baseline.
+The selected repository/branch/commit/run/artifact or released package path is
+recorded in `baseline-source.txt`; actual baseline/candidate hashes and candidate
+commit are retained in `comparison-inputs.txt`. Missing outputs, dump failures
+and comparison command errors fail CI; API differences themselves are retained
+for review. This uses the existing WinmdUtils API dump and release helper, not
+a binary-normalization or provenance framework.
+
+Each reused-tools package/sample/test Actions step initializes its own VS
+developer environment. It avoids redundant tool compilation while retaining
+the package script's post-pack rebuild. Actions retains tooling/full-test TRX,
+logs, candidate winmd, packages, API dumps/diff and baseline source information.
+
 The WinmdGenerator packages the Scraper and Emitter tooling into an [MSBuild project SDK](https://learn.microsoft.com/visualstudio/msbuild/how-to-use-project-sdk) that acts as the interface for converting C/C++ projects to winmds for use with language projections.
 
 The WinmdGenerator tooling is published to nuget.org as [Microsoft.Windows.WinmdGenerator](https://www.nuget.org/packages/Microsoft.Windows.WinmdGenerator/). As an MSBuild project SDK, it enables a no-code project file based configuration interface for generating winmd files from arbitrary C/C++ projects.
