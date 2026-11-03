@@ -173,6 +173,7 @@ jobs:
               '.github/workflows/pr-validation.yml',
               'scripts/ApplySDKPatches.ps1', 'scripts/UpdateSDK.ps1',
               'scripts/RecompileIdlFilesForScraping.ps1',
+              'scripts/Get-SDKMidlOutputs.ps1',
               'scripts/ConvertMidlAttributesToSalAnnotations.ps1',
               'scripts/CommonUtils.ps1', 'scripts/TestTooling.ps1',
               'tests/ClangSharpSourceToWinmdTests/SdkPatchTests.cs',
