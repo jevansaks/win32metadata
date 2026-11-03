@@ -58,26 +58,36 @@ namespace Win32MetadataScraper
                     this.VisitEnumGroup(declaration, attribute);
                     continue;
                 }
-                if (payload != Owner + "SetLastError")
+                bool preserveResult = payload == Owner + "PreserveResult";
+                if (payload != Owner + "SetLastError" && !preserveResult)
                 {
                     this.VisitParameterAnnotation(declaration, attribute, ref declarationStart);
                     continue;
                 }
                 if (attribute.CursorChildren.Any())
-                    throw Error(attribute, "Win32Metadata.SetLastError accepts no arguments.");
-                if (declaration is not FunctionDecl function || declaration is CXXMethodDecl || function.HasBody)
-                    throw Error(attribute, "Win32Metadata.SetLastError requires an imported function declaration.");
+                    throw Error(attribute, $"{payload} accepts no arguments.");
+                if (declaration is not FunctionDecl function || !preserveResult && declaration is CXXMethodDecl || function.HasBody)
+                    throw Error(attribute, $"{payload} requires a function or method declaration without a body.");
+                if (preserveResult)
+                {
+                    if (function.Attrs.Count(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate && a.Spelling == payload) != 1)
+                        throw Error(attribute, "Duplicate PreserveResult annotations.");
+                    if (!function.CanonicalDecl.Attrs.Any(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate && a.Spelling == payload))
+                        throw Error(attribute, "PreserveResult must appear on the first native declaration; late-only annotations are not reliably emitted by PInvokeGenerator.");
+                }
 
                 attribute.Extent.Start.GetExpansionLocation(out var attributeFile, out _, out _, out uint attributeOffset);
                 declaration.Extent.Start.GetExpansionLocation(out var declarationFile, out _, out _, out _);
                 declaration.Extent.End.GetExpansionLocation(out _, out _, out _, out uint declarationEnd);
-                declarationStart ??= GetDeclarationStart(function, attribute);
+                uint functionStart = GetDeclarationStart(function, attribute, preserveResult && declaration is CXXMethodDecl);
                 // Clang propagates an annotation to other redeclarations, including earlier ones.
                 if (attributeFile.Equals(declarationFile) &&
-                    attributeOffset > declarationStart.Value && attributeOffset < declarationEnd)
-                    throw Error(attribute, "Win32Metadata.SetLastError must precede the complete function declaration.");
+                    attributeOffset > functionStart && attributeOffset < declarationEnd)
+                    throw Error(attribute, preserveResult ?
+                        $"{payload} must precede the native return type and calling convention." :
+                        "Win32Metadata.SetLastError must precede the complete function declaration.");
 
-                this.FunctionNames.Add(function.Name);
+                if (!preserveResult) this.FunctionNames.Add(function.Name);
             }
 
             if (declaration is FunctionDecl containingFunction)
@@ -264,7 +274,7 @@ namespace Win32MetadataScraper
             }
         }
 
-        private static uint GetDeclarationStart(Decl function, Attr annotation)
+        private static uint GetDeclarationStart(Decl function, Attr annotation, bool allowMidlVirtual = false)
         {
             string name = (function as NamedDecl)?.Name;
             var unit = function.TranslationUnit.Handle;
@@ -290,6 +300,7 @@ namespace Win32MetadataScraper
                     token.GetLocation(unit).GetExpansionLocation(out var file, out _, out _, out uint offset);
                     using var spelling = token.GetSpelling(unit);
                     string text = spelling.ToString();
+                    if (allowMidlVirtual && text == "virtual") continue;
                     bool annotationMacro = annotations.Any(attr => attr.File.Equals(file) && attr.Start == offset);
                     if (text != "__attribute__" && text != "[" && !annotationMacro) return offset;
 

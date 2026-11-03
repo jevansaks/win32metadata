@@ -200,6 +200,7 @@ namespace ClangSharpSourceToWinmd
                     .Select(attribute => (attribute.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?.Token.ValueText)
                     .Where(payload => payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal) &&
                         payload != ParameterAnnotation.Owner + "SetLastError" &&
+                        payload != ParameterAnnotation.Owner + "PreserveResult" &&
                         !payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
                     .Select(ParameterAnnotation.Parse)
                     .Where(annotation => annotation.Kind != ParameterAnnotationKind.AssociatedEnum ||
@@ -565,6 +566,15 @@ namespace ClangSharpSourceToWinmd
                         if (payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal))
                         {
                             if (payload == ParameterAnnotation.Owner + "SetLastError") return null;
+                            if (payload == ParameterAnnotation.Owner + "PreserveResult")
+                            {
+                                // PInvokeGenerator also carries COM method annotations on its nested vtable delegates.
+                                if (node.Parent is not MethodDeclarationSyntax &&
+                                    !(node.Parent is DelegateDeclarationSyntax && node.Parent.Parent is StructDeclarationSyntax))
+                                    throw new FormatException($"PreserveResult requires a generated method: {payload}");
+                                return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
+                                    SyntaxFactory.Attribute(SyntaxFactory.ParseName("PreserveSig"))));
+                            }
                             if (payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
                             {
                                 string version = SupportedOSAnnotation.Parse(payload);

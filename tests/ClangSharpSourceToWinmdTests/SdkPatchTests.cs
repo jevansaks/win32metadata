@@ -310,9 +310,10 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [DataTestMethod]
-        [DataRow("ObjIdl")]
-        [DataRow("ObjIdlbase")]
-        public void ExplicitAvailability_IdlSourceReplaysOnRealSelectedSdkOutput(string owner)
+        [DataRow("ObjIdl", false)]
+        [DataRow("ObjIdlbase", false)]
+        [DataRow("ObjIdlbase", true)]
+        public void ExplicitAvailability_IdlSourceReplaysOnRealSelectedSdkOutput(string owner, bool authoredResult)
         {
             using var fixture = new Fixture();
             string sdk = LastErrorHeaderTests.SdkPackagePath();
@@ -324,6 +325,15 @@ namespace ClangSharpSourceToWinmdTests
             {
                 fixture.Header("ObjIdlbase.Idl", File.ReadAllBytes(System.IO.Path.Combine(include, "um", "ObjIdlbase.Idl")));
                 fixture.Apply("pre-midl", "pre-midl/ObjIdlbase.Idl.patch", true, patchRoot: patches, midlInputRoot: include);
+            }
+            if (authoredResult)
+            {
+                string ownerPath = System.IO.Path.Combine(fixture.Headers, "um", owner + ".Idl");
+                string original = File.ReadAllText(ownerPath);
+                string annotated = original.Replace("[local]\r\n    HRESULT Read(",
+                    "[local, annotation(\"_Win32_PreserveResult_\")]\r\n    HRESULT Read(");
+                Assert.AreNotEqual(original, annotated, "Author only the real ISequentialStream::Read fixture.");
+                File.WriteAllText(ownerPath, annotated);
             }
             string converted = System.IO.Path.Combine(fixture.Path, "converted");
             Directory.CreateDirectory(converted);
@@ -358,6 +368,22 @@ namespace ClangSharpSourceToWinmdTests
                 " /I " + Quote(System.IO.Path.Combine(Root(), "scripts", "inc")) + "; exit $LASTEXITCODE");
             Assert.AreEqual(0, result.ExitCode, result.Output);
             Assert.IsFalse(File.Exists(System.IO.Path.Combine(patches, "post-midl", owner + ".h.patch")));
+            if (authoredResult)
+            {
+                string generated = File.ReadAllText(header);
+                int marker = generated.IndexOf("_Win32_PreserveResult_", StringComparison.Ordinal);
+                Assert.IsTrue(marker >= 0, "MIDL must preserve the authored result marker.");
+                string method = generated.Substring(generated.LastIndexOf("virtual", marker, StringComparison.Ordinal));
+                method = method.Substring(0, method.IndexOf(" = 0;", StringComparison.Ordinal) + " = 0;".Length);
+                using var resultFixture = new LastErrorHeaderTests.Fixture();
+                var scraped = resultFixture.Scrape("typedef long HRESULT; typedef unsigned long ULONG;\n" +
+                    "#define STDMETHODCALLTYPE __stdcall\n" +
+                    "struct __declspec(uuid(\"0c733a30-2a1c-11ce-ade5-00aa0044773d\")) ISequentialStream {\n" +
+                    method + "\n};", sal: true);
+                Assert.AreEqual(0, scraped.ExitCode, method + "\n" + scraped.Output);
+                ResultHeaderTests.AssertResult(resultFixture.Emit(), "Read", true);
+                return;
+            }
             string expectedHeader = System.IO.Path.Combine(Root(), "generation", "WinSDK",
                 "RecompiledIdlHeaders", "um", owner + ".h");
             var expectedLines = File.ReadAllLines(expectedHeader);
