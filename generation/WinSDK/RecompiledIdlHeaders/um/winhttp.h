@@ -91,6 +91,15 @@ typedef INTERNET_PORT * LPINTERNET_PORT;
                                                  SECURITY_FLAG_IGNORE_CERT_DATE_INVALID)
 
 
+_Win32_FlagsEnum_(WINHTTP_OPEN_REQUEST_FLAGS, DWORD,
+    WINHTTP_FLAG_BYPASS_PROXY_CACHE,
+    WINHTTP_FLAG_ESCAPE_DISABLE,
+    WINHTTP_FLAG_ESCAPE_DISABLE_QUERY,
+    WINHTTP_FLAG_ESCAPE_PERCENT,
+    WINHTTP_FLAG_NULL_CODEPAGE,
+    WINHTTP_FLAG_REFRESH,
+    WINHTTP_FLAG_SECURE);
+
 //
 // WINHTTP_ASYNC_RESULT - this structure is returned to the application via
 // the callback with WINHTTP_CALLBACK_STATUS_REQUEST_COMPLETE. It is not sufficient to
@@ -197,7 +206,7 @@ typedef LPURL_COMPONENTS LPURL_COMPONENTSW;
 
 typedef struct _WINHTTP_PROXY_INFO
 {
-    DWORD  dwAccessType;      // see WINHTTP_ACCESS_* types below
+    _Win32_AssociatedEnum_(WINHTTP_ACCESS_TYPE) DWORD  dwAccessType;      // see WINHTTP_ACCESS_* types below
     LPWSTR lpszProxy;         // proxy server list
     LPWSTR lpszProxyBypass;   // proxy bypass list
 } WINHTTP_PROXY_INFO, *LPWINHTTP_PROXY_INFO, *PWINHTTP_PROXY_INFO;
@@ -1356,6 +1365,12 @@ typedef WINHTTP_STATUS_CALLBACK * LPWINHTTP_STATUS_CALLBACK;
 #define WINHTTP_ACCESS_TYPE_NAMED_PROXY                 3
 #define WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY             4
 
+_Win32_Enum_(WINHTTP_ACCESS_TYPE, DWORD,
+    WINHTTP_ACCESS_TYPE_NO_PROXY,
+    WINHTTP_ACCESS_TYPE_DEFAULT_PROXY,
+    WINHTTP_ACCESS_TYPE_NAMED_PROXY,
+    WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY);
+
 // WinHttpOpen prettifiers for optional parameters
 #define WINHTTP_NO_PROXY_NAME     NULL
 #define WINHTTP_NO_PROXY_BYPASS   NULL
@@ -1660,7 +1675,7 @@ WINAPI
 WinHttpOpen
 (
     _In_opt_z_ LPCWSTR pszAgentW,
-    _In_ DWORD dwAccessType,
+    _In_ _Win32_AssociatedEnum_(WINHTTP_ACCESS_TYPE) DWORD dwAccessType,
     _In_opt_z_ LPCWSTR pszProxyW,
     _In_opt_z_ LPCWSTR pszProxyBypassW,
     _In_ DWORD dwFlags
@@ -1820,7 +1835,7 @@ WinHttpOpenRequest
     IN LPCWSTR pwszVersion,
     IN LPCWSTR pwszReferrer OPTIONAL,
     IN LPCWSTR FAR * ppwszAcceptTypes OPTIONAL,
-    IN DWORD dwFlags
+    IN _Win32_AssociatedEnum_(WINHTTP_OPEN_REQUEST_FLAGS) DWORD dwFlags
 );
 
 WINHTTPAPI

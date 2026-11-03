@@ -69,6 +69,7 @@ namespace ClangSharpSourceToWinmd
         private Dictionary<string, List<INamedTypeSymbol>> namespaceToGuidOnlyStructSymbols = new Dictionary<string, List<INamedTypeSymbol>>();
         private HashSet<StructDeclarationSyntax> guidOnlyStructsConvertedToConsts = new HashSet<StructDeclarationSyntax>();
         private HashSet<string> forceGuidConsts;
+        private readonly HashSet<string> enumMemberNames;
 
         private ClangSharpSourceWinmdGenerator(
             CSharpCompilation compilation, 
@@ -81,6 +82,9 @@ namespace ClangSharpSourceToWinmd
             this.compilation = compilation;
             this.reducePointerLevels = reducePointerLevels;
             this.forceGuidConsts = forceGuidConsts;
+            this.enumMemberNames = compilation.SyntaxTrees.SelectMany(tree => tree.GetRoot().DescendantNodes())
+                .OfType<EnumMemberDeclarationSyntax>().Select(member => member.Identifier.ValueText)
+                .ToHashSet(StringComparer.Ordinal);
 
             foreach (var pair in typeImports)
             {
@@ -1296,6 +1300,10 @@ namespace ClangSharpSourceToWinmd
                 var fieldVariable = field.Declaration.Variables.First();
                 IFieldSymbol fieldSymbol = (IFieldSymbol)model.GetDeclaredSymbol(fieldVariable);
                 string name = FixFinalName(fieldSymbol.Name);
+                // Keep constituents available while binding dependent constants, but do not
+                // export duplicate Apis fields alongside the projected enum members.
+                if (className == "Apis" && fieldSymbol.IsConst && this.enumMemberNames.Contains(name))
+                    continue;
 
                 FieldAttributes fieldAttributes;
 
@@ -1531,6 +1539,10 @@ namespace ClangSharpSourceToWinmd
                     fieldDefinition = firstField;
                 }
             }
+
+            if (node.Identifier.ValueText == "Apis" && methodDefinition.IsNil && fieldDefinition.IsNil &&
+                partialDefs.Any(def => def.SyntaxTree.FilePath.EndsWith(".headerConstants.modified.cs", StringComparison.Ordinal)))
+                return;
 
             var model = this.GetModel(node);
             var symbol = model.GetDeclaredSymbol(node);

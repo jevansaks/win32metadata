@@ -11,13 +11,15 @@ namespace MetadataUtils
         private string @namespace;
         private string sourceHeaderText;
         private StreamWriter writer;
+        private readonly bool useConstants;
         private Dictionary<string, string> namesToValues = new Dictionary<string, string>();
 
-        public EnumWriter(string path, string @namespace, string sourceHeaderText)
+        public EnumWriter(string path, string @namespace, string sourceHeaderText, bool useConstants = true)
         {
             this.path = path;
             this.@namespace = @namespace;
             this.sourceHeaderText = sourceHeaderText;
+            this.useConstants = useConstants;
         }
 
         public bool AddEnum(EnumObject enumObject)
@@ -29,14 +31,22 @@ namespace MetadataUtils
             }
 
             this.EnsureStarted();
+            this.writer.Write(GetDeclaration(enumObject));
+            return true;
+        }
+
+        public static string GetDeclaration(EnumObject enumObject)
+        {
+            StringWriter writer = new StringWriter();
             if (enumObject.flags)
             {
-                this.writer.WriteLine(
+                writer.WriteLine(
 $"    [Flags]");
             }
 
             string type = enumObject.type ?? "uint";
-            bool forceUnsigned = enumObject.flags || (enumObject.type != null && (enumObject.type == "uint" || enumObject.type == "ulong" || enumObject.type == "ushort"));
+            bool forceUnsigned = (enumObject.flags && enumObject.type == null) ||
+                enumObject.type is "byte" or "uint" or "ulong" or "ushort";
 
             StringWriter enumBodyWriter = new StringWriter();
             foreach (var member in enumObject.members.Where(m => m.value != null))
@@ -60,17 +70,17 @@ $@"        {member.name} = {valueText},
             }
 
             string typePart = type != "int" ? $" : {type}" : string.Empty;
-            this.writer.WriteLine(
+            writer.WriteLine(
 $@"    public enum {enumObject.name}{typePart}
     {{");
 
-            this.writer.Write(enumBodyWriter.ToString());
+            writer.Write(enumBodyWriter.ToString());
 
-            this.writer.WriteLine(
+            writer.WriteLine(
 $@"    }}
 ");
 
-            return true;
+            return writer.ToString();
         }
 
         private void EnsureStarted()
@@ -81,7 +91,7 @@ $@"    }}
                 this.writer.WriteLine(
 @$"{this.sourceHeaderText}
 
-using static {this.@namespace}.Apis;
+{(this.useConstants ? $"using static {this.@namespace}.Apis;" : "")}
 
 namespace {this.@namespace}
 {{");

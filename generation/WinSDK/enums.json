@@ -9095,39 +9095,6 @@
     ]
   },
   {
-    "name": "WINHTTP_OPEN_REQUEST_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "WINHTTP_FLAG_BYPASS_PROXY_CACHE"
-      },
-      {
-        "name": "WINHTTP_FLAG_ESCAPE_DISABLE"
-      },
-      {
-        "name": "WINHTTP_FLAG_ESCAPE_DISABLE_QUERY"
-      },
-      {
-        "name": "WINHTTP_FLAG_ESCAPE_PERCENT"
-      },
-      {
-        "name": "WINHTTP_FLAG_NULL_CODEPAGE"
-      },
-      {
-        "name": "WINHTTP_FLAG_REFRESH"
-      },
-      {
-        "name": "WINHTTP_FLAG_SECURE"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WinHttpOpenRequest",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "addUsesTo": "NtmsDismountOptions",
     "members": [],
     "uses": [
@@ -18902,33 +18869,6 @@
       {
         "method": "EnumerateNtmsObject",
         "parameter": "dwType"
-      }
-    ]
-  },
-  {
-    "name": "WINHTTP_ACCESS_TYPE",
-    "members": [
-      {
-        "name": "WINHTTP_ACCESS_TYPE_NO_PROXY"
-      },
-      {
-        "name": "WINHTTP_ACCESS_TYPE_DEFAULT_PROXY"
-      },
-      {
-        "name": "WINHTTP_ACCESS_TYPE_NAMED_PROXY"
-      },
-      {
-        "name": "WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WinHttpOpen",
-        "parameter": "dwAccessType"
-      },
-      {
-        "struct": "WINHTTP_PROXY_INFO",
-        "field": "dwAccessType"
       }
     ]
   },

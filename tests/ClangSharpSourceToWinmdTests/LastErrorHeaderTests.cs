@@ -317,6 +317,19 @@ generate-cpp-attributes
                 return output;
             }
 
+            public Dictionary<string, string> ScrapeConstants(string? enums = null)
+            {
+                string path = Path.Combine(this.directory, "enums.json");
+                if (enums != null) File.WriteAllText(path, enums);
+                var remaps = new Dictionary<string, string>();
+                MetadataUtils.ConstantsScraper.ScrapeConstants(enums == null ? Array.Empty<string>() : new[] { path },
+                    "Test", Path.GetDirectoryName(this.GeneratedSource)!, "using System;", new HashSet<string>(),
+                    new Dictionary<string, string> { [Path.Combine(this.directory, "input.h")] = "Test" },
+                    new Dictionary<string, string>(), remaps, new Dictionary<string, string>(),
+                    new Dictionary<string, string>());
+                return remaps;
+            }
+
             public void AssertNativeAbi(string arch, int pointerSize, string language)
             {
                 string source = Path.Combine(this.directory, "abi.c");
@@ -327,6 +340,10 @@ extern ""C"" {{
 #endif
 _Win32_SetLastError_
 {Declaration}
+#define Low 1
+#define High 0x80000000UL
+_Win32_Enum_(Access, unsigned long, Low);
+_Win32_FlagsEnum_(Options, unsigned long, Low, High);
 enum Option {{ One = 1 }};
 _Win32_AssociatedEnum_(Option) int __stdcall ParameterAbi(
     _Win32_Retained_ void* buffer, _Win32_Retval_ int* result,

@@ -149,6 +149,8 @@ namespace ClangSharpSourceToWinmd
 
             List<string> modifiedFiles = new List<string>();
             var sourceFiles = Directory.GetFiles(sourceDirectory, "*.cs", SearchOption.AllDirectories).Where(f => IsValidCsSourceFile(f, arch));
+            var headerEnumNames = sourceFiles.Where(f => f.EndsWith(".headerEnums.cs", StringComparison.Ordinal))
+                .SelectMany(EnumObject.LoadFromFile).Select(group => group.name).ToHashSet(StringComparer.Ordinal);
             System.Threading.Tasks.ParallelOptions opt = new System.Threading.Tasks.ParallelOptions();
 
 #if MakeSingleThreaded
@@ -206,7 +208,7 @@ namespace ClangSharpSourceToWinmd
             HashSet<string> enumsMakeFlagsHashSet = enumsMakeFlags != null ? new HashSet<string>(enumsMakeFlags) : new HashSet<string>();
             System.Threading.Tasks.Parallel.ForEach(FilesToTrees(modifiedFiles), opt, (tree) =>
             {
-                var cleanedTree = MetadataSyntaxTreeCleaner.CleanSyntaxTree(tree, remaps, enumAdditions, enumsMakeFlagsHashSet, requiredNamespaces, staticLibs, apiNamesToNamespaces, infoFinder.EmptyStructs, infoFinder.EnumMemberNames, tree.FilePath);
+                var cleanedTree = MetadataSyntaxTreeCleaner.CleanSyntaxTree(tree, remaps, enumAdditions, enumsMakeFlagsHashSet, requiredNamespaces, staticLibs, apiNamesToNamespaces, infoFinder.EmptyStructs, infoFinder.EnumMemberNames, tree.FilePath, headerEnumNames);
                 WriteTree(cleanedTree, cleanedTree.FilePath);
             });
 

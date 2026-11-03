@@ -15,9 +15,9 @@ namespace ClangSharpSourceToWinmd
     {
         public const string ArgListVarName = "__arglist__";
 
-        public static SyntaxTree CleanSyntaxTree(SyntaxTree tree, Dictionary<string, string> remaps, Dictionary<string, Dictionary<string, string>> enumAdditions, HashSet<string> enumsMakeFlags, Dictionary<string, string> requiredNamespaces, Dictionary<string, string> staticLibs, Dictionary<string, string> apiNamesToNamespaces, HashSet<string> nonEmptyStructs, HashSet<string> enumMemberNames, string filePath)
+        public static SyntaxTree CleanSyntaxTree(SyntaxTree tree, Dictionary<string, string> remaps, Dictionary<string, Dictionary<string, string>> enumAdditions, HashSet<string> enumsMakeFlags, Dictionary<string, string> requiredNamespaces, Dictionary<string, string> staticLibs, Dictionary<string, string> apiNamesToNamespaces, HashSet<string> nonEmptyStructs, HashSet<string> enumMemberNames, string filePath, HashSet<string> headerEnumNames = null)
         {
-            TreeRewriter treeRewriter = new TreeRewriter(remaps, enumAdditions, enumsMakeFlags, requiredNamespaces, staticLibs, apiNamesToNamespaces, nonEmptyStructs, enumMemberNames);
+            TreeRewriter treeRewriter = new TreeRewriter(remaps, enumAdditions, enumsMakeFlags, requiredNamespaces, staticLibs, apiNamesToNamespaces, nonEmptyStructs, enumMemberNames, headerEnumNames);
             var newRoot = (CSharpSyntaxNode)treeRewriter.Visit(tree.GetRoot());
             var ret = CSharpSyntaxTree.Create(newRoot, null, filePath);
             return ret;
@@ -40,10 +40,11 @@ namespace ClangSharpSourceToWinmd
             private HashSet<string> visitedStaticMethodNames = new HashSet<string>();
             private HashSet<string> nonEmptyStructs;
             private HashSet<string> enumMemberNames;
+            private readonly HashSet<string> headerEnumNames;
             private HashSet<string> enumsToMakeFlags;
             private HashSet<string> usingNamespaces = new HashSet<string>();
 
-            public TreeRewriter(Dictionary<string, string> remaps, Dictionary<string, Dictionary<string, string>> enumAdditions, HashSet<string> enumsToMakeFlags, Dictionary<string, string> requiredNamespaces, Dictionary<string, string> staticLibs, Dictionary<string, string> apiNamesToNamespaces, HashSet<string> nonEmptyStructs, HashSet<string> enumMemberNames)
+            public TreeRewriter(Dictionary<string, string> remaps, Dictionary<string, Dictionary<string, string>> enumAdditions, HashSet<string> enumsToMakeFlags, Dictionary<string, string> requiredNamespaces, Dictionary<string, string> staticLibs, Dictionary<string, string> apiNamesToNamespaces, HashSet<string> nonEmptyStructs, HashSet<string> enumMemberNames, HashSet<string> headerEnumNames)
             {
                 this.remaps = remaps;
                 this.InitRegexRemaps();
@@ -54,6 +55,7 @@ namespace ClangSharpSourceToWinmd
                 this.apiNamesToNamespaces = apiNamesToNamespaces;
                 this.nonEmptyStructs = nonEmptyStructs;
                 this.enumMemberNames = enumMemberNames;
+                this.headerEnumNames = headerEnumNames ?? new HashSet<string>(StringComparer.Ordinal);
                 this.enumsToMakeFlags = enumsToMakeFlags;
             }
 
@@ -156,12 +158,14 @@ namespace ClangSharpSourceToWinmd
                 }
 
                 string fullName = GetFullNameWithoutArchSuffix(node);
+                string headerType = this.GetHeaderEnumType(node.AttributeLists, node.Type.ToString(), fullName);
 
                 if (this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Type.ToString(), out string newType, out string newName))
                 {
                     var ownedNames = GetOwnedAnnotationNames(node.AttributeLists);
                     node = (ParameterSyntax)base.VisitParameter(node);
                     VerifyOwnedRemaps(fullName, ownedNames, node.AttributeLists, listAttributes);
+                    if (headerType != null) RemoveHeaderAssociation(listAttributes);
                     node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes));
 
                     if (newName != null)
@@ -180,6 +184,8 @@ namespace ClangSharpSourceToWinmd
                 }
 
                 // Get rid of default parameter values
+                if (headerType != null)
+                    node = node.WithType(SyntaxFactory.ParseTypeName(headerType).WithTrailingTrivia(SyntaxFactory.Space));
                 if (node.Default != null)
                 {
                     node = node.WithDefault(null);
@@ -188,13 +194,43 @@ namespace ClangSharpSourceToWinmd
                 return node;
             }
 
-            private static string[] GetOwnedAnnotationNames(SyntaxList<AttributeListSyntax> attributes) =>
+            private string[] GetOwnedAnnotationNames(SyntaxList<AttributeListSyntax> attributes) =>
                 attributes.SelectMany(list => list.Attributes)
                     .Where(attribute => attribute.Name.ToString() == "NativeAnnotation")
                     .Select(attribute => (attribute.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?.Token.ValueText)
                     .Where(payload => payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal) &&
                         payload != ParameterAnnotation.Owner + "SetLastError")
-                    .Select(payload => ParameterAnnotation.Parse(payload).AttributeName).ToArray();
+                    .Select(ParameterAnnotation.Parse)
+                    .Where(annotation => annotation.Kind != ParameterAnnotationKind.AssociatedEnum ||
+                        !this.headerEnumNames.Contains(annotation.EnumName))
+                    .Select(annotation => annotation.AttributeName).ToArray();
+
+            private string GetHeaderEnumType(SyntaxList<AttributeListSyntax> attributes, string type, string fullName)
+            {
+                var annotation = attributes.SelectMany(list => list.Attributes)
+                    .Where(a => a.Name.ToString() == "NativeAnnotation")
+                    .Select(a => (a.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?.Token.ValueText)
+                    .Where(p => p != null && p.StartsWith(ParameterAnnotation.Owner + "AssociatedEnum(", StringComparison.Ordinal))
+                    .Select(ParameterAnnotation.Parse).SingleOrDefault();
+                string enumName = annotation.EnumName;
+                if (enumName == null)
+                    enumName = SyntaxUtils.GetNativeTypeNameFromAttributesLists(attributes)?.TrimEnd('*', ' ');
+                if (enumName == null || !this.headerEnumNames.Contains(enumName)) return null;
+                string result = enumName + new string('*', type.Length - type.TrimEnd('*').Length);
+                this.GetRemapInfo(fullName, attributes, out var remappedAttributes, type, out var remappedType, out _);
+                if (remappedType != null && remappedType != result)
+                    throw new FormatException($"Configured type for '{fullName}' conflicts with header enum group '{enumName}'.");
+                foreach (var association in (remappedAttributes ?? new List<AttributeSyntax>())
+                    .Where(attribute => attribute.Name.ToString() is "AssociatedEnum" or "AssociatedEnumAttribute"))
+                    if (association.ArgumentList?.Arguments.Count != 1 ||
+                        association.ArgumentList.Arguments[0].Expression is not LiteralExpressionSyntax literal ||
+                        literal.Token.ValueText != enumName)
+                        throw new FormatException($"Configured association for '{fullName}' conflicts with header enum group '{enumName}'.");
+                return result;
+            }
+
+            private static void RemoveHeaderAssociation(List<AttributeSyntax> attributes) =>
+                attributes?.RemoveAll(attribute => attribute.Name.ToString() is "AssociatedEnum" or "AssociatedEnumAttribute");
 
             private static void VerifyOwnedRemaps(string fullName, string[] ownedNames,
                 SyntaxList<AttributeListSyntax> attributes, List<AttributeSyntax> remaps)
@@ -286,18 +322,15 @@ namespace ClangSharpSourceToWinmd
 
                 string localName = node.Declaration.Variables.First().Identifier.ValueText;
 
-                // If it's a constant, ignore it if it's already part of an enum
-                if (node.Modifiers.ToString() == "public const")
-                {
-                    if (this.enumMemberNames.Contains(localName))
-                    {
-                        return null;
-                    }
-                }
-
                 string fullName = GetFullNameWithoutArchSuffix(node);
 
                 this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Declaration.Type.ToString(), out string newType, out string newName);
+                string headerType = this.GetHeaderEnumType(node.AttributeLists, node.Declaration.Type.ToString(), fullName);
+                if (headerType != null)
+                {
+                    newType = headerType;
+                    RemoveHeaderAssociation(listAttributes);
+                }
 
                 // ClangSharp mistakenly emits string[] for WCHAR[] Foo = "Bar".
                 // Change it to string
@@ -497,8 +530,11 @@ namespace ClangSharpSourceToWinmd
                         {
                             if (payload == ParameterAnnotation.Owner + "SetLastError") return null;
                             var annotation = ParameterAnnotation.Parse(payload);
+                            if (annotation.Kind == ParameterAnnotationKind.AssociatedEnum && this.headerEnumNames.Contains(annotation.EnumName))
+                                return null;
                             if (node.Parent is not ParameterSyntax &&
-                                !(annotation.Kind == ParameterAnnotationKind.AssociatedEnum && node.Parent is MethodDeclarationSyntax))
+                                !(annotation.Kind == ParameterAnnotationKind.AssociatedEnum &&
+                                (node.Parent is MethodDeclarationSyntax || node.Parent is FieldDeclarationSyntax)))
                                 throw new FormatException($"Owned parameter annotation on an invalid generated target: {payload}");
                             var args = annotation.EnumName == null ? null :
                                 SyntaxFactory.AttributeArgumentList(SyntaxFactory.SingletonSeparatedList(
@@ -679,6 +715,7 @@ namespace ClangSharpSourceToWinmd
 
                 var isInterface = node.Parent is StructDeclarationSyntax;
                 var ownedReturnNames = GetOwnedAnnotationNames(node.AttributeLists);
+                string headerReturnType = this.GetHeaderEnumType(node.AttributeLists, node.ReturnType.ToString(), fixedFullName + "::return");
                 node = (MethodDeclarationSyntax)base.VisitMethodDeclaration(node);
 
                 // Add Ansi or Unicode attributes to -A/-W APIs.
@@ -726,6 +763,7 @@ namespace ClangSharpSourceToWinmd
                 if (this.GetRemapInfo(returnFullName, node.AttributeLists, out var listAttributes, nodeReturnType, out var newType, out _))
                 {
                     VerifyOwnedRemaps(returnFullName, ownedReturnNames, node.AttributeLists, listAttributes);
+                    if (headerReturnType != null) RemoveHeaderAssociation(listAttributes);
                     var target = SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.ReturnKeyword));
                     node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes, target));
 
@@ -735,6 +773,8 @@ namespace ClangSharpSourceToWinmd
                     }
                 }
 
+                if (headerReturnType != null)
+                    node = node.WithReturnType(SyntaxFactory.ParseTypeName(headerReturnType).WithTrailingTrivia(SyntaxFactory.Space));
                 return node;
             }
 
