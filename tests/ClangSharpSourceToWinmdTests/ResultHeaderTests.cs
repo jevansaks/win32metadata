@@ -127,7 +127,7 @@ _Win32_PreserveResult_ virtual int __stdcall Method(_Out_ _Win32_Retval_ int* va
         public void LifetimeMarkers_KeepStrictPlacementAndValuelessContracts(string declaration) => Reject(declaration);
 
         [TestMethod]
-        public void CoreOwnerInventory_IsExhaustedAndSupportAddsNoProductionFacts()
+        public void CoreLifetimeInventory_IsExhaustedButLegacyResultFactsRemain()
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
             var names = new HashSet<string>(StringComparer.Ordinal);
@@ -158,6 +158,49 @@ _Win32_PreserveResult_ virtual int __stdcall Method(_Out_ _Win32_Retval_ int* va
             }
             Assert.AreEqual(1, Regex.Matches(Owner("winhttp.h"), "_Win32_ContainsInteriorPointers_").Count);
             Assert.AreEqual(2, Regex.Matches(Owner("fileapi.h"), "_Win32_Retained_").Count);
+            string emitter = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"));
+            foreach (string selector in new[] { "IEnumUnknown::Next", "IEnumString::Next", "IEnumString::Skip",
+                "ISequentialStream::Read", "ISequentialStream::Write", "IEnumMoniker::Next", "IEnumMoniker::Skip",
+                "IPersistStream::IsDirty", "IMoniker::IsEqual", "IPersistFile::IsDirty", "IPersistStorage::IsDirty",
+                "IEnumFORMATETC::Next", "IDataObject::QueryGetData", "IDataObject::GetCanonicalFormatEtc",
+                "CoInitialize", "CoInitializeEx", "CoGetTreatAsClass", "IEnumVARIANT::Next", "IEnumVARIANT::Skip" })
+                StringAssert.Contains(emitter, selector + "=[CanReturnMultipleSuccessValues]");
+            StringAssert.Contains(emitter, "IUnknown::QueryInterface=[CanReturnErrorsAsSuccess]");
+        }
+
+        [DataTestMethod]
+        [DataRow("CanReturnMultipleSuccessValues")]
+        [DataRow("CanReturnErrorsAsSuccess")]
+        public void LegacyResultAttributes_AreNotEquivalentToPreserveSigAndMustNotBeDropped(string legacyName)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            const string declaration = "int __stdcall Example(void);";
+            var remaps = new Dictionary<string, string> { ["Example"] = "[" + legacyName + "]" };
+            var result = fixture.Scrape(declaration, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string output = fixture.Emit(remaps);
+            byte[] legacy = File.ReadAllBytes(output);
+            AssertShape(false, legacyName + "Attribute");
+            result = fixture.Scrape("_Win32_PreserveResult_\n" + declaration, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            output = fixture.Emit();
+            Assert.IsFalse(legacy.SequenceEqual(File.ReadAllBytes(output)),
+                "Replacing a legacy custom attribute with PreserveSig is not an exact metadata migration.");
+            AssertShape(true);
+            fixture.Emit(remaps);
+            AssertShape(true, legacyName + "Attribute");
+
+            void AssertShape(bool preserveSig, params string[] expectedAttributes)
+            {
+                using var pe = new PEReader(File.OpenRead(output));
+                var reader = pe.GetMetadataReader();
+                var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                    .Single(m => reader.GetString(m.Name) == "Example");
+                Assert.AreEqual(preserveSig, method.ImplAttributes.HasFlag(MethodImplAttributes.PreserveSig));
+                var names = method.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                    .Select(attribute => ParameterHeaderTests.AttributeName(reader, attribute)).ToArray();
+                CollectionAssert.AreEqual(expectedAttributes, names);
+            }
         }
 
         [DataTestMethod]

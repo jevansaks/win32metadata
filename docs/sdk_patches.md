@@ -142,12 +142,26 @@ Typedefs, callbacks, records, fields, parameters, valued/malformed payloads,
 expression arguments, duplicate markers, and late-only redeclarations fail
 with native source locations. Ordinary compilation still sees an empty macro.
 
-There are **no production API changes or sidecar retirements** in this layer:
-the selected owners have no existing PreserveSig/PreserveResult sidecars.
-Prototype [microsoft/win32metadata#2365](https://github.com/microsoft/win32metadata/pull/2365)'s
-14 COM methods plus CoInitialize, CoInitializeEx, and
-CoGetTreatAsClass are unapproved result-semantics additions, not migrated facts,
-and remain inactive. No prototype production patch slices are selected.
+There are **no production API changes or sidecar retirements** in this layer.
+The result inventory must include the differently named existing facts:
+prototype [microsoft/win32metadata#2365](https://github.com/microsoft/win32metadata/pull/2365)'s
+14 COM methods plus CoInitialize, CoInitializeEx, and CoGetTreatAsClass all have
+`CanReturnMultipleSuccessValues` sidecars. Other existing selectors include
+`IUnknown::QueryInterface=[CanReturnErrorsAsSuccess]`, inherited IsDirty sites,
+and the adjacent `IEnumVARIANT::Next` / `Skip` family. These are existing facts,
+not new semantic additions or an exhausted result category.
+
+The current emitter writes those two legacy contracts as distinct custom
+attributes, without setting PreserveSig. Replacing either with PreserveResult
+removes that custom attribute and adds the implementation flag: it is **not**
+an exact final-winmd migration. CsWin32's `UsePreserveSigForComMethod` accepts
+either custom attribute or that flag for COM projection, but that does not make
+the metadata shapes identical or establish equivalent behavior in all consumers.
+The spec's valueless PreserveResult transport cannot recover which legacy
+attribute was present. A focused final-winmd test proves the non-equivalence
+and that retaining a legacy sidecar alongside the marker preserves its custom
+attribute. All legacy selectors remain unchanged; all 17 prototype production
+annotations remain inactive. No prototype patch slices are selected.
 Test-only annotations on the shipped CoInitialize declaration and
 ISequentialStream::Read prove the capability without changing those SDK owners.
 The IDL fixture authors only a temporary copy, runs normal conversion and MIDL,
