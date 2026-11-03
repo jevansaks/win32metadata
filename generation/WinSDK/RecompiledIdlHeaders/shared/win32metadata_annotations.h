@@ -8,5 +8,9 @@
 #endif
 
 #define _Win32_SetLastError_ _WIN32META_ANNOTATION_("SetLastError")
+#define _Win32_Retval_ _WIN32META_ANNOTATION_("Retval")
+#define _Win32_Retained_ _WIN32META_ANNOTATION_("Retained")
+#define _Win32_ContainsInteriorPointers_ _WIN32META_ANNOTATION_("ContainsInteriorPointers")
+#define _Win32_AssociatedEnum_(type) _WIN32META_ANNOTATION_("AssociatedEnum(" #type ")")
 
 #endif

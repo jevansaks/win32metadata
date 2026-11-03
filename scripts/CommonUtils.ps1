@@ -151,6 +151,16 @@ function Get-WinSdkCppPkgPath
     return Get-BuildToolsNugetPropsProperty("PkgMicrosoft_Windows_SDK_CPP")
 }
 
+function Get-SdkHeaderPatchSelections
+{
+    $json = & dotnet msbuild "$windowsWin32ProjectRoot\Windows.Win32.proj" -getItem:SdkHeaderPatch
+    if ($LASTEXITCODE -ne 0) { throw 'Cannot evaluate selected SDK owning patches.' }
+    $configuration = ($json -join "`n") | ConvertFrom-Json
+    return @($configuration.Items.SdkHeaderPatch | ForEach-Object {
+        $_.Identity.Substring('patches\'.Length).Replace('\', '/')
+    })
+}
+
 function Get-WinSdkCppX64PkgPath
 {
     return Get-BuildToolsNugetPropsProperty("PkgMicrosoft_Windows_SDK_CPP_x64")

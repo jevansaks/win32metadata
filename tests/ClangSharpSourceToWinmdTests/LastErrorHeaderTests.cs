@@ -218,7 +218,7 @@ namespace ClangSharpSourceToWinmdTests
                 .GetImport().Attributes.HasFlag(MethodImportAttributes.SetLastError));
         }
 
-        private sealed class Fixture : IDisposable
+        internal sealed class Fixture : IDisposable
         {
             private readonly string directory = Path.Combine(Path.GetTempPath(), "last-error-header-" + Guid.NewGuid().ToString("N"));
             public string GeneratedSource => Path.Combine(this.directory, "generated", "Test.cs");
@@ -229,15 +229,29 @@ namespace ClangSharpSourceToWinmdTests
                 Directory.CreateDirectory(Path.GetDirectoryName(this.GeneratedSource)!);
                 File.Copy(Path.Combine(RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders",
                     "shared", "win32metadata_annotations.h"), Path.Combine(this.directory, "win32metadata_annotations.h"));
+                File.Copy(Path.Combine(RepositoryRoot(), "generation", "WinSDK", "inc", "sal.h"),
+                    Path.Combine(this.directory, "sal.h"));
+                File.Copy(Path.Combine(RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders",
+                    "shared", "concurrencysal.h"), Path.Combine(this.directory, "concurrencysal.h"));
                 File.WriteAllText(Path.Combine(Path.GetDirectoryName(this.GeneratedSource)!, "Metadata.manual.cs"),
                     "namespace Test { public class NativeTypeNameAttribute : System.Attribute { public NativeTypeNameAttribute(string name) {} } }");
             }
 
             public (int ExitCode, string Output) Scrape(string header, string target = "x86_64-pc-windows-msvc",
-                bool legacy = false, string? remap = null, bool repeatInclude = false, bool metadata = true, string language = "c++")
+                bool legacy = false, string? remap = null, bool repeatInclude = false, bool metadata = true, string language = "c++",
+                bool sal = false, bool transitive = false)
             {
                 if (File.Exists(this.GeneratedSource)) File.Delete(this.GeneratedSource);
-                File.WriteAllText(Path.Combine(this.directory, "input.h"), "#include \"win32metadata_annotations.h\"\n" + header);
+                if (sal)
+                {
+                    File.Copy(Path.Combine(RepositoryRoot(), "generation", "WinSDK", "manual", "Metadata.cs"),
+                        Path.Combine(Path.GetDirectoryName(this.GeneratedSource)!, "Attributes.manual.cs"), true);
+                    File.WriteAllText(Path.Combine(Path.GetDirectoryName(this.GeneratedSource)!, "Usings.manual.cs"),
+                        "global using Windows.Win32.Foundation.Metadata;");
+                }
+                File.WriteAllText(Path.Combine(this.directory, "input.h"), "#include \"win32metadata_annotations.h\"\n" +
+                    (sal ? "#include \"sal.h\"\n" : "") + (transitive ? "#include \"inner.h\"\n" : header));
+                if (transitive) File.WriteAllText(Path.Combine(this.directory, "inner.h"), header);
                 File.WriteAllText(Path.Combine(this.directory, "main.cpp"),
                     "#ifdef __cplusplus\nextern \"C\" {\n#endif\n#include \"input.h\"\n" +
                     (repeatInclude ? "#include \"input.h\"\n" : "") + "#ifdef __cplusplus\n}\n#endif\n");
@@ -252,8 +266,10 @@ namespace ClangSharpSourceToWinmdTests
 {(language == "c" ? "c17" : "c++17")}
 --namespace
 Test
+--include-directory
+{this.directory}
 --traverse
-{Path.Combine(this.directory, "input.h")}
+{Path.Combine(this.directory, transitive ? "inner.h" : "input.h")}
 --libraryPath
 test.dll
 --methodClassName
@@ -264,6 +280,8 @@ generate-cpp-attributes
 --additional
 -target
 {target}
+{(sal ? "-D_USE_DECLSPECS_FOR_SAL=1\n-D_PREFAST_=1" : "")}
+-Wno-ignored-attributes
 {(metadata ? "-DWIN32METADATA" : "")}
 {(legacy ? "--with-setlasterror\nExample" : "")}
 {(remap != null ? "--remap\nExample=" + remap : "")}
@@ -274,11 +292,11 @@ generate-cpp-attributes
                 return Run("dotnet", scraper, Path.Combine(this.directory, "remaps.rsp"), "@" + rsp);
             }
 
-            public string Emit()
+            public string Emit(Dictionary<string, string>? memberRemaps = null)
             {
                 var compilation = ClangSharpSourceCompilation.Create(
                     Path.GetDirectoryName(this.GeneratedSource), "crossarch",
-                    new Dictionary<string, string>(), new Dictionary<string, Dictionary<string, string>>(),
+                    memberRemaps ?? new Dictionary<string, string>(), new Dictionary<string, Dictionary<string, string>>(),
                     Array.Empty<string>(), new Dictionary<string, string>(), new Dictionary<string, string>(),
                     new HashSet<string>(), Array.Empty<string>(), new Dictionary<string, string>(), new Dictionary<string, string>());
                 var errors = compilation.GetDiagnostics().Where(d => d.Severity == DiagnosticSeverity.Error).ToArray();
@@ -301,6 +319,12 @@ extern ""C"" {{
 #endif
 _Win32_SetLastError_
 {Declaration}
+enum Option {{ One = 1 }};
+_Win32_AssociatedEnum_(Option) int __stdcall ParameterAbi(
+    _Win32_Retained_ void* buffer, _Win32_Retval_ int* result,
+    _Win32_ContainsInteriorPointers_ void* interior, _Win32_AssociatedEnum_(Option) unsigned long option);
+typedef int (__stdcall *ExpectedParameterSignature)(void*, int*, void*, unsigned long);
+ExpectedParameterSignature parameterSignatureCheck = &ParameterAbi;
 typedef int (__stdcall *ExpectedSignature)(void*, unsigned long);
 ExpectedSignature signatureCheck = &Example;
 int __stdcall Caller(void) {{ return Example(0, 3); }}
@@ -344,6 +368,19 @@ int __stdcall Caller(void) {{ return Example(0, 3); }}
             while (directory != null && !File.Exists(Path.Combine(directory.FullName, "BuildTools", "BuildTools.proj")))
                 directory = directory.Parent;
             return directory?.FullName ?? throw new InvalidOperationException("Cannot locate repository root.");
+        }
+
+        internal static string SdkPackagePath()
+        {
+            string script = ". " + Quote(Path.Combine(RepositoryRoot(), "scripts", "CommonUtils.ps1")) +
+                "; Get-NugetPropsProperty -name PkgMicrosoft_Windows_SDK_CPP " +
+                "-projectName ClangSharpSourceToWinmdTests.csproj 6>$null";
+            var result = Run("pwsh", "-NoProfile", "-NonInteractive", "-Command", script);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = result.Output.Trim();
+            Assert.AreEqual("10.0.28000.2705", Path.GetFileName(path.TrimEnd(Path.DirectorySeparatorChar)));
+            Assert.IsTrue(Directory.Exists(path), "Missing test project's declared SDK package: " + path);
+            return path;
         }
 
         internal static (int ExitCode, string Output) Run(string executable, params string[] arguments)

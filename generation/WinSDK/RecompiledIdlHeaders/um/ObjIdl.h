@@ -801,6 +801,7 @@ extern "C"{
 /* [local] */ 
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 //+-------------------------------------------------------------------------
 //+-------------------------------------------------------------------------
 //
@@ -834,6 +835,7 @@ extern "C"{
 #pragma once
 #endif
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 //+-------------------------------------------------------------------------
 //+-------------------------------------------------------------------------
 //
@@ -966,7 +968,7 @@ EXTERN_C const IID IID_IMarshal;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE ReleaseMarshalData( 
             /* [annotation][unique][in] */ 
@@ -1057,7 +1059,7 @@ EXTERN_C const IID IID_IMarshal;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IMarshal, ReleaseMarshalData)
         HRESULT ( STDMETHODCALLTYPE *ReleaseMarshalData )( 
@@ -1487,7 +1489,7 @@ EXTERN_C const IID IID_IMarshal2;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IMarshal, ReleaseMarshalData)
         HRESULT ( STDMETHODCALLTYPE *ReleaseMarshalData )( 
@@ -2174,7 +2176,7 @@ EXTERN_C const IID IID_IInternalUnknown;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
     };
     
@@ -2207,7 +2209,7 @@ EXTERN_C const IID IID_IInternalUnknown;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         END_INTERFACE
     } IInternalUnknownVtbl;
@@ -2787,7 +2789,7 @@ EXTERN_C const IID IID_IStream;
         
         virtual HRESULT STDMETHODCALLTYPE Commit( 
             /* [annotation][in] */ 
-            _In_  DWORD grfCommitFlags) = 0;
+            _In_ _Win32_AssociatedEnum_(STGC)  DWORD grfCommitFlags) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Revert( void) = 0;
         
@@ -2797,7 +2799,7 @@ EXTERN_C const IID IID_IStream;
             /* [annotation][in] */ 
             _In_  ULARGE_INTEGER cb,
             /* [annotation][in] */ 
-            _In_  DWORD dwLockType) = 0;
+            _In_ _Win32_AssociatedEnum_(LOCKTYPE)  DWORD dwLockType) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE UnlockRegion( 
             /* [annotation][in] */ 
@@ -2811,7 +2813,7 @@ EXTERN_C const IID IID_IStream;
             /* [annotation][out] */ 
             _Out_  STATSTG *pstatstg,
             /* [annotation][in] */ 
-            _In_  DWORD grfStatFlag) = 0;
+            _In_ _Win32_AssociatedEnum_(STATFLAG)  DWORD grfStatFlag) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Clone( 
             /* [annotation][out] */ 
@@ -2894,7 +2896,7 @@ EXTERN_C const IID IID_IStream;
         HRESULT ( STDMETHODCALLTYPE *Commit )( 
             __RPC__in IStream * This,
             /* [annotation][in] */ 
-            _In_  DWORD grfCommitFlags);
+            _In_ _Win32_AssociatedEnum_(STGC)  DWORD grfCommitFlags);
         
         DECLSPEC_XFGVIRT(IStream, Revert)
         HRESULT ( STDMETHODCALLTYPE *Revert )( 
@@ -2908,7 +2910,7 @@ EXTERN_C const IID IID_IStream;
             /* [annotation][in] */ 
             _In_  ULARGE_INTEGER cb,
             /* [annotation][in] */ 
-            _In_  DWORD dwLockType);
+            _In_ _Win32_AssociatedEnum_(LOCKTYPE)  DWORD dwLockType);
         
         DECLSPEC_XFGVIRT(IStream, UnlockRegion)
         HRESULT ( STDMETHODCALLTYPE *UnlockRegion )( 
@@ -2926,7 +2928,7 @@ EXTERN_C const IID IID_IStream;
             /* [annotation][out] */ 
             _Out_  STATSTG *pstatstg,
             /* [annotation][in] */ 
-            _In_  DWORD grfStatFlag);
+            _In_ _Win32_AssociatedEnum_(STATFLAG)  DWORD grfStatFlag);
         
         DECLSPEC_XFGVIRT(IStream, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
@@ -3581,7 +3583,7 @@ EXTERN_C const IID IID_IRpcChannelBuffer3;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **pInterface) = 0;
+            _COM_Outptr_  void **pInterface) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetDestCtxEx( 
             /* [annotation][in] */ 
@@ -3700,7 +3702,7 @@ EXTERN_C const IID IID_IRpcChannelBuffer3;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **pInterface);
+            _COM_Outptr_  void **pInterface);
         
         DECLSPEC_XFGVIRT(IRpcChannelBuffer3, GetDestCtxEx)
         HRESULT ( STDMETHODCALLTYPE *GetDestCtxEx )( 
@@ -4637,7 +4639,7 @@ EXTERN_C const IID IID_IClientSecurity;
             /* [annotation][out] */ 
             _Outptr_result_maybenull_  void **pAuthInfo,
             /* [annotation][out] */ 
-            _Out_opt_  DWORD *pCapabilites) = 0;
+            _Out_opt_ _Win32_AssociatedEnum_(EOLE_AUTHENTICATION_CAPABILITIES)  DWORD *pCapabilites) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE SetBlanket( 
             /* [annotation][in] */ 
@@ -4655,7 +4657,7 @@ EXTERN_C const IID IID_IClientSecurity;
             /* [annotation][in] */ 
             _In_opt_  void *pAuthInfo,
             /* [annotation][in] */ 
-            _In_  DWORD dwCapabilities) = 0;
+            _In_ _Win32_AssociatedEnum_(EOLE_AUTHENTICATION_CAPABILITIES)  DWORD dwCapabilities) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE CopyProxy( 
             /* [annotation][in] */ 
@@ -4706,7 +4708,7 @@ EXTERN_C const IID IID_IClientSecurity;
             /* [annotation][out] */ 
             _Outptr_result_maybenull_  void **pAuthInfo,
             /* [annotation][out] */ 
-            _Out_opt_  DWORD *pCapabilites);
+            _Out_opt_ _Win32_AssociatedEnum_(EOLE_AUTHENTICATION_CAPABILITIES)  DWORD *pCapabilites);
         
         DECLSPEC_XFGVIRT(IClientSecurity, SetBlanket)
         HRESULT ( STDMETHODCALLTYPE *SetBlanket )( 
@@ -4726,7 +4728,7 @@ EXTERN_C const IID IID_IClientSecurity;
             /* [annotation][in] */ 
             _In_opt_  void *pAuthInfo,
             /* [annotation][in] */ 
-            _In_  DWORD dwCapabilities);
+            _In_ _Win32_AssociatedEnum_(EOLE_AUTHENTICATION_CAPABILITIES)  DWORD dwCapabilities);
         
         DECLSPEC_XFGVIRT(IClientSecurity, CopyProxy)
         HRESULT ( STDMETHODCALLTYPE *CopyProxy )( 
@@ -5391,7 +5393,7 @@ EXTERN_C const IID IID_IGlobalInterfaceTable;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
     };
     
@@ -5442,7 +5444,7 @@ EXTERN_C const IID IID_IGlobalInterfaceTable;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         END_INTERFACE
     } IGlobalInterfaceTableVtbl;
@@ -6138,7 +6140,7 @@ EXTERN_C const IID IID_IAsyncManager;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **pInterface) = 0;
+            _COM_Outptr_  void **pInterface) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetState( 
             /* [annotation][out] */ 
@@ -6181,7 +6183,7 @@ EXTERN_C const IID IID_IAsyncManager;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **pInterface);
+            _COM_Outptr_  void **pInterface);
         
         DECLSPEC_XFGVIRT(IAsyncManager, GetState)
         HRESULT ( STDMETHODCALLTYPE *GetState )( 
@@ -6749,7 +6751,7 @@ EXTERN_C const IID IID_IAddrExclusionControl;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppEnumerator) = 0;
+            _COM_Outptr_  void **ppEnumerator) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE UpdateAddrExclusionList( 
             /* [annotation][in] */ 
@@ -6786,7 +6788,7 @@ EXTERN_C const IID IID_IAddrExclusionControl;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppEnumerator);
+            _COM_Outptr_  void **ppEnumerator);
         
         DECLSPEC_XFGVIRT(IAddrExclusionControl, UpdateAddrExclusionList)
         HRESULT ( STDMETHODCALLTYPE *UpdateAddrExclusionList )( 
@@ -8331,7 +8333,7 @@ EXTERN_C const IID IID_IMarshalingStream;
         HRESULT ( STDMETHODCALLTYPE *Commit )( 
             IMarshalingStream * This,
             /* [annotation][in] */ 
-            _In_  DWORD grfCommitFlags);
+            _In_ _Win32_AssociatedEnum_(STGC)  DWORD grfCommitFlags);
         
         DECLSPEC_XFGVIRT(IStream, Revert)
         HRESULT ( STDMETHODCALLTYPE *Revert )( 
@@ -8345,7 +8347,7 @@ EXTERN_C const IID IID_IMarshalingStream;
             /* [annotation][in] */ 
             _In_  ULARGE_INTEGER cb,
             /* [annotation][in] */ 
-            _In_  DWORD dwLockType);
+            _In_ _Win32_AssociatedEnum_(LOCKTYPE)  DWORD dwLockType);
         
         DECLSPEC_XFGVIRT(IStream, UnlockRegion)
         HRESULT ( STDMETHODCALLTYPE *UnlockRegion )( 
@@ -8363,7 +8365,7 @@ EXTERN_C const IID IID_IMarshalingStream;
             /* [annotation][out] */ 
             _Out_  STATSTG *pstatstg,
             /* [annotation][in] */ 
-            _In_  DWORD grfStatFlag);
+            _In_ _Win32_AssociatedEnum_(STATFLAG)  DWORD grfStatFlag);
         
         DECLSPEC_XFGVIRT(IStream, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
@@ -10839,7 +10841,7 @@ EXTERN_C const IID IID_IMoniker;
             /* [annotation][in] */ 
             _In_  REFIID riidResult,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppvResult) = 0;
+            _COM_Outptr_  void **ppvResult) = 0;
         
         virtual /* [local] */ HRESULT STDMETHODCALLTYPE BindToStorage( 
             /* [annotation][unique][in] */ 
@@ -10849,7 +10851,7 @@ EXTERN_C const IID IID_IMoniker;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppvObj) = 0;
+            _COM_Outptr_  void **ppvObj) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Reduce( 
             /* [annotation][unique][in] */ 
@@ -11004,7 +11006,7 @@ EXTERN_C const IID IID_IMoniker;
             /* [annotation][in] */ 
             _In_  REFIID riidResult,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppvResult);
+            _COM_Outptr_  void **ppvResult);
         
         DECLSPEC_XFGVIRT(IMoniker, BindToStorage)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *BindToStorage )( 
@@ -11016,7 +11018,7 @@ EXTERN_C const IID IID_IMoniker;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppvObj);
+            _COM_Outptr_  void **ppvObj);
         
         DECLSPEC_XFGVIRT(IMoniker, Reduce)
         HRESULT ( STDMETHODCALLTYPE *Reduce )( 
@@ -11632,7 +11634,7 @@ EXTERN_C const IID IID_IStorage;
             /* [annotation][string][in] */ 
             _In_  const OLECHAR *pwcsNewName,
             /* [annotation][in] */ 
-            _In_  DWORD grfFlags) = 0;
+            _In_ _Win32_AssociatedEnum_(STGMOVE)  DWORD grfFlags) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Commit( 
             /* [annotation][in] */ 
@@ -11791,7 +11793,7 @@ EXTERN_C const IID IID_IStorage;
             /* [annotation][string][in] */ 
             _In_  const OLECHAR *pwcsNewName,
             /* [annotation][in] */ 
-            _In_  DWORD grfFlags);
+            _In_ _Win32_AssociatedEnum_(STGMOVE)  DWORD grfFlags);
         
         DECLSPEC_XFGVIRT(IStorage, Commit)
         HRESULT ( STDMETHODCALLTYPE *Commit )( 
@@ -16933,7 +16935,7 @@ void                      __RPC_USER  STGMEDIUM_UserFree64(     __RPC__in unsign
     /* [annotation][in] */ 
     _In_  REFIID riidResult,
     /* [annotation][iid_is][out] */ 
-    _Outptr_  void **ppvResult);
+    _COM_Outptr_  void **ppvResult);
 
 
 /* [call_as] */ HRESULT STDMETHODCALLTYPE IMoniker_BindToObject_Stub( 
@@ -16956,7 +16958,7 @@ void                      __RPC_USER  STGMEDIUM_UserFree64(     __RPC__in unsign
     /* [annotation][in] */ 
     _In_  REFIID riid,
     /* [annotation][iid_is][out] */ 
-    _Outptr_  void **ppvObj);
+    _COM_Outptr_  void **ppvObj);
 
 
 /* [call_as] */ HRESULT STDMETHODCALLTYPE IMoniker_BindToStorage_Stub( 

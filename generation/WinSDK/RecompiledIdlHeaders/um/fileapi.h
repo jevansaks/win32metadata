@@ -17,6 +17,7 @@
 #include <apisetcconv.h>
 #include <minwindef.h>
 #include <minwinbase.h>
+#include <win32metadata_annotations.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -1006,7 +1007,7 @@ ReadFileEx(
     _In_ HANDLE hFile,
     _Out_writes_bytes_opt_(nNumberOfBytesToRead) __out_data_source(FILE) LPVOID lpBuffer,
     _In_ DWORD nNumberOfBytesToRead,
-    _Inout_ LPOVERLAPPED lpOverlapped,
+    _Inout_ _Win32_Retained_ LPOVERLAPPED lpOverlapped,
     _In_ LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine
     );
 
@@ -1167,7 +1168,7 @@ WriteFileEx(
     _In_ HANDLE hFile,
     _In_reads_bytes_opt_(nNumberOfBytesToWrite) LPCVOID lpBuffer,
     _In_ DWORD nNumberOfBytesToWrite,
-    _Inout_ LPOVERLAPPED lpOverlapped,
+    _Inout_ _Win32_Retained_ LPOVERLAPPED lpOverlapped,
     _In_ LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine
     );
 

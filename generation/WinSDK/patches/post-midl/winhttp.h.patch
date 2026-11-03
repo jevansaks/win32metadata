@@ -1,28 +1,46 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h
+index ecfb21f9..7b208d93 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h
-@@ -18,3 +18,4 @@
+@@ -16,6 +16,7 @@ Abstract:
+ #define _WINHTTPX_
+ 
  #include <winapifamily.h>
 +#include <win32metadata_annotations.h>
--
-+
+ 
  #pragma region Application Family or OneCore Family or Games Family
-@@ -1687,4 +1688,5 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+@@ -1684,6 +1685,7 @@ WinHttpConnect
+     IN DWORD dwReserved
+ );
+ 
 +_Win32_SetLastError_
  WINHTTPAPI
  BOOL
  WINAPI
- WinHttpReadData
-@@ -1850,4 +1852,5 @@
+@@ -1847,6 +1849,7 @@ WinHttpAddRequestHeadersEx
+     _In_reads_(cHeaders) WINHTTP_EXTENDED_HEADER *pHeaders
+ );
+ 
 +_Win32_SetLastError_
  WINHTTPAPI
  BOOL
  WINAPI
- WinHttpSendRequest
-@@ -1917,4 +1920,5 @@
+@@ -1914,6 +1917,7 @@ WinHttpQueryAuthParams
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
 +_Win32_SetLastError_
  WINHTTPAPI
  BOOL
  WINAPI
- WinHttpReceiveResponse
+@@ -1948,7 +1952,7 @@ WinHttpQueryHeadersEx
+     _In_ UINT uiCodePage,
+     _Inout_opt_ PDWORD pdwIndex,
+     _In_opt_ PWINHTTP_HEADER_NAME pHeaderName,
+-    _Out_writes_bytes_to_opt_(*pdwBufferLength, *pdwBufferLength) PVOID pBuffer,
++    _Out_writes_bytes_to_opt_(*pdwBufferLength, *pdwBufferLength) _Win32_ContainsInteriorPointers_ PVOID pBuffer,
+     _Inout_ PDWORD pdwBufferLength,
+     _Out_writes_opt_(*pdwHeadersCount) PWINHTTP_EXTENDED_HEADER *ppHeaders,
+     _Out_ PDWORD pdwHeadersCount

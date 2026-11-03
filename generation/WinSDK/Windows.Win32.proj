@@ -20,6 +20,9 @@
 
   <ItemGroup>
     <SdkHeaderPatch Include="patches\post-midl\*.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\ObjIdl.Idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\ObjIdlbase.Idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\dxgi.idl.patch"/>
     <ScraperRsp Include="scraper.settings.rsp"/>
     <ScraperRsp Include="libMappings.rsp"/>
     <ScraperRsp Include="libMappingsManual.rsp"/>

@@ -77,7 +77,7 @@ WINOLEAPI_(DWORD) CoBuildVersion( VOID );
 
 /* init/uninit */
 
-_Check_return_ WINOLEAPI  CoInitialize(_In_opt_ LPVOID pvReserved);
+_Check_return_ WINOLEAPI  CoInitialize(_In_opt_ _Reserved_ LPVOID pvReserved);
 
 #define COM_SUPPORT_MALLOC_SPIES
 _Check_return_ WINOLEAPI  CoRegisterMallocSpy(_In_ LPMALLOCSPY pMallocSpy);
@@ -140,7 +140,7 @@ _Check_return_ WINOLEAPI CoGetInstanceFromIStorage(
 #if (_WIN32_WINNT >= 0x0500 ) || defined(_WIN32_DCOM) // DCOM
 
 
-WINOLEAPI CoAllowSetForegroundWindow(_In_ IUnknown *pUnk, _In_opt_ LPVOID lpvReserved);
+WINOLEAPI CoAllowSetForegroundWindow(_In_ IUnknown *pUnk, _In_opt_ _Reserved_ LPVOID lpvReserved);
 
 
 WINOLEAPI DcomChannelSetHResult(_In_opt_ LPVOID pvReserved, _In_opt_ ULONG* pulReserved, _In_ HRESULT appsHR);
@@ -176,7 +176,7 @@ _Check_return_ WINOLEAPI CoTreatAsClass(_In_ REFCLSID clsidOld, _In_ REFCLSID cl
 WINOLEAPI CreateDataAdviseHolder(_Outptr_ LPDATAADVISEHOLDER FAR* ppDAHolder);
 
 WINOLEAPI CreateDataCache(_In_opt_ LPUNKNOWN pUnkOuter, _In_ REFCLSID rclsid,
-                          _In_ REFIID iid, _Out_ LPVOID FAR* ppv);
+                          _In_ REFIID iid, _COM_Outptr_ LPVOID FAR* ppv);
 
 
 /****** Storage API Prototypes ********************************************/
@@ -221,9 +221,9 @@ WINOLEAPI  CoInstall(
 //  Moniker APIs
 //
 
-_Check_return_ WINOLEAPI  BindMoniker(_In_ LPMONIKER pmk, _In_ DWORD grfOpt, _In_ REFIID iidResult, _Outptr_ LPVOID FAR* ppvResult);
+_Check_return_ WINOLEAPI  BindMoniker(_In_ LPMONIKER pmk, _In_ DWORD grfOpt, _In_ REFIID iidResult, _COM_Outptr_ LPVOID FAR* ppvResult);
 
-_Check_return_ WINOLEAPI  CoGetObject(_In_ LPCWSTR pszName, _In_opt_ BIND_OPTS *pBindOptions, _In_ REFIID riid, _Outptr_ void **ppv);
+_Check_return_ WINOLEAPI  CoGetObject(_In_ LPCWSTR pszName, _In_opt_ BIND_OPTS *pBindOptions, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 _Check_return_ WINOLEAPI  MkParseDisplayName(_In_ LPBC pbc, _In_ LPCOLESTR szUserName,
                 _Out_ ULONG FAR * pchEaten, _Outptr_ LPMONIKER FAR * ppmk);
 _Check_return_ WINOLEAPI  MonikerRelativePathTo(_In_ LPMONIKER pmkSrc, _In_ LPMONIKER pmkDest, _Outptr_ LPMONIKER
