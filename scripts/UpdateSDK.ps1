@@ -1,7 +1,8 @@
 [CmdletBinding()]
 Param(
     [Parameter(Mandatory=$true)]
-    [string]$Version
+    [string]$Version,
+    [string[]]$SelectedPatches = @()
 )
 
 . "$PSScriptRoot\CommonUtils.ps1"
@@ -20,7 +21,7 @@ Write-Host "Rebuilding $buildToolsProj..."
 dotnet build $buildToolsProj -t:Clean
 
 Write-Host "Recompiling IDL files for scraping..."
-. "$PSScriptRoot\RecompileIdlFilesForScraping.ps1"
+. "$PSScriptRoot\RecompileIdlFilesForScraping.ps1" -SelectedPatches $SelectedPatches
 
 Write-Host "Creating libMappings.rsp..."
 . "$PSScriptRoot\CreateProcLibMappingForAllLibs.ps1"

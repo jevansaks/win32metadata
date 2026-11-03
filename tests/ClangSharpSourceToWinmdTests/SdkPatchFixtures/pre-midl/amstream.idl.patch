@@ -1,0 +1,12 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/amstream.idl b/generation/WinSDK/RecompiledIdlHeaders/um/amstream.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/amstream.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/amstream.idl
+@@ -71,6 +71,7 @@
+     RenderData = 2
+ } OUTPUT_STATE;
+ 
++cpp_quote("// [win32metadata sdk patch] Metadata marker for OUTPUT_STATE enum")
+ 
+ // IAMMultiMediaStream interface
+ [

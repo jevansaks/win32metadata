@@ -1,0 +1,63 @@
+# SDK header patches
+
+SDK ingestion supports PR2248's per-file unified diffs and `git apply` mechanism.
+`generation/WinSDK/patches/pre-midl/<owning-file>.patch` modifies copied IDL
+or included headers **before** IDL-to-SAL conversion and MIDL compilation.
+`post-midl/<owning-file>.patch` modifies the final header copies **after**
+MIDL output and the existing compatibility-header restores.
+
+No patches are selected by default. Generation continues using the checked-in
+`RecompiledIdlHeaders`; it does not discover or apply patch assets during scraping.
+When a supported metadata slice supplies production patches, select them explicitly:
+
+```powershell
+.\scripts\RecompileIdlFilesForScraping.ps1 -SelectedPatches @(
+    'pre-midl/example.idl.patch',
+    'post-midl/example.h.patch'
+)
+# UpdateSDK.ps1 accepts the same selection when updating the package version.
+```
+
+The test-only IDL proof reuses PR2248's `cpp_quote` comment next to `OUTPUT_STATE`;
+MIDL emits that comment in `amstream.h`. The header proof adds only a comment
+at PR2248's Uxtheme hook context. These fixtures live under the existing emitter
+test project, are applied only to temporary SDK roots, and are not production
+generation inputs. Neither changes declarations. PR2248's
+Uxtheme enum/signature changes and PR2365's WinHttp annotation corpus are
+deliberately not enabled: consuming those annotations is a separate layer.
+This layer adds no annotation reader, retired sidecars, or restored SDK headers.
+The inherited qualification receipt currently hashes all tracked
+`generation/WinSDK` files, including potentially inactive patch assets; fixing
+that effective-input distinction belongs to the CI owner, not this layer.
+
+Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
+`git diff` with repository-relative paths under
+`generation/WinSDK/RecompiledIdlHeaders/{um,shared,winrt,ucrt}/`.
+It must modify exactly one existing file matching its owning filename. Selection
+paths use `/`, as in the examples; filesystem command paths use `\`.
+Selections are applied in their explicit order, at most once per file per phase.
+Missing selections/targets, wrong phases, version drift, traversal, reparse points,
+file creation/deletion/rename, stale hunks, and double application throw.
+Every selected patch is validated even when it belongs to the other phase.
+Each phase is staged before copying results back, so a failed hunk leaves that
+phase's authoritative files untouched. Failure stops ingestion; rerun from fresh
+SDK copies after fixing the patch.
+
+Target bytes are not decoded/re-encoded. Patch line endings are matched to each
+target's LF or CRLF format; UTF-8 BOMs and legacy byte encodings are preserved.
+UTF-16 and mixed line endings are explicitly unsupported. When the SDK changes,
+regenerate the patch against fresh copied inputs and update its version line;
+do not silently skip it or broaden hunk matching.
+
+Focused tests run in the existing emitter MSTest project, including phase
+selection, conversion survival, unchanged proof declarations, hook placement,
+encoding/line endings, and negative cases:
+
+```powershell
+dotnet test tests\ClangSharpSourceToWinmdTests -c Release --filter SdkPatchTests
+.\scripts\TestTooling.ps1
+```
+
+Original mechanism and proof:
+[microsoft/win32metadata#2248](https://github.com/microsoft/win32metadata/pull/2248),
+initial commit `a942a455208b374f7c68de8364fc2455e9c64a1a`.

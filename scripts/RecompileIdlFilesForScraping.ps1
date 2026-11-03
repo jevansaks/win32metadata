@@ -1,3 +1,7 @@
+param(
+    [string[]]$SelectedPatches = @()
+)
+
 . "$PSScriptRoot\CommonUtils.ps1"
 
 Install-BuildTools
@@ -43,6 +47,9 @@ Copy-Item "$d3dIncludeDir\dxgiformat.*" "$recompiledIdlHeadersDir\shared" -Recur
 
 Write-Host "Copying additional headers from $windowsWin32ProjectRoot\AdditionalHeaders to $recompiledIdlHeadersDir\um..."
 Copy-Item "$windowsWin32ProjectRoot\AdditionalHeaders\*" "$recompiledIdlHeadersDir\um" -Recurse
+
+& "$PSScriptRoot\ApplySDKPatches.ps1" -Phase pre-midl -HeaderRoot $recompiledIdlHeadersDir `
+    -SdkVersion ([IO.Path]::GetFileName($cppPkgPath)) -SelectedPatches $SelectedPatches
 
 Write-Host "Converting MIDL attributes to SAL annotations..."
 $idlFilesToRecompile = [System.Collections.ArrayList]@()
@@ -177,3 +184,6 @@ if ($headersToRestore.Count -gt 0) {
     git restore --source=origin/main --worktree -- $headersToRestore
     ThrowOnNativeProcessError
 }
+
+& "$PSScriptRoot\ApplySDKPatches.ps1" -Phase post-midl -HeaderRoot $recompiledIdlHeadersDir `
+    -SdkVersion ([IO.Path]::GetFileName($cppPkgPath)) -SelectedPatches $SelectedPatches
