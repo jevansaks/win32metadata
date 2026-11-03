@@ -101,12 +101,115 @@ public static class Apis {
             Assert.IsTrue(Evaluate(data).Passed, "The third pair resolves the majority without ratcheting the baseline.");
         }
 
+        [TestMethod]
+        public void MigrationInputs_MayDifferButOutputsAndCumulativeBudgetsMayNot()
+        {
+            JsonObject data = Receipt();
+            data["candidate"]!["inputHash"] = new string('c', 64);
+            Assert.IsTrue(Evaluate(data).Passed, "Source relocation is not semantic drift.");
+            data["pairs"]![0]!["migrationDrift"]!["equal"] = false;
+            Assert.IsFalse(Evaluate(data).Passed);
+            data = Receipt();
+            data["pairs"]![0]!["control"]!["seconds"] = 109;
+            Candidate(data)["seconds"] = 118;
+            Assert.IsFalse(Evaluate(data).Passed, "Two individually acceptable increments must not ratchet A/C.");
+            data = Receipt();
+            data["pairs"]![0]!["control"]!["seconds"] = 90;
+            Candidate(data)["seconds"] = 100;
+            Assert.IsFalse(Evaluate(data).Passed, "A tool improvement must not hide a B/C migration regression.");
+            data = Receipt();
+            data["pairs"]![0]!["control"]!["seconds"] = 111;
+            Assert.IsFalse(Evaluate(data).Passed, "A faster C must not hide an A/B tool regression.");
+        }
+
+        [TestMethod]
+        public void ActiveInputs_ObserveHeadersConfigurationAndSupplementalPartitionsNotInactiveAssets()
+        {
+            using var directory = new TemporaryDirectory();
+            string script = LoadQualificationFunctions() + $@"
+$base = '{Quote(directory.Path)}'
+$build = @{{ Directory = $base; Headers = ""$base\headers""; Includes = ""$base\inc"" }}
+$configuration = @{{ Properties = @{{ ObjDir = ""$base\obj""; EnumsJson = ""$base\enums.json""; ScraperHeader = ""$base\scraper.header.txt""; ConstantsScraperHeader = ""$base\ConstantsScraper.header.txt"" }}; Items = @{{ ScraperRsp = @(@{{ FullPath = ""$base\generation\WinSDK\scraper.settings.rsp"" }}) }} }}
+foreach ($tree in 'headers', 'inc', 'generation\WinSDK\Partitions\Supplemental', 'sources\GeneratorSdk\tools\assets\scraper', 'sources\GeneratorSdk\sdk', 'generation\WinSDK\patches', 'tests\fixtures') {{
+  New-Item -ItemType Directory -Force ""$base\$tree"" | Out-Null
+}}
+foreach ($file in 'generation\WinSDK\Windows.Win32.proj', 'sources\GeneratorSdk\sdk\sdk.props', 'sources\GeneratorSdk\sdk\sdk.targets', 'Directory.Build.props', 'Directory.Build.targets', 'enums.json', 'scraper.header.txt', 'ConstantsScraper.header.txt', 'generation\WinSDK\scraper.settings.rsp', 'headers\input.h', 'inc\input.h', 'generation\WinSDK\Partitions\Supplemental\main.cpp', 'generation\WinSDK\Partitions\Supplemental\settings.rsp') {{
+  'original' | Set-Content ""$base\$file""
+}}
+$original = @(Get-ActiveInputEntries $build $configuration) -join ""`n""
+foreach ($file in 'headers\input.h', 'inc\input.h', 'generation\WinSDK\scraper.settings.rsp', 'generation\WinSDK\Partitions\Supplemental\settings.rsp') {{
+  'changed' | Set-Content ""$base\$file""
+  if ((@(Get-ActiveInputEntries $build $configuration) -join ""`n"") -eq $original) {{ throw ""Unobserved active input: $file"" }}
+  'original' | Set-Content ""$base\$file""
+}}
+'inactive' | Set-Content ""$base\generation\WinSDK\patches\unselected.h.patch""
+'fixture' | Set-Content ""$base\tests\fixtures\annotation.h""
+if ((@(Get-ActiveInputEntries $build $configuration) -join ""`n"") -ne $original) {{ throw 'Inactive assets changed generation input hash.' }}
+Remove-Item ""$base\headers\input.h""
+if ((@(Get-ActiveInputEntries $build $configuration) -join ""`n"") -eq $original) {{ throw 'Deleted active header unobserved.' }}
+Remove-Item ""$base\generation\WinSDK\scraper.settings.rsp""
+try {{ Get-ActiveInputEntries $build $configuration; throw 'Missing RSP accepted.' }} catch {{
+  if ($_.Exception.Message -eq 'Missing RSP accepted.') {{ throw }}
+}}
+Write-Output 'Active input checks passed.'
+";
+            var result = Run("pwsh", new[] { "-NoProfile", "-NonInteractive", "-Command", script });
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+        }
+
+        [TestMethod]
+        public void FrozenProject_EvaluatesCandidateToolsAndFrozenControlPaths()
+        {
+            using var directory = new TemporaryDirectory();
+            foreach (string relative in new[] { "Directory.Build.props", "Directory.Build.targets",
+                "sources/GeneratorSdk/sdk/sdk.props", "sources/GeneratorSdk/sdk/sdk.targets", "generation/WinSDK/Windows.Win32.proj" })
+            {
+                var content = Run("git", new[] { "show", $"{MigrationQualification.ReferenceSha}:{relative}" });
+                Assert.AreEqual(0, content.ExitCode, content.Output);
+                string path = Path.Combine(directory.Path, relative.Replace('/', Path.DirectorySeparatorChar));
+                Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+                File.WriteAllText(path, content.Output);
+            }
+
+            var restore = Run("dotnet", new[] { "restore", Path.Combine(directory.Path, "generation", "WinSDK", "Windows.Win32.proj"),
+                "--configfile", Path.Combine(RepositoryRoot(), "nuget.config"), "--verbosity", "quiet" });
+            Assert.AreEqual(0, restore.ExitCode, restore.Output);
+            string script = LoadQualificationFunctions() + $@"
+$ResultsDirectory = '{Quote(directory.Path)}'
+$build = @{{ Directory = '{Quote(directory.Path)}'; Project = '{Quote(Path.Combine(directory.Path, "generation", "WinSDK", "Windows.Win32.proj"))}'; Tools = '{Quote(Path.Combine(RepositoryRoot(), "bin", "Release", "net10.0"))}'; Headers = '{Quote(Path.Combine(directory.Path, "generation", "WinSDK", "RecompiledIdlHeaders"))}'; Includes = '{Quote(Path.Combine(directory.Path, "generation", "WinSDK", "inc"))}'; SdkRoot = '{Quote(Path.Combine(directory.Path, "sdk-origin"))}' }}
+$configuration = Get-GenerationConfiguration $build control
+if ($configuration.Properties.ToolsBinDir -ne $build.Tools -or $configuration.Properties.SdkIncRoot -ne $build.Headers) {{ throw 'Control not isolated.' }}
+foreach ($group in $configuration.Items.Values) {{
+  foreach ($item in $group) {{
+    if (!$item.FullPath.StartsWith($build.Directory + '\', [StringComparison]::OrdinalIgnoreCase)) {{ throw 'Control consumed candidate configuration.' }}
+  }}
+}}
+$arguments = Get-GenerationArguments $build ""$ResultsDirectory\obj"" ""$ResultsDirectory\Windows.Win32.winmd""
+if ($arguments -contains '-p:PartitionFilter=WinHttp' -or $arguments -contains '-p:SkipScraping=true') {{ throw 'Incomplete production generation.' }}
+$build.Directory = '{Quote(RepositoryRoot())}'
+$build.Project = ""$($build.Directory)\generation\WinSDK\Windows.Win32.proj""
+$build.Headers = ""$($build.Directory)\generation\WinSDK\RecompiledIdlHeaders""
+$build.Includes = ""$($build.Directory)\generation\WinSDK\inc""
+$current = Get-GenerationConfiguration $build candidate
+if ($current.Properties.SdkIncRoot -ne $build.Headers -or $current.Properties.EnumsJson -ne ""$($build.Directory)\generation\WinSDK\enums.json"") {{ throw 'Default C did not use legacy inputs.' }}
+$build.Headers = ""$ResultsDirectory\explicit-patched-result""
+$current = Get-GenerationConfiguration $build patched
+if ($current.Properties.SdkIncRoot -ne $build.Headers) {{ throw 'Explicit C header selection ignored.' }}
+";
+            var result = Run("pwsh", new[] { "-NoProfile", "-NonInteractive", "-Command", script });
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+        }
+
         [DataTestMethod]
         [DataRow("referenceSha")]
         [DataRow("reference")]
         [DataRow("sourceSha")]
         [DataRow("inputHash")]
         [DataRow("toolchainHash")]
+        [DataRow("control")]
+        [DataRow("toolHash")]
+        [DataRow("sdkHash")]
+        [DataRow("migrationDrift")]
         [DataRow("sdkVersion")]
         [DataRow("clangSharpVersion")]
         [DataRow("generationFailure")]
@@ -126,8 +229,12 @@ public static class Apis {
                 case "referenceSha": data["referenceSha"] = CandidateSha; break;
                 case "reference": data["reference"] = null; break;
                 case "sourceSha": data["reference"]!["sourceSha"] = CandidateSha; break;
-                case "inputHash": data["reference"]!["inputHash"] = new string('c', 64); break;
+                case "inputHash": data["control"]!["inputHash"] = new string('c', 64); break;
                 case "toolchainHash": data["candidate"]!["toolchainHash"] = new string('c', 64); break;
+                case "control": data["control"] = null; break;
+                case "toolHash": data["control"]!["toolHash"] = new string('c', 64); break;
+                case "sdkHash": data["candidate"]!["sdkHash"] = new string('c', 64); break;
+                case "migrationDrift": data["pairs"]![0]!["migrationDrift"]!["equal"] = false; break;
                 case "sdkVersion": data["sdkVersion"] = "latest"; break;
                 case "clangSharpVersion": data["clangSharpVersion"] = "latest"; break;
                 case "generationFailure": Candidate(data)["exitCode"] = 1; break;
@@ -153,14 +260,18 @@ public static class Apis {
             byte[] first = File.ReadAllBytes(fixture.Generate("", "public struct Value { public int Number; }", ""));
             byte[] second = File.ReadAllBytes(fixture.Generate("", "public struct Value { public int Number; }", ""));
             var drift = MigrationQualification.Compare(first, second);
+            var migrationDrift = MigrationQualification.Compare(second, second);
             JsonObject data = Receipt();
             data["passed"] = true;
             data["pairs"]![0]!["drift"] = JsonSerializer.SerializeToNode(drift, MigrationQualification.JsonOptions);
+            data["pairs"]![0]!["migrationDrift"] = JsonSerializer.SerializeToNode(migrationDrift, MigrationQualification.JsonOptions);
             File.WriteAllBytes(Path.Combine(directory.Path, "pair-1-reference.winmd"), first);
+            File.WriteAllBytes(Path.Combine(directory.Path, "pair-1-control.winmd"), second);
             File.WriteAllBytes(Path.Combine(directory.Path, "pair-1-candidate.winmd"), second);
-            foreach (string side in new[] { "reference", "candidate" })
+            foreach (string side in new[] { "reference", "control", "candidate" })
             {
-                foreach (var entry in new[] { ("inputs.sha256", "inputHash"), ("toolchain.txt", "toolchainHash") })
+                foreach (var entry in new[] { ("inputs.sha256", "inputHash"), ("toolchain.txt", "toolchainHash"),
+                    ("sdk.sha256", "sdkHash"), ("tools.sha256", "toolHash") })
                 {
                     string file = Path.Combine(directory.Path, $"{side}-{entry.Item1}");
                     File.WriteAllText(file, "bound inputs");
@@ -187,6 +298,10 @@ public static class Apis {
             File.Delete(candidate);
             Assert.ThrowsException<FileNotFoundException>(() => MigrationQualification.VerifyEvidence(directory.Path));
             File.WriteAllBytes(candidate, second);
+            string control = Path.Combine(directory.Path, "pair-1-control.winmd");
+            File.Delete(control);
+            Assert.ThrowsException<FileNotFoundException>(() => MigrationQualification.VerifyEvidence(directory.Path));
+            File.WriteAllBytes(control, second);
             data["pairs"]![0]!["candidate"]!["outputHash"] = new string('c', 64);
             File.WriteAllText(Path.Combine(directory.Path, "receipt.json"), data.ToJsonString());
             Assert.ThrowsException<InvalidDataException>(() => MigrationQualification.VerifyEvidence(directory.Path));
@@ -275,6 +390,8 @@ public static class Apis {
             foreach (string arch in new[] { "x64", "x86", "arm64" })
                 StringAssert.Contains(build, $"name: generated_{arch}");
             StringAssert.Contains(Job(workflow, "qualification"), $"ref: {MigrationQualification.ReferenceSha}");
+            StringAssert.Contains(Job(workflow, "qualification"), "path: .qualification/control");
+            StringAssert.Contains(Job(workflow, "qualification"), "-ControlDirectory .qualification\\control");
             foreach (string name in new[] { "tooling-tests", "qualification" })
             {
                 StringAssert.Matches(Job(workflow, name), new Regex(@"name: Retain [^\n]+\n        if: always\(\)"));
@@ -378,18 +495,22 @@ function dotnet {{
             Assert.IsTrue(new FileInfo(Path.Combine(directory.Path, "tooling.log")).Length > 0);
         }
 
-        [TestMethod]
-        public void FailingRealGeneration_RemovesStaleOutputAndRetainsFailureEvidence()
+        [DataTestMethod]
+        [DataRow(false)]
+        [DataRow(true)]
+        public void FailingRealGeneration_RemovesStaleOutputAndRetainsFailureEvidence(bool missingOutput)
         {
             using var directory = new TemporaryDirectory();
             string project = Path.Combine(directory.Path, "generation", "WinSDK");
-            Directory.CreateDirectory(Path.Combine(project, "obj", "generated"));
-            Directory.CreateDirectory(Path.Combine(directory.Path, "bin"));
+            Directory.CreateDirectory(project);
             string evidence = Path.Combine(directory.Path, "evidence");
             Directory.CreateDirectory(evidence);
             File.WriteAllText(Path.Combine(project, "Failure.proj"),
+                missingOutput ? "<Project><Target Name=\"EmitWinmd\" /></Project>" :
                 "<Project><Target Name=\"EmitWinmd\"><Error Text=\"Intentional qualification generation failure\" /></Target></Project>");
-            string output = Path.Combine(directory.Path, "bin", "Windows.Win32.winmd");
+            string buildDirectory = Path.Combine(evidence, "build-1-reference");
+            Directory.CreateDirectory(Path.Combine(buildDirectory, "obj", "generated"));
+            string output = Path.Combine(buildDirectory, "Windows.Win32.winmd");
             File.WriteAllText(output, "stale output");
             string script = $@"
 $ErrorActionPreference = 'Stop'
@@ -397,16 +518,21 @@ $errors = $null
 $ast = [Management.Automation.Language.Parser]::ParseFile('{Quote(Path.Combine(RepositoryRoot(), "scripts", "TestMigrationQualification.ps1"))}', [ref]$null, [ref]$errors)
 $definition = $ast.Find({{ param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq 'Measure-Generation' }}, $true)
 Invoke-Expression $definition.Extent.Text
+$arguments = $ast.Find({{ param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq 'Get-GenerationArguments' }}, $true)
+Invoke-Expression $arguments.Extent.Text
 $ResultsDirectory = '{Quote(evidence)}'
-Measure-Generation '{Quote(directory.Path)}' reference 1
+$build = @{{ Directory = '{Quote(directory.Path)}'; Project = '{Quote(Path.Combine(project, "Failure.proj"))}'; Tools = '{Quote(directory.Path)}'; Headers = '{Quote(directory.Path)}'; Includes = '{Quote(directory.Path)}' }}
+Measure-Generation $build reference 1
 ";
             Assert.AreNotEqual(0, Run("pwsh", new[] { "-NoProfile", "-NonInteractive", "-Command", script }).ExitCode);
             Assert.IsFalse(File.Exists(output));
             using var sample = JsonDocument.Parse(File.ReadAllText(Path.Combine(evidence, "pair-1-reference-sample.json")));
-            Assert.AreNotEqual(0, sample.RootElement.GetProperty("exitCode").GetInt32());
+            if (missingOutput) Assert.AreEqual(0, sample.RootElement.GetProperty("exitCode").GetInt32());
+            else Assert.AreNotEqual(0, sample.RootElement.GetProperty("exitCode").GetInt32());
             Assert.AreEqual(JsonValueKind.Null, sample.RootElement.GetProperty("outputHash").ValueKind);
-            StringAssert.Contains(File.ReadAllText(Path.Combine(evidence, "pair-1-reference.log")),
-                "Intentional qualification generation failure");
+            if (!missingOutput)
+                StringAssert.Contains(File.ReadAllText(Path.Combine(evidence, "pair-1-reference.log")),
+                    "Intentional qualification generation failure");
         }
 
         private static JsonObject Receipt()
@@ -420,21 +546,43 @@ Measure-Generation '{Quote(directory.Path)}' reference 1
             {
                 ["referenceSha"] = MigrationQualification.ReferenceSha, ["candidateSha"] = CandidateSha,
                 ["sdkVersion"] = "10.0.28000.2705", ["clangSharpVersion"] = "21.1.8.4",
-                ["reference"] = new JsonObject { ["sourceSha"] = MigrationQualification.ReferenceSha, ["inputHash"] = Hash, ["toolchainHash"] = Hash },
-                ["candidate"] = new JsonObject { ["sourceSha"] = CandidateSha, ["inputHash"] = Hash, ["toolchainHash"] = Hash },
+                ["reference"] = InputReceipt(MigrationQualification.ReferenceSha, MigrationQualification.ReferenceSha),
+                ["control"] = InputReceipt(MigrationQualification.ReferenceSha, CandidateSha),
+                ["candidate"] = InputReceipt(CandidateSha, CandidateSha),
                 ["pairs"] = new JsonArray(new JsonObject
                 {
-                    ["reference"] = Sample(), ["candidate"] = Sample(),
+                    ["reference"] = Sample(), ["control"] = Sample(), ["candidate"] = Sample(),
                     ["drift"] = new JsonObject
                     {
                         ["equal"] = true, ["reference"] = new JsonObject { ["sha256"] = Hash },
                         ["candidate"] = new JsonObject { ["sha256"] = Hash }
+                    },
+                    ["migrationDrift"] = new JsonObject
+                    {
+                        ["equal"] = true, ["reference"] = new JsonObject { ["sha256"] = Hash },
+                        ["candidate"] = new JsonObject { ["sha256"] = Hash }
                     }
+
                 })
             };
         }
 
+        private static JsonObject InputReceipt(string source, string tools) => new JsonObject
+        {
+            ["sourceSha"] = source, ["toolSourceSha"] = tools, ["inputHash"] = Hash,
+            ["toolchainHash"] = Hash, ["sdkHash"] = Hash, ["toolHash"] = Hash
+        };
+
         private static JsonObject Candidate(JsonObject receipt) => receipt["pairs"]![0]!["candidate"]!.AsObject();
+        private static string LoadQualificationFunctions() => $@"
+$ErrorActionPreference = 'Stop'
+$errors = $null
+$ast = [Management.Automation.Language.Parser]::ParseFile('{Quote(Path.Combine(RepositoryRoot(), "scripts", "TestMigrationQualification.ps1"))}', [ref]$null, [ref]$errors)
+if ($errors) {{ throw ($errors | Out-String) }}
+foreach ($definition in $ast.FindAll({{ param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] }}, $true)) {{
+  Invoke-Expression $definition.Extent.Text
+}}
+";
         private static MigrationQualification.Verdict Evaluate(JsonObject receipt) =>
             MigrationQualification.Evaluate(JsonSerializer.SerializeToElement(receipt));
         private static string Job(string workflow, string name) =>

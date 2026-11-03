@@ -128,12 +128,23 @@ namespace WinmdUtilsProgram
             Require(Text(receipt, "sdkVersion") == "10.0.28000.2705" &&
                 Text(receipt, "clangSharpVersion") == "21.1.8.4", "SDK/ClangSharp version mismatch.");
             JsonElement reference = Property(receipt, "reference");
+            JsonElement control = Property(receipt, "control");
             JsonElement candidate = Property(receipt, "candidate");
             Require(Text(reference, "sourceSha") == ReferenceSha &&
+                Text(control, "sourceSha") == ReferenceSha &&
                 Text(candidate, "sourceSha") == candidateSha, "Source receipts do not match the qualified commits.");
-            foreach (string name in new[] { "inputHash", "toolchainHash" })
+            Require(Matches(Text(reference, "inputHash"), 64) &&
+                Text(reference, "inputHash") == Text(control, "inputHash"),
+                "Frozen reference/control inputs do not match.");
+            Require(Matches(Text(candidate, "inputHash"), 64), "Missing current active input hash.");
+            Require(Text(reference, "toolSourceSha") == ReferenceSha &&
+                Text(control, "toolSourceSha") == candidateSha && Text(candidate, "toolSourceSha") == candidateSha &&
+                Matches(Text(reference, "toolHash"), 64) && Matches(Text(control, "toolHash"), 64) &&
+                Text(control, "toolHash") == Text(candidate, "toolHash"), "Tool receipts do not match A/B/C.");
+            foreach (string name in new[] { "toolchainHash", "sdkHash" })
             {
-                Require(Matches(Text(reference, name), 64) && Text(reference, name) == Text(candidate, name),
+                Require(Matches(Text(reference, name), 64) && Text(reference, name) == Text(control, name) &&
+                    Text(reference, name) == Text(candidate, name),
                     $"Missing/mismatched {name}.");
             }
 
@@ -144,12 +155,11 @@ namespace WinmdUtilsProgram
                 return verdict;
             }
 
-            int timeBreaches = 0;
-            int memoryBreaches = 0;
+            var breaches = new Dictionary<string, int>();
             foreach (JsonElement pair in pairs.EnumerateArray())
             {
                 bool valid = true;
-                foreach (string side in new[] { "reference", "candidate" })
+                foreach (string side in new[] { "reference", "control", "candidate" })
                 {
                     JsonElement sample = Property(pair, side);
                     bool sampleValid = Number(sample, "exitCode") == 0 &&
@@ -161,28 +171,41 @@ namespace WinmdUtilsProgram
                     valid &= sampleValid;
                 }
 
-                JsonElement first = Property(pair, "reference");
-                JsonElement second = Property(pair, "candidate");
-                JsonElement drift = Property(pair, "drift");
-                Require(IsTrue(Property(drift, "equal")) &&
-                    Text(Property(drift, "reference"), "sha256") == Text(first, "outputHash") &&
-                    Text(Property(drift, "candidate"), "sha256") == Text(second, "outputHash"),
-                    "Missing, mismatched or differing final metadata.");
-                if (valid)
+                foreach (var comparison in new[]
                 {
-                    if (Number(second, "seconds") > Number(first, "seconds") * 1.10) timeBreaches++;
-                    if (Number(second, "peakWorkingSetBytes") > Number(first, "peakWorkingSetBytes") * 1.15) memoryBreaches++;
+                    ("reference", "control", "drift"), ("control", "candidate", "migrationDrift")
+                })
+                {
+                    JsonElement drift = Property(pair, comparison.Item3);
+                    Require(IsTrue(Property(drift, "equal")) &&
+                        Text(Property(drift, "reference"), "sha256") == Text(Property(pair, comparison.Item1), "outputHash") &&
+                        Text(Property(drift, "candidate"), "sha256") == Text(Property(pair, comparison.Item2), "outputHash"),
+                        $"Missing, mismatched or differing final metadata: {comparison.Item1}/{comparison.Item2}.");
+                }
+
+                // Check the tool regression, migration increment, and cumulative
+                // frozen budget independently; B never becomes a ratcheted baseline.
+                foreach (var comparison in new[] { ("reference", "control"), ("control", "candidate"), ("reference", "candidate") })
+                {
+                    foreach (var metric in new[] { ("seconds", 1.10), ("peakWorkingSetBytes", 1.15) })
+                    {
+                        string key = $"{comparison.Item1}/{comparison.Item2} {metric.Item1}";
+                        breaches.TryAdd(key, 0);
+                        if (valid && Number(Property(pair, comparison.Item2), metric.Item1) >
+                            Number(Property(pair, comparison.Item1), metric.Item1) * metric.Item2)
+                            breaches[key]++;
+                    }
                 }
             }
 
-            foreach (var metric in new[] { ("time", timeBreaches), ("memory", memoryBreaches) })
+            foreach (var metric in breaches)
             {
-                if (metric.Item2 > 0 && pairs.GetArrayLength() == 1)
-                    verdict.Errors.Add($"{metric.Item1} budget needs confirmation.");
-                else if (metric.Item2 > 0 && pairs.GetArrayLength() == 2)
-                    verdict.Errors.Add($"{metric.Item1} budget breached or unresolved.");
-                else if (metric.Item2 >= 2)
-                    verdict.Errors.Add($"Confirmed {metric.Item1} budget breach.");
+                if (metric.Value > 0 && pairs.GetArrayLength() == 1)
+                    verdict.Errors.Add($"{metric.Key} budget needs confirmation.");
+                else if (metric.Value > 0 && pairs.GetArrayLength() == 2)
+                    verdict.Errors.Add($"{metric.Key} budget breached or unresolved.");
+                else if (metric.Value >= 2)
+                    verdict.Errors.Add($"Confirmed {metric.Key} budget breach.");
             }
 
             return verdict;
@@ -197,23 +220,29 @@ namespace WinmdUtilsProgram
                 throw new InvalidDataException("Qualification failed: " + string.Join("; ", verdict.Errors));
             if (expectedCandidateSha != null && Text(receipt, "candidateSha") != expectedCandidateSha)
                 throw new InvalidDataException("Evidence belongs to a different candidate commit.");
-            foreach (string side in new[] { "reference", "candidate" })
+            foreach (string side in new[] { "reference", "control", "candidate" })
             {
                 VerifyHash($"{side}-inputs.sha256", Text(Property(receipt, side), "inputHash"));
                 VerifyHash($"{side}-toolchain.txt", Text(Property(receipt, side), "toolchainHash"));
+                VerifyHash($"{side}-sdk.sha256", Text(Property(receipt, side), "sdkHash"));
+                VerifyHash($"{side}-tools.sha256", Text(Property(receipt, side), "toolHash"));
             }
 
             int index = 0;
             foreach (JsonElement pair in Property(receipt, "pairs").EnumerateArray())
             {
                 string prefix = $"pair-{++index}";
-                BinaryComparison drift = Compare(
-                    File.ReadAllBytes(Path.Combine(directory, $"{prefix}-reference.winmd")),
-                    File.ReadAllBytes(Path.Combine(directory, $"{prefix}-candidate.winmd")));
-                if (!drift.Equal || drift.Reference.Sha256 != Text(Property(pair, "reference"), "outputHash") ||
-                    drift.Candidate.Sha256 != Text(Property(pair, "candidate"), "outputHash"))
-                    throw new InvalidDataException($"Output binding mismatch: {prefix}.");
-                foreach (string side in new[] { "reference", "candidate" })
+                foreach (var comparison in new[] { ("reference", "control"), ("control", "candidate") })
+                {
+                    BinaryComparison drift = Compare(
+                        File.ReadAllBytes(Path.Combine(directory, $"{prefix}-{comparison.Item1}.winmd")),
+                        File.ReadAllBytes(Path.Combine(directory, $"{prefix}-{comparison.Item2}.winmd")));
+                    if (!drift.Equal || drift.Reference.Sha256 != Text(Property(pair, comparison.Item1), "outputHash") ||
+                        drift.Candidate.Sha256 != Text(Property(pair, comparison.Item2), "outputHash"))
+                        throw new InvalidDataException($"Output binding mismatch: {prefix} {comparison.Item1}/{comparison.Item2}.");
+                }
+
+                foreach (string side in new[] { "reference", "control", "candidate" })
                 {
                     JsonElement sample = Property(pair, side);
                     VerifyHash($"{prefix}-{side}.binlog", Text(sample, "binlogHash"));
