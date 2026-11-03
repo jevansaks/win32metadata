@@ -13,7 +13,17 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class ComOutputHeaderTests
     {
-        internal const string Parent = "18eaf7c1ac60bcb95b7e7068533bdb97b291897d";
+        private static string PreRetirementCommit(string root)
+        {
+            var introduction = LastErrorHeaderTests.Run("git", "-C", root, "log", "--diff-filter=A",
+                "--format=%H", "HEAD", "--", "tests/ClangSharpSourceToWinmdTests/ComOutputHeaderTests.cs");
+            Assert.AreEqual(0, introduction.ExitCode, introduction.Output);
+            string[] commits = introduction.Output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(1, commits.Length, "Expected one reachable introduction of the COM migration fixture.");
+            var parent = LastErrorHeaderTests.Run("git", "-C", root, "rev-parse", commits[0] + "^");
+            Assert.AreEqual(0, parent.ExitCode, parent.Output);
+            return parent.Output.Trim();
+        }
         internal static readonly string[] Selectors =
         {
             "StgCreateStorageEx::ppObjectOpen", "StgOpenStorageEx::ppObjectOpen",
@@ -29,7 +39,7 @@ namespace ClangSharpSourceToWinmdTests
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
             var old = LastErrorHeaderTests.Run("git", "-C", root, "show",
-                Parent + ":generation/WinSDK/emitter.settings.rsp");
+                PreRetirementCommit(root) + ":generation/WinSDK/emitter.settings.rsp");
             Assert.AreEqual(0, old.ExitCode, old.Output);
             string original = old.Output.Replace("\r\n", "\n");
             Assert.AreEqual(237, original.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
@@ -52,6 +62,7 @@ namespace ClangSharpSourceToWinmdTests
         internal static void AssertShippedDeclarations(string target, string headers)
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
+            string parent = PreRetirementCommit(root);
             string prefix = @"
 #define WINOLEAPI HRESULT __stdcall
 #define WINOLECTLAPI HRESULT __stdcall
@@ -152,7 +163,7 @@ typedef void* PSECURITY_DESCRIPTOR;
             string ReadParent(string owner)
             {
                 var result = LastErrorHeaderTests.Run("git", "-C", root, "show",
-                    Parent + ":generation/WinSDK/RecompiledIdlHeaders/um/" + owner);
+                    parent + ":generation/WinSDK/RecompiledIdlHeaders/um/" + owner);
                 Assert.AreEqual(0, result.ExitCode, result.Output);
                 return result.Output;
             }
