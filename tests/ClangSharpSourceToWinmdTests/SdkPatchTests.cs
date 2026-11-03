@@ -499,7 +499,8 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             string parent = ShellItemComOutputHeaderTests.PreRetirementCommit(Root());
-            foreach (string owner in new[] { "ShObjIdl.h", "ShObjIdl_core.h", "ShlObj.h", "ShlObj_core.h" })
+            foreach (string owner in new[] { "ShObjIdl.h", "ShObjIdl_core.h", "ShlObj.h", "ShlObj_core.h",
+                "propsys.h", "shellapi.h", "Shlwapi.h" })
             {
                 var original = LastErrorHeaderTests.Run("git", "-C", Root(), "cat-file", "--filters",
                     parent + ":generation/WinSDK/RecompiledIdlHeaders/um/" + owner);
@@ -513,7 +514,7 @@ namespace ClangSharpSourceToWinmdTests
             string source = Path.Combine(fixture.Path, "native.c");
             File.WriteAllText(source, "#define COBJMACROS\n" +
                 (shellFirst ? "#include <shlobj.h>\n#include <urlmon.h>\n" : "#include <windows.h>\n#include <urlmon.h>\n") +
-                "#include <shobjidl.h>\n#include <shlobj.h>\n" +
+                "#include <shobjidl.h>\n#include <shlobj.h>\n#include <propsys.h>\n#include <shellapi.h>\n#include <shlwapi.h>\n" +
                 "HRESULT (WINAPI *item_idlist)(PCIDLIST_ABSOLUTE, REFIID, void**) = &SHCreateItemFromIDList;\n" +
                 "HRESULT (WINAPI *item_name)(PCWSTR, IBindCtx*, REFIID, void**) = &SHCreateItemFromParsingName;\n" +
                 "HRESULT (WINAPI *item_parent)(PCIDLIST_ABSOLUTE, IShellFolder*, PCUITEMID_CHILD, REFIID, void**) = &SHCreateItemWithParent;\n" +
@@ -528,13 +529,34 @@ namespace ClangSharpSourceToWinmdTests
                 "HRESULT (WINAPI *bind_folder)(IShellFolder*, PCUIDLIST_RELATIVE, REFIID, void**, PCUITEMID_CHILD*) = &SHBindToFolderIDListParent;\n" +
                 "HRESULT (WINAPI *bind_folder_ex)(IShellFolder*, PCUIDLIST_RELATIVE, IBindCtx*, REFIID, void**, PCUITEMID_CHILD*) = &SHBindToFolderIDListParentEx;\n" +
                 "HRESULT (WINAPI *bind_object)(IShellFolder*, PCUIDLIST_RELATIVE, IBindCtx*, REFIID, void**) = &SHBindToObject;\n" +
+                "HRESULT (WINAPI *ps_memory)(REFIID, void**) = &PSCreateMemoryPropertyStore;\n" +
+                "HRESULT (WINAPI *ps_delayed)(GETPROPERTYSTOREFLAGS, IDelayedPropertyStoreFactory*, const DWORD*, DWORD, REFIID, void**) = &PSCreateDelayedMultiplexPropertyStore;\n" +
+                "HRESULT (WINAPI *ps_multiplex)(IUnknown**, DWORD, REFIID, void**) = &PSCreateMultiplexPropertyStore;\n" +
+                "HRESULT (WINAPI *ps_changes)(const PROPERTYKEY*, const PKA_FLAGS*, const PROPVARIANT*, UINT, REFIID, void**) = &PSCreatePropertyChangeArray;\n" +
+                "HRESULT (WINAPI *ps_change)(PKA_FLAGS, REFPROPERTYKEY, REFPROPVARIANT, REFIID, void**) = &PSCreateSimplePropertyChange;\n" +
+                "HRESULT (WINAPI *ps_description)(REFPROPERTYKEY, REFIID, void**) = &PSGetPropertyDescription;\n" +
+                "HRESULT (WINAPI *ps_description_name)(LPCWSTR, REFIID, void**) = &PSGetPropertyDescriptionByName;\n" +
+                "HRESULT (WINAPI *ps_handler)(IUnknown*, BOOL, REFIID, void**) = &PSGetItemPropertyHandler;\n" +
+                "HRESULT (WINAPI *ps_handler_create)(IUnknown*, BOOL, IUnknown*, REFIID, void**) = &PSGetItemPropertyHandlerWithCreateObject;\n" +
+                "HRESULT (WINAPI *ps_enumerate)(PROPDESC_ENUMFILTER, REFIID, void**) = &PSEnumeratePropertyDescriptions;\n" +
+                "HRESULT (WINAPI *ps_description_list)(LPCWSTR, REFIID, void**) = &PSGetPropertyDescriptionListFromString;\n" +
+                "HRESULT (WINAPI *ps_storage)(IPropertySetStorage*, DWORD, REFIID, void**) = &PSCreatePropertyStoreFromPropertySetStorage;\n" +
+                "HRESULT (WINAPI *ps_object)(IUnknown*, DWORD, REFIID, void**) = &PSCreatePropertyStoreFromObject;\n" +
+                "HRESULT (WINAPI *ps_adapter)(IPropertyStore*, REFIID, void**) = &PSCreateAdapterFromPropertyStore;\n" +
+                "HRESULT (WINAPI *ps_system)(REFIID, void**) = &PSGetPropertySystem;\n" +
+                "HRESULT (WINAPI *ps_bag)(IPropertyBag*, LPCWSTR, REFIID, void**) = &PSPropertyBag_ReadUnknown;\n" +
+                "HRESULT (WINAPI *ps_idlist)(PCIDLIST_ABSOLUTE, GETPROPERTYSTOREFLAGS, REFIID, void**) = &SHGetPropertyStoreFromIDList;\n" +
+                "HRESULT (WINAPI *ps_path)(PCWSTR, IBindCtx*, GETPROPERTYSTOREFLAGS, REFIID, void**) = &SHGetPropertyStoreFromParsingName;\n" +
+                "HRESULT (WINAPI *ps_window)(HWND, REFIID, void**) = &SHGetPropertyStoreForWindow;\n" +
+                "HRESULT (WINAPI *ps_view)(PCIDLIST_ABSOLUTE, PCWSTR, DWORD, REFIID, void**) = &SHGetViewStatePropertyBag;\n" +
                 "HRESULT __stdcall TransferCall(ITransferSource* source, ITransferDestination* destination, IShellItem* item, REFIID riid, void** output, void** resources) {\n" +
                 "#ifdef __cplusplus\nreturn source->OpenItem(item, 0, riid, output) + destination->CreateItem(0, 0, 0, 0, riid, output, riid, resources);\n" +
                 "#else\nreturn ITransferSource_OpenItem(source, item, 0, riid, output) + ITransferDestination_CreateItem(destination, 0, 0, 0, 0, riid, output, riid, resources);\n" +
                 "#endif\n}\n");
             string obj = Path.Combine(fixture.Path, "native.obj");
             // Use identical include paths for old/new headers; MSVC orders UUID COMDATs by header identity.
-            string replacements = string.Join("; ", new[] { "ShObjIdl_core.h", "ShlObj_core.h" }.Select(owner =>
+            string replacements = string.Join("; ", new[] { "ShObjIdl_core.h", "ShlObj_core.h",
+                "propsys.h", "shellapi.h", "Shlwapi.h" }.Select(owner =>
                 "Copy-Item -LiteralPath " + Quote(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)) +
                 " -Destination " + Quote(Path.Combine(fixture.Headers, "um", owner))));
             var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
@@ -571,12 +593,13 @@ namespace ClangSharpSourceToWinmdTests
             string sdk = LastErrorHeaderTests.SdkPackagePath();
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
-            foreach (string owner in new[] { "ShObjIdl_core.idl", "ShlObj_core.h" })
+            foreach (string owner in new[] { "ShObjIdl_core.idl", "ShlObj_core.h", "propsys.idl", "shellapi.h", "Shlwapi.h" })
                 fixture.Header(owner, File.ReadAllBytes(Path.Combine(include, "um", owner)));
-            const string selections = "pre-midl/ShObjIdl_core.idl.patch','post-midl/ShlObj_core.h.patch";
+            const string selections = "pre-midl/ShObjIdl_core.idl.patch','post-midl/ShlObj_core.h.patch'," +
+                "'pre-midl/propsys.idl.patch','post-midl/shellapi.h.patch','post-midl/Shlwapi.h.patch";
             fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: include);
-            foreach (string owner in new[] { "ShObjIdl_core.idl", "ShlObj_core.h" })
+            foreach (string owner in new[] { "ShObjIdl_core.idl", "ShlObj_core.h", "propsys.idl", "shellapi.h", "Shlwapi.h" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
 
@@ -588,16 +611,19 @@ namespace ClangSharpSourceToWinmdTests
                 "msxml.idl", "propidlbase.idl", "propidl.idl", "StructuredQueryCondition.idl", "shtypes.idl",
                 "comcat.idl", "propsys.idl", "ObjectArray.idl", "shobjidl_core.idl" })
             {
-                string input = dependency == "shobjidl_core.idl" ? Path.Combine(fixture.Headers, "um", dependency) :
+                string input = dependency == "shobjidl_core.idl" || dependency == "propsys.idl" ? Path.Combine(fixture.Headers, "um", dependency) :
                     Path.Combine(include, dependency.StartsWith("wtypes", StringComparison.Ordinal) ? "shared" : "um", dependency);
                 command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
                     Quote(input) + " " + Quote(Path.Combine(converted, dependency)) + "; ";
             }
-            string header = Path.Combine(fixture.Headers, "um", "shobjidl_core.h");
             command += ". " + Quote(Script("CommonUtils.ps1")) +
-                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); & " +
+                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); ";
+            foreach (string owner in new[] { "propsys", "shobjidl_core" })
+            {
+                string header = Path.Combine(fixture.Headers, "um", owner + ".h");
+                command += "& " +
                 Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
-                " " + Quote(Path.Combine(converted, "shobjidl_core.idl")) + " /out " + Quote(converted) +
+                " " + Quote(Path.Combine(converted, owner + ".idl")) + " /out " + Quote(converted) +
                 " /header " + Quote(header) +
                 " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                 " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
@@ -605,12 +631,15 @@ namespace ClangSharpSourceToWinmdTests
                 " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
                 " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                 " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
-                " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) + "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }";
+                " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) + "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
+            }
             var result = fixture.Run(command);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
-                "RecompiledIdlHeaders", "um", "ShObjIdl_core.h")), File.ReadAllBytes(header));
+            foreach (string owner in new[] { "propsys.h", "ShObjIdl_core.h" })
+                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
             ShellItemComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+            PropertyComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
         }
 
         [TestMethod]

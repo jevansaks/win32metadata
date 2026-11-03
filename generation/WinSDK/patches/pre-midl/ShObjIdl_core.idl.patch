@@ -1,9 +1,9 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl
-index 3c159c27..cbc6a23c 100644
+index 3c159c27..ad0b213b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl
-@@ -2743,18 +2743,18 @@ cpp_quote("SHSTDAPI_(PIDLIST_ABSOLUTE) SHSimpleIDListFromPath(_In_ PCWSTR pszPat
+@@ -2743,22 +2743,22 @@ cpp_quote("SHSTDAPI_(PIDLIST_ABSOLUTE) SHSimpleIDListFromPath(_In_ PCWSTR pszPat
  
  cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
  cpp_quote("// CLSID_ShellItem create and init helper APIs. produce IShellItem derived interfaces from these different expressions of an item")
@@ -27,7 +27,13 @@ index 3c159c27..cbc6a23c 100644
 +cpp_quote("SHSTDAPI SHGetItemFromObject(_In_ IUnknown *punk, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
  
  cpp_quote("// these APIs return object that support IPropertyStore or related interfaces")
- cpp_quote("SHSTDAPI SHGetPropertyStoreFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Outptr_ void **ppv);")
+-cpp_quote("SHSTDAPI SHGetPropertyStoreFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Outptr_ void **ppv);")
+-cpp_quote("SHSTDAPI SHGetPropertyStoreFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Outptr_ void **ppv);")
++cpp_quote("SHSTDAPI SHGetPropertyStoreFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
++cpp_quote("SHSTDAPI SHGetPropertyStoreFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
+ cpp_quote("SHSTDAPI SHGetNameFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ SIGDN sigdnName, _Outptr_ PWSTR *ppszName);")
+ 
+ cpp_quote("#endif // (NTDDI_VERSION >= NTDDI_VISTA)")
 @@ -2774,7 +2774,7 @@ typedef [v1_enum] enum DATAOBJ_GET_ITEM_FLAGS
  } DATAOBJ_GET_ITEM_FLAGS;
  cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(DATAOBJ_GET_ITEM_FLAGS)")

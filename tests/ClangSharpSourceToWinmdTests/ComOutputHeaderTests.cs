@@ -46,6 +46,7 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string selector in Selectors) StringAssert.Contains(original, selector + "=[ComOutPtr]\n");
             string expected = string.Join("\n", original.Split('\n')
                 .Where(line => !Selectors.Concat(UrlMonComOutputHeaderTests.Selectors).Concat(ShellItemComOutputHeaderTests.Selectors)
+                    .Concat(PropertyComOutputHeaderTests.Selectors)
                     .Any(selector => line == selector + "=[ComOutPtr]")));
             CollectionAssert.AreEqual(expected.Split('\n'),
                 File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"))

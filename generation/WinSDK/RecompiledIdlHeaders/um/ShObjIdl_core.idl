@@ -2757,8 +2757,8 @@ cpp_quote("// similar to SHGetIDListFromObject but returns an IShellItem-based o
 cpp_quote("SHSTDAPI SHGetItemFromObject(_In_ IUnknown *punk, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
 
 cpp_quote("// these APIs return object that support IPropertyStore or related interfaces")
-cpp_quote("SHSTDAPI SHGetPropertyStoreFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Outptr_ void **ppv);")
-cpp_quote("SHSTDAPI SHGetPropertyStoreFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Outptr_ void **ppv);")
+cpp_quote("SHSTDAPI SHGetPropertyStoreFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
+cpp_quote("SHSTDAPI SHGetPropertyStoreFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _COM_Outptr_ void **ppv);")
 cpp_quote("SHSTDAPI SHGetNameFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ SIGDN sigdnName, _Outptr_ PWSTR *ppszName);")
 
 cpp_quote("#endif // (NTDDI_VERSION >= NTDDI_VISTA)")

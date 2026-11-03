@@ -54,11 +54,11 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             string expected = string.Join("\n", original.Split('\n')
-                .Where(line => !Selectors.Any(selector => line == selector + "=[ComOutPtr]")));
+                .Where(line => !Selectors.Concat(PropertyComOutputHeaderTests.Selectors).Any(selector => line == selector + "=[ComOutPtr]")));
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
             Assert.AreEqual(expected, current);
-            Assert.AreEqual(205, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(185, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
 
             foreach (var owner in new[] { ("ShObjIdl_core.h", ItemFunctions), ("ShlObj_core.h", BindingFunctions) })
             {
@@ -106,7 +106,8 @@ namespace ClangSharpSourceToWinmdTests
                 string original = ReadParent("RecompiledIdlHeaders/um/" + owner, checkoutBytes: true);
                 Assert.IsTrue(original.All(character => character <= 127), owner);
                 string expected = original;
-                foreach (string selector in owner == "ShlObj_core.h" ? BindingFunctions : ItemFunctions)
+                foreach (string selector in owner == "ShlObj_core.h" ? BindingFunctions :
+                    ItemFunctions.Concat(PropertyComOutputHeaderTests.ItemFunctions))
                 {
                     string pattern = FunctionPattern(selector);
                     Match declaration = Regex.Match(expected, pattern);
@@ -226,8 +227,9 @@ struct IDataObject : IUnknown {};
             }
         }
 
-        private static void AssertFinalFacts(string path)
+        internal static void AssertFinalFacts(string path, string[]? selectors = null)
         {
+            selectors ??= Selectors;
             using var pe = new PEReader(File.OpenRead(path));
             var reader = pe.GetMetadataReader();
             var found = new HashSet<string>(StringComparer.Ordinal);
@@ -247,7 +249,7 @@ struct IDataObject : IUnknown {};
                     int start = signature.Offset;
                     ReadType(ref signature);
                     string selector = methodSelector + "::" + reader.GetString(parameter.Name);
-                    if (!Selectors.Contains(selector)) continue;
+                    if (!selectors.Contains(selector)) continue;
                     Assert.IsTrue(found.Add(selector));
                     Assert.AreEqual(ParameterAttributes.Out, parameter.Attributes, selector);
                     var attributes = parameter.GetCustomAttributes().Select(reader.GetCustomAttribute).ToArray();
@@ -259,7 +261,7 @@ struct IDataObject : IUnknown {};
                 }
                 Assert.AreEqual(0, signature.RemainingBytes);
             }
-            CollectionAssert.AreEquivalent(Selectors, found.ToArray());
+            CollectionAssert.AreEquivalent(selectors, found.ToArray());
 
             static void ReadType(ref BlobReader signature)
             {

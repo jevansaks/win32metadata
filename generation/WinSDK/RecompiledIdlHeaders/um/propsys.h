@@ -4931,7 +4931,7 @@ PSSTDAPI PSPropertyKeyFromString(
 // Returns an IPropertyStore, IPersistSerializedPropStorage, and related interfaces interface
 PSSTDAPI PSCreateMemoryPropertyStore(
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
 #pragma endregion
 #pragma region Desktop Family
@@ -4946,7 +4946,7 @@ PSSTDAPI PSCreateDelayedMultiplexPropertyStore(
     _In_reads_(cStores) const DWORD *rgStoreIds,
     _In_ DWORD cStores,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Create a read-only property store from one or more sources (which each must support either IPropertyStore or IPropertySetStorage)
@@ -4955,7 +4955,7 @@ PSSTDAPI PSCreateMultiplexPropertyStore(
     _In_reads_(cStores) IUnknown **prgpunkStores,
     _In_ DWORD cStores,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Create a container for IPropertyChanges
@@ -4966,7 +4966,7 @@ PSSTDAPI PSCreatePropertyChangeArray(
     _In_reads_opt_(cChanges) const PROPVARIANT *rgpropvar,
     _In_ UINT cChanges,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Create a simple property change
@@ -4976,7 +4976,7 @@ PSSTDAPI PSCreateSimplePropertyChange(
     _In_ REFPROPERTYKEY key,
     _In_ REFPROPVARIANT propvar,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Get a property description
@@ -4984,12 +4984,12 @@ PSSTDAPI PSCreateSimplePropertyChange(
 PSSTDAPI PSGetPropertyDescription(
     _In_ REFPROPERTYKEY propkey,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 PSSTDAPI PSGetPropertyDescriptionByName(
     _In_ LPCWSTR pszCanonicalName,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Lookup a per-machine registered file property handler
@@ -5003,7 +5003,7 @@ PSSTDAPI PSGetItemPropertyHandler(
     _In_ IUnknown *punkItem,
     _In_ BOOL fReadWrite,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Get a property handler, on Vista or downlevel to XP
@@ -5015,7 +5015,7 @@ PSSTDAPI PSGetItemPropertyHandlerWithCreateObject(
     _In_ BOOL fReadWrite,
     _In_ IUnknown *punkCreateObject,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Get or set a property value from a store
@@ -5043,7 +5043,7 @@ PSSTDAPI PSRefreshPropertySchema(void);
 PSSTDAPI PSEnumeratePropertyDescriptions(
     _In_ PROPDESC_ENUMFILTER filterOn,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Convert between a PROPERTYKEY and its canonical name
@@ -5067,7 +5067,7 @@ PSSTDAPI PSCoerceToCanonicalValue(
 PSSTDAPI PSGetPropertyDescriptionListFromString(
     _In_ LPCWSTR pszPropList,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Wrap an IPropertySetStorage interface in an IPropertyStore interface
@@ -5076,7 +5076,7 @@ PSSTDAPI PSCreatePropertyStoreFromPropertySetStorage(
     _In_ IPropertySetStorage *ppss,
     _In_ DWORD grfMode,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
 #pragma region Application Family
@@ -5090,7 +5090,7 @@ PSSTDAPI PSCreatePropertyStoreFromObject(
     _In_ IUnknown *punk,
     _In_ DWORD grfMode,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // punkSource must support IPropertyStore
@@ -5098,7 +5098,7 @@ PSSTDAPI PSCreatePropertyStoreFromObject(
 PSSTDAPI PSCreateAdapterFromPropertyStore(
     _In_ IPropertyStore *pps,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
 #pragma endregion
 #pragma region Desktop Family
@@ -5109,7 +5109,7 @@ PSSTDAPI PSCreateAdapterFromPropertyStore(
 // Returns an IPropertySystem interface
 PSSTDAPI PSGetPropertySystem(
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 
 
 // Obtain a value from serialized property storage
@@ -5242,7 +5242,7 @@ PSSTDAPI PSPropertyBag_ReadUnknown(
     _In_ IPropertyBag *propBag,
     _In_ LPCWSTR propName,
     _In_ REFIID riid,
-    _Outptr_ void **ppv);
+    _COM_Outptr_ void **ppv);
 PSSTDAPI PSPropertyBag_WriteUnknown(
     _In_ IPropertyBag *propBag,
     _In_ LPCWSTR propName,
