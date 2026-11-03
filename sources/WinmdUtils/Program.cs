@@ -11,7 +11,6 @@ using System.Reflection;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Text.Json;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.CSharp;
 using ICSharpCode.Decompiler.Metadata;
@@ -144,25 +143,6 @@ namespace WinmdUtilsProgram
 
             dumpCommand.Handler = CommandHandler.Create<FileInfo, FileInfo, IConsole>(DumpWinmd);
 
-            var compareBinaryCommand = new Command("compareBinary", "Compare complete migration winmds with only MVID/COFF timestamp normalization.")
-            {
-                new Option<FileInfo>("--first", "Reference winmd.") { IsRequired = true }.ExistingOnly(),
-                new Option<FileInfo>("--second", "Candidate winmd.") { IsRequired = true }.ExistingOnly(),
-                new Option<FileInfo>("--output", "Drift JSON report.") { IsRequired = true }
-            };
-            compareBinaryCommand.Handler = CommandHandler.Create<FileInfo, FileInfo, FileInfo, IConsole>(CompareBinary);
-            var qualifyCommand = new Command("qualifyMigration", "Evaluate frozen-reference generation and performance receipts.")
-            {
-                new Option<FileInfo>("--receipt", "Qualification receipt.") { IsRequired = true }.ExistingOnly(),
-                new Option<FileInfo>("--output", "Verdict JSON report.") { IsRequired = true }
-            };
-            qualifyCommand.Handler = CommandHandler.Create<FileInfo, FileInfo, IConsole>(QualifyMigration);
-            var verifyCommand = new Command("verifyMigrationEvidence", "Verify retained qualification receipts, outputs and raw evidence.")
-            {
-                new Option<string>("--directory", "Retained evidence directory.") { IsRequired = true }
-            };
-            verifyCommand.Handler = CommandHandler.Create<string, IConsole>(VerifyMigrationEvidence);
-
             var rootCommand = new RootCommand("Win32metadata winmd utils")
             {
                 showMissingImportsCommand,
@@ -173,9 +153,6 @@ namespace WinmdUtilsProgram
                 showPointersToDelegates,
                 showSuggestedRemappings,
                 compareCommand,
-                compareBinaryCommand,
-                qualifyCommand,
-                verifyCommand,
                 dumpCommand,
                 showLibImports,
                 createLibRsp,
@@ -185,56 +162,6 @@ namespace WinmdUtilsProgram
             };
 
             return rootCommand.Invoke(args);
-        }
-
-        public static int CompareBinary(FileInfo first, FileInfo second, FileInfo output, IConsole console)
-        {
-            return QualificationCommand(() =>
-            {
-                var result = MigrationQualification.Compare(File.ReadAllBytes(first.FullName), File.ReadAllBytes(second.FullName));
-                WriteQualificationReport(result, output, console);
-                return result.Equal ? 0 : 1;
-            }, console);
-        }
-
-        public static int QualifyMigration(FileInfo receipt, FileInfo output, IConsole console)
-        {
-            return QualificationCommand(() =>
-            {
-                using var document = JsonDocument.Parse(File.ReadAllText(receipt.FullName));
-                var result = MigrationQualification.Evaluate(document.RootElement);
-                WriteQualificationReport(result, output, console);
-                return result.Passed ? 0 : 1;
-            }, console);
-        }
-
-        public static int VerifyMigrationEvidence(string directory, IConsole console)
-        {
-            return QualificationCommand(() =>
-            {
-                var result = MigrationQualification.VerifyEvidence(directory, Environment.GetEnvironmentVariable("GITHUB_SHA"));
-                WriteQualificationReport(result, null, console);
-                return 0;
-            }, console);
-        }
-
-        private static void WriteQualificationReport<T>(T result, FileInfo output, IConsole console)
-        {
-            string json = JsonSerializer.Serialize(result, MigrationQualification.JsonOptions);
-            if (output != null) File.WriteAllText(output.FullName, json);
-            console.Out.WriteLine(json);
-        }
-
-        private static int QualificationCommand(Func<int> action, IConsole console)
-        {
-            try { return action(); }
-            catch (Exception error) when (error is IOException || error is BadImageFormatException ||
-                error is JsonException || error is ArgumentException || error is InvalidOperationException ||
-                error is OverflowException)
-            {
-                console.Error.WriteLine(error.ToString());
-                return 1;
-            }
         }
 
         private static bool TypeIsPointerToOneOfNames(HashSet<string> names, string type)

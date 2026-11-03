@@ -182,7 +182,7 @@ namespace ClangSharpSourceToWinmdTests
                 "scripts/RecompileIdlFilesForScraping.ps1", "generation/WinSDK/patches/",
                 "tests/ClangSharpSourceToWinmdTests/SdkPatchFixtures/" })
                 StringAssert.Contains(workflow, $"'{path}'");
-            StringAssert.Contains(workflow, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, qualification, api-diff, sdk-patch-tests]");
+            StringAssert.Contains(workflow, "needs: [changes, workflow-tests, tooling-tests, scrape, build-test, api-diff, sdk-patch-tests]");
 
             Match block = Regex.Match(workflow,
                 @"name: Require SDK tests for ingestion changes.*?        run: \|\n(?<script>(?:          [^\n]*\n)+)",
