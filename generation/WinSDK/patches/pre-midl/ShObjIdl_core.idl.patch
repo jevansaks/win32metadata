@@ -1,6 +1,5 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl
-index 3c159c27..ad0b213b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl
 @@ -2743,22 +2743,22 @@ cpp_quote("SHSTDAPI_(PIDLIST_ABSOLUTE) SHSimpleIDListFromPath(_In_ PCWSTR pszPat
@@ -77,3 +76,39 @@ index 3c159c27..ad0b213b 100644
  cpp_quote("#endif  // (_WIN32_IE >= _WIN32_IE_IE70)")
  
  [
+@@ -6212,7 +6212,7 @@ interface IApplicationAssociationRegistration : IUnknown
+ }
+ 
+ // SHCreateAssociationRegistration can be used to create an IApplicationAssociationRegistration
+-cpp_quote("SHSTDAPI SHCreateAssociationRegistration(_In_ REFIID riid, _Outptr_ void **ppv);")
++cpp_quote("SHSTDAPI SHCreateAssociationRegistration(_In_ REFIID riid, _COM_Outptr_ void **ppv);")
+ 
+ cpp_quote("#endif  // NTDDI_VISTA")
+ 
+@@ -6696,7 +6696,7 @@ interface IShellMenu : IUnknown
+         [out, annotation("_Out_")] DWORD* pdwFlags,
+         [out, annotation("_Outptr_")] PIDLIST_ABSOLUTE* ppidl,
+         [in] REFIID riid,
+-        [out, iid_is(riid), annotation("_Outptr_")] void** ppv);
++        [out, iid_is(riid), annotation("_COM_Outptr_")] void** ppv);
+ 
+     HRESULT SetMenu(
+         [in, unique, annotation("_In_opt_")] HMENU hmenu,
+@@ -7528,7 +7528,7 @@ interface IDefaultExtractIconInit : IUnknown
+ }
+ 
+ // "Default" IExtractIcon implementation useful for implementation of ::GetUIObjectOf(IID_IExtractIcon)
+-cpp_quote("STDAPI SHCreateDefaultExtractIcon(_In_ REFIID riid, _Outptr_ void **ppv);")
++cpp_quote("STDAPI SHCreateDefaultExtractIcon(_In_ REFIID riid, _COM_Outptr_ void **ppv);")
+ 
+ interface IEnumExplorerCommand;
+ 
+@@ -8615,7 +8615,7 @@ cpp_quote("SHSTDAPI SHAssocEnumHandlers(_In_ PCWSTR pszExtra, _In_ ASSOC_FILTER
+ cpp_quote("#endif  // NTDDI_VISTA")
+ 
+ cpp_quote("#if (NTDDI_VERSION >= NTDDI_WIN7)")
+-cpp_quote("SHSTDAPI SHAssocEnumHandlersForProtocolByApplication(_In_ PCWSTR protocol, _In_ REFIID riid, _Outptr_ void **enumHandlers);")
++cpp_quote("SHSTDAPI SHAssocEnumHandlersForProtocolByApplication(_In_ PCWSTR protocol, _In_ REFIID riid, _COM_Outptr_ void **enumHandlers);")
+ cpp_quote("#endif  // NTDDI_WIN7")
+ 
+ 

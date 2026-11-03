@@ -1087,14 +1087,14 @@ interface INameSpaceTreeControlEvents : IUnknown
     HRESULT OnBeforeContextMenu(
         [in, unique, annotation("_In_opt_")] IShellItem *psi,
         [in, annotation("_In_")] REFIID riid,
-        [out, iid_is(riid), annotation("_Outptr_")] void **ppv);
+        [out, iid_is(riid), annotation("_COM_Outptr_")] void **ppv);
 
     // psi can only be NULL if NSTCS2_SHOWNULLSPACEMENU is set
     HRESULT OnAfterContextMenu(
         [in, annotation("_In_opt_")] IShellItem *psi,
         [in, annotation("_In_")] IContextMenu *pcmIn,
         [in, annotation("_In_")] REFIID riid,
-        [out, iid_is(riid), annotation("_Outptr_")] void **ppv);
+        [out, iid_is(riid), annotation("_COM_Outptr_")] void **ppv);
 
     HRESULT OnBeforeStateImageChange([in, annotation("_In_")] IShellItem *psi);
 

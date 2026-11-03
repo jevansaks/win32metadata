@@ -1,0 +1,49 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h b/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h
+@@ -1709,7 +1709,7 @@ EXTERN_C const IID IID_IBrowserService2;
+             /* [annotation][in] */ 
+             _In_  REFIID riid,
+             /* [annotation][iid_is][out] */ 
+-            _Outptr_  void **ppv) = 0;
++            _COM_Outptr_  void **ppv) = 0;
+         
+         virtual HRESULT STDMETHODCALLTYPE GetViewWindow( 
+             /* [annotation][out] */ 
+@@ -2239,7 +2239,7 @@ EXTERN_C const IID IID_IBrowserService2;
+             /* [annotation][in] */ 
+             _In_  REFIID riid,
+             /* [annotation][iid_is][out] */ 
+-            _Outptr_  void **ppv);
++            _COM_Outptr_  void **ppv);
+         
+         DECLSPEC_XFGVIRT(IBrowserService2, GetViewWindow)
+         HRESULT ( STDMETHODCALLTYPE *GetViewWindow )( 
+@@ -3213,7 +3213,7 @@ EXTERN_C const IID IID_IBrowserService3;
+             /* [annotation][in] */ 
+             _In_  REFIID riid,
+             /* [annotation][iid_is][out] */ 
+-            _Outptr_  void **ppv);
++            _COM_Outptr_  void **ppv);
+         
+         DECLSPEC_XFGVIRT(IBrowserService2, GetViewWindow)
+         HRESULT ( STDMETHODCALLTYPE *GetViewWindow )( 
+@@ -4208,7 +4208,7 @@ EXTERN_C const IID IID_IBrowserService4;
+             /* [annotation][in] */ 
+             _In_  REFIID riid,
+             /* [annotation][iid_is][out] */ 
+-            _Outptr_  void **ppv);
++            _COM_Outptr_  void **ppv);
+         
+         DECLSPEC_XFGVIRT(IBrowserService2, GetViewWindow)
+         HRESULT ( STDMETHODCALLTYPE *GetViewWindow )( 
+@@ -4987,7 +4987,7 @@ EXTERN_C const IID IID_ITrackShellMenu;
+             _Outptr_  PIDLIST_ABSOLUTE *ppidl,
+             /* [in] */ REFIID riid,
+             /* [annotation][iid_is][out] */ 
+-            _Outptr_  void **ppv);
++            _COM_Outptr_  void **ppv);
+         
+         DECLSPEC_XFGVIRT(IShellMenu, SetMenu)
+         HRESULT ( STDMETHODCALLTYPE *SetMenu )( 

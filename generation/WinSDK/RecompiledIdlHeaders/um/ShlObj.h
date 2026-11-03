@@ -438,7 +438,7 @@ DECLARE_INTERFACE_IID_(IDockingWindowFrame, IOleWindow, "47d2657a-7b27-11d0-8ca9
 {
     STDMETHOD(AddToolbar) (THIS_ _In_ IUnknown* punkSrc, _In_ PCWSTR pwszItem, DWORD dwAddFlags) PURE;
     STDMETHOD(RemoveToolbar) (THIS_ _In_ IUnknown* punkSrc, DWORD dwRemoveFlags) PURE;
-    STDMETHOD(FindToolbar) (THIS_ _In_ PCWSTR pwszItem, _In_ REFIID riid, _Outptr_ void **ppv) PURE;
+    STDMETHOD(FindToolbar) (THIS_ _In_ PCWSTR pwszItem, _In_ REFIID riid, _COM_Outptr_ void **ppv) PURE;
 };
 
 

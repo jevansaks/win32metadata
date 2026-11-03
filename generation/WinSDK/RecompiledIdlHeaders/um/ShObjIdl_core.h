@@ -23312,7 +23312,7 @@ EXTERN_C const IID IID_IApplicationAssociationRegistration;
 /* interface __MIDL_itf_shobjidl_core_0000_0108 */
 /* [local] */ 
 
-SHSTDAPI SHCreateAssociationRegistration(_In_ REFIID riid, _Outptr_ void **ppv);
+SHSTDAPI SHCreateAssociationRegistration(_In_ REFIID riid, _COM_Outptr_ void **ppv);
 #endif  // NTDDI_VISTA
 #include <pshpack1.h>
 typedef struct DELEGATEITEMID
@@ -24453,7 +24453,7 @@ EXTERN_C const IID IID_IShellMenu;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE SetMenu( 
             /* [annotation][unique][in] */ 
@@ -24558,7 +24558,7 @@ EXTERN_C const IID IID_IShellMenu;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IShellMenu, SetMenu)
         HRESULT ( STDMETHODCALLTYPE *SetMenu )( 
@@ -28375,7 +28375,7 @@ EXTERN_C const IID IID_IDefaultExtractIconInit;
 /* interface __MIDL_itf_shobjidl_core_0000_0141 */
 /* [local] */ 
 
-STDAPI SHCreateDefaultExtractIcon(_In_ REFIID riid, _Outptr_ void **ppv);
+STDAPI SHCreateDefaultExtractIcon(_In_ REFIID riid, _COM_Outptr_ void **ppv);
 
 
 
@@ -32747,7 +32747,7 @@ DEFINE_ENUM_FLAG_OPERATORS(ASSOC_FILTER)
 SHSTDAPI SHAssocEnumHandlers(_In_ PCWSTR pszExtra, _In_ ASSOC_FILTER afFilter, _Outptr_ IEnumAssocHandlers **ppEnumHandler);
 #endif  // NTDDI_VISTA
 #if (NTDDI_VERSION >= NTDDI_WIN7)
-SHSTDAPI SHAssocEnumHandlersForProtocolByApplication(_In_ PCWSTR protocol, _In_ REFIID riid, _Outptr_ void **enumHandlers);
+SHSTDAPI SHAssocEnumHandlersForProtocolByApplication(_In_ PCWSTR protocol, _In_ REFIID riid, _COM_Outptr_ void **enumHandlers);
 #endif  // NTDDI_WIN7
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 

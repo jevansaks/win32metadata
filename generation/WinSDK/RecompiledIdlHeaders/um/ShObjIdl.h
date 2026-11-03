@@ -6728,7 +6728,7 @@ EXTERN_C const IID IID_INameSpaceTreeControlEvents;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE OnAfterContextMenu( 
             /* [annotation][in] */ 
@@ -6738,7 +6738,7 @@ EXTERN_C const IID IID_INameSpaceTreeControlEvents;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE OnBeforeStateImageChange( 
             /* [annotation][in] */ 
@@ -6893,7 +6893,7 @@ EXTERN_C const IID IID_INameSpaceTreeControlEvents;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(INameSpaceTreeControlEvents, OnAfterContextMenu)
         HRESULT ( STDMETHODCALLTYPE *OnAfterContextMenu )( 
@@ -6905,7 +6905,7 @@ EXTERN_C const IID IID_INameSpaceTreeControlEvents;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(INameSpaceTreeControlEvents, OnBeforeStateImageChange)
         HRESULT ( STDMETHODCALLTYPE *OnBeforeStateImageChange )( 

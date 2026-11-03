@@ -598,13 +598,16 @@ namespace ClangSharpSourceToWinmdTests
             string sdk = LastErrorHeaderTests.SdkPackagePath();
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
-            foreach (string owner in new[] { "ShObjIdl_core.idl", "ShlObj_core.h", "propsys.idl", "shellapi.h", "Shlwapi.h" })
+            foreach (string owner in new[] { "ShObjIdl_core.idl", "ShObjIdl.idl", "ShlObj_core.h", "ShlObj.h",
+                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h" })
                 fixture.Header(owner, File.ReadAllBytes(Path.Combine(include, "um", owner)));
             const string selections = "pre-midl/ShObjIdl_core.idl.patch','post-midl/ShlObj_core.h.patch'," +
-                "'pre-midl/propsys.idl.patch','post-midl/shellapi.h.patch','post-midl/Shlwapi.h.patch";
+                "'pre-midl/propsys.idl.patch','post-midl/shellapi.h.patch','post-midl/Shlwapi.h.patch'," +
+                "'pre-midl/ShObjIdl.idl.patch','post-midl/ShlObj.h.patch','post-midl/shdeprecated.h.patch";
             fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: include);
-            foreach (string owner in new[] { "ShObjIdl_core.idl", "ShlObj_core.h", "propsys.idl", "shellapi.h", "Shlwapi.h" })
+            foreach (string owner in new[] { "ShObjIdl_core.idl", "ShObjIdl.idl", "ShlObj_core.h", "ShlObj.h",
+                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
 
@@ -614,16 +617,16 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string dependency in new[] { "wtypesbase.idl", "wtypes.idl", "unknwnbase.idl", "unknwn.idl",
                 "objidlbase.idl", "objidl.idl", "oaidl.idl", "oleidl.idl", "servprov.idl", "urlmon.idl", "ocidl.idl",
                 "msxml.idl", "propidlbase.idl", "propidl.idl", "StructuredQueryCondition.idl", "shtypes.idl",
-                "comcat.idl", "propsys.idl", "ObjectArray.idl", "shobjidl_core.idl" })
+                "comcat.idl", "propsys.idl", "ObjectArray.idl", "shobjidl_core.idl", "docobj.idl", "prsht.idl", "shobjidl.idl" })
             {
-                string input = dependency == "shobjidl_core.idl" || dependency == "propsys.idl" ? Path.Combine(fixture.Headers, "um", dependency) :
+                string input = dependency == "shobjidl_core.idl" || dependency == "shobjidl.idl" || dependency == "propsys.idl" ? Path.Combine(fixture.Headers, "um", dependency) :
                     Path.Combine(include, dependency.StartsWith("wtypes", StringComparison.Ordinal) ? "shared" : "um", dependency);
                 command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
                     Quote(input) + " " + Quote(Path.Combine(converted, dependency)) + "; ";
             }
             command += ". " + Quote(Script("CommonUtils.ps1")) +
                 "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); ";
-            foreach (string owner in new[] { "propsys", "shobjidl_core" })
+            foreach (string owner in new[] { "propsys", "shobjidl_core", "shobjidl" })
             {
                 string header = Path.Combine(fixture.Headers, "um", owner + ".h");
                 command += "& " +
@@ -640,11 +643,95 @@ namespace ClangSharpSourceToWinmdTests
             }
             var result = fixture.Run(command);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            foreach (string owner in new[] { "propsys.h", "ShObjIdl_core.h" })
+            foreach (string owner in new[] { "propsys.h", "ShObjIdl_core.h", "ShObjIdl.h" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
             ShellItemComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
             PropertyComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+            ShellComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", "/TC", false)]
+        [DataRow("x64", "/TC", false)]
+        [DataRow("arm64", "/TC", false)]
+        [DataRow("x86", "/TP", false)]
+        [DataRow("x64", "/TP", false)]
+        [DataRow("arm64", "/TP", false)]
+        [DataRow("x86", "/TC", true)]
+        [DataRow("x64", "/TC", true)]
+        [DataRow("arm64", "/TC", true)]
+        [DataRow("x86", "/TP", true)]
+        [DataRow("x64", "/TP", true)]
+        [DataRow("arm64", "/TP", true)]
+        public void ShellOutput_NativeBuildIsANoOp(string arch, string language, bool shellFirst)
+        {
+            using var fixture = new Fixture();
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string[] owners = ShellComOutputHeaderTests.Owners.Select(owner => owner.Owner).Append("propsys.h").ToArray();
+            foreach (string owner in owners)
+            {
+                string original = ShellComOutputHeaderTests.ReadOriginal("RecompiledIdlHeaders/um/" + owner, checkoutBytes: true);
+                Assert.IsTrue(original.All(character => character <= 127), owner);
+                fixture.Header(owner, Encoding.ASCII.GetBytes(original));
+            }
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
+                "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
+            string source = Path.Combine(fixture.Path, "native.c");
+            File.WriteAllText(source, "#define COBJMACROS\n" +
+                (shellFirst ? "#include <shlobj.h>\n#include <urlmon.h>\n" : "#include <windows.h>\n#include <urlmon.h>\n") +
+                "#include <shobjidl.h>\n#include <shlobj.h>\n#include <propsys.h>\n#include <shellapi.h>\n#include <shlwapi.h>\n#include <shdeprecated.h>\n" +
+                "HRESULT (WINAPI *association)(REFIID, void**) = &SHCreateAssociationRegistration;\n" +
+                "HRESULT (WINAPI *icon)(REFIID, void**) = &SHCreateDefaultExtractIcon;\n" +
+                "HRESULT (WINAPI *handlers)(PCWSTR, REFIID, void**) = &SHAssocEnumHandlersForProtocolByApplication;\n" +
+                "HRESULT (WINAPI *activate)(PCWSTR, const CLSID*, IUnknown*, REFIID, void**) = &SHCoCreateInstance;\n" +
+                "HRESULT (WINAPI *data)(PCIDLIST_ABSOLUTE, UINT, PCUITEMID_CHILD_ARRAY, IDataObject*, REFIID, void**) = &SHCreateDataObject;\n" +
+                "HRESULT (WINAPI *context)(const DEFCONTEXTMENU*, REFIID, void**) = &SHCreateDefaultContextMenu;\n" +
+                "HRESULT (WINAPI *file_icon)(LPCWSTR, DWORD, REFIID, void**) = &SHCreateFileExtractIconW;\n" +
+                "HRESULT (WINAPI *classes)(const ASSOCIATIONELEMENT*, ULONG, REFIID, void**) = &AssocCreateForClasses;\n" +
+                "HRESULT (WINAPI *images)(int, REFIID, void**) = &SHGetImageList;\n" +
+                "HRESULT (WINAPI *assoc)(CLSID, REFIID, void**) = &AssocCreate;\n" +
+                "HRESULT __stdcall ShellCalls(INameSpaceTreeControlEvents* tree, IShellMenu* menu, IQueryAssociations* assoc,\n" +
+                "IDockingWindowFrame* dock, IBrowserService2* browser, IBrowserService3* browser3, IBrowserService4* browser4,\n" +
+                "ITrackShellMenu* track, IShellItem* item, IContextMenu* context, REFIID riid, void** output, DWORD* flags, PIDLIST_ABSOLUTE* pidl) {\n" +
+                "#ifdef __cplusplus\n" +
+                "return tree->OnBeforeContextMenu(item, riid, output) + tree->OnAfterContextMenu(item, context, riid, output) +\n" +
+                "menu->GetShellFolder(flags, pidl, riid, output) + assoc->GetEnum(0, ASSOCENUM_NONE, 0, riid, output) +\n" +
+                "dock->FindToolbar(0, riid, output) + browser->CreateBrowserPropSheetExt(riid, output) +\n" +
+                "browser3->CreateBrowserPropSheetExt(riid, output) + browser4->CreateBrowserPropSheetExt(riid, output) + track->GetShellFolder(flags, pidl, riid, output);\n" +
+                "#else\n" +
+                "return INameSpaceTreeControlEvents_OnBeforeContextMenu(tree, item, riid, output) + INameSpaceTreeControlEvents_OnAfterContextMenu(tree, item, context, riid, output) +\n" +
+                "IShellMenu_GetShellFolder(menu, flags, pidl, riid, output) + assoc->lpVtbl->GetEnum(assoc, 0, ASSOCENUM_NONE, 0, riid, output) +\n" +
+                "dock->lpVtbl->FindToolbar(dock, 0, riid, output) + IBrowserService2_CreateBrowserPropSheetExt(browser, riid, output) +\n" +
+                "IBrowserService3_CreateBrowserPropSheetExt(browser3, riid, output) + IBrowserService4_CreateBrowserPropSheetExt(browser4, riid, output) + ITrackShellMenu_GetShellFolder(track, flags, pidl, riid, output);\n" +
+                "#endif\n}\n");
+            string obj = Path.Combine(fixture.Path, "native.obj");
+            string replacements = string.Join("; ", owners.Select(owner =>
+                "Copy-Item -LiteralPath " + Quote(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)) +
+                " -Destination " + Quote(Path.Combine(fixture.Headers, "um", owner))));
+            var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
+                "; $vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
+                "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; " +
+                "foreach ($mode in 'baseline', 'ordinary', 'metadata') { if ($mode -eq 'ordinary') { " + replacements + " }; " +
+                "& $compiler /nologo /c " + language + " " + Quote(source) + " " + Quote("/Fo" + obj) +
+                " " + Quote("/I" + Path.Combine(fixture.Headers, "um")) + " " + Quote("/I" + fixture.Headers) +
+                " \"/I$vcInclude\" " + Quote("/I" + Path.Combine(include, "um")) +
+                " " + Quote("/I" + Path.Combine(include, "shared")) + " " + Quote("/I" + Path.Combine(include, "ucrt")) +
+                " /DWINVER=0x0A00 /D_WIN32_WINNT=0x0A00 /DNTDDI_VERSION=0x0A00000C" +
+                " $(if ($mode -eq 'metadata') { '/DWIN32METADATA' }); " +
+                "if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Copy-Item -LiteralPath " + Quote(obj) +
+                " -Destination (Join-Path " + Quote(fixture.Path) + " ($mode + '.obj')) }");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            byte[][] outputs = new[] { "baseline", "ordinary", "metadata" }
+                .Select(mode => File.ReadAllBytes(Path.Combine(fixture.Path, mode + ".obj"))).ToArray();
+            foreach (byte[] bytes in outputs)
+            {
+                Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
+                Array.Clear(bytes, 4, 4);
+            }
+            CollectionAssert.AreEqual(outputs[0], outputs[1]);
+            CollectionAssert.AreEqual(outputs[1], outputs[2]);
         }
 
         [TestMethod]
