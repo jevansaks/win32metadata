@@ -77,7 +77,8 @@ stacked topic branches. `feature/header-annotations` requires the exact checks
 `Build, test, package`. Fork documentation changes also run the full checks;
 upstream documentation-only build skipping remains supported. Missing, failed,
 cancelled or unexpectedly skipped dependencies never pass the migration gate.
-Owner review remains required independently of successful automation.
+The fork does not require a second reviewer. User sign-off still precedes
+coordinator-managed merges; successful automation alone does not authorize merging.
 
 Run `.\scripts\TestTooling.ps1` for all three tooling suites. Both this entry
 point and `.\scripts\DoTests.ps1` reject missing, empty or failing TRX results.
