@@ -498,10 +498,11 @@ namespace ClangSharpSourceToWinmdTests
         {
             using var fixture = new Fixture();
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string parent = ShellItemComOutputHeaderTests.PreRetirementCommit(Root());
             foreach (string owner in new[] { "ShObjIdl.h", "ShObjIdl_core.h", "ShlObj.h", "ShlObj_core.h" })
             {
                 var original = LastErrorHeaderTests.Run("git", "-C", Root(), "cat-file", "--filters",
-                    ShellItemComOutputHeaderTests.Parent + ":generation/WinSDK/RecompiledIdlHeaders/um/" + owner);
+                    parent + ":generation/WinSDK/RecompiledIdlHeaders/um/" + owner);
                 Assert.AreEqual(0, original.ExitCode, original.Output);
                 Assert.IsTrue(original.Output.All(character => character <= 127), owner);
                 fixture.Header(owner, Encoding.ASCII.GetBytes(original.Output));
@@ -573,8 +574,8 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string owner in new[] { "ShObjIdl_core.idl", "ShlObj_core.h" })
                 fixture.Header(owner, File.ReadAllBytes(Path.Combine(include, "um", owner)));
             const string selections = "pre-midl/ShObjIdl_core.idl.patch','post-midl/ShlObj_core.h.patch";
-            fixture.Apply("pre-midl", selections, true, patchRoot: patches);
-            fixture.Apply("post-midl", selections, true, patchRoot: patches);
+            fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: include);
+            fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             foreach (string owner in new[] { "ShObjIdl_core.idl", "ShlObj_core.h" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);

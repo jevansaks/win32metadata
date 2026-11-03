@@ -311,8 +311,8 @@ and outside this layer.
 
 ## Shell item construction and folder/object binding
 
-This layer inventories the 222-record ComOutPtr corpus at
-`35495220f3c9a71126aa51c662a2b83cc37f18e2` against the real selected SDK
+This layer inventories the 222-record ComOutPtr corpus at the reachable parent
+of its fixture-introduction commit against the real selected SDK
 owners and retires seventeen exact `=[ComOutPtr]` records, leaving 205.
 The eleven initial leads expand to item-array construction, known-folder item
 retrieval, and the paired transfer create/open methods:
@@ -363,7 +363,11 @@ unchanged.
 
 `ShellItemComOutputHeaderTests` emit the actual selected native declarations
 through final winmd on x86/x64/ARM64, comparing every byte against the reachable
-parent's native declarations plus all seventeen legacy facts. They inspect
+parent's native declarations plus all seventeen legacy facts. This parent is
+resolved from reachable fixture-introduction ancestry, not a frozen pre-rebase
+commit. Replay validates source ownership against the complete selected SDK
+`MidlInputRoot`, including the core IDL output and the direct binding header.
+They inspect
 singleton custom-attribute blobs, exact Out/nonoptional/nonretval flags and
 double-pointer signatures, and verify matching sidecars deduplicate. Dependency
 types are bounded fixture stubs, not replacement API declarations. Real selected

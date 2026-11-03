@@ -14,7 +14,17 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class ShellItemComOutputHeaderTests
     {
-        internal const string Parent = "35495220f3c9a71126aa51c662a2b83cc37f18e2";
+        internal static string PreRetirementCommit(string root)
+        {
+            var introduction = LastErrorHeaderTests.Run("git", "-C", root, "log", "--diff-filter=A",
+                "--format=%H", "HEAD", "--", "tests/ClangSharpSourceToWinmdTests/ShellItemComOutputHeaderTests.cs");
+            Assert.AreEqual(0, introduction.ExitCode, introduction.Output);
+            string[] commits = introduction.Output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(1, commits.Length, "Expected one reachable introduction of the shell item migration fixture.");
+            var parent = LastErrorHeaderTests.Run("git", "-C", root, "rev-parse", commits[0] + "^");
+            Assert.AreEqual(0, parent.ExitCode, parent.Output);
+            return parent.Output.Trim();
+        }
         internal static readonly string[] ItemFunctions =
         {
             "SHCreateItemFromIDList::ppv", "SHCreateItemFromParsingName::ppv",
@@ -265,9 +275,10 @@ struct IDataObject : IUnknown {};
 
         private static string ReadParent(string path, bool checkoutBytes = false)
         {
+            string parent = PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot());
             string[] arguments = checkoutBytes
-                ? new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "cat-file", "--filters", Parent + ":generation/WinSDK/" + path }
-                : new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "show", Parent + ":generation/WinSDK/" + path };
+                ? new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "cat-file", "--filters", parent + ":generation/WinSDK/" + path }
+                : new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "show", parent + ":generation/WinSDK/" + path };
             var result = LastErrorHeaderTests.Run("git", arguments);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             return result.Output;
