@@ -342,6 +342,7 @@ extern ""C"" {{
 #endif
 _Win32_SetLastError_
 _Win32_PreserveResult_
+_Win32_ImportLibrary_(""hhctrl.ocx"")
 _Win32_SupportedOS_WindowsXP_
 {Declaration}
 #define Low 1

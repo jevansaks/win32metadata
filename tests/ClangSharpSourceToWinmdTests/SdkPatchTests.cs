@@ -276,6 +276,8 @@ namespace ClangSharpSourceToWinmdTests
                 ("post-midl/fileapi.h.patch", "um", "fileapi.h"),
                 ("post-midl/errhandlingapi.h.patch", "um", "errhandlingapi.h"),
                 ("post-midl/handleapi.h.patch", "um", "handleapi.h"),
+                ("post-midl/HtmlHelp.h.patch", "um", "HtmlHelp.h"),
+                ("post-midl/webauthnplugin.h.patch", "um", "webauthnplugin.h"),
                 ("pre-midl/ObjIdl.Idl.patch", "um", "ObjIdl.Idl"),
                 ("pre-midl/ObjIdlbase.Idl.patch", "um", "ObjIdlbase.Idl"),
                 ("pre-midl/dxgi.idl.patch", "shared", "dxgi.idl"),
@@ -406,11 +408,12 @@ namespace ClangSharpSourceToWinmdTests
         {
             using var fixture = new Fixture();
             string include = System.IO.Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
-            foreach (string owner in new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h", "combaseapi.h", "objbase.h" })
+            foreach (string owner in new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h", "combaseapi.h", "objbase.h",
+                "HtmlHelp.h", "webauthnplugin.h" })
                 fixture.Header(owner, File.ReadAllBytes(System.IO.Path.Combine(include, "um", owner)));
             string patches = System.IO.Path.Combine(Root(), "generation", "WinSDK", "patches");
             fixture.Apply("post-midl", string.Join("','", new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h",
-                "combaseapi.h", "objbase.h" }.Select(owner => "post-midl/" + owner + ".patch")), true,
+                "combaseapi.h", "objbase.h", "HtmlHelp.h", "webauthnplugin.h" }.Select(owner => "post-midl/" + owner + ".patch")), true,
                 patchRoot: patches, midlInputRoot: include);
             foreach (string owner in new[] { "ObjIdl.h", "ObjIdlbase.h" })
                 fixture.Header(owner, File.ReadAllBytes(System.IO.Path.Combine(Root(), "generation", "WinSDK",
@@ -421,6 +424,9 @@ namespace ClangSharpSourceToWinmdTests
                 System.IO.Path.Combine(fixture.Headers, "sal.h"));
             string source = System.IO.Path.Combine(fixture.Path, "native.c");
             File.WriteAllText(source, "#include <windows.h>\n#include <winhttp.h>\n#include <objbase.h>\n#include <ObjIdlbase.h>\n" +
+                "#include <HtmlHelp.h>\n#include <webauthn.h>\n#include <webauthnplugin.h>\n" +
+                "HWND (WINAPI *html_signature)(HWND, LPCWSTR, UINT, DWORD_PTR) = &HtmlHelpW;\n" +
+                "HRESULT (WINAPI *plugin_signature)(REFCLSID, AUTHENTICATOR_STATE*) = &WebAuthNPluginGetAuthenticatorState;\n" +
                 "DWORD (WINAPI *error_signature)(void) = &GetLastError;\n" +
                 "BOOL (WINAPI *winhttp_signature)(void) = &WinHttpCheckPlatform;\n" +
                 "DWORD (WINAPI *com_signature)(void) = &CoGetCurrentProcess;\n");
@@ -428,10 +434,10 @@ namespace ClangSharpSourceToWinmdTests
             var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
                 "; $vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
                 "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; " +
-                "foreach ($mode in 'ordinary', 'metadata') { & $compiler /nologo /c " + language + " " + Quote(source) +
-                " " + Quote("/Fo" + obj) + " " + Quote("/I" + System.IO.Path.Combine(fixture.Headers, "um")) +
-                " " + Quote("/I" + fixture.Headers) + " \"/I$vcInclude\"" +
-                " " + Quote("/I" + System.IO.Path.Combine(include, "um")) +
+                "foreach ($mode in 'baseline', 'ordinary', 'metadata') { & $compiler /nologo /c " + language + " " + Quote(source) +
+                " " + Quote("/Fo" + obj) + " $(if ($mode -ne 'baseline') { " +
+                Quote("/I" + System.IO.Path.Combine(fixture.Headers, "um")) + "; " + Quote("/I" + fixture.Headers) +
+                " }) \"/I$vcInclude\" " + Quote("/I" + System.IO.Path.Combine(include, "um")) +
                 " " + Quote("/I" + System.IO.Path.Combine(include, "shared")) +
                 " " + Quote("/I" + System.IO.Path.Combine(include, "ucrt")) +
                 " /DWINVER=0x0A00 /D_WIN32_WINNT=0x0A00 /DNTDDI_VERSION=0x0A00000C" +
@@ -441,8 +447,11 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] ordinary = File.ReadAllBytes(System.IO.Path.Combine(fixture.Path, "ordinary.obj"));
             byte[] metadata = File.ReadAllBytes(System.IO.Path.Combine(fixture.Path, "metadata.obj"));
+            byte[] baseline = File.ReadAllBytes(System.IO.Path.Combine(fixture.Path, "baseline.obj"));
+            Array.Clear(baseline, 4, 4);
             Array.Clear(ordinary, 4, 4);
             Array.Clear(metadata, 4, 4);
+            CollectionAssert.AreEqual(baseline, ordinary);
             CollectionAssert.AreEqual(ordinary, metadata);
         }
 

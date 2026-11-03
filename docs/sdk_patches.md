@@ -167,6 +167,51 @@ ISequentialStream::Read prove the capability without changing those SDK owners.
 The IDL fixture authors only a temporary copy, runs normal conversion and MIDL,
 then verifies the actual generated method through the final emitter.
 
+## Explicit import-module overrides
+
+`_Win32_ImportLibrary_("module")` uses the specification's existing spelling
+and exact `Win32Metadata.ImportLibrary("module")` payload. It is valid only
+before an ordinary imported function declaration without a body. The reader
+rejects malformed/unquoted/empty module names, paths, expression arguments,
+invalid targets, misplaced annotations, and conflicting redeclarations with
+native source locations. Equal repeated annotations are idempotent.
+The helper is empty in ordinary C/C++ and in MSVC builds with `WIN32METADATA`.
+
+The existing single AST walk collects overrides and merges them into
+PInvokeGenerator's `WithLibraryPaths` **after native-name remapping**. Header
+facts take precedence over configured/manual or scan-derived per-function
+mappings, which still take precedence over the configured default. This also
+handles an earlier unannotated declaration in another header. The normal
+emitter consumes the resulting `DllImport`; no new loader, module inference,
+entrypoint transformation, or alternate emission path is introduced.
+The exact filename, including a non-DLL suffix, is preserved.
+
+The production slice migrates all 27 existing `webauthnplugin.h` manual
+overrides to `webauthn.dll`, plus both `HtmlHelp.h` entrypoints to `hhctrl.ocx`.
+WebAuthnPlugin.dll/lib does not ship; the header retains the reason for the
+override rather than deriving the module from the misleading library name.
+The HtmlHelp patch reuses only PR2365's two import annotations, not its enum
+or parameter changes. No WebAuthn plugin patch exists in that prototype.
+Both owners are shipped in SDK `10.0.28000.2705`, use post-MIDL patches, and
+retire exactly 29 matching `libMappingsManual.rsp` lines. Other manual
+overrides and ordinary global library/export inference remain unchanged;
+scan-derived mappings are not API-specific header annotations.
+
+Focused `ImportLibraryHeaderTests` check final P/Invoke module and entrypoint
+metadata, complete legacy/header output equivalence, precedence, remaps,
+earlier declarations, diagnostics, and absence of hidden mappings.
+The shipped-owner fixtures use the existing test project's independently
+restored SDK package and the real native declarations on all architectures.
+The isolated HtmlHelp fixture selects both declarations; the plugin fixture
+includes its actual SDK WebAuthn type dependencies. The fixtures map the
+external SDK HWND tag to pointer storage, without adding an API-specific type.
+Ordinary CI's final-winmd integrity tests assert every migrated production
+import. Existing SDK patch tests replay both full owners byte-for-byte, and
+compile the patched owners as C/C++ on x86/x64/arm64, comparing original SDK,
+ordinary patched, and `WIN32METADATA` object bytes apart from COFF timestamps.
+This layer adds no workflow, full-SDK local scrape, reference build, or
+comparison framework; ordinary CI remains the normal candidate producer.
+
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
 `git diff` with repository-relative paths under
 `generation/WinSDK/RecompiledIdlHeaders/{um,shared,winrt,ucrt}/`.

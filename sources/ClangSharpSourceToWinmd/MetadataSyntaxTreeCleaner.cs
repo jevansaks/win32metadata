@@ -201,6 +201,7 @@ namespace ClangSharpSourceToWinmd
                     .Where(payload => payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal) &&
                         payload != ParameterAnnotation.Owner + "SetLastError" &&
                         payload != ParameterAnnotation.Owner + "PreserveResult" &&
+                        !payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal) &&
                         !payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
                     .Select(ParameterAnnotation.Parse)
                     .Where(annotation => annotation.Kind != ParameterAnnotationKind.AssociatedEnum ||
@@ -566,6 +567,7 @@ namespace ClangSharpSourceToWinmd
                         if (payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal))
                         {
                             if (payload == ParameterAnnotation.Owner + "SetLastError") return null;
+                            if (payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal)) return null;
                             if (payload == ParameterAnnotation.Owner + "PreserveResult")
                             {
                                 // PInvokeGenerator also carries COM method annotations on its nested vtable delegates.

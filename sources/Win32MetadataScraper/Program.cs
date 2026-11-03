@@ -244,6 +244,9 @@ class Program
             var supportedAttributes = settings.GetValueOrDefault("--with-attribute") ?? new List<string>();
             annotations.MergeSupportedFunctions(supportedAttributes, mergedRemaps);
             settings["--with-attribute"] = supportedAttributes;
+            var libraries = ParseKeyValuePairs(settings.GetValueOrDefault("--with-librarypath"));
+            annotations.MergeImportLibraries(libraries, mergedRemaps);
+            settings["--with-librarypath"] = libraries.Select(pair => $"{pair.Key}={pair.Value}").ToList();
             var callbackTypes = ParseKeyValuePairs(settings.GetValueOrDefault("--with-type"));
             foreach (var alias in fnPtrResult.FnPtrTypes)
             {
