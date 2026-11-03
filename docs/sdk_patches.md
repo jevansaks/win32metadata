@@ -1,5 +1,68 @@
 # SDK header patches
 
+## Synchronization knowledge, clocks and exceptions
+
+This layer audits all **64** parent `ComOutPtr` records against the complete
+physical `WinSync` traversal: `winsync.h`, `syncregistration.h`,
+`synchronizationerrors.h` and `syncregistrationerrors.h`. The complete selected
+family contains **11 facts**, all complete retirements: **0 partial records,
+0 retained boundaries**, leaving **53** active records. Every selected
+declaration is physically owned by the shipped `um/winsync.h`.
+
+| Owning interface | Exact migrated method/parameter selectors |
+|---|---|
+| `IChangeUnitException`, `IRangeException`, `ISingleItemException` | `GetClockVector::ppUnk` on each interface |
+| `IClockVector` | `GetClockVectorElements::ppiEnumClockVector` |
+| `ISyncKnowledge` | `FindClockVectorForChangeUnit::ppUnk`, `FindClockVectorForItem::ppUnk`, `GetChangeUnitExceptions::ppUnk`, `GetRangeExceptions::ppUnk`, `GetScopeVector::ppUnk`, `GetSingleItemExceptions::ppUnk` |
+| `ISyncKnowledge2` | `GetInspector::ppiInspector` |
+
+SDK `10.0.28000.2705` ships this header but **no `winsync.idl`**.
+One authoritative header-only post-MIDL patch adds only standard
+`_COM_Outptr_` SAL at **35 physical sites**: all eleven C++ declarations,
+their C-vtable entries, the inherited `IFeedClockVector` clock entry and
+all six inherited knowledge entries in both `IForgottenKnowledge` and
+`ISyncKnowledge2`. No selected site was already native. There is no IDL
+regeneration for this actual header-only owner and no compatibility-input
+substitution, missing-IDL reconstruction or restored API.
+
+The raw-byte proof permits only those 35 SAL insertions, preserving every
+other byte, encoding, newline, guard, forward declaration, macro, IID,
+native type, pointer depth, direction, optionality and implementation flag.
+The other three traversal headers remain byte-identical. The full owner
+has no selected inline/template or proxy/local-remote counterpart requiring
+another edit. Typed knowledge and clock outputs not in the legacy inventory
+remain unchanged.
+
+`SyncComOutputHeaderTests` uses reachable immutable SDK ancestor
+`c16762d41f1bd641ff8c4389ebf16ee50747129f`, guards ancestry and audits the
+entire remaining inventory, including wildcard absence. Original-native
+plus legacy sidecars and patched-header-only declarations produce exactly
+equal **final winmd bytes** on x86/x64/arm64. Independent assertions verify
+every selected `void**` shape, output-only flags, singleton attribute
+payload/order and unchanged result flags. Redundant legacy records also
+preserve every byte.
+
+`SdkPatchTests` matches the immutable original to actual SDK package bytes,
+replays the production patch over the complete header, checks every output
+byte and feeds that actual replay through final emission on all three
+targets. Native fixtures compile the complete synchronization traversal
+in C/C++ on x86/x64/arm64, with synchronization-first and Windows-first
+include orders, calling all selected and inherited sites. Same-path
+original, patched ordinary and `WIN32METADATA` COFF objects compare
+byte-for-byte except the timestamp. Production integrity assertions cover
+all eleven retired selectors.
+
+All independent pointer/type/scalar/result/enum/namespace/import/RAII and
+callback mechanisms stay unchanged. `CanReturn*` remains active and all
+17 PreserveResult replacements remain inactive. DWrite's exact `void**`
+override, CLR's independent `[Out]`, weak/agile shape boundaries and the
+presentation row-order-only boundary remain intact. Inherited ACM/MSI
+API differences remain review items, not approved by green CI. No reader,
+emitter, native model, normalization, workflow, timeout or coverage change
+is introduced; ordinary CI builds one three-architecture candidate and
+compares an existing exact-parent artifact when available, disclosing any
+main/released fallback separately from focused byte equivalence.
+
 ## Imaging, acquisition and image-list direct COM outputs
 
 This layer audits all **88** parent `ComOutPtr` records against every physical

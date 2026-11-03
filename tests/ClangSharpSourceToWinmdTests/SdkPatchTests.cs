@@ -1759,6 +1759,95 @@ namespace ClangSharpSourceToWinmdTests
             CollectionAssert.AreEqual(outputs[1], outputs[2]);
         }
 
+        [TestMethod]
+        public void SyncOutput_RealSdkHeaderOnlyPatchReplaysEveryByteThroughFinalEmission()
+        {
+            using var fixture = new Fixture();
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0", "um");
+            byte[] original = File.ReadAllBytes(Path.Combine(include, "winsync.h"));
+            CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
+                "RecompiledIdlHeaders/um/winsync.h"), original, "Immutable ancestor matches the selected shipped SDK.");
+            Assert.IsFalse(File.Exists(Path.Combine(include, "winsync.idl")), "Actual header-only input; do not restore an IDL.");
+            fixture.Header("winsync.h", original);
+            fixture.Apply("post-midl", "post-midl/winsync.h.patch", true,
+                patchRoot: Path.Combine(Root(), "generation", "WinSDK", "patches"));
+            CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                "RecompiledIdlHeaders", "um", "winsync.h")), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", "winsync.h")));
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+                SyncComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", "/TC", false)]
+        [DataRow("x64", "/TC", false)]
+        [DataRow("arm64", "/TC", false)]
+        [DataRow("x86", "/TP", false)]
+        [DataRow("x64", "/TP", false)]
+        [DataRow("arm64", "/TP", false)]
+        [DataRow("x86", "/TC", true)]
+        [DataRow("x64", "/TC", true)]
+        [DataRow("arm64", "/TC", true)]
+        [DataRow("x86", "/TP", true)]
+        [DataRow("x64", "/TP", true)]
+        [DataRow("arm64", "/TP", true)]
+        public void SyncOutput_NativeBuildIsANoOp(string arch, string language, bool syncFirst)
+        {
+            using var fixture = new Fixture();
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            fixture.Header("winsync.h", PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/winsync.h"));
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
+                "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
+            string source = Path.Combine(fixture.Path, "native.c");
+            File.WriteAllText(source, "#define COBJMACROS\n" +
+                (syncFirst ? "#include <winsync.h>\n" : "#include <windows.h>\n") +
+                "#include <windows.h>\n#include <winsync.h>\n#include <syncregistration.h>\n" +
+                "#include <synchronizationerrors.h>\n#include <syncregistrationerrors.h>\n" +
+                "#ifdef __cplusplus\n#define CALL(object, method, ...) object->method(__VA_ARGS__)\n" +
+                "#else\n#define CALL(object, method, ...) object->lpVtbl->method(object, __VA_ARGS__)\n#endif\n" +
+                "HRESULT NativeCalls(IClockVector* clock, IFeedClockVector* feed, IRangeException* range,\n" +
+                "ISingleItemException* single, IChangeUnitException* unit, ISyncKnowledge* knowledge,\n" +
+                "IForgottenKnowledge* forgotten, ISyncKnowledge2* knowledge2, REFIID iid, void** output) {\n" +
+                "return CALL(clock, GetClockVectorElements, iid, output) + CALL(feed, GetClockVectorElements, iid, output) +\n" +
+                "CALL(range, GetClockVector, iid, output) + CALL(single, GetClockVector, iid, output) +\n" +
+                "CALL(unit, GetClockVector, iid, output) + CALL(knowledge2, GetInspector, iid, output) +\n" +
+                string.Join(" +\n", new[] { "knowledge", "forgotten", "knowledge2" }.SelectMany(owner => new[] {
+                    "CALL(" + owner + ", GetScopeVector, iid, output)",
+                    "CALL(" + owner + ", GetRangeExceptions, iid, output)",
+                    "CALL(" + owner + ", GetSingleItemExceptions, iid, output)",
+                    "CALL(" + owner + ", GetChangeUnitExceptions, iid, output)",
+                    "CALL(" + owner + ", FindClockVectorForItem, 0, iid, output)",
+                    "CALL(" + owner + ", FindClockVectorForChangeUnit, 0, 0, iid, output)" })) + ";\n}\n");
+            string obj = Path.Combine(fixture.Path, "native.obj");
+            var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
+                "; $vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
+                "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; " +
+                "foreach ($mode in 'baseline', 'ordinary', 'metadata') { if ($mode -eq 'ordinary') { Copy-Item -LiteralPath " +
+                Quote(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", "winsync.h")) +
+                " -Destination " + Quote(Path.Combine(fixture.Headers, "um", "winsync.h")) + " }; " +
+                "& $compiler /nologo /c " + language + " " + Quote(source) + " " + Quote("/Fo" + obj) +
+                " " + Quote("/I" + Path.Combine(fixture.Headers, "um")) + " " + Quote("/I" + fixture.Headers) +
+                " \"/I$vcInclude\" " + Quote("/I" + Path.Combine(include, "um")) +
+                " " + Quote("/I" + Path.Combine(include, "shared")) + " " + Quote("/I" + Path.Combine(include, "ucrt")) +
+                " " + Quote("/I" + Path.Combine(include, "winrt")) +
+                " /DWINVER=0x0A00 /D_WIN32_WINNT=0x0A00 /DNTDDI_VERSION=0x0A00000C" +
+                " $(if ($mode -eq 'metadata') { '/DWIN32METADATA' }); " +
+                "if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Copy-Item -LiteralPath " + Quote(obj) +
+                " -Destination (Join-Path " + Quote(fixture.Path) + " ($mode + '.obj')) }");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            byte[][] outputs = new[] { "baseline", "ordinary", "metadata" }
+                .Select(mode => File.ReadAllBytes(Path.Combine(fixture.Path, mode + ".obj"))).ToArray();
+            foreach (byte[] bytes in outputs)
+            {
+                Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
+                Array.Clear(bytes, 4, 4);
+            }
+            CollectionAssert.AreEqual(outputs[0], outputs[1]);
+            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+        }
+
         private static string Direct3DPackagePath()
         {
             var result = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",
