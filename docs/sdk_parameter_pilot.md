@@ -116,10 +116,10 @@ General recovery of comment-only MIDL retval and native return double-NUL SAL
 is not enabled by this layer; the selected GetDesc case uses the explicit
 C++ fallback rather than changing MIDL typelib retval semantics.
 
-Qualification still requires frozen A/B inputs, strict raw-byte A/B and B/C
-output equality, SDK/tool/current-commit receipts, all-architecture production
-CI, and the existing independent time/memory confirmation budgets. No missing
-attribute, type, or signature exclusion is added.
+Validation uses the normally generated CI candidate and an already-built target
+CI/main/release winmd. This layer does not require additional full-SDK scrapes,
+paired generation, performance budgets, or generation receipts. Relevant native
+header/ABI/byte fixtures and ordinary CI remain required.
 
 ## Archived local production evidence before predecessor sync
 
@@ -131,9 +131,8 @@ strict `fc.exe /b` equality against that legacy output. All three files have
 SHA256 `6A85E41B5F09C976CE049C3B020FA2C30C01E4A2B553C774E06F540A74D876E2`.
 The header-only emission took 272.362 seconds.
 
-These are local production preflights, not a completed frozen-tool A/B/C
-qualification or a sampled-memory benchmark. Hosted all-architecture
-qualification and its unchanged performance gates remain required before merge.
+These archived local preflights are not certification of a later head and are
+not instructions to repeat full-SDK generation or benchmark runs.
 The final synced tooling run passed 195 tests; its header/emitter suite took
 79 seconds, so the 30-second warm tooling target is not claimed as achieved.
 The final targeted header/SDK replay run passed 84 tests. A production-integrity
@@ -148,8 +147,8 @@ production build, with a generated path property and no imported build/runtime
 assets. Its shared SDK-path helper reuses the existing repository-root locator
 and NuGet-property reader. SDK replay therefore needs only the test project's
 restore, not aggregate `BuildTools.proj` properties or a workflow setup
-workaround. The parallel lane, selection, timeouts, required-dependency
-enforcement, and qualification gates remain unchanged.
+workaround. The SDK lane remains parallel and selective; native replay and ABI
+assertions are independent of the removed receipt machinery.
 With aggregate NuGet properties deliberately absent, the parent tooling suites
 passed 195 tests and the separate SDK replay suite passed all 24 tests. The
 header/emitter suite took 79 seconds and SDK replay took 36 seconds.
@@ -158,6 +157,6 @@ After replaying this layer onto PR5
 `02c2674df78907d149cada750810385d8ff38651`, local tooling passed 199 tests
 (132 header/emitter tests in 92 seconds) and SDK replay passed all 24 tests in
 35 seconds. All 38 selector deletions, seven owning patches, shared SDK
-fixture, pre-measurement replay, and fresh after-receipt checks remain intact.
-The archived production timings and prior hosted passes above are not
-qualification for the synchronized head; fresh commit-bound CI is required.
+fixture, and native byte/ABI checks remain intact. Those test results precede
+the comparison simplification; ordinary exact-head CI and the already-built
+target comparison must be followed independently.
