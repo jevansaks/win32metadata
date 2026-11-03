@@ -1427,14 +1427,12 @@ namespace ClangSharpSourceToWinmdTests
             CollectionAssert.AreEqual(outputs[1], outputs[2]);
         }
 
-        [DataTestMethod]
-        [DataRow("i686-pc-windows-msvc")]
-        [DataRow("x86_64-pc-windows-msvc")]
-        [DataRow("aarch64-pc-windows-msvc")]
-        public void AudioOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner(string target)
+        [TestMethod]
+        public void AudioOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner()
         {
             using var fixture = new Fixture();
-            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
             foreach (string path in AudioComOutputHeaderTests.Idls.Select(name => "um/" + name)
                 .Concat(new[] { "um/dsound.h", "shared/ksproxy.h" }))
@@ -1480,7 +1478,7 @@ namespace ClangSharpSourceToWinmdTests
             command = ". " + Quote(Script("CommonUtils.ps1")) +
                 "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); ";
             foreach (string name in new[] { "mmdeviceapi", "audioclient", "devicetopology", "strmif", "vidcap", "wmsdkidl" })
-                command += "& " + Quote(Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                command += "& " + Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
                     " " + Quote(Path.Combine(converted, name + ".idl")) + " /out " + Quote(converted) +
                     " /header " + Quote(Path.Combine(fixture.Headers, "um", name + ".h")) +
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
@@ -1497,7 +1495,8 @@ namespace ClangSharpSourceToWinmdTests
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))),
                     File.ReadAllBytes(Path.Combine(fixture.Headers, owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
-            AudioComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+                AudioComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
         }
 
         [DataTestMethod]
