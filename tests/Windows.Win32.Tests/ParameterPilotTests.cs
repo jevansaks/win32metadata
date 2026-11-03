@@ -55,7 +55,17 @@ namespace Windows.Win32.Tests
                     "SHCreateShellItemArrayFromDataObject::ppv", "SHCreateShellItemArrayFromShellItem::ppv",
                     "SHGetKnownFolderItem::ppv", "SHBindToParent::ppv", "SHBindToFolderIDListParent::ppv",
                     "SHBindToFolderIDListParentEx::ppv", "SHBindToObject::ppv", "ITransferSource::OpenItem::ppv",
-                    "ITransferDestination::CreateItem::ppvItem", "ITransferDestination::CreateItem::ppvResources" }),
+                    "ITransferDestination::CreateItem::ppvItem", "ITransferDestination::CreateItem::ppvResources",
+                    "PSCreateAdapterFromPropertyStore::ppv", "PSCreateDelayedMultiplexPropertyStore::ppv",
+                    "PSCreateMultiplexPropertyStore::ppv", "PSCreatePropertyChangeArray::ppv",
+                    "PSCreatePropertyStoreFromObject::ppv", "PSCreatePropertyStoreFromPropertySetStorage::ppv",
+                    "PSCreateSimplePropertyChange::ppv", "PSEnumeratePropertyDescriptions::ppv",
+                    "PSGetItemPropertyHandler::ppv", "PSGetItemPropertyHandlerWithCreateObject::ppv",
+                    "PSGetPropertyDescription::ppv", "PSGetPropertyDescriptionByName::ppv",
+                    "PSGetPropertyDescriptionListFromString::ppv", "PSGetPropertySystem::ppv",
+                    "PSPropertyBag_ReadUnknown::ppv", "PSCreateMemoryPropertyStore::ppv",
+                    "SHGetPropertyStoreFromIDList::ppv", "SHGetPropertyStoreFromParsingName::ppv",
+                    "SHGetPropertyStoreForWindow::ppv", "SHGetViewStatePropertyBag::ppv" }),
                 ("ReservedAttribute", ParameterAttributes.In | ParameterAttributes.Optional, new[] {
                     "CoAllowSetForegroundWindow::lpvReserved", "CoDisableCallCancellation::pReserved",
                     "CoEnableCallCancellation::pReserved", "CoInitialize::pvReserved", "CoInitializeEx::pvReserved",
@@ -109,7 +119,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(70, checkedSelectors);
+            Assert.Equal(90, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {

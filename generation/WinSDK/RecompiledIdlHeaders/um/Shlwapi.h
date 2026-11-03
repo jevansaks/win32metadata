@@ -2035,7 +2035,7 @@ LWSTDAPI IStream_Copy(_In_ IStream *pstmFrom, _In_ IStream *pstmTo, DWORD cb);
 #define SHGVSPB_USERDEFAULTS        (SHGVSPB_PERUSER | SHGVSPB_ALLFOLDERS)
 #define SHGVSPB_GLOBALDEFAULTS      (SHGVSPB_ALLUSERS | SHGVSPB_ALLFOLDERS)
 
-LWSTDAPI SHGetViewStatePropertyBag(_In_opt_ PCIDLIST_ABSOLUTE pidl, _In_opt_ PCWSTR pszBagName, DWORD dwFlags, _In_ REFIID riid, _Outptr_ void **ppv);
+LWSTDAPI SHGetViewStatePropertyBag(_In_opt_ PCIDLIST_ABSOLUTE pidl, _In_opt_ PCWSTR pszBagName, DWORD dwFlags, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 #endif  // (_WIN32_IE >= 0x0600)
 
 // SHFormatDateTime flags

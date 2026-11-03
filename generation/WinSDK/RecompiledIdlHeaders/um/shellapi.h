@@ -1011,7 +1011,7 @@ SHSTDAPI SHQueryUserNotificationState(_Out_ QUERY_USER_NOTIFICATION_STATE *pquns
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
 // This api retrieves an IPropertyStore that stores the window's properties.
-SHSTDAPI SHGetPropertyStoreForWindow(_In_ HWND hwnd, _In_ REFIID riid, _Outptr_ void** ppv);
+SHSTDAPI SHGetPropertyStoreForWindow(_In_ HWND hwnd, _In_ REFIID riid, _COM_Outptr_ void** ppv);
 #endif
 
 

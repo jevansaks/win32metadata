@@ -383,6 +383,85 @@ SDK/core/URLMon no-op fixture is unchanged. Production metadata
 integrity checks cover all seventeen sites. No reader, transport, compatibility
 override, import exclusion, workflow, or extra full-SDK generation is added.
 
+## Property-system COM outputs and property-store acquisition
+
+The property layer audits all 205 remaining ComOutPtr records against their
+selected physical owners and retires twenty exact `=[ComOutPtr]` records,
+leaving 185. The sixteen property-system leads expand to the four shell
+property-store/property-bag acquisition functions retained by the shell layer:
+
+| Authoritative owning input | Exact retired selectors |
+|---|---|
+| `propsys.idl` | `PSCreateAdapterFromPropertyStore::ppv`, `PSCreateDelayedMultiplexPropertyStore::ppv`, `PSCreateMultiplexPropertyStore::ppv`, `PSCreatePropertyChangeArray::ppv`, `PSCreatePropertyStoreFromObject::ppv`, `PSCreatePropertyStoreFromPropertySetStorage::ppv`, `PSCreateSimplePropertyChange::ppv`, `PSCreateMemoryPropertyStore::ppv` |
+| `propsys.idl` | `PSEnumeratePropertyDescriptions::ppv`, `PSGetItemPropertyHandler::ppv`, `PSGetItemPropertyHandlerWithCreateObject::ppv`, `PSGetPropertyDescription::ppv`, `PSGetPropertyDescriptionByName::ppv`, `PSGetPropertyDescriptionListFromString::ppv`, `PSGetPropertySystem::ppv`, `PSPropertyBag_ReadUnknown::ppv` |
+| `ShObjIdl_core.idl` | `SHGetPropertyStoreFromIDList::ppv`, `SHGetPropertyStoreFromParsingName::ppv` |
+| Header-only `shellapi.h` | `SHGetPropertyStoreForWindow::ppv` |
+| Header-only `Shlwapi.h` | `SHGetViewStatePropertyBag::ppv` |
+
+`pre-midl/propsys.idl.patch` changes sixteen existing `cpp_quote` SAL
+declarations. The existing `pre-midl/ShObjIdl_core.idl.patch` gains the two
+adjacent property-store declarations while preserving the previous shell
+edits. Actual selected-SDK MIDL regenerates both headers. The two genuinely
+header-only owners use `post-midl/shellapi.h.patch` and
+`post-midl/Shlwapi.h.patch`; the existing wildcard selects them. Every edit
+replaces only `_Outptr_` with `_COM_Outptr_`. No native prototype, pointer depth,
+optional-storage/result contract, retval, guard, import or ABI changes.
+The existing property system interface methods already carry native MIDL/SAL
+COM facts and have no remaining sidecar to migrate.
+
+Each selected function has exactly one physical declaration in its owner,
+with no inline/template overload or generated proxy. Desktop/application
+family guards and the shell version/feature guards remain byte-identical.
+`ShObjIdl.h`, `ShlObj_core.h`, `ShlObj.h`, `PropIdl.h`, `PropIdlBase.h`,
+`propvarutil.h` and `propapi.h` contain no selected duplicate declaration.
+Both shell include alternatives continue through the owning core header.
+No second parser, name/IID inference or special projection is added.
+
+The complete-owner audit retains four unrelated `ShObjIdl_core` records:
+`SHCreateAssociationRegistration::ppv`, `SHCreateDefaultExtractIcon::ppv`,
+`SHAssocEnumHandlersForProtocolByApplication::enumHandlers` and
+`IShellMenu::GetShellFolder::ppv`. `shellapi.h` retains
+`AssocCreateForClasses::ppv` and
+`SHGetImageList::ppvObj`; `Shlwapi.h` retains
+`AssocCreate::ppv`, `IUnknown_GetSite::ppv`, `IUnknown_QueryService::ppvOut`
+and `QISearch::ppv`. Generic activation/association/UI helpers are not
+property acquisition. The `SHCreateDefaultContextMenu` mention in
+`shellapi.h` and `AssocCreateForClasses` mention in `Shlwapi.h` are comments,
+not duplicate owning declarations. The five retained
+`ShlObj_core` records, shell menu
+events, docking, storage, callbacks, scalar/VARTYPE, enum, availability,
+namespace and resource-ownership boundaries remain active. No wildcard
+supplies the twenty retired facts. Independent Out and all CanReturn*
+sidecars stay unchanged; the seventeen PreserveResult replacements remain
+inactive because their metadata shapes differ.
+
+`PropertyComOutputHeaderTests` compares original native declarations plus
+legacy sidecars against header-only final winmd bytes on x86/x64/ARM64.
+It reuses the shell fixture's exact Out/nonoptional/nonretval, `void**` and
+singleton custom-attribute blob assertions and checks equal-sidecar
+deduplication. Original native files and sidecars come from the parent of the
+property fixture's single reachable introduction commit, following the
+core/URLMon/shell baseline mechanism. No pre-rebase parent or SDK-update SHA
+is pinned. An explicit ancestry assertion requires the resolved baseline to
+be reachable from the tested head, including CI's clean full-history branch
+fetch. The complete corpus audit compares the original 205-record corpus
+with the remaining 185 and requires every independent sidecar to be unchanged.
+Byte audits prove
+only the intended SAL substitutions and preserve native encoding/newlines.
+The existing selected-SDK replay fixture retains the full `MidlInputRoot`
+ownership check for both phases, patches both IDLs, runs actual
+MIDL for both owners, checks every owning file byte-for-byte, and runs the
+fresh outputs through final emission on all three architectures. The existing
+shell native fixture retains its original checks and additionally compiles
+all twenty exact function-pointer signatures as C/C++ on x86/x64/ARM64,
+in both shell/COM include orders. Original-native, patched and
+WIN32METADATA-defined builds use identical header paths and SAL copies and
+compare all object bytes except the COFF timestamp. The original SDK/core/
+URLMon no-op fixture remains intact. Production integrity checks cover all
+twenty retired facts. No workflow or extra full-SDK generation is added;
+ordinary CI produces one candidate and compares it to its existing target
+CI winmd, with the existing disclosed main/released fallback if unavailable.
+
 ## Patch format and validation
 
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
