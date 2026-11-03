@@ -11,7 +11,7 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class ImportLibraryHeaderTests
     {
-        private const string Predecessor = "6ab5a9c8cc67663034f2af94865cf86622a1e26b";
+        private const string Predecessor = "c16762d41f1bd641ff8c4389ebf16ee50747129f";
         private const string Declaration = "int __stdcall Example(void* buffer, unsigned long count);";
 
         [DataTestMethod]
@@ -120,6 +120,8 @@ namespace ClangSharpSourceToWinmdTests
         public void CompleteOwnerFamilies_RetireOnlyMatchingManualRecords()
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
+            var ancestry = LastErrorHeaderTests.Run("git", "-C", root, "merge-base", "--is-ancestor", Predecessor, "HEAD");
+            Assert.AreEqual(0, ancestry.ExitCode, "The selected SDK legacy fixture must be reachable from the tested commit. " + ancestry.Output);
             var legacy = LastErrorHeaderTests.Run("git", "-C", root, "show",
                 Predecessor + ":generation/WinSDK/libMappingsManual.rsp");
             Assert.AreEqual(0, legacy.ExitCode, legacy.Output);
