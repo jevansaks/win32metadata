@@ -77,6 +77,9 @@ job. Its path filter includes ingestion scripts, patch assets/fixtures, the two
 proof inputs, and relevant build configuration. Unrelated PRs skip this job
 without starting a runner. Renamed paths are checked on both sides; incomplete
 file lists fail closed by running the tests. Manual and push runs also run them.
+The test project declares the existing pinned SDK as a private data-only package.
+Normal test restore supplies the real SDK/MIDL fixtures without a separate
+BuildTools restore/build or a full SDK regeneration.
 `TestTooling.ps1` (also called by `DoTests.ps1`) excludes `SdkPatchTests`, so they
 do not add runtime to ordinary tooling or the serial build/test/package job.
 The existing required aggregate check (retaining the **Migration qualification**
