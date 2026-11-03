@@ -1,0 +1,23 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PhotoAcquire.h b/generation/WinSDK/RecompiledIdlHeaders/um/PhotoAcquire.h
+index 8d0b864a..3f4bce99 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/PhotoAcquire.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/PhotoAcquire.h
+@@ -1363,7 +1363,7 @@ EXTERN_C const IID IID_IPhotoAcquireSource;
+         
+         virtual HRESULT STDMETHODCALLTYPE BindToObject( 
+             /* [in] */ __RPC__in REFIID riid,
+-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppv) = 0;
++            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppv) = 0;
+         
+     };
+     
+@@ -1433,7 +1433,7 @@ EXTERN_C const IID IID_IPhotoAcquireSource;
+         HRESULT ( STDMETHODCALLTYPE *BindToObject )( 
+             __RPC__in IPhotoAcquireSource * This,
+             /* [in] */ __RPC__in REFIID riid,
+-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppv);
++            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppv);
+         
+         END_INTERFACE
+     } IPhotoAcquireSourceVtbl;

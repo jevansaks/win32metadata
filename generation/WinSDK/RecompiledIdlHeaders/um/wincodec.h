@@ -6262,7 +6262,7 @@ EXTERN_C const IID IID_IWICD3DTextureSource;
             _In_opt_  IPropertyBag2 *pID3DTextureOptions,
             REFIID riid,
             /* [annotation] */ 
-            _Outptr_  void **ppTexture) = 0;
+            _COM_Outptr_  void **ppTexture) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetTransformedTexture( 
             /* [annotation] */ 
@@ -6278,7 +6278,7 @@ EXTERN_C const IID IID_IWICD3DTextureSource;
             _In_opt_  IPropertyBag2 *pID3DTextureOptions,
             REFIID riid,
             /* [annotation] */ 
-            _Outptr_  void **ppTexture) = 0;
+            _COM_Outptr_  void **ppTexture) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE DoesSupportD3DDeviceType( 
             REFIID riid,
@@ -6323,7 +6323,7 @@ EXTERN_C const IID IID_IWICD3DTextureSource;
             _In_opt_  IPropertyBag2 *pID3DTextureOptions,
             REFIID riid,
             /* [annotation] */ 
-            _Outptr_  void **ppTexture);
+            _COM_Outptr_  void **ppTexture);
         
         DECLSPEC_XFGVIRT(IWICD3DTextureSource, GetTransformedTexture)
         HRESULT ( STDMETHODCALLTYPE *GetTransformedTexture )( 
@@ -6341,7 +6341,7 @@ EXTERN_C const IID IID_IWICD3DTextureSource;
             _In_opt_  IPropertyBag2 *pID3DTextureOptions,
             REFIID riid,
             /* [annotation] */ 
-            _Outptr_  void **ppTexture);
+            _COM_Outptr_  void **ppTexture);
         
         DECLSPEC_XFGVIRT(IWICD3DTextureSource, DoesSupportD3DDeviceType)
         HRESULT ( STDMETHODCALLTYPE *DoesSupportD3DDeviceType )( 
@@ -7408,7 +7408,7 @@ EXTERN_C const IID IID_IWICBitmapEncoderInfo;
     public:
         virtual HRESULT STDMETHODCALLTYPE CreateInstance( 
             /* [annotation][out] */ 
-            _Out_  IWICBitmapEncoder **ppIBitmapEncoder) = 0;
+            _COM_Outptr_  IWICBitmapEncoder **ppIBitmapEncoder) = 0;
         
     };
     
@@ -7601,7 +7601,7 @@ EXTERN_C const IID IID_IWICBitmapEncoderInfo;
         HRESULT ( STDMETHODCALLTYPE *CreateInstance )( 
             __RPC__in IWICBitmapEncoderInfo * This,
             /* [annotation][out] */ 
-            _Out_  IWICBitmapEncoder **ppIBitmapEncoder);
+            _COM_Outptr_  IWICBitmapEncoder **ppIBitmapEncoder);
         
         END_INTERFACE
     } IWICBitmapEncoderInfoVtbl;
@@ -7735,7 +7735,7 @@ EXTERN_C const IID IID_IWICBitmapDecoderInfo;
         
         virtual HRESULT STDMETHODCALLTYPE CreateInstance( 
             /* [annotation][out] */ 
-            _Out_  IWICBitmapDecoder **ppIBitmapDecoder) = 0;
+            _COM_Outptr_  IWICBitmapDecoder **ppIBitmapDecoder) = 0;
         
     };
     
@@ -7948,7 +7948,7 @@ EXTERN_C const IID IID_IWICBitmapDecoderInfo;
         HRESULT ( STDMETHODCALLTYPE *CreateInstance )( 
             __RPC__in IWICBitmapDecoderInfo * This,
             /* [annotation][out] */ 
-            _Out_  IWICBitmapDecoder **ppIBitmapDecoder);
+            _COM_Outptr_  IWICBitmapDecoder **ppIBitmapDecoder);
         
         END_INTERFACE
     } IWICBitmapDecoderInfoVtbl;

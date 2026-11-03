@@ -141,7 +141,7 @@ WINCOMMCTRLAPI HRESULT WINAPI ImageList_CoCreateInstance(
          _In_  REFCLSID rclsid,
      _In_opt_  const IUnknown *punkOuter,
          _In_  REFIID riid,
-  _Outptr_ void **ppv);
+  _COM_Outptr_ void **ppv);
 #endif
 #define ILIF_ALPHA               0x00000001
 #define ILIF_LOWQUALITY          0x00000002
@@ -234,12 +234,12 @@ EXTERN_C const IID IID_IImageList;
             int dy,
             REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Clone( 
             REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetImageRect( 
             int i,
@@ -310,7 +310,7 @@ EXTERN_C const IID IID_IImageList;
             _Out_opt_  POINT *pptHotspot,
             REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetItemFlags( 
             int i,
@@ -436,14 +436,14 @@ EXTERN_C const IID IID_IImageList;
             int dy,
             REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
             IImageList * This,
             REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, GetImageRect)
         HRESULT ( STDMETHODCALLTYPE *GetImageRect )( 
@@ -544,7 +544,7 @@ EXTERN_C const IID IID_IImageList;
             _Out_opt_  POINT *pptHotspot,
             REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, GetItemFlags)
         HRESULT ( STDMETHODCALLTYPE *GetItemFlags )( 
@@ -756,7 +756,7 @@ EXTERN_C const IID IID_IImageList2;
         virtual HRESULT STDMETHODCALLTYPE GetCallback( 
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE ForceImagePresent( 
             /* [annotation][in] */ 
@@ -924,14 +924,14 @@ EXTERN_C const IID IID_IImageList2;
             int dy,
             REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
             IImageList2 * This,
             REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, GetImageRect)
         HRESULT ( STDMETHODCALLTYPE *GetImageRect )( 
@@ -1032,7 +1032,7 @@ EXTERN_C const IID IID_IImageList2;
             _Out_opt_  POINT *pptHotspot,
             REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, GetItemFlags)
         HRESULT ( STDMETHODCALLTYPE *GetItemFlags )( 
@@ -1085,7 +1085,7 @@ EXTERN_C const IID IID_IImageList2;
             IImageList2 * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList2, ForceImagePresent)
         HRESULT ( STDMETHODCALLTYPE *ForceImagePresent )( 

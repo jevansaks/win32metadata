@@ -66,10 +66,10 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
-            Assert.AreEqual(RetireRecords(parent), current, "Preserve the complete independent sidecar exactly.");
-            CollectionAssert.AreEqual(RetireRecords(parent).Split('\n').Where(Contract).ToArray(),
+            Assert.AreEqual(ImagingComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(RetireRecords(parent)))), current, "Preserve the complete independent sidecar exactly.");
+            CollectionAssert.AreEqual(ImagingComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(RetireRecords(parent)))).Split('\n').Where(Contract).ToArray(),
                 current.Split('\n').Where(Contract).ToArray());
-            Assert.AreEqual(88, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(73, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
             var ancestry = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(),
                 "merge-base", "--is-ancestor", PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot()), "HEAD");
             Assert.AreEqual(0, ancestry.ExitCode, ancestry.Output);

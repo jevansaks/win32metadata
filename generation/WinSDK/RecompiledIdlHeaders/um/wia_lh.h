@@ -3772,7 +3772,7 @@ EXTERN_C const IID IID_IWiaItem2;
             /* [in] */ LONG lFlags,
             /* [in] */ BSTR bstrName,
             /* [in] */ REFIID riidExtensionInterface,
-            /* [iid_is][out] */ void **ppOut) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppOut) = 0;
         
         virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE GetParentItem( 
             /* [out] */ __RPC__deref_out_opt IWiaItem2 **ppIWiaItem2) = 0;
@@ -3898,7 +3898,7 @@ EXTERN_C const IID IID_IWiaItem2;
             /* [in] */ LONG lFlags,
             /* [in] */ BSTR bstrName,
             /* [in] */ REFIID riidExtensionInterface,
-            /* [iid_is][out] */ void **ppOut);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppOut);
         
         DECLSPEC_XFGVIRT(IWiaItem2, GetParentItem)
         /* [helpstring] */ HRESULT ( STDMETHODCALLTYPE *GetParentItem )( 
