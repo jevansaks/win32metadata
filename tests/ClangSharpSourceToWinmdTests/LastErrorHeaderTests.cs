@@ -178,6 +178,7 @@ namespace ClangSharpSourceToWinmdTests
                 var apply = Run("pwsh", "-NoProfile", "-NonInteractive", "-File",
                     Path.Combine(root, "scripts", "ApplySDKPatches.ps1"),
                     "-Phase", "post-midl", "-HeaderRoot", directory, "-SdkVersion", "10.0.28000.2705",
+                    "-MidlInputRoot", Path.Combine(SdkPackagePath(), "c", "include", "10.0.28000.0"),
                     "-SelectedPatches", "post-midl/winhttp.h.patch");
                 Assert.AreEqual(0, apply.ExitCode, apply.Output);
                 Assert.AreEqual(current.Replace("\r\n", "\n"), File.ReadAllText(header).Replace("\r\n", "\n"));
