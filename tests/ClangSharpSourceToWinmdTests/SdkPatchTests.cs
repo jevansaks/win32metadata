@@ -278,18 +278,27 @@ namespace ClangSharpSourceToWinmdTests
                 ("pre-midl/ObjIdlbase.Idl.patch", "um", "ObjIdlbase.Idl"),
                 ("pre-midl/dxgi.idl.patch", "shared", "dxgi.idl"),
             };
-            string copy = "$sdk = " + Quote(LastErrorHeaderTests.SdkPackagePath()) + "; ";
+            string inputRoot = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string copy = "$include = " + Quote(inputRoot) + "; " +
+                "$outputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) + " -HeaderRoot $include); " +
+                "foreach ($owner in @(@{ Idl='um/ObjIdl.Idl'; Header='um/ObjIdl.h' }, " +
+                "@{ Idl='um/ObjIdlbase.Idl'; Header='um/ObjIdlbase.h' }, " +
+                "@{ Idl='shared/dxgi.idl'; Header='shared/dxgi.h' })) { " +
+                "if (@($outputs | Where-Object { $_.Idl -ieq $owner.Idl -and $_.Header -ieq $owner.Header }).Count -ne 1) " +
+                "{ throw \"Missing generated pilot owner: $($owner.Idl)\" } }; " +
+                "foreach ($header in 'um/winhttp.h', 'um/combaseapi.h', 'um/objbase.h', 'um/fileapi.h') { " +
+                "if ($outputs.Header -icontains $header) { throw \"Pilot direct header is regenerated: $header\" } }; ";
             foreach (var owner in owners)
                 copy += "$destination = " + Quote(System.IO.Path.Combine(fixture.Headers, owner.Item2, owner.Item3)) +
                     "; New-Item -ItemType Directory -Force (Split-Path $destination) | Out-Null; " +
-                    "Copy-Item -LiteralPath (Join-Path $sdk " +
-                    Quote("c\\include\\10.0.28000.0\\" + owner.Item2 + "\\" + owner.Item3) + ") -Destination $destination; ";
+                    "Copy-Item -LiteralPath (Join-Path $include " +
+                    Quote(owner.Item2 + "\\" + owner.Item3) + ") -Destination $destination; ";
             var copied = fixture.Run(copy);
             Assert.AreEqual(0, copied.ExitCode, copied.Output);
             string selections = string.Join("','", owners.Select(owner => owner.Item1));
             string patches = System.IO.Path.Combine(Root(), "generation", "WinSDK", "patches");
-            fixture.Apply("pre-midl", selections, true, patchRoot: patches);
-            fixture.Apply("post-midl", selections, true, patchRoot: patches);
+            fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: inputRoot);
+            fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: inputRoot);
             foreach (var owner in owners)
                 CollectionAssert.AreEqual(File.ReadAllBytes(System.IO.Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", owner.Item2, owner.Item3)),
@@ -397,10 +406,12 @@ namespace ClangSharpSourceToWinmdTests
                 return file;
             }
 
-            public void Apply(string phase, string selection, bool success, string version = Version, string? patchRoot = null)
+            public void Apply(string phase, string selection, bool success, string version = Version, string? patchRoot = null,
+                string? midlInputRoot = null)
             {
                 var result = Run($"& {Quote(Script("ApplySDKPatches.ps1"))} -Phase {Quote(phase)} -HeaderRoot {Quote(Headers)} " +
-                    $"-SdkVersion {Quote(version)} -PatchRoot {Quote(patchRoot ?? Patches)} -SelectedPatches @('{selection}')");
+                    $"-SdkVersion {Quote(version)} -PatchRoot {Quote(patchRoot ?? Patches)} -SelectedPatches @('{selection}')" +
+                    (midlInputRoot == null ? "" : " -MidlInputRoot " + Quote(midlInputRoot)));
                 Assert.AreEqual(success, result.ExitCode == 0, result.Output);
             }
 

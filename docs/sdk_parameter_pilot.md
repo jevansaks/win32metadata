@@ -23,6 +23,11 @@ Pre-MIDL changes survive the existing IDL-to-SAL converter and MIDL recompilatio
 `ObjIdl.h`, `ObjIdlbase.h`, and `dxgi.h` are reingested outputs, not independent
 hand-authored patches. Converted imported IDLs must remain available when
 recompiling an owner; otherwise inherited method SAL is lost.
+The seven-owner replay classifies against the complete package-original SDK
+input tree: ObjIdl, ObjIdlbase, and dxgi are queued MIDL outputs, so their
+facts stay in pre-MIDL IDL patches. WinHttp, combaseapi, objbase, and fileapi
+are direct-header inputs. Subset replay passes the complete MIDL input root
+to the existing guard; missing sibling IDLs cannot bypass source ownership.
 
 For example, `CoGetDefaultContext` moves from `_Outptr_ void** ppv` plus
 `CoGetDefaultContext::ppv=[ComOutPtr]` to `_COM_Outptr_ void** ppv` without that
@@ -170,3 +175,11 @@ native/ABI fixtures are unchanged from the previous layer. The inherited
 post-MIDL patch wildcard is preserved, with the three pre-MIDL owners added.
 Ordinary exact-head CI and the already-built target comparison remain separate
 from these local fixture results.
+
+The source-classification sync onto PR5
+`cda1fa94b96013ba4a130826f8efac2dd70c7efc` passed tooling 164/164 and
+SDK replay 33/33. The seven-owner replay uses the complete SDK MIDL input
+tree for both phase guards and explicitly checks the three generated owners
+and four direct headers. The private data-only SDK dependency is inherited
+once from the predecessor. No production annotations, selector deletions,
+owning patch bytes, native fixtures, or documented semantic gaps changed.
