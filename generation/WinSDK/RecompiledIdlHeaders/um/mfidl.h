@@ -5852,7 +5852,7 @@ STDAPI MFGetService(
     IUnknown* punkObject,
     REFGUID guidService,
     REFIID riid,
-    _Outptr_ LPVOID* ppvObject
+    _COM_Outptr_ LPVOID* ppvObject
     );
 typedef LONGLONG MFTIME;
 
@@ -14464,7 +14464,7 @@ EXTERN_C const IID IID_IMFNetSchemeHandlerConfig;
 
 STDAPI MFCreateNetSchemePlugin(
     REFIID riid, 
-    LPVOID *ppvHandler );
+    _COM_Outptr_ LPVOID *ppvHandler );
 typedef 
 enum _MFNETSOURCE_TRANSPORT_TYPE
     {
@@ -15073,7 +15073,7 @@ EXTERN_C const IID IID_IMFInputTrustAuthority;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual /* [local] */ HRESULT STDMETHODCALLTYPE RequestAccess( 
             /* [annotation][in] */ 
@@ -15128,7 +15128,7 @@ EXTERN_C const IID IID_IMFInputTrustAuthority;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IMFInputTrustAuthority, RequestAccess)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *RequestAccess )( 
@@ -17206,13 +17206,13 @@ EXTERN_C const IID IID_IMFRemoteProxy;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetRemoteHost( 
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
     };
     
@@ -17245,7 +17245,7 @@ EXTERN_C const IID IID_IMFRemoteProxy;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IMFRemoteProxy, GetRemoteHost)
         HRESULT ( STDMETHODCALLTYPE *GetRemoteHost )( 
@@ -17253,7 +17253,7 @@ EXTERN_C const IID IID_IMFRemoteProxy;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Outptr_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         END_INTERFACE
     } IMFRemoteProxyVtbl;
@@ -17329,7 +17329,7 @@ EXTERN_C const IID IID_IMFObjectReferenceStream;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
     };
     
@@ -17370,7 +17370,7 @@ EXTERN_C const IID IID_IMFObjectReferenceStream;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         END_INTERFACE
     } IMFObjectReferenceStreamVtbl;
@@ -19177,14 +19177,14 @@ STDAPI MFCreateMFByteStreamOnStreamEx(
 STDAPI MFCreateStreamOnMFByteStreamEx(
     _In_ IMFByteStream* pByteStream,
     _In_ REFIID riid,
-    _Outptr_ void **ppv );
+    _COM_Outptr_ void **ppv );
 STDAPI MFCreateMediaTypeFromProperties(
     _In_ IUnknown* punkStream,
     _Outptr_ IMFMediaType** ppMediaType );
 STDAPI MFCreatePropertiesFromMediaType(
     _In_ IMFMediaType* pMediaType,
     _In_ REFIID riid,
-    _Outptr_ void **ppv );
+    _COM_Outptr_ void **ppv );
 #if (WINVER >= _WIN32_WINNT_WINBLUE) 
 DEFINE_GUID(MF_WRAPPED_BUFFER_SERVICE, 0xab544072, 0xc269, 0x4ebc, 0xa5, 0x52, 0x1c, 0x3b, 0x32, 0xbe, 0xd5, 0xca);
 EXTERN_GUID(MF_WRAPPED_SAMPLE_SERVICE, 0x31f52bf2, 0xd03e, 0x4048, 0x80, 0xd0, 0x9c, 0x10, 0x46, 0xd8, 0x7c, 0x61);

@@ -1,0 +1,23 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dxva2api.idl b/generation/WinSDK/RecompiledIdlHeaders/um/dxva2api.idl
+index 1d6812dd..e979be73 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dxva2api.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dxva2api.idl
+@@ -670,7 +670,7 @@ interface IDirect3DDeviceManager9 : IUnknown
+     HRESULT GetVideoService(
+         [in, annotation("_In_")] HANDLE hDevice,
+         [in, annotation("_In_")] REFIID riid,
+-        [out, annotation("_Outptr_")] void** ppService
++        [out, annotation("_COM_Outptr_")] void** ppService
+         );
+ };
+ 
+@@ -997,7 +997,7 @@ cpp_quote("    );")
+ cpp_quote("STDAPI DXVA2CreateVideoService(")
+ cpp_quote("    _In_ IDirect3DDevice9* pDD,")
+ cpp_quote("    _In_ REFIID riid,")
+-cpp_quote("    _Outptr_ void** ppService")
++cpp_quote("    _COM_Outptr_ void** ppService")
+ cpp_quote("    );")
+ 
+ cpp_quote("#endif  // _D3D9_H_")

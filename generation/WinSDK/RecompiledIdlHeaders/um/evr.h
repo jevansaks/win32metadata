@@ -2054,25 +2054,25 @@ EVRPUBLIC(MFCreateVideoPresenter)(
     _In_opt_ IUnknown * pOwner,
     REFIID riidDevice,
     REFIID riid,
-    _Outptr_result_maybenull_ void ** ppVideoPresenter
+    _COM_Outptr_result_maybenull_ void ** ppVideoPresenter
     );
 EVRPUBLIC(MFCreateVideoMixer)(
     _In_opt_ IUnknown * pOwner,
     REFIID riidDevice,
     REFIID riid,
-    _Outptr_ void ** ppv
+    _COM_Outptr_ void ** ppv
     );
 EVRPUBLIC(MFCreateVideoMixerAndPresenter)(
     _In_opt_ IUnknown * pMixerOwner,
     _In_opt_ IUnknown * pPresenterOwner,
     REFIID riidMixer,
-    _Outptr_ void ** ppvVideoMixer, 
+    _COM_Outptr_ void ** ppvVideoMixer, 
     REFIID riidPresenter,
-    _Outptr_ void ** ppvVideoPresenter
+    _COM_Outptr_ void ** ppvVideoPresenter
     );
 EVRPUBLIC(MFCreateVideoRenderer)(
     REFIID riidRenderer,
-    _Outptr_result_maybenull_ void ** ppVideoRenderer
+    _COM_Outptr_result_maybenull_ void ** ppVideoRenderer
     );
 EVRPUBLIC(MFCreateVideoSampleFromSurface)(
     _In_ IUnknown* pUnkSurface,
@@ -2080,7 +2080,7 @@ EVRPUBLIC(MFCreateVideoSampleFromSurface)(
     );
 EVRPUBLIC(MFCreateVideoSampleAllocator)(
     _In_ REFIID riid,
-    _Outptr_ void** ppSampleAllocator
+    _COM_Outptr_ void** ppSampleAllocator
     );
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion

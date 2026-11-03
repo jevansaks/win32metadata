@@ -309,7 +309,7 @@ HRESULT MFCreateD3D12SynchronizationObject(
     /* [annotation][in] */ 
     _In_  REFIID riid,
     /* [annotation][out] */ 
-    _Outptr_  void **ppvSyncObject);
+    _COM_Outptr_  void **ppvSyncObject);
 
 #endif /* (NTDDI_VERSION >= NTDDI_WIN10_CO) */
 typedef 

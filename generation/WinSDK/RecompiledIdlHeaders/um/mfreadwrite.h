@@ -164,7 +164,7 @@ EXTERN_C const IID IID_IMFReadWriteClassFactory;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  LPVOID *ppvObject) = 0;
+            _COM_Outptr_  LPVOID *ppvObject) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE CreateInstanceFromObject( 
             /* [annotation][in] */ 
@@ -176,7 +176,7 @@ EXTERN_C const IID IID_IMFReadWriteClassFactory;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  LPVOID *ppvObject) = 0;
+            _COM_Outptr_  LPVOID *ppvObject) = 0;
         
     };
     
@@ -215,7 +215,7 @@ EXTERN_C const IID IID_IMFReadWriteClassFactory;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  LPVOID *ppvObject);
+            _COM_Outptr_  LPVOID *ppvObject);
         
         DECLSPEC_XFGVIRT(IMFReadWriteClassFactory, CreateInstanceFromObject)
         HRESULT ( STDMETHODCALLTYPE *CreateInstanceFromObject )( 
@@ -229,7 +229,7 @@ EXTERN_C const IID IID_IMFReadWriteClassFactory;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  LPVOID *ppvObject);
+            _COM_Outptr_  LPVOID *ppvObject);
         
         END_INTERFACE
     } IMFReadWriteClassFactoryVtbl;
@@ -424,7 +424,7 @@ EXTERN_C const IID IID_IMFSourceReader;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  LPVOID *ppvObject) = 0;
+            _COM_Outptr_  LPVOID *ppvObject) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetPresentationAttribute( 
             /* [annotation][in] */ 
@@ -543,7 +543,7 @@ EXTERN_C const IID IID_IMFSourceReader;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  LPVOID *ppvObject);
+            _COM_Outptr_  LPVOID *ppvObject);
         
         DECLSPEC_XFGVIRT(IMFSourceReader, GetPresentationAttribute)
         HRESULT ( STDMETHODCALLTYPE *GetPresentationAttribute )( 
@@ -784,7 +784,7 @@ EXTERN_C const IID IID_IMFSourceReaderEx;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  LPVOID *ppvObject);
+            _COM_Outptr_  LPVOID *ppvObject);
         
         DECLSPEC_XFGVIRT(IMFSourceReader, GetPresentationAttribute)
         HRESULT ( STDMETHODCALLTYPE *GetPresentationAttribute )( 
@@ -1322,7 +1322,7 @@ EXTERN_C const IID IID_IMFSinkWriter;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  LPVOID *ppvObject) = 0;
+            _COM_Outptr_  LPVOID *ppvObject) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetStatistics( 
             /* [annotation][in] */ 
@@ -1427,7 +1427,7 @@ EXTERN_C const IID IID_IMFSinkWriter;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  LPVOID *ppvObject);
+            _COM_Outptr_  LPVOID *ppvObject);
         
         DECLSPEC_XFGVIRT(IMFSinkWriter, GetStatistics)
         HRESULT ( STDMETHODCALLTYPE *GetStatistics )( 
@@ -1635,7 +1635,7 @@ EXTERN_C const IID IID_IMFSinkWriterEx;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  LPVOID *ppvObject);
+            _COM_Outptr_  LPVOID *ppvObject);
         
         DECLSPEC_XFGVIRT(IMFSinkWriter, GetStatistics)
         HRESULT ( STDMETHODCALLTYPE *GetStatistics )( 

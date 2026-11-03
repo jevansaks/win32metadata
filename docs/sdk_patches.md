@@ -1,5 +1,70 @@
 # SDK header patches
 
+## Media Foundation COM outputs
+
+This layer audits all **144** parent `ComOutPtr` records against every shipped
+owner in the selected `Mf` traversal. It retires **30 complete records**,
+leaving **114** active records. All 28 MF/IMF factory, service, resource and
+reference leads are covered, together with the two video-service outputs
+physically owned by the selected `dxva2api` input. There are no new partial
+records or exact-byte boundaries in this family.
+
+| Owning native input | Migrated existing output facts |
+|---|---|
+| `mfapi.h` | `MFCreateAttributes::ppMFAttributes`, `MFCreateMediaExtensionActivate::ppvObject`, `MFCreateVideoSampleAllocatorEx::ppSampleAllocator` |
+| `mfcaptureengine.idl` | `IMFCaptureEngineClassFactory::CreateInstance::ppvObject` |
+| `mfsharingengine.idl` | `IMFImageSharingEngineClassFactory::CreateInstanceFromUDN::ppEngine` |
+| `mfreadwrite.idl` | `IMFReadWriteClassFactory::CreateInstanceFromURL::ppvObject`, `IMFReadWriteClassFactory::CreateInstanceFromObject::ppvObject`, `IMFSinkWriter::GetServiceForStream::ppvObject`, `IMFSourceReader::GetServiceForStream::ppvObject` |
+| `Mfobjects.idl` | `IMFDXGIBuffer::GetResource::ppvObject`, `IMFDXGIBuffer::GetUnknown::ppvObject`, `IMFDXGIDeviceManager::GetVideoService::ppService` |
+| `Mfidl.idl` | `IMFInputTrustAuthority::GetDecrypter::ppv`, `IMFObjectReferenceStream::LoadReference::ppv`, `IMFRemoteProxy::GetRemoteHost::ppv`, `IMFRemoteProxy::GetRemoteObject::ppv`, `MFCreateNetSchemePlugin::ppvHandler`, `MFCreatePropertiesFromMediaType::ppv`, `MFCreateStreamOnMFByteStreamEx::ppv`, `MFGetService::ppvObject` |
+| `mfmediaengine.idl` | `IMFMediaEngineClassFactory4::CreateContentDecryptionModuleFactory::ppvObject` |
+| `mfd3d12.idl` | `MFCreateD3D12SynchronizationObject::ppvSyncObject` |
+| `evr.idl` | `MFCreateVideoMixer::ppv`, both `MFCreateVideoMixerAndPresenter` outputs, `MFCreateVideoPresenter::ppVideoPresenter`, `MFCreateVideoRenderer::ppVideoRenderer`, `MFCreateVideoSampleAllocator::ppSampleAllocator` |
+| `dxva2api.idl` | `DXVA2CreateVideoService::ppService`, `IDirect3DDeviceManager9::GetVideoService::ppService` |
+
+Nine per-file pre-MIDL patches update authoritative IDL annotations or
+`cpp_quote` SAL. The one post-MIDL patch updates the genuinely header-only
+`mfapi.h`; the selected SDK ships no `mfapi.idl`. Normal conversion and MIDL
+regenerate the corresponding C++ methods, C vtables and inherited
+`IMFSourceReaderEx` / `IMFSinkWriterEx` service entries. Native declarations,
+including local methods, ordinary and nullable outputs, export macros and
+version guards, keep their ABI. `MFCreateAttributes` and the image-sharing
+factory keep their native typed outputs, not `void**`.
+
+`MediaFoundationComOutputHeaderTests` extracts the actual original and patched
+declarations and compares legacy-sidecar versus header-only final winmd bytes
+on x86, x64 and arm64. It checks final output attributes, flags, pointer depth,
+typed targets and retval absence; adding redundant sidecars also stays
+byte-identical. Its inventory includes every selected shipped traversal owner,
+not merely MF-prefixed names. The immutable SDK ancestor
+`c16762d41f1bd641ff8c4389ebf16ee50747129f` remains ancestry-guarded. Original
+owner bytes must equal test-owned SDK `10.0.28000.2705` inputs before replay.
+The byte-stream helper preserves the legacy `0x92` comment byte in
+`mfd3d12.idl`; line endings, trailing blank lines and unrelated native bytes
+are unchanged. Native diff checks allow only the selected SAL/annotation edits.
+
+`SdkPatchTests` applies the actual selected patches, converts the bounded
+owner/import set, runs production MIDL options, compares complete generated
+owner bytes and passes the replayed declarations through final winmd for
+all three architectures. Native C/C++ fixtures use the same paths for original,
+patched and `WIN32METADATA` builds on x86/x64/arm64 in both include orders,
+call every selected factory/method and the inherited service variants, and
+compare full object bytes except the COFF timestamp. Existing parent no-op
+fixtures and independent availability, result, import and SAL facts remain
+in place.
+
+DirectShow, WIC, Controls, HLink, automation, storage and unrelated UI are not
+part of this family. No removed SDK header/API is restored. The DWrite
+`void**` representation override, five graphics callback records and
+`IPresentationManager::GetPresentRetiringFence` custom-attribute row-order
+boundary remain active and unchanged. The presentation boundary is not a
+semantic retval change. Production `CanReturn*` sidecars remain active and all
+17 proposed PreserveResult replacements stay inactive. No global attribute
+canonicalization or new production annotation mechanism is introduced.
+Ordinary CI still builds one candidate and compares against an already-produced
+exact-target winmd, with the existing explicitly disclosed main/release fallback;
+this layer adds no full-SDK generation or comparison workflow.
+
 ## Graphics COM factory and resource outputs
 
 This layer audits all 169 parent `ComOutPtr` records against the actual shipped

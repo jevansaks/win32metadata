@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.idl b/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.idl
+index 54e8cc16..bb80246f 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.idl
+@@ -1062,7 +1062,7 @@ interface IMFCaptureEngineClassFactory : IUnknown
+     HRESULT CreateInstance(
+                 [in, annotation("_In_")] REFCLSID clsid,               
+                 [in, annotation("_In_")] REFIID riid,
+-                [out, iid_is(riid), annotation("_Out_")] LPVOID *ppvObject );
++                [out, iid_is(riid), annotation("_COM_Outptr_")] LPVOID *ppvObject );
+     
+ };
+ 

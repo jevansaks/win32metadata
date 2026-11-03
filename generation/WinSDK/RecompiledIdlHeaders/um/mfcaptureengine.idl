@@ -1062,7 +1062,7 @@ interface IMFCaptureEngineClassFactory : IUnknown
     HRESULT CreateInstance(
                 [in, annotation("_In_")] REFCLSID clsid,               
                 [in, annotation("_In_")] REFIID riid,
-                [out, iid_is(riid), annotation("_Out_")] LPVOID *ppvObject );
+                [out, iid_is(riid), annotation("_COM_Outptr_")] LPVOID *ppvObject );
     
 };
 
