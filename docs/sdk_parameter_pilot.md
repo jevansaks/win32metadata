@@ -160,3 +160,13 @@ After replaying this layer onto PR5
 fixture, and native byte/ABI checks remain intact. Those test results precede
 the comparison simplification; ordinary exact-head CI and the already-built
 target comparison must be followed independently.
+
+After replay onto simplified PR5
+`2b1d46349bc652b2d91a3f6842c23fe5e92d964e`, tooling passed 164 tests
+(97 header/emitter tests in 72 seconds) and SDK replay passed all 24 tests in
+36 seconds. The measurement runner and its hooks remain removed. The 38
+selector deletions, seven owning patches, parameter capability sources, and
+native/ABI fixtures are unchanged from the previous layer. The inherited
+post-MIDL patch wildcard is preserved, with the three pre-MIDL owners added.
+Ordinary exact-head CI and the already-built target comparison remain separate
+from these local fixture results.
