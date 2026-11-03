@@ -1840,7 +1840,7 @@ interface ID3D10Device
     HRESULT OpenSharedResource(
         [annotation("_In_")] HANDLE hResource,
         [annotation("_In_")] REFIID ReturnedInterface,
-        [annotation("_Out_opt_")] void ** ppResource);
+        [annotation("_COM_Outptr_opt_")] void ** ppResource);
     void SetTextFilterSize(
         [annotation("_In_")] UINT Width,
         [annotation("_In_")] UINT Height );

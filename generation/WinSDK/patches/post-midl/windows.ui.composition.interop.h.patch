@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/windows.ui.composition.interop.h b/generation/WinSDK/RecompiledIdlHeaders/winrt/windows.ui.composition.interop.h
+index 69d69bea..43460d60 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/windows.ui.composition.interop.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/windows.ui.composition.interop.h
+@@ -127,7 +127,7 @@ DECLARE_INTERFACE_IID_(ICompositionTextureInterop, IUnknown, "D528A265-F0A5-422F
+     IFACEMETHOD(GetAvailableFence)(
+         _Out_ UINT64 * fenceValue,
+         _In_ REFIID iid,
+-        _Outptr_result_maybenull_ void ** availableFence) PURE;
++        _COM_Outptr_result_maybenull_ void ** availableFence) PURE;
+ };
+ 
+ #endif // (NTDDI_VERSION >= NTDDI_WIN10_NI)

@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d3d10.idl b/generation/WinSDK/RecompiledIdlHeaders/um/d3d10.idl
+index 5905d6dd..5a027e1d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/d3d10.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/d3d10.idl
+@@ -1840,7 +1840,7 @@ interface ID3D10Device
+     HRESULT OpenSharedResource(
+         [annotation("_In_")] HANDLE hResource,
+         [annotation("_In_")] REFIID ReturnedInterface,
+-        [annotation("_Out_opt_")] void ** ppResource);
++        [annotation("_COM_Outptr_opt_")] void ** ppResource);
+     void SetTextFilterSize(
+         [annotation("_In_")] UINT Width,
+         [annotation("_In_")] UINT Height );

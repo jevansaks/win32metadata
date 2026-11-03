@@ -127,7 +127,7 @@ DECLARE_INTERFACE_IID_(ICompositionTextureInterop, IUnknown, "D528A265-F0A5-422F
     IFACEMETHOD(GetAvailableFence)(
         _Out_ UINT64 * fenceValue,
         _In_ REFIID iid,
-        _Outptr_result_maybenull_ void ** availableFence) PURE;
+        _COM_Outptr_result_maybenull_ void ** availableFence) PURE;
 };
 
 #endif // (NTDDI_VERSION >= NTDDI_WIN10_NI)

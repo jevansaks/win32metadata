@@ -1,0 +1,12 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Presentation.idl b/generation/WinSDK/RecompiledIdlHeaders/um/Presentation.idl
+index 0b73c89b..9016e508 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Presentation.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Presentation.idl
+@@ -418,5 +418,5 @@ cpp_quote("//")
+ cpp_quote("STDAPI CreatePresentationFactory(")
+ cpp_quote("    _In_ IUnknown * d3dDevice,")
+ cpp_quote("    _In_ REFIID riid,")
+-cpp_quote("    _Outptr_ void ** presentationFactory);")
++cpp_quote("    _COM_Outptr_ void ** presentationFactory);")
+ cpp_quote("")

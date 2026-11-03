@@ -1,0 +1,16 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d3d9on12.h b/generation/WinSDK/RecompiledIdlHeaders/um/d3d9on12.h
+index 9da537f8..0e800ddd 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/d3d9on12.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/d3d9on12.h
+@@ -72,8 +72,8 @@ DECLARE_INTERFACE_(IDirect3DDevice9On12, IUnknown)
+     STDMETHOD_(ULONG,Release)(THIS) PURE;
+ 
+     /*** IDirect3DDevice9On12 methods ***/
+-    STDMETHOD(GetD3D12Device)(THIS_ REFIID riid,void** ppvDevice) PURE;
+-    STDMETHOD(UnwrapUnderlyingResource)(THIS_ IDirect3DResource9* pResource,ID3D12CommandQueue* pCommandQueue,REFIID riid,void** ppvResource12) PURE;
++    STDMETHOD(GetD3D12Device)(THIS_ REFIID riid,_COM_Outptr_ void** ppvDevice) PURE;
++    STDMETHOD(UnwrapUnderlyingResource)(THIS_ IDirect3DResource9* pResource,ID3D12CommandQueue* pCommandQueue,REFIID riid,_COM_Outptr_ void** ppvResource12) PURE;
+     STDMETHOD(ReturnUnderlyingResource)(THIS_ IDirect3DResource9* pResource,UINT NumSync,UINT64* pSignalValues,ID3D12Fence** ppFences) PURE;
+ };
+     

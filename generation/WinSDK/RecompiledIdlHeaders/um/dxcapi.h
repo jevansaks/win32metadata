@@ -73,7 +73,7 @@ typedef HRESULT(__stdcall *DxcCreateInstance2Proc)(_In_ IMalloc *pMalloc,
 /// involvement.
 extern "C" DXC_API_IMPORT
     HRESULT __stdcall DxcCreateInstance(_In_ REFCLSID rclsid, _In_ REFIID riid,
-                                        _Out_ LPVOID *ppv);
+                                        _COM_Outptr_ LPVOID *ppv);
 
 /// \brief Version of DxcCreateInstance that takes an IMalloc interface.
 ///
@@ -82,7 +82,7 @@ extern "C" DXC_API_IMPORT
 extern "C" DXC_API_IMPORT
     HRESULT __stdcall DxcCreateInstance2(_In_ IMalloc *pMalloc,
                                          _In_ REFCLSID rclsid, _In_ REFIID riid,
-                                         _Out_ LPVOID *ppv);
+                                         _COM_Outptr_ LPVOID *ppv);
 
 // For convenience, equivalent definitions to CP_UTF8 and CP_UTF16.
 #define DXC_CP_UTF8 65001
@@ -685,7 +685,7 @@ struct IDxcUtils : public IUnknown {
   ///
   /// Use this with interfaces such as ID3D12ShaderReflection.
   virtual HRESULT STDMETHODCALLTYPE CreateReflection(
-      _In_ const DxcBuffer *pData, REFIID iid, void **ppvReflection) = 0;
+      _In_ const DxcBuffer *pData, REFIID iid, _COM_Outptr_ void **ppvReflection) = 0;
 
   /// \brief Build arguments that can be passed to the Compile method.
   virtual HRESULT STDMETHODCALLTYPE BuildArguments(
@@ -852,7 +852,7 @@ struct IDxcCompiler3 : public IUnknown {
           *pIncludeHandler,  ///< user-provided interface to handle include
                              ///< directives (optional).
       _In_ REFIID riid,      ///< Interface ID for the result.
-      _Out_ LPVOID *ppResult ///< IDxcResult: status, buffer, and errors.
+      _COM_Outptr_ LPVOID *ppResult ///< IDxcResult: status, buffer, and errors.
       ) = 0;
 
   /// \brief Disassemble a program.
@@ -860,7 +860,7 @@ struct IDxcCompiler3 : public IUnknown {
       _In_ const DxcBuffer
           *pObject,     ///< Program to disassemble: dxil container or bitcode.
       _In_ REFIID riid, ///< Interface ID for the result.
-      _Out_ LPVOID
+      _COM_Outptr_ LPVOID
           *ppResult ///< IDxcResult: status, disassembly text, and errors.
       ) = 0;
 };
@@ -1021,7 +1021,7 @@ struct IDxcContainerReflection : public IUnknown {
   /// loaded using Load(), E_BOUND if idx is out of bounds, or other standard
   /// HRESULT error codes.
   virtual HRESULT STDMETHODCALLTYPE GetPartReflection(UINT32 idx, REFIID iid,
-                                                      void **ppvObject) = 0;
+                                                      _COM_Outptr_ void **ppvObject) = 0;
 };
 
 CROSS_PLATFORM_UUIDOF(IDxcOptimizerPass, "AE2CD79F-CC22-453F-9B6B-B124E7A5204C")

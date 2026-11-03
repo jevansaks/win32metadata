@@ -54,8 +54,8 @@ namespace ClangSharpSourceToWinmdTests
                     .Any(selector => line == selector + "=[ComOutPtr]")));
             string current = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"))
                 .Replace("\r\n", "\n");
-            Assert.AreEqual(expected, current);
-            Assert.AreEqual(169, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(DirectXComOutputHeaderTests.RetireRecords(expected), current);
+            Assert.AreEqual(144, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
         }
 
         [TestMethod]
