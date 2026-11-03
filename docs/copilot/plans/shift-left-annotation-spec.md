@@ -321,6 +321,13 @@ corresponding fixed macro, rather than a free-form version on individual declara
 or scopes. The scope lookup must share that table, not introduce a divergent
 version menu.
 
+The current explicit-availability implementation and its final-winmd coverage are
+documented in [SDK header patches](../../sdk_patches.md#explicit-supported-os-availability).
+Direct callback-pointer typedefs have an emitted delegate use site; scalar typedefs,
+record/enum aliases, and callback typedef aliases do not gain independent identity
+in this layer. Unsupported typedef targets and late-only function/method annotations
+fail explicitly rather than treating AST acceptance as projection support.
+
 Existing compiler/SAL facts remain the preferred source for attributes already expressed
 by native syntax, including `noreturn`, architecture guards, alignment, native typedef
 identity, bitfields, UUIDs, packing, parameter direction, optionality, and array sizes.

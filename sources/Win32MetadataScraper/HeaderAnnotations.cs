@@ -32,6 +32,11 @@ namespace Win32MetadataScraper
                     continue;
 
                 string payload = attribute.Spelling;
+                if (payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
+                {
+                    this.VisitSupportedOS(declaration, attribute);
+                    continue;
+                }
                 if (payload.StartsWith(Owner + "Enum(", StringComparison.Ordinal) ||
                     payload.StartsWith(Owner + "FlagsEnum(", StringComparison.Ordinal))
                 {
@@ -75,6 +80,37 @@ namespace Win32MetadataScraper
                     (association.Storage is not BuiltinType ||
                     GetIntegerStorage(storage, association.Attribute) != GetIntegerStorage(association.Storage, association.Attribute)))
                     throw Error(association.Attribute, $"AssociatedEnum storage conflicts with enum group '{association.EnumName}'.");
+            }
+        }
+
+        private void VisitSupportedOS(Decl declaration, Attr attribute)
+        {
+            string version;
+            try { version = SupportedOSAnnotation.Parse(attribute.Spelling); }
+            catch (FormatException error) { throw Error(attribute, error.Message); }
+            if (attribute.CursorChildren.Any())
+                throw Error(attribute, "SupportedOSPlatform accepts no Clang expression arguments.");
+            if ((declaration is not FunctionDecl && declaration is not RecordDecl &&
+                declaration is not EnumDecl && declaration is not TypedefDecl) ||
+                declaration is FunctionDecl function && function.HasBody)
+                throw Error(attribute, "SupportedOSPlatform requires a function, method, record, enum or projected typedef declaration.");
+            if (declaration is TypedefDecl alias &&
+                (alias.UnderlyingType is TypedefType ||
+                RemapDiscovery.UnwrapType(alias.UnderlyingType) is not PointerType pointer ||
+                RemapDiscovery.UnwrapType(pointer.PointeeType) is not FunctionProtoType))
+                throw Error(attribute, "SupportedOSPlatform typedefs require a projected callback; scalar and record aliases have no independent emitted use site. Annotate the owning record or enum instead.");
+            if (declaration is FunctionDecl redeclaration &&
+                !redeclaration.CanonicalDecl.Attrs.Any(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
+                    a.Spelling == attribute.Spelling))
+                throw Error(attribute, "SupportedOSPlatform must appear on the first native function declaration; late-only annotations are not emitted by PInvokeGenerator.");
+            foreach (var other in declaration.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
+                a.Spelling.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal)))
+            {
+                string otherVersion;
+                try { otherVersion = SupportedOSAnnotation.Parse(other.Spelling); }
+                catch (FormatException error) { throw Error(other, error.Message); }
+                if (version != otherVersion)
+                    throw Error(other, "Conflicting SupportedOSPlatform annotations.");
             }
         }
 

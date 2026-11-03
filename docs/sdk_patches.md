@@ -48,10 +48,55 @@ annotation recipe, enum construction, typedef recovery, or resource ownership.
 The focused WinHttp fixture replays the owning-header patch and checks the exact
 three sidecar deletions. Header-to-winmd fixtures compare complete output bytes
 between legacy and header annotations, without a measurement or receipt framework.
-The grouped fixture replays all seven owning patches against package-original
+The grouped fixture replays the owning patches against package-original
 SDK files and checks their complete bytes against the reingested owners.
 Full validation uses ordinary CI generation and comparison to an existing target
 winmd; this migration does not add SDK scrapes or paired benchmark builds.
+
+## Explicit supported-OS availability
+
+The explicit-availability layer reuses the specification's fixed
+`_Win32_SupportedOS_*_` menu, with no scoped defaults or new representation.
+It moves 178 distinct `supportedOS.rsp` facts to 179 native declarations:
+38 WinHTTP functions, all 16 sidecar-backed error-handling functions, all five
+handle functions, 82 `combaseapi.h` functions, 35 `objbase.h` functions, and
+the `IMalloc`, `ISequentialStream`, and `IStream` interface definitions.
+`CoFileTimeNow` is declared in both COM function owners and carries the same fact
+at both declarations. Only the exact matching sidecar lines are retired.
+Functions with no existing availability fact remain unannotated; native version
+guards alone do not authorize an inferred minimum version.
+
+The selected owners contain no sidecar-backed native enum, plain record, callback
+typedef, or individual COM-method availability to retire. No unrelated API fact is
+invented to fill those gaps. Small native-header-to-final-winmd fixtures cover each
+of these declaration kinds, including the actual interface method and callback
+delegate type use sites, on x86, x64, and arm64. The reader validates the canonical
+version payload, declaration kind, arguments, and conflicting redeclarations.
+The existing `NativeAnnotation` transport is consumed by the ordinary emitter;
+equal header/legacy values emit one attribute, conflicting legacy attributes fail.
+Ordinary MSVC C/C++ builds, including `WIN32METADATA` without Clang, see empty helpers.
+
+The three COM interface definitions use `post-midl/ObjIdlbase.h.patch`, after the
+existing pre-MIDL parameter edits and normal MIDL compilation. A focused fixture
+replays the selected SDK IDL, its two converted imports, the production MIDL
+options, and that final patch, then compares the complete header bytes.
+Native fixtures compile the selected SDK owners as C and C++ on all three
+architectures and compare object bytes apart from the COFF timestamp.
+
+Concrete pre-existing projection boundaries remain explicit:
+
+- Scalar typedefs, record/enum aliases, and aliases of callback typedefs have no
+  independent projected availability use site. Annotating them fails; annotate the
+  owning record/enum or the direct callback-pointer typedef instead. This layer
+  does not add scalar identity or change callback alias recovery.
+- A function or method annotation must be on its first native declaration.
+  Late-only annotations are not reliably transported by PInvokeGenerator and fail
+  at the native source location instead of being silently dropped.
+- Ordinary legacy `SupportedOSPlatform` cleanup still removes attributes from
+  interface methods. An explicitly authored native method annotation uses the
+  owned transport and survives at the emitted method, not its return parameter.
+- Scoped defaults remain later work; AST acceptance alone is not final-winmd
+  coverage or authorization to add a new availability floor.
 
 Each patch starts with `# SDK-Version: 10.0.28000.2705`, followed by a normal
 `git diff` with repository-relative paths under

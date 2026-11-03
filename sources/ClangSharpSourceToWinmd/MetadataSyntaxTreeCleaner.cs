@@ -199,7 +199,8 @@ namespace ClangSharpSourceToWinmd
                     .Where(attribute => attribute.Name.ToString() == "NativeAnnotation")
                     .Select(attribute => (attribute.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?.Token.ValueText)
                     .Where(payload => payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal) &&
-                        payload != ParameterAnnotation.Owner + "SetLastError")
+                        payload != ParameterAnnotation.Owner + "SetLastError" &&
+                        !payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
                     .Select(ParameterAnnotation.Parse)
                     .Where(annotation => annotation.Kind != ParameterAnnotationKind.AssociatedEnum ||
                         !this.headerEnumNames.Contains(annotation.EnumName))
@@ -466,6 +467,32 @@ namespace ClangSharpSourceToWinmd
             {
                 var firstAttr = node.Attributes[0];
                 var attrName = firstAttr.Name.ToString();
+                if (attrName is "NativeAnnotation" or "SupportedOSPlatform")
+                {
+                    var headerOS = node.Parent.ChildNodes().OfType<AttributeListSyntax>()
+                        .SelectMany(list => list.Attributes)
+                        .Where(attribute => attribute.Name.ToString() == "NativeAnnotation")
+                        .Select(attribute => (Attribute: attribute,
+                            Payload: (attribute.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?.Token.ValueText))
+                        .Where(pair => pair.Payload != null && pair.Payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
+                        .ToArray();
+                    if (headerOS.Length != 0)
+                    {
+                        string version = SupportedOSAnnotation.Parse(headerOS[0].Payload);
+                        if (headerOS.Any(pair => SupportedOSAnnotation.Parse(pair.Payload) != version))
+                            throw new FormatException("Conflicting native SupportedOSPlatform annotations.");
+                        if (attrName == "SupportedOSPlatform")
+                        {
+                            if (firstAttr.ArgumentList?.Arguments.Count != 1 ||
+                                firstAttr.ArgumentList.Arguments[0].Expression is not LiteralExpressionSyntax legacy ||
+                                legacy.Token.ValueText != version)
+                                throw new FormatException("Legacy SupportedOSPlatform conflicts with native availability.");
+                            return null;
+                        }
+                        if (headerOS.Skip(1).Any(pair => pair.Attribute == firstAttr))
+                            return null;
+                    }
+                }
 
                 switch (attrName)
                 {
@@ -538,6 +565,15 @@ namespace ClangSharpSourceToWinmd
                         if (payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal))
                         {
                             if (payload == ParameterAnnotation.Owner + "SetLastError") return null;
+                            if (payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
+                            {
+                                string version = SupportedOSAnnotation.Parse(payload);
+                                return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
+                                    SyntaxFactory.Attribute(SyntaxFactory.ParseName("SupportedOSPlatform"),
+                                        SyntaxFactory.AttributeArgumentList(SyntaxFactory.SingletonSeparatedList(
+                                            SyntaxFactory.AttributeArgument(SyntaxFactory.LiteralExpression(
+                                                SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(version))))))));
+                            }
                             var annotation = ParameterAnnotation.Parse(payload);
                             if (annotation.Kind == ParameterAnnotationKind.AssociatedEnum && this.headerEnumNames.Contains(annotation.EnumName))
                                 return null;
