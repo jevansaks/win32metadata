@@ -240,7 +240,13 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(0, result.ExitCode, result.Output);
             fixture.ScrapeConstants();
             string expected = Decompile(fixture.Emit());
-            var legacyJson = LastErrorHeaderTests.Run("git", "show", "bb3933cc87779d67e06887852002934b5e0ea55d:generation/WinSDK/enums.json");
+            var introduction = LastErrorHeaderTests.Run("git", "-C", root, "log", "--diff-filter=A",
+                "--format=%H", "HEAD", "--", "tests/ClangSharpSourceToWinmdTests/EnumHeaderTests.cs");
+            Assert.AreEqual(0, introduction.ExitCode, introduction.Output);
+            string[] commits = introduction.Output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(1, commits.Length, "Expected one reachable introduction of the enum fixture.");
+            var legacyJson = LastErrorHeaderTests.Run("git", "-C", root, "show",
+                commits[0] + "^:generation/WinSDK/enums.json");
             Assert.AreEqual(0, legacyJson.ExitCode, legacyJson.Output);
             using var document = JsonDocument.Parse(legacyJson.Output);
             string retired = "{\"items\":[" + string.Join(",", document.RootElement.GetProperty("items")

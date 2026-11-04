@@ -12,7 +12,17 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class SupportedOSHeaderTests
     {
-        private const string Predecessor = "19ab9e3800c641060f47d0e8369227e83ced55f3";
+        private static string Predecessor(string root)
+        {
+            var introduction = LastErrorHeaderTests.Run("git", "-C", root, "log", "--diff-filter=A",
+                "--format=%H", "HEAD", "--", "tests/ClangSharpSourceToWinmdTests/SupportedOSHeaderTests.cs");
+            Assert.AreEqual(0, introduction.ExitCode, introduction.Output);
+            string[] commits = introduction.Output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(1, commits.Length, "Expected one reachable introduction of the availability fixture.");
+            var parent = LastErrorHeaderTests.Run("git", "-C", root, "rev-parse", commits[0] + "^");
+            Assert.AreEqual(0, parent.ExitCode, parent.Output);
+            return parent.Output.Trim();
+        }
 
         [TestMethod]
         public void LegacyHeaderBothAndNeither_PreserveExactFinalMetadata()
@@ -245,9 +255,10 @@ struct __declspec(uuid(""00000002-0000-0000-C000-000000000046"")) IMalloc : publ
         public void OwningDeclarations_RetireOnlyExactlyMatchingSidecars()
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
+            string predecessor = Predecessor(root);
             string Legacy(string path)
             {
-                var result = LastErrorHeaderTests.Run("git", "-C", root, "show", Predecessor + ":" + path);
+                var result = LastErrorHeaderTests.Run("git", "-C", root, "show", predecessor + ":" + path);
                 Assert.AreEqual(0, result.ExitCode, result.Output);
                 return result.Output.Replace("\r\n", "\n");
             }

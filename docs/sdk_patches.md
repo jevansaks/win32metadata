@@ -92,6 +92,13 @@ parent inventory is 73, not 64, because the nine CLR compatibility records
 remain active. No native/config migration is added by this integration.
 Local preparation does not authorize a push, PR edit or hosted run.
 
+After publication, ordinary run `41778633869` exposed four inherited tooling
+failures: availability and WinHTTP enum fixtures referenced fixed commits
+whose historical paths no longer existed after source-ownership propagation.
+Their repair resolves each fixture's unique reachable introduction parent;
+it preserves every original/expected/final assertion and changes no native
+or production input. The complete availability/enum overlap passes locally.
+
 ## Imaging, acquisition and image-list direct COM outputs
 
 This layer audits all **88** parent `ComOutPtr` records against every physical
