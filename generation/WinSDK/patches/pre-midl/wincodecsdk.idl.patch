@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincodecsdk.idl b/generation/WinSDK/RecompiledIdlHeaders/um/wincodecsdk.idl
+index f6340380..b1872b2a 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wincodecsdk.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wincodecsdk.idl
+@@ -481,7 +481,7 @@ interface IWICMetadataReaderInfo : IWICMetadataHandlerInfo
+         );
+ 
+     HRESULT CreateInstance(
+-        [out] IWICMetadataReader **ppIReader);
++        [out, annotation("_COM_Outptr_")] IWICMetadataReader **ppIReader);
+ };
+ 
+ 

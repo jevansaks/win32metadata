@@ -1363,7 +1363,7 @@ EXTERN_C const IID IID_IPhotoAcquireSource;
         
         virtual HRESULT STDMETHODCALLTYPE BindToObject( 
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppv) = 0;
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppv) = 0;
         
     };
     
@@ -1433,7 +1433,7 @@ EXTERN_C const IID IID_IPhotoAcquireSource;
         HRESULT ( STDMETHODCALLTYPE *BindToObject )( 
             __RPC__in IPhotoAcquireSource * This,
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppv);
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppv);
         
         END_INTERFACE
     } IPhotoAcquireSourceVtbl;

@@ -1,0 +1,23 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h
+index cee068ed..f00ce79b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h
+@@ -646,7 +646,7 @@ WINCOMMCTRLAPI BOOL        WINAPI ImageList_Write(_In_ HIMAGELIST himl, _In_ str
+ #define ILP_DOWNLEVEL       1           // Write or reads the stream using downlevel sematics.
+ 
+ 
+-WINCOMMCTRLAPI HRESULT WINAPI ImageList_ReadEx(_In_ DWORD dwFlags, _In_ struct IStream *pstm, _In_ REFIID riid, _Outptr_ PVOID* ppv);
++WINCOMMCTRLAPI HRESULT WINAPI ImageList_ReadEx(_In_ DWORD dwFlags, _In_ struct IStream *pstm, _In_ REFIID riid, _COM_Outptr_ PVOID* ppv);
+ WINCOMMCTRLAPI HRESULT WINAPI ImageList_WriteEx(_In_ HIMAGELIST himl, _In_ DWORD dwFlags, _In_ struct IStream *pstm);
+ #endif
+ 
+@@ -672,7 +672,7 @@ WINCOMMCTRLAPI HIMAGELIST  WINAPI ImageList_Duplicate(_In_ HIMAGELIST himl);
+ #endif
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINXP)
+-WINCOMMCTRLAPI HRESULT WINAPI HIMAGELIST_QueryInterface(_In_ HIMAGELIST himl, _In_ REFIID riid, _Outptr_ void **ppv);
++WINCOMMCTRLAPI HRESULT WINAPI HIMAGELIST_QueryInterface(_In_ HIMAGELIST himl, _In_ REFIID riid, _COM_Outptr_ void **ppv);
+ 
+ #ifdef __cplusplus
+ FORCEINLINE HIMAGELIST IImageListToHIMAGELIST(struct IImageList *himl)

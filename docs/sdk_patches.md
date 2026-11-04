@@ -1,5 +1,83 @@
 # SDK header patches
 
+## Imaging, acquisition and image-list direct COM outputs
+
+This layer audits all **88** parent `ComOutPtr` records against every physical
+header selected by `Wic`, `Wia`, `ImagingDevice`, `PicAcq` and `Controls`.
+The complete direct-output family contains **15 facts**, all complete
+retirements: **0 partial records, 0 retained boundaries**, leaving **73**
+active records. The existing disabled `wiamdef--.h` traversal is not a
+physical SDK owner and is not restored.
+
+| Owning native input | Exact migrated selectors |
+|---|---|
+| `wincodecsdk.idl` | `IWICMetadataReaderInfo::CreateInstance::ppIReader` |
+| `wincodec.idl` | `IWICBitmapDecoderInfo::CreateInstance::ppIBitmapDecoder`, `IWICBitmapEncoderInfo::CreateInstance::ppIBitmapEncoder`, `IWICD3DTextureSource::GetTexture::ppTexture`, `IWICD3DTextureSource::GetTransformedTexture::ppTexture` |
+| `Sti.h` (header-only) | `StiCreateInstanceW::ppSti` |
+| `wia_lh.h` (header-only) | `IWiaItem2::GetExtension::ppOut` |
+| `PhotoAcquire.h` (header-only) | `IPhotoAcquireSource::BindToObject::ppv` |
+| `CommCtrl.h` (header-only) | `ImageList_ReadEx::ppv`, `HIMAGELIST_QueryInterface::ppv` |
+| `commoncontrols.idl` | `ImageList_CoCreateInstance::ppv`, `IImageList::Clone::ppv`, `IImageList::GetDragImage::ppv`, `IImageList::Merge::ppv`, `IImageList2::GetCallback::ppv` |
+
+Three authoritative pre-MIDL patches and four actual header-only post-MIDL
+patches introduce only standard `_COM_Outptr_` SAL. The photo-acquisition
+output uses `_COM_Outptr_result_maybenull_` to preserve its existing
+`__RPC__deref_out_opt` nullable result. No selected output was already native.
+All **29 physical SAL sites** are covered, including the inherited
+`IImageList2` C-vtable entries. The metadata-writer info's separately typed
+`CreateInstance` and component-factory reader outputs remain unchanged.
+`GetCallback` returns a direct COM object, not a function pointer.
+
+`commctrl.inl` retains every byte: its `IsolationAware*` entry points and
+local `PFN` typedefs are distinct wrapper/callback mechanisms, not duplicate
+definitions of the selected exported APIs. Forwards, guards, full C++ and
+C-vtable bodies, local/proxy distinctions, pointer depth, native types,
+direction, optionality, retval absence and result flags are preserved.
+No missing IDL or removed SDK API is reconstructed.
+
+`ImagingComOutputHeaderTests` resolves the parent of its unique reachable
+fixture-introduction commit, without a mutable SHA pin, reconstructed sidecar
+or fallback. It audits the entire remaining
+inventory, permits only exact selected native edits, preserves legacy IDL
+bytes and compares original-native-plus-legacy against patched-header-only
+**final winmd bytes** on x86/x64/arm64. Independent assertions verify
+output flags, named interface-pointer or `void**` shapes, singleton
+custom-attribute payload/order and unchanged result flags. Redundant
+legacy records preserve every final byte as well.
+
+`SdkPatchTests` matches actual SDK `10.0.28000.2705` original owner bytes,
+replays all seven patches, converts the bounded **22-IDL** include/import
+closure, regenerates all three complete headers with production MIDL
+options and checks every output byte before final emission on all targets.
+The full selected SDK production MIDL queue establishes these owners and
+rejects post-MIDL patches against each regenerated output without changing
+its bytes. Both actual patch phases use the full SDK `MidlInputRoot`; copied
+compatibility sources cannot establish SDK ownership.
+The same-path native proof compiles all seven complete owners and calls all
+selected and inherited sites in C/C++ on x86/x64/arm64, with imaging-first
+and Windows-first include orders. Original, ordinary and `WIN32METADATA`
+objects compare byte-for-byte except the COFF timestamp. The unchanged
+`Wia.h` forwarding header is copied beside `wia_lh.h` so quoted inclusion
+cannot bypass the selected owner. Existing original fixtures and the COM+
+forwarding-header repair are preserved. Production integrity assertions
+cover all fifteen retired selectors.
+
+The inherited Media Foundation SDK replay follows the same architecture-
+independent production-MIDL-once pattern as the repaired audio parent and
+this imaging fixture. Every original owner, patch, regenerated-header byte
+check and all three architecture-specific final emissions remain covered.
+This removes redundant fixture setup/generation rather than changing the
+existing SDK job's timeout, workflow or coverage.
+
+All independent `Out`, type, callback, enum, namespace, import and RAII
+mechanisms remain unchanged. Production `CanReturn*` remains active and
+all 17 PreserveResult replacements remain inactive. DWrite's exact
+`void**` override, all nine restored CLR compatibility records (including
+`CLRCreateInstance`'s combined `[Out][ComOutPtr]`), the weak/agile shape
+boundaries and the presentation custom-attribute row-order-only boundary
+remain intact. There is no workflow, annotation transport, native model,
+global remap, metadata canonicalizer or extra reference generation.
+
 ## Audio, DirectShow graphs, KS topology and media-reader outputs
 
 This layer audits all **99** parent `ComOutPtr` records against the complete

@@ -2212,7 +2212,7 @@ interface IWICD3DTextureSource : IUnknown
         [annotation("_In_")] IUnknown* pD3DDevice,
         [annotation("_In_opt_")] IPropertyBag2* pID3DTextureOptions,
         REFIID riid,
-        [annotation("_Outptr_")] void** ppTexture
+        [annotation("_COM_Outptr_")] void** ppTexture
         );
 
     HRESULT GetTransformedTexture(
@@ -2224,7 +2224,7 @@ interface IWICD3DTextureSource : IUnknown
         [annotation("_In_")] IUnknown* pD3DDevice,
         [annotation("_In_opt_")] IPropertyBag2* pID3DTextureOptions,
         REFIID riid,
-        [annotation("_Outptr_")] void** ppTexture
+        [annotation("_COM_Outptr_")] void** ppTexture
         );
 
     HRESULT DoesSupportD3DDeviceType(
@@ -2443,7 +2443,7 @@ interface IWICBitmapCodecInfo : IWICComponentInfo
 interface IWICBitmapEncoderInfo : IWICBitmapCodecInfo
 {
     HRESULT CreateInstance(
-        [out] IWICBitmapEncoder **ppIBitmapEncoder
+        [out, annotation("_COM_Outptr_")] IWICBitmapEncoder **ppIBitmapEncoder
         );
 };
 
@@ -2478,7 +2478,7 @@ interface IWICBitmapDecoderInfo : IWICBitmapCodecInfo
         );
 
     HRESULT CreateInstance(
-        [out] IWICBitmapDecoder **ppIBitmapDecoder
+        [out, annotation("_COM_Outptr_")] IWICBitmapDecoder **ppIBitmapDecoder
         );
 };
 

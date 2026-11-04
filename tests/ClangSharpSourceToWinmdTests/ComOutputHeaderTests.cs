@@ -49,7 +49,7 @@ namespace ClangSharpSourceToWinmdTests
                     .Concat(PropertyComOutputHeaderTests.Selectors)
                     .Concat(ShellComOutputHeaderTests.Selectors)
                     .Any(selector => line == selector + "=[ComOutPtr]"))));
-            CollectionAssert.AreEqual(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(expected)))).Split('\n'),
+            CollectionAssert.AreEqual(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(expected))))).Split('\n'),
                 File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"))
                     .Replace("\r\n", "\n").Split('\n'));
         }

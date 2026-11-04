@@ -988,14 +988,13 @@ namespace ClangSharpSourceToWinmdTests
             CollectionAssert.AreEqual(outputs[1], outputs[2]);
         }
 
-        [DataTestMethod]
-        [DataRow("i686-pc-windows-msvc")]
-        [DataRow("x86_64-pc-windows-msvc")]
-        [DataRow("aarch64-pc-windows-msvc")]
-        public void MediaFoundationOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner(string target)
+        [TestMethod]
+        public void MediaFoundationOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner()
         {
             using var fixture = new Fixture();
-            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            string direct3D = Direct3DPackagePath();
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
             string midlInputs = Path.Combine(fixture.Path, "sdk");
             foreach (string folder in new[] { "um", "shared" })
@@ -1041,7 +1040,7 @@ namespace ClangSharpSourceToWinmdTests
                 string patched = Path.Combine(fixture.Headers, "um", dependency);
                 string input = File.Exists(patched) ? patched :
                     dependency == "d3d12.idl" || dependency == "D3D12MarkerApiEnums.idl" ?
-                    Path.Combine(Direct3DPackagePath(), "build", "native", "include", dependency) :
+                    Path.Combine(direct3D, "build", "native", "include", dependency) :
                     Path.Combine(include, dependency.StartsWith("wtypes", StringComparison.Ordinal) ||
                         dependency == "dxgiformat.idl" ? "shared" : "um", dependency);
                 command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
@@ -1053,7 +1052,7 @@ namespace ClangSharpSourceToWinmdTests
             {
                 var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
                     "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); & " +
-                    Quote(Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                    Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
                     " " + Quote(Path.Combine(converted, owner.ToLowerInvariant())) + " /out " + Quote(converted) +
                     " /header " + Quote(Path.Combine(fixture.Headers, "um", Path.ChangeExtension(owner, "h").ToLowerInvariant())) +
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
@@ -1068,7 +1067,8 @@ namespace ClangSharpSourceToWinmdTests
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", header)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", header)), header);
             }
-            MediaFoundationComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+                MediaFoundationComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
         }
 
         [DataTestMethod]
@@ -1567,6 +1567,171 @@ namespace ClangSharpSourceToWinmdTests
                 "CALL(reader, GetCodecInterface, 0, iid, output);\n}\n");
             string obj = Path.Combine(fixture.Path, "native.obj");
             string replacements = string.Join("; ", AudioComOutputHeaderTests.Owners.Select(owner => "Copy-Item -LiteralPath " +
+                Quote(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))) +
+                " -Destination " + Quote(Path.Combine(fixture.Headers, "um", Path.GetFileName(owner.Path)))));
+            var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
+                "; $vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
+                "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; " +
+                "foreach ($mode in 'baseline', 'ordinary', 'metadata') { if ($mode -eq 'ordinary') { " + replacements + " }; " +
+                "& $compiler /nologo /c " + language + " " + Quote(source) + " " + Quote("/Fo" + obj) +
+                " " + Quote("/I" + Path.Combine(fixture.Headers, "um")) + " " + Quote("/I" + fixture.Headers) +
+                " \"/I$vcInclude\" " + Quote("/I" + Path.Combine(include, "um")) +
+                " " + Quote("/I" + Path.Combine(include, "shared")) + " " + Quote("/I" + Path.Combine(include, "ucrt")) +
+                " " + Quote("/I" + Path.Combine(include, "winrt")) +
+                " /DWINVER=0x0A00 /D_WIN32_WINNT=0x0A00 /DNTDDI_VERSION=0x0A00000C" +
+                " $(if ($mode -eq 'metadata') { '/DWIN32METADATA' }); " +
+                "if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Copy-Item -LiteralPath " + Quote(obj) +
+                " -Destination (Join-Path " + Quote(fixture.Path) + " ($mode + '.obj')) }");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            byte[][] outputs = new[] { "baseline", "ordinary", "metadata" }
+                .Select(mode => File.ReadAllBytes(Path.Combine(fixture.Path, mode + ".obj"))).ToArray();
+            foreach (byte[] bytes in outputs)
+            {
+                Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
+                Array.Clear(bytes, 4, 4);
+            }
+            CollectionAssert.AreEqual(outputs[0], outputs[1]);
+            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+        }
+
+        [TestMethod]
+        public void ImagingOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner()
+        {
+            using var fixture = new Fixture();
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
+            string[] headerOnly = { "Sti.h", "wia_lh.h", "PhotoAcquire.h", "CommCtrl.h" };
+            var ownership = fixture.Run("$outputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) +
+                " -HeaderRoot " + Quote(include) + "); " +
+                "foreach ($header in 'um/wincodecsdk.h','um/wincodec.h','um/commoncontrols.h') { " +
+                "if (@($outputs | Where-Object Header -ieq $header).Count -ne 1) { throw \"Missing production MIDL owner: $header\" } }; " +
+                "foreach ($header in 'um/Sti.h','um/wia_lh.h','um/PhotoAcquire.h','um/CommCtrl.h') { " +
+                "if ($outputs.Header -icontains $header) { throw \"Direct SDK owner is queued: $header\" } }");
+            Assert.AreEqual(0, ownership.ExitCode, ownership.Output);
+            foreach (string name in ImagingComOutputHeaderTests.Idls.Concat(headerOnly))
+            {
+                byte[] original = File.ReadAllBytes(Path.Combine(include, "um", name));
+                CollectionAssert.AreEqual(ImagingComOutputHeaderTests.ReadOriginalBytes(
+                    "RecompiledIdlHeaders/um/" + name), original, "Reachable fixture introduction parent matches selected SDK: " + name);
+                fixture.Header(name, original);
+            }
+            foreach (string absent in new[] { "sti.idl", "wia_lh.idl", "wia.idl", "PhotoAcquire.idl", "CommCtrl.idl" })
+                Assert.IsFalse(File.Exists(Path.Combine(include, "um", absent)));
+            string selection = string.Join("','", ImagingComOutputHeaderTests.Idls.Select(name => "pre-midl/" + name + ".patch")
+                .Concat(headerOnly.Select(name => "post-midl/" + name + ".patch")));
+            foreach (var owner in ImagingComOutputHeaderTests.Owners.Where(owner =>
+                !headerOnly.Contains(Path.GetFileName(owner.Path), StringComparer.OrdinalIgnoreCase)))
+            {
+                string file = Path.GetFileName(owner.Path);
+                byte[] original = File.ReadAllBytes(Path.Combine(include, owner.Path.Replace('/', Path.DirectorySeparatorChar)));
+                string destination = fixture.Header(file, original);
+                fixture.Patch("post-midl/" + file + ".patch", owner.Path);
+                var rejection = fixture.Run("& " + Quote(Script("ApplySDKPatches.ps1")) +
+                    " -Phase post-midl -HeaderRoot " + Quote(fixture.Headers) +
+                    " -SdkVersion " + Quote(Version) + " -PatchRoot " + Quote(fixture.Patches) +
+                    " -MidlInputRoot " + Quote(include) + " -SelectedPatches " + Quote("post-midl/" + file + ".patch"));
+                Assert.AreNotEqual(0, rejection.ExitCode, owner.Path);
+                StringAssert.Contains(rejection.Output, "targets regenerated header " + owner.Path);
+                CollectionAssert.AreEqual(original, File.ReadAllBytes(destination), "Rejected output patch must leave native bytes unchanged.");
+            }
+            fixture.Apply("pre-midl", selection, true, patchRoot: patches, midlInputRoot: include);
+            fixture.Apply("post-midl", selection, true, patchRoot: patches, midlInputRoot: include);
+            foreach (string idl in ImagingComOutputHeaderTests.Idls)
+                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", "um", idl)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", idl)), idl);
+
+            string converted = Path.Combine(fixture.Path, "converted");
+            Directory.CreateDirectory(converted);
+            var pending = new System.Collections.Generic.Queue<string>(ImagingComOutputHeaderTests.Idls);
+            var seen = new System.Collections.Generic.HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            string command = "";
+            while (pending.Count > 0)
+            {
+                string name = pending.Dequeue();
+                if (!seen.Add(name)) continue;
+                string input = ImagingComOutputHeaderTests.Idls.Contains(name, StringComparer.OrdinalIgnoreCase) ?
+                    Path.Combine(fixture.Headers, "um", name) :
+                    new[] { "um", "shared", "winrt" }.Select(area => Path.Combine(include, area, name)).Single(File.Exists);
+                foreach (Match match in Regex.Matches(File.ReadAllText(input),
+                    @"(?im)^\s*(?:import\s+|#include\s*)[""<]([^"">]+\.idl)["">]"))
+                    pending.Enqueue(match.Groups[1].Value);
+                command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
+                    Quote(input) + " " + Quote(Path.Combine(converted, name)) + "; ";
+            }
+            Assert.AreEqual(22, seen.Count, "Bounded actual selected/imported/included IDL closure.");
+            var conversion = fixture.Run(command);
+            Assert.AreEqual(0, conversion.ExitCode, conversion.Output);
+            command = ". " + Quote(Script("CommonUtils.ps1")) +
+                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); ";
+            foreach (string name in new[] { "wincodecsdk", "wincodec", "commoncontrols" })
+                command += "& " + Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                    " " + Quote(Path.Combine(converted, name + ".idl")) + " /out " + Quote(converted) +
+                    " /header " + Quote(Path.Combine(fixture.Headers, "um", name + ".h")) +
+                    " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
+                    " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
+                    " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
+                    " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
+                    " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
+                    "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
+            var result = fixture.Run(command);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            foreach (var owner in ImagingComOutputHeaderTests.Owners)
+                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))),
+                    File.ReadAllBytes(Path.Combine(fixture.Headers, owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+                ImagingComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", "/TC", false)]
+        [DataRow("x64", "/TC", false)]
+        [DataRow("arm64", "/TC", false)]
+        [DataRow("x86", "/TP", false)]
+        [DataRow("x64", "/TP", false)]
+        [DataRow("arm64", "/TP", false)]
+        [DataRow("x86", "/TC", true)]
+        [DataRow("x64", "/TC", true)]
+        [DataRow("arm64", "/TC", true)]
+        [DataRow("x86", "/TP", true)]
+        [DataRow("x64", "/TP", true)]
+        [DataRow("arm64", "/TP", true)]
+        public void ImagingOutput_NativeBuildIsANoOp(string arch, string language, bool imagingFirst)
+        {
+            using var fixture = new Fixture();
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            foreach (var owner in ImagingComOutputHeaderTests.Owners)
+                fixture.Header(Path.GetFileName(owner.Path), ImagingComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path));
+            foreach (string forwarding in new[] { "Wia.h", "commctrl.inl" })
+                fixture.Header(forwarding, ImagingComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/" + forwarding));
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
+                "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
+            string source = Path.Combine(fixture.Path, "native.c");
+            File.WriteAllText(source, "#define COBJMACROS\n" +
+                (imagingFirst ? "#include <wincodecsdk.h>\n#include <commctrl.h>\n#include <commoncontrols.h>\n" : "#include <windows.h>\n") +
+                "#include <windows.h>\n#include <commctrl.h>\n#include <commoncontrols.h>\n#include <wincodecsdk.h>\n" +
+                "#include <sti.h>\n#include <wia.h>\n#include <photoacquire.h>\n" +
+                "HRESULT NativeCalls(IWICMetadataReaderInfo* reader, IWICBitmapDecoderInfo* decoder, IWICBitmapEncoderInfo* encoder,\n" +
+                "IWICD3DTextureSource* texture, IWiaItem2* item, IPhotoAcquireSource* photo,\n" +
+                "IImageList* images, IImageList2* images2, REFCLSID clsid, REFIID iid, void** output) {\n" +
+                "#ifdef __cplusplus\n#define CALL(object, method, ...) object->method(__VA_ARGS__)\n" +
+                "#else\n#define CALL(object, method, ...) object->lpVtbl->method(object, __VA_ARGS__)\n#endif\n" +
+                "return CALL(reader, CreateInstance, (IWICMetadataReader**)output) +\n" +
+                "CALL(decoder, CreateInstance, (IWICBitmapDecoder**)output) + CALL(encoder, CreateInstance, (IWICBitmapEncoder**)output) +\n" +
+                "CALL(texture, GetTexture, 0, 0, iid, output) + CALL(texture, GetTransformedTexture, 0, 0, 0, 0, WICBitmapTransformRotate0, 0, 0, iid, output) +\n" +
+                "StiCreateInstanceW(0, 0, (IStillImageW**)output, 0) + CALL(item, GetExtension, 0, 0, iid, output) +\n" +
+                "CALL(photo, BindToObject, iid, output) + ImageList_CoCreateInstance(clsid, 0, iid, output) +\n" +
+                "ImageList_ReadEx(0, 0, iid, output) + HIMAGELIST_QueryInterface(0, iid, output) +\n" +
+                "CALL(images, Clone, iid, output) + CALL(images, GetDragImage, 0, 0, iid, output) +\n" +
+                "CALL(images, Merge, 0, 0, 0, 0, 0, iid, output) + CALL(images2, GetCallback, iid, output) +\n" +
+                "CALL(images2, Clone, iid, output) + CALL(images2, GetDragImage, 0, 0, iid, output) +\n" +
+                "CALL(images2, Merge, 0, 0, 0, 0, 0, iid, output);\n}\n");
+            string obj = Path.Combine(fixture.Path, "native.obj");
+            string replacements = string.Join("; ", ImagingComOutputHeaderTests.Owners.Select(owner => "Copy-Item -LiteralPath " +
                 Quote(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))) +
                 " -Destination " + Quote(Path.Combine(fixture.Headers, "um", Path.GetFileName(owner.Path)))));
             var result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +

@@ -481,7 +481,7 @@ interface IWICMetadataReaderInfo : IWICMetadataHandlerInfo
         );
 
     HRESULT CreateInstance(
-        [out] IWICMetadataReader **ppIReader);
+        [out, annotation("_COM_Outptr_")] IWICMetadataReader **ppIReader);
 };
 
 

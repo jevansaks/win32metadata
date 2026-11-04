@@ -1617,7 +1617,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
         
         virtual HRESULT STDMETHODCALLTYPE CreateInstance( 
             /* [annotation][out] */ 
-            _Out_  IWICMetadataReader **ppIReader) = 0;
+            _COM_Outptr_  IWICMetadataReader **ppIReader) = 0;
         
     };
     
@@ -1790,7 +1790,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
         HRESULT ( STDMETHODCALLTYPE *CreateInstance )( 
             __RPC__in IWICMetadataReaderInfo * This,
             /* [annotation][out] */ 
-            _Out_  IWICMetadataReader **ppIReader);
+            _COM_Outptr_  IWICMetadataReader **ppIReader);
         
         END_INTERFACE
     } IWICMetadataReaderInfoVtbl;
