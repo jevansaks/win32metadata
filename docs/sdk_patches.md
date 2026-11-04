@@ -60,13 +60,17 @@ non-equivalent PreserveResult replacements remain inactive.
 legacy facts with the patched declarations plus only the independent DWrite
 override and unchanged presentation boundary. It checks final custom-attribute
 payloads, direction, optionality, retval, pointer depth/type and complete winmd
-bytes on x86, x64 and arm64. The immutable SDK ancestor
-`c16762d41f1bd641ff8c4389ebf16ee50747129f` is ancestry-guarded; selected original
-inputs must match the test-owned SDK/D3D12 packages, not a movable stack parent.
+bytes on x86, x64 and arm64. Original fixtures resolve the parent of the unique
+reachable introduction of `DirectXComOutputHeaderTests.cs`, with an ancestry
+guard and exact 169-record legacy corpus. No mutable or obsolete commit is
+pinned. Selected original inputs must match the test-owned SDK/D3D12 packages.
 `SdkPatchTests` applies the actual per-file patches, runs normal conversion and
 production MIDL options, compares complete regenerated owner bytes, and replays
-them through final winmd. Native C/C++ fixtures use the same paths for original,
-patched and `WIN32METADATA` builds on all three architectures and both applicable
+them through final winmd. Its full MIDL input root includes every SDK `um`/`shared`
+input and the production D3D12 package overlay; source ownership is not inferred
+from the small set of copied patch targets. Every selected generated owner must
+be queued by the production MIDL inventory. Native C/C++ fixtures use the same
+paths for original, patched and `WIN32METADATA` builds on all three architectures and both applicable
 include orders, comparing complete object bytes apart from the COFF timestamp.
 C++-only DirectWrite, DirectComposition, DXC, namespaced composition interop
 and the D2D resource interface are exercised only in C++; the C fixture covers

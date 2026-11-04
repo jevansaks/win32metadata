@@ -807,31 +807,42 @@ namespace ClangSharpSourceToWinmdTests
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
             string d3d = Direct3DPackagePath();
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
+            string midlInputs = Path.Combine(fixture.Path, "sdk");
+            foreach (string folder in new[] { "um", "shared" })
+            {
+                string destination = Path.Combine(midlInputs, folder);
+                Directory.CreateDirectory(destination);
+                foreach (string file in Directory.GetFiles(Path.Combine(include, folder)))
+                    File.Copy(file, Path.Combine(destination, Path.GetFileName(file)));
+            }
+            foreach (string file in Directory.GetFiles(Path.Combine(d3d, "build", "native", "include")))
+                File.Copy(file, Path.Combine(midlInputs, Path.GetFileNameWithoutExtension(file) == "dxgiformat" ? "shared" : "um",
+                    Path.GetFileName(file)), overwrite: true);
             string[] inputs = DirectXComOutputHeaderTests.Owners.Select(owner => owner.Path)
                 .Where(path => path != "um/d3d10.h" && path != "um/d3d12.h" && path != "um/Presentation.h")
                 .Concat(new[] { "um/d3d10.idl", "um/d3d12.idl", "um/Presentation.idl" }).ToArray();
             foreach (string path in inputs)
             {
-                string source = path == "um/d3d12.idl" ? Path.Combine(d3d, "build", "native", "include", "d3d12.idl") :
-                    Path.Combine(include, path);
+                string source = Path.Combine(path.StartsWith("winrt/", StringComparison.Ordinal) ? include : midlInputs, path);
                 byte[] original = File.ReadAllBytes(source);
-                CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PropertyComOutputHeaderTests.ReadOriginal(
+                CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(DirectXComOutputHeaderTests.ReadOriginal(
                     "RecompiledIdlHeaders/" + path, checkoutBytes: true)), original,
-                    "The immutable ancestor must match the actual shipped native owner: " + path);
+                    "The reachable introduction parent must match the actual shipped native owner: " + path);
                 fixture.Header(Path.GetFileName(path), original, Path.GetDirectoryName(path)!);
             }
             string selections = "pre-midl/d3d10.idl.patch','pre-midl/d3d12.idl.patch','pre-midl/Presentation.idl.patch'," +
                 "'post-midl/d2d1.h.patch','post-midl/d3dcompiler.h.patch','post-midl/d3d9on12.h.patch'," +
                 "'post-midl/d3d9.h.patch','post-midl/dcomp.h.patch','post-midl/dxcapi.h.patch'," +
                 "'post-midl/windows.ui.composition.interop.h.patch";
-            fixture.Apply("pre-midl", selections, true, patchRoot: patches);
-            fixture.Apply("post-midl", selections, true, patchRoot: patches);
+            fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: midlInputs);
+            fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: midlInputs);
             foreach (string path in inputs)
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", path)), File.ReadAllBytes(Path.Combine(fixture.Headers, path)), path);
             foreach (string path in new[] { "um/d2d1.idl", "shared/d3d9.idl", "um/d3d9on12.idl", "um/d3dcompiler.idl",
                 "um/dcomp.idl", "um/dxcapi.idl", "um/dwrite.idl", "winrt/windows.ui.composition.interop.idl" })
-                Assert.IsFalse(File.Exists(Path.Combine(include, path)), "Post-MIDL only for true header-only owners: " + path);
+                Assert.IsFalse(File.Exists(Path.Combine(path.StartsWith("winrt/", StringComparison.Ordinal) ? include : midlInputs, path)),
+                    "Post-MIDL only for true header-only owners: " + path);
 
             string converted = Path.Combine(fixture.Path, "converted");
             Directory.CreateDirectory(converted);
@@ -843,7 +854,7 @@ namespace ClangSharpSourceToWinmdTests
                 "PresentationTypes.idl", "Presentation.idl", "d3d12.idl" })
             {
                 string patched = Path.Combine(fixture.Headers, "um", dependency);
-                string input = File.Exists(patched) ? patched : Path.Combine(include,
+                string input = File.Exists(patched) ? patched : Path.Combine(midlInputs,
                     dependency.StartsWith("wtypes", StringComparison.Ordinal) || dependency.StartsWith("dxgi", StringComparison.Ordinal) ?
                         "shared" : "um", dependency);
                 command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
@@ -851,8 +862,13 @@ namespace ClangSharpSourceToWinmdTests
             }
             command += ". " + Quote(Script("CommonUtils.ps1")) +
                 "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); ";
+            command += "$graphicsOutputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) +
+                " -HeaderRoot " + Quote(midlInputs) + "); ";
             foreach (string owner in new[] { "d3d10", "d3d10_1", "d3d12", "Presentation" })
             {
+                command += "$outputs = @($graphicsOutputs | Where-Object { $_.Idl -ieq " + Quote("um/" + owner + ".idl") +
+                    " }); if ($outputs.Count -ne 1 -or $outputs[0].Header -ine " + Quote("um/" + owner + ".h") +
+                    ") { throw 'Selected graphics owner is not queued by the production MIDL input inventory.' }; ";
                 command += "& " + Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
                     " " + Quote(Path.Combine(converted, owner.ToLowerInvariant() + ".idl")) + " /out " + Quote(converted) +
                     " /header " + Quote(Path.Combine(fixture.Headers, "um", owner.ToLowerInvariant() + ".h")) +
@@ -860,8 +876,8 @@ namespace ClangSharpSourceToWinmdTests
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
                     " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
-                    " /I " + Quote(converted) + " /I " + Quote(Path.Combine(d3d, "build", "native", "include")) +
-                    " /I " + Quote(Path.Combine(include, "um")) + " /I " + Quote(Path.Combine(include, "shared")) +
+                    " /I " + Quote(converted) +
+                    " /I " + Quote(Path.Combine(midlInputs, "um")) + " /I " + Quote(Path.Combine(midlInputs, "shared")) +
                     " /I " + Quote(Path.Combine(include, "winrt")) + " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
                     "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
             }
@@ -894,7 +910,7 @@ namespace ClangSharpSourceToWinmdTests
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             string[] owners = DirectXComOutputHeaderTests.Owners.Select(owner => owner.Path).Append("um/d3d10_1.h").ToArray();
             foreach (string path in owners)
-                fixture.Header(Path.GetFileName(path), Encoding.ASCII.GetBytes(PropertyComOutputHeaderTests.ReadOriginal(
+                fixture.Header(Path.GetFileName(path), Encoding.ASCII.GetBytes(DirectXComOutputHeaderTests.ReadOriginal(
                     "RecompiledIdlHeaders/" + path, checkoutBytes: true)), Path.GetDirectoryName(path)!);
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",

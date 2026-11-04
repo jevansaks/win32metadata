@@ -14,6 +14,29 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class DirectXComOutputHeaderTests
     {
+        internal static string PreRetirementCommit(string root)
+        {
+            var introduction = LastErrorHeaderTests.Run("git", "-C", root, "log", "--diff-filter=A",
+                "--format=%H", "HEAD", "--", "tests/ClangSharpSourceToWinmdTests/DirectXComOutputHeaderTests.cs");
+            Assert.AreEqual(0, introduction.ExitCode, introduction.Output);
+            string[] commits = introduction.Output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(1, commits.Length, "Expected one reachable introduction of the DirectX output migration fixture.");
+            var parent = LastErrorHeaderTests.Run("git", "-C", root, "rev-parse", commits[0] + "^");
+            Assert.AreEqual(0, parent.ExitCode, parent.Output);
+            return parent.Output.Trim();
+        }
+
+        internal static string ReadOriginal(string path, bool checkoutBytes = false)
+        {
+            string root = LastErrorHeaderTests.RepositoryRoot();
+            string parent = PreRetirementCommit(root);
+            var result = checkoutBytes
+                ? LastErrorHeaderTests.Run("git", "-C", root, "cat-file", "--filters", parent + ":generation/WinSDK/" + path)
+                : LastErrorHeaderTests.Run("git", "-C", root, "show", parent + ":generation/WinSDK/" + path);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            return result.Output;
+        }
+
         internal static readonly (string Path, string[] Selectors)[] Owners =
         {
             ("um/d2d1.h", new[] { "D2D1CreateFactory::ppIFactory", "ID2D1Resource::GetFactory::factory" }),
@@ -62,7 +85,7 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string path in Owners.Select(owner => owner.Path).Where(path => path != "um/dwrite.h")
                 .Concat(new[] { "um/d3d10.idl", "um/d3d10_1.h", "um/d3d12.idl", "um/Presentation.idl" }))
             {
-                string original = PropertyComOutputHeaderTests.ReadOriginal("RecompiledIdlHeaders/" + path, checkoutBytes: true);
+                string original = ReadOriginal("RecompiledIdlHeaders/" + path, checkoutBytes: true);
                 Assert.IsTrue(original.All(character => character <= 127), path);
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchOwner(path, original)),
                     File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
@@ -106,12 +129,8 @@ namespace ClangSharpSourceToWinmdTests
         [TestMethod]
         public void CompleteGraphicsInventory_RetiresOnlyEquivalentFactsAndKeepsRepresentation()
         {
-            string original = PropertyComOutputHeaderTests.ReadOriginal("emitter.settings.rsp").Replace("\r\n", "\n");
-            string[] previous = PropertyComOutputHeaderTests.PilotSelectors.Concat(ComOutputHeaderTests.Selectors)
-                .Concat(UrlMonComOutputHeaderTests.Selectors).Concat(ShellItemComOutputHeaderTests.Selectors)
-                .Concat(PropertyComOutputHeaderTests.Selectors).Concat(ShellComOutputHeaderTests.Selectors).ToArray();
-            string[] records = original.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal) &&
-                !previous.Any(selector => line == selector + "=[ComOutPtr]")).ToArray();
+            string original = ReadOriginal("emitter.settings.rsp").Replace("\r\n", "\n");
+            string[] records = original.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray();
             Assert.AreEqual(169, records.Length);
             Assert.AreEqual(25, Selectors.Length);
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
@@ -119,6 +138,7 @@ namespace ClangSharpSourceToWinmdTests
                 CollectionAssert.Contains(records, selector + "=[ComOutPtr]" + (selector == DWriteSelector ? "void**" : ""));
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
+            Assert.AreEqual(RetireRecords(original), current, "Preserve all independent sidecars exactly.");
             CollectionAssert.AreEqual(RetireRecords(string.Join("\n", records) + "\n").Split('\n').Where(line => line.Length != 0).ToArray(),
                 current.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal) ||
                     line == DWriteSelector + "=void**").ToArray());
@@ -127,12 +147,13 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string selector in RetainedCallbacks) StringAssert.Contains(current, selector + "=[ComOutPtr]\n");
             CollectionAssert.AreEqual(original.Split('\n').Where(IndependentContract).ToArray(),
                 current.Split('\n').Where(IndependentContract).ToArray());
+            string parent = PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot());
             var ancestry = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(),
-                "merge-base", "--is-ancestor", PropertyComOutputHeaderTests.SdkAncestor, "HEAD");
+                "merge-base", "--is-ancestor", parent, "HEAD");
             Assert.AreEqual(0, ancestry.ExitCode, ancestry.Output);
 
             var files = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(), "ls-tree", "-r",
-                "--name-only", PropertyComOutputHeaderTests.SdkAncestor, "--", "generation/WinSDK/RecompiledIdlHeaders");
+                "--name-only", parent, "--", "generation/WinSDK/RecompiledIdlHeaders");
             Assert.AreEqual(0, files.ExitCode, files.Output);
             var found = new HashSet<string>(StringComparer.Ordinal);
             foreach (string partition in new[] { "Direct2D.Common", "Direct2D", "Direct3D", "Direct3D9", "Direct3D9on12",
@@ -153,7 +174,7 @@ namespace ClangSharpSourceToWinmdTests
                     string originalPath = files.Output.Split('\n').Select(line => line.TrimEnd('\r')).Single(line =>
                         line.Equals("generation/WinSDK/RecompiledIdlHeaders/" + path.Substring("<IncludeRoot>/".Length),
                             StringComparison.OrdinalIgnoreCase));
-                    string text = PropertyComOutputHeaderTests.ReadOriginal(originalPath.Substring("generation/WinSDK/".Length));
+                    string text = ReadOriginal(originalPath.Substring("generation/WinSDK/".Length));
                     foreach (string record in records)
                     {
                         string selector = record.Split('=')[0];
@@ -186,7 +207,7 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("aarch64-pc-windows-msvc")]
         public void RetvalBoundary_ChangesOnlyCustomAttributeRowOrder(string target)
         {
-            string original = PropertyComOutputHeaderTests.ReadOriginal("RecompiledIdlHeaders/um/Presentation.h");
+            string original = ReadOriginal("RecompiledIdlHeaders/um/Presentation.h");
             string declaration = Regex.Match(Definition(original, "IPresentationManager"),
                 MethodPattern("GetPresentRetiringFence")).Value;
             Assert.AreNotEqual("", declaration);
@@ -307,7 +328,7 @@ struct D2D1_FACTORY_OPTIONS { int debugLevel; };
                 string declarations = "";
                 foreach (var owner in Owners)
                 {
-                    string text = legacy ? PropertyComOutputHeaderTests.ReadOriginal("RecompiledIdlHeaders/" + owner.Path) :
+                    string text = legacy ? ReadOriginal("RecompiledIdlHeaders/" + owner.Path) :
                         File.ReadAllText(Path.Combine(headers, owner.Path));
                     foreach (var group in owner.Selectors.GroupBy(selector => selector.Split("::")[0]))
                     {
