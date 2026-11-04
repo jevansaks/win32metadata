@@ -71,6 +71,13 @@ storage-compatible native typedef. Residual legacy
 cleanup/invalid-value entries remain independent and do not become source ownership
 facts. Neither native identity nor `AlsoUsableFor` implies ownership or availability.
 
+Integral constant declarations and casts compile using the selected typedef's
+compiler-derived storage. Native type attributes remain intact, so the existing
+emitter retains nominal constant signatures and native-width literal values.
+Definition-wide documentation is applied once to the compiler-owned declaration,
+not repeated on the partial carrying residual legacy cleanup/invalid-value facts.
+Explicit conflicting documentation still diagnoses; the attribute schema is unchanged.
+
 `_Win32_PreserveResult_` on a defining callback typedef sets `PreserveSig` on its
 final `Invoke`, not on the delegate type or its constructor. The callback's native
 result, calling convention, parameter SAL and extra pointer aliases remain intact;

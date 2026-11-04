@@ -96,6 +96,158 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void SelectedSdkScalarConstants_KeepNativeBitsTypesAndAttributes(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string header = Path.Combine(include, "um", "imapierror.h");
+            string winnt = File.ReadAllText(Path.Combine(include, "um", "winnt.h"));
+            string alias = Slice(winnt, @"typedef _Return_type_success_\(return >= 0\) long HRESULT;");
+            string declarations = alias +
+                "\n#include <imapierror.h>\nHRESULT __stdcall Example(HRESULT value);\nstruct Neighbor { HRESULT value; };";
+            string settings = PrepareSettings(Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "settings.rsp")) +
+                "\n--include-directory\n" + Path.Combine(include, "um") + "\n" + Path.Combine(include, "shared") +
+                "\n--traverse\n" + header;
+            var result = fixture.Scrape(declarations, target, sal: true, extraSettings: settings,
+                namespaceName: "Windows.Win32.Storage.Imapi");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Assert.IsFalse(File.Exists(Path.ChangeExtension(fixture.GeneratedSource, ".headerTypedefs.cs")));
+            using var owner = new LastErrorHeaderTests.Fixture();
+            result = owner.Scrape(alias, target, sal: true, extraSettings: settings, namespaceName: Foundation);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            File.Copy(Path.ChangeExtension(owner.GeneratedSource, ".headerTypedefs.cs"),
+                Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "Foundation.headerTypedefs.cs"));
+            StringAssert.Contains(File.ReadAllText(fixture.GeneratedSource), "public const HRESULT IMAPI_E_NOTOPENED");
+            var matches = Regex.Matches(File.ReadAllText(header),
+                @"const HRESULT (\w+)\s*= MAKE_HRESULT\( SEVERITY_(SUCCESS|ERROR), FACILITY_ITF, 0x200 \+ (\d+) \);");
+            Assert.AreEqual(38, matches.Count, "All actual shipped HRESULT constant declarations, not just a synthetic literal.");
+            const string constantDocumentation = "test://imapi/constant";
+            string output = fixture.Emit(new Dictionary<string, string>
+            {
+                ["IMAPI_E_NOTOPENED"] = "[Documentation(\"" + constantDocumentation + "\")]",
+            }, new Dictionary<string, string> { ["HRESULT"] = Foundation });
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            NativeTypedefHeaderTests.AssertStorage(reader, "HRESULT", SignatureTypeCode.Int32);
+            var fields = reader.FieldDefinitions.Select(reader.GetFieldDefinition)
+                .Where(field => reader.GetString(field.Name).StartsWith("IMAPI_", StringComparison.Ordinal))
+                .ToDictionary(field => reader.GetString(field.Name));
+            Assert.AreEqual(matches.Count, fields.Count);
+            Assert.AreEqual("Windows.Win32.Storage.Imapi",
+                reader.GetString(reader.GetTypeDefinition(fields.Values.First().GetDeclaringType()).Namespace));
+            foreach (Match match in matches)
+            {
+                string name = match.Groups[1].Value;
+                var field = fields[name];
+                Assert.AreEqual(System.Reflection.FieldAttributes.Public | System.Reflection.FieldAttributes.Static |
+                    System.Reflection.FieldAttributes.Literal | System.Reflection.FieldAttributes.HasDefault, field.Attributes);
+                var signature = reader.GetBlobReader(field.Signature);
+                signature.ReadSignatureHeader();
+                NativeTypedefHeaderTests.AssertReference(reader, ref signature, "HRESULT", Foundation);
+                Assert.AreEqual(0, signature.RemainingBytes);
+                var constant = reader.GetConstant(field.GetDefaultValue());
+                Assert.AreEqual(ConstantTypeCode.Int32, constant.TypeCode, name);
+                var value = reader.GetBlobReader(constant.Value);
+                uint expected = (match.Groups[2].Value == "ERROR" ? 0x80000000U : 0U) |
+                    0x40000U | (0x200U + uint.Parse(match.Groups[3].Value));
+                Assert.AreEqual(expected, unchecked((uint)value.ReadInt32()), name);
+                Assert.AreEqual(0, value.RemainingBytes);
+                var attributes = field.GetCustomAttributes().Select(reader.GetCustomAttribute).ToArray();
+                Assert.IsFalse(attributes.Any(attribute => ParameterHeaderTests.AttributeName(reader, attribute)
+                    is "NativeTypedefAttribute" or "AlsoUsableForAttribute" or "RAIIFreeAttribute" or
+                    "InvalidHandleValueAttribute" or "RetValAttribute" or "SupportedOSPlatformAttribute"), name);
+                Assert.AreEqual(name == "IMAPI_E_NOTOPENED", attributes.Any(attribute =>
+                    ParameterHeaderTests.AttributeName(reader, attribute) == "DocumentationAttribute"));
+                if (name == "IMAPI_E_NOTOPENED")
+                    AssertStringAttribute(reader, attributes, "DocumentationAttribute", constantDocumentation);
+            }
+            var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(item => reader.GetString(item.Name) == "Example");
+            var methodSignature = reader.GetBlobReader(method.Signature);
+            methodSignature.ReadSignatureHeader();
+            Assert.AreEqual(1, methodSignature.ReadCompressedInteger());
+            NativeTypedefHeaderTests.AssertReference(reader, ref methodSignature, "HRESULT", Foundation);
+            NativeTypedefHeaderTests.AssertReference(reader, ref methodSignature, "HRESULT", Foundation);
+            Assert.AreEqual(0, methodSignature.RemainingBytes);
+            var neighbor = NativeTypedefHeaderTests.Type(reader, "Neighbor");
+            var neighborSignature = reader.GetBlobReader(reader.GetFieldDefinition(neighbor.GetFields().Single()).Signature);
+            neighborSignature.ReadSignatureHeader();
+            NativeTypedefHeaderTests.AssertReference(reader, ref neighborSignature, "HRESULT", Foundation);
+            Assert.AreEqual(0, neighborSignature.RemainingBytes);
+            string proof = Path.Combine(this.TestContext.ResultsDirectory, "native-hresult-constants-" + target + ".winmd");
+            File.Copy(output, proof, true);
+            this.TestContext.AddResultFile(proof);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void SelectedSdkDocumentationComposition_HasOneDefinitionOwnerAndKeepsResidualFacts(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string settings = PrepareSettings(Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "settings.rsp")) +
+                "\n--remap\nULONG_PTR=UIntPtr\nSECURITY_STATUS=HRESULT\n--include-directory\n" + Path.Combine(include, "shared");
+            var result = fixture.Scrape(Declarations(include, Sdk("RecompiledIdlHeaders")), target,
+                sal: true, extraSettings: settings, namespaceName: Foundation);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var handles = new LastErrorHeaderTests.Fixture();
+            result = handles.Scrape(Declarations(include, Sdk("RecompiledIdlHeaders")), target,
+                sal: true, extraSettings: settings, namespaceName: Cryptography);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            File.Copy(Path.ChangeExtension(handles.GeneratedSource, ".headerTypedefs.cs"),
+                Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "Cryptography.headerTypedefs.cs"));
+            var namespaces = new Dictionary<string, string>
+            {
+                ["HRESULT"] = Foundation, ["NCRYPT_HANDLE"] = Cryptography, ["NCRYPT_KEY_HANDLE"] = Cryptography,
+                ["NCryptFreeObject"] = Cryptography, ["NCryptDeleteKey"] = Cryptography,
+            };
+            // The real documentation mapping is applied to both compiler and legacy partials before this repair.
+            string documentation = Slice(File.ReadAllText(Sdk("documentationMappings.rsp")), @"(?m)^HRESULT=([^\r\n]+)")
+                .Substring("HRESULT=".Length);
+            const string keyDocumentation = "test://native-typedef/key";
+            var remaps = new Dictionary<string, string>
+            {
+                ["HRESULT"] = documentation, ["NCRYPT_KEY_HANDLE"] = "[Documentation(\"" + keyDocumentation + "\")]",
+            };
+            var items = AutoTypeHelpers.GetAutoTypesFromFiles(new[] { Sdk("autoTypes.json") })
+                .Where(item => Pilots.Contains(item.Name)).ToArray();
+            using (var stream = File.Create(Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "autotypes.cs")))
+                NativeTypedefStructsCreator.WriteToStream(namespaces, items, stream);
+            string output = fixture.Emit(remaps, namespaces);
+            AssertFinal(output, legacy: true);
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            foreach (string name in new[] { "HRESULT", "NCRYPT_KEY_HANDLE" })
+                AssertStringAttribute(reader, NativeTypedefHeaderTests.Type(reader, name).GetCustomAttributes()
+                    .Select(reader.GetCustomAttribute), "DocumentationAttribute",
+                    name == "HRESULT" ? "https://learn.microsoft.com/office/client-developer/outlook/mapi/hresult" : keyDocumentation);
+            Assert.AreEqual(2, reader.CustomAttributes.Select(reader.GetCustomAttribute).Count(attribute =>
+                ParameterHeaderTests.AttributeName(reader, attribute) == "DocumentationAttribute"));
+            Assert.IsFalse(NativeTypedefHeaderTests.Type(reader, "NCRYPT_HANDLE").GetCustomAttributes()
+                .Select(reader.GetCustomAttribute).Any(attribute =>
+                    ParameterHeaderTests.AttributeName(reader, attribute) == "DocumentationAttribute"));
+            string proof = Path.Combine(this.TestContext.ResultsDirectory, "native-typedef-documentation-" + target + ".winmd");
+            File.Copy(output, proof, true);
+            this.TestContext.AddResultFile(proof);
+        }
+
+        private static void AssertStringAttribute(MetadataReader reader, System.Collections.Generic.IEnumerable<CustomAttribute> attributes,
+            string name, string expected)
+        {
+            var payload = reader.GetBlobReader(attributes.Single(attribute =>
+                ParameterHeaderTests.AttributeName(reader, attribute) == name).Value);
+            Assert.AreEqual((ushort)1, payload.ReadUInt16());
+            Assert.AreEqual(expected, payload.ReadSerializedString());
+            Assert.AreEqual((ushort)0, payload.ReadUInt16());
+            Assert.AreEqual(0, payload.RemainingBytes);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void SelectedSdkDuplicateDeclarations_KeepOneKeyOwnerAndCanonicalReferences(string target)
         {
             using var owner = new LastErrorHeaderTests.Fixture();

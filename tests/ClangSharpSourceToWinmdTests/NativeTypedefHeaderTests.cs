@@ -118,6 +118,25 @@ Result __stdcall Example(Same value, LPSame address, Opaque opaque, Key key, Uns
             Assert.IsFalse(File.Exists(fixture.GeneratedSource));
         }
 
+        [TestMethod]
+        public void ExplicitConflictingDocumentation_IsNotDroppedFromALegacyPartial()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape("typedef long Result;", sal: true, extraSettings: "--native-typedef\nResult");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            File.WriteAllText(Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "autotypes.cs"),
+                "using Windows.Win32.Foundation.Metadata; namespace Test { " +
+                "[Documentation(\"test://explicit-conflict\")] public partial struct Result {} }");
+            var compilation = ClangSharpSourceCompilation.Create(
+                Path.GetDirectoryName(fixture.GeneratedSource), "crossarch",
+                new Dictionary<string, string> { ["Result"] = "[Documentation(\"test://definition\")]" },
+                new Dictionary<string, Dictionary<string, string>>(), Array.Empty<string>(), new Dictionary<string, string>(),
+                new Dictionary<string, string>(), new HashSet<string>(), Array.Empty<string>(),
+                new Dictionary<string, string>(), new Dictionary<string, string>());
+            Assert.IsTrue(compilation.GetDiagnostics().Any(diagnostic =>
+                diagnostic.Id == "CS0579" && diagnostic.GetMessage().Contains("Documentation", StringComparison.Ordinal)));
+        }
+
         [DataTestMethod]
         [DataRow("typedef int Alias[4];", "")]
         [DataRow("typedef int (*Alias)(void);", "")]

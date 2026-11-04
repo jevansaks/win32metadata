@@ -208,7 +208,7 @@ namespace ClangSharpSourceToWinmd
             HashSet<string> enumsMakeFlagsHashSet = enumsMakeFlags != null ? new HashSet<string>(enumsMakeFlags) : new HashSet<string>();
             System.Threading.Tasks.Parallel.ForEach(FilesToTrees(modifiedFiles), opt, (tree) =>
             {
-                var cleanedTree = MetadataSyntaxTreeCleaner.CleanSyntaxTree(tree, remaps, enumAdditions, enumsMakeFlagsHashSet, requiredNamespaces, staticLibs, apiNamesToNamespaces, infoFinder.EmptyStructs, infoFinder.EnumMemberNames, tree.FilePath, headerEnumNames);
+                var cleanedTree = MetadataSyntaxTreeCleaner.CleanSyntaxTree(tree, remaps, enumAdditions, enumsMakeFlagsHashSet, requiredNamespaces, staticLibs, apiNamesToNamespaces, infoFinder.EmptyStructs, infoFinder.EnumMemberNames, tree.FilePath, headerEnumNames, infoFinder.GetNativeTypedefs(tree.FilePath));
                 WriteTree(cleanedTree, cleanedTree.FilePath);
             });
 
@@ -444,6 +444,12 @@ namespace ClangSharpSourceToWinmd
 
             public HashSet<string> EnumMemberNames { get; } = new HashSet<string>();
 
+            private readonly Dictionary<(Architecture Architecture, string Name), string> nativeTypedefs = new();
+
+            public Dictionary<string, string> GetNativeTypedefs(string fileName) =>
+                this.nativeTypedefs.Where(pair => pair.Key.Architecture == Architecture.None ||
+                    pair.Key.Architecture == GetArchitectureForFileName(fileName))
+                    .ToDictionary(pair => pair.Key.Name, pair => pair.Value, StringComparer.Ordinal);
 
             public void AnalyzeTree(SyntaxTree tree)
             {
@@ -462,6 +468,16 @@ namespace ClangSharpSourceToWinmd
 
             public override void VisitStructDeclaration(StructDeclarationSyntax node)
             {
+                if (node.SyntaxTree.FilePath.EndsWith(".headerTypedefs.modified.cs", StringComparison.Ordinal))
+                {
+                    var value = node.Members.OfType<FieldDeclarationSyntax>().Single();
+                    string name = SyntaxUtils.GetEnclosingNamespace(node) + "." + node.Identifier.ValueText;
+                    lock (this.nativeTypedefs)
+                    {
+                        this.nativeTypedefs.Add((GetArchitectureForFileName(node.SyntaxTree.FilePath), name), value.Declaration.Type.ToString());
+                    }
+                }
+
                 if (!SyntaxUtils.IsEmptyStruct(node))
                 {
                     lock (this.EmptyStructs)
