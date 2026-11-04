@@ -206,7 +206,7 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
-        public void RetvalBoundary_ChangesOnlyCustomAttributeRowOrder(string target)
+        public void NativeRetvalBoundary_EmitsOneCanonicalFactWithMatchingLegacyCom(string target)
         {
             string original = ReadOriginal("RecompiledIdlHeaders/um/Presentation.h");
             string declaration = Regex.Match(Definition(original, "IPresentationManager"),
@@ -225,7 +225,7 @@ struct __declspec(uuid(""" + Uuid(original, "IPresentationManager") + @""")) IPr
             byte[] baseline = File.ReadAllBytes(output);
             string saved = Path.ChangeExtension(output, "old.winmd");
             File.Copy(output, saved);
-            result = fixture.Scrape(header.Replace("_Out_retval_", "_COM_Outptr_retval_"), target, sal: true);
+            result = fixture.Scrape(header.Replace("_Out_retval_", "_COM_Outptr_"), target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             output = fixture.Emit();
             using var oldPe = new PEReader(new MemoryStream(baseline));
@@ -243,10 +243,10 @@ struct __declspec(uuid(""" + Uuid(original, "IPresentationManager") + @""")) IPr
                 newParameters.Select(parameter => parameter.Attributes).ToArray());
             string[] oldAttributes = Attributes(oldReader, oldParameters.Last());
             string[] newAttributes = Attributes(newReader, newParameters.Last());
-            CollectionAssert.AreEquivalent(oldAttributes, newAttributes);
-            CollectionAssert.AreEqual(new[] { "RetValAttribute:01000000", "ComOutPtrAttribute:01000000" }, oldAttributes);
-            CollectionAssert.AreEqual(oldAttributes.Reverse().ToArray(), newAttributes);
-            Assert.IsFalse(baseline.SequenceEqual(File.ReadAllBytes(output)), "Keep this exact-byte boundary active.");
+            CollectionAssert.AreEqual(new[] { "ComOutPtrAttribute:01000000", "RetValAttribute:01000000" }, oldAttributes);
+            CollectionAssert.AreEqual(oldAttributes, newAttributes);
+            CollectionAssert.AreEqual(baseline, File.ReadAllBytes(output),
+                "Authoritative native RetVal is singleton and canonical with either legacy COM or stock COM SAL.");
             var comparison = LastErrorHeaderTests.Run("dotnet", Path.Combine(AppContext.BaseDirectory, "WinmdUtils.dll"),
                 "compare", "--first", saved, "--second", output);
             Assert.AreEqual(0, comparison.ExitCode, comparison.Output);

@@ -22,6 +22,104 @@ namespace Win32MetadataScraper
         private readonly Dictionary<string, (string Module, Attr Attribute)> importLibraries = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (ProducerAnnotation Annotation, FunctionDecl Function, Attr Attribute)> producers = new(StringComparer.Ordinal);
         private readonly Dictionary<string, HashSet<FunctionDecl>> functionDeclarations = new(StringComparer.Ordinal);
+        private readonly List<(VarDecl Declaration, Attr Marker)> carriers = new();
+        private readonly Dictionary<string, (NamedDecl Target, HashSet<string> Payloads)> nativeFacts = new(StringComparer.Ordinal);
+        public NativeCallbackFacts CallbackFacts { get; } = new();
+
+        public void MergeNativeFacts(List<string> attributes, List<string> excludes)
+        {
+            foreach (var carrier in this.carriers) excludes.Add(carrier.Declaration.Name);
+            foreach (var fact in this.nativeFacts)
+                foreach (string payload in fact.Value.Payloads)
+                    attributes.Add(fact.Key + "=" + payload);
+        }
+
+        public void ResolveCarriers()
+        {
+            foreach (var carrier in this.carriers)
+            {
+                var marker = carrier.Marker;
+                var arguments = marker.CursorChildren.ToArray();
+                if (arguments.Length != 1 || SizeOfOperand(arguments[0], marker) is not UnaryOperator address ||
+                    address.Opcode != CXUnaryOperatorKind.CXUnaryOperator_AddrOf ||
+                    StripParens(address.SubExpr) is not DeclRefExpr reference || reference.Decl is not NamedDecl target)
+                    throw Error(marker, "Named MIDL carriers require one compiler-resolved address of a native member.");
+                if (marker.Spelling == Owner + "Field")
+                {
+                    if (target is not FieldDecl)
+                        throw Error(marker, "AnnotateField requires a native non-static record field.");
+                }
+                else
+                {
+                    if (target is not CXXMethodDecl method || method.HasBody || method.IsStatic)
+                        throw Error(marker, "AnnotateMethod/AnnotateParameter requires one native instance method declaration without a body.");
+                    if (this.functionDeclarations[QualifiedName(method)].Count != 1)
+                        throw Error(marker, "Named MIDL carriers cannot target overloaded methods.");
+                    if (marker.Spelling != Owner + "Method")
+                    {
+                        var match = Regex.Match(marker.Spelling, @"\AWin32Metadata\.Parameter\(([A-Za-z_][A-Za-z_0-9]*)\)\z");
+                        if (!match.Success)
+                            throw Error(marker, "Malformed named MIDL parameter carrier.");
+                        target = method.Parameters.SingleOrDefault(p => p.Name == match.Groups[1].Value) ??
+                            throw Error(marker, $"No native parameter '{match.Groups[1].Value}' on '{QualifiedName(method)}'.");
+                    }
+                }
+
+                var facts = carrier.Declaration.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
+                    a != marker && a.Spelling.StartsWith(Owner, StringComparison.Ordinal)).ToArray();
+                if (facts.Length == 0)
+                    throw Error(marker, "Named MIDL carrier requires an accepted owned annotation.");
+                foreach (var fact in facts)
+                {
+                    if (target.Attrs.Any(a => a.Spelling == fact.Spelling))
+                        throw Error(fact, "Named MIDL carrier duplicates an annotation on the native target.");
+                    if (fact.Spelling.StartsWith(Owner + "AssociatedEnum(", StringComparison.Ordinal) &&
+                        target.Attrs.Any(a => a.Spelling.StartsWith(Owner + "AssociatedEnum(", StringComparison.Ordinal)))
+                        throw Error(fact, "Named MIDL carrier conflicts with the native target's enum association.");
+                    if (fact.Spelling == Owner + "PreserveResult")
+                    {
+                        if (target is not CXXMethodDecl || fact.CursorChildren.Any())
+                            throw Error(fact, "PreserveResult carrier requires a method and no arguments.");
+                    }
+                    else if (fact.Spelling.StartsWith(ProducerAnnotation.Marker, StringComparison.Ordinal))
+                    {
+                        if (this.producers.ContainsKey(QualifiedName(target)))
+                            throw Error(fact, "Duplicate or conflicting RAIIFree carrier.");
+                        this.VisitProducer(target, fact, transported: true);
+                        continue;
+                    }
+                    else
+                    {
+                        uint? start = null;
+                        this.VisitParameterAnnotation(target, fact, ref start, transported: true);
+                    }
+                    this.AddNativeFact(target, NativePayload(fact.Spelling), fact);
+                }
+            }
+        }
+
+        private static string NativePayload(string payload) =>
+            "NativeAnnotation(\"" + payload.Replace("\"", "\\\"") + "\")";
+
+        private void AddNativeFact(NamedDecl target, string payload, Attr source = null, string selector = null)
+        {
+            selector ??= QualifiedName(target);
+            if (!this.nativeFacts.TryGetValue(selector, out var existing))
+                this.nativeFacts.Add(selector, (target, new HashSet<string>(StringComparer.Ordinal) { payload }));
+            else
+            {
+                const string enumPrefix = "NativeAnnotation(\"" + Owner + "AssociatedEnum(";
+                if (source != null && payload.StartsWith(enumPrefix, StringComparison.Ordinal) &&
+                    existing.Payloads.Any(p => p.StartsWith(enumPrefix, StringComparison.Ordinal)))
+                    throw Error(source, $"Duplicate or conflicting enum association on '{selector}'.");
+                if (existing.Target != target || !existing.Payloads.Add(payload))
+                {
+                    if (source != null) throw Error(source, $"Duplicate or ambiguous native annotation target '{selector}'.");
+                    if (existing.Target.CanonicalDecl != target.CanonicalDecl)
+                        throw new FormatException($"{target.Location}: Ambiguous native annotation target '{selector}'.");
+                }
+            }
+        }
 
         public void MergeProducers(List<string> attributes, IReadOnlyDictionary<string, string> remaps, IReadOnlyCollection<string> excludes)
         {
@@ -61,6 +159,17 @@ namespace Win32MetadataScraper
 
         public void Visit(Decl declaration)
         {
+            var markers = declaration.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
+                (a.Spelling == Owner + "Method" || a.Spelling == Owner + "Field" ||
+                a.Spelling.StartsWith(Owner + "Parameter(", StringComparison.Ordinal))).ToArray();
+            if (markers.Length != 0)
+            {
+                if (declaration is not VarDecl carrier || markers.Length != 1 ||
+                    declaration.DeclContext is not TranslationUnitDecl && declaration.DeclContext is not LinkageSpecDecl)
+                    throw Error(markers[0], "Named MIDL carriers require a separate file-scope metadata declaration.");
+                this.carriers.Add((carrier, markers[0]));
+                return;
+            }
             if (declaration is FunctionDecl declaredFunction)
             {
                 string name = QualifiedName(declaredFunction);
@@ -151,11 +260,91 @@ namespace Win32MetadataScraper
             }
 
             if (declaration is FunctionDecl containingFunction)
+            {
+                this.VisitNativeParameters(containingFunction, containingFunction.Parameters);
                 foreach (var parameter in containingFunction.Parameters)
                     this.Visit(parameter);
+                this.VisitTypedefSal(containingFunction, containingFunction.ReturnType, returnValue: true);
+            }
             if (declaration is TypedefDecl containingCallback)
-                foreach (var parameter in containingCallback.CursorChildren.OfType<ParmVarDecl>())
+            {
+                var parameters = containingCallback.CursorChildren.OfType<ParmVarDecl>().ToArray();
+                this.VisitNativeParameters(containingCallback, parameters);
+                foreach (var parameter in parameters)
                     this.Visit(parameter);
+            }
+            if (declaration is FieldDecl field)
+            {
+                var parameters = field.CursorChildren.OfType<ParmVarDecl>().ToArray();
+                this.VisitNativeParameters(field, parameters);
+                foreach (var parameter in parameters) this.Visit(parameter);
+                this.VisitTypedefSal(field, field.Type);
+            }
+            if (declaration is ParmVarDecl parameterUse)
+                this.VisitTypedefSal(parameterUse, parameterUse.Type);
+        }
+
+        private void VisitTypedefSal(NamedDecl declaration, ClangSharp.Type type, bool returnValue = false)
+        {
+            if (HasDoubleNull(declaration.Attrs))
+            {
+                if (returnValue) this.AddNativeFact(declaration, "return: NullNullTerminated");
+                return;
+            }
+            var visited = new HashSet<TypedefNameDecl>();
+            while (RemapDiscovery.UnwrapType(type) is TypedefType alias && visited.Add(alias.Decl))
+            {
+                if (HasDoubleNull(alias.Decl.Attrs))
+                {
+                    this.AddNativeFact(declaration, (returnValue ? "return: " : "") + "NullNullTerminated");
+                    return;
+                }
+                type = alias.Decl.UnderlyingType;
+            }
+        }
+
+        private static bool HasDoubleNull(IEnumerable<Attr> attributes) =>
+            attributes.Any(a => a.Spelling.Contains("SAL_name", StringComparison.Ordinal) &&
+                a.Spelling.Contains("_NullNull_terminated_", StringComparison.Ordinal));
+
+        private void VisitNativeParameters(NamedDecl owner, IReadOnlyList<ParmVarDecl> parameters)
+        {
+            for (int i = 0; i < parameters.Count; i++)
+            {
+                var parameter = parameters[i];
+                var start = i == 0 ? owner.Extent.Start : parameters[i - 1].Extent.End;
+                var unit = owner.TranslationUnit.Handle;
+                var tokens = unit.Tokenize(CXSourceRange.Create(start, parameter.Location));
+                bool retval = false;
+                int depth = i == 0 ? 0 : 1;
+                try
+                {
+                    foreach (var token in tokens)
+                    {
+                        using var spelling = token.GetSpelling(unit);
+                        string text = spelling.ToString();
+                        if (token.Kind == CXTokenKind.CXToken_Comment)
+                        {
+                            if (depth > 0 && Regex.IsMatch(text, @"\A/\*\s*(?:\[[A-Za-z_][A-Za-z_0-9]*(?:\([^][]*\))?\]\s*)+\*/\z") &&
+                                Regex.IsMatch(text, @"\[retval\]"))
+                                retval = true;
+                        }
+                        else if (text == "(") depth++;
+                        else if (text == ")") depth--;
+                        else if (text == "," && depth == 1) retval = false;
+                    }
+                }
+                finally { unit.DisposeTokens(tokens); }
+                if (!retval) continue;
+                if (parameter.Type.CanonicalType is not PointerType)
+                    throw new FormatException($"{parameter.Location}: Native MIDL retval requires an output pointer parameter.");
+                if (parameter.Attrs.Any(a => a.Spelling == Owner + "RetVal"))
+                    throw new FormatException($"{parameter.Location}: Do not duplicate authoritative MIDL retval with the C/C++ fallback.");
+                if (owner is FunctionDecl)
+                    this.AddNativeFact(parameter, NativePayload(Owner + "RetVal"),
+                        selector: QualifiedName(owner) + "::" + parameter.Name);
+                else this.CallbackFacts.Add(owner, parameters, i);
+            }
         }
 
         public void ValidateEnumAssociations()
@@ -171,7 +360,7 @@ namespace Win32MetadataScraper
             }
         }
 
-        private void VisitProducer(Decl declaration, Attr attribute)
+        private void VisitProducer(Decl declaration, Attr attribute, bool transported = false)
         {
             if (attribute.Spelling != ProducerAnnotation.Marker)
                 throw Error(attribute, "RAIIFree requires typed cleanup and invalid-value arguments.");
@@ -186,14 +375,15 @@ namespace Win32MetadataScraper
                     (a.Spelling.Contains("_Out_", StringComparison.Ordinal) ||
                     a.Spelling.Contains("_Out_opt_", StringComparison.Ordinal) ||
                     a.Spelling.Contains("_Outptr", StringComparison.Ordinal) ||
-                    a.Spelling.Contains("_COM_Outptr", StringComparison.Ordinal)));
+                    a.Spelling.Contains("_COM_Outptr", StringComparison.Ordinal) ||
+                    Regex.IsMatch(a.Spelling, @"__RPC__(?:deref_)?out(?:_|;|$)")));
                 if (!hasOutputSal || resource is not PointerType pointer)
                     throw Error(attribute, "RAIIFree requires output pointer SAL on a producer output parameter.");
                 resource = pointer.PointeeType.CanonicalType;
             }
             if (!IsResourceType(resource))
                 throw Error(attribute, "RAIIFree requires a native pointer or integer resource, not void, a record or a callback.");
-            if (declaration.Attrs.Count(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
+            if (!transported && declaration.Attrs.Count(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
                 a.Spelling.StartsWith(ProducerAnnotation.Marker, StringComparison.Ordinal)) != 1)
                 throw Error(attribute, "Duplicate or conflicting RAIIFree annotations.");
 
@@ -209,12 +399,13 @@ namespace Win32MetadataScraper
             attribute.Extent.Start.GetExpansionLocation(out var attributeFile, out _, out _, out uint offset);
             firstSite.Extent.Start.GetExpansionLocation(out var firstFile, out _, out _, out _);
             firstSite.Extent.End.GetExpansionLocation(out _, out _, out _, out uint firstEnd);
-            if (!firstSite.Attrs.Any(a => a.Spelling == ProducerAnnotation.Marker) ||
+            if (!transported && (!firstSite.Attrs.Any(a => a.Spelling == ProducerAnnotation.Marker) ||
                 !attributeFile.Equals(firstFile) || offset > firstEnd)
+                )
                 throw Error(attribute, "RAIIFree must appear on the first native declaration; late-only producer annotations are unsupported.");
             declaration.Extent.Start.GetExpansionLocation(out var siteFile, out _, out _, out _);
             declaration.Extent.End.GetExpansionLocation(out _, out _, out _, out uint siteEnd);
-            if (attributeFile.Equals(siteFile) && offset > GetDeclarationStart(declaration, attribute, declaration is CXXMethodDecl) && offset < siteEnd)
+            if (!transported && attributeFile.Equals(siteFile) && offset > GetDeclarationStart(declaration, attribute, declaration is CXXMethodDecl) && offset < siteEnd)
                 throw Error(attribute, "RAIIFree must precede the native declaration type and calling convention.");
 
             var arguments = attribute.CursorChildren.ToArray();
@@ -433,7 +624,7 @@ namespace Win32MetadataScraper
                 _ => unchecked((long)bits).ToString(CultureInfo.InvariantCulture) + "L",
             };
 
-        private void VisitParameterAnnotation(Decl declaration, Attr attribute, ref uint? declarationStart)
+        private void VisitParameterAnnotation(Decl declaration, Attr attribute, ref uint? declarationStart, bool transported = false)
         {
             ParameterAnnotation annotation;
             try { annotation = ParameterAnnotation.Parse(attribute.Spelling); }
@@ -444,7 +635,7 @@ namespace Win32MetadataScraper
             bool fieldValue = declaration is FieldDecl && annotation.Kind == ParameterAnnotationKind.AssociatedEnum;
             if (declaration is not ParmVarDecl && !returnValue && !fieldValue)
                 throw Error(attribute, $"{attribute.Spelling} requires a parameter declaration.");
-            if (declaration is ParmVarDecl redeclaredParameter && redeclaredParameter.DeclContext is FunctionDecl function)
+            if (!transported && declaration is ParmVarDecl redeclaredParameter && redeclaredParameter.DeclContext is FunctionDecl function)
             {
                 int index = function.Parameters.TakeWhile(p => p != redeclaredParameter).Count();
                 var first = function.CanonicalDecl;
@@ -457,8 +648,8 @@ namespace Win32MetadataScraper
             attribute.Extent.Start.GetExpansionLocation(out var attributeFile, out _, out _, out uint attributeOffset);
             declaration.Extent.Start.GetExpansionLocation(out var declarationFile, out _, out _, out _);
             declaration.Extent.End.GetExpansionLocation(out _, out _, out _, out uint declarationEnd);
-            declarationStart ??= GetDeclarationStart(declaration, attribute);
-            if (attributeFile.Equals(declarationFile) &&
+            if (!transported) declarationStart ??= GetDeclarationStart(declaration, attribute);
+            if (!transported && attributeFile.Equals(declarationFile) &&
                 attributeOffset > declarationStart.Value && attributeOffset < declarationEnd)
                 throw Error(attribute, $"{attribute.Spelling} must precede the native declaration type.");
             var owned = declaration.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
@@ -471,7 +662,8 @@ namespace Win32MetadataScraper
             {
                 bool output = declaration.Attrs.Any(a => a.Spelling.Contains("SAL_name", StringComparison.Ordinal) &&
                     (a.Spelling.Contains("_Out_writes", StringComparison.Ordinal) ||
-                    a.Spelling.Contains("_Inout_updates", StringComparison.Ordinal)));
+                    a.Spelling.Contains("_Inout_updates", StringComparison.Ordinal) ||
+                    Regex.IsMatch(a.Spelling, @"__RPC__(?:out|inout)_[eb]count")));
                 if (!output)
                     throw Error(attribute, "ContainsInteriorPointers requires caller-owned output/inout buffer SAL.");
             }

@@ -1,5 +1,108 @@
 # SDK header patches
 
+## SAL and MIDL reader capability
+
+This reader layer consumes structured native `[retval]` comments on their
+actual compiler-owned parameters. It emits canonical `RetValAttribute` for C++
+methods, callback typedefs and C-vtable function-pointer slots, without
+changing native types, pointer depth, direction or RPC attributes.
+`_Win32_Retval_` remains the hand-authored C/C++ fallback without an
+authoritative native marker; its private payload is `Win32Metadata.RetVal`.
+The DXGI pilot now uses native `[out, retval]` in the queued pre-MIDL
+`dxgi.idl` owner, not `annotation("_Out_ _Win32_Retval_")`.
+
+The converter treats each parameter's complete adjacent/multiline attribute
+lists independently. An authored `annotation(...)` retains ownership of that
+parameter, not its neighbors. Strings, character literals, comments and quoted
+C++ remain unchanged; native MIDL direction, `unique`, `size_is`, `length_is`,
+`iid_is` and `retval` attributes remain present. Retval lists gain only stock
+SAL, never `_Out_retval_` or `_COM_Outptr_retval_`. This integrates the
+independently prepared mixed-MIDL converter, not its held bulk migrations.
+
+Separate `_Win32_AnnotateMethod_(Interface::Method, annotation)`,
+`_Win32_AnnotateParameter_(Interface::Method, parameter, annotation)` and
+`_Win32_AnnotateField_(Record::field, annotation)` expand to standalone
+`cpp_quote` carriers. The same production Clang TU resolves their typed member
+operands and exact parameter names. They transport existing accepted
+annotations; they do not supply new semantics, projected carrier types, record
+fields or native layout. Invalid, duplicate, conflicting and unresolved targets
+fail with source locations. Qualified-member carrier transport requires C++;
+method/parameter carriers are also inactive for `CINTERFACE`. Native C-vtable
+retval comments remain independently readable.
+
+Production MIDL uses `/sal /sal_local`: `/sal` alone omits local-method SAL.
+Raw `__RPC__` SAL contributes direction, counts and caller-storage optionality;
+nullable dereferenced results are not nullable caller storage. Double-NUL SAL
+is also consumed on native returns, fields and typedef uses. Applicable SAL
+defaults are retained, with no universal scalar/pointer direction rule.
+
+The final count representation is deliberately unchanged:
+
+| Focused partial-count case | Existing final payload | Native expressions retained |
+|---|---|---|
+| Raw RPC element buffer | `NativeArrayInfo(CountParamIndex = 1)` | Capacity `capacity`, initialized extent `*written` |
+| Raw RPC fixed input | `NativeArrayInfo(CountConst = 3)` | Element count `3` |
+| SAL byte buffer | `MemorySize(BytesParamIndex = 7)` | Byte capacity `byteCapacity`, initialized extent `*byteWritten` |
+| Actual MIDL retval array | `NativeArrayInfo(CountParamIndex = 0)` in C++, index `1` in its C-vtable callback | Capacity `capacity`, initialized extent `*written`; the C slot includes `This` |
+
+These are capacities/counts, not independently decoded initialized extents.
+`NativeArrayInfo` and `MemorySize` have no second extent field. No new public
+vocabulary or consumer-schema member is introduced, and field-relative
+projection/`CountFieldName` stays deferred.
+
+Compatible-codegen ordinarily erases anonymous C-vtable slots to `IntPtr`.
+For a retval-bearing native slot, the reader retains its real callback
+signature as a namespace-level delegate and a delegate-typed field; the
+containing native record remains a record. This is signature recovery, not a
+carrier API. The focused C/C++ fixtures assert native layout/calls and final
+parameter order, storage, payloads and absence on x86/x64/ARM64.
+
+Converter-only proxy output can be byte-identical at the same path. Separate
+trailing global carriers can add an empty implicit-interface/comment section
+to a header, so carrier proofs compare all native declaration bytes and RPC
+proxy tokens, not unconditional whole-header byte identity. Stock MSVC C/C++
+compilation and COFF comparisons cover native preservation; none of these
+checks is runtime RPC validation or a full-SDK API-diff qualification.
+
+### Prepared-layer review boundary
+
+Native reader corrections can add final facts that were previously missing.
+The service fixture explicitly verifies native `RetVal` on
+`ITransactionContextEx::CreateInstance::pObject`,
+`ICreateWithTipTransactionEx::CreateInstance::pObject`,
+`ICreateWithTransactionEx::CreateInstance::pObject`,
+`ICreateWithLocalTransaction::CreateInstanceWithSysTx::pObject` and
+`IObjectContext::CreateInstance::ppv`, with absence on the other nine selected
+service outputs. The DXGI regeneration also retains actual `/sal_local`
+`__RPC__in` additions on C-vtable `This` and native input HWND parameters.
+These are generated native facts, not authored blanket direction defaults.
+
+For parameters with an authoritative owned native RetVal fact only, duplicate
+matching SAL/legacy RetVal is collapsed to one canonical final attribute.
+`IPresentationManager::GetPresentRetiringFence` now has exact final-byte
+equality with matching legacy COM or stock COM SAL, superseding the historical
+row-order-only boundary described in the older family sections below. Its
+native source and sidecar remain untouched. Unrelated legacy attribute order
+is not normalized.
+
+The current-parent converter replay exposes byte differences in 18 existing
+SDK headers, beyond the independently prepared converter's older five-owner
+report. Effects include explicit-`unique` optionality, removal of nonstock
+retval spellings while preserving native `[retval]`, and conversion of
+previously skipped neighboring parameters. In particular,
+`IAudioEffectsManager::GetAudioEffects::numEffects` changes from final In|Out
+to Out only on this actual parent, from its existing native `[out]`. This
+removes In rather than merely adding Out; it is an API change, not an
+unchanged-output migration. An additional bounded `MsHtmHst` replay separates the converter's
+native input annotations from `/sal_local`'s local-method additions.
+
+Those wider generated outputs are retained as review evidence, not silently
+reingested or accepted by weakening the existing full-header byte guards.
+Only the selected DXGI owner is reingested here. Focused native and final
+metadata proofs do not turn these outstanding integration differences into a
+qualified production candidate. Publication requires exact prepared-diff
+review and actual parent qualification; no full-SDK comparison is claimed.
+
 ## Synchronization knowledge, clocks and exceptions
 
 This layer audits all **73** parent `ComOutPtr` records against the complete
@@ -211,11 +314,11 @@ use `_COM_Outptr_`. The capture builders' `RemoteFindInterface` methods return
 There are **21 physical SAL edits** across the eight generated/header-only
 owners. No selected site was already native, and no removed SDK API is restored.
 
-The converter intentionally leaves a line with an explicit annotation alone.
-Consequently the single-line `vidcap.idl` declaration explicitly retains both
-existing `_In_` input annotations along with the new output annotation, so
-normal conversion does not lose either input fact. All legacy IDL bytes,
-line endings and trailing blank lines are preserved.
+The historical converter left a whole line with an explicit annotation alone.
+That pilot therefore explicitly retained both `_In_` inputs on the single-line
+`vidcap.idl` declaration. The SAL/MIDL reader layer above removes this converter
+limitation without removing those existing annotations: authored parameters
+stay exact and unannotated neighbors are converted independently.
 
 `AudioComOutputHeaderTests` resolves the unique reachable fixture-introduction
 parent, without mutable SHA pins or fallbacks. It audits the entire remaining

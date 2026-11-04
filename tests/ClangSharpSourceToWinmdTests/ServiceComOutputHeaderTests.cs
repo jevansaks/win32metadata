@@ -51,6 +51,14 @@ namespace ClangSharpSourceToWinmdTests
             ("callobj.h", new[] { "CoGetInterceptor::ppv", "CoGetInterceptorFromTypeInfo::ppv" }),
         };
         internal static readonly string[] Selectors = Owners.SelectMany(owner => owner.Selectors).ToArray();
+        private static readonly string[] NativeRetvalSelectors =
+        {
+            "ITransactionContextEx::CreateInstance::pObject",
+            "ICreateWithTipTransactionEx::CreateInstance::pObject",
+            "ICreateWithTransactionEx::CreateInstance::pObject",
+            "ICreateWithLocalTransaction::CreateInstanceWithSysTx::pObject",
+            "IObjectContext::CreateInstance::ppv",
+        };
 
         internal static string RetireRecords(string text)
         {
@@ -118,6 +126,18 @@ namespace ClangSharpSourceToWinmdTests
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchHeader(owner.Owner, Encoding.ASCII.GetString(original))),
                     File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
                         "RecompiledIdlHeaders", "um", owner.Owner)), owner.Owner);
+                foreach (string selector in owner.Selectors)
+                {
+                    string[] parts = selector.Split("::");
+                    string declaration = parts.Length == 2 ?
+                        Regex.Match(Encoding.ASCII.GetString(original), FunctionPattern(parts[0])).Value :
+                        Regex.Match(Definition(Encoding.ASCII.GetString(original), parts[0]), MethodPattern(parts[1])).Value;
+                    Assert.AreNotEqual("", declaration, selector);
+                    string comment = Regex.Match(declaration, @"(?<comment>/\*[^*]*\*/)[^,;]*\b" +
+                        Regex.Escape(parts.Last()) + @"\b").Groups["comment"].Value;
+                    Assert.AreEqual(NativeRetvalSelectors.Contains(selector),
+                        comment.Contains("[retval]", StringComparison.Ordinal), selector);
+                }
             }
             byte[] idl = ReadOriginalBytes("RecompiledIdlHeaders/um/callobj.idl");
             Assert.IsTrue(idl.All(value => value <= 127));
@@ -256,7 +276,10 @@ struct IResourceManagerSink : IUnknown {};
                     Assert.IsTrue(found.Add(selector), selector);
                     Assert.AreEqual(ParameterAttributes.Out, parameter.Attributes, selector);
                     var attributes = parameter.GetCustomAttributes().Select(reader.GetCustomAttribute).ToArray();
-                    Assert.IsFalse(attributes.Any(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "RetValAttribute"), selector);
+                    var retval = attributes.Where(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "RetValAttribute").ToArray();
+                    Assert.AreEqual(NativeRetvalSelectors.Contains(selector) ? 1 : 0, retval.Length, selector);
+                    if (retval.Length == 1)
+                        CollectionAssert.AreEqual(new byte[] { 1, 0, 0, 0 }, reader.GetBlobBytes(retval[0].Value), selector);
                     var com = attributes.Single(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "ComOutPtrAttribute");
                     CollectionAssert.AreEqual(new byte[] { 1, 0, 0, 0 }, reader.GetBlobBytes(com.Value), selector);
                     CollectionAssert.AreEqual(new byte[] { 0x0f, 0x0f, 0x01 },

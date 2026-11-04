@@ -3,7 +3,7 @@
 This grouped layer follows the WinHttp last-error pilot. It keeps the single
 production Clang translation unit, its existing AST walk, PInvokeGenerator's
 annotation carriers, and the existing SAL/emission boundary. The shared typed
-decoder handles only `Retval`, `Retained`, `ContainsInteriorPointers`, and an
+decoder handles only `RetVal`, `Retained`, `ContainsInteriorPointers`, and an
 `AssociatedEnum` use of an existing native enum. Ordinary C/C++ builds see empty
 helpers; no Optional, Reserved, ComOutPtr, or count macros are introduced.
 
@@ -87,8 +87,11 @@ WinHttpQueryHeadersEx::pBuffer
 
 Native SAL supplies In/Out/Inout, Optional, Reserved, ComOutPtr, constness,
 element counts, byte capacities, and parameter double-NUL termination. Existing
-SDK authoring remains authoritative; scalar In and ordinary pointer Inout
-defaults are not redundantly authored. Fileapi's
+SDK authoring and the applicable SAL defaults remain authoritative. There is
+no universal scalar-In or unannotated-pointer-Inout rule and no blanket
+native direction rewrite. `ReadFileEx`/`WriteFileEx` already had Inout and
+only gained Retained in this pilot; it made no native direction edits to
+`ADsBuildVarArrayInt`, `NdrClientCall2`, or `UCharIterator`. Fileapi's
 `GetVolumePathNamesForVolumeNameW` already carries parameter double-NUL SAL.
 `_Out_writes_bytes_to_` preserves its byte-capacity parameter; this layer does
 not claim a separately decoded initialized extent.
@@ -117,9 +120,31 @@ FARPROC/NEARPROC/PROC), native type-changing enum replacements, enum constructio
 and flags, namespaces, ownership/fictional handles, availability, import
 overrides, and result-semantics consolidation remain separate mechanisms.
 Field-array projection and StructSizeField are not parameter/return claims.
-General recovery of comment-only MIDL retval and native return double-NUL SAL
-is not enabled by this layer; the selected GetDesc case uses the explicit
-C++ fallback rather than changing MIDL typelib retval semantics.
+The subsequent SAL/MIDL reader layer recovers structured native `[retval]`
+comments on exact method and callback parameters, including generated C-vtable
+slots. It also reads double-NUL SAL on returns, fields and native typedef uses.
+`IDXGIAdapter::GetDesc` now authors `[out, retval]` in the authoritative
+pre-MIDL `dxgi.idl` owner rather than using a custom annotation that replaces
+generated SAL. `_Win32_Retval_` remains the C/C++ fallback for declarations
+without an authoritative native marker; its payload is canonical `RetVal`.
+
+Partial counts fit the existing final schema only: element capacity
+`capacity` supplies `NativeArrayInfo.CountParamIndex`, a constant element count
+supplies `CountConst`, and byte capacity `byteCapacity` supplies
+`MemorySize.BytesParamIndex`. Native initialized expressions such as `*written`
+and `*byteWritten` remain in the native preservation proof; there is no
+independently represented initialized extent, new schema field or helper
+vocabulary. Field-relative array projection/`CountFieldName` remains deferred.
+
+The prepared reader layer is not an unchanged-output SDK migration:
+authoritative native retval comments and raw RPC/local SAL can expose missing
+facts. Its converter replay still rejects wider generated-header differences
+with the existing byte guards. Notably, Audioclient's existing native `[out]`
+on `GetAudioEffects::numEffects` changes final In|Out to Out only on the actual
+parent; the difference is removal of In, not merely addition of Out. These effects require
+explicit review; the retained focused proofs do not approve them or substitute
+for ordinary production qualification. See the prepared-layer boundary in
+[`sdk_patches.md`](sdk_patches.md).
 
 Validation uses the normally generated CI candidate and an already-built target
 CI/main/release winmd. This layer does not require additional full-SDK scrapes,

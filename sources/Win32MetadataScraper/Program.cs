@@ -161,6 +161,11 @@ class Program
                     using var diag = cxHandle.GetDiagnostic(i);
                     Console.Write("    ");
                     Console.WriteLine(diag.Format(CXDiagnostic.DefaultDisplayOptions).ToString());
+                    if (diag.Severity is CXDiagnostic_Error or CXDiagnostic_Fatal)
+                    {
+                        diag.Location.GetExpansionLocation(out var file, out uint line, out uint column, out _);
+                        Console.WriteLine($"    Expanded at {file}:{line}:{column}");
+                    }
                     skipProcessing |= diag.Severity == CXDiagnostic_Error;
                     skipProcessing |= diag.Severity == CXDiagnostic_Fatal;
                 }
@@ -203,6 +208,7 @@ class Program
                         callbacksOutsideTraversal.Add(typedef.Name);
                 }
             });
+            annotations.ResolveCarriers();
             annotations.ValidateEnumAssociations();
 
             // Resolve tag remaps using disambiguation, then apply opt-outs for
@@ -247,6 +253,7 @@ class Program
             var supportedAttributes = settings.GetValueOrDefault("--with-attribute") ?? new List<string>();
             annotations.MergeSupportedFunctions(supportedAttributes, mergedRemaps);
             annotations.MergeProducers(supportedAttributes, mergedRemaps, allExcludes);
+            annotations.MergeNativeFacts(supportedAttributes, allExcludes);
             settings["--with-attribute"] = supportedAttributes;
             var libraries = ParseKeyValuePairs(settings.GetValueOrDefault("--with-librarypath"));
             annotations.MergeImportLibraries(libraries, mergedRemaps);
@@ -287,6 +294,7 @@ class Program
                         Directory.CreateDirectory(dir);
 
                     string generatedSource = Encoding.UTF8.GetString(kvp.Value.ToArray());
+                    generatedSource = annotations.CallbackFacts.Apply(generatedSource, mergedRemaps, callbackTypes);
                     File.WriteAllText(kvp.Key, NormalizeGeneratedSource(generatedSource, kvp.Key), new UTF8Encoding(false));
                 }
 

@@ -163,6 +163,7 @@ namespace ClangSharpSourceToWinmd
                 }
 
                 string fullName = GetFullNameWithoutArchSuffix(node);
+                bool headerRetval = GetOwnedAnnotationNames(node.AttributeLists).Contains("RetVal");
                 string headerType = this.GetHeaderEnumType(node.AttributeLists, node.Type.ToString(), fullName);
 
                 if (this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Type.ToString(), out string newType, out string newName))
@@ -196,6 +197,13 @@ namespace ClangSharpSourceToWinmd
                     node = node.WithDefault(null);
                 }
 
+                var retval = SyntaxUtils.GetAttribute(node.AttributeLists, "RetVal");
+                if (headerRetval && retval != null)
+                {
+                    while (SyntaxUtils.GetAttribute(node.AttributeLists, "RetVal") != null)
+                        node = node.WithAttributeLists(SyntaxUtils.RemoveAttribute(node.AttributeLists, "RetVal"));
+                    node = node.AddAttributeLists(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(retval)));
+                }
                 return node;
             }
 
@@ -1152,6 +1160,15 @@ namespace ClangSharpSourceToWinmd
             {
                 if (cppAttrList.Parent is not ParameterSyntax paramNode)
                 {
+                    string text = (cppAttrList.Attributes[0].ArgumentList?.Arguments[0].Expression as LiteralExpressionSyntax)?.Token.ValueText;
+                    if (text != null && text.Contains("_NullNull_terminated_", StringComparison.Ordinal) &&
+                        cppAttrList.Parent is MethodDeclarationSyntax or DelegateDeclarationSyntax or FieldDeclarationSyntax)
+                    {
+                        var result = SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
+                            SyntaxFactory.Attribute(SyntaxFactory.ParseName("NullNullTerminated"))));
+                        return cppAttrList.Parent is FieldDeclarationSyntax ? result :
+                            result.WithTarget(SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.ReturnKeyword)));
+                    }
                     return null;
                 }
 
@@ -1176,6 +1193,7 @@ namespace ClangSharpSourceToWinmd
                 bool? post = null;
 
                 var salAttrs = GetSalAttributes(salText);
+                var rpc = salAttrs.FirstOrDefault(a => a.Name == "SAL_name" && a.P1.StartsWith("__RPC__", StringComparison.Ordinal));
                 isNullNullTerminated = salAttrs.Any(a => a.Name == "SAL_name" && a.P1 == "_NullNull_terminated_");
 
                 foreach (var salAttr in salAttrs)
@@ -1184,43 +1202,9 @@ namespace ClangSharpSourceToWinmd
                     {
                         if (salAttr.P1.StartsWith("__RPC__"))
                         {
-                            // TODO: Handle ecount, xcount and others that deal with counts
-                            bool deref = false;
-
-                            string[] parts = salAttr.P1.Split('_');
-                            foreach (var part in parts)
-                            {
-                                switch (part)
-                                {
-                                    case "deref":
-                                        deref = true;
-                                        break;
-
-                                    case "in":
-                                        isIn = true;
-                                        break;
-
-                                    case "out":
-                                        isOut = true;
-                                        break;
-
-                                    case "inout":
-                                        isIn = isOut = true;
-                                        break;
-
-                                    case "opt":
-                                        // As per rpcsal.h, deref_opt means input optional but deref_***_opt doesn't
-                                        if (deref && (isIn || isOut))
-                                        {
-                                            continue;
-                                        }
-
-                                        isOpt = true;
-                                        break;
-                                }
-                            }
-
-                            break;
+                            // Keep reading the compiler-expanded SAL count expressions.
+                            // RPC direction and storage optionality are resolved independently below.
+                            continue;
                         }
                         else if (salAttr.P1 == "_Maybenull_" || salAttr.P1 == "_Pre_maybenull_" || salAttr.P1 == "_Pre_null_")
                         {
@@ -1230,7 +1214,7 @@ namespace ClangSharpSourceToWinmd
                             continue;
                         }
 
-                        if (salAttr.P1.Contains("_opt"))
+                        if (rpc == null && salAttr.P1.Contains("_opt"))
                         {
                             isOpt = true;
                         }
@@ -1305,6 +1289,17 @@ namespace ClangSharpSourceToWinmd
 
                         continue;
                     }
+                }
+
+                if (rpc != null)
+                {
+                    string name = rpc.P1.Substring("__RPC__".Length);
+                    var parts = name.Split('_');
+                    isIn = parts.Contains("in") || parts.Contains("inout");
+                    isOut = parts.Contains("out") || parts.Contains("inout");
+                    // A nullable dereferenced value is not optional caller storage.
+                    isOpt = name.StartsWith("deref_opt_", StringComparison.Ordinal) ||
+                        !name.StartsWith("deref_", StringComparison.Ordinal) && parts.Contains("opt");
                 }
 
                 // If we didn't add marshal as yet, try again without using pre
