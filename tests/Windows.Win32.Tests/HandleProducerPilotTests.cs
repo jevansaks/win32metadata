@@ -59,6 +59,26 @@ namespace Windows.Win32.Tests
                             "CanReturnErrorsAsSuccessAttribute" or "NativeAnnotationAttribute");
             }
 
+            var invalidValueType = Assert.Single(reader.TypeDefinitions.Select(reader.GetTypeDefinition)
+                .Where(type => reader.GetString(type.Namespace) == "Windows.Win32.Foundation.Metadata" &&
+                    reader.GetString(type.Name) == "InvalidHandleValueAttribute"));
+            var usage = Assert.Single(invalidValueType.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                .Where(attribute => AttributeName(attribute) == "AttributeUsageAttribute"));
+            var usageBlob = reader.GetBlobReader(usage.Value);
+            Assert.Equal((ushort)1, usageBlob.ReadUInt16());
+            Assert.Equal((int)(AttributeTargets.Struct | AttributeTargets.Parameter | AttributeTargets.ReturnValue),
+                usageBlob.ReadInt32());
+            Assert.Equal((ushort)2, usageBlob.ReadUInt16());
+            foreach (string name in new[] { "AllowMultiple", "Inherited" })
+            {
+                Assert.Contains((CustomAttributeNamedArgumentKind)usageBlob.ReadByte(),
+                    new[] { CustomAttributeNamedArgumentKind.Field, CustomAttributeNamedArgumentKind.Property });
+                Assert.Equal((byte)SignatureTypeCode.Boolean, usageBlob.ReadByte());
+                Assert.Equal(name, usageBlob.ReadSerializedString());
+                Assert.True(usageBlob.ReadBoolean());
+            }
+            Assert.Equal(0, usageBlob.RemainingBytes);
+
             var types = DecompilerUtils.LoadDecompilerTypeSystem(path);
             var projectedMethods = types.MainModule.TypeDefinitions.SelectMany(type => type.Methods).ToArray();
             foreach (var site in new[] { ("OpenPrinterW", 1, "System.Void**"), ("ClosePrinter", 0, "System.Void*"),

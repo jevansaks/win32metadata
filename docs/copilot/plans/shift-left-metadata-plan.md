@@ -57,7 +57,9 @@ byte-equivalent production migration:
 
 `LocalFree` returns NULL on success and the still-valid allocation on failure.
 There is no generic invalid-handle success test or per-API wrapper. The schema adds
-parameter/return applicability to the repeated `InvalidHandleValue(long)` attribute.
+parameter/return applicability to the repeated `InvalidHandleValue(long)` attribute:
+`AttributeTargets.Struct | AttributeTargets.Parameter | AttributeTargets.ReturnValue`,
+preserving `AllowMultiple = true` and `Inherited = true`.
 The six projection fixups also remove intermediate `NativeTypeName` attributes:
 otherwise the existing final encoder replaces raw pointers with legacy handle
 structs again. This attribute is already omitted from final metadata; native names
@@ -74,6 +76,8 @@ ordinary/metadata MSVC object-equivalence cases against the real SDK headers, an
 checks actual producer/borrowed/freeing signatures through final WinMD emission.
 `HandleProducerPilotTests` also asserts the selected signatures and ordered ownership
 payloads against the complete production WinMD, including borrowed/freeing absence.
+It reads the final `InvalidHandleValueAttribute` schema's actual `AttributeUsage`
+constructor and named-argument payloads, requiring exactly the targets and flags above.
 Its baseline is the unique reachable fixture-introduction commit's exact parent,
 with no mutable pin or fallback. Existing fixture baseline reads stay unchanged;
 their expected candidate-side sidecar composition includes only the explicitly
@@ -83,8 +87,23 @@ real native declarations where representable, not reconstructed old sidecars.
 The qualified parent baseline is ordinary run `41782556243`, comparison artifact
 `13300789530`, candidate SHA256
 `C8FD6CD3DD41910169BD1E4C77B2C27AB165CB3F500235627BB8C2F800281A5A`.
-Local proof is not approval of the intentional API delta. Publication, a dependent
-PR, hosted qualification against this exact parent, and stack membership remain
+Published head `181af5c393162583f335cb8a13535b4f92d6110a` passed all ten jobs in
+ordinary run `41792858853`, attempt 1. Its comparison artifact `13304933899` uses
+this exact parent baseline; actual API artifact `13304704723` includes the schema
+applicability hunk as well as the six representation sites, producer attributes,
+two legacy marker removals, and order-only `ClosePrinter` movement described above.
+The hosted candidate SHA256 is
+`E591AD73C3995560EB5F3F24789DB391BEADE7853EF13FE79B6E76EB597D8A3F`.
+
+The earlier retained incremental local candidate
+`ADFB5676245CD1823DB3E33B3D5717DCAA33E04293F42FB99549E9F986C92BBC`
+still has Struct-only applicability. Its 54 passing production tests did not prove
+the schema update, and its API patch is not the complete hosted delta. Comparing
+the complete local and hosted dumps yields only that missing schema hunk. The
+updated production guard fails on this retained local binary and passes on the
+actual hosted candidate, without regenerating either binary.
+
+Passing proof is not API approval. Further publication and stack operations remain
 coordinator-gated; this layer does not merge or enable auto-merge.
 
 Today, ~170,000+ lines of metadata across 15+ sidecar files encode information that
