@@ -183,6 +183,98 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void SelectedSdkEnumConstants_KeepAllNativeBitsUnderlyingTypeAndNominalReferences(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string declaration = Slice(File.ReadAllText(Path.Combine(include, "um", "ComAdmin.h")),
+                @"typedef[^;{}]*\benum COMAdminErrorCodes\s*\{[^}]+\}\s*COMAdminErrorCodes;");
+            Assert.AreEqual(declaration, Slice(File.ReadAllText(Sdk("RecompiledIdlHeaders/um/ComAdmin.h")),
+                @"typedef[^;{}]*\benum COMAdminErrorCodes\s*\{[^}]+\}\s*COMAdminErrorCodes;"),
+                "The shipped SDK enum must reproduce the actual production input without normalization.");
+            var matches = Regex.Matches(declaration,
+                @"(?m)^\s*(COMAdminErr\w+)\s*=\s*\(\s*HRESULT\s*\)\s*0x([0-9a-fA-F]+)L\s*,?\s*$");
+            Assert.AreEqual(88, matches.Count);
+            string alias = Slice(File.ReadAllText(Path.Combine(include, "um", "winnt.h")),
+                @"typedef _Return_type_success_\(return >= 0\) long HRESULT;");
+            string settings = PrepareSettings(Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "settings.rsp"));
+            const string ownerNamespace = "Windows.Win32.System.ComponentServices";
+            var result = fixture.Scrape(alias + "\n" + declaration +
+                "\nHRESULT __stdcall Example(HRESULT value);\nstruct Neighbor { HRESULT value; };",
+                target, sal: true, extraSettings: settings, namespaceName: ownerNamespace);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Assert.AreEqual(88, Regex.Matches(File.ReadAllText(fixture.GeneratedSource),
+                @"COMAdminErr\w+\s*=\s*unchecked\(\(int\)\(\(HRESULT\)\(").Count);
+            Assert.IsFalse(File.Exists(Path.ChangeExtension(fixture.GeneratedSource, ".headerTypedefs.cs")));
+            using var owner = new LastErrorHeaderTests.Fixture();
+            result = owner.Scrape(alias, target, sal: true, extraSettings: settings, namespaceName: Foundation);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            File.Copy(Path.ChangeExtension(owner.GeneratedSource, ".headerTypedefs.cs"),
+                Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "Foundation.headerTypedefs.cs"));
+            const string documentation = "test://native-typedef/enum";
+            string output = fixture.Emit(new Dictionary<string, string>
+            {
+                ["COMAdminErrorCodes"] = "[Documentation(\"" + documentation + "\")]",
+            }, new Dictionary<string, string> { ["HRESULT"] = Foundation });
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            NativeTypedefHeaderTests.AssertStorage(reader, "HRESULT", SignatureTypeCode.Int32);
+            var type = NativeTypedefHeaderTests.Type(reader, "COMAdminErrorCodes");
+            Assert.AreEqual(ownerNamespace, reader.GetString(type.Namespace));
+            var baseType = reader.GetTypeReference((TypeReferenceHandle)type.BaseType);
+            Assert.AreEqual("System", reader.GetString(baseType.Namespace));
+            Assert.AreEqual("Enum", reader.GetString(baseType.Name));
+            AssertStringAttribute(reader, type.GetCustomAttributes().Select(reader.GetCustomAttribute),
+                "DocumentationAttribute", documentation);
+            Assert.AreEqual(1, type.GetCustomAttributes().Count);
+            var fields = type.GetFields().Select(reader.GetFieldDefinition)
+                .ToDictionary(field => reader.GetString(field.Name));
+            Assert.AreEqual(89, fields.Count);
+            var signature = reader.GetBlobReader(fields["value__"].Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(SignatureTypeCode.Int32, signature.ReadSignatureTypeCode());
+            Assert.AreEqual(0, signature.RemainingBytes);
+            Assert.IsTrue(fields["value__"].GetDefaultValue().IsNil);
+            foreach (Match match in matches)
+            {
+                string name = match.Groups[1].Value;
+                var field = fields[name];
+                Assert.AreEqual(System.Reflection.FieldAttributes.Public | System.Reflection.FieldAttributes.Static |
+                    System.Reflection.FieldAttributes.Literal | System.Reflection.FieldAttributes.HasDefault, field.Attributes, name);
+                signature = reader.GetBlobReader(field.Signature);
+                signature.ReadSignatureHeader();
+                NativeTypedefHeaderTests.AssertReference(reader, ref signature, "COMAdminErrorCodes", ownerNamespace);
+                Assert.AreEqual(0, signature.RemainingBytes);
+                var constant = reader.GetConstant(field.GetDefaultValue());
+                Assert.AreEqual(ConstantTypeCode.Int32, constant.TypeCode, name);
+                var value = reader.GetBlobReader(constant.Value);
+                Assert.AreEqual(unchecked((int)Convert.ToUInt32(match.Groups[2].Value, 16)), value.ReadInt32(), name);
+                Assert.AreEqual(0, value.RemainingBytes);
+                Assert.AreEqual(0, field.GetCustomAttributes().Count, name);
+            }
+            var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(item => reader.GetString(item.Name) == "Example");
+            signature = reader.GetBlobReader(method.Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(1, signature.ReadCompressedInteger());
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "HRESULT", Foundation);
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "HRESULT", Foundation);
+            Assert.AreEqual(0, signature.RemainingBytes);
+            signature = reader.GetBlobReader(reader.GetFieldDefinition(
+                NativeTypedefHeaderTests.Type(reader, "Neighbor").GetFields().Single()).Signature);
+            signature.ReadSignatureHeader();
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "HRESULT", Foundation);
+            Assert.AreEqual(0, signature.RemainingBytes);
+            ProducerHeaderTests.AssertNoOwnership(reader, "Example");
+            string proof = Path.Combine(this.TestContext.ResultsDirectory, "native-enum-constants-" + target + ".winmd");
+            File.Copy(output, proof, true);
+            this.TestContext.AddResultFile(proof);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void SelectedSdkDocumentationComposition_HasOneDefinitionOwnerAndKeepsResidualFacts(string target)
         {
             using var fixture = new LastErrorHeaderTests.Fixture();

@@ -119,6 +119,46 @@ Result __stdcall Example(Same value, LPSame address, Opaque opaque, Key key, Uns
         }
 
         [TestMethod]
+        public void NarrowScalarConstantExpressions_KeepStorageAndRuntimeNominalCastsSeparate()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape("typedef short Code;\nconst Code Narrow = (Code)0xFFFF;\n" +
+                "enum Values { MinusOne = (Code)0xFFFF, Nested = (Code)((Code)0xFFFF) };\n" +
+                "Code __stdcall Example(Code value);",
+                sal: true, extraSettings: "--native-typedef\nCode");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            File.WriteAllText(Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "Runtime.cs"),
+                "namespace Test { public static class Runtime { public static Code Echo(Code value) => (Code)value; } }");
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            Assert.IsTrue(System.Text.RegularExpressions.Regex.IsMatch(
+                File.ReadAllText(Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!,
+                    "obj", "crossarch", "Runtime.modified.cs")), @"=>\s*\(Code\)\s*value\s*;"));
+            AssertStorage(reader, "Code", SignatureTypeCode.Int16);
+            var fields = Type(reader, "Values").GetFields().Select(reader.GetFieldDefinition)
+                .ToDictionary(field => reader.GetString(field.Name));
+            foreach (string name in new[] { "MinusOne", "Nested" })
+            {
+                var constant = reader.GetConstant(fields[name].GetDefaultValue());
+                Assert.AreEqual(ConstantTypeCode.Int32, constant.TypeCode);
+                Assert.AreEqual(-1, reader.GetBlobReader(constant.Value).ReadInt32());
+            }
+            var narrow = reader.FieldDefinitions.Select(reader.GetFieldDefinition)
+                .Single(field => reader.GetString(field.Name) == "Narrow");
+            var narrowValue = reader.GetConstant(narrow.GetDefaultValue());
+            Assert.AreEqual(ConstantTypeCode.Int16, narrowValue.TypeCode);
+            Assert.AreEqual((short)-1, reader.GetBlobReader(narrowValue.Value).ReadInt16());
+            var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(item => reader.GetString(item.Name) == "Example");
+            var signature = reader.GetBlobReader(method.Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(1, signature.ReadCompressedInteger());
+            AssertReference(reader, ref signature, "Code");
+            AssertReference(reader, ref signature, "Code");
+            Assert.AreEqual(0, signature.RemainingBytes);
+        }
+
+        [TestMethod]
         public void ExplicitConflictingDocumentation_IsNotDroppedFromALegacyPartial()
         {
             using var fixture = new LastErrorHeaderTests.Fixture();

@@ -71,9 +71,11 @@ storage-compatible native typedef. Residual legacy
 cleanup/invalid-value entries remain independent and do not become source ownership
 facts. Neither native identity nor `AlsoUsableFor` implies ownership or availability.
 
-Integral constant declarations and casts compile using the selected typedef's
-compiler-derived storage. Native type attributes remain intact, so the existing
-emitter retains nominal constant signatures and native-width literal values.
+Integral const fields and enum-member initializer casts compile using the selected
+typedef's compiler-derived storage, retaining native unchecked narrowing.
+Native type attributes remain intact, so the existing emitter retains nominal
+constant signatures and native-width literal values. Enum underlying types and
+member signatures stay enum-typed; runtime method/record references stay nominal.
 Definition-wide documentation is applied once to the compiler-owned declaration,
 not repeated on the partial carrying residual legacy cleanup/invalid-value facts.
 Explicit conflicting documentation still diagnoses; the attribute schema is unchanged.

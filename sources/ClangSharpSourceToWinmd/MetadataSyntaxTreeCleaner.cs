@@ -369,14 +369,11 @@ namespace ClangSharpSourceToWinmd
 
                 string fullName = GetFullNameWithoutArchSuffix(node);
 
-                var nativeCasts = new Dictionary<string, string>(StringComparer.Ordinal);
                 string nativeStorage = null;
                 if (node.Modifiers.Any(SyntaxKind.ConstKeyword))
                 {
                     this.TryGetNativeScalarStorage(node.Declaration.Type, out nativeStorage);
-                    foreach (var cast in node.Declaration.DescendantNodes().OfType<CastExpressionSyntax>())
-                        if (this.TryGetNativeScalarStorage(cast.Type, out string storage))
-                            nativeCasts[cast.Type.ToString()] = storage;
+                    node = node.WithDeclaration(this.RewriteNativeScalarConstantCasts(node.Declaration));
                 }
 
                 this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Declaration.Type.ToString(), out string newType, out string newName);
@@ -493,13 +490,6 @@ namespace ClangSharpSourceToWinmd
                 node = (FieldDeclarationSyntax)base.VisitFieldDeclaration(node);
                 node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes));
 
-                // Compile constants in native storage while retaining their native type attributes for WinMD emission.
-                if (nativeCasts.Count != 0)
-                    node = node.WithDeclaration(node.Declaration.ReplaceNodes(
-                        node.Declaration.DescendantNodes().OfType<CastExpressionSyntax>()
-                            .Where(cast => nativeCasts.ContainsKey(cast.Type.ToString())),
-                        (original, rewritten) => rewritten.WithType(SyntaxFactory.ParseTypeName(nativeCasts[original.Type.ToString()]))));
-
                 var firstVar = node.Declaration.Variables.First();
 
                 if (newName != null)
@@ -514,6 +504,16 @@ namespace ClangSharpSourceToWinmd
                 }
 
                 return node;
+            }
+
+            private T RewriteNativeScalarConstantCasts<T>(T node) where T : SyntaxNode
+            {
+                // Native integral casts truncate even without an enclosing C# unchecked expression.
+                return node.ReplaceNodes(node.DescendantNodes().OfType<CastExpressionSyntax>(),
+                    (original, rewritten) => this.TryGetNativeScalarStorage(original.Type, out string storage)
+                        ? SyntaxFactory.CheckedExpression(SyntaxKind.UncheckedExpression,
+                            rewritten.WithType(SyntaxFactory.ParseTypeName(storage)))
+                        : rewritten);
             }
 
             private bool TryGetNativeScalarStorage(TypeSyntax type, out string storage)
@@ -774,6 +774,9 @@ namespace ClangSharpSourceToWinmd
                 string fullName = GetFullNameWithoutArchSuffix(node);
 
                 this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, string.Empty, out string newType, out string newName);
+
+                if (node.EqualsValue != null)
+                    node = node.WithEqualsValue(this.RewriteNativeScalarConstantCasts(node.EqualsValue));
 
                 node = (EnumMemberDeclarationSyntax)base.VisitEnumMemberDeclaration(node);
                 node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes));
