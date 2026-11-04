@@ -2254,7 +2254,7 @@ interface IDvdGraphBuilder : IUnknown {
     // Remember to *ppvIF->Release() when you're done with it
     HRESULT GetDvdInterface
     ( [in] REFIID riid,    // IID of the interface required
-      [out, annotation("_Out_")] void **ppvIF   // returns pointer to the required interface
+      [out, annotation("_COM_Outptr_")] void **ppvIF   // returns pointer to the required interface
     ) ;
 
     // Builds a filter graph according to user specs for playing back a

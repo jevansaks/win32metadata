@@ -1,5 +1,80 @@
 # SDK header patches
 
+## Audio, DirectShow graphs, KS topology and media-reader outputs
+
+This layer audits all **99** parent `ComOutPtr` records against the complete
+physical traversals of `Audio`, `Audio.DirectSound`, `Audio.Endpoints`,
+`Media.DShow`, `Media.DShow.Xml`, `Media.DxMediaObjects`,
+`Media.KernelStreaming` and `WmFormat`. The complete selected family contains
+**11 facts**, all complete retirements: **0 partial records, 0 retained
+boundaries**, leaving **88** active `ComOutPtr` records. The nine unresolved CLR
+compatibility records restored by the parent remain unchanged and sidecar-owned.
+
+| Owning native input | Exact migrated selectors |
+|---|---|
+| `mmdeviceapi.idl` | `IMMDevice::Activate::ppInterface` |
+| `Audioclient.idl` | `IAudioClient::GetService::ppv` |
+| `devicetopology.idl` | `IPart::Activate::ppvObject` |
+| `dsound.h` (header-only) | `IDirectSoundBuffer8::GetObjectInPath::ppObject`, `IDirectSoundCaptureBuffer8::GetObjectInPath::ppObject` |
+| `axextend.idl`, included by `strmif.idl` | `ICaptureGraphBuilder::FindInterface::ppint`, `ICaptureGraphBuilder2::FindInterface::ppint` |
+| `dvdif.idl`, included by `strmif.idl` | `IDvdGraphBuilder::GetDvdInterface::ppvIF` |
+| `shared/ksproxy.h` (header-only) | `IKsTopology::CreateNodeInstance::Interface` |
+| `vidcap.idl` | `IKsTopologyInfo::CreateNodeInstance::ppvObject` |
+| `wmsdkidl.idl` | `IWMReaderAccelerator::GetCodecInterface::ppvCodecInterface` |
+
+Seven authoritative pre-MIDL patches and two actual header-only post-MIDL
+patches replace only standard SAL tokens or add MIDL `annotation` attributes.
+Six regenerated headers preserve every unrelated byte, including the inherited
+`IAudioClient2`/`IAudioClient3` C-vtable entries, guards, local/proxy distinctions,
+direction, types, pointer depth, retval absence and implementation flags.
+`IPart` retains its optional output through `_COM_Outptr_opt_`; other sites
+use `_COM_Outptr_`. The capture builders' `RemoteFindInterface` methods return
+`IUnknown**`, not the selected local `void**`, and remain unchanged.
+`IMMDeviceActivator::Activate` is a distinct, unselected output and stays exact.
+There are **21 physical SAL edits** across the eight generated/header-only
+owners. No selected site was already native, and no removed SDK API is restored.
+
+The converter intentionally leaves a line with an explicit annotation alone.
+Consequently the single-line `vidcap.idl` declaration explicitly retains both
+existing `_In_` input annotations along with the new output annotation, so
+normal conversion does not lose either input fact. All legacy IDL bytes,
+line endings and trailing blank lines are preserved.
+
+`AudioComOutputHeaderTests` resolves the unique reachable fixture-introduction
+parent, without mutable SHA pins or fallbacks. It audits the entire remaining
+inventory, permits only exact selected native edits, and compares original
+native plus legacy sidecars against patched-header-only **final winmd bytes**
+on x86/x64/arm64. Independent checks cover exact `void**` shape, output and
+optional flags, singleton custom-attribute payload/order and result flags.
+Adding redundant legacy records also preserves every byte.
+
+`SdkPatchTests` matches actual SDK `10.0.28000.2705` original owner bytes,
+applies all nine actual patches, converts the bounded 33-IDL include/import
+closure, regenerates all six complete headers with production MIDL options,
+checks every output byte and passes the replay through final emission on all
+three targets. Patch validation uses the complete SDK MIDL input root, verifies
+each selected queued/direct owner, and rejects header patches on all six actual
+generated outputs. Native fixtures compile all complete owners in C/C++ on
+x86/x64/arm64 in audio-first and Windows-first include orders, call all selected
+and inherited sites, and compare original/patched/`WIN32METADATA` object bytes
+except the COFF timestamp. The unrelated `__STREAMS__` section of `ksproxy.h`
+contains native C++ references; the fixture enables that section only in C++,
+while compiling the complete applicable guarded C header and its selected
+`IKsTopology` interface in C. Existing native no-op proofs remain intact.
+Production integrity assertions cover all eleven retired selectors.
+
+All independent `Out`, type, enum, namespace, import and RAII mechanisms remain
+unchanged. DWrite's exact `void**` override, CLR's independent `[Out]`,
+`IWeakReference`/`IAgileReference` shape boundaries, graphics callbacks and the
+presentation custom-attribute **row-order-only** boundary remain active.
+Production `CanReturn*` remains active and all 17 PreserveResult replacements
+remain inactive. Optical burning, MF, imaging/controls, storage, accessibility,
+HTML, debug, directory services, synchronization, speech and printing remain
+outside this family. Ordinary CI still generates one normal three-architecture
+candidate against an existing exact-target winmd, with the existing explicitly
+disclosed fallback and visible missing-source failure. No workflow, annotation
+transport or metadata canonicalization changes are introduced.
+
 ## CLR hosting and metadata activation outputs
 
 This layer audits all **100** parent `ComOutPtr` records against every physical

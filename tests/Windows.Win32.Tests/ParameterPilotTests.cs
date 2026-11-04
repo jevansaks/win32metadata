@@ -72,7 +72,14 @@ namespace Windows.Win32.Tests
                     "ICreateWithLocalTransaction::CreateInstanceWithSysTx::pObject", "IGetDispenser::GetDispenser::ppvObject",
                     "IObjectContext::CreateInstance::ppv", "IResourceManager::GetDistributedTransactionManager::ppvObject",
                     "IResourceManagerFactory2::CreateEx::ppvResMgr", "IServicePool::GetObject::ppv", "MTSCreateActivity::ppobj",
-                    "MetaDataGetDispenser::ppv" }),
+                    "MetaDataGetDispenser::ppv",
+                    "IMMDevice::Activate::ppInterface", "IAudioClient::GetService::ppv",
+                    "IDirectSoundBuffer8::GetObjectInPath::ppObject", "IDirectSoundCaptureBuffer8::GetObjectInPath::ppObject",
+                    "ICaptureGraphBuilder::FindInterface::ppint", "ICaptureGraphBuilder2::FindInterface::ppint",
+                    "IDvdGraphBuilder::GetDvdInterface::ppvIF", "IKsTopology::CreateNodeInstance::Interface",
+                    "IKsTopologyInfo::CreateNodeInstance::ppvObject", "IWMReaderAccelerator::GetCodecInterface::ppvCodecInterface" }),
+                ("ComOutPtrAttribute", ParameterAttributes.Out | ParameterAttributes.Optional, new[] {
+                    "IPart::Activate::ppvObject" }),
                 ("ReservedAttribute", ParameterAttributes.In | ParameterAttributes.Optional, new[] {
                     "CoAllowSetForegroundWindow::lpvReserved", "CoDisableCallCancellation::pReserved",
                     "CoEnableCallCancellation::pReserved", "CoInitialize::pvReserved", "CoInitializeEx::pvReserved",
@@ -126,7 +133,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(105, checkedSelectors);
+            Assert.Equal(116, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {

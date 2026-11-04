@@ -7436,7 +7436,7 @@ EXTERN_C const IID IID_ICaptureGraphBuilder;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppint) = 0;
+            _COM_Outptr_  void **ppint) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE RenderStream( 
             /* [annotation][in] */ 
@@ -7537,7 +7537,7 @@ EXTERN_C const IID IID_ICaptureGraphBuilder;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppint);
+            _COM_Outptr_  void **ppint);
         
         DECLSPEC_XFGVIRT(ICaptureGraphBuilder, RenderStream)
         HRESULT ( STDMETHODCALLTYPE *RenderStream )( 
@@ -7794,7 +7794,7 @@ EXTERN_C const IID IID_ICaptureGraphBuilder2;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppint) = 0;
+            _COM_Outptr_  void **ppint) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE RenderStream( 
             /* [annotation][in] */ 
@@ -7917,7 +7917,7 @@ EXTERN_C const IID IID_ICaptureGraphBuilder2;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppint);
+            _COM_Outptr_  void **ppint);
         
         DECLSPEC_XFGVIRT(ICaptureGraphBuilder2, RenderStream)
         HRESULT ( STDMETHODCALLTYPE *RenderStream )( 
@@ -26679,7 +26679,7 @@ EXTERN_C const IID IID_IDvdGraphBuilder;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppvIF) = 0;
+            _COM_Outptr_  void **ppvIF) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE RenderDvdVideoVolume( 
             /* [annotation][in] */ 
@@ -26726,7 +26726,7 @@ EXTERN_C const IID IID_IDvdGraphBuilder;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Out_  void **ppvIF);
+            _COM_Outptr_  void **ppvIF);
         
         DECLSPEC_XFGVIRT(IDvdGraphBuilder, RenderDvdVideoVolume)
         HRESULT ( STDMETHODCALLTYPE *RenderDvdVideoVolume )( 

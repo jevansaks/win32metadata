@@ -52,7 +52,7 @@ interface IKsTopologyInfo : IUnknown
     HRESULT get_NodeName([in] DWORD dwNodeId, [out, annotation("_Out_writes_bytes_opt_(dwBufSize)")] WCHAR *pwchNodeName, [in] DWORD dwBufSize, [out, annotation("_Out_")] DWORD *pdwNameLen);
     HRESULT get_NumNodes([out] DWORD *pdwNumNodes);
     HRESULT get_NodeType([in] DWORD dwNodeId, [out] GUID *pNodeType);
-    HRESULT CreateNodeInstance([in] DWORD dwNodeId, [in] REFIID iid, [out] void **ppvObject);
+    HRESULT CreateNodeInstance([in, annotation("_In_")] DWORD dwNodeId, [in, annotation("_In_")] REFIID iid, [out, annotation("_COM_Outptr_")] void **ppvObject);
 }
 
 

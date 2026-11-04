@@ -437,7 +437,7 @@ EXTERN_C const IID IID_IMMDevice;
             /* [annotation][unique][in] */ 
             _In_opt_  PROPVARIANT *pActivationParams,
             /* [annotation][iid_is][out] */ 
-            _Out_  void **ppInterface) = 0;
+            _COM_Outptr_  void **ppInterface) = 0;
         
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE OpenPropertyStore( 
             /* [annotation][in] */ 
@@ -488,7 +488,7 @@ EXTERN_C const IID IID_IMMDevice;
             /* [annotation][unique][in] */ 
             _In_opt_  PROPVARIANT *pActivationParams,
             /* [annotation][iid_is][out] */ 
-            _Out_  void **ppInterface);
+            _COM_Outptr_  void **ppInterface);
         
         DECLSPEC_XFGVIRT(IMMDevice, OpenPropertyStore)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *OpenPropertyStore )( 

@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.idl b/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.idl
+index 2f09e486..5450787b 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.idl
+@@ -52,7 +52,7 @@ interface IKsTopologyInfo : IUnknown
+     HRESULT get_NodeName([in] DWORD dwNodeId, [out, annotation("_Out_writes_bytes_opt_(dwBufSize)")] WCHAR *pwchNodeName, [in] DWORD dwBufSize, [out, annotation("_Out_")] DWORD *pdwNameLen);
+     HRESULT get_NumNodes([out] DWORD *pdwNumNodes);
+     HRESULT get_NodeType([in] DWORD dwNodeId, [out] GUID *pNodeType);
+-    HRESULT CreateNodeInstance([in] DWORD dwNodeId, [in] REFIID iid, [out] void **ppvObject);
++    HRESULT CreateNodeInstance([in, annotation("_In_")] DWORD dwNodeId, [in, annotation("_In_")] REFIID iid, [out, annotation("_COM_Outptr_")] void **ppvObject);
+ }
+ 
+ 

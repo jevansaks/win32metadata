@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.idl b/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.idl
+index d6f91bdc..c2c6f1d6 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mmdeviceapi.idl
+@@ -345,7 +345,7 @@ interface IMMDevice : IUnknown
+     //              See documentation for the activated interface for more information.
+     //
+     [id(1), helpstring("method Activate")] 
+-    HRESULT Activate([in, annotation("_In_")] REFIID iid, [in, annotation("_In_")] DWORD dwClsCtx, [in,unique, annotation("_In_opt_")] PROPVARIANT* pActivationParams, [out,iid_is(iid), annotation("_Out_")] void** ppInterface);
++    HRESULT Activate([in, annotation("_In_")] REFIID iid, [in, annotation("_In_")] DWORD dwClsCtx, [in,unique, annotation("_In_opt_")] PROPVARIANT* pActivationParams, [out,iid_is(iid), annotation("_COM_Outptr_")] void** ppInterface);
+ 
+     //-------------------------------------------------------------------------
+     // Description:

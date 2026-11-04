@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.idl b/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.idl
+index 2b9a5aca..b9e8d249 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.idl
+@@ -573,7 +573,7 @@ interface IAudioClient : IUnknown
+     //  IAudioViewManagerService
+     //  IAcousticEchoCancellationControl
+     //
+-    HRESULT GetService([in, annotation("_In_")] REFIID riid, [out, iid_is(riid), annotation("_Out_")] void **ppv);
++    HRESULT GetService([in, annotation("_In_")] REFIID riid, [out, iid_is(riid), annotation("_COM_Outptr_")] void **ppv);
+ 
+ 
+ }

@@ -306,7 +306,7 @@ EXTERN_C const IID IID_IAudioClient;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
     };
     
@@ -415,7 +415,7 @@ EXTERN_C const IID IID_IAudioClient;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         END_INTERFACE
     } IAudioClientVtbl;
@@ -629,7 +629,7 @@ EXTERN_C const IID IID_IAudioClient2;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IAudioClient2, IsOffloadCapable)
         HRESULT ( STDMETHODCALLTYPE *IsOffloadCapable )( 
@@ -920,7 +920,7 @@ EXTERN_C const IID IID_IAudioClient3;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IAudioClient2, IsOffloadCapable)
         HRESULT ( STDMETHODCALLTYPE *IsOffloadCapable )( 

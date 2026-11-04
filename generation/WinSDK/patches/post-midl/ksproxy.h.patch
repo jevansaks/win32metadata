@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/ksproxy.h b/generation/WinSDK/RecompiledIdlHeaders/shared/ksproxy.h
+index dc1aad58..4662e8e3 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/ksproxy.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/ksproxy.h
+@@ -852,7 +852,7 @@ DECLARE_INTERFACE_(IKsTopology, IUnknown)
+         _In_ ACCESS_MASK DesiredAccess,
+         _In_opt_ IUnknown* UnkOuter,
+         _In_ REFGUID InterfaceId,
+-        _Out_ LPVOID* Interface
++        _COM_Outptr_ LPVOID* Interface
+     ) PURE;
+ };
+ 

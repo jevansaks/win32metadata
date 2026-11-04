@@ -813,7 +813,7 @@ DECLARE_INTERFACE_(IDirectSoundBuffer8, IDirectSoundBuffer)
     // IDirectSoundBuffer8 methods
     STDMETHOD(SetFX)                (THIS_ DWORD dwEffectsCount, _In_reads_opt_(dwEffectsCount) LPDSEFFECTDESC pDSFXDesc, _Out_writes_opt_(dwEffectsCount) LPDWORD pdwResultCodes) PURE;
     STDMETHOD(AcquireResources)     (THIS_ DWORD dwFlags, DWORD dwEffectsCount, _Out_writes_(dwEffectsCount) LPDWORD pdwResultCodes) PURE;
-    STDMETHOD(GetObjectInPath)      (THIS_ _In_ REFGUID rguidObject, DWORD dwIndex, _In_ REFGUID rguidInterface, _Outptr_ LPVOID *ppObject) PURE;
+    STDMETHOD(GetObjectInPath)      (THIS_ _In_ REFGUID rguidObject, DWORD dwIndex, _In_ REFGUID rguidInterface, _COM_Outptr_ LPVOID *ppObject) PURE;
 };
 
 // Special GUID meaning "select all objects" for use in GetObjectInPath()
@@ -1134,7 +1134,7 @@ DECLARE_INTERFACE_(IDirectSoundCaptureBuffer8, IDirectSoundCaptureBuffer)
                                            _In_reads_bytes_opt_(dwAudioBytes2) LPVOID pvAudioPtr2, DWORD dwAudioBytes2) PURE;
 
     // IDirectSoundCaptureBuffer8 methods
-    STDMETHOD(GetObjectInPath)      (THIS_ _In_ REFGUID rguidObject, DWORD dwIndex, _In_ REFGUID rguidInterface, _Outptr_ LPVOID *ppObject) PURE;
+    STDMETHOD(GetObjectInPath)      (THIS_ _In_ REFGUID rguidObject, DWORD dwIndex, _In_ REFGUID rguidInterface, _COM_Outptr_ LPVOID *ppObject) PURE;
     STDMETHOD(GetFXStatus)          (DWORD dwEffectsCount, _Out_writes_(dwEffectsCount) LPDWORD pdwFXStatus) PURE;
 };
 

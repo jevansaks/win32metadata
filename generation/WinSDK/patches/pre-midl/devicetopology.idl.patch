@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/devicetopology.idl b/generation/WinSDK/RecompiledIdlHeaders/um/devicetopology.idl
+index 97c9dc15..81e504ff 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/devicetopology.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/devicetopology.idl
+@@ -1339,7 +1339,7 @@ interface IPart : IUnknown
+     //
+     [id(11), helpstring("method Activate")]
+ 
+-    HRESULT Activate([in, annotation("_In_")] DWORD dwClsContext, [in, annotation("_In_")] REFIID refiid, [out,iid_is(refiid), annotation("_Out_opt_")] void** ppvObject);
++    HRESULT Activate([in, annotation("_In_")] DWORD dwClsContext, [in, annotation("_In_")] REFIID refiid, [out,iid_is(refiid), annotation("_COM_Outptr_opt_")] void** ppvObject);
+ 
+     //-------------------------------------------------------------------------
+     // Description:

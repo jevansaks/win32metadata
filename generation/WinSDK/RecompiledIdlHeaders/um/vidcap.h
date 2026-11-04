@@ -174,7 +174,7 @@ EXTERN_C const IID IID_IKsTopologyInfo;
             /* [annotation][in] */ 
             _In_  REFIID iid,
             /* [annotation][out] */ 
-            _Out_  void **ppvObject) = 0;
+            _COM_Outptr_  void **ppvObject) = 0;
         
     };
     
@@ -261,7 +261,7 @@ EXTERN_C const IID IID_IKsTopologyInfo;
             /* [annotation][in] */ 
             _In_  REFIID iid,
             /* [annotation][out] */ 
-            _Out_  void **ppvObject);
+            _COM_Outptr_  void **ppvObject);
         
         END_INTERFACE
     } IKsTopologyInfoVtbl;

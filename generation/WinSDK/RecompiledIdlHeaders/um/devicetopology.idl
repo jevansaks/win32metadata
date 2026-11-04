@@ -1339,7 +1339,7 @@ interface IPart : IUnknown
     //
     [id(11), helpstring("method Activate")]
 
-    HRESULT Activate([in, annotation("_In_")] DWORD dwClsContext, [in, annotation("_In_")] REFIID refiid, [out,iid_is(refiid), annotation("_Out_opt_")] void** ppvObject);
+    HRESULT Activate([in, annotation("_In_")] DWORD dwClsContext, [in, annotation("_In_")] REFIID refiid, [out,iid_is(refiid), annotation("_COM_Outptr_opt_")] void** ppvObject);
 
     //-------------------------------------------------------------------------
     // Description:

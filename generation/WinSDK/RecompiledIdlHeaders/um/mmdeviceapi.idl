@@ -345,7 +345,7 @@ interface IMMDevice : IUnknown
     //              See documentation for the activated interface for more information.
     //
     [id(1), helpstring("method Activate")] 
-    HRESULT Activate([in, annotation("_In_")] REFIID iid, [in, annotation("_In_")] DWORD dwClsCtx, [in,unique, annotation("_In_opt_")] PROPVARIANT* pActivationParams, [out,iid_is(iid), annotation("_Out_")] void** ppInterface);
+    HRESULT Activate([in, annotation("_In_")] REFIID iid, [in, annotation("_In_")] DWORD dwClsCtx, [in,unique, annotation("_In_opt_")] PROPVARIANT* pActivationParams, [out,iid_is(iid), annotation("_COM_Outptr_")] void** ppInterface);
 
     //-------------------------------------------------------------------------
     // Description:

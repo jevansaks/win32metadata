@@ -986,7 +986,7 @@ interface ICaptureGraphBuilder : IUnknown {
     [in, unique AM_ANNOTATION("_In_opt_")] const GUID *pCategory, // can be NULL for all pins
     [in] IBaseFilter *pf,
     [in] REFIID riid,
-    [out AM_ANNOTATION("_Out_")] void **ppint);
+    [out AM_ANNOTATION("_COM_Outptr_")] void **ppint);
     [call_as(FindInterface)] HRESULT RemoteFindInterface(
     [in, unique AM_ANNOTATION("_In_opt_")] const GUID *pCategory, // can be NULL for all pins
     [in] IBaseFilter *pf,
@@ -1108,7 +1108,7 @@ interface ICaptureGraphBuilder2 : IUnknown {
     [in AM_ANNOTATION("_In_opt_")] const GUID *pType,     // Audio/Video/??? or NULL (don't care)
     [in] IBaseFilter *pf,
     [in] REFIID riid,
-    [out AM_ANNOTATION("_Out_")] void **ppint);
+    [out AM_ANNOTATION("_COM_Outptr_")] void **ppint);
     [call_as(FindInterface)] HRESULT RemoteFindInterface(
     [in AM_ANNOTATION("_In_opt_")] const GUID *pCategory, // can be NULL for all pins
     [in AM_ANNOTATION("_In_opt_")] const GUID *pType,     // Audio/Video/??? or NULL (don't care)
