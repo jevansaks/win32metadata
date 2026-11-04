@@ -151,7 +151,8 @@ public class IgnoreIfReturnAttribute : Attribute
     }
 }
 
-[AttributeUsage(AttributeTargets.Struct, AllowMultiple = true, Inherited = true)]
+/// <summary>One invalid native resource value, on its producer return/output or a legacy handle type.</summary>
+[AttributeUsage(AttributeTargets.Struct | AttributeTargets.Parameter | AttributeTargets.ReturnValue, AllowMultiple = true, Inherited = true)]
 public class InvalidHandleValueAttribute : Attribute
 {
     public InvalidHandleValueAttribute(long Value)
@@ -265,6 +266,12 @@ public class NullNullTerminatedAttribute : Attribute
     }
 }
 
+/// <summary>Names the native cleanup declaration for a producer return/output or a legacy handle type.</summary>
+/// <remarks>
+/// Producer metadata does not change the native signature or define cleanup success.
+/// In particular, LocalFree returns NULL on success, not an invalid-handle failure.
+/// Unannotated producers do not acquire ownership from their native HANDLE spelling.
+/// </remarks>
 public class RAIIFreeAttribute : Attribute
 {
     public RAIIFreeAttribute(string Name)

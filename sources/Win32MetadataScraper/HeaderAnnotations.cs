@@ -20,6 +20,24 @@ namespace Win32MetadataScraper
         private readonly Dictionary<string, ClangSharp.Type> enumStorage = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (string Version, Attr Attribute)> supportedFunctions = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (string Module, Attr Attribute)> importLibraries = new(StringComparer.Ordinal);
+        private readonly Dictionary<string, (ProducerAnnotation Annotation, FunctionDecl Function, Attr Attribute)> producers = new(StringComparer.Ordinal);
+        private readonly Dictionary<string, HashSet<FunctionDecl>> functionDeclarations = new(StringComparer.Ordinal);
+
+        public void MergeProducers(List<string> attributes, IReadOnlyDictionary<string, string> remaps, IReadOnlyCollection<string> excludes)
+        {
+            foreach (var fact in this.producers)
+            {
+                var producer = fact.Value.Annotation;
+                if (this.functionDeclarations[QualifiedName(fact.Value.Function)].Count != 1)
+                    throw Error(fact.Value.Attribute, "RAIIFree on overloaded producer names is unsupported; configured attributes cannot distinguish every generated overload.");
+                if (excludes.Any(exclude => Regex.IsMatch(producer.Cleanup, "\\A" +
+                    Regex.Escape(exclude).Replace("\\*", ".*").Replace("\\?", ".") + "\\z")))
+                    throw Error(fact.Value.Attribute, $"RAIIFree cleanup '{producer.Cleanup}' is excluded from metadata.");
+                string cleanup = remaps.GetValueOrDefault(producer.Cleanup) ?? producer.Cleanup;
+                string payload = new ProducerAnnotation(cleanup, producer.InvalidValues).Payload;
+                attributes.Add(fact.Key + "=NativeAnnotation(\"" + payload.Replace("\"", "\\\"") + "\")");
+            }
+        }
 
         public void MergeImportLibraries(Dictionary<string, string> libraries, IReadOnlyDictionary<string, string> remaps)
         {
@@ -43,6 +61,13 @@ namespace Win32MetadataScraper
 
         public void Visit(Decl declaration)
         {
+            if (declaration is FunctionDecl declaredFunction)
+            {
+                string name = QualifiedName(declaredFunction);
+                if (!this.functionDeclarations.TryGetValue(name, out var declarations))
+                    this.functionDeclarations.Add(name, declarations = new HashSet<FunctionDecl>());
+                declarations.Add(declaredFunction.CanonicalDecl);
+            }
             if (declaration is EnumDecl nativeEnum) this.nativeEnums.Add(nativeEnum.Name);
             if (declaration is TypedefDecl alias && alias.UnderlyingType.CanonicalType is EnumType)
                 this.nativeEnums.Add(alias.Name);
@@ -54,6 +79,11 @@ namespace Win32MetadataScraper
                     continue;
 
                 string payload = attribute.Spelling;
+                if (payload.StartsWith(ProducerAnnotation.Marker, StringComparison.Ordinal))
+                {
+                    this.VisitProducer(declaration, attribute);
+                    continue;
+                }
                 if (payload.StartsWith(Owner + "ImportLibrary", StringComparison.Ordinal))
                 {
                     this.VisitImportLibrary(declaration, attribute);
@@ -118,6 +148,138 @@ namespace Win32MetadataScraper
                     GetIntegerStorage(storage, association.Attribute) != GetIntegerStorage(association.Storage, association.Attribute)))
                     throw Error(association.Attribute, $"AssociatedEnum storage conflicts with enum group '{association.EnumName}'.");
             }
+        }
+
+        private void VisitProducer(Decl declaration, Attr attribute)
+        {
+            if (attribute.Spelling != ProducerAnnotation.Marker)
+                throw Error(attribute, "RAIIFree requires typed cleanup and invalid-value arguments.");
+            FunctionDecl function = declaration as FunctionDecl ??
+                (declaration as ParmVarDecl)?.DeclContext as FunctionDecl;
+            if (function == null || function.HasBody || declaration is not FunctionDecl && declaration is not ParmVarDecl)
+                throw Error(attribute, "RAIIFree requires a producer function/method return or output parameter declaration without a body.");
+            var resource = declaration is ParmVarDecl parameter ? parameter.Type.CanonicalType : function.ReturnType.CanonicalType;
+            if (declaration is ParmVarDecl output)
+            {
+                bool hasOutputSal = output.Attrs.Any(a => a.Spelling.Contains("SAL_name", StringComparison.Ordinal) &&
+                    (a.Spelling.Contains("_Out_", StringComparison.Ordinal) ||
+                    a.Spelling.Contains("_Out_opt_", StringComparison.Ordinal) ||
+                    a.Spelling.Contains("_Outptr", StringComparison.Ordinal) ||
+                    a.Spelling.Contains("_COM_Outptr", StringComparison.Ordinal)));
+                if (!hasOutputSal || resource is not PointerType pointer)
+                    throw Error(attribute, "RAIIFree requires output pointer SAL on a producer output parameter.");
+                resource = pointer.PointeeType.CanonicalType;
+            }
+            if (!IsResourceType(resource))
+                throw Error(attribute, "RAIIFree requires a native pointer or integer resource, not void, a record or a callback.");
+            if (declaration.Attrs.Count(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
+                a.Spelling.StartsWith(ProducerAnnotation.Marker, StringComparison.Ordinal)) != 1)
+                throw Error(attribute, "Duplicate or conflicting RAIIFree annotations.");
+
+            var first = function.CanonicalDecl;
+            Decl firstSite = first;
+            if (declaration is ParmVarDecl item)
+            {
+                int index = function.Parameters.TakeWhile(p => p != item).Count();
+                if (index >= first.Parameters.Count)
+                    throw Error(attribute, "Cannot resolve the first producer output declaration.");
+                firstSite = first.Parameters[index];
+            }
+            attribute.Extent.Start.GetExpansionLocation(out var attributeFile, out _, out _, out uint offset);
+            firstSite.Extent.Start.GetExpansionLocation(out var firstFile, out _, out _, out _);
+            firstSite.Extent.End.GetExpansionLocation(out _, out _, out _, out uint firstEnd);
+            if (!firstSite.Attrs.Any(a => a.Spelling == ProducerAnnotation.Marker) ||
+                !attributeFile.Equals(firstFile) || offset > firstEnd)
+                throw Error(attribute, "RAIIFree must appear on the first native declaration; late-only producer annotations are unsupported.");
+            declaration.Extent.Start.GetExpansionLocation(out var siteFile, out _, out _, out _);
+            declaration.Extent.End.GetExpansionLocation(out _, out _, out _, out uint siteEnd);
+            if (attributeFile.Equals(siteFile) && offset > GetDeclarationStart(declaration, attribute, declaration is CXXMethodDecl) && offset < siteEnd)
+                throw Error(attribute, "RAIIFree must precede the native declaration type and calling convention.");
+
+            var arguments = attribute.CursorChildren.ToArray();
+            if (arguments.Length != 2)
+                throw Error(attribute, "RAIIFree requires sizeof(&(cleanup)) as its typed cleanup transport.");
+            Expr cleanupExpression = SizeOfOperand(arguments[0], attribute);
+            if (cleanupExpression is not UnaryOperator address ||
+                address.Opcode != CXUnaryOperatorKind.CXUnaryOperator_AddrOf ||
+                StripParens(address.SubExpr) is not DeclRefExpr reference ||
+                reference.Decl is not FunctionDecl cleanup || cleanup is CXXMethodDecl ||
+                cleanup.HasBody || cleanup.Parameters.Count != 1 ||
+                cleanup.Type.CanonicalType is not FunctionProtoType prototype || prototype.IsVariadic ||
+                !IsResourceType(cleanup.Parameters[0].Type.CanonicalType) ||
+                !cleanup.Parameters[0].Type.CanonicalType.Equals(resource))
+                throw Error(attribute, "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+            string cleanupName = QualifiedName(cleanup);
+            var invalidExpressions = new List<Expr>();
+            ReadInvalidExpressions(SizeOfOperand(arguments[1], attribute), invalidExpressions, attribute);
+            var values = invalidExpressions.Select(argument => EvaluateInvalidValue(argument, attribute)).ToArray();
+            var annotation = new ProducerAnnotation(cleanupName, values);
+            string selector = QualifiedName((NamedDecl)declaration);
+            if (this.producers.TryGetValue(selector, out var existing) &&
+                (existing.Annotation.Payload != annotation.Payload || existing.Function.CanonicalDecl != first))
+                throw Error(attribute, $"Conflicting or overloaded RAIIFree producer declaration '{selector}'.");
+            this.producers[selector] = (annotation, function, attribute);
+        }
+
+        private static bool IsResourceType(ClangSharp.Type type) =>
+            type is PointerType pointer ? pointer.PointeeType.CanonicalType is not FunctionType :
+            type.Kind is CXTypeKind.CXType_Int or CXTypeKind.CXType_UInt or CXTypeKind.CXType_Long or
+                CXTypeKind.CXType_ULong or CXTypeKind.CXType_LongLong or CXTypeKind.CXType_ULongLong;
+
+        private static Expr StripParens(Expr expression) =>
+            expression is ParenExpr parens ? StripParens(parens.SubExpr) : expression;
+
+        private static Expr SizeOfOperand(Cursor argument, Attr attribute)
+        {
+            if (argument is not UnaryExprOrTypeTraitExpr size ||
+                size.Kind != CX_UnaryExprOrTypeTrait.CX_UETT_SizeOf || size.IsArgumentType)
+                throw Error(attribute, "RAIIFree requires unevaluated sizeof expression operands for its typed transport.");
+            return StripParens(size.ArgumentExpr);
+        }
+
+        private static void ReadInvalidExpressions(Expr expression, List<Expr> values, Attr attribute)
+        {
+            if (expression is BinaryOperator comma && comma.Opcode == CXBinaryOperatorKind.CXBinaryOperator_Comma)
+            {
+                ReadInvalidExpressions(comma.LHS, values, attribute);
+                values.Add(comma.RHS);
+            }
+            else if (expression is not IntegerLiteral literal || literal.Value != 0)
+                throw Error(attribute, "Malformed RAIIFree invalid-value transport.");
+        }
+
+        private static string QualifiedName(NamedDecl declaration) =>
+            declaration.DeclContext is NamedDecl parent ? QualifiedName(parent) + "::" + declaration.Name : declaration.Name;
+
+        private static long EvaluateInvalidValue(Cursor argument, Attr attribute)
+        {
+            if (argument is not Expr expression)
+                throw Error(attribute, "RAIIFree invalid values require supported integer constant expressions.");
+            expression = StripParens(expression);
+            long pointerWidth = 0;
+            while (expression.Type.CanonicalType is PointerType)
+            {
+                pointerWidth = expression.Type.Handle.SizeOf;
+                if (expression is not CastExpr cast)
+                    throw Error(attribute, "RAIIFree pointer invalid values require a constant integer-to-pointer cast; address and pointer arithmetic expressions are unsupported.");
+                expression = StripParens(cast.SubExpr);
+            }
+            var integerType = expression.Type.CanonicalType;
+            if (integerType is EnumType enumeration) integerType = enumeration.Decl.IntegerType.CanonicalType;
+            if (integerType is not BuiltinType || integerType.Kind < CXTypeKind.CXType_Bool ||
+                integerType.Kind > CXTypeKind.CXType_LongDouble || integerType.Kind is
+                    CXTypeKind.CXType_Float or CXTypeKind.CXType_Double or CXTypeKind.CXType_LongDouble ||
+                integerType.Handle.SizeOf > 8)
+                throw Error(attribute, "RAIIFree invalid values require supported integer constants representable by Int64 metadata.");
+            using var value = expression.Handle.Evaluate;
+            if (value.Kind != CXEvalResultKind.CXEval_Int)
+                throw Error(attribute, "RAIIFree invalid value is not a compiler-evaluated integer constant expression.");
+            ulong bits = value.IsUnsignedInt ? value.AsUnsigned : unchecked((ulong)value.AsLongLong);
+            if (pointerWidth != 0)
+                return pointerWidth == 4 ? unchecked((int)bits) : unchecked((long)bits);
+            if (value.IsUnsignedInt && bits > long.MaxValue)
+                throw Error(attribute, "RAIIFree unsigned invalid value cannot be represented by Int64 metadata.");
+            return unchecked((long)bits);
         }
 
         private void VisitImportLibrary(Decl declaration, Attr attribute)

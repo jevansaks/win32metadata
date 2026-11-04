@@ -19,6 +19,7 @@ Revision History:
 #define _WINSPOOL_
 
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 
 #ifdef _WINUSER_
 #include <prsht.h>
@@ -1341,11 +1342,14 @@ _In_opt_    LPSTR             pPrinterName,
 _Out_       LPHANDLE            phPrinter,
 _In_opt_    LPPRINTER_DEFAULTSA pDefault
 );
+#if defined(WIN32METADATA) && defined(__clang__)
+BOOL WINAPI ClosePrinter(_In_ HANDLE hPrinter);
+#endif
 BOOL
 WINAPI
 OpenPrinterW(
 _In_opt_    LPWSTR             pPrinterName,
-_Out_       LPHANDLE            phPrinter,
+_Out_ _Win32_RAIIFree_Handle_(ClosePrinter) LPHANDLE phPrinter,
 _In_opt_    LPPRINTER_DEFAULTSW pDefault
 );
 #ifdef UNICODE

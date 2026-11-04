@@ -26,6 +26,67 @@ workarounds or extraction tools needed.**
 
 ## Problem Statement
 
+### Producer ownership reader and narrow SDK pilots
+
+The first producer-reader layer is based on exact parent
+`cc61edb2d95709ff9272d0f8d49cceff51ec7416`. It implements the typed
+`_Win32_RAIIFree_(cleanup, invalid...)` contract and the explicitly retained
+`_Win32_RAIIFree_Handle_(cleanup)` shorthand (`cleanup, -1, 0`) through the existing
+single-TU AST walk, PInvokeGenerator attribute configuration, and metadata emitter.
+The source spelling is not parsed as text to resolve cleanup or evaluate macros.
+The [annotation specification](shift-left-annotation-spec.md#transport-and-vocabulary)
+describes the exact supported sites and diagnosed limitations.
+
+Selected SDK `10.0.28000.2705` (include version `10.0.28000.0`) supplies the actual
+pilot declarations. `WinBase.h` and `winspool.h` are directly consumed headers, not
+outputs of the selected MIDL queue; their post-MIDL patches are replayed with the
+complete SDK `MidlInputRoot`. Guarded declarations make the later `LocalFree` and
+`ClosePrinter` symbols available to the typed annotations without changing ordinary
+C/C++ builds. Installed packages and generated MIDL outputs are never edited.
+
+This pilot intentionally changes metadata representation; it is **not** a
+byte-equivalent production migration:
+
+| Selected metadata site | Exact candidate behavior |
+|---|---|
+| `OpenPrinterW::phPrinter` | Raw `void**` (`LPHANDLE`/`HANDLE*` natively), producer `RAIIFree("ClosePrinter")`, invalid values `-1, 0`, in that order. Replaces this site's `PRINTER_HANDLE*` remap. |
+| `ClosePrinter::hPrinter` | Raw `void*` (`HANDLE` natively), replacing only this site's `PRINTER_HANDLE` remap. |
+| `GetProcessHeap::return` | Raw `void*` (`HANDLE` natively), no ownership or invalid values. Replaces the selected `DoNotRelease` record rather than inheriting the legacy `HANDLE` cleanup. |
+| `LocalAlloc::return` | Raw `void*` (`HLOCAL` natively), producer `RAIIFree("LocalFree")`, invalid value `0`. |
+| `LocalFree::return`, `LocalFree::hMem` | Raw `void*` (`HLOCAL` natively), no ownership/invalid values. Removes this function's `CanReturnErrorsAsSuccess` record; its real `_Success_(return==0)` and nullable return remain native source facts. |
+
+`LocalFree` returns NULL on success and the still-valid allocation on failure.
+There is no generic invalid-handle success test or per-API wrapper. The schema adds
+parameter/return applicability to the repeated `InvalidHandleValue(long)` attribute.
+The six projection fixups also remove intermediate `NativeTypeName` attributes:
+otherwise the existing final encoder replaces raw pointers with legacy handle
+structs again. This attribute is already omitted from final metadata; native names
+remain authoritative in the original SDK/AST and are checked by the native proofs.
+All `autoTypes.json` records (including legacy `HANDLE`, `HLOCAL`, and
+`PRINTER_HANDLE`), unselected API remaps, and inherited ACM/MSI differences remain
+unchanged and unapproved.
+
+`ProducerHeaderTests` covers C/C++, x86/x64/ARM64 final constructor payloads,
+sequence-zero placement, multiple/repeated values and order, compiler signedness
+and pointer widths, absence, matching legacy facts, and source-located negatives.
+`HandleProducerSdkTests` replays the real SDK patches byte-for-byte, checks six
+ordinary/metadata MSVC object-equivalence cases against the real SDK headers, and
+checks actual producer/borrowed/freeing signatures through final WinMD emission.
+`HandleProducerPilotTests` also asserts the selected signatures and ordered ownership
+payloads against the complete production WinMD, including borrowed/freeing absence.
+Its baseline is the unique reachable fixture-introduction commit's exact parent,
+with no mutable pin or fallback. Existing fixture baseline reads stay unchanged;
+their expected candidate-side sidecar composition includes only the explicitly
+listed new pilot delta. The legacy and header-only paired fixtures use the same
+real native declarations where representable, not reconstructed old sidecars.
+
+The qualified parent baseline is ordinary run `41782556243`, comparison artifact
+`13300789530`, candidate SHA256
+`C8FD6CD3DD41910169BD1E4C77B2C27AB165CB3F500235627BB8C2F800281A5A`.
+Local proof is not approval of the intentional API delta. Publication, a dependent
+PR, hosted qualification against this exact parent, and stack membership remain
+coordinator-gated; this layer does not merge or enable auto-merge.
+
 Today, ~170,000+ lines of metadata across 15+ sidecar files encode information that
 *should* live in the C/C++ headers:
 

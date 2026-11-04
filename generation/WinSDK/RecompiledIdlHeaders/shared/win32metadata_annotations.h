@@ -34,6 +34,10 @@
 #define _Win32_Retained_ _WIN32META_ANNOTATION_("Retained")
 #define _Win32_ContainsInteriorPointers_ _WIN32META_ANNOTATION_("ContainsInteriorPointers")
 #define _Win32_AssociatedEnum_(type) _WIN32META_ANNOTATION_("AssociatedEnum(" #type ")")
+// Pointer sentinels are not Clang annotate constant arguments; sizeof retains their typed AST unevaluated.
+#define _Win32_RAIIFree_(cleanup, ...) \
+    _WIN32META_ANNOTATION_("RAIIFree", sizeof(&(cleanup)), sizeof((0, ##__VA_ARGS__)))
+#define _Win32_RAIIFree_Handle_(cleanup) _Win32_RAIIFree_(cleanup, -1, 0)
 
 #if defined(WIN32METADATA) && defined(__clang__)
 #define _Win32_Enum_(name, storage, ...) \

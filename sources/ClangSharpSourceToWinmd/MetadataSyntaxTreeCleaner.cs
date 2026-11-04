@@ -115,6 +115,7 @@ namespace ClangSharpSourceToWinmd
                     return existingAttrList;
                 }
 
+                var replacedNames = new HashSet<string>(StringComparer.Ordinal);
                 foreach (var attrNode in remappedListAttributes)
                 {
                     var attrName = attrNode.Name.ToString();
@@ -127,7 +128,9 @@ namespace ClangSharpSourceToWinmd
                     else
                     {
                         // Remove any existing attribute with the same name
-                        existingAttrList = SyntaxUtils.RemoveAttribute(existingAttrList, attrName);
+                        if (attrName is not "InvalidHandleValue" and not "InvalidHandleValueAttribute" ||
+                            replacedNames.Add(attrName))
+                            existingAttrList = SyntaxUtils.RemoveAttribute(existingAttrList, attrName);
 
                         var attrListNode =
                             SyntaxFactory.AttributeList(
@@ -203,10 +206,16 @@ namespace ClangSharpSourceToWinmd
                         payload != ParameterAnnotation.Owner + "PreserveResult" &&
                         !payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal) &&
                         !payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
-                    .Select(ParameterAnnotation.Parse)
+                    .SelectMany(payload => payload == ProducerAnnotation.Marker ? Array.Empty<string>() :
+                        payload.StartsWith(ProducerAnnotation.Marker + "(", StringComparison.Ordinal) ?
+                        new[] { "RAIIFree", "InvalidHandleValue" } : OwnedParameterNames(payload))
+                    .Distinct(StringComparer.Ordinal).ToArray();
+
+            private IEnumerable<string> OwnedParameterNames(string payload) =>
+                new[] { ParameterAnnotation.Parse(payload) }
                     .Where(annotation => annotation.Kind != ParameterAnnotationKind.AssociatedEnum ||
                         !this.headerEnumNames.Contains(annotation.EnumName))
-                    .Select(annotation => annotation.AttributeName).ToArray();
+                    .Select(annotation => annotation.AttributeName);
 
             private string GetHeaderEnumType(SyntaxList<AttributeListSyntax> attributes, string type, string fullName)
             {
@@ -241,11 +250,18 @@ namespace ClangSharpSourceToWinmd
                 foreach (var ownedName in ownedNames)
                 {
                     var existing = attributes.SelectMany(list => list.Attributes)
-                        .Single(attribute => attribute.Name.ToString() == ownedName);
+                        .Where(attribute => attribute.Name.ToString() == ownedName).ToArray();
+                    var matching = (remaps ?? Enumerable.Empty<AttributeSyntax>())
+                        .Where(remap => remap.Name.ToString() == ownedName ||
+                            remap.Name.ToString() == ownedName + "Attribute").ToArray();
                     foreach (var remap in remaps ?? Enumerable.Empty<AttributeSyntax>())
-                        if (remap.Name.ToString() == ownedName + EncodeHelpers.AttributeToRemoveSuffix ||
-                            remap.Name.ToString() == ownedName && !SyntaxFactory.AreEquivalent(existing, remap))
+                        if (remap.Name.ToString() == ownedName + EncodeHelpers.AttributeToRemoveSuffix)
                             throw new FormatException($"{fullName}: legacy remap conflicts with native {ownedName}.");
+                    if (matching.Length != 0 && (matching.Length != existing.Length ||
+                        matching.Where((remap, index) => !SyntaxFactory.AreEquivalent(existing[index].ArgumentList, remap.ArgumentList)).Any()))
+                        throw new FormatException($"{fullName}: legacy remap conflicts with native {ownedName}.");
+                    // Keep the entire native ordered group, including repeated invalid values.
+                    remaps?.RemoveAll(remap => matching.Contains(remap));
                 }
             }
 
@@ -585,6 +601,36 @@ namespace ClangSharpSourceToWinmd
                                         SyntaxFactory.AttributeArgumentList(SyntaxFactory.SingletonSeparatedList(
                                             SyntaxFactory.AttributeArgument(SyntaxFactory.LiteralExpression(
                                                 SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(version))))))));
+                            }
+                            if (payload.StartsWith(ProducerAnnotation.Marker, StringComparison.Ordinal))
+                            {
+                                if (node.Parent is not ParameterSyntax && node.Parent is not MethodDeclarationSyntax &&
+                                    node.Parent is not DelegateDeclarationSyntax)
+                                    throw new FormatException($"Owned producer annotation on an invalid generated target: {payload}");
+                                if (payload == ProducerAnnotation.Marker)
+                                {
+                                    bool resolved = node.Parent.ChildNodes().OfType<AttributeListSyntax>()
+                                        .SelectMany(list => list.Attributes).Any(attribute =>
+                                            attribute.Name.ToString() == "NativeAnnotation" &&
+                                            (attribute.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?
+                                                .Token.ValueText.StartsWith(ProducerAnnotation.Marker + "(", StringComparison.Ordinal) == true);
+                                    if (!resolved)
+                                        throw new FormatException("RAIIFree reached the emitter without compiler-resolved producer facts.");
+                                    return null;
+                                }
+                                var producer = ProducerAnnotation.Parse(payload);
+                                var facts = new List<AttributeSyntax>
+                                {
+                                    SyntaxFactory.Attribute(SyntaxFactory.ParseName("RAIIFree"),
+                                        SyntaxFactory.ParseAttributeArgumentList("(\"" + producer.Cleanup + "\")")),
+                                };
+                                facts.AddRange(producer.InvalidValues.Select(value =>
+                                    SyntaxFactory.Attribute(SyntaxFactory.ParseName("InvalidHandleValue"),
+                                        SyntaxFactory.ParseAttributeArgumentList("(" +
+                                            value.ToString(System.Globalization.CultureInfo.InvariantCulture) + "L)"))));
+                                var producerAttributes = SyntaxFactory.AttributeList(SyntaxFactory.SeparatedList(facts));
+                                return node.Parent is ParameterSyntax ? producerAttributes :
+                                    producerAttributes.WithTarget(SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.ReturnKeyword)));
                             }
                             var annotation = ParameterAnnotation.Parse(payload);
                             if (annotation.Kind == ParameterAnnotationKind.AssociatedEnum && this.headerEnumNames.Contains(annotation.EnumName))
