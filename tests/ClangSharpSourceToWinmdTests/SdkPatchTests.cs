@@ -1334,6 +1334,9 @@ namespace ClangSharpSourceToWinmdTests
                 {
                     CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes("AdditionalHeaders/" + file), original);
                     Assert.IsFalse(File.Exists(Path.Combine(include, "um", file)), "Do not replace an existing compatibility owner with a removed SDK header.");
+                    StringAssert.Contains(System.Text.Encoding.Latin1.GetString(original), "File created by MIDL compiler");
+                    Assert.IsFalse(File.Exists(Path.Combine(patches, "post-midl", file + ".patch")),
+                        "Unresolved generated compatibility source must retain its sidecar, not acquire a post-header patch.");
                 }
                 foreach (string area in new[] { "um", "winrt" })
                     Assert.IsFalse(File.Exists(Path.Combine(include, area, Path.ChangeExtension(file, ".idl"))),
@@ -1342,7 +1345,7 @@ namespace ClangSharpSourceToWinmdTests
                 Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
                 File.WriteAllBytes(destination, original);
             }
-            const string selections = "post-midl/mscoree.h.patch','post-midl/metahost.h.patch','post-midl/rometadata.h.patch";
+            const string selections = "post-midl/rometadata.h.patch";
             fixture.Apply("pre-midl", selections, true, patchRoot: patches);
             fixture.Apply("post-midl", selections, true, patchRoot: patches);
             foreach (var owner in ClrComOutputHeaderTests.Owners)

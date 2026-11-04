@@ -72,10 +72,7 @@ namespace Windows.Win32.Tests
                     "ICreateWithLocalTransaction::CreateInstanceWithSysTx::pObject", "IGetDispenser::GetDispenser::ppvObject",
                     "IObjectContext::CreateInstance::ppv", "IResourceManager::GetDistributedTransactionManager::ppvObject",
                     "IResourceManagerFactory2::CreateEx::ppvResMgr", "IServicePool::GetObject::ppv", "MTSCreateActivity::ppobj",
-                    "ClrCreateManagedInstance::ppObject", "CorBindToCurrentRuntime::ppv", "CorBindToRuntime::ppv",
-                    "CorBindToRuntimeByCfg::ppv", "CorBindToRuntimeEx::ppv", "CorBindToRuntimeHost::ppv",
-                    "ICLRControl::GetCLRManager::ppObject", "IHostControl::GetHostManager::ppObject",
-                    "MetaDataGetDispenser::ppv", "CLRCreateInstance::ppInterface" }),
+                    "MetaDataGetDispenser::ppv" }),
                 ("ReservedAttribute", ParameterAttributes.In | ParameterAttributes.Optional, new[] {
                     "CoAllowSetForegroundWindow::lpvReserved", "CoDisableCallCancellation::pReserved",
                     "CoEnableCallCancellation::pReserved", "CoInitialize::pvReserved", "CoInitializeEx::pvReserved",
@@ -129,7 +126,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(114, checkedSelectors);
+            Assert.Equal(105, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {

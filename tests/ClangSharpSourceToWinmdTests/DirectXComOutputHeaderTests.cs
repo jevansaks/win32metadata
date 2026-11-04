@@ -143,7 +143,7 @@ namespace ClangSharpSourceToWinmdTests
             CollectionAssert.AreEqual(ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(RetireRecords(string.Join("\n", records) + "\n")))).Split('\n').Where(line => line.Length != 0 && line != ClrComOutputHeaderTests.CombinedSelector + "=[Out]").ToArray(),
                 current.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal) ||
                     line == DWriteSelector + "=void**").ToArray());
-            Assert.AreEqual(90, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(99, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
             StringAssert.Contains(current, RetvalBoundary + "=[ComOutPtr]\n");
             foreach (string selector in RetainedCallbacks) StringAssert.Contains(current, selector + "=[ComOutPtr]\n");
             CollectionAssert.AreEqual(ClrComOutputHeaderTests.RetireRecords(original).Split('\n').Where(IndependentContract).ToArray(),

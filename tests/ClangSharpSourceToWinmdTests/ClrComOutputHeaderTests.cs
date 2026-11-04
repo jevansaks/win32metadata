@@ -22,14 +22,16 @@ namespace ClangSharpSourceToWinmdTests
             ("um/metahost.h", new[] { "CLRCreateInstance::ppInterface" }),
             ("winrt/rometadata.h", new[] { "MetaDataGetDispenser::ppv" }),
         };
-        internal static readonly string[] Selectors = Owners.SelectMany(owner => owner.Selectors).ToArray();
+        internal static readonly string[] FamilySelectors = Owners.SelectMany(owner => owner.Selectors).ToArray();
+        internal static readonly string[] Selectors = { "MetaDataGetDispenser::ppv" };
+        internal static readonly string[] RetainedSelectors = FamilySelectors.Except(Selectors).ToArray();
         internal const string CombinedSelector = "CLRCreateInstance::ppInterface";
 
         internal static string RetireRecords(string text)
         {
-            foreach (string selector in Selectors.Where(selector => selector != CombinedSelector))
+            foreach (string selector in Selectors)
                 text = text.Replace(selector + "=[ComOutPtr]\n", "", StringComparison.Ordinal);
-            return text.Replace(CombinedSelector + "=[Out][ComOutPtr]", CombinedSelector + "=[Out]", StringComparison.Ordinal);
+            return text;
         }
 
         [TestMethod]
@@ -44,16 +46,19 @@ namespace ClangSharpSourceToWinmdTests
                     .Where(line => !previous.Any(selector => line == selector + "=[ComOutPtr]"))))));
             string[] records = parent.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray();
             Assert.AreEqual(100, records.Length);
-            Assert.AreEqual(10, Selectors.Length);
+            Assert.AreEqual(10, FamilySelectors.Length);
+            Assert.AreEqual(1, Selectors.Length);
+            Assert.AreEqual(9, RetainedSelectors.Length);
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
-            foreach (string selector in Selectors)
+            foreach (string selector in FamilySelectors)
                 CollectionAssert.Contains(records, selector + "=" + (selector == CombinedSelector ? "[Out]" : "") + "[ComOutPtr]");
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
             CollectionAssert.AreEqual(RetireRecords(parent).Split('\n').Where(Contract).ToArray(),
                 current.Split('\n').Where(Contract).ToArray());
-            Assert.AreEqual(90, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
-            StringAssert.Contains(current, CombinedSelector + "=[Out]\n");
+            Assert.AreEqual(99, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            foreach (string selector in RetainedSelectors)
+                StringAssert.Contains(current, selector + "=" + (selector == CombinedSelector ? "[Out]" : "") + "[ComOutPtr]\n");
             foreach (string callback in new[] { "CLRCreateInstanceFnPtr::ppInterface", "CreateInterfaceFnPtr::ppInterface" })
                 StringAssert.Contains(current, callback + "=[ComOutPtr]\n");
             var ancestry = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(),
@@ -83,7 +88,8 @@ namespace ClangSharpSourceToWinmdTests
                         found.Add(selector);
                 }
             }
-            CollectionAssert.AreEquivalent(Selectors, found.ToArray(), "Complete hosting and metadata traversals; callbacks are separate.");
+            CollectionAssert.AreEquivalent(FamilySelectors, found.ToArray(),
+                "One SDK-owned migration and nine unresolved generated-compatibility source boundaries; callbacks are separate.");
 
             static bool Contract(string line) => line.Contains("[ComOutPtr]", StringComparison.Ordinal) ||
                 line.Contains("[Out]", StringComparison.Ordinal) || line.Contains("[CanReturn", StringComparison.Ordinal) ||
@@ -91,7 +97,7 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
-        public void NativeEdits_OnlyChangeTwelveSelectedSalSites()
+        public void NativeEdits_OnlyChangeOneSdkSalSiteAndPreserveGeneratedCompatibilityBytes()
         {
             int sites = 0;
             foreach (var owner in Owners)
@@ -104,29 +110,14 @@ namespace ClangSharpSourceToWinmdTests
                     LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders",
                     owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
             }
-            Assert.AreEqual(12, sites, "Eight function declarations plus both C/C++ copies of both interface methods.");
+            Assert.AreEqual(1, sites, "Only MetaDataGetDispenser has an authoritative selected SDK source.");
         }
 
         internal static string PatchHeader(string path, string text)
         {
-            foreach (string selector in Owners.Single(owner => owner.Path == path).Selectors)
-            {
-                string[] parts = selector.Split("::");
-                if (parts.Length == 2)
-                    text = Regex.Replace(text, FunctionPattern(parts[0]), match => PatchParameter(match.Value, parts.Last()));
-                else
-                    text = Regex.Replace(text, @"#ifndef __" + parts[0] +
-                        @"_INTERFACE_DEFINED__[\s\S]+?#endif\s+/\* __" + parts[0] + @"_INTERFACE_DEFINED__ \*/",
-                        scope => Regex.Replace(scope.Value, @"(?:virtual HRESULT STDMETHODCALLTYPE " + parts[1] +
-                            @"\s*\(|HRESULT\s*\(\s*STDMETHODCALLTYPE\s*\*" + parts[1] + @"\s*\)\s*\()[^;]+;",
-                            match => PatchParameter(match.Value, parts.Last())));
-            }
-            return text;
-
-            static string PatchParameter(string declaration, string parameter) =>
-                Regex.Replace(declaration, @"(?:(?<sal>_Out_|__deref_out)\s+)?(?<type>(?:void|LPVOID)\s*(?:FAR\s*)?\*+\s*\**\s*)" +
-                    Regex.Escape(parameter) + @"\b", match => "_COM_Outptr_" +
-                    (match.Groups["sal"].Success ? match.Value.Substring(match.Groups["sal"].Length) : " " + match.Value));
+            if (path != "winrt/rometadata.h") return text;
+            return Regex.Replace(text, FunctionPattern("MetaDataGetDispenser"),
+                match => match.Value.Replace("__deref_out LPVOID FAR * ppv", "_COM_Outptr_ LPVOID FAR * ppv", StringComparison.Ordinal));
         }
 
         [DataTestMethod]
@@ -156,23 +147,23 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID riid, _COM_Out
 struct IStream : IUnknown {};
 ";
             using var fixture = new LastErrorHeaderTests.Fixture();
-            var remaps = Selectors.ToDictionary(selector => selector,
+            var remaps = FamilySelectors.ToDictionary(selector => selector,
                 selector => selector == CombinedSelector ? "[Out][ComOutPtr]" : "[ComOutPtr]", StringComparer.Ordinal);
             string mappings = string.Join("\n", new[] { "libMappings.rsp", "libMappingsManual.rsp" }
                 .Select(file => File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", file))));
-            string imports = "--with-librarypath\n" + string.Join("\n", Selectors.Where(selector => selector.Split("::").Length == 2)
+            string imports = "--with-librarypath\n" + string.Join("\n", FamilySelectors.Where(selector => selector.Split("::").Length == 2)
                 .Select(selector => mappings.Split('\n').Single(line => line.StartsWith(selector.Split("::")[0] + "=", StringComparison.Ordinal)).Trim()));
             var result = fixture.Scrape(prefix + Declarations(true), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] baseline = File.ReadAllBytes(fixture.Emit(remaps));
             result = fixture.Scrape(prefix + Declarations(false), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            var remaining = new Dictionary<string, string> { [CombinedSelector] = "[Out]" };
+            var remaining = RetainedSelectors.ToDictionary(selector => selector,
+                selector => selector == CombinedSelector ? "[Out][ComOutPtr]" : "[ComOutPtr]", StringComparer.Ordinal);
             string output = fixture.Emit(remaining);
             AssertFinalFacts(output);
             CollectionAssert.AreEqual(baseline, File.ReadAllBytes(output));
             CollectionAssert.AreEqual(baseline, File.ReadAllBytes(fixture.Emit(remaps)));
-            CollectionAssert.AreEqual(baseline, File.ReadAllBytes(fixture.Emit()), "The native SAL also preserves the independent Out fact.");
 
             string Declarations(bool legacy)
             {
@@ -230,7 +221,7 @@ struct IStream : IUnknown {};
                     int start = signature.Offset;
                     ReadType(ref signature);
                     string selector = methodSelector + "::" + reader.GetString(parameter.Name);
-                    if (!Selectors.Contains(selector)) continue;
+                    if (!FamilySelectors.Contains(selector)) continue;
                     Assert.IsTrue(found.Add(selector), selector);
                     Assert.AreEqual(ParameterAttributes.Out, parameter.Attributes, selector);
                     var attributes = parameter.GetCustomAttributes().Select(reader.GetCustomAttribute).ToArray();
@@ -242,7 +233,7 @@ struct IStream : IUnknown {};
                 }
                 Assert.AreEqual(0, signature.RemainingBytes);
             }
-            CollectionAssert.AreEquivalent(Selectors, found.ToArray());
+            CollectionAssert.AreEquivalent(FamilySelectors, found.ToArray());
 
             static void ReadType(ref BlobReader signature)
             {

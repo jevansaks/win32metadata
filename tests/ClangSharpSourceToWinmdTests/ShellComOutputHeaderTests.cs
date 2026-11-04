@@ -70,7 +70,7 @@ namespace ClangSharpSourceToWinmdTests
                 "Retire only the sixteen exact records from the complete remaining corpus.");
             CollectionAssert.AreEqual(ClrComOutputHeaderTests.RetireRecords(original).Split('\n').Where(IndependentContract).ToArray(),
                 current.Split('\n').Where(IndependentContract).ToArray(), "Preserve independent Out and result contracts.");
-            Assert.AreEqual(90, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(99, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
 
             var found = new HashSet<string>(StringComparer.Ordinal);
             var files = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(), "ls-tree", "-r",
