@@ -71,7 +71,8 @@ namespace Windows.Win32.Tests
                     "CoGetInterceptor::ppv", "CoGetInterceptorFromTypeInfo::ppv", "IComTrackingInfoCollection::Item::ppv",
                     "ICreateWithLocalTransaction::CreateInstanceWithSysTx::pObject", "IGetDispenser::GetDispenser::ppvObject",
                     "IObjectContext::CreateInstance::ppv", "IResourceManager::GetDistributedTransactionManager::ppvObject",
-                    "IResourceManagerFactory2::CreateEx::ppvResMgr", "IServicePool::GetObject::ppv", "MTSCreateActivity::ppobj" }),
+                    "IResourceManagerFactory2::CreateEx::ppvResMgr", "IServicePool::GetObject::ppv", "MTSCreateActivity::ppobj",
+                    "MetaDataGetDispenser::ppv" }),
                 ("ReservedAttribute", ParameterAttributes.In | ParameterAttributes.Optional, new[] {
                     "CoAllowSetForegroundWindow::lpvReserved", "CoDisableCallCancellation::pReserved",
                     "CoEnableCallCancellation::pReserved", "CoInitialize::pvReserved", "CoInitializeEx::pvReserved",
@@ -125,7 +126,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(104, checkedSelectors);
+            Assert.Equal(105, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {

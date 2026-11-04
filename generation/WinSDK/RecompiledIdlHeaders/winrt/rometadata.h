@@ -15,7 +15,7 @@
 STDAPI MetaDataGetDispenser(
         __in REFCLSID            rclsid, 
         __in REFIID              riid, 
-        __deref_out LPVOID FAR * ppv);
+        _COM_Outptr_ LPVOID FAR * ppv);
 
 #endif //NTDDI_VERSION >= NTDDI_WIN8
 
