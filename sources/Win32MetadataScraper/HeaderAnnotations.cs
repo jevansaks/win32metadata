@@ -79,6 +79,12 @@ namespace Win32MetadataScraper
                     continue;
 
                 string payload = attribute.Spelling;
+                if (payload.StartsWith(Owner + "AlsoUsableFor", StringComparison.Ordinal))
+                {
+                    if (declaration is not TypedefNameDecl)
+                        throw Error(attribute, "AlsoUsableFor requires a genuine native typedef or alias.");
+                    continue;
+                }
                 if (payload.StartsWith(ProducerAnnotation.Marker, StringComparison.Ordinal))
                 {
                     this.VisitProducer(declaration, attribute);
@@ -108,6 +114,18 @@ namespace Win32MetadataScraper
                 }
                 if (attribute.CursorChildren.Any())
                     throw Error(attribute, $"{payload} accepts no arguments.");
+                if (preserveResult && declaration is TypedefDecl callback)
+                {
+                    if (RemapDiscovery.UnwrapType(callback.UnderlyingType) is not PointerType callbackPointer ||
+                        RemapDiscovery.UnwrapType(callbackPointer.PointeeType) is not FunctionProtoType)
+                        throw Error(attribute, "PreserveResult requires the defining callback typedef, not a scalar or an alias of a callback.");
+                    if (callback.Attrs.Count(a => a.Spelling == payload) != 1)
+                        throw Error(attribute, "Duplicate PreserveResult annotations.");
+                    attribute.Extent.Start.GetExpansionLocation(out _, out _, out _, out uint offset);
+                    if (offset > GetDeclarationStart(callback, attribute))
+                        throw Error(attribute, "PreserveResult must precede the complete callback typedef.");
+                    continue;
+                }
                 if (declaration is not FunctionDecl function || !preserveResult && declaration is CXXMethodDecl || function.HasBody)
                     throw Error(attribute, $"{payload} requires a function or method declaration without a body.");
                 if (preserveResult)
@@ -134,6 +152,9 @@ namespace Win32MetadataScraper
 
             if (declaration is FunctionDecl containingFunction)
                 foreach (var parameter in containingFunction.Parameters)
+                    this.Visit(parameter);
+            if (declaration is TypedefDecl containingCallback)
+                foreach (var parameter in containingCallback.CursorChildren.OfType<ParmVarDecl>())
                     this.Visit(parameter);
         }
 
@@ -468,7 +489,7 @@ namespace Win32MetadataScraper
             }
         }
 
-        private static uint GetDeclarationStart(Decl function, Attr annotation, bool allowMidlVirtual = false)
+        internal static uint GetDeclarationStart(Decl function, Attr annotation, bool allowMidlVirtual = false)
         {
             string name = (function as NamedDecl)?.Name;
             var unit = function.TranslationUnit.Handle;

@@ -15,9 +15,9 @@ namespace ClangSharpSourceToWinmd
     {
         public const string ArgListVarName = "__arglist__";
 
-        public static SyntaxTree CleanSyntaxTree(SyntaxTree tree, Dictionary<string, string> remaps, Dictionary<string, Dictionary<string, string>> enumAdditions, HashSet<string> enumsMakeFlags, Dictionary<string, string> requiredNamespaces, Dictionary<string, string> staticLibs, Dictionary<string, string> apiNamesToNamespaces, HashSet<string> nonEmptyStructs, HashSet<string> enumMemberNames, string filePath, HashSet<string> headerEnumNames = null)
+        public static SyntaxTree CleanSyntaxTree(SyntaxTree tree, Dictionary<string, string> remaps, Dictionary<string, Dictionary<string, string>> enumAdditions, HashSet<string> enumsMakeFlags, Dictionary<string, string> requiredNamespaces, Dictionary<string, string> staticLibs, Dictionary<string, string> apiNamesToNamespaces, HashSet<string> nonEmptyStructs, HashSet<string> enumMemberNames, string filePath, HashSet<string> headerEnumNames = null, IReadOnlyDictionary<string, string> nativeTypedefs = null)
         {
-            TreeRewriter treeRewriter = new TreeRewriter(remaps, enumAdditions, enumsMakeFlags, requiredNamespaces, staticLibs, apiNamesToNamespaces, nonEmptyStructs, enumMemberNames, headerEnumNames);
+            TreeRewriter treeRewriter = new TreeRewriter(remaps, enumAdditions, enumsMakeFlags, requiredNamespaces, staticLibs, apiNamesToNamespaces, nonEmptyStructs, enumMemberNames, headerEnumNames, nativeTypedefs);
             var newRoot = (CSharpSyntaxNode)treeRewriter.Visit(tree.GetRoot());
             var ret = CSharpSyntaxTree.Create(newRoot, null, filePath);
             return ret;
@@ -41,10 +41,11 @@ namespace ClangSharpSourceToWinmd
             private HashSet<string> nonEmptyStructs;
             private HashSet<string> enumMemberNames;
             private readonly HashSet<string> headerEnumNames;
+            private readonly IReadOnlyDictionary<string, string> nativeTypedefs;
             private HashSet<string> enumsToMakeFlags;
             private HashSet<string> usingNamespaces = new HashSet<string>();
 
-            public TreeRewriter(Dictionary<string, string> remaps, Dictionary<string, Dictionary<string, string>> enumAdditions, HashSet<string> enumsToMakeFlags, Dictionary<string, string> requiredNamespaces, Dictionary<string, string> staticLibs, Dictionary<string, string> apiNamesToNamespaces, HashSet<string> nonEmptyStructs, HashSet<string> enumMemberNames, HashSet<string> headerEnumNames)
+            public TreeRewriter(Dictionary<string, string> remaps, Dictionary<string, Dictionary<string, string>> enumAdditions, HashSet<string> enumsToMakeFlags, Dictionary<string, string> requiredNamespaces, Dictionary<string, string> staticLibs, Dictionary<string, string> apiNamesToNamespaces, HashSet<string> nonEmptyStructs, HashSet<string> enumMemberNames, HashSet<string> headerEnumNames, IReadOnlyDictionary<string, string> nativeTypedefs)
             {
                 this.remaps = remaps;
                 this.InitRegexRemaps();
@@ -56,6 +57,7 @@ namespace ClangSharpSourceToWinmd
                 this.nonEmptyStructs = nonEmptyStructs;
                 this.enumMemberNames = enumMemberNames;
                 this.headerEnumNames = headerEnumNames ?? new HashSet<string>(StringComparer.Ordinal);
+                this.nativeTypedefs = nativeTypedefs ?? new Dictionary<string, string>();
                 this.enumsToMakeFlags = enumsToMakeFlags;
             }
 
@@ -204,6 +206,7 @@ namespace ClangSharpSourceToWinmd
                     .Where(payload => payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal) &&
                         payload != ParameterAnnotation.Owner + "SetLastError" &&
                         payload != ParameterAnnotation.Owner + "PreserveResult" &&
+                        !payload.StartsWith(ParameterAnnotation.Owner + "AlsoUsableFor(", StringComparison.Ordinal) &&
                         !payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal) &&
                         !payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
                     .SelectMany(payload => payload == ProducerAnnotation.Marker ? Array.Empty<string>() :
@@ -268,7 +271,8 @@ namespace ClangSharpSourceToWinmd
             public override SyntaxNode VisitStructDeclaration(StructDeclarationSyntax node)
             {
                 // If the struct is empty and we found a non-empty struct in all the source files, delete it
-                if (SyntaxUtils.IsEmptyStruct(node) && this.nonEmptyStructs.Contains(node.Identifier.ValueText))
+                if (SyntaxUtils.IsEmptyStruct(node) && this.nonEmptyStructs.Contains(node.Identifier.ValueText) &&
+                    !node.Modifiers.Any(token => token.IsKind(SyntaxKind.PartialKeyword)))
                 {
                     return null;
                 }
@@ -319,6 +323,19 @@ namespace ClangSharpSourceToWinmd
 
                 if (this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, null, out _, out string newName))
                 {
+                    // Definition-wide documentation belongs to the compiler declaration, not its legacy facts partial.
+                    if (System.IO.Path.GetFileName(node.SyntaxTree.FilePath) == "autotypes.modified.cs" && node.Members.Count == 0 &&
+                        this.nativeTypedefs.ContainsKey(SyntaxUtils.GetEnclosingNamespace(node) + "." + name))
+                        listAttributes?.RemoveAll(attribute => attribute.Name.ToString() is "Documentation" or "DocumentationAttribute");
+                    if (node.SyntaxTree.FilePath.EndsWith(".headerTypedefs.modified.cs", StringComparison.Ordinal))
+                    {
+                        var ownedNames = node.AttributeLists.SelectMany(list => list.Attributes)
+                            .Select(attribute => attribute.Name.ToString())
+                            .Where(name => name is "NativeTypedef" or "AlsoUsableFor").ToArray();
+                        var location = node.GetLocation().GetMappedLineSpan();
+                        VerifyOwnedRemaps($"{location.Path}:{location.StartLinePosition.Line + 1}:{location.StartLinePosition.Character + 1}: {fullName}",
+                            ownedNames, node.AttributeLists, listAttributes);
+                    }
                     node = (StructDeclarationSyntax)base.VisitStructDeclaration(node);
                     node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes));
 
@@ -352,7 +369,15 @@ namespace ClangSharpSourceToWinmd
 
                 string fullName = GetFullNameWithoutArchSuffix(node);
 
+                string nativeStorage = null;
+                if (node.Modifiers.Any(SyntaxKind.ConstKeyword))
+                {
+                    this.TryGetNativeScalarStorage(node.Declaration.Type, out nativeStorage);
+                    node = node.WithDeclaration(this.RewriteNativeScalarConstantCasts(node.Declaration));
+                }
+
                 this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Declaration.Type.ToString(), out string newType, out string newName);
+                newType ??= nativeStorage;
                 string headerType = this.GetHeaderEnumType(node.AttributeLists, node.Declaration.Type.ToString(), fullName);
                 if (headerType != null)
                 {
@@ -481,6 +506,42 @@ namespace ClangSharpSourceToWinmd
                 return node;
             }
 
+            private T RewriteNativeScalarConstantCasts<T>(T node) where T : SyntaxNode
+            {
+                // Native integral casts truncate even without an enclosing C# unchecked expression.
+                return node.ReplaceNodes(node.DescendantNodes().OfType<CastExpressionSyntax>(),
+                    (original, rewritten) => this.TryGetNativeScalarStorage(original.Type, out string storage)
+                        ? SyntaxFactory.CheckedExpression(SyntaxKind.UncheckedExpression,
+                            rewritten.WithType(SyntaxFactory.ParseTypeName(storage)))
+                        : rewritten);
+            }
+
+            private bool TryGetNativeScalarStorage(TypeSyntax type, out string storage)
+            {
+                if (type is PredefinedTypeSyntax || this.nativeTypedefs.Count == 0)
+                {
+                    storage = null;
+                    return false;
+                }
+                string name = type.ToString().Replace("global::", "", StringComparison.Ordinal);
+                bool found = this.nativeTypedefs.TryGetValue(name, out storage) ||
+                    this.nativeTypedefs.TryGetValue(SyntaxUtils.GetEnclosingNamespace(type) + "." + name, out storage) ||
+                    this.requiredNamespaces.TryGetValue(name, out string owner) &&
+                        this.nativeTypedefs.TryGetValue(owner + "." + name, out storage);
+                if (!found)
+                {
+                    var matches = this.usingNamespaces.Select(ns => this.nativeTypedefs.GetValueOrDefault(ns + "." + name))
+                        .Where(value => value != null).ToArray();
+                    if (matches.Length > 1)
+                        throw new FormatException($"{type.GetLocation().GetMappedLineSpan()}: Ambiguous native typedef constant type '{name}'.");
+                    if (matches.Length == 1) storage = matches[0];
+                }
+                if (storage is "sbyte" or "byte" or "short" or "ushort" or "int" or "uint" or "long" or "ulong")
+                    return true;
+                storage = null;
+                return false;
+            }
+
             public override SyntaxNode VisitAttributeList(AttributeListSyntax node)
             {
                 var firstAttr = node.Attributes[0];
@@ -584,14 +645,20 @@ namespace ClangSharpSourceToWinmd
                         {
                             if (payload == ParameterAnnotation.Owner + "SetLastError") return null;
                             if (payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal)) return null;
+                            // Typedef facts are resolved on the compiler-owned nominal declaration, not propagated uses.
+                            if (payload.StartsWith(ParameterAnnotation.Owner + "AlsoUsableFor(", StringComparison.Ordinal)) return null;
                             if (payload == ParameterAnnotation.Owner + "PreserveResult")
                             {
-                                // PInvokeGenerator also carries COM method annotations on its nested vtable delegates.
                                 if (node.Parent is not MethodDeclarationSyntax &&
-                                    !(node.Parent is DelegateDeclarationSyntax && node.Parent.Parent is StructDeclarationSyntax))
+                                    node.Parent is not DelegateDeclarationSyntax)
                                     throw new FormatException($"PreserveResult requires a generated method: {payload}");
+                                // C# delegates have no method attribute target. Keep the existing compiler
+                                // carrier until the emitter writes Invoke, rather than annotating the typedef.
                                 return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
-                                    SyntaxFactory.Attribute(SyntaxFactory.ParseName("PreserveSig"))));
+                                    node.Parent is DelegateDeclarationSyntax ?
+                                        SyntaxFactory.Attribute(SyntaxFactory.ParseName("CppAttributeList"),
+                                            SyntaxFactory.ParseAttributeArgumentList("(\"Win32Metadata.PreserveResult\")")) :
+                                        SyntaxFactory.Attribute(SyntaxFactory.ParseName("PreserveSig"))));
                             }
                             if (payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
                             {
@@ -707,6 +774,9 @@ namespace ClangSharpSourceToWinmd
                 string fullName = GetFullNameWithoutArchSuffix(node);
 
                 this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, string.Empty, out string newType, out string newName);
+
+                if (node.EqualsValue != null)
+                    node = node.WithEqualsValue(this.RewriteNativeScalarConstantCasts(node.EqualsValue));
 
                 node = (EnumMemberDeclarationSyntax)base.VisitEnumMemberDeclaration(node);
                 node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes));

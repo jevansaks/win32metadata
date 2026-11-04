@@ -806,6 +806,11 @@ namespace ClangSharpSourceToWinmd
             var symbol = model.GetDeclaredSymbol(node);
             string fullName = this.GetFullNameForSymbol(symbol);
 
+            if (node.Members.Count == 0 && node.Modifiers.Any(token => token.IsKind(SyntaxKind.PartialKeyword)) &&
+                symbol.DeclaringSyntaxReferences.Select(reference => reference.GetSyntax())
+                    .OfType<StructDeclarationSyntax>().Any(part => part.Members.Count != 0))
+                return;
+
             if (this.namesToTypeDefHandles.ContainsKey(fullName))
             {
                 return;
@@ -1600,11 +1605,14 @@ namespace ClangSharpSourceToWinmd
             firstMethod = ctorMethodDef;
 
             var invokeMethodSymbol = symbol.GetMembers().First(m => m.Name == "Invoke");
+            var invokeAttributes = MethodImplAttributes.Managed | MethodImplAttributes.Runtime;
+            if (symbol.GetAttributes().Any(IsCallbackPreserveResult))
+                invokeAttributes |= MethodImplAttributes.PreserveSig;
 
             this.AddMethodViaSymbol(
                 (IMethodSymbol)invokeMethodSymbol,
                 MethodAttributes.Public | MethodAttributes.NewSlot | MethodAttributes.HideBySig | MethodAttributes.Virtual,
-                MethodImplAttributes.Managed | MethodImplAttributes.Runtime,
+                invokeAttributes,
                 true,
                 false);
 
@@ -1996,6 +2004,8 @@ namespace ClangSharpSourceToWinmd
         {
             foreach (var attributeData in attrs)
             {
+                if (IsCallbackPreserveResult(attributeData))
+                    continue;
                 switch (attributeData.AttributeClass.Name)
                 {
                     case "NativeTypeNameAttribute": // We may want to preserve this for some cases, like to disambiguate handle types
@@ -2016,6 +2026,12 @@ namespace ClangSharpSourceToWinmd
                 this.AddCustomAttribute(attributeData, entityHandle);
             }
         }
+
+        private static bool IsCallbackPreserveResult(AttributeData attribute) =>
+            attribute.AttributeClass.Name == "CppAttributeList" &&
+            attribute.ConstructorArguments.Length == 1 &&
+            attribute.ConstructorArguments[0].Value is string payload &&
+            payload == "Win32Metadata.PreserveResult";
 
         private void AddCustomAttributes(ISymbol symbol, EntityHandle entityHandle)
         {

@@ -1,4 +1,5 @@
 #include <winapifamily.h>
+#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -315,6 +316,7 @@ typedef BCryptBufferDesc* PNCryptBufferDesc;
 
 typedef ULONG_PTR NCRYPT_HANDLE;
 typedef ULONG_PTR NCRYPT_PROV_HANDLE;
+_Win32_AlsoUsableFor_(NCRYPT_HANDLE)
 typedef ULONG_PTR NCRYPT_KEY_HANDLE;
 typedef ULONG_PTR NCRYPT_HASH_HANDLE;
 typedef ULONG_PTR NCRYPT_SECRET_HANDLE;

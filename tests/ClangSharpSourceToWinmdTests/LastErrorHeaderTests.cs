@@ -242,7 +242,7 @@ namespace ClangSharpSourceToWinmdTests
             public (int ExitCode, string Output) Scrape(string header, string target = "x86_64-pc-windows-msvc",
                 bool legacy = false, string? remap = null, bool repeatInclude = false, bool metadata = true, string language = "c++",
                 bool sal = false, bool transitive = false, string extraSettings = "", string? includedHeader = null,
-                string? scraperPath = null, string libraryPath = "test.dll")
+                string? scraperPath = null, string libraryPath = "test.dll", string namespaceName = "Test")
             {
                 if (File.Exists(this.GeneratedSource)) File.Delete(this.GeneratedSource);
                 if (sal)
@@ -274,7 +274,7 @@ namespace ClangSharpSourceToWinmdTests
 --std
 {(language == "c" ? "c17" : "c++17")}
 --namespace
-Test
+{namespaceName}
 --include-directory
 {this.directory}
 --traverse
@@ -302,12 +302,12 @@ generate-cpp-attributes
                 return Run("dotnet", scraper, Path.Combine(this.directory, "remaps.rsp"), "@" + rsp);
             }
 
-            public string Emit(Dictionary<string, string>? memberRemaps = null)
+            public string Emit(Dictionary<string, string>? memberRemaps = null, Dictionary<string, string>? requiredNamespaces = null)
             {
                 var compilation = ClangSharpSourceCompilation.Create(
                     Path.GetDirectoryName(this.GeneratedSource), "crossarch",
                     memberRemaps ?? new Dictionary<string, string>(), new Dictionary<string, Dictionary<string, string>>(),
-                    Array.Empty<string>(), new Dictionary<string, string>(), new Dictionary<string, string>(),
+                    Array.Empty<string>(), new Dictionary<string, string>(), requiredNamespaces ?? new Dictionary<string, string>(),
                     new HashSet<string>(), Array.Empty<string>(), new Dictionary<string, string>(), new Dictionary<string, string>());
                 var errors = compilation.GetDiagnostics().Where(d => d.Severity == DiagnosticSeverity.Error).ToArray();
                 Assert.AreEqual(0, errors.Length, string.Join(Environment.NewLine, errors.Select(d => d.ToString())));

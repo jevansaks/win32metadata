@@ -51,8 +51,7 @@
   {
     "Namespace": "Windows.Win32.Foundation",
     "Name": "HRESULT",
-    "ValueType": "int",
-    "NativeTypedef": true
+    "ValueType": "native"
   },
   {
     "Namespace": "Windows.Win32.Foundation",
@@ -1527,10 +1526,9 @@
   {
     "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "NCRYPT_HANDLE",
-    "ValueType": "UIntPtr",
+    "ValueType": "native",
     "CloseApi": "NCryptFreeObject",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "InvalidHandleValues": [ 0 ]
   },
   {
     "Name": "NCRYPT_PROV_HANDLE",
@@ -1541,12 +1539,11 @@
     "NativeTypedef": true
   },
   {
+    "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "NCRYPT_KEY_HANDLE",
-    "ValueType": "UIntPtr",
+    "ValueType": "native",
     "CloseApi": "NCryptFreeObject",
-    "AlsoUsableFor": "NCRYPT_HANDLE",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "InvalidHandleValues": [ 0 ]
   },
   {
     "Namespace": "Windows.Win32.Security.Cryptography",
