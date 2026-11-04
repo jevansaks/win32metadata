@@ -243,6 +243,7 @@ class Program
             settings["--with-setlasterror"] = lastErrorNames.ToList();
             var supportedAttributes = settings.GetValueOrDefault("--with-attribute") ?? new List<string>();
             annotations.MergeSupportedFunctions(supportedAttributes, mergedRemaps);
+            annotations.MergeProducers(supportedAttributes, mergedRemaps, allExcludes);
             settings["--with-attribute"] = supportedAttributes;
             var libraries = ParseKeyValuePairs(settings.GetValueOrDefault("--with-librarypath"));
             annotations.MergeImportLibraries(libraries, mergedRemaps);

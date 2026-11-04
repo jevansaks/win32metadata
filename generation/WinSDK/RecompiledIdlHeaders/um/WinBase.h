@@ -11,6 +11,7 @@
 ************************************************************************/
 #ifndef _WINBASE_
 #define _WINBASE_
+#include <win32metadata_annotations.h>
 
 
 #if defined(_MSC_VER)
@@ -1232,6 +1233,18 @@ GlobalMemoryStatus(
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+#if defined(WIN32METADATA) && defined(__clang__)
+WINBASEAPI
+_Success_(return==0)
+_Ret_maybenull_
+HLOCAL
+WINAPI
+LocalFree(
+    _Frees_ptr_opt_ HLOCAL hMem
+    );
+#endif
+
+_Win32_RAIIFree_(LocalFree, 0)
 WINBASEAPI
 _Success_(return != NULL)
 _Post_writable_byte_size_(uBytes)

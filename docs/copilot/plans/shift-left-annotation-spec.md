@@ -67,11 +67,17 @@ The next [grouped parameter pilot](../../sdk_parameter_pilot.md) reuses the same
 single-parse/SAL/emission boundaries for one-for-one moves and documents its
 retired selectors, actual SDK owners, native semantic corrections, and exact gaps.
 
-Lifecycle metadata uses one variadic source annotation:
+Lifecycle metadata uses one variadic source annotation. Cleanup identity and invalid
+values are typed Clang AST operands, not a stringified argument list. The reader
+contract is aligned with upstream PR 2402 at
+`db1e3cd9e4ed4fcb872d00af68f6503ea72dbef1`, including the explicitly retained
+`_Win32_RAIIFree_Handle_` shorthand. Only the private shared-header transport differs
+to retain pointer invalid expressions supported by the pinned compiler.
 
 ```cpp
-#define _Win32_RAIIFree_(...) \
-    _WIN32META_ANNOTATION_("RAIIFree(" #__VA_ARGS__ ")")
+#define _Win32_RAIIFree_(cleanup, ...) \
+    _WIN32META_ANNOTATION_("RAIIFree", sizeof(&(cleanup)), sizeof((0, ##__VA_ARGS__)))
+#define _Win32_RAIIFree_Handle_(cleanup) _Win32_RAIIFree_(cleanup, -1, 0)
 ```
 
 The first argument identifies the cleanup function and the optional remaining arguments
@@ -82,11 +88,36 @@ _Win32_RAIIFree_(SysFreeString)
 _Win32_RAIIFree_(CloseHandle, 0, INVALID_HANDLE_VALUE)
 ```
 
-The consumer parses the comma-separated token payload. For each invalid value, it uses
-the declaration's Clang preprocessor context to expand object-like macros and evaluates
-the resulting constant expression. It emits one `RAIIFreeAttribute` plus one
-`InvalidHandleValueAttribute` for each supplied value. An unresolved or non-constant
-value is an error.
+The cleanup operand must reference one native cleanup declaration. The private
+unevaluated `sizeof` list retains each invalid expression in its declaration context:
+Clang rejects pointer sentinels such as `INVALID_HANDLE_VALUE` as direct `annotate`
+constant arguments. The reader walks the original operands and compiler-evaluates
+their integer values, including the integer operand of a pointer cast, using the
+target pointer width. It never uses the numeric result of `sizeof` as cleanup identity
+or as an invalid value.
+
+The current C# reader supports declaration-prefix function/method returns and
+explicitly SAL-annotated output pointers. It emits one `RAIIFreeAttribute` and an
+ordered, repeatable `InvalidHandleValueAttribute(long)` for every authored value at
+that producer site (return sequence zero, or the actual output parameter). An empty
+value list emits no invalid values. The shorthand emits exactly `-1, 0`.
+Unannotated and borrowed returns remain unowned.
+
+Cleanup must be a declared non-member, non-variadic function accepting exactly the
+produced canonical resource type; integer and non-callback pointer resources are
+supported. Wrong sites, placement, bodies, duplicates/conflicts, unresolved/excluded
+or incompatible cleanup declarations, unsupported overloads, and late-only
+redeclarations are source-located errors. Invalid expressions must be compiler
+integer constants of at most 64 bits, or integer-to-pointer casts with supported
+integer operands. Floating values, addresses/pointer arithmetic, nonconstant values,
+and unsigned integers beyond `Int64.MaxValue` are diagnosed. Pointer casts preserve
+target-width bits: `(HANDLE)0xffffffffUL` is `-1` on x86 and `4294967295` on x64/ARM64.
+Matching legacy facts are accepted once; conflicting cleanup/value groups cannot
+replace native facts. No additional TU parse or public helper vocabulary is used.
+
+`InvalidHandleValueAttribute` now applies to parameters and return values as well as
+legacy structs. Legacy type-level ownership records are not a statement of the
+source contract and are not globally retired by this capability layer.
 
 windows-rs enables `WIN32METADATA` while scraping annotated headers. Unknown,
 malformed, valued-versus-valueless, and incorrectly placed annotations are errors with

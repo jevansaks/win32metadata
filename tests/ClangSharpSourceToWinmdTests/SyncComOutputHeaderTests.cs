@@ -50,7 +50,7 @@ namespace ClangSharpSourceToWinmdTests
         {
             foreach (string selector in Selectors)
                 text = text.Replace(selector + "=[ComOutPtr]\n", "", StringComparison.Ordinal);
-            return text;
+            return HandleProducerSdkTests.ApplySidecarDelta(text);
         }
 
         [TestMethod]
