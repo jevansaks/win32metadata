@@ -184,6 +184,8 @@ class Program
             var annotations = new HeaderAnnotations();
             var nativeTypedefs = new NativeTypedefs();
             var emittedEnumNames = new HashSet<string>(StringComparer.Ordinal);
+            var emittedNativeEnums = new HashSet<string>(StringComparer.Ordinal);
+            var emittedNativeConstants = new HashSet<string>(StringComparer.Ordinal);
             var traversalNames = new HashSet<string>(
                 (settings.GetValueOrDefault("--traverse") ?? new List<string>()).Select(Path.GetFullPath),
                 StringComparer.OrdinalIgnoreCase);
@@ -192,6 +194,16 @@ class Program
             {
                 annotations.Visit(declaration);
                 nativeTypedefs.Visit(declaration);
+                if (declaration is EnumDecl || declaration is VarDecl)
+                {
+                    declaration.Location.GetPresumedLocation(out var fileName, out _, out _);
+                    if (traversalNames.Count == 0 || fileName.ToString().Length != 0 &&
+                        traversalNames.Contains(Path.GetFullPath(fileName.ToString())))
+                    {
+                        if (declaration is EnumDecl enumeration) emittedNativeEnums.Add(enumeration.Name);
+                        else emittedNativeConstants.Add(((VarDecl)declaration).Name);
+                    }
+                }
                 if (declaration is TypedefDecl group && annotations.EnumGroups.ContainsKey(group.Name))
                 {
                     group.Location.GetPresumedLocation(out var fileName, out _, out _);
@@ -306,21 +318,41 @@ class Program
                     {
                         var group = annotations.EnumGroups[name];
                         group.@namespace = ns;
-                        writer.AddEnum(group);
+                        writer.AddEnum(group, annotations.AssociatedConstants.GetValueOrDefault(name));
                     }
-            string constantsOutput = Path.ChangeExtension(outputFile, ".headerConstants.cs");
-            if (File.Exists(constantsOutput)) File.Delete(constantsOutput);
-            if (emittedEnumNames.Count != 0)
-            {
+                string constantsOutput = Path.ChangeExtension(outputFile, ".headerConstants.cs");
+                if (File.Exists(constantsOutput)) File.Delete(constantsOutput);
+                var constantNames = emittedEnumNames.SelectMany(name => annotations.EnumGroups[name].members)
+                    .Select(member => member.name)
+                    .Distinct(StringComparer.Ordinal).OrderBy(name => name, StringComparer.Ordinal).ToArray();
+                if (constantNames.Length != 0)
+                {
                     using var stream = File.Create(constantsOutput);
                     using var writer = new MetadataUtils.ConstantWriter(stream, ns, "using System;", new Dictionary<string, string>());
-                    foreach (string name in emittedEnumNames.SelectMany(name => annotations.EnumGroups[name].members)
-                        .Select(member => member.name).Distinct(StringComparer.Ordinal).OrderBy(name => name, StringComparer.Ordinal))
+                    foreach (string name in constantNames)
                     {
                         var constant = annotations.EnumConstants[name];
                         writer.AddValue(constant.Type, name, constant.Value);
                     }
-            }
+                }
+
+                string globalsOutput = Path.ChangeExtension(outputFile, ".headerGlobals.cs");
+                if (File.Exists(globalsOutput)) File.Delete(globalsOutput);
+                var globalNames = emittedEnumNames.Concat(emittedNativeEnums)
+                    .Where(annotations.AssociatedConstants.ContainsKey)
+                    .SelectMany(name => annotations.AssociatedConstants[name])
+                    .Where(name => !emittedNativeConstants.Contains(name))
+                    .Distinct(StringComparer.Ordinal).OrderBy(name => name, StringComparer.Ordinal).ToArray();
+                if (globalNames.Length != 0)
+                {
+                    using var stream = File.Create(globalsOutput);
+                    using var writer = new MetadataUtils.ConstantWriter(stream, ns, "using System;", new Dictionary<string, string>());
+                    foreach (string name in globalNames)
+                    {
+                        var constant = annotations.EnumConstants[name];
+                        writer.AddValue(constant.Type, name, constant.Value);
+                    }
+                }
 
                 // Write diagnostics
                 foreach (var diag in generator.Diagnostics)

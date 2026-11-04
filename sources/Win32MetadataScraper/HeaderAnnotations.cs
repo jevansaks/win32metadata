@@ -17,6 +17,8 @@ namespace Win32MetadataScraper
         private readonly HashSet<string> nativeEnums = new(StringComparer.Ordinal);
         public Dictionary<string, EnumObject> EnumGroups { get; } = new(StringComparer.Ordinal);
         public Dictionary<string, (string Type, string Value)> EnumConstants { get; } = new(StringComparer.Ordinal);
+        public Dictionary<string, List<string>> AssociatedConstants { get; } = new(StringComparer.Ordinal);
+        private readonly List<(Decl Declaration, Attr Attribute, string Name)> constantAssociations = new();
         private readonly Dictionary<string, ClangSharp.Type> enumStorage = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (string Version, Attr Attribute)> supportedFunctions = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (string Module, Attr Attribute)> importLibraries = new(StringComparer.Ordinal);
@@ -31,7 +33,11 @@ namespace Win32MetadataScraper
             foreach (var carrier in this.carriers) excludes.Add(carrier.Declaration.Name);
             foreach (var fact in this.nativeFacts)
                 foreach (string payload in fact.Value.Payloads)
-                    attributes.Add(fact.Key + "=" + payload);
+                {
+                    string attribute = fact.Key + "=" + payload;
+                    if (fact.Value.Target is not EnumDecl || !attributes.Contains(attribute, StringComparer.Ordinal))
+                        attributes.Add(attribute);
+                }
         }
 
         public void ResolveCarriers()
@@ -177,7 +183,15 @@ namespace Win32MetadataScraper
                     this.functionDeclarations.Add(name, declarations = new HashSet<FunctionDecl>());
                 declarations.Add(declaredFunction.CanonicalDecl);
             }
-            if (declaration is EnumDecl nativeEnum) this.nativeEnums.Add(nativeEnum.Name);
+            if (declaration is EnumDecl nativeEnum)
+            {
+                this.nativeEnums.Add(nativeEnum.Name);
+                if (nativeEnum.Name.Length != 0 && nativeEnum.IsScoped)
+                    this.AddNativeFact(nativeEnum.CanonicalDecl, "ScopedEnum", selector: QualifiedName(nativeEnum));
+                if (nativeEnum.Name.Length != 0 &&
+                    nativeEnum.Attrs.Any(attribute => attribute.Kind == CX_AttrKind.CX_AttrKind_FlagEnum))
+                    this.AddNativeFact(nativeEnum.CanonicalDecl, "Flags", selector: QualifiedName(nativeEnum));
+            }
             if (declaration is TypedefDecl alias && alias.UnderlyingType.CanonicalType is EnumType)
                 this.nativeEnums.Add(alias.Name);
             uint? declarationStart = null;
@@ -188,6 +202,11 @@ namespace Win32MetadataScraper
                     continue;
 
                 string payload = attribute.Spelling;
+                if (payload.StartsWith(AssociatedConstantAnnotation.Prefix, StringComparison.Ordinal))
+                {
+                    this.VisitAssociatedConstant(declaration, attribute);
+                    continue;
+                }
                 if (payload.StartsWith(Owner + "AlsoUsableFor", StringComparison.Ordinal))
                 {
                     if (declaration is not TypedefNameDecl)
@@ -371,6 +390,55 @@ namespace Win32MetadataScraper
                     GetIntegerStorage(storage, association.Attribute) != GetIntegerStorage(association.Storage, association.Attribute)))
                     throw Error(association.Attribute, $"AssociatedEnum storage conflicts with enum group '{association.EnumName}'.");
             }
+            foreach (var association in this.constantAssociations)
+            {
+                if (association.Declaration is not EnumDecl &&
+                    (association.Declaration is not TypedefDecl alias || !this.EnumGroups.ContainsKey(alias.Name)))
+                    throw Error(association.Attribute, "AssociatedConstant requires a native enum or metadata-only enum group.");
+                string name = ((NamedDecl)association.Declaration).Name;
+                if (this.EnumGroups.Values.Any(group => group.members.Any(member => member.name == association.Name)))
+                    throw Error(association.Attribute, $"AssociatedConstant '{association.Name}' must remain a loose global constant, not an enum group member.");
+                if (!this.AssociatedConstants.TryGetValue(name, out var names))
+                    this.AssociatedConstants.Add(name, names = new List<string>());
+                if (names.Contains(association.Name, StringComparer.Ordinal))
+                    throw Error(association.Attribute, $"Duplicate AssociatedConstant '{association.Name}' on '{name}'.");
+                names.Add(association.Name);
+            }
+        }
+
+        private void VisitAssociatedConstant(Decl declaration, Attr attribute)
+        {
+            if (this.constantAssociations.Any(association =>
+                association.Declaration.CanonicalDecl == declaration.CanonicalDecl &&
+                association.Attribute.Extent.Equals(attribute.Extent)))
+                return;
+            string name;
+            try { name = AssociatedConstantAnnotation.Parse(attribute.Spelling); }
+            catch (FormatException error) { throw Error(attribute, error.Message); }
+            var arguments = attribute.CursorChildren.ToArray();
+            if (arguments.Length != 1)
+                throw Error(attribute, "AssociatedConstant requires one compiler-evaluated loose constant.");
+            Cursor expression = arguments[0];
+            while (expression is ParenExpr || expression is CastExpr)
+                expression = expression is ParenExpr parenthesized ? parenthesized.SubExpr : ((CastExpr)expression).SubExpr;
+            if (expression is DeclRefExpr reference && reference.Decl is EnumConstantDecl member && member.Name == name)
+                throw Error(attribute, "AssociatedConstant requires a loose global constant, not an existing enumerator.");
+            this.AddEnumConstant(name, arguments[0], attribute);
+            this.constantAssociations.Add((declaration, attribute, name));
+        }
+
+        private ulong AddEnumConstant(string name, Cursor argument, Attr attribute)
+        {
+            using var value = argument.Handle.Evaluate;
+            if (value.Kind != CXEvalResultKind.CXEval_Int || argument is not Expr expression)
+                throw Error(attribute, $"Enum constituent '{name}' is not a supported integer constant expression.");
+            ulong bits = value.IsUnsignedInt ? value.AsUnsigned : unchecked((ulong)value.AsLongLong);
+            string type = GetIntegerStorage(expression.Type.CanonicalType, attribute);
+            var constant = (Type: type, Value: FormatInteger(bits, type));
+            if (this.EnumConstants.TryGetValue(name, out var existing) && existing != constant)
+                throw Error(attribute, $"Conflicting native values for enum constituent '{name}'.");
+            this.EnumConstants[name] = constant;
+            return bits;
         }
 
         private void VisitProducer(Decl declaration, Attr attribute, bool transported = false)
@@ -587,17 +655,9 @@ namespace Win32MetadataScraper
             var group = new EnumObject { name = alias.Name, type = type, flags = match.Groups[1].Value == "FlagsEnum" };
             for (int i = 0; i < names.Length; i++)
             {
-                using var value = arguments[i].Handle.Evaluate;
-                if (value.Kind != CXEvalResultKind.CXEval_Int || arguments[i] is not Expr expression)
-                    throw Error(attribute, $"Enum constituent '{names[i]}' is not a supported integer constant expression.");
-                ulong bits = value.IsUnsignedInt ? value.AsUnsigned : unchecked((ulong)value.AsLongLong);
                 // Keep the compiler-typed constituent available to dependent constants.
                 // The projected enum independently converts it to its authored storage.
-                string constantType = GetIntegerStorage(expression.Type.CanonicalType, attribute);
-                var constant = (Type: constantType, Value: FormatInteger(bits, constantType));
-                if (this.EnumConstants.TryGetValue(names[i], out var existing) && existing != constant)
-                    throw Error(attribute, $"Conflicting native values for enum constituent '{names[i]}'.");
-                this.EnumConstants[names[i]] = constant;
+                ulong bits = this.AddEnumConstant(names[i], arguments[i], attribute);
                 group.members.Add(new EnumObject.Member { name = names[i], value = FormatInteger(bits, type) });
             }
             if (this.EnumGroups.ContainsKey(alias.Name))
@@ -685,11 +745,13 @@ namespace Win32MetadataScraper
                 ClangSharp.Type storage = declaration is ParmVarDecl enumParameter ?
                     enumParameter.Type.CanonicalType : declaration is FieldDecl enumField ?
                     enumField.Type.CanonicalType : ((FunctionDecl)declaration).ReturnType.CanonicalType;
-                if (storage is PointerType pointer) storage = pointer.PointeeType.CanonicalType;
-                if (storage is not EnumType && (storage is not BuiltinType ||
+                while (storage is PointerType pointer) storage = pointer.PointeeType.CanonicalType;
+                if (storage is EnumType)
+                    throw Error(attribute, "AssociatedEnum is redundant on a genuinely enum-typed declaration.");
+                if (storage is not BuiltinType ||
                     storage.Kind < CXTypeKind.CXType_Bool || storage.Kind > CXTypeKind.CXType_UInt128 &&
-                    (storage.Kind < CXTypeKind.CXType_Char_S || storage.Kind > CXTypeKind.CXType_Int128)))
-                    throw Error(attribute, "AssociatedEnum requires integer or native enum storage, optionally through one pointer.");
+                    (storage.Kind < CXTypeKind.CXType_Char_S || storage.Kind > CXTypeKind.CXType_Int128))
+                    throw Error(attribute, "AssociatedEnum requires integer or native enum storage, optionally through pointers.");
                 this.enumAssociations.Add((attribute, annotation.EnumName, storage));
             }
         }

@@ -1,5 +1,62 @@
 # SDK header patches
 
+## Bounded enum associations and native-fidelity capability
+
+The enum follow-up completes reader behavior, not a bulk SDK migration.
+`_Win32_AssociatedConstant_(NAME)` precedes a metadata-only group helper or
+attaches to a native enum declaration. Distinct names are repeatable; the same
+loose constant may be associated with related enums without becoming a member
+of either. Its original global spelling, compiler-evaluated value, integer
+width and signedness survive. Existing native constant declarations remain
+the emitted owner; macro-only globals use the existing constant writer.
+Group backing constants remain separate from emitted loose globals.
+Duplicate/malformed associations, wrong targets, unresolved/noninteger values,
+and associations that would consume an existing enumerator/group member fail
+with native source locations. No original SDK macro is replaced or undefined.
+
+The existing `_Win32_Enum_` / `_Win32_FlagsEnum_` helpers, unscoped complete
+member names, shared constituents, and parameter/return handling are retained.
+Genuine compiler `enum class` and `flag_enum` facts now reach the existing
+`ScopedEnum` and `Flags` attributes; synthetic groups do not become scoped.
+Fields now have the same legacy conflict protection as parameters/returns.
+Associations through multiple pointer levels retain the native storage and
+pointer depth. An existing native
+enum-typed declaration must not redundantly request `AssociatedEnum`; an
+integer typedef is not equivalent to that enum. A configured type-changing
+legacy remap cannot override a native association's storage. Matching native
+and legacy associations collapse without duplicates. Repeated legacy
+`AssociatedConstant` attributes now all survive instead of retaining only the
+last one.
+
+Focused proofs use SDK 10.0.28000.2705 inputs:
+
+| Proof | Owning native inputs and final assertions |
+|---|---|
+| Loose service constant | Actual `winsvc.h` `SERVICE_NO_CHANGE` and `winnt.h` start/error macros; two related unscoped groups, one global UInt32 sentinel, complete original names/values, and matching legacy association attributes |
+| Existing VARTYPE field | Original `oaidl.Idl` regenerated with and without a separate pre-MIDL `TYPEDESC::vt` carrier; native union/field declaration bytes unchanged; final field remains UInt16 with `AssociatedEnum("VARENUM")`, while native VARENUM storage remains Int32 |
+| Compiler integer facts | SDK `MAXLONGLONG`, high-bit UInt32/UInt64 values and a native truncating Int16 cast; exact final Constant-table types and bits |
+| Native deprecation/layout | Actual native `PACKEDEVENTINFO` deprecation reaches `Obsolete`; ordinary-neighbor absence and native pack(1) field order/storage are asserted without new annotations or layout reconstruction |
+| Native no-op/ABI | MSVC C/C++ x86/x64/ARM64 COFF equality excluding timestamps, typed native signatures, actual TYPEDESC size/field width, ordinary Clang helper absence, and transitive/repeated inclusion |
+| Native enum facts | Direct compiler scope/flag attributes, including tagged/forward declarations; matching/legacy-only final metadata, conflict diagnostics, ordinary/anonymous enums, and unchanged unscoped synthetic groups |
+
+Final WinMD readback covers x86, x64 and ARM64, including header-only without
+legacy input, legacy-only compatibility, matching/conflicting/malformed
+forms and absence. Matching legacy input is byte-identical to header-only
+output. The isolated legacy-only repeated-constant fixture also compares
+complete decompiled declarations; PE row ordering can differ when a global
+comes from the legacy scraper rather than the compiler-backed source.
+The SDK service groups are minimized capability pilots, not production
+namespace/ownership migrations. Production SDK patches, enum JSON, emitter
+sidecars, include closures and namespace maps are unchanged. No broad
+VARTYPE replacement or availability behavior is introduced. Existing native
+constant, deprecation and layout consumers receive proof rather than an
+unrelated rewrite. These local fixtures do not qualify a full production
+candidate or supersede ordinary CI/API comparison.
+Native `ScopedEnum`/`Flags` emission is an intentional compiler-fact output
+correction, distinct from moving equivalent association facts to headers.
+Its full SDK impact must be measured by the ordinary production API comparison;
+the minimized proofs are not an assertion of an empty SDK diff.
+
 ## SAL and MIDL reader capability
 
 This reader layer consumes structured native `[retval]` comments on their
