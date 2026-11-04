@@ -2,12 +2,13 @@
 
 ## Audio, DirectShow graphs, KS topology and media-reader outputs
 
-This layer audits all **90** parent `ComOutPtr` records against the complete
+This layer audits all **99** parent `ComOutPtr` records against the complete
 physical traversals of `Audio`, `Audio.DirectSound`, `Audio.Endpoints`,
 `Media.DShow`, `Media.DShow.Xml`, `Media.DxMediaObjects`,
 `Media.KernelStreaming` and `WmFormat`. The complete selected family contains
 **11 facts**, all complete retirements: **0 partial records, 0 retained
-boundaries**, leaving **79** active `ComOutPtr` records.
+boundaries**, leaving **88** active `ComOutPtr` records. The nine unresolved CLR
+compatibility records restored by the parent remain unchanged and sidecar-owned.
 
 | Owning native input | Exact migrated selectors |
 |---|---|
@@ -39,8 +40,8 @@ existing `_In_` input annotations along with the new output annotation, so
 normal conversion does not lose either input fact. All legacy IDL bytes,
 line endings and trailing blank lines are preserved.
 
-`AudioComOutputHeaderTests` uses reachable immutable SDK ancestor
-`c16762d41f1bd641ff8c4389ebf16ee50747129f`. It audits the entire remaining
+`AudioComOutputHeaderTests` resolves the unique reachable fixture-introduction
+parent, without mutable SHA pins or fallbacks. It audits the entire remaining
 inventory, permits only exact selected native edits, and compares original
 native plus legacy sidecars against patched-header-only **final winmd bytes**
 on x86/x64/arm64. Independent checks cover exact `void**` shape, output and
@@ -51,7 +52,9 @@ Adding redundant legacy records also preserves every byte.
 applies all nine actual patches, converts the bounded 33-IDL include/import
 closure, regenerates all six complete headers with production MIDL options,
 checks every output byte and passes the replay through final emission on all
-three targets. Native fixtures compile all complete owners in C/C++ on
+three targets. Patch validation uses the complete SDK MIDL input root, verifies
+each selected queued/direct owner, and rejects header patches on all six actual
+generated outputs. Native fixtures compile all complete owners in C/C++ on
 x86/x64/arm64 in audio-first and Windows-first include orders, call all selected
 and inherited sites, and compare original/patched/`WIN32METADATA` object bytes
 except the COFF timestamp. The unrelated `__STREAMS__` section of `ksproxy.h`

@@ -1434,12 +1434,22 @@ namespace ClangSharpSourceToWinmdTests
             string sdk = LastErrorHeaderTests.SdkPackagePath();
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
+            var ownership = fixture.Run("$outputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) +
+                " -HeaderRoot " + Quote(include) + "); " +
+                "foreach ($header in 'um/mmdeviceapi.h','um/Audioclient.h','um/devicetopology.h'," +
+                "'um/strmif.h','um/vidcap.h','um/wmsdkidl.h') { " +
+                "if (@($outputs | Where-Object Header -ieq $header).Count -ne 1) { throw \"Missing production MIDL owner: $header\" } }; " +
+                "foreach ($header in 'um/dsound.h','shared/ksproxy.h') { " +
+                "if ($outputs.Header -icontains $header) { throw \"Direct owner is queued: $header\" }; " +
+                "if (Select-String -LiteralPath (Join-Path " + Quote(include) + " $header) " +
+                "-SimpleMatch 'File created by MIDL compiler' -Quiet) { throw \"Direct owner is generated: $header\" } }");
+            Assert.AreEqual(0, ownership.ExitCode, ownership.Output);
             foreach (string path in AudioComOutputHeaderTests.Idls.Select(name => "um/" + name)
                 .Concat(new[] { "um/dsound.h", "shared/ksproxy.h" }))
             {
                 byte[] original = File.ReadAllBytes(Path.Combine(include, path.Replace('/', Path.DirectorySeparatorChar)));
-                CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
-                    "RecompiledIdlHeaders/" + path), original, "Immutable ancestor matches selected SDK: " + path);
+                CollectionAssert.AreEqual(AudioComOutputHeaderTests.ReadOriginalBytes(
+                    "RecompiledIdlHeaders/" + path), original, "Reachable fixture introduction parent matches selected SDK: " + path);
                 string destination = Path.Combine(fixture.Headers, path.Replace('/', Path.DirectorySeparatorChar));
                 Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
                 File.WriteAllBytes(destination, original);
@@ -1448,8 +1458,23 @@ namespace ClangSharpSourceToWinmdTests
                 Assert.IsFalse(File.Exists(Path.Combine(include, absent.Replace('/', Path.DirectorySeparatorChar))));
             string selection = string.Join("','", AudioComOutputHeaderTests.Idls.Select(name => "pre-midl/" + name + ".patch")
                 .Concat(new[] { "post-midl/dsound.h.patch", "post-midl/ksproxy.h.patch" }));
-            fixture.Apply("pre-midl", selection, true, patchRoot: patches);
-            fixture.Apply("post-midl", selection, true, patchRoot: patches);
+            foreach (var owner in AudioComOutputHeaderTests.Owners.Where(owner =>
+                owner.Path != "um/dsound.h" && owner.Path != "shared/ksproxy.h"))
+            {
+                string file = Path.GetFileName(owner.Path);
+                byte[] original = File.ReadAllBytes(Path.Combine(include, owner.Path.Replace('/', Path.DirectorySeparatorChar)));
+                string destination = fixture.Header(file, original);
+                fixture.Patch("post-midl/" + file + ".patch", owner.Path);
+                var rejection = fixture.Run("& " + Quote(Script("ApplySDKPatches.ps1")) +
+                    " -Phase post-midl -HeaderRoot " + Quote(fixture.Headers) +
+                    " -SdkVersion " + Quote(Version) + " -PatchRoot " + Quote(fixture.Patches) +
+                    " -MidlInputRoot " + Quote(include) + " -SelectedPatches " + Quote("post-midl/" + file + ".patch"));
+                Assert.AreNotEqual(0, rejection.ExitCode, owner.Path);
+                StringAssert.Contains(rejection.Output, "targets regenerated header " + owner.Path);
+                CollectionAssert.AreEqual(original, File.ReadAllBytes(destination), "Rejected output patch must leave native bytes unchanged.");
+            }
+            fixture.Apply("pre-midl", selection, true, patchRoot: patches, midlInputRoot: include);
+            fixture.Apply("post-midl", selection, true, patchRoot: patches, midlInputRoot: include);
             foreach (string idl in AudioComOutputHeaderTests.Idls)
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", idl)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", idl)), idl);
@@ -1517,7 +1542,7 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             foreach (var owner in AudioComOutputHeaderTests.Owners)
-                fixture.Header(Path.GetFileName(owner.Path), PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path));
+                fixture.Header(Path.GetFileName(owner.Path), AudioComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
                 "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));

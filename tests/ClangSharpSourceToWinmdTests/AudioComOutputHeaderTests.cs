@@ -14,6 +14,23 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class AudioComOutputHeaderTests
     {
+        internal static string PreRetirementCommit(string root)
+        {
+            var introduction = LastErrorHeaderTests.Run("git", "-C", root, "log", "--diff-filter=A",
+                "--format=%H", "HEAD", "--", "tests/ClangSharpSourceToWinmdTests/AudioComOutputHeaderTests.cs");
+            Assert.AreEqual(0, introduction.ExitCode, introduction.Output);
+            string[] commits = introduction.Output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(1, commits.Length, "Expected one reachable introduction of the audio output migration fixture.");
+            var parent = LastErrorHeaderTests.Run("git", "-C", root, "rev-parse", commits[0] + "^");
+            Assert.AreEqual(0, parent.ExitCode, parent.Output);
+            return parent.Output.Trim();
+        }
+
+        internal static byte[] ReadOriginalBytes(string path) => PropertyComOutputHeaderTests.ReadOriginalBytes(
+            path, PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot()));
+
+        internal static string ReadOriginal(string path) => Encoding.Latin1.GetString(ReadOriginalBytes(path));
+
         internal static readonly (string Path, string[] Selectors)[] Owners =
         {
             ("um/mmdeviceapi.h", new[] { "IMMDevice::Activate::ppInterface" }),
@@ -39,30 +56,25 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
-        public void CompleteTraversal_AuditsAllNinetyParentRecordsAndPreservesIndependentFacts()
+        public void CompleteTraversal_AuditsAllNinetyNineParentRecordsAndPreservesIndependentFacts()
         {
-            string ancestor = PropertyComOutputHeaderTests.ReadOriginal("emitter.settings.rsp").Replace("\r\n", "\n");
-            string[] previous = PropertyComOutputHeaderTests.PilotSelectors.Concat(ComOutputHeaderTests.Selectors)
-                .Concat(UrlMonComOutputHeaderTests.Selectors).Concat(ShellItemComOutputHeaderTests.Selectors)
-                .Concat(PropertyComOutputHeaderTests.Selectors).Concat(ShellComOutputHeaderTests.Selectors).ToArray();
-            string parent = ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(
-                MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(
-                    string.Join("\n", ancestor.Split('\n').Where(line => !previous.Any(selector => line == selector + "=[ComOutPtr]")))))));
+            string parent = ReadOriginal("emitter.settings.rsp").Replace("\r\n", "\n");
             string[] records = parent.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray();
-            Assert.AreEqual(90, records.Length);
+            Assert.AreEqual(99, records.Length);
             Assert.AreEqual(11, Selectors.Length);
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
+            Assert.AreEqual(RetireRecords(parent), current, "Preserve the complete independent sidecar exactly.");
             CollectionAssert.AreEqual(RetireRecords(parent).Split('\n').Where(Contract).ToArray(),
                 current.Split('\n').Where(Contract).ToArray());
-            Assert.AreEqual(79, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(88, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
             var ancestry = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(),
-                "merge-base", "--is-ancestor", PropertyComOutputHeaderTests.SdkAncestor, "HEAD");
+                "merge-base", "--is-ancestor", PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot()), "HEAD");
             Assert.AreEqual(0, ancestry.ExitCode, ancestry.Output);
             var inventory = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(), "ls-tree", "-r",
-                "--name-only", PropertyComOutputHeaderTests.SdkAncestor, "--", "generation/WinSDK/RecompiledIdlHeaders");
+                "--name-only", PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot()), "--", "generation/WinSDK/RecompiledIdlHeaders");
             Assert.AreEqual(0, inventory.ExitCode, inventory.Output);
             var paths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (string partition in new[] { "Audio", "Audio.DirectSound", "Audio.Endpoints", "Media.DShow",
@@ -76,7 +88,7 @@ namespace ClangSharpSourceToWinmdTests
             var found = new HashSet<string>(StringComparer.Ordinal);
             foreach (string path in paths)
             {
-                string text = PropertyComOutputHeaderTests.ReadOriginal(path.Substring("generation/WinSDK/".Length));
+                string text = ReadOriginal(path.Substring("generation/WinSDK/".Length));
                 foreach (string record in records)
                 {
                     string selector = record.Split('=')[0];
@@ -101,7 +113,7 @@ namespace ClangSharpSourceToWinmdTests
             int sites = 0;
             foreach (var owner in Owners)
             {
-                byte[] original = PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path);
+                byte[] original = ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path);
                 string before = Encoding.Latin1.GetString(original);
                 string after = PatchHeader(owner.Path, before);
                 sites += Regex.Matches(after, "_COM_Outptr_").Count - Regex.Matches(before, "_COM_Outptr_").Count;
@@ -112,7 +124,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(21, sites, "Both guarded materializations and inherited IAudioClient2/3 C entries.");
             foreach (string idl in Idls)
                 CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchIdl(idl, Encoding.Latin1.GetString(
-                    PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)))),
+                    ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)))),
                     File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
                         "RecompiledIdlHeaders", "um", idl)), idl);
         }
@@ -202,7 +214,7 @@ struct IBaseFilter : IUnknown {};
                 string declarations = "";
                 foreach (var owner in Owners)
                 {
-                    string text = legacy ? PropertyComOutputHeaderTests.ReadOriginal("RecompiledIdlHeaders/" + owner.Path) :
+                    string text = legacy ? ReadOriginal("RecompiledIdlHeaders/" + owner.Path) :
                         File.ReadAllText(Path.Combine(headers, owner.Path.Replace('/', Path.DirectorySeparatorChar)));
                     foreach (var group in owner.Selectors.GroupBy(selector => selector.Split("::")[0]))
                     {
