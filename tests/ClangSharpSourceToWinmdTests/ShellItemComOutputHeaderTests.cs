@@ -201,9 +201,12 @@ struct IDataObject : IUnknown {};
             var result = fixture.Scrape(prefix + Declarations(legacy: true), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] expected = File.ReadAllBytes(fixture.Emit(remaps));
+            Console.WriteLine("RAW_OUTPUT shell-item-final." + target + ".legacy.winmd " + Convert.ToBase64String(expected));
             result = fixture.Scrape(prefix + Declarations(legacy: false), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT shell-item-final." + target + ".production.winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
             AssertFinalFacts(output);
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)));

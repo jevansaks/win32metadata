@@ -256,9 +256,12 @@ struct IDirect3DDevice9 : IUnknown {};
             var result = fixture.Scrape(prefix + Declarations(true), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] baseline = File.ReadAllBytes(fixture.Emit(remaps));
+            Console.WriteLine("RAW_OUTPUT mf-final." + target + ".legacy.winmd " + Convert.ToBase64String(baseline));
             result = fixture.Scrape(prefix + Declarations(false), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT mf-final." + target + ".production.winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
             AssertFinalFacts(output);
             CollectionAssert.AreEqual(baseline, File.ReadAllBytes(output));
             CollectionAssert.AreEqual(baseline, File.ReadAllBytes(fixture.Emit(remaps)));

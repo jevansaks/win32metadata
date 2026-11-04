@@ -47,6 +47,8 @@ namespace ClangSharpSourceToWinmdTests
 typedef long HRESULT;
 typedef unsigned short WORD;
 typedef unsigned long DWORD;
+typedef unsigned long ULONG;
+typedef void* PVOID;
 typedef unsigned long long UINT64;
 typedef unsigned char BYTE;
 typedef unsigned short* BSTR;

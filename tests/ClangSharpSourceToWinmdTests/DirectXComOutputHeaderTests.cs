@@ -323,9 +323,12 @@ struct D2D1_FACTORY_OPTIONS { int debugLevel; };
             var result = fixture.Scrape(prefix + Declarations(true), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] expected = File.ReadAllBytes(fixture.Emit(remaps));
+            Console.WriteLine("RAW_OUTPUT directx-final." + target + ".legacy.winmd " + Convert.ToBase64String(expected));
             result = fixture.Scrape(prefix + Declarations(false), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit(representation);
+            Console.WriteLine("RAW_OUTPUT directx-final." + target + ".production.winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
             AssertFinalFacts(output);
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)));
