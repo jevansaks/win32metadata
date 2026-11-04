@@ -84,7 +84,13 @@ namespace Windows.Win32.Tests
                     "StiCreateInstanceW::ppSti", "IWiaItem2::GetExtension::ppOut", "IPhotoAcquireSource::BindToObject::ppv",
                     "ImageList_CoCreateInstance::ppv", "ImageList_ReadEx::ppv", "HIMAGELIST_QueryInterface::ppv",
                     "IImageList::Clone::ppv", "IImageList::GetDragImage::ppv", "IImageList::Merge::ppv",
-                    "IImageList2::GetCallback::ppv" }),
+                    "IImageList2::GetCallback::ppv",
+                    "IChangeUnitException::GetClockVector::ppUnk", "IClockVector::GetClockVectorElements::ppiEnumClockVector",
+                    "IRangeException::GetClockVector::ppUnk", "ISingleItemException::GetClockVector::ppUnk",
+                    "ISyncKnowledge::FindClockVectorForChangeUnit::ppUnk", "ISyncKnowledge::FindClockVectorForItem::ppUnk",
+                    "ISyncKnowledge::GetChangeUnitExceptions::ppUnk", "ISyncKnowledge::GetRangeExceptions::ppUnk",
+                    "ISyncKnowledge::GetScopeVector::ppUnk", "ISyncKnowledge::GetSingleItemExceptions::ppUnk",
+                    "ISyncKnowledge2::GetInspector::ppiInspector" }),
                 ("ComOutPtrAttribute", ParameterAttributes.Out | ParameterAttributes.Optional, new[] {
                     "IPart::Activate::ppvObject" }),
                 ("ReservedAttribute", ParameterAttributes.In | ParameterAttributes.Optional, new[] {
@@ -140,7 +146,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(131, checkedSelectors);
+            Assert.Equal(142, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {

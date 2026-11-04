@@ -402,17 +402,24 @@ int __stdcall Caller(void) {{ return Example(0, 3); }}
             return directory?.FullName ?? throw new InvalidOperationException("Cannot locate repository root.");
         }
 
+        private static readonly Lazy<string> SdkPath = new(ResolveSdkPackagePath);
+
         internal static string SdkPackagePath()
+        {
+            string path = SdkPath.Value;
+            Assert.AreEqual("10.0.28000.2705", Path.GetFileName(path.TrimEnd(Path.DirectorySeparatorChar)));
+            Assert.IsTrue(Directory.Exists(path), "Missing test project's declared SDK package: " + path);
+            return path;
+        }
+
+        private static string ResolveSdkPackagePath()
         {
             string script = ". " + Quote(Path.Combine(RepositoryRoot(), "scripts", "CommonUtils.ps1")) +
                 "; Get-NugetPropsProperty -name PkgMicrosoft_Windows_SDK_CPP " +
                 "-projectName ClangSharpSourceToWinmdTests.csproj 6>$null";
             var result = Run("pwsh", "-NoProfile", "-NonInteractive", "-Command", script);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            string path = result.Output.Trim();
-            Assert.AreEqual("10.0.28000.2705", Path.GetFileName(path.TrimEnd(Path.DirectorySeparatorChar)));
-            Assert.IsTrue(Directory.Exists(path), "Missing test project's declared SDK package: " + path);
-            return path;
+            return result.Output.Trim();
         }
 
         internal static (int ExitCode, string Output) Run(string executable, params string[] arguments)

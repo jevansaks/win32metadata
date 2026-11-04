@@ -936,7 +936,7 @@ EXTERN_C const IID IID_IClockVector;
     public:
         virtual HRESULT STDMETHODCALLTYPE GetClockVectorElements( 
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppiEnumClockVector) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppiEnumClockVector) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetClockVectorElementCount( 
             /* [out] */ DWORD *pdwCount) = 0;
@@ -969,7 +969,7 @@ EXTERN_C const IID IID_IClockVector;
         HRESULT ( STDMETHODCALLTYPE *GetClockVectorElements )( 
             IClockVector * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppiEnumClockVector);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppiEnumClockVector);
         
         DECLSPEC_XFGVIRT(IClockVector, GetClockVectorElementCount)
         HRESULT ( STDMETHODCALLTYPE *GetClockVectorElementCount )( 
@@ -1065,7 +1065,7 @@ EXTERN_C const IID IID_IFeedClockVector;
         HRESULT ( STDMETHODCALLTYPE *GetClockVectorElements )( 
             IFeedClockVector * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppiEnumClockVector);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppiEnumClockVector);
         
         DECLSPEC_XFGVIRT(IClockVector, GetClockVectorElementCount)
         HRESULT ( STDMETHODCALLTYPE *GetClockVectorElementCount )( 
@@ -1621,7 +1621,7 @@ EXTERN_C const IID IID_IRangeException;
         
         virtual HRESULT STDMETHODCALLTYPE GetClockVector( 
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk) = 0;
         
     };
     
@@ -1663,7 +1663,7 @@ EXTERN_C const IID IID_IRangeException;
         HRESULT ( STDMETHODCALLTYPE *GetClockVector )( 
             IRangeException * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         END_INTERFACE
     } IRangeExceptionVtbl;
@@ -1848,7 +1848,7 @@ EXTERN_C const IID IID_ISingleItemException;
         
         virtual HRESULT STDMETHODCALLTYPE GetClockVector( 
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk) = 0;
         
     };
     
@@ -1884,7 +1884,7 @@ EXTERN_C const IID IID_ISingleItemException;
         HRESULT ( STDMETHODCALLTYPE *GetClockVector )( 
             ISingleItemException * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         END_INTERFACE
     } ISingleItemExceptionVtbl;
@@ -2070,7 +2070,7 @@ EXTERN_C const IID IID_IChangeUnitException;
         
         virtual HRESULT STDMETHODCALLTYPE GetClockVector( 
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk) = 0;
         
     };
     
@@ -2112,7 +2112,7 @@ EXTERN_C const IID IID_IChangeUnitException;
         HRESULT ( STDMETHODCALLTYPE *GetClockVector )( 
             IChangeUnitException * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         END_INTERFACE
     } IChangeUnitExceptionVtbl;
@@ -2516,7 +2516,7 @@ EXTERN_C const IID IID_ISyncKnowledge;
         
         virtual HRESULT STDMETHODCALLTYPE GetScopeVector( 
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetReplicaKeyMap( 
             /* [out] */ IReplicaKeyMap **ppReplicaKeyMap) = 0;
@@ -2568,26 +2568,26 @@ EXTERN_C const IID IID_ISyncKnowledge;
         
         virtual HRESULT STDMETHODCALLTYPE GetRangeExceptions( 
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetSingleItemExceptions( 
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetChangeUnitExceptions( 
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE FindClockVectorForItem( 
             /* [in] */ const BYTE *pbItemId,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE FindClockVectorForChangeUnit( 
             /* [in] */ const BYTE *pbItemId,
             /* [in] */ const BYTE *pbChangeUnitId,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetVersion( 
             /* [out] */ DWORD *pdwVersion) = 0;
@@ -2653,7 +2653,7 @@ EXTERN_C const IID IID_ISyncKnowledge;
         HRESULT ( STDMETHODCALLTYPE *GetScopeVector )( 
             ISyncKnowledge * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetReplicaKeyMap)
         HRESULT ( STDMETHODCALLTYPE *GetReplicaKeyMap )( 
@@ -2731,26 +2731,26 @@ EXTERN_C const IID IID_ISyncKnowledge;
         HRESULT ( STDMETHODCALLTYPE *GetRangeExceptions )( 
             ISyncKnowledge * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetSingleItemExceptions)
         HRESULT ( STDMETHODCALLTYPE *GetSingleItemExceptions )( 
             ISyncKnowledge * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetChangeUnitExceptions)
         HRESULT ( STDMETHODCALLTYPE *GetChangeUnitExceptions )( 
             ISyncKnowledge * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, FindClockVectorForItem)
         HRESULT ( STDMETHODCALLTYPE *FindClockVectorForItem )( 
             ISyncKnowledge * This,
             /* [in] */ const BYTE *pbItemId,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, FindClockVectorForChangeUnit)
         HRESULT ( STDMETHODCALLTYPE *FindClockVectorForChangeUnit )( 
@@ -2758,7 +2758,7 @@ EXTERN_C const IID IID_ISyncKnowledge;
             /* [in] */ const BYTE *pbItemId,
             /* [in] */ const BYTE *pbChangeUnitId,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetVersion)
         HRESULT ( STDMETHODCALLTYPE *GetVersion )( 
@@ -2951,7 +2951,7 @@ EXTERN_C const IID IID_IForgottenKnowledge;
         HRESULT ( STDMETHODCALLTYPE *GetScopeVector )( 
             IForgottenKnowledge * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetReplicaKeyMap)
         HRESULT ( STDMETHODCALLTYPE *GetReplicaKeyMap )( 
@@ -3029,26 +3029,26 @@ EXTERN_C const IID IID_IForgottenKnowledge;
         HRESULT ( STDMETHODCALLTYPE *GetRangeExceptions )( 
             IForgottenKnowledge * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetSingleItemExceptions)
         HRESULT ( STDMETHODCALLTYPE *GetSingleItemExceptions )( 
             IForgottenKnowledge * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetChangeUnitExceptions)
         HRESULT ( STDMETHODCALLTYPE *GetChangeUnitExceptions )( 
             IForgottenKnowledge * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, FindClockVectorForItem)
         HRESULT ( STDMETHODCALLTYPE *FindClockVectorForItem )( 
             IForgottenKnowledge * This,
             /* [in] */ const BYTE *pbItemId,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, FindClockVectorForChangeUnit)
         HRESULT ( STDMETHODCALLTYPE *FindClockVectorForChangeUnit )( 
@@ -3056,7 +3056,7 @@ EXTERN_C const IID IID_IForgottenKnowledge;
             /* [in] */ const BYTE *pbItemId,
             /* [in] */ const BYTE *pbChangeUnitId,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetVersion)
         HRESULT ( STDMETHODCALLTYPE *GetVersion )( 
@@ -3224,7 +3224,7 @@ EXTERN_C const IID IID_ISyncKnowledge2;
         
         virtual HRESULT STDMETHODCALLTYPE GetInspector( 
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppiInspector) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppiInspector) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetMinimumSupportedVersion( 
             /* [out] */ SYNC_SERIALIZATION_VERSION *pVersion) = 0;
@@ -3322,7 +3322,7 @@ EXTERN_C const IID IID_ISyncKnowledge2;
         HRESULT ( STDMETHODCALLTYPE *GetScopeVector )( 
             ISyncKnowledge2 * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetReplicaKeyMap)
         HRESULT ( STDMETHODCALLTYPE *GetReplicaKeyMap )( 
@@ -3400,26 +3400,26 @@ EXTERN_C const IID IID_ISyncKnowledge2;
         HRESULT ( STDMETHODCALLTYPE *GetRangeExceptions )( 
             ISyncKnowledge2 * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetSingleItemExceptions)
         HRESULT ( STDMETHODCALLTYPE *GetSingleItemExceptions )( 
             ISyncKnowledge2 * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetChangeUnitExceptions)
         HRESULT ( STDMETHODCALLTYPE *GetChangeUnitExceptions )( 
             ISyncKnowledge2 * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, FindClockVectorForItem)
         HRESULT ( STDMETHODCALLTYPE *FindClockVectorForItem )( 
             ISyncKnowledge2 * This,
             /* [in] */ const BYTE *pbItemId,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, FindClockVectorForChangeUnit)
         HRESULT ( STDMETHODCALLTYPE *FindClockVectorForChangeUnit )( 
@@ -3427,7 +3427,7 @@ EXTERN_C const IID IID_ISyncKnowledge2;
             /* [in] */ const BYTE *pbItemId,
             /* [in] */ const BYTE *pbChangeUnitId,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppUnk);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppUnk);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge, GetVersion)
         HRESULT ( STDMETHODCALLTYPE *GetVersion )( 
@@ -3465,7 +3465,7 @@ EXTERN_C const IID IID_ISyncKnowledge2;
         HRESULT ( STDMETHODCALLTYPE *GetInspector )( 
             ISyncKnowledge2 * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ void **ppiInspector);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppiInspector);
         
         DECLSPEC_XFGVIRT(ISyncKnowledge2, GetMinimumSupportedVersion)
         HRESULT ( STDMETHODCALLTYPE *GetMinimumSupportedVersion )( 
