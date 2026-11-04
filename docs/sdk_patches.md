@@ -36,14 +36,18 @@ declarations and compares legacy-sidecar versus header-only final winmd bytes
 on x86, x64 and arm64. It checks final output attributes, flags, pointer depth,
 typed targets and retval absence; adding redundant sidecars also stays
 byte-identical. Its inventory includes every selected shipped traversal owner,
-not merely MF-prefixed names. The immutable SDK ancestor
-`c16762d41f1bd641ff8c4389ebf16ee50747129f` remains ancestry-guarded. Original
-owner bytes must equal test-owned SDK `10.0.28000.2705` inputs before replay.
+not merely MF-prefixed names. Original inputs come from the reachable parent
+of this fixture's introduction, resolved from branch history rather than a
+pinned rebasable commit. That parent remains ancestry-guarded. Original owner
+bytes must equal test-owned SDK `10.0.28000.2705` inputs before replay.
 The byte-stream helper preserves the legacy `0x92` comment byte in
 `mfd3d12.idl`; line endings, trailing blank lines and unrelated native bytes
 are unchanged. Native diff checks allow only the selected SAL/annotation edits.
 
-`SdkPatchTests` applies the actual selected patches, converts the bounded
+`SdkPatchTests` retains the complete test-owned SDK/D3D source-ownership inventory
+as `MidlInputRoot`, including unqueued and imported IDL inputs; the selected
+patch set does not infer ownership from a partial fixture directory.
+It applies the actual selected patches, converts the bounded
 owner/import set, runs production MIDL options, compares complete generated
 owner bytes and passes the replayed declarations through final winmd for
 all three architectures. Native C/C++ fixtures use the same paths for original,

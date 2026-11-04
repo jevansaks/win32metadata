@@ -997,20 +997,31 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
+            string midlInputs = Path.Combine(fixture.Path, "sdk");
+            foreach (string folder in new[] { "um", "shared" })
+            {
+                string destination = Path.Combine(midlInputs, folder);
+                Directory.CreateDirectory(destination);
+                foreach (string file in Directory.GetFiles(Path.Combine(include, folder)))
+                    File.Copy(file, Path.Combine(destination, Path.GetFileName(file)));
+            }
+            foreach (string file in Directory.GetFiles(Path.Combine(Direct3DPackagePath(), "build", "native", "include")))
+                File.Copy(file, Path.Combine(midlInputs, Path.GetFileNameWithoutExtension(file) == "dxgiformat" ? "shared" : "um",
+                    Path.GetFileName(file)), overwrite: true);
             string[] inputs = MediaFoundationComOutputHeaderTests.IdlOwners.Append("mfapi.h").ToArray();
             foreach (string owner in inputs)
             {
                 byte[] original = File.ReadAllBytes(Path.Combine(include, "um", owner));
-                CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
+                CollectionAssert.AreEqual(MediaFoundationComOutputHeaderTests.ReadOriginalBytes(
                     "RecompiledIdlHeaders/um/" + owner), original,
-                    "Immutable ancestor matches selected SDK: " + owner);
+                    "Reachable fixture introduction parent matches selected SDK: " + owner);
                 fixture.Header(owner, original);
             }
             Assert.IsFalse(File.Exists(Path.Combine(include, "um", "mfapi.idl")), "Only mfapi.h is header-only.");
             string selections = string.Join("','", MediaFoundationComOutputHeaderTests.IdlOwners
                 .Select(owner => "pre-midl/" + owner + ".patch").Append("post-midl/mfapi.h.patch"));
-            fixture.Apply("pre-midl", selections, true, patchRoot: patches);
-            fixture.Apply("post-midl", selections, true, patchRoot: patches);
+            fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: midlInputs);
+            fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: midlInputs);
             foreach (string owner in inputs)
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
@@ -1079,7 +1090,7 @@ namespace ClangSharpSourceToWinmdTests
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             string[] owners = MediaFoundationComOutputHeaderTests.Owners.Select(owner => owner.Owner).ToArray();
             foreach (string owner in owners)
-                fixture.Header(owner, Encoding.ASCII.GetBytes(PropertyComOutputHeaderTests.ReadOriginal(
+                fixture.Header(owner, Encoding.ASCII.GetBytes(MediaFoundationComOutputHeaderTests.ReadOriginal(
                     "RecompiledIdlHeaders/um/" + owner, checkoutBytes: true)));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",

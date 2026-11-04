@@ -223,7 +223,7 @@ struct IBindCtx : IUnknown {};
         private static string FunctionPattern(string selector) => @"(?:PSSTDAPI|SHSTDAPI|LWSTDAPI|STDAPI)\s+" +
             Regex.Escape(selector.Split("::")[0]) + @"\([^;]+;";
 
-        internal static byte[] ReadOriginalBytes(string path)
+        internal static byte[] ReadOriginalBytes(string path, string? revision = null)
         {
             var info = new System.Diagnostics.ProcessStartInfo("git")
             {
@@ -232,7 +232,7 @@ struct IBindCtx : IUnknown {};
                 RedirectStandardError = true,
             };
             foreach (string argument in new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "cat-file",
-                "--filters", PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot()) + ":generation/WinSDK/" + path })
+                "--filters", (revision ?? PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot())) + ":generation/WinSDK/" + path })
                 info.ArgumentList.Add(argument);
             using var process = System.Diagnostics.Process.Start(info) ?? throw new InvalidOperationException("Git did not start.");
             using var output = new MemoryStream();
