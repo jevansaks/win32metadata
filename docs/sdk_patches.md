@@ -32,16 +32,20 @@ uses shipped RPC SAL, and proves exact final-winmd byte equality against
 original native declarations plus legacy sidecars on x86/x64/arm64. It
 checks every selected output flag, singleton attribute payload, pointer
 depth/type and absence of newly inferred retval metadata; redundant sidecars
-also yield identical bytes. Original inputs come from immutable SDK ancestor
-`c16762d41f1bd641ff8c4389ebf16ee50747129f`, with reachable-ancestry and
-test-owned SDK `10.0.28000.2705` byte-match assertions. No movable parent
-object is added as a fixture dependency. Raw byte assertions preserve all
+also yield identical bytes. Original inputs come from the parent of the unique
+reachable introduction of `ServiceComOutputHeaderTests.cs`, with ancestry and
+test-owned SDK `10.0.28000.2705` byte-match assertions. No stale pre-rebase
+object or movable branch is used as a fixture dependency. Raw byte assertions preserve all
 unselected bytes, CRLF and trailing blank lines.
 
 `SdkPatchTests` applies the real per-file patches, runs normal IDL conversion
 and production MIDL for `callobj.idl`, checks complete owning output bytes,
 and feeds all replayed selected declarations through final emission on all
-three targets. Same-path native C/C++ original/patched/`WIN32METADATA`
+three targets. Patch classification uses the complete selected SDK `um`/`shared`
+`MidlInputRoot`, not the minimized copied-output fixture. Its actual queue
+must classify `callobj.h` as owned by `callobj.idl` and leave the two direct
+service headers unqueued despite their historical MIDL banners.
+Same-path native C/C++ original/patched/`WIN32METADATA`
 comparisons call every selected site and inherited resource-manager entry
 on x86/x64/arm64 in both include orders; object bytes match except for the
 COFF timestamp. Earlier native no-op fixtures remain unchanged. Production

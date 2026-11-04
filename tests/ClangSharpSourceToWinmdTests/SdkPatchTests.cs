@@ -1175,18 +1175,33 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
+            string midlInputs = Path.Combine(fixture.Path, "sdk");
+            foreach (string folder in new[] { "um", "shared" })
+            {
+                string destination = Path.Combine(midlInputs, folder);
+                Directory.CreateDirectory(destination);
+                foreach (string file in Directory.GetFiles(Path.Combine(include, folder)))
+                    File.Copy(file, Path.Combine(destination, Path.GetFileName(file)));
+            }
+            var ownership = fixture.Run("$outputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) +
+                " -HeaderRoot " + Quote(midlInputs) + "); " +
+                "foreach ($owner in 'ComSvcs.h', 'TxDtc.h') { " +
+                "if ($outputs.Header -icontains \"um/$owner\") { throw \"Incorrectly classified direct service header: $owner\" } }; " +
+                "$callobj = @($outputs | Where-Object { $_.Header -ieq 'um/callobj.h' }); " +
+                "if ($callobj.Count -ne 1 -or $callobj[0].Idl -ine 'um/callobj.idl') { throw 'Missing authoritative callobj output' }");
+            Assert.AreEqual(0, ownership.ExitCode, ownership.Output);
             foreach (string owner in new[] { "ComSvcs.h", "TxDtc.h", "callobj.idl" })
             {
                 byte[] original = File.ReadAllBytes(Path.Combine(include, "um", owner));
-                CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
-                    "RecompiledIdlHeaders/um/" + owner), original, "Immutable ancestor matches selected SDK: " + owner);
+                CollectionAssert.AreEqual(ServiceComOutputHeaderTests.ReadOriginalBytes(
+                    "RecompiledIdlHeaders/um/" + owner), original, "Reachable fixture introduction parent matches selected SDK: " + owner);
                 fixture.Header(owner, original);
             }
             foreach (string absent in new[] { "ComSvcs.idl", "autosvcs.idl", "TxDtc.idl" })
                 Assert.IsFalse(File.Exists(Path.Combine(include, "um", absent)), "Header-only shipped owner: " + absent);
             const string selections = "pre-midl/callobj.idl.patch','post-midl/ComSvcs.h.patch','post-midl/TxDtc.h.patch";
-            fixture.Apply("pre-midl", selections, true, patchRoot: patches);
-            fixture.Apply("post-midl", selections, true, patchRoot: patches);
+            fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: midlInputs);
+            fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: midlInputs);
             foreach (string owner in new[] { "ComSvcs.h", "TxDtc.h", "callobj.idl" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
@@ -1241,7 +1256,7 @@ namespace ClangSharpSourceToWinmdTests
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             string[] owners = ServiceComOutputHeaderTests.Owners.Select(owner => owner.Owner).ToArray();
             foreach (string owner in owners)
-                fixture.Header(owner, PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/" + owner));
+                fixture.Header(owner, ServiceComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/" + owner));
             foreach (string forwarder in new[] { "TxCtx.h", "Mtx.h", "Mtxdm.h" })
                 fixture.Header(forwarder, File.ReadAllBytes(Path.Combine(include, "um", forwarder)));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
