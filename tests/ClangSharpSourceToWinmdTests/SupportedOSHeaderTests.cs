@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
+using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -252,6 +253,31 @@ struct __declspec(uuid(""00000002-0000-0000-C000-000000000046"")) IMalloc : publ
         }
 
         [TestMethod]
+        public void HistoricalGeneratedHeaders_OnlyAddAuthoredAvailability()
+        {
+            string root = LastErrorHeaderTests.RepositoryRoot();
+            string predecessor = Predecessor(root);
+            foreach (string owner in new[] { "ObjIdlbase.h", "ObjIdl.h" })
+            {
+                string path = "RecompiledIdlHeaders/um/" + owner;
+                var legacy = LastErrorHeaderTests.Run("git", "-C", root, "show",
+                    predecessor + ":generation/WinSDK/" + path);
+                Assert.AreEqual(0, legacy.ExitCode, legacy.Output);
+                AssertOnlyAvailabilityEdits(legacy.Output.Replace("\r\n", "\n"),
+                    Encoding.UTF8.GetString(ProductionSalLocalHeaderTests.ReadBeforeCutover(path)).Replace("\r\n", "\n"));
+            }
+        }
+
+        private static void AssertOnlyAvailabilityEdits(string legacy, string annotated)
+        {
+            string unannotated = Regex.Replace(annotated,
+                @"#if defined\(__cplusplus\) && !defined\(CINTERFACE\)\n(?:struct _Win32_SupportedOS_Windows2000_ \w+;\n){3}#endif\n", "");
+            Assert.AreEqual(legacy, Regex.Replace(unannotated, @"(?m)^[ \t]*_Win32_SupportedOS_\w+_\n", "")
+                .Replace("#include <win32metadata_annotations.h>\n",
+                    legacy.Contains("#include <win32metadata_annotations.h>\n") ? "#include <win32metadata_annotations.h>\n" : ""));
+        }
+
+        [TestMethod]
         public void OwningDeclarations_RetireOnlyExactlyMatchingSidecars()
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
@@ -277,11 +303,8 @@ struct __declspec(uuid(""00000002-0000-0000-C000-000000000046"")) IMalloc : publ
             {
                 string path = "generation/WinSDK/RecompiledIdlHeaders/um/" + owner;
                 string current = File.ReadAllText(Path.Combine(root, path.Replace('/', Path.DirectorySeparatorChar))).Replace("\r\n", "\n");
-                string unannotated = Regex.Replace(current,
-                    @"#if defined\(__cplusplus\) && !defined\(CINTERFACE\)\n(?:struct _Win32_SupportedOS_Windows2000_ \w+;\n){3}#endif\n", "");
-                Assert.AreEqual(Legacy(path), Regex.Replace(unannotated, @"(?m)^[ \t]*_Win32_SupportedOS_\w+_\n", "")
-                    .Replace("#include <win32metadata_annotations.h>\n",
-                        Legacy(path).Contains("#include <win32metadata_annotations.h>\n") ? "#include <win32metadata_annotations.h>\n" : ""));
+                if (owner is not "ObjIdlbase.h" and not "ObjIdl.h")
+                    AssertOnlyAvailabilityEdits(Legacy(path), current);
                 foreach (Match match in Regex.Matches(current,
                     @"(?m)^[ \t]*(?:struct )?_Win32_SupportedOS_(\w+)_(?:\n| )([^;]+;)"))
                 {

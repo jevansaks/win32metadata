@@ -129,6 +129,11 @@ strictly compared with actual production MIDL bytes in ordinary SDK CI:
 | Shell/property | `propsys.h`, `ShObjIdl_core.h`, `ShObjIdl.h` |
 | Existing DXGI | `dxgi.h` |
 
+The original availability-only complete-header comparison for `ObjIdl.h` and
+`ObjIdlbase.h` is historical too. Its current 178 matching-sidecar facts,
+182 authored declarations, IDL markers and untouched header-only owner checks
+remain live; no availability semantics or scope changes.
+
 Most `/sal_local` additions annotate C-vtable/proxy `This`; they do not
 change the ordinary C++ method's argument list. Native `[unique]` typedef
 aliases gain stock RPC spelling, and inherited `[full][in,out]` forms retain
@@ -161,7 +166,9 @@ native input `riid` parameters from In|Out to In: `IImageList::Clone`,
 `IWICD3DTextureSource::GetTexture` / `GetTransformedTexture`. It retains the
 original output, asserts both exact flag states, and compares the entire
 production and redundant-legacy winmd bytes with the explicitly corrected
-expected output. All fifteen selected COM outputs and their true negative
+expected output. `GetCallback::riid` is the converter's previously skipped
+native `[in]` neighbor; the other five receive local RPC input SAL.
+All fifteen selected COM outputs and their true negative
 boundaries remain unchanged; stock `rpcsal.h` replaces minimized-fixture
 RPC macro stubs rather than redefining native RPC macros.
 
