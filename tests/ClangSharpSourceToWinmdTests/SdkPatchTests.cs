@@ -1321,6 +1321,12 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
+            var ownership = fixture.Run("$outputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) +
+                " -HeaderRoot " + Quote(include) + "); " +
+                "if ($outputs.Header -icontains 'winrt/rometadata.h') { throw 'The direct SDK owner is a queued MIDL output' }; " +
+                "if (Select-String -LiteralPath " + Quote(Path.Combine(include, "winrt", "rometadata.h")) +
+                " -SimpleMatch 'File created by MIDL compiler' -Quiet) { throw 'Generated SDK header cannot be directly patched' }");
+            Assert.AreEqual(0, ownership.ExitCode, ownership.Output);
             foreach (var owner in ClrComOutputHeaderTests.Owners)
             {
                 string file = Path.GetFileName(owner.Path);
@@ -1328,11 +1334,11 @@ namespace ClangSharpSourceToWinmdTests
                 string input = compatibility ? Path.Combine(Root(), "generation", "WinSDK", "AdditionalHeaders", file) :
                     Path.Combine(include, owner.Path.Replace('/', Path.DirectorySeparatorChar));
                 byte[] original = File.ReadAllBytes(input);
-                CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
-                    "RecompiledIdlHeaders/" + owner.Path), original, "Immutable SDK/compatibility input: " + owner.Path);
+                CollectionAssert.AreEqual(ClrComOutputHeaderTests.ReadOriginalBytes(
+                    "RecompiledIdlHeaders/" + owner.Path), original, "Reachable introduction parent matches actual SDK/compatibility input: " + owner.Path);
                 if (compatibility)
                 {
-                    CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes("AdditionalHeaders/" + file), original);
+                    CollectionAssert.AreEqual(ClrComOutputHeaderTests.ReadOriginalBytes("AdditionalHeaders/" + file), original);
                     Assert.IsFalse(File.Exists(Path.Combine(include, "um", file)), "Do not replace an existing compatibility owner with a removed SDK header.");
                     StringAssert.Contains(System.Text.Encoding.Latin1.GetString(original), "File created by MIDL compiler");
                     Assert.IsFalse(File.Exists(Path.Combine(patches, "post-midl", file + ".patch")),
@@ -1346,8 +1352,8 @@ namespace ClangSharpSourceToWinmdTests
                 File.WriteAllBytes(destination, original);
             }
             const string selections = "post-midl/rometadata.h.patch";
-            fixture.Apply("pre-midl", selections, true, patchRoot: patches);
-            fixture.Apply("post-midl", selections, true, patchRoot: patches);
+            fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: include);
+            fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             foreach (var owner in ClrComOutputHeaderTests.Owners)
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders",
                     owner.Path.Replace('/', Path.DirectorySeparatorChar))),
@@ -1373,7 +1379,7 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             foreach (var owner in ClrComOutputHeaderTests.Owners)
-                fixture.Header(Path.GetFileName(owner.Path), PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path));
+                fixture.Header(Path.GetFileName(owner.Path), ClrComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
                 "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));

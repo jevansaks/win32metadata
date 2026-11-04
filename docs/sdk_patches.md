@@ -40,10 +40,13 @@ all nine retained legacy records, the combined independent `[Out]` fact,
 redundant legacy records, exact
 `void**` shape, output-only flags and singleton custom-attribute payload/order.
 Its raw-byte proof permits only the selected SAL edits. Original native and
-legacy records use reachable immutable SDK ancestor
-`c16762d41f1bd641ff8c4389ebf16ee50747129f`, not a movable stack parent.
+legacy records use the parent of the unique reachable introduction of
+`ClrComOutputHeaderTests.cs`, with ancestry and actual input-byte checks,
+not cached unreachable objects or a fixed rebasable branch commit.
 `SdkPatchTests` byte-matches those originals to the actual SDK/compatibility
-inputs, rejects compatibility post-header patch files, replays the one actual
+inputs, passes the full selected SDK as `MidlInputRoot` to the inherited
+actual-output rejection guard, rejects compatibility post-header patch files,
+replays the one actual
 SDK patch and feeds the patched SDK declaration plus unchanged compatibility
 declarations through final emission for each target. There is no applicable
 MIDL generation for the SDK-owned migration.
