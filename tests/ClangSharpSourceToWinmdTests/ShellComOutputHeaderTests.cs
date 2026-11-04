@@ -60,15 +60,17 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
-            Assert.AreEqual(string.Join("\n", original.Split('\n').Where(line =>
-                !Selectors.Any(selector => line == selector + "=[ComOutPtr]"))), current,
+            Assert.AreEqual(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", original.Split('\n').Where(line =>
+                !Selectors.Any(selector => line == selector + "=[ComOutPtr]")))), current,
                 "Preserve all independent sidecars exactly.");
-            CollectionAssert.AreEqual(records.Where(line => !Selectors.Any(selector => line == selector + "=[ComOutPtr]")).ToArray(),
+            CollectionAssert.AreEqual(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", records.Where(line =>
+                !Selectors.Any(selector => line == selector + "=[ComOutPtr]"))) + "\n").Split('\n')
+                    .Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
                 current.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
                 "Retire only the sixteen exact records from the complete remaining corpus.");
             CollectionAssert.AreEqual(original.Split('\n').Where(IndependentContract).ToArray(),
                 current.Split('\n').Where(IndependentContract).ToArray(), "Preserve independent Out and result contracts.");
-            Assert.AreEqual(169, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(144, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
 
             var found = new HashSet<string>(StringComparer.Ordinal);
             var files = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(), "ls-tree", "-r",

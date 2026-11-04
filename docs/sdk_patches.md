@@ -1,5 +1,85 @@
 # SDK header patches
 
+## Graphics COM factory and resource outputs
+
+This layer audits all 169 parent `ComOutPtr` records against the actual shipped
+traversal owners for Direct2D, Direct3D 9/10/11/12 and interop, FXC, DXC,
+DirectWrite, DXGI, DirectComposition, presentation and WinRT composition.
+It finds 31 graphics-owned sites. It retires **25 attribute facts: 24 complete
+records and one partial DWrite record**, leaving 144 active `ComOutPtr`
+records. The remaining five graphics callbacks are a separate mechanism;
+one presentation method is an exact-byte boundary described below.
+The already absent `dciddi.h` traversal entry is not restored.
+
+| Owning native input | Migrated existing output facts |
+|---|---|
+| `d2d1.h` | `D2D1CreateFactory::ppIFactory`, `ID2D1Resource::GetFactory::factory` |
+| `d3d10.idl` | `ID3D10Device::OpenSharedResource::ppResource` |
+| `d3d12.idl` (D3D12 package `1.619.3`) | `D3D12CreateRootSignatureDeserializer::ppRootSignatureDeserializer`, `D3D12CreateVersionedRootSignatureDeserializer::ppRootSignatureDeserializer` |
+| `d3dcompiler.h` | `D3DReflect::ppReflector`, `D3DReflectLibrary::ppReflector` |
+| `d3d9on12.h` | `IDirect3DDevice9On12::GetD3D12Device::ppvDevice`, `IDirect3DDevice9On12::UnwrapUnderlyingResource::ppvResource12` |
+| `shared/d3d9.h` | `IDirect3DSurface9::GetContainer::ppContainer`, `IDirect3DVolume9::GetContainer::ppContainer` |
+| `dcomp.h` | `DCompositionCreateDevice::dcompositionDevice`, `DCompositionCreateDevice2::dcompositionDevice`, `DCompositionCreateDevice3::dcompositionDevice`, `IDCompositionTexture::GetAvailableFence::availableFence`, `IDCompositionSurface::BeginDraw::updateObject` |
+| `Presentation.idl` | `CreatePresentationFactory::presentationFactory` |
+| `dxcapi.h` | `DxcCreateInstance::ppv`, `DxcCreateInstance2::ppv`, `IDxcContainerReflection::GetPartReflection::ppvObject`, `IDxcUtils::CreateReflection::ppvReflection`, `IDxcCompiler3::Compile::ppResult`, `IDxcCompiler3::Disassemble::ppResult` |
+| `winrt/windows.ui.composition.interop.h` | `ICompositionTextureInterop::GetAvailableFence::availableFence` |
+| `dwrite.h` (already authoritative `_COM_Outptr_`, no native edit) | `DWriteCreateFactory::factory` attribute only |
+
+Only standard `_COM_Outptr_` SAL variants are used. MIDL-backed owners are patched
+before conversion and compilation; genuinely header-only owners are patched
+after MIDL. The generated `d3d10_1.h` inherited C-vtable copy is updated by
+recompiling its unchanged IDL against the patched `d3d10.idl`. Native version
+guards, pointer depths, optional storage and nullable results are retained.
+The D2D C++ convenience overload and both templates remain unchanged: they have
+different output selectors and no independently configured facts. No proxy,
+forward declaration or duplicate complete definition gains a new API fact.
+
+`DWriteCreateFactory` returns native `IUnknown**`. Its existing combined
+`[ComOutPtr]void**` record encodes two independent facts. The already-present
+native SAL supplies the attribute, but not the representation override.
+The record therefore becomes exactly `DWriteCreateFactory::factory=void**`;
+the native declaration stays `IUnknown**`. Final-winmd fixtures prove that
+removing the type override would change the output. `ID2D1Resource::GetFactory`
+stays typed `ID2D1Factory**`; adding COM-output SAL does not erase its type.
+
+`IPresentationManager::GetPresentRetiringFence::fence` remains unchanged in
+both native IDL/header and sidecar. Replacing its `_Out_retval_` with
+`_COM_Outptr_retval_` preserves the custom-attribute values, parameter flags,
+method/implementation flags and projected API shape, but reverses the
+`RetValAttribute` / `ComOutPtrAttribute` metadata row order. That is an
+**exact-byte custom-attribute row-order boundary**, not a semantic attribute
+or retval change. The small final-winmd fixture proves this distinction on
+all three architectures. No global attribute canonicalization is introduced.
+The three `PFN_D3D12_*DESERIALIZER*` records and two `DxcCreateInstance*Proc`
+records remain active and their native callback declarations are unchanged.
+Media, WIC, Controls image lists, hyperlinks and unrelated UI remain out of
+this family. Existing `CanReturn*` sidecars remain active; all 17
+non-equivalent PreserveResult replacements remain inactive.
+
+`DirectXComOutputHeaderTests` compares actual original native declarations plus
+legacy facts with the patched declarations plus only the independent DWrite
+override and unchanged presentation boundary. It checks final custom-attribute
+payloads, direction, optionality, retval, pointer depth/type and complete winmd
+bytes on x86, x64 and arm64. Original fixtures resolve the parent of the unique
+reachable introduction of `DirectXComOutputHeaderTests.cs`, with an ancestry
+guard and exact 169-record legacy corpus. No mutable or obsolete commit is
+pinned. Selected original inputs must match the test-owned SDK/D3D12 packages.
+`SdkPatchTests` applies the actual per-file patches, runs normal conversion and
+production MIDL options, compares complete regenerated owner bytes, and replays
+them through final winmd. Its full MIDL input root includes every SDK `um`/`shared`
+input and the production D3D12 package overlay; source ownership is not inferred
+from the small set of copied patch targets. Every selected generated owner must
+be queued by the production MIDL inventory. Native C/C++ fixtures use the same
+paths for original, patched and `WIN32METADATA` builds on all three architectures and both applicable
+include orders, comparing complete object bytes apart from the COFF timestamp.
+C++-only DirectWrite, DirectComposition, DXC, namespaced composition interop
+and the D2D resource interface are exercised only in C++; the C fixture covers
+every C-compatible selected declaration and inherited vtable. Existing parent
+native fixtures are unchanged.
+Ordinary CI still makes one candidate and compares against an already-produced
+exact-target winmd, with the existing explicitly disclosed main/release fallback.
+No new full-SDK generation or comparison workflow is added.
+
 ## Remaining shell COM outputs
 
 This shell slice audits all 185 remaining `ComOutPtr` records against the

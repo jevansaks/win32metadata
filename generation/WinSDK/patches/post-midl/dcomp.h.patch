@@ -1,0 +1,50 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h
+index 0181947e..2e2e6057 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h
+@@ -67,7 +67,7 @@ typedef interface IDCompositionVisual                    IDCompositionVisual;
+ STDAPI DCompositionCreateDevice(
+     _In_opt_ IDXGIDevice *dxgiDevice,
+     _In_ REFIID iid,
+-    _Outptr_ void **dcompositionDevice
++    _COM_Outptr_ void **dcompositionDevice
+     );
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WINBLUE)
+@@ -84,7 +84,7 @@ STDAPI DCompositionCreateDevice(
+ STDAPI DCompositionCreateDevice2(
+     _In_opt_ IUnknown *renderingDevice,
+     _In_ REFIID iid,
+-    _Outptr_ void **dcompositionDevice
++    _COM_Outptr_ void **dcompositionDevice
+     );
+ #endif  // (_WIN32_WINNT >= _WIN32_WINNT_WINBLUE)
+ 
+@@ -102,7 +102,7 @@ STDAPI DCompositionCreateDevice2(
+ STDAPI DCompositionCreateDevice3(
+     _In_opt_ IUnknown *renderingDevice,
+     _In_ REFIID iid,
+-    _Outptr_ void **dcompositionDevice
++    _COM_Outptr_ void **dcompositionDevice
+     );
+ 
+ #endif  // (_WIN32_WINNT >= _WIN32_WINNT_WINTHRESHOLD)
+@@ -1240,7 +1240,7 @@ DECLARE_INTERFACE_IID_(IDCompositionSurface, IUnknown, "BB8A4953-2C99-4F5A-96F5-
+     STDMETHOD(BeginDraw)(THIS_
+         _In_opt_ const RECT *updateRect,
+         _In_ REFIID iid,
+-        _Outptr_ void **updateObject,
++        _COM_Outptr_ void **updateObject,
+         _Out_ POINT *updateOffset
+         ) PURE;
+ 
+@@ -2435,7 +2435,7 @@ DECLARE_INTERFACE_IID_(IDCompositionTexture, IUnknown, "929BB1AA-725F-433B-ABD7-
+     STDMETHOD(GetAvailableFence)(THIS_
+         _Out_ UINT64* fenceValue,
+         _In_ REFIID iid,
+-        _Outptr_result_maybenull_ void** availableFence) PURE;
++        _COM_Outptr_result_maybenull_ void** availableFence) PURE;
+ };
+ 
+ //+-----------------------------------------------------------------------------

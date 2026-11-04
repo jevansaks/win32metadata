@@ -72,8 +72,8 @@ DECLARE_INTERFACE_(IDirect3DDevice9On12, IUnknown)
     STDMETHOD_(ULONG,Release)(THIS) PURE;
 
     /*** IDirect3DDevice9On12 methods ***/
-    STDMETHOD(GetD3D12Device)(THIS_ REFIID riid,void** ppvDevice) PURE;
-    STDMETHOD(UnwrapUnderlyingResource)(THIS_ IDirect3DResource9* pResource,ID3D12CommandQueue* pCommandQueue,REFIID riid,void** ppvResource12) PURE;
+    STDMETHOD(GetD3D12Device)(THIS_ REFIID riid,_COM_Outptr_ void** ppvDevice) PURE;
+    STDMETHOD(UnwrapUnderlyingResource)(THIS_ IDirect3DResource9* pResource,ID3D12CommandQueue* pCommandQueue,REFIID riid,_COM_Outptr_ void** ppvResource12) PURE;
     STDMETHOD(ReturnUnderlyingResource)(THIS_ IDirect3DResource9* pResource,UINT NumSync,UINT64* pSignalValues,ID3D12Fence** ppFences) PURE;
 };
     

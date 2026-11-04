@@ -5727,7 +5727,7 @@ EXTERN_C const IID IID_ID3D10Device;
             /* [annotation] */ 
             _In_  REFIID ReturnedInterface,
             /* [annotation] */ 
-            _Out_opt_  void **ppResource) = 0;
+            _COM_Outptr_opt_  void **ppResource) = 0;
         
         virtual void STDMETHODCALLTYPE SetTextFilterSize( 
             /* [annotation] */ 
@@ -6615,7 +6615,7 @@ EXTERN_C const IID IID_ID3D10Device;
             /* [annotation] */ 
             _In_  REFIID ReturnedInterface,
             /* [annotation] */ 
-            _Out_opt_  void **ppResource);
+            _COM_Outptr_opt_  void **ppResource);
         
         DECLSPEC_XFGVIRT(ID3D10Device, SetTextFilterSize)
         void ( STDMETHODCALLTYPE *SetTextFilterSize )( 

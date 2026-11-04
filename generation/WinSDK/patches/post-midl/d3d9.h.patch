@@ -1,0 +1,23 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h b/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h
+index 2b5e1914..a53b13db 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h
+@@ -1635,7 +1635,7 @@ DECLARE_INTERFACE_(IDirect3DSurface9, IDirect3DResource9)
+     STDMETHOD_(DWORD, GetPriority)(THIS) PURE;
+     STDMETHOD_(void, PreLoad)(THIS) PURE;
+     STDMETHOD_(D3DRESOURCETYPE, GetType)(THIS) PURE;
+-    STDMETHOD(GetContainer)(THIS_ REFIID riid,void** ppContainer) PURE;
++    STDMETHOD(GetContainer)(THIS_ REFIID riid,_COM_Outptr_ void** ppContainer) PURE;
+     STDMETHOD(GetDesc)(THIS_ D3DSURFACE_DESC *pDesc) PURE;
+     STDMETHOD(LockRect)(THIS_ D3DLOCKED_RECT* pLockedRect,CONST RECT* pRect,DWORD Flags) PURE;
+     STDMETHOD(UnlockRect)(THIS) PURE;
+@@ -1717,7 +1717,7 @@ DECLARE_INTERFACE_(IDirect3DVolume9, IUnknown)
+     STDMETHOD(SetPrivateData)(THIS_ REFGUID refguid,CONST void* pData,DWORD SizeOfData,DWORD Flags) PURE;
+     STDMETHOD(GetPrivateData)(THIS_ REFGUID refguid,void* pData,DWORD* pSizeOfData) PURE;
+     STDMETHOD(FreePrivateData)(THIS_ REFGUID refguid) PURE;
+-    STDMETHOD(GetContainer)(THIS_ REFIID riid,void** ppContainer) PURE;
++    STDMETHOD(GetContainer)(THIS_ REFIID riid,_COM_Outptr_ void** ppContainer) PURE;
+     STDMETHOD(GetDesc)(THIS_ D3DVOLUME_DESC *pDesc) PURE;
+     STDMETHOD(LockBox)(THIS_ D3DLOCKED_BOX * pLockedVolume,CONST D3DBOX* pBox,DWORD Flags) PURE;
+     STDMETHOD(UnlockBox)(THIS) PURE;

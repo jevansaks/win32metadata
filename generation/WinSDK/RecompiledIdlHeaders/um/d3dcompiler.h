@@ -311,7 +311,7 @@ HRESULT WINAPI
 D3DReflect(_In_reads_bytes_(SrcDataSize) LPCVOID pSrcData,
            _In_ SIZE_T SrcDataSize,
            _In_ REFIID pInterface,
-           _Out_ void** ppReflector);
+           _COM_Outptr_ void** ppReflector);
 
 //----------------------------------------------------------------------------
 // D3DReflectLibrary:
@@ -324,7 +324,7 @@ HRESULT WINAPI
 D3DReflectLibrary(__in_bcount(SrcDataSize) LPCVOID pSrcData,
                   __in SIZE_T SrcDataSize,
 	              __in REFIID riid,
-                  __out LPVOID * ppReflector);
+                  _COM_Outptr_ LPVOID * ppReflector);
 
 //----------------------------------------------------------------------------
 // D3DDisassemble:

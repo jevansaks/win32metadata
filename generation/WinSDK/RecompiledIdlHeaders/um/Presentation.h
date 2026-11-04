@@ -1639,7 +1639,7 @@ EXTERN_C const IID IID_IIndependentFlipFramePresentStatistics;
 STDAPI CreatePresentationFactory(
     _In_ IUnknown * d3dDevice,
     _In_ REFIID riid,
-    _Outptr_ void ** presentationFactory);
+    _COM_Outptr_ void ** presentationFactory);
 
 
 

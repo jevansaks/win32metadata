@@ -1,0 +1,23 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d3d12.idl b/generation/WinSDK/RecompiledIdlHeaders/um/d3d12.idl
+index 1b6670f5..08410e96 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/d3d12.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/d3d12.idl
+@@ -3072,7 +3072,7 @@ cpp_quote( "HRESULT WINAPI D3D12CreateRootSignatureDeserializer(")
+ cpp_quote( "                                     _In_reads_bytes_(SrcDataSizeInBytes) LPCVOID pSrcData," )
+ cpp_quote( "                                     _In_ SIZE_T SrcDataSizeInBytes," )
+ cpp_quote( "                                     _In_ REFIID pRootSignatureDeserializerInterface," )
+-cpp_quote( "                                     _Out_ void** ppRootSignatureDeserializer);" )
++cpp_quote( "                                     _COM_Outptr_ void** ppRootSignatureDeserializer);" )
+ cpp_quote( "" )
+ cpp_quote( "typedef HRESULT (WINAPI* PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE)(" )
+ cpp_quote( "                            _In_ const D3D12_VERSIONED_ROOT_SIGNATURE_DESC* pRootSignature," )
+@@ -3094,7 +3094,7 @@ cpp_quote( "HRESULT WINAPI D3D12CreateVersionedRootSignatureDeserializer(")
+ cpp_quote( "                                     _In_reads_bytes_(SrcDataSizeInBytes) LPCVOID pSrcData," )
+ cpp_quote( "                                     _In_ SIZE_T SrcDataSizeInBytes," )
+ cpp_quote( "                                     _In_ REFIID pRootSignatureDeserializerInterface," )
+-cpp_quote( "                                     _Out_ void** ppRootSignatureDeserializer);" )
++cpp_quote( "                                     _COM_Outptr_ void** ppRootSignatureDeserializer);" )
+ cpp_quote( "" )
+ cpp_quote("typedef HRESULT (WINAPI* PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER_FROM_SUBOBJECT_IN_LIBRARY)(")
+ cpp_quote("                                     _In_reads_bytes_(SrcDataSizeInBytes) LPCVOID pSrcData,")
