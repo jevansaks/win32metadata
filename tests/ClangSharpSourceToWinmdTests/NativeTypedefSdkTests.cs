@@ -47,7 +47,9 @@ namespace ClangSharpSourceToWinmdTests
                     "\"ValueType\": \"native\"", StringComparison.Ordinal)
                     .Replace(",\n    \"NativeTypedef\": true", "", StringComparison.Ordinal);
                 if (name == "NCRYPT_KEY_HANDLE")
-                    updated = updated.Replace("    \"AlsoUsableFor\": \"NCRYPT_HANDLE\",\n", "", StringComparison.Ordinal);
+                    updated = updated.Replace("    \"AlsoUsableFor\": \"NCRYPT_HANDLE\",\n", "", StringComparison.Ordinal)
+                        .Replace("    \"Name\": \"NCRYPT_KEY_HANDLE\"", "    \"Namespace\": \"" + Cryptography +
+                            "\",\n    \"Name\": \"NCRYPT_KEY_HANDLE\"", StringComparison.Ordinal);
                 return updated;
             });
             Assert.AreEqual(3, changed);
@@ -55,7 +57,7 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
-        public void ExactParent_OnlyThreeIdentityRecordsAndOneRelationshipMove()
+        public void ExactParent_OnlyThreeIdentityRecordsOneRelationshipAndExistingKeyOwner()
         {
             string parent = Parent();
             string original = Encoding.UTF8.GetString(PropertyComOutputHeaderTests.ReadOriginalBytes("autoTypes.json", parent));
@@ -79,20 +81,85 @@ namespace ClangSharpSourceToWinmdTests
             try
             {
                 string output = Path.Combine(directory, "settings.rsp");
-                var task = new MetadataTasks.PrepSettingsForAutoTypes
-                {
-                    AutoTypes = new[] { new TaskItem(Sdk("autoTypes.json")) },
-                    ScraperAutoTypesRsp = output,
-                };
-                Assert.IsTrue(task.Execute());
-                string text = File.ReadAllText(output).Replace("\r\n", "\n");
+                string text = PrepareSettings(output);
                 StringAssert.StartsWith(text, "--native-typedef\nHRESULT=Windows.Win32.Foundation\n" +
-                    "NCRYPT_HANDLE=Windows.Win32.Security.Cryptography\nNCRYPT_KEY_HANDLE\n--remap\n");
+                    "NCRYPT_HANDLE=Windows.Win32.Security.Cryptography\n" +
+                    "NCRYPT_KEY_HANDLE=Windows.Win32.Security.Cryptography\n--remap\n");
                 string remaps = text.Substring(text.IndexOf("--remap\n", StringComparison.Ordinal));
                 foreach (string name in Pilots)
                     Assert.IsFalse(remaps.Contains(name + "=", StringComparison.Ordinal));
             }
             finally { Directory.Delete(directory, true); }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void SelectedSdkDuplicateDeclarations_KeepOneKeyOwnerAndCanonicalReferences(string target)
+        {
+            using var owner = new LastErrorHeaderTests.Fixture();
+            string generated = Path.GetDirectoryName(owner.GeneratedSource)!;
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string settings = PrepareSettings(Path.Combine(generated, "settings.rsp")) +
+                "\n--remap\nULONG_PTR=UIntPtr\n--include-directory\n" + Path.Combine(include, "shared");
+            var namespaces = AutoTypeHelpers.GetAutoTypesFromFiles(new[] { Sdk("autoTypes.json") })
+                .Where(item => item.ValueType == "native").ToDictionary(item => item.Name, item => item.Namespace);
+            string ncrypt = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/ncrypt.h"));
+            string winnt = File.ReadAllText(Path.Combine(include, "um", "winnt.h"));
+            string prefix = "#include <basetsd.h>\n";
+            var result = owner.Scrape(prefix + Slice(ncrypt, @"typedef ULONG_PTR NCRYPT_HANDLE;") + "\n" +
+                Slice(ncrypt, @"_Win32_AlsoUsableFor_\(NCRYPT_HANDLE\)\r?\ntypedef ULONG_PTR NCRYPT_KEY_HANDLE;"),
+                target, sal: true, extraSettings: settings, namespaceName: Cryptography);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Assert.IsTrue(File.Exists(Path.ChangeExtension(owner.GeneratedSource, ".headerTypedefs.cs")));
+
+            foreach (string header in new[] { "raseapif.h", "eapmethodpeerapis.h" })
+            {
+                using var consumer = new LastErrorHeaderTests.Fixture();
+                string source = File.ReadAllText(Path.Combine(include, "um", header));
+                string declarations = prefix + Slice(winnt, @"typedef wchar_t WCHAR;") + "\n" +
+                    Slice(winnt, @"typedef void \*HANDLE;") + "\n" +
+                    Slice(source, @"#define NCRYPT_PIN_CACHE_PIN_BYTE_LENGTH 90") + "\n" +
+                    Slice(source, @"#define NGC_TICKET_PROPERTY_STRING_LENGTH [^\r\n]+") + "\n" +
+                    Slice(source, @"typedef ULONG_PTR NCRYPT_KEY_HANDLE;") + "\n" +
+                    Slice(source, @"typedef struct _NgcTicketContext\s*\{[^}]+\} NgcTicketContext;");
+                result = consumer.Scrape(declarations, target, sal: true, extraSettings: settings,
+                    namespaceName: "Windows.Win32.Security.ExtensibleAuthenticationProtocol");
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                Assert.IsFalse(File.Exists(Path.ChangeExtension(consumer.GeneratedSource, ".headerTypedefs.cs")),
+                    header + " must reference the established owner, not emit another NCRYPT_KEY_HANDLE.");
+                File.Copy(consumer.GeneratedSource, Path.Combine(generated, "Eap.cs"), true);
+
+                string output = owner.Emit(requiredNamespaces: namespaces);
+                using var pe = new PEReader(File.OpenRead(output));
+                var reader = pe.GetMetadataReader();
+                NativeTypedefHeaderTests.AssertStorage(reader, "NCRYPT_KEY_HANDLE", SignatureTypeCode.UIntPtr);
+                var key = NativeTypedefHeaderTests.Type(reader, "NCRYPT_KEY_HANDLE");
+                Assert.AreEqual(Cryptography, reader.GetString(key.Namespace));
+                Assert.AreEqual(Cryptography, reader.GetString(NativeTypedefHeaderTests.Type(reader, "NCRYPT_HANDLE").Namespace));
+                var association = reader.GetBlobReader(key.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                    .Single(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "AlsoUsableForAttribute").Value);
+                Assert.AreEqual((ushort)1, association.ReadUInt16());
+                Assert.AreEqual("NCRYPT_HANDLE", association.ReadSerializedString());
+                Assert.AreEqual((ushort)0, association.ReadUInt16());
+                Assert.AreEqual(0, association.RemainingBytes);
+                var context = NativeTypedefHeaderTests.Type(reader, "NgcTicketContext");
+                Assert.AreEqual("Windows.Win32.Security.ExtensibleAuthenticationProtocol", reader.GetString(context.Namespace));
+                var field = context.GetFields().Select(reader.GetFieldDefinition)
+                    .Single(item => reader.GetString(item.Name) == "hKey");
+                var signature = reader.GetBlobReader(field.Signature);
+                signature.ReadSignatureHeader();
+                NativeTypedefHeaderTests.AssertReference(reader, ref signature, "NCRYPT_KEY_HANDLE", Cryptography);
+                Assert.AreEqual(0, signature.RemainingBytes);
+                Assert.AreEqual(1, reader.CustomAttributes.Select(reader.GetCustomAttribute).Count(attribute =>
+                    ParameterHeaderTests.AttributeName(reader, attribute) == "AlsoUsableForAttribute"));
+
+                string proof = Path.Combine(this.TestContext.ResultsDirectory, "native-key-owner-" +
+                    Path.GetFileNameWithoutExtension(header) + "-" + target + ".winmd");
+                File.Copy(output, proof, true);
+                this.TestContext.AddResultFile(proof);
+            }
         }
 
         [DataTestMethod]
@@ -117,7 +184,7 @@ namespace ClangSharpSourceToWinmdTests
 
                 using var fixture = new LastErrorHeaderTests.Fixture();
                 string declarations = Declarations(include, directory);
-                string settings = "--native-typedef\nHRESULT=Test\nNCRYPT_HANDLE=Test\nNCRYPT_KEY_HANDLE\n" +
+                string settings = "--native-typedef\nHRESULT=Test\nNCRYPT_HANDLE=Test\nNCRYPT_KEY_HANDLE=Test\n" +
                     "--remap\nULONG_PTR=UIntPtr\nSECURITY_STATUS=HRESULT\n--include-directory\n" + Path.Combine(include, "shared");
                 var result = fixture.Scrape(declarations, target, sal: true, extraSettings: settings);
                 Assert.AreEqual(0, result.ExitCode, result.Output);
@@ -224,6 +291,17 @@ typedef char CallbackWidth[(sizeof(*((LPResultCallback)0)) == sizeof(void*)) ? 1
             var matches = Regex.Matches(source, pattern);
             Assert.AreEqual(1, matches.Count, pattern);
             return matches[0].Value;
+        }
+
+        private static string PrepareSettings(string output)
+        {
+            var task = new MetadataTasks.PrepSettingsForAutoTypes
+            {
+                AutoTypes = new[] { new TaskItem(Sdk("autoTypes.json")) },
+                ScraperAutoTypesRsp = output,
+            };
+            Assert.IsTrue(task.Execute());
+            return File.ReadAllText(output).Replace("\r\n", "\n");
         }
 
         private static void AssertFinal(string output, bool legacy)

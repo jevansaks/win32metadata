@@ -242,7 +242,7 @@ namespace ClangSharpSourceToWinmdTests
             public (int ExitCode, string Output) Scrape(string header, string target = "x86_64-pc-windows-msvc",
                 bool legacy = false, string? remap = null, bool repeatInclude = false, bool metadata = true, string language = "c++",
                 bool sal = false, bool transitive = false, string extraSettings = "", string? includedHeader = null,
-                string? scraperPath = null, string libraryPath = "test.dll")
+                string? scraperPath = null, string libraryPath = "test.dll", string namespaceName = "Test")
             {
                 if (File.Exists(this.GeneratedSource)) File.Delete(this.GeneratedSource);
                 if (sal)
@@ -274,7 +274,7 @@ namespace ClangSharpSourceToWinmdTests
 --std
 {(language == "c" ? "c17" : "c++17")}
 --namespace
-Test
+{namespaceName}
 --include-directory
 {this.directory}
 --traverse

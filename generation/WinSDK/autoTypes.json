@@ -1539,6 +1539,7 @@
     "NativeTypedef": true
   },
   {
+    "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "NCRYPT_KEY_HANDLE",
     "ValueType": "native",
     "CloseApi": "NCryptFreeObject",
