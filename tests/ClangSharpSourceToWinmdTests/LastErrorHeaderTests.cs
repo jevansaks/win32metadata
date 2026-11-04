@@ -302,12 +302,12 @@ generate-cpp-attributes
                 return Run("dotnet", scraper, Path.Combine(this.directory, "remaps.rsp"), "@" + rsp);
             }
 
-            public string Emit(Dictionary<string, string>? memberRemaps = null)
+            public string Emit(Dictionary<string, string>? memberRemaps = null, Dictionary<string, string>? requiredNamespaces = null)
             {
                 var compilation = ClangSharpSourceCompilation.Create(
                     Path.GetDirectoryName(this.GeneratedSource), "crossarch",
                     memberRemaps ?? new Dictionary<string, string>(), new Dictionary<string, Dictionary<string, string>>(),
-                    Array.Empty<string>(), new Dictionary<string, string>(), new Dictionary<string, string>(),
+                    Array.Empty<string>(), new Dictionary<string, string>(), requiredNamespaces ?? new Dictionary<string, string>(),
                     new HashSet<string>(), Array.Empty<string>(), new Dictionary<string, string>(), new Dictionary<string, string>());
                 var errors = compilation.GetDiagnostics().Where(d => d.Severity == DiagnosticSeverity.Error).ToArray();
                 Assert.AreEqual(0, errors.Length, string.Join(Environment.NewLine, errors.Select(d => d.ToString())));

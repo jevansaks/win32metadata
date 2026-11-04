@@ -25,6 +25,7 @@ namespace MetadataTasks
 
             HashSet<string> typesToExclude = new HashSet<string>();
             StringBuilder remapSection = new StringBuilder();
+            StringBuilder nativeTypedefSection = new StringBuilder();
             foreach (var fileItem in this.AutoTypes)
             {
                 string autoTypesFileName = fileItem.ItemSpec;
@@ -37,7 +38,12 @@ namespace MetadataTasks
                 foreach (var autoType in autoTypes)
                 {
                     var type = autoType.ValueType;
-                    if (type == "DECLARE_HANDLE" || type == "DECLARE_OPAQUE_KEY")
+                    if (type == "native")
+                    {
+                        nativeTypedefSection.AppendLine(autoType.Name +
+                            (string.IsNullOrEmpty(autoType.Namespace) ? "" : "=" + autoType.Namespace));
+                    }
+                    else if (type == "DECLARE_HANDLE" || type == "DECLARE_OPAQUE_KEY")
                     {
                         var typeName = autoType.Name;
                         var handleStructName = typeName + "__";
@@ -75,6 +81,7 @@ namespace MetadataTasks
 
             Directory.CreateDirectory(Path.GetDirectoryName(this.ScraperAutoTypesRsp));
             using StreamWriter writer = new StreamWriter(this.ScraperAutoTypesRsp);
+            AppendSectionToWriter(writer, nativeTypedefSection, "--native-typedef");
             if (remapSection.Length != 0)
             {
                 writer.WriteLine("--remap");

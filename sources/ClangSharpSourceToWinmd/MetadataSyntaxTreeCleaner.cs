@@ -204,6 +204,7 @@ namespace ClangSharpSourceToWinmd
                     .Where(payload => payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal) &&
                         payload != ParameterAnnotation.Owner + "SetLastError" &&
                         payload != ParameterAnnotation.Owner + "PreserveResult" &&
+                        !payload.StartsWith(ParameterAnnotation.Owner + "AlsoUsableFor(", StringComparison.Ordinal) &&
                         !payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal) &&
                         !payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
                     .SelectMany(payload => payload == ProducerAnnotation.Marker ? Array.Empty<string>() :
@@ -268,7 +269,8 @@ namespace ClangSharpSourceToWinmd
             public override SyntaxNode VisitStructDeclaration(StructDeclarationSyntax node)
             {
                 // If the struct is empty and we found a non-empty struct in all the source files, delete it
-                if (SyntaxUtils.IsEmptyStruct(node) && this.nonEmptyStructs.Contains(node.Identifier.ValueText))
+                if (SyntaxUtils.IsEmptyStruct(node) && this.nonEmptyStructs.Contains(node.Identifier.ValueText) &&
+                    !node.Modifiers.Any(token => token.IsKind(SyntaxKind.PartialKeyword)))
                 {
                     return null;
                 }
@@ -319,6 +321,15 @@ namespace ClangSharpSourceToWinmd
 
                 if (this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, null, out _, out string newName))
                 {
+                    if (node.SyntaxTree.FilePath.EndsWith(".headerTypedefs.modified.cs", StringComparison.Ordinal))
+                    {
+                        var ownedNames = node.AttributeLists.SelectMany(list => list.Attributes)
+                            .Select(attribute => attribute.Name.ToString())
+                            .Where(name => name is "NativeTypedef" or "AlsoUsableFor").ToArray();
+                        var location = node.GetLocation().GetMappedLineSpan();
+                        VerifyOwnedRemaps($"{location.Path}:{location.StartLinePosition.Line + 1}:{location.StartLinePosition.Character + 1}: {fullName}",
+                            ownedNames, node.AttributeLists, listAttributes);
+                    }
                     node = (StructDeclarationSyntax)base.VisitStructDeclaration(node);
                     node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes));
 
@@ -584,14 +595,20 @@ namespace ClangSharpSourceToWinmd
                         {
                             if (payload == ParameterAnnotation.Owner + "SetLastError") return null;
                             if (payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal)) return null;
+                            // Typedef facts are resolved on the compiler-owned nominal declaration, not propagated uses.
+                            if (payload.StartsWith(ParameterAnnotation.Owner + "AlsoUsableFor(", StringComparison.Ordinal)) return null;
                             if (payload == ParameterAnnotation.Owner + "PreserveResult")
                             {
-                                // PInvokeGenerator also carries COM method annotations on its nested vtable delegates.
                                 if (node.Parent is not MethodDeclarationSyntax &&
-                                    !(node.Parent is DelegateDeclarationSyntax && node.Parent.Parent is StructDeclarationSyntax))
+                                    node.Parent is not DelegateDeclarationSyntax)
                                     throw new FormatException($"PreserveResult requires a generated method: {payload}");
+                                // C# delegates have no method attribute target. Keep the existing compiler
+                                // carrier until the emitter writes Invoke, rather than annotating the typedef.
                                 return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
-                                    SyntaxFactory.Attribute(SyntaxFactory.ParseName("PreserveSig"))));
+                                    node.Parent is DelegateDeclarationSyntax ?
+                                        SyntaxFactory.Attribute(SyntaxFactory.ParseName("CppAttributeList"),
+                                            SyntaxFactory.ParseAttributeArgumentList("(\"Win32Metadata.PreserveResult\")")) :
+                                        SyntaxFactory.Attribute(SyntaxFactory.ParseName("PreserveSig"))));
                             }
                             if (payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
                             {

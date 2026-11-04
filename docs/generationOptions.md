@@ -52,6 +52,30 @@ D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS=Flags
 
 This adds the Flags attribute (e.g. [Flags]) to D3D12_VIDEO_PROCESS_DEINTERLACE_FLAGS.
 
+### Compiler-backed nominal typedefs
+
+An `autoTypes.json` entry with `"ValueType": "native"` selects an existing native
+typedef for nominal projection. The build forwards its name as `--native-typedef`;
+an existing explicit namespace is retained as `NAME=NAMESPACE`, so a shared include
+does not move the declaration to the partition that happens to traverse that header.
+The single-TU scraper derives its integer width/signedness or opaque pointer storage
+and resolves same-level aliases and additional pointer depth. Existing intrinsic
+pointer-sized mappings (for example `ULONG_PTR=UIntPtr`) are checked against the
+compiler's target width and signedness. Other scalar typedefs are not nominalized.
+Unsupported shapes and conflicting type/remap settings are source-located errors.
+
+Do not supply `NativeTypedef` or `AlsoUsableFor` in those entries. Native identity
+comes from the compiler; `_Win32_AlsoUsableFor_(TYPE)` precedes the genuine typedef
+and carries an unevaluated, compiler-resolved type operand referring to an existing,
+storage-compatible native typedef. Residual legacy
+cleanup/invalid-value entries remain independent and do not become source ownership
+facts. Neither native identity nor `AlsoUsableFor` implies ownership or availability.
+
+`_Win32_PreserveResult_` on a defining callback typedef sets `PreserveSig` on its
+final `Invoke`, not on the delegate type or its constructor. The callback's native
+result, calling convention, parameter SAL and extra pointer aliases remain intact;
+no `RetVal` is inferred.
+
 ### Exclude
 
 ````

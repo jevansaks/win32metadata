@@ -359,7 +359,7 @@ VOID CALLBACK Caller(void) { (*address)(0, 0, 0, 0, 0); }
             Assert.AreEqual(SignatureTypeCode.Int32, signature.ReadSignatureTypeCode());
         }
 
-        private static string ShippedDeclarations()
+        internal static string ShippedDeclarations()
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
             string path = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0", "um", "winhttp.h");

@@ -17,6 +17,128 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void CallbackResult_IsOnlyAnInvokeFlagAndKeepsRealSignatureAndLpIndirection(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string declarations = CallbackHeaderTests.ShippedDeclarations().Replace("\r\n", "\n").Replace("typedef\nVOID\n(CALLBACK",
+                "_Win32_PreserveResult_\ntypedef\nVOID\n(CALLBACK", StringComparison.Ordinal);
+            Assert.IsTrue(declarations.Contains("_Win32_PreserveResult_", StringComparison.Ordinal));
+            declarations += "\ntypedef int (__cdecl *Neighbor)(int value);\n" +
+                "void __stdcall Probe(LPWINHTTP_STATUS_CALLBACK address, Neighbor neighbor);";
+            var result = fixture.Scrape(declarations, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var callback = NativeTypedefHeaderTests.Type(reader, "WINHTTP_STATUS_CALLBACK");
+            var invoke = callback.GetMethods().Select(reader.GetMethodDefinition)
+                .Single(method => reader.GetString(method.Name) == "Invoke");
+            Assert.IsTrue(invoke.ImplAttributes.HasFlag(MethodImplAttributes.PreserveSig));
+            Assert.IsFalse(reader.GetMethodDefinition(callback.GetMethods().First()).ImplAttributes.HasFlag(MethodImplAttributes.PreserveSig));
+            Assert.IsFalse(NativeTypedefHeaderTests.Type(reader, "Neighbor").GetMethods().Select(reader.GetMethodDefinition)
+                .Any(method => method.ImplAttributes.HasFlag(MethodImplAttributes.PreserveSig)));
+            Assert.IsFalse(reader.CustomAttributes.Select(reader.GetCustomAttribute).Any(attribute =>
+                ParameterHeaderTests.AttributeName(reader, attribute) is "PreserveSigAttribute" or "RetValAttribute" or "NativeAnnotationAttribute" or "CppAttributeList"));
+            var signature = reader.GetBlobReader(invoke.Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(5, signature.ReadCompressedInteger());
+            foreach (var code in new[] { SignatureTypeCode.Void, SignatureTypeCode.Pointer, SignatureTypeCode.Void,
+                SignatureTypeCode.UIntPtr, SignatureTypeCode.UInt32, SignatureTypeCode.Pointer, SignatureTypeCode.Void, SignatureTypeCode.UInt32 })
+                Assert.AreEqual(code, signature.ReadSignatureTypeCode());
+            Assert.AreEqual(0, signature.RemainingBytes);
+            var convention = reader.GetBlobReader(callback.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                .Single(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "UnmanagedFunctionPointerAttribute").Value);
+            Assert.AreEqual((ushort)1, convention.ReadUInt16());
+            Assert.AreEqual(1, convention.ReadInt32(), "The real Windows callback remains Winapi.");
+            Assert.AreEqual((ushort)0, convention.ReadUInt16());
+            Assert.AreEqual(0, convention.RemainingBytes);
+            foreach (var parameter in invoke.GetParameters().Select(reader.GetParameter))
+                Assert.IsTrue(parameter.Attributes.HasFlag(ParameterAttributes.In), "Preserve actual IN SAL, not a blanket default.");
+            signature = reader.GetBlobReader(reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(method => reader.GetString(method.Name) == "Probe").Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(2, signature.ReadCompressedInteger());
+            Assert.AreEqual(SignatureTypeCode.Void, signature.ReadSignatureTypeCode());
+            Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "WINHTTP_STATUS_CALLBACK");
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "Neighbor");
+            Assert.AreEqual(0, signature.RemainingBytes);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc", "c")]
+        [DataRow("x86_64-pc-windows-msvc", "c")]
+        [DataRow("aarch64-pc-windows-msvc", "c")]
+        [DataRow("i686-pc-windows-msvc", "c++")]
+        [DataRow("x86_64-pc-windows-msvc", "c++")]
+        [DataRow("aarch64-pc-windows-msvc", "c++")]
+        public void CallbackResultAndParameterFacts_KeepTypedPayloadsAndAbsence(string target, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            const string declaration = "_Win32_PreserveResult_ typedef long (__cdecl *ResultCallback)(" +
+                "_In_ _Win32_Retained_ void* retained, _Out_writes_(2) _Win32_ContainsInteriorPointers_ void* buffer, int unspecified);";
+            foreach (bool metadata in new[] { true, false })
+            {
+                var result = fixture.Scrape(declaration, target, sal: true, language: language, metadata: metadata);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+                var reader = pe.GetMetadataReader();
+                var callback = NativeTypedefHeaderTests.Type(reader, "ResultCallback");
+                var invoke = callback.GetMethods().Select(reader.GetMethodDefinition)
+                    .Single(method => reader.GetString(method.Name) == "Invoke");
+                Assert.AreEqual(metadata, invoke.ImplAttributes.HasFlag(MethodImplAttributes.PreserveSig));
+                var signature = reader.GetBlobReader(invoke.Signature);
+                signature.ReadSignatureHeader();
+                Assert.AreEqual(3, signature.ReadCompressedInteger());
+                foreach (var code in new[] { SignatureTypeCode.Int32, SignatureTypeCode.Pointer, SignatureTypeCode.Void,
+                    SignatureTypeCode.Pointer, SignatureTypeCode.Void, SignatureTypeCode.Int32 })
+                    Assert.AreEqual(code, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(0, signature.RemainingBytes);
+                var allParameters = invoke.GetParameters().Select(reader.GetParameter).ToArray();
+                Assert.IsFalse(allParameters.Any(parameter => parameter.Attributes.HasFlag(ParameterAttributes.Retval)));
+                Assert.IsFalse(allParameters.SelectMany(parameter => parameter.GetCustomAttributes()).Select(reader.GetCustomAttribute)
+                    .Any(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "RetValAttribute"));
+                var parameters = allParameters.Where(parameter => parameter.SequenceNumber != 0).ToArray();
+                Assert.AreEqual(3, parameters.Length, "No synthetic retval parameter is introduced.");
+                Assert.AreEqual(ParameterAttributes.In, parameters[0].Attributes);
+                Assert.AreEqual(ParameterAttributes.Out, parameters[1].Attributes);
+                Assert.AreEqual(ParameterAttributes.In, parameters[2].Attributes, "Unspecified scalar SAL keeps the existing In default.");
+                Assert.IsFalse(parameters[2].GetCustomAttributes().Select(reader.GetCustomAttribute).Any(attribute =>
+                    ParameterHeaderTests.AttributeName(reader, attribute) is "RetainedAttribute" or "ContainsInteriorPointersAttribute" or "NativeArrayInfoAttribute"));
+                var capacity = reader.GetBlobReader(parameters[1].GetCustomAttributes().Select(reader.GetCustomAttribute)
+                    .Single(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "NativeArrayInfoAttribute").Value);
+                Assert.AreEqual((ushort)1, capacity.ReadUInt16());
+                Assert.AreEqual((ushort)1, capacity.ReadUInt16());
+                Assert.AreEqual((byte)0x53, capacity.ReadByte());
+                Assert.AreEqual((byte)0x08, capacity.ReadByte());
+                Assert.AreEqual("CountConst", capacity.ReadSerializedString());
+                Assert.AreEqual(2, capacity.ReadInt32());
+                Assert.AreEqual(0, capacity.RemainingBytes);
+                foreach (var pair in new[] { (0, "RetainedAttribute"), (1, "ContainsInteriorPointersAttribute") })
+                {
+                    var facts = parameters[pair.Item1].GetCustomAttributes().Select(reader.GetCustomAttribute)
+                        .Where(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == pair.Item2).ToArray();
+                    Assert.AreEqual(metadata ? 1 : 0, facts.Length, pair.Item2);
+                    if (metadata)
+                    {
+                        var blob = reader.GetBlobReader(facts[0].Value);
+                        Assert.AreEqual((ushort)1, blob.ReadUInt16());
+                        Assert.AreEqual((ushort)0, blob.ReadUInt16());
+                        Assert.AreEqual(0, blob.RemainingBytes);
+                    }
+                }
+                var convention = reader.GetBlobReader(callback.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                    .Single(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "UnmanagedFunctionPointerAttribute").Value);
+                Assert.AreEqual((ushort)1, convention.ReadUInt16());
+                Assert.AreEqual(2, convention.ReadInt32(), "Cdecl cannot become Winapi.");
+                Assert.AreEqual((ushort)0, convention.ReadUInt16());
+                Assert.AreEqual(0, convention.RemainingBytes);
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void ShippedFunction_HeaderLegacyBothAndNeither(string target)
         {
             string header = Owner("objbase.h");
@@ -101,7 +223,8 @@ _Win32_PreserveResult_ virtual int __stdcall Method(_Out_ _Win32_Retval_ int* va
 
         [DataTestMethod]
         [DataRow("_Win32_PreserveResult_ typedef int Alias;")]
-        [DataRow("_Win32_PreserveResult_ typedef int (__stdcall *Callback)(void);")]
+        [DataRow("typedef _Win32_PreserveResult_ int (__stdcall *Callback)(void);")]
+        [DataRow("typedef int (__stdcall *Callback)(void); _Win32_PreserveResult_ typedef Callback Alias;")]
         [DataRow("struct _Win32_PreserveResult_ Value { int field; };")]
         [DataRow("enum _Win32_PreserveResult_ Value { One = 1 };")]
         [DataRow("struct Value { _Win32_PreserveResult_ int field; };")]

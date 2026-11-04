@@ -68,6 +68,7 @@ class Program
         "--libraryPath",
         "--methodClassName",
         "--namespace",
+        "--native-typedef",
         "--output",
         "--preserve-auto-fnptr-level",
         "--remap",
@@ -176,6 +177,7 @@ class Program
 
             // ── Walk AST to discover all typedef-tag and function pointer relationships ──
             var annotations = new HeaderAnnotations();
+            var nativeTypedefs = new NativeTypedefs();
             var emittedEnumNames = new HashSet<string>(StringComparer.Ordinal);
             var traversalNames = new HashSet<string>(
                 (settings.GetValueOrDefault("--traverse") ?? new List<string>()).Select(Path.GetFullPath),
@@ -184,6 +186,7 @@ class Program
             var discovery = RemapDiscovery.WalkTranslationUnit(translationUnit.TranslationUnitDecl, declaration =>
             {
                 annotations.Visit(declaration);
+                nativeTypedefs.Visit(declaration);
                 if (declaration is TypedefDecl group && annotations.EnumGroups.ContainsKey(group.Name))
                 {
                     group.Location.GetPresumedLocation(out var fileName, out _, out _);
@@ -255,6 +258,8 @@ class Program
                     throw new FormatException($"Configured type for callback alias '{alias.Key}' conflicts with native storage '{alias.Value}'.");
                 callbackTypes[alias.Key] = alias.Value;
             }
+            nativeTypedefs.Configure(settings.GetValueOrDefault("--native-typedef") ?? new List<string>(),
+                ns, traversalNames, mergedRemaps, callbackTypes, allExcludes);
             settings["--with-type"] = callbackTypes.Select(pair => $"{pair.Key}={pair.Value}").ToList();
             var config = CreateConfig(settings, ns, outputFile, headerFile, configOptions, mergedRemaps, allExcludes);
 
@@ -285,6 +290,7 @@ class Program
                     File.WriteAllText(kvp.Key, NormalizeGeneratedSource(generatedSource, kvp.Key), new UTF8Encoding(false));
                 }
 
+                nativeTypedefs.Write(Path.ChangeExtension(outputFile, ".headerTypedefs.cs"), ns);
                 string enumOutput = Path.ChangeExtension(outputFile, ".headerEnums.cs");
                 if (File.Exists(enumOutput)) File.Delete(enumOutput);
                 using (var writer = new MetadataUtils.EnumWriter(enumOutput, ns, "using System;", useConstants: false))

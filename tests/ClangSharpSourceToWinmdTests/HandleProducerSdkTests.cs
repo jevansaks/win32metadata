@@ -50,7 +50,10 @@ namespace ClangSharpSourceToWinmdTests
                 .Replace("\r\n", "\n");
             string current = File.ReadAllText(Sdk("emitter.settings.rsp")).Replace("\r\n", "\n");
             Assert.AreEqual(ApplySidecarDelta(original), current);
-            foreach (string path in new[] { "autoTypes.json", "scraper.settings.rsp", "functionPointerFixups.json",
+            Assert.AreEqual(NativeTypedefSdkTests.ApplyAutoTypesDelta(Encoding.UTF8.GetString(
+                PropertyComOutputHeaderTests.ReadOriginalBytes("autoTypes.json", parent))),
+                File.ReadAllText(Sdk("autoTypes.json")).Replace("\r\n", "\n"));
+            foreach (string path in new[] { "scraper.settings.rsp", "functionPointerFixups.json",
                 "RecompiledIdlHeaders/um/heapapi.h" })
                 CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(path, parent),
                     File.ReadAllBytes(Sdk(path)), "Unrelated legacy/native inputs must remain byte-exact: " + path);

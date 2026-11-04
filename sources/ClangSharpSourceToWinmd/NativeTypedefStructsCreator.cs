@@ -69,6 +69,10 @@ using Windows.Win32.Foundation.Metadata;
                     throw new System.InvalidOperationException($"Autotype {item.Name} needs a namespace to be specified.");
                 }
 
+                if (valueType == "native" &&
+                    (!apiNamesToNamespaces.TryGetValue(item.Name, out var nativeNamespace) || nativeNamespace != item.Namespace))
+                    throw new System.InvalidOperationException($"Native typedef {item.Name} must have one scraped declaration in namespace {item.Namespace}.");
+
                 if (item.Namespace != currentNamespace)
                 {
                     if (currentNamespace != null)
@@ -100,7 +104,13 @@ $@"namespace {currentNamespace}
                     }
                 }
 
-                writer.WriteLine(
+                if (valueType == "native")
+                {
+                    if (item.NativeTypedef || !string.IsNullOrEmpty(item.AlsoUsableFor))
+                        throw new System.InvalidOperationException($"Native typedef {item.Name} derives identity and AlsoUsableFor from its declaration, not legacy settings.");
+                    writer.WriteLine($"    public partial struct {item.Name} {{ }}");
+                }
+                else writer.WriteLine(
 $@"    [{(item.NativeTypedef ? "NativeTypedef" : "MetadataTypedef")}]
     public {safety}struct {item.Name}
     {{
