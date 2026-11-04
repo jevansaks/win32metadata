@@ -138,12 +138,12 @@ namespace ClangSharpSourceToWinmdTests
                 CollectionAssert.Contains(records, selector + "=[ComOutPtr]" + (selector == DWriteSelector ? "void**" : ""));
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
-            Assert.AreEqual(MediaFoundationComOutputHeaderTests.RetireRecords(RetireRecords(original)), current,
+            Assert.AreEqual(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(RetireRecords(original))), current,
                 "Preserve all independent sidecars exactly.");
-            CollectionAssert.AreEqual(MediaFoundationComOutputHeaderTests.RetireRecords(RetireRecords(string.Join("\n", records) + "\n")).Split('\n').Where(line => line.Length != 0).ToArray(),
+            CollectionAssert.AreEqual(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(RetireRecords(string.Join("\n", records) + "\n"))).Split('\n').Where(line => line.Length != 0).ToArray(),
                 current.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal) ||
                     line == DWriteSelector + "=void**").ToArray());
-            Assert.AreEqual(114, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(100, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
             StringAssert.Contains(current, RetvalBoundary + "=[ComOutPtr]\n");
             foreach (string selector in RetainedCallbacks) StringAssert.Contains(current, selector + "=[ComOutPtr]\n");
             CollectionAssert.AreEqual(original.Split('\n').Where(IndependentContract).ToArray(),

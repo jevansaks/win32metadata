@@ -715,7 +715,7 @@ EXTERN_C const IID IID_IResourceManager;
         
         virtual HRESULT STDMETHODCALLTYPE GetDistributedTransactionManager( 
             /* [in] */ __RPC__in REFIID iid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppvObject) = 0;
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppvObject) = 0;
         
     };
     
@@ -766,7 +766,7 @@ EXTERN_C const IID IID_IResourceManager;
         HRESULT ( STDMETHODCALLTYPE *GetDistributedTransactionManager )( 
             __RPC__in IResourceManager * This,
             /* [in] */ __RPC__in REFIID iid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppvObject);
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppvObject);
         
         END_INTERFACE
     } IResourceManagerVtbl;
@@ -986,7 +986,7 @@ EXTERN_C const IID IID_IResourceManager2;
         HRESULT ( STDMETHODCALLTYPE *GetDistributedTransactionManager )( 
             __RPC__in IResourceManager2 * This,
             /* [in] */ __RPC__in REFIID iid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppvObject);
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppvObject);
         
         DECLSPEC_XFGVIRT(IResourceManager2, Enlist2)
         HRESULT ( STDMETHODCALLTYPE *Enlist2 )( 
@@ -1128,7 +1128,7 @@ EXTERN_C const IID IID_IResourceManagerRejoinable;
         HRESULT ( STDMETHODCALLTYPE *GetDistributedTransactionManager )( 
             __RPC__in IResourceManagerRejoinable * This,
             /* [in] */ __RPC__in REFIID iid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppvObject);
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppvObject);
         
         DECLSPEC_XFGVIRT(IResourceManager2, Enlist2)
         HRESULT ( STDMETHODCALLTYPE *Enlist2 )( 
@@ -1606,7 +1606,7 @@ EXTERN_C const IID IID_IResourceManagerFactory2;
             /* [string][in] */ __RPC__in_string CHAR *pszRMName,
             /* [in] */ __RPC__in_opt IResourceManagerSink *pIResMgrSink,
             /* [in] */ __RPC__in REFIID riidRequested,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppvResMgr) = 0;
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppvResMgr) = 0;
         
     };
     
@@ -1647,7 +1647,7 @@ EXTERN_C const IID IID_IResourceManagerFactory2;
             /* [string][in] */ __RPC__in_string CHAR *pszRMName,
             /* [in] */ __RPC__in_opt IResourceManagerSink *pIResMgrSink,
             /* [in] */ __RPC__in REFIID riidRequested,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppvResMgr);
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppvResMgr);
         
         END_INTERFACE
     } IResourceManagerFactory2Vtbl;
@@ -1899,7 +1899,7 @@ EXTERN_C const IID IID_IGetDispenser;
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDispenser( 
             /* [in] */ __RPC__in REFIID iid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppvObject) = 0;
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppvObject) = 0;
         
     };
     
@@ -1929,7 +1929,7 @@ EXTERN_C const IID IID_IGetDispenser;
         HRESULT ( STDMETHODCALLTYPE *GetDispenser )( 
             __RPC__in IGetDispenser * This,
             /* [in] */ __RPC__in REFIID iid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppvObject);
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppvObject);
         
         END_INTERFACE
     } IGetDispenserVtbl;

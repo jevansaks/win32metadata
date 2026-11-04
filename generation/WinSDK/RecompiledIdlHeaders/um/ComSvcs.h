@@ -2801,7 +2801,7 @@ EXTERN_C const IID IID_ITransactionContextEx;
         virtual /* [helpstring][helpcontext] */ HRESULT STDMETHODCALLTYPE CreateInstance( 
             /* [in] */ __RPC__in REFCLSID rclsid,
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][retval][out] */ __RPC__deref_out_opt void **pObject) = 0;
+            /* [iid_is][retval][out] */ _COM_Outptr_result_maybenull_ void **pObject) = 0;
         
         virtual /* [helpstring][helpcontext] */ HRESULT STDMETHODCALLTYPE Commit( void) = 0;
         
@@ -2836,7 +2836,7 @@ EXTERN_C const IID IID_ITransactionContextEx;
             __RPC__in ITransactionContextEx * This,
             /* [in] */ __RPC__in REFCLSID rclsid,
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][retval][out] */ __RPC__deref_out_opt void **pObject);
+            /* [iid_is][retval][out] */ _COM_Outptr_result_maybenull_ void **pObject);
         
         DECLSPEC_XFGVIRT(ITransactionContextEx, Commit)
         /* [helpstring][helpcontext] */ HRESULT ( STDMETHODCALLTYPE *Commit )( 
@@ -3066,7 +3066,7 @@ EXTERN_C const IID IID_ICreateWithTransactionEx;
             /* [in] */ __RPC__in_opt ITransaction *pTransaction,
             /* [in] */ __RPC__in REFCLSID rclsid,
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][retval][out] */ __RPC__deref_out_opt void **pObject) = 0;
+            /* [iid_is][retval][out] */ _COM_Outptr_result_maybenull_ void **pObject) = 0;
         
     };
     
@@ -3098,7 +3098,7 @@ EXTERN_C const IID IID_ICreateWithTransactionEx;
             /* [in] */ __RPC__in_opt ITransaction *pTransaction,
             /* [in] */ __RPC__in REFCLSID rclsid,
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][retval][out] */ __RPC__deref_out_opt void **pObject);
+            /* [iid_is][retval][out] */ _COM_Outptr_result_maybenull_ void **pObject);
         
         END_INTERFACE
     } ICreateWithTransactionExVtbl;
@@ -3156,7 +3156,7 @@ EXTERN_C const IID IID_ICreateWithLocalTransaction;
             /* [in] */ IUnknown *pTransaction,
             /* [in] */ REFCLSID rclsid,
             /* [in] */ REFIID riid,
-            /* [iid_is][retval][out] */ void **pObject) = 0;
+            /* [iid_is][retval][out] */ _COM_Outptr_ void **pObject) = 0;
         
     };
     
@@ -3188,7 +3188,7 @@ EXTERN_C const IID IID_ICreateWithLocalTransaction;
             /* [in] */ IUnknown *pTransaction,
             /* [in] */ REFCLSID rclsid,
             /* [in] */ REFIID riid,
-            /* [iid_is][retval][out] */ void **pObject);
+            /* [iid_is][retval][out] */ _COM_Outptr_ void **pObject);
         
         END_INTERFACE
     } ICreateWithLocalTransactionVtbl;
@@ -3246,7 +3246,7 @@ EXTERN_C const IID IID_ICreateWithTipTransactionEx;
             /* [in] */ __RPC__in BSTR bstrTipUrl,
             /* [in] */ __RPC__in REFCLSID rclsid,
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][retval][out] */ __RPC__deref_out_opt void **pObject) = 0;
+            /* [iid_is][retval][out] */ _COM_Outptr_result_maybenull_ void **pObject) = 0;
         
     };
     
@@ -3278,7 +3278,7 @@ EXTERN_C const IID IID_ICreateWithTipTransactionEx;
             /* [in] */ __RPC__in BSTR bstrTipUrl,
             /* [in] */ __RPC__in REFCLSID rclsid,
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][retval][out] */ __RPC__deref_out_opt void **pObject);
+            /* [iid_is][retval][out] */ _COM_Outptr_result_maybenull_ void **pObject);
         
         END_INTERFACE
     } ICreateWithTipTransactionExVtbl;
@@ -6401,7 +6401,7 @@ EXTERN_C const IID IID_IComTrackingInfoCollection;
         virtual HRESULT STDMETHODCALLTYPE Item( 
             /* [in] */ ULONG ulIndex,
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppv) = 0;
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppv) = 0;
         
     };
     
@@ -6442,7 +6442,7 @@ EXTERN_C const IID IID_IComTrackingInfoCollection;
             __RPC__in IComTrackingInfoCollection * This,
             /* [in] */ ULONG ulIndex,
             /* [in] */ __RPC__in REFIID riid,
-            /* [iid_is][out] */ __RPC__deref_out_opt void **ppv);
+            /* [iid_is][out] */ _COM_Outptr_result_maybenull_ void **ppv);
         
         END_INTERFACE
     } IComTrackingInfoCollectionVtbl;
@@ -9780,7 +9780,7 @@ EXTERN_C const IID IID_IObjectContext;
         virtual HRESULT STDMETHODCALLTYPE CreateInstance( 
             /* [in] */ REFCLSID rclsid,
             /* [in] */ REFIID riid,
-            /* [retval][iid_is][out] */ LPVOID *ppv) = 0;
+            /* [retval][iid_is][out] */ _COM_Outptr_ LPVOID *ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE SetComplete( void) = 0;
         
@@ -9827,7 +9827,7 @@ EXTERN_C const IID IID_IObjectContext;
             IObjectContext * This,
             /* [in] */ REFCLSID rclsid,
             /* [in] */ REFIID riid,
-            /* [retval][iid_is][out] */ LPVOID *ppv);
+            /* [retval][iid_is][out] */ _COM_Outptr_ LPVOID *ppv);
         
         DECLSPEC_XFGVIRT(IObjectContext, SetComplete)
         HRESULT ( STDMETHODCALLTYPE *SetComplete )( 
@@ -12320,7 +12320,7 @@ EXTERN_C const IID IID_ICOMLBArguments;
 #else
 extern HRESULT __cdecl GetObjectContext (IObjectContext** ppInstanceContext);
 #endif
-EXTERN_C HRESULT __stdcall CoCreateActivity(IUnknown* pIUnknown, REFIID riid, void** ppObj );
+EXTERN_C HRESULT __stdcall CoCreateActivity(IUnknown* pIUnknown, REFIID riid, _COM_Outptr_ void** ppObj );
 EXTERN_C HRESULT __stdcall CoEnterServiceDomain(IUnknown* pConfigObject);
 EXTERN_C void __stdcall CoLeaveServiceDomain(IUnknown *pUnkStatus);
 EXTERN_C HRESULT __stdcall GetManagedExtensions(DWORD* dwExts);
@@ -16072,7 +16072,7 @@ EXTERN_C const IID IID_IServicePool;
         
         virtual HRESULT STDMETHODCALLTYPE GetObject( 
             REFIID riid,
-            /* [iid_is][out] */ void **ppv) = 0;
+            /* [iid_is][out] */ _COM_Outptr_ void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Shutdown( void) = 0;
         
@@ -16109,7 +16109,7 @@ EXTERN_C const IID IID_IServicePool;
         HRESULT ( STDMETHODCALLTYPE *GetObject )( 
             IServicePool * This,
             REFIID riid,
-            /* [iid_is][out] */ void **ppv);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppv);
         
         DECLSPEC_XFGVIRT(IServicePool, Shutdown)
         HRESULT ( STDMETHODCALLTYPE *Shutdown )( 
@@ -17063,7 +17063,7 @@ EXTERN_C const IID IID_ITransactionResourcePool;
 /* interface __MIDL_itf_autosvcs_0000_0114 */
 /* [local] */ 
 
-EXTERN_C HRESULT __stdcall MTSCreateActivity ( REFIID riid, void** ppobj );
+EXTERN_C HRESULT __stdcall MTSCreateActivity ( REFIID riid, _COM_Outptr_ void** ppobj );
 
 
 extern RPC_IF_HANDLE __MIDL_itf_autosvcs_0000_0114_v0_0_c_ifspec;

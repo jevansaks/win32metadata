@@ -65,7 +65,13 @@ namespace Windows.Win32.Tests
                     "PSGetPropertyDescriptionListFromString::ppv", "PSGetPropertySystem::ppv",
                     "PSPropertyBag_ReadUnknown::ppv", "PSCreateMemoryPropertyStore::ppv",
                     "SHGetPropertyStoreFromIDList::ppv", "SHGetPropertyStoreFromParsingName::ppv",
-                    "SHGetPropertyStoreForWindow::ppv", "SHGetViewStatePropertyBag::ppv" }),
+                    "SHGetPropertyStoreForWindow::ppv", "SHGetViewStatePropertyBag::ppv",
+                    "ITransactionContextEx::CreateInstance::pObject", "ICreateWithTipTransactionEx::CreateInstance::pObject",
+                    "ICreateWithTransactionEx::CreateInstance::pObject", "CoCreateActivity::ppObj",
+                    "CoGetInterceptor::ppv", "CoGetInterceptorFromTypeInfo::ppv", "IComTrackingInfoCollection::Item::ppv",
+                    "ICreateWithLocalTransaction::CreateInstanceWithSysTx::pObject", "IGetDispenser::GetDispenser::ppvObject",
+                    "IObjectContext::CreateInstance::ppv", "IResourceManager::GetDistributedTransactionManager::ppvObject",
+                    "IResourceManagerFactory2::CreateEx::ppvResMgr", "IServicePool::GetObject::ppv", "MTSCreateActivity::ppobj" }),
                 ("ReservedAttribute", ParameterAttributes.In | ParameterAttributes.Optional, new[] {
                     "CoAllowSetForegroundWindow::lpvReserved", "CoDisableCallCancellation::pReserved",
                     "CoEnableCallCancellation::pReserved", "CoInitialize::pvReserved", "CoInitializeEx::pvReserved",
@@ -119,7 +125,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(90, checkedSelectors);
+            Assert.Equal(104, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {

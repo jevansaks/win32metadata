@@ -1,0 +1,23 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/callobj.idl b/generation/WinSDK/RecompiledIdlHeaders/um/callobj.idl
+index 8e441d0a..387e5437 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/callobj.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/callobj.idl
+@@ -344,7 +344,7 @@ interface ICallFrameAPIs {
+ 		[in]   REFIID iidIntercepted,
+ 		[in]   IUnknown* punkOuter, 
+ 		[in]   REFIID iid,
+-		[out]  void** ppv
++		[out, annotation("_COM_Outptr_")]  void** ppv
+ 	);
+ 
+ 
+@@ -354,7 +354,7 @@ interface ICallFrameAPIs {
+ 		[in]   IUnknown* punkOuter,
+ 		[in]   ITypeInfo* typeInfo,
+ 		[in]   REFIID iid,        
+-		[out]  void** ppv         
++		[out, annotation("_COM_Outptr_")]  void** ppv         
+ 	);
+ };
+ 
