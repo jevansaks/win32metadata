@@ -72,8 +72,8 @@ namespace ClangSharpSourceToWinmdTests
                 CollectionAssert.Contains(records, selector + "=" + (selector == CombinedSelector ? "[Out]" : "") + "[ComOutPtr]");
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
-            Assert.AreEqual(ImagingComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(RetireRecords(parent))))), current, "Preserve all independent sidecars exactly.");
-            CollectionAssert.AreEqual(ImagingComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(RetireRecords(parent))))).Split('\n').Where(Contract).ToArray(),
+            Assert.AreEqual(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(RetireRecords(parent))), current, "Preserve all independent sidecars exactly.");
+            CollectionAssert.AreEqual(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(RetireRecords(parent))).Split('\n').Where(Contract).ToArray(),
                 current.Split('\n').Where(Contract).ToArray());
             Assert.AreEqual(73, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
             foreach (string selector in RetainedSelectors)

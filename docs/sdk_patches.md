@@ -2,10 +2,10 @@
 
 ## Imaging, acquisition and image-list direct COM outputs
 
-This layer audits all **79** parent `ComOutPtr` records against every physical
+This layer audits all **88** parent `ComOutPtr` records against every physical
 header selected by `Wic`, `Wia`, `ImagingDevice`, `PicAcq` and `Controls`.
 The complete direct-output family contains **15 facts**, all complete
-retirements: **0 partial records, 0 retained boundaries**, leaving **64**
+retirements: **0 partial records, 0 retained boundaries**, leaving **73**
 active records. The existing disabled `wiamdef--.h` traversal is not a
 physical SDK owner and is not restored.
 
@@ -35,8 +35,9 @@ C-vtable bodies, local/proxy distinctions, pointer depth, native types,
 direction, optionality, retval absence and result flags are preserved.
 No missing IDL or removed SDK API is reconstructed.
 
-`ImagingComOutputHeaderTests` uses reachable immutable SDK ancestor
-`c16762d41f1bd641ff8c4389ebf16ee50747129f`. It audits the entire remaining
+`ImagingComOutputHeaderTests` resolves the parent of its unique reachable
+fixture-introduction commit, without a mutable SHA pin, reconstructed sidecar
+or fallback. It audits the entire remaining
 inventory, permits only exact selected native edits, preserves legacy IDL
 bytes and compares original-native-plus-legacy against patched-header-only
 **final winmd bytes** on x86/x64/arm64. Independent assertions verify
@@ -48,6 +49,10 @@ legacy records preserve every final byte as well.
 replays all seven patches, converts the bounded **22-IDL** include/import
 closure, regenerates all three complete headers with production MIDL
 options and checks every output byte before final emission on all targets.
+The full selected SDK production MIDL queue establishes these owners and
+rejects post-MIDL patches against each regenerated output without changing
+its bytes. Both actual patch phases use the full SDK `MidlInputRoot`; copied
+compatibility sources cannot establish SDK ownership.
 The same-path native proof compiles all seven complete owners and calls all
 selected and inherited sites in C/C++ on x86/x64/arm64, with imaging-first
 and Windows-first include orders. Original, ordinary and `WIN32METADATA`
@@ -67,7 +72,8 @@ existing SDK job's timeout, workflow or coverage.
 All independent `Out`, type, callback, enum, namespace, import and RAII
 mechanisms remain unchanged. Production `CanReturn*` remains active and
 all 17 PreserveResult replacements remain inactive. DWrite's exact
-`void**` override, CLR's independent `[Out]`, the weak/agile shape
+`void**` override, all nine restored CLR compatibility records (including
+`CLRCreateInstance`'s combined `[Out][ComOutPtr]`), the weak/agile shape
 boundaries and the presentation custom-attribute row-order-only boundary
 remain intact. There is no workflow, annotation transport, native model,
 global remap, metadata canonicalizer or extra reference generation.

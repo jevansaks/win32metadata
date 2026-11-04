@@ -1602,19 +1602,41 @@ namespace ClangSharpSourceToWinmdTests
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
             string[] headerOnly = { "Sti.h", "wia_lh.h", "PhotoAcquire.h", "CommCtrl.h" };
+            var ownership = fixture.Run("$outputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) +
+                " -HeaderRoot " + Quote(include) + "); " +
+                "foreach ($header in 'um/wincodecsdk.h','um/wincodec.h','um/commoncontrols.h') { " +
+                "if (@($outputs | Where-Object Header -ieq $header).Count -ne 1) { throw \"Missing production MIDL owner: $header\" } }; " +
+                "foreach ($header in 'um/Sti.h','um/wia_lh.h','um/PhotoAcquire.h','um/CommCtrl.h') { " +
+                "if ($outputs.Header -icontains $header) { throw \"Direct SDK owner is queued: $header\" } }");
+            Assert.AreEqual(0, ownership.ExitCode, ownership.Output);
             foreach (string name in ImagingComOutputHeaderTests.Idls.Concat(headerOnly))
             {
                 byte[] original = File.ReadAllBytes(Path.Combine(include, "um", name));
-                CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
-                    "RecompiledIdlHeaders/um/" + name), original, "Immutable ancestor matches selected SDK: " + name);
+                CollectionAssert.AreEqual(ImagingComOutputHeaderTests.ReadOriginalBytes(
+                    "RecompiledIdlHeaders/um/" + name), original, "Reachable fixture introduction parent matches selected SDK: " + name);
                 fixture.Header(name, original);
             }
             foreach (string absent in new[] { "sti.idl", "wia_lh.idl", "wia.idl", "PhotoAcquire.idl", "CommCtrl.idl" })
                 Assert.IsFalse(File.Exists(Path.Combine(include, "um", absent)));
             string selection = string.Join("','", ImagingComOutputHeaderTests.Idls.Select(name => "pre-midl/" + name + ".patch")
                 .Concat(headerOnly.Select(name => "post-midl/" + name + ".patch")));
-            fixture.Apply("pre-midl", selection, true, patchRoot: patches);
-            fixture.Apply("post-midl", selection, true, patchRoot: patches);
+            foreach (var owner in ImagingComOutputHeaderTests.Owners.Where(owner =>
+                !headerOnly.Contains(Path.GetFileName(owner.Path), StringComparer.OrdinalIgnoreCase)))
+            {
+                string file = Path.GetFileName(owner.Path);
+                byte[] original = File.ReadAllBytes(Path.Combine(include, owner.Path.Replace('/', Path.DirectorySeparatorChar)));
+                string destination = fixture.Header(file, original);
+                fixture.Patch("post-midl/" + file + ".patch", owner.Path);
+                var rejection = fixture.Run("& " + Quote(Script("ApplySDKPatches.ps1")) +
+                    " -Phase post-midl -HeaderRoot " + Quote(fixture.Headers) +
+                    " -SdkVersion " + Quote(Version) + " -PatchRoot " + Quote(fixture.Patches) +
+                    " -MidlInputRoot " + Quote(include) + " -SelectedPatches " + Quote("post-midl/" + file + ".patch"));
+                Assert.AreNotEqual(0, rejection.ExitCode, owner.Path);
+                StringAssert.Contains(rejection.Output, "targets regenerated header " + owner.Path);
+                CollectionAssert.AreEqual(original, File.ReadAllBytes(destination), "Rejected output patch must leave native bytes unchanged.");
+            }
+            fixture.Apply("pre-midl", selection, true, patchRoot: patches, midlInputRoot: include);
+            fixture.Apply("post-midl", selection, true, patchRoot: patches, midlInputRoot: include);
             foreach (string idl in ImagingComOutputHeaderTests.Idls)
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", idl)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", idl)), idl);
@@ -1682,9 +1704,9 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             foreach (var owner in ImagingComOutputHeaderTests.Owners)
-                fixture.Header(Path.GetFileName(owner.Path), PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path));
+                fixture.Header(Path.GetFileName(owner.Path), ImagingComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path));
             foreach (string forwarding in new[] { "Wia.h", "commctrl.inl" })
-                fixture.Header(forwarding, PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/" + forwarding));
+                fixture.Header(forwarding, ImagingComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/" + forwarding));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
                 "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
