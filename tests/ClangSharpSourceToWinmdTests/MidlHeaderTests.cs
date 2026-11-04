@@ -229,13 +229,13 @@ struct __declspec(uuid(""64abea93-aac7-4f3b-a257-976deba89f04"")) IExample {
             Assert.AreEqual(0, signature.RemainingBytes);
         }
 
-        private static void AssertCallingConvention(MetadataReader reader, TypeDefinition type, int expected)
+        internal static void AssertCallingConvention(MetadataReader reader, TypeDefinition type, int expected)
         {
             var attribute = type.GetCustomAttributes().Select(reader.GetCustomAttribute)
                 .Single(a => ParameterHeaderTests.AttributeName(reader, a) == "UnmanagedFunctionPointerAttribute");
             var blob = reader.GetBlobReader(attribute.Value);
             Assert.AreEqual((ushort)1, blob.ReadUInt16());
-            Assert.AreEqual(expected, blob.ReadInt32());
+            Assert.AreEqual(expected, blob.ReadInt32(), reader.GetString(type.Name));
             Assert.AreEqual((ushort)0, blob.ReadUInt16());
             Assert.AreEqual(0, blob.RemainingBytes);
         }

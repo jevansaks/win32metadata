@@ -164,6 +164,7 @@ namespace ClangSharpSourceToWinmd
 
                 string fullName = GetFullNameWithoutArchSuffix(node);
                 bool headerRetval = GetOwnedAnnotationNames(node.AttributeLists).Contains("RetVal");
+                bool headerDoubleNull = SyntaxUtils.GetAttribute(node.AttributeLists, "NullNullTerminated") != null;
                 string headerType = this.GetHeaderEnumType(node.AttributeLists, node.Type.ToString(), fullName);
 
                 if (this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Type.ToString(), out string newType, out string newName))
@@ -203,6 +204,14 @@ namespace ClangSharpSourceToWinmd
                     while (SyntaxUtils.GetAttribute(node.AttributeLists, "RetVal") != null)
                         node = node.WithAttributeLists(SyntaxUtils.RemoveAttribute(node.AttributeLists, "RetVal"));
                     node = node.AddAttributeLists(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(retval)));
+                }
+                if (headerDoubleNull && node.AttributeLists.SelectMany(list => list.Attributes)
+                    .Count(a => a.Name.ToString() == "NullNullTerminated") > 1)
+                {
+                    var terminated = SyntaxUtils.GetAttribute(node.AttributeLists, "NullNullTerminated");
+                    while (SyntaxUtils.GetAttribute(node.AttributeLists, "NullNullTerminated") != null)
+                        node = node.WithAttributeLists(SyntaxUtils.RemoveAttribute(node.AttributeLists, "NullNullTerminated"));
+                    node = node.AddAttributeLists(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(terminated)));
                 }
                 return node;
             }

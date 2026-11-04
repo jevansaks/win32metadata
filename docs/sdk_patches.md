@@ -36,6 +36,18 @@ nullable dereferenced results are not nullable caller storage. Double-NUL SAL
 is also consumed on native returns, fields and typedef uses. Applicable SAL
 defaults are retained, with no universal scalar/pointer direction rule.
 
+Inherited callback-parameter typedef SAL is transported by the compiler's
+defining declaration and parameter index, never a bare parameter-name selector.
+Actual typedef aliases share that defining prototype's facts; unrelated
+callbacks and functions with a parameter named `result` do not. If compatible
+codegen leaves an alias with an empty signature, the reader reuses the actual
+defining delegate, or the compiler's native prototype when that definition is
+excluded. Native return aliases, calling convention, parameter storage and
+ordinary generated SAL are preserved. Anonymous field prototypes use the same
+native signature recovery. Duplicate projected names from unrelated prototypes
+still fail. A matching transported double-NUL fact and the existing native
+`PZZWSTR` inference produce one final `NullNullTerminatedAttribute`.
+
 The final count representation is deliberately unchanged:
 
 | Focused partial-count case | Existing final payload | Native expressions retained |

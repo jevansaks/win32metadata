@@ -263,28 +263,40 @@ namespace Win32MetadataScraper
             {
                 this.VisitNativeParameters(containingFunction, containingFunction.Parameters);
                 foreach (var parameter in containingFunction.Parameters)
+                {
                     this.Visit(parameter);
+                    this.VisitTypedefSal(parameter, parameter.Type);
+                }
                 this.VisitTypedefSal(containingFunction, containingFunction.ReturnType, returnValue: true);
             }
             if (declaration is TypedefDecl containingCallback)
             {
+                this.CallbackFacts.RegisterAlias(containingCallback);
                 var parameters = containingCallback.CursorChildren.OfType<ParmVarDecl>().ToArray();
                 this.VisitNativeParameters(containingCallback, parameters);
-                foreach (var parameter in parameters)
-                    this.Visit(parameter);
+                this.VisitCallbackParameters(containingCallback, parameters);
             }
             if (declaration is FieldDecl field)
             {
                 var parameters = field.CursorChildren.OfType<ParmVarDecl>().ToArray();
                 this.VisitNativeParameters(field, parameters);
-                foreach (var parameter in parameters) this.Visit(parameter);
+                this.VisitCallbackParameters(field, parameters);
                 this.VisitTypedefSal(field, field.Type);
             }
-            if (declaration is ParmVarDecl parameterUse)
-                this.VisitTypedefSal(parameterUse, parameterUse.Type);
         }
 
-        private void VisitTypedefSal(NamedDecl declaration, ClangSharp.Type type, bool returnValue = false)
+        private void VisitCallbackParameters(NamedDecl owner, IReadOnlyList<ParmVarDecl> parameters)
+        {
+            for (int i = 0; i < parameters.Count; i++)
+            {
+                this.Visit(parameters[i]);
+                this.VisitTypedefSal(parameters[i], parameters[i].Type,
+                    callbackFact: () => this.CallbackFacts.AddDoubleNull(owner, parameters, i));
+            }
+        }
+
+        private void VisitTypedefSal(NamedDecl declaration, ClangSharp.Type type, bool returnValue = false,
+            Action callbackFact = null)
         {
             if (HasDoubleNull(declaration.Attrs))
             {
@@ -296,7 +308,8 @@ namespace Win32MetadataScraper
             {
                 if (HasDoubleNull(alias.Decl.Attrs))
                 {
-                    this.AddNativeFact(declaration, (returnValue ? "return: " : "") + "NullNullTerminated");
+                    if (callbackFact != null) callbackFact();
+                    else this.AddNativeFact(declaration, (returnValue ? "return: " : "") + "NullNullTerminated");
                     return;
                 }
                 type = alias.Decl.UnderlyingType;

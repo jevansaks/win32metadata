@@ -13,38 +13,94 @@ namespace Win32MetadataScraper
     // and compatible-codegen represents anonymous C vtable slots as IntPtr.
     internal sealed class NativeCallbackFacts : CSharpSyntaxRewriter
     {
-        private readonly Dictionary<string, (NamedDecl Owner, IReadOnlyList<ParmVarDecl> Parameters, HashSet<int> Retvals)> callbacks = new(StringComparer.Ordinal);
+        private sealed class Callback
+        {
+            public Callback(NamedDecl owner, IReadOnlyList<ParmVarDecl> parameters, Callback prototype = null)
+            {
+                this.Owner = owner;
+                this.Parameters = parameters;
+                this.Prototype = prototype?.Prototype ?? owner.CanonicalDecl;
+                this.Retvals = prototype?.Retvals ?? new HashSet<int>();
+                this.DoubleNulls = prototype?.DoubleNulls ?? new HashSet<int>();
+            }
+
+            public NamedDecl Owner { get; }
+            public IReadOnlyList<ParmVarDecl> Parameters { get; }
+            public Decl Prototype { get; }
+            public HashSet<int> Retvals { get; }
+            public HashSet<int> DoubleNulls { get; }
+        }
+
+        private readonly Dictionary<Decl, Callback> callbacks = new();
+        private readonly Dictionary<Decl, (TypedefDecl Owner, Decl Target)> aliases = new();
         private IReadOnlyDictionary<string, string> remaps;
         private IReadOnlyDictionary<string, string> types;
         private readonly List<DelegateDeclarationSyntax> vtableDelegates = new();
-        private bool emittedVtableDelegate;
+        private bool emittedNativeDelegate;
 
         public void Add(NamedDecl owner, IReadOnlyList<ParmVarDecl> parameters, int retval)
         {
-            if (owner is not TypedefDecl && owner is not FieldDecl) return;
-            string key = Name(owner);
+            this.GetCallback(owner, parameters).Retvals.Add(retval);
+        }
+
+        public void AddDoubleNull(NamedDecl owner, IReadOnlyList<ParmVarDecl> parameters, int index)
+        {
+            this.GetCallback(owner, parameters).DoubleNulls.Add(index);
+        }
+
+        public void RegisterAlias(TypedefDecl declaration)
+        {
+            var canonical = declaration.UnderlyingType.CanonicalType;
+            if (canonical is not FunctionProtoType &&
+                (canonical is not PointerType pointer || pointer.PointeeType.CanonicalType is not FunctionProtoType))
+                return;
+            var type = RemapDiscovery.UnwrapType(declaration.UnderlyingType);
+            if (type is PointerType address) type = RemapDiscovery.UnwrapType(address.PointeeType);
+            if (type is TypedefType alias)
+                this.aliases[declaration.CanonicalDecl] = (declaration, alias.Decl.CanonicalDecl);
+        }
+
+        private Callback GetCallback(NamedDecl owner, IReadOnlyList<ParmVarDecl> parameters)
+        {
+            if (owner is not TypedefDecl && owner is not FieldDecl)
+                throw Error(owner, "Native callback facts require a defining typedef or field prototype.");
+            var key = owner.CanonicalDecl;
             if (!this.callbacks.TryGetValue(key, out var item))
             {
-                item = (owner, parameters, new HashSet<int>());
+                item = new Callback(owner, parameters);
                 this.callbacks.Add(key, item);
             }
-            item.Retvals.Add(retval);
+            else if (!item.Parameters.Select(p => p.CanonicalDecl).SequenceEqual(parameters.Select(p => p.CanonicalDecl)))
+                throw Error(owner, "Conflicting native callback parameter identity.");
+            return item;
         }
 
         public string Apply(string source, IReadOnlyDictionary<string, string> remaps, IReadOnlyDictionary<string, string> types)
         {
             if (this.callbacks.Count == 0) return source;
+            foreach (var alias in this.aliases)
+            {
+                var target = alias.Value.Target;
+                var visited = new HashSet<Decl> { alias.Key };
+                while (this.aliases.TryGetValue(target, out var next))
+                {
+                    if (!visited.Add(target)) throw Error(alias.Value.Owner, "Cyclic native callback alias.");
+                    target = next.Target;
+                }
+                if (this.callbacks.TryGetValue(target, out var prototype))
+                    this.callbacks[alias.Key] = new Callback(alias.Value.Owner, prototype.Parameters, prototype);
+            }
             this.remaps = remaps;
             this.types = types;
             this.vtableDelegates.Clear();
-            this.emittedVtableDelegate = false;
+            this.emittedNativeDelegate = false;
             return this.Visit(CSharpSyntaxTree.ParseText(source).GetRoot()).ToFullString();
         }
 
         public override SyntaxNode VisitCompilationUnit(CompilationUnitSyntax node)
         {
             node = (CompilationUnitSyntax)base.VisitCompilationUnit(node);
-            if (this.emittedVtableDelegate && !node.Usings.Any(u => u.Name.ToString() == "System.Runtime.InteropServices"))
+            if (this.emittedNativeDelegate && !node.Usings.Any(u => u.Name.ToString() == "System.Runtime.InteropServices"))
                 node = node.AddUsings(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Runtime.InteropServices"))
                     .NormalizeWhitespace().WithTrailingTrivia(SyntaxFactory.CarriageReturnLineFeed));
             return node;
@@ -65,19 +121,39 @@ namespace Win32MetadataScraper
         public override SyntaxNode VisitDelegateDeclaration(DelegateDeclarationSyntax node)
         {
             var matches = this.callbacks.Values.Where(c => c.Owner is TypedefDecl &&
-                Projected(Name(c.Owner)) == node.Identifier.ValueText).ToArray();
+                Projected(Name(c.Owner)) == node.Identifier.ValueText).GroupBy(c => c.Prototype)
+                .Select(g => g.First()).ToArray();
             if (matches.Length > 1) throw Error(matches[0].Owner, "Ambiguous projected callback name.");
             if (matches.Length == 0) return base.VisitDelegateDeclaration(node);
             var callback = matches[0];
+            if (callback.Owner.CanonicalDecl != callback.Prototype &&
+                node.ParameterList.Parameters.Count == 0 && callback.Parameters.Count != 0)
+            {
+                var defining = node.Parent?.ChildNodes().OfType<DelegateDeclarationSyntax>()
+                    .SingleOrDefault(d => d.Identifier.ValueText == Projected(Name((NamedDecl)callback.Prototype)) &&
+                        d.ParameterList.Parameters.Count == callback.Parameters.Count);
+                var retained = node.AttributeLists.SelectMany(list => list.Attributes)
+                    .Where(a => a.Name.ToString() is not "NativeTypeName" and not "UnmanagedFunctionPointer")
+                    .Select(a => SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(a)));
+                if (defining == null)
+                    return this.NativeDelegate(callback, node.Identifier.ValueText)
+                        .AddAttributeLists(retained.ToArray()).WithTriviaFrom(node);
+                node = defining.WithIdentifier(node.Identifier).AddAttributeLists(retained.ToArray()).WithTriviaFrom(node);
+            }
             if (node.ParameterList.Parameters.Count != callback.Parameters.Count)
-                throw Error(callback.Owner, "Generated callback parameter count differs from the native declaration.");
-            foreach (int index in callback.Retvals)
+                throw Error(callback.Owner, $"Generated callback '{node.Identifier.ValueText}' parameter count " +
+                    $"{node.ParameterList.Parameters.Count} differs from the native declaration ({callback.Parameters.Count}).");
+            foreach (int index in callback.Retvals.Union(callback.DoubleNulls))
             {
                 var parameter = node.ParameterList.Parameters[index];
-                if (parameter.Identifier.ValueText != callback.Parameters[index].Name)
+                if (callback.Parameters[index].Name.Length != 0 &&
+                    parameter.Identifier.ValueText != callback.Parameters[index].Name)
                     throw Error(callback.Owner, "Generated callback parameter binding differs from its native declaration.");
+                var attributes = new List<AttributeListSyntax>();
+                if (callback.Retvals.Contains(index)) attributes.Add(Retval());
+                if (callback.DoubleNulls.Contains(index)) attributes.Add(DoubleNull());
                 node = node.WithParameterList(node.ParameterList.WithParameters(
-                    node.ParameterList.Parameters.Replace(parameter, parameter.AddAttributeLists(Retval()))));
+                    node.ParameterList.Parameters.Replace(parameter, parameter.AddAttributeLists(attributes.ToArray()))));
             }
             return node;
         }
@@ -93,62 +169,77 @@ namespace Win32MetadataScraper
                 var generated = node.Members.OfType<FieldDeclarationSyntax>()
                     .SingleOrDefault(f => f.Declaration.Variables.Single().Identifier.ValueText == fieldName);
                 if (generated == null) continue;
-                var pointer = RemapDiscovery.UnwrapType(field.Type) as PointerType;
-                var prototype = pointer == null ? null : RemapDiscovery.UnwrapType(pointer.PointeeType) as FunctionProtoType;
-                // Canonical storage retains calling conventions; the authored prototype retains return aliases.
-                var nativePointer = field.Type.CanonicalType as PointerType;
-                var nativePrototype = nativePointer?.PointeeType.CanonicalType as FunctionProtoType;
-                if (prototype == null || nativePrototype == null || prototype.IsVariadic)
-                    throw Error(field, "Native retval vtable slot requires a non-variadic native function pointer.");
                 string delegateName = node.Identifier.ValueText + "_" + fieldName;
-                string convention = nativePrototype.CallConv switch
-                {
-                    CXCallingConv.CXCallingConv_X86StdCall => "StdCall",
-                    CXCallingConv.CXCallingConv_C => "Cdecl",
-                    CXCallingConv.CXCallingConv_Win64 => "Winapi",
-                    _ => throw Error(field, "Unsupported native vtable calling convention."),
-                };
-                var parameters = slot.Parameters.Select((p, index) =>
-                {
-                    string name = SyntaxFacts.GetKeywordKind(p.Name) == SyntaxKind.None ? p.Name : "@" + p.Name;
-                    var parameter = SyntaxFactory.Parameter(SyntaxFactory.Identifier(name))
-                        .WithType(SyntaxFactory.ParseTypeName(this.TypeName(p.Type, field)));
-                    var attributes = new List<AttributeListSyntax> { Attribute("NativeTypeName", p.Type.AsString) };
-                    var storage = p.Type.CanonicalType;
-                    if (storage is PointerType or ReferenceType && storage.PointeeType.IsLocalConstQualified)
-                        attributes.Add(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
-                            SyntaxFactory.Attribute(SyntaxFactory.ParseName("Const")))));
-                    var sal = p.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
-                        a.Spelling.StartsWith("Name=SAL_", StringComparison.Ordinal)).Select(a => a.Spelling).ToArray();
-                    if (sal.Length != 0) attributes.Add(Attribute("CppAttributeList", string.Join("^", sal)));
-                    attributes.AddRange(p.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
-                        a.Spelling.StartsWith("Win32Metadata.", StringComparison.Ordinal))
-                        .Select(a => Attribute("NativeAnnotation", a.Spelling)));
-                    if (slot.Retvals.Contains(index)) attributes.Add(Retval());
-                    return parameter.WithAttributeLists(SyntaxFactory.List(attributes));
-                });
-                var declaration = SyntaxFactory.DelegateDeclaration(
-                    SyntaxFactory.ParseTypeName(this.TypeName(prototype.ReturnType, field)), delegateName)
-                    .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword),
-                        SyntaxFactory.Token(SyntaxKind.UnsafeKeyword)))
-                    .WithAttributeLists(SyntaxFactory.List(new[]
-                    {
-                        SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Attribute(
-                            SyntaxFactory.ParseName("UnmanagedFunctionPointer"),
-                            SyntaxFactory.ParseAttributeArgumentList("(CallingConvention." + convention + ")")))),
-                        Attribute("NativeTypeName", prototype.ReturnType.AsString).WithTarget(
-                            SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.ReturnKeyword))),
-                    }))
-                    .WithParameterList(SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters)))
-                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
-                    .NormalizeWhitespace().WithLeadingTrivia(SyntaxFactory.CarriageReturnLineFeed)
-                    .WithTrailingTrivia(SyntaxFactory.CarriageReturnLineFeed);
+                var declaration = this.NativeDelegate(slot, delegateName);
                 node = node.ReplaceNode(generated, generated.WithDeclaration(generated.Declaration.WithType(
                     SyntaxFactory.ParseTypeName(delegateName).WithTrailingTrivia(SyntaxFactory.Space)))) as StructDeclarationSyntax;
                 this.vtableDelegates.Add(declaration);
-                this.emittedVtableDelegate = true;
             }
             return base.VisitStructDeclaration(node);
+        }
+
+        private DelegateDeclarationSyntax NativeDelegate(Callback callback, string name)
+        {
+            var type = callback.Prototype switch
+            {
+                TypedefDecl alias => alias.UnderlyingType,
+                FieldDecl field => field.Type,
+                _ => throw Error(callback.Owner, "Native callback prototype has no defining declaration."),
+            };
+            var canonical = type.CanonicalType;
+            if (canonical is PointerType nativePointer) canonical = nativePointer.PointeeType.CanonicalType;
+            type = RemapDiscovery.UnwrapType(type);
+            if (type is PointerType pointer) type = RemapDiscovery.UnwrapType(pointer.PointeeType);
+            var prototype = type as FunctionProtoType;
+            // Canonical storage retains calling conventions; the authored prototype retains return aliases.
+            var nativePrototype = canonical as FunctionProtoType;
+            if (prototype == null || nativePrototype == null || prototype.IsVariadic)
+                throw Error(callback.Owner, "Native callback facts require a non-variadic native function prototype.");
+            string convention = nativePrototype.CallConv switch
+            {
+                CXCallingConv.CXCallingConv_X86StdCall => "StdCall",
+                CXCallingConv.CXCallingConv_C => "Cdecl",
+                CXCallingConv.CXCallingConv_Win64 => "Winapi",
+                _ => throw Error(callback.Owner, "Unsupported native callback calling convention."),
+            };
+            var parameters = callback.Parameters.Select((p, index) =>
+            {
+                string parameterName = p.Name.Length == 0 ? "param" + index :
+                    SyntaxFacts.GetKeywordKind(p.Name) == SyntaxKind.None ? p.Name : "@" + p.Name;
+                var parameter = SyntaxFactory.Parameter(SyntaxFactory.Identifier(parameterName))
+                    .WithType(SyntaxFactory.ParseTypeName(this.TypeName(p.Type, callback.Owner)));
+                var attributes = new List<AttributeListSyntax> { Attribute("NativeTypeName", p.Type.AsString) };
+                var storage = p.Type.CanonicalType;
+                if (storage is PointerType or ReferenceType && storage.PointeeType.IsLocalConstQualified)
+                    attributes.Add(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
+                        SyntaxFactory.Attribute(SyntaxFactory.ParseName("Const")))));
+                var sal = p.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
+                    a.Spelling.StartsWith("Name=SAL_", StringComparison.Ordinal)).Select(a => a.Spelling).ToArray();
+                if (sal.Length != 0) attributes.Add(Attribute("CppAttributeList", string.Join("^", sal)));
+                attributes.AddRange(p.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
+                    a.Spelling.StartsWith("Win32Metadata.", StringComparison.Ordinal))
+                    .Select(a => Attribute("NativeAnnotation", a.Spelling)));
+                if (callback.Retvals.Contains(index)) attributes.Add(Retval());
+                if (callback.DoubleNulls.Contains(index)) attributes.Add(DoubleNull());
+                return parameter.WithAttributeLists(SyntaxFactory.List(attributes));
+            });
+            this.emittedNativeDelegate = true;
+            return SyntaxFactory.DelegateDeclaration(
+                SyntaxFactory.ParseTypeName(this.TypeName(prototype.ReturnType, callback.Owner)), name)
+                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword),
+                    SyntaxFactory.Token(SyntaxKind.UnsafeKeyword)))
+                .WithAttributeLists(SyntaxFactory.List(new[]
+                {
+                    SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Attribute(
+                        SyntaxFactory.ParseName("UnmanagedFunctionPointer"),
+                        SyntaxFactory.ParseAttributeArgumentList("(CallingConvention." + convention + ")")))),
+                    Attribute("NativeTypeName", prototype.ReturnType.AsString).WithTarget(
+                        SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.ReturnKeyword))),
+                }))
+                .WithParameterList(SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters)))
+                .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
+                .NormalizeWhitespace().WithLeadingTrivia(SyntaxFactory.CarriageReturnLineFeed)
+                .WithTrailingTrivia(SyntaxFactory.CarriageReturnLineFeed);
         }
 
         private string TypeName(ClangSharp.Type type, Decl site)
@@ -177,7 +268,7 @@ namespace Win32MetadataScraper
                 CXTypeKind.CXType_ULongLong => "ulong",
                 CXTypeKind.CXType_Float => "float",
                 CXTypeKind.CXType_Double => "double",
-                _ => throw Error(site, $"Unsupported native retval callback storage '{type.AsString}'."),
+                _ => throw Error(site, $"Unsupported native callback storage '{type.AsString}'."),
             };
         }
 
@@ -188,6 +279,10 @@ namespace Win32MetadataScraper
         }
 
         private static AttributeListSyntax Retval() => Attribute("NativeAnnotation", "Win32Metadata.RetVal");
+
+        private static AttributeListSyntax DoubleNull() =>
+            SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
+                SyntaxFactory.Attribute(SyntaxFactory.ParseName("NullNullTerminated"))));
 
         private static AttributeListSyntax Attribute(string name, string payload) =>
             SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Attribute(

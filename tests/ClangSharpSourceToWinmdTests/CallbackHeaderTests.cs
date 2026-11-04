@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
 using System.Text.RegularExpressions;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClangSharpSourceToWinmdTests
@@ -14,6 +16,260 @@ namespace ClangSharpSourceToWinmdTests
     {
         private const string LegacySettings = "--exclude\nLPWINHTTP_STATUS_CALLBACK\n--remap\n" +
             "WINHTTP_STATUS_CALLBACK=WINHTTP_STATUS_CALLBACK\nLPWINHTTP_STATUS_CALLBACK=WINHTTP_STATUS_CALLBACK";
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void NativeTypedefSal_WldpCallbackParametersKeepTheirCompilerOwners(string target)
+        {
+            string sdk = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0", "um");
+            string nativeTypedef = Regex.Match(File.ReadAllText(Path.Combine(sdk, "winnt.h")),
+                @"typedef _NullNull_terminated_ WCHAR \*PZZWSTR;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(nativeTypedef));
+            string wldp = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "wldp.h"));
+            string header = @"
+#define WINAPI __stdcall
+typedef wchar_t WCHAR;
+typedef const WCHAR* PCWSTR;
+typedef __SIZE_TYPE__ SIZE_T;
+typedef long HRESULT;
+" + nativeTypedef + "\n";
+            foreach (string name in new[] { "PWLDP_GETAPPLICATIONSETTINGSTRINGLIST_API", "PWLDP_GETAPPLICATIONSETTINGSTRINGSET_API" })
+            {
+                Match declaration = Regex.Match(wldp, @"typedef HRESULT\(WINAPI \*" + name + @"\)\([^;]+;");
+                Assert.IsTrue(declaration.Success, name);
+                header += declaration.Value + "\n";
+            }
+            Match function = Regex.Match(wldp, @"STDAPI\s+WldpGetApplicationSettingStringSet\([^;]+;");
+            Assert.IsTrue(function.Success);
+            header += function.Value + "\n";
+            header += @"
+typedef HRESULT (WINAPI *OtherCallback)(
+    _In_ PCWSTR id, _In_ PCWSTR setting, _In_ SIZE_T dataCount,
+    _Out_ SIZE_T* requiredCount, _Out_writes_to_opt_(dataCount, *requiredCount) WCHAR* result);
+HRESULT WINAPI OtherFunction(
+    _In_ PCWSTR id, _In_ PCWSTR setting, _In_ SIZE_T dataCount,
+    _Out_ SIZE_T* requiredCount, _Out_writes_to_opt_(dataCount, *requiredCount) WCHAR* result);
+";
+            header = "#define STDAPI HRESULT WINAPI\n" + header;
+            Console.WriteLine("RAW_OUTPUT wldp-callback." + target + ".h " +
+                Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(header)));
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(header, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT wldp-callback." + target + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT wldp-callback." + target + ".winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            foreach (string name in new[] { "PWLDP_GETAPPLICATIONSETTINGSTRINGLIST_API", "PWLDP_GETAPPLICATIONSETTINGSTRINGSET_API",
+                "WldpGetApplicationSettingStringSet", "OtherCallback", "OtherFunction" })
+            {
+                bool callback = name.StartsWith("PWLDP_", StringComparison.Ordinal) || name == "OtherCallback";
+                var method = callback ? NativeTypedefHeaderTests.Type(reader, name).GetMethods()
+                    .Select(reader.GetMethodDefinition).Single(m => reader.GetString(m.Name) == "Invoke") :
+                    Method(reader, name);
+                var parameters = method.GetParameters().Select(reader.GetParameter).Where(p => p.SequenceNumber != 0).ToArray();
+                CollectionAssert.AreEqual(new[] { "id", "setting", "dataCount", "requiredCount", "result" },
+                    parameters.Select(p => reader.GetString(p.Name)).ToArray(), name);
+                CollectionAssert.AreEqual(new[] { ParameterAttributes.In, ParameterAttributes.In, ParameterAttributes.In,
+                    ParameterAttributes.Out, ParameterAttributes.Out | ParameterAttributes.Optional },
+                    parameters.Select(p => p.Attributes).ToArray(), name);
+                MidlHeaderTests.AssertCount(reader, parameters[4], "NativeArrayInfoAttribute", "CountParamIndex", 2, shortValue: true);
+                foreach (var parameter in parameters.Take(2))
+                    ParameterHeaderTests.AssertAttribute(reader, parameter, "ConstAttribute");
+                bool terminated = name.StartsWith("PWLDP_", StringComparison.Ordinal) || name == "WldpGetApplicationSettingStringSet";
+                Assert.AreEqual(terminated ? 1 : 0, parameters[4].GetCustomAttributes().Select(reader.GetCustomAttribute)
+                    .Count(a => AttributeName(reader, a) == "NullNullTerminatedAttribute"), name);
+                Assert.IsFalse(parameters.Take(4).SelectMany(p => p.GetCustomAttributes()).Select(reader.GetCustomAttribute)
+                    .Any(a => AttributeName(reader, a) == "NullNullTerminatedAttribute"), name);
+                CollectionAssert.AreEquivalent(terminated ?
+                    new[] { "NativeArrayInfoAttribute", "NotNullTerminatedAttribute", "NullNullTerminatedAttribute" } :
+                    new[] { "NativeArrayInfoAttribute" }, parameters[4].GetCustomAttributes().Select(reader.GetCustomAttribute)
+                        .Select(a => AttributeName(reader, a)).ToArray(), name);
+                var signature = reader.GetBlobReader(method.Signature);
+                Assert.AreEqual(callback, signature.ReadSignatureHeader().IsInstance);
+                Assert.AreEqual(5, signature.ReadCompressedInteger());
+                foreach (var code in new[] { SignatureTypeCode.Int32, SignatureTypeCode.Pointer, SignatureTypeCode.UInt16,
+                    SignatureTypeCode.Pointer, SignatureTypeCode.UInt16, SignatureTypeCode.UIntPtr,
+                    SignatureTypeCode.Pointer, SignatureTypeCode.UIntPtr, SignatureTypeCode.Pointer, SignatureTypeCode.UInt16 })
+                    Assert.AreEqual(code, signature.ReadSignatureTypeCode(), name);
+                Assert.AreEqual(0, signature.RemainingBytes);
+                if (callback) MidlHeaderTests.AssertCallingConvention(reader, NativeTypedefHeaderTests.Type(reader, name), 1);
+                else Assert.IsTrue(method.GetImport().Attributes.HasFlag(MethodImportAttributes.CallingConventionWinApi));
+                Console.WriteLine("FINAL_CALLBACK " + name + " signature=" + Convert.ToHexString(reader.GetBlobBytes(method.Signature)) +
+                    " result=" + string.Join(",", parameters[4].GetCustomAttributes().Select(reader.GetCustomAttribute)
+                        .Select(a => AttributeName(reader, a) + ":" + Convert.ToHexString(reader.GetBlobBytes(a.Value)))));
+            }
+            var declarations = CSharpSyntaxTree.ParseText(File.ReadAllText(fixture.GeneratedSource)).GetRoot()
+                .DescendantNodes().OfType<DelegateDeclarationSyntax>().Where(d => d.Identifier.ValueText.StartsWith("PWLDP_", StringComparison.Ordinal));
+            Assert.AreEqual(2, declarations.Count());
+            foreach (var declaration in declarations)
+            {
+                var parameter = declaration.ParameterList.Parameters[4];
+                var native = parameter.AttributeLists.SelectMany(list => list.Attributes).Single(a => a.Name.ToString() == "NativeTypeName");
+                Assert.AreEqual("PZZWSTR", ((LiteralExpressionSyntax)native.ArgumentList!.Arguments.Single().Expression).Token.ValueText);
+                Assert.AreEqual("ushort*", parameter.Type!.ToString());
+                Assert.AreEqual("int", declaration.ReturnType.ToString());
+                Assert.IsTrue(declaration.AttributeLists.Where(list => list.Target?.Identifier.ValueText == "return")
+                    .SelectMany(list => list.Attributes).Any(a => a.ArgumentList?.Arguments.Single().ToString() == "\"HRESULT\""));
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc", "c++")]
+        [DataRow("x86_64-pc-windows-msvc", "c++")]
+        [DataRow("aarch64-pc-windows-msvc", "c++")]
+        [DataRow("i686-pc-windows-msvc", "c")]
+        [DataRow("x86_64-pc-windows-msvc", "c")]
+        [DataRow("aarch64-pc-windows-msvc", "c")]
+        public void NativeTypedefSal_AliasesAndFieldPrototypesKeepIndexedFacts(string target, string language)
+        {
+            const string header = @"
+_NullNull_terminated_ typedef unsigned short* NAMES;
+typedef NAMES SAME_NAMES;
+typedef long (__stdcall *Callback)(unsigned long capacity,
+    /* [retval][out] */ _Out_writes_opt_(capacity) SAME_NAMES result);
+typedef Callback ALIAS;
+typedef ALIAS SECOND_ALIAS;
+typedef long (__cdecl PROTOTYPE)(unsigned long capacity,
+    _Out_writes_opt_(capacity) NAMES result);
+typedef PROTOTYPE* PROTOTYPE_POINTER;
+typedef long (__stdcall *OtherCallback)(unsigned long capacity,
+    _Out_writes_opt_(capacity) unsigned short* result);
+typedef long (__stdcall *UnnamedCallback)(unsigned long capacity,
+    _Out_writes_opt_(capacity) NAMES);
+struct Slots {
+    long (__cdecl *Direct)(unsigned long capacity, _Out_writes_opt_(capacity) SAME_NAMES result);
+    Callback Named;
+    ALIAS Alias;
+    void* neighbor;
+};
+long __stdcall Use(SECOND_ALIAS callback, PROTOTYPE_POINTER prototype);
+long __stdcall OtherFunction(unsigned long capacity, _Out_writes_opt_(capacity) unsigned short* result);
+";
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(header, target, sal: true, language: language);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT callback-prototypes." + target + "." + language + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT callback-prototypes." + target + "." + language + ".winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            foreach (string name in new[] { "Callback", "ALIAS", "SECOND_ALIAS", "PROTOTYPE_POINTER", "OtherCallback",
+                "UnnamedCallback", "Slots_Direct", "OtherFunction" })
+            {
+                bool callback = name != "OtherFunction";
+                bool terminated = name != "OtherCallback" && name != "OtherFunction";
+                bool retval = name is "Callback" or "ALIAS" or "SECOND_ALIAS";
+                var method = callback ? NativeTypedefHeaderTests.Type(reader, name).GetMethods()
+                    .Select(reader.GetMethodDefinition).Single(m => reader.GetString(m.Name) == "Invoke") : Method(reader, name);
+                var parameters = method.GetParameters().Select(reader.GetParameter).Where(p => p.SequenceNumber != 0).ToArray();
+                Assert.AreEqual(2, parameters.Length, name);
+                Assert.AreEqual("capacity", reader.GetString(parameters[0].Name), name);
+                if (name != "UnnamedCallback") Assert.AreEqual("result", reader.GetString(parameters[1].Name), name);
+                Assert.AreEqual(ParameterAttributes.In, parameters[0].Attributes, name);
+                Assert.AreEqual(ParameterAttributes.Out | ParameterAttributes.Optional, parameters[1].Attributes, name);
+                MidlHeaderTests.AssertCount(reader, parameters[1], "NativeArrayInfoAttribute", "CountParamIndex", 0, shortValue: true);
+                var facts = parameters[1].GetCustomAttributes().Select(reader.GetCustomAttribute).ToArray();
+                CollectionAssert.AreEquivalent((terminated ? new[] { "NullNullTerminatedAttribute" } : Array.Empty<string>())
+                    .Concat(retval ? new[] { "RetValAttribute" } : Array.Empty<string>())
+                    .Append("NativeArrayInfoAttribute").ToArray(), facts.Select(a => AttributeName(reader, a)).ToArray(), name);
+                Assert.AreEqual(0, parameters[0].GetCustomAttributes().Count, name);
+                foreach (var fact in facts.Where(a => AttributeName(reader, a) != "NativeArrayInfoAttribute"))
+                    CollectionAssert.AreEqual(new byte[] { 1, 0, 0, 0 }, reader.GetBlobBytes(fact.Value), name);
+                var signature = reader.GetBlobReader(method.Signature);
+                Assert.AreEqual(callback, signature.ReadSignatureHeader().IsInstance);
+                Assert.AreEqual(2, signature.ReadCompressedInteger());
+                foreach (var code in new[] { SignatureTypeCode.Int32, SignatureTypeCode.UInt32,
+                    SignatureTypeCode.Pointer, SignatureTypeCode.UInt16 })
+                    Assert.AreEqual(code, signature.ReadSignatureTypeCode(), name);
+                Assert.AreEqual(0, signature.RemainingBytes);
+                if (callback) MidlHeaderTests.AssertCallingConvention(reader, NativeTypedefHeaderTests.Type(reader, name),
+                    name is "PROTOTYPE_POINTER" or "Slots_Direct" ? 2 : 1);
+            }
+            var slots = NativeTypedefHeaderTests.Type(reader, "Slots");
+            Assert.AreEqual(TypeAttributes.SequentialLayout, slots.Attributes & TypeAttributes.LayoutMask);
+            foreach (var field in slots.GetFields().Select(reader.GetFieldDefinition))
+            {
+                string name = reader.GetString(field.Name);
+                var signature = reader.GetBlobReader(field.Signature);
+                signature.ReadSignatureHeader();
+                if (name == "neighbor") AssertVoidPointer(ref signature);
+                else NativeTypedefHeaderTests.AssertReference(reader, ref signature,
+                    name == "Direct" ? "Slots_Direct" : name == "Named" ? "Callback" : "ALIAS");
+                Assert.AreEqual(0, signature.RemainingBytes);
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void NativeTypedefSal_ExcludedDefinitionKeepsAliasSignature(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+_NullNull_terminated_ typedef unsigned short* NAMES;
+typedef long (__cdecl *Callback)(unsigned long capacity,
+    /* [retval][out] */ _Out_writes_opt_(capacity) NAMES result);
+typedef Callback ALIAS;
+struct Holder { ALIAS value; };
+", target, sal: true, extraSettings: "--exclude\nCallback");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT callback-excluded." + target + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT callback-excluded." + target + ".winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            Assert.IsFalse(reader.TypeDefinitions.Select(reader.GetTypeDefinition).Any(t => reader.GetString(t.Name) == "Callback"));
+            var alias = NativeTypedefHeaderTests.Type(reader, "ALIAS");
+            MidlHeaderTests.AssertCallingConvention(reader, alias, 2);
+            var invoke = alias.GetMethods().Select(reader.GetMethodDefinition).Single(m => reader.GetString(m.Name) == "Invoke");
+            var parameters = invoke.GetParameters().Select(reader.GetParameter).Where(p => p.SequenceNumber != 0).ToArray();
+            CollectionAssert.AreEqual(new[] { "capacity", "result" }, parameters.Select(p => reader.GetString(p.Name)).ToArray());
+            CollectionAssert.AreEqual(new[] { ParameterAttributes.In, ParameterAttributes.Out | ParameterAttributes.Optional },
+                parameters.Select(p => p.Attributes).ToArray());
+            MidlHeaderTests.AssertCount(reader, parameters[1], "NativeArrayInfoAttribute", "CountParamIndex", 0, shortValue: true);
+            CollectionAssert.AreEquivalent(new[] { "NativeArrayInfoAttribute", "NullNullTerminatedAttribute", "RetValAttribute" },
+                parameters[1].GetCustomAttributes().Select(reader.GetCustomAttribute).Select(a => AttributeName(reader, a)).ToArray());
+            Assert.AreEqual(0, parameters[0].GetCustomAttributes().Count);
+            var signature = reader.GetBlobReader(invoke.Signature);
+            Assert.IsTrue(signature.ReadSignatureHeader().IsInstance);
+            Assert.AreEqual(2, signature.ReadCompressedInteger());
+            foreach (var code in new[] { SignatureTypeCode.Int32, SignatureTypeCode.UInt32,
+                SignatureTypeCode.Pointer, SignatureTypeCode.UInt16 })
+                Assert.AreEqual(code, signature.ReadSignatureTypeCode());
+            Assert.AreEqual(0, signature.RemainingBytes);
+            var field = reader.GetFieldDefinition(NativeTypedefHeaderTests.Type(reader, "Holder").GetFields().Single());
+            signature = reader.GetBlobReader(field.Signature);
+            signature.ReadSignatureHeader();
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "ALIAS");
+            Assert.AreEqual(0, signature.RemainingBytes);
+        }
+
+        [TestMethod]
+        public void NativeTypedefSal_ConflictingProjectedCallbacksAreRejected()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+_NullNull_terminated_ typedef unsigned short* NAMES;
+typedef long (__stdcall *First)(NAMES result);
+typedef long (__stdcall *Second)(NAMES result);
+", sal: true, extraSettings: "--remap\nFirst=Same\nSecond=Same");
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output, "input.h:");
+            StringAssert.Contains(result.Output, "Ambiguous projected callback name");
+            Assert.IsFalse(File.Exists(fixture.GeneratedSource));
+        }
 
         [DataTestMethod]
         [DataRow("i686-pc-windows-msvc", "c")]
