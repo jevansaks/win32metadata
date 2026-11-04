@@ -122,7 +122,7 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
-        public void NativeEdits_OnlyChangeSelectedSalIncludingInheritedCopies()
+        public void HistoricalGeneratedHeaders_KeepTheTwentyNineSiteMigrationIncludingInheritedCopies()
         {
             int sites = 0;
             foreach (var owner in Owners)
@@ -130,11 +130,22 @@ namespace ClangSharpSourceToWinmdTests
                 string before = Encoding.Latin1.GetString(ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path));
                 string after = PatchHeader(owner.Path, before);
                 sites += Regex.Matches(after, "_COM_Outptr_").Count - Regex.Matches(before, "_COM_Outptr_").Count;
-                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(after), File.ReadAllBytes(Path.Combine(
-                    LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders",
-                    owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+                if (Idls.Any(idl => Path.ChangeExtension(idl, "h").Equals(Path.GetFileName(owner.Path), StringComparison.OrdinalIgnoreCase)))
+                    CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(after),
+                        ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/" + owner.Path), owner.Path);
             }
             Assert.AreEqual(29, sites);
+        }
+
+        [TestMethod]
+        public void NativeEdits_OnlyChangeSelectedSalIncludingInheritedCopies()
+        {
+            foreach (var owner in Owners.Where(owner => !Idls.Any(idl =>
+                Path.ChangeExtension(idl, "h").Equals(Path.GetFileName(owner.Path), StringComparison.OrdinalIgnoreCase))))
+                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchHeader(owner.Path,
+                    Encoding.Latin1.GetString(ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path)))),
+                    File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
+                        "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
             foreach (string idl in Idls)
                 CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchIdl(idl, Encoding.Latin1.GetString(
                     ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)))),
@@ -195,7 +206,7 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
-        public void ShippedNativeDeclarations_PreserveEveryFinalMetadataByte(string target) =>
+        public void ShippedNativeDeclarations_PreserveFinalBytesWithSixNativeInputCorrections(string target) =>
             AssertShippedDeclarations(target, Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "RecompiledIdlHeaders"));
 
@@ -207,8 +218,7 @@ namespace ClangSharpSourceToWinmdTests
 #define WINAPI __stdcall
 #define WINCOMMCTRLAPI
 #define interface struct
-#define __RPC__in _In_
-#define __RPC__deref_out_opt _Outptr_result_maybenull_
+#include <rpcsal.h>
 typedef long HRESULT;
 typedef long LONG;
 typedef unsigned long DWORD;
@@ -235,15 +245,51 @@ struct IStillImageW : IUnknown {};
 ";
             using var fixture = new LastErrorHeaderTests.Fixture();
             var remaps = Selectors.ToDictionary(selector => selector, _ => "[ComOutPtr]", StringComparer.Ordinal);
-            var result = fixture.Scrape(prefix + Declarations(true), target, sal: true);
+            string includes = "--include-directory\n" + MidlHeaderTests.SharedHeaders();
+            var result = fixture.Scrape(prefix + Declarations(true), target, sal: true, extraSettings: includes);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] baseline = File.ReadAllBytes(fixture.Emit(remaps));
-            result = fixture.Scrape(prefix + Declarations(false), target, sal: true);
+            Console.WriteLine("RAW_OUTPUT imaging-final." + target + ".legacy.winmd " + Convert.ToBase64String(baseline));
+            string[] nativeInputs =
+            {
+                "IImageList::Clone::riid", "IImageList::GetDragImage::riid", "IImageList::Merge::riid",
+                "IImageList2::GetCallback::riid", "IWICD3DTextureSource::GetTexture::riid",
+                "IWICD3DTextureSource::GetTransformedTexture::riid",
+            };
+            AssertInputFlags(baseline, ParameterAttributes.In | ParameterAttributes.Out);
+            var corrected = new Dictionary<string, string>(remaps, StringComparer.Ordinal);
+            foreach (string input in nativeInputs) corrected.Add(input, "[In]");
+            byte[] expected = File.ReadAllBytes(fixture.Emit(corrected));
+            Console.WriteLine("RAW_OUTPUT imaging-final." + target + ".expected.winmd " + Convert.ToBase64String(expected));
+            AssertInputFlags(expected, ParameterAttributes.In);
+            result = fixture.Scrape(prefix + Declarations(false), target, sal: true, extraSettings: includes);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT imaging-final." + target + ".production.winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
             AssertFinalFacts(output);
-            CollectionAssert.AreEqual(baseline, File.ReadAllBytes(output));
-            CollectionAssert.AreEqual(baseline, File.ReadAllBytes(fixture.Emit(remaps)));
+            AssertInputFlags(File.ReadAllBytes(output), ParameterAttributes.In);
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)));
+
+            void AssertInputFlags(byte[] bytes, ParameterAttributes flags)
+            {
+                using var pe = new PEReader(new MemoryStream(bytes));
+                var reader = pe.GetMetadataReader();
+                var found = new HashSet<string>();
+                foreach (var method in reader.MethodDefinitions.Select(reader.GetMethodDefinition))
+                {
+                    string owner = reader.GetString(reader.GetTypeDefinition(method.GetDeclaringType()).Name);
+                    foreach (var parameter in method.GetParameters().Select(reader.GetParameter))
+                    {
+                        string selector = owner + "::" + reader.GetString(method.Name) + "::" + reader.GetString(parameter.Name);
+                        if (!nativeInputs.Contains(selector)) continue;
+                        Assert.IsTrue(found.Add(selector), selector);
+                        Assert.AreEqual(flags, parameter.Attributes, selector);
+                    }
+                }
+                CollectionAssert.AreEquivalent(nativeInputs, found.ToArray());
+            }
 
             string Declarations(bool legacy)
             {

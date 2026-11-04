@@ -81,15 +81,25 @@ namespace ClangSharpSourceToWinmdTests
 
         [TestMethod]
         public void NativeEdits_OnlyChangeSelectedSalBytesAndInheritedCopies()
+            => AssertNativeEditBytes(Owners.Select(owner => owner.Path).Where(path =>
+                path != "um/dwrite.h" && path != "um/d3d10.h" && path != "um/d3d12.h" && path != "um/Presentation.h")
+                .Concat(new[] { "um/d3d10.idl", "um/d3d12.idl", "um/Presentation.idl" }), historical: false);
+
+        [TestMethod]
+        public void HistoricalGeneratedHeaders_OnlyChangeSelectedSalBytesAndInheritedCopies()
+            => AssertNativeEditBytes(new[] { "um/d3d10.h", "um/d3d10_1.h", "um/d3d12.h", "um/Presentation.h" },
+                historical: true);
+
+        private static void AssertNativeEditBytes(IEnumerable<string> paths, bool historical)
         {
-            foreach (string path in Owners.Select(owner => owner.Path).Where(path => path != "um/dwrite.h")
-                .Concat(new[] { "um/d3d10.idl", "um/d3d10_1.h", "um/d3d12.idl", "um/Presentation.idl" }))
+            foreach (string path in paths)
             {
                 string original = ReadOriginal("RecompiledIdlHeaders/" + path, checkoutBytes: true);
                 Assert.IsTrue(original.All(character => character <= 127), path);
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchOwner(path, original)),
-                    File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                        "generation", "WinSDK", "RecompiledIdlHeaders", path)),
+                    historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/" + path) :
+                        File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                            "generation", "WinSDK", "RecompiledIdlHeaders", path)),
                     "No encoding, newline, unrelated declaration or template changes: " + path);
             }
         }

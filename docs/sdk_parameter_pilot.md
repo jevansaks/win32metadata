@@ -138,10 +138,24 @@ vocabulary. Field-relative array projection/`CountFieldName` remains deferred.
 
 The prepared reader layer is not an unchanged-output SDK migration:
 authoritative native retval comments and raw RPC/local SAL can expose missing
-facts. Its converter replay still rejects wider generated-header differences
-with the existing byte guards. Notably, Audioclient's existing native `[out]`
+facts. Its bounded follow-up uses production `/sal /sal_local` and actual
+MIDL outputs for the authorized 32 headers plus the existing DXGI owner.
+The original complete generated-header migration proofs remain explicit
+historical tests, deriving their snapshot from the unique reachable cutover
+introduction's parent rather than a pinned SHA. Native IDL, header-only
+owners and current selected-site/absence assertions stay live, and ordinary
+SDK CI strictly byte-compares every current generated owner with production
+MIDL. The old red reports and native inputs remain evidence, not waived guards.
+Notably, Audioclient's existing native `[out]`
 on `GetAudioEffects::numEffects` changes final In|Out to Out only on the actual
-parent; the difference is removal of In, not merely addition of Out. These effects require
+parent; the difference is removal of In, not merely addition of Out. Local
+MIDL default-input and optionality facts also cause measured input corrections
+in D3D12, WMSDK, DirectShow and Media Foundation. The Imaging fixture measures
+six native `riid` parameters changing In|Out to In and retains full final-byte
+comparison against the explicitly corrected expected output. WMSDK's raw
+`__RPC__in_ecount_full(cbLicenseRequestMsg)` supplies the existing element
+`CountParamIndex = 2`, not a byte count or independent initialized extent.
+These effects require
 explicit review; the retained focused proofs do not approve them or substitute
 for ordinary production qualification. See the prepared-layer boundary in
 [`sdk_patches.md`](sdk_patches.md).

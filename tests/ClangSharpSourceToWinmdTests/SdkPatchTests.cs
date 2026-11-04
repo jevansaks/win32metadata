@@ -1048,7 +1048,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                 " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                 " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                 " /I " + Quote(converted) + " /I " + Quote(System.IO.Path.Combine(include, "um")) +
                 " /I " + Quote(System.IO.Path.Combine(include, "shared")) +
                 " /I " + Quote(System.IO.Path.Combine(include, "winrt")) +
@@ -1314,7 +1314,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                 " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                 " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                 " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                 " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                 " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) + "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
@@ -1454,7 +1454,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                     " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                     " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
@@ -1463,8 +1463,11 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
             Assert.AreEqual(0, result.ExitCode, result.Output);
             AssertRegeneratedHeaders(new[] { "Unknwnbase.h", "Unknwn.h", "servprov.h", "urlmon.h", "ocidl.h" }
                 .Select(owner => (owner, Path.Combine(fixture.Headers, "um", owner))));
-            ComOutputHeaderTests.AssertShippedDeclarations("x86_64-pc-windows-msvc", Path.Combine(fixture.Headers, "um"));
-            UrlMonComOutputHeaderTests.AssertShippedDeclarations("x86_64-pc-windows-msvc", Path.Combine(fixture.Headers, "um"));
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+            {
+                ComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+                UrlMonComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+            }
         }
 
         [TestMethod]
@@ -1543,7 +1546,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) +
                     " /I " + Quote(Path.Combine(midlInputs, "um")) + " /I " + Quote(Path.Combine(midlInputs, "shared")) +
                     " /I " + Quote(Path.Combine(include, "winrt")) + " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
@@ -1726,7 +1729,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                     " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                     " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) + "; exit $LASTEXITCODE");
@@ -2176,7 +2179,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                     " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                     " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
@@ -2192,7 +2195,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
 
         private static void AssertAudioDirectionDifference(string regenerated)
         {
-            string original = File.ReadAllText(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", "Audioclient.h"));
+            string original = Encoding.Latin1.GetString(ProductionSalLocalHeaderTests.ReadBeforeCutover(
+                "RecompiledIdlHeaders/um/Audioclient.h"));
             string candidate = File.ReadAllText(regenerated);
             string prefix = "#define STDMETHODCALLTYPE __stdcall\n#include <rpcsal.h>\n" +
                 "typedef long HRESULT; typedef unsigned int UINT32; typedef int BOOL;\n" +
@@ -2382,7 +2386,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                     " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                     " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
@@ -2651,16 +2655,27 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
             {
                 string relative = header.Owner.Contains('/') ? header.Owner.Replace('/', Path.DirectorySeparatorChar) :
                     Path.Combine("um", header.Owner);
-                return (header.Owner, Expected: File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
-                    "RecompiledIdlHeaders", relative)), Actual: File.ReadAllBytes(header.Actual));
+                return (header.Owner, header.Actual, Expected: File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", relative)), Bytes: File.ReadAllBytes(header.Actual));
             }).ToArray();
-            foreach (var output in outputs.Where(output => !output.Expected.SequenceEqual(output.Actual)))
+            foreach (var output in outputs.Where(output => !output.Expected.SequenceEqual(output.Bytes)))
             {
                 Console.WriteLine("RAW_OUTPUT sdk-replay." + Path.GetFileName(output.Owner) + ".expected " + Convert.ToBase64String(output.Expected));
-                Console.WriteLine("RAW_OUTPUT sdk-replay." + Path.GetFileName(output.Owner) + ".actual " + Convert.ToBase64String(output.Actual));
+                Console.WriteLine("RAW_OUTPUT sdk-replay." + Path.GetFileName(output.Owner) + ".actual " + Convert.ToBase64String(output.Bytes));
+                string name = Path.ChangeExtension(Path.GetFileName(output.Actual), "idl");
+                string converted = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(output.Actual)))!, "converted", name);
+                if (File.Exists(converted))
+                {
+                    Console.WriteLine("RAW_OUTPUT sdk-replay." + name + ".converted " + Convert.ToBase64String(File.ReadAllBytes(converted)));
+                    string native = Path.ChangeExtension(output.Actual, "idl");
+                    if (!File.Exists(native))
+                        native = new[] { "um", "shared", "winrt" }.Select(area => Path.Combine(
+                            LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0", area, name)).Single(File.Exists);
+                    Console.WriteLine("RAW_OUTPUT sdk-replay." + name + ".native " + Convert.ToBase64String(File.ReadAllBytes(native)));
+                }
             }
             foreach (var output in outputs)
-                CollectionAssert.AreEqual(output.Expected, output.Actual, output.Owner);
+                CollectionAssert.AreEqual(output.Expected, output.Bytes, output.Owner);
         }
 
         private static string Root() => LastErrorHeaderTests.RepositoryRoot();
@@ -2703,6 +2718,11 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
 
             public (int ExitCode, string Output) Run(string command)
             {
+                if (command.Contains("/sal", StringComparison.Ordinal))
+                    Console.WriteLine("MIDL_COMMAND " + command);
+                else if (command.Contains("ConvertMidlAttributesToSalAnnotations.ps1", StringComparison.Ordinal) ||
+                    command.Contains("$compiler", StringComparison.Ordinal))
+                    Console.WriteLine("SDK_COMMAND " + command);
                 var info = new ProcessStartInfo("pwsh") { UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true, WorkingDirectory = Path };
                 foreach (string argument in new[] { "-NoProfile", "-NonInteractive", "-Command", "$ErrorActionPreference = 'Stop'; " + command }) info.ArgumentList.Add(argument);
                 using var process = Process.Start(info) ?? throw new InvalidOperationException("PowerShell did not start.");
@@ -2712,7 +2732,17 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 return (process.ExitCode, output.GetAwaiter().GetResult() + error.GetAwaiter().GetResult());
             }
 
-            public void Dispose() => Directory.Delete(Path, recursive: true);
+            public void Dispose()
+            {
+                foreach (string mode in new[] { "baseline", "ordinary", "metadata" })
+                {
+                    string file = System.IO.Path.Combine(Path, mode + ".obj");
+                    if (File.Exists(file))
+                        Console.WriteLine("RAW_OUTPUT native." + System.IO.Path.GetFileName(Path) + "." + mode +
+                            ".obj " + Convert.ToBase64String(File.ReadAllBytes(file)));
+                }
+                Directory.Delete(Path, recursive: true);
+            }
         }
     }
 }

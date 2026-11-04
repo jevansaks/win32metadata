@@ -266,7 +266,7 @@ EXTERN_C const IID IID_IMFCaptureEngineOnEventCallback;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCaptureEngineOnEventCallback * This,
+            __RPC__in IMFCaptureEngineOnEventCallback * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -274,15 +274,15 @@ EXTERN_C const IID IID_IMFCaptureEngineOnEventCallback;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCaptureEngineOnEventCallback * This);
+            __RPC__in IMFCaptureEngineOnEventCallback * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCaptureEngineOnEventCallback * This);
+            __RPC__in IMFCaptureEngineOnEventCallback * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngineOnEventCallback, OnEvent)
         HRESULT ( STDMETHODCALLTYPE *OnEvent )( 
-            IMFCaptureEngineOnEventCallback * This,
+            __RPC__in IMFCaptureEngineOnEventCallback * This,
             /* [annotation][in] */ 
             _In_  IMFMediaEvent *pEvent);
         
@@ -353,7 +353,7 @@ EXTERN_C const IID IID_IMFCaptureEngineOnSampleCallback;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCaptureEngineOnSampleCallback * This,
+            __RPC__in IMFCaptureEngineOnSampleCallback * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -361,15 +361,15 @@ EXTERN_C const IID IID_IMFCaptureEngineOnSampleCallback;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCaptureEngineOnSampleCallback * This);
+            __RPC__in IMFCaptureEngineOnSampleCallback * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCaptureEngineOnSampleCallback * This);
+            __RPC__in IMFCaptureEngineOnSampleCallback * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngineOnSampleCallback, OnSample)
         HRESULT ( STDMETHODCALLTYPE *OnSample )( 
-            IMFCaptureEngineOnSampleCallback * This,
+            __RPC__in IMFCaptureEngineOnSampleCallback * This,
             /* [annotation][in] */ 
             _In_opt_  IMFSample *pSample);
         
@@ -466,7 +466,7 @@ EXTERN_C const IID IID_IMFCaptureSink;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCaptureSink * This,
+            __RPC__in IMFCaptureSink * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -474,15 +474,15 @@ EXTERN_C const IID IID_IMFCaptureSink;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCaptureSink * This);
+            __RPC__in IMFCaptureSink * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCaptureSink * This);
+            __RPC__in IMFCaptureSink * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetOutputMediaType)
         HRESULT ( STDMETHODCALLTYPE *GetOutputMediaType )( 
-            IMFCaptureSink * This,
+            __RPC__in IMFCaptureSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][out] */ 
@@ -490,7 +490,7 @@ EXTERN_C const IID IID_IMFCaptureSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetService)
         HRESULT ( STDMETHODCALLTYPE *GetService )( 
-            IMFCaptureSink * This,
+            __RPC__in IMFCaptureSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][in] */ 
@@ -502,7 +502,7 @@ EXTERN_C const IID IID_IMFCaptureSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, AddStream)
         HRESULT ( STDMETHODCALLTYPE *AddStream )( 
-            IMFCaptureSink * This,
+            __RPC__in IMFCaptureSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][in] */ 
@@ -514,11 +514,11 @@ EXTERN_C const IID IID_IMFCaptureSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, Prepare)
         HRESULT ( STDMETHODCALLTYPE *Prepare )( 
-            IMFCaptureSink * This);
+            __RPC__in IMFCaptureSink * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, RemoveAllStreams)
         HRESULT ( STDMETHODCALLTYPE *RemoveAllStreams )( 
-            IMFCaptureSink * This);
+            __RPC__in IMFCaptureSink * This);
         
         END_INTERFACE
     } IMFCaptureSinkVtbl;
@@ -627,7 +627,7 @@ EXTERN_C const IID IID_IMFCaptureRecordSink;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -635,15 +635,15 @@ EXTERN_C const IID IID_IMFCaptureRecordSink;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCaptureRecordSink * This);
+            __RPC__in IMFCaptureRecordSink * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCaptureRecordSink * This);
+            __RPC__in IMFCaptureRecordSink * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetOutputMediaType)
         HRESULT ( STDMETHODCALLTYPE *GetOutputMediaType )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][out] */ 
@@ -651,7 +651,7 @@ EXTERN_C const IID IID_IMFCaptureRecordSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetService)
         HRESULT ( STDMETHODCALLTYPE *GetService )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][in] */ 
@@ -663,7 +663,7 @@ EXTERN_C const IID IID_IMFCaptureRecordSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, AddStream)
         HRESULT ( STDMETHODCALLTYPE *AddStream )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][in] */ 
@@ -675,15 +675,15 @@ EXTERN_C const IID IID_IMFCaptureRecordSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, Prepare)
         HRESULT ( STDMETHODCALLTYPE *Prepare )( 
-            IMFCaptureRecordSink * This);
+            __RPC__in IMFCaptureRecordSink * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, RemoveAllStreams)
         HRESULT ( STDMETHODCALLTYPE *RemoveAllStreams )( 
-            IMFCaptureRecordSink * This);
+            __RPC__in IMFCaptureRecordSink * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureRecordSink, SetOutputByteStream)
         HRESULT ( STDMETHODCALLTYPE *SetOutputByteStream )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  IMFByteStream *pByteStream,
             /* [annotation][in] */ 
@@ -691,13 +691,13 @@ EXTERN_C const IID IID_IMFCaptureRecordSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureRecordSink, SetOutputFileName)
         HRESULT ( STDMETHODCALLTYPE *SetOutputFileName )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  LPCWSTR fileName);
         
         DECLSPEC_XFGVIRT(IMFCaptureRecordSink, SetSampleCallback)
         HRESULT ( STDMETHODCALLTYPE *SetSampleCallback )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwStreamSinkIndex,
             /* [annotation][in] */ 
@@ -705,13 +705,13 @@ EXTERN_C const IID IID_IMFCaptureRecordSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureRecordSink, SetCustomSink)
         HRESULT ( STDMETHODCALLTYPE *SetCustomSink )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  IMFMediaSink *pMediaSink);
         
         DECLSPEC_XFGVIRT(IMFCaptureRecordSink, GetRotation)
         HRESULT ( STDMETHODCALLTYPE *GetRotation )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwStreamIndex,
             /* [annotation][out] */ 
@@ -719,7 +719,7 @@ EXTERN_C const IID IID_IMFCaptureRecordSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureRecordSink, SetRotation)
         HRESULT ( STDMETHODCALLTYPE *SetRotation )( 
-            IMFCaptureRecordSink * This,
+            __RPC__in IMFCaptureRecordSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwStreamIndex,
             /* [annotation][in] */ 
@@ -865,7 +865,7 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -873,15 +873,15 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCapturePreviewSink * This);
+            __RPC__in IMFCapturePreviewSink * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCapturePreviewSink * This);
+            __RPC__in IMFCapturePreviewSink * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetOutputMediaType)
         HRESULT ( STDMETHODCALLTYPE *GetOutputMediaType )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][out] */ 
@@ -889,7 +889,7 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetService)
         HRESULT ( STDMETHODCALLTYPE *GetService )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][in] */ 
@@ -901,7 +901,7 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, AddStream)
         HRESULT ( STDMETHODCALLTYPE *AddStream )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][in] */ 
@@ -913,27 +913,27 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, Prepare)
         HRESULT ( STDMETHODCALLTYPE *Prepare )( 
-            IMFCapturePreviewSink * This);
+            __RPC__in IMFCapturePreviewSink * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, RemoveAllStreams)
         HRESULT ( STDMETHODCALLTYPE *RemoveAllStreams )( 
-            IMFCapturePreviewSink * This);
+            __RPC__in IMFCapturePreviewSink * This);
         
         DECLSPEC_XFGVIRT(IMFCapturePreviewSink, SetRenderHandle)
         HRESULT ( STDMETHODCALLTYPE *SetRenderHandle )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  HANDLE handle);
         
         DECLSPEC_XFGVIRT(IMFCapturePreviewSink, SetRenderSurface)
         HRESULT ( STDMETHODCALLTYPE *SetRenderSurface )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pSurface);
         
         DECLSPEC_XFGVIRT(IMFCapturePreviewSink, UpdateVideo)
         HRESULT ( STDMETHODCALLTYPE *UpdateVideo )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_opt_  const MFVideoNormalizedRect *pSrc,
             /* [annotation][in] */ 
@@ -943,7 +943,7 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
         
         DECLSPEC_XFGVIRT(IMFCapturePreviewSink, SetSampleCallback)
         HRESULT ( STDMETHODCALLTYPE *SetSampleCallback )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwStreamSinkIndex,
             /* [annotation][in] */ 
@@ -951,19 +951,19 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
         
         DECLSPEC_XFGVIRT(IMFCapturePreviewSink, GetMirrorState)
         HRESULT ( STDMETHODCALLTYPE *GetMirrorState )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][out] */ 
             _Out_  BOOL *pfMirrorState);
         
         DECLSPEC_XFGVIRT(IMFCapturePreviewSink, SetMirrorState)
         HRESULT ( STDMETHODCALLTYPE *SetMirrorState )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  BOOL fMirrorState);
         
         DECLSPEC_XFGVIRT(IMFCapturePreviewSink, GetRotation)
         HRESULT ( STDMETHODCALLTYPE *GetRotation )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwStreamIndex,
             /* [annotation][out] */ 
@@ -971,7 +971,7 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
         
         DECLSPEC_XFGVIRT(IMFCapturePreviewSink, SetRotation)
         HRESULT ( STDMETHODCALLTYPE *SetRotation )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwStreamIndex,
             /* [annotation][in] */ 
@@ -979,7 +979,7 @@ EXTERN_C const IID IID_IMFCapturePreviewSink;
         
         DECLSPEC_XFGVIRT(IMFCapturePreviewSink, SetCustomSink)
         HRESULT ( STDMETHODCALLTYPE *SetCustomSink )( 
-            IMFCapturePreviewSink * This,
+            __RPC__in IMFCapturePreviewSink * This,
             /* [annotation][in] */ 
             _In_  IMFMediaSink *pMediaSink);
         
@@ -1098,7 +1098,7 @@ EXTERN_C const IID IID_IMFCapturePhotoSink;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCapturePhotoSink * This,
+            __RPC__in IMFCapturePhotoSink * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1106,15 +1106,15 @@ EXTERN_C const IID IID_IMFCapturePhotoSink;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCapturePhotoSink * This);
+            __RPC__in IMFCapturePhotoSink * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCapturePhotoSink * This);
+            __RPC__in IMFCapturePhotoSink * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetOutputMediaType)
         HRESULT ( STDMETHODCALLTYPE *GetOutputMediaType )( 
-            IMFCapturePhotoSink * This,
+            __RPC__in IMFCapturePhotoSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][out] */ 
@@ -1122,7 +1122,7 @@ EXTERN_C const IID IID_IMFCapturePhotoSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetService)
         HRESULT ( STDMETHODCALLTYPE *GetService )( 
-            IMFCapturePhotoSink * This,
+            __RPC__in IMFCapturePhotoSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][in] */ 
@@ -1134,7 +1134,7 @@ EXTERN_C const IID IID_IMFCapturePhotoSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, AddStream)
         HRESULT ( STDMETHODCALLTYPE *AddStream )( 
-            IMFCapturePhotoSink * This,
+            __RPC__in IMFCapturePhotoSink * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][in] */ 
@@ -1146,27 +1146,27 @@ EXTERN_C const IID IID_IMFCapturePhotoSink;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, Prepare)
         HRESULT ( STDMETHODCALLTYPE *Prepare )( 
-            IMFCapturePhotoSink * This);
+            __RPC__in IMFCapturePhotoSink * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, RemoveAllStreams)
         HRESULT ( STDMETHODCALLTYPE *RemoveAllStreams )( 
-            IMFCapturePhotoSink * This);
+            __RPC__in IMFCapturePhotoSink * This);
         
         DECLSPEC_XFGVIRT(IMFCapturePhotoSink, SetOutputFileName)
         HRESULT ( STDMETHODCALLTYPE *SetOutputFileName )( 
-            IMFCapturePhotoSink * This,
+            __RPC__in IMFCapturePhotoSink * This,
             /* [annotation][in] */ 
             _In_  LPCWSTR fileName);
         
         DECLSPEC_XFGVIRT(IMFCapturePhotoSink, SetSampleCallback)
         HRESULT ( STDMETHODCALLTYPE *SetSampleCallback )( 
-            IMFCapturePhotoSink * This,
+            __RPC__in IMFCapturePhotoSink * This,
             /* [annotation][in] */ 
             _In_  IMFCaptureEngineOnSampleCallback *pCallback);
         
         DECLSPEC_XFGVIRT(IMFCapturePhotoSink, SetOutputByteStream)
         HRESULT ( STDMETHODCALLTYPE *SetOutputByteStream )( 
-            IMFCapturePhotoSink * This,
+            __RPC__in IMFCapturePhotoSink * This,
             /* [annotation][in] */ 
             _In_  IMFByteStream *pByteStream);
         
@@ -1339,7 +1339,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1347,15 +1347,15 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCaptureSource * This);
+            __RPC__in IMFCaptureSource * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCaptureSource * This);
+            __RPC__in IMFCaptureSource * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, GetCaptureDeviceSource)
         HRESULT ( STDMETHODCALLTYPE *GetCaptureDeviceSource )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  MF_CAPTURE_ENGINE_DEVICE_TYPE mfCaptureEngineDeviceType,
             /* [annotation][out] */ 
@@ -1363,7 +1363,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, GetCaptureDeviceActivate)
         HRESULT ( STDMETHODCALLTYPE *GetCaptureDeviceActivate )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  MF_CAPTURE_ENGINE_DEVICE_TYPE mfCaptureEngineDeviceType,
             /* [annotation][out] */ 
@@ -1371,7 +1371,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, GetService)
         HRESULT ( STDMETHODCALLTYPE *GetService )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  REFIID rguidService,
             /* [annotation][in] */ 
@@ -1381,7 +1381,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, AddEffect)
         HRESULT ( STDMETHODCALLTYPE *AddEffect )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][in] */ 
@@ -1389,7 +1389,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, RemoveEffect)
         HRESULT ( STDMETHODCALLTYPE *RemoveEffect )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][in] */ 
@@ -1397,13 +1397,13 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, RemoveAllEffects)
         HRESULT ( STDMETHODCALLTYPE *RemoveAllEffects )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex);
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, GetAvailableDeviceMediaType)
         HRESULT ( STDMETHODCALLTYPE *GetAvailableDeviceMediaType )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][in] */ 
@@ -1413,7 +1413,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, SetCurrentDeviceMediaType)
         HRESULT ( STDMETHODCALLTYPE *SetCurrentDeviceMediaType )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][in] */ 
@@ -1421,7 +1421,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, GetCurrentDeviceMediaType)
         HRESULT ( STDMETHODCALLTYPE *GetCurrentDeviceMediaType )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][out] */ 
@@ -1429,13 +1429,13 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, GetDeviceStreamCount)
         HRESULT ( STDMETHODCALLTYPE *GetDeviceStreamCount )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pdwStreamCount);
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, GetDeviceStreamCategory)
         HRESULT ( STDMETHODCALLTYPE *GetDeviceStreamCategory )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][out] */ 
@@ -1443,7 +1443,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, GetMirrorState)
         HRESULT ( STDMETHODCALLTYPE *GetMirrorState )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  DWORD dwStreamIndex,
             /* [annotation][out] */ 
@@ -1451,7 +1451,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, SetMirrorState)
         HRESULT ( STDMETHODCALLTYPE *SetMirrorState )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  DWORD dwStreamIndex,
             /* [annotation][in] */ 
@@ -1459,7 +1459,7 @@ EXTERN_C const IID IID_IMFCaptureSource;
         
         DECLSPEC_XFGVIRT(IMFCaptureSource, GetStreamIndexFromFriendlyName)
         HRESULT ( STDMETHODCALLTYPE *GetStreamIndexFromFriendlyName )( 
-            IMFCaptureSource * This,
+            __RPC__in IMFCaptureSource * This,
             /* [annotation][in] */ 
             _In_  UINT32 uifriendlyName,
             /* [annotation][out] */ 
@@ -1610,7 +1610,7 @@ EXTERN_C const IID IID_IMFCaptureEngine;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCaptureEngine * This,
+            __RPC__in IMFCaptureEngine * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1618,15 +1618,15 @@ EXTERN_C const IID IID_IMFCaptureEngine;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCaptureEngine * This);
+            __RPC__in IMFCaptureEngine * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCaptureEngine * This);
+            __RPC__in IMFCaptureEngine * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngine, Initialize)
         HRESULT ( STDMETHODCALLTYPE *Initialize )( 
-            IMFCaptureEngine * This,
+            __RPC__in IMFCaptureEngine * This,
             /* [annotation][in] */ 
             _In_  IMFCaptureEngineOnEventCallback *pEventCallback,
             /* [annotation][in] */ 
@@ -1638,19 +1638,19 @@ EXTERN_C const IID IID_IMFCaptureEngine;
         
         DECLSPEC_XFGVIRT(IMFCaptureEngine, StartPreview)
         HRESULT ( STDMETHODCALLTYPE *StartPreview )( 
-            IMFCaptureEngine * This);
+            __RPC__in IMFCaptureEngine * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngine, StopPreview)
         HRESULT ( STDMETHODCALLTYPE *StopPreview )( 
-            IMFCaptureEngine * This);
+            __RPC__in IMFCaptureEngine * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngine, StartRecord)
         HRESULT ( STDMETHODCALLTYPE *StartRecord )( 
-            IMFCaptureEngine * This);
+            __RPC__in IMFCaptureEngine * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngine, StopRecord)
         HRESULT ( STDMETHODCALLTYPE *StopRecord )( 
-            IMFCaptureEngine * This,
+            __RPC__in IMFCaptureEngine * This,
             /* [annotation][in] */ 
             _In_  BOOL bFinalize,
             /* [annotation][in] */ 
@@ -1658,11 +1658,11 @@ EXTERN_C const IID IID_IMFCaptureEngine;
         
         DECLSPEC_XFGVIRT(IMFCaptureEngine, TakePhoto)
         HRESULT ( STDMETHODCALLTYPE *TakePhoto )( 
-            IMFCaptureEngine * This);
+            __RPC__in IMFCaptureEngine * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngine, GetSink)
         HRESULT ( STDMETHODCALLTYPE *GetSink )( 
-            IMFCaptureEngine * This,
+            __RPC__in IMFCaptureEngine * This,
             /* [annotation][in] */ 
             _In_  MF_CAPTURE_ENGINE_SINK_TYPE mfCaptureEngineSinkType,
             /* [annotation][out] */ 
@@ -1670,7 +1670,7 @@ EXTERN_C const IID IID_IMFCaptureEngine;
         
         DECLSPEC_XFGVIRT(IMFCaptureEngine, GetSource)
         HRESULT ( STDMETHODCALLTYPE *GetSource )( 
-            IMFCaptureEngine * This,
+            __RPC__in IMFCaptureEngine * This,
             /* [annotation][out] */ 
             _Out_  IMFCaptureSource **ppSource);
         
@@ -1775,7 +1775,7 @@ EXTERN_C const IID IID_IMFCaptureEngineClassFactory;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCaptureEngineClassFactory * This,
+            __RPC__in IMFCaptureEngineClassFactory * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1783,15 +1783,15 @@ EXTERN_C const IID IID_IMFCaptureEngineClassFactory;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCaptureEngineClassFactory * This);
+            __RPC__in IMFCaptureEngineClassFactory * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCaptureEngineClassFactory * This);
+            __RPC__in IMFCaptureEngineClassFactory * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngineClassFactory, CreateInstance)
         HRESULT ( STDMETHODCALLTYPE *CreateInstance )( 
-            IMFCaptureEngineClassFactory * This,
+            __RPC__in IMFCaptureEngineClassFactory * This,
             /* [annotation][in] */ 
             _In_  REFCLSID clsid,
             /* [annotation][in] */ 
@@ -1875,7 +1875,7 @@ EXTERN_C const IID IID_IMFCaptureEngineOnSampleCallback2;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCaptureEngineOnSampleCallback2 * This,
+            __RPC__in IMFCaptureEngineOnSampleCallback2 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1883,21 +1883,21 @@ EXTERN_C const IID IID_IMFCaptureEngineOnSampleCallback2;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCaptureEngineOnSampleCallback2 * This);
+            __RPC__in IMFCaptureEngineOnSampleCallback2 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCaptureEngineOnSampleCallback2 * This);
+            __RPC__in IMFCaptureEngineOnSampleCallback2 * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngineOnSampleCallback, OnSample)
         HRESULT ( STDMETHODCALLTYPE *OnSample )( 
-            IMFCaptureEngineOnSampleCallback2 * This,
+            __RPC__in IMFCaptureEngineOnSampleCallback2 * This,
             /* [annotation][in] */ 
             _In_opt_  IMFSample *pSample);
         
         DECLSPEC_XFGVIRT(IMFCaptureEngineOnSampleCallback2, OnSynchronizedEvent)
         HRESULT ( STDMETHODCALLTYPE *OnSynchronizedEvent )( 
-            IMFCaptureEngineOnSampleCallback2 * This,
+            __RPC__in IMFCaptureEngineOnSampleCallback2 * This,
             /* [annotation][in] */ 
             _In_  IMFMediaEvent *pEvent);
         
@@ -1976,7 +1976,7 @@ EXTERN_C const IID IID_IMFCaptureSink2;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFCaptureSink2 * This,
+            __RPC__in IMFCaptureSink2 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1984,15 +1984,15 @@ EXTERN_C const IID IID_IMFCaptureSink2;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFCaptureSink2 * This);
+            __RPC__in IMFCaptureSink2 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFCaptureSink2 * This);
+            __RPC__in IMFCaptureSink2 * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetOutputMediaType)
         HRESULT ( STDMETHODCALLTYPE *GetOutputMediaType )( 
-            IMFCaptureSink2 * This,
+            __RPC__in IMFCaptureSink2 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][out] */ 
@@ -2000,7 +2000,7 @@ EXTERN_C const IID IID_IMFCaptureSink2;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, GetService)
         HRESULT ( STDMETHODCALLTYPE *GetService )( 
-            IMFCaptureSink2 * This,
+            __RPC__in IMFCaptureSink2 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSinkStreamIndex,
             /* [annotation][in] */ 
@@ -2012,7 +2012,7 @@ EXTERN_C const IID IID_IMFCaptureSink2;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, AddStream)
         HRESULT ( STDMETHODCALLTYPE *AddStream )( 
-            IMFCaptureSink2 * This,
+            __RPC__in IMFCaptureSink2 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSourceStreamIndex,
             /* [annotation][in] */ 
@@ -2024,15 +2024,15 @@ EXTERN_C const IID IID_IMFCaptureSink2;
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, Prepare)
         HRESULT ( STDMETHODCALLTYPE *Prepare )( 
-            IMFCaptureSink2 * This);
+            __RPC__in IMFCaptureSink2 * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink, RemoveAllStreams)
         HRESULT ( STDMETHODCALLTYPE *RemoveAllStreams )( 
-            IMFCaptureSink2 * This);
+            __RPC__in IMFCaptureSink2 * This);
         
         DECLSPEC_XFGVIRT(IMFCaptureSink2, SetOutputMediaType)
         HRESULT ( STDMETHODCALLTYPE *SetOutputMediaType )( 
-            IMFCaptureSink2 * This,
+            __RPC__in IMFCaptureSink2 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwStreamIndex,
             /* [annotation][in] */ 

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
+using System.Text;
+using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClangSharpSourceToWinmdTests
@@ -12,6 +14,134 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class MidlHeaderTests
     {
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void ProductionSalLocal_ActualNativeDirectionsAndElementCountReachFinalMetadata(string target)
+        {
+            const ParameterAttributes inout = ParameterAttributes.In | ParameterAttributes.Out;
+            const ParameterAttributes optionalIn = ParameterAttributes.In | ParameterAttributes.Optional;
+            var cases = new (string Header, string Owner, string Method, string Parameter, ParameterAttributes Before,
+                ParameterAttributes After)[]
+            {
+                ("d3d12.h", "ID3D12CommandQueue1", "GetProcessPriority", "pOutValue", inout, ParameterAttributes.In),
+                ("d3d12.h", "ID3D12CommandQueue1", "GetGlobalPriority", "pOutValue", inout, ParameterAttributes.In),
+                ("d3d12.h", "ID3D12CommandQueue", "Signal", "pFence", inout, optionalIn),
+                ("d3d12.h", "ID3D12CommandQueue", "Wait", "pFence", inout, optionalIn),
+                ("wmsdkidl.h", "IWMProfileManager2", "GetSystemProfileVersion", "pdwVersion", inout, ParameterAttributes.In),
+                ("wmsdkidl.h", "IWMProfileManagerLanguage", "GetUserLanguageID", "wLangID", inout, ParameterAttributes.In),
+                ("wmsdkidl.h", "IWMWriterPostView", "SetPostViewCallback", "pCallback", inout, optionalIn),
+                ("wmsdkidl.h", "IWMWriterPostView", "SetPostViewCallback", "pvContext", inout, ParameterAttributes.In),
+                ("wmsdkidl.h", "IWMDRMTranscryptor", "Initialize", "pbLicenseRequestMsg", inout, ParameterAttributes.In),
+                ("strmif.h", "IAMTVAudio", "UnRegisterNotificationCallBack", "pNotify", inout, optionalIn),
+                ("strmif.h", "IGraphConfigCallback", "Reconfigure", "pvContext", inout, ParameterAttributes.In),
+                ("strmif.h", "ICodecAPI", "SetAllSettingsWithNotify", "__MIDL__ICodecAPI0002", inout, optionalIn),
+                ("mfidl.h", "IMFVideoSampleAllocatorNotifyEx", "NotifyPrune",
+                    "__MIDL__IMFVideoSampleAllocatorNotifyEx0000", inout, optionalIn),
+            };
+            string headers = Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um");
+            string prefix = @"
+#define STDMETHODCALLTYPE __stdcall
+#include <rpcsal.h>
+typedef long HRESULT;
+typedef unsigned short WORD;
+typedef unsigned long DWORD;
+typedef unsigned long long UINT64;
+typedef unsigned char BYTE;
+typedef unsigned short* BSTR;
+struct GUID { unsigned long a; unsigned short b, c; unsigned char d[8]; };
+struct IUnknown {};
+struct IStream {};
+struct IMFSample {};
+struct ID3D12Fence {};
+struct IWMWriterPostViewCallback {};
+struct INSSBuffer {};
+struct IWMStatusCallback {};
+struct IAMTunerNotification {};
+";
+            foreach (var type in new[] { ("d3d12.h", "D3D12_COMMAND_QUEUE_PROCESS_PRIORITY"),
+                ("d3d12.h", "D3D12_COMMAND_QUEUE_GLOBAL_PRIORITY"), ("wmsdkidl.h", "WMT_VERSION") })
+            {
+                Match declaration = Regex.Match(File.ReadAllText(Path.Combine(headers, type.Item1)),
+                    @"typedef\s+enum " + type.Item2 + @"\s*\{[^}]+\}\s*" + type.Item2 + @";");
+                Assert.IsTrue(declaration.Success, type.Item2);
+                prefix += declaration.Value + "\n";
+            }
+            var signatures = new Dictionary<string, byte[]>();
+            var parameters = new Dictionary<string, (ParameterAttributes Flags, string[] Facts)>();
+            foreach (bool production in new[] { false, true })
+            {
+                string declarations = prefix;
+                foreach (var group in cases.GroupBy(c => (c.Header, c.Owner)))
+                {
+                    string text = production ? File.ReadAllText(Path.Combine(headers, group.Key.Header)) :
+                        Encoding.Latin1.GetString(ProductionSalLocalHeaderTests.ReadBeforeCutover(
+                            "RecompiledIdlHeaders/um/" + group.Key.Header));
+                    string definition = AudioComOutputHeaderTests.Definition(text, group.Key.Owner);
+                    Match uuid = Regex.Match(definition, @"MIDL_INTERFACE\(""(?<uuid>[^""]+)""\)");
+                    Assert.IsTrue(uuid.Success, group.Key.Owner);
+                    declarations += "struct __declspec(uuid(\"" + uuid.Groups["uuid"].Value + "\")) " +
+                        group.Key.Owner + " : public IUnknown {\n";
+                    foreach (string method in group.Select(c => c.Method).Distinct())
+                    {
+                        Match declaration = Regex.Match(definition, @"virtual HRESULT STDMETHODCALLTYPE " + method + @"\s*\([^;]+;");
+                        Assert.IsTrue(declaration.Success, group.Key.Owner + "::" + method);
+                        declarations += declaration.Value + "\n";
+                    }
+                    declarations += "};\n";
+                }
+                using var fixture = new LastErrorHeaderTests.Fixture();
+                var result = fixture.Scrape(declarations, target, sal: true,
+                    extraSettings: "--include-directory\n" + SharedHeaders() + "\n");
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                string output = fixture.Emit();
+                Console.WriteLine("RAW_OUTPUT production-local-sal." + target + "." +
+                    (production ? "production" : "held") + ".winmd " + Convert.ToBase64String(File.ReadAllBytes(output)));
+                using var pe = new PEReader(File.OpenRead(output));
+                var reader = pe.GetMetadataReader();
+                var found = new HashSet<string>();
+                foreach (var method in reader.MethodDefinitions.Select(reader.GetMethodDefinition))
+                {
+                    string owner = reader.GetString(reader.GetTypeDefinition(method.GetDeclaringType()).Name);
+                    if (!cases.Any(c => c.Owner == owner)) continue;
+                    string selector = owner + "::" + reader.GetString(method.Name);
+                    if (!production) signatures.Add(selector, reader.GetBlobBytes(method.Signature));
+                    else CollectionAssert.AreEqual(signatures[selector], reader.GetBlobBytes(method.Signature), selector);
+                    foreach (var parameter in method.GetParameters().Select(reader.GetParameter).Where(p => p.SequenceNumber != 0))
+                    {
+                        string name = reader.GetString(parameter.Name);
+                        string key = selector + "::" + name;
+                        var facts = parameter.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                            .Select(a => ParameterHeaderTests.AttributeName(reader, a) + ":" + Convert.ToHexString(reader.GetBlobBytes(a.Value))).ToArray();
+                        var expected = cases.Where(c => c.Owner + "::" + c.Method + "::" + c.Parameter == key).ToArray();
+                        if (expected.Length == 1)
+                        {
+                            Assert.IsTrue(found.Add(key));
+                            Assert.AreEqual(production ? expected[0].After : expected[0].Before, parameter.Attributes, key);
+                            Console.WriteLine("LOCAL_SAL_FINAL " + key + " " + (production ? "production" : "held") +
+                                " flags=" + parameter.Attributes + " facts=" + string.Join(",", facts));
+                            if (key == "IWMDRMTranscryptor::Initialize::pbLicenseRequestMsg" && production)
+                            {
+                                AssertCount(reader, parameter, "NativeArrayInfoAttribute", "CountParamIndex", 2, shortValue: true);
+                                CollectionAssert.AreEqual(new[] { "NativeArrayInfoAttribute" },
+                                    parameter.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                                        .Select(a => ParameterHeaderTests.AttributeName(reader, a)).ToArray(), key);
+                            }
+                            else CollectionAssert.AreEqual(Array.Empty<string>(), facts, key);
+                        }
+                        if (!production) parameters.Add(key, (parameter.Attributes, facts));
+                        else if (expected.Length == 0)
+                        {
+                            Assert.AreEqual(parameters[key].Flags, parameter.Attributes, key);
+                            CollectionAssert.AreEqual(parameters[key].Facts, facts, key);
+                        }
+                    }
+                }
+                CollectionAssert.AreEquivalent(cases.Select(c => c.Owner + "::" + c.Method + "::" + c.Parameter).ToArray(), found.ToArray());
+            }
+        }
+
         [DataTestMethod]
         [DataRow("i686-pc-windows-msvc", "c++")]
         [DataRow("x86_64-pc-windows-msvc", "c++")]

@@ -85,7 +85,7 @@ row-order-only boundary described in the older family sections below. Its
 native source and sidecar remain untouched. Unrelated legacy attribute order
 is not normalized.
 
-The current-parent converter replay exposes byte differences in 18 existing
+The retained pre-follow-up converter replay exposes byte differences in 18 existing
 SDK headers, beyond the independently prepared converter's older five-owner
 report. Effects include explicit-`unique` optionality, removal of nonstock
 retval spellings while preserving native `[retval]`, and conversion of
@@ -96,12 +96,78 @@ removes In rather than merely adding Out; it is an API change, not an
 unchanged-output migration. An additional bounded `MsHtmHst` replay separates the converter's
 native input annotations from `/sal_local`'s local-method additions.
 
-Those wider generated outputs are retained as review evidence, not silently
-reingested or accepted by weakening the existing full-header byte guards.
-Only the selected DXGI owner is reingested here. Focused native and final
-metadata proofs do not turn these outstanding integration differences into a
-qualified production candidate. Publication requires exact prepared-diff
-review and actual parent qualification; no full-SDK comparison is claimed.
+The bounded follow-up aligns the existing selected-SDK replay recipes with
+production `/sal /sal_local`, retaining the production defines, includes,
+owner queue and full selected-SDK `MidlInputRoot`. It locally prepares actual
+MIDL outputs for those 18 owners and these 14 coupled outputs: `Unknwnbase.h`,
+`Unknwn.h`, `servprov.h`, `d3d10.h`, `d3d10_1.h`, `d3d12.h`,
+`mfcaptureengine.h`, `mfsharingengine.h`, `mfreadwrite.h`, `mfmediaengine.h`,
+`mfd3d12.h`, `dxva2api.h`, `mmdeviceapi.h` and `wmsdkidl.h`. The existing DXGI
+owner remains covered. No additional owner, native source edit, migration
+selector, sidecar retirement, vocabulary or schema field is introduced.
+The historical eight-red report, original 18 expected/actual header pairs,
+production-switch red reports and exact native inputs remain review evidence.
+
+The original complete generated-header byte comparisons now live in explicit
+`HistoricalGeneratedHeaders...` tests. Their pre-follow-up snapshot is the
+parent of the exactly one reachable introduction of
+`ProductionSalLocalHeaderTests.cs`; zero or multiple introductions fail.
+The existing binary-safe historical reader is reused, without a pinned SHA,
+duplicate header snapshot or current-file fallback. IDL authoring,
+untouched header-only owners, current selected/inherited sites and genuine
+absence assertions remain live. Current complete generated headers are
+strictly compared with actual production MIDL bytes in ordinary SDK CI:
+
+| Existing replay family | Current whole-header byte guards |
+|---|---|
+| Explicit availability | `ObjIdl.h`, `ObjIdlbase.h` |
+| Core COM | `Unknwnbase.h`, `Unknwn.h`, `servprov.h`, `urlmon.h`, `ocidl.h` |
+| DirectX | `d3d10.h`, `d3d10_1.h`, `d3d12.h`, `Presentation.h` |
+| Media Foundation | `mfobjects.h`, `mfidl.h`, `evr.h`, `mfcaptureengine.h`, `mfsharingengine.h`, `mfreadwrite.h`, `mfmediaengine.h`, `mfd3d12.h`, `dxva2api.h` |
+| Audio | `mmdeviceapi.h`, `Audioclient.h`, `devicetopology.h`, `strmif.h`, `vidcap.h`, `wmsdkidl.h` |
+| Imaging | `wincodecsdk.h`, `wincodec.h`, `commoncontrols.h` |
+| Shell/property | `propsys.h`, `ShObjIdl_core.h`, `ShObjIdl.h` |
+| Existing DXGI | `dxgi.h` |
+
+Most `/sal_local` additions annotate C-vtable/proxy `This`; they do not
+change the ordinary C++ method's argument list. Native `[unique]` typedef
+aliases gain stock RPC spelling, and inherited `[full][in,out]` forms retain
+their native storage facts. Other local C++ declarations acquire meaningful
+stock RPC direction/count annotations. Getter-like names are not direction
+evidence: MIDL's existing default emits input SAL for unannotated native
+parameters such as D3D12 priority `pOutValue` and WMSDK `pdwVersion`.
+No native declaration is rewritten to conceal that consequence.
+
+Three-target actual-source final-emission assertions cover these changes from
+the previous In|Out flags, with native signatures and all neighboring
+parameter payloads retained:
+
+| Native owner and parameter | Production final flags/payload |
+|---|---|
+| `ID3D12CommandQueue1::GetProcessPriority::pOutValue`, `GetGlobalPriority::pOutValue` | In |
+| `ID3D12CommandQueue::Signal::pFence`, `Wait::pFence` | In, Optional |
+| `IWMProfileManager2::GetSystemProfileVersion::pdwVersion`, `IWMProfileManagerLanguage::GetUserLanguageID::wLangID` | In |
+| `IWMWriterPostView::SetPostViewCallback::pCallback` / `pvContext` | In, Optional / In |
+| `IWMDRMTranscryptor::Initialize::pbLicenseRequestMsg` | In; `NativeArrayInfo(CountParamIndex = 2)` from native `size_is(cbLicenseRequestMsg)` |
+| `IAMTVAudio::UnRegisterNotificationCallBack::pNotify` | In, Optional |
+| `IGraphConfigCallback::Reconfigure::pvContext` | In |
+| `ICodecAPI::SetAllSettingsWithNotify` unnamed `IStream*`, `IMFVideoSampleAllocatorNotifyEx::NotifyPrune` unnamed `IMFSample*` | In, Optional |
+
+The WMSDK raw `__RPC__in_ecount_full` fact is an **element** count, not a byte
+count inferred from `BYTE*` or the `cb` name. It adds no initialized-extent
+representation. The Imaging final fixture also explicitly corrects six
+native input `riid` parameters from In|Out to In: `IImageList::Clone`,
+`GetDragImage`, `Merge`, `IImageList2::GetCallback`, and
+`IWICD3DTextureSource::GetTexture` / `GetTransformedTexture`. It retains the
+original output, asserts both exact flag states, and compares the entire
+production and redundant-legacy winmd bytes with the explicitly corrected
+expected output. All fifteen selected COM outputs and their true negative
+boundaries remain unchanged; stock `rpcsal.h` replaces minimized-fixture
+RPC macro stubs rather than redefining native RPC macros.
+
+Local preparation is not acceptance of these API corrections or a qualified
+production candidate. Publication requires exact prepared-diff review and
+actual published-parent qualification; no full-SDK comparison is claimed.
 
 ## Synchronization knowledge, clocks and exceptions
 
@@ -279,6 +345,12 @@ all 17 PreserveResult replacements remain inactive. DWrite's exact
 boundaries and the presentation custom-attribute row-order-only boundary
 remain intact. There is no workflow, annotation transport, native model,
 global remap, metadata canonicalizer or extra reference generation.
+
+The later SAL-reader follow-up retains this original whole-header migration
+proof historically, while keeping native IDL/header-only checks live. The
+current production replay and Imaging final fixture additionally account for
+the six native `riid` input corrections documented in the prepared-layer
+boundary above; they are not described as unchanged final metadata.
 
 ## Audio, DirectShow graphs, KS topology and media-reader outputs
 

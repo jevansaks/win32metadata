@@ -101,8 +101,15 @@ namespace ClangSharpSourceToWinmdTests
 
         [TestMethod]
         public void NativeEdits_OnlyChangeSelectedSalBytes()
+            => AssertNativeEditBytes(new[] { "ShObjIdl_core.idl", "ShlObj_core.h" }, historical: false);
+
+        [TestMethod]
+        public void HistoricalGeneratedHeaders_OnlyChangeSelectedSalBytes()
+            => AssertNativeEditBytes(new[] { "ShObjIdl_core.h" }, historical: true);
+
+        private static void AssertNativeEditBytes(IEnumerable<string> owners, bool historical)
         {
-            foreach (string owner in new[] { "ShObjIdl_core.idl", "ShObjIdl_core.h", "ShlObj_core.h" })
+            foreach (string owner in owners)
             {
                 string original = ReadParent("RecompiledIdlHeaders/um/" + owner, checkoutBytes: true);
                 Assert.IsTrue(original.All(character => character <= 127), owner);
@@ -138,8 +145,10 @@ namespace ClangSharpSourceToWinmdTests
                         expected = expected.Replace(definition.Value, changed);
                     }
                 }
-                CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(ShellComOutputHeaderTests.PatchOwner(owner, expected)), File.ReadAllBytes(Path.Combine(
-                    LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)),
+                CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(ShellComOutputHeaderTests.PatchOwner(owner, expected)),
+                    historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/um/" + owner) :
+                        File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
+                            "RecompiledIdlHeaders", "um", owner)),
                     "No encoding, newline, or unrelated native changes: " + owner);
             }
         }

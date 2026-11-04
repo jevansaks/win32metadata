@@ -868,7 +868,7 @@ EXTERN_C const IID IID_ID3D10DeviceChild;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10DeviceChild * This,
+            __RPC__in ID3D10DeviceChild * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -876,21 +876,21 @@ EXTERN_C const IID IID_ID3D10DeviceChild;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10DeviceChild * This);
+            __RPC__in ID3D10DeviceChild * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10DeviceChild * This);
+            __RPC__in ID3D10DeviceChild * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10DeviceChild * This,
+            __RPC__in ID3D10DeviceChild * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10DeviceChild * This,
+            __RPC__in ID3D10DeviceChild * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -900,7 +900,7 @@ EXTERN_C const IID IID_ID3D10DeviceChild;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10DeviceChild * This,
+            __RPC__in ID3D10DeviceChild * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -910,7 +910,7 @@ EXTERN_C const IID IID_ID3D10DeviceChild;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10DeviceChild * This,
+            __RPC__in ID3D10DeviceChild * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1053,7 +1053,7 @@ EXTERN_C const IID IID_ID3D10DepthStencilState;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10DepthStencilState * This,
+            __RPC__in ID3D10DepthStencilState * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1061,21 +1061,21 @@ EXTERN_C const IID IID_ID3D10DepthStencilState;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10DepthStencilState * This);
+            __RPC__in ID3D10DepthStencilState * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10DepthStencilState * This);
+            __RPC__in ID3D10DepthStencilState * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10DepthStencilState * This,
+            __RPC__in ID3D10DepthStencilState * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10DepthStencilState * This,
+            __RPC__in ID3D10DepthStencilState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1085,7 +1085,7 @@ EXTERN_C const IID IID_ID3D10DepthStencilState;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10DepthStencilState * This,
+            __RPC__in ID3D10DepthStencilState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1095,7 +1095,7 @@ EXTERN_C const IID IID_ID3D10DepthStencilState;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10DepthStencilState * This,
+            __RPC__in ID3D10DepthStencilState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1103,7 +1103,7 @@ EXTERN_C const IID IID_ID3D10DepthStencilState;
         
         DECLSPEC_XFGVIRT(ID3D10DepthStencilState, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10DepthStencilState * This,
+            __RPC__in ID3D10DepthStencilState * This,
             /* [annotation] */ 
             _Out_  D3D10_DEPTH_STENCIL_DESC *pDesc);
         
@@ -1250,7 +1250,7 @@ EXTERN_C const IID IID_ID3D10BlendState;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10BlendState * This,
+            __RPC__in ID3D10BlendState * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1258,21 +1258,21 @@ EXTERN_C const IID IID_ID3D10BlendState;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10BlendState * This);
+            __RPC__in ID3D10BlendState * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10BlendState * This);
+            __RPC__in ID3D10BlendState * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10BlendState * This,
+            __RPC__in ID3D10BlendState * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10BlendState * This,
+            __RPC__in ID3D10BlendState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1282,7 +1282,7 @@ EXTERN_C const IID IID_ID3D10BlendState;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10BlendState * This,
+            __RPC__in ID3D10BlendState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1292,7 +1292,7 @@ EXTERN_C const IID IID_ID3D10BlendState;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10BlendState * This,
+            __RPC__in ID3D10BlendState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1300,7 +1300,7 @@ EXTERN_C const IID IID_ID3D10BlendState;
         
         DECLSPEC_XFGVIRT(ID3D10BlendState, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10BlendState * This,
+            __RPC__in ID3D10BlendState * This,
             /* [annotation] */ 
             _Out_  D3D10_BLEND_DESC *pDesc);
         
@@ -1406,7 +1406,7 @@ EXTERN_C const IID IID_ID3D10RasterizerState;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10RasterizerState * This,
+            __RPC__in ID3D10RasterizerState * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1414,21 +1414,21 @@ EXTERN_C const IID IID_ID3D10RasterizerState;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10RasterizerState * This);
+            __RPC__in ID3D10RasterizerState * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10RasterizerState * This);
+            __RPC__in ID3D10RasterizerState * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10RasterizerState * This,
+            __RPC__in ID3D10RasterizerState * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10RasterizerState * This,
+            __RPC__in ID3D10RasterizerState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1438,7 +1438,7 @@ EXTERN_C const IID IID_ID3D10RasterizerState;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10RasterizerState * This,
+            __RPC__in ID3D10RasterizerState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1448,7 +1448,7 @@ EXTERN_C const IID IID_ID3D10RasterizerState;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10RasterizerState * This,
+            __RPC__in ID3D10RasterizerState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1456,7 +1456,7 @@ EXTERN_C const IID IID_ID3D10RasterizerState;
         
         DECLSPEC_XFGVIRT(ID3D10RasterizerState, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10RasterizerState * This,
+            __RPC__in ID3D10RasterizerState * This,
             /* [annotation] */ 
             _Out_  D3D10_RASTERIZER_DESC *pDesc);
         
@@ -1565,7 +1565,7 @@ EXTERN_C const IID IID_ID3D10Resource;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Resource * This,
+            __RPC__in ID3D10Resource * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1573,21 +1573,21 @@ EXTERN_C const IID IID_ID3D10Resource;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Resource * This);
+            __RPC__in ID3D10Resource * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Resource * This);
+            __RPC__in ID3D10Resource * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10Resource * This,
+            __RPC__in ID3D10Resource * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Resource * This,
+            __RPC__in ID3D10Resource * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1597,7 +1597,7 @@ EXTERN_C const IID IID_ID3D10Resource;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Resource * This,
+            __RPC__in ID3D10Resource * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1607,7 +1607,7 @@ EXTERN_C const IID IID_ID3D10Resource;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Resource * This,
+            __RPC__in ID3D10Resource * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1615,19 +1615,19 @@ EXTERN_C const IID IID_ID3D10Resource;
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetType)
         void ( STDMETHODCALLTYPE *GetType )( 
-            ID3D10Resource * This,
+            __RPC__in ID3D10Resource * This,
             /* [annotation] */ 
             _Out_  D3D10_RESOURCE_DIMENSION *rType);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, SetEvictionPriority)
         void ( STDMETHODCALLTYPE *SetEvictionPriority )( 
-            ID3D10Resource * This,
+            __RPC__in ID3D10Resource * This,
             /* [annotation] */ 
             _In_  UINT EvictionPriority);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetEvictionPriority)
         UINT ( STDMETHODCALLTYPE *GetEvictionPriority )( 
-            ID3D10Resource * This);
+            __RPC__in ID3D10Resource * This);
         
         END_INTERFACE
     } ID3D10ResourceVtbl;
@@ -1765,7 +1765,7 @@ EXTERN_C const IID IID_ID3D10Buffer;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Buffer * This,
+            __RPC__in ID3D10Buffer * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1773,21 +1773,21 @@ EXTERN_C const IID IID_ID3D10Buffer;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Buffer * This);
+            __RPC__in ID3D10Buffer * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Buffer * This);
+            __RPC__in ID3D10Buffer * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10Buffer * This,
+            __RPC__in ID3D10Buffer * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Buffer * This,
+            __RPC__in ID3D10Buffer * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1797,7 +1797,7 @@ EXTERN_C const IID IID_ID3D10Buffer;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Buffer * This,
+            __RPC__in ID3D10Buffer * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1807,7 +1807,7 @@ EXTERN_C const IID IID_ID3D10Buffer;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Buffer * This,
+            __RPC__in ID3D10Buffer * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -1815,23 +1815,23 @@ EXTERN_C const IID IID_ID3D10Buffer;
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetType)
         void ( STDMETHODCALLTYPE *GetType )( 
-            ID3D10Buffer * This,
+            __RPC__in ID3D10Buffer * This,
             /* [annotation] */ 
             _Out_  D3D10_RESOURCE_DIMENSION *rType);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, SetEvictionPriority)
         void ( STDMETHODCALLTYPE *SetEvictionPriority )( 
-            ID3D10Buffer * This,
+            __RPC__in ID3D10Buffer * This,
             /* [annotation] */ 
             _In_  UINT EvictionPriority);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetEvictionPriority)
         UINT ( STDMETHODCALLTYPE *GetEvictionPriority )( 
-            ID3D10Buffer * This);
+            __RPC__in ID3D10Buffer * This);
         
         DECLSPEC_XFGVIRT(ID3D10Buffer, Map)
         HRESULT ( STDMETHODCALLTYPE *Map )( 
-            ID3D10Buffer * This,
+            __RPC__in ID3D10Buffer * This,
             /* [annotation] */ 
             _In_  D3D10_MAP MapType,
             /* [annotation] */ 
@@ -1841,11 +1841,11 @@ EXTERN_C const IID IID_ID3D10Buffer;
         
         DECLSPEC_XFGVIRT(ID3D10Buffer, Unmap)
         void ( STDMETHODCALLTYPE *Unmap )( 
-            ID3D10Buffer * This);
+            __RPC__in ID3D10Buffer * This);
         
         DECLSPEC_XFGVIRT(ID3D10Buffer, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10Buffer * This,
+            __RPC__in ID3D10Buffer * This,
             /* [annotation] */ 
             _Out_  D3D10_BUFFER_DESC *pDesc);
         
@@ -2008,7 +2008,7 @@ EXTERN_C const IID IID_ID3D10Texture1D;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -2016,21 +2016,21 @@ EXTERN_C const IID IID_ID3D10Texture1D;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Texture1D * This);
+            __RPC__in ID3D10Texture1D * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Texture1D * This);
+            __RPC__in ID3D10Texture1D * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2040,7 +2040,7 @@ EXTERN_C const IID IID_ID3D10Texture1D;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2050,7 +2050,7 @@ EXTERN_C const IID IID_ID3D10Texture1D;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2058,23 +2058,23 @@ EXTERN_C const IID IID_ID3D10Texture1D;
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetType)
         void ( STDMETHODCALLTYPE *GetType )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation] */ 
             _Out_  D3D10_RESOURCE_DIMENSION *rType);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, SetEvictionPriority)
         void ( STDMETHODCALLTYPE *SetEvictionPriority )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation] */ 
             _In_  UINT EvictionPriority);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetEvictionPriority)
         UINT ( STDMETHODCALLTYPE *GetEvictionPriority )( 
-            ID3D10Texture1D * This);
+            __RPC__in ID3D10Texture1D * This);
         
         DECLSPEC_XFGVIRT(ID3D10Texture1D, Map)
         HRESULT ( STDMETHODCALLTYPE *Map )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation] */ 
             _In_  UINT Subresource,
             /* [annotation] */ 
@@ -2086,13 +2086,13 @@ EXTERN_C const IID IID_ID3D10Texture1D;
         
         DECLSPEC_XFGVIRT(ID3D10Texture1D, Unmap)
         void ( STDMETHODCALLTYPE *Unmap )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation] */ 
             _In_  UINT Subresource);
         
         DECLSPEC_XFGVIRT(ID3D10Texture1D, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10Texture1D * This,
+            __RPC__in ID3D10Texture1D * This,
             /* [annotation] */ 
             _Out_  D3D10_TEXTURE1D_DESC *pDesc);
         
@@ -2269,7 +2269,7 @@ EXTERN_C const IID IID_ID3D10Texture2D;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -2277,21 +2277,21 @@ EXTERN_C const IID IID_ID3D10Texture2D;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Texture2D * This);
+            __RPC__in ID3D10Texture2D * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Texture2D * This);
+            __RPC__in ID3D10Texture2D * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2301,7 +2301,7 @@ EXTERN_C const IID IID_ID3D10Texture2D;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2311,7 +2311,7 @@ EXTERN_C const IID IID_ID3D10Texture2D;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2319,23 +2319,23 @@ EXTERN_C const IID IID_ID3D10Texture2D;
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetType)
         void ( STDMETHODCALLTYPE *GetType )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation] */ 
             _Out_  D3D10_RESOURCE_DIMENSION *rType);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, SetEvictionPriority)
         void ( STDMETHODCALLTYPE *SetEvictionPriority )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation] */ 
             _In_  UINT EvictionPriority);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetEvictionPriority)
         UINT ( STDMETHODCALLTYPE *GetEvictionPriority )( 
-            ID3D10Texture2D * This);
+            __RPC__in ID3D10Texture2D * This);
         
         DECLSPEC_XFGVIRT(ID3D10Texture2D, Map)
         HRESULT ( STDMETHODCALLTYPE *Map )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation] */ 
             _In_  UINT Subresource,
             /* [annotation] */ 
@@ -2347,13 +2347,13 @@ EXTERN_C const IID IID_ID3D10Texture2D;
         
         DECLSPEC_XFGVIRT(ID3D10Texture2D, Unmap)
         void ( STDMETHODCALLTYPE *Unmap )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation] */ 
             _In_  UINT Subresource);
         
         DECLSPEC_XFGVIRT(ID3D10Texture2D, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10Texture2D * This,
+            __RPC__in ID3D10Texture2D * This,
             /* [annotation] */ 
             _Out_  D3D10_TEXTURE2D_DESC *pDesc);
         
@@ -2526,7 +2526,7 @@ EXTERN_C const IID IID_ID3D10Texture3D;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -2534,21 +2534,21 @@ EXTERN_C const IID IID_ID3D10Texture3D;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Texture3D * This);
+            __RPC__in ID3D10Texture3D * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Texture3D * This);
+            __RPC__in ID3D10Texture3D * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2558,7 +2558,7 @@ EXTERN_C const IID IID_ID3D10Texture3D;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2568,7 +2568,7 @@ EXTERN_C const IID IID_ID3D10Texture3D;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2576,23 +2576,23 @@ EXTERN_C const IID IID_ID3D10Texture3D;
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetType)
         void ( STDMETHODCALLTYPE *GetType )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation] */ 
             _Out_  D3D10_RESOURCE_DIMENSION *rType);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, SetEvictionPriority)
         void ( STDMETHODCALLTYPE *SetEvictionPriority )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation] */ 
             _In_  UINT EvictionPriority);
         
         DECLSPEC_XFGVIRT(ID3D10Resource, GetEvictionPriority)
         UINT ( STDMETHODCALLTYPE *GetEvictionPriority )( 
-            ID3D10Texture3D * This);
+            __RPC__in ID3D10Texture3D * This);
         
         DECLSPEC_XFGVIRT(ID3D10Texture3D, Map)
         HRESULT ( STDMETHODCALLTYPE *Map )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation] */ 
             _In_  UINT Subresource,
             /* [annotation] */ 
@@ -2604,13 +2604,13 @@ EXTERN_C const IID IID_ID3D10Texture3D;
         
         DECLSPEC_XFGVIRT(ID3D10Texture3D, Unmap)
         void ( STDMETHODCALLTYPE *Unmap )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation] */ 
             _In_  UINT Subresource);
         
         DECLSPEC_XFGVIRT(ID3D10Texture3D, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10Texture3D * This,
+            __RPC__in ID3D10Texture3D * This,
             /* [annotation] */ 
             _Out_  D3D10_TEXTURE3D_DESC *pDesc);
         
@@ -2729,7 +2729,7 @@ EXTERN_C const IID IID_ID3D10View;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10View * This,
+            __RPC__in ID3D10View * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -2737,21 +2737,21 @@ EXTERN_C const IID IID_ID3D10View;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10View * This);
+            __RPC__in ID3D10View * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10View * This);
+            __RPC__in ID3D10View * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10View * This,
+            __RPC__in ID3D10View * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10View * This,
+            __RPC__in ID3D10View * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2761,7 +2761,7 @@ EXTERN_C const IID IID_ID3D10View;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10View * This,
+            __RPC__in ID3D10View * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2771,7 +2771,7 @@ EXTERN_C const IID IID_ID3D10View;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10View * This,
+            __RPC__in ID3D10View * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2779,7 +2779,7 @@ EXTERN_C const IID IID_ID3D10View;
         
         DECLSPEC_XFGVIRT(ID3D10View, GetResource)
         void ( STDMETHODCALLTYPE *GetResource )( 
-            ID3D10View * This,
+            __RPC__in ID3D10View * This,
             /* [annotation] */ 
             _Out_  ID3D10Resource **ppResource);
         
@@ -2954,7 +2954,7 @@ EXTERN_C const IID IID_ID3D10ShaderResourceView;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10ShaderResourceView * This,
+            __RPC__in ID3D10ShaderResourceView * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -2962,21 +2962,21 @@ EXTERN_C const IID IID_ID3D10ShaderResourceView;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10ShaderResourceView * This);
+            __RPC__in ID3D10ShaderResourceView * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10ShaderResourceView * This);
+            __RPC__in ID3D10ShaderResourceView * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10ShaderResourceView * This,
+            __RPC__in ID3D10ShaderResourceView * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10ShaderResourceView * This,
+            __RPC__in ID3D10ShaderResourceView * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2986,7 +2986,7 @@ EXTERN_C const IID IID_ID3D10ShaderResourceView;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10ShaderResourceView * This,
+            __RPC__in ID3D10ShaderResourceView * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -2996,7 +2996,7 @@ EXTERN_C const IID IID_ID3D10ShaderResourceView;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10ShaderResourceView * This,
+            __RPC__in ID3D10ShaderResourceView * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3004,13 +3004,13 @@ EXTERN_C const IID IID_ID3D10ShaderResourceView;
         
         DECLSPEC_XFGVIRT(ID3D10View, GetResource)
         void ( STDMETHODCALLTYPE *GetResource )( 
-            ID3D10ShaderResourceView * This,
+            __RPC__in ID3D10ShaderResourceView * This,
             /* [annotation] */ 
             _Out_  ID3D10Resource **ppResource);
         
         DECLSPEC_XFGVIRT(ID3D10ShaderResourceView, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10ShaderResourceView * This,
+            __RPC__in ID3D10ShaderResourceView * This,
             /* [annotation] */ 
             _Out_  D3D10_SHADER_RESOURCE_VIEW_DESC *pDesc);
         
@@ -3179,7 +3179,7 @@ EXTERN_C const IID IID_ID3D10RenderTargetView;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10RenderTargetView * This,
+            __RPC__in ID3D10RenderTargetView * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3187,21 +3187,21 @@ EXTERN_C const IID IID_ID3D10RenderTargetView;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10RenderTargetView * This);
+            __RPC__in ID3D10RenderTargetView * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10RenderTargetView * This);
+            __RPC__in ID3D10RenderTargetView * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10RenderTargetView * This,
+            __RPC__in ID3D10RenderTargetView * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10RenderTargetView * This,
+            __RPC__in ID3D10RenderTargetView * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3211,7 +3211,7 @@ EXTERN_C const IID IID_ID3D10RenderTargetView;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10RenderTargetView * This,
+            __RPC__in ID3D10RenderTargetView * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3221,7 +3221,7 @@ EXTERN_C const IID IID_ID3D10RenderTargetView;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10RenderTargetView * This,
+            __RPC__in ID3D10RenderTargetView * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3229,13 +3229,13 @@ EXTERN_C const IID IID_ID3D10RenderTargetView;
         
         DECLSPEC_XFGVIRT(ID3D10View, GetResource)
         void ( STDMETHODCALLTYPE *GetResource )( 
-            ID3D10RenderTargetView * This,
+            __RPC__in ID3D10RenderTargetView * This,
             /* [annotation] */ 
             _Out_  ID3D10Resource **ppResource);
         
         DECLSPEC_XFGVIRT(ID3D10RenderTargetView, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10RenderTargetView * This,
+            __RPC__in ID3D10RenderTargetView * This,
             /* [annotation] */ 
             _Out_  D3D10_RENDER_TARGET_VIEW_DESC *pDesc);
         
@@ -3381,7 +3381,7 @@ EXTERN_C const IID IID_ID3D10DepthStencilView;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10DepthStencilView * This,
+            __RPC__in ID3D10DepthStencilView * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3389,21 +3389,21 @@ EXTERN_C const IID IID_ID3D10DepthStencilView;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10DepthStencilView * This);
+            __RPC__in ID3D10DepthStencilView * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10DepthStencilView * This);
+            __RPC__in ID3D10DepthStencilView * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10DepthStencilView * This,
+            __RPC__in ID3D10DepthStencilView * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10DepthStencilView * This,
+            __RPC__in ID3D10DepthStencilView * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3413,7 +3413,7 @@ EXTERN_C const IID IID_ID3D10DepthStencilView;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10DepthStencilView * This,
+            __RPC__in ID3D10DepthStencilView * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3423,7 +3423,7 @@ EXTERN_C const IID IID_ID3D10DepthStencilView;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10DepthStencilView * This,
+            __RPC__in ID3D10DepthStencilView * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3431,13 +3431,13 @@ EXTERN_C const IID IID_ID3D10DepthStencilView;
         
         DECLSPEC_XFGVIRT(ID3D10View, GetResource)
         void ( STDMETHODCALLTYPE *GetResource )( 
-            ID3D10DepthStencilView * This,
+            __RPC__in ID3D10DepthStencilView * This,
             /* [annotation] */ 
             _Out_  ID3D10Resource **ppResource);
         
         DECLSPEC_XFGVIRT(ID3D10DepthStencilView, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10DepthStencilView * This,
+            __RPC__in ID3D10DepthStencilView * This,
             /* [annotation] */ 
             _Out_  D3D10_DEPTH_STENCIL_VIEW_DESC *pDesc);
         
@@ -3521,7 +3521,7 @@ EXTERN_C const IID IID_ID3D10VertexShader;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10VertexShader * This,
+            __RPC__in ID3D10VertexShader * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3529,21 +3529,21 @@ EXTERN_C const IID IID_ID3D10VertexShader;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10VertexShader * This);
+            __RPC__in ID3D10VertexShader * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10VertexShader * This);
+            __RPC__in ID3D10VertexShader * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10VertexShader * This,
+            __RPC__in ID3D10VertexShader * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10VertexShader * This,
+            __RPC__in ID3D10VertexShader * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3553,7 +3553,7 @@ EXTERN_C const IID IID_ID3D10VertexShader;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10VertexShader * This,
+            __RPC__in ID3D10VertexShader * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3563,7 +3563,7 @@ EXTERN_C const IID IID_ID3D10VertexShader;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10VertexShader * This,
+            __RPC__in ID3D10VertexShader * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3642,7 +3642,7 @@ EXTERN_C const IID IID_ID3D10GeometryShader;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10GeometryShader * This,
+            __RPC__in ID3D10GeometryShader * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3650,21 +3650,21 @@ EXTERN_C const IID IID_ID3D10GeometryShader;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10GeometryShader * This);
+            __RPC__in ID3D10GeometryShader * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10GeometryShader * This);
+            __RPC__in ID3D10GeometryShader * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10GeometryShader * This,
+            __RPC__in ID3D10GeometryShader * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10GeometryShader * This,
+            __RPC__in ID3D10GeometryShader * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3674,7 +3674,7 @@ EXTERN_C const IID IID_ID3D10GeometryShader;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10GeometryShader * This,
+            __RPC__in ID3D10GeometryShader * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3684,7 +3684,7 @@ EXTERN_C const IID IID_ID3D10GeometryShader;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10GeometryShader * This,
+            __RPC__in ID3D10GeometryShader * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3763,7 +3763,7 @@ EXTERN_C const IID IID_ID3D10PixelShader;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10PixelShader * This,
+            __RPC__in ID3D10PixelShader * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3771,21 +3771,21 @@ EXTERN_C const IID IID_ID3D10PixelShader;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10PixelShader * This);
+            __RPC__in ID3D10PixelShader * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10PixelShader * This);
+            __RPC__in ID3D10PixelShader * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10PixelShader * This,
+            __RPC__in ID3D10PixelShader * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10PixelShader * This,
+            __RPC__in ID3D10PixelShader * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3795,7 +3795,7 @@ EXTERN_C const IID IID_ID3D10PixelShader;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10PixelShader * This,
+            __RPC__in ID3D10PixelShader * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3805,7 +3805,7 @@ EXTERN_C const IID IID_ID3D10PixelShader;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10PixelShader * This,
+            __RPC__in ID3D10PixelShader * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3884,7 +3884,7 @@ EXTERN_C const IID IID_ID3D10InputLayout;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10InputLayout * This,
+            __RPC__in ID3D10InputLayout * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3892,21 +3892,21 @@ EXTERN_C const IID IID_ID3D10InputLayout;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10InputLayout * This);
+            __RPC__in ID3D10InputLayout * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10InputLayout * This);
+            __RPC__in ID3D10InputLayout * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10InputLayout * This,
+            __RPC__in ID3D10InputLayout * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10InputLayout * This,
+            __RPC__in ID3D10InputLayout * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3916,7 +3916,7 @@ EXTERN_C const IID IID_ID3D10InputLayout;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10InputLayout * This,
+            __RPC__in ID3D10InputLayout * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -3926,7 +3926,7 @@ EXTERN_C const IID IID_ID3D10InputLayout;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10InputLayout * This,
+            __RPC__in ID3D10InputLayout * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4117,7 +4117,7 @@ EXTERN_C const IID IID_ID3D10SamplerState;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10SamplerState * This,
+            __RPC__in ID3D10SamplerState * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4125,21 +4125,21 @@ EXTERN_C const IID IID_ID3D10SamplerState;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10SamplerState * This);
+            __RPC__in ID3D10SamplerState * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10SamplerState * This);
+            __RPC__in ID3D10SamplerState * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10SamplerState * This,
+            __RPC__in ID3D10SamplerState * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10SamplerState * This,
+            __RPC__in ID3D10SamplerState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4149,7 +4149,7 @@ EXTERN_C const IID IID_ID3D10SamplerState;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10SamplerState * This,
+            __RPC__in ID3D10SamplerState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4159,7 +4159,7 @@ EXTERN_C const IID IID_ID3D10SamplerState;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10SamplerState * This,
+            __RPC__in ID3D10SamplerState * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4167,7 +4167,7 @@ EXTERN_C const IID IID_ID3D10SamplerState;
         
         DECLSPEC_XFGVIRT(ID3D10SamplerState, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10SamplerState * This,
+            __RPC__in ID3D10SamplerState * This,
             /* [annotation] */ 
             _Out_  D3D10_SAMPLER_DESC *pDesc);
         
@@ -4299,7 +4299,7 @@ EXTERN_C const IID IID_ID3D10Asynchronous;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Asynchronous * This,
+            __RPC__in ID3D10Asynchronous * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4307,21 +4307,21 @@ EXTERN_C const IID IID_ID3D10Asynchronous;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Asynchronous * This);
+            __RPC__in ID3D10Asynchronous * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Asynchronous * This);
+            __RPC__in ID3D10Asynchronous * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10Asynchronous * This,
+            __RPC__in ID3D10Asynchronous * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Asynchronous * This,
+            __RPC__in ID3D10Asynchronous * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4331,7 +4331,7 @@ EXTERN_C const IID IID_ID3D10Asynchronous;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Asynchronous * This,
+            __RPC__in ID3D10Asynchronous * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4341,7 +4341,7 @@ EXTERN_C const IID IID_ID3D10Asynchronous;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Asynchronous * This,
+            __RPC__in ID3D10Asynchronous * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4349,15 +4349,15 @@ EXTERN_C const IID IID_ID3D10Asynchronous;
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, Begin)
         void ( STDMETHODCALLTYPE *Begin )( 
-            ID3D10Asynchronous * This);
+            __RPC__in ID3D10Asynchronous * This);
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, End)
         void ( STDMETHODCALLTYPE *End )( 
-            ID3D10Asynchronous * This);
+            __RPC__in ID3D10Asynchronous * This);
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, GetData)
         HRESULT ( STDMETHODCALLTYPE *GetData )( 
-            ID3D10Asynchronous * This,
+            __RPC__in ID3D10Asynchronous * This,
             /* [annotation] */ 
             _Out_writes_bytes_opt_(DataSize)  void *pData,
             /* [annotation] */ 
@@ -4367,7 +4367,7 @@ EXTERN_C const IID IID_ID3D10Asynchronous;
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, GetDataSize)
         UINT ( STDMETHODCALLTYPE *GetDataSize )( 
-            ID3D10Asynchronous * This);
+            __RPC__in ID3D10Asynchronous * This);
         
         END_INTERFACE
     } ID3D10AsynchronousVtbl;
@@ -4497,7 +4497,7 @@ EXTERN_C const IID IID_ID3D10Query;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Query * This,
+            __RPC__in ID3D10Query * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4505,21 +4505,21 @@ EXTERN_C const IID IID_ID3D10Query;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Query * This);
+            __RPC__in ID3D10Query * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Query * This);
+            __RPC__in ID3D10Query * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10Query * This,
+            __RPC__in ID3D10Query * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Query * This,
+            __RPC__in ID3D10Query * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4529,7 +4529,7 @@ EXTERN_C const IID IID_ID3D10Query;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Query * This,
+            __RPC__in ID3D10Query * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4539,7 +4539,7 @@ EXTERN_C const IID IID_ID3D10Query;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Query * This,
+            __RPC__in ID3D10Query * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4547,15 +4547,15 @@ EXTERN_C const IID IID_ID3D10Query;
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, Begin)
         void ( STDMETHODCALLTYPE *Begin )( 
-            ID3D10Query * This);
+            __RPC__in ID3D10Query * This);
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, End)
         void ( STDMETHODCALLTYPE *End )( 
-            ID3D10Query * This);
+            __RPC__in ID3D10Query * This);
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, GetData)
         HRESULT ( STDMETHODCALLTYPE *GetData )( 
-            ID3D10Query * This,
+            __RPC__in ID3D10Query * This,
             /* [annotation] */ 
             _Out_writes_bytes_opt_(DataSize)  void *pData,
             /* [annotation] */ 
@@ -4565,11 +4565,11 @@ EXTERN_C const IID IID_ID3D10Query;
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, GetDataSize)
         UINT ( STDMETHODCALLTYPE *GetDataSize )( 
-            ID3D10Query * This);
+            __RPC__in ID3D10Query * This);
         
         DECLSPEC_XFGVIRT(ID3D10Query, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10Query * This,
+            __RPC__in ID3D10Query * This,
             /* [annotation] */ 
             _Out_  D3D10_QUERY_DESC *pDesc);
         
@@ -4662,7 +4662,7 @@ EXTERN_C const IID IID_ID3D10Predicate;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Predicate * This,
+            __RPC__in ID3D10Predicate * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4670,21 +4670,21 @@ EXTERN_C const IID IID_ID3D10Predicate;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Predicate * This);
+            __RPC__in ID3D10Predicate * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Predicate * This);
+            __RPC__in ID3D10Predicate * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10Predicate * This,
+            __RPC__in ID3D10Predicate * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Predicate * This,
+            __RPC__in ID3D10Predicate * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4694,7 +4694,7 @@ EXTERN_C const IID IID_ID3D10Predicate;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Predicate * This,
+            __RPC__in ID3D10Predicate * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4704,7 +4704,7 @@ EXTERN_C const IID IID_ID3D10Predicate;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Predicate * This,
+            __RPC__in ID3D10Predicate * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4712,15 +4712,15 @@ EXTERN_C const IID IID_ID3D10Predicate;
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, Begin)
         void ( STDMETHODCALLTYPE *Begin )( 
-            ID3D10Predicate * This);
+            __RPC__in ID3D10Predicate * This);
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, End)
         void ( STDMETHODCALLTYPE *End )( 
-            ID3D10Predicate * This);
+            __RPC__in ID3D10Predicate * This);
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, GetData)
         HRESULT ( STDMETHODCALLTYPE *GetData )( 
-            ID3D10Predicate * This,
+            __RPC__in ID3D10Predicate * This,
             /* [annotation] */ 
             _Out_writes_bytes_opt_(DataSize)  void *pData,
             /* [annotation] */ 
@@ -4730,11 +4730,11 @@ EXTERN_C const IID IID_ID3D10Predicate;
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, GetDataSize)
         UINT ( STDMETHODCALLTYPE *GetDataSize )( 
-            ID3D10Predicate * This);
+            __RPC__in ID3D10Predicate * This);
         
         DECLSPEC_XFGVIRT(ID3D10Query, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10Predicate * This,
+            __RPC__in ID3D10Predicate * This,
             /* [annotation] */ 
             _Out_  D3D10_QUERY_DESC *pDesc);
         
@@ -4910,7 +4910,7 @@ EXTERN_C const IID IID_ID3D10Counter;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Counter * This,
+            __RPC__in ID3D10Counter * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4918,21 +4918,21 @@ EXTERN_C const IID IID_ID3D10Counter;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Counter * This);
+            __RPC__in ID3D10Counter * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Counter * This);
+            __RPC__in ID3D10Counter * This);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetDevice)
         void ( STDMETHODCALLTYPE *GetDevice )( 
-            ID3D10Counter * This,
+            __RPC__in ID3D10Counter * This,
             /* [annotation] */ 
             _Out_  ID3D10Device **ppDevice);
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Counter * This,
+            __RPC__in ID3D10Counter * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4942,7 +4942,7 @@ EXTERN_C const IID IID_ID3D10Counter;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Counter * This,
+            __RPC__in ID3D10Counter * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4952,7 +4952,7 @@ EXTERN_C const IID IID_ID3D10Counter;
         
         DECLSPEC_XFGVIRT(ID3D10DeviceChild, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Counter * This,
+            __RPC__in ID3D10Counter * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -4960,15 +4960,15 @@ EXTERN_C const IID IID_ID3D10Counter;
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, Begin)
         void ( STDMETHODCALLTYPE *Begin )( 
-            ID3D10Counter * This);
+            __RPC__in ID3D10Counter * This);
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, End)
         void ( STDMETHODCALLTYPE *End )( 
-            ID3D10Counter * This);
+            __RPC__in ID3D10Counter * This);
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, GetData)
         HRESULT ( STDMETHODCALLTYPE *GetData )( 
-            ID3D10Counter * This,
+            __RPC__in ID3D10Counter * This,
             /* [annotation] */ 
             _Out_writes_bytes_opt_(DataSize)  void *pData,
             /* [annotation] */ 
@@ -4978,11 +4978,11 @@ EXTERN_C const IID IID_ID3D10Counter;
         
         DECLSPEC_XFGVIRT(ID3D10Asynchronous, GetDataSize)
         UINT ( STDMETHODCALLTYPE *GetDataSize )( 
-            ID3D10Counter * This);
+            __RPC__in ID3D10Counter * This);
         
         DECLSPEC_XFGVIRT(ID3D10Counter, GetDesc)
         void ( STDMETHODCALLTYPE *GetDesc )( 
-            ID3D10Counter * This,
+            __RPC__in ID3D10Counter * This,
             /* [annotation] */ 
             _Out_  D3D10_COUNTER_DESC *pDesc);
         
@@ -5752,7 +5752,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -5760,15 +5760,15 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Device * This);
+            __RPC__in ID3D10Device * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Device * This);
+            __RPC__in ID3D10Device * This);
         
         DECLSPEC_XFGVIRT(ID3D10Device, VSSetConstantBuffers)
         void ( STDMETHODCALLTYPE *VSSetConstantBuffers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5778,7 +5778,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, PSSetShaderResources)
         void ( STDMETHODCALLTYPE *PSSetShaderResources )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5788,13 +5788,13 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, PSSetShader)
         void ( STDMETHODCALLTYPE *PSSetShader )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_opt_  ID3D10PixelShader *pPixelShader);
         
         DECLSPEC_XFGVIRT(ID3D10Device, PSSetSamplers)
         void ( STDMETHODCALLTYPE *PSSetSamplers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_SAMPLER_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5804,13 +5804,13 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, VSSetShader)
         void ( STDMETHODCALLTYPE *VSSetShader )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_opt_  ID3D10VertexShader *pVertexShader);
         
         DECLSPEC_XFGVIRT(ID3D10Device, DrawIndexed)
         void ( STDMETHODCALLTYPE *DrawIndexed )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  UINT IndexCount,
             /* [annotation] */ 
@@ -5820,7 +5820,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, Draw)
         void ( STDMETHODCALLTYPE *Draw )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  UINT VertexCount,
             /* [annotation] */ 
@@ -5828,7 +5828,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, PSSetConstantBuffers)
         void ( STDMETHODCALLTYPE *PSSetConstantBuffers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5838,13 +5838,13 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, IASetInputLayout)
         void ( STDMETHODCALLTYPE *IASetInputLayout )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_opt_  ID3D10InputLayout *pInputLayout);
         
         DECLSPEC_XFGVIRT(ID3D10Device, IASetVertexBuffers)
         void ( STDMETHODCALLTYPE *IASetVertexBuffers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_1_IA_VERTEX_INPUT_RESOURCE_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5858,7 +5858,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, IASetIndexBuffer)
         void ( STDMETHODCALLTYPE *IASetIndexBuffer )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_opt_  ID3D10Buffer *pIndexBuffer,
             /* [annotation] */ 
@@ -5868,7 +5868,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, DrawIndexedInstanced)
         void ( STDMETHODCALLTYPE *DrawIndexedInstanced )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  UINT IndexCountPerInstance,
             /* [annotation] */ 
@@ -5882,7 +5882,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, DrawInstanced)
         void ( STDMETHODCALLTYPE *DrawInstanced )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  UINT VertexCountPerInstance,
             /* [annotation] */ 
@@ -5894,7 +5894,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GSSetConstantBuffers)
         void ( STDMETHODCALLTYPE *GSSetConstantBuffers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5904,19 +5904,19 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GSSetShader)
         void ( STDMETHODCALLTYPE *GSSetShader )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_opt_  ID3D10GeometryShader *pShader);
         
         DECLSPEC_XFGVIRT(ID3D10Device, IASetPrimitiveTopology)
         void ( STDMETHODCALLTYPE *IASetPrimitiveTopology )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  D3D10_PRIMITIVE_TOPOLOGY Topology);
         
         DECLSPEC_XFGVIRT(ID3D10Device, VSSetShaderResources)
         void ( STDMETHODCALLTYPE *VSSetShaderResources )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5926,7 +5926,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, VSSetSamplers)
         void ( STDMETHODCALLTYPE *VSSetSamplers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_SAMPLER_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5936,7 +5936,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, SetPredication)
         void ( STDMETHODCALLTYPE *SetPredication )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_opt_  ID3D10Predicate *pPredicate,
             /* [annotation] */ 
@@ -5944,7 +5944,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GSSetShaderResources)
         void ( STDMETHODCALLTYPE *GSSetShaderResources )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5954,7 +5954,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GSSetSamplers)
         void ( STDMETHODCALLTYPE *GSSetSamplers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_SAMPLER_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -5964,7 +5964,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, OMSetRenderTargets)
         void ( STDMETHODCALLTYPE *OMSetRenderTargets )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_SIMULTANEOUS_RENDER_TARGET_COUNT )  UINT NumViews,
             /* [annotation] */ 
@@ -5974,7 +5974,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, OMSetBlendState)
         void ( STDMETHODCALLTYPE *OMSetBlendState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_opt_  ID3D10BlendState *pBlendState,
             /* [annotation] */ 
@@ -5984,7 +5984,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, OMSetDepthStencilState)
         void ( STDMETHODCALLTYPE *OMSetDepthStencilState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_opt_  ID3D10DepthStencilState *pDepthStencilState,
             /* [annotation] */ 
@@ -5992,7 +5992,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, SOSetTargets)
         void ( STDMETHODCALLTYPE *SOSetTargets )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_SO_BUFFER_SLOT_COUNT)  UINT NumBuffers,
             /* [annotation] */ 
@@ -6002,17 +6002,17 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, DrawAuto)
         void ( STDMETHODCALLTYPE *DrawAuto )( 
-            ID3D10Device * This);
+            __RPC__in ID3D10Device * This);
         
         DECLSPEC_XFGVIRT(ID3D10Device, RSSetState)
         void ( STDMETHODCALLTYPE *RSSetState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_opt_  ID3D10RasterizerState *pRasterizerState);
         
         DECLSPEC_XFGVIRT(ID3D10Device, RSSetViewports)
         void ( STDMETHODCALLTYPE *RSSetViewports )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_(0, D3D10_VIEWPORT_AND_SCISSORRECT_OBJECT_COUNT_PER_PIPELINE)  UINT NumViewports,
             /* [annotation] */ 
@@ -6020,7 +6020,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, RSSetScissorRects)
         void ( STDMETHODCALLTYPE *RSSetScissorRects )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_(0, D3D10_VIEWPORT_AND_SCISSORRECT_OBJECT_COUNT_PER_PIPELINE)  UINT NumRects,
             /* [annotation] */ 
@@ -6028,7 +6028,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CopySubresourceRegion)
         void ( STDMETHODCALLTYPE *CopySubresourceRegion )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10Resource *pDstResource,
             /* [annotation] */ 
@@ -6048,7 +6048,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CopyResource)
         void ( STDMETHODCALLTYPE *CopyResource )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10Resource *pDstResource,
             /* [annotation] */ 
@@ -6056,7 +6056,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, UpdateSubresource)
         void ( STDMETHODCALLTYPE *UpdateSubresource )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10Resource *pDstResource,
             /* [annotation] */ 
@@ -6072,7 +6072,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, ClearRenderTargetView)
         void ( STDMETHODCALLTYPE *ClearRenderTargetView )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10RenderTargetView *pRenderTargetView,
             /* [annotation] */ 
@@ -6080,7 +6080,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, ClearDepthStencilView)
         void ( STDMETHODCALLTYPE *ClearDepthStencilView )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10DepthStencilView *pDepthStencilView,
             /* [annotation] */ 
@@ -6092,13 +6092,13 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GenerateMips)
         void ( STDMETHODCALLTYPE *GenerateMips )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10ShaderResourceView *pShaderResourceView);
         
         DECLSPEC_XFGVIRT(ID3D10Device, ResolveSubresource)
         void ( STDMETHODCALLTYPE *ResolveSubresource )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10Resource *pDstResource,
             /* [annotation] */ 
@@ -6112,7 +6112,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, VSGetConstantBuffers)
         void ( STDMETHODCALLTYPE *VSGetConstantBuffers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6122,7 +6122,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, PSGetShaderResources)
         void ( STDMETHODCALLTYPE *PSGetShaderResources )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6132,13 +6132,13 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, PSGetShader)
         void ( STDMETHODCALLTYPE *PSGetShader )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_  ID3D10PixelShader **ppPixelShader);
         
         DECLSPEC_XFGVIRT(ID3D10Device, PSGetSamplers)
         void ( STDMETHODCALLTYPE *PSGetSamplers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_SAMPLER_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6148,13 +6148,13 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, VSGetShader)
         void ( STDMETHODCALLTYPE *VSGetShader )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_  ID3D10VertexShader **ppVertexShader);
         
         DECLSPEC_XFGVIRT(ID3D10Device, PSGetConstantBuffers)
         void ( STDMETHODCALLTYPE *PSGetConstantBuffers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6164,13 +6164,13 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, IAGetInputLayout)
         void ( STDMETHODCALLTYPE *IAGetInputLayout )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_  ID3D10InputLayout **ppInputLayout);
         
         DECLSPEC_XFGVIRT(ID3D10Device, IAGetVertexBuffers)
         void ( STDMETHODCALLTYPE *IAGetVertexBuffers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_1_IA_VERTEX_INPUT_RESOURCE_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6184,7 +6184,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, IAGetIndexBuffer)
         void ( STDMETHODCALLTYPE *IAGetIndexBuffer )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_opt_  ID3D10Buffer **pIndexBuffer,
             /* [annotation] */ 
@@ -6194,7 +6194,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GSGetConstantBuffers)
         void ( STDMETHODCALLTYPE *GSGetConstantBuffers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6204,19 +6204,19 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GSGetShader)
         void ( STDMETHODCALLTYPE *GSGetShader )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_  ID3D10GeometryShader **ppGeometryShader);
         
         DECLSPEC_XFGVIRT(ID3D10Device, IAGetPrimitiveTopology)
         void ( STDMETHODCALLTYPE *IAGetPrimitiveTopology )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_  D3D10_PRIMITIVE_TOPOLOGY *pTopology);
         
         DECLSPEC_XFGVIRT(ID3D10Device, VSGetShaderResources)
         void ( STDMETHODCALLTYPE *VSGetShaderResources )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6226,7 +6226,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, VSGetSamplers)
         void ( STDMETHODCALLTYPE *VSGetSamplers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_SAMPLER_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6236,7 +6236,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GetPredication)
         void ( STDMETHODCALLTYPE *GetPredication )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_opt_  ID3D10Predicate **ppPredicate,
             /* [annotation] */ 
@@ -6244,7 +6244,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GSGetShaderResources)
         void ( STDMETHODCALLTYPE *GSGetShaderResources )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6254,7 +6254,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GSGetSamplers)
         void ( STDMETHODCALLTYPE *GSGetSamplers )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_COMMONSHADER_SAMPLER_SLOT_COUNT - 1 )  UINT StartSlot,
             /* [annotation] */ 
@@ -6264,7 +6264,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, OMGetRenderTargets)
         void ( STDMETHODCALLTYPE *OMGetRenderTargets )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_SIMULTANEOUS_RENDER_TARGET_COUNT )  UINT NumViews,
             /* [annotation] */ 
@@ -6274,7 +6274,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, OMGetBlendState)
         void ( STDMETHODCALLTYPE *OMGetBlendState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_opt_  ID3D10BlendState **ppBlendState,
             /* [annotation] */ 
@@ -6284,7 +6284,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, OMGetDepthStencilState)
         void ( STDMETHODCALLTYPE *OMGetDepthStencilState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_opt_  ID3D10DepthStencilState **ppDepthStencilState,
             /* [annotation] */ 
@@ -6292,7 +6292,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, SOGetTargets)
         void ( STDMETHODCALLTYPE *SOGetTargets )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_range_( 0, D3D10_SO_BUFFER_SLOT_COUNT )  UINT NumBuffers,
             /* [annotation] */ 
@@ -6302,13 +6302,13 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, RSGetState)
         void ( STDMETHODCALLTYPE *RSGetState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_  ID3D10RasterizerState **ppRasterizerState);
         
         DECLSPEC_XFGVIRT(ID3D10Device, RSGetViewports)
         void ( STDMETHODCALLTYPE *RSGetViewports )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Inout_ /*_range(0, D3D10_VIEWPORT_AND_SCISSORRECT_OBJECT_COUNT_PER_PIPELINE )*/   UINT *NumViewports,
             /* [annotation] */ 
@@ -6316,7 +6316,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, RSGetScissorRects)
         void ( STDMETHODCALLTYPE *RSGetScissorRects )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Inout_ /*_range(0, D3D10_VIEWPORT_AND_SCISSORRECT_OBJECT_COUNT_PER_PIPELINE )*/   UINT *NumRects,
             /* [annotation] */ 
@@ -6324,20 +6324,20 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GetDeviceRemovedReason)
         HRESULT ( STDMETHODCALLTYPE *GetDeviceRemovedReason )( 
-            ID3D10Device * This);
+            __RPC__in ID3D10Device * This);
         
         DECLSPEC_XFGVIRT(ID3D10Device, SetExceptionMode)
         HRESULT ( STDMETHODCALLTYPE *SetExceptionMode )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             UINT RaiseFlags);
         
         DECLSPEC_XFGVIRT(ID3D10Device, GetExceptionMode)
         UINT ( STDMETHODCALLTYPE *GetExceptionMode )( 
-            ID3D10Device * This);
+            __RPC__in ID3D10Device * This);
         
         DECLSPEC_XFGVIRT(ID3D10Device, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -6347,7 +6347,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -6357,7 +6357,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  REFGUID guid,
             /* [annotation] */ 
@@ -6365,15 +6365,15 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, ClearState)
         void ( STDMETHODCALLTYPE *ClearState )( 
-            ID3D10Device * This);
+            __RPC__in ID3D10Device * This);
         
         DECLSPEC_XFGVIRT(ID3D10Device, Flush)
         void ( STDMETHODCALLTYPE *Flush )( 
-            ID3D10Device * This);
+            __RPC__in ID3D10Device * This);
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateBuffer)
         HRESULT ( STDMETHODCALLTYPE *CreateBuffer )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_BUFFER_DESC *pDesc,
             /* [annotation] */ 
@@ -6383,7 +6383,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateTexture1D)
         HRESULT ( STDMETHODCALLTYPE *CreateTexture1D )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_TEXTURE1D_DESC *pDesc,
             /* [annotation] */ 
@@ -6393,7 +6393,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateTexture2D)
         HRESULT ( STDMETHODCALLTYPE *CreateTexture2D )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_TEXTURE2D_DESC *pDesc,
             /* [annotation] */ 
@@ -6403,7 +6403,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateTexture3D)
         HRESULT ( STDMETHODCALLTYPE *CreateTexture3D )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_TEXTURE3D_DESC *pDesc,
             /* [annotation] */ 
@@ -6413,7 +6413,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateShaderResourceView)
         HRESULT ( STDMETHODCALLTYPE *CreateShaderResourceView )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10Resource *pResource,
             /* [annotation] */ 
@@ -6423,7 +6423,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateRenderTargetView)
         HRESULT ( STDMETHODCALLTYPE *CreateRenderTargetView )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10Resource *pResource,
             /* [annotation] */ 
@@ -6433,7 +6433,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateDepthStencilView)
         HRESULT ( STDMETHODCALLTYPE *CreateDepthStencilView )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  ID3D10Resource *pResource,
             /* [annotation] */ 
@@ -6443,7 +6443,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateInputLayout)
         HRESULT ( STDMETHODCALLTYPE *CreateInputLayout )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_reads_(NumElements)  const D3D10_INPUT_ELEMENT_DESC *pInputElementDescs,
             /* [annotation] */ 
@@ -6457,7 +6457,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateVertexShader)
         HRESULT ( STDMETHODCALLTYPE *CreateVertexShader )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_reads_(BytecodeLength)  const void *pShaderBytecode,
             /* [annotation] */ 
@@ -6467,7 +6467,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateGeometryShader)
         HRESULT ( STDMETHODCALLTYPE *CreateGeometryShader )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_reads_(BytecodeLength)  const void *pShaderBytecode,
             /* [annotation] */ 
@@ -6477,7 +6477,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateGeometryShaderWithStreamOutput)
         HRESULT ( STDMETHODCALLTYPE *CreateGeometryShaderWithStreamOutput )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_reads_(BytecodeLength)  const void *pShaderBytecode,
             /* [annotation] */ 
@@ -6493,7 +6493,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreatePixelShader)
         HRESULT ( STDMETHODCALLTYPE *CreatePixelShader )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_reads_(BytecodeLength)  const void *pShaderBytecode,
             /* [annotation] */ 
@@ -6503,7 +6503,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateBlendState)
         HRESULT ( STDMETHODCALLTYPE *CreateBlendState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_BLEND_DESC *pBlendStateDesc,
             /* [annotation] */ 
@@ -6511,7 +6511,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateDepthStencilState)
         HRESULT ( STDMETHODCALLTYPE *CreateDepthStencilState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_DEPTH_STENCIL_DESC *pDepthStencilDesc,
             /* [annotation] */ 
@@ -6519,7 +6519,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateRasterizerState)
         HRESULT ( STDMETHODCALLTYPE *CreateRasterizerState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_RASTERIZER_DESC *pRasterizerDesc,
             /* [annotation] */ 
@@ -6527,7 +6527,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateSamplerState)
         HRESULT ( STDMETHODCALLTYPE *CreateSamplerState )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_SAMPLER_DESC *pSamplerDesc,
             /* [annotation] */ 
@@ -6535,7 +6535,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateQuery)
         HRESULT ( STDMETHODCALLTYPE *CreateQuery )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_QUERY_DESC *pQueryDesc,
             /* [annotation] */ 
@@ -6543,7 +6543,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreatePredicate)
         HRESULT ( STDMETHODCALLTYPE *CreatePredicate )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_QUERY_DESC *pPredicateDesc,
             /* [annotation] */ 
@@ -6551,7 +6551,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CreateCounter)
         HRESULT ( STDMETHODCALLTYPE *CreateCounter )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_COUNTER_DESC *pCounterDesc,
             /* [annotation] */ 
@@ -6559,7 +6559,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CheckFormatSupport)
         HRESULT ( STDMETHODCALLTYPE *CheckFormatSupport )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  DXGI_FORMAT Format,
             /* [annotation] */ 
@@ -6567,7 +6567,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CheckMultisampleQualityLevels)
         HRESULT ( STDMETHODCALLTYPE *CheckMultisampleQualityLevels )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  DXGI_FORMAT Format,
             /* [annotation] */ 
@@ -6577,13 +6577,13 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, CheckCounterInfo)
         void ( STDMETHODCALLTYPE *CheckCounterInfo )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_  D3D10_COUNTER_INFO *pCounterInfo);
         
         DECLSPEC_XFGVIRT(ID3D10Device, CheckCounter)
         HRESULT ( STDMETHODCALLTYPE *CheckCounter )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  const D3D10_COUNTER_DESC *pDesc,
             /* [annotation] */ 
@@ -6605,11 +6605,11 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GetCreationFlags)
         UINT ( STDMETHODCALLTYPE *GetCreationFlags )( 
-            ID3D10Device * This);
+            __RPC__in ID3D10Device * This);
         
         DECLSPEC_XFGVIRT(ID3D10Device, OpenSharedResource)
         HRESULT ( STDMETHODCALLTYPE *OpenSharedResource )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  HANDLE hResource,
             /* [annotation] */ 
@@ -6619,7 +6619,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, SetTextFilterSize)
         void ( STDMETHODCALLTYPE *SetTextFilterSize )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _In_  UINT Width,
             /* [annotation] */ 
@@ -6627,7 +6627,7 @@ EXTERN_C const IID IID_ID3D10Device;
         
         DECLSPEC_XFGVIRT(ID3D10Device, GetTextFilterSize)
         void ( STDMETHODCALLTYPE *GetTextFilterSize )( 
-            ID3D10Device * This,
+            __RPC__in ID3D10Device * This,
             /* [annotation] */ 
             _Out_opt_  UINT *pWidth,
             /* [annotation] */ 
@@ -7001,7 +7001,7 @@ EXTERN_C const IID IID_ID3D10Multithread;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ID3D10Multithread * This,
+            __RPC__in ID3D10Multithread * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -7009,29 +7009,29 @@ EXTERN_C const IID IID_ID3D10Multithread;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ID3D10Multithread * This);
+            __RPC__in ID3D10Multithread * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ID3D10Multithread * This);
+            __RPC__in ID3D10Multithread * This);
         
         DECLSPEC_XFGVIRT(ID3D10Multithread, Enter)
         void ( STDMETHODCALLTYPE *Enter )( 
-            ID3D10Multithread * This);
+            __RPC__in ID3D10Multithread * This);
         
         DECLSPEC_XFGVIRT(ID3D10Multithread, Leave)
         void ( STDMETHODCALLTYPE *Leave )( 
-            ID3D10Multithread * This);
+            __RPC__in ID3D10Multithread * This);
         
         DECLSPEC_XFGVIRT(ID3D10Multithread, SetMultithreadProtected)
         BOOL ( STDMETHODCALLTYPE *SetMultithreadProtected )( 
-            ID3D10Multithread * This,
+            __RPC__in ID3D10Multithread * This,
             /* [annotation] */ 
             _In_  BOOL bMTProtect);
         
         DECLSPEC_XFGVIRT(ID3D10Multithread, GetMultithreadProtected)
         BOOL ( STDMETHODCALLTYPE *GetMultithreadProtected )( 
-            ID3D10Multithread * This);
+            __RPC__in ID3D10Multithread * This);
         
         END_INTERFACE
     } ID3D10MultithreadVtbl;

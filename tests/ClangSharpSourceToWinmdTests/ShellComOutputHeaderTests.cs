@@ -113,15 +113,25 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
-        public void NativeEdits_OnlyChangeSelectedSalBytesAndAllInheritedCopies()
+        public void HistoricalGeneratedHeaders_OnlyChangeSelectedSalBytesAndAllInheritedCopies()
+            => AssertNativeEditBytes(new[] { "ShObjIdl.h" }, historical: true);
+
+        private static void AssertNativeEditBytes(IEnumerable<string> owners, bool historical)
         {
-            foreach (string owner in new[] { "ShObjIdl.idl", "ShObjIdl.h", "ShlObj.h", "shdeprecated.h" })
+            foreach (string owner in owners)
             {
                 string original = ReadOriginal("RecompiledIdlHeaders/um/" + owner, checkoutBytes: true);
                 Assert.IsTrue(original.All(character => character <= 127), owner);
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchOwner(owner, original)),
-                    File.ReadAllBytes(Header(owner)), "No encoding, newline or unrelated changes: " + owner);
+                    historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/um/" + owner) :
+                        File.ReadAllBytes(Header(owner)), "No encoding, newline or unrelated changes: " + owner);
             }
+        }
+
+        [TestMethod]
+        public void NativeEdits_OnlyChangeSelectedSalBytesAndAllInheritedCopies()
+        {
+            AssertNativeEditBytes(new[] { "ShObjIdl.idl", "ShlObj.h", "shdeprecated.h" }, historical: false);
             foreach (var owner in Owners)
             {
                 string original = ReadOriginal("RecompiledIdlHeaders/um/" + owner.Owner);

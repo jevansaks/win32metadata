@@ -176,7 +176,7 @@ EXTERN_C const IID IID_IServiceProvider;
         
         DECLSPEC_XFGVIRT(IServiceProvider, QueryService)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *QueryService )( 
-            IServiceProvider * This,
+            __RPC__in IServiceProvider * This,
             /* [annotation][in] */ 
             _In_  REFGUID guidService,
             /* [annotation][in] */ 
@@ -252,7 +252,7 @@ extern RPC_IF_HANDLE __MIDL_itf_servprov_0000_0001_v0_0_s_ifspec;
 /* Additional Prototypes for ALL interfaces */
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IServiceProvider_QueryService_Proxy( 
-    IServiceProvider * This,
+    __RPC__in IServiceProvider * This,
     /* [annotation][in] */ 
     _In_  REFGUID guidService,
     /* [annotation][in] */ 

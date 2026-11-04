@@ -232,12 +232,12 @@ EXTERN_C const IID IID_IImageList;
             int i2,
             int dx,
             int dy,
-            REFIID riid,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Clone( 
-            REFIID riid,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv) = 0;
         
@@ -308,7 +308,7 @@ EXTERN_C const IID IID_IImageList;
             _Out_opt_  POINT *ppt,
             /* [annotation][out] */ 
             _Out_opt_  POINT *pptHotspot,
-            REFIID riid,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv) = 0;
         
@@ -333,7 +333,7 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -341,15 +341,15 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IImageList * This);
+            __RPC__in IImageList * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IImageList * This);
+            __RPC__in IImageList * This);
         
         DECLSPEC_XFGVIRT(IImageList, Add)
         HRESULT ( STDMETHODCALLTYPE *Add )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][in] */ 
             _In_  HBITMAP hbmImage,
             /* [annotation][unique][in] */ 
@@ -359,7 +359,7 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IImageList, ReplaceIcon)
         HRESULT ( STDMETHODCALLTYPE *ReplaceIcon )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int i,
             /* [annotation][in] */ 
             _In_  HICON hicon,
@@ -368,13 +368,13 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IImageList, SetOverlayImage)
         HRESULT ( STDMETHODCALLTYPE *SetOverlayImage )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int iImage,
             int iOverlay);
         
         DECLSPEC_XFGVIRT(IImageList, Replace)
         HRESULT ( STDMETHODCALLTYPE *Replace )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int i,
             /* [annotation][in] */ 
             _In_  HBITMAP hbmImage,
@@ -383,7 +383,7 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IImageList, AddMasked)
         HRESULT ( STDMETHODCALLTYPE *AddMasked )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][in] */ 
             _In_  HBITMAP hbmImage,
             COLORREF crMask,
@@ -392,18 +392,18 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IImageList, Draw)
         HRESULT ( STDMETHODCALLTYPE *Draw )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][in] */ 
             _In_  IMAGELISTDRAWPARAMS *pimldp);
         
         DECLSPEC_XFGVIRT(IImageList, Remove)
         HRESULT ( STDMETHODCALLTYPE *Remove )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int i);
         
         DECLSPEC_XFGVIRT(IImageList, GetIcon)
         HRESULT ( STDMETHODCALLTYPE *GetIcon )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int i,
             UINT flags,
             /* [annotation][out] */ 
@@ -411,14 +411,14 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IImageList, GetImageInfo)
         HRESULT ( STDMETHODCALLTYPE *GetImageInfo )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int i,
             /* [annotation][out] */ 
             _Out_  IMAGEINFO *pImageInfo);
         
         DECLSPEC_XFGVIRT(IImageList, Copy)
         HRESULT ( STDMETHODCALLTYPE *Copy )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int iDst,
             /* [annotation][in] */ 
             _In_  IUnknown *punkSrc,
@@ -427,34 +427,34 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IImageList, Merge)
         HRESULT ( STDMETHODCALLTYPE *Merge )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int i1,
             /* [annotation][in] */ 
             _In_  IUnknown *punk2,
             int i2,
             int dx,
             int dy,
-            REFIID riid,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
-            IImageList * This,
-            REFIID riid,
+            __RPC__in IImageList * This,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, GetImageRect)
         HRESULT ( STDMETHODCALLTYPE *GetImageRect )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int i,
             /* [annotation][out] */ 
             _Out_  RECT *prc);
         
         DECLSPEC_XFGVIRT(IImageList, GetIconSize)
         HRESULT ( STDMETHODCALLTYPE *GetIconSize )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][out] */ 
             _Out_  int *cx,
             /* [annotation][out] */ 
@@ -462,48 +462,48 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IImageList, SetIconSize)
         HRESULT ( STDMETHODCALLTYPE *SetIconSize )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int cx,
             int cy);
         
         DECLSPEC_XFGVIRT(IImageList, GetImageCount)
         HRESULT ( STDMETHODCALLTYPE *GetImageCount )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][out] */ 
             _Out_  int *pi);
         
         DECLSPEC_XFGVIRT(IImageList, SetImageCount)
         HRESULT ( STDMETHODCALLTYPE *SetImageCount )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             UINT uNewCount);
         
         DECLSPEC_XFGVIRT(IImageList, SetBkColor)
         HRESULT ( STDMETHODCALLTYPE *SetBkColor )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             COLORREF clrBk,
             /* [annotation][out] */ 
             _Out_  COLORREF *pclr);
         
         DECLSPEC_XFGVIRT(IImageList, GetBkColor)
         HRESULT ( STDMETHODCALLTYPE *GetBkColor )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][out] */ 
             _Out_  COLORREF *pclr);
         
         DECLSPEC_XFGVIRT(IImageList, BeginDrag)
         HRESULT ( STDMETHODCALLTYPE *BeginDrag )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int iTrack,
             int dxHotspot,
             int dyHotspot);
         
         DECLSPEC_XFGVIRT(IImageList, EndDrag)
         HRESULT ( STDMETHODCALLTYPE *EndDrag )( 
-            IImageList * This);
+            __RPC__in IImageList * This);
         
         DECLSPEC_XFGVIRT(IImageList, DragEnter)
         HRESULT ( STDMETHODCALLTYPE *DragEnter )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][unique][in] */ 
             _In_opt_  HWND hwndLock,
             int x,
@@ -511,19 +511,19 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IImageList, DragLeave)
         HRESULT ( STDMETHODCALLTYPE *DragLeave )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][unique][in] */ 
             _In_opt_  HWND hwndLock);
         
         DECLSPEC_XFGVIRT(IImageList, DragMove)
         HRESULT ( STDMETHODCALLTYPE *DragMove )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int x,
             int y);
         
         DECLSPEC_XFGVIRT(IImageList, SetDragCursorImage)
         HRESULT ( STDMETHODCALLTYPE *SetDragCursorImage )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][in] */ 
             _In_  IUnknown *punk,
             int iDrag,
@@ -532,30 +532,30 @@ EXTERN_C const IID IID_IImageList;
         
         DECLSPEC_XFGVIRT(IImageList, DragShowNolock)
         HRESULT ( STDMETHODCALLTYPE *DragShowNolock )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             BOOL fShow);
         
         DECLSPEC_XFGVIRT(IImageList, GetDragImage)
         HRESULT ( STDMETHODCALLTYPE *GetDragImage )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             /* [annotation][out] */ 
             _Out_opt_  POINT *ppt,
             /* [annotation][out] */ 
             _Out_opt_  POINT *pptHotspot,
-            REFIID riid,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, GetItemFlags)
         HRESULT ( STDMETHODCALLTYPE *GetItemFlags )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int i,
             /* [annotation][out] */ 
             _Out_  DWORD *dwFlags);
         
         DECLSPEC_XFGVIRT(IImageList, GetOverlayImage)
         HRESULT ( STDMETHODCALLTYPE *GetOverlayImage )( 
-            IImageList * This,
+            __RPC__in IImageList * This,
             int iOverlay,
             /* [annotation][out] */ 
             _Out_  int *piIndex);
@@ -734,8 +734,10 @@ EXTERN_C const IID IID_IImageList2;
             int cyNewIconSize) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetOriginalSize( 
-            /* [in] */ int iImage,
-            /* [in] */ DWORD dwFlags,
+            /* [annotation][in] */ 
+            _In_  int iImage,
+            /* [annotation][in] */ 
+            _In_  DWORD dwFlags,
             /* [annotation][out] */ 
             _Out_  int *pcx,
             /* [annotation][out] */ 
@@ -754,7 +756,8 @@ EXTERN_C const IID IID_IImageList2;
             _In_opt_  IUnknown *punk) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetCallback( 
-            /* [in] */ REFIID riid,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv) = 0;
         
@@ -792,23 +795,28 @@ EXTERN_C const IID IID_IImageList2;
             _In_  int cGrow) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Replace2( 
-            /* [in] */ int i,
+            /* [annotation][in] */ 
+            _In_  int i,
             /* [annotation][in] */ 
             _In_  HBITMAP hbmImage,
             /* [annotation][unique][in] */ 
             _In_opt_  HBITMAP hbmMask,
             /* [annotation][unique][in] */ 
             _In_opt_  IUnknown *punk,
-            /* [in] */ DWORD dwFlags) = 0;
+            /* [annotation][in] */ 
+            _In_  DWORD dwFlags) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE ReplaceFromImageList( 
-            /* [in] */ int i,
+            /* [annotation][in] */ 
+            _In_  int i,
             /* [annotation][in] */ 
             _In_  IImageList *pil,
-            /* [in] */ int iSrc,
+            /* [annotation][in] */ 
+            _In_  int iSrc,
             /* [annotation][unique][in] */ 
             _In_opt_  IUnknown *punk,
-            /* [in] */ DWORD dwFlags) = 0;
+            /* [annotation][in] */ 
+            _In_  DWORD dwFlags) = 0;
         
     };
     
@@ -821,7 +829,7 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -829,15 +837,15 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IImageList2 * This);
+            __RPC__in IImageList2 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IImageList2 * This);
+            __RPC__in IImageList2 * This);
         
         DECLSPEC_XFGVIRT(IImageList, Add)
         HRESULT ( STDMETHODCALLTYPE *Add )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  HBITMAP hbmImage,
             /* [annotation][unique][in] */ 
@@ -847,7 +855,7 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList, ReplaceIcon)
         HRESULT ( STDMETHODCALLTYPE *ReplaceIcon )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int i,
             /* [annotation][in] */ 
             _In_  HICON hicon,
@@ -856,13 +864,13 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList, SetOverlayImage)
         HRESULT ( STDMETHODCALLTYPE *SetOverlayImage )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int iImage,
             int iOverlay);
         
         DECLSPEC_XFGVIRT(IImageList, Replace)
         HRESULT ( STDMETHODCALLTYPE *Replace )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int i,
             /* [annotation][in] */ 
             _In_  HBITMAP hbmImage,
@@ -871,7 +879,7 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList, AddMasked)
         HRESULT ( STDMETHODCALLTYPE *AddMasked )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  HBITMAP hbmImage,
             COLORREF crMask,
@@ -880,18 +888,18 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList, Draw)
         HRESULT ( STDMETHODCALLTYPE *Draw )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  IMAGELISTDRAWPARAMS *pimldp);
         
         DECLSPEC_XFGVIRT(IImageList, Remove)
         HRESULT ( STDMETHODCALLTYPE *Remove )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int i);
         
         DECLSPEC_XFGVIRT(IImageList, GetIcon)
         HRESULT ( STDMETHODCALLTYPE *GetIcon )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int i,
             UINT flags,
             /* [annotation][out] */ 
@@ -899,14 +907,14 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList, GetImageInfo)
         HRESULT ( STDMETHODCALLTYPE *GetImageInfo )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int i,
             /* [annotation][out] */ 
             _Out_  IMAGEINFO *pImageInfo);
         
         DECLSPEC_XFGVIRT(IImageList, Copy)
         HRESULT ( STDMETHODCALLTYPE *Copy )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int iDst,
             /* [annotation][in] */ 
             _In_  IUnknown *punkSrc,
@@ -915,34 +923,34 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList, Merge)
         HRESULT ( STDMETHODCALLTYPE *Merge )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int i1,
             /* [annotation][in] */ 
             _In_  IUnknown *punk2,
             int i2,
             int dx,
             int dy,
-            REFIID riid,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
-            IImageList2 * This,
-            REFIID riid,
+            __RPC__in IImageList2 * This,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, GetImageRect)
         HRESULT ( STDMETHODCALLTYPE *GetImageRect )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int i,
             /* [annotation][out] */ 
             _Out_  RECT *prc);
         
         DECLSPEC_XFGVIRT(IImageList, GetIconSize)
         HRESULT ( STDMETHODCALLTYPE *GetIconSize )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][out] */ 
             _Out_  int *cx,
             /* [annotation][out] */ 
@@ -950,48 +958,48 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList, SetIconSize)
         HRESULT ( STDMETHODCALLTYPE *SetIconSize )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int cx,
             int cy);
         
         DECLSPEC_XFGVIRT(IImageList, GetImageCount)
         HRESULT ( STDMETHODCALLTYPE *GetImageCount )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][out] */ 
             _Out_  int *pi);
         
         DECLSPEC_XFGVIRT(IImageList, SetImageCount)
         HRESULT ( STDMETHODCALLTYPE *SetImageCount )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             UINT uNewCount);
         
         DECLSPEC_XFGVIRT(IImageList, SetBkColor)
         HRESULT ( STDMETHODCALLTYPE *SetBkColor )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             COLORREF clrBk,
             /* [annotation][out] */ 
             _Out_  COLORREF *pclr);
         
         DECLSPEC_XFGVIRT(IImageList, GetBkColor)
         HRESULT ( STDMETHODCALLTYPE *GetBkColor )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][out] */ 
             _Out_  COLORREF *pclr);
         
         DECLSPEC_XFGVIRT(IImageList, BeginDrag)
         HRESULT ( STDMETHODCALLTYPE *BeginDrag )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int iTrack,
             int dxHotspot,
             int dyHotspot);
         
         DECLSPEC_XFGVIRT(IImageList, EndDrag)
         HRESULT ( STDMETHODCALLTYPE *EndDrag )( 
-            IImageList2 * This);
+            __RPC__in IImageList2 * This);
         
         DECLSPEC_XFGVIRT(IImageList, DragEnter)
         HRESULT ( STDMETHODCALLTYPE *DragEnter )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][unique][in] */ 
             _In_opt_  HWND hwndLock,
             int x,
@@ -999,19 +1007,19 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList, DragLeave)
         HRESULT ( STDMETHODCALLTYPE *DragLeave )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][unique][in] */ 
             _In_opt_  HWND hwndLock);
         
         DECLSPEC_XFGVIRT(IImageList, DragMove)
         HRESULT ( STDMETHODCALLTYPE *DragMove )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int x,
             int y);
         
         DECLSPEC_XFGVIRT(IImageList, SetDragCursorImage)
         HRESULT ( STDMETHODCALLTYPE *SetDragCursorImage )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *punk,
             int iDrag,
@@ -1020,45 +1028,47 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList, DragShowNolock)
         HRESULT ( STDMETHODCALLTYPE *DragShowNolock )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             BOOL fShow);
         
         DECLSPEC_XFGVIRT(IImageList, GetDragImage)
         HRESULT ( STDMETHODCALLTYPE *GetDragImage )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][out] */ 
             _Out_opt_  POINT *ppt,
             /* [annotation][out] */ 
             _Out_opt_  POINT *pptHotspot,
-            REFIID riid,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList, GetItemFlags)
         HRESULT ( STDMETHODCALLTYPE *GetItemFlags )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int i,
             /* [annotation][out] */ 
             _Out_  DWORD *dwFlags);
         
         DECLSPEC_XFGVIRT(IImageList, GetOverlayImage)
         HRESULT ( STDMETHODCALLTYPE *GetOverlayImage )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int iOverlay,
             /* [annotation][out] */ 
             _Out_  int *piIndex);
         
         DECLSPEC_XFGVIRT(IImageList2, Resize)
         HRESULT ( STDMETHODCALLTYPE *Resize )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             int cxNewIconSize,
             int cyNewIconSize);
         
         DECLSPEC_XFGVIRT(IImageList2, GetOriginalSize)
         HRESULT ( STDMETHODCALLTYPE *GetOriginalSize )( 
-            IImageList2 * This,
-            /* [in] */ int iImage,
-            /* [in] */ DWORD dwFlags,
+            __RPC__in IImageList2 * This,
+            /* [annotation][in] */ 
+            _In_  int iImage,
+            /* [annotation][in] */ 
+            _In_  DWORD dwFlags,
             /* [annotation][out] */ 
             _Out_  int *pcx,
             /* [annotation][out] */ 
@@ -1066,7 +1076,7 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList2, SetOriginalSize)
         HRESULT ( STDMETHODCALLTYPE *SetOriginalSize )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  int iImage,
             /* [annotation][in] */ 
@@ -1076,27 +1086,28 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList2, SetCallback)
         HRESULT ( STDMETHODCALLTYPE *SetCallback )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][unique][in] */ 
             _In_opt_  IUnknown *punk);
         
         DECLSPEC_XFGVIRT(IImageList2, GetCallback)
         HRESULT ( STDMETHODCALLTYPE *GetCallback )( 
-            IImageList2 * This,
-            /* [in] */ REFIID riid,
+            __RPC__in IImageList2 * This,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IImageList2, ForceImagePresent)
         HRESULT ( STDMETHODCALLTYPE *ForceImagePresent )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  int iImage,
             DWORD dwFlags);
         
         DECLSPEC_XFGVIRT(IImageList2, DiscardImages)
         HRESULT ( STDMETHODCALLTYPE *DiscardImages )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  int iFirstImage,
             /* [annotation][in] */ 
@@ -1106,19 +1117,19 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList2, PreloadImages)
         HRESULT ( STDMETHODCALLTYPE *PreloadImages )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  IMAGELISTDRAWPARAMS *pimldp);
         
         DECLSPEC_XFGVIRT(IImageList2, GetStatistics)
         HRESULT ( STDMETHODCALLTYPE *GetStatistics )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][out][in] */ 
             _Inout_  IMAGELISTSTATS *pils);
         
         DECLSPEC_XFGVIRT(IImageList2, Initialize)
         HRESULT ( STDMETHODCALLTYPE *Initialize )( 
-            IImageList2 * This,
+            __RPC__in IImageList2 * This,
             /* [annotation][in] */ 
             _In_  int cx,
             /* [annotation][in] */ 
@@ -1132,26 +1143,31 @@ EXTERN_C const IID IID_IImageList2;
         
         DECLSPEC_XFGVIRT(IImageList2, Replace2)
         HRESULT ( STDMETHODCALLTYPE *Replace2 )( 
-            IImageList2 * This,
-            /* [in] */ int i,
+            __RPC__in IImageList2 * This,
+            /* [annotation][in] */ 
+            _In_  int i,
             /* [annotation][in] */ 
             _In_  HBITMAP hbmImage,
             /* [annotation][unique][in] */ 
             _In_opt_  HBITMAP hbmMask,
             /* [annotation][unique][in] */ 
             _In_opt_  IUnknown *punk,
-            /* [in] */ DWORD dwFlags);
+            /* [annotation][in] */ 
+            _In_  DWORD dwFlags);
         
         DECLSPEC_XFGVIRT(IImageList2, ReplaceFromImageList)
         HRESULT ( STDMETHODCALLTYPE *ReplaceFromImageList )( 
-            IImageList2 * This,
-            /* [in] */ int i,
+            __RPC__in IImageList2 * This,
+            /* [annotation][in] */ 
+            _In_  int i,
             /* [annotation][in] */ 
             _In_  IImageList *pil,
-            /* [in] */ int iSrc,
+            /* [annotation][in] */ 
+            _In_  int iSrc,
             /* [annotation][unique][in] */ 
             _In_opt_  IUnknown *punk,
-            /* [in] */ DWORD dwFlags);
+            /* [annotation][in] */ 
+            _In_  DWORD dwFlags);
         
         END_INTERFACE
     } IImageList2Vtbl;
