@@ -146,7 +146,7 @@ namespace Windows.Win32.Tests
                         type.GetFields().Select(reader.GetFieldDefinition).Any(field => reader.GetString(field.Name) == "value__"));
                 checkedSelectors++;
             }
-            Assert.Equal(131, checkedSelectors);
+            Assert.Equal(142, checkedSelectors);
 
             List<Parameter> GetParameters(string selector)
             {

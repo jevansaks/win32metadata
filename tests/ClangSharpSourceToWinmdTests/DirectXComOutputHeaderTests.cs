@@ -146,7 +146,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(62, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
             StringAssert.Contains(current, RetvalBoundary + "=[ComOutPtr]\n");
             foreach (string selector in RetainedCallbacks) StringAssert.Contains(current, selector + "=[ComOutPtr]\n");
-            CollectionAssert.AreEqual(SyncComOutputHeaderTests.RetireRecords(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(original))))).Split('\n').Where(IndependentContract).ToArray(),
+            CollectionAssert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(original)))).Split('\n').Where(IndependentContract).ToArray(),
                 current.Split('\n').Where(IndependentContract).ToArray());
             string parent = PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot());
             var ancestry = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(),

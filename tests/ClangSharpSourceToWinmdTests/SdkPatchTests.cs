@@ -1762,14 +1762,18 @@ namespace ClangSharpSourceToWinmdTests
         {
             using var fixture = new Fixture();
             string sdk = LastErrorHeaderTests.SdkPackagePath();
-            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0", "um");
-            byte[] original = File.ReadAllBytes(Path.Combine(include, "winsync.h"));
-            CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
-                "RecompiledIdlHeaders/um/winsync.h"), original, "Immutable ancestor matches the selected shipped SDK.");
-            Assert.IsFalse(File.Exists(Path.Combine(include, "winsync.idl")), "Actual header-only input; do not restore an IDL.");
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            var ownership = fixture.Run("$outputs = @(& " + Quote(Script("Get-SDKMidlOutputs.ps1")) +
+                " -HeaderRoot " + Quote(include) + "); " +
+                "if ($outputs.Header -icontains 'um/winsync.h') { throw 'Synchronization header is a queued output.' }");
+            Assert.AreEqual(0, ownership.ExitCode, ownership.Output);
+            byte[] original = File.ReadAllBytes(Path.Combine(include, "um", "winsync.h"));
+            CollectionAssert.AreEqual(SyncComOutputHeaderTests.ReadOriginalBytes(
+                "RecompiledIdlHeaders/um/winsync.h"), original, "Reachable fixture introduction parent matches the selected shipped SDK.");
+            Assert.IsFalse(File.Exists(Path.Combine(include, "um", "winsync.idl")), "Actual header-only input; do not restore an IDL.");
             fixture.Header("winsync.h", original);
             fixture.Apply("post-midl", "post-midl/winsync.h.patch", true,
-                patchRoot: Path.Combine(Root(), "generation", "WinSDK", "patches"));
+                patchRoot: Path.Combine(Root(), "generation", "WinSDK", "patches"), midlInputRoot: include);
             CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                 "RecompiledIdlHeaders", "um", "winsync.h")), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", "winsync.h")));
             foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
@@ -1794,7 +1798,7 @@ namespace ClangSharpSourceToWinmdTests
             using var fixture = new Fixture();
             string sdk = LastErrorHeaderTests.SdkPackagePath();
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
-            fixture.Header("winsync.h", PropertyComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/winsync.h"));
+            fixture.Header("winsync.h", SyncComOutputHeaderTests.ReadOriginalBytes("RecompiledIdlHeaders/um/winsync.h"));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "inc", "sal.h"), Path.Combine(fixture.Headers, "sal.h"));
             File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
                 "win32metadata_annotations.h"), Path.Combine(fixture.Headers, "win32metadata_annotations.h"));

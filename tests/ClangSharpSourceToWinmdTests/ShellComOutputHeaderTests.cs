@@ -68,7 +68,7 @@ namespace ClangSharpSourceToWinmdTests
                     .Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
                 current.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
                 "Retire only the sixteen exact records from the complete remaining corpus.");
-            CollectionAssert.AreEqual(SyncComOutputHeaderTests.RetireRecords(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(original))))).Split('\n').Where(IndependentContract).ToArray(),
+            CollectionAssert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(original)))).Split('\n').Where(IndependentContract).ToArray(),
                 current.Split('\n').Where(IndependentContract).ToArray(), "Preserve independent Out and result contracts.");
             Assert.AreEqual(62, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
 

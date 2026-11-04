@@ -2,11 +2,11 @@
 
 ## Synchronization knowledge, clocks and exceptions
 
-This layer audits all **64** parent `ComOutPtr` records against the complete
+This layer audits all **73** parent `ComOutPtr` records against the complete
 physical `WinSync` traversal: `winsync.h`, `syncregistration.h`,
 `synchronizationerrors.h` and `syncregistrationerrors.h`. The complete selected
 family contains **11 facts**, all complete retirements: **0 partial records,
-0 retained boundaries**, leaving **53** active records. Every selected
+0 retained boundaries**, leaving **62** active records. Every selected
 declaration is physically owned by the shipped `um/winsync.h`.
 
 | Owning interface | Exact migrated method/parameter selectors |
@@ -33,19 +33,24 @@ has no selected inline/template or proxy/local-remote counterpart requiring
 another edit. Typed knowledge and clock outputs not in the legacy inventory
 remain unchanged.
 
-`SyncComOutputHeaderTests` uses reachable immutable SDK ancestor
-`c16762d41f1bd641ff8c4389ebf16ee50747129f`, guards ancestry and audits the
-entire remaining inventory, including wildcard absence. Original-native
+`SyncComOutputHeaderTests` resolves the unique reachable introduction of
+its fixture and uses that commit's parent for original native/config bytes.
+It guards ancestry and checks full-sidecar equality, the entire remaining
+inventory and wildcard absence. Original-native
 plus legacy sidecars and patched-header-only declarations produce exactly
 equal **final winmd bytes** on x86/x64/arm64. Independent assertions verify
 every selected `void**` shape, output-only flags, singleton attribute
 payload/order and unchanged result flags. Redundant legacy records also
 preserve every byte.
 
-`SdkPatchTests` matches the immutable original to actual SDK package bytes,
+`SdkPatchTests` matches that original to actual SDK package bytes,
 replays the production patch over the complete header, checks every output
 byte and feeds that actual replay through final emission on all three
-targets. Native fixtures compile the complete synchronization traversal
+targets. Ownership is checked against the production MIDL queue discovered
+from the complete selected SDK include root, and the same root is supplied
+to the patch applier's regenerated-output rejection guard. `winsync.h` is
+not queued and has no compatibility-source owner; its header-only patch
+remains valid. Native fixtures compile the complete synchronization traversal
 in C/C++ on x86/x64/arm64, with synchronization-first and Windows-first
 include orders, calling all selected and inherited sites. Same-path
 original, patched ordinary and `WIN32METADATA` COFF objects compare
@@ -55,7 +60,8 @@ all eleven retired selectors.
 All independent pointer/type/scalar/result/enum/namespace/import/RAII and
 callback mechanisms stay unchanged. `CanReturn*` remains active and all
 17 PreserveResult replacements remain inactive. DWrite's exact `void**`
-override, CLR's independent `[Out]`, weak/agile shape boundaries and the
+override, all nine restored CLR compatibility-source sidecars (including
+`CLRCreateInstance::ppInterface=[Out][ComOutPtr]`), weak/agile shape boundaries and the
 presentation row-order-only boundary remain intact. Inherited ACM/MSI
 API differences remain review items, not approved by green CI. No reader,
 emitter, native model, normalization, workflow, timeout or coverage change
@@ -78,6 +84,13 @@ same declared package path once per testhost process instead of spawning
 PowerShell for each lookup. Every lookup still checks the exact pinned
 version and directory existence; actual SDK files, native compilers, MIDL,
 patch replay and all architecture-specific emission assertions are uncached.
+
+The source-ownership propagation onto imaging parent
+`65bf29df4a2eef42a7a179611b63256515d739c3` preserves the original eleven
+synchronization facts and all 35 SAL insertions byte-for-byte. The corrected
+parent inventory is 73, not 64, because the nine CLR compatibility records
+remain active. No native/config migration is added by this integration.
+Local preparation does not authorize a push, PR edit or hosted run.
 
 ## Imaging, acquisition and image-list direct COM outputs
 
