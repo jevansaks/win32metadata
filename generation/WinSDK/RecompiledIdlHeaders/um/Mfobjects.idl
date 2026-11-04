@@ -1510,7 +1510,7 @@ interface IMFDXGIBuffer :  IUnknown
 {
     HRESULT GetResource(
         [in, annotation("_In_")] REFIID riid,
-        [out, annotation("_Outptr_")] LPVOID *ppvObject
+        [out, annotation("_COM_Outptr_")] LPVOID *ppvObject
         );
     HRESULT GetSubresourceIndex(
         [out, annotation("_Out_")] UINT*     puSubresource
@@ -1519,7 +1519,7 @@ interface IMFDXGIBuffer :  IUnknown
     HRESULT GetUnknown(
         [in, annotation("_In_")] REFIID guid,
         [in, annotation("_In_")] REFIID riid,
-        [out, annotation("_Outptr_")] LPVOID *ppvObject
+        [out, annotation("_COM_Outptr_")] LPVOID *ppvObject
         );
     HRESULT SetUnknown( 
         [in, annotation("_In_")] REFIID guid,
@@ -4600,7 +4600,7 @@ interface IMFDXGIDeviceManager : IUnknown
     HRESULT GetVideoService(
       [annotation("_In_")]   HANDLE hDevice,
       [annotation("_In_")]   REFIID riid,
-      [annotation("_Outptr_")]  void **ppService
+      [annotation("_COM_Outptr_")]  void **ppService
     );
     HRESULT LockDevice(
       [annotation("_In_")]   HANDLE hDevice,

@@ -934,7 +934,7 @@ EXTERN_C const IID IID_IMFImageSharingEngineClassFactory;
             /* [annotation][in] */ 
             _In_  BSTR pUniqueDeviceName,
             /* [annotation][out] */ 
-            _Outptr_  IMFImageSharingEngine **ppEngine) = 0;
+            _COM_Outptr_  IMFImageSharingEngine **ppEngine) = 0;
         
     };
     
@@ -967,7 +967,7 @@ EXTERN_C const IID IID_IMFImageSharingEngineClassFactory;
             /* [annotation][in] */ 
             _In_  BSTR pUniqueDeviceName,
             /* [annotation][out] */ 
-            _Outptr_  IMFImageSharingEngine **ppEngine);
+            _COM_Outptr_  IMFImageSharingEngine **ppEngine);
         
         END_INTERFACE
     } IMFImageSharingEngineClassFactoryVtbl;

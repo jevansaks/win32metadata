@@ -33,6 +33,15 @@
     <SdkHeaderPatch Include="patches\pre-midl\d3d10.idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\d3d12.idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\Presentation.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\mfcaptureengine.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\mfsharingengine.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\mfreadwrite.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\Mfobjects.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\Mfidl.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\mfmediaengine.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\mfd3d12.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\evr.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\dxva2api.idl.patch"/>
     <ScraperRsp Include="scraper.settings.rsp"/>
     <ScraperRsp Include="libMappings.rsp"/>
     <ScraperRsp Include="libMappingsManual.rsp"/>

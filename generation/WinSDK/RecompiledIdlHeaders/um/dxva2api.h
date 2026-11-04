@@ -712,7 +712,7 @@ EXTERN_C const IID IID_IDirect3DDeviceManager9;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **ppService) = 0;
+            _COM_Outptr_  void **ppService) = 0;
         
     };
     
@@ -791,7 +791,7 @@ EXTERN_C const IID IID_IDirect3DDeviceManager9;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  void **ppService);
+            _COM_Outptr_  void **ppService);
         
         END_INTERFACE
     } IDirect3DDeviceManager9Vtbl;
@@ -1978,7 +1978,7 @@ STDAPI DXVA2CreateDirect3DDeviceManager9(
 STDAPI DXVA2CreateVideoService(
     _In_ IDirect3DDevice9* pDD,
     _In_ REFIID riid,
-    _Outptr_ void** ppService
+    _COM_Outptr_ void** ppService
     );
 #endif  // _D3D9_H_
 __inline DXVA2_Fixed32 DXVA2FloatToFixed(_In_ const float _float_)

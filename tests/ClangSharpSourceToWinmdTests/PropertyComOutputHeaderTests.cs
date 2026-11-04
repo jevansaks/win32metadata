@@ -60,16 +60,16 @@ namespace ClangSharpSourceToWinmdTests
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
             string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
-            Assert.AreEqual(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", original.Split('\n').Where(line =>
-                !Selectors.Concat(ShellComOutputHeaderTests.Selectors).Any(selector => line == selector + "=[ComOutPtr]")))), current,
+            Assert.AreEqual(MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", original.Split('\n').Where(line =>
+                !Selectors.Concat(ShellComOutputHeaderTests.Selectors).Any(selector => line == selector + "=[ComOutPtr]"))))), current,
                 "Preserve all independent sidecars exactly.");
-            CollectionAssert.AreEqual(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", records.Where(line => !Selectors.Concat(ShellComOutputHeaderTests.Selectors)
-                .Any(selector => line == selector + "=[ComOutPtr]"))) + "\n").Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
+            CollectionAssert.AreEqual(MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", records.Where(line => !Selectors.Concat(ShellComOutputHeaderTests.Selectors)
+                .Any(selector => line == selector + "=[ComOutPtr]"))) + "\n")).Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
                 current.Split('\n').Where(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)).ToArray(),
                 "Retire only the twenty exact records from the complete remaining corpus.");
             CollectionAssert.AreEqual(original.Split('\n').Where(IndependentContract).ToArray(),
                 current.Split('\n').Where(IndependentContract).ToArray(), "Preserve independent Out and result contracts.");
-            Assert.AreEqual(144, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
+            Assert.AreEqual(114, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
 
             var retained = new Dictionary<string, string[]>
             {
@@ -222,6 +222,26 @@ struct IBindCtx : IUnknown {};
 
         private static string FunctionPattern(string selector) => @"(?:PSSTDAPI|SHSTDAPI|LWSTDAPI|STDAPI)\s+" +
             Regex.Escape(selector.Split("::")[0]) + @"\([^;]+;";
+
+        internal static byte[] ReadOriginalBytes(string path, string? revision = null)
+        {
+            var info = new System.Diagnostics.ProcessStartInfo("git")
+            {
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+            foreach (string argument in new[] { "-C", LastErrorHeaderTests.RepositoryRoot(), "cat-file",
+                "--filters", (revision ?? PreRetirementCommit(LastErrorHeaderTests.RepositoryRoot())) + ":generation/WinSDK/" + path })
+                info.ArgumentList.Add(argument);
+            using var process = System.Diagnostics.Process.Start(info) ?? throw new InvalidOperationException("Git did not start.");
+            using var output = new MemoryStream();
+            var error = process.StandardError.ReadToEndAsync();
+            process.StandardOutput.BaseStream.CopyTo(output);
+            Assert.IsTrue(process.WaitForExit(30000), "Git native fixture timed out.");
+            Assert.AreEqual(0, process.ExitCode, error.GetAwaiter().GetResult());
+            return output.ToArray();
+        }
 
         internal static string ReadOriginal(string path, bool checkoutBytes = false)
         {

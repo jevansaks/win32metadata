@@ -1923,7 +1923,7 @@ EXTERN_C const IID IID_IMFDXGIBuffer;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  LPVOID *ppvObject) = 0;
+            _COM_Outptr_  LPVOID *ppvObject) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetSubresourceIndex( 
             /* [annotation][out] */ 
@@ -1935,7 +1935,7 @@ EXTERN_C const IID IID_IMFDXGIBuffer;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  LPVOID *ppvObject) = 0;
+            _COM_Outptr_  LPVOID *ppvObject) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE SetUnknown( 
             /* [annotation][in] */ 
@@ -1974,7 +1974,7 @@ EXTERN_C const IID IID_IMFDXGIBuffer;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  LPVOID *ppvObject);
+            _COM_Outptr_  LPVOID *ppvObject);
         
         DECLSPEC_XFGVIRT(IMFDXGIBuffer, GetSubresourceIndex)
         HRESULT ( STDMETHODCALLTYPE *GetSubresourceIndex )( 
@@ -1990,7 +1990,7 @@ EXTERN_C const IID IID_IMFDXGIBuffer;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
-            _Outptr_  LPVOID *ppvObject);
+            _COM_Outptr_  LPVOID *ppvObject);
         
         DECLSPEC_XFGVIRT(IMFDXGIBuffer, SetUnknown)
         HRESULT ( STDMETHODCALLTYPE *SetUnknown )( 
@@ -6988,7 +6988,7 @@ EXTERN_C const IID IID_IMFDXGIDeviceManager;
             /* [annotation] */ 
             _In_  REFIID riid,
             /* [annotation] */ 
-            _Outptr_  void **ppService) = 0;
+            _COM_Outptr_  void **ppService) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE LockDevice( 
             /* [annotation] */ 
@@ -7059,7 +7059,7 @@ EXTERN_C const IID IID_IMFDXGIDeviceManager;
             /* [annotation] */ 
             _In_  REFIID riid,
             /* [annotation] */ 
-            _Outptr_  void **ppService);
+            _COM_Outptr_  void **ppService);
         
         DECLSPEC_XFGVIRT(IMFDXGIDeviceManager, LockDevice)
         HRESULT ( STDMETHODCALLTYPE *LockDevice )( 

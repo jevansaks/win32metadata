@@ -1,0 +1,53 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/evr.idl b/generation/WinSDK/RecompiledIdlHeaders/um/evr.idl
+index 4e1f46a2..8768ec10 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/evr.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/evr.idl
+@@ -1679,7 +1679,7 @@ cpp_quote( "EVRPUBLIC(MFCreateVideoPresenter)(" )
+ cpp_quote( "    _In_opt_ IUnknown * pOwner," )
+ cpp_quote( "    REFIID riidDevice," )
+ cpp_quote( "    REFIID riid," )
+-cpp_quote( "    _Outptr_result_maybenull_ void ** ppVideoPresenter" )
++cpp_quote( "    _COM_Outptr_result_maybenull_ void ** ppVideoPresenter" )
+ cpp_quote( "    );" )
+ 
+ //////////////////////////////////////////////////////////////////////////////
+@@ -1689,7 +1689,7 @@ cpp_quote( "EVRPUBLIC(MFCreateVideoMixer)(" )
+ cpp_quote( "    _In_opt_ IUnknown * pOwner," )
+ cpp_quote( "    REFIID riidDevice," )
+ cpp_quote( "    REFIID riid," )
+-cpp_quote( "    _Outptr_ void ** ppv" )
++cpp_quote( "    _COM_Outptr_ void ** ppv" )
+ cpp_quote( "    );" )
+ 
+ //////////////////////////////////////////////////////////////////////////////
+@@ -1699,9 +1699,9 @@ cpp_quote( "EVRPUBLIC(MFCreateVideoMixerAndPresenter)(" )
+ cpp_quote( "    _In_opt_ IUnknown * pMixerOwner,")
+ cpp_quote( "    _In_opt_ IUnknown * pPresenterOwner,")
+ cpp_quote( "    REFIID riidMixer,")
+-cpp_quote( "    _Outptr_ void ** ppvVideoMixer, ")
++cpp_quote( "    _COM_Outptr_ void ** ppvVideoMixer, ")
+ cpp_quote( "    REFIID riidPresenter,")
+-cpp_quote( "    _Outptr_ void ** ppvVideoPresenter")
++cpp_quote( "    _COM_Outptr_ void ** ppvVideoPresenter")
+ cpp_quote( "    );" )
+ 
+ //////////////////////////////////////////////////////////////////////////////
+@@ -1709,7 +1709,7 @@ cpp_quote( "    );" )
+ 
+ cpp_quote( "EVRPUBLIC(MFCreateVideoRenderer)(" )
+ cpp_quote( "    REFIID riidRenderer,")
+-cpp_quote( "    _Outptr_result_maybenull_ void ** ppVideoRenderer" )
++cpp_quote( "    _COM_Outptr_result_maybenull_ void ** ppVideoRenderer" )
+ cpp_quote( "    );" )
+ 
+ //////////////////////////////////////////////////////////////////////////////
+@@ -1725,7 +1725,7 @@ cpp_quote( "    );" )
+ 
+ cpp_quote( "EVRPUBLIC(MFCreateVideoSampleAllocator)(" )
+ cpp_quote( "    _In_ REFIID riid," )
+-cpp_quote( "    _Outptr_ void** ppSampleAllocator" )
++cpp_quote( "    _COM_Outptr_ void** ppSampleAllocator" )
+ cpp_quote( "    );" )
+ 
+ 

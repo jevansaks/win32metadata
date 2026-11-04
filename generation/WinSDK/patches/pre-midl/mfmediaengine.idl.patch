@@ -1,0 +1,14 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfmediaengine.idl b/generation/WinSDK/RecompiledIdlHeaders/um/mfmediaengine.idl
+index 3ce6e48d..5588fc5d 100644
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mfmediaengine.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfmediaengine.idl
+@@ -2875,7 +2875,7 @@ interface IMFMediaEngineClassFactory4 : IUnknown
+     HRESULT CreateContentDecryptionModuleFactory(
+         [in, annotation("_In_")] LPCWSTR keySystem,
+         [in, annotation("_In_")] REFIID riid,
+-        [out, iid_is(riid), annotation("_Outptr_")] LPVOID *ppvObject
++        [out, iid_is(riid), annotation("_COM_Outptr_")] LPVOID *ppvObject
+         );
+ }
+ 

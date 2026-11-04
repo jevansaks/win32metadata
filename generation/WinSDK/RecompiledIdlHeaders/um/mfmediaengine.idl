@@ -2875,7 +2875,7 @@ interface IMFMediaEngineClassFactory4 : IUnknown
     HRESULT CreateContentDecryptionModuleFactory(
         [in, annotation("_In_")] LPCWSTR keySystem,
         [in, annotation("_In_")] REFIID riid,
-        [out, iid_is(riid), annotation("_Outptr_")] LPVOID *ppvObject
+        [out, iid_is(riid), annotation("_COM_Outptr_")] LPVOID *ppvObject
         );
 }
 

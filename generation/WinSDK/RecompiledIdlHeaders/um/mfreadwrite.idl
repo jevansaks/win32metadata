@@ -42,14 +42,14 @@ interface IMFReadWriteClassFactory : IUnknown
                 [in, annotation("_In_")] LPCWSTR pwszURL,
                 [in, annotation("_In_opt_")] IMFAttributes *pAttributes,
                 [in, annotation("_In_")] REFIID riid,
-                [out, iid_is(riid), annotation("_Out_")] LPVOID *ppvObject );
+                [out, iid_is(riid), annotation("_COM_Outptr_")] LPVOID *ppvObject );
 
     HRESULT CreateInstanceFromObject(
                 [in, annotation("_In_")] REFCLSID clsid,
                 [in, annotation("_In_")] IUnknown *punkObject,
                 [in, annotation("_In_opt_")] IMFAttributes *pAttributes,
                 [in, annotation("_In_")] REFIID riid,
-                [out, iid_is(riid), annotation("_Out_")] LPVOID *ppvObject );
+                [out, iid_is(riid), annotation("_COM_Outptr_")] LPVOID *ppvObject );
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -559,7 +559,7 @@ interface IMFSourceReader : IUnknown
                 [in, annotation("_In_")] DWORD dwStreamIndex,
                 [in, annotation("_In_")] REFGUID guidService,
                 [in, annotation("_In_")] REFIID riid,
-                [out, annotation("_Out_")] LPVOID *ppvObject );
+                [out, annotation("_COM_Outptr_")] LPVOID *ppvObject );
 
     /// <summary>
     ///     Allows the application to get attributes from either the
@@ -1072,7 +1072,7 @@ interface IMFSinkWriter : IUnknown
                 [in, annotation("_In_")] DWORD dwStreamIndex,
                 [in, annotation("_In_")] REFGUID guidService,
                 [in, annotation("_In_")] REFIID riid,
-                [out, annotation("_Out_")] LPVOID *ppvObject );
+                [out, annotation("_COM_Outptr_")] LPVOID *ppvObject );
 
     //
     // Returns various statistics about the performance of the sink writer.

@@ -205,7 +205,7 @@ interface IMFImageSharingEngineClassFactory : IUnknown
 {
     HRESULT CreateInstanceFromUDN( 
         [in, annotation("_In_")] BSTR pUniqueDeviceName, 
-        [out, annotation("_Outptr_")] IMFImageSharingEngine** ppEngine 
+        [out, annotation("_COM_Outptr_")] IMFImageSharingEngine** ppEngine 
         );
 }
 

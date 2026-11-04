@@ -1762,7 +1762,7 @@ EXTERN_C const IID IID_IMFCaptureEngineClassFactory;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  LPVOID *ppvObject) = 0;
+            _COM_Outptr_  LPVOID *ppvObject) = 0;
         
     };
     
@@ -1797,7 +1797,7 @@ EXTERN_C const IID IID_IMFCaptureEngineClassFactory;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
-            _Out_  LPVOID *ppvObject);
+            _COM_Outptr_  LPVOID *ppvObject);
         
         END_INTERFACE
     } IMFCaptureEngineClassFactoryVtbl;

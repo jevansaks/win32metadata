@@ -3428,7 +3428,7 @@ cpp_quote( "STDAPI MFGetService(" )
 cpp_quote( "    IUnknown* punkObject," )
 cpp_quote( "    REFGUID guidService," )
 cpp_quote( "    REFIID riid," )
-cpp_quote( "    _Outptr_ LPVOID* ppvObject" )
+cpp_quote( "    _COM_Outptr_ LPVOID* ppvObject" )
 cpp_quote( "    );" )
 
 
@@ -8902,7 +8902,7 @@ interface IMFNetSchemeHandlerConfig : IUnknown
 
 cpp_quote( "STDAPI MFCreateNetSchemePlugin(" )
 cpp_quote( "    REFIID riid, " )
-cpp_quote( "    LPVOID *ppvHandler );" )
+cpp_quote( "    _COM_Outptr_ LPVOID *ppvHandler );" )
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -9790,7 +9790,7 @@ interface IMFInputTrustAuthority : IUnknown
     [local]
     HRESULT GetDecrypter(
         [in] REFIID riid,
-        [out, iid_is(riid), annotation("_Outptr_")] void ** ppv );
+        [out, iid_is(riid), annotation("_COM_Outptr_")] void ** ppv );
 
 
     /// <summary>
@@ -10985,11 +10985,11 @@ interface IMFRemoteProxy : IUnknown
 {
     HRESULT GetRemoteObject(
         [in] REFIID riid,
-        [out, iid_is(riid), annotation("_Outptr_")] void ** ppv);
+        [out, iid_is(riid), annotation("_COM_Outptr_")] void ** ppv);
 
     HRESULT GetRemoteHost(
         [in] REFIID riid,
-        [out, iid_is(riid), annotation("_Outptr_")] void ** ppv);
+        [out, iid_is(riid), annotation("_COM_Outptr_")] void ** ppv);
 }
 
 // Component should expose MF_REMOTE_PROXY service if it works as a proxy for remote component
@@ -11017,7 +11017,7 @@ interface IMFObjectReferenceStream : IUnknown
 
     HRESULT LoadReference(
                    [in] REFIID riid,
-                   [out] void ** ppv);
+                   [out, annotation("_COM_Outptr_")] void ** ppv);
 };
 
 
@@ -11952,7 +11952,7 @@ cpp_quote( "    _Outptr_ IMFByteStream** ppByteStream );" )
 cpp_quote( "STDAPI MFCreateStreamOnMFByteStreamEx(" ) 
 cpp_quote( "    _In_ IMFByteStream* pByteStream," ) 
 cpp_quote( "    _In_ REFIID riid," )
-cpp_quote( "    _Outptr_ void **ppv );" )
+cpp_quote( "    _COM_Outptr_ void **ppv );" )
 
 cpp_quote( "STDAPI MFCreateMediaTypeFromProperties(" )
 cpp_quote( "    _In_ IUnknown* punkStream," )
@@ -11961,7 +11961,7 @@ cpp_quote( "    _Outptr_ IMFMediaType** ppMediaType );" )
 cpp_quote( "STDAPI MFCreatePropertiesFromMediaType(" ) 
 cpp_quote( "    _In_ IMFMediaType* pMediaType," ) 
 cpp_quote( "    _In_ REFIID riid," )
-cpp_quote( "    _Outptr_ void **ppv );" )
+cpp_quote( "    _COM_Outptr_ void **ppv );" )
 
 cpp_quote("#if (WINVER >= _WIN32_WINNT_WINBLUE) ")
 

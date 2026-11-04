@@ -554,7 +554,7 @@ STDAPI MFCreateDXGICrossAdapterBuffer(
 
 STDAPI MFCreateVideoSampleAllocatorEx(
     _In_   REFIID riid,
-    _Outptr_  void** ppSampleAllocator
+    _COM_Outptr_  void** ppSampleAllocator
     );
 
 STDAPI
@@ -1834,7 +1834,7 @@ typedef struct tagHistogramDataHeader
 
 STDAPI
 MFCreateAttributes(
-    _Out_   IMFAttributes** ppMFAttributes,
+    _COM_Outptr_   IMFAttributes** ppMFAttributes,
     _In_    UINT32          cInitialSize
     );
 
@@ -2171,7 +2171,7 @@ MFCreateMediaExtensionActivate(
     _In_        PCWSTR          szActivatableClassId,
     _In_opt_    IUnknown*       pConfiguration,
     _In_        REFIID          riid,
-    _Outptr_    LPVOID*         ppvObject
+    _COM_Outptr_    LPVOID*         ppvObject
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES) */
