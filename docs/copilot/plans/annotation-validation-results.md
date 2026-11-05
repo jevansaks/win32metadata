@@ -1,5 +1,57 @@
 # Annotation Validation Results
 
+## Current SupportedOS reader
+
+The production C# reader uses .NET 10 and ClangSharp 21.1.8.4. The older
+experiments below are historical compiler-transport observations, not proof of
+current final metadata support.
+
+`_Win32_SupportedOS_BEGIN_(token)` and `_Win32_SupportedOS_END_()` use the same
+20-entry version table as the fixed per-declaration macros. In Clang metadata
+compilation they expand to successful compiler static-assert declarations with
+reserved messages. The reader pairs their actual expansion locations using
+Clang's translation-unit ordering and detailed inclusion records; a filename and
+byte offset alone cannot distinguish repeated or recursive include instances.
+For `-include-pch`, the original serialized root is verified against the PCH and
+distinguished from later inclusions by Clang's translation-unit ordering. Missing
+preprocessing records must not turn repeated included files into a guessed root.
+This transport avoids the accumulation and include leakage of pragma attributes.
+The markers are absent outside Clang metadata compilation, do not add fields or
+symbols, and are not emitted as APIs or runtime attributes.
+
+Explicit availability wins across native redeclarations and named Method
+carriers. Otherwise the innermost same-file, same-include-instance scope applies
+to projected function/method, record, enum, and genuine typedef declarations.
+Availability on overloaded native C++ names is diagnosed rather than applying one
+declaration's availability to its neighbors through a projected-name selector.
+Members do not inherit their container's availability. Parameters, fields, and
+constants do not receive scoped defaults; constants require explicit availability.
+Native typedef availability follows the existing nominal selection policy and
+callback projection, rather than inventing independently emitted scalar/record
+aliases or treating AST-only C++ `using` declarations as reader support.
+Nested record/enum coverage uses the emitter's existing projected record shapes;
+this reader change does not add new nested COM-interface type projections.
+Unmatched or unclosed scopes, invalid explicit targets, unknown versions, and
+conflicting explicit facts fail with source locations before output is written.
+Unrelated native assertions are ignored by this reader; failing assertions still
+fail compilation. Precompiled headers must retain detailed preprocessing records.
+
+Run the bounded reader/native/SDK/PCH cases with:
+
+```powershell
+dotnet test tests\ClangSharpSourceToWinmdTests -c Release --filter "SupportedOS"
+```
+
+`SupportedOSScopeTests` reads positive and absent attributes from final x86, x64,
+and ARM64 WinMDs, exercises include-instance and declaration-macro behavior,
+compares ordinary and metadata-defined MSVC C/C++ objects, and retains both raw
+objects. Its real-SDK check parses the complete Windows header context and factors
+only the five already-reviewed `handleapi.h` facts in a temporary copy, comparing
+explicit/scoped and PCH-reused final outputs. It does not migrate shipped headers
+or sidecars and is not a substitute for ordinary full-SDK CI output qualification.
+
+## Historical experiments
+
 *Validated: March 2026*
 *ClangSharp: v17.0.1 and v18.1.0.4 | Clang: via libclang | Platform: x64*
 

@@ -20,7 +20,11 @@ namespace Win32MetadataScraper
         public Dictionary<string, List<string>> AssociatedConstants { get; } = new(StringComparer.Ordinal);
         private readonly List<(Decl Declaration, Attr Attribute, string Name)> constantAssociations = new();
         private readonly Dictionary<string, ClangSharp.Type> enumStorage = new(StringComparer.Ordinal);
-        private readonly Dictionary<string, (string Version, Attr Attribute)> supportedFunctions = new(StringComparer.Ordinal);
+        private readonly Dictionary<string, (string Version, Cursor Source)> supportedFunctions = new(StringComparer.Ordinal);
+        private readonly SupportedOSScopes supportedScopes = new();
+        private readonly HashSet<NamedDecl> supportedDeclarations = new();
+        private readonly Dictionary<Decl, (string Version, Cursor Source)> explicitSupportedOS = new();
+        public Dictionary<string, string> SupportedTypes { get; } = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (string Module, Attr Attribute)> importLibraries = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (ProducerAnnotation Annotation, FunctionDecl Function, Attr Attribute)> producers = new(StringComparer.Ordinal);
         private readonly Dictionary<string, HashSet<FunctionDecl>> functionDeclarations = new(StringComparer.Ordinal);
@@ -82,6 +86,11 @@ namespace Win32MetadataScraper
                     if (fact.Spelling.StartsWith(Owner + "AssociatedEnum(", StringComparison.Ordinal) &&
                         target.Attrs.Any(a => a.Spelling.StartsWith(Owner + "AssociatedEnum(", StringComparison.Ordinal)))
                         throw Error(fact, "Named MIDL carrier conflicts with the native target's enum association.");
+                    if (fact.Spelling.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
+                    {
+                        this.VisitSupportedOS(target, fact);
+                        continue;
+                    }
                     if (fact.Spelling == Owner + "PreserveResult")
                     {
                         if (target is not CXXMethodDecl || fact.CursorChildren.Any())
@@ -157,7 +166,7 @@ namespace Win32MetadataScraper
                 string value = $"SupportedOSPlatform(\"{fact.Value.Version}\")";
                 foreach (string configured in attributes.Where(a => a.StartsWith(name + "=SupportedOSPlatform", StringComparison.Ordinal)))
                     if (configured != name + "=" + value)
-                        throw Error(fact.Value.Attribute, $"Legacy SupportedOSPlatform conflicts with native availability for '{name}'.");
+                        throw SupportedError(fact.Value.Source, $"Legacy SupportedOSPlatform conflicts with native availability for '{name}'.");
                 if (!attributes.Contains(name + "=" + value))
                     attributes.Add(name + "=" + value);
             }
@@ -165,6 +174,7 @@ namespace Win32MetadataScraper
 
         public void Visit(Decl declaration)
         {
+            this.supportedScopes.Visit(declaration);
             var markers = declaration.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
                 (a.Spelling == Owner + "Method" || a.Spelling == Owner + "Field" ||
                 a.Spelling.StartsWith(Owner + "Parameter(", StringComparison.Ordinal))).ToArray();
@@ -176,6 +186,9 @@ namespace Win32MetadataScraper
                 this.carriers.Add((carrier, markers[0]));
                 return;
             }
+            if (declaration is NamedDecl named &&
+                (declaration is FunctionDecl or RecordDecl or EnumDecl or TypedefDecl))
+                this.supportedDeclarations.Add(named);
             if (declaration is FunctionDecl declaredFunction)
             {
                 string name = QualifiedName(declaredFunction);
@@ -603,23 +616,16 @@ namespace Win32MetadataScraper
             if (attribute.CursorChildren.Any())
                 throw Error(attribute, "SupportedOSPlatform accepts no Clang expression arguments.");
             if ((declaration is not FunctionDecl && declaration is not RecordDecl &&
-                declaration is not EnumDecl && declaration is not TypedefDecl) ||
+                declaration is not EnumDecl && declaration is not TypedefDecl &&
+                declaration is not EnumConstantDecl &&
+                (declaration is not VarDecl constant || !constant.Type.Handle.IsConstQualified)) ||
                 declaration is FunctionDecl function && function.HasBody)
-                throw Error(attribute, "SupportedOSPlatform requires a function, method, record, enum or projected typedef declaration.");
-            if (declaration is TypedefDecl alias &&
-                (alias.UnderlyingType is TypedefType ||
-                RemapDiscovery.UnwrapType(alias.UnderlyingType) is not PointerType pointer ||
-                RemapDiscovery.UnwrapType(pointer.PointeeType) is not FunctionProtoType))
-                throw Error(attribute, "SupportedOSPlatform typedefs require a projected callback; scalar and record aliases have no independent emitted use site. Annotate the owning record or enum instead.");
-            if (declaration is FunctionDecl imported && declaration is not CXXMethodDecl)
-            {
-                if (this.supportedFunctions.TryGetValue(imported.Name, out var existing) && existing.Version != version)
-                    throw Error(attribute, $"Conflicting SupportedOSPlatform annotations on redeclarations of '{imported.Name}'.");
-                this.supportedFunctions[imported.Name] = (version, attribute);
-            }
-            else if (declaration is CXXMethodDecl method &&
-                !method.CanonicalDecl.Attrs.Any(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate && a.Spelling == attribute.Spelling))
-                throw Error(attribute, "SupportedOSPlatform must appear on the first native method declaration; late-only method annotations are not emitted by PInvokeGenerator.");
+                throw Error(attribute, "SupportedOSPlatform requires a function, method, record, enum, projected typedef or constant declaration.");
+            if (this.explicitSupportedOS.TryGetValue(declaration.CanonicalDecl, out var existing) && existing.Version != version)
+                throw Error(attribute, "Conflicting SupportedOSPlatform annotations on native redeclarations.");
+            this.explicitSupportedOS[declaration.CanonicalDecl] = (version, attribute);
+            if (declaration is NamedDecl named)
+                this.supportedDeclarations.Add(named);
             foreach (var other in declaration.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate &&
                 a.Spelling.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal)))
             {
@@ -629,6 +635,62 @@ namespace Win32MetadataScraper
                 if (version != otherVersion)
                     throw Error(other, "Conflicting SupportedOSPlatform annotations.");
             }
+        }
+
+        public void ResolveSupportedOS(TranslationUnit unit, NativeTypedefs typedefs, IReadOnlyList<string> arguments)
+        {
+            this.supportedScopes.Resolve(unit, arguments);
+            var resolved = new Dictionary<Decl, (NamedDecl Target, string Version, Cursor Source)>();
+            foreach (var target in this.supportedDeclarations)
+            {
+                bool explicitAnnotation = this.explicitSupportedOS.TryGetValue(target.CanonicalDecl, out var fact);
+                if (!explicitAnnotation)
+                {
+                    if (target is FunctionDecl function && (function.HasBody || function.IsDefaulted || function.IsDeleted) ||
+                        target is VarDecl or EnumConstantDecl)
+                        continue;
+                    fact = this.supportedScopes.Default(target);
+                    if (fact.Version == null) continue;
+                }
+                if (target is TypedefDecl alias && !typedefs.IsNominal(alias) && !IsDefiningCallback(alias))
+                {
+                    if (explicitAnnotation)
+                        throw SupportedError(fact.Source, "SupportedOSPlatform typedefs require a projected callback or selected native typedef; flattened aliases have no independent emitted use site.");
+                    continue;
+                }
+                if (resolved.TryGetValue(target.CanonicalDecl, out var previous) && previous.Version != fact.Version)
+                    throw SupportedError(fact.Source, "Conflicting SupportedOS defaults on native redeclarations; supply explicit availability.");
+                resolved[target.CanonicalDecl] = (target, fact.Version, fact.Source);
+            }
+            foreach (var fact in resolved.Values)
+            {
+                if (fact.Target is FunctionDecl &&
+                    this.functionDeclarations[QualifiedName(fact.Target)].Count != 1)
+                    throw SupportedError(fact.Source, "SupportedOSPlatform on overloaded native names cannot be projected independently without annotating neighboring overloads.");
+                if (fact.Target is TypedefDecl alias && typedefs.IsNominal(alias))
+                    this.SupportedTypes[QualifiedName(alias)] = fact.Version;
+                else if (fact.Target is FunctionDecl && fact.Target is not CXXMethodDecl)
+                {
+                    if (this.supportedFunctions.TryGetValue(fact.Target.Name, out var previous) && previous.Version != fact.Version)
+                        throw SupportedError(fact.Source, "Conflicting SupportedOSPlatform on overloaded native names.");
+                    this.supportedFunctions[fact.Target.Name] = (fact.Version, fact.Source);
+                }
+                else
+                    this.AddNativeFact((NamedDecl)fact.Target.CanonicalDecl,
+                        NativePayload(SupportedOSAnnotation.Prefix + "(\"" + fact.Version + "\")"));
+            }
+        }
+
+        private static bool IsDefiningCallback(TypedefDecl alias) =>
+            alias.UnderlyingType is not TypedefType &&
+            (RemapDiscovery.UnwrapType(alias.UnderlyingType) is FunctionProtoType ||
+            RemapDiscovery.UnwrapType(alias.UnderlyingType) is PointerType pointer &&
+            RemapDiscovery.UnwrapType(pointer.PointeeType) is FunctionProtoType);
+
+        private static FormatException SupportedError(Cursor source, string message)
+        {
+            source.Location.GetExpansionLocation(out var file, out uint line, out uint column, out _);
+            return new FormatException($"{file}:{line}:{column}: {message}");
         }
 
         private void VisitEnumGroup(Decl declaration, Attr attribute)

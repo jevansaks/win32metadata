@@ -136,7 +136,8 @@ class Program
                 StringComparer.Ordinal);
 
             var translationFlags = CXTranslationUnit_IncludeAttributedTypes
-                                 | CXTranslationUnit_VisitImplicitAttributes;
+                                 | CXTranslationUnit_VisitImplicitAttributes
+                                 | CXTranslationUnit_DetailedPreprocessingRecord;
 
             // ── Parse translation unit ──
             // We parse once with our own CXIndex, walk the AST to discover remaps,
@@ -263,9 +264,7 @@ class Program
                 lastErrorNames.Add(mergedRemaps.GetValueOrDefault(name) ?? name);
             settings["--with-setlasterror"] = lastErrorNames.ToList();
             var supportedAttributes = settings.GetValueOrDefault("--with-attribute") ?? new List<string>();
-            annotations.MergeSupportedFunctions(supportedAttributes, mergedRemaps);
             annotations.MergeProducers(supportedAttributes, mergedRemaps, allExcludes);
-            annotations.MergeNativeFacts(supportedAttributes, allExcludes);
             settings["--with-attribute"] = supportedAttributes;
             var libraries = ParseKeyValuePairs(settings.GetValueOrDefault("--with-librarypath"));
             annotations.MergeImportLibraries(libraries, mergedRemaps);
@@ -279,6 +278,9 @@ class Program
             }
             nativeTypedefs.Configure(settings.GetValueOrDefault("--native-typedef") ?? new List<string>(),
                 ns, traversalNames, mergedRemaps, callbackTypes, allExcludes);
+            annotations.ResolveSupportedOS(translationUnit, nativeTypedefs, clangArgs);
+            annotations.MergeSupportedFunctions(supportedAttributes, mergedRemaps);
+            annotations.MergeNativeFacts(supportedAttributes, allExcludes);
             settings["--with-type"] = callbackTypes.Select(pair => $"{pair.Key}={pair.Value}").ToList();
             var config = CreateConfig(settings, ns, outputFile, headerFile, configOptions, mergedRemaps, allExcludes);
 
@@ -310,7 +312,7 @@ class Program
                     File.WriteAllText(kvp.Key, NormalizeGeneratedSource(generatedSource, kvp.Key), new UTF8Encoding(false));
                 }
 
-                nativeTypedefs.Write(Path.ChangeExtension(outputFile, ".headerTypedefs.cs"), ns);
+                nativeTypedefs.Write(Path.ChangeExtension(outputFile, ".headerTypedefs.cs"), ns, annotations.SupportedTypes);
                 string enumOutput = Path.ChangeExtension(outputFile, ".headerEnums.cs");
                 if (File.Exists(enumOutput)) File.Delete(enumOutput);
                 using (var writer = new MetadataUtils.EnumWriter(enumOutput, ns, "using System;", useConstants: false))
