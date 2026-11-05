@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ClangSharp;
 using ClangSharp.Interop;
 using MetadataUtils;
@@ -11,7 +12,7 @@ namespace Win32MetadataScraper
         private const string Begin = "Win32Metadata.SupportedOSBegin:";
         private const string End = "Win32Metadata.SupportedOSEnd";
         private readonly List<StaticAssertDecl> markers = new();
-        private readonly List<CXCursor> includes = new();
+        private readonly List<(CXFile File, CXSourceLocation Start, CXSourceLocation End)> includes = new();
         private readonly List<CXFile> roots = new();
         private readonly List<(StaticAssertDecl Begin, StaticAssertDecl End, int Instance, string Version)> scopes = new();
         private CXSourceLocation mainStart;
@@ -37,12 +38,36 @@ namespace Win32MetadataScraper
             this.arguments = arguments;
             using var source = unit.Handle.Spelling;
             this.mainStart = unit.Handle.GetLocationForOffset(unit.Handle.GetFile(source.ToString()), 0);
-            unit.TranslationUnitDecl.Handle.VisitChildren((cursor, parent, data) =>
+            if (arguments.Contains("-include-pch"))
             {
-                if (cursor.Kind == CXCursorKind.CXCursor_InclusionDirective)
-                    this.includes.Add(cursor);
-                return CXChildVisitResult.CXChildVisit_Continue;
-            }, default);
+                unit.TranslationUnitDecl.Handle.VisitChildren((cursor, parent, data) =>
+                {
+                    if (cursor.Kind == CXCursorKind.CXCursor_InclusionDirective)
+                        this.includes.Add((cursor.IncludedFile, cursor.Location, cursor.Extent.End));
+                    return CXChildVisitResult.CXChildVisit_Continue;
+                }, default);
+            }
+            else
+            {
+                CXSourceLocation? missingToken = null;
+                unit.Handle.GetInclusions((file, stack, length, data) =>
+                {
+                    if (length == 0) return;
+                    var token = unit.Handle.GetToken(stack[0]);
+                    if (token == null)
+                    {
+                        missingToken = stack[0];
+                        return;
+                    }
+                    try { this.includes.Add(((CXFile)file, stack[0], token->GetExtent(unit.Handle).End)); }
+                    finally { clang.disposeTokens(unit.Handle, token, 1); }
+                }, default);
+                if (missingToken is CXSourceLocation location)
+                {
+                    location.GetExpansionLocation(out var file, out uint line, out uint column, out _);
+                    throw new FormatException($"{file}:{line}:{column}: Cannot resolve SupportedOS physical include boundary.");
+                }
+            }
             this.markers.Sort((left, right) => Compare(left.Location, right.Location));
             var stacks = new Dictionary<int, Stack<(StaticAssertDecl Marker, string Version)>>();
             foreach (var marker in this.markers)
@@ -101,9 +126,9 @@ namespace Win32MetadataScraper
                 // SourceManager orders an included file between its include location
                 // and the following token in the including file. Keep the actual
                 // locations: filename/offset alone conflates repeated includes.
-                if (include.IncludedFile.Equals(file) &&
-                    Compare(include.Location, location) < 0 && Compare(location, include.Extent.End) < 0 &&
-                    (result == 0 || Compare(this.includes[result - 1].Location, include.Location) < 0))
+                if (include.File.Equals(file) &&
+                    Compare(include.Start, location) < 0 && Compare(location, include.End) < 0 &&
+                    (result == 0 || Compare(this.includes[result - 1].Start, include.Start) < 0))
                     result = i + 1;
             }
             if (result == 0 && !location.IsFromMainFile)

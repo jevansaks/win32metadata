@@ -136,8 +136,12 @@ class Program
                 StringComparer.Ordinal);
 
             var translationFlags = CXTranslationUnit_IncludeAttributedTypes
-                                 | CXTranslationUnit_VisitImplicitAttributes
-                                 | CXTranslationUnit_DetailedPreprocessingRecord;
+                                 | CXTranslationUnit_VisitImplicitAttributes;
+            // PCH identities need their serialized records. Ordinary includes use
+            // native inclusion stacks without sending every macro to the generator.
+            if (clangArgs.Contains("-include-pch", StringComparer.Ordinal) ||
+                configOptions.HasFlag(PInvokeGeneratorConfigurationOptions.GenerateMacroBindings))
+                translationFlags |= CXTranslationUnit_DetailedPreprocessingRecord;
 
             // ── Parse translation unit ──
             // We parse once with our own CXIndex, walk the AST to discover remaps,

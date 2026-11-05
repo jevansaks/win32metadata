@@ -160,6 +160,72 @@ typedef int (__stdcall *AfterCallback)(int parameter);
         }
 
         [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc", "c")]
+        [DataRow("x86_64-pc-windows-msvc", "c")]
+        [DataRow("aarch64-pc-windows-msvc", "c")]
+        [DataRow("i686-pc-windows-msvc", "c++")]
+        [DataRow("x86_64-pc-windows-msvc", "c++")]
+        [DataRow("aarch64-pc-windows-msvc", "c++")]
+        public void RecursiveMacroIncludes_RetainOuterAndInnerPhysicalInstances(string target, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var headers = new Dictionary<string, string>
+            {
+                ["definitions.h"] = "#define DECLARE(name) int __stdcall name(void);\n",
+                ["recursive.h"] = "#if !defined(REENTERED)\n#define REENTERED\n" +
+                    "_Win32_SupportedOS_BEGIN_(Windows8)\nDECLARE(OuterBefore)\n" +
+                    "#define RECURSIVE_HEADER \"recursive.h\"\n#include RECURSIVE_HEADER\n" +
+                    "DECLARE(OuterAfter)\n_Win32_SupportedOS_END_()\nDECLARE(AfterOuter)\n" +
+                    "#else\nDECLARE(InnerBefore)\n_Win32_SupportedOS_BEGIN_(WindowsXP)\n" +
+                    "DECLARE(Inner)\n_Win32_SupportedOS_END_()\nDECLARE(InnerAfter)\n#endif\n",
+            };
+            const string input = "#include \"definitions.h\"\n_Win32_SupportedOS_BEGIN_(19041)\n" +
+                "#define OUTER_HEADER \"recursive.h\"\n#include OUTER_HEADER\n" +
+                "DECLARE(CallerAfter)\n_Win32_SupportedOS_END_()\n";
+            var result = fixture.Scrape(input, target, sal: true, language: language, headers: headers,
+                extraSettings: "--traverse\n" + Path.Combine(fixture.DirectoryPath, "recursive.h"));
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit();
+            Save(path, "recursive-includes-" + language + "-" + target + ".winmd");
+            Save(fixture.GeneratedSource, "recursive-includes-" + language + "-" + target + ".cs");
+            using var pe = new PEReader(File.OpenRead(path));
+            var reader = pe.GetMetadataReader();
+            foreach (string name in new[] { "OuterBefore", "OuterAfter" }) AssertMethod(reader, name, "windows8.0");
+            AssertMethod(reader, "Inner", "windows5.1.2600");
+            AssertMethod(reader, "CallerAfter", "windows10.0.19041");
+            foreach (string name in new[] { "InnerBefore", "InnerAfter", "AfterOuter" }) AssertMethod(reader, name, null);
+        }
+
+        [TestMethod]
+        public void RequestedMacroBindings_RetainTheirPreprocessingRecords()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape("#define AVAILABLE_VALUE 42\nint Example(void);",
+                extraSettings: "--config\ngenerate-macro-bindings");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            StringAssert.Contains(File.ReadAllText(fixture.GeneratedSource), "AVAILABLE_VALUE = 42");
+        }
+
+        [DataTestMethod]
+        [DataRow("_Win32_SupportedOS_BEGIN_(Windows7)", "_Win32_SupportedOS_END_()")]
+        [DataRow("", "_Win32_SupportedOS_BEGIN_(Windows7)")]
+        public void RecursiveIncludes_CannotPairScopesAcrossPhysicalInstances(string outer, string inner)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var headers = new Dictionary<string, string>
+            {
+                ["recursive.h"] = "#if !defined(REENTERED)\n#define REENTERED\n" +
+                    outer + "\n#define RECURSIVE_HEADER \"recursive.h\"\n#include RECURSIVE_HEADER\n" +
+                    "_Win32_SupportedOS_END_()\n#else\n" + inner + "\n#endif\n",
+            };
+            var result = fixture.Scrape("#include \"recursive.h\"", sal: true, headers: headers);
+            Assert.AreNotEqual(0, result.ExitCode, result.Output);
+            StringAssert.Contains(result.Output, "recursive.h:");
+            StringAssert.Contains(result.Output, "no BEGIN");
+            Assert.IsFalse(File.Exists(fixture.GeneratedSource));
+        }
+
+        [DataTestMethod]
         [DataRow("_Win32_SupportedOS_END_()", "no BEGIN")]
         [DataRow("_Win32_SupportedOS_BEGIN_(Windows7)\nint Example(void);", "Unclosed")]
         [DataRow("_Win32_SupportedOS_BEGIN_(NotReviewed)\n_Win32_SupportedOS_END_()", "input.h:")]

@@ -10,11 +10,17 @@ current final metadata support.
 20-entry version table as the fixed per-declaration macros. In Clang metadata
 compilation they expand to successful compiler static-assert declarations with
 reserved messages. The reader pairs their actual expansion locations using
-Clang's translation-unit ordering and detailed inclusion records; a filename and
-byte offset alone cannot distinguish repeated or recursive include instances.
+Clang's translation-unit ordering, native inclusion stacks and native token
+boundaries; a filename and byte offset alone cannot distinguish repeated or
+recursive include instances. Ordinary translation units do not enable detailed
+macro records just to resolve includes, avoiding the pinned binding generator's
+expensive traversal of those records.
 For `-include-pch`, the original serialized root is verified against the PCH and
-distinguished from later inclusions by Clang's translation-unit ordering. Missing
-preprocessing records must not turn repeated included files into a guessed root.
+distinguished from later inclusions by Clang's translation-unit ordering. This
+path retains detailed inclusion records because the native inclusion-stack API
+does not enumerate headers loaded from a PCH. Missing preprocessing records must
+not turn repeated included files into a guessed root. Explicitly requested macro
+binding generation also retains its preprocessing records.
 This transport avoids the accumulation and include leakage of pragma attributes.
 The markers are absent outside Clang metadata compilation, do not add fields or
 symbols, and are not emitted as APIs or runtime attributes.
