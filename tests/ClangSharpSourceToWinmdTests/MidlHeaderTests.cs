@@ -346,6 +346,136 @@ struct Record { _NullNull_terminated_ const wchar_t* direct; NAMES_ALIAS names; 
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void DoubleNull_RealSdkFieldsKeepOneFactAndNativeStorage(string target)
+        {
+            string root = Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um");
+            string winnt = File.ReadAllText(Path.Combine(root, "winnt.h"));
+            string header = @"
+#define CONST const
+typedef char CHAR;
+typedef wchar_t WCHAR;
+typedef unsigned long ULONG, UINT, DWORD;
+typedef unsigned short WORD;
+typedef int BOOL;
+typedef void* HWND;
+typedef void* LPVOID;
+typedef const CHAR* PCSTR;
+typedef const WCHAR* PCWSTR;
+typedef struct { long x; long y; } POINT;
+typedef struct GUID GUID;
+typedef struct SECURITY_DESCRIPTOR SECURITY_DESCRIPTOR;
+typedef WORD FILEOP_FLAGS;
+";
+            foreach (string name in new[] { "PZZSTR", "PZZWSTR", "PCZZSTR", "PCZZWSTR" })
+            {
+                Match declaration = Regex.Match(winnt, @"typedef _NullNull_terminated_ (?:CONST )?(?:CHAR|WCHAR) \*" + name + ";");
+                Assert.IsTrue(declaration.Success, name);
+                header += declaration.Value + "\n";
+            }
+            foreach (var owner in new[] { ("swdevicedef.h", "SW_DEVICE_CREATE_INFO"), ("shellapi.h", "DRAGINFOA"),
+                ("shellapi.h", "DRAGINFOW"), ("shellapi.h", "SHFILEOPSTRUCTA"), ("shellapi.h", "SHFILEOPSTRUCTW") })
+            {
+                Match declaration = Regex.Match(File.ReadAllText(Path.Combine(root, owner.Item1)),
+                    @"typedef struct _" + owner.Item2 + @"\s*\{[^}]+\}\s*" + owner.Item2 + @", \*\w+;");
+                Assert.IsTrue(declaration.Success, owner.Item2);
+                header += declaration.Value + "\n";
+            }
+            Console.WriteLine("RAW_OUTPUT double-null-sdk." + target + ".h " +
+                Convert.ToBase64String(Encoding.UTF8.GetBytes(header)));
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(header, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT double-null-sdk." + target + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT double-null-sdk." + target + ".winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            foreach (string name in new[] { "SW_DEVICE_CREATE_INFO", "DRAGINFOA", "DRAGINFOW", "SHFILEOPSTRUCTA", "SHFILEOPSTRUCTW" })
+            {
+                var type = NativeTypedefHeaderTests.Type(reader, name);
+                Assert.AreEqual(TypeAttributes.SequentialLayout, type.Attributes & TypeAttributes.LayoutMask, name);
+                Assert.AreEqual(name == "SW_DEVICE_CREATE_INFO" ? 9 : name.StartsWith("DRAGINFO", StringComparison.Ordinal) ? 5 : 8,
+                    type.GetFields().Count, name);
+                foreach (var field in type.GetFields().Select(reader.GetFieldDefinition))
+                {
+                    string fieldName = reader.GetString(field.Name);
+                    bool terminated = fieldName is "pszzHardwareIds" or "pszzCompatibleIds" or "lpFileList" or "pFrom" or "pTo";
+                    var attributes = field.GetCustomAttributes().Select(reader.GetCustomAttribute).ToArray();
+                    Assert.AreEqual(terminated ? 1 : 0, attributes.Count(a =>
+                        ParameterHeaderTests.AttributeName(reader, a) == "NullNullTerminatedAttribute"), name + "." + fieldName);
+                    if (!terminated) continue;
+                    var fact = attributes.Single(a => ParameterHeaderTests.AttributeName(reader, a) == "NullNullTerminatedAttribute");
+                    CollectionAssert.AreEqual(new byte[] { 1, 0, 0, 0 }, reader.GetBlobBytes(fact.Value));
+                    bool wide = name == "SW_DEVICE_CREATE_INFO" || name.EndsWith("W", StringComparison.Ordinal);
+                    CollectionAssert.AreEqual(new byte[] { 6, 15, wide ? (byte)7 : (byte)4 }, reader.GetBlobBytes(field.Signature));
+                    if (wide)
+                        Assert.AreEqual(name != "DRAGINFOW", attributes.Any(a =>
+                            ParameterHeaderTests.AttributeName(reader, a) == "ConstAttribute"), name + "." + fieldName);
+                }
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void DoubleNull_ExplicitAndInferredFactsKeepTheirTargets(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+typedef _NullNull_terminated_ wchar_t* PZZWSTR;
+typedef PZZWSTR NAMES;
+PZZWSTR __stdcall Direct(void);
+NAMES __stdcall Aliased(void);
+typedef PZZWSTR (__stdcall *Callback)(PZZWSTR names, wchar_t* neighbor);
+struct Record { _NullNull_terminated_ PZZWSTR direct; PZZWSTR names; NAMES alias; wchar_t* neighbor; };
+", target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT double-null-targets." + target + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT double-null-targets." + target + ".winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            foreach (string name in new[] { "Direct", "Aliased", "Callback" })
+            {
+                var method = name == "Callback" ? NativeTypedefHeaderTests.Type(reader, name).GetMethods()
+                    .Select(reader.GetMethodDefinition).Single(m => reader.GetString(m.Name) == "Invoke") :
+                    reader.MethodDefinitions.Select(reader.GetMethodDefinition).Single(m => reader.GetString(m.Name) == name);
+                foreach (var parameter in method.GetParameters().Select(reader.GetParameter))
+                    Assert.AreEqual(reader.GetString(parameter.Name) == "neighbor" ? 0 : 1,
+                        parameter.GetCustomAttributes().Select(reader.GetCustomAttribute).Count(a =>
+                            ParameterHeaderTests.AttributeName(reader, a) == "NullNullTerminatedAttribute"), name);
+                Assert.IsFalse(method.GetCustomAttributes().Select(reader.GetCustomAttribute).Any(a =>
+                    ParameterHeaderTests.AttributeName(reader, a) == "NullNullTerminatedAttribute"), name);
+                var signature = reader.GetBlobReader(method.Signature);
+                Assert.AreEqual(name == "Callback", signature.ReadSignatureHeader().IsInstance);
+                Assert.AreEqual(name == "Callback" ? 2 : 0, signature.ReadCompressedInteger());
+                for (int i = 0; i < (name == "Callback" ? 3 : 1); i++)
+                {
+                    Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode(), name);
+                    Assert.AreEqual(SignatureTypeCode.UInt16, signature.ReadSignatureTypeCode(), name);
+                }
+                Assert.AreEqual(0, signature.RemainingBytes);
+                if (name == "Callback") AssertCallingConvention(reader, NativeTypedefHeaderTests.Type(reader, name), 1);
+                else Assert.IsTrue(method.GetImport().Attributes.HasFlag(MethodImportAttributes.CallingConventionWinApi));
+            }
+            foreach (var field in NativeTypedefHeaderTests.Type(reader, "Record").GetFields().Select(reader.GetFieldDefinition))
+            {
+                Assert.AreEqual(reader.GetString(field.Name) == "neighbor" ? 0 : 1,
+                    field.GetCustomAttributes().Select(reader.GetCustomAttribute).Count(a =>
+                        ParameterHeaderTests.AttributeName(reader, a) == "NullNullTerminatedAttribute"));
+                CollectionAssert.AreEqual(new byte[] { 6, 15, 7 }, reader.GetBlobBytes(field.Signature));
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void NamedCarriers_ResolveOnlyTheExactNativeTargetsAndDisappear(string target)
         {
             using var fixture = new LastErrorHeaderTests.Fixture();

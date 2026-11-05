@@ -46,7 +46,17 @@ excluded. Native return aliases, calling convention, parameter storage and
 ordinary generated SAL are preserved. Anonymous field prototypes use the same
 native signature recovery. Duplicate projected names from unrelated prototypes
 still fail. A matching transported double-NUL fact and the existing native
-`PZZWSTR` inference produce one final `NullNullTerminatedAttribute`.
+string-type inference produce one final `NullNullTerminatedAttribute`.
+Native-type inference does not add another copy when the same parameter,
+field or return already has the marker or compiler-expanded double-NUL SAL.
+Return facts are matched to the return target, not the method or its other
+parameters. This also covers the SDK's `SW_DEVICE_CREATE_INFO` double-NUL
+fields, `DRAGINFOA/W::lpFileList` and `SHFILEOPSTRUCTW::pFrom/pTo`, without
+changing their native types, constness or layout. The field/return fixtures
+use actual SDK typedefs and record declarations on x86/x64/ARM64; unrelated
+fields/parameters remain negative cases. This is inference-time reconciliation
+of an identical fact, not general attribute deduplication or suppression of
+genuine conflicting native targets.
 
 The final count representation is deliberately unchanged:
 

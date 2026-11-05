@@ -164,7 +164,6 @@ namespace ClangSharpSourceToWinmd
 
                 string fullName = GetFullNameWithoutArchSuffix(node);
                 bool headerRetval = GetOwnedAnnotationNames(node.AttributeLists).Contains("RetVal");
-                bool headerDoubleNull = SyntaxUtils.GetAttribute(node.AttributeLists, "NullNullTerminated") != null;
                 string headerType = this.GetHeaderEnumType(node.AttributeLists, node.Type.ToString(), fullName);
 
                 if (this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Type.ToString(), out string newType, out string newName))
@@ -204,14 +203,6 @@ namespace ClangSharpSourceToWinmd
                     while (SyntaxUtils.GetAttribute(node.AttributeLists, "RetVal") != null)
                         node = node.WithAttributeLists(SyntaxUtils.RemoveAttribute(node.AttributeLists, "RetVal"));
                     node = node.AddAttributeLists(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(retval)));
-                }
-                if (headerDoubleNull && node.AttributeLists.SelectMany(list => list.Attributes)
-                    .Count(a => a.Name.ToString() == "NullNullTerminated") > 1)
-                {
-                    var terminated = SyntaxUtils.GetAttribute(node.AttributeLists, "NullNullTerminated");
-                    while (SyntaxUtils.GetAttribute(node.AttributeLists, "NullNullTerminated") != null)
-                        node = node.WithAttributeLists(SyntaxUtils.RemoveAttribute(node.AttributeLists, "NullNullTerminated"));
-                    node = node.AddAttributeLists(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(terminated)));
                 }
                 return node;
             }
@@ -1104,7 +1095,7 @@ namespace ClangSharpSourceToWinmd
                 return metadataType;
             }
 
-            private void AddNativeArrayInfoAttribute(bool alreadyConst, string nativeTypeName, List<AttributeSyntax> attrsList)
+            private void AddNativeArrayInfoAttribute(bool alreadyConst, bool alreadyDoubleNull, string nativeTypeName, List<AttributeSyntax> attrsList)
             {
                 if (string.IsNullOrWhiteSpace(nativeTypeName))
                 {
@@ -1125,7 +1116,7 @@ namespace ClangSharpSourceToWinmd
                         attrsList.Add(SyntaxFactory.Attribute(SyntaxFactory.ParseName("NotNullTerminated")));
                     }
 
-                    if (isNullNullTerminated)
+                    if (isNullNullTerminated && !alreadyDoubleNull)
                     {
                         attrsList.Add(SyntaxFactory.Attribute(SyntaxFactory.ParseName("NullNullTerminated")));
                     }
@@ -1149,7 +1140,25 @@ namespace ClangSharpSourceToWinmd
 
                 List<AttributeSyntax> attributeNodes = new List<AttributeSyntax>();
 
-                this.AddNativeArrayInfoAttribute(alreadyConst, nativeType, attributeNodes);
+                var sourceList = (AttributeListSyntax)nativeTypeNameAttr.Parent;
+                string targetName = sourceList.Target?.Identifier.ValueText;
+                bool alreadyDoubleNull = sourceList.Parent.ChildNodes().OfType<AttributeListSyntax>()
+                    .Any(list => list.Attributes.Any(attribute =>
+                    {
+                        bool sameTarget = list.Target?.Identifier.ValueText == targetName;
+                        if (attribute.Name.ToString() == "NullNullTerminated")
+                            return sameTarget && (attribute.ArgumentList == null || attribute.ArgumentList.Arguments.Count == 0);
+                        if (attribute.Name.ToString() != "CppAttributeList" ||
+                            attribute.ArgumentList?.Arguments.FirstOrDefault()?.Expression is not LiteralExpressionSyntax literal)
+                            return false;
+                        bool salTarget = sameTarget || targetName == "return" && list.Target == null &&
+                            sourceList.Parent is MethodDeclarationSyntax or DelegateDeclarationSyntax;
+                        return salTarget && literal.Token.Text[1..^1].Split('^')
+                            .Where(text => text.StartsWith("Name=SAL_name;", StringComparison.Ordinal))
+                            .Select(SalAttribute.CreateFromCppAttribute)
+                            .Any(annotation => annotation.P1 == "_NullNull_terminated_");
+                    }));
+                this.AddNativeArrayInfoAttribute(alreadyConst, alreadyDoubleNull, nativeType, attributeNodes);
                 attributeNodes.Insert(0, nativeTypeNameAttr);
 
                 var ret = SyntaxFactory.AttributeList(SyntaxFactory.SeparatedList(attributeNodes));
