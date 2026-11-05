@@ -108,7 +108,7 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
-        public void NativeEdits_OnlyChangeSelectedSalIncludingInheritedCopies()
+        public void HistoricalGeneratedHeaders_KeepTheTwentyOneSiteMigrationIncludingInheritedCopies()
         {
             int sites = 0;
             foreach (var owner in Owners)
@@ -117,11 +117,21 @@ namespace ClangSharpSourceToWinmdTests
                 string before = Encoding.Latin1.GetString(original);
                 string after = PatchHeader(owner.Path, before);
                 sites += Regex.Matches(after, "_COM_Outptr_").Count - Regex.Matches(before, "_COM_Outptr_").Count;
-                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(after), File.ReadAllBytes(Path.Combine(
-                    LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders",
-                    owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+                if (owner.Path != "um/dsound.h" && owner.Path != "shared/ksproxy.h")
+                    CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(after),
+                        ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/" + owner.Path), owner.Path);
             }
             Assert.AreEqual(21, sites, "Both guarded materializations and inherited IAudioClient2/3 C entries.");
+        }
+
+        [TestMethod]
+        public void NativeEdits_OnlyChangeSelectedSalIncludingInheritedCopies()
+        {
+            foreach (var owner in Owners.Where(owner => owner.Path == "um/dsound.h" || owner.Path == "shared/ksproxy.h"))
+                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchHeader(owner.Path,
+                    Encoding.Latin1.GetString(ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path)))),
+                    File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
+                        "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
             foreach (string idl in Idls)
                 CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchIdl(idl, Encoding.Latin1.GetString(
                     ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)))),
@@ -202,9 +212,12 @@ struct IBaseFilter : IUnknown {};
             var result = fixture.Scrape(prefix + Declarations(true), target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] baseline = File.ReadAllBytes(fixture.Emit(remaps));
+            Console.WriteLine("RAW_OUTPUT audio-family-final." + target + ".legacy.winmd " + Convert.ToBase64String(baseline));
             result = fixture.Scrape(prefix + Declarations(false), target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT audio-family-final." + target + ".production.winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
             AssertFinalFacts(output);
             CollectionAssert.AreEqual(baseline, File.ReadAllBytes(output));
             CollectionAssert.AreEqual(baseline, File.ReadAllBytes(fixture.Emit(remaps)));

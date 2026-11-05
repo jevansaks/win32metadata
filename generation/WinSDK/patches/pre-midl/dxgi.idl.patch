@@ -16,7 +16,7 @@ index c769e1c2..5b9785ca 100644
          [in] UINT Output,
          [in, out, annotation("_COM_Outptr_")] IDXGIOutput **ppOutput );
 -    HRESULT GetDesc( [out, annotation("_Out_")] DXGI_ADAPTER_DESC *pDesc );
-+    HRESULT GetDesc( [out, annotation("_Out_ _Win32_Retval_")] DXGI_ADAPTER_DESC *pDesc );
++    HRESULT GetDesc( [out, retval] DXGI_ADAPTER_DESC *pDesc );
      HRESULT CheckInterfaceSupport(
          [in, annotation("_In_")] REFGUID InterfaceName,
          [out, annotation("_Out_")] LARGE_INTEGER * pUMDVersion );

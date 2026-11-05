@@ -120,8 +120,15 @@ namespace ClangSharpSourceToWinmdTests
 
         [TestMethod]
         public void NativeEdits_OnlyChangeSelectedSalBytes()
+            => AssertNativeEditBytes(new[] { "propsys.idl", "shellapi.h", "Shlwapi.h" }, historical: false);
+
+        [TestMethod]
+        public void HistoricalGeneratedHeaders_OnlyChangeSelectedSalBytes()
+            => AssertNativeEditBytes(new[] { "propsys.h" }, historical: true);
+
+        private static void AssertNativeEditBytes(IEnumerable<string> owners, bool historical)
         {
-            foreach (string owner in new[] { "propsys.idl", "propsys.h", "shellapi.h", "Shlwapi.h" })
+            foreach (string owner in owners)
             {
                 string original = ReadOriginal("RecompiledIdlHeaders/um/" + owner, checkoutBytes: true);
                 Assert.IsTrue(original.All(character => character <= 127), owner);
@@ -138,8 +145,10 @@ namespace ClangSharpSourceToWinmdTests
                     expected = expected.Replace(declaration.Value, declaration.Value.Replace("_Outptr_", "_COM_Outptr_"));
                 }
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(owner.StartsWith("propsys", StringComparison.Ordinal) ?
-                    expected : ShellComOutputHeaderTests.PatchOwner(owner, expected)), File.ReadAllBytes(Path.Combine(
-                    LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)),
+                    expected : ShellComOutputHeaderTests.PatchOwner(owner, expected)),
+                    historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/um/" + owner) :
+                        File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
+                            "RecompiledIdlHeaders", "um", owner)),
                     "No encoding, newline or unrelated native changes: " + owner);
             }
             // The shell family's byte audit includes both adjacent property functions in both native owners.
@@ -194,9 +203,12 @@ struct IBindCtx : IUnknown {};
             var result = fixture.Scrape(prefix + Declarations(legacy: true), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] expected = File.ReadAllBytes(fixture.Emit(remaps));
+            Console.WriteLine("RAW_OUTPUT property-final." + target + ".legacy.winmd " + Convert.ToBase64String(expected));
             result = fixture.Scrape(prefix + Declarations(legacy: false), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT property-final." + target + ".production.winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
             ShellItemComOutputHeaderTests.AssertFinalFacts(output, Selectors);
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)));

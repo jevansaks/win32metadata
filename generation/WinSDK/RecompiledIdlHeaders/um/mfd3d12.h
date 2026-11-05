@@ -105,7 +105,7 @@ EXTERN_C const IID IID_IMFD3D12SynchronizationObjectCommands;
             _In_  ID3D12CommandQueue *pConsumerCommandQueue) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE SignalEventOnResourceReady( 
-            HANDLE hEvent) = 0;
+            __RPC__in HANDLE hEvent) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE EnqueueResourceRelease( 
             /* [annotation][in] */ 
@@ -122,7 +122,7 @@ EXTERN_C const IID IID_IMFD3D12SynchronizationObjectCommands;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFD3D12SynchronizationObjectCommands * This,
+            __RPC__in IMFD3D12SynchronizationObjectCommands * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -130,32 +130,32 @@ EXTERN_C const IID IID_IMFD3D12SynchronizationObjectCommands;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFD3D12SynchronizationObjectCommands * This);
+            __RPC__in IMFD3D12SynchronizationObjectCommands * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFD3D12SynchronizationObjectCommands * This);
+            __RPC__in IMFD3D12SynchronizationObjectCommands * This);
         
         DECLSPEC_XFGVIRT(IMFD3D12SynchronizationObjectCommands, EnqueueResourceReady)
         HRESULT ( STDMETHODCALLTYPE *EnqueueResourceReady )( 
-            IMFD3D12SynchronizationObjectCommands * This,
+            __RPC__in IMFD3D12SynchronizationObjectCommands * This,
             /* [annotation][in] */ 
             _In_  ID3D12CommandQueue *pProducerCommandQueue);
         
         DECLSPEC_XFGVIRT(IMFD3D12SynchronizationObjectCommands, EnqueueResourceReadyWait)
         HRESULT ( STDMETHODCALLTYPE *EnqueueResourceReadyWait )( 
-            IMFD3D12SynchronizationObjectCommands * This,
+            __RPC__in IMFD3D12SynchronizationObjectCommands * This,
             /* [annotation][in] */ 
             _In_  ID3D12CommandQueue *pConsumerCommandQueue);
         
         DECLSPEC_XFGVIRT(IMFD3D12SynchronizationObjectCommands, SignalEventOnResourceReady)
         HRESULT ( STDMETHODCALLTYPE *SignalEventOnResourceReady )( 
-            IMFD3D12SynchronizationObjectCommands * This,
-            HANDLE hEvent);
+            __RPC__in IMFD3D12SynchronizationObjectCommands * This,
+            __RPC__in HANDLE hEvent);
         
         DECLSPEC_XFGVIRT(IMFD3D12SynchronizationObjectCommands, EnqueueResourceRelease)
         HRESULT ( STDMETHODCALLTYPE *EnqueueResourceRelease )( 
-            IMFD3D12SynchronizationObjectCommands * This,
+            __RPC__in IMFD3D12SynchronizationObjectCommands * This,
             /* [annotation][in] */ 
             _In_  ID3D12CommandQueue *pConsumerCommandQueue);
         
@@ -221,7 +221,7 @@ EXTERN_C const IID IID_IMFD3D12SynchronizationObject;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE SignalEventOnFinalResourceRelease( 
-            HANDLE hEvent) = 0;
+            __RPC__in HANDLE hEvent) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Reset( void) = 0;
         
@@ -236,7 +236,7 @@ EXTERN_C const IID IID_IMFD3D12SynchronizationObject;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFD3D12SynchronizationObject * This,
+            __RPC__in IMFD3D12SynchronizationObject * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -244,20 +244,20 @@ EXTERN_C const IID IID_IMFD3D12SynchronizationObject;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFD3D12SynchronizationObject * This);
+            __RPC__in IMFD3D12SynchronizationObject * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFD3D12SynchronizationObject * This);
+            __RPC__in IMFD3D12SynchronizationObject * This);
         
         DECLSPEC_XFGVIRT(IMFD3D12SynchronizationObject, SignalEventOnFinalResourceRelease)
         HRESULT ( STDMETHODCALLTYPE *SignalEventOnFinalResourceRelease )( 
-            IMFD3D12SynchronizationObject * This,
-            HANDLE hEvent);
+            __RPC__in IMFD3D12SynchronizationObject * This,
+            __RPC__in HANDLE hEvent);
         
         DECLSPEC_XFGVIRT(IMFD3D12SynchronizationObject, Reset)
         HRESULT ( STDMETHODCALLTYPE *Reset )( 
-            IMFD3D12SynchronizationObject * This);
+            __RPC__in IMFD3D12SynchronizationObject * This);
         
         END_INTERFACE
     } IMFD3D12SynchronizationObjectVtbl;

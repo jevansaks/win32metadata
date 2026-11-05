@@ -119,16 +119,25 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
-        public void NativeEdits_OnlyChangeSelectedSalAndAllInheritedVtableCopies()
+        public void HistoricalGeneratedHeaders_OnlyChangeSelectedSalAndAllInheritedVtableCopies()
         {
-            foreach (var owner in Owners)
+            foreach (var owner in Owners.Where(owner => owner.Owner != "mfapi.h"))
             {
                 string original = ReadOriginal("RecompiledIdlHeaders/um/" + owner.Owner, checkoutBytes: true);
                 Assert.IsTrue(original.All(character => character <= 127), owner.Owner);
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchHeader(owner.Owner, original)),
-                    File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
-                        "RecompiledIdlHeaders", "um", owner.Owner)), owner.Owner);
+                    ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/um/" + owner.Owner), owner.Owner);
             }
+        }
+
+        [TestMethod]
+        public void NativeEdits_OnlyChangeSelectedSalAndAllInheritedVtableCopies()
+        {
+            string originalHeader = ReadOriginal("RecompiledIdlHeaders/um/mfapi.h", checkoutBytes: true);
+            Assert.IsTrue(originalHeader.All(character => character <= 127), "mfapi.h");
+            CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchHeader("mfapi.h", originalHeader)),
+                File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", "um", "mfapi.h")), "mfapi.h");
             foreach (string owner in IdlOwners)
             {
                 string original = Encoding.Latin1.GetString(ReadOriginalBytes(
@@ -247,9 +256,12 @@ struct IDirect3DDevice9 : IUnknown {};
             var result = fixture.Scrape(prefix + Declarations(true), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] baseline = File.ReadAllBytes(fixture.Emit(remaps));
+            Console.WriteLine("RAW_OUTPUT mf-final." + target + ".legacy.winmd " + Convert.ToBase64String(baseline));
             result = fixture.Scrape(prefix + Declarations(false), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT mf-final." + target + ".production.winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
             AssertFinalFacts(output);
             CollectionAssert.AreEqual(baseline, File.ReadAllBytes(output));
             CollectionAssert.AreEqual(baseline, File.ReadAllBytes(fixture.Emit(remaps)));

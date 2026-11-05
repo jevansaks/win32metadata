@@ -52,32 +52,10 @@ $parenBlob = "\((?:\([^()]*\)[^()]*|[^()]*)\)"
 $attributeListPattern = [Regex]::new("\[(((?:,\s*)?(in|out|string|retval|unique|defaultvalue$parenBlob|size_is$parenBlob|iid_is$parenBlob|length_is$parenBlob))+)\]")
 $attributePattern = [Regex]::new("(in|out|string|retval|unique|defaultvalue$parenBlob|size_is$parenBlob|iid_is$parenBlob|length_is$parenBlob)")
 
-$stream = [System.IO.StreamWriter] $outputFileName
-
-foreach ($line in (Get-Content $inputFileName)) {
-    # Skip lines that already have annotations and ignore cpp_quote and #pragma.
-    if ($line.Contains("annotation (") -or $line.Contains("annotation(") -or $line.Contains("cpp_quote(") -or $line.StartsWith("#pragma")) {
-        $stream.WriteLine($line)
-
-        continue
-    }
-
-    # Merge multiple adjacent MIDL attribute lists into one so all annotations are consolidated into one annotation attribute per parameter.
-    if ($attributeListPattern.Matches($line).Count -gt 1) {
-        $line = $line -replace "\]\s*\[", ", "
-    }
-
-    # Convert MIDL attributes to SAL annotations.
-    $startAt = 0
-    while ($attributeListPattern.IsMatch($line, $startAt)) {
-        $match = $attributeListPattern.Match($line, $startAt)
-        $attributeList = $match.Groups[1].Value
-        $attributeListIndex = $match.Groups[0].Index + $match.Groups[0].Length
-
+function Get-SalAnnotation([string]$attributeList) {
         $in = $false
         $out = $false
         $isComPtr = $false
-        $retval = $false
         $optional = $false
         $size_is = $null
         $length_is = $null
@@ -94,9 +72,7 @@ foreach ($line in (Get-Content $inputFileName)) {
                 $out = $true
             } elseif ($attribute.StartsWith("iid_is")) {
                 $isComPtr = $true
-            } elseif ($attribute -eq "retval") {
-                $retval = $true
-            } elseif ($attribute -eq "optional") {
+            } elseif ($attribute -eq "unique") {
                 $optional = $true
             } elseif ($attribute.StartsWith("size_is")) {
                 $size_is = SALParseSize $attribute "size_is"
@@ -107,11 +83,8 @@ foreach ($line in (Get-Content $inputFileName)) {
 
         # Skip matches that aren't parameters.
         if (!$in -and !$out) {
-            $startAt = $attributeListIndex
-
-            continue
+            return $null
         }
-
         $annotation = $null
 
         $pointerOperation = $null
@@ -144,30 +117,73 @@ foreach ($line in (Get-Content $inputFileName)) {
             $annotation += $parameters
         }
 
-        # Overwrite the annotation with _COM_Outptr_ or _Out_retval_ if possible.
+        # Retval stays in MIDL's native comment; derive all other facts using stock SAL.
         if ($out -and $isComPtr) {
-            $annotation = "_COM_Outptr_"
-
-            if ($retval) {
-                $annotation += "retval_"
-            }
-        } elseif ($out -and $retval) {
-            $annotation = "_Out_retval_"
+            $annotation = if ($optional) { "_COM_Outptr_opt_" } else { "_COM_Outptr_" }
         }
 
-        # Insert the annotation attribute into the line after the original attribute list.
-        if ($annotation) {
-            $annotationAttribute = "[annotation(""$annotation"")]"
+        return $annotation
+}
 
-            $line = $line.Substring(0, $attributeListIndex) + $annotationAttribute + $line.Substring($attributeListIndex)
+$lines = @(Get-Content $inputFileName)
+$text = $lines -join "`n"
+# Keep source offsets while excluding literals and comments, including block comments spanning lines.
+$nonCodePattern = '(?s:/\*.*?\*/)|//[^\r\n]*|(?s:"(?:\\.|[^"\\])*"|''(?:\\.|[^''\\])*'')'
+$code = [regex]::Replace($text, $nonCodePattern, {
+    param($match)
+    [regex]::Replace($match.Value, '[^\r\n]', ' ')
+})
+$code = [regex]::Replace($code, '(?m)^[^\r\n]*\bcpp_quote[ \t]*\([^\r\n]*|^[ \t]*#[ \t]*pragma\b[^\r\n]*', {
+    param($match)
+    [regex]::Replace($match.Value, '[^\r\n]', ' ')
+})
+$attributeBlockPattern = '\[(?>[^\[\]]+|\[(?<nested>)|\](?<-nested>))*(?(nested)(?!))\]'
+$attributeGroupPattern = [regex]::new("$attributeBlockPattern(?:\s*$attributeBlockPattern)*")
+$stream = [System.IO.StreamWriter] $outputFileName
 
-            $startAt = $attributeListIndex + $annotationAttribute.Length
-        } else {
-            $startAt = $attributeListIndex 
+$groups = $attributeGroupPattern.Matches($code)
+for ($groupIndex = $groups.Count - 1; $groupIndex -ge 0; $groupIndex--) {
+    $group = $groups[$groupIndex]
+    # An authored annotation owns its adjacent attribute lists, not other parameters.
+    if ($group.Value -match '\bannotation\s*\(') {
+        continue
+    }
+
+    $groupCode = $group.Value
+    $groupText = $text.Substring($group.Index, $group.Length)
+    if ($attributeListPattern.Matches($groupCode).Count -gt 1) {
+        $blocks = [regex]::Matches($groupCode, $attributeBlockPattern)
+        for ($boundaryIndex = $blocks.Count - 2; $boundaryIndex -ge 0; $boundaryIndex--) {
+            $start = $blocks[$boundaryIndex].Index + $blocks[$boundaryIndex].Length - 1
+            $length = $blocks[$boundaryIndex + 1].Index - $start + 1
+            $gap = $groupText.Substring($start + 1, $length - 2)
+            if ($gap -match '^\s*$') {
+                $replacement = ', '
+                $codeReplacement = ', '
+            } else {
+                $replacement = ',' + $gap
+                $codeReplacement = ',' + $groupCode.Substring($start + 1, $length - 2)
+            }
+            $groupText = $groupText.Remove($start, $length).Insert($start, $replacement)
+            $groupCode = $groupCode.Remove($start, $length).Insert($start, $codeReplacement)
         }
     }
 
-    $stream.WriteLine($line)
+    $attributes = $attributeListPattern.Matches($groupCode)
+    for ($attributeIndex = $attributes.Count - 1; $attributeIndex -ge 0; $attributeIndex--) {
+        $attribute = $attributes[$attributeIndex]
+        $annotation = Get-SalAnnotation $attribute.Groups[1].Value
+        if ($annotation) {
+            $groupText = $groupText.Insert($attribute.Index + $attribute.Length, "[annotation(""$annotation"")]")
+        }
+    }
+    $text = $text.Remove($group.Index, $group.Length).Insert($group.Index, $groupText)
+}
+
+if ($lines.Count -gt 0) {
+    foreach ($line in $text.Split("`n")) {
+        $stream.WriteLine($line)
+    }
 }
 
 $stream.Close()

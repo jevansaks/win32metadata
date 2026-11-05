@@ -30,7 +30,7 @@
 #define _Win32_SupportedOS_Server2008_ _WIN32META_ANNOTATION_("SupportedOSPlatform(\"windowsserver2008\")")
 #define _Win32_SupportedOS_Server2012_ _WIN32META_ANNOTATION_("SupportedOSPlatform(\"windowsserver2012\")")
 #define _Win32_SupportedOS_Server2016_ _WIN32META_ANNOTATION_("SupportedOSPlatform(\"windowsserver2016\")")
-#define _Win32_Retval_ _WIN32META_ANNOTATION_("Retval")
+#define _Win32_Retval_ _WIN32META_ANNOTATION_("RetVal")
 #define _Win32_Retained_ _WIN32META_ANNOTATION_("Retained")
 #define _Win32_ContainsInteriorPointers_ _WIN32META_ANNOTATION_("ContainsInteriorPointers")
 #define _Win32_AssociatedEnum_(type) _WIN32META_ANNOTATION_("AssociatedEnum(" #type ")")
@@ -39,6 +39,41 @@
 #define _Win32_RAIIFree_(cleanup, ...) \
     _WIN32META_ANNOTATION_("RAIIFree", sizeof(&(cleanup)), sizeof((0, ##__VA_ARGS__)))
 #define _Win32_RAIIFree_Handle_(cleanup) _Win32_RAIIFree_(cleanup, -1, 0)
+
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+#define _WIN32META_JOIN_RAW_(left, right) left##right
+#define _WIN32META_JOIN_(left, right) _WIN32META_JOIN_RAW_(left, right)
+#define _WIN32META_ANNOTATE_FIELD_(field, annotation) \
+    _WIN32META_ANNOTATION_("Field", sizeof(&field)) annotation \
+    static const unsigned char _WIN32META_JOIN_(_WIN32META_FIELD_, __COUNTER__) = 0
+#if !defined(CINTERFACE)
+#define _WIN32META_ANNOTATE_METHOD_(method, annotation) \
+    _WIN32META_ANNOTATION_("Method", sizeof(&method)) annotation \
+    static const unsigned char _WIN32META_JOIN_(_WIN32META_METHOD_, __COUNTER__) = 0
+#define _WIN32META_ANNOTATE_PARAMETER_(method, parameter, annotation) \
+    _WIN32META_ANNOTATION_("Parameter(" #parameter ")", sizeof(&method)) annotation \
+    static const unsigned char _WIN32META_JOIN_(_WIN32META_PARAMETER_, __COUNTER__) = 0
+#endif
+#else
+#define _WIN32META_ANNOTATE_FIELD_(field, annotation)
+#endif
+#ifndef _WIN32META_ANNOTATE_METHOD_
+#define _WIN32META_ANNOTATE_METHOD_(method, annotation)
+#define _WIN32META_ANNOTATE_PARAMETER_(method, parameter, annotation)
+#endif
+
+#if defined(MIDL_PASS)
+#define _Win32_AnnotateMethod_(method, annotation) \
+    cpp_quote("_WIN32META_ANNOTATE_METHOD_(" #method ", " #annotation ");")
+#define _Win32_AnnotateParameter_(method, parameter, annotation) \
+    cpp_quote("_WIN32META_ANNOTATE_PARAMETER_(" #method ", " #parameter ", " #annotation ");")
+#define _Win32_AnnotateField_(field, annotation) \
+    cpp_quote("_WIN32META_ANNOTATE_FIELD_(" #field ", " #annotation ");")
+#else
+#define _Win32_AnnotateMethod_(method, annotation) _WIN32META_ANNOTATE_METHOD_(method, annotation)
+#define _Win32_AnnotateParameter_(method, parameter, annotation) _WIN32META_ANNOTATE_PARAMETER_(method, parameter, annotation)
+#define _Win32_AnnotateField_(field, annotation) _WIN32META_ANNOTATE_FIELD_(field, annotation)
+#endif
 
 #if defined(WIN32METADATA) && defined(__clang__)
 #define _Win32_Enum_(name, storage, ...) \

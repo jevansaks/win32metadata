@@ -81,15 +81,25 @@ namespace ClangSharpSourceToWinmdTests
 
         [TestMethod]
         public void NativeEdits_OnlyChangeSelectedSalBytesAndInheritedCopies()
+            => AssertNativeEditBytes(Owners.Select(owner => owner.Path).Where(path =>
+                path != "um/dwrite.h" && path != "um/d3d10.h" && path != "um/d3d12.h" && path != "um/Presentation.h")
+                .Concat(new[] { "um/d3d10.idl", "um/d3d12.idl", "um/Presentation.idl" }), historical: false);
+
+        [TestMethod]
+        public void HistoricalGeneratedHeaders_OnlyChangeSelectedSalBytesAndInheritedCopies()
+            => AssertNativeEditBytes(new[] { "um/d3d10.h", "um/d3d10_1.h", "um/d3d12.h", "um/Presentation.h" },
+                historical: true);
+
+        private static void AssertNativeEditBytes(IEnumerable<string> paths, bool historical)
         {
-            foreach (string path in Owners.Select(owner => owner.Path).Where(path => path != "um/dwrite.h")
-                .Concat(new[] { "um/d3d10.idl", "um/d3d10_1.h", "um/d3d12.idl", "um/Presentation.idl" }))
+            foreach (string path in paths)
             {
                 string original = ReadOriginal("RecompiledIdlHeaders/" + path, checkoutBytes: true);
                 Assert.IsTrue(original.All(character => character <= 127), path);
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchOwner(path, original)),
-                    File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                        "generation", "WinSDK", "RecompiledIdlHeaders", path)),
+                    historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/" + path) :
+                        File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                            "generation", "WinSDK", "RecompiledIdlHeaders", path)),
                     "No encoding, newline, unrelated declaration or template changes: " + path);
             }
         }
@@ -206,7 +216,7 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
-        public void RetvalBoundary_ChangesOnlyCustomAttributeRowOrder(string target)
+        public void NativeRetvalBoundary_EmitsOneCanonicalFactWithMatchingLegacyCom(string target)
         {
             string original = ReadOriginal("RecompiledIdlHeaders/um/Presentation.h");
             string declaration = Regex.Match(Definition(original, "IPresentationManager"),
@@ -225,7 +235,7 @@ struct __declspec(uuid(""" + Uuid(original, "IPresentationManager") + @""")) IPr
             byte[] baseline = File.ReadAllBytes(output);
             string saved = Path.ChangeExtension(output, "old.winmd");
             File.Copy(output, saved);
-            result = fixture.Scrape(header.Replace("_Out_retval_", "_COM_Outptr_retval_"), target, sal: true);
+            result = fixture.Scrape(header.Replace("_Out_retval_", "_COM_Outptr_"), target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             output = fixture.Emit();
             using var oldPe = new PEReader(new MemoryStream(baseline));
@@ -243,10 +253,10 @@ struct __declspec(uuid(""" + Uuid(original, "IPresentationManager") + @""")) IPr
                 newParameters.Select(parameter => parameter.Attributes).ToArray());
             string[] oldAttributes = Attributes(oldReader, oldParameters.Last());
             string[] newAttributes = Attributes(newReader, newParameters.Last());
-            CollectionAssert.AreEquivalent(oldAttributes, newAttributes);
-            CollectionAssert.AreEqual(new[] { "RetValAttribute:01000000", "ComOutPtrAttribute:01000000" }, oldAttributes);
-            CollectionAssert.AreEqual(oldAttributes.Reverse().ToArray(), newAttributes);
-            Assert.IsFalse(baseline.SequenceEqual(File.ReadAllBytes(output)), "Keep this exact-byte boundary active.");
+            CollectionAssert.AreEqual(new[] { "ComOutPtrAttribute:01000000", "RetValAttribute:01000000" }, oldAttributes);
+            CollectionAssert.AreEqual(oldAttributes, newAttributes);
+            CollectionAssert.AreEqual(baseline, File.ReadAllBytes(output),
+                "Authoritative native RetVal is singleton and canonical with either legacy COM or stock COM SAL.");
             var comparison = LastErrorHeaderTests.Run("dotnet", Path.Combine(AppContext.BaseDirectory, "WinmdUtils.dll"),
                 "compare", "--first", saved, "--second", output);
             Assert.AreEqual(0, comparison.ExitCode, comparison.Output);
@@ -313,9 +323,12 @@ struct D2D1_FACTORY_OPTIONS { int debugLevel; };
             var result = fixture.Scrape(prefix + Declarations(true), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] expected = File.ReadAllBytes(fixture.Emit(remaps));
+            Console.WriteLine("RAW_OUTPUT directx-final." + target + ".legacy.winmd " + Convert.ToBase64String(expected));
             result = fixture.Scrape(prefix + Declarations(false), target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit(representation);
+            Console.WriteLine("RAW_OUTPUT directx-final." + target + ".production.winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
             AssertFinalFacts(output);
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)));

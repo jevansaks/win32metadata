@@ -644,19 +644,19 @@ EXTERN_C const IID IID_IWICMetadataReader;
             /* [annotation][in] */ 
             _In_  UINT nIndex,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarSchema,
+            _Inout_opt_  PROPVARIANT *pvarSchema,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarId,
+            _Inout_opt_  PROPVARIANT *pvarId,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarValue) = 0;
+            _Inout_opt_  PROPVARIANT *pvarValue) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetValue( 
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvarSchema,
+            _In_opt_  const PROPVARIANT *pvarSchema,
             /* [annotation][in] */ 
             _In_  const PROPVARIANT *pvarId,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarValue) = 0;
+            _Inout_opt_  PROPVARIANT *pvarValue) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetEnumerator( 
             /* [annotation][out] */ 
@@ -711,21 +711,21 @@ EXTERN_C const IID IID_IWICMetadataReader;
             /* [annotation][in] */ 
             _In_  UINT nIndex,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarSchema,
+            _Inout_opt_  PROPVARIANT *pvarSchema,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarId,
+            _Inout_opt_  PROPVARIANT *pvarId,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarValue);
+            _Inout_opt_  PROPVARIANT *pvarValue);
         
         DECLSPEC_XFGVIRT(IWICMetadataReader, GetValue)
         HRESULT ( STDMETHODCALLTYPE *GetValue )( 
             __RPC__in IWICMetadataReader * This,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvarSchema,
+            _In_opt_  const PROPVARIANT *pvarSchema,
             /* [annotation][in] */ 
             _In_  const PROPVARIANT *pvarId,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarValue);
+            _Inout_opt_  PROPVARIANT *pvarValue);
         
         DECLSPEC_XFGVIRT(IWICMetadataReader, GetEnumerator)
         HRESULT ( STDMETHODCALLTYPE *GetEnumerator )( 
@@ -802,7 +802,7 @@ EXTERN_C const IID IID_IWICMetadataWriter;
     public:
         virtual HRESULT STDMETHODCALLTYPE SetValue( 
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvarSchema,
+            _In_opt_  const PROPVARIANT *pvarSchema,
             /* [annotation][in] */ 
             _In_  const PROPVARIANT *pvarId,
             /* [annotation][in] */ 
@@ -812,7 +812,7 @@ EXTERN_C const IID IID_IWICMetadataWriter;
             /* [annotation][in] */ 
             _In_  UINT nIndex,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvarSchema,
+            _In_opt_  const PROPVARIANT *pvarSchema,
             /* [annotation][in] */ 
             _In_  const PROPVARIANT *pvarId,
             /* [annotation][in] */ 
@@ -820,7 +820,7 @@ EXTERN_C const IID IID_IWICMetadataWriter;
         
         virtual HRESULT STDMETHODCALLTYPE RemoveValue( 
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvarSchema,
+            _In_opt_  const PROPVARIANT *pvarSchema,
             /* [annotation][in] */ 
             _In_  const PROPVARIANT *pvarId) = 0;
         
@@ -877,21 +877,21 @@ EXTERN_C const IID IID_IWICMetadataWriter;
             /* [annotation][in] */ 
             _In_  UINT nIndex,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarSchema,
+            _Inout_opt_  PROPVARIANT *pvarSchema,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarId,
+            _Inout_opt_  PROPVARIANT *pvarId,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarValue);
+            _Inout_opt_  PROPVARIANT *pvarValue);
         
         DECLSPEC_XFGVIRT(IWICMetadataReader, GetValue)
         HRESULT ( STDMETHODCALLTYPE *GetValue )( 
             __RPC__in IWICMetadataWriter * This,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvarSchema,
+            _In_opt_  const PROPVARIANT *pvarSchema,
             /* [annotation][in] */ 
             _In_  const PROPVARIANT *pvarId,
             /* [annotation][unique][out][in] */ 
-            _Inout_  PROPVARIANT *pvarValue);
+            _Inout_opt_  PROPVARIANT *pvarValue);
         
         DECLSPEC_XFGVIRT(IWICMetadataReader, GetEnumerator)
         HRESULT ( STDMETHODCALLTYPE *GetEnumerator )( 
@@ -903,7 +903,7 @@ EXTERN_C const IID IID_IWICMetadataWriter;
         HRESULT ( STDMETHODCALLTYPE *SetValue )( 
             __RPC__in IWICMetadataWriter * This,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvarSchema,
+            _In_opt_  const PROPVARIANT *pvarSchema,
             /* [annotation][in] */ 
             _In_  const PROPVARIANT *pvarId,
             /* [annotation][in] */ 
@@ -915,7 +915,7 @@ EXTERN_C const IID IID_IWICMetadataWriter;
             /* [annotation][in] */ 
             _In_  UINT nIndex,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvarSchema,
+            _In_opt_  const PROPVARIANT *pvarSchema,
             /* [annotation][in] */ 
             _In_  const PROPVARIANT *pvarId,
             /* [annotation][in] */ 
@@ -925,7 +925,7 @@ EXTERN_C const IID IID_IWICMetadataWriter;
         HRESULT ( STDMETHODCALLTYPE *RemoveValue )( 
             __RPC__in IWICMetadataWriter * This,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvarSchema,
+            _In_opt_  const PROPVARIANT *pvarSchema,
             /* [annotation][in] */ 
             _In_  const PROPVARIANT *pvarId);
         
@@ -1139,9 +1139,9 @@ EXTERN_C const IID IID_IWICPersistStream;
     public:
         virtual HRESULT STDMETHODCALLTYPE LoadEx( 
             /* [annotation][unique][in] */ 
-            _In_  IStream *pIStream,
+            _In_opt_  IStream *pIStream,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidPreferredVendor,
+            _In_opt_  const GUID *pguidPreferredVendor,
             /* [annotation][in] */ 
             _In_  DWORD dwPersistOptions) = 0;
         
@@ -1192,13 +1192,13 @@ EXTERN_C const IID IID_IWICPersistStream;
         HRESULT ( STDMETHODCALLTYPE *Load )( 
             __RPC__in IWICPersistStream * This,
             /* [annotation][unique][in] */ 
-            _In_  IStream *pStm);
+            _In_opt_  IStream *pStm);
         
         DECLSPEC_XFGVIRT(IPersistStream, Save)
         HRESULT ( STDMETHODCALLTYPE *Save )( 
             __RPC__in IWICPersistStream * This,
             /* [annotation][unique][in] */ 
-            _In_  IStream *pStm,
+            _In_opt_  IStream *pStm,
             /* [annotation][in] */ 
             _In_  BOOL fClearDirty);
         
@@ -1212,9 +1212,9 @@ EXTERN_C const IID IID_IWICPersistStream;
         HRESULT ( STDMETHODCALLTYPE *LoadEx )( 
             __RPC__in IWICPersistStream * This,
             /* [annotation][unique][in] */ 
-            _In_  IStream *pIStream,
+            _In_opt_  IStream *pIStream,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidPreferredVendor,
+            _In_opt_  const GUID *pguidPreferredVendor,
             /* [annotation][in] */ 
             _In_  DWORD dwPersistOptions);
         
@@ -1308,7 +1308,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cContainerFormats,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cContainerFormats)  GUID *pguidContainerFormats,
+            _Inout_updates_opt_(cContainerFormats)  GUID *pguidContainerFormats,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual) = 0;
         
@@ -1316,7 +1316,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cchDeviceManufacturer,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchDeviceManufacturer)  WCHAR *wzDeviceManufacturer,
+            _Inout_updates_opt_(cchDeviceManufacturer)  WCHAR *wzDeviceManufacturer,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual) = 0;
         
@@ -1324,7 +1324,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cchDeviceModels,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchDeviceModels)  WCHAR *wzDeviceModels,
+            _Inout_updates_opt_(cchDeviceModels)  WCHAR *wzDeviceModels,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual) = 0;
         
@@ -1389,7 +1389,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cchAuthor,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchAuthor)  WCHAR *wzAuthor,
+            _Inout_updates_opt_(cchAuthor)  WCHAR *wzAuthor,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1405,7 +1405,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cchVersion,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchVersion)  WCHAR *wzVersion,
+            _Inout_updates_opt_(cchVersion)  WCHAR *wzVersion,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1415,7 +1415,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cchSpecVersion,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchSpecVersion)  WCHAR *wzSpecVersion,
+            _Inout_updates_opt_(cchSpecVersion)  WCHAR *wzSpecVersion,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1425,7 +1425,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cchFriendlyName,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchFriendlyName)  WCHAR *wzFriendlyName,
+            _Inout_updates_opt_(cchFriendlyName)  WCHAR *wzFriendlyName,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1441,7 +1441,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cContainerFormats,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cContainerFormats)  GUID *pguidContainerFormats,
+            _Inout_updates_opt_(cContainerFormats)  GUID *pguidContainerFormats,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1451,7 +1451,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cchDeviceManufacturer,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchDeviceManufacturer)  WCHAR *wzDeviceManufacturer,
+            _Inout_updates_opt_(cchDeviceManufacturer)  WCHAR *wzDeviceManufacturer,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1461,7 +1461,7 @@ EXTERN_C const IID IID_IWICMetadataHandlerInfo;
             /* [annotation][in] */ 
             _In_  UINT cchDeviceModels,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchDeviceModels)  WCHAR *wzDeviceModels,
+            _Inout_updates_opt_(cchDeviceModels)  WCHAR *wzDeviceModels,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1668,7 +1668,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
             /* [annotation][in] */ 
             _In_  UINT cchAuthor,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchAuthor)  WCHAR *wzAuthor,
+            _Inout_updates_opt_(cchAuthor)  WCHAR *wzAuthor,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1684,7 +1684,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
             /* [annotation][in] */ 
             _In_  UINT cchVersion,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchVersion)  WCHAR *wzVersion,
+            _Inout_updates_opt_(cchVersion)  WCHAR *wzVersion,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1694,7 +1694,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
             /* [annotation][in] */ 
             _In_  UINT cchSpecVersion,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchSpecVersion)  WCHAR *wzSpecVersion,
+            _Inout_updates_opt_(cchSpecVersion)  WCHAR *wzSpecVersion,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1704,7 +1704,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
             /* [annotation][in] */ 
             _In_  UINT cchFriendlyName,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchFriendlyName)  WCHAR *wzFriendlyName,
+            _Inout_updates_opt_(cchFriendlyName)  WCHAR *wzFriendlyName,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1720,7 +1720,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
             /* [annotation][in] */ 
             _In_  UINT cContainerFormats,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cContainerFormats)  GUID *pguidContainerFormats,
+            _Inout_updates_opt_(cContainerFormats)  GUID *pguidContainerFormats,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1730,7 +1730,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
             /* [annotation][in] */ 
             _In_  UINT cchDeviceManufacturer,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchDeviceManufacturer)  WCHAR *wzDeviceManufacturer,
+            _Inout_updates_opt_(cchDeviceManufacturer)  WCHAR *wzDeviceManufacturer,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1740,7 +1740,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
             /* [annotation][in] */ 
             _In_  UINT cchDeviceModels,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchDeviceModels)  WCHAR *wzDeviceModels,
+            _Inout_updates_opt_(cchDeviceModels)  WCHAR *wzDeviceModels,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -1764,7 +1764,7 @@ EXTERN_C const IID IID_IWICMetadataReaderInfo;
         
         DECLSPEC_XFGVIRT(IWICMetadataReaderInfo, GetPatterns)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *GetPatterns )( 
-            IWICMetadataReaderInfo * This,
+            __RPC__in IWICMetadataReaderInfo * This,
             /* [annotation][in] */ 
             _In_  REFGUID guidContainerFormat,
             /* [annotation][in] */ 
@@ -1993,7 +1993,7 @@ EXTERN_C const IID IID_IWICMetadataWriterInfo;
             /* [annotation][in] */ 
             _In_  UINT cchAuthor,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchAuthor)  WCHAR *wzAuthor,
+            _Inout_updates_opt_(cchAuthor)  WCHAR *wzAuthor,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -2009,7 +2009,7 @@ EXTERN_C const IID IID_IWICMetadataWriterInfo;
             /* [annotation][in] */ 
             _In_  UINT cchVersion,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchVersion)  WCHAR *wzVersion,
+            _Inout_updates_opt_(cchVersion)  WCHAR *wzVersion,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -2019,7 +2019,7 @@ EXTERN_C const IID IID_IWICMetadataWriterInfo;
             /* [annotation][in] */ 
             _In_  UINT cchSpecVersion,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchSpecVersion)  WCHAR *wzSpecVersion,
+            _Inout_updates_opt_(cchSpecVersion)  WCHAR *wzSpecVersion,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -2029,7 +2029,7 @@ EXTERN_C const IID IID_IWICMetadataWriterInfo;
             /* [annotation][in] */ 
             _In_  UINT cchFriendlyName,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchFriendlyName)  WCHAR *wzFriendlyName,
+            _Inout_updates_opt_(cchFriendlyName)  WCHAR *wzFriendlyName,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -2045,7 +2045,7 @@ EXTERN_C const IID IID_IWICMetadataWriterInfo;
             /* [annotation][in] */ 
             _In_  UINT cContainerFormats,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cContainerFormats)  GUID *pguidContainerFormats,
+            _Inout_updates_opt_(cContainerFormats)  GUID *pguidContainerFormats,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -2055,7 +2055,7 @@ EXTERN_C const IID IID_IWICMetadataWriterInfo;
             /* [annotation][in] */ 
             _In_  UINT cchDeviceManufacturer,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchDeviceManufacturer)  WCHAR *wzDeviceManufacturer,
+            _Inout_updates_opt_(cchDeviceManufacturer)  WCHAR *wzDeviceManufacturer,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -2065,7 +2065,7 @@ EXTERN_C const IID IID_IWICMetadataWriterInfo;
             /* [annotation][in] */ 
             _In_  UINT cchDeviceModels,
             /* [annotation][size_is][unique][out][in] */ 
-            _Inout_updates_(cchDeviceModels)  WCHAR *wzDeviceModels,
+            _Inout_updates_opt_(cchDeviceModels)  WCHAR *wzDeviceModels,
             /* [annotation][out] */ 
             _Out_  UINT *pcchActual);
         
@@ -2089,7 +2089,7 @@ EXTERN_C const IID IID_IWICMetadataWriterInfo;
         
         DECLSPEC_XFGVIRT(IWICMetadataWriterInfo, GetHeader)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *GetHeader )( 
-            IWICMetadataWriterInfo * This,
+            __RPC__in IWICMetadataWriterInfo * This,
             /* [annotation][in] */ 
             _In_  REFGUID guidContainerFormat,
             /* [annotation][in] */ 
@@ -2226,7 +2226,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  REFGUID guidMetadataFormat,
             /* [annotation][size_is][unique][in] */ 
-            _In_reads_(1)  const GUID *pguidVendor,
+            _In_reads_opt_(1)  const GUID *pguidVendor,
             /* [annotation][in] */ 
             _In_  DWORD dwOptions,
             /* [annotation][in] */ 
@@ -2238,7 +2238,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  REFGUID guidContainerFormat,
             /* [annotation][size_is][unique][in] */ 
-            _In_reads_(1)  const GUID *pguidVendor,
+            _In_reads_opt_(1)  const GUID *pguidVendor,
             /* [annotation][in] */ 
             _In_  DWORD dwOptions,
             /* [annotation][in] */ 
@@ -2250,7 +2250,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  REFGUID guidMetadataFormat,
             /* [annotation][size_is][unique][in] */ 
-            _In_reads_(1)  const GUID *pguidVendor,
+            _In_reads_opt_(1)  const GUID *pguidVendor,
             /* [annotation][in] */ 
             _In_  DWORD dwMetadataOptions,
             /* [annotation][out] */ 
@@ -2260,7 +2260,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  IWICMetadataReader *pIReader,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidVendor,
+            _In_opt_  const GUID *pguidVendor,
             /* [annotation][out] */ 
             _Out_  IWICMetadataWriter **ppIWriter) = 0;
         
@@ -2278,7 +2278,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
         
         virtual HRESULT STDMETHODCALLTYPE CreateEncoderPropertyBag( 
             /* [annotation][size_is][unique][in] */ 
-            _In_reads_(cCount)  PROPBAG2 *ppropOptions,
+            _In_reads_opt_(cCount)  PROPBAG2 *ppropOptions,
             /* [annotation][in] */ 
             _In_  UINT cCount,
             /* [annotation][out] */ 
@@ -2315,13 +2315,13 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  LPCWSTR wzFilename,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidVendor,
+            _In_opt_  const GUID *pguidVendor,
             /* [annotation][in] */ 
             _In_  DWORD dwDesiredAccess,
             /* [annotation][in] */ 
             _In_  WICDecodeOptions metadataOptions,
             /* [annotation][retval][out] */ 
-            _Out_retval_  IWICBitmapDecoder **ppIDecoder);
+            _Out_  IWICBitmapDecoder **ppIDecoder);
         
         DECLSPEC_XFGVIRT(IWICImagingFactory, CreateDecoderFromStream)
         HRESULT ( STDMETHODCALLTYPE *CreateDecoderFromStream )( 
@@ -2329,11 +2329,11 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  IStream *pIStream,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidVendor,
+            _In_opt_  const GUID *pguidVendor,
             /* [annotation][in] */ 
             _In_  WICDecodeOptions metadataOptions,
             /* [annotation][retval][out] */ 
-            _Out_retval_  IWICBitmapDecoder **ppIDecoder);
+            _Out_  IWICBitmapDecoder **ppIDecoder);
         
         DECLSPEC_XFGVIRT(IWICImagingFactory, CreateDecoderFromFileHandle)
         HRESULT ( STDMETHODCALLTYPE *CreateDecoderFromFileHandle )( 
@@ -2341,11 +2341,11 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  ULONG_PTR hFile,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidVendor,
+            _In_opt_  const GUID *pguidVendor,
             /* [annotation][in] */ 
             _In_  WICDecodeOptions metadataOptions,
             /* [annotation][retval][out] */ 
-            _Out_retval_  IWICBitmapDecoder **ppIDecoder);
+            _Out_  IWICBitmapDecoder **ppIDecoder);
         
         DECLSPEC_XFGVIRT(IWICImagingFactory, CreateComponentInfo)
         HRESULT ( STDMETHODCALLTYPE *CreateComponentInfo )( 
@@ -2361,9 +2361,9 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  REFGUID guidContainerFormat,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidVendor,
+            _In_opt_  const GUID *pguidVendor,
             /* [annotation][retval][out] */ 
-            _Out_retval_  IWICBitmapDecoder **ppIDecoder);
+            _Out_  IWICBitmapDecoder **ppIDecoder);
         
         DECLSPEC_XFGVIRT(IWICImagingFactory, CreateEncoder)
         HRESULT ( STDMETHODCALLTYPE *CreateEncoder )( 
@@ -2371,9 +2371,9 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  REFGUID guidContainerFormat,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidVendor,
+            _In_opt_  const GUID *pguidVendor,
             /* [annotation][retval][out] */ 
-            _Out_retval_  IWICBitmapEncoder **ppIEncoder);
+            _Out_  IWICBitmapEncoder **ppIEncoder);
         
         DECLSPEC_XFGVIRT(IWICImagingFactory, CreatePalette)
         HRESULT ( STDMETHODCALLTYPE *CreatePalette )( 
@@ -2487,7 +2487,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  HBITMAP hBitmap,
             /* [annotation][unique][in] */ 
-            _In_  HPALETTE hPalette,
+            _In_opt_  HPALETTE hPalette,
             /* [annotation][in] */ 
             _In_  WICBitmapAlphaChannelOption options,
             /* [annotation][out] */ 
@@ -2533,7 +2533,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  REFGUID guidMetadataFormat,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidVendor,
+            _In_opt_  const GUID *pguidVendor,
             /* [annotation][out] */ 
             _Out_  IWICMetadataQueryWriter **ppIQueryWriter);
         
@@ -2543,7 +2543,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  IWICMetadataQueryReader *pIQueryReader,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidVendor,
+            _In_opt_  const GUID *pguidVendor,
             /* [annotation][out] */ 
             _Out_  IWICMetadataQueryWriter **ppIQueryWriter);
         
@@ -2553,7 +2553,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  REFGUID guidMetadataFormat,
             /* [annotation][size_is][unique][in] */ 
-            _In_reads_(1)  const GUID *pguidVendor,
+            _In_reads_opt_(1)  const GUID *pguidVendor,
             /* [annotation][in] */ 
             _In_  DWORD dwOptions,
             /* [annotation][in] */ 
@@ -2567,7 +2567,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  REFGUID guidContainerFormat,
             /* [annotation][size_is][unique][in] */ 
-            _In_reads_(1)  const GUID *pguidVendor,
+            _In_reads_opt_(1)  const GUID *pguidVendor,
             /* [annotation][in] */ 
             _In_  DWORD dwOptions,
             /* [annotation][in] */ 
@@ -2581,7 +2581,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  REFGUID guidMetadataFormat,
             /* [annotation][size_is][unique][in] */ 
-            _In_reads_(1)  const GUID *pguidVendor,
+            _In_reads_opt_(1)  const GUID *pguidVendor,
             /* [annotation][in] */ 
             _In_  DWORD dwMetadataOptions,
             /* [annotation][out] */ 
@@ -2593,7 +2593,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
             /* [annotation][in] */ 
             _In_  IWICMetadataReader *pIReader,
             /* [annotation][unique][in] */ 
-            _In_  const GUID *pguidVendor,
+            _In_opt_  const GUID *pguidVendor,
             /* [annotation][out] */ 
             _Out_  IWICMetadataWriter **ppIWriter);
         
@@ -2617,7 +2617,7 @@ EXTERN_C const IID IID_IWICComponentFactory;
         HRESULT ( STDMETHODCALLTYPE *CreateEncoderPropertyBag )( 
             __RPC__in IWICComponentFactory * This,
             /* [annotation][size_is][unique][in] */ 
-            _In_reads_(cCount)  PROPBAG2 *ppropOptions,
+            _In_reads_opt_(cCount)  PROPBAG2 *ppropOptions,
             /* [annotation][in] */ 
             _In_  UINT cCount,
             /* [annotation][out] */ 
@@ -2812,7 +2812,7 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal64(__RPC__in unsigned long 
 void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IWICMetadataReaderInfo_GetPatterns_Proxy( 
-    IWICMetadataReaderInfo * This,
+    __RPC__in IWICMetadataReaderInfo * This,
     /* [annotation][in] */ 
     _In_  REFGUID guidContainerFormat,
     /* [annotation][in] */ 
@@ -2835,7 +2835,7 @@ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsi
     _Out_  UINT *pcPatterns);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IWICMetadataWriterInfo_GetHeader_Proxy( 
-    IWICMetadataWriterInfo * This,
+    __RPC__in IWICMetadataWriterInfo * This,
     /* [annotation][in] */ 
     _In_  REFGUID guidContainerFormat,
     /* [annotation][in] */ 

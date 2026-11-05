@@ -77,6 +77,29 @@ namespace ClangSharpSourceToWinmdTests
             AssertAttribute(reader, reader.GetParameter(method.GetParameters().Single()), "RetainedAttribute");
         }
 
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void NativeComResultNullability_PreservesIndependentAtOptionality(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"int __stdcall Example(
+    _COM_Outptr_result_maybenull_ void** resultOnly,
+    _COM_Outptr_result_maybenull_ _At_(*storageOptional, _Out_opt_) void** storageOptional);", target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(method => reader.GetString(method.Name) == "Example");
+            var parameters = method.GetParameters().Select(reader.GetParameter).ToArray();
+            CollectionAssert.AreEqual(new[] { ParameterAttributes.Out, ParameterAttributes.Out | ParameterAttributes.Optional },
+                parameters.Select(parameter => parameter.Attributes).ToArray());
+            foreach (var parameter in parameters) AssertAttribute(reader, parameter, "ComOutPtrAttribute");
+            CollectionAssert.AreEqual(new byte[] { 0x0f, 0x0f, 0x01, 0x0f, 0x0f, 0x01 },
+                reader.GetBlobBytes(method.Signature).TakeLast(6).ToArray());
+        }
+
         [TestMethod]
         public void LateOnlyParameterAnnotation_IsDiagnosedInsteadOfSilentlyLost()
         {
@@ -261,7 +284,7 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [DataTestMethod]
-        [DataRow("Retval", "RetValAttribute")]
+        [DataRow("RetVal", "RetValAttribute")]
         [DataRow("Retained", "RetainedAttribute")]
         [DataRow("ContainsInteriorPointers", "ContainsInteriorPointersAttribute")]
         [DataRow("AssociatedEnum(Option)", "AssociatedEnumAttribute")]

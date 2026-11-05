@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace MetadataUtils
 {
-    public enum ParameterAnnotationKind { Retval, Retained, ContainsInteriorPointers, AssociatedEnum }
+    public enum ParameterAnnotationKind { RetVal, Retained, ContainsInteriorPointers, AssociatedEnum }
 
     public readonly struct ParameterAnnotation
     {
@@ -21,7 +21,7 @@ namespace MetadataUtils
         {
             switch (payload)
             {
-                case Owner + "Retval": return new(ParameterAnnotationKind.Retval);
+                case Owner + "RetVal": return new(ParameterAnnotationKind.RetVal);
                 case Owner + "Retained": return new(ParameterAnnotationKind.Retained);
                 case Owner + "ContainsInteriorPointers": return new(ParameterAnnotationKind.ContainsInteriorPointers);
             }
@@ -30,6 +30,6 @@ namespace MetadataUtils
             throw new FormatException($"Unknown or malformed owned annotation '{payload}'.");
         }
 
-        public string AttributeName => Kind == ParameterAnnotationKind.Retval ? "RetVal" : Kind.ToString();
+        public string AttributeName => Kind.ToString();
     }
 }

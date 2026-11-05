@@ -1,7 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Metadata;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -13,6 +17,687 @@ namespace ClangSharpSourceToWinmdTests
     public class SdkPatchTests
     {
         private const string Version = "10.0.28000.2705";
+
+        [TestMethod]
+        public void MixedMidl_ConvertsOtherParametersWithoutChangingAuthoredAnnotationsOrNonCode()
+        {
+            using var fixture = new Fixture();
+            var cases = new (string Input, string Expected)[]
+            {
+                (@"HRESULT F([in] int a, [out, annotation(""_COM_Outptr_"")] void** b);",
+                 @"HRESULT F([in][annotation(""_In_"")] int a, [out, annotation(""_COM_Outptr_"")] void** b);"),
+                (@"HRESULT F([in, annotation(""_In_opt_"")] int* a, [out] int* b);",
+                 @"HRESULT F([in, annotation(""_In_opt_"")] int* a, [out][annotation(""_Out_"")] int* b);"),
+                (@"HRESULT F([in][annotation (""_In_opt_"")] int* a, [out] int* b);",
+                 @"HRESULT F([in][annotation (""_In_opt_"")] int* a, [out][annotation(""_Out_"")] int* b);"),
+                (@"HRESULT F([annotation(""_Out_writes_(n)"")] [out, size_is(n)] int* a, [in] int n);",
+                 @"HRESULT F([annotation(""_Out_writes_(n)"")] [out, size_is(n)] int* a, [in][annotation(""_In_"")] int n);"),
+                (@"HRESULT F([in] [out] int* a, [out, iid_is(iid)] void** b);",
+                 @"HRESULT F([in, out][annotation(""_Inout_"")] int* a, [out, iid_is(iid)][annotation(""_COM_Outptr_"")] void** b);"),
+                (@"HRESULT F([in]/* keep [out] */[out] int* a);",
+                 @"HRESULT F([in,/* keep [out] */out][annotation(""_Inout_"")] int* a);"),
+                (@"HRESULT F([in, defaultvalue(""[out][in]"")] int a);",
+                 @"HRESULT F([in, defaultvalue(""[out][in]"")][annotation(""_In_"")] int a);"),
+                (@"HRESULT F([annotation(""text \""[out][in]\"" // /* annotation("")] int a, [in] int b);",
+                 @"HRESULT F([annotation(""text \""[out][in]\"" // /* annotation("")] int a, [in][annotation(""_In_"")] int b);"),
+                (@"const char* s = ""[out][in] annotation(\""x\"")""; HRESULT F([out] int* a);",
+                 @"const char* s = ""[out][in] annotation(\""x\"")""; HRESULT F([out][annotation(""_Out_"")] int* a);"),
+                ("// [in][out] annotation(\"ignored\")\nHRESULT F([in] int a);",
+                 "// [in][out] annotation(\"ignored\")\nHRESULT F([in][annotation(\"_In_\")] int a);"),
+                ("/* [in]\n[out] annotation(\"ignored\") */ HRESULT F([in] int a);",
+                 "/* [in]\n[out] annotation(\"ignored\") */ HRESULT F([in][annotation(\"_In_\")] int a);"),
+                (@"HRESULT F([in] int a); // [out][in] annotation(""ignored"")",
+                 @"HRESULT F([in][annotation(""_In_"")] int a); // [out][in] annotation(""ignored"")"),
+                (@"cpp_quote (""HRESULT F([out] int* p);"")",
+                 @"cpp_quote (""HRESULT F([out] int* p);"")"),
+                (@"  #pragma message(""[in]"")", @"  #pragma message(""[in]"")"),
+                (@"[uuid(""00000000-0000-0000-0000-000000000000"")] interface F;",
+                 @"[uuid(""00000000-0000-0000-0000-000000000000"")] interface F;"),
+                (@"HRESULT F([string, unique] wchar_t* p, int a[4]);",
+                 @"HRESULT F([string, unique] wchar_t* p, int a[4]);"),
+                (@"HRESULT F([out, size_is(counts[index])] int* p);",
+                 @"HRESULT F([out, size_is(counts[index])][annotation(""_Out_writes_(counts[index])"")] int* p);"),
+                (@"const char c = '['; HRESULT F([out] int* p);",
+                 @"const char c = '['; HRESULT F([out][annotation(""_Out_"")] int* p);"),
+                ("HRESULT F([out, annotation(\"text\\\n[in][out]\")] int* a, [in] int b);",
+                 "HRESULT F([out, annotation(\"text\\\n[in][out]\")] int* a, [in][annotation(\"_In_\")] int b);"),
+                (@"HRESULT F([in] int a, [out, annotation /* keep */ (""_Out_"")] int* b);",
+                 @"HRESULT F([in][annotation(""_In_"")] int a, [out, annotation /* keep */ (""_Out_"")] int* b);"),
+                (@"HRESULT F([in] [out, size_is(counts[x][y])] int* p);",
+                 @"HRESULT F([in, out, size_is(counts[x][y])][annotation(""_Inout_updates_(counts[x][y])"")] int* p);"),
+                (@"HRESULT F([in, out, unique, size_is(capacity), length_is(*written)] byte* p);",
+                 @"HRESULT F([in, out, unique, size_is(capacity), length_is(*written)][annotation(""_Inout_updates_to_opt_(capacity,*written)"")] byte* p);"),
+                (@"HRESULT F([in, unique, size_is(cbReserved1)] byte *reserved1);",
+                 @"HRESULT F([in, unique, size_is(cbReserved1)][annotation(""_In_reads_opt_(cbReserved1)"")] byte *reserved1);"),
+                (@"HRESULT F([out, unique, size_is(capacity), length_is(*written)] byte* p);",
+                 @"HRESULT F([out, unique, size_is(capacity), length_is(*written)][annotation(""_Out_writes_to_opt_(capacity,*written)"")] byte* p);"),
+                (@"HRESULT F([in, unique] int* p, [out, unique] int* q);",
+                 @"HRESULT F([in, unique][annotation(""_In_opt_"")] int* p, [out, unique][annotation(""_Out_opt_"")] int* q);"),
+                (@"HRESULT F([out, unique, iid_is(iid)] void** p);",
+                 @"HRESULT F([out, unique, iid_is(iid)][annotation(""_COM_Outptr_opt_"")] void** p);"),
+                (@"HRESULT F([out, retval] int* p, [in] int n);",
+                 @"HRESULT F([out, retval][annotation(""_Out_"")] int* p, [in][annotation(""_In_"")] int n);"),
+                (@"HRESULT F([out, retval, iid_is(iid)] void** p);",
+                 @"HRESULT F([out, retval, iid_is(iid)][annotation(""_COM_Outptr_"")] void** p);"),
+                (@"HRESULT F([out, retval, unique, iid_is(iid)] void** p);",
+                 @"HRESULT F([out, retval, unique, iid_is(iid)][annotation(""_COM_Outptr_opt_"")] void** p);"),
+                (@"HRESULT F([out, retval, unique, size_is(capacity), length_is(*written)] byte* p);",
+                 @"HRESULT F([out, retval, unique, size_is(capacity), length_is(*written)][annotation(""_Out_writes_to_opt_(capacity,*written)"")] byte* p);"),
+                (@"HRESULT F([in, unique, annotation(""_In_"")] int* p, [out] int* q);",
+                 @"HRESULT F([in, unique, annotation(""_In_"")] int* p, [out][annotation(""_Out_"")] int* q);"),
+                (@"HRESULT F([annotation(""_In_"")][annotation(""_Out_"")][in, out] int* p);",
+                 @"HRESULT F([annotation(""_In_"")][annotation(""_Out_"")][in, out] int* p);"),
+                (@"HRESULT F([out, retval, annotation(""_Out_"")] int* p); // retval must remain native",
+                 @"HRESULT F([out, retval, annotation(""_Out_"")] int* p); // retval must remain native"),
+                ("HRESULT F([in]\n[annotation(\"_In_opt_\")] int* p, [out] int* q);",
+                 "HRESULT F([in]\n[annotation(\"_In_opt_\")] int* p, [out][annotation(\"_Out_\")] int* q);"),
+                ("HRESULT F([in,\n out, unique] int* p);",
+                 "HRESULT F([in,\n out, unique][annotation(\"_Inout_opt_\")] int* p);"),
+                ("HRESULT F([in]\n/* [out] */[annotation(\"_In_opt_\")] int* p);",
+                 "HRESULT F([in]\n/* [out] */[annotation(\"_In_opt_\")] int* p);"),
+                ("HRESULT F([out,\n annotation(\"_Out_opt_\")] int* p, [in] int n);",
+                 "HRESULT F([out,\n annotation(\"_Out_opt_\")] int* p, [in][annotation(\"_In_\")] int n);"),
+            };
+            string command = "";
+            for (int i = 0; i < cases.Length; i++)
+            {
+                string input = fixture.Header($"case{i}.idl", Encoding.UTF8.GetBytes(cases[i].Input));
+                string output = Path.Combine(fixture.Path, $"case{i}.converted.idl");
+                string repeated = Path.Combine(fixture.Path, $"case{i}.repeated.idl");
+                command += $"& {Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1"))} {Quote(input)} {Quote(output)}; " +
+                    $"& {Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1"))} {Quote(output)} {Quote(repeated)}; ";
+            }
+            var result = fixture.Run(command);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            for (int i = 0; i < cases.Length; i++)
+            {
+                string output = Path.Combine(fixture.Path, $"case{i}.converted.idl");
+                Assert.AreEqual(cases[i].Expected.Replace("\n", Environment.NewLine) + Environment.NewLine,
+                    File.ReadAllText(output), $"Mixed MIDL case {i}");
+                CollectionAssert.AreEqual(File.ReadAllBytes(output),
+                    File.ReadAllBytes(Path.Combine(fixture.Path, $"case{i}.repeated.idl")), $"Idempotence case {i}");
+            }
+        }
+
+        [TestMethod]
+        public void MixedMidl_RealRegbagPreservesInputsAndComOutputThroughMidlAndEveryFinalTarget()
+        {
+            using var fixture = new Fixture();
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            byte[] original = File.ReadAllBytes(Path.Combine(include, "um", "regbag.idl"));
+            CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(
+                "RecompiledIdlHeaders/um/regbag.idl"), original);
+            string source = fixture.Header("regbag.idl", original);
+            string converted = Path.Combine(fixture.Path, "converted");
+            Directory.CreateDirectory(converted);
+            var pending = new Queue<string>(new[] { "regbag.idl" });
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            string command = "";
+            while (pending.Count > 0)
+            {
+                string name = pending.Dequeue();
+                if (!seen.Add(name)) continue;
+                string input = name == "regbag.idl" ? source :
+                    new[] { "um", "shared", "winrt" }.Select(area => Path.Combine(include, area, name)).Single(File.Exists);
+                foreach (Match import in Regex.Matches(File.ReadAllText(input),
+                    @"(?im)^\s*(?:import\s+|#include\s*)[""<]([^"">]+\.idl)["">]"))
+                    pending.Enqueue(import.Groups[1].Value);
+                command += $"& {Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1"))} {Quote(input)} {Quote(Path.Combine(converted, name))}; ";
+            }
+            string header = Path.Combine(fixture.Headers, "um", "regbag.h");
+            string setup = ". " + Quote(Script("CommonUtils.ps1")) +
+                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); ";
+            string midl = "& " +
+                Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                " " + Quote(Path.Combine(converted, "regbag.idl")) + " /out " + Quote(converted) +
+                " /header " + Quote(header) +
+                " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
+                " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
+                " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
+                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
+                " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
+                " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
+                "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
+            string mixed = Encoding.Latin1.GetString(original).Replace("[out] LPVOID *ppBag",
+                "[out, annotation(\"_COM_Outptr_\")] LPVOID *ppBag", StringComparison.Ordinal);
+            Assert.AreNotEqual(Encoding.Latin1.GetString(original), mixed);
+            Assert.IsFalse(mixed.Contains("annotation(\"_In_\")", StringComparison.Ordinal),
+                "The pilot must not use the four explicit input workarounds.");
+            string mixedSource = Path.Combine(fixture.Path, "mixed.idl");
+            string originalHeader = Path.Combine(fixture.Path, "original.h");
+            File.WriteAllBytes(mixedSource, Encoding.Latin1.GetBytes(mixed));
+            var result = fixture.Run(setup + command + midl +
+                $"Copy-Item -LiteralPath {Quote(header)} -Destination {Quote(originalHeader)}; " +
+                $"Copy-Item -LiteralPath {Quote(mixedSource)} -Destination {Quote(source)} -Force; " +
+                $"& {Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1"))} {Quote(source)} " +
+                $"{Quote(Path.Combine(converted, "regbag.idl"))}; " + midl);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string before = Encoding.Latin1.GetString(File.ReadAllBytes(originalHeader));
+            string outputParameter = @"_Out_(?<suffix>\s+LPVOID\s*\*ppBag)";
+            Assert.AreEqual(2, Regex.Matches(before, outputParameter).Count, "C++ method and C vtable slot.");
+            CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(Regex.Replace(before, outputParameter, "_COM_Outptr_${suffix}")),
+                File.ReadAllBytes(header), "Every regenerated header byte except the two output SAL tokens.");
+            string after = Encoding.Latin1.GetString(File.ReadAllBytes(header));
+            const string prefix = @"
+#define STDMETHODCALLTYPE __stdcall
+#define MIDL_INTERFACE(iid) struct __declspec(uuid(iid))
+typedef long HRESULT;
+typedef unsigned long DWORD;
+typedef void* HKEY;
+typedef const wchar_t* LPCOLESTR;
+typedef void* LPVOID;
+struct GUID { unsigned long a; unsigned short b, c; unsigned char d[8]; };
+typedef const GUID& REFIID;
+struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outptr_ void** p) = 0; };
+";
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+            {
+                using var emission = new LastErrorHeaderTests.Fixture();
+                var legacy = new Dictionary<string, string> { ["ICreatePropBagOnRegKey::Create::ppBag"] = "[ComOutPtr]" };
+                result = emission.Scrape(prefix + Definition(before), target, sal: true);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                byte[] expected = File.ReadAllBytes(emission.Emit(legacy));
+                result = emission.Scrape(prefix + Definition(after), target, sal: true);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                string winmd = emission.Emit();
+                CollectionAssert.AreEqual(expected, File.ReadAllBytes(winmd), target);
+                Console.WriteLine("RAW_OUTPUT regbag." + target + ".legacy.winmd " + Convert.ToBase64String(expected));
+                Console.WriteLine("RAW_OUTPUT regbag." + target + ".header.winmd " + Convert.ToBase64String(File.ReadAllBytes(winmd)));
+                using (var pe = new PEReader(File.OpenRead(winmd)))
+                {
+                    var reader = pe.GetMetadataReader();
+                    var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(method => reader.GetString(method.Name) == "Create");
+                    var parameters = method.GetParameters().Select(reader.GetParameter)
+                        .Where(parameter => parameter.SequenceNumber != 0).ToArray();
+                    Assert.AreEqual(6, parameters.Length);
+                    CollectionAssert.AreEqual(new[] { "hkey", "subkey", "ulOptions", "samDesired", "iid", "ppBag" },
+                        parameters.Select(parameter => reader.GetString(parameter.Name)).ToArray());
+                    Assert.IsTrue(parameters.Take(4).All(parameter => parameter.Attributes == ParameterAttributes.In));
+                    Assert.AreEqual(ParameterAttributes.Out, parameters[5].Attributes);
+                    Assert.AreEqual(MethodImplAttributes.IL, method.ImplAttributes & MethodImplAttributes.PreserveSig);
+                    ParameterHeaderTests.AssertAttribute(reader, parameters[5], "ComOutPtrAttribute");
+                    var attribute = reader.GetCustomAttribute(parameters[5].GetCustomAttributes().Single());
+                    CollectionAssert.AreEqual(new byte[] { 1, 0, 0, 0 }, reader.GetBlobBytes(attribute.Value));
+                    CollectionAssert.AreEqual(new byte[] { 0x0f, 0x0f, 0x01 },
+                        reader.GetBlobBytes(method.Signature).TakeLast(3).ToArray());
+                }
+                CollectionAssert.AreEqual(expected, File.ReadAllBytes(emission.Emit(legacy)), "Matching redundant legacy: " + target);
+            }
+
+            static string Definition(string text)
+            {
+                Match definition = Regex.Match(text,
+                    @"MIDL_INTERFACE\(""[^""]+""\)\s+ICreatePropBagOnRegKey\s*:\s*public IUnknown\s*\{[\s\S]+?\n\s*\};");
+                Assert.IsTrue(definition.Success);
+                return definition.Value;
+            }
+        }
+
+        [TestMethod]
+        public void MixedMidl_StockSdkCompilesOptionalCountsAndNativeRetvalWithoutPrivateSal()
+        {
+            using var fixture = new Fixture();
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            string nativeSource = "import \"unknwn.idl\";\n" +
+                "[object, uuid(64abea93-aac7-4f3b-a257-976deba89f04), pointer_default(unique)]\n" +
+                "interface IProbe : IUnknown {\n" +
+                "HRESULT Counted([in, out, unique, size_is(capacity), length_is(*written)] byte* buffer, " +
+                "[in] unsigned long capacity, [in, out] unsigned long* written);\n" +
+                "HRESULT Value([out, retval] long* result);\n" +
+                "HRESULT Object([in] REFIID iid, [out, retval, iid_is(iid)] void** result);\n" +
+                "[local] HRESULT LocalValue([out, retval] long* result);\n" +
+                "};\n";
+            string input = fixture.Header("probe.idl", Encoding.UTF8.GetBytes(nativeSource));
+            string converted = Path.Combine(fixture.Path, "converted.idl");
+            string resultHeader = Path.Combine(fixture.Headers, "um", "probe.h");
+            string regbag = File.ReadAllText(Path.Combine(include, "um", "regbag.idl"));
+            string mixedRegbag = regbag.Replace("[in] LPCOLESTR subkey", "[in, unique] LPCOLESTR subkey", StringComparison.Ordinal)
+                .Replace("[out] LPVOID *ppBag", "[out, annotation(\"_COM_Outptr_\")] LPVOID *ppBag", StringComparison.Ordinal);
+            Assert.AreNotEqual(regbag, mixedRegbag);
+            string regbagInput = fixture.Header("regbag.idl", Encoding.UTF8.GetBytes(mixedRegbag));
+            string regbagConverted = Path.Combine(fixture.Path, "regbag.converted.idl");
+            string regbagHeader = Path.Combine(fixture.Headers, "um", "regbag.h");
+            string command = $"& {Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1"))} {Quote(input)} {Quote(converted)}; " +
+                ". " + Quote(Script("CommonUtils.ps1")) +
+                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x64); ";
+            foreach (string mode in new[] { "without-local", "native", "converted" })
+            {
+                if (mode == "converted")
+                    command += "Copy-Item -LiteralPath " + Quote(converted) + " -Destination " + Quote(input) + " -Force; ";
+                command += "& " + Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                    " " + Quote(input) + " /out " + Quote(fixture.Path) + " /header " + Quote(resultHeader) +
+                    " /proxy " + Quote(Path.Combine(fixture.Path, "probe_p.c")) +
+                    " /iid " + Quote(Path.Combine(fixture.Path, "probe_i.c")) +
+                    " /no_stamp /nologo /no_settings_comment /sal " + (mode == "without-local" ? "" : "/sal_local ") +
+                    "/amd64 /target NT100 /Zp8" +
+                    " /I " + Quote(Path.Combine(include, "um")) + " /I " + Quote(Path.Combine(include, "shared")) +
+                    "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; " +
+                    "Copy-Item -LiteralPath " + Quote(resultHeader) + " -Destination " +
+                    Quote(Path.Combine(fixture.Path, mode + ".h")) + "; " +
+                    "Copy-Item -LiteralPath " + Quote(Path.Combine(fixture.Path, "probe_p.c")) + " -Destination " +
+                    Quote(Path.Combine(fixture.Path, mode + ".p.c")) + "; ";
+            }
+            command += $"& {Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1"))} {Quote(regbagInput)} {Quote(regbagConverted)}; " +
+                "& " + Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                " " + Quote(regbagConverted) + " /out " + Quote(fixture.Path) + " /header " + Quote(regbagHeader) +
+                " /no_stamp /nologo /no_settings_comment /sal /sal_local /amd64 /target NT100 /Zp8" +
+                " /I " + Quote(Path.Combine(include, "um")) + " /I " + Quote(Path.Combine(include, "shared")) +
+                "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
+            var result = fixture.Run(command);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("MIDL NATIVE/CONVERTED PROBE OUTPUT:\n" + result.Output);
+            string transformed = File.ReadAllText(converted);
+            StringAssert.Contains(transformed, "[in, out, unique, size_is(capacity), length_is(*written)]" +
+                "[annotation(\"_Inout_updates_to_opt_(capacity,*written)\")]");
+            StringAssert.Contains(transformed, "[out, retval][annotation(\"_Out_\")] long* result");
+            StringAssert.Contains(transformed, "[out, retval, iid_is(iid)][annotation(\"_COM_Outptr_\")] void** result");
+            Assert.IsFalse(transformed.Contains("_Out_retval_", StringComparison.Ordinal));
+            Assert.IsFalse(transformed.Contains("_COM_Outptr_retval_", StringComparison.Ordinal));
+            string nativeHeader = File.ReadAllText(Path.Combine(fixture.Path, "native.h"));
+            string changedHeader = File.ReadAllText(resultHeader);
+            string withoutLocalHeader = File.ReadAllText(Path.Combine(fixture.Path, "without-local.h"));
+            StringAssert.Contains(nativeHeader, "__RPC__inout_ecount_part_opt(capacity, *written)");
+            StringAssert.Contains(changedHeader, "_Inout_updates_to_opt_(capacity,*written)");
+            Assert.AreEqual(2, Regex.Matches(nativeHeader,
+                @"__RPC__inout_ecount_part_opt\(capacity, \*written\)\s+byte \*buffer").Count, "C++ and C-vtable count/optionality.");
+            Assert.AreEqual(2, Regex.Matches(changedHeader,
+                @"_Inout_updates_to_opt_\(capacity,\*written\)\s+byte \*buffer").Count, "C++ and C-vtable count/optionality.");
+            const string localValuePattern = @"virtual\s+(?:/\*[^*]*\*/\s+)?HRESULT STDMETHODCALLTYPE LocalValue\([\s\S]+?=\s*0;";
+            Assert.IsFalse(Regex.Match(withoutLocalHeader, localValuePattern)
+                .Value.Contains("__RPC__out", StringComparison.Ordinal));
+            StringAssert.Contains(Regex.Match(nativeHeader, localValuePattern).Value, "__RPC__out");
+            foreach (string header in new[] { nativeHeader, changedHeader })
+            {
+                Assert.AreEqual(6, Regex.Matches(header, @"\[retval\]\[out\]").Count, "All three retval methods in C++ and C vtables.");
+            }
+            Assert.AreEqual(2, Regex.Matches(changedHeader, @"_COM_Outptr_\s+void \*\*result").Count,
+                "Standard COM output SAL must survive in C++ and C vtables alongside native retval comments.");
+            CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(fixture.Path, "native.p.c")),
+                File.ReadAllBytes(Path.Combine(fixture.Path, "converted.p.c")), "Complete same-path RPC proxy bytes.");
+            Console.WriteLine("NATIVE IDL:\n" + nativeSource + "\nCONVERTED IDL:\n" + transformed +
+                "\nWITHOUT SAL_LOCAL HEADER:\n" + withoutLocalHeader +
+                "\nNATIVE HEADER:\n" + nativeHeader + "\nCONVERTED HEADER:\n" + changedHeader +
+                "\nNATIVE RPC PROXY:\n" + File.ReadAllText(Path.Combine(fixture.Path, "native.p.c")) +
+                "\nCONVERTED RPC PROXY:\n" + File.ReadAllText(Path.Combine(fixture.Path, "converted.p.c")) +
+                "\nSELECTED SDK MIXED REGBAG IDL:\n" + mixedRegbag +
+                "\nSELECTED SDK CONVERTED REGBAG IDL:\n" + File.ReadAllText(regbagConverted) +
+                "\nSELECTED SDK REGBAG HEADER:\n" + File.ReadAllText(regbagHeader));
+            StringAssert.Contains(File.ReadAllText(regbagConverted), "[in, unique][annotation(\"_In_opt_\")] LPCOLESTR subkey");
+            Assert.AreEqual(2, Regex.Matches(File.ReadAllText(regbagHeader), @"_In_opt_\s+LPCOLESTR subkey").Count);
+            Console.WriteLine("RAW_OUTPUT original.idl " + Convert.ToBase64String(Encoding.UTF8.GetBytes(nativeSource)));
+            foreach (string file in new[] { converted, Path.Combine(fixture.Path, "without-local.h"),
+                Path.Combine(fixture.Path, "native.h"), Path.Combine(fixture.Path, "converted.h"),
+                Path.Combine(fixture.Path, "native.p.c"), Path.Combine(fixture.Path, "converted.p.c"),
+                regbagInput, regbagConverted, regbagHeader })
+                Console.WriteLine("RAW_OUTPUT " + Path.GetFileName(file) + " " + Convert.ToBase64String(File.ReadAllBytes(file)));
+
+            string source = Path.Combine(fixture.Path, "native.c");
+            File.WriteAllText(source, "#include <windows.h>\n#include \"probe.h\"\n#include \"regbag.h\"\n" +
+                "#ifdef _Out_retval_\n#error Private retval SAL must not be required\n#endif\n" +
+                "#ifdef _COM_Outptr_retval_\n#error Private COM retval SAL must not be required\n#endif\n");
+            command = ". " + Quote(Script("CommonUtils.ps1")) + "; ";
+            foreach (string arch in new[] { "x86", "x64", "arm64" })
+            {
+                command += "$vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
+                    "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; ";
+                foreach (string mode in new[] { "native", "converted" })
+                    command += "Copy-Item -LiteralPath " + Quote(Path.Combine(fixture.Path, mode + ".h")) +
+                        " -Destination " + Quote(resultHeader) + " -Force; foreach ($language in '/TC', '/TP') { " +
+                        "& $compiler /nologo /Zs $language " + Quote(source) + " " + Quote("/I" + Path.GetDirectoryName(resultHeader)) +
+                        " \"/I$vcInclude\" " + Quote("/I" + Path.Combine(include, "um")) +
+                        " " + Quote("/I" + Path.Combine(include, "shared")) +
+                        " " + Quote("/I" + Path.Combine(include, "ucrt")) +
+                        "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; }; ";
+            }
+            result = fixture.Run(command);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("STOCK MSVC OUTPUT:\n" + result.Output);
+            Console.WriteLine("Stock MSVC: original/converted headers compile in C/C++ on x86/x64/ARM64 (12 syntax checks).");
+            string invalid = Path.Combine(fixture.Path, "nonstock.c");
+            File.WriteAllText(invalid, "#include <windows.h>\nHRESULT Bad(_Out_retval_ long* result);\n");
+            result = fixture.Run(". " + Quote(Script("CommonUtils.ps1")) +
+                "; $vc = Get-VcDirPath -Arch x64 -HostArch x64; & (Join-Path $vc 'cl.exe') /nologo /Zs /TC " +
+                Quote(invalid) + " \"/I$(Join-Path $vc '..\\..\\..\\include')\" " +
+                Quote("/I" + Path.Combine(include, "um")) + " " + Quote("/I" + Path.Combine(include, "shared")) +
+                " " + Quote("/I" + Path.Combine(include, "ucrt")) + "; exit $LASTEXITCODE");
+            Assert.AreNotEqual(0, result.ExitCode, "The old private SAL spelling must not accidentally resolve in stock SDK headers.");
+            StringAssert.Contains(result.Output, "syntax error");
+            Console.WriteLine("EXPECTED STOCK MSVC REJECTION:\n" + result.Output);
+
+            using var emission = new LastErrorHeaderTests.Fixture();
+            const string prefix = "#define STDMETHODCALLTYPE __stdcall\n#define MIDL_INTERFACE(iid) struct __declspec(uuid(iid))\n" +
+                "#include <rpcsal.h>\ntypedef long HRESULT;\ntypedef unsigned char byte;\n" +
+                "struct GUID { unsigned long a; unsigned short b, c; unsigned char d[8]; };\n" +
+                "typedef const GUID& REFIID;\nstruct IUnknown {};\n";
+            string value = Regex.Match(changedHeader, @"virtual HRESULT STDMETHODCALLTYPE Value\([\s\S]+?=\s*0;").Value;
+            string counted = Regex.Match(changedHeader, @"virtual HRESULT STDMETHODCALLTYPE Counted\([\s\S]+?=\s*0;").Value;
+            string comOutput = Regex.Match(changedHeader, @"virtual HRESULT STDMETHODCALLTYPE Object\([\s\S]+?=\s*0;").Value;
+            string nativeComOutput = Regex.Match(nativeHeader, @"virtual HRESULT STDMETHODCALLTYPE Object\([\s\S]+?=\s*0;").Value;
+            Assert.IsTrue(value.Length > 0);
+            Assert.IsTrue(counted.Length > 0);
+            Assert.IsTrue(comOutput.Length > 0);
+            Assert.IsTrue(nativeComOutput.Length > 0);
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+            {
+                string wrapper = prefix + "MIDL_INTERFACE(\"64abea93-aac7-4f3b-a257-976deba89f04\") IProbe : IUnknown { ";
+                string settings = "--include-directory\n" + Path.Combine(include, "shared") + "\n";
+                result = emission.Scrape(wrapper + nativeComOutput + " };", target, sal: true, extraSettings: settings);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                byte[] nativeCom = File.ReadAllBytes(emission.Emit(new Dictionary<string, string>
+                    { ["IProbe::Object::result"] = "[ComOutPtr]" }));
+                result = emission.Scrape(wrapper + comOutput + " };", target, sal: true, extraSettings: settings);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                byte[] convertedCom = File.ReadAllBytes(emission.Emit());
+                CollectionAssert.AreEqual(nativeCom, convertedCom,
+                    "Native retval/iid_is plus legacy COM versus standard COM SAL with native RetVal: " + target);
+                Console.WriteLine("RAW_OUTPUT com-retval." + target + ".native-legacy-com.winmd " + Convert.ToBase64String(nativeCom));
+                Console.WriteLine("RAW_OUTPUT com-retval." + target + ".standard-com.winmd " + Convert.ToBase64String(convertedCom));
+                result = emission.Scrape(prefix + "MIDL_INTERFACE(\"64abea93-aac7-4f3b-a257-976deba89f04\") IProbe : IUnknown { " +
+                    counted + value + comOutput + " };", target, sal: true,
+                    extraSettings: settings);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                string path = emission.Emit();
+                byte[] nativeRetval = File.ReadAllBytes(path);
+                Console.WriteLine("RAW_OUTPUT retval." + target + ".native-reader.winmd " + Convert.ToBase64String(nativeRetval));
+                using (var pe = new PEReader(File.OpenRead(path)))
+                {
+                    var reader = pe.GetMetadataReader();
+                    var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(method => reader.GetString(method.Name) == "Value");
+                    var parameter = method.GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == "result");
+                    Assert.AreEqual(ParameterAttributes.Out, parameter.Attributes);
+                    ParameterHeaderTests.AssertAttribute(reader, parameter, "RetValAttribute");
+                    var retval = reader.GetCustomAttribute(parameter.GetCustomAttributes().Single());
+                    CollectionAssert.AreEqual(new byte[] { 1, 0, 0, 0 }, reader.GetBlobBytes(retval.Value));
+                    method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(method => reader.GetString(method.Name) == "Counted");
+                    parameter = method.GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == "buffer");
+                    Assert.AreEqual(ParameterAttributes.In | ParameterAttributes.Out | ParameterAttributes.Optional, parameter.Attributes);
+                    method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(method => reader.GetString(method.Name) == "Object");
+                    parameter = method.GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == "result");
+                    Assert.AreEqual(ParameterAttributes.Out, parameter.Attributes);
+                    ParameterHeaderTests.AssertAttribute(reader, parameter, "ComOutPtrAttribute");
+                    ParameterHeaderTests.AssertAttribute(reader, parameter, "RetValAttribute");
+                    CollectionAssert.AreEqual(new byte[] { 0x0f, 0x0f, 0x01 },
+                        reader.GetBlobBytes(method.Signature).TakeLast(3).ToArray());
+                }
+                byte[] withRetval = File.ReadAllBytes(emission.Emit(new Dictionary<string, string>
+                    { ["IProbe::Value::result"] = "[RetVal]" }));
+                Console.WriteLine("RAW_OUTPUT retval." + target + ".legacy-retained.winmd " + Convert.ToBase64String(withRetval));
+                CollectionAssert.AreEqual(nativeRetval, withRetval,
+                    "Matching legacy RetVal must be redundant with the authoritative native marker.");
+            }
+            Console.WriteLine("Native [retval] comments reach final RetValAttribute on all three targets.");
+        }
+
+        [TestMethod]
+        public void DxgiRetval_ReplaysAuthoritativeOwnerThroughProductionMidl()
+        {
+            using var fixture = new Fixture();
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            string original = Path.Combine(include, "shared", "dxgi.idl");
+            fixture.Header("dxgi.idl", File.ReadAllBytes(original), "shared");
+            fixture.Apply("pre-midl", "pre-midl/dxgi.idl.patch", true,
+                patchRoot: Path.Combine(Root(), "generation", "WinSDK", "patches"), midlInputRoot: include);
+            string input = Path.Combine(fixture.Headers, "shared", "dxgi.idl");
+            CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(MidlHeaderTests.SharedHeaders(), "dxgi.idl")),
+                File.ReadAllBytes(input));
+            string converted = Path.Combine(fixture.Path, "converted");
+            Directory.CreateDirectory(converted);
+            var pending = new Queue<string>(new[] { "dxgi.idl" });
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            string command = "";
+            while (pending.Count > 0)
+            {
+                string name = pending.Dequeue();
+                if (!seen.Add(name)) continue;
+                string source = name == "dxgi.idl" ? input : new[] { "um", "shared", "winrt" }
+                    .Select(area => Path.Combine(include, area, name)).Single(File.Exists);
+                foreach (Match import in Regex.Matches(File.ReadAllText(source),
+                    @"(?im)^\s*(?:import\s+|#include\s*)[""<]([^"">]+\.idl)["">]"))
+                    pending.Enqueue(import.Groups[1].Value);
+                command += $"& {Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1"))} {Quote(source)} " +
+                    $"{Quote(Path.Combine(converted, name))}; ";
+            }
+            string header = Path.Combine(fixture.Headers, "shared", "dxgi.h");
+            command += ". " + Quote(Script("CommonUtils.ps1")) +
+                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x86); & " +
+                Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                " " + Quote(Path.Combine(converted, "dxgi.idl")) + " /out " + Quote(converted) + " /header " + Quote(header) +
+                " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
+                " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
+                " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
+                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
+                " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
+                " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
+                " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) + "; exit $LASTEXITCODE";
+            var result = fixture.Run(command);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT dxgi.regenerated.h " + Convert.ToBase64String(File.ReadAllBytes(header)));
+            CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(MidlHeaderTests.SharedHeaders(), "dxgi.h")), File.ReadAllBytes(header));
+            Assert.AreEqual(3, Regex.Matches(File.ReadAllText(header),
+                @"/\* \[annotation\]\[retval\]\[out\] \*/\s+_Out_\s+DXGI_ADAPTER_DESC \*pDesc").Count);
+            Assert.IsFalse(File.ReadAllText(header).Contains("_Win32_Retval_", StringComparison.Ordinal));
+        }
+
+        [TestMethod]
+        public void NamedMidlCarriers_PreserveNativeRpcSalAndAbiAndReachExactFinalTargets()
+        {
+            using var fixture = new Fixture();
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            string helpers = fixture.Headers;
+            File.Copy(Path.Combine(MidlHeaderTests.SharedHeaders(), "win32metadata_annotations.h"),
+                Path.Combine(helpers, "win32metadata_annotations.h"));
+            const string idl = @"
+                #include <win32metadata_annotations.h>
+                import ""unknwn.idl"";
+                cpp_quote(""#include <win32metadata_annotations.h>"")
+                typedef enum PROBE_OPTION { First = 1 } PROBE_OPTION;
+                typedef struct PROBE_RECORD { unsigned short field; unsigned short neighbor; } PROBE_RECORD;
+                [object, uuid(64abea93-aac7-4f3b-a257-976deba89f04), pointer_default(unique)]
+                interface IProbe : IUnknown {
+                    HRESULT Counted([in, out, unique, size_is(capacity), length_is(*written)] byte* buffer,
+                        [in] unsigned long capacity, [in, out] unsigned long* written);
+                    HRESULT Value([out, retval] long* result);
+                    HRESULT Object([in] REFIID iid, [out, retval, iid_is(iid)] void** result);
+                    [local] HRESULT LocalValue([out, retval] long* result);
+                    HRESULT ArrayValue([in] unsigned long capacity, [out] unsigned long* written,
+                        [out, retval, size_is(capacity), length_is(*written)] byte* result);
+                };
+                ";
+            const string carriers = @"
+
+                _Win32_AnnotateMethod_(IProbe::LocalValue, _Win32_PreserveResult_)
+                _Win32_AnnotateParameter_(IProbe::Counted, buffer, _Win32_Retained_)
+                _Win32_AnnotateParameter_(IProbe::Counted, buffer, _Win32_ContainsInteriorPointers_)
+                _Win32_AnnotateField_(PROBE_RECORD::field, _Win32_AssociatedEnum_(PROBE_OPTION))
+                ";
+            string input = fixture.Header("probe.idl", Encoding.UTF8.GetBytes(idl));
+            string header = Path.Combine(fixture.Headers, "um", "probe.h");
+            string command = ". " + Quote(Script("CommonUtils.ps1")) +
+                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x64); ";
+            foreach (string mode in new[] { "baseline", "carriers" })
+            {
+                string source = Path.Combine(fixture.Path, mode + ".idl");
+                File.WriteAllText(source, idl + (mode == "carriers" ? carriers : ""));
+                command += "Copy-Item -LiteralPath " + Quote(source) + " -Destination " + Quote(input) + " -Force; " +
+                    "& " + Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                    " " + Quote(input) + " /out " + Quote(fixture.Path) + " /header " + Quote(header) +
+                    " /proxy " + Quote(Path.Combine(fixture.Path, "probe_p.c")) +
+                    " /iid " + Quote(Path.Combine(fixture.Path, "probe_i.c")) +
+                    " /no_stamp /nologo /no_settings_comment /DMIDL_PASS=1 /sal /sal_local /amd64 /target NT100 /Zp8" +
+                    " /I " + Quote(helpers) + " /I " + Quote(Path.Combine(include, "um")) +
+                    " /I " + Quote(Path.Combine(include, "shared")) +
+                    "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; " +
+                    "Copy-Item -LiteralPath " + Quote(header) + " -Destination " + Quote(Path.Combine(fixture.Path, mode + ".h")) + "; " +
+                    "Copy-Item -LiteralPath " + Quote(Path.Combine(fixture.Path, "probe_p.c")) +
+                    " -Destination " + Quote(Path.Combine(fixture.Path, mode + ".p.c")) + "; ";
+            }
+            var result = fixture.Run(command);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string baseline = File.ReadAllText(Path.Combine(fixture.Path, "baseline.h"));
+            string changed = File.ReadAllText(header);
+            string methodPattern = @"MIDL_INTERFACE\(""[^""]+""\)\s+IProbe\s*:\s*public IUnknown\s*\{[\s\S]+?\n\s*\};";
+            string vtablePattern = @"typedef struct IProbeVtbl\s*\{[\s\S]+?\}\s*IProbeVtbl;";
+            foreach (string pattern in new[] { methodPattern, vtablePattern,
+                @"typedef\s+enum PROBE_OPTION[\s\S]+?PROBE_OPTION;", @"typedef struct PROBE_RECORD[\s\S]+?PROBE_RECORD;" })
+            {
+                Assert.IsTrue(Regex.IsMatch(baseline, pattern), pattern);
+                Assert.AreEqual(Regex.Match(baseline, pattern).Value, Regex.Match(changed, pattern).Value,
+                    "Carriers must preserve every generated native declaration byte, including local SAL and both count expressions.");
+            }
+            StringAssert.Contains(changed, "__RPC__inout_ecount_part_opt(capacity, *written)");
+            StringAssert.Contains(changed, "__RPC__out_ecount_part(capacity, *written)");
+            StringAssert.Contains(changed, "_WIN32META_ANNOTATE_METHOD_(IProbe::LocalValue");
+            StringAssert.Contains(changed, "_WIN32META_ANNOTATE_PARAMETER_(IProbe::Counted");
+            StringAssert.Contains(changed, "_WIN32META_ANNOTATE_FIELD_(PROBE_RECORD::field");
+            string Tokens(string path) => Regex.Replace(Regex.Replace(File.ReadAllText(path),
+                @"/\*[\s\S]*?\*/|//[^\r\n]*", ""), @"\s+", "");
+            Assert.AreEqual(Tokens(Path.Combine(fixture.Path, "baseline.p.c")),
+                Tokens(Path.Combine(fixture.Path, "carriers.p.c")), "Complete noncomment RPC proxy tokens; not runtime RPC proof.");
+            foreach (string file in new[] { "baseline.idl", "carriers.idl", "baseline.h", "carriers.h", "baseline.p.c", "carriers.p.c" })
+                Console.WriteLine("RAW_OUTPUT named-carriers." + file + " " +
+                    Convert.ToBase64String(File.ReadAllBytes(Path.Combine(fixture.Path, file))));
+
+            string native = Path.Combine(fixture.Path, "native.c");
+            string obj = Path.Combine(fixture.Path, "native.obj");
+            File.WriteAllText(native, @"
+                #include <windows.h>
+                #include ""probe.h""
+                typedef char RecordLayout[(sizeof(PROBE_RECORD) == 4) ? 1 : -1];
+                #if !defined(__cplusplus) || defined(CINTERFACE)
+                typedef char SlotLayout[(sizeof(IProbeVtbl) == 8 * sizeof(void*)) ? 1 : -1];
+                #endif
+                #if defined(__cplusplus) && !defined(CINTERFACE)
+                HRESULT NativeCall(IProbe* self, long* result) { return self->Value(result); }
+                #else
+                HRESULT NativeCall(IProbe* self, long* result) { return self->lpVtbl->Value(self, result); }
+                #endif
+                ");
+            foreach (string arch in new[] { "x86", "x64", "arm64" })
+            {
+                command = ". " + Quote(Script("CommonUtils.ps1")) + "; " +
+                    "$vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; ";
+                foreach (string language in new[] { "TC", "TP", "CINTERFACE" })
+                    foreach (string mode in new[] { "baseline", "carriers", "metadata" })
+                        command += "Copy-Item -LiteralPath " +
+                            Quote(Path.Combine(fixture.Path, (mode == "baseline" ? "baseline" : "carriers") + ".h")) +
+                            " -Destination " + Quote(header) + " -Force; & (Join-Path $vc 'cl.exe') /nologo /c " +
+                            (language == "CINTERFACE" ? "/TP /DCINTERFACE" : "/" + language) + " " + Quote(native) + " " + Quote("/Fo" + obj) +
+                            " " + Quote("/I" + Path.GetDirectoryName(header)) + " " + Quote("/I" + helpers) +
+                            " \"/I$(Join-Path $vc '..\\..\\..\\include')\" " +
+                            string.Join(" ", new[] { "um", "shared", "ucrt" }.Select(area => Quote("/I" + Path.Combine(include, area)))) +
+                            (mode == "metadata" ? " /DWIN32METADATA" : "") +
+                            "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Copy-Item -LiteralPath " + Quote(obj) +
+                            " -Destination " + Quote(Path.Combine(fixture.Path, arch + language + mode + ".obj")) + "; ";
+                result = fixture.Run(command);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                Console.WriteLine(result.Output);
+            }
+            foreach (string arch in new[] { "x86", "x64", "arm64" })
+                foreach (string language in new[] { "TC", "TP", "CINTERFACE" })
+                {
+                    var objects = new[] { "baseline", "carriers", "metadata" }.Select(mode =>
+                        File.ReadAllBytes(Path.Combine(fixture.Path, arch + language + mode + ".obj"))).ToArray();
+                    foreach (byte[] bytes in objects)
+                    {
+                        Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
+                        Array.Clear(bytes, 4, 4);
+                    }
+                    CollectionAssert.AreEqual(objects[0], objects[1]);
+                    CollectionAssert.AreEqual(objects[1], objects[2]);
+                }
+
+            const string prefix = @"
+                #define STDMETHODCALLTYPE __stdcall
+                #define MIDL_INTERFACE(iid) struct __declspec(uuid(iid))
+                #define DECLSPEC_XFGVIRT(iface, method)
+                #define BEGIN_INTERFACE
+                #define END_INTERFACE
+                #include <rpcsal.h>
+                typedef long HRESULT;
+                typedef unsigned long ULONG;
+                typedef unsigned char byte;
+                typedef struct GUID { unsigned long a; unsigned short b, c; unsigned char d[8]; } GUID;
+                #ifdef __cplusplus
+                typedef const GUID& REFIID;
+                struct IUnknown {};
+                #else
+                typedef const GUID* REFIID;
+                #endif
+                #if !defined(__cplusplus) || defined(CINTERFACE)
+                typedef struct IProbe { void* lpVtbl; } IProbe;
+                #endif
+                ";
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+                foreach (string mode in new[] { "c++", "c", "cinterface" })
+                {
+                    using var emission = new LastErrorHeaderTests.Fixture();
+                    string language = mode == "c" ? "c" : "c++";
+                    bool methodsOnly = mode == "c++";
+                    string declarations = Regex.Match(changed, @"typedef\s+enum PROBE_OPTION[\s\S]+?PROBE_OPTION;").Value + "\n" +
+                        Regex.Match(changed, @"typedef struct PROBE_RECORD[\s\S]+?PROBE_RECORD;").Value + "\n" +
+                        Regex.Match(changed, methodsOnly ? methodPattern : vtablePattern).Value + "\n" +
+                        string.Join("\n", changed.Split('\n').Where(line => line.StartsWith("_WIN32META_ANNOTATE_", StringComparison.Ordinal)));
+                    result = emission.Scrape(prefix + "\n" + declarations, target, sal: true, language: language,
+                        extraSettings: "--include-directory\n" + Path.Combine(include, "shared") + "\n" +
+                            (mode == "cinterface" ? "--additional\n-DCINTERFACE\n" : ""));
+                    Assert.AreEqual(0, result.ExitCode, result.Output);
+                    string output = emission.Emit();
+                    Console.WriteLine("RAW_OUTPUT named-carriers." + target + "." + mode + ".winmd " +
+                        Convert.ToBase64String(File.ReadAllBytes(output)));
+                    using var pe = new PEReader(File.OpenRead(output));
+                    var reader = pe.GetMetadataReader();
+                    var methods = reader.MethodDefinitions.Select(reader.GetMethodDefinition).ToArray();
+                    Assert.AreEqual(4, methods.SelectMany(m => m.GetParameters()).Select(reader.GetParameter)
+                        .Count(p => p.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                            .Any(a => ParameterHeaderTests.AttributeName(reader, a) == "RetValAttribute")));
+                    var array = methodsOnly ? methods.Single(m => reader.GetString(m.Name) == "ArrayValue") :
+                        NativeTypedefHeaderTests.Type(reader, "IProbeVtbl_ArrayValue").GetMethods().Select(reader.GetMethodDefinition)
+                            .Single(m => reader.GetString(m.Name) == "Invoke");
+                    var parameter = array.GetParameters().Select(reader.GetParameter).Single(p => reader.GetString(p.Name) == "result");
+                    ParameterHeaderTests.AssertAttribute(reader, parameter, "RetValAttribute");
+                    MidlHeaderTests.AssertCount(reader, parameter, "NativeArrayInfoAttribute", "CountParamIndex",
+                        methodsOnly ? 0 : 1, shortValue: true);
+                    Assert.AreEqual(ParameterAttributes.Out, parameter.Attributes);
+                    var field = NativeTypedefHeaderTests.Type(reader, "PROBE_RECORD").GetFields().Select(reader.GetFieldDefinition).First();
+                    if (language == "c++")
+                        Assert.AreEqual("AssociatedEnumAttribute", ParameterHeaderTests.AttributeName(reader,
+                            reader.GetCustomAttribute(field.GetCustomAttributes().Single())));
+                    else
+                        Assert.AreEqual(0, field.GetCustomAttributes().Count, "C has no C++ qualified-member carrier transport.");
+                    if (methodsOnly)
+                    {
+                        var local = methods.Single(m => reader.GetString(m.Name) == "LocalValue");
+                        Assert.IsTrue(local.ImplAttributes.HasFlag(MethodImplAttributes.PreserveSig));
+                        var counted = methods.Single(m => reader.GetString(m.Name) == "Counted");
+                        parameter = counted.GetParameters().Select(reader.GetParameter).Single(p => reader.GetString(p.Name) == "buffer");
+                        ParameterHeaderTests.AssertAttribute(reader, parameter, "RetainedAttribute");
+                        ParameterHeaderTests.AssertAttribute(reader, parameter, "ContainsInteriorPointersAttribute");
+                        MidlHeaderTests.AssertCount(reader, parameter, "NativeArrayInfoAttribute", "CountParamIndex", 1, shortValue: true);
+                    }
+                    else
+                    {
+                        var objectCallback = NativeTypedefHeaderTests.Type(reader, "IProbeVtbl_Object").GetMethods()
+                            .Select(reader.GetMethodDefinition).Single(m => reader.GetString(m.Name) == "Invoke");
+                        var iid = objectCallback.GetParameters().Select(reader.GetParameter).Single(p => reader.GetString(p.Name) == "iid");
+                        ParameterHeaderTests.AssertAttribute(reader, iid, "ConstAttribute");
+                        Assert.AreEqual(ParameterAttributes.In, iid.Attributes);
+                    }
+                    Assert.IsFalse(reader.TypeDefinitions.Select(reader.GetTypeDefinition)
+                        .Any(t => reader.GetString(t.Name).Contains("_WIN32META_", StringComparison.Ordinal)));
+                }
+        }
 
         [TestMethod]
         public void EmptySelection_DoesNotRequireOrModifyInputs()
@@ -363,7 +1048,7 @@ namespace ClangSharpSourceToWinmdTests
                 " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                 " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                 " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                 " /I " + Quote(converted) + " /I " + Quote(System.IO.Path.Combine(include, "um")) +
                 " /I " + Quote(System.IO.Path.Combine(include, "shared")) +
                 " /I " + Quote(System.IO.Path.Combine(include, "winrt")) +
@@ -388,11 +1073,7 @@ namespace ClangSharpSourceToWinmdTests
             }
             string expectedHeader = System.IO.Path.Combine(Root(), "generation", "WinSDK",
                 "RecompiledIdlHeaders", "um", owner + ".h");
-            var expectedLines = File.ReadAllLines(expectedHeader);
-            var actualLines = File.ReadAllLines(header);
-            string differences = string.Join("\n", expectedLines.Zip(actualLines, (expected, actual) => (expected, actual))
-                .Where(pair => pair.expected != pair.actual).Take(3).Select(pair => pair.expected + "\nACTUAL: " + pair.actual));
-            CollectionAssert.AreEqual(File.ReadAllBytes(expectedHeader), File.ReadAllBytes(header), differences);
+            AssertRegeneratedHeader(owner + ".h", header);
             foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
                 SupportedOSHeaderTests.AssertMidlAvailability(File.ReadAllText(header), File.ReadAllText(expectedHeader), target);
         }
@@ -633,16 +1314,15 @@ namespace ClangSharpSourceToWinmdTests
                 " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                 " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                 " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                 " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                 " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                 " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) + "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
             }
             var result = fixture.Run(command);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            foreach (string owner in new[] { "propsys.h", "ShObjIdl_core.h", "ShObjIdl.h" })
-                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
-                    "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
+            AssertRegeneratedHeaders(new[] { "propsys.h", "ShObjIdl_core.h", "ShObjIdl.h" }
+                .Select(owner => (owner, Path.Combine(fixture.Headers, "um", owner))));
             foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
             {
                 ShellItemComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
@@ -774,26 +1454,20 @@ namespace ClangSharpSourceToWinmdTests
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                     " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                     " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
                     "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
             var result = fixture.Run(command);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            foreach (string owner in new[] { "Unknwnbase.h", "Unknwn.h", "servprov.h", "urlmon.h", "ocidl.h" })
+            AssertRegeneratedHeaders(new[] { "Unknwnbase.h", "Unknwn.h", "servprov.h", "urlmon.h", "ocidl.h" }
+                .Select(owner => (owner, Path.Combine(fixture.Headers, "um", owner))));
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
             {
-                string expected = Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner);
-                string actual = Path.Combine(fixture.Headers, "um", owner);
-                string differences = string.Join("\n", File.ReadAllLines(expected).Zip(File.ReadAllLines(actual))
-                    .Where(pair => pair.First != pair.Second).Take(3)
-                    .Select(pair => "EXPECTED: " + pair.First + "\nACTUAL: " + pair.Second));
-                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
-                    "RecompiledIdlHeaders", "um", owner)),
-                    File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner + "\n" + differences);
+                ComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
+                UrlMonComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
             }
-            ComOutputHeaderTests.AssertShippedDeclarations("x86_64-pc-windows-msvc", Path.Combine(fixture.Headers, "um"));
-            UrlMonComOutputHeaderTests.AssertShippedDeclarations("x86_64-pc-windows-msvc", Path.Combine(fixture.Headers, "um"));
         }
 
         [TestMethod]
@@ -872,7 +1546,7 @@ namespace ClangSharpSourceToWinmdTests
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) +
                     " /I " + Quote(Path.Combine(midlInputs, "um")) + " /I " + Quote(Path.Combine(midlInputs, "shared")) +
                     " /I " + Quote(Path.Combine(include, "winrt")) + " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
@@ -882,9 +1556,8 @@ namespace ClangSharpSourceToWinmdTests
                 "; (Get-Content $header -Raw).Replace('#include \"d3d10.h\"' + \"`r`n\", '') | Set-Content $header";
             var result = fixture.Run(command);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            foreach (string owner in new[] { "d3d10.h", "d3d10_1.h", "d3d12.h", "Presentation.h" })
-                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
-                    "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
+            AssertRegeneratedHeaders(new[] { "d3d10.h", "d3d10_1.h", "d3d12.h", "Presentation.h" }
+                .Select(owner => (owner, Path.Combine(fixture.Headers, "um", owner))));
             foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
                 DirectXComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
         }
@@ -1056,15 +1729,14 @@ namespace ClangSharpSourceToWinmdTests
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                     " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                     " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) + "; exit $LASTEXITCODE");
                 Assert.AreEqual(0, result.ExitCode, result.Output);
-                string header = Path.ChangeExtension(owner, "h");
-                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
-                    "RecompiledIdlHeaders", "um", header)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", header)), header);
             }
+            AssertRegeneratedHeaders(MediaFoundationComOutputHeaderTests.IdlOwners.Select(owner =>
+                (Path.ChangeExtension(owner, "h"), Path.Combine(fixture.Headers, "um", Path.ChangeExtension(owner, "h")))));
             foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
                 MediaFoundationComOutputHeaderTests.AssertShippedDeclarations(target, Path.Combine(fixture.Headers, "um"));
         }
@@ -1507,19 +2179,64 @@ namespace ClangSharpSourceToWinmdTests
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                     " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                     " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
                     "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
             var result = fixture.Run(command);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            foreach (var owner in AudioComOutputHeaderTests.Owners)
-                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
-                    "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))),
-                    File.ReadAllBytes(Path.Combine(fixture.Headers, owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+            AssertAudioDirectionDifference(Path.Combine(fixture.Headers, "um", "Audioclient.h"));
+            AssertRegeneratedHeaders(AudioComOutputHeaderTests.Owners.Select(owner =>
+                (owner.Path, Path.Combine(fixture.Headers, owner.Path.Replace('/', Path.DirectorySeparatorChar)))));
             foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
                 AudioComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
+        }
+
+        private static void AssertAudioDirectionDifference(string regenerated)
+        {
+            string original = Encoding.Latin1.GetString(ProductionSalLocalHeaderTests.ReadBeforeCutover(
+                "RecompiledIdlHeaders/um/Audioclient.h"));
+            string candidate = File.ReadAllText(regenerated);
+            string prefix = "#define STDMETHODCALLTYPE __stdcall\n#include <rpcsal.h>\n" +
+                "typedef long HRESULT; typedef unsigned int UINT32; typedef int BOOL;\n" +
+                "struct GUID { unsigned long a; unsigned short b, c; unsigned char d[8]; };\n";
+            prefix += Regex.Match(original, @"typedef /\* \[v1_enum\] \*/\s+enum AUDIO_EFFECT_STATE[\s\S]+?AUDIO_EFFECT_STATE;").Value + "\n";
+            prefix += Regex.Match(original, @"typedef struct AUDIO_EFFECT\s*\{[\s\S]+?AUDIO_EFFECT;").Value + "\n";
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+            {
+                byte[]? originalSignature = null;
+                foreach (bool converted in new[] { false, true })
+                {
+                    string declaration = Regex.Match(converted ? candidate : original,
+                        @"virtual HRESULT STDMETHODCALLTYPE GetAudioEffects\s*\([^;]+;").Value;
+                    Assert.AreNotEqual("", declaration);
+                    using var emission = new LastErrorHeaderTests.Fixture();
+                    var result = emission.Scrape(prefix +
+                        "struct __declspec(uuid(\"64abea93-aac7-4f3b-a257-976deba89f04\")) IAudioEffectsManager {\n" +
+                        declaration + "\n};", target, sal: true,
+                        extraSettings: "--include-directory\n" + MidlHeaderTests.SharedHeaders() + "\n");
+                    Assert.AreEqual(0, result.ExitCode, result.Output);
+                    string output = emission.Emit();
+                    Console.WriteLine("RAW_OUTPUT audio-native-direction." + target + "." +
+                        (converted ? "converted" : "tracked") + ".winmd " + Convert.ToBase64String(File.ReadAllBytes(output)));
+                    using var pe = new PEReader(File.OpenRead(output));
+                    var reader = pe.GetMetadataReader();
+                    var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(m => reader.GetString(m.Name) == "GetAudioEffects");
+                    var parameter = method.GetParameters().Select(reader.GetParameter)
+                        .Single(p => reader.GetString(p.Name) == "numEffects");
+                    Assert.AreEqual(converted ? ParameterAttributes.Out : ParameterAttributes.In | ParameterAttributes.Out,
+                        parameter.Attributes, "Existing native [out] changes final In|Out to Out only; this is not unchanged-output migration proof.");
+                    Assert.AreEqual(0, parameter.GetCustomAttributes().Count);
+                    if (converted)
+                    {
+                        Assert.IsNotNull(originalSignature);
+                        CollectionAssert.AreEqual(originalSignature, reader.GetBlobBytes(method.Signature));
+                    }
+                    else originalSignature = reader.GetBlobBytes(method.Signature);
+                }
+            }
         }
 
         [DataTestMethod]
@@ -1669,17 +2386,15 @@ namespace ClangSharpSourceToWinmdTests
                     " /no_warn /DUNICODE /D_UNICODE /DWINVER=0x0A00 /D_APISET_MINWIN_VERSION=0x010F /DNTDDI_VERSION=0x0A00000C" +
                     " /DBUILD_UMS_ENABLED=0 /DBUILD_WOW64_ENABLED=0 /DBUILD_ARM64X_ENABLED=0 /DEXECUTABLE_WRITES_SUPPORT=0" +
                     " /D_USE_DECLSPECS_FOR_SAL=1 /D_CONTROL_FLOW_GUARD_SVCTAB=1 /DMIDL_PASS=1 /D_AMD64_ /D_WIN64 /D_WCHAR_T_DEFINED" +
-                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /amd64 /target NT100 /Zp8" +
+                    " /no_stamp /nologo /no_settings_comment /lcid 1033 /sal /sal_local /amd64 /target NT100 /Zp8" +
                     " /I " + Quote(converted) + " /I " + Quote(Path.Combine(include, "um")) +
                     " /I " + Quote(Path.Combine(include, "shared")) + " /I " + Quote(Path.Combine(include, "winrt")) +
                     " /I " + Quote(Path.Combine(Root(), "scripts", "inc")) +
                     "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; ";
             var result = fixture.Run(command);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            foreach (var owner in ImagingComOutputHeaderTests.Owners)
-                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
-                    "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))),
-                    File.ReadAllBytes(Path.Combine(fixture.Headers, owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+            AssertRegeneratedHeaders(ImagingComOutputHeaderTests.Owners.Select(owner =>
+                (owner.Path, Path.Combine(fixture.Headers, owner.Path.Replace('/', Path.DirectorySeparatorChar)))));
             foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
                 ImagingComOutputHeaderTests.AssertShippedDeclarations(target, fixture.Headers);
         }
@@ -1931,6 +2646,38 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(0, result.ExitCode, result.Output);
         }
 
+        private static void AssertRegeneratedHeader(string owner, string actual)
+            => AssertRegeneratedHeaders(new[] { (owner, actual) });
+
+        private static void AssertRegeneratedHeaders(IEnumerable<(string Owner, string Actual)> headers)
+        {
+            var outputs = headers.Select(header =>
+            {
+                string relative = header.Owner.Contains('/') ? header.Owner.Replace('/', Path.DirectorySeparatorChar) :
+                    Path.Combine("um", header.Owner);
+                return (header.Owner, header.Actual, Expected: File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
+                    "RecompiledIdlHeaders", relative)), Bytes: File.ReadAllBytes(header.Actual));
+            }).ToArray();
+            foreach (var output in outputs.Where(output => !output.Expected.SequenceEqual(output.Bytes)))
+            {
+                Console.WriteLine("RAW_OUTPUT sdk-replay." + Path.GetFileName(output.Owner) + ".expected " + Convert.ToBase64String(output.Expected));
+                Console.WriteLine("RAW_OUTPUT sdk-replay." + Path.GetFileName(output.Owner) + ".actual " + Convert.ToBase64String(output.Bytes));
+                string name = Path.ChangeExtension(Path.GetFileName(output.Actual), "idl");
+                string converted = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(output.Actual)))!, "converted", name);
+                if (File.Exists(converted))
+                {
+                    Console.WriteLine("RAW_OUTPUT sdk-replay." + name + ".converted " + Convert.ToBase64String(File.ReadAllBytes(converted)));
+                    string native = Path.ChangeExtension(output.Actual, "idl");
+                    if (!File.Exists(native))
+                        native = new[] { "um", "shared", "winrt" }.Select(area => Path.Combine(
+                            LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0", area, name)).Single(File.Exists);
+                    Console.WriteLine("RAW_OUTPUT sdk-replay." + name + ".native " + Convert.ToBase64String(File.ReadAllBytes(native)));
+                }
+            }
+            foreach (var output in outputs)
+                CollectionAssert.AreEqual(output.Expected, output.Bytes, output.Owner);
+        }
+
         private static string Root() => LastErrorHeaderTests.RepositoryRoot();
 
         private static string Script(string name) => System.IO.Path.Combine(Root(), "scripts", name);
@@ -1971,6 +2718,11 @@ namespace ClangSharpSourceToWinmdTests
 
             public (int ExitCode, string Output) Run(string command)
             {
+                if (command.Contains("/sal", StringComparison.Ordinal))
+                    Console.WriteLine("MIDL_COMMAND " + command);
+                else if (command.Contains("ConvertMidlAttributesToSalAnnotations.ps1", StringComparison.Ordinal) ||
+                    command.Contains("$compiler", StringComparison.Ordinal))
+                    Console.WriteLine("SDK_COMMAND " + command);
                 var info = new ProcessStartInfo("pwsh") { UseShellExecute = false, RedirectStandardOutput = true, RedirectStandardError = true, WorkingDirectory = Path };
                 foreach (string argument in new[] { "-NoProfile", "-NonInteractive", "-Command", "$ErrorActionPreference = 'Stop'; " + command }) info.ArgumentList.Add(argument);
                 using var process = Process.Start(info) ?? throw new InvalidOperationException("PowerShell did not start.");
@@ -1980,7 +2732,17 @@ namespace ClangSharpSourceToWinmdTests
                 return (process.ExitCode, output.GetAwaiter().GetResult() + error.GetAwaiter().GetResult());
             }
 
-            public void Dispose() => Directory.Delete(Path, recursive: true);
+            public void Dispose()
+            {
+                foreach (string mode in new[] { "baseline", "ordinary", "metadata" })
+                {
+                    string file = System.IO.Path.Combine(Path, mode + ".obj");
+                    if (File.Exists(file))
+                        Console.WriteLine("RAW_OUTPUT native." + System.IO.Path.GetFileName(Path) + "." + mode +
+                            ".obj " + Convert.ToBase64String(File.ReadAllBytes(file)));
+                }
+                Directory.Delete(Path, recursive: true);
+            }
         }
     }
 }

@@ -60,9 +60,16 @@ namespace ClangSharpSourceToWinmdTests
 
         [TestMethod]
         public void NativeEdits_OnlyChangeExactSalBytes()
+            => AssertNativeEditBytes(new[] { "UrlMon.Idl" }, historical: false);
+
+        [TestMethod]
+        public void HistoricalGeneratedHeaders_OnlyChangeExactSalBytes()
+            => AssertNativeEditBytes(new[] { "urlmon.h" }, historical: true);
+
+        private static void AssertNativeEditBytes(IEnumerable<string> owners, bool historical)
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
-            foreach (string owner in new[] { "UrlMon.Idl", "urlmon.h" })
+            foreach (string owner in owners)
             {
                 string original = ReadParent("RecompiledIdlHeaders/um/" + owner, checkoutBytes: true);
                 Assert.IsTrue(original.All(character => character <= 127), owner);
@@ -76,7 +83,8 @@ namespace ClangSharpSourceToWinmdTests
                         ? "[out, annotation(\"_COM_Outptr_\")]   void                **ppvObj"
                         : "_COM_Outptr_  void **ppvObj");
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(expected),
-                    File.ReadAllBytes(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)),
+                    historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/um/" + owner) :
+                        File.ReadAllBytes(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)),
                     "No encoding, newline, or unrelated native changes: " + owner);
             }
         }
@@ -95,6 +103,7 @@ namespace ClangSharpSourceToWinmdTests
 #define STDAPI HRESULT __stdcall
 #define STDMETHODCALLTYPE __stdcall
 #define MIDL_INTERFACE(iid) struct __declspec(uuid(iid))
+#include <rpcsal.h>
 typedef long HRESULT;
 typedef unsigned long DWORD;
 typedef unsigned long ULONG;
@@ -121,7 +130,8 @@ struct IBindStatusCallback : IUnknown {};
             string annotated = Declarations(current);
             var remaps = Selectors.ToDictionary(selector => selector, _ => "[ComOutPtr]", StringComparer.Ordinal);
             using var fixture = new LastErrorHeaderTests.Fixture();
-            const string imports = "--with-librarypath\nCoGetClassObjectFromURL=urlmon.dll";
+            string imports = "--with-librarypath\nCoGetClassObjectFromURL=urlmon.dll\n--include-directory\n" +
+                MidlHeaderTests.SharedHeaders();
             string mappings = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "libMappings.rsp"));
             StringAssert.Contains(mappings, "CoGetClassObjectFromURL=urlmon.dll");
@@ -131,9 +141,12 @@ struct IBindStatusCallback : IUnknown {};
             var result = fixture.Scrape(prefix + legacy, target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             byte[] expected = File.ReadAllBytes(fixture.Emit(remaps));
+            Console.WriteLine("RAW_OUTPUT urlmon-final." + target + ".legacy.winmd " + Convert.ToBase64String(expected));
             result = fixture.Scrape(prefix + annotated, target, sal: true, libraryPath: "", extraSettings: imports);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit();
+            Console.WriteLine("RAW_OUTPUT urlmon-final." + target + ".production.winmd " +
+                Convert.ToBase64String(File.ReadAllBytes(output)));
             AssertFinalFacts(output);
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)));

@@ -440,7 +440,7 @@ EXTERN_C const IID IID_IInitializeWithStream;
         
         DECLSPEC_XFGVIRT(IInitializeWithStream, Initialize)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Initialize )( 
-            IInitializeWithStream * This,
+            __RPC__in IInitializeWithStream * This,
             /* [annotation][in] */ 
             _In_  IStream *pstream,
             /* [annotation][in] */ 
@@ -1382,7 +1382,7 @@ EXTERN_C const IID IID_IPropertyStoreCache;
             /* [annotation][in] */ 
             _In_  REFPROPERTYKEY key,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *ppropvar,
+            _In_opt_  const PROPVARIANT *ppropvar,
             /* [annotation][in] */ 
             _In_  PSC_STATE state) = 0;
         
@@ -1477,7 +1477,7 @@ EXTERN_C const IID IID_IPropertyStoreCache;
             /* [annotation][in] */ 
             _In_  REFPROPERTYKEY key,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *ppropvar,
+            _In_opt_  const PROPVARIANT *ppropvar,
             /* [annotation][in] */ 
             _In_  PSC_STATE state);
         
@@ -2372,7 +2372,7 @@ EXTERN_C const IID IID_IPropertyDescription;
         
         DECLSPEC_XFGVIRT(IPropertyDescription, CoerceToCanonicalValue)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *CoerceToCanonicalValue )( 
-            IPropertyDescription * This,
+            __RPC__in IPropertyDescription * This,
             /* [annotation][out][in] */ 
             _Inout_  PROPVARIANT *ppropvar);
         
@@ -2674,7 +2674,7 @@ EXTERN_C const IID IID_IPropertyDescription2;
         
         DECLSPEC_XFGVIRT(IPropertyDescription, CoerceToCanonicalValue)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *CoerceToCanonicalValue )( 
-            IPropertyDescription2 * This,
+            __RPC__in IPropertyDescription2 * This,
             /* [annotation][out][in] */ 
             _Inout_  PROPVARIANT *ppropvar);
         
@@ -2979,7 +2979,7 @@ EXTERN_C const IID IID_IPropertyDescriptionAliasInfo;
         
         DECLSPEC_XFGVIRT(IPropertyDescription, CoerceToCanonicalValue)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *CoerceToCanonicalValue )( 
-            IPropertyDescriptionAliasInfo * This,
+            __RPC__in IPropertyDescriptionAliasInfo * This,
             /* [annotation][out][in] */ 
             _Inout_  PROPVARIANT *ppropvar);
         
@@ -3322,7 +3322,7 @@ EXTERN_C const IID IID_IPropertyDescriptionSearchInfo;
         
         DECLSPEC_XFGVIRT(IPropertyDescription, CoerceToCanonicalValue)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *CoerceToCanonicalValue )( 
-            IPropertyDescriptionSearchInfo * This,
+            __RPC__in IPropertyDescriptionSearchInfo * This,
             /* [annotation][out][in] */ 
             _Inout_  PROPVARIANT *ppropvar);
         
@@ -3648,7 +3648,7 @@ EXTERN_C const IID IID_IPropertyDescriptionRelatedPropertyInfo;
         
         DECLSPEC_XFGVIRT(IPropertyDescription, CoerceToCanonicalValue)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *CoerceToCanonicalValue )( 
-            IPropertyDescriptionRelatedPropertyInfo * This,
+            __RPC__in IPropertyDescriptionRelatedPropertyInfo * This,
             /* [annotation][out][in] */ 
             _Inout_  PROPVARIANT *ppropvar);
         
@@ -4171,7 +4171,7 @@ EXTERN_C const IID IID_IPropertyStoreFactory;
             /* [annotation][in] */ 
             _In_  GETPROPERTYSTOREFLAGS flags,
             /* [annotation][unique][in] */ 
-            _In_  IUnknown *pUnkFactory,
+            _In_opt_  IUnknown *pUnkFactory,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4179,7 +4179,7 @@ EXTERN_C const IID IID_IPropertyStoreFactory;
         
         virtual HRESULT STDMETHODCALLTYPE GetPropertyStoreForKeys( 
             /* [annotation][unique][in] */ 
-            _In_  const PROPERTYKEY *rgKeys,
+            _In_opt_  const PROPERTYKEY *rgKeys,
             /* [annotation][in] */ 
             _In_  UINT cKeys,
             /* [annotation][in] */ 
@@ -4220,7 +4220,7 @@ EXTERN_C const IID IID_IPropertyStoreFactory;
             /* [annotation][in] */ 
             _In_  GETPROPERTYSTOREFLAGS flags,
             /* [annotation][unique][in] */ 
-            _In_  IUnknown *pUnkFactory,
+            _In_opt_  IUnknown *pUnkFactory,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4230,7 +4230,7 @@ EXTERN_C const IID IID_IPropertyStoreFactory;
         HRESULT ( STDMETHODCALLTYPE *GetPropertyStoreForKeys )( 
             __RPC__in IPropertyStoreFactory * This,
             /* [annotation][unique][in] */ 
-            _In_  const PROPERTYKEY *rgKeys,
+            _In_opt_  const PROPERTYKEY *rgKeys,
             /* [annotation][in] */ 
             _In_  UINT cKeys,
             /* [annotation][in] */ 
@@ -4336,7 +4336,7 @@ EXTERN_C const IID IID_IDelayedPropertyStoreFactory;
             /* [annotation][in] */ 
             _In_  GETPROPERTYSTOREFLAGS flags,
             /* [annotation][unique][in] */ 
-            _In_  IUnknown *pUnkFactory,
+            _In_opt_  IUnknown *pUnkFactory,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4346,7 +4346,7 @@ EXTERN_C const IID IID_IDelayedPropertyStoreFactory;
         HRESULT ( STDMETHODCALLTYPE *GetPropertyStoreForKeys )( 
             __RPC__in IDelayedPropertyStoreFactory * This,
             /* [annotation][unique][in] */ 
-            _In_  const PROPERTYKEY *rgKeys,
+            _In_opt_  const PROPERTYKEY *rgKeys,
             /* [annotation][in] */ 
             _In_  UINT cKeys,
             /* [annotation][in] */ 
@@ -4477,7 +4477,7 @@ EXTERN_C const IID IID_IPersistSerializedPropStorage;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IPersistSerializedPropStorage * This,
+            __RPC__in IPersistSerializedPropStorage * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4485,21 +4485,21 @@ EXTERN_C const IID IID_IPersistSerializedPropStorage;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IPersistSerializedPropStorage * This);
+            __RPC__in IPersistSerializedPropStorage * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IPersistSerializedPropStorage * This);
+            __RPC__in IPersistSerializedPropStorage * This);
         
         DECLSPEC_XFGVIRT(IPersistSerializedPropStorage, SetFlags)
         HRESULT ( STDMETHODCALLTYPE *SetFlags )( 
-            IPersistSerializedPropStorage * This,
+            __RPC__in IPersistSerializedPropStorage * This,
             /* [annotation][in] */ 
             _In_  PERSIST_SPROPSTORE_FLAGS flags);
         
         DECLSPEC_XFGVIRT(IPersistSerializedPropStorage, SetPropertyStorage)
         HRESULT ( STDMETHODCALLTYPE *SetPropertyStorage )( 
-            IPersistSerializedPropStorage * This,
+            __RPC__in IPersistSerializedPropStorage * This,
             /* [annotation][in] */ 
             _In_reads_bytes_(cb)  PCUSERIALIZEDPROPSTORAGE psps,
             /* [annotation][in] */ 
@@ -4507,7 +4507,7 @@ EXTERN_C const IID IID_IPersistSerializedPropStorage;
         
         DECLSPEC_XFGVIRT(IPersistSerializedPropStorage, GetPropertyStorage)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyStorage )( 
-            IPersistSerializedPropStorage * This,
+            __RPC__in IPersistSerializedPropStorage * This,
             /* [annotation][out] */ 
             _Outptr_result_bytebuffer_(*pcb)  SERIALIZEDPROPSTORAGE **ppsps,
             /* [annotation][out] */ 
@@ -4594,7 +4594,7 @@ EXTERN_C const IID IID_IPersistSerializedPropStorage2;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IPersistSerializedPropStorage2 * This,
+            __RPC__in IPersistSerializedPropStorage2 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4602,21 +4602,21 @@ EXTERN_C const IID IID_IPersistSerializedPropStorage2;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IPersistSerializedPropStorage2 * This);
+            __RPC__in IPersistSerializedPropStorage2 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IPersistSerializedPropStorage2 * This);
+            __RPC__in IPersistSerializedPropStorage2 * This);
         
         DECLSPEC_XFGVIRT(IPersistSerializedPropStorage, SetFlags)
         HRESULT ( STDMETHODCALLTYPE *SetFlags )( 
-            IPersistSerializedPropStorage2 * This,
+            __RPC__in IPersistSerializedPropStorage2 * This,
             /* [annotation][in] */ 
             _In_  PERSIST_SPROPSTORE_FLAGS flags);
         
         DECLSPEC_XFGVIRT(IPersistSerializedPropStorage, SetPropertyStorage)
         HRESULT ( STDMETHODCALLTYPE *SetPropertyStorage )( 
-            IPersistSerializedPropStorage2 * This,
+            __RPC__in IPersistSerializedPropStorage2 * This,
             /* [annotation][in] */ 
             _In_reads_bytes_(cb)  PCUSERIALIZEDPROPSTORAGE psps,
             /* [annotation][in] */ 
@@ -4624,7 +4624,7 @@ EXTERN_C const IID IID_IPersistSerializedPropStorage2;
         
         DECLSPEC_XFGVIRT(IPersistSerializedPropStorage, GetPropertyStorage)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyStorage )( 
-            IPersistSerializedPropStorage2 * This,
+            __RPC__in IPersistSerializedPropStorage2 * This,
             /* [annotation][out] */ 
             _Outptr_result_bytebuffer_(*pcb)  SERIALIZEDPROPSTORAGE **ppsps,
             /* [annotation][out] */ 
@@ -4632,13 +4632,13 @@ EXTERN_C const IID IID_IPersistSerializedPropStorage2;
         
         DECLSPEC_XFGVIRT(IPersistSerializedPropStorage2, GetPropertyStorageSize)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyStorageSize )( 
-            IPersistSerializedPropStorage2 * This,
+            __RPC__in IPersistSerializedPropStorage2 * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pcb);
         
         DECLSPEC_XFGVIRT(IPersistSerializedPropStorage2, GetPropertyStorageBuffer)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyStorageBuffer )( 
-            IPersistSerializedPropStorage2 * This,
+            __RPC__in IPersistSerializedPropStorage2 * This,
             /* [annotation][out] */ 
             _Out_writes_bytes_to_(cb, *pcbWritten)  SERIALIZEDPROPSTORAGE *psps,
             /* [annotation][in] */ 
@@ -4798,7 +4798,7 @@ EXTERN_C const IID IID_ICreateObject;
             /* [annotation][in] */ 
             _In_  REFCLSID clsid,
             /* [annotation][unique][in] */ 
-            _In_  IUnknown *pUnkOuter,
+            _In_opt_  IUnknown *pUnkOuter,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4835,7 +4835,7 @@ EXTERN_C const IID IID_ICreateObject;
             /* [annotation][in] */ 
             _In_  REFCLSID clsid,
             /* [annotation][unique][in] */ 
-            _In_  IUnknown *pUnkOuter,
+            _In_opt_  IUnknown *pUnkOuter,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -5339,7 +5339,7 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal64(__RPC__in unsigned long 
 void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IInitializeWithStream_Initialize_Proxy( 
-    IInitializeWithStream * This,
+    __RPC__in IInitializeWithStream * This,
     /* [annotation][in] */ 
     _In_  IStream *pstream,
     /* [annotation][in] */ 
@@ -5354,7 +5354,7 @@ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsi
     _In_  DWORD grfMode);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IPropertyDescription_CoerceToCanonicalValue_Proxy( 
-    IPropertyDescription * This,
+    __RPC__in IPropertyDescription * This,
     /* [annotation][out][in] */ 
     _Inout_  PROPVARIANT *ppropvar);
 

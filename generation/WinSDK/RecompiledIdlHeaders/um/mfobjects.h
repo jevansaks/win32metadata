@@ -877,7 +877,7 @@ EXTERN_C const IID IID_IMFMediaBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFMediaBuffer * This,
+            __RPC__in IMFMediaBuffer * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -885,15 +885,15 @@ EXTERN_C const IID IID_IMFMediaBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFMediaBuffer * This);
+            __RPC__in IMFMediaBuffer * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFMediaBuffer * This);
+            __RPC__in IMFMediaBuffer * This);
         
         DECLSPEC_XFGVIRT(IMFMediaBuffer, Lock)
         HRESULT ( STDMETHODCALLTYPE *Lock )( 
-            IMFMediaBuffer * This,
+            __RPC__in IMFMediaBuffer * This,
             /* [annotation][out] */ 
             _Outptr_result_bytebuffer_to_(*pcbMaxLength, *pcbCurrentLength)  BYTE **ppbBuffer,
             /* [annotation][out] */ 
@@ -903,23 +903,23 @@ EXTERN_C const IID IID_IMFMediaBuffer;
         
         DECLSPEC_XFGVIRT(IMFMediaBuffer, Unlock)
         HRESULT ( STDMETHODCALLTYPE *Unlock )( 
-            IMFMediaBuffer * This);
+            __RPC__in IMFMediaBuffer * This);
         
         DECLSPEC_XFGVIRT(IMFMediaBuffer, GetCurrentLength)
         HRESULT ( STDMETHODCALLTYPE *GetCurrentLength )( 
-            IMFMediaBuffer * This,
+            __RPC__in IMFMediaBuffer * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pcbCurrentLength);
         
         DECLSPEC_XFGVIRT(IMFMediaBuffer, SetCurrentLength)
         HRESULT ( STDMETHODCALLTYPE *SetCurrentLength )( 
-            IMFMediaBuffer * This,
+            __RPC__in IMFMediaBuffer * This,
             /* [annotation][in] */ 
             _In_  DWORD cbCurrentLength);
         
         DECLSPEC_XFGVIRT(IMFMediaBuffer, GetMaxLength)
         HRESULT ( STDMETHODCALLTYPE *GetMaxLength )( 
-            IMFMediaBuffer * This,
+            __RPC__in IMFMediaBuffer * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pcbMaxLength);
         
@@ -1054,7 +1054,7 @@ EXTERN_C const IID IID_IMFSample;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1062,89 +1062,89 @@ EXTERN_C const IID IID_IMFSample;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFSample * This);
+            __RPC__in IMFSample * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFSample * This);
+            __RPC__in IMFSample * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetItem)
         HRESULT ( STDMETHODCALLTYPE *GetItem )( 
-            IMFSample * This,
-            REFGUID guidKey,
-            /* [full][out][in] */ PROPVARIANT *pValue);
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
+            /* [full][out][in] */ __RPC__inout_opt PROPVARIANT *pValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetItemType)
         HRESULT ( STDMETHODCALLTYPE *GetItemType )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  MF_ATTRIBUTE_TYPE *pType);
         
         DECLSPEC_XFGVIRT(IMFAttributes, CompareItem)
         HRESULT ( STDMETHODCALLTYPE *CompareItem )( 
-            IMFSample * This,
-            REFGUID guidKey,
-            REFPROPVARIANT Value,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFPROPVARIANT Value,
             /* [annotation][out] */ 
             _Out_  BOOL *pbResult);
         
         DECLSPEC_XFGVIRT(IMFAttributes, Compare)
         HRESULT ( STDMETHODCALLTYPE *Compare )( 
-            IMFSample * This,
-            IMFAttributes *pTheirs,
+            __RPC__in IMFSample * This,
+            __RPC__in_opt IMFAttributes *pTheirs,
             MF_ATTRIBUTES_MATCH_TYPE MatchType,
             /* [annotation][out] */ 
             _Out_  BOOL *pbResult);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetUINT32)
         HRESULT ( STDMETHODCALLTYPE *GetUINT32 )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT32 *punValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetUINT64)
         HRESULT ( STDMETHODCALLTYPE *GetUINT64 )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT64 *punValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetDouble)
         HRESULT ( STDMETHODCALLTYPE *GetDouble )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  double *pfValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetGUID)
         HRESULT ( STDMETHODCALLTYPE *GetGUID )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  GUID *pguidValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetStringLength)
         HRESULT ( STDMETHODCALLTYPE *GetStringLength )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT32 *pcchLength);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetString)
         HRESULT ( STDMETHODCALLTYPE *GetString )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][out] */ 
             _Out_writes_(cchBufSize)  LPWSTR pwszValue,
             UINT32 cchBufSize,
-            /* [full][out][in] */ UINT32 *pcchLength);
+            /* [full][out][in] */ __RPC__inout_opt UINT32 *pcchLength);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetAllocatedString)
         HRESULT ( STDMETHODCALLTYPE *GetAllocatedString )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][size_is][out] */ 
             _Out_writes_(*pcchLength + 1)  LPWSTR *ppwszValue,
             /* [annotation][out] */ 
@@ -1152,24 +1152,24 @@ EXTERN_C const IID IID_IMFSample;
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetBlobSize)
         HRESULT ( STDMETHODCALLTYPE *GetBlobSize )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT32 *pcbBlobSize);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetBlob)
         HRESULT ( STDMETHODCALLTYPE *GetBlob )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][out] */ 
             _Out_writes_(cbBufSize)  UINT8 *pBuf,
             UINT32 cbBufSize,
-            /* [full][out][in] */ UINT32 *pcbBlobSize);
+            /* [full][out][in] */ __RPC__inout_opt UINT32 *pcbBlobSize);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetAllocatedBlob)
         HRESULT ( STDMETHODCALLTYPE *GetAllocatedBlob )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][size_is][out] */ 
             _Out_writes_(*pcbSize)  UINT8 **ppBuf,
             /* [annotation][out] */ 
@@ -1177,146 +1177,146 @@ EXTERN_C const IID IID_IMFSample;
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetUnknown)
         HRESULT ( STDMETHODCALLTYPE *GetUnknown )( 
-            IMFSample * This,
-            REFGUID guidKey,
-            REFIID riid,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  LPVOID *ppv);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetItem)
         HRESULT ( STDMETHODCALLTYPE *SetItem )( 
-            IMFSample * This,
-            REFGUID guidKey,
-            REFPROPVARIANT Value);
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFPROPVARIANT Value);
         
         DECLSPEC_XFGVIRT(IMFAttributes, DeleteItem)
         HRESULT ( STDMETHODCALLTYPE *DeleteItem )( 
-            IMFSample * This,
-            REFGUID guidKey);
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey);
         
         DECLSPEC_XFGVIRT(IMFAttributes, DeleteAllItems)
         HRESULT ( STDMETHODCALLTYPE *DeleteAllItems )( 
-            IMFSample * This);
+            __RPC__in IMFSample * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetUINT32)
         HRESULT ( STDMETHODCALLTYPE *SetUINT32 )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             UINT32 unValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetUINT64)
         HRESULT ( STDMETHODCALLTYPE *SetUINT64 )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             UINT64 unValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetDouble)
         HRESULT ( STDMETHODCALLTYPE *SetDouble )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             double fValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetGUID)
         HRESULT ( STDMETHODCALLTYPE *SetGUID )( 
-            IMFSample * This,
-            REFGUID guidKey,
-            REFGUID guidValue);
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFGUID guidValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetString)
         HRESULT ( STDMETHODCALLTYPE *SetString )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetBlob)
         HRESULT ( STDMETHODCALLTYPE *SetBlob )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][in] */ 
             _In_reads_(cbBufSize)  const UINT8 *pBuf,
             UINT32 cbBufSize);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetUnknown)
         HRESULT ( STDMETHODCALLTYPE *SetUnknown )( 
-            IMFSample * This,
-            REFGUID guidKey,
+            __RPC__in IMFSample * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][in] */ 
             _In_  IUnknown *pUnknown);
         
         DECLSPEC_XFGVIRT(IMFAttributes, LockStore)
         HRESULT ( STDMETHODCALLTYPE *LockStore )( 
-            IMFSample * This);
+            __RPC__in IMFSample * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, UnlockStore)
         HRESULT ( STDMETHODCALLTYPE *UnlockStore )( 
-            IMFSample * This);
+            __RPC__in IMFSample * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetCount)
         HRESULT ( STDMETHODCALLTYPE *GetCount )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][out] */ 
             _Out_  UINT32 *pcItems);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetItemByIndex)
         HRESULT ( STDMETHODCALLTYPE *GetItemByIndex )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             UINT32 unIndex,
             /* [annotation][out] */ 
             _Out_  GUID *pguidKey,
-            /* [full][out][in] */ PROPVARIANT *pValue);
+            /* [full][out][in] */ __RPC__inout_opt PROPVARIANT *pValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, CopyAllItems)
         HRESULT ( STDMETHODCALLTYPE *CopyAllItems )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][in] */ 
             _In_  IMFAttributes *pDest);
         
         DECLSPEC_XFGVIRT(IMFSample, GetSampleFlags)
         HRESULT ( STDMETHODCALLTYPE *GetSampleFlags )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pdwSampleFlags);
         
         DECLSPEC_XFGVIRT(IMFSample, SetSampleFlags)
         HRESULT ( STDMETHODCALLTYPE *SetSampleFlags )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][in] */ 
             _In_  DWORD dwSampleFlags);
         
         DECLSPEC_XFGVIRT(IMFSample, GetSampleTime)
         HRESULT ( STDMETHODCALLTYPE *GetSampleTime )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][out] */ 
             _Out_  LONGLONG *phnsSampleTime);
         
         DECLSPEC_XFGVIRT(IMFSample, SetSampleTime)
         HRESULT ( STDMETHODCALLTYPE *SetSampleTime )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][in] */ 
             _In_  LONGLONG hnsSampleTime);
         
         DECLSPEC_XFGVIRT(IMFSample, GetSampleDuration)
         HRESULT ( STDMETHODCALLTYPE *GetSampleDuration )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][out] */ 
             _Out_  LONGLONG *phnsSampleDuration);
         
         DECLSPEC_XFGVIRT(IMFSample, SetSampleDuration)
         HRESULT ( STDMETHODCALLTYPE *SetSampleDuration )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][in] */ 
             _In_  LONGLONG hnsSampleDuration);
         
         DECLSPEC_XFGVIRT(IMFSample, GetBufferCount)
         HRESULT ( STDMETHODCALLTYPE *GetBufferCount )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pdwBufferCount);
         
         DECLSPEC_XFGVIRT(IMFSample, GetBufferByIndex)
         HRESULT ( STDMETHODCALLTYPE *GetBufferByIndex )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][in] */ 
             _In_  DWORD dwIndex,
             /* [annotation][out] */ 
@@ -1324,35 +1324,35 @@ EXTERN_C const IID IID_IMFSample;
         
         DECLSPEC_XFGVIRT(IMFSample, ConvertToContiguousBuffer)
         HRESULT ( STDMETHODCALLTYPE *ConvertToContiguousBuffer )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][out] */ 
             _Out_  IMFMediaBuffer **ppBuffer);
         
         DECLSPEC_XFGVIRT(IMFSample, AddBuffer)
         HRESULT ( STDMETHODCALLTYPE *AddBuffer )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][in] */ 
             _In_  IMFMediaBuffer *pBuffer);
         
         DECLSPEC_XFGVIRT(IMFSample, RemoveBufferByIndex)
         HRESULT ( STDMETHODCALLTYPE *RemoveBufferByIndex )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][in] */ 
             _In_  DWORD dwIndex);
         
         DECLSPEC_XFGVIRT(IMFSample, RemoveAllBuffers)
         HRESULT ( STDMETHODCALLTYPE *RemoveAllBuffers )( 
-            IMFSample * This);
+            __RPC__in IMFSample * This);
         
         DECLSPEC_XFGVIRT(IMFSample, GetTotalLength)
         HRESULT ( STDMETHODCALLTYPE *GetTotalLength )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pcbTotalLength);
         
         DECLSPEC_XFGVIRT(IMFSample, CopyToBuffer)
         HRESULT ( STDMETHODCALLTYPE *CopyToBuffer )( 
-            IMFSample * This,
+            __RPC__in IMFSample * This,
             /* [annotation][in] */ 
             _In_  IMFMediaBuffer *pBuffer);
         
@@ -1583,7 +1583,7 @@ EXTERN_C const IID IID_IMF2DBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMF2DBuffer * This,
+            __RPC__in IMF2DBuffer * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1591,15 +1591,15 @@ EXTERN_C const IID IID_IMF2DBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMF2DBuffer * This);
+            __RPC__in IMF2DBuffer * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMF2DBuffer * This);
+            __RPC__in IMF2DBuffer * This);
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, Lock2D)
         HRESULT ( STDMETHODCALLTYPE *Lock2D )( 
-            IMF2DBuffer * This,
+            __RPC__in IMF2DBuffer * This,
             /* [annotation][out] */ 
             _Outptr_result_bytebuffer_(_Inexpressible_(ComputePlaneSize(*plPitch)))  BYTE **ppbScanline0,
             /* [annotation][out] */ 
@@ -1607,11 +1607,11 @@ EXTERN_C const IID IID_IMF2DBuffer;
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, Unlock2D)
         HRESULT ( STDMETHODCALLTYPE *Unlock2D )( 
-            IMF2DBuffer * This);
+            __RPC__in IMF2DBuffer * This);
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, GetScanline0AndPitch)
         HRESULT ( STDMETHODCALLTYPE *GetScanline0AndPitch )( 
-            IMF2DBuffer * This,
+            __RPC__in IMF2DBuffer * This,
             /* [annotation][out] */ 
             _Out_  BYTE **pbScanline0,
             /* [annotation][out] */ 
@@ -1619,19 +1619,19 @@ EXTERN_C const IID IID_IMF2DBuffer;
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, IsContiguousFormat)
         HRESULT ( STDMETHODCALLTYPE *IsContiguousFormat )( 
-            IMF2DBuffer * This,
+            __RPC__in IMF2DBuffer * This,
             /* [annotation][out] */ 
             _Out_  BOOL *pfIsContiguous);
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, GetContiguousLength)
         HRESULT ( STDMETHODCALLTYPE *GetContiguousLength )( 
-            IMF2DBuffer * This,
+            __RPC__in IMF2DBuffer * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pcbLength);
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, ContiguousCopyTo)
         HRESULT ( STDMETHODCALLTYPE *ContiguousCopyTo )( 
-            IMF2DBuffer * This,
+            __RPC__in IMF2DBuffer * This,
             /* [annotation][size_is][out] */ 
             _Out_writes_bytes_(cbDestBuffer)  BYTE *pbDestBuffer,
             /* [annotation][in] */ 
@@ -1639,7 +1639,7 @@ EXTERN_C const IID IID_IMF2DBuffer;
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, ContiguousCopyFrom)
         HRESULT ( STDMETHODCALLTYPE *ContiguousCopyFrom )( 
-            IMF2DBuffer * This,
+            __RPC__in IMF2DBuffer * This,
             /* [annotation][size_is][in] */ 
             _In_reads_bytes_(cbSrcBuffer)  const BYTE *pbSrcBuffer,
             /* [annotation][in] */ 
@@ -1760,7 +1760,7 @@ EXTERN_C const IID IID_IMF2DBuffer2;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMF2DBuffer2 * This,
+            __RPC__in IMF2DBuffer2 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1768,15 +1768,15 @@ EXTERN_C const IID IID_IMF2DBuffer2;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMF2DBuffer2 * This);
+            __RPC__in IMF2DBuffer2 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMF2DBuffer2 * This);
+            __RPC__in IMF2DBuffer2 * This);
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, Lock2D)
         HRESULT ( STDMETHODCALLTYPE *Lock2D )( 
-            IMF2DBuffer2 * This,
+            __RPC__in IMF2DBuffer2 * This,
             /* [annotation][out] */ 
             _Outptr_result_bytebuffer_(_Inexpressible_(ComputePlaneSize(*plPitch)))  BYTE **ppbScanline0,
             /* [annotation][out] */ 
@@ -1784,11 +1784,11 @@ EXTERN_C const IID IID_IMF2DBuffer2;
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, Unlock2D)
         HRESULT ( STDMETHODCALLTYPE *Unlock2D )( 
-            IMF2DBuffer2 * This);
+            __RPC__in IMF2DBuffer2 * This);
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, GetScanline0AndPitch)
         HRESULT ( STDMETHODCALLTYPE *GetScanline0AndPitch )( 
-            IMF2DBuffer2 * This,
+            __RPC__in IMF2DBuffer2 * This,
             /* [annotation][out] */ 
             _Out_  BYTE **pbScanline0,
             /* [annotation][out] */ 
@@ -1796,19 +1796,19 @@ EXTERN_C const IID IID_IMF2DBuffer2;
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, IsContiguousFormat)
         HRESULT ( STDMETHODCALLTYPE *IsContiguousFormat )( 
-            IMF2DBuffer2 * This,
+            __RPC__in IMF2DBuffer2 * This,
             /* [annotation][out] */ 
             _Out_  BOOL *pfIsContiguous);
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, GetContiguousLength)
         HRESULT ( STDMETHODCALLTYPE *GetContiguousLength )( 
-            IMF2DBuffer2 * This,
+            __RPC__in IMF2DBuffer2 * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pcbLength);
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, ContiguousCopyTo)
         HRESULT ( STDMETHODCALLTYPE *ContiguousCopyTo )( 
-            IMF2DBuffer2 * This,
+            __RPC__in IMF2DBuffer2 * This,
             /* [annotation][size_is][out] */ 
             _Out_writes_bytes_(cbDestBuffer)  BYTE *pbDestBuffer,
             /* [annotation][in] */ 
@@ -1816,7 +1816,7 @@ EXTERN_C const IID IID_IMF2DBuffer2;
         
         DECLSPEC_XFGVIRT(IMF2DBuffer, ContiguousCopyFrom)
         HRESULT ( STDMETHODCALLTYPE *ContiguousCopyFrom )( 
-            IMF2DBuffer2 * This,
+            __RPC__in IMF2DBuffer2 * This,
             /* [annotation][size_is][in] */ 
             _In_reads_bytes_(cbSrcBuffer)  const BYTE *pbSrcBuffer,
             /* [annotation][in] */ 
@@ -1824,7 +1824,7 @@ EXTERN_C const IID IID_IMF2DBuffer2;
         
         DECLSPEC_XFGVIRT(IMF2DBuffer2, Lock2DSize)
         HRESULT ( STDMETHODCALLTYPE *Lock2DSize )( 
-            IMF2DBuffer2 * This,
+            __RPC__in IMF2DBuffer2 * This,
             /* [annotation][in] */ 
             _In_  MF2DBuffer_LockFlags lockFlags,
             /* [annotation][out] */ 
@@ -1838,7 +1838,7 @@ EXTERN_C const IID IID_IMF2DBuffer2;
         
         DECLSPEC_XFGVIRT(IMF2DBuffer2, Copy2DTo)
         HRESULT ( STDMETHODCALLTYPE *Copy2DTo )( 
-            IMF2DBuffer2 * This,
+            __RPC__in IMF2DBuffer2 * This,
             /* [annotation][in] */ 
             _In_  IMF2DBuffer2 *pDestBuffer);
         
@@ -1954,7 +1954,7 @@ EXTERN_C const IID IID_IMFDXGIBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFDXGIBuffer * This,
+            __RPC__in IMFDXGIBuffer * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1962,15 +1962,15 @@ EXTERN_C const IID IID_IMFDXGIBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFDXGIBuffer * This);
+            __RPC__in IMFDXGIBuffer * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFDXGIBuffer * This);
+            __RPC__in IMFDXGIBuffer * This);
         
         DECLSPEC_XFGVIRT(IMFDXGIBuffer, GetResource)
         HRESULT ( STDMETHODCALLTYPE *GetResource )( 
-            IMFDXGIBuffer * This,
+            __RPC__in IMFDXGIBuffer * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][out] */ 
@@ -1978,13 +1978,13 @@ EXTERN_C const IID IID_IMFDXGIBuffer;
         
         DECLSPEC_XFGVIRT(IMFDXGIBuffer, GetSubresourceIndex)
         HRESULT ( STDMETHODCALLTYPE *GetSubresourceIndex )( 
-            IMFDXGIBuffer * This,
+            __RPC__in IMFDXGIBuffer * This,
             /* [annotation][out] */ 
             _Out_  UINT *puSubresource);
         
         DECLSPEC_XFGVIRT(IMFDXGIBuffer, GetUnknown)
         HRESULT ( STDMETHODCALLTYPE *GetUnknown )( 
-            IMFDXGIBuffer * This,
+            __RPC__in IMFDXGIBuffer * This,
             /* [annotation][in] */ 
             _In_  REFIID guid,
             /* [annotation][in] */ 
@@ -1994,7 +1994,7 @@ EXTERN_C const IID IID_IMFDXGIBuffer;
         
         DECLSPEC_XFGVIRT(IMFDXGIBuffer, SetUnknown)
         HRESULT ( STDMETHODCALLTYPE *SetUnknown )( 
-            IMFDXGIBuffer * This,
+            __RPC__in IMFDXGIBuffer * This,
             /* [annotation][in] */ 
             _In_  REFIID guid,
             /* [annotation][in] */ 
@@ -2104,7 +2104,7 @@ EXTERN_C const IID IID_IMFDXGICrossAdapterBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFDXGICrossAdapterBuffer * This,
+            __RPC__in IMFDXGICrossAdapterBuffer * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -2112,15 +2112,15 @@ EXTERN_C const IID IID_IMFDXGICrossAdapterBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFDXGICrossAdapterBuffer * This);
+            __RPC__in IMFDXGICrossAdapterBuffer * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFDXGICrossAdapterBuffer * This);
+            __RPC__in IMFDXGICrossAdapterBuffer * This);
         
         DECLSPEC_XFGVIRT(IMFDXGICrossAdapterBuffer, GetResourceForDevice)
         HRESULT ( STDMETHODCALLTYPE *GetResourceForDevice )( 
-            IMFDXGICrossAdapterBuffer * This,
+            __RPC__in IMFDXGICrossAdapterBuffer * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pUnkDevice,
             /* [annotation][in] */ 
@@ -2130,7 +2130,7 @@ EXTERN_C const IID IID_IMFDXGICrossAdapterBuffer;
         
         DECLSPEC_XFGVIRT(IMFDXGICrossAdapterBuffer, GetSubresourceIndexForDevice)
         HRESULT ( STDMETHODCALLTYPE *GetSubresourceIndexForDevice )( 
-            IMFDXGICrossAdapterBuffer * This,
+            __RPC__in IMFDXGICrossAdapterBuffer * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pUnkDevice,
             /* [annotation][out] */ 
@@ -2138,7 +2138,7 @@ EXTERN_C const IID IID_IMFDXGICrossAdapterBuffer;
         
         DECLSPEC_XFGVIRT(IMFDXGICrossAdapterBuffer, GetUnknownForDevice)
         HRESULT ( STDMETHODCALLTYPE *GetUnknownForDevice )( 
-            IMFDXGICrossAdapterBuffer * This,
+            __RPC__in IMFDXGICrossAdapterBuffer * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pUnkDevice,
             /* [annotation][in] */ 
@@ -2150,7 +2150,7 @@ EXTERN_C const IID IID_IMFDXGICrossAdapterBuffer;
         
         DECLSPEC_XFGVIRT(IMFDXGICrossAdapterBuffer, SetUnknownForDevice)
         HRESULT ( STDMETHODCALLTYPE *SetUnknownForDevice )( 
-            IMFDXGICrossAdapterBuffer * This,
+            __RPC__in IMFDXGICrossAdapterBuffer * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pUnkDevice,
             /* [annotation][in] */ 
@@ -2496,7 +2496,7 @@ EXTERN_C const IID IID_IMFMediaType;
         
         DECLSPEC_XFGVIRT(IMFMediaType, GetRepresentation)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *GetRepresentation )( 
-            IMFMediaType * This,
+            __RPC__in IMFMediaType * This,
             /* [annotation][in] */ 
             _In_  GUID guidRepresentation,
             /* [annotation][out] */ 
@@ -2504,7 +2504,7 @@ EXTERN_C const IID IID_IMFMediaType;
         
         DECLSPEC_XFGVIRT(IMFMediaType, FreeRepresentation)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *FreeRepresentation )( 
-            IMFMediaType * This,
+            __RPC__in IMFMediaType * This,
             /* [annotation][in] */ 
             _In_  GUID guidRepresentation,
             /* [annotation][in] */ 
@@ -2695,7 +2695,7 @@ EXTERN_C const IID IID_IMFAudioMediaType;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFAudioMediaType * This,
+            __RPC__in IMFAudioMediaType * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -2703,89 +2703,89 @@ EXTERN_C const IID IID_IMFAudioMediaType;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFAudioMediaType * This);
+            __RPC__in IMFAudioMediaType * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFAudioMediaType * This);
+            __RPC__in IMFAudioMediaType * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetItem)
         HRESULT ( STDMETHODCALLTYPE *GetItem )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
-            /* [full][out][in] */ PROPVARIANT *pValue);
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
+            /* [full][out][in] */ __RPC__inout_opt PROPVARIANT *pValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetItemType)
         HRESULT ( STDMETHODCALLTYPE *GetItemType )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  MF_ATTRIBUTE_TYPE *pType);
         
         DECLSPEC_XFGVIRT(IMFAttributes, CompareItem)
         HRESULT ( STDMETHODCALLTYPE *CompareItem )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
-            REFPROPVARIANT Value,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFPROPVARIANT Value,
             /* [annotation][out] */ 
             _Out_  BOOL *pbResult);
         
         DECLSPEC_XFGVIRT(IMFAttributes, Compare)
         HRESULT ( STDMETHODCALLTYPE *Compare )( 
-            IMFAudioMediaType * This,
-            IMFAttributes *pTheirs,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in_opt IMFAttributes *pTheirs,
             MF_ATTRIBUTES_MATCH_TYPE MatchType,
             /* [annotation][out] */ 
             _Out_  BOOL *pbResult);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetUINT32)
         HRESULT ( STDMETHODCALLTYPE *GetUINT32 )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT32 *punValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetUINT64)
         HRESULT ( STDMETHODCALLTYPE *GetUINT64 )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT64 *punValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetDouble)
         HRESULT ( STDMETHODCALLTYPE *GetDouble )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  double *pfValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetGUID)
         HRESULT ( STDMETHODCALLTYPE *GetGUID )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  GUID *pguidValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetStringLength)
         HRESULT ( STDMETHODCALLTYPE *GetStringLength )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT32 *pcchLength);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetString)
         HRESULT ( STDMETHODCALLTYPE *GetString )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][out] */ 
             _Out_writes_(cchBufSize)  LPWSTR pwszValue,
             UINT32 cchBufSize,
-            /* [full][out][in] */ UINT32 *pcchLength);
+            /* [full][out][in] */ __RPC__inout_opt UINT32 *pcchLength);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetAllocatedString)
         HRESULT ( STDMETHODCALLTYPE *GetAllocatedString )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][size_is][out] */ 
             _Out_writes_(*pcchLength + 1)  LPWSTR *ppwszValue,
             /* [annotation][out] */ 
@@ -2793,24 +2793,24 @@ EXTERN_C const IID IID_IMFAudioMediaType;
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetBlobSize)
         HRESULT ( STDMETHODCALLTYPE *GetBlobSize )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT32 *pcbBlobSize);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetBlob)
         HRESULT ( STDMETHODCALLTYPE *GetBlob )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][out] */ 
             _Out_writes_(cbBufSize)  UINT8 *pBuf,
             UINT32 cbBufSize,
-            /* [full][out][in] */ UINT32 *pcbBlobSize);
+            /* [full][out][in] */ __RPC__inout_opt UINT32 *pcbBlobSize);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetAllocatedBlob)
         HRESULT ( STDMETHODCALLTYPE *GetAllocatedBlob )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][size_is][out] */ 
             _Out_writes_(*pcbSize)  UINT8 **ppBuf,
             /* [annotation][out] */ 
@@ -2818,116 +2818,116 @@ EXTERN_C const IID IID_IMFAudioMediaType;
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetUnknown)
         HRESULT ( STDMETHODCALLTYPE *GetUnknown )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
-            REFIID riid,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  LPVOID *ppv);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetItem)
         HRESULT ( STDMETHODCALLTYPE *SetItem )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
-            REFPROPVARIANT Value);
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFPROPVARIANT Value);
         
         DECLSPEC_XFGVIRT(IMFAttributes, DeleteItem)
         HRESULT ( STDMETHODCALLTYPE *DeleteItem )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey);
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey);
         
         DECLSPEC_XFGVIRT(IMFAttributes, DeleteAllItems)
         HRESULT ( STDMETHODCALLTYPE *DeleteAllItems )( 
-            IMFAudioMediaType * This);
+            __RPC__in IMFAudioMediaType * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetUINT32)
         HRESULT ( STDMETHODCALLTYPE *SetUINT32 )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             UINT32 unValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetUINT64)
         HRESULT ( STDMETHODCALLTYPE *SetUINT64 )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             UINT64 unValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetDouble)
         HRESULT ( STDMETHODCALLTYPE *SetDouble )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             double fValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetGUID)
         HRESULT ( STDMETHODCALLTYPE *SetGUID )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
-            REFGUID guidValue);
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFGUID guidValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetString)
         HRESULT ( STDMETHODCALLTYPE *SetString )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetBlob)
         HRESULT ( STDMETHODCALLTYPE *SetBlob )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][in] */ 
             _In_reads_(cbBufSize)  const UINT8 *pBuf,
             UINT32 cbBufSize);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetUnknown)
         HRESULT ( STDMETHODCALLTYPE *SetUnknown )( 
-            IMFAudioMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFAudioMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][in] */ 
             _In_  IUnknown *pUnknown);
         
         DECLSPEC_XFGVIRT(IMFAttributes, LockStore)
         HRESULT ( STDMETHODCALLTYPE *LockStore )( 
-            IMFAudioMediaType * This);
+            __RPC__in IMFAudioMediaType * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, UnlockStore)
         HRESULT ( STDMETHODCALLTYPE *UnlockStore )( 
-            IMFAudioMediaType * This);
+            __RPC__in IMFAudioMediaType * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetCount)
         HRESULT ( STDMETHODCALLTYPE *GetCount )( 
-            IMFAudioMediaType * This,
+            __RPC__in IMFAudioMediaType * This,
             /* [annotation][out] */ 
             _Out_  UINT32 *pcItems);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetItemByIndex)
         HRESULT ( STDMETHODCALLTYPE *GetItemByIndex )( 
-            IMFAudioMediaType * This,
+            __RPC__in IMFAudioMediaType * This,
             UINT32 unIndex,
             /* [annotation][out] */ 
             _Out_  GUID *pguidKey,
-            /* [full][out][in] */ PROPVARIANT *pValue);
+            /* [full][out][in] */ __RPC__inout_opt PROPVARIANT *pValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, CopyAllItems)
         HRESULT ( STDMETHODCALLTYPE *CopyAllItems )( 
-            IMFAudioMediaType * This,
+            __RPC__in IMFAudioMediaType * This,
             /* [annotation][in] */ 
             _In_  IMFAttributes *pDest);
         
         DECLSPEC_XFGVIRT(IMFMediaType, GetMajorType)
         HRESULT ( STDMETHODCALLTYPE *GetMajorType )( 
-            IMFAudioMediaType * This,
+            __RPC__in IMFAudioMediaType * This,
             /* [annotation][out] */ 
             _Out_  GUID *pguidMajorType);
         
         DECLSPEC_XFGVIRT(IMFMediaType, IsCompressedFormat)
         HRESULT ( STDMETHODCALLTYPE *IsCompressedFormat )( 
-            IMFAudioMediaType * This,
+            __RPC__in IMFAudioMediaType * This,
             /* [annotation][out] */ 
             _Out_  BOOL *pfCompressed);
         
         DECLSPEC_XFGVIRT(IMFMediaType, IsEqual)
         HRESULT ( STDMETHODCALLTYPE *IsEqual )( 
-            IMFAudioMediaType * This,
+            __RPC__in IMFAudioMediaType * This,
             /* [annotation][in] */ 
             _In_  IMFMediaType *pIMediaType,
             /* [annotation][out] */ 
@@ -2935,7 +2935,7 @@ EXTERN_C const IID IID_IMFAudioMediaType;
         
         DECLSPEC_XFGVIRT(IMFMediaType, GetRepresentation)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *GetRepresentation )( 
-            IMFAudioMediaType * This,
+            __RPC__in IMFAudioMediaType * This,
             /* [annotation][in] */ 
             _In_  GUID guidRepresentation,
             /* [annotation][out] */ 
@@ -2943,7 +2943,7 @@ EXTERN_C const IID IID_IMFAudioMediaType;
         
         DECLSPEC_XFGVIRT(IMFMediaType, FreeRepresentation)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *FreeRepresentation )( 
-            IMFAudioMediaType * This,
+            __RPC__in IMFAudioMediaType * This,
             /* [annotation][in] */ 
             _In_  GUID guidRepresentation,
             /* [annotation][in] */ 
@@ -2951,7 +2951,7 @@ EXTERN_C const IID IID_IMFAudioMediaType;
         
         DECLSPEC_XFGVIRT(IMFAudioMediaType, GetAudioFormat)
         const WAVEFORMATEX *( STDMETHODCALLTYPE *GetAudioFormat )( 
-            IMFAudioMediaType * This);
+            __RPC__in IMFAudioMediaType * This);
         
         END_INTERFACE
     } IMFAudioMediaTypeVtbl;
@@ -3472,7 +3472,7 @@ EXTERN_C const IID IID_IMFVideoMediaType;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3480,89 +3480,89 @@ EXTERN_C const IID IID_IMFVideoMediaType;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFVideoMediaType * This);
+            __RPC__in IMFVideoMediaType * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFVideoMediaType * This);
+            __RPC__in IMFVideoMediaType * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetItem)
         HRESULT ( STDMETHODCALLTYPE *GetItem )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
-            /* [full][out][in] */ PROPVARIANT *pValue);
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
+            /* [full][out][in] */ __RPC__inout_opt PROPVARIANT *pValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetItemType)
         HRESULT ( STDMETHODCALLTYPE *GetItemType )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  MF_ATTRIBUTE_TYPE *pType);
         
         DECLSPEC_XFGVIRT(IMFAttributes, CompareItem)
         HRESULT ( STDMETHODCALLTYPE *CompareItem )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
-            REFPROPVARIANT Value,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFPROPVARIANT Value,
             /* [annotation][out] */ 
             _Out_  BOOL *pbResult);
         
         DECLSPEC_XFGVIRT(IMFAttributes, Compare)
         HRESULT ( STDMETHODCALLTYPE *Compare )( 
-            IMFVideoMediaType * This,
-            IMFAttributes *pTheirs,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in_opt IMFAttributes *pTheirs,
             MF_ATTRIBUTES_MATCH_TYPE MatchType,
             /* [annotation][out] */ 
             _Out_  BOOL *pbResult);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetUINT32)
         HRESULT ( STDMETHODCALLTYPE *GetUINT32 )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT32 *punValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetUINT64)
         HRESULT ( STDMETHODCALLTYPE *GetUINT64 )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT64 *punValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetDouble)
         HRESULT ( STDMETHODCALLTYPE *GetDouble )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  double *pfValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetGUID)
         HRESULT ( STDMETHODCALLTYPE *GetGUID )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  GUID *pguidValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetStringLength)
         HRESULT ( STDMETHODCALLTYPE *GetStringLength )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT32 *pcchLength);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetString)
         HRESULT ( STDMETHODCALLTYPE *GetString )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][out] */ 
             _Out_writes_(cchBufSize)  LPWSTR pwszValue,
             UINT32 cchBufSize,
-            /* [full][out][in] */ UINT32 *pcchLength);
+            /* [full][out][in] */ __RPC__inout_opt UINT32 *pcchLength);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetAllocatedString)
         HRESULT ( STDMETHODCALLTYPE *GetAllocatedString )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][size_is][out] */ 
             _Out_writes_(*pcchLength + 1)  LPWSTR *ppwszValue,
             /* [annotation][out] */ 
@@ -3570,24 +3570,24 @@ EXTERN_C const IID IID_IMFVideoMediaType;
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetBlobSize)
         HRESULT ( STDMETHODCALLTYPE *GetBlobSize )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][out] */ 
             _Out_  UINT32 *pcbBlobSize);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetBlob)
         HRESULT ( STDMETHODCALLTYPE *GetBlob )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][out] */ 
             _Out_writes_(cbBufSize)  UINT8 *pBuf,
             UINT32 cbBufSize,
-            /* [full][out][in] */ UINT32 *pcbBlobSize);
+            /* [full][out][in] */ __RPC__inout_opt UINT32 *pcbBlobSize);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetAllocatedBlob)
         HRESULT ( STDMETHODCALLTYPE *GetAllocatedBlob )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][size_is][out] */ 
             _Out_writes_(*pcbSize)  UINT8 **ppBuf,
             /* [annotation][out] */ 
@@ -3595,116 +3595,116 @@ EXTERN_C const IID IID_IMFVideoMediaType;
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetUnknown)
         HRESULT ( STDMETHODCALLTYPE *GetUnknown )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
-            REFIID riid,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  LPVOID *ppv);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetItem)
         HRESULT ( STDMETHODCALLTYPE *SetItem )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
-            REFPROPVARIANT Value);
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFPROPVARIANT Value);
         
         DECLSPEC_XFGVIRT(IMFAttributes, DeleteItem)
         HRESULT ( STDMETHODCALLTYPE *DeleteItem )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey);
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey);
         
         DECLSPEC_XFGVIRT(IMFAttributes, DeleteAllItems)
         HRESULT ( STDMETHODCALLTYPE *DeleteAllItems )( 
-            IMFVideoMediaType * This);
+            __RPC__in IMFVideoMediaType * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetUINT32)
         HRESULT ( STDMETHODCALLTYPE *SetUINT32 )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             UINT32 unValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetUINT64)
         HRESULT ( STDMETHODCALLTYPE *SetUINT64 )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             UINT64 unValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetDouble)
         HRESULT ( STDMETHODCALLTYPE *SetDouble )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             double fValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetGUID)
         HRESULT ( STDMETHODCALLTYPE *SetGUID )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
-            REFGUID guidValue);
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
+            __RPC__in REFGUID guidValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetString)
         HRESULT ( STDMETHODCALLTYPE *SetString )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetBlob)
         HRESULT ( STDMETHODCALLTYPE *SetBlob )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][size_is][in] */ 
             _In_reads_(cbBufSize)  const UINT8 *pBuf,
             UINT32 cbBufSize);
         
         DECLSPEC_XFGVIRT(IMFAttributes, SetUnknown)
         HRESULT ( STDMETHODCALLTYPE *SetUnknown )( 
-            IMFVideoMediaType * This,
-            REFGUID guidKey,
+            __RPC__in IMFVideoMediaType * This,
+            __RPC__in REFGUID guidKey,
             /* [annotation][in] */ 
             _In_  IUnknown *pUnknown);
         
         DECLSPEC_XFGVIRT(IMFAttributes, LockStore)
         HRESULT ( STDMETHODCALLTYPE *LockStore )( 
-            IMFVideoMediaType * This);
+            __RPC__in IMFVideoMediaType * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, UnlockStore)
         HRESULT ( STDMETHODCALLTYPE *UnlockStore )( 
-            IMFVideoMediaType * This);
+            __RPC__in IMFVideoMediaType * This);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetCount)
         HRESULT ( STDMETHODCALLTYPE *GetCount )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             /* [annotation][out] */ 
             _Out_  UINT32 *pcItems);
         
         DECLSPEC_XFGVIRT(IMFAttributes, GetItemByIndex)
         HRESULT ( STDMETHODCALLTYPE *GetItemByIndex )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             UINT32 unIndex,
             /* [annotation][out] */ 
             _Out_  GUID *pguidKey,
-            /* [full][out][in] */ PROPVARIANT *pValue);
+            /* [full][out][in] */ __RPC__inout_opt PROPVARIANT *pValue);
         
         DECLSPEC_XFGVIRT(IMFAttributes, CopyAllItems)
         HRESULT ( STDMETHODCALLTYPE *CopyAllItems )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             /* [annotation][in] */ 
             _In_  IMFAttributes *pDest);
         
         DECLSPEC_XFGVIRT(IMFMediaType, GetMajorType)
         HRESULT ( STDMETHODCALLTYPE *GetMajorType )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             /* [annotation][out] */ 
             _Out_  GUID *pguidMajorType);
         
         DECLSPEC_XFGVIRT(IMFMediaType, IsCompressedFormat)
         HRESULT ( STDMETHODCALLTYPE *IsCompressedFormat )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             /* [annotation][out] */ 
             _Out_  BOOL *pfCompressed);
         
         DECLSPEC_XFGVIRT(IMFMediaType, IsEqual)
         HRESULT ( STDMETHODCALLTYPE *IsEqual )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             /* [annotation][in] */ 
             _In_  IMFMediaType *pIMediaType,
             /* [annotation][out] */ 
@@ -3712,7 +3712,7 @@ EXTERN_C const IID IID_IMFVideoMediaType;
         
         DECLSPEC_XFGVIRT(IMFMediaType, GetRepresentation)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *GetRepresentation )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             /* [annotation][in] */ 
             _In_  GUID guidRepresentation,
             /* [annotation][out] */ 
@@ -3720,7 +3720,7 @@ EXTERN_C const IID IID_IMFVideoMediaType;
         
         DECLSPEC_XFGVIRT(IMFMediaType, FreeRepresentation)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *FreeRepresentation )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             /* [annotation][in] */ 
             _In_  GUID guidRepresentation,
             /* [annotation][in] */ 
@@ -3728,11 +3728,11 @@ EXTERN_C const IID IID_IMFVideoMediaType;
         
         DECLSPEC_XFGVIRT(IMFVideoMediaType, GetVideoFormat)
         const MFVIDEOFORMAT *( STDMETHODCALLTYPE *GetVideoFormat )( 
-            IMFVideoMediaType * This);
+            __RPC__in IMFVideoMediaType * This);
         
         DECLSPEC_XFGVIRT(IMFVideoMediaType, GetVideoRepresentation)
         HRESULT ( STDMETHODCALLTYPE *GetVideoRepresentation )( 
-            IMFVideoMediaType * This,
+            __RPC__in IMFVideoMediaType * This,
             /* [annotation][in] */ 
             _In_  GUID guidRepresentation,
             /* [annotation][out] */ 
@@ -3979,7 +3979,7 @@ EXTERN_C const IID IID_IMFAsyncResult;
         
         DECLSPEC_XFGVIRT(IMFAsyncResult, GetStateNoAddRef)
         /* [local] */ IUnknown *( STDMETHODCALLTYPE *GetStateNoAddRef )( 
-            IMFAsyncResult * This);
+            __RPC__in IMFAsyncResult * This);
         
         END_INTERFACE
     } IMFAsyncResultVtbl;
@@ -4176,7 +4176,7 @@ EXTERN_C const IID IID_IMFAsyncCallbackLogging;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFAsyncCallbackLogging * This,
+            __RPC__in IMFAsyncCallbackLogging * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4184,15 +4184,15 @@ EXTERN_C const IID IID_IMFAsyncCallbackLogging;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFAsyncCallbackLogging * This);
+            __RPC__in IMFAsyncCallbackLogging * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFAsyncCallbackLogging * This);
+            __RPC__in IMFAsyncCallbackLogging * This);
         
         DECLSPEC_XFGVIRT(IMFAsyncCallback, GetParameters)
         HRESULT ( STDMETHODCALLTYPE *GetParameters )( 
-            IMFAsyncCallbackLogging * This,
+            __RPC__in IMFAsyncCallbackLogging * This,
             /* [annotation][out] */ 
             _Out_  DWORD *pdwFlags,
             /* [annotation][out] */ 
@@ -4200,17 +4200,17 @@ EXTERN_C const IID IID_IMFAsyncCallbackLogging;
         
         DECLSPEC_XFGVIRT(IMFAsyncCallback, Invoke)
         HRESULT ( STDMETHODCALLTYPE *Invoke )( 
-            IMFAsyncCallbackLogging * This,
+            __RPC__in IMFAsyncCallbackLogging * This,
             /* [annotation][in] */ 
             _In_  IMFAsyncResult *pAsyncResult);
         
         DECLSPEC_XFGVIRT(IMFAsyncCallbackLogging, GetObjectPointer)
         void *( STDMETHODCALLTYPE *GetObjectPointer )( 
-            IMFAsyncCallbackLogging * This);
+            __RPC__in IMFAsyncCallbackLogging * This);
         
         DECLSPEC_XFGVIRT(IMFAsyncCallbackLogging, GetObjectTag)
         DWORD ( STDMETHODCALLTYPE *GetObjectTag )( 
-            IMFAsyncCallbackLogging * This);
+            __RPC__in IMFAsyncCallbackLogging * This);
         
         END_INTERFACE
     } IMFAsyncCallbackLoggingVtbl;
@@ -4883,7 +4883,7 @@ EXTERN_C const IID IID_IMFMediaEventGenerator;
             /* [annotation][in] */ 
             _In_  HRESULT hrStatus,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvValue) = 0;
+            _In_opt_  const PROPVARIANT *pvValue) = 0;
         
     };
     
@@ -4920,7 +4920,7 @@ EXTERN_C const IID IID_IMFMediaEventGenerator;
         
         DECLSPEC_XFGVIRT(IMFMediaEventGenerator, BeginGetEvent)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *BeginGetEvent )( 
-            IMFMediaEventGenerator * This,
+            __RPC__in IMFMediaEventGenerator * This,
             /* [annotation][in] */ 
             _In_  IMFAsyncCallback *pCallback,
             /* [annotation][in] */ 
@@ -4928,7 +4928,7 @@ EXTERN_C const IID IID_IMFMediaEventGenerator;
         
         DECLSPEC_XFGVIRT(IMFMediaEventGenerator, EndGetEvent)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *EndGetEvent )( 
-            IMFMediaEventGenerator * This,
+            __RPC__in IMFMediaEventGenerator * This,
             /* [annotation][in] */ 
             _In_  IMFAsyncResult *pResult,
             /* [annotation][out] */ 
@@ -4944,7 +4944,7 @@ EXTERN_C const IID IID_IMFMediaEventGenerator;
             /* [annotation][in] */ 
             _In_  HRESULT hrStatus,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvValue);
+            _In_opt_  const PROPVARIANT *pvValue);
         
         END_INTERFACE
     } IMFMediaEventGeneratorVtbl;
@@ -5315,7 +5315,7 @@ EXTERN_C const IID IID_IMFByteStream;
         
         DECLSPEC_XFGVIRT(IMFByteStream, BeginRead)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *BeginRead )( 
-            IMFByteStream * This,
+            __RPC__in IMFByteStream * This,
             /* [annotation][out] */ 
             _Out_writes_bytes_(cb)  BYTE *pb,
             /* [annotation][in] */ 
@@ -5327,7 +5327,7 @@ EXTERN_C const IID IID_IMFByteStream;
         
         DECLSPEC_XFGVIRT(IMFByteStream, EndRead)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *EndRead )( 
-            IMFByteStream * This,
+            __RPC__in IMFByteStream * This,
             /* [annotation][in] */ 
             _In_  IMFAsyncResult *pResult,
             /* [annotation][out] */ 
@@ -5344,7 +5344,7 @@ EXTERN_C const IID IID_IMFByteStream;
         
         DECLSPEC_XFGVIRT(IMFByteStream, BeginWrite)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *BeginWrite )( 
-            IMFByteStream * This,
+            __RPC__in IMFByteStream * This,
             /* [annotation][in] */ 
             _In_reads_bytes_(cb)  const BYTE *pb,
             /* [annotation][in] */ 
@@ -5356,7 +5356,7 @@ EXTERN_C const IID IID_IMFByteStream;
         
         DECLSPEC_XFGVIRT(IMFByteStream, EndWrite)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *EndWrite )( 
-            IMFByteStream * This,
+            __RPC__in IMFByteStream * This,
             /* [annotation][in] */ 
             _In_  IMFAsyncResult *pResult,
             /* [annotation][out] */ 
@@ -5583,7 +5583,7 @@ EXTERN_C const IID IID_IMFByteStreamProxyClassFactory;
             /* [annotation][in] */ 
             _In_  IMFByteStream *pByteStream,
             /* [annotation][unique][in] */ 
-            _In_  IMFAttributes *pAttributes,
+            _In_opt_  IMFAttributes *pAttributes,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -5620,7 +5620,7 @@ EXTERN_C const IID IID_IMFByteStreamProxyClassFactory;
             /* [annotation][in] */ 
             _In_  IMFByteStream *pByteStream,
             /* [annotation][unique][in] */ 
-            _In_  IMFAttributes *pAttributes,
+            _In_opt_  IMFAttributes *pAttributes,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -6023,7 +6023,7 @@ EXTERN_C const IID IID_IMFMediaEventQueue;
             /* [annotation][in] */ 
             _In_  HRESULT hrStatus,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvValue) = 0;
+            _In_opt_  const PROPVARIANT *pvValue) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE QueueEventParamUnk( 
             /* [annotation][in] */ 
@@ -6033,7 +6033,7 @@ EXTERN_C const IID IID_IMFMediaEventQueue;
             /* [annotation][in] */ 
             _In_  HRESULT hrStatus,
             /* [annotation][unique][in] */ 
-            _In_  IUnknown *pUnk) = 0;
+            _In_opt_  IUnknown *pUnk) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Shutdown( void) = 0;
         
@@ -6048,7 +6048,7 @@ EXTERN_C const IID IID_IMFMediaEventQueue;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFMediaEventQueue * This,
+            __RPC__in IMFMediaEventQueue * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -6056,15 +6056,15 @@ EXTERN_C const IID IID_IMFMediaEventQueue;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFMediaEventQueue * This);
+            __RPC__in IMFMediaEventQueue * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFMediaEventQueue * This);
+            __RPC__in IMFMediaEventQueue * This);
         
         DECLSPEC_XFGVIRT(IMFMediaEventQueue, GetEvent)
         HRESULT ( STDMETHODCALLTYPE *GetEvent )( 
-            IMFMediaEventQueue * This,
+            __RPC__in IMFMediaEventQueue * This,
             /* [annotation][in] */ 
             _In_  DWORD dwFlags,
             /* [annotation][out] */ 
@@ -6072,7 +6072,7 @@ EXTERN_C const IID IID_IMFMediaEventQueue;
         
         DECLSPEC_XFGVIRT(IMFMediaEventQueue, BeginGetEvent)
         HRESULT ( STDMETHODCALLTYPE *BeginGetEvent )( 
-            IMFMediaEventQueue * This,
+            __RPC__in IMFMediaEventQueue * This,
             /* [annotation][in] */ 
             _In_  IMFAsyncCallback *pCallback,
             /* [annotation][in] */ 
@@ -6080,7 +6080,7 @@ EXTERN_C const IID IID_IMFMediaEventQueue;
         
         DECLSPEC_XFGVIRT(IMFMediaEventQueue, EndGetEvent)
         HRESULT ( STDMETHODCALLTYPE *EndGetEvent )( 
-            IMFMediaEventQueue * This,
+            __RPC__in IMFMediaEventQueue * This,
             /* [annotation][in] */ 
             _In_  IMFAsyncResult *pResult,
             /* [annotation][out] */ 
@@ -6088,13 +6088,13 @@ EXTERN_C const IID IID_IMFMediaEventQueue;
         
         DECLSPEC_XFGVIRT(IMFMediaEventQueue, QueueEvent)
         HRESULT ( STDMETHODCALLTYPE *QueueEvent )( 
-            IMFMediaEventQueue * This,
+            __RPC__in IMFMediaEventQueue * This,
             /* [annotation][in] */ 
             _In_  IMFMediaEvent *pEvent);
         
         DECLSPEC_XFGVIRT(IMFMediaEventQueue, QueueEventParamVar)
         HRESULT ( STDMETHODCALLTYPE *QueueEventParamVar )( 
-            IMFMediaEventQueue * This,
+            __RPC__in IMFMediaEventQueue * This,
             /* [annotation][in] */ 
             _In_  MediaEventType met,
             /* [annotation][in] */ 
@@ -6102,11 +6102,11 @@ EXTERN_C const IID IID_IMFMediaEventQueue;
             /* [annotation][in] */ 
             _In_  HRESULT hrStatus,
             /* [annotation][unique][in] */ 
-            _In_  const PROPVARIANT *pvValue);
+            _In_opt_  const PROPVARIANT *pvValue);
         
         DECLSPEC_XFGVIRT(IMFMediaEventQueue, QueueEventParamUnk)
         HRESULT ( STDMETHODCALLTYPE *QueueEventParamUnk )( 
-            IMFMediaEventQueue * This,
+            __RPC__in IMFMediaEventQueue * This,
             /* [annotation][in] */ 
             _In_  MediaEventType met,
             /* [annotation][in] */ 
@@ -6114,11 +6114,11 @@ EXTERN_C const IID IID_IMFMediaEventQueue;
             /* [annotation][in] */ 
             _In_  HRESULT hrStatus,
             /* [annotation][unique][in] */ 
-            _In_  IUnknown *pUnk);
+            _In_opt_  IUnknown *pUnk);
         
         DECLSPEC_XFGVIRT(IMFMediaEventQueue, Shutdown)
         HRESULT ( STDMETHODCALLTYPE *Shutdown )( 
-            IMFMediaEventQueue * This);
+            __RPC__in IMFMediaEventQueue * This);
         
         END_INTERFACE
     } IMFMediaEventQueueVtbl;
@@ -6194,7 +6194,7 @@ EXTERN_C const IID IID_IMFActivate;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][retval][iid_is][out] */ 
-            _COM_Outptr_retval_  void **ppv) = 0;
+            _COM_Outptr_  void **ppv) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE ShutdownObject( void) = 0;
         
@@ -6435,7 +6435,7 @@ EXTERN_C const IID IID_IMFActivate;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][retval][iid_is][out] */ 
-            _COM_Outptr_retval_  void **ppv);
+            _COM_Outptr_  void **ppv);
         
         DECLSPEC_XFGVIRT(IMFActivate, ShutdownObject)
         HRESULT ( STDMETHODCALLTYPE *ShutdownObject )( 
@@ -6640,7 +6640,7 @@ EXTERN_C const IID IID_IMFPluginControl;
         
         virtual HRESULT STDMETHODCALLTYPE IsDisabled( 
             DWORD pluginType,
-            REFCLSID clsid) = 0;
+            __RPC__in REFCLSID clsid) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetDisabledByIndex( 
             DWORD pluginType,
@@ -6650,7 +6650,7 @@ EXTERN_C const IID IID_IMFPluginControl;
         
         virtual HRESULT STDMETHODCALLTYPE SetDisabled( 
             DWORD pluginType,
-            REFCLSID clsid,
+            __RPC__in REFCLSID clsid,
             BOOL disabled) = 0;
         
     };
@@ -6664,7 +6664,7 @@ EXTERN_C const IID IID_IMFPluginControl;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFPluginControl * This,
+            __RPC__in IMFPluginControl * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -6672,15 +6672,15 @@ EXTERN_C const IID IID_IMFPluginControl;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFPluginControl * This);
+            __RPC__in IMFPluginControl * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFPluginControl * This);
+            __RPC__in IMFPluginControl * This);
         
         DECLSPEC_XFGVIRT(IMFPluginControl, GetPreferredClsid)
         HRESULT ( STDMETHODCALLTYPE *GetPreferredClsid )( 
-            IMFPluginControl * This,
+            __RPC__in IMFPluginControl * This,
             DWORD pluginType,
             /* [annotation] */ 
             _In_  LPCWSTR selector,
@@ -6689,7 +6689,7 @@ EXTERN_C const IID IID_IMFPluginControl;
         
         DECLSPEC_XFGVIRT(IMFPluginControl, GetPreferredClsidByIndex)
         HRESULT ( STDMETHODCALLTYPE *GetPreferredClsidByIndex )( 
-            IMFPluginControl * This,
+            __RPC__in IMFPluginControl * This,
             DWORD pluginType,
             DWORD index,
             /* [annotation] */ 
@@ -6699,7 +6699,7 @@ EXTERN_C const IID IID_IMFPluginControl;
         
         DECLSPEC_XFGVIRT(IMFPluginControl, SetPreferredClsid)
         HRESULT ( STDMETHODCALLTYPE *SetPreferredClsid )( 
-            IMFPluginControl * This,
+            __RPC__in IMFPluginControl * This,
             DWORD pluginType,
             /* [annotation] */ 
             _In_  LPCWSTR selector,
@@ -6708,13 +6708,13 @@ EXTERN_C const IID IID_IMFPluginControl;
         
         DECLSPEC_XFGVIRT(IMFPluginControl, IsDisabled)
         HRESULT ( STDMETHODCALLTYPE *IsDisabled )( 
-            IMFPluginControl * This,
+            __RPC__in IMFPluginControl * This,
             DWORD pluginType,
-            REFCLSID clsid);
+            __RPC__in REFCLSID clsid);
         
         DECLSPEC_XFGVIRT(IMFPluginControl, GetDisabledByIndex)
         HRESULT ( STDMETHODCALLTYPE *GetDisabledByIndex )( 
-            IMFPluginControl * This,
+            __RPC__in IMFPluginControl * This,
             DWORD pluginType,
             DWORD index,
             /* [annotation] */ 
@@ -6722,9 +6722,9 @@ EXTERN_C const IID IID_IMFPluginControl;
         
         DECLSPEC_XFGVIRT(IMFPluginControl, SetDisabled)
         HRESULT ( STDMETHODCALLTYPE *SetDisabled )( 
-            IMFPluginControl * This,
+            __RPC__in IMFPluginControl * This,
             DWORD pluginType,
-            REFCLSID clsid,
+            __RPC__in REFCLSID clsid,
             BOOL disabled);
         
         END_INTERFACE
@@ -6826,7 +6826,7 @@ EXTERN_C const IID IID_IMFPluginControl2;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFPluginControl2 * This,
+            __RPC__in IMFPluginControl2 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -6834,15 +6834,15 @@ EXTERN_C const IID IID_IMFPluginControl2;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFPluginControl2 * This);
+            __RPC__in IMFPluginControl2 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFPluginControl2 * This);
+            __RPC__in IMFPluginControl2 * This);
         
         DECLSPEC_XFGVIRT(IMFPluginControl, GetPreferredClsid)
         HRESULT ( STDMETHODCALLTYPE *GetPreferredClsid )( 
-            IMFPluginControl2 * This,
+            __RPC__in IMFPluginControl2 * This,
             DWORD pluginType,
             /* [annotation] */ 
             _In_  LPCWSTR selector,
@@ -6851,7 +6851,7 @@ EXTERN_C const IID IID_IMFPluginControl2;
         
         DECLSPEC_XFGVIRT(IMFPluginControl, GetPreferredClsidByIndex)
         HRESULT ( STDMETHODCALLTYPE *GetPreferredClsidByIndex )( 
-            IMFPluginControl2 * This,
+            __RPC__in IMFPluginControl2 * This,
             DWORD pluginType,
             DWORD index,
             /* [annotation] */ 
@@ -6861,7 +6861,7 @@ EXTERN_C const IID IID_IMFPluginControl2;
         
         DECLSPEC_XFGVIRT(IMFPluginControl, SetPreferredClsid)
         HRESULT ( STDMETHODCALLTYPE *SetPreferredClsid )( 
-            IMFPluginControl2 * This,
+            __RPC__in IMFPluginControl2 * This,
             DWORD pluginType,
             /* [annotation] */ 
             _In_  LPCWSTR selector,
@@ -6870,13 +6870,13 @@ EXTERN_C const IID IID_IMFPluginControl2;
         
         DECLSPEC_XFGVIRT(IMFPluginControl, IsDisabled)
         HRESULT ( STDMETHODCALLTYPE *IsDisabled )( 
-            IMFPluginControl2 * This,
+            __RPC__in IMFPluginControl2 * This,
             DWORD pluginType,
-            REFCLSID clsid);
+            __RPC__in REFCLSID clsid);
         
         DECLSPEC_XFGVIRT(IMFPluginControl, GetDisabledByIndex)
         HRESULT ( STDMETHODCALLTYPE *GetDisabledByIndex )( 
-            IMFPluginControl2 * This,
+            __RPC__in IMFPluginControl2 * This,
             DWORD pluginType,
             DWORD index,
             /* [annotation] */ 
@@ -6884,14 +6884,14 @@ EXTERN_C const IID IID_IMFPluginControl2;
         
         DECLSPEC_XFGVIRT(IMFPluginControl, SetDisabled)
         HRESULT ( STDMETHODCALLTYPE *SetDisabled )( 
-            IMFPluginControl2 * This,
+            __RPC__in IMFPluginControl2 * This,
             DWORD pluginType,
-            REFCLSID clsid,
+            __RPC__in REFCLSID clsid,
             BOOL disabled);
         
         DECLSPEC_XFGVIRT(IMFPluginControl2, SetPolicy)
         HRESULT ( STDMETHODCALLTYPE *SetPolicy )( 
-            IMFPluginControl2 * This,
+            __RPC__in IMFPluginControl2 * This,
             /* [annotation][in] */ 
             _In_  MF_PLUGIN_CONTROL_POLICY policy);
         
@@ -7031,7 +7031,7 @@ EXTERN_C const IID IID_IMFDXGIDeviceManager;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFDXGIDeviceManager * This,
+            __RPC__in IMFDXGIDeviceManager * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -7039,21 +7039,21 @@ EXTERN_C const IID IID_IMFDXGIDeviceManager;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFDXGIDeviceManager * This);
+            __RPC__in IMFDXGIDeviceManager * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFDXGIDeviceManager * This);
+            __RPC__in IMFDXGIDeviceManager * This);
         
         DECLSPEC_XFGVIRT(IMFDXGIDeviceManager, CloseDeviceHandle)
         HRESULT ( STDMETHODCALLTYPE *CloseDeviceHandle )( 
-            IMFDXGIDeviceManager * This,
+            __RPC__in IMFDXGIDeviceManager * This,
             /* [annotation] */ 
             _In_  HANDLE hDevice);
         
         DECLSPEC_XFGVIRT(IMFDXGIDeviceManager, GetVideoService)
         HRESULT ( STDMETHODCALLTYPE *GetVideoService )( 
-            IMFDXGIDeviceManager * This,
+            __RPC__in IMFDXGIDeviceManager * This,
             /* [annotation] */ 
             _In_  HANDLE hDevice,
             /* [annotation] */ 
@@ -7063,7 +7063,7 @@ EXTERN_C const IID IID_IMFDXGIDeviceManager;
         
         DECLSPEC_XFGVIRT(IMFDXGIDeviceManager, LockDevice)
         HRESULT ( STDMETHODCALLTYPE *LockDevice )( 
-            IMFDXGIDeviceManager * This,
+            __RPC__in IMFDXGIDeviceManager * This,
             /* [annotation] */ 
             _In_  HANDLE hDevice,
             /* [annotation] */ 
@@ -7075,13 +7075,13 @@ EXTERN_C const IID IID_IMFDXGIDeviceManager;
         
         DECLSPEC_XFGVIRT(IMFDXGIDeviceManager, OpenDeviceHandle)
         HRESULT ( STDMETHODCALLTYPE *OpenDeviceHandle )( 
-            IMFDXGIDeviceManager * This,
+            __RPC__in IMFDXGIDeviceManager * This,
             /* [annotation] */ 
             _Out_  HANDLE *phDevice);
         
         DECLSPEC_XFGVIRT(IMFDXGIDeviceManager, ResetDevice)
         HRESULT ( STDMETHODCALLTYPE *ResetDevice )( 
-            IMFDXGIDeviceManager * This,
+            __RPC__in IMFDXGIDeviceManager * This,
             /* [annotation] */ 
             _In_  IUnknown *pUnkDevice,
             /* [annotation] */ 
@@ -7089,13 +7089,13 @@ EXTERN_C const IID IID_IMFDXGIDeviceManager;
         
         DECLSPEC_XFGVIRT(IMFDXGIDeviceManager, TestDevice)
         HRESULT ( STDMETHODCALLTYPE *TestDevice )( 
-            IMFDXGIDeviceManager * This,
+            __RPC__in IMFDXGIDeviceManager * This,
             /* [annotation] */ 
             _In_  HANDLE hDevice);
         
         DECLSPEC_XFGVIRT(IMFDXGIDeviceManager, UnlockDevice)
         HRESULT ( STDMETHODCALLTYPE *UnlockDevice )( 
-            IMFDXGIDeviceManager * This,
+            __RPC__in IMFDXGIDeviceManager * This,
             /* [annotation] */ 
             _In_  HANDLE hDevice,
             /* [annotation] */ 
@@ -7222,7 +7222,7 @@ EXTERN_C const IID IID_IMFMuxStreamAttributesManager;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFMuxStreamAttributesManager * This,
+            __RPC__in IMFMuxStreamAttributesManager * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -7230,21 +7230,21 @@ EXTERN_C const IID IID_IMFMuxStreamAttributesManager;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFMuxStreamAttributesManager * This);
+            __RPC__in IMFMuxStreamAttributesManager * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFMuxStreamAttributesManager * This);
+            __RPC__in IMFMuxStreamAttributesManager * This);
         
         DECLSPEC_XFGVIRT(IMFMuxStreamAttributesManager, GetStreamCount)
         HRESULT ( STDMETHODCALLTYPE *GetStreamCount )( 
-            IMFMuxStreamAttributesManager * This,
+            __RPC__in IMFMuxStreamAttributesManager * This,
             /* [annotation] */ 
             _Out_  DWORD *pdwMuxStreamCount);
         
         DECLSPEC_XFGVIRT(IMFMuxStreamAttributesManager, GetAttributes)
         HRESULT ( STDMETHODCALLTYPE *GetAttributes )( 
-            IMFMuxStreamAttributesManager * This,
+            __RPC__in IMFMuxStreamAttributesManager * This,
             /* [annotation] */ 
             _In_  DWORD dwMuxStreamIndex,
             /* [annotation] */ 
@@ -7344,7 +7344,7 @@ EXTERN_C const IID IID_IMFMuxStreamMediaTypeManager;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFMuxStreamMediaTypeManager * This,
+            __RPC__in IMFMuxStreamMediaTypeManager * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -7352,21 +7352,21 @@ EXTERN_C const IID IID_IMFMuxStreamMediaTypeManager;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFMuxStreamMediaTypeManager * This);
+            __RPC__in IMFMuxStreamMediaTypeManager * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFMuxStreamMediaTypeManager * This);
+            __RPC__in IMFMuxStreamMediaTypeManager * This);
         
         DECLSPEC_XFGVIRT(IMFMuxStreamMediaTypeManager, GetStreamCount)
         HRESULT ( STDMETHODCALLTYPE *GetStreamCount )( 
-            IMFMuxStreamMediaTypeManager * This,
+            __RPC__in IMFMuxStreamMediaTypeManager * This,
             /* [annotation] */ 
             _Out_  DWORD *pdwMuxStreamCount);
         
         DECLSPEC_XFGVIRT(IMFMuxStreamMediaTypeManager, GetMediaType)
         HRESULT ( STDMETHODCALLTYPE *GetMediaType )( 
-            IMFMuxStreamMediaTypeManager * This,
+            __RPC__in IMFMuxStreamMediaTypeManager * This,
             /* [annotation] */ 
             _In_  DWORD dwMuxStreamIndex,
             /* [annotation] */ 
@@ -7374,25 +7374,25 @@ EXTERN_C const IID IID_IMFMuxStreamMediaTypeManager;
         
         DECLSPEC_XFGVIRT(IMFMuxStreamMediaTypeManager, GetStreamConfigurationCount)
         HRESULT ( STDMETHODCALLTYPE *GetStreamConfigurationCount )( 
-            IMFMuxStreamMediaTypeManager * This,
+            __RPC__in IMFMuxStreamMediaTypeManager * This,
             /* [annotation] */ 
             _Out_  DWORD *pdwCount);
         
         DECLSPEC_XFGVIRT(IMFMuxStreamMediaTypeManager, AddStreamConfiguration)
         HRESULT ( STDMETHODCALLTYPE *AddStreamConfiguration )( 
-            IMFMuxStreamMediaTypeManager * This,
+            __RPC__in IMFMuxStreamMediaTypeManager * This,
             /* [annotation] */ 
             _In_  ULONGLONG ullStreamMask);
         
         DECLSPEC_XFGVIRT(IMFMuxStreamMediaTypeManager, RemoveStreamConfiguration)
         HRESULT ( STDMETHODCALLTYPE *RemoveStreamConfiguration )( 
-            IMFMuxStreamMediaTypeManager * This,
+            __RPC__in IMFMuxStreamMediaTypeManager * This,
             /* [annotation] */ 
             _In_  ULONGLONG ullStreamMask);
         
         DECLSPEC_XFGVIRT(IMFMuxStreamMediaTypeManager, GetStreamConfiguration)
         HRESULT ( STDMETHODCALLTYPE *GetStreamConfiguration )( 
-            IMFMuxStreamMediaTypeManager * This,
+            __RPC__in IMFMuxStreamMediaTypeManager * This,
             /* [annotation] */ 
             _In_  DWORD ulIndex,
             /* [annotation] */ 
@@ -7488,7 +7488,7 @@ EXTERN_C const IID IID_IMFMuxStreamSampleManager;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFMuxStreamSampleManager * This,
+            __RPC__in IMFMuxStreamSampleManager * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -7496,21 +7496,21 @@ EXTERN_C const IID IID_IMFMuxStreamSampleManager;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFMuxStreamSampleManager * This);
+            __RPC__in IMFMuxStreamSampleManager * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFMuxStreamSampleManager * This);
+            __RPC__in IMFMuxStreamSampleManager * This);
         
         DECLSPEC_XFGVIRT(IMFMuxStreamSampleManager, GetStreamCount)
         HRESULT ( STDMETHODCALLTYPE *GetStreamCount )( 
-            IMFMuxStreamSampleManager * This,
+            __RPC__in IMFMuxStreamSampleManager * This,
             /* [annotation] */ 
             _Out_  DWORD *pdwMuxStreamCount);
         
         DECLSPEC_XFGVIRT(IMFMuxStreamSampleManager, GetSample)
         HRESULT ( STDMETHODCALLTYPE *GetSample )( 
-            IMFMuxStreamSampleManager * This,
+            __RPC__in IMFMuxStreamSampleManager * This,
             /* [annotation] */ 
             _In_  DWORD dwMuxStreamIndex,
             /* [annotation] */ 
@@ -7518,7 +7518,7 @@ EXTERN_C const IID IID_IMFMuxStreamSampleManager;
         
         DECLSPEC_XFGVIRT(IMFMuxStreamSampleManager, GetStreamConfiguration)
         ULONGLONG ( STDMETHODCALLTYPE *GetStreamConfiguration )( 
-            IMFMuxStreamSampleManager * This);
+            __RPC__in IMFMuxStreamSampleManager * This);
         
         END_INTERFACE
     } IMFMuxStreamSampleManagerVtbl;
@@ -7593,7 +7593,7 @@ EXTERN_C const IID IID_IMFSecureBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMFSecureBuffer * This,
+            __RPC__in IMFSecureBuffer * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -7601,15 +7601,15 @@ EXTERN_C const IID IID_IMFSecureBuffer;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMFSecureBuffer * This);
+            __RPC__in IMFSecureBuffer * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMFSecureBuffer * This);
+            __RPC__in IMFSecureBuffer * This);
         
         DECLSPEC_XFGVIRT(IMFSecureBuffer, GetIdentifier)
         HRESULT ( STDMETHODCALLTYPE *GetIdentifier )( 
-            IMFSecureBuffer * This,
+            __RPC__in IMFSecureBuffer * This,
             /* [annotation][out] */ 
             _Out_  GUID *pGuidIdentifier);
         
@@ -7684,7 +7684,7 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal64(__RPC__in unsigned long 
 void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IMFMediaEventGenerator_BeginGetEvent_Proxy( 
-    IMFMediaEventGenerator * This,
+    __RPC__in IMFMediaEventGenerator * This,
     /* [annotation][in] */ 
     _In_  IMFAsyncCallback *pCallback,
     /* [annotation][in] */ 
@@ -7697,7 +7697,7 @@ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsi
     _In_  IMFRemoteAsyncCallback *pCallback);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IMFMediaEventGenerator_EndGetEvent_Proxy( 
-    IMFMediaEventGenerator * This,
+    __RPC__in IMFMediaEventGenerator * This,
     /* [annotation][in] */ 
     _In_  IMFAsyncResult *pResult,
     /* [annotation][out] */ 
@@ -7714,7 +7714,7 @@ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsi
     _Out_writes_(*pcbEvent)  BYTE **ppbEvent);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IMFByteStream_BeginRead_Proxy( 
-    IMFByteStream * This,
+    __RPC__in IMFByteStream * This,
     /* [annotation][out] */ 
     _Out_writes_bytes_(cb)  BYTE *pb,
     /* [annotation][in] */ 
@@ -7733,7 +7733,7 @@ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsi
     _In_  IMFRemoteAsyncCallback *pCallback);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IMFByteStream_EndRead_Proxy( 
-    IMFByteStream * This,
+    __RPC__in IMFByteStream * This,
     /* [annotation][in] */ 
     _In_  IMFAsyncResult *pResult,
     /* [annotation][out] */ 
@@ -7752,7 +7752,7 @@ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsi
     _Inout_  ULONG *pcbRead);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IMFByteStream_BeginWrite_Proxy( 
-    IMFByteStream * This,
+    __RPC__in IMFByteStream * This,
     /* [annotation][in] */ 
     _In_reads_bytes_(cb)  const BYTE *pb,
     /* [annotation][in] */ 
@@ -7773,7 +7773,7 @@ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsi
     _In_  IMFRemoteAsyncCallback *pCallback);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IMFByteStream_EndWrite_Proxy( 
-    IMFByteStream * This,
+    __RPC__in IMFByteStream * This,
     /* [annotation][in] */ 
     _In_  IMFAsyncResult *pResult,
     /* [annotation][out] */ 
