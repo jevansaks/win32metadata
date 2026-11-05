@@ -332,7 +332,9 @@ generate-cpp-attributes
                 return remaps;
             }
 
-            public void AssertNativeAbi(string arch, int pointerSize, string language)
+            public string NativeObject => Path.Combine(this.directory, "abi.obj");
+
+            public void AssertNativeAbi(string arch, int pointerSize, string language, string additionalDeclarations = "")
             {
                 string source = Path.Combine(this.directory, "abi.c");
                 File.WriteAllText(source, $@"#include ""win32metadata_annotations.h""
@@ -360,6 +362,7 @@ ExpectedParameterSignature parameterSignatureCheck = &ParameterAbi;
 typedef int (__stdcall *ExpectedSignature)(void*, unsigned long);
 ExpectedSignature signatureCheck = &Example;
 int __stdcall Caller(void) {{ return Example(0, 3); }}
+{additionalDeclarations}
 #ifdef __cplusplus
 }}
 #endif

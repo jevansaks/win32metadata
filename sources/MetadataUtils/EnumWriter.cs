@@ -22,7 +22,7 @@ namespace MetadataUtils
             this.useConstants = useConstants;
         }
 
-        public bool AddEnum(EnumObject enumObject)
+        public bool AddEnum(EnumObject enumObject, IEnumerable<string> associatedConstants = null)
         {
             if (enumObject.name == null || !enumObject.members.Any(m => m.value != null))
             {
@@ -31,11 +31,11 @@ namespace MetadataUtils
             }
 
             this.EnsureStarted();
-            this.writer.Write(GetDeclaration(enumObject));
+            this.writer.Write(GetDeclaration(enumObject, associatedConstants));
             return true;
         }
 
-        public static string GetDeclaration(EnumObject enumObject)
+        public static string GetDeclaration(EnumObject enumObject, IEnumerable<string> associatedConstants = null)
         {
             StringWriter writer = new StringWriter();
             if (enumObject.flags)
@@ -43,6 +43,8 @@ namespace MetadataUtils
                 writer.WriteLine(
 $"    [Flags]");
             }
+            foreach (string name in associatedConstants ?? Enumerable.Empty<string>())
+                writer.WriteLine($"    [NativeAnnotation(\"Win32Metadata.AssociatedConstant({name})\")]");
 
             string type = enumObject.type ?? "uint";
             bool forceUnsigned = (enumObject.flags && enumObject.type == null) ||

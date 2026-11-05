@@ -130,7 +130,8 @@ namespace ClangSharpSourceToWinmd
                     else
                     {
                         // Remove any existing attribute with the same name
-                        if (attrName is not "InvalidHandleValue" and not "InvalidHandleValueAttribute" ||
+                        if (attrName is not "InvalidHandleValue" and not "InvalidHandleValueAttribute" and
+                            not "AssociatedConstant" and not "AssociatedConstantAttribute" ||
                             replacedNames.Add(attrName))
                             existingAttrList = SyntaxUtils.RemoveAttribute(existingAttrList, attrName);
 
@@ -169,6 +170,7 @@ namespace ClangSharpSourceToWinmd
                 if (this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Type.ToString(), out string newType, out string newName))
                 {
                     var ownedNames = GetOwnedAnnotationNames(node.AttributeLists);
+                    VerifyAssociatedStorage(fullName, ownedNames, node.Type.ToString(), newType);
                     node = (ParameterSyntax)base.VisitParameter(node);
                     VerifyOwnedRemaps(fullName, ownedNames, node.AttributeLists, listAttributes);
                     if (headerType != null) RemoveHeaderAssociation(listAttributes);
@@ -266,14 +268,26 @@ namespace ClangSharpSourceToWinmd
                         .Where(remap => remap.Name.ToString() == ownedName ||
                             remap.Name.ToString() == ownedName + "Attribute").ToArray();
                     foreach (var remap in remaps ?? Enumerable.Empty<AttributeSyntax>())
-                        if (remap.Name.ToString() == ownedName + EncodeHelpers.AttributeToRemoveSuffix)
+                        if (remap.Name.ToString() == ownedName + EncodeHelpers.AttributeToRemoveSuffix ||
+                            remap.Name.ToString() == ownedName + "Attribute" + EncodeHelpers.AttributeToRemoveSuffix)
                             throw new FormatException($"{fullName}: legacy remap conflicts with native {ownedName}.");
-                    if (matching.Length != 0 && (matching.Length != existing.Length ||
+                    // Parameterless enum markers are idempotent, unlike ordered repeated value facts.
+                    bool matchingEnumMarker = (ownedName is "Flags" or "ScopedEnum") && existing.Length == 1 &&
+                        (existing[0].ArgumentList == null || existing[0].ArgumentList.Arguments.Count == 0) &&
+                        matching.All(remap => remap.ArgumentList == null || remap.ArgumentList.Arguments.Count == 0);
+                    if (matching.Length != 0 && !matchingEnumMarker && (matching.Length != existing.Length ||
                         matching.Where((remap, index) => !SyntaxFactory.AreEquivalent(existing[index].ArgumentList, remap.ArgumentList)).Any()))
                         throw new FormatException($"{fullName}: legacy remap conflicts with native {ownedName}.");
                     // Keep the entire native ordered group, including repeated invalid values.
                     remaps?.RemoveAll(remap => matching.Contains(remap));
                 }
+            }
+
+            private static void VerifyAssociatedStorage(string fullName, string[] ownedNames, string nativeType, string remappedType)
+            {
+                if (ownedNames.Contains("AssociatedEnum", StringComparer.Ordinal) &&
+                    remappedType != null && remappedType != nativeType)
+                    throw new FormatException($"{fullName}: legacy type remap conflicts with native AssociatedEnum storage '{nativeType}'.");
             }
 
             public override SyntaxNode VisitStructDeclaration(StructDeclarationSyntax node)
@@ -387,6 +401,7 @@ namespace ClangSharpSourceToWinmd
                 this.GetRemapInfo(fullName, node.AttributeLists, out var listAttributes, node.Declaration.Type.ToString(), out string newType, out string newName);
                 newType ??= nativeStorage;
                 string headerType = this.GetHeaderEnumType(node.AttributeLists, node.Declaration.Type.ToString(), fullName);
+                VerifyAssociatedStorage(fullName, GetOwnedAnnotationNames(node.AttributeLists), node.Declaration.Type.ToString(), newType);
                 if (headerType != null)
                 {
                     newType = headerType;
@@ -495,7 +510,9 @@ namespace ClangSharpSourceToWinmd
                     }
                 }
 
+                var ownedNames = GetOwnedAnnotationNames(node.AttributeLists);
                 node = (FieldDeclarationSyntax)base.VisitFieldDeclaration(node);
+                VerifyOwnedRemaps(fullName, ownedNames, node.AttributeLists, listAttributes);
                 node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes));
 
                 var firstVar = node.Declaration.Variables.First();
@@ -655,6 +672,15 @@ namespace ClangSharpSourceToWinmd
                             if (payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal)) return null;
                             // Typedef facts are resolved on the compiler-owned nominal declaration, not propagated uses.
                             if (payload.StartsWith(ParameterAnnotation.Owner + "AlsoUsableFor(", StringComparison.Ordinal)) return null;
+                            if (payload.StartsWith(AssociatedConstantAnnotation.Prefix, StringComparison.Ordinal))
+                            {
+                                if (node.Parent is not EnumDeclarationSyntax)
+                                    throw new FormatException($"AssociatedConstant requires a generated enum: {payload}");
+                                string name = AssociatedConstantAnnotation.Parse(payload);
+                                return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(
+                                    SyntaxFactory.Attribute(SyntaxFactory.ParseName("AssociatedConstant"),
+                                        SyntaxFactory.ParseAttributeArgumentList("(\"" + name + "\")"))));
+                            }
                             if (payload == ParameterAnnotation.Owner + "PreserveResult")
                             {
                                 if (node.Parent is not MethodDeclarationSyntax &&
@@ -737,11 +763,34 @@ namespace ClangSharpSourceToWinmd
 
             public override SyntaxNode VisitEnumDeclaration(EnumDeclarationSyntax node)
             {
+                var associatedConstants = node.AttributeLists.SelectMany(list => list.Attributes)
+                    .Where(attribute => attribute.Name.ToString() == "NativeAnnotation")
+                    .Select(attribute => (attribute.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?.Token.ValueText)
+                    .Where(payload => payload != null && payload.StartsWith(AssociatedConstantAnnotation.Prefix, StringComparison.Ordinal))
+                    .Select(AssociatedConstantAnnotation.Parse).ToArray();
                 node = (EnumDeclarationSyntax)base.VisitEnumDeclaration(node);
 
                 var enumName = node.Identifier.ValueText;
                 if (this.GetRemapInfo(enumName, node.AttributeLists, out var listAttributes, null, out _, out _))
                 {
+                    var nativeEnumFacts = node.AttributeLists.SelectMany(list => list.Attributes)
+                        .Select(attribute => attribute.Name.ToString())
+                        .Where(name => name is "Flags" or "ScopedEnum").Distinct(StringComparer.Ordinal).ToArray();
+                    VerifyOwnedRemaps(enumName, nativeEnumFacts, node.AttributeLists, listAttributes);
+                    if (associatedConstants.Length != 0 && listAttributes != null)
+                    {
+                        var legacy = listAttributes.Where(attribute => attribute.Name.ToString() is
+                            "AssociatedConstant" or "AssociatedConstantAttribute").ToArray();
+                        if (listAttributes.Any(attribute => attribute.Name.ToString() ==
+                            "AssociatedConstant" + EncodeHelpers.AttributeToRemoveSuffix) ||
+                            legacy.Length != 0 && (legacy.Length != associatedConstants.Length ||
+                            legacy.Select(attribute => attribute.ArgumentList?.ToString()).Distinct(StringComparer.Ordinal).Count() != legacy.Length ||
+                            legacy.Any(attribute => attribute.ArgumentList?.Arguments.Count != 1 ||
+                                attribute.ArgumentList.Arguments[0].Expression is not LiteralExpressionSyntax literal ||
+                                !associatedConstants.Contains(literal.Token.ValueText, StringComparer.Ordinal))))
+                            throw new FormatException($"{enumName}: legacy remap conflicts with native AssociatedConstant.");
+                        listAttributes.RemoveAll(attribute => legacy.Contains(attribute));
+                    }
                     node = node.WithAttributeLists(FixRemappedAttributes(node.AttributeLists, listAttributes));
                 }
 
@@ -943,6 +992,7 @@ namespace ClangSharpSourceToWinmd
                 // Find remap info for the return parameter for this method and apply any that we find
                 if (this.GetRemapInfo(returnFullName, node.AttributeLists, out var listAttributes, nodeReturnType, out var newType, out _))
                 {
+                    VerifyAssociatedStorage(returnFullName, ownedReturnNames, nodeReturnType, newType);
                     VerifyOwnedRemaps(returnFullName, ownedReturnNames, node.AttributeLists, listAttributes);
                     if (headerReturnType != null) RemoveHeaderAssociation(listAttributes);
                     var target = SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.ReturnKeyword));

@@ -490,6 +490,86 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
         }
 
         [TestMethod]
+        public void VartypeSdkField_PreMidlCarrierKeepsNativeUInt16DistinctFromVarenum()
+        {
+            using var fixture = new Fixture();
+            string sdk = LastErrorHeaderTests.SdkPackagePath();
+            string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
+            string original = File.ReadAllText(Path.Combine(include, "um", "oaidl.Idl"));
+            string input = fixture.Header("oaidl.Idl", Encoding.UTF8.GetBytes(original));
+            string header = Path.Combine(fixture.Headers, "um", "oaidl.h");
+            File.Copy(Path.Combine(MidlHeaderTests.SharedHeaders(), "win32metadata_annotations.h"),
+                Path.Combine(fixture.Headers, "win32metadata_annotations.h"));
+            const string carrier = "_WIN32META_ANNOTATE_FIELD_(TYPEDESC::vt, _Win32_AssociatedEnum_(VARENUM));";
+            string command = ". " + Quote(Script("CommonUtils.ps1")) +
+                "; $env:Path += ';' + (Get-VcDirPath -Arch x86 -HostArch x64); ";
+            foreach (string mode in new[] { "native", "associated" })
+            {
+                string source = Path.Combine(fixture.Path, mode + ".idl");
+                File.WriteAllText(source, "#include <win32metadata_annotations.h>\n" + original +
+                    (mode == "associated" ? "\n_Win32_AnnotateField_(TYPEDESC::vt, _Win32_AssociatedEnum_(VARENUM))\n" : ""));
+                command += "Copy-Item -LiteralPath " + Quote(source) + " -Destination " + Quote(input) + " -Force; & " +
+                    Quote(Path.Combine(sdk, "c", "bin", "10.0.28000.0", "x86", "midl.exe")) +
+                    " " + Quote(input) + " /out " + Quote(fixture.Path) + " /header " + Quote(header) +
+                    " /no_stamp /nologo /no_settings_comment /DMIDL_PASS=1 /sal /sal_local /amd64 /target NT100 /Zp8" +
+                    " /I " + Quote(fixture.Headers) + " /I " + Quote(Path.Combine(include, "um")) +
+                    " /I " + Quote(Path.Combine(include, "shared")) +
+                    "; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Copy-Item -LiteralPath " + Quote(header) +
+                    " -Destination " + Quote(Path.Combine(fixture.Path, mode + ".h")) + "; ";
+            }
+            var result = fixture.Run(command);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string before = File.ReadAllText(Path.Combine(fixture.Path, "native.h"));
+            string after = File.ReadAllText(header);
+            const string pattern = @"typedef struct tagTYPEDESC\s*\{[\s\S]+?\}\s*TYPEDESC;";
+            Match record = Regex.Match(before, pattern);
+            Assert.IsTrue(record.Success);
+            Assert.AreEqual(record.Value, Regex.Match(after, pattern).Value, "Every native union/field declaration byte.");
+            StringAssert.Contains(after, carrier);
+            string wtypes = File.ReadAllText(Path.Combine(include, "shared", "wtypes.h"));
+            string sourcePrefix = EnumNativeSdkTests.VartypeDeclarations(before, wtypes);
+            Assert.IsTrue(sourcePrefix.Contains("VT_EMPTY", StringComparison.Ordinal));
+            var legacy = new Dictionary<string, string> { ["TYPEDESC::vt"] = "[AssociatedEnum(\"VARENUM\")]" };
+            foreach (string target in new[] { "i686-pc-windows-msvc", "x86_64-pc-windows-msvc", "aarch64-pc-windows-msvc" })
+            {
+                using var emission = new LastErrorHeaderTests.Fixture();
+                result = emission.Scrape(sourcePrefix, target, sal: true);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                string output = emission.Emit();
+                using (var pe = new PEReader(File.OpenRead(output)))
+                {
+                    var reader = pe.GetMetadataReader();
+                    var field = NativeTypedefHeaderTests.Type(reader, "TYPEDESC").GetFields()
+                        .Select(reader.GetFieldDefinition).Single(field => reader.GetString(field.Name) == "vt");
+                    Assert.AreEqual(0, EnumAssociationHeaderTests.StringAttributes(reader,
+                        field.GetCustomAttributes(), "AssociatedEnumAttribute").Length);
+                }
+                byte[] expected = File.ReadAllBytes(emission.Emit(legacy));
+                result = emission.Scrape(sourcePrefix + carrier, target, sal: true);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                output = emission.Emit();
+                CollectionAssert.AreEqual(expected, File.ReadAllBytes(output), "Native field width plus association, not enum substitution.");
+                using (var pe = new PEReader(File.OpenRead(output)))
+                {
+                    var reader = pe.GetMetadataReader();
+                    var field = NativeTypedefHeaderTests.Type(reader, "TYPEDESC").GetFields()
+                        .Select(reader.GetFieldDefinition).Single(field => reader.GetString(field.Name) == "vt");
+                    EnumAssociationHeaderTests.AssertSignature(reader, field.Signature, 0, SignatureTypeCode.UInt16);
+                    CollectionAssert.AreEqual(new[] { "VARENUM" }, EnumAssociationHeaderTests.StringAttributes(reader,
+                        field.GetCustomAttributes(), "AssociatedEnumAttribute"));
+                    var storage = NativeTypedefHeaderTests.Type(reader, "VARENUM").GetFields()
+                        .Select(reader.GetFieldDefinition).Single(field => reader.GetString(field.Name) == "value__");
+                    EnumAssociationHeaderTests.AssertSignature(reader, storage.Signature, 0, SignatureTypeCode.Int32);
+                }
+                CollectionAssert.AreEqual(expected, File.ReadAllBytes(emission.Emit(legacy)));
+                Console.WriteLine("RAW_OUTPUT vartype-field." + target + ".winmd " + Convert.ToBase64String(expected));
+            }
+            foreach (string file in new[] { "native.idl", "associated.idl", "native.h", "associated.h" })
+                Console.WriteLine("RAW_OUTPUT vartype-field." + file + " " +
+                    Convert.ToBase64String(File.ReadAllBytes(Path.Combine(fixture.Path, file))));
+        }
+
+        [TestMethod]
         public void NamedMidlCarriers_PreserveNativeRpcSalAndAbiAndReachExactFinalTargets()
         {
             using var fixture = new Fixture();

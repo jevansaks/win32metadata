@@ -285,16 +285,20 @@ namespace ClangSharpSourceToWinmdTests
                 .Count(t => metadataReader.GetString(t.Name) == "Options"));
         }
 
-        [TestMethod]
-        public void GroupReturnsDirectAliasesAndPointerDepth_PreserveExactSignatures()
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void GroupReturnsDirectAliasesAndPointerDepth_PreserveExactSignatures(string target)
         {
             using var fixture = new LastErrorHeaderTests.Fixture();
             var result = fixture.Scrape(Constants + Groups + @"
 enum class NativeScoped : unsigned short { NativeValue = 7 };
+enum __attribute__((flag_enum)) NativeFlags { NATIVE_LOW = 1, NATIVE_HIGH = 2 };
 _Win32_AssociatedEnum_(Options) unsigned long __stdcall Associated(_Win32_AssociatedEnum_(Options) unsigned long* value);
 Options __stdcall Direct(Options** value);
 int __stdcall ConstInput(_Win32_AssociatedEnum_(Options) const unsigned long* value);
-NativeScoped __stdcall Existing(NativeScoped value);", sal: true);
+NativeScoped __stdcall Existing(NativeScoped value);", target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string declarations = Decompile(fixture.Emit());
             StringAssert.Contains(declarations, "extern Options Associated");
@@ -304,6 +308,28 @@ NativeScoped __stdcall Existing(NativeScoped value);", sal: true);
             StringAssert.Contains(declarations, "ConstInput");
             StringAssert.Contains(declarations, "enum NativeScoped : ushort");
             StringAssert.Contains(declarations, "NativeValue = 7");
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var scoped = NativeTypedefHeaderTests.Type(reader, "NativeScoped");
+            Assert.AreEqual(1, scoped.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                .Count(attribute => AttributeName(reader, attribute) == "ScopedEnumAttribute"));
+            var storage = scoped.GetFields().Select(reader.GetFieldDefinition)
+                .Single(field => reader.GetString(field.Name) == "value__");
+            EnumAssociationHeaderTests.AssertSignature(reader, storage.Signature, 0, SignatureTypeCode.UInt16);
+            var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(method => reader.GetString(method.Name) == "Existing");
+            var signature = reader.GetBlobReader(method.Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(1, signature.ReadCompressedInteger());
+            for (int i = 0; i < 2; i++)
+            {
+                Assert.AreEqual(SignatureTypeCode.TypeHandle, signature.ReadSignatureTypeCode());
+                Assert.AreEqual("NativeScoped", TypeName(reader, signature.ReadTypeHandle()));
+            }
+            Assert.AreEqual(0, signature.RemainingBytes);
+            var flags = NativeTypedefHeaderTests.Type(reader, "NativeFlags");
+            Assert.AreEqual(1, flags.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                .Count(attribute => AttributeName(reader, attribute) == "FlagsAttribute"));
         }
 
         [DataTestMethod]
@@ -417,14 +443,14 @@ namespace Legacy.WinSock {
             Assert.IsFalse(apiFields.Any(name => name is "WAIT_OBJECT_0" or "WAIT_IO_COMPLETION" or "POLLIN"));
         }
 
-        private static string Decompile(string path) =>
+        internal static string Decompile(string path) =>
             string.Join("\n", CSharpSyntaxTree.ParseText(new CSharpDecompiler(path,
                 new DecompilerSettings { ThrowOnAssemblyResolveErrors = false }).DecompileWholeModuleAsString())
                 .GetRoot().DescendantNodes().OfType<BaseTypeDeclarationSyntax>()
                 .OrderBy(type => type.Identifier.ValueText, StringComparer.Ordinal)
                 .Select(type => type.NormalizeWhitespace().ToFullString()));
 
-        private static string TypeName(MetadataReader reader, EntityHandle handle) =>
+        internal static string TypeName(MetadataReader reader, EntityHandle handle) =>
             reader.GetString(handle.Kind == HandleKind.TypeDefinition ?
                 reader.GetTypeDefinition((TypeDefinitionHandle)handle).Name :
                 reader.GetTypeReference((TypeReferenceHandle)handle).Name);
