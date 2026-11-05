@@ -132,6 +132,54 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void NativeSdkScopedEnums_RepeatedMatchingLegacyFactsKeepOneAttribute(string target)
+        {
+            var declarations = Regex.Matches(File.ReadAllText(Sdk("um", "dxcore_interface.h")),
+                @"enum class (?<name>DXCore\w+) : uint32_t\s*\{[^}]+\};").Cast<Match>().ToArray();
+            Assert.AreEqual(10, declarations.Length);
+            string source = "typedef unsigned int uint32_t;\n" + string.Join("\n", declarations.Select(match => match.Value));
+            string sidecar = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "emitter.settings.rsp"));
+            var remaps = declarations.Select(match => match.Groups["name"].Value).ToDictionary(name => name, name =>
+                string.Concat(Regex.Matches(sidecar, @"(?m)^" + name + @"=(?<value>[^\r\n]+)")
+                    .Cast<Match>().Select(match => match.Groups["value"].Value)));
+            Assert.AreEqual("[ScopedEnum][ScopedEnum]", remaps["DXCoreHardwareTypeFilterFlags"]);
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT dxcore-scoped." + target + ".h " +
+                Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(source)));
+            Console.WriteLine("RAW_OUTPUT dxcore-scoped." + target + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            Console.WriteLine("RAW_OUTPUT dxcore-scoped." + target + ".legacy.rsp " +
+                Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(string.Join("\n",
+                    remaps.Select(remap => remap.Key + "=" + remap.Value)))));
+            string path = fixture.Emit();
+            byte[] expected = File.ReadAllBytes(path);
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)),
+                "Actual repeated legacy scope records must not conflict with one compiler-owned fact.");
+            using var pe = new PEReader(File.OpenRead(path));
+            var reader = pe.GetMetadataReader();
+            foreach (var declaration in declarations)
+            {
+                string name = declaration.Groups["name"].Value;
+                var type = NativeTypedefHeaderTests.Type(reader, name);
+                var attributes = type.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                    .Select(attribute => ParameterHeaderTests.AttributeName(reader, attribute)).ToArray();
+                Assert.AreEqual(1, attributes.Count(attribute => attribute == "ScopedEnumAttribute"), name);
+                Assert.AreEqual(0, attributes.Count(attribute => attribute == "FlagsAttribute"),
+                    "Names and DEFINE_ENUM_FLAG_OPERATORS are not compiler flag_enum facts: " + name);
+                var storage = type.GetFields().Select(reader.GetFieldDefinition)
+                    .Single(field => reader.GetString(field.Name) == "value__");
+                EnumAssociationHeaderTests.AssertSignature(reader, storage.Signature, 0, SignatureTypeCode.UInt32);
+            }
+            Save(path, "dxcore-scoped-" + target);
+        }
+
+        [DataTestMethod]
         [DataRow("x86", 4, "/TC")]
         [DataRow("x64", 8, "/TC")]
         [DataRow("arm64", 8, "/TC")]

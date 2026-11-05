@@ -52,6 +52,11 @@ VARTYPE replacement or availability behavior is introduced. Existing native
 constant, deprecation and layout consumers receive proof rather than an
 unrelated rewrite. These local fixtures do not qualify a full production
 candidate or supersede ordinary CI/API comparison.
+Repeated matching parameterless `ScopedEnum`/`Flags` legacy records, including
+their `Attribute` spellings, collapse to the single native/helper fact. The
+SDK's duplicate `DXCoreHardwareTypeFilterFlags=[ScopedEnum]` records are an
+exact regression case; arguments or removals still conflict. This does not
+deduplicate ordered, value-bearing metadata such as invalid-handle values.
 Native `ScopedEnum`/`Flags` emission is an intentional compiler-fact output
 correction, distinct from moving equivalent association facts to headers.
 Its full SDK impact must be measured by the ordinary production API comparison;

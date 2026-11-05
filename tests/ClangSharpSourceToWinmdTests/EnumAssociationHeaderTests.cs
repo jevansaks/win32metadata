@@ -263,10 +263,25 @@ enum class __attribute__((flag_enum)) NativeBoth : unsigned long { Low = 1, High
                 ["GroupFlags"] = "[Flags]",
             };
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(legacy)), "Matching native/helper and legacy facts deduplicate.");
+            foreach (string suffix in new[] { "", "Attribute" })
+            {
+                var repeated = new Dictionary<string, string> {
+                    ["NativeScoped"] = "[ScopedEnum][ScopedEnum" + suffix + "]",
+                    ["NativeFlags"] = "[Flags][Flags" + suffix + "]",
+                    ["NativeBoth"] = "[ScopedEnum][Flags][ScopedEnum" + suffix + "][Flags" + suffix + "]",
+                    ["GroupFlags"] = "[Flags][Flags" + suffix + "]",
+                };
+                CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(repeated)),
+                    "Repeated equivalent parameterless enum markers retain one native/helper fact.");
+            }
             Save(path, "native-enum-facts-" + target);
             foreach (var conflict in new[] { (Name: "NativeScoped", Value: "[-ScopedEnum]"),
-                (Name: "NativeScoped", Value: "[ScopedEnum(1)]"), (Name: "NativeFlags", Value: "[-Flags]"),
-                (Name: "NativeFlags", Value: "[Flags][Flags]"), (Name: "GroupFlags", Value: "[-Flags]") })
+                (Name: "NativeScoped", Value: "[-ScopedEnumAttribute]"),
+                (Name: "NativeScoped", Value: "[ScopedEnum(1)]"),
+                (Name: "NativeScoped", Value: "[ScopedEnum][ScopedEnumAttribute(1)]"),
+                (Name: "NativeScoped", Value: "[ScopedEnum][-ScopedEnum]"),
+                (Name: "NativeFlags", Value: "[-Flags]"), (Name: "NativeFlags", Value: "[-FlagsAttribute]"),
+                (Name: "NativeFlags", Value: "[Flags][Flags(1)]"), (Name: "GroupFlags", Value: "[-Flags]") })
             {
                 var error = Assert.ThrowsException<AggregateException>(() =>
                     fixture.Emit(new Dictionary<string, string> { [conflict.Name] = conflict.Value }));

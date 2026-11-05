@@ -268,9 +268,14 @@ namespace ClangSharpSourceToWinmd
                         .Where(remap => remap.Name.ToString() == ownedName ||
                             remap.Name.ToString() == ownedName + "Attribute").ToArray();
                     foreach (var remap in remaps ?? Enumerable.Empty<AttributeSyntax>())
-                        if (remap.Name.ToString() == ownedName + EncodeHelpers.AttributeToRemoveSuffix)
+                        if (remap.Name.ToString() == ownedName + EncodeHelpers.AttributeToRemoveSuffix ||
+                            remap.Name.ToString() == ownedName + "Attribute" + EncodeHelpers.AttributeToRemoveSuffix)
                             throw new FormatException($"{fullName}: legacy remap conflicts with native {ownedName}.");
-                    if (matching.Length != 0 && (matching.Length != existing.Length ||
+                    // Parameterless enum markers are idempotent, unlike ordered repeated value facts.
+                    bool matchingEnumMarker = (ownedName is "Flags" or "ScopedEnum") && existing.Length == 1 &&
+                        (existing[0].ArgumentList == null || existing[0].ArgumentList.Arguments.Count == 0) &&
+                        matching.All(remap => remap.ArgumentList == null || remap.ArgumentList.Arguments.Count == 0);
+                    if (matching.Length != 0 && !matchingEnumMarker && (matching.Length != existing.Length ||
                         matching.Where((remap, index) => !SyntaxFactory.AreEquivalent(existing[index].ArgumentList, remap.ArgumentList)).Any()))
                         throw new FormatException($"{fullName}: legacy remap conflicts with native {ownedName}.");
                     // Keep the entire native ordered group, including repeated invalid values.
