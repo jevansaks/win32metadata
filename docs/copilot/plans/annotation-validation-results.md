@@ -26,6 +26,11 @@ Availability on overloaded native C++ names is diagnosed rather than applying on
 declaration's availability to its neighbors through a projected-name selector.
 Members do not inherit their container's availability. Parameters, fields, and
 constants do not receive scoped defaults; constants require explicit availability.
+Constant targets must be non-local const variables with an initializer (including
+an initialized native definition reached through a redeclaration), or enum members.
+Const-qualified parameters are rejected, including named parameter carriers.
+Function-body locals, including static locals, are rejected rather than treated
+as projected constants.
 Native typedef availability follows the existing nominal selection policy and
 callback projection, rather than inventing independently emitted scalar/record
 aliases or treating AST-only C++ `using` declarations as reader support.

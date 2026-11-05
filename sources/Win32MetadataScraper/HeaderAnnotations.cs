@@ -618,7 +618,8 @@ namespace Win32MetadataScraper
             if ((declaration is not FunctionDecl && declaration is not RecordDecl &&
                 declaration is not EnumDecl && declaration is not TypedefDecl &&
                 declaration is not EnumConstantDecl &&
-                (declaration is not VarDecl constant || !constant.Type.Handle.IsConstQualified)) ||
+                (declaration is not VarDecl constant || !constant.Type.Handle.IsConstQualified ||
+                    constant.IsLocalVarDeclOrParm || !constant.HasInit && constant.Definition?.HasInit != true)) ||
                 declaration is FunctionDecl function && function.HasBody)
                 throw Error(attribute, "SupportedOSPlatform requires a function, method, record, enum, projected typedef or constant declaration.");
             if (this.explicitSupportedOS.TryGetValue(declaration.CanonicalDecl, out var existing) && existing.Version != version)

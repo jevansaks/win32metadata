@@ -181,6 +181,117 @@ typedef int (__stdcall *AfterCallback)(int parameter);
         }
 
         [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc", "c", false)]
+        [DataRow("x86_64-pc-windows-msvc", "c", false)]
+        [DataRow("aarch64-pc-windows-msvc", "c", false)]
+        [DataRow("i686-pc-windows-msvc", "c++", false)]
+        [DataRow("x86_64-pc-windows-msvc", "c++", false)]
+        [DataRow("aarch64-pc-windows-msvc", "c++", false)]
+        [DataRow("i686-pc-windows-msvc", "c++", true)]
+        [DataRow("x86_64-pc-windows-msvc", "c++", true)]
+        [DataRow("aarch64-pc-windows-msvc", "c++", true)]
+        public void ConstParameterAvailability_IsRejectedBeforeGeneration(string target, string language, bool carrier)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string header = carrier
+                ? "struct Interface { virtual int __stdcall Method(const int value) = 0; };\n" +
+                    "_Win32_AnnotateParameter_(Interface::Method, value, _Win32_SupportedOS_WindowsXP_);"
+                : "int Example(_Win32_SupportedOS_WindowsXP_ const int value);";
+            var result = fixture.Scrape(header, target, sal: true, language: language);
+            this.TestContext.WriteLine($"ExitCode={result.ExitCode}; GeneratedSource={File.Exists(fixture.GeneratedSource)}");
+            this.TestContext.WriteLine(result.Output);
+            if (File.Exists(fixture.GeneratedSource))
+                Save(fixture.GeneratedSource, $"const-parameter-{target}-{language}-{carrier}.cs");
+            Assert.AreNotEqual(0, result.ExitCode, result.Output);
+            StringAssert.Contains(result.Output, "input.h:");
+            StringAssert.Contains(result.Output, "requires");
+            Assert.IsFalse(File.Exists(fixture.GeneratedSource));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc", false)]
+        [DataRow("x86_64-pc-windows-msvc", false)]
+        [DataRow("aarch64-pc-windows-msvc", false)]
+        [DataRow("i686-pc-windows-msvc", true)]
+        [DataRow("x86_64-pc-windows-msvc", true)]
+        [DataRow("aarch64-pc-windows-msvc", true)]
+        public void ConstLocalAvailability_IsRejectedBeforeGeneration(string target, bool staticLocal)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape("void LocalOwner(void) {\n_Win32_SupportedOS_WindowsXP_ " +
+                (staticLocal ? "static " : "") + "const int LocalConstant = 1;\n}\nint Projected(void);",
+                target, sal: true);
+            this.TestContext.WriteLine($"ExitCode={result.ExitCode}; GeneratedSource={File.Exists(fixture.GeneratedSource)}");
+            this.TestContext.WriteLine(result.Output);
+            if (File.Exists(fixture.GeneratedSource))
+                Save(fixture.GeneratedSource, $"local-constant-{target}-{staticLocal}.cs");
+            Assert.AreNotEqual(0, result.ExitCode, result.Output);
+            StringAssert.Contains(result.Output, "input.h:");
+            StringAssert.Contains(result.Output, "requires");
+            Assert.IsFalse(File.Exists(fixture.GeneratedSource));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void ProjectedConstAvailability_PreservesFileMemberAndEnumConstants(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+_Win32_SupportedOS_BEGIN_(Windows8)
+_Win32_SupportedOS_WindowsXP_ extern const int DeclaredConstant;
+const int DeclaredConstant = 7;
+_Win32_SupportedOS_Windows7_ const int FileConstant = 3;
+struct Record {
+    _Win32_SupportedOS_Windows7_ static const int MemberConstant = 4;
+    static const int NoDefaultConstant = 6;
+};
+enum Choice { EnumConstant _Win32_SupportedOS_Windows7_ = 5 };
+_Win32_SupportedOS_END_()
+", target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit();
+            using var pe = new PEReader(File.OpenRead(path));
+            var reader = pe.GetMetadataReader();
+            var expected = new Dictionary<string, string?>
+            {
+                ["FileConstant"] = "windows6.1",
+                ["MemberConstant"] = "windows6.1",
+                ["EnumConstant"] = "windows6.1",
+                ["DeclaredConstant"] = "windows5.1.2600",
+                ["NoDefaultConstant"] = null,
+            };
+            var fields = reader.FieldDefinitions.Select(reader.GetFieldDefinition)
+                .Where(field => expected.ContainsKey(reader.GetString(field.Name)))
+                .ToDictionary(field => reader.GetString(field.Name));
+            foreach (var fact in expected)
+            {
+                Assert.AreEqual(fact.Value, Platform(reader, fields[fact.Key].GetCustomAttributes()), fact.Key);
+                Assert.IsFalse(fields[fact.Key].GetDefaultValue().IsNil, fact.Key);
+            }
+            Save(path, "projected-constants-" + target + ".winmd");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void UninitializedConstAvailability_IsRejectedBeforeGeneration(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape("_Win32_SupportedOS_WindowsXP_ extern const int ExternalValue;", target, sal: true);
+            this.TestContext.WriteLine($"ExitCode={result.ExitCode}; GeneratedSource={File.Exists(fixture.GeneratedSource)}");
+            this.TestContext.WriteLine(result.Output);
+            if (File.Exists(fixture.GeneratedSource))
+                Save(fixture.GeneratedSource, "extern-constant-" + target + ".cs");
+            Assert.AreNotEqual(0, result.ExitCode, result.Output);
+            StringAssert.Contains(result.Output, "input.h:");
+            StringAssert.Contains(result.Output, "requires");
+            Assert.IsFalse(File.Exists(fixture.GeneratedSource));
+        }
+
+        [DataTestMethod]
         [DataRow("_Win32_SupportedOS_BEGIN_(Windows7)\n#include \"inner.h\"\n", "_Win32_SupportedOS_END_()")]
         [DataRow("#include \"inner.h\"\n_Win32_SupportedOS_END_()", "_Win32_SupportedOS_BEGIN_(Windows7)")]
         [DataRow("#define FIRST 1\n#include \"inner.h\"\n#undef FIRST\n#include \"inner.h\"",
