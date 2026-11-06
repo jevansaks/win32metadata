@@ -223,6 +223,7 @@ namespace ClangSharpSourceToWinmdTests
         {
             private readonly string directory = Path.Combine(Path.GetTempPath(), "last-error-header-" + Guid.NewGuid().ToString("N"));
             public string GeneratedSource => Path.Combine(this.directory, "generated", "Test.cs");
+            public string DirectoryPath => this.directory;
             public string DiscoveredRemaps => File.ReadAllText(Path.Combine(this.directory, "remaps.rsp"));
 
             public Fixture()
@@ -242,9 +243,13 @@ namespace ClangSharpSourceToWinmdTests
             public (int ExitCode, string Output) Scrape(string header, string target = "x86_64-pc-windows-msvc",
                 bool legacy = false, string? remap = null, bool repeatInclude = false, bool metadata = true, string language = "c++",
                 bool sal = false, bool transitive = false, string extraSettings = "", string? includedHeader = null,
-                string? scraperPath = null, string libraryPath = "test.dll", string namespaceName = "Test")
+                string? scraperPath = null, string libraryPath = "test.dll", string namespaceName = "Test",
+                IReadOnlyDictionary<string, string>? headers = null)
             {
                 if (File.Exists(this.GeneratedSource)) File.Delete(this.GeneratedSource);
+                if (headers != null)
+                    foreach (var headerFile in headers)
+                        File.WriteAllText(Path.Combine(this.directory, headerFile.Key), headerFile.Value);
                 if (sal)
                 {
                     File.Copy(Path.Combine(RepositoryRoot(), "generation", "WinSDK", "manual", "Metadata.cs"),
@@ -333,6 +338,8 @@ generate-cpp-attributes
             }
 
             public string NativeObject => Path.Combine(this.directory, "abi.obj");
+            public string OrdinaryNativeObject => Path.Combine(this.directory, "ordinary.obj");
+            public string MetadataNativeObject => Path.Combine(this.directory, "metadata.obj");
 
             public void AssertNativeAbi(string arch, int pointerSize, string language, string additionalDeclarations = "")
             {

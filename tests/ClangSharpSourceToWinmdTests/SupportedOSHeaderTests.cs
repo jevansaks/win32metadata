@@ -291,7 +291,7 @@ struct __declspec(uuid(""00000002-0000-0000-C000-000000000046"")) IMalloc : publ
             string helper = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders",
                 "shared", "win32metadata_annotations.h"));
             var versions = Regex.Matches(helper,
-                @"#define _Win32_SupportedOS_(\w+)_ _WIN32META_ANNOTATION_\(""SupportedOSPlatform\(\\""([^""]+)\\""\)""\)")
+                @"#define _WIN32META_OS_VERSION_(\w+) ""SupportedOSPlatform\(\\""([^""]+)\\""\)""")
                 .Cast<Match>().ToDictionary(match => match.Groups[1].Value, match => match.Groups[2].Value);
             Assert.AreEqual(20, versions.Count);
             var retired = new Dictionary<string, string>();

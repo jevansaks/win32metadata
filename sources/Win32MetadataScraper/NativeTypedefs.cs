@@ -126,7 +126,9 @@ namespace Win32MetadataScraper
             }
         }
 
-        public void Write(string output, string ns)
+        public bool IsNominal(TypedefNameDecl alias) => this.storage.ContainsKey(Name(alias));
+
+        public void Write(string output, string ns, IReadOnlyDictionary<string, string> supportedOS)
         {
             if (File.Exists(output)) File.Delete(output);
             if (this.emitted.Count == 0) return;
@@ -140,6 +142,8 @@ namespace Win32MetadataScraper
                 string path = file.ToString().Replace("\\", "\\\\").Replace("\"", "\\\"");
                 writer.WriteLine($"#line {line} \"{path}\"");
                 writer.WriteLine("    [NativeTypedef]");
+                if (supportedOS.TryGetValue(name, out string version))
+                    writer.WriteLine($"    [NativeAnnotation(\"{MetadataUtils.SupportedOSAnnotation.Prefix}(\\\"{version}\\\")\")]");
                 if (this.associations.TryGetValue(name, out var association))
                     writer.WriteLine($"    [AlsoUsableFor(\"{ProjectedName(Name(association))}\")]");
                 writer.WriteLine($"    public unsafe partial struct {ProjectedName(name)}\n    {{");
