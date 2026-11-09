@@ -1,0 +1,17 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugincom.idl b/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugincom.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugincom.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/tspubplugincom.idl
+@@ -1,3 +1,4 @@
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -18,6 +19,7 @@
+ #define RESOURCE_TYPE_APPLICATION                                      1
+ #define RESOURCE_TYPE_DESKTOP                                          2
+ 
++cpp_quote("/* Win32Metadata: interface ::ItsPubPlugin => SupportedOSPlatform(\"windowsserver2008\") */")
+ [
+ 	object,
+ 	uuid(70C04B05-F347-412B-822F-36C99C54CA45),

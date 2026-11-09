@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 // Copyright (C) Microsoft Corporation. All rights reserved.
 //
@@ -19,12 +20,15 @@
 #pragma once
 #endif
 
+_Win32_SupportedOS_Windows81_
 STDAPI OnDemandGetRoutingHint(_In_ PCWSTR destinationHostName, _Out_ DWORD* interfaceIndex);
 
 typedef void(WINAPI* ONDEMAND_NOTIFICATION_CALLBACK)(_In_opt_ void*);
 
+_Win32_SupportedOS_Windows81_
 STDAPI OnDemandRegisterNotification(_In_ ONDEMAND_NOTIFICATION_CALLBACK callback, _In_opt_ void* callbackContext, _Out_ HANDLE* registrationHandle);
 
+_Win32_SupportedOS_Windows81_
 STDAPI OnDemandUnRegisterNotification(_In_ HANDLE registrationHandle);
 
 #endif // NTDDI_VERSION >= NTDDI_WINBLUE
@@ -86,6 +90,7 @@ typedef struct _NET_INTERFACE_CONTEXT_TABLE
 //
 // FAILED(HRESULT)  - Returned in case of failures that are outside the control of the implementation.
 //
+_Win32_SupportedOS_10240_
 STDAPI GetInterfaceContextTableForHostName(
     _In_opt_ PCWSTR HostName,
     _In_opt_ PCWSTR ProxyName,
@@ -102,6 +107,7 @@ STDAPI GetInterfaceContextTableForHostName(
 //
 // InterfaceContextTable                - Interface context table retrieved using GetInterfaceContextTableForHostName.
 //
+_Win32_SupportedOS_10240_
 STDAPI_(void) FreeInterfaceContextTable(_In_ NET_INTERFACE_CONTEXT_TABLE* InterfaceContextTable);
 
 #endif // NTDDI_VERSION >= NTDDI_WINTHRESHOLD

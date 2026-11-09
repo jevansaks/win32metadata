@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /************************************************************************************
 *                                                                                   *
 * statehelpers.h -- ApiSet Contract for api-ms-win-core-state-helpers-l1            *
@@ -16,6 +17,11 @@
 #include <apiset.h>
 #include <apisetcconv.h>
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+#include <sal.h>
+#include <winerror.h>
+#endif
+
 #ifdef _CONTRACT_GEN
 #include <minwindef.h>
 #include <minwinbase.h>
@@ -31,6 +37,9 @@ extern "C" {
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WIN10)
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+_Win32_AssociatedEnum_(WIN32_ERROR)
+#endif
 WINBASEAPI
 LSTATUS
 WINAPI

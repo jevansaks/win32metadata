@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * wslapi.h -- ApiSet Contract for api-ms-win-wsl-api-l1-1-0                     *
@@ -31,12 +32,14 @@ extern "C" {
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SERVER)
 
 /* Determines if a distribution is already registered */
+_Win32_ImportLibrary_("Api-ms-win-wsl-api-l1-1-0.dll")
 BOOL
 WslIsDistributionRegistered(
     _In_ PCWSTR distributionName
     );
 
 /* Registers a new distribution given the information provided. */
+_Win32_ImportLibrary_("Api-ms-win-wsl-api-l1-1-0.dll")
 HRESULT
 WslRegisterDistribution(
     _In_ PCWSTR distributionName,
@@ -44,6 +47,7 @@ WslRegisterDistribution(
     );
 
 /* Unregisters the specified distribution */
+_Win32_ImportLibrary_("Api-ms-win-wsl-api-l1-1-0.dll")
 HRESULT
 WslUnregisterDistribution(
     _In_ PCWSTR distributionName
@@ -63,6 +67,7 @@ DEFINE_ENUM_FLAG_OPERATORS(WSL_DISTRIBUTION_FLAGS);
 #define WSL_DISTRIBUTION_FLAGS_DEFAULT (WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP | WSL_DISTRIBUTION_FLAGS_APPEND_NT_PATH | WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING)
 
 /* Configure the given distribution */
+_Win32_ImportLibrary_("Api-ms-win-wsl-api-l1-1-0.dll")
 HRESULT
 WslConfigureDistribution(
     _In_ PCWSTR distributionName,
@@ -71,6 +76,7 @@ WslConfigureDistribution(
     );
 
 /* Get the given distribution's configuration info */
+_Win32_ImportLibrary_("Api-ms-win-wsl-api-l1-1-0.dll")
 HRESULT
 WslGetDistributionConfiguration(
     _In_ PCWSTR distributionName,
@@ -81,6 +87,7 @@ WslGetDistributionConfiguration(
     _Out_ ULONG* defaultEnvironmentVariableCount
     );
 
+_Win32_ImportLibrary_("Api-ms-win-wsl-api-l1-1-0.dll")
 HRESULT
 WslLaunchInteractive(
     _In_ PCWSTR distributionName,
@@ -89,6 +96,7 @@ WslLaunchInteractive(
     _Out_ DWORD* exitCode
     );
 
+_Win32_ImportLibrary_("Api-ms-win-wsl-api-l1-1-0.dll")
 HRESULT
 WslLaunch(
     _In_ PCWSTR distributionName,

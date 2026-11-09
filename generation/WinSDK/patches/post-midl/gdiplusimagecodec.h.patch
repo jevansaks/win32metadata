@@ -1,0 +1,53 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusimagecodec.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusimagecodec.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusimagecodec.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusimagecodec.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /**************************************************************************\
+ *
+ * Copyright (c) 2000-2001, Microsoft Corp.  All Rights Reserved.
+@@ -14,6 +15,7 @@
+ 
+ #ifndef _GDIPLUSIMAGECODEC_H
+ #define _GDIPLUSIMAGECODEC_H
++#include <sal.h>
+ #include <winapifamily.h>
+ 
+ #pragma region Desktop Family
+@@ -25,7 +27,7 @@
+ //--------------------------------------------------------------------------
+ 
+ inline Status 
+-GetImageDecodersSize(
++_Win32_SupportedOS_WindowsXP_ GetImageDecodersSize(
+     _Out_ UINT *numDecoders,
+     _Out_ _Out_range_(>=, (*numDecoders) * sizeof(ImageCodecInfo)) UINT *size)
+ {
+@@ -34,7 +36,7 @@
+ 
+ 
+ inline Status 
+-GetImageDecoders(
++_Win32_SupportedOS_WindowsXP_ GetImageDecoders(
+     _In_ UINT numDecoders,
+     _In_ UINT size,
+     _Out_writes_bytes_(size) ImageCodecInfo *decoders)
+@@ -44,7 +46,7 @@
+ 
+ 
+ inline Status 
+-GetImageEncodersSize(
++_Win32_SupportedOS_WindowsXP_ GetImageEncodersSize(
+     _Out_ UINT *numEncoders, 
+     _Out_ _Out_range_(>=, (*numEncoders) * sizeof(ImageCodecInfo)) UINT *size)
+ {
+@@ -53,7 +55,7 @@
+ 
+ 
+ inline Status 
+-GetImageEncoders(
++_Win32_SupportedOS_WindowsXP_ GetImageEncoders(
+     _In_ UINT numEncoders,
+     _In_ IN UINT size,
+     _Out_writes_bytes_(size) ImageCodecInfo *encoders)

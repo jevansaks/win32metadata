@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*==========================================================================;
  *
  *  Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -494,7 +495,7 @@ extern HRESULT WINAPI DirectSoundFullDuplexCreate
 );
 #define DirectSoundFullDuplexCreate8 DirectSoundFullDuplexCreate
 
-extern HRESULT WINAPI GetDeviceID(_In_opt_ LPCGUID pGuidSrc, _Out_ LPGUID pGuidDest);
+_Win32_ImportLibrary_("DSOUND.dll") extern HRESULT WINAPI GetDeviceID(_In_opt_ LPCGUID pGuidSrc, _Out_ LPGUID pGuidDest);
 #endif // DIRECTSOUND_VERSION >= 0x0800
 
 #ifdef UNICODE

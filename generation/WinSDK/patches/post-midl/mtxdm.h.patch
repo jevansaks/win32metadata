@@ -1,0 +1,17 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mtxdm.h b/generation/WinSDK/RecompiledIdlHeaders/um/mtxdm.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mtxdm.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mtxdm.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ //  Copyright (C) 1995-1999 Microsoft Corporation.  All rights reserved.
+ 
+ #ifndef __MTXDM_H__
+@@ -22,6 +23,7 @@
+ // GetDispenserManager
+ // A Dispenser calls this API to get a reference to DispenserManager.
+ //
++_Win32_SupportedOS_Windows2000_
+ __declspec(dllimport) HRESULT __cdecl GetDispenserManager(IDispenserManager**);
+ 
+ 

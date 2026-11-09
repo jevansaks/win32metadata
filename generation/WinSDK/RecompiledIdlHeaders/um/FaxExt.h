@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -48,6 +49,7 @@ typedef enum
 //
 // Prototype of FaxExtGetData
 //
+_Win32_SupportedOS_WindowsXP_
 DWORD
 WINAPI
 FaxExtGetData (
@@ -62,6 +64,7 @@ typedef DWORD (CALLBACK *PFAX_EXT_GET_DATA) (DWORD, FAX_ENUM_DEVICE_ID_SOURCE, L
 //
 // Prototype of FaxExtSetData
 //
+_Win32_SupportedOS_WindowsXP_
 DWORD
 WINAPI
 FaxExtSetData (
@@ -74,6 +77,7 @@ FaxExtSetData (
 );
 typedef DWORD (CALLBACK *PFAX_EXT_SET_DATA) (HINSTANCE, DWORD, FAX_ENUM_DEVICE_ID_SOURCE, LPCWSTR, LPBYTE, DWORD);
 
+_Win32_SupportedOS_WindowsXP_
 HRESULT
 WINAPI
 FaxExtConfigChange (
@@ -87,6 +91,7 @@ typedef HRESULT (WINAPI *PFAX_EXT_CONFIG_CHANGE) (DWORD, LPCWSTR, LPBYTE, DWORD)
 //
 // Prototype of FaxExtRegisterForEvents
 //
+_Win32_SupportedOS_WindowsXP_
 HANDLE
 WINAPI
 FaxExtRegisterForEvents (
@@ -101,6 +106,7 @@ typedef HANDLE (CALLBACK *PFAX_EXT_REGISTER_FOR_EVENTS) (HINSTANCE, DWORD, FAX_E
 //
 // Prototype of FaxExtUnregisterForEvents
 //
+_Win32_SupportedOS_WindowsXP_
 DWORD
 WINAPI
 FaxExtUnregisterForEvents (
@@ -111,6 +117,7 @@ typedef DWORD (CALLBACK *PFAX_EXT_UNREGISTER_FOR_EVENTS) (HANDLE);
 //
 // Prototype of FaxExtFreeBuffer
 //
+_Win32_SupportedOS_WindowsXP_
 VOID
 WINAPI
 FaxExtFreeBuffer (
@@ -121,6 +128,7 @@ typedef VOID (CALLBACK *PFAX_EXT_FREE_BUFFER) (LPVOID);
 //
 // The extension should implement and export the following function:
 //
+_Win32_SupportedOS_WindowsXP_
 HRESULT
 WINAPI
 FaxExtInitializeConfig (

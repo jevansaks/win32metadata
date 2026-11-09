@@ -1,0 +1,17 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h b/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /****************************************************************************
+  *
+  *  Copyright (C) 1996-2002 Microsoft Corporation.  All Rights Reserved.
+@@ -4347,6 +4348,7 @@
+  * and should be reloaded from the registery.
+  * dwFlags is reserved and should be set to zero
+  */
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI MMRESULT WINAPI joyConfigChanged( DWORD dwFlags );
+ 
+ #ifndef DIJ_RINGZERO

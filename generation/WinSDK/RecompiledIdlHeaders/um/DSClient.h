@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -188,6 +189,9 @@ typedef struct
 #undef  INTERFACE
 #define INTERFACE  IDsBrowseDomainTree
 
+#if defined(WIN32METADATA) && defined(__clang__)
+struct _Win32_SupportedOS_WindowsVista_ IDsBrowseDomainTree;
+#endif
 DECLARE_INTERFACE_IID_(IDsBrowseDomainTree, IUnknown, "7cabcf1e-78f5-11d2-960c-00c04fa31a86")
 {
     // *** IUnknown methods ***
@@ -268,6 +272,9 @@ typedef struct
 #undef  INTERFACE
 #define INTERFACE IDsDisplaySpecifier
 
+#if defined(WIN32METADATA) && defined(__clang__)
+struct _Win32_SupportedOS_WindowsVista_ IDsDisplaySpecifier;
+#endif
 DECLARE_INTERFACE_IID_(IDsDisplaySpecifier, IUnknown, "1ab4a8c0-6a0b-11d2-ad49-00c04fa31a86")
 {
     // *** IUnknown methods ***
@@ -459,7 +466,9 @@ typedef struct
 // API exported for browsing for containers.
 //
 
+_Win32_SupportedOS_WindowsVista_
 STDAPI_(int) DsBrowseForContainerW(_Inout_ PDSBROWSEINFOW pInfo);
+_Win32_SupportedOS_WindowsVista_
 STDAPI_(int) DsBrowseForContainerA(_Inout_ PDSBROWSEINFOA pInfo);
 
 #ifdef UNICODE
@@ -471,7 +480,9 @@ STDAPI_(int) DsBrowseForContainerA(_Inout_ PDSBROWSEINFOA pInfo);
 
 // NOTE: these are here to keep old clients building - remove soon
 
+_Win32_SupportedOS_WindowsVista_
 STDAPI_(HICON) DsGetIcon(DWORD dwFlags, LPCWSTR pszObjectClass, INT cxImage, INT cyImage);
+_Win32_SupportedOS_WindowsVista_
 STDAPI DsGetFriendlyClassName(LPCWSTR pszObjectClass, _Out_writes_(cchBuffer) LPWSTR pszBuffer, UINT cchBuffer);
 
 
@@ -483,5 +494,4 @@ struct __declspec(uuid("1ab4a8c0-6a0b-11d2-ad49-00c04fa31a86")) IDsDisplaySpecif
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
-
 

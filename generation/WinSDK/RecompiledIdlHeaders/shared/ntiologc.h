@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1991  Microsoft Corporation
@@ -18,6 +19,7 @@ Revision History:
 
 #ifndef _NTIOLOGC_
 #define _NTIOLOGC_
+#include <sal.h>
 
 //
 //  Status values are 32 bit values layed out as follows:
@@ -75,6 +77,10 @@ Revision History:
 //
 #define FACILITY_IO_ERROR_CODE           0x4
 #define FACILITY_MCA_ERROR_CODE          0x5
+
+#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
+_Win32_Enum_(NTSTATUS_FACILITY_CODE, unsigned int, FACILITY_MCA_ERROR_CODE);
+#endif
 #define FACILITY_VOLMGR                  0x38
 
 

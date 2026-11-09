@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 /*++
 
@@ -57,6 +58,8 @@ typedef struct _PROTECTED_FILE_DATA {
 } PROTECTED_FILE_DATA, *PPROTECTED_FILE_DATA;
 
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 SfcGetNextProtectedFile(
@@ -64,6 +67,7 @@ SfcGetNextProtectedFile(
     IN PPROTECTED_FILE_DATA ProtFileData
     );
 
+_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 SfcIsFileProtected(
@@ -71,6 +75,7 @@ SfcIsFileProtected(
     IN LPCWSTR ProtFileName
     );
 
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 SfcIsKeyProtected(

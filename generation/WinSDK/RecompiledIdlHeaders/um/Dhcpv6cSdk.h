@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*++
@@ -152,18 +153,21 @@ typedef struct _DHCPV6PrefixLeaseInformation {
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_SupportedOS_WindowsVista_
 VOID
 APIENTRY
 Dhcpv6CApiInitialize(
     OUT     LPDWORD                Version
 );
 
+_Win32_SupportedOS_WindowsVista_
 VOID
 APIENTRY
 Dhcpv6CApiCleanup(
     VOID
 );
 
+_Win32_SupportedOS_WindowsVista_
 DWORD                                             // win32 status
 APIENTRY
 Dhcpv6RequestParams(                                // request parameters of client
@@ -182,6 +186,7 @@ IN OUT  LPDWORD                		pSize
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_SupportedOS_WindowsVista_
 DWORD
 APIENTRY
 Dhcpv6RequestPrefix(
@@ -191,6 +196,7 @@ IN OUT LPDHCPV6PrefixLeaseInformation	prefixleaseInfo,
 _Out_ DWORD* 			pdwTimeToWait
 );
 
+_Win32_SupportedOS_WindowsVista_
 DWORD
 APIENTRY
 Dhcpv6RenewPrefix(
@@ -201,6 +207,7 @@ _Out_ DWORD* 			pdwTimeToWait,
 IN DWORD 				bValidatePrefix
 );
 
+_Win32_SupportedOS_WindowsVista_
 DWORD
 APIENTRY
 Dhcpv6ReleasePrefix(

@@ -1,0 +1,68 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/webapplication.idl b/generation/WinSDK/RecompiledIdlHeaders/winrt/webapplication.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/webapplication.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/webapplication.idl
+@@ -3,6 +3,7 @@
+  *     Copyright (C) Microsoft. All rights reserved.   *
+  *                                                     *
+  *******************************************************/
++#include <sal.h>
+ cpp_quote("/*******************************************************")
+ cpp_quote(" *                                                     *")
+ cpp_quote(" *     Copyright (C) Microsoft. All rights reserved.   *")
+@@ -23,6 +24,7 @@
+ #pragma region Desktop Family
+ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)")
+ 
++cpp_quote("/* Win32Metadata: interface ::IWebApplicationScriptEvents => SupportedOSPlatform(\"windows8.0\") */")
+ [
+     object,
+     local,
+@@ -42,6 +44,7 @@
+         [in] BOOL errorHandled);
+ };
+ 
++cpp_quote("/* Win32Metadata: interface ::IWebApplicationNavigationEvents => SupportedOSPlatform(\"windows8.0\") */")
+ [
+     object,
+     local,
+@@ -80,6 +83,7 @@
+     HRESULT DownloadComplete();
+ };
+ 
++cpp_quote("/* Win32Metadata: interface ::IWebApplicationUIEvents => SupportedOSPlatform(\"windows8.0\") */")
+ [
+     object,
+     local,
+@@ -93,6 +97,7 @@
+         [out] HRESULT* result);
+ };
+ 
++cpp_quote("/* Win32Metadata: interface ::IWebApplicationUpdateEvents => SupportedOSPlatform(\"windows8.0\") */")
+ [
+     object,
+     local,
+@@ -107,6 +112,7 @@
+     HRESULT OnCssChanged();
+ };
+ 
++cpp_quote("/* Win32Metadata: interface ::IWebApplicationHost => SupportedOSPlatform(\"windows8.0\") */")
+ [
+     object,
+     local,
+@@ -134,6 +140,7 @@
+         [in] DWORD cookie);
+ }
+ 
++cpp_quote("/* Win32Metadata: interface ::IWebApplicationActivation => SupportedOSPlatform(\"windows8.0\") */")
+ [
+     object,
+     local,
+@@ -147,6 +154,7 @@
+ 
+ cpp_quote("// Implemented by the activator. The query service implementation is required to respond to")
+ cpp_quote("// requests for SID_SWebApplicationAuthor.")
++cpp_quote("/* Win32Metadata: interface ::IWebApplicationAuthoringMode => SupportedOSPlatform(\"windows8.0\") */")
+ [
+     object,
+     uuid(720AEA93-1964-4DB0-B005-29EB9E2B18A9),

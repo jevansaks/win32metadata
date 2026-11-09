@@ -1,0 +1,56 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/cderr.h b/generation/WinSDK/RecompiledIdlHeaders/shared/cderr.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/cderr.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/cderr.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*****************************************************************************\
+ *                                                                             *
+ * cderr.h -     Common dialog error return codes                              *
+@@ -59,4 +60,46 @@
+ 
+ #define CCERR_CHOOSECOLORCODES 0x5000
+ 
++#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
++#include <sal.h>
++_Win32_Enum_(COMMON_DLG_ERRORS, unsigned long,
++    CDERR_DIALOGFAILURE,
++    CDERR_GENERALCODES,
++    CDERR_STRUCTSIZE,
++    CDERR_INITIALIZATION,
++    CDERR_NOTEMPLATE,
++    CDERR_NOHINSTANCE,
++    CDERR_LOADSTRFAILURE,
++    CDERR_FINDRESFAILURE,
++    CDERR_LOADRESFAILURE,
++    CDERR_LOCKRESFAILURE,
++    CDERR_MEMALLOCFAILURE,
++    CDERR_MEMLOCKFAILURE,
++    CDERR_NOHOOK,
++    CDERR_REGISTERMSGFAIL,
++    PDERR_PRINTERCODES,
++    PDERR_SETUPFAILURE,
++    PDERR_PARSEFAILURE,
++    PDERR_RETDEFFAILURE,
++    PDERR_LOADDRVFAILURE,
++    PDERR_GETDEVMODEFAIL,
++    PDERR_INITFAILURE,
++    PDERR_NODEVICES,
++    PDERR_NODEFAULTPRN,
++    PDERR_DNDMMISMATCH,
++    PDERR_CREATEICFAILURE,
++    PDERR_PRINTERNOTFOUND,
++    PDERR_DEFAULTDIFFERENT,
++    CFERR_CHOOSEFONTCODES,
++    CFERR_NOFONTS,
++    CFERR_MAXLESSTHANMIN,
++    FNERR_FILENAMECODES,
++    FNERR_SUBCLASSFAILURE,
++    FNERR_INVALIDFILENAME,
++    FNERR_BUFFERTOOSMALL,
++    FRERR_FINDREPLACECODES,
++    FRERR_BUFFERLENGTHZERO,
++    CCERR_CHOOSECOLORCODES);
++#endif
++
+ #endif  /* !_INC_CDERR */

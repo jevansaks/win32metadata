@@ -1,9 +1,6 @@
 --with-type
-HANDLE_OPTIONS=uint
 --with-attribute
-HANDLE_OPTIONS=Flags
 --exclude
-RO_REGISTRATION_COOKIE
 RoGetActivatableClassRegistration
 RoErrorReportingFlags
 IDesktopWindowTarget
@@ -41,3 +38,5 @@ ID2D1Factory
 <IncludeRoot>/winrt/winstring.h
 --namespace
 Windows.Win32.System.WinRT
+--traverse
+<IncludeRoot>/winrt/eventtoken.h

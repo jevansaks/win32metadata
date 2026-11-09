@@ -1,3 +1,5 @@
+#include <win32metadata_annotations.h>
+#include <sal.h>
 //---------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 //---------------------------------------------------------------------------
@@ -118,8 +120,9 @@ STDAPI DCompositionCreateDevice3(
 //      with a visual.
 //
 //------------------------------------------------------------------------------
+_Win32_SupportedOS_Windows8_
 STDAPI DCompositionCreateSurfaceHandle(
-    _In_ DWORD desiredAccess,
+    _Win32_AssociatedEnum_(DCOMP_SURFACE_HANDLE_ACCESS) _In_ DWORD desiredAccess,
     _In_opt_ SECURITY_ATTRIBUTES *securityAttributes,
     _Out_ HANDLE *surfaceHandle
     );
@@ -190,7 +193,7 @@ STDAPI DCompositionGetStatistics(
     _In_ COMPOSITION_FRAME_ID frameId,
     _Out_ COMPOSITION_FRAME_STATS* frameStats,
     _In_ UINT targetIdCount,
-    _Out_writes_opt_(targetCount) COMPOSITION_TARGET_ID* targetIds,
+    _Out_writes_opt_(targetIdCount) COMPOSITION_TARGET_ID* targetIds,
     _Out_opt_ UINT* actualTargetIdCount);
 
 //+-----------------------------------------------------------------------------
@@ -205,7 +208,7 @@ STDAPI DCompositionGetStatistics(
 STDAPI DCompositionGetTargetStatistics(
     _In_ COMPOSITION_FRAME_ID frameId,
     _In_ const COMPOSITION_TARGET_ID* targetId,
-    _Out_ COMPOSITION_TARGET_STATS* targetStats);
+    _Win32_Retval_ _Out_ COMPOSITION_TARGET_STATS* targetStats);
 
 //+-----------------------------------------------------------------------------
 //
@@ -247,6 +250,9 @@ STDAPI_(DWORD) DCompositionWaitForCompositorClock(
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionDevice
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionDevice IDCompositionDevice;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionDevice, IUnknown, "C37EA93A-E7AA-450D-B16F-9746CB0407F3")
 {
     // Commits all DirectComposition commands pending on this device.
@@ -259,7 +265,7 @@ DECLARE_INTERFACE_IID_(IDCompositionDevice, IUnknown, "C37EA93A-E7AA-450D-B16F-9
 
     // Gets timing information about the composition engine.
     STDMETHOD(GetFrameStatistics)(THIS_
-        _Out_ DCOMPOSITION_FRAME_STATISTICS *statistics
+        _Win32_Retval_ _Out_ DCOMPOSITION_FRAME_STATISTICS *statistics
         ) PURE;
 
     // Creates a composition target bound to a window represented by an HWND.
@@ -397,6 +403,9 @@ DECLARE_INTERFACE_IID_(IDCompositionDevice, IUnknown, "C37EA93A-E7AA-450D-B16F-9
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionTarget
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionTarget IDCompositionTarget;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionTarget, IUnknown, "eacdd04c-117e-4e17-88f4-d1b12b0e3d89")
 {
     // Sets the root visual
@@ -417,6 +426,9 @@ DECLARE_INTERFACE_IID_(IDCompositionTarget, IUnknown, "eacdd04c-117e-4e17-88f4-d
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionVisual
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionVisual IDCompositionVisual;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionVisual, IUnknown, "4d93059d-097b-4651-9a60-f0f25116e2f3")
 {
     // Changes the value of OffsetX property
@@ -520,6 +532,9 @@ DECLARE_INTERFACE_IID_(IDCompositionVisual, IUnknown, "4d93059d-097b-4651-9a60-f
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionEffect
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionEffect IDCompositionEffect;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionEffect, IUnknown, "EC81B08F-BFCB-4e8d-B193-A915587999E8")
 {
 };
@@ -535,6 +550,9 @@ DECLARE_INTERFACE_IID_(IDCompositionEffect, IUnknown, "EC81B08F-BFCB-4e8d-B193-A
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionTransform3D
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionTransform3D IDCompositionTransform3D;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionTransform3D, IDCompositionEffect, "71185722-246B-41f2-AAD1-0443F7F4BFC2")
 {
 };
@@ -551,6 +569,9 @@ DECLARE_INTERFACE_IID_(IDCompositionTransform3D, IDCompositionEffect, "71185722-
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionTransform
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionTransform IDCompositionTransform;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionTransform, IDCompositionTransform3D, "FD55FAA7-37E0-4c20-95D2-9BE45BC33F55")
 {
 };
@@ -567,6 +588,9 @@ DECLARE_INTERFACE_IID_(IDCompositionTransform, IDCompositionTransform3D, "FD55FA
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionTranslateTransform
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionTranslateTransform IDCompositionTranslateTransform;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionTranslateTransform, IDCompositionTransform, "06791122-C6F0-417d-8323-269E987F5954")
 {
     // Changes the value of the OffsetX property.
@@ -603,6 +627,9 @@ DECLARE_INTERFACE_IID_(IDCompositionTranslateTransform, IDCompositionTransform, 
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionScaleTransform
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionScaleTransform IDCompositionScaleTransform;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionScaleTransform, IDCompositionTransform, "71FDE914-40EF-45ef-BD51-68B037C339F9")
 {
     // Changes the value of the ScaleX property.
@@ -659,6 +686,9 @@ DECLARE_INTERFACE_IID_(IDCompositionScaleTransform, IDCompositionTransform, "71F
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionRotateTransform
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionRotateTransform IDCompositionRotateTransform;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionRotateTransform, IDCompositionTransform, "641ED83C-AE96-46c5-90DC-32774CC5C6D5")
 {
     // Changes the value of the Angle property.
@@ -705,6 +735,9 @@ DECLARE_INTERFACE_IID_(IDCompositionRotateTransform, IDCompositionTransform, "64
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionSkewTransform
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionSkewTransform IDCompositionSkewTransform;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionSkewTransform, IDCompositionTransform, "E57AA735-DCDB-4c72-9C61-0591F58889EE")
 {
     // Changes the value of the AngleX property.
@@ -760,6 +793,9 @@ DECLARE_INTERFACE_IID_(IDCompositionSkewTransform, IDCompositionTransform, "E57A
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionMatrixTransform
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionMatrixTransform IDCompositionMatrixTransform;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionMatrixTransform, IDCompositionTransform, "16CDFF07-C503-419c-83F2-0965C7AF1FA6")
 {
     // Changes all values of the matrix of this transform.
@@ -794,6 +830,9 @@ DECLARE_INTERFACE_IID_(IDCompositionMatrixTransform, IDCompositionTransform, "16
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionEffectGroup
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionEffectGroup IDCompositionEffectGroup;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionEffectGroup, IDCompositionEffect, "A7929A74-E6B2-4bd6-8B95-4040119CA34D")
 {
     // Changes the opacity property.
@@ -824,6 +863,9 @@ DECLARE_INTERFACE_IID_(IDCompositionEffectGroup, IDCompositionEffect, "A7929A74-
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionTranslateTransform3D
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionTranslateTransform3D IDCompositionTranslateTransform3D;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionTranslateTransform3D, IDCompositionTransform3D, "91636D4B-9BA1-4532-AAF7-E3344994D788")
 {
     // Changes the value of the OffsetX property.
@@ -870,6 +912,9 @@ DECLARE_INTERFACE_IID_(IDCompositionTranslateTransform3D, IDCompositionTransform
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionScaleTransform3D
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionScaleTransform3D IDCompositionScaleTransform3D;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionScaleTransform3D, IDCompositionTransform3D, "2A9E9EAD-364B-4b15-A7C4-A1997F78B389")
 {
     // Changes the value of the ScaleX property.
@@ -946,6 +991,9 @@ DECLARE_INTERFACE_IID_(IDCompositionScaleTransform3D, IDCompositionTransform3D, 
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionRotateTransform3D
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionRotateTransform3D IDCompositionRotateTransform3D;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionRotateTransform3D, IDCompositionTransform3D, "D8F5B23F-D429-4a91-B55A-D2F45FD75B18")
 {
     // Changes the value of the Angle property.
@@ -1033,6 +1081,9 @@ DECLARE_INTERFACE_IID_(IDCompositionRotateTransform3D, IDCompositionTransform3D,
 #pragma warning(disable : 4995)    // D3DMATRIX': name was marked as #pragma deprecated
 #undef INTERFACE
 #define INTERFACE IDCompositionMatrixTransform3D
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionMatrixTransform3D IDCompositionMatrixTransform3D;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionMatrixTransform3D, IDCompositionTransform3D, "4B3363F0-643B-41b7-B6E0-CCF22D34467C")
 {
     // Changes all values of the matrix of this transform.
@@ -1068,6 +1119,9 @@ DECLARE_INTERFACE_IID_(IDCompositionMatrixTransform3D, IDCompositionTransform3D,
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionClip
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionClip IDCompositionClip;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionClip, IUnknown, "64AC3703-9D3F-45ec-A109-7CAC0E7A13A7")
 {
 };
@@ -1084,6 +1138,9 @@ DECLARE_INTERFACE_IID_(IDCompositionClip, IUnknown, "64AC3703-9D3F-45ec-A109-7CA
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionRectangleClip
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionRectangleClip IDCompositionRectangleClip;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionRectangleClip, IDCompositionClip, "9842AD7D-D9CF-4908-AED7-48B51DA5E7C2")
 {
     // Changes the value of the Left property.
@@ -1273,6 +1330,9 @@ DECLARE_INTERFACE_IID_(IDCompositionSurface, IUnknown, "BB8A4953-2C99-4F5A-96F5-
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionVirtualSurface
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionVirtualSurface IDCompositionVirtualSurface;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionVirtualSurface, IDCompositionSurface, "AE471C51-5F53-4A24-8D3E-D0C39C30B3F0")
 {
     STDMETHOD(Resize)(THIS_
@@ -1306,6 +1366,9 @@ typedef interface IDCompositionVisualDebug          IDCompositionVisualDebug;
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionDevice2
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows81_ struct IDCompositionDevice2 IDCompositionDevice2;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionDevice2, IUnknown, "75F6468D-1B8E-447C-9BC6-75FEA80B5B25")
 {
     // Commits all DirectComposition commands pending on this device.
@@ -1318,7 +1381,7 @@ DECLARE_INTERFACE_IID_(IDCompositionDevice2, IUnknown, "75F6468D-1B8E-447C-9BC6-
 
     // Gets timing information about the composition engine.
     STDMETHOD(GetFrameStatistics)(THIS_
-        _Out_ DCOMPOSITION_FRAME_STATISTICS *statistics
+        _Win32_Retval_ _Out_ DCOMPOSITION_FRAME_STATISTICS *statistics
         ) PURE;
 
     // Creates a new visual object.
@@ -1437,6 +1500,9 @@ DECLARE_INTERFACE_IID_(IDCompositionDevice2, IUnknown, "75F6468D-1B8E-447C-9BC6-
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionDesktopDevice
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows81_ struct IDCompositionDesktopDevice IDCompositionDesktopDevice;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionDesktopDevice, IDCompositionDevice2, "5F4633FE-1E08-4CB8-8C75-CE24333F5602")
 {
     STDMETHOD(CreateTargetForHwnd)(THIS_
@@ -1492,6 +1558,9 @@ DECLARE_INTERFACE_IID_(IDCompositionDeviceDebug, IUnknown, "A1A3C64A-224F-4A81-9
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionSurfaceFactory
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows81_ struct IDCompositionSurfaceFactory IDCompositionSurfaceFactory;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionSurfaceFactory, IUnknown, "E334BC12-3937-4E02-85EB-FCF4EB30D2C8")
 {
     // Creates a DirectComposition surface object
@@ -1525,6 +1594,9 @@ DECLARE_INTERFACE_IID_(IDCompositionSurfaceFactory, IUnknown, "E334BC12-3937-4E0
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionVisual2
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows81_ struct IDCompositionVisual2 IDCompositionVisual2;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionVisual2, IDCompositionVisual, "E8DE1639-4331-4B26-BC5F-6A321D347A85")
 {
     // Changes the interpretation of the opacity property of an effect group
@@ -1550,6 +1622,9 @@ DECLARE_INTERFACE_IID_(IDCompositionVisual2, IDCompositionVisual, "E8DE1639-4331
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionVisualDebug
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows81_ struct IDCompositionVisualDebug IDCompositionVisualDebug;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionVisualDebug, IDCompositionVisual2, "FED2B808-5EB4-43A0-AEA3-35F65280F91B")
 {
     // Enable heat map
@@ -1587,6 +1662,9 @@ typedef interface IDCompositionVisual3                      IDCompositionVisual3
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionVisual3
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows81_ struct IDCompositionVisual3 IDCompositionVisual3;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionVisual3, IDCompositionVisualDebug, "2775F462-B6C1-4015-B0BE-B3E7D6A4976D")
 {
     // Sets depth mode property associated with this visual
@@ -1642,6 +1720,9 @@ DECLARE_INTERFACE_IID_(IDCompositionVisual3, IDCompositionVisualDebug, "2775F462
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionDevice3
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows81_ struct IDCompositionDevice3 IDCompositionDevice3;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionDevice3, IDCompositionDevice2, "0987CB06-F916-48BF-8D35-CE7641781BD9")
 {
     // Effect creation calls, each creates an interface around a D2D1Effect
@@ -1709,6 +1790,9 @@ DECLARE_INTERFACE_IID_(IDCompositionDevice3, IDCompositionDevice2, "0987CB06-F91
 //------------------------------------------------------------------------------
 #undef INTERFACE
 #define INTERFACE IDCompositionFilterEffect
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows8_ struct IDCompositionFilterEffect IDCompositionFilterEffect;
+#endif
 DECLARE_INTERFACE_IID_(IDCompositionFilterEffect, IDCompositionEffect, "30C421D5-8CB2-4E9F-B133-37BE270D4AC2")
 {
     // Sets the input at the given index to the filterEffect (NULL will use source visual, unless flagged otherwise)

@@ -1,0 +1,133 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h b/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ddrawgdi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /******************************Module*Header*******************************\
+ * Module Name: ddrawgdi.h
+ *
+@@ -43,6 +44,7 @@
+ 
+ #endif
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdCreateDirectDrawObject(
+@@ -53,6 +55,7 @@
+ typedef struct _D3DHAL_CALLBACKS FAR *LPD3DHAL_CALLBACKS;
+ typedef struct _D3DHAL_GLOBALDRIVERDATA FAR *LPD3DHAL_GLOBALDRIVERDATA;
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdQueryDirectDrawObject(
+@@ -69,12 +72,14 @@
+     LPVIDMEM                    pvmList            // Can be NULL
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdDeleteDirectDrawObject(
+     LPDDRAWI_DIRECTDRAW_GBL   pDirectDrawGlobal
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdCreateSurfaceObject(
+@@ -82,12 +87,14 @@
+     BOOL                      bPrimarySurface
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdDeleteSurfaceObject(
+     LPDDRAWI_DDRAWSURFACE_LCL pSurfaceLocal
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdResetVisrgn(
+@@ -95,6 +102,7 @@
+     HWND                      hWnd
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ HDC
+ APIENTRY
+ DdGetDC(
+@@ -102,12 +110,14 @@
+     LPPALETTEENTRY            pColorTable
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdReleaseDC(
+     LPDDRAWI_DDRAWSURFACE_LCL pSurfaceLocal
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ HBITMAP
+ APIENTRY
+ DdCreateDIBSection(
+@@ -119,6 +129,7 @@
+     DWORD             dwOffset
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdReenableDirectDrawObject(
+@@ -126,6 +137,7 @@
+     BOOL*                   pbNewMode
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdAttachSurface(
+@@ -133,6 +145,7 @@
+     LPDDRAWI_DDRAWSURFACE_LCL   pSurfaceTo
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ VOID
+ APIENTRY
+ DdUnattachSurface(
+@@ -140,12 +153,14 @@
+     LPDDRAWI_DDRAWSURFACE_LCL   pSurfaceAttached
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ ULONG
+ APIENTRY
+ DdQueryDisplaySettingsUniqueness(
+     VOID
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ HANDLE
+ APIENTRY
+ DdGetDxHandle(
+@@ -154,6 +169,7 @@
+     BOOL			bRelease
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DdSetGammaRamp(
+@@ -164,6 +180,7 @@
+ 
+ 
+ 
++_Win32_SupportedOS_Windows2000_
+ DWORD 
+ APIENTRY
+ DdSwapTextureHandles(

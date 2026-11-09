@@ -1,0 +1,267 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/evntprov.h b/generation/WinSDK/RecompiledIdlHeaders/shared/evntprov.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/evntprov.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/evntprov.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ 
+ /*++
+ 
+@@ -21,6 +22,7 @@
+ #pragma once
+ 
+ #include <winapifamily.h>
++#include <sal.h>
+ 
+ #if _MSC_VER >= 1200
+ #pragma warning(push)
+@@ -541,13 +543,14 @@
+ unloads without closing the handle, the process may crash when the ETW runtime
+ attempts to invoke the provider's callback after the has unloaded.
+ */
++_Win32_SupportedOS_WindowsVista_
+ ULONG
+ EVNTAPI
+ EventRegister(
+     _In_ LPCGUID ProviderId,
+     _In_opt_ PENABLECALLBACK EnableCallback,
+     _In_opt_ PVOID CallbackContext,
+-    _Out_ PREGHANDLE RegHandle
++    _Win32_RAIIFree_(EventUnregister, 0) _Out_ PREGHANDLE RegHandle
+     );
+ #endif
+ 
+@@ -555,6 +558,7 @@
+ /*
+ Closes the RegHandle that was opened by EventRegister.
+ */
++_Win32_SupportedOS_WindowsVista_
+ ULONG
+ EVNTAPI
+ EventUnregister(
+@@ -568,6 +572,7 @@
+ or to configure how the ETW runtime handles your provider's events.
+ Refer to the documentation of the EVENT_INFO_CLASS for more information.
+ */
++_Win32_SupportedOS_Windows8_
+ ULONG
+ EVNTAPI
+ EventSetInformation(
+@@ -611,6 +616,7 @@
+     EventWrite(regHandle, &myEventDesc, ...);
+ }
+ */
++_Win32_SupportedOS_WindowsVista_
+ BOOLEAN
+ EVNTAPI
+ EventEnabled(
+@@ -652,6 +658,7 @@
+     EventWrite(regHandle, &myEventDesc, ...);
+ }
+ */
++_Win32_SupportedOS_WindowsVista_
+ BOOLEAN
+ EVNTAPI
+ EventProviderEnabled(
+@@ -677,6 +684,7 @@
+ EventWrite(regHandle, &eventDesc, cData, pData) is equivalent to
+ EventWriteTransfer(regHandle, &eventDesc, NULL, NULL, cData, pData).
+ */
++_Win32_SupportedOS_WindowsVista_
+ ULONG
+ EVNTAPI
+ EventWrite(
+@@ -702,6 +710,7 @@
+ EventWriteTransfer(regHandle, &eventDesc, pAI, pRAI, cData, pData) is equivalent to
+ EventWriteEx(regHandle, &eventDesc, 0, 0, pAI, pRAI, cData, pData).
+ */
++_Win32_SupportedOS_WindowsVista_
+ ULONG
+ EVNTAPI
+ EventWriteTransfer(
+@@ -736,6 +745,7 @@
+ EventWriteTransfer(regHandle, &eventDesc, pAI, pRAI, cData, pData) is equivalent to
+ EventWriteEx(regHandle, &eventDesc, 0, 0, pAI, pRAI, cData, pData).
+ */
++_Win32_SupportedOS_Windows7_
+ ULONG
+ EVNTAPI
+ EventWriteEx(
+@@ -754,6 +764,7 @@
+ /*
+ Writes a simple event containing a string.
+ */
++_Win32_SupportedOS_WindowsVista_
+ ULONG
+ EVNTAPI
+ EventWriteString(
+@@ -781,6 +792,7 @@
+ guaranteed to be unique on the local machine and only during the current boot
+ session.
+ */
++_Win32_SupportedOS_WindowsVista_
+ ULONG
+ EVNTAPI
+ EventActivityIdControl(
+@@ -803,7 +815,7 @@
+ */
+ EVNTPROV_PFORCEINLINE
+ VOID
+-EventDataDescCreate(
++_Win32_SupportedOS_WindowsVista_ EventDataDescCreate(
+     _Out_ PEVENT_DATA_DESCRIPTOR EventDataDescriptor,
+     _In_reads_bytes_(DataSize) const VOID* DataPtr,
+     _In_ ULONG DataSize
+@@ -826,7 +838,7 @@
+ */
+ EVNTPROV_PFORCEINLINE
+ VOID
+-EventDescCreate(
++_Win32_SupportedOS_WindowsVista_ EventDescCreate(
+     _Out_ PEVENT_DESCRIPTOR EventDescriptor,
+     _In_ USHORT Id,
+     _In_ UCHAR Version,
+@@ -852,7 +864,7 @@
+ */
+ EVNTPROV_PFORCEINLINE
+ VOID
+-EventDescZero(
++_Win32_SupportedOS_WindowsVista_ EventDescZero(
+     _Out_ PEVENT_DESCRIPTOR EventDescriptor
+     )
+ {
+@@ -866,7 +878,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ USHORT
+-EventDescGetId(
++_Win32_SupportedOS_WindowsVista_ EventDescGetId(
+     _In_ PCEVENT_DESCRIPTOR EventDescriptor
+     )
+ {
+@@ -875,7 +887,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ UCHAR
+-EventDescGetVersion(
++_Win32_SupportedOS_WindowsVista_ EventDescGetVersion(
+     _In_ PCEVENT_DESCRIPTOR EventDescriptor
+     )
+ {
+@@ -884,7 +896,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ USHORT
+-EventDescGetTask(
++_Win32_SupportedOS_WindowsVista_ EventDescGetTask(
+     _In_ PCEVENT_DESCRIPTOR EventDescriptor
+     )
+ {
+@@ -893,7 +905,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ UCHAR
+-EventDescGetOpcode(
++_Win32_SupportedOS_WindowsVista_ EventDescGetOpcode(
+     _In_ PCEVENT_DESCRIPTOR EventDescriptor
+     )
+ {
+@@ -902,7 +914,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ UCHAR
+-EventDescGetChannel(
++_Win32_SupportedOS_WindowsVista_ EventDescGetChannel(
+     _In_ PCEVENT_DESCRIPTOR EventDescriptor
+     )
+ {
+@@ -911,7 +923,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ UCHAR
+-EventDescGetLevel(
++_Win32_SupportedOS_WindowsVista_ EventDescGetLevel(
+     _In_ PCEVENT_DESCRIPTOR EventDescriptor
+     )
+ {
+@@ -920,7 +932,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ ULONGLONG
+-EventDescGetKeyword(
++_Win32_SupportedOS_WindowsVista_ EventDescGetKeyword(
+     _In_ PCEVENT_DESCRIPTOR EventDescriptor
+     )
+ {
+@@ -933,7 +945,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ PEVENT_DESCRIPTOR
+-EventDescSetId(
++_Win32_SupportedOS_WindowsVista_ EventDescSetId(
+     _In_ PEVENT_DESCRIPTOR EventDescriptor,
+     _In_ USHORT Id
+     )
+@@ -944,7 +956,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ PEVENT_DESCRIPTOR
+-EventDescSetVersion(
++_Win32_SupportedOS_WindowsVista_ EventDescSetVersion(
+     _In_ PEVENT_DESCRIPTOR EventDescriptor,
+     _In_ UCHAR Version
+     )
+@@ -955,7 +967,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ PEVENT_DESCRIPTOR
+-EventDescSetTask(
++_Win32_SupportedOS_WindowsVista_ EventDescSetTask(
+     _In_ PEVENT_DESCRIPTOR EventDescriptor,
+     _In_ USHORT Task
+     )
+@@ -966,7 +978,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ PEVENT_DESCRIPTOR
+-EventDescSetOpcode(
++_Win32_SupportedOS_WindowsVista_ EventDescSetOpcode(
+     _In_ PEVENT_DESCRIPTOR EventDescriptor,
+     _In_ UCHAR Opcode
+     )
+@@ -977,7 +989,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ PEVENT_DESCRIPTOR
+-EventDescSetLevel(
++_Win32_SupportedOS_WindowsVista_ EventDescSetLevel(
+     _In_ PEVENT_DESCRIPTOR EventDescriptor,
+     _In_ UCHAR  Level
+     )
+@@ -988,7 +1000,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ PEVENT_DESCRIPTOR
+-EventDescSetChannel(
++_Win32_SupportedOS_WindowsVista_ EventDescSetChannel(
+     _In_ PEVENT_DESCRIPTOR EventDescriptor,
+     _In_ UCHAR Channel
+     )
+@@ -999,7 +1011,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ PEVENT_DESCRIPTOR
+-EventDescSetKeyword(
++_Win32_SupportedOS_WindowsVista_ EventDescSetKeyword(
+     _In_ PEVENT_DESCRIPTOR EventDescriptor,
+     _In_ ULONGLONG Keyword
+     )
+@@ -1011,7 +1023,7 @@
+ 
+ EVNTPROV_PFORCEINLINE
+ PEVENT_DESCRIPTOR
+-EventDescOrKeyword(
++_Win32_SupportedOS_WindowsVista_ EventDescOrKeyword(
+     _In_ PEVENT_DESCRIPTOR EventDescriptor,
+     _In_ ULONGLONG Keyword
+     )

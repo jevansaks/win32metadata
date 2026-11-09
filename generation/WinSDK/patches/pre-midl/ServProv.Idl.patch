@@ -2,7 +2,16 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl
-@@ -57,7 +57,7 @@
+@@ -9,6 +9,8 @@
+ //
+ //----------------------------------------------------------------------------
+ 
++#include <sal.h>
++cpp_quote("#include <sal.h>")
+ cpp_quote("//=--------------------------------------------------------------------------=")
+ cpp_quote("// ServProv.h")
+ cpp_quote("//=--------------------------------------------------------------------------=")
+@@ -57,7 +59,7 @@
  cpp_quote("            virtual /* [local] */ HRESULT STDMETHODCALLTYPE QueryService( ")
  cpp_quote("                /* [in] */ _In_ REFGUID guidService,")
  cpp_quote("                /* [in] */ _In_ REFIID riid,")
@@ -11,7 +20,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl b/generation
  cpp_quote("            ")
  cpp_quote("            template <class Q>")
  cpp_quote("            HRESULT STDMETHODCALLTYPE QueryService(_In_ REFGUID guidService, _Outptr_ Q** pp)")
-@@ -84,7 +84,7 @@
+@@ -84,7 +86,7 @@
      HRESULT QueryService(
          [in, annotation("_In_")] REFGUID guidService,
          [in, annotation("_In_")] REFIID riid,
@@ -20,3 +29,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ServProv.Idl b/generation
  
      [call_as(QueryService)]
      HRESULT RemoteQueryService(
+@@ -92,6 +94,7 @@
+         [in] REFIID riid,
+         [out, iid_is(riid)] IUnknown ** ppvObject);
+ }
++cpp_quote("/* Win32Metadata: parameter ::IServiceProvider::QueryService::ppvObject => ComOutPtr(true) */")
+ cpp_quote("#endif // VC6 Hack")
+ 
+ 

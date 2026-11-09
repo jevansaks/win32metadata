@@ -1,0 +1,167 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/nspapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/nspapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/nspapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/nspapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) 1991-1998  Microsoft Corporation
+@@ -83,6 +84,16 @@
+ #define SERVICE_FLUSH               (0x00000003)
+ #define SERVICE_ADD_TYPE            (0x00000004)
+ #define SERVICE_DELETE_TYPE         (0x00000005)
++
++#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
++#include <sal.h>
++_Win32_Enum_(SET_SERVICE_OPERATION, unsigned long,
++    SERVICE_REGISTER,
++    SERVICE_DEREGISTER,
++    SERVICE_FLUSH,
++    SERVICE_ADD_TYPE,
++    SERVICE_DELETE_TYPE);
++#endif
+ 
+ //
+ // Flags that affect the operations above
+@@ -358,7 +369,7 @@
+     LPSTR   lpServiceName ;
+     LPSTR   lpComment ;
+     LPSTR   lpLocale ;
+-    DWORD dwDisplayHint ;
++    _Win32_AssociatedEnum_(RESOURCE_DISPLAY_TYPE) DWORD dwDisplayHint ;
+     DWORD dwVersion ;
+     DWORD dwTime ;
+     LPSTR   lpMachineName ;
+@@ -373,7 +384,7 @@
+     LPWSTR  lpServiceName ;
+     LPWSTR  lpComment ;
+     LPWSTR  lpLocale ;
+-    DWORD dwDisplayHint ;
++    _Win32_AssociatedEnum_(RESOURCE_DISPLAY_TYPE) DWORD dwDisplayHint ;
+     DWORD dwVersion ;
+     DWORD dwTime ;
+     LPWSTR  lpMachineName ;
+@@ -537,6 +548,8 @@
+ //
+ // Public NSP API prototypes.
+ //
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ EnumProtocolsA (
+@@ -547,6 +560,8 @@
+ //
+ // Public NSP API prototypes.
+ //
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ EnumProtocolsW (
+@@ -560,6 +575,8 @@
+ #define EnumProtocols  EnumProtocolsA
+ #endif // !UNICODE
+ 
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ GetAddressByNameA (
+@@ -574,6 +591,8 @@
+     _Inout_updates_opt_(*lpdwAliasBufferLength) LPSTR  lpAliasBuffer,
+     _Inout_ LPDWORD               lpdwAliasBufferLength
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ GetAddressByNameW (
+@@ -594,12 +613,16 @@
+ #define GetAddressByName  GetAddressByNameA
+ #endif // !UNICODE
+ 
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ GetTypeByNameA (
+     _In_    LPSTR         lpServiceName,
+     _Inout_ LPGUID        lpServiceType
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ GetTypeByNameW (
+@@ -612,6 +635,8 @@
+ #define GetTypeByName  GetTypeByNameA
+ #endif // !UNICODE
+ 
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ GetNameByTypeA (
+@@ -619,6 +644,8 @@
+     _Out_writes_bytes_(dwNameLength) LPSTR         lpServiceName,
+     _In_   DWORD           dwNameLength
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ GetNameByTypeW (
+@@ -632,21 +659,31 @@
+ #define GetNameByType  GetNameByTypeA
+ #endif // !UNICODE
+ 
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ SetServiceA (
+     _In_     DWORD                dwNameSpace,
+-    _In_     DWORD                dwOperation,
++    #if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
++_Win32_AssociatedEnum_(SET_SERVICE_OPERATION)
++#endif
++_In_     DWORD                dwOperation,
+     _In_     DWORD                dwFlags,
+     _In_     LPSERVICE_INFOA      lpServiceInfo,
+     _In_opt_ LPSERVICE_ASYNC_INFO lpServiceAsyncInfo,
+     _Out_    LPDWORD              lpdwStatusFlags
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ SetServiceW (
+     _In_     DWORD                dwNameSpace,
+-    _In_     DWORD                dwOperation,
++    #if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
++_Win32_AssociatedEnum_(SET_SERVICE_OPERATION)
++#endif
++_In_     DWORD                dwOperation,
+     _In_     DWORD                dwFlags,
+     _In_     LPSERVICE_INFOW      lpServiceInfo,
+     _In_opt_ LPSERVICE_ASYNC_INFO lpServiceAsyncInfo,
+@@ -658,6 +695,8 @@
+ #define SetService  SetServiceA
+ #endif // !UNICODE
+ 
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ GetServiceA (
+@@ -669,6 +708,8 @@
+     _Inout_  LPDWORD              lpdwBufferSize,
+     _In_opt_ LPSERVICE_ASYNC_INFO lpServiceAsyncInfo
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ INT
+ APIENTRY
+ GetServiceW (

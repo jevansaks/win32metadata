@@ -1,0 +1,19 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/icontentprefetchertasktrigger.idl b/generation/WinSDK/RecompiledIdlHeaders/um/icontentprefetchertasktrigger.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/icontentprefetchertasktrigger.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/icontentprefetchertasktrigger.idl
+@@ -1,5 +1,6 @@
+ //  Copyright (c) Microsoft Corporation. All rights reserved.
+ 
++#include <sal.h>
+ import "oaidl.idl";
+ import "inspectable.idl";
+ import "wtypes.idl";
+@@ -9,6 +10,7 @@
+ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)")
+ 
+ 
++cpp_quote("/* Win32Metadata: interface ::IContentPrefetcherTaskTrigger => SupportedOSPlatform(\"windows8.1\") */")
+ [uuid(1b35a14a-6094-4799-a60e-e474e15d4dc9), object]
+ interface IContentPrefetcherTaskTrigger : IInspectable
+ {

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //============================================================================
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //
@@ -315,6 +316,7 @@ typedef struct _SOURCE_GROUP_ENTRY {
 // Routing protocol registration / de-registration API
 //============================================================================
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmRegisterMProtocol(
     IN          PROUTING_PROTOCOL_CONFIG    prpiInfo,
@@ -323,6 +325,7 @@ MgmRegisterMProtocol(
     OUT         HANDLE  *                   phProtocol
 );
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmDeRegisterMProtocol(
     IN          HANDLE                      hProtocol
@@ -333,6 +336,7 @@ MgmDeRegisterMProtocol(
 // Interface ownership API
 //============================================================================
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmTakeInterfaceOwnership(
     IN          HANDLE                      hProtocol,
@@ -341,6 +345,7 @@ MgmTakeInterfaceOwnership(
 );
 
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmReleaseInterfaceOwnership(
     IN          HANDLE                      hProtocol,
@@ -348,6 +353,7 @@ MgmReleaseInterfaceOwnership(
     IN          DWORD                       dwIfNextHopAddr
 );
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGetProtocolOnInterface(
     IN          DWORD                       dwIfIndex,
@@ -364,6 +370,7 @@ MgmGetProtocolOnInterface(
 #define         MGM_JOIN_STATE_FLAG         0x00000001
 #define         MGM_FORWARD_STATE_FLAG      0x00000002
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmAddGroupMembershipEntry(
     IN              HANDLE                  hProtocol,
@@ -376,6 +383,7 @@ MgmAddGroupMembershipEntry(
     IN              DWORD                   dwFlags
 );
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmDeleteGroupMembershipEntry(
     IN              HANDLE                  hProtocol,
@@ -399,6 +407,7 @@ MgmDeleteGroupMembershipEntry(
 // MFE enumeration API
 //----------------------------------------------------------------------------
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGetMfe(
     IN              PMIB_IPMCAST_MFE        pimm,
@@ -406,6 +415,7 @@ MgmGetMfe(
     IN  OUT         PBYTE                   pbBuffer
 );
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGetFirstMfe(
     IN  OUT         PDWORD                  pdwBufferSize,
@@ -414,6 +424,7 @@ MgmGetFirstMfe(
 );
 
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGetNextMfe(
     IN              PMIB_IPMCAST_MFE        pimmStart,
@@ -436,6 +447,7 @@ MgmGetNextMfe(
 #define         MGM_MFE_STATS_1             0x00000002
 
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGetMfeStats(
     IN              PMIB_IPMCAST_MFE        pimm,
@@ -444,6 +456,7 @@ MgmGetMfeStats(
     IN              DWORD                   dwFlags
 );
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGetFirstMfeStats(
     IN  OUT         PDWORD                  pdwBufferSize,
@@ -453,6 +466,7 @@ MgmGetFirstMfeStats(
 );
 
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGetNextMfeStats(
     IN              PMIB_IPMCAST_MFE        pimmStart,
@@ -466,6 +480,7 @@ MgmGetNextMfeStats(
 // Group menbership entry enumeration API
 //----------------------------------------------------------------------------
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGroupEnumerationStart(
     IN              HANDLE                  hProtocol,
@@ -473,6 +488,7 @@ MgmGroupEnumerationStart(
     OUT             HANDLE *                phEnumHandle
 );
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGroupEnumerationGetNext(
     IN              HANDLE                  hEnum,
@@ -481,6 +497,7 @@ MgmGroupEnumerationGetNext(
     IN  OUT         PDWORD                  pdwNumEntries
 );
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmGroupEnumerationEnd(
     IN              HANDLE                  hEnum
@@ -493,6 +510,7 @@ MgmGroupEnumerationEnd(
 //
 //-----------------------------------------------------------------
 
+_Win32_SupportedOS_Server2000_
 DWORD
 MgmSetMfe(
     IN              HANDLE                  hProtocol,

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0003    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -46,6 +47,7 @@ extern "C" {
 // Function Prototypes
 //
 
+_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetAlertRaise(
     _In_ LPCWSTR AlertType,
@@ -53,6 +55,7 @@ NetAlertRaise(
     _In_ DWORD   BufferSize
     );
 
+_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetAlertRaiseEx(
     _In_ LPCWSTR AlertType,

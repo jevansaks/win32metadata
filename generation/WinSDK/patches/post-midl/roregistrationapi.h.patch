@@ -1,0 +1,36 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roregistrationapi.h b/generation/WinSDK/RecompiledIdlHeaders/winrt/roregistrationapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/winrt/roregistrationapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/winrt/roregistrationapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*****************************************************************************
+  **                                                                         **
+  ** RoRegistrationApi.h - Header for Windows Runtime catalog registrations. **
+@@ -8,6 +9,8 @@
+ 
+ #ifndef __ROREGISTRATIONAPI_H_
+ #define __ROREGISTRATIONAPI_H_
++
++#include <sal.h>
+ 
+ #ifdef _MSC_VER
+ #pragma once
+@@ -52,7 +55,7 @@
+ extern "C" {
+ #endif
+ 
+-ROAPI
++_Win32_SupportedOS_Windows8_ ROAPI
+ _Check_return_
+ HRESULT
+ WINAPI
+@@ -61,7 +64,7 @@
+     _COM_Outptr_ PActivatableClassRegistration* activatableClassRegistration
+     );
+ 
+-ROAPI
++_Win32_SupportedOS_Windows8_ ROAPI
+ _On_failure_(_At_(*activatableClassIds, _Post_ _Null_))
+ _Check_return_
+ HRESULT

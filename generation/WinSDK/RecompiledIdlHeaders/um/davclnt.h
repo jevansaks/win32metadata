@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -80,6 +81,7 @@ typedef DWORD (CALLBACK *PFNDAVAUTHCALLBACK)(
     _Out_ PFNDAVAUTHCALLBACK_FREECRED *pFreeCred    // Callback to free the memory allocated for creds by the callback
 );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
@@ -92,6 +94,7 @@ DavAddConnection(
     _In_ DWORD CertSize
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
@@ -99,6 +102,7 @@ DavDeleteConnection(
     _In_ HANDLE ConnectionHandle
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
@@ -108,6 +112,7 @@ DavGetUNCFromHTTPPath (
     _Inout_ LPDWORD lpSize
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
@@ -117,6 +122,7 @@ DavGetHTTPFromUNCPath (
     _Inout_ LPDWORD lpSize
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
@@ -126,6 +132,7 @@ DavGetTheLockOwnerOfTheFile(
     _Inout_ PULONG LockOwnerNameLengthInBytes
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
@@ -136,6 +143,7 @@ DavGetExtendedError(
     _Inout_ DWORD *cChSize
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
@@ -143,6 +151,7 @@ DavFlushFile(
     _In_ HANDLE hFile
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
@@ -150,6 +159,7 @@ DavInvalidateCache(
     _In_ LPCWSTR URLName
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
@@ -158,11 +168,13 @@ DavCancelConnectionsToServer(
     _In_ BOOL fForce
     );
 
+_Win32_SupportedOS_WindowsVista_
 OPAQUE_HANDLE
 WINAPI
 DavRegisterAuthCallback(_In_ PFNDAVAUTHCALLBACK CallBack,
                         _In_ ULONG Version);
 
+_Win32_SupportedOS_WindowsVista_
 VOID
 WINAPI
 DavUnregisterAuthCallback(_In_ OPAQUE_HANDLE hCallback);

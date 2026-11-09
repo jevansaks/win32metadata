@@ -1,9 +1,24 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.idl b/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.idl
-index 2f09e486..5450787b 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/vidcap.idl
-@@ -52,7 +52,7 @@ interface IKsTopologyInfo : IUnknown
+@@ -11,6 +11,7 @@
+ //
+ //--------------------------------------------------------------------------
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -37,6 +38,7 @@
+ 
+ 
+ // IKsTopologyInfo interface
++cpp_quote("/* Win32Metadata: interface ::IKsTopologyInfo => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+     object,
+     local,
+@@ -52,11 +54,12 @@
      HRESULT get_NodeName([in] DWORD dwNodeId, [out, annotation("_Out_writes_bytes_opt_(dwBufSize)")] WCHAR *pwchNodeName, [in] DWORD dwBufSize, [out, annotation("_Out_")] DWORD *pdwNameLen);
      HRESULT get_NumNodes([out] DWORD *pdwNumNodes);
      HRESULT get_NodeType([in] DWORD dwNodeId, [out] GUID *pNodeType);
@@ -12,3 +27,32 @@ index 2f09e486..5450787b 100644
  }
  
  
+ // ISelector interface
++cpp_quote("/* Win32Metadata: interface ::ISelector => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+     object,
+     local,
+@@ -71,6 +74,7 @@
+ }
+ 
+ // ICameraControl interface
++cpp_quote("/* Win32Metadata: interface ::ICameraControl => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+     object,
+     local,
+@@ -283,6 +287,7 @@
+ 
+ 
+ // IVideoProcAmp interface
++cpp_quote("/* Win32Metadata: interface ::IVideoProcAmp => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+     object,
+     local,
+@@ -464,6 +469,7 @@
+ }
+ 
+ // IKsNodeControl interface
++cpp_quote("/* Win32Metadata: interface ::IKsNodeControl => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+     object,
+     local,

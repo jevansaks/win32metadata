@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 /******************************************************************
 *                                                                 *
@@ -36,6 +37,7 @@
 
 #endif // __cplusplus
 
+_Win32_SupportedOS_WindowsVista_
 VERSIONHELPERAPI
 IsWindowsVersionOrGreater(WORD wMajorVersion, WORD wMinorVersion, WORD wServicePackMajor)
 {
@@ -54,66 +56,77 @@ IsWindowsVersionOrGreater(WORD wMajorVersion, WORD wMinorVersion, WORD wServiceP
     return VerifyVersionInfoW(&osvi, VER_MAJORVERSION | VER_MINORVERSION | VER_SERVICEPACKMAJOR, dwlConditionMask) != FALSE;
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindowsXPOrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINXP), LOBYTE(_WIN32_WINNT_WINXP), 0);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindowsXPSP1OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINXP), LOBYTE(_WIN32_WINNT_WINXP), 1);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindowsXPSP2OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINXP), LOBYTE(_WIN32_WINNT_WINXP), 2);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindowsXPSP3OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINXP), LOBYTE(_WIN32_WINNT_WINXP), 3);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindowsVistaOrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_VISTA), LOBYTE(_WIN32_WINNT_VISTA), 0);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindowsVistaSP1OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_VISTA), LOBYTE(_WIN32_WINNT_VISTA), 1);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindowsVistaSP2OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_VISTA), LOBYTE(_WIN32_WINNT_VISTA), 2);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindows7OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WIN7), LOBYTE(_WIN32_WINNT_WIN7), 0);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindows7SP1OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WIN7), LOBYTE(_WIN32_WINNT_WIN7), 1);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindows8OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WIN8), LOBYTE(_WIN32_WINNT_WIN8), 0);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindows8Point1OrGreater()
 {
@@ -126,12 +139,14 @@ IsWindowsThresholdOrGreater()
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINTHRESHOLD), LOBYTE(_WIN32_WINNT_WINTHRESHOLD), 0);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindows10OrGreater()
 {
     return IsWindowsVersionOrGreater(HIBYTE(_WIN32_WINNT_WINTHRESHOLD), LOBYTE(_WIN32_WINNT_WINTHRESHOLD), 0);
 }
 
+_Win32_SupportedOS_Windows2000_
 VERSIONHELPERAPI
 IsWindowsServer()
 {

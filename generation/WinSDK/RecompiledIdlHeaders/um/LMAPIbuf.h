@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -40,6 +41,7 @@ extern "C" {
 // Function Prototypes
 //
 
+_Win32_SupportedOS_Windows2000_
 _Success_( return == 0 )
 NET_API_STATUS NET_API_FUNCTION
 NetApiBufferAllocate(
@@ -47,12 +49,14 @@ NetApiBufferAllocate(
     _Outptr_result_bytebuffer_(ByteCount) LPVOID * Buffer
     );
 
+_Win32_SupportedOS_Windows2000_
 _Success_( return == 0 )
 NET_API_STATUS NET_API_FUNCTION
 NetApiBufferFree (
     _Frees_ptr_opt_ LPVOID Buffer
     );
 
+_Win32_SupportedOS_Windows2000_
 _Success_( return == 0 )
 NET_API_STATUS NET_API_FUNCTION
 NetApiBufferReallocate(
@@ -61,6 +65,7 @@ NetApiBufferReallocate(
     _Outptr_result_bytebuffer_(NewByteCount) LPVOID * NewBuffer
     );
 
+_Win32_SupportedOS_Windows2000_
 _Success_( return == 0 )
 NET_API_STATUS NET_API_FUNCTION
 NetApiBufferSize(
@@ -91,6 +96,7 @@ NetapipBufferAllocate (                 // Internal Function
 #pragma region Desktop Family or OneCore Family Or Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
 
+_Win32_SupportedOS_Windows2000_
 _Success_( return == 0 )
 NET_API_STATUS NET_API_FUNCTION
 NetApiBufferFree (

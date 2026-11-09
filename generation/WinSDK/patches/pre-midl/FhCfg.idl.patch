@@ -1,0 +1,24 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FhCfg.idl b/generation/WinSDK/RecompiledIdlHeaders/um/FhCfg.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/FhCfg.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/FhCfg.idl
+@@ -6,6 +6,7 @@
+ cpp_quote("/*                                                                             */" )
+ cpp_quote("/*******************************************************************************/" )
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -16,6 +17,11 @@
+ import "shobjidl_core.idl";
+ 
+ cpp_quote("#if NTDDI_VERSION >= NTDDI_WIN8")
++
++cpp_quote("/* Win32Metadata: interface ::IFhTarget => SupportedOSPlatform(\"windows8.0\") */")
++cpp_quote("/* Win32Metadata: interface ::IFhScopeIterator => SupportedOSPlatform(\"windows8.0\") */")
++cpp_quote("/* Win32Metadata: interface ::IFhConfigMgr => SupportedOSPlatform(\"windows8.0\") */")
++cpp_quote("/* Win32Metadata: interface ::IFhReassociation => SupportedOSPlatform(\"windows8.0\") */")
+ 
+ typedef enum _FH_TARGET_PROPERTY_TYPE {
+     FH_TARGET_NAME,

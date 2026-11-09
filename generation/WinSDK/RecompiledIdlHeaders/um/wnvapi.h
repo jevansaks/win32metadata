@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -114,11 +115,13 @@ typedef struct _WNV_REDIRECT_PARAM {
 #ifdef __cplusplus
 extern "C" {
 #endif  // __cplusplus
+_Win32_SupportedOS_Server2012_
 HANDLE
 WINAPI
 WnvOpen(
     );
 
+_Win32_SupportedOS_Server2012_
 ULONG
 WINAPI
 WnvRequestNotification (

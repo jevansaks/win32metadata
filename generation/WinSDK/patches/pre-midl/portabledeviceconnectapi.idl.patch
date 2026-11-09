@@ -1,0 +1,20 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/portabledeviceconnectapi.idl b/generation/WinSDK/RecompiledIdlHeaders/um/portabledeviceconnectapi.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/portabledeviceconnectapi.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/portabledeviceconnectapi.idl
+@@ -4,6 +4,7 @@
+ //
+ //-----------------------------------------------------------------------------
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -60,6 +61,7 @@
+ // This interface is used by applications to communicate to
+ // portable device connectors. 
+ //---------------------------------------------------------
++cpp_quote("/* Win32Metadata: interface ::IPortableDeviceConnector => SupportedOSPlatform(\"windows6.1\") */")
+ [
+     object,
+     uuid(625e2df8-6392-4cf0-9ad1-3cfa5f17775c),

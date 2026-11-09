@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * HeapApi.h -- ApiSet Contract for api-ms-win-core-heap-l1                      *
@@ -13,6 +14,7 @@
 #ifndef _HEAPAPI_H_
 #define _HEAPAPI_H_
 
+#include <sal.h>
 #include <apiset.h>
 #include <apisetcconv.h>
 #include <minwindef.h>
@@ -53,16 +55,33 @@ typedef PHEAP_SUMMARY LPHEAP_SUMMARY;
 // Prototypes
 //
 
+#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
+// Keep the native cleanup visible to compiler-parsed producer annotations.
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
+WINBASEAPI
+BOOL
+WINAPI
+HeapDestroy(
+    _In_ HANDLE hHeap
+    );
+#endif
+
+_Win32_RAIIFree_(HeapDestroy)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Ret_maybenull_
 HANDLE
 WINAPI
 HeapCreate(
-    _In_ DWORD flOptions,
+    _Win32_AssociatedEnum_(HEAP_FLAGS) _In_ DWORD flOptions,
     _In_ SIZE_T dwInitialSize,
     _In_ SIZE_T dwMaximumSize
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -70,6 +89,7 @@ HeapDestroy(
     _In_ HANDLE hHeap
     );
 
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Ret_maybenull_
 _Post_writable_byte_size_(dwBytes)
@@ -78,10 +98,11 @@ LPVOID
 WINAPI
 HeapAlloc(
     _In_ HANDLE hHeap,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(HEAP_FLAGS) _In_ DWORD dwFlags,
     _In_ SIZE_T dwBytes
     );
 
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Success_(return != 0)
 _Ret_maybenull_
@@ -91,30 +112,35 @@ LPVOID
 WINAPI
 HeapReAlloc(
     _Inout_ HANDLE hHeap,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(HEAP_FLAGS) _In_ DWORD dwFlags,
     _Frees_ptr_opt_ LPVOID lpMem,
     _In_ SIZE_T dwBytes
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Success_(return != FALSE)
 BOOL
 WINAPI
 HeapFree(
     _Inout_ HANDLE hHeap,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(HEAP_FLAGS) _In_ DWORD dwFlags,
     __drv_freesMem(Mem) _Frees_ptr_opt_ LPVOID lpMem
     );
 
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 SIZE_T
 WINAPI
 HeapSize(
     _In_ HANDLE hHeap,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(HEAP_FLAGS) _In_ DWORD dwFlags,
     _In_ LPCVOID lpMem
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -122,14 +148,18 @@ GetProcessHeap(
     VOID
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 SIZE_T
 WINAPI
 HeapCompact(
     _In_ HANDLE hHeap,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(HEAP_FLAGS) _In_ DWORD dwFlags
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -146,12 +176,13 @@ HeapSetInformation(
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
 HeapValidate(
     _In_ HANDLE hHeap,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(HEAP_FLAGS) _In_ DWORD dwFlags,
     _In_opt_ LPCVOID lpMem
     );
 
@@ -175,6 +206,8 @@ HeapSummary(
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 DWORD
 WINAPI
@@ -183,6 +216,8 @@ GetProcessHeaps(
     _Out_writes_to_(NumberOfHeaps,return) PHANDLE ProcessHeaps
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -190,6 +225,8 @@ HeapLock(
     _In_ HANDLE hHeap
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -203,6 +240,8 @@ HeapUnlock(
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -211,6 +250,8 @@ HeapWalk(
     _Inout_ LPPROCESS_HEAP_ENTRY lpEntry
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI

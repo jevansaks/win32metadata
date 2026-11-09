@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * libloaderapi2.h -- ApiSet Contract for api-ms-win-core-libraryloader-l2       *
@@ -27,6 +28,7 @@ extern "C" {
 
 #if (_WIN32_WINNT >= 0x0602)
 
+_Win32_RAIIFree_(FreeLibrary, 0)
 WINBASEAPI
 _Ret_maybenull_
 HMODULE
@@ -46,6 +48,8 @@ LoadPackagedLibrary(
 
 #if (_WIN32_WINNT >= 0x0602)
 
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 WINBASEAPI
 BOOL
 WINAPI

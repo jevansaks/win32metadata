@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 //+-------------------------------------------------------------------------
@@ -31,6 +32,7 @@ typedef VOID* NTPROP;
 #include <propidl.h>
 
 EXTERN_C
+_Win32_SupportedOS_Windows2000_
 _Success_(TRUE)  /* Raises status on failure */
 ULONG __stdcall
 StgPropertyLengthAsVariant(

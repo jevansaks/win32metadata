@@ -1,5 +1,4 @@
 --with-librarypath
-GetDeviceID=tbs.dll
 --traverse
 <IncludeRoot>/shared/tbs.h
 --namespace

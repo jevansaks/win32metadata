@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effect
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -67,19 +68,23 @@ CdromCddaInfo(
     IN OUT PULONG BufferSize
     );
 
+_Win32_SupportedOS_WindowsXP_
 BOOL
 CdromKnownGoodDigitalPlayback(IN HDEVINFO HDevInfo,
                               IN PSP_DEVINFO_DATA DevInfoData);
 
+_Win32_SupportedOS_WindowsXP_
 LONG
 CdromEnableDigitalPlayback(IN HDEVINFO DevInfo,
                            IN PSP_DEVINFO_DATA DevInfoData,
                            IN BOOLEAN ForceUnknown);
 
+_Win32_SupportedOS_WindowsXP_
 LONG
 CdromDisableDigitalPlayback( IN HDEVINFO DevInfo,
                              IN PSP_DEVINFO_DATA DevInfoData);
 
+_Win32_SupportedOS_WindowsXP_
 LONG
 CdromIsDigitalPlaybackEnabled(
     IN  HDEVINFO DevInfo,

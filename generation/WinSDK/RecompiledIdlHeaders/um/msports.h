@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+-------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -17,6 +18,7 @@
 #pragma once
 #endif
 #include <winapifamily.h>
+#include <sal.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -103,7 +105,7 @@ typedef HCOMDB *PHCOMDB;
 LONG
 WINAPI
 ComDBOpen (
-    _Out_ PHCOMDB PHComDB
+    _Win32_RAIIFree_(ComDBClose, -1, 0) _Out_ PHCOMDB PHComDB
     );
 /*++
 

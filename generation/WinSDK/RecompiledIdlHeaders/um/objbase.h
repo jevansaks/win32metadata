@@ -29,7 +29,11 @@
 #include <coml2api.h>
 
 // COM initialization flags; passed to CoInitialize.
-typedef enum tagCOINIT
+typedef enum
+#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
+__attribute__((flag_enum))
+#endif
+tagCOINIT
 {
   COINIT_APARTMENTTHREADED  = 0x2,      // Apartment model
 

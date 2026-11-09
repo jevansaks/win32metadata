@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1996-1999  Microsoft Corporation
@@ -224,6 +225,7 @@ typedef struct _DOMAIN_CONTROLLER_INFOW {
 // Function Prototypes
 //
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -237,6 +239,7 @@ DsGetDcNameA(
     _Outptr_result_nullonfailure_ PDOMAIN_CONTROLLER_INFOA *DomainControllerInfo
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -256,6 +259,7 @@ DsGetDcNameW(
 #define DsGetDcName DsGetDcNameA
 #endif // !UNICODE
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -265,6 +269,7 @@ DsGetSiteNameA(
     _Outptr_result_nullonfailure_ LPSTR *SiteName
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -280,6 +285,7 @@ DsGetSiteNameW(
 #define DsGetSiteName DsGetSiteNameA
 #endif // !UNICODE
 
+_Win32_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -287,6 +293,7 @@ DsValidateSubnetNameW(
     _In_ LPCWSTR SubnetName
     );
 
+_Win32_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -306,6 +313,7 @@ DsValidateSubnetNameA(
 //
 #ifdef _WINSOCK2API_
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -317,6 +325,7 @@ DsAddressToSiteNamesW(
     _Outptr_result_nullonfailure_ _Outptr_result_buffer_(EntryCount) LPWSTR **SiteNames
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -334,6 +343,7 @@ DsAddressToSiteNamesA(
 #define DsAddressToSiteNames DsAddressToSiteNamesA
 #endif // !UNICODE
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -346,6 +356,7 @@ DsAddressToSiteNamesExW(
     _Outptr_result_nullonfailure_ _Outptr_result_buffer_(EntryCount) LPWSTR **SubnetNames
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -459,6 +470,7 @@ typedef struct _DS_DOMAIN_TRUSTSA {
 #define PDS_DOMAIN_TRUSTS PDS_DOMAIN_TRUSTSA
 #endif // !UNICODE
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -470,6 +482,7 @@ DsEnumerateDomainTrustsW (
     _Out_ PULONG DomainCount
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -494,6 +507,7 @@ DsEnumerateDomainTrustsA (
 
 #if defined(_NTLSA_) || defined(_NTSECAPI_)
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -508,6 +522,7 @@ DsGetForestTrustInformationW (
 #define DS_GFTI_UPDATE_TDO      0x1     // Update TDO with information returned
 #define DS_GFTI_VALID_FLAGS     0x1     // All valid flags to DsGetForestTrustInformation
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -521,6 +536,7 @@ DsMergeForestTrustInformationW(
 
 #endif // _NTLSA_ || _NTSECAPI_
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -531,6 +547,7 @@ DsGetDcSiteCoverageW(
     _Outptr_result_nullonfailure_ _Outptr_result_buffer_(*EntryCount) LPWSTR **SiteNames
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -547,6 +564,7 @@ DsGetDcSiteCoverageA(
 #define DsGetDcSiteCoverage DsGetDcSiteCoverageA
 #endif // !UNICODE
 
+_Win32_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -558,6 +576,7 @@ DsDeregisterDnsHostRecordsW (
     _In_ LPWSTR DnsHostName
     );
 
+_Win32_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -601,6 +620,18 @@ DsDeregisterDnsHostRecordsA (
             DS_WRITABLE_REQUIRED )
 
 
+#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
+// Keep the native cleanup visible to compiler-parsed producer annotations.
+_Win32_SupportedOS_WindowsVista_
+DSGETDCAPI
+VOID
+WINAPI
+DsGetDcCloseW(
+    _In_ HANDLE GetDcContextHandle
+    );
+#endif
+
+_Win32_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -611,9 +642,21 @@ DsGetDcOpenW(
     _In_opt_ GUID *DomainGuid,
     _In_opt_ LPCWSTR DnsForestName,
     _In_ ULONG DcFlags,
-    _Out_ PHANDLE RetGetDcContext
+    _Win32_RAIIFree_(DsGetDcCloseW) _Out_ PHANDLE RetGetDcContext
     );
 
+#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
+// Keep the native cleanup visible to compiler-parsed producer annotations.
+_Win32_SupportedOS_WindowsVista_
+DSGETDCAPI
+VOID
+WINAPI
+DsGetDcCloseW(
+    _In_ HANDLE GetDcContextHandle
+    );
+#endif
+
+_Win32_SupportedOS_WindowsVista_
 DSGETDCAPI
 DWORD
 WINAPI
@@ -624,7 +667,7 @@ DsGetDcOpenA(
     _In_opt_ GUID *DomainGuid,
     _In_opt_ LPCSTR DnsForestName,
     _In_ ULONG DcFlags,
-    _Out_ PHANDLE RetGetDcContext
+    _Win32_RAIIFree_(DsGetDcCloseW) _Out_ PHANDLE RetGetDcContext
     );
 
 #ifdef UNICODE
@@ -633,6 +676,7 @@ DsGetDcOpenA(
 #define DsGetDcOpen DsGetDcOpenA
 #endif // !UNICODE
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -644,6 +688,7 @@ DsGetDcNextW(
     _Outptr_opt_result_nullonfailure_ LPWSTR *DnsHostName
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
 DWORD
@@ -661,6 +706,7 @@ DsGetDcNextA(
 #define DsGetDcNext DsGetDcNextA
 #endif // !UNICODE
 
+_Win32_SupportedOS_WindowsVista_
 DSGETDCAPI
 VOID
 WINAPI

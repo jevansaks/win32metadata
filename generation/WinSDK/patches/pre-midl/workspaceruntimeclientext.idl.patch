@@ -1,0 +1,20 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/workspaceruntimeclientext.idl b/generation/WinSDK/RecompiledIdlHeaders/um/workspaceruntimeclientext.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/workspaceruntimeclientext.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/workspaceruntimeclientext.idl
+@@ -4,6 +4,7 @@
+ // This file will be processed by the MIDL tool to
+ // produce the type library (WorkspaceRuntime.tlb) and marshalling code.
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -12,6 +13,7 @@
+ import "oaidl.idl";
+ import "ocidl.idl";
+ 
++cpp_quote("/* Win32Metadata: interface ::IWorkspaceClientExt => SupportedOSPlatform(\"windows6.1\") */")
+ [
+     object,
+     uuid(12B952F4-41CA-4F21-A829-A6D07D9A16E5),

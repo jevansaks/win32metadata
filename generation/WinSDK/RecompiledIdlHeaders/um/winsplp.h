@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1990  Microsoft Corporation
@@ -18,6 +19,8 @@ Revision History:
 
 #ifndef _WINSPLP_
 #define _WINSPLP_
+
+#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -1839,7 +1842,7 @@ typedef struct _MONITORUI
 } MONITORUI, FAR *PMONITORUI;
 
 
-HANDLE
+_Win32_RAIIFree_(DeletePrinterIC, -1, 0) HANDLE
 CreatePrinterIC(
     _In_        HANDLE      hPrinter,
     _In_opt_    LPDEVMODEW  pDevMode
@@ -2148,7 +2151,7 @@ GenerateCopyFilePaths(
     WINAPI
     AddPrintDeviceObject(
         _In_    HANDLE  hPrinter,
-        _Out_   HANDLE *phDeviceObject
+        _Out_   _Win32_RAIIFree_(RemovePrintDeviceObject, -1, 0) HANDLE *phDeviceObject
         );
 
     HRESULT

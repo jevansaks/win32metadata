@@ -1,0 +1,27 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusenums.h b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusenums.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusenums.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/gdiplusenums.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /**************************************************************************\
+ *
+ * Copyright (c) 1998-2001, Microsoft Corp.  All Rights Reserved.
+@@ -14,6 +15,8 @@
+ 
+ #ifndef _GDIPLUSENUMS_H
+ #define _GDIPLUSENUMS_H
++
++#include <sal.h>
+ #include <winapifamily.h>
+ 
+ #pragma region Desktop Family
+@@ -530,7 +533,7 @@
+     ObjectTypeMin = ObjectTypeBrush
+ };
+ 
+-inline BOOL
++_Win32_SupportedOS_WindowsXP_ inline BOOL
+ ObjectTypeIsValid(
+     ObjectType      type
+     )

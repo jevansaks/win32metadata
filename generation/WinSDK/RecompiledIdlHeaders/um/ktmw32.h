@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2000  Microsoft Corporation
@@ -22,6 +23,7 @@ Revision History:
 #define _KTMUSER_
 
 #include <winapifamily.h>
+#include <sal.h>
 
 #pragma region Desktop Family or BootableSku Package
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_BOOTABLESKU)
@@ -36,18 +38,22 @@ extern "C" {
 // Win32-level transaction manager API calls
 //
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 HANDLE
 APIENTRY
 CreateTransaction (
-    IN LPSECURITY_ATTRIBUTES lpTransactionAttributes OPTIONAL,
-    IN LPGUID UOW OPTIONAL,
-    IN DWORD CreateOptions OPTIONAL,
-    IN DWORD IsolationLevel OPTIONAL,
-    IN DWORD IsolationFlags OPTIONAL,
-    IN DWORD Timeout OPTIONAL,
+    _In_ IN LPSECURITY_ATTRIBUTES lpTransactionAttributes OPTIONAL,
+    _In_ IN LPGUID UOW OPTIONAL,
+    _In_ IN DWORD CreateOptions OPTIONAL,
+    _In_ IN DWORD IsolationLevel OPTIONAL,
+    _In_ IN DWORD IsolationFlags OPTIONAL,
+    _In_ IN DWORD Timeout OPTIONAL,
     _In_opt_ LPWSTR Description
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 HANDLE
 APIENTRY
 OpenTransaction (
@@ -55,30 +61,40 @@ OpenTransaction (
     IN LPGUID TransactionId
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 CommitTransaction (
     IN HANDLE TransactionHandle
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 CommitTransactionAsync (
     IN HANDLE TransactionHandle
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 RollbackTransaction (
     IN HANDLE TransactionHandle
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 RollbackTransactionAsync (
     IN HANDLE TransactionHandle
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 GetTransactionId (
@@ -87,6 +103,8 @@ GetTransactionId (
     );
 
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 GetTransactionInformation (
@@ -99,6 +117,8 @@ GetTransactionInformation (
     _Out_writes_to_opt_(BufferLength, return + 1) LPWSTR Description
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 SetTransactionInformation (
@@ -109,6 +129,8 @@ SetTransactionInformation (
     _In_opt_ LPWSTR Description
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 HANDLE
 APIENTRY
 CreateTransactionManager (
@@ -118,6 +140,8 @@ CreateTransactionManager (
     IN ULONG CommitStrength OPTIONAL
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 HANDLE
 APIENTRY
 OpenTransactionManager (
@@ -126,6 +150,8 @@ OpenTransactionManager (
     IN ULONG OpenOptions OPTIONAL
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 HANDLE
 APIENTRY
 OpenTransactionManagerById (
@@ -134,6 +160,8 @@ OpenTransactionManagerById (
     IN ULONG OpenOptions OPTIONAL
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 RenameTransactionManager (
@@ -141,6 +169,8 @@ RenameTransactionManager (
     IN LPGUID ExistingTransactionManagerGuid
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 RollforwardTransactionManager (
@@ -148,24 +178,32 @@ RollforwardTransactionManager (
     IN PLARGE_INTEGER TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 RecoverTransactionManager (
     IN HANDLE TransactionManagerHandle
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 GetCurrentClockTransactionManager(
     IN HANDLE TransactionManagerHandle,
     OUT PLARGE_INTEGER TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 GetTransactionManagerId(
     IN HANDLE TransactionManagerHandle,
     OUT LPGUID TransactionManagerId
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 HANDLE
 APIENTRY
 CreateResourceManager (
@@ -176,6 +214,8 @@ CreateResourceManager (
     _In_opt_ LPWSTR Description
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 HANDLE
 APIENTRY
 OpenResourceManager (
@@ -184,12 +224,16 @@ OpenResourceManager (
     IN LPGUID ResourceManagerId
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 RecoverResourceManager (
     IN HANDLE ResourceManagerHandle
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 GetNotificationResourceManager (
@@ -200,6 +244,8 @@ GetNotificationResourceManager (
     OUT PULONG                          ReturnLength OPTIONAL
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 GetNotificationResourceManagerAsync (
@@ -210,6 +256,8 @@ GetNotificationResourceManagerAsync (
     IN  LPOVERLAPPED                  lpOverlapped
     );
     
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 SetResourceManagerCompletionPort(
@@ -218,6 +266,8 @@ SetResourceManagerCompletionPort(
     IN ULONG_PTR CompletionKey
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 HANDLE
 APIENTRY
 CreateEnlistment (
@@ -229,6 +279,8 @@ CreateEnlistment (
     IN PVOID             EnlistmentKey OPTIONAL
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 HANDLE
 APIENTRY
 OpenEnlistment (
@@ -238,6 +290,8 @@ OpenEnlistment (
     );
 
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 RecoverEnlistment (
@@ -246,6 +300,8 @@ RecoverEnlistment (
     );
 
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 GetEnlistmentRecoveryInformation (
@@ -255,6 +311,8 @@ GetEnlistmentRecoveryInformation (
     OUT PULONG BufferUsed OPTIONAL
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 GetEnlistmentId (
@@ -262,6 +320,8 @@ GetEnlistmentId (
     OUT LPGUID EnlistmentId
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 SetEnlistmentRecoveryInformation (
@@ -270,6 +330,8 @@ SetEnlistmentRecoveryInformation (
     IN PVOID  Buffer
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 PrepareEnlistment (
@@ -277,6 +339,8 @@ PrepareEnlistment (
     IN PLARGE_INTEGER TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 PrePrepareEnlistment (
@@ -284,6 +348,8 @@ PrePrepareEnlistment (
     IN PLARGE_INTEGER TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 CommitEnlistment (
@@ -291,6 +357,8 @@ CommitEnlistment (
     IN PLARGE_INTEGER TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 RollbackEnlistment (
@@ -298,6 +366,8 @@ RollbackEnlistment (
     IN PLARGE_INTEGER TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 PrePrepareComplete (
@@ -305,6 +375,8 @@ PrePrepareComplete (
     IN  PLARGE_INTEGER    TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 PrepareComplete (
@@ -312,6 +384,8 @@ PrepareComplete (
     IN  PLARGE_INTEGER    TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 ReadOnlyEnlistment (
@@ -319,6 +393,8 @@ ReadOnlyEnlistment (
     IN  PLARGE_INTEGER    TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 CommitComplete (
@@ -326,6 +402,8 @@ CommitComplete (
     IN  PLARGE_INTEGER    TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 RollbackComplete (
@@ -333,6 +411,8 @@ RollbackComplete (
     IN  PLARGE_INTEGER    TmVirtualClock
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 APIENTRY
 SinglePhaseReject (

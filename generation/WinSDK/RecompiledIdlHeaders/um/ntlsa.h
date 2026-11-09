@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0011    // Increment this if a change has global effects
 
 Copyright (c) 1989-1999 Microsoft Corporation
@@ -18,6 +19,7 @@ Revision History:
 #ifndef _NTLSA_
 #define _NTLSA_
 
+#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -2671,12 +2673,18 @@ typedef PLSA_TRUST_INFORMATION PTRUSTED_DOMAIN_INFORMATION_BASIC;
 #define TRUST_DIRECTION_OUTBOUND        0x00000002
 #define TRUST_DIRECTION_BIDIRECTIONAL   (TRUST_DIRECTION_INBOUND | TRUST_DIRECTION_OUTBOUND)
 
+_Win32_Enum_(TRUSTED_DOMAIN_TRUST_DIRECTION, ULONG, TRUST_DIRECTION_DISABLED, TRUST_DIRECTION_INBOUND, TRUST_DIRECTION_OUTBOUND, TRUST_DIRECTION_BIDIRECTIONAL);
+
 #define TRUST_TYPE_DOWNLEVEL            0x00000001  // NT4 and before
 #define TRUST_TYPE_UPLEVEL              0x00000002  // NT5
 #define TRUST_TYPE_MIT                  0x00000003  // Trust with a MIT Kerberos realm
 
+_Win32_Enum_(TRUSTED_DOMAIN_TRUST_TYPE, ULONG, TRUST_TYPE_DOWNLEVEL, TRUST_TYPE_UPLEVEL, TRUST_TYPE_MIT);
+
 #if (_WIN32_WINNT < 0x0502)
 #define TRUST_TYPE_DCE                  0x00000004  // Trust with a DCE realm
+
+_Win32_Enum_(TRUSTED_DOMAIN_TRUST_TYPE, ULONG, TRUST_TYPE_DCE);
 #endif
 
 #define TRUST_TYPE_AAD                  0x00000005 // Trust with Azure AD
@@ -2686,6 +2694,8 @@ typedef PLSA_TRUST_INFORMATION PTRUSTED_DOMAIN_INFORMATION_BASIC;
 
 #define TRUST_ATTRIBUTE_NON_TRANSITIVE                0x00000001  // Disallow transitivity
 #define TRUST_ATTRIBUTE_UPLEVEL_ONLY                  0x00000002  // Trust link only valid for uplevel client
+
+_Win32_Enum_(TRUSTED_DOMAIN_TRUST_ATTRIBUTES, ULONG, TRUST_ATTRIBUTE_NON_TRANSITIVE, TRUST_ATTRIBUTE_UPLEVEL_ONLY);
 #if (_WIN32_WINNT == 0x0500)
 #define TRUST_ATTRIBUTE_TREE_PARENT     0x00400000  // Denotes that we are setting the trust
                                                     // to our parent in the org tree...
@@ -2700,16 +2710,22 @@ typedef PLSA_TRUST_INFORMATION PTRUSTED_DOMAIN_INFORMATION_BASIC;
 
 #if (_WIN32_WINNT < 0x0502)
 #define TRUST_ATTRIBUTE_FILTER_SIDS        0x00000004  // Used to quarantine domains
+
+_Win32_Enum_(TRUSTED_DOMAIN_TRUST_ATTRIBUTES, ULONG, TRUST_ATTRIBUTE_FILTER_SIDS);
 #else
 #define TRUST_ATTRIBUTE_QUARANTINED_DOMAIN            0x00000004  // Used to quarantine domains
 #endif
 
 #if (_WIN32_WINNT >= 0x0501)
 #define TRUST_ATTRIBUTE_FOREST_TRANSITIVE             0x00000008  // This link may contain forest trust information
+
+_Win32_Enum_(TRUSTED_DOMAIN_TRUST_ATTRIBUTES, ULONG, TRUST_ATTRIBUTE_FOREST_TRANSITIVE);
 #if (_WIN32_WINNT >= 0x0502)
 #define TRUST_ATTRIBUTE_CROSS_ORGANIZATION            0x00000010  // This trust is to a domain/forest which is not part of this enterprise
 #define TRUST_ATTRIBUTE_WITHIN_FOREST                 0x00000020  // Trust is internal to this forest
 #define TRUST_ATTRIBUTE_TREAT_AS_EXTERNAL             0x00000040  // Trust is to be treated as external for trust boundary purposes
+
+_Win32_Enum_(TRUSTED_DOMAIN_TRUST_ATTRIBUTES, ULONG, TRUST_ATTRIBUTE_CROSS_ORGANIZATION, TRUST_ATTRIBUTE_TREAT_AS_EXTERNAL, TRUST_ATTRIBUTE_WITHIN_FOREST);
 #if (_WIN32_WINNT >= 0x0600)
 #define TRUST_ATTRIBUTE_TRUST_USES_RC4_ENCRYPTION     0x00000080  // MIT trust with RC4
 #define TRUST_ATTRIBUTE_TRUST_USES_AES_KEYS           0x00000100  // Use AES keys to encrypte KRB TGTs
@@ -2773,6 +2789,8 @@ typedef struct _TRUSTED_DOMAIN_INFORMATION_EX2 {
 #define TRUST_AUTH_TYPE_NT4OWF  1   // NT4 OWF password
 #define TRUST_AUTH_TYPE_CLEAR   2   // Cleartext password
 #define TRUST_AUTH_TYPE_VERSION 3   // Cleartext password version number
+
+_Win32_Enum_(LSA_AUTH_INFORMATION_AUTH_TYPE, ULONG, TRUST_AUTH_TYPE_NONE, TRUST_AUTH_TYPE_NT4OWF, TRUST_AUTH_TYPE_CLEAR, TRUST_AUTH_TYPE_VERSION);
 
 typedef struct _LSA_AUTH_INFORMATION {
 
@@ -3121,7 +3139,7 @@ NTSTATUS
 NTAPI
 LsaQuerySecurityObject(
     _In_ LSA_HANDLE ObjectHandle,
-    _In_ SECURITY_INFORMATION SecurityInformation,
+    _Win32_AssociatedEnum_(OBJECT_SECURITY_INFORMATION) _In_ SECURITY_INFORMATION SecurityInformation,
     _Out_ PSECURITY_DESCRIPTOR *SecurityDescriptor
     );
 
@@ -3228,7 +3246,7 @@ LsaOpenPolicy(
     _In_opt_ PLSA_UNICODE_STRING SystemName,
     _In_ PLSA_OBJECT_ATTRIBUTES ObjectAttributes,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE PolicyHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE PolicyHandle
     );
 
 // end_ntsecapi
@@ -3239,7 +3257,7 @@ LsaOpenPolicySce(
     _In_opt_ PLSA_UNICODE_STRING SystemName,
     _In_ PLSA_OBJECT_ATTRIBUTES ObjectAttributes,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE PolicyHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE PolicyHandle
     );
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -3368,7 +3386,7 @@ LsaSetCAPs(
 
 NTSTATUS
 NTAPI
-LsaGetAppliedCAPIDs(
+_Win32_SupportedOS_Windows8_ LsaGetAppliedCAPIDs(
     _In_opt_ PLSA_UNICODE_STRING SystemName,
     _Outptr_result_buffer_(*CAPIDCount) PSID **CAPIDs,
     _Out_ PULONG CAPIDCount
@@ -3376,7 +3394,7 @@ LsaGetAppliedCAPIDs(
 
 NTSTATUS
 NTAPI
-LsaQueryCAPs(
+_Win32_SupportedOS_Windows8_ LsaQueryCAPs(
     _In_reads_opt_(CAPIDCount) PSID *CAPIDs,
     _In_ ULONG CAPIDCount,
     _Outptr_result_buffer_(*CAPCount) PCENTRAL_ACCESS_POLICY *CAPs,
@@ -3449,7 +3467,7 @@ LsaCreateAccount(
     _In_ LSA_HANDLE PolicyHandle,
     _In_ PSID AccountSid,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE AccountHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE AccountHandle
     );
 
 NTSTATUS
@@ -3468,7 +3486,7 @@ LsaCreateTrustedDomain(
     _In_ LSA_HANDLE PolicyHandle,
     _In_ PLSA_TRUST_INFORMATION TrustedDomainInformation,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE TrustedDomainHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE TrustedDomainHandle
     );
 
 // begin_ntsecapi
@@ -3549,7 +3567,7 @@ LsaCreateSecret(
     _In_ LSA_HANDLE PolicyHandle,
     _In_ PLSA_UNICODE_STRING SecretName,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE SecretHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE SecretHandle
     );
 
 //
@@ -3573,7 +3591,7 @@ LsaOpenAccount(
     _In_ LSA_HANDLE PolicyHandle,
     _In_ PSID AccountSid,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE AccountHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE AccountHandle
     );
 
 NTSTATUS
@@ -3686,7 +3704,7 @@ LsaOpenTrustedDomain(
     _In_ LSA_HANDLE PolicyHandle,
     _In_ PSID TrustedDomainSid,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE TrustedDomainHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE TrustedDomainHandle
     );
 
 NTSTATUS
@@ -3717,7 +3735,7 @@ LsaOpenSecret(
     _In_ LSA_HANDLE PolicyHandle,
     _In_ PLSA_UNICODE_STRING SecretName,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE SecretHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE SecretHandle
     );
 
 NTSTATUS
@@ -3747,7 +3765,7 @@ LsaQuerySecret(
 
 NTSTATUS
 NTAPI
-LsaLookupPrivilegeValue(
+_Win32_SupportedOS_WindowsVista_ LsaLookupPrivilegeValue(
     _In_ LSA_HANDLE PolicyHandle,
     _In_ PLSA_UNICODE_STRING Name,
     _Out_ PLUID Value
@@ -3871,7 +3889,7 @@ LsaOpenTrustedDomainByName(
     _In_ LSA_HANDLE PolicyHandle,
     _In_ PLSA_UNICODE_STRING TrustedDomainName,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE TrustedDomainHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE TrustedDomainHandle
     );
 
 
@@ -3935,7 +3953,7 @@ LsaCreateTrustedDomainEx(
     _In_ PTRUSTED_DOMAIN_INFORMATION_EX TrustedDomainInformation,
     _In_ PTRUSTED_DOMAIN_AUTH_INFORMATION AuthenticationInformation,
     _In_ ACCESS_MASK DesiredAccess,
-    _Out_ PLSA_HANDLE TrustedDomainHandle
+    _Win32_RAIIFree_(LsaClose, -1, 0) _Out_ PLSA_HANDLE TrustedDomainHandle
     );
 
 #if (_WIN32_WINNT >= 0x0501)

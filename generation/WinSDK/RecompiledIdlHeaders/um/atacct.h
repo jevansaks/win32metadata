@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 /*++
 
@@ -27,6 +28,7 @@ Revision History:
 extern "C" {
 #endif
 
+_Win32_SupportedOS_WindowsVista_
 STDAPI
 GetNetScheduleAccountInformation(
     IN    LPCWSTR pwszServerName,
@@ -34,6 +36,7 @@ GetNetScheduleAccountInformation(
     OUT _Out_writes_(ccAccount)  WCHAR wszAccount[]
     );
 
+_Win32_SupportedOS_WindowsVista_
 STDAPI
 SetNetScheduleAccountInformation(
     IN    LPCWSTR pwszServerName,

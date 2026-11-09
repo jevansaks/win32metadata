@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*==========================================================================;
  *
  *  Copyright (C) Microsoft Corporation.  All Rights Reserved.
@@ -2625,6 +2626,9 @@ typedef struct IDirect3DSwapChain9Ex *LPDIRECT3DSWAPCHAIN9EX, *PDIRECT3DSWAPCHAI
 #undef INTERFACE
 #define INTERFACE IDirect3D9ExOverlayExtension
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows7_ struct IDirect3D9ExOverlayExtension IDirect3D9ExOverlayExtension;
+#endif
 DECLARE_INTERFACE_(IDirect3D9ExOverlayExtension, IUnknown)
 {
     /*** IUnknown methods ***/
@@ -2655,6 +2659,9 @@ typedef struct IDirect3D9ExOverlayExtension *LPDIRECT3D9EXOVERLAYEXTENSION, *PDI
 #undef INTERFACE
 #define INTERFACE IDirect3DDevice9Video
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows7_ struct IDirect3DDevice9Video IDirect3DDevice9Video;
+#endif
 DECLARE_INTERFACE_(IDirect3DDevice9Video, IUnknown)
 {
     /*** IUnknown methods ***/
@@ -2692,6 +2699,9 @@ typedef struct IDirect3DDevice9Video *LPDIRECT3DDEVICE9VIDEO, *PDIRECT3DDEVICE9V
 #undef INTERFACE
 #define INTERFACE IDirect3DAuthenticatedChannel9
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows7_ struct IDirect3DAuthenticatedChannel9 IDirect3DAuthenticatedChannel9;
+#endif
 DECLARE_INTERFACE_(IDirect3DAuthenticatedChannel9, IUnknown)
 {
     /*** IUnknown methods ***/
@@ -2734,6 +2744,9 @@ typedef struct IDirect3DAuthenticatedChannel9 *LPDIRECT3DAUTHENTICATEDCHANNEL9, 
 #undef INTERFACE
 #define INTERFACE IDirect3DCryptoSession9
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows7_ struct IDirect3DCryptoSession9 IDirect3DCryptoSession9;
+#endif
 DECLARE_INTERFACE_(IDirect3DCryptoSession9, IUnknown)
 {
     /*** IUnknown methods ***/

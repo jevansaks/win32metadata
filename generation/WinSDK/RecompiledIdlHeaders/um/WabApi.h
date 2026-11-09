@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -76,6 +77,9 @@ typedef struct _WABACTIONITEM * LPWABACTIONITEM;
 
 #undef           INTERFACE
 #define          INTERFACE      IWABObject
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows2000_ struct IWABObject IWABObject;
+#endif
 DECLARE_MAPI_INTERFACE_(IWABObject, IUnknown)
 {
         BEGIN_INTERFACE
@@ -279,6 +283,9 @@ typedef struct _WABEXTDISPLAY
 
 #undef           INTERFACE
 #define          INTERFACE      IWABExtInit
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows2000_ struct IWABExtInit IWABExtInit;
+#endif
 DECLARE_MAPI_INTERFACE_(IWABExtInit, IUnknown)
 {
         BEGIN_INTERFACE

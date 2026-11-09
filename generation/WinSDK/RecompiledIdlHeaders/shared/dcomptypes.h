@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 //---------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -7,6 +8,7 @@
 #include <dxgitype.h>   // for DXGI_RATIONAL
 #include <dxgi1_5.h>    // for DXGI_ALPHA_MODE, DXGI_HDR_METADATA_TYPE
 #include <winapifamily.h>
+#include <sal.h>
 
 
 #pragma region Desktop Family
@@ -92,6 +94,9 @@ typedef struct
 #define COMPOSITIONOBJECT_WRITE         0x0002L
 
 #define COMPOSITIONOBJECT_ALL_ACCESS    (COMPOSITIONOBJECT_READ | COMPOSITIONOBJECT_WRITE)
+
+_Win32_Enum_(DCOMP_SURFACE_HANDLE_ACCESS, unsigned long,
+    COMPOSITIONOBJECT_READ, COMPOSITIONOBJECT_WRITE, COMPOSITIONOBJECT_ALL_ACCESS);
 
 //
 // Composition Stats

@@ -1,0 +1,28 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/urlacc.idl b/generation/WinSDK/RecompiledIdlHeaders/um/urlacc.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/urlacc.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/urlacc.idl
+@@ -13,6 +13,7 @@
+ //
+ //+-----------------------------------------------
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -20,6 +21,7 @@
+ 
+ interface ISearchProtocolThreadContext;
+ 
++cpp_quote("/* Win32Metadata: interface ::IOpLockStatus => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+     object,
+     uuid(c731065d-ac80-11d1-8df3-00c04fb6ef4f),
+@@ -46,6 +48,7 @@
+ //  History:    05/23/00    mcheng      Created
+ //
+ //+-------------------------------------------------------------------------------------------------
++cpp_quote("/* Win32Metadata: interface ::ISearchProtocolThreadContext => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+     object,
+     uuid(c73106e1-ac80-11d1-8df3-00c04fb6ef4f),

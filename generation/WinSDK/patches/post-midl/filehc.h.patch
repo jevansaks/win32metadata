@@ -1,0 +1,17 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/filehc.h b/generation/WinSDK/RecompiledIdlHeaders/um/filehc.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/filehc.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/filehc.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+     Copyright (c) 2002  Microsoft Corporation
+@@ -639,6 +640,7 @@
+ //
+ //	If the name is already present in the cache, this will fail with GetLastError()==ERROR_DUP_NAME !
+ //
++_Win32_SetLastError_
+ FILEHC_EXPORT
+ BOOL	__stdcall
+ AssociateContextWithName(	

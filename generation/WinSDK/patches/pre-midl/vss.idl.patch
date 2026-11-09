@@ -1,0 +1,28 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vss.idl b/generation/WinSDK/RecompiledIdlHeaders/um/vss.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/vss.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/vss.idl
+@@ -3,6 +3,7 @@
+ //      Copyright (c) 2000-2001 Microsoft Corporation
+ //
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -341,6 +342,7 @@
+ 
+ 
+ 
++cpp_quote("/* Win32Metadata: interface ::IVssEnumObject => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+         object,
+         uuid(AE1C7110-2F60-11d3-8A39-00C04F72D8E3),
+@@ -369,6 +371,7 @@
+ 
+ 
+ 
++cpp_quote("/* Win32Metadata: interface ::IVssAsync => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+         object,
+         uuid(507C37B4-CF5B-4e95-B0AF-14EB9767467E),

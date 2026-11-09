@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //***************************************************************************
 //
 //  Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -14,6 +15,8 @@
 
 #ifndef _CHSTRING_H
 #define _CHSTRING_H
+
+#include <sal.h>
 
 #include <winapifamily.h>
 
@@ -252,7 +255,7 @@ class POLARITY CHString
 
         // OLE BSTR support (use for OLE automation)
 
-        BSTR AllocSysString() const throw ( CHeap_Exception ) ;
+        _Win32_RAIIFree_(SysFreeString) BSTR AllocSysString() const throw ( CHeap_Exception ) ;
         static void WINAPI Release(CHStringData* pData);
         void Release();
 		

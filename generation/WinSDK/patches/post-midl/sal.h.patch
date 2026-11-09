@@ -1,0 +1,13 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/sal.h b/generation/WinSDK/RecompiledIdlHeaders/shared/sal.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/sal.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/sal.h
+@@ -14,6 +14,8 @@
+ *
+ ****/
+ #pragma once
++
++#include <win32metadata_annotations.h>
+ 
+ /*==========================================================================
+ 

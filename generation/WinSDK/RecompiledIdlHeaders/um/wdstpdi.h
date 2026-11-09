@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2006 Microsoft Corporation
@@ -114,6 +115,7 @@ typedef struct _WDS_TRANSPORTPROVIDER_SETTINGS
 
 //---Functions the provider must implement (required callbacks)---
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderInitialize(
@@ -122,6 +124,7 @@ WdsTransportProviderInitialize(
     _In_ ULONG ulLength
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderCreateInstance(
@@ -129,6 +132,7 @@ WdsTransportProviderCreateInstance(
     _Out_ PHANDLE phInstance
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderCompareContent(
@@ -138,6 +142,7 @@ WdsTransportProviderCompareContent(
     _Out_ PBOOL pbContentMatches
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderOpenContent(
@@ -146,6 +151,7 @@ WdsTransportProviderOpenContent(
     _Out_ PHANDLE phContent
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderGetContentMetadata(
@@ -154,6 +160,7 @@ WdsTransportProviderGetContentMetadata(
     _Out_ PULONG pulLength
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderUserAccessCheck(
@@ -162,6 +169,7 @@ WdsTransportProviderUserAccessCheck(
     _Out_ PBOOL pbAccessAllowed
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderGetContentSize(
@@ -169,6 +177,7 @@ WdsTransportProviderGetContentSize(
     _Out_ PULARGE_INTEGER pContentSize
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderReadContent(
@@ -179,18 +188,21 @@ WdsTransportProviderReadContent(
     _In_ PVOID pvUserData
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderCloseContent(
     _In_ HANDLE hContent
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderCloseInstance(
     _In_ HANDLE hInstance
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderShutdown(
@@ -198,11 +210,13 @@ WdsTransportProviderShutdown(
 
 //---Functions the provider may implement (optional callbacks)-------
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderDumpState(
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSTRANSPORTPROVIDERAPI
 WdsTransportProviderRefreshSettings(
@@ -210,6 +224,7 @@ WdsTransportProviderRefreshSettings(
 
 //---Functions provided by the multicast server----------------------
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSMCSAPI
 WdsTransportServerRegisterCallback(
@@ -218,6 +233,7 @@ WdsTransportServerRegisterCallback(
     _In_ PVOID pfnCallback
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSMCSAPI
 WdsTransportServerCompleteRead(
@@ -227,6 +243,7 @@ WdsTransportServerCompleteRead(
     _In_ HRESULT hReadResult
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSMCSAPI
 WdsTransportServerTrace(
@@ -236,6 +253,7 @@ WdsTransportServerTrace(
     ...
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSMCSAPI
 WdsTransportServerTraceV(
@@ -245,6 +263,7 @@ WdsTransportServerTraceV(
     _In_ va_list Params
 );
 
+_Win32_SupportedOS_Server2008_
 PVOID
 WDSMCSAPI
 WdsTransportServerAllocateBuffer(
@@ -252,6 +271,7 @@ WdsTransportServerAllocateBuffer(
     _In_ ULONG ulBufferSize
 );
 
+_Win32_SupportedOS_Server2008_
 HRESULT
 WDSMCSAPI
 WdsTransportServerFreeBuffer(

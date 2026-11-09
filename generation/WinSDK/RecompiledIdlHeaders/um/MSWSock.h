@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -127,6 +128,8 @@ extern "C" {
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 _WINSOCK_DEPRECATED_BY("WSARecv()")
 #if(_WIN32_WINNT < 0x0600)
+_Win32_SupportedOS_Windows2000_
+_Win32_SetLastError_
 int
 PASCAL FAR
 WSARecvEx(
@@ -136,6 +139,8 @@ WSARecvEx(
     _Inout_ int FAR *flags
     );
 #else //(_WIN32_WINNT < 0x0600)
+_Win32_SupportedOS_Windows2000_
+_Win32_SetLastError_
 INT
 PASCAL FAR
 WSARecvEx(
@@ -162,6 +167,7 @@ typedef struct _TRANSMIT_FILE_BUFFERS {
 #define TF_USE_SYSTEM_THREAD  0x10
 #define TF_USE_KERNEL_APC     0x20
 
+_Win32_SupportedOS_Windows81_
 BOOL
 PASCAL FAR
 TransmitFile (
@@ -174,6 +180,7 @@ TransmitFile (
     _In_  DWORD dwReserved
     );
 
+_Win32_SupportedOS_Windows81_
 BOOL
 PASCAL FAR
 AcceptEx (
@@ -187,6 +194,7 @@ AcceptEx (
     _Inout_ LPOVERLAPPED lpOverlapped
     );
 
+_Win32_SupportedOS_Windows81_
 VOID
 PASCAL FAR
 GetAcceptExSockaddrs (

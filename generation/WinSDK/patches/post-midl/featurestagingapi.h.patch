@@ -1,0 +1,27 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/featurestagingapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/featurestagingapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/featurestagingapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/featurestagingapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*********************************************************************************
+ *                                                                                *
+ * featurestagingapi.h -- ApiSet Contract for api-ms-win-core-featurestaging-l1 *
+@@ -8,6 +9,8 @@
+ 
+ #ifndef _APISET_WIL_FEATURESTAGING_
+ #define _APISET_WIL_FEATURESTAGING_
++
++#include <sal.h>
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -81,7 +84,7 @@
+ EXTERN_C
+ void
+ SubscribeFeatureStateChangeNotification(
+-    _Outptr_ FEATURE_STATE_CHANGE_SUBSCRIPTION* subscription,
++    _Outptr_ _Win32_RAIIFree_(UnsubscribeFeatureStateChangeNotification, -1, 0) FEATURE_STATE_CHANGE_SUBSCRIPTION* subscription,
+     _In_ PFEATURE_STATE_CHANGE_CALLBACK callback,
+     _In_opt_ void* context
+     );

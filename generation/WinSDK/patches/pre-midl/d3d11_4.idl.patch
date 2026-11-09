@@ -1,0 +1,20 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/d3d11_4.idl b/generation/WinSDK/RecompiledIdlHeaders/um/d3d11_4.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/d3d11_4.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/d3d11_4.idl
+@@ -8,6 +8,7 @@
+ //
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
++#include <sal.h>
+ import "oaidl.idl";
+ import "ocidl.idl";
+ import "dxgi1_5.idl";
+@@ -86,6 +87,7 @@
+ //
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
++cpp_quote("/* Win32Metadata: interface ::ID3D11VideoContext2 => SupportedOSPlatform(\"windows10.0.10240\") */")
+ [uuid(C4E7374C-6243-4D1B-AE87-52B4F740E261), object, local, pointer_default(unique)]
+ interface ID3D11VideoContext2
+     : ID3D11VideoContext1

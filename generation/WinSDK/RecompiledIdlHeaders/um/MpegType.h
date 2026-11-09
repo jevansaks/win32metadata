@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: MPEGType.h
 //
@@ -63,6 +64,9 @@ typedef struct tagAM_MPEGSYSTEMTYPE
 #define AM_MPEG_AUDIO_DUAL_LEFT  1
 #define AM_MPEG_AUDIO_DUAL_RIGHT 2
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows2000_ struct IMpegAudioDecoder IMpegAudioDecoder;
+#endif
 DECLARE_INTERFACE_(IMpegAudioDecoder, IUnknown) {
 
     STDMETHOD(get_FrequencyDivider) (THIS_

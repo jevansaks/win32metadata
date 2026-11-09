@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*+-------------------------------------------------------------------
 
  Microsoft Windows
@@ -18,6 +19,12 @@
 #endif
 
 #include <winapifamily.h>
+
+#if defined(WIN32METADATA) && !defined(MIDL_PASS)
+typedef unsigned long ACTRL_ACCESS_ENTRY_ACCESS_FLAGS;
+typedef unsigned int SYSTEM_AUDIT_OBJECT_ACE_FLAGS;
+#endif
+#include <sal.h>
 
 #if (_MSC_VER >= 800)
 #if (_MSC_VER >= 1200)
@@ -122,7 +129,7 @@ typedef enum _MULTIPLE_TRUSTEE_OPERATION
 
 typedef struct  _OBJECTS_AND_SID
 {
-    DWORD   ObjectsPresent;
+    _Win32_AssociatedEnum_(SYSTEM_AUDIT_OBJECT_ACE_FLAGS) DWORD   ObjectsPresent;
     GUID    ObjectTypeGuid;
     GUID    InheritedObjectTypeGuid;
     SID     * pSid;
@@ -130,7 +137,7 @@ typedef struct  _OBJECTS_AND_SID
 
 typedef struct  _OBJECTS_AND_NAME_A
 {
-    DWORD          ObjectsPresent;
+    _Win32_AssociatedEnum_(SYSTEM_AUDIT_OBJECT_ACE_FLAGS) DWORD          ObjectsPresent;
     SE_OBJECT_TYPE ObjectType;
     LPSTR    ObjectTypeName;
     LPSTR    InheritedObjectTypeName;
@@ -138,7 +145,7 @@ typedef struct  _OBJECTS_AND_NAME_A
 } OBJECTS_AND_NAME_A, *POBJECTS_AND_NAME_A;
 typedef struct  _OBJECTS_AND_NAME_W
 {
-    DWORD          ObjectsPresent;
+    _Win32_AssociatedEnum_(SYSTEM_AUDIT_OBJECT_ACE_FLAGS) DWORD          ObjectsPresent;
     SE_OBJECT_TYPE ObjectType;
     LPWSTR   ObjectTypeName;
     LPWSTR   InheritedObjectTypeName;
@@ -286,6 +293,12 @@ typedef enum _ACCESS_MODE
 #define SUB_CONTAINERS_AND_OBJECTS_INHERIT  0x3
 #define INHERIT_NO_PROPAGATE                0x4
 #define INHERIT_ONLY                        0x8
+#ifdef WIN32METADATA
+_Win32_FlagsEnum_(ACE_FLAGS, DWORD,
+    SUB_CONTAINERS_AND_OBJECTS_INHERIT, SUB_CONTAINERS_ONLY_INHERIT,
+    SUB_OBJECTS_ONLY_INHERIT, INHERIT_NO_PROPAGATE, INHERIT_ONLY, NO_INHERITANCE);
+#endif
+
 
 //
 // Informational bit that is returned
@@ -319,14 +332,14 @@ typedef struct _EXPLICIT_ACCESS_A
 {
     DWORD        grfAccessPermissions;
     ACCESS_MODE  grfAccessMode;
-    DWORD        grfInheritance;
+    _Win32_AssociatedEnum_(ACE_FLAGS) DWORD        grfInheritance;
     TRUSTEE_A    Trustee;
 } EXPLICIT_ACCESS_A, *PEXPLICIT_ACCESS_A, EXPLICIT_ACCESSA, *PEXPLICIT_ACCESSA;
 typedef struct _EXPLICIT_ACCESS_W
 {
     DWORD        grfAccessPermissions;
     ACCESS_MODE  grfAccessMode;
-    DWORD        grfInheritance;
+    _Win32_AssociatedEnum_(ACE_FLAGS) DWORD        grfInheritance;
     TRUSTEE_W    Trustee;
 } EXPLICIT_ACCESS_W, *PEXPLICIT_ACCESS_W, EXPLICIT_ACCESSW, *PEXPLICIT_ACCESSW;
 #ifdef UNICODE
@@ -381,7 +394,7 @@ typedef ULONG INHERIT_FLAGS, *PINHERIT_FLAGS;
 typedef struct _ACTRL_ACCESS_ENTRYA
 {
     TRUSTEE_A       Trustee;
-    ULONG           fAccessFlags;
+    _Win32_AssociatedEnum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS) ULONG           fAccessFlags;
     ACCESS_RIGHTS   Access;
     ACCESS_RIGHTS   ProvSpecificAccess;
     INHERIT_FLAGS   Inheritance;
@@ -393,7 +406,7 @@ typedef struct _ACTRL_ACCESS_ENTRYA
 typedef struct _ACTRL_ACCESS_ENTRYW
 {
     TRUSTEE_W       Trustee;
-    ULONG           fAccessFlags;
+    _Win32_AssociatedEnum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS) ULONG           fAccessFlags;
     ACCESS_RIGHTS   Access;
     ACCESS_RIGHTS   ProvSpecificAccess;
     INHERIT_FLAGS   Inheritance;
@@ -558,6 +571,14 @@ typedef PTRUSTEE_ACCESSA PTRUSTEE_ACCESS;
 #define ACTRL_AUDIT_SUCCESS         0x00000004
 #define ACTRL_AUDIT_FAILURE         0x00000008
 
+#if defined(WIN32METADATA) && !defined(MIDL_PASS)
+_Win32_Enum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS, unsigned long,
+    ACTRL_ACCESS_ALLOWED,
+    ACTRL_ACCESS_DENIED,
+    ACTRL_AUDIT_SUCCESS,
+    ACTRL_AUDIT_FAILURE);
+#endif
+
 //
 // Property list flags
 //
@@ -711,6 +732,13 @@ typedef PACTRL_CONTROL_INFOA PACTRL_CONTROL_INFO;
 #define TREE_SEC_INFO_SET                   0x00000001
 #define TREE_SEC_INFO_RESET                 0x00000002
 #define TREE_SEC_INFO_RESET_KEEP_EXPLICIT   0x00000003
+
+#if defined(WIN32METADATA) && !defined(MIDL_PASS)
+_Win32_Enum_(TREE_SEC_INFO, unsigned long,
+    TREE_SEC_INFO_SET,
+    TREE_SEC_INFO_RESET,
+    TREE_SEC_INFO_RESET_KEEP_EXPLICIT);
+#endif
 #endif // (NTDDI_VERSION >= NTDDI_VISTA)
 
 

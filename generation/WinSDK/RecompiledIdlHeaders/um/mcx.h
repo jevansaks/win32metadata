@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /************************************************************************
 *                                                                       *
 *   mcx.h -- This module defines the 32-Bit Windows MCX APIs            *
@@ -57,7 +58,7 @@ typedef struct _MODEMSETTINGS {
     DWORD   dwCallSetupFailTimer;       // seconds
     DWORD   dwInactivityTimeout;        // seconds
     DWORD   dwSpeakerVolume;            // level
-    DWORD   dwSpeakerMode;              // mode
+    _Win32_AssociatedEnum_(MODEMSETTINGS_SPEAKER_MODE) DWORD   dwSpeakerMode;              // mode
     DWORD   dwPreferredModemOptions;    // bitmap
 
     // negotiated options (read only) for current or last call
@@ -73,15 +74,36 @@ typedef struct _MODEMSETTINGS {
 #define DIALOPTION_QUIET    0x00000080  // Supports wait for quiet "@"
 #define DIALOPTION_DIALTONE 0x00000100  // Supports wait for dial tone "W"
 
+#if defined(WIN32METADATA) && !defined(MIDL_PASS)
+_Win32_FlagsEnum_(MODEMDEVCAPS_DIAL_OPTIONS, unsigned long,
+    DIALOPTION_BILLING,
+    DIALOPTION_DIALTONE,
+    DIALOPTION_QUIET);
+#endif
+
 // SpeakerVolume for MODEMDEVCAPS
 #define MDMVOLFLAG_LOW      0x00000001
 #define MDMVOLFLAG_MEDIUM   0x00000002
 #define MDMVOLFLAG_HIGH     0x00000004
 
+#if defined(WIN32METADATA) && !defined(MIDL_PASS)
+_Win32_FlagsEnum_(MODEMDEVCAPS_SPEAKER_VOLUME, unsigned long,
+    MDMVOLFLAG_HIGH,
+    MDMVOLFLAG_LOW,
+    MDMVOLFLAG_MEDIUM);
+#endif
+
 // SpeakerVolume for MODEMSETTINGS
 #define MDMVOL_LOW          0x00000000
 #define MDMVOL_MEDIUM       0x00000001
 #define MDMVOL_HIGH         0x00000002
+
+#if defined(WIN32METADATA) && !defined(MIDL_PASS)
+_Win32_Enum_(MODEM_SPEAKER_VOLUME, unsigned long,
+    MDMVOL_HIGH,
+    MDMVOL_LOW,
+    MDMVOL_MEDIUM);
+#endif
 
 // SpeakerMode for MODEMDEVCAPS
 #define MDMSPKRFLAG_OFF         0x00000001
@@ -89,11 +111,23 @@ typedef struct _MODEMSETTINGS {
 #define MDMSPKRFLAG_ON          0x00000004
 #define MDMSPKRFLAG_CALLSETUP   0x00000008
 
+#if defined(WIN32METADATA) && !defined(MIDL_PASS)
+_Win32_FlagsEnum_(MODEMDEVCAPS_SPEAKER_MODE, unsigned long,
+    MDMSPKRFLAG_CALLSETUP,
+    MDMSPKRFLAG_DIAL,
+    MDMSPKRFLAG_OFF,
+    MDMSPKRFLAG_ON);
+#endif
+
 // SpeakerMode for MODEMSETTINGS
 #define MDMSPKR_OFF         0x00000000
 #define MDMSPKR_DIAL        0x00000001
 #define MDMSPKR_ON          0x00000002
 #define MDMSPKR_CALLSETUP   0x00000003
+#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
+_Win32_Enum_(MODEMSETTINGS_SPEAKER_MODE, DWORD,
+    MDMSPKR_CALLSETUP, MDMSPKR_DIAL, MDMSPKR_OFF, MDMSPKR_ON);
+#endif
 
 // Modem Options
 #define MDM_COMPRESSION      0x00000001

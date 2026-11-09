@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0000     Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1603,6 +1604,13 @@ typedef struct _SECPKG_EVENT_PACKAGE_CHANGE {
 #define SECPKG_PACKAGE_CHANGE_UNLOAD    1
 #define SECPKG_PACKAGE_CHANGE_SELECT    2
 
+#if defined(WIN32METADATA) && !defined(MIDL_PASS)
+_Win32_Enum_(SECPKG_PACKAGE_CHANGE_TYPE, unsigned long,
+    SECPKG_PACKAGE_CHANGE_LOAD,
+    SECPKG_PACKAGE_CHANGE_UNLOAD,
+    SECPKG_PACKAGE_CHANGE_SELECT);
+#endif
+
 typedef struct _SECPKG_EVENT_ROLE_CHANGE {
     ULONG   PreviousRole;
     ULONG   NewRole;
@@ -1831,6 +1839,7 @@ extern "C"
 {
 #endif
 
+_Win32_SupportedOS_WindowsVista_
 NTSTATUS
 CredMarshalTargetInfo (
     _In_        PCREDENTIAL_TARGET_INFORMATIONW InTargetInfo,

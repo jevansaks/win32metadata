@@ -1,8 +1,10 @@
+#include <win32metadata_annotations.h>
 #pragma once
 
 #ifndef __MSDRM_H_
 #define __MSDRM_H_
 
+#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -461,7 +463,7 @@ DRMEXPORT HRESULT UDAPICALL DRMGetSignedIssuanceLicense(
 
                                 IN      VOID*        pvContext);//Optional
 
-DRMEXPORT HRESULT UDAPICALL DRMGetSignedIssuanceLicenseEx(
+DRMEXPORT HRESULT UDAPICALL _Win32_SupportedOS_Windows7_ DRMGetSignedIssuanceLicenseEx(
                                 DRMENVHANDLE                hEnv,
                                 DRMPUBHANDLE                hIssuanceLicense,
                                 UINT                        uFlags,
@@ -608,15 +610,15 @@ DRMEXPORT HRESULT UDAPICALL DRMGetIntervalTime(
 
 DRMEXPORT HRESULT UDAPICALL DRMRepair();
 
-DRMEXPORT HRESULT UDAPICALL DRMRegisterProtectedWindow(
+DRMEXPORT HRESULT UDAPICALL _Win32_SupportedOS_WindowsVista_ DRMRegisterProtectedWindow(
 								IN		DRMENVHANDLE hEnv,
 								IN		HWND hwnd);
 
-DRMEXPORT HRESULT UDAPICALL DRMIsWindowProtected(
+DRMEXPORT HRESULT UDAPICALL _Win32_SupportedOS_WindowsVista_ DRMIsWindowProtected(
 								IN		HWND	hwnd,
 								OUT		BOOL*	pfProtected);
 
-DRMEXPORT HRESULT UDAPICALL DRMAcquireIssuanceLicenseTemplate(
+DRMEXPORT HRESULT UDAPICALL _Win32_SupportedOS_WindowsVista_ DRMAcquireIssuanceLicenseTemplate(
 								IN		DRMHSESSION	hClient,
 								IN		UINT uFlags,
 								IN		VOID* pvReserved,

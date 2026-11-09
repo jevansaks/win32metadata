@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /////////////////////////////////////////////////////////////////////////////
 //
 // olectl.h     OLE Control interfaces
@@ -166,11 +167,25 @@ typedef struct tagFONTDESC
 #define PICTYPE_ICON            3
 #ifdef _WIN32
 #define PICTYPE_ENHMETAFILE     4
+
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+#include <sal.h>
+_Win32_Enum_(PICTYPE, short,
+    PICTYPE_UNINITIALIZED,
+    PICTYPE_NONE,
+    PICTYPE_BITMAP,
+    PICTYPE_METAFILE,
+    PICTYPE_ICON,
+    PICTYPE_ENHMETAFILE);
+#endif
 #endif
 
 typedef struct tagPICTDESC
 {
     UINT cbSizeofstruct;
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+    _Win32_AssociatedEnum_(PICTYPE)
+#endif
     UINT picType;
     union
     {

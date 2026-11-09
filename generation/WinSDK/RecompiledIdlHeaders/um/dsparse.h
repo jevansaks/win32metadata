@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1996-2000 Microsoft Corporation
@@ -98,6 +99,7 @@ typedef enum _DS_MANGLE_FOR {
 //
 //
 
+_Win32_SupportedOS_WindowsVista_
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
 DSPARSE
@@ -113,6 +115,7 @@ DsMakeSpnW(
     _Out_writes_to_opt_(*pcSpnLength, *pcSpnLength) LPWSTR pszSpn
 );
 
+_Win32_SupportedOS_WindowsVista_
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
 DSPARSE
@@ -160,6 +163,7 @@ DsMakeSpnA(
 // All arguments except pszSpn are optional.
 //
 
+_Win32_SupportedOS_WindowsVista_
 _Check_return_
 DSPARSE
 DWORD
@@ -175,6 +179,7 @@ DsCrackSpnA(
     _Out_opt_ USHORT *pInstancePort
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Check_return_
 DSPARSE
 DWORD
@@ -261,6 +266,7 @@ Return Value:
 
 --*/
 
+_Win32_SupportedOS_WindowsVista_
 _Check_return_
 _Success_(return == 0)
 DSPARSE
@@ -273,6 +279,7 @@ DsQuoteRdnValueW(
     _Out_writes_to_(*pcQuotedRdnValueLength, *pcQuotedRdnValueLength) LPWCH    psQuotedRdnValue
 );
 
+_Win32_SupportedOS_WindowsVista_
 _Check_return_
 _Success_(return == 0)
 DSPARSE
@@ -371,6 +378,7 @@ Return Value:
 
 --*/
 
+_Win32_SupportedOS_WindowsVista_
 _Check_return_
 _Success_(return == 0)
 DSPARSE
@@ -383,6 +391,7 @@ DsUnquoteRdnValueW(
     _Out_writes_to_ (*pcUnquotedRdnValueLength, *pcUnquotedRdnValueLength) LPWCH    psUnquotedRdnValue
 );
 
+_Win32_SupportedOS_WindowsVista_
 _Check_return_
 _Success_(return == 0)
 DSPARSE
@@ -493,6 +502,7 @@ Return Value:
         All output parameters are undefined.
 
 --*/
+_Win32_SupportedOS_WindowsVista_
 _Check_return_
 _Success_(return == 0)
 DSPARSE
@@ -548,6 +558,7 @@ Return Value:
 --*/
 
 DSPARSE
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 DsCrackUnquotedMangledRdnW(
@@ -558,6 +569,7 @@ DsCrackUnquotedMangledRdnW(
      );
 
 DSPARSE
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 DsCrackUnquotedMangledRdnA(
@@ -623,6 +635,7 @@ Return Value:
 --*/
 
 DSPARSE
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 DsIsMangledRdnValueW(
@@ -632,6 +645,7 @@ DsIsMangledRdnValueW(
     );
 
 DSPARSE
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 DsIsMangledRdnValueA(
@@ -681,6 +695,7 @@ Return Value:
 --*/
 
 DSPARSE
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 DsIsMangledDnA(
@@ -689,6 +704,7 @@ DsIsMangledDnA(
     );
 
 DSPARSE
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 DsIsMangledDnW(

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
 #if defined(_MSC_VER)
@@ -16,6 +17,7 @@
 #include <apisetcconv.h>
 #include <objidl.h>
 
+_Win32_SupportedOS_Windows8_
 STDAPI
 RoGetBufferMarshaler(
     _Outptr_ IMarshal** bufferMarshaler

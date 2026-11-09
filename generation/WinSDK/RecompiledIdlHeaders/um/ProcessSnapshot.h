@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0000     Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -370,6 +371,7 @@ typedef struct
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
 
 // Win32 APIs.
+_Win32_SupportedOS_Windows81_
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
 PssCaptureSnapshot(
@@ -379,6 +381,7 @@ PssCaptureSnapshot(
     _Out_ HPSS* SnapshotHandle
     );
 
+_Win32_SupportedOS_Windows81_
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
 PssFreeSnapshot(
@@ -386,6 +389,7 @@ PssFreeSnapshot(
     _In_ HPSS SnapshotHandle
     );
 
+_Win32_SupportedOS_Windows81_
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
 PssQuerySnapshot(
@@ -395,6 +399,7 @@ PssQuerySnapshot(
     _In_ DWORD BufferLength
     );
 
+_Win32_SupportedOS_Windows81_
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
 PssWalkSnapshot(
@@ -405,6 +410,7 @@ PssWalkSnapshot(
     _In_ DWORD BufferLength
     );
 
+_Win32_SupportedOS_Windows81_
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
 PssDuplicateSnapshot(
@@ -416,19 +422,22 @@ PssDuplicateSnapshot(
     );
 
 // Win32 walk marker management.
-_Success_(return == ERROR_SUCCESS)
-STDAPI_(DWORD)
-PssWalkMarkerCreate(
-    _In_opt_ PSS_ALLOCATOR const *Allocator,
-    _Out_ HPSSWALK* WalkMarkerHandle
-    );
-
+_Win32_SupportedOS_Windows81_
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
 PssWalkMarkerFree(
     _In_ HPSSWALK WalkMarkerHandle
     );
 
+_Win32_SupportedOS_Windows81_
+_Success_(return == ERROR_SUCCESS)
+STDAPI_(DWORD)
+PssWalkMarkerCreate(
+    _In_opt_ PSS_ALLOCATOR const *Allocator,
+    _Out_ _Win32_RAIIFree_(PssWalkMarkerFree, -1, 0) HPSSWALK* WalkMarkerHandle
+    );
+
+_Win32_SupportedOS_Windows81_
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
 PssWalkMarkerGetPosition(
@@ -436,6 +445,7 @@ PssWalkMarkerGetPosition(
     _Out_ ULONG_PTR *Position
     );
 
+_Win32_SupportedOS_Windows81_
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
 PssWalkMarkerSetPosition(
@@ -443,6 +453,7 @@ PssWalkMarkerSetPosition(
     _In_ ULONG_PTR Position
     );
 
+_Win32_SupportedOS_Windows81_
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
 PssWalkMarkerSeekToBeginning(

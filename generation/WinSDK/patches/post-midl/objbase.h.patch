@@ -8,7 +8,20 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/objbase.h b/generation/Wi
  
  
  //+---------------------------------------------------------------------------
-@@ -77,17 +78,22 @@
+@@ -28,7 +29,11 @@
+ #include <coml2api.h>
+ 
+ // COM initialization flags; passed to CoInitialize.
+-typedef enum tagCOINIT
++typedef enum
++#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
++__attribute__((flag_enum))
++#endif
++tagCOINIT
+ {
+   COINIT_APARTMENTTHREADED  = 0x2,      // Apartment model
+ 
+@@ -77,17 +82,22 @@
  
  /* init/uninit */
  
@@ -32,7 +45,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/objbase.h b/generation/Wi
  _Check_return_ WINOLEAPI  CoRevokeInitializeSpy(_In_ ULARGE_INTEGER uliCookie);
  
  // COM System Security Descriptors (used when the corresponding registry
-@@ -100,20 +106,25 @@
+@@ -100,20 +110,25 @@
      SD_ACCESSRESTRICTIONS = 3       // Machine wide access limits
  
  } COMSD;
@@ -58,7 +71,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/objbase.h b/generation/Wi
  _Check_return_ WINOLEAPI CoGetInstanceFromFile(
      _In_opt_ COSERVERINFO *            pServerInfo,
      _In_opt_ CLSID        *            pClsid,
-@@ -125,6 +136,7 @@
+@@ -125,6 +140,7 @@
      _Inout_updates_(dwCount) MULTI_QI * pResults );
  
  
@@ -66,7 +79,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/objbase.h b/generation/Wi
  _Check_return_ WINOLEAPI CoGetInstanceFromIStorage(
      _In_opt_ COSERVERINFO *            pServerInfo,
      _In_opt_ CLSID        *            pClsid,
-@@ -140,7 +152,8 @@
+@@ -140,7 +156,8 @@
  #if (_WIN32_WINNT >= 0x0500 ) || defined(_WIN32_DCOM) // DCOM
  
  
@@ -76,7 +89,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/objbase.h b/generation/Wi
  
  
  WINOLEAPI DcomChannelSetHResult(_In_opt_ LPVOID pvReserved, _In_opt_ ULONG* pulReserved, _In_ HRESULT appsHR);
-@@ -148,15 +161,20 @@
+@@ -148,15 +165,20 @@
  #endif
  
  /* other helpers */
@@ -97,7 +110,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/objbase.h b/generation/Wi
  _Check_return_ WINOLEAPI CoRegisterMessageFilter( _In_opt_ LPMESSAGEFILTER lpMessageFilter,
                                  _Outptr_opt_result_maybenull_ LPMESSAGEFILTER FAR* lplpMessageFilter );
  
-@@ -168,15 +186,18 @@
+@@ -168,15 +190,18 @@
  
  /* TreatAs APIS */
  
@@ -117,7 +130,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/objbase.h b/generation/Wi
  
  
  /****** Storage API Prototypes ********************************************/
-@@ -221,28 +242,42 @@
+@@ -221,28 +246,42 @@
  //  Moniker APIs
  //
  
@@ -163,7 +176,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/objbase.h b/generation/Wi
  _Check_return_ WINOLEAPI  CreateObjrefMoniker(_In_opt_ LPUNKNOWN punk, _Outptr_ LPMONIKER FAR * ppmk);
  
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_PC_APP) */
-@@ -251,6 +286,7 @@
+@@ -251,6 +290,7 @@
  #pragma region Desktop Partition
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  

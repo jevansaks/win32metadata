@@ -1,0 +1,63 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tcpmib.h b/generation/WinSDK/RecompiledIdlHeaders/shared/tcpmib.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/tcpmib.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/tcpmib.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) Microsoft Corporation
+@@ -67,7 +68,7 @@
+ 
+ typedef struct _MIB_TCPROW_LH {
+     union {
+-        DWORD dwState;       // Old field used DWORD type.
++        _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD dwState;       // Old field used DWORD type.
+         MIB_TCP_STATE State; // New field uses enum type.
+     };
+     DWORD dwLocalAddr;
+@@ -77,7 +78,7 @@
+ } MIB_TCPROW_LH, *PMIB_TCPROW_LH;
+ 
+ typedef struct _MIB_TCPROW_W2K {
+-    DWORD       dwState;
++    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD       dwState;
+     DWORD       dwLocalAddr;
+     DWORD       dwLocalPort;
+     DWORD       dwRemoteAddr;
+@@ -123,7 +124,7 @@
+ 
+ typedef struct _MIB_TCPROW_OWNER_PID
+ {
+-    DWORD       dwState;
++    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD       dwState;
+     DWORD       dwLocalAddr;
+     DWORD       dwLocalPort;
+     DWORD       dwRemoteAddr;
+@@ -141,7 +142,7 @@
+ 									  ((X) * sizeof(MIB_TCPROW_OWNER_PID)) + ALIGN_SIZE)
+ 
+ typedef struct _MIB_TCPROW_OWNER_MODULE {
+-    DWORD dwState;
++    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD dwState;
+     DWORD dwLocalAddr;
+     DWORD dwLocalPort;
+     DWORD dwRemoteAddr;
+@@ -211,7 +212,7 @@
+     UCHAR           ucRemoteAddr[16];
+     DWORD           dwRemoteScopeId;
+     DWORD           dwRemotePort;
+-    DWORD           dwState;
++    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD           dwState;
+     DWORD           dwOwningPid;
+ } MIB_TCP6ROW_OWNER_PID, *PMIB_TCP6ROW_OWNER_PID;
+ 
+@@ -233,7 +234,7 @@
+     UCHAR           ucRemoteAddr[16];
+     DWORD           dwRemoteScopeId;
+     DWORD           dwRemotePort;
+-    DWORD           dwState;
++    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD           dwState;
+     DWORD           dwOwningPid;
+     LARGE_INTEGER   liCreateTimestamp;
+     ULONGLONG       OwningModuleInfo[TCPIP_OWNING_MODULE_SIZE];

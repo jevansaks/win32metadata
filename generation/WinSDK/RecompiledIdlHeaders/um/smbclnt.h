@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -37,6 +38,7 @@ Revision History:
 extern "C" {
 #endif
 
+_Win32_SupportedOS_Server2012_
 DWORD
 WINAPI
 RegisterAppInstance(
@@ -107,6 +109,7 @@ typedef DWORD
 //
 #define SET_APPINSTANCE_CSV_FLAGS_VALID_ONLY_IF_CSV_COORDINATOR 0x00000001
 
+_Win32_SupportedOS_Server2016_
 DWORD
 WINAPI
 SetAppInstanceCsvFlags(

@@ -1,0 +1,29 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/vpconfig.h b/generation/WinSDK/RecompiledIdlHeaders/um/vpconfig.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/vpconfig.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/vpconfig.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ //------------------------------------------------------------------------------
+ // File: VPConfig.h
+ //
+@@ -21,6 +22,9 @@
+ #endif
+ 
+ // IVPBaseConfig
++#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
++typedef _Win32_SupportedOS_Windows2000_ struct IVPBaseConfig IVPBaseConfig;
++#endif
+ DECLARE_INTERFACE_(IVPBaseConfig, IUnknown)
+ {
+     // gets the various connection information structures (guid, portwidth)
+@@ -108,6 +112,9 @@
+ };
+ 
+ // IVPConfig
++#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
++typedef _Win32_SupportedOS_Windows2000_ struct IVPConfig IVPConfig;
++#endif
+ DECLARE_INTERFACE_(IVPConfig, IVPBaseConfig)
+ {
+ 	// the mixer uses this function to determine if the callee wants

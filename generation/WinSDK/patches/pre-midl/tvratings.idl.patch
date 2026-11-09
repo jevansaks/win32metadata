@@ -1,0 +1,28 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/tvratings.idl b/generation/WinSDK/RecompiledIdlHeaders/um/tvratings.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/tvratings.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/tvratings.idl
+@@ -4,6 +4,7 @@
+ // This file will be processed by the MIDL tool to
+ // produce the type library (TvRatings.tlb) and marshalling code.
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -16,6 +17,7 @@
+ 
+ // -------------------------------------------------------
+ // -------------------------------------------------------
++cpp_quote("/* Win32Metadata: interface ::IXDSToRat => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+     object,
+     uuid(C5C5C5B0-3ABC-11D6-B25B-00C04FA0C026),
+@@ -39,6 +41,7 @@
+ };
+ 
+ // ------------------------
++cpp_quote("/* Win32Metadata: interface ::IEvalRat => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+ 	object,
+ 	uuid(C5C5C5B1-3ABC-11D6-B25B-00C04FA0C026),

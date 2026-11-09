@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -75,6 +76,21 @@ extern "C" {
 //
 //--
 
+#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
+// Keep the native cleanup visible to compiler-parsed producer annotations.
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
+IPHLPAPI_DLL_LINKAGE
+BOOL
+WINAPI
+IcmpCloseHandle(
+    _In_ HANDLE  IcmpHandle
+    );
+#endif
+
+_Win32_RAIIFree_(IcmpCloseHandle)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 IPHLPAPI_DLL_LINKAGE
 HANDLE
 WINAPI
@@ -104,6 +120,9 @@ IcmpCreateFile(
 //
 //--
 
+_Win32_RAIIFree_(IcmpCloseHandle)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 IPHLPAPI_DLL_LINKAGE
 HANDLE
 WINAPI
@@ -133,6 +152,8 @@ Icmp6CreateFile(
 //
 //--
 
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 IPHLPAPI_DLL_LINKAGE
 BOOL
 WINAPI
@@ -194,6 +215,8 @@ IcmpCloseHandle(
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI
@@ -203,7 +226,7 @@ IcmpSendEcho(
     _In_reads_bytes_(RequestSize)   LPVOID                   RequestData,
     _In_                       WORD                     RequestSize,
     _In_opt_                   PIP_OPTION_INFORMATION   RequestOptions,
-    _Out_writes_bytes_(ReplySize)    LPVOID                   ReplyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(ReplySize)    LPVOID                   ReplyBuffer,
     _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + RequestSize + 8)
     DWORD                    ReplySize,
     _In_                       DWORD                    Timeout
@@ -283,6 +306,8 @@ IcmpSendEcho(
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI
@@ -299,7 +324,7 @@ IcmpSendEcho2(
     _In_reads_bytes_(RequestSize)    LPVOID                   RequestData,
     _In_                        WORD                     RequestSize,
     _In_opt_                    PIP_OPTION_INFORMATION   RequestOptions,
-    _Out_writes_bytes_(ReplySize)     LPVOID                   ReplyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(ReplySize)     LPVOID                   ReplyBuffer,
     _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + RequestSize + 8)
     DWORD                    ReplySize,
     _In_                        DWORD                    Timeout
@@ -312,6 +337,8 @@ IcmpSendEcho2(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if (NTDDI_VERSION >= NTDDI_VISTASP1)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI
@@ -329,7 +356,7 @@ IcmpSendEcho2Ex(
     _In_reads_bytes_(RequestSize)   LPVOID                   RequestData,
     _In_                       WORD                     RequestSize,
     _In_opt_                   PIP_OPTION_INFORMATION   RequestOptions,
-    _Out_writes_bytes_(ReplySize)    LPVOID                   ReplyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(ReplySize)    LPVOID                   ReplyBuffer,
     _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + RequestSize + 8)
     DWORD                    ReplySize,
     _In_                       DWORD                    Timeout
@@ -343,6 +370,8 @@ IcmpSendEcho2Ex(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI
@@ -397,16 +426,20 @@ Icmp6SendEcho2(
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI
 IcmpParseReplies(
-    _Out_writes_bytes_(ReplySize)   LPVOID                   ReplyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(ReplySize)   LPVOID                   ReplyBuffer,
     _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + 8)
     DWORD                    ReplySize
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI

@@ -1,0 +1,20 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ctxtcall.idl b/generation/WinSDK/RecompiledIdlHeaders/um/ctxtcall.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ctxtcall.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ctxtcall.idl
+@@ -8,6 +8,7 @@
+ //
+ //--------------------------------------------------------------------
+ 
++#include <sal.h>
+ cpp_quote("//+-----------------------------------------------------------------")
+ cpp_quote("//")
+ cpp_quote("//  Microsoft Windows")
+@@ -29,6 +30,7 @@
+ 
+ 
+ // IContextCallback interface
++cpp_quote("/* Win32Metadata: interface ::IContextCallback => SupportedOSPlatform(\"windows5.0\") */")
+ [
+     local,
+     object,

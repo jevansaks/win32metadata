@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /****************************************************************************
@@ -38,6 +39,9 @@ extern "C" {
 
 DECLARE_HANDLE            (HWND);
 DECLARE_HANDLE            (HHOOK);
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+_Win32_AlsoUsableFor_(HANDLE) typedef HWND HWND;
+#endif
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion
@@ -72,6 +76,10 @@ DECLARE_HANDLE(HACCEL);
 #if !defined(_MAC) || !defined(GDI_INTERNAL)
 DECLARE_HANDLE(HBITMAP);
 DECLARE_HANDLE(HBRUSH);
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+_Win32_AlsoUsableFor_(HGDIOBJ) typedef HBITMAP HBITMAP;
+_Win32_AlsoUsableFor_(HGDIOBJ) typedef HBRUSH HBRUSH;
+#endif
 #endif
 #if(WINVER >= 0x0400)
 DECLARE_HANDLE(HCOLORSPACE);
@@ -84,6 +92,9 @@ DECLARE_HANDLE(HDESK);
 DECLARE_HANDLE(HENHMETAFILE);
 #if !defined(_MAC) || !defined(GDI_INTERNAL)
 DECLARE_HANDLE(HFONT);
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+_Win32_AlsoUsableFor_(HGDIOBJ) typedef HFONT HFONT;
+#endif
 #endif
 DECLARE_HANDLE(HICON);
 #if !defined(_MAC) || !defined(WIN_INTERNAL)
@@ -92,6 +103,10 @@ DECLARE_HANDLE(HMENU);
 #if !defined(_MAC) || !defined(GDI_INTERNAL)
 DECLARE_HANDLE(HPALETTE);
 DECLARE_HANDLE(HPEN);
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+_Win32_AlsoUsableFor_(HGDIOBJ) typedef HPALETTE HPALETTE;
+_Win32_AlsoUsableFor_(HGDIOBJ) typedef HPEN HPEN;
+#endif
 #endif
 
 #if(WINVER >= 0x0400)
@@ -133,6 +148,9 @@ typedef HICON HCURSOR;      /* HICONs & HCURSORs are polymorphic */
 DECLARE_HANDLE(HCURSOR);    /* HICONs & HCURSORs are not polymorphic */
 #endif
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+_Win32_AlsoUsableFor_(HICON) typedef HCURSOR HCURSOR;
+#endif
 typedef DWORD   COLORREF;
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */

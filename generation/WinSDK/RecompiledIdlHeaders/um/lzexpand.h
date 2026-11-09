@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -71,6 +72,7 @@ CopyLZFile(
     _In_ INT hfDest
     );
 
+_Win32_SupportedOS_WindowsXP_
 _Success_(return >= 0)
 _Check_return_
 LONG
@@ -80,6 +82,7 @@ LZCopy(
     _In_ INT hfDest
     );
 
+_Win32_SupportedOS_WindowsXP_
 _Success_(return >= 0)
 _Check_return_
 INT
@@ -88,6 +91,8 @@ LZInit(
     _In_ INT hfSource
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 _Success_(return >= 0)
 _Check_return_
 INT
@@ -96,6 +101,8 @@ GetExpandedNameA(
     _In_ LPSTR lpszSource,
     _Out_writes_(MAX_PATH) LPSTR lpszBuffer
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 _Success_(return >= 0)
 _Check_return_
 INT
@@ -110,6 +117,7 @@ GetExpandedNameW(
 #define GetExpandedName  GetExpandedNameA
 #endif // !UNICODE
 
+_Win32_SupportedOS_WindowsXP_
 _Success_(return >= 0)
 _Check_return_
 INT
@@ -117,8 +125,9 @@ APIENTRY
 LZOpenFileA(
     _In_ LPSTR lpFileName,
     _Inout_ LPOFSTRUCT lpReOpenBuf,
-    _In_ WORD wStyle
+    _Win32_AssociatedEnum_(LZOPENFILE_STYLE) _In_ WORD wStyle
     );
+_Win32_SupportedOS_WindowsXP_
 _Success_(return >= 0)
 _Check_return_
 INT
@@ -126,7 +135,7 @@ APIENTRY
 LZOpenFileW(
     _In_ LPWSTR lpFileName,
     _Inout_ LPOFSTRUCT lpReOpenBuf,
-    _In_ WORD wStyle
+    _Win32_AssociatedEnum_(LZOPENFILE_STYLE) _In_ WORD wStyle
     );
 #ifdef UNICODE
 #define LZOpenFile  LZOpenFileW
@@ -134,6 +143,7 @@ LZOpenFileW(
 #define LZOpenFile  LZOpenFileA
 #endif // !UNICODE
 
+_Win32_SupportedOS_WindowsXP_
 _Success_(return >= 0)
 _Check_return_
 LONG
@@ -144,6 +154,7 @@ LZSeek(
     _In_ INT iOrigin
     );
 
+_Win32_SupportedOS_WindowsXP_
 _Success_(return >= 0)
 _Check_return_
 INT
@@ -154,6 +165,7 @@ LZRead(
     _In_ INT cbRead
     );
 
+_Win32_SupportedOS_WindowsXP_
 VOID
 APIENTRY
 LZClose(

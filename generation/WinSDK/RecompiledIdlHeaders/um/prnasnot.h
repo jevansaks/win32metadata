@@ -1,3 +1,5 @@
+#include <win32metadata_annotations.h>
+#include <sal.h>
 /*++
 
 Copyright (c) 2001  Microsoft Corporation
@@ -77,6 +79,9 @@ typedef GUID PrintAsyncNotificationType;
 
 #undef  INTERFACE
 #define INTERFACE IPrintAsyncNotifyDataObject
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+typedef _Win32_SupportedOS_WindowsVista_ struct IPrintAsyncNotifyDataObject IPrintAsyncNotifyDataObject;
+#endif
 DECLARE_INTERFACE_(IPrintAsyncNotifyDataObject, IUnknown)
 {
     STDMETHOD(QueryInterface)(
@@ -109,6 +114,9 @@ typedef interface IPrintAsyncNotifyCallback IPrintAsyncNotifyCallback;
 
 #undef  INTERFACE
 #define INTERFACE IPrintAsyncNotifyChannel
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+typedef _Win32_SupportedOS_WindowsVista_ struct IPrintAsyncNotifyChannel IPrintAsyncNotifyChannel;
+#endif
 DECLARE_INTERFACE_(IPrintAsyncNotifyChannel, IUnknown)
 {
     STDMETHOD(QueryInterface)(
@@ -139,6 +147,9 @@ DECLARE_INTERFACE_(IPrintAsyncNotifyChannel, IUnknown)
 
 #undef  INTERFACE
 #define INTERFACE IPrintAsyncNotifyCallback
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+typedef _Win32_SupportedOS_WindowsVista_ struct IPrintAsyncNotifyCallback IPrintAsyncNotifyCallback;
+#endif
 DECLARE_INTERFACE_(IPrintAsyncNotifyCallback, IUnknown)
 {
     STDMETHOD(QueryInterface)(
@@ -170,6 +181,7 @@ DECLARE_INTERFACE_(IPrintAsyncNotifyCallback, IUnknown)
 
 #undef INTERFACE
 
+_Win32_SupportedOS_WindowsVista_
 HRESULT
 WINAPI
 RegisterForPrintAsyncNotifications(
@@ -181,12 +193,14 @@ RegisterForPrintAsyncNotifications(
     _Out_    HANDLE*                           phNotify
     );
 
+_Win32_SupportedOS_WindowsVista_
 HRESULT
 WINAPI
 UnRegisterForPrintAsyncNotifications(
     _In_     HANDLE
     );
 
+_Win32_SupportedOS_WindowsVista_
 HRESULT
 WINAPI
 CreatePrintAsyncNotifyChannel(

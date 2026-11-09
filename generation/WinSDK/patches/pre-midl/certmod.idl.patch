@@ -1,0 +1,20 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/certmod.idl b/generation/WinSDK/RecompiledIdlHeaders/um/certmod.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/certmod.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/certmod.idl
+@@ -9,6 +9,7 @@
+ //
+ //---------------------------------------------------------------------------
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -45,6 +46,7 @@
+ // ICertManageModule class -- local COM interface
+ //+--------------------------------------------------------------------------
+ 
++cpp_quote("/* Win32Metadata: interface ::ICertManageModule => SupportedOSPlatform(\"windowsserver2003\") */")
+ [
+     object,
+     uuid(e7d7ad42-bd3d-11d1-9a4d-00c04fc297eb),

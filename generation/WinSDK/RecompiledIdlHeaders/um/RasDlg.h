@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -249,22 +250,28 @@ typedef BOOL (WINAPI *RasCustomEntryDlgFn) (
 
 /* RAS common dialog API prototypes.
 */
+_Win32_SupportedOS_Windows2000_
 BOOL APIENTRY RasPhonebookDlgA(
     _In_opt_ LPSTR lpszPhonebook, _In_opt_ LPSTR lpszEntry, LPRASPBDLGA lpInfo );
 
+_Win32_SupportedOS_Windows2000_
 BOOL APIENTRY RasPhonebookDlgW(
     _In_opt_ LPWSTR lpszPhonebook, _In_opt_ LPWSTR lpszEntry, LPRASPBDLGW lpInfo );
 
+_Win32_SupportedOS_Windows2000_
 BOOL APIENTRY RasEntryDlgA(
     _In_opt_ LPSTR lpszPhonebook, _In_opt_ LPSTR lpszEntry, LPRASENTRYDLGA lpInfo );
 
+_Win32_SupportedOS_Windows2000_
 BOOL APIENTRY RasEntryDlgW(
     _In_opt_ LPWSTR lpszPhonebook, _In_opt_ LPWSTR lpszEntry, LPRASENTRYDLGW lpInfo );
 
+_Win32_SupportedOS_Windows2000_
 BOOL APIENTRY RasDialDlgA(
     _In_opt_ LPSTR lpszPhonebook, _In_opt_ LPSTR lpszEntry, _In_opt_ LPSTR lpszPhoneNumber,
     _Inout_ LPRASDIALDLG lpInfo );
 
+_Win32_SupportedOS_Windows2000_
 BOOL APIENTRY RasDialDlgW(
     _In_opt_ LPWSTR lpszPhonebook, _In_opt_ LPWSTR lpszEntry, _In_opt_ LPWSTR lpszPhoneNumber,
     _Inout_ LPRASDIALDLG lpInfo );

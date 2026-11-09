@@ -1,0 +1,101 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/amstream.idl b/generation/WinSDK/RecompiledIdlHeaders/um/amstream.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/amstream.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/amstream.idl
+@@ -7,6 +7,8 @@
+ //------------------------------------------------------------------------------
+ 
+ 
++cpp_quote("#include <sal.h>")
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -33,11 +35,20 @@
+ interface IAMMediaTypeSample;
+ 
+ //  Flags definitions for IAMMultiMediaStream::Initialize
++cpp_quote("#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)")
++cpp_quote("#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)")
++cpp_quote("#endif")
+ enum {
+     AMMSF_NOGRAPHTHREAD      = 0x00000001
+ };
++cpp_quote("#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)")
++cpp_quote("#pragma clang attribute pop")
++cpp_quote("#endif")
+ 
+ //  Flags definitions for AddMediaStream and IAMMediaStream::Initialize
++cpp_quote("#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)")
++cpp_quote("#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)")
++cpp_quote("#endif")
+ enum {
+     //  Don't add a stream - create a default renderer instead
+     //  for the supplied purpose id
+@@ -51,9 +62,15 @@
+     //  If Update is not called keep going
+     AMMSF_NOSTALL            = 0x00000008
+ };
++cpp_quote("#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)")
++cpp_quote("#pragma clang attribute pop")
++cpp_quote("#endif")
+ 
+ 
+ //  Flag definitions for OpenFile and OpenMoniker
++cpp_quote("#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)")
++cpp_quote("#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)")
++cpp_quote("#endif")
+ enum {
+     AMMSF_RENDERTYPEMASK     = 0x00000003,
+     AMMSF_RENDERTOEXISTING   = 0x00000000,
+@@ -63,16 +80,27 @@
+     AMMSF_NOCLOCK            = 0x00000004,
+     AMMSF_RUN                = 0x00000008
+ };
+-
+-
++cpp_quote("#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)")
++cpp_quote("#pragma clang attribute pop")
++cpp_quote("#endif")
++
++
++cpp_quote("#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)")
++cpp_quote("#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)")
++cpp_quote("#endif")
+ typedef [v1_enum] enum {
+     Disabled = 0,
+     ReadData = 1,
+     RenderData = 2
+ } OUTPUT_STATE;
++cpp_quote("#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)")
++cpp_quote("#pragma clang attribute pop")
++cpp_quote("#endif")
+ 
+ 
+ // IAMMultiMediaStream interface
++cpp_quote("/* Win32Metadata: parameter ::IAMMultiMediaStream::Initialize::dwFlags => AssociatedEnum(__MIDL___MIDL_itf_amstream_0000_0000_0001) */")
++cpp_quote("/* Win32Metadata: parameter ::IAMMultiMediaStream::AddMediaStream::dwFlags => AssociatedEnum(__MIDL___MIDL_itf_amstream_0000_0000_0002) */")
+ [
+ object,
+ uuid(BEBE595C-9A6F-11d0-8FDE-00C04FD9189D),
+@@ -181,6 +209,7 @@
+ 
+ 
+ 
++cpp_quote("/* Win32Metadata: interface ::IDirectDrawMediaSampleAllocator => SupportedOSPlatform(\"windows5.0\") */")
+ [
+ object,
+ local,
+@@ -193,6 +222,7 @@
+ };
+ 
+ 
++cpp_quote("/* Win32Metadata: interface ::IDirectDrawMediaSample => SupportedOSPlatform(\"windows5.0\") */")
+ [
+ object,
+ local,
+@@ -290,4 +320,3 @@
+ 
+ cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */")
+ #pragma endregion
+-

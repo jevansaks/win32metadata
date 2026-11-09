@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All Rights Reserved
@@ -68,8 +69,11 @@ typedef struct _WSB_OB_REGISTRATION_INFO {
 } WSB_OB_REGISTRATION_INFO;
 
 //APIs
+_Win32_SupportedOS_Server2012_
 HRESULT WINAPI RegisterOnlineBackupWithWindowsServerBackup(_In_ IN WSB_OB_REGISTRATION_INFO  *pOBRegistrationInfo);
+_Win32_SupportedOS_Server2012_
 HRESULT WINAPI DeregisterOnlineBackupFromWindowsServerBackup(_In_ IN GUID guidSnapinId);
+_Win32_SupportedOS_Server2012_
 HRESULT WINAPI UpdateOBStatusInWindowsServerBackup(_In_ IN WSB_OB_STATUS_INFO *pOBRegistrationInfo);
 
 

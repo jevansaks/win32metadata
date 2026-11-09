@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: IL21Dec.h
 //
@@ -59,6 +60,9 @@ extern "C" {
 //
 //  Line 21 Decoder standard COM interface
 //
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows2000_ struct IAMLine21Decoder IAMLine21Decoder;
+#endif
 DECLARE_INTERFACE_(IAMLine21Decoder, IUnknown)
 {
     //

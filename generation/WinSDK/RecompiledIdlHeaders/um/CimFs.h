@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*
 Copyright (c) Microsoft Corporation
 
@@ -78,6 +79,7 @@ typedef struct _CIMFS_FILE_METADATA
 //  location.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI
 CimCreateImage(_In_ PCWSTR imageContainingPath,
                _In_opt_ PCWSTR existingImageName,
@@ -104,6 +106,7 @@ CimCreateImage2(_In_ PCWSTR imageContainingPath,
 //  which can be used to write data to the stream.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI
 CimCreateFile(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
               _In_ PCWSTR imageRelativePath,
@@ -117,6 +120,7 @@ CimCreateFile(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
 //  data to the stream.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI
 CimCreateAlternateStream(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
                          _In_ PCWSTR imageRelativePath,
@@ -128,6 +132,7 @@ CimCreateAlternateStream(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
 //  represented by the image handle.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI
 CimCreateHardLink(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
                   _In_ PCWSTR imageRelativePath,
@@ -138,6 +143,7 @@ CimCreateHardLink(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
 //  by the stream handle.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI
 CimWriteStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle,
                _In_reads_bytes_(bufferSize) const void* buffer,
@@ -147,6 +153,7 @@ CimWriteStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle,
 //  Frees resources associated with the stream handle.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI_(void)
 CimCloseStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle);
 
@@ -155,6 +162,7 @@ CimCloseStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle);
 //  relative to the image represented by the image handle.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI
 CimDeletePath(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
               _In_ PCWSTR imageRelativePath);
@@ -164,6 +172,7 @@ CimDeletePath(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
 //  becomes invalid for further operations on the image.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI
 CimCommitImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
 
@@ -171,6 +180,7 @@ CimCommitImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
 //  Frees resources associated with the image handle.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI_(void)
 CimCloseImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
 
@@ -182,6 +192,7 @@ CimCloseImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
 //  be validated against the hash stored in the CIM.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI
 CimMountImage(_In_ PCWSTR imageContainingPath,
               _In_ PCWSTR imageName,
@@ -192,6 +203,7 @@ CimMountImage(_In_ PCWSTR imageContainingPath,
 //  Dismounts an image mounted with volumeId as the volume GUID.
 //
 
+_Win32_SupportedOS_19041_
 STDAPI
 CimDismountImage(_In_ const GUID* volumeId);
 

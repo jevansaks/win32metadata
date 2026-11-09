@@ -1,0 +1,64 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /********************************************************************************
+ *                                                                               *
+ * consoleapi.h -- ApiSet Contract for api-ms-win-core-namespace-l1              *
+@@ -12,6 +13,7 @@
+ 
+ #ifndef _APISETNAMESPACE_
+ #define _APISETNAMESPACE_
++#include <sal.h>
+ 
+ #include <apiset.h>
+ #include <apisetcconv.h>
+@@ -30,7 +32,7 @@
+ WINBASEAPI
+ HANDLE
+ WINAPI
+-CreatePrivateNamespaceW(
++_Win32_RAIIFree_(ClosePrivateNamespace) CreatePrivateNamespaceW(
+     _In_opt_ LPSECURITY_ATTRIBUTES lpPrivateNamespaceAttributes,
+     _In_ LPVOID lpBoundaryDescriptor,
+     _In_ LPCWSTR lpAliasPrefix
+@@ -39,11 +41,13 @@
+ WINBASEAPI
+ HANDLE
+ WINAPI
+-OpenPrivateNamespaceW(
++_Win32_RAIIFree_(ClosePrivateNamespace) OpenPrivateNamespaceW(
+     _In_ LPVOID lpBoundaryDescriptor,
+     _In_ LPCWSTR lpAliasPrefix
+     );
+ 
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ WINBASEAPI
+ BOOLEAN
+ WINAPI
+@@ -55,11 +59,13 @@
+ WINBASEAPI
+ HANDLE
+ WINAPI
+-CreateBoundaryDescriptorW(
++_Win32_RAIIFree_(DeleteBoundaryDescriptor) CreateBoundaryDescriptorW(
+     _In_ LPCWSTR Name,
+     _In_ ULONG Flags
+     );
+ 
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -68,6 +74,7 @@
+     _In_ PSID RequiredSid
+     );
+ 
++_Win32_SupportedOS_WindowsVista_
+ WINBASEAPI
+ VOID
+ WINAPI

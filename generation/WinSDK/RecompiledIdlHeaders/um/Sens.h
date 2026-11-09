@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -121,5 +122,12 @@ DEFINE_GUID(
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
+
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+#include <sal.h>
+_Win32_Enum_(SENS_CONNECTION_TYPE, unsigned long,
+    CONNECTION_LAN,
+    CONNECTION_WAN);
+#endif
 
 #endif // __SENS_H__

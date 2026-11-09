@@ -1,0 +1,20 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dmodshow.idl b/generation/WinSDK/RecompiledIdlHeaders/um/dmodshow.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dmodshow.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dmodshow.idl
+@@ -8,6 +8,7 @@
+ //------------------------------------------------------------------------------
+ 
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -23,6 +24,7 @@
+ cpp_quote("DEFINE_GUID(CLSID_DMOFilterCategory,0xbcd5796c,0xbd52,0x4d30,0xab,0x76,0x70,0xf9,0x75,0xb8,0x91,0x99);")
+ 
+ 
++cpp_quote("/* Win32Metadata: interface ::IDMOWrapperFilter => SupportedOSPlatform(\"windows5.1.2600\") */")
+ [
+     object,
+     uuid(52d6f586-9f0f-4824-8fc8-e32ca04930c2),

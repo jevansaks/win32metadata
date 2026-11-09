@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //---------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 //
@@ -690,7 +691,7 @@ interface DX_DECLARE_INTERFACE("b499923b-7029-478f-a8b3-432c7c5f5312") ID2D1Ink 
 /// patches. Use the ID2D1DeviceContext2::CreateGradientMesh method to create an
 /// instance of ID2D1GradientMesh.
 /// </summary>
-interface DX_DECLARE_INTERFACE("f292e401-c050-4cde-83d7-04962d3b23c2") ID2D1GradientMesh  : public ID2D1Resource
+interface _Win32_SupportedOS_Windows81_ DX_DECLARE_INTERFACE("f292e401-c050-4cde-83d7-04962d3b23c2") ID2D1GradientMesh  : public ID2D1Resource
 {
     
     /// <summary>
@@ -713,7 +714,7 @@ interface DX_DECLARE_INTERFACE("f292e401-c050-4cde-83d7-04962d3b23c2") ID2D1Grad
 /// <summary>
 /// Represents a producer of pixels that can fill an arbitrary 2D plane.
 /// </summary>
-interface DX_DECLARE_INTERFACE("c9b664e5-74a1-4378-9ac2-eefc37a3f4d8") ID2D1ImageSource  : public ID2D1Image
+interface _Win32_SupportedOS_10240_ DX_DECLARE_INTERFACE("c9b664e5-74a1-4378-9ac2-eefc37a3f4d8") ID2D1ImageSource  : public ID2D1Image
 {
     
     STDMETHOD(OfferResources)(
@@ -793,7 +794,7 @@ interface DX_DECLARE_INTERFACE("53dd9855-a3b0-4d5b-82e1-26e25c5e5797") ID2D1Look
 /// interface, plus it enables functionality such as ink rendering, gradient mesh
 /// rendering, and improved image loading.
 /// </summary>
-interface DX_DECLARE_INTERFACE("394ea6a3-0c34-4321-950b-6ca20f0be6c7") ID2D1DeviceContext2  : public ID2D1DeviceContext1
+interface _Win32_SupportedOS_10240_ DX_DECLARE_INTERFACE("394ea6a3-0c34-4321-950b-6ca20f0be6c7") ID2D1DeviceContext2  : public ID2D1DeviceContext1
 {
     
     STDMETHOD(CreateInk)(
@@ -1018,7 +1019,7 @@ interface DX_DECLARE_INTERFACE("0869759f-4f00-413f-b03e-2bda45404d0f") ID2D1Fact
 /// This interface performs all the same functions as the existing ID2D1CommandSink1
 /// interface. It also enables access to ink rendering and gradient mesh rendering.
 /// </summary>
-interface DX_DECLARE_INTERFACE("3bab440e-417e-47df-a2e2-bc0be6a00916") ID2D1CommandSink2  : public ID2D1CommandSink1
+interface _Win32_SupportedOS_Windows81_ DX_DECLARE_INTERFACE("3bab440e-417e-47df-a2e2-bc0be6a00916") ID2D1CommandSink2  : public ID2D1CommandSink1
 {
     
     STDMETHOD(DrawInk)(
@@ -1044,7 +1045,7 @@ interface DX_DECLARE_INTERFACE("3bab440e-417e-47df-a2e2-bc0be6a00916") ID2D1Comm
 /// <summary>
 /// Interface encapsulating a GDI/GDI+ metafile.
 /// </summary>
-interface DX_DECLARE_INTERFACE("2e69f9e8-dd3f-4bf9-95ba-c04f49d788df") ID2D1GdiMetafile1  : public ID2D1GdiMetafile
+interface _Win32_SupportedOS_10240_ DX_DECLARE_INTERFACE("2e69f9e8-dd3f-4bf9-95ba-c04f49d788df") ID2D1GdiMetafile1  : public ID2D1GdiMetafile
 {
     
     /// <summary>
@@ -1068,7 +1069,7 @@ interface DX_DECLARE_INTERFACE("2e69f9e8-dd3f-4bf9-95ba-c04f49d788df") ID2D1GdiM
 /// <summary>
 /// User-implementable interface for introspecting on a metafile.
 /// </summary>
-interface DX_DECLARE_INTERFACE("fd0ecb6b-91e6-411e-8655-395e760f91b4") ID2D1GdiMetafileSink1  : public ID2D1GdiMetafileSink
+interface _Win32_SupportedOS_10240_ DX_DECLARE_INTERFACE("fd0ecb6b-91e6-411e-8655-395e760f91b4") ID2D1GdiMetafileSink1  : public ID2D1GdiMetafileSink
 {
     
     /// <summary>
@@ -1932,6 +1933,7 @@ extern "C"
 #endif
 
 #if NTDDI_VERSION >= NTDDI_WINTHRESHOLD
+    _Win32_SupportedOS_10240_
     void WINAPI 
     D2D1GetGradientMeshInteriorPointsFromCoonsPatch(
         _In_ CONST D2D1_POINT_2F *pPoint0,

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: AMAudio.h
 //
@@ -31,6 +32,9 @@ extern "C" {
 #undef INTERFACE
 #define INTERFACE IAMDirectSound
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows2000_ struct IAMDirectSound IAMDirectSound;
+#endif
 DECLARE_INTERFACE_(IAMDirectSound,IUnknown)
 {
     /* IUnknown methods */

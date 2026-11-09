@@ -1,0 +1,244 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmiscapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/mmiscapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mmiscapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mmiscapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /********************************************************************************
+ *                                                                               *
+ * mmiscapi.h -- ApiSet Contract for api-ms-win-mm-misc-l1-1                     *
+@@ -95,6 +96,7 @@
+ 
+ typedef LRESULT (CALLBACK* DRIVERPROC)(DWORD_PTR, HDRVR, UINT, LPARAM, LPARAM);
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ LRESULT
+ WINAPI
+@@ -104,6 +106,7 @@
+     _In_ LPARAM lParam2
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ HDRVR
+ WINAPI
+@@ -113,6 +116,7 @@
+     _In_ LPARAM lParam2
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ LRESULT
+ WINAPI
+@@ -123,6 +127,7 @@
+     _In_ LPARAM lParam2
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ HMODULE
+ WINAPI
+@@ -130,6 +135,7 @@
+     _In_ HDRVR hDriver
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ HMODULE
+ WINAPI
+@@ -137,6 +143,7 @@
+     _In_ HDRVR hDriver
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ LRESULT
+ WINAPI
+@@ -175,6 +182,7 @@
+                       Driver Helper function moved from mmddk.h
+ 
+ ***************************************************************************/
++_Win32_SupportedOS_Windows2000_
+ BOOL
+ APIENTRY
+ DriverCallback(
+@@ -191,7 +199,9 @@
+ 
+   Sound schemes
+ 
+-****************************************************************************/LONG
++****************************************************************************/
++_Win32_SupportedOS_Windows81_
++LONG
+ WINAPI
+ sndOpenSound(
+     _In_ LPCWSTR EventName,
+@@ -382,6 +392,7 @@
+ /* MMIO function prototypes */
+ #ifdef _WIN32
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ FOURCC
+ WINAPI
+@@ -390,6 +401,7 @@
+     _In_ UINT uFlags
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ FOURCC
+ WINAPI
+@@ -403,6 +415,7 @@
+ #else
+ #define mmioStringToFOURCC  mmioStringToFOURCCA
+ #endif // !UNICODE
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ LPMMIOPROC
+ WINAPI
+@@ -412,6 +425,7 @@
+     _In_ DWORD dwFlags
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ LPMMIOPROC
+ WINAPI
+@@ -426,6 +440,7 @@
+ #else
+ #define mmioInstallIOProc  mmioInstallIOProcA
+ #endif // !UNICODE
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ HMMIO
+ WINAPI
+@@ -435,6 +450,7 @@
+     _In_ DWORD fdwOpen
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ HMMIO
+ WINAPI
+@@ -449,6 +465,7 @@
+ #else
+ #define mmioOpen  mmioOpenA
+ #endif // !UNICODE
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -459,6 +476,7 @@
+     _In_ DWORD fdwRename
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -483,6 +501,7 @@
+ #endif /* ifdef WINVER >= 0x030a */
+ #endif
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -491,6 +510,7 @@
+     _In_ UINT fuClose
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ LONG
+ WINAPI
+@@ -500,6 +520,7 @@
+     _In_ LONG cch
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ LONG
+ WINAPI
+@@ -509,6 +530,7 @@
+     _In_ LONG cch
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ LONG
+ WINAPI
+@@ -518,6 +540,7 @@
+     _In_ int iOrigin
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -527,6 +550,7 @@
+     _In_ UINT fuInfo
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -536,6 +560,7 @@
+     _In_ UINT fuInfo
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -546,6 +571,7 @@
+     _In_ UINT fuBuffer
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -554,6 +580,7 @@
+     _In_ UINT fuFlush
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -563,6 +590,7 @@
+     _In_ UINT fuAdvance
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ LRESULT
+ WINAPI
+@@ -573,6 +601,7 @@
+     _In_opt_ LPARAM lParam2
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -583,6 +612,7 @@
+     _In_ UINT fuDescend
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -592,6 +622,7 @@
+     _In_ UINT fuAscend
+     );
+ 
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /******************************************************************************
 
 Copyright (c) 2000 Microsoft Corporation
@@ -57,6 +58,14 @@ Abstract:
 #define CRITICAL_UPDATE         18
 #define MAX_RPT                 18
 
+_Win32_Enum_(RESTOREPOINTINFO_EVENT_TYPE, DWORD,
+    BEGIN_NESTED_SYSTEM_CHANGE, BEGIN_SYSTEM_CHANGE,
+    END_NESTED_SYSTEM_CHANGE, END_SYSTEM_CHANGE);
+
+_Win32_Enum_(RESTOREPOINTINFO_TYPE, DWORD,
+    APPLICATION_INSTALL, APPLICATION_UNINSTALL, DEVICE_DRIVER_INSTALL,
+    MODIFY_SETTINGS, CANCELLED_OPERATION);
+
 
 #define MAX_DESC                64
 #define MAX_DESC_W              256   // longer for Whistler
@@ -73,15 +82,15 @@ Abstract:
 //
 
 typedef struct _RESTOREPTINFOA {
-    DWORD   dwEventType;                // Type of Event - Begin or End
-    DWORD   dwRestorePtType;            // Type of Restore Point - App install/uninstall
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_EVENT_TYPE) DWORD   dwEventType;                // Type of Event - Begin or End
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_TYPE) DWORD   dwRestorePtType;            // Type of Restore Point - App install/uninstall
     INT64   llSequenceNumber;           // Sequence Number - 0 for begin
     CHAR    szDescription[MAX_DESC];    // Description - Name of Application / Operation
 } RESTOREPOINTINFOA, *PRESTOREPOINTINFOA;
 
 typedef struct _RESTOREPTINFOW {
-    DWORD   dwEventType;
-    DWORD   dwRestorePtType;
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_EVENT_TYPE) DWORD   dwEventType;
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_TYPE) DWORD   dwRestorePtType;
     INT64   llSequenceNumber;
     WCHAR   szDescription[MAX_DESC_W];
 } RESTOREPOINTINFOW, *PRESTOREPOINTINFOW;
@@ -100,7 +109,7 @@ typedef struct _RESTOREPTINFOEX {
 //
 
 typedef struct _SMGRSTATUS {
-    DWORD   nStatus;            // Status returned by State Manager Process
+    _Win32_AssociatedEnum_(WIN32_ERROR) DWORD   nStatus;            // Status returned by State Manager Process
     INT64   llSequenceNumber;   // Sequence Number for the restore point
 } STATEMGRSTATUS, *PSTATEMGRSTATUS;
 
@@ -137,6 +146,7 @@ extern "C" {
 //
 // ERROR_ALREADY_EXISTS       If this is a nested restore point
 
+_Win32_SupportedOS_WindowsXP_
 BOOL __stdcall
 SRSetRestorePointA(
                   _In_ PRESTOREPOINTINFOA  pRestorePtSpec,// [in] Restore Point specification
@@ -144,6 +154,7 @@ SRSetRestorePointA(
                   );
 
 
+_Win32_SupportedOS_WindowsXP_
 BOOL __stdcall
 SRSetRestorePointW(
                   _In_ PRESTOREPOINTINFOW pRestorePtSpec,
@@ -157,6 +168,7 @@ SRSetRestorePointInternal(
                   _In_ BOOL           fForceSurrogate
                   );
 
+_Win32_SupportedOS_WindowsXP_
 DWORD __stdcall
 SRRemoveRestorePoint(DWORD dwRPNum);
 

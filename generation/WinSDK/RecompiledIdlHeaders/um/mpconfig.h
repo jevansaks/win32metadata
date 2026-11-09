@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: MPConfig.h
 //
@@ -28,6 +29,9 @@ typedef enum _AM_ASPECT_RATIO_MODE
 } AM_ASPECT_RATIO_MODE;
 
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows2000_ struct IMixerPinConfig IMixerPinConfig;
+#endif
 DECLARE_INTERFACE_(IMixerPinConfig, IUnknown)
 {
     // this function sets the position of the stream in the display window, assuming 
@@ -126,6 +130,9 @@ DECLARE_INTERFACE_(IMixerPinConfig, IUnknown)
 };
 
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows2000_ struct IMixerPinConfig2 IMixerPinConfig2;
+#endif
 DECLARE_INTERFACE_(IMixerPinConfig2, IMixerPinConfig)
 {
     // this functions sets the color-controls, if the vga chip supports it.

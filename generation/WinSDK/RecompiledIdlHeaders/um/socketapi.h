@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -30,6 +31,7 @@ extern "C"
 
 #if NTDDI_VERSION >= NTDDI_WIN8
 
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI SetSocketMediaStreamingMode(_In_ BOOL value);
 
 #endif // NTDDI_VERSION >= NTDDI_WIN8

@@ -1,3 +1,5 @@
+#include <win32metadata_annotations.h>
+#include <sal.h>
 /********************************************************************************
 *                                                                               *
 * Pathcch.h -- ApiSet Contract for api-ms-win-core-Path-l1                      *
@@ -20,7 +22,11 @@ extern "C" {
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
-typedef enum PATHCCH_OPTIONS
+typedef enum
+#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
+__attribute__((flag_enum))
+#endif
+PATHCCH_OPTIONS
 {
     PATHCCH_NONE = 0x0,
 
@@ -72,7 +78,7 @@ DEFINE_ENUM_FLAG_OPERATORS(PATHCCH_OPTIONS)
 // (0x7FFF + 1 for NULL terminator)
 #define PATHCCH_MAX_CCH             0x8000
 
-WINPATHCCHAPI
+_Win32_SupportedOS_Windows8_ WINPATHCCHAPI
 BOOL
 APIENTRY
 PathIsUNCEx(
@@ -80,6 +86,7 @@ PathIsUNCEx(
     _Outptr_opt_ PCWSTR* ppszServer
     );
 
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 BOOL
 APIENTRY
@@ -87,6 +94,8 @@ PathCchIsRoot(
     _In_opt_ PCWSTR pszPath
     );
 
+_Win32_PreserveResult_
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -97,6 +106,8 @@ PathCchAddBackslashEx(
     _Out_opt_ size_t* pcchRemaining
     );
 
+_Win32_PreserveResult_
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -105,6 +116,7 @@ PathCchAddBackslash(
     _In_ size_t cchPath
     );
 
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -115,6 +127,8 @@ PathCchRemoveBackslashEx(
     _Out_opt_ size_t* pcchRemaining
     );
 
+_Win32_PreserveResult_
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -123,7 +137,7 @@ PathCchRemoveBackslash(
     _In_ size_t cchPath
     );
 
-WINPATHCCHAPI
+_Win32_SupportedOS_Windows8_ WINPATHCCHAPI
 HRESULT
 APIENTRY
 PathCchSkipRoot(
@@ -131,6 +145,8 @@ PathCchSkipRoot(
     _Outptr_ PCWSTR* ppszRootEnd
     );
 
+_Win32_PreserveResult_
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -139,6 +155,7 @@ PathCchStripToRoot(
     _In_ size_t cchPath
     );
 
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -147,7 +164,7 @@ PathCchRemoveFileSpec(
     _In_ size_t cchPath
     );
 
-WINPATHCCHAPI
+_Win32_SupportedOS_Windows8_ WINPATHCCHAPI
 HRESULT
 APIENTRY
 PathCchFindExtension(
@@ -156,6 +173,7 @@ PathCchFindExtension(
     _Outptr_ PCWSTR* ppszExt
     );
 
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -165,6 +183,7 @@ PathCchAddExtension(
     _In_ PCWSTR pszExt
     );
 
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -174,6 +193,7 @@ PathCchRenameExtension(
     _In_ PCWSTR pszExt
     );
 
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -183,6 +203,7 @@ PathCchRemoveExtension(
     );
 
 /* PATHCCH_OPTIONS */
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -190,9 +211,10 @@ PathCchCanonicalizeEx(
     _Out_writes_(cchPathOut) PWSTR pszPathOut,
     _In_ size_t cchPathOut,
     _In_ PCWSTR pszPathIn,
-    _In_ ULONG dwFlags
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags
     );
 
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -203,6 +225,7 @@ PathCchCanonicalize(
     );
 
 /* PATHCCH_OPTIONS */
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -211,9 +234,10 @@ PathCchCombineEx(
     _In_ size_t cchPathOut,
     _In_opt_ PCWSTR pszPathIn,
     _In_opt_ PCWSTR pszMore,
-    _In_ ULONG dwFlags
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags
     );
 
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -225,6 +249,7 @@ PathCchCombine(
     );
 
 /* PATHCCH_OPTIONS */
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -232,9 +257,10 @@ PathCchAppendEx(
     _Inout_updates_(cchPath) PWSTR pszPath,
     _In_ size_t cchPath,
     _In_opt_ PCWSTR pszMore,
-    _In_ ULONG dwFlags
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags
     );
 
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -244,6 +270,8 @@ PathCchAppend(
     _In_opt_ PCWSTR pszMore
     );
 
+_Win32_PreserveResult_
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -253,23 +281,25 @@ PathCchStripPrefix(
     );
 
 /* PATHCCH_OPTIONS */
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
 PathAllocCombine(
     _In_opt_ PCWSTR pszPathIn,
     _In_opt_ PCWSTR pszMore,
-    _In_ ULONG dwFlags,
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags,
     _Outptr_ PWSTR* ppszPathOut
     );
 
 /* PATHCCH_OPTIONS */
+_Win32_SupportedOS_Windows8_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
 PathAllocCanonicalize(
     _In_ PCWSTR pszPathIn,
-    _In_ ULONG dwFlags,
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags,
     _Outptr_ PWSTR* ppszPathOut
     );
 

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1997-1999 Microsoft Corporation
@@ -107,6 +108,7 @@ typedef struct _DSROLE_OPERATION_STATE_INFO {
 
 } DSROLE_OPERATION_STATE_INFO, *PDSROLE_OPERATION_STATE_INFO;
 
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WINAPI
 DsRoleGetPrimaryDomainInformation(
@@ -115,6 +117,7 @@ DsRoleGetPrimaryDomainInformation(
     OUT PBYTE *Buffer 
     );
 
+_Win32_SupportedOS_WindowsVista_
 VOID
 WINAPI
 DsRoleFreeMemory(

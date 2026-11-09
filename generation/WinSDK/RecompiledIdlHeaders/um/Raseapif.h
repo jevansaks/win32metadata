@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -688,6 +689,7 @@ extern "C"
     // registry via the Path value.
     //
 
+    _Win32_SupportedOS_Windows2000_
     DWORD APIENTRY RasEapGetInfo(_In_ DWORD dwEapTypeId, _Out_ PPP_EAP_INFO* pEapInfo);
 
     //
@@ -696,6 +698,7 @@ extern "C"
     // values.
     //
 
+    _Win32_SupportedOS_Windows2000_
     DWORD APIENTRY RasEapFreeMemory(_In_ BYTE* pMemory);
 
     //
@@ -704,6 +707,7 @@ extern "C"
     // value.
     //
 
+    _Win32_SupportedOS_Windows2000_
     DWORD APIENTRY RasEapInvokeInteractiveUI(
         _In_ DWORD dwEapTypeId,
         _In_ HWND hwndParent,
@@ -717,6 +721,7 @@ extern "C"
     // 3rd party EAP dll installed in the registry via the ConfigUIPath value.
     //
 
+    _Win32_SupportedOS_Windows2000_
     DWORD APIENTRY RasEapInvokeConfigUI(
         _In_ DWORD dwEapTypeId,
         _In_ HWND hwndParent,
@@ -731,6 +736,7 @@ extern "C"
     // 3rd party EAP dll installed in the registry via the IdentityPath value.
     //
 
+    _Win32_SupportedOS_Windows2000_
     DWORD APIENTRY RasEapGetIdentity(
         _In_ DWORD dwEapTypeId,
         _In_ HWND hwndParent,

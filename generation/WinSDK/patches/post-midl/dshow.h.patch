@@ -1,0 +1,23 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dshow.h b/generation/WinSDK/RecompiledIdlHeaders/um/dshow.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dshow.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dshow.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ //------------------------------------------------------------------------------
+ // File: DShow.h
+ //
+@@ -81,6 +82,13 @@
+ #define OAFALSE (0)
+ #endif // OAFALSE
+ 
++#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
++#include <sal.h>
++_Win32_Enum_(OA_BOOL, long,
++    OATRUE,
++    OAFALSE);
++#endif
++
+ ///////////////////////////////////////////////////////////////////////////
+ // Define Win64 interfaces if not already defined
+ ///////////////////////////////////////////////////////////////////////////

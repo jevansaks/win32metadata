@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -120,11 +121,17 @@ typedef union _WEB_SOCKET_BUFFER
     } CloseStatus;
 } WEB_SOCKET_BUFFER, *PWEB_SOCKET_BUFFER;
 
+_Win32_SupportedOS_Windows8_
+VOID WINAPI WebSocketDeleteHandle(
+    _In_ WEB_SOCKET_HANDLE hWebSocket);
+
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketCreateClientHandle(
     _In_reads_(ulPropertyCount) const PWEB_SOCKET_PROPERTY pProperties,
     _In_ ULONG ulPropertyCount,
-    _Out_ WEB_SOCKET_HANDLE *phWebSocket);
+    _Out_ _Win32_RAIIFree_(WebSocketDeleteHandle, -1, 0) WEB_SOCKET_HANDLE *phWebSocket);
 
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketBeginClientHandshake(
     _In_ WEB_SOCKET_HANDLE hWebSocket,
     _In_reads_opt_(ulSubprotocolCount) PCSTR *pszSubprotocols,
@@ -136,6 +143,7 @@ HRESULT WINAPI WebSocketBeginClientHandshake(
     _Out_writes_(*pulAdditionalHeaderCount) PWEB_SOCKET_HTTP_HEADER *pAdditionalHeaders,
     _Out_ ULONG *pulAdditionalHeaderCount);
 
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketEndClientHandshake(
     _In_ WEB_SOCKET_HANDLE hWebSocket,
     _In_reads_(ulReponseHeaderCount) const PWEB_SOCKET_HTTP_HEADER pResponseHeaders,
@@ -144,11 +152,13 @@ HRESULT WINAPI WebSocketEndClientHandshake(
     _Inout_opt_ ULONG *pulSelectedExtensionCount,
     _Inout_opt_ ULONG *pulSelectedSubprotocol);
 
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketCreateServerHandle(
     _In_reads_(ulPropertyCount) const PWEB_SOCKET_PROPERTY pProperties,
     _In_ ULONG ulPropertyCount,
-    _Out_ WEB_SOCKET_HANDLE *phWebSocket);
+    _Out_ _Win32_RAIIFree_(WebSocketDeleteHandle, -1, 0) WEB_SOCKET_HANDLE *phWebSocket);
 
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketBeginServerHandshake(
     _In_ WEB_SOCKET_HANDLE hWebSocket,
     _In_opt_ PCSTR pszSubprotocolSelected,
@@ -159,20 +169,24 @@ HRESULT WINAPI WebSocketBeginServerHandshake(
     _Out_writes_(*pulResponseHeaderCount) PWEB_SOCKET_HTTP_HEADER *pResponseHeaders,
     _Out_ ULONG* pulResponseHeaderCount);
 
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketEndServerHandshake(
      _In_ WEB_SOCKET_HANDLE hWebSocket);
 
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketSend(
     _In_ WEB_SOCKET_HANDLE hWebSocket,
     _In_ WEB_SOCKET_BUFFER_TYPE BufferType,
     _In_opt_ WEB_SOCKET_BUFFER *pBuffer,
     _In_opt_ PVOID Context);
 
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketReceive(
     _In_ WEB_SOCKET_HANDLE hWebSocket,
     _In_opt_ WEB_SOCKET_BUFFER *pBuffer,
     _In_opt_ PVOID pvContext);
 
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketGetAction(
     _In_ WEB_SOCKET_HANDLE hWebSocket,
     _In_ WEB_SOCKET_ACTION_QUEUE eActionQueue,
@@ -183,17 +197,17 @@ HRESULT WINAPI WebSocketGetAction(
     _Out_opt_ PVOID *pvApplicationContext,
     _Out_ PVOID *pvActionContext);
 
+_Win32_SupportedOS_Windows8_
 VOID WINAPI WebSocketCompleteAction(
     _In_ WEB_SOCKET_HANDLE hWebSocket,
     _In_ PVOID pvActionContext,
     _In_ ULONG ulBytesTransferred);
 
+_Win32_SupportedOS_Windows8_
 VOID WINAPI WebSocketAbortHandle(
     _In_ WEB_SOCKET_HANDLE hWebSocket);
 
-VOID WINAPI WebSocketDeleteHandle(
-    _In_ WEB_SOCKET_HANDLE hWebSocket);
-
+_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WebSocketGetGlobalProperty(
     _In_ WEB_SOCKET_PROPERTY_TYPE eType,
     _Inout_updates_to_(*ulSize, *ulSize) PVOID pvValue,

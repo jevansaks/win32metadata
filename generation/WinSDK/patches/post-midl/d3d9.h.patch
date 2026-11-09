@@ -1,9 +1,13 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h b/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h
-index 2b5e1914..a53b13db 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/d3d9.h
-@@ -1635,7 +1635,7 @@ DECLARE_INTERFACE_(IDirect3DSurface9, IDirect3DResource9)
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*==========================================================================;
+  *
+  *  Copyright (C) Microsoft Corporation.  All Rights Reserved.
+@@ -1635,7 +1636,7 @@
      STDMETHOD_(DWORD, GetPriority)(THIS) PURE;
      STDMETHOD_(void, PreLoad)(THIS) PURE;
      STDMETHOD_(D3DRESOURCETYPE, GetType)(THIS) PURE;
@@ -12,7 +16,7 @@ index 2b5e1914..a53b13db 100644
      STDMETHOD(GetDesc)(THIS_ D3DSURFACE_DESC *pDesc) PURE;
      STDMETHOD(LockRect)(THIS_ D3DLOCKED_RECT* pLockedRect,CONST RECT* pRect,DWORD Flags) PURE;
      STDMETHOD(UnlockRect)(THIS) PURE;
-@@ -1717,7 +1717,7 @@ DECLARE_INTERFACE_(IDirect3DVolume9, IUnknown)
+@@ -1717,7 +1718,7 @@
      STDMETHOD(SetPrivateData)(THIS_ REFGUID refguid,CONST void* pData,DWORD SizeOfData,DWORD Flags) PURE;
      STDMETHOD(GetPrivateData)(THIS_ REFGUID refguid,void* pData,DWORD* pSizeOfData) PURE;
      STDMETHOD(FreePrivateData)(THIS_ REFGUID refguid) PURE;
@@ -21,3 +25,43 @@ index 2b5e1914..a53b13db 100644
      STDMETHOD(GetDesc)(THIS_ D3DVOLUME_DESC *pDesc) PURE;
      STDMETHOD(LockBox)(THIS_ D3DLOCKED_BOX * pLockedVolume,CONST D3DBOX* pBox,DWORD Flags) PURE;
      STDMETHOD(UnlockBox)(THIS) PURE;
+@@ -2625,6 +2626,9 @@
+ #undef INTERFACE
+ #define INTERFACE IDirect3D9ExOverlayExtension
+ 
++#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
++typedef _Win32_SupportedOS_Windows7_ struct IDirect3D9ExOverlayExtension IDirect3D9ExOverlayExtension;
++#endif
+ DECLARE_INTERFACE_(IDirect3D9ExOverlayExtension, IUnknown)
+ {
+     /*** IUnknown methods ***/
+@@ -2655,6 +2659,9 @@
+ #undef INTERFACE
+ #define INTERFACE IDirect3DDevice9Video
+ 
++#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
++typedef _Win32_SupportedOS_Windows7_ struct IDirect3DDevice9Video IDirect3DDevice9Video;
++#endif
+ DECLARE_INTERFACE_(IDirect3DDevice9Video, IUnknown)
+ {
+     /*** IUnknown methods ***/
+@@ -2692,6 +2699,9 @@
+ #undef INTERFACE
+ #define INTERFACE IDirect3DAuthenticatedChannel9
+ 
++#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
++typedef _Win32_SupportedOS_Windows7_ struct IDirect3DAuthenticatedChannel9 IDirect3DAuthenticatedChannel9;
++#endif
+ DECLARE_INTERFACE_(IDirect3DAuthenticatedChannel9, IUnknown)
+ {
+     /*** IUnknown methods ***/
+@@ -2734,6 +2744,9 @@
+ #undef INTERFACE
+ #define INTERFACE IDirect3DCryptoSession9
+ 
++#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
++typedef _Win32_SupportedOS_Windows7_ struct IDirect3DCryptoSession9 IDirect3DCryptoSession9;
++#endif
+ DECLARE_INTERFACE_(IDirect3DCryptoSession9, IUnknown)
+ {
+     /*** IUnknown methods ***/

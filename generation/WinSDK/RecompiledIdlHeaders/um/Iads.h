@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
@@ -1252,7 +1253,7 @@ typedef struct ads_searchpref_info *LPADS_SEARCHPREF_INFO;
 
 typedef HANDLE ADS_SEARCH_HANDLE;
 
-typedef HANDLE *PADS_SEARCH_HANDLE;
+typedef ADS_SEARCH_HANDLE *PADS_SEARCH_HANDLE;
 
 typedef struct ads_search_column
     {
@@ -13700,15 +13701,19 @@ EXTERN_C const IID IID_IDirectorySearch;
         virtual HRESULT STDMETHODCALLTYPE AbandonSearch( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE phSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetFirstRow( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetNextRow( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetPreviousRow( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetNextColumnName( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchHandle,
             /* [out] */ __RPC__deref_out_opt LPWSTR *ppszColumnName) = 0;

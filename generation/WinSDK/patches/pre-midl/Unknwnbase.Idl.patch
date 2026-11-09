@@ -2,7 +2,29 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.Idl
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.Idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.Idl
-@@ -82,7 +82,7 @@
+@@ -1,3 +1,5 @@
++#include <sal.h>
++cpp_quote("#include <sal.h>")
+ cpp_quote("#include <winapifamily.h>")
+ 
+ //+-------------------------------------------------------------------------
+@@ -30,6 +32,7 @@
+ #pragma region Application Family or OneCore Family
+ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
+ 
++cpp_quote("/* Win32Metadata: interface ::IUnknown => SupportedOSPlatform(\"windows5.0\") */")
+ [
+   local,
+   object,
+@@ -56,6 +59,7 @@
+ cpp_quote("        {")
+ cpp_quote("        public:")
+ cpp_quote("            BEGIN_INTERFACE")
++cpp_quote("            _Win32_PreserveResult_")
+ cpp_quote("            virtual HRESULT STDMETHODCALLTYPE QueryInterface( ")
+ cpp_quote("                /* [in] */ REFIID riid,")
+ cpp_quote("                /* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject) = 0;")
+@@ -82,7 +86,7 @@
  cpp_quote("    HRESULT STDMETHODCALLTYPE IUnknown_QueryInterface_Proxy(")
  cpp_quote("        IUnknown __RPC_FAR * This,")
  cpp_quote("        /* [in] */ REFIID riid,")
@@ -11,3 +33,22 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Unknwnbase.Idl b/generati
  cpp_quote("    ")
  cpp_quote("    void __RPC_STUB IUnknown_QueryInterface_Stub(")
  cpp_quote("        IRpcStubBuffer *This,")
+@@ -115,6 +119,10 @@
+     ULONG AddRef();
+     ULONG Release();
+ }
++cpp_quote("#if defined(__cplusplus) && !defined(CINTERFACE) && (_MSC_VER < 1100)")
++cpp_quote("_WIN32META_ANNOTATE_METHOD_(IUnknown::QueryInterface, _Win32_PreserveResult_);")
++cpp_quote("#endif")
++
+ cpp_quote("#endif")
+ 
+ cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
+@@ -150,6 +158,7 @@
+ #pragma region Application Family or OneCore Family
+ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
+ 
++cpp_quote("/* Win32Metadata: interface ::IClassFactory => SupportedOSPlatform(\"windows5.0\") */")
+ [
+     object,
+     uuid(00000001-0000-0000-C000-000000000046),

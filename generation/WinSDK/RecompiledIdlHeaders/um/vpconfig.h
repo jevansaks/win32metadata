@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: VPConfig.h
 //
@@ -21,6 +22,9 @@ extern "C" {
 #endif
 
 // IVPBaseConfig
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows2000_ struct IVPBaseConfig IVPBaseConfig;
+#endif
 DECLARE_INTERFACE_(IVPBaseConfig, IUnknown)
 {
     // gets the various connection information structures (guid, portwidth)
@@ -108,6 +112,9 @@ DECLARE_INTERFACE_(IVPBaseConfig, IUnknown)
 };
 
 // IVPConfig
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
+typedef _Win32_SupportedOS_Windows2000_ struct IVPConfig IVPConfig;
+#endif
 DECLARE_INTERFACE_(IVPConfig, IVPBaseConfig)
 {
 	// the mixer uses this function to determine if the callee wants

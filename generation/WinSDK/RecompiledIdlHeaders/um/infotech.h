@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -234,6 +235,12 @@ DEFINE_GUID(CLSID_IITWordWheelLocal,
 #define ITWW_OPEN_CONNECT	0x00000000    // connect to server on open (the default)
 #define ITWW_OPEN_NOCONNECT	0x00000001    // don't connect to server on open
 
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+#include <sal.h>
+_Win32_FlagsEnum_(WORD_WHEEL_OPEN_FLAGS, unsigned long,
+    ITWW_OPEN_CONNECT);
+#endif
+
 // Constants for IITWordWheel::Lookup.
 #define ITWW_CBKEY_MAX		1024		// Max size of keys allowed in Word Wheels.
 
@@ -247,7 +254,7 @@ interface IITQuery;
 DECLARE_INTERFACE_(IITWordWheel, IUnknown)
 {
 
-	STDMETHOD(Open)(IITDatabase* lpITDB, LPCWSTR lpszMoniker, DWORD dwFlags=0) PURE;
+	STDMETHOD(Open)(IITDatabase* lpITDB, LPCWSTR lpszMoniker, _Win32_AssociatedEnum_(WORD_WHEEL_OPEN_FLAGS) DWORD dwFlags=0) PURE;
 	STDMETHOD(Close)(void) PURE;
 
 	// Returns the code page ID and locale ID that the word wheel was built and

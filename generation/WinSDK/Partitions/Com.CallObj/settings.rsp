@@ -5,4 +5,3 @@ _GUID
 --namespace
 Windows.Win32.System.Com.CallObj
 --with-type
-STREAM_SEEK=uint

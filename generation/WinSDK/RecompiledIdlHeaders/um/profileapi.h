@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * profileapi.h -- ApiSet Contract for api-ms-win-core-profile-l1                *
@@ -28,6 +29,8 @@ extern "C" {
 // Performance counter API's
 //
 
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 WINBASEAPI
 BOOL
 WINAPI
@@ -35,6 +38,8 @@ QueryPerformanceCounter(
     _Out_ LARGE_INTEGER* lpPerformanceCount
     );
 
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 WINBASEAPI
 BOOL
 WINAPI

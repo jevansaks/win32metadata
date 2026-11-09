@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -59,6 +60,7 @@ typedef HRESULT (WINAPI *PFNWRITEOBJECTSECURITY)(LPCWSTR, SECURITY_INFORMATION, 
 //  Return:     HRESULT
 //
 //----------------------------------------------------------------------------
+_Win32_SupportedOS_Server2008_
 STDAPI
 DSCreateISecurityInfoObject(LPCWSTR pwszObjectPath,
                             LPCWSTR pwszObjectClass,
@@ -83,6 +85,7 @@ DSCreateISecurityInfoObject(LPCWSTR pwszObjectPath,
 // If the server is not provided, it is obtained from the object
 // path or DsGetDcName.
 //
+_Win32_SupportedOS_Server2008_
 STDAPI
 DSCreateISecurityInfoObjectEx(LPCWSTR pwszObjectPath,
                               LPCWSTR pwszObjectClass,
@@ -113,6 +116,7 @@ DSCreateISecurityInfoObjectEx(LPCWSTR pwszObjectPath,
 //  Return:     HRESULT
 //
 //----------------------------------------------------------------------------
+_Win32_SupportedOS_Server2003_
 STDAPI
 DSCreateSecurityPage(LPCWSTR pwszObjectPath,
                      LPCWSTR pwszObjectClass,
@@ -140,6 +144,7 @@ DSCreateSecurityPage(LPCWSTR pwszObjectPath,
 //  Return:     HRESULT
 //
 //----------------------------------------------------------------------------
+_Win32_SupportedOS_Server2008_
 STDAPI
 DSEditSecurity(HWND hwndOwner,
                LPCWSTR pwszObjectPath,

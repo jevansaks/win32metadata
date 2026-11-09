@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: DShow.h
 //
@@ -80,6 +81,13 @@
 #ifndef OAFALSE
 #define OAFALSE (0)
 #endif // OAFALSE
+
+#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
+#include <sal.h>
+_Win32_Enum_(OA_BOOL, long,
+    OATRUE,
+    OAFALSE);
+#endif
 
 ///////////////////////////////////////////////////////////////////////////
 // Define Win64 interfaces if not already defined

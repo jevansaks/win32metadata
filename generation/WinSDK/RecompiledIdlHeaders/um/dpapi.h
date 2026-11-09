@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -179,6 +180,8 @@ typedef struct  _CRYPTPROTECT_PROMPTSTRUCT
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
 DPAPI_IMP
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 CryptProtectData(
@@ -192,6 +195,8 @@ CryptProtectData(
     );
 
 DPAPI_IMP
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 CryptUnprotectData(
@@ -251,6 +256,8 @@ CryptUnprotectDataNoUI(
 #if (NTDDI_VERSION >= NTDDI_VISTA)
 
 DPAPI_IMP
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 CryptUpdateProtectedState(
@@ -307,6 +314,8 @@ CryptUpdateProtectedState(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
 DPAPI_IMP
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 CryptProtectMemory(
@@ -316,6 +325,8 @@ CryptProtectMemory(
     );
 
 DPAPI_IMP
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 CryptUnprotectMemory(

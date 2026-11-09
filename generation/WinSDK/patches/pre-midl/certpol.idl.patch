@@ -1,0 +1,28 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/certpol.idl b/generation/WinSDK/RecompiledIdlHeaders/um/certpol.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/certpol.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/certpol.idl
+@@ -12,6 +12,7 @@
+ // This file will be processed by the MIDL tool to produce the type library
+ // (certpol.tlb) and marshalling code.
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -26,6 +27,7 @@
+ // ICertPolicy class -- local COM interface
+ //+--------------------------------------------------------------------------
+ 
++cpp_quote("/* Win32Metadata: interface ::ICertPolicy => SupportedOSPlatform(\"windowsserver2003\") */")
+ [
+     object,
+     uuid(38bb5a00-7636-11d0-b413-00a0c91bbf8c),
+@@ -59,6 +61,7 @@
+ // ICertPolicy2 -- local COM interface
+ //+--------------------------------------------------------------------------
+ 
++cpp_quote("/* Win32Metadata: interface ::ICertPolicy2 => SupportedOSPlatform(\"windowsserver2003\") */")
+ [
+     object,
+     uuid(3db4910e-8001-4bf1-aa1b-f43a808317a0),

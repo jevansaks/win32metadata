@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * interlockedapi.h -- ApiSet Contract for api-ms-win-core-interlocked-l1        *
@@ -45,6 +46,7 @@ extern "C" {
 
 #if defined(_SLIST_HEADER_) && !defined(_NTOSP_)
 
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 VOID
 WINAPI
@@ -52,6 +54,7 @@ InitializeSListHead(
     _Out_ PSLIST_HEADER ListHead
     );
 
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 PSLIST_ENTRY
 WINAPI
@@ -59,6 +62,7 @@ InterlockedPopEntrySList(
     _Inout_ PSLIST_HEADER ListHead
     );
 
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 PSLIST_ENTRY
 WINAPI
@@ -71,6 +75,7 @@ InterlockedPushEntrySList(
 
 #define InterlockedPushListSList InterlockedPushListSListEx
 
+_Win32_SupportedOS_Windows8_
 WINBASEAPI
 PSLIST_ENTRY
 WINAPI
@@ -83,6 +88,7 @@ InterlockedPushListSListEx(
 
 #endif // (NTDDI_VERSION >= NTDDI_WIN8)
 
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 PSLIST_ENTRY
 WINAPI
@@ -90,6 +96,7 @@ InterlockedFlushSList(
     _Inout_ PSLIST_HEADER ListHead
     );
 
+_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 USHORT
 WINAPI

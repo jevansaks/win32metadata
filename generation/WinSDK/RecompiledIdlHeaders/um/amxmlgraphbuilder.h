@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 // Copyright (c) Microsoft Corporation.  All Rights Reserved.
 
 #include <winapifamily.h>
@@ -9,7 +10,7 @@
 DEFINE_GUID(IID_IXMLGraphBuilder, 
 0x1bb05960, 0x5fbf, 0x11d2, 0xa5, 0x21, 0x44, 0xdf, 0x7, 0xc1, 0x0, 0x0);
 
-interface IXMLGraphBuilder : IUnknown
+interface _Win32_SupportedOS_Windows2000_ IXMLGraphBuilder : IUnknown
 {
     STDMETHOD(BuildFromXML) (IGraphBuilder *pGraph, IXMLElement *pxml) = 0;
     STDMETHOD(SaveToXML) (IGraphBuilder *pGraph, BSTR *pbstrxml) = 0;

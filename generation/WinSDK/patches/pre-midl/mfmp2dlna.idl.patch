@@ -1,0 +1,20 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfmp2dlna.idl b/generation/WinSDK/RecompiledIdlHeaders/um/mfmp2dlna.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mfmp2dlna.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfmp2dlna.idl
+@@ -6,6 +6,7 @@
+ //*@@@---@@@@******************************************************************
+ //
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -22,6 +23,7 @@
+ ///     Initialize Media Foundation MPEG-2 sink
+ /// </summary>
+ //////////////////////////////////////////////////////////////////////////////
++cpp_quote("/* Win32Metadata: interface ::IMFDLNASinkInit => SupportedOSPlatform(\"windows6.1\") */")
+ [
+     object,
+     uuid(0c012799-1b61-4c10-bda9-04445be5f561),

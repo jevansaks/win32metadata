@@ -1,0 +1,17 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/lmstats.h b/generation/WinSDK/RecompiledIdlHeaders/um/lmstats.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/lmstats.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/lmstats.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0001    // Increment this if a change has global effects
+ 
+ Copyright (c) 1991-1999  Microsoft Corporation
+@@ -45,6 +46,7 @@
+ // Function Prototypes - Statistics
+ //
+ 
++_Win32_SupportedOS_WindowsXP_
+ NET_API_STATUS NET_API_FUNCTION
+ NetStatisticsGet (
+     _In_        LPTSTR  ServerName,

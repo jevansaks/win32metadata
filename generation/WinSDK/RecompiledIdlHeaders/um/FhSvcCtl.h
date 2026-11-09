@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Microsoft Windows - File History
@@ -49,19 +50,21 @@ typedef enum {
 
 DECLARE_HANDLE (FH_SERVICE_PIPE_HANDLE);
 
-__declspec(deprecated("FhServiceOpenPipe is deprecated and might not work on all platforms. For more info, see MSDN."))
-HRESULT
-WINAPI
-FhServiceOpenPipe(
-    _In_ BOOL StartServiceIfStopped,
-    _Out_ FH_SERVICE_PIPE_HANDLE *Pipe
-    );
+_Win32_SupportedOS_BEGIN_(Windows8)
 
 __declspec(deprecated("FhServiceClosePipe is deprecated and might not work on all platforms. For more info, see MSDN."))
 HRESULT
 WINAPI
 FhServiceClosePipe(
     _In_ FH_SERVICE_PIPE_HANDLE Pipe
+    );
+
+__declspec(deprecated("FhServiceOpenPipe is deprecated and might not work on all platforms. For more info, see MSDN."))
+HRESULT
+WINAPI
+FhServiceOpenPipe(
+    _In_ BOOL StartServiceIfStopped,
+    _Out_ _Win32_RAIIFree_(FhServiceClosePipe, -1, 0) FH_SERVICE_PIPE_HANDLE *Pipe
     );
 
 __declspec(deprecated("FhServiceStartBackup is deprecated and might not work on all platforms. For more info, see MSDN."))
@@ -101,6 +104,7 @@ FhServiceUnblockBackup(
     _In_ FH_SERVICE_PIPE_HANDLE Pipe
     );
 
+_Win32_SupportedOS_END_()
 
 #endif // NTDDI_VERSION >= NTDDI_WIN8 
 

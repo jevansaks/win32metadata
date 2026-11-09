@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2006 Microsoft Corporation
@@ -141,6 +142,7 @@ extern "C"
 // APIs.
 //
 
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSBPAPI
 WdsBpParseInitialize (
@@ -150,6 +152,7 @@ WdsBpParseInitialize (
     _Out_ HANDLE *phHandle
     );
 
+_Win32_SupportedOS_Windows8_
 DWORD
 WDSBPAPI
 WdsBpParseInitializev6 (
@@ -159,6 +162,7 @@ WdsBpParseInitializev6 (
     _Out_ HANDLE *phHandle
     );
 
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSBPAPI
 WdsBpInitialize (
@@ -166,12 +170,14 @@ WdsBpInitialize (
     _Out_ HANDLE *phHandle
     );
 
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSBPAPI
 WdsBpCloseHandle (
     _In_ HANDLE hHandle
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WDSBPAPI
@@ -183,6 +189,7 @@ WdsBpQueryOption (
     _Out_opt_ PULONG puBytes
     );
 
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSBPAPI
 WdsBpAddOption (
@@ -192,6 +199,7 @@ WdsBpAddOption (
     _In_reads_bytes_(uValueLen) PVOID pValue
     );
 
+_Win32_SupportedOS_WindowsVista_
 _Success_(return == ERROR_SUCCESS)
 DWORD
 WDSBPAPI

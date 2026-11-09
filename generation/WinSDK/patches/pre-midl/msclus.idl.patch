@@ -1,0 +1,20 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/msclus.idl b/generation/WinSDK/RecompiledIdlHeaders/um/msclus.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/msclus.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/msclus.idl
+@@ -11,6 +11,7 @@
+ //
+ /////////////////////////////////////////////////////////////////////////////
+ 
++#include <sal.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ #pragma region Desktop Family
+@@ -1912,6 +1913,7 @@
+ 
+ /////////////////////////////////////////////////
+ // ISClusPartitionEx
++cpp_quote("/* Win32Metadata: interface ::ISClusPartitionEx => SupportedOSPlatform(\"windowsserver2008\") */")
+ [
+     oleautomation,
+     hidden,
