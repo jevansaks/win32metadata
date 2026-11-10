@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation
@@ -169,7 +168,6 @@ Return Value:
 HRESULT indicating success or failure.
 
 --*/
-_Win32_SupportedOS_BEGIN_(Windows81)
 HRESULT WINAPI
 GetDeviceRegistrationInfo(
     _In_  REGISTRATION_INFORMATION_CLASS DeviceInformationClass,
@@ -219,7 +217,6 @@ HRESULT WINAPI
 IsManagementRegistrationAllowed(
     _Out_ BOOL *pfIsManagementRegistrationAllowed
     );
-_Win32_SupportedOS_END_()
 
 /*++
 Routine Description:
@@ -254,7 +251,6 @@ Return Value:
     HRESULT indicating success or failure.
 
 --*/
-_Win32_SupportedOS_Windows81_
 HRESULT WINAPI
 SetManagedExternally(
     _In_ BOOL IsManagedExternally
@@ -278,7 +274,6 @@ Return Value:
     ppMgmtInfo - Struct containing MDM service URIs
 
 --*/
-_Win32_SupportedOS_BEGIN_(Windows81)
 HRESULT WINAPI
 DiscoverManagementService(
     _In_z_              LPCWSTR                         pszUPN,
@@ -324,7 +319,6 @@ HRESULT indicating success or failure.
 --*/
 HRESULT WINAPI
 RegisterDeviceWithManagementUsingAADDeviceCredentials();
-_Win32_SupportedOS_END_()
 
 
 /*++
@@ -365,7 +359,6 @@ Return Value:
     HRESULT indicating success or failure.
 
 --*/
-_Win32_SupportedOS_BEGIN_(Windows81)
 HRESULT WINAPI
 RegisterDeviceWithManagement(
     _In_z_                  LPCWSTR     pszUPN,
@@ -392,7 +385,6 @@ HRESULT WINAPI
 UnregisterDeviceWithManagement(
     _In_opt_z_ LPCWSTR enrollmentID
     );
-_Win32_SupportedOS_END_()
 
 /*++
 
@@ -461,7 +453,6 @@ Return Value:
     HRESULT indicating success or failure.
 
 --*/
-_Win32_SupportedOS_Windows81_
 HRESULT WINAPI
 GetManagementAppHyperlink(
     _In_ DWORD cchHyperlink,
@@ -488,7 +479,6 @@ Return Value:
     ppMgmtInfo - Struct containing MDM service URIs
 --*/
 
-_Win32_SupportedOS_Windows81_
 HRESULT WINAPI
 DiscoverManagementServiceEx(
     _In_z_              LPCWSTR                         pszUPN,

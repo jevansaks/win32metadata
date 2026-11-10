@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 
 
 /*++
@@ -1093,7 +1092,7 @@ typedef struct lpminitinfo {
 
 ULONG
 APIENTRY
-_Win32_SupportedOS_Windows2000_ LPM_Initialize (
+LPM_Initialize (
 
     IN  LPM_HANDLE      LpmHandle,
     
@@ -1113,7 +1112,7 @@ _Win32_SupportedOS_Windows2000_ LPM_Initialize (
 
 ULONG
 APIENTRY
-_Win32_SupportedOS_Windows2000_ LPM_Deinitialize (
+LPM_Deinitialize (    
     IN  LPM_HANDLE      LpmHandle );
             
 
@@ -1140,7 +1139,7 @@ _Win32_SupportedOS_Windows2000_ LPM_Deinitialize (
 
 ULONG
 APIENTRY
-_Win32_SupportedOS_Windows2000_ LPM_AdmitRsvpMsg (
+LPM_AdmitRsvpMsg (
 
     IN  RHANDLE         PcmReqHandle,
     
@@ -1169,7 +1168,7 @@ _Win32_SupportedOS_Windows2000_ LPM_AdmitRsvpMsg (
 
 ULONG
 APIENTRY
-_Win32_SupportedOS_Windows2000_ LPM_GetRsvpObjects (
+LPM_GetRsvpObjects (
 
     IN  RHANDLE         PcmReqHandle,
     
@@ -1203,7 +1202,7 @@ _Win32_SupportedOS_Windows2000_ LPM_GetRsvpObjects (
 
 VOID
 APIENTRY
-_Win32_SupportedOS_Windows2000_ LPM_DeleteState(
+LPM_DeleteState(
 
     IN  RSVP_HOP        *pRcvdIfAddr,
     
@@ -1241,7 +1240,7 @@ typedef struct lpmiptable {
 
 BOOL
 APIENTRY
-_Win32_SupportedOS_Windows2000_ LPM_IpAddressTable (
+LPM_IpAddressTable (
 
     IN  ULONG       cIpAddrTable,
     
@@ -1261,7 +1260,7 @@ _Win32_SupportedOS_Windows2000_ LPM_IpAddressTable (
 
 VOID
 APIENTRY
-_Win32_SupportedOS_Windows2000_ LPM_CommitResv (
+LPM_CommitResv (
 
     IN  RSVP_SESSION    *RsvpSession,
     

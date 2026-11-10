@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 //*@@@+++@@@@******************************************************************
@@ -68,7 +67,6 @@ extern "C" {
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFStartup( ULONG Version, DWORD dwFlags = MFSTARTUP_FULL );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES) */
@@ -79,7 +77,6 @@ STDAPI MFStartup( ULONG Version, DWORD dwFlags = MFSTARTUP_FULL );
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFStartup( ULONG Version, DWORD dwFlags );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES) */
@@ -96,7 +93,6 @@ STDAPI MFStartup( ULONG Version, DWORD dwFlags );
 // Application should call MFShutdown the same number of times as MFStartup
 // Application should not call MFStartup / MFShutdown from workqueue threads
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFShutdown();
 
 
@@ -108,9 +104,7 @@ STDAPI MFShutdown();
 // These functions can be used to keep the MF platform object in place.
 // Every call to MFLockPlatform should have a matching call to MFUnlockPlatform
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFLockPlatform();
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFUnlockPlatform();
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -126,7 +120,6 @@ typedef unsigned __int64 MFWORKITEM_KEY;
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFPutWorkItem(
             DWORD dwQueue,
             IMFAsyncCallback * pCallback,
@@ -138,7 +131,6 @@ STDAPI MFPutWorkItem(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFPutWorkItem2(
             DWORD dwQueue,
             LONG Priority,
@@ -151,7 +143,6 @@ STDAPI MFPutWorkItem2(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFPutWorkItemEx(
             DWORD dwQueue,
             IMFAsyncResult * pResult);
@@ -162,13 +153,11 @@ STDAPI MFPutWorkItemEx(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFPutWorkItemEx2(
             DWORD dwQueue,
             LONG Priority,
             _In_ IMFAsyncResult * pResult);
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFPutWaitingWorkItem (
             HANDLE hEvent,
             LONG Priority,
@@ -176,12 +165,10 @@ STDAPI MFPutWaitingWorkItem (
             _Out_opt_ MFWORKITEM_KEY * pKey
             );
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFAllocateSerialWorkQueue (
             _In_ DWORD dwWorkQueue,
             _Out_ OUT DWORD * pdwWorkQueue);
             
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFScheduleWorkItemEx(
             IMFAsyncResult * pResult,
             INT64 Timeout,
@@ -193,7 +180,6 @@ STDAPI MFScheduleWorkItemEx(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFScheduleWorkItem(
             IMFAsyncCallback * pCallback,
             IUnknown * pState,
@@ -211,7 +197,6 @@ STDAPI MFScheduleWorkItem(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCancelWorkItem(
             MFWORKITEM_KEY Key);
 
@@ -226,19 +211,16 @@ STDAPI MFCancelWorkItem(
 //
 // MF periodic callbacks
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFGetTimerPeriodicity(
             _Out_ DWORD * Periodicity);
 
 typedef void (*MFPERIODICCALLBACK)(IUnknown* pContext);
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFAddPeriodicCallback(
             MFPERIODICCALLBACK Callback,
             IUnknown * pContext,
             _Out_opt_ DWORD * pdwKey);
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFRemovePeriodicCallback(
             DWORD dwKey);
 
@@ -267,7 +249,6 @@ typedef enum
     MF_MULTITHREADED_WORKQUEUE = 2, // common MT threadpool
 }   MFASYNC_WORKQUEUE_TYPE;
 
-_Win32_SupportedOS_Windows7_
 STDAPI MFAllocateWorkQueueEx(
             _In_ MFASYNC_WORKQUEUE_TYPE WorkQueueType,
             _Out_ OUT DWORD * pdwWorkQueue);
@@ -277,7 +258,6 @@ STDAPI MFAllocateWorkQueueEx(
 // Allocate a standard work queue. the behaviour is the same with:
 // MFAllocateWorkQueueEx( MF_STANDARD_WORKQUEUE, pdwWorkQueue )
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFAllocateWorkQueue(
             _Out_ OUT DWORD * pdwWorkQueue);
 
@@ -288,11 +268,9 @@ STDAPI MFAllocateWorkQueue(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFLockWorkQueue(
             _In_ DWORD dwWorkQueue);
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFUnlockWorkQueue(
             _In_ DWORD dwWorkQueue);
 
@@ -302,7 +280,6 @@ STDAPI MFUnlockWorkQueue(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFBeginRegisterWorkQueueWithMMCSS(
             DWORD dwWorkQueueId,
             _In_ LPCWSTR wszClass,
@@ -310,7 +287,6 @@ STDAPI MFBeginRegisterWorkQueueWithMMCSS(
             _In_ IMFAsyncCallback * pDoneCallback,
             _In_ IUnknown * pDoneState );
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFBeginRegisterWorkQueueWithMMCSSEx(
             DWORD dwWorkQueueId,
             _In_ LPCWSTR wszClass,
@@ -319,39 +295,32 @@ STDAPI MFBeginRegisterWorkQueueWithMMCSSEx(
             _In_ IMFAsyncCallback * pDoneCallback,
             _In_ IUnknown * pDoneState );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFEndRegisterWorkQueueWithMMCSS(
             _In_ IMFAsyncResult * pResult,
             _Out_ DWORD * pdwTaskId );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFBeginUnregisterWorkQueueWithMMCSS(
             DWORD dwWorkQueueId,
             _In_ IMFAsyncCallback * pDoneCallback,
             _In_ IUnknown * pDoneState );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFEndUnregisterWorkQueueWithMMCSS(
             _In_ IMFAsyncResult * pResult );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFGetWorkQueueMMCSSClass(
             DWORD dwWorkQueueId,
             _Out_writes_to_opt_(*pcchClass,*pcchClass)  LPWSTR pwszClass,
             _Inout_  DWORD *pcchClass );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFGetWorkQueueMMCSSTaskId(
             DWORD dwWorkQueueId,
             _Out_ LPDWORD pdwTaskId );
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFRegisterPlatformWithMMCSS(
     _In_ PCWSTR wszClass,
     _Inout_ DWORD* pdwTaskId,
     _In_ LONG lPriority );
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFUnregisterPlatformFromMMCSS();
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES) */
@@ -360,7 +329,6 @@ STDAPI MFUnregisterPlatformFromMMCSS();
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFLockSharedWorkQueue(
     _In_ PCWSTR wszClass,
     _In_ LONG BasePriority,
@@ -373,7 +341,6 @@ STDAPI MFLockSharedWorkQueue(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFGetWorkQueueMMCSSPriority(
             DWORD dwWorkQueueId,
             _Out_ LONG* lPriority );
@@ -392,7 +359,6 @@ STDAPI MFGetWorkQueueMMCSSPriority(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateAsyncResult(
     IUnknown * punkObject,
     IMFAsyncCallback * pCallback,
@@ -402,7 +368,6 @@ STDAPI MFCreateAsyncResult(
 //
 // Helper for calling IMFAsyncCallback::Invoke
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFInvokeCallback(
     IMFAsyncResult * pAsyncResult );
 
@@ -446,7 +411,6 @@ typedef struct tagMFASYNCRESULT
 // Regardless of the access mode with which the file is opened, the sharing
 // permissions will allow shared reading and deleting.
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateFile(
     MF_FILE_ACCESSMODE  AccessMode,
     MF_FILE_OPENMODE    OpenMode,
@@ -454,14 +418,12 @@ STDAPI MFCreateFile(
     LPCWSTR             pwszFileURL,
     _Out_ IMFByteStream       **ppIByteStream );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateTempFile(
     MF_FILE_ACCESSMODE  AccessMode,
     MF_FILE_OPENMODE    OpenMode,
     MF_FILE_FLAGS       fFlags,
     _Out_ IMFByteStream       **ppIByteStream );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFBeginCreateFile(
     MF_FILE_ACCESSMODE  AccessMode,
     MF_FILE_OPENMODE    OpenMode,
@@ -471,12 +433,10 @@ STDAPI MFBeginCreateFile(
     IUnknown *          pState,
     _Out_ IUnknown ** ppCancelCookie);
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFEndCreateFile(
     IMFAsyncResult * pResult,
     _Out_ IMFByteStream **ppFile );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCancelCreateFile(
     IUnknown * pCancelCookie);
 
@@ -494,7 +454,6 @@ STDAPI MFCancelCreateFile(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateMemoryBuffer(
     _In_ DWORD                      cbMaxLength,
     _Out_ IMFMediaBuffer **         ppBuffer );
@@ -503,7 +462,6 @@ STDAPI MFCreateMemoryBuffer(
 // Creates an IMFMediaBuffer wrapper at the given offset and length
 // within an existing IMFMediaBuffer
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateMediaBufferWrapper(
     _In_ IMFMediaBuffer *           pBuffer,
     _In_ DWORD                      cbOffset,
@@ -524,7 +482,6 @@ STDAPI MFCreateMediaBufferWrapper(
 // QueryInterface for IID_IMFSample, from which the original sample's attributes
 // can be obtained
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateLegacyMediaBufferOnMFMediaBuffer(
     _In_opt_ IMFSample *            pSample,
     _In_ IMFMediaBuffer *           pMFMediaBuffer,
@@ -535,9 +492,7 @@ STDAPI MFCreateLegacyMediaBufferOnMFMediaBuffer(
 // Create a DirectX surface buffer
 //
 #include <dxgiformat.h>
-_Win32_SupportedOS_Windows8_
 STDAPI_(DXGI_FORMAT) MFMapDX9FormatToDXGIFormat( _In_ DWORD dx9 );
-_Win32_SupportedOS_Windows8_
 STDAPI_(DWORD) MFMapDXGIFormatToDX9Format( _In_ DXGI_FORMAT dx11 );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES) */
@@ -546,13 +501,11 @@ STDAPI_(DWORD) MFMapDXGIFormatToDX9Format( _In_ DXGI_FORMAT dx11 );
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFLockDXGIDeviceManager(
     _Out_opt_ UINT* pResetToken,
     _Outptr_ IMFDXGIDeviceManager** ppManager
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFUnlockDXGIDeviceManager();
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES) */
 #pragma endregion
@@ -560,14 +513,12 @@ STDAPI MFUnlockDXGIDeviceManager();
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateDXSurfaceBuffer(
     _In_ REFIID                     riid,
     _In_ IUnknown *                 punkSurface,
     _In_ BOOL                       fBottomUpWhenLinear,
     _Outptr_ IMFMediaBuffer **   ppBuffer );
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFCreateWICBitmapBuffer(
     _In_ REFIID                     riid,
     _In_ IUnknown *                 punkSurface,
@@ -580,7 +531,6 @@ STDAPI MFCreateWICBitmapBuffer(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 MFCreateDXGISurfaceBuffer(
     _In_ REFIID riid,
@@ -649,7 +599,6 @@ MFGetDXGIDeviceManageMode(
 #define MF_4096_BYTE_ALIGNMENT    0x00000fff
 #define MF_8192_BYTE_ALIGNMENT    0x00001fff
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateAlignedMemoryBuffer(
     _In_ DWORD                      cbMaxLength,
     _In_ DWORD                      cbAligment, 
@@ -681,7 +630,6 @@ EXTERN_C const GUID MR_BUFFER_SERVICE;
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateMediaEvent(
     _In_ MediaEventType met,
     _In_ REFGUID guidExtendedType,
@@ -698,7 +646,6 @@ STDAPI MFCreateMediaEvent(
 // EndGetEvent), and the various IMFMediaEventQueue::QueueEventXXX methods
 // can be used to queue events that the caller will consume.
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateEventQueue(
     _Out_ IMFMediaEventQueue **ppMediaEventQueue );
 
@@ -947,7 +894,6 @@ DEFINE_GUID(MF_EVENT_STREAM_METADATA_SYSTEMID,
 
 
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateSample( _Out_ IMFSample **ppIMFSample );
 
 
@@ -1899,14 +1845,12 @@ MFInitAttributesFromBlob(
     _In_                    UINT            cbBufSize
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFGetAttributesAsBlobSize(
     _In_    IMFAttributes*  pAttributes,
     _Out_   UINT32*         pcbBufSize
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFGetAttributesAsBlob(
     _In_                    IMFAttributes*  pAttributes,
@@ -1988,7 +1932,6 @@ DEFINE_GUID(MFT_CATEGORY_VIDEO_RENDERER_EFFECT,
 //
 // "Flags" is for future expansion - for now must be 0
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFTRegister(
     _In_                            CLSID                   clsidMFT,
@@ -2002,7 +1945,6 @@ MFTRegister(
     _In_opt_                        IMFAttributes*          pAttributes
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFTUnregister(
     _In_    CLSID   clsidMFT
@@ -2010,7 +1952,6 @@ MFTUnregister(
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
 //  Register an MFT class in-process
-_Win32_SupportedOS_Windows7_
 STDAPI
 MFTRegisterLocal(
    _In_                        IClassFactory*          pClassFactory,
@@ -2025,14 +1966,12 @@ MFTRegisterLocal(
 
 //  Unregister locally registered MFT
 //  If pClassFactory is NULL all local MFTs are unregistered
-_Win32_SupportedOS_Windows7_
 STDAPI
 MFTUnregisterLocal(
     _In_opt_    IClassFactory *   pClassFactory
     );
 
 // Register an MFT class in-process, by CLSID
-_Win32_SupportedOS_Windows7_
 STDAPI
 MFTRegisterLocalByCLSID(
    _In_                        REFCLSID                clisdMFT,
@@ -2046,7 +1985,6 @@ MFTRegisterLocalByCLSID(
     );
 
 // Unregister locally registered MFT by CLSID
-_Win32_SupportedOS_Windows7_
 STDAPI
 MFTUnregisterLocalByCLSID(
     _In_    CLSID   clsidMFT
@@ -2056,7 +1994,6 @@ MFTUnregisterLocalByCLSID(
 //
 // result *ppclsidMFT must be freed with CoTaskMemFree.
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFTEnum(
     _In_                    GUID                    guidCategory,
@@ -2076,11 +2013,7 @@ MFTEnum(
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
 
-enum
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-__attribute__((flag_enum))
-#endif
- _MFT_ENUM_FLAG
+enum _MFT_ENUM_FLAG
 {
     MFT_ENUM_FLAG_SYNCMFT                         = 0x00000001, // Enumerates V1 MFTs. This is default.
     MFT_ENUM_FLAG_ASYNCMFT                        = 0x00000002, // Enumerates only software async MFTs also known as V2 MFTs
@@ -2101,11 +2034,10 @@ __attribute__((flag_enum))
 // buffer should be released.
 //
 
-_Win32_SupportedOS_Windows7_
 STDAPI
 MFTEnumEx(
     _In_                                GUID                            guidCategory,
-    _In_                                _Win32_AssociatedEnum_(enum _MFT_ENUM_FLAG) UINT32                          Flags,
+    _In_                                UINT32                          Flags,
     _In_opt_                            const MFT_REGISTER_TYPE_INFO*   pInputType,
     _In_opt_                            const MFT_REGISTER_TYPE_INFO*   pOutputType,
     _Outptr_result_buffer_(*pnumMFTActivate) IMFActivate***                 pppMFTActivate,
@@ -2138,11 +2070,10 @@ DEFINE_GUID(MFT_ENUM_VIDEO_RENDERER_EXTENSION_PROFILE,
 DEFINE_GUID( MFT_ENUM_ADAPTER_LUID,
     0x1d39518c, 0xe220, 0x4da8, 0xa0, 0x7f, 0xba, 0x17, 0x25, 0x52, 0xd6, 0xb1 );
 
-_Win32_SupportedOS_10240_
 STDAPI
 MFTEnum2(
     _In_                                GUID                            guidCategory,
-    _In_                                _Win32_AssociatedEnum_(enum _MFT_ENUM_FLAG) UINT32                          Flags,
+    _In_                                UINT32                          Flags,
     _In_opt_                            const MFT_REGISTER_TYPE_INFO*   pInputType,
     _In_opt_                            const MFT_REGISTER_TYPE_INFO*   pOutputType,
     _In_opt_                            IMFAttributes*                  pAttributes,
@@ -2157,7 +2088,6 @@ MFTEnum2(
 // results *pszName, *ppInputTypes, and *ppOutputTypes must be freed with CoTaskMemFree.
 // *ppAttributes must be released.
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFTGetInfo(
     _In_                                   CLSID                       clsidMFT,
@@ -2175,7 +2105,6 @@ MFTGetInfo(
 //
 //  Get the plugin control API
 //
-_Win32_SupportedOS_Windows7_
 STDAPI
 MFGetPluginControl(
     _Out_ IMFPluginControl **ppPluginControl
@@ -2184,7 +2113,6 @@ MFGetPluginControl(
 //
 //  Get MFT's merit - checking that is has a valid certificate
 //
-_Win32_SupportedOS_Windows7_
 STDAPI
 MFGetMFTMerit(
     _Inout_ IUnknown *pMFT,
@@ -2203,14 +2131,12 @@ MFGetMFTMerit(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 MFRegisterLocalSchemeHandler(
     _In_        PCWSTR          szScheme,
     _In_        IMFActivate*    pActivate
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 MFRegisterLocalByteStreamHandler(
     _In_        PCWSTR          szFileExtension,
@@ -2224,7 +2150,6 @@ MFRegisterLocalByteStreamHandler(
 // original bytestream can then be passed to another
 // media source for instance.
 //
-_Win32_SupportedOS_Windows8_
 STDAPI
 MFCreateMFByteStreamWrapper(
     _In_        IMFByteStream*  pStream,
@@ -2241,7 +2166,6 @@ MFCreateMFByteStreamWrapper(
 // Create a MF activate object that can instantiate media extension objects.
 // The activate object supports both IMFActivate and IClassFactory.
 //
-_Win32_SupportedOS_Windows8_
 STDAPI
 MFCreateMediaExtensionActivate(
     _In_        PCWSTR          szActivatableClassId,
@@ -2776,7 +2700,6 @@ DEFINE_GUID( MFSampleExtension_3DVideo_SampleFormat,
 // Only the values of 0, 90, 180, and 270 are valid.
 #ifndef _MFVideoRotationFormat_
 #define _MFVideoRotationFormat_
-#include <sal.h>
 typedef enum _MFVideoRotationFormat {
     MFVideoRotationFormat_0        = 0,
     MFVideoRotationFormat_90       = 90,
@@ -2810,19 +2733,16 @@ DEFINE_GUID(MFSampleExtension_MULTIPLEXED_MANAGER,
 0x8dcdee79, 0x6b5a, 0x4c45, 0x8d, 0xb9, 0x20, 0xb3, 0x95, 0xf0, 0x2f, 0xcf);
 
 
-_Win32_SupportedOS_15063_
 STDAPI MFCreateMuxStreamAttributes(
     _In_ IMFCollection *pAttributesToMux,
     _COM_Outptr_ IMFAttributes**ppMuxAttribs
 );
 
-_Win32_SupportedOS_15063_
 STDAPI MFCreateMuxStreamMediaType(
     _In_ IMFCollection *pMediaTypesToMux,
     _COM_Outptr_ IMFMediaType**ppMuxMediaType
 );
 
-_Win32_SupportedOS_15063_
 STDAPI MFCreateMuxStreamSample(
     _In_ IMFCollection *pSamplesToMux,
     _COM_Outptr_ IMFSample**ppMuxSample
@@ -3867,7 +3787,6 @@ typedef struct tagMPEG2VIDEOINFO MPEG2VIDEOINFO;
 struct _AMMediaType;
 typedef struct _AMMediaType AM_MEDIA_TYPE;
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFValidateMediaTypeSize(
     _In_                    GUID    FormatType,
@@ -3881,7 +3800,6 @@ MFValidateMediaTypeSize(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFCreateMediaType(
     _Outptr_ IMFMediaType**  ppMFType
@@ -3893,7 +3811,6 @@ MFCreateMediaType(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFCreateMFVideoFormatFromMFMediaType(
     _In_        IMFMediaType*           pMFType,
@@ -3922,7 +3839,6 @@ typedef enum _MFWaveFormatExConvertFlags {
 
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFCreateWaveFormatExFromMFMediaType(
     _In_        IMFMediaType*   pMFType,
@@ -3937,7 +3853,6 @@ MFCreateWaveFormatExFromMFMediaType(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromVideoInfoHeader(
     _In_                    IMFMediaType*           pMFType,
@@ -3946,7 +3861,6 @@ MFInitMediaTypeFromVideoInfoHeader(
     _In_opt_                const GUID*             pSubtype = NULL
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromVideoInfoHeader2(
     _In_                    IMFMediaType*           pMFType,
@@ -3955,7 +3869,6 @@ MFInitMediaTypeFromVideoInfoHeader2(
     _In_opt_                const GUID*             pSubtype = NULL
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromMPEG1VideoInfo(
     _In_                    IMFMediaType*           pMFType,
@@ -3964,7 +3877,6 @@ MFInitMediaTypeFromMPEG1VideoInfo(
     _In_opt_                const GUID*             pSubtype = NULL
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromMPEG2VideoInfo(
     _In_                    IMFMediaType*           pMFType,
@@ -3974,7 +3886,6 @@ MFInitMediaTypeFromMPEG2VideoInfo(
     );
 
 #ifndef NOBITMAP
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFCalculateBitmapImageSize(
     _In_reads_bytes_(cbBufSize)  const BITMAPINFOHEADER* pBMIH,
@@ -3995,7 +3906,6 @@ MFCalculateBitmapImageSize(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFCreateWaveFormatExFromMFMediaType(
     _In_        IMFMediaType*   pMFType,
@@ -4008,7 +3918,6 @@ MFCreateWaveFormatExFromMFMediaType(
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromVideoInfoHeader(
     _In_                    IMFMediaType*           pMFType,
@@ -4017,7 +3926,6 @@ MFInitMediaTypeFromVideoInfoHeader(
     _In_opt_                const GUID*             pSubtype
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromVideoInfoHeader2(
     _In_                    IMFMediaType*           pMFType,
@@ -4026,7 +3934,6 @@ MFInitMediaTypeFromVideoInfoHeader2(
     _In_opt_                const GUID*             pSubtype
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromMPEG1VideoInfo(
     _In_                    IMFMediaType*           pMFType,
@@ -4035,7 +3942,6 @@ MFInitMediaTypeFromMPEG1VideoInfo(
     _In_opt_                const GUID*             pSubtype
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromMPEG2VideoInfo(
     _In_                    IMFMediaType*           pMFType,
@@ -4045,7 +3951,6 @@ MFInitMediaTypeFromMPEG2VideoInfo(
     );
 
 #ifndef NOBITMAP
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFCalculateBitmapImageSize(
     _In_reads_bytes_(cbBufSize)  const BITMAPINFOHEADER* pBMIH,
@@ -4062,7 +3967,6 @@ MFCalculateBitmapImageSize(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFCalculateImageSize(
     _In_                    REFGUID                 guidSubtype,
@@ -4071,7 +3975,6 @@ MFCalculateImageSize(
     _Out_                   UINT32*                 pcbImageSize
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFFrameRateToAverageTimePerFrame(
     _In_                    UINT32                  unNumerator,
@@ -4079,7 +3982,6 @@ MFFrameRateToAverageTimePerFrame(
     _Out_                   UINT64*                 punAverageTimePerFrame
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFAverageTimePerFrameToFrameRate(
     _In_                    UINT64                  unAverageTimePerFrame,
@@ -4087,7 +3989,6 @@ MFAverageTimePerFrameToFrameRate(
     _Out_                   UINT32*                 punDenominator
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromWaveFormatEx(
     _In_                    IMFMediaType*           pMFType,
@@ -4099,7 +4000,6 @@ MFInitMediaTypeFromWaveFormatEx(
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromMFVideoFormat(
     _In_                    IMFMediaType*           pMFType,
@@ -4107,14 +4007,12 @@ MFInitMediaTypeFromMFVideoFormat(
     _In_                    UINT32                  cbBufSize
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitMediaTypeFromAMMediaType(
     _In_    IMFMediaType*           pMFType,
     _In_    const AM_MEDIA_TYPE*    pAMType
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitAMMediaTypeFromMFMediaType(
     _In_    IMFMediaType*           pMFType,
@@ -4122,7 +4020,6 @@ MFInitAMMediaTypeFromMFMediaType(
     _Inout_ AM_MEDIA_TYPE*          pAMType
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFCreateAMMediaTypeFromMFMediaType(
     _In_    IMFMediaType*           pMFType,
@@ -4146,7 +4043,6 @@ MFCreateAMMediaTypeFromMFMediaType(
 // and all of the attributes in the partial type exist in the full type and are set to
 // the same value.
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(BOOL)
 MFCompareFullToPartialMediaType(
     _In_    IMFMediaType*   pMFTypeFull,
@@ -4159,7 +4055,6 @@ MFCompareFullToPartialMediaType(
 
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFWrapMediaType(
     _In_    IMFMediaType*    pOrig,
@@ -4170,14 +4065,12 @@ MFWrapMediaType(
 
 
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFUnwrapMediaType(
     _In_    IMFMediaType*    pWrap,
     _Out_   IMFMediaType **  ppOrig
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFGetStrideForBitmapInfoHeader(
     DWORD format,
     DWORD dwWidth,
@@ -4195,7 +4088,6 @@ STDAPI MFGetStrideForBitmapInfoHeader(
 //
 
 #ifdef _KSMEDIA_
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateVideoMediaTypeFromVideoInfoHeader(
     _In_ const KS_VIDEOINFOHEADER* pVideoInfoHeader,
     DWORD cbVideoInfoHeader,
@@ -4207,7 +4099,6 @@ STDAPI MFCreateVideoMediaTypeFromVideoInfoHeader(
     _Out_ IMFVideoMediaType** ppIVideoMediaType
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateVideoMediaTypeFromVideoInfoHeader2(
     _In_ const KS_VIDEOINFOHEADER2* pVideoInfoHeader,
     DWORD cbVideoInfoHeader,
@@ -4218,19 +4109,16 @@ STDAPI MFCreateVideoMediaTypeFromVideoInfoHeader2(
 
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateVideoMediaType(
     _In_ const MFVIDEOFORMAT* pVideoFormat,
     _Out_ IMFVideoMediaType** ppIVideoMediaType
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateVideoMediaTypeFromSubtype(
     _In_ const GUID * pAMSubtype,
     _Out_ IMFVideoMediaType  **ppIVideoMediaType
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(BOOL)
 MFIsFormatYUV(
     DWORD Format
@@ -4240,7 +4128,6 @@ MFIsFormatYUV(
 //  These depend on BITMAPINFOHEADER being defined
 //
 #ifndef NOBITMAP
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateVideoMediaTypeFromBitMapInfoHeader(
     _In_ const BITMAPINFOHEADER* pbmihBitMapInfoHeader,
     DWORD dwPixelAspectRatioX,
@@ -4254,7 +4141,6 @@ STDAPI MFCreateVideoMediaTypeFromBitMapInfoHeader(
     );
 #endif // NOBITMAP
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFGetPlaneSize(
     DWORD format,
     DWORD dwWidth,
@@ -4268,7 +4154,6 @@ STDAPI MFGetPlaneSize(
 // MFCreateVideoMediaTypeFromBitMapInfoHeaderEx
 //
 
-_Win32_SupportedOS_Windows7_
 STDAPI MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
     _In_reads_bytes_(cbBitMapInfoHeader) const BITMAPINFOHEADER* pbmihBitMapInfoHeader,
     _In_    UINT32                  cbBitMapInfoHeader,
@@ -4288,7 +4173,6 @@ STDAPI MFCreateVideoMediaTypeFromBitMapInfoHeaderEx(
 // MFCreateMediaTypeFromRepresentation
 //
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateMediaTypeFromRepresentation(
     GUID guidRepresentation,
     _In_ LPVOID pvRepresentation,
@@ -4301,28 +4185,24 @@ STDAPI MFCreateMediaTypeFromRepresentation(
 //
 
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFCreateAudioMediaType(
     _In_    const WAVEFORMATEX* pAudioFormat,
     _Out_   IMFAudioMediaType** ppIAudioMediaType
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 STDMETHODCALLTYPE
 MFGetUncompressedVideoFormat(
     _In_    const MFVIDEOFORMAT* pVideoFormat
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI 
 MFInitVideoFormat(
     _In_    MFVIDEOFORMAT*          pVideoFormat,
     _In_    MFStandardVideoFormat   type
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFInitVideoFormat_RGB(
     _In_    MFVIDEOFORMAT*  pVideoFormat,
@@ -4331,13 +4211,11 @@ MFInitVideoFormat_RGB(
     _In_    DWORD           D3Dfmt /* 0 indicates sRGB */
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI 
 MFConvertColorInfoToDXVA(
     _Out_ DWORD* pdwToDXVA,
     _In_  const MFVIDEOFORMAT* pFromFormat
     );
-_Win32_SupportedOS_WindowsVista_
 STDAPI
 MFConvertColorInfoFromDXVA(
     _Inout_ MFVIDEOFORMAT* pToFormat,
@@ -4353,7 +4231,6 @@ MFConvertColorInfoFromDXVA(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCopyImage(
     _Out_writes_bytes_(_Inexpressible_(abs(lDestStride) *  dwLines)) BYTE* pDest,
     LONG    lDestStride,
@@ -4369,14 +4246,12 @@ STDAPI MFCopyImage(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFConvertFromFP16Array(
     _Out_writes_(dwCount) float* pDest,
     _In_reads_(dwCount) const WORD* pSrc,
     DWORD dwCount
     );
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFConvertToFP16Array(
     _Out_writes_(dwCount) WORD* pDest,
     _In_reads_(dwCount) const float* pSrc,
@@ -4389,7 +4264,6 @@ STDAPI MFConvertToFP16Array(
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFCreate2DMediaBuffer( 
     _In_ DWORD dwWidth,
     _In_ DWORD dwHeight,
@@ -4402,7 +4276,6 @@ STDAPI MFCreate2DMediaBuffer(
 //
 // Creates an optimal system memory media buffer from a media type
 //
-_Win32_SupportedOS_Windows8_
 STDAPI MFCreateMediaBufferFromMediaType(
     _In_ IMFMediaType* pMediaType,
     _In_ LONGLONG llDuration,   // Sample Duration, needed for audio
@@ -4442,14 +4315,14 @@ LO32(UINT64 unPacked)
 
 inline
 UINT64
-_Win32_SupportedOS_WindowsVista_ Pack2UINT32AsUINT64(UINT32 unHigh, UINT32 unLow)
+Pack2UINT32AsUINT64(UINT32 unHigh, UINT32 unLow)
 {
     return ((UINT64)unHigh << 32) | unLow;
 }
 
 inline
 void
-_Win32_SupportedOS_WindowsVista_ Unpack2UINT32AsUINT64(UINT64 unPacked, _Out_ UINT32* punHigh, _Out_ UINT32* punLow)
+Unpack2UINT32AsUINT64(UINT64 unPacked, _Out_ UINT32* punHigh, _Out_ UINT32* punLow)
 {
     *punHigh = HI32(unPacked);
     *punLow = LO32(unPacked);
@@ -4457,28 +4330,28 @@ _Win32_SupportedOS_WindowsVista_ Unpack2UINT32AsUINT64(UINT64 unPacked, _Out_ UI
 
 inline
 UINT64
-_Win32_SupportedOS_Windows8_ PackSize(UINT32 unWidth, UINT32 unHeight)
+PackSize(UINT32 unWidth, UINT32 unHeight)
 {
     return Pack2UINT32AsUINT64(unWidth, unHeight);
 }
 
 inline
 void
-_Win32_SupportedOS_Windows8_ UnpackSize(UINT64 unPacked, _Out_ UINT32* punWidth, _Out_ UINT32* punHeight)
+UnpackSize(UINT64 unPacked, _Out_ UINT32* punWidth, _Out_ UINT32* punHeight)
 {
     Unpack2UINT32AsUINT64(unPacked, punWidth, punHeight);
 }
 
 inline
 UINT64
-_Win32_SupportedOS_Windows8_ PackRatio(INT32 nNumerator, UINT32 unDenominator)
+PackRatio(INT32 nNumerator, UINT32 unDenominator)
 {
     return Pack2UINT32AsUINT64((UINT32)nNumerator, unDenominator);
 }
 
 inline
 void
-_Win32_SupportedOS_Windows8_ UnpackRatio(UINT64 unPacked, _Out_ INT32* pnNumerator, _Out_ UINT32* punDenominator)
+UnpackRatio(UINT64 unPacked, _Out_ INT32* pnNumerator, _Out_ UINT32* punDenominator)
 {
     Unpack2UINT32AsUINT64(unPacked, (UINT32*)pnNumerator, punDenominator);
 }
@@ -4489,7 +4362,7 @@ _Win32_SupportedOS_Windows8_ UnpackRatio(UINT64 unPacked, _Out_ INT32* pnNumerat
 //
 inline
 UINT32
-_Win32_SupportedOS_WindowsVista_ MFGetAttributeUINT32(
+MFGetAttributeUINT32(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     UINT32          unDefault
@@ -4504,7 +4377,7 @@ _Win32_SupportedOS_WindowsVista_ MFGetAttributeUINT32(
 
 inline
 UINT64
-_Win32_SupportedOS_WindowsVista_ MFGetAttributeUINT64(
+MFGetAttributeUINT64(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     UINT64          unDefault
@@ -4519,7 +4392,7 @@ _Win32_SupportedOS_WindowsVista_ MFGetAttributeUINT64(
 
 inline
 double
-_Win32_SupportedOS_WindowsVista_ MFGetAttributeDouble(
+MFGetAttributeDouble(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     double          fDefault
@@ -4538,7 +4411,7 @@ _Win32_SupportedOS_WindowsVista_ MFGetAttributeDouble(
 
 inline
 HRESULT
-_Win32_SupportedOS_WindowsVista_ MFGetAttribute2UINT32asUINT64(
+MFGetAttribute2UINT32asUINT64(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     _Out_ UINT32*   punHigh32,
@@ -4559,7 +4432,7 @@ _Win32_SupportedOS_WindowsVista_ MFGetAttribute2UINT32asUINT64(
 
 inline
 HRESULT
-_Win32_SupportedOS_WindowsVista_ MFSetAttribute2UINT32asUINT64(
+MFSetAttribute2UINT32asUINT64(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     UINT32          unHigh32,
@@ -4571,7 +4444,7 @@ _Win32_SupportedOS_WindowsVista_ MFSetAttribute2UINT32asUINT64(
 
 inline
 HRESULT
-_Win32_SupportedOS_WindowsVista_ MFGetAttributeRatio(
+MFGetAttributeRatio(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     _Out_ UINT32*   punNumerator,
@@ -4583,7 +4456,7 @@ _Win32_SupportedOS_WindowsVista_ MFGetAttributeRatio(
 
 inline
 HRESULT
-_Win32_SupportedOS_WindowsVista_ MFGetAttributeSize(
+MFGetAttributeSize(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     _Out_ UINT32*   punWidth,
@@ -4595,7 +4468,7 @@ _Win32_SupportedOS_WindowsVista_ MFGetAttributeSize(
 
 inline
 HRESULT
-_Win32_SupportedOS_WindowsVista_ MFSetAttributeRatio(
+MFSetAttributeRatio(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     UINT32          unNumerator,
@@ -4607,7 +4480,7 @@ _Win32_SupportedOS_WindowsVista_ MFSetAttributeRatio(
 
 inline
 HRESULT
-_Win32_SupportedOS_WindowsVista_ MFSetAttributeSize(
+MFSetAttributeSize(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     UINT32          unWidth,
@@ -4620,7 +4493,7 @@ _Win32_SupportedOS_WindowsVista_ MFSetAttributeSize(
 #ifdef _INTSAFE_H_INCLUDED_
 inline
 HRESULT
-_Win32_SupportedOS_Windows8_ MFGetAttributeString(
+MFGetAttributeString(
     IMFAttributes*  pAttributes,
     REFGUID         guidKey,
     _Outptr_ PWSTR *ppsz
@@ -4665,7 +4538,6 @@ _Win32_SupportedOS_Windows8_ MFGetAttributeString(
 //
 // Instantiates the MF-provided IMFCollection implementation
 //
-_Win32_SupportedOS_WindowsVista_
 STDAPI MFCreateCollection(
     _Out_ IMFCollection **ppIMFCollection );
 
@@ -4693,12 +4565,12 @@ typedef enum _EAllocationType
     eAllocationTypeIgnore
 }   EAllocationType;
 
-EXTERN_C _Win32_SupportedOS_WindowsVista_ void* WINAPI MFHeapAlloc( size_t nSize,
+EXTERN_C void* WINAPI MFHeapAlloc( size_t nSize,
                             ULONG dwFlags,
                             _In_opt_ char *pszFile,
                             int line,
                             EAllocationType eat);
-EXTERN_C _Win32_SupportedOS_WindowsVista_ void WINAPI MFHeapFree( void * pv );
+EXTERN_C void WINAPI MFHeapFree( void * pv );
 
 //////////////////////////       SourceResolver     ////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -4718,7 +4590,6 @@ DEFINE_GUID(CLSID_MFSourceResolver,
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows7_
 LONGLONG WINAPI MFllMulDiv(LONGLONG a, LONGLONG b, LONGLONG c, LONGLONG d);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES) */
@@ -4733,7 +4604,6 @@ LONGLONG WINAPI MFllMulDiv(LONGLONG a, LONGLONG b, LONGLONG c, LONGLONG d);
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_Windows8_
 STDAPI MFGetContentProtectionSystemCLSID(
     _In_ REFGUID guidProtectionSystemID,
     _Out_ CLSID *pclsid );
@@ -4778,7 +4648,6 @@ DEFINE_GUID(MF_DEVICESTREAM_ATTRIBUTE_SECURE_CAPABILITY,
 //  pSampleToAdd - the sample to append 
 //  dwMaxMergedDurationInMS - indicates the maximum duration that the combined sample should be allowed to occupy 
 //  pCombined - indicates that pSampleToAdd was successfully added to the base sample
-_Win32_SupportedOS_19041_
 STDAPI MFCombineSamples( _In_ IMFSample *pSample, _In_ IMFSample* pSampleToAdd, _In_ DWORD dwMaxMergedDurationInMS, _Out_ BOOL* pMerged );
 
 // MFSplitSample
@@ -4787,7 +4656,6 @@ STDAPI MFCombineSamples( _In_ IMFSample *pSample, _In_ IMFSample* pSampleToAdd, 
 //  dwOutputSampleMaxCount - maximum array size (use the BufferCount on pSample to find out an upper bound) 
 //  pdwOutputSampleCount - actual number of output samples produce
 
-_Win32_SupportedOS_19041_
 STDAPI MFSplitSample( _In_ IMFSample *pSample, _Out_writes_to_(dwOutputSampleMaxCount, *pdwOutputSampleCount) IMFSample** pOutputSamples, _In_ DWORD dwOutputSampleMaxCount, _Out_ DWORD* pdwOutputSampleCount );
 #endif // (NTDDI_VERSION >= NTDDI_WIN10_VB)
 

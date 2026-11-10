@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*
  *  WABDEFS.H
  *
@@ -1370,9 +1369,6 @@ typedef struct _SRestriction
 
 #undef       INTERFACE
 #define      INTERFACE  IMAPITable
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows2000_ struct IMAPITable IMAPITable;
-#endif
 DECLARE_MAPI_INTERFACE_(IMAPITable, IUnknown)
 {
     BEGIN_INTERFACE
@@ -1641,9 +1637,6 @@ typedef struct _flaglist
 
 #undef       INTERFACE
 #define      INTERFACE  IABContainer
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows2000_ struct IABContainer IABContainer;
-#endif
 DECLARE_MAPI_INTERFACE_(IABContainer, IMAPIContainer)
 {
     BEGIN_INTERFACE
@@ -1724,9 +1717,6 @@ DECLARE_MAPI_INTERFACE_(IABContainer, IMAPIContainer)
 
 #undef       INTERFACE
 #define      INTERFACE  IMailUser
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows2000_ struct IMailUser IMailUser;
-#endif
 DECLARE_MAPI_INTERFACE_(IMailUser, IMAPIProp)
 {
     BEGIN_INTERFACE
@@ -1759,9 +1749,6 @@ DECLARE_MAPI_INTERFACE_(IMailUser, IMAPIProp)
 
 #undef       INTERFACE
 #define      INTERFACE  IDistList
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows2000_ struct IDistList IDistList;
-#endif
 DECLARE_MAPI_INTERFACE_(IDistList, IMAPIContainer)
 {
     BEGIN_INTERFACE

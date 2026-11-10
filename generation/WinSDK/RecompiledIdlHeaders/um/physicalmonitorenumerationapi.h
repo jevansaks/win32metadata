@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -44,29 +43,23 @@ typedef struct _PHYSICAL_MONITOR
 /******************************************************************************
     Physical Monitor Enumeration Functions
 ******************************************************************************/
-_Win32_SupportedOS_WindowsVista_
-_Win32_SetLastError_
 _BOOL WINAPI GetNumberOfPhysicalMonitorsFromHMONITOR
     ( 
     HMONITOR hMonitor, 
     _Out_ LPDWORD pdwNumberOfPhysicalMonitors
     );
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI GetNumberOfPhysicalMonitorsFromIDirect3DDevice9
     (
     _In_ IDirect3DDevice9* pDirect3DDevice9,
     _Out_ LPDWORD pdwNumberOfPhysicalMonitors
     );
 
-_Win32_SupportedOS_WindowsVista_
-_Win32_SetLastError_
 _BOOL WINAPI GetPhysicalMonitorsFromHMONITOR
     ( 
     _In_ HMONITOR hMonitor,
     _In_ DWORD dwPhysicalMonitorArraySize,
     _Out_writes_(dwPhysicalMonitorArraySize) LPPHYSICAL_MONITOR pPhysicalMonitorArray
     );
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI GetPhysicalMonitorsFromIDirect3DDevice9
     ( 
     _In_ IDirect3DDevice9* pDirect3DDevice9,
@@ -74,11 +67,7 @@ HRESULT WINAPI GetPhysicalMonitorsFromIDirect3DDevice9
     _Out_writes_(dwPhysicalMonitorArraySize) LPPHYSICAL_MONITOR pPhysicalMonitorArray
     );
 
-_Win32_SupportedOS_WindowsVista_
-_Win32_SetLastError_
 _BOOL WINAPI DestroyPhysicalMonitor( _In_ HANDLE hMonitor );
-_Win32_SupportedOS_WindowsVista_
-_Win32_SetLastError_
 _BOOL WINAPI DestroyPhysicalMonitors
     ( 
     _In_ DWORD dwPhysicalMonitorArraySize,

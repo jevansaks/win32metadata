@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2009 Microsoft Corporation
@@ -29,7 +28,6 @@ extern "C"
 {
 #endif
 
-_Win32_SupportedOS_Windows7_
 VOID
 WINAPI
 SendSAS(

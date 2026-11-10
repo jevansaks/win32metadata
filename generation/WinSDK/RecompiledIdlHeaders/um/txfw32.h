@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*=============================================================================
 
     Copyright (c) 2002  Microsoft Corporation
@@ -31,10 +30,6 @@
 #ifndef _TXF_W32_H_INCLUDED_
 #define _TXF_W32_H_INCLUDED_
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned short TXF_LOG_RECORD_TYPE;
-#endif
-
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -48,12 +43,6 @@ typedef unsigned short TXF_LOG_RECORD_TYPE;
 #define TXF_LOG_RECORD_TYPE_WRITE           0x01
 #define TXF_LOG_RECORD_TYPE_TRUNCATE        0x02
 #define TXF_LOG_RECORD_TYPE_AFFECTED_FILE   0x04
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(TXF_LOG_RECORD_TYPE, unsigned short,
-    TXF_LOG_RECORD_TYPE_AFFECTED_FILE,
-    TXF_LOG_RECORD_TYPE_TRUNCATE,
-    TXF_LOG_RECORD_TYPE_WRITE);
-#endif
 
 #define TXF_LOG_RECORD_GENERIC_TYPE_COMMIT  0x01
 #define TXF_LOG_RECORD_GENERIC_TYPE_ABORT   0x02
@@ -106,7 +95,7 @@ typedef struct _TXF_LOG_RECORD_BASE {
     //  Type of record, defined above.
     //
 
-    _Win32_AssociatedEnum_(TXF_LOG_RECORD_TYPE) USHORT RecordType;
+    USHORT RecordType;
 
     //
     //  Length of this record in bytes.
@@ -315,8 +304,6 @@ typedef struct _TXF_LOG_RECORD_AFFECTED_FILE {
 extern "C" {
 #endif
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 TxfLogCreateFileReadContext (
@@ -384,8 +371,6 @@ TxfLogCreateRangeReadContext (
 
 */
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 TxfLogDestroyReadContext (
@@ -404,8 +389,6 @@ TxfLogDestroyReadContext (
 */
 
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 TxfLogReadRecords (
@@ -604,10 +587,6 @@ TxfGetThreadMiniVersionForCreate (
 #define TXFS_MINIVERSION_COMMITTED_VIEW                  (0x0000)
 #define TXFS_MINIVERSION_DIRTY_VIEW                      (0xFFFF)
 #define TXFS_MINIVERSION_DEFAULT_VIEW                    (0xFFFE)
-
-#ifdef WIN32METADATA
-_Win32_Enum_(TXFS_MINIVERSION, unsigned int, TXFS_MINIVERSION_COMMITTED_VIEW, TXFS_MINIVERSION_DIRTY_VIEW, TXFS_MINIVERSION_DEFAULT_VIEW);
-#endif
 
 
 

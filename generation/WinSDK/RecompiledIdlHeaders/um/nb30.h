@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 // Copyright (c) 1991-1999  Microsoft Corporation
 //
@@ -303,7 +302,6 @@ typedef struct _ACTION_HEADER {
  * Usage: result = Netbios( pncb );                             *
  ****************************************************************/
 
-_Win32_SupportedOS_Windows2000_
 UCHAR
 APIENTRY
 Netbios(

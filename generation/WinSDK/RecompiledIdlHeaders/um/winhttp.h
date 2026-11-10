@@ -151,12 +151,6 @@ typedef int INTERNET_SCHEME, *LPINTERNET_SCHEME;
 #endif
 
 
-#ifdef WIN32METADATA
-typedef _WIN32META_ANNOTATION_("Enum(WINHTTP_INTERNET_SCHEME_HTTP, WINHTTP_INTERNET_SCHEME_HTTPS, WINHTTP_INTERNET_SCHEME_FTP, WINHTTP_INTERNET_SCHEME_SOCKS)",
-    INTERNET_SCHEME_HTTP, INTERNET_SCHEME_HTTPS, INTERNET_SCHEME_FTP, INTERNET_SCHEME_SOCKS) INTERNET_SCHEME WINHTTP_INTERNET_SCHEME;
-#endif
-
-
 //
 // URL_COMPONENTS - the constituent parts of an URL. Used in WinHttpCrackUrl()
 // and WinHttpCreateUrl()
@@ -184,7 +178,7 @@ typedef struct _WINHTTP_URL_COMPONENTS
     DWORD   dwStructSize;       // size of this structure. Used in version check
     LPWSTR  lpszScheme;         // pointer to scheme name
     DWORD   dwSchemeLength;     // length of scheme name
-    _Win32_AssociatedEnum_(WINHTTP_INTERNET_SCHEME) INTERNET_SCHEME nScheme;    // enumerated scheme type (if known)
+    INTERNET_SCHEME nScheme;    // enumerated scheme type (if known)
     LPWSTR  lpszHostName;       // pointer to host name
     DWORD   dwHostNameLength;   // length of host name
     INTERNET_PORT nPort;        // converted port number
@@ -269,7 +263,7 @@ typedef struct _WINHTTP_PROXY_RESULT_ENTRY
 {
     BOOL            fProxy;                // Is this a proxy or DIRECT?
     BOOL            fBypass;               // If DIRECT, is it bypassing a proxy (intranet) or is all traffic DIRECT (internet)
-    _Win32_AssociatedEnum_(WINHTTP_INTERNET_SCHEME) INTERNET_SCHEME ProxyScheme;           // The scheme of the proxy, SOCKS, HTTP (CERN Proxy), HTTPS (SSL through Proxy)
+    INTERNET_SCHEME ProxyScheme;           // The scheme of the proxy, SOCKS, HTTP (CERN Proxy), HTTPS (SSL through Proxy)
     PWSTR           pwszProxy;             // Hostname of the proxy.
     INTERNET_PORT   ProxyPort;             // Port of the proxy.
 } WINHTTP_PROXY_RESULT_ENTRY;
@@ -955,16 +949,12 @@ typedef struct _WINHTTP_FAILED_CONNECTION_RETRIES
 #define WINHTTP_ENABLE_SPN_SERVER_PORT            0x00000001
 #define WINHTTP_OPTION_SPN_MASK                   WINHTTP_ENABLE_SPN_SERVER_PORT
 
-#ifdef WIN32METADATA
-typedef DWORD WINHTTP_CREDS_AUTHSCHEME;
-#endif
-
 typedef struct tagWINHTTP_CREDS
 {
     LPSTR lpszUserName;
     LPSTR lpszPassword;
     LPSTR lpszRealm;
-    _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME) DWORD dwAuthScheme;
+    DWORD dwAuthScheme;
     LPSTR lpszHostName;
     DWORD dwPort;
 } WINHTTP_CREDS, *PWINHTTP_CREDS;
@@ -976,7 +966,7 @@ typedef struct tagWINHTTP_CREDS_EX
     LPSTR lpszUserName;
     LPSTR lpszPassword;
     LPSTR lpszRealm;
-    _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME) DWORD dwAuthScheme;
+    DWORD dwAuthScheme;
     LPSTR lpszHostName;
     DWORD dwPort;
     LPSTR lpszUrl;
@@ -1000,12 +990,6 @@ typedef struct tagWINHTTP_CREDS_EX
 #define WINHTTP_AUTH_SCHEME_PASSPORT   0x00000004
 #define WINHTTP_AUTH_SCHEME_DIGEST     0x00000008
 #define WINHTTP_AUTH_SCHEME_NEGOTIATE  0x00000010
-
-_Win32_Enum_(WINHTTP_CREDS_AUTHSCHEME, DWORD,
-    WINHTTP_AUTH_SCHEME_BASIC,
-    WINHTTP_AUTH_SCHEME_NTLM,
-    WINHTTP_AUTH_SCHEME_NEGOTIATE);
-
 
 // WinHttp supported Authentication Targets
 
@@ -1739,7 +1723,6 @@ WinHttpReadData
     IN DWORD dwNumberOfBytesToRead,
     OUT LPDWORD lpdwNumberOfBytesRead
 );
-_Win32_SupportedOS_END_()
 
 WINHTTPAPI
 DWORD
@@ -1829,7 +1812,6 @@ WinHttpSetTimeouts
     IN int          nSendTimeout,
     IN int          nReceiveTimeout
 );
-_Win32_SupportedOS_END_()
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion
@@ -1887,7 +1869,6 @@ WinHttpAddRequestHeaders
     IN DWORD dwHeadersLength,
     IN DWORD dwModifiers
 );
-_Win32_SupportedOS_END_()
 
 WINHTTPAPI
 DWORD
@@ -1950,7 +1931,6 @@ WinHttpQueryAuthSchemes
     OUT LPDWORD     lpdwFirstScheme,      // returns the first auth scheme returned by the server
     OUT LPDWORD     pdwAuthTarget
 );
-_Win32_SupportedOS_END_()
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion
@@ -1958,8 +1938,6 @@ _Win32_SupportedOS_END_()
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_BEGIN_(WindowsXP)
-_Win32_SetLastError_
 WINHTTPAPI
 BOOL
 WINAPI
@@ -2001,7 +1979,6 @@ WinHttpQueryHeaders
     IN OUT LPDWORD   lpdwBufferLength,
     IN OUT LPDWORD   lpdwIndex OPTIONAL
 );
-_Win32_SupportedOS_END_()
 
 WINHTTPAPI
 DWORD
@@ -2088,7 +2065,6 @@ WinHttpGetProxyForUrlEx
     _In_ WINHTTP_AUTOPROXY_OPTIONS *pAutoProxyOptions,
     _In_opt_ DWORD_PTR pContext
 );
-_Win32_SupportedOS_END_()
 
 WINHTTPAPI
 DWORD
@@ -2327,7 +2303,6 @@ WinHttpWebSocketQueryCloseStatus
     _In_range_(0, WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH) DWORD dwReasonLength,
     _Out_range_(0, WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH) DWORD *pdwReasonLengthConsumed
 );
-_Win32_SupportedOS_END_()
 
 typedef enum _WINHTTP_PROTOCOL_OPERATION
 {
@@ -2588,24 +2563,6 @@ typedef struct _WINHTTP_FAST_FORWARDING_STATUS
 #define WINHTTP_FEATURE_SESSION_ERROR_LOG_GUID                               94
 
 #define WINHTTP_FEATURE_GET_PROXY_SETTINGS_EX_XBOX                           95
-
-
-
-#ifdef WIN32METADATA
-#pragma push_macro("INTERNET_DEFAULT_PORT")
-#undef INTERNET_DEFAULT_PORT
-constexpr INTERNET_PORT INTERNET_DEFAULT_PORT = 0;
-#pragma pop_macro("INTERNET_DEFAULT_PORT")
-#pragma push_macro("INTERNET_DEFAULT_HTTP_PORT")
-#undef INTERNET_DEFAULT_HTTP_PORT
-constexpr INTERNET_PORT INTERNET_DEFAULT_HTTP_PORT = 80;
-#pragma pop_macro("INTERNET_DEFAULT_HTTP_PORT")
-#pragma push_macro("INTERNET_DEFAULT_HTTPS_PORT")
-#undef INTERNET_DEFAULT_HTTPS_PORT
-constexpr INTERNET_PORT INTERNET_DEFAULT_HTTPS_PORT = 443;
-#pragma pop_macro("INTERNET_DEFAULT_HTTPS_PORT")
-#endif
-
 
 
 

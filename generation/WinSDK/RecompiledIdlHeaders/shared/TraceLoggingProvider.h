@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /* ++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -20,7 +19,6 @@ Environment:
 /*
 Quick start:
 
-#include <sal.h>
 #include <windows.h> // or <wdm.h> for kernel-mode.
 #include <TraceLoggingProvider.h>
 
@@ -776,7 +774,7 @@ security-critical.
 _IRQL_requires_max_(PASSIVE_LEVEL)
 TLG_INLINE
 TLG_STATUS _tlg_CALL
-_Win32_SupportedOS_WindowsVista_ TraceLoggingRegisterEx(
+TraceLoggingRegisterEx(
     TraceLoggingHProvider _Inout_ hProvider,
     _In_opt_ TLG_PENABLECALLBACK pEnableCallback,
     _In_opt_ PVOID pCallbackContext);
@@ -2865,7 +2863,7 @@ TraceLoggingRegister(
 _IRQL_requires_max_(PASSIVE_LEVEL)
 TLG_INLINE
 TLG_STATUS _tlg_CALL
-_Win32_SupportedOS_WindowsVista_ TraceLoggingRegisterEx(
+TraceLoggingRegisterEx(
     TraceLoggingHProvider _Inout_ hProvider,
     _In_opt_ TLG_PENABLECALLBACK pEnableCallback,
     _In_opt_ PVOID pCallbackContext)

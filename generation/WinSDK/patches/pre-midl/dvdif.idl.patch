@@ -1,56 +1,9 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dvdif.idl b/generation/WinSDK/RecompiledIdlHeaders/um/dvdif.idl
+index 3a3265e1..e25bd351 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/dvdif.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/dvdif.idl
-@@ -7,6 +7,7 @@
- //------------------------------------------------------------------------------
- 
- 
-+#include <sal.h>
- cpp_quote("#include <winapifamily.h>")
- 
- // forward declarations - these are the interfaces declared in this file
-@@ -1104,6 +1105,7 @@
- //==========================================================================
- //==========================================================================
- 
-+cpp_quote("/* Win32Metadata: interface ::IDvdCmd => SupportedOSPlatform(\"windows5.1.2600\") */")
- [
- AM_LOCAL
- object,
-@@ -1139,6 +1141,7 @@
- //==========================================================================
- //==========================================================================
- 
-+cpp_quote("/* Win32Metadata: interface ::IDvdState => SupportedOSPlatform(\"windows5.1.2600\") */")
- [
- AM_LOCAL
- object,
-@@ -1180,6 +1183,7 @@
- //==========================================================================
- //==========================================================================
- 
-+cpp_quote("/* Win32Metadata: interface ::IDvdControl2 => SupportedOSPlatform(\"windows5.1.2600\") */")
- [
- AM_LOCAL
- object,
-@@ -1774,6 +1778,7 @@
- cpp_quote ("#define DVD_AUDIO_CAPS_SDDS		0x00000010")
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::IDvdInfo2 => SupportedOSPlatform(\"windows5.1.2600\") */")
- [
- local,
- object,
-@@ -2223,6 +2228,7 @@
- // IDvdGraphBuilder interface to build a filter graph for DVD-Video playback.
- //
- 
-+cpp_quote("/* Win32Metadata: interface ::IDvdGraphBuilder => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     local,
-@@ -2254,7 +2260,7 @@
+@@ -2254,7 +2254,7 @@ interface IDvdGraphBuilder : IUnknown {
      // Remember to *ppvIF->Release() when you're done with it
      HRESULT GetDvdInterface
      ( [in] REFIID riid,    // IID of the interface required
@@ -59,19 +12,3 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dvdif.idl b/generation/Wi
      ) ;
  
      // Builds a filter graph according to user specs for playing back a
-@@ -2314,6 +2320,7 @@
- //
- //  DDraw Exclusive Mode Video standard COM interface for Overlay Mixer
- //
-+cpp_quote("/* Win32Metadata: interface ::IDDrawExclModeVideo => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     local,
-@@ -2385,6 +2392,7 @@
-     AM_OVERLAY_NOTIFY_SOURCE_CHANGE  = 0x00000002,
-     AM_OVERLAY_NOTIFY_DEST_CHANGE    = 0x00000004
- };
-+cpp_quote("/* Win32Metadata: interface ::IDDrawExclModeVideoCallback => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     local,

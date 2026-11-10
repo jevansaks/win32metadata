@@ -2664,19 +2664,3 @@ PROPSPEC_KIND=Windows.Win32.System.Com.StructuredStorage
 TYSPEC=Windows.Win32.System.Com
 VARENUM=Windows.Win32.System.Variant
 # endregion wtypes.h
---requiredNamespaceForName
-BSTR=Windows.Win32.Foundation
-HDC=Windows.Win32.Graphics.Gdi
-HDRVR=Windows.Win32.Media.Multimedia
-PSECURITY_DESCRIPTOR=Windows.Win32.Security
-PSID=Windows.Win32.Security
-PTP_CALLBACK_INSTANCE=Windows.Win32.System.Threading
-PTP_CLEANUP_GROUP=Windows.Win32.System.Threading
-PTP_IO=Windows.Win32.System.Threading
-PTP_POOL=Windows.Win32.System.Threading
-PTP_TIMER=Windows.Win32.System.Threading
-PTP_WAIT=Windows.Win32.System.Threading
-PTP_WORK=Windows.Win32.System.Threading
-SECURITY_DESCRIPTOR_CONTROL=Windows.Win32.Security
-VARIANT_BOOL=Windows.Win32.Foundation
-ADVANCED_FEATURE_FLAGS=Windows.Win32.System.Com

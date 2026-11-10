@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -34,7 +33,6 @@ Revision History:
 extern "C" {
 #endif
 
-_Win32_SupportedOS_Windows2000_
 int
 WSPAPI
 WSCWriteProviderOrder (
@@ -51,7 +49,6 @@ int
 
 #if(_WIN32_WINNT >= 0x0501)
 #ifdef _WIN64
-_Win32_SupportedOS_WindowsVista_
 int
 WSPAPI
 WSCWriteProviderOrder32 (
@@ -61,7 +58,6 @@ WSCWriteProviderOrder32 (
 #endif //_WIN64
 #endif //_WIN32_WINNT >= 0x0501
 
-_Win32_SupportedOS_Windows2000_
 int
 WSPAPI
 WSCWriteNameSpaceOrder (
@@ -78,7 +74,6 @@ int
 
 #if(_WIN32_WINNT >= 0x0501)
 #ifdef _WIN64
-_Win32_SupportedOS_WindowsVista_
 int
 WSPAPI
 WSCWriteNameSpaceOrder32 (

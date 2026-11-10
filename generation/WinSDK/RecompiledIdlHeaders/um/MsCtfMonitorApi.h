@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //=--------------------------------------------------------------------------=
 // MsCtfMonitorApi.h
 //
@@ -60,14 +59,14 @@ EXTERN_C BOOL WINAPI DoMsCtfMonitor(DWORD dwFlags, HANDLE hEventForServiceStop);
 // InitLocalMsCtfMonitor
 //
 ////////////////////////////////////////////////////////////////////////////
-EXTERN_C _Win32_SupportedOS_WindowsVista_ HRESULT WINAPI InitLocalMsCtfMonitor(DWORD dwFlags);
+EXTERN_C HRESULT WINAPI InitLocalMsCtfMonitor(DWORD dwFlags);
 
 ////////////////////////////////////////////////////////////////////////////
 //
 // UninitLocalMsCtfMonitor
 //
 ////////////////////////////////////////////////////////////////////////////
-EXTERN_C _Win32_SupportedOS_WindowsVista_ HRESULT WINAPI UninitLocalMsCtfMonitor();
+EXTERN_C HRESULT WINAPI UninitLocalMsCtfMonitor();
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion

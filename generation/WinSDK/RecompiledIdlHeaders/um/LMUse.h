@@ -32,7 +32,6 @@ Notes:
 #if _MSC_VER > 1000
 #pragma once
 #endif
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family or OneCore Family
@@ -45,11 +44,6 @@ extern "C" {
 
 #include <lmcons.h>
 #include <lmuseflg.h>                   // Deletion force level flags
-#include <win32metadata_annotations.h>
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned int USE_INFO_ASG_TYPE;
-#endif
 
 //
 // LevelFlags : The lower 16 bits describe the use level while the upper 16 bits are flags.
@@ -66,7 +60,6 @@ typedef unsigned int USE_INFO_ASG_TYPE;
 // Function Prototypes
 //
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUseAdd (
     _In_opt_ LPTSTR servername,
@@ -81,15 +74,13 @@ NetUseAdd (
     _Out_opt_ LPDWORD parm_err
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUseDel (
     _In_opt_ LMSTR  UncServerName OPTIONAL,
     _In_ LMSTR  UseName,
-    _Win32_AssociatedEnum_(FORCE_LEVEL_FLAGS) _In_ DWORD ForceLevelFlags
+    _In_ DWORD ForceLevelFlags
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUseEnum (
     _In_opt_ LMSTR  UncServerName,
@@ -101,7 +92,6 @@ NetUseEnum (
     _Inout_opt_ LPDWORD ResumeHandle
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUseGetInfo (
     _In_opt_ LMSTR  UncServerName,
@@ -130,7 +120,7 @@ typedef struct _USE_INFO_1 {
     LMSTR   ui1_remote;
     LMSTR   ui1_password;
     DWORD   ui1_status;
-    _Win32_AssociatedEnum_(USE_INFO_ASG_TYPE) DWORD   ui1_asg_type;
+    DWORD   ui1_asg_type;
     DWORD   ui1_refcount;
     DWORD   ui1_usecount;
 }USE_INFO_1, *PUSE_INFO_1, *LPUSE_INFO_1;
@@ -140,7 +130,7 @@ typedef struct _USE_INFO_2 {
     LMSTR    ui2_remote;
     LMSTR    ui2_password;
     DWORD    ui2_status;
-    _Win32_AssociatedEnum_(USE_INFO_ASG_TYPE) DWORD    ui2_asg_type;
+    DWORD    ui2_asg_type;
     DWORD    ui2_refcount;
     DWORD    ui2_usecount;
     LMSTR    ui2_username;
@@ -214,10 +204,6 @@ typedef struct _USE_INFO_5 {
 #define USE_SPOOLDEV            1
 #define USE_CHARDEV             2
 #define USE_IPC                 3
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_Enum_(USE_INFO_ASG_TYPE, unsigned int, USE_WILDCARD, USE_DISKDEV, USE_SPOOLDEV, USE_IPC);
-#endif
 
 //
 // Flags defined in the use_info_3 structure

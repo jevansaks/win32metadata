@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -46,15 +45,6 @@ typedef COMPRESSOR_HANDLE *PDECOMPRESSOR_HANDLE;
 
 #define COMPRESS_RAW             (1 << 29)
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#include <sal.h>
-_Win32_Enum_(COMPRESS_ALGORITHM, unsigned long,
-    COMPRESS_ALGORITHM_MSZIP,
-    COMPRESS_ALGORITHM_XPRESS,
-    COMPRESS_ALGORITHM_XPRESS_HUFF,
-    COMPRESS_ALGORITHM_LZMS);
-#endif
-
 typedef PVOID (__cdecl *PFN_COMPRESS_ALLOCATE) (
     _In_ PVOID UserContext,
     _In_ SIZE_T Size
@@ -79,29 +69,14 @@ typedef enum {
 
 // Compression routines
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-// Keep the native cleanup visible to compiler-parsed producer annotations.
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
-BOOL
-WINAPI
-CloseCompressor (
-    _In_ COMPRESSOR_HANDLE CompressorHandle
-    );
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 CreateCompressor (
-    _In_ _Win32_AssociatedEnum_(COMPRESS_ALGORITHM) DWORD Algorithm,
+    _In_ DWORD Algorithm,
     _In_opt_ PCOMPRESS_ALLOCATION_ROUTINES AllocationRoutines,
-    _Win32_RAIIFree_(CloseCompressor, -1, 0) _Out_ PCOMPRESSOR_HANDLE CompressorHandle
+    _Out_ PCOMPRESSOR_HANDLE CompressorHandle
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 SetCompressorInformation (
@@ -111,8 +86,6 @@ SetCompressorInformation (
     _In_ SIZE_T CompressInformationSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 QueryCompressorInformation (
@@ -122,8 +95,6 @@ QueryCompressorInformation (
     _In_ SIZE_T CompressInformationSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 Compress (
@@ -135,16 +106,12 @@ Compress (
     _Out_ PSIZE_T CompressedDataSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 ResetCompressor (
     _In_ COMPRESSOR_HANDLE CompressorHandle
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 CloseCompressor (
@@ -153,29 +120,14 @@ CloseCompressor (
 
 // Decompression routines
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-// Keep the native cleanup visible to compiler-parsed producer annotations.
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
-BOOL
-WINAPI
-CloseDecompressor (
-    _In_ DECOMPRESSOR_HANDLE DecompressorHandle
-    );
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 CreateDecompressor (
-    _In_ _Win32_AssociatedEnum_(COMPRESS_ALGORITHM) DWORD Algorithm,
+    _In_ DWORD Algorithm,
     _In_opt_ PCOMPRESS_ALLOCATION_ROUTINES AllocationRoutines,
-    _Win32_RAIIFree_(CloseDecompressor, -1, 0) _Out_ PDECOMPRESSOR_HANDLE DecompressorHandle
+    _Out_ PDECOMPRESSOR_HANDLE DecompressorHandle
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 SetDecompressorInformation (
@@ -185,8 +137,6 @@ SetDecompressorInformation (
     _In_ SIZE_T CompressInformationSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 QueryDecompressorInformation (
@@ -196,8 +146,6 @@ QueryDecompressorInformation (
     _In_ SIZE_T CompressInformationSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 Decompress (
@@ -209,16 +157,12 @@ Decompress (
     _Out_opt_ PSIZE_T UncompressedDataSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 ResetDecompressor (
     _In_ DECOMPRESSOR_HANDLE DecompressorHandle
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 BOOL
 WINAPI
 CloseDecompressor (

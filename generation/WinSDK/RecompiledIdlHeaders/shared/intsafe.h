@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /******************************************************************
 *                                                                 *
 *  intsafe.h -- This module defines helper functions to prevent   *
@@ -378,7 +377,7 @@ C_ASSERT(sizeof(UINT_PTR) == sizeof(ULONG_PTR));
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8ToUChar(
+Int8ToUChar(
     _In_ INT8 i8Operand,
     _Out_ _Deref_out_range_(==, i8Operand) UCHAR* pch)
 {
@@ -404,7 +403,7 @@ _Win32_SupportedOS_Windows7_ Int8ToUChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8ToUInt8(
+Int8ToUInt8(
     _In_ INT8 i8Operand,
     _Out_ _Deref_out_range_(==, i8Operand) UINT8* pu8Result)
 {
@@ -435,7 +434,7 @@ _Win32_SupportedOS_Windows7_ Int8ToUInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8ToUShort(
+Int8ToUShort(
     _In_ INT8 i8Operand,
     _Out_ _Deref_out_range_(==, i8Operand) USHORT* pusResult)
 {
@@ -471,7 +470,7 @@ _Win32_SupportedOS_Windows7_ Int8ToUShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8ToUInt(
+Int8ToUInt(
     _In_ INT8 i8Operand,
     _Out_ _Deref_out_range_(==, i8Operand) UINT* puResult)
 {
@@ -502,7 +501,7 @@ _Win32_SupportedOS_Windows7_ Int8ToUInt(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8ToUIntPtr(
+Int8ToUIntPtr(
     _In_ INT8 i8Operand,
     _Out_ _Deref_out_range_(==, i8Operand) UINT_PTR* puResult)
 {
@@ -528,7 +527,7 @@ _Win32_SupportedOS_Windows7_ Int8ToUIntPtr(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8ToULong(
+Int8ToULong(
     _In_ INT8 i8Operand,
     _Out_ _Deref_out_range_(==, i8Operand) ULONG* pulResult)
 {
@@ -554,7 +553,7 @@ _Win32_SupportedOS_Windows7_ Int8ToULong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8ToULongPtr(
+Int8ToULongPtr(
     _In_ INT8 i8Operand,
     _Out_ _Deref_out_range_(==, i8Operand) ULONG_PTR* pulResult)
 {
@@ -590,7 +589,7 @@ _Win32_SupportedOS_Windows7_ Int8ToULongPtr(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8ToULongLong(
+Int8ToULongLong(
     _In_ INT8 i8Operand,
     _Out_ _Deref_out_range_(==, i8Operand) ULONGLONG* pullResult)
 {
@@ -646,7 +645,7 @@ _Win32_SupportedOS_Windows7_ Int8ToULongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UInt8ToInt8(
+UInt8ToInt8(
     _In_ UINT8 u8Operand,
     _Out_ _Deref_out_range_(==, u8Operand) INT8* pi8Result)
 {
@@ -671,7 +670,7 @@ _Win32_SupportedOS_Windows7_ UInt8ToInt8(
 //
 __forceinline
 HRESULT
-_Win32_SupportedOS_Windows7_ UInt8ToChar(
+UInt8ToChar(
     _In_ UINT8 u8Operand,
     _Out_ _Deref_out_range_(==, u8Operand) CHAR* pch)
 {
@@ -689,7 +688,7 @@ _Win32_SupportedOS_Windows7_ UInt8ToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ByteToInt8(
+ByteToInt8(
     _In_ BYTE bOperand,
     _Out_ _Deref_out_range_(==, bOperand) INT8* pi8Result)
 {
@@ -714,7 +713,7 @@ _Win32_SupportedOS_Windows7_ ByteToInt8(
 //
 __forceinline
 HRESULT
-_Win32_SupportedOS_Windows7_ ByteToChar(
+ByteToChar(
     _In_ BYTE bOperand,
     _Out_ _Deref_out_range_(==, bOperand) CHAR* pch)
 {
@@ -732,7 +731,7 @@ _Win32_SupportedOS_Windows7_ ByteToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortToInt8(
+ShortToInt8(
     _In_ SHORT sOperand,
     _Out_ _Deref_out_range_(==, sOperand) INT8* pi8Result)
 {
@@ -800,7 +799,7 @@ ShortToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortToUInt8(
+ShortToUInt8(
     _In_ SHORT sOperand,
     _Out_ _Deref_out_range_(==, sOperand) UINT8* pui8Result)
 {
@@ -867,7 +866,7 @@ ShortToUShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortToUInt(
+ShortToUInt(
     _In_ SHORT sOperand,
     _Out_ _Deref_out_range_(==, sOperand) UINT* puResult)
 {
@@ -898,7 +897,7 @@ _Win32_SupportedOS_Windows7_ ShortToUInt(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortToUIntPtr(
+ShortToUIntPtr(
     _In_ SHORT sOperand,
     _Out_ _Deref_out_range_(==, sOperand) UINT_PTR* puResult)
 {
@@ -924,7 +923,7 @@ _Win32_SupportedOS_Windows7_ ShortToUIntPtr(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortToULong(
+ShortToULong(
     _In_ SHORT sOperand,
     _Out_ _Deref_out_range_(==, sOperand) ULONG* pulResult)
 {
@@ -950,7 +949,7 @@ _Win32_SupportedOS_Windows7_ ShortToULong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortToULongPtr(
+ShortToULongPtr(
     _In_ SHORT sOperand,
     _Out_ _Deref_out_range_(==, sOperand) ULONG_PTR* pulResult)
 {
@@ -981,7 +980,7 @@ _Win32_SupportedOS_Windows7_ ShortToULongPtr(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortToDWordPtr(
+ShortToDWordPtr(
     _In_ SHORT sOperand,
     _Out_ _Deref_out_range_(==, sOperand) DWORD_PTR* pdwResult)
 {
@@ -1007,7 +1006,7 @@ _Win32_SupportedOS_Windows7_ ShortToDWordPtr(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortToULongLong(
+ShortToULongLong(
     _In_ SHORT sOperand,
     _Out_ _Deref_out_range_(==, sOperand) ULONGLONG* pullResult)
 {
@@ -1173,7 +1172,7 @@ _Win32_SupportedOS_Windows7_ ShortToULongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UShortToInt8(
+UShortToInt8(
     _In_ USHORT usOperand,
     _Out_ _Deref_out_range_(==, usOperand) INT8* pi8Result)
 {
@@ -1241,7 +1240,7 @@ UShortToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UShortToUInt8(
+UShortToUInt8(
     _In_ USHORT usOperand,
     _Out_ _Deref_out_range_(==, usOperand) UINT8* pui8Result)
 {
@@ -1373,7 +1372,7 @@ UShortToShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntToInt8(
+IntToInt8(
     _In_ INT iOperand,
     _Out_ _Deref_out_range_(==, iOperand) INT8* pi8Result)
 {
@@ -1446,7 +1445,7 @@ IntToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntToUInt8(
+IntToUInt8(
     _In_ INT iOperand,
     _Out_ _Deref_out_range_(==, iOperand) UINT8* pui8Result)
 {
@@ -1795,7 +1794,7 @@ IntToULongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrToInt8(
+IntPtrToInt8(
     _In_ INT_PTR iOperand,
     _Out_ _Deref_out_range_(==, iOperand) INT8* pi8Result)
 {
@@ -1821,7 +1820,7 @@ _Win32_SupportedOS_Windows7_ IntPtrToInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrToUChar(
+IntPtrToUChar(
     _In_ INT_PTR iOperand,
     _Out_ _Deref_out_range_(==, iOperand) UCHAR* pch)
 {
@@ -1846,7 +1845,7 @@ _Win32_SupportedOS_Windows7_ IntPtrToUChar(
 //
 __forceinline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrToChar(
+IntPtrToChar(
     _In_ INT_PTR iOperand,
     _Out_ _Deref_out_range_(==, iOperand) CHAR* pch)
 {
@@ -1863,7 +1862,7 @@ _Win32_SupportedOS_Windows7_ IntPtrToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrToUInt8(
+IntPtrToUInt8(
     _In_ INT_PTR iOperand,
     _Out_ _Deref_out_range_(==, iOperand) UINT8* pui8Result)
 {
@@ -1894,7 +1893,7 @@ _Win32_SupportedOS_Windows7_ IntPtrToUInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrToShort(
+IntPtrToShort(
     _In_ INT_PTR iOperand,
     _Out_ _Deref_out_range_(==, iOperand) SHORT* psResult)
 {
@@ -1925,7 +1924,7 @@ _Win32_SupportedOS_Windows7_ IntPtrToShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrToUShort(
+IntPtrToUShort(
     _In_ INT_PTR iOperand,
     _Out_ _Deref_out_range_(==, iOperand) USHORT* pusResult)
 {
@@ -2067,7 +2066,7 @@ IntPtrToLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrToLongPtr(
+IntPtrToLongPtr(
     _In_ INT_PTR iOperand,
     _Out_ _Deref_out_range_(==, iOperand) LONG_PTR* plResult)
 {
@@ -2211,7 +2210,7 @@ IntPtrToULongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntToInt8(
+UIntToInt8(
     _In_ UINT uOperand,
     _Out_ _Deref_out_range_(==, uOperand) INT8* pi8Result)
 {
@@ -2279,7 +2278,7 @@ UIntToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntToUInt8(
+UIntToUInt8(
     _In_ UINT uOperand,
     _Out_ _Deref_out_range_(==, uOperand) UINT8* pui8Result)
 {
@@ -2565,7 +2564,7 @@ UIntToLongPtr(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntPtrToInt8(
+UIntPtrToInt8(
     _In_ UINT_PTR uOperand,
     _Out_ _Deref_out_range_(==, uOperand) INT8* pi8Result)
 {
@@ -2591,7 +2590,7 @@ _Win32_SupportedOS_Windows7_ UIntPtrToInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntPtrToUChar(
+UIntPtrToUChar(
     _In_ UINT_PTR uOperand,
     _Out_ _Deref_out_range_(==, uOperand) UCHAR* pch)
 {
@@ -2616,7 +2615,7 @@ _Win32_SupportedOS_Windows7_ UIntPtrToUChar(
 //
 __forceinline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntPtrToChar(
+UIntPtrToChar(
     _In_ UINT_PTR uOperand,
     _Out_ _Deref_out_range_(==, uOperand) CHAR* pch)
 {
@@ -2633,7 +2632,7 @@ _Win32_SupportedOS_Windows7_ UIntPtrToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntPtrToUInt8(
+UIntPtrToUInt8(
     _In_ UINT_PTR uOperand,
     _Out_ _Deref_out_range_(==,uOperand) UINT8* pu8Result)
 {
@@ -2664,7 +2663,7 @@ _Win32_SupportedOS_Windows7_ UIntPtrToUInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntPtrToShort(
+UIntPtrToShort(
     _In_ UINT_PTR uOperand,
     _Out_ _Deref_out_range_(==, uOperand) SHORT* psResult)
 {
@@ -2690,7 +2689,7 @@ _Win32_SupportedOS_Windows7_ UIntPtrToShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntPtrToInt16(
+UIntPtrToInt16(
     _In_ UINT_PTR uOperand,
     _Out_ _Deref_out_range_(==, uOperand) INT16* pi16Result)
 {
@@ -2716,7 +2715,7 @@ _Win32_SupportedOS_Windows7_ UIntPtrToInt16(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntPtrToUShort(
+UIntPtrToUShort(
     _In_ UINT_PTR uOperand,
     _Out_ _Deref_out_range_(==, uOperand) USHORT* pusResult)
 {
@@ -2742,7 +2741,7 @@ _Win32_SupportedOS_Windows7_ UIntPtrToUShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntPtrToUInt16(
+UIntPtrToUInt16(
     _In_ UINT_PTR uOperand,
     _Out_ _Deref_out_range_(==, uOperand) UINT16* pu16Result)
 {
@@ -2931,7 +2930,7 @@ UIntPtrToULong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UIntPtrToLongLong(
+UIntPtrToLongLong(
     _In_ UINT_PTR uOperand,
     _Out_ _Deref_out_range_(==, uOperand) LONGLONG* pllResult)
 {
@@ -2966,7 +2965,7 @@ _Win32_SupportedOS_Windows7_ UIntPtrToLongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongToInt8(
+LongToInt8(
     _In_ LONG lOperand,
     _Out_ _Deref_out_range_(==, lOperand) INT8* pi8Result)
 {
@@ -3034,7 +3033,7 @@ LongToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongToUInt8(
+LongToUInt8(
     _In_ LONG lOperand,
     _Out_ _Deref_out_range_(==, lOperand) UINT8* pui8Result)
 {
@@ -3358,7 +3357,7 @@ LongToULongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongPtrToInt8(
+LongPtrToInt8(
     _In_ LONG_PTR lOperand,
     _Out_ _Deref_out_range_(==, lOperand) INT8* pi8Result)
 {
@@ -3384,7 +3383,7 @@ _Win32_SupportedOS_Windows7_ LongPtrToInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongPtrToUChar(
+LongPtrToUChar(
     _In_ LONG_PTR lOperand,
     _Out_ _Deref_out_range_(==, lOperand) UCHAR* pch)
 {
@@ -3409,7 +3408,7 @@ _Win32_SupportedOS_Windows7_ LongPtrToUChar(
 //
 __forceinline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongPtrToChar(
+LongPtrToChar(
     _In_ LONG_PTR lOperand,
     _Out_ _Deref_out_range_(==, lOperand) CHAR* pch)
 {
@@ -3426,7 +3425,7 @@ _Win32_SupportedOS_Windows7_ LongPtrToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongPtrToUInt8(
+LongPtrToUInt8(
     _In_ LONG_PTR lOperand,
     _Out_ _Deref_out_range_(==, lOperand) UINT8* pui8Result)
 {
@@ -3457,7 +3456,7 @@ _Win32_SupportedOS_Windows7_ LongPtrToUInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongPtrToShort(
+LongPtrToShort(
     _In_ LONG_PTR lOperand,
     _Out_ _Deref_out_range_(==, lOperand) SHORT* psResult)
 {
@@ -3488,7 +3487,7 @@ _Win32_SupportedOS_Windows7_ LongPtrToShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongPtrToUShort(
+LongPtrToUShort(
     _In_ LONG_PTR lOperand,
     _Out_ _Deref_out_range_(==, lOperand) USHORT* pusResult)
 {
@@ -3764,7 +3763,7 @@ LongPtrToULongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongToInt8(
+ULongToInt8(
     _In_ ULONG ulOperand,
     _Out_ _Deref_out_range_(==, ulOperand) INT8* pi8Result)
 {
@@ -3832,7 +3831,7 @@ ULongToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongToUInt8(
+ULongToUInt8(
     _In_ ULONG ulOperand,
     _Out_ _Deref_out_range_(==, ulOperand) UINT8* pui8Result)
 {
@@ -4073,7 +4072,7 @@ ULongToLongPtr(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongPtrToInt8(
+ULongPtrToInt8(
     _In_ ULONG_PTR ulOperand,
     _Out_ _Deref_out_range_(==, ulOperand) INT8* pi8Result)
 {
@@ -4099,7 +4098,7 @@ _Win32_SupportedOS_Windows7_ ULongPtrToInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongPtrToUChar(
+ULongPtrToUChar(
     _In_ ULONG_PTR ulOperand,
     _Out_ _Deref_out_range_(==, ulOperand) UCHAR* pch)
 {
@@ -4124,7 +4123,7 @@ _Win32_SupportedOS_Windows7_ ULongPtrToUChar(
 //
 __forceinline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongPtrToChar(
+ULongPtrToChar(
     _In_ ULONG_PTR ulOperand,
     _Out_ _Deref_out_range_(==, ulOperand) CHAR* pch)
 {
@@ -4141,7 +4140,7 @@ _Win32_SupportedOS_Windows7_ ULongPtrToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongPtrToUInt8(
+ULongPtrToUInt8(
     _In_ ULONG_PTR ulOperand,
     _Out_ _Deref_out_range_(==, ulOperand) UINT8* pui8Result)
 {
@@ -4172,7 +4171,7 @@ _Win32_SupportedOS_Windows7_ ULongPtrToUInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongPtrToShort(
+ULongPtrToShort(
     _In_ ULONG_PTR ulOperand,
     _Out_ _Deref_out_range_(==, ulOperand) SHORT* psResult)
 {
@@ -4203,7 +4202,7 @@ _Win32_SupportedOS_Windows7_ ULongPtrToShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongPtrToUShort(
+ULongPtrToUShort(
     _In_ ULONG_PTR ulOperand,
     _Out_ _Deref_out_range_(==, ulOperand) USHORT* pusResult)
 {
@@ -4672,7 +4671,7 @@ ULongPtrToLongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToInt8(
+LongLongToInt8(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) INT8* pi8Result)
 {
@@ -4698,7 +4697,7 @@ _Win32_SupportedOS_Windows7_ LongLongToInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToUChar(
+LongLongToUChar(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) UCHAR* pch)
 {
@@ -4723,7 +4722,7 @@ _Win32_SupportedOS_Windows7_ LongLongToUChar(
 //
 __forceinline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToChar(
+LongLongToChar(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) CHAR* pch)
 {
@@ -4740,7 +4739,7 @@ _Win32_SupportedOS_Windows7_ LongLongToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToUInt8(
+LongLongToUInt8(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) UINT8* pu8Result)
 {
@@ -4771,7 +4770,7 @@ _Win32_SupportedOS_Windows7_ LongLongToUInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToShort(
+LongLongToShort(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) SHORT* psResult)
 {
@@ -4802,7 +4801,7 @@ _Win32_SupportedOS_Windows7_ LongLongToShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToUShort(
+LongLongToUShort(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) USHORT* pusResult)
 {
@@ -4838,7 +4837,7 @@ _Win32_SupportedOS_Windows7_ LongLongToUShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToInt(
+LongLongToInt(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) INT* piResult)
 {
@@ -4870,7 +4869,7 @@ _Win32_SupportedOS_Windows7_ LongLongToInt(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToIntPtr(
+LongLongToIntPtr(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) INT_PTR* piResult)
 {
@@ -4887,7 +4886,7 @@ _Win32_SupportedOS_Windows7_ LongLongToIntPtr(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToUInt(
+LongLongToUInt(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) UINT* puResult)
 {
@@ -4927,7 +4926,7 @@ _Win32_SupportedOS_Windows7_ LongLongToUInt(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToLong(
+LongLongToLong(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) LONG* plResult)
 {
@@ -4954,7 +4953,7 @@ _Win32_SupportedOS_Windows7_ LongLongToLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToLongPtr(
+LongLongToLongPtr(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) LONG_PTR* plResult)
 {
@@ -4971,7 +4970,7 @@ _Win32_SupportedOS_Windows7_ LongLongToLongPtr(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToULong(
+LongLongToULong(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) ULONG* pulResult)
 {
@@ -5016,7 +5015,7 @@ _Win32_SupportedOS_Windows7_ LongLongToULong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongToULongLong(
+LongLongToULongLong(
     _In_ LONGLONG llOperand,
     _Out_ _Deref_out_range_(==, llOperand) ULONGLONG* pullResult)
 {
@@ -5372,7 +5371,7 @@ _Win32_SupportedOS_Windows7_ LongLongToULongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongLongToInt8(
+ULongLongToInt8(
     _In_ ULONGLONG ullOperand,
     _Out_ _Deref_out_range_(==, ullOperand) INT8* pi8Result)
 {
@@ -5398,7 +5397,7 @@ _Win32_SupportedOS_Windows7_ ULongLongToInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongLongToUChar(
+ULongLongToUChar(
     _In_ ULONGLONG ullOperand,
     _Out_ _Deref_out_range_(==, ullOperand) UCHAR* pch)
 {
@@ -5423,7 +5422,7 @@ _Win32_SupportedOS_Windows7_ ULongLongToUChar(
 //
 __forceinline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongLongToChar(
+ULongLongToChar(
     _In_ ULONGLONG ullOperand,
     _Out_ _Deref_out_range_(==, ullOperand) CHAR* pch)
 {
@@ -5440,7 +5439,7 @@ _Win32_SupportedOS_Windows7_ ULongLongToChar(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongLongToUInt8(
+ULongLongToUInt8(
     _In_ ULONGLONG ullOperand,
     _Out_ _Deref_out_range_(==, ullOperand) UINT8* pu8Result)
 {
@@ -5471,7 +5470,7 @@ _Win32_SupportedOS_Windows7_ ULongLongToUInt8(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongLongToShort(
+ULongLongToShort(
     _In_ ULONGLONG ullOperand,
     _Out_ _Deref_out_range_(==, ullOperand) SHORT* psResult)
 {
@@ -5502,7 +5501,7 @@ _Win32_SupportedOS_Windows7_ ULongLongToShort(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ULongLongToUShort(
+ULongLongToUShort(
     _In_ ULONGLONG ullOperand,
     _Out_ _Deref_out_range_(==, ullOperand) USHORT* pusResult)
 {
@@ -6900,7 +6899,7 @@ ULongLongToLongLong(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UInt8Add(
+UInt8Add(
     _In_ UINT8 u8Augend,
     _In_ UINT8 u8Addend,
     _Out_ _Deref_out_range_(==, u8Augend + u8Addend) UINT8* pu8Result)
@@ -7231,7 +7230,7 @@ ULongLongAdd(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UInt8Sub(
+UInt8Sub(
     _In_ UINT8 u8Minuend,
     _In_ UINT8 u8Subtrahend,
     _Out_ _Deref_out_range_(==, u8Minuend - u8Subtrahend) UINT8* pu8Result)
@@ -7564,7 +7563,7 @@ ULongLongSub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ UInt8Mult(
+UInt8Mult(
     _In_ UINT8 u8Multiplicand,
     _In_ UINT8 u8Multiplier,
     _Out_ _Deref_out_range_(==, u8Multiplicand * u8Multiplier) UINT8* pu8Result)
@@ -7960,7 +7959,7 @@ __Multiply128(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8Add(
+Int8Add(
     _In_ INT8 i8Augend,
     _In_ INT8 i8Addend,
     _Out_ _Deref_out_range_(==, i8Augend + i8Addend) INT8* pi8Result
@@ -7976,7 +7975,7 @@ _Win32_SupportedOS_Windows7_ Int8Add(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortAdd(
+ShortAdd(
     _In_ SHORT sAugend,
     _In_ SHORT sAddend,
     _Out_ _Deref_out_range_(==, sAugend + sAddend) SHORT* psResult
@@ -7997,7 +7996,7 @@ _Win32_SupportedOS_Windows7_ ShortAdd(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntAdd(
+IntAdd(
     _In_ INT iAugend,
     _In_ INT iAddend,
     _Out_ _Deref_out_range_(==, iAugend + iAddend) INT* piResult
@@ -8021,7 +8020,7 @@ _Win32_SupportedOS_Windows7_ IntAdd(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrAdd(
+IntPtrAdd(
     _In_ INT_PTR iAugend,
     _In_ INT_PTR iAddend,
     _Out_ _Deref_out_range_(==, iAugend + iAddend) INT_PTR* piResult
@@ -8038,7 +8037,7 @@ _Win32_SupportedOS_Windows7_ IntPtrAdd(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongAdd(
+LongAdd(
     _In_ LONG lAugend,
     _In_ LONG lAddend,
     _Out_ _Deref_out_range_(==, lAugend + lAddend) LONG* plResult
@@ -8062,7 +8061,7 @@ _Win32_SupportedOS_Windows7_ LongAdd(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongPtrAdd(
+LongPtrAdd(
     _In_ LONG_PTR lAugend,
     _In_ LONG_PTR lAddend,
     _Out_ _Deref_out_range_(==, lAugend + lAddend) LONG_PTR* plResult
@@ -8079,7 +8078,7 @@ _Win32_SupportedOS_Windows7_ LongPtrAdd(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongAdd(
+LongLongAdd(
     _In_ LONGLONG llAugend,
     _In_ LONGLONG llAddend,
     _Out_ _Deref_out_range_(==, llAugend + llAddend) LONGLONG* pllResult
@@ -8136,7 +8135,7 @@ _Win32_SupportedOS_Windows7_ LongLongAdd(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ PtrdiffTAdd(
+PtrdiffTAdd(
     _In_ ptrdiff_t Augend,
     _In_ ptrdiff_t Addend,
     _Out_ _Deref_out_range_(==, Augend + Addend) ptrdiff_t* pResult
@@ -8156,7 +8155,7 @@ _Win32_SupportedOS_Windows7_ PtrdiffTAdd(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ SSIZETAdd(
+SSIZETAdd(
     _In_ SSIZE_T Augend,
     _In_ SSIZE_T Addend,
     _Out_ _Deref_out_range_(==, Augend + Addend) SSIZE_T* pResult
@@ -8178,7 +8177,7 @@ _Win32_SupportedOS_Windows7_ SSIZETAdd(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8Sub(
+Int8Sub(
     _In_ INT8 i8Minuend,
     _In_ INT8 i8Subtrahend,
     _Out_ _Deref_out_range_(==, i8Minuend - i8Subtrahend) INT8* pi8Result
@@ -8194,7 +8193,7 @@ _Win32_SupportedOS_Windows7_ Int8Sub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortSub(
+ShortSub(
     _In_ SHORT sMinuend,
     _In_ SHORT sSubtrahend,
     _Out_ _Deref_out_range_(==, sMinuend - sSubtrahend) SHORT* psResult
@@ -8215,7 +8214,7 @@ _Win32_SupportedOS_Windows7_ ShortSub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntSub(
+IntSub(
     _In_ INT iMinuend,
     _In_ INT iSubtrahend,
     _Out_ _Deref_out_range_(==, iMinuend - iSubtrahend) INT* piResult
@@ -8239,7 +8238,7 @@ _Win32_SupportedOS_Windows7_ IntSub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrSub(
+IntPtrSub(
     _In_ INT_PTR iMinuend,
     _In_ INT_PTR iSubtrahend,
     _Out_ _Deref_out_range_(==, iMinuend - iSubtrahend) INT_PTR* piResult
@@ -8256,7 +8255,7 @@ _Win32_SupportedOS_Windows7_ IntPtrSub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongSub(
+LongSub(
     _In_ LONG lMinuend,
     _In_ LONG lSubtrahend,
     _Out_ _Deref_out_range_(==, lMinuend - lSubtrahend) LONG* plResult
@@ -8280,7 +8279,7 @@ _Win32_SupportedOS_Windows7_ LongSub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongPtrSub(
+LongPtrSub(
     _In_ LONG_PTR lMinuend,
     _In_ LONG_PTR lSubtrahend,
     _Out_ _Deref_out_range_(==, lMinuend - lSubtrahend) LONG_PTR* plResult
@@ -8297,7 +8296,7 @@ _Win32_SupportedOS_Windows7_ LongPtrSub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongSub(
+LongLongSub(
     _In_ LONGLONG llMinuend,
     _In_ LONGLONG llSubtrahend,
     _Out_ _Deref_out_range_(==, llMinuend - llSubtrahend) LONGLONG* pllResult
@@ -8355,7 +8354,7 @@ _Win32_SupportedOS_Windows7_ LongLongSub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ PtrdiffTSub(
+PtrdiffTSub(
     _In_ ptrdiff_t Minuend,
     _In_ ptrdiff_t Subtrahend,
     _Out_ _Deref_out_range_(==, Minuend - Subtrahend) ptrdiff_t* pResult
@@ -8375,7 +8374,7 @@ _Win32_SupportedOS_Windows7_ PtrdiffTSub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ SSIZETSub(
+SSIZETSub(
     _In_ SSIZE_T Minuend,
     _In_ SSIZE_T Subtrahend,
     _Out_ _Deref_out_range_(==, Minuend - Subtrahend) SSIZE_T* pResult)
@@ -8396,7 +8395,7 @@ _Win32_SupportedOS_Windows7_ SSIZETSub(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ Int8Mult(
+Int8Mult(
     _In_ INT8 i8Multiplicand,
     _In_ INT8 i8Multiplier,
     _Out_ _Deref_out_range_(==, i8Multiplicand * i8Multiplier) INT8* pi8Result
@@ -8412,7 +8411,7 @@ _Win32_SupportedOS_Windows7_ Int8Mult(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ ShortMult(
+ShortMult(
     _In_ SHORT sMultiplicand,
     _In_ SHORT sMultiplier,
     _Out_ _Deref_out_range_(==, sMultiplicand * sMultiplier) SHORT* psResult
@@ -8433,7 +8432,7 @@ _Win32_SupportedOS_Windows7_ ShortMult(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntMult(
+IntMult(
     _In_ INT iMultiplicand,
     _In_ INT iMultiplier,
     _Out_ _Deref_out_range_(==, iMultiplicand * iMultiplier) INT* piResult
@@ -8457,7 +8456,7 @@ _Win32_SupportedOS_Windows7_ IntMult(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ IntPtrMult(
+IntPtrMult(
     _In_ INT_PTR iMultiplicand,
     _In_ INT_PTR iMultiplier,
     _Out_ _Deref_out_range_(==, iMultiplicand * iMultiplier) INT_PTR* piResult
@@ -8474,7 +8473,7 @@ _Win32_SupportedOS_Windows7_ IntPtrMult(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongMult(
+LongMult(
     _In_ LONG lMultiplicand,
     _In_ LONG lMultiplier,
     _Out_ _Deref_out_range_(==, lMultiplicand * lMultiplier) LONG* plResult
@@ -8498,7 +8497,7 @@ _Win32_SupportedOS_Windows7_ LongMult(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongPtrMult(
+LongPtrMult(
     _In_ LONG_PTR lMultiplicand,
     _In_ LONG_PTR lMultiplier,
     _Out_ _Deref_out_range_(==, lMultiplicand * lMultiplier) LONG_PTR* plResult
@@ -8515,7 +8514,7 @@ _Win32_SupportedOS_Windows7_ LongPtrMult(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ LongLongMult(
+LongLongMult(
     _In_ LONGLONG llMultiplicand,
     _In_ LONGLONG llMultiplier,
     _Out_ _Deref_out_range_(==, llMultiplicand * llMultiplier) LONGLONG* pllResult
@@ -8630,7 +8629,7 @@ _Win32_SupportedOS_Windows7_ LongLongMult(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ PtrdiffTMult(
+PtrdiffTMult(
     _In_ ptrdiff_t Multiplicand,
     _In_ ptrdiff_t Multiplier,
     _Out_ _Deref_out_range_(==, Multiplicand * Multiplier) ptrdiff_t* pResult
@@ -8650,7 +8649,7 @@ _Win32_SupportedOS_Windows7_ PtrdiffTMult(
 _Must_inspect_result_
 __inline
 HRESULT
-_Win32_SupportedOS_Windows7_ SSIZETMult(
+SSIZETMult(
     _In_ SSIZE_T Multiplicand,
     _In_ SSIZE_T Multiplier,
     _Out_ _Deref_out_range_(==, Multiplicand * Multiplier) SSIZE_T* pResult

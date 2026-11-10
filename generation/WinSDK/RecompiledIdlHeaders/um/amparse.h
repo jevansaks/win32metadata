@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: AMParse.h
 //
@@ -28,9 +27,6 @@ DEFINE_GUID(IID_IAMParse,
 //
 //  Parser interface - supported by MPEG-2 splitter filter
 //
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct IAMParse IAMParse;
-#endif
 DECLARE_INTERFACE_(IAMParse, IUnknown) {
     STDMETHOD(GetParseTime) (THIS_
                              _Out_ REFERENCE_TIME *prtCurrent

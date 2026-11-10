@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * jobapiset.h -- ApiSet Contract for api-ms-win-core-job-l1                     *
@@ -28,8 +27,6 @@ extern "C" {
 
 #if (_WIN32_WINNT >= 0x0501)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI

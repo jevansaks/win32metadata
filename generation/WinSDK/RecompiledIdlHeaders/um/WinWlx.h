@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    Increment this if a change has global effects
 
 Copyright (c) 1985-1999, Microsoft Corporation
@@ -194,8 +193,6 @@ typedef struct _WLX_SC_NOTIFICATION_INFO {
 #define WLX_SAS_ACTION_FORCE_LOGOFF                 (9)
 #define WLX_SAS_ACTION_SHUTDOWN_POWER_OFF           (10)
 #define WLX_SAS_ACTION_SHUTDOWN_REBOOT              (11)
-
-_Win32_Enum_(WLX_SHUTDOWN_TYPE, DWORD, WLX_SAS_ACTION_SHUTDOWN, WLX_SAS_ACTION_SHUTDOWN_REBOOT, WLX_SAS_ACTION_SHUTDOWN_POWER_OFF);
 #define WLX_SAS_ACTION_SHUTDOWN_SLEEP               (12)
 #define WLX_SAS_ACTION_SHUTDOWN_SLEEP2              (13)
 #define WLX_SAS_ACTION_SHUTDOWN_HIBERNATE           (14)
@@ -597,7 +594,6 @@ typedef struct _WLX_CONSOLESWITCH_CREDENTIALS_INFO {
 //                                                                    //
 ////////////////////////////////////////////////////////////////////////
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxNegotiate(
@@ -605,7 +601,6 @@ WlxNegotiate(
     PDWORD                  pdwDllVersion
     );
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxInitialize(
@@ -616,7 +611,6 @@ WlxInitialize(
     PVOID *                 pWlxContext
     );
 
-_Win32_SupportedOS_WindowsXP_
 VOID
 WINAPI
 WlxDisplaySASNotice(
@@ -624,7 +618,6 @@ WlxDisplaySASNotice(
     );
 
 
-_Win32_SupportedOS_WindowsXP_
 int
 WINAPI
 WlxLoggedOutSAS(
@@ -638,7 +631,6 @@ WlxLoggedOutSAS(
     PVOID *                 pProfile
     );
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxActivateUserShell(
@@ -648,7 +640,6 @@ WlxActivateUserShell(
     PVOID                   pEnvironment
     );
 
-_Win32_SupportedOS_WindowsXP_
 int
 WINAPI
 WlxLoggedOnSAS(
@@ -657,14 +648,12 @@ WlxLoggedOnSAS(
     PVOID                   pReserved
     );
 
-_Win32_SupportedOS_WindowsXP_
 VOID
 WINAPI
 WlxDisplayLockedNotice(
     PVOID                   pWlxContext
     );
 
-_Win32_SupportedOS_WindowsXP_
 int
 WINAPI
 WlxWkstaLockedSAS(
@@ -672,21 +661,18 @@ WlxWkstaLockedSAS(
     DWORD                   dwSasType
     );
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxIsLockOk(
     PVOID                   pWlxContext
     );
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxIsLogoffOk(
     PVOID                   pWlxContext
     );
 
-_Win32_SupportedOS_WindowsXP_
 VOID
 WINAPI
 WlxLogoff(
@@ -694,26 +680,23 @@ WlxLogoff(
     );
 
 
-_Win32_SupportedOS_WindowsXP_
 VOID
 WINAPI
 WlxShutdown(
     PVOID                   pWlxContext,
-    _Win32_AssociatedEnum_(WLX_SHUTDOWN_TYPE) DWORD                   ShutdownType
+    DWORD                   ShutdownType
     );
 
 
 //
 // NEW for version 1.1
 //
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxScreenSaverNotify(
     PVOID                   pWlxContext,
     BOOL *                  pSecure);
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxStartApplication(
@@ -727,7 +710,6 @@ WlxStartApplication(
 // New for 1.3
 //
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxNetworkProviderLoad(
@@ -739,7 +721,6 @@ WlxNetworkProviderLoad(
 #define STATUSMSG_OPTION_NOANIMATION    0x00000001
 #define STATUSMSG_OPTION_SETFOREGROUND  0x00000002
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxDisplayStatusMessage(
@@ -750,7 +731,6 @@ WlxDisplayStatusMessage(
     PWSTR                   pMessage
     );
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxGetStatusMessage(
@@ -760,7 +740,6 @@ WlxGetStatusMessage(
     DWORD                   dwBufferSize
     );
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxRemoveStatusMessage(
@@ -771,7 +750,6 @@ WlxRemoveStatusMessage(
 //
 // New for 1.4
 //
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 WlxGetConsoleSwitchCredentials (

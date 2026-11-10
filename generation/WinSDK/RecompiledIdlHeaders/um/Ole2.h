@@ -1,5 +1,3 @@
-#include <win32metadata_annotations.h>
-#include <sal.h>
 #include <winapifamily.h>
 
 
@@ -59,36 +57,14 @@
 #define OLEIVERB_INPLACEACTIVATE    (-5L)
 #define OLEIVERB_DISCARDUNDOSTATE   (-6L)
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-_Win32_Enum_(OLEIVERB, int,
-    OLEIVERB_PRIMARY,
-    OLEIVERB_SHOW,
-    OLEIVERB_OPEN,
-    OLEIVERB_HIDE,
-    OLEIVERB_UIACTIVATE,
-    OLEIVERB_INPLACEACTIVATE,
-    OLEIVERB_DISCARDUNDOSTATE);
-#endif
-
 // for OleCreateEmbeddingHelper flags; roles in low word; options in high word
 #define EMBDHLP_INPROC_HANDLER   0x0000L
 #define EMBDHLP_INPROC_SERVER    0x0001L
 #define EMBDHLP_CREATENOW    0x00000000L
 #define EMBDHLP_DELAYCREATE  0x00010000L
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(EMBDHLP_FLAGS, DWORD,
-    EMBDHLP_INPROC_HANDLER, EMBDHLP_INPROC_SERVER, EMBDHLP_CREATENOW, EMBDHLP_DELAYCREATE);
-#endif
 
 /* extended create function flags */
 #define OLECREATE_LEAVERUNNING	0x00000001
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef _WIN32META_ANNOTATION_(
-    "Enum(OLECREATE_ZERO, OLECREATE_LEAVERUNNING)",
-    0, OLECREATE_LEAVERUNNING)
-    unsigned int OLECREATE;
-#endif
 
 #define OLESTREAM_CONVERSION_DEFAULT 0x00000000L
 #define OLESTREAM_CONVERSION_DISABLEOLELINK 0x00000001L
@@ -298,18 +274,15 @@ WINOLEAPI_(HGLOBAL) OleMetafilePictFromIconAndLabel(IN HICON hIcon, _In_ LPOLEST
 
 /* Registration Database Helper APIs */
 
-_Check_return_ WINOLEAPI                  _Win32_SupportedOS_Windows2000_ OleRegGetUserType (IN REFCLSID clsid, IN _Win32_AssociatedEnum_(USERCLASSTYPE) DWORD dwFormOfType,
+_Check_return_ WINOLEAPI                  OleRegGetUserType (IN REFCLSID clsid, IN DWORD dwFormOfType,
                                         _Outptr_ LPOLESTR FAR* pszUserType);
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI                  OleRegGetMiscStatus     (IN REFCLSID clsid, IN DWORD dwAspect,
                                         OUT DWORD FAR* pdwStatus);
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI OleRegEnumFormatEtc(IN REFCLSID clsid, IN DWORD dwDirection,
                               _Outptr_ LPENUMFORMATETC FAR* ppenum);
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI OleRegEnumVerbs (IN REFCLSID clsid, _Outptr_ LPENUMOLEVERB FAR* ppenum);
 
 
@@ -340,7 +313,6 @@ typedef HRESULT(STDAPICALLTYPE *OLESTREAMQUERYCONVERTOLELINKCALLBACK)
     _In_opt_ ULONG      linkUpdatingOption,
     _In_opt_ PVOID      pvContext);
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI OleConvertOLESTREAMToIStorage
     (IN LPOLESTREAM                lpolestream,
     OUT LPSTORAGE                   pstg,
@@ -354,7 +326,6 @@ WINOLEAPI OleConvertOLESTREAMToIStorage2
     _In_opt_ PVOID                      pvCallbackContext,
     _In_opt_ OLESTREAMQUERYCONVERTOLELINKCALLBACK pQueryConvertOLELinkCallback);
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI OleConvertIStorageToOLESTREAM
     (IN LPSTORAGE      pstg,
     OUT LPOLESTREAM     lpolestream);
@@ -362,18 +333,13 @@ WINOLEAPI OleConvertIStorageToOLESTREAM
 
 /* ConvertTo APIS */
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI OleDoAutoConvert(IN LPSTORAGE pStg, OUT LPCLSID pClsidNew);
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI OleGetAutoConvert(IN REFCLSID clsidOld, OUT LPCLSID pClsidNew);
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI OleSetAutoConvert(IN REFCLSID clsidOld, IN REFCLSID clsidNew);
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI SetConvertStg(IN LPSTORAGE pStg, IN BOOL fConvert);
 
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI OleConvertIStorageToOLESTREAMEx
     (IN LPSTORAGE          pstg,
                                     // Presentation data to OLESTREAM
@@ -384,7 +350,6 @@ WINOLEAPI OleConvertIStorageToOLESTREAMEx
      IN LPSTGMEDIUM        pmedium,    //      bits
      OUT LPOLESTREAM        polestm);
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI OleConvertOLESTREAMToIStorageEx
     (IN LPOLESTREAM        polestm,
      OUT LPSTORAGE          pstg,

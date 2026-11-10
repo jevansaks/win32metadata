@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -30,7 +29,6 @@ Environment:
 #if _MSC_VER > 1000
 #pragma once
 #endif
-#include <sal.h>
 #include <winapifamily.h>
 
 #if !defined(_WINSOCK_DEPRECATED_BY)
@@ -121,8 +119,6 @@ typedef USHORT ADDRESS_FAMILY;
 #define AF_BAN          21              // Banyan
 #define AF_ATM          22              // Native ATM Services
 #define AF_INET6        23              // Internetwork Version 6
-
-_Win32_Enum_(ADDRESS_FAMILY, USHORT, AF_UNSPEC, AF_INET, AF_INET6);
 #define AF_CLUSTER      24              // Microsoft Wolfpack
 #define AF_12844        25              // IEEE 1284.4 WG AF
 #define AF_IRDA         26              // IrDA

@@ -15,8 +15,6 @@
 ****/
 #pragma once
 
-#include <win32metadata_annotations.h>
-
 /*==========================================================================
 
    The comments in this file are intended to give basic understanding of

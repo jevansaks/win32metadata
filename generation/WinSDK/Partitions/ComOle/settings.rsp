@@ -16,3 +16,4 @@ CreateDataAdviseHolder
 --namespace
 Windows.Win32.System.Ole
 --with-type
+STREAM_SEEK=uint

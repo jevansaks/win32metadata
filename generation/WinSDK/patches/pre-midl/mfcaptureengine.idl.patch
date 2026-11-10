@@ -1,86 +1,9 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.idl b/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.idl
+index 54e8cc16..bb80246f 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.idl
-@@ -1,3 +1,5 @@
-+cpp_quote("#include <sal.h>")
-+#include <sal.h>
- cpp_quote("#include <winapifamily.h>")
- 
- //*@@@+++@@@@******************************************************************
-@@ -398,6 +400,7 @@
- // IMFCaptureEngineOnEventCallback Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCaptureEngineOnEventCallback => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(aeda51c0-9025-4983-9012-de597b88b089),
-@@ -427,6 +430,7 @@
- // IMFCaptureEngineOnSampleCallback Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCaptureEngineOnSampleCallback => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(52150b82-ab39-4467-980f-e48bf0822ecd),
-@@ -460,6 +464,7 @@
- // IMFCaptureSink Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCaptureSink => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(72d6135b-35e9-412c-b926-fd5265f2a885),
-@@ -538,6 +543,7 @@
- // IMFCaptureRecordSink Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCaptureRecordSink => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(3323b55a-f92a-4fe2-8edc-e9bfc0634d77),
-@@ -619,6 +625,7 @@
- // IMFCapturePreviewSink Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCapturePreviewSink => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(77346cfd-5b49-4d73-ace0-5b52a859f2e0),
-@@ -728,6 +735,7 @@
- // IMFCapturePhotoSink Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCapturePhotoSink => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(d2d43cc8-48bb-4aa7-95db-10c06977e777),
-@@ -772,6 +780,7 @@
- // IMFCaptureSource Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCaptureSource => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(439a42a8-0d2c-4505-be83-f79b2a05d5c4),
-@@ -953,6 +962,7 @@
- // IMFCaptureEngine Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCaptureEngine => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(a6bba433-176b-48b2-b375-53aa03473207),
-@@ -1052,6 +1062,7 @@
- // {efce38d3-8914-4674-a7df-ae1b3d654b8a }
- cpp_quote( "EXTERN_GUID(CLSID_MFCaptureEngineClassFactory, 0xefce38d3, 0x8914, 0x4674,0xa7, 0xdf, 0xae, 0x1b, 0x3d, 0x65, 0x4b, 0x8a);" )
- 
-+cpp_quote("/* Win32Metadata: interface ::IMFCaptureEngineClassFactory => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(8f02d140-56fc-4302-a705-3a97c78be779),
-@@ -1062,7 +1073,7 @@
+@@ -1062,7 +1062,7 @@ interface IMFCaptureEngineClassFactory : IUnknown
      HRESULT CreateInstance(
                  [in, annotation("_In_")] REFCLSID clsid,               
                  [in, annotation("_In_")] REFIID riid,
@@ -88,28 +11,4 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfcaptureengine.idl b/gen
 +                [out, iid_is(riid), annotation("_COM_Outptr_")] LPVOID *ppvObject );
      
  };
- 
-@@ -1073,6 +1084,7 @@
- // IMFCaptureEngineOnSampleCallback2Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCaptureEngineOnSampleCallback2 => SupportedOSPlatform(\"windows8.1\") */")
- [
-     object,
-     uuid(e37ceed7-340f-4514-9f4d-9c2ae026100b),
-@@ -1090,6 +1102,7 @@
- // IMFCaptureSink2 Interface
- //
- ///////////////////////////////////////////////////////////////////////////////
-+cpp_quote("/* Win32Metadata: interface ::IMFCaptureSink2 => SupportedOSPlatform(\"windows8.1\") */")
- [
-     object,
-     uuid(f9e4219e-6197-4b5e-b888-bee310ab2c59),
-@@ -1104,6 +1117,7 @@
-      HRESULT SetOutputMediaType([in, annotation("_In_")] DWORD dwStreamIndex, [in, annotation("_In_")] IMFMediaType *pMediaType, [in, annotation("_In_opt_")] IMFAttributes *pEncodingAttributes);
- };
- 
-+cpp_quote("/* Win32Metadata: parameter ::IMFCaptureEngineClassFactory::CreateInstance::ppvObject => ComOutPtr(true) */")
- cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */")
- #pragma endregion
  

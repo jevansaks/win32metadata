@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1996-1999 Microsoft Corporation
@@ -15,7 +14,6 @@ Revision History:
 
 --*/
 
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -147,15 +145,9 @@ SCESTATUS
 #define SCE_LOG_LEVEL_DETAIL      2
 #define SCE_LOG_LEVEL_DEBUG       3
 
-#ifdef WIN32METADATA
-_Win32_Enum_(SCE_LOG_ERR_LEVEL, int,
-    SCE_LOG_LEVEL_ALWAYS, SCE_LOG_LEVEL_ERROR, SCE_LOG_LEVEL_DETAIL, SCE_LOG_LEVEL_DEBUG);
-#endif
-
 typedef
 SCESTATUS
 (CALLBACK *PFSCE_LOG_INFO)(
-    _Win32_AssociatedEnum_(SCE_LOG_ERR_LEVEL)
     IN INT ErrLevel,
     IN DWORD  Win32rc,
     IN LPTSTR pErrFmt,
@@ -258,7 +250,6 @@ typedef ISceSvcAttachmentPersistInfo __RPC_FAR *LPSCESVCATTACHMENTPERSISTINFO;
 
     MIDL_INTERFACE("6d90e0d0-200d-11d1-affb-00c04fb984f9")
 
-    _Win32_SupportedOS_WindowsXP_
     ISceSvcAttachmentPersistInfo : public IUnknown
     {
     public:
@@ -268,7 +259,6 @@ typedef ISceSvcAttachmentPersistInfo __RPC_FAR *LPSCESVCATTACHMENTPERSISTINFO;
             /* [out] */ PVOID *ppvData,
             /* [out] */ PBOOL pbOverwriteAll ) = 0;
 
-        _Win32_PreserveResult_
         virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE IsDirty(
             /* [in] */  LPTSTR lpTemplateName ) = 0;
 
@@ -314,7 +304,7 @@ typedef ISceSvcAttachmentPersistInfo __RPC_FAR *LPSCESVCATTACHMENTPERSISTINFO;
         END_INTERFACE
     } ISceSvcAttachmentPersistInfoVtbl;
 
-    interface _Win32_SupportedOS_WindowsXP_ ISceSvcAttachmentPersistInfo
+    interface ISceSvcAttachmentPersistInfo
     {
         CONST_VTBL struct ISceSvcAttachmentPersistInfoVtbl __RPC_FAR *lpVtbl;
     };
@@ -359,7 +349,6 @@ typedef ISceSvcAttachmentData __RPC_FAR *LPSCESVCATTACHMENTDATA;
 
     MIDL_INTERFACE("17c35fde-200d-11d1-affb-00c04fb984f9")
 
-    _Win32_SupportedOS_WindowsXP_
     ISceSvcAttachmentData  : public IUnknown
     {
     public:
@@ -426,7 +415,7 @@ typedef ISceSvcAttachmentData __RPC_FAR *LPSCESVCATTACHMENTDATA;
         END_INTERFACE
     } ISceSvcAttachmentDataVtbl;
 
-    interface _Win32_SupportedOS_WindowsXP_ ISceSvcAttachmentData
+    interface ISceSvcAttachmentData
     {
         CONST_VTBL struct ISceSvcAttachmentDataVtbl __RPC_FAR *lpVtbl;
     };

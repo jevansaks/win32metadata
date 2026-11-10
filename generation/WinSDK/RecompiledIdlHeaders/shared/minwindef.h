@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /****************************************************************************
 *                                                                           *
 * minwindef.h -- Basic Windows Type Definitions for minwin partition        *
@@ -220,7 +219,7 @@ typedef HANDLE              LOCALHANDLE;
 #pragma warning(disable:4255) // () treated as (void)
 #endif
 #ifndef _MAC
-#if defined(_WIN64) || defined(WIN32METADATA)
+#ifdef _WIN64
 typedef INT_PTR (FAR WINAPI *FARPROC)();
 typedef INT_PTR (NEAR WINAPI *NEARPROC)();
 typedef INT_PTR (WINAPI *PROC)();
@@ -249,7 +248,6 @@ DECLARE_HANDLE(HKEY);
 typedef HKEY *PHKEY;
 DECLARE_HANDLE(HMETAFILE);
 DECLARE_HANDLE(HINSTANCE);
-_Win32_AlsoUsableFor_(HINSTANCE)
 typedef HINSTANCE HMODULE;      /* HMODULEs can be used in place of HINSTANCEs */
 DECLARE_HANDLE(HRGN);
 DECLARE_HANDLE(HRSRC);
@@ -259,10 +257,6 @@ DECLARE_HANDLE(HSTR);
 DECLARE_HANDLE(HTASK);
 DECLARE_HANDLE(HWINSTA);
 DECLARE_HANDLE(HKL);
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-_Win32_AlsoUsableFor_(HMODULE) typedef HINSTANCE HINSTANCE;
-_Win32_AlsoUsableFor_(HGDIOBJ) typedef HRGN HRGN;
-#endif
 
 #ifndef _MAC
 typedef int HFILE;

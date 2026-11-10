@@ -1,22 +1,9 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.idl b/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.idl
+index d44dd248..cbfe3e8a 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.idl
-@@ -1,3 +1,5 @@
-+cpp_quote("#include <sal.h>")
-+#include <sal.h>
- cpp_quote("#include <winapifamily.h>")
- 
- //*@@@+++@@@@******************************************************************
-@@ -30,6 +32,7 @@
- // {48e2ed0f-98c2-4a37-bed5-166312ddd83f}
- cpp_quote( "EXTERN_GUID(CLSID_MFReadWriteClassFactory, 0x48e2ed0f, 0x98c2, 0x4a37, 0xbe, 0xd5, 0x16, 0x63, 0x12, 0xdd, 0xd8, 0x3f);" )
- 
-+cpp_quote("/* Win32Metadata: interface ::IMFReadWriteClassFactory => SupportedOSPlatform(\"windows6.1\") */")
- [
-     object,
-     uuid(E7FE2E12-661C-40DA-92F9-4F002AB67627),
-@@ -42,14 +45,14 @@
+@@ -42,14 +42,14 @@ interface IMFReadWriteClassFactory : IUnknown
                  [in, annotation("_In_")] LPCWSTR pwszURL,
                  [in, annotation("_In_opt_")] IMFAttributes *pAttributes,
                  [in, annotation("_In_")] REFIID riid,
@@ -33,39 +20,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.idl b/generat
  };
  
  //////////////////////////////////////////////////////////////////////////////
-@@ -86,6 +89,7 @@
- ///     block the calling thread.
- /// </remarks>
- cpp_quote( "STDAPI MFCreateSourceReaderFromURL(" )
-+cpp_quote("/* Win32Metadata: function ::MFCreateSourceReaderFromURL => SupportedOSPlatform(\"windows6.1\") */")
- cpp_quote( "    _In_ LPCWSTR pwszURL," )
- cpp_quote( "    _In_opt_ IMFAttributes *pAttributes," )
- cpp_quote( "    _Out_ IMFSourceReader **ppSourceReader );" )
-@@ -110,6 +114,7 @@
- ///     block the calling thread.
- /// </remarks>
- cpp_quote( "STDAPI MFCreateSourceReaderFromByteStream(" )
-+cpp_quote("/* Win32Metadata: function ::MFCreateSourceReaderFromByteStream => SupportedOSPlatform(\"windows6.1\") */")
- cpp_quote( "    _In_ IMFByteStream *pByteStream," )
- cpp_quote( "    _In_opt_ IMFAttributes *pAttributes," )
- cpp_quote( "    _Out_ IMFSourceReader **ppSourceReader );" )
-@@ -130,6 +135,7 @@
- ///     will be stored.
- /// </param>
- cpp_quote( "STDAPI MFCreateSourceReaderFromMediaSource(" )
-+cpp_quote("/* Win32Metadata: function ::MFCreateSourceReaderFromMediaSource => SupportedOSPlatform(\"windows6.1\") */")
- cpp_quote( "    _In_ IMFMediaSource *pMediaSource," )
- cpp_quote( "    _In_opt_ IMFAttributes *pAttributes," )
- cpp_quote( "    _Out_ IMFSourceReader **ppSourceReader );" )
-@@ -334,6 +340,7 @@
- };
- cpp_quote("#endif // (WINVER >= _WIN32_WINNT_WIN8) ")
- 
-+cpp_quote("/* Win32Metadata: interface ::IMFSourceReader => SupportedOSPlatform(\"windows6.1\") */")
- [
-     object,
-     uuid(70ae66f2-c809-4e4f-8915-bdcb406b7993),
-@@ -559,7 +566,7 @@
+@@ -559,7 +559,7 @@ interface IMFSourceReader : IUnknown
                  [in, annotation("_In_")] DWORD dwStreamIndex,
                  [in, annotation("_In_")] REFGUID guidService,
                  [in, annotation("_In_")] REFIID riid,
@@ -74,47 +29,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.idl b/generat
  
      /// <summary>
      ///     Allows the application to get attributes from either the
-@@ -590,6 +597,7 @@
- #pragma region Application or Games Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::IMFSourceReaderEx => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(7b981cf0-560e-4116-9875-b099895f23d7),
-@@ -678,6 +686,7 @@
- #pragma region Application or Games Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::IMFSourceReaderCallback => SupportedOSPlatform(\"windows6.1\") */")
- [
-     object,
-     uuid(deec8d99-fa1d-4d82-84c2-2c8969944867),
-@@ -820,6 +829,7 @@
- //     - ppSinkWriter receives an instance of the MF Sink Writer
- //
- cpp_quote( "STDAPI MFCreateSinkWriterFromURL(" )
-+cpp_quote("/* Win32Metadata: function ::MFCreateSinkWriterFromURL => SupportedOSPlatform(\"windows6.1\") */")
- cpp_quote( "    _In_opt_ LPCWSTR pwszOutputURL," )
- cpp_quote( "    _In_opt_ IMFByteStream *pByteStream," )
- cpp_quote( "    _In_opt_ IMFAttributes *pAttributes," )
-@@ -833,6 +843,7 @@
- //     - ppSinkWriter receives an instance of the MF Sink Writer
- //
- cpp_quote( "STDAPI MFCreateSinkWriterFromMediaSink(" )
-+cpp_quote("/* Win32Metadata: function ::MFCreateSinkWriterFromMediaSink => SupportedOSPlatform(\"windows6.1\") */")
- cpp_quote( "    _In_ IMFMediaSink *pMediaSink," )
- cpp_quote( "    _In_opt_ IMFAttributes *pAttributes," )
- cpp_quote( "    _Out_ IMFSinkWriter **ppSinkWriter );" )
-@@ -941,6 +952,7 @@
- //
- // MF Sink Writer Interface
- //
-+cpp_quote("/* Win32Metadata: interface ::IMFSinkWriter => SupportedOSPlatform(\"windows6.1\") */")
- [
-     object,
-     uuid(3137f1cd-fe5e-4805-a5d8-fb477448cb3d),
-@@ -1072,7 +1084,7 @@
+@@ -1072,7 +1072,7 @@ interface IMFSinkWriter : IUnknown
                  [in, annotation("_In_")] DWORD dwStreamIndex,
                  [in, annotation("_In_")] REFGUID guidService,
                  [in, annotation("_In_")] REFIID riid,
@@ -123,32 +38,3 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mfreadwrite.idl b/generat
  
      //
      // Returns various statistics about the performance of the sink writer.
-@@ -1089,6 +1101,7 @@
- 
- cpp_quote("#if (WINVER >= _WIN32_WINNT_WIN8) ")
- 
-+cpp_quote("/* Win32Metadata: interface ::IMFSinkWriterEx => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     uuid(588d72ab-5Bc1-496a-8714-b70617141b25),
-@@ -1129,6 +1142,7 @@
-                 [out, annotation("_Out_")] IMFTransform **ppTransform );
- };
- 
-+cpp_quote("/* Win32Metadata: interface ::IMFSinkWriterEncoderConfig => SupportedOSPlatform(\"windows8.1\") */")
- [
-     object,
-     uuid(17C3779E-3CDE-4EDE-8C60-3899F5F53AD6),
-@@ -1183,6 +1197,7 @@
- // MF Sink Writer is configured to finalize content generation
- // asynchronously.
- //
-+cpp_quote("/* Win32Metadata: interface ::IMFSinkWriterCallback => SupportedOSPlatform(\"windows6.1\") */")
- [
-     object,
-     uuid(666f76de-33d2-41b9-a458-29ed0a972c58),
-@@ -1344,4 +1359,3 @@
- 
- cpp_quote("#endif // (WINVER >= _WIN32_WINNT_WIN8) ")
- 
--

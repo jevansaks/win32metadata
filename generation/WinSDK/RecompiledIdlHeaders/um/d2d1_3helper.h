@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 
 /*=========================================================================*\
 
@@ -37,7 +36,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_GRADIENT_MESH_PATCH
-    _Win32_SupportedOS_Windows7_ GradientMeshPatch(
+    GradientMeshPatch( 
         D2D1_POINT_2F point00, 
         D2D1_POINT_2F point01, 
         D2D1_POINT_2F point02, 
@@ -98,7 +97,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_GRADIENT_MESH_PATCH
-    _Win32_SupportedOS_Windows7_ GradientMeshPatchFromCoonsPatch(
+    GradientMeshPatchFromCoonsPatch(
         D2D1_POINT_2F point0,
         D2D1_POINT_2F point1,
         D2D1_POINT_2F point2,
@@ -169,7 +168,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_INK_POINT 
-    _Win32_SupportedOS_Windows7_ InkPoint(
+    InkPoint( 
         const D2D1_POINT_2F &point, 
         FLOAT radius 
         )
@@ -186,7 +185,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_INK_BEZIER_SEGMENT 
-    _Win32_SupportedOS_Windows7_ InkBezierSegment(
+    InkBezierSegment( 
         const D2D1_INK_POINT &point1, 
         const D2D1_INK_POINT &point2, 
         const D2D1_INK_POINT &point3 
@@ -204,7 +203,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_INK_STYLE_PROPERTIES 
-    _Win32_SupportedOS_Windows7_ InkStyleProperties(
+    InkStyleProperties( 
         D2D1_INK_NIB_SHAPE nibShape, 
         const D2D1_MATRIX_3X2_F &nibTransform 
         )

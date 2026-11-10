@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -117,8 +116,6 @@ typedef void
     IN DWORD_PTR dwParam3
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxDevInitialize(
     IN  HLINEAPP LineAppHandle,
@@ -127,13 +124,10 @@ FaxDevInitialize(
     IN  PFAX_SERVICE_CALLBACK FaxServiceCallback
     );
 
-_Win32_SupportedOS_Windows2000_
 HRESULT WINAPI FaxDevShutdown(
     void
 );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxDevVirtualDeviceCreation(
     OUT LPDWORD DeviceCount,
@@ -143,8 +137,6 @@ FaxDevVirtualDeviceCreation(
     IN  ULONG_PTR CompletionKey
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxDevStartJob(
     IN  HLINE LineHandle,
@@ -154,8 +146,6 @@ FaxDevStartJob(
     IN  ULONG_PTR CompletionKey
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxDevEndJob(
     IN  HANDLE FaxHandle
@@ -169,8 +159,6 @@ typedef BOOL
     IN DWORD Reserved2
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxDevSend(
     IN  HANDLE FaxHandle,
@@ -180,8 +168,6 @@ FaxDevSend(
 
 #define FAXDEVRECEIVE_SIZE 4096
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxDevReceive(
     IN  HANDLE FaxHandle,
@@ -191,8 +177,6 @@ FaxDevReceive(
 
 #define FAXDEVREPORTSTATUS_SIZE 4096
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxDevReportStatus(
     IN  HANDLE FaxHandle OPTIONAL,
@@ -201,8 +185,6 @@ FaxDevReportStatus(
     OUT LPDWORD FaxStatusSizeRequired
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxDevAbortOperation(
     IN  HANDLE FaxHandle

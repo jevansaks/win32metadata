@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -792,19 +791,19 @@ public:
 #define VSS_SW_BOOTABLE_STATE   (1 << 0)
 
 extern "C"  {
-    HRESULT STDAPICALLTYPE _Win32_SupportedOS_WindowsXP_ CreateVssBackupComponentsInternal
+    HRESULT STDAPICALLTYPE CreateVssBackupComponentsInternal
         (
         _Out_ IVssBackupComponents **ppBackup
         );
 
-    HRESULT STDAPICALLTYPE _Win32_SupportedOS_WindowsXP_ CreateVssExamineWriterMetadataInternal
+    HRESULT STDAPICALLTYPE CreateVssExamineWriterMetadataInternal
         (
         _In_ BSTR bstrXML,
         _Out_ IVssExamineWriterMetadata **ppMetadata
         );
 
 
-    HRESULT APIENTRY _Win32_SupportedOS_WindowsXP_ IsVolumeSnapshottedInternal
+    HRESULT APIENTRY IsVolumeSnapshottedInternal
         (
         _In_z_ VSS_PWSZ  pwszVolumeName,
         _Out_ BOOL    *pbSnapshotsPresent,
@@ -814,7 +813,7 @@ extern "C"  {
 /////////////////////////////////////////////////////////////////////
 // Life-management methods for structure members
 
-    void APIENTRY _Win32_SupportedOS_WindowsXP_ VssFreeSnapshotPropertiesInternal(
+    void APIENTRY VssFreeSnapshotPropertiesInternal(
         _In_ VSS_SNAPSHOT_PROP*  pProp
         );
 
@@ -832,7 +831,7 @@ extern "C"  {
         );
 }
 
-inline HRESULT  _Win32_SupportedOS_WindowsXP_ CreateVssBackupComponents
+inline HRESULT  CreateVssBackupComponents
     (
     _Out_ IVssBackupComponents **ppBackup
     )
@@ -840,7 +839,7 @@ inline HRESULT  _Win32_SupportedOS_WindowsXP_ CreateVssBackupComponents
     return CreateVssBackupComponentsInternal(ppBackup);
 }
 
-inline HRESULT _Win32_SupportedOS_WindowsXP_ CreateVssExamineWriterMetadata
+inline HRESULT CreateVssExamineWriterMetadata
     (
     _In_ BSTR bstrXML,
     _Out_ IVssExamineWriterMetadata **ppMetadata
@@ -849,7 +848,7 @@ inline HRESULT _Win32_SupportedOS_WindowsXP_ CreateVssExamineWriterMetadata
     return CreateVssExamineWriterMetadataInternal(bstrXML, ppMetadata);
 }
 
-inline HRESULT _Win32_SupportedOS_WindowsXP_ IsVolumeSnapshotted
+inline HRESULT IsVolumeSnapshotted
     (
     _In_z_ VSS_PWSZ  pwszVolumeName,
     _Out_ BOOL    *pbSnapshotsPresent,
@@ -859,7 +858,7 @@ inline HRESULT _Win32_SupportedOS_WindowsXP_ IsVolumeSnapshotted
     return IsVolumeSnapshottedInternal(pwszVolumeName, pbSnapshotsPresent, plSnapshotCapability);
 }
 
-inline void _Win32_SupportedOS_WindowsXP_ VssFreeSnapshotProperties
+inline void VssFreeSnapshotProperties
     (
     _In_ VSS_SNAPSHOT_PROP* pProp
     )
@@ -877,7 +876,7 @@ inline HRESULT GetProviderMgmtInterface
     return GetProviderMgmtInterfaceInternal(ProviderId, InterfaceId, ppItf);
 }
 
-inline HRESULT _Win32_SupportedOS_Server2008_ ShouldBlockRevert
+inline HRESULT ShouldBlockRevert
     (
     _In_ LPCWSTR wszVolumeName,
     _Out_ bool* pbBlock

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*++
@@ -179,7 +178,6 @@ typedef struct _RPC_ASYNC_STATE {
 #define RpcAsyncGetCallHandle(pAsync) (((PRPC_ASYNC_STATE) pAsync)->RuntimeInfo)
 
 #if !defined(_KRPCENV_)
-_Win32_SupportedOS_Windows2000_
 RPCRTAPI
 _Must_inspect_result_
 RPC_STATUS
@@ -189,7 +187,6 @@ RpcAsyncRegisterInfo (
     ) ;
 #endif
 
-_Win32_SupportedOS_Windows2000_
 RPCRTAPI
 _Must_inspect_result_
 RPC_STATUS
@@ -199,7 +196,6 @@ RpcAsyncInitializeHandle (
     _In_ unsigned int     Size
     );
 
-_Win32_SupportedOS_Windows2000_
 RPCRTAPI
 _Must_inspect_result_
 RPC_STATUS
@@ -208,7 +204,6 @@ RpcAsyncGetCallStatus (
     _In_ PRPC_ASYNC_STATE pAsync
     ) ;
 
-_Win32_SupportedOS_Windows2000_
 RPCRTAPI
 _Must_inspect_result_
 RPC_STATUS
@@ -218,7 +213,6 @@ RpcAsyncCompleteCall (
     _Out_opt_ void *Reply
     ) ;
 
-_Win32_SupportedOS_Windows2000_
 RPCRTAPI
 _Must_inspect_result_
 RPC_STATUS
@@ -228,7 +222,6 @@ RpcAsyncAbortCall (
     _In_ unsigned long ExceptionCode
     ) ;
 
-_Win32_SupportedOS_Windows2000_
 RPCRTAPI
 _Must_inspect_result_
 RPC_STATUS
@@ -315,7 +308,6 @@ typedef struct tagRPC_ERROR_ENUM_HANDLE
     void *Head;
 } RPC_ERROR_ENUM_HANDLE;
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY
@@ -323,7 +315,6 @@ RpcErrorStartEnumeration (
     _Out_ RPC_ERROR_ENUM_HANDLE *EnumHandle
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY
@@ -333,7 +324,6 @@ RpcErrorGetNextRecord (
     _Out_ RPC_EXTENDED_ERROR_INFO *ErrorInfo
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY
@@ -341,7 +331,6 @@ RpcErrorEndEnumeration (
     _Inout_ RPC_ERROR_ENUM_HANDLE *EnumHandle
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY
@@ -349,7 +338,6 @@ RpcErrorResetEnumeration (
     _Inout_ RPC_ERROR_ENUM_HANDLE *EnumHandle
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY
@@ -358,7 +346,6 @@ RpcErrorGetNumberOfRecords (
     _Out_ int *Records
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY
@@ -368,7 +355,6 @@ RpcErrorSaveErrorInfo (
     _Out_ size_t *BlobSize
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY
@@ -378,7 +364,6 @@ RpcErrorLoadErrorInfo (
     _Out_ RPC_ERROR_ENUM_HANDLE *EnumHandle
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY
@@ -386,7 +371,6 @@ RpcErrorAddRecord (
     _In_ RPC_EXTENDED_ERROR_INFO *ErrorInfo
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 void 
 RPC_ENTRY
@@ -411,7 +395,6 @@ RpcAsyncCleanupThread (
     _In_ DWORD dwTimeout
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS
 RPC_ENTRY
@@ -426,7 +409,6 @@ RpcGetAuthorizationContextForClient (
     _Out_ PVOID *pAuthzClientContext
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY
@@ -434,7 +416,6 @@ RpcFreeAuthorizationContext (
     _Inout_ PVOID *pAuthzClientContext
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS
 RPC_ENTRY
@@ -443,7 +424,6 @@ RpcSsContextLockExclusive (
     _In_ PVOID UserContext
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS
 RPC_ENTRY
@@ -635,7 +615,6 @@ typedef struct tagRPC_CALL_ATTRIBUTES_V3_A
 
 #endif // (NTDDI_VERSION >= NTDDI_WIN8)
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS
 RPC_ENTRY
@@ -644,7 +623,6 @@ RpcServerInqCallAttributesW (
     _Inout_ void *RpcCallAttributes
     );
 
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS
 RPC_ENTRY
@@ -692,7 +670,6 @@ typedef enum _RPC_NOTIFICATIONS
 
 #define RpcNotificationCallStatusChange    RpcNotificationClientDisconnect
 
-_Win32_SupportedOS_WindowsVista_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY 
@@ -703,7 +680,6 @@ RpcServerSubscribeForNotification (
     _In_ RPC_ASYNC_NOTIFICATION_INFO *NotificationInfo
     );
 
-_Win32_SupportedOS_WindowsVista_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY 
@@ -724,7 +700,6 @@ RpcServerUnsubscribeForNotification (
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_WindowsVista_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY 
@@ -734,7 +709,6 @@ RpcBindingBind (
     _In_ RPC_IF_HANDLE IfSpec    
     );
 
-_Win32_SupportedOS_WindowsVista_
 RPCRTAPI
 RPC_STATUS 
 RPC_ENTRY 

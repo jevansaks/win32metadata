@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1826,7 +1825,6 @@ typedef struct
 //
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpAddFilterV4(
     _In_opt_z_ DHCP_CONST WCHAR     *ServerIpAddress,
@@ -1834,28 +1832,24 @@ DhcpAddFilterV4(
     _In_       BOOL                 ForceFlag
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpDeleteFilterV4(
     _In_opt_z_ DHCP_CONST WCHAR  *ServerIpAddress,
     _In_       DHCP_ADDR_PATTERN *DeleteFilterInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetFilterV4(
     _In_opt_z_ DHCP_CONST WCHAR        *ServerIpAddress,
     _In_       DHCP_FILTER_GLOBAL_INFO *GlobalFilterInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetFilterV4(
     _In_opt_z_ DHCP_CONST WCHAR        *ServerIpAddress,
     _Out_      DHCP_FILTER_GLOBAL_INFO *GlobalFilterInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumFilterV4(
     _In_opt_z_ DHCP_CONST WCHAR        *ServerIpAddress,
@@ -1872,7 +1866,6 @@ DhcpEnumFilterV4(
 // Subnet APIs
 //
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpCreateSubnet(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -1880,7 +1873,6 @@ DhcpCreateSubnet(
     DHCP_CONST DHCP_SUBNET_INFO * SubnetInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpSetSubnetInfo(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -1888,7 +1880,6 @@ DhcpSetSubnetInfo(
     DHCP_CONST DHCP_SUBNET_INFO * SubnetInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpGetSubnetInfo(
     _In_opt_z_ DHCP_CONST WCHAR   *ServerIpAddress,
@@ -1896,7 +1887,6 @@ DhcpGetSubnetInfo(
                LPDHCP_SUBNET_INFO * SubnetInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnets(
     _In_opt_z_   DHCP_CONST WCHAR    *ServerIpAddress,
@@ -1907,7 +1897,6 @@ DhcpEnumSubnets(
     _Out_        DWORD               *ElementsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpAddSubnetElement(
     _In_opt_z_ DHCP_CONST WCHAR          *ServerIpAddress,
@@ -1915,7 +1904,6 @@ DhcpAddSubnetElement(
     DHCP_CONST DHCP_SUBNET_ELEMENT_DATA * AddElementInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetElements(
     _In_opt_z_ DHCP_CONST WCHAR                 *ServerIpAddress,
@@ -1928,7 +1916,6 @@ DhcpEnumSubnetElements(
                DWORD                            *ElementsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpRemoveSubnetElement(
     _In_opt_z_ DHCP_CONST WCHAR         *ServerIpAddress,
@@ -1937,7 +1924,6 @@ DhcpRemoveSubnetElement(
                DHCP_FORCE_FLAG           ForceFlag
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpDeleteSubnet(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -1949,7 +1935,6 @@ DhcpDeleteSubnet(
 // Option APIs
 //
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpCreateOption(
     _In_opt_z_ DHCP_CONST WCHAR        *ServerIpAddress,
@@ -1957,7 +1942,6 @@ DhcpCreateOption(
                DHCP_CONST DHCP_OPTION * OptionInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetOptionInfo(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -1965,7 +1949,6 @@ DhcpSetOptionInfo(
     DHCP_CONST DHCP_OPTION      *OptionInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetOptionInfo(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -1973,7 +1956,6 @@ DhcpGetOptionInfo(
                LPDHCP_OPTION    *OptionInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumOptions(
     _In_opt_z_ DHCP_CONST WCHAR    *ServerIpAddress,
@@ -1984,14 +1966,12 @@ DhcpEnumOptions(
                DWORD               *OptionsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpRemoveOption(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
                DHCP_OPTION_ID   OptionID
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetOptionValue(
     _In_opt_z_ DHCP_CONST WCHAR       *ServerIpAddress,
@@ -2000,7 +1980,6 @@ DhcpSetOptionValue(
     DHCP_CONST DHCP_OPTION_DATA       *OptionValue
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetOptionValues(
     _In_opt_z_ DHCP_CONST WCHAR        *ServerIpAddress,
@@ -2008,7 +1987,6 @@ DhcpSetOptionValues(
     DHCP_CONST DHCP_OPTION_VALUE_ARRAY *OptionValues
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpGetOptionValue(
     _In_opt_z_ DHCP_CONST WCHAR       *ServerIpAddress,
@@ -2017,7 +1995,6 @@ DhcpGetOptionValue(
     LPDHCP_OPTION_VALUE *OptionValue
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumOptionValues(
     _In_opt_z_ DHCP_CONST WCHAR          *ServerIpAddress,
@@ -2029,7 +2006,6 @@ DhcpEnumOptionValues(
                DWORD                     *OptionsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpRemoveOptionValue(
     _In_opt_z_ DHCP_CONST WCHAR       *ServerIpAddress,
@@ -2040,21 +2016,18 @@ DhcpRemoveOptionValue(
 //
 // Client APIs
 //
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpCreateClientInfoVQ(
     _In_opt_z_ DHCP_CONST WCHAR    *ServerIpAddress,
     DHCP_CONST DHCP_CLIENT_INFO_VQ *ClientInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetClientInfoVQ(
     _In_opt_z_ DHCP_CONST WCHAR    *ServerIpAddress,
     DHCP_CONST DHCP_CLIENT_INFO_VQ *ClientInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetClientInfoVQ(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -2062,7 +2035,6 @@ DhcpGetClientInfoVQ(
     LPDHCP_CLIENT_INFO_VQ       *ClientInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetClientsVQ(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
@@ -2074,7 +2046,6 @@ DhcpEnumSubnetClientsVQ(
                DWORD                       *ClientsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetClientsFilterStatusInfo(
     _In_opt_z_ DHCP_CONST WCHAR                       *ServerIpAddress,
@@ -2086,21 +2057,18 @@ DhcpEnumSubnetClientsFilterStatusInfo(
                DWORD                                  *ClientsTotal
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpCreateClientInfo(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
     DHCP_CONST DHCP_CLIENT_INFO *ClientInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpSetClientInfo(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
     DHCP_CONST DHCP_CLIENT_INFO *ClientInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpGetClientInfo(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -2108,14 +2076,12 @@ DhcpGetClientInfo(
     LPDHCP_CLIENT_INFO *ClientInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpDeleteClientInfo(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
     DHCP_CONST DHCP_SEARCH_INFO *ClientInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetClients(
     _In_opt_z_ DHCP_CONST WCHAR         *ServerIpAddress,
@@ -2127,7 +2093,6 @@ DhcpEnumSubnetClients(
                DWORD                    *ClientsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetClientOptions(
     _In_opt_z_ DHCP_CONST WCHAR   *ServerIpAddress,
@@ -2142,7 +2107,6 @@ DhcpGetMibInfo(
     LPDHCP_MIB_INFO *MibInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpServerSetConfig(
     _In_opt_z_ DHCP_CONST WCHAR         *ServerIpAddress,
@@ -2151,7 +2115,6 @@ DhcpServerSetConfig(
     );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpServerGetConfig(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -2159,7 +2122,6 @@ DhcpServerGetConfig(
     );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpScanDatabase(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -2168,13 +2130,11 @@ DhcpScanDatabase(
                LPDHCP_SCAN_LIST *ScanList
     );
 
-_Win32_SupportedOS_Server2000_
 VOID DHCP_API_FUNCTION
 DhcpRpcFreeMemory(
     PVOID BufferPointer
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpGetVersion(
     _In_opt_ LPWSTR  ServerIpAddress,
@@ -2185,7 +2145,6 @@ DhcpGetVersion(
 
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpAddSubnetElementV4(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
@@ -2193,7 +2152,6 @@ DhcpAddSubnetElementV4(
     DHCP_CONST DHCP_SUBNET_ELEMENT_DATA_V4 *AddElementInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetElementsV4(
     _In_opt_z_ DHCP_CONST WCHAR                    *ServerIpAddress,
@@ -2206,7 +2164,6 @@ DhcpEnumSubnetElementsV4(
                DWORD                               *ElementsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpRemoveSubnetElementV4(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
@@ -2216,7 +2173,6 @@ DhcpRemoveSubnetElementV4(
     );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpCreateClientInfoV4(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -2224,7 +2180,6 @@ DhcpCreateClientInfoV4(
     );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetClientInfoV4(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -2232,7 +2187,6 @@ DhcpSetClientInfoV4(
     );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetClientInfoV4(
     _In_opt_z_ DHCP_CONST WCHAR      *ServerIpAddress,
@@ -2241,7 +2195,6 @@ DhcpGetClientInfoV4(
     );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetClientsV4(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
@@ -2254,7 +2207,6 @@ DhcpEnumSubnetClientsV4(
     );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpServerSetConfigV4(
     _In_opt_z_ DHCP_CONST WCHAR             *ServerIpAddress,
@@ -2262,7 +2214,6 @@ DhcpServerSetConfigV4(
                LPDHCP_SERVER_CONFIG_INFO_V4 ConfigInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpServerGetConfigV4(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -2270,7 +2221,6 @@ DhcpServerGetConfigV4(
     );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpSetSuperScopeV4(
     _In_opt_z_ DHCP_CONST WCHAR  *ServerIpAddress,
@@ -2279,14 +2229,12 @@ DhcpSetSuperScopeV4(
     DHCP_CONST BOOL               ChangeExisting
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpDeleteSuperScopeV4(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
     _In_ DHCP_CONST LPWSTR      SuperScopeName
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpGetSuperScopeInfoV4(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -2298,7 +2246,6 @@ DhcpGetSuperScopeInfoV4(
 
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetClientsV5(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
@@ -2313,7 +2260,6 @@ DhcpEnumSubnetClientsV5(
 
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpCreateOptionV5(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2325,7 +2271,6 @@ DhcpCreateOptionV5(
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD                                             // ERROR_DHCP_OPTION_NOT_PRESENT if option does not exist
 DhcpSetOptionInfoV5(                              // Modify existing option's fields
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2337,7 +2282,6 @@ DhcpSetOptionInfoV5(                              // Modify existing option's fi
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD                                             // ERROR_DHCP_OPTION_NOT_PRESENT
 DhcpGetOptionInfoV5(                              // retrieve the information from off the mem structures
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2349,7 +2293,6 @@ DhcpGetOptionInfoV5(                              // retrieve the information fr
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD                                             // ERROR_DHCP_OPTION_NOT_PRESENT if option does not exist
 DhcpEnumOptionsV5(                                // enumerate the options defined
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2364,7 +2307,6 @@ DhcpEnumOptionsV5(                                // enumerate the options defin
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD                                             // ERROR_DHCP_OPTION_NOT_PRESENT if option not existent
 DhcpRemoveOptionV5(                               // remove the option definition from the registry
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2375,7 +2317,6 @@ DhcpRemoveOptionV5(                               // remove the option definitio
 ) ;
 
 
-_Win32_SupportedOS_Server2000_
 DWORD                                             // OPTION_NOT_PRESENT if option is not defined
 DhcpSetOptionValueV5(                             // replace or add a new option value
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2388,7 +2329,6 @@ DhcpSetOptionValueV5(                             // replace or add a new option
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpSetOptionValuesV5(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2400,7 +2340,6 @@ DhcpSetOptionValuesV5(
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpGetOptionValueV5(                             // fetch the required option at required level
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2412,7 +2351,6 @@ DhcpGetOptionValueV5(                             // fetch the required option a
              OUT     LPDHCP_OPTION_VALUE   *OptionValue
 ) ;
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpGetOptionValueV6(                             // fetch the required option at required level
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2425,7 +2363,6 @@ DhcpGetOptionValueV6(                             // fetch the required option a
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpEnumOptionValuesV5(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2441,7 +2378,6 @@ DhcpEnumOptionValuesV5(
 ) ;
 
 
-_Win32_SupportedOS_Server2000_
 DWORD
 DhcpRemoveOptionValueV5(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2453,7 +2389,6 @@ DhcpRemoveOptionValueV5(
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpCreateClass(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2462,7 +2397,6 @@ DhcpCreateClass(
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpModifyClass(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2471,7 +2405,6 @@ DhcpModifyClass(
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpDeleteClass(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2480,7 +2413,6 @@ DhcpDeleteClass(
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpGetClassInfo(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2490,7 +2422,6 @@ DhcpGetClassInfo(
 ) ;
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpEnumClasses(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2504,7 +2435,6 @@ DhcpEnumClasses(
 
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpGetAllOptions(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2512,7 +2442,6 @@ DhcpGetAllOptions(
              OUT     LPDHCP_ALL_OPTIONS     *OptionStruct   // fills the fields of this structure
 ) ;
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetAllOptionsV6(
     _In_opt_ IN       LPWSTR                 ServerIpAddress,
@@ -2520,7 +2449,6 @@ DhcpGetAllOptionsV6(
              OUT     LPDHCP_ALL_OPTIONS     *OptionStruct   // fills the fields of this structure
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpGetAllOptionValues(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2529,7 +2457,6 @@ DhcpGetAllOptionValues(
              OUT     LPDHCP_ALL_OPTION_VALUES *Values
 ) ;
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetAllOptionValuesV6(
     _In_opt_       LPWSTR                 ServerIpAddress,
@@ -2546,7 +2473,6 @@ DhcpGetAllOptionValuesV6(
 //DOC DhcpEnumServers enumerates the list of servers found in the DS.  If the DS
 //DOC is not accessible, it returns an error. The only currently used parameter
 //DOC is the out parameter Servers.  This is a SLOW call.
-_Win32_SupportedOS_Server2000_
 DWORD
 DhcpEnumServers(
     IN      DWORD                  Flags,         // must be zero
@@ -2561,7 +2487,6 @@ DhcpEnumServers(
 //DOC The function tries to upload the server configuration to the DS..
 //DOC This is a SLOW call.  Currently, the DsLocation and DsLocType are not valid
 //DOC fields in the NewServer and they'd be ignored. Version must be zero.
-_Win32_SupportedOS_Server2000_
 DWORD
 DhcpAddServer(
     IN      DWORD                  Flags,         // must be zero
@@ -2574,7 +2499,6 @@ DhcpAddServer(
 //DOC DhcpDeleteServer tries to delete the server from DS. It is an error if the
 //DOC server does not already exist.  This also deletes any objects related to
 //DOC this server in the DS (like subnet, reservations etc.).
-_Win32_SupportedOS_Server2000_
 DWORD
 DhcpDeleteServer(
     IN      DWORD                  Flags,         // must be zero
@@ -2588,7 +2512,6 @@ DhcpDeleteServer(
 
 
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpGetServerBindingInfo(
     _In_opt_z_ DHCP_CONST WCHAR          *ServerIpAddress,
@@ -2596,7 +2519,6 @@ DhcpGetServerBindingInfo(
                LPDHCP_BIND_ELEMENT_ARRAY *BindElementsInfo
 );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpSetServerBindingInfo(
     _In_opt_z_ DHCP_CONST WCHAR          *ServerIpAddress,
@@ -2607,7 +2529,6 @@ DhcpSetServerBindingInfo(
 
 
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpAddSubnetElementV5(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
@@ -2615,7 +2536,6 @@ DhcpAddSubnetElementV5(
     DHCP_CONST DHCP_SUBNET_ELEMENT_DATA_V5 *AddElementInfo
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetElementsV5(
     _In_opt_z_ DHCP_CONST WCHAR                    *ServerIpAddress,
@@ -2628,7 +2548,6 @@ DhcpEnumSubnetElementsV5(
                DWORD                               *ElementsTotal
     );
 
-_Win32_SupportedOS_Server2000_
 DWORD DHCP_API_FUNCTION
 DhcpRemoveSubnetElementV5(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
@@ -2638,7 +2557,6 @@ DhcpRemoveSubnetElementV5(
     );
 
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4EnumSubnetReservations(
     _In_opt_z_ DHCP_CONST WCHAR   *ServerIpAddress,
@@ -2654,7 +2572,6 @@ DhcpV4EnumSubnetReservations(
 
 
 //V6 Api's
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpCreateOptionV6(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2664,7 +2581,6 @@ DhcpCreateOptionV6(
     _In_opt_ IN      LPWSTR                 VendorName,
              IN      LPDHCP_OPTION          OptionInfo
 );
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpRemoveOptionV6(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2673,7 +2589,6 @@ DhcpRemoveOptionV6(
     _In_opt_ IN      LPWSTR                 ClassName,
     _In_opt_ IN      LPWSTR                 VendorName
 );
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION             
 DhcpEnumOptionsV6(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2687,7 +2602,6 @@ DhcpEnumOptionsV6(
              OUT     DWORD                 *OptionsTotal
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpRemoveOptionValueV6(
     _In_opt_       LPWSTR                 ServerIpAddress,
@@ -2697,7 +2611,6 @@ DhcpRemoveOptionValueV6(
     _In_opt_       LPWSTR                 VendorName,
            IN      LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo
 );
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetOptionInfoV6(
     _In_opt_       LPWSTR                 ServerIpAddress,
@@ -2708,7 +2621,6 @@ DhcpGetOptionInfoV6(
            OUT     LPDHCP_OPTION         *OptionInfo
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetOptionInfoV6(
     _In_opt_    LPWSTR          ServerIpAddress,
@@ -2719,7 +2631,6 @@ DhcpSetOptionInfoV6(
           IN    LPDHCP_OPTION   OptionInfo
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetOptionValueV6(
     _In_opt_      LPWSTR                 ServerIpAddress,
@@ -2734,7 +2645,6 @@ DhcpSetOptionValueV6(
 
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetSubnetInfoVQ(
     _In_opt_z_ DHCP_CONST WCHAR      *ServerIpAddress,
@@ -2742,7 +2652,6 @@ DhcpGetSubnetInfoVQ(
     _Out_      LPDHCP_SUBNET_INFO_VQ *SubnetInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpCreateSubnetVQ(
     _In_opt_z_ DHCP_CONST WCHAR         *ServerIpAddress,
@@ -2750,7 +2659,6 @@ DhcpCreateSubnetVQ(
     _In_ DHCP_CONST DHCP_SUBNET_INFO_VQ *SubnetInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetSubnetInfoVQ(
     _In_opt_z_ DHCP_CONST WCHAR         *ServerIpAddress,
@@ -2758,7 +2666,6 @@ DhcpSetSubnetInfoVQ(
     _In_ DHCP_CONST DHCP_SUBNET_INFO_VQ *SubnetInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumOptionValuesV6(
     _In_opt_z_ DHCP_CONST WCHAR *ServerIpAddress,
@@ -2778,7 +2685,6 @@ DhcpEnumOptionValuesV6(
 //DOC DhcpDsInit must be called exactly once per process.. this initializes the
 //DOC memory and other structures for this process.  This initializes some DS
 //DOC object handles (memory), and hence is slow as this has to read from DS.
-_Win32_SupportedOS_Server2000_
 DWORD
 DhcpDsInit(
     VOID
@@ -2787,14 +2693,12 @@ DhcpDsInit(
 //DOC DhcpDsCleanup undoes the effect of any DhcpDsInit.  This function should be
 //DOC called exactly once for each process, and only at termination.  Note that
 //DOC it is safe to call this function even if DhcpDsInit does not succeed.
-_Win32_SupportedOS_Server2000_
 VOID
 DhcpDsCleanup(
     VOID
 );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpSetThreadOptions(                             // set options for current thread
     IN      DWORD                  Flags,         // options, currently 0 or DHCP_FLAGS_DONT_ACCESS_DS
@@ -2803,7 +2707,6 @@ DhcpSetThreadOptions(                             // set options for current thr
 
 //DOC DhcpGetThreadOptions retrieves the current thread options as set by DhcpSetThreadOptions.
 //DOC If none were set, the return value is zero.
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpGetThreadOptions(                             // get current thread options
     OUT     LPDWORD                pFlags,        // this DWORD is filled with current optiosn..
@@ -2811,7 +2714,6 @@ DhcpGetThreadOptions(                             // get current thread options
 );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD                                             // Status code
 DhcpServerQueryAttribute(                         // get a server status
     _In_opt_ IN      LPWSTR                 ServerIpAddr,  // String form of server IP
@@ -2820,7 +2722,6 @@ DhcpServerQueryAttribute(                         // get a server status
              OUT     LPDHCP_ATTRIB         *pDhcpAttrib    // fill in this field
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD                                             // Status code
 DhcpServerQueryAttributes(                        // query multiple attributes
     _In_opt_ IN      LPWSTR                 ServerIpAddr,  // String form of server IP
@@ -2830,14 +2731,12 @@ DhcpServerQueryAttributes(                        // query multiple attributes
              OUT     LPDHCP_ATTRIB_ARRAY   *pDhcpAttribArr // Ptr is filled w/ array
 );
 
-_Win32_SupportedOS_Server2000_
 DWORD                                             // Status code
 DhcpServerRedoAuthorization(                      // retry the rogue server stuff
     _In_opt_ IN      LPWSTR                 ServerIpAddr,  // String form of server IP
              IN      ULONG                  dwReserved     // reserved for future
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpAuditLogSetParams(                            // set some auditlogging params
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -2848,7 +2747,6 @@ DhcpAuditLogSetParams(                            // set some auditlogging param
              IN      DWORD                  MinSpaceOnDisk     // mininum amt of free disk space
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpAuditLogGetParams(
     _In_opt_        IN      LPWSTR                 ServerIpAddress,
@@ -2862,7 +2760,6 @@ DhcpAuditLogGetParams(
 
 
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpServerQueryDnsRegCredentials(
     _In_opt_ IN              LPWSTR ServerIpAddress,
@@ -2880,7 +2777,6 @@ DhcpServerSetDnsRegCredentials(
     _In_opt_ IN LPWSTR Passwd
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpServerSetDnsRegCredentialsV5(
     _In_opt_ IN LPWSTR ServerIpAddress,
@@ -2889,14 +2785,12 @@ DhcpServerSetDnsRegCredentialsV5(
     _In_opt_ IN LPWSTR Passwd
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpServerBackupDatabase(
     _In_opt_ IN LPWSTR ServerIpAddress,
     _In_ IN LPWSTR Path
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpServerRestoreDatabase(
     _In_opt_ IN LPWSTR ServerIpAddress,
@@ -2907,7 +2801,6 @@ DhcpServerRestoreDatabase(
 //  All Quarantine related APIs
 //
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpServerSetConfigVQ(
     _In_opt_z_ DHCP_CONST WCHAR             *ServerIpAddress,
@@ -2915,14 +2808,12 @@ DhcpServerSetConfigVQ(
                LPDHCP_SERVER_CONFIG_INFO_VQ ConfigInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpServerGetConfigVQ(
     _In_opt_z_ DHCP_CONST WCHAR             *ServerIpAddress,
                LPDHCP_SERVER_CONFIG_INFO_VQ *ConfigInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetServerSpecificStrings(
     _In_opt_z_ DHCP_CONST WCHAR               *ServerIpAddress,
@@ -2934,7 +2825,6 @@ DhcpServerAuditlogParamsFree(
     DHCP_SERVER_CONFIG_INFO_VQ *ConfigInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpCreateSubnetV6(
     _In_opt_ LPWSTR                ServerIpAddress,
@@ -2942,7 +2832,6 @@ DhcpCreateSubnetV6(
              LPDHCP_SUBNET_INFO_V6 SubnetInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpDeleteSubnetV6(
     _In_opt_ LPWSTR            ServerIpAddress,
@@ -2950,7 +2839,6 @@ DhcpDeleteSubnetV6(
              DHCP_FORCE_FLAG   ForceFlag
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetsV6(
     _In_opt_z_ DHCP_CONST WCHAR   *ServerIpAddress,
@@ -2961,7 +2849,6 @@ DhcpEnumSubnetsV6(
                DWORD              *ElementsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpAddSubnetElementV6(
     _In_opt_ LPWSTR                        ServerIpAddress,
@@ -2969,7 +2856,6 @@ DhcpAddSubnetElementV6(
              LPDHCP_SUBNET_ELEMENT_DATA_V6 AddElementInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpRemoveSubnetElementV6(
     _In_opt_ LPWSTR                        ServerIpAddress,
@@ -2978,7 +2864,6 @@ DhcpRemoveSubnetElementV6(
              DHCP_FORCE_FLAG               ForceFlag
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetElementsV6(
     _In_opt_ LPWSTR                              ServerIpAddress,
@@ -2991,7 +2876,6 @@ DhcpEnumSubnetElementsV6(
              DWORD                               *ElementsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetSubnetInfoV6(
     _In_opt_ LPWSTR                 ServerIpAddress,
@@ -3000,7 +2884,6 @@ DhcpGetSubnetInfoV6(
     );
 
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumSubnetClientsV6(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
@@ -3012,7 +2895,6 @@ DhcpEnumSubnetClientsV6(
                DWORD                       *ClientsTotal
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpServerGetConfigV6(
     _In_opt_z_ DHCP_CONST WCHAR             *ServerIpAddress,
@@ -3020,7 +2902,6 @@ DhcpServerGetConfigV6(
                LPDHCP_SERVER_CONFIG_INFO_V6 *ConfigInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpServerSetConfigV6(
     _In_opt_z_ DHCP_CONST WCHAR             *ServerIpAddress,
@@ -3029,41 +2910,35 @@ DhcpServerSetConfigV6(
                LPDHCP_SERVER_CONFIG_INFO_V6 ConfigInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpSetSubnetInfoV6(
     _In_opt_z_ DHCP_CONST WCHAR       *ServerIpAddress,
                DHCP_IPV6_ADDRESS      SubnetAddress,    
                LPDHCP_SUBNET_INFO_V6  SubnetInfo
 );
-_Win32_SupportedOS_Server2008_
 DWORD
 DhcpGetMibInfoV6(
     _In_opt_z_ DHCP_CONST WCHAR *  ServerIpAddress,
                LPDHCP_MIB_INFO_V6 *MibInfo
 );
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetServerBindingInfoV6(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
                ULONG                       Flags,
                LPDHCPV6_BIND_ELEMENT_ARRAY *BindElementsInfo
 );
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetServerBindingInfoV6(
     _In_opt_z_ DHCP_CONST WCHAR            *ServerIpAddress,
                ULONG                       Flags,
                LPDHCPV6_BIND_ELEMENT_ARRAY BindElementInfo
 );
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetClientInfoV6(
     _In_opt_z_ DHCP_CONST WCHAR    *ServerIpAddress,
     DHCP_CONST DHCP_CLIENT_INFO_V6 *ClientInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetClientInfoV6(
     _In_opt_z_ DHCP_CONST WCHAR      *ServerIpAddress,
@@ -3071,14 +2946,12 @@ DhcpGetClientInfoV6(
                LPDHCP_CLIENT_INFO_V6 *ClientInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpDeleteClientInfoV6(
     _In_opt_z_ DHCP_CONST WCHAR    *ServerIpAddress,
     DHCP_CONST DHCP_SEARCH_INFO_V6 *ClientInfo
     );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpCreateClassV6(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -3086,7 +2959,6 @@ DhcpCreateClassV6(
              IN      LPDHCP_CLASS_INFO_V6   ClassInfo
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpModifyClassV6(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -3094,7 +2966,6 @@ DhcpModifyClassV6(
              IN      LPDHCP_CLASS_INFO_V6      ClassInfo
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpDeleteClassV6(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -3102,7 +2973,6 @@ DhcpDeleteClassV6(
     _In_     IN      LPWSTR                 ClassName
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpEnumClassesV6(
     _In_opt_ IN      LPWSTR                 ServerIpAddress,
@@ -3114,7 +2984,6 @@ DhcpEnumClassesV6(
              OUT     DWORD                 *nTotal
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpSetSubnetDelayOffer (
     _In_opt_ IN          LPWSTR             ServerIpAddress,
@@ -3122,7 +2991,6 @@ DhcpSetSubnetDelayOffer (
              IN          USHORT             TimeDelayInMilliseconds
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetSubnetDelayOffer (
     _In_opt_ IN          LPWSTR             ServerIpAddress,
@@ -3130,7 +2998,6 @@ DhcpGetSubnetDelayOffer (
              IN          USHORT *           TimeDelayInMilliseconds
 );
 
-_Win32_SupportedOS_Server2008_
 DWORD DHCP_API_FUNCTION
 DhcpGetMibInfoV5(
 _In_opt_z_ DHCP_CONST WCHAR   *ServerIpAddress,
@@ -3143,7 +3010,6 @@ _In_opt_ LPWSTR  pServer
 );
 
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4GetOptionValue (
     _In_opt_    IN  LPWSTR                      ServerIpAddress,
@@ -3155,7 +3021,6 @@ DhcpV4GetOptionValue (
                 OUT LPDHCP_OPTION_VALUE        *OptionValue
         );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4SetOptionValue (
     _In_opt_    IN  LPWSTR                      ServerIpAddress,
@@ -3167,7 +3032,6 @@ DhcpV4SetOptionValue (
                 IN  LPDHCP_OPTION_DATA          OptionValue
         );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4SetOptionValues(
     _In_opt_    IN  LPWSTR                      ServerIpAddress,
@@ -3178,7 +3042,6 @@ DhcpV4SetOptionValues(
                 IN  LPDHCP_OPTION_VALUE_ARRAY   OptionValues
         );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4RemoveOptionValue (
     _In_opt_    IN  LPWSTR                      ServerIpAddress,
@@ -3189,7 +3052,6 @@ DhcpV4RemoveOptionValue (
                 IN  LPDHCP_OPTION_SCOPE_INFO    ScopeInfo
         );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4GetAllOptionValues (
     _In_opt_    IN  LPWSTR                          ServerIpAddress,
@@ -3348,14 +3210,12 @@ typedef struct _DHCP_FAILOVER_STATISTICS
 #define     PREVSTATE           0x00000020
 #define     SHAREDSECRET        0x00000040
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverCreateRelationship(
  _In_opt_ LPWSTR  ServerIpAddress,
  _In_     LPDHCP_FAILOVER_RELATIONSHIP  pRelationship
   );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverSetRelationship(
  _In_opt_    LPWSTR  ServerIpAddress,
@@ -3364,14 +3224,12 @@ DhcpV4FailoverSetRelationship(
  );
 
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverDeleteRelationship(
   _In_opt_   LPWSTR  ServerIpAddress,
   _In_       LPWSTR  pRelationshipName
  );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverGetRelationship(
   _In_opt_   LPWSTR  ServerIpAddress,
@@ -3380,7 +3238,6 @@ DhcpV4FailoverGetRelationship(
 );
 
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverEnumRelationship(
   _In_opt_   LPWSTR  ServerIpAddress,
@@ -3392,14 +3249,12 @@ DhcpV4FailoverEnumRelationship(
  );
 
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverAddScopeToRelationship(
   _In_opt_   LPWSTR  ServerIpAddress,
   _In_  LPDHCP_FAILOVER_RELATIONSHIP   pRelationship
  );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverDeleteScopeFromRelationship(
   _In_opt_   LPWSTR  ServerIpAddress,
@@ -3407,7 +3262,6 @@ DhcpV4FailoverDeleteScopeFromRelationship(
 
  );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverGetScopeRelationship(
   _In_opt_   LPWSTR  ServerIpAddress,
@@ -3415,7 +3269,6 @@ DhcpV4FailoverGetScopeRelationship(
   _Out_  LPDHCP_FAILOVER_RELATIONSHIP   *pRelationship
  );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverGetScopeStatistics(
   _In_opt_   LPWSTR  ServerIpAddress,
@@ -3423,7 +3276,6 @@ DhcpV4FailoverGetScopeStatistics(
   _Out_ LPDHCP_FAILOVER_STATISTICS   *pStats
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverGetClientInfo(
   _In_opt_   LPWSTR  ServerIpAddress,
@@ -3431,7 +3283,6 @@ DhcpV4FailoverGetClientInfo(
   _Out_  LPDHCPV4_FAILOVER_CLIENT_INFO      *ClientInfo
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverGetSystemTime(
     _In_opt_ LPWSTR ServerIpAddress,
@@ -3439,7 +3290,6 @@ DhcpV4FailoverGetSystemTime(
     _Out_  LPDWORD  pMaxAllowedDeltaTime
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverGetAddressStatus(
 _In_opt_    LPWSTR              ServerIpAddress,
@@ -3448,7 +3298,6 @@ _Inout_     LPDWORD             pStatus
 );
 
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4FailoverTriggerAddrAllocation(
 _In_opt_  LPWSTR     ServerIpAddress,
@@ -3457,7 +3306,6 @@ _In_       LPWSTR     pFailRelName
 
 //Policy Functions Defn start
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpHlprCreateV4Policy (
         _In_        LPWSTR                  PolicyName,
@@ -3482,7 +3330,6 @@ DhcpHlprCreateV4PolicyEx (
         _Out_       LPDHCP_POLICY_EX        *Policy
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpHlprAddV4PolicyExpr (
         _Inout_         LPDHCP_POLICY           Policy,
@@ -3491,7 +3338,6 @@ DhcpHlprAddV4PolicyExpr (
         _Out_       DWORD                       *ExprIndex
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpHlprAddV4PolicyCondition (
         _Inout_                       LPDHCP_POLICY       Policy,
@@ -3506,27 +3352,23 @@ DhcpHlprAddV4PolicyCondition (
         _Out_                         DWORD              *ConditionIndex
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpHlprAddV4PolicyRange (
    _Inout_      LPDHCP_POLICY           Policy,
    _In_             LPDHCP_IP_RANGE     Range
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpHlprResetV4PolicyExpr (
    _Inout_      LPDHCP_POLICY           Policy
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpHlprModifyV4PolicyExpr (
     _Inout_         LPDHCP_POLICY           Policy,
     _In_            DHCP_POL_LOGIC_OPER     Operator
 );
 
-_Win32_SupportedOS_Server2012_
 VOID DHCP_API_FUNCTION
 DhcpHlprFreeV4Policy (
     _Inout_         LPDHCP_POLICY           Policy
@@ -3564,13 +3406,11 @@ DhcpHlprFindV4DhcpProperty (
     _In_       DHCP_PROPERTY_TYPE    Type
 );
 
-_Win32_SupportedOS_Server2012_
 BOOL DHCP_API_FUNCTION
 DhcpHlprIsV4PolicySingleUC(
     _In_        LPDHCP_POLICY           Policy
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4QueryPolicyEnforcement (
     _In_opt_        LPWSTR                  ServerIpAddress,
@@ -3579,7 +3419,6 @@ DhcpV4QueryPolicyEnforcement (
     _Out_           BOOL                    *Enabled
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4SetPolicyEnforcement (
     _In_opt_        LPWSTR                  ServerIpAddress,
@@ -3588,19 +3427,16 @@ DhcpV4SetPolicyEnforcement (
        _In_         BOOL                    Enable
 );
 
-_Win32_SupportedOS_Server2012_
 BOOL DHCP_API_FUNCTION
 DhcpHlprIsV4PolicyWellFormed (
     _In_            LPDHCP_POLICY       pPolicy
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpHlprIsV4PolicyValid (
     _In_            LPDHCP_POLICY       pPolicy
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4CreatePolicy (
         _In_opt_    LPWSTR              ServerIpAddress,
@@ -3609,7 +3445,6 @@ DhcpV4CreatePolicy (
 
 
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4GetPolicy (
         _In_opt_    LPWSTR              ServerIpAddress,
@@ -3619,7 +3454,6 @@ DhcpV4GetPolicy (
         _Out_       LPDHCP_POLICY       *Policy
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4SetPolicy (
         _In_opt_    LPWSTR              ServerIpAddress,
@@ -3630,7 +3464,6 @@ DhcpV4SetPolicy (
         _In_        LPDHCP_POLICY       Policy
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4DeletePolicy (
         _In_opt_    LPWSTR              ServerIpAddress,
@@ -3639,7 +3472,6 @@ DhcpV4DeletePolicy (
         _In_        LPWSTR              PolicyName
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4EnumPolicies (
         _In_opt_    LPWSTR                  ServerIpAddress,
@@ -3652,7 +3484,6 @@ DhcpV4EnumPolicies (
         _Out_       DWORD                   *ElementsTotal
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4AddPolicyRange (
         _In_opt_    LPWSTR              ServerIpAddress,
@@ -3661,7 +3492,6 @@ DhcpV4AddPolicyRange (
         _In_        LPDHCP_IP_RANGE     Range
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4RemovePolicyRange (
         _In_opt_    LPWSTR              ServerIpAddress,
@@ -3672,7 +3502,6 @@ DhcpV4RemovePolicyRange (
 
 // Stateless Client Inventory API functions
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV6SetStatelessStoreParams (
         _In_opt_    LPWSTR                          ServerIpAddress,
@@ -3682,7 +3511,6 @@ DhcpV6SetStatelessStoreParams (
         _In_        LPDHCPV6_STATELESS_PARAMS       Params
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV6GetStatelessStoreParams (
         _In_opt_    LPWSTR                          ServerIpAddress,
@@ -3691,7 +3519,6 @@ DhcpV6GetStatelessStoreParams (
         _Out_       LPDHCPV6_STATELESS_PARAMS      *Params
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV6GetStatelessStatistics (
         _In_opt_    LPWSTR                          ServerIpAddress,
@@ -3699,14 +3526,12 @@ DhcpV6GetStatelessStatistics (
 );
 
 // More client APIs
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4CreateClientInfo(
     _In_opt_z_ DHCP_CONST WCHAR                     *ServerIpAddress,
     _In_       DHCP_CONST LPDHCP_CLIENT_INFO_PB     ClientInfo
     );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4EnumSubnetClients(
     _In_opt_z_ DHCP_CONST WCHAR                     *ServerIpAddress,
@@ -3718,7 +3543,6 @@ DhcpV4EnumSubnetClients(
     _Out_      DWORD                                *ClientsTotal
     );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4GetClientInfo(
     _In_opt_z_  DHCP_CONST WCHAR                    *ServerIpAddress,
@@ -3726,14 +3550,12 @@ DhcpV4GetClientInfo(
     _Out_                  LPDHCP_CLIENT_INFO_PB    *ClientInfo
     );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV6CreateClientInfo(
     _In_opt_z_  DHCP_CONST WCHAR                    *ServerIpAddress,
     _In_        DHCP_CONST LPDHCP_CLIENT_INFO_V6    ClientInfo
     );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV4GetFreeIPAddress (
         _In_opt_     LPWSTR                    ServerIpAddress,
@@ -3744,7 +3566,6 @@ DhcpV4GetFreeIPAddress (
         _Out_         LPDHCP_IP_ARRAY          *IPAddrList
 );
 
-_Win32_SupportedOS_Server2012_
 DWORD DHCP_API_FUNCTION
 DhcpV6GetFreeIPAddress (
         _In_opt_     LPWSTR                  ServerIpAddress,

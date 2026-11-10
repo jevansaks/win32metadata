@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 
 /*++
 
@@ -327,7 +326,6 @@ typedef enum {
 } EVENTSECURITYOPERATION;
 
 #if (WINVER >= _WIN32_WINNT_LONGHORN)
-_Win32_SupportedOS_WindowsVista_
 ULONG
 EVNTAPI
 EventAccessControl(
@@ -340,7 +338,6 @@ EventAccessControl(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_LONGHORN)
-_Win32_SupportedOS_WindowsVista_
 ULONG
 EVNTAPI
 EventAccessQuery(
@@ -351,7 +348,6 @@ EventAccessQuery(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_LONGHORN)
-_Win32_SupportedOS_WindowsVista_
 ULONG
 EVNTAPI
 EventAccessRemove(

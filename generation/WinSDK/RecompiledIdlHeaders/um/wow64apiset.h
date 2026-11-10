@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * wow64app.h - ApiSet Contract for api-ms-win-core-wow64-l1                     *
@@ -30,7 +29,6 @@ extern "C" {
 #if !defined(RC_INVOKED)
 #if _WIN32_WINNT >= 0x0501 || defined(WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY)
 
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOLEAN
 WINAPI
@@ -38,8 +36,6 @@ Wow64EnableWow64FsRedirection(
     _In_ BOOLEAN Wow64FsEnableRedirection
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -47,8 +43,6 @@ Wow64DisableWow64FsRedirection(
     _Out_ PVOID* OldValue
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -67,8 +61,6 @@ Wow64RevertWow64FsRedirection(
 
 #if (_WIN32_WINNT >= 0x0501)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -89,8 +81,6 @@ IsWow64Process(
 #if !defined(RC_INVOKED)
 #if _WIN32_WINNT >= 0x0501 || defined(WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Must_inspect_result_
 _Success_(return != 0 && return < uSize)
@@ -101,8 +91,6 @@ GetSystemWow64DirectoryA(
     _In_ UINT uSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Must_inspect_result_
 _Success_(return != 0 && return < uSize)
@@ -141,8 +129,6 @@ Wow64SetThreadDefaultGuestMachine(
 
 #if (_WIN32_WINNT >= 0x0A00)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10586_
 WINBASEAPI
 BOOL
 WINAPI
@@ -162,8 +148,6 @@ IsWow64Process2(
 
 #if (_WIN32_WINNT >= 0x0A00)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10586_
 WINBASEAPI
 _Must_inspect_result_
 _Success_(return != 0 && return < uSize)
@@ -175,8 +159,6 @@ GetSystemWow64Directory2A(
     _In_ WORD ImageFileMachineType
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10586_
 WINBASEAPI
 _Must_inspect_result_
 _Success_(return != 0 && return < uSize)
@@ -198,8 +180,6 @@ GetSystemWow64Directory2W(
 
 #if (_WIN32_WINNT >= 0x0A00)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_16299_
 WINBASEAPI
 _Must_inspect_result_
 HRESULT
@@ -213,8 +193,6 @@ IsWow64GuestMachineSupported(
 
 #if (_WIN32_WINNT >= 0x0600)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -223,8 +201,6 @@ Wow64GetThreadContext(
     _Inout_ PWOW64_CONTEXT lpContext
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -233,8 +209,6 @@ Wow64SetThreadContext(
     _In_ CONST WOW64_CONTEXT* lpContext
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 DWORD
 WINAPI

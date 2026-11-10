@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1999 - 2008  Microsoft Corporation
@@ -23,12 +22,6 @@ Environment:
 
 #ifndef VIRT_DISK_API_DEF
 #define VIRT_DISK_API_DEF
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned long WIN32_ERROR;
-#endif
-
-#include <sal.h>
 
 #include <winapifamily.h>
 
@@ -127,9 +120,6 @@ typedef struct _OPEN_VIRTUAL_DISK_PARAMETERS
 //  it into that AccessMask space.
 //
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 #if defined(__midl)
 typedef [v1_enum] enum _VIRTUAL_DISK_ACCESS_MASK {
 #else
@@ -153,18 +143,12 @@ typedef enum _VIRTUAL_DISK_ACCESS_MASK {
     VIRTUAL_DISK_ACCESS_WRITABLE            = 0x00320000
 
 } VIRTUAL_DISK_ACCESS_MASK;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(VIRTUAL_DISK_ACCESS_MASK);
 #endif
 
 // Flags for OpenVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _OPEN_VIRTUAL_DISK_FLAG
 {
     OPEN_VIRTUAL_DISK_FLAG_NONE                = 0x00000000,
@@ -214,9 +198,6 @@ typedef enum _OPEN_VIRTUAL_DISK_FLAG
     OPEN_VIRTUAL_DISK_FLAG_SUPPORT_ENCRYPTED_FILES = 0x00000800,
 
 } OPEN_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #if !defined(VIRTDISK_DEFINE_FLAGS)
 
@@ -224,8 +205,7 @@ typedef enum _OPEN_VIRTUAL_DISK_FLAG
 DEFINE_ENUM_FLAG_OPERATORS(OPEN_VIRTUAL_DISK_FLAG);
 #endif
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 OpenVirtualDisk(
     _In_     PVIRTUAL_STORAGE_TYPE         VirtualStorageType,
@@ -334,9 +314,6 @@ typedef struct _CREATE_VIRTUAL_DISK_PARAMETERS
 
 
 // Flags for CreateVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _CREATE_VIRTUAL_DISK_FLAG
 {
     CREATE_VIRTUAL_DISK_FLAG_NONE                          = 0x0,
@@ -409,9 +386,6 @@ typedef enum _CREATE_VIRTUAL_DISK_FLAG
     CREATE_VIRTUAL_DISK_FLAG_SUPPORT_SPARSE_FILES_ANY_FS = 0x400,
 
 } CREATE_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #define CREATE_VIRTUAL_DISK_FLAG_USE_RCT_SOURCE_LIMIT CREATE_VIRTUAL_DISK_FLAG_USE_CHANGE_TRACKING_SOURCE_LIMIT
 
@@ -420,8 +394,7 @@ DEFINE_ENUM_FLAG_OPERATORS(CREATE_VIRTUAL_DISK_FLAG);
 #endif
 
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 CreateVirtualDisk(
     _In_      PVIRTUAL_STORAGE_TYPE           VirtualStorageType,
@@ -473,9 +446,6 @@ typedef struct _ATTACH_VIRTUAL_DISK_PARAMETERS
 #endif // VIRTDISK_DEFINE_FLAGS
 
 // Flags for AttachVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _ATTACH_VIRTUAL_DISK_FLAG
 {
     ATTACH_VIRTUAL_DISK_FLAG_NONE                           = 0x00000000,
@@ -519,9 +489,6 @@ typedef enum _ATTACH_VIRTUAL_DISK_FLAG
     // Reattach a virtual disk the next time the system boots.
     ATTACH_VIRTUAL_DISK_FLAG_AT_BOOT                        = 0x00000400,
 } ATTACH_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #if !defined(VIRTDISK_DEFINE_FLAGS)
 
@@ -529,8 +496,7 @@ typedef enum _ATTACH_VIRTUAL_DISK_FLAG
 DEFINE_ENUM_FLAG_OPERATORS(ATTACH_VIRTUAL_DISK_FLAG);
 #endif
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 AttachVirtualDisk(
     _In_     HANDLE                             VirtualDiskHandle,
@@ -550,17 +516,11 @@ AttachVirtualDisk(
 #endif // VIRTDISK_DEFINE_FLAGS
 
 // Flags for DetachVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _DETACH_VIRTUAL_DISK_FLAG
 {
     DETACH_VIRTUAL_DISK_FLAG_NONE                = 0x00000000,
 
 } DETACH_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #if !defined(VIRTDISK_DEFINE_FLAGS)
 
@@ -568,8 +528,7 @@ typedef enum _DETACH_VIRTUAL_DISK_FLAG
 DEFINE_ENUM_FLAG_OPERATORS(DETACH_VIRTUAL_DISK_FLAG);
 #endif
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 DetachVirtualDisk(
     _In_     HANDLE                   VirtualDiskHandle,
@@ -583,8 +542,7 @@ DetachVirtualDisk(
 // GetVirtualDiskPhysicalPath
 //
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetVirtualDiskPhysicalPath(
     _In_                                     HANDLE VirtualDiskHandle,
@@ -596,7 +554,7 @@ GetVirtualDiskPhysicalPath(
 // GetAllAttachedVirtualDiskPhysicalPaths
 //
 
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetAllAttachedVirtualDiskPhysicalPaths(
     _Inout_                                     PULONG PathsBufferSizeInBytes,
@@ -610,9 +568,6 @@ GetAllAttachedVirtualDiskPhysicalPaths(
 //
 
 // Flags for dependent disks
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _DEPENDENT_DISK_FLAG
 {
     DEPENDENT_DISK_FLAG_NONE                         = 0x00000000,
@@ -681,9 +636,6 @@ typedef enum _DEPENDENT_DISK_FLAG
     DEPENDENT_DISK_FLAG_SUPPORT_ENCRYPTED_FILES      = 0x00002000,
 
 } DEPENDENT_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(DEPENDENT_DISK_FLAG);
@@ -739,9 +691,6 @@ typedef struct _STORAGE_DEPENDENCY_INFO
 #endif // VIRTDISK_DEFINE_FLAGS
 
 // Flags for GetStorageDependencyInformation
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _GET_STORAGE_DEPENDENCY_FLAG
 {
     GET_STORAGE_DEPENDENCY_FLAG_NONE         = 0x00000000,
@@ -755,9 +704,6 @@ typedef enum _GET_STORAGE_DEPENDENCY_FLAG
     GET_STORAGE_DEPENDENCY_FLAG_DISK_HANDLE  = 0x00000002,
 
 } GET_STORAGE_DEPENDENCY_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #define GET_STORAGE_DEPENDENCY_FLAG_PARENTS GET_STORAGE_DEPENDENCY_FLAG_HOST_VOLUMES
 
@@ -767,8 +713,7 @@ DEFINE_ENUM_FLAG_OPERATORS(GET_STORAGE_DEPENDENCY_FLAG);
 
 #if !defined(VIRTDISK_DEFINE_FLAGS)
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetStorageDependencyInformation(
     _In_        HANDLE                      ObjectHandle,
@@ -870,8 +815,7 @@ typedef struct _GET_VIRTUAL_DISK_INFO
 
 #define VIRTUAL_DISK_MAXIMUM_CHANGE_TRACKING_ID_LENGTH 256
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) _Success_(return == ERROR_SUCCESS)
+_Success_(return == ERROR_SUCCESS)
 DWORD
 WINAPI
 GetVirtualDiskInformation(
@@ -935,8 +879,7 @@ typedef struct _SET_VIRTUAL_DISK_INFO
 } SET_VIRTUAL_DISK_INFO, *PSET_VIRTUAL_DISK_INFO;
 
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 SetVirtualDiskInformation(
     _In_ HANDLE                 VirtualDiskHandle,
@@ -946,8 +889,7 @@ SetVirtualDiskInformation(
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 
-_Win32_SupportedOS_Windows8_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 EnumerateVirtualDiskMetadata(
     _In_ HANDLE VirtualDiskHandle,
@@ -956,8 +898,7 @@ EnumerateVirtualDiskMetadata(
     );
 
 
-_Win32_SupportedOS_Windows8_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetVirtualDiskMetadata(
     _In_ HANDLE VirtualDiskHandle,
@@ -967,8 +908,7 @@ GetVirtualDiskMetadata(
     );
 
 
-_Win32_SupportedOS_Windows8_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 SetVirtualDiskMetadata(
     _In_ HANDLE VirtualDiskHandle,
@@ -978,8 +918,7 @@ SetVirtualDiskMetadata(
     );
 
 
-_Win32_SupportedOS_Windows8_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 DeleteVirtualDiskMetadata(
     _In_ HANDLE VirtualDiskHandle,
@@ -1001,8 +940,7 @@ typedef struct _VIRTUAL_DISK_PROGRESS
 } VIRTUAL_DISK_PROGRESS, *PVIRTUAL_DISK_PROGRESS;
 
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD WINAPI
+DWORD WINAPI
 GetVirtualDiskOperationProgress(
     _In_      HANDLE                 VirtualDiskHandle,
     _In_      LPOVERLAPPED           Overlapped,
@@ -1040,9 +978,6 @@ typedef struct _COMPACT_VIRTUAL_DISK_PARAMETERS
 
 
 // Flags for CompactVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _COMPACT_VIRTUAL_DISK_FLAG
 {
     COMPACT_VIRTUAL_DISK_FLAG_NONE                 = 0x00000000,
@@ -1050,16 +985,12 @@ typedef enum _COMPACT_VIRTUAL_DISK_FLAG
     COMPACT_VIRTUAL_DISK_FLAG_NO_BLOCK_MOVES       = 0x00000002,
 
 } COMPACT_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(COMPACT_VIRTUAL_DISK_FLAG);
 #endif
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 CompactVirtualDisk(
     _In_     HANDLE                           VirtualDiskHandle,
@@ -1108,24 +1039,17 @@ typedef struct _MERGE_VIRTUAL_DISK_PARAMETERS
 
 
 // Flags for MergeVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _MERGE_VIRTUAL_DISK_FLAG
 {
     MERGE_VIRTUAL_DISK_FLAG_NONE                 = 0x00000000,
 
 } MERGE_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(MERGE_VIRTUAL_DISK_FLAG);
 #endif
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 MergeVirtualDisk(
     _In_     HANDLE                         VirtualDiskHandle,
@@ -1165,25 +1089,18 @@ typedef struct _EXPAND_VIRTUAL_DISK_PARAMETERS
 
 
 // Flags for ExpandVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _EXPAND_VIRTUAL_DISK_FLAG
 {
     EXPAND_VIRTUAL_DISK_FLAG_NONE                 = 0x00000000,
     EXPAND_VIRTUAL_DISK_FLAG_NOTIFY_CHANGE        = 0x00000001,
 
 } EXPAND_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(EXPAND_VIRTUAL_DISK_FLAG);
 #endif
 
-_Win32_SupportedOS_Windows7_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 ExpandVirtualDisk(
     _In_     HANDLE                          VirtualDiskHandle,
@@ -1222,9 +1139,6 @@ typedef struct _RESIZE_VIRTUAL_DISK_PARAMETERS
 
 
 // Flags for ResizeVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _RESIZE_VIRTUAL_DISK_FLAG
 {
     RESIZE_VIRTUAL_DISK_FLAG_NONE                                 = 0x0,
@@ -1240,9 +1154,6 @@ typedef enum _RESIZE_VIRTUAL_DISK_FLAG
     RESIZE_VIRTUAL_DISK_FLAG_RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE = 0x2,
 
 } RESIZE_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(RESIZE_VIRTUAL_DISK_FLAG);
@@ -1250,8 +1161,7 @@ DEFINE_ENUM_FLAG_OPERATORS(RESIZE_VIRTUAL_DISK_FLAG);
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 
-_Win32_SupportedOS_Windows8_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 ResizeVirtualDisk(
     _In_     HANDLE                          VirtualDiskHandle,
@@ -1291,9 +1201,6 @@ typedef struct _MIRROR_VIRTUAL_DISK_PARAMETERS
 
 
 // Flags for MirrorVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _MIRROR_VIRTUAL_DISK_FLAG
 {
     MIRROR_VIRTUAL_DISK_FLAG_NONE                   = 0x00000000,
@@ -1303,9 +1210,6 @@ typedef enum _MIRROR_VIRTUAL_DISK_FLAG
     MIRROR_VIRTUAL_DISK_FLAG_IS_LIVE_MIGRATION      = 0x00000008
 
 } MIRROR_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(MIRROR_VIRTUAL_DISK_FLAG);
@@ -1313,8 +1217,7 @@ DEFINE_ENUM_FLAG_OPERATORS(MIRROR_VIRTUAL_DISK_FLAG);
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 
-_Win32_SupportedOS_Windows8_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 MirrorVirtualDisk(
     _In_     HANDLE                          VirtualDiskHandle,
@@ -1332,8 +1235,7 @@ MirrorVirtualDisk(
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 
-_Win32_SupportedOS_Windows8_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 BreakMirrorVirtualDisk(
     _In_ HANDLE VirtualDiskHandle
@@ -1347,8 +1249,7 @@ BreakMirrorVirtualDisk(
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 
-_Win32_SupportedOS_Windows8_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 AddVirtualDiskParent(
     _In_ HANDLE VirtualDiskHandle,
@@ -1364,34 +1265,22 @@ typedef struct _QUERY_CHANGES_VIRTUAL_DISK_RANGE {
 } QUERY_CHANGES_VIRTUAL_DISK_RANGE, *PQUERY_CHANGES_VIRTUAL_DISK_RANGE;
 
 // Flags for QueryChangesVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _QUERY_CHANGES_VIRTUAL_DISK_FLAG
 {
     QUERY_CHANGES_VIRTUAL_DISK_FLAG_NONE          = 0x00000000,
 
 } QUERY_CHANGES_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(QUERY_CHANGES_VIRTUAL_DISK_FLAG);
 #endif
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _TAKE_SNAPSHOT_VHDSET_FLAG
 {
     TAKE_SNAPSHOT_VHDSET_FLAG_NONE          = 0x00000000,
     TAKE_SNAPSHOT_VHDSET_FLAG_WRITEABLE     = 0x00000001,
 
 } TAKE_SNAPSHOT_VHDSET_FLAG, *PTAKE_SNAPSHOT_VHDSET_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(TAKE_SNAPSHOT_VHDSET_FLAG);
@@ -1417,18 +1306,12 @@ typedef struct _TAKE_SNAPSHOT_VHDSET_PARAMETERS
     };
 } TAKE_SNAPSHOT_VHDSET_PARAMETERS, *PTAKE_SNAPSHOT_VHDSET_PARAMETERS;
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _DELETE_SNAPSHOT_VHDSET_FLAG
 {
     DELETE_SNAPSHOT_VHDSET_FLAG_NONE           = 0x00000000,
     DELETE_SNAPSHOT_VHDSET_FLAG_PERSIST_RCT    = 0x00000001,
 
 } DELETE_SNAPSHOT_VHDSET_FLAG, *PDELETE_SNAPSHOT_VHDSET_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(DELETE_SNAPSHOT_VHDSET_FLAG);
@@ -1463,18 +1346,12 @@ typedef enum _MODIFY_VHDSET_VERSION
 
 } MODIFY_VHDSET_VERSION, *PMODIFY_VHDSET_VERSION;
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _MODIFY_VHDSET_FLAG
 {
     MODIFY_VHDSET_FLAG_NONE               = 0x00000000,
     MODIFY_VHDSET_FLAG_WRITEABLE_SNAPSHOT = 0x00000001,
 
 } MODIFY_VHDSET_FLAG, *PMODIFY_VHDSET_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(MODIFY_VHDSET_FLAG);
@@ -1498,18 +1375,12 @@ typedef struct _MODIFY_VHDSET_PARAMETERS
     };
 } MODIFY_VHDSET_PARAMETERS, *PMODIFY_VHDSET_PARAMETERS;
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _APPLY_SNAPSHOT_VHDSET_FLAG
 {
     APPLY_SNAPSHOT_VHDSET_FLAG_NONE      = 0x00000000,
     APPLY_SNAPSHOT_VHDSET_FLAG_WRITEABLE = 0x00000001,
 
 } APPLY_SNAPSHOT_VHDSET_FLAG, *PAPPLY_SNAPSHOT_VHDSET_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(APPLY_SNAPSHOT_VHDSET_FLAG);
@@ -1537,17 +1408,11 @@ typedef struct _APPLY_SNAPSHOT_VHDSET_PARAMETERS
 
 } APPLY_SNAPSHOT_VHDSET_PARAMETERS, *PAPPLY_SNAPSHOT_VHDSET_PARAMETERS;
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _RAW_SCSI_VIRTUAL_DISK_FLAG
 {
     RAW_SCSI_VIRTUAL_DISK_FLAG_NONE   = 0X00000000
 
 } RAW_SCSI_VIRTUAL_DISK_FLAG, *PRAW_SCSI_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(RAW_SCSI_VIRTUAL_DISK_FLAG);
@@ -1609,8 +1474,7 @@ typedef struct _RAW_SCSI_VIRTUAL_DISK_RESPONSE
 
 #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
 
-_Win32_SupportedOS_10240_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 QueryChangesVirtualDisk (
     _In_ HANDLE VirtualDiskHandle,
@@ -1623,8 +1487,7 @@ QueryChangesVirtualDisk (
     _Out_ PULONG64 ProcessedLength
     );
 
-_Win32_SupportedOS_10240_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 TakeSnapshotVhdSet (
     _In_ HANDLE VirtualDiskHandle,
@@ -1632,8 +1495,7 @@ TakeSnapshotVhdSet (
     _In_ TAKE_SNAPSHOT_VHDSET_FLAG Flags
     );
 
-_Win32_SupportedOS_10240_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 DeleteSnapshotVhdSet (
     _In_ HANDLE VirtualDiskHandle,
@@ -1641,8 +1503,7 @@ DeleteSnapshotVhdSet (
     _In_ DELETE_SNAPSHOT_VHDSET_FLAG Flags
     );
 
-_Win32_SupportedOS_10240_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 ModifyVhdSet (
     _In_ HANDLE VirtualDiskHandle,
@@ -1650,8 +1511,7 @@ ModifyVhdSet (
     _In_ MODIFY_VHDSET_FLAG Flags
     );
 
-_Win32_SupportedOS_10240_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 ApplySnapshotVhdSet (
     _In_ HANDLE VirtualDiskHandle,
@@ -1659,8 +1519,7 @@ ApplySnapshotVhdSet (
     _In_ APPLY_SNAPSHOT_VHDSET_FLAG Flags
     );
 
-_Win32_SupportedOS_10240_
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 RawSCSIVirtualDisk(
     _In_ HANDLE VirtualDiskHandle,
@@ -1703,24 +1562,18 @@ typedef struct _FORK_VIRTUAL_DISK_PARAMETERS
 } FORK_VIRTUAL_DISK_PARAMETERS, *PFORK_VIRTUAL_DISK_PARAMETERS;
 
 // Flags for ForkVirtualDisk
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _FORK_VIRTUAL_DISK_FLAG
 {
     FORK_VIRTUAL_DISK_FLAG_NONE          = 0x00000000,
     FORK_VIRTUAL_DISK_FLAG_EXISTING_FILE = 0x00000001,
 
 } FORK_VIRTUAL_DISK_FLAG;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #ifdef DEFINE_ENUM_FLAG_OPERATORS
 DEFINE_ENUM_FLAG_OPERATORS(FORK_VIRTUAL_DISK_FLAG);
 #endif
 
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 ForkVirtualDisk(
     _In_ HANDLE VirtualDiskHandle,
@@ -1729,7 +1582,7 @@ ForkVirtualDisk(
     _Inout_ LPOVERLAPPED Overlapped
     );
 
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 CompleteForkVirtualDisk(
     _In_ HANDLE VirtualDiskHandle

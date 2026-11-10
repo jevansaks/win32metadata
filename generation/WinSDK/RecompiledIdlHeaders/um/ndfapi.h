@@ -1,10 +1,8 @@
-#include <win32metadata_annotations.h>
 // Copyright (C) Microsoft Corporation. All rights reserved.
 //
 // This file contains declaration for Network Diagnostics Framework (NDF) client API
 
 #pragma once
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -31,39 +29,30 @@ typedef void* NDFHANDLE;
 #define NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI(message) __declspec(deprecated(message))
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreateIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCreateIncident(_In_ LPCWSTR helperClassName, ULONG celt, _In_reads_(celt) HELPER_ATTRIBUTE* attributes, _Outptr_ NDFHANDLE* handle);
 
-_Win32_SupportedOS_WindowsVista_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreateWinSockIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCreateWinSockIncident(SOCKET sock, _In_opt_ LPCWSTR host, USHORT port, _In_opt_ LPCWSTR appId, _In_opt_ SID* userId, _Outptr_ NDFHANDLE* handle);
 
-_Win32_SupportedOS_WindowsVista_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreateWebIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCreateWebIncident(_In_ LPCWSTR url, _Outptr_ NDFHANDLE* handle);
 
-_Win32_SupportedOS_WindowsVista_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreateWebIncidentEx is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCreateWebIncidentEx(_In_ LPCWSTR url, BOOL useWinHTTP, _In_opt_ LPWSTR moduleName, _Outptr_ NDFHANDLE* handle);
 
-_Win32_SupportedOS_WindowsVista_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreateSharingIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCreateSharingIncident(_In_ LPCWSTR UNCPath, _Outptr_ NDFHANDLE* handle);
 
-_Win32_SupportedOS_WindowsVista_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreateDNSIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCreateDNSIncident(_In_ LPCWSTR hostname, WORD queryType, _Outptr_ NDFHANDLE* handle);
 
-_Win32_SupportedOS_WindowsVista_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreateConnectivityIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCreateConnectivityIncident(_Outptr_ NDFHANDLE* handle);
 
-_Win32_SupportedOS_Windows8_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreateNetConnectionIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCreateNetConnectionIncident(_Outptr_ NDFHANDLE* handle, GUID id);
 
-_Win32_SupportedOS_Windows7_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreatePnrpIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCreatePnrpIncident(_In_ LPCWSTR cloudname, _In_opt_ LPCWSTR peername, _In_ BOOL diagnosePublish, _In_opt_ LPCWSTR appId, _Outptr_ NDFHANDLE* handle);
 
@@ -72,7 +61,7 @@ NdfCreatePnrpIncident(_In_ LPCWSTR cloudname, _In_opt_ LPCWSTR peername, _In_ BO
 
 #ifdef __CSADDR_DEFINED__
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCreateInboundIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
-_Win32_SupportedOS_Windows7_ NdfCreateInboundIncident(
+NdfCreateInboundIncident(
     _In_opt_ LPCWSTR applicationID,
     _In_opt_ LPCWSTR serviceID,
     _In_opt_ SID* userID,
@@ -82,7 +71,6 @@ _Win32_SupportedOS_Windows7_ NdfCreateInboundIncident(
     _Outptr_ NDFHANDLE* handle);
 #endif
 
-_Win32_SupportedOS_Windows7_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI("NdfCreateGroupingIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 HRESULT WINAPI NdfCreateGroupingIncident(
     _In_opt_ LPCWSTR CloudName,
@@ -93,11 +81,9 @@ HRESULT WINAPI NdfCreateGroupingIncident(
     _In_opt_ LPCWSTR appId,
     _Outptr_ NDFHANDLE* handle);
 
-_Win32_SupportedOS_WindowsVista_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfExecuteDiagnosis is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfExecuteDiagnosis(_In_ NDFHANDLE handle, _In_opt_ HWND hwnd);
 
-_Win32_SupportedOS_WindowsVista_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCloseIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCloseIncident(NDFHANDLE handle);
 
@@ -108,7 +94,7 @@ NdfCloseIncident(NDFHANDLE handle);
 // UI-less diagnosis API
 #ifdef __cplusplus
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfDiagnoseIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
-_Win32_SupportedOS_Windows7_ NdfDiagnoseIncident(
+NdfDiagnoseIncident(
     _In_ NDFHANDLE Handle,
     _Out_ ULONG* RootCauseCount,
     _Outptr_result_buffer_(*RootCauseCount) RootCauseInfo** RootCauses,
@@ -116,7 +102,7 @@ _Win32_SupportedOS_Windows7_ NdfDiagnoseIncident(
     DWORD dwFlags = 0);
 #else
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfDiagnoseIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
-_Win32_SupportedOS_Windows7_ NdfDiagnoseIncident(
+NdfDiagnoseIncident(
     _In_ NDFHANDLE Handle,
     _Out_ ULONG* RootCauseCount,
     _Outptr_result_buffer_(*RootCauseCount) RootCauseInfo** RootCauses,
@@ -128,18 +114,16 @@ _Win32_SupportedOS_Windows7_ NdfDiagnoseIncident(
 // UI-less repair API
 #ifdef __cplusplus
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfRepairIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
-_Win32_SupportedOS_Windows7_ NdfRepairIncident(_In_ NDFHANDLE Handle, _In_ RepairInfoEx* RepairEx, DWORD dwWait = INFINITE);
+NdfRepairIncident(_In_ NDFHANDLE Handle, _In_ RepairInfoEx* RepairEx, DWORD dwWait = INFINITE);
 #else
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfRepairIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
-_Win32_SupportedOS_Windows7_ NdfRepairIncident(_In_ NDFHANDLE Handle, _In_ RepairInfoEx* RepairEx, DWORD dwWait);
+NdfRepairIncident(_In_ NDFHANDLE Handle, _In_ RepairInfoEx* RepairEx, DWORD dwWait);
 #endif
 
 // UI-less cancel API
-_Win32_SupportedOS_Windows7_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfCancelIncident is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfCancelIncident(_In_ NDFHANDLE Handle);
 
-_Win32_SupportedOS_Windows7_
 NOT_BUILD_WINDOWS_DEPRECATE_NDFAPI_STDAPI("NdfGetTraceFile is deprecated and might not work on all platforms. For more info, see MSDN.")
 NdfGetTraceFile(_In_ NDFHANDLE Handle, _Outptr_ LPCWSTR* TraceFileLocation);
 

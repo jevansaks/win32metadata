@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -33,15 +32,6 @@
 #endif
 
 #include <winapifamily.h>
-#include <sal.h>
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_FIND_CHAIN_IN_STORE_FLAGS;
-typedef unsigned long CERT_SELECT_CRITERIA_TYPE;
-typedef unsigned long CRYPT_ENCODE_OBJECT_FLAGS;
-typedef unsigned long CRYPT_KEY_FLAGS;
-typedef unsigned long CRYPT_VERIFY_CERT_FLAGS;
-#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -298,80 +288,7 @@ typedef _Return_type_success_(return >= 0) long HRESULT;
 // certenrolls_begin -- PROV_ENUMALGS_EX
 #ifndef ALGIDDEF
 #define ALGIDDEF
-typedef
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_WIN32META_ANNOTATION_("Enum(CALG_MD2, CALG_MD4, CALG_MD5, CALG_SHA, CALG_SHA1, CALG_MAC, CALG_RSA_SIGN, CALG_DSS_SIGN)",
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_MD2),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_MD4),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_MD5),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_SHA),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_SHA1),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_MAC),
-    (ALG_CLASS_SIGNATURE | ALG_TYPE_RSA | ALG_SID_RSA_ANY),
-    (ALG_CLASS_SIGNATURE | ALG_TYPE_DSS | ALG_SID_DSS_ANY))
-#if (NTDDI_VERSION >= NTDDI_WINXP)
-_WIN32META_ANNOTATION_("Enum(CALG_NO_SIGN)",
-    (ALG_CLASS_SIGNATURE | ALG_TYPE_ANY | ALG_SID_ANY))
-#endif
-_WIN32META_ANNOTATION_("Enum(CALG_RSA_KEYX, CALG_DES, CALG_3DES_112, CALG_3DES, CALG_DESX, CALG_RC2, CALG_RC4, CALG_SEAL, CALG_DH_SF, CALG_DH_EPHEM, CALG_AGREEDKEY_ANY, CALG_KEA_KEYX, CALG_HUGHES_MD5, CALG_SKIPJACK, CALG_TEK, CALG_CYLINK_MEK, CALG_SSL3_SHAMD5, CALG_SSL3_MASTER, CALG_SCHANNEL_MASTER_HASH, CALG_SCHANNEL_MAC_KEY, CALG_SCHANNEL_ENC_KEY, CALG_PCT1_MASTER, CALG_SSL2_MASTER, CALG_TLS1_MASTER, CALG_RC5, CALG_HMAC, CALG_TLS1PRF)",
-    (ALG_CLASS_KEY_EXCHANGE|ALG_TYPE_RSA|ALG_SID_RSA_ANY),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_DES),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_3DES_112),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_3DES),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_DESX),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_RC2),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_STREAM|ALG_SID_RC4),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_STREAM|ALG_SID_SEAL),
-    (ALG_CLASS_KEY_EXCHANGE|ALG_TYPE_DH|ALG_SID_DH_SANDF),
-    (ALG_CLASS_KEY_EXCHANGE|ALG_TYPE_DH|ALG_SID_DH_EPHEM),
-    (ALG_CLASS_KEY_EXCHANGE|ALG_TYPE_DH|ALG_SID_AGREED_KEY_ANY),
-    (ALG_CLASS_KEY_EXCHANGE|ALG_TYPE_DH|ALG_SID_KEA),
-    (ALG_CLASS_KEY_EXCHANGE|ALG_TYPE_ANY|ALG_SID_MD5),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_SKIPJACK),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_TEK),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_CYLINK_MEK),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_SSL3SHAMD5),
-    (ALG_CLASS_MSG_ENCRYPT|ALG_TYPE_SECURECHANNEL|ALG_SID_SSL3_MASTER),
-    (ALG_CLASS_MSG_ENCRYPT|ALG_TYPE_SECURECHANNEL|ALG_SID_SCHANNEL_MASTER_HASH),
-    (ALG_CLASS_MSG_ENCRYPT|ALG_TYPE_SECURECHANNEL|ALG_SID_SCHANNEL_MAC_KEY),
-    (ALG_CLASS_MSG_ENCRYPT|ALG_TYPE_SECURECHANNEL|ALG_SID_SCHANNEL_ENC_KEY),
-    (ALG_CLASS_MSG_ENCRYPT|ALG_TYPE_SECURECHANNEL|ALG_SID_PCT1_MASTER),
-    (ALG_CLASS_MSG_ENCRYPT|ALG_TYPE_SECURECHANNEL|ALG_SID_SSL2_MASTER),
-    (ALG_CLASS_MSG_ENCRYPT|ALG_TYPE_SECURECHANNEL|ALG_SID_TLS1_MASTER),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_RC5),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_HMAC),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_TLS1PRF))
-#if (NTDDI_VERSION >= NTDDI_WINXP)
-_WIN32META_ANNOTATION_("Enum(CALG_HASH_REPLACE_OWF, CALG_AES_128, CALG_AES_192, CALG_AES_256, CALG_AES)",
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_HASH_REPLACE_OWF),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_AES_128),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_AES_192),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_AES_256),
-    (ALG_CLASS_DATA_ENCRYPT|ALG_TYPE_BLOCK|ALG_SID_AES))
-#endif
-#if (NTDDI_VERSION > NTDDI_WINXPSP2)
-_WIN32META_ANNOTATION_("Enum(CALG_SHA_256, CALG_SHA_384, CALG_SHA_512)",
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_SHA_256),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_SHA_384),
-    (ALG_CLASS_HASH | ALG_TYPE_ANY | ALG_SID_SHA_512))
-#endif
-#if (NTDDI_VERSION >= NTDDI_VISTA)
-_WIN32META_ANNOTATION_("Enum(CALG_ECDH, CALG_ECDH_EPHEM, CALG_ECMQV, CALG_ECDSA, CALG_NULLCIPHER)",
-    (ALG_CLASS_KEY_EXCHANGE | ALG_TYPE_DH | ALG_SID_ECDH),
-    (ALG_CLASS_KEY_EXCHANGE | ALG_TYPE_ECDH | ALG_SID_ECDH_EPHEM),
-    (ALG_CLASS_KEY_EXCHANGE | ALG_TYPE_ANY | ALG_SID_ECMQV),
-    (ALG_CLASS_SIGNATURE | ALG_TYPE_DSS | ALG_SID_ECDSA),
-    (ALG_CLASS_DATA_ENCRYPT | ALG_TYPE_ANY | 0))
-#endif
-#if (NTDDI_VERSION >= NTDDI_WIN10_RS1)
-_WIN32META_ANNOTATION_("Enum(CALG_THIRDPARTY_KEY_EXCHANGE, CALG_THIRDPARTY_SIGNATURE, CALG_THIRDPARTY_CIPHER, CALG_THIRDPARTY_HASH)",
-    (ALG_CLASS_KEY_EXCHANGE | ALG_TYPE_THIRDPARTY | ALG_SID_THIRDPARTY_ANY),
-    (ALG_CLASS_SIGNATURE    | ALG_TYPE_THIRDPARTY | ALG_SID_THIRDPARTY_ANY),
-    (ALG_CLASS_DATA_ENCRYPT | ALG_TYPE_THIRDPARTY | ALG_SID_THIRDPARTY_ANY),
-    (ALG_CLASS_HASH         | ALG_TYPE_THIRDPARTY | ALG_SID_THIRDPARTY_ANY))
-#endif
-#endif
-unsigned int ALG_ID;
+typedef unsigned int ALG_ID;
 #endif
 // certenrolls_end
 
@@ -618,18 +535,6 @@ typedef ULONG_PTR HCRYPTHASH;
 #define KP_HIGHEST_VERSION      41      // for TLS protocol version setting
 #if (NTDDI_VERSION >= NTDDI_WS03)
 #define KP_GET_USE_COUNT        42      // for use with PP_CRYPT_COUNT_KEY_USE contexts
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_KEY_PARAM_ID, unsigned long,
-    KP_ALGID,
-    KP_CERTIFICATE,
-    KP_PERMISSIONS,
-    KP_SALT,
-    KP_SALT_EX,
-    KP_BLOCKLEN,
-    KP_GET_USE_COUNT,
-    KP_KEYLEN);
-#endif
 #endif //(NTDDI_VERSION >= NTDDI_WS03)
 #define KP_PIN_ID               43
 #define KP_PIN_INFO             44
@@ -663,12 +568,6 @@ _Win32_Enum_(CRYPT_KEY_PARAM_ID, unsigned long,
 #define HP_HASHVAL              0x0002  // Hash value
 #define HP_HASHSIZE             0x0004  // Hash value size
 #define HP_HMAC_INFO            0x0005  // information for creating an HMAC
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_SET_HASH_PARAM, unsigned long,
-    HP_HMAC_INFO,
-    HP_HASHVAL);
-#endif
 #define HP_TLS1PRF_LABEL        0x0006  // label for TLS1 PRF
 #define HP_TLS1PRF_SEED         0x0007  // seed for TLS1 PRF
 
@@ -719,13 +618,6 @@ _Win32_Enum_(CRYPT_SET_HASH_PARAM, unsigned long,
 #define PP_SMARTCARD_READER     43
 #define PP_SMARTCARD_GUID       45
 #define PP_ROOT_CERTSTORE       46
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_SET_PROV_PARAM_ID, unsigned long,
-    PP_ROOT_CERTSTORE,
-    PP_USER_CERTSTORE,
-    PP_SMARTCARD_READER);
-#endif
 #endif //(NTDDI_VERSION >= NTDDI_VISTA)
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 #define PP_SMARTCARD_READER_ICON	47
@@ -768,32 +660,10 @@ _Win32_Enum_(CRYPT_SET_PROV_PARAM_ID, unsigned long,
 #define PP_KEYEXCHANGE_ALG      14
 #define PP_SIGNATURE_ALG        15
 #define PP_DELETEKEY            24
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_SET_PROV_PARAM_ID, unsigned long,
-    PP_CLIENT_HWND,
-    PP_DELETEKEY,
-    PP_KEYEXCHANGE_ALG,
-    PP_KEYEXCHANGE_PIN,
-    PP_KEYEXCHANGE_KEYSIZE,
-    PP_KEYSET_SEC_DESCR,
-    PP_SIGNATURE_ALG,
-    PP_SIGNATURE_PIN,
-    PP_SIGNATURE_KEYSIZE,
-    PP_UI_PROMPT,
-    PP_USE_HARDWARE_RNG);
-#endif
 #if (NTDDI_VERSION >= NTDDI_VISTA)
 #define PP_PIN_PROMPT_STRING      44
 #define PP_SECURE_KEYEXCHANGE_PIN 47
 #define PP_SECURE_SIGNATURE_PIN   48
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_SET_PROV_PARAM_ID, unsigned long,
-    PP_PIN_PROMPT_STRING,
-    PP_SECURE_KEYEXCHANGE_PIN,
-    PP_SECURE_SIGNATURE_PIN);
-#endif
 #endif //(NTDDI_VERSION >= NTDDI_VISTA)
 #if (NTDDI_VERSION >= NTDDI_WIN10_RS5)
 #define PP_DISMISS_PIN_UI_SEC   49
@@ -1211,8 +1081,6 @@ typedef struct _CMS_DH_KEY_INFO {
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1223,8 +1091,6 @@ CryptAcquireContextA(
     _In_        DWORD       dwProvType,
     _In_        DWORD       dwFlags
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1247,8 +1113,6 @@ CryptAcquireContextW(
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1263,20 +1127,16 @@ CryptReleaseContext(
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
 CryptGenKey(
     _In_    HCRYPTPROV  hProv,
     _In_    ALG_ID      Algid,
-    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) _In_    DWORD       dwFlags,
+    _In_    DWORD       dwFlags,
     _Out_   HCRYPTKEY   *phKey
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1288,8 +1148,6 @@ CryptDeriveKey(
     _Out_   HCRYPTKEY   *phKey
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1297,45 +1155,37 @@ CryptDestroyKey(
     _In_    HCRYPTKEY   hKey
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
 CryptSetKeyParam(
     _In_    HCRYPTKEY   hKey,
-    _In_    _Win32_AssociatedEnum_(CRYPT_KEY_PARAM_ID) DWORD       dwParam,
+    _In_    DWORD       dwParam,
     _In_    CONST BYTE  *pbData,
     _In_    DWORD       dwFlags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
 CryptGetKeyParam(
     _In_                                            HCRYPTKEY   hKey,
-    _In_                                            _Win32_AssociatedEnum_(CRYPT_KEY_PARAM_ID) DWORD   dwParam,
+    _In_                                            DWORD   dwParam,
     _Out_writes_bytes_to_opt_(*pdwDataLen, *pdwDataLen) BYTE    *pbData,
     _Inout_                                         DWORD   *pdwDataLen,
     _In_                                            DWORD   dwFlags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
 CryptSetHashParam(
     _In_    HCRYPTHASH  hHash,
-    _In_    _Win32_AssociatedEnum_(CRYPT_SET_HASH_PARAM) DWORD       dwParam,
+    _In_    DWORD       dwParam,
     _In_    CONST BYTE  *pbData,
     _In_    DWORD       dwFlags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1347,20 +1197,16 @@ CryptGetHashParam(
     _In_                                        DWORD   dwFlags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
 CryptSetProvParam(
     _In_    HCRYPTPROV  hProv,
-    _Win32_AssociatedEnum_(CRYPT_SET_PROV_PARAM_ID) _In_    DWORD       dwParam,
+    _In_    DWORD       dwParam,
     _In_    CONST BYTE  *pbData,
     _In_    DWORD       dwFlags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1372,8 +1218,6 @@ CryptGetProvParam(
     _In_                                            DWORD   dwFlags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1383,8 +1227,6 @@ CryptGenRandom(
     _Inout_updates_bytes_(dwLen)   BYTE    *pbBuffer
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1394,8 +1236,6 @@ CryptGetUserKey(
     _Out_   HCRYPTKEY   *phUserKey
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1403,13 +1243,11 @@ CryptExportKey(
     _In_                                            HCRYPTKEY   hKey,
     _In_                                            HCRYPTKEY   hExpKey,
     _In_                                            DWORD   dwBlobType,
-    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) _In_                                            DWORD   dwFlags,
+    _In_                                            DWORD   dwFlags,
     _Out_writes_bytes_to_opt_(*pdwDataLen, *pdwDataLen) BYTE    *pbData,
     _Inout_                                         DWORD   *pdwDataLen
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1418,12 +1256,10 @@ CryptImportKey(
     _In_reads_bytes_(dwDataLen)  CONST BYTE  *pbData,
     _In_                    DWORD       dwDataLen,
     _In_                    HCRYPTKEY   hPubKey,
-    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) _In_                    DWORD       dwFlags,
+    _In_                    DWORD       dwFlags,
     _Out_                   HCRYPTKEY   *phKey
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1437,8 +1273,6 @@ CryptEncrypt(
     _In_                                            DWORD   dwBufLen
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1451,8 +1285,6 @@ CryptDecrypt(
     _Inout_                                         DWORD       *pdwDataLen
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1464,8 +1296,6 @@ CryptCreateHash(
     _Out_   HCRYPTHASH  *phHash
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1476,8 +1306,6 @@ CryptHashData(
     _In_                    DWORD   dwFlags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1487,8 +1315,6 @@ CryptHashSessionKey(
     _In_    DWORD   dwFlags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1496,8 +1322,6 @@ CryptDestroyHash(
     _In_    HCRYPTHASH  hHash
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1509,8 +1333,6 @@ CryptSignHashA(
     _Out_writes_bytes_to_opt_(*pdwSigLen, *pdwSigLen) BYTE        *pbSignature,
     _Inout_                                       DWORD       *pdwSigLen
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1528,8 +1350,6 @@ CryptSignHashW(
 #define CryptSignHash  CryptSignHashA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1541,8 +1361,6 @@ CryptVerifySignatureA(
     _In_opt_                LPCSTR    szDescription,
     _In_                    DWORD       dwFlags
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1560,8 +1378,6 @@ CryptVerifySignatureW(
 #define CryptVerifySignature  CryptVerifySignatureA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1569,8 +1385,6 @@ CryptSetProviderA(
     _In_    LPCSTR    pszProvName,
     _In_    DWORD       dwProvType
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1584,8 +1398,6 @@ CryptSetProviderW(
 #define CryptSetProvider  CryptSetProviderA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1595,8 +1407,6 @@ CryptSetProviderExA(
     _Reserved_  DWORD *pdwReserved,
     _In_        DWORD dwFlags
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1612,8 +1422,6 @@ CryptSetProviderExW(
 #define CryptSetProviderEx  CryptSetProviderExA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1624,8 +1432,6 @@ CryptGetDefaultProviderA(
     _Out_writes_bytes_to_opt_(*pcbProvName, *pcbProvName)   LPSTR pszProvName,
     _Inout_                                         DWORD   *pcbProvName
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1642,8 +1448,6 @@ CryptGetDefaultProviderW(
 #define CryptGetDefaultProvider  CryptGetDefaultProviderA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1655,8 +1459,6 @@ CryptEnumProviderTypesA(
     _Out_writes_bytes_to_opt_(*pcbTypeName, *pcbTypeName)   LPSTR szTypeName,
     _Inout_                                         DWORD   *pcbTypeName
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1674,8 +1476,6 @@ CryptEnumProviderTypesW(
 #define CryptEnumProviderTypes  CryptEnumProviderTypesA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1687,8 +1487,6 @@ CryptEnumProvidersA(
     _Out_writes_bytes_to_opt_(*pcbProvName, *pcbProvName)   LPSTR szProvName,
     _Inout_                                             DWORD   *pcbProvName
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 _Success_(0 != return) BOOL
 WINAPI
@@ -1706,8 +1504,6 @@ CryptEnumProvidersW(
 #define CryptEnumProviders  CryptEnumProvidersA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1717,8 +1513,6 @@ CryptContextAddRef(
     _In_        DWORD       dwFlags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1729,8 +1523,6 @@ CryptDuplicateKey(
     _Out_       HCRYPTKEY   *phKey
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -1754,7 +1546,6 @@ CryptDuplicateHash(
 // in Microsoft Windows XP, because Windows XP ships with the 128-bit
 // encryption provider.
 //
-_Win32_SupportedOS_WindowsXP_
 BOOL
 __cdecl
 GetEncSChannel(
@@ -2215,13 +2006,9 @@ typedef struct _CRYPT_ATTRIBUTES {
 //  The interpretation of the Value depends on the dwValueType.
 //  See below for a list of the types.
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef int CERT_RDN_ATTR_VALUE_TYPE;
-#endif
-
 typedef struct _CERT_RDN_ATTR {
     LPSTR                   pszObjId;
-    _Win32_AssociatedEnum_(CERT_RDN_ATTR_VALUE_TYPE) DWORD                   dwValueType;
+    DWORD                   dwValueType;
     CERT_RDN_VALUE_BLOB     Value;
 } CERT_RDN_ATTR, *PCERT_RDN_ATTR;
 
@@ -2358,28 +2145,6 @@ typedef struct _CERT_RDN_ATTR {
 #define CERT_RDN_BMP_STRING              12
 #define CERT_RDN_UNICODE_STRING          12
 #define CERT_RDN_UTF8_STRING             13
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_RDN_ATTR_VALUE_TYPE, int,
-    CERT_RDN_ANY_TYPE,
-    CERT_RDN_NUMERIC_STRING,
-    CERT_RDN_PRINTABLE_STRING,
-    CERT_RDN_T61_STRING,
-    CERT_RDN_VIDEOTEX_STRING,
-    CERT_RDN_IA5_STRING,
-    CERT_RDN_GRAPHIC_STRING,
-    CERT_RDN_ISO646_STRING,
-    CERT_RDN_GENERAL_STRING,
-    CERT_RDN_INT4_STRING,
-    CERT_RDN_UNICODE_STRING,
-    CERT_RDN_BMP_STRING,
-    CERT_RDN_ENCODED_BLOB,
-    CERT_RDN_OCTET_STRING,
-    CERT_RDN_TELETEX_STRING,
-    CERT_RDN_UNIVERSAL_STRING,
-    CERT_RDN_UTF8_STRING,
-    CERT_RDN_VISIBLE_STRING);
-#endif
 
 #define CERT_RDN_TYPE_MASK                  0x000000FF
 #define CERT_RDN_FLAGS_MASK                 0xFF000000
@@ -2618,7 +2383,7 @@ typedef struct _CERT_INFO {
     CRYPT_BIT_BLOB              IssuerUniqueId;
     CRYPT_BIT_BLOB              SubjectUniqueId;
     DWORD                       cExtension;
-    _Field_size_(cExtension) PCERT_EXTENSION             rgExtension;
+    PCERT_EXTENSION             rgExtension;
 } CERT_INFO, *PCERT_INFO;
 // certenrolls_end
 
@@ -2850,12 +2615,6 @@ typedef struct _CRYPT_CSP_PROVIDER {
 #define X509_ASN_ENCODING           0x00000001
 #define X509_NDR_ENCODING           0x00000002
 #define PKCS_7_ASN_ENCODING         0x00010000
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CERT_QUERY_ENCODING_TYPE, unsigned long,
-    X509_ASN_ENCODING,
-    PKCS_7_ASN_ENCODING);
-#endif
 #define PKCS_7_NDR_ENCODING         0x00020000
 
 //+-------------------------------------------------------------------------
@@ -2872,13 +2631,11 @@ _Win32_FlagsEnum_(CERT_QUERY_ENCODING_TYPE, unsigned long,
 //  for the lpszStructType, the hex dump of the encoded BLOB will be returned.
 //  User can set the flag CRYPT_FORMAT_STR_NO_HEX to disable the hex dump.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptFormatObject(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ DWORD dwFormatType,
     _In_ DWORD dwFormatStrType,
     _In_opt_ void *pFormatStruct,
@@ -2973,28 +2730,24 @@ typedef struct _CRYPT_ENCODE_PARA {
 } CRYPT_ENCODE_PARA, *PCRYPT_ENCODE_PARA;
 
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptEncodeObjectEx(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ LPCSTR lpszStructType,
     _In_ const void *pvStructInfo,
-    _Win32_AssociatedEnum_(CRYPT_ENCODE_OBJECT_FLAGS) _In_ DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _In_opt_ PCRYPT_ENCODE_PARA pEncodePara,
     _Out_opt_ void *pvEncoded,
     _Inout_ DWORD *pcbEncoded
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptEncodeObject(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ LPCSTR lpszStructType,
     _In_ const void *pvStructInfo,
     _Out_writes_bytes_to_opt_(*pcbEncoded, *pcbEncoded) BYTE *pbEncoded,
@@ -3060,15 +2813,6 @@ CryptEncodeObject(
 // non-IA5 characters by encoding the host name in punycode first.
 #define CRYPT_ENCODE_ENABLE_PUNYCODE_FLAG   0x20000
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CRYPT_ENCODE_OBJECT_FLAGS, unsigned long,
-    CRYPT_ENCODE_ALLOC_FLAG,
-    CRYPT_ENCODE_ENABLE_PUNYCODE_FLAG,
-    CRYPT_UNICODE_NAME_ENCODE_DISABLE_CHECK_TYPE_FLAG,
-    CRYPT_UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG,
-    CRYPT_UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG);
-#endif
-
 // The following flag is applicable when encoding structures that require
 // IA5String encoding of a path (http URL/Ldap query) containing non-IA5
 // characters by encoding the path part as UTF8 percent encoding.
@@ -3091,13 +2835,11 @@ typedef struct _CRYPT_DECODE_PARA {
     PFN_CRYPT_FREE          pfnFree;            // OPTIONAL
 } CRYPT_DECODE_PARA, *PCRYPT_DECODE_PARA;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptDecodeObjectEx(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ LPCSTR lpszStructType,
     _In_reads_bytes_(cbEncoded) const BYTE *pbEncoded,
     _In_ DWORD cbEncoded,
@@ -3108,18 +2850,16 @@ CryptDecodeObjectEx(
     );
 
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptDecodeObject(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ LPCSTR lpszStructType,
     _In_reads_bytes_(cbEncoded) const BYTE *pbEncoded,
     _In_ DWORD cbEncoded,
     _In_ DWORD dwFlags,
-    _Out_writes_bytes_to_opt_(*pcbStructInfo, *pcbStructInfo) _Win32_ContainsInteriorPointers_ void *pvStructInfo,
+    _Out_writes_bytes_to_opt_(*pcbStructInfo, *pcbStructInfo) void *pvStructInfo,
     _Inout_ DWORD *pcbStructInfo
     );
 
@@ -3904,13 +3644,6 @@ CryptDecodeObject(
 // Subject logotype
 #define CERT_ROOT_PROGRAM_FLAG_SUBJECT_LOGO 0x20
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CERT_ROOT_PROGRAM_FLAGS, unsigned long,
-    CERT_ROOT_PROGRAM_FLAG_LSC,
-    CERT_ROOT_PROGRAM_FLAG_ORG,
-    CERT_ROOT_PROGRAM_FLAG_SUBJECT_LOGO);
-#endif
-
 // Validation of the OrganizationalUnit (OU) field in the subject name
 // meets Root Program Requirements for display.
 #define CERT_ROOT_PROGRAM_FLAG_OU           0x10
@@ -4347,17 +4080,6 @@ typedef struct _CERT_ALT_NAME_ENTRY {
 #define CERT_ALT_NAME_URL                7
 #define CERT_ALT_NAME_IP_ADDRESS         8
 #define CERT_ALT_NAME_REGISTERED_ID      9
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_ALT_NAME, int,
-    CERT_ALT_NAME_RFC822_NAME,
-    CERT_ALT_NAME_DNS_NAME,
-    CERT_ALT_NAME_URL,
-    CERT_ALT_NAME_REGISTERED_ID,
-    CERT_ALT_NAME_DIRECTORY_NAME,
-    CERT_ALT_NAME_IP_ADDRESS,
-    CERT_ALT_NAME_OTHER_NAME);
-#endif
 // certenrolld_end
 
 // certenrolls_begin -- CERT_ALT_NAME_INFO
@@ -4782,18 +4504,6 @@ typedef struct _CERT_AUTHORITY_INFO_ACCESS {
 #define CRL_REASON_CESSATION_OF_OPERATION   5
 #define CRL_REASON_CERTIFICATE_HOLD         6
 #define CRL_REASON_REMOVE_FROM_CRL          8
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_REVOCATION_STATUS_REASON, unsigned long,
-    CRL_REASON_UNSPECIFIED,
-    CRL_REASON_KEY_COMPROMISE,
-    CRL_REASON_CA_COMPROMISE,
-    CRL_REASON_AFFILIATION_CHANGED,
-    CRL_REASON_SUPERSEDED,
-    CRL_REASON_CESSATION_OF_OPERATION,
-    CRL_REASON_CERTIFICATE_HOLD,
-    CRL_REASON_REMOVE_FROM_CRL);
-#endif
 #define CRL_REASON_PRIVILEGE_WITHDRAWN      9
 #define CRL_REASON_AA_COMPROMISE            10
 
@@ -5835,24 +5545,16 @@ typedef struct _CERT_LOGOTYPE_REFERENCE {
     PCERT_HASHED_URL            rgHashedUrl;
 } CERT_LOGOTYPE_REFERENCE, *PCERT_LOGOTYPE_REFERENCE;
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_LOGOTYPE_IMAGE_INFO_TYPE;
-#endif
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_LOGOTYPE_CHOICE;
-#endif
-
 typedef struct _CERT_LOGOTYPE_IMAGE_INFO {
     // CERT_LOGOTYPE_GRAY_SCALE_IMAGE_INFO_CHOICE or
     // CERT_LOGOTYPE_COLOR_IMAGE_INFO_CHOICE
-    _Win32_AssociatedEnum_(CERT_LOGOTYPE_IMAGE_INFO_TYPE) DWORD                       dwLogotypeImageInfoChoice;
+    DWORD                       dwLogotypeImageInfoChoice;
 
     DWORD                       dwFileSize;     // In octets
     DWORD                       dwXSize;        // Horizontal size in pixels
     DWORD                       dwYSize;        // Vertical size in pixels
 
-    _Win32_AssociatedEnum_(CERT_LOGOTYPE_CHOICE) DWORD                       dwLogotypeImageResolutionChoice;
+    DWORD                       dwLogotypeImageResolutionChoice;
     union {
         // CERT_LOGOTYPE_NO_IMAGE_RESOLUTION_CHOICE
         // No resolution value
@@ -5870,22 +5572,9 @@ typedef struct _CERT_LOGOTYPE_IMAGE_INFO {
 #define CERT_LOGOTYPE_GRAY_SCALE_IMAGE_INFO_CHOICE          1
 #define CERT_LOGOTYPE_COLOR_IMAGE_INFO_CHOICE               2
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_LOGOTYPE_IMAGE_INFO_TYPE, unsigned long,
-    CERT_LOGOTYPE_GRAY_SCALE_IMAGE_INFO_CHOICE,
-    CERT_LOGOTYPE_COLOR_IMAGE_INFO_CHOICE);
-#endif
-
 #define CERT_LOGOTYPE_NO_IMAGE_RESOLUTION_CHOICE            0
 #define CERT_LOGOTYPE_BITS_IMAGE_RESOLUTION_CHOICE          1
 #define CERT_LOGOTYPE_TABLE_SIZE_IMAGE_RESOLUTION_CHOICE    2
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_LOGOTYPE_CHOICE, unsigned long,
-    CERT_LOGOTYPE_NO_IMAGE_RESOLUTION_CHOICE,
-    CERT_LOGOTYPE_BITS_IMAGE_RESOLUTION_CHOICE,
-    CERT_LOGOTYPE_TABLE_SIZE_IMAGE_RESOLUTION_CHOICE);
-#endif
 
 typedef struct _CERT_LOGOTYPE_IMAGE {
     CERT_LOGOTYPE_DETAILS       LogotypeDetails;
@@ -5920,12 +5609,8 @@ typedef struct _CERT_LOGOTYPE_DATA {
 } CERT_LOGOTYPE_DATA, *PCERT_LOGOTYPE_DATA;
 
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_LOGOTYPE_OPTION;
-#endif
-
 typedef struct _CERT_LOGOTYPE_INFO {
-    _Win32_AssociatedEnum_(CERT_LOGOTYPE_OPTION) DWORD                       dwLogotypeInfoChoice;
+    DWORD                       dwLogotypeInfoChoice;
     union {
         // CERT_LOGOTYPE_DIRECT_INFO_CHOICE
         PCERT_LOGOTYPE_DATA         pLogotypeDirectInfo;
@@ -5937,12 +5622,6 @@ typedef struct _CERT_LOGOTYPE_INFO {
 
 #define CERT_LOGOTYPE_DIRECT_INFO_CHOICE    1
 #define CERT_LOGOTYPE_INDIRECT_INFO_CHOICE  2
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_LOGOTYPE_OPTION, unsigned long,
-    CERT_LOGOTYPE_DIRECT_INFO_CHOICE,
-    CERT_LOGOTYPE_INDIRECT_INFO_CHOICE);
-#endif
 
 typedef struct _CERT_OTHER_LOGOTYPE_INFO {
     LPSTR                       pszObjId;
@@ -5971,12 +5650,8 @@ typedef struct _CERT_LOGOTYPE_EXT_INFO {
 //  pvStructInfo points to following CERT_BIOMETRIC_EXT_INFO data structure.
 //==========================================================================
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_BIOMETRIC_DATA_TYPE;
-#endif
-
 typedef struct _CERT_BIOMETRIC_DATA {
-    _Win32_AssociatedEnum_(CERT_BIOMETRIC_DATA_TYPE) DWORD                       dwTypeOfBiometricDataChoice;
+    DWORD                       dwTypeOfBiometricDataChoice;
     union {
         // CERT_BIOMETRIC_PREDEFINED_DATA_CHOICE
         DWORD                       dwPredefined;
@@ -5990,12 +5665,6 @@ typedef struct _CERT_BIOMETRIC_DATA {
 
 #define CERT_BIOMETRIC_PREDEFINED_DATA_CHOICE   1
 #define CERT_BIOMETRIC_OID_DATA_CHOICE          2
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_BIOMETRIC_DATA_TYPE, unsigned long,
-    CERT_BIOMETRIC_PREDEFINED_DATA_CHOICE,
-    CERT_BIOMETRIC_OID_DATA_CHOICE);
-#endif
 
 #define CERT_BIOMETRIC_PICTURE_TYPE             0
 #define CERT_BIOMETRIC_SIGNATURE_TYPE           1
@@ -6106,7 +5775,7 @@ typedef struct _OCSP_BASIC_REVOKED_INFO {
     FILETIME                    RevocationDate;
 
     // See X509_CRL_REASON_CODE for list of reason codes
-    _Win32_AssociatedEnum_(CERT_REVOCATION_STATUS_REASON) DWORD                       dwCrlReasonCode;
+    DWORD                       dwCrlReasonCode;
 } OCSP_BASIC_REVOKED_INFO, *POCSP_BASIC_REVOKED_INFO;
 
 typedef struct _OCSP_BASIC_RESPONSE_ENTRY {
@@ -6292,7 +5961,6 @@ typedef struct _CRYPT_OID_FUNC_ENTRY {
 //  DEFAULT functions are installed by setting rgFuncEntry[].pszOID =
 //  CRYPT_DEFAULT_OID.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6311,7 +5979,6 @@ CryptInstallOIDFunctionAddress(
 //
 //  If the set already exists, a handle to the existing set is returned.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 HCRYPTOIDFUNCSET
 WINAPI
@@ -6338,8 +6005,6 @@ CryptInitOIDFunctionSet(
 //  the registered function might handle a new special case and call the
 //  pre-installed function to handle the remaining cases.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -6363,8 +6028,6 @@ CryptGetOIDFunctionAddress(
 //  names. The list is terminated with an empty (L"\0") Dll file name.
 //  For example: L"first.dll" L"\0" L"second.dll" L"\0" L"\0"
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -6399,7 +6062,6 @@ CryptGetDefaultOIDDllList(
 //  be called to release it or CryptGetDefaultOIDFunctionAddress can also
 //  be called for a NULL pwszDll.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -6426,7 +6088,6 @@ CryptGetDefaultOIDFunctionAddress(
 //      STDAPI  DllCanUnloadNow(void);
 //--------------------------------------------------------------------------
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6455,7 +6116,6 @@ CryptFreeOIDFunctionAddress(
 //  This allows a Dll to export multiple OID functions for the same
 //  function name without needing to interpose its own OID dispatcher function.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6471,7 +6131,6 @@ CryptRegisterOIDFunction(
 //  Unregister the Dll containing the function to be called for the specified
 //  encoding type, function name and OID.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6495,7 +6154,6 @@ CryptUnregisterOIDFunction(
 //  pwszDll may contain environment-variable strings
 //  which are ExpandEnvironmentStrings()'ed before loading the Dll.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6513,7 +6171,6 @@ CryptRegisterDefaultOIDFunction(
 //  Unregister the Dll containing the default function to be called for
 //  the specified encoding type and function name.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6531,7 +6188,6 @@ CryptUnregisterDefaultOIDFunction(
 //
 //  String types are UNICODE.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6540,7 +6196,7 @@ CryptSetOIDFunctionValue(
     _In_ LPCSTR pszFuncName,
     _In_ LPCSTR pszOID,
     _In_opt_ LPCWSTR pwszValueName,
-    _Win32_AssociatedEnum_(REG_VALUE_TYPE) _In_ DWORD dwValueType,
+    _In_ DWORD dwValueType,
     _In_reads_bytes_opt_(cbValueData) const BYTE *pbValueData,
     _In_ DWORD cbValueData
     );
@@ -6560,8 +6216,6 @@ CryptSetOIDFunctionValue(
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6600,8 +6254,6 @@ typedef BOOL (WINAPI *PFN_CRYPT_ENUM_OID_FUNC)(
 //
 //  String types are UNICODE.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6878,7 +6530,6 @@ typedef const CRYPT_OID_INFO CCRYPT_OID_INFO, *PCCRYPT_OID_INFO;
 //  Setting dwGroupId to 0, searches all groups according to the dwKeyType.
 //  Otherwise, only the dwGroupId is searched.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCRYPT_OID_INFO
 WINAPI
@@ -6901,12 +6552,6 @@ CryptFindOIDInfo(
 #define CRYPT_OID_INFO_OID_KEY_FLAGS_MASK           0xFFFF0000
 #define CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG         0x80000000
 #define CRYPT_OID_INFO_PUBKEY_ENCRYPT_KEY_FLAG      0x40000000
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CRYPT_IMPORT_PUBLIC_KEY_FLAGS, unsigned long,
-    CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG,
-    CRYPT_OID_INFO_PUBKEY_ENCRYPT_KEY_FLAG);
-#endif
 
 // Set the following in the above dwKeyType parameter to restrict public keys
 // valid for "Pure" or "PreHash" signing
@@ -6966,7 +6611,6 @@ _Win32_FlagsEnum_(CRYPT_IMPORT_PUBLIC_KEY_FLAGS, unsigned long,
 //  By default the registered OID information is installed after crypt32.dll's
 //  OID entries. Set CRYPT_INSTALL_OID_INFO_BEFORE_FLAG to install before.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -6981,7 +6625,6 @@ CryptRegisterOIDInfo(
 //  Unregister OID information. Only the pszOID and dwGroupId fields are
 //  used to identify the OID information to be unregistered.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -7011,7 +6654,6 @@ typedef BOOL (WINAPI *PFN_CRYPT_ENUM_OID_INFO)(
 //
 //  dwFlags currently isn't used and must be set to 0.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -7045,7 +6687,6 @@ CryptEnumOIDInfo(
 //
 //  The registered names are searched before the pre-installed names.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 LPCWSTR
 WINAPI
@@ -7060,12 +6701,8 @@ CryptFindLocalizedName(
 //  Certificate Strong Signature Defines and Data Structures
 //==========================================================================
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_STRONG_SIGN_FLAGS;
-#endif
-
 typedef struct _CERT_STRONG_SIGN_SERIALIZED_INFO {
-    _Win32_AssociatedEnum_(CERT_STRONG_SIGN_FLAGS) DWORD                   dwFlags;
+    DWORD                   dwFlags;
     LPWSTR                  pwszCNGSignHashAlgids;
     LPWSTR                  pwszCNGPubKeyMinBitLengths; // Optional
 } CERT_STRONG_SIGN_SERIALIZED_INFO, *PCERT_STRONG_SIGN_SERIALIZED_INFO;
@@ -7118,12 +6755,6 @@ typedef const CERT_STRONG_SIGN_PARA *PCCERT_STRONG_SIGN_PARA;
 // CRLs or OCSP responses.
 #define CERT_STRONG_SIGN_ENABLE_CRL_CHECK           0x1
 #define CERT_STRONG_SIGN_ENABLE_OCSP_CHECK          0x2
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CERT_STRONG_SIGN_FLAGS, unsigned long,
-    CERT_STRONG_SIGN_ENABLE_CRL_CHECK,
-    CERT_STRONG_SIGN_ENABLE_OCSP_CHECK);
-#endif
 
 
 //
@@ -7209,15 +6840,6 @@ typedef void *HCRYPTMSG;
 #define CMSG_ENVELOPED               3
 #define CMSG_SIGNED_AND_ENVELOPED    4
 #define CMSG_HASHED                  5
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_MSG_TYPE, unsigned long,
-    CMSG_DATA,
-    CMSG_SIGNED,
-    CMSG_ENVELOPED,
-    CMSG_SIGNED_AND_ENVELOPED,
-    CMSG_HASHED);
-#endif
 #define CMSG_ENCRYPTED               6
 
 //+-------------------------------------------------------------------------
@@ -7243,12 +6865,8 @@ typedef struct _CERT_ISSUER_SERIAL_NUMBER {
 //+-------------------------------------------------------------------------
 //  Certificate Identifier
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_ID_OPTION;
-#endif
-
 typedef struct _CERT_ID {
-    _Win32_AssociatedEnum_(CERT_ID_OPTION) DWORD   dwIdChoice;
+    DWORD   dwIdChoice;
     union {
         // CERT_ID_ISSUER_SERIAL_NUMBER
         CERT_ISSUER_SERIAL_NUMBER   IssuerSerialNumber;
@@ -7262,13 +6880,6 @@ typedef struct _CERT_ID {
 #define CERT_ID_ISSUER_SERIAL_NUMBER    1
 #define CERT_ID_KEY_IDENTIFIER          2
 #define CERT_ID_SHA1_HASH               3
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_ID_OPTION, unsigned long,
-    CERT_ID_ISSUER_SERIAL_NUMBER,
-    CERT_ID_KEY_IDENTIFIER,
-    CERT_ID_SHA1_HASH);
-#endif
 
 //+-------------------------------------------------------------------------
 //  The message encode information (pvMsgEncodeInfo) is message type dependent
@@ -7520,10 +7131,6 @@ typedef struct _CMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO {
 } CMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO,
     *PCMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO;
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CMSG_KEY_AGREE_OPTION;
-#endif
-
 typedef struct _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO {
     DWORD                       cbSize;
     CRYPT_ALGORITHM_IDENTIFIER  KeyEncryptionAlgorithm;
@@ -7540,7 +7147,7 @@ typedef struct _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO {
     HCRYPTPROV_LEGACY           hCryptProv;
     DWORD                       dwKeySpec;
 
-    _Win32_AssociatedEnum_(CMSG_KEY_AGREE_OPTION) DWORD                       dwKeyChoice;
+    DWORD                       dwKeyChoice;
     union {
         // CMSG_KEY_AGREE_EPHEMERAL_KEY_CHOICE
         //
@@ -7560,12 +7167,6 @@ typedef struct _CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO {
 
 #define CMSG_KEY_AGREE_EPHEMERAL_KEY_CHOICE         1
 #define CMSG_KEY_AGREE_STATIC_KEY_CHOICE            2
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CMSG_KEY_AGREE_OPTION, unsigned long,
-    CMSG_KEY_AGREE_EPHEMERAL_KEY_CHOICE,
-    CMSG_KEY_AGREE_STATIC_KEY_CHOICE);
-#endif
 
 //+-------------------------------------------------------------------------
 //  Mail List Recipient Encode Info
@@ -7811,15 +7412,13 @@ typedef struct _CMSG_STREAM_INFO {
 //  The pStreamInfo parameter needs to be set to stream the encoded message
 //  output.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 HCRYPTMSG
 WINAPI
 CryptMsgOpenToEncode(
     _In_ DWORD dwMsgEncodingType,
     _In_ DWORD dwFlags,
-    _In_ _Win32_AssociatedEnum_(CRYPT_MSG_TYPE) DWORD dwMsgType,
+    _In_ DWORD dwMsgType,
     _In_ void const *pvMsgEncodeInfo,
     _In_opt_ LPSTR pszInnerContentObjID,
     _In_opt_ PCMSG_STREAM_INFO pStreamInfo
@@ -7833,8 +7432,6 @@ CryptMsgOpenToEncode(
 //  the data to be updated. Note, this might not be the exact length. However,
 //  it will always be greater than or equal to the actual length.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -7859,8 +7456,6 @@ CryptMsgCalculateEncodedLength(
 //  The pStreamInfo parameter needs to be set to stream the decoded content
 //  output.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 HCRYPTMSG
 WINAPI
@@ -7876,7 +7471,6 @@ CryptMsgOpenToDecode(
 //+-------------------------------------------------------------------------
 //  Duplicate a cryptographic message handle
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 HCRYPTMSG
 WINAPI
@@ -7889,8 +7483,6 @@ CryptMsgDuplicate(
 //
 //  LastError is preserved unless FALSE is returned.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -7907,8 +7499,6 @@ CryptMsgClose(
 //  is completed. The encoded/decoded content and the decoded parameters
 //  are valid until the open and all duplicated handles are closed.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -7943,8 +7533,6 @@ CryptMsgUpdate(
 //
 //  See below for a list of the parameters to get.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -7952,7 +7540,7 @@ CryptMsgGetParam(
     _In_ HCRYPTMSG hCryptMsg,
     _In_ DWORD dwParamType,
     _In_ DWORD dwIndex,
-    _Out_writes_bytes_to_opt_(*pcbData, *pcbData) _Win32_ContainsInteriorPointers_ void *pvData,
+    _Out_writes_bytes_to_opt_(*pcbData, *pcbData) void *pvData,
     _Inout_ DWORD *pcbData
     );
 
@@ -8410,13 +7998,9 @@ typedef struct _CMSG_RECIPIENT_ENCRYPTED_KEY_INFO {
     PCRYPT_ATTRIBUTE_TYPE_VALUE pOtherAttr;
 } CMSG_RECIPIENT_ENCRYPTED_KEY_INFO, *PCMSG_RECIPIENT_ENCRYPTED_KEY_INFO;
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CMSG_KEY_AGREE_ORIGINATOR;
-#endif
-
 typedef struct _CMSG_KEY_AGREE_RECIPIENT_INFO {
     DWORD                       dwVersion;
-    _Win32_AssociatedEnum_(CMSG_KEY_AGREE_ORIGINATOR) DWORD                       dwOriginatorChoice;
+    DWORD                       dwOriginatorChoice;
     union {
         // CMSG_KEY_AGREE_ORIGINATOR_CERT
         CERT_ID                     OriginatorCertId;
@@ -8432,12 +8016,6 @@ typedef struct _CMSG_KEY_AGREE_RECIPIENT_INFO {
 
 #define CMSG_KEY_AGREE_ORIGINATOR_CERT         1
 #define CMSG_KEY_AGREE_ORIGINATOR_PUBLIC_KEY   2
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CMSG_KEY_AGREE_ORIGINATOR, unsigned long,
-    CMSG_KEY_AGREE_ORIGINATOR_CERT,
-    CMSG_KEY_AGREE_ORIGINATOR_PUBLIC_KEY);
-#endif
 
 
 typedef struct _CMSG_MAIL_LIST_RECIPIENT_INFO {
@@ -8493,8 +8071,6 @@ typedef struct _CMSG_CMS_RECIPIENT_INFO {
 //  See below for a list of the control operations and their pvCtrlPara
 //  type definition.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -8903,8 +8479,6 @@ typedef struct _CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR_PARA {
 //  The only fields referenced from pciCountersigner are SerialNumber, Issuer,
 //  and SubjectPublicKeyInfo.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 CryptMsgVerifyCountersignatureEncoded(
@@ -8928,8 +8502,6 @@ CryptMsgVerifyCountersignatureEncoded(
 //  The signer can be a CERT_PUBLIC_KEY_INFO, certificate context or a
 //  chain context.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 CryptMsgVerifyCountersignatureEncodedEx(
@@ -8956,8 +8528,6 @@ CryptMsgVerifyCountersignatureEncodedEx(
 //
 //  dwIndex is a zero-based index of the SignerInfo to be countersigned.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 CryptMsgCountersign(
@@ -8973,8 +8543,6 @@ CryptMsgCountersign(
 //  attribute in the unauthenticated attributes of a signed-data or
 //  signed-and-enveloped-data message.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 CryptMsgCountersignEncoded(
@@ -9248,7 +8816,7 @@ typedef struct _CMSG_KEY_AGREE_ENCRYPT_INFO {
     DWORD                       dwRecipientIndex;
     CRYPT_ALGORITHM_IDENTIFIER  KeyEncryptionAlgorithm;
     CRYPT_DATA_BLOB             UserKeyingMaterial;
-    _Win32_AssociatedEnum_(CMSG_KEY_AGREE_ORIGINATOR) DWORD                       dwOriginatorChoice;
+    DWORD                       dwOriginatorChoice;
     union {
         // CMSG_KEY_AGREE_ORIGINATOR_CERT
         CERT_ID                     OriginatorCertId;
@@ -9626,7 +9194,7 @@ typedef void *HCERTSTORE;
 //--------------------------------------------------------------------------
 // certenrolls_begin -- CERT_CONTEXT
 typedef struct _CERT_CONTEXT {
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD                   dwCertEncodingType;
+    DWORD                   dwCertEncodingType;
     BYTE                    *pbCertEncoded;
     DWORD                   cbCertEncoded;
     PCERT_INFO              pCertInfo;
@@ -9645,7 +9213,7 @@ typedef const CERT_CONTEXT *PCCERT_CONTEXT;
 //  copy (which also must be freed by calling CertFreeCRLContext).
 //--------------------------------------------------------------------------
 typedef struct _CRL_CONTEXT {
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD                   dwCertEncodingType;
+    DWORD                   dwCertEncodingType;
     BYTE                    *pbCrlEncoded;
     DWORD                   cbCrlEncoded;
     PCRL_INFO               pCrlInfo;
@@ -9969,15 +9537,11 @@ typedef struct _CRYPT_KEY_PROV_PARAM {
     DWORD           dwFlags;
 } CRYPT_KEY_PROV_PARAM, *PCRYPT_KEY_PROV_PARAM;
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CRYPT_KEY_FLAGS;
-#endif
-
 typedef struct _CRYPT_KEY_PROV_INFO {
     LPWSTR                  pwszContainerName;
     LPWSTR                  pwszProvName;
     DWORD                   dwProvType;
-    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) DWORD                   dwFlags;
+    DWORD                   dwFlags;
     DWORD                   cProvParam;
     PCRYPT_KEY_PROV_PARAM   rgProvParam;
     DWORD                   dwKeySpec;
@@ -9997,13 +9561,6 @@ typedef struct _CRYPT_KEY_PROV_INFO {
 // Special dwKeySpec indicating a CNG NCRYPT_KEY_HANDLE instead of a CAPI1
 // HCRYPTPROV
 #define CERT_NCRYPT_KEY_SPEC                0xFFFFFFFF
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_KEY_SPEC, unsigned long,
-    AT_KEYEXCHANGE,
-    AT_SIGNATURE,
-    CERT_NCRYPT_KEY_SPEC);
-#endif
 
 //+-------------------------------------------------------------------------
 //  Certificate Key Context
@@ -10126,22 +9683,6 @@ typedef struct _CRYPT_SMART_CARD_ROOT_INFO {
 #define CERT_STORE_CREATE_NEW_FLAG                      0x00002000
 #define CERT_STORE_MAXIMUM_ALLOWED_FLAG                 0x00001000
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CERT_OPEN_STORE_FLAGS, unsigned long,
-    CERT_STORE_BACKUP_RESTORE_FLAG,
-    CERT_STORE_CREATE_NEW_FLAG,
-    CERT_STORE_DEFER_CLOSE_UNTIL_LAST_FREE_FLAG,
-    CERT_STORE_DELETE_FLAG,
-    CERT_STORE_ENUM_ARCHIVED_FLAG,
-    CERT_STORE_MAXIMUM_ALLOWED_FLAG,
-    CERT_STORE_NO_CRYPT_RELEASE_FLAG,
-    CERT_STORE_OPEN_EXISTING_FLAG,
-    CERT_STORE_READONLY_FLAG,
-    CERT_STORE_SET_LOCALIZED_NAME_FLAG,
-    CERT_STORE_SHARE_CONTEXT_FLAG,
-    CERT_STORE_UPDATE_KEYID_FLAG);
-#endif
-
 //+-------------------------------------------------------------------------
 //  Certificate Store Provider flags are in the HiWord (0xFFFF0000)
 //--------------------------------------------------------------------------
@@ -10177,12 +9718,6 @@ typedef struct _CERT_SYSTEM_STORE_RELOCATE_PARA {
 
 // Location of the system store:
 #define CERT_SYSTEM_STORE_LOCATION_MASK         0x00FF0000
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_SYSTEM_STORE_FLAGS, unsigned long,
-    CERT_SYSTEM_STORE_LOCATION_MASK,
-    CERT_SYSTEM_STORE_RELOCATE_FLAG);
-#endif
 #define CERT_SYSTEM_STORE_LOCATION_SHIFT        16
 
 
@@ -11048,17 +10583,15 @@ typedef struct _CERT_LDAP_STORE_OPENED_PARA {
 //      attribute.
 //
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Must_inspect_result_
 HCERTSTORE
 WINAPI
 CertOpenStore(
     _In_ LPCSTR lpszStoreProvider,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwEncodingType,
-    _Reserved_ _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
-    _Win32_AssociatedEnum_(CERT_OPEN_STORE_FLAGS) _In_ DWORD dwFlags,
+    _In_ DWORD dwEncodingType,
+    _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
+    _In_ DWORD dwFlags,
     _In_opt_ const void *pvPara
     );
 
@@ -11078,16 +10611,12 @@ typedef void *HCERTSTOREPROV;
 // zeroed with cbSize set before the provider is called. If the provider
 // doesn't need to be called again after the open it doesn't need to
 // make any updates to the CERT_STORE_PROV_INFO.
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_STORE_PROV_FLAGS;
-#endif
-
 typedef struct _CERT_STORE_PROV_INFO {
     DWORD               cbSize;
     DWORD               cStoreProvFunc;
     void                **rgpvStoreProvFunc;
     HCERTSTOREPROV      hStoreProv;
-    _Win32_AssociatedEnum_(CERT_STORE_PROV_FLAGS) DWORD               dwStoreProvFlags;
+    DWORD               dwStoreProvFlags;
     HCRYPTOIDFUNCADDR   hStoreProvFuncAddr2;
 } CERT_STORE_PROV_INFO, *PCERT_STORE_PROV_INFO;
 
@@ -11100,9 +10629,9 @@ typedef struct _CERT_STORE_PROV_INFO {
 // call the appropriate provider callback function.
 typedef BOOL (WINAPI *PFN_CERT_DLL_OPEN_STORE_PROV_FUNC)(
     _In_ LPCSTR lpszStoreProvider,
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) _In_ DWORD dwEncodingType,
+    _In_ DWORD dwEncodingType,
     _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
-    _Win32_AssociatedEnum_(CERT_OPEN_STORE_FLAGS) _In_ DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _In_opt_ const void *pvPara,
     _In_ HCERTSTORE hCertStore,
     _Inout_ PCERT_STORE_PROV_INFO pStoreProvInfo
@@ -11127,15 +10656,6 @@ typedef BOOL (WINAPI *PFN_CERT_DLL_OPEN_STORE_PROV_FUNC)(
 // The open callback sets the following flag if the contexts are persisted
 // to a LocalMachine system store.
 #define CERT_STORE_PROV_LM_SYSTEM_STORE_FLAG    0x10
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CERT_STORE_PROV_FLAGS, unsigned long,
-    CERT_STORE_PROV_EXTERNAL_FLAG,
-    CERT_STORE_PROV_DELETED_FLAG,
-    CERT_STORE_PROV_NO_PERSIST_FLAG,
-    CERT_STORE_PROV_SYSTEM_STORE_FLAG,
-    CERT_STORE_PROV_LM_SYSTEM_STORE_FLAG);
-#endif
 
 // The open callback sets the following flag if the contexts are persisted
 // to a GroupPolicy system store.
@@ -11432,7 +10952,6 @@ typedef BOOL (WINAPI *PFN_CERT_STORE_PROV_GET_CTL_PROPERTY)(
 //+-------------------------------------------------------------------------
 //  Duplicate a cert store handle
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 HCERTSTORE
 WINAPI
@@ -11442,12 +10961,6 @@ CertDuplicateStore(
 
 #define CERT_STORE_SAVE_AS_STORE        1
 #define CERT_STORE_SAVE_AS_PKCS7        2
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_STORE_SAVE_AS, unsigned long,
-    CERT_STORE_SAVE_AS_PKCS7,
-    CERT_STORE_SAVE_AS_STORE);
-#endif
 #define CERT_STORE_SAVE_AS_PKCS12       3
 
 #define CERT_STORE_SAVE_TO_FILE         1
@@ -11455,15 +10968,6 @@ _Win32_Enum_(CERT_STORE_SAVE_AS, unsigned long,
 #define CERT_STORE_SAVE_TO_FILENAME_A   3
 #define CERT_STORE_SAVE_TO_FILENAME_W   4
 #define CERT_STORE_SAVE_TO_FILENAME     CERT_STORE_SAVE_TO_FILENAME_W
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_STORE_SAVE_TO, unsigned long,
-    CERT_STORE_SAVE_TO_FILE,
-    CERT_STORE_SAVE_TO_FILENAME,
-    CERT_STORE_SAVE_TO_FILENAME_A,
-    CERT_STORE_SAVE_TO_FILENAME_W,
-    CERT_STORE_SAVE_TO_MEMORY);
-#endif
 
 //+-------------------------------------------------------------------------
 //  Save the cert store. Extended version with lots of options.
@@ -11517,16 +11021,14 @@ _Win32_Enum_(CERT_STORE_SAVE_TO, unsigned long,
 //      Note, the default (without "_A" or "_W") is UNICODE.
 //
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertSaveStore(
     _In_ HCERTSTORE hCertStore,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwEncodingType,
-    _In_ _Win32_AssociatedEnum_(CERT_STORE_SAVE_AS) DWORD dwSaveAs,
-    _In_ _Win32_AssociatedEnum_(CERT_STORE_SAVE_TO) DWORD dwSaveTo,
+    _In_ DWORD dwEncodingType,
+    _In_ DWORD dwSaveAs,
+    _In_ DWORD dwSaveTo,
     _Inout_ void *pvSaveToPara,
     _In_ DWORD dwFlags
     );
@@ -11561,8 +11063,6 @@ CertSaveStore(
 //  LastError is preserved unless CERT_CLOSE_STORE_CHECK_FLAG is set and FALSE
 //  is returned.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -11583,14 +11083,12 @@ CertCloseStore(
 //  The returned certificate might not be valid. Normally, it would be
 //  verified when getting its issuer certificate (CertGetIssuerCertificateFromStore).
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
 CertGetSubjectCertificateFromStore(
     _In_ HCERTSTORE hCertStore,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_INFO pCertId           // Only the Issuer and SerialNumber
                                       // fields are used
     );
@@ -11611,8 +11109,6 @@ CertGetSubjectCertificateFromStore(
 //  NOTE: a NON-NULL pPrevCertContext is always CertFreeCertificateContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
@@ -11645,16 +11141,14 @@ CertEnumCertificatesInStore(
 //  NOTE: a NON-NULL pPrevCertContext is always CertFreeCertificateContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
 CertFindCertificateInStore(
     _In_ HCERTSTORE hCertStore,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ DWORD dwFindFlags,
-    _In_ _Win32_AssociatedEnum_(CERT_FIND_FLAGS) DWORD dwFindType,
+    _In_ DWORD dwFindType,
     _In_opt_ const void *pvFindPara,
     _In_opt_ PCCERT_CONTEXT pPrevCertContext
     );
@@ -11930,54 +11424,6 @@ CertFindCertificateInStore(
 #define CERT_FIND_OR_CTL_USAGE_FLAG         CERT_FIND_OR_ENHKEY_USAGE_FLAG
 #define CERT_FIND_VALID_CTL_USAGE_FLAG      CERT_FIND_VALID_ENHKEY_USAGE_FLAG
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CERT_FIND_FLAGS, unsigned long,
-    CERT_FIND_ANY,
-    CERT_FIND_CERT_ID,
-    CERT_FIND_CTL_USAGE,
-    CERT_FIND_ENHKEY_USAGE,
-    CERT_FIND_EXISTING,
-    CERT_FIND_HASH,
-    CERT_FIND_HAS_PRIVATE_KEY,
-    CERT_FIND_ISSUER_ATTR,
-    CERT_FIND_ISSUER_NAME,
-    CERT_FIND_ISSUER_OF,
-    CERT_FIND_ISSUER_STR,
-    CERT_FIND_KEY_IDENTIFIER,
-    CERT_FIND_KEY_SPEC,
-    CERT_FIND_MD5_HASH,
-    CERT_FIND_PROPERTY,
-    CERT_FIND_PUBLIC_KEY,
-    CERT_FIND_SHA1_HASH,
-    CERT_FIND_SIGNATURE_HASH,
-    CERT_FIND_SUBJECT_ATTR,
-    CERT_FIND_SUBJECT_CERT,
-    CERT_FIND_SUBJECT_NAME,
-    CERT_FIND_SUBJECT_STR,
-    CERT_FIND_CROSS_CERT_DIST_POINTS,
-    CERT_FIND_PUBKEY_MD5_HASH,
-    CERT_FIND_SHA256_HASH,
-    CERT_FIND_SHA1_SHA256_HASH,
-    CERT_FIND_SUBJECT_STR_A,
-    CERT_FIND_SUBJECT_STR_W,
-    CERT_FIND_ISSUER_STR_A,
-    CERT_FIND_ISSUER_STR_W,
-    CERT_FIND_SUBJECT_INFO_ACCESS,
-    CERT_FIND_HASH_STR,
-    CERT_FIND_OPTIONAL_ENHKEY_USAGE_FLAG,
-    CERT_FIND_EXT_ONLY_ENHKEY_USAGE_FLAG,
-    CERT_FIND_PROP_ONLY_ENHKEY_USAGE_FLAG,
-    CERT_FIND_NO_ENHKEY_USAGE_FLAG,
-    CERT_FIND_OR_ENHKEY_USAGE_FLAG,
-    CERT_FIND_VALID_ENHKEY_USAGE_FLAG,
-    CERT_FIND_OPTIONAL_CTL_USAGE_FLAG,
-    CERT_FIND_EXT_ONLY_CTL_USAGE_FLAG,
-    CERT_FIND_PROP_ONLY_CTL_USAGE_FLAG,
-    CERT_FIND_NO_CTL_USAGE_FLAG,
-    CERT_FIND_OR_CTL_USAGE_FLAG,
-    CERT_FIND_VALID_CTL_USAGE_FLAG);
-#endif
-
 //+-------------------------------------------------------------------------
 //  CERT_FIND_CERT_ID
 //
@@ -12068,8 +11514,6 @@ _Win32_FlagsEnum_(CERT_FIND_FLAGS, unsigned long,
 //  For a verification check failure, a pointer to the issuer's CERT_CONTEXT
 //  is still returned and SetLastError isn't updated.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
@@ -12090,8 +11534,6 @@ CertGetIssuerCertificateFromStore(
 //
 //  For a verification check failure, SUCCESS is still returned.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12104,7 +11546,6 @@ CertVerifySubjectCertificateContext(
 //+-------------------------------------------------------------------------
 //  Duplicate a certificate context
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
@@ -12126,13 +11567,11 @@ CertDuplicateCertificateContext(
 //  CertSetCertificateContextProperty and CertGetCertificateContextProperty can be called
 //  to store properties for the certificate.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
-_Win32_PreserveResult_ CertCreateCertificateContext(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+CertCreateCertificateContext(
+    _In_ DWORD dwCertEncodingType,
     _In_reads_bytes_(cbCertEncoded) const BYTE *pbCertEncoded,
     _In_ DWORD cbCertEncoded
     );
@@ -12143,7 +11582,6 @@ _Win32_PreserveResult_ CertCreateCertificateContext(
 //  There needs to be a corresponding free for each context obtained by a
 //  get, find, duplicate or create.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12292,8 +11730,6 @@ CertFreeCertificateContext(
 //  CERT_SET_PROPERTY_IGNORE_PERSIST_ERROR_FLAG can be set to ignore any
 //  provider write errors and always update the cached context's property.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12371,15 +11807,13 @@ CertSetCertificateContextProperty(
 //
 //  For all other PROP_IDs, pvData points to an encoded array of bytes.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertGetCertificateContextProperty(
     _In_ PCCERT_CONTEXT pCertContext,
     _In_ DWORD dwPropId,
-    _Out_writes_bytes_to_opt_(*pcbData, *pcbData) _Win32_ContainsInteriorPointers_ void *pvData,
+    _Out_writes_bytes_to_opt_(*pcbData, *pcbData) void *pvData,
     _Inout_ DWORD *pcbData
     );
 
@@ -12397,7 +11831,6 @@ CertGetCertificateContextProperty(
 //  properties are stored as fields in the CERT_KEY_CONTEXT_PROP_ID
 //  property, they aren't enumerated individually.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -12428,8 +11861,6 @@ CertEnumCertificateContextProperties(
 //  CTL_ENTRY_FROM_PROP_CHAIN_FLAG can be set in dwFlags, to force the
 //  inclusion of the chain building hash properties as attributes.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -12440,7 +11871,7 @@ CertCreateCTLEntryFromCertificateContextProperties(
     _In_reads_opt_(cOptAttr) PCRYPT_ATTRIBUTE rgOptAttr,
     _In_ DWORD dwFlags,
     _Reserved_ void *pvReserved,
-    _Out_writes_bytes_to_opt_(*pcbCtlEntry, *pcbCtlEntry) _Win32_ContainsInteriorPointers_ PCTL_ENTRY pCtlEntry,
+    _Out_writes_bytes_to_opt_(*pcbCtlEntry, *pcbCtlEntry) PCTL_ENTRY pCtlEntry,
     _Inout_ DWORD *pcbCtlEntry
     );
 
@@ -12459,8 +11890,6 @@ CertCreateCTLEntryFromCertificateContextProperties(
 //
 //  CERT_SET_PROPERTY_IGNORE_PERSIST_ERROR_FLAG may be set in dwFlags.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12528,8 +11957,6 @@ CertSetCertificateContextPropertiesFromCTLEntry(
 //  For a verification check failure, a pointer to the first or next
 //  CRL_CONTEXT is still returned and SetLastError isn't updated.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCRL_CONTEXT
 WINAPI
@@ -12556,8 +11983,6 @@ CertGetCRLFromStore(
 //  NOTE: a NON-NULL pPrevCrlContext is always CertFreeCRLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCRL_CONTEXT
 WINAPI
@@ -12589,14 +12014,12 @@ CertEnumCRLsInStore(
 //  NOTE: a NON-NULL pPrevCrlContext is always CertFreeCRLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCRL_CONTEXT
 WINAPI
 CertFindCRLInStore(
     _In_ HCERTSTORE hCertStore,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ DWORD dwFindFlags,
     _In_ DWORD dwFindType,
     _In_opt_ const void *pvFindPara,
@@ -12695,7 +12118,6 @@ typedef struct _CRL_FIND_ISSUED_FOR_PARA {
 //+-------------------------------------------------------------------------
 //  Duplicate a CRL context
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCRL_CONTEXT
 WINAPI
@@ -12717,13 +12139,11 @@ CertDuplicateCRLContext(
 //  CertSetCRLContextProperty and CertGetCRLContextProperty can be called
 //  to store properties for the CRL.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCRL_CONTEXT
 WINAPI
 CertCreateCRLContext(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_reads_bytes_(cbCrlEncoded) const BYTE *pbCrlEncoded,
     _In_ DWORD cbCrlEncoded
     );
@@ -12734,7 +12154,6 @@ CertCreateCRLContext(
 //  There needs to be a corresponding free for each context obtained by a
 //  get, duplicate or create.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12747,8 +12166,6 @@ CertFreeCRLContext(
 //
 //  Same Property Ids and semantics as CertSetCertificateContextProperty.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12767,8 +12184,6 @@ CertSetCRLContextProperty(
 //  CERT_SHA1_HASH_PROP_ID, CERT_MD5_HASH_PROP_ID or
 //  CERT_SIGNATURE_HASH_PROP_ID is the predefined property of most interest.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12789,7 +12204,6 @@ CertGetCRLContextProperty(
 //
 //  CertGetCRLContextProperty is called to get the property's data.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -12811,7 +12225,6 @@ CertEnumCRLContextProperties(
 //
 //  dwFlags and pvReserved currently aren't used and must be set to 0 or NULL.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12835,7 +12248,6 @@ CertFindCertificateInCRL(
 //
 //  dwFlags and pvReserved currently aren't used and must be set to 0 and NULL.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -12904,15 +12316,13 @@ CertIsValidCRLForCertificate(
 //  ppCertContext can be NULL, indicating the caller isn't interested
 //  in getting the CERT_CONTEXT of the added or existing certificate.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
 WINAPI
 CertAddEncodedCertificateToStore(
     _In_opt_ HCERTSTORE hCertStore,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_reads_bytes_(cbCertEncoded) const BYTE *pbCertEncoded,
     _In_ DWORD cbCertEncoded,
     _In_ DWORD dwAddDisposition,
@@ -12976,8 +12386,6 @@ CertAddEncodedCertificateToStore(
 //  ppStoreContext can be NULL, indicating the caller isn't interested
 //  in getting the CERT_CONTEXT of the added or existing certificate.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13032,8 +12440,6 @@ CertAddCertificateContextToStore(
 //  returned it must be freed by calling CertFreeCertificateContext or
 //  CertFreeCRLContext.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13064,8 +12470,6 @@ CertAddSerializedElementToStore(
 //  NOTE: the pCertContext is always CertFreeCertificateContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13089,15 +12493,13 @@ CertDeleteCertificateFromStore(
 //  ppCrlContext can be NULL, indicating the caller isn't interested
 //  in getting the CRL_CONTEXT of the added or existing CRL.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
 WINAPI
 CertAddEncodedCRLToStore(
     _In_opt_ HCERTSTORE hCertStore,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_reads_bytes_(cbCrlEncoded) const BYTE *pbCrlEncoded,
     _In_ DWORD cbCrlEncoded,
     _In_ DWORD dwAddDisposition,
@@ -13124,8 +12526,6 @@ CertAddEncodedCRLToStore(
 //  ppStoreContext can be NULL, indicating the caller isn't interested
 //  in getting the CRL_CONTEXT of the added or existing CRL.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13149,8 +12549,6 @@ CertAddCRLContextToStore(
 //  NOTE: the pCrlContext is always CertFreeCRLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13162,8 +12560,6 @@ CertDeleteCRLFromStore(
 //  Serialize the certificate context's encoded certificate and its
 //  properties.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13178,8 +12574,6 @@ CertSerializeCertificateStoreElement(
 //+-------------------------------------------------------------------------
 //  Serialize the CRL context's encoded CRL and its properties.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13199,7 +12593,6 @@ CertSerializeCRLStoreElement(
 //+-------------------------------------------------------------------------
 //  Duplicate a CTL context
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCTL_CONTEXT
 WINAPI
@@ -13221,8 +12614,6 @@ CertDuplicateCTLContext(
 //  CertSetCTLContextProperty and CertGetCTLContextProperty can be called
 //  to store properties for the CTL.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCTL_CONTEXT
 WINAPI
@@ -13238,7 +12629,6 @@ CertCreateCTLContext(
 //  There needs to be a corresponding free for each context obtained by a
 //  get, duplicate or create.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13251,8 +12641,6 @@ CertFreeCTLContext(
 //
 //  Same Property Ids and semantics as CertSetCertificateContextProperty.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13271,8 +12659,6 @@ CertSetCTLContextProperty(
 //  CERT_SHA1_HASH_PROP_ID or CERT_NEXT_UPDATE_LOCATION_PROP_ID are the
 //  predefined properties of most interest.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13286,7 +12672,6 @@ CertGetCTLContextProperty(
 //+-------------------------------------------------------------------------
 //  Enumerate the properties for the specified CTL context.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -13311,8 +12696,6 @@ CertEnumCTLContextProperties(
 //  NOTE: a NON-NULL pPrevCtlContext is always CertFreeCTLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCTL_CONTEXT
 WINAPI
@@ -13339,8 +12722,6 @@ CertEnumCTLsInStore(
 //
 //  dwEncodingType isn't used for either of the above SubjectTypes.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCTL_ENTRY
 WINAPI
@@ -13386,12 +12767,6 @@ typedef struct _CTL_ANY_SUBJECT_INFO {
 //  NOTE: a NON-NULL pPrevCtlContext is always CertFreeCTLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_FIND_TYPE;
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCTL_CONTEXT
 WINAPI
@@ -13399,7 +12774,7 @@ CertFindCTLInStore(
     _In_ HCERTSTORE hCertStore,
     _In_ DWORD dwMsgAndCertEncodingType,
     _In_ DWORD dwFindFlags,
-    _In_ _Win32_AssociatedEnum_(CERT_FIND_TYPE) DWORD dwFindType,
+    _In_ DWORD dwFindType,
     _In_opt_ const void *pvFindPara,
     _In_opt_ PCCTL_CONTEXT pPrevCtlContext
     );
@@ -13422,17 +12797,6 @@ typedef struct _CTL_FIND_USAGE_PARA {
 #define CTL_FIND_NO_SIGNER_PTR      ((PCERT_INFO) -1)
 
 #define CTL_FIND_SAME_USAGE_FLAG    0x1
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_FIND_TYPE, unsigned long,
-    CTL_FIND_ANY,
-    CTL_FIND_SHA1_HASH,
-    CTL_FIND_MD5_HASH,
-    CTL_FIND_USAGE,
-    CTL_FIND_SAME_USAGE_FLAG,
-    CTL_FIND_EXISTING,
-    CTL_FIND_SUBJECT);
-#endif
 
 
 typedef struct _CTL_FIND_SUBJECT_PARA {
@@ -13508,15 +12872,13 @@ typedef struct _CTL_FIND_SUBJECT_PARA {
 //  ppCtlContext can be NULL, indicating the caller isn't interested
 //  in getting the CTL_CONTEXT of the added or existing CTL.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
 WINAPI
 CertAddEncodedCTLToStore(
     _In_opt_ HCERTSTORE hCertStore,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwMsgAndCertEncodingType,
+    _In_ DWORD dwMsgAndCertEncodingType,
     _In_reads_bytes_(cbCtlEncoded) const BYTE *pbCtlEncoded,
     _In_ DWORD cbCtlEncoded,
     _In_ DWORD dwAddDisposition,
@@ -13543,8 +12905,6 @@ CertAddEncodedCTLToStore(
 //  ppStoreContext can be NULL, indicating the caller isn't interested
 //  in getting the CTL_CONTEXT of the added or existing CTL.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13559,8 +12919,6 @@ CertAddCTLContextToStore(
 //+-------------------------------------------------------------------------
 //  Serialize the CTL context's encoded CTL and its properties.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13583,8 +12941,6 @@ CertSerializeCTLStoreElement(
 //  NOTE: the pCtlContext is always CertFreeCTLContext'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13593,8 +12949,6 @@ CertDeleteCTLFromStore(
     );
 
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13606,8 +12960,6 @@ CertAddCertificateLinkToStore(
     _Outptr_opt_ PCCERT_CONTEXT *ppStoreContext
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13619,8 +12971,6 @@ CertAddCRLLinkToStore(
     _Outptr_opt_ PCCRL_CONTEXT *ppStoreContext
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13632,7 +12982,6 @@ CertAddCTLLinkToStore(
     _Outptr_opt_ PCCTL_CONTEXT *ppStoreContext
     );
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13643,7 +12992,6 @@ CertAddStoreToCollection(
     _In_ DWORD dwPriority
     );
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 void
 WINAPI
@@ -13653,18 +13001,12 @@ CertRemoveStoreFromCollection(
     );
 
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_CONTROL_STORE_FLAGS;
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertControlStore(
     _In_ HCERTSTORE hCertStore,
-    _In_ _Win32_AssociatedEnum_(CERT_CONTROL_STORE_FLAGS) DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _In_ DWORD dwCtrlType,
     _In_opt_ void const *pvCtrlPara
     );
@@ -13760,13 +13102,6 @@ CertControlStore(
 #define CERT_STORE_CTRL_COMMIT_FORCE_FLAG   0x1
 #define CERT_STORE_CTRL_COMMIT_CLEAR_FLAG   0x2
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_CONTROL_STORE_FLAGS, unsigned long,
-    CERT_STORE_CTRL_COMMIT_FORCE_FLAG,
-    CERT_STORE_CTRL_COMMIT_CLEAR_FLAG,
-    CERT_STORE_CTRL_INHIBIT_DUPLICATE_HANDLE_FLAG);
-#endif
-
 
 //+=========================================================================
 //  Cert Store Property Defines and APIs
@@ -13802,7 +13137,6 @@ _Win32_Enum_(CERT_CONTROL_STORE_FLAGS, unsigned long,
 //  If the property already exists, then, the old value is deleted and silently
 //  replaced. Setting, pvData to NULL, deletes the property.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -13826,8 +13160,6 @@ CertSetStoreProperty(
 //  If the property doesn't exist, returns FALSE and sets LastError to
 //  CRYPT_E_NOT_FOUND.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -13901,8 +13233,6 @@ typedef struct _CERT_CREATE_CONTEXT_PARA {
 //  free context API. The context can be duplicated by calling the
 //  appropriate duplicate context API.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 const void *
 WINAPI
@@ -14061,7 +13391,6 @@ typedef struct _CERT_PHYSICAL_STORE_INFO {
 //  Set CERT_STORE_CREATE_NEW_FLAG to cause a failure if the system store
 //  already exists in the store location.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14088,7 +13417,6 @@ CertRegisterSystemStore(
 //  Set CERT_STORE_CREATE_NEW_FLAG to cause a failure if the physical store
 //  already exists in the system store.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14115,7 +13443,6 @@ CertRegisterPhysicalStore(
 //
 //  CERT_STORE_DELETE_FLAG can optionally be set in dwFlags.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14139,7 +13466,6 @@ CertUnregisterSystemStore(
 //
 //  CERT_STORE_DELETE_FLAG can optionally be set in dwFlags.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14181,7 +13507,7 @@ typedef BOOL (WINAPI *PFN_CERT_ENUM_SYSTEM_STORE_LOCATION)(
 
 typedef BOOL (WINAPI *PFN_CERT_ENUM_SYSTEM_STORE)(
     _In_ const void *pvSystemStore,
-    _Win32_AssociatedEnum_(CERT_SYSTEM_STORE_FLAGS) _In_ DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _In_ PCERT_SYSTEM_STORE_INFO pStoreInfo,
     _Reserved_ void *pvReserved,
     _Inout_opt_ void *pvArg
@@ -14215,7 +13541,6 @@ typedef BOOL (WINAPI *PFN_CERT_ENUM_PHYSICAL_STORE)(
 //+-------------------------------------------------------------------------
 //  Enumerate the system store locations.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14256,7 +13581,6 @@ CertEnumSystemStoreLocation(
 //  the leading "\\" backslashes or a trailing backslash. Otherwise, its
 //  interpretted as the ServiceName or UserName.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14283,8 +13607,6 @@ CertEnumSystemStore(
 //  If the system store location only supports system stores and doesn't
 //  support physical stores, LastError is set to ERROR_CALL_NOT_IMPLEMENTED.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14347,15 +13669,13 @@ CertEnumPhysicalStore(
 //  If the CERT_FIND_PROP_ONLY_ENHKEY_USAGE_FLAG is set, then, only get the
 //  property.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertGetEnhancedKeyUsage(
     _In_ PCCERT_CONTEXT pCertContext,
     _In_ DWORD dwFlags,
-    _Out_writes_bytes_to_opt_(*pcbUsage, *pcbUsage) _Win32_ContainsInteriorPointers_ PCERT_ENHKEY_USAGE pUsage,
+    _Out_writes_bytes_to_opt_(*pcbUsage, *pcbUsage) PCERT_ENHKEY_USAGE pUsage,
     _Inout_ DWORD *pcbUsage
     );
 
@@ -14368,8 +13688,6 @@ CertGetEnhancedKeyUsage(
 //+-------------------------------------------------------------------------
 //  Set the enhanced key usage property for the certificate.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14381,8 +13699,6 @@ CertSetEnhancedKeyUsage(
 //+-------------------------------------------------------------------------
 //  Add the usage identifier to the certificate's enhanced key usage property.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14396,8 +13712,6 @@ CertAddEnhancedKeyUsageIdentifier(
 //  Remove the usage identifier from the certificate's enhanced key usage
 //  property.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14420,8 +13734,6 @@ CertRemoveEnhancedKeyUsageIdentifier(
 //  If each cert is good for all possible usages then the cNumOIDs is set to -1.
 //
 //----------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -14462,8 +13774,6 @@ CertGetValidUsages(
 //  interested in getting the CertContext and/or index of the signer.
 //--------------------------------------------------------------------------
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return == TRUE)
 BOOL
@@ -14496,8 +13806,6 @@ CryptMsgGetAndVerifySigner(
 //  CMSG_CMS_ENCAPSULATED_CTL_FLAG can be set to encode a CMS compatible
 //  V3 SignedData message.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14527,8 +13835,6 @@ CryptMsgSignCTL(
 //  CMSG_CMS_ENCAPSULATED_CTL_FLAG can be set to encode a CMS compatible
 //  V3 SignedData message.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14556,7 +13862,6 @@ CryptMsgEncodeAndSignCTL(
 //  Returns TRUE if the SubjectIdentifier exists in the CTL. Optionally
 //  returns a pointer to and byte count of the Subject's encoded attributes.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14581,7 +13886,6 @@ CertFindSubjectInSortedCTL(
 //  Note, the returned DER_BLOBs point directly into the encoded
 //  bytes (not allocated, and must not be freed).
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14684,8 +13988,6 @@ typedef struct _CTL_VERIFY_USAGE_STATUS {
 //      CRYPT_E_NOT_IN_CTL
 //      CRYPT_E_NO_TRUSTED_SIGNER
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -14820,7 +14122,7 @@ typedef struct _CERT_REVOCATION_STATUS {
     DWORD                   cbSize;
     DWORD                   dwIndex;
     DWORD                   dwError;
-    _Win32_AssociatedEnum_(CERT_REVOCATION_STATUS_REASON) DWORD                   dwReason;
+    DWORD                   dwReason;
 
     // Depending on cbSize, the following fields may optionally be returned.
 
@@ -14917,8 +14219,6 @@ typedef struct _CERT_REVOCATION_STATUS {
 //  advancing the start of the context array to the returned dwIndex and
 //  decrementing the count of remaining contexts.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15007,8 +14307,6 @@ CertVerifyRevocation(
 //  Returns TRUE if the integer blobs are identical after removing leading
 //  0 or 0xFF bytes.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 CertCompareIntegerBlob(
@@ -15024,12 +14322,11 @@ CertCompareIntegerBlob(
 //
 //  Returns TRUE if the certificates are identical.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertCompareCertificate(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_INFO pCertId1,
     _In_ PCERT_INFO pCertId2
     );
@@ -15039,12 +14336,11 @@ CertCompareCertificate(
 //
 //  Returns TRUE if the names are identical.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertCompareCertificateName(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_NAME_BLOB pCertName1,
     _In_ PCERT_NAME_BLOB pCertName2
     );
@@ -15073,13 +14369,11 @@ CertCompareCertificateName(
 //  CERT_UNICODE_IS_RDN_ATTRS_FLAG should be set if the pRDN was initialized
 //  with unicode strings as for CryptEncodeObject(X509_UNICODE_NAME).
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertIsRDNAttrsInCertificateName(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ DWORD dwFlags,
     _In_ PCERT_NAME_BLOB pCertName,
     _In_ PCERT_RDN pRDN
@@ -15093,12 +14387,11 @@ CertIsRDNAttrsInCertificateName(
 //
 //  Returns TRUE if the keys are identical.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertComparePublicKeyInfo(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_PUBLIC_KEY_INFO pPublicKey1,
     _In_ PCERT_PUBLIC_KEY_INFO pPublicKey2
     );
@@ -15114,13 +14407,11 @@ CertComparePublicKeyInfo(
 //
 //  Returns 0 if unable to determine the key's length.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
 CertGetPublicKeyLength(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_PUBLIC_KEY_INFO pPublicKey
     );
 
@@ -15139,15 +14430,13 @@ CertGetPublicKeyLength(
 //  hCryptProv specifies the crypto provider to use to verify the signature.
 //  It doesn't need to use a private key.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Must_inspect_result_
 BOOL
 WINAPI
 CryptVerifyCertificateSignature(
     _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_reads_bytes_(cbEncoded) const BYTE *pbEncoded,
     _In_ DWORD cbEncoded,
     _In_ PCERT_PUBLIC_KEY_INFO pPublicKey
@@ -15178,20 +14467,18 @@ CryptVerifyCertificateSignature(
 //  to verify this no signature case. If any other dwIssuerType is
 //  specified, the verify will fail with LastError set to E_INVALIDARG.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Must_inspect_result_
 BOOL
 WINAPI
 CryptVerifyCertificateSignatureEx(
     _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ DWORD dwSubjectType,
     _In_ void *pvSubject,
     _In_ DWORD dwIssuerType,
     _In_opt_ void *pvIssuer,
-    _Win32_AssociatedEnum_(CRYPT_VERIFY_CERT_FLAGS) _In_ DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _Inout_opt_ void *pvExtra
     );
 
@@ -15260,13 +14547,6 @@ CryptVerifyCertificateSignatureEx(
 //
 #define CRYPT_VERIFY_CERT_SIGN_RETURN_STRONG_PROPERTIES_FLAG 0x00000004
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_VERIFY_CERT_FLAGS, unsigned long,
-    CRYPT_VERIFY_CERT_SIGN_DISABLE_MD2_MD4_FLAG,
-    CRYPT_VERIFY_CERT_SIGN_SET_STRONG_PROPERTIES_FLAG,
-    CRYPT_VERIFY_CERT_SIGN_RETURN_STRONG_PROPERTIES_FLAG);
-#endif
-
 typedef struct _CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO {
     // CERT_SIGN_HASH_CNG_ALG_PROP_ID
     CRYPT_DATA_BLOB CertSignHashCNGAlgPropData;
@@ -15309,8 +14589,6 @@ typedef struct _CRYPT_VERIFY_CERT_SIGN_WEAK_HASH_INFO {
 //  The SigningCert can be NULL to only check if the CNG hash algorithm is
 //  strong.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15327,14 +14605,12 @@ CertIsStrongHashToSign(
 //  hCryptProv specifies the crypto provider to use to compute the hash.
 //  It doesn't need to use a private key.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptHashToBeSigned(
     _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_reads_bytes_(cbEncoded) const BYTE *pbEncoded,
     _In_ DWORD cbEncoded,
     _Out_writes_bytes_to_opt_(*pcbComputedHash, *pcbComputedHash) BYTE *pbComputedHash,
@@ -15350,8 +14626,6 @@ CryptHashToBeSigned(
 //  Algid specifies the CAPI hash algorithm to use. If Algid is 0, then, the
 //  default hash algorithm (currently SHA1) is used.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15376,8 +14650,6 @@ CryptHashCertificate(
 //+-------------------------------------------------------------------------
 //  Hash the encoded content using the CNG hash algorithm provider.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -15411,8 +14683,6 @@ CryptHashCertificate2(
 //  dwKeySpec isn't used and hCryptProvOrNCryptKey can be NULL where an
 //  appropriate default provider will be used for hashing.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15423,7 +14693,7 @@ CryptSignCertificate(
     _In_opt_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
 #endif
     _In_opt_ DWORD dwKeySpec,       // not applicable for NCRYPT_KEY_HANDLE
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_reads_bytes_(cbEncodedToBeSigned) const BYTE *pbEncodedToBeSigned,
     _In_ DWORD cbEncodedToBeSigned,
     _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
@@ -15444,8 +14714,6 @@ CryptSignCertificate(
 //  dwKeySpec isn't used and hCryptProv can be NULL where an appropriate
 //  default provider will be used for hashing.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15455,8 +14723,8 @@ CryptSignAndEncodeCertificate(
 #else
     _In_opt_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
 #endif
-    _In_opt_ _Win32_AssociatedEnum_(CERT_KEY_SPEC) DWORD dwKeySpec,       // not applicable for NCRYPT_KEY_HANDLE
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_opt_ DWORD dwKeySpec,       // not applicable for NCRYPT_KEY_HANDLE
+    _In_ DWORD dwCertEncodingType,
     _In_ LPCSTR lpszStructType,       // "to be signed"
     _In_ const void *pvStructInfo,
     _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
@@ -15491,7 +14759,7 @@ CryptSignAndEncodeCertificate(
 #define CRYPT_OID_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC \
     "CryptDllExtractEncodedSignatureParameters"
 typedef BOOL (WINAPI *PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC)(
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) _In_ DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
     _Outptr_result_maybenull_ void **ppvDecodedSignPara, // LocalFree()
     _Outptr_ LPWSTR *ppwszCNGHashAlgid      // LocalFree()
@@ -15502,7 +14770,7 @@ typedef BOOL (WINAPI *PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC)(
     "CryptDllSignAndEncodeHash"
 typedef BOOL (WINAPI *PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC)(
     _In_ NCRYPT_KEY_HANDLE hKey,
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) _In_ DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
     _In_opt_ void *pvDecodedSignPara,
     _In_ LPCWSTR pwszCNGPubKeyAlgid,    // obtained from signature OID
@@ -15518,7 +14786,7 @@ typedef BOOL (WINAPI *PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC)(
 #define CRYPT_OID_VERIFY_ENCODED_SIGNATURE_FUNC \
     "CryptDllVerifyEncodedSignature"
 typedef BOOL (WINAPI *PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC)(
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) _In_ DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_PUBLIC_KEY_INFO pPubKeyInfo,
     _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
     _In_opt_ void *pvDecodedSignPara,
@@ -15539,7 +14807,6 @@ typedef BOOL (WINAPI *PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC)(
 //
 //  If pTimeToVerify is NULL, uses the current time.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 LONG
 WINAPI
@@ -15562,7 +14829,6 @@ CertVerifyTimeValidity(
 //
 //  If pTimeToVerify is NULL, uses the current time.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 LONG
 WINAPI
@@ -15577,7 +14843,6 @@ CertVerifyCRLTimeValidity(
 //
 //  Returns TRUE if it nests. Otherwise, returns FALSE.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15591,12 +14856,11 @@ CertVerifyValidityNesting(
 //
 //  Returns true if the certificate isn't on the CRL.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertVerifyCRLRevocation(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_INFO pCertId,          // Only the Issuer and SerialNumber
                                       // fields are used
     _In_ DWORD cCrlInfo,
@@ -15608,7 +14872,6 @@ CertVerifyCRLRevocation(
 //
 //  Returns NULL if there isn't an ObjId corresponding to the AlgId.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 LPCSTR
 WINAPI
@@ -15621,7 +14884,6 @@ CertAlgIdToOID(
 //
 //  Returns 0 if there isn't an AlgId corresponding to the ObjId.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -15640,7 +14902,6 @@ CertOIDToAlgId(
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCERT_EXTENSION
 WINAPI
@@ -15655,7 +14916,6 @@ CertFindExtension(
 //
 //  If found, returns pointer to the attribute. Otherwise, returns NULL.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCRYPT_ATTRIBUTE
 WINAPI
@@ -15671,7 +14931,6 @@ CertFindAttribute(
 //
 //  If found, returns pointer to the attribute. Otherwise, returns NULL.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCERT_RDN_ATTR
 WINAPI
@@ -15688,13 +14947,11 @@ CertFindRDNAttr(
 //  cbKeyUsage bytes are copied into *pbKeyUsage. Any remaining uncopied
 //  bytes are zeroed.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertGetIntendedKeyUsage(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_INFO pCertInfo,
     _Out_writes_bytes_all_(cbKeyUsage) BYTE *pbKeyUsage,
     _In_ DWORD cbKeyUsage
@@ -15735,24 +14992,14 @@ typedef void *HCRYPTDEFAULTCONTEXT;
 //  not CryptReleaseContext'ed if CryptUninstallDefaultContext is
 //  called.
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CRYPT_DEFAULT_CONTEXT_FLAGS;
-#endif
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CRYPT_DEFAULT_CONTEXT_TYPE;
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptInstallDefaultContext(
     _In_ HCRYPTPROV hCryptProv,
-    _In_ _Win32_AssociatedEnum_(CRYPT_DEFAULT_CONTEXT_TYPE) DWORD dwDefaultType,
+    _In_ DWORD dwDefaultType,
     _In_opt_ const void *pvDefaultPara,
-    _In_ _Win32_AssociatedEnum_(CRYPT_DEFAULT_CONTEXT_FLAGS) DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _Reserved_ void *pvReserved,
     _Out_ HCRYPTDEFAULTCONTEXT *phDefaultContext
     );
@@ -15761,21 +15008,9 @@ CryptInstallDefaultContext(
 #define CRYPT_DEFAULT_CONTEXT_AUTO_RELEASE_FLAG             0x00000001
 #define CRYPT_DEFAULT_CONTEXT_PROCESS_FLAG                  0x00000002
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CRYPT_DEFAULT_CONTEXT_FLAGS, unsigned long,
-    CRYPT_DEFAULT_CONTEXT_AUTO_RELEASE_FLAG,
-    CRYPT_DEFAULT_CONTEXT_PROCESS_FLAG);
-#endif
-
 // List of dwDefaultType's
 #define CRYPT_DEFAULT_CONTEXT_CERT_SIGN_OID         1
 #define CRYPT_DEFAULT_CONTEXT_MULTI_CERT_SIGN_OID   2
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_DEFAULT_CONTEXT_TYPE, unsigned long,
-    CRYPT_DEFAULT_CONTEXT_CERT_SIGN_OID,
-    CRYPT_DEFAULT_CONTEXT_MULTI_CERT_SIGN_OID);
-#endif
 
 //+-------------------------------------------------------------------------
 //  CRYPT_DEFAULT_CONTEXT_CERT_SIGN_OID
@@ -15810,8 +15045,6 @@ typedef struct _CRYPT_DEFAULT_CONTEXT_MULTI_OID_PARA {
 //  set, if any other threads are currently using this context,
 //  this function will block until they finish.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -15828,16 +15061,14 @@ CryptUninstallDefaultContext(
 //  Calls CryptExportPublicKeyInfoEx with pszPublicKeyObjId = NULL,
 //  dwFlags = 0 and pvAuxInfo = NULL.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptExportPublicKeyInfo(
     _In_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
     _In_opt_ DWORD dwKeySpec,       // not applicable for NCRYPT_KEY_HANDLE
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
-    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) _Win32_ContainsInteriorPointers_ PCERT_PUBLIC_KEY_INFO pInfo,
+    _In_ DWORD dwCertEncodingType,
+    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) PCERT_PUBLIC_KEY_INFO pInfo,
     _Inout_ DWORD *pcbInfo
     );
 
@@ -15870,19 +15101,17 @@ CryptExportPublicKeyInfo(
 //      CRYPT_OID_USE_CURVE_PARAMETERS_FOR_ENCODE_FLAG
 //--------------------------------------------------------------------------
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptExportPublicKeyInfoEx(
     _In_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
     _In_opt_ DWORD dwKeySpec,       // not applicable for NCRYPT_KEY_HANDLE
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_opt_ LPSTR pszPublicKeyObjId,
     _In_ DWORD dwFlags,
     _In_opt_ void *pvAuxInfo,
-    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) _Win32_ContainsInteriorPointers_ PCERT_PUBLIC_KEY_INFO pInfo,
+    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) PCERT_PUBLIC_KEY_INFO pInfo,
     _Inout_ DWORD *pcbInfo
     );
 
@@ -15897,7 +15126,7 @@ CryptExportPublicKeyInfoEx(
     "CryptDllExportPublicKeyInfoEx2"
 typedef BOOL (WINAPI *PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC) (
     _In_ NCRYPT_KEY_HANDLE hNCryptKey,
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) _In_ DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ LPSTR pszPublicKeyObjId,
     _In_ DWORD dwFlags,
     _In_opt_ void *pvAuxInfo,
@@ -15927,17 +15156,16 @@ typedef BOOL (WINAPI *PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC) (
 //      CRYPT_OID_INFO_PUBKEY_ENCRYPT_KEY_FLAG
 //--------------------------------------------------------------------------
 
-_Win32_SupportedOS_Windows7_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptExportPublicKeyInfoFromBCryptKeyHandle(
     _In_ BCRYPT_KEY_HANDLE hBCryptKey,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_opt_ LPSTR pszPublicKeyObjId,
     _In_ DWORD dwFlags,
     _In_opt_ void *pvAuxInfo,
-    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) _Win32_ContainsInteriorPointers_ PCERT_PUBLIC_KEY_INFO pInfo,
+    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) PCERT_PUBLIC_KEY_INFO pInfo,
     _Inout_ DWORD *pcbInfo
     );
 
@@ -15950,7 +15178,7 @@ CryptExportPublicKeyInfoFromBCryptKeyHandle(
     "CryptDllExportPublicKeyInfoFromBCryptKeyHandle"
 typedef BOOL (WINAPI *PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC) (
     _In_ BCRYPT_KEY_HANDLE hBCryptKey,
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) _In_ DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ LPSTR pszPublicKeyObjId,
     _In_ DWORD dwFlags,
     _In_opt_ void *pvAuxInfo,
@@ -15967,14 +15195,12 @@ typedef BOOL (WINAPI *PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC) 
 //  Calls CryptImportPublicKeyInfoEx with aiKeyAlg = 0, dwFlags = 0 and
 //  pvAuxInfo = NULL.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptImportPublicKeyInfo(
     _In_ HCRYPTPROV hCryptProv,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_PUBLIC_KEY_INFO pInfo,
     _Out_ HCRYPTKEY *phKey
     );
@@ -15995,14 +15221,12 @@ CryptImportPublicKeyInfo(
 //--------------------------------------------------------------------------
 #define CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_FUNC   "CryptDllImportPublicKeyInfoEx"
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptImportPublicKeyInfoEx(
     _In_ HCRYPTPROV hCryptProv,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_PUBLIC_KEY_INFO pInfo,
     _In_ ALG_ID aiKeyAlg,
     _In_ DWORD dwFlags,
@@ -16033,17 +15257,15 @@ CryptImportPublicKeyInfoEx(
 //  dwFlags can also have BCRYPT_NO_KEY_VALIDATION OR'd in. This flag is
 //  passed to BCryptImportKeyPair.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptImportPublicKeyInfoEx2(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_PUBLIC_KEY_INFO pInfo,
-    _In_ _Win32_AssociatedEnum_(CRYPT_IMPORT_PUBLIC_KEY_FLAGS) DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _In_opt_ void *pvAuxInfo,
-    _Win32_RAIIFree_(BCryptDestroyKey, 0) _Out_ BCRYPT_KEY_HANDLE *phKey
+    _Out_ BCRYPT_KEY_HANDLE *phKey
     );
 
 //+-------------------------------------------------------------------------
@@ -16052,7 +15274,7 @@ CryptImportPublicKeyInfoEx2(
 #define CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC \
     "CryptDllImportPublicKeyInfoEx2"
 typedef BOOL (WINAPI *PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC) (
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) _In_ DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_PUBLIC_KEY_INFO pInfo,
     _In_ DWORD dwFlags,
     _In_opt_ void *pvAuxInfo,
@@ -16151,21 +15373,15 @@ typedef BOOL (WINAPI *PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC) (
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CRYPT_ACQUIRE_FLAGS;
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptAcquireCertificatePrivateKey(
     _In_ PCCERT_CONTEXT pCert,
-    _In_ _Win32_AssociatedEnum_(CRYPT_ACQUIRE_FLAGS) DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _In_opt_ void *pvParameters,
     _Out_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE *phCryptProvOrNCryptKey,
-    _Out_opt_ _Win32_AssociatedEnum_(CERT_KEY_SPEC) DWORD *pdwKeySpec,
+    _Out_opt_ DWORD *pdwKeySpec,
     _Out_opt_ BOOL *pfCallerFreeProvOrNCryptKey
     );
 
@@ -16181,20 +15397,6 @@ CryptAcquireCertificatePrivateKey(
 #define CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG     0x00010000
 #define CRYPT_ACQUIRE_PREFER_NCRYPT_KEY_FLAG    0x00020000
 #define CRYPT_ACQUIRE_ONLY_NCRYPT_KEY_FLAG      0x00040000
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CRYPT_ACQUIRE_FLAGS, unsigned long,
-    CRYPT_ACQUIRE_CACHE_FLAG,
-    CRYPT_ACQUIRE_USE_PROV_INFO_FLAG,
-    CRYPT_ACQUIRE_COMPARE_KEY_FLAG,
-    CRYPT_ACQUIRE_NO_HEALING,
-    CRYPT_ACQUIRE_SILENT_FLAG,
-    CRYPT_ACQUIRE_WINDOW_HANDLE_FLAG,
-    CRYPT_ACQUIRE_NCRYPT_KEY_FLAGS_MASK,
-    CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG,
-    CRYPT_ACQUIRE_PREFER_NCRYPT_KEY_FLAG,
-    CRYPT_ACQUIRE_ONLY_NCRYPT_KEY_FLAG);
-#endif
 
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)*/
@@ -16225,31 +15427,18 @@ _Win32_FlagsEnum_(CRYPT_ACQUIRE_FLAGS, unsigned long,
 //  The above CRYPT_ACQUIRE_NCRYPT_KEY_FLAGS can also be set. The default
 //  is CRYPT_ACQUIRE_ALLOW_NCRYPT_KEY_FLAG.
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CRYPT_FIND_FLAGS;
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptFindCertificateKeyProvInfo(
     _In_ PCCERT_CONTEXT pCert,
-    _In_ _Win32_AssociatedEnum_(CRYPT_FIND_FLAGS) DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _Reserved_ void *pvReserved
     );
 
 #define CRYPT_FIND_USER_KEYSET_FLAG        0x00000001
 #define CRYPT_FIND_MACHINE_KEYSET_FLAG     0x00000002
 #define CRYPT_FIND_SILENT_KEYSET_FLAG      0x00000040
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_FIND_FLAGS, unsigned long,
-    CRYPT_FIND_USER_KEYSET_FLAG,
-    CRYPT_FIND_MACHINE_KEYSET_FLAG,
-    CRYPT_FIND_SILENT_KEYSET_FLAG);
-#endif
 
 
 //+-------------------------------------------------------------------------
@@ -16293,14 +15482,12 @@ typedef BOOL (WINAPI *PFN_IMPORT_PRIV_KEY_FUNC) (
 // pvAuxInfo - This parameter is reserved for future use and should be set
 //             to NULL in the interim.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptImportPKCS8(
     _In_ CRYPT_PKCS8_IMPORT_PARAMS sPrivateKeyAndParams,    // in
-    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) _In_ DWORD dwFlags,                                     // in
+    _In_ DWORD dwFlags,                                     // in
     _Out_opt_ HCRYPTPROV *phCryptProv,                      // out, optional
     _In_opt_ void* pvAuxInfo                                // in, optional
     );
@@ -16326,8 +15513,6 @@ typedef BOOL (WINAPI *PFN_EXPORT_PRIV_KEY_FUNC) (
 //
 //  Export the private key in PKCS8 format
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16369,8 +15554,6 @@ CryptExportPKCS8(
 // pcbPrivateKeyBlob - A pointer to a DWORD that contains the size, in bytes,
 //                                         of the private key blob being exported.
 //+-------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16393,8 +15576,6 @@ CryptExportPKCS8Ex(
 //
 //  The public key info is encoded and then hashed.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -16402,7 +15583,7 @@ CryptHashPublicKeyInfo(
     _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
     _In_ ALG_ID Algid,
     _In_ DWORD dwFlags,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_PUBLIC_KEY_INFO pInfo,
     _Out_writes_bytes_to_opt_(*pcbComputedHash, *pcbComputedHash) BYTE *pbComputedHash,
     _Inout_ DWORD *pcbComputedHash
@@ -16419,7 +15600,6 @@ CryptHashPublicKeyInfo(
 //
 //  Note: csz includes the NULL char.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -16440,7 +15620,6 @@ CertRDNValueToStrA(
 //
 //  Note: csz includes the NULL char.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -16553,29 +15732,23 @@ CertRDNValueToStrW(
 //+-------------------------------------------------------------------------
 //--------------------------------------------------------------------------
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_STRING_TYPE;
-#endif
-
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
 CertNameToStrA(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_NAME_BLOB pName,
-    _In_ _Win32_AssociatedEnum_(CERT_STRING_TYPE) DWORD dwStrType,
+    _In_ DWORD dwStrType,
     _Out_writes_to_opt_(csz, return) LPSTR psz,
     _In_ DWORD csz
     );
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
 CertNameToStrW(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_NAME_BLOB pName,
-    _In_ _Win32_AssociatedEnum_(CERT_STRING_TYPE) DWORD dwStrType,
+    _In_ DWORD dwStrType,
     _Out_writes_to_opt_(csz, return) LPWSTR psz,
     _In_ DWORD csz
     );
@@ -16592,13 +15765,6 @@ CertNameToStrW(
 #define CERT_SIMPLE_NAME_STR        1
 #define CERT_OID_NAME_STR           2
 #define CERT_X500_NAME_STR          3
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_STRING_TYPE, unsigned long,
-    CERT_SIMPLE_NAME_STR,
-    CERT_OID_NAME_STR,
-    CERT_X500_NAME_STR);
-#endif
 #define CERT_XML_NAME_STR           4
 
 //+-------------------------------------------------------------------------
@@ -16732,15 +15898,13 @@ _Win32_Enum_(CERT_STRING_TYPE, unsigned long,
 
 //+-------------------------------------------------------------------------
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertStrToNameA(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ LPCSTR pszX500,
-    _In_ _Win32_AssociatedEnum_(CERT_STRING_TYPE) DWORD dwStrType,
+    _In_ DWORD dwStrType,
     _Reserved_ void *pvReserved,
     _Out_writes_bytes_to_opt_(*pcbEncoded, *pcbEncoded) BYTE *pbEncoded,
     _Inout_ DWORD *pcbEncoded,
@@ -16748,15 +15912,13 @@ CertStrToNameA(
     );
 //+-------------------------------------------------------------------------
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CertStrToNameW(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ LPCWSTR pszX500,
-    _In_ _Win32_AssociatedEnum_(CERT_STRING_TYPE) DWORD dwStrType,
+    _In_ DWORD dwStrType,
     _Reserved_ void *pvReserved,
     _Out_writes_bytes_to_opt_(*pcbEncoded, *pcbEncoded) BYTE *pbEncoded,
     _Inout_ DWORD *pcbEncoded,
@@ -16861,7 +16023,6 @@ CertStrToNameW(
 
 //+-------------------------------------------------------------------------
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -16875,7 +16036,6 @@ CertGetNameStringA(
     );
 //+-------------------------------------------------------------------------
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 DWORD
 WINAPI
@@ -16973,7 +16133,7 @@ CertGetNameStringW(
 //--------------------------------------------------------------------------
 typedef PCCERT_CONTEXT (WINAPI *PFN_CRYPT_GET_SIGNER_CERTIFICATE)(
     _Inout_opt_ void *pvGetArg,
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) _In_ DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_ PCERT_INFO pSignerId,    // Only the Issuer and SerialNumber
                                 // fields have been updated
     _In_ HCERTSTORE hMsgCertStore
@@ -17225,7 +16385,7 @@ typedef struct _CRYPT_HASH_MESSAGE_PARA {
 //--------------------------------------------------------------------------
 typedef struct _CRYPT_KEY_SIGN_MESSAGE_PARA {
     DWORD                       cbSize;
-    _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD                       dwMsgAndCertEncodingType;
+    DWORD                       dwMsgAndCertEncodingType;
 
     // NCryptIsKeyHandle() is called to determine the union choice.
     union {
@@ -17234,7 +16394,7 @@ typedef struct _CRYPT_KEY_SIGN_MESSAGE_PARA {
     } DUMMYUNIONNAME;
 
     // not applicable for hNCryptKey choice
-    _Win32_AssociatedEnum_(CERT_KEY_SPEC) DWORD                       dwKeySpec;
+    DWORD                       dwKeySpec;
 
     CRYPT_ALGORITHM_IDENTIFIER  HashAlgorithm;
     void                        *pvHashAuxInfo;
@@ -17271,8 +16431,6 @@ typedef struct _CRYPT_KEY_VERIFY_MESSAGE_PARA {
 //  If fDetachedSignature is TRUE, the "to be signed" content isn't included
 //  in the encoded signed blob.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17322,8 +16480,6 @@ CryptSignMessage(
 //  Note, an alternative way to get the certificates and CRLs from a
 //  signed message is to call CryptGetMessageCertificates.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17341,8 +16497,6 @@ CryptVerifyMessageSignature(
 //  Returns the count of signers in the signed message. For no signers, returns
 //  0. For an error returns -1 with LastError updated accordingly.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 LONG
 WINAPI
@@ -17356,8 +16510,6 @@ CryptGetMessageSignerCount(
 //  Returns the cert store containing the message's certs and CRLs.
 //  For an error, returns NULL with LastError updated.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 HCERTSTORE
 WINAPI
@@ -17374,8 +16526,6 @@ CryptGetMessageCertificates(
 //  The "to be signed" content is passed in separately. No
 //  decoded output. Otherwise, identical to CryptVerifyMessageSignature.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17393,8 +16543,6 @@ CryptVerifyDetachedMessageSignature(
 //+-------------------------------------------------------------------------
 //  Encrypts the message for the recipient(s).
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17422,8 +16570,6 @@ CryptEncryptMessage(
 //  ppXchgCert can be NULL, indicating the caller isn't interested
 //  in getting the CertContext used to decrypt.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17443,8 +16589,6 @@ CryptDecryptMessage(
 //  Note: this isn't the CMSG_SIGNED_AND_ENVELOPED. Its a CMSG_SIGNED
 //  inside of an CMSG_ENVELOPED.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17486,8 +16630,6 @@ CryptSignAndEncryptMessage(
 //  The message always needs to be decrypted to allow access to the
 //  signed message. Therefore, if ppXchgCert != NULL, its always updated.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17535,8 +16677,6 @@ CryptDecryptAndVerifyMessageSignature(
 //      CryptVerifyMessageSignature.
 //  For CMSG_HASHED: verifies the hash and returns decoded content.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17566,8 +16706,6 @@ CryptDecodeMessage(
 //  pcbHashedBlob or pcbComputedHash can be NULL, indicating the caller
 //  isn't interested in getting the output.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17589,8 +16727,6 @@ CryptHashMessage(
 //  pcbToBeHashed or pcbComputedHash can be NULL,
 //  indicating the caller isn't interested in getting the output.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17612,8 +16748,6 @@ CryptVerifyMessageHash(
 //  pcbComputedHash can be NULL, indicating the caller isn't interested
 //  in getting the output.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17634,8 +16768,6 @@ CryptVerifyDetachedMessageHash(
 //
 //  Normally used until a certificate has been created for the key.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17660,8 +16792,6 @@ CryptSignMessageWithKey(
 //  pcbDecoded can be NULL, indicating the caller isn't interested
 //  in getting the decoded content.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17706,8 +16836,6 @@ CryptVerifyMessageSignatureWithKey(
 //--------------------------------------------------------------------------
 
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 HCERTSTORE
 WINAPI
@@ -17715,8 +16843,6 @@ CertOpenSystemStoreA(
     _In_opt_ HCRYPTPROV_LEGACY      hProv,
     _In_ LPCSTR            szSubsystemProtocol
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 HCERTSTORE
 WINAPI
@@ -17736,8 +16862,6 @@ CertOpenSystemStoreW(
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17746,8 +16870,6 @@ CertAddEncodedCertificateToSystemStoreA(
     _In_reads_bytes_(cbCertEncoded) const BYTE *    pbCertEncoded,
     _In_ DWORD           cbCertEncoded
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -17937,40 +17059,18 @@ FindCertsByIssuer(
 //  If the *pbObject is of type CERT_QUERY_CONTENT_PKCS10 or CERT_QUERY_CONTENT_PFX, CryptQueryObject
 //  will not return anything in *phCertstore, *phMsg, or *ppvContext.
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_QUERY_CONTENT_TYPE;
-#endif
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_QUERY_FORMAT_TYPE;
-#endif
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_QUERY_CONTENT_TYPE_FLAGS;
-#endif
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_QUERY_OBJECT_TYPE;
-#endif
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_QUERY_FORMAT_TYPE_FLAGS;
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptQueryObject(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_OBJECT_TYPE) DWORD                    dwObjectType,
+    _In_ DWORD                    dwObjectType,
     _In_ const void               *pvObject,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_CONTENT_TYPE_FLAGS) DWORD                    dwExpectedContentTypeFlags,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_FORMAT_TYPE_FLAGS) DWORD                    dwExpectedFormatTypeFlags,
+    _In_ DWORD                    dwExpectedContentTypeFlags,
+    _In_ DWORD                    dwExpectedFormatTypeFlags,
     _In_ DWORD                    dwFlags,
-    _Out_opt_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD               *pdwMsgAndCertEncodingType,
-    _Out_opt_ _Win32_AssociatedEnum_(CERT_QUERY_CONTENT_TYPE) DWORD               *pdwContentType,
-    _Out_opt_ _Win32_AssociatedEnum_(CERT_QUERY_FORMAT_TYPE) DWORD               *pdwFormatType,
+    _Out_opt_ DWORD               *pdwMsgAndCertEncodingType,
+    _Out_opt_ DWORD               *pdwContentType,
+    _Out_opt_ DWORD               *pdwFormatType,
     _Out_opt_ HCERTSTORE          *phCertStore,
     _Out_opt_ HCRYPTMSG           *phMsg,
     _Outptr_opt_result_maybenull_ const void **ppvContext
@@ -17982,12 +17082,6 @@ CryptQueryObject(
 //-------------------------------------------------------------------------
 #define     CERT_QUERY_OBJECT_FILE         0x00000001
 #define     CERT_QUERY_OBJECT_BLOB         0x00000002
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_QUERY_OBJECT_TYPE, unsigned long,
-    CERT_QUERY_OBJECT_FILE,
-    CERT_QUERY_OBJECT_BLOB);
-#endif
 
 //-------------------------------------------------------------------------
 //dwContentType for CryptQueryObject
@@ -18020,24 +17114,6 @@ _Win32_Enum_(CERT_QUERY_OBJECT_TYPE, unsigned long,
 #define     CERT_QUERY_CONTENT_CERT_PAIR            13
 //an encoded PFX BLOB, which was loaded to phCertStore
 #define     CERT_QUERY_CONTENT_PFX_AND_LOAD         14
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_QUERY_CONTENT_TYPE, unsigned long,
-    CERT_QUERY_CONTENT_CERT,
-    CERT_QUERY_CONTENT_CTL,
-    CERT_QUERY_CONTENT_CRL,
-    CERT_QUERY_CONTENT_SERIALIZED_STORE,
-    CERT_QUERY_CONTENT_SERIALIZED_CERT,
-    CERT_QUERY_CONTENT_SERIALIZED_CTL,
-    CERT_QUERY_CONTENT_SERIALIZED_CRL,
-    CERT_QUERY_CONTENT_PKCS7_SIGNED,
-    CERT_QUERY_CONTENT_PKCS7_UNSIGNED,
-    CERT_QUERY_CONTENT_PKCS7_SIGNED_EMBED,
-    CERT_QUERY_CONTENT_PKCS10,
-    CERT_QUERY_CONTENT_PFX,
-    CERT_QUERY_CONTENT_CERT_PAIR,
-    CERT_QUERY_CONTENT_PFX_AND_LOAD);
-#endif
 
 
 //-------------------------------------------------------------------------
@@ -18125,26 +17201,6 @@ _Win32_Enum_(CERT_QUERY_CONTENT_TYPE, unsigned long,
                 CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED     |      \
                 CERT_QUERY_CONTENT_FLAG_PKCS7_UNSIGNED   )
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_QUERY_CONTENT_TYPE_FLAGS, unsigned long,
-    CERT_QUERY_CONTENT_FLAG_CERT,
-    CERT_QUERY_CONTENT_FLAG_CTL,
-    CERT_QUERY_CONTENT_FLAG_CRL,
-    CERT_QUERY_CONTENT_FLAG_SERIALIZED_STORE,
-    CERT_QUERY_CONTENT_FLAG_SERIALIZED_CERT,
-    CERT_QUERY_CONTENT_FLAG_SERIALIZED_CTL,
-    CERT_QUERY_CONTENT_FLAG_SERIALIZED_CRL,
-    CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED,
-    CERT_QUERY_CONTENT_FLAG_PKCS7_UNSIGNED,
-    CERT_QUERY_CONTENT_FLAG_PKCS7_SIGNED_EMBED,
-    CERT_QUERY_CONTENT_FLAG_PKCS10,
-    CERT_QUERY_CONTENT_FLAG_PFX,
-    CERT_QUERY_CONTENT_FLAG_CERT_PAIR,
-    CERT_QUERY_CONTENT_FLAG_PFX_AND_LOAD,
-    CERT_QUERY_CONTENT_FLAG_ALL,
-    CERT_QUERY_CONTENT_FLAG_ALL_ISSUER_CERT);
-#endif
-
 
 //-------------------------------------------------------------------------
 //dwFormatType for CryptQueryObject
@@ -18157,13 +17213,6 @@ _Win32_Enum_(CERT_QUERY_CONTENT_TYPE_FLAGS, unsigned long,
 
 //the content is ascii hex encoded with "{ASN}" prefix
 #define     CERT_QUERY_FORMAT_ASN_ASCII_HEX_ENCODED 3
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_QUERY_FORMAT_TYPE, unsigned long,
-    CERT_QUERY_FORMAT_BINARY,
-    CERT_QUERY_FORMAT_BASE64_ENCODED,
-    CERT_QUERY_FORMAT_ASN_ASCII_HEX_ENCODED);
-#endif
 //-------------------------------------------------------------------------
 //dwExpectedFormatTypeFlags for CryptQueryObject
 //-------------------------------------------------------------------------
@@ -18185,14 +17234,6 @@ _Win32_Enum_(CERT_QUERY_FORMAT_TYPE, unsigned long,
             CERT_QUERY_FORMAT_FLAG_BASE64_ENCODED | \
             CERT_QUERY_FORMAT_FLAG_ASN_ASCII_HEX_ENCODED )
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_QUERY_FORMAT_TYPE_FLAGS, unsigned long,
-    CERT_QUERY_FORMAT_FLAG_BINARY,
-    CERT_QUERY_FORMAT_FLAG_BASE64_ENCODED,
-    CERT_QUERY_FORMAT_FLAG_ASN_ASCII_HEX_ENCODED,
-    CERT_QUERY_FORMAT_FLAG_ALL);
-#endif
-
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)*/
 #pragma endregion
 
@@ -18205,7 +17246,6 @@ _Win32_Enum_(CERT_QUERY_FORMAT_TYPE_FLAGS, unsigned long,
 // those buffers using CryptMemFree.  Also included is CryptMemSize
 //
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 LPVOID
 WINAPI
@@ -18213,7 +17253,6 @@ CryptMemAlloc (
     _In_ ULONG cbSize
     );
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 LPVOID
 WINAPI
@@ -18222,7 +17261,6 @@ CryptMemRealloc (
     _In_ ULONG cbSize
     );
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 VOID
 WINAPI
@@ -18252,7 +17290,7 @@ BOOL
 WINAPI
 CryptCreateAsyncHandle (
     _In_ DWORD dwFlags,
-    _Win32_RAIIFree_(CryptCloseAsyncHandle, -1, 0) _Out_ PHCRYPTASYNC phAsync
+    _Out_ PHCRYPTASYNC phAsync
     );
 
 WINCRYPT32API
@@ -18705,7 +17743,6 @@ typedef struct _CRYPT_RETRIEVE_AUX_INFO {
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return == TRUE)
 BOOL
@@ -18721,7 +17758,6 @@ CryptRetrieveObjectByUrlA (
     _In_opt_ LPVOID pvVerify,
     _Inout_opt_ PCRYPT_RETRIEVE_AUX_INFO pAuxInfo
     );
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return == TRUE)
 BOOL
@@ -18848,14 +17884,6 @@ typedef BOOL (WINAPI *PFN_CANCEL_ASYNC_RETRIEVAL_FUNC) (
 #define CRYPT_GET_URL_FROM_UNAUTH_ATTRIBUTE 0x00000004
 #define CRYPT_GET_URL_FROM_AUTH_ATTRIBUTE   0x00000008
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CRYPT_GET_URL_FLAGS, unsigned long,
-    CRYPT_GET_URL_FROM_PROPERTY,
-    CRYPT_GET_URL_FROM_EXTENSION,
-    CRYPT_GET_URL_FROM_UNAUTH_ATTRIBUTE,
-    CRYPT_GET_URL_FROM_AUTH_ATTRIBUTE);
-#endif
-
 typedef struct _CRYPT_URL_ARRAY {
     DWORD   cUrl;
     LPWSTR* rgwszUrl;
@@ -18874,16 +17902,14 @@ typedef struct _CRYPT_URL_INFO {
     DWORD   *rgcGroupEntry;
 } CRYPT_URL_INFO, *PCRYPT_URL_INFO;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptGetObjectUrl (
     _In_ LPCSTR pszUrlOid,
     _In_ LPVOID pvPara,
-    _In_ _Win32_AssociatedEnum_(CRYPT_GET_URL_FLAGS) DWORD dwFlags,
-    _Out_writes_bytes_to_opt_(*pcbUrlArray, *pcbUrlArray) _Win32_ContainsInteriorPointers_ PCRYPT_URL_ARRAY pUrlArray,
+    _In_ DWORD dwFlags,
+    _Out_writes_bytes_to_opt_(*pcbUrlArray, *pcbUrlArray) PCRYPT_URL_ARRAY pUrlArray,
     _Inout_ DWORD* pcbUrlArray,
     _Out_writes_bytes_to_opt_(*pcbUrlInfo, *pcbUrlInfo) PCRYPT_URL_INFO pUrlInfo,
     _Inout_opt_ DWORD* pcbUrlInfo,
@@ -19065,8 +18091,6 @@ typedef struct _CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO {
 } CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO,
     *PCRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 _Success_(return == TRUE)
 BOOL
@@ -19211,19 +18235,13 @@ CryptFlushTimeValidObject (
 //      CRYPT_OID_USE_CURVE_NAME_FOR_ENCODE_FLAG
 //      CRYPT_OID_USE_CURVE_PARAMETERS_FOR_ENCODE_FLAG
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_CREATE_SELFSIGN_FLAGS;
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI
 CertCreateSelfSignCertificate(
     _In_opt_  HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
     _In_      PCERT_NAME_BLOB             pSubjectIssuerBlob,
-    _In_      _Win32_AssociatedEnum_(CERT_CREATE_SELFSIGN_FLAGS) DWORD                       dwFlags,
+    _In_      DWORD                       dwFlags,
     _In_opt_  PCRYPT_KEY_PROV_INFO        pKeyProvInfo,
     _In_opt_  PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
     _In_opt_  PSYSTEMTIME                 pStartTime,
@@ -19233,12 +18251,6 @@ CertCreateSelfSignCertificate(
 
 #define CERT_CREATE_SELFSIGN_NO_SIGN    1
 #define CERT_CREATE_SELFSIGN_NO_KEY_INFO 2
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CERT_CREATE_SELFSIGN_FLAGS, unsigned long,
-    CERT_CREATE_SELFSIGN_NO_KEY_INFO,
-    CERT_CREATE_SELFSIGN_NO_SIGN);
-#endif
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)*/
 #pragma endregion
@@ -19275,8 +18287,6 @@ _Win32_FlagsEnum_(CERT_CREATE_SELFSIGN_FLAGS, unsigned long,
 //  can also be set to specify the name of a remote computer to be searched
 //  instead of the local machine.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -19318,8 +18328,6 @@ CryptGetKeyIdentifierProperty(
 //  exists. For an existing property, FALSE is returned with LastError set to
 //  CRYPT_E_EXISTS.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -19372,8 +18380,6 @@ typedef BOOL (WINAPI *PFN_CRYPT_ENUM_KEYID_PROP)(
 //  Key Identifiers. Set pwszComputerName, to enumerate Key Identifiers on
 //  a remote computer.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -19398,13 +18404,11 @@ CryptEnumKeyIdentifierProperties(
 //  public key Object Identifier. pszPubKeyOID can be set to override
 //  the default OID obtained from the aiKeyAlg.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
 CryptCreateKeyIdentifierFromCSP(
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
+    _In_ DWORD dwCertEncodingType,
     _In_opt_ LPCSTR pszPubKeyOID,
     _In_reads_bytes_(cbPubKeyStruc) const PUBLICKEYSTRUC *pPubKeyStruc,
     _In_ DWORD cbPubKeyStruc,
@@ -20532,22 +19536,19 @@ typedef struct _CERT_CHAIN_ENGINE_CONFIG {
 #define CERT_CHAIN_EXCLUSIVE_ENABLE_CA_FLAG                 0x00000001
 #endif
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
 WINAPI
 CertCreateCertificateChainEngine (
     _In_ PCERT_CHAIN_ENGINE_CONFIG pConfig,
-    _Win32_RAIIFree_(CertFreeCertificateChainEngine, -1, 0) _Out_ HCERTCHAINENGINE* phChainEngine
+    _Out_ HCERTCHAINENGINE* phChainEngine
     );
 
 //
 // Free a certificate trust engine
 //
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 VOID
 WINAPI
@@ -20560,8 +19561,6 @@ CertFreeCertificateChainEngine (
 // the engine and updates the engine caches.
 //
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -21002,8 +20001,6 @@ typedef struct _CERT_CHAIN_PARA {
 // dwInfoStatus.
 #define CERT_CHAIN_ENABLE_DISALLOWED_CA             0x00020000
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -21023,7 +20020,6 @@ CertGetCertificateChain (
 // Free a certificate chain
 //
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 VOID
 WINAPI
@@ -21035,7 +20031,6 @@ CertFreeCertificateChain (
 // Duplicate (add a reference to) a certificate chain
 //
 
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCERT_CHAIN_CONTEXT
 WINAPI
@@ -21116,14 +20111,13 @@ typedef struct _CRL_REVOCATION_INFO {
 //  NOTE: a NON-NULL pPrevChainContext is always CertFreeCertificateChain'ed by
 //  this function, even for an error.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 PCCERT_CHAIN_CONTEXT
 WINAPI
 CertFindChainInStore(
     _In_ HCERTSTORE hCertStore,
-    _In_ _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) DWORD dwCertEncodingType,
-    _Win32_AssociatedEnum_(CERT_FIND_CHAIN_IN_STORE_FLAGS) _In_ DWORD dwFindFlags,
+    _In_ DWORD dwCertEncodingType,
+    _In_ DWORD dwFindFlags,
     _In_ DWORD dwFindType,
     _In_opt_ const void *pvFindPara,
     _In_opt_ PCCERT_CHAIN_CONTEXT pPrevChainContext
@@ -21268,27 +20262,13 @@ typedef struct _CERT_CHAIN_FIND_BY_ISSUER_PARA {
 // stores.
 #define CERT_CHAIN_FIND_BY_ISSUER_CACHE_ONLY_FLAG           0x8000
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CERT_FIND_CHAIN_IN_STORE_FLAGS, unsigned long,
-    CERT_CHAIN_FIND_BY_ISSUER_COMPARE_KEY_FLAG,
-    CERT_CHAIN_FIND_BY_ISSUER_COMPLEX_CHAIN_FLAG,
-    CERT_CHAIN_FIND_BY_ISSUER_CACHE_ONLY_FLAG,
-    CERT_CHAIN_FIND_BY_ISSUER_CACHE_ONLY_URL_FLAG,
-    CERT_CHAIN_FIND_BY_ISSUER_LOCAL_MACHINE_FLAG,
-    CERT_CHAIN_FIND_BY_ISSUER_NO_KEY_FLAG);
-#endif
-
 
 //+=========================================================================
 //  Certificate Chain Policy Data Structures and APIs
 //==========================================================================
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CERT_CHAIN_POLICY_FLAGS;
-#endif
-
 typedef struct _CERT_CHAIN_POLICY_PARA {
     DWORD                   cbSize;
-    _Win32_AssociatedEnum_(CERT_CHAIN_POLICY_FLAGS) DWORD                   dwFlags;
+    DWORD                   dwFlags;
     void                    *pvExtraPolicyPara;     // pszPolicyOID specific
 } CERT_CHAIN_POLICY_PARA, *PCERT_CHAIN_POLICY_PARA;
 
@@ -21365,7 +20345,6 @@ typedef struct _CERT_CHAIN_POLICY_STATUS {
 //  In addition to returning dwError, in pPolicyStatus, policy OID specific
 //  extra status may be returned via pvExtraPolicyStatus.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -21463,10 +20442,6 @@ typedef struct _AUTHENTICODE_TS_EXTRA_CERT_CHAIN_POLICY_PARA {
 //--------------------------------------------------------------------------
 
 // fdwChecks flags are defined in wininet.h
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE;
-#endif
-
 typedef struct _HTTPSPolicyCallbackData
 {
     union {
@@ -21474,7 +20449,7 @@ typedef struct _HTTPSPolicyCallbackData
         DWORD           cbSize;         // sizeof(HTTPSPolicyCallbackData);
     } DUMMYUNIONNAME;
 
-    _Win32_AssociatedEnum_(HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE) DWORD           dwAuthType;
+    DWORD           dwAuthType;
 #                       define      AUTHTYPE_CLIENT         1
 #                       define      AUTHTYPE_SERVER         2
 
@@ -21484,12 +20459,6 @@ typedef struct _HTTPSPolicyCallbackData
 
 } HTTPSPolicyCallbackData, *PHTTPSPolicyCallbackData,
     SSL_EXTRA_CERT_CHAIN_POLICY_PARA, *PSSL_EXTRA_CERT_CHAIN_POLICY_PARA;
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE, unsigned long,
-    AUTHTYPE_CLIENT,
-    AUTHTYPE_SERVER);
-#endif
 
 //+-------------------------------------------------------------------------
 //  CERT_CHAIN_POLICY_BASIC_CONSTRAINTS
@@ -21578,34 +20547,6 @@ _Win32_Enum_(HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE, unsigned long,
 #define MICROSOFT_ROOT_CERT_CHAIN_POLICY_CHECK_APPLICATION_ROOT_FLAG 0x00020000
 #define MICROSOFT_ROOT_CERT_CHAIN_POLICY_DISABLE_FLIGHT_ROOT_FLAG    0x00040000
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CERT_CHAIN_POLICY_FLAGS, unsigned long,
-    CERT_CHAIN_POLICY_IGNORE_NOT_TIME_VALID_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_CTL_NOT_TIME_VALID_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_NOT_TIME_NESTED_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_INVALID_BASIC_CONSTRAINTS_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_ALL_NOT_TIME_VALID_FLAGS,
-    CERT_CHAIN_POLICY_ALLOW_UNKNOWN_CA_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_WRONG_USAGE_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_INVALID_NAME_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_INVALID_POLICY_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_END_REV_UNKNOWN_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_CTL_SIGNER_REV_UNKNOWN_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_CA_REV_UNKNOWN_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_ROOT_REV_UNKNOWN_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_ALL_REV_UNKNOWN_FLAGS,
-    CERT_CHAIN_POLICY_ALLOW_TESTROOT_FLAG,
-    CERT_CHAIN_POLICY_TRUST_TESTROOT_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_NOT_SUPPORTED_CRITICAL_EXT_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_PEER_TRUST_FLAG,
-    CERT_CHAIN_POLICY_IGNORE_WEAK_SIGNATURE_FLAG,
-    BASIC_CONSTRAINTS_CERT_CHAIN_POLICY_CA_FLAG,
-    BASIC_CONSTRAINTS_CERT_CHAIN_POLICY_END_ENTITY_FLAG,
-    MICROSOFT_ROOT_CERT_CHAIN_POLICY_ENABLE_TEST_ROOT_FLAG,
-    MICROSOFT_ROOT_CERT_CHAIN_POLICY_CHECK_APPLICATION_ROOT_FLAG,
-    MICROSOFT_ROOT_CERT_CHAIN_POLICY_DISABLE_FLIGHT_ROOT_FLAG);
-#endif
-
 //+-------------------------------------------------------------------------
 //  CERT_CHAIN_POLICY_EV
 //
@@ -21624,7 +20565,7 @@ _Win32_FlagsEnum_(CERT_CHAIN_POLICY_FLAGS, unsigned long,
 
 typedef struct _EV_EXTRA_CERT_CHAIN_POLICY_PARA {
     DWORD               cbSize;
-    _Win32_AssociatedEnum_(CERT_ROOT_PROGRAM_FLAGS) DWORD               dwRootProgramQualifierFlags;
+    DWORD               dwRootProgramQualifierFlags;
 } EV_EXTRA_CERT_CHAIN_POLICY_PARA,
     *PEV_EXTRA_CERT_CHAIN_POLICY_PARA;
 
@@ -21900,12 +20841,6 @@ typedef struct _CT_EXTRA_CERT_CHAIN_POLICY_STATUS {
 // *pdwSkip returns the character count of skipped strings, optional
 // *pdwFlags returns the actual format used in the conversion, optional
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CRYPT_STRING;
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return)
 WINCRYPT32STRINGAPI
 BOOL
@@ -21915,7 +20850,7 @@ CryptStringToBinaryA(
     _When_(dwFlags == CRYPT_STRING_BINARY, _In_reads_bytes_(cchString))
         LPCSTR pszString,
     _In_ DWORD cchString,
-    _In_ _Win32_AssociatedEnum_(CRYPT_STRING) DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _Out_writes_bytes_to_opt_(*pcbBinary, *pcbBinary) BYTE *pbBinary,
     _Inout_ DWORD  *pcbBinary,
     _Out_opt_ DWORD *pdwSkip,
@@ -21932,8 +20867,6 @@ CryptStringToBinaryA(
 // *pdwSkip returns the character count of skipped strings, optional
 // *pdwFlags returns the actual format used in the conversion, optional
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return)
 WINCRYPT32STRINGAPI
 BOOL
@@ -21943,7 +20876,7 @@ CryptStringToBinaryW(
     _When_(dwFlags == CRYPT_STRING_BINARY, _In_reads_bytes_(cchString))
         LPCWSTR pszString,
     _In_ DWORD cchString,
-    _In_ _Win32_AssociatedEnum_(CRYPT_STRING) DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _Out_writes_bytes_to_opt_(*pcbBinary, *pcbBinary) BYTE *pbBinary,
     _Inout_ DWORD  *pcbBinary,
     _Out_opt_ DWORD *pdwSkip,
@@ -21961,7 +20894,6 @@ CryptStringToBinaryW(
 // if pszString is NULL, *pcchString returns size in characters
 // including null-terminator
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 _Success_(return)
 WINCRYPT32STRINGAPI
 BOOL
@@ -21969,7 +20901,7 @@ WINAPI
 CryptBinaryToStringA(
     _In_reads_bytes_(cbBinary) CONST BYTE *pbBinary,
     _In_ DWORD cbBinary,
-    _In_ _Win32_AssociatedEnum_(CRYPT_STRING) DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _Out_writes_to_opt_(*pcchString, *pcchString) LPSTR pszString,
     _Inout_ DWORD *pcchString
     );
@@ -21979,7 +20911,6 @@ CryptBinaryToStringA(
 // if pszString is NULL, *pcchString returns size in characters
 // including null-terminator
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 _Success_(return)
 WINCRYPT32STRINGAPI
 BOOL
@@ -21987,7 +20918,7 @@ WINAPI
 CryptBinaryToStringW(
     _In_reads_bytes_(cbBinary) CONST BYTE *pbBinary,
     _In_ DWORD cbBinary,
-    _In_ _Win32_AssociatedEnum_(CRYPT_STRING) DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _Out_writes_to_opt_(*pcchString, *pcchString) LPWSTR pszString,
     _Inout_ DWORD *pcchString
     );
@@ -22021,24 +20952,6 @@ CryptBinaryToStringW(
 #define CRYPT_STRING_PERCENTESCAPE          0x08000000	// base64 formats only
 #define CRYPT_STRING_HASHDATA               0x10000000
 #define CRYPT_STRING_STRICT                 0x20000000
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_STRING, unsigned long,
-    CRYPT_STRING_BASE64HEADER,
-    CRYPT_STRING_BASE64,
-    CRYPT_STRING_BINARY,
-    CRYPT_STRING_BASE64REQUESTHEADER,
-    CRYPT_STRING_HEX,
-    CRYPT_STRING_HEXASCII,
-    CRYPT_STRING_BASE64X509CRLHEADER,
-    CRYPT_STRING_HEXADDR,
-    CRYPT_STRING_HEXASCIIADDR,
-    CRYPT_STRING_HEXRAW,
-    CRYPT_STRING_STRICT,
-    CRYPT_STRING_BASE64_ANY,
-    CRYPT_STRING_ANY,
-    CRYPT_STRING_HEX_ANY);
-#endif
 #define CRYPT_STRING_NOCRLF                 0x40000000
 #define CRYPT_STRING_NOCR                   0x80000000
 // certenrolld_end
@@ -22154,19 +21067,13 @@ CRYPT_PKCS12_PBE_PARAMS;
 //                                           except, we won't fallback to
 //                                           using the password to decrypt.
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CRYPT_KEY_FLAGS;
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 HCERTSTORE
 WINAPI
 PFXImportCertStore(
     _In_ CRYPT_DATA_BLOB* pPFX,
     _In_ LPCWSTR szPassword,
-    _In_ _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) DWORD   dwFlags);
+    _In_ DWORD   dwFlags);
 
 // dwFlags definitions for PFXImportCertStore
 //#define CRYPT_EXPORTABLE          0x00000001  // CryptImportKey dwFlags
@@ -22203,7 +21110,6 @@ PFXImportCertStore(
 //  blob, and if that works it will return TRUE, it will return FALSE otherwise
 //
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -22220,7 +21126,6 @@ PFXIsPFXBlob(
 //  Return value is TRUE if password appears correct, FALSE otherwise.
 //
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -22287,8 +21192,6 @@ PFXVerifyPassword(
 //  the memory pointed to by pPFX->pbData is updated with the encoded bytes
 //  and pPFX->cbData is updated with the encoded byte length.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -22305,41 +21208,6 @@ PFXExportCertStoreEx(
 #define REPORT_NOT_ABLE_TO_EXPORT_PRIVATE_KEY   0x0002
 #define EXPORT_PRIVATE_KEYS                     0x0004
 #define PKCS12_INCLUDE_EXTENDED_PROPERTIES      0x0010
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CRYPT_KEY_FLAGS, unsigned long,
-    CRYPT_EXPORTABLE,
-    CRYPT_USER_PROTECTED,
-    CRYPT_ARCHIVABLE,
-    CRYPT_CREATE_IV,
-    CRYPT_CREATE_SALT,
-    CRYPT_DATA_KEY,
-    CRYPT_FORCE_KEY_PROTECTION_HIGH,
-    CRYPT_KEK,
-    CRYPT_INITIATOR,
-    CRYPT_NO_SALT,
-    CRYPT_ONLINE,
-    CRYPT_PREGEN,
-    CRYPT_RECIPIENT,
-    CRYPT_SF,
-    CRYPT_SGCKEY,
-    CRYPT_VOLATILE,
-    CRYPT_MACHINE_KEYSET,
-    CRYPT_USER_KEYSET,
-    PKCS12_PREFER_CNG_KSP,
-    PKCS12_ALWAYS_CNG_KSP,
-    PKCS12_ALLOW_OVERWRITE_KEY,
-    PKCS12_NO_PERSIST_KEY,
-    PKCS12_INCLUDE_EXTENDED_PROPERTIES,
-    CRYPT_OAEP,
-    CRYPT_BLOB_VER3,
-    CRYPT_DESTROYKEY,
-    CRYPT_SSL2_FALLBACK,
-    CRYPT_Y_ONLY,
-    CRYPT_IPSEC_HMAC_KEY,
-    CERT_SET_KEY_PROV_HANDLE_PROP_ID,
-    CERT_SET_KEY_CONTEXT_PROP_ID);
-#endif
 #define PKCS12_PROTECT_TO_DOMAIN_SIDS           0x0020
 #define PKCS12_EXPORT_SILENT                    0x0040
 #define PKCS12_EXPORT_PBES2_PARAMS              0x0080 
@@ -22396,8 +21264,6 @@ typedef struct _PKCS12_PBES2_EXPORT_PARAMS
 //  This is an old API kept for compatibility with IE4 clients. New applications
 //  should call the above PfxExportCertStoreEx for enhanced security.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINCRYPT32API
 BOOL
 WINAPI
@@ -22517,8 +21383,6 @@ typedef struct _CERT_SERVER_OCSP_RESPONSE_OPEN_PARA {
 //  CertCloseServerOcspResponse() must be called to close the returned
 //  handle.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 HCERT_SERVER_OCSP_RESPONSE
 WINAPI
@@ -22537,7 +21401,6 @@ CertOpenServerOcspResponse(
 //  CertOpenServerOcspResponse(). Each Open and AddRef requires a
 //  corresponding CertCloseServerOcspResponse().
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 VOID
 WINAPI
@@ -22551,7 +21414,6 @@ CertAddRefServerOcspResponse(
 //
 //  dwFlags isn't currently used and must be set to 0.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 VOID
 WINAPI
@@ -22573,7 +21435,6 @@ CertCloseServerOcspResponse(
 //  CertFreeServerOcspResponseContext() must be called to free the
 //  returned OCSP response context.
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 PCCERT_SERVER_OCSP_RESPONSE_CONTEXT
 WINAPI
@@ -22588,7 +21449,6 @@ CertGetServerOcspResponseContext(
 //  CertGetServerOcspResponseContext(). Each Get and AddRef requires a
 //  corresponding CertFreeServerOcspResponseContext().
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 VOID
 WINAPI
@@ -22600,7 +21460,6 @@ CertAddRefServerOcspResponseContext(
 //  Free the OCSP response context returned by
 //  CertGetServerOcspResponseContext().
 //--------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 VOID
 WINAPI
@@ -22658,8 +21517,6 @@ CertFreeServerOcspResponseContext(
 //  *ppwszMimeType is always NULL for the biometric types. For success,
 //  the caller must always check if non-NULL before dereferencing.
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -22717,7 +21574,7 @@ typedef const CERT_SELECT_CHAIN_PARA*    PCCERT_SELECT_CHAIN_PARA;
 
 typedef struct _CERT_SELECT_CRITERIA
 {
-    _Win32_AssociatedEnum_(CERT_SELECT_CRITERIA_TYPE) DWORD                           dwType;
+    DWORD                           dwType;
     DWORD                           cPara;
     _Field_size_(cPara) void**    ppPara;
 }
@@ -22738,21 +21595,6 @@ typedef const CERT_SELECT_CRITERIA*     PCCERT_SELECT_CRITERIA;
 #define CERT_SELECT_BY_ISSUER_NAME           9
 #define CERT_SELECT_BY_PUBLIC_KEY            10
 #define CERT_SELECT_BY_TLS_SIGNATURES        11
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CERT_SELECT_CRITERIA_TYPE, unsigned long,
-    CERT_SELECT_BY_ENHKEY_USAGE,
-    CERT_SELECT_BY_KEY_USAGE,
-    CERT_SELECT_BY_POLICY_OID,
-    CERT_SELECT_BY_PROV_NAME,
-    CERT_SELECT_BY_EXTENSION,
-    CERT_SELECT_BY_SUBJECT_HOST_NAME,
-    CERT_SELECT_BY_ISSUER_ATTR,
-    CERT_SELECT_BY_SUBJECT_ATTR,
-    CERT_SELECT_BY_ISSUER_NAME,
-    CERT_SELECT_BY_PUBLIC_KEY,
-    CERT_SELECT_BY_TLS_SIGNATURES);
-#endif
 
 //add for WinRT
 #define CERT_SELECT_BY_ISSUER_DISPLAYNAME    12
@@ -22779,8 +21621,6 @@ _Win32_Enum_(CERT_SELECT_CRITERIA_TYPE, unsigned long,
 //  the matching ones based on the flags and selection criteria.
 //--------------------------------------------------------------------------
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows7_
 WINCRYPT32API
 _Success_(return != FALSE)
 BOOL
@@ -22801,7 +21641,6 @@ CertSelectCertificateChains(
 //  CertFreeCertificateChain is NOT called for each entry.
 //--------------------------------------------------------------------------
 
-_Win32_SupportedOS_Windows7_
 WINCRYPT32API
 VOID
 WINAPI
@@ -22823,14 +21662,9 @@ CertFreeCertificateChainList(
 //--------------------------------------------------------------------------
 #define TIMESTAMP_VERSION  1
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_TIMESTAMP_VERSION, unsigned long,
-    TIMESTAMP_VERSION);
-#endif
-
 typedef struct _CRYPT_TIMESTAMP_REQUEST
 {
-    _Win32_AssociatedEnum_(CRYPT_TIMESTAMP_VERSION) DWORD                       dwVersion;              // v1
+    DWORD                       dwVersion;              // v1
     CRYPT_ALGORITHM_IDENTIFIER  HashAlgorithm;
     CRYPT_DER_BLOB              HashedMessage;
     LPSTR                       pszTSAPolicyId;         // OPTIONAL
@@ -22845,13 +21679,9 @@ typedef struct _CRYPT_TIMESTAMP_REQUEST
 //  CRYPT_TIMESTAMP_RESPONSE
 //
 //--------------------------------------------------------------------------
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long CRYPT_TIMESTAMP_RESPONSE_STATUS;
-#endif
-
 typedef struct _CRYPT_TIMESTAMP_RESPONSE
 {
-    _Win32_AssociatedEnum_(CRYPT_TIMESTAMP_RESPONSE_STATUS) DWORD                       dwStatus;
+    DWORD                       dwStatus;
     DWORD                       cFreeText;              // OPTIONAL
     _Field_size_(cFreeText)
     LPWSTR*                     rgFreeText;
@@ -22865,16 +21695,6 @@ typedef struct _CRYPT_TIMESTAMP_RESPONSE
 #define TIMESTAMP_STATUS_WAITING                        3
 #define TIMESTAMP_STATUS_REVOCATION_WARNING             4
 #define TIMESTAMP_STATUS_REVOKED                        5
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_TIMESTAMP_RESPONSE_STATUS, unsigned long,
-    TIMESTAMP_STATUS_GRANTED,
-    TIMESTAMP_STATUS_GRANTED_WITH_MODS,
-    TIMESTAMP_STATUS_REJECTED,
-    TIMESTAMP_STATUS_WAITING,
-    TIMESTAMP_STATUS_REVOCATION_WARNING,
-    TIMESTAMP_STATUS_REVOKED);
-#endif
 
 #define TIMESTAMP_FAILURE_BAD_ALG                       0
 #define TIMESTAMP_FAILURE_BAD_REQUEST                   2
@@ -23002,8 +21822,6 @@ typedef struct _CRYPT_TIMESTAMP_PARA
 //     if fRequestCerts value is TRUE.
 //
 //--------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows7_
 BOOL
 WINAPI
 CryptRetrieveTimeStamp(
@@ -23067,8 +21885,6 @@ CryptRetrieveTimeStamp(
 //    The caller should also build a chain for ppTsSigner and validate the trust.
 //--------------------------------------------------------------------------
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows7_
 _Success_(return == TRUE)
 BOOL
 WINAPI
@@ -23120,14 +21936,6 @@ CryptVerifyTimeStampSignature (
 #define CRYPT_OBJECT_LOCATOR_RELEASE_SERVICE_STOP      2
 #define CRYPT_OBJECT_LOCATOR_RELEASE_PROCESS_EXIT      3
 #define CRYPT_OBJECT_LOCATOR_RELEASE_DLL_UNLOAD        4
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPT_OBJECT_LOCATOR_RELEASE_REASON, unsigned long,
-    CRYPT_OBJECT_LOCATOR_RELEASE_SYSTEM_SHUTDOWN,
-    CRYPT_OBJECT_LOCATOR_RELEASE_SERVICE_STOP,
-    CRYPT_OBJECT_LOCATOR_RELEASE_PROCESS_EXIT,
-    CRYPT_OBJECT_LOCATOR_RELEASE_DLL_UNLOAD);
-#endif
 
 
 //--------------------------------------------------------------------------
@@ -23215,7 +22023,7 @@ typedef BOOL (WINAPI *PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET)(
 //    it is initialized. 
 //--------------------------------------------------------------------------
 typedef void (WINAPI * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE)(
-    _Win32_AssociatedEnum_(CRYPT_OBJECT_LOCATOR_RELEASE_REASON) _In_ DWORD dwReason,
+    _In_ DWORD dwReason,
     _In_opt_ LPVOID pPluginContext);
 
 

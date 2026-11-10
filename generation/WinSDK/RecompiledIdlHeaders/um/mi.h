@@ -20,7 +20,7 @@
 
 #ifndef _MI_h
 #define _MI_h
-#include <win32metadata_annotations.h>
+
 #include <sal.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -1682,7 +1682,6 @@ struct _MI_Server
  * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_
 MI_Result MI_CALL MI_Server_GetVersion(MI_Uint32* version);
 
 /**
@@ -1698,7 +1697,6 @@ MI_Result MI_CALL MI_Server_GetVersion(MI_Uint32* version);
  * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_
 MI_Result MI_CALL MI_Server_GetSystemName(const MI_Char** systemName);
 
 /*
@@ -1743,7 +1741,7 @@ struct _MI_Filter
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Filter_Evaluate(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Filter_Evaluate(
         _In_ const MI_Filter* self,
         _In_ const MI_Instance* instance,
         _Out_ MI_Boolean* result)
@@ -1769,7 +1767,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Filter_Evalua
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Filter_GetExpression(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Filter_GetExpression(
         _In_ const MI_Filter* self,
         _Outptr_result_maybenull_z_ const MI_Char** queryLang,
         _Outptr_result_maybenull_z_ const MI_Char** queryExpr)
@@ -1852,7 +1850,7 @@ struct _MI_PropertySet
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementCount(
+MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementCount(
     _In_ const MI_PropertySet* self,
     _Out_ MI_Uint32* count)
 {
@@ -1876,7 +1874,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_G
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_ContainsElement(
+MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_ContainsElement(
     _In_ const MI_PropertySet* self,
     _In_z_ const MI_Char* name,
     _Out_ MI_Boolean* flag)
@@ -1900,7 +1898,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_C
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_ALREADY_EXISTS, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_AddElement(
+MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_AddElement(
     _Inout_ MI_PropertySet* self,
     _In_z_ const MI_Char* name)
 {
@@ -1925,7 +1923,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_A
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementAt(
+MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_GetElementAt(
     _In_ const MI_PropertySet* self,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char** name)
@@ -1950,7 +1948,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_G
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Clear(
+MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Clear(
     _Inout_ MI_PropertySet* self)
 {
     if (self && self->ft)
@@ -1972,7 +1970,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_C
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Destruct(
+MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Destruct(
     _Inout_ MI_PropertySet* self)
 {
     if (self && self->ft)
@@ -1994,7 +1992,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_D
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Delete(
+MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Delete(
     _Inout_ MI_PropertySet* self)
 {
     if (self && self->ft)
@@ -2019,7 +2017,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_D
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Clone(
+MI_INLINE MI_Result MI_INLINE_CALL MI_PropertySet_Clone(
     _In_ const MI_PropertySet* self,
     _Outptr_ MI_PropertySet** newPropertySet)
 {
@@ -3258,7 +3256,7 @@ struct _MI_Instance
  * See also: MI_Instance_Delete()
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Clone(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Clone(
     _In_ const MI_Instance* self,
     _Outptr_ MI_Instance** newInstance)
 {
@@ -3285,7 +3283,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Clon
  * See also: MI_Instance_Delete()
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Destruct(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Destruct(
     _Inout_ MI_Instance* self)
 {
     if (self && self->ft)
@@ -3308,7 +3306,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Dest
  *
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Delete(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Delete(
     _Inout_ MI_Instance* self)
 {
     if (self && self->ft)
@@ -3334,7 +3332,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Dele
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_IsA(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_IsA(
     _In_ const MI_Instance* self,
     _In_ const MI_ClassDecl* classDecl,
     _Out_ MI_Boolean* flag)
@@ -3358,7 +3356,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_IsA(
  * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClassName(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClassName(
     _In_ const MI_Instance* self,
     _Outptr_result_maybenull_z_ const MI_Char** className)
 {
@@ -3388,7 +3386,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetC
  *         MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetNameSpace(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetNameSpace(
     _Inout_ MI_Instance* self,
     _In_z_ const MI_Char* nameSpace)
 {
@@ -3411,7 +3409,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetN
  * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetNameSpace(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetNameSpace(
     _In_ const MI_Instance* self,
     _Outptr_result_maybenull_z_ const MI_Char** nameSpace)
 {
@@ -3436,7 +3434,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetN
  * See also: MI_Instance_GetAt(), MI_Instance_SetAt()
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementCount(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementCount(
     _In_ const MI_Instance* self,
     _Out_ MI_Uint32* count)
 {
@@ -3468,7 +3466,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetE
  *
  * return: MI_RESULT_OK, MI_RESULT_INVALID_PARAMETER
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_AddElement(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_AddElement(
     _Inout_ MI_Instance* self,
     _In_z_ const MI_Char* name,
     _In_opt_ const MI_Value* value,
@@ -3503,7 +3501,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_AddE
  * See also: MI_Instance_GetElementCount()
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElementAt(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElementAt(
     _Inout_ MI_Instance* self,
     MI_Uint32 index,
     _In_reads_opt_(_Inexpressible_("varies depending on type")) const MI_Value* value,
@@ -3541,7 +3539,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetE
  * See also: MI_Instance_GetElement()
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElement(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetElement(
     _Inout_ MI_Instance* self,
     _In_z_ const MI_Char* name,
     _In_opt_ const MI_Value* value,
@@ -3574,7 +3572,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetE
  *     MI_RESULT_NOT_FOUND, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElement(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElement(
     _In_ const MI_Instance* self,
     _In_z_ const MI_Char* name,
     _Out_opt_ MI_Value* value,
@@ -3610,7 +3608,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetE
  * See also: MI_Instance_GetElementCount()
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementAt(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetElementAt(
     _In_ const MI_Instance* self,
     MI_Uint32 index,
     _Outptr_result_maybenull_z_ const MI_Char** name,
@@ -3638,7 +3636,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetE
  *
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElement(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElement(
     _Inout_ MI_Instance* self,
     _In_z_ const MI_Char* name)
 {
@@ -3663,7 +3661,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Clea
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElementAt(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_ClearElementAt(
     _Inout_ MI_Instance* self,
     MI_Uint32 index)
 {
@@ -3689,7 +3687,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Clea
  * return: MI_RESULT_OK, MI_RESULT_FAILED, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetServerName(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetServerName(
     _In_ const MI_Instance* self,
     _Outptr_result_maybenull_z_ const MI_Char** name)
 {
@@ -3703,7 +3701,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetS
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetServerName(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetServerName(
     _Inout_ MI_Instance* self,
     _In_z_ const MI_Char* name)
 {
@@ -3717,7 +3715,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_SetS
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClass(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetClass(
     _In_ const MI_Instance* self,
     _Outptr_ MI_Class** instanceClass)
 {
@@ -3731,7 +3729,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_GetC
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Normalize(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Instance_Normalize(
     _Inout_ MI_Instance** self)
 {
     MI_Instance* inst = *self;
@@ -4041,7 +4039,7 @@ struct _MI_Context
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostResult(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostResult(
     _In_ MI_Context* context,
     MI_Result result)
 {
@@ -4064,7 +4062,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostR
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostCimError(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostCimError(
     _In_ MI_Context* context,
     _In_ const MI_Instance *error)
 {
@@ -4089,7 +4087,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostC
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostError(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostError(
     _In_ MI_Context* context,
     MI_Uint32 resultCode,
     _In_z_ const MI_Char* resultType,
@@ -4117,7 +4115,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostE
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostInstance(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostInstance(
     _In_ MI_Context* context,
     _In_ const MI_Instance* instance)
 {
@@ -4144,7 +4142,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostI
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostIndication(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostIndication(
     _In_ MI_Context* context,
     _In_ const MI_Instance* indication,
     MI_Uint32 subscriptionIDCount,
@@ -4174,7 +4172,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PostI
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructInstance(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructInstance(
     _In_ MI_Context* context,
     _In_ const MI_ClassDecl* classDecl,
     _Out_ MI_Instance* instance)
@@ -4202,7 +4200,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Const
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructParameters(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ConstructParameters(
     _In_ MI_Context* context,
     _In_ const MI_MethodDecl* methodDecl,
     _Out_ MI_Instance* instance)
@@ -4229,7 +4227,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Const
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewInstance(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewInstance(
     _In_ MI_Context* context,
     _In_ const MI_ClassDecl* classDecl,
     _Outptr_ MI_Instance** instance)
@@ -4257,7 +4255,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewIn
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewDynamicInstance(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewDynamicInstance(
     _In_ MI_Context* context,
     _In_ const MI_Char* className,
     MI_Uint32 flags,
@@ -4285,7 +4283,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewDy
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewParameters(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewParameters(
     _In_ MI_Context* context,
     _In_ const MI_MethodDecl* methodDecl,
     _Outptr_ MI_Instance** instance)
@@ -4312,7 +4310,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_NewPa
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Canceled(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Canceled(
     _In_ const MI_Context* context,
     _Out_ MI_Boolean* flag)
 {
@@ -4336,7 +4334,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Cance
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocale(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocale(
     _In_ const MI_Context* context,
     MI_LocaleType localeType,
     _Out_writes_z_(MI_MAX_LOCALE_SIZE) MI_Char locale[MI_MAX_LOCALE_SIZE])
@@ -4367,7 +4365,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLo
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RegisterCancel(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RegisterCancel(
     _In_ MI_Context* context,
     _In_ MI_CancelCallback callback,
     _In_opt_ void* callbackData)
@@ -4392,7 +4390,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Regis
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RequestUnload(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RequestUnload(
     _In_ MI_Context* context)
 {
     if (context && context->ft)
@@ -4417,7 +4415,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Reque
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RefuseUnload(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_RefuseUnload(
     _In_ MI_Context* context)
 {
     if (context && context->ft)
@@ -4443,7 +4441,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Refus
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocalSession(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLocalSession(
     _In_ const MI_Context* context,
     _Out_ MI_Session* session)
 {
@@ -4494,7 +4492,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetLo
  *   WBEM_RIGHT_SUBSCRIBE permission, the SDDL must contain this flag, please
  *   see http://msdn.microsoft.com/en-us/library/aa390415.aspx for details.
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_SetStringOption(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_SetStringOption(
     _In_ MI_Context* context,
     _In_z_ const MI_Char* name,
     _In_z_ const MI_Char* value)
@@ -4519,7 +4517,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_SetSt
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetStringOption(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetStringOption(
     _In_  MI_Context* context,
     _In_z_ const MI_Char* name,
     _Outptr_result_z_  const MI_Char** value)
@@ -4544,7 +4542,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetSt
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetNumberOption(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetNumberOption(
     _In_  MI_Context* context,
     _In_z_ const MI_Char* name,
     _Out_opt_  MI_Uint32* value)
@@ -4569,7 +4567,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetNu
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOption(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOption(
     _In_ MI_Context* context,
     _In_z_ const MI_Char* name,
     _Out_opt_  MI_Type* valueType,
@@ -4595,7 +4593,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCu
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionCount(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionCount(
     _In_  MI_Context* context,
     _Out_opt_ MI_Uint32* count)
 {
@@ -4619,7 +4617,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCu
  * return: MI_RESULT_OK, MI_RESULT_FAILED
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionAt(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCustomOptionAt(
     _In_  MI_Context* context,
     _In_ MI_Uint32 index,
     _Outptr_opt_result_maybenull_z_  const MI_Char** name,
@@ -4647,7 +4645,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_GetCu
  * return: MI_RESULT_OK, MI_RESULT_FAILED.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldProcess(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldProcess(
     _In_ MI_Context* context,
     _In_z_ const MI_Char *target,
     _In_z_ const MI_Char* action,
@@ -4673,7 +4671,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Shoul
  * return: MI_RESULT_OK, MI_RESULT_FAILED.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldContinue(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_ShouldContinue(
     _In_ MI_Context* context,
     _In_z_ const MI_Char* message,
     _Out_ MI_Boolean* flag)
@@ -4700,7 +4698,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Shoul
  * return: MI_RESULT_OK, MI_RESULT_FAILED.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PromptUser(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_PromptUser(
     _In_ MI_Context* context,
     _In_z_ const MI_Char* message,
     MI_PromptType promptType,
@@ -4729,7 +4727,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Promp
  * return: MI_RESULT_OK, MI_RESULT_FAILED.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteError(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteError(
     _In_ MI_Context* context,
     MI_Uint32 resultCode,
     _In_z_ const MI_Char* resultType,
@@ -4756,7 +4754,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Write
  * return: MI_RESULT_OK, MI_RESULT_FAILED.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteCimError(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteCimError(
     _In_ MI_Context* context,
     _In_ const MI_Instance *error,
     _Out_ MI_Boolean *flag)
@@ -4784,7 +4782,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Write
  * return: MI_TRUE or MI_FALSE.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteMessage(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteMessage(
     _In_ MI_Context* context,
     MI_Uint32 channel,
     _In_z_ const MI_Char* message)
@@ -4812,7 +4810,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Write
  * return: MI_TRUE or MI_FALSE.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteProgress(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteProgress(
     _In_ MI_Context* context,
     _In_z_ const MI_Char* activity,
     _In_z_ const MI_Char* currentOperation,
@@ -4846,7 +4844,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Write
  * return: MI_RESULT_OK, MI_RESULT_FAILED.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteStreamParameter(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteStreamParameter(
     _In_ MI_Context* self,
     _In_z_ const MI_Char* name,
     _In_ const MI_Value* value,
@@ -4872,7 +4870,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Write
  * return: MI_TRUE or MI_FALSE.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteWarning(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteWarning(
     _In_ MI_Context* context,
     _In_z_ const MI_Char* message)
 {
@@ -4895,7 +4893,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Write
  * return: MI_TRUE or MI_FALSE.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteVerbose(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteVerbose(
     _In_ MI_Context* context,
     _In_z_ const MI_Char* message)
 {
@@ -4918,7 +4916,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_Write
  * return: MI_TRUE or MI_FALSE.
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteDebug(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Context_WriteDebug(
     _In_ MI_Context* context,
     _In_z_ const MI_Char* message)
 {
@@ -6714,7 +6712,6 @@ __declspec(dllimport) const MI_ClientFT_V1 *mi_clientFT_V1;
 ** Return: MI_RESULT_OK success, other errors indicate specific failure
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_
 MI_Result MI_MAIN_CALL MI_Application_InitializeV1(
              MI_Uint32 flags,
     _In_opt_z_ const MI_Char *applicationID,
@@ -6737,7 +6734,7 @@ MI_Result MI_MAIN_CALL MI_Application_InitializeV1(
 ** application: Handle returned from MI_Application_Initialize.
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_Close(
+MI_INLINE MI_Result MI_Application_Close(
     _Inout_ MI_Application *application)
 {
     if (application && application->ft)
@@ -6767,7 +6764,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_Close(
 ** Return: MI_RESULT_OK success, other errors indicate specific failure
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewInstance(
+MI_INLINE MI_Result MI_Application_NewInstance(
     _In_     MI_Application *application,
     _In_z_ const MI_Char *className,
     _In_opt_ const MI_ClassDecl *classRTTI,
@@ -6786,7 +6783,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewInstance(
         return MI_RESULT_INVALID_PARAMETER;
     }
 }
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewInstanceFromClass(
+MI_INLINE MI_Result MI_Application_NewInstanceFromClass(
     _In_     MI_Application *application,
     _In_z_ const MI_Char *className,
     _In_opt_ const MI_Class *classObject,
@@ -6823,7 +6820,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewInstanceFromC
 ** Return: MI_RESULT_OK success, other errors indicate specific failure
 **=============================================================================
 */
-_Win32_SupportedOS_10240_ MI_INLINE MI_Result MI_Application_NewClass(
+MI_INLINE MI_Result MI_Application_NewClass(
         _In_ MI_Application *application,
         _In_ const MI_ClassDecl* classDecl,
         __in_z_opt const MI_Char *namespaceName,
@@ -6845,7 +6842,7 @@ _Win32_SupportedOS_10240_ MI_INLINE MI_Result MI_Application_NewClass(
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewParameterSet(
+MI_INLINE MI_Result MI_Application_NewParameterSet(
     _In_     MI_Application *application,
     _In_opt_ const MI_ClassDecl *classRTTI,
     _Outptr_    MI_Instance **instance)
@@ -6879,7 +6876,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewParameterSet(
 ** Return: MI_RESULT_OK success, other errors indicate specific failure
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewDestinationOptions(
+MI_INLINE MI_Result MI_Application_NewDestinationOptions(
     _In_  MI_Application *application,
     _Out_ MI_DestinationOptions *options)
 {
@@ -6912,7 +6909,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewDestinationOp
 ** Return: MI_RESULT_OK success, other errors indicate specific failure
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewOperationOptions(
+MI_INLINE MI_Result MI_Application_NewOperationOptions(
     _In_  MI_Application *application,
           MI_Boolean mustUnderstand,
     _Out_ MI_OperationOptions *options)
@@ -6931,7 +6928,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewOperationOpti
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewSubscriptionDeliveryOptions(
+MI_INLINE MI_Result MI_Application_NewSubscriptionDeliveryOptions(
     _In_  MI_Application *application,
     _In_  MI_SubscriptionDeliveryType deliveryType,
     _Out_ MI_SubscriptionDeliveryOptions *deliveryOptions)
@@ -6961,7 +6958,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewSubscriptionD
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewSession(
+MI_INLINE MI_Result MI_Application_NewSession(
     _In_     MI_Application *application,
     _In_opt_z_ const MI_Char *protocol,
     _In_opt_z_ const MI_Char *destination,
@@ -6991,7 +6988,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewSession(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewHostedProvider(
+MI_INLINE MI_Result MI_Application_NewHostedProvider(
     _In_  MI_Application *application,
     _In_z_  const MI_Char *namespaceName,
     _In_z_  const MI_Char *providerName,
@@ -7013,7 +7010,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewHostedProvide
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewSerializer(
+MI_INLINE MI_Result MI_Application_NewSerializer(
     _Inout_ MI_Application *application,
     MI_Uint32 flags,
     _In_z_ MI_Char *format,
@@ -7033,7 +7030,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewSerializer(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewDeserializer(
+MI_INLINE MI_Result MI_Application_NewDeserializer(
     _Inout_ MI_Application *application,
     MI_Uint32 flags,
     _In_z_ MI_Char *format,
@@ -7062,7 +7059,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Application_NewDeserializer(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_HostedProvider_Close(
+MI_INLINE MI_Result MI_HostedProvider_Close(
     _Inout_ MI_HostedProvider *hostedProvider)
 {
     if (hostedProvider && hostedProvider->ft)
@@ -7082,7 +7079,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_HostedProvider_Close(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_HostedProvider_GetApplication(
+MI_INLINE MI_Result MI_HostedProvider_GetApplication(
     _In_  MI_HostedProvider *hostedProvider,
     _Out_ MI_Application *application)
 {
@@ -7113,7 +7110,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_HostedProvider_GetApplicatio
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Session_Close(
+MI_INLINE MI_Result MI_Session_Close(
     _Inout_     MI_Session *session,
     _In_opt_ void *completionContext,
     _In_opt_ void (MI_CALL *completionCallback)(_In_opt_ void *completionContext))
@@ -7140,7 +7137,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Session_Close(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Session_GetApplication(
+MI_INLINE MI_Result MI_Session_GetApplication(
     _In_  MI_Session *session,
     _Out_ MI_Application *application)
 {
@@ -7168,7 +7165,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Session_GetApplication(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_GetInstance(
+MI_INLINE void MI_Session_GetInstance(
     _In_     MI_Session *session,
              MI_Uint32 flags,
     _In_opt_ MI_OperationOptions *options,
@@ -7207,7 +7204,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_GetInstance(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_ModifyInstance(
+MI_INLINE void MI_Session_ModifyInstance(
     _In_     MI_Session *session,
              MI_Uint32 flags,
     _In_opt_ MI_OperationOptions *options,
@@ -7246,7 +7243,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_ModifyInstance(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_CreateInstance(
+MI_INLINE void MI_Session_CreateInstance(
     _In_     MI_Session *session,
              MI_Uint32 flags,
     _In_opt_ MI_OperationOptions *options,
@@ -7284,7 +7281,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_CreateInstance(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_DeleteInstance(
+MI_INLINE void MI_Session_DeleteInstance(
     _In_     MI_Session *session,
              MI_Uint32 flags,
     _In_opt_ MI_OperationOptions *options,
@@ -7323,7 +7320,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_DeleteInstance(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_Invoke(
+MI_INLINE void MI_Session_Invoke(
     _In_       MI_Session *session,
                MI_Uint32 flags,
     _In_opt_   MI_OperationOptions *options,
@@ -7367,7 +7364,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_Invoke(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_EnumerateInstances(
+MI_INLINE void MI_Session_EnumerateInstances(
     _In_     MI_Session *session,
              MI_Uint32 flags,
     _In_opt_ MI_OperationOptions *options,
@@ -7394,7 +7391,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_EnumerateInstances(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_QueryInstances(
+MI_INLINE void MI_Session_QueryInstances(
     _In_     MI_Session *session,
              MI_Uint32 flags,
     _In_opt_ MI_OperationOptions *options,
@@ -7436,7 +7433,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_QueryInstances(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_AssociatorInstances(
+MI_INLINE void MI_Session_AssociatorInstances(
     _In_       MI_Session *session,
                MI_Uint32 flags,
     _In_opt_   MI_OperationOptions *options,
@@ -7482,7 +7479,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_AssociatorInstances(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_ReferenceInstances(
+MI_INLINE void MI_Session_ReferenceInstances(
     _In_     MI_Session *session,
              MI_Uint32 flags,
     _In_opt_ MI_OperationOptions *options,
@@ -7527,7 +7524,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_ReferenceInstances(
 **=============================================================================
 */
 
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_Subscribe(
+MI_INLINE void MI_Session_Subscribe(
     _In_       MI_Session *session,
                MI_Uint32 flags,
     _In_opt_   MI_OperationOptions *options,
@@ -7562,7 +7559,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_Subscribe(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_GetClass(
+MI_INLINE void MI_Session_GetClass(
     _In_       MI_Session *session,
                MI_Uint32 flags,
     _In_opt_   MI_OperationOptions *options,
@@ -7595,7 +7592,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_GetClass(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_EnumerateClasses(
+MI_INLINE void MI_Session_EnumerateClasses(
     _In_       MI_Session *session,
                MI_Uint32 flags,
     _In_opt_   MI_OperationOptions *options,
@@ -7622,7 +7619,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_EnumerateClasses(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_TestConnection(
+MI_INLINE void MI_Session_TestConnection(
         _In_     MI_Session *session,
                  MI_Uint32 flags,
         _In_opt_ MI_OperationCallbacks *callbacks,
@@ -7661,7 +7658,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_Session_TestConnection(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_GetInstance(
+MI_INLINE MI_Result MI_Operation_GetInstance(
     _In_        MI_Operation *operation,
     _Outptr_result_maybenull_       const MI_Instance **instance,
     _Out_opt_   MI_Boolean *moreResults,
@@ -7692,7 +7689,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_GetInstance(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_GetIndication(
+MI_INLINE MI_Result MI_Operation_GetIndication(
     _In_        MI_Operation *operation,
     _Outptr_result_maybenull_       const MI_Instance **instance,
     _Outptr_opt_result_maybenull_z_ const MI_Char **bookmark,
@@ -7718,7 +7715,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_GetIndication(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_GetClass(
+MI_INLINE MI_Result MI_Operation_GetClass(
     _In_        MI_Operation *operation,
     _Outptr_result_maybenull_       const MI_Class **classResult,
     _Out_opt_   MI_Boolean *moreResults,
@@ -7748,7 +7745,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_GetClass(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_Close(
+MI_INLINE MI_Result MI_Operation_Close(
     _Inout_ MI_Operation *operation)
 {
     if (operation && operation->ft)
@@ -7767,7 +7764,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_Close(
 ** returns MI_FALSE.  The operation also must still be closed with MI_Operation_Close.
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_Cancel(
+MI_INLINE MI_Result MI_Operation_Cancel(
     _Inout_ MI_Operation *operation,
          MI_CancellationReason reason)
 {
@@ -7785,7 +7782,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_Cancel(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_GetSession(
+MI_INLINE MI_Result MI_Operation_GetSession(
     _In_  MI_Operation *operation,
     _Out_ MI_Session *session)
 {
@@ -7808,7 +7805,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Operation_GetSession(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_DestinationOptions_Delete(
+MI_INLINE void MI_DestinationOptions_Delete(
     _Inout_ MI_DestinationOptions *options)
 {
     if (options && options->ft)
@@ -7824,7 +7821,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_DestinationOptions_Delete(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetTimeout(
+MI_INLINE MI_Result MI_DestinationOptions_SetTimeout(
     _Inout_ MI_DestinationOptions *options,
     _In_ const MI_Interval *timeout)
 {
@@ -7845,7 +7842,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetTimeou
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetTimeout(
+MI_INLINE MI_Result MI_DestinationOptions_GetTimeout(
     _In_ MI_DestinationOptions *options,
     _Out_ MI_Interval *timeout)
 {
@@ -7867,7 +7864,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetTimeou
 **=============================================================================
 */
 /* Check/skip CA check when doing SSL, default TRUE, check*/
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetCertCACheck(
+MI_INLINE MI_Result MI_DestinationOptions_SetCertCACheck(
     _Inout_ MI_DestinationOptions *options,
          MI_Boolean check)
 {
@@ -7891,7 +7888,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetCertCA
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCertCACheck(
+MI_INLINE MI_Result MI_DestinationOptions_GetCertCACheck(
     _In_ MI_DestinationOptions *options,
     _Out_ MI_Boolean *check)
 {
@@ -7918,7 +7915,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCertCA
 **=============================================================================
 */
 /* Check/skip CN check when doing SSL, default TRUE, check*/
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetCertCNCheck(
+MI_INLINE MI_Result MI_DestinationOptions_SetCertCNCheck(
     _Inout_ MI_DestinationOptions *options,
          MI_Boolean check)
 {
@@ -7942,7 +7939,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetCertCN
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCertCNCheck(
+MI_INLINE MI_Result MI_DestinationOptions_GetCertCNCheck(
     _In_ MI_DestinationOptions *options,
     _Out_ MI_Boolean *check)
 {
@@ -7968,7 +7965,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCertCN
 **=============================================================================
 */
 /* Check/skip cert revocation check when doing SSL, default TRUE, check*/
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetCertRevocationCheck(
+MI_INLINE MI_Result MI_DestinationOptions_SetCertRevocationCheck(
     _Inout_ MI_DestinationOptions *options,
          MI_Boolean check)
 {
@@ -7992,7 +7989,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetCertRe
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCertRevocationCheck(
+MI_INLINE MI_Result MI_DestinationOptions_GetCertRevocationCheck(
     _In_ MI_DestinationOptions *options,
     _Out_ MI_Boolean *check)
 {
@@ -8018,7 +8015,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCertRe
 ** Ensure packet privacy (encryption), default TRUE
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetPacketPrivacy(
+MI_INLINE MI_Result MI_DestinationOptions_SetPacketPrivacy(
     _Inout_ MI_DestinationOptions *options,
          MI_Boolean privacy)
 {
@@ -8042,7 +8039,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetPacket
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetPacketPrivacy(
+MI_INLINE MI_Result MI_DestinationOptions_GetPacketPrivacy(
     _In_ MI_DestinationOptions *options,
     _Out_ MI_Boolean *privacy)
 {
@@ -8068,7 +8065,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetPacket
 **=============================================================================
 */
 /* Ensure packet integrity (sign), default TRUE*/
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetPacketIntegrity(
+MI_INLINE MI_Result MI_DestinationOptions_SetPacketIntegrity(
     _Inout_ MI_DestinationOptions *options,
          MI_Boolean integrity)
 {
@@ -8092,7 +8089,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetPacket
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetPacketIntegrity(
+MI_INLINE MI_Result MI_DestinationOptions_GetPacketIntegrity(
     _In_ MI_DestinationOptions *options,
     _Out_ MI_Boolean *integrity)
 {
@@ -8127,7 +8124,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetPacket
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetPacketEncoding(
+MI_INLINE MI_Result MI_DestinationOptions_SetPacketEncoding(
     _Inout_   MI_DestinationOptions *options,
     _In_z_ const MI_Char *encoding)
 {
@@ -8148,7 +8145,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetPacket
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetPacketEncoding(
+MI_INLINE MI_Result MI_DestinationOptions_GetPacketEncoding(
     _In_   MI_DestinationOptions *options,
     _Outptr_result_z_ const MI_Char **encoding)
 {
@@ -8181,7 +8178,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetPacket
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetDataLocale(
+MI_INLINE MI_Result MI_DestinationOptions_SetDataLocale(
     _Inout_   MI_DestinationOptions *options,
     _In_z_ const MI_Char *locale)
 {
@@ -8210,7 +8207,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetDataLo
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetDataLocale(
+MI_INLINE MI_Result MI_DestinationOptions_GetDataLocale(
     _In_   MI_DestinationOptions *options,
     _Outptr_result_z_ const MI_Char **locale)
 {
@@ -8242,7 +8239,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetDataLo
 **    locale:  Valid UI locale string.  Example: en-us
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetUILocale(
+MI_INLINE MI_Result MI_DestinationOptions_SetUILocale(
     _Inout_   MI_DestinationOptions *options,
     _In_z_ const MI_Char *locale)
 {
@@ -8270,7 +8267,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetUILoca
 **    locale:  UI locale string has been set.
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetUILocale(
+MI_INLINE MI_Result MI_DestinationOptions_GetUILocale(
     _In_   MI_DestinationOptions *options,
     _Outptr_result_z_ const MI_Char **locale)
 {
@@ -8291,7 +8288,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetUILoca
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetMaxEnvelopeSize(
+MI_INLINE MI_Result MI_DestinationOptions_SetMaxEnvelopeSize(
     _Inout_ MI_DestinationOptions *options,
          MI_Uint32 sizeInKB)
 {
@@ -8312,7 +8309,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetMaxEnv
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetMaxEnvelopeSize(
+MI_INLINE MI_Result MI_DestinationOptions_GetMaxEnvelopeSize(
     _In_ MI_DestinationOptions *options,
     _Out_ MI_Uint32 *sizeInKB)
 {
@@ -8334,7 +8331,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetMaxEnv
 ** default MI_FALSE = don't, MI_TRUE = do encode, WinRM transport specific
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetEncodePortInSPN(
+MI_INLINE MI_Result MI_DestinationOptions_SetEncodePortInSPN(
     _Inout_ MI_DestinationOptions *options,
          MI_Boolean encodePort)
 {
@@ -8356,7 +8353,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetEncode
 ** default MI_FALSE = don't, MI_TRUE = do encode, WinRM transport specific
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetEncodePortInSPN(
+MI_INLINE MI_Result MI_DestinationOptions_GetEncodePortInSPN(
     _In_ MI_DestinationOptions *options,
     _Out_ MI_Boolean *encodePort)
 {
@@ -8382,7 +8379,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetEncode
 **Specific to HTTP/HTTP based transports, WinRM default is /wsman, other transports are transports/protocols specific
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetHttpUrlPrefix(
+MI_INLINE MI_Result MI_DestinationOptions_SetHttpUrlPrefix(
     _Inout_   MI_DestinationOptions *options,
     _In_z_ const MI_Char *prefix)
 {
@@ -8404,7 +8401,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetHttpUr
 **Specific to HTTP/HTTP based transports, WinRM default is /wsman, other transports are transports/protocols specific
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetHttpUrlPrefix(
+MI_INLINE MI_Result MI_DestinationOptions_GetHttpUrlPrefix(
     _In_   MI_DestinationOptions *options,
     _Outptr_result_z_ const MI_Char **prefix)
 {
@@ -8426,7 +8423,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetHttpUr
 ** Transport specific, Default port for transport.
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetDestinationPort(
+MI_INLINE MI_Result MI_DestinationOptions_SetDestinationPort(
     _Inout_ MI_DestinationOptions *options,
          MI_Uint32 port)
 {
@@ -8448,7 +8445,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetDestin
 ** Transport specific, Default port for transport.
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetDestinationPort(
+MI_INLINE MI_Result MI_DestinationOptions_GetDestinationPort(
     _In_ MI_DestinationOptions *options,
     _Out_ MI_Uint32 *port)
 {
@@ -8481,7 +8478,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetDestin
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetTransport(
+MI_INLINE MI_Result MI_DestinationOptions_SetTransport(
     _Inout_ MI_DestinationOptions *options,
     _In_z_ const MI_Char *transport)
 {
@@ -8502,7 +8499,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetTransp
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetTransport(
+MI_INLINE MI_Result MI_DestinationOptions_GetTransport(
     _In_ MI_DestinationOptions *options,
     _Outptr_result_z_ const MI_Char **transport)
 {
@@ -8535,7 +8532,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetTransp
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetProxyType(
+MI_INLINE MI_Result MI_DestinationOptions_SetProxyType(
     _Inout_ MI_DestinationOptions *options,
     _In_z_ const MI_Char *proxyType)
 {
@@ -8556,7 +8553,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetProxyT
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetProxyType(
+MI_INLINE MI_Result MI_DestinationOptions_GetProxyType(
     _In_ MI_DestinationOptions *options,
     _Outptr_result_z_ const MI_Char **proxyType)
 {
@@ -8580,7 +8577,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetProxyT
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_AddProxyCredentials(
+MI_INLINE MI_Result MI_DestinationOptions_AddProxyCredentials(
     _Inout_ MI_DestinationOptions *options,
     _In_ const MI_UserCredentials *credentials)
 {
@@ -8603,7 +8600,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_AddProxyC
 ** can be combined, not all transport handles support dual auth.
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_AddDestinationCredentials(
+MI_INLINE MI_Result MI_DestinationOptions_AddDestinationCredentials(
     _Inout_     MI_DestinationOptions *options,
     _In_ const MI_UserCredentials *credentials)
 {
@@ -8626,7 +8623,7 @@ typedef enum _MI_DestinationOptions_ImpersonationType
     MI_DestinationOptions_ImpersonationType_Delegate = 4
 } MI_DestinationOptions_ImpersonationType;
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetImpersonationType(
+MI_INLINE MI_Result MI_DestinationOptions_SetImpersonationType(
     _Inout_ MI_DestinationOptions *options,
     _In_ MI_DestinationOptions_ImpersonationType impersonationType)
 {
@@ -8640,7 +8637,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetImpers
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetImpersonationType(
+MI_INLINE MI_Result MI_DestinationOptions_GetImpersonationType(
     _Inout_ MI_DestinationOptions *options,
     _Out_ MI_DestinationOptions_ImpersonationType * impersonationType)
 {
@@ -8665,7 +8662,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetImpers
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetString(
+MI_INLINE MI_Result MI_DestinationOptions_SetString(
     _Inout_ MI_DestinationOptions *options,
     _In_z_ const MI_Char *optionName,
     _In_z_ const MI_Char *optionValue)
@@ -8687,7 +8684,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetString
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetString(
+MI_INLINE MI_Result MI_DestinationOptions_GetString(
     _In_ MI_DestinationOptions *options,
     _In_z_ const MI_Char *optionName,
     _Outptr_result_z_ const MI_Char **optionValue,
@@ -8710,7 +8707,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetString
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetNumber(
+MI_INLINE MI_Result MI_DestinationOptions_SetNumber(
     _Inout_ MI_DestinationOptions *options,
     _In_z_ const MI_Char *optionName,
     _In_ MI_Uint32 optionValue)
@@ -8732,7 +8729,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_SetNumber
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetNumber(
+MI_INLINE MI_Result MI_DestinationOptions_GetNumber(
     _In_ MI_DestinationOptions *options,
     _In_z_ const MI_Char *optionName,
     _Out_ MI_Uint32 *optionValue,
@@ -8756,7 +8753,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetNumber
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetOptionCount(
+MI_INLINE MI_Result MI_DestinationOptions_GetOptionCount(
     _In_   MI_DestinationOptions *options,
     _Out_ MI_Uint32 *count)
 {
@@ -8778,7 +8775,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetOption
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetOptionAt(
+MI_INLINE MI_Result MI_DestinationOptions_GetOptionAt(
     _In_   MI_DestinationOptions *options,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char **optionName,
@@ -8803,7 +8800,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetOption
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetOption(
+MI_INLINE MI_Result MI_DestinationOptions_GetOption(
     _In_   MI_DestinationOptions *options,
     _In_z_ const MI_Char *optionName,
     _Out_ MI_Value *value,
@@ -8829,7 +8826,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetOption
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsCount(
+MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsCount(
     _In_   MI_DestinationOptions *options,
     _Out_ MI_Uint32 *count)
 {
@@ -8851,7 +8848,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCreden
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsAt(
+MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsAt(
     _In_   MI_DestinationOptions *options,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char **optionName,
@@ -8876,7 +8873,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCreden
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsPasswordAt(
+MI_INLINE MI_Result MI_DestinationOptions_GetCredentialsPasswordAt(
     _In_   MI_DestinationOptions *options,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char **optionName,
@@ -8914,7 +8911,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_DestinationOptions_GetCreden
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_DestinationOptions_Clone(
+MI_INLINE MI_Result MI_INLINE_CALL MI_DestinationOptions_Clone(
     _In_ const MI_DestinationOptions* self,
     _Out_ MI_DestinationOptions* newDestinationOptions)
 {
@@ -8935,7 +8932,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_DestinationOp
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE void MI_OperationOptions_Delete(
+MI_INLINE void MI_OperationOptions_Delete(
     _Inout_ MI_OperationOptions *options)
 {
     if (options && options->ft)
@@ -8951,7 +8948,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE void MI_OperationOptions_Delete(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetWriteErrorMode(
+MI_INLINE MI_Result MI_OperationOptions_SetWriteErrorMode(
     _Inout_ MI_OperationOptions *options,
     _In_ MI_CallbackMode mode)
 {
@@ -8972,7 +8969,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetWriteErr
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetWriteErrorMode(
+MI_INLINE MI_Result MI_OperationOptions_GetWriteErrorMode(
     _In_ MI_OperationOptions *options,
     _Out_ MI_CallbackMode *mode)
 {
@@ -8997,7 +8994,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetWriteErr
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetPromptUserMode(
+MI_INLINE MI_Result MI_OperationOptions_SetPromptUserMode(
     _Inout_ MI_OperationOptions *options,
     _In_ MI_CallbackMode mode)
 {
@@ -9021,7 +9018,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetPromptUs
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetPromptUserMode(
+MI_INLINE MI_Result MI_OperationOptions_GetPromptUserMode(
     _In_ MI_OperationOptions *options,
     _Out_ MI_CallbackMode *mode)
 {
@@ -9046,7 +9043,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetPromptUs
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetPromptUserRegularMode(
+MI_INLINE MI_Result MI_OperationOptions_SetPromptUserRegularMode(
     _Inout_ MI_OperationOptions *options,
     _In_ MI_CallbackMode mode,
     _In_ MI_Boolean ackValue)
@@ -9072,7 +9069,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetPromptUs
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetPromptUserRegularMode(
+MI_INLINE MI_Result MI_OperationOptions_GetPromptUserRegularMode(
     _Inout_ MI_OperationOptions *options,
     _Out_ MI_CallbackMode *mode,
     _Out_ MI_Boolean *ackValue)
@@ -9108,7 +9105,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetPromptUs
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetProviderArchitecture(
+MI_INLINE MI_Result MI_OperationOptions_SetProviderArchitecture(
     _Inout_ MI_OperationOptions *options,
     _In_ MI_ProviderArchitecture architecture,
     _In_ MI_Boolean mustComply)
@@ -9134,7 +9131,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetProvider
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetProviderArchitecture(
+MI_INLINE MI_Result MI_OperationOptions_GetProviderArchitecture(
     _In_ MI_OperationOptions *options,
     _Out_ MI_ProviderArchitecture *architecture,
     _Out_ MI_Boolean *mustComply)
@@ -9168,7 +9165,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetProvider
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_EnableChannel(
+MI_INLINE MI_Result MI_OperationOptions_EnableChannel(
     _Inout_ MI_OperationOptions *options,
     _In_ MI_Uint32 channel)
 {
@@ -9189,7 +9186,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_EnableChann
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_DisableChannel(
+MI_INLINE MI_Result MI_OperationOptions_DisableChannel(
     _Inout_ MI_OperationOptions *options,
     _In_ MI_Uint32 channel)
 {
@@ -9210,7 +9207,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_DisableChan
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetEnabledChannels(
+MI_INLINE MI_Result MI_OperationOptions_GetEnabledChannels(
     _In_   MI_OperationOptions *options,
     _Out_writes_to_opt_(bufferLength, *channelCount) MI_Uint32 *channels,
     _In_ MI_Uint32 bufferLength,
@@ -9234,7 +9231,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetEnabledC
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetTimeout(
+MI_INLINE MI_Result MI_OperationOptions_SetTimeout(
     _Inout_ MI_OperationOptions *options,
     _In_ const MI_Interval *timeout)
 {
@@ -9255,7 +9252,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetTimeout(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetTimeout(
+MI_INLINE MI_Result MI_OperationOptions_GetTimeout(
     _In_ MI_OperationOptions *options,
     _Out_ MI_Interval *timeout)
 {
@@ -9276,7 +9273,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetTimeout(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetResourceUriPrefix(
+MI_INLINE MI_Result MI_OperationOptions_SetResourceUriPrefix(
     _Inout_   MI_OperationOptions *options,
     _In_z_ const MI_Char *ruriPrefix)
 {
@@ -9297,7 +9294,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetResource
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetResourceUriPrefix(
+MI_INLINE MI_Result MI_OperationOptions_GetResourceUriPrefix(
     _In_   MI_OperationOptions *options,
     _Outptr_result_z_ const MI_Char **ruriPrefix)
 {
@@ -9318,7 +9315,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetResource
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetResourceUri(
+MI_INLINE MI_Result MI_OperationOptions_SetResourceUri(
     _Inout_   MI_OperationOptions *options,
     _In_z_ const MI_Char *rUri)
 {
@@ -9339,7 +9336,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetResource
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetResourceUri(
+MI_INLINE MI_Result MI_OperationOptions_GetResourceUri(
     _In_   MI_OperationOptions *options,
     _Outptr_result_z_ const MI_Char **rUri)
 {
@@ -9361,7 +9358,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetResource
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetUseMachineID(
+MI_INLINE MI_Result MI_OperationOptions_SetUseMachineID(
     _Inout_ MI_OperationOptions *options,
     _In_ MI_Boolean machineID)
 {
@@ -9382,7 +9379,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetUseMachi
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetUseMachineID(
+MI_INLINE MI_Result MI_OperationOptions_GetUseMachineID(
     _In_ MI_OperationOptions *options,
     _Out_ MI_Boolean *machineID)
 {
@@ -9407,7 +9404,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetUseMachi
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetCustomOption(
+MI_INLINE MI_Result MI_OperationOptions_SetCustomOption(
     _Inout_   MI_OperationOptions *options,
     _In_z_ const MI_Char *optionName,
     _In_   MI_Type optionValueType,
@@ -9431,7 +9428,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetCustomOp
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetOptionCount(
+MI_INLINE MI_Result MI_OperationOptions_GetOptionCount(
     _In_   MI_OperationOptions *options,
     _Out_ MI_Uint32 *count)
 {
@@ -9452,7 +9449,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetOptionCo
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetOptionAt(
+MI_INLINE MI_Result MI_OperationOptions_GetOptionAt(
     _In_   MI_OperationOptions *options,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char **optionName,
@@ -9477,7 +9474,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetOptionAt
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetString(
+MI_INLINE MI_Result MI_OperationOptions_SetString(
     _Inout_   MI_OperationOptions *options,
     _In_z_ const MI_Char *optionName,
     _In_z_ const MI_Char *value,
@@ -9500,7 +9497,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetString(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetString(
+MI_INLINE MI_Result MI_OperationOptions_GetString(
     _In_   MI_OperationOptions *options,
     _In_z_ const MI_Char *optionName,
     _Outptr_result_z_ const MI_Char **value,
@@ -9524,7 +9521,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetString(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetNumber(
+MI_INLINE MI_Result MI_OperationOptions_SetNumber(
     _Inout_   MI_OperationOptions *options,
     _In_z_ const MI_Char *optionName,
     _In_   MI_Uint32 value,
@@ -9547,7 +9544,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_SetNumber(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetNumber(
+MI_INLINE MI_Result MI_OperationOptions_GetNumber(
     _In_   MI_OperationOptions *options,
     _In_z_ const MI_Char *optionName,
     _Out_ MI_Uint32 *value,
@@ -9571,7 +9568,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetNumber(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetOption(
+MI_INLINE MI_Result MI_OperationOptions_GetOption(
     _In_   MI_OperationOptions *options,
     _In_z_ const MI_Char *optionName,
     _Out_ MI_Value *value,
@@ -9608,7 +9605,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_OperationOptions_GetOption(
 **
 **=============================================================================
 */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_OperationOptions_Clone(
+MI_INLINE MI_Result MI_INLINE_CALL MI_OperationOptions_Clone(
     _In_ const MI_OperationOptions* self,
     _Out_ MI_OperationOptions* newOperationOptions)
 {
@@ -9623,7 +9620,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_OperationOpti
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetClassName(
+MI_INLINE MI_Result MI_Class_GetClassName(
         _In_              const MI_Class* self,
         _Outptr_result_maybenull_z_ const MI_Char** className)
 {
@@ -9637,7 +9634,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetClassName(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetNameSpace(
+MI_INLINE MI_Result MI_Class_GetNameSpace(
         _In_              const MI_Class* self,
         _Outptr_result_maybenull_z_ const MI_Char** nameSpace)
 {
@@ -9652,7 +9649,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetNameSpace(
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetServerName(
+MI_INLINE MI_Result MI_Class_GetServerName(
         _In_              const MI_Class* self,
         _Outptr_result_maybenull_z_ const MI_Char** serverName)
 {
@@ -9667,7 +9664,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetServerName(
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetElementCount(
+MI_INLINE MI_Result MI_Class_GetElementCount(
         _In_  const MI_Class* self,
         _Out_ MI_Uint32* count)
 {
@@ -9682,7 +9679,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetElementCount(
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetElement(
+MI_INLINE MI_Result MI_Class_GetElement(
         _In_      const MI_Class* self,
         _In_z_    const MI_Char* name,
         _Out_opt_ MI_Value* value,
@@ -9704,7 +9701,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetElement(
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetElementAt(
+MI_INLINE MI_Result MI_Class_GetElementAt(
         _In_              const MI_Class* self,
                           MI_Uint32 index,
         _Outptr_opt_result_maybenull_z_ const MI_Char** name,
@@ -9725,7 +9722,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetElementAt(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetClassQualifierSet(
+MI_INLINE MI_Result MI_Class_GetClassQualifierSet(
         _In_            const MI_Class* self,
         _Out_opt_ MI_QualifierSet *qualifierSet
         )
@@ -9740,7 +9737,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetClassQualifierSet(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetMethodCount(
+MI_INLINE MI_Result MI_Class_GetMethodCount(
         _In_  const MI_Class* self,
         _Out_ MI_Uint32* count)
 {
@@ -9754,7 +9751,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetMethodCount(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetMethodAt(
+MI_INLINE MI_Result MI_Class_GetMethodAt(
         _In_ const MI_Class *self,
         MI_Uint32 index,
         _Outptr_result_z_ const MI_Char **name,
@@ -9771,7 +9768,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetMethodAt(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetMethod(
+MI_INLINE MI_Result MI_Class_GetMethod(
         _In_ const MI_Class *self,
         _In_z_ const MI_Char *name,
         _Out_opt_ MI_QualifierSet *qualifierSet,
@@ -9788,7 +9785,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetMethod(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetParentClassName(
+MI_INLINE MI_Result MI_Class_GetParentClassName(
         _In_ const MI_Class *self,
         _Outptr_result_maybenull_z_ const MI_Char **name)
 {
@@ -9802,7 +9799,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetParentClassName(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetParentClass(
+MI_INLINE MI_Result MI_Class_GetParentClass(
         _In_ const MI_Class *self,
         _Outptr_ MI_Class **parentClass)
 {
@@ -9816,7 +9813,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_GetParentClass(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_Delete(
+MI_INLINE MI_Result MI_Class_Delete(
         _Inout_ MI_Class* self)
 {
     if (self && self->ft)
@@ -9829,7 +9826,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Class_Delete(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Class_Clone(
+MI_INLINE MI_Result MI_INLINE_CALL MI_Class_Clone(
     _In_ const MI_Class* self,
     _Outptr_ MI_Class** newClass)
 {
@@ -9844,7 +9841,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_Class_Clone(
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_ParameterSet_GetMethodReturnType(
+MI_INLINE MI_Result MI_ParameterSet_GetMethodReturnType(
     _In_  const MI_ParameterSet *self,
     _Out_ MI_Type *returnType,
     _Out_ MI_QualifierSet *qualifierSet)
@@ -9859,7 +9856,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_ParameterSet_GetMethodReturn
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_ParameterSet_GetParameterCount(
+MI_INLINE MI_Result MI_ParameterSet_GetParameterCount(
     _In_ const MI_ParameterSet *self,
     _Out_ MI_Uint32 *count)
 {
@@ -9873,7 +9870,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_ParameterSet_GetParameterCou
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_ParameterSet_GetParameterAt(
+MI_INLINE MI_Result MI_ParameterSet_GetParameterAt(
     _In_ const MI_ParameterSet *self,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char **name,
@@ -9891,7 +9888,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_ParameterSet_GetParameterAt(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_ParameterSet_GetParameter(
+MI_INLINE MI_Result MI_ParameterSet_GetParameter(
     _In_ const MI_ParameterSet *self,
     _In_z_ const MI_Char *name,
     _Out_ MI_Type *parameterType,
@@ -9909,7 +9906,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_ParameterSet_GetParameter(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_QualifierSet_GetQualifierCount(
+MI_INLINE MI_Result MI_QualifierSet_GetQualifierCount(
     _In_ const MI_QualifierSet *self,
     _Out_ MI_Uint32 *count)
 {
@@ -9923,7 +9920,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_QualifierSet_GetQualifierCou
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_QualifierSet_GetQualifierAt(
+MI_INLINE MI_Result MI_QualifierSet_GetQualifierAt(
     _In_ const MI_QualifierSet *self,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char **name,
@@ -9941,7 +9938,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_QualifierSet_GetQualifierAt(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_QualifierSet_GetQualifier(
+MI_INLINE MI_Result MI_QualifierSet_GetQualifier(
     _In_ const MI_QualifierSet *self,
     _In_z_ const MI_Char *name,
     _Out_ MI_Type *qualifierType,
@@ -9959,7 +9956,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_QualifierSet_GetQualifier(
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetMaximumLatency(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetMaximumLatency(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_   MI_Interval *value)
 {
@@ -9973,7 +9970,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetMaximumLatency(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetMaximumLatency(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _Out_ MI_Interval *value)
 {
@@ -9987,7 +9984,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetHeartbeatInterval(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetHeartbeatInterval(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_   MI_Interval *value)
 {
@@ -10001,7 +9998,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetHeartbeatInterval(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetHeartbeatInterval(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _Out_ MI_Interval *value)
 {
@@ -10015,7 +10012,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetExpirationTime(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetExpirationTime(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_   MI_Datetime *value)
 {
@@ -10029,7 +10026,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetExpirationTime(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetExpirationTime(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _Out_ MI_Datetime *value)
 {
@@ -10054,7 +10051,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
 #define MI_SUBSCRIBE_BOOKMARK_OLDEST L"MI_SUBSCRIBE_BOOKMARK_OLDEST"
 #define MI_SUBSCRIBE_BOOKMARK_NEWEST L"MI_SUBSCRIBE_BOOKMARK_NEWEST"
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetBookmark(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetBookmark(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_z_   const MI_Char *value)
 {
@@ -10068,7 +10065,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetBookmark(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetBookmark(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _Outptr_result_z_ const MI_Char **value)
 {
@@ -10082,7 +10079,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryDestination(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryDestination(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *value)
 {
@@ -10096,7 +10093,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryDestination(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryDestination(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _Outptr_result_z_ const MI_Char **value)
 {
@@ -10110,7 +10107,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryPortNumber(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryPortNumber(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_   MI_Uint32 value)
 {
@@ -10124,7 +10121,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryPortNumber(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryPortNumber(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _Out_   MI_Uint32 *value)
 {
@@ -10138,7 +10135,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_AddDeliveryCredentials(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_AddDeliveryCredentials(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_   const MI_UserCredentials *value)
 {
@@ -10152,7 +10149,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryInterval(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryInterval(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_   const MI_Interval *value)
 {
@@ -10166,7 +10163,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryInterval(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryInterval(
     _In_  MI_SubscriptionDeliveryOptions *self,
     _Out_ MI_Interval *value)
 {
@@ -10180,7 +10177,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryAttempts(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDeliveryRetryAttempts(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_   MI_Uint32 value)
 {
@@ -10194,7 +10191,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryAttempts(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDeliveryRetryAttempts(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _Out_ MI_Uint32 *value)
 {
@@ -10209,7 +10206,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_Delete(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_Delete(
         _Inout_ MI_SubscriptionDeliveryOptions* self)
 {
     if (self && self->ft)
@@ -10222,7 +10219,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetString(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetString(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *optionName,
     _In_z_ const MI_Char *value,
@@ -10238,7 +10235,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetNumber(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetNumber(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *optionName,
     _In_   MI_Uint32 value,
@@ -10254,7 +10251,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDateTime(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetDateTime(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *optionName,
     _In_   const MI_Datetime *value,
@@ -10270,7 +10267,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetInterval(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_SetInterval(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *optionName,
     _In_   const MI_Interval *value,
@@ -10286,7 +10283,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetString(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetString(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *optionName,
     _Outptr_result_z_ const MI_Char **value,
@@ -10303,7 +10300,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetNumber(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetNumber(
     _Inout_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *optionName,
     _Out_ MI_Uint32 *value,
@@ -10320,7 +10317,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDateTime(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetDateTime(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *optionName,
     _Out_ MI_Datetime *value,
@@ -10337,7 +10334,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetInterval(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetInterval(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *optionName,
     _Out_ MI_Interval *value,
@@ -10354,7 +10351,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionCount(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionCount(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _Out_opt_ MI_Uint32 *count)
 {
@@ -10368,7 +10365,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionAt(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOptionAt(
     _In_   MI_SubscriptionDeliveryOptions *self,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char **optionName,
@@ -10386,7 +10383,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOption(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetOption(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _In_z_ const MI_Char *optionName,
     _Out_ MI_Value *value,
@@ -10404,7 +10401,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsCount(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsCount(
     _In_   MI_SubscriptionDeliveryOptions *self,
     _Out_ MI_Uint32 *count)
 {
@@ -10418,7 +10415,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsAt(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsAt(
     _In_   MI_SubscriptionDeliveryOptions *self,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char **optionName,
@@ -10435,7 +10432,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
     }
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsPasswordAt(
+MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_GetCredentialsPasswordAt(
     _In_   MI_SubscriptionDeliveryOptions *self,
     MI_Uint32 index,
     _Outptr_result_z_ const MI_Char **optionName,
@@ -10468,7 +10465,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_SubscriptionDeliveryOptions_
  * See also: MI_SubscriptionDeliveryOptions_Delete()
  *
  */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_SubscriptionDeliveryOptions_Clone(
+MI_INLINE MI_Result MI_INLINE_CALL MI_SubscriptionDeliveryOptions_Clone(
     _In_ const MI_SubscriptionDeliveryOptions* self,
     _Out_ MI_SubscriptionDeliveryOptions* newSubscriptionDeliveryOptions)
 {
@@ -10485,13 +10482,13 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_INLINE_CALL MI_SubscriptionD
 #define MI_SERIALIZER_FLAGS_CLASS_DEEP 1
 #define MI_SERIALIZER_FLAGS_INSTANCE_WITH_CLASS 1
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Serializer_Close(
+MI_INLINE MI_Result MI_Serializer_Close(
     _Inout_ MI_Serializer *serializer)
 {
     return mi_clientFT->serializerFT->Close(serializer);
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Serializer_SerializeClass(
+MI_INLINE MI_Result MI_Serializer_SerializeClass(
     _Inout_ MI_Serializer *serializer,
     MI_Uint32 flags,
     _In_ const MI_Class *classObject,
@@ -10502,7 +10499,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Serializer_SerializeClass(
     return mi_clientFT->serializerFT->SerializeClass(serializer, flags, classObject, clientBuffer, clientBufferLength, clientBufferNeeded);
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Serializer_SerializeInstance(
+MI_INLINE MI_Result MI_Serializer_SerializeInstance(
    _Inout_ MI_Serializer *serializer,
    MI_Uint32 flags,
    _In_ const MI_Instance *instanceObject,
@@ -10514,7 +10511,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Serializer_SerializeInstance
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_Close(
+MI_INLINE MI_Result MI_Deserializer_Close(
     _Inout_ MI_Deserializer *deserializer)
 {
     const MI_ClientFT_V1 *clientFT = mi_clientFT;
@@ -10522,7 +10519,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_Close(
     return deserializerFT->Close(deserializer);
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_DeserializeClass(
+MI_INLINE MI_Result MI_Deserializer_DeserializeClass(
     _Inout_ MI_Deserializer *deserializer,
     MI_Uint32 flags,
     _In_reads_(serializedBufferLength) MI_Uint8 *serializedBuffer,
@@ -10539,7 +10536,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_DeserializeClas
     return mi_clientFT->deserializerFT->DeserializeClass(deserializer, flags, serializedBuffer, serializedBufferLength, parentClass, serverName, namespaceName, classObjectNeeded, classObjectNeededContext, serializedBufferRead, classObject, cimErrorDetails);
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_Class_GetClassName(
+MI_INLINE MI_Result MI_Deserializer_Class_GetClassName(
     _Inout_ MI_Deserializer *deserializer,
     _In_reads_(serializedBufferLength) MI_Uint8 *serializedBuffer,
     MI_Uint32 serializedBufferLength,
@@ -10551,7 +10548,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_Class_GetClassN
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_Class_GetParentClassName(
+MI_INLINE MI_Result MI_Deserializer_Class_GetParentClassName(
     _Inout_ MI_Deserializer *deserializer,
     _In_reads_(serializedBufferLength) MI_Uint8 *serializedBuffer,
     MI_Uint32 serializedBufferLength,
@@ -10562,7 +10559,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_Class_GetParent
     return mi_clientFT->deserializerFT->Class_GetParentClassName(deserializer, serializedBuffer, serializedBufferLength, parentClassName, parentClassNameLength, cimErrorDetails);
 }
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_DeserializeInstance(
+MI_INLINE MI_Result MI_Deserializer_DeserializeInstance(
     _Inout_ MI_Deserializer *deserializer,
     MI_Uint32 flags,
     _In_reads_(serializedBufferLength) MI_Uint8 *serializedBuffer,
@@ -10579,7 +10576,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_DeserializeInst
 }
 
 
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_Instance_GetClassName(
+MI_INLINE MI_Result MI_Deserializer_Instance_GetClassName(
     _Inout_ MI_Deserializer *deserializer,
     _In_reads_(serializedBufferLength) MI_Uint8 *serializedBuffer,
     MI_Uint32 serializedBufferLength,
@@ -10592,7 +10589,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Deserializer_Instance_GetCla
 
 
 /* Map an OS specific error code to an error category */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_ErrorCategory MI_Utilities_MapErrorToMiErrorCategory(
+MI_INLINE MI_ErrorCategory MI_Utilities_MapErrorToMiErrorCategory(
         _In_z_ MI_Char *errorType,
         MI_Uint32 error)
 {
@@ -10603,7 +10600,7 @@ _Win32_SupportedOS_Windows8_ MI_INLINE MI_ErrorCategory MI_Utilities_MapErrorToM
     * Call MI_Instance_Delete on the CIM when finished
     * using it.
     */
-_Win32_SupportedOS_Windows8_ MI_INLINE MI_Result MI_Utilities_CimErrorFromErrorCode(
+MI_INLINE MI_Result MI_Utilities_CimErrorFromErrorCode(
     MI_Uint32 error,
     _In_z_ const MI_Char *errorType,
     _In_z_ const MI_Char* errorMessage,

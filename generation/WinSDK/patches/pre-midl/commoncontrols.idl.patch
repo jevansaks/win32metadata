@@ -1,16 +1,9 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.idl b/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.idl
+index a80d15b4..4dcfa680 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.idl
-@@ -1,5 +1,7 @@
- // CommonControls.idl
- //
-+#include <sal.h>
-+cpp_quote("#include <sal.h>")
- cpp_quote("#include <winapifamily.h>")
- 
- #pragma region Desktop Family
-@@ -62,7 +64,7 @@
+@@ -62,7 +62,7 @@ cpp_quote("WINCOMMCTRLAPI HRESULT WINAPI ImageList_CoCreateInstance(")
  cpp_quote("         _In_  REFCLSID rclsid,")
  cpp_quote("     _In_opt_  const IUnknown *punkOuter,")
  cpp_quote("         _In_  REFIID riid,")
@@ -19,7 +12,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.idl b/gene
  cpp_quote("#endif")
  
  // flags returned by GetItemFlags
-@@ -89,8 +91,8 @@
+@@ -89,8 +89,8 @@ interface IImageList : IUnknown
      HRESULT GetIcon(int i, UINT flags, [out, annotation("_Out_")] HICON* picon);
      HRESULT GetImageInfo(int i, [out, annotation("_Out_")] IMAGEINFO* pImageInfo);
      HRESULT Copy(int iDst, [in, annotation("_In_")] IUnknown* punkSrc, int iSrc, UINT uFlags);
@@ -30,7 +23,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.idl b/gene
      HRESULT GetImageRect(int i, [out, annotation("_Out_")] RECT* prc);
      HRESULT GetIconSize([out, annotation("_Out_")] int* cx, [out, annotation("_Out_")] int* cy);
      HRESULT SetIconSize(int cx, int cy);
-@@ -105,7 +107,7 @@
+@@ -105,7 +105,7 @@ interface IImageList : IUnknown
      HRESULT DragMove(int x, int y);
      HRESULT SetDragCursorImage([in, annotation("_In_")] IUnknown* punk, int iDrag, int dxHotspot, int dyHotspot);
      HRESULT DragShowNolock(BOOL fShow);
@@ -39,15 +32,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/commoncontrols.idl b/gene
      HRESULT GetItemFlags(int i, [out, annotation("_Out_")] DWORD *dwFlags);
      HRESULT GetOverlayImage(int iOverlay, [out, annotation("_Out_")] int* piIndex);
  };
-@@ -126,6 +128,7 @@
- 
- 
- // New for (_WIN32_IE >= 0x0605)
-+cpp_quote("/* Win32Metadata: interface ::IImageList2 => SupportedOSPlatform(\"windows6.0.6000\") */")
- [
-     uuid(192b9d83-50fc-457b-90a0-2b82a8b5dae1),
-     local
-@@ -164,7 +167,7 @@
+@@ -164,7 +164,7 @@ cpp_quote("#define ILDI_QUERYACCESS 0x00000008") // ask whether access flag is s
      HRESULT GetOriginalSize([in] int iImage, [in] DWORD dwFlags, [out, annotation("_Out_")] int *pcx, [out, annotation("_Out_")] int *pcy);
      HRESULT SetOriginalSize([in] int iImage, [in] int cx, [in] int cy);
      HRESULT SetCallback([in, unique, annotation("_In_opt_")] IUnknown *punk);

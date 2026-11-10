@@ -9,5 +9,3 @@ _OBJECT_ATTRIBUTES
 <IncludeRoot>/shared/ntdef.h
 --namespace
 Windows.Win32.System.Kernel
---traverse
-excpt.h

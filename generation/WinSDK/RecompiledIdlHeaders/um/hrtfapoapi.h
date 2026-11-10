@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 //
@@ -159,9 +158,6 @@ STDAPI CreateHrtfApo(
 //
 #undef INTERFACE
 #define INTERFACE IXAPOHrtfParameters
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_10240_ struct IXAPOHrtfParameters IXAPOHrtfParameters;
-#endif
 DECLARE_INTERFACE_IID_(IXAPOHrtfParameters, IUnknown, "15B3CD66-E9DE-4464-B6E6-2BC3CF63D455")
 {
     // IUnknown

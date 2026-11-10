@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+-------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -17,16 +16,6 @@
 
 #ifndef MSCAT_H
 #define MSCAT_H
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned int CRYPTCAT_OPEN_FLAGS;
-typedef unsigned int CRYPTCAT_VERSION;
-#endif
-
-#include <sal.h>
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned int CRYPTCATATTRIBUTE_FLAGS;
-#endif
 
 
 #if _MSC_VER > 1000
@@ -69,12 +58,6 @@ typedef unsigned int CRYPTCATATTRIBUTE_FLAGS;
 #define     CRYPTCAT_VERSION_1                  0x100
 #define     CRYPTCAT_VERSION_2                  0x200
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_Enum_(CRYPTCAT_VERSION, unsigned int,
-    CRYPTCAT_VERSION_1,
-    CRYPTCAT_VERSION_2);
-#endif
-
         //
         //  fdwOpenFlags
         //
@@ -92,19 +75,6 @@ _Win32_Enum_(CRYPTCAT_VERSION, unsigned int,
 #define     CRYPTCAT_OPEN_SORTED                0x40000000  // does CertCreateContext(CERT_CREATE_CONTEXT_SORTED_FLAG)
 
 #define     CRYPTCAT_OPEN_FLAGS_MASK            0xffff0000  // mask for upper word
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CRYPTCAT_OPEN_FLAGS, unsigned int,
-    CRYPTCAT_OPEN_CREATENEW,
-    CRYPTCAT_OPEN_ALWAYS,
-    CRYPTCAT_OPEN_EXISTING,
-    CRYPTCAT_OPEN_EXCLUDE_PAGE_HASHES,
-    CRYPTCAT_OPEN_INCLUDE_PAGE_HASHES,
-    CRYPTCAT_OPEN_VERIFYSIGHASH,
-    CRYPTCAT_OPEN_NO_CONTENT_HCRYPTMSG,
-    CRYPTCAT_OPEN_SORTED,
-    CRYPTCAT_OPEN_FLAGS_MASK);
-#endif
 
         //
         //  fdwMemberFlags  (used internal -- do not fill)
@@ -125,24 +95,8 @@ _Win32_FlagsEnum_(CRYPTCAT_OPEN_FLAGS, unsigned int,
 #define     CRYPTCAT_ATTR_DATABASE64            0x00020000  // base 64
 #define     CRYPTCAT_ATTR_DATAREPLACE           0x00040000  // this data is a replacment for an existing attr
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CRYPTCATATTRIBUTE_FLAGS, unsigned int,
-    CRYPTCAT_ATTR_AUTHENTICATED,
-    CRYPTCAT_ATTR_UNAUTHENTICATED,
-    CRYPTCAT_ATTR_NAMEASCII,
-    CRYPTCAT_ATTR_NAMEOBJID,
-    CRYPTCAT_ATTR_DATAASCII,
-    CRYPTCAT_ATTR_DATABASE64,
-    CRYPTCAT_ATTR_DATAREPLACE);
-#endif
-
 #if (NTDDI_VERSION >= NTDDI_WIN10_RS1)
 #define     CRYPTCAT_ATTR_NO_AUTO_COMPAT_ENTRY  0x01000000
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CRYPTCATATTRIBUTE_FLAGS, unsigned int,
-    CRYPTCAT_ATTR_NO_AUTO_COMPAT_ENTRY);
-#endif
 #endif //#if (NTDDI_VERSION >= NTDDI_WIN10_RS1)
 
         //
@@ -190,7 +144,7 @@ typedef struct CRYPTCATSTORE_
     LPWSTR                      pwszP7File;
     HCRYPTPROV                  hProv;
     DWORD                       dwEncodingType;
-    _Win32_AssociatedEnum_(CRYPTCAT_OPEN_FLAGS) DWORD                       fdwStoreFlags;
+    DWORD                       fdwStoreFlags;
     HANDLE                      hReserved;      // pStack(members) (null if init/pbData) INTERNAL!
 
     HANDLE                      hAttrs;         // pStack(Catalog attrs) INTERNAL!
@@ -223,7 +177,7 @@ typedef struct CRYPTCATATTRIBUTE_
 {
     DWORD                       cbStruct;           // = sizeof(CRYPTCATATTRIBUTE)
     LPWSTR                      pwszReferenceTag;
-    _Win32_AssociatedEnum_(CRYPTCATATTRIBUTE_FLAGS) DWORD                       dwAttrTypeAndAction;
+    DWORD                       dwAttrTypeAndAction;
     DWORD                       cbValue;
     BYTE                        *pbValue;           // encoded CAT_NAMEVALUE struct
     DWORD                       dwReserved;         // used by enum -- DO NOT USE!
@@ -281,11 +235,10 @@ typedef void (WINAPI *PFN_CDF_PARSE_ERROR_CALLBACK)(IN DWORD dwErrorArea,
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
 
-_Win32_SupportedOS_WindowsXP_
 extern HANDLE WINAPI CryptCATOpen(_In_        LPWSTR pwszFileName,
-                                  IN          _Win32_AssociatedEnum_(CRYPTCAT_OPEN_FLAGS) DWORD fdwOpenFlags,
+                                  IN          DWORD fdwOpenFlags,
                                   IN OPTIONAL HCRYPTPROV hProv,
-                                  IN OPTIONAL _Win32_AssociatedEnum_(CRYPTCAT_VERSION) DWORD dwPublicVersion,
+                                  IN OPTIONAL DWORD dwPublicVersion,
                                   IN OPTIONAL DWORD dwEncodingType);
 
 // WOB #1496767
@@ -312,7 +265,6 @@ CryptCATSetCreatePageHashesFlag( IN HANDLE hCatalog, IN BOOL newCreatePageHashes
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SupportedOS_WindowsXP_
 extern BOOL WINAPI CryptCATClose(IN HANDLE hCatalog);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -327,7 +279,6 @@ extern BOOL WINAPI CryptCATClose(IN HANDLE hCatalog);
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATSTORE * WINAPI CryptCATStoreFromHandle(IN HANDLE hCatalog);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -340,7 +291,6 @@ extern CRYPTCATSTORE * WINAPI CryptCATStoreFromHandle(IN HANDLE hCatalog);
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SupportedOS_WindowsXP_
 extern HANDLE WINAPI CryptCATHandleFromStore(IN CRYPTCATSTORE *pCatStore);
 
 
@@ -356,8 +306,6 @@ extern HANDLE WINAPI CryptCATHandleFromStore(IN CRYPTCATSTORE *pCatStore);
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 extern BOOL WINAPI CryptCATPersistStore(IN HANDLE hCatalog);
 
 
@@ -388,8 +336,6 @@ extern CRYPTCATATTRIBUTE * WINAPI CryptCATGetCatAttrInfo(IN HANDLE hCatalog,
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATATTRIBUTE * WINAPI CryptCATPutCatAttrInfo(IN HANDLE hCatalog,
                                                          _In_ LPWSTR pwszReferenceTag,
                                                          IN DWORD dwAttrTypeAndAction,
@@ -411,7 +357,6 @@ extern CRYPTCATATTRIBUTE * WINAPI CryptCATPutCatAttrInfo(IN HANDLE hCatalog,
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATATTRIBUTE * WINAPI CryptCATEnumerateCatAttr(IN HANDLE hCatalog,
                                                            IN CRYPTCATATTRIBUTE *pPrevAttr);
 
@@ -429,7 +374,6 @@ extern CRYPTCATATTRIBUTE * WINAPI CryptCATEnumerateCatAttr(IN HANDLE hCatalog,
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATMEMBER * WINAPI CryptCATGetMemberInfo(IN HANDLE hCatalog,
                                                      _In_ LPWSTR pwszReferenceTag);
 
@@ -474,8 +418,6 @@ extern void WINAPI CryptCATFreeSortedMemberInfo(IN HANDLE hCatalog,
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATATTRIBUTE * WINAPI CryptCATGetAttrInfo(IN HANDLE hCatalog,
                                                       IN CRYPTCATMEMBER *pCatMember,
                                                       _In_ LPWSTR pwszReferenceTag);
@@ -495,8 +437,6 @@ extern CRYPTCATATTRIBUTE * WINAPI CryptCATGetAttrInfo(IN HANDLE hCatalog,
 //      CRYPT_E_EXISTS:                 the reference tag already exists
 //      CRYPT_E_NOT_FOUND:              the attr was not found
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATMEMBER * WINAPI CryptCATPutMemberInfo(IN HANDLE hCatalog,
                                                      _In_opt_    LPWSTR pwszFileName,
                                                      _In_        LPWSTR pwszReferenceTag,
@@ -518,8 +458,6 @@ extern CRYPTCATMEMBER * WINAPI CryptCATPutMemberInfo(IN HANDLE hCatalog,
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATATTRIBUTE * WINAPI CryptCATPutAttrInfo(IN HANDLE hCatalog,
                                                       IN CRYPTCATMEMBER *pCatMember,
                                                       _In_ LPWSTR pwszReferenceTag,
@@ -542,7 +480,6 @@ extern CRYPTCATATTRIBUTE * WINAPI CryptCATPutAttrInfo(IN HANDLE hCatalog,
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATMEMBER * WINAPI CryptCATEnumerateMember(IN HANDLE hCatalog,
                                                        IN CRYPTCATMEMBER *pPrevMember);
 
@@ -561,7 +498,6 @@ extern CRYPTCATMEMBER * WINAPI CryptCATEnumerateMember(IN HANDLE hCatalog,
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATATTRIBUTE * WINAPI CryptCATEnumerateAttr(IN HANDLE hCatalog,
                                                         IN CRYPTCATMEMBER *pCatMember,
                                                         IN CRYPTCATATTRIBUTE *pPrevAttr);
@@ -577,7 +513,6 @@ extern CRYPTCATATTRIBUTE * WINAPI CryptCATEnumerateAttr(IN HANDLE hCatalog,
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //      ERROR_FILE_NOT_FOUND:           the CDF file was not found
 //
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATCDF * WINAPI CryptCATCDFOpen(_In_ LPWSTR pwszFilePath,
                                             _In_opt_ PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError);
 
@@ -592,7 +527,6 @@ extern CRYPTCATCDF * WINAPI CryptCATCDFOpen(_In_ LPWSTR pwszFilePath,
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SupportedOS_WindowsXP_
 extern BOOL WINAPI CryptCATCDFClose(IN CRYPTCATCDF *pCDF);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -606,7 +540,6 @@ extern BOOL WINAPI CryptCATCDFClose(IN CRYPTCATCDF *pCDF);
 //  Errors:
 //      ERROR_INVALID_PARAMETER:        an input parameter is incorrect
 //
-_Win32_SupportedOS_WindowsXP_
 extern CRYPTCATATTRIBUTE * WINAPI CryptCATCDFEnumCatAttributes(CRYPTCATCDF *pCDF,
                                                                CRYPTCATATTRIBUTE *pPrevAttr,
                                                                 PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError);
@@ -659,7 +592,6 @@ extern CRYPTCATATTRIBUTE *WINAPI CryptCATCDFEnumAttributes(IN          CRYPTCATC
 //      ERROR_NOT_ENOUGH_MEMORY:        a memory allocation failed
 //      {file errors}                   a file error occured
 //
-_Win32_SupportedOS_WindowsXP_
 extern BOOL WINAPI      IsCatalogFile(IN OPTIONAL HANDLE hFile,
                                       _In_opt_z_ WCHAR *pwszFileName);
 
@@ -698,8 +630,6 @@ extern BOOL WINAPI      IsCatalogFile(IN OPTIONAL HANDLE hFile,
 //          be set to zero.
 //
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 extern BOOL WINAPI CryptCATAdminAcquireContext(
     _Out_       HCATADMIN   *phCatAdmin,
@@ -753,8 +683,6 @@ extern BOOL WINAPI CryptCATAdminAcquireContext(
 //
 //  
 #if (NTDDI_VERSION >= NTDDI_WIN8) 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 _Success_(return != FALSE)
 extern BOOL WINAPI CryptCATAdminAcquireContext2(
     _Out_       HCATADMIN   *phCatAdmin,
@@ -780,7 +708,6 @@ extern BOOL WINAPI CryptCATAdminAcquireContext2(
 //          The dwFlags parameter is reserved for future use.  Must
 //          be set to NULL.
 //
-_Win32_SupportedOS_WindowsXP_
 extern BOOL WINAPI      CryptCATAdminReleaseContext(IN HCATADMIN hCatAdmin,
                                                     IN DWORD dwFlags);
 
@@ -800,7 +727,6 @@ extern BOOL WINAPI      CryptCATAdminReleaseContext(IN HCATADMIN hCatAdmin,
 //      the dwFlags parameter is reserved for future use and must be assigned
 //      to NULL.
 //
-_Win32_SupportedOS_WindowsXP_
 extern BOOL WINAPI CryptCATAdminReleaseCatalogContext(IN HCATADMIN hCatAdmin,
                                                       IN HCATINFO hCatInfo,
                                                       IN DWORD dwFlags);
@@ -833,8 +759,6 @@ extern BOOL WINAPI CryptCATAdminReleaseCatalogContext(IN HCATADMIN hCatAdmin,
 //      ERROR_DATABASE_FAILURE:         an error occurred while processing
 //                                      the database.
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 extern HCATINFO WINAPI CryptCATAdminEnumCatalogFromHash(
     _In_                HCATADMIN   hCatAdmin,
     _In_reads_bytes_(cbHash) BYTE        *pbHash,
@@ -868,7 +792,6 @@ extern HCATINFO WINAPI CryptCATAdminEnumCatalogFromHash(
 //      the dwFlags parameter is reserved for future use and must be set to
 //      zero.
 //
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 extern BOOL WINAPI CryptCATAdminCalcHashFromFileHandle(
     _In_        HANDLE hFile,
@@ -905,8 +828,6 @@ extern BOOL WINAPI CryptCATAdminCalcHashFromFileHandle(
 //      zero.
 //
 #if (NTDDI_VERSION >= NTDDI_WIN8)
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 _Success_(return != FALSE)
 extern BOOL WINAPI CryptCATAdminCalcHashFromFileHandle2(
     _In_        HCATADMIN   hCatAdmin,
@@ -985,8 +906,6 @@ extern HCATINFO WINAPI CryptCATAdminAddCatalog(
 //      of the catalog file, ex. "foo.cat", and not a fully qualified path
 //      name
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 extern BOOL WINAPI CryptCATAdminRemoveCatalog(IN HCATADMIN hCatAdmin,
                                               IN LPCWSTR pwszCatalogFile,
                                               IN DWORD dwFlags);
@@ -1011,8 +930,6 @@ extern BOOL WINAPI CryptCATAdminRemoveCatalog(IN HCATADMIN hCatAdmin,
 //      the dwFlags parameter is reserved for future use and must be assigned
 //      to NULL.
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 extern BOOL WINAPI CryptCATCatalogInfoFromContext(
     _In_    HCATINFO hCatInfo,
@@ -1042,8 +959,6 @@ extern BOOL WINAPI CryptCATCatalogInfoFromContext(
 //      the dwFlags parameter is reserved for future use and must be assigned
 //      to NULL.
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 extern BOOL WINAPI CryptCATAdminResolveCatalogPath(
     _In_    HCATADMIN hCatAdmin,

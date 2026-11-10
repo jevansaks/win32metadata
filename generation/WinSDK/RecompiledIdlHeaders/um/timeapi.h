@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * timerapi.h -- ApiSet Contract for api-ms-win-mm-time-l1-1-0                   *
@@ -45,7 +44,6 @@ typedef struct timecaps_tag {
 } TIMECAPS, *PTIMECAPS, NEAR *NPTIMECAPS, FAR *LPTIMECAPS;
 
 /* timer function prototypes */
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -56,7 +54,6 @@ timeGetSystemTime(
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 DWORD
 WINAPI
@@ -66,7 +63,6 @@ timeGetTime(
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -75,7 +71,6 @@ timeGetDevCaps(
     _In_ UINT cbtc
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -83,7 +78,6 @@ timeBeginPeriod(
     _In_ UINT uPeriod
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI

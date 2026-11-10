@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*	@doc EXTERNAL
  *
  *	@module TEXTSRV.H  Text Service Interface |
@@ -17,7 +16,6 @@
 
 #ifndef _TEXTSERV_H
 #define _TEXTSERV_H
-#include <sal.h>
 
 #include <winapifamily.h>
 
@@ -115,7 +113,7 @@ enum CHANGETYPE
  *	what actually happened for a change.
  */
 struct CHANGENOTIFY {
-	_Win32_AssociatedEnum_(CHANGETYPE) DWORD	dwChangeType;				//@field TEXT changed, etc
+	DWORD	dwChangeType;				//@field TEXT changed, etc
 	void *	pvCookieData; 				//@field cookie for the undo action 
 										// associated with the change.
 };
@@ -187,7 +185,7 @@ public:
 	
 	//@cmember Rendering
 	virtual HRESULT		TxDraw(	
-							_Win32_AssociatedEnum_(DVASPECT) DWORD dwDrawAspect,
+							DWORD dwDrawAspect,		
 							LONG  lindex,			
 							void * pvAspect,		 
 							DVTARGETDEVICE * ptd,									
@@ -218,7 +216,7 @@ public:
 
 	//@cmember Setcursor
 	virtual HRESULT 	OnTxSetCursor(
-							_Win32_AssociatedEnum_(DVASPECT) DWORD dwDrawAspect,
+							DWORD dwDrawAspect,		
 							LONG  lindex,			
 							void * pvAspect,		 
 							DVTARGETDEVICE * ptd,									
@@ -230,7 +228,7 @@ public:
 
 	//@cmember Hit-test
 	virtual HRESULT 	TxQueryHitPoint(
-							_Win32_AssociatedEnum_(DVASPECT) DWORD dwDrawAspect,
+							DWORD dwDrawAspect,		
 							LONG  lindex,			
 							void * pvAspect,		 
 							DVTARGETDEVICE * ptd,									
@@ -330,7 +328,7 @@ public:
 	virtual BOOL		TxShowScrollBar(INT fnBar, BOOL fShow) = 0;
 
 	//@cmember Enable the scroll bar
-	virtual BOOL		TxEnableScrollBar (_Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) INT fuSBFlags, INT fuArrowflags) = 0;
+	virtual BOOL		TxEnableScrollBar (INT fuSBFlags, INT fuArrowflags) = 0;
 
 	//@cmember Set the scroll range
 	virtual BOOL		TxSetScrollRange(
@@ -371,7 +369,7 @@ public:
 							LPCRECT lprcClip,
 							HRGN hrgnUpdate, 
 							LPRECT lprcUpdate, 
-							_Win32_AssociatedEnum_(SCROLL_WINDOW_FLAGS) UINT fuScroll) = 0;
+							UINT fuScroll) = 0;
 	
 	//@cmember Get mouse capture
 	virtual void		TxSetCapture(BOOL fCapture) = 0;
@@ -407,7 +405,7 @@ public:
 	virtual HRESULT		TxGetParaFormat(const PARAFORMAT **ppPF) = 0;
 
 	//@cmember Get the background color for the window
-	virtual COLORREF	TxGetSysColor(_Win32_AssociatedEnum_(SYS_COLOR_INDEX) int nIndex) = 0;
+	virtual COLORREF	TxGetSysColor(int nIndex) = 0;
 
 	//@cmember Get the background (either opaque or transparent)
 	virtual HRESULT		TxGetBackStyle(TXTBACKSTYLE *pstyle) = 0;
@@ -459,9 +457,6 @@ interface IRawElementProviderSimple;
  *
  *	@base	public | IUnknown 
  */
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows8_ struct IRicheditWindowlessAccessibility IRicheditWindowlessAccessibility;
-#endif
 interface DECLSPEC_UUID("983E572D-20CD-460B-9104-83111592DD10") IRicheditWindowlessAccessibility : public IUnknown
 {
 	virtual HRESULT STDMETHODCALLTYPE CreateProvider(
@@ -478,9 +473,6 @@ struct UiaRect;
  *
  *	@base	public | IUnknown 
  */
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows8_ struct IRichEditUiaInformation IRichEditUiaInformation;
-#endif
 interface DECLSPEC_UUID("23969A9D-8546-4032-A1BB-73750CBF3333") IRichEditUiaInformation : public IUnknown
 {
 	virtual HRESULT STDMETHODCALLTYPE GetBoundaryRectangle(UiaRect *pUiaRect) = 0;
@@ -498,9 +490,6 @@ typedef int PROPERTYID;
  *
  *	@base	public | IUnknown 
  */
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows8_ struct IRicheditUiaOverrides IRicheditUiaOverrides;
-#endif
 interface IRicheditUiaOverrides : public IUnknown
 {
 	virtual HRESULT STDMETHODCALLTYPE GetPropertyOverrideValue(
@@ -513,7 +502,6 @@ interface IRicheditUiaOverrides : public IUnknown
 //------------------------------------------------------------------------
 
 // Text Services factory
-_Win32_SupportedOS_WindowsVista_
 STDAPI CreateTextServices(
 	IUnknown *punkOuter,
 	ITextHost *pITextHost,

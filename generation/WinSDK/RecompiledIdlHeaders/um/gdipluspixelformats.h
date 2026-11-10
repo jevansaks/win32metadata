@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /**************************************************************************\
 *
 * Copyright (c) 1998-2001, Microsoft Corp.  All Rights Reserved.
@@ -75,25 +74,25 @@ typedef INT PixelFormat;
 #define    PixelFormatMax             16
 
 inline UINT
-_Win32_SupportedOS_WindowsVista_ GetPixelFormatSize(PixelFormat pixfmt)
+GetPixelFormatSize(PixelFormat pixfmt)
 {
     return (pixfmt >> 8) & 0xff;
 }
 
 inline BOOL
-_Win32_SupportedOS_WindowsVista_ IsIndexedPixelFormat(PixelFormat pixfmt)
+IsIndexedPixelFormat(PixelFormat pixfmt)
 {
     return (pixfmt & PixelFormatIndexed) != 0;
 }
 
 inline BOOL
-_Win32_SupportedOS_WindowsVista_ IsAlphaPixelFormat(PixelFormat pixfmt)
+IsAlphaPixelFormat(PixelFormat pixfmt)
 {
    return (pixfmt & PixelFormatAlpha) != 0;
 }
 
 inline BOOL
-_Win32_SupportedOS_WindowsVista_ IsExtendedPixelFormat(PixelFormat pixfmt)
+IsExtendedPixelFormat(PixelFormat pixfmt)
 {
    return (pixfmt & PixelFormatExtended) != 0;
 }
@@ -107,7 +106,7 @@ _Win32_SupportedOS_WindowsVista_ IsExtendedPixelFormat(PixelFormat pixfmt)
 //--------------------------------------------------------------------------
 
 inline BOOL
-_Win32_SupportedOS_WindowsVista_ IsCanonicalPixelFormat(PixelFormat pixfmt)
+IsCanonicalPixelFormat(PixelFormat pixfmt)
 {
    return (pixfmt & PixelFormatCanonical) != 0;
 }

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*****************************************************************************\
 *                                                                             *
 * tlhelp32.h -  WIN32 tool help functions, types, and definitions             *
@@ -30,16 +29,10 @@ extern "C" {            /* Assume C declarations for C++ */
 
 /****** Shapshot function **********************************************/
 
-#ifdef WIN32METADATA
-typedef DWORD CREATE_TOOLHELP_SNAPSHOT_FLAGS;
-#endif
-
-_Win32_SupportedOS_WindowsXP_
-_Win32_SetLastError_
 HANDLE
 WINAPI
 CreateToolhelp32Snapshot(
-    _Win32_AssociatedEnum_(CREATE_TOOLHELP_SNAPSHOT_FLAGS) DWORD dwFlags,
+    DWORD dwFlags,
     DWORD th32ProcessID
     );
 
@@ -64,16 +57,6 @@ CreateToolhelp32Snapshot(
 #define TH32CS_SNAPMODULE32 0x00000010
 #define TH32CS_SNAPALL      (TH32CS_SNAPHEAPLIST | TH32CS_SNAPPROCESS | TH32CS_SNAPTHREAD | TH32CS_SNAPMODULE)
 #define TH32CS_INHERIT      0x80000000
-
-_Win32_FlagsEnum_(CREATE_TOOLHELP_SNAPSHOT_FLAGS, DWORD,
-    TH32CS_INHERIT,
-    TH32CS_SNAPALL,
-    TH32CS_SNAPHEAPLIST,
-    TH32CS_SNAPMODULE,
-    TH32CS_SNAPMODULE32,
-    TH32CS_SNAPPROCESS,
-    TH32CS_SNAPTHREAD);
-
 //
 // Use CloseHandle to destroy the snapshot
 //
@@ -95,8 +78,6 @@ typedef HEAPLIST32 *  LPHEAPLIST32;
 #define HF32_DEFAULT      1  // process's default heap
 #define HF32_SHARED       2  // is shared heap
 
-_Win32_SupportedOS_BEGIN_(WindowsXP)
-_Win32_SetLastError_
 BOOL
 WINAPI
 Heap32ListFirst(
@@ -104,18 +85,12 @@ Heap32ListFirst(
     LPHEAPLIST32 lphl
     );
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 Heap32ListNext(
     HANDLE hSnapshot,
     LPHEAPLIST32 lphl
     );
-_Win32_SupportedOS_END_()
-
-#ifdef WIN32METADATA
-typedef DWORD HEAPENTRY32_FLAGS;
-#endif
 
 typedef struct tagHEAPENTRY32
 {
@@ -123,7 +98,7 @@ typedef struct tagHEAPENTRY32
     HANDLE hHandle;     // Handle of this heap block
     ULONG_PTR dwAddress;   // Linear address of start of block
     SIZE_T dwBlockSize; // Size of block in bytes
-    _Win32_AssociatedEnum_(HEAPENTRY32_FLAGS) DWORD  dwFlags;
+    DWORD  dwFlags;
     DWORD  dwLockCount;
     DWORD  dwResvd;
     DWORD  th32ProcessID;   // owning process
@@ -138,14 +113,6 @@ typedef HEAPENTRY32 *  LPHEAPENTRY32;
 #define LF32_FREE     0x00000002
 #define LF32_MOVEABLE 0x00000004
 
-_Win32_Enum_(HEAPENTRY32_FLAGS, DWORD,
-    LF32_FIXED,
-    LF32_FREE,
-    LF32_MOVEABLE);
-
-
-_Win32_SupportedOS_BEGIN_(WindowsXP)
-_Win32_SetLastError_
 BOOL
 WINAPI
 Heap32First(
@@ -154,7 +121,6 @@ Heap32First(
     ULONG_PTR th32HeapID
     );
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 Heap32Next(
@@ -170,7 +136,6 @@ Toolhelp32ReadProcessMemory(
     SIZE_T cbRead,
     SIZE_T* lpNumberOfBytesRead
     );
-_Win32_SupportedOS_END_()
 
 /***** Process walking *************************************************/
 
@@ -190,8 +155,6 @@ typedef struct tagPROCESSENTRY32W
 typedef PROCESSENTRY32W *  PPROCESSENTRY32W;
 typedef PROCESSENTRY32W *  LPPROCESSENTRY32W;
 
-_Win32_SupportedOS_BEGIN_(WindowsXP)
-_Win32_SetLastError_
 BOOL
 WINAPI
 Process32FirstW(
@@ -199,14 +162,12 @@ Process32FirstW(
     LPPROCESSENTRY32W lppe
     );
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 Process32NextW(
     HANDLE hSnapshot,
     LPPROCESSENTRY32W lppe
     );
-_Win32_SupportedOS_END_()
 
 typedef struct tagPROCESSENTRY32
 {
@@ -224,8 +185,6 @@ typedef struct tagPROCESSENTRY32
 typedef PROCESSENTRY32 *  PPROCESSENTRY32;
 typedef PROCESSENTRY32 *  LPPROCESSENTRY32;
 
-_Win32_SupportedOS_BEGIN_(WindowsXP)
-_Win32_SetLastError_
 BOOL
 WINAPI
 Process32First(
@@ -233,14 +192,12 @@ Process32First(
     LPPROCESSENTRY32 lppe
     );
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 Process32Next(
     HANDLE hSnapshot,
     LPPROCESSENTRY32 lppe
     );
-_Win32_SupportedOS_END_()
 
 #ifdef UNICODE
 #define Process32First Process32FirstW
@@ -265,8 +222,6 @@ typedef struct tagTHREADENTRY32
 typedef THREADENTRY32 *  PTHREADENTRY32;
 typedef THREADENTRY32 *  LPTHREADENTRY32;
 
-_Win32_SupportedOS_BEGIN_(WindowsXP)
-_Win32_SetLastError_
 BOOL
 WINAPI
 Thread32First(
@@ -274,14 +229,12 @@ Thread32First(
     LPTHREADENTRY32 lpte
     );
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 Thread32Next(
     HANDLE hSnapshot,
     LPTHREADENTRY32 lpte
     );
-_Win32_SupportedOS_END_()
 
 /***** Module walking *************************************************/
 
@@ -301,8 +254,6 @@ typedef struct tagMODULEENTRY32W
 typedef MODULEENTRY32W *  PMODULEENTRY32W;
 typedef MODULEENTRY32W *  LPMODULEENTRY32W;
 
-_Win32_SupportedOS_BEGIN_(WindowsXP)
-_Win32_SetLastError_
 BOOL
 WINAPI
 Module32FirstW(
@@ -310,14 +261,12 @@ Module32FirstW(
     LPMODULEENTRY32W lpme
     );
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 Module32NextW(
     HANDLE hSnapshot,
     LPMODULEENTRY32W lpme
     );
-_Win32_SupportedOS_END_()
 
 typedef struct tagMODULEENTRY32
 {
@@ -340,8 +289,6 @@ typedef MODULEENTRY32 *  LPMODULEENTRY32;
 // in th32ProcessID's process context.
 //
 
-_Win32_SupportedOS_BEGIN_(WindowsXP)
-_Win32_SetLastError_
 BOOL
 WINAPI
 Module32First(
@@ -349,14 +296,12 @@ Module32First(
     LPMODULEENTRY32 lpme
     );
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 Module32Next(
     HANDLE hSnapshot,
     LPMODULEENTRY32 lpme
     );
-_Win32_SupportedOS_END_()
 
 #ifdef UNICODE
 #define Module32First Module32FirstW

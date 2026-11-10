@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -101,16 +100,12 @@ enum FAXROUTE_ENABLE {
 // prototypes
 //
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxRouteInitialize(
     IN HANDLE HeapHandle,
     IN PFAX_ROUTE_CALLBACKROUTINES FaxRouteCallbackRoutines
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxRouteDeviceEnable(
     IN  LPCWSTR RoutingGuid,
@@ -118,16 +113,12 @@ FaxRouteDeviceEnable(
     IN  LONG Enabled
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxRouteDeviceChangeNotification(
     IN  DWORD DeviceId,
     IN  BOOL  NewDevice
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxRouteGetRoutingInfo(
     IN  LPCWSTR RoutingGuid,
@@ -136,8 +127,6 @@ FaxRouteGetRoutingInfo(
     OUT LPDWORD RoutingInfoSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOL WINAPI
 FaxRouteSetRoutingInfo(
     IN  LPCWSTR RoutingGuid,

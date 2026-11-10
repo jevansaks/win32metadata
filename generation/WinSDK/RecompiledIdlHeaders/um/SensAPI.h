@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -68,24 +67,18 @@ typedef struct tagQOCINFO
 
 #if !defined(__midl)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL APIENTRY
 IsDestinationReachableA(
     LPCSTR lpszDestination,
     LPQOCINFO lpQOCInfo
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL APIENTRY
 IsDestinationReachableW(
     LPCWSTR lpszDestination,
     LPQOCINFO lpQOCInfo
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL APIENTRY
 IsNetworkAlive(
     LPDWORD lpdwFlags

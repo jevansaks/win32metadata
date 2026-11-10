@@ -1,7 +1,3 @@
-#include <win32metadata_annotations.h>
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-#include <winerror.h>
-#endif
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -54,9 +50,8 @@ typedef VOID (CALLBACK *FN_PROGRESS) (
     _In_ BOOL                       SecuritySet     // Whether security was set
     );
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 SetEntriesInAclA(
     _In_ ULONG               cCountOfExplicitEntries,
@@ -64,9 +59,8 @@ SetEntriesInAclA(
     _In_opt_  PACL           OldAcl,
     _Out_ PACL              * NewAcl
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 SetEntriesInAclW(
     _In_ ULONG               cCountOfExplicitEntries,
@@ -81,18 +75,16 @@ SetEntriesInAclW(
 #endif // !UNICODE
 
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetExplicitEntriesFromAclA(
     _In_ PACL                  pacl,
     _Out_ PULONG                pcCountOfExplicitEntries,
     _Outptr_result_buffer_(*pcCountOfExplicitEntries) PEXPLICIT_ACCESS_A  * pListOfExplicitEntries
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetExplicitEntriesFromAclW(
     _In_ PACL                  pacl,
@@ -111,18 +103,16 @@ GetExplicitEntriesFromAclW(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetEffectiveRightsFromAclA(
     _In_  PACL          pacl,
     _In_  PTRUSTEE_A    pTrustee,
     _Out_ PACCESS_MASK  pAccessRights
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetEffectiveRightsFromAclW(
     _In_  PACL          pacl,
@@ -136,9 +126,8 @@ GetEffectiveRightsFromAclW(
 #endif // !UNICODE
 
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetAuditedPermissionsFromAclA(
     _In_  PACL          pacl,
@@ -146,9 +135,8 @@ GetAuditedPermissionsFromAclA(
     _Out_ PACCESS_MASK  pSuccessfulAuditedRights,
     _Out_ PACCESS_MASK  pFailedAuditRights
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetAuditedPermissionsFromAclW(
     _In_  PACL          pacl,
@@ -168,9 +156,8 @@ GetAuditedPermissionsFromAclW(
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetNamedSecurityInfoA(
     _In_  LPCSTR               pObjectName,
@@ -182,9 +169,8 @@ GetNamedSecurityInfoA(
     _Out_opt_       PACL         * ppSacl,
     _Out_ PSECURITY_DESCRIPTOR   * ppSecurityDescriptor
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetNamedSecurityInfoW(
     _In_  LPCWSTR               pObjectName,
@@ -202,9 +188,8 @@ GetNamedSecurityInfoW(
 #define GetNamedSecurityInfo  GetNamedSecurityInfoA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetSecurityInfo(
     _In_  HANDLE                 handle,
@@ -217,9 +202,8 @@ GetSecurityInfo(
     _Out_opt_ PSECURITY_DESCRIPTOR * ppSecurityDescriptor
     );
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 SetNamedSecurityInfoA(
     _In_ LPSTR               pObjectName,
@@ -230,9 +214,8 @@ SetNamedSecurityInfoA(
     _In_opt_ PACL              pDacl,
     _In_opt_ PACL              pSacl
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 SetNamedSecurityInfoW(
     _In_ LPWSTR               pObjectName,
@@ -249,9 +232,8 @@ SetNamedSecurityInfoW(
 #define SetNamedSecurityInfo  SetNamedSecurityInfoA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 SetSecurityInfo(
     _In_     HANDLE                handle,
@@ -269,9 +251,8 @@ SetSecurityInfo(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetInheritanceSourceA(
     _In_ LPSTR                  pObjectName,
@@ -285,9 +266,8 @@ GetInheritanceSourceA(
     _In_ PGENERIC_MAPPING         pGenericMapping,
     _Out_ PINHERITED_FROMA         pInheritArray
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 GetInheritanceSourceW(
     _In_ LPWSTR                  pObjectName,
@@ -307,9 +287,8 @@ GetInheritanceSourceW(
 #define GetInheritanceSource  GetInheritanceSourceA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 FreeInheritedFromArray(
     _In_reads_(AceCnt) PINHERITED_FROMW pInheritArray,
@@ -317,9 +296,8 @@ FreeInheritedFromArray(
     _In_opt_ PFN_OBJECT_MGR_FUNCTS   pfnArray OPTIONAL
     );
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 TreeResetNamedSecurityInfoA(
     _In_     LPSTR               pObjectName,
@@ -334,9 +312,8 @@ TreeResetNamedSecurityInfoA(
     _In_     PROG_INVOKE_SETTING  ProgressInvokeSetting,
     _In_opt_ PVOID                Args
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 TreeResetNamedSecurityInfoW(
     _In_     LPWSTR               pObjectName,
@@ -359,9 +336,8 @@ TreeResetNamedSecurityInfoW(
 
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_SupportedOS_WindowsVista_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 TreeSetNamedSecurityInfoA(
     _In_     LPSTR               pObjectName,
@@ -371,14 +347,13 @@ TreeSetNamedSecurityInfoA(
     _In_opt_ PSID                 pGroup,
     _In_opt_ PACL                 pDacl,
     _In_opt_ PACL                 pSacl,
-    _In_     _Win32_AssociatedEnum_(TREE_SEC_INFO) DWORD                dwAction,
+    _In_     DWORD                dwAction,
     _In_opt_ FN_PROGRESS          fnProgress,
     _In_     PROG_INVOKE_SETTING  ProgressInvokeSetting,
     _In_opt_ PVOID                Args
     );
-_Win32_SupportedOS_WindowsVista_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 TreeSetNamedSecurityInfoW(
     _In_     LPWSTR               pObjectName,
@@ -388,7 +363,7 @@ TreeSetNamedSecurityInfoW(
     _In_opt_ PSID                 pGroup,
     _In_opt_ PACL                 pDacl,
     _In_opt_ PACL                 pSacl,
-    _In_     _Win32_AssociatedEnum_(TREE_SEC_INFO) DWORD                dwAction,
+    _In_     DWORD                dwAction,
     _In_opt_ FN_PROGRESS          fnProgress,
     _In_     PROG_INVOKE_SETTING  ProgressInvokeSetting,
     _In_opt_ PVOID                Args
@@ -406,9 +381,8 @@ TreeSetNamedSecurityInfoW(
 // implement access control on their own objects.
 //----------------------------------------------------------------------------
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 BuildSecurityDescriptorA(
     _In_opt_ PTRUSTEE_A              pOwner,
@@ -421,9 +395,8 @@ BuildSecurityDescriptorA(
     _Out_ PULONG                  pSizeNewSD,
     _Outptr_result_bytebuffer_(*pSizeNewSD) PSECURITY_DESCRIPTOR  * pNewSD
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 BuildSecurityDescriptorW(
     _In_opt_ PTRUSTEE_W              pOwner,
@@ -442,9 +415,8 @@ BuildSecurityDescriptorW(
 #define BuildSecurityDescriptor  BuildSecurityDescriptorA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 LookupSecurityDescriptorPartsA(
     _Out_opt_ PTRUSTEE_A         * ppOwner,
@@ -455,9 +427,8 @@ LookupSecurityDescriptorPartsA(
     _Outptr_result_buffer_maybenull_(*pcCountOfAuditEntries) PEXPLICIT_ACCESS_A * ppListOfAuditEntries,
     _In_  PSECURITY_DESCRIPTOR pSD
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
-_Win32_AssociatedEnum_(WIN32_ERROR) DWORD
+DWORD
 WINAPI
 LookupSecurityDescriptorPartsW(
     _Out_opt_ PTRUSTEE_W         * ppOwner,
@@ -480,7 +451,6 @@ LookupSecurityDescriptorPartsW(
 // access control structures.
 //----------------------------------------------------------------------------
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -491,7 +461,6 @@ BuildExplicitAccessWithNameA(
     _In_       ACCESS_MODE         AccessMode,
     _In_       DWORD               Inheritance
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -536,7 +505,6 @@ BuildImpersonateExplicitAccessWithNameW(
 #define BuildImpersonateExplicitAccessWithName  BuildImpersonateExplicitAccessWithNameA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -544,7 +512,6 @@ BuildTrusteeWithNameA(
     _Inout_	PTRUSTEE_A  pTrustee,
     _In_opt_ LPSTR     pName
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -578,7 +545,6 @@ BuildImpersonateTrusteeW(
 #define BuildImpersonateTrustee  BuildImpersonateTrusteeA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -586,7 +552,6 @@ BuildTrusteeWithSidA(
     _Inout_ PTRUSTEE_A  pTrustee,
     _In_opt_ PSID        pSid
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -600,7 +565,6 @@ BuildTrusteeWithSidW(
 #define BuildTrusteeWithSid  BuildTrusteeWithSidA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -611,7 +575,6 @@ BuildTrusteeWithObjectsAndSidA(
     _In_opt_ GUID             * pInheritedObjectGuid,
     _In_opt_ PSID               pSid
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -628,7 +591,6 @@ BuildTrusteeWithObjectsAndSidW(
 #define BuildTrusteeWithObjectsAndSid  BuildTrusteeWithObjectsAndSidA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -640,7 +602,6 @@ BuildTrusteeWithObjectsAndNameA(
     _In_opt_ LPSTR             InheritedObjectTypeName,
     _In_opt_ LPSTR             Name
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -658,14 +619,12 @@ BuildTrusteeWithObjectsAndNameW(
 #define BuildTrusteeWithObjectsAndName  BuildTrusteeWithObjectsAndNameA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 LPSTR
 WINAPI
 GetTrusteeNameA(
     _In_ PTRUSTEE_A  pTrustee
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 LPWSTR
 WINAPI
@@ -678,14 +637,12 @@ GetTrusteeNameW(
 #define GetTrusteeName  GetTrusteeNameA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 TRUSTEE_TYPE
 WINAPI
 GetTrusteeTypeA(
     _In_opt_ PTRUSTEE_A  pTrustee
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 TRUSTEE_TYPE
 WINAPI
@@ -698,14 +655,12 @@ GetTrusteeTypeW(
 #define GetTrusteeType  GetTrusteeTypeA
 #endif // !UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 TRUSTEE_FORM
 WINAPI
 GetTrusteeFormA(
     _In_ PTRUSTEE_A  pTrustee
     );
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 TRUSTEE_FORM
 WINAPI

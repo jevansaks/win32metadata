@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -32,7 +31,6 @@ extern "C" {
 #define RpcCertGeneratePrincipalName RpcCertGeneratePrincipalNameA
 #endif /* UNICODE */
 
-_Win32_SupportedOS_Windows2000_
 RPCRTAPI
 RPC_STATUS
 RPC_ENTRY
@@ -43,7 +41,6 @@ RpcCertGeneratePrincipalNameW(
     );
 
 
-_Win32_SupportedOS_Windows2000_
 RPCRTAPI
 RPC_STATUS
 RPC_ENTRY

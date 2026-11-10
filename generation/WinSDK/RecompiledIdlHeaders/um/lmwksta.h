@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0006    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -31,7 +30,6 @@ Notes:
 #if _MSC_VER > 1000
 #pragma once
 #endif
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family or OneCore Family
@@ -54,7 +52,6 @@ extern "C" {
 // Function Prototypes
 //
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetWkstaGetInfo (
     _In_opt_ LMSTR   servername OPTIONAL,
@@ -62,7 +59,6 @@ NetWkstaGetInfo (
     _Outptr_opt_result_buffer_(_Inexpressible_("size varies with level")) OUT LPBYTE  *bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetWkstaSetInfo (
     _In_opt_  LMSTR   servername OPTIONAL,
@@ -71,7 +67,6 @@ NetWkstaSetInfo (
     _Out_opt_ OUT LPDWORD parm_err OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetWkstaUserGetInfo (
     _In_opt_ LMSTR  reserved,
@@ -79,7 +74,6 @@ NetWkstaUserGetInfo (
     _Outptr_result_buffer_(_Inexpressible_("varies")) OUT LPBYTE  *bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetWkstaUserSetInfo (
     _In_opt_  LMSTR  reserved,
@@ -88,7 +82,6 @@ NetWkstaUserSetInfo (
     _Out_opt_ LPDWORD parm_err OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetWkstaUserEnum (
     _In_opt_ LMSTR       servername OPTIONAL,
@@ -113,10 +106,9 @@ NET_API_STATUS NET_API_FUNCTION
 NetWkstaTransportDel (
     _In_opt_ IN  LMSTR   servername OPTIONAL,
     _In_opt_ IN  LMSTR   transportname,
-    _Win32_AssociatedEnum_(FORCE_LEVEL_FLAGS) IN  DWORD   ucond
+    IN  DWORD   ucond
     );
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 _Success_( return == NERR_Success || return == ERROR_MORE_DATA )
 NET_API_STATUS NET_API_FUNCTION

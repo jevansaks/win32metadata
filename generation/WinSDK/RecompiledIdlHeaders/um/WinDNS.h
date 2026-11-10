@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1996-2005  Microsoft Corporation
@@ -24,7 +23,6 @@ Revision History:
 
 #ifndef _WINDNS_INCLUDED_
 #define _WINDNS_INCLUDED_
-#include <sal.h>
 #include <winapifamily.h>
 #include <windnsdef.h>
 
@@ -414,7 +412,6 @@ DNS_CONFIG_TYPE;
 //
 #define DNS_CONFIG_FLAG_ALLOC   (0x00000001)
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsQueryConfig(
@@ -570,7 +567,6 @@ DnsRecordSetCopyEx(
 //  DnsRecordCopy API and compare copies.
 //
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 WINAPI
 DnsRecordCompare(
@@ -578,7 +574,6 @@ DnsRecordCompare(
     _In_            PDNS_RECORD     pRecord2
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 WINAPI
 DnsRecordSetCompare(
@@ -592,7 +587,6 @@ DnsRecordSetCompare(
 //  Detach next record set from record list
 //
 
-_Win32_SupportedOS_Windows2000_
 PDNS_RECORD
 DnsRecordSetDetach(
     _Inout_         PDNS_RECORD     pRecordList
@@ -768,51 +762,35 @@ DnsIsFlatRecord(
 #define DNS_QUERY_PARSE_ALL_RECORDS         0x0400000000000000
 
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(DNS_QUERY_OPTIONS, ULONG64,
-    DNS_QUERY_PARSE_ALL_RECORDS, DNS_QUERY_STANDARD, DNS_QUERY_ACCEPT_TRUNCATED_RESPONSE, DNS_QUERY_USE_TCP_ONLY,
-    DNS_QUERY_NO_RECURSION, DNS_QUERY_BYPASS_CACHE, DNS_QUERY_NO_WIRE_QUERY, DNS_QUERY_NO_LOCAL_NAME,
-    DNS_QUERY_NO_HOSTS_FILE, DNS_QUERY_NO_NETBT, DNS_QUERY_WIRE_ONLY, DNS_QUERY_RETURN_MESSAGE,
-    DNS_QUERY_MULTICAST_ONLY, DNS_QUERY_NO_MULTICAST, DNS_QUERY_TREAT_AS_FQDN, DNS_QUERY_ADDRCONFIG,
-    DNS_QUERY_DUAL_ADDR, DNS_QUERY_DONT_RESET_TTL_VALUES, DNS_QUERY_DISABLE_IDN_ENCODING, DNS_QUERY_APPEND_MULTILABEL,
-    DNS_QUERY_DNSSEC_OK, DNS_QUERY_DNSSEC_CHECKING_DISABLED, DNS_QUERY_DNSSEC_REQUIRED, DNS_QUERY_RESERVED,
-    DNS_QUERY_CACHE_ONLY);
-#endif
 
-_Win32_SupportedOS_Windows2000_
-_Win32_AssociatedEnum_(WIN32_ERROR)
 DNS_STATUS
 WINAPI
 DnsQuery_A(
     _In_                PCSTR           pszName,
-    _Win32_AssociatedEnum_(DNS_TYPE) _In_                WORD            wType,
-    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) _In_                DWORD           Options,
+    _In_                WORD            wType,
+    _In_                DWORD           Options,
     _Inout_opt_         PVOID           pExtra,
     _Outptr_result_maybenull_     PDNS_RECORD *   ppQueryResults,
     _Outptr_opt_result_maybenull_ PVOID *         pReserved
     );
 
-_Win32_SupportedOS_Windows2000_
-_Win32_AssociatedEnum_(WIN32_ERROR)
 DNS_STATUS
 WINAPI
 DnsQuery_UTF8(
     _In_                PCSTR           pszName,
-    _Win32_AssociatedEnum_(DNS_TYPE) _In_                WORD            wType,
-    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) _In_                DWORD           Options,
+    _In_                WORD            wType,
+    _In_                DWORD           Options,
     _Inout_opt_         PVOID           pExtra,
     _Outptr_result_maybenull_     PDNS_RECORD *   ppQueryResults,
     _Outptr_opt_result_maybenull_ PVOID *         pReserved
     );
 
-_Win32_SupportedOS_Windows2000_
-_Win32_AssociatedEnum_(WIN32_ERROR)
 DNS_STATUS
 WINAPI
 DnsQuery_W(
     _In_                PCWSTR          pszName,
-    _Win32_AssociatedEnum_(DNS_TYPE) _In_                WORD            wType,
-    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) _In_                DWORD           Options,
+    _In_                WORD            wType,
+    _In_                DWORD           Options,
     _Inout_opt_         PVOID           pExtra,
     _Outptr_result_maybenull_     PDNS_RECORD *   ppQueryResults,
     _Outptr_opt_result_maybenull_ PVOID *         pReserved
@@ -847,7 +825,7 @@ typedef struct _DNS_QUERY_RESULT
 {
     _In_        ULONG           Version;
     _Out_       DNS_STATUS      QueryStatus;
-    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) _Out_       ULONG64         QueryOptions;
+    _Out_       ULONG64         QueryOptions;
     _Out_       PDNS_RECORD     pQueryRecords;
     _Inout_opt_ PVOID           Reserved;
 }
@@ -907,7 +885,7 @@ typedef struct _DNS_QUERY_REQUEST
     _In_        ULONG           Version;
     _In_opt_    PCWSTR          QueryName;
     _In_        WORD            QueryType;
-    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) _In_        ULONG64         QueryOptions;
+    _In_        ULONG64         QueryOptions;
     _In_opt_    PDNS_ADDR_ARRAY pDnsServerList;
     _In_opt_    ULONG           InterfaceIndex;
     _In_opt_    PDNS_QUERY_COMPLETION_ROUTINE   pQueryCompletionCallback;
@@ -921,7 +899,6 @@ typedef struct DECLSPEC_ALIGN(8) _DNS_QUERY_CANCEL
 }
 DNS_QUERY_CANCEL, *PDNS_QUERY_CANCEL;
 
-_Win32_SupportedOS_Windows8_
 DNS_STATUS
 WINAPI
 DnsQueryEx(
@@ -930,7 +907,6 @@ DnsQueryEx(
     _Inout_opt_ PDNS_QUERY_CANCEL   pCancelHandle
     );
 
-_Win32_SupportedOS_Windows8_
 DNS_STATUS
 WINAPI
 DnsCancelQuery(
@@ -944,7 +920,7 @@ typedef struct _DNS_QUERY_REQUEST3
     ULONG           Version;
     PCWSTR          QueryName;
     WORD            QueryType;
-    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) ULONG64         QueryOptions;
+    ULONG64         QueryOptions;
     PDNS_ADDR_ARRAY pDnsServerList;
     ULONG           InterfaceIndex;
     PDNS_QUERY_COMPLETION_ROUTINE   pQueryCompletionCallback;
@@ -989,7 +965,7 @@ typedef struct _DNS_QUERY_RAW_RESULT
 {
     ULONG                                           version;
     DNS_STATUS                                      queryStatus;
-    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) ULONG64                                         queryOptions;
+    ULONG64                                         queryOptions;
     ULONG64                                         queryRawOptions;
     ULONG64                                         responseFlags;
     ULONG                                           queryRawResponseSize;
@@ -1047,7 +1023,7 @@ typedef struct _DNS_QUERY_RAW_REQUEST
     _Field_size_bytes_(dnsQueryRawSize) BYTE            *dnsQueryRaw;
     PWSTR                                               dnsQueryName;
     USHORT                                              dnsQueryType;
-    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) ULONG64                                             queryOptions;
+    ULONG64                                             queryOptions;
     ULONG                                               interfaceIndex;
     DNS_QUERY_RAW_COMPLETION_ROUTINE                    queryCompletionCallback;
     VOID                                                *queryContext;
@@ -1127,29 +1103,20 @@ DnsCancelQueryRaw(
 //  the future.
 //
 
-_Win32_SupportedOS_Windows2000_
-VOID
-WINAPI
-DnsReleaseContextHandle(
-    _In_        HANDLE          hContext
-    );
-
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsAcquireContextHandle_W(
     _In_            DWORD           CredentialFlags,
     _In_opt_        PVOID           Credentials,
-    _Outptr_ _Win32_RAIIFree_(DnsReleaseContextHandle) PHANDLE pContext
+    _Outptr_     PHANDLE         pContext
     );
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsAcquireContextHandle_A(
     _In_            DWORD           CredentialFlags,
     _In_opt_        PVOID           Credentials,
-    _Outptr_ _Win32_RAIIFree_(DnsReleaseContextHandle) PHANDLE pContext
+    _Outptr_     PHANDLE         pContext
     );
 
 #ifdef UNICODE
@@ -1158,11 +1125,16 @@ DnsAcquireContextHandle_A(
 #define DnsAcquireContextHandle DnsAcquireContextHandle_A
 #endif
 
+VOID
+WINAPI
+DnsReleaseContextHandle(
+    _In_        HANDLE          hContext
+    );
+
 //
 //  Dynamic Update API
 //
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsModifyRecordsInSet_W(
@@ -1174,7 +1146,6 @@ DnsModifyRecordsInSet_W(
     _Inout_opt_     PVOID           pReserved
     );
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsModifyRecordsInSet_A(
@@ -1186,7 +1157,6 @@ DnsModifyRecordsInSet_A(
     _Inout_opt_     PVOID           pReserved
     );
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsModifyRecordsInSet_UTF8(
@@ -1205,7 +1175,6 @@ DnsModifyRecordsInSet_UTF8(
 #endif
 
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsReplaceRecordSetW(
@@ -1216,7 +1185,6 @@ DnsReplaceRecordSetW(
     _Inout_opt_     PVOID           pReserved
     );
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsReplaceRecordSetA(
@@ -1227,7 +1195,6 @@ DnsReplaceRecordSetA(
     _Inout_opt_     PVOID           pReserved
     );
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsReplaceRecordSetUTF8(
@@ -1275,7 +1242,6 @@ DnsValidateName_A(
     _In_    DNS_NAME_FORMAT Format
     );
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 DnsValidateName_UTF8(
     _In_    PCSTR           pszName,
@@ -1306,7 +1272,6 @@ DnsValidateName_UTF8(
 // Winsock2.h must be included before windns.h to use the validate server function
 #ifdef _WS2DEF_
 
-_Win32_SupportedOS_Windows7_
 DNS_STATUS
 DnsValidateServerStatus(
     _In_        PSOCKADDR   server,
@@ -1346,7 +1311,6 @@ DnsNameCompare_W(
 //  DNS message "roll-your-own" routines
 //
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 WINAPI
 DnsWriteQuestionToBuffer_W(
@@ -1358,7 +1322,6 @@ DnsWriteQuestionToBuffer_W(
     _In_        BOOL                fRecursionDesired
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 WINAPI
 DnsWriteQuestionToBuffer_UTF8(
@@ -1370,7 +1333,6 @@ DnsWriteQuestionToBuffer_UTF8(
     _In_        BOOL                fRecursionDesired
     );
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsExtractRecordsFromMessage_W(
@@ -1379,7 +1341,6 @@ DnsExtractRecordsFromMessage_W(
     _Outptr_     PDNS_RECORD *       ppRecord
     );
 
-_Win32_SupportedOS_Windows2000_
 DNS_STATUS
 WINAPI
 DnsExtractRecordsFromMessage_UTF8(
@@ -1394,7 +1355,6 @@ DnsExtractRecordsFromMessage_UTF8(
 //  DNS name resolution policy table
 //
 
-_Win32_SupportedOS_Windows7_
 DWORD
 WINAPI
 DnsGetProxyInformation(
@@ -1405,7 +1365,6 @@ DnsGetProxyInformation(
     _In_opt_    void *                          completionContext
     );
 
-_Win32_SupportedOS_Windows7_
 VOID
 WINAPI
 DnsFreeProxyName(
@@ -1716,7 +1675,6 @@ typedef struct _DNS_SERVICE_INSTANCE
 
 #ifndef __midl
 
-_Win32_SupportedOS_10240_
 PDNS_SERVICE_INSTANCE
 WINAPI
 DnsServiceConstructInstance(
@@ -1732,14 +1690,12 @@ DnsServiceConstructInstance(
     _In_reads_(dwPropertiesCount) PCWSTR *values
     );
 
-_Win32_SupportedOS_10240_
 PDNS_SERVICE_INSTANCE
 WINAPI
 DnsServiceCopyInstance(
     _In_ PDNS_SERVICE_INSTANCE pOrig
     );
 
-_Win32_SupportedOS_10240_
 VOID
 WINAPI
 DnsServiceFreeInstance(
@@ -1792,8 +1748,6 @@ typedef struct _DNS_SERVICE_BROWSE_REQUEST
 
 #pragma warning(pop)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 DNS_STATUS
 WINAPI
 DnsServiceBrowse(
@@ -1801,8 +1755,6 @@ DnsServiceBrowse(
     _Inout_ PDNS_SERVICE_CANCEL            pCancel
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 DNS_STATUS
 WINAPI
 DnsServiceBrowseCancel(
@@ -1832,8 +1784,6 @@ typedef struct _DNS_SERVICE_RESOLVE_REQUEST{
     PVOID pQueryContext;
 } DNS_SERVICE_RESOLVE_REQUEST, *PDNS_SERVICE_RESOLVE_REQUEST;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 DNS_STATUS
 WINAPI
 DnsServiceResolve(
@@ -1841,8 +1791,6 @@ DnsServiceResolve(
     _Inout_ PDNS_SERVICE_CANCEL             pCancel
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 DNS_STATUS
 WINAPI
 DnsServiceResolveCancel(
@@ -1874,8 +1822,6 @@ typedef struct _DNS_SERVICE_REGISTER_REQUEST{
     BOOL unicastEnabled;
 } DNS_SERVICE_REGISTER_REQUEST, *PDNS_SERVICE_REGISTER_REQUEST;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 DWORD
 WINAPI
 DnsServiceRegister(
@@ -1883,8 +1829,6 @@ DnsServiceRegister(
     _Inout_opt_ PDNS_SERVICE_CANCEL             pCancel
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 DWORD
 WINAPI
 DnsServiceDeRegister(
@@ -1892,7 +1836,6 @@ DnsServiceDeRegister(
     _Inout_opt_ PDNS_SERVICE_CANCEL             pCancel
     );
 
-_Win32_SupportedOS_10240_
 DWORD
 WINAPI
 DnsServiceRegisterCancel(
@@ -1926,7 +1869,7 @@ typedef struct _MDNS_QUERY_REQUEST
     ULONG                   ulRefCount;      // Refcount for async query
     PCWSTR                  Query;
     WORD                    QueryType;
-    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) ULONG64                 QueryOptions;
+    ULONG64                 QueryOptions;
     ULONG                   InterfaceIndex;
     PMDNS_QUERY_CALLBACK    pQueryCallback;
     PVOID                   pQueryContext;
@@ -1934,15 +1877,11 @@ typedef struct _MDNS_QUERY_REQUEST
     ULONG                   ulResendCount;   // Reserved
 } MDNS_QUERY_REQUEST, *PMDNS_QUERY_REQUEST;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 DNS_STATUS WINAPI DnsStartMulticastQuery(
     _In_        PMDNS_QUERY_REQUEST pQueryRequest,
     _Inout_     PMDNS_QUERY_HANDLE pHandle
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 DNS_STATUS WINAPI DnsStopMulticastQuery(
     _Inout_     PMDNS_QUERY_HANDLE pHandle
     );

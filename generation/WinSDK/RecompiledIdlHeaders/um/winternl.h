@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /************************************************************************
 *                                                                       *
 *   winternl.h -- This module defines the internal NT APIs and data     *
@@ -242,20 +241,11 @@ VOID
     );
 
 typedef struct _PROCESS_BASIC_INFORMATION {
-#if defined(WIN32METADATA)
-    NTSTATUS ExitStatus;
-    PPEB PebBaseAddress;
-    ULONG_PTR AffinityMask;
-    KPRIORITY BasePriority;
-    ULONG_PTR UniqueProcessId;
-    ULONG_PTR InheritedFromUniqueProcessId;
-#else
     PVOID Reserved1;
     PPEB PebBaseAddress;
     PVOID Reserved2[2];
     ULONG_PTR UniqueProcessId;
     PVOID Reserved3;
-#endif
 } PROCESS_BASIC_INFORMATION;
 typedef PROCESS_BASIC_INFORMATION *PPROCESS_BASIC_INFORMATION;
 
@@ -470,7 +460,6 @@ typedef struct __PUBLIC_OBJECT_TYPE_INFORMATION {
 // use the Win32 API instead
 //     CloseHandle
 //
-_Win32_SupportedOS_Windows2000_
 __kernel_entry NTSTATUS
 NTAPI
 NtClose (
@@ -597,7 +586,6 @@ NtSetInformationKey (
 // use the Win32 API instead
 //     DeviceIoControl
 //
-_Win32_SupportedOS_Windows2000_
 __kernel_entry NTSTATUS
 NTAPI
 NtDeviceIoControlFile (
@@ -617,7 +605,6 @@ NtDeviceIoControlFile (
 // use the Win32 API instead
 //     WaitForSingleObjectEx
 //
-_Win32_SupportedOS_Windows2000_
 NTSTATUS
 NTAPI
 NtWaitForSingleObject (
@@ -642,7 +629,6 @@ RtlIsNameLegalDOS8Dot3 (
 // This function might be needed for some of the internal Windows functions,
 // defined in this header file.
 //
-_Win32_SupportedOS_WindowsXP_
 _When_(Status < 0, _Out_range_(>, 0))
 _When_(Status >= 0, _Out_range_(==, 0))
 ULONG
@@ -774,21 +760,18 @@ RtlTimeToSecondsSince1970 (
 // These APIs might be need for some of the internal Windows functions,
 // defined in this header file.
 //
-_Win32_SupportedOS_Windows2000_
 VOID
 NTAPI
 RtlFreeAnsiString (
     PANSI_STRING AnsiString
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 NTAPI
 RtlFreeUnicodeString (
     PUNICODE_STRING UnicodeString
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 NTAPI
 RtlFreeOemString(
@@ -823,7 +806,6 @@ RtlInitAnsiStringEx (
     PCSZ SourceString
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 NTAPI
 RtlInitUnicodeString (
@@ -831,7 +813,6 @@ RtlInitUnicodeString (
     PCWSTR SourceString
     );
 
-_Win32_SupportedOS_Windows2000_
 NTSTATUS
 NTAPI
 RtlAnsiStringToUnicodeString (
@@ -840,7 +821,6 @@ RtlAnsiStringToUnicodeString (
     BOOLEAN AllocateDestinationString
     );
 
-_Win32_SupportedOS_Windows2000_
 NTSTATUS
 NTAPI
 RtlUnicodeStringToAnsiString (
@@ -849,7 +829,6 @@ RtlUnicodeStringToAnsiString (
     BOOLEAN AllocateDestinationString
     );
 
-_Win32_SupportedOS_Windows2000_
 NTSTATUS
 NTAPI
 RtlUnicodeStringToOemString(
@@ -864,7 +843,6 @@ RtlUnicodeStringToOemString(
 //     set CodePage to CP_ACP
 //     set cbMultiByte to 0
 //
-_Win32_SupportedOS_Windows2000_
 NTSTATUS
 NTAPI
 RtlUnicodeToMultiByteSize(
@@ -877,7 +855,6 @@ RtlUnicodeToMultiByteSize(
 // Use the C runtime function instead
 //     strtol
 //
-_Win32_SupportedOS_Windows2000_
 NTSTATUS
 NTAPI
 RtlCharToInteger (
@@ -890,7 +867,6 @@ RtlCharToInteger (
 // use the Win32 API instead
 //     ConvertSidToStringSid
 //
-_Win32_SupportedOS_WindowsXP_
 NTSTATUS
 NTAPI
 RtlConvertSidToUnicodeString (

@@ -1,7 +1,3 @@
-#include <win32metadata_annotations.h>
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-#include <winerror.h>
-#endif
 /***************************************************
 *                                                  *
 *   Copyright (C) Microsoft. All rights reserved.  *
@@ -83,61 +79,55 @@ typedef struct PACKAGE_ID {
 
 // Identity Functions
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetCurrentPackageId(
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer
+    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetCurrentPackageFullName(
     _Inout_ UINT32* packageFullNameLength,
     _Out_writes_opt_(*packageFullNameLength) PWSTR packageFullName
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetCurrentPackageFamilyName(
     _Inout_ UINT32* packageFamilyNameLength,
     _Out_writes_opt_(*packageFamilyNameLength) PWSTR packageFamilyName
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetCurrentPackagePath(
     _Inout_ UINT32* pathLength,
     _Out_writes_opt_(*pathLength) PWSTR path
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackageId(
     _In_ HANDLE hProcess,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer
+    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackageFullName(
     _In_ HANDLE hProcess,
@@ -146,11 +136,10 @@ GetPackageFullName(
     );
 
 //TODO:8645770 Change 0x0101 to 0x0102 once THRESHOLD constants are available
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackageFullNameFromToken(
     _In_ HANDLE token,
@@ -158,10 +147,9 @@ GetPackageFullNameFromToken(
     _Out_writes_opt_(*packageFullNameLength) PWSTR packageFullName
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackageFamilyName(
     _In_ HANDLE hProcess,
@@ -170,11 +158,10 @@ GetPackageFamilyName(
     );
 
 //TODO:8645770 Change 0x0101 to 0x0102 once THRESHOLD constants are available
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackageFamilyNameFromToken(
     _In_ HANDLE token,
@@ -182,10 +169,9 @@ GetPackageFamilyNameFromToken(
     _Out_writes_opt_(*packageFamilyNameLength) PWSTR packageFamilyName
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackagePath(
     _In_ const PACKAGE_ID* packageId,
@@ -194,10 +180,9 @@ GetPackagePath(
     _Out_writes_opt_(*pathLength) PWSTR path
     );
 
-_Win32_SupportedOS_Windows81_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackagePathByFullName(
     _In_ PCWSTR packageFullName,
@@ -205,10 +190,9 @@ GetPackagePathByFullName(
     _Out_writes_opt_(*pathLength) PWSTR path
     );
 
-_Win32_SupportedOS_Windows81_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetStagedPackagePathByFullName(
     _In_ PCWSTR packageFullName,
@@ -230,10 +214,9 @@ typedef enum PackagePathType
 #endif // NTDDI_VERSION >= NTDDI_WIN10_VB
 } PackagePathType;
 
-_Win32_SupportedOS_10240_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackagePathByFullName2(
     _In_ PCWSTR packageFullName,
@@ -242,10 +225,9 @@ GetPackagePathByFullName2(
     _Out_writes_opt_(*pathLength) PWSTR path
     );
 
-_Win32_SupportedOS_10240_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetStagedPackagePathByFullName2(
     _In_ PCWSTR packageFullName,
@@ -254,23 +236,21 @@ GetStagedPackagePathByFullName2(
     _Out_writes_opt_(*pathLength) PWSTR path
     );
 
-_Win32_SupportedOS_10240_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetCurrentPackageInfo2(
     _In_ const UINT32 flags,
     _In_ PackagePathType packagePathType,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 
-_Win32_SupportedOS_10240_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetCurrentPackagePath2(
     _In_ PackagePathType packagePathType,
@@ -286,7 +266,7 @@ GetCurrentPackagePath2(
 
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetCurrentApplicationUserModelId(
     _Inout_ UINT32* applicationUserModelIdLength,
@@ -295,7 +275,7 @@ GetCurrentApplicationUserModelId(
 
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetApplicationUserModelId(
     _In_ HANDLE hProcess,
@@ -307,7 +287,7 @@ GetApplicationUserModelId(
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetApplicationUserModelIdFromToken(
     _In_ HANDLE token,
@@ -323,7 +303,7 @@ GetApplicationUserModelIdFromToken(
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 VerifyPackageFullName(
     _In_ PCWSTR packageFullName
@@ -332,7 +312,7 @@ VerifyPackageFullName(
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 VerifyPackageFamilyName(
     _In_ PCWSTR packageFamilyName
@@ -341,7 +321,7 @@ VerifyPackageFamilyName(
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 VerifyPackageId(
     _In_ const PACKAGE_ID* packageId
@@ -350,7 +330,7 @@ VerifyPackageId(
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 VerifyApplicationUserModelId(
     _In_ PCWSTR applicationUserModelId
@@ -359,7 +339,7 @@ VerifyApplicationUserModelId(
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 VerifyPackageRelativeApplicationId(
     _In_ PCWSTR packageRelativeApplicationId
@@ -369,24 +349,22 @@ VerifyPackageRelativeApplicationId(
 
 // Conversion Functions
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 PackageIdFromFullName(
     _In_ PCWSTR packageFullName,
     _In_ const UINT32 flags,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer
+    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 PackageFullNameFromId(
     _In_ const PACKAGE_ID* packageId,
@@ -394,11 +372,10 @@ PackageFullNameFromId(
     _Out_writes_opt_(*packageFullNameLength) PWSTR packageFullName
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 PackageFamilyNameFromId(
     _In_ const PACKAGE_ID* packageId,
@@ -406,11 +383,10 @@ PackageFamilyNameFromId(
     _Out_writes_opt_(*packageFamilyNameLength) PWSTR packageFamilyName
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 PackageFamilyNameFromFullName(
     _In_ PCWSTR packageFullName,
@@ -418,11 +394,10 @@ PackageFamilyNameFromFullName(
     _Out_writes_opt_(*packageFamilyNameLength) PWSTR packageFamilyName
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 PackageNameAndPublisherIdFromFamilyName(
     _In_ PCWSTR packageFamilyName,
@@ -432,11 +407,10 @@ PackageNameAndPublisherIdFromFamilyName(
     _Out_writes_opt_(*packagePublisherIdLength) PWSTR packagePublisherId
     );
 
-_Win32_SupportedOS_Windows81_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 FormatApplicationUserModelId(
     _In_ PCWSTR packageFamilyName,
@@ -445,11 +419,10 @@ FormatApplicationUserModelId(
     _Out_writes_opt_(*applicationUserModelIdLength) PWSTR applicationUserModelId
     );
 
-_Win32_SupportedOS_Windows81_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 ParseApplicationUserModelId(
     _In_ PCWSTR applicationUserModelId,
@@ -463,13 +436,12 @@ ParseApplicationUserModelId(
 
 // Lookup Functions
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
 _On_failure_(_Unchanged_(*count))
 _On_failure_(_Unchanged_(*bufferLength))
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackagesByPackageFamily(
     _In_ PCWSTR packageFamilyName,
@@ -480,13 +452,12 @@ GetPackagesByPackageFamily(
     );
 
 /* Any combination of PACKAGE_FILTER_* */
-_Win32_SupportedOS_Windows81_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
 _On_failure_(_Unchanged_(*count))
 _On_failure_(_Unchanged_(*bufferLength))
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 FindPackagesByPackageFamily(
     _In_ PCWSTR packageFamilyName,
@@ -510,11 +481,10 @@ typedef enum _PackageOrigin
     PackageOrigin_SignedSBOM        = 7
 } PackageOrigin;
 
-_Win32_SupportedOS_Windows81_
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetStagedPackageOrigin(
     _In_ PCWSTR packageFullName,
@@ -613,22 +583,20 @@ typedef struct PACKAGE_INFO {
 
 // Dependency Functions
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetCurrentPackageInfo(
     _In_ const UINT32 flags,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 OpenPackageInfoByFullName(
     _In_ PCWSTR packageFullName,
@@ -640,7 +608,7 @@ OpenPackageInfoByFullName(
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 OpenPackageInfoByFullNameForUser(
     _In_opt_ PSID userSid,
@@ -649,52 +617,48 @@ OpenPackageInfoByFullNameForUser(
     _Out_ PACKAGE_INFO_REFERENCE* packageInfoReference
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 ClosePackageInfo(
     _In_ PACKAGE_INFO_REFERENCE packageInfoReference
     );
 
-_Win32_SupportedOS_Windows8_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackageInfo(
     _In_ PACKAGE_INFO_REFERENCE packageInfoReference,
     _In_ const UINT32 flags,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 
-_Win32_SupportedOS_Windows81_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackageApplicationIds(
     _In_ PACKAGE_INFO_REFERENCE packageInfoReference,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 
 #if NTDDI_VERSION >= NTDDI_WIN10_19H1
-_Win32_SupportedOS_10240_
 WINBASEAPI
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 GetPackageInfo2(
     _In_ PACKAGE_INFO_REFERENCE packageInfoReference,
     _In_ const UINT32 flags,
     _In_ PackagePathType packagePathType,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 
@@ -1165,7 +1129,7 @@ typedef enum AppPolicyLifecycleManagement
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 AppPolicyGetLifecycleManagement(
     _In_ HANDLE processToken,
@@ -1183,7 +1147,7 @@ typedef enum AppPolicyWindowingModel
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 AppPolicyGetWindowingModel(
     _In_ HANDLE processToken,
@@ -1199,7 +1163,7 @@ typedef enum AppPolicyMediaFoundationCodecLoading
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 AppPolicyGetMediaFoundationCodecLoading(
     _In_ HANDLE processToken,
@@ -1217,7 +1181,7 @@ typedef enum AppPolicyClrCompat
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 AppPolicyGetClrCompat(
     _In_ HANDLE processToken,
@@ -1233,7 +1197,7 @@ typedef enum AppPolicyThreadInitializationType
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 AppPolicyGetThreadInitializationType(
     _In_ HANDLE processToken,
@@ -1249,7 +1213,7 @@ typedef enum AppPolicyShowDeveloperDiagnostic
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 AppPolicyGetShowDeveloperDiagnostic(
     _In_ HANDLE processToken,
@@ -1265,7 +1229,7 @@ typedef enum AppPolicyProcessTerminationMethod
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 AppPolicyGetProcessTerminationMethod(
     _In_ HANDLE processToken,
@@ -1281,7 +1245,7 @@ typedef enum AppPolicyCreateFileAccess
 WINBASEAPI
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
-_Win32_AssociatedEnum_(WIN32_ERROR) LONG
+LONG
 WINAPI
 AppPolicyGetCreateFileAccess(
     _In_ HANDLE processToken,

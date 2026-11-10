@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -16,8 +15,6 @@ Abstract:
 
 #ifndef CFAPI_H
 #define CFAPI_H
-
-#include <sal.h>
 
 #if _MSC_VER > 1000
 #pragma once
@@ -46,7 +43,7 @@ DECLARE_OPAQUE_KEY( CF_CONNECTION_KEY );
 typedef LARGE_INTEGER CF_TRANSFER_KEY;
 typedef LARGE_INTEGER CF_REQUEST_KEY;
 
-#if defined(__cplusplus) && !defined(WIN32METADATA)
+#ifdef __cplusplus
 
 #define DEFINE_USHORT_ENUM(ENUMTYPE)                                           \
   struct ENUMTYPE##_USHORT {                                                   \
@@ -135,7 +132,6 @@ typedef struct CF_PLATFORM_INFO {
     DWORD IntegrationNumber;
 } CF_PLATFORM_INFO;
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfGetPlatformInfo (
     _Out_ CF_PLATFORM_INFO *PlatformVersion
@@ -180,8 +176,8 @@ DEFINE_USHORT_ENUM( CF_HYDRATION_POLICY_MODIFIER );
 DEFINE_ENUM_FLAG_OPERATORS( CF_HYDRATION_POLICY_MODIFIER );
 
 typedef struct CF_HYDRATION_POLICY {
-    _Win32_AssociatedEnum_(CF_HYDRATION_POLICY_PRIMARY) CF_HYDRATION_POLICY_PRIMARY_USHORT Primary;
-    _Win32_AssociatedEnum_(CF_HYDRATION_POLICY_MODIFIER) CF_HYDRATION_POLICY_MODIFIER_USHORT Modifier;
+    CF_HYDRATION_POLICY_PRIMARY_USHORT Primary;
+    CF_HYDRATION_POLICY_MODIFIER_USHORT Modifier;
 } CF_HYDRATION_POLICY;
 
 typedef enum CF_POPULATION_POLICY_PRIMARY {
@@ -200,8 +196,8 @@ DEFINE_USHORT_ENUM( CF_POPULATION_POLICY_MODIFIER );
 DEFINE_ENUM_FLAG_OPERATORS( CF_POPULATION_POLICY_MODIFIER );
 
 typedef struct CF_POPULATION_POLICY {
-    _Win32_AssociatedEnum_(CF_POPULATION_POLICY_PRIMARY) CF_POPULATION_POLICY_PRIMARY_USHORT Primary;
-    _Win32_AssociatedEnum_(CF_POPULATION_POLICY_MODIFIER) CF_POPULATION_POLICY_MODIFIER_USHORT Modifier;
+    CF_POPULATION_POLICY_PRIMARY_USHORT Primary;
+    CF_POPULATION_POLICY_MODIFIER_USHORT Modifier;
 } CF_POPULATION_POLICY;
 
 typedef enum CF_PLACEHOLDER_MANAGEMENT_POLICY {
@@ -258,7 +254,6 @@ typedef struct CF_SYNC_REGISTRATION {
     GUID ProviderId;
 } CF_SYNC_REGISTRATION;
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfRegisterSyncRoot (
     _In_ LPCWSTR SyncRootPath,
@@ -267,7 +262,6 @@ CfRegisterSyncRoot (
     _In_ CF_REGISTER_FLAGS RegisterFlags
     );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfUnregisterSyncRoot (
     _In_ LPCWSTR SyncRootPath
@@ -524,30 +518,26 @@ typedef enum CF_CONNECT_FLAGS {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_CONNECT_FLAGS );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfConnectSyncRoot (
     _In_ LPCWSTR SyncRootPath,
     _In_ CONST CF_CALLBACK_REGISTRATION *CallbackTable,
     _In_opt_ LPCVOID CallbackContext,
     _In_ CF_CONNECT_FLAGS ConnectFlags,
-    _Win32_RAIIFree_Handle_(CfDisconnectSyncRoot) _Out_ CF_CONNECTION_KEY *ConnectionKey
+    _Out_ CF_CONNECTION_KEY *ConnectionKey
     );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfDisconnectSyncRoot (
     _In_ CF_CONNECTION_KEY ConnectionKey
     );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfGetTransferKey(
     _In_ HANDLE FileHandle,
     _Out_ CF_TRANSFER_KEY* TransferKey
     );
 
-_Win32_SupportedOS_16299_
 STDAPI_(VOID)
 CfReleaseTransferKey(
     _In_ HANDLE FileHandle,
@@ -710,7 +700,6 @@ typedef struct CF_OPERATION_PARAMETERS {
 
 #pragma warning( pop )
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfExecute(
     _In_ CONST CF_OPERATION_INFO *OpInfo,
@@ -718,14 +707,12 @@ CfExecute(
     );
 
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfUpdateSyncProviderStatus(
     _In_ CF_CONNECTION_KEY ConnectionKey,
     _In_ CF_SYNC_PROVIDER_STATUS ProviderStatus
     );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfQuerySyncProviderStatus(
     _In_ CF_CONNECTION_KEY ConnectionKey,
@@ -735,7 +722,6 @@ CfQuerySyncProviderStatus(
 #pragma endregion
 
 
-_Win32_SupportedOS_17134_
 STDAPI
 CfReportSyncStatus(
     _In_ LPCWSTR SyncRootPath,
@@ -756,7 +742,6 @@ typedef enum CF_CREATE_FLAGS {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_CREATE_FLAGS );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfCreatePlaceholders (
     _In_ LPCWSTR BaseDirectoryPath,
@@ -776,33 +761,28 @@ typedef enum CF_OPEN_FILE_FLAGS {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_OPEN_FILE_FLAGS );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfOpenFileWithOplock (
     _In_ LPCWSTR FilePath,
     _In_ CF_OPEN_FILE_FLAGS Flags,
-    _Win32_RAIIFree_(CfCloseHandle) _Out_ PHANDLE ProtectedHandle
+    _Out_ PHANDLE ProtectedHandle
     );
 
-_Win32_SupportedOS_16299_
 STDAPI_( BOOLEAN )
 CfReferenceProtectedHandle (
     _In_ HANDLE ProtectedHandle
     );
 
-_Win32_SupportedOS_16299_
 STDAPI_( HANDLE )
 CfGetWin32HandleFromProtectedHandle (
     _In_ HANDLE ProtectedHandle
     );
 
-_Win32_SupportedOS_16299_
 STDAPI_( VOID )
 CfReleaseProtectedHandle(
     _In_ HANDLE ProtectedHandle
     );
 
-_Win32_SupportedOS_16299_
 STDAPI_(VOID)
 CfCloseHandle(
     _In_ HANDLE FileHandle
@@ -824,7 +804,6 @@ typedef enum CF_CONVERT_FLAGS {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_CONVERT_FLAGS );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfConvertToPlaceholder (
     _In_ HANDLE FileHandle,
@@ -852,7 +831,6 @@ typedef enum CF_UPDATE_FLAGS {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_UPDATE_FLAGS );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfUpdatePlaceholder (
     _In_ HANDLE FileHandle,
@@ -872,7 +850,6 @@ typedef enum CF_REVERT_FLAGS {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_REVERT_FLAGS );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfRevertPlaceholder (
     _In_ HANDLE FileHandle,
@@ -886,7 +863,6 @@ typedef enum CF_HYDRATE_FLAGS {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_HYDRATE_FLAGS );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfHydratePlaceholder (
     _In_ HANDLE FileHandle,
@@ -929,7 +905,6 @@ typedef enum CF_SET_PIN_FLAGS {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_SET_PIN_FLAGS );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfSetPinState (
     _In_ HANDLE FileHandle,
@@ -949,7 +924,6 @@ typedef enum CF_SET_IN_SYNC_FLAGS {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_SET_IN_SYNC_FLAGS );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfSetInSyncState (
     _In_ HANDLE FileHandle,
@@ -958,14 +932,12 @@ CfSetInSyncState (
     _Inout_opt_ USN *InSyncUsn
     );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfSetCorrelationVector (
     _In_ HANDLE FileHandle,
     _In_ const PCORRELATION_VECTOR CorrelationVector
     );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfGetCorrelationVector (
     _In_ HANDLE FileHandle,
@@ -985,21 +957,18 @@ typedef enum CF_PLACEHOLDER_STATE {
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_PLACEHOLDER_STATE );
 
-_Win32_SupportedOS_16299_
 STDAPI_( CF_PLACEHOLDER_STATE )
 CfGetPlaceholderStateFromAttributeTag (
     _In_ DWORD FileAttributes,
     _In_ DWORD ReparseTag
     );
 
-_Win32_SupportedOS_16299_
 STDAPI_( CF_PLACEHOLDER_STATE )
 CfGetPlaceholderStateFromFileInfo (
     _In_ LPCVOID InfoBuffer,
     _In_ FILE_INFO_BY_HANDLE_CLASS InfoClass
     );
 
-_Win32_SupportedOS_16299_
 STDAPI_( CF_PLACEHOLDER_STATE )
 CfGetPlaceholderStateFromFindData (
     _In_ CONST WIN32_FIND_DATA *FindData
@@ -1046,7 +1015,6 @@ typedef struct CF_PLACEHOLDER_STANDARD_INFO {
 
 } CF_PLACEHOLDER_STANDARD_INFO;
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfGetPlaceholderInfo (
     _In_ HANDLE FileHandle,
@@ -1112,7 +1080,6 @@ typedef struct CF_SYNC_ROOT_STANDARD_INFO {
 } CF_SYNC_ROOT_STANDARD_INFO;
 
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfGetSyncRootInfoByPath(
     _In_ LPCWSTR FilePath,
@@ -1122,7 +1089,6 @@ CfGetSyncRootInfoByPath(
     _Out_opt_ DWORD *ReturnedLength
     );
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfGetSyncRootInfoByHandle(
     _In_ HANDLE FileHandle,
@@ -1140,7 +1106,6 @@ typedef enum CF_PLACEHOLDER_RANGE_INFO_CLASS {
 
 } CF_PLACEHOLDER_RANGE_INFO_CLASS;
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfGetPlaceholderRangeInfo (
     _In_ HANDLE FileHandle,
@@ -1175,7 +1140,6 @@ CfGetPlaceholderRangeInfoForHydration(
 
 #pragma region Progress APIs
 
-_Win32_SupportedOS_16299_
 STDAPI
 CfReportProviderProgress (
     _In_ CF_CONNECTION_KEY ConnectionKey,

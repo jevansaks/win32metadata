@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * fibersapi.h - ApiSet Contract for api-ms-win-core-fibers-l1                   *
@@ -31,8 +30,6 @@ extern "C" {
 #define FLS_OUT_OF_INDEXES ((DWORD)0xFFFFFFFF)
 #endif
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 DWORD
 WINAPI
@@ -40,8 +37,6 @@ FlsAlloc(
     _In_opt_ PFLS_CALLBACK_FUNCTION lpCallback
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 PVOID
 WINAPI
@@ -49,8 +44,6 @@ FlsGetValue(
     _In_ DWORD dwFlsIndex
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -59,8 +52,6 @@ FlsSetValue(
     _In_opt_ PVOID lpFlsData
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -78,7 +69,6 @@ FlsFree(
 
 #if (_WIN32_WINNT >= 0x0600)
 
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI

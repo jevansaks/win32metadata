@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -41,7 +40,6 @@ Compiler switches:
 #define __RPCPROXY_H_VERSION__      ( 477 )
 #endif // __RPCPROXY_H_VERSION__
 
-#include <sal.h>
 #include <winapifamily.h>
 
 #if !defined(_KRPCENV_)
@@ -287,7 +285,7 @@ typedef struct tagCStdPSFactoryBuffer
 RPCRTAPI
 void
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrProxyInitialize(
+NdrProxyInitialize(
     void *              This,
     PRPC_MESSAGE        pRpcMsg,
     PMIDL_STUB_MESSAGE  pStubMsg,
@@ -297,21 +295,21 @@ _Win32_SupportedOS_Windows2000_ NdrProxyInitialize(
 RPCRTAPI
 void
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrProxyGetBuffer(
+NdrProxyGetBuffer(
     void *              This,
     PMIDL_STUB_MESSAGE pStubMsg);
 
 RPCRTAPI
 void
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrProxySendReceive(
+NdrProxySendReceive(
     void                *This,
     MIDL_STUB_MESSAGE   *pStubMsg);
 
 RPCRTAPI
 void
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrProxyFreeBuffer(
+NdrProxyFreeBuffer(
     void                *This,
     MIDL_STUB_MESSAGE   *pStubMsg);
 
@@ -325,7 +323,7 @@ _Win32_SupportedOS_Windows2000_ NdrProxyFreeBuffer(
 RPCRTAPI
 HRESULT
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrProxyErrorHandler(
+NdrProxyErrorHandler(
     DWORD dwExceptionCode);
     
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
@@ -337,7 +335,7 @@ _Win32_SupportedOS_Windows2000_ NdrProxyErrorHandler(
 RPCRTAPI
 void
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrStubInitialize(
+NdrStubInitialize(
     PRPC_MESSAGE        pRpcMsg,
     PMIDL_STUB_MESSAGE  pStubMsg,
     PMIDL_STUB_DESC     pStubDescriptor,
@@ -359,7 +357,7 @@ NdrStubInitializePartial(
     IRpcChannelBuffer * pRpcChannelBuffer,
     ULONG       RequestedBufferSize);
 
-void __RPC_STUB _Win32_SupportedOS_Windows2000_ NdrStubForwardingFunction(
+void __RPC_STUB NdrStubForwardingFunction(
     IN  IRpcStubBuffer *    This,
     IN  IRpcChannelBuffer * pChannel,
     IN  PRPC_MESSAGE        pmsg,
@@ -374,7 +372,7 @@ void __RPC_STUB _Win32_SupportedOS_Windows2000_ NdrStubForwardingFunction(
 RPCRTAPI
 void
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrStubGetBuffer(
+NdrStubGetBuffer(
     IRpcStubBuffer *    This,
     IRpcChannelBuffer * pRpcChannelBuffer,
     PMIDL_STUB_MESSAGE  pStubMsg);
@@ -392,13 +390,13 @@ NdrStubErrorHandler(
     DWORD               dwExceptionCode);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ CStdStubBuffer_QueryInterface(
+CStdStubBuffer_QueryInterface(
     IRpcStubBuffer  *   This,
     REFIID              riid,
     void            **  ppvObject);
 
 ULONG STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ CStdStubBuffer_AddRef(
+CStdStubBuffer_AddRef(
     IRpcStubBuffer *    This);
 
 ULONG STDMETHODCALLTYPE
@@ -406,46 +404,46 @@ CStdStubBuffer_Release(
     IRpcStubBuffer *    This);
 
 ULONG STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ NdrCStdStubBuffer_Release(
+NdrCStdStubBuffer_Release(
     IRpcStubBuffer *    This,
     IPSFactoryBuffer *  pPSF);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ CStdStubBuffer_Connect(
+CStdStubBuffer_Connect(
     IRpcStubBuffer *    This,
     IUnknown *          pUnkServer);
 
 void STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ CStdStubBuffer_Disconnect(
+CStdStubBuffer_Disconnect(
     IRpcStubBuffer *    This);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ CStdStubBuffer_Invoke(
+CStdStubBuffer_Invoke(
     IRpcStubBuffer  *   This,
     RPCOLEMESSAGE   *   pRpcMsg,
     IRpcChannelBuffer * pRpcChannelBuffer);
 
 IRpcStubBuffer * STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ CStdStubBuffer_IsIIDSupported(
+CStdStubBuffer_IsIIDSupported(
     IRpcStubBuffer  *   This,
     REFIID riid);
 
 ULONG STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ CStdStubBuffer_CountRefs(
+CStdStubBuffer_CountRefs(
     IRpcStubBuffer  *   This);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ CStdStubBuffer_DebugServerQueryInterface(
+CStdStubBuffer_DebugServerQueryInterface(
     IRpcStubBuffer  *   This,
     void **ppv);
 
 void STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ CStdStubBuffer_DebugServerRelease(
+CStdStubBuffer_DebugServerRelease(
     IRpcStubBuffer  *   This,
     void *pv);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdStubBuffer2_QueryInterface(
+CStdStubBuffer2_QueryInterface(
     IRpcStubBuffer  *   This,
     REFIID              riid,
     void            **  ppvObject);
@@ -455,63 +453,63 @@ CStdStubBuffer2_Release(
     IRpcStubBuffer *This);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdStubBuffer2_Connect(
+CStdStubBuffer2_Connect(
     IRpcStubBuffer *pthis,
     IUnknown *pUnkServer);
 
 void STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdStubBuffer2_Disconnect(
+CStdStubBuffer2_Disconnect(
     IRpcStubBuffer *pthis);
 
 ULONG STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdStubBuffer2_CountRefs(
+CStdStubBuffer2_CountRefs(
     IRpcStubBuffer *pthis);
 
 ULONG STDMETHODCALLTYPE
-_Win32_SupportedOS_Windows2000_ NdrCStdStubBuffer2_Release(
+NdrCStdStubBuffer2_Release(
     IRpcStubBuffer *This,
     IPSFactoryBuffer * pPSF);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdAsyncStubBuffer_QueryInterface(
+CStdAsyncStubBuffer_QueryInterface(
     IRpcStubBuffer *pthis,
     REFIID riid,
     void **ppvObject);
 
 ULONG STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdAsyncStubBuffer_AddRef(
+CStdAsyncStubBuffer_AddRef(
     IRpcStubBuffer *pthis);
 
 ULONG STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdAsyncStubBuffer_Release(
+CStdAsyncStubBuffer_Release(
     IRpcStubBuffer *pthis);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdAsyncStubBuffer_Connect(
+CStdAsyncStubBuffer_Connect(
     IRpcStubBuffer *pthis,
     IUnknown *pUnkServer);
 
 void STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdAsyncStubBuffer_Disconnect(
+CStdAsyncStubBuffer_Disconnect(
     IRpcStubBuffer *pthis);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdAsyncStubBuffer_Invoke(
+CStdAsyncStubBuffer_Invoke(
     IRpcStubBuffer *pthis,
     RPCOLEMESSAGE *_prpcmsg,
     IRpcChannelBuffer *_pRpcChannelBuffer);
 
 ULONG STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdAsyncStubBuffer2_Release(
+CStdAsyncStubBuffer2_Release(
     IRpcStubBuffer *pthis);
 
 HRESULT STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdAsyncStubBuffer2_Connect(
+CStdAsyncStubBuffer2_Connect(
     IRpcStubBuffer *pthis,
     IUnknown *pUnkServer);
 
 void STDMETHODCALLTYPE
-_Win32_SupportedOS_10240_ CStdAsyncStubBuffer2_Disconnect(
+CStdAsyncStubBuffer2_Disconnect(
     IRpcStubBuffer *pthis);
 
 DECLSPEC_CHPE_GUEST void STDMETHODCALLTYPE ObjectStublessClient3(void);
@@ -779,7 +777,7 @@ NdrProxyForwardingFunction32(void);
 RPCRTAPI
 HRESULT
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrDllGetClassObject (
+NdrDllGetClassObject (
     IN  REFCLSID                rclsid,
     IN  REFIID                  riid,
     OUT void **                 ppv,
@@ -790,7 +788,7 @@ _Win32_SupportedOS_Windows2000_ NdrDllGetClassObject (
 RPCRTAPI
 HRESULT
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrDllCanUnloadNow(
+NdrDllCanUnloadNow(
     IN CStdPSFactoryBuffer *    pPSFactoryBuffer);
 
 // if the user specified a routine prefix, pick it up...
@@ -836,7 +834,7 @@ The following new functions were added after the Windows NT 3.5 release.
 RPCRTAPI
 HRESULT
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrDllRegisterProxy(
+NdrDllRegisterProxy(
     IN HMODULE                  hDll,
     IN const ProxyFileInfo **   pProxyFileList,
     IN const CLSID *            pclsid);
@@ -844,7 +842,7 @@ _Win32_SupportedOS_Windows2000_ NdrDllRegisterProxy(
 RPCRTAPI
 HRESULT
 RPC_ENTRY
-_Win32_SupportedOS_Windows2000_ NdrDllUnregisterProxy(
+NdrDllUnregisterProxy(
     IN HMODULE                  hDll,
     IN const ProxyFileInfo **   pProxyFileList,
     IN const CLSID *            pclsid);

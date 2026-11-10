@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * realtimeapi.h -- ApiSet Contract for api-ms-win-core-realtime-l1              *
@@ -27,8 +26,6 @@ extern "C" {
 
 #if (_WIN32_WINNT >= 0x0600)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -37,8 +34,6 @@ QueryThreadCycleTime(
     _Out_ PULONG64 CycleTime
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -47,8 +42,6 @@ QueryProcessCycleTime(
     _Out_ PULONG64 CycleTime
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -61,7 +54,6 @@ QueryIdleProcessorCycleTime(
 
 #if (_WIN32_WINNT >= 0x0601)
 
-_Win32_SupportedOS_Windows7_
 WINBASEAPI
 BOOL
 WINAPI
@@ -79,7 +71,6 @@ QueryIdleProcessorCycleTimeEx(
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_10240_
 WINBASEAPI
 VOID
 WINAPI
@@ -87,7 +78,6 @@ QueryInterruptTimePrecise(
     _Out_ PULONGLONG lpInterruptTimePrecise
     );
 
-_Win32_SupportedOS_10240_
 WINBASEAPI
 VOID
 WINAPI
@@ -95,7 +85,6 @@ QueryUnbiasedInterruptTimePrecise(
     _Out_ PULONGLONG lpUnbiasedInterruptTimePrecise
     );
 
-_Win32_SupportedOS_10240_
 WINBASEAPI
 VOID
 WINAPI
@@ -105,7 +94,6 @@ QueryInterruptTime(
 
 #if (_WIN32_WINNT >= 0x0601)
 
-_Win32_SupportedOS_Windows7_
 WINBASEAPI
 BOOL
 WINAPI
@@ -115,7 +103,6 @@ QueryUnbiasedInterruptTime(
 
 #endif // (_WIN32_WINNT >= 0x0601)
 
-_Win32_SupportedOS_15063_
 WINBASEAPI
 HRESULT
 WINAPI
@@ -123,7 +110,6 @@ QueryAuxiliaryCounterFrequency(
     _Out_ PULONGLONG lpAuxiliaryCounterFrequency
     );
 
-_Win32_SupportedOS_15063_
 WINBASEAPI
 HRESULT
 WINAPI
@@ -133,7 +119,6 @@ ConvertAuxiliaryCounterToPerformanceCounter(
     _Out_opt_ PULONGLONG lpConversionError
     );
 
-_Win32_SupportedOS_15063_
 WINBASEAPI
 HRESULT
 WINAPI

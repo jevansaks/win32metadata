@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2000 Microsoft Corporation
@@ -26,7 +25,6 @@ Revision History:
 #ifndef __AUTHZ_H__
 #define __AUTHZ_H__
 #include <winapifamily.h>
-#include <sal.h>
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -121,10 +119,6 @@ typedef struct _AUTHZ_ACCESS_REQUEST
 // Structure to return the results of the access check call.
 //
 
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long AUTHZ_GENERATE_RESULTS;
-#endif
 typedef struct _AUTHZ_ACCESS_REPLY
 {
     //
@@ -153,7 +147,7 @@ typedef struct _AUTHZ_ACCESS_REPLY
 #define AUTHZ_GENERATE_SUCCESS_AUDIT 0x1
 #define AUTHZ_GENERATE_FAILURE_AUDIT 0x2
 
-    _Win32_AssociatedEnum_(AUTHZ_GENERATE_RESULTS) _Field_size_opt_(ResultListLength) PDWORD SaclEvaluationResults;
+    _Field_size_opt_(ResultListLength) PDWORD SaclEvaluationResults;
     
     //
     // Array of results for each element of the array. This memory is allocated
@@ -163,12 +157,6 @@ typedef struct _AUTHZ_ACCESS_REPLY
     _Field_size_(ResultListLength) PDWORD Error;
 
 } AUTHZ_ACCESS_REPLY, *PAUTHZ_ACCESS_REPLY;
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(AUTHZ_GENERATE_RESULTS, unsigned long,
-    AUTHZ_GENERATE_SUCCESS_AUDIT,
-    AUTHZ_GENERATE_FAILURE_AUDIT);
-#endif
 
 //
 // Typedefs for callback functions to be provided by the resource manager.
@@ -484,7 +472,7 @@ typedef struct _AUTHZ_SECURITY_ATTRIBUTE_V1 {
                         AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE     \
                         )
 
-    _Win32_AssociatedEnum_(AUTHZ_SECURITY_ATTRIBUTE_FLAGS) ULONG   Flags;
+    ULONG   Flags;
 
     //
     //  Number of values.
@@ -503,12 +491,6 @@ typedef struct _AUTHZ_SECURITY_ATTRIBUTE_V1 {
         PAUTHZ_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE    pOctetString;
     } Values;
 } AUTHZ_SECURITY_ATTRIBUTE_V1, *PAUTHZ_SECURITY_ATTRIBUTE_V1;
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(AUTHZ_SECURITY_ATTRIBUTE_FLAGS, unsigned long,
-    AUTHZ_SECURITY_ATTRIBUTE_NON_INHERITABLE,
-    AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE);
-#endif
 
 
 //
@@ -559,18 +541,11 @@ typedef struct _AUTHZ_SECURITY_ATTRIBUTES_INFORMATION {
 
 #define AUTHZ_ACCESS_CHECK_NO_DEEP_COPY_SD 0x00000001
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(AUTHZ_ACCESS_CHECK_FLAGS, unsigned long,
-    AUTHZ_ACCESS_CHECK_NO_DEEP_COPY_SD);
-#endif
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
 AuthzAccessCheck(
-    _In_      _Win32_AssociatedEnum_(AUTHZ_ACCESS_CHECK_FLAGS) DWORD                              Flags,
+    _In_      DWORD                              Flags,
     _In_      AUTHZ_CLIENT_CONTEXT_HANDLE        hAuthzClientContext,
     _In_      PAUTHZ_ACCESS_REQUEST              pRequest,
     _In_opt_  AUTHZ_AUDIT_EVENT_HANDLE           hAuditEvent,
@@ -582,8 +557,6 @@ AuthzAccessCheck(
     _Out_opt_ PAUTHZ_ACCESS_CHECK_RESULTS_HANDLE phAccessCheckResults
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -595,8 +568,6 @@ AuthzCachedAccessCheck(
      _Inout_ PAUTHZ_ACCESS_REPLY               pReply
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -612,8 +583,6 @@ AuthzOpenObjectAudit(
     _In_     PAUTHZ_ACCESS_REPLY         pReply
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -628,19 +597,10 @@ AuthzFreeHandle(
 #define AUTHZ_RM_FLAG_NO_AUDIT 0x1
 #define AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION 0x2
 #define AUTHZ_RM_FLAG_NO_CENTRAL_ACCESS_POLICIES 0x4
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(AUTHZ_RESOURCE_MANAGER_FLAGS, unsigned long,
-    AUTHZ_RM_FLAG_NO_AUDIT,
-    AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION,
-    AUTHZ_RM_FLAG_NO_CENTRAL_ACCESS_POLICIES);
-#endif
 #define AUTHZ_VALID_RM_INIT_FLAGS (AUTHZ_RM_FLAG_NO_AUDIT | \
         AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION | \
         AUTHZ_RM_FLAG_NO_CENTRAL_ACCESS_POLICIES)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -708,21 +668,17 @@ typedef struct _AUTHZ_INIT_INFO
     PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY    pfnFreeCentralAccessPolicy;
 } AUTHZ_INIT_INFO, *PAUTHZ_INIT_INFO;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 AUTHZAPI
 BOOL
 WINAPI
 AuthzInitializeResourceManagerEx(
-    _In_opt_ _Win32_AssociatedEnum_(AUTHZ_RESOURCE_MANAGER_FLAGS) DWORD                          Flags,
+    _In_opt_ DWORD                          Flags,
     _In_opt_ PAUTHZ_INIT_INFO               pAuthzInitInfo,
     _Out_    PAUTHZ_RESOURCE_MANAGER_HANDLE phAuthzResourceManager
     );
 
 
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 AUTHZAPI
 BOOL
 WINAPI
@@ -733,8 +689,6 @@ AuthzInitializeRemoteResourceManager(
 
 #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -742,8 +696,6 @@ AuthzFreeResourceManager(
     _In_ AUTHZ_RESOURCE_MANAGER_HANDLE hAuthzResourceManager
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -757,8 +709,6 @@ AuthzInitializeContextFromToken(
     _Out_     PAUTHZ_CLIENT_CONTEXT_HANDLE  phAuthzClientContext
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -772,8 +722,6 @@ AuthzInitializeContextFromSid(
     _Out_     PAUTHZ_CLIENT_CONTEXT_HANDLE  phAuthzClientContext
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -789,8 +737,6 @@ AuthzInitializeContextFromAuthzContext(
 #if(_WIN32_WINNT >= _WIN32_WINNT_WIN8)
 
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 AUTHZAPI
 BOOL
 WINAPI
@@ -802,8 +748,6 @@ AuthzInitializeCompoundContext(
 
 #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -820,8 +764,6 @@ AuthzAddSidsToContext(
 //  API to modify security attributes in AUTHZ client context.
 //
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows7_
 AUTHZAPI
 BOOL
 WINAPI
@@ -859,8 +801,6 @@ typedef enum _AUTHZ_CONTEXT_INFORMATION_CLASS
 } AUTHZ_CONTEXT_INFORMATION_CLASS;
 
 #if(_WIN32_WINNT >= _WIN32_WINNT_WIN8)
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 AUTHZAPI
 BOOL
 WINAPI
@@ -873,8 +813,6 @@ AuthzModifyClaims(
     _In_opt_ PAUTHZ_SECURITY_ATTRIBUTES_INFORMATION pClaims
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 AUTHZAPI
 BOOL
 WINAPI
@@ -887,8 +825,6 @@ AuthzModifySids(
     _In_opt_ PTOKEN_GROUPS                          pSids
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 AUTHZAPI
 BOOL
 WINAPI
@@ -902,8 +838,6 @@ AuthzSetAppContainerInformation(
 
 #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -915,8 +849,6 @@ AuthzGetInformationFromContext(
     _Out_ PVOID                           Buffer
 );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -933,13 +865,6 @@ AuthzFreeContext(
 #define AUTHZ_NO_FAILURE_AUDIT                   0x00000002
 #define AUTHZ_NO_ALLOC_STRINGS                   0x00000004
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS, unsigned long,
-    AUTHZ_NO_SUCCESS_AUDIT,
-    AUTHZ_NO_FAILURE_AUDIT,
-    AUTHZ_NO_ALLOC_STRINGS);
-#endif
-
 #define AUTHZ_WPD_CATEGORY_FLAG                  0x00000010
 
 #define AUTHZ_VALID_OBJECT_ACCESS_AUDIT_FLAGS    (AUTHZ_NO_SUCCESS_AUDIT | \
@@ -947,13 +872,11 @@ _Win32_Enum_(AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS, unsigned long,
                                                   AUTHZ_NO_ALLOC_STRINGS | \
                                                   AUTHZ_WPD_CATEGORY_FLAG)
                              
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
 AuthzInitializeObjectAccessAuditEvent(
-    _In_    _Win32_AssociatedEnum_(AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS) DWORD                         Flags,
+    _In_    DWORD                         Flags,
     _In_    AUTHZ_AUDIT_EVENT_TYPE_HANDLE hAuditEventType,
     _In_    PWSTR                         szOperationType,
     _In_    PWSTR                         szObjectType,
@@ -964,8 +887,6 @@ AuthzInitializeObjectAccessAuditEvent(
     ...
     );
     
-_Win32_SetLastError_
-_Win32_SupportedOS_Server2003_
 AUTHZAPI
 BOOL
 WINAPI
@@ -996,8 +917,6 @@ typedef enum _AUTHZ_AUDIT_EVENT_INFORMATION_CLASS
     AuthzAuditEventInfoAdditionalInfo,
 } AUTHZ_AUDIT_EVENT_INFORMATION_CLASS;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 AUTHZAPI
 BOOL
 WINAPI
@@ -1072,8 +991,6 @@ typedef struct _AUTHZ_SOURCE_SCHEMA_REGISTRATION
 
 #define AUTHZ_FLAG_ALLOW_MULTIPLE_SOURCE_INSTANCES 0x1
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Server2003_
 AUTHZAPI
 BOOL 
 WINAPI
@@ -1082,8 +999,6 @@ AuthzInstallSecurityEventSource(
     _In_ PAUTHZ_SOURCE_SCHEMA_REGISTRATION pRegistration
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Server2003_
 AUTHZAPI
 BOOL
 WINAPI
@@ -1093,8 +1008,6 @@ AuthzUninstallSecurityEventSource(
     );
 
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Server2003_
 AUTHZAPI
 BOOL
 WINAPI
@@ -1105,8 +1018,6 @@ AuthzEnumerateSecurityEventSources(
      _Inout_ PDWORD                            pdwLength
     );
     
-_Win32_SetLastError_
-_Win32_SupportedOS_Server2003_
 AUTHZAPI
 BOOL
 WINAPI
@@ -1116,8 +1027,6 @@ AuthzRegisterSecurityEventSource(
     _Out_ PAUTHZ_SECURITY_EVENT_PROVIDER_HANDLE phEventProvider
     );
     
-_Win32_SetLastError_
-_Win32_SupportedOS_Server2003_
 AUTHZAPI
 BOOL
 WINAPI
@@ -1126,8 +1035,6 @@ AuthzUnregisterSecurityEventSource(
      _Inout_ PAUTHZ_SECURITY_EVENT_PROVIDER_HANDLE phEventProvider
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Server2003_
 AUTHZAPI
 BOOL
 WINAPI
@@ -1140,8 +1047,6 @@ AuthzReportSecurityEvent(
     ...    
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Server2003_
 AUTHZAPI
 BOOL
 WINAPI
@@ -1154,8 +1059,6 @@ AuthzReportSecurityEventFromParams(
     );
 
 #if(_WIN32_WINNT >= _WIN32_WINNT_WIN8)
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 _Success_(return != FALSE)
 AUTHZAPI
 BOOL
@@ -1166,8 +1069,6 @@ AuthzRegisterCapChangeNotification(
     _In_opt_ PVOID pCallbackContext
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 AUTHZAPI
 BOOL
 WINAPI
@@ -1175,8 +1076,6 @@ AuthzUnregisterCapChangeNotification(
     _In_ AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE hCapChangeSubscription
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows8_
 AUTHZAPI
 BOOL
 WINAPI

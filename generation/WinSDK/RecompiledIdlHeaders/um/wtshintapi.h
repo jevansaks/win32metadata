@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*********************************************************************
 *
 * HINTAPI.H
@@ -87,7 +86,6 @@ extern "C" {
 //                 The hintDataSize MUST be sizeof(RECT)
 /*------------------------------------------------------------------*/
 
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI WTSSetRenderHint(
   _Inout_  UINT64*             pRenderHintID,
   _In_     HWND  	       hwndOwner,

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /******************************************************************************
 *                                                                             *
 * ual.h - Interface for the Windows User Access Logging API                   *
@@ -34,7 +33,6 @@ typedef struct tagUAL_DATA_BLOB
     WCHAR               UserName[MAX_PATH];
 } UAL_DATA_BLOB, *PUAL_DATA_BLOB;
 
-_Win32_SupportedOS_BEGIN_(Windows8)
 HRESULT
 WINAPI
 UalStart(
@@ -56,7 +54,6 @@ UalRegisterProduct(
     _In_z_ const WCHAR* wszProductName,
     _In_z_ const WCHAR* wszRoleName,
     _In_z_ const WCHAR* wszGuid);
-_Win32_SupportedOS_END_()
 
 #endif /* NTDDI_VERSION >= NTDDI_WIN8 */
 

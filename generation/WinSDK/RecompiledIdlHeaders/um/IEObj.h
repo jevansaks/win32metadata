@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -12,7 +11,7 @@
 //----------------------------------------------------------------------------
 #ifndef _IEOBJ_
 #define _IEOBJ_
-#include <sal.h>
+
 #if _MSC_VER > 1000
 #pragma once
 #endif
@@ -36,7 +35,7 @@
 //   dwTabThreadID - ID of the tab thread
 //   dwAssociatedThreadID - ID of the thread to associate with the tab thread.
 //
-STDAPI _Win32_ImportLibrary_("Ieframe.dll") IEAssociateThreadWithTab(_In_ DWORD dwTabThreadID,
+STDAPI IEAssociateThreadWithTab(_In_ DWORD dwTabThreadID,
                                 _In_ DWORD dwAssociatedThreadID);
 
 //
@@ -47,7 +46,7 @@ STDAPI _Win32_ImportLibrary_("Ieframe.dll") IEAssociateThreadWithTab(_In_ DWORD 
 //   dwTabThreadID - ID of the tab thread
 //   dwAssociatedThreadID - ID of the thread to disassociate with the tab thread.
 //
-STDAPI _Win32_ImportLibrary_("Ieframe.dll") IEDisassociateThreadWithTab(_In_ DWORD dwTabThreadID,
+STDAPI IEDisassociateThreadWithTab(_In_ DWORD dwTabThreadID,
                                    _In_ DWORD dwAssociatedThreadID);
 
 
@@ -57,7 +56,7 @@ STDAPI _Win32_ImportLibrary_("Ieframe.dll") IEDisassociateThreadWithTab(_In_ DWO
 // TRUE- InPrivate Browsing is enabled.
 // FALSE - InPrivate Browsing is not enabled.
 //
-_Win32_ImportLibrary_("Ieframe.dll") BOOL IEIsInPrivateBrowsing();
+BOOL IEIsInPrivateBrowsing();
 
 // This method returns Internet Explorer's InPrivate Blocking status.
 //
@@ -65,7 +64,7 @@ _Win32_ImportLibrary_("Ieframe.dll") BOOL IEIsInPrivateBrowsing();
 // TRUE- InPrivate Blocking is enabled.
 // FALSE - InPrivate Blocking is not enabled.
 //
-_Win32_ImportLibrary_("Ieframe.dll") BOOL IEInPrivateFilteringEnabled();
+BOOL IEInPrivateFilteringEnabled();
 
 // This method returns Internet Explorer's Tracking Protection status.
 //
@@ -73,7 +72,7 @@ _Win32_ImportLibrary_("Ieframe.dll") BOOL IEInPrivateFilteringEnabled();
 // TRUE- Tracking Protection is enabled.
 // FALSE - Tracking Protection is not enabled.
 //
-_Win32_ImportLibrary_("Ieframe.dll") BOOL IETrackingProtectionEnabled();
+BOOL IETrackingProtectionEnabled();
 
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */

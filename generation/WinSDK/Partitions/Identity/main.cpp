@@ -25,6 +25,7 @@ extern "C" {
 #include <tokenbinding.h>
 #include <security.h>
 #include <slpublic.h>
+#include <issper16.h>
 #include <ccgplugins.h>
 #include <schnlsp.h>
 #include <slerror.h>

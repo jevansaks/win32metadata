@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 // Copyright (c) 1990-1999  Microsoft Corporation
 #ifndef _MADCAPCL_H_
 #define _MADCAPCL_H_
@@ -206,28 +205,24 @@ Members:
 
 --*/
 
-_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 McastApiStartup(
     IN  OUT  PDWORD   Version
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 APIENTRY
 McastApiCleanup(
     VOID
     );
 
-_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 McastGenUID(
     IN OUT LPMCAST_CLIENT_UID    pRequestID
     );
 
-_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 McastEnumerateScopes(
@@ -238,7 +233,6 @@ McastEnumerateScopes(
     OUT    PDWORD               pScopeCount
     );
 
-_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 McastRequestAddress(
@@ -249,7 +243,6 @@ McastRequestAddress(
     IN OUT PMCAST_LEASE_RESPONSE    pAddrResponse
     );
 
-_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 McastRenewAddress(
@@ -259,7 +252,6 @@ McastRenewAddress(
     IN OUT PMCAST_LEASE_RESPONSE    pRenewResponse
     );
 
-_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 McastReleaseAddress(

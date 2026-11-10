@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation
@@ -39,12 +38,6 @@ typedef VOID (WINAPI *SW_DEVICE_CREATE_CALLBACK)(
     _In_opt_ PVOID pContext,
     _In_opt_ PCWSTR pszDeviceInstanceId);
 
-_Win32_SupportedOS_Windows8_
-VOID WINAPI
-SwDeviceClose(
-    _In_ HSWDEVICE hSwDevice);
-
-_Win32_SupportedOS_Windows8_
 _Check_return_ HRESULT WINAPI
 SwDeviceCreate(
     _In_ PCWSTR pszEnumeratorName,
@@ -54,17 +47,19 @@ SwDeviceCreate(
     _In_reads_opt_(cPropertyCount) const DEVPROPERTY *pProperties,
     _In_ SW_DEVICE_CREATE_CALLBACK pCallback,
     _In_opt_ PVOID pContext,
-    _Out_ _Win32_RAIIFree_(SwDeviceClose, -1, 0) PHSWDEVICE phSwDevice);
+    _Out_ PHSWDEVICE phSwDevice);
+
+VOID WINAPI
+SwDeviceClose(
+    _In_ HSWDEVICE hSwDevice);
 
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
 
-_Win32_SupportedOS_Windows81_
 _Check_return_ HRESULT WINAPI
 SwDeviceSetLifetime(
     _In_ HSWDEVICE hSwDevice,
     _In_ SW_DEVICE_LIFETIME Lifetime);
 
-_Win32_SupportedOS_Windows81_
 _Check_return_ HRESULT WINAPI
 SwDeviceGetLifetime(
     _In_ HSWDEVICE hSwDevice,
@@ -72,14 +67,12 @@ SwDeviceGetLifetime(
 
 #endif
 
-_Win32_SupportedOS_Windows8_
 _Check_return_ HRESULT WINAPI
 SwDevicePropertySet(
     _In_ HSWDEVICE hSwDevice,
     _In_ ULONG cPropertyCount,
     _In_reads_(cPropertyCount) const DEVPROPERTY *pProperties);
 
-_Win32_SupportedOS_Windows8_
 _Check_return_ HRESULT WINAPI
 SwDeviceInterfaceRegister(
     _In_ HSWDEVICE hSwDevice,
@@ -90,19 +83,16 @@ SwDeviceInterfaceRegister(
     _In_ BOOL fEnabled,
     _Outptr_result_maybenull_ PWSTR* ppszDeviceInterfaceId);
 
-_Win32_SupportedOS_Windows8_
 VOID WINAPI
 SwMemFree(
     _In_ PVOID pMem);
 
-_Win32_SupportedOS_Windows8_
 _Check_return_ HRESULT WINAPI
 SwDeviceInterfaceSetState(
     _In_ HSWDEVICE hSwDevice,
     _In_ PCWSTR pszDeviceInterfaceId,
     _In_ BOOL fEnabled);
 
-_Win32_SupportedOS_Windows8_
 _Check_return_ HRESULT WINAPI
 SwDeviceInterfacePropertySet(
     _In_ HSWDEVICE hSwDevice,

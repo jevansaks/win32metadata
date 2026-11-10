@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2004  Microsoft Corporation
@@ -48,7 +47,6 @@ Return Value:
 
 --*/
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 AuxUlibInitialize (
@@ -84,7 +82,6 @@ Return Value:
 
 --*/
 
-_Win32_SetLastError_
 BOOL 
 WINAPI
 AuxUlibSetSystemFileCacheSize (
@@ -134,7 +131,6 @@ Return Value:
 
 --*/
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 AuxUlibIsDLLSynchronizationHeld (

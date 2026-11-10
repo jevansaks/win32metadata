@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation
@@ -80,8 +79,6 @@ Return Value:
 --*/
 
 // ANSI version
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 HINSTANCE __stdcall LoadMUILibraryA(
     _In_ PCSTR pszFullModuleName,
     _In_ DWORD dwLangConvention,
@@ -89,8 +86,6 @@ HINSTANCE __stdcall LoadMUILibraryA(
     );
 
 // Wide char version
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 HINSTANCE __stdcall LoadMUILibraryW(
     _In_ PCWSTR pszFullModuleName,
     _In_ DWORD dwLangConvention,
@@ -127,8 +122,6 @@ Return Value:
     information, call GetLastError.
 
 --*/
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 BOOL __stdcall FreeMUILibrary(
     _In_ HMODULE hResModule
     );
@@ -167,8 +160,6 @@ Return Value:
     To get extended error information, call GetLastError.
 
 --*/
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows7_
 BOOL __stdcall GetUILanguageFallbackList(
     _Out_writes_opt_(cchFallbackList)   PWSTR       pFallbackList,
     _In_                                ULONG       cchFallbackList,

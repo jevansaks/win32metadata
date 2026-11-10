@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -8,7 +7,6 @@
 
 #pragma once
 
-#include <sal.h>
 #include <cor.h>
 #include <activation.h>
 #include <hstring.h>
@@ -42,7 +40,7 @@ typedef __x_ABI_CWindows_CStorage_CStreams_CIPropertySetSerializer __IPropertySe
 
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
-_Check_return_ extern "C" HRESULT WINAPI _Win32_SupportedOS_Windows8_ RoGetMetaDataFile(
+_Check_return_ extern "C" HRESULT WINAPI RoGetMetaDataFile(
     _In_ const HSTRING name,
     _In_opt_ IMetaDataDispenserEx *metaDataDispenser,
     _Out_opt_ HSTRING *metaDataFilePath,
@@ -52,12 +50,12 @@ _Check_return_ extern "C" HRESULT WINAPI _Win32_SupportedOS_Windows8_ RoGetMetaD
 _When_(return == S_OK, _At_(typeNameParts, _Outptr_result_buffer_(*partsCount)))
 _When_(return != S_OK, _At_(typeNameParts, _Outptr_))
 _Success_(return == S_OK)
-_Check_return_  extern "C" HRESULT WINAPI _Win32_SupportedOS_Windows8_ RoParseTypeName(
+_Check_return_  extern "C" HRESULT WINAPI RoParseTypeName(
     _In_ HSTRING typeName,
     _Out_ DWORD *partsCount,
     _Out_writes_(*partsCount) HSTRING **typeNameParts);
 
-_Check_return_ extern "C" HRESULT WINAPI _Win32_SupportedOS_Windows8_ RoResolveNamespace(
+_Check_return_ extern "C" HRESULT WINAPI RoResolveNamespace(
     _In_opt_ const HSTRING name,
     _In_opt_ const HSTRING windowsMetaDataDir,
     _In_ const DWORD packageGraphDirsCount,
@@ -69,13 +67,13 @@ _Check_return_ extern "C" HRESULT WINAPI _Win32_SupportedOS_Windows8_ RoResolveN
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WIN10_RS5)
-_Check_return_ STDAPI _Win32_SupportedOS_10240_ RoIsApiContractPresent(
+_Check_return_ STDAPI RoIsApiContractPresent(
     _In_ PCWSTR name,
     _In_ UINT16 majorVersion,
     _In_ UINT16 minorVersion,
     _Out_ BOOL* present);
 
-_Check_return_ STDAPI _Win32_SupportedOS_10240_ RoIsApiContractMajorVersionPresent(
+_Check_return_ STDAPI RoIsApiContractMajorVersionPresent(
     _In_ PCWSTR name,
     _In_ UINT16 majorVersion,
     _Out_ BOOL* present);

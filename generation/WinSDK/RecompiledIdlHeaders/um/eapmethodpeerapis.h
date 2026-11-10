@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Copyright (c) Microsoft Corporation
@@ -219,7 +218,6 @@ extern "C"
     //
     // If any other APIs in this file returns EAP_ERROR, use this
     // function to free the memory allocated for it
-    _Win32_SupportedOS_WindowsVista_
     VOID WINAPI EapPeerFreeErrorMemory(_In_ EAP_ERROR* pEapError);
 
     // This function should be an exported function from the DLL
@@ -232,7 +230,6 @@ extern "C"
     //
     // - pEapInfo:
     //   returns all the information related for pEapType.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerGetInfo(_In_ EAP_TYPE* pEapType, _Out_ EAP_PEER_METHOD_ROUTINES* pEapInfo, _Out_opt_ EAP_ERROR** ppEapError);
 
     // This is the first function that EAPHost should call on this method.
@@ -240,7 +237,6 @@ extern "C"
     // which can be called at any time.
     // This function should be called only once and it should initialize
     // everything needed for this method work properly.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerInitialize(_Outptr_ EAP_ERROR** ppEapError);
 
     // EAPHost will call this function, and it would return user data
@@ -287,7 +283,6 @@ extern "C"
     // - ppwszIdentity:
     //   returned user identity. It will be included in the identity response packet
     //   and returned to the server.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerGetIdentity(
         _In_ DWORD dwFlags,
         _In_ DWORD dwSizeofConnectionData,
@@ -335,7 +330,6 @@ extern "C"
     //   being called, *pSessionHandle will be passed as the session handle.
     //   The method should be able to use this to find the information related
     //   the authentication session.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerBeginSession(
         _In_ DWORD dwFlags,
         _In_ const EapAttributes* const pAttributeArray,
@@ -351,7 +345,6 @@ extern "C"
     // A method exports either EapPeerGetIdentity (and EapPeerInvokeIdentityUI) or
     // exports EapPeerSetCredentials (and sets the InvokeUserNameDlg regkey). The
     // registry key controls which of the two apis will get called.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerSetCredentials(EAP_SESSION_HANDLE sessionHandle, LPWSTR pwszIdentity, LPWSTR pwszPassword, _Outptr_ EAP_ERROR** ppEapError);
 
     // EAPHost will pass the packet to the method for processing.
@@ -367,7 +360,6 @@ extern "C"
     //
     // - pEapOutput:
     //   the method should fill this struct to tell the supplicant what to do.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerProcessRequestPacket(
         _In_ EAP_SESSION_HANDLE sessionHandle,
         _In_ DWORD cbReceivedPacket,
@@ -386,7 +378,6 @@ extern "C"
     //
     // - pSendPacket:
     //   pointer to a buffer that contains the packet to send upon return
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerGetResponsePacket(
         _In_ EAP_SESSION_HANDLE sessionHandle,
         _Inout_ _Pre_satisfies_(*pcbSendPacket >= sizeof(EapPacket)) DWORD* pcbSendPacket,
@@ -405,7 +396,6 @@ extern "C"
     // - ppResult:
     //   Method should fill this struct with related information as defined
     //   by EapPeerMethodResult
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerGetResult(
         _In_ EAP_SESSION_HANDLE sessionHandle,
         _In_ EapPeerMethodResultReason reason,
@@ -425,7 +415,6 @@ extern "C"
     // - ppUIContextData:
     //   It will be passed to EapPeerInvokeInteractiveUI() as _In_ parameter
     //   pUIContextData
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerGetUIContext(
         _In_ EAP_SESSION_HANDLE sessionHandle,
         _Out_ DWORD* pdwSizeOfUIContextData,
@@ -447,7 +436,6 @@ extern "C"
     //
     // - pEapOutput:
     //   the method should fill this struct to tell the supplicant what to do.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerSetUIContext(
         _In_ EAP_SESSION_HANDLE sessionHandle,
         _In_ DWORD dwSizeOfUIContextData,
@@ -466,7 +454,6 @@ extern "C"
     //
     // - pAttributes:
     //   method should fill this with the attributes it need to return.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerGetResponseAttributes(_In_ EAP_SESSION_HANDLE sessionHandle, _Out_ EapAttributes* pAttribs, _Outptr_ EAP_ERROR** ppEapError);
 
     // See EapPeerGetResponseAttributes() for when this function will be called.
@@ -479,7 +466,6 @@ extern "C"
     //
     // - pEapOutput:
     //   the method should fill this struct to tell the supplicant what to do.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerSetResponseAttributes(
         _In_ EAP_SESSION_HANDLE sessionHandle, _In_ EapAttributes* pAttribs, _Out_ EapPeerMethodOutput* pEapOutput, _Outptr_ EAP_ERROR** ppEapError);
 
@@ -487,7 +473,6 @@ extern "C"
     // - sessionHandle:
     //   the value returned through *pSessionHandle from EapPeerBeginSession()
     //
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerEndSession(_In_ EAP_SESSION_HANDLE sessionHandle, _Outptr_ EAP_ERROR** ppEapError);
 
     // This is the last function that EAPHost should call on this method.
@@ -495,7 +480,6 @@ extern "C"
     // which can be called at any time.
     // This function should be called only once and it should un-initialize
     // everything for this method.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerShutdown(_Outptr_ EAP_ERROR** ppEapError);
 
     // It should raise a configuration UI so that the user can configure the method
@@ -524,7 +508,6 @@ extern "C"
     // - ppConnectionDataOut:
     //   *ppConnectionDataOut is configuration data returned from this functioin.
     //   It will be used to pass to next EapPeerInvokeConfigUI() call.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerInvokeConfigUI(
         _In_ EAP_METHOD_TYPE* pEapType,
         _In_ HWND hwndParent,
@@ -559,7 +542,6 @@ extern "C"
     // - pEapError
     //   Pointer to pointer to EAP_ERROR that will be filled by the Method in the case of error. In some cases
     //  the structure might not be filled.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerInvokeInteractiveUI(
         _In_ EAP_METHOD_TYPE* pEapType,
         _In_ HWND hwndParent,
@@ -600,7 +582,6 @@ extern "C"
     // - pEapError
     //   Pointer to pointer to EAP_ERROR that will be filled by the Method in the case of error. In some cases
     //  the structure might not be filled.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerInvokeIdentityUI(
         _In_ EAP_METHOD_TYPE* pEapType,
         _In_ DWORD dwFlags,
@@ -643,7 +624,6 @@ extern "C"
     // - pEapError
     //   Pointer to pointer to EAP_ERROR that will be filled by the Method in the case of error. In some cases
     //  the structure might not be filled.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerQueryCredentialInputFields(
         _In_ HANDLE hUserImpersonationToken,
         _In_ EAP_METHOD_TYPE eapMethodType,
@@ -688,7 +668,6 @@ extern "C"
     // - pEapError
     //   Pointer to pointer to EAP_ERROR that will be filled by the Method in the case of error. In some cases
     //  the structure might not be filled.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerQueryUserBlobFromCredentialInputFields(
         _In_ HANDLE hUserImpersonationToken,
         _In_ EAP_METHOD_TYPE eapMethodType,
@@ -707,7 +686,6 @@ extern "C"
     // This function returns fields to be displayed during interactive time when alternative UI is used.
     // Method should not bring up UI in this function.
     //
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerQueryInteractiveUIInputFields(
         // API's version number for ease of interoperability. It must be 0.
         _In_ DWORD dwVersion,
@@ -727,7 +705,6 @@ extern "C"
 
     // This function returns interactive UI blob from the UI fields filled by the user
     //
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerQueryUIBlobFromInteractiveUIInputFields(
         // API's version number for ease of interoperability. It must be 0.
         _In_ DWORD dwVersion,
@@ -774,7 +751,6 @@ extern "C"
     // - pEapError
     //   Pointer to pointer to EAP_ERROR that will be filled by the Method in the case of error. In some cases
     //  the structure might not be filled.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerConfigXml2Blob(
         _In_ DWORD dwFlags,
         _In_ EAP_METHOD_TYPE eapMethodType,
@@ -811,7 +787,6 @@ extern "C"
     // - pEapError
     //   Pointer to pointer to EAP_ERROR that will be filled by the Method in the case of error. In some cases
     //  the structure might not be filled.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerCredentialsXml2Blob(
         _In_ DWORD dwFlags,
         _In_ EAP_METHOD_TYPE eapMethodType,
@@ -845,7 +820,6 @@ extern "C"
     // - pEapError
     //   Pointer to pointer to EAP_ERROR that will be filled by the Method in the case of error. In some cases
     //  the structure might not be filled.
-    _Win32_SupportedOS_WindowsVista_
     DWORD WINAPI EapPeerConfigBlob2Xml(
         _In_ DWORD dwFlags,
         _In_ EAP_METHOD_TYPE eapMethodType,
@@ -889,7 +863,6 @@ extern "C"
     // - ppEapError
     //   A pointer to a pointer to an EAP_ERROR structure that contains any errors raised by
     //   EAPHost during the execution of this function call.
-    _Win32_SupportedOS_Windows7_
     DWORD WINAPI EapPeerGetMethodProperties(
         _In_ DWORD dwVersion,
         _In_ DWORD dwFlags,
@@ -938,7 +911,6 @@ extern "C"
     //   A pointer to the address of an EAP_ERROR structure that contains any
     //   errors raised during the execution of this function call. After consuming
     //   the error data this memory will be freed by calling EapPeerFreeErrorMemory
-    _Win32_SupportedOS_Windows8_
     DWORD WINAPI EapPeerGetConfigBlobAndUserBlob(
         _In_ DWORD dwFlags,
         _In_ EAP_METHOD_TYPE eapMethodType,
@@ -956,7 +928,6 @@ extern "C"
     // - pUIContextData:
     //   Any memory returned by configuration APIs.
     //
-    _Win32_SupportedOS_WindowsVista_
     VOID WINAPI EapPeerFreeMemory(_In_ void* pUIContextData);
 
 #ifdef __cplusplus

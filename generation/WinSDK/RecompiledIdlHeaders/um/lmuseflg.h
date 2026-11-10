@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -49,13 +48,5 @@ Revision History:
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
 #pragma endregion
-
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#include <sal.h>
-_Win32_Enum_(FORCE_LEVEL_FLAGS, unsigned long,
-    USE_NOFORCE,
-    USE_FORCE,
-    USE_LOTS_OF_FORCE);
-#endif
 
 #endif // _LMUSEFLG_

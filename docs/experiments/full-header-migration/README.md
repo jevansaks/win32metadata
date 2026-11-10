@@ -1,5 +1,11 @@
 # Full SDK header migration experiment
 
+> This is the historical diagnostic report for frozen commit
+> `88991baf654ff0d89855a7005873addd92a76859`. The subsequent
+> [working-first recovery](RECOVERY.md) restores conservative sidecars and
+> qualified header inputs and produces a new WinMD. The findings below remain
+> evidence for incremental migration, not the current generation status.
+
 **Result: the broad migration is ported, but production scraping is blocked.
 There is no fresh full candidate winmd and no equivalence claim.** Independent
 SDK slices expose additional policy boundaries and two surviving native-MIDL

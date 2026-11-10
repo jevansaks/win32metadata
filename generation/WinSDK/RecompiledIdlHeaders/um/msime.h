@@ -1,5 +1,3 @@
-#include <win32metadata_annotations.h>
-#include <sal.h>
 /*----------------------------------------------------------------------------
     %%File: MSIME.H
 
@@ -765,7 +763,7 @@ DECLARE_INTERFACE_(IFEDictionary, IUnknown)
     STDMETHOD(SetHeader)    (THIS_
                             IMESHF *pshf                //(in) dictionary header
                             ) PURE;
-    _Win32_PreserveResult_ STDMETHOD(ExistWord)    (THIS_
+    STDMETHOD(ExistWord)    (THIS_
                             IMEWRD *pwrd                //(in) word to check
                             ) PURE;
     STDMETHOD(ExistDependency) (THIS_

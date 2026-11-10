@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -46,7 +45,6 @@ extern "C" {
 // Function Prototypes - Statistics
 //
 
-_Win32_SupportedOS_WindowsXP_
 NET_API_STATUS NET_API_FUNCTION
 NetStatisticsGet (
     _In_        LPTSTR  ServerName,

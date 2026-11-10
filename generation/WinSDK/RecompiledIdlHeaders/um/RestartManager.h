@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 ////////////////////////////////////////////////////////////////////////
 //
 //  RestartManager.h --  Header for RestartManager API
@@ -96,7 +95,7 @@ typedef struct _RM_PROCESS_INFO{
     WCHAR strServiceShortName[CCH_RM_MAX_SVC_NAME+1];   // Service short name,
                                                         // if applicable
     RM_APP_TYPE ApplicationType;    // Application type
-    _Win32_AssociatedEnum_(RM_APP_STATUS) ULONG AppStatus;                // Bit mask of application status
+    ULONG AppStatus;                // Bit mask of application status
     DWORD TSSessionId;              // Terminal Service session ID of 
                                     // process (-1 if n/a)
     BOOL bRestartable;              // Is application restartable?
@@ -148,8 +147,6 @@ typedef void (*RM_WRITE_STATUS_CALLBACK)( _In_ UINT nPercentComplete );
 //            Read/write operation failed.
 //        ERROR_OUTOFMEMORY
 //            Could not allocate memory or instantiate class object.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmStartSession(
     _Out_ DWORD *pSessionHandle,
@@ -167,8 +164,6 @@ RmStartSession(
 //            Read/write operation failed.
 //        ERROR_OUTOFMEMORY
 //            Could not allocate memory or instantiate class object.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmJoinSession(
     _Out_ DWORD *pSessionHandle,
@@ -187,8 +182,6 @@ RmJoinSession(
 //            Could not allocate memory or instantiate class object.
 //        ERROR_INVALID_HANDLE
 //            No session exists for the supplied handle.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmEndSession( _In_ DWORD dwSessionHandle );
 
@@ -210,8 +203,6 @@ RmEndSession( _In_ DWORD dwSessionHandle );
 //            Could not allocate memory or instantiate class object.
 //        ERROR_INVALID_HANDLE
 //            No session exists for the supplied handle.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmRegisterResources(
     _In_ DWORD dwSessionHandle,
@@ -245,8 +236,6 @@ RmRegisterResources(
 //            Could not allocate memory or instantiate class object.
 //        ERROR_INVALID_HANDLE
 //            No session exists for the supplied handle.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmGetList(
     _In_ DWORD dwSessionHandle,
@@ -275,8 +264,6 @@ RmGetList(
 //            Could not allocate memory or instantiate class object.
 //        ERROR_INVALID_HANDLE
 //            No session exists for the supplied handle.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmShutdown(
     _In_ DWORD dwSessionHandle,
@@ -304,8 +291,6 @@ RmShutdown(
 //            Could not allocate memory or instantiate class object.
 //        ERROR_INVALID_HANDLE
 //            No session exists for the supplied handle.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmRestart(
         _In_ DWORD dwSessionHandle,
@@ -322,8 +307,6 @@ RmRestart(
 //            Could not allocate memory or instantiate class object.
 //        ERROR_INVALID_HANDLE
 //            No session exists for the supplied handle.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmCancelCurrentTask(
         _In_ DWORD dwSessionHandle);
@@ -337,8 +320,6 @@ RmCancelCurrentTask(
 //            An invalid argument was supplied to the function.
 //        ERROR_INVALID_HANDLE
 //            No session exists for the supplied handle.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmAddFilter(
         _In_ DWORD dwSessionHandle,
@@ -357,8 +338,6 @@ RmAddFilter(
 //            An invalid argument was supplied to the function.
 //        ERROR_INVALID_HANDLE
 //            No session exists for the supplied handle.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmRemoveFilter(
         _In_ DWORD dwSessionHandle,
@@ -374,15 +353,12 @@ RmRemoveFilter(
 //            An invalid argument was supplied to the function.
 //        ERROR_INVALID_HANDLE
 //            No session exists for the supplied handle.
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 RmGetFilterList(
         _In_ DWORD dwSessionHandle,
         _Out_writes_bytes_opt_(cbFilterBuf) PBYTE pbFilterBuf,
         _In_ DWORD cbFilterBuf,
         _Out_ LPDWORD cbFilterBufNeeded );
-
 
 #ifdef __cplusplus
 }

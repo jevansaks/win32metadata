@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: AMVideo.h
 //
@@ -57,9 +56,6 @@ typedef LONGLONG REFERENCE_TIME;
 #undef INTERFACE
 #define INTERFACE IDirectDrawVideo
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows2000_ struct IDirectDrawVideo IDirectDrawVideo;
-#endif
 DECLARE_INTERFACE_(IDirectDrawVideo, IUnknown)
 {
     // IUnknown methods
@@ -93,9 +89,6 @@ DECLARE_INTERFACE_(IDirectDrawVideo, IUnknown)
 #undef INTERFACE
 #define INTERFACE IQualProp
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows2000_ struct IQualProp IQualProp;
-#endif
 DECLARE_INTERFACE_(IQualProp, IUnknown)
 {
     // IUnknown methods
@@ -176,9 +169,6 @@ DECLARE_INTERFACE_(IFullScreenVideo, IUnknown)
 #undef INTERFACE
 #define INTERFACE IFullScreenVideoEx
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows2000_ struct IFullScreenVideoEx IFullScreenVideoEx;
-#endif
 DECLARE_INTERFACE_(IFullScreenVideoEx, IFullScreenVideo)
 {
     // IUnknown methods

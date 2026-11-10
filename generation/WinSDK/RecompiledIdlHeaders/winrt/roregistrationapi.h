@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*****************************************************************************
  **                                                                         **
  ** RoRegistrationApi.h - Header for Windows Runtime catalog registrations. **
@@ -9,8 +8,6 @@
 
 #ifndef __ROREGISTRATIONAPI_H_
 #define __ROREGISTRATIONAPI_H_
-
-#include <sal.h>
 
 #ifdef _MSC_VER
 #pragma once
@@ -55,7 +52,7 @@ typedef __x_ABI_CWindows_CFoundation_CIActivatableClassRegistration *PActivatabl
 extern "C" {
 #endif
 
-_Win32_SupportedOS_Windows8_ ROAPI
+ROAPI
 _Check_return_
 HRESULT
 WINAPI
@@ -64,7 +61,7 @@ RoGetActivatableClassRegistration(
     _COM_Outptr_ PActivatableClassRegistration* activatableClassRegistration
     );
 
-_Win32_SupportedOS_Windows8_ ROAPI
+ROAPI
 _On_failure_(_At_(*activatableClassIds, _Post_ _Null_))
 _Check_return_
 HRESULT

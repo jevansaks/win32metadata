@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /**************************************************************************\
 *
 * Copyright (c) 1998-2001, Microsoft Corp.  All Rights Reserved.
@@ -93,7 +92,6 @@ public:
     Status GetBounds(OUT RectF* rect,
                      IN const Graphics* g) const;
 
-    _Win32_RAIIFree_(DeleteObject, -1, 0)
     HRGN   GetHRGN  (IN const Graphics * g) const;
 
     BOOL IsEmpty(IN const Graphics *g) const;
@@ -881,7 +879,6 @@ public:
     // and can no longer be used.  It is the responsiblity of the caller to
     // invoke DeleteEnhMetaFile to delete this hEmf.
 
-    _Win32_RAIIFree_(DeleteEnhMetaFile, -1, 0)
     HENHMETAFILE GetHENHMETAFILE();
 
     // Used in conjuction with Graphics::EnumerateMetafile to play an EMF+

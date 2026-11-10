@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //*@@@+++@@@@******************************************************************
 //
 // ComponentPackageSupport
@@ -35,17 +34,17 @@
 #define ABI
 #endif
 
-STDAPI _Win32_SupportedOS_Windows81_ InstantiateComponentFromPackage(_In_ HSTRING classId, _In_ HSTRING packageFullName, _COM_Outptr_ IInspectable** instance);
-STDAPI _Win32_SupportedOS_10240_ RegisterServerForPMP(_In_ HSTRING serverClassId, _In_ IClassFactory *classFactory, _Out_ LPVOID *token);
-STDAPI _Win32_SupportedOS_10240_ UnregisterServerForPMP(_In_ LPVOID token);
-STDAPI _Win32_SupportedOS_10240_ GetServerForPMP(_In_ HSTRING serverClassId, _COM_Outptr_ IUnknown **unknown);
+STDAPI InstantiateComponentFromPackage(_In_ HSTRING classId, _In_ HSTRING packageFullName, _COM_Outptr_ IInspectable** instance);
+STDAPI RegisterServerForPMP(_In_ HSTRING serverClassId, _In_ IClassFactory *classFactory, _Out_ LPVOID *token);
+STDAPI UnregisterServerForPMP(_In_ LPVOID token);
+STDAPI GetServerForPMP(_In_ HSTRING serverClassId, _COM_Outptr_ IUnknown **unknown);
 
-STDAPI _Win32_SupportedOS_10240_ AreDvdCodecsEnabled();
+STDAPI AreDvdCodecsEnabled();
 STDAPI RequireNetworkDuringMediaTaskCompletion(_In_ BOOL requireNetwork, _Out_opt_ DWORD* requireCount);
 STDAPI_(DWORD) GetNetworkRequestCount();
-STDAPI _Win32_SupportedOS_10240_ GetMediaExtensionCommunicationFactory(_Outptr_ LPVOID* factory);
-STDAPI_(BOOL) _Win32_SupportedOS_10240_ IsMediaBehaviorEnabled(_In_ GUID mediaBehavior);
-STDAPI  _Win32_SupportedOS_10240_ GetMediaComponentPackageInfo( _In_ bool trustedOnly, _In_ HSTRING category,
+STDAPI GetMediaExtensionCommunicationFactory(_Outptr_ LPVOID* factory);
+STDAPI_(BOOL) IsMediaBehaviorEnabled(_In_ GUID mediaBehavior);
+STDAPI  GetMediaComponentPackageInfo( _In_ bool trustedOnly, _In_ HSTRING category,
     _COM_Outptr_ ABI::Windows::Foundation::Collections::IVector<ABI::Windows::Foundation::Collections::IPropertySet*> **codecPropertiesVector);
 #if (NTDDI_VERSION >= NTDDI_WIN11_GA)
 STDAPI GetSystemNativeProcessorSignature(_Out_ DWORD* processorSignature);

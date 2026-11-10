@@ -63,9 +63,7 @@ namespace ClangSharpSourceToWinmdTests
         {
             string sentinel = Slice(Sdk("um", "winuser.h"),
                 @"(?m)^#define GR_GLOBAL\s+\(\(HANDLE\)-2\)[^\r\n]*");
-            string migrated = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "winuser.h"));
-            string group = Slice(migrated,
+            string group = Slice(ExperimentInput(),
                 @"typedef _WIN32META_ANNOTATION_\(""Enum\(GR_GLOBAL\)"",\s*\(unsigned int\)-2\)\s*unsigned int GET_GUI_RESOURCES_FLAGS;");
             using var fixture = new LastErrorHeaderTests.Fixture();
             var result = fixture.Scrape("typedef void* HANDLE;\n" + sentinel + "\n" + group, sal: true);
@@ -110,9 +108,7 @@ namespace ClangSharpSourceToWinmdTests
         [TestMethod]
         public void ServiceErrorGroup_RequiresConstantFromItsActualOwner()
         {
-            string migrated = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "winnt.h"));
-            string group = Slice(migrated,
+            string group = Slice(ExperimentInput(),
                 @"_Win32_AssociatedConstant_\(SERVICE_NO_CHANGE\)\s+_Win32_Enum_\(SERVICE_ERROR,[^;]+;");
             string values = string.Join("\n", Regex.Matches(Sdk("um", "winnt.h"),
                 @"(?m)^#define SERVICE_ERROR_\w+\s+[^\r\n]+").Select(match => match.Value));
@@ -133,9 +129,7 @@ namespace ClangSharpSourceToWinmdTests
                 @"(?m)^#define DECLARE_HANDLE\(name\) struct name##__\{int unused;\}; typedef struct name##__ \*name");
             string region = Slice(Sdk("shared", "minwindef.h"), @"DECLARE_HANDLE\(HRGN\);");
             string generic = Slice(Sdk("shared", "windef.h"), @"typedef void NEAR\* HGDIOBJ;");
-            string migrated = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                "generation", "WinSDK", "RecompiledIdlHeaders", "shared", "minwindef.h"));
-            string association = Slice(migrated, @"_Win32_AlsoUsableFor_\(HGDIOBJ\) typedef HRGN HRGN;");
+            string association = Slice(ExperimentInput(), @"_Win32_AlsoUsableFor_\(HGDIOBJ\) typedef HRGN HRGN;");
             using var fixture = new LastErrorHeaderTests.Fixture();
             var result = fixture.Scrape(macro + "\n" + region + "\n" + association, sal: true);
             Assert.AreNotEqual(0, result.ExitCode);
@@ -169,6 +163,10 @@ namespace ClangSharpSourceToWinmdTests
             StringAssert.Contains(result.Output, "accepting exactly the produced resource type");
             Assert.IsFalse(File.Exists(fixture.GeneratedSource));
         }
+
+        private static string ExperimentInput() =>
+            File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "tests", "ClangSharpSourceToWinmdTests", "FullHeaderMigrationExperimentFixtures.h"));
 
         private static string Sdk(string directory, string name) =>
             File.ReadAllText(Path.Combine(LastErrorHeaderTests.SdkPackagePath(),

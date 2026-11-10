@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 
 /*
  * intshcut.h - Internet Shortcut interface definitions.
@@ -317,11 +316,9 @@ TRANSLATEURL_IN_FLAGS;
 //     *ppszTranslatedURL is NULL on error.
 //
 
-_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI HRESULT WINAPI TranslateURLA(PCSTR pcszURL,
                                          DWORD dwInFlags,
                                          _Out_ PSTR *ppszTranslatedURL);
-_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI HRESULT WINAPI TranslateURLW(PCWSTR pcszURL,
                                          DWORD dwInFlags,
                                          _Out_ PWSTR UNALIGNED *ppszTranslatedURL);
@@ -380,14 +377,12 @@ URLASSOCIATIONDIALOG_IN_FLAGS;
 //   ucAppBufLen -- The length of pszAppBuf's buffer in characters.
 //
 
-_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI HRESULT WINAPI URLAssociationDialogA(HWND hwndParent,
                                                  DWORD dwInFlags,
                                                  PCSTR pcszFile,
                                                  PCSTR pcszURL,
                                                  _Out_writes_(ucAppBufLen) PSTR pszAppBuf,
                                                  UINT ucAppBufLen);
-_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI HRESULT WINAPI URLAssociationDialogW(HWND hwndParent,
                                                  DWORD dwInFlags,
                                                  PCWSTR pcszFile,
@@ -454,14 +449,12 @@ MIMEASSOCIATIONDIALOG_IN_FLAGS;
 //   ucAppBufLen -- The length of pszAppBuf's buffer in characters.
 //
 
-_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI HRESULT WINAPI MIMEAssociationDialogA(HWND hwndParent,
                                                   DWORD dwInFlags,
                                                   PCSTR pcszFile,
                                                   PCSTR pcszMIMEContentType,
                                                   _Out_writes_(ucAppBufLen) PSTR pszAppBuf,
                                                   UINT ucAppBufLen);
-_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI HRESULT WINAPI MIMEAssociationDialogW(HWND hwndParent,
                                                   DWORD dwInFlags,
                                                   PCWSTR pcszFile,
@@ -490,7 +483,6 @@ INTSHCUTAPI HRESULT WINAPI MIMEAssociationDialogW(HWND hwndParent,
 //   Off-line mode begins when the user has been prompted to dial-in to
 //  an Internet providor, but canceled the attempt.
 //
-_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI
 BOOL
 WINAPI

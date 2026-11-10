@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0003    // Increment this if a change has global effects
 
 Copyright (c) 1985-1998, Microsoft Corporation
@@ -86,7 +85,6 @@ BOOL  WINAPI IMPSetIMEW( IN HWND, IN LPIMEPROW);
 #endif // !UNICODE
 
 UINT  WINAPI WINNLSGetIMEHotkey( IN HWND);
-_Win32_SupportedOS_Windows2000_
 BOOL  WINAPI WINNLSEnableIME( IN HWND, IN BOOL);
 BOOL  WINAPI WINNLSGetEnableStatus( IN HWND);
 

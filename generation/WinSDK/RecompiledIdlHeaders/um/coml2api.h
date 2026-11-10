@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -62,29 +61,6 @@
 #define STGM_NOSNAPSHOT         0x00200000L
 #if (_WIN32_WINNT >= 0x0500)
 #define STGM_DIRECT_SWMR        0x00400000L
-
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#include <sal.h>
-_Win32_FlagsEnum_(STGM, unsigned long,
-    STGM_DIRECT,
-    STGM_TRANSACTED,
-    STGM_SIMPLE,
-    STGM_READ,
-    STGM_WRITE,
-    STGM_READWRITE,
-    STGM_SHARE_DENY_NONE,
-    STGM_SHARE_DENY_READ,
-    STGM_SHARE_DENY_WRITE,
-    STGM_SHARE_EXCLUSIVE,
-    STGM_PRIORITY,
-    STGM_DELETEONRELEASE,
-    STGM_NOSCRATCH,
-    STGM_CREATE,
-    STGM_CONVERT,
-    STGM_FAILIFTHERE,
-    STGM_NOSNAPSHOT,
-    STGM_DIRECT_SWMR);
-#endif
 #endif
 
 typedef DWORD STGFMT;
@@ -104,78 +80,60 @@ typedef DWORD STGFMT;
 // This is a legacy define to allow old component to builds
 #define STGFMT_DOCUMENT         0
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#include <sal.h>
-_Win32_Enum_(STGFMT, unsigned long,
-    STGFMT_STORAGE,
-    STGFMT_NATIVE,
-    STGFMT_FILE,
-    STGFMT_ANY,
-    STGFMT_DOCFILE,
-    STGFMT_DOCUMENT);
-#endif
-
 // Structured storage APIs
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgCreateDocfile(
     _In_opt_ _Null_terminated_ const WCHAR* pwcsName,
-    _In_ _Win32_AssociatedEnum_(STGM) DWORD grfMode,
+    _In_ DWORD grfMode,
     _Reserved_ DWORD reserved,
     _Outptr_ IStorage** ppstgOpen
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgCreateDocfileOnILockBytes(
     _In_ ILockBytes* plkbyt,
-    _In_ _Win32_AssociatedEnum_(STGM) DWORD grfMode,
+    _In_ DWORD grfMode,
     _In_ DWORD reserved,
     _Outptr_ IStorage** ppstgOpen
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgOpenStorage(
     _In_opt_ _Null_terminated_ const WCHAR* pwcsName,
     _In_opt_ IStorage* pstgPriority,
-    _In_ _Win32_AssociatedEnum_(STGM) DWORD grfMode,
+    _In_ DWORD grfMode,
     _In_opt_z_ SNB snbExclude,
     _In_ DWORD reserved,
     _Outptr_ IStorage** ppstgOpen
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgOpenStorageOnILockBytes(
     _In_ ILockBytes* plkbyt,
     _In_opt_ IStorage* pstgPriority,
-    _In_ _Win32_AssociatedEnum_(STGM) DWORD grfMode,
+    _In_ DWORD grfMode,
     _In_opt_z_ SNB snbExclude,
     _Reserved_ DWORD reserved,
     _Outptr_ IStorage** ppstgOpen
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgIsStorageFile(
     _In_ _Null_terminated_ const WCHAR* pwcsName
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgIsStorageILockBytes(
     _In_ ILockBytes* plkbyt
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgSetTimes(
     _In_ _Null_terminated_ const WCHAR* lpszName,
@@ -204,12 +162,11 @@ typedef struct tagSTGOPTIONS
 } STGOPTIONS;
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgCreateStorageEx(
     _In_opt_ _Null_terminated_ const WCHAR* pwcsName,
-    _In_ _Win32_AssociatedEnum_(STGM) DWORD grfMode,
-    _In_ _Win32_AssociatedEnum_(STGFMT) DWORD stgfmt,
+    _In_ DWORD grfMode,
+    _In_ DWORD stgfmt,
     _In_ DWORD grfAttrs,
     _Inout_opt_ STGOPTIONS* pStgOptions,
     _In_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor,
@@ -218,12 +175,11 @@ StgCreateStorageEx(
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgOpenStorageEx(
     _In_ _Null_terminated_ const WCHAR* pwcsName,
-    _In_ _Win32_AssociatedEnum_(STGM) DWORD grfMode,
-    _In_ _Win32_AssociatedEnum_(STGFMT) DWORD stgfmt,
+    _In_ DWORD grfMode,
+    _In_ DWORD stgfmt,
     _In_ DWORD grfAttrs,
     _Inout_opt_ STGOPTIONS* pStgOptions,
     _In_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor,
@@ -234,7 +190,6 @@ StgOpenStorageEx(
 #ifndef _STGCREATEPROPSTG_DEFINED_
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgCreatePropStg(
     _In_ IUnknown* pUnk,
@@ -246,7 +201,6 @@ StgCreatePropStg(
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgOpenPropStg(
     _In_ IUnknown* pUnk,
@@ -257,7 +211,6 @@ StgOpenPropStg(
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 StgCreatePropSetStg(
     _In_ IStorage* pStorage,
@@ -268,7 +221,6 @@ StgCreatePropSetStg(
 #define CCH_MAX_PROPSTG_NAME    31
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 FmtIdToPropStgName(
     _In_ const FMTID* pfmtid,
@@ -276,7 +228,6 @@ FmtIdToPropStgName(
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 PropStgNameToFmtId(
     _In_ const LPOLESTR oszName,
@@ -286,28 +237,24 @@ PropStgNameToFmtId(
 #endif // _STGCREATEPROPSTG_DEFINED_
 
 // Helper functions
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 ReadClassStg(
     _In_ LPSTORAGE pStg,
     _Out_ CLSID  FAR * pclsid
     );
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 WriteClassStg(
     _In_ LPSTORAGE pStg,
     _In_ REFCLSID rclsid
     );
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 ReadClassStm(
     _In_ LPSTREAM pStm,
     _Out_ CLSID  FAR * pclsid
     );
 
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 WriteClassStm(
     _In_ LPSTREAM pStm,
@@ -316,7 +263,6 @@ WriteClassStm(
 
 // Storage utility APIs
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 GetHGlobalFromILockBytes(
     _In_ LPLOCKBYTES plkbyt,
@@ -324,7 +270,6 @@ GetHGlobalFromILockBytes(
     );
 
 _Check_return_
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 CreateILockBytesOnHGlobal(
     _In_opt_ HGLOBAL hGlobal,
@@ -333,7 +278,6 @@ CreateILockBytesOnHGlobal(
     );
 
 // ConvertTo APIs
-_Win32_SupportedOS_Windows2000_
 WINOLEAPI
 GetConvertStg(
     _In_ LPSTORAGE pStg

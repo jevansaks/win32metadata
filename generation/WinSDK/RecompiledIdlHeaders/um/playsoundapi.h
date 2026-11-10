@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * playsoundapi.h -- ApiSet Contract for api-ms-win-mm-playsound-l1-1-0          *
@@ -85,25 +84,6 @@ BOOL WINAPI sndPlaySound(LPCSTR pszSound, UINT fuSound);
 #define SND_RING        0x00100000L /* Treat this as a "ring" from a communications app - don't duck me */
 #define SND_SYSTEM      0x00200000L /* Treat this as a system sound */
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(SND_FLAGS, unsigned long,
-    SND_APPLICATION,
-    SND_ALIAS,
-    SND_ALIAS_ID,
-    SND_FILENAME,
-    SND_RESOURCE,
-    SND_ASYNC,
-    SND_NODEFAULT,
-    SND_LOOP,
-    SND_MEMORY,
-    SND_NOSTOP,
-    SND_NOWAIT,
-    SND_PURGE,
-    SND_SENTRY,
-    SND_SYNC,
-    SND_SYSTEM);
-#endif
-
 #define SND_ALIAS_START 0           /* alias base */
 
 #ifdef _WIN32
@@ -124,7 +104,7 @@ WINAPI
 PlaySoundA(
     _In_opt_ LPCSTR pszSound,
     _In_opt_ HMODULE hmod,
-    _In_ _Win32_AssociatedEnum_(SND_FLAGS) DWORD fdwSound
+    _In_ DWORD fdwSound
     );
 
 WINMMAPI
@@ -133,7 +113,7 @@ WINAPI
 PlaySoundW(
     _In_opt_ LPCWSTR pszSound,
     _In_opt_ HMODULE hmod,
-    _In_ _Win32_AssociatedEnum_(SND_FLAGS) DWORD fdwSound
+    _In_ DWORD fdwSound
     );
 
 #ifdef UNICODE

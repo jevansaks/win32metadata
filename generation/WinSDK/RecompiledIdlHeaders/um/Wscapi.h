@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -70,7 +69,6 @@ typedef enum _WSC_SECURITY_PROVIDER_HEALTH
 
 
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI WscRegisterForChanges(LPVOID Reserved, 
                              PHANDLE phCallbackRegistration,
                              LPTHREAD_START_ROUTINE lpCallbackAddress, 
@@ -86,7 +84,6 @@ STDAPI WscRegisterForChanges(LPVOID Reserved,
 // Return Values:
 // Returns S_OK if the function succeeds, otherwise returns an error code.
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI WscUnRegisterChanges(HANDLE hRegistrationHandle);
 
 // The WscRegisterForUserNotifications function registers a callback function to be run when the Security Center service
@@ -114,7 +111,6 @@ STDAPI WscRegisterForUserNotifications();
 // is always S_FALSE and the pHealth out parameter is always set to WSC_SECURITY_PROVIDER_HEALTH_POOR.
 // 
 
-_Win32_SupportedOS_WindowsVista_
 STDAPI WscGetSecurityProviderHealth(DWORD Providers,
                                     PWSC_SECURITY_PROVIDER_HEALTH pHealth);
 

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //
@@ -19,8 +18,6 @@
 
 #ifndef _APISET_GAMING_EXPERIENCE_
 #define _APISET_GAMING_EXPERIENCE_
-
-#include <sal.h>
 
 #include <apiset.h>
 #include <apisetcconv.h>
@@ -68,7 +65,7 @@ WINAPI
 RegisterGamingFullScreenExperienceChangeNotification(
     _In_ PGAMING_FULL_SCREEN_EXPERIENCE_CHANGE_ROUTINE routine,
     _In_opt_ PVOID context,
-    _Out_ _Win32_RAIIFree_(UnregisterGamingFullScreenExperienceChangeNotification, -1, 0) GAMING_FULL_SCREEN_EXPERIENCE_REGISTRATION* registration
+    _Out_ GAMING_FULL_SCREEN_EXPERIENCE_REGISTRATION* registration
     );
 
 VOID

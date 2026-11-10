@@ -1,9 +1,7 @@
-#include <win32metadata_annotations.h>
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 #ifndef __ROAPI_H_
 #define __ROAPI_H_
-#include <sal.h>
 
 #ifdef _MSC_VER
 #pragma once
@@ -55,8 +53,7 @@ typedef HRESULT (STDAPICALLTYPE * PFNGETACTIVATIONFACTORY)(HSTRING, IActivationF
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 // forward declarations of the dllexport'd versions
-_Win32_SupportedOS_Windows8_
-_Win32_PreserveResult_ ROAPI
+ROAPI
 _Check_return_
 HRESULT
 WINAPI
@@ -64,7 +61,6 @@ RoInitialize(
     _In_ RO_INIT_TYPE initType
     );
 
-_Win32_SupportedOS_Windows8_
 ROAPI
 void
 WINAPI
@@ -73,7 +69,6 @@ RoUninitialize(
 
 ROAPI
 _Check_return_
-_Win32_SupportedOS_Windows8_
 HRESULT
 WINAPI
 RoActivateInstance(
@@ -81,7 +76,6 @@ RoActivateInstance(
     _COM_Outptr_ IInspectable** instance
     );
 
-_Win32_SupportedOS_Windows8_
 ROAPI
 _Check_return_
 HRESULT
@@ -93,7 +87,6 @@ RoRegisterActivationFactories(
     _Out_ RO_REGISTRATION_COOKIE* cookie
     );
 
-_Win32_SupportedOS_Windows8_
 ROAPI
 void
 WINAPI
@@ -101,7 +94,6 @@ RoRevokeActivationFactories(
     _In_ RO_REGISTRATION_COOKIE cookie
     );
 
-_Win32_SupportedOS_Windows8_
 ROAPI
 _Check_return_
 HRESULT
@@ -115,7 +107,6 @@ RoGetActivationFactory(
 typedef interface IApartmentShutdown IApartmentShutdown;
 DECLARE_HANDLE(APARTMENT_SHUTDOWN_REGISTRATION_COOKIE);
 
-_Win32_SupportedOS_Windows8_
 ROAPI
 _Check_return_
 HRESULT
@@ -126,7 +117,6 @@ RoRegisterForApartmentShutdown(
     _Out_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE* regCookie
     );
 
-_Win32_SupportedOS_Windows8_
 ROAPI
 _Check_return_
 HRESULT
@@ -135,7 +125,6 @@ RoUnregisterForApartmentShutdown(
     _In_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE regCookie
     );
 
-_Win32_SupportedOS_Windows8_
 ROAPI
 _Check_return_
 HRESULT
@@ -219,7 +208,6 @@ namespace Windows
         // get activation factory
         template<class T>
         _Check_return_
-_Win32_SupportedOS_Windows8_
         __inline HRESULT GetActivationFactory(
             _In_        HSTRING activatableClassId,
             _COM_Outptr_ T**     factory)
@@ -278,7 +266,6 @@ namespace ABI
             // get activation factory
             template<class T>
             _Check_return_
-_Win32_SupportedOS_Windows8_
             __inline HRESULT GetActivationFactory(
                 _In_        HSTRING activatableClassId,
                 _COM_Outptr_ T**     factory)

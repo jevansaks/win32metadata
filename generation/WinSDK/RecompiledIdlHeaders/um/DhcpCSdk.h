@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*++
@@ -218,21 +217,18 @@ typedef struct _DHCPCAPI_CLASSID {                // defines a client class id.
 #define     DHCPCAPI_REQUEST_CANCEL               0x08 // cancel request
 #define     DHCPCAPI_REQUEST_MASK                 0x0F // allowed flags..
 
-_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 DhcpCApiInitialize(
     OUT     LPDWORD                Version
 );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 APIENTRY
 DhcpCApiCleanup(
     VOID
 );
 
-_Win32_SupportedOS_Windows2000_
 DWORD                                             // win32 status
 APIENTRY
 DhcpRequestParams(                                // request parameters of client
@@ -253,7 +249,6 @@ DhcpRequestParams(                                // request parameters of clien
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_Windows2000_
 DWORD                                             // win32 status
 APIENTRY
 DhcpUndoRequestParams(                            // undo the effect of a persistent request -- currently undo from registry
@@ -264,7 +259,6 @@ DhcpUndoRequestParams(                            // undo the effect of a persis
 );
 
 #define     DHCPCAPI_REGISTER_HANDLE_EVENT        0x01 // handle returned is to an event
-_Win32_SupportedOS_Windows2000_
 DWORD                                             // win32 status
 APIENTRY
 DhcpRegisterParamChange(                          // notify if a parameter has changed
@@ -277,7 +271,6 @@ DhcpRegisterParamChange(                          // notify if a parameter has c
 );
 
 #define     DHCPCAPI_DEREGISTER_HANDLE_EVENT      0x01 // de-register handle that is an event
-_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 DhcpDeRegisterParamChange(                        // undo the registration
@@ -286,7 +279,6 @@ DhcpDeRegisterParamChange(                        // undo the registration
     IN      LPVOID                 Event          // handle to event returned by DhcpRegisterParamChange.
 );
 
-_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 DhcpRemoveDNSRegistrations(

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+-----------------------------------------------------------------------
 //
 // Microsoft Windows
@@ -25,7 +24,6 @@
 
 #if NTDDI_VERSION >= NTDDI_WIN10_TH2
 
-_Win32_SupportedOS_10240_
 STDAPI ProtectFileToEnterpriseIdentity(
     _In_ PCWSTR fileOrFolderPath,
     _In_ PCWSTR identity

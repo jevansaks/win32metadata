@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * srpapi.h -- ApiSet Contract for ext-ms-win-security-srp-l1                    *
@@ -50,27 +49,23 @@ typedef struct HTHREAD_NETWORK_CONTEXT
     HANDLE ThreadContext;
 } HTHREAD_NETWORK_CONTEXT;
 
-_Win32_SupportedOS_10240_
 STDAPI
 SrpCreateThreadNetworkContext(
     _In_ PCWSTR enterpriseId,
     _Out_ HTHREAD_NETWORK_CONTEXT* threadNetworkContext
     );
 
-_Win32_SupportedOS_10240_
 STDAPI
 SrpCloseThreadNetworkContext(
     _Inout_ HTHREAD_NETWORK_CONTEXT* threadNetworkContext
     );
 
-_Win32_SupportedOS_10240_
 STDAPI
 SrpSetTokenEnterpriseId(
     _In_ HANDLE tokenHandle,
     _In_opt_ PCWSTR enterpriseId
     );
 
-_Win32_SupportedOS_10240_
 STDAPI
 SrpGetEnterpriseIds(
     _In_ HANDLE tokenHandle,
@@ -79,13 +74,11 @@ SrpGetEnterpriseIds(
     _Out_ PULONG enterpriseIdCount
     );
 
-_Win32_SupportedOS_10240_
 STDAPI
 SrpEnablePermissiveModeFileEncryption(
     _In_opt_ PCWSTR enterpriseId
     );
 
-_Win32_SupportedOS_10240_
 STDAPI
 SrpDisablePermissiveModeFileEncryption(
     VOID
@@ -103,14 +96,12 @@ typedef enum
 
 DEFINE_ENUM_FLAG_OPERATORS(ENTERPRISE_DATA_POLICIES);
 
-_Win32_SupportedOS_10240_
 STDAPI
 SrpGetEnterprisePolicy(
     _In_ HANDLE tokenHandle,
     _Out_ ENTERPRISE_DATA_POLICIES* policyFlags
     );
 
-_Win32_SupportedOS_10240_
 NTSTATUS
 SrpIsTokenService(
     _In_ HANDLE TokenHandle,
@@ -127,7 +118,6 @@ SrpIsTokenService(
 
 #include <appmodel.h>
 
-_Win32_SupportedOS_10240_
 STDAPI
 SrpDoesPolicyAllowAppExecution(
     _In_ const PACKAGE_ID* packageId,

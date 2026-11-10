@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //---------------------------------------------------------------------------
 //
 // uxtheme.h - theming API header file.
@@ -9,16 +8,6 @@
 
 #ifndef _UXTHEME_H_
 #define _UXTHEME_H_
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long SET_THEME_APP_PROPERTIES_FLAGS;
-typedef unsigned long OPEN_THEME_DATA_FLAGS;
-typedef unsigned long GET_THEME_BITMAP_FLAGS;
-typedef unsigned long DRAW_THEME_PARENT_BACKGROUND_FLAGS;
-typedef unsigned long BP_PAINTPARAMS_FLAGS;
-typedef unsigned long DTTOPTS_FLAGS;
-typedef unsigned long HIT_TEST_BACKGROUND_OPTIONS;
-#endif
 
 #include <winapifamily.h>
 
@@ -54,7 +43,6 @@ typedef HANDLE HTHEME;          // handle to a section of theme data for class
 //  HWND hwnd - The handle to the Target window that will receive feedback
 //                                                                                                 
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_Windows7_
 THEMEAPI_(BOOL) 
 BeginPanningFeedback(
 _In_ HWND hwnd); 
@@ -86,7 +74,6 @@ _In_ HWND hwnd);
 //        the second call would be with the parameter as 20 pixels as opposed to 10
 //   Eg : UpdatePanningFeedback(hwnd, 10, 10, TRUE)
 // 
-_Win32_SupportedOS_Windows7_
 THEMEAPI_(BOOL)
 UpdatePanningFeedback(
 	_In_ HWND hwnd,
@@ -110,7 +97,6 @@ UpdatePanningFeedback(
 //                      Either ways the method will try to restore the moved window.
 //                      The latter case exists for compatibility with legacy apps. 
 //
-_Win32_SupportedOS_Windows7_
 THEMEAPI_(BOOL)
 EndPanningFeedback(
 	_In_ HWND hwnd, 
@@ -171,7 +157,6 @@ DEFINE_ENUM_FLAG_OPERATORS(TA_PROPERTY_FLAG);
 //  pcbSizeOut                  - pointer to a DWORD buffer to receive the returned 
 //                                byte size
 //
-_Win32_SupportedOS_Windows8_
 THEMEAPI GetThemeAnimationProperty(
     _In_ HTHEME hTheme,
     _In_ int iStoryboardId,
@@ -267,7 +252,6 @@ typedef struct TA_TRANSFORM_CLIP
 //  pcbSizeOut                      - pointer to a DWORD buffer to receive returned
 //                                    byte-size of transform operation struct
 //
-_Win32_SupportedOS_Windows8_
 THEMEAPI GetThemeAnimationTransform(
     _In_ HTHEME hTheme,
     _In_ int iStoryboardId,
@@ -314,7 +298,6 @@ typedef struct TA_CUBIC_BEZIER
 //  pcbSizeOut                      - pointer to a DWORD buffer to receive byte-size of
 //                                    the timing function struct
 //                                      
-_Win32_SupportedOS_Windows8_
 THEMEAPI GetThemeTimingFunction(
     _In_ HTHEME hTheme,
     _In_ int iTimingFunctionId,
@@ -329,12 +312,6 @@ THEMEAPI GetThemeTimingFunction(
 // NOTE: PartId's and StateId's used in the theme API are defined in the 
 //       hdr file <vssym32.h> using the TM_PART and TM_STATE macros.  For
 //       example, "TM_PART(BP, PUSHBUTTON)" defines the PartId "BP_PUSHBUTTON".
-
-_Win32_SupportedOS_WindowsVista_
-THEMEAPI
-CloseThemeData(
-    _In_ HTHEME hTheme
-    );
 
 //---------------------------------------------------------------------------
 //  OpenThemeData()     - Open the theme data for the specified HWND and 
@@ -366,8 +343,6 @@ CloseThemeData(
 //                        that will be used.  Otherwise, we fall back on 
 //                        the normal Button entry.
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
-_Win32_RAIIFree_(CloseThemeData, 0)
 THEMEAPI_(HTHEME)
 OpenThemeData(
     _In_opt_ HWND hwnd,
@@ -376,16 +351,9 @@ OpenThemeData(
 
 #define OTD_FORCE_RECT_SIZING   0x00000001          // make all parts size to rect
 #define OTD_NONCLIENT           0x00000002          // set if hTheme to be used for nonclient area
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(OPEN_THEME_DATA_FLAGS, unsigned long,
-    OTD_FORCE_RECT_SIZING,
-    OTD_NONCLIENT);
-#endif
 #define OTD_VALIDBITS           (OTD_FORCE_RECT_SIZING | \
                                  OTD_NONCLIENT)
 
-_Win32_SupportedOS_15063_
-_Win32_RAIIFree_(CloseThemeData, 0)
 THEMEAPI_(HTHEME)
 OpenThemeDataForDpi(
     _In_opt_ HWND hwnd,
@@ -427,13 +395,11 @@ OpenThemeDataForDpi(
 //  dwFlags              - allows certain overrides of std features
 //                         (see OTD_XXX defines above)
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
-_Win32_RAIIFree_(CloseThemeData, 0)
 THEMEAPI_(HTHEME)
 OpenThemeDataEx(
     _In_opt_ HWND hwnd,
     _In_ LPCWSTR pszClassList,
-    _Win32_AssociatedEnum_(OPEN_THEME_DATA_FLAGS) _In_ DWORD dwFlags
+    _In_ DWORD dwFlags
     );
 
 //---------------------------------------------------------------------------
@@ -446,6 +412,11 @@ OpenThemeDataEx(
 //  hTheme              - open theme data handle (returned from prior call
 //                        to OpenThemeData() API).
 //---------------------------------------------------------------------------
+THEMEAPI
+CloseThemeData(
+    _In_ HTHEME hTheme
+    );
+
 //---------------------------------------------------------------------------
 //    functions for basic drawing support 
 //---------------------------------------------------------------------------
@@ -480,7 +451,6 @@ OpenThemeDataEx(
 //  pRect               - defines the size/location of the part
 //  pClipRect           - optional clipping rect (don't draw outside it)
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 DrawThemeBackground(
     _In_ HTHEME hTheme,
@@ -533,7 +503,6 @@ typedef struct _DTBGOPTS
 //  pRect               - defines the size/location of the part
 //  pOptions            - ptr to optional params
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 DrawThemeBackgroundEx(
     _In_ HTHEME hTheme,
@@ -564,7 +533,6 @@ DrawThemeBackgroundEx(
 //  dwTextFlags2        - additional drawing options 
 //  pRect               - defines the size/location of the part
 //-------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 DrawThemeText(
     _In_ HTHEME hTheme,
@@ -573,7 +541,7 @@ DrawThemeText(
     _In_ int iStateId,
     _In_reads_(cchText) LPCWSTR pszText,
     _In_ int cchText,
-    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ DWORD dwTextFlags,
+    _In_ DWORD dwTextFlags,
     _In_ DWORD dwTextFlags2,
     _In_ LPCRECT pRect
     );
@@ -591,7 +559,6 @@ DrawThemeText(
 //      pBoundingRect   - the outer RECT of the part being drawn
 //      pContentRect    - RECT to receive the content area
 //-------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeBackgroundContentRect(
     _In_ HTHEME hTheme,
@@ -614,7 +581,6 @@ GetThemeBackgroundContentRect(
 //      pContentRect    - RECT that defines the content area
 //      pBoundingRect   - RECT to receive the overall size/location of part
 //-------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeBackgroundExtent(
     _In_ HTHEME hTheme,
@@ -640,7 +606,6 @@ GetThemeBackgroundExtent(
 //  pRect               - the RECT used to draw the part
 //  pRegion             - receives handle to calculated region
 //-------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeBackgroundRegion(
     _In_ HTHEME hTheme,
@@ -669,7 +634,6 @@ enum THEMESIZE
 //  eSize               - the type of size to be retreived
 //  psz                 - receives the specified size of the part 
 //-------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemePartSize(
     _In_ HTHEME hTheme,
@@ -695,7 +659,6 @@ GetThemePartSize(
 //  pszBoundingRect     - optional: to control layout of text
 //  pszExtentRect       - receives the RECT for text size/location
 //-------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeTextExtent(
     _In_ HTHEME hTheme,
@@ -704,7 +667,7 @@ GetThemeTextExtent(
     _In_ int iStateId,
     _In_reads_(cchCharCount) LPCWSTR pszText,
     _In_ int cchCharCount,
-    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ DWORD dwTextFlags,
+    _In_ DWORD dwTextFlags,
     _In_opt_ LPCRECT pBoundingRect,
     _Out_ LPRECT pExtentRect
     );
@@ -720,7 +683,6 @@ GetThemeTextExtent(
 //  iStateId            - state number (of the part) 
 //  ptm                 - receives the font info
 //-------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeTextMetrics(
     _In_ HTHEME hTheme,
@@ -763,19 +725,6 @@ GetThemeTextMetrics(
 // Use system resizing border width rather than theme content margins.   
 // This option is mutually exclusive with HTTB_SIZINGTEMPLATE, which takes precedence.
 #define HTTB_SYSTEMSIZINGMARGINS    0x00000200
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(HIT_TEST_BACKGROUND_OPTIONS, unsigned long,
-    HTTB_BACKGROUNDSEG,
-    HTTB_FIXEDBORDER,
-    HTTB_CAPTION,
-    HTTB_RESIZINGBORDER_LEFT,
-    HTTB_RESIZINGBORDER_TOP,
-    HTTB_RESIZINGBORDER_RIGHT,
-    HTTB_RESIZINGBORDER_BOTTOM,
-    HTTB_RESIZINGBORDER,
-    HTTB_SIZINGTEMPLATE,
-    HTTB_SYSTEMSIZINGMARGINS);
-#endif
 
 //-------------------------------------------------------------------------
 //  HitTestThemeBackground()
@@ -801,14 +750,13 @@ _Win32_Enum_(HIT_TEST_BACKGROUND_OPTIONS, unsigned long,
 //                        HTRIGHT, HTTOPRIGHT, HTBOTTOMRIGHT,
 //                        HTTOP, HTBOTTOM, HTCLIENT
 //-------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 HitTestThemeBackground(
     _In_ HTHEME hTheme,
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(HIT_TEST_BACKGROUND_OPTIONS) _In_ DWORD dwOptions,
+    _In_ DWORD dwOptions,
     _In_ LPCRECT pRect,
     _In_opt_ HRGN hrgn,
     _In_ POINT ptTest,
@@ -827,7 +775,6 @@ HitTestThemeBackground(
 //  uFlags              - Same as DrawEdge() API
 //  pContentRect        - Receives the interior rect if (uFlags & BF_ADJUST)
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 DrawThemeEdge(
     _In_ HTHEME hTheme,
@@ -835,8 +782,8 @@ DrawThemeEdge(
     _In_ int iPartId,
     _In_ int iStateId,
     _In_ LPCRECT pDestRect,
-    _Win32_AssociatedEnum_(DRAWEDGE_FLAGS) _In_ UINT uEdge,
-    _Win32_AssociatedEnum_(DRAW_EDGE_FLAGS) _In_ UINT uFlags,
+    _In_ UINT uEdge,
+    _In_ UINT uFlags,
     _Out_opt_ LPRECT pContentRect
     );
 
@@ -852,7 +799,6 @@ DrawThemeEdge(
 //  himl                - handle to IMAGELIST 
 //  iImageIndex         - index into IMAGELIST (which icon to draw)
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 DrawThemeIcon(
     _In_ HTHEME hTheme,
@@ -872,7 +818,6 @@ DrawThemeIcon(
 //  iPartId             - part number to find definition for
 //  iStateId            - state number of part
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(BOOL)
 IsThemePartDefined(
     _In_ HTHEME hTheme,
@@ -890,7 +835,6 @@ IsThemePartDefined(
 //  iPartId             - part number 
 //  iStateId            - state number of part
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(BOOL)
 IsThemeBackgroundPartiallyTransparent(
     _In_ HTHEME hTheme,
@@ -924,13 +868,12 @@ IsThemeBackgroundPartiallyTransparent(
 //  iPropId             - the property number to get the value for
 //  pColor              - receives the value of the property
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeColor(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _In_ int iPropId,
     _Out_ COLORREF *pColor
     );
 
@@ -945,14 +888,13 @@ GetThemeColor(
 //  iPropId             - the property number to get the value for
 //  piVal               - receives the value of the property
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeMetric(
     _In_ HTHEME hTheme,
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _In_ int iPropId,
     _Out_ int *piVal
     );
 
@@ -966,7 +908,6 @@ GetThemeMetric(
 //  pszBuff             - receives the string property value
 //  cchMaxBuffChars     - max. number of chars allowed in pszBuff
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeString(
     _In_ HTHEME hTheme,
@@ -986,13 +927,12 @@ GetThemeString(
 //  iPropId             - the property number to get the value for
 //  pfVal               - receives the value of the property
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeBool(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _In_ int iPropId,
     _Out_ BOOL *pfVal
     );
 
@@ -1005,13 +945,12 @@ GetThemeBool(
 //  iPropId             - the property number to get the value for
 //  piVal               - receives the value of the property
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeInt(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _In_ int iPropId,
     _Out_ int *piVal
     );
 
@@ -1024,13 +963,12 @@ GetThemeInt(
 //  iPropId             - the property number to get the value for
 //  piVal               - receives the value of the enum (cast to int*)
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeEnumValue(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _In_ int iPropId,
     _Out_ int *piVal
     );
 
@@ -1044,13 +982,12 @@ GetThemeEnumValue(
 //  iPropId             - the property number to get the value for
 //  pPoint              - receives the value of the position property
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemePosition(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _In_ int iPropId,
     _Out_ POINT *pPoint
     );
 
@@ -1065,7 +1002,6 @@ GetThemePosition(
 //  pFont               - receives the value of the LOGFONT property
 //                        (scaled for the current logical screen dpi) 
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeFont(
     _In_ HTHEME hTheme,
@@ -1085,7 +1021,6 @@ GetThemeFont(
 //  iPropId             - the property number to get the value for
 //  pRect               - receives the value of the RECT property
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeRect(
     _In_ HTHEME hTheme,
@@ -1115,14 +1050,13 @@ typedef struct _MARGINS
 //      prc             - RECT for area to be drawn into
 //      pMargins        - receives the value of the MARGINS property
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeMargins(
     _In_ HTHEME hTheme,
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _In_ int iPropId,
     _In_opt_ LPCRECT prc,
     _Out_ MARGINS *pMargins
     );
@@ -1148,13 +1082,12 @@ typedef struct _INTLIST
 //      iPropId         - the property number to get the value for
 //      pIntList        - receives the value of the INTLIST property
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeIntList(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _In_ int iPropId,
     _Out_ INTLIST *pIntList
     );
 
@@ -1179,7 +1112,6 @@ enum PROPERTYORIGIN
 //  iPropId             - the property number to search for
 //  pOrigin             - receives the value of the property origin
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemePropertyOrigin(
     _In_ HTHEME hTheme,
@@ -1217,7 +1149,6 @@ GetThemePropertyOrigin(
 // the specified window, you can pass an empty string (L"") so it 
 // won't match any section entries.
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 SetWindowTheme(
     _In_ HWND hwnd,
@@ -1236,13 +1167,12 @@ SetWindowTheme(
 //  pszThemeFileName    - output buffer to receive the filename
 //  cchMaxBuffChars     - the size of the return buffer, in chars
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeFilename(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _In_ int iPropId,
     _Out_writes_(cchMaxBuffChars) LPWSTR pszThemeFileName,
     _In_ int cchMaxBuffChars
     );
@@ -1256,7 +1186,6 @@ GetThemeFilename(
 //
 //  iColorId            - the system color index defined in winuser.h
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(COLORREF)
 GetThemeSysColor(
     _In_opt_ HTHEME hTheme,
@@ -1274,11 +1203,10 @@ GetThemeSysColor(
 //
 //  iColorId            - the system color index defined in winuser.h
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(HBRUSH)
 GetThemeSysColorBrush(
     _In_opt_ HTHEME hTheme,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iColorId
+    _In_ int iColorId
     );
 
 //---------------------------------------------------------------------------
@@ -1291,11 +1219,10 @@ GetThemeSysColorBrush(
 //  iBoolId             - the TMT_XXX BOOL number (first BOOL
 //                        is TMT_FLATMENUS)
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(BOOL)
 GetThemeSysBool(
     _In_opt_ HTHEME hTheme,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iBoolId
+    _In_ int iBoolId
     );
 
 //---------------------------------------------------------------------------
@@ -1323,7 +1250,6 @@ GetThemeSysBool(
 //                        when hTheme is NULL, iSizeId is passed directly
 //                        to the GetSystemMetrics() function
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(int)
 GetThemeSysSize(
     _In_opt_ HTHEME hTheme,
@@ -1343,11 +1269,10 @@ GetThemeSysSize(
 //  plf                 - ptr to LOGFONT to receive the font value.
 //                        (scaled for the current logical screen dpi) 
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeSysFont(
     _In_opt_ HTHEME hTheme,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iFontId,
+    _In_ int iFontId,
     _Out_ LOGFONTW *plf
     );
 
@@ -1365,11 +1290,10 @@ GetThemeSysFont(
 //
 //  cchMaxStringChars   - max. number of chars that pszStringBuff can hold
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeSysString(
     _In_ HTHEME hTheme,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iStringId,
+    _In_ int iStringId,
     _Out_writes_(cchMaxStringChars) LPWSTR pszStringBuff,
     _In_ int cchMaxStringChars
     );
@@ -1387,11 +1311,10 @@ GetThemeSysString(
 //
 //  piValue             - ptr to int to receive value
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeSysInt(
     _In_ HTHEME hTheme,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iIntId,
+    _In_ int iIntId,
     _Out_ int *piValue
     );
 
@@ -1402,7 +1325,6 @@ GetThemeSysInt(
 //                        use the API "IsAppThemed()" to test if a theme is
 //                        active for the calling process.
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(BOOL)
 IsThemeActive(
     VOID
@@ -1412,7 +1334,6 @@ IsThemeActive(
 //  IsAppThemed()       - returns TRUE if a theme is active and available to
 //                        the current process
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(BOOL)
 IsAppThemed(
     VOID
@@ -1425,7 +1346,6 @@ IsAppThemed(
 //
 //      hwnd            - the window to get the HTHEME of
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(HTHEME)
 GetWindowTheme(
     _In_ HWND hwnd
@@ -1465,7 +1385,6 @@ GetWindowTheme(
 //                     ETDT_ENABLETAB to enable the theme-defined background 
 //                          texturing using the Tab texture
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 EnableThemeDialogTexture(
     _In_ HWND hwnd,
@@ -1479,7 +1398,6 @@ EnableThemeDialogTexture(
 //
 //      hdlg         - the window handle of the target dialog
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(BOOL)
 IsThemeDialogTextureEnabled(
     _In_ HWND hwnd
@@ -1494,19 +1412,11 @@ IsThemeDialogTextureEnabled(
 #define STAP_VALIDBITS          (STAP_ALLOW_NONCLIENT | \
                                  STAP_ALLOW_CONTROLS | \
                                  STAP_ALLOW_WEBCONTENT)
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef _WIN32META_ANNOTATION_("FlagsEnum(ALLOW_NONCLIENT, ALLOW_CONTROLS, ALLOW_WEBCONTENT, VALIDBITS)",
-    STAP_ALLOW_NONCLIENT,
-    STAP_ALLOW_CONTROLS,
-    STAP_ALLOW_WEBCONTENT,
-    STAP_VALIDBITS) unsigned long SET_THEME_APP_PROPERTIES_FLAGS;
-#endif
 
 //---------------------------------------------------------------------------
 //  GetThemeAppProperties()
 //                      - returns the app property flags that control theming
 //---------------------------------------------------------------------------
-_Win32_AssociatedEnum_(SET_THEME_APP_PROPERTIES_FLAGS) _Win32_SupportedOS_WindowsVista_
 THEMEAPI_(DWORD)
 GetThemeAppProperties(
     VOID
@@ -1518,10 +1428,9 @@ GetThemeAppProperties(
 //
 //      dwFlags         - the flag values to be set
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(void)
 SetThemeAppProperties(
-    _Win32_AssociatedEnum_(SET_THEME_APP_PROPERTIES_FLAGS) _In_ DWORD dwFlags
+    _In_ DWORD dwFlags
     );
 
 //---------------------------------------------------------------------------
@@ -1541,7 +1450,6 @@ SetThemeAppProperties(
 //                        (not the display name)
 //  cchMaxSizeChars     - max chars allowed in pszSizeBuff
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI GetCurrentThemeName(
     _Out_writes_(cchMaxNameChars) LPWSTR pszThemeFileName,
     _In_ int cchMaxNameChars,
@@ -1556,7 +1464,6 @@ THEMEAPI GetCurrentThemeName(
 #define SZ_THDOCPROP_TOOLTIP        L"ToolTip"
 #define SZ_THDOCPROP_AUTHOR         L"author"
 
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeDocumentationProperty(
     _In_ LPCWSTR pszThemeName,
@@ -1593,7 +1500,6 @@ GetThemeDocumentationProperty(
 //  prc                 - (optional) rect that defines the area to be 
 //                        drawn (CHILD coordinates)
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 DrawThemeParentBackground(
     _In_ HWND hwnd,
@@ -1610,7 +1516,6 @@ DrawThemeParentBackground(
 //                      - if TRUE, enable themeing and, if user previously
 //                        had a theme active, make it active now.
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 EnableTheming(
     _In_ BOOL fEnable
@@ -1620,24 +1525,12 @@ EnableTheming(
 #define GBF_COPY        0x00000002      // create a copy of the bitmap
 #define GBF_VALIDBITS   (GBF_DIRECT | \
                          GBF_COPY)
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(GET_THEME_BITMAP_FLAGS, unsigned long,
-    GBF_DIRECT,
-    GBF_COPY,
-    GBF_VALIDBITS);
-#endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
 
 #define DTPB_WINDOWDC           0x00000001
 #define DTPB_USECTLCOLORSTATIC  0x00000002
 #define DTPB_USEERASEBKGND      0x00000004
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(DRAW_THEME_PARENT_BACKGROUND_FLAGS, unsigned long,
-    DTPB_WINDOWDC,
-    DTPB_USECTLCOLORSTATIC,
-    DTPB_USEERASEBKGND);
-#endif
 
 //---------------------------------------------------------------------------
 // DrawThemeParentBackgroundEx()
@@ -1666,12 +1559,11 @@ _Win32_FlagsEnum_(DRAW_THEME_PARENT_BACKGROUND_FLAGS, unsigned long,
 //
 //  Return value        - S_OK if something was painted, S_FALSE if not.
 //---------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 DrawThemeParentBackgroundEx(
     _In_ HWND hwnd,
     _In_ HDC hdc,
-    _Win32_AssociatedEnum_(DRAW_THEME_PARENT_BACKGROUND_FLAGS) _In_ DWORD dwFlags,
+    _In_ DWORD dwFlags,
     _In_opt_ const RECT* prc
     );
 
@@ -1697,7 +1589,6 @@ typedef struct _WTA_OPTIONS
                                    WTNCA_NOSYSMENU | \
                                    WTNCA_NOMIRRORHELP)
 
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 SetWindowThemeAttribute(
     _In_ HWND hwnd,
@@ -1706,7 +1597,6 @@ SetWindowThemeAttribute(
     _In_ DWORD cbAttribute
     );
 
-_Win32_SupportedOS_WindowsVista_
 __inline HRESULT SetWindowThemeNonClientAttributes(HWND hwnd, DWORD dwMask, DWORD dwAttributes)    
 {
     WTA_OPTIONS wta;
@@ -1765,33 +1655,15 @@ int
                              DTT_APPLYOVERLAY | \
                              DTT_GLOWSIZE | \
                              DTT_COMPOSITED)
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(DTTOPTS_FLAGS, unsigned long,
-    DTT_TEXTCOLOR,
-    DTT_BORDERCOLOR,
-    DTT_SHADOWCOLOR,
-    DTT_SHADOWTYPE,
-    DTT_SHADOWOFFSET,
-    DTT_BORDERSIZE,
-    DTT_FONTPROP,
-    DTT_COLORPROP,
-    DTT_STATEID,
-    DTT_CALCRECT,
-    DTT_APPLYOVERLAY,
-    DTT_GLOWSIZE,
-    DTT_CALLBACK,
-    DTT_COMPOSITED,
-    DTT_VALIDBITS);
-#endif
 
 typedef struct _DTTOPTS
 {
     DWORD             dwSize;              // size of the struct
-    _Win32_AssociatedEnum_(DTTOPTS_FLAGS) DWORD             dwFlags;             // which options have been specified
+    DWORD             dwFlags;             // which options have been specified
     COLORREF          crText;              // color to use for text fill
     COLORREF          crBorder;            // color to use for text outline
     COLORREF          crShadow;            // color to use for text shadow
-    _Win32_AssociatedEnum_(TEXTSHADOWTYPE) int               iTextShadowType;     // TST_SINGLE or TST_CONTINUOUS
+    int               iTextShadowType;     // TST_SINGLE or TST_CONTINUOUS
     POINT             ptShadowOffset;      // where shadow is drawn (relative to text)
     int               iBorderSize;         // Border radius around text
     int               iFontPropId;         // Font property to use for the text instead of TMT_FONT
@@ -1805,7 +1677,6 @@ typedef struct _DTTOPTS
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
 
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 DrawThemeTextEx(
     _In_ HTHEME hTheme,
@@ -1814,7 +1685,7 @@ DrawThemeTextEx(
     _In_ int iStateId,
     _In_reads_(cchText) LPCWSTR pszText,
     _In_ int cchText,
-    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ DWORD dwTextFlags,
+    _In_ DWORD dwTextFlags,
     _Inout_ LPRECT pRect,
     _In_opt_ const DTTOPTS *pOptions
     );
@@ -1833,14 +1704,13 @@ DrawThemeTextEx(
 //                    file when iPropId==TMT_DISKSTREAM (use GetCurrentThemeName 
 //                    and LoadLibraryEx(LOAD_LIBRARY_AS_DATAFILE)
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeBitmap(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
-    _Win32_AssociatedEnum_(GET_THEME_BITMAP_FLAGS) _In_ ULONG dwFlags,
+    _In_ int iPropId,
+    _In_ ULONG dwFlags,
     _Out_ HBITMAP* phBitmap
     );
 
@@ -1857,7 +1727,6 @@ GetThemeBitmap(
 //                    file when iPropId==TMT_DISKSTREAM (use GetCurrentThemeName 
 //                    and LoadLibraryEx(LOAD_LIBRARY_AS_DATAFILE)
 //-----------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeStream(
     _In_ HTHEME hTheme,
@@ -1875,7 +1744,6 @@ GetThemeStream(
 //                        Should be called prior to BeginBufferedPaint,
 //                        and should have a matching BufferedPaintUnInit.
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 BufferedPaintInit(
     VOID
@@ -1886,7 +1754,6 @@ BufferedPaintInit(
 //                          Should be called once for each call to BufferedPaintInit,
 //                          when calls to BeginBufferedPaint are no longer needed.
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 BufferedPaintUnInit(
     VOID
@@ -1939,25 +1806,17 @@ typedef struct _BP_ANIMATIONPARAMS
 #define BPPF_ERASE               0x0001 // Empty the buffer during BeginBufferedPaint()
 #define BPPF_NOCLIP              0x0002 // Don't apply the target DC's clip region to the double buffer
 #define BPPF_NONCLIENT           0x0004 // Using a non-client DC
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(BP_PAINTPARAMS_FLAGS, unsigned long,
-    BPPF_ERASE,
-    BPPF_NOCLIP,
-    BPPF_NONCLIENT);
-#endif
 
                                         
 // BP_PAINTPARAMS
 typedef struct _BP_PAINTPARAMS
 {
     DWORD                       cbSize;
-    _Win32_AssociatedEnum_(BP_PAINTPARAMS_FLAGS) DWORD                       dwFlags; // BPPF_ flags
+    DWORD                       dwFlags; // BPPF_ flags
     const RECT *                prcExclude;
     const BLENDFUNCTION *       pBlendFunction;
 } BP_PAINTPARAMS, *PBP_PAINTPARAMS;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(_Success_(return != NULL) HPAINTBUFFER)
 BeginBufferedPaint(
     _In_ HDC hdcTarget,
@@ -1974,7 +1833,6 @@ BeginBufferedPaint(
 //    hBufferedPaint   - handle to buffered paint context
 //    fUpdateTarget    - update target DC
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 EndBufferedPaint(
     _In_ HPAINTBUFFER hBufferedPaint,
@@ -1987,7 +1845,6 @@ EndBufferedPaint(
 //    hBufferedPaint             - handle to buffered paint context
 //    prc                        - pointer to receive target rectangle
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetBufferedPaintTargetRect(
     _In_ HPAINTBUFFER hBufferedPaint,
@@ -1999,7 +1856,6 @@ GetBufferedPaintTargetRect(
 //
 //    hBufferedPaint           - handle to buffered paint context
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(HDC)
 GetBufferedPaintTargetDC(
     _In_ HPAINTBUFFER hBufferedPaint
@@ -2010,7 +1866,6 @@ GetBufferedPaintTargetDC(
 //
 //    hBufferedPaint     - handle to buffered paint context
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(HDC)
 GetBufferedPaintDC(
     _In_ HPAINTBUFFER hBufferedPaint
@@ -2024,7 +1879,6 @@ GetBufferedPaintDC(
 //    pcxRow               - pointer to receive width of buffer bitmap, in pixels;
 //                           this value may not necessarily be equal to the buffer width
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetBufferedPaintBits(
     _In_ HPAINTBUFFER hBufferedPaint,
@@ -2038,7 +1892,6 @@ GetBufferedPaintBits(
 //    hBufferedPaint     - handle to buffered paint context
 //    prc                - rectangle to clear; NULL specifies entire buffer
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 BufferedPaintClear(
     _In_ HPAINTBUFFER hBufferedPaint,
@@ -2052,7 +1905,6 @@ BufferedPaintClear(
 //    prc                   - rectangle to set alpha in; NULL specifies entire buffer
 //    alpha                 - alpha value to set in the given rectangle
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 BufferedPaintSetAlpha(
     _In_ HPAINTBUFFER hBufferedPaint,
@@ -2068,7 +1920,6 @@ BufferedPaintSetAlpha(
 //
 //    hwnd                           - window on which to stop all animations
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 BufferedPaintStopAllAnimations(
     _In_ HWND hwnd
@@ -2076,7 +1927,6 @@ BufferedPaintStopAllAnimations(
 
 typedef HANDLE HANIMATIONBUFFER;  // handle to a buffered paint animation
 
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(HANIMATIONBUFFER)
 BeginBufferedAnimation(
     _In_ HWND hwnd,
@@ -2089,14 +1939,12 @@ BeginBufferedAnimation(
     _Out_ HDC *phdcTo
     );
 
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 EndBufferedAnimation(
     _In_ HANIMATIONBUFFER hbpAnimation,
     _In_ BOOL fUpdateTarget
     );
 
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(BOOL)
 BufferedPaintRenderAnimation(
     _In_ HWND hwnd,
@@ -2108,7 +1956,6 @@ BufferedPaintRenderAnimation(
 // process (themes are active). 
 // Roughly equivalent to "DwmIsCompositionEnabled() && IsAppthemed()"
 //----------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI_(BOOL) IsCompositionActive();
 
 //------------------------------------------------------------------------
@@ -2122,7 +1969,6 @@ THEMEAPI_(BOOL) IsCompositionActive();
 //  iPropId             - property id 
 //  pdwDuration         - receives the transition duration
 //------------------------------------------------------------------------
-_Win32_SupportedOS_WindowsVista_
 THEMEAPI
 GetThemeTransitionDuration(
     _In_ HTHEME hTheme,

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+--------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -69,9 +68,6 @@ DEFINE_GUID(IID_IDsAdminNotifyHandler,
 #undef  INTERFACE
 #define INTERFACE   IDsAdminCreateObj
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsVista_ struct IDsAdminCreateObj IDsAdminCreateObj;
-#endif
 DECLARE_INTERFACE_(IDsAdminCreateObj, IUnknown)
 {
   // *** IUnknown methods ***
@@ -104,9 +100,6 @@ DECLARE_INTERFACE_(IDsAdminCreateObj, IUnknown)
 #undef  INTERFACE
 #define INTERFACE   IDsAdminNewObj
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsVista_ struct IDsAdminNewObj IDsAdminNewObj;
-#endif
 DECLARE_INTERFACE_(IDsAdminNewObj, IUnknown)
 {
   // *** IUnknown methods ***
@@ -136,9 +129,6 @@ DECLARE_INTERFACE_(IDsAdminNewObj, IUnknown)
 #undef  INTERFACE
 #define INTERFACE   IDsAdminNewObjPrimarySite
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsVista_ struct IDsAdminNewObjPrimarySite IDsAdminNewObjPrimarySite;
-#endif
 DECLARE_INTERFACE_(IDsAdminNewObjPrimarySite, IUnknown)
 {
   // *** IUnknown methods ***
@@ -194,9 +184,6 @@ typedef struct
 #undef  INTERFACE
 #define INTERFACE   IDsAdminNewObjExt
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsVista_ struct IDsAdminNewObjExt IDsAdminNewObjExt;
-#endif
 DECLARE_INTERFACE_(IDsAdminNewObjExt, IUnknown)
 {
   // *** IUnknown methods ***
@@ -263,9 +250,6 @@ DECLARE_INTERFACE_(IDsAdminNewObjExt, IUnknown)
 #define INTERFACE   IDsAdminNotifyHandler
 
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsVista_ struct IDsAdminNotifyHandler IDsAdminNotifyHandler;
-#endif
 DECLARE_INTERFACE_(IDsAdminNotifyHandler, IUnknown)
 {
   // *** IUnknown methods ***

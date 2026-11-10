@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*=============================================================================
 
     Copyright (c) 2003  Microsoft Corporation
@@ -94,8 +93,6 @@ typedef struct _LOG_MANAGEMENT_CALLBACKS
 // scheme.  The client can receive notifications such as "advance base lsn" if
 // pCallbacks is non-null.
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI RegisterManageableLogClient (
     IN HANDLE                         hLog,
     IN PLOG_MANAGEMENT_CALLBACKS      pCallbacks
@@ -111,8 +108,6 @@ CLFSUSER_API BOOL WINAPI RegisterManageableLogClient (
 // be invoked which will deregister the client explicitly.  The client will
 // no longer receive notifications related to management.
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI DeregisterManageableLogClient (
     IN HANDLE hLog
     );
@@ -126,8 +121,6 @@ CLFSUSER_API BOOL WINAPI DeregisterManageableLogClient (
 // Only possible if the client is not receiving callbacks.  Can function in
 // synchronous or asynchronous mode.
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI ReadLogNotification (
     IN  HANDLE                   hLog,
     OUT PCLFS_MGMT_NOTIFICATION  pNotification,
@@ -142,8 +135,6 @@ CLFSUSER_API BOOL WINAPI ReadLogNotification (
 // Installs a policy on a log.  The possible policies are described by the 
 // enumerated type CLFS_MGMT_POLICY_TYPE.
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI InstallLogPolicy (
     IN HANDLE            hLog,
     IN PCLFS_MGMT_POLICY pPolicy
@@ -158,8 +149,6 @@ CLFSUSER_API BOOL WINAPI InstallLogPolicy (
 // policy indicated.  The possible policies are described by the enumerated type 
 // CLFS_MGMT_POLICY_TYPE.
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI RemoveLogPolicy (
     IN HANDLE                hLog,
     IN CLFS_MGMT_POLICY_TYPE ePolicyType
@@ -172,8 +161,6 @@ CLFSUSER_API BOOL WINAPI RemoveLogPolicy (
 // 
 // Given a policy type, returns the associated policy data.
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI QueryLogPolicy (
     IN     HANDLE                hLog,
     IN     CLFS_MGMT_POLICY_TYPE ePolicyType,
@@ -189,12 +176,10 @@ CLFSUSER_API BOOL WINAPI QueryLogPolicy (
 // Sets the size of a log file, obeying any policies present on the log file
 // at the time.
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI SetLogFileSizeWithPolicy(
     IN  HANDLE     hLog,
-    _In_  PULONGLONG pDesiredSize,
-    _Out_ PULONGLONG pResultingSize
+    IN  PULONGLONG pDesiredSize,
+    OUT PULONGLONG pResultingSize
     );
 #endif /* _WIN32_WINNT */
 
@@ -208,8 +193,6 @@ CLFSUSER_API BOOL WINAPI SetLogFileSizeWithPolicy(
 // This routine may do the work asynchronously (returning FALSE with last error
 // of ERROR_IO_PENDING).
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI HandleLogFull(
     IN HANDLE hLog
     );
@@ -222,8 +205,6 @@ CLFSUSER_API BOOL WINAPI HandleLogFull(
 // Allows a log client to indicate that it cannot comply with a request from
 // log management to advance its tail.
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI LogTailAdvanceFailure(
     IN HANDLE hLog,
     IN DWORD  dwReason
@@ -237,8 +218,6 @@ CLFSUSER_API BOOL WINAPI LogTailAdvanceFailure(
 // Registers a client as one may not wish to participate in the CLFS management
 // scheme but does wish to be notified of certain events in the log.
 //------------------------------------------------------------------------------
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 CLFSUSER_API BOOL WINAPI RegisterForLogWriteNotification (
     IN HANDLE   hLog,
     IN ULONG    cbThreshold,

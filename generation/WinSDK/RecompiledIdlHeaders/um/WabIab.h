@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -132,9 +131,6 @@
 
 #undef		 INTERFACE
 #define		 INTERFACE  IAddrBook
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows2000_ struct IAddrBook IAddrBook;
-#endif
 DECLARE_MAPI_INTERFACE_(IAddrBook, IMAPIProp)
 {
 	BEGIN_INTERFACE	

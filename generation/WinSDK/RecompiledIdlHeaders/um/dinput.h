@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /****************************************************************************
  *
  *  Copyright (C) 1996-2002 Microsoft Corporation.  All Rights Reserved.
@@ -4348,7 +4347,6 @@ extern "C" {
  * and should be reloaded from the registery.
  * dwFlags is reserved and should be set to zero
  */
-_Win32_SupportedOS_Windows2000_
 WINMMAPI MMRESULT WINAPI joyConfigChanged( DWORD dwFlags );
 
 #ifndef DIJ_RINGZERO

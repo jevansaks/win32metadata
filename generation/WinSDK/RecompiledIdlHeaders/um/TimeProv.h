@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //--------------------------------------------------------------------
 // TimeProv - header
 // Copyright (C) Microsoft Corporation, 1999
@@ -10,7 +9,6 @@
 
 #ifndef TIMEPROV_H
 #define TIMEPROV_H
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -229,19 +227,19 @@ typedef void * TimeProvHandle;
 // functions that a Time Provider must implement and export
 
 HRESULT __stdcall
-    _Win32_SupportedOS_WindowsXP_ TimeProvOpen(
+    TimeProvOpen(
         _In_ IN PWSTR wszName,
         _In_ IN TimeProvSysCallbacks * pSysCallbacks,  // copy this data, do not free it!
         _Out_ OUT TimeProvHandle * phTimeProv);
 
 HRESULT __stdcall
-    _Win32_SupportedOS_WindowsXP_ TimeProvCommand(
+    TimeProvCommand(
         _In_ IN TimeProvHandle hTimeProv,
         _In_ IN TimeProvCmd eCmd,
         _In_ IN TimeProvArgs pvArgs);
 
 HRESULT __stdcall
-    _Win32_SupportedOS_WindowsXP_ TimeProvClose(
+    TimeProvClose(
         _In_ IN TimeProvHandle hTimeProv);
 
 

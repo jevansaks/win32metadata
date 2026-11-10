@@ -52,7 +52,7 @@ DuplicateHandle(
     _Outptr_ LPHANDLE lpTargetHandle,
     _In_ DWORD dwDesiredAccess,
     _In_ BOOL bInheritHandle,
-    _Win32_AssociatedEnum_(DUPLICATE_HANDLE_OPTIONS) _In_ DWORD dwOptions
+    _In_ DWORD dwOptions
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */

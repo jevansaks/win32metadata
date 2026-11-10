@@ -7,3 +7,4 @@ _GUID
 --namespace
 Windows.Win32.System.TransactionServer
 --with-type
+STREAM_SEEK=uint

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -52,9 +51,6 @@ WHvGetCapability(
 HRESULT
 WINAPI
 WHvCreatePartition(
-#if (defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus))
-_Win32_RAIIFree_(WHvDeletePartition, -1, 0)
-#endif
     _Out_ WHV_PARTITION_HANDLE* Partition
     );
 
@@ -75,9 +71,6 @@ WINAPI
 WHvDeletePartition(
     _In_ WHV_PARTITION_HANDLE Partition
     );
-
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-#endif
 
 HRESULT
 WINAPI
@@ -693,7 +686,7 @@ HRESULT
 WINAPI
 WHvAcceptPartitionMigration(
     _In_ HANDLE MigrationHandle,
-    _Out_ _Win32_RAIIFree_(WHvDeletePartition, -1, 0) WHV_PARTITION_HANDLE* Partition
+    _Out_ WHV_PARTITION_HANDLE* Partition
     );
 
 #ifdef __cplusplus

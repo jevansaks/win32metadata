@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 // Copyright (C) Microsoft Corporation
 // All rights reserved.
@@ -934,7 +933,6 @@ public:
         hstr_ = hstr;
     }
 
-    _Win32_RAIIFree_(WindowsDeleteString)
     HSTRING Detach() throw()
     {
         HSTRING tmp = hstr_;

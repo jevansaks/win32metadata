@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /**************************************************************************\
 *
 * Copyright (c) 2000-2001, Microsoft Corp.  All Rights Reserved.
@@ -15,7 +14,6 @@
 
 #ifndef _GDIPLUSIMAGECODEC_H
 #define _GDIPLUSIMAGECODEC_H
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -27,7 +25,7 @@
 //--------------------------------------------------------------------------
 
 inline Status 
-_Win32_SupportedOS_WindowsXP_ GetImageDecodersSize(
+GetImageDecodersSize(
     _Out_ UINT *numDecoders,
     _Out_ _Out_range_(>=, (*numDecoders) * sizeof(ImageCodecInfo)) UINT *size)
 {
@@ -36,7 +34,7 @@ _Win32_SupportedOS_WindowsXP_ GetImageDecodersSize(
 
 
 inline Status 
-_Win32_SupportedOS_WindowsXP_ GetImageDecoders(
+GetImageDecoders(
     _In_ UINT numDecoders,
     _In_ UINT size,
     _Out_writes_bytes_(size) ImageCodecInfo *decoders)
@@ -46,7 +44,7 @@ _Win32_SupportedOS_WindowsXP_ GetImageDecoders(
 
 
 inline Status 
-_Win32_SupportedOS_WindowsXP_ GetImageEncodersSize(
+GetImageEncodersSize(
     _Out_ UINT *numEncoders, 
     _Out_ _Out_range_(>=, (*numEncoders) * sizeof(ImageCodecInfo)) UINT *size)
 {
@@ -55,7 +53,7 @@ _Win32_SupportedOS_WindowsXP_ GetImageEncodersSize(
 
 
 inline Status 
-_Win32_SupportedOS_WindowsXP_ GetImageEncoders(
+GetImageEncoders(
     _In_ UINT numEncoders,
     _In_ IN UINT size,
     _Out_writes_bytes_(size) ImageCodecInfo *encoders)

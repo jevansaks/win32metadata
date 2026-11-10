@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+-------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -44,14 +43,12 @@ extern "C" {
 #define WSDAPI_OPTION_TRACE_XML_TO_FILE 0x0003
 #endif
     
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WSDSetConfigurationOption(
     DWORD dwOption,
     _In_reads_bytes_(cbInBuffer) LPVOID pVoid,
     DWORD cbInBuffer);
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WSDGetConfigurationOption(
     DWORD dwOption,
@@ -62,24 +59,20 @@ WSDGetConfigurationOption(
 // Linked memory
 //
 
-_Win32_SupportedOS_WindowsVista_
 void * WINAPI 
 WSDAllocateLinkedMemory(
     void* pParent, 
     size_t cbSize);
 
-_Win32_SupportedOS_WindowsVista_
 void WINAPI
 WSDFreeLinkedMemory(
     void *pVoid);
 
-_Win32_SupportedOS_WindowsVista_
 void WINAPI
 WSDAttachLinkedMemory(
     void* pParent,
     void* pChild);
 
-_Win32_SupportedOS_WindowsVista_
 void WINAPI
 WSDDetachLinkedMemory(
     void* pVoid);
@@ -90,14 +83,12 @@ WSDDetachLinkedMemory(
 
 typedef struct _WSDXML_ELEMENT WSDXML_ELEMENT; 
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WSDXMLBuildAnyForSingleElement(
     WSDXML_NAME* pElementName, 
     _In_opt_ LPCWSTR pszText, 
     _Outptr_ WSDXML_ELEMENT** ppAny);
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WSDXMLGetValueFromAny(
     _In_ LPCWSTR pszNamespace,
@@ -105,24 +96,20 @@ WSDXMLGetValueFromAny(
     WSDXML_ELEMENT* pAny, 
     _Outptr_ LPCWSTR* ppszValue);
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WSDXMLAddSibling(
     WSDXML_ELEMENT* pFirst,
     WSDXML_ELEMENT* pSecond);
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WSDXMLAddChild(
     WSDXML_ELEMENT* pParent,
     WSDXML_ELEMENT* pChild);
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WSDXMLCleanupElement(
     WSDXML_ELEMENT* pAny);    
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WSDGenerateFault(
     _In_ LPCWSTR pszCode,
@@ -132,7 +119,6 @@ WSDGenerateFault(
     _In_ IWSDXMLContext* pContext,
     _Outptr_ WSD_SOAP_FAULT** ppFault);
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WSDGenerateFaultEx(
     _In_ WSDXML_NAME* pCode, 
@@ -142,7 +128,6 @@ WSDGenerateFaultEx(
     _Outptr_ WSD_SOAP_FAULT** ppFault);
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI
 WSDUriEncode(
     _In_reads_(cchSource) LPCWSTR source,
@@ -150,7 +135,6 @@ WSDUriEncode(
     _Out_writes_(*cchDestOut) LPWSTR *destOut,
     _Out_opt_ DWORD *cchDestOut);
 
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI
 WSDUriDecode(
     _In_reads_(cchSource) LPCWSTR source,

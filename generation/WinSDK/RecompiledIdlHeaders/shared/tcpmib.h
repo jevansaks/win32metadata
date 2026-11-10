@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation
@@ -68,7 +67,7 @@ typedef enum {
 
 typedef struct _MIB_TCPROW_LH {
     union {
-        _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD dwState;       // Old field used DWORD type.
+        DWORD dwState;       // Old field used DWORD type.
         MIB_TCP_STATE State; // New field uses enum type.
     };
     DWORD dwLocalAddr;
@@ -78,7 +77,7 @@ typedef struct _MIB_TCPROW_LH {
 } MIB_TCPROW_LH, *PMIB_TCPROW_LH;
 
 typedef struct _MIB_TCPROW_W2K {
-    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD       dwState;
+    DWORD       dwState;
     DWORD       dwLocalAddr;
     DWORD       dwLocalPort;
     DWORD       dwRemoteAddr;
@@ -124,7 +123,7 @@ typedef struct _MIB_TCPTABLE2 {
 
 typedef struct _MIB_TCPROW_OWNER_PID
 {
-    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD       dwState;
+    DWORD       dwState;
     DWORD       dwLocalAddr;
     DWORD       dwLocalPort;
     DWORD       dwRemoteAddr;
@@ -142,7 +141,7 @@ typedef struct _MIB_TCPTABLE_OWNER_PID
 									  ((X) * sizeof(MIB_TCPROW_OWNER_PID)) + ALIGN_SIZE)
 
 typedef struct _MIB_TCPROW_OWNER_MODULE {
-    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD dwState;
+    DWORD dwState;
     DWORD dwLocalAddr;
     DWORD dwLocalPort;
     DWORD dwRemoteAddr;
@@ -212,7 +211,7 @@ typedef struct _MIB_TCP6ROW_OWNER_PID
     UCHAR           ucRemoteAddr[16];
     DWORD           dwRemoteScopeId;
     DWORD           dwRemotePort;
-    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD           dwState;
+    DWORD           dwState;
     DWORD           dwOwningPid;
 } MIB_TCP6ROW_OWNER_PID, *PMIB_TCP6ROW_OWNER_PID;
 
@@ -234,7 +233,7 @@ typedef struct _MIB_TCP6ROW_OWNER_MODULE
     UCHAR           ucRemoteAddr[16];
     DWORD           dwRemoteScopeId;
     DWORD           dwRemotePort;
-    _Win32_AssociatedEnum_(MIB_TCP_STATE) DWORD           dwState;
+    DWORD           dwState;
     DWORD           dwOwningPid;
     LARGE_INTEGER   liCreateTimestamp;
     ULONGLONG       OwningModuleInfo[TCPIP_OWNING_MODULE_SIZE];

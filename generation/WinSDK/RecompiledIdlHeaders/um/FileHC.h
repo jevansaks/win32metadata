@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
     Copyright (c) 2002  Microsoft Corporation
@@ -640,7 +639,6 @@ FindSyncContextFromName(
 //
 //	If the name is already present in the cache, this will fail with GetLastError()==ERROR_DUP_NAME !
 //
-_Win32_SetLastError_
 FILEHC_EXPORT
 BOOL	__stdcall
 AssociateContextWithName(	

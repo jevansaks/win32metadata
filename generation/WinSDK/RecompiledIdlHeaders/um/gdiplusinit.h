@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /**************************************************************************
 *
 * Copyright (c) 2000-2003 Microsoft Corporation
@@ -15,8 +14,6 @@
 
 #ifndef _GDIPLUSINIT_H
 #define _GDIPLUSINIT_H
-
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -147,7 +144,7 @@ struct GdiplusStartupOutput
 // input  - may not be NULL
 // output - may be NULL only if input->SuppressBackgroundThread is FALSE.
 
-extern "C" _Win32_SupportedOS_WindowsXP_ Status WINAPI GdiplusStartup(
+extern "C" Status WINAPI GdiplusStartup(
     OUT ULONG_PTR *token,
     const GdiplusStartupInput *input,
     OUT GdiplusStartupOutput *output);
@@ -158,7 +155,7 @@ extern "C" _Win32_SupportedOS_WindowsXP_ Status WINAPI GdiplusStartup(
 // GDI+ API's may not be called after GdiplusShutdown. Pay careful attention
 // to GDI+ object destructors.
 
-extern "C" _Win32_SupportedOS_WindowsXP_ VOID WINAPI GdiplusShutdown(ULONG_PTR token);
+extern "C" VOID WINAPI GdiplusShutdown(ULONG_PTR token);
 
 #if _MSC_VER >= 1200
 #pragma warning(pop)

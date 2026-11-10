@@ -26,15 +26,6 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/handleapi.h b/generation/
  WINBASEAPI
  BOOL
  WINAPI
-@@ -49,7 +52,7 @@
-     _Outptr_ LPHANDLE lpTargetHandle,
-     _In_ DWORD dwDesiredAccess,
-     _In_ BOOL bInheritHandle,
--    _In_ DWORD dwOptions
-+    _Win32_AssociatedEnum_(DUPLICATE_HANDLE_OPTIONS) _In_ DWORD dwOptions
-     );
- 
- #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 @@ -58,6 +61,7 @@
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)

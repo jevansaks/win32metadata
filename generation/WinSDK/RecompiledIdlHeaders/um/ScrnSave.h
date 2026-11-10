@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*****************************************************************************\
 *                                                                             *
 * scrnsave.h    Windows NT 3.1 screensaver defines and definitions.           *
@@ -85,7 +84,6 @@ extern "C" {            /* Assume C declarations for C++ */
 LRESULT WINAPI ScreenSaverProcW (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 #   define  ScreenSaverProc ScreenSaverProcW
 #else
-_Win32_SupportedOS_WindowsXP_
 LRESULT WINAPI ScreenSaverProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 #endif
 
@@ -120,7 +118,6 @@ LRESULT WINAPI ScreenSaverProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM l
  *                  This message is ignored, however is the password option
  *                  is enabled.
  */
-_Win32_SupportedOS_WindowsXP_
 LRESULT WINAPI DefScreenSaverProc (HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 /* A function is also needed for configuring the screen saver.  The function
@@ -129,7 +126,6 @@ LRESULT WINAPI DefScreenSaverProc (HWND hWnd, UINT msg, WPARAM wParam, LPARAM lP
  * more, the template used for the dialog must be called
  * ScreenSaverConfigure to allow the main function to access it...
  */
-_Win32_SupportedOS_WindowsXP_
 BOOL WINAPI ScreenSaverConfigureDialog (HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 /* To allow the programmer the ability to register child control windows, this
@@ -137,8 +133,6 @@ BOOL WINAPI ScreenSaverConfigureDialog (HWND hDlg, UINT message, WPARAM wParam, 
  * registering that is required should be done here, or return TRUE if none
  * is needed...
  */
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL WINAPI RegisterDialogClasses (HANDLE hInst);
 
 /* The following functions are called by DefScreenSaverProc and must

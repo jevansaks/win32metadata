@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -33,8 +32,6 @@ typedef enum _MC_VCP_CODE_TYPE
 
 } MC_VCP_CODE_TYPE, *LPMC_VCP_CODE_TYPE;
 
-_Win32_SupportedOS_WindowsVista_
-_Win32_SetLastError_
 _BOOL WINAPI GetVCPFeatureAndVCPFeatureReply
     (
     HANDLE hMonitor,
@@ -44,19 +41,12 @@ _BOOL WINAPI GetVCPFeatureAndVCPFeatureReply
     _Out_opt_ LPDWORD pdwMaximumValue
     );
 
-_Win32_SupportedOS_WindowsVista_
 _BOOL WINAPI SetVCPFeature( HANDLE hMonitor, BYTE bVCPCode, DWORD dwNewValue );
 
-_Win32_SupportedOS_WindowsVista_
-_Win32_SetLastError_
 _BOOL WINAPI SaveCurrentSettings( HANDLE hMonitor );
 
-_Win32_SupportedOS_WindowsVista_
-_Win32_SetLastError_
 _BOOL WINAPI GetCapabilitiesStringLength( HANDLE hMonitor, _Out_ LPDWORD pdwCapabilitiesStringLengthInCharacters );
 
-_Win32_SupportedOS_WindowsVista_
-_Win32_SetLastError_
 _BOOL WINAPI CapabilitiesRequestAndCapabilitiesReply 
     (
     HANDLE hMonitor, 
@@ -64,8 +54,6 @@ _BOOL WINAPI CapabilitiesRequestAndCapabilitiesReply
     DWORD dwCapabilitiesStringLengthInCharacters
     );
 
-_Win32_SupportedOS_WindowsVista_
-_Win32_SetLastError_
 _BOOL WINAPI GetTimingReport( HANDLE hMonitor, _Out_ LPMC_TIMING_REPORT pmtrMonitorTimingReport );
 
 #pragma pack( pop )

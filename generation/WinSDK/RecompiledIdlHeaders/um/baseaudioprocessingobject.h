@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 // BaseAudioProcessingObject.h -- Copyright (c) 2002 Microsoft Corporation
 //
 // Description:
@@ -7,8 +6,6 @@
 //
 
 #pragma once
-#include <sal.h>
-
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -43,7 +40,7 @@ extern "C"
     //      E_OUTOFMEMORY - No memory is available.
     //
     _Success_(return == S_OK)
-    _Win32_SupportedOS_WindowsVista_ STDAPI AERT_Allocate(_In_ size_t size, _Outptr_result_bytebuffer_(size) void **pMemory);
+    STDAPI AERT_Allocate(_In_ size_t size, _Outptr_result_bytebuffer_(size) void **pMemory);
 
     //-------------------------------------------------------------------------
     // Description: Locked memory free
@@ -54,7 +51,7 @@ extern "C"
     // Return codes:
     //      S_OK
     //
-    _Win32_SupportedOS_WindowsVista_ STDAPI AERT_Free(_In_ void *pMemory);
+    STDAPI AERT_Free(_In_ void *pMemory);
 }
 
 

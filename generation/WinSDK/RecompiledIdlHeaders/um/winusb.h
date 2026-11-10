@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2002 Microsoft Corporation
@@ -35,7 +34,6 @@ Authors:
 
 #ifndef __WUSB_H__
 #define __WUSB_H__
-#include <sal.h>
 
 #include <winapifamily.h>
 
@@ -69,30 +67,27 @@ typedef struct _WINUSB_SETUP_PACKET {
 
 
 BOOL __stdcall
+WinUsb_Initialize(
+    _In_  HANDLE DeviceHandle,
+    _Out_ PWINUSB_INTERFACE_HANDLE InterfaceHandle
+    );
+
+
+BOOL __stdcall
 WinUsb_Free(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle
     );
 
 
-_Win32_SetLastError_
-BOOL __stdcall
-WinUsb_Initialize(
-    _In_  HANDLE DeviceHandle,
-    _Out_ _Win32_RAIIFree_(WinUsb_Free, 0) PWINUSB_INTERFACE_HANDLE InterfaceHandle
-    );
-
-
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_GetAssociatedInterface(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  UCHAR AssociatedInterfaceIndex,
-    _Out_ _Win32_RAIIFree_(WinUsb_Free, 0) PWINUSB_INTERFACE_HANDLE AssociatedInterfaceHandle
+    _Out_ PWINUSB_INTERFACE_HANDLE AssociatedInterfaceHandle
     );
 
 
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_GetDescriptor(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -104,7 +99,6 @@ WinUsb_GetDescriptor(
     _Out_ PULONG LengthTransferred
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_QueryInterfaceSettings(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -112,7 +106,6 @@ WinUsb_QueryInterfaceSettings(
     _Out_ PUSB_INTERFACE_DESCRIPTOR UsbAltInterfaceDescriptor
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_QueryDeviceInformation(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -121,21 +114,18 @@ WinUsb_QueryDeviceInformation(
     _Out_writes_bytes_(*BufferLength) PVOID Buffer
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_SetCurrentAlternateSetting(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  UCHAR SettingNumber
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_GetCurrentAlternateSetting(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _Out_ PUCHAR SettingNumber
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_QueryPipe(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -144,7 +134,6 @@ WinUsb_QueryPipe(
     _Out_ PWINUSB_PIPE_INFORMATION PipeInformation
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_QueryPipeEx(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -153,27 +142,24 @@ WinUsb_QueryPipeEx(
     _Out_ PWINUSB_PIPE_INFORMATION_EX PipeInformationEx
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_SetPipePolicy(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  UCHAR PipeID,
-    _In_  _Win32_AssociatedEnum_(WINUSB_PIPE_POLICY) ULONG PolicyType,
+    _In_  ULONG PolicyType,
     _In_  ULONG ValueLength,
     _In_reads_bytes_(ValueLength) PVOID Value
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_GetPipePolicy(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  UCHAR PipeID,
-    _In_  _Win32_AssociatedEnum_(WINUSB_PIPE_POLICY) ULONG PolicyType,
+    _In_  ULONG PolicyType,
     _Inout_ PULONG ValueLength,
     _Out_writes_bytes_(*ValueLength) PVOID Value
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_ReadPipe(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -184,7 +170,6 @@ WinUsb_ReadPipe(
     _In_opt_ LPOVERLAPPED Overlapped
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_WritePipe(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -195,7 +180,6 @@ WinUsb_WritePipe(
     _In_opt_ LPOVERLAPPED Overlapped
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_ControlTransfer(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -206,46 +190,40 @@ WinUsb_ControlTransfer(
     _In_opt_  LPOVERLAPPED Overlapped
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_ResetPipe(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  UCHAR PipeID
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_AbortPipe(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  UCHAR PipeID
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_FlushPipe(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  UCHAR PipeID
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_SetPowerPolicy(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
-    _In_  _Win32_AssociatedEnum_(WINUSB_POWER_POLICY) ULONG PolicyType,
+    _In_  ULONG PolicyType,
     _In_  ULONG ValueLength,
     _In_reads_bytes_(ValueLength) PVOID Value
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_GetPowerPolicy(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
-    _In_  _Win32_AssociatedEnum_(WINUSB_POWER_POLICY) ULONG PolicyType,
+    _In_  ULONG PolicyType,
     _Inout_ PULONG ValueLength,
     _Out_writes_bytes_(*ValueLength) PVOID Value
     );
 
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_GetOverlappedResult(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -254,7 +232,6 @@ WinUsb_GetOverlappedResult(
     _In_  BOOL bWait
     );
 
-_Win32_SetLastError_
 PUSB_INTERFACE_DESCRIPTOR __stdcall
 WinUsb_ParseConfigurationDescriptor(
     _In_  PUSB_CONFIGURATION_DESCRIPTOR ConfigurationDescriptor,
@@ -266,7 +243,6 @@ WinUsb_ParseConfigurationDescriptor(
     _In_  LONG InterfaceProtocol
     );
 
-_Win32_SetLastError_
 PUSB_COMMON_DESCRIPTOR __stdcall
 WinUsb_ParseDescriptors(
     _In_reads_bytes_(TotalLength) PVOID    DescriptorBuffer,
@@ -275,23 +251,17 @@ WinUsb_ParseDescriptors(
     _In_  LONG     DescriptorType
     );
 
-_Win32_SupportedOS_Windows81_
-_Win32_SetLastError_
 BOOL __stdcall WinUsb_GetCurrentFrameNumber (
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _Out_ PULONG CurrentFrameNumber,
     _Out_ LARGE_INTEGER *TimeStamp
     );
 
-_Win32_SupportedOS_Windows81_
-_Win32_SetLastError_
 BOOL __stdcall WinUsb_GetAdjustedFrameNumber (
     _Inout_ PULONG CurrentFrameNumber,
     _In_  LARGE_INTEGER TimeStamp
     );
 
-_Win32_SupportedOS_Windows81_
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_RegisterIsochBuffer(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
@@ -301,15 +271,11 @@ WinUsb_RegisterIsochBuffer(
     _Out_ PWINUSB_ISOCH_BUFFER_HANDLE IsochBufferHandle
     );
 
-_Win32_SupportedOS_Windows81_
-_Win32_SetLastError_
 BOOL __stdcall
 WinUsb_UnregisterIsochBuffer(
     _In_  WINUSB_ISOCH_BUFFER_HANDLE IsochBufferHandle
     );
 
-_Win32_SupportedOS_Windows81_
-_Win32_SetLastError_
 BOOL __stdcall WinUsb_WriteIsochPipe (
     _In_  WINUSB_ISOCH_BUFFER_HANDLE BufferHandle,
     _In_  ULONG Offset,
@@ -318,8 +284,6 @@ BOOL __stdcall WinUsb_WriteIsochPipe (
     _In_opt_ LPOVERLAPPED Overlapped
     );
 
-_Win32_SupportedOS_Windows81_
-_Win32_SetLastError_
 BOOL __stdcall WinUsb_ReadIsochPipe (
     _In_  WINUSB_ISOCH_BUFFER_HANDLE BufferHandle,
     _In_  ULONG Offset,
@@ -330,8 +294,6 @@ BOOL __stdcall WinUsb_ReadIsochPipe (
     _In_opt_ LPOVERLAPPED Overlapped
     );
 
-_Win32_SupportedOS_Windows81_
-_Win32_SetLastError_
 BOOL __stdcall WinUsb_WriteIsochPipeAsap (
     _In_  WINUSB_ISOCH_BUFFER_HANDLE BufferHandle,
     _In_  ULONG Offset,
@@ -340,8 +302,6 @@ BOOL __stdcall WinUsb_WriteIsochPipeAsap (
     _In_opt_ LPOVERLAPPED Overlapped
     );
 
-_Win32_SupportedOS_Windows81_
-_Win32_SetLastError_
 BOOL __stdcall WinUsb_ReadIsochPipeAsap (
     _In_  WINUSB_ISOCH_BUFFER_HANDLE BufferHandle,
     _In_  ULONG Offset,
@@ -401,22 +361,16 @@ typedef struct _USB_FRAME_NUMBER_AND_QPC_FOR_TIME_SYNC_INFORMATION {
 
 #endif
 
-_Win32_SupportedOS_10240_
-_Win32_SetLastError_
 BOOL __stdcall WinUsb_StartTrackingForTimeSync (
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  PUSB_START_TRACKING_FOR_TIME_SYNC_INFORMATION StartTrackingInfo
     );
 
-_Win32_SupportedOS_10240_
-_Win32_SetLastError_
 BOOL __stdcall WinUsb_GetCurrentFrameNumberAndQpc (
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  PUSB_FRAME_NUMBER_AND_QPC_FOR_TIME_SYNC_INFORMATION FrameQpcInfo
     );
 
-_Win32_SupportedOS_10240_
-_Win32_SetLastError_
 BOOL __stdcall WinUsb_StopTrackingForTimeSync (
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  PUSB_STOP_TRACKING_FOR_TIME_SYNC_INFORMATION StopTrackingInfo

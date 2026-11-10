@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -93,25 +92,21 @@ typedef HANDLE      PEERDIST_STREAM_HANDLE;
 typedef PEERDIST_STREAM_HANDLE *     PPEERDIST_STREAM_HANDLE;
 
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistStartup(
         _In_  DWORD  dwVersionRequested,
         _Out_ PPEERDIST_INSTANCE_HANDLE phPeerDist,
         _Out_opt_ PDWORD pdwSupportedVersion
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistShutdown(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistGetStatus(
         _In_  PEERDIST_INSTANCE_HANDLE  hPeerDist, 
         _Out_ PEERDIST_STATUS * pPeerDistStatus
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistRegisterForStatusChangeNotification(
         _In_     PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_opt_ HANDLE hCompletionPort,
@@ -120,13 +115,10 @@ DWORD WINAPI PeerDistRegisterForStatusChangeNotification(
         _Out_    PEERDIST_STATUS * pPeerDistStatus
         );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistUnregisterForStatusChangeNotification(
     _In_ PEERDIST_INSTANCE_HANDLE hPeerDist
     );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistServerPublishStream(
         _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
              DWORD cbContentIdentifier,
@@ -138,7 +130,6 @@ DWORD WINAPI PeerDistServerPublishStream(
         _Out_ PPEERDIST_STREAM_HANDLE phStream
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistServerPublishAddToStream(
         _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
         _In_ PEERDIST_STREAM_HANDLE hStream,
@@ -147,27 +138,23 @@ DWORD WINAPI PeerDistServerPublishAddToStream(
         _In_ LPOVERLAPPED lpOverlapped
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistServerPublishCompleteStream(
         _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
         _In_ PEERDIST_STREAM_HANDLE hStream,
         _In_ LPOVERLAPPED lpOverlapped
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistServerCloseStreamHandle(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PEERDIST_STREAM_HANDLE hStream
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistServerUnpublish(
         _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
              DWORD cbContentIdentifier,
         _In_reads_bytes_(cbContentIdentifier) PBYTE pContentIdentifier
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistServerOpenContentInformation(
         _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
              DWORD cbContentIdentifier,
@@ -179,7 +166,6 @@ DWORD WINAPI PeerDistServerOpenContentInformation(
         _Out_ PPEERDIST_CONTENTINFO_HANDLE phContentInfo
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistServerRetrieveContentInformation(
         _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
         _In_ PEERDIST_CONTENTINFO_HANDLE hContentInfo,
@@ -188,14 +174,11 @@ DWORD WINAPI PeerDistServerRetrieveContentInformation(
         _In_ LPOVERLAPPED lpOverlapped  // Offset and OffsetHigh are offset into content info
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistServerCloseContentInformation(
         _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
         _In_ PEERDIST_CONTENTINFO_HANDLE hContentInfo
         );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistServerCancelAsyncOperation(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
              DWORD cbContentIdentifier,
@@ -203,7 +186,6 @@ DWORD WINAPI PeerDistServerCancelAsyncOperation(
         _In_ LPOVERLAPPED pOverlapped
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistClientOpenContent(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PCPEERDIST_CONTENT_TAG pContentTag,
@@ -212,13 +194,11 @@ DWORD WINAPI PeerDistClientOpenContent(
         _Out_ PPEERDIST_CONTENT_HANDLE phContentHandle
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistClientCloseContent(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PEERDIST_CONTENT_HANDLE hContentHandle
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistClientAddContentInformation(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
@@ -227,14 +207,12 @@ DWORD WINAPI PeerDistClientAddContentInformation(
         _In_ LPOVERLAPPED lpOverlapped
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistClientCompleteContentInformation(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
         _In_ LPOVERLAPPED lpOverlapped
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistClientAddData(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
@@ -243,7 +221,6 @@ DWORD WINAPI PeerDistClientAddData(
         _In_ LPOVERLAPPED lpOverlapped
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistClientBlockRead(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
@@ -253,7 +230,6 @@ DWORD WINAPI PeerDistClientBlockRead(
         _In_ LPOVERLAPPED lpOverlapped
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistClientStreamRead(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
@@ -263,7 +239,6 @@ DWORD WINAPI PeerDistClientStreamRead(
         _In_ LPOVERLAPPED lpOverlapped
         );
 
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistClientFlushContent(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PCPEERDIST_CONTENT_TAG pContentTag,
@@ -272,8 +247,6 @@ DWORD WINAPI PeerDistClientFlushContent(
         _In_ LPOVERLAPPED lpOverlapped
         );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows7_
 DWORD WINAPI PeerDistClientCancelAsyncOperation(
         _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_ PEERDIST_CONTENT_HANDLE hContentHandle,
@@ -290,11 +263,6 @@ DWORD WINAPI PeerDistClientCancelAsyncOperation(
 #define PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_1 1L
 #define PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_2 2L
 
-_Win32_Enum_(PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_VALUE, DWORD,
-    PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_1,
-    PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_2,
-    PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION);
-
 typedef struct peerdist_retrieval_options_tag 
 {
     DWORD cbSize;
@@ -308,8 +276,8 @@ typedef struct peerdist_status_info_tag
 {
     DWORD cbSize;
     PEERDIST_STATUS status;
-    _Win32_AssociatedEnum_(PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_VALUE) DWORD dwMinVer;
-    _Win32_AssociatedEnum_(PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_VALUE) DWORD dwMaxVer;
+    DWORD dwMinVer;
+    DWORD dwMaxVer;
 } PEERDIST_STATUS_INFO, *PPEERDIST_STATUS_INFO;
 typedef const PEERDIST_STATUS_INFO * PCPEERDIST_STATUS_INFO;
 
@@ -324,13 +292,11 @@ typedef struct _PEERDIST_CLIENT_BASIC_INFO {
 
 #ifndef MIDL_PASS
 
-_Win32_SupportedOS_Windows8_
 DWORD WINAPI PeerDistGetStatusEx(
         _In_  PEERDIST_INSTANCE_HANDLE hPeerDist,
         _Inout_ PEERDIST_STATUS_INFO *pPeerDistStatus
         );
 
-_Win32_SupportedOS_Windows8_
 DWORD WINAPI PeerDistRegisterForStatusChangeNotificationEx(
         _In_      PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_opt_  HANDLE hCompletionPort,
@@ -339,14 +305,12 @@ DWORD WINAPI PeerDistRegisterForStatusChangeNotificationEx(
         _Inout_ PEERDIST_STATUS_INFO *pPeerDistStatus
         );
 
-_Win32_SupportedOS_Windows8_
 BOOL WINAPI PeerDistGetOverlappedResult(
         _In_ LPOVERLAPPED lpOverlapped,
         _Out_ LPDWORD lpNumberOfBytesTransferred,
         _In_ BOOL bWait
         );
 
-_Win32_SupportedOS_Windows8_
 DWORD WINAPI PeerDistServerOpenContentInformationEx(
         _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
              DWORD cbContentIdentifier,
@@ -359,7 +323,6 @@ DWORD WINAPI PeerDistServerOpenContentInformationEx(
         _Out_ PPEERDIST_CONTENTINFO_HANDLE phContentInfo
         );
 
-_Win32_SupportedOS_Windows8_
 DWORD WINAPI PeerDistClientGetInformationByHandle(
         _In_  PEERDIST_INSTANCE_HANDLE hPeerDist,
         _In_  PEERDIST_CONTENT_HANDLE hContentHandle,

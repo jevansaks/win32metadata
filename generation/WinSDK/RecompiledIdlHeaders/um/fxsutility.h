@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -37,9 +36,7 @@ typedef enum {
 	  SEND_TO_FAX_RECIPIENT_ATTACHMENT
 } SendToMode;
 
-_Win32_SupportedOS_WindowsVista_
 BOOL WINAPI CanSendToFaxRecipient();
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI SendToFaxRecipient(SendToMode sndMode, LPCWSTR lpFileName);
 
 #ifdef __cplusplus

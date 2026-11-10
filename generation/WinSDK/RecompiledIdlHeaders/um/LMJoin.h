@@ -28,7 +28,6 @@ Notes:
 #pragma once
 #endif
 #include <winapifamily.h>
-#include <win32metadata_annotations.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -158,17 +157,6 @@ typedef struct _DSREG_JOIN_INFO
 
 #define NETSETUP_VALID_UNJOIN_FLAGS (NETSETUP_ACCT_DELETE | NETSETUP_IGNORE_UNSUPPORTED_FLAGS | NETSETUP_JOIN_DC_ACCOUNT)
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(NET_JOIN_DOMAIN_JOIN_OPTIONS, unsigned int,
-    NETSETUP_JOIN_DOMAIN, NETSETUP_ACCT_CREATE, NETSETUP_WIN9X_UPGRADE,
-    NETSETUP_DOMAIN_JOIN_IF_JOINED, NETSETUP_JOIN_UNSECURE,
-    NETSETUP_MACHINE_PWD_PASSED, NETSETUP_DEFER_SPN_SET, NETSETUP_JOIN_DC_ACCOUNT,
-    NETSETUP_JOIN_WITH_NEW_NAME, NETSETUP_JOIN_READONLY, NETSETUP_AMBIGUOUS_DC,
-    NETSETUP_NO_NETLOGON_CACHE, NETSETUP_DONT_CONTROL_SERVICES,
-    NETSETUP_SET_MACHINE_NAME, NETSETUP_FORCE_SPN_SET, NETSETUP_NO_ACCT_REUSE,
-    NETSETUP_IGNORE_UNSUPPORTED_FLAGS);
-#endif
-
 // The following flags are used when the system is processing information left from a prior offline
 // join.  We want to force DC discovery and we don't want to create the netlogon cache.  We also
 // don't want to immediately force netlogon to start, let it start on its own.
@@ -185,7 +173,6 @@ _Win32_FlagsEnum_(NET_JOIN_DOMAIN_JOIN_OPTIONS, unsigned int,
 //
 // Joins a machine to the domain.
 //
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS
 NET_API_FUNCTION
 NetJoinDomain(
@@ -194,10 +181,9 @@ NetJoinDomain(
     _In_opt_ LPCWSTR lpMachineAccountOU,
     _In_opt_ LPCWSTR lpAccount,
     _In_opt_ LPCWSTR lpPassword,
-    _In_ _Win32_AssociatedEnum_(NET_JOIN_DOMAIN_JOIN_OPTIONS) DWORD   fJoinOptions
+    _In_ DWORD   fJoinOptions
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS
 NET_API_FUNCTION
 NetUnjoinDomain(
@@ -207,7 +193,6 @@ NetUnjoinDomain(
     _In_ DWORD   fUnjoinOptions
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS
 NET_API_FUNCTION
 NetRenameMachineInDomain(
@@ -221,7 +206,6 @@ NetRenameMachineInDomain(
 //
 // Determine the validity of a name
 //
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS
 NET_API_FUNCTION
 NetValidateName(
@@ -235,7 +219,6 @@ NetValidateName(
 //
 // Determines the list of OUs that the client can create a machine account in
 //
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS
 NET_API_FUNCTION
 NetGetJoinableOUs(
@@ -255,7 +238,6 @@ NetGetJoinableOUs(
 
 #define NET_IGNORE_UNSUPPORTED_FLAGS  0x01
 
-_Win32_SupportedOS_WindowsXP_
 NET_API_STATUS
 NET_API_FUNCTION
 NetAddAlternateComputerName(
@@ -266,7 +248,6 @@ NetAddAlternateComputerName(
     _In_ ULONG Reserved
     );
 
-_Win32_SupportedOS_WindowsXP_
 NET_API_STATUS
 NET_API_FUNCTION
 NetRemoveAlternateComputerName(
@@ -277,7 +258,6 @@ NetRemoveAlternateComputerName(
     _In_ ULONG Reserved
     );
 
-_Win32_SupportedOS_WindowsXP_
 NET_API_STATUS
 NET_API_FUNCTION
 NetSetPrimaryComputerName(
@@ -301,7 +281,6 @@ typedef enum _NET_COMPUTER_NAME_TYPE {
     NetComputerNameTypeMax
 } NET_COMPUTER_NAME_TYPE, *PNET_COMPUTER_NAME_TYPE;
 
-_Win32_SupportedOS_WindowsXP_
 NET_API_STATUS
 NET_API_FUNCTION
 NetEnumerateComputerNames(
@@ -365,16 +344,6 @@ NetEnumerateComputerNames(
 //
 #define NETSETUP_PROVISION_CHECK_PWD_ONLY         0x80000000
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(NETSETUP_PROVISION, unsigned int,
-    NETSETUP_PROVISION_DOWNLEVEL_PRIV_SUPPORT, NETSETUP_PROVISION_REUSE_ACCOUNT,
-    NETSETUP_PROVISION_USE_DEFAULT_PASSWORD, NETSETUP_PROVISION_SKIP_ACCOUNT_SEARCH,
-    NETSETUP_PROVISION_ROOT_CA_CERTS);
-_Win32_FlagsEnum_(NET_REQUEST_PROVISION_OPTIONS, unsigned int,
-    NETSETUP_PROVISION_ONLINE_CALLER);
-#endif
-
-_Win32_SupportedOS_Windows7_
 NET_API_STATUS
 NET_API_FUNCTION
 NetProvisionComputerAccount(
@@ -382,7 +351,7 @@ NetProvisionComputerAccount(
    _In_z_          LPCWSTR lpMachineName,
    _In_opt_z_      LPCWSTR lpMachineAccountOU,
    _In_opt_z_      LPCWSTR lpDcName,
-   _In_            _Win32_AssociatedEnum_(NETSETUP_PROVISION) DWORD   dwOptions,
+   _In_            DWORD   dwOptions,
    _Outptr_opt_result_bytebuffer_maybenull_(*pdwProvisionBinDataSize)
                    PBYTE  *pProvisionBinData,
    _Out_opt_       DWORD  *pdwProvisionBinDataSize,
@@ -390,13 +359,12 @@ NetProvisionComputerAccount(
                    LPWSTR *pProvisionTextData
 );
 
-_Win32_SupportedOS_Windows7_
 NET_API_STATUS
 NET_API_FUNCTION
 NetRequestOfflineDomainJoin(
     _In_reads_bytes_(cbProvisionBinDataSize) BYTE *pProvisionBinData,
     _In_    DWORD   cbProvisionBinDataSize,
-    _In_    _Win32_AssociatedEnum_(NET_REQUEST_PROVISION_OPTIONS) DWORD   dwOptions,
+    _In_    DWORD   dwOptions,
     _In_z_  LPCWSTR lpWindowsPath
 );
 
@@ -416,7 +384,7 @@ typedef struct _NETSETUP_PROVISIONING_PARAMS
     LPCWSTR lpHostName;             //  _In_z_
     LPCWSTR lpMachineAccountOU;     //  _In_opt_z_
     LPCWSTR lpDcName;               //  _In_opt_z_
-    _Win32_AssociatedEnum_(NETSETUP_PROVISION) DWORD   dwProvisionOptions;     //  _In_
+    DWORD   dwProvisionOptions;     //  _In_
     LPCWSTR *aCertTemplateNames;    //  _In_reads_opt_(cCertTemplateNames)
     DWORD   cCertTemplateNames;     //  _In_
     LPCWSTR *aMachinePolicyNames;   //  _In_reads_opt_(cMachinePolicyNames)
@@ -430,7 +398,6 @@ typedef struct _NETSETUP_PROVISIONING_PARAMS
     LPWSTR  lpPrimaryDNSDomain;     //  _In_
 } NETSETUP_PROVISIONING_PARAMS, *PNETSETUP_PROVISIONING_PARAMS;
 
-_Win32_SupportedOS_Windows8_
 NET_API_STATUS
 NET_API_FUNCTION
 NetCreateProvisioningPackage(
@@ -441,13 +408,12 @@ NetCreateProvisioningPackage(
     _Outptr_opt_result_maybenull_z_ LPWSTR *ppPackageTextData
     );
 
-_Win32_SupportedOS_Windows8_
 NET_API_STATUS
 NET_API_FUNCTION
 NetRequestProvisioningPackageInstall(
     _In_reads_bytes_(dwPackageBinDataSize) BYTE *pPackageBinData,
     _In_ DWORD dwPackageBinDataSize,
-    _In_ _Win32_AssociatedEnum_(NET_REQUEST_PROVISION_OPTIONS) DWORD dwProvisionOptions,
+    _In_ DWORD dwProvisionOptions,
     _In_z_ LPCWSTR lpWindowsPath,
     _Reserved_ PVOID pvReserved
     );
@@ -462,7 +428,6 @@ NetRequestProvisioningPackageInstall(
 
 #if(_WIN32_WINNT >= _WIN32_WINNT_WIN10)
 
-_Win32_SupportedOS_10240_
 HRESULT
 NET_API_FUNCTION
 NetGetAadJoinInformation(
@@ -470,7 +435,6 @@ NetGetAadJoinInformation(
     _Outptr_result_maybenull_ PDSREG_JOIN_INFO *ppJoinInfo
     );
 
-_Win32_SupportedOS_10240_
 VOID
 NET_API_FUNCTION
 NetFreeAadJoinInformation(
@@ -500,7 +464,6 @@ typedef enum _NETSETUP_JOIN_STATUS {
 //
 // Determines whether a workstation is joined to a domain or not
 //
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS
 NET_API_FUNCTION
 NetGetJoinInformation(

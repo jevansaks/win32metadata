@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 // ComputeCore.h: ApiSet Contract for ext-ms-win-hyperv-compute-l1
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
@@ -6,8 +5,6 @@
 
 #ifndef _HYPERV_COMPUTECORE_H_
 #define _HYPERV_COMPUTECORE_H_
-
-#include <sal.h>
 
 #include <apiset.h>
 #include <apisetcconv.h>
@@ -41,7 +38,7 @@ HcsEnumerateComputeSystemsInNamespace(
     );
 
 // Creates a new operation.
-_Win32_RAIIFree_(HcsCloseOperation, -1, 0) HCS_OPERATION
+HCS_OPERATION
 WINAPI
 HcsCreateOperation(
     _In_opt_ const void* context,
@@ -49,7 +46,7 @@ HcsCreateOperation(
     );
 
 // Creates a new operation that allows registration for event notifications
-_Win32_RAIIFree_(HcsCloseOperation, -1, 0) HCS_OPERATION
+HCS_OPERATION
 WINAPI
 HcsCreateOperationWithNotifications(
     _In_ HCS_OPERATION_OPTIONS eventTypes,
@@ -196,7 +193,7 @@ HcsCreateComputeSystem(
     _In_ PCWSTR configuration,
     _In_ HCS_OPERATION operation,
     _In_opt_ const SECURITY_DESCRIPTOR* securityDescriptor,
-    _Out_ _Win32_RAIIFree_(HcsCloseComputeSystem, -1, 0) HCS_SYSTEM* computeSystem
+    _Out_ HCS_SYSTEM* computeSystem
     );
 
 /// Creates a new compute system in a given namespace.
@@ -208,7 +205,7 @@ HcsCreateComputeSystemInNamespace(
     _In_ PCWSTR configuration,
     _In_ HCS_OPERATION operation,
     _In_opt_ const HCS_CREATE_OPTIONS* options,
-    _Out_ _Win32_RAIIFree_(HcsCloseComputeSystem, -1, 0) HCS_SYSTEM* computeSystem
+    _Out_ HCS_SYSTEM* computeSystem
     );
 
 /// Opens a handle to an existing compute system.
@@ -217,7 +214,7 @@ WINAPI
 HcsOpenComputeSystem(
     _In_ PCWSTR id,
     _In_ DWORD requestedAccess,
-    _Out_ _Win32_RAIIFree_(HcsCloseComputeSystem, -1, 0) HCS_SYSTEM* computeSystem
+    _Out_ HCS_SYSTEM* computeSystem
     );
 
 /// Opens a handle to an existing compute system in a given namespace.
@@ -227,7 +224,7 @@ HcsOpenComputeSystemInNamespace(
     _In_ PCWSTR idNamespace,
     _In_ PCWSTR id,
     _In_ DWORD requestedAccess,
-    _Out_ _Win32_RAIIFree_(HcsCloseComputeSystem, -1, 0) HCS_SYSTEM* computeSystem
+    _Out_ HCS_SYSTEM* computeSystem
     );
 
 /// Closes a handle to a compute system.
@@ -382,7 +379,7 @@ HcsCreateProcess(
     _In_ PCWSTR processParameters,
     _In_ HCS_OPERATION operation,
     _In_opt_ const SECURITY_DESCRIPTOR* securityDescriptor,
-    _Out_ _Win32_RAIIFree_(HcsCloseProcess, -1, 0) HCS_PROCESS* process
+    _Out_ HCS_PROCESS* process
     );
 
 /// Opens an existing process in a compute system
@@ -392,7 +389,7 @@ HcsOpenProcess(
     _In_ HCS_SYSTEM computeSystem,
     _In_ DWORD processId,
     _In_ DWORD requestedAccess,
-    _Out_ _Win32_RAIIFree_(HcsCloseProcess, -1, 0) HCS_PROCESS* process
+    _Out_ HCS_PROCESS* process
     );
 
 /// Closes the handle to a process in a compute system

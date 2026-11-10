@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /**************************************************************************\
 *
 * Copyright (c) 1998-2001, Microsoft Corp.  All Rights Reserved.
@@ -15,8 +14,6 @@
 
 #ifndef _GDIPLUSENUMS_H
 #define _GDIPLUSENUMS_H
-
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -533,7 +530,7 @@ enum ObjectType
     ObjectTypeMin = ObjectTypeBrush
 };
 
-_Win32_SupportedOS_WindowsXP_ inline BOOL
+inline BOOL
 ObjectTypeIsValid(
     ObjectType      type
     )

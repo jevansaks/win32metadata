@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -62,7 +61,6 @@ extern "C"
 // Minimal support for persistent handlers.
 //
 
-_Win32_SupportedOS_Windows2000_
 STDAPI LoadIFilter( PCWSTR pwcsPath,
                     _In_ IUnknown * pUnkOuter,
                     _Outptr_ void ** ppIUnk );
@@ -76,12 +74,10 @@ STDAPI LoadIFilterEx( PCWSTR pwcsPath,
                       REFIID riid,
                       _Outptr_ void ** ppIUnk );
 
-_Win32_SupportedOS_Windows2000_
 STDAPI BindIFilterFromStorage(_In_ IStorage * pStg,
                               _In_ IUnknown * pUnkOuter,
                               _Outptr_ void ** ppIUnk );
 
-_Win32_SupportedOS_Windows2000_
 STDAPI BindIFilterFromStream(_In_ IStream * pStm,
                              _In_ IUnknown * pUnkOuter,
                              _Outptr_ void ** ppIUnk );
@@ -233,7 +229,6 @@ STDAPI BindIFilterFromStream(_In_ IStream * pStm,
 #define CICAT_GET_STATE   0x10
 #define CICAT_ALL_OPENED  0x20
 
-_Win32_SupportedOS_Windows2000_
 STDAPI SetCatalogState ( WCHAR const * pwcsCat,
                          WCHAR const * pwcsMachine,
                          DWORD dwNewState,

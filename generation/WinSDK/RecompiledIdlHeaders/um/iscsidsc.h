@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //***************************************************************************
 //
 //  iscsidsc.h
@@ -856,12 +855,10 @@ typedef struct
 
 #if ! (defined(MIDL_PASS))
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetIScsiVersionInformation(
     PISCSI_VERSION_INFO VersionInfo
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetIScsiTargetInformationW(
     IN _In_ PWSTR TargetName,
     IN _In_opt_ PWSTR DiscoveryMechanism,
@@ -870,7 +867,6 @@ ISDSC_STATUS ISDSC_API GetIScsiTargetInformationW(
     OUT PVOID Buffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetIScsiTargetInformationA(
     IN _In_ PSTR TargetName,
     IN _In_opt_ PSTR DiscoveryMechanism,
@@ -885,7 +881,6 @@ ISDSC_STATUS ISDSC_API GetIScsiTargetInformationA(
 #define GetIScsiTargetInformation GetIScsiTargetInformationA
 #endif // UNICODE
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddIScsiConnectionW(
     IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
     IN PVOID Reserved,
@@ -898,7 +893,6 @@ ISDSC_STATUS ISDSC_API AddIScsiConnectionW(
     OUT OPTIONAL PISCSI_UNIQUE_CONNECTION_ID ConnectionId
     );
     
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddIScsiConnectionA(
     IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
     IN PVOID Reserved,
@@ -918,20 +912,17 @@ ISDSC_STATUS ISDSC_API AddIScsiConnectionA(
 #endif // UNICODE
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveIScsiConnection(
     IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
     IN PISCSI_UNIQUE_CONNECTION_ID ConnectionId
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiTargetsW(
     IN BOOLEAN ForceUpdate,
     IN OUT PULONG BufferSize,
     OUT _Inout_updates_opt_(*BufferSize) PWCHAR Buffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiTargetsA(
     IN BOOLEAN ForceUpdate,
     IN OUT PULONG BufferSize,
@@ -945,7 +936,6 @@ ISDSC_STATUS ISDSC_API ReportIScsiTargetsA(
 #endif
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddIScsiStaticTargetW(
     IN _In_ PWSTR TargetName,
     IN OPTIONAL _In_opt_ PWSTR TargetAlias,
@@ -956,7 +946,6 @@ ISDSC_STATUS ISDSC_API AddIScsiStaticTargetW(
     IN OPTIONAL PISCSI_TARGET_PORTAL_GROUPW PortalGroup
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddIScsiStaticTargetA(
     IN _In_ PSTR TargetName,
     IN OPTIONAL _In_opt_ PSTR TargetAlias,
@@ -973,12 +962,10 @@ ISDSC_STATUS ISDSC_API AddIScsiStaticTargetA(
 #define AddIScsiStaticTarget AddIScsiStaticTargetA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveIScsiStaticTargetW(
     IN _In_ PWSTR TargetName
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveIScsiStaticTargetA(
     IN _In_ PSTR TargetName
     );
@@ -989,7 +976,6 @@ ISDSC_STATUS ISDSC_API RemoveIScsiStaticTargetA(
 #define RemoveIScsiStaticTarget RemoveIScsiStaticTargetA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalW(
     IN OPTIONAL _In_opt_ PWSTR InitiatorInstance,
     IN OPTIONAL ULONG InitiatorPortNumber,
@@ -998,7 +984,6 @@ ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalW(
     IN PISCSI_TARGET_PORTALW Portal
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalA(
     IN OPTIONAL _In_opt_ PSTR InitiatorInstance,
     IN OPTIONAL ULONG InitiatorPortNumber,
@@ -1013,14 +998,12 @@ ISDSC_STATUS ISDSC_API AddIScsiSendTargetPortalA(
 #define AddIScsiSendTargetPortal AddIScsiSendTargetPortalA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveIScsiSendTargetPortalW(
     IN OPTIONAL PWSTR _In_opt_ InitiatorInstance,
     IN OPTIONAL ULONG InitiatorPortNumber,
     IN PISCSI_TARGET_PORTALW Portal
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveIScsiSendTargetPortalA(
     IN OPTIONAL PSTR _In_opt_ InitiatorInstance,
     IN OPTIONAL ULONG InitiatorPortNumber,
@@ -1033,14 +1016,12 @@ ISDSC_STATUS ISDSC_API RemoveIScsiSendTargetPortalA(
 #define RemoveIScsiSendTargetPortal RemoveIScsiSendTargetPortalA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RefreshIScsiSendTargetPortalW(
     IN OPTIONAL PWSTR _In_opt_ InitiatorInstance,
     IN OPTIONAL ULONG InitiatorPortNumber,
     IN PISCSI_TARGET_PORTALW Portal
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RefreshIScsiSendTargetPortalA(
     IN OPTIONAL PSTR _In_opt_ InitiatorInstance,
     IN OPTIONAL ULONG InitiatorPortNumber,
@@ -1054,13 +1035,11 @@ ISDSC_STATUS ISDSC_API RefreshIScsiSendTargetPortalA(
 #endif
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsW(
     IN OUT PULONG PortalCount,
     IN OUT PISCSI_TARGET_PORTAL_INFOW PortalInfo
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsA(
     IN OUT PULONG PortalCount,
     IN OUT PISCSI_TARGET_PORTAL_INFOA PortalInfo
@@ -1071,14 +1050,12 @@ ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsA(
 #define ReportIScsiSendTargetPortals ReportIScsiSendTargetPortalsA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsExW(
     OUT PULONG PortalCount,
     IN OUT PULONG PortalInfoSize,
     IN OUT PISCSI_TARGET_PORTAL_INFO_EXW PortalInfo
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsExA(
     OUT PULONG PortalCount,
     IN OUT PULONG PortalInfoSize,
@@ -1091,7 +1068,6 @@ ISDSC_STATUS ISDSC_API ReportIScsiSendTargetPortalsExA(
 #endif
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API LoginIScsiTargetW(
     IN _In_ PWSTR TargetName,
     IN BOOLEAN IsInformationalSession,
@@ -1108,7 +1084,6 @@ ISDSC_STATUS ISDSC_API LoginIScsiTargetW(
     OUT PISCSI_UNIQUE_CONNECTION_ID UniqueConnectionId
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API LoginIScsiTargetA(
     IN PSTR _In_ TargetName,
     IN BOOLEAN IsInformationalSession,
@@ -1132,14 +1107,12 @@ ISDSC_STATUS ISDSC_API LoginIScsiTargetA(
 #endif
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiPersistentLoginsW(
     OUT ULONG *Count,
     IN OUT PPERSISTENT_ISCSI_LOGIN_INFOW PersistentLoginInfo,
     IN OUT PULONG BufferSizeInBytes
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiPersistentLoginsA(
     OUT ULONG *Count,
     IN OUT PPERSISTENT_ISCSI_LOGIN_INFOA PersistentLoginInfo,
@@ -1154,12 +1127,10 @@ ISDSC_STATUS ISDSC_API ReportIScsiPersistentLoginsA(
 
 
                                     
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API LogoutIScsiTarget(
     IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetW(
     IN PWSTR _In_ InitiatorInstance,
     IN OPTIONAL ULONG InitiatorPortNumber,
@@ -1167,7 +1138,6 @@ ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetW(
     IN PISCSI_TARGET_PORTALW Portal
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetA(
     IN PSTR _In_ InitiatorInstance,
     IN OPTIONAL ULONG InitiatorPortNumber,
@@ -1181,7 +1151,6 @@ ISDSC_STATUS ISDSC_API RemoveIScsiPersistentTargetA(
 #define RemoveIScsiPersistentTarget RemoveIScsiPersistentTargetA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SendScsiInquiry(
     IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
     IN ULONGLONG Lun,
@@ -1194,7 +1163,6 @@ ISDSC_STATUS ISDSC_API SendScsiInquiry(
     OUT PUCHAR SenseBuffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SendScsiReadCapacity(
     IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
     IN ULONGLONG Lun,
@@ -1205,7 +1173,6 @@ ISDSC_STATUS ISDSC_API SendScsiReadCapacity(
     OUT PUCHAR SenseBuffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SendScsiReportLuns(
     IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
     OUT PUCHAR ScsiStatus,
@@ -1215,13 +1182,11 @@ ISDSC_STATUS ISDSC_API SendScsiReportLuns(
     OUT PUCHAR SenseBuffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiInitiatorListW(
     IN OUT ULONG *BufferSize,
     OUT _Inout_updates_opt_(*BufferSize) PWCHAR Buffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiInitiatorListA(
     IN OUT PULONG BufferSize,
     OUT _Inout_updates_opt_(*BufferSize) PCHAR Buffer
@@ -1234,14 +1199,12 @@ ISDSC_STATUS ISDSC_API ReportIScsiInitiatorListA(
 #endif
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportActiveIScsiTargetMappingsW(
     IN OUT PULONG BufferSize,
     OUT PULONG MappingCount,
     OUT PISCSI_TARGET_MAPPINGW Mappings
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportActiveIScsiTargetMappingsA(
     IN OUT PULONG BufferSize,
     OUT PULONG MappingCount,
@@ -1254,7 +1217,6 @@ ISDSC_STATUS ISDSC_API ReportActiveIScsiTargetMappingsA(
 #define ReportActiveIScsiTargetMappings ReportActiveIScsiTargetMappingsA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressW(
     IN OPTIONAL _In_opt_ PWSTR InitiatorName,
     IN ULONG InitiatorPortNumber,
@@ -1263,7 +1225,6 @@ ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressW(
     IN BOOLEAN Persist
     );
     
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressA(
     IN OPTIONAL _In_opt_ PSTR InitiatorName,
     IN ULONG InitiatorPortNumber,
@@ -1279,7 +1240,6 @@ ISDSC_STATUS ISDSC_API SetIScsiTunnelModeOuterAddressA(
 #endif
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetIScsiIKEInfoW(
     IN OPTIONAL _In_opt_ PWSTR InitiatorName,
     IN ULONG InitiatorPortNumber,
@@ -1287,7 +1247,6 @@ ISDSC_STATUS ISDSC_API SetIScsiIKEInfoW(
     IN BOOLEAN Persist
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetIScsiIKEInfoA(
     IN OPTIONAL _In_opt_ PSTR InitiatorName,
     IN ULONG InitiatorPortNumber,
@@ -1301,7 +1260,6 @@ ISDSC_STATUS ISDSC_API SetIScsiIKEInfoA(
 #define SetIScsiIKEInfo SetIScsiIKEInfoA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetIScsiIKEInfoW(
     IN OPTIONAL _In_opt_ PWSTR InitiatorName,
     IN ULONG InitiatorPortNumber,
@@ -1309,7 +1267,6 @@ ISDSC_STATUS ISDSC_API GetIScsiIKEInfoW(
     IN OUT PIKE_AUTHENTICATION_INFORMATION AuthInfo
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetIScsiIKEInfoA(
     IN OPTIONAL _In_opt_ PSTR InitiatorName,
     IN ULONG InitiatorPortNumber,
@@ -1323,31 +1280,26 @@ ISDSC_STATUS ISDSC_API GetIScsiIKEInfoA(
 #define GetIScsiIKEInfo GetIScsiIKEInfoA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetIScsiGroupPresharedKey(
     IN ULONG KeyLength,
     IN PUCHAR Key,
     BOOLEAN Persist
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetIScsiInitiatorCHAPSharedSecret(
     IN ULONG SharedSecretLength,
     IN PUCHAR SharedSecret
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetIScsiInitiatorRADIUSSharedSecret(
     IN ULONG SharedSecretLength,
     IN PUCHAR SharedSecret
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetIScsiInitiatorNodeNameW(
     IN OPTIONAL _In_opt_ PWSTR InitiatorNodeName
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetIScsiInitiatorNodeNameA(
     IN OPTIONAL _In_opt_ PSTR InitiatorNodeName
     );
@@ -1358,12 +1310,10 @@ ISDSC_STATUS ISDSC_API SetIScsiInitiatorNodeNameA(
 #define SetIScsiInitiatorNodeName SetIScsiInitiatorNodeNameA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetIScsiInitiatorNodeNameW(
      _Out_writes_(MAX_ISCSI_NAME_LEN+1) PWCHAR  InitiatorNodeName
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetIScsiInitiatorNodeNameA(
      _Out_writes_(MAX_ISCSI_NAME_LEN+1) PCHAR  InitiatorNodeName
     );
@@ -1374,12 +1324,10 @@ ISDSC_STATUS ISDSC_API GetIScsiInitiatorNodeNameA(
 #define GetIScsiInitiatorNodeName GetIScsiInitiatorNodeNameA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddISNSServerW(
     IN _In_ PWSTR Address
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddISNSServerA(
     IN _In_ PSTR Address
     );
@@ -1391,12 +1339,10 @@ ISDSC_STATUS ISDSC_API AddISNSServerA(
 #endif
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveISNSServerW(
     IN _In_ PWSTR Address
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveISNSServerA(
     IN _In_ PSTR Address
     );
@@ -1406,12 +1352,10 @@ ISDSC_STATUS ISDSC_API RemoveISNSServerA(
 #define RemoveISNSServer RemoveISNSServerA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RefreshISNSServerW(
     IN _In_ PWSTR Address
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RefreshISNSServerA(
     IN _In_ PSTR Address
     );
@@ -1421,13 +1365,11 @@ ISDSC_STATUS ISDSC_API RefreshISNSServerA(
 #define RefreshISNSServer RefreshISNSServerA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportISNSServerListW(
     IN OUT PULONG BufferSizeInChar,
     OUT _Out_writes_opt_(*BufferSizeInChar) PWCHAR Buffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportISNSServerListA(
     IN OUT PULONG BufferSizeInChar,
     OUT _Out_writes_opt_(*BufferSizeInChar) PCHAR Buffer
@@ -1440,14 +1382,12 @@ ISDSC_STATUS ISDSC_API ReportISNSServerListA(
 
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetIScsiSessionListW(
     IN OUT ULONG *BufferSize,
     OUT ULONG *SessionCount,
     OUT OPTIONAL PISCSI_SESSION_INFOW SessionInfo
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetIScsiSessionListA(
     IN OUT ULONG *BufferSize,
     OUT ULONG *SessionCount,
@@ -1465,14 +1405,12 @@ ISDSC_STATUS ISDSC_API GetIScsiSessionListEx (
     OUT OPTIONAL PISCSI_SESSION_INFO_EX  SessionInfo
 );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetDevicesForIScsiSessionW(
     IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
     IN OUT ULONG *DeviceCount,
     OUT PISCSI_DEVICE_ON_SESSIONW Devices
 );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API GetDevicesForIScsiSessionA(
     IN PISCSI_UNIQUE_SESSION_ID UniqueSessionId,
     IN OUT ULONG *DeviceCount,
@@ -1488,16 +1426,13 @@ ISDSC_STATUS ISDSC_API GetDevicesForIScsiSessionA(
 ISDSC_STATUS ISDSC_API SetupPersistentIScsiVolumes(
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API SetupPersistentIScsiDevices(
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddPersistentIScsiDeviceW(
     IN _In_ PWSTR DevicePath
 );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddPersistentIScsiDeviceA(
     IN _In_ PSTR DevicePath
 );
@@ -1508,12 +1443,10 @@ ISDSC_STATUS ISDSC_API AddPersistentIScsiDeviceA(
 #define AddPersistentIScsiDevice AddPersistentIScsiDeviceA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemovePersistentIScsiDeviceW(
     IN _In_ PWSTR DevicePath
 );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemovePersistentIScsiDeviceA(
     IN _In_ PSTR DevicePath
 );
@@ -1524,17 +1457,14 @@ ISDSC_STATUS ISDSC_API RemovePersistentIScsiDeviceA(
 #define RemovePersistentIScsiDevice RemovePersistentIScsiDeviceA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ClearPersistentIScsiDevices(
 );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportPersistentIScsiDevicesW(
     IN OUT PULONG BufferSizeInChar,
     OUT _Out_writes_opt_(*BufferSizeInChar) PWCHAR Buffer
 );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportPersistentIScsiDevicesA(
     IN OUT PULONG BufferSizeInChar,
     OUT _Out_writes_opt_(*BufferSizeInChar) PCHAR Buffer
@@ -1546,7 +1476,6 @@ ISDSC_STATUS ISDSC_API ReportPersistentIScsiDevicesA(
 #define ReportPersistentIScsiDevices ReportPersistentIScsiDevicesA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsW(
     IN OPTIONAL _In_opt_ PWSTR InitiatorName,
     IN PWSTR _In_ TargetName,
@@ -1555,7 +1484,6 @@ ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsW(
     OUT PISCSI_TARGET_PORTALW Portals
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsA(
     IN OPTIONAL _In_opt_ PSTR InitiatorName,
     IN PSTR _In_ TargetName,
@@ -1570,12 +1498,10 @@ ISDSC_STATUS ISDSC_API ReportIScsiTargetPortalsA(
 #define ReportIScsiTargetPortals ReportIScsiTargetPortalsA
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddRadiusServerW(
     IN _In_ PWSTR Address
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API AddRadiusServerA(
     IN _In_ PSTR Address
     );
@@ -1587,12 +1513,10 @@ ISDSC_STATUS ISDSC_API AddRadiusServerA(
 #endif
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveRadiusServerW(
     IN _In_ PWSTR Address
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API RemoveRadiusServerA(
     IN _In_ PSTR Address
     );
@@ -1603,13 +1527,11 @@ ISDSC_STATUS ISDSC_API RemoveRadiusServerA(
 #endif
 
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportRadiusServerListW(
     IN OUT PULONG BufferSizeInChar,
     OUT _Out_writes_opt_(*BufferSizeInChar) PWCHAR Buffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 ISDSC_STATUS ISDSC_API ReportRadiusServerListA(
     IN OUT PULONG BufferSizeInChar,
     OUT _Out_writes_opt_(*BufferSizeInChar) PCHAR Buffer

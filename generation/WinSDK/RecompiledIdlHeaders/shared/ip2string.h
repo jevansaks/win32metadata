@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0006    // Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -31,7 +30,6 @@ Environment:
 #ifndef __IP2STRING__
 #define __IP2STRING__
 #pragma once
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family or OneCore Family
@@ -55,7 +53,7 @@ typedef union _DL_EUI48 DL_EUI48, *PDL_EUI48;
 NTSYSAPI
 PSTR
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv4AddressToStringA (
+RtlIpv4AddressToStringA (
     _In_ const struct in_addr *Addr,
     _Out_writes_(16) PSTR S
     );
@@ -63,7 +61,7 @@ _Win32_SupportedOS_WindowsVista_ RtlIpv4AddressToStringA (
 NTSYSAPI
 PSTR
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv6AddressToStringA (
+RtlIpv6AddressToStringA (
     _In_ const struct in6_addr *Addr,
     _Out_writes_(46) PSTR S
     );
@@ -71,7 +69,7 @@ _Win32_SupportedOS_WindowsVista_ RtlIpv6AddressToStringA (
 NTSYSAPI
 PSTR
 NTAPI
-_Win32_SupportedOS_Windows7_ RtlEthernetAddressToStringA (
+RtlEthernetAddressToStringA (
     _In_ const DL_EUI48 *Addr,
     _Out_writes_(18) PSTR S
     );
@@ -100,7 +98,7 @@ RtlIpv6AddressToStringExA(
 NTSYSAPI
 PWSTR
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv4AddressToStringW (
+RtlIpv4AddressToStringW (
     _In_ const struct in_addr *Addr,
     _Out_writes_(16) PWSTR S
     );
@@ -108,7 +106,7 @@ _Win32_SupportedOS_WindowsVista_ RtlIpv4AddressToStringW (
 NTSYSAPI
 PWSTR
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv6AddressToStringW (
+RtlIpv6AddressToStringW (
     _In_ const struct in6_addr *Addr,
     _Out_writes_(46) PWSTR S
     );
@@ -116,7 +114,7 @@ _Win32_SupportedOS_WindowsVista_ RtlIpv6AddressToStringW (
 NTSYSAPI
 PWSTR
 NTAPI
-_Win32_SupportedOS_Windows7_ RtlEthernetAddressToStringW (
+RtlEthernetAddressToStringW (
     _In_ const DL_EUI48 *Addr,
     _Out_writes_(18) PWSTR S
     );
@@ -124,7 +122,7 @@ _Win32_SupportedOS_Windows7_ RtlEthernetAddressToStringW (
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv4AddressToStringExW(
+RtlIpv4AddressToStringExW(
     _In_ const struct in_addr *Address,
     _In_ USHORT Port,
     _Out_writes_to_(*AddressStringLength, *AddressStringLength) PWSTR AddressString,
@@ -134,7 +132,7 @@ _Win32_SupportedOS_WindowsVista_ RtlIpv4AddressToStringExW(
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv6AddressToStringExW(
+RtlIpv6AddressToStringExW(
     _In_ const struct in6_addr *Address,
     _In_ ULONG ScopeId,
     _In_ USHORT Port,
@@ -146,7 +144,7 @@ _Must_inspect_result_
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv4StringToAddressA (
+RtlIpv4StringToAddressA (
     _In_ PCSTR S,
     _In_ BOOLEAN Strict,
     _Out_ PCSTR *Terminator,
@@ -157,7 +155,7 @@ _Must_inspect_result_
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv6StringToAddressA (
+RtlIpv6StringToAddressA (
     _In_ PCSTR S,
     _Out_ PCSTR *Terminator,
     _Out_ struct in6_addr *Addr
@@ -167,7 +165,7 @@ _Must_inspect_result_
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_Windows7_ RtlEthernetStringToAddressA (
+RtlEthernetStringToAddressA (
     _In_ PCSTR S,
     _Out_ PCSTR *Terminator,
     _Out_ DL_EUI48 *Addr
@@ -199,7 +197,7 @@ _Must_inspect_result_
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv4StringToAddressW (
+RtlIpv4StringToAddressW (
     _In_ PCWSTR S,
     _In_ BOOLEAN Strict,
     _Out_ LPCWSTR *Terminator,
@@ -210,7 +208,7 @@ _Must_inspect_result_
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv6StringToAddressW (
+RtlIpv6StringToAddressW (
     _In_ PCWSTR S,
     _Out_ PCWSTR *Terminator,
     _Out_ struct in6_addr *Addr
@@ -220,7 +218,7 @@ _Must_inspect_result_
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_Windows7_ RtlEthernetStringToAddressW (
+RtlEthernetStringToAddressW (
     _In_ PCWSTR S,
     _Out_ LPCWSTR *Terminator,
     _Out_ DL_EUI48 *Addr
@@ -230,7 +228,7 @@ _Must_inspect_result_
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv4StringToAddressExW (
+RtlIpv4StringToAddressExW (
     _In_ PCWSTR AddressString,
     _In_ BOOLEAN Strict,
     _Out_ struct in_addr *Address,
@@ -241,7 +239,7 @@ _Must_inspect_result_
 NTSYSAPI
 NTSTATUS
 NTAPI
-_Win32_SupportedOS_WindowsVista_ RtlIpv6StringToAddressExW (
+RtlIpv6StringToAddressExW (
     _In_ PCWSTR AddressString,
     _Out_ struct in6_addr *Address,
     _Out_ PULONG ScopeId,

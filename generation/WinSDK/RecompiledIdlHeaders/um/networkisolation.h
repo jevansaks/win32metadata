@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * netiso.h -- ApiSet Contract for api-ms-win-netsec-isolation-l1                *
@@ -12,7 +11,6 @@
 #ifndef _NETISO_H_
 #define _NETISO_H_
 
-#include <sal.h>
 #include <apiset.h>
 #include <apisetcconv.h>
 #include <minwindef.h>
@@ -101,7 +99,7 @@ typedef void (CALLBACK *PAC_CHANGES_CALLBACK_FN) (
 
 HRESULT
 WINAPI
-_Win32_SupportedOS_Windows8_ NetworkIsolationSetupAppContainerBinaries(
+NetworkIsolationSetupAppContainerBinaries(
     _In_ PSID applicationContainerSid,
     _In_ LPCWSTR packageFullName,
     _In_ LPCWSTR packageFolder,
@@ -113,7 +111,7 @@ _Win32_SupportedOS_Windows8_ NetworkIsolationSetupAppContainerBinaries(
 
 DWORD
 WINAPI
-_Win32_SupportedOS_Windows8_ NetworkIsolationRegisterForAppContainerChanges(
+NetworkIsolationRegisterForAppContainerChanges(
     _In_ DWORD flags,
     _In_ PAC_CHANGES_CALLBACK_FN callback,
     _In_opt_ PVOID context,
@@ -122,7 +120,7 @@ _Win32_SupportedOS_Windows8_ NetworkIsolationRegisterForAppContainerChanges(
 
 DWORD
 WINAPI
-_Win32_SupportedOS_Windows8_ NetworkIsolationUnregisterForAppContainerChanges(
+NetworkIsolationUnregisterForAppContainerChanges(
     _In_ HANDLE registrationObject
     );
 
@@ -136,13 +134,13 @@ _Win32_SupportedOS_Windows8_ NetworkIsolationUnregisterForAppContainerChanges(
 
 DWORD
 WINAPI
-_Win32_SupportedOS_Windows8_ NetworkIsolationFreeAppContainers(
+NetworkIsolationFreeAppContainers(
     _In_ PINET_FIREWALL_APP_CONTAINER pPublicAppCs
     );
 
 DWORD
 WINAPI
-_Win32_SupportedOS_Windows8_ NetworkIsolationEnumAppContainers(
+NetworkIsolationEnumAppContainers(
     DWORD Flags,
     _Out_ DWORD* pdwNumPublicAppCs,
     _Outptr_result_buffer_(*pdwNumPublicAppCs) PINET_FIREWALL_APP_CONTAINER* ppPublicAppCs
@@ -150,14 +148,14 @@ _Win32_SupportedOS_Windows8_ NetworkIsolationEnumAppContainers(
 
 DWORD
 WINAPI
-_Win32_SupportedOS_Windows8_ NetworkIsolationGetAppContainerConfig(
+NetworkIsolationGetAppContainerConfig(
     _Out_ DWORD* pdwNumPublicAppCs,
     _Outptr_result_buffer_(*pdwNumPublicAppCs) PSID_AND_ATTRIBUTES* appContainerSids
     );
 
 DWORD
 WINAPI
-_Win32_SupportedOS_Windows8_ NetworkIsolationSetAppContainerConfig(
+NetworkIsolationSetAppContainerConfig(
     _In_ DWORD dwNumPublicAppCs,
     _In_reads_(dwNumPublicAppCs) PSID_AND_ATTRIBUTES appContainerSids
     );
@@ -181,7 +179,7 @@ NetworkIsolationDiagnoseConnectFailure(
 
 DWORD
 WINAPI
-_Win32_SupportedOS_Windows8_ NetworkIsolationDiagnoseConnectFailureAndGetInfo(
+NetworkIsolationDiagnoseConnectFailureAndGetInfo(
     _In_ LPCWSTR wszServerName,
     _Out_ NETISO_ERROR_TYPE* netIsoError
     );

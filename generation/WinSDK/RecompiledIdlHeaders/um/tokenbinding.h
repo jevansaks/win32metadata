@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+-----------------------------------------------------------------------
 //
 // Microsoft Windows
@@ -70,7 +69,6 @@ typedef struct TOKENBINDING_KEY_TYPES{
     TOKENBINDING_KEY_PARAMETERS_TYPE *keyType;
 }TOKENBINDING_KEY_TYPES;
 
-_Win32_SupportedOS_10240_
 STDAPI_(SECURITY_STATUS)
 TokenBindingGenerateBinding(
     _In_ TOKENBINDING_KEY_PARAMETERS_TYPE keyType,
@@ -85,7 +83,6 @@ TokenBindingGenerateBinding(
     _Outptr_opt_ TOKENBINDING_RESULT_DATA **resultData
 );
 
-_Win32_SupportedOS_10240_
 STDAPI_(SECURITY_STATUS)
 TokenBindingGenerateMessage(
     _In_count_(tokenBindingsCount) const void *tokenBindings[],
@@ -95,7 +92,6 @@ TokenBindingGenerateMessage(
     _Out_ DWORD *tokenBindingMessageSize
 );
 
-_Win32_SupportedOS_10240_
 STDAPI_(SECURITY_STATUS)
 TokenBindingVerifyMessage(
     _In_reads_bytes_(tokenBindingMessageSize) const void *tokenBindingMessage,
@@ -106,29 +102,24 @@ TokenBindingVerifyMessage(
     _Outptr_ TOKENBINDING_RESULT_LIST **resultList
 );
 
-_Win32_SupportedOS_10240_
 STDAPI_(SECURITY_STATUS)
 TokenBindingGetKeyTypesClient(
     _Outptr_ TOKENBINDING_KEY_TYPES **keyTypes
 );
 
-_Win32_SupportedOS_10240_
 STDAPI_(SECURITY_STATUS)
 TokenBindingGetKeyTypesServer(
     _Outptr_ TOKENBINDING_KEY_TYPES **keyTypes
 );
 
-_Win32_SupportedOS_10240_
 STDAPI_(SECURITY_STATUS)
 TokenBindingDeleteBinding(
     _In_ PCWSTR targetURL
 );
 
-_Win32_SupportedOS_10240_
 STDAPI_(SECURITY_STATUS)
 TokenBindingDeleteAllBindings();
 
-_Win32_SupportedOS_10240_
 STDAPI_(SECURITY_STATUS)
 TokenBindingGenerateID(
     _In_ TOKENBINDING_KEY_PARAMETERS_TYPE keyType,

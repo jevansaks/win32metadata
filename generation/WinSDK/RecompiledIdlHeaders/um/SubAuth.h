@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0005     Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -303,17 +302,11 @@ typedef struct _NETLOGON_TARGET_INFO {
 #define MSV1_0_GUEST_LOGON  0x02
 #define MSV1_0_KERBEROS_LOGON  0x04
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_Enum_(MSV1_0, unsigned int,
-    MSV1_0_PASSTHRU, MSV1_0_GUEST_LOGON);
-#endif
-
-_Win32_SupportedOS_WindowsXP_
 NTSTATUS NTAPI
 Msv1_0SubAuthenticationRoutine(
     IN NETLOGON_LOGON_INFO_CLASS LogonLevel,
     IN PVOID LogonInformation,
-    IN _Win32_AssociatedEnum_(MSV1_0) ULONG Flags,
+    IN ULONG Flags,
     IN PUSER_ALL_INFORMATION UserAll,
     OUT PULONG WhichFields,
     OUT PULONG UserFlags,
@@ -354,19 +347,17 @@ typedef struct _MSV1_0_VALIDATION_INFO {
 #define MSV1_0_SUBAUTH_ACCOUNT_TYPE            0x00000040
 #define MSV1_0_SUBAUTH_LOCKOUT                 0x00000080
 
-_Win32_SupportedOS_WindowsXP_
 NTSTATUS NTAPI
 Msv1_0SubAuthenticationRoutineEx(
     IN NETLOGON_LOGON_INFO_CLASS LogonLevel,
     IN PVOID LogonInformation,
-    IN _Win32_AssociatedEnum_(MSV1_0) ULONG Flags,
+    IN ULONG Flags,
     IN PUSER_ALL_INFORMATION UserAll,
     IN SAM_HANDLE UserHandle,
     IN OUT PMSV1_0_VALIDATION_INFO ValidationInfo,
     OUT PULONG ActionsPerformed
 );
 
-_Win32_SupportedOS_WindowsXP_
 NTSTATUS NTAPI
 Msv1_0SubAuthenticationRoutineGeneric(
     IN PVOID SubmitBuffer,
@@ -375,15 +366,14 @@ Msv1_0SubAuthenticationRoutineGeneric(
     OUT PVOID *ReturnBuffer
 );
 
-_Win32_SupportedOS_WindowsXP_
 NTSTATUS NTAPI
 Msv1_0SubAuthenticationFilter(
     IN NETLOGON_LOGON_INFO_CLASS LogonLevel,
     IN PVOID LogonInformation,
-    IN _Win32_AssociatedEnum_(MSV1_0) ULONG Flags,
+    IN ULONG Flags,
     IN PUSER_ALL_INFORMATION UserAll,
     OUT PULONG WhichFields,
-    _Win32_AssociatedEnum_(MSV_SUB_AUTHENTICATION_FILTER) OUT PULONG UserFlags,
+    OUT PULONG UserFlags,
     OUT PBOOLEAN Authoritative,
     OUT PLARGE_INTEGER LogoffTime,
     OUT PLARGE_INTEGER KickoffTime

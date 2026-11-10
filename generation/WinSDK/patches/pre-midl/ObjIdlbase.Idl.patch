@@ -13,15 +13,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
  
  //+-------------------------------------------------------------------------
  //
-@@ -105,6 +111,7 @@
-  *  Component Object Interfaces
-  ****************************************************************************/
- 
-+cpp_quote("/* Win32Metadata: interface ::IMarshal => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -150,7 +157,7 @@
+@@ -150,7 +156,7 @@ interface IMarshal : IUnknown
      (
          [in, unique, annotation("_In_")] IStream *pStm,
          [in, annotation("_In_")] REFIID riid,
@@ -30,63 +22,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
      );
  
      HRESULT ReleaseMarshalData
-@@ -166,6 +173,7 @@
- 
- // INoMarshal - marks an object that does not support being marshaled 
- // or stored in the global interface table
-+cpp_quote("/* Win32Metadata: interface ::INoMarshal => SupportedOSPlatform(\"windows8.0\") */")
- [
-     local,
-     object,
-@@ -177,6 +185,7 @@
- 
- // IAgileObject - marks an interface as agile across apartments, e.g. if it 
- // aggregates the Free Threaded Marshaler.
-+cpp_quote("/* Win32Metadata: interface ::IAgileObject => SupportedOSPlatform(\"windows8.0\") */")
- [
-     local,
-     object,
-@@ -231,6 +240,7 @@
-     typedef [unique] IMarshal2 *LPMARSHAL2;
- }
- 
-+cpp_quote("/* Win32Metadata: interface ::IMalloc => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -257,6 +267,7 @@
-     void HeapMinimize(void);
- }
- 
-+cpp_quote("/* Win32Metadata: interface ::IStdMarshalInfo => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -276,6 +287,7 @@
-     );
- }
- 
-+cpp_quote("/* Win32Metadata: interface ::IExternalConnection => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     local,
-@@ -327,6 +339,7 @@
-     HRESULT     hr;
- } MULTI_QI;
- 
-+cpp_quote("/* Win32Metadata: interface ::IMultiQI => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     local,
-@@ -353,6 +366,7 @@
- #pragma region Desktop Family or OneCore Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::IInternalUnknown => SupportedOSPlatform(\"windows5.0\") */")
- [
-  object,
-  local,
-@@ -362,7 +376,7 @@
+@@ -362,7 +368,7 @@ interface IInternalUnknown : IUnknown
  {
      HRESULT QueryInternalInterface(
             [in, annotation("_In_")]  REFIID riid,
@@ -95,62 +31,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
  }
  
  cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
-@@ -371,6 +385,7 @@
- #pragma region Application Family or OneCore Family or OneCore Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::IEnumUnknown => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     uuid(00000100-0000-0000-C000-000000000046),
-@@ -402,7 +417,9 @@
-     HRESULT Clone(
-         [out] IEnumUnknown **ppenum);
- }
--
-+cpp_quote("/* Win32Metadata: method ::IEnumUnknown::Next => PreserveResult */")
-+
-+cpp_quote("/* Win32Metadata: interface ::IEnumString => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     uuid(00000101-0000-0000-C000-000000000046),
-@@ -437,7 +454,10 @@
-     HRESULT Clone(
-         [out] IEnumString **ppenum);
- }
--
-+cpp_quote("/* Win32Metadata: method ::IEnumString::Skip => PreserveResult */")
-+cpp_quote("/* Win32Metadata: method ::IEnumString::Next => PreserveResult */")
-+
-+cpp_quote("/* Win32Metadata: interface ::ISequentialStream => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     uuid(0c733a30-2a1c-11ce-ade5-00aa0044773d),
-@@ -471,9 +491,12 @@
-         [in] ULONG cb,
-         [out] ULONG *pcbWritten);
- }
--
--
--
-+cpp_quote("/* Win32Metadata: method ::ISequentialStream::Write => PreserveResult */")
-+cpp_quote("/* Win32Metadata: method ::ISequentialStream::Read => PreserveResult */")
-+
-+
-+
-+cpp_quote("/* Win32Metadata: interface ::IStream => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     uuid(0000000c-0000-0000-C000-000000000046),
-@@ -487,6 +510,7 @@
- 
-     /* Storage stat buffer */
- 
-+cpp_quote("/* Win32Metadata: field ::STATSTG::grfMode => AssociatedEnum(STGM) */")
-     typedef struct tagSTATSTG
-     {
-         LPOLESTR pwcsName;
-@@ -556,14 +580,14 @@
+@@ -556,14 +562,14 @@ interface IStream : ISequentialStream
          [out] ULARGE_INTEGER *pcbWritten);
  
      HRESULT Commit(
@@ -167,7 +48,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
  
      HRESULT UnlockRegion(
          [in] ULARGE_INTEGER libOffset,
-@@ -572,18 +596,27 @@
+@@ -572,7 +578,7 @@ interface IStream : ISequentialStream
  
      HRESULT Stat(
          [out] STATSTG *pstatstg,
@@ -176,27 +57,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
  
      HRESULT Clone(
          [out] IStream **ppstm);
- 
- }
-+cpp_quote("/* Win32Metadata: field ::STATSTG::grfLocksSupported => AssociatedEnum(LOCKTYPE) */")
-+cpp_quote("#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)")
-+cpp_quote("#include <wtypes.h>")
-+cpp_quote("#endif")
-+cpp_quote("/* Win32Metadata: parameter ::IStream::Stat::grfStatFlag => AssociatedEnum(STATFLAG) */")
-+cpp_quote("/* Win32Metadata: parameter ::IStream::LockRegion::dwLockType => AssociatedEnum(LOCKTYPE) */")
-+cpp_quote("/* Win32Metadata: parameter ::IStream::Commit::grfCommitFlags => AssociatedEnum(STGC) */")
-+cpp_quote("/* Win32Metadata: parameter ::IStream::Seek::dwOrigin => AssociatedEnum(STREAM_SEEK) */")
- 
- 
- /****************************************************************************
-  *  Object Remoting Interfaces
-  ****************************************************************************/
- 
-+cpp_quote("/* Win32Metadata: interface ::IRpcChannelBuffer => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -715,7 +748,7 @@
+@@ -715,7 +721,7 @@ interface IRpcChannelBuffer3 : IRpcChannelBuffer2
      (
          [in, annotation("_In_")]  RPCOLEMESSAGE *pMsg,
          [in, annotation("_In_")]  REFIID riid,
@@ -205,39 +66,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
      );
  
      HRESULT GetDestCtxEx
-@@ -750,6 +783,7 @@
- }
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::IRpcProxyBuffer => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -776,6 +810,7 @@
- #pragma region Application Family or OneCore Family or OneCore Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::IRpcStubBuffer => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -821,6 +856,7 @@
- 
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::IPSFactoryBuffer => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -927,6 +963,7 @@
- #pragma region Application Family or OneCore Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::IClientSecurity => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -993,7 +1030,7 @@
+@@ -993,7 +999,7 @@ interface IClientSecurity : IUnknown
          [out, annotation("_Out_opt_")] DWORD              *pAuthnLevel,
          [out, annotation("_Out_opt_")] DWORD              *pImpLevel,
          [out, annotation("_Outptr_result_maybenull_")] void        **pAuthInfo,
@@ -246,7 +75,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
      );
  
      HRESULT SetBlanket
-@@ -1006,7 +1043,7 @@
+@@ -1006,7 +1012,7 @@ interface IClientSecurity : IUnknown
          [in, annotation("_In_")] DWORD                     dwAuthnLevel,
          [in, annotation("_In_")] DWORD                     dwImpLevel,
          [in, annotation("_In_opt_")] void                 *pAuthInfo,
@@ -255,60 +84,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
      );
  
      HRESULT CopyProxy
-@@ -1015,6 +1052,12 @@
-         [out, annotation("_Outptr_")] IUnknown **ppCopy
-     );
- }
-+cpp_quote("/* Win32Metadata: parameter ::IClientSecurity::SetBlanket::dwCapabilities => AssociatedEnum(EOLE_AUTHENTICATION_CAPABILITIES) */")
-+cpp_quote("/* Win32Metadata: parameter ::IClientSecurity::QueryBlanket::pCapabilites => AssociatedEnum(EOLE_AUTHENTICATION_CAPABILITIES) */")
-+cpp_quote("/* Win32Metadata: parameter ::IClientSecurity::SetBlanket::dwAuthnLevel => AssociatedEnum(RPC_C_AUTHN_LEVEL) */")
-+cpp_quote("/* Win32Metadata: parameter ::IClientSecurity::QueryBlanket::pAuthnLevel => AssociatedEnum(RPC_C_AUTHN_LEVEL) */")
-+cpp_quote("/* Win32Metadata: parameter ::IClientSecurity::SetBlanket::dwImpLevel => AssociatedEnum(RPC_C_IMP_LEVEL) */")
-+cpp_quote("/* Win32Metadata: parameter ::IClientSecurity::QueryBlanket::pImpLevel => AssociatedEnum(RPC_C_IMP_LEVEL) */")
- 
- cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
- #pragma endregion
-@@ -1022,6 +1065,7 @@
- #pragma region Desktop Family or OneCore Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::IServerSecurity => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -1066,6 +1110,7 @@
- } RPCOPT_SERVER_LOCALITY_VALUES;
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::IRpcOptions => SupportedOSPlatform(\"windows5.0\") */")
- [
- object,
- local,
-@@ -1152,6 +1197,7 @@
-    COMGLB_UNMARSHALING_POLICY_HYBRID = 2
- } GLOBALOPT_UNMARSHALING_POLICY_VALUES;
- 
-+cpp_quote("/* Win32Metadata: interface ::IGlobalOptions => SupportedOSPlatform(\"windows6.0.6000\") */")
- [
-     object,
-     local,
-@@ -1174,6 +1220,7 @@
- #pragma region Application Family or OneCore Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::ISurrogate => SupportedOSPlatform(\"windows5.0\") */")
- [
-  uuid(00000022-0000-0000-C000-000000000046),
-  version(1.0),
-@@ -1191,6 +1238,7 @@
- }
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::IGlobalInterfaceTable => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -1216,7 +1264,7 @@
+@@ -1216,7 +1222,7 @@ interface IGlobalInterfaceTable : IUnknown
      (
          [in, annotation("_In_")]  DWORD          dwCookie,
          [in, annotation("_In_")]  REFIID         riid,
@@ -317,47 +93,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
      );
  };
  
-@@ -1226,6 +1274,7 @@
- #pragma region Desktop Family or OneCore Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::ISynchronize => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     uuid(00000030-0000-0000-C000-000000000046)
-@@ -1239,6 +1288,7 @@
- }
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::ISynchronizeHandle => SupportedOSPlatform(\"windows5.0\") */")
- [
-  local,
-  object,
-@@ -1250,6 +1300,7 @@
- }
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::ISynchronizeEvent => SupportedOSPlatform(\"windows5.0\") */")
- [
-  local,
-  object,
-@@ -1261,6 +1312,7 @@
- }
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::ISynchronizeContainer => SupportedOSPlatform(\"windows5.0\") */")
- [
-  local,
-  object,
-@@ -1290,6 +1342,7 @@
- 
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::ICancelMethodCalls => SupportedOSPlatform(\"windows5.0\") */")
- [
-  local,
-  object,
-@@ -1321,10 +1374,11 @@
+@@ -1321,7 +1327,7 @@ interface IAsyncManager : IUnknown
      HRESULT CompleteCall  ( [in, annotation("_In_")] HRESULT Result );
      HRESULT GetCallContext( 
          [in, annotation("_In_")] REFIID riid, 
@@ -366,11 +102,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
      HRESULT GetState      ( [out, annotation("_Out_")] ULONG *pulStateFlags);
  }
  
-+cpp_quote("/* Win32Metadata: interface ::ICallFactory => SupportedOSPlatform(\"windows5.0\") */")
- [
-  local,
-  object,
-@@ -1406,7 +1460,7 @@
+@@ -1406,7 +1412,7 @@ interface IAddrExclusionControl : IUnknown
  
      HRESULT GetCurrentAddrExclusionList(
          [in, annotation("_In_")]REFIID riid, 
@@ -379,67 +111,3 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdlbase.Idl b/generati
      HRESULT UpdateAddrExclusionList([in, annotation("_In_")]IUnknown* pEnumerator);
  };
  
-@@ -1470,6 +1524,7 @@
- } ContextProperty;
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::IEnumContextProps => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -1491,6 +1546,7 @@
- }
- 
- 
-+cpp_quote("/* Win32Metadata: interface ::IContext => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -1594,6 +1650,7 @@
- 
- typedef DWORD APARTMENTID;
- 
-+cpp_quote("/* Win32Metadata: interface ::IComThreadingInfo => SupportedOSPlatform(\"windows5.0\") */")
- [
-     local,
-     object,
-@@ -1608,6 +1665,7 @@
-     HRESULT SetCurrentLogicalThreadId( [in, annotation("_In_")] REFGUID rguid );
- };
- 
-+cpp_quote("/* Win32Metadata: interface ::IProcessInitControl => SupportedOSPlatform(\"windows5.0\") */")
- [
-     object,
-     pointer_default(unique),
-@@ -1619,6 +1677,7 @@
- };
- 
- // marker interface for objects that want to opt into the fast rundown feature.
-+cpp_quote("/* Win32Metadata: interface ::IFastRundown => SupportedOSPlatform(\"windows8.0\") */")
- [
-     object,
-     local,
-@@ -1653,6 +1712,7 @@
-     CO_MARSHALING_CONTEXT_ATTRIBUTE_RESERVED_18 = 0x80000011,
- } CO_MARSHALING_CONTEXT_ATTRIBUTES;
- 
-+cpp_quote("/* Win32Metadata: interface ::IMarshalingStream => SupportedOSPlatform(\"windows8.0\") */")
- [
-     local,
-     object,
-@@ -1674,6 +1734,7 @@
- #pragma region Application Family or OneCore Family
- cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)")
- 
-+cpp_quote("/* Win32Metadata: interface ::IAgileReference => SupportedOSPlatform(\"windows8.1\") */")
- [
-     local,
-     object,
-@@ -1693,6 +1754,7 @@
- cpp_quote("            virtual HRESULT STDMETHODCALLTYPE Resolve( ")
- cpp_quote("                /* [in] */ REFIID riid,")
- cpp_quote("                /* [iid_is][retval][out] */ void **ppvObjectReference) = 0;")
-+cpp_quote("/* Win32Metadata: parameter ::IAgileReference::Resolve::ppvObjectReference => ComOutPtr(true) */")
- cpp_quote("")
- cpp_quote("            template<class Q>")
- cpp_quote("            HRESULT")

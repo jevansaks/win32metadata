@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*++
@@ -482,8 +481,8 @@ RPC_STATUS
 RPC_ENTRY
 I_RpcNsInterfaceExported (
     IN unsigned long EntryNameSyntax,
-    _In_ unsigned short *EntryName,
-    _In_ RPC_SERVER_INTERFACE * RpcInterfaceInformation
+    IN unsigned short *EntryName,
+    IN RPC_SERVER_INTERFACE * RpcInterfaceInformation
     );
 
 RPCRTAPI
@@ -550,7 +549,6 @@ I_RpcBindingInqMarshalledTargetInfo (
 #endif // (NTDDI_VERSION >= NTDDI_WS03)
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
-_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS
 RPC_ENTRY

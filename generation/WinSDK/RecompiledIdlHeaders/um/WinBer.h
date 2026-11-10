@@ -1,5 +1,3 @@
-#include <win32metadata_annotations.h>
-#include <sal.h>
 /*++
 
 Copyright (c) 1996-1999  Microsoft Corporation
@@ -66,7 +64,6 @@ typedef int ber_slen_t;           /* signed equivalent of ber_len_t */
 // data in the supplied berval structure.
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI BerElement * BERAPI ber_init( BERVAL *pBerVal );
 
 //
@@ -76,7 +73,6 @@ WINBERAPI BerElement * BERAPI ber_init( BERVAL *pBerVal );
 //
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI VOID BERAPI ber_free( BerElement *pBerElement, INT fbuf );
 
 //
@@ -85,21 +81,19 @@ WINBERAPI VOID BERAPI ber_free( BerElement *pBerElement, INT fbuf );
 // have allocated
 //
 
-_Win32_SupportedOS_WindowsVista_ WINBERAPI VOID BERAPI ber_bvfree( BERVAL *pBerVal );
+WINBERAPI VOID BERAPI ber_bvfree( BERVAL *pBerVal );
 
 
 //
 // Frees an array of BERVAL structures.
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI VOID BERAPI ber_bvecfree( PBERVAL *pBerVal );
 
 //
 // Returns a copy of a the supplied berval structure
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI BERVAL * BERAPI ber_bvdup( BERVAL *pBerVal );
 
 
@@ -111,7 +105,6 @@ WINBERAPI BERVAL * BERAPI ber_bvdup( BERVAL *pBerVal );
 // The LBER_USE_DER options should always be specified.
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI BerElement * BERAPI ber_alloc_t( INT options );
 
 
@@ -128,7 +121,6 @@ WINBERAPI BerElement * BERAPI ber_alloc_t( INT options );
 // the value part of the next element
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI ULONG BERAPI ber_skip_tag( BerElement *pBerElement, ULONG *pLen );
 
 //
@@ -140,7 +132,6 @@ WINBERAPI ULONG BERAPI ber_skip_tag( BerElement *pBerElement, ULONG *pLen );
 // else the tag of the next element is returned.
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI ULONG BERAPI ber_peek_tag( BerElement *pBerElement, ULONG *pLen);
 
 //
@@ -152,7 +143,6 @@ WINBERAPI ULONG BERAPI ber_peek_tag( BerElement *pBerElement, ULONG *pLen);
 // subsequent invocations of ber_next_element().
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI ULONG BERAPI ber_first_element( BerElement *pBerElement, ULONG *pLen, _Out_ CHAR **ppOpaque );
 
 //
@@ -163,7 +153,6 @@ WINBERAPI ULONG BERAPI ber_first_element( BerElement *pBerElement, ULONG *pLen, 
 // is returned.
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI ULONG BERAPI ber_next_element( BerElement *pBerElement, ULONG *pLen, _In_ CHAR *opaque );
 
 //
@@ -173,7 +162,6 @@ WINBERAPI ULONG BERAPI ber_next_element( BerElement *pBerElement, ULONG *pLen, _
 // The return values are 0 on success and -1 on error.
 //
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI INT BERAPI ber_flatten( BerElement *pBerElement, PBERVAL *pBerVal );
 
 
@@ -257,7 +245,6 @@ The format string can contain the following format characters:
         be used with this format character.
 */
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI INT BERAPI ber_printf( BerElement *pBerElement, _In_ PSTR fmt, ... );
 
 /*
@@ -350,7 +337,6 @@ contain the following characters:
 
 */
 
-_Win32_SupportedOS_WindowsVista_
 WINBERAPI ULONG BERAPI ber_scanf( BerElement *pBerElement, _In_ PSTR fmt, ... );
 
 

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: iwstdec.h
 //
@@ -59,9 +58,6 @@ extern "C" {
 //
 //  WST Decoder standard COM interface
 //
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct IAMWstDecoder IAMWstDecoder;
-#endif
 DECLARE_INTERFACE_(IAMWstDecoder, IUnknown)
 {
 	//

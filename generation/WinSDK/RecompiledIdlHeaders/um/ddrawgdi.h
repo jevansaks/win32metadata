@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /******************************Module*Header*******************************\
 * Module Name: ddrawgdi.h
 *
@@ -44,7 +43,6 @@
 
 #endif
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdCreateDirectDrawObject(
@@ -55,7 +53,6 @@ DdCreateDirectDrawObject(
 typedef struct _D3DHAL_CALLBACKS FAR *LPD3DHAL_CALLBACKS;
 typedef struct _D3DHAL_GLOBALDRIVERDATA FAR *LPD3DHAL_GLOBALDRIVERDATA;
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdQueryDirectDrawObject(
@@ -72,14 +69,12 @@ DdQueryDirectDrawObject(
     LPVIDMEM                    pvmList            // Can be NULL
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdDeleteDirectDrawObject(
     LPDDRAWI_DIRECTDRAW_GBL   pDirectDrawGlobal
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdCreateSurfaceObject(
@@ -87,14 +82,12 @@ DdCreateSurfaceObject(
     BOOL                      bPrimarySurface
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdDeleteSurfaceObject(
     LPDDRAWI_DDRAWSURFACE_LCL pSurfaceLocal
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdResetVisrgn(
@@ -102,7 +95,6 @@ DdResetVisrgn(
     HWND                      hWnd
     );
 
-_Win32_SupportedOS_Windows2000_
 HDC
 APIENTRY
 DdGetDC(
@@ -110,14 +102,12 @@ DdGetDC(
     LPPALETTEENTRY            pColorTable
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdReleaseDC(
     LPDDRAWI_DDRAWSURFACE_LCL pSurfaceLocal
     );
 
-_Win32_SupportedOS_Windows2000_
 HBITMAP
 APIENTRY
 DdCreateDIBSection(
@@ -129,7 +119,6 @@ DdCreateDIBSection(
     DWORD             dwOffset
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdReenableDirectDrawObject(
@@ -137,7 +126,6 @@ DdReenableDirectDrawObject(
     BOOL*                   pbNewMode
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdAttachSurface(
@@ -145,7 +133,6 @@ DdAttachSurface(
     LPDDRAWI_DDRAWSURFACE_LCL   pSurfaceTo
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 APIENTRY
 DdUnattachSurface(
@@ -153,14 +140,12 @@ DdUnattachSurface(
     LPDDRAWI_DDRAWSURFACE_LCL   pSurfaceAttached
     );
 
-_Win32_SupportedOS_Windows2000_
 ULONG
 APIENTRY
 DdQueryDisplaySettingsUniqueness(
     VOID
     );
 
-_Win32_SupportedOS_Windows2000_
 HANDLE
 APIENTRY
 DdGetDxHandle(
@@ -169,7 +154,6 @@ DdGetDxHandle(
     BOOL			bRelease
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DdSetGammaRamp(
@@ -180,7 +164,6 @@ DdSetGammaRamp(
 
 
 
-_Win32_SupportedOS_Windows2000_
 DWORD 
 APIENTRY
 DdSwapTextureHandles(

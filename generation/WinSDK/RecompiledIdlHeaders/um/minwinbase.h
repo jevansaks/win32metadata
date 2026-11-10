@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /************************************************************************
 *                                                                       *
 *   minwinbase.h -- This module defines the 32-Bit Windows Base APIs    *
@@ -9,7 +8,6 @@
 #pragma once
 #ifndef _MINWINBASE_
 #define _MINWINBASE_
-#include <sal.h>
 
 #if     ( _MSC_VER >= 800 )
 #pragma warning(disable:4514)
@@ -145,19 +143,8 @@ typedef enum _FINDEX_INFO_LEVELS {
 
 #define FIND_FIRST_EX_CASE_SENSITIVE        0x00000001
 #define FIND_FIRST_EX_LARGE_FETCH           0x00000002
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(FIND_FIRST_EX_FLAGS, unsigned int,
-    FIND_FIRST_EX_CASE_SENSITIVE,
-    FIND_FIRST_EX_LARGE_FETCH);
-#endif
 #if (NTDDI_VERSION >= NTDDI_WIN10_RS4)
 #define FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY  0x00000004
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(FIND_FIRST_EX_FLAGS, unsigned int,
-    FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY);
-#endif
 #endif
 
 typedef enum _FINDEX_SEARCH_OPS {
@@ -256,12 +243,6 @@ VOID
 #define LOCKFILE_FAIL_IMMEDIATELY   0x00000001
 #define LOCKFILE_EXCLUSIVE_LOCK     0x00000002
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(LOCK_FILE_FLAGS, unsigned int,
-    LOCKFILE_EXCLUSIVE_LOCK,
-    LOCKFILE_FAIL_IMMEDIATELY);
-#endif
-
 typedef struct _PROCESS_HEAP_ENTRY {
     PVOID lpData;
     DWORD cbData;
@@ -291,7 +272,7 @@ typedef struct _PROCESS_HEAP_ENTRY {
 
 typedef struct _REASON_CONTEXT {
     ULONG Version;
-    _Win32_AssociatedEnum_(POWER_REQUEST_CONTEXT_FLAGS) DWORD Flags;
+    DWORD Flags;
     union {
         struct {
             HMODULE LocalizedReasonModule;
@@ -317,19 +298,6 @@ typedef struct _REASON_CONTEXT {
 #define UNLOAD_DLL_DEBUG_EVENT      7
 #define OUTPUT_DEBUG_STRING_EVENT   8
 #define RIP_EVENT                   9
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(DEBUG_EVENT_CODE, unsigned int,
-    CREATE_PROCESS_DEBUG_EVENT,
-    CREATE_THREAD_DEBUG_EVENT,
-    EXCEPTION_DEBUG_EVENT,
-    EXIT_PROCESS_DEBUG_EVENT,
-    EXIT_THREAD_DEBUG_EVENT,
-    LOAD_DLL_DEBUG_EVENT,
-    OUTPUT_DEBUG_STRING_EVENT,
-    RIP_EVENT,
-    UNLOAD_DLL_DEBUG_EVENT);
-#endif
 
 typedef DWORD (WINAPI *PTHREAD_START_ROUTINE)(
     LPVOID lpThreadParameter
@@ -399,7 +367,7 @@ typedef struct _RIP_INFO {
 
 
 typedef struct _DEBUG_EVENT {
-    _Win32_AssociatedEnum_(DEBUG_EVENT_CODE) DWORD dwDebugEventCode;
+    DWORD dwDebugEventCode;
     DWORD dwProcessId;
     DWORD dwThreadId;
     union {
@@ -471,17 +439,6 @@ typedef PCONTEXT LPCONTEXT;
 
 #define NONZEROLHND         (LMEM_MOVEABLE)
 #define NONZEROLPTR         (LMEM_FIXED)
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(LOCAL_ALLOC_FLAGS, unsigned int,
-    LHND,
-    LMEM_FIXED,
-    LMEM_MOVEABLE,
-    LMEM_ZEROINIT,
-    LPTR,
-    NONZEROLHND,
-    NONZEROLPTR);
-#endif
 
 #define LocalDiscard( h )   LocalReAlloc( (h), 0, LMEM_MOVEABLE )
 

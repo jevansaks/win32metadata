@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
 #ifndef __WINSTRING_H_
@@ -9,7 +8,6 @@
 #endif  // _MSC_VER
 
 #ifdef _CONTRACT_GEN
-#include <sal.h>
 #include <nt.h>
 #include <ntrtl.h>
 #include <nturtl.h>
@@ -23,15 +21,13 @@
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsCreateString(
     _In_reads_opt_(length) PCNZWCH sourceString,
     UINT32 length,
-    _Win32_RAIIFree_(WindowsDeleteString) _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* string
+    _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* string
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsCreateStringReference(
     _In_reads_opt_(length+1) PCWSTR sourceString,
@@ -40,46 +36,39 @@ WindowsCreateStringReference(
     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* string
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsDeleteString(
     _In_opt_ HSTRING string
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsDuplicateString(
     _In_opt_ HSTRING string,
-    _Win32_RAIIFree_(WindowsDeleteString) _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+    _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI_(UINT32)
 WindowsGetStringLen(
     _In_opt_ HSTRING string
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI_(PCWSTR)
 WindowsGetStringRawBuffer(
     _In_opt_ HSTRING string,
     _Out_opt_ UINT32* length
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI_(BOOL)
 WindowsIsStringEmpty(
     _In_opt_ HSTRING string
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsStringHasEmbeddedNull(
     _In_opt_ HSTRING string,
     _Out_ BOOL* hasEmbedNull
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsCompareStringOrdinal(
     _In_opt_ HSTRING string1,
@@ -87,73 +76,64 @@ WindowsCompareStringOrdinal(
     _Out_ INT32* result
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsSubstring(
     _In_opt_ HSTRING string,
     UINT32 startIndex,
-    _Win32_RAIIFree_(WindowsDeleteString) _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+    _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsSubstringWithSpecifiedLength(
     _In_opt_ HSTRING string,
     UINT32 startIndex,
     UINT32 length,
-    _Win32_RAIIFree_(WindowsDeleteString) _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+    _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsConcatString(
     _In_opt_ HSTRING string1,
     _In_opt_ HSTRING string2,
-    _Win32_RAIIFree_(WindowsDeleteString) _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+    _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsReplaceString(
     _In_opt_ HSTRING string,
     _In_opt_ HSTRING stringReplaced,
     _In_opt_ HSTRING stringReplaceWith,
-    _Win32_RAIIFree_(WindowsDeleteString) _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+    _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsTrimStringStart(
     _In_opt_ HSTRING string,
     _In_opt_ HSTRING trimString,
-    _Win32_RAIIFree_(WindowsDeleteString) _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+    _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsTrimStringEnd(
     _In_opt_ HSTRING string,
     _In_opt_ HSTRING trimString,
-    _Win32_RAIIFree_(WindowsDeleteString) _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
+    _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
     );
 
 // Two-phase construction
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsPreallocateStringBuffer(
     UINT32 length,
     _Outptr_result_buffer_(length+1) WCHAR** charBuffer,
-    _Win32_RAIIFree_(WindowsDeleteStringBuffer, -1, 0) _Outptr_ _Result_nullonfailure_ HSTRING_BUFFER* bufferHandle
+    _Outptr_ _Result_nullonfailure_ HSTRING_BUFFER* bufferHandle
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsPromoteStringBuffer(
     _In_ HSTRING_BUFFER bufferHandle,
-    _Win32_RAIIFree_(WindowsDeleteString) _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* string
+    _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* string
     );
 
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsDeleteStringBuffer(
     _In_opt_ HSTRING_BUFFER bufferHandle
@@ -171,7 +151,7 @@ extern "C"
 #endif // __cplusplus
 
 // Windows String Marshaler Exports
-_Win32_SupportedOS_Windows8_ ULONG
+ULONG
 __RPC_USER
 HSTRING_UserSize(
     __RPC__in ULONG* pFlags,
@@ -179,7 +159,7 @@ HSTRING_UserSize(
     __RPC__in HSTRING* ppidl
     );
 
-_Win32_SupportedOS_Windows8_ UCHAR*
+UCHAR*
 __RPC_USER
 HSTRING_UserMarshal(
     __RPC__in ULONG* pFlags,
@@ -187,7 +167,7 @@ HSTRING_UserMarshal(
     __RPC__in HSTRING* ppidl
     );
 
-_Win32_SupportedOS_Windows8_ UCHAR*
+UCHAR*
 __RPC_USER
 HSTRING_UserUnmarshal(
     __RPC__in ULONG* pFlags,
@@ -195,7 +175,7 @@ HSTRING_UserUnmarshal(
     __RPC__out HSTRING* ppidl
     );
 
-_Win32_SupportedOS_Windows8_ void
+void
 __RPC_USER
 HSTRING_UserFree(
     __RPC__in ULONG* pFlags,
@@ -218,7 +198,6 @@ HSTRING_UserFree(
 
 // HSTRING Inspection
 typedef HRESULT (WINAPI *PINSPECT_HSTRING_CALLBACK)(_In_ void* context, UINT_PTR readAddress, UINT32 length, _Out_writes_(length) BYTE* buffer);
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsInspectString(
     _In_ UINT_PTR targetHString,
@@ -231,7 +210,6 @@ WindowsInspectString(
 
 // HSTRING Inspection 2
 typedef HRESULT (WINAPI *PINSPECT_HSTRING_CALLBACK2)(_In_ void* context, UINT64 readAddress, UINT32 length, _Out_writes_(length) BYTE* buffer);
-_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsInspectString2(
     _In_ UINT64 targetHString,

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
 #if defined(_MSC_VER)
@@ -7,12 +6,6 @@
 
 #ifndef _MINIDUMP_H
 #define _MINIDUMP_H
-
-#include <sal.h>
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned int MINIDUMP_MISC_INFO_FLAGS;
-typedef unsigned int MINIDUMP_THREAD_INFO_DUMP_FLAGS;
-#endif
 
 #ifdef _CONTRACT_GEN
 #include <nt.h>
@@ -246,7 +239,7 @@ typedef struct _MINIDUMP_SYSTEM_INFO {
     // taken from the SYSTEM_INFO structure obtained by GetSystemInfo( ).
     //
 
-    _Win32_AssociatedEnum_(PROCESSOR_ARCHITECTURE) USHORT ProcessorArchitecture;
+    USHORT ProcessorArchitecture;
     USHORT ProcessorLevel;
     USHORT ProcessorRevision;
 
@@ -267,7 +260,7 @@ typedef struct _MINIDUMP_SYSTEM_INFO {
     ULONG32 MajorVersion;
     ULONG32 MinorVersion;
     ULONG32 BuildNumber;
-    _Win32_AssociatedEnum_(VER_PLATFORM) ULONG32 PlatformId;
+    ULONG32 PlatformId;
 
     //
     // RVA to a CSDVersion string in the string table.
@@ -584,12 +577,6 @@ typedef struct _XSTATE_CONFIG_FEATURE_MSC_INFO
 
 #define MINIDUMP_MISC1_PROCESS_ID            0x00000001
 #define MINIDUMP_MISC1_PROCESS_TIMES         0x00000002
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(MINIDUMP_MISC_INFO_FLAGS, unsigned int,
-    MINIDUMP_MISC1_PROCESS_ID,
-    MINIDUMP_MISC1_PROCESS_TIMES);
-#endif
 #define MINIDUMP_MISC1_PROCESSOR_POWER_INFO  0x00000004
 #define MINIDUMP_MISC3_PROCESS_INTEGRITY     0x00000010
 #define MINIDUMP_MISC3_PROCESS_EXECUTE_FLAGS 0x00000020
@@ -600,7 +587,7 @@ _Win32_FlagsEnum_(MINIDUMP_MISC_INFO_FLAGS, unsigned int,
 
 typedef struct _MINIDUMP_MISC_INFO {
     ULONG32 SizeOfInfo;
-    _Win32_AssociatedEnum_(MINIDUMP_MISC_INFO_FLAGS) ULONG32 Flags1;
+    ULONG32 Flags1;
     ULONG32 ProcessId;
     ULONG32 ProcessCreateTime;
     ULONG32 ProcessUserTime;
@@ -707,7 +694,7 @@ typedef struct _MINIDUMP_MEMORY_INFO {
     ULONG32 AllocationProtect;
     ULONG32 __alignment1;
     ULONG64 RegionSize;
-    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) ULONG32 State;
+    ULONG32 State;
     ULONG32 Protect;
     ULONG32 Type;
     ULONG32 __alignment2;
@@ -755,19 +742,9 @@ typedef struct _MINIDUMP_THREAD_NAME_LIST {
 #define MINIDUMP_THREAD_INFO_INVALID_CONTEXT 0x00000010
 #define MINIDUMP_THREAD_INFO_INVALID_TEB     0x00000020
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_Enum_(MINIDUMP_THREAD_INFO_DUMP_FLAGS, unsigned int,
-    MINIDUMP_THREAD_INFO_ERROR_THREAD,
-    MINIDUMP_THREAD_INFO_WRITING_THREAD,
-    MINIDUMP_THREAD_INFO_EXITED_THREAD,
-    MINIDUMP_THREAD_INFO_INVALID_INFO,
-    MINIDUMP_THREAD_INFO_INVALID_CONTEXT,
-    MINIDUMP_THREAD_INFO_INVALID_TEB);
-#endif
-
 typedef struct _MINIDUMP_THREAD_INFO {
     ULONG32 ThreadId;
-    _Win32_AssociatedEnum_(MINIDUMP_THREAD_INFO_DUMP_FLAGS) ULONG32 DumpFlags;
+    ULONG32 DumpFlags;
     ULONG32 DumpError;
     ULONG32 ExitStatus;
     ULONG64 CreateTime;
@@ -1405,9 +1382,6 @@ typedef struct _MINIDUMP_CALLBACK_OUTPUT {
 // with the virtual protection attribute of PAGE_WRITECOMBINE.
 //
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute push (__attribute__((flag_enum)), apply_to = enum)
-#endif
 typedef enum _MINIDUMP_TYPE {
     MiniDumpNormal                         = 0x00000000,
     MiniDumpWithDataSegs                   = 0x00000001,
@@ -1440,9 +1414,6 @@ typedef enum _MINIDUMP_TYPE {
     MiniDumpNoIgnoreInaccessibleMemory     = 0x02000000,
     MiniDumpValidTypeFlagsEx               = 0x07ffffff,
 } MINIDUMP_TYPE;
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#pragma clang attribute pop
-#endif
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES) */
 #pragma endregion
@@ -1519,7 +1490,6 @@ typedef struct _MINIDUMP_CALLBACK_INFORMATION {
 
 #define RVA_TO_ADDR(Mapping,Rva) ((PVOID)(((ULONG_PTR) (Mapping)) + (Rva)))
 
-_Win32_SetLastError_
 BOOL
 WINAPI
 MiniDumpWriteDump(

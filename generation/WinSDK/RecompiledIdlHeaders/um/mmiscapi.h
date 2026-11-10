@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * mmiscapi.h -- ApiSet Contract for api-ms-win-mm-misc-l1-1                     *
@@ -96,7 +95,6 @@ typedef struct tagDRVCONFIGINFO {
 
 typedef LRESULT (CALLBACK* DRIVERPROC)(DWORD_PTR, HDRVR, UINT, LPARAM, LPARAM);
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 LRESULT
 WINAPI
@@ -106,7 +104,6 @@ CloseDriver(
     _In_ LPARAM lParam2
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 HDRVR
 WINAPI
@@ -116,7 +113,6 @@ OpenDriver(
     _In_ LPARAM lParam2
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 LRESULT
 WINAPI
@@ -127,7 +123,6 @@ SendDriverMessage(
     _In_ LPARAM lParam2
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 HMODULE
 WINAPI
@@ -135,7 +130,6 @@ DrvGetModuleHandle(
     _In_ HDRVR hDriver
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 HMODULE
 WINAPI
@@ -143,7 +137,6 @@ GetDriverModuleHandle(
     _In_ HDRVR hDriver
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 LRESULT
 WINAPI
@@ -182,7 +175,6 @@ LRESULT   WINAPI DrvDefDriverProc(DWORD dwDriverIdentifier, HDRVR hdrvr, UINT uM
                       Driver Helper function moved from mmddk.h
 
 ***************************************************************************/
-_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 DriverCallback(
@@ -199,9 +191,7 @@ DriverCallback(
 
   Sound schemes
 
-****************************************************************************/
-_Win32_SupportedOS_Windows81_
-LONG
+****************************************************************************/LONG
 WINAPI
 sndOpenSound(
     _In_ LPCWSTR EventName,
@@ -392,7 +382,6 @@ typedef const MMCKINFO *LPCMMCKINFO;
 /* MMIO function prototypes */
 #ifdef _WIN32
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 FOURCC
 WINAPI
@@ -401,7 +390,6 @@ mmioStringToFOURCCA(
     _In_ UINT uFlags
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 FOURCC
 WINAPI
@@ -415,7 +403,6 @@ mmioStringToFOURCCW(
 #else
 #define mmioStringToFOURCC  mmioStringToFOURCCA
 #endif // !UNICODE
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 LPMMIOPROC
 WINAPI
@@ -425,7 +412,6 @@ mmioInstallIOProcA(
     _In_ DWORD dwFlags
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 LPMMIOPROC
 WINAPI
@@ -440,7 +426,6 @@ mmioInstallIOProcW(
 #else
 #define mmioInstallIOProc  mmioInstallIOProcA
 #endif // !UNICODE
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 HMMIO
 WINAPI
@@ -450,7 +435,6 @@ mmioOpenA(
     _In_ DWORD fdwOpen
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 HMMIO
 WINAPI
@@ -465,7 +449,6 @@ mmioOpenW(
 #else
 #define mmioOpen  mmioOpenA
 #endif // !UNICODE
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -476,7 +459,6 @@ mmioRenameA(
     _In_ DWORD fdwRename
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -501,7 +483,6 @@ MMRESULT WINAPI mmioRename( _In_ LPCSTR pszFileName, _In_ LPCSTR pszNewFileName,
 #endif /* ifdef WINVER >= 0x030a */
 #endif
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -510,7 +491,6 @@ mmioClose(
     _In_ UINT fuClose
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 LONG
 WINAPI
@@ -520,7 +500,6 @@ mmioRead(
     _In_ LONG cch
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 LONG
 WINAPI
@@ -530,7 +509,6 @@ mmioWrite(
     _In_ LONG cch
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 LONG
 WINAPI
@@ -540,7 +518,6 @@ mmioSeek(
     _In_ int iOrigin
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -550,7 +527,6 @@ mmioGetInfo(
     _In_ UINT fuInfo
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -560,7 +536,6 @@ mmioSetInfo(
     _In_ UINT fuInfo
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -571,7 +546,6 @@ mmioSetBuffer(
     _In_ UINT fuBuffer
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -580,7 +554,6 @@ mmioFlush(
     _In_ UINT fuFlush
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -590,7 +563,6 @@ mmioAdvance(
     _In_ UINT fuAdvance
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 LRESULT
 WINAPI
@@ -601,7 +573,6 @@ mmioSendMessage(
     _In_opt_ LPARAM lParam2
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -612,7 +583,6 @@ mmioDescend(
     _In_ UINT fuDescend
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -622,7 +592,6 @@ mmioAscend(
     _In_ UINT fuAscend
     );
 
-_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI

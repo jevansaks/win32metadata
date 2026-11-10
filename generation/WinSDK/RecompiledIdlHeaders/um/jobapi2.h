@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * jobapiset2.h -- ApiSet Contract for api-ms-win-core-job-l2                     *
@@ -33,8 +32,6 @@ typedef struct JOBOBJECT_IO_RATE_CONTROL_INFORMATION {
     ULONG ControlFlags;
 } JOBOBJECT_IO_RATE_CONTROL_INFORMATION;
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -43,7 +40,6 @@ CreateJobObjectW(
     _In_opt_ LPCWSTR lpName
     );
 
-_Win32_SupportedOS_10240_
 WINBASEAPI
 VOID
 WINAPI
@@ -51,8 +47,6 @@ FreeMemoryJobObject(
     _In_ _Frees_ptr_ VOID* Buffer
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -62,8 +56,6 @@ OpenJobObjectW(
     _In_ LPCWSTR lpName
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -72,8 +64,6 @@ AssignProcessToJobObject(
     _In_ HANDLE hProcess
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -82,8 +72,6 @@ TerminateJobObject(
     _In_ UINT uExitCode
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -94,8 +82,6 @@ SetInformationJobObject(
     _In_ DWORD cbJobObjectInformationLength
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 WINBASEAPI
 DWORD
 WINAPI
@@ -104,8 +90,6 @@ SetIoRateControlInformationJobObject(
     _In_ JOBOBJECT_IO_RATE_CONTROL_INFORMATION* IoRateControlInfo
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -117,8 +101,6 @@ QueryInformationJobObject(
     _Out_opt_ LPDWORD lpReturnLength
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_10240_
 WINBASEAPI
 DWORD
 WINAPI

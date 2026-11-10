@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
@@ -13,7 +12,6 @@
 // Arguments:
 //    rclsid - Only CLSID_CorMetaDataDispenser supported.
 //    riid   - Interfaces supported: IID_IMetaDataDispenser, IID_IMetaDataDispenserEx.
-_Win32_SupportedOS_Windows8_
 STDAPI MetaDataGetDispenser(
         __in REFCLSID            rclsid, 
         __in REFIID              riid, 

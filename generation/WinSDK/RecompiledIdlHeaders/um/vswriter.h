@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -12,8 +11,6 @@ Abstract:
 
 #ifndef __CVSS_WRITER_H_
 #define __CVSS_WRITER_H_
-
-#include <sal.h>
 
 #include <winapifamily.h>
 
@@ -1385,14 +1382,14 @@ public:
 
 
 extern "C"  {
-    _Win32_SupportedOS_Windows7_ HRESULT STDAPICALLTYPE CreateVssExpressWriterInternal
+    HRESULT STDAPICALLTYPE CreateVssExpressWriterInternal
         (
         _Out_ IVssExpressWriter **ppWriter
         );
 }
 
 
-_Win32_SupportedOS_Windows7_ inline HRESULT  CreateVssExpressWriter
+inline HRESULT  CreateVssExpressWriter
     (
     _Out_ IVssExpressWriter **ppWriter
     )

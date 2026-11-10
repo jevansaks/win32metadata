@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 
 /*++
 
@@ -78,44 +77,38 @@ typedef enum
 } EPrintTicketScope;
 
 
-_Win32_SupportedOS_WindowsXP_
 HRESULT WINAPI
 PTQuerySchemaVersionSupport(
             _In_        PCWSTR       pszPrinterName,
             _Out_       DWORD       *pMaxVersion
             );
 
-_Win32_SupportedOS_WindowsXP_
-HRESULT WINAPI
-PTCloseProvider(
-            _In_  HPTPROVIDER hProvider
-            );
-
-_Win32_SupportedOS_WindowsXP_
 HRESULT WINAPI
 PTOpenProvider( 
             _In_        PCWSTR       pszPrinterName,
                         DWORD        dwVersion,
-            _Out_ _Win32_RAIIFree_(PTCloseProvider, -1, 0) HPTPROVIDER *phProvider
+            _Out_       HPTPROVIDER *phProvider
             );
 
-_Win32_SupportedOS_WindowsXP_
 HRESULT WINAPI
 PTOpenProviderEx( 
             _In_  PCWSTR       pszPrinterName,
                   DWORD        dwMaxVersion,
                   DWORD        dwPrefVersion,
-            _Out_ _Win32_RAIIFree_(PTCloseProvider, -1, 0) HPTPROVIDER *phProvider,
+            _Out_ HPTPROVIDER *phProvider,
             _Out_ DWORD       *pUsedVersion
             );
 
-_Win32_SupportedOS_WindowsXP_
+HRESULT WINAPI
+PTCloseProvider(
+            _In_  HPTPROVIDER hProvider
+            );
+
 HRESULT WINAPI
 PTReleaseMemory(
     _In_ PVOID pBuffer
     );
     
-_Win32_SupportedOS_WindowsXP_
 HRESULT WINAPI
 PTGetPrintCapabilities( 
             _In_            HPTPROVIDER         hProvider,
@@ -124,7 +117,6 @@ PTGetPrintCapabilities(
             _Out_opt_       BSTR               *pbstrErrorMessage
             );
 
-_Win32_SupportedOS_15063_
 HRESULT WINAPI
 PTGetPrintDeviceCapabilities(
     _In_            HPTPROVIDER         hProvider,
@@ -133,7 +125,6 @@ PTGetPrintDeviceCapabilities(
     _Out_opt_       BSTR               *pbstrErrorMessage
     );
 
-_Win32_SupportedOS_15063_
 HRESULT WINAPI
 PTGetPrintDeviceResources(
     _In_            HPTPROVIDER         hProvider,
@@ -143,7 +134,6 @@ PTGetPrintDeviceResources(
     _Out_opt_       BSTR               *pbstrErrorMessage
 );
 
-_Win32_SupportedOS_WindowsXP_
 HRESULT WINAPI
 PTMergeAndValidatePrintTicket(
             _In_            HPTPROVIDER        hProvider,
@@ -154,7 +144,6 @@ PTMergeAndValidatePrintTicket(
             _Out_opt_       BSTR              *pbstrErrorMessage 
             );
 
-_Win32_SupportedOS_WindowsXP_
 HRESULT WINAPI
 PTConvertPrintTicketToDevMode( 
             _In_                     HPTPROVIDER          hProvider,
@@ -166,7 +155,6 @@ PTConvertPrintTicketToDevMode(
             _Out_opt_                BSTR                *pbstrErrorMessage 
             );
         
-_Win32_SupportedOS_WindowsXP_
 HRESULT WINAPI
 PTConvertDevModeToPrintTicket( 
             _In_        HPTPROVIDER        hProvider,

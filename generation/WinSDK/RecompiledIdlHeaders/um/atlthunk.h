@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Module Name:
@@ -16,7 +15,6 @@ Author:
 --*/
 
 #pragma once
-#include <sal.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -31,13 +29,13 @@ typedef struct AtlThunkData_t AtlThunkData_t;
 
 AtlThunkData_t*
 __stdcall
-_Win32_SupportedOS_10240_ AtlThunk_AllocateData(
+AtlThunk_AllocateData(
     void
     );
 
 void
 __stdcall
-_Win32_SupportedOS_10240_ AtlThunk_InitData(
+AtlThunk_InitData(
     AtlThunkData_t* Thunk,
     void* /*WNDPROC*/ Proc,
     size_t FirstParameter
@@ -45,13 +43,13 @@ _Win32_SupportedOS_10240_ AtlThunk_InitData(
 
 WNDPROC
 __stdcall
-_Win32_SupportedOS_10240_ AtlThunk_DataToCode(
+AtlThunk_DataToCode(
     AtlThunkData_t*
     );
 
 void
 __stdcall
-_Win32_SupportedOS_10240_ AtlThunk_FreeData(
+AtlThunk_FreeData(
     AtlThunkData_t* Thunk
     );
 

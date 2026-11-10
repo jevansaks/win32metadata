@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 //+---------------------------------------------------------------------------
 //
@@ -319,7 +318,6 @@ typedef struct _ENCRYPTION_PROTECTOR_LIST {
 //----------------------------------------------------------------------------------/
 
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 DWORD
 WINAPI
@@ -329,7 +327,6 @@ QueryUsersOnEncryptedFile(
     );
 
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 DWORD
 WINAPI
@@ -339,7 +336,6 @@ QueryRecoveryAgentsOnEncryptedFile(
     );
 
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 DWORD
 WINAPI
@@ -348,7 +344,6 @@ RemoveUsersFromEncryptedFile(
     _In_    PENCRYPTION_CERTIFICATE_HASH_LIST   pHashes
     );
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 DWORD
 WINAPI
@@ -366,7 +361,7 @@ AddUsersToEncryptedFile(
 WINADVAPI
 DWORD
 WINAPI
-_Win32_SupportedOS_WindowsXP_ SetUserFileEncryptionKey(
+SetUserFileEncryptionKey(
     _In_opt_    PENCRYPTION_CERTIFICATE     pEncryptionCertificate
     );
 
@@ -375,7 +370,7 @@ _Win32_SupportedOS_WindowsXP_ SetUserFileEncryptionKey(
 WINADVAPI
 DWORD
 WINAPI
-_Win32_SupportedOS_WindowsXP_ SetUserFileEncryptionKey(
+SetUserFileEncryptionKey(
     _In_    PENCRYPTION_CERTIFICATE     pEncryptionCertificate
     );
 
@@ -396,7 +391,6 @@ SetUserFileEncryptionKeyEx(
 
 #endif // #if (NTDDI_VERSION >= NTDDI_VISTA) 
 
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -404,8 +398,6 @@ FreeEncryptionCertificateHashList(
     _In_    PENCRYPTION_CERTIFICATE_HASH_LIST       pUsers
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 WINAPI
@@ -423,7 +415,7 @@ EncryptionDisable(
 WINADVAPI
 DWORD
 WINAPI
-_Win32_SupportedOS_WindowsXP_ DuplicateEncryptionInfoFile(
+DuplicateEncryptionInfoFile(
      _In_       LPCWSTR SrcFileName,
      _In_       LPCWSTR DstFileName, 
                 DWORD                           dwCreationDistribution, 
@@ -438,7 +430,7 @@ _Win32_SupportedOS_WindowsXP_ DuplicateEncryptionInfoFile(
 WINADVAPI
 DWORD
 WINAPI
-_Win32_SupportedOS_WindowsXP_ DuplicateEncryptionInfoFile(
+DuplicateEncryptionInfoFile(
      _In_       LPCWSTR SrcFileName,
      _In_       LPCWSTR DstFileName, 
                 DWORD                   dwCreationDistribution, 

@@ -26,7 +26,6 @@ Environment:
 #pragma once
 #endif
 #include <winapifamily.h>
-#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -34,10 +33,6 @@ Environment:
 
 #ifdef __cplusplus
 extern "C" {
-#endif
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned int NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS;
 #endif
 
 //
@@ -62,7 +57,6 @@ typedef LPWSTR LPDESC;
 // Function Prototypes
 //
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 _Success_( return == 0 )
 NET_API_STATUS NET_API_FUNCTION
@@ -71,11 +65,10 @@ NetRemoteTOD (
     _Outptr_result_bytebuffer_(sizeof(TIME_OF_DAY_INFO)) LPBYTE *BufferPtr
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetRemoteComputerSupports(
     IN LPCWSTR UncServerName OPTIONAL,   // Must start with "\\".
-    IN _Win32_AssociatedEnum_(NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS) DWORD OptionsWanted,             // Set SUPPORTS_ bits wanted.
+    IN DWORD OptionsWanted,             // Set SUPPORTS_ bits wanted.
     OUT LPDWORD OptionsSupported        // Supported features, masked.
     );
 
@@ -140,12 +133,6 @@ typedef struct _TIME_OF_DAY_INFO {
 #define SUPPORTS_UNICODE                0x00000010L
 #define SUPPORTS_LOCAL                  0x00000020L
 #define SUPPORTS_ANY                    0xFFFFFFFFL
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_Enum_(NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS, unsigned int,
-    SUPPORTS_REMOTE_ADMIN_PROTOCOL, SUPPORTS_RPC, SUPPORTS_SAM_PROTOCOL,
-    SUPPORTS_UNICODE, SUPPORTS_LOCAL);
-#endif
 
 //
 // Flag bits for RxRemoteApi:

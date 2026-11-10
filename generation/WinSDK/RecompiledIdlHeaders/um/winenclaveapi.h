@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -28,7 +27,6 @@ extern "C" {
 // Attestation APIs.
 //
 
-_Win32_SupportedOS_16299_
 STDAPI
 EnclaveGetAttestationReport(
     _In_opt_ const UINT8 EnclaveData[ENCLAVE_REPORT_DATA_LENGTH],
@@ -37,7 +35,6 @@ EnclaveGetAttestationReport(
     _Out_ UINT32 *OutputSize
     );
 
-_Win32_SupportedOS_16299_
 STDAPI
 EnclaveVerifyAttestationReport(
     _In_ UINT32 EnclaveType,
@@ -49,7 +46,6 @@ EnclaveVerifyAttestationReport(
 // Sealing/unsealing APIs.
 //
 
-_Win32_SupportedOS_16299_
 STDAPI
 EnclaveSealData(
     _In_reads_bytes_(DataToEncryptSize) const VOID *DataToEncrypt,
@@ -61,7 +57,6 @@ EnclaveSealData(
     _Out_ UINT32 *ProtectedBlobSize
     );
 
-_Win32_SupportedOS_16299_
 STDAPI
 EnclaveUnsealData(
     _In_reads_bytes_(ProtectedBlobSize) const VOID *ProtectedBlob,
@@ -87,7 +82,6 @@ EnclaveEncryptDataForTrustlet(
 // Enclave properties.
 //
 
-_Win32_SupportedOS_16299_
 STDAPI
 EnclaveGetEnclaveInformation(
     _In_ UINT32 InformationSize,

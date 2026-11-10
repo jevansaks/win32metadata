@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1989-2002  Microsoft Corporation
@@ -20,7 +19,6 @@ Environment:
 #ifndef __FLTUSER_H__
 #define __FLTUSER_H__
 #include <winapifamily.h>
-#include <sal.h>
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -235,7 +233,7 @@ FilterFindFirst (
     _Out_writes_bytes_to_(dwBufferSize,*lpBytesReturned) LPVOID lpBuffer,
     _In_ DWORD dwBufferSize,
     _Out_ LPDWORD lpBytesReturned,
-    _Win32_RAIIFree_(FilterFindClose) _Out_ LPHANDLE lpFilterFind
+    _Out_ LPHANDLE lpFilterFind
     );
 
 _Must_inspect_result_
@@ -265,7 +263,7 @@ FilterVolumeFindFirst (
     _Out_writes_bytes_to_(dwBufferSize,*lpBytesReturned) LPVOID lpBuffer,
     _In_ DWORD dwBufferSize,
     _Out_ LPDWORD lpBytesReturned,
-    _Win32_RAIIFree_(FilterVolumeFindClose) _Out_ PHANDLE lpVolumeFind
+    _Out_ PHANDLE lpVolumeFind
     );
 
 _Must_inspect_result_
@@ -298,7 +296,7 @@ FilterInstanceFindFirst (
     _Out_writes_bytes_to_(dwBufferSize,*lpBytesReturned) LPVOID lpBuffer,
     _In_ DWORD dwBufferSize,
     _Out_ LPDWORD lpBytesReturned,
-    _Win32_RAIIFree_(FilterInstanceFindClose) _Out_ LPHANDLE lpFilterInstanceFind
+    _Out_ LPHANDLE lpFilterInstanceFind
     );
 
 _Must_inspect_result_
@@ -333,7 +331,7 @@ FilterVolumeInstanceFindFirst (
     _Out_writes_bytes_to_(dwBufferSize,*lpBytesReturned) LPVOID lpBuffer,
     _In_ DWORD dwBufferSize,
     _Out_ LPDWORD lpBytesReturned,
-    _Win32_RAIIFree_(FilterVolumeInstanceFindClose) _Out_ LPHANDLE lpVolumeInstanceFind
+    _Out_ LPHANDLE lpVolumeInstanceFind
     );
 
 _Must_inspect_result_
@@ -432,7 +430,6 @@ FilterGetMessage (
     _Inout_opt_ LPOVERLAPPED lpOverlapped
     );
 
-_Win32_SupportedOS_Windows2000_
 _Must_inspect_result_
 HRESULT
 WINAPI

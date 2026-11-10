@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*********************************************************************************
 *                                                                                *
 * featurestagingapi.h -- ApiSet Contract for api-ms-win-core-featurestaging-l1 *
@@ -9,8 +8,6 @@
 
 #ifndef _APISET_WIL_FEATURESTAGING_
 #define _APISET_WIL_FEATURESTAGING_
-
-#include <sal.h>
 
 #include <apiset.h>
 #include <apisetcconv.h>
@@ -84,7 +81,7 @@ RecordFeatureError(
 EXTERN_C
 void
 SubscribeFeatureStateChangeNotification(
-    _Outptr_ _Win32_RAIIFree_(UnsubscribeFeatureStateChangeNotification, -1, 0) FEATURE_STATE_CHANGE_SUBSCRIPTION* subscription,
+    _Outptr_ FEATURE_STATE_CHANGE_SUBSCRIPTION* subscription,
     _In_ PFEATURE_STATE_CHANGE_CALLBACK callback,
     _In_opt_ void* context
     );

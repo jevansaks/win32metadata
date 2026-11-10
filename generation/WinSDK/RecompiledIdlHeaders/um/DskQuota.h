@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /**************************************************************************
 *                                                                         *
 *   dskquota.h --  public header for Windows 2000 disk quota interfaces.  *
@@ -8,10 +7,6 @@
 **************************************************************************/
 #ifndef __DSKQUOTA_H
 #define __DSKQUOTA_H
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long DISKQUOTA_USERNAME_RESOLVE;
-#endif
 
 #if _MSC_VER > 1000
 #pragma once
@@ -158,12 +153,6 @@ typedef struct DiskQuotaUserInformation {
 #define DISKQUOTA_USERNAME_RESOLVE_NONE     0
 #define DISKQUOTA_USERNAME_RESOLVE_SYNC     1
 #define DISKQUOTA_USERNAME_RESOLVE_ASYNC    2
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(DISKQUOTA_USERNAME_RESOLVE, unsigned long,
-    DISKQUOTA_USERNAME_RESOLVE_ASYNC,
-    DISKQUOTA_USERNAME_RESOLVE_NONE,
-    DISKQUOTA_USERNAME_RESOLVE_SYNC);
-#endif
 
 //
 // Values for status returned by IDiskQuotaUser::GetAccountStatus.
@@ -183,9 +172,6 @@ _Win32_Enum_(DISKQUOTA_USERNAME_RESOLVE, unsigned long,
 //
 #undef  INTERFACE
 #define INTERFACE IDiskQuotaUser
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct IDiskQuotaUser IDiskQuotaUser;
-#endif
 DECLARE_INTERFACE_IID_(IDiskQuotaUser, IUnknown, "7988B574-EC89-11cf-9C00-00AA00A14F56")
 {
     STDMETHOD(GetID)(THIS_
@@ -256,9 +242,6 @@ typedef IDiskQuotaUser DISKQUOTA_USER, *PDISKQUOTA_USER;
 //
 #undef  INTERFACE
 #define INTERFACE IEnumDiskQuotaUsers
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct IEnumDiskQuotaUsers IEnumDiskQuotaUsers;
-#endif
 DECLARE_INTERFACE_IID_(IEnumDiskQuotaUsers, IUnknown, "7988B577-EC89-11cf-9C00-00AA00A14F56")
 {
     STDMETHOD(Next)(THIS_
@@ -284,9 +267,6 @@ typedef IEnumDiskQuotaUsers ENUM_DISKQUOTA_USERS, *PENUM_DISKQUOTA_USERS;
 // 
 #undef  INTERFACE
 #define INTERFACE IDiskQuotaUserBatch
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct IDiskQuotaUserBatch IDiskQuotaUserBatch;
-#endif
 DECLARE_INTERFACE_IID_(IDiskQuotaUserBatch, IUnknown, "7988B576-EC89-11cf-9C00-00AA00A14F56")
 {
     STDMETHOD(Add)(THIS_
@@ -309,9 +289,6 @@ typedef IDiskQuotaUserBatch DISKQUOTA_USER_BATCH, *PDISKQUOTA_USER_BATCH;
 //
 #undef INTERFACE
 #define INTERFACE IDiskQuotaControl
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct IDiskQuotaControl IDiskQuotaControl;
-#endif
 DECLARE_INTERFACE_IID_(IDiskQuotaControl, IConnectionPointContainer, "7988B572-EC89-11cf-9C00-00AA00A14F56")
 {
     STDMETHOD(Initialize)(THIS_
@@ -352,12 +329,12 @@ DECLARE_INTERFACE_IID_(IDiskQuotaControl, IConnectionPointContainer, "7988B572-E
 
     STDMETHOD(AddUserSid)(THIS_
         PSID pUserSid,
-        _Win32_AssociatedEnum_(DISKQUOTA_USERNAME_RESOLVE) DWORD fNameResolution,
+        DWORD fNameResolution,
         PDISKQUOTA_USER *ppUser) PURE;
 
     STDMETHOD(AddUserName)(THIS_
         LPCWSTR pszLogonName,
-        _Win32_AssociatedEnum_(DISKQUOTA_USERNAME_RESOLVE) DWORD fNameResolution,
+        DWORD fNameResolution,
         PDISKQUOTA_USER *ppUser) PURE;
 
     STDMETHOD(DeleteUser)(THIS_
@@ -365,7 +342,7 @@ DECLARE_INTERFACE_IID_(IDiskQuotaControl, IConnectionPointContainer, "7988B572-E
 
     STDMETHOD(FindUserSid)(THIS_
         PSID pUserSid,
-        _Win32_AssociatedEnum_(DISKQUOTA_USERNAME_RESOLVE) DWORD fNameResolution,
+        DWORD fNameResolution,
         PDISKQUOTA_USER *ppUser) PURE;
 
     STDMETHOD(FindUserName)(THIS_
@@ -375,7 +352,7 @@ DECLARE_INTERFACE_IID_(IDiskQuotaControl, IConnectionPointContainer, "7988B572-E
     STDMETHOD(CreateEnumUsers)(THIS_
         PSID *rgpUserSids,
         DWORD cpSids,
-        _Win32_AssociatedEnum_(DISKQUOTA_USERNAME_RESOLVE) DWORD fNameResolution,
+        DWORD fNameResolution,
         PENUM_DISKQUOTA_USERS *ppEnum) PURE;
 
     STDMETHOD(CreateUserBatch)(THIS_
@@ -395,9 +372,6 @@ typedef IDiskQuotaControl DISKQUOTA_CONTROL, *PDISKQUOTA_CONTROL;
 
 #undef  INTERFACE
 #define INTERFACE IDiskQuotaEvents
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct IDiskQuotaEvents IDiskQuotaEvents;
-#endif
 DECLARE_INTERFACE_IID_(IDiskQuotaEvents, IUnknown, "7988B579-EC89-11cf-9C00-00AA00A14F56")
 {
     STDMETHOD(OnUserNameChanged)(THIS_

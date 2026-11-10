@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (C) Microsoft Corporation, 1999
@@ -60,7 +59,6 @@ typedef ENCRYPTED_NT_OWF_PASSWORD * PENCRYPTED_NT_OWF_PASSWORD;
 // Change a password.
 //
     
-_Win32_SupportedOS_WindowsXP_
 extern WINADVAPI DWORD WINAPI
 MSChapSrvChangePassword(
    _In_ PWSTR ServerName,
@@ -77,7 +75,6 @@ MSChapSrvChangePassword(
 // Change a password using mutual encryption.
 //
 
-_Win32_SupportedOS_WindowsXP_
 extern WINADVAPI DWORD WINAPI
 MSChapSrvChangePassword2(
     _In_ PWSTR ServerName,

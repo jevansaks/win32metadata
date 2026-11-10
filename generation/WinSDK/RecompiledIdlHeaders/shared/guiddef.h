@@ -1,5 +1,3 @@
-#include <win32metadata_annotations.h>
-#include <sal.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -158,7 +156,7 @@ __inline int InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
       ((unsigned long *) &rguid1)[3] == ((unsigned long *) &rguid2)[3]);
 }
 
-_Win32_SupportedOS_Windows2000_ __inline int IsEqualGUID(REFGUID rguid1, REFGUID rguid2)
+__inline int IsEqualGUID(REFGUID rguid1, REFGUID rguid2)
 {
     return !memcmp(&rguid1, &rguid2, sizeof(GUID));
 }

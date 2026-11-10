@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+--------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -586,9 +585,6 @@ typedef struct _DS_SELECTION_LIST
 #undef INTERFACE
 #define INTERFACE IDsObjectPicker
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsVista_ struct IDsObjectPicker IDsObjectPicker;
-#endif
 DECLARE_INTERFACE_(IDsObjectPicker, IUnknown)
 {
     // *** IUnknown methods ***
@@ -616,9 +612,6 @@ DECLARE_INTERFACE_(IDsObjectPicker, IUnknown)
          IDataObject      **ppdoSelections) PURE;
 };
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Server2008_ struct IDsObjectPickerCredentials IDsObjectPickerCredentials;
-#endif
 DECLARE_INTERFACE_(IDsObjectPickerCredentials, IDsObjectPicker)
 {
     // *** IUnknown methods ***

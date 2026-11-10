@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * consoleapi.h -- ApiSet Contract for api-ms-win-core-namespace-l1              *
@@ -13,7 +12,6 @@
 
 #ifndef _APISETNAMESPACE_
 #define _APISETNAMESPACE_
-#include <sal.h>
 
 #include <apiset.h>
 #include <apisetcconv.h>
@@ -32,7 +30,7 @@ extern "C" {
 WINBASEAPI
 HANDLE
 WINAPI
-_Win32_RAIIFree_(ClosePrivateNamespace) CreatePrivateNamespaceW(
+CreatePrivateNamespaceW(
     _In_opt_ LPSECURITY_ATTRIBUTES lpPrivateNamespaceAttributes,
     _In_ LPVOID lpBoundaryDescriptor,
     _In_ LPCWSTR lpAliasPrefix
@@ -41,13 +39,11 @@ _Win32_RAIIFree_(ClosePrivateNamespace) CreatePrivateNamespaceW(
 WINBASEAPI
 HANDLE
 WINAPI
-_Win32_RAIIFree_(ClosePrivateNamespace) OpenPrivateNamespaceW(
+OpenPrivateNamespaceW(
     _In_ LPVOID lpBoundaryDescriptor,
     _In_ LPCWSTR lpAliasPrefix
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOLEAN
 WINAPI
@@ -59,13 +55,11 @@ ClosePrivateNamespace(
 WINBASEAPI
 HANDLE
 WINAPI
-_Win32_RAIIFree_(DeleteBoundaryDescriptor) CreateBoundaryDescriptorW(
+CreateBoundaryDescriptorW(
     _In_ LPCWSTR Name,
     _In_ ULONG Flags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 BOOL
 WINAPI
@@ -74,7 +68,6 @@ AddSIDToBoundaryDescriptor(
     _In_ PSID RequiredSid
     );
 
-_Win32_SupportedOS_WindowsVista_
 WINBASEAPI
 VOID
 WINAPI

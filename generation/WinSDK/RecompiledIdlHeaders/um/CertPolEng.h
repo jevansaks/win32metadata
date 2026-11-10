@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -13,7 +12,6 @@
 extern "C" {
 #endif
 
-_Win32_SupportedOS_Windows7_
 NTSTATUS 
 NTAPI
 PstGetTrustAnchors(
@@ -41,7 +39,6 @@ PstGetCertificateChain(
     _Out_                                   PCCERT_CHAIN_CONTEXT*               ppCertChainContext
     );
     
-_Win32_SupportedOS_Windows7_
 NTSTATUS 
 NTAPI
 PstGetCertificates(
@@ -53,7 +50,6 @@ PstGetCertificates(
     _Outptr_result_buffer_(*pdwCertChainContextCount) PCCERT_CHAIN_CONTEXT**    ppCertChainContexts
     );
     
-_Win32_SupportedOS_Windows7_
 NTSTATUS
 NTAPI
 PstAcquirePrivateKey(
@@ -61,7 +57,6 @@ PstAcquirePrivateKey(
     );
 
 
-_Win32_SupportedOS_Windows7_
 NTSTATUS 
 NTAPI
 PstValidate(
@@ -73,7 +68,6 @@ PstValidate(
     _Out_opt_                               GUID*                               pProvGUID
    );
 
-_Win32_SupportedOS_Windows7_
 NTSTATUS 
 NTAPI
 PstMapCertificate(
@@ -82,7 +76,6 @@ PstMapCertificate(
     _Outptr_                             PVOID*                              ppTokenInformation
   );
 
-_Win32_SupportedOS_Windows7_
 NTSTATUS 
 NTAPI
 PstGetUserNameForCertificate(

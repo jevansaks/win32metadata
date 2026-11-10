@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2005 Microsoft Corporation
@@ -20,10 +19,6 @@ Environment:
 
 #ifndef _WDSTCI_H
 #define _WDSTCI_H
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-typedef unsigned long WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL;
-#endif
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -55,11 +50,6 @@ extern "C"
 
 #define WDS_TRANSPORTCLIENT_AUTH    0x1
 #define WDS_TRANSPORTCLIENT_NO_AUTH 0x2
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL, unsigned long,
-    WDS_TRANSPORTCLIENT_AUTH,
-    WDS_TRANSPORTCLIENT_NO_AUTH);
-#endif
 
 typedef enum _TRANSPORTCLIENT_CALLBACK_ID
 {
@@ -176,7 +166,7 @@ typedef struct _WDS_TRANSPORTCLIENT_REQUEST
     //
     // The level of authentication to send to the server.
     //
-    _Win32_AssociatedEnum_(WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL) ULONG ulAuthLevel;
+    ULONG ulAuthLevel;
 
     //
     // Server name.
@@ -230,14 +220,12 @@ typedef struct _WDS_TRANSPORTCLIENT_CALLBACKS
 
 //----------------------------------------------------------------- Functions.
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientInitialize (
     VOID
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientInitializeSession (
@@ -246,7 +234,6 @@ WdsTransportClientInitializeSession (
     _Out_ PHANDLE hSessionKey
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientRegisterCallback (
@@ -255,14 +242,12 @@ WdsTransportClientRegisterCallback (
     _In_ PVOID pfnCallback
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientStartSession (
     _In_ HANDLE hSessionKey
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientCompleteReceive (
@@ -271,7 +256,6 @@ WdsTransportClientCompleteReceive (
     _In_ PULARGE_INTEGER pullOffset
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientCancelSession (
@@ -285,7 +269,6 @@ WdsTransportClientCancelSessionEx (
     _In_ DWORD dwErrorCode
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientWaitForCompletion (
@@ -293,7 +276,6 @@ WdsTransportClientWaitForCompletion (
     _In_ ULONG uTimeout
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientQueryStatus (
@@ -302,28 +284,24 @@ WdsTransportClientQueryStatus (
     _Out_ PULONG puErrorCode
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientCloseSession (
     _In_ HANDLE hSessionKey
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientAddRefBuffer (
     _In_ PVOID pvBuffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientReleaseBuffer (
     _In_ PVOID pvBuffer
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD
 WDSTCIAPI
 WdsTransportClientShutdown (

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //*************************************************************
 //
 // appmgmt.h
@@ -18,7 +17,6 @@
 #pragma once
 #endif
 #include <winapifamily.h>
-#include <sal.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -129,7 +127,6 @@ typedef struct _APPCATEGORYINFOLIST
 #define WINAPI
 #endif
 
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 InstallApplication(
 #if !defined(__midl)
@@ -138,7 +135,6 @@ InstallApplication(
 	PINSTALLDATA pInstallInfo
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 UninstallApplication(
 #if !defined(__midl)
@@ -164,7 +160,6 @@ CommandLineFromMsiDescriptor(
     DWORD *     CommandLineLength
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 GetManagedApplications(
 #if !defined(__midl)
@@ -189,7 +184,6 @@ GetManagedApplications(
 	PMANAGEDAPPLICATION* prgManagedApps
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 GetLocalManagedApplications(
 #if !defined(__midl)
@@ -222,7 +216,6 @@ GetLocalManagedApplicationData(
 	LPWSTR *            SupportUrl
     );
 
-_Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 GetManagedApplicationCategories(
 #if !defined(__midl)

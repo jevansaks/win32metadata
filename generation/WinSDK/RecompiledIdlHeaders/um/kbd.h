@@ -14,7 +14,6 @@
 #define _KBD_
 
 #include <winapifamily.h>
-#include <win32metadata_annotations.h>
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -996,10 +995,6 @@ typedef struct tagKBD_TYPE_INFO {
 #define VK__none_   0xFF
 #define VK_ABNT_C1  0xC1
 #define VK_ABNT_C2  0xC2
-#ifdef WIN32METADATA
-_Win32_Enum_(VIRTUAL_KEY, unsigned short, VK_ABNT_C1, VK_ABNT_C2);
-#endif
-
 
 #if (KBD_TYPE <= 6)
 /***************************************************************************\
@@ -2176,20 +2171,9 @@ _Win32_Enum_(VIRTUAL_KEY, unsigned short, VK_ABNT_C1, VK_ABNT_C2);
 #define VK_DBE_NOCODEINPUT               0x0fb
 #define VK_DBE_DETERMINESTRING           0x0fc
 #define VK_DBE_ENTERDLGCONVERSIONMODE    0x0fd
-#ifdef WIN32METADATA
-_Win32_Enum_(VIRTUAL_KEY, unsigned short,
-    VK_DBE_ALPHANUMERIC, VK_DBE_CODEINPUT, VK_DBE_DBCSCHAR,
-    VK_DBE_DETERMINESTRING, VK_DBE_ENTERDLGCONVERSIONMODE,
-    VK_DBE_ENTERIMECONFIGMODE, VK_DBE_ENTERWORDREGISTERMODE, VK_DBE_FLUSHSTRING,
-    VK_DBE_HIRAGANA, VK_DBE_KATAKANA, VK_DBE_NOCODEINPUT,
-    VK_DBE_NOROMAN, VK_DBE_ROMAN, VK_DBE_SBCSCHAR);
-#endif
 
 #endif
 
-#ifdef WIN32METADATA
-_Win32_Enum_(VIRTUAL_KEY, unsigned short, VK__none_);
-#endif
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion

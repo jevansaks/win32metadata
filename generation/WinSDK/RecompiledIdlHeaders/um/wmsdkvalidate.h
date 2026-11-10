@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //*@@@+++@@@@******************************************************************
 //
 // Microsoft Windows Media
@@ -25,7 +24,6 @@
 // handle a particular URL, as this cannot be known until the URL is opened.
 //
 
-_Win32_SupportedOS_Windows2000_
 HRESULT STDMETHODCALLTYPE WMCheckURLExtension( /* [in] */ LPCWSTR pwszURL );
 
 //
@@ -38,7 +36,6 @@ HRESULT STDMETHODCALLTYPE WMCheckURLExtension( /* [in] */ LPCWSTR pwszURL );
 // handle a particular URL, as this cannot be known until the URL is opened.
 //
 
-_Win32_SupportedOS_Windows2000_
 HRESULT STDMETHODCALLTYPE WMCheckURLScheme( /* [in] */ LPCWSTR pwszURLScheme );
 
 //
@@ -47,7 +44,6 @@ HRESULT STDMETHODCALLTYPE WMCheckURLScheme( /* [in] */ LPCWSTR pwszURLScheme );
 // This routine may return a false positive, but will not return a false negative.
 //
 
-_Win32_SupportedOS_Windows2000_
 HRESULT STDMETHODCALLTYPE WMValidateData(
     /* [in] */ BYTE *pbData,
     /* [in, out] */ DWORD *pdwDataSize
@@ -61,7 +57,6 @@ HRESULT STDMETHODCALLTYPE WMValidateData(
 // played in Offline mode.
 //
 
-_Win32_SupportedOS_Windows2000_
 HRESULT STDMETHODCALLTYPE WMIsAvailableOffline(
     /* [in] */ LPCWSTR pwszURL,
     /* [in] */ LPCWSTR pwszLanguage,

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All Rights Reserved
@@ -28,7 +27,6 @@ extern "C" {
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 
-_Win32_SupportedOS_Windows81_
 BOOL
 WINAPI
 CeipIsOptedIn();

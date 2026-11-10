@@ -43,13 +43,6 @@ extern "C" {
 #endif
 
 #include <lmcons.h>
-#include <win32metadata_annotations.h>
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned int NET_SERVER_TYPE;
-typedef unsigned int SERVER_INFO_SECURITY;
-typedef int SERVER_INFO_HIDDEN;
-#endif
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
 #pragma endregion
@@ -61,7 +54,6 @@ typedef int SERVER_INFO_HIDDEN;
 // Function Prototypes - SERVER
 //
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetServerEnum (
     _In_opt_ IN  LMCSTR      servername OPTIONAL,
@@ -70,7 +62,7 @@ NetServerEnum (
     _In_ IN  DWORD       prefmaxlen,
     _Out_ OUT LPDWORD     entriesread,
     _Out_ OUT LPDWORD     totalentries,
-    _In_ IN  _Win32_AssociatedEnum_(NET_SERVER_TYPE) DWORD       servertype,
+    _In_ IN  DWORD       servertype,
     _In_opt_ IN  LMCSTR      domain OPTIONAL,
     _Out_opt_ IN OUT LPDWORD  resume_handle OPTIONAL
     );
@@ -95,7 +87,6 @@ NetServerEnumEx (
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 _Success_( return == 0 )
 NET_API_STATUS NET_API_FUNCTION
@@ -108,7 +99,6 @@ NetServerGetInfo (
     LPBYTE *bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
 NetServerSetInfo(
@@ -149,7 +139,6 @@ NetServerSetInfoCommandLine (
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 _Success_( return == 0 || return == ERROR_MORE_DATA )
 NET_API_STATUS NET_API_FUNCTION
@@ -163,7 +152,6 @@ NetServerDiskEnum (
     _Inout_opt_ LPDWORD resume_handle
     );
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
 NetServerComputerNameAdd(
@@ -172,7 +160,6 @@ NetServerComputerNameAdd(
     _In_ LMSTR EmulatedServerName
     );
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
 NetServerComputerNameDel(
@@ -180,7 +167,6 @@ NetServerComputerNameDel(
     _In_ LMSTR EmulatedServerName
     );
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
 NetServerTransportAdd (
@@ -189,7 +175,6 @@ NetServerTransportAdd (
     _In_reads_bytes_(sizeof(SERVER_TRANSPORT_INFO_0)) LPBYTE bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
 NetServerTransportAddEx(
@@ -227,7 +212,6 @@ NetServerTransportAddForInstance(
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
 NetServerTransportDel(
@@ -261,7 +245,6 @@ NetServerTransportDelForInstance(
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_Windows2000_
 _Check_return_
 _Success_( return == 0 || return == ERROR_MORE_DATA )
 NET_API_STATUS NET_API_FUNCTION
@@ -290,8 +273,6 @@ NetServerTransportEnum (
 // Therefore, if this is the only function called by that service, then
 // it is not necessary to link to netapi32.lib.
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 BOOL NET_API_FUNCTION
 SetServiceBits(
     IN SERVICE_STATUS_HANDLE    hServiceStatus,
@@ -320,7 +301,7 @@ typedef struct _SERVER_INFO_101 {
     LMSTR           sv101_name;
     DWORD           sv101_version_major;
     DWORD           sv101_version_minor;
-    _Win32_AssociatedEnum_(NET_SERVER_TYPE) DWORD           sv101_type;
+    DWORD           sv101_type;
     LMSTR           sv101_comment;
 } SERVER_INFO_101, *PSERVER_INFO_101, *LPSERVER_INFO_101;
 
@@ -329,11 +310,11 @@ typedef struct _SERVER_INFO_102 {
      LMSTR          sv102_name;
      DWORD          sv102_version_major;
      DWORD          sv102_version_minor;
-     _Win32_AssociatedEnum_(NET_SERVER_TYPE) DWORD          sv102_type;
+     DWORD          sv102_type;
      LMSTR          sv102_comment;
      DWORD          sv102_users;
      LONG           sv102_disc;
-     _Win32_AssociatedEnum_(SERVER_INFO_HIDDEN) BOOL           sv102_hidden;
+     BOOL           sv102_hidden;
      DWORD          sv102_announce;
      DWORD          sv102_anndelta;
      DWORD          sv102_licenses;
@@ -362,7 +343,7 @@ typedef struct _SERVER_INFO_402 {
      DWORD          sv402_glist_mtime;
      DWORD          sv402_alist_mtime;
      LMSTR          sv402_alerts;
-     _Win32_AssociatedEnum_(SERVER_INFO_SECURITY) DWORD          sv402_security;
+     DWORD          sv402_security;
      DWORD          sv402_numadmin;
      DWORD          sv402_lanmask;
      LMSTR          sv402_guestacct;
@@ -396,7 +377,7 @@ typedef struct _SERVER_INFO_403 {
      DWORD          sv403_glist_mtime;
      DWORD          sv403_alist_mtime;
      LMSTR          sv403_alerts;
-     _Win32_AssociatedEnum_(SERVER_INFO_SECURITY) DWORD          sv403_security;
+     DWORD          sv403_security;
      DWORD          sv403_numadmin;
      DWORD          sv403_lanmask;
      LMSTR          sv403_guestacct;
@@ -612,7 +593,7 @@ typedef struct _SERVER_INFO_1010 {
 } SERVER_INFO_1010, *PSERVER_INFO_1010, *LPSERVER_INFO_1010;
 
 typedef struct _SERVER_INFO_1016 {
-    _Win32_AssociatedEnum_(SERVER_INFO_HIDDEN) BOOL            sv1016_hidden;
+    BOOL            sv1016_hidden;
 } SERVER_INFO_1016, *PSERVER_INFO_1016, *LPSERVER_INFO_1016;
 
 typedef struct _SERVER_INFO_1017 {
@@ -1143,22 +1124,6 @@ typedef struct _SERVER_TRANSPORT_INFO_3 {
 
 #define SV_HIDDEN       1
 #define SV_VISIBLE      0
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(NET_SERVER_TYPE, unsigned int,
-    SV_TYPE_WORKSTATION, SV_TYPE_SERVER, SV_TYPE_SQLSERVER, SV_TYPE_DOMAIN_CTRL,
-    SV_TYPE_DOMAIN_BAKCTRL, SV_TYPE_TIME_SOURCE, SV_TYPE_AFP, SV_TYPE_NOVELL,
-    SV_TYPE_DOMAIN_MEMBER, SV_TYPE_PRINTQ_SERVER, SV_TYPE_DIALIN_SERVER,
-    SV_TYPE_XENIX_SERVER, SV_TYPE_SERVER_UNIX, SV_TYPE_NT, SV_TYPE_WFW,
-    SV_TYPE_SERVER_MFPN, SV_TYPE_SERVER_NT, SV_TYPE_POTENTIAL_BROWSER,
-    SV_TYPE_BACKUP_BROWSER, SV_TYPE_MASTER_BROWSER, SV_TYPE_DOMAIN_MASTER,
-    SV_TYPE_SERVER_OSF, SV_TYPE_SERVER_VMS, SV_TYPE_WINDOWS, SV_TYPE_DFS,
-    SV_TYPE_CLUSTER_NT, SV_TYPE_TERMINALSERVER, SV_TYPE_CLUSTER_VS_NT,
-    SV_TYPE_DCE, SV_TYPE_ALTERNATE_XPORT, SV_TYPE_LOCAL_LIST_ONLY,
-    SV_TYPE_DOMAIN_ENUM, SV_TYPE_ALL);
-_Win32_Enum_(SERVER_INFO_SECURITY, unsigned int, SV_SHARESECURITY, SV_USERSECURITY);
-_Win32_Enum_(SERVER_INFO_HIDDEN, int, SV_VISIBLE, SV_HIDDEN);
-#endif
 
 //
 //      Values for ParmError parameter to NetServerSetInfo.

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 //*@@@+++@@@@******************************************************************
@@ -3077,13 +3076,6 @@ typedef MPEGLAYER3WAVEFORMAT FAR     *LPMPEGLAYER3WAVEFORMAT;
 #define MPEGLAYER3_FLAG_PADDING_ISO      0x00000000
 #define MPEGLAYER3_FLAG_PADDING_ON       0x00000001
 #define MPEGLAYER3_FLAG_PADDING_OFF      0x00000002
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(MPEGLAYER3WAVEFORMAT_FLAGS, unsigned long,
-    MPEGLAYER3_FLAG_PADDING_ISO,
-    MPEGLAYER3_FLAG_PADDING_ON,
-    MPEGLAYER3_FLAG_PADDING_OFF);
-#endif
 
 /* ==========================================================================
 

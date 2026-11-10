@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -549,12 +548,6 @@ typedef struct _SEC_TRAFFIC_SECRETS {
 //
 #define SECPKG_CRED_INBOUND         0x00000001
 #define SECPKG_CRED_OUTBOUND        0x00000002
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(SECPKG_CRED, unsigned long,
-    SECPKG_CRED_INBOUND,
-    SECPKG_CRED_OUTBOUND);
-#endif
 #define SECPKG_CRED_BOTH            0x00000003
 #define SECPKG_CRED_DEFAULT         0x00000004
 #define SECPKG_CRED_RESERVED        0xF0000000
@@ -613,16 +606,6 @@ _Win32_Enum_(SECPKG_CRED, unsigned long,
 #define ISC_REQ_USE_HTTP_STYLE          0x01000000
 #define ISC_REQ_UNVERIFIED_TARGET_NAME  0x20000000
 #define ISC_REQ_CONFIDENTIALITY_ONLY    0x40000000 // honored by SPNEGO/Kerberos
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(ISC_REQ_FLAGS, unsigned long,
-    ISC_REQ_DELEGATE, ISC_REQ_MUTUAL_AUTH, ISC_REQ_REPLAY_DETECT, ISC_REQ_SEQUENCE_DETECT,
-    ISC_REQ_CONFIDENTIALITY, ISC_REQ_USE_SESSION_KEY, ISC_REQ_PROMPT_FOR_CREDS, ISC_REQ_USE_SUPPLIED_CREDS,
-    ISC_REQ_ALLOCATE_MEMORY, ISC_REQ_USE_DCE_STYLE, ISC_REQ_DATAGRAM, ISC_REQ_CONNECTION,
-    ISC_REQ_CALL_LEVEL, ISC_REQ_FRAGMENT_SUPPLIED, ISC_REQ_EXTENDED_ERROR, ISC_REQ_STREAM,
-    ISC_REQ_INTEGRITY, ISC_REQ_IDENTIFY, ISC_REQ_NULL_SESSION, ISC_REQ_MANUAL_CRED_VALIDATION,
-    ISC_REQ_RESERVED1, ISC_REQ_FRAGMENT_TO_FIT, ISC_REQ_FORWARD_CREDENTIALS, ISC_REQ_NO_INTEGRITY,
-    ISC_REQ_USE_HTTP_STYLE, ISC_REQ_UNVERIFIED_TARGET_NAME, ISC_REQ_CONFIDENTIALITY_ONLY);
-#endif
 #define ISC_REQ_MESSAGES                 0x0000000100000000 // Disables the TLS 1.3+ record layer and causes the security context to consume and produce cleartext TLS messages, rather than records.
 // Request that schannel perform server cert chain validation without failing the handshake on errors (deferred),
 // same as SCH_CRED_DEFERRED_CRED_VALIDATION except applies to context not credential handle.
@@ -634,15 +617,6 @@ _Win32_FlagsEnum_(ISC_REQ_FLAGS, unsigned long,
 // Request explicit TLS 1.3+ session management. Received TLS 1.3+ session tickets will be returned to the SSPI caller.
 // The SSPI caller will specify the session ticket to send in each resumption attempt.
 #define ISC_REQ_EXPLICIT_SESSION         0x0000001000000000
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(ISC_REQ_HIGH_FLAGS, unsigned long long,
-    ISC_REQ_MESSAGES,
-    ISC_REQ_DEFERRED_CRED_VALIDATION,
-    ISC_REQ_NO_POST_HANDSHAKE_AUTH,
-    ISC_REQ_REUSE_SESSION_TICKETS,
-    ISC_REQ_EXPLICIT_SESSION);
-#endif
 
 #define ISC_RET_DELEGATE                0x00000001
 #define ISC_RET_MUTUAL_AUTH             0x00000002
@@ -706,25 +680,9 @@ _Win32_FlagsEnum_(ISC_REQ_HIGH_FLAGS, unsigned long long,
 #define ASC_REQ_PROXY_BINDINGS          0x04000000
 //      SSP_RET_REAUTHENTICATION        0x08000000  // *INTERNAL*
 #define ASC_REQ_ALLOW_MISSING_BINDINGS  0x10000000
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(ASC_REQ_FLAGS, unsigned long,
-    ASC_REQ_DELEGATE, ASC_REQ_MUTUAL_AUTH, ASC_REQ_REPLAY_DETECT, ASC_REQ_SEQUENCE_DETECT,
-    ASC_REQ_CONFIDENTIALITY, ASC_REQ_USE_SESSION_KEY, ASC_REQ_SESSION_TICKET, ASC_REQ_ALLOCATE_MEMORY,
-    ASC_REQ_USE_DCE_STYLE, ASC_REQ_DATAGRAM, ASC_REQ_CONNECTION, ASC_REQ_CALL_LEVEL,
-    ASC_REQ_FRAGMENT_SUPPLIED, ASC_REQ_EXTENDED_ERROR, ASC_REQ_STREAM, ASC_REQ_INTEGRITY,
-    ASC_REQ_LICENSING, ASC_REQ_IDENTIFY, ASC_REQ_ALLOW_NULL_SESSION, ASC_REQ_ALLOW_NON_USER_LOGONS,
-    ASC_REQ_ALLOW_CONTEXT_REPLAY, ASC_REQ_FRAGMENT_TO_FIT, ASC_REQ_NO_TOKEN, ASC_REQ_PROXY_BINDINGS,
-    ASC_REQ_ALLOW_MISSING_BINDINGS);
-#endif
 #define ASC_REQ_MESSAGES                0x0000000100000000 // Disables the TLS 1.3+ record layer and causes the security context to consume and produce cleartext TLS messages, rather than records.
 // Request explicit TLS 1.3+ session management. TLS 1.3+ session ticket will only be generated when requested by the SSPI caller.
 #define ASC_REQ_EXPLICIT_SESSION        0x0000001000000000
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(ASC_REQ_HIGH_FLAGS, unsigned long long,
-    ASC_REQ_MESSAGES,
-    ASC_REQ_EXPLICIT_SESSION);
-#endif
 
 #define ASC_RET_DELEGATE                0x00000001
 #define ASC_RET_MUTUAL_AUTH             0x00000002
@@ -919,31 +877,6 @@ typedef struct _SecPkgCredentials_Cert
 #define SECPKG_ATTR_DATAGRAM_SIZES  SECPKG_ATTR_STREAM_SIZES
 
 #define SECPKG_ATTR_SUBJECT_SECURITY_ATTRIBUTES 128
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(SECPKG_ATTR, unsigned long,
-    SECPKG_ATTR_PACKAGE_INFO,
-    SECPKG_ATTR_SIZES,
-    SECPKG_ATTR_SUBJECT_SECURITY_ATTRIBUTES,
-    SECPKG_ATTR_DTLS_MTU,
-    SECPKG_ATTR_ACCESS_TOKEN,
-    SECPKG_ATTR_AUTHORITY,
-    SECPKG_ATTR_CLIENT_SPECIFIED_TARGET,
-    SECPKG_ATTR_DCE_INFO,
-    SECPKG_ATTR_ENDPOINT_BINDINGS,
-    SECPKG_ATTR_FLAGS,
-    SECPKG_ATTR_KEY_INFO,
-    SECPKG_ATTR_LAST_CLIENT_TOKEN_STATUS,
-    SECPKG_ATTR_LIFESPAN,
-    SECPKG_ATTR_NAMES,
-    SECPKG_ATTR_NATIVE_NAMES,
-    SECPKG_ATTR_NEGOTIATION_INFO,
-    SECPKG_ATTR_PASSWORD_EXPIRY,
-    SECPKG_ATTR_SESSION_KEY,
-    SECPKG_ATTR_STREAM_SIZES,
-    SECPKG_ATTR_TARGET_INFORMATION,
-    SECPKG_ATTR_UNIQUE_BINDINGS);
-#endif
 
 //
 // win8.1 or greater
@@ -1369,15 +1302,7 @@ typedef void
 // This is only valid in W2K3SP1 and greater
 #define SECPKG_CONTEXT_EXPORT_TO_KERNEL         0x00000004      // Context is to be transferred to the kernel
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(EXPORT_SECURITY_CONTEXT_FLAGS, unsigned long,
-    SECPKG_CONTEXT_EXPORT_RESET_NEW,
-    SECPKG_CONTEXT_EXPORT_DELETE_OLD,
-    SECPKG_CONTEXT_EXPORT_TO_KERNEL);
-#endif
 
-
-_Win32_SupportedOS_WindowsVista_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 AcquireCredentialsHandleW(
@@ -1388,7 +1313,7 @@ AcquireCredentialsHandleW(
     _In_opt_  LPWSTR pszPrincipal,                // Name of principal
     _In_      LPWSTR pszPackage,                  // Name of package
 #endif
-    _In_      _Win32_AssociatedEnum_(SECPKG_CRED) unsigned long fCredentialUse,       // Flags indicating use
+    _In_      unsigned long fCredentialUse,       // Flags indicating use
     _In_opt_  void * pvLogonId,                   // Pointer to logon ID
     _In_opt_  void * pAuthData,                   // Package specific data
     _In_opt_  SEC_GET_KEY_FN pGetKeyFn,           // Pointer to GetKey() func
@@ -1416,12 +1341,11 @@ typedef SECURITY_STATUS
 
 // end_ntifs
 
-_Win32_SupportedOS_WindowsVista_
 SECURITY_STATUS SEC_ENTRY
 AcquireCredentialsHandleA(
     _In_opt_  LPSTR pszPrincipal,                 // Name of principal
     _In_      LPSTR pszPackage,                   // Name of package
-    _In_      _Win32_AssociatedEnum_(SECPKG_CRED) unsigned long fCredentialUse,       // Flags indicating use
+    _In_      unsigned long fCredentialUse,       // Flags indicating use
     _In_opt_  void * pvLogonId,                   // Pointer to logon ID
     _In_opt_  void * pAuthData,                   // Package specific data
     _In_opt_  SEC_GET_KEY_FN pGetKeyFn,           // Pointer to GetKey() func
@@ -1452,7 +1376,6 @@ typedef SECURITY_STATUS
 
 // begin_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 FreeCredentialsHandle(
@@ -1555,12 +1478,12 @@ typedef void (*SspiAsyncNotifyCallback)(
 //
 // Return a newly initialized context.
 //
-SspiAsyncContext* _Win32_SupportedOS_14393_ SspiCreateAsyncContext();
+SspiAsyncContext* SspiCreateAsyncContext();
 
 //
 // Free up a context.
 //
-void _Win32_SupportedOS_14393_ SspiFreeAsyncContext(
+void SspiFreeAsyncContext(
     _In_opt_ SspiAsyncContext* Handle
 );
 
@@ -1570,14 +1493,14 @@ void _Win32_SupportedOS_14393_ SspiFreeAsyncContext(
 //
 // If the context is invalid or currently in use, an error will be returned.
 //
-NTSTATUS _Win32_SupportedOS_14393_ SspiReinitAsyncContext(
+NTSTATUS SspiReinitAsyncContext(
     _Inout_ SspiAsyncContext* Handle
 );
 
 //
 // Installs a callback which will be notified on async call completion.
 //
-SECURITY_STATUS _Win32_SupportedOS_14393_ SspiSetAsyncNotifyCallback(
+SECURITY_STATUS SspiSetAsyncNotifyCallback(
     _In_ SspiAsyncContext* Context,
     _In_ SspiAsyncNotifyCallback Callback,
     _In_opt_ void* CallbackData
@@ -1587,7 +1510,7 @@ SECURITY_STATUS _Win32_SupportedOS_14393_ SspiSetAsyncNotifyCallback(
 // Determines if the given async context requires notification on completion
 // of the call.
 //
-BOOLEAN _Win32_SupportedOS_14393_ SspiAsyncContextRequiresNotify(
+BOOLEAN SspiAsyncContextRequiresNotify(
     _In_ SspiAsyncContext* AsyncContext
 );
 
@@ -1595,11 +1518,11 @@ BOOLEAN _Win32_SupportedOS_14393_ SspiAsyncContextRequiresNotify(
 // Gets the current status of an async call. Until the call is completed,
 // status will be SEC_I_ASYNC_CALL_PENDING.
 //
-SECURITY_STATUS _Win32_SupportedOS_14393_ SspiGetAsyncCallStatus(
+SECURITY_STATUS SspiGetAsyncCallStatus(
     _In_ SspiAsyncContext* Handle
 );
 
-SECURITY_STATUS _Win32_SupportedOS_14393_ SspiAcquireCredentialsHandleAsyncW(
+SECURITY_STATUS SspiAcquireCredentialsHandleAsyncW(
     _Inout_   SspiAsyncContext* AsyncContext,
 #if ISSP_MODE == 0
     _In_opt_  PSECURITY_STRING pszPrincipal,            // Name of principal
@@ -1617,7 +1540,7 @@ SECURITY_STATUS _Win32_SupportedOS_14393_ SspiAcquireCredentialsHandleAsyncW(
     _In_opt_  PTimeStamp ptsExpiry                      // (out) Lifetime (optional)
 );
 
-SECURITY_STATUS _Win32_SupportedOS_14393_ SspiAcquireCredentialsHandleAsyncA(
+SECURITY_STATUS SspiAcquireCredentialsHandleAsyncA(
     _Inout_   SspiAsyncContext* AsyncContext,
     _In_opt_  LPSTR pszPrincipal,                       // Name of principal
     _In_      LPSTR pszPackage,                         // Name of package
@@ -1630,7 +1553,7 @@ SECURITY_STATUS _Win32_SupportedOS_14393_ SspiAcquireCredentialsHandleAsyncA(
     _In_opt_  PTimeStamp ptsExpiry                      // (out) Lifetime (optional)
 );
 
-SECURITY_STATUS _Win32_SupportedOS_14393_ SspiInitializeSecurityContextAsyncW(
+SECURITY_STATUS SspiInitializeSecurityContextAsyncW(
     _Inout_     SspiAsyncContext* AsyncContext,
     _In_opt_    PCredHandle phCredential,               // Cred to base context
     _In_opt_    PCtxtHandle phContext,                  // Existing context (OPT)
@@ -1639,7 +1562,7 @@ SECURITY_STATUS _Win32_SupportedOS_14393_ SspiInitializeSecurityContextAsyncW(
 #else
     _In_opt_    LPWSTR pszTargetName,                   // Name of target
 #endif
-    _Win32_AssociatedEnum_(ISC_REQ_FLAGS) _In_        unsigned long fContextReq,              // Context Requirements
+    _In_        unsigned long fContextReq,              // Context Requirements
     _In_        unsigned long Reserved1,                // Reserved, MBZ
     _In_        unsigned long TargetDataRep,            // Data rep of target
     _In_opt_    PSecBufferDesc pInput,                  // Input Buffers
@@ -1650,12 +1573,12 @@ SECURITY_STATUS _Win32_SupportedOS_14393_ SspiInitializeSecurityContextAsyncW(
     _In_opt_    PTimeStamp ptsExpiry                    // (out) Life span (OPT)
 );
 
-SECURITY_STATUS _Win32_SupportedOS_14393_ SspiInitializeSecurityContextAsyncA(
+SECURITY_STATUS SspiInitializeSecurityContextAsyncA(
     _Inout_     SspiAsyncContext* AsyncContext,
     _In_opt_    PCredHandle phCredential,               // Cred to base context
     _In_opt_    PCtxtHandle phContext,                  // Existing context (OPT)
     _In_opt_    LPSTR pszTargetName,                    // Name of target
-    _Win32_AssociatedEnum_(ISC_REQ_FLAGS) _In_        unsigned long fContextReq,              // Context Requirements
+    _In_        unsigned long fContextReq,              // Context Requirements
     _In_        unsigned long Reserved1,                // Reserved, MBZ
     _In_        unsigned long TargetDataRep,            // Data rep of target
     _In_opt_    PSecBufferDesc pInput,                  // Input Buffers
@@ -1666,12 +1589,12 @@ SECURITY_STATUS _Win32_SupportedOS_14393_ SspiInitializeSecurityContextAsyncA(
     _In_opt_    PTimeStamp ptsExpiry                    // (out) Life span (OPT)
 );
 
-SECURITY_STATUS _Win32_SupportedOS_14393_ SspiAcceptSecurityContextAsync(
+SECURITY_STATUS SspiAcceptSecurityContextAsync(
     _Inout_   SspiAsyncContext* AsyncContext,
     _In_opt_  PCredHandle phCredential,               // Cred to base context
     _In_opt_  PCtxtHandle phContext,                  // Existing context (OPT)
     _In_opt_  PSecBufferDesc pInput,                  // Input buffer
-    _Win32_AssociatedEnum_(ASC_REQ_FLAGS) _In_      unsigned long fContextReq,              // Context Requirements
+    _In_      unsigned long fContextReq,              // Context Requirements
     _In_      unsigned long TargetDataRep,            // Target Data Rep
     _In_opt_  PCtxtHandle phNewContext,               // (out) New context handle
     _In_opt_  PSecBufferDesc pOutput,                 // (inout) Output buffers
@@ -1679,12 +1602,12 @@ SECURITY_STATUS _Win32_SupportedOS_14393_ SspiAcceptSecurityContextAsync(
     _In_opt_  PTimeStamp ptsExpiry                    // (out) Life span (OPT)
 );
 
-SECURITY_STATUS _Win32_SupportedOS_14393_ SspiFreeCredentialsHandleAsync(
+SECURITY_STATUS SspiFreeCredentialsHandleAsync(
     _Inout_   SspiAsyncContext* AsyncContext,
     _In_      PCredHandle phCredential                  // Handle to free
 );
 
-SECURITY_STATUS _Win32_SupportedOS_14393_ SspiDeleteSecurityContextAsync(
+SECURITY_STATUS SspiDeleteSecurityContextAsync(
     _Inout_   SspiAsyncContext* AsyncContext,
     _In_      PCtxtHandle phContext                     // Context to delete
 );
@@ -1713,7 +1636,6 @@ SECURITY_STATUS _Win32_SupportedOS_14393_ SspiDeleteSecurityContextAsync(
 
 #if ISSP_MODE != 0
 
-_Win32_SupportedOS_WindowsVista_
 SECURITY_STATUS SEC_ENTRY
 ChangeAccountPasswordW(
     _In_    SEC_WCHAR *  pszPackageName,
@@ -1740,7 +1662,6 @@ typedef SECURITY_STATUS
 
 
 
-_Win32_SupportedOS_WindowsVista_
 SECURITY_STATUS SEC_ENTRY
 ChangeAccountPasswordA(
     _In_    SEC_CHAR *  pszPackageName,
@@ -1782,10 +1703,9 @@ typedef SECURITY_STATUS
 ///
 ////////////////////////////////////////////////////////////////////////
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
-_Win32_PreserveResult_ InitializeSecurityContextW(
+InitializeSecurityContextW(
     _In_opt_    PCredHandle phCredential,               // Cred to base context
     _In_opt_    PCtxtHandle phContext,                  // Existing context (OPT)
 #if ISSP_MODE == 0
@@ -1793,7 +1713,7 @@ _Win32_PreserveResult_ InitializeSecurityContextW(
 #else
     _In_opt_ SEC_WCHAR * pszTargetName,         // Name of target
 #endif
-    _Win32_AssociatedEnum_(ISC_REQ_FLAGS) _In_        unsigned long fContextReq,              // Context Requirements
+    _In_        unsigned long fContextReq,              // Context Requirements
     _In_        unsigned long Reserved1,                // Reserved, MBZ
     _In_        unsigned long TargetDataRep,            // Data rep of target
     _In_opt_    PSecBufferDesc pInput,                  // Input Buffers
@@ -1813,7 +1733,7 @@ typedef SECURITY_STATUS
 #else
     SEC_WCHAR *,
 #endif
-    _Win32_AssociatedEnum_(ISC_REQ_FLAGS) unsigned long,
+    unsigned long,
     unsigned long,
     unsigned long,
     PSecBufferDesc,
@@ -1825,13 +1745,12 @@ typedef SECURITY_STATUS
 
 // end_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
-_Win32_PreserveResult_ InitializeSecurityContextA(
+InitializeSecurityContextA(
     _In_opt_    PCredHandle phCredential,               // Cred to base context
     _In_opt_    PCtxtHandle phContext,                  // Existing context (OPT)
     _In_opt_    SEC_CHAR * pszTargetName,       // Name of target
-    _Win32_AssociatedEnum_(ISC_REQ_FLAGS) _In_        unsigned long fContextReq,              // Context Requirements
+    _In_        unsigned long fContextReq,              // Context Requirements
     _In_        unsigned long Reserved1,                // Reserved, MBZ
     _In_        unsigned long TargetDataRep,            // Data rep of target
     _In_opt_    PSecBufferDesc pInput,                  // Input Buffers
@@ -1847,7 +1766,7 @@ typedef SECURITY_STATUS
     PCredHandle,
     PCtxtHandle,
     SEC_CHAR *,
-    _Win32_AssociatedEnum_(ISC_REQ_FLAGS) unsigned long,
+    unsigned long,
     unsigned long,
     unsigned long,
     PSecBufferDesc,
@@ -1867,14 +1786,13 @@ typedef SECURITY_STATUS
 
 // begin_ntifs
 
-_Win32_SupportedOS_WindowsVista_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
-_Win32_PreserveResult_ AcceptSecurityContext(
+AcceptSecurityContext(
     _In_opt_    PCredHandle phCredential,               // Cred to base context
     _In_opt_    PCtxtHandle phContext,                  // Existing context (OPT)
     _In_opt_    PSecBufferDesc pInput,                  // Input buffer
-    _Win32_AssociatedEnum_(ASC_REQ_FLAGS) _In_        unsigned long fContextReq,              // Context Requirements
+    _In_        unsigned long fContextReq,              // Context Requirements
     _In_        unsigned long TargetDataRep,            // Target Data Rep
     _Inout_opt_ PCtxtHandle phNewContext,               // (out) New context handle
     _Inout_opt_ PSecBufferDesc pOutput,                 // (inout) Output buffers
@@ -1887,14 +1805,13 @@ typedef SECURITY_STATUS
     PCredHandle,
     PCtxtHandle,
     PSecBufferDesc,
-    _Win32_AssociatedEnum_(ASC_REQ_FLAGS) unsigned long,
+    unsigned long,
     unsigned long,
     PCtxtHandle,
     PSecBufferDesc,
     unsigned long *,
     PTimeStamp);
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 CompleteAuthToken(
     _In_ PCtxtHandle phContext,              // Context to complete
@@ -1906,7 +1823,6 @@ typedef SECURITY_STATUS
     PCtxtHandle,
     PSecBufferDesc);
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 _Check_return_
 SECURITY_STATUS SEC_ENTRY
@@ -1919,7 +1835,6 @@ typedef SECURITY_STATUS
     PCtxtHandle);
 
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 RevertSecurityContext(
@@ -1931,7 +1846,6 @@ typedef SECURITY_STATUS
     PCtxtHandle);
 
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 QuerySecurityContextToken(
@@ -1943,7 +1857,6 @@ typedef SECURITY_STATUS
 (SEC_ENTRY * QUERY_SECURITY_CONTEXT_TOKEN_FN)(
     PCtxtHandle, void * *);
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 DeleteSecurityContext(
@@ -1954,7 +1867,6 @@ typedef SECURITY_STATUS
 (SEC_ENTRY * DELETE_SECURITY_CONTEXT_FN)(
     PCtxtHandle);
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 ApplyControlToken(
@@ -1966,12 +1878,11 @@ typedef SECURITY_STATUS
 (SEC_ENTRY * APPLY_CONTROL_TOKEN_FN)(
     PCtxtHandle, PSecBufferDesc);
 
-_Win32_SupportedOS_WindowsVista_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 QueryContextAttributesW(
     _In_  PCtxtHandle phContext,              // Context to query
-    _In_  _Win32_AssociatedEnum_(SECPKG_ATTR) unsigned long ulAttribute,          // Attribute to query
+    _In_  unsigned long ulAttribute,          // Attribute to query
     _Out_ void * pBuffer              // Buffer for attributes
     );
 
@@ -1981,11 +1892,10 @@ typedef SECURITY_STATUS
     unsigned long,
     void *);
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 QueryContextAttributesExW(
     _In_  PCtxtHandle phContext,              // Context to query
-    _In_  _Win32_AssociatedEnum_(SECPKG_ATTR) unsigned long ulAttribute,          // Attribute to query
+    _In_  unsigned long ulAttribute,          // Attribute to query
     _Out_writes_bytes_(cbBuffer) void * pBuffer,    // Buffer for attributes
     _In_  unsigned long cbBuffer              // Length of buffer
     );
@@ -1999,11 +1909,10 @@ typedef SECURITY_STATUS
 
 // end_ntifs
 
-_Win32_SupportedOS_WindowsVista_
 SECURITY_STATUS SEC_ENTRY
 QueryContextAttributesA(
     _In_  PCtxtHandle phContext,              // Context to query
-    _In_  _Win32_AssociatedEnum_(SECPKG_ATTR) unsigned long ulAttribute,          // Attribute to query
+    _In_  unsigned long ulAttribute,          // Attribute to query
     _Out_ void * pBuffer              // Buffer for attributes
     );
 
@@ -2013,11 +1922,10 @@ typedef SECURITY_STATUS
     unsigned long,
     void *);
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 QueryContextAttributesExA(
     _In_  PCtxtHandle phContext,              // Context to query
-    _In_  _Win32_AssociatedEnum_(SECPKG_ATTR) unsigned long ulAttribute,          // Attribute to query
+    _In_  unsigned long ulAttribute,          // Attribute to query
     _Out_writes_bytes_(cbBuffer) void * pBuffer,    // Buffer for attributes
     _In_  unsigned long cbBuffer              // Length of buffer
     );
@@ -2045,11 +1953,10 @@ typedef SECURITY_STATUS
 
 #if (OSVER(NTDDI_VERSION) > NTDDI_WIN2K)
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 SetContextAttributesW(
     _In_ PCtxtHandle phContext,                   // Context to Set
-    _In_ _Win32_AssociatedEnum_(SECPKG_ATTR) unsigned long ulAttribute,               // Attribute to Set
+    _In_ unsigned long ulAttribute,               // Attribute to Set
     _In_reads_bytes_(cbBuffer) void * pBuffer, // Buffer for attributes
     _In_ unsigned long cbBuffer                   // Size (in bytes) of Buffer
     );
@@ -2065,11 +1972,10 @@ typedef SECURITY_STATUS
 
 // end_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 SetContextAttributesA(
     _In_ PCtxtHandle phContext,                   // Context to Set
-    _In_ _Win32_AssociatedEnum_(SECPKG_ATTR) unsigned long ulAttribute,               // Attribute to Set
+    _In_ unsigned long ulAttribute,               // Attribute to Set
     _In_reads_bytes_(cbBuffer) void * pBuffer, // Buffer for attributes
     _In_ unsigned long cbBuffer                   // Size (in bytes) of Buffer
     );
@@ -2091,7 +1997,6 @@ typedef SECURITY_STATUS
 
 // begin_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 QueryCredentialsAttributesW(
@@ -2123,7 +2028,6 @@ typedef SECURITY_STATUS
 
 // end_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 QueryCredentialsAttributesA(
     _In_    PCredHandle phCredential,           // Credential to query
@@ -2169,7 +2073,6 @@ typedef SECURITY_STATUS
 
 #if NTDDI_VERSION > NTDDI_WS03
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 SetCredentialsAttributesW(
@@ -2190,7 +2093,6 @@ typedef SECURITY_STATUS
 
 // end_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 SetCredentialsAttributesA(
     _In_ PCredHandle phCredential,                // Credential to Set
@@ -2216,7 +2118,6 @@ typedef SECURITY_STATUS
 
 // begin_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 FreeContextBuffer(
     _Inout_ PVOID pvContextBuffer      // buffer to free
@@ -2260,7 +2161,6 @@ SecFreeCallContext(
 ////
 //////////////////////////////////////////////////////////////////
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 MakeSignature(
@@ -2278,7 +2178,6 @@ typedef SECURITY_STATUS
     unsigned long);
 
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 VerifySignature(
@@ -2299,9 +2198,8 @@ typedef SECURITY_STATUS
 #define SECQOP_WRAP_NO_ENCRYPT      0x80000001
 #define SECQOP_WRAP_OOB_DATA        0x40000000
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
-_Win32_PreserveResult_ EncryptMessage( _In_    PCtxtHandle         phContext,
+EncryptMessage( _In_    PCtxtHandle         phContext,
                 _In_    unsigned long       fQOP,
                 _In_    PSecBufferDesc      pMessage,
                 _In_    unsigned long       MessageSeqNo);
@@ -2311,9 +2209,8 @@ typedef SECURITY_STATUS
     PCtxtHandle, unsigned long, PSecBufferDesc, unsigned long);
 
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
-_Win32_PreserveResult_ DecryptMessage( _In_      PCtxtHandle         phContext,
+DecryptMessage( _In_      PCtxtHandle         phContext,
                 _In_      PSecBufferDesc      pMessage,
                 _In_      unsigned long       MessageSeqNo,
                 _Out_opt_ unsigned long *     pfQOP);
@@ -2334,7 +2231,6 @@ typedef SECURITY_STATUS
 ////
 ///////////////////////////////////////////////////////////////////////////
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 EnumerateSecurityPackagesW(
@@ -2349,7 +2245,6 @@ typedef SECURITY_STATUS
 
 // end_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 EnumerateSecurityPackagesA(
     _Out_       unsigned long * pcPackages,     // Receives num. packages
@@ -2371,7 +2266,6 @@ typedef SECURITY_STATUS
 
 // begin_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 QuerySecurityPackageInfoW(
@@ -2394,7 +2288,6 @@ typedef SECURITY_STATUS
 
 // end_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 QuerySecurityPackageInfoA(
     _In_        LPSTR pszPackageName,           // Name of package
@@ -2469,12 +2362,11 @@ DelegateSecurityContext(
 ///////////////////////////////////////////////////////////////////////////
 
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 ExportSecurityContext(
     _In_  PCtxtHandle          phContext,             // (in) context to export
-    _In_  _Win32_AssociatedEnum_(EXPORT_SECURITY_CONTEXT_FLAGS) ULONG                fFlags,                // (in) option flags
+    _In_  ULONG                fFlags,                // (in) option flags
     _Out_ PSecBuffer           pPackedContext,        // (out) marshalled context
     _Out_ void * * pToken             // (out, optional) token handle for impersonation
     );
@@ -2487,7 +2379,6 @@ typedef SECURITY_STATUS
     void * *
     );
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 ImportSecurityContextW(
@@ -2514,7 +2405,6 @@ typedef SECURITY_STATUS
     );
 
 // end_ntifs
-_Win32_SupportedOS_WindowsXP_
 SECURITY_STATUS SEC_ENTRY
 ImportSecurityContextA(
     _In_  LPSTR                pszPackage,
@@ -2803,7 +2693,6 @@ typedef struct _SECURITY_FUNCTION_TABLE_A {
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_WindowsXP_
 PSecurityFunctionTableA SEC_ENTRY
 InitSecurityInterfaceA(
     void
@@ -2814,7 +2703,6 @@ typedef PSecurityFunctionTableA
 
 // begin_ntifs
 
-_Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 PSecurityFunctionTableW SEC_ENTRY
 InitSecurityInterfaceW(
@@ -2842,7 +2730,6 @@ typedef PSecurityFunctionTableW
 //
 
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
 SaslEnumerateProfilesA(
@@ -2850,7 +2737,6 @@ SaslEnumerateProfilesA(
     _Out_       ULONG * ProfileCount
     );
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
 SaslEnumerateProfilesW(
@@ -2865,7 +2751,6 @@ SaslEnumerateProfilesW(
 #endif
 
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
 SaslGetProfilePackageA(
@@ -2874,7 +2759,6 @@ SaslGetProfilePackageA(
     );
 
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
 SaslGetProfilePackageW(
@@ -2888,7 +2772,6 @@ SaslGetProfilePackageW(
 #define SaslGetProfilePackage   SaslGetProfilePackageA
 #endif
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
 SaslIdentifyPackageA(
@@ -2896,7 +2779,6 @@ SaslIdentifyPackageA(
     _Outptr_ PSecPkgInfoA * PackageInfo
     );
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
 SaslIdentifyPackageW(
@@ -2910,14 +2792,13 @@ SaslIdentifyPackageW(
 #define SaslIdentifyPackage SaslIdentifyPackageA
 #endif
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
-_Win32_PreserveResult_ SaslInitializeSecurityContextW(
+SaslInitializeSecurityContextW(
     _In_opt_    PCredHandle                 phCredential,       // Cred to base context
     _In_opt_    PCtxtHandle                 phContext,          // Existing context (OPT)
     _In_opt_    LPWSTR                      pszTargetName,      // Name of target
-    _Win32_AssociatedEnum_(ISC_REQ_FLAGS) _In_        unsigned long               fContextReq,        // Context Requirements
+    _In_        unsigned long               fContextReq,        // Context Requirements
     _In_        unsigned long               Reserved1,          // Reserved, MBZ
     _In_        unsigned long               TargetDataRep,      // Data rep of target
     _In_opt_    PSecBufferDesc              pInput,             // Input Buffers
@@ -2928,14 +2809,13 @@ _Win32_PreserveResult_ SaslInitializeSecurityContextW(
     _Out_opt_   PTimeStamp                  ptsExpiry           // (out) Life span (OPT)
     );
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
-_Win32_PreserveResult_ SaslInitializeSecurityContextA(
+SaslInitializeSecurityContextA(
     _In_opt_    PCredHandle                 phCredential,       // Cred to base context
     _In_opt_    PCtxtHandle                 phContext,          // Existing context (OPT)
     _In_opt_    LPSTR                       pszTargetName,      // Name of target
-    _Win32_AssociatedEnum_(ISC_REQ_FLAGS) _In_        unsigned long               fContextReq,        // Context Requirements
+    _In_        unsigned long               fContextReq,        // Context Requirements
     _In_        unsigned long               Reserved1,          // Reserved, MBZ
     _In_        unsigned long               TargetDataRep,      // Data rep of target
     _In_opt_    PSecBufferDesc              pInput,             // Input Buffers
@@ -2953,14 +2833,13 @@ _Win32_PreserveResult_ SaslInitializeSecurityContextA(
 #endif
 
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
-_Win32_PreserveResult_ SaslAcceptSecurityContext(
+SaslAcceptSecurityContext(
     _In_opt_    PCredHandle                 phCredential,       // Cred to base context
     _In_opt_    PCtxtHandle                 phContext,          // Existing context (OPT)
     _In_opt_    PSecBufferDesc              pInput,             // Input buffer
-    _Win32_AssociatedEnum_(ASC_REQ_FLAGS) _In_        unsigned long               fContextReq,        // Context Requirements
+    _In_        unsigned long               fContextReq,        // Context Requirements
     _In_        unsigned long               TargetDataRep,      // Target Data Rep
     _Inout_opt_ PCtxtHandle                 phNewContext,       // (out) New context handle
     _Inout_opt_ PSecBufferDesc              pOutput,            // (inout) Output buffers
@@ -2979,7 +2858,6 @@ typedef enum _SASL_AUTHZID_STATE {
     Sasl_AuthZIDProcessed             // AuthZID Strings processed by Application or SSP
 } SASL_AUTHZID_STATE ;
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
 SaslSetContextOption(
@@ -2990,7 +2868,6 @@ SaslSetContextOption(
     );
 
 
-_Win32_SupportedOS_Server2003_
 SECURITY_STATUS
 SEC_ENTRY
 SaslGetContextOption(
@@ -3057,12 +2934,6 @@ typedef struct _SEC_WINNT_AUTH_IDENTITY_EX2 {
 #define SEC_WINNT_AUTH_IDENTITY_ANSI    0x1
 #define SEC_WINNT_AUTH_IDENTITY_UNICODE 0x2
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(SEC_WINNT_AUTH_IDENTITY, unsigned int,
-    SEC_WINNT_AUTH_IDENTITY_ANSI,
-    SEC_WINNT_AUTH_IDENTITY_UNICODE);
-#endif
-
 typedef struct _SEC_WINNT_AUTH_IDENTITY_W {
   unsigned short *User;         //  Non-NULL terminated string.
   unsigned long UserLength;     //  # of characters (NOT bytes), not including NULL.
@@ -3070,7 +2941,7 @@ typedef struct _SEC_WINNT_AUTH_IDENTITY_W {
   unsigned long DomainLength;   //  # of characters (NOT bytes), not including NULL.
   unsigned short *Password;     //  Non-NULL terminated string.
   unsigned long PasswordLength; //  # of characters (NOT bytes), not including NULL.
-  _Win32_AssociatedEnum_(SEC_WINNT_AUTH_IDENTITY) unsigned long Flags;
+  unsigned long Flags;
 } SEC_WINNT_AUTH_IDENTITY_W, *PSEC_WINNT_AUTH_IDENTITY_W;
 
 // end_ntifs
@@ -3084,7 +2955,7 @@ typedef struct _SEC_WINNT_AUTH_IDENTITY_A {
   unsigned long DomainLength;   //  # of characters (NOT bytes), not including NULL.
   unsigned char *Password;      //  Non-NULL terminated string.
   unsigned long PasswordLength; //  # of characters (NOT bytes), not including NULL.
-  _Win32_AssociatedEnum_(SEC_WINNT_AUTH_IDENTITY) unsigned long Flags;
+  unsigned long Flags;
 } SEC_WINNT_AUTH_IDENTITY_A, *PSEC_WINNT_AUTH_IDENTITY_A;
 
 
@@ -3326,7 +3197,6 @@ typedef PSEC_WINNT_AUTH_IDENTITY_INFO PSEC_WINNT_AUTH_IDENTITY_OPAQUE;
 // Use SspiFreeAuthIdentity() to free the buffer returned
 // in ppAuthIdentity.
 
-_Win32_SupportedOS_Windows7_
 unsigned long
 SEC_ENTRY
 SspiPromptForCredentialsW(
@@ -3347,7 +3217,6 @@ SspiPromptForCredentialsW(
 // Use SspiFreeAuthIdentity() to free the buffer returned
 // in ppAuthIdentity.
 
-_Win32_SupportedOS_Windows7_
 unsigned long
 SEC_ENTRY
 SspiPromptForCredentialsA(
@@ -3496,7 +3365,7 @@ typedef struct _SEC_WINNT_AUTH_SHORT_VECTOR
 
 SECURITY_STATUS
 SEC_ENTRY
-_Win32_SupportedOS_Windows7_ SspiGetCredUIContext(
+SspiGetCredUIContext(
    _In_ HANDLE ContextHandle,
    _In_ GUID* CredType,
    _In_opt_ LUID* LogonId, // use this LogonId, the caller must be localsystem to supply a logon id
@@ -3506,7 +3375,7 @@ _Win32_SupportedOS_Windows7_ SspiGetCredUIContext(
 
 SECURITY_STATUS
 SEC_ENTRY
-_Win32_SupportedOS_Windows7_ SspiUpdateCredentials(
+SspiUpdateCredentials(
    _In_ HANDLE ContextHandle,
    _In_ GUID* CredType,
    _In_ ULONG FlatCredUIContextLength,
@@ -3559,7 +3428,7 @@ typedef struct _SEC_WINNT_AUTH_PACKED_CREDENTIALS_EX {
 
 SECURITY_STATUS
 SEC_ENTRY
-_Win32_SupportedOS_Windows7_ SspiUnmarshalCredUIContext(
+SspiUnmarshalCredUIContext(
     _In_reads_bytes_(MarshaledCredUIContextLength) PUCHAR MarshaledCredUIContext,
     _In_ ULONG MarshaledCredUIContextLength,
     _Outptr_ PSEC_WINNT_CREDUI_CONTEXT* CredUIContext
@@ -3574,7 +3443,6 @@ _Win32_SupportedOS_Windows7_ SspiUnmarshalCredUIContext(
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiPrepareForCredRead(
@@ -3584,7 +3452,6 @@ SspiPrepareForCredRead(
     _Outptr_ PCWSTR* ppszCredmanTargetName
     );
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiPrepareForCredWrite(
@@ -3607,14 +3474,12 @@ SspiPrepareForCredWrite(
 #define SEC_WINNT_AUTH_IDENTITY_ENCRYPT_SAME_PROCESS      0x2
 #define SEC_WINNT_AUTH_IDENTITY_ENCRYPT_FOR_SYSTEM        0x4
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiEncryptAuthIdentity(
     _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
     );
 
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 SEC_ENTRY
 SspiEncryptAuthIdentityEx(
@@ -3622,14 +3487,12 @@ SspiEncryptAuthIdentityEx(
     _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
     );
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiDecryptAuthIdentity(
     _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE EncryptedAuthData
     );
 
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 SEC_ENTRY
 SspiDecryptAuthIdentityEx(
@@ -3637,7 +3500,6 @@ SspiDecryptAuthIdentityEx(
     _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE EncryptedAuthData
     );
 
-_Win32_SupportedOS_Windows7_
 BOOLEAN
 SEC_ENTRY
 SspiIsAuthIdentityEncrypted(
@@ -3662,7 +3524,6 @@ SspiIsAuthIdentityEncrypted(
 // free the returned memory using SspiLocalFree()
 //
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiEncodeAuthIdentityAsStrings(
@@ -3672,7 +3533,6 @@ SspiEncodeAuthIdentityAsStrings(
     _Outptr_opt_result_maybenull_ PCWSTR* ppszPackedCredentialsString
     );
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiValidateAuthIdentity(
@@ -3683,7 +3543,6 @@ SspiValidateAuthIdentity(
 // free the returned memory using SspiFreeAuthIdentity()
 //
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiCopyAuthIdentity(
@@ -3696,21 +3555,18 @@ SspiCopyAuthIdentity(
 // Internally calls SspiZeroAuthIdentity().
 //
 
-_Win32_SupportedOS_Windows7_
 VOID
 SEC_ENTRY
 SspiFreeAuthIdentity(
     _In_opt_ __drv_freesMem(Mem) PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
     );
 
-_Win32_SupportedOS_Windows7_
 VOID
 SEC_ENTRY
 SspiZeroAuthIdentity(
     _In_opt_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
     );
 
-_Win32_SupportedOS_Windows7_
 VOID
 SEC_ENTRY
 SspiLocalFree(
@@ -3722,7 +3578,6 @@ SspiLocalFree(
 // which zeroes out the credentials blob before freeing it
 //
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiEncodeStringsAsAuthIdentity(
@@ -3732,7 +3587,6 @@ SspiEncodeStringsAsAuthIdentity(
     _Outptr_ _When_(return != 0, __drv_allocatesMem(Mem)) PSEC_WINNT_AUTH_IDENTITY_OPAQUE* ppAuthIdentity
     );
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiCompareAuthIdentities(
@@ -3747,7 +3601,6 @@ SspiCompareAuthIdentities(
 // free the returned memory using SspiLocalFree()
 //
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiMarshalAuthIdentity(
@@ -3760,7 +3613,6 @@ SspiMarshalAuthIdentity(
 // free the returned auth identity using SspiFreeAuthIdentity()
 //
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiUnmarshalAuthIdentity(
@@ -3779,7 +3631,6 @@ SspiUnmarshalAuthIdentity(
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
 
-_Win32_SupportedOS_Windows7_
 BOOLEAN
 SEC_ENTRY
 SspiIsPromptingNeeded(
@@ -3796,7 +3647,6 @@ SspiIsPromptingNeeded(
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiGetTargetHostName(
@@ -3804,7 +3654,6 @@ SspiGetTargetHostName(
     _Outptr_ PWSTR* pszHostName
     );
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 SspiExcludePackage(
@@ -3851,16 +3700,8 @@ typedef struct _SECURITY_PACKAGE_OPTIONS {
 #define SECPKG_OPTIONS_TYPE_LSA     1
 #define SECPKG_OPTIONS_TYPE_SSPI    2
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(SECURITY_PACKAGE_OPTIONS_TYPE, unsigned long,
-    SECPKG_OPTIONS_TYPE_UNKNOWN,
-    SECPKG_OPTIONS_TYPE_LSA,
-    SECPKG_OPTIONS_TYPE_SSPI);
-#endif
-
 #define SECPKG_OPTIONS_PERMANENT    0x00000001
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 AddSecurityPackageA(
@@ -3868,7 +3709,6 @@ AddSecurityPackageA(
     _In_opt_ PSECURITY_PACKAGE_OPTIONS pOptions
     );
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 AddSecurityPackageW(
@@ -3882,14 +3722,12 @@ AddSecurityPackageW(
 #define AddSecurityPackage  AddSecurityPackageA
 #endif
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 DeleteSecurityPackageA(
     _In_ LPSTR pszPackageName
     );
 
-_Win32_SupportedOS_Windows7_
 SECURITY_STATUS
 SEC_ENTRY
 DeleteSecurityPackageW(

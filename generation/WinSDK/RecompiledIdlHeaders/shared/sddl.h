@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -21,7 +20,6 @@ Revision History:
 
 #ifndef __SDDL_H__
 #define __SDDL_H__
-#include <sal.h>
 
 #include <apiset.h>
 #include <apisetcconv.h>
@@ -266,8 +264,6 @@ extern "C" {
 #if !defined(_NTDDK_)
 
 #if (_WIN32_WINNT >= 0x0500)
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 BOOL
 WINAPI
@@ -276,8 +272,6 @@ ConvertSidToStringSidA(
     _Outptr_ LPSTR  *StringSid
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 BOOL
 WINAPI
@@ -292,8 +286,6 @@ ConvertSidToStringSidW(
 #define ConvertSidToStringSid  ConvertSidToStringSidA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 BOOL
 WINAPI
@@ -302,8 +294,6 @@ ConvertStringSidToSidA(
     _Outptr_ PSID   *Sid
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 BOOL
 WINAPI
@@ -318,8 +308,6 @@ ConvertStringSidToSidW(
 #define ConvertStringSidToSid  ConvertStringSidToSidA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 BOOL
 WINAPI
@@ -330,8 +318,6 @@ ConvertStringSecurityDescriptorToSecurityDescriptorA(
     _Out_opt_ PULONG  SecurityDescriptorSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 BOOL
 WINAPI
@@ -348,28 +334,24 @@ ConvertStringSecurityDescriptorToSecurityDescriptorW(
 #define ConvertStringSecurityDescriptorToSecurityDescriptor  ConvertStringSecurityDescriptorToSecurityDescriptorA
 #endif // !UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 BOOL
 WINAPI
 ConvertSecurityDescriptorToStringSecurityDescriptorA(
     _In_  PSECURITY_DESCRIPTOR  SecurityDescriptor,
     _In_  DWORD RequestedStringSDRevision,
-    _Win32_AssociatedEnum_(OBJECT_SECURITY_INFORMATION) _In_  SECURITY_INFORMATION SecurityInformation,
+    _In_  SECURITY_INFORMATION SecurityInformation,
     _Outptr_ LPSTR  *StringSecurityDescriptor,
     _Out_opt_ PULONG StringSecurityDescriptorLen
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 _Success_(return != FALSE)
 BOOL
 WINAPI
 ConvertSecurityDescriptorToStringSecurityDescriptorW(
     _In_ PSECURITY_DESCRIPTOR SecurityDescriptor,
     _In_ DWORD RequestedStringSDRevision,
-    _Win32_AssociatedEnum_(OBJECT_SECURITY_INFORMATION) _In_ SECURITY_INFORMATION SecurityInformation,
+    _In_ SECURITY_INFORMATION SecurityInformation,
     _Outptr_ LPWSTR* StringSecurityDescriptor,
     _Out_opt_ PULONG StringSecurityDescriptorLen
     );

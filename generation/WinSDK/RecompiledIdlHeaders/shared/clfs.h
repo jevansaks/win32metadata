@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*=============================================================================
 
     Copyright (c) 1998  Microsoft Corporation
@@ -22,7 +21,6 @@
 =============================================================================*/
 
 #include <winapifamily.h>
-#include <sal.h>
 
 #pragma region Desktop Family or BootableSku Package
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_BOOTABLESKU)
@@ -104,14 +102,6 @@ typedef DWORD CLFSSTATUS;
 #define CLFS_FLAG_FORCE_APPEND          0x00000001      // Flag to force an append to log queue
 #define CLFS_FLAG_FORCE_FLUSH           0x00000002      // Flag to force a log flush
 #define CLFS_FLAG_USE_RESERVATION       0x00000004      // Flag to charge a data append to reservation
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CLFS_FLAG, unsigned int,
-    CLFS_FLAG_FORCE_APPEND,
-    CLFS_FLAG_FORCE_FLUSH,
-    CLFS_FLAG_NO_FLAGS,
-    CLFS_FLAG_USE_RESERVATION);
-#endif
 #define CLFS_FLAG_REENTRANT_FILE_SYSTEM 0x00000008      // Kernel mode create flag indicating a re-entrant file system.
 #define CLFS_FLAG_NON_REENTRANT_FILTER  0x00000010      // Kernel mode create flag indicating non-reentrant filter.
 #define CLFS_FLAG_REENTRANT_FILTER      0x00000020      // Kernel mode create flag indicating reentrant filter.
@@ -940,7 +930,7 @@ extern "C"
 //-----------------------------------------------------------------------------
 
 CLFSUSER_API BOOLEAN NTAPI
-_Win32_SupportedOS_WindowsVista_ ClfsLsnEqual
+ClfsLsnEqual
 (
     _In_ const CLFS_LSN* plsn1,
     _In_ const CLFS_LSN* plsn2
@@ -969,7 +959,7 @@ _Win32_SupportedOS_WindowsVista_ ClfsLsnEqual
 //-----------------------------------------------------------------------------
 
 CLFSUSER_API BOOLEAN NTAPI
-_Win32_SupportedOS_WindowsVista_ ClfsLsnLess
+ClfsLsnLess
 (
     _In_ const CLFS_LSN* plsn1,
     _In_ const CLFS_LSN* plsn2
@@ -998,7 +988,7 @@ _Win32_SupportedOS_WindowsVista_ ClfsLsnLess
 //-----------------------------------------------------------------------------
 
 CLFSUSER_API BOOLEAN NTAPI
-_Win32_SupportedOS_WindowsVista_ ClfsLsnGreater
+ClfsLsnGreater
 (
     _In_ const CLFS_LSN* plsn1,
     _In_ const CLFS_LSN* plsn2
@@ -1027,7 +1017,7 @@ _Win32_SupportedOS_WindowsVista_ ClfsLsnGreater
 //-----------------------------------------------------------------------------
 
 CLFSUSER_API BOOLEAN NTAPI
-_Win32_SupportedOS_WindowsVista_ ClfsLsnNull
+ClfsLsnNull
 (
     _In_ const CLFS_LSN* plsn
 );

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * consoleapi2.h -- ApiSet Contract for api-ms-win-core-console-l2                *
@@ -13,11 +12,6 @@
 
 #ifndef _APISETCONSOLEL2_
 #define _APISETCONSOLEL2_
-
-#include <sal.h>
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned short CONSOLE_CHARACTER_ATTRIBUTES;
-#endif
 
 #include <apiset.h>
 #include <apisetcconv.h>
@@ -56,27 +50,6 @@ extern "C" {
 
 #define COMMON_LVB_SBCSDBCS        0x0300 // SBCS or DBCS flag.
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(CONSOLE_CHARACTER_ATTRIBUTES, unsigned short,
-    FOREGROUND_BLUE,
-    FOREGROUND_GREEN,
-    FOREGROUND_RED,
-    FOREGROUND_INTENSITY,
-    BACKGROUND_BLUE,
-    BACKGROUND_GREEN,
-    BACKGROUND_RED,
-    BACKGROUND_INTENSITY,
-    COMMON_LVB_LEADING_BYTE,
-    COMMON_LVB_TRAILING_BYTE,
-    COMMON_LVB_GRID_HORIZONTAL,
-    COMMON_LVB_GRID_LVERTICAL,
-    COMMON_LVB_GRID_RVERTICAL,
-    COMMON_LVB_REVERSE_VIDEO,
-    COMMON_LVB_UNDERSCORE,
-    COMMON_LVB_SBCSDBCS);
-#endif
-
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -88,7 +61,6 @@ FillConsoleOutputCharacterA(
     _Out_ LPDWORD lpNumberOfCharsWritten
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -106,7 +78,6 @@ FillConsoleOutputCharacterW(
 #define FillConsoleOutputCharacter  FillConsoleOutputCharacterA
 #endif // !UNICODE
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -118,7 +89,6 @@ FillConsoleOutputAttribute(
     _Out_ LPDWORD lpNumberOfAttrsWritten
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -127,7 +97,6 @@ GenerateConsoleCtrlEvent(
     _In_ DWORD dwProcessGroupId
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -139,7 +108,6 @@ CreateConsoleScreenBuffer(
     _Reserved_ LPVOID lpScreenBufferData
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -147,7 +115,6 @@ SetConsoleActiveScreenBuffer(
     _In_ HANDLE hConsoleOutput
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -155,7 +122,6 @@ FlushConsoleInputBuffer(
     _In_ HANDLE hConsoleInput
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -163,7 +129,6 @@ SetConsoleCP(
     _In_ UINT wCodePageID
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -176,7 +141,6 @@ typedef struct _CONSOLE_CURSOR_INFO {
     BOOL   bVisible;
 } CONSOLE_CURSOR_INFO, *PCONSOLE_CURSOR_INFO;
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -185,7 +149,6 @@ GetConsoleCursorInfo(
     _Out_ PCONSOLE_CURSOR_INFO lpConsoleCursorInfo
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -197,12 +160,11 @@ SetConsoleCursorInfo(
 typedef struct _CONSOLE_SCREEN_BUFFER_INFO {
     COORD dwSize;
     COORD dwCursorPosition;
-    _Win32_AssociatedEnum_(CONSOLE_CHARACTER_ATTRIBUTES) WORD  wAttributes;
+    WORD  wAttributes;
     SMALL_RECT srWindow;
     COORD dwMaximumWindowSize;
 } CONSOLE_SCREEN_BUFFER_INFO, *PCONSOLE_SCREEN_BUFFER_INFO;
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -215,7 +177,7 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFOEX {
     ULONG cbSize;
     COORD dwSize;
     COORD dwCursorPosition;
-    _Win32_AssociatedEnum_(CONSOLE_CHARACTER_ATTRIBUTES) WORD wAttributes;
+    WORD wAttributes;
     SMALL_RECT srWindow;
     COORD dwMaximumWindowSize;
     WORD wPopupAttributes;
@@ -223,7 +185,6 @@ typedef struct _CONSOLE_SCREEN_BUFFER_INFOEX {
     COLORREF ColorTable[16];
 } CONSOLE_SCREEN_BUFFER_INFOEX, *PCONSOLE_SCREEN_BUFFER_INFOEX;
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -232,7 +193,6 @@ GetConsoleScreenBufferInfoEx(
     _Inout_ PCONSOLE_SCREEN_BUFFER_INFOEX lpConsoleScreenBufferInfoEx
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -241,7 +201,6 @@ SetConsoleScreenBufferInfoEx(
     _In_ PCONSOLE_SCREEN_BUFFER_INFOEX lpConsoleScreenBufferInfoEx
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -250,7 +209,6 @@ SetConsoleScreenBufferSize(
     _In_ COORD dwSize
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -259,7 +217,6 @@ SetConsoleCursorPosition(
     _In_ COORD dwCursorPosition
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 COORD
 WINAPI
@@ -267,16 +224,14 @@ GetLargestConsoleWindowSize(
     _In_ HANDLE hConsoleOutput
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
 SetConsoleTextAttribute(
     _In_ HANDLE hConsoleOutput,
-    _Win32_AssociatedEnum_(CONSOLE_CHARACTER_ATTRIBUTES) _In_ WORD wAttributes
+    _In_ WORD wAttributes
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -286,7 +241,6 @@ SetConsoleWindowInfo(
     _In_ CONST SMALL_RECT* lpConsoleWindow
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -298,7 +252,6 @@ WriteConsoleOutputCharacterA(
     _Out_ LPDWORD lpNumberOfCharsWritten
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -316,7 +269,6 @@ WriteConsoleOutputCharacterW(
 #define WriteConsoleOutputCharacter  WriteConsoleOutputCharacterA
 #endif // !UNICODE
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -328,7 +280,6 @@ WriteConsoleOutputAttribute(
     _Out_ LPDWORD lpNumberOfAttrsWritten
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -340,7 +291,6 @@ ReadConsoleOutputCharacterA(
     _Out_ LPDWORD lpNumberOfCharsRead
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -358,7 +308,6 @@ ReadConsoleOutputCharacterW(
 #define ReadConsoleOutputCharacter  ReadConsoleOutputCharacterA
 #endif // !UNICODE
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -370,7 +319,6 @@ ReadConsoleOutputAttribute(
     _Out_ LPDWORD lpNumberOfAttrsRead
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -381,7 +329,6 @@ WriteConsoleInputA(
     _Out_ LPDWORD lpNumberOfEventsWritten
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -398,7 +345,6 @@ WriteConsoleInputW(
 #define WriteConsoleInput  WriteConsoleInputA
 #endif // !UNICODE
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -410,7 +356,6 @@ ScrollConsoleScreenBufferA(
     _In_ CONST CHAR_INFO* lpFill
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -428,7 +373,6 @@ ScrollConsoleScreenBufferW(
 #define ScrollConsoleScreenBuffer  ScrollConsoleScreenBufferA
 #endif // !UNICODE
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -440,7 +384,6 @@ WriteConsoleOutputA(
     _Inout_ PSMALL_RECT lpWriteRegion
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -458,7 +401,6 @@ WriteConsoleOutputW(
 #define WriteConsoleOutput  WriteConsoleOutputA
 #endif // !UNICODE
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -470,7 +412,6 @@ ReadConsoleOutputA(
     _Inout_ PSMALL_RECT lpReadRegion
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -488,7 +429,6 @@ ReadConsoleOutputW(
 #define ReadConsoleOutput  ReadConsoleOutputA
 #endif // !UNICODE
 
-_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -497,7 +437,6 @@ GetConsoleTitleA(
     _In_ DWORD nSize
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -514,7 +453,6 @@ GetConsoleTitleW(
 
 #if (_WIN32_WINNT >= 0x0600)
 
-_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -523,7 +461,6 @@ GetConsoleOriginalTitleA(
     _In_ DWORD nSize
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -540,7 +477,6 @@ GetConsoleOriginalTitleW(
 
 #endif /* _WIN32_WINNT >= 0x0600 */
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -548,7 +484,6 @@ SetConsoleTitleA(
     _In_ LPCSTR lpConsoleTitle
     );
 
-_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -76,18 +75,6 @@ typedef struct TDIObjectID {
 #define	AT_ENTITY					0x280
 
 #define	IF_ENTITY					0x200
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(TDIENTITY_ENTITY_TYPE, unsigned long,
-    GENERIC_ENTITY,
-    AT_ENTITY,
-    CL_NL_ENTITY,
-    CO_NL_ENTITY,
-    CL_TL_ENTITY,
-    CO_TL_ENTITY,
-    ER_ENTITY,
-    IF_ENTITY);
-#endif
 
 #define INVALID_ENTITY_INSTANCE     -1
 

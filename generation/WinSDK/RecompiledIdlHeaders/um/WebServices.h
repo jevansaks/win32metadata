@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 #ifndef __WEBSERVICES_H__
 #define __WEBSERVICES_H__
 
@@ -6960,7 +6959,6 @@ struct _WS_TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE {
 //  
 //   Starts canonicalization on the specified XML reader.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsStartReaderCanonicalization(
     _In_ WS_XML_READER* reader, 
     _In_ WS_WRITE_CALLBACK writeCallback, 
@@ -6974,7 +6972,6 @@ HRESULT WINAPI WsStartReaderCanonicalization(
 //  
 //   Stops XML canonicalization started by the preceding WsStartReaderCanonicalization call.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsEndReaderCanonicalization(
     _In_ WS_XML_READER* reader, 
     _In_opt_ WS_ERROR* error);
@@ -6984,7 +6981,6 @@ HRESULT WINAPI WsEndReaderCanonicalization(
 //  
 //   Starts canonicalization on the specified XML writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsStartWriterCanonicalization(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_WRITE_CALLBACK writeCallback, 
@@ -6998,7 +6994,6 @@ HRESULT WINAPI WsStartWriterCanonicalization(
 //  
 //   Stops XML canonicalization started by the preceding WsStartWriterCanonicalization call.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsEndWriterCanonicalization(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ WS_ERROR* error);
@@ -7009,7 +7004,6 @@ HRESULT WINAPI WsEndWriterCanonicalization(
 //   Creates an XML Buffer which can be used to process xml data in-memory.  It can be
 //  navigated through, written to, and read from.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateXmlBuffer(
     _In_ WS_HEAP* heap, 
     _In_reads_opt_(propertyCount) const WS_XML_BUFFER_PROPERTY* properties, 
@@ -7034,7 +7028,6 @@ HRESULT WINAPI WsCreateXmlBuffer(
 //  
 //   Calling WsSetReaderPosition or WsSetWriterPosition after calling WsRemoveNode will fail.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsRemoveNode(
     _In_ const WS_XML_NODE_POSITION* nodePosition, 
     _In_opt_ WS_ERROR* error);
@@ -7045,7 +7038,6 @@ HRESULT WINAPI WsRemoveNode(
 //   Creates an instance of a WS_XML_READER.  Use WsSetInput or WsSetInputToBuffer
 //   to choose the encoding of the reader and to indicate the source of the input.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateReader(
     _In_reads_opt_(propertyCount) const WS_XML_READER_PROPERTY* properties, 
     _In_ ULONG propertyCount, 
@@ -7057,7 +7049,6 @@ HRESULT WINAPI WsCreateReader(
 //  
 //   Sets the encoding and input sources for the reader.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetInput(
     _In_ WS_XML_READER* reader, 
     _In_opt_ const WS_XML_READER_ENCODING* encoding, 
@@ -7071,7 +7062,6 @@ HRESULT WINAPI WsSetInput(
 //  
 //   Sets the reader to use a specified xml buffer as the input source.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetInputToBuffer(
     _In_ WS_XML_READER* reader, 
     _In_ WS_XML_BUFFER* buffer, 
@@ -7084,13 +7074,11 @@ HRESULT WINAPI WsSetInputToBuffer(
 //  
 //   Releases the memory associated with the WS_XML_READER object.
 //  
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeReader(_In_ WS_XML_READER* reader);
 
 
 //  XML Reader function
 //  Returns a property of the specified xml reader.
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetReaderProperty(
     _In_ WS_XML_READER* reader, 
     _In_ WS_XML_READER_PROPERTY_ID id, 
@@ -7103,7 +7091,6 @@ HRESULT WINAPI WsGetReaderProperty(
 //  
 //   Returns the (WS_XML_NODE) node that the (WS_XML_READER) reader is currently positioned on.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetReaderNode(
     _In_ WS_XML_READER* xmlReader, 
     _Outptr_ const WS_XML_NODE** node, 
@@ -7114,7 +7101,6 @@ HRESULT WINAPI WsGetReaderNode(
 //  
 //   Ensures that the reader has at least a specified amount of data available to it for reading.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsFillReader(
     _In_ WS_XML_READER* reader, 
     _In_ ULONG minSize, 
@@ -7126,7 +7112,6 @@ HRESULT WINAPI WsFillReader(
 //  
 //   Advances the reader past a start element skipping any whitespace in front of it.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadStartElement(
     _In_ WS_XML_READER* reader, 
     _In_opt_ WS_ERROR* error);
@@ -7137,7 +7122,6 @@ HRESULT WINAPI WsReadStartElement(
 //   Advances the reader to the next start element skipping whitespace and comments if necessary.  Optionally,
 //  it may also verify the localName and namespace of the element.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadToStartElement(
     _In_ WS_XML_READER* reader, 
     _In_opt_ const WS_XML_STRING* localName, 
@@ -7150,7 +7134,6 @@ HRESULT WINAPI WsReadToStartElement(
 //  
 //   Moves the reader to the specified attribute so that its content may be read using ReadValue, ReadChars, or ReadBytes.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadStartAttribute(
     _In_ WS_XML_READER* reader, 
     _In_ ULONG attributeIndex, 
@@ -7161,7 +7144,6 @@ HRESULT WINAPI WsReadStartAttribute(
 //  
 //   Moves the reader back to the element node containing the attribute that was read.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadEndAttribute(
     _In_ WS_XML_READER* reader, 
     _In_opt_ WS_ERROR* error);
@@ -7171,7 +7153,6 @@ HRESULT WINAPI WsReadEndAttribute(
 //  
 //   Advances the reader to the next (WS_XML_NODE) node in the input stream.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadNode(
     _In_ WS_XML_READER* reader, 
     _In_opt_ WS_ERROR* error);
@@ -7184,7 +7165,6 @@ HRESULT WINAPI WsReadNode(
 //  on the node following its end element.  Otherwise, the reader is positioned
 //  on the next node in the same manner as WsReadNode.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSkipNode(
     _In_ WS_XML_READER* reader, 
     _In_opt_ WS_ERROR* error);
@@ -7195,7 +7175,6 @@ HRESULT WINAPI WsSkipNode(
 //   Checks that the current (WS_XML_NODE) node of reader is an end element,
 //  and advances the reader to the next (WS_XML_NODE) node.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadEndElement(
     _In_ WS_XML_READER* reader, 
     _In_opt_ WS_ERROR* error);
@@ -7207,7 +7186,6 @@ HRESULT WINAPI WsReadEndElement(
 //  specified name and namespace and returns its index which may be passed
 //  to WsReadStartAttribute.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsFindAttribute(
     _In_ WS_XML_READER* reader, 
     _In_ const WS_XML_STRING* localName, 
@@ -7221,7 +7199,6 @@ HRESULT WINAPI WsFindAttribute(
 //  
 //   Reads text from the reader and parses it according to the specified value type.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadValue(
     _In_ WS_XML_READER* reader, 
     _In_ WS_VALUE_TYPE valueType, 
@@ -7234,7 +7211,6 @@ HRESULT WINAPI WsReadValue(
 //  
 //   Reads a specified number of text characters from the reader.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadChars(
     _In_ WS_XML_READER* reader, 
     _Out_writes_to_(maxCharCount, *actualCharCount) WCHAR* chars, 
@@ -7247,7 +7223,6 @@ HRESULT WINAPI WsReadChars(
 //  
 //   Reads a specified number of text characters from the reader and returns them encoded in UTF-8.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadCharsUtf8(
     _In_ WS_XML_READER* reader, 
     _Out_writes_to_(maxByteCount, *actualByteCount) BYTE* bytes, 
@@ -7260,7 +7235,6 @@ HRESULT WINAPI WsReadCharsUtf8(
 //  
 //   Reads text from the reader and decodes the characters as bytes according to the base64 specification.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadBytes(
     _In_ WS_XML_READER* reader, 
     _Out_writes_bytes_to_(maxByteCount, *actualByteCount) void* bytes, 
@@ -7274,7 +7248,6 @@ HRESULT WINAPI WsReadBytes(
 //   Reads a series of elements from the reader and interprets their
 //  content according to the specified value type.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadArray(
     _In_ WS_XML_READER* reader, 
     _In_ const WS_XML_STRING* localName, 
@@ -7293,7 +7266,6 @@ HRESULT WINAPI WsReadArray(
 //   Returns the current position of the reader.  This can only be used on a reader
 //  that is set to an XmlBuffer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetReaderPosition(
     _In_ WS_XML_READER* reader, 
     _Out_ WS_XML_NODE_POSITION* nodePosition, 
@@ -7305,7 +7277,6 @@ HRESULT WINAPI WsGetReaderPosition(
 //   Sets the current position of the reader.  The position must have been obtained by a call to
 //   WsGetReaderPosition or WsGetWriterPosition.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetReaderPosition(
     _In_ WS_XML_READER* reader, 
     _In_ const WS_XML_NODE_POSITION* nodePosition, 
@@ -7316,7 +7287,6 @@ HRESULT WINAPI WsSetReaderPosition(
 //  
 //   Moves the current position of the reader as specified by the moveTo parameter.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsMoveReader(
     _In_ WS_XML_READER* reader, 
     _In_ WS_MOVE_TO moveTo, 
@@ -7329,7 +7299,6 @@ HRESULT WINAPI WsMoveReader(
 //   Creates an instance of a WS_XML_WRITER.  Use WsSetOutput or WsSetOutputToBuffer
 //   to choose the encoding of the writer and to indicate where to direct the output.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateWriter(
     _In_reads_opt_(propertyCount) const WS_XML_WRITER_PROPERTY* properties, 
     _In_ ULONG propertyCount, 
@@ -7341,7 +7310,6 @@ HRESULT WINAPI WsCreateWriter(
 //  
 //   Releases the memory associated with the WS_XML_WRITER object.
 //  
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeWriter(_In_ WS_XML_WRITER* writer);
 
 
@@ -7350,7 +7318,6 @@ void WINAPI WsFreeWriter(_In_ WS_XML_WRITER* writer);
 //   Sets the encoding and output callbacks for the writer.  The callbacks are used to
 //  provides buffers to the writer and to perform asynchronous i/o.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetOutput(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ const WS_XML_WRITER_ENCODING* encoding, 
@@ -7364,7 +7331,6 @@ HRESULT WINAPI WsSetOutput(
 //  
 //   Sets the writer to emit xml data at the end of the specified buffer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetOutputToBuffer(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_XML_BUFFER* buffer, 
@@ -7375,7 +7341,6 @@ HRESULT WINAPI WsSetOutputToBuffer(
 
 //  XML Writer function
 //  Returns a property of the specified xml writer.
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetWriterProperty(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_XML_WRITER_PROPERTY_ID id, 
@@ -7389,7 +7354,6 @@ HRESULT WINAPI WsGetWriterProperty(
 //   Instructs the writer to invoke the (WS_WRITE_CALLBACK) callback
 //   specified in WS_XML_WRITER_STREAM_OUTPUT if sufficient data has been buffered.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsFlushWriter(
     _In_ WS_XML_WRITER* writer, 
     _In_ ULONG minSize, 
@@ -7401,7 +7365,6 @@ HRESULT WINAPI WsFlushWriter(
 //  
 //   Writes a start element to the writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteStartElement(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ const WS_XML_STRING* prefix, 
@@ -7415,7 +7378,6 @@ HRESULT WINAPI WsWriteStartElement(
 //   Forces the writer to commit the current element and prevent further attributes
 //  from being written to the element.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteEndStartElement(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ WS_ERROR* error);
@@ -7425,7 +7387,6 @@ HRESULT WINAPI WsWriteEndStartElement(
 //  
 //   Writes an xmlns attribute to the current element.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteXmlnsAttribute(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ const WS_XML_STRING* prefix, 
@@ -7438,7 +7399,6 @@ HRESULT WINAPI WsWriteXmlnsAttribute(
 //  
 //   Starts writing an attribute to the current element.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteStartAttribute(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ const WS_XML_STRING* prefix, 
@@ -7452,7 +7412,6 @@ HRESULT WINAPI WsWriteStartAttribute(
 //  
 //   Finishes writing an attribute to the current element.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteEndAttribute(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ WS_ERROR* error);
@@ -7462,7 +7421,6 @@ HRESULT WINAPI WsWriteEndAttribute(
 //  
 //   Writes a primitive value to the writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteValue(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_VALUE_TYPE valueType, 
@@ -7475,7 +7433,6 @@ HRESULT WINAPI WsWriteValue(
 //  
 //   Writes a WS_XML_BUFFER to a writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteXmlBuffer(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_XML_BUFFER* xmlBuffer, 
@@ -7486,7 +7443,6 @@ HRESULT WINAPI WsWriteXmlBuffer(
 //  
 //   Reads the current node from a reader into a WS_XML_BUFFER.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadXmlBuffer(
     _In_ WS_XML_READER* reader, 
     _In_ WS_HEAP* heap, 
@@ -7498,7 +7454,6 @@ HRESULT WINAPI WsReadXmlBuffer(
 //  
 //   Uses a writer to convert a WS_XML_BUFFER to an encoded set of bytes.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteXmlBufferToBytes(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_XML_BUFFER* xmlBuffer, 
@@ -7515,7 +7470,6 @@ HRESULT WINAPI WsWriteXmlBufferToBytes(
 //  
 //   Uses a reader to convert a set of encoded bytes to a WS_XML_BUFFER.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadXmlBufferFromBytes(
     _In_ WS_XML_READER* reader, 
     _In_opt_ const WS_XML_READER_ENCODING* encoding, 
@@ -7532,7 +7486,6 @@ HRESULT WINAPI WsReadXmlBufferFromBytes(
 //  
 //   Writes a series of elements to the writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteArray(
     _In_ WS_XML_WRITER* writer, 
     _In_ const WS_XML_STRING* localName, 
@@ -7549,7 +7502,6 @@ HRESULT WINAPI WsWriteArray(
 //  
 //   Writes an xml qualified name to the writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteQualifiedName(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ const WS_XML_STRING* prefix, 
@@ -7562,7 +7514,6 @@ HRESULT WINAPI WsWriteQualifiedName(
 //  
 //   Writes a series of characters to an element or attribute.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteChars(
     _In_ WS_XML_WRITER* writer, 
     _In_reads_(charCount) const WCHAR* chars, 
@@ -7574,7 +7525,6 @@ HRESULT WINAPI WsWriteChars(
 //  
 //   Writes a series of characters encoded as UTF-8 to an element or attribute.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteCharsUtf8(
     _In_ WS_XML_WRITER* writer, 
     _In_reads_(byteCount) const BYTE* bytes, 
@@ -7588,7 +7538,6 @@ HRESULT WINAPI WsWriteCharsUtf8(
 //  in a text encoding, it will emit the bytes encoded in base64.  When writing to
 //  a binary format, it will emit the bytes directly.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteBytes(
     _In_ WS_XML_WRITER* writer, 
     _In_reads_bytes_(byteCount) const void* bytes, 
@@ -7601,7 +7550,6 @@ HRESULT WINAPI WsWriteBytes(
 //   Sets up a callback to be invoked to write bytes within an element.  In some encodings this can
 //  be more efficient by eliminating a copy of the data.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsPushBytes(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_PUSH_BYTES_CALLBACK callback, 
@@ -7614,7 +7562,6 @@ HRESULT WINAPI WsPushBytes(
 //   Sets up a callback to be invoked to obtain the bytes to be written within an element.
 //  In some encodings this can be more efficient by eliminating a copy of the data.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsPullBytes(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_PULL_BYTES_CALLBACK callback, 
@@ -7626,7 +7573,6 @@ HRESULT WINAPI WsPullBytes(
 //  
 //   Writes an end element to the writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteEndElement(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ WS_ERROR* error);
@@ -7636,7 +7582,6 @@ HRESULT WINAPI WsWriteEndElement(
 //  
 //   Writes the specified text the XML writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteText(
     _In_ WS_XML_WRITER* writer, 
     _In_ const WS_XML_TEXT* text, 
@@ -7647,7 +7592,6 @@ HRESULT WINAPI WsWriteText(
 //  
 //   Starts a CDATA section in the writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteStartCData(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ WS_ERROR* error);
@@ -7657,7 +7601,6 @@ HRESULT WINAPI WsWriteStartCData(
 //  
 //   Ends a CDATA section in the writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteEndCData(
     _In_ WS_XML_WRITER* writer, 
     _In_opt_ WS_ERROR* error);
@@ -7667,7 +7610,6 @@ HRESULT WINAPI WsWriteEndCData(
 //  
 //   Writes the specified node to the XML Writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteNode(
     _In_ WS_XML_WRITER* writer, 
     _In_ const WS_XML_NODE* node, 
@@ -7678,7 +7620,6 @@ HRESULT WINAPI WsWriteNode(
 //  
 //   Returns a prefix to which the namespace is bound.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetPrefixFromNamespace(
     _In_ WS_XML_WRITER* writer, 
     _In_ const WS_XML_STRING* ns, 
@@ -7693,7 +7634,6 @@ HRESULT WINAPI WsGetPrefixFromNamespace(
 //  writer that is set to an XmlBuffer. When writing to a buffer, the position
 //  represents the xml node before which new data will be placed.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetWriterPosition(
     _In_ WS_XML_WRITER* writer, 
     _Out_ WS_XML_NODE_POSITION* nodePosition, 
@@ -7705,7 +7645,6 @@ HRESULT WINAPI WsGetWriterPosition(
 //   Sets the current position of the writer.  The position must have been obtained by a
 //  call to WsGetReaderPosition or WsGetWriterPosition.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetWriterPosition(
     _In_ WS_XML_WRITER* writer, 
     _In_ const WS_XML_NODE_POSITION* nodePosition, 
@@ -7716,7 +7655,6 @@ HRESULT WINAPI WsSetWriterPosition(
 //  
 //   Moves the current position of the writer as specified by the moveTo parameter.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsMoveWriter(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_MOVE_TO moveTo, 
@@ -7728,7 +7666,6 @@ HRESULT WINAPI WsMoveWriter(
 //  
 //   Removes leading and trailing whitespace from a sequence of characters.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsTrimXmlWhitespace(
     _In_reads_(charCount) WCHAR* chars, 
     _In_ ULONG charCount, 
@@ -7741,7 +7678,6 @@ HRESULT WINAPI WsTrimXmlWhitespace(
 //  
 //   Verifies whether the input string is a valid XML NCName.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsVerifyXmlNCName(
     _In_reads_(ncNameCharCount) const WCHAR* ncNameChars, 
     _In_ ULONG ncNameCharCount, 
@@ -7753,7 +7689,6 @@ HRESULT WINAPI WsVerifyXmlNCName(
 //   Compares two WS_XML_STRING's for equality by performing an ordinal comparison
 //  of the character values.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsXmlStringEquals(
     _In_ const WS_XML_STRING* string1, 
     _In_ const WS_XML_STRING* string2, 
@@ -7764,7 +7699,6 @@ HRESULT WINAPI WsXmlStringEquals(
 //  
 //   Returns the namespace to which the prefix is bound.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetNamespaceFromPrefix(
     _In_ WS_XML_READER* reader, 
     _In_ const WS_XML_STRING* prefix, 
@@ -7781,7 +7715,6 @@ HRESULT WINAPI WsGetNamespaceFromPrefix(
 //  is bound to will be returned, or WS_E_INVALID_FORMAT
 //   will be returned. The strings are placed in the specified heap.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadQualifiedName(
     _In_ WS_XML_READER* reader, 
     _In_ WS_HEAP* heap, 
@@ -7796,7 +7729,6 @@ HRESULT WINAPI WsReadQualifiedName(
 //   Finds the nearest xml attribute in scope with the specified localName and returns its value.
 //  The returned value is placed on the specified heap.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetXmlAttribute(
     _In_ WS_XML_READER* reader, 
     _In_ const WS_XML_STRING* localName, 
@@ -7810,7 +7742,6 @@ HRESULT WINAPI WsGetXmlAttribute(
 //  
 //   Copies the current node from the specified reader to the specified writer.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCopyNode(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_XML_READER* reader, 
@@ -7821,7 +7752,6 @@ HRESULT WINAPI WsCopyNode(
 //  
 //   WsAsyncExecute is a helper that can be used to implement an asynchronous operation.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAsyncExecute(
     _In_ WS_ASYNC_STATE* asyncState, 
     _In_ WS_ASYNC_FUNCTION operation, 
@@ -7835,7 +7765,6 @@ HRESULT WINAPI WsAsyncExecute(
 //  
 //   Create a channel used to initiate a message exchange to some endpoint.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateChannel(
     _In_ WS_CHANNEL_TYPE channelType, 
     _In_ WS_CHANNEL_BINDING channelBinding, 
@@ -7850,7 +7779,6 @@ HRESULT WINAPI WsCreateChannel(
 //  
 //   Open a channel to an endpoint.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsOpenChannel(
     _In_ WS_CHANNEL* channel, 
     _In_ const WS_ENDPOINT_ADDRESS* endpointAddress, 
@@ -7862,7 +7790,6 @@ HRESULT WINAPI WsOpenChannel(
 //  
 //   Send a message on a channel using serialization to write the body element.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSendMessage(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* message, 
@@ -7878,7 +7805,6 @@ HRESULT WINAPI WsSendMessage(
 //  
 //   Receive a message and deserialize the body of the message as a value.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReceiveMessage(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* message, 
@@ -7898,7 +7824,6 @@ HRESULT WINAPI WsReceiveMessage(
 //  
 //   Used to send a request message and receive a correlated reply message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsRequestReply(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* requestMessage, 
@@ -7920,7 +7845,6 @@ HRESULT WINAPI WsRequestReply(
 //  
 //   Sends a message which is a reply to a received message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSendReplyMessage(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* replyMessage, 
@@ -7937,7 +7861,6 @@ HRESULT WINAPI WsSendReplyMessage(
 //  
 //   Sends a fault message given a WS_ERROR object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSendFaultMessageForError(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* replyMessage, 
@@ -7953,7 +7876,6 @@ HRESULT WINAPI WsSendFaultMessageForError(
 //  
 //   Retrieve a property of the channel.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetChannelProperty(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_CHANNEL_PROPERTY_ID id, 
@@ -7966,7 +7888,6 @@ HRESULT WINAPI WsGetChannelProperty(
 //  
 //   Set a property of the channel.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetChannelProperty(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_CHANNEL_PROPERTY_ID id, 
@@ -7979,7 +7900,6 @@ HRESULT WINAPI WsSetChannelProperty(
 //  
 //   Write out all the headers of the message to the channel, and prepare to write the body elements.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteMessageStart(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* message, 
@@ -7991,7 +7911,6 @@ HRESULT WINAPI WsWriteMessageStart(
 //  
 //   Write the closing elements of the message to the channel.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteMessageEnd(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* message, 
@@ -8003,7 +7922,6 @@ HRESULT WINAPI WsWriteMessageEnd(
 //  
 //   Read the headers of the next message from the channel, and prepare to read the body elements.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadMessageStart(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* message, 
@@ -8015,7 +7933,6 @@ HRESULT WINAPI WsReadMessageStart(
 //  
 //   Read the closing elements of a message from a channel.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadMessageEnd(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* message, 
@@ -8027,7 +7944,6 @@ HRESULT WINAPI WsReadMessageEnd(
 //  
 //   Close a channel.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCloseChannel(
     _In_ WS_CHANNEL* channel, 
     _In_opt_ const WS_ASYNC_CONTEXT* asyncContext, 
@@ -8038,7 +7954,6 @@ HRESULT WINAPI WsCloseChannel(
 //  
 //   Abort all pending IO for a channel.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAbortChannel(
     _In_ WS_CHANNEL* channel, 
     _In_opt_ WS_ERROR* error);
@@ -8048,7 +7963,6 @@ HRESULT WINAPI WsAbortChannel(
 //  
 //   Free a channel.
 //  
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeChannel(_In_ WS_CHANNEL* channel);
 
 
@@ -8056,7 +7970,6 @@ void WINAPI WsFreeChannel(_In_ WS_CHANNEL* channel);
 //  
 //   Reset a channel so it can be reused.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsResetChannel(
     _In_ WS_CHANNEL* channel, 
     _In_opt_ WS_ERROR* error);
@@ -8066,7 +7979,6 @@ HRESULT WINAPI WsResetChannel(
 //  
 //   Used to skip the remainder of a message for a channel.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAbandonMessage(
     _In_ WS_CHANNEL* channel, 
     _In_ WS_MESSAGE* message, 
@@ -8077,7 +7989,6 @@ HRESULT WINAPI WsAbandonMessage(
 //  
 //   Used to signal the end of messages for a session channel.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsShutdownSessionChannel(
     _In_ WS_CHANNEL* channel, 
     _In_opt_ const WS_ASYNC_CONTEXT* asyncContext, 
@@ -8093,7 +8004,6 @@ HRESULT WINAPI WsShutdownSessionChannel(
 //  See Operation Context Lifetime and Threading for details around accessing
 //  these properties and the lifetime of the operation context.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetOperationContextProperty(
     _In_ const WS_OPERATION_CONTEXT* context, 
     _In_ const WS_OPERATION_CONTEXT_PROPERTY_ID id, 
@@ -8106,7 +8016,6 @@ HRESULT WINAPI WsGetOperationContextProperty(
 
 //  Dictionaries function
 
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetDictionary(
     _In_ WS_ENCODING encoding, 
     _Outptr_result_maybenull_ WS_XML_DICTIONARY** dictionary, 
@@ -8117,7 +8026,6 @@ HRESULT WINAPI WsGetDictionary(
 //  
 //   Reads an extension of the WS_ENDPOINT_ADDRESS.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadEndpointAddressExtension(
     _In_ WS_XML_READER* reader, 
     _In_ WS_ENDPOINT_ADDRESS* endpointAddress, 
@@ -8134,7 +8042,6 @@ HRESULT WINAPI WsReadEndpointAddressExtension(
 //   Creates an error object that can passed to functions to in order to
 //  record rich error information.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateError(
     _In_reads_opt_(propertyCount) const WS_ERROR_PROPERTY* properties, 
     _In_ ULONG propertyCount, 
@@ -8145,7 +8052,6 @@ HRESULT WINAPI WsCreateError(
 //  
 //   Add an error string to the error object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAddErrorString(
     _In_ WS_ERROR* error, 
     _In_ const WS_STRING* string);
@@ -8155,7 +8061,6 @@ HRESULT WINAPI WsAddErrorString(
 //  
 //   Retrieves an error string from an error object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetErrorString(
     _In_ WS_ERROR* error, 
     _In_ ULONG index, 
@@ -8166,7 +8071,6 @@ HRESULT WINAPI WsGetErrorString(
 //  
 //   Copies the error object from source to destination.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCopyError(
     _In_ WS_ERROR* source, 
     _In_ WS_ERROR* destination);
@@ -8176,7 +8080,6 @@ HRESULT WINAPI WsCopyError(
 //  
 //   Retrieve a property of the error.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetErrorProperty(
     _In_ WS_ERROR* error, 
     _In_ WS_ERROR_PROPERTY_ID id, 
@@ -8188,7 +8091,6 @@ HRESULT WINAPI WsGetErrorProperty(
 //  
 //   Set a property of the error.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetErrorProperty(
     _In_ WS_ERROR* error, 
     _In_ WS_ERROR_PROPERTY_ID id, 
@@ -8200,7 +8102,6 @@ HRESULT WINAPI WsSetErrorProperty(
 //  
 //   Frees the contents of the error object, but does not free the error object itself.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsResetError(_In_ WS_ERROR* error);
 
 
@@ -8208,7 +8109,6 @@ HRESULT WINAPI WsResetError(_In_ WS_ERROR* error);
 //  
 //   Free the error object created by WsCreateError.
 //  
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeError(_In_ WS_ERROR* error);
 
 
@@ -8216,7 +8116,6 @@ void WINAPI WsFreeError(_In_ WS_ERROR* error);
 //  
 //   Retrieve a fault-related property of the error object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetFaultErrorProperty(
     _In_ WS_ERROR* error, 
     _In_ WS_FAULT_ERROR_PROPERTY_ID id, 
@@ -8228,7 +8127,6 @@ HRESULT WINAPI WsGetFaultErrorProperty(
 //  
 //   Set a fault-related property of the error object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetFaultErrorProperty(
     _In_ WS_ERROR* error, 
     _In_ WS_FAULT_ERROR_PROPERTY_ID id, 
@@ -8240,7 +8138,6 @@ HRESULT WINAPI WsSetFaultErrorProperty(
 //  
 //   Construct a WS_FAULT given an error object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateFaultFromError(
     _In_ WS_ERROR* error, 
     _In_ HRESULT faultErrorCode, 
@@ -8253,7 +8150,6 @@ HRESULT WINAPI WsCreateFaultFromError(
 //  
 //   Write the fault detail stored in a WS_ERROR object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetFaultErrorDetail(
     _In_ WS_ERROR* error, 
     _In_ const WS_FAULT_DETAIL_DESCRIPTION* faultDetailDescription, 
@@ -8266,7 +8162,6 @@ HRESULT WINAPI WsSetFaultErrorDetail(
 //  
 //   Read the fault detail stored in a WS_ERROR object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetFaultErrorDetail(
     _In_ WS_ERROR* error, 
     _In_ const WS_FAULT_DETAIL_DESCRIPTION* faultDetailDescription, 
@@ -8280,7 +8175,6 @@ HRESULT WINAPI WsGetFaultErrorDetail(
 //  
 //   Create a heap object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateHeap(
     _In_ SIZE_T maxSize, 
     _In_ SIZE_T trimSize, 
@@ -8292,7 +8186,6 @@ HRESULT WINAPI WsCreateHeap(
 
 //  Heap function
 //  Allocate a chunk of data from the heap.
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAlloc(
     _In_ WS_HEAP* heap, 
     _In_ SIZE_T size, 
@@ -8302,7 +8195,6 @@ HRESULT WINAPI WsAlloc(
 
 //  Heap function
 //  Returns a property of the specified heap.
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetHeapProperty(
     _In_ WS_HEAP* heap, 
     _In_ WS_HEAP_PROPERTY_ID id, 
@@ -8317,7 +8209,6 @@ HRESULT WINAPI WsGetHeapProperty(
 //  using WsAlloc are no longer valid.  However, this call does not actually
 //  free the heap object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsResetHeap(
     _In_ WS_HEAP* heap, 
     _In_opt_ WS_ERROR* error);
@@ -8328,7 +8219,6 @@ HRESULT WINAPI WsResetHeap(
 //   This frees the heap object, and the memory associated with any allocations
 //  made on it using WsAlloc.
 //  
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeHeap(_In_ WS_HEAP* heap);
 
 #pragma region Desktop Family or Webservices Package
@@ -8338,7 +8228,6 @@ void WINAPI WsFreeHeap(_In_ WS_HEAP* heap);
 //  
 //   Create a listener object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateListener(
     _In_ WS_CHANNEL_TYPE channelType, 
     _In_ WS_CHANNEL_BINDING channelBinding, 
@@ -8353,7 +8242,6 @@ HRESULT WINAPI WsCreateListener(
 //  
 //   Start listening.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsOpenListener(
     _In_ WS_LISTENER* listener, 
     _In_ const WS_STRING* url, 
@@ -8365,7 +8253,6 @@ HRESULT WINAPI WsOpenListener(
 //  
 //   Accepts the next incoming message exchange from a listener.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAcceptChannel(
     _In_ WS_LISTENER* listener, 
     _In_ WS_CHANNEL* channel, 
@@ -8377,7 +8264,6 @@ HRESULT WINAPI WsAcceptChannel(
 //  
 //   Stop listening.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCloseListener(
     _In_ WS_LISTENER* listener, 
     _In_opt_ const WS_ASYNC_CONTEXT* asyncContext, 
@@ -8388,7 +8274,6 @@ HRESULT WINAPI WsCloseListener(
 //  
 //   Cancel any pending IO for the listener.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAbortListener(
     _In_ WS_LISTENER* listener, 
     _In_opt_ WS_ERROR* error);
@@ -8398,7 +8283,6 @@ HRESULT WINAPI WsAbortListener(
 //  
 //   Reset a listener so it can be reused.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsResetListener(
     _In_ WS_LISTENER* listener, 
     _In_opt_ WS_ERROR* error);
@@ -8408,7 +8292,6 @@ HRESULT WINAPI WsResetListener(
 //  
 //   Free the listener.
 //  
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeListener(_In_ WS_LISTENER* listener);
 
 
@@ -8416,7 +8299,6 @@ void WINAPI WsFreeListener(_In_ WS_LISTENER* listener);
 //  
 //   Retrieve a property of the listener.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetListenerProperty(
     _In_ WS_LISTENER* listener, 
     _In_ WS_LISTENER_PROPERTY_ID id, 
@@ -8429,7 +8311,6 @@ HRESULT WINAPI WsGetListenerProperty(
 //  
 //   Set a property of the listener.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetListenerProperty(
     _In_ WS_LISTENER* listener, 
     _In_ WS_LISTENER_PROPERTY_ID id, 
@@ -8442,7 +8323,6 @@ HRESULT WINAPI WsSetListenerProperty(
 //  
 //   Create a channel that is used to accept incoming message exchanges from a listener.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateChannelForListener(
     _In_ WS_LISTENER* listener, 
     _In_reads_opt_(propertyCount) const WS_CHANNEL_PROPERTY* properties, 
@@ -8457,7 +8337,6 @@ HRESULT WINAPI WsCreateChannelForListener(
 //  
 //   Creates a message object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateMessage(
     _In_ WS_ENVELOPE_VERSION envelopeVersion, 
     _In_ WS_ADDRESSING_VERSION addressingVersion, 
@@ -8471,7 +8350,6 @@ HRESULT WINAPI WsCreateMessage(
 //  
 //   Creates a message that is appropriate for use with a particular channel.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateMessageForChannel(
     _In_ WS_CHANNEL* channel, 
     _In_reads_opt_(propertyCount) const WS_MESSAGE_PROPERTY* properties, 
@@ -8485,7 +8363,6 @@ HRESULT WINAPI WsCreateMessageForChannel(
 //   Sets up the initial set of headers for the message in preparation for
 //  sending/writing the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsInitializeMessage(
     _In_ WS_MESSAGE* message, 
     _In_ WS_MESSAGE_INITIALIZATION initialization, 
@@ -8497,7 +8374,6 @@ HRESULT WINAPI WsInitializeMessage(
 //  
 //   Prepare the message for reuse.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsResetMessage(
     _In_ WS_MESSAGE* message, 
     _In_opt_ WS_ERROR* error);
@@ -8507,7 +8383,6 @@ HRESULT WINAPI WsResetMessage(
 //  
 //   Releases the memory associated with the message object.
 //  
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeMessage(_In_ WS_MESSAGE* message);
 
 
@@ -8516,7 +8391,6 @@ void WINAPI WsFreeMessage(_In_ WS_MESSAGE* message);
 //   Returns the WS_HEADER_ATTRIBUTES for the header element the reader is positioned on.  The
 //  envelope version of the message is used to determine which attributes to return.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetHeaderAttributes(
     _In_ WS_MESSAGE* message, 
     _In_ WS_XML_READER* reader, 
@@ -8528,7 +8402,6 @@ HRESULT WINAPI WsGetHeaderAttributes(
 //  
 //   Finds a particular standard header in the message and deserializes it.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetHeader(
     _In_ WS_MESSAGE* message, 
     _In_ WS_HEADER_TYPE headerType, 
@@ -8544,7 +8417,6 @@ HRESULT WINAPI WsGetHeader(
 //  
 //   Finds an application-defined header of the message and deserializes it.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetCustomHeader(
     _In_ WS_MESSAGE* message, 
     _In_ const WS_ELEMENT_DESCRIPTION* customHeaderDescription, 
@@ -8562,7 +8434,6 @@ HRESULT WINAPI WsGetCustomHeader(
 //  
 //   Removes all instances of the specified standard header from the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsRemoveHeader(
     _In_ WS_MESSAGE* message, 
     _In_ WS_HEADER_TYPE headerType, 
@@ -8573,7 +8444,6 @@ HRESULT WINAPI WsRemoveHeader(
 //  
 //   Adds or replaces the specified standard header in the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetHeader(
     _In_ WS_MESSAGE* message, 
     _In_ WS_HEADER_TYPE headerType, 
@@ -8588,7 +8458,6 @@ HRESULT WINAPI WsSetHeader(
 //  
 //   Removes all instances of the application defined header from the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsRemoveCustomHeader(
     _In_ WS_MESSAGE* message, 
     _In_ const WS_XML_STRING* headerName, 
@@ -8600,7 +8469,6 @@ HRESULT WINAPI WsRemoveCustomHeader(
 //  
 //   Adds the specified application defined header to the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAddCustomHeader(
     _In_ WS_MESSAGE* message, 
     _In_ const WS_ELEMENT_DESCRIPTION* headerDescription, 
@@ -8615,7 +8483,6 @@ HRESULT WINAPI WsAddCustomHeader(
 //  
 //   Adds a specified mapped header to the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAddMappedHeader(
     _In_ WS_MESSAGE* message, 
     _In_ const WS_XML_STRING* headerName, 
@@ -8630,7 +8497,6 @@ HRESULT WINAPI WsAddMappedHeader(
 //  
 //   Removes all instances of a mapped header from the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsRemoveMappedHeader(
     _In_ WS_MESSAGE* message, 
     _In_ const WS_XML_STRING* headerName, 
@@ -8641,7 +8507,6 @@ HRESULT WINAPI WsRemoveMappedHeader(
 //  
 //   Finds a mapped header in the message and deserializes it.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetMappedHeader(
     _In_ WS_MESSAGE* message, 
     _In_ const WS_XML_STRING* headerName, 
@@ -8659,7 +8524,6 @@ HRESULT WINAPI WsGetMappedHeader(
 //  
 //   Serialize a value in the body of the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteBody(
     _In_ WS_MESSAGE* message, 
     _In_ const WS_ELEMENT_DESCRIPTION* bodyDescription, 
@@ -8673,7 +8537,6 @@ HRESULT WINAPI WsWriteBody(
 //  
 //   Deserialize a value from the body of the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadBody(
     _In_ WS_MESSAGE* message, 
     _In_ const WS_ELEMENT_DESCRIPTION* bodyDescription, 
@@ -8688,7 +8551,6 @@ HRESULT WINAPI WsReadBody(
 //  
 //   Write out all the headers of the message and prepare to write the body elements.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteEnvelopeStart(
     _In_ WS_MESSAGE* message, 
     _In_ WS_XML_WRITER* writer, 
@@ -8701,7 +8563,6 @@ HRESULT WINAPI WsWriteEnvelopeStart(
 //  
 //   Write the closing elements of the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteEnvelopeEnd(
     _In_ WS_MESSAGE* message, 
     _In_opt_ WS_ERROR* error);
@@ -8711,7 +8572,6 @@ HRESULT WINAPI WsWriteEnvelopeEnd(
 //  
 //   Read the headers of the message and prepare to read the body elements.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadEnvelopeStart(
     _In_ WS_MESSAGE* message, 
     _In_ WS_XML_READER* reader, 
@@ -8724,7 +8584,6 @@ HRESULT WINAPI WsReadEnvelopeStart(
 //  
 //   Read the closing elements of a message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadEnvelopeEnd(
     _In_ WS_MESSAGE* message, 
     _In_opt_ WS_ERROR* error);
@@ -8732,7 +8591,6 @@ HRESULT WINAPI WsReadEnvelopeEnd(
 
 //  Message function
 //  Returns a property of the specified message.
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetMessageProperty(
     _In_ WS_MESSAGE* message, 
     _In_ WS_MESSAGE_PROPERTY_ID id, 
@@ -8745,7 +8603,6 @@ HRESULT WINAPI WsGetMessageProperty(
 //  
 //   Set a property of the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsSetMessageProperty(
     _In_ WS_MESSAGE* message, 
     _In_ WS_MESSAGE_PROPERTY_ID id, 
@@ -8758,7 +8615,6 @@ HRESULT WINAPI WsSetMessageProperty(
 //  
 //   Addresses a message given an Endpoint Address.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAddressMessage(
     _In_ WS_MESSAGE* message, 
     _In_opt_ const WS_ENDPOINT_ADDRESS* address, 
@@ -8770,7 +8626,6 @@ HRESULT WINAPI WsAddressMessage(
 //   Verifies that all headers that were specified to be required to be
 //  understood by the receiver were actually understood.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCheckMustUnderstandHeaders(
     _In_ WS_MESSAGE* message, 
     _In_opt_ WS_ERROR* error);
@@ -8780,7 +8635,6 @@ HRESULT WINAPI WsCheckMustUnderstandHeaders(
 //  
 //   Marks a header as one that was understood by the application.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsMarkHeaderAsUnderstood(
     _In_ WS_MESSAGE* message, 
     _In_ const WS_XML_NODE_POSITION* headerPosition, 
@@ -8791,7 +8645,6 @@ HRESULT WINAPI WsMarkHeaderAsUnderstood(
 //  
 //   Ensures that the message has at least a specified amount of body data available to it for reading.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsFillBody(
     _In_ WS_MESSAGE* message, 
     _In_ ULONG minSize, 
@@ -8803,7 +8656,6 @@ HRESULT WINAPI WsFillBody(
 //  
 //   Flushes all accumulated body data that has been written for the message.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsFlushBody(
     _In_ WS_MESSAGE* message, 
     _In_ ULONG minSize, 
@@ -8819,7 +8671,6 @@ HRESULT WINAPI WsFlushBody(
 //  based negotiation steps with the STS until the security token is
 //  obtained or the negotiation process fails.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsRequestSecurityToken(
     _In_ WS_CHANNEL* channel, 
     _In_reads_opt_(propertyCount) const WS_REQUEST_SECURITY_TOKEN_PROPERTY* properties, 
@@ -8838,7 +8689,6 @@ HRESULT WINAPI WsRequestSecurityToken(
 //   If the 'heap' parameter is required by the property, then the returned data is stored on the heap, with its lifetime
 //  detached from the underlying token.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetSecurityTokenProperty(
     _In_ WS_SECURITY_TOKEN* securityToken, 
     _In_ WS_SECURITY_TOKEN_PROPERTY_ID id, 
@@ -8852,7 +8702,6 @@ HRESULT WINAPI WsGetSecurityTokenProperty(
 //  
 //  Create a security token from its XML form.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateXmlSecurityToken(
     _In_opt_ WS_XML_BUFFER* tokenXml, 
     _In_opt_ WS_SECURITY_KEY_HANDLE* tokenKey, 
@@ -8866,7 +8715,6 @@ HRESULT WINAPI WsCreateXmlSecurityToken(
 //  
 //   Free a security token.
 //  
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeSecurityToken(_In_ WS_SECURITY_TOKEN* token);
 
 
@@ -8879,7 +8727,6 @@ void WINAPI WsFreeSecurityToken(_In_ WS_SECURITY_TOKEN* token);
 //  trigger the reclaiming of resources, or when the server wants to engage in
 //  active context management.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsRevokeSecurityContext(
     _In_ WS_SECURITY_CONTEXT* securityContext, 
     _In_opt_ WS_ERROR* error);
@@ -8889,7 +8736,6 @@ HRESULT WINAPI WsRevokeSecurityContext(
 //  
 //   Gets a property of the specified security context.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetSecurityContextProperty(
     _In_ WS_SECURITY_CONTEXT* securityContext, 
     _In_ WS_SECURITY_CONTEXT_PROPERTY_ID id, 
@@ -8902,7 +8748,6 @@ HRESULT WINAPI WsGetSecurityContextProperty(
 //  
 //   Read an element producing a value of the specified WS_TYPE.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadElement(
     _In_ WS_XML_READER* reader, 
     _In_ const WS_ELEMENT_DESCRIPTION* elementDescription, 
@@ -8917,7 +8762,6 @@ HRESULT WINAPI WsReadElement(
 //  
 //   Read an attribute producing a value of the specified WS_TYPE.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadAttribute(
     _In_ WS_XML_READER* reader, 
     _In_ const WS_ATTRIBUTE_DESCRIPTION* attributeDescription, 
@@ -8932,7 +8776,6 @@ HRESULT WINAPI WsReadAttribute(
 //  
 //   Read a value of a given WS_TYPE from XML according to the WS_TYPE_MAPPING.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadType(
     _In_ WS_XML_READER* reader, 
     _In_ WS_TYPE_MAPPING typeMapping, 
@@ -8949,7 +8792,6 @@ HRESULT WINAPI WsReadType(
 //  
 //   Write a typed value as an XML element.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteElement(
     _In_ WS_XML_WRITER* writer, 
     _In_ const WS_ELEMENT_DESCRIPTION* elementDescription, 
@@ -8963,7 +8805,6 @@ HRESULT WINAPI WsWriteElement(
 //  
 //   Write a typed value as an XML attribute.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteAttribute(
     _In_ WS_XML_WRITER* writer, 
     _In_ const WS_ATTRIBUTE_DESCRIPTION* attributeDescription, 
@@ -8977,7 +8818,6 @@ HRESULT WINAPI WsWriteAttribute(
 //  
 //   Write a value of a given WS_TYPE to XML according to the WS_TYPE_MAPPING.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsWriteType(
     _In_ WS_XML_WRITER* writer, 
     _In_ WS_TYPE_MAPPING typeMapping, 
@@ -9003,7 +8843,6 @@ HRESULT WINAPI WsWriteType(
 //   The caller should therefore assume that the runtime may call on the callback
 //   WS_OPERATION_CANCEL_CALLBACK as soon as the WsRegisterOperationForCancel is called.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsRegisterOperationForCancel(
     _In_ const WS_OPERATION_CONTEXT* context, 
     _In_ WS_OPERATION_CANCEL_CALLBACK cancelCallback, 
@@ -9016,7 +8855,6 @@ HRESULT WINAPI WsRegisterOperationForCancel(
 //  
 //   Retrieve a property of the service host.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetServiceHostProperty(
     _In_ WS_SERVICE_HOST* serviceHost, 
     _In_ const WS_SERVICE_PROPERTY_ID id, 
@@ -9029,7 +8867,6 @@ HRESULT WINAPI WsGetServiceHostProperty(
 //  
 //   Create a service host.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateServiceHost(
     _In_reads_opt_(endpointCount) const WS_SERVICE_ENDPOINT** endpoints, 
     _In_ const USHORT endpointCount, 
@@ -9043,7 +8880,6 @@ HRESULT WINAPI WsCreateServiceHost(
 //  
 //   Open a service host for communication. Starts the listeners on all the endpoints.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsOpenServiceHost(
     _In_ WS_SERVICE_HOST* serviceHost, 
     _In_opt_ const WS_ASYNC_CONTEXT* asyncContext, 
@@ -9061,7 +8897,6 @@ HRESULT WINAPI WsOpenServiceHost(
 //  based channel binding. If a client has a session opened to the service, the
 //  close will not complete till the client closes the session with the service.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCloseServiceHost(
     _In_ WS_SERVICE_HOST* serviceHost, 
     _In_opt_ const WS_ASYNC_CONTEXT* asyncContext, 
@@ -9072,7 +8907,6 @@ HRESULT WINAPI WsCloseServiceHost(
 //  
 //   Aborts the current operation on the service host.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAbortServiceHost(
     _In_ WS_SERVICE_HOST* serviceHost, 
     _In_opt_ WS_ERROR* error);
@@ -9080,7 +8914,6 @@ HRESULT WINAPI WsAbortServiceHost(
 
 //  Service Host function
 //  Free's the service host.
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeServiceHost(_In_ WS_SERVICE_HOST* serviceHost);
 
 
@@ -9094,7 +8927,6 @@ void WINAPI WsFreeServiceHost(_In_ WS_SERVICE_HOST* serviceHost);
 //  this allows for an efficient way for reusing the same service host. It resets
 //  the underlying channel and listeners for reuse.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsResetServiceHost(
     _In_ WS_SERVICE_HOST* serviceHost, 
     _In_opt_ WS_ERROR* error);
@@ -9106,7 +8938,6 @@ HRESULT WINAPI WsResetServiceHost(
 //  
 //   Retrieve a property of service proxy.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetServiceProxyProperty(
     _In_ WS_SERVICE_PROXY* serviceProxy, 
     _In_ const WS_PROXY_PROPERTY_ID id, 
@@ -9119,7 +8950,6 @@ HRESULT WINAPI WsGetServiceProxyProperty(
 //  
 //   Creates a service proxy.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateServiceProxy(
     _In_ const WS_CHANNEL_TYPE channelType, 
     _In_ const WS_CHANNEL_BINDING channelBinding, 
@@ -9138,7 +8968,6 @@ HRESULT WINAPI WsCreateServiceProxy(
 //  
 //   Once the operation succeeds, application can now go ahead and make calls on the service proxy.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsOpenServiceProxy(
     _In_ WS_SERVICE_PROXY* serviceProxy, 
     _In_ const WS_ENDPOINT_ADDRESS* address, 
@@ -9158,7 +8987,6 @@ HRESULT WINAPI WsOpenServiceProxy(
 //  
 //   During this calls are accepted by the service proxy.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCloseServiceProxy(
     _In_ WS_SERVICE_PROXY* serviceProxy, 
     _In_opt_ const WS_ASYNC_CONTEXT* asyncContext, 
@@ -9181,7 +9009,6 @@ HRESULT WINAPI WsCloseServiceProxy(
 //   During close, all underlying channels are aborted. The service proxy is transitioned to the
 //   WS_SERVICE_PROXY_STATE_CLOSED state.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAbortServiceProxy(
     _In_ WS_SERVICE_PROXY* serviceProxy, 
     _In_opt_ WS_ERROR* error);
@@ -9189,7 +9016,6 @@ HRESULT WINAPI WsAbortServiceProxy(
 
 //  Service Proxy function
 //  Free's a service proxy.
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeServiceProxy(_In_ WS_SERVICE_PROXY* serviceProxy);
 
 
@@ -9203,7 +9029,6 @@ void WINAPI WsFreeServiceProxy(_In_ WS_SERVICE_PROXY* serviceProxy);
 //  to the same service time and time again. The cost of initialization is only paid
 //  once during the initial creation of the service proxy.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsResetServiceProxy(
     _In_ WS_SERVICE_PROXY* serviceProxy, 
     _In_opt_ WS_ERROR* error);
@@ -9222,7 +9047,6 @@ HRESULT WINAPI WsResetServiceProxy(
 //  client. Mean while if the application continues to make more calls on the service proxy that
 //  can further aggravate the situation.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsAbandonCall(
     _In_ WS_SERVICE_PROXY* serviceProxy, 
     _In_ ULONG callId, 
@@ -9237,7 +9061,6 @@ HRESULT WINAPI WsAbandonCall(
 //   This function is internally used by proxy service operation. The application should
 //  never call it directly.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCall(
     _In_ WS_SERVICE_PROXY* serviceProxy, 
     _In_ const WS_OPERATION_DESCRIPTION* operation, 
@@ -9251,7 +9074,6 @@ HRESULT WINAPI WsCall(
 
 //  Url function
 //  Decodes an URL into its component parts.
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsDecodeUrl(
     _In_ const WS_STRING* url, 
     _In_ ULONG flags, 
@@ -9262,7 +9084,6 @@ HRESULT WINAPI WsDecodeUrl(
 
 //  Url function
 //  Encodes an URL into a string given its component parts.
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsEncodeUrl(
     _In_ const WS_URL* url, 
     _In_ ULONG flags, 
@@ -9275,7 +9096,6 @@ HRESULT WINAPI WsEncodeUrl(
 //  
 //   Produces an absolute URL given a URL reference (absolute or relative URL) and an absolute base URL.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCombineUrl(
     _In_ const WS_STRING* baseUrl, 
     _In_ const WS_STRING* referenceUrl, 
@@ -9289,7 +9109,6 @@ HRESULT WINAPI WsCombineUrl(
 //  
 //   Converts a WS_DATETIME to a FILETIME.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsDateTimeToFileTime(
     _In_ const WS_DATETIME* dateTime, 
     _Out_ FILETIME* fileTime, 
@@ -9300,7 +9119,6 @@ HRESULT WINAPI WsDateTimeToFileTime(
 //  
 //   Converts a FILETIME to a WS_DATETIME.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsFileTimeToDateTime(
     _In_ const FILETIME* fileTime, 
     _Out_ WS_DATETIME* dateTime, 
@@ -9311,7 +9129,6 @@ HRESULT WINAPI WsFileTimeToDateTime(
 //  
 //   Create a metadata object which is used to collect and process metadata documents.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateMetadata(
     _In_reads_opt_(propertyCount) const WS_METADATA_PROPERTY* properties, 
     _In_ ULONG propertyCount, 
@@ -9324,7 +9141,6 @@ HRESULT WINAPI WsCreateMetadata(
 //   Read a metadata element and add it to the set of metadata
 //  documents stored in the metadata object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsReadMetadata(
     _In_ WS_METADATA* metadata, 
     _In_ WS_XML_READER* reader, 
@@ -9336,7 +9152,6 @@ HRESULT WINAPI WsReadMetadata(
 //  
 //   Free a metadata object.
 //  
-_Win32_SupportedOS_Windows7_
 void WINAPI WsFreeMetadata(_In_ WS_METADATA* metadata);
 
 
@@ -9344,7 +9159,6 @@ void WINAPI WsFreeMetadata(_In_ WS_METADATA* metadata);
 //  
 //   Reset a metadata object so it can be reused.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsResetMetadata(
     _In_ WS_METADATA* metadata, 
     _In_opt_ WS_ERROR* error);
@@ -9354,7 +9168,6 @@ HRESULT WINAPI WsResetMetadata(
 //  
 //   Retrieve a property of the metadata object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetMetadataProperty(
     _In_ WS_METADATA* metadata, 
     _In_ WS_METADATA_PROPERTY_ID id, 
@@ -9367,7 +9180,6 @@ HRESULT WINAPI WsGetMetadataProperty(
 //  
 //   Returns the address of a missing document that is referenced by the metadata object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetMissingMetadataDocumentAddress(
     _In_ WS_METADATA* metadata, 
     _Outptr_result_maybenull_ WS_ENDPOINT_ADDRESS** address, 
@@ -9379,7 +9191,6 @@ HRESULT WINAPI WsGetMissingMetadataDocumentAddress(
 //   Returns the endpoints that were defined in the metadata documents
 //  that were added to the metadata object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetMetadataEndpoints(
     _In_ WS_METADATA* metadata, 
     _Out_ WS_METADATA_ENDPOINTS* endpoints, 
@@ -9393,7 +9204,6 @@ HRESULT WINAPI WsGetMetadataEndpoints(
 //  then the "out" fields within the constraint structures are filled with information
 //  from the policy.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsMatchPolicyAlternative(
     _In_ WS_POLICY* policy, 
     _In_ ULONG alternativeIndex, 
@@ -9407,7 +9217,6 @@ HRESULT WINAPI WsMatchPolicyAlternative(
 //  
 //   Retrieve a property of the policy object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetPolicyProperty(
     _In_ WS_POLICY* policy, 
     _In_ WS_POLICY_PROPERTY_ID id, 
@@ -9420,7 +9229,6 @@ HRESULT WINAPI WsGetPolicyProperty(
 //  
 //   Retrieve the number of alternatives available in the policy object.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsGetPolicyAlternativeCount(
     _In_ WS_POLICY* policy, 
     _Out_ ULONG* count, 
@@ -9431,7 +9239,6 @@ HRESULT WINAPI WsGetPolicyAlternativeCount(
 //  
 //   Helper routine to create channel from policy templates.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateServiceProxyFromTemplate(
     _In_ WS_CHANNEL_TYPE channelType, 
     _In_reads_opt_(propertyCount) const WS_PROXY_PROPERTY* properties, 
@@ -9451,7 +9258,6 @@ HRESULT WINAPI WsCreateServiceProxyFromTemplate(
 //  
 //   Helper routine to create channel from policy templates.
 //  
-_Win32_SupportedOS_Windows7_
 HRESULT WINAPI WsCreateServiceEndpointFromTemplate(
     _In_ WS_CHANNEL_TYPE channelType, 
     _In_reads_opt_(propertyCount) const WS_SERVICE_ENDPOINT_PROPERTY* properties, 

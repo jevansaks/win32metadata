@@ -13,8 +13,6 @@
 #ifndef __DXC_API__
 #define __DXC_API__
 
-#include <win32metadata_annotations.h>
-
 #ifdef _WIN32
 #ifndef DXC_API_IMPORT
 #define DXC_API_IMPORT __declspec(dllimport)
@@ -100,9 +98,6 @@ extern "C" DXC_API_IMPORT
 #define DXC_CP_WIDE DXC_CP_UTF32
 #endif
 
-_Win32_Enum_(DXC_CP, unsigned int,
-    DXC_CP_ACP, DXC_CP_UTF16, DXC_CP_UTF8, DXC_CP_UTF32, DXC_CP_WIDE);
-
 /// Indicates that the shader hash was computed taking into account source
 /// information (-Zss).
 #define DXC_HASHFLAG_INCLUDES_SOURCE 1
@@ -176,7 +171,7 @@ public:
   ///
   /// If the encoding is not known then pCodePage will be set to CP_ACP.
   virtual HRESULT STDMETHODCALLTYPE GetEncoding(_Out_ BOOL *pKnown,
-                                                _Out_ _Win32_AssociatedEnum_(DXC_CP) UINT32 *pCodePage) = 0;
+                                                _Out_ UINT32 *pCodePage) = 0;
 };
 
 CROSS_PLATFORM_UUIDOF(IDxcBlobWide, "A3F84EAB-0FAA-497E-A39C-EE6ED60B2D84")
@@ -324,23 +319,23 @@ struct IDxcLibrary : public IUnknown {
 
   /// \deprecated
   virtual HRESULT STDMETHODCALLTYPE
-  CreateBlobFromFile(_In_z_ LPCWSTR pFileName, _In_opt_ _Win32_AssociatedEnum_(DXC_CP) UINT32 *codePage,
+  CreateBlobFromFile(_In_z_ LPCWSTR pFileName, _In_opt_ UINT32 *codePage,
                      _COM_Outptr_ IDxcBlobEncoding **pBlobEncoding) = 0;
 
   /// \deprecated
   virtual HRESULT STDMETHODCALLTYPE CreateBlobWithEncodingFromPinned(
-      _In_bytecount_(size) LPCVOID pText, UINT32 size, _Win32_AssociatedEnum_(DXC_CP) UINT32 codePage,
+      _In_bytecount_(size) LPCVOID pText, UINT32 size, UINT32 codePage,
       _COM_Outptr_ IDxcBlobEncoding **pBlobEncoding) = 0;
 
   /// \deprecated
   virtual HRESULT STDMETHODCALLTYPE CreateBlobWithEncodingOnHeapCopy(
-      _In_bytecount_(size) LPCVOID pText, UINT32 size, _Win32_AssociatedEnum_(DXC_CP) UINT32 codePage,
+      _In_bytecount_(size) LPCVOID pText, UINT32 size, UINT32 codePage,
       _COM_Outptr_ IDxcBlobEncoding **pBlobEncoding) = 0;
 
   /// \deprecated
   virtual HRESULT STDMETHODCALLTYPE CreateBlobWithEncodingOnMalloc(
       _In_bytecount_(size) LPCVOID pText, IMalloc *pIMalloc, UINT32 size,
-      _Win32_AssociatedEnum_(DXC_CP) UINT32 codePage, _COM_Outptr_ IDxcBlobEncoding **pBlobEncoding) = 0;
+      UINT32 codePage, _COM_Outptr_ IDxcBlobEncoding **pBlobEncoding) = 0;
 
   /// \deprecated
   virtual HRESULT STDMETHODCALLTYPE
@@ -554,7 +549,7 @@ struct IDxcUtils : public IUnknown {
   ///
   /// This replaces IDxcLibrary::CreateBlobWithEncodingFromPinned.
   virtual HRESULT STDMETHODCALLTYPE CreateBlobFromPinned(
-      _In_bytecount_(size) LPCVOID pData, UINT32 size, _Win32_AssociatedEnum_(DXC_CP) UINT32 codePage,
+      _In_bytecount_(size) LPCVOID pData, UINT32 size, UINT32 codePage,
       _COM_Outptr_ IDxcBlobEncoding **ppBlobEncoding) = 0;
 
   /// \brief Create a blob, taking ownership of memory allocated with the
@@ -575,7 +570,7 @@ struct IDxcUtils : public IUnknown {
   /// This replaces IDxcLibrary::CreateBlobWithEncodingOnMalloc.
   virtual HRESULT STDMETHODCALLTYPE MoveToBlob(
       _In_bytecount_(size) LPCVOID pData, IMalloc *pIMalloc, UINT32 size,
-      _Win32_AssociatedEnum_(DXC_CP) UINT32 codePage, _COM_Outptr_ IDxcBlobEncoding **ppBlobEncoding) = 0;
+      UINT32 codePage, _COM_Outptr_ IDxcBlobEncoding **ppBlobEncoding) = 0;
 
   /// \brief Create a blob containing a copy of the existing data.
   ///
@@ -592,7 +587,7 @@ struct IDxcUtils : public IUnknown {
   /// The new blob and its contents are allocated with the current allocator.
   /// This replaces IDxcLibrary::CreateBlobWithEncodingOnHeapCopy.
   virtual HRESULT STDMETHODCALLTYPE
-  CreateBlob(_In_bytecount_(size) LPCVOID pData, UINT32 size, _Win32_AssociatedEnum_(DXC_CP) UINT32 codePage,
+  CreateBlob(_In_bytecount_(size) LPCVOID pData, UINT32 size, UINT32 codePage,
              _COM_Outptr_ IDxcBlobEncoding **ppBlobEncoding) = 0;
 
   /// \brief Create a blob with data loaded from a file.
@@ -608,7 +603,7 @@ struct IDxcUtils : public IUnknown {
   /// The new blob and its contents are allocated with the current allocator.
   /// This replaces IDxcLibrary::CreateBlobFromFile.
   virtual HRESULT STDMETHODCALLTYPE
-  LoadFile(_In_z_ LPCWSTR pFileName, _In_opt_ _Win32_AssociatedEnum_(DXC_CP) UINT32 *pCodePage,
+  LoadFile(_In_z_ LPCWSTR pFileName, _In_opt_ UINT32 *pCodePage,
            _COM_Outptr_ IDxcBlobEncoding **ppBlobEncoding) = 0;
 
   /// \brief Create a stream that reads data from a blob.

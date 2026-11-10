@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -30,13 +29,9 @@ Abstract:
 
 typedef HANDLE  HPORT;
 
-#if defined(WIN32METADATA) && defined(__clang__)
-typedef DWORD SECURITY_MESSAGE_MSG_ID;
-#endif
-
 typedef struct _SECURITY_MESSAGE
 {
-    _Win32_AssociatedEnum_(SECURITY_MESSAGE_MSG_ID) DWORD dwMsgId;
+    DWORD dwMsgId;
 
     HPORT hPort;
 
@@ -59,9 +54,6 @@ typedef struct _SECURITY_MESSAGE
 #define SECURITYMSG_SUCCESS     1
 #define SECURITYMSG_FAILURE     2
 #define SECURITYMSG_ERROR       3
-
-_Win32_Enum_(SECURITY_MESSAGE_MSG_ID, DWORD,
-    SECURITYMSG_SUCCESS, SECURITYMSG_FAILURE, SECURITYMSG_ERROR);
 
 // Used by RasSecurityGetInfo call
 
@@ -86,7 +78,6 @@ typedef DWORD (WINAPI *RASSECURITYPROC)();
 // the security dialog
 //
 
-_Win32_SupportedOS_Windows2000_
 VOID WINAPI
 RasSecurityDialogComplete(
     IN SECURITY_MESSAGE * pSecMsg       // Pointer to the above info. structure
@@ -99,7 +90,6 @@ RasSecurityDialogComplete(
 // Should return errors from winerror.h or raserror.h
 //
 
-_Win32_SupportedOS_Windows2000_
 DWORD WINAPI
 RasSecurityDialogBegin(
     IN HPORT  hPort,        // RAS handle to port
@@ -123,7 +113,6 @@ RasSecurityDialogBegin(
 // Should return errors from winerror.h or raserror.h
 //
 
-_Win32_SupportedOS_Windows2000_
 DWORD WINAPI
 RasSecurityDialogEnd(
     IN HPORT    hPort           // RAS handle to port.
@@ -137,8 +126,6 @@ RasSecurityDialogEnd(
 // Will return errors from winerror.h or raserror.h
 //
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 DWORD WINAPI
 RasSecurityDialogSend(
     IN HPORT    hPort,          // RAS handle to port.
@@ -151,8 +138,6 @@ RasSecurityDialogSend(
 // Will return errors from winerror.h or raserror.h
 //
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 DWORD WINAPI
 RasSecurityDialogReceive(
     IN HPORT    hPort,          // RAS handle to port.
@@ -168,7 +153,6 @@ RasSecurityDialogReceive(
 // Will return errors from winerror.h or raserror.h
 //
 
-_Win32_SupportedOS_Windows2000_
 DWORD WINAPI
 RasSecurityDialogGetInfo(
     IN HPORT                hPort,      // RAS handle to port.

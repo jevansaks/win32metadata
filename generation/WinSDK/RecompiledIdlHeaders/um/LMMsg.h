@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -43,14 +42,12 @@ extern "C" {
 // Function Prototypes
 //
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetMessageNameAdd (
     _In_opt_  LPCWSTR  servername,
     _In_      LPCWSTR  msgname
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetMessageNameEnum (
     _In_opt_  LPCWSTR  servername,
@@ -62,7 +59,6 @@ NetMessageNameEnum (
     _Out_     LPDWORD  resume_handle
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetMessageNameGetInfo (
     _In_opt_  LPCWSTR  servername,
@@ -71,14 +67,12 @@ NetMessageNameGetInfo (
     _In_      LPBYTE  *bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetMessageNameDel (
     _In_opt_  LPCWSTR  servername,
     _In_      LPCWSTR  msgname
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetMessageBufferSend (
     _In_opt_  LPCWSTR servername,

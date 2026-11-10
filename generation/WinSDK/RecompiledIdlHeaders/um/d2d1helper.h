@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 
 /*=========================================================================*\
 
@@ -17,7 +16,6 @@
 #define _D2D1_HELPER_H_
 
 #ifndef _D2D1_H_
-#include <sal.h>
 #include <d2d1.h>
 #endif // #ifndef _D2D1_H_
 
@@ -32,7 +30,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_MATRIX_3X2_F
-    _Win32_SupportedOS_Windows7_ IdentityMatrix();
+    IdentityMatrix();
 
     //
     // The default trait type for objects in D2D is float.
@@ -56,7 +54,7 @@ namespace D2D1
     static
     COM_DECLSPEC_NOTHROW
     inline
-    FLOAT _Win32_SupportedOS_Windows7_ FloatMax()
+    FLOAT FloatMax()
     {
         #ifdef FLT_MAX
             return FLT_MAX;
@@ -85,7 +83,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_POINT_2F
-    _Win32_SupportedOS_Windows7_ Point2F(
+    Point2F(
         FLOAT x = 0.f,
         FLOAT y = 0.f
         )
@@ -96,7 +94,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_POINT_2U
-    _Win32_SupportedOS_Windows7_ Point2U(
+    Point2U(
         UINT32 x = 0,
         UINT32 y = 0
         )
@@ -132,7 +130,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_SIZE_U
-    _Win32_SupportedOS_Windows7_ SizeU(
+    SizeU(
         UINT32 width = 0,
         UINT32 height = 0
         )
@@ -172,7 +170,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_RECT_U
-    _Win32_SupportedOS_Windows7_ RectU(
+    RectU(
         UINT32 left = 0,
         UINT32 top = 0,
         UINT32 right = 0,
@@ -185,7 +183,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_RECT_F
-    _Win32_SupportedOS_Windows7_ InfiniteRect()
+    InfiniteRect()
     {
         D2D1_RECT_F rect = { -FloatMax(), -FloatMax(), FloatMax(),  FloatMax() };
 
@@ -195,7 +193,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_ARC_SEGMENT
-    _Win32_SupportedOS_Windows7_ ArcSegment(
+    ArcSegment(
         _In_ CONST D2D1_POINT_2F &point,
         _In_ CONST D2D1_SIZE_F &size,
         _In_ FLOAT rotationAngle,
@@ -211,7 +209,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_BEZIER_SEGMENT
-    _Win32_SupportedOS_Windows7_ BezierSegment(
+    BezierSegment(
         _In_ CONST D2D1_POINT_2F &point1,
         _In_ CONST D2D1_POINT_2F &point2,
         _In_ CONST D2D1_POINT_2F &point3
@@ -243,7 +241,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_ROUNDED_RECT
-    _Win32_SupportedOS_Windows7_ RoundedRect(
+    RoundedRect(
         _In_ CONST D2D1_RECT_F &rect,
         FLOAT radiusX,
         FLOAT radiusY
@@ -261,7 +259,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_BRUSH_PROPERTIES
-    _Win32_SupportedOS_Windows7_ BrushProperties(
+    BrushProperties(
         _In_ FLOAT opacity = 1.0,
         _In_ CONST D2D1_MATRIX_3X2_F &transform = D2D1::IdentityMatrix()
         )
@@ -277,7 +275,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_GRADIENT_STOP
-    _Win32_SupportedOS_Windows7_ GradientStop(
+    GradientStop(
         FLOAT position,
         _In_ CONST D2D1_COLOR_F &color
         )
@@ -290,7 +288,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_QUADRATIC_BEZIER_SEGMENT
-    _Win32_SupportedOS_Windows7_ QuadraticBezierSegment(
+    QuadraticBezierSegment(
         _In_ CONST D2D1_POINT_2F &point1,
         _In_ CONST D2D1_POINT_2F &point2
         )
@@ -303,7 +301,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_STROKE_STYLE_PROPERTIES
-    _Win32_SupportedOS_Windows7_ StrokeStyleProperties(
+    StrokeStyleProperties(
         D2D1_CAP_STYLE startCap = D2D1_CAP_STYLE_FLAT,
         D2D1_CAP_STYLE endCap = D2D1_CAP_STYLE_FLAT,
         D2D1_CAP_STYLE dashCap = D2D1_CAP_STYLE_FLAT,
@@ -329,7 +327,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_BITMAP_BRUSH_PROPERTIES
-    _Win32_SupportedOS_Windows7_ BitmapBrushProperties(
+    BitmapBrushProperties(
         D2D1_EXTEND_MODE extendModeX = D2D1_EXTEND_MODE_CLAMP,
         D2D1_EXTEND_MODE extendModeY = D2D1_EXTEND_MODE_CLAMP,
         D2D1_BITMAP_INTERPOLATION_MODE interpolationMode = D2D1_BITMAP_INTERPOLATION_MODE_LINEAR
@@ -347,7 +345,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES
-    _Win32_SupportedOS_Windows7_ LinearGradientBrushProperties(
+    LinearGradientBrushProperties(
         _In_ CONST D2D1_POINT_2F &startPoint,
         _In_ CONST D2D1_POINT_2F &endPoint
         )
@@ -363,7 +361,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES
-    _Win32_SupportedOS_Windows7_ RadialGradientBrushProperties(
+    RadialGradientBrushProperties(
         _In_ CONST D2D1_POINT_2F &center,
         _In_ CONST D2D1_POINT_2F &gradientOriginOffset,
         FLOAT radiusX,
@@ -386,7 +384,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_PIXEL_FORMAT
-    _Win32_SupportedOS_Windows7_ PixelFormat(
+    PixelFormat(
         _In_ DXGI_FORMAT dxgiFormat = DXGI_FORMAT_UNKNOWN,
         _In_ D2D1_ALPHA_MODE alphaMode = D2D1_ALPHA_MODE_UNKNOWN
         )
@@ -405,7 +403,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_BITMAP_PROPERTIES
-    _Win32_SupportedOS_Windows7_ BitmapProperties(
+    BitmapProperties(
         CONST D2D1_PIXEL_FORMAT &pixelFormat = D2D1::PixelFormat(),
         FLOAT dpiX = 96.0f,
         FLOAT dpiY = 96.0f
@@ -426,7 +424,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_RENDER_TARGET_PROPERTIES
-    _Win32_SupportedOS_Windows7_ RenderTargetProperties(
+    RenderTargetProperties(
         D2D1_RENDER_TARGET_TYPE type =  D2D1_RENDER_TARGET_TYPE_DEFAULT,
         _In_ CONST D2D1_PIXEL_FORMAT &pixelFormat = D2D1::PixelFormat(),
         FLOAT dpiX = 0.0,
@@ -450,7 +448,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_HWND_RENDER_TARGET_PROPERTIES
-    _Win32_SupportedOS_Windows7_ HwndRenderTargetProperties(
+    HwndRenderTargetProperties(
         _In_ HWND hwnd,
         _In_ D2D1_SIZE_U pixelSize = D2D1::Size(static_cast<UINT32>(0), static_cast<UINT32>(0)),
         _In_ D2D1_PRESENT_OPTIONS presentOptions = D2D1_PRESENT_OPTIONS_NONE
@@ -468,7 +466,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_LAYER_PARAMETERS
-    _Win32_SupportedOS_Windows7_ LayerParameters(
+    LayerParameters(
         _In_ CONST D2D1_RECT_F &contentBounds = D2D1::InfiniteRect(),
         _In_opt_ ID2D1Geometry *geometricMask = NULL,
         D2D1_ANTIALIAS_MODE maskAntialiasMode = D2D1_ANTIALIAS_MODE_PER_PRIMITIVE,
@@ -494,7 +492,7 @@ namespace D2D1
     COM_DECLSPEC_NOTHROW
     D2D1FORCEINLINE
     D2D1_DRAWING_STATE_DESCRIPTION
-    _Win32_SupportedOS_Windows7_ DrawingStateDescription(
+    DrawingStateDescription(
         D2D1_ANTIALIAS_MODE antialiasMode = D2D1_ANTIALIAS_MODE_PER_PRIMITIVE,
         D2D1_TEXT_ANTIALIAS_MODE textAntialiasMode = D2D1_TEXT_ANTIALIAS_MODE_DEFAULT,
         D2D1_TAG tag1 = 0,
@@ -992,7 +990,7 @@ namespace D2D1
 
     COM_DECLSPEC_NOTHROW
     D2D1_MATRIX_3X2_F
-    _Win32_SupportedOS_Windows7_ IdentityMatrix()
+    IdentityMatrix()
     {
         return Matrix3x2F::Identity();
     }

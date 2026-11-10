@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+-----------------------------------------------------------------------
 //
 // Microsoft Windows
@@ -111,8 +110,6 @@ typedef enum
 } EXTENDED_NAME_FORMAT, * PEXTENDED_NAME_FORMAT ;
 
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 _Success_(return != 0)
 BOOLEAN
 SEC_ENTRY
@@ -122,8 +119,6 @@ GetUserNameExA(
     _Inout_ PULONG nSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 _Success_(return != 0)
 BOOLEAN
 SEC_ENTRY
@@ -145,8 +140,6 @@ GetUserNameExW(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOLEAN
 SEC_ENTRY
 GetComputerObjectNameA(
@@ -154,8 +147,6 @@ GetComputerObjectNameA(
     _Out_writes_to_opt_(*nSize,*nSize) LPSTR lpNameBuffer,
     _Inout_ PULONG nSize
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOLEAN
 SEC_ENTRY
 GetComputerObjectNameW(
@@ -170,8 +161,6 @@ GetComputerObjectNameW(
 #define GetComputerObjectName   GetComputerObjectNameA
 #endif
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOLEAN
 SEC_ENTRY
 TranslateNameA(
@@ -181,8 +170,6 @@ TranslateNameA(
     _Out_writes_to_opt_(*nSize,*nSize) LPSTR lpTranslatedName,
     _Inout_ PULONG nSize
     );
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 BOOLEAN
 SEC_ENTRY
 TranslateNameW(

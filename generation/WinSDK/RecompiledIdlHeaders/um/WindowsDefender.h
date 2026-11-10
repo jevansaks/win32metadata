@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 //
 //    Copyright (c) Microsoft Corporation. All rights reserved.
@@ -42,7 +41,6 @@ extern "C" {
 //
 --*/
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WDStatus(
     _Out_ BOOL* pfEnabled);
@@ -76,7 +74,6 @@ WDStatus(
 //
 --*/
 
-_Win32_SupportedOS_WindowsVista_
 HRESULT WINAPI
 WDEnable(
     _In_ BOOL  fEnable);

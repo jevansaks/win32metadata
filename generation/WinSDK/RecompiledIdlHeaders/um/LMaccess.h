@@ -21,7 +21,6 @@ Notes:
     on values defined in NETCONS.H.
 
 --*/
-#include <sal.h>
 
 #include <winapifamily.h>
 
@@ -45,21 +44,11 @@ extern "C" {
 #endif
 
 #include <lmcons.h>     // unfortunately created a dependence on this
-#include <win32metadata_annotations.h>
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned int NET_USER_ENUM_FILTER_FLAGS;
-typedef unsigned int USER_ACCOUNT_FLAGS;
-typedef unsigned int AF_OP;
-typedef unsigned int USER_PRIV;
-typedef unsigned int USER_MODALS_ROLES;
-#endif
 
 //
 // Function Prototypes - User
 //
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserAdd (
     _In_opt_  LPCWSTR    servername OPTIONAL,
@@ -72,12 +61,11 @@ NetUserAdd (
     _Out_opt_ LPDWORD    parm_err OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserEnum (
     _In_opt_    LPCWSTR     servername OPTIONAL,
     _In_        DWORD      level,
-    _In_        _Win32_AssociatedEnum_(NET_USER_ENUM_FILTER_FLAGS) DWORD      filter,
+    _In_        DWORD      filter,
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE     *bufptr,
     _In_        DWORD      prefmaxlen,
     _Out_       LPDWORD    entriesread,
@@ -85,7 +73,6 @@ NetUserEnum (
     _Inout_opt_ PDWORD resume_handle OPTIONAL
     );
 
-_Win32_SupportedOS_WindowsXP_
 NET_API_STATUS NET_API_FUNCTION
 NetUserGetInfo (
     _In_opt_  LPCWSTR     servername OPTIONAL,
@@ -94,7 +81,6 @@ NetUserGetInfo (
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE     *bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserSetInfo (
     _In_opt_  LPCWSTR    servername OPTIONAL,
@@ -104,14 +90,12 @@ NetUserSetInfo (
     _Out_opt_ LPDWORD   parm_err OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserDel (
     _In_opt_  LPCWSTR    servername OPTIONAL,
     _In_      LPCWSTR    username
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserGetGroups (
     _In_opt_  LPCWSTR    servername OPTIONAL,
@@ -123,7 +107,6 @@ NetUserGetGroups (
     _Out_     LPDWORD   totalentries
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserSetGroups (
     _In_opt_  LPCWSTR    servername OPTIONAL,
@@ -133,7 +116,6 @@ NetUserSetGroups (
     _In_      DWORD     num_entries
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserGetLocalGroups (
     _In_opt_  LPCWSTR    servername OPTIONAL,
@@ -146,7 +128,6 @@ NetUserGetLocalGroups (
     _Out_     LPDWORD   totalentries
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserModalsGet (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -154,7 +135,6 @@ NetUserModalsGet (
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE    *bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserModalsSet (
     _In_opt_  LPCWSTR    servername OPTIONAL,
@@ -163,8 +143,6 @@ NetUserModalsSet (
     _Out_opt_ LPDWORD   parm_err OPTIONAL
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetUserChangePassword (
     _In_opt_ IN  LPCWSTR   domainname OPTIONAL,
@@ -186,10 +164,10 @@ typedef struct _USER_INFO_1 {
     LPWSTR   usri1_name;
     LPWSTR   usri1_password;
     DWORD    usri1_password_age;
-    _Win32_AssociatedEnum_(USER_PRIV) DWORD    usri1_priv;
+    DWORD    usri1_priv;
     LPWSTR   usri1_home_dir;
     LPWSTR   usri1_comment;
-    _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD    usri1_flags;
+    DWORD    usri1_flags;
     LPWSTR   usri1_script_path;
 }USER_INFO_1, *PUSER_INFO_1, *LPUSER_INFO_1;
 
@@ -197,12 +175,12 @@ typedef struct _USER_INFO_2 {
     LPWSTR   usri2_name;
     LPWSTR   usri2_password;
     DWORD    usri2_password_age;
-    _Win32_AssociatedEnum_(USER_PRIV) DWORD    usri2_priv;
+    DWORD    usri2_priv;
     LPWSTR   usri2_home_dir;
     LPWSTR   usri2_comment;
-    _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD    usri2_flags;
+    DWORD    usri2_flags;
     LPWSTR   usri2_script_path;
-    _Win32_AssociatedEnum_(AF_OP) DWORD    usri2_auth_flags;
+    DWORD    usri2_auth_flags;
     LPWSTR   usri2_full_name;
     LPWSTR   usri2_usr_comment;
     LPWSTR   usri2_parms;
@@ -224,12 +202,12 @@ typedef struct _USER_INFO_3 {
     LPWSTR   usri3_name;
     LPWSTR   usri3_password;
     DWORD    usri3_password_age;
-    _Win32_AssociatedEnum_(USER_PRIV) DWORD    usri3_priv;
+    DWORD    usri3_priv;
     LPWSTR   usri3_home_dir;
     LPWSTR   usri3_comment;
-    _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD    usri3_flags;
+    DWORD    usri3_flags;
     LPWSTR   usri3_script_path;
-    _Win32_AssociatedEnum_(AF_OP) DWORD    usri3_auth_flags;
+    DWORD    usri3_auth_flags;
     LPWSTR   usri3_full_name;
     LPWSTR   usri3_usr_comment;
     LPWSTR   usri3_parms;
@@ -256,12 +234,12 @@ typedef struct _USER_INFO_4 {
     LPWSTR   usri4_name;
     LPWSTR   usri4_password;
     DWORD    usri4_password_age;
-    _Win32_AssociatedEnum_(USER_PRIV) DWORD    usri4_priv;
+    DWORD    usri4_priv;
     LPWSTR   usri4_home_dir;
     LPWSTR   usri4_comment;
-    _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD    usri4_flags;
+    DWORD    usri4_flags;
     LPWSTR   usri4_script_path;
-    _Win32_AssociatedEnum_(AF_OP) DWORD    usri4_auth_flags;
+    DWORD    usri4_auth_flags;
     LPWSTR   usri4_full_name;
     LPWSTR   usri4_usr_comment;
     LPWSTR   usri4_parms;
@@ -296,8 +274,8 @@ typedef struct _USER_INFO_11 {
     LPWSTR   usri11_comment;
     LPWSTR   usri11_usr_comment;
     LPWSTR   usri11_full_name;
-    _Win32_AssociatedEnum_(USER_PRIV) DWORD    usri11_priv;
-    _Win32_AssociatedEnum_(AF_OP) DWORD    usri11_auth_flags;
+    DWORD    usri11_priv;
+    DWORD    usri11_auth_flags;
     DWORD    usri11_password_age;
     LPWSTR   usri11_home_dir;
     LPWSTR   usri11_parms;
@@ -318,7 +296,7 @@ typedef struct _USER_INFO_20 {
     LPWSTR   usri20_name;
     LPWSTR   usri20_full_name;
     LPWSTR   usri20_comment;
-    _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD    usri20_flags;
+    DWORD    usri20_flags;
     DWORD    usri20_user_id;
 }USER_INFO_20, *PUSER_INFO_20, *LPUSER_INFO_20;
 
@@ -330,12 +308,12 @@ typedef struct _USER_INFO_22 {
     LPWSTR   usri22_name;
     BYTE     usri22_password[ENCRYPTED_PWLEN];
     DWORD    usri22_password_age;
-    _Win32_AssociatedEnum_(USER_PRIV) DWORD    usri22_priv;
+    DWORD    usri22_priv;
     LPWSTR   usri22_home_dir;
     LPWSTR   usri22_comment;
-    _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD    usri22_flags;
+    DWORD    usri22_flags;
     LPWSTR   usri22_script_path;
-    _Win32_AssociatedEnum_(AF_OP) DWORD    usri22_auth_flags;
+    DWORD    usri22_auth_flags;
     LPWSTR   usri22_full_name;
     LPWSTR   usri22_usr_comment;
     LPWSTR   usri22_parms;
@@ -357,7 +335,7 @@ typedef struct _USER_INFO_23 {
     LPWSTR   usri23_name;
     LPWSTR   usri23_full_name;
     LPWSTR   usri23_comment;
-    _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD    usri23_flags;
+    DWORD    usri23_flags;
     PSID     usri23_user_sid;
 }USER_INFO_23, *PUSER_INFO_23, *LPUSER_INFO_23;
 
@@ -374,7 +352,7 @@ typedef struct _USER_INFO_1003 {
 } USER_INFO_1003, *PUSER_INFO_1003, *LPUSER_INFO_1003;
 
 typedef struct _USER_INFO_1005 {
-     _Win32_AssociatedEnum_(USER_PRIV) DWORD   usri1005_priv;
+     DWORD   usri1005_priv;
 } USER_INFO_1005, *PUSER_INFO_1005, *LPUSER_INFO_1005;
 
 typedef struct _USER_INFO_1006 {
@@ -386,7 +364,7 @@ typedef struct _USER_INFO_1007 {
 } USER_INFO_1007, *PUSER_INFO_1007, *LPUSER_INFO_1007;
 
 typedef struct _USER_INFO_1008 {
-     _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD   usri1008_flags;
+     DWORD   usri1008_flags;
 } USER_INFO_1008, *PUSER_INFO_1008, *LPUSER_INFO_1008;
 
 typedef struct _USER_INFO_1009 {
@@ -394,7 +372,7 @@ typedef struct _USER_INFO_1009 {
 } USER_INFO_1009, *PUSER_INFO_1009, *LPUSER_INFO_1009;
 
 typedef struct _USER_INFO_1010 {
-     _Win32_AssociatedEnum_(AF_OP) DWORD   usri1010_auth_flags;
+     DWORD   usri1010_auth_flags;
 } USER_INFO_1010, *PUSER_INFO_1010, *LPUSER_INFO_1010;
 
 typedef struct _USER_INFO_1011 {
@@ -500,7 +478,7 @@ typedef struct _USER_MODALS_INFO_1005 {
 } USER_MODALS_INFO_1005, *PUSER_MODALS_INFO_1005, *LPUSER_MODALS_INFO_1005;
 
 typedef struct _USER_MODALS_INFO_1006 {
-     _Win32_AssociatedEnum_(USER_MODALS_ROLES) DWORD   usrmod1006_role;
+     DWORD   usrmod1006_role;
 } USER_MODALS_INFO_1006, *PUSER_MODALS_INFO_1006, *LPUSER_MODALS_INFO_1006;
 
 typedef struct _USER_MODALS_INFO_1007 {
@@ -767,25 +745,6 @@ typedef struct _MSA_INFO_1 {
 #define USER_PRIV_USER      1
 #define USER_PRIV_ADMIN     2
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(NET_USER_ENUM_FILTER_FLAGS, unsigned int,
-    FILTER_TEMP_DUPLICATE_ACCOUNT, FILTER_NORMAL_ACCOUNT,
-    FILTER_INTERDOMAIN_TRUST_ACCOUNT, FILTER_WORKSTATION_TRUST_ACCOUNT,
-    FILTER_SERVER_TRUST_ACCOUNT);
-_Win32_FlagsEnum_(USER_ACCOUNT_FLAGS, unsigned int,
-    UF_SCRIPT, UF_ACCOUNTDISABLE, UF_HOMEDIR_REQUIRED, UF_PASSWD_NOTREQD,
-    UF_PASSWD_CANT_CHANGE, UF_LOCKOUT, UF_DONT_EXPIRE_PASSWD,
-    UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED, UF_NOT_DELEGATED, UF_SMARTCARD_REQUIRED,
-    UF_USE_DES_KEY_ONLY, UF_DONT_REQUIRE_PREAUTH, UF_TRUSTED_FOR_DELEGATION,
-    UF_PASSWORD_EXPIRED, UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION);
-_Win32_FlagsEnum_(AF_OP, unsigned int,
-    AF_OP_PRINT, AF_OP_COMM, AF_OP_SERVER, AF_OP_ACCOUNTS);
-_Win32_Enum_(USER_PRIV, unsigned int,
-    USER_PRIV_GUEST, USER_PRIV_USER, USER_PRIV_ADMIN);
-_Win32_Enum_(USER_MODALS_ROLES, unsigned int,
-    UAS_ROLE_STANDALONE, UAS_ROLE_MEMBER, UAS_ROLE_BACKUP, UAS_ROLE_PRIMARY);
-#endif
-
 //
 // user modals related defaults
 //
@@ -864,7 +823,6 @@ _Win32_Enum_(USER_MODALS_ROLES, unsigned int,
 // Function Prototypes
 //
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGroupAdd (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -873,7 +831,6 @@ NetGroupAdd (
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGroupAddUser (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -881,7 +838,6 @@ NetGroupAddUser (
     _In_      LPCWSTR   username
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGroupEnum (
     _In_opt_    LPCWSTR      servername OPTIONAL,
@@ -893,7 +849,6 @@ NetGroupEnum (
     _Inout_opt_ PDWORD_PTR resume_handle OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGroupGetInfo (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -902,7 +857,6 @@ NetGroupGetInfo (
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE   *bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGroupSetInfo (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -912,14 +866,12 @@ NetGroupSetInfo (
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGroupDel (
     _In_opt_  LPCWSTR   servername OPTIONAL,
     _In_      LPCWSTR   groupname
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGroupDelUser (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -927,7 +879,6 @@ NetGroupDelUser (
     _In_      LPCWSTR   Username
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGroupGetUsers (
     _In_opt_    LPCWSTR     servername OPTIONAL,
@@ -940,7 +891,6 @@ NetGroupGetUsers (
     _Inout_opt_ PDWORD_PTR ResumeHandle
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGroupSetUsers (
     _In_opt_  LPCWSTR     servername OPTIONAL,
@@ -1049,7 +999,6 @@ typedef struct _GROUP_USERS_INFO_1 {
 // Function Prototypes
 //
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupAdd (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -1065,7 +1014,6 @@ NetLocalGroupAddMember (
     _In_ PSID     membersid
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupEnum (
     _In_opt_    LPCWSTR      servername OPTIONAL,
@@ -1077,7 +1025,6 @@ NetLocalGroupEnum (
     _Inout_opt_ PDWORD_PTR resumehandle OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupGetInfo (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -1086,7 +1033,6 @@ NetLocalGroupGetInfo (
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE   *bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupSetInfo (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -1096,7 +1042,6 @@ NetLocalGroupSetInfo (
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupDel (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -1110,7 +1055,6 @@ NetLocalGroupDelMember (
     _In_      PSID     membersid
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupGetMembers (
     _In_opt_    LPCWSTR     servername OPTIONAL,
@@ -1123,7 +1067,6 @@ NetLocalGroupGetMembers (
     _Inout_opt_ PDWORD_PTR resumehandle
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupSetMembers (
     _In_opt_  LPCWSTR     servername OPTIONAL,
@@ -1133,7 +1076,6 @@ NetLocalGroupSetMembers (
     _In_      DWORD      totalentries
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupAddMembers (
     _In_opt_  LPCWSTR     servername OPTIONAL,
@@ -1143,7 +1085,6 @@ NetLocalGroupAddMembers (
     _In_      DWORD      totalentries
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupDelMembers (
     _In_opt_  LPCWSTR     servername OPTIONAL,
@@ -1207,7 +1148,6 @@ typedef struct _LOCALGROUP_USERS_INFO_0 {
 // Display Information APIs
 //
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetQueryDisplayInformation(
     IN LPCWSTR ServerName OPTIONAL,
@@ -1218,7 +1158,6 @@ NetQueryDisplayInformation(
     OUT LPDWORD ReturnedEntryCount,
     OUT PVOID   *SortedBuffer );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetGetDisplayInformationIndex(
     IN LPCWSTR ServerName OPTIONAL,
@@ -1232,7 +1171,7 @@ NetGetDisplayInformationIndex(
 typedef struct _NET_DISPLAY_USER {
     LPWSTR   usri1_name;
     LPWSTR   usri1_comment;
-    _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD    usri1_flags;
+    DWORD    usri1_flags;
     LPWSTR   usri1_full_name;
     DWORD    usri1_user_id;
     DWORD    usri1_next_index;
@@ -1241,7 +1180,7 @@ typedef struct _NET_DISPLAY_USER {
 typedef struct _NET_DISPLAY_MACHINE {
     LPWSTR   usri2_name;
     LPWSTR   usri2_comment;
-    _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS) DWORD    usri2_flags;
+    DWORD    usri2_flags;
     DWORD    usri2_user_id;
     DWORD    usri2_next_index;
 } NET_DISPLAY_MACHINE, *PNET_DISPLAY_MACHINE;
@@ -1274,7 +1213,6 @@ typedef struct _NET_DISPLAY_GROUP {
 // Function Prototypes - Access
 //
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetAccessAdd (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -1283,7 +1221,6 @@ NetAccessAdd (
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetAccessEnum (
     _In_opt_    LPCWSTR     servername OPTIONAL,
@@ -1297,7 +1234,6 @@ NetAccessEnum (
     _Inout_opt_ LPDWORD resume_handle OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetAccessGetInfo (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -1306,7 +1242,6 @@ NetAccessGetInfo (
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE   *bufptr
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetAccessSetInfo (
     _In_opt_  LPCWSTR   servername OPTIONAL,
@@ -1316,14 +1251,12 @@ NetAccessSetInfo (
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetAccessDel (
     IN  LPCWSTR   servername OPTIONAL,
     IN  LPCWSTR   resource
     );
 
-_Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetAccessGetUserPerms (
     IN  LPCWSTR   servername OPTIONAL,
@@ -1395,8 +1328,6 @@ typedef struct _ACCESS_LIST {
 #define ACCESS_DELETE       0x10
 #define ACCESS_ATRIB        0x20
 #define ACCESS_PERM         0x40
-
-_Win32_Enum_(SHARE_INFO_PERMISSIONS, ULONG, ACCESS_READ, ACCESS_WRITE, ACCESS_CREATE, ACCESS_EXEC, ACCESS_DELETE, ACCESS_ATRIB, ACCESS_PERM, ACCESS_ALL);
 
 #define ACCESS_GROUP        0x8000
 
@@ -1583,7 +1514,6 @@ typedef struct _NET_VALIDATE_PASSWORD_RESET_INPUT_ARG{
 //    Password Checking API structures end here
 //
 
-_Win32_SupportedOS_Server2003_
 NET_API_STATUS NET_API_FUNCTION
 NetValidatePasswordPolicy(
     IN LPCWSTR ServerName,
@@ -1593,7 +1523,6 @@ NetValidatePasswordPolicy(
     OUT LPVOID *OutputArg
     );
 
-_Win32_SupportedOS_Server2003_
 NET_API_STATUS NET_API_FUNCTION
 NetValidatePasswordPolicyFree(
     IN LPVOID *OutputArg
@@ -1618,7 +1547,6 @@ NetValidatePasswordPolicyFree(
 // Function Prototypes - Domain
 //
 
-_Win32_SupportedOS_Windows2000_
 _Success_(return == ERROR_SUCCESS)
 NET_API_STATUS NET_API_FUNCTION
 NetGetDCName (
@@ -1628,7 +1556,6 @@ NetGetDCName (
         LPBYTE  *Buffer
     );
 
-_Win32_SupportedOS_Windows2000_
 _Success_(return == ERROR_SUCCESS)
 NET_API_STATUS NET_API_FUNCTION
 NetGetAnyDCName (
@@ -1784,7 +1711,6 @@ DEFINE_GUID( //262e99c9-6160-4871-acec-4e61736b6f21
     0x4871,
     0xAC, 0xEC, 0x4E, 0x61, 0x73, 0x6B, 0x6F, 0x21 );
 
-_Win32_SupportedOS_Windows7_
 NTSTATUS
 NetAddServiceAccount(
     _In_opt_ LPWSTR ServerName,
@@ -1810,14 +1736,12 @@ NetAddServiceAccount(
 // attempt to unlink or delete the account
 #define SERVICE_ACCOUNT_FLAG_REMOVE_OFFLINE       0x00000002L
 
-_Win32_SupportedOS_Windows7_
 NTSTATUS
 NetRemoveServiceAccount(
     _In_opt_ LPWSTR ServerName,
     _In_ LPWSTR AccountName,
     _In_ DWORD Flags);
 
-_Win32_SupportedOS_Windows7_
 NTSTATUS
 NetEnumerateServiceAccounts(
     _In_opt_ LPWSTR ServerName,
@@ -1825,7 +1749,6 @@ NetEnumerateServiceAccounts(
     _Out_ DWORD* AccountsCount,
     _Outptr_result_buffer_(*AccountsCount) PZPWSTR* Accounts);
 
-_Win32_SupportedOS_Windows7_
 NTSTATUS
 NetIsServiceAccount(
     _In_opt_ LPWSTR ServerName,
@@ -1839,7 +1762,6 @@ NetIsServiceAccount2(
     _Out_ BOOL * IsService,
     _Out_ MSA_INFO_ACCOUNT_TYPE * AccountType);
 
-_Win32_SupportedOS_Windows7_
 NTSTATUS
 NetQueryServiceAccount(
     _In_opt_ LPWSTR ServerName,

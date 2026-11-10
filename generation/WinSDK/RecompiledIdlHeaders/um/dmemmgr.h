@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*==========================================================================;
  *
  *  Copyright (C) 1994-1998 Microsoft Corporation.  All Rights Reserved.
@@ -183,7 +182,6 @@ extern FLATPTR WINAPI VidMemAlloc( LPVMEMHEAP pvmh, DWORD width, DWORD height );
  * This export can be used by drivers to allocate aligned surfaces from heaps which
  * they have previously exposed to DirectDraw. This function can allocate from nonlocal heaps.
  */
-_Win32_SupportedOS_Windows2000_
 extern FLATPTR WINAPI HeapVidMemAllocAligned(
                 LPVIDMEM lpVidMem,
                 DWORD dwWidth,
@@ -194,7 +192,6 @@ extern FLATPTR WINAPI HeapVidMemAllocAligned(
 /*
  * This export can free memory allocated via either allocation function
  */
-_Win32_SupportedOS_Windows2000_
 extern void WINAPI VidMemFree( LPVMEMHEAP pvmh, FLATPTR ptr );
 
 #ifdef __cplusplus

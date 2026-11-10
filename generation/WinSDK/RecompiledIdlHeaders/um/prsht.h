@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*****************************************************************************\
@@ -102,12 +101,8 @@ struct _PROPSHEETPAGEA;
 struct _PROPSHEETPAGEW;
 #endif
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef unsigned int PSPCB_MESSAGE;
-#endif
-
-typedef UINT (CALLBACK *LPFNPSPCALLBACKA)(HWND hwnd, _Win32_AssociatedEnum_(PSPCB_MESSAGE) UINT uMsg, struct _PROPSHEETPAGEA *ppsp);
-typedef UINT (CALLBACK *LPFNPSPCALLBACKW)(HWND hwnd, _Win32_AssociatedEnum_(PSPCB_MESSAGE) UINT uMsg, struct _PROPSHEETPAGEW *ppsp);
+typedef UINT (CALLBACK *LPFNPSPCALLBACKA)(HWND hwnd, UINT uMsg, struct _PROPSHEETPAGEA *ppsp);
+typedef UINT (CALLBACK *LPFNPSPCALLBACKW)(HWND hwnd, UINT uMsg, struct _PROPSHEETPAGEW *ppsp);
 
 #ifdef UNICODE
 #define LPFNPSPCALLBACK         LPFNPSPCALLBACKW
@@ -140,13 +135,6 @@ typedef UINT (CALLBACK *LPFNPSPCALLBACKW)(HWND hwnd, _Win32_AssociatedEnum_(PSPC
 #define PSPCB_ADDREF            0
 #define PSPCB_RELEASE           1
 #define PSPCB_CREATE            2
-
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-_Win32_Enum_(PSPCB_MESSAGE, unsigned int,
-    PSPCB_ADDREF,
-    PSPCB_CREATE,
-    PSPCB_RELEASE);
-#endif
 
 #ifdef _WIN32
 typedef LPCDLGTEMPLATE PROPSHEETPAGE_RESOURCE;
@@ -594,26 +582,12 @@ typedef LPCPROPSHEETHEADERW_V2      LPCPROPSHEETHEADERW;
 #define PSCB_BUTTONPRESSED 3
 #endif  // NTDDI_VERSION >= NTDDI_WINXP
 
-#if (defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus))
-_Win32_RAIIFree_(DestroyPropertySheetPage, -1, 0)
-#endif
-_Win32_SupportedOS_WindowsVista_
 WINCOMMCTRLAPI HPROPSHEETPAGE WINAPI CreatePropertySheetPageA(LPCPROPSHEETPAGEA constPropSheetPagePointer);
-#if (defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus))
-_Win32_RAIIFree_(DestroyPropertySheetPage, -1, 0)
-#endif
-_Win32_SupportedOS_WindowsVista_
 WINCOMMCTRLAPI HPROPSHEETPAGE WINAPI CreatePropertySheetPageW(LPCPROPSHEETPAGEW constPropSheetPagePointer);
-_Win32_SupportedOS_WindowsVista_
 WINCOMMCTRLAPI BOOL           WINAPI DestroyPropertySheetPage(HPROPSHEETPAGE);
 
-
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetA(LPCPROPSHEETHEADERA);
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetW(LPCPROPSHEETHEADERW);
 
 #ifdef UNICODE
@@ -934,3 +908,4 @@ typedef struct _PSHNOTIFY
 #if defined(_MSC_VER) && (_MSC_VER >= 1200)
 #pragma warning(pop)
 #endif
+

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*-------------------------------------------------------------------
 //
 //  Copyright (C) Microsoft, 2010
@@ -176,7 +175,6 @@ DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE );
 
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptRegisterProtectionDescriptorName(
@@ -220,7 +218,6 @@ NCryptRegisterProtectionDescriptorName(
     
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptQueryProtectionDescriptorName(
@@ -264,7 +261,6 @@ NCryptQueryProtectionDescriptorName(
     NTE_BAD_TYPE
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptCreateProtectionDescriptor(
@@ -298,7 +294,6 @@ NCryptCreateProtectionDescriptor(
     NTE_INVALID_HANDLE
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptCloseProtectionDescriptor(
@@ -360,7 +355,6 @@ NCryptCloseProtectionDescriptor(
 //
 #define NCRYPT_PROTECTION_INFO_TYPE_DESCRIPTOR_STRING   0x00000001  // LPWSTR
 
-_Win32_SupportedOS_Windows8_
 _Success_(return == 0)
 _When_(dwInfoType == NCRYPT_PROTECTION_INFO_TYPE_DESCRIPTOR_STRING,
        _At_((LPWSTR*)ppvInfo, _Outptr_result_nullonfailure_))
@@ -426,7 +420,6 @@ NCryptGetProtectionDescriptorInfo(
     NTE_BAD_TYPE
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptProtectSecret(
@@ -505,12 +498,11 @@ NCryptProtectSecret(
     no actual decryption will occur.
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptUnprotectSecret(
     _Out_opt_       NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor,
-     _Win32_AssociatedEnum_(NCRYPT_FLAGS) _In_            DWORD                               dwFlags,
+     _In_            DWORD                               dwFlags,
     _In_reads_bytes_(cbProtectedBlob)
                     const BYTE                          *pbProtectedBlob,
                     ULONG                               cbProtectedBlob,
@@ -522,10 +514,6 @@ NCryptUnprotectSecret(
     );
 
 #define NCRYPT_UNPROTECT_NO_DECRYPT                     0x00000001
-
-#ifdef WIN32METADATA
-_Win32_FlagsEnum_(NCRYPT_FLAGS, unsigned int, NCRYPT_UNPROTECT_NO_DECRYPT);
-#endif
 
 /*--------------------------------------------------------------------------
 //
@@ -639,7 +627,6 @@ typedef struct NCRYPT_PROTECT_STREAM_INFO {
     NTE_BAD_TYPE
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptStreamOpenToProtect(
@@ -685,7 +672,6 @@ NCryptStreamOpenToProtect(
     NTE_DECRYPTION_FAILURE
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptStreamOpenToUnprotect(
@@ -851,7 +837,6 @@ NCryptStreamOpenToUnprotectEx(
     NTE_DECRYPTION_FAILURE
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptStreamUpdate(
@@ -878,7 +863,6 @@ NCryptStreamUpdate(
     NTE_INVALID_HANDLE
 
 ****************************************************************************/
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 NCryptStreamClose(

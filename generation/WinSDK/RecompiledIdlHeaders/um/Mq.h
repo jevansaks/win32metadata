@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
  
 /*++
 
@@ -856,26 +855,6 @@ typedef enum tagMQConnectionState
                                              MQSEC_GET_QUEUE_PERMISSIONS | \
                                              MQSEC_CHANGE_QUEUE_PERMISSIONS | \
                                              MQSEC_TAKE_QUEUE_OWNERSHIP)
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_FlagsEnum_(MQQUEUEACCESSMASK, unsigned long,
-    MQSEC_DELETE_QUEUE,
-    MQSEC_GET_QUEUE_PERMISSIONS,
-    MQSEC_CHANGE_QUEUE_PERMISSIONS,
-    MQSEC_TAKE_QUEUE_OWNERSHIP,
-    MQSEC_RECEIVE_MESSAGE,
-    MQSEC_RECEIVE_JOURNAL_MESSAGE,
-    MQSEC_QUEUE_GENERIC_READ,
-    MQSEC_QUEUE_GENERIC_WRITE,
-    MQSEC_QUEUE_GENERIC_ALL,
-    MQSEC_DELETE_MESSAGE,
-    MQSEC_PEEK_MESSAGE,
-    MQSEC_WRITE_MESSAGE,
-    MQSEC_DELETE_JOURNAL_MESSAGE,
-    MQSEC_SET_QUEUE_PROPERTIES,
-    MQSEC_GET_QUEUE_PROPERTIES,
-    MQSEC_QUEUE_GENERIC_EXECUTE);
-#endif
 
 /////////////////////////////////////////////////////////////////////////
 //

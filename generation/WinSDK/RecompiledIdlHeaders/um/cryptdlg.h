@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -94,17 +93,6 @@ typedef UINT (WINAPI * PFNCMHOOKPROC)(
 #define CSS_ENABLETEMPLATE              0x00000020
 #define CSS_ENABLETEMPLATEHANDLE        0x00000040
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#include <sal.h>
-_Win32_FlagsEnum_(CERT_SELECT_STRUCT_FLAGS, unsigned long,
-    CSS_HIDE_PROPERTIES,
-    CSS_ENABLEHOOK,
-    CSS_ALLOWMULTISELECT,
-    CSS_SHOW_HELP,
-    CSS_ENABLETEMPLATE,
-    CSS_ENABLETEMPLATEHANDLE);
-#endif
-
 #define SELCERT_OK                      IDOK
 #define SELCERT_CANCEL                  IDCANCEL
 #define SELCERT_PROPERTIES              100
@@ -122,9 +110,6 @@ typedef struct tagCSSA {
     HWND                hwndParent;
     HINSTANCE           hInstance;
     LPCSTR              pTemplateName;
-    #if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-    _Win32_AssociatedEnum_(CERT_SELECT_STRUCT_FLAGS)
-#endif
     DWORD               dwFlags;
     LPCSTR              szTitle;
     DWORD               cCertStore;
@@ -145,9 +130,6 @@ typedef struct tagCSSW {
     HWND                hwndParent;
     HINSTANCE           hInstance;
     LPCWSTR             pTemplateName;
-    #if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-    _Win32_AssociatedEnum_(CERT_SELECT_STRUCT_FLAGS)
-#endif
     DWORD               dwFlags;
     LPCWSTR             szTitle;
     DWORD               cCertStore;
@@ -171,8 +153,6 @@ typedef CERT_SELECT_STRUCT_A CERT_SELECT_STRUCT;
 typedef PCERT_SELECT_STRUCT_A PCERT_SELECT_STRUCT;
 #endif // UNICODE
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 BOOL
 WINAPI
@@ -182,8 +162,6 @@ CertSelectCertificateA(
 #ifdef MAC
 #define CertSelectCertificate CertSelectCertificateA
 #else   // !MAC
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 BOOL
 WINAPI
@@ -210,30 +188,12 @@ CertSelectCertificateW(
 #define CM_NO_EDITTRUST         0x00000080
 #define CM_HIDE_DETAILPAGE      0x00000100
 #define CM_ADD_CERT_STORES      0x00000200
-
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#include <sal.h>
-_Win32_FlagsEnum_(CERT_VIEWPROPERTIES_STRUCT_FLAGS, unsigned long,
-    CM_ENABLEHOOK,
-    CM_SHOW_HELP,
-    CM_SHOW_HELPICON,
-    CM_ENABLETEMPLATE,
-    CM_HIDE_ADVANCEPAGE,
-    CM_HIDE_TRUSTPAGE,
-    CM_NO_NAMECHANGE,
-    CM_NO_EDITTRUST,
-    CM_HIDE_DETAILPAGE,
-    CM_ADD_CERT_STORES);
-#endif
 #define CERTVIEW_CRYPTUI_LPARAM 0x00800000
 
 typedef struct tagCERT_VIEWPROPERTIES_STRUCT_A {
     DWORD               dwSize;
     HWND                hwndParent;
     HINSTANCE           hInstance;
-    #if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-    _Win32_AssociatedEnum_(CERT_VIEWPROPERTIES_STRUCT_FLAGS)
-#endif
     DWORD               dwFlags;
     LPCSTR              szTitle;
     PCCERT_CONTEXT      pCertContext;
@@ -259,9 +219,6 @@ typedef struct tagCERT_VIEWPROPERTIES_STRUCT_W {
     DWORD               dwSize;
     HWND                hwndParent;
     HINSTANCE           hInstance;
-    #if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-    _Win32_AssociatedEnum_(CERT_VIEWPROPERTIES_STRUCT_FLAGS)
-#endif
     DWORD               dwFlags;
     LPCWSTR             szTitle;
     PCCERT_CONTEXT      pCertContext;
@@ -291,7 +248,6 @@ typedef CERT_VIEWPROPERTIES_STRUCT_A CERT_VIEWPROPERTIES_STRUCT;
 typedef PCERT_VIEWPROPERTIES_STRUCT_A PCERT_VIEWPROPERTIES_STRUCT;
 #endif // UNICODE
 
-_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 BOOL
 WINAPI
@@ -301,7 +257,6 @@ CertViewPropertiesA(
 #ifdef MAC
 #define CertViewProperties CertViewPropertiesA
 #else   // !MAC
-_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 BOOL
 WINAPI
@@ -354,7 +309,6 @@ typedef struct tagCMFLTR {
 //
 //   Get a formatted friendly name for a certificate
 
-_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 DWORD
 WINAPI
@@ -363,7 +317,6 @@ GetFriendlyNameOfCertA(
     _Out_writes_to_opt_(cch, return) LPSTR pch,
     _In_ DWORD cch
     );
-_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 DWORD
 WINAPI
@@ -485,24 +438,12 @@ typedef struct _CERT_VERIFY_CERTIFICATE_TRUST {
 #define CTL_MODIFY_REQUEST_REMOVE               2
 #define CTL_MODIFY_REQUEST_ADD_TRUSTED          3
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#include <sal.h>
-_Win32_Enum_(CTL_MODIFY_REQUEST_OPERATION, unsigned long,
-    CTL_MODIFY_REQUEST_ADD_TRUSTED,
-    CTL_MODIFY_REQUEST_ADD_NOT_TRUSTED,
-    CTL_MODIFY_REQUEST_REMOVE);
-#endif
-
 typedef struct _CTL_MODIFY_REQUEST {
     PCCERT_CONTEXT      pccert;         // Certificate to change trust on
-    #if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-    _Win32_AssociatedEnum_(CTL_MODIFY_REQUEST_OPERATION)
-#endif
     DWORD               dwOperation;    // Operation to be performed
     DWORD               dwError;        // Operation error code
 } CTL_MODIFY_REQUEST, * PCTL_MODIFY_REQUEST;
 
-_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 HRESULT
 WINAPI

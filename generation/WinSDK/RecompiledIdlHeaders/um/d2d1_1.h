@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //---------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 //
@@ -14,7 +13,6 @@
 #define _D2D1_1_H_
 
 #ifndef _D2D1_H_
-#include <sal.h>
 #include <d2d1.h>
 #endif // #ifndef _D2D1_H_
 #ifndef _D2D1_EFFECTS_
@@ -672,7 +670,7 @@ EXTERN_C CONST IID IID_ID2D1Multithread;
 /// <summary>
 /// User-implementable interface for introspecting on a metafile.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("82237326-8111-4f7c-bcf4-b5c1175564fe") ID2D1GdiMetafileSink  : public IUnknown
+interface DX_DECLARE_INTERFACE("82237326-8111-4f7c-bcf4-b5c1175564fe") ID2D1GdiMetafileSink  : public IUnknown
 {
     
     /// <summary>
@@ -689,7 +687,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("82237326-8111-4f7c-
 /// <summary>
 /// Interface encapsulating a GDI/GDI+ metafile.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("2f543dc3-cfc1-4211-864f-cfd91c6f3395") ID2D1GdiMetafile  : public ID2D1Resource
+interface DX_DECLARE_INTERFACE("2f543dc3-cfc1-4211-864f-cfd91c6f3395") ID2D1GdiMetafile  : public ID2D1Resource
 {
     
     /// <summary>
@@ -712,7 +710,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("2f543dc3-cfc1-4211-
 /// Caller-supplied implementation of an interface to receive the recorded command
 /// list.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("54d7898a-a061-40a7-bec7-e465bcba2c4f") ID2D1CommandSink  : public IUnknown
+interface DX_DECLARE_INTERFACE("54d7898a-a061-40a7-bec7-e465bcba2c4f") ID2D1CommandSink  : public IUnknown
 {
     
     STDMETHOD(BeginDraw)(
@@ -850,7 +848,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("54d7898a-a061-40a7-
 /// <summary>
 /// The commandList interface.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("b4f34a19-2383-4d76-94f6-ec343657c3dc") ID2D1CommandList  : public ID2D1Image
+interface DX_DECLARE_INTERFACE("b4f34a19-2383-4d76-94f6-ec343657c3dc") ID2D1CommandList  : public ID2D1Image
 {
     
     /// <summary>
@@ -872,7 +870,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("b4f34a19-2383-4d76-
 /// Converts Direct2D primitives stored in an ID2D1CommandList into a fixed page
 /// representation. The print sub-system then consumes the primitives.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("2c1d867d-c290-41c8-ae7e-34a98702e9a5") ID2D1PrintControl  : public IUnknown
+interface DX_DECLARE_INTERFACE("2c1d867d-c290-41c8-ae7e-34a98702e9a5") ID2D1PrintControl  : public IUnknown
 {
     
     STDMETHOD(AddPage)(
@@ -892,7 +890,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("2c1d867d-c290-41c8-
 /// Provides a brush that can take any effect, command list or bitmap and use it to
 /// fill a 2D shape.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("fe9e984d-3f95-407c-b5db-cb94d4e8f87c") ID2D1ImageBrush  : public ID2D1Brush
+interface DX_DECLARE_INTERFACE("fe9e984d-3f95-407c-b5db-cb94d4e8f87c") ID2D1ImageBrush  : public ID2D1Brush
 {
     
     STDMETHOD_(void, SetImage)(
@@ -938,7 +936,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("fe9e984d-3f95-407c-
 /// A bitmap brush allows a bitmap to be used to fill a geometry.  Interpolation
 /// mode is specified with D2D1_INTERPOLATION_MODE
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("41343a53-e41a-49a2-91cd-21793bbb62e5") ID2D1BitmapBrush1  : public ID2D1BitmapBrush
+interface DX_DECLARE_INTERFACE("41343a53-e41a-49a2-91cd-21793bbb62e5") ID2D1BitmapBrush1  : public ID2D1BitmapBrush
 {
     
     /// <summary>
@@ -956,7 +954,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("41343a53-e41a-49a2-
 /// <summary>
 /// Extends a stroke style to allow nominal width strokes.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("10a72a66-e91c-43f4-993f-ddf4b82b0b4a") ID2D1StrokeStyle1  : public ID2D1StrokeStyle
+interface DX_DECLARE_INTERFACE("10a72a66-e91c-43f4-993f-ddf4b82b0b4a") ID2D1StrokeStyle1  : public ID2D1StrokeStyle
 {
     
     STDMETHOD_(D2D1_STROKE_TRANSFORM_TYPE, GetStrokeTransformType)(
@@ -969,7 +967,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("10a72a66-e91c-43f4-
 /// particular, it provides the path geometry-specific
 /// ComputePointAndSegmentAtLength method.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("62baa2d2-ab54-41b7-b872-787e0106a421") ID2D1PathGeometry1  : public ID2D1PathGeometry
+interface DX_DECLARE_INTERFACE("62baa2d2-ab54-41b7-b872-787e0106a421") ID2D1PathGeometry1  : public ID2D1PathGeometry
 {
     
     STDMETHOD(ComputePointAndSegmentAtLength)(
@@ -1023,7 +1021,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("62baa2d2-ab54-41b7-
 /// Represents a set of run-time bindable and discoverable properties that allow a
 /// data-driven application to modify the state of a Direct2D effect.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("483473d7-cd46-4f9d-9d3a-3112aa80159d") ID2D1Properties  : public IUnknown
+interface DX_DECLARE_INTERFACE("483473d7-cd46-4f9d-9d3a-3112aa80159d") ID2D1Properties  : public IUnknown
 {
     
     /// <summary>
@@ -1298,7 +1296,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("483473d7-cd46-4f9d-
 /// The effect interface. Properties control how the effect is rendered. The effect
 /// is Drawn with the DrawImage call.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("28211a43-7d89-476f-8181-2d6159b220ad") ID2D1Effect  : public ID2D1Properties
+interface DX_DECLARE_INTERFACE("28211a43-7d89-476f-8181-2d6159b220ad") ID2D1Effect  : public ID2D1Properties
 {
     
     /// <summary>
@@ -1369,7 +1367,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("28211a43-7d89-476f-
 /// Represents a bitmap that can be used as a surface for an ID2D1DeviceContext or
 /// mapped into system memory, and can contain additional color context information.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("a898a84c-3873-4588-b08b-ebbf978df041") ID2D1Bitmap1  : public ID2D1Bitmap
+interface DX_DECLARE_INTERFACE("a898a84c-3873-4588-b08b-ebbf978df041") ID2D1Bitmap1  : public ID2D1Bitmap
 {
     
     /// <summary>
@@ -1413,7 +1411,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("a898a84c-3873-4588-
 /// <summary>
 /// Represents a color context that can be used with an ID2D1Bitmap1 object.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("1c4820bb-5771-4518-a581-2fe4dd0ec657") ID2D1ColorContext  : public ID2D1Resource
+interface DX_DECLARE_INTERFACE("1c4820bb-5771-4518-a581-2fe4dd0ec657") ID2D1ColorContext  : public ID2D1Resource
 {
     
     /// <summary>
@@ -1442,7 +1440,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("1c4820bb-5771-4518-
 /// Represents an collection of gradient stops that can then be the source resource
 /// for either a linear or radial gradient brush.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("ae1572f4-5dd0-4777-998b-9279472ae63b") ID2D1GradientStopCollection1  : public ID2D1GradientStopCollection
+interface DX_DECLARE_INTERFACE("ae1572f4-5dd0-4777-998b-9279472ae63b") ID2D1GradientStopCollection1  : public ID2D1GradientStopCollection
 {
     
     /// <summary>
@@ -1494,7 +1492,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("ae1572f4-5dd0-4777-
 /// <summary>
 /// Represents drawing state.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("689f1f85-c72e-4e33-8f19-85754efd5ace") ID2D1DrawingStateBlock1  : public ID2D1DrawingStateBlock
+interface DX_DECLARE_INTERFACE("689f1f85-c72e-4e33-8f19-85754efd5ace") ID2D1DrawingStateBlock1  : public ID2D1DrawingStateBlock
 {
     
     /// <summary>
@@ -1521,7 +1519,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("689f1f85-c72e-4e33-
 /// The device context represents a set of state and a command buffer that is used
 /// to render to a target bitmap.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("e8f7fe7a-191c-466d-ad95-975678bda998") ID2D1DeviceContext  : public ID2D1RenderTarget
+interface DX_DECLARE_INTERFACE("e8f7fe7a-191c-466d-ad95-975678bda998") ID2D1DeviceContext  : public ID2D1RenderTarget
 {
     
     /// <summary>
@@ -2163,7 +2161,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("e8f7fe7a-191c-466d-
 /// The device defines a resource domain whose objects and device contexts can be
 /// used together.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("47dd575d-ac05-4cdd-8049-9b02cd16f44c") ID2D1Device  : public ID2D1Resource
+interface DX_DECLARE_INTERFACE("47dd575d-ac05-4cdd-8049-9b02cd16f44c") ID2D1Device  : public ID2D1Resource
 {
     
     /// <summary>
@@ -2222,7 +2220,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("47dd575d-ac05-4cdd-
 /// <summary>
 /// Creates Direct2D resources.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("bb12d362-daee-4b9a-aa1d-14ba401cfa1f") ID2D1Factory1  : public ID2D1Factory
+interface DX_DECLARE_INTERFACE("bb12d362-daee-4b9a-aa1d-14ba401cfa1f") ID2D1Factory1  : public ID2D1Factory
 {
     
     /// <summary>
@@ -2370,7 +2368,7 @@ interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("bb12d362-daee-4b9a-
 /// A locking mechanism from a Direct2D factory that Direct2D uses to control
 /// exclusive resource access in an app that is uses multiple threads.
 /// </summary>
-interface _Win32_SupportedOS_Windows8_ DX_DECLARE_INTERFACE("31e6e7bc-e0ff-4d46-8c64-a0a8c41c15d3") ID2D1Multithread  : public IUnknown
+interface DX_DECLARE_INTERFACE("31e6e7bc-e0ff-4d46-8c64-a0a8c41c15d3") ID2D1Multithread  : public IUnknown
 {
     
     /// <summary>
@@ -2448,14 +2446,14 @@ extern "C"
 #endif
 
     HRESULT WINAPI 
-    _Win32_SupportedOS_Windows8_ D2D1CreateDevice(
+    D2D1CreateDevice(
         _In_ IDXGIDevice *dxgiDevice,
         _In_opt_ CONST D2D1_CREATION_PROPERTIES *creationProperties,
         _Outptr_ ID2D1Device **d2dDevice
         ); 
         
     HRESULT WINAPI 
-    _Win32_SupportedOS_Windows8_ D2D1CreateDeviceContext(
+    D2D1CreateDeviceContext(
         _In_ IDXGISurface *dxgiSurface,
         _In_opt_ CONST D2D1_CREATION_PROPERTIES *creationProperties,
         _Outptr_ ID2D1DeviceContext **d2dDeviceContext
@@ -2497,7 +2495,7 @@ extern "C"
 #ifndef D2D_USE_C_DEFINITIONS
 
 inline HRESULT 
-_Win32_SupportedOS_Windows8_ D2D1CreateDevice(
+D2D1CreateDevice(
     _In_ IDXGIDevice *dxgiDevice,
     _In_ CONST D2D1_CREATION_PROPERTIES &creationProperties,
     _Outptr_ ID2D1Device **d2dDevice
@@ -2512,7 +2510,7 @@ _Win32_SupportedOS_Windows8_ D2D1CreateDevice(
 } 
     
 inline HRESULT 
-_Win32_SupportedOS_Windows8_ D2D1CreateDeviceContext(
+D2D1CreateDeviceContext(
     _In_ IDXGISurface *dxgiSurface,
     _In_ CONST D2D1_CREATION_PROPERTIES &creationProperties,
     _Outptr_ ID2D1DeviceContext **d2dDeviceContext

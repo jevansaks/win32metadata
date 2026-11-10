@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /***************************************************************************
 
 Copyright (c) 2002 Microsoft Corporation
@@ -55,19 +54,6 @@ Revision History:
 #define MAXIMUM_TRANSFER_SIZE   0x08
 #define RESET_PIPE_ON_RESUME    0x09
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(WINUSB_PIPE_POLICY, unsigned long,
-    SHORT_PACKET_TERMINATE,
-    AUTO_CLEAR_STALL,
-    PIPE_TRANSFER_TIMEOUT,
-    IGNORE_SHORT_PACKETS,
-    ALLOW_PARTIAL_READS,
-    AUTO_FLUSH,
-    RAW_IO,
-    MAXIMUM_TRANSFER_SIZE,
-    RESET_PIPE_ON_RESUME);
-#endif
-
 // Power policy types
 //
 // Add 0x80 for Power policy types in order to prevent overlap with 
@@ -76,12 +62,6 @@ _Win32_Enum_(WINUSB_PIPE_POLICY, unsigned long,
 //
 #define AUTO_SUSPEND            0x81
 #define SUSPEND_DELAY           0x83
-
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(WINUSB_POWER_POLICY, unsigned long,
-    AUTO_SUSPEND,
-    SUSPEND_DELAY);
-#endif
 
 // Device Information types
 #define DEVICE_SPEED            0x01

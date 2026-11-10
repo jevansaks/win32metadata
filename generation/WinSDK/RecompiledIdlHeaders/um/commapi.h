@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * commapi.h - ApiSet Contract for api-ms-win-core-comm-l1                       *
@@ -13,8 +12,6 @@
 
 #ifndef _COMM_H_
 #define _COMM_H_
-
-#include <sal.h>
 
 #include <apiset.h>
 #include <apisetcconv.h>
@@ -178,7 +175,7 @@ WaitCommEvent(
     );
 
 WINBASEAPI
-_Win32_RAIIFree_(CloseHandle, -1, 0) HANDLE
+HANDLE
 WINAPI
 OpenCommPort(
     _In_ ULONG uPortNumber,

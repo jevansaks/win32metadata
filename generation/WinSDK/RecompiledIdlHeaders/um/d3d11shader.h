@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //////////////////////////////////////////////////////////////////////////////
 //
 //  Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -267,9 +266,6 @@ DEFINE_GUID(IID_ID3D11ShaderReflectionType,
 #undef INTERFACE
 #define INTERFACE ID3D11ShaderReflectionType
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows7_ struct ID3D11ShaderReflectionType ID3D11ShaderReflectionType;
-#endif
 DECLARE_INTERFACE(ID3D11ShaderReflectionType)
 {
     STDMETHOD(GetDesc)(THIS_ _Out_ D3D11_SHADER_TYPE_DESC *pDesc) PURE;
@@ -295,9 +291,6 @@ DEFINE_GUID(IID_ID3D11ShaderReflectionVariable,
 #undef INTERFACE
 #define INTERFACE ID3D11ShaderReflectionVariable
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows7_ struct ID3D11ShaderReflectionVariable ID3D11ShaderReflectionVariable;
-#endif
 DECLARE_INTERFACE(ID3D11ShaderReflectionVariable)
 {
     STDMETHOD(GetDesc)(THIS_ _Out_ D3D11_SHADER_VARIABLE_DESC *pDesc) PURE;
@@ -316,9 +309,6 @@ DEFINE_GUID(IID_ID3D11ShaderReflectionConstantBuffer,
 #undef INTERFACE
 #define INTERFACE ID3D11ShaderReflectionConstantBuffer
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows7_ struct ID3D11ShaderReflectionConstantBuffer ID3D11ShaderReflectionConstantBuffer;
-#endif
 DECLARE_INTERFACE(ID3D11ShaderReflectionConstantBuffer)
 {
     STDMETHOD(GetDesc)(THIS_ D3D11_SHADER_BUFFER_DESC *pDesc) PURE;
@@ -340,9 +330,6 @@ DEFINE_GUID(IID_ID3D11ShaderReflection,
 #undef INTERFACE
 #define INTERFACE ID3D11ShaderReflection
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_Windows7_ struct ID3D11ShaderReflection ID3D11ShaderReflection;
-#endif
 DECLARE_INTERFACE_(ID3D11ShaderReflection, IUnknown)
 {
     STDMETHOD(QueryInterface)(THIS_ _In_ REFIID iid,

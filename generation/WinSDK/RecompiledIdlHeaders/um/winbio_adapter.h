@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2008 Microsoft Corporation
@@ -543,7 +542,6 @@ typedef struct _WINBIO_SENSOR_INTERFACE {
 // Interface-retrieval function exported by the Sensor Adapter
 // plug-in DLL. It *MUST* be called 'WbioQuerySensorInterface'.
 //
-_Win32_SupportedOS_Windows7_
 HRESULT
 WINAPI
 WbioQuerySensorInterface(
@@ -1841,7 +1839,6 @@ typedef struct _WINBIO_ENGINE_INTERFACE {
 // Interface-retrieval function exported by the Engine Adapter
 // plug-in DLL. It *MUST* be called 'WbioQueryEngineInterface'.
 //
-_Win32_SupportedOS_Windows7_
 HRESULT
 WINAPI
 WbioQueryEngineInterface(
@@ -3362,7 +3359,6 @@ typedef struct _WINBIO_STORAGE_INTERFACE {
 // Interface-retrieval function exported by the Storage Adapter
 // plug-in DLL. It *MUST* be called 'WbioQueryStorageInterface'.
 //
-_Win32_SupportedOS_Windows7_
 HRESULT
 WINAPI
 WbioQueryStorageInterface(

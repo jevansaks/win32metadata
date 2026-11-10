@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * namedpipeapi.h - ApiSet Contract for api-ms-win-core-namedpipe-l1-1-0         *
@@ -13,7 +12,6 @@
 
 #ifndef _NAMEDPIPE_H_
 #define _NAMEDPIPE_H_
-#include <sal.h>
 
 #include <apiset.h>
 #include <apisetcconv.h>
@@ -26,8 +24,6 @@ extern "C" {
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 WINBASEAPI
 BOOL
 WINAPI
@@ -38,8 +34,6 @@ CreatePipe(
     _In_ DWORD nSize
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 WINBASEAPI
 BOOL
 WINAPI
@@ -48,8 +42,6 @@ ConnectNamedPipe(
     _Inout_opt_ LPOVERLAPPED lpOverlapped
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 WINBASEAPI
 BOOL
 WINAPI
@@ -57,20 +49,16 @@ DisconnectNamedPipe(
     _In_ HANDLE hNamedPipe
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 WINBASEAPI
 BOOL
 WINAPI
 SetNamedPipeHandleState(
     _In_ HANDLE hNamedPipe,
-    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _In_opt_ LPDWORD lpMode,
+    _In_opt_ LPDWORD lpMode,
     _In_opt_ LPDWORD lpMaxCollectionCount,
     _In_opt_ LPDWORD lpCollectDataTimeout
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 WINBASEAPI
 BOOL
 WINAPI
@@ -87,8 +75,6 @@ PeekNamedPipe(
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 WINBASEAPI
 BOOL
 WINAPI
@@ -111,8 +97,8 @@ HANDLE
 WINAPI
 CreateNamedPipeW(
     _In_ LPCWSTR lpName,
-    _Win32_AssociatedEnum_(FILE_FLAGS_AND_ATTRIBUTES) _In_ DWORD dwOpenMode,
-    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _In_ DWORD dwPipeMode,
+    _In_ DWORD dwOpenMode,
+    _In_ DWORD dwPipeMode,
     _In_ DWORD nMaxInstances,
     _In_ DWORD nOutBufferSize,
     _In_ DWORD nInBufferSize,
@@ -157,8 +143,6 @@ GetNamedPipeClientComputerNameW(
 #define GetNamedPipeClientComputerName  GetNamedPipeClientComputerNameW
 #endif
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 _Must_inspect_result_
 BOOL
@@ -172,14 +156,12 @@ ImpersonateNamedPipeClient(
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 WINBASEAPI
 BOOL
 WINAPI
 GetNamedPipeInfo(
     _In_ HANDLE hNamedPipe,
-    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _Out_opt_ LPDWORD lpFlags,
+    _Out_opt_ LPDWORD lpFlags,
     _Out_opt_ LPDWORD lpOutBufferSize,
     _Out_opt_ LPDWORD lpInBufferSize,
     _Out_opt_ LPDWORD lpMaxInstances
@@ -190,7 +172,7 @@ BOOL
 WINAPI
 GetNamedPipeHandleStateW(
     _In_ HANDLE hNamedPipe,
-    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _Out_opt_ LPDWORD lpState,
+    _Out_opt_ LPDWORD lpState,
     _Out_opt_ LPDWORD lpCurInstances,
     _Out_opt_ LPDWORD lpMaxCollectionCount,
     _Out_opt_ LPDWORD lpCollectDataTimeout,

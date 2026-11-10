@@ -49,5 +49,3 @@ Windows.Win32.Media.DirectShow
 _DVD_REGION
 --std
 c++20
---traverse
-<IncludeRoot>/um/dshow.h

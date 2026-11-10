@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -28,9 +27,6 @@
 #define REC_E_INEEDTODOTHEUPDATES      MAKE_HRESULT(SEVERITY_ERROR,   FACILITY_ITF, 0x1004)
 
 #define IID_INotifyReplica __uuidof(INotifyReplica)
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct INotifyReplica INotifyReplica;
-#endif
 DECLARE_INTERFACE_IID_(INotifyReplica, IUnknown, "99180163-DA16-101A-935C-444553540000")
 {
    // IUnknown
@@ -51,9 +47,6 @@ DECLARE_INTERFACE_IID_(INotifyReplica, IUnknown, "99180163-DA16-101A-935C-444553
 };
 
 #define IID_IReconcileInitiator __uuidof(IReconcileInitiator)
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct IReconcileInitiator IReconcileInitiator;
-#endif
 DECLARE_INTERFACE_IID_(IReconcileInitiator, IUnknown, "99180161-DA16-101A-935C-444553540000")
 {
    // IUnknown
@@ -123,9 +116,6 @@ typedef enum _reconcilef
 RECONCILEF;
 
 #define IID_IReconcilableObject __uuidof(IReconcilableObject)
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus)
-typedef _Win32_SupportedOS_WindowsXP_ struct IReconcilableObject IReconcilableObject;
-#endif
 DECLARE_INTERFACE_IID_(IReconcilableObject, IUnknown, "99180162-DA16-101A-935C-444553540000")
 {
    // IUnknown

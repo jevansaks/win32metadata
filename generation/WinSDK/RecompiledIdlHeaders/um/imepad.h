@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /******************************************************************************
 *                                                                             *
 * imepad.h - - Interface for the Windows IMEPAD, IMEPADAPPLET                 *
@@ -17,7 +16,6 @@
 #include <objbase.h>
 
 #include <winapifamily.h>
-#include <sal.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -499,29 +497,6 @@ typedef struct tagIMEAPPLETUI {
 //----------------------------------------------------------------
 #define IMEPADREQ_GETCURRENTIMEINFO             (IMEPADREQ_FIRST + 32)
 
-#if defined(WIN32METADATA) && !defined(MIDL_PASS)
-_Win32_Enum_(IME_PAD_REQUEST_FLAGS, unsigned int,
-    IMEPADREQ_INSERTSTRING,
-    IMEPADREQ_SENDCONTROL,
-    IMEPADREQ_SETAPPLETSIZE,
-    IMEPADREQ_GETCOMPOSITIONSTRING,
-    IMEPADREQ_GETCOMPOSITIONSTRINGINFO,
-    IMEPADREQ_DELETESTRING,
-    IMEPADREQ_CHANGESTRING,
-    IMEPADREQ_GETAPPLHWND,
-    IMEPADREQ_FORCEIMEPADWINDOWSHOW,
-    IMEPADREQ_POSTMODALNOTIFY,
-    IMEPADREQ_GETDEFAULTUILANGID,
-    IMEPADREQ_GETAPPLETUISTYLE,
-    IMEPADREQ_SETAPPLETUISTYLE,
-    IMEPADREQ_ISAPPLETACTIVE,
-    IMEPADREQ_ISIMEPADWINDOWVISIBLE,
-    IMEPADREQ_SETAPPLETMINMAXSIZE,
-    IMEPADREQ_GETCONVERSIONSTATUS,
-    IMEPADREQ_GETVERSION,
-    IMEPADREQ_GETCURRENTIMEINFO);
-#endif
-
 
 //===== IMEPADREQ_SENDCONTROL reques parameter ======================
 #define IMEPADCTRL_CONVERTALL           1
@@ -649,7 +624,7 @@ DECLARE_INTERFACE_(IImePad, IUnknown)
     /*** IImePad methods ***/
     STDMETHOD(Request)(THIS_
                        IImePadApplet *pIImePadApplet,
-                       _Win32_AssociatedEnum_(IME_PAD_REQUEST_FLAGS) INT reqId,
+                       INT reqId,
                        WPARAM wParam,
                        LPARAM lParam) PURE;
 };

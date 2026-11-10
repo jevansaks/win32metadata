@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //  Copyright (C) 1995-1999 Microsoft Corporation.  All rights reserved.
 
 #ifndef __MTXDM_H__
@@ -23,7 +22,6 @@ extern "C"{
 // GetDispenserManager
 // A Dispenser calls this API to get a reference to DispenserManager.
 //
-_Win32_SupportedOS_Windows2000_
 __declspec(dllimport) HRESULT __cdecl GetDispenserManager(IDispenserManager**);
 
 

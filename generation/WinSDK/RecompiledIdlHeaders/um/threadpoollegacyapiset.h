@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * threadpoolapi.h -- ApiSet Contract for api-ms-win-core-threadpool-l1          *
@@ -13,7 +12,6 @@
 
 #ifndef _THREADPOOLLEGACYAPISET_H_
 #define _THREADPOOLLEGACYAPISET_H_
-#include <sal.h>
 
 #include <apiset.h>
 #include <apisetcconv.h>
@@ -31,19 +29,15 @@ extern "C" {
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
 QueueUserWorkItem(
     _In_ LPTHREAD_START_ROUTINE Function,
     _In_opt_ PVOID Context,
-    _Win32_AssociatedEnum_(WORKER_THREAD_FLAGS) _In_ ULONG Flags
+    _In_ ULONG Flags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Must_inspect_result_
 BOOL
@@ -59,8 +53,6 @@ UnregisterWaitEx(
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Ret_maybenull_
 HANDLE
@@ -69,8 +61,6 @@ CreateTimerQueue(
     VOID
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 BOOL
 WINAPI
@@ -81,11 +71,9 @@ CreateTimerQueueTimer(
     _In_opt_ PVOID Parameter,
     _In_ DWORD DueTime,
     _In_ DWORD Period,
-    _Win32_AssociatedEnum_(WORKER_THREAD_FLAGS) _In_ ULONG Flags
+    _In_ ULONG Flags
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Must_inspect_result_
 BOOL
@@ -97,8 +85,6 @@ ChangeTimerQueueTimer(
     _In_ ULONG Period
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Must_inspect_result_
 BOOL
@@ -109,8 +95,6 @@ DeleteTimerQueueTimer(
     _In_opt_ HANDLE CompletionEvent
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Must_inspect_result_
 BOOL
@@ -119,8 +103,6 @@ DeleteTimerQueue(
     _In_ HANDLE TimerQueue
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 WINBASEAPI
 _Must_inspect_result_
 BOOL

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0011    // Increment this if a change has global effects
 
 Copyright (c) 2004  Microsoft Corporation
@@ -141,17 +140,11 @@ typedef ULONG
 #define AVRF_ENUM_RESOURCES_FLAGS_SUSPEND             0x00000001
 #define AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES 0x00000002
 
-
-_Win32_FlagsEnum_(VERIFIER_ENUM_RESOURCE_FLAGS, ULONG,
-    AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES,
-    AVRF_ENUM_RESOURCES_FLAGS_SUSPEND);
-
-_Win32_ImportLibrary_("verifier.dll")
 ULONG NTAPI
 VerifierEnumerateResource(
     HANDLE Process,
-    _Win32_AssociatedEnum_(VERIFIER_ENUM_RESOURCE_FLAGS) ULONG  Flags,
-    _Win32_AssociatedEnum_(enum eAvrfResourceTypes) ULONG  ResourceType,
+    ULONG  Flags,    
+    ULONG  ResourceType,
     AVRF_RESOURCE_ENUMERATE_CALLBACK ResourceCallback,
     PVOID  EnumerationContext
     );
@@ -160,7 +153,6 @@ VerifierEnumerateResource(
 // API to find out if per user verifier settings are enabled
 //
 
-_Win32_SupportedOS_WindowsVista_
 BOOL NTAPI
 VerifierIsPerUserSettingsEnabled(
     VOID

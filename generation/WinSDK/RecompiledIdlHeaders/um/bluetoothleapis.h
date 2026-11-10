@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2010      Microsoft Corporation
@@ -77,7 +76,6 @@ extern "C"{
 //          The operation ran out of memory.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTGetServices(
     _In_ HANDLE hDevice,
@@ -144,7 +142,6 @@ BluetoothGATTGetServices(
 //          parent service hierarchy do not roll up to the service handle that is provided.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTGetIncludedServices(
     _In_ HANDLE hDevice,
@@ -202,7 +199,6 @@ BluetoothGATTGetIncludedServices(
 //          The operation ran out of memory.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTGetCharacteristics(
     _In_ HANDLE hDevice,
@@ -258,7 +254,6 @@ BluetoothGATTGetCharacteristics(
 //          The operation ran out of memory.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTGetDescriptors(
     _In_ HANDLE hDevice,
@@ -332,7 +327,6 @@ BluetoothGATTGetDescriptors(
 //          Consult the Bluetooth specification for more information.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTGetCharacteristicValue(
     _In_ HANDLE hDevice,
@@ -403,7 +397,6 @@ BluetoothGATTGetCharacteristicValue(
 //          Consult the Bluetooth specification for more information.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTGetDescriptorValue(
     _In_ HANDLE hDevice,
@@ -436,7 +429,6 @@ BluetoothGATTGetDescriptorValue(
 //          A reliable write operation is already presently underway.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTBeginReliableWrite(
     _In_ HANDLE hDevice,
@@ -495,7 +487,6 @@ BluetoothGATTBeginReliableWrite(
 //          Consult the Bluetooth specification for more information.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTSetCharacteristicValue(
     _In_ HANDLE hDevice,
@@ -542,7 +533,6 @@ BluetoothGATTSetCharacteristicValue(
 //          Consult the Bluetooth specification for more information.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTEndReliableWrite(
     _In_ HANDLE hDevice,
@@ -588,7 +578,6 @@ BluetoothGATTEndReliableWrite(
 //          Consult the Bluetooth specification for more information.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTAbortReliableWrite(
     _In_ HANDLE hDevice,
@@ -640,7 +629,6 @@ BluetoothGATTAbortReliableWrite(
 //          Consult the Bluetooth specification for more information.
 //
 _Success_(S_OK == return)
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTSetDescriptorValue(
     _In_ HANDLE hDevice,
@@ -689,7 +677,6 @@ BluetoothGATTSetDescriptorValue(
 //      ERROR_INVALID_PARAMETER
 //          One of the parameters were invalid.
 //
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTRegisterEvent(
     _In_ HANDLE hService,
@@ -719,7 +706,6 @@ BluetoothGATTRegisterEvent(
 //      ERROR_INVALID_PARAMETER
 //          One of the parameters were invalid.
 //
-_Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 BluetoothGATTUnregisterEvent(
     _In_ BLUETOOTH_GATT_EVENT_HANDLE EventHandle,

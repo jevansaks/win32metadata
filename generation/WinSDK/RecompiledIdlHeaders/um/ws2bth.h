@@ -53,13 +53,6 @@ Notes:
 #define NS_BTH  16
 #endif
 
-#ifdef WIN32METADATA
-#pragma push_macro("AF_BTH")
-#undef AF_BTH
-const USHORT AF_BTH = 32;
-#pragma pop_macro("AF_BTH")
-#endif
-
 typedef struct _SOCKADDR_BTH
 {
     USHORT      addressFamily;  // Always AF_BTH

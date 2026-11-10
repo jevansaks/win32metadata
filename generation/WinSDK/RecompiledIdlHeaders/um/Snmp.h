@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (C) 1992-1999 Microsoft Corporation
@@ -19,7 +18,6 @@ Abstract:
 #if _MSC_VER > 1000
 #pragma once
 #endif
-#include <sal.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -136,8 +134,6 @@ typedef struct {
 #define SNMP_PDU_INFORM             (ASN_CONTEXT | ASN_CONSTRUCTOR | 0x6)
 #define SNMP_PDU_TRAP               (ASN_CONTEXT | ASN_CONSTRUCTOR | 0x7)
 
-_Win32_Enum_(SNMP_PDU_TYPE, ULONG, SNMP_PDU_GET, SNMP_PDU_GETNEXT, SNMP_PDU_RESPONSE, SNMP_PDU_SET, SNMP_PDU_GETBULK, SNMP_PDU_TRAP);
-
 #endif // _INC_WINSNMP
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -201,10 +197,6 @@ _Win32_Enum_(SNMP_PDU_TYPE, ULONG, SNMP_PDU_GET, SNMP_PDU_GETNEXT, SNMP_PDU_RESP
 #define SNMP_EXTENSION_SET_UNDO     (ASN_PRIVATE | ASN_CONSTRUCTOR | 0x1)
 #define SNMP_EXTENSION_SET_CLEANUP  (ASN_PRIVATE | ASN_CONSTRUCTOR | 0x2)
 
-_Win32_Enum_(SNMP_EXTENSION_REQUEST_TYPE, DWORD,
-    SNMP_EXTENSION_GET, SNMP_EXTENSION_GET_NEXT, SNMP_EXTENSION_SET_TEST,
-    SNMP_EXTENSION_SET_COMMIT, SNMP_EXTENSION_SET_UNDO, SNMP_EXTENSION_SET_CLEANUP);
-
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
 // SNMP Error Codes                                                          //
@@ -231,16 +223,6 @@ _Win32_Enum_(SNMP_EXTENSION_REQUEST_TYPE, DWORD,
 #define SNMP_ERRORSTATUS_NOTWRITABLE            17
 #define SNMP_ERRORSTATUS_INCONSISTENTNAME       18
 
-_Win32_Enum_(SNMP_ERROR_STATUS, DWORD,
-    SNMP_ERRORSTATUS_NOERROR, SNMP_ERRORSTATUS_TOOBIG, SNMP_ERRORSTATUS_NOSUCHNAME,
-    SNMP_ERRORSTATUS_BADVALUE, SNMP_ERRORSTATUS_READONLY, SNMP_ERRORSTATUS_GENERR,
-    SNMP_ERRORSTATUS_NOACCESS, SNMP_ERRORSTATUS_WRONGTYPE, SNMP_ERRORSTATUS_WRONGLENGTH,
-    SNMP_ERRORSTATUS_WRONGENCODING, SNMP_ERRORSTATUS_WRONGVALUE, SNMP_ERRORSTATUS_NOCREATION,
-    SNMP_ERRORSTATUS_INCONSISTENTVALUE, SNMP_ERRORSTATUS_RESOURCEUNAVAILABLE,
-    SNMP_ERRORSTATUS_COMMITFAILED, SNMP_ERRORSTATUS_UNDOFAILED,
-    SNMP_ERRORSTATUS_AUTHORIZATIONERROR, SNMP_ERRORSTATUS_NOTWRITABLE,
-    SNMP_ERRORSTATUS_INCONSISTENTNAME);
-
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
 // SNMPv1 Trap Types                                                         //
@@ -254,11 +236,6 @@ _Win32_Enum_(SNMP_ERROR_STATUS, DWORD,
 #define SNMP_GENERICTRAP_AUTHFAILURE            4
 #define SNMP_GENERICTRAP_EGPNEIGHLOSS           5
 #define SNMP_GENERICTRAP_ENTERSPECIFIC          6
-
-_Win32_Enum_(SNMP_GENERICTRAP, DWORD,
-    SNMP_GENERICTRAP_COLDSTART, SNMP_GENERICTRAP_WARMSTART, SNMP_GENERICTRAP_LINKDOWN,
-    SNMP_GENERICTRAP_LINKUP, SNMP_GENERICTRAP_AUTHFAILURE, SNMP_GENERICTRAP_EGPNEIGHLOSS,
-    SNMP_GENERICTRAP_ENTERSPECIFIC);
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
@@ -290,7 +267,6 @@ _Win32_Enum_(SNMP_GENERICTRAP, DWORD,
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 SNMP_FUNC_TYPE
 SnmpExtensionInit(
@@ -299,54 +275,48 @@ SnmpExtensionInit(
     AsnObjectIdentifier * pFirstSupportedRegion
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 SNMP_FUNC_TYPE
 SnmpExtensionInitEx(
     AsnObjectIdentifier * pNextSupportedRegion
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 SNMP_FUNC_TYPE
 SnmpExtensionMonitor(
     LPVOID            pAgentMgmtData
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 SNMP_FUNC_TYPE
 SnmpExtensionQuery(
     BYTE              bPduType,
     SnmpVarBindList * pVarBindList,
-    _Win32_AssociatedEnum_(SNMP_ERROR_STATUS) AsnInteger32 *    pErrorStatus,
+    AsnInteger32 *    pErrorStatus,
     AsnInteger32 *    pErrorIndex
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 SNMP_FUNC_TYPE
 SnmpExtensionQueryEx(
-    _Win32_AssociatedEnum_(SNMP_EXTENSION_REQUEST_TYPE) UINT              nRequestType,
+    UINT              nRequestType,
     UINT              nTransactionId,
     SnmpVarBindList * pVarBindList,
     AsnOctetString *  pContextInfo,
-    _Win32_AssociatedEnum_(SNMP_ERROR_STATUS) AsnInteger32 *    pErrorStatus,
+    AsnInteger32 *    pErrorStatus,
     AsnInteger32 *    pErrorIndex
     );
 
-_Win32_SupportedOS_Windows2000_
 BOOL
 SNMP_FUNC_TYPE
 SnmpExtensionTrap(
     AsnObjectIdentifier * pEnterpriseOid,
-    _Win32_AssociatedEnum_(SNMP_GENERICTRAP) AsnInteger32 *        pGenericTrapId,
+    AsnInteger32 *        pGenericTrapId,
     AsnInteger32 *        pSpecificTrapId,
     AsnTimeticks *        pTimeStamp,
     SnmpVarBindList *     pVarBindList
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpExtensionClose(
@@ -405,7 +375,6 @@ typedef VOID (SNMP_FUNC_TYPE * PFNSNMPEXTENSIONCLOSE)(
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
 
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilOidCpy(
@@ -413,8 +382,6 @@ SnmpUtilOidCpy(
     AsnObjectIdentifier * pOidSrc
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilOidAppend(
@@ -422,7 +389,6 @@ SnmpUtilOidAppend(
     AsnObjectIdentifier * pOidSrc
     );
 
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilOidNCmp(
@@ -431,7 +397,6 @@ SnmpUtilOidNCmp(
     UINT                  nSubIds
     );
 
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilOidCmp(
@@ -439,14 +404,12 @@ SnmpUtilOidCmp(
     AsnObjectIdentifier * pOid2
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilOidFree(
     AsnObjectIdentifier * pOid
     );
 
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilOctetsCmp(
@@ -454,7 +417,6 @@ SnmpUtilOctetsCmp(
     AsnOctetString * pOctets2
     );
 
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilOctetsNCmp(
@@ -463,7 +425,6 @@ SnmpUtilOctetsNCmp(
     UINT             nChars
     );
 
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilOctetsCpy(
@@ -471,14 +432,12 @@ SnmpUtilOctetsCpy(
     AsnOctetString * pOctetsSrc
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilOctetsFree(
     AsnOctetString * pOctets
     );
 
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilAsnAnyCpy(
@@ -486,14 +445,12 @@ SnmpUtilAsnAnyCpy(
     AsnAny * pAnySrc
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilAsnAnyFree(
     AsnAny * pAny
     );
 
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilVarBindCpy(
@@ -501,14 +458,12 @@ SnmpUtilVarBindCpy(
     SnmpVarBind * pVbSrc
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilVarBindFree(
     SnmpVarBind * pVb
     );
 
-_Win32_SupportedOS_Windows2000_
 SNMPAPI
 SNMP_FUNC_TYPE
 SnmpUtilVarBindListCpy(
@@ -516,28 +471,24 @@ SnmpUtilVarBindListCpy(
     SnmpVarBindList * pVblSrc
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilVarBindListFree(
     SnmpVarBindList * pVbl
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilMemFree(
     LPVOID pMem
     );
 
-_Win32_SupportedOS_Windows2000_
 LPVOID
 SNMP_FUNC_TYPE
 SnmpUtilMemAlloc(
     UINT nBytes
     );
 
-_Win32_SupportedOS_Windows2000_
 LPVOID
 SNMP_FUNC_TYPE
 SnmpUtilMemReAlloc(
@@ -545,14 +496,12 @@ SnmpUtilMemReAlloc(
     UINT   nBytes
     );
 
-_Win32_SupportedOS_Windows2000_
 LPSTR
 SNMP_FUNC_TYPE
 SnmpUtilOidToA(
     IN AsnObjectIdentifier *Oid
     );
 
-_Win32_SupportedOS_Windows2000_
 LPSTR
 SNMP_FUNC_TYPE
 SnmpUtilIdsToA(
@@ -560,43 +509,33 @@ SnmpUtilIdsToA(
     IN UINT IdLength
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilPrintOid(
     IN AsnObjectIdentifier *Oid
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilPrintAsnAny(
     AsnAny * pAny
     );
 
-_Win32_SupportedOS_Windows2000_
 DWORD
 SNMP_FUNC_TYPE
 SnmpSvcGetUptime(
     );
 
-#if defined(WIN32METADATA) && defined(__clang__)
-typedef int SNMP_LOG;
-typedef DWORD SNMP_OUTPUT_LOG_TYPE;
-#endif
-
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpSvcSetLogLevel(
-    _Win32_AssociatedEnum_(SNMP_LOG) INT nLogLevel
+    INT nLogLevel
     );
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpSvcSetLogType(
-    _Win32_AssociatedEnum_(SNMP_OUTPUT_LOG_TYPE) INT nLogType
+    INT nLogType
     );
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -612,17 +551,10 @@ SnmpSvcSetLogType(
 #define SNMP_LOG_TRACE                  0x4
 #define SNMP_LOG_VERBOSE                0x5
 
-_Win32_Enum_(SNMP_LOG, int,
-    SNMP_LOG_SILENT, SNMP_LOG_FATAL, SNMP_LOG_ERROR,
-    SNMP_LOG_WARNING, SNMP_LOG_TRACE, SNMP_LOG_VERBOSE);
-
 #define SNMP_OUTPUT_TO_CONSOLE          0x1
 #define SNMP_OUTPUT_TO_LOGFILE          0x2
 #define SNMP_OUTPUT_TO_EVENTLOG         0x4  // no longer supported
 #define SNMP_OUTPUT_TO_DEBUGGER         0x8
-
-_Win32_Enum_(SNMP_OUTPUT_LOG_TYPE, DWORD,
-    SNMP_OUTPUT_TO_CONSOLE, SNMP_OUTPUT_TO_LOGFILE, SNMP_OUTPUT_TO_DEBUGGER);
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
@@ -630,11 +562,10 @@ _Win32_Enum_(SNMP_OUTPUT_LOG_TYPE, DWORD,
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
 
-_Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilDbgPrint(
-    IN _Win32_AssociatedEnum_(SNMP_LOG) INT nLogLevel,   // see log levels above...
+    IN INT nLogLevel,   // see log levels above...
     _In_ _Printf_format_string_ LPSTR szFormat,
     IN ...
     );

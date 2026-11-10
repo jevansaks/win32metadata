@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /**************************************************************************\
 *
 * Copyright (c) 1998-2001, Microsoft Corp.  All Rights Reserved.
@@ -139,11 +138,7 @@ _Return_type_success_(return == 0) enum Status
 // Represents a dimension in a 2D coordinate system (floating-point coordinates)
 //--------------------------------------------------------------------------
 
-class
-#if defined(WIN32METADATA) && defined(__clang__)
-_Win32_SupportedOS_Windows7_
-#endif
-SizeF
+class SizeF
 {
 public:
     SizeF()
@@ -357,11 +352,7 @@ public:
 // Represents a rectangle in a 2D coordinate system (floating-point coordinates)
 //--------------------------------------------------------------------------
 
-class
-#if defined(WIN32METADATA) && defined(__clang__)
-_Win32_SupportedOS_Windows7_
-#endif
-RectF
+class RectF
 {
 public:
 

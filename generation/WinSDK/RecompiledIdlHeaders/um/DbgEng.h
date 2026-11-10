@@ -10,7 +10,6 @@
 #define __DBGENG_H__
 
 #include <winapifamily.h>
-#include <sal.h>
 
 #pragma region Desktop Family or WER Package
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WER)

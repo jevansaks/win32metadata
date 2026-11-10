@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 ﻿//+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -385,10 +384,6 @@ typedef struct _SecPkgContext_CertificateValidationResult
 
 struct _HMAPPER;
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef DWORD SCHANNEL_CRED_FLAGS;
-#endif
-
 typedef struct _SCHANNEL_CRED
 {
     DWORD           dwVersion;      // always SCHANNEL_CRED_VERSION
@@ -406,7 +401,7 @@ typedef struct _SCHANNEL_CRED
     DWORD           dwMinimumCipherStrength;
     DWORD           dwMaximumCipherStrength;
     DWORD           dwSessionLifespan;
-    _Win32_AssociatedEnum_(SCHANNEL_CRED_FLAGS) DWORD           dwFlags;
+    DWORD           dwFlags;
     DWORD           dwCredFormat;
 } SCHANNEL_CRED, *PSCHANNEL_CRED;
 
@@ -682,19 +677,6 @@ typedef struct _SCHANNEL_CERT_HASH_STORE
 #define SCH_ALLOW_NULL_ENCRYPTION                    0x02000000
 #define SCH_CRED_DEFERRED_CRED_VALIDATION            0x04000000
 
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-// SCH_DISABLE_RECONNECTS is the existing metadata label for the native flag.
-typedef _WIN32META_ANNOTATION_("FlagsEnum(SCH_CRED_AUTO_CRED_VALIDATION, SCH_CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE, SCH_DISABLE_RECONNECTS, SCH_CRED_IGNORE_NO_REVOCATION_CHECK, SCH_CRED_IGNORE_REVOCATION_OFFLINE, SCH_CRED_MANUAL_CRED_VALIDATION, SCH_CRED_NO_DEFAULT_CREDS, SCH_CRED_NO_SERVERNAME_CHECK, SCH_CRED_NO_SYSTEM_MAPPER, SCH_CRED_REVOCATION_CHECK_CHAIN, SCH_CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT, SCH_CRED_REVOCATION_CHECK_END_CERT, SCH_CRED_USE_DEFAULT_CREDS, SCH_SEND_AUX_RECORD, SCH_SEND_ROOT_CERT, SCH_USE_STRONG_CRYPTO, SCH_USE_PRESHAREDKEY_ONLY)",
-    SCH_CRED_AUTO_CRED_VALIDATION, SCH_CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE,
-    SCH_CRED_DISABLE_RECONNECTS, SCH_CRED_IGNORE_NO_REVOCATION_CHECK,
-    SCH_CRED_IGNORE_REVOCATION_OFFLINE, SCH_CRED_MANUAL_CRED_VALIDATION,
-    SCH_CRED_NO_DEFAULT_CREDS, SCH_CRED_NO_SERVERNAME_CHECK, SCH_CRED_NO_SYSTEM_MAPPER,
-    SCH_CRED_REVOCATION_CHECK_CHAIN, SCH_CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT,
-    SCH_CRED_REVOCATION_CHECK_END_CERT, SCH_CRED_USE_DEFAULT_CREDS, SCH_SEND_AUX_RECORD,
-    SCH_SEND_ROOT_CERT, SCH_USE_STRONG_CRYPTO, SCH_USE_PRESHAREDKEY_ONLY)
-    DWORD SCHANNEL_CRED_FLAGS;
-#endif
-
 //
 //
 // ApplyControlToken PkgParams types
@@ -710,26 +692,16 @@ typedef _WIN32META_ANNOTATION_("FlagsEnum(SCH_CRED_AUTO_CRED_VALIDATION, SCH_CRE
 
 
 // Alert token structure.
-#if defined(WIN32METADATA) && defined(__clang__) && !defined(MIDL_PASS)
-typedef DWORD SCHANNEL_ALERT_TOKEN_ALERT_TYPE;
-#endif
-
 typedef struct _SCHANNEL_ALERT_TOKEN
 {
     DWORD   dwTokenType;            // SCHANNEL_ALERT
-    _Win32_AssociatedEnum_(SCHANNEL_ALERT_TOKEN_ALERT_TYPE) DWORD   dwAlertType;
+    DWORD   dwAlertType;
     DWORD   dwAlertNumber;
 } SCHANNEL_ALERT_TOKEN;
 
 // Alert types.
 #define TLS1_ALERT_WARNING              1
 #define TLS1_ALERT_FATAL                2
-
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-_Win32_Enum_(SCHANNEL_ALERT_TOKEN_ALERT_TYPE, unsigned long,
-    TLS1_ALERT_WARNING,
-    TLS1_ALERT_FATAL);
-#endif
 
 // Alert messages.
 #define TLS1_ALERT_CLOSE_NOTIFY                 0       // warning
@@ -763,20 +735,10 @@ _Win32_Enum_(SCHANNEL_ALERT_TOKEN_ALERT_TYPE, unsigned long,
 #define SSL_SESSION_ENABLE_RECONNECTS   1
 #define SSL_SESSION_DISABLE_RECONNECTS  2
 
-#if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-#include <sal.h>
-_Win32_Enum_(SCHANNEL_SESSION_TOKEN_FLAGS, unsigned long,
-    SSL_SESSION_ENABLE_RECONNECTS,
-    SSL_SESSION_DISABLE_RECONNECTS);
-#endif
-
 // Session control token structure.
 typedef struct _SCHANNEL_SESSION_TOKEN
 {
     DWORD   dwTokenType;        // SCHANNEL_SESSION
-    #if defined(WIN32METADATA) && defined(__clang__) && defined(__cplusplus) && !defined(MIDL_PASS)
-    _Win32_AssociatedEnum_(SCHANNEL_SESSION_TOKEN_FLAGS)
-    #endif
     DWORD   dwFlags;
 } SCHANNEL_SESSION_TOKEN;
 
@@ -925,7 +887,6 @@ typedef BOOL
     LPSTR  pszTargetName,
     DWORD  dwFlags);
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 SslEmptyCacheA(_In_ LPSTR  pszTargetName,
@@ -936,7 +897,6 @@ typedef BOOL
     LPWSTR pszTargetName,
     DWORD  dwFlags);
 
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 SslEmptyCacheW(_In_ LPWSTR pszTargetName,
@@ -1064,7 +1024,6 @@ SslGenerateRandomBits(
 
 // Pre NT4.0 SP2 calls.  Call CAPI1 or CAPI2
 // to get the same functionality instead.
-_Win32_SupportedOS_WindowsXP_
 BOOL
 WINAPI
 SslCrackCertificate(
@@ -1076,7 +1035,6 @@ SslCrackCertificate(
 
 // Pre NT4.0 SP2 calls.  Call CAPI1 or CAPI2
 // to get the same functionality instead.
-_Win32_SupportedOS_WindowsXP_
 VOID
 WINAPI
 SslFreeCertificate(
@@ -1129,7 +1087,6 @@ typedef SECURITY_STATUS
 );
 
 EXTERN_C
-_Win32_SupportedOS_Windows8_
 SECURITY_STATUS
 WINAPI
 SslGetServerIdentity(

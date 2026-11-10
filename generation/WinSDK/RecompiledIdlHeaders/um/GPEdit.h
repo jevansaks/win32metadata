@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 //-----------------------------------------------------------------------------
 //
 // GPEDIT.H - Definitions and prototypes for Group Policy
@@ -196,8 +195,6 @@ extern "C" {
 #define GPO_SECTION_USER                 1  // User
 #define GPO_SECTION_MACHINE              2  // Machine
 
-_Win32_Enum_(GPO_SECTION, DWORD, GPO_SECTION_ROOT, GPO_SECTION_USER, GPO_SECTION_MACHINE);
-
 
 //
 // Group Policy Object types
@@ -231,9 +228,6 @@ typedef enum _GROUP_POLICY_HINT_TYPE {
 
 #undef INTERFACE
 #define INTERFACE   IGPEInformation
-#if defined(WIN32METADATA) && defined(__clang__)
-struct _Win32_SupportedOS_WindowsVista_ IGPEInformation;
-#endif
 DECLARE_INTERFACE_(IGPEInformation, IUnknown)
 {
     // *** IUnknown methods ***
@@ -378,8 +372,6 @@ typedef IGPEInformation *LPGPEINFORMATION;
 #define GPO_OPEN_LOAD_REGISTRY      0x00000001  // Load the registry files
 #define GPO_OPEN_READ_ONLY          0x00000002  // Open the GPO as read only
 
-_Win32_Enum_(GPO_OPEN_FLAGS, DWORD, GPO_OPEN_LOAD_REGISTRY, GPO_OPEN_READ_ONLY);
-
 
 
 //
@@ -389,14 +381,9 @@ _Win32_Enum_(GPO_OPEN_FLAGS, DWORD, GPO_OPEN_LOAD_REGISTRY, GPO_OPEN_READ_ONLY);
 #define GPO_OPTION_DISABLE_USER     0x00000001  // The user portion of this GPO is disabled
 #define GPO_OPTION_DISABLE_MACHINE  0x00000002  // The machine portion of this GPO is disabled
 
-_Win32_FlagsEnum_(GPO_OPTIONS, DWORD, GPO_OPTION_DISABLE_USER, GPO_OPTION_DISABLE_MACHINE);
-
 
 #undef INTERFACE
 #define INTERFACE   IGroupPolicyObject
-#if defined(WIN32METADATA) && defined(__clang__)
-struct _Win32_SupportedOS_WindowsVista_ IGroupPolicyObject;
-#endif
 DECLARE_INTERFACE_(IGroupPolicyObject, IUnknown)
 {
     // *** IUnknown methods ***
@@ -435,7 +422,7 @@ DECLARE_INTERFACE_(IGroupPolicyObject, IUnknown)
     // dwFlags is a bitmask of GPO open / creation flags listed above
     //
 
-    STDMETHOD(OpenDSGPO) (THIS_ _In_ LPOLESTR pszPath, _Win32_AssociatedEnum_(GPO_OPEN_FLAGS) DWORD dwFlags) PURE;
+    STDMETHOD(OpenDSGPO) (THIS_ _In_ LPOLESTR pszPath, DWORD dwFlags) PURE;
 
 
     //
@@ -446,7 +433,7 @@ DECLARE_INTERFACE_(IGroupPolicyObject, IUnknown)
     // dwFlags is a bitmask of GPO open / creation flags listed above
     //
 
-    STDMETHOD(OpenLocalMachineGPO) (THIS_ _Win32_AssociatedEnum_(GPO_OPEN_FLAGS) DWORD dwFlags) PURE;
+    STDMETHOD(OpenLocalMachineGPO) (THIS_ DWORD dwFlags) PURE;
 
 
     //
@@ -458,7 +445,7 @@ DECLARE_INTERFACE_(IGroupPolicyObject, IUnknown)
     // dwFlags is a bitmask of GPO open / creation flags listed above
     //
 
-    STDMETHOD(OpenRemoteMachineGPO) (THIS_ _In_ LPOLESTR pszComputerName, _Win32_AssociatedEnum_(GPO_OPEN_FLAGS) DWORD dwFlags) PURE;
+    STDMETHOD(OpenRemoteMachineGPO) (THIS_ _In_ LPOLESTR pszComputerName, DWORD dwFlags) PURE;
 
 
     //
@@ -571,7 +558,7 @@ DECLARE_INTERFACE_(IGroupPolicyObject, IUnknown)
     // hKey contains the registry key on return
     //
 
-    STDMETHOD(GetRegistryKey) (THIS_ _Win32_AssociatedEnum_(GPO_SECTION) DWORD dwSection, HKEY *hKey) PURE;
+    STDMETHOD(GetRegistryKey) (THIS_ DWORD dwSection, HKEY *hKey) PURE;
 
 
     //
@@ -580,7 +567,7 @@ DECLARE_INTERFACE_(IGroupPolicyObject, IUnknown)
     // dwOptions receives the GPO_OPTION_* flags
     //
 
-    STDMETHOD(GetOptions) (THIS_ _Win32_AssociatedEnum_(GPO_OPTIONS) DWORD *dwOptions) PURE;
+    STDMETHOD(GetOptions) (THIS_ DWORD *dwOptions) PURE;
 
 
     //
@@ -599,7 +586,7 @@ DECLARE_INTERFACE_(IGroupPolicyObject, IUnknown)
     // dwMask specificies which of the dwOptions to change
     //
 
-    STDMETHOD(SetOptions) (THIS_ _Win32_AssociatedEnum_(GPO_OPTIONS) DWORD dwOptions, DWORD dwMask) PURE;
+    STDMETHOD(SetOptions) (THIS_ DWORD dwOptions, DWORD dwMask) PURE;
 
 
     //
@@ -657,9 +644,6 @@ typedef IGroupPolicyObject *LPGROUPPOLICYOBJECT;
 
 #undef INTERFACE
 #define INTERFACE   IRSOPInformation
-#if defined(WIN32METADATA) && defined(__clang__)
-struct _Win32_SupportedOS_WindowsVista_ IRSOPInformation;
-#endif
 DECLARE_INTERFACE_(IRSOPInformation, IUnknown)
 {
     // *** IUnknown methods ***
@@ -722,7 +706,6 @@ typedef IRSOPInformation *LPRSOPINFORMATION;
 //
 //=============================================================================
 
-_Win32_SupportedOS_WindowsVista_
 GPEDITAPI
 HRESULT
 WINAPI
@@ -745,7 +728,6 @@ CreateGPOLink(
 //
 //=============================================================================
 
-_Win32_SupportedOS_WindowsVista_
 GPEDITAPI
 HRESULT
 WINAPI
@@ -766,7 +748,6 @@ DeleteGPOLink(
 //
 //=============================================================================
 
-_Win32_SupportedOS_WindowsVista_
 GPEDITAPI
 HRESULT
 WINAPI
@@ -815,7 +796,6 @@ typedef struct tag_GPOBROWSEINFO
 } GPOBROWSEINFO, *LPGPOBROWSEINFO;
 
 
-_Win32_SupportedOS_WindowsVista_
 GPEDITAPI
 HRESULT
 WINAPI
@@ -839,7 +819,6 @@ BrowseForGPO(
 //
 //=============================================================================
 
-_Win32_SupportedOS_WindowsVista_
 GPEDITAPI
 HRESULT
 WINAPI
@@ -865,7 +844,6 @@ ImportRSoPData(
 //
 //=============================================================================
 
-_Win32_SupportedOS_WindowsVista_
 GPEDITAPI
 HRESULT
 WINAPI

@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 #ifndef __GB18030_H
 #define __GB18030_H
 #include <winapifamily.h>
@@ -96,8 +95,6 @@
 //
 ////////////////////////////////////////////////////////////////////////////
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(DWORD) NlsDllCodePageTranslation(
     DWORD CodePage,
     DWORD dwFlags,

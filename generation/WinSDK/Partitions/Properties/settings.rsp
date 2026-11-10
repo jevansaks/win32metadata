@@ -3,4 +3,6 @@
 --namespace
 Windows.Win32.UI.Shell.PropertiesSystem
 --with-type
+PROPDESC_TYPE_FLAGS=uint
 --with-attribute
+PROPDESC_TYPE_FLAGS=Flags

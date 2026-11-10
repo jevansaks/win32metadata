@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*****************************************************************************\
 *                                                                             *
 * powrprof.h - - Interface for powrprof.dll, the power policy applicator      *
@@ -16,7 +15,6 @@
 #ifndef _POWRPROF_H_
 #define _POWRPROF_H_
 
-#include <sal.h>
 #include <powerbase.h>
 #include <powersetting.h>
 #include <winapifamily.h>
@@ -207,39 +205,29 @@ typedef PWRSCHEMESENUMPROC_V1 *PWRSCHEMESENUMPROC;
 
 // Public function prototypes
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 GetPwrDiskSpindownRange(
     _Out_ PUINT puiMax,
     _Out_ PUINT puiMin
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 EnumPwrSchemes(
     _In_ PWRSCHEMESENUMPROC lpfn,
     _In_ LPARAM lParam
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 ReadGlobalPwrPolicy(
     _In_ PGLOBAL_POWER_POLICY pGlobalPowerPolicy
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 ReadPwrScheme(
     _In_ UINT uiID,
     _Out_ PPOWER_POLICY pPowerPolicy
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 WritePwrScheme(
     _In_ PUINT puiID,
@@ -248,29 +236,21 @@ WritePwrScheme(
     _In_ PPOWER_POLICY lpScheme
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 WriteGlobalPwrPolicy(
         _In_ PGLOBAL_POWER_POLICY pGlobalPowerPolicy
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 DeletePwrScheme(
         _In_ UINT uiID
         );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 GetActivePwrScheme(
         _Out_ PUINT puiID
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 SetActivePwrScheme(
     _In_ UINT uiID,
@@ -278,19 +258,16 @@ SetActivePwrScheme(
     _In_opt_ PPOWER_POLICY pPowerPolicy
     );
 
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 IsPwrSuspendAllowed(
         VOID
         );
 
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 IsPwrHibernateAllowed(
         VOID
         );
 
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 IsPwrShutdownAllowed(
         VOID
@@ -301,8 +278,6 @@ IsAdminOverrideActive(
     _In_ PADMINISTRATOR_POWER_POLICY papp
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 SetSuspendState(
     _In_ BOOLEAN bHibernate,
@@ -310,16 +285,12 @@ SetSuspendState(
     _In_ BOOLEAN bWakeupEventsDisabled
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 GetCurrentPowerPolicies(
     _Out_ PGLOBAL_POWER_POLICY pGlobalPowerPolicy,
     _Out_ PPOWER_POLICY pPowerPolicy
     );
 
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 CanUserWritePwrScheme(
         VOID
@@ -329,8 +300,6 @@ CanUserWritePwrScheme(
 //
 // deprecated.
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 ReadProcessorPwrScheme(
     _In_ UINT uiID,
@@ -342,8 +311,6 @@ ReadProcessorPwrScheme(
 //
 // deprecated.
 //
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsXP_
 STDAPI_(BOOLEAN)
 WriteProcessorPwrScheme(
     _In_ UINT uiID,
@@ -423,7 +390,6 @@ typedef enum _POWER_DATA_ACCESSOR {
 //
 
 #define DEVICE_NOTIFY_CALLBACK 2
-_Win32_FlagsEnum_(REGISTER_NOTIFICATION_FLAGS, unsigned int, DEVICE_NOTIFY_CALLBACK);
 
 typedef
 ULONG
@@ -443,7 +409,6 @@ typedef struct _DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS {
 
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
-_Win32_SupportedOS_Windows7_
 STDAPI_(BOOLEAN)
 PowerIsSettingRangeDefined (
     _In_opt_ CONST GUID *SubKeyGuid OPTIONAL,
@@ -453,20 +418,16 @@ PowerIsSettingRangeDefined (
 
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_Windows7_
 STDAPI_(DWORD)
 PowerSettingAccessCheckEx (
     _In_ POWER_DATA_ACCESSOR AccessFlags,
     _In_opt_ CONST GUID *PowerGuid,
-    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM AccessType
+    _In_ REGSAM AccessType
     );
 #endif
 
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerSettingAccessCheck (
     _In_ POWER_DATA_ACCESSOR AccessFlags,
@@ -506,8 +467,6 @@ PowerSetUserConfiguredDCPowerMode(
 // Read functions.
 //
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadACValueIndex (
     _In_opt_ HKEY RootPowerKey,
@@ -519,7 +478,6 @@ PowerReadACValueIndex (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadDCValueIndex (
     _In_opt_ HKEY RootPowerKey,
@@ -531,8 +489,6 @@ PowerReadDCValueIndex (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadFriendlyName (
     _In_opt_ HKEY RootPowerKey,
@@ -545,8 +501,6 @@ PowerReadFriendlyName (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadDescription (
     _In_opt_ HKEY RootPowerKey,
@@ -559,8 +513,6 @@ PowerReadDescription (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadPossibleValue (
     _In_opt_ HKEY RootPowerKey,
@@ -574,8 +526,6 @@ PowerReadPossibleValue (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadPossibleFriendlyName (
     _In_opt_ HKEY RootPowerKey,
@@ -588,8 +538,6 @@ PowerReadPossibleFriendlyName (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadPossibleDescription (
     _In_opt_ HKEY RootPowerKey,
@@ -602,8 +550,6 @@ PowerReadPossibleDescription (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadValueMin (
     _In_opt_ HKEY RootPowerKey,
@@ -614,8 +560,6 @@ PowerReadValueMin (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadValueMax (
     _In_opt_ HKEY RootPowerKey,
@@ -626,8 +570,6 @@ PowerReadValueMax (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadValueIncrement (
     _In_opt_ HKEY RootPowerKey,
@@ -638,8 +580,6 @@ PowerReadValueIncrement (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadValueUnitsSpecifier (
     _In_opt_ HKEY RootPowerKey,
@@ -651,7 +591,6 @@ PowerReadValueUnitsSpecifier (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadACDefaultIndex (
     _In_opt_ HKEY RootPowerKey,
@@ -663,7 +602,6 @@ PowerReadACDefaultIndex (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadDCDefaultIndex (
     _In_opt_ HKEY RootPowerKey,
@@ -675,8 +613,6 @@ PowerReadDCDefaultIndex (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadIconResourceSpecifier (
     _In_opt_ HKEY RootPowerKey,
@@ -689,7 +625,6 @@ PowerReadIconResourceSpecifier (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReadSettingAttributes (
     _In_opt_ CONST GUID *SubGroupGuid,
@@ -701,8 +636,6 @@ PowerReadSettingAttributes (
 // Write functions.
 //
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteFriendlyName (
     _In_opt_ HKEY RootPowerKey,
@@ -715,8 +648,6 @@ PowerWriteFriendlyName (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteDescription (
     _In_opt_ HKEY RootPowerKey,
@@ -729,8 +660,6 @@ PowerWriteDescription (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWritePossibleValue (
     _In_opt_ HKEY RootPowerKey,
@@ -744,8 +673,6 @@ PowerWritePossibleValue (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWritePossibleFriendlyName (
     _In_opt_ HKEY RootPowerKey,
@@ -758,8 +685,6 @@ PowerWritePossibleFriendlyName (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWritePossibleDescription (
     _In_opt_ HKEY RootPowerKey,
@@ -772,8 +697,6 @@ PowerWritePossibleDescription (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteValueMin (
     _In_opt_ HKEY RootPowerKey,
@@ -784,8 +707,6 @@ PowerWriteValueMin (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteValueMax (
     _In_opt_ HKEY RootPowerKey,
@@ -796,8 +717,6 @@ PowerWriteValueMax (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteValueIncrement (
     _In_opt_ HKEY RootPowerKey,
@@ -808,8 +727,6 @@ PowerWriteValueIncrement (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteValueUnitsSpecifier (
     _In_opt_ HKEY RootPowerKey,
@@ -821,7 +738,6 @@ PowerWriteValueUnitsSpecifier (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteACDefaultIndex (
     _In_opt_ HKEY RootSystemPowerKey,
@@ -833,7 +749,6 @@ PowerWriteACDefaultIndex (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteDCDefaultIndex (
     _In_opt_ HKEY RootSystemPowerKey,
@@ -845,8 +760,6 @@ PowerWriteDCDefaultIndex (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteIconResourceSpecifier (
     _In_opt_ HKEY RootPowerKey,
@@ -859,8 +772,6 @@ PowerWriteIconResourceSpecifier (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerWriteSettingAttributes (
     _In_opt_ CONST GUID *SubGroupGuid,
@@ -870,8 +781,6 @@ PowerWriteSettingAttributes (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerDuplicateScheme (
     _In_opt_ HKEY RootPowerKey,
@@ -881,8 +790,6 @@ PowerDuplicateScheme (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerImportPowerScheme (
     _In_opt_ HKEY RootPowerKey,
@@ -892,8 +799,6 @@ PowerImportPowerScheme (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerDeleteScheme (
     _In_opt_ HKEY RootPowerKey,
@@ -902,8 +807,6 @@ PowerDeleteScheme (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerRemovePowerSetting (
    _In_ CONST GUID *PowerSettingSubKeyGuid,
@@ -912,8 +815,6 @@ PowerRemovePowerSetting (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerCreateSetting (
     _In_opt_ HKEY RootSystemPowerKey,
@@ -923,8 +824,6 @@ PowerCreateSetting (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerCreatePossibleSetting (
     _In_opt_ HKEY RootSystemPowerKey,
@@ -938,8 +837,6 @@ PowerCreatePossibleSetting (
 // Enumerate Functions.
 //
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerEnumerate (
     _In_opt_ HKEY RootPowerKey,
@@ -971,8 +868,6 @@ PowerOpenSystemPowerKey (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerCanRestoreIndividualDefaultPowerScheme (
     _In_ CONST GUID *SchemeGuid
@@ -980,8 +875,6 @@ PowerCanRestoreIndividualDefaultPowerScheme (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerRestoreIndividualDefaultPowerScheme (
     _In_ CONST GUID *SchemeGuid
@@ -989,8 +882,6 @@ PowerRestoreIndividualDefaultPowerScheme (
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerRestoreDefaultPowerSchemes(
     VOID
@@ -998,7 +889,6 @@ PowerRestoreDefaultPowerSchemes(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 PowerReplaceDefaultPowerSchemes(
     VOID
@@ -1006,7 +896,6 @@ PowerReplaceDefaultPowerSchemes(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(POWER_PLATFORM_ROLE)
 PowerDeterminePlatformRole(
     VOID
@@ -1153,25 +1042,10 @@ PowerDeterminePlatformRole(
 #define PDCAP_S4_SUPPORTED              0x01000000
 #define PDCAP_S5_SUPPORTED              0x02000000
 
-#ifdef WIN32METADATA
-_Win32_FlagsEnum_(DEVICE_POWER_CAPABILITIES, unsigned long,
-    PDCAP_S0_SUPPORTED,
-    PDCAP_S1_SUPPORTED,
-    PDCAP_S2_SUPPORTED,
-    PDCAP_S3_SUPPORTED,
-    PDCAP_WAKE_FROM_S0_SUPPORTED,
-    PDCAP_WAKE_FROM_S1_SUPPORTED,
-    PDCAP_WAKE_FROM_S2_SUPPORTED,
-    PDCAP_WAKE_FROM_S3_SUPPORTED,
-    PDCAP_S4_SUPPORTED,
-    PDCAP_S5_SUPPORTED);
-#endif
-
 //
 // Function prototypes
 //
 #if (NTDDI_VERSION >= NTDDI_WS03)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(BOOLEAN)
 DevicePowerEnumDevices(
     _In_ ULONG  QueryIndex,
@@ -1183,8 +1057,6 @@ DevicePowerEnumDevices(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WS03)
-_Win32_SetLastError_
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(DWORD)
 DevicePowerSetDeviceState(
     _In_ LPCWSTR DeviceDescription,
@@ -1194,7 +1066,6 @@ DevicePowerSetDeviceState(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WS03)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(BOOLEAN)
 DevicePowerOpen(
     _In_opt_ ULONG DebugMask
@@ -1202,7 +1073,6 @@ DevicePowerOpen(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WS03)
-_Win32_SupportedOS_WindowsVista_
 STDAPI_(BOOLEAN)
 DevicePowerClose(
     VOID
@@ -1225,14 +1095,11 @@ typedef struct _THERMAL_EVENT {
 } THERMAL_EVENT, *PTHERMAL_EVENT; 
 
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
-_Win32_AssociatedEnum_(WIN32_ERROR)
-_Win32_SupportedOS_Windows81_
 STDAPI_(DWORD)
 PowerReportThermalEvent (
     _In_ PTHERMAL_EVENT Event
     );
 #endif
-
 
 #ifdef __cplusplus
 }

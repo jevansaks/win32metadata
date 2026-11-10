@@ -1,4 +1,3 @@
-#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -44,7 +43,6 @@ extern "C" {
 //  CONNECTIONS
 //
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPAddConnection (
     _In_     LPNETRESOURCEW lpNetResource,
@@ -59,14 +57,13 @@ typedef DWORD (APIENTRY *PF_NPAddConnection) (
     );
 
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPAddConnection3 (
     _In_opt_ HWND           hwndOwner,
     _In_     LPNETRESOURCEW lpNetResource,
     _In_opt_ LPWSTR         lpPassword,
     _In_opt_ LPWSTR         lpUserName,
-    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD          dwFlags
+    _In_     DWORD          dwFlags
     );
 
 typedef DWORD (APIENTRY *PF_NPAddConnection3) (
@@ -98,7 +95,6 @@ typedef DWORD (APIENTRY *PF_NPAddConnection4) (
     _In_     DWORD          cbUseOptions
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPCancelConnection (
     _In_ LPWSTR  lpName,
@@ -123,7 +119,6 @@ typedef DWORD (APIENTRY *PF_NPCancelConnection2) (
     _In_ DWORD   dwFlags
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetConnection (
     _In_ LPWSTR     lpLocalName,
@@ -141,7 +136,6 @@ typedef DWORD (APIENTRY *PF_NPGetConnection) (
 #define WNGETCON_CONNECTED      0x00000000
 #define WNGETCON_DISCONNECTED   0x00000001
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetConnection3 (
     _In_ LPCWSTR    lpLocalName,
@@ -158,11 +152,10 @@ typedef DWORD (APIENTRY *PF_NPGetConnection3) (
     );
 
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetUniversalName (
     _In_ LPCWSTR    lpLocalPath,
-    _Win32_AssociatedEnum_(UNC_INFO_LEVEL) _In_ DWORD      dwInfoLevel,
+    _In_ DWORD      dwInfoLevel,
     _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
     _Inout_ LPDWORD lpBufferSize
     );
@@ -174,7 +167,6 @@ typedef DWORD (APIENTRY *PF_NPGetUniversalName) (
     _Inout_ LPDWORD lpnBufferSize
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetConnectionPerformance (
     _In_  LPCWSTR                lpRemoteName,
@@ -187,7 +179,6 @@ typedef DWORD (APIENTRY *PF_NPGetConnectionPerformance) (
     );
 
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPOpenEnum (
     _In_     DWORD          dwScope,
@@ -205,7 +196,6 @@ typedef DWORD (APIENTRY *PF_NPOpenEnum) (
     _Out_    LPHANDLE       lphEnum
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPEnumResource (
     _In_    HANDLE  hEnum,
@@ -221,7 +211,6 @@ typedef DWORD (APIENTRY *PF_NPEnumResource) (
     _Inout_ LPDWORD lpBufferSize
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPCloseEnum (
     _In_ HANDLE   hEnum
@@ -295,7 +284,6 @@ typedef DWORD (APIENTRY *PF_NPCloseEnum) (
 
 
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetCaps (
     _In_ DWORD ndex
@@ -309,7 +297,6 @@ typedef DWORD (APIENTRY *PF_NPGetCaps) (
 //  OTHER
 //
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetUser (
     _In_    LPWSTR  lpName,
@@ -353,15 +340,12 @@ typedef DWORD (APIENTRY *PF_NPGetPersistentUseOptionsForConnection) (
 #define WNPS_DIR        1
 #define WNPS_MULT       2
 
-_Win32_Enum_(NP_PROPERTY_DIALOG_SELECTION, DWORD, WNPS_FILE, WNPS_DIR, WNPS_MULT);
-
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_REMOTEFS) */
 #pragma endregion
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPDeviceMode(
     _In_ HWND hParent
@@ -374,7 +358,6 @@ typedef DWORD (APIENTRY *PF_NPDeviceMode) (
 // flag for search dialog
 #define WNSRCH_REFRESH_FIRST_LEVEL 0x00000001
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPSearchDialog(
     _In_     HWND   hwndParent,
@@ -398,7 +381,6 @@ typedef DWORD (APIENTRY *PF_NPSearchDialog) (
 #pragma region Desktop Family or RemoteFS Package
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_REMOTEFS)
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetResourceParent(
     _In_ LPNETRESOURCEW lpNetResource,
@@ -412,7 +394,6 @@ typedef DWORD (APIENTRY *PF_NPGetResourceParent) (
     _Inout_ LPDWORD lpBufferSize
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY NPGetResourceInformation(
     _In_ LPNETRESOURCEW lpNetResource,
     _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
@@ -427,13 +408,12 @@ typedef DWORD (APIENTRY *PF_NPGetResourceInformation) (
     _Outptr_ LPWSTR *lplpSystem
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPFormatNetworkName(
     _In_    LPWSTR   lpRemoteName,
     _Out_writes_(*lpnLength) LPWSTR lpFormattedName,
     _Inout_ LPDWORD  lpnLength,
-    _Win32_AssociatedEnum_(NETWORK_NAME_FORMAT_FLAGS) _In_    DWORD    dwFlags,
+    _In_    DWORD    dwFlags,
     _In_    DWORD    dwAveCharPerLine
     );
 
@@ -451,11 +431,10 @@ typedef DWORD (APIENTRY *PF_NPFormatNetworkName) (
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetPropertyText(
     _In_ DWORD  iButton,
-    _Win32_AssociatedEnum_(NP_PROPERTY_DIALOG_SELECTION) _In_ DWORD  nPropSel,
+    _In_ DWORD  nPropSel,
     _In_ LPWSTR lpName,
     _Out_writes_(nButtonNameLen) LPWSTR lpButtonName,
     _In_ DWORD  nButtonNameLen,
@@ -471,12 +450,11 @@ typedef DWORD (APIENTRY *PF_NPGetPropertyText) (
     _In_ DWORD  nType
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPPropertyDialog(
     _In_ HWND   hwndParent,
     _In_ DWORD  iButtonDlg,
-    _Win32_AssociatedEnum_(NP_PROPERTY_DIALOG_SELECTION) _In_ DWORD  nPropSel,
+    _In_ DWORD  nPropSel,
     _In_ LPWSTR lpFileName,
     _In_ DWORD  nType
     );
@@ -501,9 +479,6 @@ typedef DWORD (APIENTRY *PF_NPPropertyDialog) (
 #define WNDN_RMDIR    2
 #define WNDN_MVDIR    3
 
-_Win32_Enum_(NPDIRECTORY_NOTIFY_OPERATION, DWORD, WNDN_MKDIR, WNDN_RMDIR, WNDN_MVDIR);
-
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetDirectoryType (
     _In_ LPWSTR  lpName,
@@ -517,12 +492,11 @@ typedef DWORD (APIENTRY *PF_NPGetDirectoryType) (
     _In_ BOOL    bFlushCache
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPDirectoryNotify (
     _In_ HWND    hwnd,
     _In_ LPWSTR  lpDir,
-    _Win32_AssociatedEnum_(NPDIRECTORY_NOTIFY_OPERATION) _In_ DWORD   dwOper
+    _In_ DWORD   dwOper
     );
 
 typedef DWORD (APIENTRY *PF_NPDirectoryNotify) (
@@ -537,7 +511,6 @@ typedef DWORD (APIENTRY *PF_NPDirectoryNotify) (
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
-_Win32_SupportedOS_WindowsXP_
 VOID
 WNetSetLastErrorA(
     _In_ DWORD   err,
@@ -578,7 +551,6 @@ WNetSetLastErrorW(
 #define WN_VALID_LOGON_ACCOUNT      0x00000001
 #define WN_NT_PASSWORD_CHANGED      0x00000002
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPLogonNotify (
     _In_     PLUID               lpLogonId,
@@ -602,7 +574,6 @@ typedef DWORD (APIENTRY *PF_NPLogonNotify) (
     _Out_    LPWSTR              *lpLogonScript
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPPasswordChangeNotify (
     _In_     LPCWSTR             lpAuthentInfoType,
@@ -644,7 +615,7 @@ typedef struct _NOTIFYINFO {
 typedef struct _NOTIFYADD {
     HWND            hwndOwner;
     NETRESOURCE     NetResource;
-    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) DWORD           dwAddFlags;
+    DWORD           dwAddFlags;
 } NOTIFYADD, *LPNOTIFYADD;
 
 typedef struct _NOTIFYCANCEL {
@@ -655,7 +626,6 @@ typedef struct _NOTIFYCANCEL {
 } NOTIFYCANCEL, *LPNOTIFYCANCEL;
 
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 AddConnectNotify (
     _Inout_ LPNOTIFYINFO lpNotifyInfo,
@@ -667,7 +637,6 @@ typedef DWORD (APIENTRY *PF_AddConnectNotify) (
     _In_    LPNOTIFYADD  lpAddInfo
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 CancelConnectNotify (
     _Inout_ LPNOTIFYINFO   lpNotifyInfo,
@@ -690,7 +659,6 @@ typedef DWORD (APIENTRY *PF_CancelConnectNotify) (
 #define WNPERMC_AUDIT 0x00000002
 #define WNPERMC_OWNER 0x00000004
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPFMXGetPermCaps (
     _In_ LPWSTR lpDriveName
@@ -707,14 +675,11 @@ typedef DWORD (APIENTRY *PF_NPFMXGetPermCaps) (
 #define WNPERM_DLG_AUDIT  1
 #define WNPERM_DLG_OWNER  2
 
-_Win32_Enum_(WNPERM_DLG, DWORD, WNPERM_DLG_PERM, WNPERM_DLG_AUDIT, WNPERM_DLG_OWNER);
-
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPFMXEditPerm (
     _In_ LPWSTR lpDriveName,
     _In_ HWND   hwndFMX,
-    _Win32_AssociatedEnum_(WNPERM_DLG) _In_ DWORD  nDialogType
+    _In_ DWORD  nDialogType
     );
 
 typedef DWORD (APIENTRY *PF_NPFMXEditPerm) (
@@ -723,11 +688,10 @@ typedef DWORD (APIENTRY *PF_NPFMXEditPerm) (
     _In_ DWORD  nDialogType
     );
 
-_Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPFMXGetPermHelp (
     _In_    LPWSTR  lpDriveName,
-    _Win32_AssociatedEnum_(WNPERM_DLG) _In_    DWORD   nDialogType,
+    _In_    DWORD   nDialogType,
     _In_    BOOL    fDirectory,
     _Out_writes_(*lpBufferSize) LPVOID lpFileNameBuffer,
     _Inout_ LPDWORD lpBufferSize,
