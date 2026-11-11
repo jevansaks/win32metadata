@@ -2,7 +2,7 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h
-@@ -1790,13 +1790,13 @@ DECLARE_INTERFACE_IID_( IQueryAssociations, IUnknown, "c46ca590-3c3f-11d2-bee6-0
+@@ -1790,13 +1790,13 @@
      STDMETHOD (GetString)(THIS_ _In_ ASSOCF flags, _In_ ASSOCSTR str, _In_opt_ LPCWSTR pszExtra, _Out_writes_opt_(*pcchOut) LPWSTR pszOut, _Inout_ DWORD *pcchOut) PURE;
      STDMETHOD (GetKey)(THIS_ _In_ ASSOCF flags, _In_ ASSOCKEY key, _In_opt_ LPCWSTR pszExtra, _Out_ HKEY *phkeyOut) PURE;
      STDMETHOD (GetData)(THIS_ _In_ ASSOCF flags, _In_ ASSOCDATA data, _In_opt_ LPCWSTR pszExtra, _Out_writes_bytes_opt_(*pcbOut) void * pvOut, _Inout_opt_ DWORD *pcbOut) PURE;
@@ -18,7 +18,16 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  
  // Retrieve an array of class keys from an IQueryAssociations object
  // if the caller is just interested in the primary class key,
-@@ -2035,7 +2035,7 @@ LWSTDAPI IStream_Copy(_In_ IStream *pstmFrom, _In_ IStream *pstmTo, DWORD cb);
+@@ -1982,7 +1982,7 @@
+     LWSTDAPI_(void) IUnknown_AtomicRelease(_Inout_opt_ void ** ppunk);
+     LWSTDAPI IUnknown_GetWindow(_In_ IUnknown* punk, _Out_ HWND* phwnd);
+     LWSTDAPI IUnknown_SetSite(_In_ IUnknown *punk, _In_opt_ IUnknown *punkSite);
+-    LWSTDAPI IUnknown_GetSite(_In_ IUnknown *punk, _In_ REFIID riid, _Outptr_ void **ppv);
++    LWSTDAPI IUnknown_GetSite(_In_ IUnknown *punk, _In_ REFIID riid, _COM_Outptr_ void **ppv);
+     LWSTDAPI IUnknown_QueryService(_In_opt_ IUnknown* punk, _In_ REFGUID guidService, _In_ REFIID riid, _COM_Outptr_ void ** ppvOut);
+ 
+ 
+@@ -2035,7 +2035,7 @@
  #define SHGVSPB_USERDEFAULTS        (SHGVSPB_PERUSER | SHGVSPB_ALLFOLDERS)
  #define SHGVSPB_GLOBALDEFAULTS      (SHGVSPB_ALLUSERS | SHGVSPB_ALLFOLDERS)
  

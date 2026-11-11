@@ -1,0 +1,22 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
+@@ -28,7 +28,7 @@
+ ADsGetObject(
+     LPCWSTR lpszPathName,
+     REFIID riid,
+-    VOID * * ppObject
++    _COM_Outptr_ VOID * * ppObject
+     );
+ 
+ 
+@@ -73,7 +73,7 @@
+     LPCWSTR lpszPassword,
+     DWORD  dwReserved,
+     REFIID riid,
+-    void FAR * FAR * ppObject
++    _COM_Outptr_ void FAR * FAR * ppObject
+     );
+ 
+ //

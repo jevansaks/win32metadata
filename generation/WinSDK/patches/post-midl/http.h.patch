@@ -1,0 +1,182 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSDK/RecompiledIdlHeaders/um/http.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/http.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/http.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ 
+ 
+ /*++
+@@ -3049,9 +3050,9 @@
+ WINAPI
+ HttpCreateRequestQueue(
+     IN HTTPAPI_VERSION Version,
+-    IN PCWSTR Name OPTIONAL,
+-    IN PSECURITY_ATTRIBUTES SecurityAttributes OPTIONAL,
+-    IN ULONG Flags OPTIONAL,
++    _In_opt_ IN PCWSTR Name OPTIONAL,
++    _In_opt_ IN PSECURITY_ATTRIBUTES SecurityAttributes OPTIONAL,
++    _In_opt_ IN ULONG Flags OPTIONAL,
+     OUT PHANDLE RequestQueueHandle
+     );
+ 
+@@ -3134,10 +3135,10 @@
+     IN HANDLE RequestQueueHandle,
+     IN HTTP_CONNECTION_ID ConnectionId,
+     IN ULONG Flags,
+-    _Out_writes_bytes_to_(SslClientCertInfoSize, *BytesReceived) PHTTP_SSL_CLIENT_CERT_INFO SslClientCertInfo,
++    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_(SslClientCertInfoSize, *BytesReceived) PHTTP_SSL_CLIENT_CERT_INFO SslClientCertInfo,
+     IN ULONG SslClientCertInfoSize,
+     _Out_opt_ PULONG BytesReceived,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
+ #if _WIN32_WINNT >= 0x0600
+@@ -3297,12 +3298,11 @@
+     IN HANDLE RequestQueueHandle,
+     IN HTTP_REQUEST_ID RequestId,
+     IN ULONG Flags,
+-    _Out_writes_bytes_to_(RequestBufferLength, *BytesReturned) PHTTP_REQUEST RequestBuffer,
++    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_(RequestBufferLength, *BytesReturned) PHTTP_REQUEST RequestBuffer,
+     IN ULONG RequestBufferLength,
+     _Out_opt_ PULONG BytesReturned,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
+-    );
+-
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
++    );
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3313,7 +3313,7 @@
+     _Out_writes_bytes_to_(EntityBufferLength, *BytesReturned) PVOID EntityBuffer,
+     IN ULONG EntityBufferLength,
+     _Out_opt_ PULONG BytesReturned,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
+ #if _WIN32_WINNT >= 0x0600
+@@ -3326,12 +3326,12 @@
+     IN HTTP_REQUEST_ID RequestId,
+     IN ULONG Flags,
+     IN PHTTP_RESPONSE HttpResponse,
+-    IN PHTTP_CACHE_POLICY CachePolicy OPTIONAL,
+-    OUT PULONG BytesSent OPTIONAL,
++    _In_opt_ IN PHTTP_CACHE_POLICY CachePolicy OPTIONAL,
++    _Out_opt_ OUT PULONG BytesSent OPTIONAL,
+     _Reserved_ PVOID Reserved1,
+     _Reserved_ ULONG Reserved2,
+-    IN LPOVERLAPPED Overlapped OPTIONAL,
+-    IN PHTTP_LOG_DATA LogData OPTIONAL
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL,
++    _In_opt_ IN PHTTP_LOG_DATA LogData OPTIONAL
+     );
+ 
+ #else // _WIN32_WINNT >= 0x0600
+@@ -3363,13 +3363,13 @@
+     IN HANDLE RequestQueueHandle,
+     IN HTTP_REQUEST_ID RequestId,
+     IN ULONG Flags,
+-    IN USHORT EntityChunkCount OPTIONAL,
++    _In_opt_ IN USHORT EntityChunkCount OPTIONAL,
+     _In_reads_opt_(EntityChunkCount) PHTTP_DATA_CHUNK EntityChunks,
+-    OUT PULONG BytesSent OPTIONAL,
++    _Out_opt_ OUT PULONG BytesSent OPTIONAL,
+     _Reserved_ PVOID Reserved1 OPTIONAL,
+     _Reserved_ ULONG Reserved2 OPTIONAL,
+-    IN LPOVERLAPPED Overlapped OPTIONAL,
+-    IN PHTTP_LOG_DATA LogData OPTIONAL
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL,
++    _In_opt_ IN PHTTP_LOG_DATA LogData OPTIONAL
+     );
+ 
+ #else // _WIN32_WINNT >= 0x0600
+@@ -3411,7 +3411,7 @@
+ HttpWaitForDisconnect(
+     IN HANDLE RequestQueueHandle,
+     IN HTTP_CONNECTION_ID ConnectionId,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
+ #if _WIN32_WINNT >= 0x0600
+@@ -3422,25 +3422,23 @@
+ HttpWaitForDisconnectEx(
+     IN HANDLE RequestQueueHandle,
+     IN HTTP_CONNECTION_ID ConnectionId,
+-    _Reserved_ IN ULONG Reserved OPTIONAL,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
+-    );
+-
++    _Reserved_ _In_opt_ IN ULONG Reserved OPTIONAL,
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
++    );
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+ HttpCancelHttpRequest(
+     IN HANDLE RequestQueueHandle,
+     IN HTTP_REQUEST_ID RequestId,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
+-    );
+-
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
++    );
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+ HttpWaitForDemandStart(
+     IN HANDLE RequestQueueHandle,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
+ BOOL
+@@ -3484,9 +3482,8 @@
+     IN HANDLE RequestQueueHandle,
+     IN PCWSTR UrlPrefix,
+     IN ULONG Flags,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
+-    );
+-
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
++    );
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+@@ -3495,20 +3492,19 @@
+     IN PCWSTR UrlPrefix,
+     IN PHTTP_DATA_CHUNK DataChunk,
+     IN PHTTP_CACHE_POLICY CachePolicy,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
+-    );
+-
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
++    );
+ HTTPAPI_LINKAGE
+ ULONG
+ WINAPI
+ HttpReadFragmentFromCache(
+     IN HANDLE RequestQueueHandle,
+     IN PCWSTR UrlPrefix,
+-    IN PHTTP_BYTE_RANGE ByteRange OPTIONAL,
++    _In_opt_ IN PHTTP_BYTE_RANGE ByteRange OPTIONAL,
+     _Out_writes_bytes_to_(BufferLength, *BytesRead) PVOID Buffer,
+     IN ULONG BufferLength,
+     _Out_opt_ PULONG BytesRead,
+-    IN LPOVERLAPPED Overlapped OPTIONAL
++    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
+     );
+ 
+ //
+@@ -3556,7 +3552,7 @@
+     _In_ HTTP_SERVICE_CONFIG_ID ConfigId,
+     _In_reads_bytes_opt_(InputLength) PVOID pInput,
+     _In_ ULONG InputLength,
+-    _Out_writes_bytes_to_opt_(OutputLength, *pReturnLength) PVOID pOutput,
++    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(OutputLength, *pReturnLength) PVOID pOutput,
+     _In_ ULONG OutputLength,
+     _Out_opt_ PULONG pReturnLength,
+     _Reserved_ LPOVERLAPPED pOverlapped

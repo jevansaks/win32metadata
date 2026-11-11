@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * securitybaseapi.h -- ApiSet Contract for api-ms-win-security-base-l1          *
@@ -928,7 +929,7 @@ WINAPI
 GetTokenInformation(
     _In_ HANDLE TokenHandle,
     _In_ TOKEN_INFORMATION_CLASS TokenInformationClass,
-    _Out_writes_bytes_to_opt_(TokenInformationLength,*ReturnLength) LPVOID TokenInformation,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(TokenInformationLength,*ReturnLength) LPVOID TokenInformation,
     _In_ DWORD TokenInformationLength,
     _Out_ PDWORD ReturnLength
     );

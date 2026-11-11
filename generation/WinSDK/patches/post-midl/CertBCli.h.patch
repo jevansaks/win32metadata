@@ -1,0 +1,18 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CertBCli.h b/generation/WinSDK/RecompiledIdlHeaders/um/CertBCli.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/CertBCli.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/CertBCli.h
+@@ -183,10 +183,9 @@
+ //---------------------------------------------------------------------------
+ 
+ typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPGETDYNAMICFILELISTW)(
+-    IN  HCSBC hbc,
+-    OUT WCHAR **ppwszzFileList,
+-    OUT DWORD *pcbSize);
+-
++    _In_ IN  HCSBC hbc,
++    _Out_ OUT WCHAR **ppwszzFileList,
++    _Out_ OUT DWORD *pcbSize);
+ HRESULT
+ CERTBCLI_API
+ CertSrvBackupGetDynamicFileListW(

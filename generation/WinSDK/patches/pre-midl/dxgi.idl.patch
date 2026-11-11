@@ -1,9 +1,8 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi.idl b/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi.idl
-index c769e1c2..5b9785ca 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi.idl
-@@ -5,6 +5,7 @@ import "dxgicommon.idl";
+@@ -5,6 +5,7 @@
  import "dxgitype.idl";
  
  cpp_quote("#include <winapifamily.h>")
@@ -11,7 +10,16 @@ index c769e1c2..5b9785ca 100644
  
  //--------------------------------------------------------------------------------------------------------
  // DXGI API-only types
-@@ -337,7 +338,7 @@ interface IDXGIAdapter : IDXGIObject
+@@ -292,7 +293,7 @@
+ interface IDXGISurface :
+     IDXGIDeviceSubObject
+ {
+-    HRESULT GetDesc([out, annotation("_Out_")] DXGI_SURFACE_DESC *pDesc);
++    HRESULT GetDesc([out, annotation("_Out_"), retval] DXGI_SURFACE_DESC *pDesc);
+     HRESULT Map(
+         [out, annotation("_Out_")] DXGI_MAPPED_RECT *pLockedRect,
+         [in] UINT MapFlags );
+@@ -337,7 +338,7 @@
      HRESULT EnumOutputs(
          [in] UINT Output,
          [in, out, annotation("_COM_Outptr_")] IDXGIOutput **ppOutput );
@@ -20,3 +28,30 @@ index c769e1c2..5b9785ca 100644
      HRESULT CheckInterfaceSupport(
          [in, annotation("_In_")] REFGUID InterfaceName,
          [out, annotation("_Out_")] LARGE_INTEGER * pUMDVersion );
+@@ -361,7 +362,7 @@
+ interface IDXGIOutput :
+     IDXGIObject
+ {
+-    HRESULT GetDesc( [out,annotation("_Out_")] DXGI_OUTPUT_DESC *pDesc );
++    HRESULT GetDesc( [out,annotation("_Out_"), retval] DXGI_OUTPUT_DESC *pDesc );
+     HRESULT GetDisplayModeList(
+         [in] DXGI_FORMAT EnumFormat,
+         [in] UINT Flags,
+@@ -422,7 +423,7 @@
+     HRESULT GetFullscreenState(
+         [out, annotation("_Out_opt_")] BOOL *pFullscreen,
+         [out, annotation("_COM_Outptr_opt_result_maybenull_")] IDXGIOutput **ppTarget );
+-    HRESULT GetDesc( [out, annotation("_Out_")] DXGI_SWAP_CHAIN_DESC *pDesc );
++    HRESULT GetDesc( [out, annotation("_Out_"), retval] DXGI_SWAP_CHAIN_DESC *pDesc );
+     HRESULT ResizeBuffers( [in] UINT BufferCount, [in] UINT Width, [in] UINT Height, [in] DXGI_FORMAT NewFormat, [in] UINT SwapChainFlags );
+     HRESULT ResizeTarget( [in, annotation("_In_")] const DXGI_MODE_DESC *pNewTargetParameters );
+     HRESULT GetContainingOutput( [out, annotation("_COM_Outptr_")] IDXGIOutput **ppOutput );
+@@ -578,7 +579,7 @@
+ interface IDXGIAdapter1 :
+     IDXGIAdapter
+ {
+-    HRESULT GetDesc1( [out, annotation("_Out_")] DXGI_ADAPTER_DESC1 *pDesc );
++    HRESULT GetDesc1( [out, annotation("_Out_"), retval] DXGI_ADAPTER_DESC1 *pDesc );
+ };
+ 
+ //--------------------------------------------------------------------------------------------------------

@@ -1,0 +1,15 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcdcep.h b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcdcep.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcdcep.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcdcep.h
+@@ -481,8 +481,8 @@
+ RPC_ENTRY
+ I_RpcNsInterfaceExported (
+     IN unsigned long EntryNameSyntax,
+-    IN unsigned short *EntryName,
+-    IN RPC_SERVER_INTERFACE * RpcInterfaceInformation
++    _In_ unsigned short *EntryName,
++    _In_ RPC_SERVER_INTERFACE * RpcInterfaceInformation
+     );
+ 
+ RPCRTAPI

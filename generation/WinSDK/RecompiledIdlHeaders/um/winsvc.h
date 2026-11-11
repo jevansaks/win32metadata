@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0010    // Increment this if a change has global effects
 
 Copyright (c) 1995-1998  Microsoft Corporation
@@ -1153,7 +1154,7 @@ WINAPI
 EnumDependentServicesA(
     _In_            SC_HANDLE               hService,
     _In_            DWORD                   dwServiceState,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPENUM_SERVICE_STATUSA  lpServices,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded,
@@ -1166,7 +1167,7 @@ WINAPI
 EnumDependentServicesW(
     _In_            SC_HANDLE               hService,
     _In_            DWORD                   dwServiceState,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPENUM_SERVICE_STATUSW  lpServices,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded,
@@ -1192,7 +1193,7 @@ EnumServicesStatusA(
     _In_            SC_HANDLE               hSCManager,
     _In_            DWORD                   dwServiceType,
     _In_            DWORD                   dwServiceState,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPENUM_SERVICE_STATUSA  lpServices,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded,
@@ -1207,7 +1208,7 @@ EnumServicesStatusW(
     _In_            SC_HANDLE               hSCManager,
     _In_            DWORD                   dwServiceType,
     _In_            DWORD                   dwServiceState,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPENUM_SERVICE_STATUSW  lpServices,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded,
@@ -1235,7 +1236,7 @@ EnumServicesStatusExA(
     _In_            SC_ENUM_TYPE            InfoLevel,
     _In_            DWORD                   dwServiceType,
     _In_            DWORD                   dwServiceState,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPBYTE                  lpServices,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded,
@@ -1252,7 +1253,7 @@ EnumServicesStatusExW(
     _In_            SC_ENUM_TYPE            InfoLevel,
     _In_            DWORD                   dwServiceType,
     _In_            DWORD                   dwServiceState,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPBYTE                  lpServices,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded,
@@ -1402,7 +1403,7 @@ BOOL
 WINAPI
 QueryServiceConfigA(
     _In_            SC_HANDLE               hService,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPQUERY_SERVICE_CONFIGA lpServiceConfig,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded
@@ -1413,7 +1414,7 @@ BOOL
 WINAPI
 QueryServiceConfigW(
     _In_            SC_HANDLE               hService,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPQUERY_SERVICE_CONFIGW lpServiceConfig,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded
@@ -1438,7 +1439,7 @@ WINAPI
 QueryServiceConfig2A(
     _In_            SC_HANDLE               hService,
     _In_            DWORD                   dwInfoLevel,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPBYTE                  lpBuffer,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded
@@ -1457,7 +1458,7 @@ WINAPI
 QueryServiceConfig2W(
     _In_            SC_HANDLE               hService,
     _In_            DWORD                   dwInfoLevel,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPBYTE                  lpBuffer,
     _In_            DWORD                   cbBufSize,
     _Out_           LPDWORD                 pcbBytesNeeded
@@ -1480,7 +1481,7 @@ BOOL
 WINAPI
 QueryServiceLockStatusA(
     _In_            SC_HANDLE                       hSCManager,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPQUERY_SERVICE_LOCK_STATUSA    lpLockStatus,
     _In_            DWORD                           cbBufSize,
     _Out_           LPDWORD                         pcbBytesNeeded
@@ -1491,7 +1492,7 @@ BOOL
 WINAPI
 QueryServiceLockStatusW(
     _In_            SC_HANDLE                       hSCManager,
-    _Out_writes_bytes_opt_(cbBufSize)
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPQUERY_SERVICE_LOCK_STATUSW    lpLockStatus,
     _In_            DWORD                           cbBufSize,
     _Out_           LPDWORD                         pcbBytesNeeded
@@ -1680,7 +1681,7 @@ WINAPI
 NotifyServiceStatusChangeA (
     _In_        SC_HANDLE               hService,
     _In_        DWORD                   dwNotifyMask,
-    _In_        PSERVICE_NOTIFYA        pNotifyBuffer
+    _Win32_Retained_ _In_        PSERVICE_NOTIFYA        pNotifyBuffer
     );
 WINADVAPI
 DWORD
@@ -1688,7 +1689,7 @@ WINAPI
 NotifyServiceStatusChangeW (
     _In_        SC_HANDLE               hService,
     _In_        DWORD                   dwNotifyMask,
-    _In_        PSERVICE_NOTIFYW        pNotifyBuffer
+    _Win32_Retained_ _In_        PSERVICE_NOTIFYW        pNotifyBuffer
     );
 #ifdef UNICODE
 #define NotifyServiceStatusChange  NotifyServiceStatusChangeW

@@ -1,0 +1,256 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h
+@@ -5131,7 +5131,7 @@
+ WINAPI
+ SetupDiGetDeviceInfoListDetailA(
+     _In_ HDEVINFO DeviceInfoSet,
+-    _Out_ PSP_DEVINFO_LIST_DETAIL_DATA_A DeviceInfoSetDetailData
++    _Inout_ PSP_DEVINFO_LIST_DETAIL_DATA_A DeviceInfoSetDetailData
+     );
+ 
+ WINSETUPAPI
+@@ -5139,7 +5139,7 @@
+ WINAPI
+ SetupDiGetDeviceInfoListDetailW(
+     _In_ HDEVINFO DeviceInfoSet,
+-    _Out_ PSP_DEVINFO_LIST_DETAIL_DATA_W DeviceInfoSetDetailData
++    _Inout_ PSP_DEVINFO_LIST_DETAIL_DATA_W DeviceInfoSetDetailData
+     );
+ 
+ #ifdef UNICODE
+@@ -5165,7 +5165,7 @@
+     _In_opt_ PCSTR DeviceDescription,
+     _In_opt_ HWND hwndParent,
+     _In_ DWORD CreationFlags,
+-    _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
++    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
+ WINSETUPAPI
+@@ -5178,7 +5178,7 @@
+     _In_opt_ PCWSTR DeviceDescription,
+     _In_opt_ HWND hwndParent,
+     _In_ DWORD CreationFlags,
+-    _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
++    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
+ #ifdef UNICODE
+@@ -5202,7 +5202,7 @@
+     _In_ PCSTR DeviceInstanceId,
+     _In_opt_ HWND hwndParent,
+     _In_ DWORD OpenFlags,
+-    _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
++    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
+ WINSETUPAPI
+@@ -5213,7 +5213,7 @@
+     _In_ PCWSTR DeviceInstanceId,
+     _In_opt_ HWND hwndParent,
+     _In_ DWORD OpenFlags,
+-    _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
++    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
+ #ifdef UNICODE
+@@ -5267,7 +5267,7 @@
+ SetupDiEnumDeviceInfo(
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_ DWORD MemberIndex,
+-    _Out_ PSP_DEVINFO_DATA DeviceInfoData
++    _Inout_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
+ 
+@@ -5287,7 +5287,7 @@
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+     _In_ CONST GUID *InterfaceClassGuid,
+     _In_ DWORD MemberIndex,
+-    _Out_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
++    _Inout_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
+     );
+ 
+ //
+@@ -5305,7 +5305,7 @@
+     _In_ CONST GUID *InterfaceClassGuid,
+     _In_opt_ PCSTR ReferenceString,
+     _In_ DWORD CreationFlags,
+-    _Out_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
++    _Inout_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
+     );
+ 
+ WINSETUPAPI
+@@ -5317,7 +5317,7 @@
+     _In_ CONST GUID *InterfaceClassGuid,
+     _In_opt_ PCWSTR ReferenceString,
+     _In_ DWORD CreationFlags,
+-    _Out_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
++    _Inout_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
+     );
+ 
+ #ifdef UNICODE
+@@ -5350,7 +5350,7 @@
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_ PCSTR DevicePath,
+     _In_ DWORD OpenFlags,
+-    _Out_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
++    _Inout_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
+     );
+ 
+ WINSETUPAPI
+@@ -5360,7 +5360,7 @@
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_ PCWSTR DevicePath,
+     _In_ DWORD OpenFlags,
+-    _Out_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
++    _Inout_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
+     );
+ 
+ #ifdef UNICODE
+@@ -5388,7 +5388,7 @@
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData,
+     _In_ CONST GUID *AliasInterfaceClassGuid,
+-    _Out_ PSP_DEVICE_INTERFACE_DATA AliasDeviceInterfaceData
++    _Inout_ PSP_DEVICE_INTERFACE_DATA AliasDeviceInterfaceData
+     );
+ 
+ //
+@@ -5435,7 +5435,7 @@
+     _Inout_updates_bytes_to_opt_(DeviceInterfaceDetailDataSize, *RequiredSize) PSP_DEVICE_INTERFACE_DETAIL_DATA_A DeviceInterfaceDetailData,
+     _In_ DWORD DeviceInterfaceDetailDataSize,
+     _Out_opt_ _Out_range_(>=, sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA_A)) PDWORD RequiredSize,
+-    _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
++    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
+ _Success_(return != FALSE)
+@@ -5449,7 +5449,7 @@
+     _Out_writes_bytes_to_opt_(DeviceInterfaceDetailDataSize, *RequiredSize) PSP_DEVICE_INTERFACE_DETAIL_DATA_W DeviceInterfaceDetailData,
+     _In_ DWORD DeviceInterfaceDetailDataSize,
+     _Out_opt_ _Out_range_(>=, sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA_W)) PDWORD RequiredSize,
+-    _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
++    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
+ #ifdef UNICODE
+@@ -5520,7 +5520,7 @@
+     _In_ DWORD Flags,
+     _In_opt_ PSP_DETSIG_CMPPROC CompareProc,
+     _In_opt_ PVOID CompareContext,
+-    _Out_opt_ PSP_DEVINFO_DATA DupDeviceInfoData
++    _Inout_opt_ PSP_DEVINFO_DATA DupDeviceInfoData
+     );
+ 
+ 
+@@ -5559,7 +5559,7 @@
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+     _In_ DWORD DriverType,
+     _In_ DWORD MemberIndex,
+-    _Out_ PSP_DRVINFO_DATA_A DriverInfoData
++    _Inout_ PSP_DRVINFO_DATA_A DriverInfoData
+     );
+ 
+ WINSETUPAPI
+@@ -5570,7 +5570,7 @@
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+     _In_ DWORD DriverType,
+     _In_ DWORD MemberIndex,
+-    _Out_ PSP_DRVINFO_DATA_W DriverInfoData
++    _Inout_ PSP_DRVINFO_DATA_W DriverInfoData
+     );
+ 
+ #ifdef UNICODE
+@@ -5586,7 +5586,7 @@
+ SetupDiGetSelectedDriverA(
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _Out_ PSP_DRVINFO_DATA_A DriverInfoData
++    _Inout_ PSP_DRVINFO_DATA_A DriverInfoData
+     );
+ 
+ WINSETUPAPI
+@@ -5595,7 +5595,7 @@
+ SetupDiGetSelectedDriverW(
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _Out_ PSP_DRVINFO_DATA_W DriverInfoData
++    _Inout_ PSP_DRVINFO_DATA_W DriverInfoData
+     );
+ 
+ #ifdef UNICODE
+@@ -6734,7 +6734,7 @@
+ SetupDiGetDeviceInstallParamsA(
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _Out_ PSP_DEVINSTALL_PARAMS_A DeviceInstallParams
++    _Inout_ PSP_DEVINSTALL_PARAMS_A DeviceInstallParams
+     );
+ 
+ WINSETUPAPI
+@@ -6743,7 +6743,7 @@
+ SetupDiGetDeviceInstallParamsW(
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _Out_ PSP_DEVINSTALL_PARAMS_W DeviceInstallParams
++    _Inout_ PSP_DEVINSTALL_PARAMS_W DeviceInstallParams
+     );
+ 
+ #ifdef UNICODE
+@@ -6842,7 +6842,7 @@
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+     _In_ PSP_DRVINFO_DATA_A DriverInfoData,
+-    _Out_ PSP_DRVINSTALL_PARAMS DriverInstallParams
++    _Inout_ PSP_DRVINSTALL_PARAMS DriverInstallParams
+     );
+ 
+ WINSETUPAPI
+@@ -6852,7 +6852,7 @@
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+     _In_ PSP_DRVINFO_DATA_W DriverInfoData,
+-    _Out_ PSP_DRVINSTALL_PARAMS DriverInstallParams
++    _Inout_ PSP_DRVINSTALL_PARAMS DriverInstallParams
+     );
+ 
+ #ifdef UNICODE
+@@ -6946,7 +6946,7 @@
+ BOOL
+ WINAPI
+ SetupDiGetClassImageList(
+-    _Out_ PSP_CLASSIMAGELIST_DATA ClassImageListData
++    _Inout_ PSP_CLASSIMAGELIST_DATA ClassImageListData
+     );
+ 
+ 
+@@ -6954,7 +6954,7 @@
+ BOOL
+ WINAPI
+ SetupDiGetClassImageListExA(
+-    _Out_ PSP_CLASSIMAGELIST_DATA ClassImageListData,
++    _Inout_ PSP_CLASSIMAGELIST_DATA ClassImageListData,
+     _In_opt_ PCSTR MachineName,
+     _Reserved_ PVOID Reserved
+     );
+@@ -6963,7 +6963,7 @@
+ BOOL
+ WINAPI
+ SetupDiGetClassImageListExW(
+-    _Out_ PSP_CLASSIMAGELIST_DATA ClassImageListData,
++    _Inout_ PSP_CLASSIMAGELIST_DATA ClassImageListData,
+     _In_opt_ PCWSTR MachineName,
+     _Reserved_ PVOID Reserved
+     );
+@@ -7277,7 +7277,7 @@
+ WINAPI
+ SetupDiGetSelectedDevice(
+     _In_ HDEVINFO DeviceInfoSet,
+-    _Out_ PSP_DEVINFO_DATA DeviceInfoData
++    _Inout_ PSP_DEVINFO_DATA DeviceInfoData
+     );
+ 
+ 

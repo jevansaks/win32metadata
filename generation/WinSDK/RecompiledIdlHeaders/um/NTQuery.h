@@ -72,7 +72,7 @@ STDAPI LoadIFilter( PCWSTR pwcsPath,
 STDAPI LoadIFilterEx( PCWSTR pwcsPath,
                       DWORD dwFlags,
                       REFIID riid,
-                      _Outptr_ void ** ppIUnk );
+                      _COM_Outptr_  void ** ppIUnk );
 
 STDAPI BindIFilterFromStorage(_In_ IStorage * pStg,
                               _In_ IUnknown * pUnkOuter,

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -217,7 +218,7 @@ WINAPI
 GetOwnerModuleFromTcpEntry(
     _In_                   PMIB_TCPROW_OWNER_MODULE      pTcpEntry,
     _In_                   TCPIP_OWNER_MODULE_INFO_CLASS Class,
-    _Out_writes_bytes_(*pdwSize) PVOID                         pBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*pdwSize) PVOID                         pBuffer,
     _Inout_                PDWORD                        pdwSize
     );
 
@@ -260,7 +261,7 @@ WINAPI
 GetOwnerModuleFromUdpEntry(
     _In_                      PMIB_UDPROW_OWNER_MODULE      pUdpEntry,
     _In_                      TCPIP_OWNER_MODULE_INFO_CLASS Class,
-    _Out_writes_bytes_(*pdwSize)    PVOID                         pBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*pdwSize)    PVOID                         pBuffer,
     _Inout_                   PDWORD                        pdwSize
     );
 
@@ -410,7 +411,7 @@ WINAPI
 GetOwnerModuleFromTcp6Entry(
     _In_                      PMIB_TCP6ROW_OWNER_MODULE     pTcpEntry,
     _In_                      TCPIP_OWNER_MODULE_INFO_CLASS Class,
-    _Out_writes_bytes_(*pdwSize)    PVOID                         pBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*pdwSize)    PVOID                         pBuffer,
     _Inout_                   PDWORD                        pdwSize
     );
 
@@ -429,7 +430,7 @@ WINAPI
 GetOwnerModuleFromUdp6Entry(
     _In_                      PMIB_UDP6ROW_OWNER_MODULE     pUdpEntry,
     _In_                      TCPIP_OWNER_MODULE_INFO_CLASS Class,
-    _Out_writes_bytes_(*pdwSize)    PVOID                         pBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*pdwSize)    PVOID                         pBuffer,
     _Inout_                   PDWORD                        pdwSize
     );
 
@@ -879,7 +880,7 @@ IPHLPAPI_DLL_LINKAGE
 ULONG
 WINAPI
 GetAdaptersInfo(
-    _Out_writes_bytes_opt_(*SizePointer) PIP_ADAPTER_INFO AdapterInfo,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(*SizePointer) PIP_ADAPTER_INFO AdapterInfo,
     _Inout_                         PULONG           SizePointer
     );
 
@@ -910,7 +911,7 @@ GetAdaptersAddresses(
     _In_ ULONG Family,
     _In_ ULONG Flags,
     _Reserved_ PVOID Reserved,
-    _Out_writes_bytes_opt_(*SizePointer) PIP_ADAPTER_ADDRESSES AdapterAddresses,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(*SizePointer) PIP_ADAPTER_ADDRESSES AdapterAddresses,
     _Inout_ PULONG SizePointer
     );
 
@@ -922,7 +923,7 @@ DWORD
 WINAPI
 GetPerAdapterInfo(
     _In_                            ULONG                IfIndex,
-    _Out_writes_bytes_opt_(*pOutBufLen)   PIP_PER_ADAPTER_INFO pPerAdapterInfo,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(*pOutBufLen)   PIP_PER_ADAPTER_INFO pPerAdapterInfo,
     _Inout_                         PULONG               pOutBufLen
     );
 #endif

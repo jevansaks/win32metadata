@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*=============================================================================
 
     Copyright (c) 1998-2001  Microsoft Corporation
@@ -605,8 +606,8 @@ CLFSUSER_API BOOL WINAPI ReserveAndAppendLogAligned (
 //------------------------------------------------------------------------------
 
 CLFSUSER_API BOOL WINAPI FlushLogBuffers (
-                    IN PVOID pvMarshal,
-                    IN OUT LPOVERLAPPED pOverlapped OPTIONAL
+                    _In_ IN PVOID pvMarshal,
+                    _Inout_opt_ _In_opt_ _Win32_Retained_ IN OUT LPOVERLAPPED pOverlapped OPTIONAL
                     );
 #endif /* _WIN32_WINNT */
 

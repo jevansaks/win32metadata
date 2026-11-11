@@ -183,10 +183,9 @@ FNCERTSRVISSERVERONLINEW *pfnCertSrvIsServerOnline = CertSrvIsServerOnline;
 //---------------------------------------------------------------------------
 
 typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPGETDYNAMICFILELISTW)(
-    IN  HCSBC hbc,
-    OUT WCHAR **ppwszzFileList,
-    OUT DWORD *pcbSize);
-
+    _In_ IN  HCSBC hbc,
+    _Out_ OUT WCHAR **ppwszzFileList,
+    _Out_ OUT DWORD *pcbSize);
 HRESULT
 CERTBCLI_API
 CertSrvBackupGetDynamicFileListW(

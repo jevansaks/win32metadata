@@ -3580,7 +3580,7 @@ SHSTDAPI_(int) PickIconDlg(_In_opt_ HWND hwnd, _Inout_updates_(cchIconPath) PWST
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
 // returns an IStream or IStorage via riid/ppv
-STDAPI StgMakeUniqueName(_In_ IStorage *pstgParent, _In_ PCWSTR pszFileSpec, _In_ DWORD grfMode, _In_ REFIID riid, _Outptr_ void **ppv);
+STDAPI StgMakeUniqueName(_In_ IStorage *pstgParent, _In_ PCWSTR pszFileSpec, _In_ DWORD grfMode, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 #endif // NTDDI_WIN7
 
 #if (_WIN32_IE >= _WIN32_IE_IE70)

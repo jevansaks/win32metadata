@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -2859,7 +2860,7 @@ CryptDecodeObject(
     _In_reads_bytes_(cbEncoded) const BYTE *pbEncoded,
     _In_ DWORD cbEncoded,
     _In_ DWORD dwFlags,
-    _Out_writes_bytes_to_opt_(*pcbStructInfo, *pcbStructInfo) void *pvStructInfo,
+    _Out_writes_bytes_to_opt_(*pcbStructInfo, *pcbStructInfo) _Win32_ContainsInteriorPointers_ void *pvStructInfo,
     _Inout_ DWORD *pcbStructInfo
     );
 
@@ -7540,7 +7541,7 @@ CryptMsgGetParam(
     _In_ HCRYPTMSG hCryptMsg,
     _In_ DWORD dwParamType,
     _In_ DWORD dwIndex,
-    _Out_writes_bytes_to_opt_(*pcbData, *pcbData) void *pvData,
+    _Out_writes_bytes_to_opt_(*pcbData, *pcbData) _Win32_ContainsInteriorPointers_ void *pvData,
     _Inout_ DWORD *pcbData
     );
 
@@ -11813,7 +11814,7 @@ WINAPI
 CertGetCertificateContextProperty(
     _In_ PCCERT_CONTEXT pCertContext,
     _In_ DWORD dwPropId,
-    _Out_writes_bytes_to_opt_(*pcbData, *pcbData) void *pvData,
+    _Out_writes_bytes_to_opt_(*pcbData, *pcbData) _Win32_ContainsInteriorPointers_ void *pvData,
     _Inout_ DWORD *pcbData
     );
 
@@ -11871,7 +11872,7 @@ CertCreateCTLEntryFromCertificateContextProperties(
     _In_reads_opt_(cOptAttr) PCRYPT_ATTRIBUTE rgOptAttr,
     _In_ DWORD dwFlags,
     _Reserved_ void *pvReserved,
-    _Out_writes_bytes_to_opt_(*pcbCtlEntry, *pcbCtlEntry) PCTL_ENTRY pCtlEntry,
+    _Out_writes_bytes_to_opt_(*pcbCtlEntry, *pcbCtlEntry) _Win32_ContainsInteriorPointers_ PCTL_ENTRY pCtlEntry,
     _Inout_ DWORD *pcbCtlEntry
     );
 
@@ -13675,7 +13676,7 @@ WINAPI
 CertGetEnhancedKeyUsage(
     _In_ PCCERT_CONTEXT pCertContext,
     _In_ DWORD dwFlags,
-    _Out_writes_bytes_to_opt_(*pcbUsage, *pcbUsage) PCERT_ENHKEY_USAGE pUsage,
+    _Out_writes_bytes_to_opt_(*pcbUsage, *pcbUsage) _Win32_ContainsInteriorPointers_ PCERT_ENHKEY_USAGE pUsage,
     _Inout_ DWORD *pcbUsage
     );
 
@@ -15068,7 +15069,7 @@ CryptExportPublicKeyInfo(
     _In_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
     _In_opt_ DWORD dwKeySpec,       // not applicable for NCRYPT_KEY_HANDLE
     _In_ DWORD dwCertEncodingType,
-    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) PCERT_PUBLIC_KEY_INFO pInfo,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) PCERT_PUBLIC_KEY_INFO pInfo,
     _Inout_ DWORD *pcbInfo
     );
 
@@ -15111,7 +15112,7 @@ CryptExportPublicKeyInfoEx(
     _In_opt_ LPSTR pszPublicKeyObjId,
     _In_ DWORD dwFlags,
     _In_opt_ void *pvAuxInfo,
-    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) PCERT_PUBLIC_KEY_INFO pInfo,
+    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) _Win32_ContainsInteriorPointers_ PCERT_PUBLIC_KEY_INFO pInfo,
     _Inout_ DWORD *pcbInfo
     );
 
@@ -15165,7 +15166,7 @@ CryptExportPublicKeyInfoFromBCryptKeyHandle(
     _In_opt_ LPSTR pszPublicKeyObjId,
     _In_ DWORD dwFlags,
     _In_opt_ void *pvAuxInfo,
-    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) PCERT_PUBLIC_KEY_INFO pInfo,
+    _Out_writes_bytes_to_opt_(*pcbInfo, *pcbInfo) _Win32_ContainsInteriorPointers_ PCERT_PUBLIC_KEY_INFO pInfo,
     _Inout_ DWORD *pcbInfo
     );
 
@@ -17909,7 +17910,7 @@ CryptGetObjectUrl (
     _In_ LPCSTR pszUrlOid,
     _In_ LPVOID pvPara,
     _In_ DWORD dwFlags,
-    _Out_writes_bytes_to_opt_(*pcbUrlArray, *pcbUrlArray) PCRYPT_URL_ARRAY pUrlArray,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(*pcbUrlArray, *pcbUrlArray) PCRYPT_URL_ARRAY pUrlArray,
     _Inout_ DWORD* pcbUrlArray,
     _Out_writes_bytes_to_opt_(*pcbUrlInfo, *pcbUrlInfo) PCRYPT_URL_INFO pUrlInfo,
     _Inout_opt_ DWORD* pcbUrlInfo,

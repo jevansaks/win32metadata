@@ -293,7 +293,7 @@ const UINT DXGI_MAP_DISCARD = 4UL;
 interface IDXGISurface :
     IDXGIDeviceSubObject
 {
-    HRESULT GetDesc([out, annotation("_Out_")] DXGI_SURFACE_DESC *pDesc);
+    HRESULT GetDesc([out, annotation("_Out_"), retval] DXGI_SURFACE_DESC *pDesc);
     HRESULT Map(
         [out, annotation("_Out_")] DXGI_MAPPED_RECT *pLockedRect,
         [in] UINT MapFlags );
@@ -362,7 +362,7 @@ const UINT DXGI_ENUM_MODES_SCALING = 2UL;
 interface IDXGIOutput :
     IDXGIObject
 {
-    HRESULT GetDesc( [out,annotation("_Out_")] DXGI_OUTPUT_DESC *pDesc );
+    HRESULT GetDesc( [out,annotation("_Out_"), retval] DXGI_OUTPUT_DESC *pDesc );
     HRESULT GetDisplayModeList(
         [in] DXGI_FORMAT EnumFormat,
         [in] UINT Flags,
@@ -423,7 +423,7 @@ interface IDXGISwapChain :
     HRESULT GetFullscreenState(
         [out, annotation("_Out_opt_")] BOOL *pFullscreen,
         [out, annotation("_COM_Outptr_opt_result_maybenull_")] IDXGIOutput **ppTarget );
-    HRESULT GetDesc( [out, annotation("_Out_")] DXGI_SWAP_CHAIN_DESC *pDesc );
+    HRESULT GetDesc( [out, annotation("_Out_"), retval] DXGI_SWAP_CHAIN_DESC *pDesc );
     HRESULT ResizeBuffers( [in] UINT BufferCount, [in] UINT Width, [in] UINT Height, [in] DXGI_FORMAT NewFormat, [in] UINT SwapChainFlags );
     HRESULT ResizeTarget( [in, annotation("_In_")] const DXGI_MODE_DESC *pNewTargetParameters );
     HRESULT GetContainingOutput( [out, annotation("_COM_Outptr_")] IDXGIOutput **ppOutput );
@@ -579,7 +579,7 @@ interface IDXGIFactory1 :
 interface IDXGIAdapter1 :
     IDXGIAdapter
 {
-    HRESULT GetDesc1( [out, annotation("_Out_")] DXGI_ADAPTER_DESC1 *pDesc );
+    HRESULT GetDesc1( [out, annotation("_Out_"), retval] DXGI_ADAPTER_DESC1 *pDesc );
 };
 
 //--------------------------------------------------------------------------------------------------------

@@ -1982,7 +1982,7 @@ DWORD WINAPI StopWatchFlush(void);
     LWSTDAPI_(void) IUnknown_AtomicRelease(_Inout_opt_ void ** ppunk);
     LWSTDAPI IUnknown_GetWindow(_In_ IUnknown* punk, _Out_ HWND* phwnd);
     LWSTDAPI IUnknown_SetSite(_In_ IUnknown *punk, _In_opt_ IUnknown *punkSite);
-    LWSTDAPI IUnknown_GetSite(_In_ IUnknown *punk, _In_ REFIID riid, _Outptr_ void **ppv);
+    LWSTDAPI IUnknown_GetSite(_In_ IUnknown *punk, _In_ REFIID riid, _COM_Outptr_ void **ppv);
     LWSTDAPI IUnknown_QueryService(_In_opt_ IUnknown* punk, _In_ REFGUID guidService, _In_ REFIID riid, _COM_Outptr_ void ** ppvOut);
 
 

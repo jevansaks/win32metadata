@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1995-1999  Microsoft Corporation
@@ -1069,13 +1070,13 @@ BOOLAPI InternetFindNextFileW(
 BOOLAPI InternetQueryOptionA(
     _In_opt_ HINTERNET hInternet,
     _In_ DWORD dwOption,
-    _Out_writes_bytes_to_opt_(*lpdwBufferLength, *lpdwBufferLength) __out_data_source(NETWORK) LPVOID lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(*lpdwBufferLength, *lpdwBufferLength) __out_data_source(NETWORK) LPVOID lpBuffer,
     _Inout_ LPDWORD lpdwBufferLength
     );
 BOOLAPI InternetQueryOptionW(
     _In_opt_ HINTERNET hInternet,
     _In_ DWORD dwOption,
-    _Out_writes_bytes_to_opt_(*lpdwBufferLength, *lpdwBufferLength) __out_data_source(NETWORK) LPVOID lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(*lpdwBufferLength, *lpdwBufferLength) __out_data_source(NETWORK) LPVOID lpBuffer,
     _Inout_ LPDWORD lpdwBufferLength
     );
 #ifdef UNICODE
@@ -3332,14 +3333,14 @@ CommitUrlCacheEntryW(
 BOOLAPI
 RetrieveUrlCacheEntryFileA(
     _In_ LPCSTR lpszUrlName,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo,
     _Reserved_ DWORD dwReserved
     );
 BOOLAPI
 RetrieveUrlCacheEntryFileW(
     _In_ LPCWSTR lpszUrlName,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo,
     _Reserved_ DWORD dwReserved
     );
@@ -3377,7 +3378,7 @@ BOOLAPI UnlockUrlCacheEntryFile(
 INTERNETAPI_(HANDLE)
 RetrieveUrlCacheEntryStreamA(
     _In_ LPCSTR  lpszUrlName,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo,
     _In_ BOOL fRandomRead,
     _Reserved_ DWORD dwReserved
@@ -3385,7 +3386,7 @@ RetrieveUrlCacheEntryStreamA(
 INTERNETAPI_(HANDLE)
 RetrieveUrlCacheEntryStreamW(
     _In_ LPCWSTR  lpszUrlName,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo,
     _In_ BOOL fRandomRead,
     _Reserved_ DWORD dwReserved
@@ -3423,13 +3424,13 @@ UnlockUrlCacheEntryStream(
 BOOLAPI
 GetUrlCacheEntryInfoA(
     _In_ LPCSTR lpszUrlName,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
     _Inout_opt_ LPDWORD lpcbCacheEntryInfo
     );
 BOOLAPI
 GetUrlCacheEntryInfoW(
     _In_ LPCWSTR lpszUrlName,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpCacheEntryInfo,
     _Inout_opt_ LPDWORD lpcbCacheEntryInfo
     );
 #ifdef UNICODE
@@ -3501,7 +3502,7 @@ BOOLAPI SetUrlCacheGroupAttributeW(
 BOOLAPI
 GetUrlCacheEntryInfoExA(
     _In_ LPCSTR lpszUrl,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
     _Inout_opt_ LPDWORD lpcbCacheEntryInfo,
     _Reserved_ LPSTR lpszRedirectUrl,
     _Reserved_ LPDWORD lpcbRedirectUrl,
@@ -3511,7 +3512,7 @@ GetUrlCacheEntryInfoExA(
 BOOLAPI
 GetUrlCacheEntryInfoExW(
     _In_ LPCWSTR lpszUrl,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpCacheEntryInfo,
     _Inout_opt_ LPDWORD lpcbCacheEntryInfo,
     _Reserved_ LPWSTR lpszRedirectUrl,
     _Reserved_ LPDWORD lpcbRedirectUrl,
@@ -3611,7 +3612,7 @@ FindFirstUrlCacheEntryExA(
     _In_ DWORD dwFlags,
     _In_ DWORD  dwFilter,
     _In_ GROUPID  GroupId,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpFirstCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpFirstCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo,
     _Reserved_ LPVOID lpGroupAttributes,
     _Reserved_ LPDWORD lpcbGroupAttributes,
@@ -3623,7 +3624,7 @@ FindFirstUrlCacheEntryExW(
     _In_ DWORD dwFlags,
     _In_ DWORD  dwFilter,
     _In_ GROUPID  GroupId,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpFirstCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpFirstCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo,
     _Reserved_ LPVOID lpGroupAttributes,
     _Reserved_ LPDWORD lpcbGroupAttributes,
@@ -3638,7 +3639,7 @@ FindFirstUrlCacheEntryExW(
 BOOLAPI
 FindNextUrlCacheEntryExA(
     _In_ HANDLE hEnumHandle,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpNextCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpNextCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo,
     _Reserved_ LPVOID lpGroupAttributes,
     _Reserved_ LPDWORD lpcbGroupAttributes,
@@ -3647,7 +3648,7 @@ FindNextUrlCacheEntryExA(
 BOOLAPI
 FindNextUrlCacheEntryExW(
     _In_ HANDLE hEnumHandle,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpNextCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpNextCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo,
     _Reserved_ LPVOID lpGroupAttributes,
     _Reserved_ LPDWORD lpcbGroupAttributes,
@@ -3662,13 +3663,13 @@ FindNextUrlCacheEntryExW(
 INTERNETAPI_(HANDLE)
 FindFirstUrlCacheEntryA(
     _In_opt_ LPCSTR lpszUrlSearchPattern,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpFirstCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpFirstCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo
     );
 INTERNETAPI_(HANDLE)
 FindFirstUrlCacheEntryW(
     _In_opt_ LPCWSTR lpszUrlSearchPattern,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpFirstCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpFirstCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo
     );
 #ifdef UNICODE
@@ -3680,13 +3681,13 @@ FindFirstUrlCacheEntryW(
 BOOLAPI
 FindNextUrlCacheEntryA(
     _In_ HANDLE hEnumHandle,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpNextCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpNextCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo
     );
 BOOLAPI
 FindNextUrlCacheEntryW(
     _In_ HANDLE hEnumHandle,
-    _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpNextCacheEntryInfo,
+    _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOW lpNextCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo
     );
 #ifdef UNICODE

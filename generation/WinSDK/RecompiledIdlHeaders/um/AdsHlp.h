@@ -28,7 +28,7 @@ HRESULT WINAPI
 ADsGetObject(
     LPCWSTR lpszPathName,
     REFIID riid,
-    VOID * * ppObject
+    _COM_Outptr_ VOID * * ppObject
     );
 
 
@@ -73,7 +73,7 @@ ADsOpenObject(
     LPCWSTR lpszPassword,
     DWORD  dwReserved,
     REFIID riid,
-    void FAR * FAR * ppObject
+    _COM_Outptr_ void FAR * FAR * ppObject
     );
 
 //

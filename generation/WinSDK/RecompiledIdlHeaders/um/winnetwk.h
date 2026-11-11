@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*++
@@ -561,7 +562,7 @@ DWORD APIENTRY
 WNetEnumResourceA(
     _In_    HANDLE  hEnum,
     _Inout_ LPDWORD lpcCount,
-    _Out_writes_bytes_(*lpBufferSize) LPVOID  lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpBufferSize) LPVOID  lpBuffer,
     _Inout_ LPDWORD lpBufferSize
     );
 _Check_return_
@@ -569,7 +570,7 @@ DWORD APIENTRY
 WNetEnumResourceW(
     _In_    HANDLE  hEnum,
     _Inout_ LPDWORD lpcCount,
-    _Out_writes_bytes_(*lpBufferSize) LPVOID  lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpBufferSize) LPVOID  lpBuffer,
     _Inout_ LPDWORD lpBufferSize
     );
 #ifdef UNICODE
@@ -589,14 +590,14 @@ _Check_return_
 DWORD APIENTRY
 WNetGetResourceParentA(
     _In_ LPNETRESOURCEA lpNetResource,
-    _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
     _Inout_ LPDWORD lpcbBuffer
     );
 _Check_return_
 DWORD APIENTRY
 WNetGetResourceParentW(
     _In_ LPNETRESOURCEW lpNetResource,
-    _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
     _Inout_ LPDWORD lpcbBuffer
     );
 #ifdef UNICODE
@@ -609,7 +610,7 @@ _Check_return_
 DWORD APIENTRY
 WNetGetResourceInformationA(
     _In_ LPNETRESOURCEA  lpNetResource,
-    _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
     _Inout_ LPDWORD lpcbBuffer,
     _Outptr_ LPSTR *lplpSystem
     );
@@ -617,7 +618,7 @@ _Check_return_
 DWORD APIENTRY
 WNetGetResourceInformationW(
     _In_ LPNETRESOURCEW  lpNetResource,
-    _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpcbBuffer) LPVOID lpBuffer,
     _Inout_ LPDWORD lpcbBuffer,
     _Outptr_ LPWSTR *lplpSystem
     );
@@ -672,7 +673,7 @@ DWORD APIENTRY
 WNetGetUniversalNameA(
     _In_ LPCSTR lpLocalPath,
     _In_ DWORD    dwInfoLevel,
-    _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
     _Inout_ LPDWORD lpBufferSize
     );
 _Check_return_
@@ -680,7 +681,7 @@ DWORD APIENTRY
 WNetGetUniversalNameW(
     _In_ LPCWSTR lpLocalPath,
     _In_ DWORD    dwInfoLevel,
-    _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
     _Inout_ LPDWORD lpBufferSize
     );
 #ifdef UNICODE

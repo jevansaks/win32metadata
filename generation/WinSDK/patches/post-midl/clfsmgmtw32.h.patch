@@ -1,0 +1,15 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/clfsmgmtw32.h b/generation/WinSDK/RecompiledIdlHeaders/um/clfsmgmtw32.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/clfsmgmtw32.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/clfsmgmtw32.h
+@@ -178,8 +178,8 @@
+ //------------------------------------------------------------------------------
+ CLFSUSER_API BOOL WINAPI SetLogFileSizeWithPolicy(
+     IN  HANDLE     hLog,
+-    IN  PULONGLONG pDesiredSize,
+-    OUT PULONGLONG pResultingSize
++    _In_  PULONGLONG pDesiredSize,
++    _Out_ PULONGLONG pResultingSize
+     );
+ #endif /* _WIN32_WINNT */
+ 

@@ -23,6 +23,8 @@
     <SdkHeaderPatch Include="patches\pre-midl\ObjIdl.Idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\ObjIdlbase.Idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\dxgi.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\dxgi1_2.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\dxgi1_6.idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\ocidl.Idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\ServProv.Idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\Unknwnbase.Idl.patch"/>

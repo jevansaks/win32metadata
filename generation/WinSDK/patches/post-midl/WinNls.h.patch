@@ -1,0 +1,49 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h
+@@ -2942,7 +2942,7 @@
+ GetCalendarInfoEx(
+     _In_opt_ LPCWSTR lpLocaleName,
+     _In_ CALID Calendar,
+-    _In_opt_ LPCWSTR lpReserved,
++    _Reserved_ _In_opt_ LPCWSTR lpReserved,
+     _In_ CALTYPE CalType,
+     _Out_writes_opt_(cchData) LPWSTR lpCalData,
+     _In_ int cchData,
+@@ -3070,7 +3070,7 @@
+     _In_ int cchValue,
+     _Out_opt_ LPINT pcchFound,
+     _In_opt_ LPNLSVERSIONINFO lpVersionInformation,
+-    _In_opt_ LPVOID lpReserved,
++    _Reserved_ _In_opt_ LPVOID lpReserved,
+     _In_opt_ LPARAM sortHandle
+ );
+ 
+@@ -3092,7 +3092,7 @@
+     _Out_writes_opt_(cchDest) LPWSTR lpDestStr,
+     _In_ int cchDest,
+     _In_opt_ LPNLSVERSIONINFO lpVersionInformation,
+-    _In_opt_ LPVOID lpReserved,
++    _Reserved_ _In_opt_ LPVOID lpReserved,
+     _In_opt_ LPARAM sortHandle
+ );
+ 
+@@ -3118,7 +3118,7 @@
+     _In_ CALINFO_ENUMPROCEXEX pCalInfoEnumProcExEx,
+     _In_opt_ LPCWSTR lpLocaleName,
+     _In_ CALID Calendar,
+-    _In_opt_ LPCWSTR lpReserved,
++    _Reserved_ _In_opt_ LPCWSTR lpReserved,
+     _In_ CALTYPE CalType,
+     _In_ LPARAM lParam
+ );
+@@ -3162,7 +3162,7 @@
+     _In_ LOCALE_ENUMPROCEX lpLocaleEnumProcEx,
+     _In_ DWORD dwFlags,
+     _In_ LPARAM lParam,
+-    _In_opt_ LPVOID lpReserved
++    _Reserved_ _In_opt_ LPVOID lpReserved
+ );
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PC_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */

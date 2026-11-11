@@ -420,10 +420,9 @@ STDAPI DllUnregisterServer(void);
 // Property frame APIs
 
 WINOLECTLAPI OleCreatePropertyFrame(HWND hwndOwner, UINT x, UINT y,
-    LPCOLESTR lpszCaption, ULONG cObjects, LPUNKNOWN FAR* ppUnk, ULONG cPages,
-    LPCLSID pPageClsID, LCID lcid, DWORD dwReserved, LPVOID pvReserved);
-
-WINOLECTLAPI OleCreatePropertyFrameIndirect(LPOCPFIPARAMS lpParams);
+    LPCOLESTR lpszCaption, ULONG cObjects, _In_ LPUNKNOWN FAR* ppUnk, ULONG cPages,
+    _In_ LPCLSID pPageClsID, LCID lcid, DWORD dwReserved, LPVOID pvReserved);
+WINOLECTLAPI OleCreatePropertyFrameIndirect(_In_ LPOCPFIPARAMS lpParams);
 
 
 /////////////////////////////////////////////////////////////////////////////

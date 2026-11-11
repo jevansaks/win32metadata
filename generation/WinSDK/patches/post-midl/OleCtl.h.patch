@@ -2,7 +2,21 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h b/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h
-@@ -433,13 +433,13 @@
+@@ -420,10 +420,9 @@
+ // Property frame APIs
+ 
+ WINOLECTLAPI OleCreatePropertyFrame(HWND hwndOwner, UINT x, UINT y,
+-    LPCOLESTR lpszCaption, ULONG cObjects, LPUNKNOWN FAR* ppUnk, ULONG cPages,
+-    LPCLSID pPageClsID, LCID lcid, DWORD dwReserved, LPVOID pvReserved);
+-
+-WINOLECTLAPI OleCreatePropertyFrameIndirect(LPOCPFIPARAMS lpParams);
++    LPCOLESTR lpszCaption, ULONG cObjects, _In_ LPUNKNOWN FAR* ppUnk, ULONG cPages,
++    _In_ LPCLSID pPageClsID, LCID lcid, DWORD dwReserved, LPVOID pvReserved);
++WINOLECTLAPI OleCreatePropertyFrameIndirect(_In_ LPOCPFIPARAMS lpParams);
+ 
+ 
+ /////////////////////////////////////////////////////////////////////////////
+@@ -433,13 +432,13 @@
      COLORREF* lpcolorref);
  
  WINOLECTLAPI OleCreateFontIndirect(LPFONTDESC lpFontDesc, REFIID riid,
@@ -19,7 +33,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/OleCtl.h b/generation/Win
  
  WINOLECTLAPI OleLoadPictureEx(LPSTREAM lpstream, LONG lSize, BOOL fRunmode,
      REFIID riid, DWORD xSizeDesired, DWORD ySizeDesired, DWORD dwFlags,
-@@ -450,7 +450,7 @@
+@@ -450,7 +449,7 @@
  				  DWORD     dwReserved,
  				  OLE_COLOR clrReserved,
  				  REFIID    riid,

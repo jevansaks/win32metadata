@@ -1,0 +1,13 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fwpmu.h b/generation/WinSDK/RecompiledIdlHeaders/um/fwpmu.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/fwpmu.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/fwpmu.h
+@@ -3342,7 +3342,7 @@
+ DWORD
+ WINAPI
+ FwpmEngineOpen0(
+-   _In_opt_ const wchar_t* serverName,
++   _Reserved_ _In_opt_ const wchar_t* serverName,
+    _In_ UINT32 authnService,
+    _In_opt_ SEC_WINNT_AUTH_IDENTITY_W* authIdentity,
+    _In_opt_ const FWPM_SESSION0* session,

@@ -120,3 +120,61 @@ patch-validation suite was not rerun. This reports local production generation
 and local test results, not a recovery CI result. The failed automatic run
 `42691434230` belongs to the preserved red experiment at `88991baf`, not this
 working input set.
+
+## Incremental reduction: first parameter checkpoint
+
+The user subsequently authorized measured retirement above the working recovery
+`a9a5406f7a52b144094d2d6c9972907bdaa2540d`. The recovery quantities above remain
+the historical conservative anchor, not the current reduction target.
+
+The first accepted parameter batch removes **395 atomic parameter facts** and
+**332 complete value rows** from `emitter.settings.rsp` (2,503 to 2,171 rows).
+Across all parameter remaps, 770 attribute atoms become **375**, and 694
+attribute-bearing rows become 362. A bracket containing two attributes counts
+as two atoms, not one. Enum associations, cleanup policy, and negative fidelity
+overrides are included in those 375 remaining atoms; they are not all SAL gaps.
+Documentation, library mappings, and parser configuration are unchanged.
+
+| Native parameter family | Anchor atoms | Removed | Retained |
+|---|---:|---:|---:|
+| `ContainsInteriorPointers` | 116 | 116 | 0 |
+| `Const` | 93 | 92 | 1 |
+| `Optional` | 82 | 53 | 29 |
+| `In` | 67 | 57 | 10 |
+| `ComOutPtr` | 61 | 11 | 50 |
+| `Reserved` | 33 | 16 | 17 |
+| `Out` | 26 | 19 | 7 |
+| `Retained` | 17 | 17 | 0 |
+| `NativeArrayInfo` | 15 | 1 | 14 |
+| `RetVal` | 14 | 13 | 1 |
+| `MemorySize` | 2 | 0 | 2 |
+| **Subtotal** | **526** | **395** | **131** |
+
+The nine accepted CLR exception selectors retain ten atoms within that subtotal.
+The other 244 remaining parameter atoms are enum associations, ownership/freeing
+policy, negative overrides, and two conditional-return facts. No entire parameter
+file is retained as an unexplained exception.
+
+Changes use native SAL, native const input types, and the current
+`ContainsInteriorPointers`, `Retained`, and retval contracts. DXGI retval changes
+are authored in three pre-MIDL IDLs and carried through actual MIDL outputs.
+No reader, helper, converter, or CI changes are part of this batch.
+
+The whole-category deletion trial emitted but lost API facts and was rejected.
+Owner/fact-closed subdivision then rejected native Reserved/Optional changes
+that also changed direction or optionality, retaining their exact old remaps.
+Whole-owner WMI and TSF regeneration re-exposed unrelated native `[unique]`
+optionality; those two owners were backed out rather than accepting unrelated
+API changes. A TSF `_Out_opt_` input also displaced its existing array extent;
+it was not accepted as a successful optionality migration.
+
+Actual cross-architecture scraping/emission, followed by refreshing the four
+changed rollback partitions and re-emitting the complete union, succeeded.
+The new output at `files\sidecar-reduction\parameter-accepted\Windows.Win32.winmd`
+has SHA-256
+`18996DF3292B4035F3A0512882985BA5A1A69703346E767A97DE23125A6C35E9`.
+The existing complete, unmasked comparer exits zero; the entire declaration dump
+is byte-identical to `C18E31F0C0BFF9FEC72477DD4D539766806E4B282A2ADD1C285E5555F99C4D36`.
+This is a newly emitted checkpoint, not a copied reference. It is not a claim
+that all parameter metadata has moved, nor a mathematical minimum. Further
+one-for-one batches and enum/handle trials follow above this checkpoint.

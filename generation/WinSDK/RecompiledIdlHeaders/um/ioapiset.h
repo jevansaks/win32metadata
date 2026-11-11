@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * ioapiset.h -- ApiSet Contract for api-ms-win-core-io-l1                       *
@@ -90,7 +91,7 @@ DeviceIoControl(
     _Out_writes_bytes_to_opt_(nOutBufferSize,*lpBytesReturned) LPVOID lpOutBuffer,
     _In_ DWORD nOutBufferSize,
     _Out_opt_ LPDWORD lpBytesReturned,
-    _Inout_opt_ LPOVERLAPPED lpOverlapped
+    _Win32_Retained_ _Inout_opt_ LPOVERLAPPED lpOverlapped
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES) */

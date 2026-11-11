@@ -3342,7 +3342,7 @@ void WINAPI FwpmFreeMemory0(_Inout_ void** p);
 DWORD
 WINAPI
 FwpmEngineOpen0(
-   _In_opt_ const wchar_t* serverName,
+   _Reserved_ _In_opt_ const wchar_t* serverName,
    _In_ UINT32 authnService,
    _In_opt_ SEC_WINNT_AUTH_IDENTITY_W* authIdentity,
    _In_opt_ const FWPM_SESSION0* session,

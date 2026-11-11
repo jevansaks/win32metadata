@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* WS2SPI.H -- definitions to be used with the WinSock service provider.
@@ -1098,7 +1099,7 @@ INT
 WSAAPI
 WSCEnumNameSpaceProviders32(
     _Inout_ LPDWORD             lpdwBufferLength,
-    _Out_writes_bytes_(*lpdwBufferLength) LPWSANAMESPACE_INFOW lpnspBuffer
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpdwBufferLength) LPWSANAMESPACE_INFOW lpnspBuffer
     );
 #endif
 #endif //(_WIN32_WINNT >= 0x0501)
@@ -1112,7 +1113,7 @@ INT
 WSAAPI
 WSCEnumNameSpaceProvidersEx32(
     _Inout_ LPDWORD     lpdwBufferLength,
-    _Out_writes_bytes_(*lpdwBufferLength) LPWSANAMESPACE_INFOEXW lpnspBuffer
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpdwBufferLength) LPWSANAMESPACE_INFOEXW lpnspBuffer
     );
 #endif //(_WIN64)
 #endif //(_WIN32_WINNT >= 0x0600)

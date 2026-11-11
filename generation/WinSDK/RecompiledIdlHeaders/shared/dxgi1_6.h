@@ -142,7 +142,7 @@ EXTERN_C const IID IID_IDXGIAdapter4;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDesc3( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_ADAPTER_DESC3 *pDesc) = 0;
         
     };
@@ -156,7 +156,7 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -164,15 +164,15 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IDXGIAdapter4 * This);
+            __RPC__in IDXGIAdapter4 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IDXGIAdapter4 * This);
+            __RPC__in IDXGIAdapter4 * This);
         
         DECLSPEC_XFGVIRT(IDXGIObject, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][in] */ 
@@ -182,7 +182,7 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIObject, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][in] */ 
@@ -190,7 +190,7 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIObject, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][out][in] */ 
@@ -200,7 +200,7 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIObject, GetParent)
         HRESULT ( STDMETHODCALLTYPE *GetParent )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][retval][out] */ 
@@ -208,7 +208,7 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIAdapter, EnumOutputs)
         HRESULT ( STDMETHODCALLTYPE *EnumOutputs )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  UINT Output,
             /* [annotation][out][in] */ 
@@ -216,13 +216,13 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIAdapter, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
-            IDXGIAdapter4 * This,
-            /* [annotation][out] */ 
+            __RPC__in IDXGIAdapter4 * This,
+            /* [annotation][retval][out] */ 
             _Out_  DXGI_ADAPTER_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGIAdapter, CheckInterfaceSupport)
         HRESULT ( STDMETHODCALLTYPE *CheckInterfaceSupport )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  REFGUID InterfaceName,
             /* [annotation][out] */ 
@@ -230,19 +230,19 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIAdapter1, GetDesc1)
         HRESULT ( STDMETHODCALLTYPE *GetDesc1 )( 
-            IDXGIAdapter4 * This,
-            /* [annotation][out] */ 
+            __RPC__in IDXGIAdapter4 * This,
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_ADAPTER_DESC1 *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGIAdapter2, GetDesc2)
         HRESULT ( STDMETHODCALLTYPE *GetDesc2 )( 
-            IDXGIAdapter4 * This,
-            /* [annotation][out] */ 
+            __RPC__in IDXGIAdapter4 * This,
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_ADAPTER_DESC2 *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGIAdapter3, RegisterHardwareContentProtectionTeardownStatusEvent)
         HRESULT ( STDMETHODCALLTYPE *RegisterHardwareContentProtectionTeardownStatusEvent )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  HANDLE hEvent,
             /* [annotation][out] */ 
@@ -250,13 +250,13 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIAdapter3, UnregisterHardwareContentProtectionTeardownStatus)
         void ( STDMETHODCALLTYPE *UnregisterHardwareContentProtectionTeardownStatus )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwCookie);
         
         DECLSPEC_XFGVIRT(IDXGIAdapter3, QueryVideoMemoryInfo)
         HRESULT ( STDMETHODCALLTYPE *QueryVideoMemoryInfo )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  UINT NodeIndex,
             /* [annotation][in] */ 
@@ -266,7 +266,7 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIAdapter3, SetVideoMemoryReservation)
         HRESULT ( STDMETHODCALLTYPE *SetVideoMemoryReservation )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  UINT NodeIndex,
             /* [annotation][in] */ 
@@ -276,7 +276,7 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIAdapter3, RegisterVideoMemoryBudgetChangeNotificationEvent)
         HRESULT ( STDMETHODCALLTYPE *RegisterVideoMemoryBudgetChangeNotificationEvent )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  HANDLE hEvent,
             /* [annotation][out] */ 
@@ -284,14 +284,14 @@ EXTERN_C const IID IID_IDXGIAdapter4;
         
         DECLSPEC_XFGVIRT(IDXGIAdapter3, UnregisterVideoMemoryBudgetChangeNotification)
         void ( STDMETHODCALLTYPE *UnregisterVideoMemoryBudgetChangeNotification )( 
-            IDXGIAdapter4 * This,
+            __RPC__in IDXGIAdapter4 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwCookie);
         
         DECLSPEC_XFGVIRT(IDXGIAdapter4, GetDesc3)
         HRESULT ( STDMETHODCALLTYPE *GetDesc3 )( 
-            IDXGIAdapter4 * This,
-            /* [annotation][out] */ 
+            __RPC__in IDXGIAdapter4 * This,
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_ADAPTER_DESC3 *pDesc);
         
         END_INTERFACE
@@ -432,7 +432,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDesc1( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_OUTPUT_DESC1 *pDesc) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE CheckHardwareCompositionSupport( 
@@ -450,7 +450,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -458,15 +458,15 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IDXGIOutput6 * This);
+            __RPC__in IDXGIOutput6 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IDXGIOutput6 * This);
+            __RPC__in IDXGIOutput6 * This);
         
         DECLSPEC_XFGVIRT(IDXGIObject, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][in] */ 
@@ -476,7 +476,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIObject, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][in] */ 
@@ -484,7 +484,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIObject, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][out][in] */ 
@@ -494,7 +494,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIObject, GetParent)
         HRESULT ( STDMETHODCALLTYPE *GetParent )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][retval][out] */ 
@@ -502,13 +502,13 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIOutput, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
-            IDXGIOutput6 * This,
-            /* [annotation][out] */ 
+            __RPC__in IDXGIOutput6 * This,
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_OUTPUT_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, GetDisplayModeList)
         HRESULT ( STDMETHODCALLTYPE *GetDisplayModeList )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  DXGI_FORMAT EnumFormat,
             /* [annotation][in] */ 
@@ -520,7 +520,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIOutput, FindClosestMatchingMode)
         HRESULT ( STDMETHODCALLTYPE *FindClosestMatchingMode )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  const DXGI_MODE_DESC *pModeToMatch,
             /* [annotation][out] */ 
@@ -530,58 +530,58 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIOutput, WaitForVBlank)
         HRESULT ( STDMETHODCALLTYPE *WaitForVBlank )( 
-            IDXGIOutput6 * This);
+            __RPC__in IDXGIOutput6 * This);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, TakeOwnership)
         HRESULT ( STDMETHODCALLTYPE *TakeOwnership )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             BOOL Exclusive);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, ReleaseOwnership)
         void ( STDMETHODCALLTYPE *ReleaseOwnership )( 
-            IDXGIOutput6 * This);
+            __RPC__in IDXGIOutput6 * This);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, GetGammaControlCapabilities)
         HRESULT ( STDMETHODCALLTYPE *GetGammaControlCapabilities )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][out] */ 
             _Out_  DXGI_GAMMA_CONTROL_CAPABILITIES *pGammaCaps);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, SetGammaControl)
         HRESULT ( STDMETHODCALLTYPE *SetGammaControl )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  const DXGI_GAMMA_CONTROL *pArray);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, GetGammaControl)
         HRESULT ( STDMETHODCALLTYPE *GetGammaControl )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][out] */ 
             _Out_  DXGI_GAMMA_CONTROL *pArray);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, SetDisplaySurface)
         HRESULT ( STDMETHODCALLTYPE *SetDisplaySurface )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  IDXGISurface *pScanoutSurface);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, GetDisplaySurfaceData)
         HRESULT ( STDMETHODCALLTYPE *GetDisplaySurfaceData )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  IDXGISurface *pDestination);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, GetFrameStatistics)
         HRESULT ( STDMETHODCALLTYPE *GetFrameStatistics )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][out] */ 
             _Out_  DXGI_FRAME_STATISTICS *pStats);
         
         DECLSPEC_XFGVIRT(IDXGIOutput1, GetDisplayModeList1)
         HRESULT ( STDMETHODCALLTYPE *GetDisplayModeList1 )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  DXGI_FORMAT EnumFormat,
             /* [annotation][in] */ 
@@ -593,7 +593,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIOutput1, FindClosestMatchingMode1)
         HRESULT ( STDMETHODCALLTYPE *FindClosestMatchingMode1 )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  const DXGI_MODE_DESC1 *pModeToMatch,
             /* [annotation][out] */ 
@@ -603,13 +603,13 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIOutput1, GetDisplaySurfaceData1)
         HRESULT ( STDMETHODCALLTYPE *GetDisplaySurfaceData1 )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  IDXGIResource *pDestination);
         
         DECLSPEC_XFGVIRT(IDXGIOutput1, DuplicateOutput)
         HRESULT ( STDMETHODCALLTYPE *DuplicateOutput )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [annotation][out] */ 
@@ -617,11 +617,11 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIOutput2, SupportsOverlays)
         BOOL ( STDMETHODCALLTYPE *SupportsOverlays )( 
-            IDXGIOutput6 * This);
+            __RPC__in IDXGIOutput6 * This);
         
         DECLSPEC_XFGVIRT(IDXGIOutput3, CheckOverlaySupport)
         HRESULT ( STDMETHODCALLTYPE *CheckOverlaySupport )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  DXGI_FORMAT EnumFormat,
             /* [annotation][out] */ 
@@ -631,7 +631,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIOutput4, CheckOverlayColorSpaceSupport)
         HRESULT ( STDMETHODCALLTYPE *CheckOverlayColorSpaceSupport )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  DXGI_FORMAT Format,
             /* [annotation][in] */ 
@@ -643,7 +643,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIOutput5, DuplicateOutput1)
         HRESULT ( STDMETHODCALLTYPE *DuplicateOutput1 )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [in] */ UINT Flags,
@@ -656,13 +656,13 @@ EXTERN_C const IID IID_IDXGIOutput6;
         
         DECLSPEC_XFGVIRT(IDXGIOutput6, GetDesc1)
         HRESULT ( STDMETHODCALLTYPE *GetDesc1 )( 
-            IDXGIOutput6 * This,
-            /* [annotation][out] */ 
+            __RPC__in IDXGIOutput6 * This,
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_OUTPUT_DESC1 *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGIOutput6, CheckHardwareCompositionSupport)
         HRESULT ( STDMETHODCALLTYPE *CheckHardwareCompositionSupport )( 
-            IDXGIOutput6 * This,
+            __RPC__in IDXGIOutput6 * This,
             /* [annotation][out] */ 
             _Out_  UINT *pFlags);
         
@@ -837,7 +837,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -845,15 +845,15 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IDXGIFactory6 * This);
+            __RPC__in IDXGIFactory6 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IDXGIFactory6 * This);
+            __RPC__in IDXGIFactory6 * This);
         
         DECLSPEC_XFGVIRT(IDXGIObject, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][in] */ 
@@ -863,7 +863,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIObject, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][in] */ 
@@ -871,7 +871,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIObject, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][out][in] */ 
@@ -881,7 +881,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIObject, GetParent)
         HRESULT ( STDMETHODCALLTYPE *GetParent )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][retval][out] */ 
@@ -889,7 +889,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory, EnumAdapters)
         HRESULT ( STDMETHODCALLTYPE *EnumAdapters )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  UINT Adapter,
             /* [annotation][out] */ 
@@ -897,19 +897,19 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory, MakeWindowAssociation)
         HRESULT ( STDMETHODCALLTYPE *MakeWindowAssociation )( 
-            IDXGIFactory6 * This,
-            HWND WindowHandle,
+            __RPC__in IDXGIFactory6 * This,
+            __RPC__in HWND WindowHandle,
             UINT Flags);
         
         DECLSPEC_XFGVIRT(IDXGIFactory, GetWindowAssociation)
         HRESULT ( STDMETHODCALLTYPE *GetWindowAssociation )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][out] */ 
             _Out_  HWND *pWindowHandle);
         
         DECLSPEC_XFGVIRT(IDXGIFactory, CreateSwapChain)
         HRESULT ( STDMETHODCALLTYPE *CreateSwapChain )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [annotation][in] */ 
@@ -919,7 +919,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory, CreateSoftwareAdapter)
         HRESULT ( STDMETHODCALLTYPE *CreateSoftwareAdapter )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  HMODULE Module,
             /* [annotation][out] */ 
@@ -927,7 +927,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory1, EnumAdapters1)
         HRESULT ( STDMETHODCALLTYPE *EnumAdapters1 )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  UINT Adapter,
             /* [annotation][out] */ 
@@ -935,15 +935,15 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory1, IsCurrent)
         BOOL ( STDMETHODCALLTYPE *IsCurrent )( 
-            IDXGIFactory6 * This);
+            __RPC__in IDXGIFactory6 * This);
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, IsWindowedStereoEnabled)
         BOOL ( STDMETHODCALLTYPE *IsWindowedStereoEnabled )( 
-            IDXGIFactory6 * This);
+            __RPC__in IDXGIFactory6 * This);
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, CreateSwapChainForHwnd)
         HRESULT ( STDMETHODCALLTYPE *CreateSwapChainForHwnd )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [annotation][in] */ 
@@ -959,7 +959,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, CreateSwapChainForCoreWindow)
         HRESULT ( STDMETHODCALLTYPE *CreateSwapChainForCoreWindow )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [annotation][in] */ 
@@ -973,7 +973,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, GetSharedResourceAdapterLuid)
         HRESULT ( STDMETHODCALLTYPE *GetSharedResourceAdapterLuid )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation] */ 
             _In_  HANDLE hResource,
             /* [annotation] */ 
@@ -981,7 +981,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, RegisterStereoStatusWindow)
         HRESULT ( STDMETHODCALLTYPE *RegisterStereoStatusWindow )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  HWND WindowHandle,
             /* [annotation][in] */ 
@@ -991,7 +991,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, RegisterStereoStatusEvent)
         HRESULT ( STDMETHODCALLTYPE *RegisterStereoStatusEvent )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  HANDLE hEvent,
             /* [annotation][out] */ 
@@ -999,13 +999,13 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, UnregisterStereoStatus)
         void ( STDMETHODCALLTYPE *UnregisterStereoStatus )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwCookie);
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, RegisterOcclusionStatusWindow)
         HRESULT ( STDMETHODCALLTYPE *RegisterOcclusionStatusWindow )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  HWND WindowHandle,
             /* [annotation][in] */ 
@@ -1015,7 +1015,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, RegisterOcclusionStatusEvent)
         HRESULT ( STDMETHODCALLTYPE *RegisterOcclusionStatusEvent )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  HANDLE hEvent,
             /* [annotation][out] */ 
@@ -1023,13 +1023,13 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, UnregisterOcclusionStatus)
         void ( STDMETHODCALLTYPE *UnregisterOcclusionStatus )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwCookie);
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, CreateSwapChainForComposition)
         HRESULT ( STDMETHODCALLTYPE *CreateSwapChainForComposition )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [annotation][in] */ 
@@ -1041,11 +1041,11 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory3, GetCreationFlags)
         UINT ( STDMETHODCALLTYPE *GetCreationFlags )( 
-            IDXGIFactory6 * This);
+            __RPC__in IDXGIFactory6 * This);
         
         DECLSPEC_XFGVIRT(IDXGIFactory4, EnumAdapterByLuid)
         HRESULT ( STDMETHODCALLTYPE *EnumAdapterByLuid )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation] */ 
             _In_  LUID AdapterLuid,
             /* [annotation] */ 
@@ -1055,7 +1055,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory4, EnumWarpAdapter)
         HRESULT ( STDMETHODCALLTYPE *EnumWarpAdapter )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation] */ 
             _In_  REFIID riid,
             /* [annotation] */ 
@@ -1063,7 +1063,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory5, CheckFeatureSupport)
         HRESULT ( STDMETHODCALLTYPE *CheckFeatureSupport )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             DXGI_FEATURE Feature,
             /* [annotation] */ 
             _Inout_updates_bytes_(FeatureSupportDataSize)  void *pFeatureSupportData,
@@ -1071,7 +1071,7 @@ EXTERN_C const IID IID_IDXGIFactory6;
         
         DECLSPEC_XFGVIRT(IDXGIFactory6, EnumAdapterByGpuPreference)
         HRESULT ( STDMETHODCALLTYPE *EnumAdapterByGpuPreference )( 
-            IDXGIFactory6 * This,
+            __RPC__in IDXGIFactory6 * This,
             /* [annotation] */ 
             _In_  UINT Adapter,
             /* [annotation] */ 
@@ -1239,7 +1239,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1247,15 +1247,15 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IDXGIFactory7 * This);
+            __RPC__in IDXGIFactory7 * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IDXGIFactory7 * This);
+            __RPC__in IDXGIFactory7 * This);
         
         DECLSPEC_XFGVIRT(IDXGIObject, SetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateData )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][in] */ 
@@ -1265,7 +1265,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIObject, SetPrivateDataInterface)
         HRESULT ( STDMETHODCALLTYPE *SetPrivateDataInterface )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][in] */ 
@@ -1273,7 +1273,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIObject, GetPrivateData)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateData )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  REFGUID Name,
             /* [annotation][out][in] */ 
@@ -1283,7 +1283,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIObject, GetParent)
         HRESULT ( STDMETHODCALLTYPE *GetParent )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][retval][out] */ 
@@ -1291,7 +1291,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory, EnumAdapters)
         HRESULT ( STDMETHODCALLTYPE *EnumAdapters )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  UINT Adapter,
             /* [annotation][out] */ 
@@ -1299,19 +1299,19 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory, MakeWindowAssociation)
         HRESULT ( STDMETHODCALLTYPE *MakeWindowAssociation )( 
-            IDXGIFactory7 * This,
-            HWND WindowHandle,
+            __RPC__in IDXGIFactory7 * This,
+            __RPC__in HWND WindowHandle,
             UINT Flags);
         
         DECLSPEC_XFGVIRT(IDXGIFactory, GetWindowAssociation)
         HRESULT ( STDMETHODCALLTYPE *GetWindowAssociation )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][out] */ 
             _Out_  HWND *pWindowHandle);
         
         DECLSPEC_XFGVIRT(IDXGIFactory, CreateSwapChain)
         HRESULT ( STDMETHODCALLTYPE *CreateSwapChain )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [annotation][in] */ 
@@ -1321,7 +1321,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory, CreateSoftwareAdapter)
         HRESULT ( STDMETHODCALLTYPE *CreateSoftwareAdapter )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  HMODULE Module,
             /* [annotation][out] */ 
@@ -1329,7 +1329,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory1, EnumAdapters1)
         HRESULT ( STDMETHODCALLTYPE *EnumAdapters1 )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  UINT Adapter,
             /* [annotation][out] */ 
@@ -1337,15 +1337,15 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory1, IsCurrent)
         BOOL ( STDMETHODCALLTYPE *IsCurrent )( 
-            IDXGIFactory7 * This);
+            __RPC__in IDXGIFactory7 * This);
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, IsWindowedStereoEnabled)
         BOOL ( STDMETHODCALLTYPE *IsWindowedStereoEnabled )( 
-            IDXGIFactory7 * This);
+            __RPC__in IDXGIFactory7 * This);
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, CreateSwapChainForHwnd)
         HRESULT ( STDMETHODCALLTYPE *CreateSwapChainForHwnd )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [annotation][in] */ 
@@ -1361,7 +1361,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, CreateSwapChainForCoreWindow)
         HRESULT ( STDMETHODCALLTYPE *CreateSwapChainForCoreWindow )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [annotation][in] */ 
@@ -1375,7 +1375,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, GetSharedResourceAdapterLuid)
         HRESULT ( STDMETHODCALLTYPE *GetSharedResourceAdapterLuid )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation] */ 
             _In_  HANDLE hResource,
             /* [annotation] */ 
@@ -1383,7 +1383,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, RegisterStereoStatusWindow)
         HRESULT ( STDMETHODCALLTYPE *RegisterStereoStatusWindow )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  HWND WindowHandle,
             /* [annotation][in] */ 
@@ -1393,7 +1393,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, RegisterStereoStatusEvent)
         HRESULT ( STDMETHODCALLTYPE *RegisterStereoStatusEvent )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  HANDLE hEvent,
             /* [annotation][out] */ 
@@ -1401,13 +1401,13 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, UnregisterStereoStatus)
         void ( STDMETHODCALLTYPE *UnregisterStereoStatus )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwCookie);
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, RegisterOcclusionStatusWindow)
         HRESULT ( STDMETHODCALLTYPE *RegisterOcclusionStatusWindow )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  HWND WindowHandle,
             /* [annotation][in] */ 
@@ -1417,7 +1417,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, RegisterOcclusionStatusEvent)
         HRESULT ( STDMETHODCALLTYPE *RegisterOcclusionStatusEvent )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  HANDLE hEvent,
             /* [annotation][out] */ 
@@ -1425,13 +1425,13 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, UnregisterOcclusionStatus)
         void ( STDMETHODCALLTYPE *UnregisterOcclusionStatus )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwCookie);
         
         DECLSPEC_XFGVIRT(IDXGIFactory2, CreateSwapChainForComposition)
         HRESULT ( STDMETHODCALLTYPE *CreateSwapChainForComposition )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  IUnknown *pDevice,
             /* [annotation][in] */ 
@@ -1443,11 +1443,11 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory3, GetCreationFlags)
         UINT ( STDMETHODCALLTYPE *GetCreationFlags )( 
-            IDXGIFactory7 * This);
+            __RPC__in IDXGIFactory7 * This);
         
         DECLSPEC_XFGVIRT(IDXGIFactory4, EnumAdapterByLuid)
         HRESULT ( STDMETHODCALLTYPE *EnumAdapterByLuid )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation] */ 
             _In_  LUID AdapterLuid,
             /* [annotation] */ 
@@ -1457,7 +1457,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory4, EnumWarpAdapter)
         HRESULT ( STDMETHODCALLTYPE *EnumWarpAdapter )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation] */ 
             _In_  REFIID riid,
             /* [annotation] */ 
@@ -1465,7 +1465,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory5, CheckFeatureSupport)
         HRESULT ( STDMETHODCALLTYPE *CheckFeatureSupport )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             DXGI_FEATURE Feature,
             /* [annotation] */ 
             _Inout_updates_bytes_(FeatureSupportDataSize)  void *pFeatureSupportData,
@@ -1473,7 +1473,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory6, EnumAdapterByGpuPreference)
         HRESULT ( STDMETHODCALLTYPE *EnumAdapterByGpuPreference )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation] */ 
             _In_  UINT Adapter,
             /* [annotation] */ 
@@ -1485,7 +1485,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory7, RegisterAdaptersChangedEvent)
         HRESULT ( STDMETHODCALLTYPE *RegisterAdaptersChangedEvent )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  HANDLE hEvent,
             /* [annotation][out] */ 
@@ -1493,7 +1493,7 @@ EXTERN_C const IID IID_IDXGIFactory7;
         
         DECLSPEC_XFGVIRT(IDXGIFactory7, UnregisterAdaptersChangedEvent)
         HRESULT ( STDMETHODCALLTYPE *UnregisterAdaptersChangedEvent )( 
-            IDXGIFactory7 * This,
+            __RPC__in IDXGIFactory7 * This,
             /* [annotation][in] */ 
             _In_  DWORD dwCookie);
         

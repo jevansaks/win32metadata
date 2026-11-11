@@ -178,8 +178,8 @@ CLFSUSER_API BOOL WINAPI QueryLogPolicy (
 //------------------------------------------------------------------------------
 CLFSUSER_API BOOL WINAPI SetLogFileSizeWithPolicy(
     IN  HANDLE     hLog,
-    IN  PULONGLONG pDesiredSize,
-    OUT PULONGLONG pResultingSize
+    _In_  PULONGLONG pDesiredSize,
+    _Out_ PULONGLONG pResultingSize
     );
 #endif /* _WIN32_WINNT */
 

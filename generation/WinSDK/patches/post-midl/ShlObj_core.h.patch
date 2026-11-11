@@ -2,7 +2,7 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h
-@@ -1056,7 +1056,7 @@ STDAPI SHGetKnownFolderItem(_In_ REFKNOWNFOLDERID rfid,
+@@ -1056,7 +1056,7 @@
                              _In_ KNOWN_FOLDER_FLAG flags,
                              _In_opt_ HANDLE hToken,
                              _In_ REFIID riid,
@@ -11,7 +11,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  #endif // NTDDI_WIN7
  
  #if (NTDDI_VERSION >= NTDDI_WIN2K)
-@@ -2279,10 +2279,10 @@ SHSTDAPI_(int) RestartDialog(_In_opt_ HWND hwnd, _In_opt_ PCWSTR pszPrompt, DWOR
+@@ -2279,10 +2279,10 @@
  SHSTDAPI_(int) RestartDialogEx(_In_opt_ HWND hwnd, _In_opt_ PCWSTR pszPrompt, DWORD dwReturn, DWORD dwReasonCode);
  #endif
  
@@ -24,7 +24,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  #endif
  SHSTDAPI CIDLData_CreateFromIDArray(_In_ PCIDLIST_ABSOLUTE pidlFolder, _In_ UINT cidl, _In_reads_opt_(cidl) PCUIDLIST_RELATIVE_ARRAY apidl, _Outptr_ IDataObject **ppdtobj);
  SHSTDAPI SHCreateStdEnumFmtEtc(_In_ UINT cfmt, _In_reads_(cfmt) const FORMATETC afmt[], _Outptr_ IEnumFORMATETC **ppenumFormatEtc);
-@@ -3017,7 +3017,7 @@ typedef struct {
+@@ -3017,7 +3017,7 @@
  // used in the implemetnation of ::GetUIObjectOf()
  
  #if (NTDDI_VERSION >= NTDDI_VISTA)
@@ -33,7 +33,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  #endif // NTDDI_VISTA
  
  // structure for lParam of DFM_INFOKECOMMANDEX
-@@ -3400,18 +3400,18 @@ SHSTDAPI_(void) SHGetSettings(_Out_ SHELLFLAGSTATE *psfs, DWORD dwMask);
+@@ -3400,18 +3400,18 @@
  // Given a pidl, you can get an interface pointer (as specified by riid) of the pidl's parent folder (in ppv)
  // If ppidlLast is non-NULL, you can also get the pidl of the last item.
  //
@@ -56,7 +56,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  
  #endif // NTDDI_VISTA
  
-@@ -3556,7 +3556,7 @@ SHSTDAPI SHPropStgWriteMultiple(_In_ IPropertyStorage* pps, _Inout_opt_ UINT* pu
+@@ -3556,7 +3556,7 @@
  
  #if (NTDDI_VERSION >= NTDDI_WINXP)
  SHSTDAPI SHCreateFileExtractIconA(_In_ LPCSTR pszFile, _In_ DWORD dwFileAttributes, _In_ REFIID riid, _Outptr_ void **ppv);
@@ -65,3 +65,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  #ifdef UNICODE
  #define SHCreateFileExtractIcon  SHCreateFileExtractIconW
  #else
+@@ -3580,7 +3580,7 @@
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN7)
+ // returns an IStream or IStorage via riid/ppv
+-STDAPI StgMakeUniqueName(_In_ IStorage *pstgParent, _In_ PCWSTR pszFileSpec, _In_ DWORD grfMode, _In_ REFIID riid, _Outptr_ void **ppv);
++STDAPI StgMakeUniqueName(_In_ IStorage *pstgParent, _In_ PCWSTR pszFileSpec, _In_ DWORD grfMode, _In_ REFIID riid, _COM_Outptr_ void **ppv);
+ #endif // NTDDI_WIN7
+ 
+ #if (_WIN32_IE >= _WIN32_IE_IE70)

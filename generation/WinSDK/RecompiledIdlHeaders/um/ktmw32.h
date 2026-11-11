@@ -39,12 +39,12 @@ extern "C" {
 HANDLE
 APIENTRY
 CreateTransaction (
-    IN LPSECURITY_ATTRIBUTES lpTransactionAttributes OPTIONAL,
-    IN LPGUID UOW OPTIONAL,
-    IN DWORD CreateOptions OPTIONAL,
-    IN DWORD IsolationLevel OPTIONAL,
-    IN DWORD IsolationFlags OPTIONAL,
-    IN DWORD Timeout OPTIONAL,
+    _In_ _In_opt_ LPSECURITY_ATTRIBUTES lpTransactionAttributes OPTIONAL,
+    _In_ _In_opt_ LPGUID UOW OPTIONAL,
+    _In_ _In_opt_ DWORD CreateOptions OPTIONAL,
+    _In_ _In_opt_ DWORD IsolationLevel OPTIONAL,
+    _In_ _In_opt_ DWORD IsolationFlags OPTIONAL,
+    _In_ _In_opt_ DWORD Timeout OPTIONAL,
     _In_opt_ LPWSTR Description
     );
 

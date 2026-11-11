@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* Winsock2.h -- definitions to be used with the WinSock 2 DLL and
@@ -3688,7 +3689,7 @@ WSALookupServiceNextA(
     _In_ HANDLE           hLookup,
     _In_ DWORD            dwControlFlags,
     _Inout_ LPDWORD       lpdwBufferLength,
-    _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSAQUERYSETA lpqsResults
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSAQUERYSETA lpqsResults
     );
 
 WINSOCK_API_LINKAGE
@@ -3698,7 +3699,7 @@ WSALookupServiceNextW(
     _In_ HANDLE           hLookup,
     _In_ DWORD            dwControlFlags,
     _Inout_ LPDWORD       lpdwBufferLength,
-    _Out_writes_bytes_to_opt_(*lpdwBufferLength,*lpdwBufferLength) LPWSAQUERYSETW lpqsResults
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(*lpdwBufferLength,*lpdwBufferLength) LPWSAQUERYSETW lpqsResults
     );
 #ifdef UNICODE
 #define WSALookupServiceNext  WSALookupServiceNextW
@@ -3913,7 +3914,7 @@ INT
 WSAAPI
 WSAEnumNameSpaceProvidersA(
     _Inout_ LPDWORD             lpdwBufferLength,
-    _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOA lpnspBuffer
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOA lpnspBuffer
     );
 
 WINSOCK_API_LINKAGE
@@ -3921,7 +3922,7 @@ INT
 WSAAPI
 WSAEnumNameSpaceProvidersW(
     _Inout_ LPDWORD             lpdwBufferLength,
-    _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOW lpnspBuffer
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOW lpnspBuffer
     );
 
 #ifdef UNICODE
@@ -3937,7 +3938,7 @@ INT
 WSAAPI
 WSAEnumNameSpaceProvidersExA(
     _Inout_ LPDWORD             lpdwBufferLength,
-    _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOEXA lpnspBuffer
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOEXA lpnspBuffer
     );
 
 WINSOCK_API_LINKAGE
@@ -3945,7 +3946,7 @@ INT
 WSAAPI
 WSAEnumNameSpaceProvidersExW(
     _Inout_ LPDWORD             lpdwBufferLength,
-    _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOEXW lpnspBuffer
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_(*lpdwBufferLength,*lpdwBufferLength) LPWSANAMESPACE_INFOEXW lpnspBuffer
     );
 
 #ifdef UNICODE

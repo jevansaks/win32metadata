@@ -481,8 +481,8 @@ RPC_STATUS
 RPC_ENTRY
 I_RpcNsInterfaceExported (
     IN unsigned long EntryNameSyntax,
-    IN unsigned short *EntryName,
-    IN RPC_SERVER_INTERFACE * RpcInterfaceInformation
+    _In_ unsigned short *EntryName,
+    _In_ RPC_SERVER_INTERFACE * RpcInterfaceInformation
     );
 
 RPCRTAPI

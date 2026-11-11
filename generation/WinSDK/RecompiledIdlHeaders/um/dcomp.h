@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //---------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 //---------------------------------------------------------------------------
@@ -190,7 +191,7 @@ STDAPI DCompositionGetStatistics(
     _In_ COMPOSITION_FRAME_ID frameId,
     _Out_ COMPOSITION_FRAME_STATS* frameStats,
     _In_ UINT targetIdCount,
-    _Out_writes_opt_(targetCount) COMPOSITION_TARGET_ID* targetIds,
+    _Out_writes_opt_(targetIdCount) COMPOSITION_TARGET_ID* targetIds,
     _Out_opt_ UINT* actualTargetIdCount);
 
 //+-----------------------------------------------------------------------------
@@ -205,7 +206,7 @@ STDAPI DCompositionGetStatistics(
 STDAPI DCompositionGetTargetStatistics(
     _In_ COMPOSITION_FRAME_ID frameId,
     _In_ const COMPOSITION_TARGET_ID* targetId,
-    _Out_ COMPOSITION_TARGET_STATS* targetStats);
+    _Win32_Retval_ _Out_ COMPOSITION_TARGET_STATS* targetStats);
 
 //+-----------------------------------------------------------------------------
 //
@@ -259,7 +260,7 @@ DECLARE_INTERFACE_IID_(IDCompositionDevice, IUnknown, "C37EA93A-E7AA-450D-B16F-9
 
     // Gets timing information about the composition engine.
     STDMETHOD(GetFrameStatistics)(THIS_
-        _Out_ DCOMPOSITION_FRAME_STATISTICS *statistics
+        _Win32_Retval_ _Out_ DCOMPOSITION_FRAME_STATISTICS *statistics
         ) PURE;
 
     // Creates a composition target bound to a window represented by an HWND.
@@ -1318,7 +1319,7 @@ DECLARE_INTERFACE_IID_(IDCompositionDevice2, IUnknown, "75F6468D-1B8E-447C-9BC6-
 
     // Gets timing information about the composition engine.
     STDMETHOD(GetFrameStatistics)(THIS_
-        _Out_ DCOMPOSITION_FRAME_STATISTICS *statistics
+        _Win32_Retval_ _Out_ DCOMPOSITION_FRAME_STATISTICS *statistics
         ) PURE;
 
     // Creates a new visual object.

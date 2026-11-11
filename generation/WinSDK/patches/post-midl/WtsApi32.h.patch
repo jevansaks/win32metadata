@@ -1,0 +1,130 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h
+@@ -944,7 +944,7 @@
+ BOOL
+ WINAPI
+ WTSEnumerateSessionsExW(
+-    _In_ HANDLE hServer,
++    _In_opt_ HANDLE hServer,
+     _Inout_ DWORD *pLevel,
+     _In_ DWORD Filter,
+     _Outptr_result_buffer_(*pCount) PWTS_SESSION_INFO_1W * ppSessionInfo,
+@@ -953,7 +953,7 @@
+ BOOL
+ WINAPI
+ WTSEnumerateSessionsExA(
+-    _In_ HANDLE hServer,
++    _In_opt_ HANDLE hServer,
+     _Inout_ DWORD *pLevel,
+     _In_ DWORD Filter,
+     _Outptr_result_buffer_(*pCount) PWTS_SESSION_INFO_1A * ppSessionInfo,
+@@ -1372,7 +1372,7 @@
+ BOOL WINAPI
+ WTSEnumerateProcessesExW
+ (
+-    _In_ HANDLE    hServer,
++    _In_opt_ HANDLE    hServer,
+     _Inout_ DWORD *pLevel,
+     _In_ DWORD SessionId,
+     _Out_ LPWSTR *ppProcessInfo,
+@@ -1382,7 +1382,7 @@
+ BOOL WINAPI
+ WTSEnumerateProcessesExA
+ (
+-    _In_ HANDLE    hServer,
++    _In_opt_ HANDLE    hServer,
+     _Inout_ DWORD *pLevel,
+     _In_ DWORD SessionId,
+     _Out_ LPSTR *ppProcessInfo,
+@@ -1414,7 +1414,7 @@
+ 
+ BOOL WINAPI
+ WTSEnumerateListenersW (
+-  _In_                  HANDLE hServer,
++  _In_opt_ _Reserved_ _In_                  HANDLE hServer,
+   _In_                  PVOID pReserved,
+   _In_          DWORD   Reserved,
+   _Out_writes_opt_(*pCount) PWTSLISTENERNAMEW pListeners,
+@@ -1423,7 +1423,7 @@
+ 
+ BOOL WINAPI
+ WTSEnumerateListenersA (
+-  _In_                  HANDLE hServer,
++  _In_opt_ _Reserved_ _In_                  HANDLE hServer,
+   _In_                  PVOID pReserved,
+   _In_                  DWORD Reserved,
+   _Out_writes_opt_(*pCount) PWTSLISTENERNAMEA pListeners,
+@@ -1522,7 +1522,7 @@
+ } WTSLISTENERCONFIGA, *PWTSLISTENERCONFIGA;
+ 
+ BOOL WINAPI WTSQueryListenerConfigW (
+-  _In_          HANDLE hServer,
++  _In_opt_ _Reserved_ _In_          HANDLE hServer,
+   _In_          PVOID pReserved,
+   _In_          DWORD Reserved,
+   _In_          LPWSTR pListenerName,
+@@ -1530,7 +1530,7 @@
+ );
+ 
+ BOOL WINAPI WTSQueryListenerConfigA (
+-  _In_          HANDLE hServer,
++  _In_opt_ _Reserved_ _In_          HANDLE hServer,
+   _In_          PVOID pReserved,
+   _In_          DWORD Reserved,
+   _In_          LPSTR pListenerName,
+@@ -1538,7 +1538,7 @@
+ );
+ 
+ BOOL WINAPI WTSCreateListenerW (
+-  _In_          HANDLE hServer,
++  _In_opt_ _Reserved_ _In_          HANDLE hServer,
+   _In_          PVOID pReserved,
+   _In_          DWORD Reserved,
+   _In_          LPWSTR pListenerName,
+@@ -1547,7 +1547,7 @@
+ );
+ 
+ BOOL WINAPI WTSCreateListenerA (
+-  _In_          HANDLE hServer,
++  _In_opt_ _Reserved_ _In_          HANDLE hServer,
+   _In_          PVOID pReserved,
+   _In_          DWORD Reserved,
+   _In_          LPSTR pListenerName,
+@@ -1556,7 +1556,7 @@
+ );
+ 
+ BOOL WINAPI WTSSetListenerSecurityW(
+-  _In_          HANDLE hServer, 
++  _In_opt_ _Reserved_ _In_          HANDLE hServer,
+   _In_          PVOID pReserved,  
+   _In_          DWORD Reserved, 
+   _In_          LPWSTR pListenerName, 
+@@ -1564,7 +1564,7 @@
+   _In_          PSECURITY_DESCRIPTOR pSecurityDescriptor);
+ 
+ BOOL WINAPI WTSSetListenerSecurityA(
+-  _In_          HANDLE hServer, 
++  _In_opt_ _Reserved_ _In_          HANDLE hServer,
+   _In_          PVOID pReserved,  
+   _In_          DWORD Reserved, 
+   _In_          LPSTR pListenerName, 
+@@ -1572,7 +1572,7 @@
+   _In_          PSECURITY_DESCRIPTOR pSecurityDescriptor);
+ 
+ BOOL WINAPI WTSGetListenerSecurityW(
+-  _In_          HANDLE hServer,
++  _In_opt_ _Reserved_ _In_          HANDLE hServer,
+   _In_          PVOID pReserved,
+   _In_          DWORD Reserved,
+   _In_          LPWSTR pListenerName, 
+@@ -1583,7 +1583,7 @@
+ 
+ 
+ BOOL WINAPI WTSGetListenerSecurityA(
+-  _In_          HANDLE hServer,
++  _In_opt_ _Reserved_ _In_          HANDLE hServer,
+   _In_          PVOID pReserved,
+   _In_          DWORD Reserved,
+   _In_          LPSTR pListenerName,

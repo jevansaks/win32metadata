@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -203,7 +204,7 @@ IcmpSendEcho(
     _In_reads_bytes_(RequestSize)   LPVOID                   RequestData,
     _In_                       WORD                     RequestSize,
     _In_opt_                   PIP_OPTION_INFORMATION   RequestOptions,
-    _Out_writes_bytes_(ReplySize)    LPVOID                   ReplyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(ReplySize)    LPVOID                   ReplyBuffer,
     _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + RequestSize + 8)
     DWORD                    ReplySize,
     _In_                       DWORD                    Timeout
@@ -299,7 +300,7 @@ IcmpSendEcho2(
     _In_reads_bytes_(RequestSize)    LPVOID                   RequestData,
     _In_                        WORD                     RequestSize,
     _In_opt_                    PIP_OPTION_INFORMATION   RequestOptions,
-    _Out_writes_bytes_(ReplySize)     LPVOID                   ReplyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(ReplySize)     LPVOID                   ReplyBuffer,
     _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + RequestSize + 8)
     DWORD                    ReplySize,
     _In_                        DWORD                    Timeout
@@ -329,7 +330,7 @@ IcmpSendEcho2Ex(
     _In_reads_bytes_(RequestSize)   LPVOID                   RequestData,
     _In_                       WORD                     RequestSize,
     _In_opt_                   PIP_OPTION_INFORMATION   RequestOptions,
-    _Out_writes_bytes_(ReplySize)    LPVOID                   ReplyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(ReplySize)    LPVOID                   ReplyBuffer,
     _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + RequestSize + 8)
     DWORD                    ReplySize,
     _In_                       DWORD                    Timeout
@@ -401,7 +402,7 @@ IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI
 IcmpParseReplies(
-    _Out_writes_bytes_(ReplySize)   LPVOID                   ReplyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(ReplySize)   LPVOID                   ReplyBuffer,
     _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + 8)
     DWORD                    ReplySize
     );
