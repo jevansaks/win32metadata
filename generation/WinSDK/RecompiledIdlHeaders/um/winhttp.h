@@ -1591,6 +1591,7 @@ typedef struct _WINHTTP_CURRENT_USER_IE_PROXY_CONFIG
 #define WINHTTP_RESET_NOTIFY_NETWORK_CHANGED    0x00010000
 #define WINHTTP_RESET_OUT_OF_PROC               0x00020000
 #define WINHTTP_RESET_DISCARD_RESOLVERS         0x00040000
+_Win32_SetLastError_
 
 
 //#endif // !defined(_WINERROR_)
@@ -1611,6 +1612,7 @@ WinHttpSetStatusCallback
     IN DWORD dwNotificationFlags,
     IN DWORD_PTR dwReserved
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1621,6 +1623,7 @@ WinHttpTimeFromSystemTime
     _In_ CONST SYSTEMTIME *pst,  // input GMT time
     _Out_writes_bytes_(WINHTTP_TIME_FORMAT_BUFSIZE) LPWSTR pwszTime // output string buffer
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1631,6 +1634,7 @@ WinHttpTimeToSystemTime
     _In_z_ LPCWSTR pwszTime,        // NULL terminated string
     _Out_ SYSTEMTIME *pst           // output in GMT time
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1643,6 +1647,7 @@ WinHttpCrackUrl
     _In_ DWORD dwFlags,
     _Inout_ LPURL_COMPONENTS lpUrlComponents
 );
+_Win32_SetLastError_
 
 _Success_(return != FALSE)
 _Win32_SupportedOS_WindowsXP_
@@ -1662,12 +1667,15 @@ WinHttpCreateUrl
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI BOOL WINAPI WinHttpCheckPlatform(void);
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI BOOL WINAPI WinHttpGetDefaultProxyConfiguration( IN OUT WINHTTP_PROXY_INFO * pProxyInfo);
+_Win32_SetLastError_
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI BOOL WINAPI WinHttpSetDefaultProxyConfiguration( IN WINHTTP_PROXY_INFO * pProxyInfo);
 
@@ -1676,6 +1684,7 @@ WINHTTPAPI BOOL WINAPI WinHttpSetDefaultProxyConfiguration( IN WINHTTP_PROXY_INF
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1689,6 +1698,7 @@ WinHttpOpen
     _In_opt_z_ LPCWSTR pszProxyBypassW,
     _In_ DWORD dwFlags
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1698,6 +1708,7 @@ WinHttpCloseHandle
 (
     IN HINTERNET hInternet
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1737,6 +1748,7 @@ WinHttpReadDataEx
     IN DWORD cbProperty,
     _In_reads_bytes_opt_(cbProperty) PVOID pvProperty
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1749,6 +1761,7 @@ WinHttpWriteData
     IN DWORD dwNumberOfBytesToWrite,
     OUT LPDWORD lpdwNumberOfBytesWritten
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1759,6 +1772,7 @@ WinHttpQueryDataAvailable
     IN HINTERNET hRequest,
     __out_data_source(NETWORK) LPDWORD lpdwNumberOfBytesAvailable
 );
+_Win32_SetLastError_
 
 _Success_(return != FALSE)
 _Win32_SupportedOS_WindowsXP_
@@ -1772,6 +1786,7 @@ WinHttpQueryOption
     _Out_writes_bytes_to_opt_(*lpdwBufferLength, *lpdwBufferLength) __out_data_source(NETWORK) LPVOID lpBuffer,
     IN OUT LPDWORD lpdwBufferLength
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1799,6 +1814,7 @@ WinHttpSetOption
     LPVOID lpBuffer,
     _In_ DWORD dwBufferLength
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1836,6 +1852,7 @@ WinHttpIsHostInProxyBypassList
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
 
 //
 // prototypes
@@ -1919,6 +1936,7 @@ WinHttpSetCredentials
                                     // NULL if pszUserName is not NULL
     IN LPVOID      pAuthParams
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -1964,6 +1982,7 @@ WinHttpReceiveResponse
     IN HINTERNET hRequest,
     IN LPVOID lpReserved
 );
+_Win32_SetLastError_
 
 _Success_(return != FALSE)
 _Win32_SupportedOS_WindowsXP_
@@ -2021,6 +2040,7 @@ WinHttpFreeQueryConnectionGroupResult
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -2031,6 +2051,7 @@ WinHttpDetectAutoProxyConfigUrl
     DWORD dwAutoDetectFlags,
     _Outptr_result_maybenull_ LPWSTR * ppwstrAutoConfigUrl
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -2124,6 +2145,7 @@ WinHttpResetAutoProxy
     _In_ HINTERNET hSession,
     _In_ DWORD dwFlags
 );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_WindowsXP_
 WINHTTPAPI
@@ -2231,6 +2253,7 @@ typedef struct _WINHTTP_WEB_SOCKET_STATUS
 
 #define WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH 123
 #define WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE 15000
+_Win32_SetLastError_
 
 _Win32_SupportedOS_Windows8_
 WINHTTPAPI

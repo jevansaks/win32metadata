@@ -1,0 +1,20 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ime.h b/generation/WinSDK/RecompiledIdlHeaders/um/Ime.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Ime.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Ime.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0004    // Increment this if a change has global effects
+ 
+ Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -31,8 +32,10 @@
+ #endif // _WINDEF_
+ 
+ #define IME_MAXPROCESS 32
++_Win32_SupportedOS_Windows2000_
+ 
+ LRESULT WINAPI SendIMEMessageExA( IN HWND, IN LPARAM);
++_Win32_SupportedOS_Windows2000_
+ LRESULT WINAPI SendIMEMessageExW( IN HWND, IN LPARAM);
+ #ifdef UNICODE
+ #define SendIMEMessageEx  SendIMEMessageExW

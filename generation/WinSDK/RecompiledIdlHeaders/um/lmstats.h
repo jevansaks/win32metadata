@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -40,6 +41,7 @@ extern "C" {
 #endif
 
 #include <lmcons.h>
+_Win32_SupportedOS_WindowsXP_
 
 //
 // Function Prototypes - Statistics

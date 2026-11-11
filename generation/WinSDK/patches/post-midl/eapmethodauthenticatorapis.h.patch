@@ -1,0 +1,103 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/eapmethodauthenticatorapis.h b/generation/WinSDK/RecompiledIdlHeaders/um/eapmethodauthenticatorapis.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/eapmethodauthenticatorapis.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/eapmethodauthenticatorapis.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ ///////////////////////////////////////////////////////////////////////////////
+ //
+ // Copyright (c) Microsoft Corporation
+@@ -211,17 +212,22 @@
+         DWORD(APIENTRY* EapMethodAuthenticatorShutdown)(_In_ EAP_METHOD_TYPE* pEapType, _Outptr_ EAP_ERROR** ppEapError);
+ 
+     } EAP_AUTHENTICATOR_METHOD_ROUTINES, *PEAP_AUTHENTICATOR_METHOD_ROUTINES;
++_Win32_SupportedOS_WindowsVista_
+ 
+     //
+     // EAP Functions
+     //
+     void WINAPI EapMethodAuthenticatorFreeErrorMemory(_In_ EAP_ERROR* pEapError);
++_Win32_SupportedOS_WindowsVista_
+     void WINAPI EapMethodAuthenticatorFreeMemory(_In_ void* pUIContextData);
++_Win32_SupportedOS_WindowsVista_
+ 
+     DWORD EapMethodAuthenticatorGetInfo(
+         _In_ EAP_METHOD_TYPE* pEapType, _Out_ EAP_AUTHENTICATOR_METHOD_ROUTINES* pEapInfo, _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     DWORD EapMethodAuthenticatorInitialize(_In_ EAP_METHOD_TYPE* pEapType, _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     DWORD EapMethodAuthenticatorBeginSession(
+         // Flags to qualify the authentication process.
+@@ -246,6 +252,7 @@
+         // On an unsuccessful call, this will contain any error information about
+         // the failure. This will be null on a successful call.
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     DWORD EapMethodAuthenticatorUpdateInnerMethodParams(
+         // context handle as returned from a successful call to
+@@ -259,6 +266,7 @@
+         // On an unsuccessful call, this will contain any error information about
+         // the failure. This will be null on a successful call.
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // The authenticator calls this any time it receives a packet that the eaphost
+     // needs to process. This should be called only after a successful call to
+@@ -280,6 +288,7 @@
+         // On an unsuccessful call, this will contain any error information about
+         // the failure. This will be null on a successful call.
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     DWORD EapMethodAuthenticatorSendPacket(
+         // context handle as returned from a successful call to
+@@ -300,6 +309,7 @@
+         // On an unsuccessful call, this will contain any error information about
+         // the failure. This will be null on a successful call.
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // Returns an array of attributes that the caller needs to act on.
+     // The supplicant will call this when a call to
+@@ -311,6 +321,7 @@
+         // Array of attributes that the caller needs to act on.
+         _Out_ EapAttributes* pAttribs,
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // Sets an array of attributes that the caller wants the eap method to act
+     // on.
+@@ -326,6 +337,7 @@
+         // On an unsuccessful call, this will contain any error information about
+         // the failure. This will be null on a successful call.
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // The authenticator will call this on completion of an authentication. This
+     // can happen in any of the following scenarios:
+@@ -345,6 +357,7 @@
+         // On an unsuccessful call, this will contain any error information about
+         // the failure. This will be null on a successful call.
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // Ends the authentication session. This cleans up any state that the eap
+     // method or eaphost might be keeping.
+@@ -355,12 +368,14 @@
+         // On an unsuccessful call, this will contain any error information about
+         // the failure. This will be null on a successful call.
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     DWORD EapMethodAuthenticatorShutdown(_In_ EAP_METHOD_TYPE* pEapType, _Outptr_ EAP_ERROR** ppEapError);
+ 
+     /// Config API
+ 
+ #define EAP_METHOD_AUTHENTICATOR_CONFIG_IS_IDENTITY_PRIVACY 0x1
++_Win32_SupportedOS_WindowsVista_
+ 
+     DWORD WINAPI EapMethodAuthenticatorInvokeConfigUI(
+         _In_ EAP_METHOD_TYPE* pEapMethodType,

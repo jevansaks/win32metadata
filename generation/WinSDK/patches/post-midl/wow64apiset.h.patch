@@ -1,0 +1,125 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wow64apiset.h b/generation/WinSDK/RecompiledIdlHeaders/um/wow64apiset.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wow64apiset.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wow64apiset.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /********************************************************************************
+ *                                                                               *
+ * wow64app.h - ApiSet Contract for api-ms-win-core-wow64-l1                     *
+@@ -28,6 +29,7 @@
+ // RC warns because "WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY" is a bit long.
+ #if !defined(RC_INVOKED)
+ #if _WIN32_WINNT >= 0x0501 || defined(WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY)
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOLEAN
+@@ -35,6 +37,8 @@
+ Wow64EnableWow64FsRedirection(
+     _In_ BOOLEAN Wow64FsEnableRedirection
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -42,6 +46,8 @@
+ Wow64DisableWow64FsRedirection(
+     _Out_ PVOID* OldValue
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -60,6 +66,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (_WIN32_WINNT >= 0x0501)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -80,6 +88,8 @@
+ // RC warns because "WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY" is a bit long.
+ #if !defined(RC_INVOKED)
+ #if _WIN32_WINNT >= 0x0501 || defined(WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ _Must_inspect_result_
+@@ -90,6 +100,8 @@
+     _Out_writes_to_opt_(uSize,return + 1) LPSTR lpBuffer,
+     _In_ UINT uSize
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ _Must_inspect_result_
+@@ -128,6 +140,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (_WIN32_WINNT >= 0x0A00)
++_Win32_SetLastError_
++_Win32_SupportedOS_10586_
+ 
+ WINBASEAPI
+ BOOL
+@@ -147,6 +161,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (_WIN32_WINNT >= 0x0A00)
++_Win32_SetLastError_
++_Win32_SupportedOS_10586_
+ 
+ WINBASEAPI
+ _Must_inspect_result_
+@@ -158,6 +174,8 @@
+     _In_ UINT uSize,
+     _In_ WORD ImageFileMachineType
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_10586_
+ 
+ WINBASEAPI
+ _Must_inspect_result_
+@@ -179,6 +197,8 @@
+ #endif // _WIN32_WINNT >= 0x0A00
+ 
+ #if (_WIN32_WINNT >= 0x0A00)
++_Win32_SetLastError_
++_Win32_SupportedOS_16299_
+ 
+ WINBASEAPI
+ _Must_inspect_result_
+@@ -192,6 +212,8 @@
+ #endif // _WIN32_WINNT >= 0x0A00
+ 
+ #if (_WIN32_WINNT >= 0x0600)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -200,6 +222,8 @@
+     _In_ HANDLE hThread,
+     _Inout_ PWOW64_CONTEXT lpContext
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -208,6 +232,8 @@
+     _In_ HANDLE hThread,
+     _In_ CONST WOW64_CONTEXT* lpContext
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ DWORD

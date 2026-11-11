@@ -10,7 +10,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  
  #ifdef _WINUSER_
  #include <prsht.h>
-@@ -1254,9 +1255,9 @@
+@@ -1248,28 +1249,30 @@
+ typedef PPRINTER_ENUM_VALUESA PPRINTER_ENUM_VALUES;
+ typedef LPPRINTER_ENUM_VALUESA LPPRINTER_ENUM_VALUES;
+ #endif // UNICODE
++_Win32_SetLastError_
+ 
+ _Success_(return != FALSE)
+ BOOL
  WINAPI
  EnumPrintersA(
  _In_          DWORD   Flags,
@@ -22,7 +29,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
                LPBYTE  pPrinterEnum,
                DWORD   cbBuf,
  _Out_         LPDWORD pcbNeeded,
-@@ -1267,9 +1268,9 @@
+ _Out_         LPDWORD pcReturned
+ );
++_Win32_SetLastError_
+ _Success_(return != FALSE)
+ BOOL
  WINAPI
  EnumPrintersW(
  _In_          DWORD   Flags,
@@ -34,7 +45,20 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
                LPBYTE  pPrinterEnum,
                DWORD   cbBuf,
  _Out_         LPDWORD pcbNeeded,
-@@ -1337,15 +1338,18 @@
+@@ -1312,6 +1315,7 @@
+ 
+ #define SPOOL_FILE_PERSISTENT    0x00000001
+ #define SPOOL_FILE_TEMPORARY     0x00000002
++_Win32_SetLastError_
+ 
+ HANDLE
+ WINAPI
+@@ -1333,19 +1337,24 @@
+ _In_    HANDLE  hPrinter,
+ _In_    HANDLE  hSpoolFile
+ );
++_Win32_SetLastError_
+ 
  BOOL
  WINAPI
  OpenPrinterA(
@@ -46,6 +70,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
 +#if defined(WIN32METADATA) && defined(__clang__)
 +BOOL WINAPI ClosePrinter(_In_ HANDLE hPrinter);
 +#endif
++_Win32_SetLastError_
  BOOL
  WINAPI
  OpenPrinterW(
@@ -56,7 +81,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  _In_opt_    LPPRINTER_DEFAULTSW pDefault
  );
  #ifdef UNICODE
-@@ -1412,7 +1416,7 @@
+@@ -1412,7 +1421,7 @@
  _In_  HANDLE   hPrinter,
        DWORD    JobId,
        DWORD    Level,
@@ -65,7 +90,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
        LPBYTE   pJob,
        DWORD    cbBuf,
  _Out_ LPDWORD  pcbNeeded
-@@ -1423,7 +1427,7 @@
+@@ -1423,7 +1432,7 @@
  _In_  HANDLE   hPrinter,
        DWORD    JobId,
        DWORD    Level,
@@ -74,7 +99,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
        LPBYTE   pJob,
        DWORD    cbBuf,
  _Out_ LPDWORD  pcbNeeded
-@@ -1441,7 +1445,7 @@
+@@ -1433,6 +1442,7 @@
+ #else
+ #define GetJob  GetJobA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
+ BOOL
+ WINAPI
+@@ -1441,12 +1451,13 @@
        DWORD   FirstJob,
        DWORD   NoJobs,
        DWORD   Level,
@@ -83,7 +116,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
        LPBYTE  pJob,
        DWORD   cbBuf,
  _Out_ LPDWORD pcbNeeded,
-@@ -1454,7 +1458,7 @@
+ _Out_ LPDWORD pcReturned
+ );
++_Win32_SetLastError_
+ BOOL
+ WINAPI
+ EnumJobsW(
+@@ -1454,7 +1465,7 @@
        DWORD   FirstJob,
        DWORD   NoJobs,
        DWORD   Level,
@@ -92,7 +131,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
        LPBYTE  pJob,
        DWORD   cbBuf,
  _Out_ LPDWORD pcbNeeded,
-@@ -1469,7 +1473,7 @@
+@@ -1465,21 +1476,23 @@
+ #else
+ #define EnumJobs  EnumJobsA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
  HANDLE
  WINAPI
  AddPrinterA(
@@ -101,7 +145,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  _In_range_(1, 2)
              DWORD      Level,
  _When_(Level == 1, _In_reads_bytes_(sizeof(PRINTER_INFO_1)))
-@@ -1479,7 +1483,7 @@
+ _When_(Level == 2, _In_reads_bytes_(sizeof(PRINTER_INFO_2)))
+             LPBYTE     pPrinter
+ );
++_Win32_SetLastError_
  HANDLE
  WINAPI
  AddPrinterW(
@@ -110,7 +157,37 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  _In_range_(1, 2)
              DWORD      Level,
  _When_(Level == 1, _In_reads_bytes_(sizeof(PRINTER_INFO_1)))
-@@ -1547,7 +1551,7 @@
+@@ -1491,12 +1504,14 @@
+ #else
+ #define AddPrinter  AddPrinterA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
+ BOOL
+ WINAPI
+ DeletePrinter(
+ _Inout_ HANDLE   hPrinter
+ );
++_Win32_SetLastError_
+ 
+ BOOL
+ WINAPI
+@@ -1517,6 +1532,7 @@
+                      LPBYTE  pPrinter,
+     _In_             DWORD   Command
+     );
++_Win32_SetLastError_
+ BOOL
+ WINAPI
+ SetPrinterW(
+@@ -1541,23 +1557,25 @@
+ #else
+ #define SetPrinter  SetPrinterA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
+ BOOL
+ WINAPI
  GetPrinterA(
  _In_  HANDLE  hPrinter,
        DWORD   Level,
@@ -119,7 +196,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
        LPBYTE  pPrinter,
        DWORD   cbBuf,
  _Out_ LPDWORD pcbNeeded
-@@ -1557,7 +1561,7 @@
+ );
++_Win32_SetLastError_
+ BOOL
+ WINAPI
  GetPrinterW(
  _In_  HANDLE  hPrinter,
        DWORD   Level,
@@ -128,7 +208,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
        LPBYTE  pPrinter,
        DWORD   cbBuf,
  _Out_ LPDWORD pcbNeeded
-@@ -1571,14 +1575,14 @@
+@@ -1567,18 +1585,20 @@
+ #else
+ #define GetPrinter  GetPrinterA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
  BOOL
  WINAPI
  AddPrinterDriverA(
@@ -137,6 +222,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              DWORD     Level,
  _In_        LPBYTE    pDriverInfo
  );
++_Win32_SetLastError_
  BOOL
  WINAPI
  AddPrinterDriverW(
@@ -145,7 +231,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              DWORD     Level,
  _In_        LPBYTE    pDriverInfo
  );
-@@ -1591,7 +1595,7 @@
+@@ -1591,7 +1611,7 @@
  BOOL
  WINAPI
  AddPrinterDriverExA(
@@ -154,7 +240,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  _In_range_(2, 8) DWORD    Level,
  _When_(Level == 2, _In_reads_bytes_(sizeof(DRIVER_INFO_2)))
  _When_(Level == 3, _In_reads_bytes_(sizeof(DRIVER_INFO_3)))
-@@ -1604,7 +1608,7 @@
+@@ -1604,7 +1624,7 @@
  BOOL
  WINAPI
  AddPrinterDriverExW(
@@ -163,7 +249,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  _In_range_(2, 8) DWORD    Level,
  _When_(Level == 2, _In_reads_bytes_(sizeof(DRIVER_INFO_2)))
  _When_(Level == 3, _In_reads_bytes_(sizeof(DRIVER_INFO_3)))
-@@ -1623,10 +1627,10 @@
+@@ -1619,26 +1639,28 @@
+ #else
+ #define AddPrinterDriverEx  AddPrinterDriverExA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
  BOOL
  WINAPI
  EnumPrinterDriversA(
@@ -177,7 +268,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE        pDriverInfo,
              DWORD          cbBuf,
  _Out_       LPDWORD        pcbNeeded,
-@@ -1635,10 +1639,10 @@
+ _Out_       LPDWORD        pcReturned
+ );
++_Win32_SetLastError_
  BOOL
  WINAPI
  EnumPrinterDriversW(
@@ -191,7 +284,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE        pDriverInfo,
              DWORD          cbBuf,
  _Out_       LPDWORD        pcbNeeded,
-@@ -1654,9 +1658,9 @@
+@@ -1654,9 +1676,9 @@
  WINAPI
  GetPrinterDriverA(
  _In_        HANDLE  hPrinter,
@@ -203,7 +296,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE  pDriverInfo,
              DWORD   cbBuf,
  _Out_       LPDWORD pcbNeeded
-@@ -1665,9 +1669,9 @@
+@@ -1665,9 +1687,9 @@
  WINAPI
  GetPrinterDriverW(
  _In_        HANDLE  hPrinter,
@@ -215,7 +308,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE  pDriverInfo,
              DWORD   cbBuf,
  _Out_       LPDWORD pcbNeeded
-@@ -1681,8 +1685,8 @@
+@@ -1681,8 +1703,8 @@
  BOOL
  WINAPI
  GetPrinterDriverDirectoryA(
@@ -226,7 +319,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              DWORD     Level,
  _Out_writes_bytes_opt_(cbBuf)
              LPBYTE    pDriverDirectory,
-@@ -1692,8 +1696,8 @@
+@@ -1692,8 +1714,8 @@
  BOOL
  WINAPI
  GetPrinterDriverDirectoryW(
@@ -237,7 +330,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              DWORD     Level,
  _Out_writes_bytes_opt_(cbBuf)
              LPBYTE    pDriverDirectory,
-@@ -1709,16 +1713,16 @@
+@@ -1709,16 +1731,16 @@
  BOOL
  WINAPI
  DeletePrinterDriverA(
@@ -260,7 +353,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define DeletePrinterDriver  DeletePrinterDriverW
-@@ -1729,18 +1733,18 @@
+@@ -1729,18 +1751,18 @@
  BOOL
  WINAPI
  DeletePrinterDriverExA(
@@ -285,7 +378,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              DWORD      dwDeleteFlag,
              DWORD      dwVersionFlag
  );
-@@ -1755,18 +1759,18 @@
+@@ -1755,18 +1777,18 @@
  BOOL
  WINAPI
  AddPrintProcessorA(
@@ -312,7 +405,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define AddPrintProcessor  AddPrintProcessorW
-@@ -1777,10 +1781,10 @@
+@@ -1777,10 +1799,10 @@
  BOOL
  WINAPI
  EnumPrintProcessorsA(
@@ -326,7 +419,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
             LPBYTE    pPrintProcessorInfo,
             DWORD     cbBuf,
  _Out_      LPDWORD   pcbNeeded,
-@@ -1789,10 +1793,10 @@
+@@ -1789,10 +1811,10 @@
  BOOL
  WINAPI
  EnumPrintProcessorsW(
@@ -340,7 +433,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
             LPBYTE    pPrintProcessorInfo,
             DWORD     cbBuf,
  _Out_      LPDWORD   pcbNeeded,
-@@ -1809,8 +1813,8 @@
+@@ -1809,8 +1831,8 @@
  BOOL
  WINAPI
  GetPrintProcessorDirectoryA(
@@ -351,7 +444,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
             DWORD      Level,
  _Out_writes_bytes_opt_(cbBuf)
             LPBYTE     pPrintProcessorInfo,
-@@ -1820,8 +1824,8 @@
+@@ -1820,8 +1842,8 @@
  BOOL
  WINAPI
  GetPrintProcessorDirectoryW(
@@ -362,7 +455,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
             DWORD      Level,
  _Out_writes_bytes_opt_(cbBuf)
             LPBYTE     pPrintProcessorInfo,
-@@ -1838,10 +1842,10 @@
+@@ -1838,10 +1860,10 @@
  BOOL
  WINAPI
  EnumPrintProcessorDatatypesA(
@@ -376,7 +469,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE    pDatatypes,
              DWORD     cbBuf,
  _Out_       LPDWORD   pcbNeeded,
-@@ -1851,10 +1855,10 @@
+@@ -1851,10 +1873,10 @@
  BOOL
  WINAPI
  EnumPrintProcessorDatatypesW(
@@ -390,7 +483,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE    pDatatypes,
              DWORD     cbBuf,
  _Out_       LPDWORD   pcbNeeded,
-@@ -1869,16 +1873,16 @@
+@@ -1869,16 +1891,16 @@
  BOOL
  WINAPI
  DeletePrintProcessorA(
@@ -413,7 +506,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define DeletePrintProcessor  DeletePrintProcessorW
-@@ -1971,7 +1975,7 @@
+@@ -1971,7 +1993,7 @@
  AddJobA(
  _In_    HANDLE  hPrinter,
          DWORD   Level,
@@ -422,7 +515,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          LPBYTE  pData,
          DWORD   cbBuf,
  _Out_   LPDWORD pcbNeeded
-@@ -1981,7 +1985,7 @@
+@@ -1981,7 +2003,7 @@
  AddJobW(
  _In_    HANDLE  hPrinter,
          DWORD   Level,
@@ -431,7 +524,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          LPBYTE  pData,
          DWORD   cbBuf,
  _Out_   LPDWORD pcbNeeded
-@@ -2077,7 +2081,7 @@
+@@ -2077,7 +2099,7 @@
  WINAPI
  GetPrinterDataA(
  _In_         HANDLE   hPrinter,
@@ -440,7 +533,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  _Out_opt_    LPDWORD  pType,
  _Out_writes_bytes_opt_(nSize)
               LPBYTE   pData,
-@@ -2088,7 +2092,7 @@
+@@ -2088,7 +2110,7 @@
  WINAPI
  GetPrinterDataW(
  _In_         HANDLE   hPrinter,
@@ -449,7 +542,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  _Out_opt_    LPDWORD  pType,
  _Out_writes_bytes_opt_(nSize)
               LPBYTE   pData,
-@@ -2174,7 +2178,7 @@
+@@ -2174,7 +2196,7 @@
  EnumPrinterDataExA(
  _In_    HANDLE    hPrinter,
  _In_    LPCSTR  pKeyName,
@@ -458,7 +551,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          LPBYTE    pEnumValues,
          DWORD     cbEnumValues,
  _Out_   LPDWORD   pcbEnumValues,
-@@ -2185,7 +2189,7 @@
+@@ -2185,7 +2207,7 @@
  EnumPrinterDataExW(
  _In_    HANDLE    hPrinter,
  _In_    LPCWSTR  pKeyName,
@@ -467,7 +560,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          LPBYTE    pEnumValues,
          DWORD     cbEnumValues,
  _Out_   LPDWORD   pcbEnumValues,
-@@ -2228,7 +2232,7 @@
+@@ -2228,7 +2250,7 @@
  WINAPI
  SetPrinterDataA(
  _In_    HANDLE  hPrinter,
@@ -476,7 +569,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          DWORD   Type,
  _In_reads_bytes_(cbData)
          LPBYTE  pData,
-@@ -2238,7 +2242,7 @@
+@@ -2238,7 +2260,7 @@
  WINAPI
  SetPrinterDataW(
  _In_    HANDLE  hPrinter,
@@ -485,7 +578,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          DWORD   Type,
  _In_reads_bytes_(cbData)
          LPBYTE  pData,
-@@ -2285,13 +2289,13 @@
+@@ -2285,13 +2307,13 @@
  WINAPI
  DeletePrinterDataA(
  _In_    HANDLE  hPrinter,
@@ -501,7 +594,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define DeletePrinterData  DeletePrinterDataW
-@@ -2699,13 +2703,13 @@
+@@ -2664,6 +2686,7 @@
+ #define PRINTER_ERROR_OUTOFPAPER    0x00000001
+ #define PRINTER_ERROR_JAM           0x00000002
+ #define PRINTER_ERROR_OUTOFTONER    0x00000004
++_Win32_SetLastError_
+ 
+ BOOL
+ WINAPI
+@@ -2699,13 +2722,13 @@
  WINAPI
  DeleteFormA(
  _In_    HANDLE    hPrinter,
@@ -517,7 +618,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define DeleteForm  DeleteFormW
-@@ -2719,9 +2723,9 @@
+@@ -2719,9 +2742,9 @@
  WINAPI
  GetFormA(
  _In_    HANDLE        hPrinter,
@@ -529,7 +630,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          LPBYTE        pForm,
          DWORD         cbBuf,
  _Out_   LPDWORD       pcbNeeded
-@@ -2730,9 +2734,9 @@
+@@ -2730,9 +2753,9 @@
  WINAPI
  GetFormW(
  _In_    HANDLE        hPrinter,
@@ -541,7 +642,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          LPBYTE        pForm,
          DWORD         cbBuf,
  _Out_   LPDWORD       pcbNeeded
-@@ -2749,7 +2753,7 @@
+@@ -2749,7 +2772,7 @@
  WINAPI
  SetFormA(
  _In_             HANDLE  hPrinter,
@@ -550,7 +651,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  _In_range_(1, 2) DWORD   Level,
  _When_(Level == 1, _In_reads_bytes_(sizeof(FORM_INFO_1A)))
  _When_(Level == 2, _In_reads_bytes_(sizeof(FORM_INFO_2A)))
-@@ -2759,7 +2763,7 @@
+@@ -2759,7 +2782,7 @@
  WINAPI
  SetFormW(
  _In_             HANDLE  hPrinter,
@@ -559,7 +660,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  _In_range_(1, 2) DWORD   Level,
  _When_(Level == 1, _In_reads_bytes_(sizeof(FORM_INFO_1W)))
  _When_(Level == 2, _In_reads_bytes_(sizeof(FORM_INFO_2W)))
-@@ -2776,7 +2780,7 @@
+@@ -2776,7 +2799,7 @@
  EnumFormsA(
  _In_    HANDLE  hPrinter,
          DWORD   Level,
@@ -568,7 +669,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          LPBYTE  pForm,
          DWORD   cbBuf,
  _Out_   LPDWORD pcbNeeded,
-@@ -2787,7 +2791,7 @@
+@@ -2787,7 +2810,7 @@
  EnumFormsW(
  _In_    HANDLE  hPrinter,
          DWORD   Level,
@@ -577,7 +678,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
          LPBYTE  pForm,
          DWORD   cbBuf,
  _Out_   LPDWORD pcbNeeded,
-@@ -2805,7 +2809,7 @@
+@@ -2805,7 +2828,7 @@
  EnumMonitorsA(
  _In_opt_    LPSTR   pName,
              DWORD       Level,
@@ -586,7 +687,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE      pMonitor,
              DWORD       cbBuf,
  _Out_       LPDWORD    pcbNeeded,
-@@ -2816,7 +2820,7 @@
+@@ -2816,7 +2839,7 @@
  EnumMonitorsW(
  _In_opt_    LPWSTR   pName,
              DWORD       Level,
@@ -595,7 +696,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE      pMonitor,
              DWORD       cbBuf,
  _Out_       LPDWORD    pcbNeeded,
-@@ -2833,7 +2837,7 @@
+@@ -2827,21 +2850,23 @@
+ #else
+ #define EnumMonitors  EnumMonitorsA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
+ 
+ 
  BOOL
  WINAPI
  AddMonitorA(
@@ -604,7 +712,8 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              DWORD   Level,
  _In_reads_bytes_opt_(sizeof(MONITOR_INFO_2))
              LPBYTE  pMonitors
-@@ -2841,7 +2845,7 @@
+ );
++_Win32_SetLastError_
  BOOL
  WINAPI
  AddMonitorW(
@@ -613,7 +722,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              DWORD   Level,
  _In_reads_bytes_opt_(sizeof(MONITOR_INFO_2))
              LPBYTE  pMonitors
-@@ -2857,16 +2861,16 @@
+@@ -2851,22 +2876,23 @@
+ #else
+ #define AddMonitor  AddMonitorA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
+ 
+ 
  BOOL
  WINAPI
  DeleteMonitorA(
@@ -636,7 +752,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define DeleteMonitor  DeleteMonitorW
-@@ -2881,7 +2885,7 @@
+@@ -2881,7 +2907,7 @@
  EnumPortsA(
  _In_opt_    LPSTR pName,
              DWORD   Level,
@@ -645,7 +761,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE  pPort,
              DWORD   cbBuf,
  _Out_       LPDWORD pcbNeeded,
-@@ -2892,7 +2896,7 @@
+@@ -2892,7 +2918,7 @@
  EnumPortsW(
  _In_opt_    LPWSTR pName,
              DWORD   Level,
@@ -654,7 +770,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
              LPBYTE  pPort,
              DWORD   cbBuf,
  _Out_       LPDWORD pcbNeeded,
-@@ -2908,16 +2912,16 @@
+@@ -2903,21 +2929,22 @@
+ #else
+ #define EnumPorts  EnumPortsA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
+ 
  BOOL
  WINAPI
  AddPortA(
@@ -675,7 +797,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define AddPort  AddPortW
-@@ -2930,16 +2934,16 @@
+@@ -2930,36 +2957,37 @@
  BOOL
  WINAPI
  ConfigurePortA(
@@ -696,7 +818,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define ConfigurePort  ConfigurePortW
-@@ -2950,16 +2954,16 @@
+ #else
+ #define ConfigurePort  ConfigurePortA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
  BOOL
  WINAPI
  DeletePortA(
@@ -717,7 +843,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define DeletePort  DeletePortW
-@@ -3047,12 +3051,12 @@
+@@ -3016,6 +3044,7 @@
+ #else
+ #define SetDefaultPrinter  SetDefaultPrinterA
+ #endif // !UNICODE
++_Win32_SetLastError_
+ 
+ 
+ BOOL
+@@ -3027,6 +3056,7 @@
+ _In_reads_bytes_(sizeof(PORT_INFO_3))
+             LPBYTE      pPortInfo
+ );
++_Win32_SetLastError_
+ BOOL
+ WINAPI
+ SetPortW(
+@@ -3047,12 +3077,12 @@
  BOOL
  WINAPI
  AddPrinterConnectionA(
@@ -732,7 +874,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winspool.h b/generation/W
  );
  #ifdef UNICODE
  #define AddPrinterConnection  AddPrinterConnectionW
-@@ -3788,7 +3792,7 @@
+@@ -3440,6 +3470,7 @@
+ typedef PPRINTER_OPTIONSA PPRINTER_OPTIONS;
+ typedef LPPRINTER_OPTIONSA LPPRINTER_OPTIONS;
+ #endif // UNICODE
++_Win32_SetLastError_
+ 
+     BOOL
+     WINAPI
+@@ -3449,6 +3480,7 @@
+     _In_opt_      PPRINTER_DEFAULTSA      pDefault,
+     _In_opt_      PPRINTER_OPTIONSA       pOptions
+     );
++_Win32_SetLastError_
+     BOOL
+     WINAPI
+     OpenPrinter2W(
+@@ -3788,7 +3820,7 @@
          _In_        HANDLE  hPrinter,
          _In_opt_    LPWSTR pEnvironment,
                      DWORD   Level,

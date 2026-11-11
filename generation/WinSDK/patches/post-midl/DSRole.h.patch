@@ -1,0 +1,25 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h b/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/DSRole.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0001    // Increment this if a change has global effects
+ 
+ Copyright (c) 1997-1999 Microsoft Corporation
+@@ -106,6 +107,7 @@
+     DSROLE_OPERATION_STATE OperationState;
+ 
+ } DSROLE_OPERATION_STATE_INFO, *PDSROLE_OPERATION_STATE_INFO;
++_Win32_SupportedOS_WindowsVista_
+ 
+ DWORD
+ WINAPI
+@@ -114,6 +116,7 @@
+     IN  DSROLE_PRIMARY_DOMAIN_INFO_LEVEL InfoLevel,
+     OUT PBYTE *Buffer 
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ VOID
+ WINAPI

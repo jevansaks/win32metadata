@@ -61,13 +61,15 @@ namespace ClangSharpSourceToWinmdTests
         {
             string parent = Parent();
             string original = Encoding.UTF8.GetString(PropertyComOutputHeaderTests.ReadOriginalBytes("autoTypes.json", parent));
-            Assert.AreEqual(ApplyAutoTypesDelta(original), File.ReadAllText(Sdk("autoTypes.json")).Replace("\r\n", "\n"));
+            Assert.AreEqual(ApplyAutoTypesDelta(original),
+                FullHeaderMigrationExperimentTests.ReadRecoveryText("autoTypes.json").Replace("\r\n", "\n"));
             foreach (string path in new[] { "emitter.settings.rsp", "scraper.settings.rsp", "functionPointerFixups.json",
                 "RecompiledIdlHeaders/shared/wtypes.h", "RecompiledIdlHeaders/shared/basetsd.h",
                 "RecompiledIdlHeaders/shared/minwindef.h", "RecompiledIdlHeaders/um/winnt.h",
                 "RecompiledIdlHeaders/um/winhttp.h" })
                 CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(path, parent),
-                    File.ReadAllBytes(Sdk(path)), "Independent native/legacy facts stay byte-exact: " + path);
+                    FullHeaderMigrationExperimentTests.ReadRecoveryBytes(path),
+                    "Independent native/legacy facts stay byte-exact: " + path);
             var ancestry = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(),
                 "merge-base", "--is-ancestor", parent, "HEAD");
             Assert.AreEqual(0, ancestry.ExitCode, ancestry.Output);

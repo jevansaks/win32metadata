@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*++
@@ -452,6 +453,7 @@ WerReportSetParameter(
     _In_opt_ PCWSTR pwzName,
     _In_ PCWSTR pwzValue
     );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
@@ -469,6 +471,7 @@ WerReportSetUIOption(
     _In_ WER_REPORT_UI repUITypeID,
     _In_ PCWSTR pwzValue
     );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
@@ -512,6 +515,7 @@ typedef enum _WER_DUMP_TYPE
     WerDumpTypeTriageDump = 4,
     WerDumpTypeMax = 5
 } WER_DUMP_TYPE;
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
@@ -599,6 +603,7 @@ WerReportCloseHandle(
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
@@ -613,6 +618,7 @@ WINAPI
 WerUnregisterFile(
     _In_ PCWSTR pwzFilePath
     );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
@@ -620,29 +626,34 @@ WerRegisterMemoryBlock(
     _In_ PVOID pvAddress,
     _In_ DWORD dwSize
     );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
 WerUnregisterMemoryBlock(
     _In_ PVOID pvAddress
     );
+_Win32_SupportedOS_15063_
     
 STDAPI
 WerRegisterExcludedMemoryBlock(
     _In_ const void* address,
     _In_ DWORD size
     );
+_Win32_SupportedOS_15063_
 
 STDAPI
 WerUnregisterExcludedMemoryBlock(
     _In_ const void* address
     );
+_Win32_SupportedOS_15063_
     
 STDAPI
 WerRegisterCustomMetadata(
     _In_ PCWSTR key,
     _In_ PCWSTR value
     );
+_Win32_SupportedOS_15063_
 
 STDAPI
 WerUnregisterCustomMetadata(
@@ -654,22 +665,26 @@ WerUnregisterCustomMetadata(
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_15063_
 
 STDAPI
 WerRegisterAdditionalProcess(
     _In_ DWORD processId,
     _In_ DWORD captureExtraInfoForThreadId
     );
+_Win32_SupportedOS_15063_
     
 STDAPI
 WerUnregisterAdditionalProcess(
     _In_ DWORD processId
     );
+_Win32_SupportedOS_16299_
     
 STDAPI
 WerRegisterAppLocalDump(
     _In_ PCWSTR localAppDataRelativePath
     );
+_Win32_SupportedOS_16299_
 
 STDAPI
 WerUnregisterAppLocalDump();
@@ -684,6 +699,7 @@ WerSetMaxProcessHoldMilliseconds(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
@@ -703,6 +719,7 @@ WerGetFlags(
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+_Win32_SupportedOS_WindowsVista_
 
 //
 // ++++++++++++++++++++++++++ Application Setup APIs ++++++++++++++++++++++++++++++++++++++
@@ -713,6 +730,7 @@ WerAddExcludedApplication(
     _In_ PCWSTR pwzExeName,
     _In_ BOOL bAllUsers
     );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
@@ -732,6 +750,7 @@ WerRemoveExcludedApplication(
 //
 
 #define WER_MAX_REGISTERED_RUNTIME_EXCEPTION_MODULES 16
+_Win32_SupportedOS_Windows7_
 
 HRESULT
 WINAPI
@@ -739,6 +758,7 @@ WerRegisterRuntimeExceptionModule(
     _In_ PCWSTR pwszOutOfProcessCallbackDll,
     _In_ PVOID pContext
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT
 WINAPI
@@ -971,6 +991,7 @@ WerStoreGetFirstReportKey(
     _In_ HREPORTSTORE hReportStore,
     _Outptr_result_maybenull_z_ PCWSTR* ppszReportKey
     );
+_Win32_SupportedOS_15063_
 
 __control_entrypoint(DllExport)
 HRESULT
@@ -978,6 +999,7 @@ WerStoreGetNextReportKey(
     _In_ HREPORTSTORE hReportStore,
     _Outptr_result_maybenull_z_ PCWSTR* ppszReportKey
     );
+_Win32_SupportedOS_15063_
 
 __control_entrypoint(DllExport)
 HRESULT
@@ -994,6 +1016,7 @@ WerStoreQueryReportMetadataV3(
     _In_ PCWSTR pszReportKey,
     _Out_ PWER_REPORT_METADATA_V3 pReportMetadata
 );
+_Win32_SupportedOS_15063_
 
 __control_entrypoint(DllExport)
 VOID

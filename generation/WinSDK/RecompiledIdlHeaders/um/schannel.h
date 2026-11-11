@@ -1,4 +1,5 @@
-﻿//+---------------------------------------------------------------------------
+﻿#include <win32metadata_annotations.h>
+//+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
 //  Copyright (C) Microsoft Corporation, 1992-1999.
@@ -886,6 +887,7 @@ typedef BOOL
 (WINAPI * SSL_EMPTY_CACHE_FN_A)(
     LPSTR  pszTargetName,
     DWORD  dwFlags);
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 WINAPI
@@ -896,6 +898,7 @@ typedef BOOL
 (WINAPI * SSL_EMPTY_CACHE_FN_W)(
     LPWSTR pszTargetName,
     DWORD  dwFlags);
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 WINAPI
@@ -1021,6 +1024,7 @@ SslGenerateRandomBits(
     PUCHAR      pRandomData,
     LONG        cRandomData
     );
+_Win32_SupportedOS_WindowsXP_
 
 // Pre NT4.0 SP2 calls.  Call CAPI1 or CAPI2
 // to get the same functionality instead.
@@ -1032,6 +1036,7 @@ SslCrackCertificate(
     DWORD               dwFlags,
     PX509Certificate *  ppCertificate
     );
+_Win32_SupportedOS_WindowsXP_
 
 // Pre NT4.0 SP2 calls.  Call CAPI1 or CAPI2
 // to get the same functionality instead.
@@ -1085,6 +1090,7 @@ typedef SECURITY_STATUS
     _Out_                                   PDWORD      ServerIdentitySize,
     _In_                                    DWORD       Flags
 );
+_Win32_SupportedOS_Windows8_
 
 EXTERN_C
 SECURITY_STATUS

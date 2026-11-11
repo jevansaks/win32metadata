@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*+--------------------------------------------------------------------------
 
  Microsoft Windows
@@ -418,12 +419,17 @@ EXTERN_GUID(IID_ISecurityInformation4, 0xea961070, 0xcd14, 0x4621, 0xac, 0xe4, 0
 // {941FABCA-DD47-4FCA-90BB-B0E10255F20D}
 EXTERN_GUID(IID_IEffectivePermission2, 0x941fabca, 0xdd47, 0x4fca, 0x90, 0xbb, 0xb0, 0xe1, 0x2, 0x55, 0xf2, 0xd);
 #endif // (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 HPROPSHEETPAGE ACLUIAPI CreateSecurityPage(_In_ LPSECURITYINFO psi );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 BOOL ACLUIAPI EditSecurity(_In_ HWND hwndOwner,
                            _In_ LPSECURITYINFO psi );
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 HRESULT ACLUIAPI EditSecurityAdvanced(_In_ HWND hwndOwner,
                                       _In_ LPSECURITYINFO psi,
                                       _In_ SI_PAGE_TYPE   uSIPage );

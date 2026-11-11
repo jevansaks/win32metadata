@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+----------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -32,6 +33,7 @@ extern "C" {
 #include <pshpack8.h>
 
 #define CERT_CREDENTIAL_PROVIDER_ID            -509
+_Win32_SupportedOS_WindowsXP_
 
 //+----------------------------------------------------------------------------
 //  Dialog viewer of a certificate, CTL or CRL context.
@@ -54,6 +56,7 @@ CryptUIDlgViewContext(
     _In_        DWORD dwFlags,
     _In_        void *pvReserved
     );
+_Win32_SupportedOS_WindowsXP_
 
 
 //+----------------------------------------------------------------------------
@@ -117,6 +120,7 @@ typedef struct {
     PCCERT_CHAIN_CONTEXT * prgpChain;
     DWORD cChain;
 }CERT_SELECTUI_INPUT, *PCERT_SELECTUI_INPUT;
+_Win32_SupportedOS_Windows7_
 
 //+----------------------------------------------------------------------------
 //
@@ -180,6 +184,7 @@ typedef struct _CRYPTUI_CERT_MGR_STRUCT
 } CRYPTUI_CERT_MGR_STRUCT, *PCRYPTUI_CERT_MGR_STRUCT;
 
 typedef const CRYPTUI_CERT_MGR_STRUCT *PCCRYPTUI_CERT_MGR_STRUCT;
+_Win32_SupportedOS_WindowsXP_
 
 
 //+----------------------------------------------------------------------------
@@ -520,6 +525,7 @@ typedef const CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT *PCCRYPTUI_WIZ_DIGITAL_SIGN_CONTE
 // The above CRYPTUI_WIZ_DIGITAL_SIGN_EXCLUDE_PAGE_HASHES takes precedence if
 // also set.
 #define CRYPTUI_WIZ_DIGITAL_SIGN_INCLUDE_PAGE_HASHES    0x0004
+_Win32_SupportedOS_WindowsXP_
 
 //+----------------------------------------------------------------------------
 //
@@ -552,6 +558,7 @@ CryptUIWizDigitalSign(
     _In_                PCCRYPTUI_WIZ_DIGITAL_SIGN_INFO     pDigitalSignInfo,
     _Outptr_opt_        PCCRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT  *ppSignContext
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == TRUE)
 BOOL
@@ -702,6 +709,8 @@ typedef struct tagCRYPTUI_VIEWCERTIFICATE_STRUCTA {
     DWORD                       nStartPage;
 } CRYPTUI_VIEWCERTIFICATE_STRUCTA, *PCRYPTUI_VIEWCERTIFICATE_STRUCTA;
 typedef const CRYPTUI_VIEWCERTIFICATE_STRUCTA *PCCRYPTUI_VIEWCERTIFICATE_STRUCTA;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // pfPropertiesChanged             this will be set by the dialog proc to inform the caller
@@ -715,6 +724,8 @@ CryptUIDlgViewCertificateW(
         _In_  PCCRYPTUI_VIEWCERTIFICATE_STRUCTW   pCertViewInfo,
         _Out_ BOOL                                *pfPropertiesChanged  // OPTIONAL
         );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == TRUE)
 BOOL
@@ -829,6 +840,8 @@ typedef struct _CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO
 }CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO, *PCRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO;
 
 typedef const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO *PCCRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 //-----------------------------------------------------------------------
 //
@@ -944,6 +957,8 @@ typedef const CRYPTUI_WIZ_IMPORT_SRC_INFO *PCCRYPTUI_WIZ_IMPORT_SRC_INFO;
 
 //if the hDesCertStore is a remote store handle, this flag should be set
 #define   CRYPTUI_WIZ_IMPORT_REMOTE_DEST_STORE              0x00400000
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 //-----------------------------------------------------------------------
 //

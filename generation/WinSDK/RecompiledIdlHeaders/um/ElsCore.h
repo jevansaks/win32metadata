@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -143,6 +144,7 @@ typedef struct _MAPPING_PROPERTY_BAG
     DWORD                dwCallerDataSize;
     LPVOID               pContext;
 } MAPPING_PROPERTY_BAG, *PMAPPING_PROPERTY_BAG;
+_Win32_SupportedOS_Windows7_
 
 
 //
@@ -156,6 +158,7 @@ MappingGetServices(
     _Out_     PMAPPING_SERVICE_INFO *prgServices,
     _Out_     DWORD                 *pdwServicesCount
     );
+_Win32_SupportedOS_Windows7_
 
 
 HRESULT
@@ -163,6 +166,7 @@ WINAPI
 MappingFreeServices(
     _In_ PMAPPING_SERVICE_INFO pServiceInfo
     );
+_Win32_SupportedOS_Windows7_
 
 
 HRESULT
@@ -181,6 +185,7 @@ MappingRecognizeText(
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+_Win32_SupportedOS_Windows7_
 
 HRESULT
 WINAPI
@@ -195,6 +200,7 @@ MappingDoAction(
 
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
+_Win32_SupportedOS_Windows7_
 
 HRESULT
 WINAPI

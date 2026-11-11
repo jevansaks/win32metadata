@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -454,12 +455,14 @@ typedef struct
 
 #define DSBID_BANNER            256
 #define DSBID_CONTAINERLIST     257
+_Win32_SupportedOS_WindowsVista_
 
 //
 // API exported for browsing for containers.
 //
 
 STDAPI_(int) DsBrowseForContainerW(_Inout_ PDSBROWSEINFOW pInfo);
+_Win32_SupportedOS_WindowsVista_
 STDAPI_(int) DsBrowseForContainerA(_Inout_ PDSBROWSEINFOA pInfo);
 
 #ifdef UNICODE
@@ -467,11 +470,13 @@ STDAPI_(int) DsBrowseForContainerA(_Inout_ PDSBROWSEINFOA pInfo);
 #else
 #define DsBrowseForContainer    DsBrowseForContainerA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 
 // NOTE: these are here to keep old clients building - remove soon
 
 STDAPI_(HICON) DsGetIcon(DWORD dwFlags, LPCWSTR pszObjectClass, INT cxImage, INT cyImage);
+_Win32_SupportedOS_WindowsVista_
 STDAPI DsGetFriendlyClassName(LPCWSTR pszObjectClass, _Out_writes_(cchBuffer) LPWSTR pszBuffer, UINT cchBuffer);
 
 

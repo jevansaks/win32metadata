@@ -1,0 +1,113 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMShare.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMShare.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/LMShare.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMShare.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0001    // Increment this if a change has global effects
+ 
+ Copyright (c) 1990-1999  Microsoft Corporation
+@@ -46,6 +47,7 @@
+ #endif
+ 
+ #include <lmcons.h>
++_Win32_SupportedOS_WindowsXP_
+ 
+ //
+ // Function Prototypes - Share
+@@ -62,6 +64,7 @@
+     LPBYTE buf,
+     _Out_opt_ LPDWORD parm_err
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Check_return_
+ _Success_( return == 0 || return == ERROR_MORE_DATA )
+@@ -98,6 +101,7 @@
+     _Out_ LPDWORD totalentries,
+     _Inout_opt_ LPDWORD resume_handle
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Check_return_
+ _Success_( return == 0 || return == ERROR_MORE_DATA )
+@@ -115,6 +119,7 @@
+     _When_( level == 1005, _Outptr_result_bytebuffer_(sizeof(SHARE_INFO_1005)) )
+     LPBYTE *bufptr
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Check_return_
+ NET_API_STATUS NET_API_FUNCTION
+@@ -133,6 +138,7 @@
+     LPBYTE  buf,
+     _Out_opt_ LPDWORD parm_err
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Check_return_
+ NET_API_STATUS NET_API_FUNCTION
+@@ -149,6 +155,7 @@
+     _In_ LMSTR netname,
+     _Reserved_ DWORD reserved
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Check_return_
+ NET_API_STATUS NET_API_FUNCTION
+@@ -413,6 +420,7 @@
+ 
+ #ifndef _LMSESSION_
+ #define _LMSESSION_
++_Win32_SupportedOS_WindowsXP_
+ 
+ //
+ // Function Prototypes Session
+@@ -436,6 +444,7 @@
+     _Out_ LPDWORD totalentries,
+     _Inout_opt_ LPDWORD resume_handle
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Check_return_
+ NET_API_STATUS NET_API_FUNCTION
+@@ -444,6 +453,7 @@
+     _In_opt_ LMSTR UncClientName,
+     _In_opt_ LMSTR username
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Check_return_
+ _Success_( return == 0 )
+@@ -528,6 +538,7 @@
+ #ifndef _LMCONNECTION_
+ 
+ #define _LMCONNECTION_
++_Win32_SupportedOS_WindowsXP_
+ 
+ //
+ // Function Prototypes - CONNECTION
+@@ -575,6 +586,7 @@
+ 
+ #ifndef _LMFILE_
+ #define _LMFILE_
++_Win32_SupportedOS_WindowsXP_
+ 
+ //
+ // Function Prototypes - FILE
+@@ -586,6 +598,7 @@
+     _In_opt_ LMSTR servername,
+     _In_ DWORD fileid
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Check_return_
+ _Success_( return == 0 || return == ERROR_MORE_DATA )
+@@ -603,6 +616,7 @@
+     _Out_ LPDWORD totalentries,
+     _Inout_opt_ PDWORD_PTR resume_handle
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Check_return_
+ _Success_( return == 0)

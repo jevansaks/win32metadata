@@ -7,7 +7,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinS
  //---------------------------------------------------------------------------
  // Copyright (c) Microsoft Corporation.  All rights reserved.
  //---------------------------------------------------------------------------
-@@ -67,7 +68,7 @@
+@@ -53,6 +54,7 @@
+ typedef interface IDCompositionTurbulenceEffect          IDCompositionTurbulenceEffect;
+ typedef interface IDCompositionVirtualSurface            IDCompositionVirtualSurface;
+ typedef interface IDCompositionVisual                    IDCompositionVisual;
++_Win32_SupportedOS_Windows8_
+ 
+ //+-----------------------------------------------------------------------------
+ //
+@@ -67,10 +69,11 @@
  STDAPI DCompositionCreateDevice(
      _In_opt_ IDXGIDevice *dxgiDevice,
      _In_ REFIID iid,
@@ -16,7 +24,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinS
      );
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WINBLUE)
-@@ -84,7 +85,7 @@
++_Win32_SupportedOS_Windows81_
+ //+-----------------------------------------------------------------------------
+ //
+ //  Function:
+@@ -84,7 +87,7 @@
  STDAPI DCompositionCreateDevice2(
      _In_opt_ IUnknown *renderingDevice,
      _In_ REFIID iid,
@@ -25,7 +37,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinS
      );
  #endif  // (_WIN32_WINNT >= _WIN32_WINNT_WINBLUE)
  
-@@ -102,7 +103,7 @@
+@@ -102,10 +105,11 @@
  STDAPI DCompositionCreateDevice3(
      _In_opt_ IUnknown *renderingDevice,
      _In_ REFIID iid,
@@ -34,7 +46,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinS
      );
  
  #endif  // (_WIN32_WINNT >= _WIN32_WINNT_WINTHRESHOLD)
-@@ -190,7 +191,7 @@
++_Win32_SupportedOS_Windows8_
+ 
+ //+-----------------------------------------------------------------------------
+ //
+@@ -190,7 +194,7 @@
      _In_ COMPOSITION_FRAME_ID frameId,
      _Out_ COMPOSITION_FRAME_STATS* frameStats,
      _In_ UINT targetIdCount,
@@ -43,7 +59,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinS
      _Out_opt_ UINT* actualTargetIdCount);
  
  //+-----------------------------------------------------------------------------
-@@ -205,7 +206,7 @@
+@@ -205,7 +209,7 @@
  STDAPI DCompositionGetTargetStatistics(
      _In_ COMPOSITION_FRAME_ID frameId,
      _In_ const COMPOSITION_TARGET_ID* targetId,
@@ -52,7 +68,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinS
  
  //+-----------------------------------------------------------------------------
  //
-@@ -259,7 +260,7 @@
+@@ -259,7 +263,7 @@
  
      // Gets timing information about the composition engine.
      STDMETHOD(GetFrameStatistics)(THIS_
@@ -61,7 +77,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinS
          ) PURE;
  
      // Creates a composition target bound to a window represented by an HWND.
-@@ -1240,7 +1241,7 @@
+@@ -1240,7 +1244,7 @@
      STDMETHOD(BeginDraw)(THIS_
          _In_opt_ const RECT *updateRect,
          _In_ REFIID iid,
@@ -70,7 +86,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinS
          _Out_ POINT *updateOffset
          ) PURE;
  
-@@ -1318,7 +1319,7 @@
+@@ -1318,7 +1322,7 @@
  
      // Gets timing information about the composition engine.
      STDMETHOD(GetFrameStatistics)(THIS_
@@ -79,7 +95,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dcomp.h b/generation/WinS
          ) PURE;
  
      // Creates a new visual object.
-@@ -2435,7 +2436,7 @@
+@@ -2435,7 +2439,7 @@
      STDMETHOD(GetAvailableFence)(THIS_
          _Out_ UINT64* fenceValue,
          _In_ REFIID iid,

@@ -178,3 +178,62 @@ is byte-identical to `C18E31F0C0BFF9FEC72477DD4D539766806E4B282A2ADD1C285E5555F9
 This is a newly emitted checkpoint, not a copied reference. It is not a claim
 that all parameter metadata has moved, nor a mathematical minimum. Further
 one-for-one batches and enum/handle trials follow above this checkpoint.
+
+## Accepted parameter and function-prefix reduction
+
+The next accepted union removes **407 of 770 parameter attribute atoms**,
+leaving **363**. Twelve additional `ComOutPtr` transports survive subdivision:
+seven in four independently clean native-IDL owners and five in directly
+consumed declarations. Regenerating the other COM owners changed unrelated
+`[unique]` optionality or lost existing `ComOutPtr`/direction/Optional facts;
+those complete owner closures were restored, not counted as migrated.
+
+| Response-file input | Recovery rows | Accepted retained | Removed |
+|---|---:|---:|---:|
+| `emitter.settings.rsp`, all options | 2,503 | 2,159 | 344 |
+| `WithSetLastError.rsp` | 3,362 | 468 | 2,894 |
+| `supportedOS.rsp` | 17,070 | 7,883 | 9,187 |
+| **All RSP value rows** | **146,789** | **134,364** | **12,425** |
+
+Documentation (90,502), automatic library mappings/configuration (26,376),
+manual library mappings, and parser/global configuration are unchanged.
+The [per-file/option inventory](reduced-sidecar-counts.tsv) and
+[individual retained parameter facts](retained-parameter-facts.tsv) distinguish
+the nine CLR exception selectors, explicit negative overrides, enum
+associations, cleanup/lifetime contracts, and unsuccessful positive-annotation
+input trials. There are 119 remaining positive parameter atoms, including the
+ten CLR atoms, and 244 other parameter atoms; these are not 363 independent
+reader defects.
+
+The prefix trial initially retired 2,935 LastError and 9,749 availability rows.
+Native prefixes were relocated before complete declarations, export/SAL
+prefixes, and complete preprocessor continuations. Original BOM positions and
+legacy bytes were preserved. Seven owner closures then required 391 availability
+rows restored: incomplete overload sets, inline/unprojected functions, and a
+flattened alias had no independently projected target. A shared `WSARecvEx`
+prefix had to precede its deprecation attribute and return-type conditional.
+
+The first emitting prefix union was **rejected** after the complete comparer
+reported 73 discrepancies. PSAPI/K32, CM/CMP, and DDQuery/GdiEntry macro aliases
+received unintended facts; other functions lost facts; a Direct2D enum became
+loose constants. Exact failing facts and the conservative alias/Direct2D owner
+closures were backed out. The Direct2D mechanism is not established by this
+experiment and is not reported as a demonstrated reader bug. No unexpected API
+change was accepted or masked.
+
+After refreshing the 14 affected production partitions (1 minute 17.85 seconds)
+and emitting the **complete** existing generated union (4 minutes 47.05 seconds),
+the unmasked comparison exits zero. The newly emitted
+`files\sidecar-reduction\prefix-accepted\Windows.Win32.winmd` is 24,177,152 bytes,
+SHA-256 `18996DF3292B4035F3A0512882985BA5A1A69703346E767A97DE23125A6C35E9`;
+its complete declaration dump remains
+`C18E31F0C0BFF9FEC72477DD4D539766806E4B282A2ADD1C285E5555F99C4D36`.
+The original full production and rejected comparison are retained alongside it.
+This is the working boundary before bounded enum/handle trials, not a fresh
+reference build or a claim that the remaining sidecars are minimal.
+
+Historical whole-corpus/whole-header assertions now read the reachable frozen
+recovery inputs. The assertions themselves remain intact; live semantic,
+patch-replay, and native ABI checks still exercise current input. The printing
+ABI fixture explicitly models the current `LPCWSTR` pointee constness rather
+than hardcoding its former mutable spelling.

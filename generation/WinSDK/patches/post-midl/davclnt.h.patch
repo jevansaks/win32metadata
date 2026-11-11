@@ -1,0 +1,95 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/davclnt.h b/generation/WinSDK/RecompiledIdlHeaders/um/davclnt.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/davclnt.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/davclnt.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0001    // Increment this if a change has global effects
+ 
+ Copyright (c) Microsoft Corporation.  All rights reserved.
+@@ -79,6 +80,7 @@
+     _Inout_ AUTHNEXTSTEP *NextStep,                 // Next step for DavClnt
+     _Out_ PFNDAVAUTHCALLBACK_FREECRED *pFreeCred    // Callback to free the memory allocated for creds by the callback
+ );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -91,6 +93,7 @@
+     _In_reads_bytes_(CertSize) PBYTE ClientCert,
+     _In_ DWORD CertSize
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -98,6 +101,7 @@
+ DavDeleteConnection(
+     _In_ HANDLE ConnectionHandle
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -107,6 +111,7 @@
+     _Out_writes_to_opt_(*lpSize, *lpSize) LPWSTR UncPath,
+     _Inout_ LPDWORD lpSize
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -116,6 +121,7 @@
+     _Out_writes_to_opt_(*lpSize, *lpSize) LPWSTR Url,
+     _Inout_ LPDWORD lpSize
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -125,6 +131,7 @@
+     _Out_writes_bytes_opt_(*LockOwnerNameLengthInBytes) PWSTR LockOwnerName,
+     _Inout_ PULONG LockOwnerNameLengthInBytes
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -135,6 +142,7 @@
+     _Out_writes_(*cChSize) LPWSTR ExtErrorString,
+     _Inout_ DWORD *cChSize
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -142,6 +150,7 @@
+ DavFlushFile(
+     _In_ HANDLE hFile
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -149,6 +158,7 @@
+ DavInvalidateCache(
+     _In_ LPCWSTR URLName
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -157,11 +167,13 @@
+     _In_ LPWSTR lpName,
+     _In_ BOOL fForce
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ OPAQUE_HANDLE
+ WINAPI
+ DavRegisterAuthCallback(_In_ PFNDAVAUTHCALLBACK CallBack,
+                         _In_ ULONG Version);
++_Win32_SupportedOS_WindowsVista_
+ 
+ VOID
+ WINAPI

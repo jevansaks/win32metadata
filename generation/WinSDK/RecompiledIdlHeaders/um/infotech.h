@@ -127,7 +127,7 @@ DECLARE_INTERFACE_(IITDatabase, IUnknown)
 
 	// Retrieves a specified IUnknown-based interface on the object identified
 	// by dwObjInstance.
-	STDMETHOD(GetObject)(DWORD dwObjInstance, REFIID riid, LPVOID *ppvObj) PURE;
+	STDMETHOD(GetObject)(DWORD dwObjInstance, REFIID riid, _COM_Outptr_ LPVOID *ppvObj) PURE;
 
 	// To obtain a pointer to a named object's persistence the object's full
 	// name (including any object-specific type prefix) should be passed in

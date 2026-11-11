@@ -1,0 +1,70 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/stringapiset.h b/generation/WinSDK/RecompiledIdlHeaders/um/stringapiset.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/stringapiset.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/stringapiset.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /********************************************************************************
+ *                                                                               *
+ * stringapi.h -- ApiSet Contract for api-ms-win-core-string-l1                  *
+@@ -26,6 +27,7 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
+ 
+ #if (WINVER >= 0x0600)
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ int
+@@ -41,6 +43,7 @@
+     _Reserved_ LPVOID lpReserved,
+     _Reserved_ LPARAM lParam
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ int
+@@ -70,6 +73,8 @@
+ #ifdef UNICODE
+ #define CompareString  CompareStringW
+ #endif
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ int
+@@ -85,6 +90,8 @@
+ #ifdef UNICODE
+ #define FoldString  FoldStringW
+ #endif
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL
+@@ -100,6 +107,8 @@
+ #ifdef UNICODE
+ #define GetStringTypeEx  GetStringTypeExW
+ #endif
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL
+@@ -110,6 +119,8 @@
+     _In_ int cchSrc,
+     _Out_ LPWORD lpCharType
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ //
+ //  NLS Code Page Dependent APIs.
+@@ -128,6 +139,8 @@
+     _Out_writes_to_opt_(cchWideChar,return) LPWSTR lpWideCharStr,
+     _In_ int cchWideChar
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ _Success_(return != 0)

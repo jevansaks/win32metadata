@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation
@@ -34,6 +35,8 @@ Abstract:
 #ifdef  __cplusplus
 extern "C" {
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 /*++
 LoadMUILibrary
@@ -84,6 +87,8 @@ HINSTANCE __stdcall LoadMUILibraryA(
     _In_ DWORD dwLangConvention,
     _In_ LANGID LangID
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 // Wide char version
 HINSTANCE __stdcall LoadMUILibraryW(
@@ -97,6 +102,8 @@ HINSTANCE __stdcall LoadMUILibraryW(
 #else
 #define LoadMUILibrary LoadMUILibraryA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*++
 FreeMUILibrary
@@ -125,6 +132,8 @@ Return Value:
 BOOL __stdcall FreeMUILibrary(
     _In_ HMODULE hResModule
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 /*++
 GetUILanguageFallbackList

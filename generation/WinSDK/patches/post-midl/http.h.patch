@@ -7,7 +7,39 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
  
  
  /*++
-@@ -3049,9 +3050,9 @@
+@@ -2989,6 +2990,7 @@
+ #if !defined(HTTPAPI_LINKAGE)
+ #define HTTPAPI_LINKAGE DECLSPEC_IMPORT
+ #endif  // !HTTPAPI_LINKAGE
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // Initialize/Terminate APIs.
+@@ -3005,6 +3007,7 @@
+     IN ULONG Flags,
+     _Reserved_ IN OUT PVOID pReserved
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ // NOTE: MUST be called after final API call returns.
+ 
+@@ -3015,6 +3018,7 @@
+     IN ULONG Flags,
+     _Reserved_ IN OUT PVOID pReserved
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // HTTP Request Queue manipulation APIs.
+@@ -3036,6 +3040,7 @@
+     );
+ 
+ #if _WIN32_WINNT >= 0x0600
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // Extended Request Queue manipulation APIs.
+@@ -3049,11 +3054,12 @@
  WINAPI
  HttpCreateRequestQueue(
      IN HTTPAPI_VERSION Version,
@@ -19,8 +51,43 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
 +    _In_opt_ IN ULONG Flags OPTIONAL,
      OUT PHANDLE RequestQueueHandle
      );
++_Win32_SupportedOS_WindowsVista_
  
-@@ -3134,10 +3135,10 @@
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3061,6 +3067,7 @@
+ HttpCloseRequestQueue(
+     IN HANDLE RequestQueueHandle
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3073,6 +3080,7 @@
+     _Reserved_ ULONG Reserved1,
+     _Reserved_ PVOID Reserved2
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3113,6 +3121,7 @@
+     _Out_opt_ PULONG BytesReturned,
+     _In_opt_ LPOVERLAPPED Overlapped
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3122,6 +3131,7 @@
+     );
+ 
+ #endif // _WIN32_WINNT >= 0x0600
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // SSL APIs.
+@@ -3134,13 +3144,14 @@
      IN HANDLE RequestQueueHandle,
      IN HTTP_CONNECTION_ID ConnectionId,
      IN ULONG Flags,
@@ -33,7 +100,115 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
      );
  
  #if _WIN32_WINNT >= 0x0600
-@@ -3297,12 +3298,11 @@
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // Server Session APIs.
+@@ -3154,6 +3165,7 @@
+     OUT PHTTP_SERVER_SESSION_ID ServerSessionId,
+     _Reserved_ IN ULONG Reserved
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3161,6 +3173,7 @@
+ HttpCloseServerSession(
+     IN HTTP_SERVER_SESSION_ID ServerSessionId
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ _Success_(return == NO_ERROR)
+@@ -3173,6 +3186,7 @@
+     IN ULONG PropertyInformationLength,
+     _Out_opt_ PULONG ReturnLength
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3185,6 +3199,7 @@
+     );
+ 
+ #endif // _WIN32_WINNT >= 0x0600
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // Url Configuration APIs. Can only be used for V1 request queues.
+@@ -3198,6 +3213,7 @@
+     IN PCWSTR FullyQualifiedUrl,
+     _Reserved_ PVOID Reserved
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3208,6 +3224,7 @@
+     );
+ 
+ #if _WIN32_WINNT >= 0x0600
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // Url Group APIs.
+@@ -3221,6 +3238,7 @@
+     OUT PHTTP_URL_GROUP_ID pUrlGroupId,
+     _Reserved_ IN ULONG Reserved
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3228,6 +3246,7 @@
+ HttpCloseUrlGroup(
+     IN HTTP_URL_GROUP_ID UrlGroupId
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3238,6 +3257,7 @@
+     IN HTTP_URL_CONTEXT UrlContext OPTIONAL,
+     _Reserved_ IN ULONG Reserved
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3247,6 +3267,7 @@
+     IN PCWSTR pFullyQualifiedUrl,
+     IN ULONG Flags
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3257,6 +3278,7 @@
+     _In_reads_bytes_(PropertyInformationLength) PVOID PropertyInformation,
+     IN ULONG PropertyInformationLength
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ _Success_(return == NO_ERROR)
+@@ -3273,6 +3295,7 @@
+ #endif // _WIN32_WINNT >= 0x0600
+ 
+ #if _WIN32_WINNT >= _WIN32_WINNT_WIN8
++_Win32_SupportedOS_Windows8_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3285,6 +3308,7 @@
+     );
+ 
+ #endif
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // HTTP Server I/O APIs.
+@@ -3297,12 +3321,11 @@
      IN HANDLE RequestQueueHandle,
      IN HTTP_REQUEST_ID RequestId,
      IN ULONG Flags,
@@ -49,7 +224,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
  HTTPAPI_LINKAGE
  ULONG
  WINAPI
-@@ -3313,7 +3313,7 @@
+@@ -3313,10 +3336,11 @@
      _Out_writes_bytes_to_(EntityBufferLength, *BytesReturned) PVOID EntityBuffer,
      IN ULONG EntityBufferLength,
      _Out_opt_ PULONG BytesReturned,
@@ -58,7 +233,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
      );
  
  #if _WIN32_WINNT >= 0x0600
-@@ -3326,12 +3326,12 @@
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3326,15 +3350,16 @@
      IN HTTP_REQUEST_ID RequestId,
      IN ULONG Flags,
      IN PHTTP_RESPONSE HttpResponse,
@@ -75,7 +254,19 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
      );
  
  #else // _WIN32_WINNT >= 0x0600
-@@ -3363,13 +3363,13 @@
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3355,6 +3380,7 @@
+ #endif // _WIN32_WINNT >= 0x0600
+ 
+ #if _WIN32_WINNT >= 0x0600
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3363,16 +3389,17 @@
      IN HANDLE RequestQueueHandle,
      IN HTTP_REQUEST_ID RequestId,
      IN ULONG Flags,
@@ -93,7 +284,27 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
      );
  
  #else // _WIN32_WINNT >= 0x0600
-@@ -3411,7 +3411,7 @@
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3392,6 +3419,7 @@
+     );
+ 
+ #endif // _WIN32_WINNT >= 0x0600
++_Win32_SupportedOS_10240_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3404,6 +3432,7 @@
+     _In_opt_ PCSTR Query,
+     _In_opt_ PHTTP_REQUEST_HEADERS Headers
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3411,7 +3440,7 @@
  HttpWaitForDisconnect(
      IN HANDLE RequestQueueHandle,
      IN HTTP_CONNECTION_ID ConnectionId,
@@ -102,7 +313,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
      );
  
  #if _WIN32_WINNT >= 0x0600
-@@ -3422,25 +3422,23 @@
+@@ -3422,25 +3451,23 @@
  HttpWaitForDisconnectEx(
      IN HANDLE RequestQueueHandle,
      IN HTTP_CONNECTION_ID ConnectionId,
@@ -134,7 +345,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
      );
  
  BOOL
-@@ -3484,9 +3482,8 @@
+@@ -3472,6 +3499,7 @@
+ 
+ 
+ #endif // _WIN32_WINNT >= 0x0600
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // Cache manipulation APIs.
+@@ -3484,9 +3512,8 @@
      IN HANDLE RequestQueueHandle,
      IN PCWSTR UrlPrefix,
      IN ULONG Flags,
@@ -146,7 +365,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
  HTTPAPI_LINKAGE
  ULONG
  WINAPI
-@@ -3495,20 +3492,19 @@
+@@ -3495,21 +3522,21 @@
      IN PCWSTR UrlPrefix,
      IN PHTTP_DATA_CHUNK DataChunk,
      IN PHTTP_CACHE_POLICY CachePolicy,
@@ -167,11 +386,38 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
      IN ULONG BufferLength,
      _Out_opt_ PULONG BytesRead,
 -    IN LPOVERLAPPED Overlapped OPTIONAL
+-    );
 +    _Inout_opt_ _Win32_Retained_ IN LPOVERLAPPED Overlapped OPTIONAL
-     );
++    );
++_Win32_SupportedOS_WindowsXP_
  
  //
-@@ -3556,7 +3552,7 @@
+ // Server configuration APIs
+@@ -3525,6 +3552,7 @@
+     _In_ ULONG ConfigInformationLength,
+     _Reserved_ LPOVERLAPPED pOverlapped
+     );
++_Win32_SupportedOS_15063_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3536,6 +3564,7 @@
+     _In_ ULONG ConfigInfoLength,
+     _Reserved_ LPOVERLAPPED Overlapped
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3547,6 +3576,7 @@
+     _In_ ULONG ConfigInformationLength,
+     _Reserved_ LPOVERLAPPED pOverlapped
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HTTPAPI_LINKAGE
+ ULONG
+@@ -3556,7 +3586,7 @@
      _In_ HTTP_SERVICE_CONFIG_ID ConfigId,
      _In_reads_bytes_opt_(InputLength) PVOID pInput,
      _In_ ULONG InputLength,

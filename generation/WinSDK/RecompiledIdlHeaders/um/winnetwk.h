@@ -334,6 +334,7 @@ WNetRestoreSingleConnectionW(
     );
 
 #else
+_Win32_SupportedOS_Windows2000_
 _Check_return_
 DWORD APIENTRY
 WNetRestoreConnectionW(
@@ -528,6 +529,7 @@ WNetDisconnectDialog1W(
 #define WNetDisconnectDialog1  WNetDisconnectDialog1A
 #endif // !UNICODE
 #endif /* WINVER >= 0x0400 */
+_Win32_SupportedOS_Windows2000_
 
 //
 //  Network Browsing.
@@ -785,6 +787,7 @@ WNetGetNetworkInformationW(
 #endif // !UNICODE
 
 #endif /* WINVER >= 0x0400 */
+_Win32_SetLastError_
 
 //
 //  Error handling.
@@ -799,6 +802,7 @@ WNetGetLastErrorA(
     _Out_writes_(nNameBufSize) LPSTR  lpNameBuf,
     _In_ DWORD      nNameBufSize
     );
+_Win32_SetLastError_
 _Check_return_
 DWORD APIENTRY
 WNetGetLastErrorW(

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /******************************************************************************
 
 Copyright (c) 2000 Microsoft Corporation
@@ -110,6 +111,7 @@ typedef struct _SMGRSTATUS {
 #ifdef __cplusplus
 extern "C" {
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 //
 // RPC call to set a restore point
@@ -142,6 +144,7 @@ SRSetRestorePointA(
                   _In_ PRESTOREPOINTINFOA  pRestorePtSpec,// [in] Restore Point specification
                   _Out_ PSTATEMGRSTATUS     pSMgrStatus   // [out] Status returned
                   );
+_Win32_SupportedOS_WindowsXP_
 
 
 BOOL __stdcall
@@ -156,6 +159,7 @@ SRSetRestorePointInternal(
                   _Out_ PSTATEMGRSTATUS   pSMgrStatus,
                   _In_ BOOL           fForceSurrogate
                   );
+_Win32_SupportedOS_WindowsXP_
 
 DWORD __stdcall
 SRRemoveRestorePoint(DWORD dwRPNum);

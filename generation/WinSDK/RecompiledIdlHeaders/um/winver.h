@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*****************************************************************************\
@@ -27,6 +28,7 @@ extern "C" {
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #ifndef RC_INVOKED              /* RC doesn't need to see the rest of this */
+_Win32_SupportedOS_Windows2000_
 
 
 /* ----- Function prototypes ----- */
@@ -43,6 +45,7 @@ VerFindFileA(
         _Out_writes_(*puDestDirLen)  LPSTR szDestDir,
         _Inout_                      PUINT puDestDirLen
         );
+_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 VerFindFileW(
@@ -70,6 +73,7 @@ VerFindFileW(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
 #ifndef RC_INVOKED
+_Win32_SupportedOS_Windows2000_
 
 DWORD
 APIENTRY
@@ -83,6 +87,7 @@ VerInstallFileA(
         _Out_writes_(*puTmpFileLen)  LPSTR szTmpFile,
         _Inout_                      PUINT puTmpFileLen
         );
+_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 VerInstallFileW(
@@ -110,6 +115,8 @@ VerInstallFileW(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 #ifndef RC_INVOKED
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 /* Returns size of version info in bytes */
 DWORD
@@ -118,6 +125,8 @@ GetFileVersionInfoSizeA(
         _In_        LPCSTR lptstrFilename, /* Filename of version stamped file */
         _Out_opt_ LPDWORD lpdwHandle       /* Information for use by GetFileVersionInfo */
         );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 /* Returns size of version info in bytes */
 DWORD
 APIENTRY
@@ -130,6 +139,8 @@ GetFileVersionInfoSizeW(
 #else
 #define GetFileVersionInfoSize  GetFileVersionInfoSizeA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 /* Read version info into buffer */
 BOOL
@@ -140,6 +151,8 @@ GetFileVersionInfoA(
         _In_                DWORD dwLen,             /* Length of buffer for info */
         _Out_writes_bytes_(dwLen) LPVOID lpData            /* Buffer to place the data structure */
         );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 /* Read version info into buffer */
 BOOL
 APIENTRY
@@ -199,6 +212,7 @@ BOOL APIENTRY GetFileVersionInfoExW(_In_ DWORD dwFlags,
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 #ifndef RC_INVOKED
+_Win32_SupportedOS_Windows2000_
 
 DWORD
 APIENTRY
@@ -207,6 +221,7 @@ VerLanguageNameA(
         _Out_writes_(cchLang) LPSTR szLang,
         _In_                  DWORD cchLang
         );
+_Win32_SupportedOS_Windows2000_
 DWORD
 APIENTRY
 VerLanguageNameW(
@@ -219,6 +234,7 @@ VerLanguageNameW(
 #else
 #define VerLanguageName  VerLanguageNameA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 APIENTRY
@@ -228,6 +244,7 @@ VerQueryValueA(
         _Outptr_result_buffer_(_Inexpressible_("buffer can be PWSTR or DWORD*")) LPVOID * lplpBuffer,
         _Out_ PUINT puLen
         );
+_Win32_SupportedOS_Windows2000_
 BOOL
 APIENTRY
 VerQueryValueW(

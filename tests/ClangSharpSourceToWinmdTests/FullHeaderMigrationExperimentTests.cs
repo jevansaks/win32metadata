@@ -11,6 +11,16 @@ namespace ClangSharpSourceToWinmdTests
     [TestClass]
     public class FullHeaderMigrationExperimentTests
     {
+        // Historical one-layer byte audits must not bind to the evolving migration corpus.
+        internal static byte[] ReadRecoveryBytes(string path) => PropertyComOutputHeaderTests.ReadOriginalBytes(
+            path, "a9a5406f7a52b144094d2d6c9972907bdaa2540d");
+
+        internal static string ReadRecoveryText(string path)
+        {
+            using var reader = new StreamReader(new MemoryStream(ReadRecoveryBytes(path)));
+            return reader.ReadToEnd();
+        }
+
         [DataTestMethod]
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]

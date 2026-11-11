@@ -29,6 +29,7 @@ extern "C" {
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
 
 //
 // Prototypes
@@ -40,6 +41,7 @@ WINAPI
 CloseHandle(
     _In_ _Post_ptr_invalid_ HANDLE hObject
     );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_Windows2000_
 WINBASEAPI
@@ -75,6 +77,7 @@ CompareObjectHandles(
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
 
 _Win32_SupportedOS_Windows2000_
 WINBASEAPI
@@ -84,6 +87,7 @@ GetHandleInformation(
     _In_ HANDLE hObject,
     _Out_ LPDWORD lpdwFlags
     );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_Windows2000_
 WINBASEAPI

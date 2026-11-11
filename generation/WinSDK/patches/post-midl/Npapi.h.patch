@@ -1,0 +1,241 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -38,6 +39,7 @@
+ 
+ #pragma region Desktop Family or RemoteFS Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_REMOTEFS)
++_Win32_SupportedOS_WindowsXP_
+ 
+ //
+ //  CONNECTIONS
+@@ -55,6 +57,7 @@
+     _In_opt_ LPWSTR         lpPassword,
+     _In_opt_ LPWSTR         lpUserName
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ DWORD APIENTRY
+@@ -94,6 +97,7 @@
+     _In_reads_bytes_opt_(cbUseOptions) PBYTE lpUseOptions,
+     _In_     DWORD          cbUseOptions
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPCancelConnection (
+@@ -118,6 +122,7 @@
+     _In_ BOOL    fForce,
+     _In_ DWORD   dwFlags
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPGetConnection (
+@@ -135,6 +140,7 @@
+ 
+ #define WNGETCON_CONNECTED      0x00000000
+ #define WNGETCON_DISCONNECTED   0x00000001
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPGetConnection3 (
+@@ -150,6 +156,7 @@
+     _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
+     _Inout_ LPDWORD lpBufferSize
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ DWORD APIENTRY
+@@ -166,6 +173,7 @@
+     _Out_writes_bytes_(*lpnBufferSize) LPVOID lpBuffer,
+     _Inout_ LPDWORD lpnBufferSize
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPGetConnectionPerformance (
+@@ -177,6 +185,7 @@
+     _In_  LPCWSTR                lpRemoteName,
+     _Out_ LPNETCONNECTINFOSTRUCT lpNetConnectInfo
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ DWORD APIENTRY
+@@ -195,6 +204,7 @@
+     _In_opt_ LPNETRESOURCEW lpNetResource,
+     _Out_    LPHANDLE       lphEnum
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPEnumResource (
+@@ -210,6 +220,7 @@
+     _Out_writes_bytes_(*lpBufferSize) LPVOID  lpBuffer,
+     _Inout_ LPDWORD lpBufferSize
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPCloseEnum (
+@@ -280,6 +291,7 @@
+ #define WNNC_CF_MAXIMUM (WNNC_CF_DEFAULT | CONNECT_DEFERRED | CONNECT_COMMANDLINE | CONNECT_CMD_SAVECRED | CONNECT_CRED_RESET )
+ 
+ #endif
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ 
+@@ -292,6 +304,7 @@
+ typedef DWORD (APIENTRY *PF_NPGetCaps) (
+     _In_ DWORD ndex
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ //
+ //  OTHER
+@@ -345,6 +358,7 @@
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPDeviceMode(
+@@ -357,6 +371,7 @@
+ 
+ // flag for search dialog
+ #define WNSRCH_REFRESH_FIRST_LEVEL 0x00000001
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPSearchDialog(
+@@ -380,6 +395,7 @@
+ 
+ #pragma region Desktop Family or RemoteFS Package
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_REMOTEFS)
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPGetResourceParent(
+@@ -393,6 +409,7 @@
+     _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
+     _Inout_ LPDWORD lpBufferSize
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY NPGetResourceInformation(
+     _In_ LPNETRESOURCEW lpNetResource,
+@@ -407,6 +424,7 @@
+     _Inout_ LPDWORD lpBufferSize,
+     _Outptr_ LPWSTR *lplpSystem
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPFormatNetworkName(
+@@ -430,6 +448,7 @@
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPGetPropertyText(
+@@ -449,6 +468,7 @@
+     _In_ DWORD  nButtonNameLen,
+     _In_ DWORD  nType
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPPropertyDialog(
+@@ -478,6 +498,7 @@
+ #define WNDN_MKDIR    1
+ #define WNDN_RMDIR    2
+ #define WNDN_MVDIR    3
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPGetDirectoryType (
+@@ -491,6 +512,7 @@
+     _In_ LPINT   lpType,
+     _In_ BOOL    bFlushCache
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPDirectoryNotify (
+@@ -510,6 +532,7 @@
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_SupportedOS_WindowsXP_
+ 
+ VOID
+ WNetSetLastErrorA(
+@@ -550,6 +573,7 @@
+ 
+ #define WN_VALID_LOGON_ACCOUNT      0x00000001
+ #define WN_NT_PASSWORD_CHANGED      0x00000002
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPLogonNotify (
+@@ -573,6 +597,7 @@
+     _In_opt_ LPVOID              StationHandle,
+     _Out_    LPWSTR              *lpLogonScript
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPPasswordChangeNotify (
+@@ -624,6 +649,7 @@
+     DWORD       dwFlags;
+     BOOL        fForce;
+ } NOTIFYCANCEL, *LPNOTIFYCANCEL;
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ DWORD APIENTRY
+@@ -636,6 +662,7 @@
+     _Inout_ LPNOTIFYINFO lpNotifyInfo,
+     _In_    LPNOTIFYADD  lpAddInfo
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ CancelConnectNotify (
+@@ -658,6 +685,7 @@
+ #define WNPERMC_PERM  0x00000001
+ #define WNPERMC_AUDIT 0x00000002
+ #define WNPERMC_OWNER 0x00000004
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPFMXGetPermCaps (
+@@ -674,6 +702,7 @@
+ #define WNPERM_DLG_PERM   0
+ #define WNPERM_DLG_AUDIT  1
+ #define WNPERM_DLG_OWNER  2
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPFMXEditPerm (
+@@ -687,6 +716,7 @@
+     _In_ HWND   hwndFMX,
+     _In_ DWORD  nDialogType
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD APIENTRY
+ NPFMXGetPermHelp (

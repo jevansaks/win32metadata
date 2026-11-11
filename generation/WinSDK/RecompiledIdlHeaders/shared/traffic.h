@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -266,6 +267,7 @@ typedef struct _ENUMERATION_BUFFER {
     TC_GEN_FILTER   GenericFilter[1];   // one for each filter
 
 } ENUMERATION_BUFFER, *PENUMERATION_BUFFER;
+_Win32_SupportedOS_Windows2000_
 
 
 //---------------------------------------------------------------------------
@@ -281,6 +283,7 @@ TcRegisterClient(
     _In_  PTCI_CLIENT_FUNC_LIST   ClientHandlerList,
     _Out_ PHANDLE                 pClientHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -289,6 +292,7 @@ TcEnumerateInterfaces(
     _Inout_ PULONG              pBufferSize,
     _Out_   PTC_IFC_DESCRIPTOR  InterfaceBuffer
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -298,6 +302,7 @@ TcOpenInterfaceA(
     _In_  HANDLE          ClIfcCtx,
     _Out_ PHANDLE         pIfcHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -307,12 +312,14 @@ TcOpenInterfaceW(
     _In_  HANDLE          ClIfcCtx,
     _Out_ PHANDLE         pIfcHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
 TcCloseInterface(
     _In_ HANDLE       IfcHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -323,6 +330,7 @@ TcQueryInterface(
     _Inout_                    PULONG      pBufferSize,
     _Out_writes_bytes_(*pBufferSize) PVOID       Buffer
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -332,6 +340,7 @@ TcSetInterface(
     _In_                    ULONG       BufferSize,
     _In_reads_bytes_(BufferSize) PVOID       Buffer
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -341,6 +350,7 @@ TcQueryFlowA(
     _Inout_                    PULONG      pBufferSize,
     _Out_writes_bytes_(*pBufferSize) PVOID       Buffer
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -350,6 +360,7 @@ TcQueryFlowW(
     _Inout_                    PULONG      pBufferSize,
     _Out_writes_bytes_(*pBufferSize) PVOID       Buffer
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -359,6 +370,7 @@ TcSetFlowA(
     _In_                    ULONG       BufferSize,
     _In_reads_bytes_(BufferSize) PVOID       Buffer
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -368,6 +380,7 @@ TcSetFlowW(
     _In_                    ULONG       BufferSize,
     _In_reads_bytes_(BufferSize) PVOID       Buffer
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -378,6 +391,7 @@ TcAddFlow(
     _In_  PTC_GEN_FLOW    pGenericFlow,
     _Out_ PHANDLE         pFlowHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -386,6 +400,7 @@ TcGetFlowNameA(
     _In_                  ULONG   StrSize,
     _Out_writes_(StrSize) LPSTR   pFlowName
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -394,6 +409,7 @@ TcGetFlowNameW(
     _In_                  ULONG   StrSize,
     _Out_writes_(StrSize) LPWSTR  pFlowName
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -401,6 +417,7 @@ TcModifyFlow(
     _In_ HANDLE          FlowHandle,
     _In_ PTC_GEN_FLOW    pGenericFlow
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
@@ -409,24 +426,28 @@ TcAddFilter(
     _In_  PTC_GEN_FILTER  pGenericFilter,
     _Out_ PHANDLE         pFilterHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
 TcDeregisterClient(
     _In_ HANDLE          ClientHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
 TcDeleteFlow(
     _In_ HANDLE          FlowHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY
 TcDeleteFilter(
     _In_ HANDLE          FilterHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG
 APIENTRY

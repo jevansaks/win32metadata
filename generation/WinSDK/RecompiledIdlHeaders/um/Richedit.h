@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*
  *	RICHEDIT.H
  *	
@@ -1599,6 +1600,7 @@ typedef struct hyphresult
 	long  ichHyph;			// Character which was hyphenated
 	WCHAR chHyph;			// Depending on hyphenation type, character added, changed, etc.
 } HYPHRESULT;
+_Win32_SupportedOS_WindowsXP_
 
 void WINAPI HyphenateProc(_In_ WCHAR *pszWord, LANGID langid, long ichExceed, HYPHRESULT *phyphresult);
 typedef struct tagHyphenateInfo

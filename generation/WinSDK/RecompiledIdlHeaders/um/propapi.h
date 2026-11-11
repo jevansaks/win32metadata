@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 //+-------------------------------------------------------------------------
@@ -29,6 +30,7 @@ extern "C" {
 typedef VOID* NTPROP;
 
 #include <propidl.h>
+_Win32_SupportedOS_Windows2000_
 
 EXTERN_C
 _Success_(TRUE)  /* Raises status on failure */

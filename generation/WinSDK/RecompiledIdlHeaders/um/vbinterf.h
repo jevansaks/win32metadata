@@ -43,7 +43,7 @@ DECLARE_INTERFACE_(IGetOleObject, IUnknown)
     STDMETHOD_(ULONG, Release)(THIS) PURE;
 
     // *** IGetOleObject methods ****
-    STDMETHOD(GetOleObject)(THIS_ REFIID riid, LPVOID FAR* ppvObj) PURE;
+    STDMETHOD(GetOleObject)(THIS_ REFIID riid, _COM_Outptr_ LPVOID FAR* ppvObj) PURE;
     };
 
 DECLARE_INTERFACE_(IVBFormat,IUnknown)

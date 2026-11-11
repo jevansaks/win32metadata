@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //*************************************************************
 //
 // appmgmt.h
@@ -126,6 +127,7 @@ typedef struct _APPCATEGORYINFOLIST
 #ifndef WINAPI
 #define WINAPI
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 DWORD WINAPI
 InstallApplication(
@@ -134,6 +136,7 @@ InstallApplication(
 #endif
 	PINSTALLDATA pInstallInfo
     );
+_Win32_SupportedOS_WindowsVista_
 
 DWORD WINAPI
 UninstallApplication(
@@ -159,6 +162,7 @@ CommandLineFromMsiDescriptor(
     LPWSTR      CommandLine,
     DWORD *     CommandLineLength
     );
+_Win32_SupportedOS_WindowsVista_
 
 DWORD WINAPI
 GetManagedApplications(
@@ -183,6 +187,7 @@ GetManagedApplications(
 #endif
 	PMANAGEDAPPLICATION* prgManagedApps
     );
+_Win32_SupportedOS_WindowsVista_
 
 DWORD WINAPI
 GetLocalManagedApplications(
@@ -215,6 +220,7 @@ GetLocalManagedApplicationData(
 #endif
 	LPWSTR *            SupportUrl
     );
+_Win32_SupportedOS_WindowsVista_
 
 DWORD WINAPI
 GetManagedApplicationCategories(

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0002    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -44,6 +45,7 @@ extern "C" {
 #endif
 
 #include <lmcons.h>     // unfortunately created a dependence on this
+_Win32_SupportedOS_Windows2000_
 
 //
 // Function Prototypes - User
@@ -60,6 +62,7 @@ NetUserAdd (
         LPBYTE     buf,
     _Out_opt_ LPDWORD    parm_err OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserEnum (
@@ -72,6 +75,7 @@ NetUserEnum (
     _Out_       LPDWORD    totalentries,
     _Inout_opt_ PDWORD resume_handle OPTIONAL
     );
+_Win32_SupportedOS_WindowsXP_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserGetInfo (
@@ -80,6 +84,7 @@ NetUserGetInfo (
     _In_      DWORD      level,
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE     *bufptr
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserSetInfo (
@@ -89,12 +94,14 @@ NetUserSetInfo (
     _In_reads_(_Inexpressible_("varies"))  LPBYTE    buf,
     _Out_opt_ LPDWORD   parm_err OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserDel (
     _In_opt_  LPCWSTR    servername OPTIONAL,
     _In_      LPCWSTR    username
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserGetGroups (
@@ -106,6 +113,7 @@ NetUserGetGroups (
     _Out_     LPDWORD   entriesread,
     _Out_     LPDWORD   totalentries
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserSetGroups (
@@ -115,6 +123,7 @@ NetUserSetGroups (
     _In_reads_(_Inexpressible_("varies"))  LPBYTE    buf,
     _In_      DWORD     num_entries
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserGetLocalGroups (
@@ -127,6 +136,7 @@ NetUserGetLocalGroups (
     _Out_     LPDWORD   entriesread,
     _Out_     LPDWORD   totalentries
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserModalsGet (
@@ -134,6 +144,7 @@ NetUserModalsGet (
     _In_      DWORD     level,
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE    *bufptr
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserModalsSet (
@@ -142,6 +153,8 @@ NetUserModalsSet (
     _In_reads_(_Inexpressible_("varies"))      LPBYTE    buf,
     _Out_opt_ LPDWORD   parm_err OPTIONAL
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetUserChangePassword (
@@ -818,6 +831,7 @@ typedef struct _MSA_INFO_1 {
 
 #ifndef _LMGROUP_
 #define _LMGROUP_
+_Win32_SupportedOS_Windows2000_
 
 //
 // Function Prototypes
@@ -830,6 +844,7 @@ NetGroupAdd (
     _In_reads_(_Inexpressible_("varies"))  LPBYTE   buf,
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetGroupAddUser (
@@ -837,6 +852,7 @@ NetGroupAddUser (
     _In_      LPCWSTR   GroupName,
     _In_      LPCWSTR   username
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetGroupEnum (
@@ -848,6 +864,7 @@ NetGroupEnum (
     _Out_       LPDWORD     totalentries,
     _Inout_opt_ PDWORD_PTR resume_handle OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetGroupGetInfo (
@@ -856,6 +873,7 @@ NetGroupGetInfo (
     _In_      DWORD    level,
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE   *bufptr
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetGroupSetInfo (
@@ -865,12 +883,14 @@ NetGroupSetInfo (
     _In_reads_(_Inexpressible_("varies"))  LPBYTE   buf,
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetGroupDel (
     _In_opt_  LPCWSTR   servername OPTIONAL,
     _In_      LPCWSTR   groupname
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetGroupDelUser (
@@ -878,6 +898,7 @@ NetGroupDelUser (
     _In_      LPCWSTR   GroupName,
     _In_      LPCWSTR   Username
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetGroupGetUsers (
@@ -890,6 +911,7 @@ NetGroupGetUsers (
     _Out_       LPDWORD    totalentries,
     _Inout_opt_ PDWORD_PTR ResumeHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetGroupSetUsers (
@@ -994,6 +1016,7 @@ typedef struct _GROUP_USERS_INFO_1 {
 
 #ifndef _LMLOCALGROUP_
 #define _LMLOCALGROUP_
+_Win32_SupportedOS_Windows2000_
 
 //
 // Function Prototypes
@@ -1013,6 +1036,7 @@ NetLocalGroupAddMember (
     _In_ LPCWSTR   groupname,
     _In_ PSID     membersid
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupEnum (
@@ -1024,6 +1048,7 @@ NetLocalGroupEnum (
     _Out_       LPDWORD     totalentries,
     _Inout_opt_ PDWORD_PTR resumehandle OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupGetInfo (
@@ -1032,6 +1057,7 @@ NetLocalGroupGetInfo (
     _In_      DWORD    level,
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE   *bufptr
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupSetInfo (
@@ -1041,6 +1067,7 @@ NetLocalGroupSetInfo (
     _In_reads_(_Inexpressible_("varies"))  LPBYTE   buf,
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupDel (
@@ -1054,6 +1081,7 @@ NetLocalGroupDelMember (
     _In_      LPCWSTR   groupname,
     _In_      PSID     membersid
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupGetMembers (
@@ -1066,6 +1094,7 @@ NetLocalGroupGetMembers (
     _Out_       LPDWORD    totalentries,
     _Inout_opt_ PDWORD_PTR resumehandle
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupSetMembers (
@@ -1075,6 +1104,7 @@ NetLocalGroupSetMembers (
     _In_reads_(_Inexpressible_("varies"))  LPBYTE     buf,
     _In_      DWORD      totalentries
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupAddMembers (
@@ -1084,6 +1114,7 @@ NetLocalGroupAddMembers (
     _In_reads_(_Inexpressible_("varies"))  LPBYTE     buf,
     _In_      DWORD      totalentries
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetLocalGroupDelMembers (
@@ -1143,6 +1174,7 @@ typedef struct _LOCALGROUP_USERS_INFO_0 {
 
 #define LOCALGROUP_NAME_PARMNUM          1
 #define LOCALGROUP_COMMENT_PARMNUM       2
+_Win32_SupportedOS_Windows2000_
 
 //
 // Display Information APIs
@@ -1157,6 +1189,7 @@ NetQueryDisplayInformation(
     IN DWORD PreferredMaximumLength,
     OUT LPDWORD ReturnedEntryCount,
     OUT PVOID   *SortedBuffer );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetGetDisplayInformationIndex(
@@ -1207,6 +1240,7 @@ typedef struct _NET_DISPLAY_GROUP {
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+_Win32_SupportedOS_Windows2000_
 
 
 //
@@ -1220,6 +1254,7 @@ NetAccessAdd (
     _In_reads_(_Inexpressible_("varies"))  LPBYTE   buf,
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetAccessEnum (
@@ -1233,6 +1268,7 @@ NetAccessEnum (
     _Out_       LPDWORD    totalentries,
     _Inout_opt_ LPDWORD resume_handle OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetAccessGetInfo (
@@ -1241,6 +1277,7 @@ NetAccessGetInfo (
     _In_      DWORD    level,
     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE   *bufptr
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetAccessSetInfo (
@@ -1250,12 +1287,14 @@ NetAccessSetInfo (
     _In_reads_(_Inexpressible_("varies"))  LPBYTE   buf,
     _Out_opt_ LPDWORD  parm_err OPTIONAL
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetAccessDel (
     IN  LPCWSTR   servername OPTIONAL,
     IN  LPCWSTR   resource
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetAccessGetUserPerms (
@@ -1509,6 +1548,7 @@ typedef struct _NET_VALIDATE_PASSWORD_RESET_INPUT_ARG{
     BOOLEAN  PasswordMustChangeAtNextLogon;
     BOOLEAN  ClearLockout;
 } NET_VALIDATE_PASSWORD_RESET_INPUT_ARG, *PNET_VALIDATE_PASSWORD_RESET_INPUT_ARG;
+_Win32_SupportedOS_Server2003_
 
 //
 //    Password Checking API structures end here
@@ -1522,6 +1562,7 @@ NetValidatePasswordPolicy(
     IN LPVOID InputArg,
     OUT LPVOID *OutputArg
     );
+_Win32_SupportedOS_Server2003_
 
 NET_API_STATUS NET_API_FUNCTION
 NetValidatePasswordPolicyFree(
@@ -1542,6 +1583,7 @@ NetValidatePasswordPolicyFree(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_Windows2000_
 
 //
 // Function Prototypes - Domain
@@ -1555,6 +1597,7 @@ NetGetDCName (
     _Outptr_result_nullonfailure_ _At_((LPWSTR *)Buffer, _Outptr_result_z_)
         LPBYTE  *Buffer
     );
+_Win32_SupportedOS_Windows2000_
 
 _Success_(return == ERROR_SUCCESS)
 NET_API_STATUS NET_API_FUNCTION
@@ -1710,6 +1753,7 @@ DEFINE_GUID( //262e99c9-6160-4871-acec-4e61736b6f21
     0x6160,
     0x4871,
     0xAC, 0xEC, 0x4E, 0x61, 0x73, 0x6B, 0x6F, 0x21 );
+_Win32_SupportedOS_Windows7_
 
 NTSTATUS
 NetAddServiceAccount(
@@ -1735,12 +1779,14 @@ NetAddServiceAccount(
 // machine.  The DC is unavailable or read-only so do not
 // attempt to unlink or delete the account
 #define SERVICE_ACCOUNT_FLAG_REMOVE_OFFLINE       0x00000002L
+_Win32_SupportedOS_Windows7_
 
 NTSTATUS
 NetRemoveServiceAccount(
     _In_opt_ LPWSTR ServerName,
     _In_ LPWSTR AccountName,
     _In_ DWORD Flags);
+_Win32_SupportedOS_Windows7_
 
 NTSTATUS
 NetEnumerateServiceAccounts(
@@ -1748,6 +1794,7 @@ NetEnumerateServiceAccounts(
     _In_ DWORD Flags,
     _Out_ DWORD* AccountsCount,
     _Outptr_result_buffer_(*AccountsCount) PZPWSTR* Accounts);
+_Win32_SupportedOS_Windows7_
 
 NTSTATUS
 NetIsServiceAccount(
@@ -1761,6 +1808,7 @@ NetIsServiceAccount2(
     _In_ LPWSTR AccountName,
     _Out_ BOOL * IsService,
     _Out_ MSA_INFO_ACCOUNT_TYPE * AccountType);
+_Win32_SupportedOS_Windows7_
 
 NTSTATUS
 NetQueryServiceAccount(

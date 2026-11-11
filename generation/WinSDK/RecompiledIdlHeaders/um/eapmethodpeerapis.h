@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Copyright (c) Microsoft Corporation
@@ -195,6 +196,7 @@ extern "C"
 
         DWORD(APIENTRY* EapPeerShutdown)(_Outptr_ EAP_ERROR** ppEapError);
     } EAP_PEER_METHOD_ROUTINES;
+_Win32_SupportedOS_WindowsVista_
 
     //
     // EAP Functions
@@ -219,6 +221,7 @@ extern "C"
     // If any other APIs in this file returns EAP_ERROR, use this
     // function to free the memory allocated for it
     VOID WINAPI EapPeerFreeErrorMemory(_In_ EAP_ERROR* pEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function should be an exported function from the DLL
     //
@@ -231,6 +234,7 @@ extern "C"
     // - pEapInfo:
     //   returns all the information related for pEapType.
     DWORD WINAPI EapPeerGetInfo(_In_ EAP_TYPE* pEapType, _Out_ EAP_PEER_METHOD_ROUTINES* pEapInfo, _Out_opt_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This is the first function that EAPHost should call on this method.
     // The only exception is EapPeerFreeErrorMemory() and EapPeerGetInfo(),
@@ -238,6 +242,7 @@ extern "C"
     // This function should be called only once and it should initialize
     // everything needed for this method work properly.
     DWORD WINAPI EapPeerInitialize(_Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // EAPHost will call this function, and it would return user data
     // and user identity.
@@ -295,6 +300,7 @@ extern "C"
         _Outptr_result_buffer_(*pdwSizeOfUserDataOut) BYTE** ppUserDataOut,
         _Out_ LPWSTR* ppwszIdentity,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // Start an authentication session.
     // Parameters:
@@ -341,11 +347,13 @@ extern "C"
         _In_ DWORD dwMaxSendPacketSize,
         _Out_ EAP_SESSION_HANDLE* pSessionHandle,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // A method exports either EapPeerGetIdentity (and EapPeerInvokeIdentityUI) or
     // exports EapPeerSetCredentials (and sets the InvokeUserNameDlg regkey). The
     // registry key controls which of the two apis will get called.
     DWORD WINAPI EapPeerSetCredentials(EAP_SESSION_HANDLE sessionHandle, LPWSTR pwszIdentity, LPWSTR pwszPassword, _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // EAPHost will pass the packet to the method for processing.
     // Parameters:
@@ -366,6 +374,7 @@ extern "C"
         _In_reads_bytes_(cbReceivedPacket) EapPacket* pReceivedPacket,
         _Out_ EapPeerMethodOutput* pEapOutput,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function returns the packet to be sent to the server.
     // Parameters:
@@ -383,6 +392,7 @@ extern "C"
         _Inout_ _Pre_satisfies_(*pcbSendPacket >= sizeof(EapPacket)) DWORD* pcbSendPacket,
         _Inout_ _Pre_writable_byte_size_(*pcbSendPacket) _Pre_readable_byte_size_(*pcbSendPacket) EapPacket* pSendPacket,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This will get called either when a method says that it has completed auth.
     // or when the lower layer receives an alternative result.
@@ -401,6 +411,7 @@ extern "C"
         _In_ EapPeerMethodResultReason reason,
         _Out_ EapPeerMethodResult* pResult,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This will get called if UI should be raised during authentication session.
     // This function will always be followed by EapPeerInvokeInteractiveUI() and
@@ -420,6 +431,7 @@ extern "C"
         _Out_ DWORD* pdwSizeOfUIContextData,
         _Outptr_result_buffer_(*pdwSizeOfUIContextData) BYTE** ppUIContextData,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // It will be called after UI has been raised. Refer to EapPeerGetUIContext()
     // for more information.
@@ -442,6 +454,7 @@ extern "C"
         _In_reads_(dwSizeOfUIContextData) const BYTE* pUIContextData,
         _Out_ EapPeerMethodOutput* pEapOutput,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // If EAPHost calls any of the EapPeerXxxx() function, and that function has
     // pEapOutput as a OUT parameter, and the action code in it is
@@ -455,6 +468,7 @@ extern "C"
     // - pAttributes:
     //   method should fill this with the attributes it need to return.
     DWORD WINAPI EapPeerGetResponseAttributes(_In_ EAP_SESSION_HANDLE sessionHandle, _Out_ EapAttributes* pAttribs, _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // See EapPeerGetResponseAttributes() for when this function will be called.
     // parameters:
@@ -468,12 +482,14 @@ extern "C"
     //   the method should fill this struct to tell the supplicant what to do.
     DWORD WINAPI EapPeerSetResponseAttributes(
         _In_ EAP_SESSION_HANDLE sessionHandle, _In_ EapAttributes* pAttribs, _Out_ EapPeerMethodOutput* pEapOutput, _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // The last function that will be called for this authentication session.
     // - sessionHandle:
     //   the value returned through *pSessionHandle from EapPeerBeginSession()
     //
     DWORD WINAPI EapPeerEndSession(_In_ EAP_SESSION_HANDLE sessionHandle, _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This is the last function that EAPHost should call on this method.
     // The only exception is EapPeerFreeErrorMemory() and EapPeerGetInfo(),
@@ -481,6 +497,7 @@ extern "C"
     // This function should be called only once and it should un-initialize
     // everything for this method.
     DWORD WINAPI EapPeerShutdown(_Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // It should raise a configuration UI so that the user can configure the method
     // parameters:
@@ -517,6 +534,7 @@ extern "C"
         _Out_ DWORD* dwSizeOfConnectionDataOut,
         _Outptr_result_buffer_(*dwSizeOfConnectionDataOut) BYTE** ppConnectionDataOut,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function should raise interactive UI for the Method. What UI to be raised and how to raise
     // is Method specific information that is embedded in pUIContextData.
@@ -550,6 +568,7 @@ extern "C"
         _Out_ DWORD* pdwSizeOfDataFromInteractiveUI,
         _Outptr_result_buffer_(*pdwSizeOfDataFromInteractiveUI) BYTE** ppDataFromInteractiveUI,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function should raise credential UI for the Method. Method can use the configuration passed in to
     // decide what kind of UI should be shown to the user.
@@ -594,6 +613,7 @@ extern "C"
         _Outptr_result_buffer_(*pdwSizeOfDataFromInteractiveUI) BYTE** ppUserDataOut,
         _Out_ LPWSTR* ppwszIdentity,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function returns credential fields to be shown to the user for the authentication. As part of this function
     // Method should not bring up UI instead it should describe what credentials are to be obtained. Based on the
@@ -632,6 +652,7 @@ extern "C"
         _In_reads_(dwEapConnDataSize) BYTE* pbEapConnData,
         _Out_ EAP_CONFIG_INPUT_FIELD_ARRAY* pEapConfigFieldsArray,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function returns credential blob based on the credentials passed in the credential array structure.
     // Method should not bring up UI. It should convert the credentials in to a blob that could be passed to
@@ -682,6 +703,7 @@ extern "C"
         _Inout_ _Pre_satisfies_(*pdwUserBlobSize >= sizeof(UINT_PTR)) DWORD* pdwUserBlobSize,
         _Inout_ _At_(*ppUserBlob, _Pre_writable_size_(*pdwUserBlobSize) _Post_readable_size_(*pdwUserBlobSize)) BYTE** ppUserBlob,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function returns fields to be displayed during interactive time when alternative UI is used.
     // Method should not bring up UI in this function.
@@ -702,6 +724,7 @@ extern "C"
         _Outptr_ EAP_ERROR** ppEapError,
         // Reserved for future usage. It must be NULL.
         _Inout_ LPVOID* ppvReserved);
+_Win32_SupportedOS_WindowsVista_
 
     // This function returns interactive UI blob from the UI fields filled by the user
     //
@@ -725,6 +748,7 @@ extern "C"
         _Outptr_ EAP_ERROR** ppEapError,
         // Reserved for future usage. It must be NULL.
         _Inout_ LPVOID* ppvReserved);
+_Win32_SupportedOS_WindowsVista_
 
     // This function converts XML document containing configuration information into a blob that could be passed to other
     // APIs that expect configuration blob.
@@ -758,6 +782,7 @@ extern "C"
         _Outptr_result_buffer_(*pdwSizeOfConfigOut) BYTE** ppConfigOut,
         _Out_ DWORD* pdwSizeOfConfigOut,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function converts XML document containing credential information into a blob that could be passed to other
     // APIs that expect credential blob.
@@ -796,6 +821,7 @@ extern "C"
         _Outptr_result_buffer_(*pdwSizeOfCredentialsOut) BYTE** ppCredentialsOut,
         _Out_ DWORD* pdwSizeOfCredentialsOut,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function converts configuration blob into configuration XML document. Methods exporting this API
     // will be supporting exporting of and importing of configuration with out problem. It also helps administrators
@@ -827,6 +853,7 @@ extern "C"
         _In_ DWORD dwSizeOfConfigIn,
         _COM_Outptr_ IXMLDOMDocument2** ppConfigDoc,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_Windows7_
 
     // This function retrieves the method properties for a specific configuration data. The method properties
     // returned by the API will be a subset of the properties value in the registry.
@@ -874,6 +901,7 @@ extern "C"
         _In_reads_(dwSizeOfUserDataIn) const BYTE* pUserDataIn,
         _Out_ EAP_METHOD_PROPERTY_ARRAY* pMethodPropertyArray,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_Windows8_
 
     // This function allows the EAP method developers to provide the various
     // connection properties and user properties supported by the method. EAPHost
@@ -920,6 +948,7 @@ extern "C"
         _Out_ DWORD* pdwUserBlobSize,
         _Outptr_result_buffer_(*pdwUserBlobSize) BYTE** ppUserBlob,
         _Outptr_ EAP_ERROR** ppEapError);
+_Win32_SupportedOS_WindowsVista_
 
     // This function frees memory returned by the configuration APIs. This function is called by EapHost when
     // it is done with the memory returned by the Method.

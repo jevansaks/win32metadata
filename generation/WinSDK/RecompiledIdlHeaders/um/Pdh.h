@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -307,6 +308,7 @@ typedef struct _PDH_LOG_SERVICE_QUERY_INFO_W {
 //
 #define MAX_TIME_VALUE ((LONGLONG) 0x7FFFFFFFFFFFFFFF)
 #define MIN_TIME_VALUE ((LONGLONG) 0)
+_Win32_SupportedOS_WindowsXP_
 
 // function definitions
 
@@ -314,6 +316,7 @@ PDH_FUNCTION
 PdhGetDllVersion(
     _Out_opt_ LPDWORD lpdwVersion
 );
+_Win32_SupportedOS_WindowsXP_
 
 //
 //  Query Functions
@@ -340,6 +343,7 @@ PdhAddCounterW(
     _In_  DWORD_PTR      dwUserData,
     _Out_ PDH_HCOUNTER * phCounter
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhAddCounterA(
@@ -350,6 +354,7 @@ PdhAddCounterA(
 );
 
 #if (_WIN32_WINDOWS >= 0x0600 || _WIN32_WINNT >= 0x0600 || (defined(NTDDI_VERSION) && NTDDI_VERSION >= NTDDI_VISTA))
+_Win32_SupportedOS_WindowsVista_
 PDH_FUNCTION
 PdhAddEnglishCounterW(
     _In_  PDH_HQUERY     hQuery,
@@ -357,6 +362,7 @@ PdhAddEnglishCounterW(
     _In_  DWORD_PTR      dwUserData,
     _Out_ PDH_HCOUNTER * phCounter
 );
+_Win32_SupportedOS_WindowsVista_
 
 PDH_FUNCTION
 PdhAddEnglishCounterA(
@@ -365,18 +371,21 @@ PdhAddEnglishCounterA(
     _In_  DWORD_PTR      dwUserData,
     _Out_ PDH_HCOUNTER * phCounter
 );
+_Win32_SupportedOS_WindowsVista_
 
 PDH_FUNCTION
 PdhCollectQueryDataWithTime(
     _Inout_ PDH_HQUERY   hQuery,
     _Out_   LONGLONG   * pllTimeStamp
 );
+_Win32_SupportedOS_WindowsVista_
 
 PDH_FUNCTION
 PdhValidatePathExW(
     _In_opt_ PDH_HLOG hDataSource,
     _In_     LPCWSTR  szFullPathBuffer
 );
+_Win32_SupportedOS_WindowsVista_
 
 PDH_FUNCTION
 PdhValidatePathExA(
@@ -384,21 +393,25 @@ PdhValidatePathExA(
     _In_     LPCSTR   szFullPathBuffer
 );
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhRemoveCounter(
     _In_ PDH_HCOUNTER hCounter
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhCollectQueryData(
     _Inout_ PDH_HQUERY hQuery
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhCloseQuery(
     _Inout_ PDH_HQUERY hQuery
 );
+_Win32_SupportedOS_WindowsXP_
 
 //
 //  Counter Functions
@@ -411,6 +424,7 @@ PdhGetFormattedCounterValue(
     _Out_opt_ LPDWORD               lpdwType,
     _Out_     PPDH_FMT_COUNTERVALUE pValue
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -421,6 +435,7 @@ PdhGetFormattedCounterArrayA(
     _Out_   LPDWORD      lpdwItemCount,
     _Out_writes_bytes_opt_(* lpdwBufferSize) PPDH_FMT_COUNTERVALUE_ITEM_A ItemBuffer
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -446,6 +461,7 @@ PdhGetFormattedCounterArrayW(
 #define PDH_FMT_NOCAP100     ((DWORD) 0x00008000)
 #define PERF_DETAIL_COSTLY   ((DWORD) 0x00010000)
 #define PERF_DETAIL_STANDARD ((DWORD) 0x0000FFFF)
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetRawCounterValue(
@@ -453,6 +469,7 @@ PdhGetRawCounterValue(
     _Out_opt_ LPDWORD           lpdwType,
     _Out_     PPDH_RAW_COUNTER  pValue
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -462,6 +479,7 @@ PdhGetRawCounterArrayA(
     _Out_   LPDWORD       lpdwItemCount,
     _Out_writes_bytes_opt_(* lpdwBufferSize) PPDH_RAW_COUNTER_ITEM_A ItemBuffer
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -471,6 +489,7 @@ PdhGetRawCounterArrayW(
     _Out_   LPDWORD       lpdwItemCount,
     _Out_writes_bytes_opt_(* lpdwBufferSize) PPDH_RAW_COUNTER_ITEM_W ItemBuffer
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhCalculateCounterFromRawValue(
@@ -480,6 +499,7 @@ PdhCalculateCounterFromRawValue(
     _In_  PPDH_RAW_COUNTER      rawValue2,
     _Out_ PPDH_FMT_COUNTERVALUE fmtValue
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhComputeCounterStatistics(
@@ -490,6 +510,7 @@ PdhComputeCounterStatistics(
     _In_  PPDH_RAW_COUNTER lpRawValueArray,
     _Out_ PPDH_STATISTICS  data
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -499,6 +520,7 @@ PdhGetCounterInfoW(
     _Inout_ LPDWORD      pdwBufferSize,
     _Out_writes_bytes_opt_(* pdwBufferSize) PPDH_COUNTER_INFO_W lpBuffer
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -511,12 +533,14 @@ PdhGetCounterInfoA(
 
 #define PDH_MAX_SCALE  (7L)
 #define PDH_MIN_SCALE (-7L)
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhSetCounterScaleFactor(
     _Inout_ PDH_HCOUNTER hCounter,
     _In_    LONG         lFactor
 );
+_Win32_SupportedOS_WindowsXP_
 //
 //   Browsing and enumeration functions
 //
@@ -524,11 +548,13 @@ PDH_FUNCTION
 PdhConnectMachineW(
     _In_opt_ LPCWSTR szMachineName
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhConnectMachineA(
     _In_opt_ LPCSTR szMachineName
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumMachinesW(
@@ -536,6 +562,7 @@ PdhEnumMachinesW(
     _Out_writes_opt_(* pcchBufferSize) PZZWSTR mszMachineList,
     _Inout_ LPDWORD pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumMachinesA(
@@ -543,6 +570,7 @@ PdhEnumMachinesA(
     _Out_writes_opt_(* pcchBufferSize) PZZSTR mszMachineList,
     _Inout_ LPDWORD pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumObjectsW(
@@ -553,6 +581,7 @@ PdhEnumObjectsW(
     _In_     DWORD   dwDetailLevel,
     _In_     BOOL    bRefresh
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumObjectsA(
@@ -563,6 +592,7 @@ PdhEnumObjectsA(
     _In_     DWORD   dwDetailLevel,
     _In_     BOOL    bRefresh
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumObjectItemsW(
@@ -576,6 +606,7 @@ PdhEnumObjectItemsW(
     _In_     DWORD   dwDetailLevel,
     _In_     DWORD   dwFlags
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumObjectItemsA(
@@ -589,6 +620,7 @@ PdhEnumObjectItemsA(
     _In_     DWORD   dwDetailLevel,
     _In_     DWORD   dwFlags
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhMakeCounterPathW(
@@ -614,6 +646,7 @@ PdhParseCounterPathW(
     _Inout_ LPDWORD                   pdwBufferSize,
     _In_    DWORD                     dwFlags
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -628,6 +661,7 @@ PdhParseCounterPathA(
 #define PDH_PATH_WBEM_INPUT  ((DWORD) 0x00000002)
 
 #define PDH_PATH_LANG_FLAGS(LangId, Flags)  ((DWORD)(((LangId & 0x0000FFFF) << 16) | (Flags & 0x0000FFFF)))
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhParseInstanceNameW(
@@ -638,6 +672,7 @@ PdhParseInstanceNameW(
     _Inout_ LPDWORD pcchParentNameLength,
     _Out_   LPDWORD lpIndex
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhParseInstanceNameA(
@@ -648,16 +683,19 @@ PdhParseInstanceNameA(
     _Inout_ LPDWORD pcchParentNameLength,
     _Out_   LPDWORD lpIndex
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhValidatePathW(
     _In_ LPCWSTR szFullPathBuffer
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhValidatePathA(
     _In_ LPCSTR szFullPathBuffer
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetDefaultPerfObjectW(
@@ -666,6 +704,7 @@ PdhGetDefaultPerfObjectW(
     _Out_writes_opt_(* pcchBufferSize) LPWSTR  szDefaultObjectName,
     _Inout_  LPDWORD pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetDefaultPerfObjectA(
@@ -674,6 +713,7 @@ PdhGetDefaultPerfObjectA(
     _Out_writes_opt_(* pcchBufferSize) LPSTR   szDefaultObjectName,
     _Inout_  LPDWORD pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetDefaultPerfCounterW(
@@ -683,6 +723,7 @@ PdhGetDefaultPerfCounterW(
     _Out_writes_opt_(* pcchBufferSize) LPWSTR  szDefaultCounterName,
     _Inout_  LPDWORD pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetDefaultPerfCounterA(
@@ -856,16 +897,19 @@ typedef struct _BrowseDlgConfig_A {
 #else
 #pragma warning ( default : 4214 )
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhBrowseCountersW(
     _In_ PPDH_BROWSE_DLG_CONFIG_W pBrowseDlgData
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhBrowseCountersA(
     _In_ PPDH_BROWSE_DLG_CONFIG_A pBrowseDlgData
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhExpandCounterPathW(
@@ -873,6 +917,7 @@ PdhExpandCounterPathW(
     _Out_writes_opt_(* pcchPathListLength) PZZWSTR  mszExpandedPathList,
     _Inout_ LPDWORD pcchPathListLength
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhExpandCounterPathA(
@@ -880,6 +925,7 @@ PdhExpandCounterPathA(
     _Out_writes_opt_(* pcchPathListLength) PZZSTR   mszExpandedPathList,
     _Inout_ LPDWORD pcchPathListLength
 );
+_Win32_SupportedOS_WindowsXP_
 
 //
 //  v2.0 functions
@@ -891,6 +937,7 @@ PdhLookupPerfNameByIndexW(
     _Out_writes_opt_(* pcchNameBufferSize) LPWSTR  szNameBuffer,
     _Inout_  LPDWORD pcchNameBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhLookupPerfNameByIndexA(
@@ -899,6 +946,7 @@ PdhLookupPerfNameByIndexA(
     _Out_writes_opt_(* pcchNameBufferSize) LPSTR   szNameBuffer,
     _Inout_  LPDWORD pcchNameBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhLookupPerfIndexByNameW(
@@ -906,6 +954,7 @@ PdhLookupPerfIndexByNameW(
     _In_     LPCWSTR szNameBuffer,
     _Out_    LPDWORD pdwIndex
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhLookupPerfIndexByNameA(
@@ -919,6 +968,7 @@ PdhLookupPerfIndexByNameA(
 #if (_WIN32_WINDOWS >= 0x0502 || _WIN32_WINNT >= 0x0502 || (defined(NTDDI_VERSION) && NTDDI_VERSION >= NTDDI_WIN2003))
 #define PDH_REFRESHCOUNTERS     4
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhExpandWildCardPathA(
@@ -928,6 +978,7 @@ PdhExpandWildCardPathA(
     _Inout_  LPDWORD pcchPathListLength,
     _In_     DWORD   dwFlags
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhExpandWildCardPathW(
@@ -1002,23 +1053,27 @@ PdhUpdateLogW(
     _In_     PDH_HLOG hLog,
     _In_opt_ LPCWSTR  szUserString
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhUpdateLogA(
     _In_     PDH_HLOG hLog,
     _In_opt_ LPCSTR   szUserString
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhUpdateLogFileCatalog(
     _In_ PDH_HLOG hLog
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetLogFileSize(
     _In_  PDH_HLOG   hLog,
     _Out_ LONGLONG * llSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhCloseLog(
@@ -1039,6 +1094,7 @@ PdhSelectDataSourceW(
     _Inout_updates_(* pcchBufferLength) LPWSTR  szDataSource,
     _Inout_ LPDWORD pcchBufferLength
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhSelectDataSourceA(
@@ -1047,18 +1103,21 @@ PdhSelectDataSourceA(
     _Inout_updates_(* pcchBufferLength) LPSTR   szDataSource,
     _Inout_ LPDWORD pcchBufferLength
 );
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 __stdcall
 PdhIsRealTimeQuery(
     _In_ PDH_HQUERY hQuery
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhSetQueryTimeRange(
     _In_ PDH_HQUERY     hQuery,
     _In_ PPDH_TIME_INFO pInfo
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -1068,6 +1127,7 @@ PdhGetDataSourceTimeRangeW(
     _Out_writes_bytes_(* pdwBufferSize)    PPDH_TIME_INFO pInfo,
     _Inout_  LPDWORD  pdwBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -1077,6 +1137,7 @@ PdhGetDataSourceTimeRangeA(
     _Out_writes_bytes_(* pdwBufferSize) PPDH_TIME_INFO pInfo,
     _Inout_  LPDWORD  pdwBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhCollectQueryDataEx(
@@ -1084,6 +1145,7 @@ PdhCollectQueryDataEx(
     _In_ DWORD      dwIntervalTime,
     _In_ HANDLE     hNewDataEvent
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhFormatFromRawValue(
@@ -1094,12 +1156,14 @@ PdhFormatFromRawValue(
     _In_  PPDH_RAW_COUNTER        pRawValue2,
     _Out_ PPDH_FMT_COUNTERVALUE   pFmtValue
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetCounterTimeBase(
     _In_  PDH_HCOUNTER   hCounter,
     _Out_ LONGLONG     * pTimeBase
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -1114,6 +1178,7 @@ PdhReadRawLogRecord(
 #define DATA_SOURCE_REGISTRY ((DWORD) 0x00000001)
 #define DATA_SOURCE_LOGFILE  ((DWORD) 0x00000002)
 #define DATA_SOURCE_WBEM     ((DWORD) 0x00000004)
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhSetDefaultRealTimeDataSource(
@@ -1121,6 +1186,7 @@ PdhSetDefaultRealTimeDataSource(
 );
 
 #if (_WIN32_WINDOWS >= 0x0501 || _WIN32_WINNT >= 0x0501 || (defined(NTDDI_VERSION) && NTDDI_VERSION >= NTDDI_WINXP))
+_Win32_SupportedOS_WindowsXP_
 // Extended API for WMI event trace logfile format
 //
 PDH_FUNCTION
@@ -1128,12 +1194,14 @@ PdhBindInputDataSourceW(
     _Out_    PDH_HLOG * phDataSource,
     _In_opt_ LPCWSTR    LogFileNameList
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhBindInputDataSourceA(
     _Out_    PDH_HLOG * phDataSource,
     _In_opt_ LPCSTR     LogFileNameList
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhOpenQueryH(
@@ -1141,6 +1209,7 @@ PdhOpenQueryH(
     _In_      DWORD_PTR    dwUserData,
     _Out_     PDH_HQUERY * phQuery
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumMachinesHW(
@@ -1148,6 +1217,7 @@ PdhEnumMachinesHW(
     _Out_writes_opt_(* pcchBufferSize) PZZWSTR   mszMachineList,
     _Inout_  LPDWORD  pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumMachinesHA(
@@ -1155,6 +1225,7 @@ PdhEnumMachinesHA(
     _Out_writes_opt_(* pcchBufferSize) PZZSTR    mszMachineList,
     _Inout_  LPDWORD  pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumObjectsHW(
@@ -1165,6 +1236,7 @@ PdhEnumObjectsHW(
     _In_     DWORD    dwDetailLevel,
     _In_     BOOL     bRefresh
 ) ;
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumObjectsHA(
@@ -1175,6 +1247,7 @@ PdhEnumObjectsHA(
     _In_     DWORD    dwDetailLevel,
     _In_     BOOL     bRefresh
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumObjectItemsHW(
@@ -1188,6 +1261,7 @@ PdhEnumObjectItemsHW(
     _In_     DWORD    dwDetailLevel,
     _In_     DWORD    dwFlags
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumObjectItemsHA(
@@ -1201,6 +1275,7 @@ PdhEnumObjectItemsHA(
     _In_     DWORD    dwDetailLevel,
     _In_     DWORD    dwFlags
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhExpandWildCardPathHW(
@@ -1210,6 +1285,7 @@ PdhExpandWildCardPathHW(
     _Inout_  LPDWORD  pcchPathListLength,
     _In_    DWORD    dwFlags
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhExpandWildCardPathHA(
@@ -1219,6 +1295,7 @@ PdhExpandWildCardPathHA(
     _Inout_  LPDWORD  pcchPathListLength,
     _In_    DWORD    dwFlags
 );
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
@@ -1228,6 +1305,7 @@ PdhGetDataSourceTimeRangeH(
     _Out_writes_bytes_(* pdwBufferSize) PPDH_TIME_INFO pInfo,
     _Inout_  LPDWORD  pdwBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetDefaultPerfObjectHW(
@@ -1236,6 +1314,7 @@ PdhGetDefaultPerfObjectHW(
     _Out_writes_opt_(* pcchBufferSize) LPWSTR   szDefaultObjectName,
     _Inout_  LPDWORD  pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetDefaultPerfObjectHA(
@@ -1244,6 +1323,7 @@ PdhGetDefaultPerfObjectHA(
     _Out_writes_opt_(* pcchBufferSize) LPSTR    szDefaultObjectName,
     _Inout_  LPDWORD  pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetDefaultPerfCounterHW(
@@ -1253,6 +1333,7 @@ PdhGetDefaultPerfCounterHW(
     _Out_writes_opt_(* pcchBufferSize) LPWSTR   szDefaultCounterName,
     _Inout_  LPDWORD  pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetDefaultPerfCounterHA(
@@ -1262,11 +1343,13 @@ PdhGetDefaultPerfCounterHA(
     _Out_writes_opt_(* pcchBufferSize) LPSTR    szDefaultCounterName,
     _Inout_  LPDWORD  pcchBufferSize
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhBrowseCountersHW(
     _In_ PPDH_BROWSE_DLG_CONFIG_HW pBrowseDlgData
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhBrowseCountersHA(
@@ -1295,6 +1378,7 @@ PDH_FUNCTION
 PdhCreateSQLTablesA(
     _In_ LPCSTR szDataSource
 );     
+_Win32_SupportedOS_WindowsXP_
 
 //Return the list of Log set names in the database pointed to by the DSN.
 PDH_FUNCTION
@@ -1303,6 +1387,7 @@ PdhEnumLogSetNamesW(
     _Out_writes_opt_(* pcchBufferLength) PZZWSTR  mszDataSetNameList,
     _Inout_ LPDWORD pcchBufferLength
 );
+_Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhEnumLogSetNamesA(

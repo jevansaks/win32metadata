@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 /*
  * intshcut.h - Internet Shortcut interface definitions.
@@ -292,6 +293,7 @@ typedef enum translateurl_in_flags
    TRANSLATEURL_FL_USE_DEFAULT_PROTOCOL   = 0x0002,     // Use default protocol if missing
 }
 TRANSLATEURL_IN_FLAGS;
+_Win32_SupportedOS_WindowsXP_
 
 
 //
@@ -319,6 +321,7 @@ TRANSLATEURL_IN_FLAGS;
 INTSHCUTAPI HRESULT WINAPI TranslateURLA(PCSTR pcszURL,
                                          DWORD dwInFlags,
                                          _Out_ PSTR *ppszTranslatedURL);
+_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI HRESULT WINAPI TranslateURLW(PCWSTR pcszURL,
                                          DWORD dwInFlags,
                                          _Out_ PWSTR UNALIGNED *ppszTranslatedURL);
@@ -338,6 +341,7 @@ typedef enum urlassociationdialog_in_flags
    URLASSOCDLG_FL_REGISTER_ASSOC          = 0x0002
 }
 URLASSOCIATIONDIALOG_IN_FLAGS;
+_Win32_SupportedOS_WindowsXP_
 
 
 //
@@ -383,6 +387,7 @@ INTSHCUTAPI HRESULT WINAPI URLAssociationDialogA(HWND hwndParent,
                                                  PCSTR pcszURL,
                                                  _Out_writes_(ucAppBufLen) PSTR pszAppBuf,
                                                  UINT ucAppBufLen);
+_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI HRESULT WINAPI URLAssociationDialogW(HWND hwndParent,
                                                  DWORD dwInFlags,
                                                  PCWSTR pcszFile,
@@ -404,6 +409,7 @@ typedef enum mimeassociationdialog_in_flags
    MIMEASSOCDLG_FL_REGISTER_ASSOC         = 0x0001
 }
 MIMEASSOCIATIONDIALOG_IN_FLAGS;
+_Win32_SupportedOS_WindowsXP_
 
 
 //
@@ -455,6 +461,7 @@ INTSHCUTAPI HRESULT WINAPI MIMEAssociationDialogA(HWND hwndParent,
                                                   PCSTR pcszMIMEContentType,
                                                   _Out_writes_(ucAppBufLen) PSTR pszAppBuf,
                                                   UINT ucAppBufLen);
+_Win32_SupportedOS_WindowsXP_
 INTSHCUTAPI HRESULT WINAPI MIMEAssociationDialogW(HWND hwndParent,
                                                   DWORD dwInFlags,
                                                   PCWSTR pcszFile,
@@ -466,6 +473,7 @@ INTSHCUTAPI HRESULT WINAPI MIMEAssociationDialogW(HWND hwndParent,
 #else
 #define MIMEAssociationDialog    MIMEAssociationDialogA
 #endif  /* UNICODE */
+_Win32_SupportedOS_WindowsXP_
 
 
 //

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //---------------------------------------------------------------------------
 //
 // uxtheme.h - theming API header file.
@@ -1816,6 +1817,7 @@ typedef struct _BP_PAINTPARAMS
     const RECT *                prcExclude;
     const BLENDFUNCTION *       pBlendFunction;
 } BP_PAINTPARAMS, *PBP_PAINTPARAMS;
+_Win32_SetLastError_
 
 THEMEAPI_(_Success_(return != NULL) HPAINTBUFFER)
 BeginBufferedPaint(

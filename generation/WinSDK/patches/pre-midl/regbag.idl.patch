@@ -1,0 +1,13 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/regbag.idl b/generation/WinSDK/RecompiledIdlHeaders/um/regbag.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/regbag.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/regbag.idl
+@@ -52,7 +52,7 @@
+ 	// also, you must CoTaskMemFree the name string from GetPropertyInfo
+ 	// if you write a value of VT_EMPTY or VT_NULL the property will be removed from the bag and the corresponding
+ 	// registry info will be deleted.
+-	HRESULT Create([in] HKEY hkey, [in] LPCOLESTR subkey, [in] DWORD ulOptions, [in] DWORD samDesired, REFIID iid, [out] LPVOID *ppBag);
++	HRESULT Create([in] HKEY hkey, [in] LPCOLESTR subkey, [in] DWORD ulOptions, [in] DWORD samDesired, REFIID iid, [out, annotation("_COM_Outptr_")] LPVOID *ppBag);
+ };
+ 
+ 

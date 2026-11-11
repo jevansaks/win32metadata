@@ -156,6 +156,8 @@ CLFSUSER_API ULONG WINAPI LsnRecordSequence (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // CreateLogFile
 //
@@ -174,6 +176,8 @@ CLFSUSER_API HANDLE WINAPI CreateLogFile (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // DeleteLogByHandle
 //
@@ -185,6 +189,8 @@ CLFSUSER_API BOOL WINAPI DeleteLogByHandle (IN HANDLE hLog);
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // DeleteLogFile
 //
@@ -199,6 +205,8 @@ CLFSUSER_API BOOL WINAPI DeleteLogFile (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // AddLogContainer
 //
@@ -215,6 +223,8 @@ CLFSUSER_API BOOL WINAPI AddLogContainer (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // AddLogContainerSet
 //
@@ -232,6 +242,8 @@ CLFSUSER_API BOOL WINAPI AddLogContainerSet (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // RemoveLogContainer
 //
@@ -248,6 +260,8 @@ CLFSUSER_API BOOL WINAPI RemoveLogContainer (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // RemoveLogContainerSet
 //
@@ -266,6 +280,8 @@ CLFSUSER_API BOOL WINAPI RemoveLogContainerSet (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // SetLogArchiveTail
 //
@@ -281,6 +297,8 @@ CLFSUSER_API BOOL WINAPI SetLogArchiveTail (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // SetEndOfLog
 //
@@ -301,6 +319,8 @@ CLFSUSER_API BOOL WINAPI SetEndOfLog (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_LONGHORN)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // TruncateLog
 //
@@ -318,6 +338,8 @@ CLFSUSER_API BOOL WINAPI TruncateLog (
 
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // CreateLogContainerScanContext
 //
@@ -336,6 +358,8 @@ CLFSUSER_API BOOL WINAPI CreateLogContainerScanContext (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ScanLogContainers
 //
@@ -351,6 +375,8 @@ CLFSUSER_API BOOL WINAPI ScanLogContainers (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // AlignReservedLog
 //
@@ -367,6 +393,8 @@ CLFSUSER_API BOOL WINAPI AlignReservedLog (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // AllocReservedLog
 //
@@ -382,6 +410,8 @@ CLFSUSER_API BOOL WINAPI AllocReservedLog (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // FreeReservedLog
 //
@@ -397,6 +427,8 @@ CLFSUSER_API BOOL WINAPI FreeReservedLog (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // GetLogFileInformation
 //
@@ -412,6 +444,8 @@ CLFSUSER_API BOOL WINAPI GetLogFileInformation (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // SetLogArchiveMode
 //
@@ -425,6 +459,8 @@ CLFSUSER_API BOOL WINAPI SetLogArchiveMode (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ReadLogRestartArea
 //
@@ -443,6 +479,8 @@ CLFSUSER_API BOOL WINAPI ReadLogRestartArea (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ReadPreviousLogRestartArea
 //
@@ -461,6 +499,8 @@ CLFSUSER_API BOOL WINAPI ReadPreviousLogRestartArea (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // WriteLogRestartArea
 //
@@ -495,6 +535,8 @@ CLFSUSER_API BOOL WINAPI GetLogReservationInfo (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // AdvanceLogBase
 //
@@ -510,6 +552,8 @@ CLFSUSER_API BOOL WINAPI AdvanceLogBase (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // CloseAndResetLogFile
 //
@@ -522,6 +566,8 @@ CLFSUSER_API BOOL WINAPI CloseAndResetLogFile (IN HANDLE hLog);
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // CreateLogMarshallingArea
 //
@@ -542,6 +588,8 @@ CLFSUSER_API BOOL WINAPI CreateLogMarshallingArea (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // DeleteLogMarshallingArea
 //
@@ -553,6 +601,8 @@ CLFSUSER_API BOOL WINAPI DeleteLogMarshallingArea (IN PVOID pvMarshal);
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ReserveAndAppendLog
 //
@@ -575,6 +625,8 @@ CLFSUSER_API BOOL WINAPI ReserveAndAppendLog (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ReserveAndAppendLogAligned
 //
@@ -598,6 +650,8 @@ CLFSUSER_API BOOL WINAPI ReserveAndAppendLogAligned (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // FlushLogBuffers
 // 
@@ -612,6 +666,8 @@ CLFSUSER_API BOOL WINAPI FlushLogBuffers (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // FlushLogToLsn
 // 
@@ -628,6 +684,8 @@ CLFSUSER_API BOOL WINAPI FlushLogToLsn (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ReadLogRecord
 //
@@ -651,6 +709,8 @@ CLFSUSER_API BOOL WINAPI ReadLogRecord (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ReadNextLogRecord
 //
@@ -672,6 +732,8 @@ CLFSUSER_API BOOL WINAPI ReadNextLogRecord (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // TerminateReadLog
 //
@@ -682,6 +744,8 @@ CLFSUSER_API BOOL WINAPI TerminateReadLog (IN PVOID pvCursorContext);
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // DumpLogRecords
 //
@@ -705,6 +769,8 @@ CLFSUSER_API BOOL WINAPI DumpLogRecords (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // PrepareLogArchive
 //
@@ -732,6 +798,8 @@ CLFSUSER_API BOOL WINAPI PrepareLogArchive (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ReadLogArchiveMetadata
 //
@@ -750,6 +818,8 @@ CLFSUSER_API BOOL WINAPI ReadLogArchiveMetadata(
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // GetNextLogArchiveExtent
 //
@@ -767,6 +837,8 @@ CLFSUSER_API BOOL WINAPI GetNextLogArchiveExtent (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // TerminateLogArchive
 //
@@ -781,6 +853,8 @@ CLFSUSER_API BOOL WINAPI TerminateLogArchive (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ValidateLog
 //
@@ -798,6 +872,8 @@ CLFSUSER_API BOOL WINAPI ValidateLog (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // GetLogContainerName
 //
@@ -815,6 +891,8 @@ CLFSUSER_API BOOL WINAPI GetLogContainerName (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // GetLogIoStatistics
 //

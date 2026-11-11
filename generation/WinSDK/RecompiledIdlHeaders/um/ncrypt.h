@@ -702,6 +702,7 @@ typedef struct _NCRYPT_TPM_PLATFORM_ATTESTATION_STATEMENT
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
 #define NCRYPT_IGNORE_DEVICE_STATE_FLAG         0x00001000  // NCryptOpenStorageProvider
 #endif // (NTDDI_VERSION >= NTDDI_WINBLUE)
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -744,6 +745,7 @@ typedef struct _NCryptAlgorithmName
     DWORD   dwAlgOperations;    // the types of operations supported by this algorithm
     DWORD   dwFlags;
 } NCryptAlgorithmName;
+_Win32_SupportedOS_WindowsVista_
 // certenrolls_end
 
 _Check_return_
@@ -755,6 +757,7 @@ NCryptEnumAlgorithms(
     _Out_   DWORD * pdwAlgCount,
     _Outptr_result_buffer_(*pdwAlgCount) NCryptAlgorithmName **ppAlgList,
     _In_    DWORD   dwFlags);
+_Win32_SupportedOS_WindowsVista_
 
 
 
@@ -778,6 +781,7 @@ typedef struct NCryptKeyName
     DWORD   dwLegacyKeySpec;
     DWORD   dwFlags;
 } NCryptKeyName;
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -799,6 +803,7 @@ typedef struct NCryptProviderName
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -812,6 +817,7 @@ NCryptEnumStorageProviders(
 
 #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #pragma endregion
+_Win32_SupportedOS_WindowsVista_
 
 SECURITY_STATUS
 WINAPI
@@ -829,6 +835,7 @@ NCryptFreeBuffer(
 #if (NTDDI_VERSION >= NTDDI_WIN10_NI)
 #define NCRYPT_EXTENDED_ERRORS_FLAG     0x10000000
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -845,6 +852,7 @@ NCryptOpenKey(
 // NCryptCreatePersistedKey flags
 #define NCRYPT_MACHINE_KEY_FLAG         0x00000020
 #define NCRYPT_OVERWRITE_KEY_FLAG       0x00000080
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -1270,6 +1278,7 @@ typedef struct __NCRYPT_PCP_RAW_POLICYDIGEST
 
 // NCryptGetProperty flags
 #define NCRYPT_PERSIST_ONLY_FLAG        0x40000000
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 _Success_( return == 0 )
@@ -1288,6 +1297,7 @@ NCryptGetProperty(
 // NCryptSetProperty flags
 #define NCRYPT_PERSIST_FLAG             0x80000000
 #define NCRYPT_PERSIST_ONLY_FLAG        0x40000000
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -1303,6 +1313,7 @@ NCryptSetProperty(
 
 // NCryptFinalizeKey flags
 #define     NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG   0x00000200
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -1452,6 +1463,7 @@ typedef struct _NCRYPT_PQ_BLOB
 #define NCRYPT_MACHINE_KEY_FLAG         0x00000020
 #define NCRYPT_DO_NOT_FINALIZE_FLAG     0x00000400
 #define NCRYPT_EXPORT_LEGACY_FLAG       0x00000800
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -1517,6 +1529,7 @@ WINAPI
 NCryptDeleteKey(
     _In_    NCRYPT_KEY_HANDLE hKey,
     _In_    DWORD   dwFlags);
+_Win32_SupportedOS_WindowsVista_
 
 
 
@@ -1529,10 +1542,12 @@ NCryptFreeObject(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 NCryptIsKeyHandle(
     _In_    NCRYPT_KEY_HANDLE hKey);
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -1556,6 +1571,7 @@ NCryptTranslateHandle(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -1569,6 +1585,7 @@ NCryptNotifyChangeKey(
 
 #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #pragma endregion
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 SECURITY_STATUS
@@ -1596,6 +1613,7 @@ NCryptDeriveKey(
 
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SupportedOS_Windows8_
 
 _Check_return_
 SECURITY_STATUS
@@ -1612,6 +1630,7 @@ NCryptKeyDerivation(
 
 
 #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+_Win32_SupportedOS_10240_
 
 _Check_return_
 SECURITY_STATUS
@@ -1630,6 +1649,7 @@ NCryptCreateClaim(
 
 
 #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+_Win32_SupportedOS_10240_
 
 _Check_return_
 SECURITY_STATUS

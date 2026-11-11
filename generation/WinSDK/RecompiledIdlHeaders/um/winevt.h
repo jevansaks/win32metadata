@@ -163,6 +163,8 @@ EvtOpenSession(
     _Reserved_ DWORD Timeout,
     _Reserved_ DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -176,6 +178,8 @@ WINAPI
 EvtClose(
     _In_ _Post_invalid_ EVT_HANDLE Object
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOL
@@ -183,6 +187,7 @@ WINAPI
 EvtCancel(
     _In_opt_ EVT_HANDLE Object
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DWORD
@@ -232,6 +237,8 @@ EvtQuery(
     _In_opt_z_ LPCWSTR Query,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -244,6 +251,8 @@ EvtNext(
     DWORD Flags,
     _Out_range_(0, EventsSize) PDWORD Returned
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 // Timeout must currently be 0
 BOOL
@@ -353,6 +362,8 @@ EvtCreateRenderContext(
     _In_reads_opt_(ValuePathsCount) LPCWSTR* ValuePaths,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -380,6 +391,8 @@ typedef enum _EVT_FORMAT_MESSAGE_FLAGS
     EvtFormatMessageXml,
 
  } EVT_FORMAT_MESSAGE_FLAGS;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 // PublisherMetadata is NULL for forwarded events
@@ -431,6 +444,8 @@ EvtOpenLog(
     _In_z_ LPCWSTR Path,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -442,6 +457,8 @@ EvtGetLogInfo(
     _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
     _Out_ PDWORD PropertyValueBufferUsed
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -461,6 +478,8 @@ typedef enum _EVT_EXPORTLOG_FLAGS
     EvtExportLogOverwrite = 0x2000
 
 } EVT_EXPORTLOG_FLAGS;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -471,6 +490,8 @@ EvtExportLog(
     _In_z_ LPCWSTR TargetFilePath,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOL
@@ -553,6 +574,8 @@ EvtOpenChannelEnum(
     _In_opt_ EVT_HANDLE Session,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -571,6 +594,8 @@ EvtOpenChannelConfig(
     _In_z_ LPCWSTR ChannelPath,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOL
@@ -579,6 +604,8 @@ EvtSaveChannelConfig(
     _In_ EVT_HANDLE ChannelConfig,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -588,6 +615,8 @@ EvtSetChannelConfigProperty(
     DWORD Flags,
     _In_ PEVT_VARIANT PropertyValue
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -661,6 +690,8 @@ EvtOpenPublisherEnum(
     _In_opt_ EVT_HANDLE Session,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -681,6 +712,8 @@ EvtOpenPublisherMetadata(
     LCID Locale,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -729,6 +762,8 @@ EvtNextEventMetadata(
     _In_ EVT_HANDLE EventMetadataEnum,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -749,6 +784,8 @@ EvtGetEventMetadataProperty(
 ////////////////////////////////////////////////////////////////////////////////
 
 typedef HANDLE EVT_OBJECT_ARRAY_PROPERTY_HANDLE;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 _Success_(return != 0)
@@ -758,6 +795,8 @@ EvtGetObjectArraySize(
     _In_ EVT_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray,
     _Out_ PDWORD ObjectArraySize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -804,6 +843,8 @@ typedef enum _EVT_EVENT_PROPERTY_ID
     EvtEventPropertyIdEND
 
 } EVT_EVENT_PROPERTY_ID;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 _Success_(return != 0)
@@ -822,6 +863,8 @@ WINAPI
 EvtCreateBookmark(
     _In_opt_z_ LPCWSTR BookmarkXml
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -829,6 +872,8 @@ EvtUpdateBookmark(
     _In_ EVT_HANDLE Bookmark,
     _In_ EVT_HANDLE Event
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL

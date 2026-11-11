@@ -662,7 +662,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/combaseapi.h b/generation
  WINOLEAPI
  RoGetAgileReference(
      _In_ enum AgileReferenceOptions options,
-@@ -1388,23 +1464,28 @@
+@@ -1384,27 +1460,32 @@
+  * the same time.
+  */
+ 
+-typedef HRESULT (STDAPICALLTYPE * LPFNGETCLASSOBJECT) (REFCLSID, REFIID, LPVOID *);
++typedef HRESULT (STDAPICALLTYPE * LPFNGETCLASSOBJECT) (REFCLSID, REFIID, _COM_Outptr_ LPVOID *);
  typedef HRESULT (STDAPICALLTYPE * LPFNCANUNLOADNOW)(void);
  
  _Check_return_

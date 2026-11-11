@@ -166,7 +166,7 @@ namespace ClangSharpSourceToWinmdTests
             const string legacyReference = "86ed37b2846440297afb087c4718acd1a1fb4ad8";
             var ancestry = Run("git", "-C", root, "merge-base", "--is-ancestor", legacyReference, "HEAD");
             Assert.AreEqual(0, ancestry.ExitCode, "The frozen legacy fixture must be reachable from the tested commit. " + ancestry.Output);
-            string current = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", "winhttp.h"));
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("RecompiledIdlHeaders/um/winhttp.h");
             var origin = Run("git", "-C", root, "show", $"{legacyReference}:generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h");
             Assert.AreEqual(0, origin.ExitCode, origin.Output);
             string directory = Path.Combine(Path.GetTempPath(), "winhttp-patch-" + Guid.NewGuid().ToString("N"));
@@ -175,9 +175,14 @@ namespace ClangSharpSourceToWinmdTests
             {
                 string header = Path.Combine(directory, "um", "winhttp.h");
                 File.WriteAllText(header, origin.Output, new UTF8Encoding(false));
+                string patches = Path.Combine(directory, "patches");
+                Directory.CreateDirectory(Path.Combine(patches, "post-midl"));
+                File.WriteAllBytes(Path.Combine(patches, "post-midl", "winhttp.h.patch"),
+                    FullHeaderMigrationExperimentTests.ReadRecoveryBytes("patches/post-midl/winhttp.h.patch"));
                 var apply = Run("pwsh", "-NoProfile", "-NonInteractive", "-File",
                     Path.Combine(root, "scripts", "ApplySDKPatches.ps1"),
                     "-Phase", "post-midl", "-HeaderRoot", directory, "-SdkVersion", "10.0.28000.2705",
+                    "-PatchRoot", patches,
                     "-MidlInputRoot", Path.Combine(SdkPackagePath(), "c", "include", "10.0.28000.0"),
                     "-SelectedPatches", "post-midl/winhttp.h.patch");
                 Assert.AreEqual(0, apply.ExitCode, apply.Output);
@@ -188,7 +193,7 @@ namespace ClangSharpSourceToWinmdTests
                 var removed = new[] { "WinHttpReadData", "WinHttpReceiveResponse", "WinHttpSendRequest" };
                 string expected = string.Join("\n", legacy.Output.Replace("\r\n", "\n").Split('\n')
                     .Where(line => !removed.Contains(line)));
-                Assert.AreEqual(expected, File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "WithSetLastError.rsp")).Replace("\r\n", "\n"));
+                Assert.AreEqual(expected, FullHeaderMigrationExperimentTests.ReadRecoveryText("WithSetLastError.rsp").Replace("\r\n", "\n"));
             }
             finally { Directory.Delete(directory, true); }
         }

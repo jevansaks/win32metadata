@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 #ifndef __ROAPI_H_
@@ -60,12 +61,14 @@ WINAPI
 RoInitialize(
     _In_ RO_INIT_TYPE initType
     );
+_Win32_SupportedOS_Windows8_
 
 ROAPI
 void
 WINAPI
 RoUninitialize(
     );
+_Win32_SupportedOS_Windows8_
 
 ROAPI
 _Check_return_
@@ -75,6 +78,7 @@ RoActivateInstance(
     _In_ HSTRING activatableClassId,
     _COM_Outptr_ IInspectable** instance
     );
+_Win32_SupportedOS_Windows8_
 
 ROAPI
 _Check_return_
@@ -86,6 +90,7 @@ RoRegisterActivationFactories(
     _In_ UINT32 count,
     _Out_ RO_REGISTRATION_COOKIE* cookie
     );
+_Win32_SupportedOS_Windows8_
 
 ROAPI
 void
@@ -93,6 +98,7 @@ WINAPI
 RoRevokeActivationFactories(
     _In_ RO_REGISTRATION_COOKIE cookie
     );
+_Win32_SupportedOS_Windows8_
 
 ROAPI
 _Check_return_
@@ -106,6 +112,7 @@ RoGetActivationFactory(
 
 typedef interface IApartmentShutdown IApartmentShutdown;
 DECLARE_HANDLE(APARTMENT_SHUTDOWN_REGISTRATION_COOKIE);
+_Win32_SupportedOS_Windows8_
 
 ROAPI
 _Check_return_
@@ -116,6 +123,7 @@ RoRegisterForApartmentShutdown(
     _Out_ UINT64* apartmentIdentifier,
     _Out_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE* regCookie
     );
+_Win32_SupportedOS_Windows8_
 
 ROAPI
 _Check_return_
@@ -124,6 +132,7 @@ WINAPI
 RoUnregisterForApartmentShutdown(
     _In_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE regCookie
     );
+_Win32_SupportedOS_Windows8_
 
 ROAPI
 _Check_return_

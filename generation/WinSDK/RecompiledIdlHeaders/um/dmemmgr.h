@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*==========================================================================;
  *
  *  Copyright (C) 1994-1998 Microsoft Corporation.  All Rights Reserved.
@@ -177,6 +178,7 @@ typedef VMEMHEAP FAR *LPVMEMHEAP;
 #ifndef __NTDDKCOMP__
 extern FLATPTR WINAPI VidMemAlloc( LPVMEMHEAP pvmh, DWORD width, DWORD height );
 #endif
+_Win32_SupportedOS_Windows2000_
 
 /*
  * This export can be used by drivers to allocate aligned surfaces from heaps which
@@ -188,6 +190,7 @@ extern FLATPTR WINAPI HeapVidMemAllocAligned(
                 DWORD dwHeight,
                 LPSURFACEALIGNMENT lpAlignment ,
                 LPLONG lpNewPitch );
+_Win32_SupportedOS_Windows2000_
 
 /*
  * This export can free memory allocated via either allocation function

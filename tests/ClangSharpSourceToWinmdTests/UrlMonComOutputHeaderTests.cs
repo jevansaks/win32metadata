@@ -52,7 +52,7 @@ namespace ClangSharpSourceToWinmdTests
                 .Where(line => !Selectors.Concat(ShellItemComOutputHeaderTests.Selectors).Concat(PropertyComOutputHeaderTests.Selectors)
                     .Concat(ShellComOutputHeaderTests.Selectors)
                     .Any(selector => line == selector + "=[ComOutPtr]")));
-            string current = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"))
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp")
                 .Replace("\r\n", "\n");
             Assert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(expected))))))), current);
             Assert.AreEqual(62, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0000     Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1830,6 +1831,7 @@ typedef NTSTATUS
 extern "C"
 {
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 NTSTATUS
 CredMarshalTargetInfo (

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0000     Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1651,6 +1652,7 @@ typedef enum _POLICY_AUDIT_EVENT_TYPE {
 #define LSA_SUCCESS(Error) ((LONG)(Error) >= 0)
 
 #ifndef _NTLSA_IFS_
+_Win32_SupportedOS_WindowsXP_
 // begin_ntifs
 
 _IRQL_requires_same_
@@ -1662,6 +1664,7 @@ LsaRegisterLogonProcess (
     _Out_ PHANDLE LsaHandle,
     _Out_ PLSA_OPERATIONAL_MODE SecurityMode
     );
+_Win32_SupportedOS_WindowsXP_
 
 //
 // The function below did not exist in NTIFS before windows XP
@@ -1688,6 +1691,7 @@ LsaLogonUser (
     _Out_       PQUOTA_LIMITS   Quotas,
     _Out_       PNTSTATUS       SubStatus
     );
+_Win32_SupportedOS_WindowsXP_
 
 // end_ntifs
 
@@ -1700,6 +1704,7 @@ LsaLookupAuthenticationPackage (
     _In_ PLSA_STRING PackageName,
     _Out_ PULONG AuthenticationPackage
     );
+_Win32_SupportedOS_WindowsXP_
 
 // begin_ntifs
 
@@ -1709,6 +1714,7 @@ NTAPI
 LsaFreeReturnBuffer (
     _In_ PVOID Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 // end_ntifs
 
@@ -1725,6 +1731,7 @@ LsaCallAuthenticationPackage (
     _Out_opt_ PULONG ReturnBufferLength,
     _Out_opt_ PNTSTATUS ProtocolStatus
     );
+_Win32_SupportedOS_WindowsXP_
 
 _IRQL_requires_same_
 _IRQL_requires_max_(PASSIVE_LEVEL)
@@ -1733,6 +1740,7 @@ NTAPI
 LsaDeregisterLogonProcess (
     _In_ HANDLE LsaHandle
     );
+_Win32_SupportedOS_WindowsXP_
 
 _IRQL_requires_same_
 _IRQL_requires_max_(PASSIVE_LEVEL)
@@ -2848,6 +2856,7 @@ typedef struct _LSA_ENUMERATION_INFORMATION {
     PSID Sid;
 
 } LSA_ENUMERATION_INFORMATION, *PLSA_ENUMERATION_INFORMATION;
+_Win32_SupportedOS_WindowsXP_
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -2862,6 +2871,7 @@ NTAPI
 LsaFreeMemory(
     _In_opt_ PVOID Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -2922,6 +2932,7 @@ typedef struct _SECURITY_LOGON_SESSION_DATA {
 
 #endif
 } SECURITY_LOGON_SESSION_DATA, * PSECURITY_LOGON_SESSION_DATA;
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -2929,6 +2940,7 @@ LsaEnumerateLogonSessions(
     _Out_ PULONG  LogonSessionCount,
     _Out_ PLUID * LogonSessionList
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -2938,6 +2950,7 @@ LsaGetLogonSessionData(
     );
 
 #endif
+_Win32_SupportedOS_WindowsXP_
 NTSTATUS
 NTAPI
 LsaOpenPolicy(
@@ -3079,6 +3092,7 @@ LsaQueryCAPs(
     _Outptr_result_buffer_(*CAPCount) PCENTRAL_ACCESS_POLICY *CAPs,
     _Out_ PULONG CAPCount
     );
+_Win32_SupportedOS_WindowsXP_
 
 
 NTSTATUS
@@ -3088,6 +3102,7 @@ LsaQueryInformationPolicy(
     _In_ POLICY_INFORMATION_CLASS InformationClass,
     _Out_ PVOID *Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3096,6 +3111,7 @@ LsaSetInformationPolicy(
     _In_ POLICY_INFORMATION_CLASS InformationClass,
     _In_ PVOID Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3104,6 +3120,7 @@ LsaQueryDomainInformationPolicy(
     _In_ POLICY_DOMAIN_INFORMATION_CLASS InformationClass,
     _Out_ PVOID *Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3112,6 +3129,7 @@ LsaSetDomainInformationPolicy(
     _In_ POLICY_DOMAIN_INFORMATION_CLASS InformationClass,
     _In_opt_ PVOID Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 
 NTSTATUS
@@ -3120,6 +3138,7 @@ LsaRegisterPolicyChangeNotification(
     _In_ POLICY_NOTIFICATION_INFORMATION_CLASS InformationClass,
     _In_ HANDLE  NotificationEventHandle
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3127,6 +3146,7 @@ LsaUnregisterPolicyChangeNotification(
     _In_ POLICY_NOTIFICATION_INFORMATION_CLASS InformationClass,
     _In_ HANDLE  NotificationEventHandle
     );
+_Win32_SupportedOS_WindowsXP_
 
 
 
@@ -3139,6 +3159,7 @@ LsaEnumerateTrustedDomains(
     _In_ ULONG PreferedMaximumLength,
     _Out_ PULONG CountReturned
     );
+_Win32_SupportedOS_WindowsXP_
 
 
 NTSTATUS
@@ -3152,6 +3173,7 @@ LsaLookupNames(
     );
 
 #if (_WIN32_WINNT >= 0x0501)
+_Win32_SupportedOS_WindowsXP_
 NTSTATUS
 NTAPI
 LsaLookupNames2(
@@ -3163,6 +3185,7 @@ LsaLookupNames2(
     _Out_ PLSA_TRANSLATED_SID2 *Sids
     );
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3173,6 +3196,7 @@ LsaLookupSids(
     _Out_ PLSA_REFERENCED_DOMAIN_LIST *ReferencedDomains,
     _Out_ PLSA_TRANSLATED_NAME *Names
     );
+_Win32_SupportedOS_Windows8_
 
 NTSTATUS
 NTAPI
@@ -3199,6 +3223,7 @@ LsaLookupSids2(
 #define SE_REMOTE_INTERACTIVE_LOGON_NAME    TEXT("SeRemoteInteractiveLogonRight")
 #define SE_DENY_REMOTE_INTERACTIVE_LOGON_NAME TEXT("SeDenyRemoteInteractiveLogonRight")
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 //
 // This new API returns all the accounts with a certain privilege
@@ -3212,6 +3237,7 @@ LsaEnumerateAccountsWithUserRight(
     _Out_ PVOID *Buffer,
     _Out_ PULONG CountReturned
     );
+_Win32_SupportedOS_WindowsXP_
 
 //
 // These new APIs differ by taking a SID instead of requiring the caller
@@ -3226,6 +3252,7 @@ LsaEnumerateAccountRights(
     _Outptr_result_buffer_(*CountOfRights) PLSA_UNICODE_STRING *UserRights,
     _Out_ PULONG CountOfRights
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3235,6 +3262,7 @@ LsaAddAccountRights(
     _In_reads_(CountOfRights) PLSA_UNICODE_STRING UserRights,
     _In_ ULONG CountOfRights
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3245,6 +3273,7 @@ LsaRemoveAccountRights(
     _In_reads_opt_(CountOfRights) PLSA_UNICODE_STRING UserRights,
     _In_ ULONG CountOfRights
     );
+_Win32_SupportedOS_WindowsXP_
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
@@ -3270,6 +3299,7 @@ LsaQueryTrustedDomainInfo(
     _In_ TRUSTED_INFORMATION_CLASS InformationClass,
     _Out_ PVOID *Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3279,6 +3309,7 @@ LsaSetTrustedDomainInformation(
     _In_ TRUSTED_INFORMATION_CLASS InformationClass,
     _In_ PVOID Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3286,6 +3317,7 @@ LsaDeleteTrustedDomain(
     _In_ LSA_HANDLE PolicyHandle,
     _In_ PSID TrustedDomainSid
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3295,6 +3327,7 @@ LsaQueryTrustedDomainInfoByName(
     _In_ TRUSTED_INFORMATION_CLASS InformationClass,
     _Out_ PVOID *Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3304,6 +3337,7 @@ LsaSetTrustedDomainInfoByName(
     _In_ TRUSTED_INFORMATION_CLASS InformationClass,
     _In_ PVOID Buffer
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3314,6 +3348,7 @@ LsaEnumerateTrustedDomainsEx(
     _In_ ULONG PreferedMaximumLength,
     _Out_ PULONG CountReturned
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3326,6 +3361,7 @@ LsaCreateTrustedDomainEx(
     );
 
 #if (_WIN32_WINNT >= 0x0501)
+_Win32_SupportedOS_Server2003_
 NTSTATUS
 NTAPI
 LsaQueryForestTrustInformation(
@@ -3333,6 +3369,7 @@ LsaQueryForestTrustInformation(
     _In_ PLSA_UNICODE_STRING TrustedDomainName,
     _Out_ PLSA_FOREST_TRUST_INFORMATION * ForestTrustInfo
     );
+_Win32_SupportedOS_Server2003_
 
 NTSTATUS
 NTAPI
@@ -3359,6 +3396,7 @@ LsaForestTrustFindMatch(
 
 #endif
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 //
 // This API sets the workstation password (equivalent of setting/getting
@@ -3372,6 +3410,7 @@ LsaStorePrivateData(
     _In_ PLSA_UNICODE_STRING KeyName,
     _In_opt_ PLSA_UNICODE_STRING PrivateData
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 NTAPI
@@ -3380,6 +3419,7 @@ LsaRetrievePrivateData(
     _In_ PLSA_UNICODE_STRING KeyName,
     _Out_ PLSA_UNICODE_STRING * PrivateData
     );
+_Win32_SupportedOS_WindowsXP_
 
 
 ULONG
@@ -4175,6 +4215,7 @@ typedef struct _MSV1_0_SUBAUTH_RESPONSE{
 #endif
 
 #if(_WIN32_WINNT >= 0x0501)
+_Win32_SupportedOS_WindowsXP_
 BOOLEAN
 __stdcall
 RtlGenRandom(
@@ -4213,6 +4254,7 @@ RtlGenRandom(
 //
 
 #define RTL_ENCRYPT_OPTION_FOR_SYSTEM       0x04
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 __stdcall
@@ -4221,6 +4263,7 @@ RtlEncryptMemory(
     _In_ ULONG MemorySize,
     _In_ ULONG OptionFlags
     );
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 __stdcall
@@ -5476,6 +5519,8 @@ typedef const PAUDIT_POLICY_INFORMATION PCAUDIT_POLICY_INFORMATION, LPCAUDIT_POL
                                       AUDIT_SET_SYSTEM_POLICY)
 
 #define AUDIT_GENERIC_EXECUTE        (STANDARD_RIGHTS_EXECUTE)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOLEAN
@@ -5484,6 +5529,8 @@ AuditSetSystemPolicy(
     _In_reads_(dwPolicyCount) PCAUDIT_POLICY_INFORMATION pAuditPolicy,
     _In_ ULONG dwPolicyCount
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOLEAN
 NTAPI
@@ -5492,6 +5539,8 @@ AuditSetPerUserPolicy(
     _In_reads_(dwPolicyCount) PCAUDIT_POLICY_INFORMATION pAuditPolicy,
     _In_ ULONG dwPolicyCount
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5502,6 +5551,8 @@ AuditQuerySystemPolicy(
     _Outptr_result_buffer_(dwPolicyCount)
     _When_(return != 0, __drv_allocatesMem(Mem)) PAUDIT_POLICY_INFORMATION* ppAuditPolicy
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5513,6 +5564,8 @@ AuditQueryPerUserPolicy(
     _Outptr_result_buffer_(dwPolicyCount)
     _When_(return != 0, __drv_allocatesMem(Mem)) PAUDIT_POLICY_INFORMATION* ppAuditPolicy
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5520,6 +5573,8 @@ NTAPI
 AuditEnumeratePerUserPolicy(
     _Out_ _When_(return != 0, __drv_allocatesMem(Mem)) PPOLICY_AUDIT_SID_ARRAY* ppAuditSidArray
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5531,6 +5586,8 @@ AuditComputeEffectivePolicyBySid(
     _Outptr_result_buffer_(dwPolicyCount)
     _When_(return != 0, __drv_allocatesMem(Mem)) PAUDIT_POLICY_INFORMATION* ppAuditPolicy
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5542,6 +5599,8 @@ AuditComputeEffectivePolicyByToken(
     _Outptr_result_buffer_(dwPolicyCount)
     _When_(return != 0, __drv_allocatesMem(Mem)) PAUDIT_POLICY_INFORMATION* ppAuditPolicy
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5551,6 +5610,8 @@ AuditEnumerateCategories(
     _When_(return != 0, __drv_allocatesMem(Mem)) GUID** ppAuditCategoriesArray,
     _Out_ PULONG pdwCountReturned
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5562,6 +5623,8 @@ AuditEnumerateSubCategories(
     _When_(return != 0, __drv_allocatesMem(Mem)) GUID** ppAuditSubCategoriesArray,
     _Out_ PULONG pdwCountReturned
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5570,6 +5633,8 @@ AuditLookupCategoryNameW(
     _In_ const GUID* pAuditCategoryGuid,
     _Outptr_ _When_(return != 0, __drv_allocatesMem(Mem)) PWSTR* ppszCategoryName
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5584,6 +5649,8 @@ AuditLookupCategoryNameA(
 #else
 #define AuditLookupCategoryName  AuditLookupCategoryNameA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5592,6 +5659,8 @@ AuditLookupSubCategoryNameW(
     _In_ const GUID* pAuditSubCategoryGuid,
     _Outptr_ _When_(return != 0, __drv_allocatesMem(Mem)) PWSTR* ppszSubCategoryName
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5606,6 +5675,8 @@ AuditLookupSubCategoryNameA(
 #else
 #define AuditLookupSubCategoryName  AuditLookupSubCategoryNameA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOLEAN
 NTAPI
@@ -5613,6 +5684,8 @@ AuditLookupCategoryIdFromCategoryGuid(
     _In_ const GUID* pAuditCategoryGuid,
     _Out_ PPOLICY_AUDIT_EVENT_TYPE pAuditCategoryId
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOLEAN
 NTAPI
@@ -5620,6 +5693,8 @@ AuditLookupCategoryGuidFromCategoryId(
     _In_ POLICY_AUDIT_EVENT_TYPE AuditCategoryId,
     _Out_ GUID* pAuditCategoryGuid
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOLEAN
 NTAPI
@@ -5627,6 +5702,8 @@ AuditSetSecurity(
     _In_ SECURITY_INFORMATION SecurityInformation,
     _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 BOOLEAN
@@ -5635,6 +5712,8 @@ AuditQuerySecurity(
     _In_ SECURITY_INFORMATION SecurityInformation,
     _Outptr_ _When_(return != 0, __drv_allocatesMem(Mem)) PSECURITY_DESCRIPTOR *ppSecurityDescriptor
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOLEAN
 NTAPI
@@ -5642,6 +5721,8 @@ AuditSetGlobalSaclW(
     _In_ PCWSTR ObjectTypeName,
     _In_opt_ PACL Acl
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOLEAN
 NTAPI
@@ -5655,6 +5736,8 @@ AuditSetGlobalSaclA(
 #else
 #define AuditSetGlobalSacl AuditSetGlobalSaclA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 _Check_return_
 BOOLEAN
@@ -5663,6 +5746,8 @@ AuditQueryGlobalSaclW(
     _In_ PCWSTR ObjectTypeName,
     _Out_ _When_(return != 0, __drv_allocatesMem(Mem)) PACL *Acl
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 _Check_return_
 BOOLEAN
@@ -5677,6 +5762,7 @@ AuditQueryGlobalSaclA(
 #else
 #define AuditQueryGlobalSacl AuditQueryGlobalSaclA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 VOID
 NTAPI

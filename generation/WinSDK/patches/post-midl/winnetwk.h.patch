@@ -7,7 +7,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
  #include <winapifamily.h>
  
  /*++
-@@ -561,7 +562,7 @@
+@@ -333,6 +334,7 @@
+     );
+ 
+ #else
++_Win32_SupportedOS_Windows2000_
+ _Check_return_
+ DWORD APIENTRY
+ WNetRestoreConnectionW(
+@@ -527,6 +529,7 @@
+ #define WNetDisconnectDialog1  WNetDisconnectDialog1A
+ #endif // !UNICODE
+ #endif /* WINVER >= 0x0400 */
++_Win32_SupportedOS_Windows2000_
+ 
+ //
+ //  Network Browsing.
+@@ -561,7 +564,7 @@
  WNetEnumResourceA(
      _In_    HANDLE  hEnum,
      _Inout_ LPDWORD lpcCount,
@@ -16,7 +32,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpBufferSize
      );
  _Check_return_
-@@ -569,7 +570,7 @@
+@@ -569,7 +572,7 @@
  WNetEnumResourceW(
      _In_    HANDLE  hEnum,
      _Inout_ LPDWORD lpcCount,
@@ -25,7 +41,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpBufferSize
      );
  #ifdef UNICODE
-@@ -589,14 +590,14 @@
+@@ -589,14 +592,14 @@
  DWORD APIENTRY
  WNetGetResourceParentA(
      _In_ LPNETRESOURCEA lpNetResource,
@@ -42,7 +58,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpcbBuffer
      );
  #ifdef UNICODE
-@@ -609,7 +610,7 @@
+@@ -609,7 +612,7 @@
  DWORD APIENTRY
  WNetGetResourceInformationA(
      _In_ LPNETRESOURCEA  lpNetResource,
@@ -51,7 +67,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpcbBuffer,
      _Outptr_ LPSTR *lplpSystem
      );
-@@ -617,7 +618,7 @@
+@@ -617,7 +620,7 @@
  DWORD APIENTRY
  WNetGetResourceInformationW(
      _In_ LPNETRESOURCEW  lpNetResource,
@@ -60,7 +76,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpcbBuffer,
      _Outptr_ LPWSTR *lplpSystem
      );
-@@ -672,7 +673,7 @@
+@@ -672,7 +675,7 @@
  WNetGetUniversalNameA(
      _In_ LPCSTR lpLocalPath,
      _In_ DWORD    dwInfoLevel,
@@ -69,7 +85,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpBufferSize
      );
  _Check_return_
-@@ -680,7 +681,7 @@
+@@ -680,7 +683,7 @@
  WNetGetUniversalNameW(
      _In_ LPCWSTR lpLocalPath,
      _In_ DWORD    dwInfoLevel,
@@ -78,3 +94,19 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpBufferSize
      );
  #ifdef UNICODE
+@@ -784,6 +787,7 @@
+ #endif // !UNICODE
+ 
+ #endif /* WINVER >= 0x0400 */
++_Win32_SetLastError_
+ 
+ //
+ //  Error handling.
+@@ -798,6 +802,7 @@
+     _Out_writes_(nNameBufSize) LPSTR  lpNameBuf,
+     _In_ DWORD      nNameBufSize
+     );
++_Win32_SetLastError_
+ _Check_return_
+ DWORD APIENTRY
+ WNetGetLastErrorW(

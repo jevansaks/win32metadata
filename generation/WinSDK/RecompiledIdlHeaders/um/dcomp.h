@@ -54,6 +54,7 @@ typedef interface IDCompositionTranslateTransform3D      IDCompositionTranslateT
 typedef interface IDCompositionTurbulenceEffect          IDCompositionTurbulenceEffect;
 typedef interface IDCompositionVirtualSurface            IDCompositionVirtualSurface;
 typedef interface IDCompositionVisual                    IDCompositionVisual;
+_Win32_SupportedOS_Windows8_
 
 //+-----------------------------------------------------------------------------
 //
@@ -72,6 +73,7 @@ STDAPI DCompositionCreateDevice(
     );
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WINBLUE)
+_Win32_SupportedOS_Windows81_
 //+-----------------------------------------------------------------------------
 //
 //  Function:
@@ -107,6 +109,7 @@ STDAPI DCompositionCreateDevice3(
     );
 
 #endif  // (_WIN32_WINNT >= _WIN32_WINNT_WINTHRESHOLD)
+_Win32_SupportedOS_Windows8_
 
 //+-----------------------------------------------------------------------------
 //

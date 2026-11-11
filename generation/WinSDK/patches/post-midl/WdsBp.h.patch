@@ -1,0 +1,64 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h b/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WdsBp.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) 2006 Microsoft Corporation
+@@ -136,6 +137,7 @@
+ 
+ #define WDSBP_OPTVAL_NBP_VER_7                  0x0700
+ #define WDSBP_OPTVAL_NBP_VER_8                  0x0800
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // APIs.
+@@ -149,6 +151,7 @@
+     _Out_opt_ PBYTE pbPacketType,
+     _Out_ HANDLE *phHandle
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ DWORD
+ WDSBPAPI
+@@ -158,6 +161,7 @@
+     _Out_opt_ PBYTE pbPacketType,
+     _Out_ HANDLE *phHandle
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ DWORD
+ WDSBPAPI
+@@ -165,12 +169,14 @@
+     _In_ BYTE bPacketType,
+     _Out_ HANDLE *phHandle
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ DWORD
+ WDSBPAPI
+ WdsBpCloseHandle (
+     _In_ HANDLE hHandle
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -182,6 +188,7 @@
+     _Out_writes_bytes_(uValueLen) PVOID pValue,
+     _Out_opt_ PULONG puBytes
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ DWORD
+ WDSBPAPI
+@@ -191,6 +198,7 @@
+     _In_ ULONG uValueLen,
+     _In_reads_bytes_(uValueLen) PVOID pValue
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD

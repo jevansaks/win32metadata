@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*===========================================================================
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -750,6 +751,7 @@ typedef struct _SHChangeProductKeyAsIDList {
 #endif /* NTDDI_WIN2K */
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 //  use SHChangeNotifyRegisterThread() to enable Async Register and Deregister.
 //  call with SCNRT_ENABLE at the thread proc begining and SCNRT_DISABLE at the end
 //  the call with SCNRT_DISABLE can block while it synchronizes with the main ChangeNotify thread
@@ -762,17 +764,22 @@ STDAPI_(void) SHChangeNotifyRegisterThread(SCNRT_STATUS status);
 #if (NTDDI_VERSION >= NTDDI_WINXP)
 #endif
 SHSTDAPI_(void) PathQualify(_Inout_ PWSTR psz);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL) PathIsSlowA(_In_ LPCSTR pszFile, DWORD dwAttr);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL) PathIsSlowW(_In_ LPCWSTR pszFile, DWORD dwAttr);
 #ifdef UNICODE
 #define PathIsSlow  PathIsSlowW
 #else
 #define PathIsSlow  PathIsSlowA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 SHSTDAPI_(BOOL) GetFileNameFromBrowse(_In_opt_ HWND hwnd, _Inout_updates_(cchFilePath) PWSTR pszFilePath, UINT cchFilePath,
                                       _In_opt_ PCWSTR pszWorkingDir, _In_ PCWSTR pszDefExt, _In_opt_ PCWSTR pszFilters, _In_opt_ PCWSTR pszTitle);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(int) DriveType(int iDrive);
+_Win32_SupportedOS_WindowsXP_
 
 WINSHELLAPI HPSXA WINAPI SHCreatePropSheetExtArray(_In_ HKEY hKey, _In_opt_ PCWSTR pszSubKey, UINT max_iface);
 
@@ -796,11 +803,13 @@ DECLARE_INTERFACE_IID_(IDefViewFrame, IUnknown, "710EB7A0-45ED-11D0-924A-0020AFC
 #define PPCF_NODIRECTORIES           0x00000010        // don't match to directories
 #define PPCF_FORCEQUALIFY            0x00000040        // qualify even non-relative names
 #define PPCF_LONGESTPOSSIBLE         0x00000080        // always find the longest possible name
+_Win32_SupportedOS_Windows2000_
 
 SHSTDAPI_(LONG) PathProcessCommand(_In_ PCWSTR pszSrc, _Out_writes_(cchDest) PWSTR pszDest, int cchDest, DWORD dwFlags);
 #endif
 
 #if (NTDDI_VERSION < NTDDI_VISTA)
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI SHLoadOLE(LPARAM lParam);
 #endif
 
@@ -865,10 +874,12 @@ typedef struct _TBINFO
     UINT        uFlags;         // out (one of TBIF_ flags)
 } TBINFO;
 typedef TBINFO * LPTBINFO;
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(BOOL) SHOpenPropSheetA(_In_opt_ LPCSTR pszCaption, _In_reads_opt_(ckeys) HKEY ahkeys[], UINT ckeys,
                                  _In_opt_ const CLSID * pclsidDefault, _In_ IDataObject *pdtobj,
                                  _In_opt_ IShellBrowser *psb, _In_opt_ LPCSTR pStartPage);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL) SHOpenPropSheetW(_In_opt_ LPCWSTR pszCaption, _In_reads_opt_(ckeys) HKEY ahkeys[], UINT ckeys,
                                  _In_opt_ const CLSID * pclsidDefault, _In_ IDataObject *pdtobj,
                                  _In_opt_ IShellBrowser *psb, _In_opt_ LPCWSTR pStartPage);
@@ -943,6 +954,7 @@ typedef const SFV_SETITEMPOS *PCSFV_SETITEMPOS;
 #include <poppack.h>        /* Return to byte packing */
 
 #ifdef __urlmon_h__
+_Win32_SupportedOS_Windows2000_
 //    NOTE: urlmon.h must be included before shlobj.h to access this function.
 //
 //    SoftwareUpdateMessageBox
@@ -994,6 +1006,7 @@ SHDOCAPI_(DWORD) SoftwareUpdateMessageBox( _In_opt_ HWND hWnd,
 #endif  // NTDDI_WINXP
 
 #if (NTDDI_VERSION >= NTDDI_WIN2K)
+_Win32_SupportedOS_Windows2000_
 
 //
 // The SHMultiFileProperties API displays a property sheet for a
@@ -1015,9 +1028,12 @@ SHDOCAPI_(DWORD) SoftwareUpdateMessageBox( _In_opt_ HWND hWnd,
 SHSTDAPI SHMultiFileProperties(_In_ IDataObject *pdtobj, DWORD dwFlags);
 
 #endif  // NTDDI_WIN2K
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI SHCreateQueryCancelAutoPlayMoniker(_Outptr_ IMoniker** ppmoniker);    // deprecated: use CreateClassMoniker(CLSID_YourOwnClsid, ...)
+_Win32_SupportedOS_Windows2000_
 STDAPI_(void) PerUserInit(void);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL)SHRunControlPanel(_In_ PCWSTR lpcszCmdLine, _In_opt_ HWND hwndMsgParent);
 
 #include <pshpack8.h>

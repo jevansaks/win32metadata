@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -22,6 +23,7 @@ extern "C" {
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+_Win32_SupportedOS_16299_
 
 //
 // Attestation APIs.
@@ -34,6 +36,7 @@ EnclaveGetAttestationReport(
     _In_ UINT32 BufferSize,
     _Out_ UINT32 *OutputSize
     );
+_Win32_SupportedOS_16299_
 
 STDAPI
 EnclaveVerifyAttestationReport(
@@ -41,6 +44,7 @@ EnclaveVerifyAttestationReport(
     _In_reads_bytes_(ReportSize) const VOID *Report,
     _In_ UINT32 ReportSize
     );
+_Win32_SupportedOS_16299_
 
 //
 // Sealing/unsealing APIs.
@@ -56,6 +60,7 @@ EnclaveSealData(
     _In_ UINT32 BufferSize,
     _Out_ UINT32 *ProtectedBlobSize
     );
+_Win32_SupportedOS_16299_
 
 STDAPI
 EnclaveUnsealData(
@@ -77,6 +82,7 @@ EnclaveEncryptDataForTrustlet(
     _In_ UINT32 BufferSize,
     _Out_ UINT32 *EncryptedDataSize
     );
+_Win32_SupportedOS_16299_
 
 //
 // Enclave properties.

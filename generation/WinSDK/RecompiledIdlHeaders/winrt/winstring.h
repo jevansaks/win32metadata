@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
 #ifndef __WINSTRING_H_
@@ -20,6 +21,7 @@
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_Windows8_
 
 STDAPI
 WindowsCreateString(
@@ -35,11 +37,13 @@ WindowsCreateStringReference(
     _Out_ HSTRING_HEADER* hstringHeader,
     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* string
     );
+_Win32_SupportedOS_Windows8_
 
 STDAPI
 WindowsDeleteString(
     _In_opt_ HSTRING string
     );
+_Win32_SupportedOS_Windows8_
 
 STDAPI
 WindowsDuplicateString(
@@ -51,23 +55,27 @@ STDAPI_(UINT32)
 WindowsGetStringLen(
     _In_opt_ HSTRING string
     );
+_Win32_SupportedOS_Windows8_
 
 STDAPI_(PCWSTR)
 WindowsGetStringRawBuffer(
     _In_opt_ HSTRING string,
     _Out_opt_ UINT32* length
     );
+_Win32_SupportedOS_Windows8_
 
 STDAPI_(BOOL)
 WindowsIsStringEmpty(
     _In_opt_ HSTRING string
     );
+_Win32_SupportedOS_Windows8_
 
 STDAPI
 WindowsStringHasEmbeddedNull(
     _In_opt_ HSTRING string,
     _Out_ BOOL* hasEmbedNull
     );
+_Win32_SupportedOS_Windows8_
 
 STDAPI
 WindowsCompareStringOrdinal(
@@ -75,6 +83,7 @@ WindowsCompareStringOrdinal(
     _In_opt_ HSTRING string2,
     _Out_ INT32* result
     );
+_Win32_SupportedOS_Windows8_
 
 STDAPI
 WindowsSubstring(
@@ -119,6 +128,7 @@ WindowsTrimStringEnd(
     _In_opt_ HSTRING trimString,
     _Outptr_result_maybenull_ _Result_nullonfailure_ HSTRING* newString
     );
+_Win32_SupportedOS_Windows8_
 
 // Two-phase construction
 STDAPI
@@ -198,6 +208,7 @@ HSTRING_UserFree(
 
 // HSTRING Inspection
 typedef HRESULT (WINAPI *PINSPECT_HSTRING_CALLBACK)(_In_ void* context, UINT_PTR readAddress, UINT32 length, _Out_writes_(length) BYTE* buffer);
+_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsInspectString(
     _In_ UINT_PTR targetHString,
@@ -210,6 +221,7 @@ WindowsInspectString(
 
 // HSTRING Inspection 2
 typedef HRESULT (WINAPI *PINSPECT_HSTRING_CALLBACK2)(_In_ void* context, UINT64 readAddress, UINT32 length, _Out_writes_(length) BYTE* buffer);
+_Win32_SupportedOS_Windows8_
 STDAPI
 WindowsInspectString2(
     _In_ UINT64 targetHString,

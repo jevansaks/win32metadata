@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * consoleapi.h -- ApiSet Contract for api-ms-win-core-namespace-l1              *
@@ -43,6 +44,8 @@ OpenPrivateNamespaceW(
     _In_ LPVOID lpBoundaryDescriptor,
     _In_ LPCWSTR lpAliasPrefix
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOLEAN
@@ -59,6 +62,8 @@ CreateBoundaryDescriptorW(
     _In_ LPCWSTR Name,
     _In_ ULONG Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -67,6 +72,7 @@ AddSIDToBoundaryDescriptor(
     _Inout_ HANDLE* BoundaryDescriptor,
     _In_ PSID RequiredSid
     );
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 VOID

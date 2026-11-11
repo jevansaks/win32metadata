@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -36,6 +37,8 @@ extern "C" {
 #define INSTALLFLAG_BITS                0x00000007
 
 #if (WINVER >= _WIN32_WINNT_WIN2K)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
@@ -46,6 +49,8 @@ UpdateDriverForPlugAndPlayDevicesA(
     _In_      DWORD InstallFlags,
     _Out_opt_ PBOOL bRebootRequired
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
@@ -73,6 +78,8 @@ UpdateDriverForPlugAndPlayDevicesW(
 #define DIIDFLAG_INSTALLNULLDRIVER      0x00000004      // Install the NULL driver on this device.
 #define DIIDFLAG_INSTALLCOPYINFDRIVERS  0x00000008      // Install any extra INFs specified via CopyInf directive.
 #define DIIDFLAG_BITS                   0x0000000F
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -124,6 +131,8 @@ DiInstallDevice(
                                DIIRFLAG_INSTALL_AS_SET )
 
 #endif // (WINVER >= _WIN32_WINNT_WINBLUE)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -153,6 +162,8 @@ DiInstallDriverA(
 
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 BOOL
 WINAPI
 DiUninstallDevice(
@@ -175,6 +186,8 @@ DiUninstallDevice(
 
 #define DIURFLAG_VALID              (DIURFLAG_NO_REMOVE_INF |\
                                      DIURFLAG_RESERVED      )
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 BOOL
 WINAPI
@@ -203,6 +216,8 @@ DiUninstallDriverA(
 
 
 #if (WINVER >= _WIN32_WINNT_LONGHORN)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 BOOL
 WINAPI
 DiShowUpdateDevice(

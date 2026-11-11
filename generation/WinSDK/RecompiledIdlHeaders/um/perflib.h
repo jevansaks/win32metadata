@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 Copyright (c) Microsoft Corporation.  All rights reserved.
 
@@ -198,6 +199,7 @@ WINAPI
     IN PVOID  Buffer,
     IN ULONG  BufferSize
 );
+_Win32_SupportedOS_WindowsVista_
 
 // Usually PerfSetCounterSetInfo() calls is automatically generated PerfAutoStartUp() function (generated
 // by schema generation/parsing tool) to inform PERFLIB the layout of specific counterset.
@@ -222,6 +224,7 @@ typedef struct _PROVIDER_CONTEXT {
     PERF_MEM_FREE  MemFreeRoutine;
     LPVOID         pMemContext;
 } PERF_PROVIDER_CONTEXT, * PPERF_PROVIDER_CONTEXT;
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfStartProviderEx(
@@ -241,6 +244,7 @@ ULONG WINAPI
 PerfStopProvider(
     _In_ HANDLE ProviderHandle
     );
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfSetCounterSetInfo(
@@ -248,6 +252,8 @@ PerfSetCounterSetInfo(
     _Inout_updates_bytes_(TemplateSize) PPERF_COUNTERSET_INFO Template,
     _In_ ULONG TemplateSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 PPERF_COUNTERSET_INSTANCE WINAPI
 PerfCreateInstance(
@@ -256,12 +262,15 @@ PerfCreateInstance(
     _In_ PCWSTR Name,
     _In_ ULONG Id
     );
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfDeleteInstance(
     _In_ HANDLE Provider,
     _In_ PPERF_COUNTERSET_INSTANCE InstanceBlock
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 PPERF_COUNTERSET_INSTANCE WINAPI
 PerfQueryInstance(
@@ -270,6 +279,7 @@ PerfQueryInstance(
     _In_ PCWSTR Name,
     _In_ ULONG Id
     );
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfSetCounterRefValue(
@@ -278,6 +288,7 @@ PerfSetCounterRefValue(
     _In_ ULONG CounterId,
     _In_ PVOID Address
     );
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfSetULongCounterValue(
@@ -286,6 +297,7 @@ PerfSetULongCounterValue(
     _In_ ULONG CounterId,
     _In_ ULONG Value
     );
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfSetULongLongCounterValue(
@@ -294,6 +306,7 @@ PerfSetULongLongCounterValue(
     _In_ ULONG CounterId,
     _In_ ULONGLONG Value
     );
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfIncrementULongCounterValue(
@@ -302,6 +315,7 @@ PerfIncrementULongCounterValue(
     _In_ ULONG CounterId,
     _In_ ULONG Value
     );
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfIncrementULongLongCounterValue(
@@ -310,6 +324,7 @@ PerfIncrementULongLongCounterValue(
     _In_ ULONG CounterId,
     _In_ ULONGLONG Value
     );
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfDecrementULongCounterValue(
@@ -318,6 +333,7 @@ PerfDecrementULongCounterValue(
     _In_ ULONG CounterId,
     _In_ ULONG Value
     );
+_Win32_SupportedOS_WindowsVista_
 
 ULONG WINAPI
 PerfDecrementULongLongCounterValue(
@@ -643,6 +659,7 @@ typedef struct _PERF_COUNTER_DATA {
     // BYTE Data[dwDataSize];
     // BYTE Padding[];
 } PERF_COUNTER_DATA, * PPERF_COUNTER_DATA;
+_Win32_SupportedOS_14393_
 
 /*
 PerfEnumerateCounterSet:
@@ -680,6 +697,7 @@ PerfEnumerateCounterSet(
     DWORD cCounterSetIds,
     _Out_ LPDWORD pcCounterSetIdsActual
     );
+_Win32_SupportedOS_14393_
 
 /*
 PerfEnumerateCounterSetInstances:
@@ -729,6 +747,7 @@ PerfEnumerateCounterSetInstances(
     DWORD cbInstances,
     _Out_ LPDWORD pcbInstancesActual
     );
+_Win32_SupportedOS_14393_
 
 /*
 PerfQueryCounterSetRegistrationInfo:
@@ -813,6 +832,7 @@ PerfOpenQueryHandle(
     _In_opt_z_ LPCWSTR szMachine,
     _Out_ HANDLE * phQuery
     );
+_Win32_SupportedOS_14393_
 
 /*
 PerfCloseQueryHandle:
@@ -828,6 +848,7 @@ WINAPI
 PerfCloseQueryHandle(
     _In_ HANDLE hQuery
     );
+_Win32_SupportedOS_14393_
 
 /*
 PerfQueryCounterInfo:
@@ -873,6 +894,7 @@ PerfQueryCounterInfo(
     DWORD cbCounters,
     _Out_ LPDWORD pcbCountersActual
     );
+_Win32_SupportedOS_14393_
 
 /*
 PerfQueryCounterData:
@@ -917,6 +939,7 @@ PerfQueryCounterData(
     DWORD cbCounterBlock,
     _Out_ LPDWORD pcbCounterBlockActual
     );
+_Win32_SupportedOS_14393_
 
 /*
 PerfAddCounters:
@@ -971,6 +994,7 @@ PerfAddCounters(
     _Inout_bytecount_(cbCounters) PPERF_COUNTER_IDENTIFIER pCounters,
     DWORD cbCounters
     );
+_Win32_SupportedOS_14393_
 
 /*
 PerfDeleteCounters:

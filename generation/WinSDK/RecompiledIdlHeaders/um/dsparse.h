@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1996-2000 Microsoft Corporation
@@ -89,6 +90,7 @@ typedef enum _DS_MANGLE_FOR {
 //  InstancePort - port number for instance (0 if default)
 //  Referrer OPTIONAL- DNS name of host that gave this referral
 //  pcSpnLength - in -- max length IN CHARACTERS of principal name;
+_Win32_SupportedOS_WindowsVista_
 //                out -- actual
 //                Length includes terminator
 //  pszSPN - server principal name
@@ -112,6 +114,7 @@ DsMakeSpnW(
     _Inout_ DWORD *pcSpnLength,
     _Out_writes_to_opt_(*pcSpnLength, *pcSpnLength) LPWSTR pszSpn
 );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 _Success_(return == ERROR_SUCCESS)
@@ -152,6 +155,7 @@ DsMakeSpnA(
 //                                         output -- actual length
 //      OUT LPCTSTR ServiceName,        // the ServiceName part of the SPN
 //      IN OUT PUSHORT pcInstance,      // input -- max length of ServiceClass;
+_Win32_SupportedOS_WindowsVista_
 //                                         output -- actual length
 //      OUT LPCTSTR InstanceName,  // the InstanceName part of the SPN
 //      OUT PUSHORT InstancePort          // instance port
@@ -174,6 +178,7 @@ DsCrackSpnA(
     _Out_writes_to_opt_ (*pcInstanceName, *pcInstanceName) LPSTR InstanceName,
     _Out_opt_ USHORT *pInstancePort
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 DSPARSE
@@ -197,6 +202,7 @@ DsCrackSpnW(
 #endif
 
 #ifndef MIDL_PASS
+_Win32_SupportedOS_WindowsVista_
 /*++
 ==========================================================
 _Check_return_
@@ -272,6 +278,7 @@ DsQuoteRdnValueW(
     _Inout_ DWORD    *pcQuotedRdnValueLength,
     _Out_writes_to_(*pcQuotedRdnValueLength, *pcQuotedRdnValueLength) LPWCH    psQuotedRdnValue
 );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 _Success_(return == 0)
@@ -290,6 +297,7 @@ DsQuoteRdnValueA(
 #else
 #define DsQuoteRdnValue DsQuoteRdnValueA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 /*++
 ==========================================================
@@ -382,6 +390,7 @@ DsUnquoteRdnValueW(
     _Inout_ DWORD    *pcUnquotedRdnValueLength,
     _Out_writes_to_ (*pcUnquotedRdnValueLength, *pcUnquotedRdnValueLength) LPWCH    psUnquotedRdnValue
 );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 _Success_(return == 0)
@@ -556,6 +565,7 @@ DsCrackUnquotedMangledRdnW(
      _Out_opt_ GUID *pGuid,
      _Out_opt_ DS_MANGLE_FOR *peDsMangleFor
      );
+_Win32_SupportedOS_WindowsVista_
 
 DSPARSE
 BOOL
@@ -630,6 +640,7 @@ DsIsMangledRdnValueW(
     DWORD cRdn,
     DS_MANGLE_FOR eDsMangleForDesired
     );
+_Win32_SupportedOS_WindowsVista_
 
 DSPARSE
 BOOL
@@ -687,6 +698,7 @@ DsIsMangledDnA(
     _In_ LPCSTR pszDn,
     DS_MANGLE_FOR eDsMangleFor
     );
+_Win32_SupportedOS_WindowsVista_
 
 DSPARSE
 BOOL

@@ -1,0 +1,17 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Richedit.h b/generation/WinSDK/RecompiledIdlHeaders/um/Richedit.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Richedit.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Richedit.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*
+  *	RICHEDIT.H
+  *	
+@@ -1599,6 +1600,7 @@
+ 	long  ichHyph;			// Character which was hyphenated
+ 	WCHAR chHyph;			// Depending on hyphenation type, character added, changed, etc.
+ } HYPHRESULT;
++_Win32_SupportedOS_WindowsXP_
+ 
+ void WINAPI HyphenateProc(_In_ WCHAR *pszWord, LANGID langid, long ichExceed, HYPHRESULT *phyphresult);
+ typedef struct tagHyphenateInfo

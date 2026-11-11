@@ -1,0 +1,236 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h b/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0000     Increment this if a change has global effects
+ 
+ Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -124,6 +125,8 @@
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ BOOL
+@@ -186,6 +189,8 @@
+     _In_ ULONG64 Va,
+     _In_ ULONG_PTR Parameter
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ BOOL
+@@ -205,6 +210,8 @@
+                                                 //  calls to BindImageEx
+                                                 //  (same as NT 3.1->NT 4.0)
+ #define BIND_REPORT_64BIT_VA   0x00000010
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -222,6 +229,8 @@
+                                      // (out) Next address (actual if going down)
+     _In_ ULONG TimeStamp             // new timestamp for image, if non-zero
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -264,6 +273,8 @@
+                                                     //  exists...
+ 
+ #define SPLITSYM_SYMBOLPATH_IS_SRC  0x00000004      // The SymbolFilePath contains an alternate
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+                                                     //  path to locate the pdb.
+ 
+ 
+@@ -279,6 +290,7 @@
+     _Out_ PDWORD HeaderSum,
+     _Out_ PDWORD CheckSum
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD
+ IMAGEAPI
+@@ -287,6 +299,7 @@
+     _Out_ PDWORD HeaderSum,
+     _Out_ PDWORD CheckSum
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD
+ IMAGEAPI
+@@ -301,6 +314,8 @@
+ #else
+ #define MapFileAndCheckSum  MapFileAndCheckSumA
+ #endif // !UNICODE
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -308,6 +323,8 @@
+     _In_ PLOADED_IMAGE LoadedImage,
+     _Out_ PIMAGE_LOAD_CONFIG_DIRECTORY ImageConfigInformation
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ DWORD
+ IMAGEAPI
+@@ -315,6 +332,8 @@
+     _In_ PLOADED_IMAGE LoadedImage,
+     _Out_ PDWORD SizeUnusedHeaderBytes
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -335,6 +354,8 @@
+ typedef PVOID DIGEST_HANDLE;
+ 
+ typedef BOOL (WINAPI *DIGEST_FUNCTION) (DIGEST_HANDLE refdata, PBYTE pData, DWORD dwLength);
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -344,6 +365,8 @@
+     _In_ DIGEST_FUNCTION DigestFunction,
+     _In_ DIGEST_HANDLE DigestHandle
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Success_(return != FALSE)
+ BOOL
+@@ -353,6 +376,8 @@
+     _In_ LPWIN_CERTIFICATE Certificate,
+     _Out_ PDWORD Index
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -360,6 +385,8 @@
+     _In_ HANDLE FileHandle,
+     _In_ DWORD Index
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Success_(return != FALSE)
+ BOOL
+@@ -371,6 +398,8 @@
+     _Inout_updates_opt_(IndexCount) PDWORD Indices,
+     _In_opt_ DWORD IndexCount
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Success_(return != FALSE)
+ BOOL
+@@ -381,6 +410,8 @@
+     _Out_ LPWIN_CERTIFICATE Certificate,
+     _Inout_ PDWORD RequiredLength
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -389,6 +420,8 @@
+     _In_ DWORD CertificateIndex,
+     _Inout_ LPWIN_CERTIFICATE Certificateheader
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ PLOADED_IMAGE
+ IMAGEAPI
+@@ -396,12 +429,16 @@
+     _In_ PCSTR DllName,
+     _In_opt_ PCSTR DllPath
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+ ImageUnload(
+     _Inout_ PLOADED_IMAGE LoadedImage
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -412,12 +449,16 @@
+     _In_ BOOL DotDll,
+     _In_ BOOL ReadOnly
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+ UnMapAndLoad(
+     _Inout_ PLOADED_IMAGE LoadedImage
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -425,6 +466,8 @@
+     _In_ HANDLE FileHandle,
+     _In_opt_ PSYSTEMTIME pSystemTime
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -434,6 +477,8 @@
+     _Inout_ PSTR SymbolFilePath,
+     _In_ ULONG Flags
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -443,6 +488,7 @@
+     _Out_writes_(MAX_PATH + 1) PSTR DebugFilePath,
+     _In_ PIMAGE_NT_HEADERS32 NtHeaders
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ IMAGEAPI
+@@ -469,6 +515,7 @@
+     _In_ PCSTR FileName,
+     _In_ PVOID CallerData
+     );
++_Win32_SetLastError_
+ 
+ HANDLE
+ IMAGEAPI
+@@ -628,6 +675,7 @@
+     _In_opt_ PFIND_EXE_FILE_CALLBACKW Callback,
+     _In_ PVOID CallerData
+     );
++_Win32_SetLastError_
+ 
+ PIMAGE_NT_HEADERS
+ IMAGEAPI

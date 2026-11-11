@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1992-1999 Microsoft Corporation
@@ -67,6 +68,8 @@ extern "C" {
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef PVOID LPSNMP_MGR_SESSION;
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                           //
@@ -82,6 +85,8 @@ SnmpMgrOpen(
     IN INT   nTimeOut,                      // Comm time-out in milliseconds
     IN INT   nRetries                       // Comm time-out/retry count
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 SNMP_FUNC_TYPE
@@ -94,12 +99,15 @@ SnmpMgrCtl(
     DWORD              cbOUTBuffer,         // size of lpvOUTBuffer
     LPDWORD            lpcbBytesReturned    // space used from lpvOutBuffer
     );
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 SNMP_FUNC_TYPE
 SnmpMgrClose(
     IN LPSNMP_MGR_SESSION session           // SNMP session pointer
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 SNMPAPI
 SNMP_FUNC_TYPE
@@ -110,6 +118,7 @@ SnmpMgrRequest(
        OUT AsnInteger         *errorStatus,      // Result error status
        OUT AsnInteger         *errorIndex        // Result error index
     );
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 SNMP_FUNC_TYPE
@@ -117,6 +126,7 @@ SnmpMgrStrToOid(
     _In_opt_  LPSTR         string,         // OID string to be converted
     OUT AsnObjectIdentifier *oid            // OID internal representation
     );
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 SNMP_FUNC_TYPE
@@ -124,12 +134,15 @@ SnmpMgrOidToStr(
     IN  AsnObjectIdentifier *oid,           // OID to be converted
     _Outptr_opt_ LPSTR   *string         // OID string representation
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 SNMP_FUNC_TYPE
 SnmpMgrTrapListen(
     OUT HANDLE *phTrapAvailable             // Event indicating trap available
     );
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 SNMP_FUNC_TYPE
@@ -141,6 +154,7 @@ SnmpMgrGetTrap(
     OUT AsnTimeticks        *timeStamp,          // Time stamp
     OUT RFC1157VarBindList  *variableBindings    // Variable bindings
     );
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 SNMP_FUNC_TYPE

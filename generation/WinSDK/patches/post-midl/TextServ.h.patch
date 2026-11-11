@@ -1,0 +1,17 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h b/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*	@doc EXTERNAL
+  *
+  *	@module TEXTSRV.H  Text Service Interface |
+@@ -496,6 +497,7 @@
+ 		PROPERTYID propertyId,
+ 		VARIANT *pRetValue) = 0;
+ };
++_Win32_SupportedOS_WindowsVista_
+ 
+ //+-----------------------------------------------------------------------
+ // 	Factories

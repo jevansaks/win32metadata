@@ -1,0 +1,17 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/avrfsdk.h b/generation/WinSDK/RecompiledIdlHeaders/um/avrfsdk.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/avrfsdk.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/avrfsdk.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0011    // Increment this if a change has global effects
+ 
+ Copyright (c) 2004  Microsoft Corporation
+@@ -148,6 +149,7 @@
+     AVRF_RESOURCE_ENUMERATE_CALLBACK ResourceCallback,
+     PVOID  EnumerationContext
+     );
++_Win32_SupportedOS_WindowsVista_
+     
+ //
+ // API to find out if per user verifier settings are enabled

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 ////////////////////////////////////////////////////////////////////////
 //
 //  RestartManager.h --  Header for RestartManager API
@@ -133,6 +134,7 @@ typedef struct _RM_FILTER_INFO
 } RM_FILTER_INFO, *PRM_FILTER_INFO;
 
 typedef void (*RM_WRITE_STATUS_CALLBACK)( _In_ UINT nPercentComplete );
+_Win32_SupportedOS_WindowsVista_
 
 // Functions
 
@@ -152,6 +154,7 @@ RmStartSession(
     _Out_ DWORD *pSessionHandle,
     _Reserved_ DWORD dwSessionFlags,
     _Out_writes_(CCH_RM_SESSION_KEY+1) WCHAR strSessionKey[]);
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmJoinSession
 // Purpose: Joins an existing Restart Manager session as a Subordinate
@@ -168,6 +171,7 @@ DWORD WINAPI
 RmJoinSession(
     _Out_ DWORD *pSessionHandle,
     _In_reads_(CCH_RM_SESSION_KEY+1) const WCHAR strSessionKey[]);
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmEndSession
 // Purpose: Terminates and cleans up an existing session.
@@ -184,6 +188,7 @@ RmJoinSession(
 //            No session exists for the supplied handle.
 DWORD WINAPI
 RmEndSession( _In_ DWORD dwSessionHandle );
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmRegisterResources
 // Purpose: Called if error is encountered. Installer
@@ -212,6 +217,7 @@ RmRegisterResources(
     _In_reads_opt_(nApplications) RM_UNIQUE_PROCESS rgApplications[],
     _In_ UINT nServices,
     _In_reads_opt_(nServices) LPCWSTR rgsServiceNames[]);
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmGetList
 // Purpose: Gets the list of applications affected by registered
@@ -243,6 +249,7 @@ RmGetList(
     _Inout_ UINT *pnProcInfo,
     _Inout_updates_opt_(*pnProcInfo) RM_PROCESS_INFO rgAffectedApps[],
     _Out_ LPDWORD lpdwRebootReasons );
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmShutdown
 // Purpose: Initiates application shutdown sequence.
@@ -269,6 +276,7 @@ RmShutdown(
     _In_ DWORD dwSessionHandle,
     _In_ ULONG lActionFlags,
     _In_opt_ RM_WRITE_STATUS_CALLBACK fnStatus);
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmRestart
 // Purpose: Applications automatically shutdown by RmShutdown() 
@@ -296,6 +304,7 @@ RmRestart(
         _In_ DWORD dwSessionHandle,
         _Reserved_ DWORD dwRestartFlags,
         _In_opt_ RM_WRITE_STATUS_CALLBACK fnStatus);
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmCancelCurrentTask()
 // Purpose: Notifies Restart Manager to cancel the task it is performing
@@ -310,6 +319,7 @@ RmRestart(
 DWORD WINAPI
 RmCancelCurrentTask(
         _In_ DWORD dwSessionHandle);
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmAddFilter()
 // Purpose: Adds a filter for process module (ie. executable name), process ID,
@@ -327,6 +337,7 @@ RmAddFilter(
         _In_opt_ RM_UNIQUE_PROCESS *pProcess,
         _In_opt_ LPCWSTR strServiceShortName,
         _In_ RM_FILTER_ACTION FilterAction );
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmRemoveFilter()
 // Purpose: Removes a previously added filter for process module
@@ -344,6 +355,7 @@ RmRemoveFilter(
         _In_opt_ LPCWSTR strModuleName,
         _In_opt_ RM_UNIQUE_PROCESS *pProcess,
         _In_opt_ LPCWSTR strServiceShortName );
+_Win32_SupportedOS_WindowsVista_
 
 // Function: RmGetFilterList()
 // Purpose: Writes a set of currenly applied filters

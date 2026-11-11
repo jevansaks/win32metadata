@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -56,6 +57,7 @@ extern "C"
 //
 
 #define CIADMIN L"::_nodocstore_::"
+_Win32_SupportedOS_Windows2000_
 
 //
 // Minimal support for persistent handlers.
@@ -73,10 +75,12 @@ STDAPI LoadIFilterEx( PCWSTR pwcsPath,
                       DWORD dwFlags,
                       REFIID riid,
                       _COM_Outptr_  void ** ppIUnk );
+_Win32_SupportedOS_Windows2000_
 
 STDAPI BindIFilterFromStorage(_In_ IStorage * pStg,
                               _In_ IUnknown * pUnkOuter,
                               _Outptr_ void ** ppIUnk );
+_Win32_SupportedOS_Windows2000_
 
 STDAPI BindIFilterFromStream(_In_ IStream * pStm,
                              _In_ IUnknown * pUnkOuter,
@@ -228,6 +232,7 @@ STDAPI BindIFilterFromStream(_In_ IStream * pStm,
 #define CICAT_NO_QUERY    0x8
 #define CICAT_GET_STATE   0x10
 #define CICAT_ALL_OPENED  0x20
+_Win32_SupportedOS_Windows2000_
 
 STDAPI SetCatalogState ( WCHAR const * pwcsCat,
                          WCHAR const * pwcsMachine,

@@ -1,0 +1,73 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h b/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*+--------------------------------------------------------------------------
+ 
+ Microsoft Windows
+@@ -93,6 +94,7 @@
+     UINT32 version;
+ } TBS_CONTEXT_PARAMS, *PTBS_CONTEXT_PARAMS;
+ typedef const TBS_CONTEXT_PARAMS *PCTBS_CONTEXT_PARAMS;
++_Win32_SupportedOS_WindowsVista_
+ 
+ TBS_RESULT WINAPI
+ Tbsi_Context_Create(
+@@ -103,10 +105,12 @@
+ Tbsi_Tpm_Vendor_Maintenance_Mode(
+     _In_ PCTBS_CONTEXT_PARAMS pContextParams,
+     _Out_ PTBS_HCONTEXT phContext);
++_Win32_SupportedOS_WindowsVista_
+ 
+ TBS_RESULT WINAPI
+ Tbsip_Context_Close(
+     _In_ TBS_HCONTEXT   hContext);
++_Win32_SupportedOS_WindowsVista_
+ 
+ TBS_RESULT WINAPI
+ Tbsip_Submit_Command(
+@@ -117,10 +121,12 @@
+     _In_ UINT32 cbCommand,
+     _Out_writes_bytes_(*pcbResult) PBYTE pabResult,
+     _Inout_ PUINT32 pcbResult);
++_Win32_SupportedOS_WindowsVista_
+ 
+ TBS_RESULT WINAPI
+ Tbsip_Cancel_Commands(
+     _In_ TBS_HCONTEXT hContext);
++_Win32_SupportedOS_WindowsVista_
+ 
+ TBS_RESULT WINAPI
+ Tbsi_Physical_Presence_Command(
+@@ -212,11 +218,13 @@
+ } TPM_DEVICE_INFO, *PTPM_DEVICE_INFO;
+ typedef const TPM_DEVICE_INFO *PCTPM_DEVICE_INFO;
+ #endif //TPM_VERSION_UNKNOWN
++_Win32_SupportedOS_Windows8_
+ 
+ TBS_RESULT WINAPI
+ Tbsi_GetDeviceInfo(
+     _In_ UINT32 Size,
+     _Out_writes_bytes_(Size) PVOID Info);
++_Win32_SupportedOS_Windows8_
+ 
+ _Success_(return == TBS_SUCCESS)
+ TBS_RESULT WINAPI
+@@ -225,6 +233,7 @@
+     _In_ TBS_OWNERAUTH_TYPE ownerauthType,
+     _Out_writes_bytes_to_opt_(*pOutputBufLen, *pOutputBufLen) PBYTE pOutputBuf,
+     _Inout_  PUINT32 pOutputBufLen);
++_Win32_SupportedOS_Windows8_
+ 
+ TBS_RESULT WINAPI
+ Tbsi_Revoke_Attestation();
+@@ -280,6 +289,7 @@
+ #define TBS_TCGLOG_DRTM_BOOT        4
+ // (User mode only) Returns the DRTM log associated with the most recent clean boot
+ #define TBS_TCGLOG_DRTM_RESUME      5
++_Win32_SupportedOS_17134_
+ // (User mode only) Returns the DRTM log associated with the current resume from hibernation
+ 
+ _Success_(return == TBS_SUCCESS)

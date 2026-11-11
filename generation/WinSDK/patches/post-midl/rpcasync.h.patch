@@ -1,0 +1,209 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcasync.h b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcasync.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/rpcasync.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/rpcasync.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ #include <winapifamily.h>
+ 
+ /*++
+@@ -178,6 +179,7 @@
+ #define RpcAsyncGetCallHandle(pAsync) (((PRPC_ASYNC_STATE) pAsync)->RuntimeInfo)
+ 
+ #if !defined(_KRPCENV_)
++_Win32_SupportedOS_Windows2000_
+ RPCRTAPI
+ _Must_inspect_result_
+ RPC_STATUS
+@@ -186,6 +188,7 @@
+     _In_ PRPC_ASYNC_STATE pAsync
+     ) ;
+ #endif
++_Win32_SupportedOS_Windows2000_
+ 
+ RPCRTAPI
+ _Must_inspect_result_
+@@ -195,6 +198,7 @@
+     _Out_writes_bytes_(Size) PRPC_ASYNC_STATE pAsync,
+     _In_ unsigned int     Size
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ RPCRTAPI
+ _Must_inspect_result_
+@@ -203,6 +207,7 @@
+ RpcAsyncGetCallStatus (
+     _In_ PRPC_ASYNC_STATE pAsync
+     ) ;
++_Win32_SupportedOS_Windows2000_
+ 
+ RPCRTAPI
+ _Must_inspect_result_
+@@ -212,6 +217,7 @@
+     _Inout_ PRPC_ASYNC_STATE pAsync,
+     _Out_opt_ void *Reply
+     ) ;
++_Win32_SupportedOS_Windows2000_
+ 
+ RPCRTAPI
+ _Must_inspect_result_
+@@ -221,6 +227,7 @@
+     _Inout_ PRPC_ASYNC_STATE pAsync,
+     _In_ unsigned long ExceptionCode
+     ) ;
++_Win32_SupportedOS_Windows2000_
+ 
+ RPCRTAPI
+ _Must_inspect_result_
+@@ -307,6 +314,7 @@
+     void *CurrentPos;
+     void *Head;
+ } RPC_ERROR_ENUM_HANDLE;
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -314,6 +322,7 @@
+ RpcErrorStartEnumeration (
+     _Out_ RPC_ERROR_ENUM_HANDLE *EnumHandle
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -323,6 +332,7 @@
+     _In_ BOOL CopyStrings, 
+     _Out_ RPC_EXTENDED_ERROR_INFO *ErrorInfo
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -330,6 +340,7 @@
+ RpcErrorEndEnumeration (
+     _Inout_ RPC_ERROR_ENUM_HANDLE *EnumHandle
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -337,6 +348,7 @@
+ RpcErrorResetEnumeration (
+     _Inout_ RPC_ERROR_ENUM_HANDLE *EnumHandle
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -345,6 +357,7 @@
+     _In_ RPC_ERROR_ENUM_HANDLE *EnumHandle, 
+     _Out_ int *Records
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -354,6 +367,7 @@
+     _Outptr_result_bytebuffer_(*BlobSize) PVOID *ErrorBlob, 
+     _Out_ size_t *BlobSize
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -363,6 +377,7 @@
+     _In_ size_t BlobSize, 
+     _Out_ RPC_ERROR_ENUM_HANDLE *EnumHandle
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -370,6 +385,7 @@
+ RpcErrorAddRecord (
+     _In_ RPC_EXTENDED_ERROR_INFO *ErrorInfo
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ void 
+@@ -394,6 +410,7 @@
+ RpcAsyncCleanupThread (
+     _In_ DWORD dwTimeout
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS
+@@ -408,6 +425,7 @@
+     _In_opt_ PVOID Reserved4,
+     _Out_ PVOID *pAuthzClientContext
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -415,6 +433,7 @@
+ RpcFreeAuthorizationContext (
+     _Inout_ PVOID *pAuthzClientContext
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS
+@@ -423,6 +442,7 @@
+     _In_opt_ RPC_BINDING_HANDLE ServerBindingHandle,
+     _In_ PVOID UserContext
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS
+@@ -614,6 +634,7 @@
+ } RPC_CALL_ATTRIBUTES_V3_A;
+ 
+ #endif // (NTDDI_VERSION >= NTDDI_WIN8)
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS
+@@ -622,6 +643,7 @@
+     _In_opt_ RPC_BINDING_HANDLE ClientBinding,
+     _Inout_ void *RpcCallAttributes
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ RPCRTAPI
+ RPC_STATUS
+@@ -669,6 +691,7 @@
+ } RPC_NOTIFICATIONS;
+ 
+ #define RpcNotificationCallStatusChange    RpcNotificationClientDisconnect
++_Win32_SupportedOS_WindowsVista_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -679,6 +702,7 @@
+     _In_ RPC_NOTIFICATION_TYPES NotificationType,
+     _In_ RPC_ASYNC_NOTIFICATION_INFO *NotificationInfo
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -699,6 +723,7 @@
+ 
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
++_Win32_SupportedOS_WindowsVista_
+ 
+ RPCRTAPI
+ RPC_STATUS 
+@@ -708,6 +733,7 @@
+     _In_ RPC_BINDING_HANDLE Binding,
+     _In_ RPC_IF_HANDLE IfSpec    
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ RPCRTAPI
+ RPC_STATUS 

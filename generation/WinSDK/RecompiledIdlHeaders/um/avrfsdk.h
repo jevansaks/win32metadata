@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0011    // Increment this if a change has global effects
 
 Copyright (c) 2004  Microsoft Corporation
@@ -148,6 +149,7 @@ VerifierEnumerateResource(
     AVRF_RESOURCE_ENUMERATE_CALLBACK ResourceCallback,
     PVOID  EnumerationContext
     );
+_Win32_SupportedOS_WindowsVista_
     
 //
 // API to find out if per user verifier settings are enabled

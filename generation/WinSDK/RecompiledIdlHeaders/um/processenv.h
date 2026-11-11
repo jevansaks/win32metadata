@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * ProcessEnv.h -- ApiSet Contract for api-ms-win-core-processenvironment-l1     *
@@ -41,6 +42,7 @@ SetEnvironmentStringsW(
 
 #pragma region PC Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_PC_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
 
 WINBASEAPI
 HANDLE
@@ -75,6 +77,7 @@ SetStdHandleEx(
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 LPSTR
@@ -82,6 +85,7 @@ WINAPI
 GetCommandLineA(
     VOID
     );
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 LPWSTR
@@ -95,6 +99,7 @@ GetCommandLineW(
 #else
 #define GetCommandLine  GetCommandLineA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _NullNull_terminated_
@@ -103,6 +108,7 @@ WINAPI
 GetEnvironmentStrings(
     VOID
     );
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _NullNull_terminated_
@@ -117,6 +123,8 @@ GetEnvironmentStringsW(
 #else
 #define GetEnvironmentStringsA  GetEnvironmentStrings
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -124,6 +132,8 @@ WINAPI
 FreeEnvironmentStringsA(
     _In_ _Pre_ _NullNull_terminated_ LPCH penv
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -137,6 +147,8 @@ FreeEnvironmentStringsW(
 #else
 #define FreeEnvironmentStrings  FreeEnvironmentStringsA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Success_(return != 0 && return < nSize)
@@ -147,6 +159,8 @@ GetEnvironmentVariableA(
     _Out_writes_to_opt_(nSize,return + 1) LPSTR lpBuffer,
     _In_ DWORD nSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Success_(return != 0 && return < nSize)
@@ -163,6 +177,8 @@ GetEnvironmentVariableW(
 #else
 #define GetEnvironmentVariable  GetEnvironmentVariableA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -171,6 +187,8 @@ SetEnvironmentVariableA(
     _In_ LPCSTR lpName,
     _In_opt_ LPCSTR lpValue
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -185,6 +203,8 @@ SetEnvironmentVariableW(
 #else
 #define SetEnvironmentVariable  SetEnvironmentVariableA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 WINBASEAPI
 _Success_(return != 0 && return <= nSize)
@@ -195,6 +215,8 @@ ExpandEnvironmentStringsA(
     _Out_writes_to_opt_(nSize,return) LPSTR lpDst,
     _In_ DWORD nSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 WINBASEAPI
 _Success_(return != 0 && return <= nSize)
@@ -261,6 +283,8 @@ GetCurrentDirectoryW(
 
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 DWORD
@@ -279,6 +303,8 @@ SearchPathW(
 #else
 #define SearchPath  SearchPathA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 DWORD
@@ -298,6 +324,7 @@ SearchPathA(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if _WIN32_WINNT >= 0x0502
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -305,6 +332,7 @@ WINAPI
 NeedCurrentDirectoryForExePathA(
     _In_ LPCSTR ExeName
     );
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /****************************************************************************
 
  DCIMAN.H
@@ -34,12 +35,15 @@
  ***************************************************************************/
 
 DECLARE_HANDLE(HWINWATCH);  // context handle for WinWatch instance
+_Win32_SupportedOS_Windows2000_
 
 /****************************************************************************
  ***************************************************************************/
 
 extern HDC WINAPI DCIOpenProvider(void);
+_Win32_SupportedOS_Windows2000_
 extern void WINAPI DCICloseProvider(HDC hdc);
+_Win32_SupportedOS_Windows2000_
 
 extern int WINAPI DCICreatePrimary(HDC hdc, LPDCISURFACEINFO FAR *lplpSurface);
 extern int WINAPI DCICreateOffscreen(HDC hdc, DWORD dwCompression, DWORD dwRedMask,

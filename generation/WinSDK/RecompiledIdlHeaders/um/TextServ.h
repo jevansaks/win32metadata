@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*	@doc EXTERNAL
  *
  *	@module TEXTSRV.H  Text Service Interface |
@@ -496,6 +497,7 @@ interface IRicheditUiaOverrides : public IUnknown
 		PROPERTYID propertyId,
 		VARIANT *pRetValue) = 0;
 };
+_Win32_SupportedOS_WindowsVista_
 
 //+-----------------------------------------------------------------------
 // 	Factories

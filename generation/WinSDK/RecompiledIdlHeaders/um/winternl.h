@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /************************************************************************
 *                                                                       *
 *   winternl.h -- This module defines the internal NT APIs and data     *
@@ -455,6 +456,7 @@ typedef struct __PUBLIC_OBJECT_TYPE_INFORMATION {
 #define RtlMoveMemory(Destination,Source,Length) memmove((Destination),(Source),(Length))
 #define RtlFillMemory(Destination,Length,Fill) memset((Destination),(Fill),(Length))
 #define RtlZeroMemory(Destination,Length) memset((Destination),0,(Length))
+_Win32_SupportedOS_Windows2000_
 
 //
 // use the Win32 API instead
@@ -581,6 +583,7 @@ NtSetInformationKey (
     _In_reads_bytes_(KeySetInformationLength) PVOID KeySetInformation,
     _In_ ULONG KeySetInformationLength
     );
+_Win32_SupportedOS_Windows2000_
 
 //
 // use the Win32 API instead
@@ -600,6 +603,7 @@ NtDeviceIoControlFile (
     OUT PVOID OutputBuffer OPTIONAL,
     IN ULONG OutputBufferLength
     );
+_Win32_SupportedOS_Windows2000_
 
 //
 // use the Win32 API instead
@@ -624,6 +628,7 @@ RtlIsNameLegalDOS8Dot3 (
     IN OUT POEM_STRING OemName OPTIONAL,
     IN OUT PBOOLEAN NameContainsSpaces OPTIONAL
     );
+_Win32_SupportedOS_WindowsXP_
 
 //
 // This function might be needed for some of the internal Windows functions,
@@ -755,6 +760,7 @@ RtlTimeToSecondsSince1970 (
     PLARGE_INTEGER Time,
     PULONG ElapsedSeconds
     );
+_Win32_SupportedOS_Windows2000_
 
 //
 // These APIs might be need for some of the internal Windows functions,
@@ -765,12 +771,14 @@ NTAPI
 RtlFreeAnsiString (
     PANSI_STRING AnsiString
     );
+_Win32_SupportedOS_Windows2000_
 
 VOID
 NTAPI
 RtlFreeUnicodeString (
     PUNICODE_STRING UnicodeString
     );
+_Win32_SupportedOS_Windows2000_
 
 VOID
 NTAPI
@@ -805,6 +813,7 @@ RtlInitAnsiStringEx (
     PANSI_STRING DestinationString,
     PCSZ SourceString
     );
+_Win32_SupportedOS_Windows2000_
 
 VOID
 NTAPI
@@ -812,6 +821,7 @@ RtlInitUnicodeString (
     PUNICODE_STRING DestinationString,
     PCWSTR SourceString
     );
+_Win32_SupportedOS_Windows2000_
 
 NTSTATUS
 NTAPI
@@ -820,6 +830,7 @@ RtlAnsiStringToUnicodeString (
     PCANSI_STRING SourceString,
     BOOLEAN AllocateDestinationString
     );
+_Win32_SupportedOS_Windows2000_
 
 NTSTATUS
 NTAPI
@@ -828,6 +839,7 @@ RtlUnicodeStringToAnsiString (
     PCUNICODE_STRING SourceString,
     BOOLEAN AllocateDestinationString
     );
+_Win32_SupportedOS_Windows2000_
 
 NTSTATUS
 NTAPI
@@ -836,6 +848,7 @@ RtlUnicodeStringToOemString(
     PCUNICODE_STRING SourceString,
     BOOLEAN AllocateDestinationString
     );
+_Win32_SupportedOS_Windows2000_
 
 //
 // Use the Win32 API instead
@@ -850,6 +863,7 @@ RtlUnicodeToMultiByteSize(
     _In_reads_bytes_(BytesInUnicodeString) PWCH UnicodeString,
     _In_ ULONG BytesInUnicodeString
     );
+_Win32_SupportedOS_Windows2000_
 
 //
 // Use the C runtime function instead
@@ -862,6 +876,7 @@ RtlCharToInteger (
     ULONG Base,
     PULONG Value
     );
+_Win32_SupportedOS_WindowsXP_
 
 //
 // use the Win32 API instead

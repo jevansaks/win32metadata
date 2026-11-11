@@ -1,0 +1,41 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0001    // Increment this if a change has global effects
+ 
+ Copyright (c) 1991-1999  Microsoft Corporation
+@@ -54,6 +55,7 @@
+ 
+ #define USE_LEVEL(LEVELFLAGS) ((LEVELFLAGS) & 0xffff)
+ #define USE_FLAGS(LEVELFLAGS) ((LEVELFLAGS) & 0xffff0000)
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ //
+@@ -73,6 +75,7 @@
+     LPBYTE buf,
+     _Out_opt_ LPDWORD parm_err
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ NET_API_STATUS NET_API_FUNCTION
+ NetUseDel (
+@@ -80,6 +83,7 @@
+     _In_ LMSTR  UseName,
+     _In_ DWORD ForceLevelFlags
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ NET_API_STATUS NET_API_FUNCTION
+ NetUseEnum (
+@@ -91,6 +95,7 @@
+     _Out_ LPDWORD TotalEntries,
+     _Inout_opt_ LPDWORD ResumeHandle
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ NET_API_STATUS NET_API_FUNCTION
+ NetUseGetInfo (

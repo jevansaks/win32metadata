@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * securityappcontainer.h -- ApiSet Contract for api-ms-win-security-appcontainer-l1 *
@@ -27,6 +28,8 @@ extern "C" {
 #endif
 
 #if NTDDI_VERSION >= NTDDI_WIN8
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 //
 // Token Extension APIs

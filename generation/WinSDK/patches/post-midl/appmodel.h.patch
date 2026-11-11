@@ -43,7 +43,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      );
  
  WINBASEAPI
-@@ -590,7 +591,7 @@
+@@ -431,6 +432,7 @@
+     _Inout_ UINT32* packageRelativeApplicationIdLength,
+     _Out_writes_opt_(*packageRelativeApplicationIdLength) PWSTR packageRelativeApplicationId
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ /* ---------------------------------------------------------------- */
+ 
+@@ -450,6 +452,7 @@
+     _Inout_ UINT32* bufferLength,
+     _Out_writes_opt_(*bufferLength) WCHAR* buffer
+     );
++_Win32_SupportedOS_Windows81_
+ 
+ /* Any combination of PACKAGE_FILTER_* */
+ WINBASEAPI
+@@ -590,7 +593,7 @@
  GetCurrentPackageInfo(
      _In_ const UINT32 flags,
      _Inout_ UINT32* bufferLength,
@@ -52,7 +68,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      _Out_opt_ UINT32* count
      );
  
-@@ -633,7 +634,7 @@
+@@ -633,7 +636,7 @@
      _In_ PACKAGE_INFO_REFERENCE packageInfoReference,
      _In_ const UINT32 flags,
      _Inout_ UINT32* bufferLength,
@@ -61,7 +77,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      _Out_opt_ UINT32* count
      );
  
-@@ -644,7 +645,7 @@
+@@ -644,7 +647,7 @@
  GetPackageApplicationIds(
      _In_ PACKAGE_INFO_REFERENCE packageInfoReference,
      _Inout_ UINT32* bufferLength,
@@ -70,7 +86,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      _Out_opt_ UINT32* count
      );
  
-@@ -658,7 +659,7 @@
+@@ -658,7 +661,7 @@
      _In_ const UINT32 flags,
      _In_ PackagePathType packagePathType,
      _Inout_ UINT32* bufferLength,

@@ -1,0 +1,245 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wdspxe.h b/generation/WinSDK/RecompiledIdlHeaders/um/wdspxe.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/wdspxe.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/wdspxe.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -249,6 +250,7 @@
+ #define PXE_PROV_FILTER_ALL         0x0000
+ #define PXE_PROV_FILTER_DHCP_ONLY   0x0001
+ #define PXE_PROV_FILTER_PXE_ONLY    0x0002
++_Win32_SupportedOS_Server2008_
+ //
+ // Provider Registration and Enumeration APIs
+ //
+@@ -261,12 +263,14 @@
+     _In_ BOOL bIsCritical,
+     _Out_opt_ PHKEY phProviderKey
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+ PxeProviderUnRegister (
+     _In_ LPCWSTR pszProviderName
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+@@ -274,12 +278,14 @@
+     _In_ LPCWSTR pszProviderName,
+     _Out_ PULONG puIndex
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+ PxeProviderEnumFirst (
+     _Out_ HANDLE *phEnum
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+@@ -287,17 +293,20 @@
+     _In_ HANDLE hEnum,
+     _Out_ PPXE_PROVIDER *ppProvider
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+ PxeProviderEnumClose (
+     _In_ HANDLE hEnum
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PxeProviderFreeInfo (
+     _In_ PPXE_PROVIDER pProvider
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ //
+ // Callback Registration
+@@ -310,6 +319,7 @@
+     _In_ PVOID pCallbackFunction,
+     _In_opt_ PVOID pContext
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ //
+ // UDP Send/Boot Action
+@@ -322,6 +332,7 @@
+     _In_ ULONG uPacketLen,
+     _In_ PXE_ADDRESS *pAddress
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ //
+ // Notify of Async Processing
+@@ -332,6 +343,7 @@
+     _In_ HANDLE hClientRequest,
+     _In_ PXE_BOOT_ACTION Action
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ //
+ // Trace
+@@ -354,6 +366,8 @@
+     _In_ LPCWSTR pszFormat,
+     _In_ va_list Params
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Server2008_
+ 
+ //
+ // Packet Allocation
+@@ -365,6 +379,7 @@
+     _In_ HANDLE hClientRequest,
+     _In_ ULONG uSize
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+@@ -373,6 +388,7 @@
+     _In_ HANDLE hClientRequest,
+     _In_ PVOID pPacket
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ //
+ // Provider Attributes
+@@ -385,6 +401,7 @@
+     _In_reads_bytes_(uParamLen) PVOID pParameterBuffer,
+     _In_ ULONG uParamLen
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ //
+ // Dhcp Functions
+@@ -398,6 +415,7 @@
+     _In_ ULONG uMaxReplyPacketLen,
+     _Out_ PULONG puReplyPacketLen
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ DWORD
+ PXEAPI
+@@ -408,6 +426,7 @@
+     _In_ ULONG cbReply,
+     _Out_ PULONG pcbReplyUsed
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+@@ -419,6 +438,7 @@
+     _In_ BYTE bOptionLen,
+     _In_reads_bytes_opt_(bOptionLen) PVOID pValue
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -431,6 +451,7 @@
+     _In_ WORD cbOption,
+     _In_reads_bytes_(cbOption) PVOID pOption
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+@@ -441,6 +462,7 @@
+     _In_ USHORT uBufferLen,
+     _In_reads_bytes_(uBufferLen) PVOID pBuffer
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ _Success_(return == ERROR_SUCCESS)
+ DWORD
+@@ -452,6 +474,7 @@
+     _In_ USHORT cbBuffer,
+     _In_reads_bytes_(cbBuffer) PVOID pBuffer
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+@@ -461,6 +484,7 @@
+     _In_ BOOL bRequestPacket,
+     _Out_opt_ PBOOL pbPxeOptionPresent
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ DWORD
+ PXEAPI
+@@ -470,6 +494,7 @@
+     _In_ BOOL bRequestPacket,
+     _Out_opt_ PBOOL pbPxeOptionPresent
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+@@ -481,6 +506,7 @@
+     _Out_opt_ PBYTE pbOptionLen,
+     _Outptr_opt_result_bytebuffer_(*pbOptionLen) PVOID *ppOptionValue
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ DWORD
+ PXEAPI
+@@ -492,6 +518,7 @@
+     _Out_opt_ PWORD pwOptionLen,
+     _Outptr_opt_result_bytebuffer_(*pwOptionLen) PVOID *ppOptionValue
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ DWORD
+ PXEAPI
+@@ -503,6 +530,7 @@
+     _Out_opt_ PBYTE pbOptionLen,
+     _Outptr_opt_result_bytebuffer_(*pbOptionLen) PVOID *ppOptionValue
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ DWORD
+ PXEAPI
+@@ -515,6 +543,7 @@
+     _Out_opt_ PWORD pwOptionLen,
+     _Outptr_opt_result_bytebuffer_(*pwOptionLen) PVOID *ppOptionValue
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ DWORD
+ PXEAPI
+@@ -527,6 +556,7 @@
+     _Outptr_result_bytebuffer_(*pcbInnerPacket) PBYTE *ppInnerPacket,
+     _Out_ PULONG pcbInnerPacket
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ DWORD
+ PXEAPI
+@@ -539,6 +569,7 @@
+     _In_ ULONG cbReplyBuffer,
+     _Out_ PULONG pcbReplyBuffer
+     );
++_Win32_SupportedOS_Server2008_
+ 
+ //
+ // Server Information
+@@ -550,6 +581,7 @@
+     _Out_writes_bytes_(uBufferLen) PVOID pBuffer,
+     _In_ ULONG uBufferLen
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ DWORD
+ PXEAPI

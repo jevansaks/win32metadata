@@ -50,6 +50,7 @@ Notes:
 #ifdef __cplusplus
 extern "C" {
 #endif
+_Win32_SetLastError_
 
 //
 // Exported Routines.
@@ -84,6 +85,8 @@ IcmpCreateFile(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 //++
 //
 // Routine Name:
@@ -112,6 +115,8 @@ Icmp6CreateFile(
     VOID
     );
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //++
 //
@@ -194,6 +199,8 @@ IcmpCloseHandle(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 IPHLPAPI_DLL_LINKAGE
 DWORD
@@ -283,6 +290,8 @@ IcmpSendEcho(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 IPHLPAPI_DLL_LINKAGE
 DWORD
@@ -313,6 +322,8 @@ IcmpSendEcho2(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if (NTDDI_VERSION >= NTDDI_VISTASP1)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI
@@ -344,6 +355,8 @@ IcmpSendEcho2Ex(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI
@@ -397,6 +410,8 @@ Icmp6SendEcho2(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 IPHLPAPI_DLL_LINKAGE
 DWORD
@@ -408,6 +423,8 @@ IcmpParseReplies(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 IPHLPAPI_DLL_LINKAGE
 DWORD
 WINAPI

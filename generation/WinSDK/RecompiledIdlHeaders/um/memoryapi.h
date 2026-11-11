@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * memoryapi.h -- ApiSet Contract for api-ms-win-core-memory-l1-1-0              *
@@ -76,6 +77,8 @@ VirtualProtect(
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 _When_(((dwFreeType&(MEM_RELEASE|MEM_DECOMMIT)))==(MEM_RELEASE|MEM_DECOMMIT),
     __drv_reportError("Passing both MEM_RELEASE and MEM_DECOMMIT to VirtualFree is not allowed. This results in the failure of this call"))
@@ -103,6 +106,8 @@ VirtualQuery(
     _Out_writes_bytes_to_(dwLength,return) PMEMORY_BASIC_INFORMATION lpBuffer,
     _In_ SIZE_T dwLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -134,6 +139,8 @@ VirtualProtectEx(
 
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 SIZE_T
@@ -144,6 +151,8 @@ VirtualQueryEx(
     _Out_writes_bytes_to_(dwLength,return) PMEMORY_BASIC_INFORMATION lpBuffer,
     _In_ SIZE_T dwLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -156,6 +165,8 @@ ReadProcessMemory(
     _In_ SIZE_T nSize,
     _Out_opt_ SIZE_T* lpNumberOfBytesRead
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -168,6 +179,8 @@ WriteProcessMemory(
     _In_ SIZE_T nSize,
     _Out_opt_ SIZE_T* lpNumberOfBytesWritten
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -185,6 +198,8 @@ CreateFileMappingW(
 #ifdef UNICODE
 #define CreateFileMapping  CreateFileMappingW
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -199,6 +214,8 @@ OpenFileMappingW(
 #ifdef UNICODE
 #define OpenFileMapping  OpenFileMappingW
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Ret_maybenull_  __out_data_source(FILE)
@@ -211,6 +228,8 @@ MapViewOfFile(
     _In_ DWORD dwFileOffsetLow,
     _In_ SIZE_T dwNumberOfBytesToMap
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Ret_maybenull_  __out_data_source(FILE)
@@ -258,6 +277,8 @@ VirtualFreeEx(
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -272,6 +293,8 @@ FlushViewOfFile(
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -285,6 +308,7 @@ UnmapViewOfFile(
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 SIZE_T
@@ -292,6 +316,8 @@ WINAPI
 GetLargePageMinimum(
     VOID
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -301,6 +327,7 @@ GetProcessWorkingSetSize(
     _Out_ PSIZE_T lpMinimumWorkingSetSize,
     _Out_ PSIZE_T lpMaximumWorkingSetSize
     );
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -312,6 +339,8 @@ GetProcessWorkingSetSizeEx(
     _Out_ PSIZE_T lpMaximumWorkingSetSize,
     _Out_ PDWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -321,6 +350,8 @@ SetProcessWorkingSetSize(
     _In_ SIZE_T dwMinimumWorkingSetSize,
     _In_ SIZE_T dwMaximumWorkingSetSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -337,6 +368,8 @@ SetProcessWorkingSetSizeEx(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -345,6 +378,8 @@ VirtualLock(
     _In_ LPVOID lpAddress,
     _In_ SIZE_T dwSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL
@@ -359,6 +394,7 @@ VirtualUnlock(
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Success_(return == 0)
@@ -372,6 +408,7 @@ GetWriteWatch(
     _Inout_opt_ ULONG_PTR* lpdwCount,
     _Out_opt_ LPDWORD lpdwGranularity
     );
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 UINT
@@ -393,6 +430,8 @@ typedef enum _MEMORY_RESOURCE_NOTIFICATION_TYPE {
     LowMemoryResourceNotification,
     HighMemoryResourceNotification
 } MEMORY_RESOURCE_NOTIFICATION_TYPE;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -401,6 +440,8 @@ WINAPI
 CreateMemoryResourceNotification(
     _In_ MEMORY_RESOURCE_NOTIFICATION_TYPE NotificationType
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -426,6 +467,8 @@ QueryMemoryResourceNotification(
 #define FILE_CACHE_MAX_HARD_DISABLE     0x00000002
 #define FILE_CACHE_MIN_HARD_ENABLE      0x00000004
 #define FILE_CACHE_MIN_HARD_DISABLE     0x00000008
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -436,6 +479,8 @@ GetSystemFileCacheSize(
     _Out_ PSIZE_T lpMaximumFileCacheSize,
     _Out_ PDWORD lpFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -455,6 +500,8 @@ SetSystemFileCacheSize(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_VISTA)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -482,6 +529,8 @@ typedef struct _WIN32_MEMORY_RANGE_ENTRY {
     PVOID VirtualAddress;
     SIZE_T NumberOfBytes;
 } WIN32_MEMORY_RANGE_ENTRY, *PWIN32_MEMORY_RANGE_ENTRY;
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 WINBASEAPI
 BOOL
@@ -502,6 +551,8 @@ PrefetchVirtualMemory(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -514,6 +565,8 @@ CreateFileMappingFromApp(
     _In_ ULONG64 MaximumSize,
     _In_opt_ PCWSTR Name
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 WINBASEAPI
 _Ret_maybenull_  __out_data_source(FILE)
@@ -525,6 +578,8 @@ MapViewOfFileFromApp(
     _In_ ULONG64 FileOffset,
     _In_ SIZE_T NumberOfBytesToMap
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 WINBASEAPI
 BOOL
@@ -543,6 +598,8 @@ UnmapViewOfFileEx(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WINXP)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -553,6 +610,8 @@ AllocateUserPhysicalPages(
     _Inout_ PULONG_PTR NumberOfPages,
     _Out_writes_to_(*NumberOfPages,*NumberOfPages) PULONG_PTR PageArray
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -563,6 +622,8 @@ FreeUserPhysicalPages(
     _Inout_ PULONG_PTR NumberOfPages,
     _In_reads_(*NumberOfPages) PULONG_PTR PageArray
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -577,6 +638,8 @@ MapUserPhysicalPages(
 #endif // (_WIN32_WINNT >= _WIN32_WINNT_WINXP)
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_VISTA)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -588,6 +651,8 @@ AllocateUserPhysicalPagesNuma(
     _Out_writes_to_(*NumberOfPages,*NumberOfPages) PULONG_PTR PageArray,
     _In_ DWORD nndPreferred
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 _Post_writable_byte_size_(dwSize)
@@ -607,6 +672,8 @@ VirtualAllocExNuma(
 #if (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
 
 #define MEHC_PATROL_SCRUBBER_PRESENT  0x1
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -625,6 +692,7 @@ BAD_MEMORY_CALLBACK_ROUTINE(
     );
 
 typedef BAD_MEMORY_CALLBACK_ROUTINE *PBAD_MEMORY_CALLBACK_ROUTINE;
+_Win32_SupportedOS_Windows8_
 
 WINBASEAPI
 _Success_(return != NULL)
@@ -633,6 +701,8 @@ WINAPI
 RegisterBadMemoryNotification(
     _In_ PBAD_MEMORY_CALLBACK_ROUTINE Callback
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -666,6 +736,7 @@ typedef enum OFFER_PRIORITY {
     VmOfferPriorityBelowNormal,
     VmOfferPriorityNormal
 } OFFER_PRIORITY;
+_Win32_SupportedOS_Windows81_
 
 DWORD
 WINAPI
@@ -674,6 +745,7 @@ OfferVirtualMemory(
     _In_ SIZE_T Size,
     _In_ OFFER_PRIORITY Priority
     );
+_Win32_SupportedOS_Windows81_
 
 DWORD
 WINAPI
@@ -681,6 +753,7 @@ ReclaimVirtualMemory(
     _In_reads_(Size) void const* VirtualAddress,
     _In_ SIZE_T Size
     );
+_Win32_SupportedOS_Windows81_
 
 DWORD
 WINAPI
@@ -694,6 +767,8 @@ DiscardVirtualMemory(
 #endif /* (_WIN32_WINNT >= _WIN32_WINNT_WINBLUE) */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WIN10)
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 BOOL
@@ -718,6 +793,8 @@ SetProcessValidCallTargetsForMappedView(
     _In_ HANDLE Section,
     _In_ ULONG64 ExpectedFileOffset
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -730,6 +807,8 @@ VirtualAllocFromApp(
     _In_ ULONG AllocationType,
     _In_ ULONG Protection
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -741,6 +820,8 @@ VirtualProtectFromApp(
     _In_ ULONG NewProtection,
     _Out_ PULONG OldProtection
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -894,6 +975,8 @@ typedef struct WIN32_MEMORY_REGION_INFORMATION {
 #if _MSC_VER >= 1200
 #pragma warning(pop)
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_14393_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -911,6 +994,8 @@ QueryVirtualMemoryInformation(
 #endif // (NTDDI_VERSION >= NTDDI_WIN10_RS1)
 
 #if (NTDDI_VERSION >= NTDDI_WIN10_RS2)
+_Win32_SetLastError_
+_Win32_SupportedOS_15063_
 
 WINBASEAPI
 _Ret_maybenull_  __out_data_source(FILE)
@@ -961,6 +1046,8 @@ MapViewOfFile2(
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_15063_
 
 WINBASEAPI
 BOOL
@@ -987,6 +1074,8 @@ VirtualUnlockEx(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -1002,6 +1091,8 @@ VirtualAlloc2(
     _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
     _In_ ULONG ParameterCount
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_17134_
 
 WINBASEAPI
 _Ret_maybenull_  __out_data_source(FILE)
@@ -1024,6 +1115,8 @@ MapViewOfFile3(
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -1039,6 +1132,8 @@ VirtualAlloc2FromApp(
     _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
     _In_ ULONG ParameterCount
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Ret_maybenull_  __out_data_source(FILE)
@@ -1065,6 +1160,7 @@ MapViewOfFile3FromApp(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
 
 WINBASEAPI
 _Ret_maybenull_

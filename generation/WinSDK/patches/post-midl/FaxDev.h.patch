@@ -1,0 +1,86 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h b/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/FaxDev.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) Microsoft Corporation.  All rights reserved.
+@@ -115,6 +116,8 @@
+     IN DWORD_PTR dwParam2,
+     IN DWORD_PTR dwParam3
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxDevInitialize(
+@@ -123,10 +126,13 @@
+     OUT PFAX_LINECALLBACK *LineCallbackFunction,
+     IN  PFAX_SERVICE_CALLBACK FaxServiceCallback
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ HRESULT WINAPI FaxDevShutdown(
+     void
+ );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxDevVirtualDeviceCreation(
+@@ -136,6 +142,8 @@
+     IN  HANDLE CompletionPort,
+     IN  ULONG_PTR CompletionKey
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxDevStartJob(
+@@ -145,6 +153,8 @@
+     IN  HANDLE CompletionPortHandle,
+     IN  ULONG_PTR CompletionKey
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxDevEndJob(
+@@ -158,6 +168,8 @@
+     IN DWORD Reserved1,
+     IN DWORD Reserved2
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxDevSend(
+@@ -167,6 +179,8 @@
+     );
+ 
+ #define FAXDEVRECEIVE_SIZE 4096
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxDevReceive(
+@@ -176,6 +190,8 @@
+     );
+ 
+ #define FAXDEVREPORTSTATUS_SIZE 4096
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxDevReportStatus(
+@@ -184,6 +200,8 @@
+     IN  DWORD FaxStatusSize,
+     OUT LPDWORD FaxStatusSizeRequired
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxDevAbortOperation(

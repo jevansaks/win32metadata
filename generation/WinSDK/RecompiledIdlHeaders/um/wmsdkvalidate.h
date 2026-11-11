@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //*@@@+++@@@@******************************************************************
 //
 // Microsoft Windows Media
@@ -13,6 +14,7 @@
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+_Win32_SupportedOS_Windows2000_
 
 //
 // This routine examines the file extension in the URL or file name that is passed
@@ -25,6 +27,7 @@
 //
 
 HRESULT STDMETHODCALLTYPE WMCheckURLExtension( /* [in] */ LPCWSTR pwszURL );
+_Win32_SupportedOS_Windows2000_
 
 //
 // This routine examines the URL scheme that is passed in as an argument.  The routine
@@ -37,6 +40,7 @@ HRESULT STDMETHODCALLTYPE WMCheckURLExtension( /* [in] */ LPCWSTR pwszURL );
 //
 
 HRESULT STDMETHODCALLTYPE WMCheckURLScheme( /* [in] */ LPCWSTR pwszURLScheme );
+_Win32_SupportedOS_Windows2000_
 
 //
 // This routine returns S_OK if the data buffer looks like a file type that is supported
@@ -48,6 +52,7 @@ HRESULT STDMETHODCALLTYPE WMValidateData(
     /* [in] */ BYTE *pbData,
     /* [in, out] */ DWORD *pdwDataSize
     );
+_Win32_SupportedOS_Windows2000_
 
 //
 // This routine validates that a URL can be played in Offline mode.

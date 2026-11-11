@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 /*++
 
@@ -55,6 +56,8 @@ typedef struct _PROTECTED_FILE_DATA {
     WCHAR   FileName[MAX_PATH];
     DWORD   FileNumber;
 } PROTECTED_FILE_DATA, *PPROTECTED_FILE_DATA;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 
 BOOL
@@ -63,6 +66,7 @@ SfcGetNextProtectedFile(
     IN HANDLE RpcHandle, // must be NULL
     IN PPROTECTED_FILE_DATA ProtFileData
     );
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 WINAPI
@@ -70,6 +74,7 @@ SfcIsFileProtected(
     IN HANDLE RpcHandle, // must be NULL
     IN LPCWSTR ProtFileName
     );
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI

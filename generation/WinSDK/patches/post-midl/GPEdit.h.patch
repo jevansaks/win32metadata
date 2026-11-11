@@ -1,0 +1,57 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h b/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/GPEdit.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ //-----------------------------------------------------------------------------
+ //
+ // GPEDIT.H - Definitions and prototypes for Group Policy
+@@ -690,6 +691,7 @@
+ 
+ };
+ typedef IRSOPInformation *LPRSOPINFORMATION;
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ //=============================================================================
+@@ -713,6 +715,7 @@
+     _In_ LPOLESTR lpGPO,
+     _In_ LPOLESTR lpContainer,
+          BOOL fHighPriority);
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ //=============================================================================
+@@ -734,6 +737,7 @@
+ DeleteGPOLink(
+     _In_ LPOLESTR lpGPO,
+     _In_ LPOLESTR lpContainer);
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ //=============================================================================
+@@ -794,6 +798,7 @@
+     GROUP_POLICY_OBJECT_TYPE    gpoType;  // [out] Specifies the type of GPO
+     GROUP_POLICY_HINT_TYPE      gpoHint;  // [out] Specifies a hint of the GPO association
+ } GPOBROWSEINFO, *LPGPOBROWSEINFO;
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ GPEDITAPI
+@@ -801,6 +806,7 @@
+ WINAPI
+ BrowseForGPO(
+     LPGPOBROWSEINFO lpBrowseInfo);
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ //=============================================================================
+@@ -825,6 +831,7 @@
+ ImportRSoPData(
+     _In_ LPOLESTR lpNameSpace,
+     _In_ LPOLESTR lpFileName);
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ //=============================================================================

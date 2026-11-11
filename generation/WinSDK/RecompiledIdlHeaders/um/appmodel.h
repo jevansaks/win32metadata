@@ -432,6 +432,7 @@ ParseApplicationUserModelId(
     _Inout_ UINT32* packageRelativeApplicationIdLength,
     _Out_writes_opt_(*packageRelativeApplicationIdLength) PWSTR packageRelativeApplicationId
     );
+_Win32_SupportedOS_Windows8_
 
 /* ---------------------------------------------------------------- */
 
@@ -451,6 +452,7 @@ GetPackagesByPackageFamily(
     _Inout_ UINT32* bufferLength,
     _Out_writes_opt_(*bufferLength) WCHAR* buffer
     );
+_Win32_SupportedOS_Windows81_
 
 /* Any combination of PACKAGE_FILTER_* */
 WINBASEAPI

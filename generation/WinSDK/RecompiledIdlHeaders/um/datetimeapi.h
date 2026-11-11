@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * datetimeapi.h -- ApiSet Contract for api-ms-win-core-datetime-l1              *
@@ -24,6 +25,8 @@ extern "C" {
 
 #pragma region Desktop Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 // For Windows Vista and above GetDateFormatEx is preferred
 WINBASEAPI
@@ -37,6 +40,8 @@ GetDateFormatA(
     _Out_writes_opt_(cchDate) LPSTR lpDateStr,
     _In_ int cchDate
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 WINBASEAPI
 int
@@ -55,6 +60,8 @@ GetDateFormatW(
 #else
 #define GetDateFormat  GetDateFormatA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 // For Windows Vista and above GetTimeFormatEx is preferred
 WINBASEAPI
@@ -68,6 +75,8 @@ GetTimeFormatA(
     _Out_writes_opt_(cchTime) LPSTR lpTimeStr,
     _In_ int cchTime
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 WINBASEAPI
 int
@@ -92,6 +101,8 @@ GetTimeFormatW(
 
 #pragma region Application Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 int
@@ -104,6 +115,8 @@ GetTimeFormatEx(
     _Out_writes_opt_(cchTime) LPWSTR lpTimeStr,
     _In_ int cchTime
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 int

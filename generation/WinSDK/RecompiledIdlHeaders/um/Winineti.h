@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 #include <winapifamily.h>
 
@@ -1041,6 +1042,8 @@ URLCACHEAPI_(DWORD) CommitUrlCacheEntryBinaryBlob(
 #define INTERNET_CACHE_CONTAINER_BLOOM_FILTER (0x20)
 #define INTERNET_CACHE_CONTAINER_SHARE_READ (0x100)
 #define INTERNET_CACHE_CONTAINER_SHARE_READ_WRITE (0x300)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI CreateUrlCacheContainerA(
     _In_ LPCSTR Name,
@@ -1052,6 +1055,8 @@ BOOLAPI CreateUrlCacheContainerA(
     _Reserved_ LPVOID pvBuffer,
     _Reserved_ LPDWORD cbBuffer
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI CreateUrlCacheContainerW(
     _In_ LPCWSTR Name,
     _In_ LPCWSTR lpCachePrefix,
@@ -1067,11 +1072,15 @@ BOOLAPI CreateUrlCacheContainerW(
 #else
 #define CreateUrlCacheContainer  CreateUrlCacheContainerA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI DeleteUrlCacheContainerA(
     _In_ LPCSTR Name,
     _In_ DWORD dwOptions
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI DeleteUrlCacheContainerW(
     _In_ LPCWSTR Name,
     _In_ DWORD dwOptions
@@ -1159,6 +1168,8 @@ typedef enum {
     WININET_SYNC_MODE_AUTOMATIC,
     WININET_SYNC_MODE_DEFAULT = WININET_SYNC_MODE_AUTOMATIC
 } WININET_SYNC_MODE;
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI FreeUrlCacheSpaceA(
@@ -1166,6 +1177,8 @@ BOOLAPI FreeUrlCacheSpaceA(
     _In_ DWORD dwSize,
     _In_ DWORD dwFilter
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FreeUrlCacheSpaceW(
     _In_opt_ LPCWSTR lpszCachePath,
     _In_ DWORD dwSize,
@@ -1228,6 +1241,8 @@ DWORD UrlCacheGetGlobalCacheSize(
 #define CACHE_CONFIG_USER_MODE_FC                                    0x00001000
 #define CACHE_CONFIG_CONTENT_USAGE_FC                                0x00002000
 #define CACHE_CONFIG_STICKY_CONTENT_USAGE_FC                         0x00004000
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOLAPI
 GetUrlCacheConfigInfoA(
@@ -1732,6 +1747,7 @@ UrlCacheServer(
 #define CACHE_CONFIG_TOTAL_CONTENT_QUOTA_FC                          0x00010000
 #define CACHE_CONFIG_APPCONTAINER_CONTENT_QUOTA_FC                   0x00020000
 #define CACHE_CONFIG_APPCONTAINER_TOTAL_CONTENT_QUOTA_FC             0x00040000
+_Win32_SupportedOS_Windows2000_
 
 //
 // Autodial APIs
@@ -1759,6 +1775,7 @@ INTERNETAPI_(DWORD) InternetDialW(
 #ifdef _WINX32_
 #define InternetDial  InternetDialA
 #else
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(DWORD) InternetDial(
     _In_ HWND     hwndParent,
     _In_opt_ LPSTR   lpszConnectoid,
@@ -1782,12 +1799,16 @@ INTERNETAPI_(DWORD) InternetHangUp(
 #define INTERENT_GOONLINE_REFRESH  0x00000001
 #define INTERENT_GOONLINE_NOPROMPT 0x00000002
 #define INTERENT_GOONLINE_MASK     0x00000003
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetGoOnlineA(
     _In_opt_ LPCSTR lpszURL,
     _In_ HWND     hwndParent,
     _In_ DWORD    dwFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetGoOnlineW(
     _In_opt_ LPCWSTR lpszURL,
@@ -1801,6 +1822,8 @@ BOOLAPI InternetGoOnlineW(
 #ifdef _WINX32_
 #define InternetGoOnline  InternetGoOnlineA
 #else
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetGoOnline(
     _In_opt_ LPSTR   lpszURL,
     _In_ HWND     hwndParent,
@@ -1808,6 +1831,8 @@ BOOLAPI InternetGoOnline(
     );
 #endif // _WINX32_
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetAutodial(
     _In_       DWORD  dwFlags,
@@ -1821,12 +1846,18 @@ BOOLAPI InternetAutodial(
 
 
 #define INTERNET_AUTODIAL_FLAGS_MASK (INTERNET_AUTODIAL_FORCE_ONLINE | INTERNET_AUTODIAL_FORCE_UNATTENDED | INTERNET_AUTODIAL_FAILIFSECURITYCHECK | INTERNET_AUTODIAL_OVERRIDE_NET_PRESENT)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetAutodialHangup(
     _Reserved_ DWORD    dwReserved);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetGetConnectedState(
     _Out_  LPDWORD  lpdwFlags,
     _Reserved_ DWORD    dwReserved);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetGetConnectedStateExA(
@@ -1835,6 +1866,8 @@ InternetGetConnectedStateExA(
     _In_ DWORD cchNameLen,
     _Reserved_ DWORD dwReserved
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetGetConnectedStateExW(
@@ -1878,17 +1911,22 @@ ReadGuidsForConnectedNetworks(
 #define INTERNET_AUTOPROXY_INIT_ONLYQUERY 0x8
 
 #define INTERNET_AUTOPROXY_INIT_MASK (INTERNET_AUTOPROXY_INIT_DEFAULT|INTERNET_AUTOPROXY_INIT_DOWNLOADSYNC|INTERNET_AUTOPROXY_INIT_QUERYSTATE|INTERNET_AUTOPROXY_INIT_ONLYQUERY)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI InternetInitializeAutoProxyDll(
     _In_ DWORD dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI DetectAutoProxyUrl(
     _Out_writes_(cchAutoProxyUrl) PSTR pszAutoProxyUrl,
     _In_ DWORD cchAutoProxyUrl,
     _In_ DWORD dwDetectFlags
     );
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI CreateMD5SSOHash (
     _In_ PWSTR    pszChallengeInfo,
@@ -1903,6 +1941,8 @@ BOOLAPI CreateMD5SSOHash (
 #ifdef _WINX32_
 #define InternetGetConnectedStateEx  InternetGetConnectedStateExA
 #else
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetGetConnectedStateEx(
     _Out_ LPDWORD lpdwFlags,
     _Out_writes_opt_(dwNameLen) LPSTR lpszConnectionName,
@@ -2105,6 +2145,7 @@ BOOLAPI IsDomainLegalCookieDomainW(    // in "wininet\http\cookie.cxx"
 #else
 #define IsDomainLegalCookieDomain  IsDomainLegalCookieDomainA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI InternetEnumPerSiteCookieDecisionA(
@@ -2113,6 +2154,7 @@ BOOLAPI InternetEnumPerSiteCookieDecisionA(
     _Out_ unsigned long *pdwDecision,
     _In_ unsigned long dwIndex
 );
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetEnumPerSiteCookieDecisionW(
     _Out_writes_to_(*pcSiteNameSize, *pcSiteNameSize) LPWSTR pszSiteName,
     _Inout_ unsigned long *pcSiteNameSize,
@@ -2144,6 +2186,7 @@ BOOLAPI InternetEnumPerSiteCookieDecisionW(
 
 #define PRIVACY_TYPE_FIRST_PARTY        0
 #define PRIVACY_TYPE_THIRD_PARTY        1
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(DWORD)
 PrivacySetZonePreferenceW(
@@ -2152,6 +2195,7 @@ PrivacySetZonePreferenceW(
     _In_ DWORD       dwTemplate,
     _In_opt_ LPCWSTR     pszPreference
     );
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(DWORD)
 PrivacyGetZonePreferenceW(

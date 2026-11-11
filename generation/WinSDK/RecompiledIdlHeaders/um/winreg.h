@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -1408,6 +1409,8 @@ RegLoadAppKeyW(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // Remoteable System Shutdown APIs
@@ -1424,6 +1427,8 @@ InitiateSystemShutdownA(
     _In_ BOOL bForceAppsClosed,
     _In_ BOOL bRebootAfterShutdown
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 __drv_preferredFunction("InitiateSystemShutdownEx", "Legacy API. Rearchitect to avoid Reboot")
 WINADVAPI
 BOOL
@@ -1440,6 +1445,8 @@ InitiateSystemShutdownW(
 #else
 #define InitiateSystemShutdown  InitiateSystemShutdownA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 BOOL
@@ -1447,6 +1454,8 @@ APIENTRY
 AbortSystemShutdownA(
     _In_opt_ LPSTR lpMachineName
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 APIENTRY
@@ -1481,6 +1490,8 @@ AbortSystemShutdownW(
 // MAX Shutdown TimeOut == 10 Years in seconds
 //
 #define MAX_SHUTDOWN_TIMEOUT (10*365*24*60*60)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 __drv_preferredFunction("a design alternative", "Rearchitect to avoid Reboot")
 _When_(((dwReason==0 && lpMessage==0)) || dwReason>=0xd0000000,
@@ -1538,6 +1549,7 @@ InitiateSystemShutdownExW(
 #define SHUTDOWN_VAIL_CONTAINER         0x00008000
 #define SHUTDOWN_SYSTEM_INITIATED       0x00010000
 #define SHUTDOWN_UPDATE_POWEROFF        0x00020000
+_Win32_SupportedOS_WindowsVista_
 
 WINADVAPI
 DWORD

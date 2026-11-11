@@ -1,0 +1,25 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/rpcssl.h b/generation/WinSDK/RecompiledIdlHeaders/um/rpcssl.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/rpcssl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/rpcssl.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ //+---------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -30,6 +31,7 @@
+ #else /* UNICODE */
+ #define RpcCertGeneratePrincipalName RpcCertGeneratePrincipalNameA
+ #endif /* UNICODE */
++_Win32_SupportedOS_Windows2000_
+ 
+ RPCRTAPI
+ RPC_STATUS
+@@ -39,6 +41,7 @@
+     _In_ DWORD Flags,
+     _Outptr_ RPC_WSTR *pBuffer
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ RPCRTAPI

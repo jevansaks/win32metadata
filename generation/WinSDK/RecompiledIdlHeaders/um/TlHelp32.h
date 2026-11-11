@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*****************************************************************************\
 *                                                                             *
 * tlhelp32.h -  WIN32 tool help functions, types, and definitions             *
@@ -26,6 +27,8 @@ extern "C" {            /* Assume C declarations for C++ */
 #endif  /* __cplusplus */
 
 #define MAX_MODULE_NAME32 255
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 /****** Shapshot function **********************************************/
 
@@ -77,6 +80,7 @@ typedef HEAPLIST32 *  LPHEAPLIST32;
 //
 #define HF32_DEFAULT      1  // process's default heap
 #define HF32_SHARED       2  // is shared heap
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -84,6 +88,7 @@ Heap32ListFirst(
     HANDLE hSnapshot,
     LPHEAPLIST32 lphl
     );
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -112,6 +117,7 @@ typedef HEAPENTRY32 *  LPHEAPENTRY32;
 #define LF32_FIXED    0x00000001
 #define LF32_FREE     0x00000002
 #define LF32_MOVEABLE 0x00000004
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -120,6 +126,7 @@ Heap32First(
     DWORD th32ProcessID,
     ULONG_PTR th32HeapID
     );
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -154,6 +161,7 @@ typedef struct tagPROCESSENTRY32W
 } PROCESSENTRY32W;
 typedef PROCESSENTRY32W *  PPROCESSENTRY32W;
 typedef PROCESSENTRY32W *  LPPROCESSENTRY32W;
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -161,6 +169,7 @@ Process32FirstW(
     HANDLE hSnapshot,
     LPPROCESSENTRY32W lppe
     );
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -184,6 +193,7 @@ typedef struct tagPROCESSENTRY32
 } PROCESSENTRY32;
 typedef PROCESSENTRY32 *  PPROCESSENTRY32;
 typedef PROCESSENTRY32 *  LPPROCESSENTRY32;
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -191,6 +201,7 @@ Process32First(
     HANDLE hSnapshot,
     LPPROCESSENTRY32 lppe
     );
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -221,6 +232,7 @@ typedef struct tagTHREADENTRY32
 } THREADENTRY32;
 typedef THREADENTRY32 *  PTHREADENTRY32;
 typedef THREADENTRY32 *  LPTHREADENTRY32;
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -228,6 +240,7 @@ Thread32First(
     HANDLE hSnapshot,
     LPTHREADENTRY32 lpte
     );
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -253,6 +266,7 @@ typedef struct tagMODULEENTRY32W
 } MODULEENTRY32W;
 typedef MODULEENTRY32W *  PMODULEENTRY32W;
 typedef MODULEENTRY32W *  LPMODULEENTRY32W;
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -260,6 +274,7 @@ Module32FirstW(
     HANDLE hSnapshot,
     LPMODULEENTRY32W lpme
     );
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -283,6 +298,7 @@ typedef struct tagMODULEENTRY32
 } MODULEENTRY32;
 typedef MODULEENTRY32 *  PMODULEENTRY32;
 typedef MODULEENTRY32 *  LPMODULEENTRY32;
+_Win32_SetLastError_
 
 //
 // NOTE CAREFULLY that the modBaseAddr and hModule fields are valid ONLY
@@ -295,6 +311,7 @@ Module32First(
     HANDLE hSnapshot,
     LPMODULEENTRY32 lpme
     );
+_Win32_SetLastError_
 
 BOOL
 WINAPI

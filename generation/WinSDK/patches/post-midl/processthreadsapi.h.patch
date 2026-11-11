@@ -1,0 +1,675 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/processthreadsapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/processthreadsapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/processthreadsapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/processthreadsapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /***********************************************************************************
+ *                                                                                  *
+ * processthreadsapi.h -- ApiSet Contract for api-ms-win-core-processthreads-l1     *
+@@ -87,6 +88,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (_WIN32_WINNT >= 0x0400) || (_WIN32_WINDOWS > 0x0400)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DWORD
+@@ -130,6 +133,8 @@
+     );
+ 
+ #endif /* NTDDI_VERSION >= NTDDI_WIN10_MN */
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -141,6 +146,7 @@
+     _Out_ LPFILETIME lpKernelTime,
+     _Out_ LPFILETIME lpUserTime
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ HANDLE
+@@ -148,6 +154,7 @@
+ GetCurrentProcess(
+     VOID
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DWORD
+@@ -155,6 +162,7 @@
+ GetCurrentProcessId(
+     VOID
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DECLSPEC_NORETURN
+@@ -163,6 +171,8 @@
+ ExitProcess(
+     _In_ UINT uExitCode
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -171,6 +181,8 @@
+     _In_ HANDLE hProcess,
+     _In_ UINT uExitCode
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -179,6 +191,7 @@
+     _In_ HANDLE hProcess,
+     _Out_ LPDWORD lpExitCode
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -186,6 +199,8 @@
+ SwitchToThread(
+     VOID
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ _Ret_maybenull_
+@@ -205,6 +220,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ WINBASEAPI
+ _Ret_maybenull_
+ HANDLE
+@@ -224,6 +241,7 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ HANDLE
+@@ -231,6 +249,7 @@
+ GetCurrentThread(
+     VOID
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DWORD
+@@ -238,6 +257,8 @@
+ GetCurrentThreadId(
+     VOID
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ _Ret_maybenull_
+@@ -248,6 +269,8 @@
+     _In_ BOOL bInheritHandle,
+     _In_ DWORD dwThreadId
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -264,6 +287,8 @@
+     _In_ HANDLE hThread,
+     _In_ BOOL bDisablePriorityBoost
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -272,6 +297,8 @@
+     _In_ HANDLE hThread,
+     _Out_ PBOOL pDisablePriorityBoost
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ int
+@@ -279,6 +306,7 @@
+ GetThreadPriority(
+     _In_ HANDLE hThread
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DECLSPEC_NORETURN
+@@ -293,6 +321,8 @@
+ 
+ #pragma region Desktop Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ WINBASEAPI
+ BOOL
+ WINAPI
+@@ -306,6 +336,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ _Success_(return != 0)
+@@ -315,6 +347,8 @@
+     _In_ HANDLE hThread,
+     _Out_ LPDWORD lpExitCode
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DWORD
+@@ -322,6 +356,8 @@
+ SuspendThread(
+     _In_ HANDLE hThread
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DWORD
+@@ -333,6 +369,8 @@
+ #ifndef TLS_OUT_OF_INDEXES
+ #define TLS_OUT_OF_INDEXES ((DWORD)0xFFFFFFFF)
+ #endif
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ _Must_inspect_result_
+ WINBASEAPI
+@@ -341,6 +379,8 @@
+ TlsAlloc(
+     VOID
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ LPVOID
+@@ -348,6 +388,8 @@
+ TlsGetValue(
+     _In_ DWORD dwTlsIndex
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -356,6 +398,8 @@
+     _In_ DWORD dwTlsIndex,
+     _In_opt_ LPVOID lpTlsValue
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -363,6 +407,8 @@
+ TlsFree(
+     _In_ DWORD dwTlsIndex
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -379,6 +425,8 @@
+     _In_ LPSTARTUPINFOA lpStartupInfo,
+     _Out_ LPPROCESS_INFORMATION lpProcessInformation
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -407,6 +455,8 @@
+ 
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -415,6 +465,8 @@
+     _In_ DWORD dwLevel,
+     _In_ DWORD dwFlags
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DWORD
+@@ -428,6 +480,7 @@
+ 
+ #pragma region Desktop Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ VOID
+@@ -445,6 +498,8 @@
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINADVAPI
+ BOOL
+@@ -516,6 +571,8 @@
+ 
+ #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
+ #endif // !defined(MIDL_PASS)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINADVAPI
+ _Must_inspect_result_
+@@ -531,6 +588,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINADVAPI
+ BOOL
+@@ -546,6 +605,8 @@
+ 
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINADVAPI
+ BOOL
+@@ -556,6 +617,8 @@
+     _In_ BOOL OpenAsSelf,
+     _Outptr_ PHANDLE TokenHandle
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -577,6 +640,8 @@
+ 
+ #pragma region Desktop Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -590,6 +655,8 @@
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -614,6 +681,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (_WIN32_WINNT >= 0x0501)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ DWORD
+@@ -625,6 +694,8 @@
+ #endif // _WIN32_WINNT >= 0x0501
+ 
+ #if (_WIN32_WINNT >= 0x0502)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ DWORD
+@@ -636,6 +707,7 @@
+ #endif // _WIN32_WINNT >= 0x0502
+ 
+ #if (_WIN32_WINNT >= 0x0600)
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ VOID
+@@ -653,6 +725,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ DWORD
+@@ -660,6 +734,8 @@
+ GetProcessIdOfThread(
+     _In_ HANDLE Thread
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ _Success_(return != FALSE)
+@@ -671,6 +747,7 @@
+     _Reserved_ DWORD dwFlags,
+     _When_(lpAttributeList == nullptr,_Out_) _When_(lpAttributeList != nullptr,_Inout_) PSIZE_T lpSize
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ VOID
+@@ -680,6 +757,8 @@
+     );
+ 
+ #define PROC_THREAD_ATTRIBUTE_REPLACE_VALUE     0x00000001
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -695,6 +774,7 @@
+     );
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN10_VB)
++_Win32_SetLastError_
+ 
+ WINBASEAPI
+ BOOL
+@@ -751,6 +831,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows7_
+ 
+ WINBASEAPI
+ _Ret_maybenull_
+@@ -776,6 +858,7 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (_WIN32_WINNT >= 0x0602)
++_Win32_SupportedOS_Windows8_
+ 
+ WINBASEAPI
+ VOID
+@@ -786,6 +869,8 @@
+     );
+ 
+ #endif
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -802,6 +887,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (_WIN32_WINNT >= 0x0602)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows8_
+ 
+ WINBASEAPI
+ BOOL
+@@ -820,6 +907,8 @@
+ 
+ #pragma region Desktop Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -836,6 +925,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (_WIN32_WINNT >= 0x0602)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows8_
+ 
+ WINBASEAPI
+ BOOL
+@@ -855,6 +946,8 @@
+ 
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -870,6 +963,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -881,6 +976,8 @@
+     _Out_ LPFILETIME lpKernelTime,
+     _Out_ LPFILETIME lpUserTime
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ HANDLE
+@@ -890,6 +987,7 @@
+     _In_ BOOL bInheritHandle,
+     _In_ DWORD dwProcessId
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL
+@@ -905,6 +1003,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -923,6 +1023,7 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ DWORD
+@@ -940,6 +1041,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows7_
+ 
+ WINBASEAPI
+ BOOL
+@@ -949,6 +1052,8 @@
+     _In_ PPROCESSOR_NUMBER lpIdealProcessor,
+     _Out_opt_ PPROCESSOR_NUMBER lpPreviousIdealProcessor
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows7_
+ 
+ WINBASEAPI
+ BOOL
+@@ -957,6 +1062,7 @@
+     _In_ HANDLE hThread,
+     _Out_ PPROCESSOR_NUMBER lpIdealProcessor
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ WINBASEAPI
+ VOID
+@@ -974,6 +1080,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WINXP)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -982,6 +1090,8 @@
+     _In_ HANDLE hProcess,
+     _Out_ PBOOL pDisablePriorityBoost
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1000,6 +1110,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WINXP)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1017,6 +1129,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WINXP)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1051,6 +1165,8 @@
+ typedef struct _MEMORY_PRIORITY_INFORMATION {
+     ULONG MemoryPriority;
+ } MEMORY_PRIORITY_INFORMATION, *PMEMORY_PRIORITY_INFORMATION;
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows8_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1061,6 +1177,8 @@
+     _Out_writes_bytes_(ThreadInformationSize) LPVOID ThreadInformation,
+     _In_ DWORD ThreadInformationSize
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows8_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1097,6 +1215,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WINBLUE)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows81_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1109,6 +1229,8 @@
+ #endif // (_WIN32_WINNT >= _WIN32_WINNT_WINBLUE)
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WIN10)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows81_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1118,6 +1240,7 @@
+     _In_ ULONG_PTR PolicyValue,
+     _Out_opt_ PULONG_PTR OldPolicyValue
+     );
++_Win32_SupportedOS_Windows81_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1134,6 +1257,8 @@
+ 
+ #pragma region Desktop Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DWORD
+@@ -1242,6 +1367,8 @@
+ } PROCESS_LEAP_SECOND_INFO, *PPROCESS_LEAP_SECOND_INFO;
+ 
+ #if (_WIN32_WINNT >= 0x0602)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows8_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1252,6 +1379,8 @@
+     _In_reads_bytes_(ProcessInformationSize) LPVOID ProcessInformation,
+     _In_ DWORD ProcessInformationSize
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows8_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1323,6 +1452,8 @@
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINADVAPI
+ BOOL
+@@ -1344,6 +1475,8 @@
+ #ifndef UNICODE
+ #define CreateProcessAsUser  CreateProcessAsUserA
+ #endif
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -1418,6 +1551,7 @@
+ #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN10)
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
+ #pragma endregion
++_Win32_SupportedOS_14393_
+ 
+ WINBASEAPI
+ HRESULT
+@@ -1426,6 +1560,7 @@
+     _In_ HANDLE hThread,
+     _In_ PCWSTR lpThreadDescription
+     );
++_Win32_SupportedOS_14393_
+ 
+ WINBASEAPI
+ HRESULT

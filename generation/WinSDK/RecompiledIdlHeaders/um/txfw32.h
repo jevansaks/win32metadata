@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*=============================================================================
 
     Copyright (c) 2002  Microsoft Corporation
@@ -303,6 +304,8 @@ typedef struct _TXF_LOG_RECORD_AFFECTED_FILE {
 #ifdef __cplusplus
 extern "C" {
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -348,6 +351,8 @@ TxfLogCreateRangeReadContext (
     _In_ ULONG RecordTypeMask,
     _Outptr_ PVOID *TxfLogContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 /*
 
   Description:
@@ -376,6 +381,8 @@ WINAPI
 TxfLogDestroyReadContext (
     _In_ PVOID TxfLogContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 /*
 
   Description:

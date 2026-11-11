@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -444,6 +445,7 @@ LookupSecurityDescriptorPartsW(
 #else
 #define LookupSecurityDescriptorParts  LookupSecurityDescriptorPartsA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 
 //----------------------------------------------------------------------------
@@ -461,6 +463,7 @@ BuildExplicitAccessWithNameA(
     _In_       ACCESS_MODE         AccessMode,
     _In_       DWORD               Inheritance
     );
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -504,6 +507,7 @@ BuildImpersonateExplicitAccessWithNameW(
 #else
 #define BuildImpersonateExplicitAccessWithName  BuildImpersonateExplicitAccessWithNameA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 VOID
@@ -512,6 +516,7 @@ BuildTrusteeWithNameA(
     _Inout_	PTRUSTEE_A  pTrustee,
     _In_opt_ LPSTR     pName
     );
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -544,6 +549,7 @@ BuildImpersonateTrusteeW(
 #else
 #define BuildImpersonateTrustee  BuildImpersonateTrusteeA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 VOID
@@ -552,6 +558,7 @@ BuildTrusteeWithSidA(
     _Inout_ PTRUSTEE_A  pTrustee,
     _In_opt_ PSID        pSid
     );
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -564,6 +571,7 @@ BuildTrusteeWithSidW(
 #else
 #define BuildTrusteeWithSid  BuildTrusteeWithSidA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 VOID
@@ -575,6 +583,7 @@ BuildTrusteeWithObjectsAndSidA(
     _In_opt_ GUID             * pInheritedObjectGuid,
     _In_opt_ PSID               pSid
     );
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -590,6 +599,7 @@ BuildTrusteeWithObjectsAndSidW(
 #else
 #define BuildTrusteeWithObjectsAndSid  BuildTrusteeWithObjectsAndSidA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 VOID
@@ -602,6 +612,7 @@ BuildTrusteeWithObjectsAndNameA(
     _In_opt_ LPSTR             InheritedObjectTypeName,
     _In_opt_ LPSTR             Name
     );
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 VOID
 WINAPI
@@ -618,6 +629,7 @@ BuildTrusteeWithObjectsAndNameW(
 #else
 #define BuildTrusteeWithObjectsAndName  BuildTrusteeWithObjectsAndNameA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 LPSTR
@@ -625,6 +637,7 @@ WINAPI
 GetTrusteeNameA(
     _In_ PTRUSTEE_A  pTrustee
     );
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 LPWSTR
 WINAPI
@@ -636,6 +649,7 @@ GetTrusteeNameW(
 #else
 #define GetTrusteeName  GetTrusteeNameA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 TRUSTEE_TYPE
@@ -643,6 +657,7 @@ WINAPI
 GetTrusteeTypeA(
     _In_opt_ PTRUSTEE_A  pTrustee
     );
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 TRUSTEE_TYPE
 WINAPI
@@ -654,6 +669,7 @@ GetTrusteeTypeW(
 #else
 #define GetTrusteeType  GetTrusteeTypeA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 TRUSTEE_FORM
@@ -661,6 +677,7 @@ WINAPI
 GetTrusteeFormA(
     _In_ PTRUSTEE_A  pTrustee
     );
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 TRUSTEE_FORM
 WINAPI

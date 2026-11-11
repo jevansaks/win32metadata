@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+--------------------------------------------------------------------------
 //
 // Microsoft Windows
@@ -152,6 +153,7 @@ typedef struct tagCSEDB_RSTMAPW {
 typedef HRESULT (CERTBCLI_CALL FNCERTSRVISSERVERONLINEW)(
     IN  WCHAR const *pwszServerName,
     OUT BOOL *pfServerOnline);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -219,6 +221,7 @@ typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPPREPAREW)(
     IN  ULONG grbitJet,
     IN  ULONG dwBackupFlags,	// CSBACKUP_TYPE_*
     OUT HCSBC *phbc);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -255,6 +258,7 @@ typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPGETDATABASENAMESW)(
     IN  HCSBC hbc,
     OUT WCHAR **ppwszzAttachmentInformation,
     OUT DWORD *pcbSize);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -288,6 +292,7 @@ typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPOPENFILEW)(
     IN  WCHAR const *pwszAttachmentName,
     IN  DWORD cbReadHintSize,
     OUT LARGE_INTEGER *pliFileSize);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -324,6 +329,7 @@ typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPREAD)(
     OUT VOID *pvBuffer,
     IN  DWORD cbBuffer,
     OUT DWORD *pcbRead);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -352,6 +358,7 @@ FNCERTSRVBACKUPREAD *pfnCertSrvBackupRead = CertSrvBackupRead;
 
 typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPCLOSE)(
     IN HCSBC hbc);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -386,6 +393,7 @@ typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPGETBACKUPLOGSW)(
     IN  HCSBC hbc,
     OUT WCHAR **ppwszzBackupLogFiles,
     OUT DWORD *pcbSize);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -412,6 +420,7 @@ FNCERTSRVBACKUPGETBACKUPLOGSW *pfnCertSrvBackupGetBackupLogs = CertSrvBackupGetB
 
 typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPTRUNCATELOGS)(
     IN HCSBC hbc);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -436,6 +445,7 @@ FNCERTSRVBACKUPTRUNCATELOGS *pfnCertSrvBackupTruncateLogs = CertSrvBackupTruncat
 
 typedef HRESULT (CERTBCLI_CALL FNCERTSRVBACKUPEND)(
     IN HCSBC hbc);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -459,6 +469,7 @@ FNCERTSRVBACKUPEND *pfnCertSrvBackupEnd = CertSrvBackupEnd;
 
 typedef VOID (CERTBCLI_CALL FNCERTSRVBACKUPFREE)(
     IN VOID *pv);
+_Win32_SupportedOS_Server2003_
 
 VOID
 CERTBCLI_API
@@ -499,6 +510,7 @@ typedef HRESULT (CERTBCLI_CALL FNCERTSRVRESTOREGETDATABASELOCATIONSW)(
     IN  HCSBC hbc,
     OUT WCHAR **ppwszzDatabaseLocationList,
     OUT DWORD *pcbSize);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -532,6 +544,7 @@ typedef HRESULT (CERTBCLI_CALL FNCERTSRVRESTOREPREPAREW)(
     IN  WCHAR const *pwszServerName,
     IN  ULONG dwRestoreFlags,
     OUT HCSBC *phbc);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -574,6 +587,7 @@ typedef HRESULT (CERTBCLI_CALL FNCERTSRVRESTOREREGISTERW)(
     OPTIONAL IN WCHAR const *pwszBackupLogPath,
     IN ULONG genLow,
     IN ULONG genHigh);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -586,6 +600,7 @@ CertSrvRestoreRegisterW(
     OPTIONAL IN WCHAR const *pwszBackupLogPath,
     IN ULONG genLow,
     IN ULONG genHigh);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -620,6 +635,7 @@ FNCERTSRVRESTOREREGISTERW *pfnCertSrvRestoreRegister = CertSrvRestoreRegister;
 typedef HRESULT (CERTBCLI_CALL FNCERTSRVRESTOREREGISTERCOMPLETE)(
     OPTIONAL IN HCSBC hbc,
     IN HRESULT hrRestoreState);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -645,6 +661,7 @@ FNCERTSRVRESTOREREGISTERCOMPLETE *pfnCertSrvRestoreRegisterComplete = CertSrvRes
 
 typedef HRESULT (CERTBCLI_CALL FNCERTSRVRESTOREEND)(
     IN HCSBC hbc);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API
@@ -680,6 +697,7 @@ typedef HRESULT (CERTBCLI_CALL FNCERTSRVSERVERCONTROLW)(
     IN DWORD dwControlFlags,
     OPTIONAL OUT DWORD *pcbOut,
     OPTIONAL OUT BYTE **ppbOut);
+_Win32_SupportedOS_Server2003_
 
 HRESULT
 CERTBCLI_API

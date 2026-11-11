@@ -1,0 +1,108 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinTrust.h b/generation/WinSDK/RecompiledIdlHeaders/um/WinTrust.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/WinTrust.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/WinTrust.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ //+-------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -373,6 +374,7 @@
+ } WINTRUST_CERT_INFO, *PWINTRUST_CERT_INFO;
+ 
+ #include <poppack.h>
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ //////////////////////////////////////////////////////////////////////////////
+@@ -461,6 +463,7 @@
+ //
+ extern LONG WINAPI WinVerifyTrust(HWND hwnd, GUID *pgActionID,
+                                   LPVOID pWVTData);
++_Win32_SupportedOS_WindowsXP_
+ 
+ // This API returns a Win32 error code, previously it was declared to return HRESULT.
+ // Do not test the result with SUCCEEDED() or FAILED(), any non-zero value represents
+@@ -1080,6 +1083,8 @@
+ //
+ #define WT_PROVIDER_DLL_NAME                L"WINTRUST.DLL"
+ #define WT_PROVIDER_CERTTRUST_FUNCTION      L"WintrustCertificateTrust"
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ //////////////////////////////////////////////////////////////////////////////
+ //
+@@ -1103,6 +1108,7 @@
+ // Set this flag to return registry errors. If FALSE is returned,
+ // LastError is set.
+ #define WT_ADD_ACTION_ID_RET_RESULT_FLAG    0x1
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ //////////////////////////////////////////////////////////////////////////////
+@@ -1117,6 +1123,7 @@
+ //      FALSE:                          Errors occured.  See GetLastError()
+ //
+ extern BOOL WINAPI  WintrustRemoveActionID(_In_ GUID *pgActionID);
++_Win32_SupportedOS_WindowsXP_
+ 
+ //////////////////////////////////////////////////////////////////////////////
+ //
+@@ -1129,6 +1136,8 @@
+ //      FALSE                           fail.
+ //
+ extern BOOL WINAPI WintrustLoadFunctionPointers(GUID *pgActionID, CRYPT_PROVIDER_FUNCTIONS *pPfns);
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ //////////////////////////////////////////////////////////////////////////////
+@@ -1165,19 +1174,25 @@
+ extern BOOL WINAPI              WintrustGetDefaultForUsage(_In_ DWORD dwAction,
+                                                            _In_ const char *pszUsageOID,
+                                                            _Inout_ CRYPT_PROVIDER_DEFUSAGE *psUsage);
++_Win32_SupportedOS_WindowsXP_
+ 
+ extern CRYPT_PROVIDER_SGNR * WINAPI     WTHelperGetProvSignerFromChain(CRYPT_PROVIDER_DATA *pProvData,
+                                                                        DWORD idxSigner,
+                                                                        BOOL fCounterSigner,
+                                                                        DWORD idxCounterSigner);
++_Win32_SupportedOS_WindowsXP_
+ extern CRYPT_PROVIDER_CERT * WINAPI     WTHelperGetProvCertFromChain(CRYPT_PROVIDER_SGNR *pSgnr,
+                                                                      DWORD idxCert);
++_Win32_SupportedOS_WindowsXP_
+ 
+ extern CRYPT_PROVIDER_DATA * WINAPI     WTHelperProvDataFromStateData(HANDLE hStateData);
++_Win32_SupportedOS_WindowsXP_
+ 
+ extern CRYPT_PROVIDER_PRIVDATA * WINAPI WTHelperGetProvPrivateDataFromChain(CRYPT_PROVIDER_DATA *pProvData,
+                                                                             GUID *pgProviderID);
++_Win32_SupportedOS_WindowsXP_
+ extern BOOL WINAPI                      WTHelperCertIsSelfSigned(DWORD dwEncoding, CERT_INFO *pCert);
++_Win32_SupportedOS_WindowsVista_
+ 
+ extern HRESULT WINAPI                   WTHelperCertCheckValidSignature(CRYPT_PROVIDER_DATA *pProvData);
+ 
+@@ -1609,6 +1624,7 @@
+ } WIN_SPUB_TRUSTED_PUBLISHER_DATA, *LPWIN_SPUB_TRUSTED_PUBLISHER_DATA;
+ 
+ #endif
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ 
+@@ -1657,12 +1673,14 @@
+ #define WT_TRUSTDBDIALOG_ONLY_PUB_TAB_FLAG      0x00000002
+ #define WT_TRUSTDBDIALOG_WRITE_LEGACY_REG_FLAG  0x00000100
+ #define WT_TRUSTDBDIALOG_WRITE_IEAK_STORE_FLAG  0x00000200
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ // Calls above with dwFlags = 0 and pvReserved = NULL
+ extern BOOL WINAPI OpenPersonalTrustDBDialog(
+     _In_opt_ HWND hwndParent
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ //////////////////////////////////////////////////////////////////////////////
+ //

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1992,6 +1993,7 @@ typedef struct RAS_UPDATE_CONNECTION_
     WCHAR                   wszRemoteEndpointAddress[MAXIPADRESSLEN+1];
 } 
 RAS_UPDATE_CONNECTION,*PRAS_UPDATE_CONNECTION;
+_Win32_SupportedOS_Windows7_
 
 // RAS Admin Functions:
 DWORD APIENTRY
@@ -2003,6 +2005,7 @@ MprAdminConnectionEnumEx(
      _Out_     LPDWORD                 lpdwTotalEntries,
      _Out_     PRAS_CONNECTION_EX      *ppRasConn,
      _In_      LPDWORD                 lpdwResumeHandle);
+_Win32_SupportedOS_Windows7_
 
 
 DWORD APIENTRY MprAdminConnectionGetInfoEx(
@@ -2010,16 +2013,19 @@ DWORD APIENTRY MprAdminConnectionGetInfoEx(
    _In_       HANDLE                  hRasConnection,
    _Out_      PRAS_CONNECTION_EX      pRasConnection
 ); // Use MprAdminBufferFree for freeing pRASCONN
+_Win32_SupportedOS_Server2008_
 
 // Router Admin Functions:
 DWORD APIENTRY MprAdminServerGetInfoEx(
     _In_      MPR_SERVER_HANDLE       hMprServer,
     _Out_     MPR_SERVER_EX*          pServerInfo);
+_Win32_SupportedOS_Server2008_
 
 
 DWORD APIENTRY MprAdminServerSetInfoEx(
     _In_      MPR_SERVER_HANDLE           hMprServer,
     _In_      MPR_SERVER_SET_CONFIG_EX*   pServerInfo);
+_Win32_SupportedOS_Server2008_
 
 
 // Router Config Functions:
@@ -2027,6 +2033,7 @@ DWORD APIENTRY MprAdminServerSetInfoEx(
 DWORD APIENTRY MprConfigServerGetInfoEx(
     _In_      HANDLE                  hMprConfig,
     _Out_     MPR_SERVER_EX*          pServerInfo);
+_Win32_SupportedOS_Server2008_
 
 
 DWORD APIENTRY MprConfigServerSetInfoEx(
@@ -2112,23 +2119,28 @@ typedef struct _MPRAPI_ADMIN_DLL_CALLBACKS
     PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX lpfnRASValidatePreAuthenticatedConnectionEx;
     
 } MPRAPI_ADMIN_DLL_CALLBACKS, *PMPRAPI_ADMIN_DLL_CALLBACKS;
+_Win32_SupportedOS_Windows7_
 
 
 BOOL APIENTRY MprAdminAcceptNewConnectionEx(
     RAS_CONNECTION_EX*                    pRasConn
 );
+_Win32_SupportedOS_Windows7_
 
 BOOL APIENTRY MprAdminAcceptReauthenticationEx(
     RAS_CONNECTION_EX*                    pRasConn
 );
+_Win32_SupportedOS_Windows7_
 
 void APIENTRY MprAdminConnectionHangupNotificationEx(
     RAS_CONNECTION_EX*                    pRasConn
 );
+_Win32_SupportedOS_Windows7_
 
 DWORD APIENTRY MprAdminInitializeDllEx(
     PMPRAPI_ADMIN_DLL_CALLBACKS           pAdminCallbacks
 );
+_Win32_SupportedOS_Server2008_
 
 DWORD APIENTRY MprAdminIsServiceInitialized(
     _In_ LPWSTR  lpwsServerName,
@@ -2136,6 +2148,7 @@ DWORD APIENTRY MprAdminIsServiceInitialized(
 );
 
 #if(NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SupportedOS_Server2012_
 
 // Admin APIs
 DWORD APIENTRY
@@ -2144,6 +2157,7 @@ MprAdminInterfaceSetCustomInfoEx(
     _In_      HANDLE                            hInterface,
     _In_      PMPR_IF_CUSTOMINFOEX  pCustomInfo
 );
+_Win32_SupportedOS_Server2012_
 
 DWORD APIENTRY
 MprAdminInterfaceGetCustomInfoEx(
@@ -2151,6 +2165,7 @@ MprAdminInterfaceGetCustomInfoEx(
     _In_      HANDLE                            hInterface,
     _Out_    PMPR_IF_CUSTOMINFOEX  pCustomInfo
 );
+_Win32_SupportedOS_Server2012_
 
 // Config APIs
 DWORD APIENTRY
@@ -2159,6 +2174,7 @@ MprConfigInterfaceGetCustomInfoEx(
     _In_      HANDLE                            hRouterInterface,
     _Out_    PMPR_IF_CUSTOMINFOEX  pCustomInfo
 );
+_Win32_SupportedOS_Server2012_
 
 DWORD APIENTRY
 MprConfigInterfaceSetCustomInfoEx(
@@ -2169,6 +2185,7 @@ MprConfigInterfaceSetCustomInfoEx(
 #endif /* NTDDI_VERSION >= NTDDI_WIN8 */
 
 #endif /* WINVER >= 0x0601 */
+_Win32_SupportedOS_Windows2000_
 
 //
 //  RAS ADMIN APIs
@@ -2187,6 +2204,7 @@ MprAdminConnectionEnum(
     _Out_     LPDWORD                 lpdwTotalEntries,
     _In_opt_  LPDWORD                 lpdwResumeHandle
 );
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminPortEnum(
@@ -2199,6 +2217,7 @@ MprAdminPortEnum(
     _Out_     LPDWORD                 lpdwTotalEntries,
     _In_opt_  LPDWORD                 lpdwResumeHandle
 );
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminConnectionGetInfo(
@@ -2207,6 +2226,7 @@ MprAdminConnectionGetInfo(
     _In_      HANDLE                  hRasConnection,
     _Out_     LPBYTE *                lplpbBuffer
 );
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminPortGetInfo(
@@ -2215,30 +2235,35 @@ MprAdminPortGetInfo(
     _In_      HANDLE                  hPort,
     _Out_     LPBYTE *                lplpbBuffer
 );
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminConnectionClearStats(
     _In_      RAS_SERVER_HANDLE       hRasServer,
     _In_      HANDLE                  hRasConnection
 );
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminPortClearStats(
     _In_      RAS_SERVER_HANDLE       hRasServer,
     _In_      HANDLE                  hPort
 );
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminPortReset(
     _In_      RAS_SERVER_HANDLE       hRasServer,
     _In_      HANDLE                  hPort
 );
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminPortDisconnect(
     _In_      RAS_SERVER_HANDLE       hRasServer,
     _In_      HANDLE                  hPort
 );
+_Win32_SupportedOS_Windows2000_
 
 BOOL APIENTRY
 MprAdminAcceptNewConnection(
@@ -2247,6 +2272,7 @@ MprAdminAcceptNewConnection(
     );
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_Windows2000_
 
 BOOL APIENTRY
 MprAdminAcceptNewConnection2(
@@ -2258,6 +2284,7 @@ MprAdminAcceptNewConnection2(
 #endif /* WINVER >= 0x0500 */
 
 #if(WINVER >= 0x0600)
+_Win32_SupportedOS_WindowsVista_
 
 BOOL APIENTRY
 MprAdminAcceptNewConnection3(
@@ -2266,6 +2293,7 @@ MprAdminAcceptNewConnection3(
     _In_      RAS_CONNECTION_2 *      pRasConnection2,
     _In_      RAS_CONNECTION_3 *      pRasConnection3
     );
+_Win32_SupportedOS_WindowsVista_
 
 BOOL APIENTRY
 MprAdminAcceptReauthentication(
@@ -2275,12 +2303,14 @@ MprAdminAcceptReauthentication(
     _In_      RAS_CONNECTION_3 *      pRasConnection3
     );
 #endif /* WINVER >= 0x0600 */
+_Win32_SupportedOS_Windows2000_
 
 BOOL APIENTRY
 MprAdminAcceptNewLink (
     _In_      RAS_PORT_0 *            pRasPort0,
     _In_      RAS_PORT_1 *            pRasPort1
     );
+_Win32_SupportedOS_Windows2000_
 
 VOID APIENTRY
 MprAdminConnectionHangupNotification(
@@ -2289,6 +2319,7 @@ MprAdminConnectionHangupNotification(
     );
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_Windows2000_
 
 VOID APIENTRY
 MprAdminConnectionHangupNotification2(
@@ -2300,6 +2331,7 @@ MprAdminConnectionHangupNotification2(
 #endif /* WINVER >= 0x0500 */
 
 #if(WINVER >= 0x0600)
+_Win32_SupportedOS_WindowsVista_
 
 VOID APIENTRY
 MprAdminConnectionHangupNotification3(
@@ -2312,6 +2344,7 @@ MprAdminConnectionHangupNotification3(
 #endif /* WINVER >= 0x0600 */
 
 #if (WINVER >= 0x501)
+_Win32_SupportedOS_WindowsVista_
 
 DWORD APIENTRY
 MprAdminConnectionRemoveQuarantine(
@@ -2321,12 +2354,14 @@ MprAdminConnectionRemoveQuarantine(
     );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 VOID APIENTRY
 MprAdminLinkHangupNotification (
     _In_      RAS_PORT_0 *            pRasPort0,
     _In_      RAS_PORT_1 *            pRasPort1
     );
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminGetIpAddressForUser (
@@ -2335,6 +2370,7 @@ MprAdminGetIpAddressForUser (
     _Inout_  DWORD *                  lpdwIpAddress,
     _Out_     BOOL *                  bNotifyRelease
     );
+_Win32_SupportedOS_Windows2000_
 
 
     
@@ -2347,6 +2383,7 @@ MprAdminReleaseIpAddress (
 
 
 #if(WINVER >= 0x0600)
+_Win32_SupportedOS_Server2008_
 
 DWORD APIENTRY 
 MprAdminGetIpv6AddressForUser (
@@ -2355,6 +2392,7 @@ MprAdminGetIpv6AddressForUser (
     _Inout_  IN6_ADDR *               lpdwIpv6Address, /* Currently Only 64 Bit Identifier is supported */
     _Out_     BOOL *                  bNotifyRelease
     );
+_Win32_SupportedOS_Server2008_
 
 VOID MprAdminReleaseIpv6AddressForUser (
     _In_      WCHAR *                 lpszUserName,
@@ -2365,11 +2403,13 @@ VOID MprAdminReleaseIpv6AddressForUser (
 #endif /* WINVER >= 0x0600 */
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminInitializeDll(
     VOID
 );
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminTerminateDll(
@@ -2377,6 +2417,7 @@ MprAdminTerminateDll(
 );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 //
 // MprAdminUser APIs
@@ -2389,6 +2430,7 @@ MprAdminUserGetInfo(
     _In_      DWORD                   dwLevel,
     _Out_writes_bytes_(dwLevel==1?sizeof(RAS_USER_1):sizeof(RAS_USER_0))     LPBYTE                  lpbBuffer
 );
+_Win32_SupportedOS_Windows2000_
 
 
 DWORD APIENTRY
@@ -2401,6 +2443,7 @@ MprAdminUserSetInfo(
 
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminSendUserMessage(
@@ -2410,6 +2453,7 @@ MprAdminSendUserMessage(
 );
 
 #endif /* WINVER >= 0x0500 */
+_Win32_SupportedOS_Windows2000_
 
 DWORD APIENTRY
 MprAdminGetPDCServer(
@@ -2417,6 +2461,7 @@ MprAdminGetPDCServer(
     _In_       LPCWSTR          lpszServer,
     _Out_writes_(UNCLEN+1) LPWSTR     lpszPDCServer
 );
+_Win32_SupportedOS_Server2000_
 
 //
 // Router APIs
@@ -2426,12 +2471,14 @@ BOOL APIENTRY
 MprAdminIsServiceRunning(
     _In_  LPWSTR  lpwsServerName
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminServerConnect(
     _In_opt_  LPWSTR                  lpwsServerName,
     _Out_     MPR_SERVER_HANDLE *     phMprServer
 );
+_Win32_SupportedOS_Server2000_
 
 VOID APIENTRY
 MprAdminServerDisconnect(
@@ -2439,12 +2486,14 @@ MprAdminServerDisconnect(
 );
 
 #if (WINVER >= 0x501)
+_Win32_SupportedOS_Server2003_
 DWORD APIENTRY
 MprAdminServerGetCredentials(
     _In_  MPR_SERVER_HANDLE       hMprServer,
     _In_  DWORD                   dwLevel,
     _In_  LPBYTE *                lplpbBuffer
 );
+_Win32_SupportedOS_Server2003_
 
 DWORD APIENTRY
 MprAdminServerSetCredentials(
@@ -2455,17 +2504,20 @@ MprAdminServerSetCredentials(
 
 
 #endif
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminBufferFree(
     _In_      LPVOID                  pBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminGetErrorString(
     _In_      DWORD                   dwError,
     _Out_     LPWSTR *                lplpwsErrorString
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminServerGetInfo(
@@ -2475,12 +2527,14 @@ MprAdminServerGetInfo(
 );
 
 #if (WINVER >= 0x501)
+_Win32_SupportedOS_Server2003_
 DWORD APIENTRY
 MprAdminServerSetInfo(
     _In_      MPR_SERVER_HANDLE       hMprServer,
     _In_      DWORD                   dwLevel,
     _In_reads_bytes_(dwLevel==1?sizeof(MPR_SERVER_1):sizeof(MPR_SERVER_2))      LPBYTE                  lpbBuffer
 );
+_Win32_SupportedOS_Server2003_
 
 
 DWORD  APIENTRY
@@ -2489,6 +2543,7 @@ MprAdminEstablishDomainRasServer (
     _In_      LPWSTR                 pszMachine,
     _In_      BOOL                   bEnable
 );
+_Win32_SupportedOS_Server2003_
 
 DWORD  APIENTRY
 MprAdminIsDomainRasServer (
@@ -2500,6 +2555,7 @@ MprAdminIsDomainRasServer (
 #endif
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminTransportCreate(
@@ -2514,6 +2570,7 @@ MprAdminTransportCreate(
 );
 
 #endif /* WINVER >= 0x0500 */
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminTransportSetInfo(
@@ -2524,6 +2581,7 @@ MprAdminTransportSetInfo(
     _In_opt_  LPBYTE                  pClientInterfaceInfo,
     _In_      DWORD                   dwClientInterfaceInfoSize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminTransportGetInfo(
@@ -2536,6 +2594,7 @@ MprAdminTransportGetInfo(
 );
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminDeviceEnum(
@@ -2545,6 +2604,7 @@ MprAdminDeviceEnum(
     _Out_     LPDWORD                 lpdwTotalEntries);
 
 #endif /* WINVER >= 0x0500 */
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceGetHandle(
@@ -2553,6 +2613,7 @@ MprAdminInterfaceGetHandle(
     _Out_     HANDLE *                phInterface,
     _In_      BOOL                    fIncludeClientInterfaces
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceCreate(
@@ -2561,6 +2622,7 @@ MprAdminInterfaceCreate(
     _In_      LPBYTE                  lpbBuffer,
     _Out_     HANDLE *                phInterface
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceGetInfo(
@@ -2569,6 +2631,7 @@ MprAdminInterfaceGetInfo(
     _In_      DWORD                   dwLevel,
     _In_      LPBYTE *                lplpbBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceSetInfo(
@@ -2577,6 +2640,7 @@ MprAdminInterfaceSetInfo(
     _In_      DWORD                   dwLevel,
     _In_      LPBYTE                  lpbBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceDelete(
@@ -2585,6 +2649,7 @@ MprAdminInterfaceDelete(
 );
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceDeviceGetInfo(
@@ -2594,6 +2659,7 @@ MprAdminInterfaceDeviceGetInfo(
     _In_      DWORD                   dwLevel,
     _Out_     LPBYTE*                 lplpBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceDeviceSetInfo(
@@ -2605,6 +2671,7 @@ MprAdminInterfaceDeviceSetInfo(
 );
 
 #endif /* WINVER >= 0x0500 */
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceTransportRemove(
@@ -2612,6 +2679,7 @@ MprAdminInterfaceTransportRemove(
     _In_      HANDLE                  hInterface,
     _In_      DWORD                   dwTransportId
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceTransportAdd(
@@ -2621,6 +2689,7 @@ MprAdminInterfaceTransportAdd(
     _In_      LPBYTE                  pInterfaceInfo,
     _In_      DWORD                   dwInterfaceInfoSize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceTransportGetInfo(
@@ -2630,6 +2699,7 @@ MprAdminInterfaceTransportGetInfo(
     _Out_     LPBYTE *                ppInterfaceInfo,
     _Out_opt_ LPDWORD                 lpdwInterfaceInfoSize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceTransportSetInfo(
@@ -2639,6 +2709,7 @@ MprAdminInterfaceTransportSetInfo(
     _In_      LPBYTE                  pInterfaceInfo,
     _In_      DWORD                   dwInterfaceInfoSize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceEnum(
@@ -2674,6 +2745,7 @@ MprSetupIpInIpInterfaceFriendlyNameDelete(
     _In_  PWCHAR  pwszMachineName,
     _In_  GUID    *pGuid
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceSetCredentials(
@@ -2683,6 +2755,7 @@ MprAdminInterfaceSetCredentials(
     _In_opt_       LPWSTR                  lpwsDomainName,
     _In_opt_       LPWSTR                  lpwsPassword
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceGetCredentials(
@@ -2695,6 +2768,7 @@ MprAdminInterfaceGetCredentials(
 );
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceSetCredentialsEx(
@@ -2703,6 +2777,7 @@ MprAdminInterfaceSetCredentialsEx(
     _In_      DWORD                   dwLevel,
     _In_      LPBYTE                  lpbBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceGetCredentialsEx(
@@ -2713,6 +2788,7 @@ MprAdminInterfaceGetCredentialsEx(
 );
 
 #endif /* WINVER >= 0x0500 */
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceConnect(
@@ -2721,12 +2797,14 @@ MprAdminInterfaceConnect(
     _In_      HANDLE                  hEvent,
     _In_      BOOL                    fSynchronous
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceDisconnect(
     _In_      MPR_SERVER_HANDLE       hMprServer,
     _In_      HANDLE                  hInterface
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceUpdateRoutes(
@@ -2735,6 +2813,7 @@ MprAdminInterfaceUpdateRoutes(
     _In_      DWORD                   dwProtocolId,
     _In_      HANDLE                  hEvent
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceQueryUpdateResult(
@@ -2743,6 +2822,7 @@ MprAdminInterfaceQueryUpdateResult(
     _In_      DWORD                   dwProtocolId,
     _Out_     LPDWORD                 lpdwUpdateResult
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminInterfaceUpdatePhonebookInfo(
@@ -2751,12 +2831,14 @@ MprAdminInterfaceUpdatePhonebookInfo(
 );
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminRegisterConnectionNotification(
     _In_      MPR_SERVER_HANDLE       hMprServer,
     _In_      HANDLE                  hEventNotification
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminDeregisterConnectionNotification(
@@ -2765,6 +2847,7 @@ MprAdminDeregisterConnectionNotification(
 );
 
 #endif /* WINVER >= 0x0500 */
+_Win32_SupportedOS_Server2000_
 
 //
 // MIB APIs
@@ -2775,11 +2858,13 @@ MprAdminMIBServerConnect(
     _In_opt_  LPWSTR                  lpwsServerName,
     _Out_     MIB_SERVER_HANDLE *     phMibServer
 );
+_Win32_SupportedOS_Server2000_
 
 VOID APIENTRY
 MprAdminMIBServerDisconnect(
     _In_      MIB_SERVER_HANDLE       hMibServer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminMIBEntryCreate(
@@ -2789,6 +2874,7 @@ MprAdminMIBEntryCreate(
     _In_      LPVOID                  lpEntry,
     _In_      DWORD                   dwEntrySize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminMIBEntryDelete(
@@ -2798,6 +2884,7 @@ MprAdminMIBEntryDelete(
     _In_      LPVOID                  lpEntry,
     _In_      DWORD                   dwEntrySize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminMIBEntrySet(
@@ -2807,6 +2894,7 @@ MprAdminMIBEntrySet(
     _In_      LPVOID                  lpEntry,
     _In_      DWORD                   dwEntrySize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminMIBEntryGet(
@@ -2818,6 +2906,7 @@ MprAdminMIBEntryGet(
     _Out_     LPVOID*                 lplpOutEntry,
     _Out_     LPDWORD                 lpOutEntrySize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminMIBEntryGetFirst(
@@ -2829,6 +2918,7 @@ MprAdminMIBEntryGetFirst(
     _Out_     LPVOID*                 lplpOutEntry,
     _Out_     LPDWORD                 lpOutEntrySize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminMIBEntryGetNext(
@@ -2840,6 +2930,7 @@ MprAdminMIBEntryGetNext(
     _Out_     LPVOID*                 lplpOutEntry,
     _Out_     LPDWORD                 lpOutEntrySize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminMIBGetTrapInfo(
@@ -2851,6 +2942,7 @@ MprAdminMIBGetTrapInfo(
     _Out_     LPVOID*                 lplpOutData,
     _Inout_  LPDWORD                 lpOutDataSize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminMIBSetTrapInfo(
@@ -2862,11 +2954,13 @@ MprAdminMIBSetTrapInfo(
     _Out_     LPVOID*                 lplpOutData,
     _Inout_  LPDWORD                 lpOutDataSize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprAdminMIBBufferFree(
     _In_      LPVOID                  pBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 //
 // Configuration APIs
@@ -2877,12 +2971,14 @@ MprConfigServerInstall(
     _In_      DWORD                   dwLevel,
     _In_      PVOID                   pBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigServerConnect(
     _In_opt_  LPWSTR                  lpwsServerName,
     _Out_     HANDLE*                 phMprConfig
 );
+_Win32_SupportedOS_Server2000_
 
 VOID APIENTRY
 MprConfigServerDisconnect(
@@ -2893,11 +2989,13 @@ DWORD APIENTRY
 MprConfigServerRefresh(
     _In_      HANDLE                  hMprConfig
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigBufferFree(
     _In_      LPVOID                  pBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigServerGetInfo(
@@ -2907,6 +3005,7 @@ MprConfigServerGetInfo(
 );
 
 #if (WINVER >= 0x501)
+_Win32_SupportedOS_Server2003_
 DWORD APIENTRY
 MprConfigServerSetInfo(
     _In_      MPR_SERVER_HANDLE       hMprServer,
@@ -2914,18 +3013,21 @@ MprConfigServerSetInfo(
     _In_reads_bytes_(dwLevel==1?sizeof(MPR_SERVER_1):sizeof(MPR_SERVER_2)) LPBYTE lpbBuffer
 );
 #endif
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigServerBackup(
     _In_      HANDLE                  hMprConfig,
     _In_      LPWSTR                  lpwsPath
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigServerRestore(
     _In_      HANDLE                  hMprConfig,
     _In_ IN      LPWSTR                  lpwsPath
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigTransportCreate(
@@ -2939,12 +3041,14 @@ MprConfigTransportCreate(
     _In_opt_  LPWSTR                  lpwsDLLPath,
     _Out_     HANDLE*                 phRouterTransport
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigTransportDelete(
     _In_      HANDLE                  hMprConfig,
     _In_      HANDLE                  hRouterTransport
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigTransportGetHandle(
@@ -2952,6 +3056,7 @@ MprConfigTransportGetHandle(
     _In_      DWORD                   dwTransportId,
     _Out_     HANDLE*                 phRouterTransport
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigTransportSetInfo(
@@ -2963,6 +3068,7 @@ MprConfigTransportSetInfo(
     _In_opt_      DWORD               dwClientInterfaceInfoSize,
     _In_opt_      LPWSTR              lpwsDLLPath
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigTransportGetInfo(
@@ -2974,6 +3080,7 @@ MprConfigTransportGetInfo(
     _Out_opt_     LPDWORD                lpdwClientInterfaceInfoSize,
     _Outptr_opt_ _Inout_ LPWSTR*      lplpwsDLLPath 
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigTransportEnum(
@@ -2985,6 +3092,7 @@ MprConfigTransportEnum(
     _Out_     LPDWORD                 lpdwTotalEntries,
     _Inout_opt_ LPDWORD               lpdwResumeHandle
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceCreate(
@@ -2993,12 +3101,14 @@ MprConfigInterfaceCreate(
     _In_reads_bytes_(dwLevel==1?sizeof(MPR_INTERFACE_1):sizeof(MPR_INTERFACE_0)) LPBYTE lpbBuffer,
     _Out_     HANDLE*                 phRouterInterface
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceDelete(
     _In_      HANDLE                  hMprConfig,
     _In_      HANDLE                  hRouterInterface
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceGetHandle(
@@ -3006,6 +3116,7 @@ MprConfigInterfaceGetHandle(
     _In_      LPWSTR                  lpwsInterfaceName,
     _Out_     HANDLE*                 phRouterInterface
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceGetInfo(
@@ -3015,6 +3126,7 @@ MprConfigInterfaceGetInfo(
     _Inout_   LPBYTE*                 lplpBuffer,
     _Out_     LPDWORD                 lpdwBufferSize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceSetInfo(
@@ -3023,6 +3135,7 @@ MprConfigInterfaceSetInfo(
     _In_      DWORD                   dwLevel,
     _In_reads_bytes_(dwLevel==1?sizeof(MPR_INTERFACE_1):sizeof(MPR_INTERFACE_0))      LPBYTE                  lpbBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceEnum(
@@ -3034,6 +3147,7 @@ MprConfigInterfaceEnum(
     _Out_     LPDWORD                 lpdwTotalEntries,
     _Inout_opt_ LPDWORD               lpdwResumeHandle
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceTransportAdd(
@@ -3045,6 +3159,7 @@ MprConfigInterfaceTransportAdd(
     _In_      DWORD                   dwInterfaceInfoSize,
     _Out_     HANDLE*                 phRouterIfTransport
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceTransportRemove(
@@ -3052,6 +3167,7 @@ MprConfigInterfaceTransportRemove(
     _In_      HANDLE                  hRouterInterface,
     _In_      HANDLE                  hRouterIfTransport
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceTransportGetHandle(
@@ -3060,6 +3176,7 @@ MprConfigInterfaceTransportGetHandle(
     _In_      DWORD                   dwTransportId,
     _Out_     HANDLE*                 phRouterIfTransport
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceTransportGetInfo(
@@ -3069,6 +3186,7 @@ MprConfigInterfaceTransportGetInfo(
     _Outptr_opt_result_bytebuffer_(*lpdwInterfaceInfoSize)   LPBYTE*         ppInterfaceInfo,
     _Out_opt_ LPDWORD     lpdwInterfaceInfoSize
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceTransportSetInfo(
@@ -3078,6 +3196,7 @@ MprConfigInterfaceTransportSetInfo(
     _In_reads_bytes_opt_(dwInterfaceInfoSize)  LPBYTE                  pInterfaceInfo,         
    _In_       DWORD                  dwInterfaceInfoSize         
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigInterfaceTransportEnum(
@@ -3090,6 +3209,7 @@ MprConfigInterfaceTransportEnum(
     _Out_     LPDWORD                 lpdwTotalEntries,
     _Inout_opt_ LPDWORD               lpdwResumeHandle            
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigGetFriendlyName(
@@ -3097,6 +3217,7 @@ MprConfigGetFriendlyName(
     _In_      PWSTR                   pszGuidName,
     _Out_writes_bytes_(dwBufferSize) PWCHAR pszBuffer,
     _In_      DWORD                   dwBufferSize);
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprConfigGetGuidName(
@@ -3106,12 +3227,14 @@ MprConfigGetGuidName(
     _In_      DWORD                   dwBufferSize);
 
 #if(WINVER >= 0x0600)
+_Win32_SupportedOS_Server2008_
 DWORD APIENTRY
 MprConfigFilterGetInfo(
     _In_      HANDLE                  hMprConfig,
     _In_      DWORD                   dwLevel,
     _In_      DWORD                   dwTransportId, 
     _Inout_updates_bytes_(sizeof(MPR_FILTER_0))     LPBYTE                  lpBuffer);
+_Win32_SupportedOS_Server2008_
 
 DWORD APIENTRY
 MprConfigFilterSetInfo(
@@ -3120,6 +3243,7 @@ MprConfigFilterSetInfo(
     _In_      DWORD                   dwTransportId, 
     _In_      LPBYTE                  lpBuffer);
 #endif /* WINVER >= 0x0600 */
+_Win32_SupportedOS_Server2000_
 
 //
 // Information block APIs
@@ -3130,23 +3254,27 @@ MprInfoCreate(
     _In_      DWORD                   dwVersion,
     _Out_     LPVOID*                 lplpNewHeader
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprInfoDelete(
    _In_     LPVOID                    lpHeader
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprInfoRemoveAll(
     _In_      LPVOID                  lpHeader,
     _Out_     LPVOID*                 lplpNewHeader
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprInfoDuplicate(
     _In_      LPVOID                  lpHeader,
     _Out_     LPVOID*                 lplpNewHeader
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprInfoBlockAdd(
@@ -3157,6 +3285,7 @@ MprInfoBlockAdd(
     _In_reads_bytes_(dwItemSize*dwItemCount)      LPBYTE                  lpItemData,
     _Out_     LPVOID*                 lplpNewHeader
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprInfoBlockRemove(
@@ -3164,6 +3293,7 @@ MprInfoBlockRemove(
     _In_      DWORD                   dwInfoType,
     _Out_     LPVOID*                 lplpNewHeader
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprInfoBlockSet(
@@ -3174,6 +3304,7 @@ MprInfoBlockSet(
     _In_reads_bytes_(dwItemSize*dwItemCount)      LPBYTE                  lpItemData,
     _Out_     LPVOID*                 lplpNewHeader
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprInfoBlockFind(
@@ -3183,6 +3314,7 @@ MprInfoBlockFind(
     _Out_     LPDWORD                 lpdwItemCount,      // OPTIONAL
     _Outptr_result_bytebuffer_((*lpdwItemSize)*(*lpdwItemCount))     LPBYTE*                 lplpItemData        // OPTIONAL
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD APIENTRY
 MprInfoBlockQuerySize(

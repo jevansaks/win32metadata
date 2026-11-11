@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*============================================================================
  * Copyright (C) Microsoft Corporation, All rights reserved.
  *============================================================================
@@ -1673,6 +1674,7 @@ struct _MI_Server
     const MI_PropertySetFT* propertySetFT;
     const MI_FilterFT*  filterFT;
 };
+_Win32_SupportedOS_Windows8_
 
 /**
  * Obtains the value of the MI_VERSION macro used when compiling the server.
@@ -1683,6 +1685,7 @@ struct _MI_Server
  *
  */
 MI_Result MI_CALL MI_Server_GetVersion(MI_Uint32* version);
+_Win32_SupportedOS_Windows8_
 
 /**
  * Obtains the 'system name' for this server. The system name is used in
@@ -6685,6 +6688,7 @@ __declspec(dllimport) const MI_ClientFT_V1 *mi_clientFT_V1;
 #if (MI_CALL_VERSION == 1)
 #define mi_clientFT mi_clientFT_V1
 #endif
+_Win32_SupportedOS_Windows8_
 
 /*
 **=============================================================================

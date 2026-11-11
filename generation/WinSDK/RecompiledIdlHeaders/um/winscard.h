@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1996  Microsoft Corporation
@@ -103,6 +104,7 @@ typedef SCARDHANDLE *PSCARDHANDLE, *LPSCARDHANDLE;
                                 // calling application must have appropriate
                                 // access permissions for any database actions.)
 #define SCARD_SCOPE_SYSTEM    2 // The context is the system context, and any
+_Win32_SupportedOS_WindowsXP_
                                 // database operations are performed within the
                                 // domain of the system.  (The calling
                                 // application must have appropriate access
@@ -114,10 +116,12 @@ SCardEstablishContext(
     _Reserved_  LPCVOID pvReserved1,
     _Reserved_  LPCVOID pvReserved2,
     _Out_ LPSCARDCONTEXT phContext);
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardReleaseContext(
     _In_      SCARDCONTEXT hContext);
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardIsValidContext(
@@ -140,6 +144,7 @@ SCardIsValidContext(
 #define SCARD_PROVIDER_PRIMARY  1   // Primary Provider Id
 #define SCARD_PROVIDER_CSP      2   // Crypto Service Provider Id
 #define SCARD_PROVIDER_KSP      3   // Key Storage Provider Id
+_Win32_SupportedOS_WindowsXP_
 
 
 //
@@ -151,6 +156,7 @@ SCardListReaderGroupsA(
     _In_    SCARDCONTEXT hContext,
     _Out_writes_opt_(*pcchGroups) _Post_ _NullNull_terminated_  LPSTR mszGroups,
     _Inout_ LPDWORD pcchGroups);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardListReaderGroupsW(
     _In_    SCARDCONTEXT hContext,
@@ -161,6 +167,7 @@ SCardListReaderGroupsW(
 #else
 #define SCardListReaderGroups  SCardListReaderGroupsA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI
@@ -171,6 +178,7 @@ SCardListReadersA(
     _When_(_Old_(*pcchReaders) != SCARD_AUTOALLOCATE, _Out_writes_opt_(*pcchReaders) _Post_ _NullNull_terminated_)
              LPSTR mszReaders,
     _Inout_  LPDWORD pcchReaders);
+_Win32_SupportedOS_WindowsXP_
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI
 SCardListReadersW(
@@ -185,6 +193,7 @@ SCardListReadersW(
 #else
 #define SCardListReaders  SCardListReadersA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI
@@ -197,6 +206,7 @@ SCardListCardsA(
     _When_(_Old_(*pcchCards) != SCARD_AUTOALLOCATE, _Out_writes_opt_(*pcchCards) _Post_ _NullNull_terminated_)
               CHAR *mszCards,
     _Inout_   LPDWORD pcchCards);
+_Win32_SupportedOS_WindowsXP_
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI
 SCardListCardsW(
@@ -228,6 +238,7 @@ SCardListCardsW(
 //
 //          Here's a work-around MACRO:
 #define SCardListCardTypes SCardListCards
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardListInterfacesA(
@@ -235,6 +246,7 @@ SCardListInterfacesA(
     _In_     LPCSTR szCard,
     _Out_    LPGUID pguidInterfaces,
     _Inout_  LPDWORD pcguidInterfaces);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardListInterfacesW(
     _In_     SCARDCONTEXT hContext,
@@ -246,12 +258,14 @@ SCardListInterfacesW(
 #else
 #define SCardListInterfaces  SCardListInterfacesA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardGetProviderIdA(
     _In_     SCARDCONTEXT hContext,
     _In_     LPCSTR szCard,
     _Out_    LPGUID pguidProviderId);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardGetProviderIdW(
     _In_     SCARDCONTEXT hContext,
@@ -262,6 +276,7 @@ SCardGetProviderIdW(
 #else
 #define SCardGetProviderId  SCardGetProviderIdA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 //
 // NOTE:    The routine SCardGetProviderId in this implementation uses GUIDs.
 //          The PC/SC definition uses BYTEs.
@@ -277,6 +292,7 @@ SCardGetCardTypeProviderNameA(
     _When_(_Old_(*pcchProvider) != SCARD_AUTOALLOCATE, _Out_writes_to_(*pcchProvider, *pcchProvider) _Post_z_)
               CHAR *szProvider,
     _Inout_   LPDWORD pcchProvider);
+_Win32_SupportedOS_WindowsXP_
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI
 SCardGetCardTypeProviderNameW(
@@ -292,6 +308,7 @@ SCardGetCardTypeProviderNameW(
 #else
 #define SCardGetCardTypeProviderName  SCardGetCardTypeProviderNameA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 //
 // NOTE:    This routine is an extension to the PC/SC definitions.
 //
@@ -305,6 +322,7 @@ extern WINSCARDAPI LONG WINAPI
 SCardIntroduceReaderGroupA(
     _In_ SCARDCONTEXT hContext,
     _In_ LPCSTR szGroupName);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardIntroduceReaderGroupW(
     _In_ SCARDCONTEXT hContext,
@@ -314,11 +332,13 @@ SCardIntroduceReaderGroupW(
 #else
 #define SCardIntroduceReaderGroup  SCardIntroduceReaderGroupA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardForgetReaderGroupA(
     _In_ SCARDCONTEXT hContext,
     _In_ LPCSTR szGroupName);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardForgetReaderGroupW(
     _In_ SCARDCONTEXT hContext,
@@ -328,12 +348,14 @@ SCardForgetReaderGroupW(
 #else
 #define SCardForgetReaderGroup  SCardForgetReaderGroupA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardIntroduceReaderA(
     _In_ SCARDCONTEXT hContext,
     _In_ LPCSTR szReaderName,
     _In_ LPCSTR szDeviceName);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardIntroduceReaderW(
     _In_ SCARDCONTEXT hContext,
@@ -344,11 +366,13 @@ SCardIntroduceReaderW(
 #else
 #define SCardIntroduceReader  SCardIntroduceReaderA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardForgetReaderA(
     _In_ SCARDCONTEXT hContext,
     _In_ LPCSTR szReaderName);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardForgetReaderW(
     _In_ SCARDCONTEXT hContext,
@@ -358,12 +382,14 @@ SCardForgetReaderW(
 #else
 #define SCardForgetReader  SCardForgetReaderA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardAddReaderToGroupA(
     _In_ SCARDCONTEXT hContext,
     _In_ LPCSTR szReaderName,
     _In_ LPCSTR szGroupName);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardAddReaderToGroupW(
     _In_ SCARDCONTEXT hContext,
@@ -374,12 +400,14 @@ SCardAddReaderToGroupW(
 #else
 #define SCardAddReaderToGroup  SCardAddReaderToGroupA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardRemoveReaderFromGroupA(
     _In_ SCARDCONTEXT hContext,
     _In_ LPCSTR szReaderName,
     _In_ LPCSTR szGroupName);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardRemoveReaderFromGroupW(
     _In_ SCARDCONTEXT hContext,
@@ -390,6 +418,7 @@ SCardRemoveReaderFromGroupW(
 #else
 #define SCardRemoveReaderFromGroup  SCardRemoveReaderFromGroupA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardIntroduceCardTypeA(
@@ -401,6 +430,7 @@ SCardIntroduceCardTypeA(
     _In_     LPCBYTE pbAtr,
     _In_     LPCBYTE pbAtrMask,
     _In_     DWORD cbAtrLen);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardIntroduceCardTypeW(
     _In_     SCARDCONTEXT hContext,
@@ -434,6 +464,7 @@ SCardIntroduceCardTypeW(
 //          Here's a work-around MACRO:
 #define PCSCardIntroduceCardType(hContext, szCardName, pbAtr, pbAtrMask, cbAtrLen, pguidPrimaryProvider, rgguidInterfaces, dwInterfaceCount) \
           SCardIntroduceCardType(hContext, szCardName, pguidPrimaryProvider, rgguidInterfaces, dwInterfaceCount, pbAtr, pbAtrMask, cbAtrLen)
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardSetCardTypeProviderNameA(
@@ -441,6 +472,7 @@ SCardSetCardTypeProviderNameA(
     _In_ LPCSTR szCardName,
     _In_ DWORD dwProviderId,
     _In_ LPCSTR szProvider);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardSetCardTypeProviderNameW(
     _In_ SCARDCONTEXT hContext,
@@ -452,6 +484,7 @@ SCardSetCardTypeProviderNameW(
 #else
 #define SCardSetCardTypeProviderName  SCardSetCardTypeProviderNameA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 //
 // NOTE:    This routine is an extention to the PC/SC specifications.
 //
@@ -460,6 +493,7 @@ extern WINSCARDAPI LONG WINAPI
 SCardForgetCardTypeA(
     _In_ SCARDCONTEXT hContext,
     _In_ LPCSTR szCardName);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardForgetCardTypeW(
     _In_ SCARDCONTEXT hContext,
@@ -469,6 +503,7 @@ SCardForgetCardTypeW(
 #else
 #define SCardForgetCardType  SCardForgetCardTypeA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 
 //
@@ -486,8 +521,11 @@ SCardFreeMemory(
     _In_ LPCVOID pvMem);
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI HANDLE WINAPI
 SCardAccessStartedEvent(void);
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI void WINAPI
 SCardReleaseStartedEvent(void);
@@ -595,6 +633,7 @@ typedef LPSCARD_READERSTATEA LPSCARD_READERSTATE;
                                             // supported by the reader or
                                             // software.
 #define SCARD_STATE_UNPOWERED   0x00000400  // This implies that the card in the
+_Win32_SupportedOS_WindowsXP_
                                             // reader has not been powered up.
 
 extern WINSCARDAPI LONG WINAPI
@@ -603,6 +642,7 @@ SCardLocateCardsA(
     _In_    LPCSTR mszCards,
     _Inout_ LPSCARD_READERSTATEA rgReaderStates,
     _In_    DWORD cReaders);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardLocateCardsW(
     _In_    SCARDCONTEXT hContext,
@@ -621,6 +661,7 @@ typedef struct _SCARD_ATRMASK {
     BYTE        rgbAtr[36];     // Atr of card (extra alignment bytes)
     BYTE        rgbMask[36];    // Mask for the Atr (extra alignment bytes)
 } SCARD_ATRMASK, *PSCARD_ATRMASK, *LPSCARD_ATRMASK;
+_Win32_SupportedOS_WindowsXP_
 
 
 extern WINSCARDAPI LONG WINAPI
@@ -630,6 +671,7 @@ SCardLocateCardsByATRA(
     _In_    DWORD cAtrs,
     _Inout_ LPSCARD_READERSTATEA rgReaderStates,
     _In_    DWORD cReaders);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardLocateCardsByATRW(
     _In_    SCARDCONTEXT hContext,
@@ -643,6 +685,7 @@ SCardLocateCardsByATRW(
 #define SCardLocateCardsByATR  SCardLocateCardsByATRA
 #endif // !UNICODE
 #endif // (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardGetStatusChangeA(
@@ -650,6 +693,7 @@ SCardGetStatusChangeA(
     _In_    DWORD dwTimeout,
     _Inout_ LPSCARD_READERSTATEA rgReaderStates,
     _In_    DWORD cReaders);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardGetStatusChangeW(
     _In_    SCARDCONTEXT hContext,
@@ -661,6 +705,7 @@ SCardGetStatusChangeW(
 #else
 #define SCardGetStatusChange  SCardGetStatusChangeA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardCancel(
@@ -687,6 +732,7 @@ SCardCancel(
 #define SCARD_RESET_CARD      1 // Reset the card on close
 #define SCARD_UNPOWER_CARD    2 // Power down the card on close
 #define SCARD_EJECT_CARD      3 // Eject the card on close
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardConnectA(
@@ -696,6 +742,7 @@ SCardConnectA(
     _In_    DWORD dwPreferredProtocols,
     _Out_   LPSCARDHANDLE phCard,
     _Out_   LPDWORD pdwActiveProtocol);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardConnectW(
     _In_    SCARDCONTEXT hContext,
@@ -709,6 +756,7 @@ SCardConnectW(
 #else
 #define SCardConnect  SCardConnectA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardReconnect(
@@ -717,15 +765,18 @@ SCardReconnect(
     _In_      DWORD dwPreferredProtocols,
     _In_      DWORD dwInitialization,
     _Out_opt_ LPDWORD pdwActiveProtocol);
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardDisconnect(
     _In_    SCARDHANDLE hCard,
     _In_    DWORD dwDisposition);
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardBeginTransaction(
     _In_    SCARDHANDLE hCard);
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardEndTransaction(
@@ -748,6 +799,7 @@ SCardState(
     _Out_   LPDWORD pdwProtocol,
     _Out_writes_bytes_(*pcbAtrLen)   LPBYTE pbAtr,
     _Inout_ LPDWORD pcbAtrLen);
+_Win32_SupportedOS_WindowsXP_
 //
 // NOTE:    SCardState is an obsolete routine.  PC/SC has replaced it with
 //          SCardStatus.
@@ -766,6 +818,7 @@ SCardStatusA(
     _When_(_Old_(*pcbAtrLen) != SCARD_AUTOALLOCATE, _Out_writes_opt_(*pcbAtrLen) _Post_ _NullNull_terminated_)
                 LPBYTE pbAtr,
     _Inout_opt_ LPDWORD pcbAtrLen);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardStatusW(
     _In_        SCARDHANDLE hCard,
@@ -784,6 +837,7 @@ SCardStatusW(
 #else
 #define SCardStatus  SCardStatusA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardTransmit(
@@ -796,11 +850,13 @@ SCardTransmit(
     _Inout_     LPDWORD pcbRecvLength);
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 extern WINSCARDAPI LONG WINAPI
 SCardGetTransmitCount(
     _In_ SCARDHANDLE hCard,
     _Out_ LPDWORD pcTransmitCount);
 #endif // (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsXP_
 
 //
 ////////////////////////////////////////////////////////////////////////////////
@@ -821,6 +877,7 @@ SCardControl(
     _Out_writes_bytes_(cbOutBufferSize) LPVOID lpOutBuffer,
     _In_    DWORD cbOutBufferSize,
     _Out_   LPDWORD lpBytesReturned);
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardGetAttrib(
@@ -841,6 +898,7 @@ SCardGetAttrib(
 //
 //          Here's a work-around MACRO:
 #define SCardGetReaderCapabilities SCardGetAttrib
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardSetAttrib(
@@ -1136,6 +1194,7 @@ typedef struct {
     DWORD                           cbCardNameOffset;
     DWORD                           cchCardNameLength;
 } READER_SEL_RESPONSE, *PREADER_SEL_RESPONSE;
+_Win32_SupportedOS_WindowsXP_
 
 
 //
@@ -1145,6 +1204,7 @@ typedef struct {
 extern WINSCARDAPI LONG WINAPI
 SCardUIDlgSelectCardA(
     LPOPENCARDNAMEA_EX);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 SCardUIDlgSelectCardW(
     LPOPENCARDNAMEW_EX);
@@ -1227,10 +1287,12 @@ typedef LPOPENCARDNAMEA LPOPENCARDNAME;
 #define POPENCARDNAME_W POPENCARDNAMEW
 #define LPOPENCARDNAME_A LPOPENCARDNAMEA
 #define LPOPENCARDNAME_W LPOPENCARDNAMEW
+_Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 GetOpenCardNameA(
     LPOPENCARDNAMEA);
+_Win32_SupportedOS_WindowsXP_
 extern WINSCARDAPI LONG WINAPI
 GetOpenCardNameW(
     LPOPENCARDNAMEW);
@@ -1244,6 +1306,7 @@ extern WINSCARDAPI LONG WINAPI
 SCardDlgExtendedError (void);
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Smartcard Caching API
@@ -1257,6 +1320,7 @@ SCardReadCacheA(
     _In_  LPSTR LookupName,
     _Out_writes_bytes_(*DataLen) PBYTE Data,
     _Out_ DWORD *DataLen);
+_Win32_SupportedOS_WindowsVista_
 extern WINSCARDAPI LONG WINAPI
 SCardReadCacheW(
     _In_  SCARDCONTEXT hContext,
@@ -1270,6 +1334,7 @@ SCardReadCacheW(
 #else
 #define SCardReadCache  SCardReadCacheA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsVista_
 
 extern WINSCARDAPI LONG WINAPI
 SCardWriteCacheA(
@@ -1279,6 +1344,7 @@ SCardWriteCacheA(
     _In_ LPSTR LookupName,
     _In_reads_bytes_(DataLen) PBYTE Data,
     _In_ DWORD DataLen);
+_Win32_SupportedOS_WindowsVista_
 extern WINSCARDAPI LONG WINAPI
 SCardWriteCacheW(
     _In_ SCARDCONTEXT hContext,
@@ -1296,6 +1362,7 @@ SCardWriteCacheW(
 #endif // (NTDDI_VERSION >= NTDDI_VISTA)
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SupportedOS_Windows8_
 
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI 
@@ -1306,6 +1373,7 @@ SCardGetReaderIconA(
   _When_(_Old_(*pcbIcon) != SCARD_AUTOALLOCATE, _Out_writes_bytes_to_(*pcbIcon, *pcbIcon) _Post_z_)
            LPBYTE pbIcon,
   _Inout_  LPDWORD pcbIcon);
+_Win32_SupportedOS_Windows8_
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI 
 SCardGetReaderIconW(
@@ -1320,6 +1388,7 @@ SCardGetReaderIconW(
 #else
 #define SCardGetReaderIcon  SCardGetReaderIconA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows8_
 
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI 
@@ -1327,6 +1396,7 @@ SCardGetDeviceTypeIdA(
   _In_     SCARDCONTEXT hContext,
   _In_     LPCSTR szReaderName, 
   _Inout_  LPDWORD pdwDeviceTypeId);
+_Win32_SupportedOS_Windows8_
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI 
 SCardGetDeviceTypeIdW(
@@ -1338,6 +1408,7 @@ SCardGetDeviceTypeIdW(
 #else
 #define SCardGetDeviceTypeId  SCardGetDeviceTypeIdA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows8_
   
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI
@@ -1348,6 +1419,7 @@ SCardGetReaderDeviceInstanceIdA(
   _When_(_Old_(*pcchDeviceInstanceId) != SCARD_AUTOALLOCATE, _Out_writes_opt_(*pcchDeviceInstanceId) _Post_ _NullNull_terminated_)
           LPSTR szDeviceInstanceId,
   _Inout_ LPDWORD pcchDeviceInstanceId);
+_Win32_SupportedOS_Windows8_
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI
 SCardGetReaderDeviceInstanceIdW(
@@ -1362,6 +1434,7 @@ SCardGetReaderDeviceInstanceIdW(
 #else
 #define SCardGetReaderDeviceInstanceId  SCardGetReaderDeviceInstanceIdA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows8_
 
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI
@@ -1372,6 +1445,7 @@ SCardListReadersWithDeviceInstanceIdA(
   _When_(_Old_(*pcchReaders) != SCARD_AUTOALLOCATE, _Out_writes_opt_(*pcchReaders) _Post_ _NullNull_terminated_)
           LPSTR mszReaders,
   _Inout_ LPDWORD pcchReaders);
+_Win32_SupportedOS_Windows8_
 _Success_(return == SCARD_S_SUCCESS)
 extern WINSCARDAPI LONG WINAPI
 SCardListReadersWithDeviceInstanceIdW(
@@ -1397,6 +1471,7 @@ SCardListReadersWithDeviceInstanceIdW(
                                     // attempt failed.
 
 #define SCARD_AUDIT_CHV_SUCCESS 0x1 // A smart card holder verification (CHV)
+_Win32_SupportedOS_Windows8_
                                     // attempt succeeded.
 
 _Success_(return == SCARD_S_SUCCESS)

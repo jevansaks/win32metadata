@@ -7,7 +7,52 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ioapiset.h b/generation/W
  /********************************************************************************
  *                                                                               *
  * ioapiset.h -- ApiSet Contract for api-ms-win-core-io-l1                       *
-@@ -90,7 +91,7 @@
+@@ -24,6 +25,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ _Ret_maybenull_
+@@ -35,6 +38,8 @@
+     _In_ ULONG_PTR CompletionKey,
+     _In_ DWORD NumberOfConcurrentThreads
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -48,6 +53,8 @@
+     );
+ 
+ #if (_WIN32_WINNT >= 0x0600)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -62,6 +69,8 @@
+     );
+ 
+ #endif // _WIN32_WINNT >= 0x0600
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -78,6 +87,8 @@
+ 
+ #pragma region  Desktop Family or OneCore Family or Application Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -90,7 +101,7 @@
      _Out_writes_bytes_to_opt_(nOutBufferSize,*lpBytesReturned) LPVOID lpOutBuffer,
      _In_ DWORD nOutBufferSize,
      _Out_opt_ LPDWORD lpBytesReturned,
@@ -16,3 +61,48 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ioapiset.h b/generation/W
      );
  
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES) */
+@@ -98,6 +109,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -110,6 +123,8 @@
+     );
+ 
+ #if (_WIN32_WINNT >= 0x0600)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL
+@@ -126,6 +141,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -133,6 +150,8 @@
+ CancelIo(
+     _In_ HANDLE hFile
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows8_
+ 
+ WINBASEAPI
+ BOOL
+@@ -152,6 +171,8 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if (_WIN32_WINNT >= 0x0600)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ WINBASEAPI
+ BOOL

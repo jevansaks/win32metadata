@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -50,6 +51,7 @@ typedef WCHAR DESC_CHAR;
 typedef LPWSTR LPDESC;
 
 #endif // DESC_CHAR_UNICODE is defined
+_Win32_SupportedOS_Windows2000_
 
 
 
@@ -64,6 +66,7 @@ NetRemoteTOD (
     _In_opt_ LPCWSTR UncServerName,
     _Outptr_result_bytebuffer_(sizeof(TIME_OF_DAY_INFO)) LPBYTE *BufferPtr
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetRemoteComputerSupports(

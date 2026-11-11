@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 #include <winapifamily.h>
@@ -215,6 +216,7 @@ typedef HDDEDATA (CALLBACK *PFNCALLBACK)(UINT wType, UINT wFmt, HCONV hConv,
         HSZ hsz1, HSZ hsz2, HDDEDATA hData, ULONG_PTR dwData1, ULONG_PTR dwData2);
 
 #define     CBR_BLOCK           ((HDDEDATA)-1)
+_Win32_SupportedOS_Windows2000_
 
 /* DLL registration functions */
 
@@ -225,6 +227,7 @@ DdeInitializeA(
     _In_ PFNCALLBACK pfnCallback,
     _In_ DWORD afCmd,
     _Reserved_ DWORD ulRes);
+_Win32_SupportedOS_Windows2000_
 UINT
 WINAPI
 DdeInitializeW(
@@ -268,11 +271,13 @@ DdeInitializeW(
  */
 #define     APPCLASS_STANDARD            0x00000000L
 #define     APPCLASS_MASK                0x0000000FL
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
 DdeUninitialize(
     _In_ DWORD idInst);
+_Win32_SupportedOS_Windows2000_
 
 /*
  * conversation enumeration functions
@@ -285,16 +290,19 @@ DdeConnectList(
     _In_ HSZ hszTopic,
     _In_ HCONVLIST hConvList,
     _In_opt_ PCONVCONTEXT pCC);
+_Win32_SupportedOS_Windows2000_
 
 HCONV
 WINAPI
 DdeQueryNextServer(
     _In_ HCONVLIST hConvList,
     _In_ HCONV hConvPrev);
+_Win32_SupportedOS_Windows2000_
 BOOL
 WINAPI
 DdeDisconnectList(
     _In_ HCONVLIST hConvList);
+_Win32_SupportedOS_Windows2000_
 
 /*
  * conversation control functions
@@ -306,16 +314,19 @@ DdeConnect(
     _In_ HSZ hszService,
     _In_ HSZ hszTopic,
     _In_opt_ PCONVCONTEXT pCC);
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
 DdeDisconnect(
     _In_ HCONV hConv);
+_Win32_SupportedOS_Windows2000_
 
 HCONV
 WINAPI
 DdeReconnect(
     _In_ HCONV hConv);
+_Win32_SupportedOS_Windows2000_
 
 UINT
 WINAPI
@@ -323,6 +334,7 @@ DdeQueryConvInfo(
     _In_ HCONV hConv,
     _In_ DWORD idTransaction,
     _Inout_ PCONVINFO pConvInfo);
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
@@ -330,6 +342,7 @@ DdeSetUserHandle(
     _In_ HCONV hConv,
     _In_ DWORD id,
     _In_ DWORD_PTR hUser);
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
@@ -337,6 +350,7 @@ DdeAbandonTransaction(
     _In_ DWORD idInst,
     _In_ HCONV hConv,
     _In_ DWORD idTransaction);
+_Win32_SupportedOS_Windows2000_
 
 
 /*
@@ -348,6 +362,7 @@ DdePostAdvise(
     _In_ DWORD idInst,
     _In_ HSZ hszTopic,
     _In_ HSZ hszItem);
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
@@ -366,6 +381,7 @@ DdeImpersonateClient(
 #define EC_ENABLEONE            ST_BLOCKNEXT
 #define EC_DISABLE              ST_BLOCKED
 #define EC_QUERYWAITING         2
+_Win32_SupportedOS_Windows2000_
 
 HDDEDATA
 WINAPI
@@ -379,6 +395,7 @@ DdeNameService(
 #define DNS_UNREGISTER      0x0002
 #define DNS_FILTERON        0x0004
 #define DNS_FILTEROFF       0x0008
+_Win32_SupportedOS_Windows2000_
 
 /*
  * app client interface functions
@@ -394,6 +411,7 @@ DdeClientTransaction(
     _In_ UINT wType,
     _In_ DWORD dwTimeout,
     _Out_opt_ LPDWORD pdwResult);
+_Win32_SupportedOS_Windows2000_
 
 
 /*
@@ -410,6 +428,7 @@ DdeCreateDataHandle(
     _In_opt_ HSZ hszItem,
     _In_ UINT wFmt,
     _In_ UINT afCmd);
+_Win32_SupportedOS_Windows2000_
 
 HDDEDATA
 WINAPI
@@ -418,6 +437,7 @@ DdeAddData(
     _In_reads_bytes_(cb) LPBYTE pSrc,
     _In_ DWORD cb,
     _In_ DWORD cbOff);
+_Win32_SupportedOS_Windows2000_
 
 DWORD
 WINAPI
@@ -426,17 +446,20 @@ DdeGetData(
     _Out_writes_bytes_opt_(cbMax) LPBYTE pDst,
     _In_ DWORD cbMax,
     _In_ DWORD cbOff);
+_Win32_SupportedOS_Windows2000_
 
 LPBYTE
 WINAPI
 DdeAccessData(
     _In_ HDDEDATA hData,
     _Out_opt_ LPDWORD pcbDataSize);
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
 DdeUnaccessData(
     _In_ HDDEDATA hData);
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
@@ -444,6 +467,7 @@ DdeFreeDataHandle(
     _In_ HDDEDATA hData);
 
 #define     HDATA_APPOWNED          0x0001
+_Win32_SupportedOS_Windows2000_
 
 
 UINT
@@ -476,6 +500,7 @@ DdeGetLastError(
 #define     DMLERR_UNFOUND_QUEUE_ID            0x4011
 
 #define     DMLERR_LAST                        0x4011
+_Win32_SupportedOS_Windows2000_
 
 HSZ
 WINAPI
@@ -483,6 +508,7 @@ DdeCreateStringHandleA(
     _In_ DWORD idInst,
     _In_ LPCSTR psz,
     _In_ int iCodePage);
+_Win32_SupportedOS_Windows2000_
 HSZ
 WINAPI
 DdeCreateStringHandleW(
@@ -494,6 +520,7 @@ DdeCreateStringHandleW(
 #else
 #define DdeCreateStringHandle  DdeCreateStringHandleA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 DWORD
 WINAPI
@@ -503,6 +530,7 @@ DdeQueryStringA(
     _Out_writes_opt_(cchMax) LPSTR psz,
     _In_ DWORD cchMax,
     _In_ int iCodePage);
+_Win32_SupportedOS_Windows2000_
 DWORD
 WINAPI
 DdeQueryStringW(
@@ -516,18 +544,21 @@ DdeQueryStringW(
 #else
 #define DdeQueryString  DdeQueryStringA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
 DdeFreeStringHandle(
     _In_ DWORD idInst,
     _In_ HSZ hsz);
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
 DdeKeepStringHandle(
     _In_ DWORD idInst,
     _In_ HSZ hsz);
+_Win32_SupportedOS_Windows2000_
 
 int
 WINAPI

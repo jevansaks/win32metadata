@@ -726,6 +726,8 @@ typedef LPINTERNET_BUFFERSW LPINTERNET_BUFFERS;
 typedef INTERNET_BUFFERSA INTERNET_BUFFERS;
 typedef LPINTERNET_BUFFERSA LPINTERNET_BUFFERS;
 #endif // UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //
 // prototypes
@@ -737,6 +739,8 @@ BOOLAPI InternetTimeFromSystemTimeA(
     _Out_writes_bytes_(cbTime) LPSTR lpszTime,  // output string buffer
     _In_ DWORD cbTime                     // output buffer size
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetTimeFromSystemTimeW(
     _In_ CONST SYSTEMTIME *pst,            // input GMT time
@@ -751,6 +755,8 @@ BOOLAPI InternetTimeFromSystemTimeW(
 #ifdef _WINX32_
 #define InternetTimeFromSystemTime  InternetTimeFromSystemTimeA
 #else
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetTimeFromSystemTime(
     _In_ CONST SYSTEMTIME *pst,           // input GMT time
     _In_ DWORD dwRFC,                     // RFC format
@@ -766,12 +772,16 @@ BOOLAPI InternetTimeFromSystemTime(
 
 #define INTERNET_RFC1123_FORMAT     0
 #define INTERNET_RFC1123_BUFSIZE   30
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetTimeToSystemTimeA(
     _In_ LPCSTR lpszTime,          // NULL terminated string
     _Out_ SYSTEMTIME *pst,         // output in GMT time
     _Reserved_ DWORD dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetTimeToSystemTimeW(
     _In_ LPCWSTR lpszTime,         // NULL terminated string
@@ -785,6 +795,8 @@ BOOLAPI InternetTimeToSystemTimeW(
 #ifdef _WINX32_
 #define InternetTimeToSystemTime  InternetTimeToSystemTimeA
 #else
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetTimeToSystemTime(
     _In_ LPCSTR lpszTime,          // NULL terminated string
     _Out_ SYSTEMTIME *pst,         // output in GMT time
@@ -792,6 +804,8 @@ BOOLAPI InternetTimeToSystemTime(
     );
 #endif // _WINX32_
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI
@@ -801,6 +815,8 @@ InternetCrackUrlA(
     _In_ DWORD dwFlags,
     _Inout_ LPURL_COMPONENTSA lpUrlComponents
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 InternetCrackUrlW(
     _In_reads_(dwUrlLength) LPCWSTR lpszUrl,
@@ -813,6 +829,8 @@ InternetCrackUrlW(
 #else
 #define InternetCrackUrl  InternetCrackUrlA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetCreateUrlA(
@@ -821,6 +839,8 @@ InternetCreateUrlA(
     _Out_writes_opt_(*lpdwUrlLength) LPSTR lpszUrl,
     _Inout_ LPDWORD lpdwUrlLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 InternetCreateUrlW(
     _In_ LPURL_COMPONENTSW lpUrlComponents,
@@ -833,6 +853,8 @@ InternetCreateUrlW(
 #else
 #define InternetCreateUrl  InternetCreateUrlA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetCanonicalizeUrlA(
@@ -841,6 +863,8 @@ InternetCanonicalizeUrlA(
     _Inout_ LPDWORD lpdwBufferLength,
     _In_ DWORD dwFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 InternetCanonicalizeUrlW(
     _In_ LPCWSTR lpszUrl,
@@ -853,6 +877,8 @@ InternetCanonicalizeUrlW(
 #else
 #define InternetCanonicalizeUrl  InternetCanonicalizeUrlA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetCombineUrlA(
@@ -862,6 +888,8 @@ InternetCombineUrlA(
     _Inout_ LPDWORD lpdwBufferLength,
     _In_ DWORD dwFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 InternetCombineUrlW(
     _In_ LPCWSTR lpszBaseUrl,
@@ -894,6 +922,8 @@ InternetCombineUrlW(
 #define ICU_ENCODE_SPACES_ONLY 0x04000000  // Encode spaces only
 #define ICU_BROWSER_MODE 0x02000000 // Special encode/decode rules for browser
 #define ICU_ENCODE_PERCENT      0x00001000      // Encode any percent (ASCII25)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
         // signs encountered, default is to not encode percent.
 
 INTERNETAPI_(HINTERNET) InternetOpenA(
@@ -903,6 +933,8 @@ INTERNETAPI_(HINTERNET) InternetOpenA(
     _In_opt_ LPCSTR lpszProxyBypass,
     _In_ DWORD dwFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HINTERNET) InternetOpenW(
     _In_opt_ LPCWSTR lpszAgent,
     _In_ DWORD dwAccessType,
@@ -932,10 +964,14 @@ INTERNETAPI_(HINTERNET) InternetOpenW(
 #define PRE_CONFIG_INTERNET_ACCESS  INTERNET_OPEN_TYPE_PRECONFIG
 #define LOCAL_INTERNET_ACCESS       INTERNET_OPEN_TYPE_DIRECT
 #define CERN_PROXY_INTERNET_ACCESS  INTERNET_OPEN_TYPE_PROXY
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetCloseHandle(
     _In_ HINTERNET hInternet
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(HINTERNET)
 InternetConnectA(
@@ -948,6 +984,8 @@ InternetConnectA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HINTERNET)
 InternetConnectW(
     _In_ HINTERNET hInternet,
@@ -972,6 +1010,8 @@ InternetConnectW(
 #define INTERNET_SERVICE_FTP    1
 #define INTERNET_SERVICE_GOPHER 2
 #define INTERNET_SERVICE_HTTP   3
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 INTERNETAPI_(HINTERNET) InternetOpenUrlA(
@@ -982,6 +1022,8 @@ INTERNETAPI_(HINTERNET) InternetOpenUrlA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HINTERNET) InternetOpenUrlW(
     _In_ HINTERNET hInternet,
     _In_ LPCWSTR lpszUrl,
@@ -995,6 +1037,8 @@ INTERNETAPI_(HINTERNET) InternetOpenUrlW(
 #else
 #define InternetOpenUrl  InternetOpenUrlA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetReadFile(
     _In_ HINTERNET hFile,
@@ -1002,6 +1046,8 @@ BOOLAPI InternetReadFile(
     _In_ DWORD dwNumberOfBytesToRead,
     _Out_ LPDWORD lpdwNumberOfBytesRead
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetReadFileExA(
     _In_ HINTERNET hFile,
@@ -1009,6 +1055,8 @@ BOOLAPI InternetReadFileExA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetReadFileExW(
     _In_ HINTERNET hFile,
     _Out_ __out_data_source(NETWORK) LPINTERNET_BUFFERSW lpBuffersOut,
@@ -1029,6 +1077,8 @@ BOOLAPI InternetReadFileExW(
 #define IRF_SYNC        WININET_API_FLAG_SYNC
 #define IRF_USE_CONTEXT WININET_API_FLAG_USE_CONTEXT
 #define IRF_NO_WAIT     0x00000008
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(DWORD) InternetSetFilePointer(
     _In_ HINTERNET hFile,
@@ -1037,6 +1087,8 @@ INTERNETAPI_(DWORD) InternetSetFilePointer(
     _In_ DWORD dwMoveMethod,
     _Reserved_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetWriteFile(
     _In_ HINTERNET hFile,
@@ -1044,6 +1096,8 @@ BOOLAPI InternetWriteFile(
     _In_ DWORD dwNumberOfBytesToWrite,
     _Out_ LPDWORD lpdwNumberOfBytesWritten
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI InternetQueryDataAvailable(
@@ -1052,11 +1106,15 @@ BOOLAPI InternetQueryDataAvailable(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetFindNextFileA(
     _In_ HINTERNET hFind,
     _Out_ LPVOID lpvFindData
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetFindNextFileW(
     _In_ HINTERNET hFind,
     _Out_ LPVOID lpvFindData
@@ -1066,6 +1124,8 @@ BOOLAPI InternetFindNextFileW(
 #else
 #define InternetFindNextFile  InternetFindNextFileA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetQueryOptionA(
     _In_opt_ HINTERNET hInternet,
@@ -1073,6 +1133,8 @@ BOOLAPI InternetQueryOptionA(
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(*lpdwBufferLength, *lpdwBufferLength) __out_data_source(NETWORK) LPVOID lpBuffer,
     _Inout_ LPDWORD lpdwBufferLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetQueryOptionW(
     _In_opt_ HINTERNET hInternet,
     _In_ DWORD dwOption,
@@ -1084,6 +1146,8 @@ BOOLAPI InternetQueryOptionW(
 #else
 #define InternetQueryOption  InternetQueryOptionA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetSetOptionA(
     _In_opt_ HINTERNET hInternet,
@@ -1091,6 +1155,8 @@ BOOLAPI InternetSetOptionA(
     _In_opt_ LPVOID lpBuffer,
     _In_       DWORD dwBufferLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetSetOptionW(
     _In_opt_ HINTERNET hInternet,
     _In_       DWORD dwOption,
@@ -1102,6 +1168,7 @@ BOOLAPI InternetSetOptionW(
 #else
 #define InternetSetOption  InternetSetOptionA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetSetOptionExA(
     _In_opt_ HINTERNET hInternet,
@@ -1110,6 +1177,7 @@ BOOLAPI InternetSetOptionExA(
     _In_       DWORD dwBufferLength,
     _In_       DWORD dwFlags
     );
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetSetOptionExW(
     _In_opt_ HINTERNET hInternet,
     _In_       DWORD dwOption,
@@ -1122,11 +1190,15 @@ BOOLAPI InternetSetOptionExW(
 #else
 #define InternetSetOptionEx  InternetSetOptionExA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetLockRequestFile(
     _In_  HINTERNET hInternet,
     _Out_ HANDLE * lphLockRequestInfo
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetUnlockRequestFile(
     _Inout_ HANDLE hLockRequestInfo
@@ -1387,6 +1459,8 @@ BOOLAPI InternetUnlockRequestFile(
 #define AUTODIAL_MODE_NEVER                     1
 #define AUTODIAL_MODE_ALWAYS                    2
 #define AUTODIAL_MODE_NO_NETWORK_PRESENT        4
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI
@@ -1395,6 +1469,8 @@ InternetGetLastResponseInfoA(
     _Out_writes_opt_(*lpdwBufferLength) LPSTR lpszBuffer,
     _Inout_ LPDWORD lpdwBufferLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 InternetGetLastResponseInfoW(
     _Out_ LPDWORD lpdwError,
@@ -1439,6 +1515,7 @@ INTERNETAPI_(INTERNET_STATUS_CALLBACK) InternetSetStatusCallbackW(
 #ifdef _WINX32_
 #define InternetSetStatusCallback  InternetSetStatusCallbackA
 #else
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(INTERNET_STATUS_CALLBACK) InternetSetStatusCallback(
     _In_ HINTERNET hInternet,
     _In_opt_ INTERNET_STATUS_CALLBACK lpfnInternetCallback
@@ -1570,6 +1647,8 @@ CookieDecision;
 #define FTP_TRANSFER_TYPE_BINARY    0x00000002
 
 #define FTP_TRANSFER_TYPE_MASK      (FTP_TRANSFER_TYPE_ASCII | FTP_TRANSFER_TYPE_BINARY)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //
 // prototypes
@@ -1582,6 +1661,8 @@ INTERNETAPI_(HINTERNET) FtpFindFirstFileA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HINTERNET) FtpFindFirstFileW(
     _In_ HINTERNET hConnect,
     _In_opt_ LPCWSTR lpszSearchFile,
@@ -1594,6 +1675,8 @@ INTERNETAPI_(HINTERNET) FtpFindFirstFileW(
 #else
 #define FtpFindFirstFile  FtpFindFirstFileA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FtpGetFileA(
     _In_ HINTERNET hConnect,
@@ -1604,6 +1687,8 @@ BOOLAPI FtpGetFileA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FtpGetFileW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszRemoteFile,
@@ -1618,6 +1703,8 @@ BOOLAPI FtpGetFileW(
 #else
 #define FtpGetFile  FtpGetFileA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FtpPutFileA(
     _In_ HINTERNET hConnect,
@@ -1626,6 +1713,8 @@ BOOLAPI FtpPutFileA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FtpPutFileW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszLocalFile,
@@ -1656,11 +1745,15 @@ BOOLAPI FtpPutFileEx(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FtpDeleteFileA(
     _In_ HINTERNET hConnect,
     _In_ LPCSTR lpszFileName
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FtpDeleteFileW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszFileName
@@ -1670,12 +1763,16 @@ BOOLAPI FtpDeleteFileW(
 #else
 #define FtpDeleteFile  FtpDeleteFileA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FtpRenameFileA(
     _In_ HINTERNET hConnect,
     _In_ LPCSTR lpszExisting,
     _In_ LPCSTR lpszNew
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FtpRenameFileW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszExisting,
@@ -1686,6 +1783,8 @@ BOOLAPI FtpRenameFileW(
 #else
 #define FtpRenameFile  FtpRenameFileA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(HINTERNET) FtpOpenFileA(
     _In_ HINTERNET hConnect,
@@ -1694,6 +1793,8 @@ INTERNETAPI_(HINTERNET) FtpOpenFileA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HINTERNET) FtpOpenFileW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszFileName,
@@ -1706,11 +1807,15 @@ INTERNETAPI_(HINTERNET) FtpOpenFileW(
 #else
 #define FtpOpenFile  FtpOpenFileA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FtpCreateDirectoryA(
     _In_ HINTERNET hConnect,
     _In_ LPCSTR lpszDirectory
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FtpCreateDirectoryW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszDirectory
@@ -1720,11 +1825,15 @@ BOOLAPI FtpCreateDirectoryW(
 #else
 #define FtpCreateDirectory  FtpCreateDirectoryA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FtpRemoveDirectoryA(
     _In_ HINTERNET hConnect,
     _In_ LPCSTR lpszDirectory
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FtpRemoveDirectoryW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszDirectory
@@ -1734,11 +1843,15 @@ BOOLAPI FtpRemoveDirectoryW(
 #else
 #define FtpRemoveDirectory  FtpRemoveDirectoryA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FtpSetCurrentDirectoryA(
     _In_ HINTERNET hConnect,
     _In_ LPCSTR lpszDirectory
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FtpSetCurrentDirectoryW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszDirectory
@@ -1748,12 +1861,16 @@ BOOLAPI FtpSetCurrentDirectoryW(
 #else
 #define FtpSetCurrentDirectory  FtpSetCurrentDirectoryA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FtpGetCurrentDirectoryA(
     _In_ HINTERNET hConnect,
     _Out_writes_(*lpdwCurrentDirectory) LPSTR lpszCurrentDirectory,
     _Inout_ LPDWORD lpdwCurrentDirectory
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FtpGetCurrentDirectoryW(
     _In_ HINTERNET hConnect,
     _Out_writes_(*lpdwCurrentDirectory) LPWSTR lpszCurrentDirectory,
@@ -1764,6 +1881,8 @@ BOOLAPI FtpGetCurrentDirectoryW(
 #else
 #define FtpGetCurrentDirectory  FtpGetCurrentDirectoryA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FtpCommandA(
     _In_ HINTERNET hConnect,
@@ -1773,6 +1892,8 @@ BOOLAPI FtpCommandA(
     _In_opt_ DWORD_PTR dwContext,
     _Out_opt_ HINTERNET *phFtpCommand
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI FtpCommandW(
     _In_ HINTERNET hConnect,
     _In_ BOOL fExpectResponse,
@@ -1786,6 +1907,7 @@ BOOLAPI FtpCommandW(
 #else
 #define FtpCommand  FtpCommandA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(DWORD) FtpGetFileSize(
     _In_ HINTERNET hFile,
@@ -2111,6 +2233,8 @@ typedef struct {
 #define GOPHER_ATTRIBUTE_ID_TREEWALK    (GOPHER_ATTRIBUTE_ID_BASE + 24)
 
 #define GOPHER_ATTRIBUTE_ID_UNKNOWN     (GOPHER_ATTRIBUTE_ID_BASE + 25)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //
 // prototypes
@@ -2125,6 +2249,8 @@ BOOLAPI GopherCreateLocatorA(
     _Out_writes_opt_(*lpdwBufferLength) LPSTR lpszLocator,
     _Inout_ LPDWORD lpdwBufferLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI GopherCreateLocatorW(
     _In_ LPCWSTR lpszHost,
     _In_ INTERNET_PORT nServerPort,
@@ -2139,11 +2265,15 @@ BOOLAPI GopherCreateLocatorW(
 #else
 #define GopherCreateLocator  GopherCreateLocatorA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI GopherGetLocatorTypeA(
     _In_ LPCSTR lpszLocator,
     _Out_ LPDWORD lpdwGopherType
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI GopherGetLocatorTypeW(
     _In_ LPCWSTR lpszLocator,
     _Out_ LPDWORD lpdwGopherType
@@ -2153,6 +2283,8 @@ BOOLAPI GopherGetLocatorTypeW(
 #else
 #define GopherGetLocatorType  GopherGetLocatorTypeA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(HINTERNET) GopherFindFirstFileA(
     _In_ HINTERNET hConnect,
@@ -2162,6 +2294,8 @@ INTERNETAPI_(HINTERNET) GopherFindFirstFileA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HINTERNET) GopherFindFirstFileW(
     _In_ HINTERNET hConnect,
     _In_opt_ LPCWSTR lpszLocator,
@@ -2175,6 +2309,8 @@ INTERNETAPI_(HINTERNET) GopherFindFirstFileW(
 #else
 #define GopherFindFirstFile  GopherFindFirstFileA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(HINTERNET) GopherOpenFileA(
     _In_ HINTERNET hConnect,
@@ -2183,6 +2319,8 @@ INTERNETAPI_(HINTERNET) GopherOpenFileA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HINTERNET) GopherOpenFileW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszLocator,
@@ -2200,6 +2338,8 @@ typedef BOOL (CALLBACK * GOPHER_ATTRIBUTE_ENUMERATOR)(
     _In_ LPGOPHER_ATTRIBUTE_TYPE lpAttributeInfo,
     _In_ DWORD dwError
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI GopherGetAttributeA(
     _In_ HINTERNET hConnect,
@@ -2211,6 +2351,8 @@ BOOLAPI GopherGetAttributeA(
     _In_opt_ GOPHER_ATTRIBUTE_ENUMERATOR lpfnEnumerator,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI GopherGetAttributeW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszLocator,
@@ -2500,6 +2642,8 @@ BOOLAPI GopherGetAttributeW(
 
 #define HTTP_STATUS_FIRST               HTTP_STATUS_CONTINUE
 #define HTTP_STATUS_LAST                HTTP_STATUS_VERSION_NOT_SUP
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //
 // prototypes
@@ -2515,6 +2659,8 @@ INTERNETAPI_(HINTERNET) HttpOpenRequestA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HINTERNET) HttpOpenRequestW(
     _In_ HINTERNET hConnect,
     _In_opt_ LPCWSTR lpszVerb,
@@ -2530,6 +2676,8 @@ INTERNETAPI_(HINTERNET) HttpOpenRequestW(
 #else
 #define HttpOpenRequest  HttpOpenRequestA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI HttpAddRequestHeadersA(
     _In_ HINTERNET hRequest,
@@ -2603,6 +2751,8 @@ BOOLAPI HttpSendRequestA(
     _In_reads_bytes_opt_(dwOptionalLength) LPVOID lpOptional,
     _In_ DWORD dwOptionalLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI HttpSendRequestW(
     _In_ HINTERNET hRequest,
     _In_reads_opt_(dwHeadersLength) LPCWSTR lpszHeaders,
@@ -2615,6 +2765,8 @@ BOOLAPI HttpSendRequestW(
 #else
 #define HttpSendRequest  HttpSendRequestA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI HttpSendRequestExA(
     _In_ HINTERNET hRequest,
@@ -2623,6 +2775,8 @@ BOOLAPI HttpSendRequestExA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI HttpSendRequestExW(
     _In_ HINTERNET hRequest,
     _In_opt_ LPINTERNET_BUFFERSW lpBuffersIn,
@@ -2646,6 +2800,8 @@ BOOLAPI HttpSendRequestExW(
 #define HSR_INITIATE    0x00000008                      // iterative operation (completed by HttpEndRequest)
 #define HSR_DOWNLOAD    0x00000010                      // download to file
 #define HSR_CHUNKED     0x00000020                      // operation is send of chunked data
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI HttpEndRequestA(
     _In_ HINTERNET hRequest,
@@ -2653,6 +2809,8 @@ BOOLAPI HttpEndRequestA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI HttpEndRequestW(
     _In_ HINTERNET hRequest,
     _Out_opt_ LPINTERNET_BUFFERSW lpBuffersOut,
@@ -2664,6 +2822,8 @@ BOOLAPI HttpEndRequestW(
 #else
 #define HttpEndRequest  HttpEndRequestA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 HttpQueryInfoA(
@@ -2673,6 +2833,8 @@ HttpQueryInfoA(
     _Inout_ LPDWORD lpdwBufferLength,
     _Inout_opt_ LPDWORD lpdwIndex
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 HttpQueryInfoW(
     _In_ HINTERNET hRequest,
@@ -2727,6 +2889,8 @@ typedef struct
 #define INTERNET_COOKIE_SAME_SITE_STRICT           0x00100000
 #define INTERNET_COOKIE_SAME_SITE_LAX              0x00200000
 #define INTERNET_COOKIE_SAME_SITE_LEVEL_CROSS_SITE 0x00400000
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI
@@ -2735,6 +2899,8 @@ InternetSetCookieA(
     _In_opt_ LPCSTR lpszCookieName,
     _In_ LPCSTR lpszCookieData
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 InternetSetCookieW(
     _In_ LPCWSTR lpszUrl,
@@ -2746,6 +2912,8 @@ InternetSetCookieW(
 #else
 #define InternetSetCookie  InternetSetCookieA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetGetCookieA(
@@ -2754,6 +2922,8 @@ InternetGetCookieA(
     _Out_writes_opt_(*lpdwSize) LPSTR lpszCookieData,
     _Inout_ LPDWORD lpdwSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 InternetGetCookieW(
     _In_ LPCWSTR lpszUrl,
@@ -2766,6 +2936,8 @@ InternetGetCookieW(
 #else
 #define InternetGetCookie  InternetGetCookieA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 INTERNETAPI_(DWORD)
 InternetSetCookieExA(
@@ -2775,6 +2947,8 @@ InternetSetCookieExA(
     _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 INTERNETAPI_(DWORD)
 InternetSetCookieExW(
     _In_ LPCWSTR lpszUrl,
@@ -2788,6 +2962,8 @@ InternetSetCookieExW(
 #else
 #define InternetSetCookieEx  InternetSetCookieExA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOLAPI
 InternetGetCookieExA(
@@ -2798,6 +2974,8 @@ InternetGetCookieExA(
     _In_ DWORD dwFlags,
     _Reserved_ LPVOID lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 BOOLAPI
 InternetGetCookieExW(
     _In_ LPCWSTR lpszUrl,
@@ -2836,6 +3014,7 @@ InternetSetCookieEx2(
     _In_ DWORD dwFlags,
     _Out_ PDWORD pdwCookieState
 );
+_Win32_SupportedOS_Windows2000_
 
 //
 // offline browsing
@@ -2845,6 +3024,8 @@ INTERNETAPI_(DWORD)
 InternetAttemptConnect(
     _In_ DWORD dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetCheckConnectionA(
@@ -2852,6 +3033,8 @@ InternetCheckConnectionA(
     _In_ DWORD dwFlags,
     _In_ DWORD dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 InternetCheckConnectionW(
     _In_ LPCWSTR lpszUrl,
@@ -2905,12 +3088,15 @@ typedef struct
     DWORD_PTR        dwContext;   // context to pass to to notification function
 }
     INTERNET_AUTH_NOTIFY_DATA;
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI ResumeSuspendedDownload(
     _In_ HINTERNET hRequest,
     _In_ DWORD dwResultCode
     );
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(DWORD) InternetErrorDlg(
     _In_ HWND hWnd,
@@ -2919,6 +3105,7 @@ INTERNETAPI_(DWORD) InternetErrorDlg(
     _In_ DWORD dwFlags,
     _Inout_opt_ LPVOID * lppvData
     );
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(DWORD) InternetConfirmZoneCrossingA(
     _In_ HWND hWnd,
@@ -2926,6 +3113,7 @@ INTERNETAPI_(DWORD) InternetConfirmZoneCrossingA(
     _In_ LPSTR szUrlNew,
     _In_ BOOL bPost
     );
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(DWORD) InternetConfirmZoneCrossingW(
     _In_ HWND hWnd,
@@ -2940,6 +3128,7 @@ INTERNETAPI_(DWORD) InternetConfirmZoneCrossingW(
 #ifdef _WINX32_
 #define InternetConfirmZoneCrossing  InternetConfirmZoneCrossingA
 #else
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(DWORD) InternetConfirmZoneCrossing(
     _In_ HWND hWnd,
     _In_ LPSTR szUrlPrev,
@@ -3271,6 +3460,8 @@ typedef LPINTERNET_CACHE_GROUP_INFOW LPINTERNET_CACHE_GROUP_INFO;
 typedef INTERNET_CACHE_GROUP_INFOA INTERNET_CACHE_GROUP_INFO;
 typedef LPINTERNET_CACHE_GROUP_INFOA LPINTERNET_CACHE_GROUP_INFO;
 #endif // UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 
@@ -3285,6 +3476,8 @@ BOOLAPI CreateUrlCacheEntryA(
     _Inout_updates_(MAX_PATH) LPSTR lpszFileName,
     _In_       DWORD dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI CreateUrlCacheEntryW(
     _In_       LPCWSTR lpszUrlName,
     _In_       DWORD dwExpectedFileSize,
@@ -3297,6 +3490,8 @@ BOOLAPI CreateUrlCacheEntryW(
 #else
 #define CreateUrlCacheEntry  CreateUrlCacheEntryA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 CommitUrlCacheEntryA(
@@ -3310,6 +3505,8 @@ CommitUrlCacheEntryA(
     _Reserved_ LPCSTR lpszFileExtension,
     _In_opt_ LPCSTR lpszOriginalUrl
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 CommitUrlCacheEntryW(
@@ -3329,6 +3526,8 @@ CommitUrlCacheEntryW(
 #else
 #define CommitUrlCacheEntry CommitUrlCacheEntryA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 RetrieveUrlCacheEntryFileA(
@@ -3337,6 +3536,8 @@ RetrieveUrlCacheEntryFileA(
     _Inout_ LPDWORD lpcbCacheEntryInfo,
     _Reserved_ DWORD dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 RetrieveUrlCacheEntryFileW(
     _In_ LPCWSTR lpszUrlName,
@@ -3349,11 +3550,15 @@ RetrieveUrlCacheEntryFileW(
 #else
 #define RetrieveUrlCacheEntryFile  RetrieveUrlCacheEntryFileA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI UnlockUrlCacheEntryFileA(
     _In_ LPCSTR lpszUrlName,
     _Reserved_ DWORD dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI UnlockUrlCacheEntryFileW(
     _In_ LPCWSTR lpszUrlName,
@@ -3368,12 +3573,16 @@ BOOLAPI UnlockUrlCacheEntryFileW(
 #ifdef _WINX32_
 #define UnlockUrlCacheEntryFile  UnlockUrlCacheEntryFileA
 #else
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI UnlockUrlCacheEntryFile(
     _In_ LPCSTR lpszUrlName,
     _Reserved_ DWORD dwReserved
     );
 #endif // _WINX32_
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(HANDLE)
 RetrieveUrlCacheEntryStreamA(
@@ -3383,6 +3592,8 @@ RetrieveUrlCacheEntryStreamA(
     _In_ BOOL fRandomRead,
     _Reserved_ DWORD dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HANDLE)
 RetrieveUrlCacheEntryStreamW(
     _In_ LPCWSTR  lpszUrlName,
@@ -3396,6 +3607,8 @@ RetrieveUrlCacheEntryStreamW(
 #else
 #define RetrieveUrlCacheEntryStream  RetrieveUrlCacheEntryStreamA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 ReadUrlCacheEntryStream(
@@ -3413,12 +3626,16 @@ ReadUrlCacheEntryStreamEx(
     _Out_writes_bytes_(*lpdwLen) __out_data_source(NETWORK) LPVOID lpBuffer,
     _Inout_ LPDWORD lpdwLen
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 UnlockUrlCacheEntryStream(
     _In_ HANDLE hUrlCacheStream,
     _Reserved_ DWORD Reserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI
@@ -3427,6 +3644,8 @@ GetUrlCacheEntryInfoA(
     _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
     _Inout_opt_ LPDWORD lpcbCacheEntryInfo
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 GetUrlCacheEntryInfoW(
     _In_ LPCWSTR lpszUrlName,
@@ -3438,6 +3657,8 @@ GetUrlCacheEntryInfoW(
 #else
 #define GetUrlCacheEntryInfo  GetUrlCacheEntryInfoA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 URLCACHEAPI_(HANDLE) FindFirstUrlCacheGroup(
@@ -3448,12 +3669,16 @@ URLCACHEAPI_(HANDLE) FindFirstUrlCacheGroup(
     _Out_       GROUPID*    lpGroupId,
     _Reserved_  LPVOID      lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI FindNextUrlCacheGroup(
     _In_        HANDLE      hFind,
     _Out_       GROUPID*    lpGroupId,
     _Reserved_  LPVOID      lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI GetUrlCacheGroupAttributeA(
@@ -3464,6 +3689,8 @@ BOOLAPI GetUrlCacheGroupAttributeA(
     _Inout_                         LPDWORD                         lpcbGroupInfo,
     _Reserved_                      LPVOID                          lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI GetUrlCacheGroupAttributeW(
     _In_                            GROUPID                         gid,
     _Reserved_                      DWORD                           dwFlags,
@@ -3477,6 +3704,8 @@ BOOLAPI GetUrlCacheGroupAttributeW(
 #else
 #define GetUrlCacheGroupAttribute  GetUrlCacheGroupAttributeA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI SetUrlCacheGroupAttributeA(
     _In_        GROUPID                         gid,
@@ -3485,6 +3714,8 @@ BOOLAPI SetUrlCacheGroupAttributeA(
     _In_        LPINTERNET_CACHE_GROUP_INFOA    lpGroupInfo,
     _Reserved_  LPVOID                          lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI SetUrlCacheGroupAttributeW(
     _In_        GROUPID                         gid,
     _Reserved_  DWORD                           dwFlags,
@@ -3497,6 +3728,8 @@ BOOLAPI SetUrlCacheGroupAttributeW(
 #else
 #define SetUrlCacheGroupAttribute  SetUrlCacheGroupAttributeA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI
@@ -3509,6 +3742,8 @@ GetUrlCacheEntryInfoExA(
     _Reserved_ LPVOID lpReserved,
     _In_ DWORD dwFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 GetUrlCacheEntryInfoExW(
     _In_ LPCWSTR lpszUrl,
@@ -3533,12 +3768,16 @@ GetUrlCacheEntryInfoExW(
 #define CACHE_ENTRY_SYNCTIME_FC     0x00000200
 #define CACHE_ENTRY_HEADERINFO_FC   0x00000400
 #define CACHE_ENTRY_EXEMPT_DELTA_FC 0x00000800
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI SetUrlCacheEntryInfoA(
     _In_ LPCSTR lpszUrlName,
     _In_ LPINTERNET_CACHE_ENTRY_INFOA lpCacheEntryInfo,
     _In_ DWORD dwFieldControl
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI SetUrlCacheEntryInfoW(
     _In_ LPCWSTR lpszUrlName,
     _In_ LPINTERNET_CACHE_ENTRY_INFOW lpCacheEntryInfo,
@@ -3549,6 +3788,8 @@ BOOLAPI SetUrlCacheEntryInfoW(
 #else
 #define SetUrlCacheEntryInfo  SetUrlCacheEntryInfoA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 //
@@ -3560,6 +3801,8 @@ INTERNETAPI_(GROUPID) CreateUrlCacheGroup(
     _In_   DWORD  dwFlags,
     _Reserved_ LPVOID lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI DeleteUrlCacheGroup(
     _In_   GROUPID GroupId,
@@ -3570,6 +3813,7 @@ BOOLAPI DeleteUrlCacheGroup(
 // Flags for SetUrlCacheEntryGroup
 #define INTERNET_CACHE_GROUP_ADD      0
 #define INTERNET_CACHE_GROUP_REMOVE   1
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI SetUrlCacheEntryGroupA(
     _In_   LPCSTR   lpszUrlName,
@@ -3579,6 +3823,7 @@ BOOLAPI SetUrlCacheEntryGroupA(
     _Reserved_ DWORD    cbGroupAttributes,
     _Reserved_ LPVOID   lpReserved
     );
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI SetUrlCacheEntryGroupW(
     _In_   LPCWSTR  lpszUrlName,
@@ -3595,6 +3840,7 @@ BOOLAPI SetUrlCacheEntryGroupW(
 #ifdef _WINX32_
 #define SetUrlCacheEntryGroup  SetUrlCacheEntryGroupA
 #else
+_Win32_SupportedOS_Windows2000_
 BOOLAPI SetUrlCacheEntryGroup(
     _In_   LPCSTR   lpszUrlName,
     _In_   DWORD    dwFlags,
@@ -3605,6 +3851,8 @@ BOOLAPI SetUrlCacheEntryGroup(
     );
 #endif // _WINX32_
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(HANDLE)
 FindFirstUrlCacheEntryExA(
@@ -3618,6 +3866,8 @@ FindFirstUrlCacheEntryExA(
     _Reserved_ LPDWORD lpcbGroupAttributes,
     _Reserved_ LPVOID lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HANDLE)
 FindFirstUrlCacheEntryExW(
     _In_opt_ LPCWSTR  lpszUrlSearchPattern,
@@ -3635,6 +3885,8 @@ FindFirstUrlCacheEntryExW(
 #else
 #define FindFirstUrlCacheEntryEx  FindFirstUrlCacheEntryExA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 FindNextUrlCacheEntryExA(
@@ -3645,6 +3897,8 @@ FindNextUrlCacheEntryExA(
     _Reserved_ LPDWORD lpcbGroupAttributes,
     _Reserved_ LPVOID lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 FindNextUrlCacheEntryExW(
     _In_ HANDLE hEnumHandle,
@@ -3659,6 +3913,8 @@ FindNextUrlCacheEntryExW(
 #else
 #define FindNextUrlCacheEntryEx  FindNextUrlCacheEntryExA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(HANDLE)
 FindFirstUrlCacheEntryA(
@@ -3666,6 +3922,8 @@ FindFirstUrlCacheEntryA(
     _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpFirstCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(HANDLE)
 FindFirstUrlCacheEntryW(
     _In_opt_ LPCWSTR lpszUrlSearchPattern,
@@ -3677,6 +3935,8 @@ FindFirstUrlCacheEntryW(
 #else
 #define FindFirstUrlCacheEntry  FindFirstUrlCacheEntryA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 FindNextUrlCacheEntryA(
@@ -3684,6 +3944,8 @@ FindNextUrlCacheEntryA(
     _Win32_ContainsInteriorPointers_ _Inout_updates_bytes_opt_(*lpcbCacheEntryInfo) LPINTERNET_CACHE_ENTRY_INFOA lpNextCacheEntryInfo,
     _Inout_ LPDWORD lpcbCacheEntryInfo
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI
 FindNextUrlCacheEntryW(
     _In_ HANDLE hEnumHandle,
@@ -3695,15 +3957,21 @@ FindNextUrlCacheEntryW(
 #else
 #define FindNextUrlCacheEntry  FindNextUrlCacheEntryA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI FindCloseUrlCache(
     _In_ HANDLE hEnumHandle
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI DeleteUrlCacheEntryA(
     _In_ LPCSTR lpszUrlName
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI DeleteUrlCacheEntryW(
     _In_ LPCWSTR lpszUrlName
@@ -3715,11 +3983,14 @@ BOOLAPI DeleteUrlCacheEntryW(
 #ifdef _WINX32_
 #define DeleteUrlCacheEntry  DeleteUrlCacheEntryA
 #else
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI DeleteUrlCacheEntry(
     _In_ LPCSTR lpszUrlName
     );
 #endif // _WINX32_
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 
 
@@ -3749,6 +4020,7 @@ INTERNETAPI_(DWORD) InternetDialW(
 #ifdef _WINX32_
 #define InternetDial  InternetDialA
 #else
+_Win32_SupportedOS_Windows2000_
 INTERNETAPI_(DWORD) InternetDial(
     _In_ HWND     hwndParent,
     _In_opt_ LPSTR   lpszConnectoid,
@@ -3772,12 +4044,16 @@ INTERNETAPI_(DWORD) InternetHangUp(
 #define INTERENT_GOONLINE_REFRESH  0x00000001
 #define INTERENT_GOONLINE_NOPROMPT 0x00000002
 #define INTERENT_GOONLINE_MASK     0x00000003
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetGoOnlineA(
     _In_opt_ LPCSTR lpszURL,
     _In_ HWND     hwndParent,
     _In_ DWORD    dwFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetGoOnlineW(
     _In_opt_ LPCWSTR lpszURL,
@@ -3791,6 +4067,8 @@ BOOLAPI InternetGoOnlineW(
 #ifdef _WINX32_
 #define InternetGoOnline  InternetGoOnlineA
 #else
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetGoOnline(
     _In_opt_ LPSTR   lpszURL,
     _In_ HWND     hwndParent,
@@ -3798,6 +4076,8 @@ BOOLAPI InternetGoOnline(
     );
 #endif // _WINX32_
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetAutodial(
     _In_       DWORD  dwFlags,
@@ -3811,12 +4091,18 @@ BOOLAPI InternetAutodial(
 
 
 #define INTERNET_AUTODIAL_FLAGS_MASK (INTERNET_AUTODIAL_FORCE_ONLINE | INTERNET_AUTODIAL_FORCE_UNATTENDED | INTERNET_AUTODIAL_FAILIFSECURITYCHECK | INTERNET_AUTODIAL_OVERRIDE_NET_PRESENT)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetAutodialHangup(
     _Reserved_ DWORD    dwReserved);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetGetConnectedState(
     _Out_  LPDWORD  lpdwFlags,
     _Reserved_ DWORD    dwReserved);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetGetConnectedStateExA(
@@ -3825,6 +4111,8 @@ InternetGetConnectedStateExA(
     _In_ DWORD cchNameLen,
     _Reserved_ DWORD dwReserved
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetGetConnectedStateExW(
@@ -3926,12 +4214,16 @@ typedef enum{
 BOOLAPI DeleteWpadCacheForNetworks(
     _In_ WPAD_CACHE_DELETE
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 
 BOOLAPI InternetInitializeAutoProxyDll(
     _In_ DWORD dwReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI DetectAutoProxyUrl(
     _Out_writes_(cchAutoProxyUrl) PSTR pszAutoProxyUrl,
@@ -3952,6 +4244,8 @@ BOOLAPI CreateMD5SSOHash (
 #ifdef _WINX32_
 #define InternetGetConnectedStateEx  InternetGetConnectedStateExA
 #else
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetGetConnectedStateEx(
     _Out_ LPDWORD lpdwFlags,
     _Out_writes_opt_(dwNameLen) LPSTR lpszConnectionName,
@@ -4016,6 +4310,7 @@ BOOLAPI InternetSetDialState(
 
 // States for InternetSetDialState
 #define INTERNET_DIALSTATE_DISCONNECTED     1
+_Win32_SupportedOS_Windows2000_
 
 
 
@@ -4023,6 +4318,7 @@ BOOLAPI InternetSetPerSiteCookieDecisionA(
     _In_ LPCSTR pchHostName,
     _In_ DWORD dwDecision
 );
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetSetPerSiteCookieDecisionW(
     _In_ LPCWSTR pchHostName,
     _In_ DWORD dwDecision
@@ -4032,11 +4328,13 @@ BOOLAPI InternetSetPerSiteCookieDecisionW(
 #else
 #define InternetSetPerSiteCookieDecision  InternetSetPerSiteCookieDecisionA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetGetPerSiteCookieDecisionA(
     _In_ LPCSTR pchHostName,
     _Out_ unsigned long* pResult
 );
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetGetPerSiteCookieDecisionW(
     _In_ LPCWSTR pchHostName,
     _Out_ unsigned long* pResult
@@ -4046,8 +4344,10 @@ BOOLAPI InternetGetPerSiteCookieDecisionW(
 #else
 #define InternetGetPerSiteCookieDecision  InternetGetPerSiteCookieDecisionA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetClearAllPerSiteCookieDecisions();
+_Win32_SupportedOS_Windows2000_
 
 
 BOOLAPI InternetEnumPerSiteCookieDecisionA(
@@ -4056,6 +4356,7 @@ BOOLAPI InternetEnumPerSiteCookieDecisionA(
     _Out_ unsigned long *pdwDecision,
     _In_ unsigned long dwIndex
 );
+_Win32_SupportedOS_Windows2000_
 BOOLAPI InternetEnumPerSiteCookieDecisionW(
     _Out_writes_to_(*pcSiteNameSize, *pcSiteNameSize) LPWSTR pszSiteName,
     _Inout_ unsigned long *pcSiteNameSize,
@@ -4097,6 +4398,7 @@ BOOLAPI InternetEnumPerSiteCookieDecisionW(
 
 #define PRIVACY_TYPE_FIRST_PARTY        0
 #define PRIVACY_TYPE_THIRD_PARTY        1
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(DWORD)
 PrivacySetZonePreferenceW(
@@ -4105,6 +4407,7 @@ PrivacySetZonePreferenceW(
     _In_ DWORD       dwTemplate,
     _In_opt_ LPCWSTR     pszPreference
     );
+_Win32_SupportedOS_Windows2000_
 
 INTERNETAPI_(DWORD)
 PrivacyGetZonePreferenceW(

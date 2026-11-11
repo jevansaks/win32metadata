@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*===========================================================================
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -93,6 +94,7 @@ extern "C" {            /* Assume C declarations for C++ */
 #endif /* __cplusplus */
 
 #include <pshpack1.h>   /* Assume byte packing throughout */
+_Win32_SupportedOS_WindowsXP_
 
 //===========================================================================
 //
@@ -102,7 +104,9 @@ extern "C" {            /* Assume C declarations for C++ */
 
 _Check_return_
 SHSTDAPI SHGetMalloc(_Outptr_ IMalloc **ppMalloc);   // CoGetMalloc(MEMCTX_TASK,ppMalloc)
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(void *) SHAlloc(SIZE_T cb);                   // CoTaskMemAlloc(cb)
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(void)   SHFree(_In_opt_ void * pv);           // CoTaskMemFree(pv)
 
 
@@ -386,7 +390,9 @@ DECLARE_INTERFACE_IID_(IShellIconOverlay, IUnknown, "7d688a70-c613-11d0-999b-00c
 #define IDO_SHGIOI_LINK   0x0FFFFFFE
 #define IDO_SHGIOI_SLOWFILE 0x0FFFFFFFD
 #define IDO_SHGIOI_DEFAULT  0x0FFFFFFFC
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(int) SHGetIconOverlayIndexA(_In_opt_ LPCSTR pszIconPath, int iIconIndex);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(int) SHGetIconOverlayIndexW(_In_opt_ LPCWSTR pszIconPath, int iIconIndex);
 #ifdef UNICODE
 #define SHGetIconOverlayIndex  SHGetIconOverlayIndexW
@@ -649,28 +655,44 @@ DECLARE_INTERFACE_IID_(IURLSearchHook2, IURLSearchHook, "5ee44da4-6d32-46e3-86bc
 #define FCIDM_MENU_FIND             (FCIDM_GLOBALFIRST+0x0140)
 #define FCIDM_MENU_EXPLORE          (FCIDM_GLOBALFIRST+0x0150)
 #define FCIDM_MENU_FAVORITES        (FCIDM_GLOBALFIRST+0x0170)
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(PIDLIST_RELATIVE)     ILClone(_In_ PCUIDLIST_RELATIVE pidl);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(PITEMID_CHILD)        ILCloneFirst(_In_ PCUIDLIST_RELATIVE pidl);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(PIDLIST_ABSOLUTE)     ILCombine(_In_opt_ PCIDLIST_ABSOLUTE pidl1, _In_opt_ PCUIDLIST_RELATIVE pidl2);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(void)                 ILFree(_In_opt_ PIDLIST_RELATIVE pidl);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(PUIDLIST_RELATIVE)    ILGetNext(_In_opt_ PCUIDLIST_RELATIVE pidl);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(UINT)                 ILGetSize(_In_opt_ PCUIDLIST_RELATIVE pidl);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(PUIDLIST_RELATIVE)    ILFindChild(_In_ PIDLIST_ABSOLUTE pidlParent, _In_ PCIDLIST_ABSOLUTE pidlChild);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(PUITEMID_CHILD)       ILFindLastID(_In_ PCUIDLIST_RELATIVE pidl);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL)                 ILRemoveLastID(_Inout_opt_ PUIDLIST_RELATIVE pidl);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL)                 ILIsEqual(_In_ PCIDLIST_ABSOLUTE pidl1, _In_ PCIDLIST_ABSOLUTE pidl2);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL)                 ILIsParent(_In_ PCIDLIST_ABSOLUTE pidl1, _In_ PCIDLIST_ABSOLUTE pidl2, BOOL fImmediate);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI                        ILSaveToStream(_In_ IStream *pstm, _In_ PCUIDLIST_RELATIVE pidl);
 EXTERN_C DECLSPEC_DEPRECATED HRESULT STDAPICALLTYPE ILLoadFromStream(_In_ IStream *pstm, _Inout_ PIDLIST_RELATIVE *pidl); // use ILLoadFromStreamEx instead
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 SHSTDAPI                        ILLoadFromStreamEx(_In_ IStream *pstm, _Outptr_ PIDLIST_RELATIVE *pidl);
 #endif // NTDDI_VISTA
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(PIDLIST_ABSOLUTE)     ILCreateFromPathA(_In_ PCSTR pszPath);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(PIDLIST_ABSOLUTE)     ILCreateFromPathW(_In_ PCWSTR pszPath);
 
 #ifdef NO_WRAPPERS_FOR_ILCREATEFROMPATH
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(PIDLIST_ABSOLUTE)     ILCreateFromPath(_In_ PCTSTR pszPath);
 #else
 #ifdef UNICODE
@@ -679,6 +701,7 @@ SHSTDAPI_(PIDLIST_ABSOLUTE)     ILCreateFromPath(_In_ PCTSTR pszPath);
 #define ILCreateFromPath        ILCreateFromPathA
 #endif  // !UNICODE
 #endif  // NO_WRAPPERS_FOR_ILCREATEFROMPATH
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI SHILCreateFromPath(_In_ PCWSTR pszPath, _Outptr_ PIDLIST_ABSOLUTE *ppidl, _Inout_opt_ DWORD *rgfInOut);
 
@@ -696,14 +719,17 @@ inline PITEMID_CHILD    ILCloneChild(_In_ PCUITEMID_CHILD pidl)   { return ILClo
 inline HRESULT ILLoadFromStreamEx(_In_ IStream *pstm, _Outptr_ PIDLIST_ABSOLUTE *ppidl) { return ILLoadFromStreamEx(pstm, reinterpret_cast<PIDLIST_RELATIVE*>(ppidl)); }
 inline HRESULT ILLoadFromStreamEx(_In_ IStream *pstm, _Outptr_ PITEMID_CHILD *ppidl)    { return ILLoadFromStreamEx(pstm, reinterpret_cast<PIDLIST_RELATIVE*>(ppidl)); }
 #endif // NTDDI_VISTA
+_Win32_SupportedOS_WindowsVista_
 
 inline PCUIDLIST_RELATIVE ILSkip(_In_ PCUIDLIST_RELATIVE pidl, UINT cb) { return reinterpret_cast<PCUIDLIST_RELATIVE>(VOID_OFFSET(pidl, cb)); }
 inline PUIDLIST_RELATIVE  ILSkip(_In_ PUIDLIST_RELATIVE  pidl, UINT cb) { return const_cast<PUIDLIST_RELATIVE>(ILSkip(const_cast<PCUIDLIST_RELATIVE>(pidl), cb)); }
 
 inline PCUIDLIST_RELATIVE ILNext(_In_ PCUIDLIST_RELATIVE pidl) { return ILSkip(pidl, pidl->mkid.cb); }
 inline PUIDLIST_RELATIVE  ILNext(_In_ PUIDLIST_RELATIVE  pidl) { return const_cast<PUIDLIST_RELATIVE>(ILNext(const_cast<PCUIDLIST_RELATIVE>(pidl))); }
+_Win32_SupportedOS_WindowsVista_
 
 inline BOOL ILIsAligned(_In_ PCUIDLIST_RELATIVE pidl)       { return (((DWORD_PTR)(pidl) & (sizeof(void*) - 1)) == 0); }
+_Win32_SupportedOS_WindowsVista_
 
 inline BOOL ILIsEmpty(_In_opt_ PCUIDLIST_RELATIVE pidl)     { return ((pidl == NULL) || (pidl->mkid.cb==0)); }
 
@@ -732,6 +758,7 @@ extern "C" {
 #define ILIsChild(pidl)         (ILIsEmpty(pidl) || ILIsEmpty(ILNext(pidl)))
 
 #endif // defined(STRICT_TYPED_ITEMIDS) && defined(__cplusplus)
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(PIDLIST_RELATIVE) ILAppendID(_In_opt_ PIDLIST_RELATIVE pidl, _In_ LPCSHITEMID pmkid, BOOL fAppend);
 
@@ -748,13 +775,16 @@ enum
 
 
 typedef int GPFIDL_FLAGS;
+_Win32_SupportedOS_WindowsVista_
 SHSTDAPI_(BOOL) SHGetPathFromIDListEx(_In_ PCIDLIST_ABSOLUTE pidl, _Out_writes_(cchPath) PWSTR pszPath, DWORD cchPath, GPFIDL_FLAGS uOpts);
 #endif // NTDDI_VISTA
+_Win32_SupportedOS_WindowsXP_
 //
 // SHGetPathFromIDListW is the old version of SHGetPathFromIDListEx that assumes the size of the buffer (MAX_PATH).
 // The pidl should point to a file system object.
 _Success_(return != 0)
 SHSTDAPI_(BOOL) SHGetPathFromIDListA(_In_ PCIDLIST_ABSOLUTE pidl, _Out_writes_(MAX_PATH) LPSTR pszPath);
+_Win32_SupportedOS_WindowsXP_
 //
 // SHGetPathFromIDListW is the old version of SHGetPathFromIDListEx that assumes the size of the buffer (MAX_PATH).
 // The pidl should point to a file system object.
@@ -765,9 +795,12 @@ SHSTDAPI_(BOOL) SHGetPathFromIDListW(_In_ PCIDLIST_ABSOLUTE pidl, _Out_writes_(M
 #else
 #define SHGetPathFromIDList  SHGetPathFromIDListA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(int) SHCreateDirectory(_In_opt_ HWND hwnd, _In_ PCWSTR pszPath);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(int) SHCreateDirectoryExA(_In_opt_ HWND hwnd, _In_ LPCSTR pszPath, _In_opt_ const SECURITY_ATTRIBUTES *psa);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(int) SHCreateDirectoryExW(_In_opt_ HWND hwnd, _In_ LPCWSTR pszPath, _In_opt_ const SECURITY_ATTRIBUTES *psa);
 #ifdef UNICODE
 #define SHCreateDirectoryEx  SHCreateDirectoryExW
@@ -781,8 +814,10 @@ SHSTDAPI_(int) SHCreateDirectoryExW(_In_opt_ HWND hwnd, _In_ LPCWSTR pszPath, _I
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI SHOpenFolderAndSelectItems(_In_ PCIDLIST_ABSOLUTE pidlFolder, UINT cidl, _In_reads_opt_(cidl) PCUITEMID_CHILD_ARRAY apidl, DWORD dwFlags);
+_Win32_SupportedOS_WindowsXP_
 
 //  deprecated because of parameter ambiguity
 //  call SHCreateItemWithParent() or SHCreateItemFromIDList() instead
@@ -889,13 +924,17 @@ SHSTDAPI SHCreateShellItem(_In_opt_ PCIDLIST_ABSOLUTE pidlParent, _In_opt_ IShel
 #define CSIDL_FLAG_PER_USER_INIT        0x0800        // combine with CSIDL_ value to indicate per-user init (eg. upgrade)
 #endif  // NTDDI_WINXP
 #define CSIDL_FLAG_MASK                 0xFF00        // mask for all possible flag values
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 STDAPI SHGetSpecialFolderLocation(_Reserved_ HWND hwnd, _In_ int csidl, _Outptr_ PIDLIST_ABSOLUTE *ppidl);
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(PIDLIST_ABSOLUTE) SHCloneSpecialIDList(_Reserved_ HWND hwnd, _In_ int csidl, _In_ BOOL fCreate);
+_Win32_SupportedOS_Windows2000_
 _Success_(return != 0)
 SHSTDAPI_(BOOL) SHGetSpecialFolderPathA(_Reserved_ HWND hwnd, _Out_writes_(MAX_PATH) LPSTR pszPath, _In_ int csidl, _In_ BOOL fCreate);
+_Win32_SupportedOS_Windows2000_
 _Success_(return != 0)
 SHSTDAPI_(BOOL) SHGetSpecialFolderPathW(_Reserved_ HWND hwnd, _Out_writes_(MAX_PATH) LPWSTR pszPath, _In_ int csidl, _In_ BOOL fCreate);
 #ifdef UNICODE
@@ -905,32 +944,40 @@ SHSTDAPI_(BOOL) SHGetSpecialFolderPathW(_Reserved_ HWND hwnd, _Out_writes_(MAX_P
 #endif // !UNICODE
 
 #if (NTDDI_VERSION >= NTDDI_WIN2K)
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(void) SHFlushSFCache(void);
 
 typedef enum {
     SHGFP_TYPE_CURRENT  = 0,   // current value for user, verify it exists
     SHGFP_TYPE_DEFAULT  = 1,   // default value, may not exist
 } SHGFP_TYPE;
+_Win32_SupportedOS_Windows2000_
 
 SHFOLDERAPI SHGetFolderPathA(_Reserved_ HWND hwnd, _In_ int csidl, _In_opt_ HANDLE hToken, _In_ DWORD dwFlags, _Out_writes_(MAX_PATH) LPSTR pszPath);
+_Win32_SupportedOS_Windows2000_
 SHFOLDERAPI SHGetFolderPathW(_Reserved_ HWND hwnd, _In_ int csidl, _In_opt_ HANDLE hToken, _In_ DWORD dwFlags, _Out_writes_(MAX_PATH) LPWSTR pszPath);
 #ifdef UNICODE
 #define SHGetFolderPath  SHGetFolderPathW
 #else
 #define SHGetFolderPath  SHGetFolderPathA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI SHGetFolderLocation(_Reserved_ HWND hwnd, _In_ int csidl, _In_opt_ HANDLE hToken, _In_ DWORD dwFlags, _Outptr_ PIDLIST_ABSOLUTE *ppidl);
 #endif  // NTDDI_WIN2K
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_WindowsXP_
 STDAPI SHSetFolderPathA(_In_ int csidl, _In_opt_ HANDLE hToken, _In_ DWORD dwFlags, _In_ LPCSTR pszPath);
+_Win32_SupportedOS_WindowsXP_
 STDAPI SHSetFolderPathW(_In_ int csidl, _In_opt_ HANDLE hToken, _In_ DWORD dwFlags, _In_ LPCWSTR pszPath);
 #ifdef UNICODE
 #define SHSetFolderPath  SHSetFolderPathW
 #else
 #define SHSetFolderPath  SHSetFolderPathA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsXP_
 STDAPI SHGetFolderPathAndSubDirA(_Reserved_ HWND hwnd, _In_ int csidl, _In_opt_ HANDLE hToken, _In_ DWORD dwFlags, _In_opt_ LPCSTR pszSubDir, _Out_writes_(MAX_PATH) LPSTR pszPath);
+_Win32_SupportedOS_WindowsXP_
 STDAPI SHGetFolderPathAndSubDirW(_Reserved_ HWND hwnd, _In_ int csidl, _In_opt_ HANDLE hToken, _In_ DWORD dwFlags, _In_opt_ LPCWSTR pszSubDir, _Out_writes_(MAX_PATH) LPWSTR pszPath);
 #ifdef UNICODE
 #define SHGetFolderPathAndSubDir  SHGetFolderPathAndSubDirW
@@ -1037,11 +1084,13 @@ STDAPI SHGetKnownFolderIDList(_In_ REFKNOWNFOLDERID rfid,
                               _In_ DWORD /* KNOWN_FOLDER_FLAG */ dwFlags,
                               _In_opt_ HANDLE hToken,
                               _Outptr_ PIDLIST_ABSOLUTE *ppidl);
+_Win32_SupportedOS_WindowsVista_
 
 STDAPI SHSetKnownFolderPath(_In_ REFKNOWNFOLDERID rfid,
                             _In_ DWORD /* KNOWN_FOLDER_FLAG */ dwFlags,
                             _In_opt_ HANDLE hToken,
                             _In_ PCWSTR pszPath);
+_Win32_SupportedOS_WindowsVista_
 
 STDAPI SHGetKnownFolderPath(_In_ REFKNOWNFOLDERID rfid,
                             _In_ DWORD /* KNOWN_FOLDER_FLAG */ dwFlags,
@@ -1051,6 +1100,7 @@ STDAPI SHGetKnownFolderPath(_In_ REFKNOWNFOLDERID rfid,
 #endif  // NTDDI_VISTA
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
+_Win32_SupportedOS_Windows7_
 // returns IShellItem or related interface
 STDAPI SHGetKnownFolderItem(_In_ REFKNOWNFOLDERID rfid,
                             _In_ KNOWN_FOLDER_FLAG flags,
@@ -1112,6 +1162,7 @@ typedef struct
 } SHFOLDERCUSTOMSETTINGS, *LPSHFOLDERCUSTOMSETTINGS;
 
 #include <poppack.h>        /* Return to byte packing */
+_Win32_SupportedOS_WindowsXP_
 
 // Gets/Sets the Folder Custom Settings for pszPath based on dwReadWrite. dwReadWrite can be FCS_READ/FCS_WRITE/FCS_FORCEWRITE
 SHSTDAPI SHGetSetFolderCustomSettings(_Inout_ LPSHFOLDERCUSTOMSETTINGS pfcs, _In_ PCWSTR pszPath, DWORD dwReadWrite);
@@ -1206,8 +1257,10 @@ typedef struct _browseinfoW {
 #define BFFM_SETSTATUSTEXTW     (WM_USER + 104)
 #define BFFM_SETOKTEXT          (WM_USER + 105) // Unicode only
 #define BFFM_SETEXPANDED        (WM_USER + 106) // Unicode only
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(PIDLIST_ABSOLUTE) SHBrowseForFolderA(_In_ LPBROWSEINFOA lpbi);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(PIDLIST_ABSOLUTE) SHBrowseForFolderW(_In_ LPBROWSEINFOW lpbi);
 
 #ifdef UNICODE
@@ -1223,6 +1276,7 @@ SHSTDAPI_(PIDLIST_ABSOLUTE) SHBrowseForFolderW(_In_ LPBROWSEINFOW lpbi);
 
 #define BFFM_VALIDATEFAILED BFFM_VALIDATEFAILEDA
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 //-------------------------------------------------------------------------
 //
@@ -1270,6 +1324,7 @@ enum
 // folder. This is equivalent to call CoCreateInstance with CLSID_ShellDesktop.
 //
 //  CoCreateInstance(CLSID_Desktop, NULL, CLSCTX_INPROC, IID_PPV_ARGS(&pshf));
+_Win32_SupportedOS_WindowsXP_
 //
 _Check_return_
 SHSTDAPI SHGetDesktopFolder(_Outptr_ IShellFolder **ppshf);
@@ -2150,6 +2205,7 @@ typedef struct SHARDAPPIDINFOLINK
 #else
 #define SHARD_PATH  SHARD_PATHA
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 // The type of the data pointed to by pv is a function of uFlags values that are SHARD_XXX values.  PV can be a PCIDLIST_ABSOLUTE, PCWSTR, PCSTR, SHARDAPPIDINFO, or SHARDAPPIDINFOIDLIST.
 SHSTDAPI_(void) SHAddToRecentDocs(UINT uFlags, _In_opt_ LPCVOID pv);
@@ -2177,8 +2233,11 @@ typedef struct _SHChangeUpdateImageIDList {
     WCHAR szName[MAX_PATH];
     USHORT cbZero;
 } SHChangeUpdateImageIDList, * LPSHChangeUpdateImageIDList;
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(int) SHHandleUpdateImage(_In_ PCIDLIST_ABSOLUTE pidlExtra);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(void) SHUpdateImageA(_In_ LPCSTR pszHashItem, int iIndex, UINT uFlags, int iImageIndex);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(void) SHUpdateImageW(_In_ LPCWSTR pszHashItem, int iIndex, UINT uFlags, int iImageIndex);
 #ifdef UNICODE
 #define SHUpdateImage  SHUpdateImageW
@@ -2198,9 +2257,11 @@ typedef enum
 
 SHSTDAPI_(HANDLE) SHChangeNotification_Lock(_In_ HANDLE hChange, DWORD dwProcId, _Outptr_opt_result_buffer_(2) PIDLIST_ABSOLUTE **pppidl, _Out_opt_ LONG *plEvent);
 SHSTDAPI_(BOOL) SHChangeNotification_Unlock(_In_ HANDLE hLock);
+_Win32_SupportedOS_WindowsXP_
 // The pidls that are given to the view via the ChangeNotifyEvents are simple Pidls,
 // SHGetRealIDL() will convert them to true PIDLs.
 SHSTDAPI SHGetRealIDL(_In_ IShellFolder *psf, _In_ PCUITEMID_CHILD pidlSimple, _Outptr_ PITEMID_CHILD *ppidlReal);
+_Win32_SupportedOS_WindowsXP_
 
 
 _Check_return_
@@ -2276,6 +2337,7 @@ SHSTDAPI SHGetDataFromIDListW(_In_ IShellFolder *psf, _In_ PCUITEMID_CHILD pidl,
 
 SHSTDAPI_(int) RestartDialog(_In_opt_ HWND hwnd, _In_opt_ PCWSTR pszPrompt, DWORD dwReturn);
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(int) RestartDialogEx(_In_opt_ HWND hwnd, _In_opt_ PCWSTR pszPrompt, DWORD dwReturn, DWORD dwReasonCode);
 #endif
 
@@ -2285,6 +2347,7 @@ SHSTDAPI SHCoCreateInstance(_In_opt_ PCWSTR pszCLSID, _In_opt_ const CLSID *pcls
 SHSTDAPI SHCreateDataObject(_In_opt_ PCIDLIST_ABSOLUTE pidlFolder, _In_ UINT cidl, _In_reads_opt_(cidl) PCUITEMID_CHILD_ARRAY apidl, _In_opt_ IDataObject *pdtInner, _In_ REFIID riid, _COM_Outptr_ void **ppv);
 #endif
 SHSTDAPI CIDLData_CreateFromIDArray(_In_ PCIDLIST_ABSOLUTE pidlFolder, _In_ UINT cidl, _In_reads_opt_(cidl) PCUIDLIST_RELATIVE_ARRAY apidl, _Outptr_ IDataObject **ppdtobj);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI SHCreateStdEnumFmtEtc(_In_ UINT cfmt, _In_reads_(cfmt) const FORMATETC afmt[], _Outptr_ IEnumFORMATETC **ppenumFormatEtc);
 SHSTDAPI SHDoDragDrop(_In_opt_ HWND hwnd, _In_ IDataObject *pdata, _In_opt_ IDropSource *pdsrc, _In_ DWORD dwEffect, _Out_ DWORD *pdwEffect);
 // stuff for doing auto scrolling
@@ -2296,13 +2359,20 @@ typedef struct {        // asd
     POINT pts[NUM_POINTS];
     DWORD dwTimes[NUM_POINTS];
 } AUTO_SCROLL_DATA;
+_Win32_SupportedOS_Windows2000_
 
 SHSTDAPI_(BOOL) DAD_SetDragImage(HIMAGELIST him, POINT * pptOffset);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(BOOL) DAD_DragEnterEx(HWND hwndTarget, const POINT ptStart);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(BOOL) DAD_DragEnterEx2(_In_ HWND hwndTarget, const POINT ptStart, _In_opt_ IDataObject *pdtObject);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(BOOL) DAD_ShowDragImage(BOOL fShow);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(BOOL) DAD_DragMove(POINT pt);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(BOOL) DAD_DragLeave(void);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(BOOL) DAD_AutoScroll(HWND hwnd, AUTO_SCROLL_DATA *pad, const POINT *pptNow);
 typedef struct {
     WORD cLength;
@@ -2324,11 +2394,15 @@ typedef struct {
 } CABINETSTATE, * LPCABINETSTATE;
 
 #define CABINETSTATE_VERSION 2
+_Win32_SupportedOS_WindowsXP_
 
 // APIs for reading and writing the cabinet state.
 SHSTDAPI_(BOOL) ReadCabinetState(_Out_writes_bytes_(cLength) CABINETSTATE *pcs, int cLength);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL) WriteCabinetState(_In_ CABINETSTATE *pcs);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(BOOL) PathMakeUniqueName(_Out_writes_(cchMax) PWSTR pszUniqueName, UINT cchMax, _In_ PCWSTR pszTemplate, _In_opt_ PCWSTR pszLongPlate, _In_opt_ PCWSTR pszDir);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL) PathIsExe(_In_ PCWSTR pszPath);
 //
 //  Return codes from PathCleanupSpec.  Negative return values are
@@ -2339,15 +2413,19 @@ SHSTDAPI_(BOOL) PathIsExe(_In_ PCWSTR pszPath);
 #define PCS_REMOVEDCHAR     0x00000002
 #define PCS_TRUNCATED       0x00000004
 #define PCS_PATHTOOLONG     0x00000008  // Always combined with FATAL
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(int) PathCleanupSpec(_In_opt_ PCWSTR pszDir, _Inout_ PWSTR pszSpec);
 
 SHSTDAPI_(int) PathResolve(_Inout_updates_(MAX_PATH) PWSTR pszPath, _In_opt_ PZPCWSTR dirs, UINT fFlags);
 SHSTDAPI_(BOOL) GetFileNameFromBrowse(_In_opt_ HWND hwnd, _Inout_updates_(cchFilePath) PWSTR pszFilePath, UINT cchFilePath,
                                       _In_opt_ PCWSTR pszWorkingDir, _In_ PCWSTR pszDefExt, _In_opt_ PCWSTR pszFilters, _In_opt_ PCWSTR pszTitle);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(int) DriveType(int iDrive);
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(int) RealDriveType(int iDrive, BOOL fOKToHitNet);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(int) IsNetDrive(int iDrive);
 // Flags for Shell_MergeMenus
 #define MM_ADDSEPARATOR         0x00000001L
@@ -2471,8 +2549,11 @@ SHSTDAPI_(DWORD) SHFormatDrive(_In_ HWND hwnd, UINT drive, UINT fmtID, UINT opti
 #define HPSXA_DEFINED
 DECLARE_HANDLE( HPSXA );
 #endif
+_Win32_SupportedOS_WindowsXP_
 WINSHELLAPI void WINAPI SHDestroyPropSheetExtArray(_In_ HPSXA hpsxa);
+_Win32_SupportedOS_Windows2000_
 WINSHELLAPI UINT WINAPI SHAddFromPropSheetExtArray(_In_ HPSXA hpsxa, _In_ LPFNADDPROPSHEETPAGE lpfnAddPage, LPARAM lParam);
+_Win32_SupportedOS_WindowsXP_
 WINSHELLAPI UINT WINAPI SHReplaceFromPropSheetExtArray(_In_ HPSXA hpsxa, UINT uPageID, _In_ LPFNADDPROPSHEETPAGE lpfnReplaceWith, LPARAM lParam);
 
 // shell restriction values, parameter for SHRestricted()
@@ -2698,22 +2779,32 @@ typedef enum RESTRICTIONS
 #endif  // NTDDI_VISTA
 #endif  // NTDDI_WINXPSP2
 } RESTRICTIONS;
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(IStream *) OpenRegStream(_In_ HKEY hkey, _In_opt_ PCWSTR pszSubkey, _In_opt_ PCWSTR pszValue, DWORD grfMode);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL) SHFindFiles(_In_opt_ PCIDLIST_ABSOLUTE pidlFolder, _In_opt_ PCIDLIST_ABSOLUTE pidlSaveFile);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(void) PathGetShortPath(_Inout_updates_(MAX_PATH) PWSTR pszLongPath);
+_Win32_SupportedOS_Windows2000_
 _Success_(return != 0)
 SHSTDAPI_(BOOL) PathYetAnotherMakeUniqueName(_Out_writes_(MAX_PATH) PWSTR pszUniqueName, _In_ PCWSTR pszPath, _In_opt_ PCWSTR pszShort, _In_opt_ PCWSTR pszFileSpec);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL) Win32DeleteFile(_In_ PCWSTR pszPath);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(DWORD) SHRestricted(RESTRICTIONS rest);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL) SignalFileOpen(_In_ PCIDLIST_ABSOLUTE pidl);
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 SHSTDAPI AssocGetDetailsOfPropKey(_In_ IShellFolder *psf, _In_ PCUITEMID_CHILD pidl, _In_ const PROPERTYKEY *pkey, _Out_ VARIANT *pv, _Out_opt_ BOOL *pfFoundPropKey);
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 
 // both ANSI and UNICODE
 SHSTDAPI SHStartNetConnectionDialogA(_In_opt_ HWND hwnd, _In_opt_ LPCSTR pszRemoteName, DWORD dwType);
+_Win32_SupportedOS_WindowsXP_
 // both ANSI and UNICODE
 SHSTDAPI SHStartNetConnectionDialogW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR pszRemoteName, DWORD dwType);
 #ifdef UNICODE
@@ -2765,13 +2856,18 @@ typedef struct _openasinfo
 #include <poppack.h>        /* Return to byte packing */
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 SHSTDAPI SHOpenWithDialog(_In_opt_ HWND hwndParent, _In_ const OPENASINFO* poainfo);
 #endif // NTDDI_VISTA
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(BOOL) Shell_GetImageLists(_Out_opt_ HIMAGELIST *phiml, _Out_opt_ HIMAGELIST *phimlSmall);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(int)  Shell_GetCachedImageIndex(_In_ PCWSTR pwszIconPath, int iIconIndex, UINT uIconFlags);
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(int)  Shell_GetCachedImageIndexA(_In_ LPCSTR pszIconPath, int iIconIndex, UINT uIconFlags);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(int)  Shell_GetCachedImageIndexW(_In_ LPCWSTR pszIconPath, int iIconIndex, UINT uIconFlags);
 #ifdef UNICODE
 #define Shell_GetCachedImageIndex  Shell_GetCachedImageIndexW
@@ -2816,14 +2912,21 @@ typedef struct PROPPRG {                    /* prg */
 typedef UNALIGNED PROPPRG *PPROPPRG;
 typedef UNALIGNED PROPPRG FAR *LPPROPPRG;
 typedef const UNALIGNED PROPPRG FAR *LPCPROPPRG;
+_Win32_SupportedOS_Windows2000_
 
 SHSTDAPI_(HANDLE) PifMgr_OpenProperties(_In_ PCWSTR pszApp, _In_opt_ PCWSTR pszPIF, UINT hInf, UINT flOpt);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(int)    PifMgr_GetProperties(_In_opt_ HANDLE hProps, _In_opt_ PCSTR pszGroup, _Out_writes_bytes_opt_(cbProps) void *lpProps, int cbProps, UINT flOpt);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(int)    PifMgr_SetProperties(_In_opt_ HANDLE hProps, _In_opt_ PCSTR pszGroup, _In_reads_bytes_(cbProps) const void *lpProps, int cbProps, UINT flOpt);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI_(HANDLE) PifMgr_CloseProperties(_In_opt_ HANDLE hProps, UINT flOpt);
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(void) SHSetInstanceExplorer(_In_opt_ IUnknown *punk);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(BOOL) IsUserAnAdmin(void);
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(LRESULT) SHShellFolderView_Message(_In_ HWND hwndMain, UINT uMsg, LPARAM lParam);
 
@@ -2991,6 +3094,7 @@ typedef struct _SFV_CREATE
     IShellView*     psvOuter;   // optional: IShellView to pass to psfvcb
     IShellFolderViewCB* psfvcb; // No callback if NULL
 } SFV_CREATE;
+_Win32_SupportedOS_Windows2000_
 
 SHSTDAPI SHCreateShellFolderView(_In_ const SFV_CREATE* pcsfv, _Outptr_ IShellView ** ppsv);
 typedef HRESULT (CALLBACK * LPFNDFMCALLBACK)(_In_opt_ IShellFolder *psf, _In_opt_ HWND hwnd,
@@ -3099,8 +3203,10 @@ typedef struct _CSFV
 } CSFV, * LPCSFV;
 
 #include <poppack.h>        /* Return to byte packing */
+_Win32_SupportedOS_WindowsXP_
 
 SHSTDAPI_(IContextMenu *) SHFind_InitMenuPopup(_In_ HMENU hmenu, _In_opt_ HWND hwndOwner, UINT idCmdFirst, UINT idCmdLast);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI SHCreateShellFolderViewEx(_In_ CSFV *pcsfv, _Outptr_ IShellView **ppsv);
 
 
@@ -3386,6 +3492,7 @@ typedef struct {
 #if (NTDDI_VERSION >= NTDDI_WIN8)
 #define SSF_SHOWSTATUSBAR           0x04000000
 #endif  // NTDDI_VISTA
+_Win32_SupportedOS_Windows2000_
 
 //
 // Specify the bits you are interested in in dwMask and they will be
@@ -3445,6 +3552,7 @@ __inline BOOL IDListContainerIsConsistent(_In_reads_bytes_(cbAlloc) PCUIDLIST_RE
 //  psfgaoOut is optional for SFGAO attributes
 //
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI SHParseDisplayName(_In_ PCWSTR pszName, _In_opt_ IBindCtx *pbc, _Outptr_ PIDLIST_ABSOLUTE *ppidl, _In_ SFGAOF sfgaoIn, _Out_opt_ SFGAOF *psfgaoOut);
 #endif // NTDDI_WINXP
 
@@ -3473,9 +3581,11 @@ SHSTDAPI SHParseDisplayName(_In_ PCWSTR pszName, _In_opt_ IBindCtx *pbc, _Outptr
 #if (NTDDI_VERSION >= NTDDI_WINXP)
 #define SHPPFW_MEDIACHECKONLY   0x00000010              // do the retrys on the media (or net path), return errors if the file can't be found
 #endif // NTDDI_WINXP
+_Win32_SupportedOS_Windows2000_
 
 
 SHSTDAPI SHPathPrepareForWriteA(_In_opt_ HWND hwnd, _In_opt_ IUnknown *punkEnableModless, _In_ LPCSTR pszPath, DWORD dwFlags);
+_Win32_SupportedOS_Windows2000_
 SHSTDAPI SHPathPrepareForWriteW(_In_opt_ HWND hwnd, _In_opt_ IUnknown *punkEnableModless, _In_ LPCWSTR pszPath, DWORD dwFlags);
 #ifdef UNICODE
 #define SHPathPrepareForWrite  SHPathPrepareForWriteW
@@ -3504,6 +3614,7 @@ DECLARE_INTERFACE_IID_(INamedPropertyBag, IUnknown, "FB700430-952C-11d1-946F-000
     STDMETHOD(RemovePropertyNPB)(THIS_ _In_ PCWSTR pszBagname,
                                  _In_ PCWSTR pszPropName) PURE;
 };
+_Win32_SupportedOS_Windows2000_
 
 //  SHPropStgCreate()
 //  Wrap of IPropertySetStorage::Open/Create
@@ -3522,6 +3633,7 @@ DECLARE_INTERFACE_IID_(INamedPropertyBag, IUnknown, "FB700430-952C-11d1-946F-000
 //  puCodePage      //  Optional address to receive the code page ID for the set.
 //
 SHSTDAPI SHPropStgCreate(_In_ IPropertySetStorage* psstg, _In_ REFFMTID fmtid, _In_opt_ const CLSID *pclsid, DWORD grfFlags, DWORD grfMode, DWORD dwDisposition, _Outptr_ IPropertyStorage** ppstg, _Out_opt_ UINT* puCodePage);
+_Win32_SupportedOS_WindowsXP_
 
 
 //  SHPropStgReadMultiple()
@@ -3537,6 +3649,7 @@ SHSTDAPI SHPropStgCreate(_In_ IPropertySetStorage* psstg, _In_ REFFMTID fmtid, _
 //  rgvar      //Array of PROPVARIANTs containing the property values on return
 //
 SHSTDAPI SHPropStgReadMultiple(_In_ IPropertyStorage* pps, UINT uCodePage, ULONG cpspec, _In_reads_(cpspec) PROPSPEC const rgpspec[], _Out_writes_all_(cpspec) PROPVARIANT rgvar[] );
+_Win32_SupportedOS_WindowsXP_
 
 
 //  SHPropStgWriteMultiple()
@@ -3562,19 +3675,23 @@ SHSTDAPI SHCreateFileExtractIconW(_In_ LPCWSTR pszFile, _In_ DWORD dwFileAttribu
 #else
 #define SHCreateFileExtractIcon  SHCreateFileExtractIconA
 #endif // !UNICODE
+_Win32_SupportedOS_Windows2000_
 
 SHSTDAPI SHLimitInputEdit(_In_ HWND hwndEdit, _In_ IShellFolder *psf);
 
 STDAPI SHGetAttributesFromDataObject(_In_opt_ IDataObject *pdo, DWORD dwAttributeMask, _Out_opt_ DWORD *pdwAttributes, _Out_opt_ UINT *pcItems);
 
 #endif  // NTDDI_WINXP
+_Win32_SupportedOS_WindowsXP_
 
 // A usefull function in Defview for mapping idlist into index into system
 // image list.  Optionally it can also look up the index of the selected
 // icon.
 SHSTDAPI_(int) SHMapPIDLToSystemImageListIndex(_In_ IShellFolder *pshf, _In_ PCUITEMID_CHILD pidl, _Out_opt_ int *piIndexSel);
+_Win32_SupportedOS_Windows2000_
 
 SHSTDAPI SHCLSIDFromString(_In_ PCWSTR psz, _Out_ CLSID *pclsid);
+_Win32_SupportedOS_WindowsXP_
 SHSTDAPI_(int) PickIconDlg(_In_opt_ HWND hwnd, _Inout_updates_(cchIconPath) PWSTR pszIconPath, UINT cchIconPath, _Inout_opt_ int *piIconIndex);
 
 

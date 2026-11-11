@@ -1,0 +1,17 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h b/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dinput.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /****************************************************************************
+  *
+  *  Copyright (C) 1996-2002 Microsoft Corporation.  All Rights Reserved.
+@@ -4341,6 +4342,7 @@
+  * driver instead of doing a poll.
+  */
+ #define JOY_PASSDRIVERDATA          0x10000000l
++_Win32_SupportedOS_Windows2000_
+ 
+ /*
+  * Informs the joystick driver that the configuration has been changed

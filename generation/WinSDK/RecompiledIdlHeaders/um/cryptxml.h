@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*-------------------------------------------------------------------
 //
 //  Copyright (C) Microsoft, 2007
@@ -1248,6 +1249,7 @@ typedef struct _CRYPT_XML_DOC_CTXT{
     _Field_size_(cSignature)
     PCRYPT_XML_SIGNATURE                *rgpSignature;
 }CRYPT_XML_DOC_CTXT, *PCRYPT_XML_DOC_CTXT;
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlClose
@@ -1264,6 +1266,7 @@ WINAPI
 CryptXmlClose(
     _In_            HCRYPTXML            hCryptXml
     );
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlGetTransforms
@@ -1278,6 +1281,7 @@ WINAPI
 CryptXmlGetTransforms(
     _Outptr_ const CRYPT_XML_TRANSFORM_CHAIN_CONFIG   **ppConfig
     );
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlOpenToEncode
@@ -1325,6 +1329,7 @@ CryptXmlOpenToEncode(
     _In_opt_        const CRYPT_XML_BLOB *pEncoded,
     _Outptr_     HCRYPTXML           *phSignature
     );
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlOpenToDecode
@@ -1419,6 +1424,7 @@ CryptXmlAddObject(
 
 // Used to create in-memory copy of XML part to be included in the <Object>
 #define CRYPT_XML_FLAG_ADD_OBJECT_CREATE_COPY   0x00000001
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlCreateReference
@@ -1482,6 +1488,7 @@ CryptXmlCreateReference(
 // Manifest.
 
 #define CRYPT_XML_FLAG_CREATE_REFERENCE_AS_OBJECT      0x00000001
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlDigestReference
@@ -1520,6 +1527,7 @@ CryptXmlDigestReference(
 // Specifies that the processing engine creates the digest 
 // without applying the transform chain engine.
 #define CRYPT_XML_DIGEST_REFERENCE_DATA_TRANSFORMED           0x00000001
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlSetHMACSecret
@@ -1606,6 +1614,7 @@ typedef enum
     CRYPT_XML_KEYINFO_SPEC_ENCODED = 1,     // CRYPT_XML_BLOB*
     CRYPT_XML_KEYINFO_SPEC_PARAM   = 2,     // CRYPT_XML_KEYINFO_PARAM*
 }CRYPT_XML_KEYINFO_SPEC;
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlSign
@@ -1671,6 +1680,7 @@ CryptXmlSign(
 // NOTE: This flag can not be used when dwKeyInfoSpec is 
 //       set to CRYPT_XML_KEYINFO_SPEC_ENCODED
 #define CRYPT_XML_SIGN_ADD_KEYVALUE         0x00000001
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlImportPublicKey
@@ -1694,6 +1704,7 @@ CryptXmlImportPublicKey(
     _In_            const CRYPT_XML_KEY_VALUE *pKeyValue,
     _Out_           BCRYPT_KEY_HANDLE   *phKey
     );
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlVerifySignature
@@ -1721,6 +1732,7 @@ CryptXmlVerifySignature(
     _In_opt_        BCRYPT_KEY_HANDLE   hKey,
                     DWORD               dwFlags
     );
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlGetDocContext
@@ -1736,6 +1748,7 @@ CryptXmlGetDocContext(
     _In_            HCRYPTXML           hCryptXml,
     _Outptr_     const CRYPT_XML_DOC_CTXT **ppStruct	
     );
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlGetSignature
@@ -1751,6 +1764,7 @@ CryptXmlGetSignature(
     _In_            HCRYPTXML           hCryptXml,
     _Outptr_     const CRYPT_XML_SIGNATURE **ppStruct	
     );
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlGetReference
@@ -1765,6 +1779,7 @@ CryptXmlGetReference(
     _In_            HCRYPTXML           hCryptXml,
     _Outptr_     const CRYPT_XML_REFERENCE **ppStruct	
     );
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlGetStatus
@@ -1780,6 +1795,7 @@ CryptXmlGetStatus(
     _In_            HCRYPTXML           hCryptXml,
     _Out_           CRYPT_XML_STATUS    *pStatus
     );
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlEncode
@@ -1878,6 +1894,7 @@ struct _CRYPT_XML_ALGORITHM_INFO
 
 #define CRYPT_XML_GROUP_ID_HASH         1
 #define CRYPT_XML_GROUP_ID_SIGN         2
+_Win32_SupportedOS_Windows7_
 
 /****************************************************************************
  CryptXmlGetAlgorithmInfo

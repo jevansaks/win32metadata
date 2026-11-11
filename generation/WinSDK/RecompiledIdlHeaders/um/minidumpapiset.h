@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
 #if defined(_MSC_VER)
@@ -1489,6 +1490,7 @@ typedef struct _MINIDUMP_CALLBACK_INFORMATION {
 //--
 
 #define RVA_TO_ADDR(Mapping,Rva) ((PVOID)(((ULONG_PTR) (Mapping)) + (Rva)))
+_Win32_SetLastError_
 
 BOOL
 WINAPI

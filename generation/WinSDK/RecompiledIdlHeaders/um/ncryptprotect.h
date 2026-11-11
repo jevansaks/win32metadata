@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*-------------------------------------------------------------------
 //
 //  Copyright (C) Microsoft, 2010
@@ -132,6 +133,7 @@ extern "C" {
 DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE );
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SupportedOS_Windows8_
 
 /****************************************************************************
  NCryptRegisterProtectionDescriptorName
@@ -182,6 +184,7 @@ NCryptRegisterProtectionDescriptorName(
     _In_opt_        LPCWSTR                             pwszDescriptorString,
                     DWORD                               dwFlags
     );
+_Win32_SupportedOS_Windows8_
 
 /****************************************************************************
  NCryptQueryProtectionDescriptorName
@@ -227,6 +230,7 @@ NCryptQueryProtectionDescriptorName(
     _Inout_         SIZE_T                              *pcDescriptorString,
                     DWORD                               dwFlags
     );
+_Win32_SupportedOS_Windows8_
 
 
 /****************************************************************************
@@ -274,6 +278,7 @@ NCryptCreateProtectionDescriptor(
 // value is a name registered by NCryptRegisterProtectionDescriptorName()
 //
 #define NCRYPT_NAMED_DESCRIPTOR_FLAG                    0x00000001
+_Win32_SupportedOS_Windows8_
 
 /****************************************************************************
  NCryptCloseProtectionDescriptor
@@ -354,6 +359,7 @@ NCryptCloseProtectionDescriptor(
 //      ----------------------------------------------  ----------- ----------------------------------
 //
 #define NCRYPT_PROTECTION_INFO_TYPE_DESCRIPTOR_STRING   0x00000001  // LPWSTR
+_Win32_SupportedOS_Windows8_
 
 _Success_(return == 0)
 _When_(dwInfoType == NCRYPT_PROTECTION_INFO_TYPE_DESCRIPTOR_STRING,
@@ -366,6 +372,7 @@ NCryptGetProtectionDescriptorInfo(
                     DWORD                               dwInfoType,
     _Outptr_        void*                               *ppvInfo
     );
+_Win32_SupportedOS_Windows8_
 
 /****************************************************************************
  NCryptProtectSecret
@@ -434,6 +441,7 @@ NCryptProtectSecret(
                     BYTE                                **ppbProtectedBlob,
     _Out_           ULONG                               *pcbProtectedBlob
     );
+_Win32_SupportedOS_Windows8_
 
 
 /****************************************************************************
@@ -587,6 +595,7 @@ typedef struct NCRYPT_PROTECT_STREAM_INFO {
     PFNCryptStreamOutputCallback        pfnStreamOutput;
     void                                *pvCallbackCtxt;
 } NCRYPT_PROTECT_STREAM_INFO;
+_Win32_SupportedOS_Windows8_
 
 /****************************************************************************
  NCryptStreamOpenToProtect
@@ -636,6 +645,7 @@ NCryptStreamOpenToProtect(
     _In_            NCRYPT_PROTECT_STREAM_INFO          *pStreamInfo,
     _Out_           NCRYPT_STREAM_HANDLE                *phStream
     );
+_Win32_SupportedOS_Windows8_
 
 /****************************************************************************
  NCryptStreamOpenToUnprotect
@@ -799,6 +809,7 @@ NCryptStreamOpenToUnprotectEx(
 );
 
 #endif
+_Win32_SupportedOS_Windows8_
 
 /****************************************************************************
  NCryptStreamUpdate
@@ -846,6 +857,7 @@ NCryptStreamUpdate(
                     SIZE_T                              cbData,
                     BOOL                                fFinal
     );
+_Win32_SupportedOS_Windows8_
 
 /****************************************************************************
  NCryptStreamClose

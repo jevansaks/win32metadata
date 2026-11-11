@@ -48,15 +48,16 @@ namespace ClangSharpSourceToWinmdTests
             string parent = Parent();
             string original = Encoding.Latin1.GetString(PropertyComOutputHeaderTests.ReadOriginalBytes("emitter.settings.rsp", parent))
                 .Replace("\r\n", "\n");
-            string current = File.ReadAllText(Sdk("emitter.settings.rsp")).Replace("\r\n", "\n");
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp").Replace("\r\n", "\n");
             Assert.AreEqual(ApplySidecarDelta(original), current);
             Assert.AreEqual(NativeTypedefSdkTests.ApplyAutoTypesDelta(Encoding.UTF8.GetString(
                 PropertyComOutputHeaderTests.ReadOriginalBytes("autoTypes.json", parent))),
-                File.ReadAllText(Sdk("autoTypes.json")).Replace("\r\n", "\n"));
+                FullHeaderMigrationExperimentTests.ReadRecoveryText("autoTypes.json").Replace("\r\n", "\n"));
             foreach (string path in new[] { "scraper.settings.rsp", "functionPointerFixups.json",
                 "RecompiledIdlHeaders/um/heapapi.h" })
                 CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(path, parent),
-                    File.ReadAllBytes(Sdk(path)), "Unrelated legacy/native inputs must remain byte-exact: " + path);
+                    FullHeaderMigrationExperimentTests.ReadRecoveryBytes(path),
+                    "Unrelated legacy/native inputs must remain byte-exact: " + path);
             var ancestry = LastErrorHeaderTests.Run("git", "-C", root, "merge-base", "--is-ancestor", parent, "HEAD");
             Assert.AreEqual(0, ancestry.ExitCode, ancestry.Output);
             string helper = File.ReadAllText(Sdk("RecompiledIdlHeaders/shared/win32metadata_annotations.h"));
@@ -145,7 +146,7 @@ namespace ClangSharpSourceToWinmdTests
 typedef char PointerWidth[(sizeof(HANDLE) == " + pointerSize + @") ? 1 : -1];
 typedef char LocalWidth[(sizeof(HLOCAL) == sizeof(void*)) ? 1 : -1];
 typedef char OutputWidth[(sizeof(*((LPHANDLE)0)) == sizeof(void*)) ? 1 : -1];
-BOOL (WINAPI *openPrinter)(LPWSTR, void**, LPPRINTER_DEFAULTSW) = &OpenPrinterW;
+BOOL (WINAPI *openPrinter)(LPCWSTR, void**, LPPRINTER_DEFAULTSW) = &OpenPrinterW;
 BOOL (WINAPI *closePrinter)(void*) = &ClosePrinter;
 void* (WINAPI *getHeap)(void) = &GetProcessHeap;
 void* (WINAPI *localAlloc)(UINT, SIZE_T) = &LocalAlloc;
@@ -189,6 +190,7 @@ typedef void* HANDLE;
 typedef HANDLE HLOCAL;
 typedef HANDLE* LPHANDLE;
 typedef unsigned short* LPWSTR;
+typedef const unsigned short* LPCWSTR;
 typedef int BOOL;
 typedef unsigned int UINT;
 typedef __SIZE_TYPE__ SIZE_T;

@@ -1,0 +1,571 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h b/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/sspi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ //+---------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -1338,6 +1339,7 @@
+     void *,
+     PCredHandle,
+     PTimeStamp);
++_Win32_SupportedOS_WindowsVista_
+ 
+ // end_ntifs
+ 
+@@ -1373,6 +1375,7 @@
+ #  define AcquireCredentialsHandle AcquireCredentialsHandleA
+ #  define ACQUIRE_CREDENTIALS_HANDLE_FN ACQUIRE_CREDENTIALS_HANDLE_FN_A
+ #endif // !UNICODE
++_Win32_SupportedOS_WindowsXP_
+ 
+ // begin_ntifs
+ 
+@@ -1635,6 +1638,7 @@
+ ////////////////////////////////////////////////////////////////////////
+ 
+ #if ISSP_MODE != 0
++_Win32_SupportedOS_WindowsVista_
+ 
+ SECURITY_STATUS SEC_ENTRY
+ ChangeAccountPasswordW(
+@@ -1659,6 +1663,7 @@
+     unsigned long,
+     PSecBufferDesc
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ 
+@@ -1695,6 +1700,7 @@
+ #endif // !UNICODE
+ 
+ #endif // ISSP_MODE
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ ////////////////////////////////////////////////////////////////////////
+@@ -1783,6 +1789,7 @@
+ #  define InitializeSecurityContext InitializeSecurityContextA
+ #  define INITIALIZE_SECURITY_CONTEXT_FN INITIALIZE_SECURITY_CONTEXT_FN_A
+ #endif // !UNICODE
++_Win32_SupportedOS_WindowsVista_
+ 
+ // begin_ntifs
+ 
+@@ -1811,6 +1818,7 @@
+     PSecBufferDesc,
+     unsigned long *,
+     PTimeStamp);
++_Win32_SupportedOS_WindowsXP_
+ 
+ SECURITY_STATUS SEC_ENTRY
+ CompleteAuthToken(
+@@ -1822,6 +1830,7 @@
+ (SEC_ENTRY * COMPLETE_AUTH_TOKEN_FN)(
+     PCtxtHandle,
+     PSecBufferDesc);
++_Win32_SupportedOS_WindowsXP_
+ 
+ KSECDDDECLSPEC
+ _Check_return_
+@@ -1833,6 +1842,7 @@
+ typedef SECURITY_STATUS
+ (SEC_ENTRY * IMPERSONATE_SECURITY_CONTEXT_FN)(
+     PCtxtHandle);
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ KSECDDDECLSPEC
+@@ -1844,6 +1854,7 @@
+ typedef SECURITY_STATUS
+ (SEC_ENTRY * REVERT_SECURITY_CONTEXT_FN)(
+     PCtxtHandle);
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ KSECDDDECLSPEC
+@@ -1856,6 +1867,7 @@
+ typedef SECURITY_STATUS
+ (SEC_ENTRY * QUERY_SECURITY_CONTEXT_TOKEN_FN)(
+     PCtxtHandle, void * *);
++_Win32_SupportedOS_WindowsXP_
+ 
+ KSECDDDECLSPEC
+ SECURITY_STATUS SEC_ENTRY
+@@ -1866,6 +1878,7 @@
+ typedef SECURITY_STATUS
+ (SEC_ENTRY * DELETE_SECURITY_CONTEXT_FN)(
+     PCtxtHandle);
++_Win32_SupportedOS_WindowsXP_
+ 
+ KSECDDDECLSPEC
+ SECURITY_STATUS SEC_ENTRY
+@@ -1877,6 +1890,7 @@
+ typedef SECURITY_STATUS
+ (SEC_ENTRY * APPLY_CONTROL_TOKEN_FN)(
+     PCtxtHandle, PSecBufferDesc);
++_Win32_SupportedOS_WindowsVista_
+ 
+ KSECDDDECLSPEC
+ SECURITY_STATUS SEC_ENTRY
+@@ -1891,6 +1905,7 @@
+     PCtxtHandle,
+     unsigned long,
+     void *);
++_Win32_SupportedOS_WindowsXP_
+ 
+ SECURITY_STATUS SEC_ENTRY
+ QueryContextAttributesExW(
+@@ -1906,6 +1921,7 @@
+     unsigned long,
+     void *,
+     unsigned long);
++_Win32_SupportedOS_WindowsVista_
+ 
+ // end_ntifs
+ 
+@@ -1921,6 +1937,7 @@
+     PCtxtHandle,
+     unsigned long,
+     void *);
++_Win32_SupportedOS_WindowsXP_
+ 
+ SECURITY_STATUS SEC_ENTRY
+ QueryContextAttributesExA(
+@@ -1952,6 +1969,7 @@
+ // begin_ntifs
+ 
+ #if (OSVER(NTDDI_VERSION) > NTDDI_WIN2K)
++_Win32_SupportedOS_WindowsXP_
+ 
+ SECURITY_STATUS SEC_ENTRY
+ SetContextAttributesW(
+@@ -1969,6 +1987,7 @@
+     unsigned long );
+ 
+ #endif // Greater than w2k
++_Win32_SupportedOS_WindowsXP_
+ 
+ // end_ntifs
+ 
+@@ -1994,6 +2013,7 @@
+ #  define SetContextAttributes SetContextAttributesA
+ #  define SET_CONTEXT_ATTRIBUTES_FN SET_CONTEXT_ATTRIBUTES_FN_A
+ #endif // !UNICODE
++_Win32_SupportedOS_WindowsXP_
+ 
+ // begin_ntifs
+ 
+@@ -2025,6 +2045,7 @@
+     unsigned long,
+     void *,
+     unsigned long);
++_Win32_SupportedOS_WindowsXP_
+ 
+ // end_ntifs
+ 
+@@ -2072,6 +2093,7 @@
+ // begin_ntifs
+ 
+ #if NTDDI_VERSION > NTDDI_WS03
++_Win32_SupportedOS_WindowsXP_
+ 
+ KSECDDDECLSPEC
+ SECURITY_STATUS SEC_ENTRY
+@@ -2090,6 +2112,7 @@
+     unsigned long );
+ 
+ #endif // For W2k3SP1 and greater
++_Win32_SupportedOS_WindowsXP_
+ 
+ // end_ntifs
+ 
+@@ -2115,6 +2138,7 @@
+ #  define SetCredentialsAttributes SetCredentialsAttributesA
+ #  define SET_CREDENTIALS_ATTRIBUTES_FN SET_CREDENTIALS_ATTRIBUTES_FN_A
+ #endif // !UNICODE
++_Win32_SupportedOS_WindowsXP_
+ 
+ // begin_ntifs
+ 
+@@ -2150,6 +2174,7 @@
+ SecFreeCallContext(
+     VOID
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ // end_ntifs
+ 
+@@ -2176,6 +2201,7 @@
+     unsigned long,
+     PSecBufferDesc,
+     unsigned long);
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ KSECDDDECLSPEC
+@@ -2220,6 +2246,7 @@
+ (SEC_ENTRY * DECRYPT_MESSAGE_FN)(
+     PCtxtHandle, PSecBufferDesc, unsigned long,
+     unsigned long *);
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ // end_ntifs
+@@ -2242,6 +2269,7 @@
+ (SEC_ENTRY * ENUMERATE_SECURITY_PACKAGES_FN_W)(
+     unsigned long *,
+     PSecPkgInfoW *);
++_Win32_SupportedOS_WindowsXP_
+ 
+ // end_ntifs
+ 
+@@ -2263,6 +2291,7 @@
+ #  define EnumerateSecurityPackages EnumerateSecurityPackagesA
+ #  define ENUMERATE_SECURITY_PACKAGES_FN ENUMERATE_SECURITY_PACKAGES_FN_A
+ #endif // !UNICODE
++_Win32_SupportedOS_WindowsXP_
+ 
+ // begin_ntifs
+ 
+@@ -2285,6 +2314,7 @@
+     SEC_WCHAR *,
+ #endif
+     PSecPkgInfoW *);
++_Win32_SupportedOS_WindowsXP_
+ 
+ // end_ntifs
+ 
+@@ -2340,6 +2370,7 @@
+ 
+ #pragma region Desktop Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SupportedOS_WindowsXP_
+ 
+ 
+ ///////////////////////////////////////////////////////////////////////////
+@@ -2378,6 +2409,7 @@
+     PSecBuffer,
+     void * *
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ KSECDDDECLSPEC
+ SECURITY_STATUS SEC_ENTRY
+@@ -2403,6 +2435,7 @@
+     VOID *,
+     PCtxtHandle
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ // end_ntifs
+ SECURITY_STATUS SEC_ENTRY
+@@ -2692,6 +2725,7 @@
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_SupportedOS_WindowsXP_
+ 
+ PSecurityFunctionTableA SEC_ENTRY
+ InitSecurityInterfaceA(
+@@ -2700,6 +2734,7 @@
+ 
+ typedef PSecurityFunctionTableA
+ (SEC_ENTRY * INIT_SECURITY_INTERFACE_A)(void);
++_Win32_SupportedOS_WindowsXP_
+ 
+ // begin_ntifs
+ 
+@@ -2724,6 +2759,7 @@
+ 
+ 
+ #ifdef SECURITY_WIN32
++_Win32_SupportedOS_Server2003_
+ 
+ //
+ // SASL Profile Support
+@@ -2736,6 +2772,7 @@
+     _Outptr_ LPSTR * ProfileList,
+     _Out_       ULONG * ProfileCount
+     );
++_Win32_SupportedOS_Server2003_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -2749,6 +2786,7 @@
+ #else
+ #define SaslEnumerateProfiles   SaslEnumerateProfilesA
+ #endif
++_Win32_SupportedOS_Server2003_
+ 
+ 
+ SECURITY_STATUS
+@@ -2757,6 +2795,7 @@
+     _In_        LPSTR ProfileName,
+     _Outptr_ PSecPkgInfoA * PackageInfo
+     );
++_Win32_SupportedOS_Server2003_
+ 
+ 
+ SECURITY_STATUS
+@@ -2771,6 +2810,7 @@
+ #else
+ #define SaslGetProfilePackage   SaslGetProfilePackageA
+ #endif
++_Win32_SupportedOS_Server2003_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -2778,6 +2818,7 @@
+     _In_        PSecBufferDesc pInput,
+     _Outptr_ PSecPkgInfoA * PackageInfo
+     );
++_Win32_SupportedOS_Server2003_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -2791,6 +2832,7 @@
+ #else
+ #define SaslIdentifyPackage SaslIdentifyPackageA
+ #endif
++_Win32_SupportedOS_Server2003_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -2808,6 +2850,7 @@
+     _Out_       unsigned long *     pfContextAttr,      // (out) Context attrs
+     _Out_opt_   PTimeStamp                  ptsExpiry           // (out) Life span (OPT)
+     );
++_Win32_SupportedOS_Server2003_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -2831,6 +2874,7 @@
+ #else
+ #define SaslInitializeSecurityContext   SaslInitializeSecurityContextA
+ #endif
++_Win32_SupportedOS_Server2003_
+ 
+ 
+ SECURITY_STATUS
+@@ -2857,6 +2901,7 @@
+     Sasl_AuthZIDForbidden,             // allow no AuthZID strings to be specified - error out (default)
+     Sasl_AuthZIDProcessed             // AuthZID Strings processed by Application or SSP
+ } SASL_AUTHZID_STATE ;
++_Win32_SupportedOS_Server2003_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -2866,6 +2911,7 @@
+     _In_ PVOID Value,
+     _In_ ULONG Size
+     );
++_Win32_SupportedOS_Server2003_
+ 
+ 
+ SECURITY_STATUS
+@@ -3193,6 +3239,7 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+ #ifndef _SSPIPFC_NONE_ // the public view
++_Win32_SupportedOS_Windows7_
+ 
+ // Use SspiFreeAuthIdentity() to free the buffer returned
+ // in ppAuthIdentity.
+@@ -3213,6 +3260,7 @@
+     _Inout_opt_ int* pfSave,
+     _In_ unsigned long dwFlags
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ // Use SspiFreeAuthIdentity() to free the buffer returned
+ // in ppAuthIdentity.
+@@ -3442,6 +3490,7 @@
+ 
+ #pragma region Desktop Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -3451,6 +3500,7 @@
+     _Out_ PULONG pCredmanCredentialType,
+     _Outptr_ PCWSTR* ppszCredmanTargetName
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -3473,12 +3523,14 @@
+ #define SEC_WINNT_AUTH_IDENTITY_ENCRYPT_SAME_LOGON        0x1
+ #define SEC_WINNT_AUTH_IDENTITY_ENCRYPT_SAME_PROCESS      0x2
+ #define SEC_WINNT_AUTH_IDENTITY_ENCRYPT_FOR_SYSTEM        0x4
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+ SspiEncryptAuthIdentity(
+     _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -3486,12 +3538,14 @@
+     _In_    ULONG   Options,
+     _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+ SspiDecryptAuthIdentity(
+     _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE EncryptedAuthData
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -3499,6 +3553,7 @@
+     _In_    ULONG   Options,
+     _Inout_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE EncryptedAuthData
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ BOOLEAN
+ SEC_ENTRY
+@@ -3509,6 +3564,7 @@
+ // begin_ntifs
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN7)
++_Win32_SupportedOS_Windows7_
+ //
+ //  Convert the _OPAQUE structure passed in to the
+ //  3 tuple <username, domainname, 'password'>.
+@@ -3532,12 +3588,14 @@
+     _Outptr_result_maybenull_ PCWSTR* ppszDomainName,
+     _Outptr_opt_result_maybenull_ PCWSTR* ppszPackedCredentialsString
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+ SspiValidateAuthIdentity(
+     _In_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ //
+ // free the returned memory using SspiFreeAuthIdentity()
+@@ -3549,6 +3607,7 @@
+     _In_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData,
+     _Outptr_ _When_(return != 0, __drv_allocatesMem(Mem)) PSEC_WINNT_AUTH_IDENTITY_OPAQUE* AuthDataCopy
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ //
+ // use only for the memory returned by SspiCopyAuthIdentity().
+@@ -3560,18 +3619,21 @@
+ SspiFreeAuthIdentity(
+     _In_opt_ __drv_freesMem(Mem) PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ VOID
+ SEC_ENTRY
+ SspiZeroAuthIdentity(
+     _In_opt_ PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ VOID
+ SEC_ENTRY
+ SspiLocalFree(
+     _In_opt_ PVOID DataBuffer
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ //
+ // call SspiFreeAuthIdentity to free the returned AuthIdentity
+@@ -3586,6 +3648,7 @@
+     _In_opt_ PCWSTR pszPackedCredentialsString,
+     _Outptr_ _When_(return != 0, __drv_allocatesMem(Mem)) PSEC_WINNT_AUTH_IDENTITY_OPAQUE* ppAuthIdentity
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -3595,6 +3658,7 @@
+     _Out_opt_ PBOOLEAN SameSuppliedUser,
+     _Out_opt_ PBOOLEAN SameSuppliedIdentity
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ //
+ // zero out the returned AuthIdentityByteArray then
+@@ -3608,6 +3672,7 @@
+     _Out_ unsigned long* AuthIdentityLength,
+     _Outptr_result_bytebuffer_(*AuthIdentityLength) char** AuthIdentityByteArray
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ //
+ // free the returned auth identity using SspiFreeAuthIdentity()
+@@ -3630,6 +3695,7 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN7)
++_Win32_SupportedOS_Windows7_
+ 
+ BOOLEAN
+ SEC_ENTRY
+@@ -3646,6 +3712,7 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN7)
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -3653,6 +3720,7 @@
+     _In_ PCWSTR pszTargetName,
+     _Outptr_ PWSTR* pszHostName
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -3701,6 +3769,7 @@
+ #define SECPKG_OPTIONS_TYPE_SSPI    2
+ 
+ #define SECPKG_OPTIONS_PERMANENT    0x00000001
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -3708,6 +3777,7 @@
+     _In_     LPSTR                     pszPackageName,
+     _In_opt_ PSECURITY_PACKAGE_OPTIONS pOptions
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+@@ -3721,12 +3791,14 @@
+ #else
+ #define AddSecurityPackage  AddSecurityPackageA
+ #endif
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY
+ DeleteSecurityPackageA(
+     _In_ LPSTR pszPackageName
+     );
++_Win32_SupportedOS_Windows7_
+ 
+ SECURITY_STATUS
+ SEC_ENTRY

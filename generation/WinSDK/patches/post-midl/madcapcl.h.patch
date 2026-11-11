@@ -1,0 +1,63 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h b/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/madcapcl.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ // Copyright (c) 1990-1999  Microsoft Corporation
+ #ifndef _MADCAPCL_H_
+ #define _MADCAPCL_H_
+@@ -179,6 +180,7 @@
+     WORD        AddrCount;
+     PBYTE       pAddrBuf;
+ } MCAST_LEASE_RESPONSE, *PMCAST_LEASE_RESPONSE;
++_Win32_SupportedOS_Windows2000_
+ 
+ /*++
+ 
+@@ -210,18 +212,21 @@
+ McastApiStartup(
+     IN  OUT  PDWORD   Version
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ APIENTRY
+ McastApiCleanup(
+     VOID
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ DWORD
+ APIENTRY
+ McastGenUID(
+     IN OUT LPMCAST_CLIENT_UID    pRequestID
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ DWORD
+ APIENTRY
+@@ -232,6 +237,7 @@
+     IN OUT PDWORD               pScopeLen,
+     OUT    PDWORD               pScopeCount
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ DWORD
+ APIENTRY
+@@ -242,6 +248,7 @@
+     IN     PMCAST_LEASE_REQUEST     pAddrRequest,
+     IN OUT PMCAST_LEASE_RESPONSE    pAddrResponse
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ DWORD
+ APIENTRY
+@@ -251,6 +258,7 @@
+     IN     PMCAST_LEASE_REQUEST     pRenewRequest,
+     IN OUT PMCAST_LEASE_RESPONSE    pRenewResponse
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ DWORD
+ APIENTRY

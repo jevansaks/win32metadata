@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*++
@@ -549,6 +550,7 @@ I_RpcBindingInqMarshalledTargetInfo (
 #endif // (NTDDI_VERSION >= NTDDI_WS03)
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_WindowsXP_
 RPCRTAPI
 RPC_STATUS
 RPC_ENTRY

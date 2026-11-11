@@ -1,0 +1,25 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMRemUtl.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMRemUtl.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/LMRemUtl.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMRemUtl.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0001    // Increment this if a change has global effects
+ 
+ Copyright (c) 1991-1999  Microsoft Corporation
+@@ -50,6 +51,7 @@
+ typedef LPWSTR LPDESC;
+ 
+ #endif // DESC_CHAR_UNICODE is defined
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -64,6 +66,7 @@
+     _In_opt_ LPCWSTR UncServerName,
+     _Outptr_result_bytebuffer_(sizeof(TIME_OF_DAY_INFO)) LPBYTE *BufferPtr
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ NET_API_STATUS NET_API_FUNCTION
+ NetRemoteComputerSupports(

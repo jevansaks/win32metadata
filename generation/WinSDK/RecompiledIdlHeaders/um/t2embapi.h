@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*************************************************************************
 *                                                                        *
 * t2embapi.h -- OpenType embedding services dll (T2EMBED.DLL)            *
@@ -175,6 +176,7 @@ typedef struct
     unsigned short usCharCodeCount; // If zero, we test over all glyphs.
     unsigned long* pulCharCodeSet; // Pointer to array of Unicode chars. 
 }TTVALIDATIONTESTSPARAMSEX;
+_Win32_SupportedOS_Windows2000_
 
 /* Font Embedding APIs ----------------------------------------------------*/
 
@@ -195,6 +197,7 @@ LONG WINAPI TTEmbedFont
                                       //  set to 0 to keep all
     _In_opt_ TTEMBEDINFO* pTTEmbedInfo         // optional security
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTEmbedFontFromFileA
 (
@@ -215,6 +218,7 @@ LONG WINAPI TTEmbedFontFromFileA
                                       //  set to 0 to keep all
     _In_opt_ TTEMBEDINFO* pTTEmbedInfo         // optional security
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTLoadEmbeddedFont
 (
@@ -230,6 +234,7 @@ LONG WINAPI TTLoadEmbeddedFont
     _In_opt_ LPSTR    szMacFamilyName,          // the new 8 bit mac family name can be NULL
     _In_opt_ TTLOADINFO* pTTLoadInfo                // optional security
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTGetEmbeddedFontInfo
 (   
@@ -241,6 +246,7 @@ LONG WINAPI TTGetEmbeddedFontInfo
     _In_ LPVOID    lpvReadStream,            // the input stream token   
     _In_opt_ TTLOADINFO* pTTLoadInfo             // optional security
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTDeleteEmbeddedFont
 (
@@ -248,6 +254,7 @@ LONG WINAPI TTDeleteEmbeddedFont
     _In_ ULONG     ulFlags,
     _Out_ ULONG*    pulStatus
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTGetEmbeddingType
 (
@@ -255,6 +262,7 @@ LONG WINAPI TTGetEmbeddingType
     _Out_ ULONG*      pulEmbedType           // upon completion, contains the
                                        // embedding status
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTCharToUnicode
 (   
@@ -265,12 +273,14 @@ LONG WINAPI TTCharToUnicode
     _In_ ULONG       ulShortCodeSize,    // size in wide characters of 16 bit character code array
     _In_ ULONG       ulFlags             // Control flags
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTRunValidationTests
 (
     _In_ HDC                         hDC,        // device context handle
     _In_ TTVALIDATIONTESTSPARAMS*    pTestParam  // 
 );
+_Win32_SupportedOS_Windows2000_
 
 
 /* Font Enabling APIs -----------------------------------------------------*/
@@ -280,18 +290,21 @@ LONG WINAPI TTIsEmbeddingEnabled
     _In_ HDC                     hDC,            // device context handle
     _Out_ BOOL*           pbEnabled       // upon completion will indicate if enabled
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTIsEmbeddingEnabledForFacename
 (
     _In_ LPCSTR           lpszFacename,   // facename
     _Out_ BOOL*           pbEnabled       // upon completion will indicate if enabled
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTEnableEmbeddingForFacename
 (                                   // If fEnable != 0, it removes the indicated
     _In_ LPCSTR           lpszFacename,   // typeface name from the "embedding
     _In_ BOOL            bEnable         // exclusion list".  Else, it enters the
 );                                  // indicated typeface name in the "embedding
+_Win32_SupportedOS_Windows2000_
                                     // exclusion list".
 
 LONG WINAPI TTEmbedFontEx
@@ -311,12 +324,14 @@ LONG WINAPI TTEmbedFontEx
                                       //  set to 0 to keep all
     _In_opt_ TTEMBEDINFO* pTTEmbedInfo         // optional security
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTRunValidationTestsEx
 (
     _In_ HDC                         hDC,        // device context handle
     _In_ TTVALIDATIONTESTSPARAMSEX*  pTestParam  // 
 );
+_Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTGetNewFontName
 (

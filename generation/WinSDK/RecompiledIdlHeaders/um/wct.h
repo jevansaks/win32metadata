@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2004 Microsoft Corporation
@@ -104,6 +105,8 @@ typedef VOID (CALLBACK *PWAITCHAINCALLBACK) (
 
 #define WCT_ASYNC_OPEN_FLAG 0x1
 #define WCTP_OPEN_ALL_FLAGS (WCT_ASYNC_OPEN_FLAG)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 WINADVAPI
@@ -112,6 +115,7 @@ OpenThreadWaitChainSession (
     _In_ DWORD Flags,
     _In_opt_ PWAITCHAINCALLBACK callback
     );
+_Win32_SupportedOS_WindowsVista_
 
 WINADVAPI
 VOID WINAPI
@@ -124,6 +128,8 @@ CloseThreadWaitChainSession (
 #define WCT_OUT_OF_PROC_CS_FLAG  0x4
 #define WCT_NETWORK_IO_FLAG      0x8
 #define WCTP_GETINFO_ALL_FLAGS (WCT_OUT_OF_PROC_FLAG|WCT_OUT_OF_PROC_COM_FLAG|WCT_OUT_OF_PROC_CS_FLAG)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 WINADVAPI
@@ -140,6 +146,7 @@ GetThreadWaitChain (
 
 typedef HRESULT (*PCOGETCALLSTATE)(int, PULONG);
 typedef HRESULT (*PCOGETACTIVATIONSTATE)(GUID, DWORD, DWORD*);
+_Win32_SupportedOS_WindowsVista_
 
 WINADVAPI
 VOID WINAPI

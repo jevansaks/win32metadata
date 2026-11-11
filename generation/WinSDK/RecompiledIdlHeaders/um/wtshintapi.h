@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*********************************************************************
 *
 * HINTAPI.H
@@ -38,6 +39,7 @@ extern "C" {
 #define RENDER_HINT_CLEAR            0x0
 #define RENDER_HINT_VIDEO            0x1
 #define RENDER_HINT_MAPPEDWINDOW     0x2
+_Win32_SupportedOS_Windows8_
 
 
 /*------------------------------------------------------------------*/

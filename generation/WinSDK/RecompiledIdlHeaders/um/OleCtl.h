@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /////////////////////////////////////////////////////////////////////////////
 //
 // olectl.h     OLE Control interfaces
@@ -406,14 +407,17 @@ typedef VARIANT_BOOL OLE_ENABLEDEFAULTBOOL;
 #if (WINVER >= 0x0400)
 #define OCM_NOTIFY            (OCM__BASE + WM_NOTIFY)
 #endif
+_Win32_SupportedOS_Windows2000_
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Self-registration APIs (to be implemented by server DLL)
 
 STDAPI DllRegisterServer(void);
+_Win32_SupportedOS_Windows2000_
 
 STDAPI DllUnregisterServer(void);
+_Win32_SupportedOS_Windows2000_
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -423,6 +427,7 @@ WINOLECTLAPI OleCreatePropertyFrame(HWND hwndOwner, UINT x, UINT y,
     LPCOLESTR lpszCaption, ULONG cObjects, _In_ LPUNKNOWN FAR* ppUnk, ULONG cPages,
     _In_ LPCLSID pPageClsID, LCID lcid, DWORD dwReserved, LPVOID pvReserved);
 WINOLECTLAPI OleCreatePropertyFrameIndirect(_In_ LPOCPFIPARAMS lpParams);
+_Win32_SupportedOS_Windows2000_
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -459,6 +464,7 @@ WINOLECTLAPI OleLoadPictureFileEx(VARIANT varFileName,
 
 WINOLECTLAPI OleSavePictureFile(LPDISPATCH lpdispPicture,
     BSTR bstrFileName);
+_Win32_SupportedOS_Windows2000_
 
 WINOLECTLAPI_(HCURSOR) OleIconToCursor(HINSTANCE hinstExe, HICON hIcon);
 

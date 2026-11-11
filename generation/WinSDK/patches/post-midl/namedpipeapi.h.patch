@@ -1,0 +1,81 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/namedpipeapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/namedpipeapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/namedpipeapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/namedpipeapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /********************************************************************************
+ *                                                                               *
+ * namedpipeapi.h - ApiSet Contract for api-ms-win-core-namedpipe-l1-1-0         *
+@@ -23,6 +24,8 @@
+ #endif
+ 
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL
+@@ -33,6 +36,8 @@
+     _In_opt_ LPSECURITY_ATTRIBUTES lpPipeAttributes,
+     _In_ DWORD nSize
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL
+@@ -41,6 +46,8 @@
+     _In_ HANDLE hNamedPipe,
+     _Inout_opt_ LPOVERLAPPED lpOverlapped
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL
+@@ -48,6 +55,8 @@
+ DisconnectNamedPipe(
+     _In_ HANDLE hNamedPipe
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL
+@@ -58,6 +67,8 @@
+     _In_opt_ LPDWORD lpMaxCollectionCount,
+     _In_opt_ LPDWORD lpCollectDataTimeout
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL
+@@ -74,6 +85,8 @@
+ #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL
+@@ -142,6 +155,8 @@
+ #ifdef UNICODE
+ #define GetNamedPipeClientComputerName  GetNamedPipeClientComputerNameW
+ #endif
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINADVAPI
+ _Must_inspect_result_
+@@ -155,6 +170,8 @@
+ 
+ #pragma region Application Family or OneCore Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ WINBASEAPI
+ BOOL

@@ -1249,6 +1249,7 @@ typedef PRINTER_ENUM_VALUESA PRINTER_ENUM_VALUES;
 typedef PPRINTER_ENUM_VALUESA PPRINTER_ENUM_VALUES;
 typedef LPPRINTER_ENUM_VALUESA LPPRINTER_ENUM_VALUES;
 #endif // UNICODE
+_Win32_SetLastError_
 
 _Success_(return != FALSE)
 BOOL
@@ -1263,6 +1264,7 @@ _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(cbBuf, *pcbNeeded)
 _Out_         LPDWORD pcbNeeded,
 _Out_         LPDWORD pcReturned
 );
+_Win32_SetLastError_
 _Success_(return != FALSE)
 BOOL
 WINAPI
@@ -1313,6 +1315,7 @@ _Out_         LPDWORD pcReturned
 
 #define SPOOL_FILE_PERSISTENT    0x00000001
 #define SPOOL_FILE_TEMPORARY     0x00000002
+_Win32_SetLastError_
 
 HANDLE
 WINAPI
@@ -1334,6 +1337,7 @@ CloseSpoolFileHandle(
 _In_    HANDLE  hPrinter,
 _In_    HANDLE  hSpoolFile
 );
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -1345,6 +1349,7 @@ _In_opt_    LPPRINTER_DEFAULTSA pDefault
 #if defined(WIN32METADATA) && defined(__clang__)
 BOOL WINAPI ClosePrinter(_In_ HANDLE hPrinter);
 #endif
+_Win32_SetLastError_
 BOOL
 WINAPI
 OpenPrinterW(
@@ -1437,6 +1442,7 @@ _Out_ LPDWORD  pcbNeeded
 #else
 #define GetJob  GetJobA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -1451,6 +1457,7 @@ _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBuf)
 _Out_ LPDWORD pcbNeeded,
 _Out_ LPDWORD pcReturned
 );
+_Win32_SetLastError_
 BOOL
 WINAPI
 EnumJobsW(
@@ -1469,6 +1476,7 @@ _Out_ LPDWORD pcReturned
 #else
 #define EnumJobs  EnumJobsA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 HANDLE
 WINAPI
@@ -1480,6 +1488,7 @@ _When_(Level == 1, _In_reads_bytes_(sizeof(PRINTER_INFO_1)))
 _When_(Level == 2, _In_reads_bytes_(sizeof(PRINTER_INFO_2)))
             LPBYTE     pPrinter
 );
+_Win32_SetLastError_
 HANDLE
 WINAPI
 AddPrinterW(
@@ -1495,12 +1504,14 @@ _When_(Level == 2, _In_reads_bytes_(sizeof(PRINTER_INFO_2)))
 #else
 #define AddPrinter  AddPrinterA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 BOOL
 WINAPI
 DeletePrinter(
 _Inout_ HANDLE   hPrinter
 );
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -1521,6 +1532,7 @@ SetPrinterA(
                      LPBYTE  pPrinter,
     _In_             DWORD   Command
     );
+_Win32_SetLastError_
 BOOL
 WINAPI
 SetPrinterW(
@@ -1545,6 +1557,7 @@ SetPrinterW(
 #else
 #define SetPrinter  SetPrinterA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -1556,6 +1569,7 @@ _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBuf)
       DWORD   cbBuf,
 _Out_ LPDWORD pcbNeeded
 );
+_Win32_SetLastError_
 BOOL
 WINAPI
 GetPrinterW(
@@ -1571,6 +1585,7 @@ _Out_ LPDWORD pcbNeeded
 #else
 #define GetPrinter  GetPrinterA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -1579,6 +1594,7 @@ _In_opt_    LPCSTR   pName,
             DWORD     Level,
 _In_        LPBYTE    pDriverInfo
 );
+_Win32_SetLastError_
 BOOL
 WINAPI
 AddPrinterDriverW(
@@ -1623,6 +1639,7 @@ _In_             DWORD    dwFileCopyFlags
 #else
 #define AddPrinterDriverEx  AddPrinterDriverExA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -1636,6 +1653,7 @@ _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBuf)
 _Out_       LPDWORD        pcbNeeded,
 _Out_       LPDWORD        pcReturned
 );
+_Win32_SetLastError_
 BOOL
 WINAPI
 EnumPrinterDriversW(
@@ -2668,6 +2686,7 @@ _In_   LPWSTR   pCaption,
 #define PRINTER_ERROR_OUTOFPAPER    0x00000001
 #define PRINTER_ERROR_JAM           0x00000002
 #define PRINTER_ERROR_OUTOFTONER    0x00000004
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -2831,6 +2850,7 @@ _Out_       LPDWORD    pcReturned
 #else
 #define EnumMonitors  EnumMonitorsA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 
 
@@ -2842,6 +2862,7 @@ _In_opt_    LPCSTR pName,
 _In_reads_bytes_opt_(sizeof(MONITOR_INFO_2))
             LPBYTE  pMonitors
 );
+_Win32_SetLastError_
 BOOL
 WINAPI
 AddMonitorW(
@@ -2855,6 +2876,7 @@ _In_reads_bytes_opt_(sizeof(MONITOR_INFO_2))
 #else
 #define AddMonitor  AddMonitorA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 
 
@@ -2907,6 +2929,7 @@ _Out_       LPDWORD pcReturned
 #else
 #define EnumPorts  EnumPortsA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 
 BOOL
@@ -2950,6 +2973,7 @@ _In_        LPCWSTR   pPortName
 #else
 #define ConfigurePort  ConfigurePortA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 BOOL
 WINAPI
@@ -3020,6 +3044,7 @@ _In_opt_    LPCWSTR pszPrinter
 #else
 #define SetDefaultPrinter  SetDefaultPrinterA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 
 BOOL
@@ -3031,6 +3056,7 @@ _In_        LPSTR     pPortName,
 _In_reads_bytes_(sizeof(PORT_INFO_3))
             LPBYTE      pPortInfo
 );
+_Win32_SetLastError_
 BOOL
 WINAPI
 SetPortW(
@@ -3444,6 +3470,7 @@ typedef PRINTER_OPTIONSA PRINTER_OPTIONS;
 typedef PPRINTER_OPTIONSA PPRINTER_OPTIONS;
 typedef LPPRINTER_OPTIONSA LPPRINTER_OPTIONS;
 #endif // UNICODE
+_Win32_SetLastError_
 
     BOOL
     WINAPI
@@ -3453,6 +3480,7 @@ typedef LPPRINTER_OPTIONSA LPPRINTER_OPTIONS;
     _In_opt_      PPRINTER_DEFAULTSA      pDefault,
     _In_opt_      PPRINTER_OPTIONSA       pOptions
     );
+_Win32_SetLastError_
     BOOL
     WINAPI
     OpenPrinter2W(
