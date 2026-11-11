@@ -2694,3 +2694,10 @@ CM_DEVCAP=Windows.Win32.Devices.DeviceAndDriverInstallation
 IGP_ID=Windows.Win32.System.SystemServices
 FONT_WEIGHT=Windows.Win32.Graphics.Gdi
 SECTION_FLAGS=Windows.Win32.System.Memory
+# Synthetic native constant-group namespace owners
+ETO_OPTIONS=Windows.Win32.Graphics.Gdi
+RGN_COMBINE_MODE=Windows.Win32.Graphics.Gdi
+DIB_USAGE=Windows.Win32.Graphics.Gdi
+DEFINE_DOS_DEVICE_FLAGS=Windows.Win32.Storage.FileSystem
+DI_FLAGS=Windows.Win32.UI.WindowsAndMessaging
+REG_SAM_FLAGS=Windows.Win32.System.Registry

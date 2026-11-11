@@ -1746,7 +1746,7 @@ _Win32_SupportedOS_Windows2000_
 _Check_return_ HRESULT WINAPI ScriptStringOut(
     _In_reads_(1) SCRIPT_STRING_ANALYSIS   ssa,            //In  Analysis with glyphs
     int                                     iX,             //In
-    int                                     iY,             //In
+    int                                     iY,             _Win32_AssociatedEnum_(ETO_OPTIONS) //In
     UINT                                    uOptions,       //In  ExtTextOut options
     _In_reads_opt_(1) const RECT           *prc,           //In  Clipping rectangle (iff ETO_CLIPPED)
     int                                     iMinSel,        //In  Logical selection. Set iMinSel>=iMaxSel for no selection

@@ -150,7 +150,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/powrprof.h b/generation/W
  STDAPI_(BOOLEAN)
  PowerIsSettingRangeDefined (
      _In_opt_ CONST GUID *SubKeyGuid OPTIONAL,
-@@ -418,6 +451,7 @@
+@@ -418,11 +451,12 @@
  
  
  #if (NTDDI_VERSION >= NTDDI_WIN7)
@@ -158,6 +158,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/powrprof.h b/generation/W
  STDAPI_(DWORD)
  PowerSettingAccessCheckEx (
      _In_ POWER_DATA_ACCESSOR AccessFlags,
+     _In_opt_ CONST GUID *PowerGuid,
+-    _In_ REGSAM AccessType
++    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM AccessType
+     );
+ #endif
+ 
 @@ -467,6 +501,7 @@
  // Read functions.
  //

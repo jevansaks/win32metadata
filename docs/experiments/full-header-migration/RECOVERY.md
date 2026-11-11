@@ -722,10 +722,13 @@ associations. The complete remaining declaration text is identical:
 block remain in `remaining-structural-api-accounting.json` and adjacent
 session evidence. No known-difference mask is used.
 
-All 150 related controls pass after making the existing six-row legacy
-replay control read its frozen recovery inputs, rather than expecting retired
-rows in the current production corpus. All six original raw-signature
-assertions and header/legacy equivalence checks remain. The actual-output
+The original related run passed 147 and failed three of 150 controls. A
+six-case corrected retry passed and covered each original failing name after
+making the existing six-row legacy replay control read its frozen recovery
+inputs, rather than expecting retired rows in the current production corpus.
+This is corrected coverage across runs, not a subsequent single green
+150-case run. All six original raw-signature assertions and header/legacy
+equivalence checks remain. The actual-output
 test now explicitly expects native `HANDLE*`/`HANDLE` for OpenPrinterW and
 ClosePrinter; its ownership and remaining raw-void checks are unchanged.
 All 54 actual-output integrity cases pass. All **343/343** selected post-MIDL
@@ -764,3 +767,86 @@ exact manual definitions, JSON bindings and 28 nominal RSP overrides.
 It is not counted as retired here. The other retained STGM/CLR and earlier
 parameter facts remain individually inventoried; unattempted groups are not
 called unsupported.
+
+## Subdivided native constant-group continuation
+
+The ten-group trial described above was actually run, then subdivided rather
+than accepted on compilation alone. The working subset above preserved
+`6d44e305c27a9186b90f34598eb05900da0328fe` transports six complete groups:
+`ETO_OPTIONS`, `RGN_COMBINE_MODE`, `DIB_USAGE`,
+`DEFINE_DOS_DEVICE_FLAGS`, `DI_FLAGS`, and `REG_SAM_FLAGS`.
+
+Their **42 members and 26 unique uses** now come from seven exact native
+header owners. Six manual enum definitions, eight JSON definition/binding
+records, and eight duplicate REG_SAM emitter remaps are removed. Six namespace
+bridges preserve the existing public owners; these are routing metadata, not
+six new semantic facts. Documentation mappings are untouched and remain
+explicitly allowed outside headers.
+
+| Retained input | Preserved 6d44 | This working subset |
+|---|---:|---:|
+| All RSP value rows | 134,042 | 134,040 |
+| Emitter rows / `memberRemap` | 1,808 / 1,600 | 1,800 / 1,592 |
+| Namespace-owner rows | 2,491 | 2,497 |
+| `enums.json` records | 1,003 | 995 |
+| `autoTypes.json` records | 436 | 436 |
+| `functionPointerFixups.json` records | 27 | 27 |
+| Original parameter atoms retired / retained | 409 / 361 | 409 / 361 |
+
+This is **12,749 net RSP rows fewer than recovery**, not 12,749 migrated
+parameter facts. The 90,502 allowed documentation records and 26,376 automatic
+plus 385 manual library mappings remain separately inventoried. The latter
+are not exempted by the documentation allowance. The file/option and
+individual-parameter inventories remain the authoritative mixed-unit counts.
+
+### Actual accepted output
+
+The actual traversal owners were refreshed, not inferred from projected
+namespaces: WinBase declarations require `WinProg`, and WinUser declarations
+require `MenuRc`. A complete generated-source union was copied to fresh
+emission intermediates, excluding only nested emitter `obj` directories.
+No qualified source or parent output was substituted. Production emission
+completed in **4m43.64s**.
+
+| Output | Identity |
+|---|---|
+| Actual new WinMD | `files\sidecar-reduction\manual-group-six-candidate\Windows.Win32.winmd` |
+| SHA-256 | `BD4281F64397B9DC842154DAC19848BC4C7046354227CCA6C4D0B0A55942A12A` |
+| Complete dump SHA-256 | `1F4F38395D602095972A5095C4A25EF6C117BE5E1D716DAB5C3108BE6AC589BA` |
+| Dumped types | 35,379 |
+| Unmasked comparer against accepted 6d44 | Exit **0** |
+| Complete raw declaration accounting | **Byte-identical**, zero unmatched changes |
+
+Thus every previous intended handle/AssociatedEnum change remains, and this
+additional whole-group transport changes no API facts. The actual new binary
+is also in workspace `bin\Windows.Win32.winmd`. All **153 related controls**
+pass in one new run, including three new real-SDK SNMP storage controls; all
+**54 actual-output integrity cases** pass. All **343/343 post-MIDL patches**
+replay through the unchanged strict production patcher to byte-exact current
+headers. Seven native owners and four manual source owners preserve their
+non-ASCII bytes and BOMs. There remain 28 pre-MIDL selections.
+
+### Exact failed closures retained
+
+| Retained closure | Observed trial and narrow boundary |
+|---|---|
+| `SNMP_PDU_TYPE` | The old JSON emits UInt32 storage; actual `smiINT`/`smiLPINT` PDU parameters are signed. Int32 group storage changes the old enum. UInt32 storage is rejected on all three current targets with `AssociatedEnum storage conflicts with enum group 'SNMP_PDU_TYPE'.` The new focused fixture reproduces both outcomes from actual SDK tokens. Retain the complete closure pending a storage-policy decision. |
+| `PROCESS_CREATION_FLAGS` | After correcting traversal owners, the seven-group union fails emission: a Debug.Extensions constant cannot resolve `CREATE_UNICODE_ENVIRONMENT` (`CS0103`). Retain this complete definition/use closure; qualify dependent-constant integration before changing tooling. |
+| `FILE_FLAGS_AND_ATTRIBUTES`, `REG_VALUE_TYPE` | The rejected initial ten-group output surfaced additional dependent/global constants, including `FILE_ATTRIBUTE_DEDICATED` and `REGSTR_*_TYPE` aliases. Both complete closures remain restored. Their individual causality is not yet isolated; these are not independently proved reader defects. |
+
+The first ten-group output also contained two unrelated Identity callback
+signature differences. They are absent from this accepted subset's complete
+byte-identical dump. Restoring four closures and using fresh intermediates
+changed more than one variable, so no cache or individual-group root cause is
+claimed. The native Base-only control did not explain Identity behavior.
+No callback remap, signature workaround, known-diff mask, or assertion
+weakening was introduced.
+
+Original named carriers on free functions were a mechanical input mistake:
+those helpers require native instance methods. Supported inline parameter
+annotations replaced them before acceptance; this is not counted as a new
+reader bug. Original rejected outputs, complete logs/dumps, current-target
+fixtures, strict patch receipts, and `manual-group-six-api-accounting.json`
+remain in session evidence. Reader/helper/converter/CI and all lower layers
+are unchanged. STGM and the residual CLR record remain for the next exact
+owner/use-site subdivision, not classified globally as unsupported.

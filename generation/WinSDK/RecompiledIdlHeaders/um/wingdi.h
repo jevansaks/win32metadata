@@ -3875,7 +3875,7 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI int   WINAPI ChoosePixelFormat( _In_ HDC hdc, _In_ CONST PIXELFORMATDESCRIPTOR *ppfd);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI HMETAFILE  WINAPI CloseMetaFile( _In_ HDC hdc);
-WINGDIAPI int     WINAPI CombineRgn( _In_opt_ HRGN hrgnDst, _In_opt_ HRGN hrgnSrc1, _In_opt_ HRGN hrgnSrc2, _In_ int iMode);
+WINGDIAPI int     WINAPI CombineRgn( _In_opt_ HRGN hrgnDst, _In_opt_ HRGN hrgnSrc1, _In_opt_ HRGN hrgnSrc2, _Win32_AssociatedEnum_(RGN_COMBINE_MODE) _In_ int iMode);
 WINGDIAPI HMETAFILE WINAPI CopyMetaFileA( _In_ HMETAFILE, _In_opt_ LPCSTR);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI HMETAFILE WINAPI CopyMetaFileW( _In_ HMETAFILE, _In_opt_ LPCWSTR);
@@ -3905,9 +3905,9 @@ WINGDIAPI HDC     WINAPI CreateDCW( _In_opt_ LPCWSTR pwszDriver, _In_opt_ LPCWST
 #else
 #define CreateDC  CreateDCA
 #endif // !UNICODE
-WINGDIAPI HBITMAP WINAPI CreateDIBitmap( _In_ HDC hdc, _In_opt_ CONST BITMAPINFOHEADER *pbmih, _In_ DWORD flInit, _In_opt_ CONST VOID *pjBits, _In_opt_ CONST BITMAPINFO *pbmi, _In_ UINT iUsage);
-WINGDIAPI HBRUSH  WINAPI CreateDIBPatternBrush( _In_ HGLOBAL h, _In_ UINT iUsage);
- WINGDIAPI HBRUSH  WINAPI CreateDIBPatternBrushPt( _In_ CONST VOID *lpPackedDIB, _In_ UINT iUsage);
+WINGDIAPI HBITMAP WINAPI CreateDIBitmap( _In_ HDC hdc, _In_opt_ CONST BITMAPINFOHEADER *pbmih, _In_ DWORD flInit, _In_opt_ CONST VOID *pjBits, _In_opt_ CONST BITMAPINFO *pbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT iUsage);
+WINGDIAPI HBRUSH  WINAPI CreateDIBPatternBrush( _In_ HGLOBAL h, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT iUsage);
+ WINGDIAPI HBRUSH  WINAPI CreateDIBPatternBrushPt( _In_ CONST VOID *lpPackedDIB, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT iUsage);
 WINGDIAPI HRGN    WINAPI CreateEllipticRgn( _In_ int x1, _In_ int y1, _In_ int x2, _In_ int y2);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI HRGN    WINAPI CreateEllipticRgnIndirect( _In_ CONST RECT *lprect);
@@ -4286,7 +4286,7 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI int   WINAPI GetDeviceCaps( _In_opt_ HDC hdc, _In_ int index);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI int   WINAPI GetDIBits( _In_ HDC hdc, _In_ HBITMAP hbm, _In_ UINT start, _In_ UINT cLines,
-    _Out_opt_ LPVOID lpvBits, _At_((LPBITMAPINFOHEADER)lpbmi, _Inout_) LPBITMAPINFO lpbmi, _In_ UINT usage);  // SAL actual size of lpbmi is computed from structure elements
+    _Out_opt_ LPVOID lpvBits, _At_((LPBITMAPINFOHEADER)lpbmi, _Inout_) LPBITMAPINFO lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT usage);  // SAL actual size of lpbmi is computed from structure elements
 
 _Success_(return != GDI_ERROR)
 WINGDIAPI DWORD WINAPI GetFontData (    _In_ HDC     hdc,
@@ -4801,7 +4801,7 @@ _Win32_SupportedOS_Windows2000_
 
  WINGDIAPI int  WINAPI SaveDC(_In_ HDC hdc);
  WINGDIAPI int  WINAPI SelectClipRgn(_In_ HDC hdc, _In_opt_ HRGN hrgn);
-WINGDIAPI int  WINAPI ExtSelectClipRgn(_In_ HDC hdc, _In_opt_ HRGN hrgn, _In_ int mode);
+WINGDIAPI int  WINAPI ExtSelectClipRgn(_In_ HDC hdc, _In_opt_ HRGN hrgn, _Win32_AssociatedEnum_(RGN_COMBINE_MODE) _In_ int mode);
 WINGDIAPI int  WINAPI SetMetaRgn(_In_ HDC hdc);
  WINGDIAPI HGDIOBJ WINAPI SelectObject(_In_ HDC hdc, _In_ HGDIOBJ h);
 _Win32_SupportedOS_Windows2000_
@@ -4828,9 +4828,9 @@ SetBitmapBits(
     _In_reads_bytes_(cb) CONST VOID *pvBits);
 
 WINGDIAPI UINT  WINAPI SetBoundsRect(_In_ HDC hdc, _In_opt_ CONST RECT * lprect, _In_ UINT flags);
-WINGDIAPI int   WINAPI SetDIBits(_In_opt_ HDC hdc, _In_ HBITMAP hbm, _In_ UINT start, _In_ UINT cLines, _In_ CONST VOID *lpBits, _In_ CONST BITMAPINFO * lpbmi, _In_ UINT ColorUse);
+WINGDIAPI int   WINAPI SetDIBits(_In_opt_ HDC hdc, _In_ HBITMAP hbm, _In_ UINT start, _In_ UINT cLines, _In_ CONST VOID *lpBits, _In_ CONST BITMAPINFO * lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT ColorUse);
  WINGDIAPI int   WINAPI SetDIBitsToDevice(_In_ HDC hdc, _In_ int xDest, _In_ int yDest, _In_ DWORD w, _In_ DWORD h, _In_ int xSrc,
-        _In_ int ySrc, _In_ UINT StartScan, _In_ UINT cLines, _In_ CONST VOID * lpvBits, _In_ CONST BITMAPINFO * lpbmi, _In_ UINT ColorUse);
+        _In_ int ySrc, _In_ UINT StartScan, _In_ UINT cLines, _In_ CONST VOID * lpvBits, _In_ CONST BITMAPINFO * lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT ColorUse);
  WINGDIAPI DWORD WINAPI SetMapperFlags(_In_ HDC hdc, _In_ DWORD flags);
 WINGDIAPI int   WINAPI SetGraphicsMode(_In_ HDC hdc, _In_ int iMode);
  WINGDIAPI int   WINAPI SetMapMode(_In_ HDC hdc, _In_ int iMode);
@@ -4859,7 +4859,7 @@ WINGDIAPI BOOL  WINAPI SetPixelFormat(_In_ HDC hdc, _In_ int format, _In_ CONST 
 WINGDIAPI BOOL   WINAPI SetRectRgn(_In_ HRGN hrgn, _In_ int left, _In_ int top, _In_ int right, _In_ int bottom);
 _Win32_SupportedOS_Windows2000_
  WINGDIAPI int   WINAPI StretchDIBits(_In_ HDC hdc, _In_ int xDest, _In_ int yDest, _In_ int DestWidth, _In_ int DestHeight, _In_ int xSrc, _In_ int ySrc, _In_ int SrcWidth, _In_ int SrcHeight,
-        _In_opt_ CONST VOID * lpBits, _In_ CONST BITMAPINFO * lpbmi, _In_ UINT iUsage, _In_ DWORD rop);
+        _In_opt_ CONST VOID * lpBits, _In_ CONST BITMAPINFO * lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT iUsage, _In_ DWORD rop);
  WINGDIAPI int   WINAPI SetROP2(_In_ HDC hdc, _In_ int rop2);
  WINGDIAPI int   WINAPI SetStretchBltMode(_In_ HDC hdc, _In_ int mode);
 WINGDIAPI UINT  WINAPI SetSystemPaletteUse(_In_ HDC hdc, _In_ UINT use);
@@ -5238,7 +5238,7 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI _Success_(return != NULL) HBITMAP WINAPI CreateDIBSection(
     _In_opt_        HDC               hdc,
     _In_            CONST BITMAPINFO *pbmi,
-    _In_            UINT              usage,
+    _Win32_AssociatedEnum_(DIB_USAGE) _In_            UINT              usage,
     _When_((pbmi->bmiHeader.biBitCount != 0), _Outptr_result_bytebuffer_(_Inexpressible_(GDI_DIBSIZE((pbmi->bmiHeader)))))
     _When_((pbmi->bmiHeader.biBitCount == 0), _Outptr_result_bytebuffer_((pbmi->bmiHeader).biSizeImage))
                     VOID            **ppvBits,
@@ -5392,7 +5392,7 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI HRGN WINAPI PathToRegion(_In_ HDC hdc);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL WINAPI PolyDraw(_In_ HDC hdc, _In_reads_(cpt) CONST POINT * apt, _In_reads_(cpt) CONST BYTE * aj, _In_ int cpt);
-WINGDIAPI BOOL WINAPI SelectClipPath(_In_ HDC hdc, _In_ int mode);
+WINGDIAPI BOOL WINAPI SelectClipPath(_In_ HDC hdc, _Win32_AssociatedEnum_(RGN_COMBINE_MODE) _In_ int mode);
 WINGDIAPI int  WINAPI SetArcDirection(_In_ HDC hdc, _In_ int dir);
 WINGDIAPI BOOL WINAPI SetMiterLimit(_In_ HDC hdc, _In_ FLOAT limit, _Out_opt_ PFLOAT old);
 _Win32_SupportedOS_Windows2000_
@@ -5453,8 +5453,8 @@ _Win32_SupportedOS_Windows2000_
 #else
 #define TextOut  TextOutA
 #endif // !UNICODE
- WINGDIAPI BOOL  WINAPI ExtTextOutA( _In_ HDC hdc, _In_ int x, _In_ int y, _In_ UINT options, _In_opt_ CONST RECT * lprect, _In_reads_opt_(c) LPCSTR lpString, _In_ UINT c, _In_reads_opt_(c) CONST INT * lpDx);
- WINGDIAPI BOOL  WINAPI ExtTextOutW( _In_ HDC hdc, _In_ int x, _In_ int y, _In_ UINT options, _In_opt_ CONST RECT * lprect, _In_reads_opt_(c) LPCWSTR lpString, _In_ UINT c, _In_reads_opt_(c) CONST INT * lpDx);
+ WINGDIAPI BOOL  WINAPI ExtTextOutA( _In_ HDC hdc, _In_ int x, _In_ int y, _Win32_AssociatedEnum_(ETO_OPTIONS) _In_ UINT options, _In_opt_ CONST RECT * lprect, _In_reads_opt_(c) LPCSTR lpString, _In_ UINT c, _In_reads_opt_(c) CONST INT * lpDx);
+ WINGDIAPI BOOL  WINAPI ExtTextOutW( _In_ HDC hdc, _In_ int x, _In_ int y, _Win32_AssociatedEnum_(ETO_OPTIONS) _In_ UINT options, _In_opt_ CONST RECT * lprect, _In_reads_opt_(c) LPCWSTR lpString, _In_ UINT c, _In_reads_opt_(c) CONST INT * lpDx);
 #ifdef UNICODE
 #define ExtTextOut  ExtTextOutW
 #else
@@ -6809,6 +6809,13 @@ _Win32_Enum_(FONT_WEIGHT, unsigned int,
     FW_DEMIBOLD,
     FW_ULTRABOLD,
     FW_BLACK);
+
+
+#ifndef NOGDI
+_Win32_FlagsEnum_(ETO_OPTIONS, unsigned long, ETO_OPAQUE, ETO_CLIPPED, ETO_GLYPH_INDEX, ETO_RTLREADING, ETO_NUMERICSLOCAL, ETO_NUMERICSLATIN, ETO_IGNORELANGUAGE, ETO_PDY, ETO_REVERSE_INDEX_MAP);
+_Win32_Enum_(RGN_COMBINE_MODE, int, RGN_AND, RGN_OR, RGN_XOR, RGN_DIFF, RGN_COPY, RGN_MIN, RGN_MAX);
+_Win32_Enum_(DIB_USAGE, unsigned long, DIB_RGB_COLORS, DIB_PAL_COLORS);
+#endif
 
 #endif /* _WINGDI_ */
 

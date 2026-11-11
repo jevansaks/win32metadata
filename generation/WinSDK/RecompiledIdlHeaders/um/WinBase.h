@@ -5784,7 +5784,7 @@ WINBASEAPI
 BOOL
 WINAPI
 DefineDosDeviceA(
-    _In_     DWORD dwFlags,
+    _Win32_AssociatedEnum_(DEFINE_DOS_DEVICE_FLAGS) _In_     DWORD dwFlags,
     _In_     LPCSTR lpDeviceName,
     _In_opt_ LPCSTR lpTargetPath
     );
@@ -10560,6 +10560,9 @@ RaiseCustomSystemEventTrigger(
 #endif
 
 
+
+
+_Win32_FlagsEnum_(DEFINE_DOS_DEVICE_FLAGS, unsigned long, DDD_RAW_TARGET_PATH, DDD_REMOVE_DEFINITION, DDD_EXACT_MATCH_ON_REMOVE, DDD_NO_BROADCAST_SYSTEM, DDD_LUID_BROADCAST_DRIVE);
 
 #endif // _WINBASE_
 

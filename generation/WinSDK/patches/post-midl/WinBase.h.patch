@@ -1928,7 +1928,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  _Success_(return != 0 && return < nBufferLength)
  DWORD
-@@ -5391,6 +5777,8 @@
+@@ -5391,12 +5777,14 @@
  #define DDD_EXACT_MATCH_ON_REMOVE   0x00000004
  #define DDD_NO_BROADCAST_SYSTEM     0x00000008
  #define DDD_LUID_BROADCAST_DRIVE    0x00000010
@@ -1937,6 +1937,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
+ WINAPI
+ DefineDosDeviceA(
+-    _In_     DWORD dwFlags,
++    _Win32_AssociatedEnum_(DEFINE_DOS_DEVICE_FLAGS) _In_     DWORD dwFlags,
+     _In_     LPCSTR lpDeviceName,
+     _In_opt_ LPCSTR lpTargetPath
+     );
 @@ -5425,6 +5813,8 @@
  #define EXPAND_LOCAL_DRIVES
  
@@ -3559,3 +3566,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  DWORD
+@@ -9836,6 +10560,9 @@
+ #endif
+ 
+ 
++
++
++_Win32_FlagsEnum_(DEFINE_DOS_DEVICE_FLAGS, unsigned long, DDD_RAW_TARGET_PATH, DDD_REMOVE_DEFINITION, DDD_EXACT_MATCH_ON_REMOVE, DDD_NO_BROADCAST_SYSTEM, DDD_LUID_BROADCAST_DRIVE);
+ 
+ #endif // _WINBASE_
+ 

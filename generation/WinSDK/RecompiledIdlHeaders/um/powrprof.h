@@ -456,7 +456,7 @@ STDAPI_(DWORD)
 PowerSettingAccessCheckEx (
     _In_ POWER_DATA_ACCESSOR AccessFlags,
     _In_opt_ CONST GUID *PowerGuid,
-    _In_ REGSAM AccessType
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM AccessType
     );
 #endif
 

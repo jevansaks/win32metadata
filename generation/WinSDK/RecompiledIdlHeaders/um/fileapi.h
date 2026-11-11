@@ -128,7 +128,7 @@ WINBASEAPI
 BOOL
 WINAPI
 DefineDosDeviceW(
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(DEFINE_DOS_DEVICE_FLAGS) _In_ DWORD dwFlags,
     _In_ LPCWSTR lpDeviceName,
     _In_opt_ LPCWSTR lpTargetPath
     );

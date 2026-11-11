@@ -4633,26 +4633,6 @@
   },
   {
     "type": "uint",
-    "addUsesTo": "ETO_OPTIONS",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "method": "ExtTextOutA",
-        "parameter": "options"
-      },
-      {
-        "method": "ExtTextOutW",
-        "parameter": "options"
-      },
-      {
-        "method": "ScriptStringOut",
-        "parameter": "uOptions"
-      }
-    ]
-  },
-  {
-    "type": "uint",
     "name": "PAGE_PROTECTION_FLAGS",
     "flags": true,
     "members": [
@@ -5923,16 +5903,6 @@
       {
         "method": "LogonUserA",
         "parameter": "dwLogonProvider"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "ETO_OPTIONS",
-    "members": [],
-    "uses": [
-      {
-        "method": "ScriptStringOut",
-        "parameter": "uOptions"
       }
     ]
   },
@@ -7336,24 +7306,6 @@
     ]
   },
   {
-    "addUsesTo": "RGN_COMBINE_MODE",
-    "members": [],
-    "uses": [
-      {
-        "method": "CombineRgn",
-        "parameter": "iMode"
-      },
-      {
-        "method": "ExtSelectClipRgn",
-        "parameter": "mode"
-      },
-      {
-        "method": "SelectClipPath",
-        "parameter": "mode"
-      }
-    ]
-  },
-  {
     "name": "UNMAP_VIEW_OF_FILE_FLAGS",
     "members": [
       {
@@ -7471,21 +7423,6 @@
       {
         "method": "EMRMODIFYWORLDTRANSFORM",
         "parameter": "iMode"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "DEFINE_DOS_DEVICE_FLAGS",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "method": "DefineDosDeviceA",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "DefineDosDeviceW",
-        "parameter": "dwFlags"
       }
     ]
   },
@@ -8600,44 +8537,6 @@
       {
         "struct": "REPASTESPECIAL",
         "field": "dwAspect"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "DIB_USAGE",
-    "members": [],
-    "uses": [
-      {
-        "method": "CreateDIBitmap",
-        "parameter": "iUsage"
-      },
-      {
-        "method": "SetDIBits",
-        "parameter": "ColorUse"
-      },
-      {
-        "method": "SetDIBitsToDevice",
-        "parameter": "ColorUse"
-      },
-      {
-        "method": "StretchDIBits",
-        "parameter": "iUsage"
-      },
-      {
-        "method": "GetDIBits",
-        "parameter": "usage"
-      },
-      {
-        "method": "CreateDIBPatternBrushPt",
-        "parameter": "iUsage"
-      },
-      {
-        "method": "CreateDIBPatternBrush",
-        "parameter": "iUsage"
-      },
-      {
-        "method": "CreateDIBSection",
-        "parameter": "usage"
       }
     ]
   },
@@ -11190,21 +11089,6 @@
     ]
   },
   {
-    "addUsesTo": "ETO_OPTIONS",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "method": "ExtTextOutA",
-        "parameter": "options"
-      },
-      {
-        "method": "ExtTextOutW",
-        "parameter": "options"
-      }
-    ]
-  },
-  {
     "name": "SYM_SRV_STORE_FILE_FLAGS",
     "members": [
       {
@@ -13362,16 +13246,6 @@
     ]
   },
   {
-    "addUsesTo": "DI_FLAGS",
-    "members": [],
-    "uses": [
-      {
-        "method": "DrawIconEx",
-        "parameter": "diFlags"
-      }
-    ]
-  },
-  {
     "name": "BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS",
     "flags": true,
     "members": [
@@ -14728,16 +14602,6 @@
       {
         "struct": "CRYPT_KEY_PROV_INFO",
         "field": "dwFlags"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "REG_SAM_FLAGS",
-    "members": [],
-    "uses": [
-      {
-        "method": "PowerSettingAccessCheckEx",
-        "parameter": "AccessType"
       }
     ]
   },

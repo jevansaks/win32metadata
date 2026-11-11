@@ -381,7 +381,7 @@ RegCreateKeyExA(
     _Reserved_ DWORD Reserved,
     _In_opt_ LPSTR lpClass,
     _In_ DWORD dwOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
     _Out_ PHKEY phkResult,
     _Out_opt_ LPDWORD lpdwDisposition
@@ -396,7 +396,7 @@ RegCreateKeyExW(
     _Reserved_ DWORD Reserved,
     _In_opt_ LPWSTR lpClass,
     _In_ DWORD dwOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
     _Out_ PHKEY phkResult,
     _Out_opt_ LPDWORD lpdwDisposition
@@ -423,7 +423,7 @@ RegCreateKeyTransactedA (
     _Reserved_ DWORD Reserved,
     _In_opt_ LPSTR lpClass,
     _In_ DWORD dwOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
     _Out_ PHKEY phkResult,
     _Out_opt_ LPDWORD lpdwDisposition,
@@ -439,7 +439,7 @@ RegCreateKeyTransactedW (
     _Reserved_ DWORD Reserved,
     _In_opt_ LPWSTR lpClass,
     _In_ DWORD dwOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
     _Out_ PHKEY phkResult,
     _Out_opt_ LPDWORD lpdwDisposition,
@@ -779,7 +779,7 @@ RegOpenKeyExA(
     _In_ HKEY hKey,
     _In_opt_ LPCSTR lpSubKey,
     _In_opt_ DWORD ulOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _Out_ PHKEY phkResult
     );
 
@@ -790,7 +790,7 @@ RegOpenKeyExW(
     _In_ HKEY hKey,
     _In_opt_ LPCWSTR lpSubKey,
     _In_opt_ DWORD ulOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _Out_ PHKEY phkResult
     );
 
@@ -813,7 +813,7 @@ RegOpenKeyTransactedA (
     _In_ HKEY hKey,
     _In_opt_ LPCSTR lpSubKey,
     _In_opt_ DWORD ulOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _Out_ PHKEY phkResult,
     _In_        HANDLE hTransaction,
     _Reserved_ PVOID  pExtendedParemeter
@@ -825,7 +825,7 @@ RegOpenKeyTransactedW (
     _In_ HKEY hKey,
     _In_opt_ LPCWSTR lpSubKey,
     _In_opt_ DWORD ulOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _Out_ PHKEY phkResult,
     _In_        HANDLE hTransaction,
     _Reserved_ PVOID  pExtendedParemeter
@@ -1627,6 +1627,9 @@ RegSaveKeyExW(
 #ifdef __cplusplus
 }
 #endif
+
+
+_Win32_FlagsEnum_(REG_SAM_FLAGS, unsigned long, KEY_QUERY_VALUE, KEY_SET_VALUE, KEY_CREATE_SUB_KEY, KEY_ENUMERATE_SUB_KEYS, KEY_NOTIFY, KEY_CREATE_LINK, KEY_WOW64_32KEY, KEY_WOW64_64KEY, KEY_WOW64_RES, KEY_READ, KEY_WRITE, KEY_EXECUTE, KEY_ALL_ACCESS);
 
 #endif // _WINREG_
 

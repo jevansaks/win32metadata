@@ -11900,7 +11900,7 @@ WINUSERAPI BOOL WINAPI DrawIconEx(
     _In_ int cyWidth,
     _In_ UINT istepIfAniCur,
     _In_opt_ HBRUSH hbrFlickerFreeDraw,
-    _In_ UINT diFlags);
+    _Win32_AssociatedEnum_(DI_FLAGS) _In_ UINT diFlags);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
@@ -17738,6 +17738,9 @@ _Win32_Enum_(STATIC_STYLES, unsigned int,
     SS_PATHELLIPSIS,
     SS_WORDELLIPSIS,
     SS_ELLIPSISMASK);
+
+
+_Win32_FlagsEnum_(DI_FLAGS, unsigned long, DI_MASK, DI_IMAGE, DI_NORMAL, DI_COMPAT, DI_DEFAULTSIZE, DI_NOMIRROR);
 
 #endif /* !_WINUSER_ */
 

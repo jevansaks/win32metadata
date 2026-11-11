@@ -25,6 +25,49 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void SnmpGroup_UnsignedLegacyStorageCannotBackSignedNativeParameters(string target)
+        {
+            string header = File.ReadAllText(Sdk("um", "WinSnmp.h"));
+            string[] members = { "SNMP_PDU_GET", "SNMP_PDU_GETNEXT", "SNMP_PDU_RESPONSE",
+                "SNMP_PDU_SET", "SNMP_PDU_GETBULK", "SNMP_PDU_TRAP" };
+            string constants = string.Join("\n", members.Select(name =>
+                Slice(header, @"(?m)^#define " + name + @"\s+[^\r\n]+")));
+            string declaration = Slice(header, @"HSNMP_PDU\s+SNMPAPI_CALL\s+SnmpCreatePdu[^;]+;");
+            string annotated = declaration.Replace("IN smiINT PDU_type",
+                "IN _Win32_AssociatedEnum_(SNMP_PDU_TYPE) smiINT PDU_type");
+            Assert.AreNotEqual(declaration, annotated);
+            string source = @"
+#define FAR
+#define IN
+#define SNMPAPI_CALL __stdcall
+#define ULONG_MAX 4294967295U
+#define ASN_CONTEXT 0x80
+#define ASN_CONSTRUCTOR 0x20
+typedef void* HSNMP_SESSION;
+typedef void* HSNMP_PDU;
+typedef void* HSNMP_VBL;
+" + Slice(header, @"(?s)#if ULONG_MAX == 4294967295U.*?#endif") + "\n" + constants + "\n";
+            string group = "_Win32_Enum_(SNMP_PDU_TYPE, {0}, " + string.Join(", ", members) + ");\n";
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source + string.Format(group, "unsigned long") + annotated, target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output, "AssociatedEnum storage conflicts with enum group 'SNMP_PDU_TYPE'.");
+            result = fixture.Scrape(source + string.Format(group, "int") + annotated, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var type = NativeTypedefHeaderTests.Type(reader, "SNMP_PDU_TYPE");
+            var storage = type.GetFields().Select(reader.GetFieldDefinition)
+                .Single(field => reader.GetString(field.Name) == "value__");
+            EnumAssociationHeaderTests.AssertSignature(reader, storage.Signature, 0, SignatureTypeCode.Int32);
+            Assert.AreEqual(7, type.GetFields().Count);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void CloudPolicyAssociation_RequiresAWrapperStorageContract(string target)
         {
             string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
