@@ -15,15 +15,19 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fwpmu.h b/generation/WinS
  
  
  ///////////////////////////////////////////////////////////////////////////////
-@@ -3331,6 +3333,7 @@
- ///////////////////////////////////////////////////////////////////////////////
+@@ -3332,6 +3334,11 @@
  
  void WINAPI FwpmFreeMemory0(_Inout_ void** p);
-+_Win32_SupportedOS_WindowsVista_
  
++DWORD
++WINAPI
++FwpmEngineClose0(_Inout_ HANDLE engineHandle);
++_Win32_SupportedOS_WindowsVista_
++
  
  ///////////////////////////////////////////////////////////////////////////////
-@@ -3342,7 +3345,7 @@
+ //
+@@ -3342,16 +3349,13 @@
  DWORD
  WINAPI
  FwpmEngineOpen0(
@@ -32,10 +36,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fwpmu.h b/generation/WinS
     _In_ UINT32 authnService,
     _In_opt_ SEC_WINNT_AUTH_IDENTITY_W* authIdentity,
     _In_opt_ const FWPM_SESSION0* session,
-@@ -3352,6 +3355,7 @@
- DWORD
- WINAPI
- FwpmEngineClose0(_Inout_ HANDLE engineHandle);
+-   _Out_ HANDLE* engineHandle
+-   );
+-
+-DWORD
+-WINAPI
+-FwpmEngineClose0(_Inout_ HANDLE engineHandle);
++   _Out_ _Win32_RAIIFree_Handle_(FwpmEngineClose0) HANDLE* engineHandle
++   );
 +_Win32_SupportedOS_WindowsVista_
  
  DWORD

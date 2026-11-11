@@ -2584,6 +2584,13 @@ _In_ HANDLE  hPrinter,
      DWORD   Flags
 );
 
+BOOL
+WINAPI
+FindClosePrinterChangeNotification(
+_In_   HANDLE hChange
+    );
+
+_Win32_RAIIFree_Handle_(FindClosePrinterChangeNotification)
 HANDLE
 WINAPI
 FindFirstPrinterChangeNotification(
@@ -2607,12 +2614,6 @@ BOOL
 WINAPI
 FreePrinterNotifyInfo(
 _In_   PPRINTER_NOTIFY_INFO pPrinterNotifyInfo
-    );
-
-BOOL
-WINAPI
-FindClosePrinterChangeNotification(
-_In_   HANDLE hChange
     );
 
 #define PRINTER_CHANGE_ADD_PRINTER              0x00000001

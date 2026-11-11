@@ -11042,28 +11042,6 @@
     ]
   },
   {
-    "addUsesTo": "INSTALLLEVEL",
-    "members": [],
-    "uses": [
-      {
-        "method": "MsiConfigureProductW",
-        "parameter": "iInstallLevel"
-      },
-      {
-        "method": "MsiConfigureProductExW",
-        "parameter": "iInstallLevel"
-      },
-      {
-        "method": "MsiConfigureProductExA",
-        "parameter": "iInstallLevel"
-      },
-      {
-        "method": "MsiConfigureProductA",
-        "parameter": "iInstallLevel"
-      }
-    ]
-  },
-  {
     "name": "MONITOR_FROM_FLAGS",
     "members": [
       {
@@ -16926,16 +16904,6 @@
       {
         "method": "SymFindFileInPath",
         "parameter": "flags"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "_LI_METRIC",
-    "members": [],
-    "uses": [
-      {
-        "method": "LoadIconMetric",
-        "parameter": "lims"
       }
     ]
   },

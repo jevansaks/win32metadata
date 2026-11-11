@@ -3333,6 +3333,10 @@ _Win32_SupportedOS_WindowsVista_
 ///////////////////////////////////////////////////////////////////////////////
 
 void WINAPI FwpmFreeMemory0(_Inout_ void** p);
+
+DWORD
+WINAPI
+FwpmEngineClose0(_Inout_ HANDLE engineHandle);
 _Win32_SupportedOS_WindowsVista_
 
 
@@ -3349,12 +3353,8 @@ FwpmEngineOpen0(
    _In_ UINT32 authnService,
    _In_opt_ SEC_WINNT_AUTH_IDENTITY_W* authIdentity,
    _In_opt_ const FWPM_SESSION0* session,
-   _Out_ HANDLE* engineHandle
+   _Out_ _Win32_RAIIFree_Handle_(FwpmEngineClose0) HANDLE* engineHandle
    );
-
-DWORD
-WINAPI
-FwpmEngineClose0(_Inout_ HANDLE engineHandle);
 _Win32_SupportedOS_WindowsVista_
 
 DWORD

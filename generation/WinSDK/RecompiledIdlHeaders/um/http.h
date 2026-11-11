@@ -3042,6 +3042,14 @@ HttpCreateHttpHandle(
 #if _WIN32_WINNT >= 0x0600
 _Win32_SupportedOS_WindowsVista_
 
+HTTPAPI_LINKAGE
+ULONG
+WINAPI
+HttpCloseRequestQueue(
+    IN HANDLE RequestQueueHandle
+    );
+_Win32_SupportedOS_WindowsVista_
+
 //
 // Extended Request Queue manipulation APIs.
 //
@@ -3057,15 +3065,7 @@ HttpCreateRequestQueue(
     _In_opt_ IN PCWSTR Name OPTIONAL,
     _In_opt_ IN PSECURITY_ATTRIBUTES SecurityAttributes OPTIONAL,
     _In_opt_ IN ULONG Flags OPTIONAL,
-    OUT PHANDLE RequestQueueHandle
-    );
-_Win32_SupportedOS_WindowsVista_
-
-HTTPAPI_LINKAGE
-ULONG
-WINAPI
-HttpCloseRequestQueue(
-    IN HANDLE RequestQueueHandle
+    _Out_ _Win32_RAIIFree_(HttpCloseRequestQueue, 0) OUT PHANDLE RequestQueueHandle
     );
 _Win32_SupportedOS_WindowsVista_
 

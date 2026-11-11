@@ -25,6 +25,117 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void HttpFilteringAndPrinterProducers_RetireOnlyProjectionHandles(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(NextProducerDeclarations(), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            ProducerHeaderTests.AssertFacts(reader, "HttpCreateRequestQueue", 5, "HttpCloseRequestQueue", 0);
+            ProducerHeaderTests.AssertFacts(reader, "FwpmEngineOpen0", 5, "FwpmEngineClose0", -1, 0);
+            ProducerHeaderTests.AssertFacts(reader, "FindFirstPrinterChangeNotification", 0,
+                "FindClosePrinterChangeNotification", -1, 0);
+            foreach (string name in new[] { "HttpCloseRequestQueue", "HttpCreateHttpHandle", "FwpmEngineClose0",
+                "FindNextPrinterChangeNotification", "FindClosePrinterChangeNotification" })
+                ProducerHeaderTests.AssertNoOwnership(reader, name);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void FilteringEnumerationCleanup_RequiresEngineContextBeyondOneArgumentContract(string target)
+        {
+            string declarations = NextProducerDependencies +
+                CurrentProducerDeclaration("fwpmu.h", "FwpmFilterDestroyEnumHandle0") + "\n" +
+                CurrentProducerDeclaration("fwpmu.h", "FwpmFilterCreateEnumHandle0");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(declarations, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            result = fixture.Scrape(declarations.Replace("_Out_ HANDLE* enumHandle",
+                "_Out_ _Win32_RAIIFree_Handle_(FwpmFilterDestroyEnumHandle0) HANDLE* enumHandle",
+                StringComparison.Ordinal), target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output,
+                "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void HttpFilteringAndPrinterProducers_PreserveNativeAbi(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language, @"
+#define _In_
+#define _Out_
+#define _Inout_
+#define _In_opt_
+#define _Out_opt_
+#define _Reserved_
+" + NextProducerDeclarations() + @"
+ULONG (WINAPI *verifyHttp)(HTTPAPI_VERSION, PCWSTR, PSECURITY_ATTRIBUTES, ULONG, PHANDLE) = &HttpCreateRequestQueue;
+DWORD (WINAPI *verifyEngine)(const wchar_t*, UINT32, SEC_WINNT_AUTH_IDENTITY_W*, const FWPM_SESSION0*, HANDLE*) = &FwpmEngineOpen0;
+HANDLE (WINAPI *verifyPrinter)(HANDLE, DWORD, DWORD, PVOID) = &FindFirstPrinterChangeNotification;
+");
+        }
+
+        private const string NextProducerDependencies = @"
+#define WINAPI __stdcall
+#define HTTPAPI_LINKAGE __declspec(dllimport)
+#define IN
+#define OUT
+#define OPTIONAL
+typedef void* HANDLE;
+typedef HANDLE* PHANDLE;
+typedef int BOOL;
+typedef unsigned long DWORD;
+typedef unsigned long ULONG;
+typedef unsigned int UINT32;
+#ifndef __cplusplus
+typedef unsigned short wchar_t;
+#endif
+typedef const wchar_t* PCWSTR;
+typedef void* PVOID;
+typedef void* LPVOID;
+typedef DWORD* PDWORD;
+typedef struct { unsigned short major, minor; } HTTPAPI_VERSION;
+typedef struct SECURITY_ATTRIBUTES { DWORD length; } SECURITY_ATTRIBUTES, *PSECURITY_ATTRIBUTES;
+typedef struct SEC_WINNT_AUTH_IDENTITY_W { DWORD flags; } SEC_WINNT_AUTH_IDENTITY_W;
+typedef struct FWPM_SESSION0 { DWORD flags; } FWPM_SESSION0;
+typedef struct FWPM_FILTER_ENUM_TEMPLATE0 { DWORD flags; } FWPM_FILTER_ENUM_TEMPLATE0;
+";
+
+        private static string NextProducerDeclarations() => NextProducerDependencies + string.Join("\n", new[] {
+            CurrentProducerDeclaration("http.h", "HttpCloseRequestQueue"),
+            CurrentProducerDeclaration("http.h", "HttpCreateRequestQueue"),
+            CurrentProducerDeclaration("http.h", "HttpCreateHttpHandle"),
+            CurrentProducerDeclaration("fwpmu.h", "FwpmEngineClose0"),
+            CurrentProducerDeclaration("fwpmu.h", "FwpmEngineOpen0"),
+            CurrentProducerDeclaration("winspool.h", "FindClosePrinterChangeNotification"),
+            CurrentProducerDeclaration("winspool.h", "FindFirstPrinterChangeNotification"),
+            CurrentProducerDeclaration("winspool.h", "FindNextPrinterChangeNotification"),
+        });
+
+        private static string CurrentProducerDeclaration(string header, string name)
+        {
+            var match = Regex.Match(File.ReadAllText(Sdk("RecompiledIdlHeaders/um/" + header)),
+                @"(?m)(?:^_Win32_RAIIFree_(?:Handle_)?\([^\r\n]*\)\r?\n)?^(?:HTTPAPI_LINKAGE\s+)?(?:DWORD|ULONG|BOOL|HANDLE)\s+WINAPI\s+" +
+                name + @"\s*\([^;]+;");
+            Assert.IsTrue(match.Success, name);
+            return match.Value;
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void AvrtNativeProducers_ReplaceFictitiousTypesAndDistinguishJoinCleanup(string target)
         {
             string declarations = AvrtDeclarations();

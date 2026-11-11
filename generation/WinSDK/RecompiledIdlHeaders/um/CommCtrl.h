@@ -7981,7 +7981,7 @@ enum _LI_METRIC
    LIM_LARGE, // corresponds to SM_CXICON/SM_CYICON
 };
 
-WINCOMMCTRLAPI HRESULT WINAPI LoadIconMetric(HINSTANCE hinst, PCWSTR pszName, int lims, _Out_ HICON *phico);
+WINCOMMCTRLAPI HRESULT WINAPI LoadIconMetric(HINSTANCE hinst, PCWSTR pszName, _Win32_AssociatedEnum_(_LI_METRIC) int lims, _Out_ HICON *phico);
 WINCOMMCTRLAPI HRESULT WINAPI LoadIconWithScaleDown(HINSTANCE hinst, PCWSTR pszName, int cx, int cy, _Out_ HICON *phico);
 
 #endif // NTDDI_VISTA

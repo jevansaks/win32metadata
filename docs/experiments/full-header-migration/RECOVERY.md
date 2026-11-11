@@ -2,14 +2,21 @@
 
 **Current accepted state:** the working reduction below removes 407 parameter
 atoms, 2,894 LastError rows, 9,187 availability rows, and 29 enum definitions;
-eight additional genuine aliases use compiler-backed storage. The next
-[structural migration](#producer-ownership-and-enum-use-site-migration) removes
-two fictitious handle records and 14 forced type remaps, and replaces five
-JSON enum bindings with native `AssociatedEnum`. Its new WinMD has exactly the
-intended structural differences, exhaustively accounted for without masks;
-it is not claimed API-equivalent. The preceding
+eight additional genuine aliases use compiler-backed storage. The first
+[structural migration](#producer-ownership-and-enum-use-site-migration) and
+[next coherent cohorts](#http-filtering-printer-and-signed-enum-cohorts) now
+retire five fictitious handle records, 204 forced type-remap rows, and ten
+JSON enum-use bindings. Their new WinMD has exactly the intended structural
+differences, exhaustively accounted for without masks; it is not claimed
+API-equivalent. The preceding
 [equivalent union](#final-accepted-enumhandle-union) remains preserved.
 The earlier quantities below describe preserved historical checkpoints.
+
+**Allowed external metadata:** the user explicitly permits all 90,502
+documentation URL mappings to remain in `documentationMappings.rsp` for now.
+They are separate from the annotation-retirement backlog and are not migrated
+or removed here. No such exemption was granted to DLL mappings or other API
+metadata; their unchanged state in these bounded cohorts is not an allowance.
 
 The user redirected this experiment from broad sidecar retirement to a working
 generation anchor. The diagnostic experiment remains in commit
@@ -488,3 +495,151 @@ then passed. The earlier residual input/reader boundaries remain; unattempted
 handle/enum closures are not reclassified as failures. Future cohorts should
 continue separating genuine native identity from producer ownership and
 genuine enum definitions from native-integer use-site associations.
+
+## HTTP, filtering, printer and signed-enum cohorts
+
+These cohorts build above preserved
+`5e7a63a0831bc565896e9150df238b6f895d9fa3`, not a regenerated reference.
+They retire projection-only records/use-site overrides rather than merely
+changing genuine native alias storage fields.
+
+### Three exact native handle closures
+
+| Retired record | Native owner and producer | Retired emitter remaps |
+|---|---|---:|
+| `HTTP_REQUEST_QUEUE_HANDLE` | `http.h`: `HttpCreateRequestQueue::RequestQueueHandle` carries `_Win32_RAIIFree_(HttpCloseRequestQueue, 0)` on native `PHANDLE`. | 2 |
+| `FWPM_ENGINE_HANDLE` | `fwpmu.h`: `FwpmEngineOpen0::engineHandle` carries `_Win32_RAIIFree_Handle_(FwpmEngineClose0)` on native `HANDLE*`. | 185 |
+| `FINDPRINTERCHANGENOTIFICATION_HANDLE` | `winspool.h`: `FindFirstPrinterChangeNotification` carries `_Win32_RAIIFree_Handle_(FindClosePrinterChangeNotification)` on its native `HANDLE` return. | 3 |
+
+All three records explicitly had `NativeTypedef: false`, but that flag alone
+was not the classification: the actual owned declarations use `HANDLE` or
+`PHANDLE`, not these synthetic names. All 185 engine selectors were checked
+against their native `HANDLE engineHandle` declarations in the same header.
+Cleanup functions retain their exact native signatures and existing SAL;
+the complete declarations move before producers for operand visibility.
+No new one-argument shim, shadow declaration or typedef is introduced.
+The exact retired invalid-value policies remain at producers: HTTP zero;
+engine and printer notification minus one and zero.
+
+There are **190 removed remap rows but 189 live signature sites**.
+`FwpmConnectionSubscriptionsGet0::engineHandle` is an inactive legacy selector:
+its native declaration exists, but no method is emitted in either preserved
+5e7 or the new candidate, and neither current import mapping file contains it.
+Removing this dangling row is not claimed as migrated API coverage or a newly
+lost API. Full accounting explicitly requires it to remain absent in both
+outputs; its broader projection/export cause is not repaired here.
+
+Legacy `HttpCreateHttpHandle` is a distinct control: the native header specifies
+`CloseHandle`, not `HttpCloseRequestQueue`. It receives no newly authored
+ownership metadata from the request-queue cohort. The genuine global `HANDLE`
+policy and the still-retained `PRINTER_HANDLE` closure are unchanged.
+
+### Five signed native-integer enum bindings
+
+The four `MsiConfigureProduct[Ex]A/W::iInstallLevel` sites in `Msi.h` now carry
+`_Win32_AssociatedEnum_(INSTALLLEVEL)` on native `int`. `CommCtrl.h` places
+`_Win32_AssociatedEnum_(_LI_METRIC)` on `LoadIconMetric::lims`, also native
+`int`. The exact two JSON binding-only records and five uses are deleted.
+Output parameters are now `int` plus `AssociatedEnum`, not forced enum types.
+The real three-member `INSTALLLEVEL`, two-member `_LI_METRIC`, and genuine
+enum-typed `INSTALLSTATE eInstallState` parameters remain unchanged.
+No additional enum definition is counted as retired.
+
+| Retained input | Preserved 5e7 | Current |
+|---|---:|---:|
+| All RSP value rows | 134,379 | 134,189 |
+| Emitter value rows / `memberRemap` rows | 2,145 / 1,937 | 1,955 / 1,747 |
+| `autoTypes.json` records | 442 | 439 |
+| `enums.json` records | 1,040 | 1,038 |
+| `functionPointerFixups.json` records | 27 | 27 |
+| Parameter atoms retired / retained | 407 / 363 | 407 / 363 |
+
+Cumulatively, **12,600** original RSP value rows are removed net. The current
+total includes the **90,502 allowed documentation mappings**; the other
+43,687 retained RSP rows are not granted an exemption by that allowance.
+File/option counts remain in the existing TSV. Retained autoTypes fields are
+428 legacy storage entries, 11 native selections, 410 `NativeTypedef` fields,
+ten associations, 148 cleanup fields and 226 invalid-value fields.
+There are still 29 migrated definitions/274 members, eight genuine alias
+selections, and now three deleted enum-binding JSON records/ten native
+integer associations across the two structural checkpoints.
+
+### Accepted new output
+
+Complete cross-architecture `HttpServer`, `WindowsFilteringPlatform`,
+`Printing`, `Controls` and `Setup` partitions plus constants refreshed in
+**1m34.80s**, then the complete union emitted in **5m05.67s**, preserving the
+checkpoint's other generated partitions. Six existing remap warnings and one
+cross-architecture warning remain; there were no production errors.
+
+| Actual new output | Identity |
+|---|---|
+| WinMD | `files\sidecar-reduction\next-structural-candidate\Windows.Win32.winmd` |
+| Size | 24,176,640 bytes |
+| SHA-256 | `122409C9D5CA95F1B791ED6A0846CBA25CDA1D178524F49A2F0B5FF610487EA7` |
+| Complete raw declaration dump SHA-256 | `A4714E01E62224F5F1F0B3A3F25C19AE99B0279DA130E7E377388C69B430F8E8` |
+| Actual unmasked comparisons against 5e7 and qualified original parent | Exit **-1**, reflecting intended structural changes |
+
+Exact source-bound reconciliation checks all **194 changed method blocks**:
+189 active native-handle substitutions, three producer ownership/invalid-value
+groups, and five enum-use associations. The three removed synthetic type
+blocks and ordering changes of three moved cleanup declarations are also
+accounted for. All remaining declaration text is identical to 5e7:
+**zero unmatched changes**. The first structural cohort's intended differences
+and original five attribute-order-only moves also remain against the original
+parent. No signature direction, extent, optionality, pointer depth, native
+enum, import, availability, LastError or documentation changes are masked.
+
+The full raw diff and unmasked comparer logs remain intact alongside
+`next-structural-api-accounting.json`, which records every exact old/new block
+and the one inactive selector. There is no known-difference file or comparer
+normalization. Compilation alone was not acceptance.
+
+All **189** directly related ownership/enum controls pass, including the
+15 new cross-target semantic, C/C++ ABI and contextual-cleanup cases. The
+three contextual cases were also rerun with actual diagnostics retained in
+TRX. All **54** integrity cases pass against the actual new output copied to
+`bin\Windows.Win32.winmd`. All **339/339** selected post-MIDL patches replay
+strictly to byte-exact current headers; the binary-safe audit preserves native
+bytes in 335 changed owners. Recipe selections remain 339 post-MIDL and
+28 pre-MIDL patches; only five owning patch assets change in this batch.
+
+### Concrete retained boundary: cleanup needs an engine context
+
+The 13 remaining WFP/IPsec/IKE enumeration records are not blindly retired
+with the engine record. Their exact native cleanup functions each require
+**two** handles: the engine and the enumeration resource. For example:
+
+```c
+DWORD WINAPI FwpmFilterDestroyEnumHandle0(
+    _In_ HANDLE engineHandle,
+    _Inout_ HANDLE enumHandle);
+```
+
+The current accepted producer contract deliberately requires one declared
+cleanup function accepting exactly the produced resource. A self-contained
+current-header repro annotates `FwpmFilterCreateEnumHandle0::enumHandle`
+with that real two-argument cleanup. The unannotated native control parses;
+the annotated x86/x64/ARM64 cases all reject with:
+
+```text
+RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.
+```
+
+The repro is
+`HandleProducerSdkTests.FilteringEnumerationCleanup_RequiresEngineContextBeyondOneArgumentContract`;
+actual diagnostics are in `next-contextual-cleanup-diagnostic.trx`.
+`next-contextual-cleanup-records.json` binds all 13 retained records to their
+two-handle native declarations. This is a demonstrated contract/context
+boundary, not 13 independent reader regressions. Keep those exact sidecars
+until contextual cleanup and engine-lifetime capture have defined semantics;
+do not invent one-argument wrappers or discard the engine argument.
+
+`NativeTypedef: false` is not a blanket fictitious-handle test:
+the current SDK actually declares `typedef ULONG64 PROCESSTRACE_HANDLE`
+in `shared\evntrace.h`. That genuine native identity remains. Other unattempted
+records, including printer handles, trace IDs/streams and memory views, are
+not classified as unsupported readers by this batch. The remaining earlier
+parameter, enum-operand, constants integration and native-MIDL boundaries
+remain in their preserved sections. No production reader/helper/converter/CI,
+lower stack layer, stack metadata, timeout or test assertion was weakened.

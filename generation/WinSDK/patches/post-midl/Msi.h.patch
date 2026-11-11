@@ -134,7 +134,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  UINT WINAPI MsiInstallProductW(
  	_In_ LPCWSTR      szPackagePath,        // location of package to install
  	_In_opt_ LPCWSTR      szCommandLine);   // command line <property settings>
-@@ -649,6 +666,7 @@
+@@ -649,35 +666,39 @@
  #else
  #define MsiInstallProduct  MsiInstallProductA
  #endif // !UNICODE
@@ -142,15 +142,20 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  // Install/uninstall an advertised or installed product
  // No action if installed and INSTALLSTATE_DEFAULT specified
-@@ -657,6 +675,7 @@
+ 
+ UINT WINAPI MsiConfigureProductA(
  	_In_ LPCSTR      szProduct,       // product code
- 	_In_ int          iInstallLevel,    // how much of the product to install
+-	_In_ int          iInstallLevel,    // how much of the product to install
++	_In_ _Win32_AssociatedEnum_(INSTALLLEVEL) int          iInstallLevel,    // how much of the product to install
  	_In_ INSTALLSTATE eInstallState);   // local/source/default/absent/lock/uncache
 +_Win32_SupportedOS_Windows8_
  UINT WINAPI MsiConfigureProductW(
  	_In_ LPCWSTR      szProduct,       // product code
- 	_In_ int          iInstallLevel,    // how much of the product to install
-@@ -666,6 +685,7 @@
+-	_In_ int          iInstallLevel,    // how much of the product to install
++	_In_ _Win32_AssociatedEnum_(INSTALLLEVEL) int          iInstallLevel,    // how much of the product to install
+ 	_In_ INSTALLSTATE eInstallState);   // local/source/default/absent/lock/uncache
+ #ifdef UNICODE
+ #define MsiConfigureProduct  MsiConfigureProductW
  #else
  #define MsiConfigureProduct  MsiConfigureProductA
  #endif // !UNICODE
@@ -158,14 +163,21 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  // Install/uninstall an advertised or installed product
  // No action if installed and INSTALLSTATE_DEFAULT specified
-@@ -675,6 +695,7 @@
- 	_In_ int          iInstallLevel,         // how much of the product to install
+ 
+ UINT WINAPI MsiConfigureProductExA(
+ 	_In_ LPCSTR      szProduct,            // product code
+-	_In_ int          iInstallLevel,         // how much of the product to install
++	_In_ _Win32_AssociatedEnum_(INSTALLLEVEL) int          iInstallLevel,         // how much of the product to install
  	_In_ INSTALLSTATE eInstallState,         // local/source/default/absent/lock/uncache
  	_In_opt_ LPCSTR      szCommandLine);   // command line <property settings>
 +_Win32_SupportedOS_Windows8_
  UINT WINAPI MsiConfigureProductExW(
  	_In_ LPCWSTR      szProduct,            // product code
- 	_In_ int          iInstallLevel,         // how much of the product to install
+-	_In_ int          iInstallLevel,         // how much of the product to install
++	_In_ _Win32_AssociatedEnum_(INSTALLLEVEL) int          iInstallLevel,         // how much of the product to install
+ 	_In_ INSTALLSTATE eInstallState,         // local/source/default/absent/lock/uncache
+ 	_In_opt_ LPCWSTR      szCommandLine);   // command line <property settings>
+ #ifdef UNICODE
 @@ -685,6 +706,7 @@
  #else
  #define MsiConfigureProductEx  MsiConfigureProductExA

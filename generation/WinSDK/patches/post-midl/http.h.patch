@@ -31,34 +31,43 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/http.h b/generation/WinSD
  
  //
  // HTTP Request Queue manipulation APIs.
-@@ -3036,6 +3040,7 @@
+@@ -3036,6 +3040,15 @@
      );
  
  #if _WIN32_WINNT >= 0x0600
 +_Win32_SupportedOS_WindowsVista_
++
++HTTPAPI_LINKAGE
++ULONG
++WINAPI
++HttpCloseRequestQueue(
++    IN HANDLE RequestQueueHandle
++    );
++_Win32_SupportedOS_WindowsVista_
  
  //
  // Extended Request Queue manipulation APIs.
-@@ -3049,11 +3054,12 @@
+@@ -3049,18 +3062,12 @@
  WINAPI
  HttpCreateRequestQueue(
      IN HTTPAPI_VERSION Version,
 -    IN PCWSTR Name OPTIONAL,
 -    IN PSECURITY_ATTRIBUTES SecurityAttributes OPTIONAL,
 -    IN ULONG Flags OPTIONAL,
+-    OUT PHANDLE RequestQueueHandle
+-    );
+-
+-HTTPAPI_LINKAGE
+-ULONG
+-WINAPI
+-HttpCloseRequestQueue(
+-    IN HANDLE RequestQueueHandle
+-    );
 +    _In_opt_ IN PCWSTR Name OPTIONAL,
 +    _In_opt_ IN PSECURITY_ATTRIBUTES SecurityAttributes OPTIONAL,
 +    _In_opt_ IN ULONG Flags OPTIONAL,
-     OUT PHANDLE RequestQueueHandle
-     );
-+_Win32_SupportedOS_WindowsVista_
- 
- HTTPAPI_LINKAGE
- ULONG
-@@ -3061,6 +3067,7 @@
- HttpCloseRequestQueue(
-     IN HANDLE RequestQueueHandle
-     );
++    _Out_ _Win32_RAIIFree_(HttpCloseRequestQueue, 0) OUT PHANDLE RequestQueueHandle
++    );
 +_Win32_SupportedOS_WindowsVista_
  
  HTTPAPI_LINKAGE

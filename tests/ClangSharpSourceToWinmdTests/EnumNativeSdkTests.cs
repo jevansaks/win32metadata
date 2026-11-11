@@ -25,6 +25,62 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void InstallerAndIconBindings_PreserveSignedStorageAndGenuineEnums(string target)
+        {
+            string root = Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um");
+            string installer = File.ReadAllText(Path.Combine(root, "Msi.h"));
+            string controls = File.ReadAllText(Path.Combine(root, "CommCtrl.h"));
+            string[] names = { "MsiConfigureProductA", "MsiConfigureProductW", "MsiConfigureProductExA", "MsiConfigureProductExW" };
+            string source = @"
+#define WINAPI __stdcall
+#define WINCOMMCTRLAPI
+typedef unsigned int UINT;
+typedef int HRESULT;
+typedef void* HINSTANCE;
+typedef void* HICON;
+typedef const char* LPCSTR;
+typedef const unsigned short* LPCWSTR;
+typedef LPCWSTR PCWSTR;
+" + Slice(installer, @"typedef enum tagINSTALLLEVEL\s*\{[^}]+\} INSTALLLEVEL;") + "\n" +
+                Slice(installer, @"typedef enum tagINSTALLSTATE\s*\{[^}]+\} INSTALLSTATE;") + "\n" +
+                string.Join("\n", names.Select(name => Slice(installer, @"UINT WINAPI " + name + @"\([^;]+;"))) + "\n" +
+                Slice(controls, @"enum _LI_METRIC\s*\{[^}]+\};") + "\n" +
+                Slice(controls, @"WINCOMMCTRLAPI HRESULT WINAPI LoadIconMetric\([^;]+;");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit();
+            byte[] expected = File.ReadAllBytes(path);
+            string declarations = EnumHeaderTests.Decompile(path);
+            using (var pe = new PEReader(File.OpenRead(path)))
+            {
+                var reader = pe.GetMetadataReader();
+                Assert.AreEqual(4, NativeTypedefHeaderTests.Type(reader, "INSTALLLEVEL").GetFields().Count);
+                Assert.AreEqual(3, NativeTypedefHeaderTests.Type(reader, "_LI_METRIC").GetFields().Count);
+                foreach (string name in names.Append("LoadIconMetric"))
+                {
+                    string parameterName = name == "LoadIconMetric" ? "lims" : "iInstallLevel";
+                    string enumName = name == "LoadIconMetric" ? "_LI_METRIC" : "INSTALLLEVEL";
+                    var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(method => reader.GetString(method.Name) == name);
+                    var parameter = method.GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == parameterName);
+                    CollectionAssert.AreEqual(new[] { enumName },
+                        EnumAssociationHeaderTests.StringAttributes(reader, parameter.GetCustomAttributes(), "AssociatedEnumAttribute"));
+                    Assert.IsTrue(Regex.IsMatch(declarations, @"\b" + name + @"\([^;]*\bint " + parameterName + @"\b"), name);
+                    if (name != "LoadIconMetric")
+                        Assert.IsTrue(Regex.IsMatch(declarations, @"\b" + name + @"\([^;]*\bINSTALLSTATE eInstallState\b"), name);
+                }
+            }
+            var remaps = names.ToDictionary(name => name + "::iInstallLevel", _ => "[AssociatedEnum(\"INSTALLLEVEL\")]");
+            remaps["LoadIconMetric::lims"] = "[AssociatedEnum(\"_LI_METRIC\")]";
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void PathOptions_NativeIntegerUsesCarryAssociationsInsteadOfEnumSubstitution(string target)
         {
             string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),

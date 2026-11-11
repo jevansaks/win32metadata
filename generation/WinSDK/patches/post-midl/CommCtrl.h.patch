@@ -266,7 +266,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
  
  LRESULT WINAPI DefSubclassProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
  #endif
-@@ -7931,6 +7987,7 @@
+@@ -7925,12 +7981,13 @@
+    LIM_LARGE, // corresponds to SM_CXICON/SM_CYICON
+ };
+ 
+-WINCOMMCTRLAPI HRESULT WINAPI LoadIconMetric(HINSTANCE hinst, PCWSTR pszName, int lims, _Out_ HICON *phico);
++WINCOMMCTRLAPI HRESULT WINAPI LoadIconMetric(HINSTANCE hinst, PCWSTR pszName, _Win32_AssociatedEnum_(_LI_METRIC) int lims, _Out_ HICON *phico);
+ WINCOMMCTRLAPI HRESULT WINAPI LoadIconWithScaleDown(HINSTANCE hinst, PCWSTR pszName, int cx, int cy, _Out_ HICON *phico);
+ 
  #endif // NTDDI_VISTA
  
  #if (NTDDI_VERSION >= NTDDI_WINXP)

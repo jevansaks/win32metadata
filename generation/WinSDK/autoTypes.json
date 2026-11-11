@@ -999,14 +999,6 @@
     "NativeTypedef": true
   },
   {
-    "Namespace": "Windows.Win32.Networking.HttpServer",
-    "Name": "HTTP_REQUEST_QUEUE_HANDLE",
-    "ValueType": "void*",
-    "CloseApi": "HttpCloseRequestQueue",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": false
-  },
-  {
     "Namespace": "Windows.Win32.Globalization",
     "Name": "HSAVEDUILANGUAGES",
     "ValueType": "DECLARE_HANDLE",
@@ -2794,13 +2786,6 @@
     "NativeTypedef": false
   },
   {
-    "Name": "FINDPRINTERCHANGENOTIFICATION_HANDLE",
-    "ValueType": "void*",
-    "CloseApi": "FindClosePrinterChangeNotification",
-    "InvalidHandleValues": [ -1, 0 ],
-    "NativeTypedef": false
-  },
-  {
     "Namespace": "Windows.Win32.Security.EnterpriseData",
     "Name": "_SRP_REQUEST",
     "ValueType": "typedef struct _SRP_REQUEST",
@@ -2849,14 +2834,6 @@
     "CloseApi": "WTSCloudAuthClose",
     "InvalidHandleValues": [ -1, 0 ],
     "NativeTypedef": true
-  },
-  {
-    "Namespace": "Windows.Win32.NetworkManagement.WindowsFilteringPlatform",
-    "Name": "FWPM_ENGINE_HANDLE",
-    "ValueType": "void*",
-    "CloseApi": "FwpmEngineClose0",
-    "InvalidHandleValues": [ -1, 0 ],
-    "NativeTypedef": false
   },
   {
     "Namespace": "Windows.Win32.NetworkManagement.WindowsFilteringPlatform",
