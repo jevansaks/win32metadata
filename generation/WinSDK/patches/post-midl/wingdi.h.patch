@@ -1215,3 +1215,27 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL  WINAPI wglSwapLayerBuffers(HDC, UINT);
  
  #if (WINVER >= 0x0500)
+@@ -6489,5 +6792,23 @@
+ #pragma warning(pop)
+ #endif
+ 
++
++_Win32_Enum_(FONT_WEIGHT, unsigned int,
++    FW_DONTCARE,
++    FW_THIN,
++    FW_EXTRALIGHT,
++    FW_LIGHT,
++    FW_NORMAL,
++    FW_MEDIUM,
++    FW_SEMIBOLD,
++    FW_BOLD,
++    FW_EXTRABOLD,
++    FW_HEAVY,
++    FW_ULTRALIGHT,
++    FW_REGULAR,
++    FW_DEMIBOLD,
++    FW_ULTRABOLD,
++    FW_BLACK);
++
+ #endif /* _WINGDI_ */
+ 

@@ -143,8 +143,7 @@ namespace ClangSharpSourceToWinmdTests
                 Path.ChangeExtension(idl, "h").Equals(Path.GetFileName(owner.Path), StringComparison.OrdinalIgnoreCase))))
                 CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchHeader(owner.Path,
                     Encoding.Latin1.GetString(ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path)))),
-                    File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
-                        "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+                    FullHeaderMigrationExperimentTests.ReadRecoveryBytes("RecompiledIdlHeaders/" + owner.Path), owner.Path);
             foreach (string idl in Idls)
                 CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchIdl(idl, Encoding.Latin1.GetString(
                     ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)))),

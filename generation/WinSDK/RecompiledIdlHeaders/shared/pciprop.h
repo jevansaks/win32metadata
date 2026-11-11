@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2005 Microsoft Corporation
@@ -627,5 +628,111 @@ DEFINE_PCI_DEVICE_DEVPKEY(DEVPKEY_PciDevice_TeeIOSupported, 48);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
+
+
+_Win32_Enum_(DEVPROP_PCIROOTBUS_SECONDARYINTERFACE, unsigned int,
+    DevProp_PciRootBus_SecondaryInterface_PciConventional,
+    DevProp_PciRootBus_SecondaryInterface_PciXMode1,
+    DevProp_PciRootBus_SecondaryInterface_PciXMode2,
+    DevProp_PciRootBus_SecondaryInterface_PciExpress);
+_Win32_Enum_(DEVPROP_PCIROOTBUS_CURRENTSPEEDANDMODE, unsigned int,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_Conventional_33Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_Conventional_66Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_Mode1_66Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_Mode1_100Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_Mode1_133Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_Mode1_ECC_66Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_Mode1_ECC_100Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_Mode1_ECC_133Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_266_Mode2_66Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_266_Mode2_100Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_266_Mode2_133Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_533_Mode2_66Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_533_Mode2_100Mhz,
+    DevProp_PciRootBus_CurrentSpeedAndMode_Pci_X_533_Mode2_133Mhz);
+_Win32_Enum_(DEVPROP_PCIROOTBUS_SUPPORTEDSPEEDSANDMODES, unsigned int,
+    DevProp_PciRootBus_SupportedSpeedsAndModes_Pci_Conventional_33Mhz,
+    DevProp_PciRootBus_SupportedSpeedsAndModes_Pci_Conventional_66Mhz,
+    DevProp_PciRootBus_SupportedSpeedsAndModes_Pci_X_66Mhz,
+    DevProp_PciRootBus_SupportedSpeedsAndModes_Pci_X_133Mhz,
+    DevProp_PciRootBus_SupportedSpeedsAndModes_Pci_X_266Mhz,
+    DevProp_PciRootBus_SupportedSpeedsAndModes_Pci_X_533Mhz);
+_Win32_Enum_(DEVPROP_PCIROOTBUS_BUSWIDTH, unsigned int,
+    DevProp_PciRootBus_BusWidth_32Bits,
+    DevProp_PciRootBus_BusWidth_64Bits);
+_Win32_Enum_(DEVPROP_PCIDEVICE_DEVICEBRIDGETYPE, unsigned int,
+    DevProp_PciDevice_DeviceType_PciConventional,
+    DevProp_PciDevice_DeviceType_PciX,
+    DevProp_PciDevice_DeviceType_PciExpressEndpoint,
+    DevProp_PciDevice_DeviceType_PciExpressLegacyEndpoint,
+    DevProp_PciDevice_DeviceType_PciExpressRootComplexIntegratedEndpoint,
+    DevProp_PciDevice_DeviceType_PciExpressTreatedAsPci,
+    DevProp_PciDevice_BridgeType_PciConventional,
+    DevProp_PciDevice_BridgeType_PciX,
+    DevProp_PciDevice_BridgeType_PciExpressRootPort,
+    DevProp_PciDevice_BridgeType_PciExpressUpstreamSwitchPort,
+    DevProp_PciDevice_BridgeType_PciExpressDownstreamSwitchPort,
+    DevProp_PciDevice_BridgeType_PciExpressToPciXBridge,
+    DevProp_PciDevice_BridgeType_PciXToExpressBridge,
+    DevProp_PciDevice_BridgeType_PciExpressTreatedAsPci,
+    DevProp_PciDevice_BridgeType_PciExpressEventCollector);
+_Win32_Enum_(DEVPROP_PCIDEVICE_CURRENTSPEEDANDMODE, unsigned int,
+    DevProp_PciDevice_CurrentSpeedAndMode_Pci_Conventional_33MHz,
+    DevProp_PciDevice_CurrentSpeedAndMode_Pci_Conventional_66MHz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode_Conventional_Pci,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode1_66Mhz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode1_100Mhz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode1_133MHZ,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode1_ECC_66Mhz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode1_ECC_100Mhz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode1_ECC_133Mhz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode2_266_66MHz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode2_266_100MHz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode2_266_133MHz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode2_533_66MHz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode2_533_100MHz,
+    DevProp_PciDevice_CurrentSpeedAndMode_PciX_Mode2_533_133MHz);
+_Win32_Enum_(DEVPROP_PCIEXPRESSDEVICE_PAYLOADORREQUESTSIZE, unsigned int,
+    DevProp_PciExpressDevice_PayloadOrRequestSize_128Bytes,
+    DevProp_PciExpressDevice_PayloadOrRequestSize_256Bytes,
+    DevProp_PciExpressDevice_PayloadOrRequestSize_512Bytes,
+    DevProp_PciExpressDevice_PayloadOrRequestSize_1024Bytes,
+    DevProp_PciExpressDevice_PayloadOrRequestSize_2048Bytes,
+    DevProp_PciExpressDevice_PayloadOrRequestSize_4096Bytes);
+_Win32_Enum_(DEVPROP_PCIEXPRESSDEVICE_LINKSPEED, unsigned int,
+    DevProp_PciExpressDevice_LinkSpeed_TwoAndHalf_Gbps,
+    DevProp_PciExpressDevice_LinkSpeed_Five_Gbps);
+_Win32_Enum_(DEVPROP_PCIEXPRESSDEVICE_LINKWIDTH, unsigned int,
+    DevProp_PciExpressDevice_LinkWidth_By_1,
+    DevProp_PciExpressDevice_LinkWidth_By_2,
+    DevProp_PciExpressDevice_LinkWidth_By_4,
+    DevProp_PciExpressDevice_LinkWidth_By_8,
+    DevProp_PciExpressDevice_LinkWidth_By_12,
+    DevProp_PciExpressDevice_LinkWidth_By_16,
+    DevProp_PciExpressDevice_LinkWidth_By_32);
+_Win32_Enum_(DEVPROP_PCIEXPRESSDEVICE_SPEC_VERSION, unsigned int,
+    DevProp_PciExpressDevice_Spec_Version_10,
+    DevProp_PciExpressDevice_Spec_Version_11);
+_Win32_Enum_(DEVPROP_PCIDEVICE_INTERRUPTTYPE, unsigned int,
+    DevProp_PciDevice_InterruptType_LineBased,
+    DevProp_PciDevice_InterruptType_Msi,
+    DevProp_PciDevice_InterruptType_MsiX);
+_Win32_Enum_(DEVPROP_PCIDEVICE_SRIOVSUPPORT, unsigned int,
+    DevProp_PciDevice_SriovSupport_Ok,
+    DevProp_PciDevice_SriovSupport_MissingAcs,
+    DevProp_PciDevice_SriovSupport_MissingPfDriver,
+    DevProp_PciDevice_SriovSupport_NoBusResource,
+    DevProp_PciDevice_SriovSupport_DidntGetVfBarSpace,
+    DevProp_PciDevice_SriovSupport_NoSriovCap);
+_Win32_Enum_(DEVPROP_PCIDEVICE_ACSSUPPORT, unsigned int,
+    DevProp_PciDevice_AcsSupport_Present,
+    DevProp_PciDevice_AcsSupport_NotNeeded,
+    DevProp_PciDevice_AcsSupport_Missing);
+_Win32_Enum_(DEVPROP_PCIDEVICE_ACSCOMPATIBLEUPHIERARCHY, unsigned int,
+    DevProp_PciDevice_AcsCompatibleUpHierarchy_NotSupported,
+    DevProp_PciDevice_AcsCompatibleUpHierarchy_SingleFunctionSupported,
+    DevProp_PciDevice_AcsCompatibleUpHierarchy_NoP2PSupported,
+    DevProp_PciDevice_AcsCompatibleUpHierarchy_Supported,
+    DevProp_PciDevice_AcsCompatibleUpHierarchy_Enhanced);
 
 #endif

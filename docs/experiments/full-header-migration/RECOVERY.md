@@ -1,4 +1,12 @@
-# Working-first recovery
+# Working-first recovery and sidecar reduction
+
+**Current accepted state:** the working reduction below removes 407 parameter
+atoms, 2,894 LastError rows, 9,187 availability rows, and 29 enum definitions;
+eight additional genuine aliases use compiler-backed storage. The new WinMD
+passes the complete unmasked qualified-parent comparison. See
+[the final accepted union](#final-accepted-enumhandle-union) for its output,
+retained counts, exact declaration differences, and validation limitations.
+The earlier quantities below describe preserved historical checkpoints.
 
 The user redirected this experiment from broad sidecar retirement to a working
 generation anchor. The diagnostic experiment remains in commit
@@ -237,3 +245,131 @@ recovery inputs. The assertions themselves remain intact; live semantic,
 patch-replay, and native ABI checks still exercise current input. The printing
 ABI fixture explicitly models the current `LPCWSTR` pointee constness rather
 than hardcoding its former mutable spelling.
+
+## Final accepted enum/handle union
+
+The bounded native-enum cohort attempted 34 definitions. Five complete groups
+were restored after native-input, emitter, or API failures; two further
+type/name closures were deferred before attempting native generation. The
+accepted union moves **29 definitions with 274 members** into ten owned headers,
+using the current unscoped enum/flags contracts. It removes those exact JSON
+definitions and adds **29 namespace bridges**, not 29 additional API facts.
+
+The eight new native selections are `BCRYPT_HANDLE`, `BCRYPT_ALG_HANDLE`,
+`BCRYPT_KEY_HANDLE`, `BCRYPT_HASH_HANDLE`, `BCRYPT_SECRET_HANDLE`,
+`NCRYPT_PROV_HANDLE`, `NCRYPT_HASH_HANDLE`, and `NCRYPT_SECRET_HANDLE`.
+Eight legacy storage fields, eight `NativeTypedef` fields, and five
+`AlsoUsableFor` fields are replaced by native storage/identity/associations.
+The association marker precedes the complete typedef, as in the qualified
+existing native-key pilot; the first attempted after-`typedef` placement was
+an input-authoring error and was corrected, not classified as a reader defect.
+All explicit selection/identity records, cleanup, and invalid-value policy
+remain. Five explicit namespace fields preserve the original alias owners.
+
+| Input/fact category | Recovery | Final retained | Removed or replaced |
+|---|---:|---:|---:|
+| Parameter attribute atoms | 770 | 363 | 407 |
+| Positive parameter atoms within that total | 526 | 119 | 407 |
+| `emitter.settings.rsp`, all value rows | 2,503 | 2,159 | 344 |
+| `WithSetLastError.rsp`, `--with-setlasterror` | 3,362 | 468 | 2,894 |
+| `supportedOS.rsp`, `--with-attribute` | 17,070 | 7,883 | 9,187 |
+| `requiredNamespacesForNames.rsp`, `--requiredNamespaceForName` | 2,462 | 2,491 | **29 added bridges** |
+| **All RSP value rows** | **146,789** | **134,393** | **12,396 net removed** |
+| `enums.json` definitions | 1,070 | 1,041 | 29 definitions / 274 members |
+| `autoTypes.json` records | 444 | 444 | No record retirement |
+| Legacy storage fields within `autoTypes.json` | 441 | 433 | 8 native replacements |
+| Native selections within `autoTypes.json` | 3 | 11 | **8 selections added** |
+| `NativeTypedef` fields within `autoTypes.json` | 418 | 410 | 8 native replacements |
+| `AlsoUsableFor` fields within `autoTypes.json` | 15 | 10 | 5 native replacements |
+| `CloseApi` / `InvalidHandleValues` fields | 153 / 231 | 153 / 231 | 0 |
+| `functionPointerFixups.json` records | 27 | 27 | 0 |
+
+These mixed units must not be summed as a semantic-fact count. The current
+[file/option inventory](reduced-sidecar-counts.tsv) covers every RSP file, and
+the [retained parameter inventory](retained-parameter-facts.tsv) labels all 363
+remaining atoms individually. Documentation (90,502), automatic library
+mappings/configuration (26,376), manual mappings, parser/global configuration,
+and 69 manual C# inputs are unchanged. The final recipe selects **339 post-MIDL
+and 28 pre-MIDL patches**, a precise set of parameter/prefix/enum/alias changes,
+not blanket re-enablement of the original 737-patch experiment.
+
+### Actual production and complete API accounting
+
+The fresh complete cross-architecture 31-enum/eight-alias production run
+`enum-handle-final-31` emitted in **17m32.75s**, but was **rejected**: two
+`verrsrc.h` groups disappeared and five members became loose constants.
+Restoring only those two groups and their native owner, refreshing production
+`Fs` plus the constants stage (**59.52s**), and emitting the complete generated
+union (**4m53.61s**) produced the accepted 29-group/eight-alias output.
+The rest of the fresh production sources were retained; no reference rebuild,
+parent-output substitution, or successful-compilation-only acceptance occurred.
+
+| Final output | Identity |
+|---|---|
+| Actual new WinMD | `files\sidecar-reduction\enum-handle-accepted\Windows.Win32.winmd` |
+| Size | 24,177,152 bytes |
+| SHA-256 | `3A228811B533CCB03A965AFBB77B55380C784943FDD7A5CD7E43FB0087B09F4E` |
+| Reused qualified parent | `78B3D19EEB7793FB953F2FEFAEE029081520466452F6DA83747674C14A6DE3A2` |
+| Complete final declaration dump SHA-256 | `CD5C0E0EF48C1784D5C6ADAFE8BCF8BE6FDB3F69D7CB779BFF65E712E1A96FCC` |
+| Unmasked comparer against that exact parent | Exit **0**, no unknown differences |
+
+The complete dump is **not byte-identical** to C18. Its exhaustive raw diff has
+exactly five hunks: `AlsoUsableFor` moves after `InvalidHandleValue` and
+`NativeTypedef` on `BCRYPT_ALG_HANDLE`, `BCRYPT_HASH_HANDLE`,
+`BCRYPT_KEY_HANDLE`, `BCRYPT_SECRET_HANDLE`, and `NCRYPT_PROV_HANDLE`.
+Native transport changes attribute emission order; the same five association
+values and all other declaration text remain. No type, member, signature,
+storage, namespace, or attribute fact changes. The raw diff is retained as
+`enum-handle-accepted-api.diff`; no sorting/normalization, filters, or known-diff
+mask was used to force equality. Parameter/prefix-only checkpoints remain
+byte-identical to C18.
+
+All **339/339** selected post-MIDL patches replay through the unchanged strict
+production patcher to byte-exact current headers. The final binary-safe audit
+preserves raw non-ASCII byte sequences and introduces no replacement bytes in
+335 changed native owners. Fresh utility, scraper, and new-output integrity
+runs pass **17, 52, and 54** cases, respectively.
+
+The complete existing non-SDK emitter run initially passed 689 and failed 13
+of 702 cases. Its failures were historical snapshots, incomplete live replay
+selection, and SDK/PCH pilot controls coupled to migrating dependencies.
+After making the controls self-contained and including the actual heap patch
+in live replay, a 24-case affected run passed 18 and failed six; the final six
+SDK/PCH cases then all passed on x86/x64/ARM64. Every original failing case has
+an actual successful corrected rerun. This is coverage across full and targeted
+runs, **not a claim of a subsequent single green 702-case run**.
+The scope control retains the five frozen reviewed handle-header facts, real
+SDK-package dependencies, the current real helper, complete byte equality, and
+every scope/leakage assertion. Other current-input production/ABI/replay tests
+remain live. No assertion was removed, weakened, or skipped.
+
+The logs, binlogs, generated sources, TRX files, full raw dumps/diff, rejected
+trials, and exact API accounting are retained in the producing session's
+`files\sidecar-reduction`. The new accepted output is also copied to workspace
+`bin\Windows.Win32.winmd`. Tooling/helper/converter/CI trees and all lower stack
+layers remain unchanged. The separate full SDK-validation job was not rerun;
+its original budget/cost limitation remains unresolved, without a timeout raise.
+
+## Residual boundaries and narrow next steps
+
+These are input/policy boundaries unless a self-contained current-reader repro
+establishes otherwise. Compilation is not evidence that a replacement preserved
+the API; unsuccessful native-input trials retain their exact sidecar facts.
+
+| Boundary | Demonstrated evidence | Narrow follow-up |
+|---|---|---|
+| Parameter direction, Reserved and optionality | Native Reserved implies Optional; some input annotations also added In. Whole WMI/TSF and several COM owners re-exposed unrelated native unique-pointer facts. | Author fact-closed native IDL/header changes, retaining unrelated projection overrides; compare complete method/owner contracts before changing SAL/converter behavior. |
+| Remaining parameter facts | 363 atoms remain: 119 positive atoms (ten in the nine accepted CLR exception selectors), 117 enum bindings, 56 negative overrides, 69 cleanup/lifetime facts, and two conditional-return facts. | Use the individual retained-fact inventory and its baseline/native-trial arguments. Definition-only enum or handle identity migration does not replace use-site enum binding or cleanup policy. Additional CLR callbacks are not silently included in the nine-selector exception. |
+| Macro-renamed exports and prefix target closure | Native PSAPI/K32, CM/CMP and DDQuery/GdiEntry declarations changed which projected export received the fact. Inline/flattened targets and incomplete overload sets rejected annotation binding. | Add focused export-name/overload/use-site controls to the relevant prefix reader layer before retiring those precise restored rows; distinguish projection policy from stale annotation placement. |
+| Direct2D enum-shape discrepancy | The rejected prefix union lost one enum and surfaced its eight members as loose constants. Restoring the conservative Direct2D input closure recovered complete equality. | Isolate the responsible native input before attributing it to a reader or expanding a lower layer. |
+| Native enum operands | `SETUP_DI_DEVICE_CONFIGURATION_FLAGS` needs absent `CONFIGFLAG_NETBOOT_CARD`; evaluating SDK `WTS_SECURITY_CURRENT_USER_ACCESS` fails because its expression lacks OR operators. | Keep these two complete legacy groups until authoritative native operands are established. Do not invent a native value or resurrect a removed SDK surface to make generation green. |
+| Native enum type/name closure | `DEVPROPTYPE` already has native typedef/storage/self-cast coupling; `CFE_UNDERLINE` collides with a public macro. | Qualify those complete type/use-site closures separately rather than accepting arbitrary storage, namespace or member loss. |
+| Native enum/constants integration | Native `FACILITY_CODE` parses, but composed HRESULT constants reach emission with conflicting `Apis.FACILITY_*` type/value aliases (`CS0229`/`CS0119`, 1,062 repeated diagnostics). | Keep this exact JSON group; isolate the enum/constant composition boundary in a small fixture before changing the producer/emitter layer. These are not 1,062 independent bugs. |
+| Version-resource enum projection | The first emitting bounded cohort lost `VS_FIXEDFILEINFO_FILE_TYPE` and `VS_FIXEDFILEINFO_FILE_SUBTYPE`; five subtype values appeared as loose constants. | Both exact groups and their `verrsrc.h` owner are restored. Isolate traversal/constant ownership before assigning a reader cause; the other 29 groups remain accepted. |
+| Genuine handles versus ownership | Eight compiler-backed alias selections can replace eight storage and eight NativeTypedef fields plus five association fields. Explicit native selection, cleanup and invalid-value policy remain separate. | Expand genuine-alias cohorts with exact ABI/API controls; do not infer generic GDI cleanup or pointer-sentinel enum policy from native typedef identity. |
+| Native-MIDL and validation coverage | The preserved original current-converter returned-pointer/outer-extent repros remain. Unique and split-line QueryStatus controls still distinguish non-reproducing concerns. | Use those current converter method pairs for narrow fixes, not the old source migration script. Full SDK-validation cost remains unestablished; no assertion skip or job-budget increase is justified by this experiment. |
+
+This is a measured working reduction, not a mathematical-minimum claim.
+Unattempted enum/handle closures are not classified as unsupported readers.
+Documentation, library mappings, global/parser configuration, and the 69 manual
+generation inputs remain separate from semantic annotation retirement.

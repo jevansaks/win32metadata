@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /**********************************************************************/
@@ -776,6 +777,16 @@ BOOL WINAPI ImmDisableLegacyIME(void);
 #ifdef __cplusplus
 }
 #endif
+
+
+_Win32_Enum_(IGP_ID, unsigned int,
+    IGP_GETIMEVERSION,
+    IGP_PROPERTY,
+    IGP_CONVERSION,
+    IGP_SENTENCE,
+    IGP_UI,
+    IGP_SETCOMPSTR,
+    IGP_SELECT);
 
 #endif  // _IMM_
 

@@ -274,3 +274,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
  
  int WINAPI DrawShadowText(_In_ HDC hdc, _In_reads_(cch) LPCWSTR pszText, _In_ UINT cch, _In_ RECT* prc, _In_ DWORD dwFlags, _In_ COLORREF crText, _In_ COLORREF crShadow,
      _In_ int ixOffset, _In_ int iyOffset);
+@@ -7960,5 +8017,10 @@
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
+ #pragma endregion
+ 
++
++_Win32_Enum_(LVITEMA_GROUP_ID, int,
++    I_GROUPIDCALLBACK,
++    I_GROUPIDNONE);
++
+ #endif  /* _INC_COMMCTRL */
+ 

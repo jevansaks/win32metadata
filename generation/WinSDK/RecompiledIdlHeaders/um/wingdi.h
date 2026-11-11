@@ -6792,5 +6792,23 @@ WINGDIAPI DWORD WINAPI wglSwapMultipleBuffers(UINT, CONST WGLSWAP *);
 #pragma warning(pop)
 #endif
 
+
+_Win32_Enum_(FONT_WEIGHT, unsigned int,
+    FW_DONTCARE,
+    FW_THIN,
+    FW_EXTRALIGHT,
+    FW_LIGHT,
+    FW_NORMAL,
+    FW_MEDIUM,
+    FW_SEMIBOLD,
+    FW_BOLD,
+    FW_EXTRABOLD,
+    FW_HEAVY,
+    FW_ULTRALIGHT,
+    FW_REGULAR,
+    FW_DEMIBOLD,
+    FW_ULTRABOLD,
+    FW_BLACK);
+
 #endif /* _WINGDI_ */
 

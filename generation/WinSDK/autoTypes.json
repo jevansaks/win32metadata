@@ -1452,41 +1452,36 @@
   {
     "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "BCRYPT_HANDLE",
-    "ValueType": "void*",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "ValueType": "native",
+    "InvalidHandleValues": [ 0 ]
   },
   {
+    "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "BCRYPT_ALG_HANDLE",
-    "ValueType": "void*",
+    "ValueType": "native",
     "CloseApi": "BCryptCloseAlgorithmProvider",
-    "AlsoUsableFor": "BCRYPT_HANDLE",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "InvalidHandleValues": [ 0 ]
   },
   {
+    "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "BCRYPT_KEY_HANDLE",
-    "ValueType": "void*",
+    "ValueType": "native",
     "CloseApi": "BCryptDestroyKey",
-    "AlsoUsableFor": "BCRYPT_HANDLE",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "InvalidHandleValues": [ 0 ]
   },
   {
+    "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "BCRYPT_HASH_HANDLE",
-    "ValueType": "void*",
+    "ValueType": "native",
     "CloseApi": "BCryptDestroyHash",
-    "AlsoUsableFor": "BCRYPT_HANDLE",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "InvalidHandleValues": [ 0 ]
   },
   {
+    "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "BCRYPT_SECRET_HANDLE",
-    "ValueType": "void*",
+    "ValueType": "native",
     "CloseApi": "BCryptDestroySecret",
-    "AlsoUsableFor": "BCRYPT_HANDLE",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "InvalidHandleValues": [ 0 ]
   },
   {
     "Name": "HCS_OPERATION",
@@ -1531,12 +1526,11 @@
     "InvalidHandleValues": [ 0 ]
   },
   {
+    "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "NCRYPT_PROV_HANDLE",
-    "ValueType": "UIntPtr",
+    "ValueType": "native",
     "CloseApi": "NCryptFreeObject",
-    "AlsoUsableFor": "NCRYPT_HANDLE",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "InvalidHandleValues": [ 0 ]
   },
   {
     "Namespace": "Windows.Win32.Security.Cryptography",
@@ -1548,16 +1542,14 @@
   {
     "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "NCRYPT_HASH_HANDLE",
-    "ValueType": "UIntPtr",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "ValueType": "native",
+    "InvalidHandleValues": [ 0 ]
   },
   {
     "Namespace": "Windows.Win32.Security.Cryptography",
     "Name": "NCRYPT_SECRET_HANDLE",
-    "ValueType": "UIntPtr",
-    "InvalidHandleValues": [ 0 ],
-    "NativeTypedef": true
+    "ValueType": "native",
+    "InvalidHandleValues": [ 0 ]
   },
   {
     "Namespace": "Windows.Win32.Security.Cryptography",

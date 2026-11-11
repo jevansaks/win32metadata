@@ -70,15 +70,6 @@
     ]
   },
   {
-    "name": "ALERT_SYSTEM_SEV",
-    "autoPopulate": {
-      "filter": "ALERT_SYSTEM_",
-      "header": "WinUser.h"
-    },
-    "members": [],
-    "uses": []
-  },
-  {
     "name": "CRED_FLAGS",
     "flags": true,
     "autoPopulate": {
@@ -156,25 +147,6 @@
         "field": "Persist"
       }
     ]
-  },
-  {
-    "name": "APPCOMMAND_ID",
-    "autoPopulate": {
-      "filter": "APPCOMMAND_",
-      "header": "WinUser.h"
-    },
-    "members": [],
-    "uses": []
-  },
-  {
-    "name": "ATF_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "ATF_",
-      "header": "WinUser.h"
-    },
-    "members": [],
-    "uses": []
   },
   {
     "name": "DRAWEDGE_FLAGS",
@@ -432,16 +404,6 @@
         "field": "dwID"
       }
     ]
-  },
-  {
-    "name": "GESTURECONFIG_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "GC_",
-      "header": "WinUser.h"
-    },
-    "members": [],
-    "uses": []
   },
   {
     "type": "uint",
@@ -1586,20 +1548,6 @@
     ]
   },
   {
-    "name": "IGP_ID",
-    "autoPopulate": {
-      "filter": "IGP_",
-      "header": "imm.h"
-    },
-    "members": [
-      {
-        "name": "IGP_GETIMEVERSION",
-        "value": "unchecked((uint)-4)"
-      }
-    ],
-    "uses": []
-  },
-  {
     "finished": true,
     "name": "MENU_ITEM_TYPE",
     "flags": true,
@@ -1720,22 +1668,6 @@
         "field": "uNotification"
       }
     ]
-  },
-  {
-    "namespace": "Windows.Win32.System.Memory",
-    "name": "SECTION_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "SECTION_",
-      "header": "winnt.h"
-    },
-    "members": [
-      {
-        "name": "SECTION_ALL_ACCESS",
-        "value": "(Windows.Win32.Storage.FileSystem.FILE_ACCESS_RIGHTS.STANDARD_RIGHTS_REQUIRED|SECTION_QUERY|SECTION_MAP_WRITE|SECTION_MAP_READ|SECTION_MAP_EXECUTE|SECTION_EXTEND_SIZE)"
-      }
-    ],
-    "uses": []
   },
   {
     "name": "FILE_MAP",
@@ -4568,17 +4500,6 @@
         "name": "FACILITY_MCA_ERROR_CODE"
       }
     ],
-    "uses": []
-  },
-  {
-    "namespace": "Windows.Win32.Foundation",
-    "type": "uint",
-    "name": "NTSTATUS_SEVERITY_CODE",
-    "autoPopulate": {
-      "filter": "STATUS_SEVERITY_",
-      "header": "ntstatus.h"
-    },
-    "members": [],
     "uses": []
   },
   {
@@ -13899,17 +13820,6 @@
     ]
   },
   {
-    "namespace": "Windows.Win32.Graphics.Gdi",
-    "name": "FONT_WEIGHT",
-    "autoPopulate": {
-      "header": "wingdi.h",
-      "filter": "FW_"
-    },
-    "members": [],
-    "uses": [
-    ]
-  },
-  {
     "name": "FONT_CHARSET",
     "type": "byte",
     "members": [
@@ -22842,17 +22752,6 @@
     ]
   },
   {
-    "namespace": "Windows.Win32.UI.Controls",
-    "name": "LVITEMA_GROUP_ID",
-    "type": "int",
-    "autoPopulate": {
-      "filter": "I_GROUPID",
-      "header": "commctrl.h"
-    },
-    "members": [],
-    "uses": []
-  },
-  {
     "name": "SCHANNEL_CRED_FLAGS",
     "flags": true,
     "members": [
@@ -30098,16 +29997,6 @@
   },
   {
     "type": "uint",
-    "name": "STATIC_STYLES",
-    "autoPopulate": {
-      "filter": "SS_",
-      "header": "WinUser.h"
-    },
-    "members": [],
-    "uses": []
-  },
-  {
-    "type": "uint",
     "name": "ENHANCED_METAFILE_RECORD_TYPE",
     "autoPopulate": {
       "filter": "EMR_",
@@ -34866,54 +34755,6 @@
     ]
   },
   {
-    "namespace": "Windows.Win32.System.MessageQueuing",
-    "name": "MQQUEUEACCESSMASK",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "MQSEC_",
-      "header": "mq.h"
-    },
-    "members": [
-      {
-        "name": "MQSEC_DELETE_QUEUE",
-        "value": "(Windows.Win32.Storage.FileSystem.FILE_ACCESS_RIGHTS.DELETE)"
-      },
-      {
-        "name": "MQSEC_GET_QUEUE_PERMISSIONS",
-        "value": "(Windows.Win32.Storage.FileSystem.FILE_ACCESS_RIGHTS.READ_CONTROL)"
-      },
-      {
-        "name": "MQSEC_CHANGE_QUEUE_PERMISSIONS",
-        "value": "(Windows.Win32.Storage.FileSystem.FILE_ACCESS_RIGHTS.WRITE_DAC)"
-      },
-      {
-        "name": "MQSEC_TAKE_QUEUE_OWNERSHIP",
-        "value": "(Windows.Win32.Storage.FileSystem.FILE_ACCESS_RIGHTS.WRITE_OWNER)"
-      },
-      {
-        "name": "MQSEC_RECEIVE_MESSAGE",
-        "value": "(MQSEC_DELETE_MESSAGE | MQSEC_PEEK_MESSAGE)"
-      },
-      {
-        "name": "MQSEC_RECEIVE_JOURNAL_MESSAGE",
-        "value": "(MQSEC_DELETE_JOURNAL_MESSAGE | MQSEC_PEEK_MESSAGE)"
-      },
-      {
-        "name": "MQSEC_QUEUE_GENERIC_READ",
-        "value": "(MQSEC_GET_QUEUE_PROPERTIES | MQSEC_GET_QUEUE_PERMISSIONS | MQSEC_RECEIVE_MESSAGE | MQSEC_RECEIVE_JOURNAL_MESSAGE)"
-      },
-      {
-        "name": "MQSEC_QUEUE_GENERIC_WRITE",
-        "value": "(MQSEC_GET_QUEUE_PROPERTIES | MQSEC_GET_QUEUE_PERMISSIONS | MQSEC_WRITE_MESSAGE)"
-      },
-      {
-        "name": "MQSEC_QUEUE_GENERIC_ALL",
-        "value": "(MQSEC_RECEIVE_MESSAGE | MQSEC_RECEIVE_JOURNAL_MESSAGE | MQSEC_WRITE_MESSAGE | MQSEC_SET_QUEUE_PROPERTIES | MQSEC_GET_QUEUE_PROPERTIES | MQSEC_DELETE_QUEUE | MQSEC_GET_QUEUE_PERMISSIONS | MQSEC_CHANGE_QUEUE_PERMISSIONS | MQSEC_TAKE_QUEUE_OWNERSHIP)"
-      }
-    ],
-    "uses": []
-  },
-  {
     "namespace": "Windows.Win32.Foundation",
     "name": "GENERIC_ACCESS_RIGHTS",
     "flags": true,
@@ -36329,118 +36170,6 @@
   },
   {
     "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIROOTBUS_SECONDARYINTERFACE",
-    "autoPopulate": {
-      "filter": "DevProp_PciRootBus_SecondaryInterface_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIROOTBUS_CURRENTSPEEDANDMODE",
-    "autoPopulate": {
-      "filter": "DevProp_PciRootBus_CurrentSpeedAndMode_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIROOTBUS_SUPPORTEDSPEEDSANDMODES",
-    "autoPopulate": {
-      "filter": "DevProp_PciRootBus_SupportedSpeedsAndModes_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIROOTBUS_BUSWIDTH",
-    "autoPopulate": {
-      "filter": "DevProp_PciRootBus_BusWidth_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIDEVICE_DEVICEBRIDGETYPE",
-    "autoPopulate": {
-      "filter": "DevProp_PciDevice_DeviceType_|DevProp_PciDevice_BridgeType_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIDEVICE_CURRENTSPEEDANDMODE",
-    "autoPopulate": {
-      "filter": "DevProp_PciDevice_CurrentSpeedAndMode_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIEXPRESSDEVICE_PAYLOADORREQUESTSIZE",
-    "autoPopulate": {
-      "filter": "DevProp_PciExpressDevice_PayloadOrRequestSize_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIEXPRESSDEVICE_LINKSPEED",
-    "autoPopulate": {
-      "filter": "DevProp_PciExpressDevice_LinkSpeed_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIEXPRESSDEVICE_LINKWIDTH",
-    "autoPopulate": {
-      "filter": "DevProp_PciExpressDevice_LinkWidth_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIEXPRESSDEVICE_SPEC_VERSION",
-    "autoPopulate": {
-      "filter": "DevProp_PciExpressDevice_Spec_Version_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIDEVICE_INTERRUPTTYPE",
-    "autoPopulate": {
-      "filter": "DevProp_PciDevice_InterruptType_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIDEVICE_SRIOVSUPPORT",
-    "autoPopulate": {
-      "filter": "DevProp_PciDevice_SriovSupport_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIDEVICE_ACSSUPPORT",
-    "autoPopulate": {
-      "filter": "DevProp_PciDevice_AcsSupport_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
-    "name": "DEVPROP_PCIDEVICE_ACSCOMPATIBLEUPHIERARCHY",
-    "autoPopulate": {
-      "filter": "DevProp_PciDevice_AcsCompatibleUpHierarchy_",
-      "header": "pciprop.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.NetworkManagement.WiFi",
     "name": "DEVPROP_PCIDEVICE_SUPPORTEDSPEEDSANDMODE",
     "autoPopulate": {
       "filter": "DevProp_PciDevice_SupportedSpeedsAndMode_",
@@ -36503,31 +36232,6 @@
         "field": "dwCommonButtons"
       }
     ]
-  },
-  {
-    "namespace": "Windows.Win32.Devices.DeviceAndDriverInstallation",
-    "name": "CM_REMOVAL_POLICY",
-    "autoPopulate": {
-      "filter": "CM_REMOVAL_POLICY_",
-      "header": "cfgmgr32.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.Devices.DeviceAndDriverInstallation",
-    "name": "CM_INSTALL_STATE",
-    "autoPopulate": {
-      "filter": "CM_INSTALL_STATE_",
-      "header": "cfgmgr32.h"
-    }
-  },
-  {
-    "namespace": "Windows.Win32.Devices.DeviceAndDriverInstallation",
-    "name": "CM_DEVCAP",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "CM_DEVCAP_",
-      "header": "cfgmgr32.h"
-    }
   },
   {
     "namespace": "Windows.Win32.Devices.DeviceAndDriverInstallation",
@@ -37021,17 +36725,6 @@
         "parameter": "return"
       }
     ]
-  },
-  {
-    "namespace": "Windows.Win32.Foundation",
-    "name": "OBJECT_ATTRIBUTE_FLAGS",
-    "type": "uint",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "OBJ_(?!HANDLE_TAGBITS)",
-      "header": "ntdef.h"
-    },
-    "uses": []
   }
 ]
 }

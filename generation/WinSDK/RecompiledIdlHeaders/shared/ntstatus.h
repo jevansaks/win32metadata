@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0005    // Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -28085,4 +28086,11 @@ __inline NTSTATUS NTSTATUS_FROM_WIN32(long x) { return x <= 0 ? (NTSTATUS)x : (N
 // end_ntsecapi
 
 #endif // WIN32_NO_STATUS // winnt
+
+_Win32_Enum_(NTSTATUS_SEVERITY_CODE, unsigned int,
+    STATUS_SEVERITY_SUCCESS,
+    STATUS_SEVERITY_INFORMATIONAL,
+    STATUS_SEVERITY_WARNING,
+    STATUS_SEVERITY_ERROR);
+
 #endif // _NTSTATUS_

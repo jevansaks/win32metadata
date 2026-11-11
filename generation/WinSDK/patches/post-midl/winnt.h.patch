@@ -1,0 +1,25 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnt.h b/generation/WinSDK/RecompiledIdlHeaders/um/winnt.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/winnt.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/winnt.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0072     Increment this if a change has global effects
+ 
+ Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -27389,5 +27390,15 @@
+ #pragma warning(default:4214) // bit field types other than int
+ #endif
+ 
++
++_Win32_FlagsEnum_(SECTION_FLAGS, unsigned int,
++    SECTION_ALL_ACCESS,
++    SECTION_QUERY,
++    SECTION_MAP_WRITE,
++    SECTION_MAP_READ,
++    SECTION_MAP_EXECUTE,
++    SECTION_EXTEND_SIZE,
++    SECTION_MAP_EXECUTE_EXPLICIT);
++
+ #endif /* _WINNT_ */
+ 

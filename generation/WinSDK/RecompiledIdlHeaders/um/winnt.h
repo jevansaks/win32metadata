@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0072     Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -27388,6 +27389,16 @@ NtReadCurrentTebPVOID (
 #pragma warning(default:4201) // named type definition in parentheses
 #pragma warning(default:4214) // bit field types other than int
 #endif
+
+
+_Win32_FlagsEnum_(SECTION_FLAGS, unsigned int,
+    SECTION_ALL_ACCESS,
+    SECTION_QUERY,
+    SECTION_MAP_WRITE,
+    SECTION_MAP_READ,
+    SECTION_MAP_EXECUTE,
+    SECTION_EXTEND_SIZE,
+    SECTION_MAP_EXECUTE_EXPLICIT);
 
 #endif /* _WINNT_ */
 

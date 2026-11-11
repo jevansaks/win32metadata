@@ -123,7 +123,8 @@ namespace ClangSharpSourceToWinmdTests
                 Assert.IsTrue(original.All(character => character <= 127), owner);
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchOwner(owner, original)),
                     historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/um/" + owner) :
-                        File.ReadAllBytes(Header(owner)), "No encoding, newline or unrelated changes: " + owner);
+                        FullHeaderMigrationExperimentTests.ReadRecoveryBytes("RecompiledIdlHeaders/um/" + owner),
+                    "No encoding, newline or unrelated changes: " + owner);
             }
         }
 

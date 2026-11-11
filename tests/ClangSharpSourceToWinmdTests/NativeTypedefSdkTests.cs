@@ -76,7 +76,7 @@ namespace ClangSharpSourceToWinmdTests
         }
 
         [TestMethod]
-        public void ActualAutoTypePreparation_SelectsOnlyCompilerBackedPilots()
+        public void ActualAutoTypePreparation_SelectsOnlyCompilerBackedAliases()
         {
             string directory = Path.Combine(Path.GetTempPath(), "native-settings-" + Guid.NewGuid().ToString("N"));
             Directory.CreateDirectory(directory);
@@ -84,11 +84,17 @@ namespace ClangSharpSourceToWinmdTests
             {
                 string output = Path.Combine(directory, "settings.rsp");
                 string text = PrepareSettings(output);
-                StringAssert.StartsWith(text, "--native-typedef\nHRESULT=Windows.Win32.Foundation\n" +
-                    "NCRYPT_HANDLE=Windows.Win32.Security.Cryptography\n" +
-                    "NCRYPT_KEY_HANDLE=Windows.Win32.Security.Cryptography\n--remap\n");
+                string[] aliases =
+                {
+                    "HRESULT", "BCRYPT_HANDLE", "BCRYPT_ALG_HANDLE", "BCRYPT_KEY_HANDLE",
+                    "BCRYPT_HASH_HANDLE", "BCRYPT_SECRET_HANDLE", "NCRYPT_HANDLE", "NCRYPT_PROV_HANDLE",
+                    "NCRYPT_KEY_HANDLE", "NCRYPT_HASH_HANDLE", "NCRYPT_SECRET_HANDLE",
+                };
+                StringAssert.StartsWith(text, "--native-typedef\n" + string.Join("\n",
+                    aliases.Select(name => name + "=" + (name == "HRESULT" ? Foundation : Cryptography))) +
+                    "\n--remap\n");
                 string remaps = text.Substring(text.IndexOf("--remap\n", StringComparison.Ordinal));
-                foreach (string name in Pilots)
+                foreach (string name in aliases)
                     Assert.IsFalse(remaps.Contains(name + "=", StringComparison.Ordinal));
             }
             finally { Directory.Delete(directory, true); }

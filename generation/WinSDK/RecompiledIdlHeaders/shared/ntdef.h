@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -3482,6 +3483,20 @@ C_ASSERT(TYPE_ALIGNMENT(LARGE_INTEGER) == 8);
 #pragma warning(pop)
 #endif
 
+
+
+_Win32_FlagsEnum_(OBJECT_ATTRIBUTE_FLAGS, unsigned int,
+    OBJ_INHERIT,
+    OBJ_PERMANENT,
+    OBJ_EXCLUSIVE,
+    OBJ_CASE_INSENSITIVE,
+    OBJ_OPENIF,
+    OBJ_OPENLINK,
+    OBJ_KERNEL_HANDLE,
+    OBJ_FORCE_ACCESS_CHECK,
+    OBJ_IGNORE_IMPERSONATED_DEVICEMAP,
+    OBJ_DONT_REPARSE,
+    OBJ_VALID_ATTRIBUTES);
 
 #endif // _NTDEF_
 

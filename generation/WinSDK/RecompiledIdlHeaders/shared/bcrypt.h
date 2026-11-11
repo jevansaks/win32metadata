@@ -460,9 +460,13 @@ typedef struct _BCryptBufferDesc {
 //
 
 typedef PVOID BCRYPT_HANDLE;
+_Win32_AlsoUsableFor_(BCRYPT_HANDLE)
 typedef PVOID BCRYPT_ALG_HANDLE;
+_Win32_AlsoUsableFor_(BCRYPT_HANDLE)
 typedef PVOID BCRYPT_KEY_HANDLE;
+_Win32_AlsoUsableFor_(BCRYPT_HANDLE)
 typedef PVOID BCRYPT_HASH_HANDLE;
+_Win32_AlsoUsableFor_(BCRYPT_HANDLE)
 typedef PVOID BCRYPT_SECRET_HANDLE;
 
 //
@@ -2265,4 +2269,3 @@ CngGetFipsAlgorithmMode(
 #if _MSC_VER >= 1200
 #pragma warning(pop)
 #endif
-

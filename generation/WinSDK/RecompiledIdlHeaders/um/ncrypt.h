@@ -315,6 +315,7 @@ typedef BCryptBufferDesc* PNCryptBufferDesc;
 //
 
 typedef ULONG_PTR NCRYPT_HANDLE;
+_Win32_AlsoUsableFor_(NCRYPT_HANDLE)
 typedef ULONG_PTR NCRYPT_PROV_HANDLE;
 _Win32_AlsoUsableFor_(NCRYPT_HANDLE)
 typedef ULONG_PTR NCRYPT_KEY_HANDLE;
@@ -1682,4 +1683,3 @@ NCryptVerifyClaim(
 #endif
 
 #endif // __NCRYPT_H__
-

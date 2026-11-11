@@ -124,9 +124,8 @@ namespace ClangSharpSourceToWinmdTests
                 string before = Encoding.Latin1.GetString(original);
                 string after = PatchHeader(owner.Path, before);
                 sites += Regex.Matches(after, "_COM_Outptr_").Count - Regex.Matches(before, "_COM_Outptr_").Count;
-                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(after), File.ReadAllBytes(Path.Combine(
-                    LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders",
-                    owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(after),
+                    FullHeaderMigrationExperimentTests.ReadRecoveryBytes("RecompiledIdlHeaders/" + owner.Path), owner.Path);
             }
             Assert.AreEqual(1, sites, "Only MetaDataGetDispenser has an authoritative selected SDK source.");
         }

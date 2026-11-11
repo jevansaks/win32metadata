@@ -135,8 +135,7 @@ namespace ClangSharpSourceToWinmdTests
             string originalHeader = ReadOriginal("RecompiledIdlHeaders/um/mfapi.h", checkoutBytes: true);
             Assert.IsTrue(originalHeader.All(character => character <= 127), "mfapi.h");
             CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchHeader("mfapi.h", originalHeader)),
-                File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
-                    "RecompiledIdlHeaders", "um", "mfapi.h")), "mfapi.h");
+                FullHeaderMigrationExperimentTests.ReadRecoveryBytes("RecompiledIdlHeaders/um/mfapi.h"), "mfapi.h");
             foreach (string owner in IdlOwners)
             {
                 string original = Encoding.Latin1.GetString(ReadOriginalBytes(

@@ -1,0 +1,25 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/imm.h b/generation/WinSDK/RecompiledIdlHeaders/um/imm.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/imm.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/imm.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ #include <winapifamily.h>
+ 
+ /**********************************************************************/
+@@ -777,5 +778,15 @@
+ }
+ #endif
+ 
++
++_Win32_Enum_(IGP_ID, unsigned int,
++    IGP_GETIMEVERSION,
++    IGP_PROPERTY,
++    IGP_CONVERSION,
++    IGP_SENTENCE,
++    IGP_UI,
++    IGP_SETCOMPSTR,
++    IGP_SELECT);
++
+ #endif  // _IMM_
+ 

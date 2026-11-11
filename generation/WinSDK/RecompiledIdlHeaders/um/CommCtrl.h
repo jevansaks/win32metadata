@@ -8017,5 +8017,10 @@ int WINAPI DrawShadowText(_In_ HDC hdc, _In_reads_(cch) LPCWSTR pszText, _In_ UI
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
 
+
+_Win32_Enum_(LVITEMA_GROUP_ID, int,
+    I_GROUPIDCALLBACK,
+    I_GROUPIDNONE);
+
 #endif  /* _INC_COMMCTRL */
 
