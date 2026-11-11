@@ -25,6 +25,94 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void PrinterClosure_OwnsOnlyOpenAndAddProducers(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(PrinterDeclarations(), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            foreach (string name in new[] { "OpenPrinterA", "OpenPrinterW", "OpenPrinter2A", "OpenPrinter2W" })
+                ProducerHeaderTests.AssertFacts(reader, name, 2, "ClosePrinter", -1, 0);
+            foreach (string name in new[] { "AddPrinterA", "AddPrinterW" })
+                ProducerHeaderTests.AssertFacts(reader, name, 0, "ClosePrinter", -1, 0);
+            ProducerHeaderTests.AssertNoOwnership(reader, "ClosePrinter");
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void PrinterClosure_PreservesNativeAbi(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language, @"
+#define _In_
+#define _Out_
+#define _In_opt_
+#define _In_range_(...)
+#define _When_(...)
+#define _In_reads_bytes_(...)
+" + PrinterDeclarations() + @"
+BOOL (WINAPI *verifyOpen)(LPCSTR, LPHANDLE, LPPRINTER_DEFAULTSA) = &OpenPrinterA;
+BOOL (WINAPI *verifyOpen2)(LPCWSTR, LPHANDLE, PPRINTER_DEFAULTSW, PPRINTER_OPTIONSW) = &OpenPrinter2W;
+HANDLE (WINAPI *verifyAdd)(LPCWSTR, DWORD, LPBYTE) = &AddPrinterW;
+");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void MappedViewCleanup_ConstPointeeRequiresAnExplicitContractDecision(string target)
+        {
+            string text = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/memoryapi.h"));
+            string cleanup = Regex.Match(text, @"BOOL\s+WINAPI\s+UnmapViewOfFile\([^;]+;").Value;
+            string producer = Regex.Match(text, @"LPVOID\s+WINAPI\s+MapViewOfFile\([^;]+;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(cleanup));
+            Assert.IsFalse(string.IsNullOrEmpty(producer));
+            string dependencies = NextProducerDependencies +
+                "\ntypedef __SIZE_TYPE__ SIZE_T;\ntypedef const void* LPCVOID;\n";
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(dependencies + cleanup + producer, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            result = fixture.Scrape(dependencies + cleanup +
+                "\n_Win32_RAIIFree_(UnmapViewOfFile, 0)\n" + producer, target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output,
+                "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+        }
+
+        private static string PrinterDeclarations()
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/winspool.h"));
+            string[] names = { "ClosePrinter", "OpenPrinterA", "OpenPrinterW", "OpenPrinter2A",
+                "OpenPrinter2W", "AddPrinterA", "AddPrinterW" };
+            return NextProducerDependencies + @"
+typedef HANDLE* LPHANDLE;
+typedef const char* LPCSTR;
+typedef const unsigned short* LPCWSTR;
+typedef unsigned char* LPBYTE;
+typedef void* LPPRINTER_DEFAULTSA;
+typedef void* LPPRINTER_DEFAULTSW;
+typedef void* PPRINTER_DEFAULTSA;
+typedef void* PPRINTER_DEFAULTSW;
+typedef void* PPRINTER_OPTIONSA;
+typedef void* PPRINTER_OPTIONSW;
+" + string.Join("\n", names.Select(name =>
+                Regex.Match(header,
+                    @"(?m)(?:^_Win32_RAIIFree_Handle_\([^\r\n]*\)\r?\n)?^\s*(?:BOOL|HANDLE)\s+WINAPI\s+" +
+                    name + @"\([^;]+;").Value));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void HttpFilteringAndPrinterProducers_RetireOnlyProjectionHandles(string target)
         {
             using var fixture = new LastErrorHeaderTests.Fixture();
@@ -290,7 +378,8 @@ typedef struct { unsigned long a; unsigned short b, c; unsigned char d[8]; } GUI
                 string settings = "--include-directory\n" + Path.Combine(include, "shared") + "\n" + Path.Combine(include, "um");
                 var result = fixture.Scrape(declarations, target, sal: true, extraSettings: settings);
                 Assert.AreEqual(0, result.ExitCode, result.Output);
-                var remaps = File.ReadAllLines(Sdk("emitter.settings.rsp"))
+                var remaps = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp")
+                    .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
                     .Where(line => ProjectionSites.Contains(line.Split('=')[0]))
                     .ToDictionary(line => line.Split('=')[0], line => line.Substring(line.IndexOf('=') + 1));
                 Assert.AreEqual(6, remaps.Count);

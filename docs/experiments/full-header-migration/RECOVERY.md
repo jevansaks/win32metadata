@@ -643,3 +643,124 @@ not classified as unsupported readers by this batch. The remaining earlier
 parameter, enum-operand, constants integration and native-MIDL boundaries
 remain in their preserved sections. No production reader/helper/converter/CI,
 lower stack layer, stack metadata, timeout or test assertion was weakened.
+
+## Printer, trace-ID and native COM enum continuation
+
+This working checkpoint builds above preserved
+`60f6fba3c29178eb481e832478f31d5681882a47`. It is another measured reduction,
+not an approximate-minimum claim or the end of the remaining enum work.
+
+The actual native printer declarations use `HANDLE`/`LPHANDLE`, not
+`PRINTER_HANDLE`. Its record and 124 remaps are retired. `OpenPrinterA`,
+`OpenPrinter2A/W` and `AddPrinterA/W` gain producer-site
+`_Win32_RAIIFree_Handle_(ClosePrinter)`; existing `OpenPrinterW` ownership
+remains. The complete native `ClosePrinter` declaration, including LastError,
+moves before the first producer. Its old metadata-only forward declaration
+and the two qualified-pilot raw-void projection overrides are removed.
+Borrowed printer-queue getters acquire no ownership.
+
+`CONTROLTRACE_HANDLE` and `RELOGSTREAM_HANDLE` were unused projection-only
+shells: each appeared only in its own baseline type declaration. Their 20
+remaps were also inactive. Current native SDK declarations instead use
+`CONTROLTRACE_ID` and `RELOGSTREAM_ID`; these IDs do not acquire invented
+cleanup ownership. The genuine native `PROCESSTRACE_HANDLE` remains.
+
+Of the 146 retired handle/pilot rows, 106 match actual baseline parameter
+or return facts; 40 selectors are inactive, including the 20 ETW rows.
+Native declaration presence alone was not counted as emitted API coverage.
+One additional duplicate WPC enum type-remap row is retired.
+
+Twenty-six actual native-integer enum sites now carry `AssociatedEnum`:
+17 rich-edit `tomConstants` uses, three disc-recorder uses, two authorization
+uses, two parental-control uses, one `IPointerInactive` use, and one
+`IBrowserService` use. Their real native enums remain. Sixteen complete
+binding-only JSON records are deleted; the mixed Shell record retains its
+three still-unmigrated selectors. All native direction, retval, pointer-depth
+and other metadata are preserved, including the rich-edit returned pointers.
+
+Eighteen dormant Ntms binding records/27 absent methods and the nonexistent
+`STATSTG::grfStatFlag` selector are separately retired as inactive facts.
+Real Ntms enums, their existing flags, and actual STATSTG fields remain
+unchanged. In particular, two dormant `flags: true` requests did not produce
+baseline flags and are not converted into new flag attributes.
+
+| Retained input | Preserved 60f6 | This checkpoint |
+|---|---:|---:|
+| All RSP value rows | 134,189 | 134,042 |
+| Emitter value rows / `memberRemap` rows | 1,955 / 1,747 | 1,808 / 1,600 |
+| `autoTypes.json` records | 439 | 436 |
+| `enums.json` records | 1,038 | 1,003 |
+| `functionPointerFixups.json` records | 27 | 27 |
+| Original parameter atoms retired / retained | 407 / 363 | 409 / 361 |
+
+This is 147 fewer RSP rows, three fewer autoTypes records and 35 fewer enum
+records than 60f6. The 90,502 allowed documentation mappings remain outside
+the retirement backlog. The 26,376 automatic and 385 manual library mappings
+remain separately inventoried, not granted the documentation exemption.
+
+### Actual output and exhaustive accounting
+
+The affected complete production partitions were refreshed, including the
+transitive parental-control owner. A fresh complete union emitted in
+**4m59.76s** to `files\sidecar-reduction\remaining-structural-candidate`.
+Other qualified generated partitions were reused; no reference WinMD was
+rebuilt or substituted.
+
+| Output | Identity |
+|---|---|
+| WinMD SHA-256 | `3B60F59CAE171450AE766B57CF74EC7A8BD6C798431B3DEB8C3567C4FB350B1E` |
+| Size | 24,176,640 bytes |
+| Complete declaration dump SHA-256 | `1F4F38395D602095972A5095C4A25EF6C117BE5E1D716DAB5C3108BE6AC589BA` |
+| Dumped types | 35,379 |
+| Unmasked comparisons against 60f6 and original parent | Both exit -1, intentionally structural |
+
+Exact source-bound reconciliation checks all **131 changed method blocks**
+and the three removed synthetic types. It permits only the native HANDLE
+substitutions, five new producer contracts, and 26 native-integer enum
+associations. The complete remaining declaration text is identical:
+**zero unmatched changes**. Raw comparer logs/diffs and every exact old/new
+block remain in `remaining-structural-api-accounting.json` and adjacent
+session evidence. No known-difference mask is used.
+
+All 150 related controls pass after making the existing six-row legacy
+replay control read its frozen recovery inputs, rather than expecting retired
+rows in the current production corpus. All six original raw-signature
+assertions and header/legacy equivalence checks remain. The actual-output
+test now explicitly expects native `HANDLE*`/`HANDLE` for OpenPrinterW and
+ClosePrinter; its ownership and remaining raw-void checks are unchanged.
+All 54 actual-output integrity cases pass. All **343/343** selected post-MIDL
+patches replay to byte-exact current headers; all eight newly changed native
+owners preserve their non-ASCII bytes. There are still 28 pre-MIDL selections.
+
+### Concrete retained boundaries and next closed groups
+
+The 13 contextual WFP/IPsec/IKE records remain. The memory-view record also
+remains: native `MapViewOfFile` produces `void*`, while `UnmapViewOfFile`
+accepts `const void*`. All three current-target controls reject that exact
+canonical-type mismatch under the current cleanup contract. Remote-process
+unmapping additionally needs process context. No const-erasing signature,
+wrong cleanup, or one-argument wrapper was introduced.
+
+Four Cloudapi policy-field bindings remain. In C++,
+`DEFINE_USHORT_ENUM` creates small wrapper **structs**, not integer aliases.
+Correctly placed field carriers are rejected with `AssociatedEnum requires
+integer or native enum storage, optionally through pointers.` The actual
+macro/declarations reproduce this on x86/x64/ARM64. Changing wrapper storage
+or teaching the reader a wrapper-flattening policy is a separate decision.
+
+All seven candidate IDL owners compile through the unchanged converter and
+native MIDL. The ocidl closure is accepted. Six others remain deferred after
+native controls, without the enum annotations, already changed unrelated
+existing SAL: ComAdmin/ExDisp lose `_Out_retval_`; oaidl/OleIdl alter unique
+pointer optionality; WbemCli adds optional/inout pointer SAL; Wmcontainer
+adds returned extents/direction SAL. These are owning-input/regeneration
+boundaries, not 32 independent enum-reader bugs. Their original sidecars and
+the actual native/control outputs remain. No unrelated change was accepted
+merely because it came from MIDL.
+
+The next prepared, not-yet-accepted cohort contains nine manual constant
+groups plus `SNMP_PDU_TYPE`: 138 members and 59 unique uses. It includes their
+exact manual definitions, JSON bindings and 28 nominal RSP overrides.
+It is not counted as retired here. The other retained STGM/CLR and earlier
+parameter facts remain individually inventoried; unattempted groups are not
+called unsupported.

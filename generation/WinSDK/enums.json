@@ -5743,16 +5743,6 @@
     ]
   },
   {
-    "addUsesTo": "NtmsInventoryMethod",
-    "members": [],
-    "uses": [
-      {
-        "method": "AccessNtmsLibraryDoor",
-        "parameter": "dwAction"
-      }
-    ]
-  },
-  {
     "name": "BROADCAST_SYSTEM_MESSAGE_FLAGS",
     "flags": true,
     "members": [
@@ -6335,20 +6325,6 @@
     ]
   },
   {
-    "addUsesTo": "NtmsCreateOptions",
-    "members": [],
-    "uses": [
-      {
-        "method": "CreateNtmsMediaPoolA",
-        "parameter": "dwAction"
-      },
-      {
-        "method": "CreateNtmsMediaPoolW",
-        "parameter": "dwAction"
-      }
-    ]
-  },
-  {
     "name": "SNMP_GENERICTRAP",
     "members": [
       {
@@ -6695,20 +6671,6 @@
       {
         "method": "GetGlyphOutlineA",
         "parameter": "fuFormat"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsCreateNtmsMediaOptions",
-    "members": [],
-    "uses": [
-      {
-        "method": "CreateNtmsMediaA",
-        "parameter": "dwOptions"
-      },
-      {
-        "method": "CreateNtmsMediaW",
-        "parameter": "dwOptions"
       }
     ]
   },
@@ -7764,28 +7726,6 @@
     ]
   },
   {
-    "addUsesTo": "NtmsUITypes",
-    "members": [],
-    "uses": [
-      {
-        "method": "SetNtmsUIOptionsA",
-        "parameter": "dwType"
-      },
-      {
-        "method": "GetNtmsUIOptionsW",
-        "parameter": "dwType"
-      },
-      {
-        "method": "GetNtmsUIOptionsA",
-        "parameter": "dwType"
-      },
-      {
-        "method": "SetNtmsUIOptionsW",
-        "parameter": "dwType"
-      }
-    ]
-  },
-  {
     "name": "CREATE_EVENT",
     "flags": true,
     "members": [
@@ -7959,32 +7899,6 @@
     ]
   },
   {
-    "addUsesTo": "NtmsEjectOperation",
-    "members": [],
-    "uses": [
-      {
-        "method": "EjectDiskFromSADriveA",
-        "parameter": "dwOptions"
-      },
-      {
-        "method": "EjectDiskFromSADriveW",
-        "parameter": "dwOptions"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "tomConstants",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "interface": "ITextDocument2",
-        "method": "GetClientRect",
-        "parameter": "Type"
-      }
-    ]
-  },
-  {
     "name": "SCE_LOG_ERR_LEVEL",
     "type": "int",
     "members": [
@@ -8143,16 +8057,6 @@
     ]
   },
   {
-    "addUsesTo": "NtmsEjectOperation",
-    "members": [],
-    "uses": [
-      {
-        "method": "EjectNtmsMedia",
-        "parameter": "dwAction"
-      }
-    ]
-  },
-  {
     "name": "CREATE_POLYGON_RGN_MODE",
     "type": "int",
     "members": [
@@ -8251,18 +8155,6 @@
       {
         "method": "SnmpExtensionQuery",
         "parameter": "pErrorStatus"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "MEDIA_FLAGS",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "interface": "IDiscRecorder",
-        "method": "QueryMediaType",
-        "parameter": "fMediaFlags"
       }
     ]
   },
@@ -8532,16 +8424,6 @@
       {
         "method": "LZOpenFileW",
         "parameter": "wStyle"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsEjectOperation",
-    "members": [],
-    "uses": [
-      {
-        "method": "EjectNtmsCleaner",
-        "parameter": "dwAction"
       }
     ]
   },
@@ -8871,18 +8753,6 @@
     ]
   },
   {
-    "addUsesTo": "MEDIA_TYPES",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "interface": "IDiscRecorder",
-        "method": "QueryMediaType",
-        "parameter": "fMediaType"
-      }
-    ]
-  },
-  {
     "name": "ENUM_SERVICE_TYPE",
     "flags": true,
     "members": [
@@ -9012,16 +8882,6 @@
       {
         "method": "SnmpStartupEx",
         "parameter": "nRetransmitMode"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsDismountOptions",
-    "members": [],
-    "uses": [
-      {
-        "method": "IdentifyNtmsSlot",
-        "parameter": "dwOption"
       }
     ]
   },
@@ -9246,27 +9106,6 @@
     ]
   },
   {
-    "addUsesTo": "tomConstants",
-    "members": [],
-    "uses": [
-      {
-        "interface": "ITextPara",
-        "method": "GetKeepWithNext",
-        "parameter": "pValue"
-      },
-      {
-        "interface": "ITextPara",
-        "method": "GetHyphenation",
-        "parameter": "pValue"
-      },
-      {
-        "interface": "ITextPara",
-        "method": "GetKeepTogether",
-        "parameter": "pValue"
-      }
-    ]
-  },
-  {
     "name": "SET_SERVICE_OPERATION",
     "members": [
       {
@@ -9310,17 +9149,6 @@
       {
         "method": "RegisterTouchWindow",
         "parameter": "ulFlags"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "RECORDER_TYPES",
-    "members": [],
-    "uses": [
-      {
-        "interface": "IDiscRecorder",
-        "method": "GetRecorderType",
-        "parameter": "fTypeCode"
       }
     ]
   },
@@ -9745,17 +9573,6 @@
     ]
   },
   {
-    "addUsesTo": "NtmsMountOptions",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "method": "MountNtmsMedia",
-        "parameter": "dwOptions"
-      }
-    ]
-  },
-  {
     "name": "ENUM_CERT_COLUMN_VALUE_FLAGS",
     "type": "int",
     "members": [
@@ -9864,16 +9681,6 @@
       {
         "method": "VirtualFreeEx",
         "parameter": "dwFreeType"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsObjectsTypes",
-    "members": [],
-    "uses": [
-      {
-        "method": "DeleteNtmsRequests",
-        "parameter": "dwType"
       }
     ]
   },
@@ -11127,18 +10934,6 @@
     ]
   },
   {
-    "addUsesTo": "tomConstants",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "interface": "ITextFont",
-        "method": "Reset",
-        "parameter": "Value"
-      }
-    ]
-  },
-  {
     "name": "PRINT_WINDOW_FLAGS",
     "members": [
       {
@@ -11758,16 +11553,6 @@
     ]
   },
   {
-    "addUsesTo": "NtmsInjectOperation",
-    "members": [],
-    "uses": [
-      {
-        "method": "InjectNtmsMedia",
-        "parameter": "dwAction"
-      }
-    ]
-  },
-  {
     "name": "CERT_EXIT_EVENT_MASK",
     "flags": true,
     "members": [
@@ -12102,17 +11887,6 @@
       {
         "method": "WdsCliInitializeLog",
         "parameter": "ulClientArchitecture"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "AZ_PROP_CONSTANTS",
-    "members": [],
-    "uses": [
-      {
-        "interface": "IAzAuthorizationStore",
-        "method": "Initialize",
-        "parameter": "lFlags"
       }
     ]
   },
@@ -12766,17 +12540,6 @@
       {
         "method": "BCryptResolveProviders",
         "parameter": "dwMode"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsAllocateOptions",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "method": "AllocateNtmsMedia",
-        "parameter": "dwOptions"
       }
     ]
   },
@@ -15198,17 +14961,6 @@
     ]
   },
   {
-    "addUsesTo": "WPCFLAG_RESTRICTION",
-    "members": [],
-    "uses": [
-      {
-        "interface": "IWPCSettings",
-        "method": "GetRestrictions",
-        "parameter": "pdwRestrictions"
-      }
-    ]
-  },
-  {
     "addUsesTo": "ASF_STATUSFLAGS",
     "members": [],
     "uses": [
@@ -15392,17 +15144,6 @@
     ]
   },
   {
-    "addUsesTo": "AZ_PROP_CONSTANTS",
-    "members": [],
-    "uses": [
-      {
-        "interface": "IAzAuthorizationStore",
-        "method": "AddPropertyItem",
-        "parameter": "lPropId"
-      }
-    ]
-  },
-  {
     "name": "WAIT_CHAIN_THREAD_OPTIONS",
     "members": [
       {
@@ -15473,30 +15214,6 @@
       {
         "method": "InternetAutodial",
         "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsOpreqCommand",
-    "members": [],
-    "uses": [
-      {
-        "method": "SubmitNtmsOperatorRequestA",
-        "parameter": "dwRequest"
-      },
-      {
-        "method": "SubmitNtmsOperatorRequestW",
-        "parameter": "dwRequest"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsInventoryMethod",
-    "members": [],
-    "uses": [
-      {
-        "method": "InventoryNtmsLibrary",
-        "parameter": "dwAction"
       }
     ]
   },
@@ -16334,17 +16051,6 @@
     ]
   },
   {
-    "addUsesTo": "tomConstants",
-    "members": [],
-    "uses": [
-      {
-        "interface": "ITextRow",
-        "method": "Apply",
-        "parameter": "Flags"
-      }
-    ]
-  },
-  {
     "name": "SERVICE_NOTIFY",
     "flags": true,
     "members": [
@@ -17129,18 +16835,6 @@
     ]
   },
   {
-    "addUsesTo": "WPCFLAG_WEB_SETTING",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "interface": "IWPCWebSettings",
-        "method": "GetSettings",
-        "parameter": "pdwSettings"
-      }
-    ]
-  },
-  {
     "name": "SETUP_DI_DRIVER_TYPE",
     "members": [
       {
@@ -17494,17 +17188,6 @@
     ]
   },
   {
-    "addUsesTo": "tomConstants",
-    "members": [],
-    "uses": [
-      {
-        "interface": "ITextDocument",
-        "method": "SetSaved",
-        "parameter": "Value"
-      }
-    ]
-  },
-  {
     "name": "CERT_VIEW_SEEK_OPERATOR_FLAGS",
     "type": "int",
     "members": [
@@ -17639,20 +17322,6 @@
       {
         "method": "Tbsip_Submit_Command",
         "parameter": "Locality"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsObjectsTypes",
-    "members": [],
-    "uses": [
-      {
-        "method": "EnableNtmsObject",
-        "parameter": "dwType"
-      },
-      {
-        "method": "DisableNtmsObject",
-        "parameter": "dwType"
       }
     ]
   },
@@ -17998,17 +17667,6 @@
       {
         "method": "SetWindowDisplayAffinity",
         "parameter": "dwAffinity"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "tomConstants",
-    "members": [],
-    "uses": [
-      {
-        "interface": "ITextSelection",
-        "method": "HomeKey",
-        "parameter": "Unit"
       }
     ]
   },
@@ -18377,18 +18035,6 @@
     ]
   },
   {
-    "addUsesTo": "tomConstants",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "interface": "ITextDocument2",
-        "method": "GetEastAsianFlags",
-        "parameter": "pFlags"
-      }
-    ]
-  },
-  {
     "name": "DDE_CLIENT_TRANSACTION_TYPE",
     "members": [
       {
@@ -18741,16 +18387,6 @@
     ]
   },
   {
-    "addUsesTo": "NtmsObjectsTypes",
-    "members": [],
-    "uses": [
-      {
-        "method": "EnumerateNtmsObject",
-        "parameter": "dwType"
-      }
-    ]
-  },
-  {
     "name": "CRYPT_DEFAULT_CONTEXT_TYPE",
     "members": [
       {
@@ -18827,20 +18463,6 @@
       {
         "struct": "CRYPTCATSTORE",
         "field": "fdwStoreFlags"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsUIOperations",
-    "members": [],
-    "uses": [
-      {
-        "method": "SetNtmsUIOptionsW",
-        "parameter": "dwOperation"
-      },
-      {
-        "method": "SetNtmsUIOptionsA",
-        "parameter": "dwOperation"
       }
     ]
   },
@@ -19166,16 +18788,6 @@
       {
         "method": "OleDuplicateData",
         "parameter": "uiFlags"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "NtmsInjectOperation",
-    "members": [],
-    "uses": [
-      {
-        "method": "InjectNtmsCleaner",
-        "parameter": "dwAction"
       }
     ]
   },
@@ -30391,16 +30003,6 @@
     ]
   },
   {
-    "addUsesTo": "STGTY",
-    "members": [],
-    "uses": [
-      {
-        "struct": "STATSTG",
-        "field": "grfStatFlag"
-      }
-    ]
-  },
-  {
     "addUsesTo": "STGM",
     "flags": true,
     "members": [],
@@ -30416,18 +30018,6 @@
       {
         "method": "StgCreateDocfileOnILockBytes",
         "parameter": "grfMode"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "POINTERINACTIVE",
-    "flags": true,
-    "members": [],
-    "uses": [
-      {
-        "interface": "IPointerInactive",
-        "method": "GetActivationPolicy",
-        "parameter": "pdwPolicy"
       }
     ]
   },
@@ -30641,52 +30231,6 @@
       {
         "struct": "SAFEARRAY",
         "field": "fFeatures"
-      }
-    ]
-  },
-  {
-    "addUsesTo": "tomConstants",
-    "members": [],
-    "uses": [
-      {
-        "interface": "ITextDocument",
-        "method": "Open",
-        "parameter": "Flags"
-      },
-      {
-        "interface": "ITextDocument",
-        "method": "Save",
-        "parameter": "Flags"
-      },
-      {
-        "interface": "ITextRange",
-        "method": "SetPoint",
-        "parameter": "Type"
-      },
-      {
-        "interface": "ITextRange",
-        "method": "GetPoint",
-        "parameter": "Type"
-      },
-      {
-        "interface": "ITextRange",
-        "method": "FindText",
-        "parameter": "Flags"
-      },
-      {
-        "interface": "ITextRange",
-        "method": "FindTextEnd",
-        "parameter": "Flags"
-      },
-      {
-        "interface": "ITextRange",
-        "method": "FindTextStart",
-        "parameter": "Flags"
-      },
-      {
-        "interface": "ITextRange",
-        "method": "ChangeCase",
-        "parameter": "Type"
       }
     ]
   },
@@ -34568,11 +34112,6 @@
         "interface": "IShellWindows",
         "method": "RegisterPending",
         "parameter": "swClass"
-      },
-      {
-        "interface": "IBrowserService",
-        "method": "RegisterWindow",
-        "parameter": "swc"
       }
     ]
   },

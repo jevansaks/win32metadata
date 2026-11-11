@@ -25,6 +25,34 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void CloudPolicyAssociation_RequiresAWrapperStorageContract(string target)
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "cfapi.h"));
+            string source = "typedef unsigned short USHORT;\n" +
+                Slice(header, @"(?ms)^#define DEFINE_USHORT_ENUM\(ENUMTYPE\).*?^  \};") + "\n" +
+                Slice(header, @"typedef enum CF_HYDRATION_POLICY_PRIMARY\s*\{[^}]+\} CF_HYDRATION_POLICY_PRIMARY;") + "\n" +
+                Slice(header, @"typedef enum CF_HYDRATION_POLICY_MODIFIER\s*\{[^}]+\} CF_HYDRATION_POLICY_MODIFIER;") + @"
+DEFINE_USHORT_ENUM(CF_HYDRATION_POLICY_PRIMARY);
+DEFINE_USHORT_ENUM(CF_HYDRATION_POLICY_MODIFIER);
+" + Slice(header, @"typedef struct CF_HYDRATION_POLICY\s*\{[^}]+\} CF_HYDRATION_POLICY;");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            result = fixture.Scrape(source + @"
+_Win32_AnnotateField_(CF_HYDRATION_POLICY::Primary,
+    _Win32_AssociatedEnum_(CF_HYDRATION_POLICY_PRIMARY));
+", target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output,
+                "AssociatedEnum requires integer or native enum storage, optionally through pointers.");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void InstallerAndIconBindings_PreserveSignedStorageAndGenuineEnums(string target)
         {
             string root = Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um");

@@ -1341,14 +1341,18 @@ _Win32_SetLastError_
 
 BOOL
 WINAPI
+ClosePrinter(
+_In_ HANDLE hPrinter
+);
+_Win32_SetLastError_
+
+BOOL
+WINAPI
 OpenPrinterA(
 _In_opt_    LPCSTR             pPrinterName,
-_Out_       LPHANDLE            phPrinter,
+_Out_ _Win32_RAIIFree_Handle_(ClosePrinter) LPHANDLE phPrinter,
 _In_opt_    LPPRINTER_DEFAULTSA pDefault
 );
-#if defined(WIN32METADATA) && defined(__clang__)
-BOOL WINAPI ClosePrinter(_In_ HANDLE hPrinter);
-#endif
 _Win32_SetLastError_
 BOOL
 WINAPI
@@ -1478,6 +1482,7 @@ _Out_ LPDWORD pcReturned
 #endif // !UNICODE
 _Win32_SetLastError_
 
+_Win32_RAIIFree_Handle_(ClosePrinter)
 HANDLE
 WINAPI
 AddPrinterA(
@@ -1489,6 +1494,7 @@ _When_(Level == 2, _In_reads_bytes_(sizeof(PRINTER_INFO_2)))
             LPBYTE     pPrinter
 );
 _Win32_SetLastError_
+_Win32_RAIIFree_Handle_(ClosePrinter)
 HANDLE
 WINAPI
 AddPrinterW(
@@ -2687,13 +2693,6 @@ _In_   LPWSTR   pCaption,
 #define PRINTER_ERROR_OUTOFPAPER    0x00000001
 #define PRINTER_ERROR_JAM           0x00000002
 #define PRINTER_ERROR_OUTOFTONER    0x00000004
-_Win32_SetLastError_
-
-BOOL
-WINAPI
-ClosePrinter(
-_In_ HANDLE hPrinter
-);
 
 BOOL
 WINAPI
@@ -3477,7 +3476,7 @@ _Win32_SetLastError_
     WINAPI
     OpenPrinter2A(
     _In_opt_      LPCSTR                pPrinterName,
-    _Out_         LPHANDLE                phPrinter,
+    _Out_ _Win32_RAIIFree_Handle_(ClosePrinter) LPHANDLE phPrinter,
     _In_opt_      PPRINTER_DEFAULTSA      pDefault,
     _In_opt_      PPRINTER_OPTIONSA       pOptions
     );
@@ -3486,7 +3485,7 @@ _Win32_SetLastError_
     WINAPI
     OpenPrinter2W(
     _In_opt_      LPCWSTR                pPrinterName,
-    _Out_         LPHANDLE                phPrinter,
+    _Out_ _Win32_RAIIFree_Handle_(ClosePrinter) LPHANDLE phPrinter,
     _In_opt_      PPRINTER_DEFAULTSW      pDefault,
     _In_opt_      PPRINTER_OPTIONSW       pOptions
     );

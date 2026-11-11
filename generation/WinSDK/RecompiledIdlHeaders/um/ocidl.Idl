@@ -1,3 +1,5 @@
+#include <win32metadata_annotations.h>
+cpp_quote("#include <win32metadata_annotations.h>")
 cpp_quote("#include <winapifamily.h>")
 
 //+---------------------------------------------------------------------------
@@ -1620,6 +1622,8 @@ interface IPointerInactive : IUnknown
                 [in] BOOL fSetAlways
             );
 }
+_Win32_AnnotateParameter_(IPointerInactive::GetActivationPolicy, pdwPolicy, _Win32_AssociatedEnum_(POINTERINACTIVE))
+
 
 
 [

@@ -2,7 +2,21 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h b/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h
-@@ -1709,7 +1709,7 @@ EXTERN_C const IID IID_IBrowserService2;
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ 
+ 
+ /* this ALWAYS GENERATED file contains the definitions for the interfaces */
+@@ -1051,6 +1052,8 @@
+             int swc) = 0;
+         
+     };
++_Win32_AnnotateParameter_(IBrowserService::RegisterWindow, swc, _Win32_AssociatedEnum_(ShellWindowTypeConstants));
++
+     
+     
+ #else 	/* C style interface */
+@@ -1709,7 +1712,7 @@
              /* [annotation][in] */ 
              _In_  REFIID riid,
              /* [annotation][iid_is][out] */ 
@@ -11,7 +25,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h b/generati
          
          virtual HRESULT STDMETHODCALLTYPE GetViewWindow( 
              /* [annotation][out] */ 
-@@ -2239,7 +2239,7 @@ EXTERN_C const IID IID_IBrowserService2;
+@@ -2239,7 +2242,7 @@
              /* [annotation][in] */ 
              _In_  REFIID riid,
              /* [annotation][iid_is][out] */ 
@@ -20,7 +34,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h b/generati
          
          DECLSPEC_XFGVIRT(IBrowserService2, GetViewWindow)
          HRESULT ( STDMETHODCALLTYPE *GetViewWindow )( 
-@@ -3213,7 +3213,7 @@ EXTERN_C const IID IID_IBrowserService3;
+@@ -3213,7 +3216,7 @@
              /* [annotation][in] */ 
              _In_  REFIID riid,
              /* [annotation][iid_is][out] */ 
@@ -29,7 +43,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h b/generati
          
          DECLSPEC_XFGVIRT(IBrowserService2, GetViewWindow)
          HRESULT ( STDMETHODCALLTYPE *GetViewWindow )( 
-@@ -4208,7 +4208,7 @@ EXTERN_C const IID IID_IBrowserService4;
+@@ -4208,7 +4211,7 @@
              /* [annotation][in] */ 
              _In_  REFIID riid,
              /* [annotation][iid_is][out] */ 
@@ -38,7 +52,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shdeprecated.h b/generati
          
          DECLSPEC_XFGVIRT(IBrowserService2, GetViewWindow)
          HRESULT ( STDMETHODCALLTYPE *GetViewWindow )( 
-@@ -4987,7 +4987,7 @@ EXTERN_C const IID IID_ITrackShellMenu;
+@@ -4987,7 +4990,7 @@
              _Outptr_  PIDLIST_ABSOLUTE *ppidl,
              /* [in] */ REFIID riid,
              /* [annotation][iid_is][out] */ 
