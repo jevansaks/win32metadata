@@ -860,7 +860,7 @@ generation/WinSDK/WithSetLastError.rsp	--with-setlasterror	3362	468	2894
 generation/WinSDK/documentationMappings.rsp	--memberRemap	90502	90502	0
 generation/WinSDK/emitter.settings.rsp	--enumAddition	12	12	0
 generation/WinSDK/emitter.settings.rsp	--enumMakeFlags	79	79	0
-generation/WinSDK/emitter.settings.rsp	--memberRemap	2295	1951	344
+generation/WinSDK/emitter.settings.rsp	--memberRemap	2295	1937	358
 generation/WinSDK/emitter.settings.rsp	--reducePointerLevel	106	106	0
 generation/WinSDK/emitter.settings.rsp	--requiredNamespaceForName	0	0	0
 generation/WinSDK/emitter.settings.rsp	--typeImport	11	11	0

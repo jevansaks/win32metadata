@@ -21,6 +21,94 @@ namespace ClangSharpSourceToWinmdTests
 
         public TestContext TestContext { get; set; } = null!;
 
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void AvrtNativeProducers_ReplaceFictitiousTypesAndDistinguishJoinCleanup(string target)
+        {
+            string declarations = AvrtDeclarations();
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(declarations, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit();
+            using (var pe = new PEReader(File.OpenRead(path)))
+            {
+                var reader = pe.GetMetadataReader();
+                foreach (string name in new[] { "AvSetMmThreadCharacteristicsA", "AvSetMmThreadCharacteristicsW",
+                    "AvSetMmMaxThreadCharacteristicsA", "AvSetMmMaxThreadCharacteristicsW" })
+                    ProducerHeaderTests.AssertFacts(reader, name, 0, "AvRevertMmThreadCharacteristics", 0);
+                foreach (string name in new[] { "AvRtCreateThreadOrderingGroup", "AvRtCreateThreadOrderingGroupExA",
+                    "AvRtCreateThreadOrderingGroupExW" })
+                    ProducerHeaderTests.AssertFacts(reader, name, 1, "AvRtDeleteThreadOrderingGroup", 0);
+                ProducerHeaderTests.AssertFacts(reader, "AvRtJoinThreadOrderingGroup", 1, "AvRtLeaveThreadOrderingGroup", 0);
+                foreach (string name in new[] { "AvRevertMmThreadCharacteristics", "AvSetMmThreadPriority",
+                    "AvRtWaitOnThreadOrderingGroup", "AvRtLeaveThreadOrderingGroup",
+                    "AvRtDeleteThreadOrderingGroup", "AvQuerySystemResponsiveness" })
+                    ProducerHeaderTests.AssertNoOwnership(reader, name);
+                Assert.IsFalse(reader.TypeDefinitions.Select(reader.GetTypeDefinition).Any(type =>
+                    reader.GetString(type.Name).StartsWith("AVRT_", StringComparison.Ordinal) &&
+                    reader.GetString(type.Name).EndsWith("_HANDLE", StringComparison.Ordinal)));
+                var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                    .Single(method => reader.GetString(method.Name) == "AvSetMmThreadPriority");
+                var signature = reader.GetBlobReader(method.Signature);
+                signature.ReadSignatureHeader();
+                Assert.AreEqual(2, signature.ReadCompressedInteger());
+                Assert.AreEqual(SignatureTypeCode.Int32, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(SignatureTypeCode.Void, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(SignatureTypeCode.TypeHandle, signature.ReadSignatureTypeCode());
+                Assert.AreEqual("AVRT_PRIORITY", EnumHeaderTests.TypeName(reader, signature.ReadTypeHandle()));
+                Assert.AreEqual(0, signature.RemainingBytes);
+            }
+            result = fixture.Scrape(Regex.Replace(declarations, @"_Win32_RAIIFree_\([^)]*\)", ""), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var original = new PEReader(File.OpenRead(fixture.Emit()));
+            ProducerHeaderTests.AssertNoOwnership(original.GetMetadataReader(), "AvRtJoinThreadOrderingGroup");
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void AvrtNativeProducers_AnnotationsPreserveRawAbi(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language, @"
+#define _In_
+#define _Out_
+#define _Inout_
+#define _In_opt_
+#define _Success_(value)
+" + AvrtDeclarations() + @"
+HANDLE (WINAPI *verifyTask)(LPCWSTR, LPDWORD) = &AvSetMmThreadCharacteristicsW;
+BOOL (WINAPI *verifyCreate)(PHANDLE, PLARGE_INTEGER, GUID*, PLARGE_INTEGER) = &AvRtCreateThreadOrderingGroup;
+BOOL (WINAPI *verifyJoin)(PHANDLE, GUID*, BOOL) = &AvRtJoinThreadOrderingGroup;
+BOOL (WINAPI *verifyLeave)(HANDLE) = &AvRtLeaveThreadOrderingGroup;
+");
+        }
+
+        private static string AvrtDeclarations() => @"
+#define WINAPI __stdcall
+#define DECLSPEC_IMPORT __declspec(dllimport)
+#define WINAPI_FAMILY_PARTITION(...) 1
+typedef void* HANDLE;
+typedef HANDLE* PHANDLE;
+typedef int BOOL;
+typedef unsigned long DWORD;
+typedef DWORD* LPDWORD;
+typedef unsigned long* PULONG;
+typedef const char* LPCSTR;
+typedef const unsigned short* LPCWSTR;
+typedef struct { long long value; } LARGE_INTEGER, *PLARGE_INTEGER;
+typedef struct { unsigned long a; unsigned short b, c; unsigned char d[8]; } GUID;
+" + File.ReadAllText(Sdk("RecompiledIdlHeaders/um/avrt.h"))
+            .Replace("#include <win32metadata_annotations.h>", "", StringComparison.Ordinal)
+            .Replace("#include <winapifamily.h>", "", StringComparison.Ordinal);
+
         internal static string Parent()
         {
             string root = LastErrorHeaderTests.RepositoryRoot();

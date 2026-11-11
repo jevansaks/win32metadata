@@ -25,6 +25,58 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void PathOptions_NativeIntegerUsesCarryAssociationsInsteadOfEnumSubstitution(string target)
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "PathCch.h"));
+            string enumeration = Slice(header, @"typedef enum PATHCCH_OPTIONS\s*\{[^}]+\} PATHCCH_OPTIONS;");
+            string[] names = { "PathCchCanonicalizeEx", "PathCchCombineEx", "PathCchAppendEx",
+                "PathAllocCombine", "PathAllocCanonicalize" };
+            string declarations = string.Join("\n", names.Select(name =>
+                Slice(header, @"WINPATHCCHAPI\s+HRESULT\s+APIENTRY\s+" + name + @"\([^;]+;")));
+            string source = @"
+#define WINPATHCCHAPI
+#define APIENTRY __stdcall
+typedef unsigned long ULONG;
+typedef int HRESULT;
+typedef __SIZE_TYPE__ size_t;
+typedef unsigned short* PWSTR;
+typedef const unsigned short* PCWSTR;
+" + enumeration + "\n" + declarations;
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit();
+            byte[] expected = File.ReadAllBytes(path);
+            string outputDeclarations = EnumHeaderTests.Decompile(path);
+            Save(path, "path-options-" + target);
+            using (var pe = new PEReader(File.OpenRead(path)))
+            {
+                var reader = pe.GetMetadataReader();
+                Assert.AreEqual(9, NativeTypedefHeaderTests.Type(reader, "PATHCCH_OPTIONS").GetFields().Count);
+                foreach (string name in names)
+                {
+                    var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(method => reader.GetString(method.Name) == name);
+                    var flags = method.GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == "dwFlags");
+                    CollectionAssert.AreEqual(new[] { "PATHCCH_OPTIONS" },
+                        EnumAssociationHeaderTests.StringAttributes(reader, flags.GetCustomAttributes(), "AssociatedEnumAttribute"),
+                        outputDeclarations);
+                    Assert.IsTrue(Regex.IsMatch(outputDeclarations, @"\b" + name + @"\([^;]*\buint dwFlags\b"), name);
+                }
+            }
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(names.ToDictionary(
+                name => name + "::dwFlags", _ => "[AssociatedEnum(\"PATHCCH_OPTIONS\")]"))));
+            var conflict = Assert.ThrowsException<AggregateException>(() =>
+                fixture.Emit(new Dictionary<string, string> { ["PathCchAppendEx::dwFlags"] = "PATHCCH_OPTIONS" }));
+            StringAssert.Contains(conflict.Message, "conflicts with native AssociatedEnum storage");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void ServiceNoChange_RealSdkMacrosStayGlobalAcrossRelatedGroups(string target)
         {
             string constants = ServiceConstants();

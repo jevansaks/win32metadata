@@ -2,10 +2,13 @@
 
 **Current accepted state:** the working reduction below removes 407 parameter
 atoms, 2,894 LastError rows, 9,187 availability rows, and 29 enum definitions;
-eight additional genuine aliases use compiler-backed storage. The new WinMD
-passes the complete unmasked qualified-parent comparison. See
-[the final accepted union](#final-accepted-enumhandle-union) for its output,
-retained counts, exact declaration differences, and validation limitations.
+eight additional genuine aliases use compiler-backed storage. The next
+[structural migration](#producer-ownership-and-enum-use-site-migration) removes
+two fictitious handle records and 14 forced type remaps, and replaces five
+JSON enum bindings with native `AssociatedEnum`. Its new WinMD has exactly the
+intended structural differences, exhaustively accounted for without masks;
+it is not claimed API-equivalent. The preceding
+[equivalent union](#final-accepted-enumhandle-union) remains preserved.
 The earlier quantities below describe preserved historical checkpoints.
 
 The user redirected this experiment from broad sidecar retirement to a working
@@ -373,3 +376,115 @@ This is a measured working reduction, not a mathematical-minimum claim.
 Unattempted enum/handle closures are not classified as unsupported readers.
 Documentation, library mappings, global/parser configuration, and the 69 manual
 generation inputs remain separate from semantic annotation retirement.
+
+## Producer ownership and enum use-site migration
+
+This bounded batch follows the user's clarification that fictitious handle
+removal and enum-to-`AssociatedEnum` use-site changes are intended API changes,
+not reasons to reject a migration. It builds above the preserved working
+`fc60db128ac08f4009737debc40cd4515e4a837a` checkpoint. Production readers,
+helper, native-MIDL converter, CI, and all lower stack layers are unchanged.
+
+### Exact retired facts and native replacements
+
+`avrt.h` now owns the complete two-record projection-only handle closure:
+
+| Retired synthetic type | Native producer replacement |
+|---|---|
+| `AVRT_TASK_HANDLE` | Four `AvSetMm[Max]ThreadCharacteristicsA/W` returns carry `_Win32_RAIIFree_(AvRevertMmThreadCharacteristics, 0)`. |
+| `AVRT_THREAD_ORDERING_GROUP_HANDLE` | Three `AvRtCreateThreadOrderingGroup[ExA/ExW]::Context` outputs carry `_Win32_RAIIFree_(AvRtDeleteThreadOrderingGroup, 0)`; `AvRtJoinThreadOrderingGroup::Context` carries `_Win32_RAIIFree_(AvRtLeaveThreadOrderingGroup, 0)`. |
+
+Both legacy records explicitly had `NativeTypedef: false`. Their two
+`autoTypes.json` records and all 14 corresponding emitter `memberRemap` rows
+are removed. The APIs use their genuine native `HANDLE`/`HANDLE*` types instead.
+Borrowers and cleanup functions acquire no producer-site ownership metadata.
+The real `AVRT_PRIORITY` enum remains enum-typed. The global genuine `HANDLE`
+record and its legacy policy are not retired by this local closure.
+
+The Join output deliberately no longer inherits the synthetic type's incorrect
+Delete policy: [Leave consumes a Join context](https://learn.microsoft.com/en-us/windows/win32/api/avrt/nf-avrt-avrtleavethreadorderinggroup);
+[Delete consumes a parent-created group](https://learn.microsoft.com/en-us/windows/win32/api/avrt/nf-avrt-avrtdeletethreadorderinggroup).
+[Task handles use Revert](https://learn.microsoft.com/en-us/windows/win32/api/avrt/nf-avrt-avsetmmthreadcharacteristicsw).
+The native patch moves the three complete existing cleanup declarations,
+including SAL, LastError, availability and partition guards, before producers
+so typed operands resolve. It introduces no shadow prototypes or typedefs.
+Invalid value zero is retained from the exact retired records.
+
+`PathCch.h` now places `_Win32_AssociatedEnum_(PATHCCH_OPTIONS)` on `dwFlags`
+in `PathCchCanonicalizeEx`, `PathCchCombineEx`, `PathCchAppendEx`,
+`PathAllocCombine`, and `PathAllocCanonicalize`. The corresponding
+`enums.json` binding-only record and its five uses are removed. These native
+parameters are `ULONG`; the output now correctly carries `uint` plus
+`AssociatedEnum("PATHCCH_OPTIONS")`, rather than the old forced enum type.
+The genuine `PATHCCH_OPTIONS` definition and all eight members remain.
+This is **not a thirtieth migrated enum definition**.
+
+| Retained input | Preserved `fc60` | Current |
+|---|---:|---:|
+| Total RSP value rows | 134,393 | 134,379 |
+| Emitter `memberRemap` rows | 1,951 | 1,937 |
+| `autoTypes.json` records | 444 | 442 |
+| `enums.json` records | 1,041 | 1,040 |
+| `functionPointerFixups.json` records | 27 | 27 |
+| Remaining parameter attribute atoms | 363 | 363 |
+
+The full file/option inventory remains
+[reduced-sidecar-counts.tsv](reduced-sidecar-counts.tsv). Cumulatively,
+12,410 of the original 146,789 RSP value rows are removed; 407 of 770 parameter
+attribute atoms are retired. This phase removes type remaps and JSON uses,
+not additional parameter-attribute RSP atoms. It preserves all earlier
+29-definition/274-member and eight genuine-alias migrations. The retained
+autoTypes fields include 431 legacy storage entries, 11 native selections,
+410 `NativeTypedef` fields, ten associations, 151 cleanup fields and
+229 invalid-value fields. These are conservative retained facts, not a
+minimum or a claim that the remaining records are unsupported.
+
+### Actual production output and complete API accounting
+
+The full cross-architecture `Threading` and `Shell` production partitions and
+constants refreshed in **1m20.22s**. Complete union emission then succeeded in
+**4m51.58s**, reusing the preserved checkpoint's other generated partitions,
+not its WinMD. No full reference build or hosted CI rerun was performed.
+
+| Actual new output | Identity |
+|---|---|
+| WinMD | `files\sidecar-reduction\structural-candidate\Windows.Win32.winmd` |
+| Size | 24,177,152 bytes |
+| SHA-256 | `A7A81FE6B1AE95E1F08AE6BD1D504F4FDC456502A432179EFED76D548A0FFFFF` |
+| Complete raw declaration dump SHA-256 | `7F64C4FA510A84E2C4A2F807552931B2301A9FE0604CA794BB901977087E73D4` |
+| Actual unmasked comparer against `fc60` and qualified parent | Exit **-1**, reflecting the intended structural differences |
+
+The complete raw diff contains exactly two removed synthetic type blocks,
+14 AVRT signature substitutions, eight producer ownership/invalid-value
+groups, five PATHCCH native-storage/association changes, and declaration-order
+movement of the three cleanup methods. Exact before/after blocks for all
+19 changed methods are checked against these source facts; removing those
+individually checked blocks and the exact two retired types leaves all
+remaining declaration text equal. There are **zero unmatched changes**.
+Against the original qualified parent, the previously recorded five harmless
+`AlsoUsableFor` attribute-order changes also remain. Direction, extents,
+optionality, pointer depth, native enum definitions, imports, LastError,
+availability, and documentation otherwise remain unchanged.
+
+The original unmasked comparer results and full dumps/diff are retained.
+`structural-api-accounting.json` records exact old/new blocks and native
+owners; this accounting does not change the comparer exit, filter APIs,
+introduce a known-difference file, or relax acceptance for unmatched loss.
+
+All **174** directly related ownership/enum controls pass, including the
+12 new x86/x64/ARM64 semantic and C/C++ ABI cases. All **54** integrity cases
+pass against the actual new output copied to `bin\Windows.Win32.winmd`.
+All **339/339** selected post-MIDL patches replay strictly to byte-exact
+current headers, and the binary-safe audit preserves non-ASCII bytes in
+335 changed native owners. Recipe selections remain 339 post-MIDL and
+28 pre-MIDL patches; only the two owning post-MIDL assets changed here.
+
+No new reader blocker was demonstrated by this bounded batch. Its initial
+new-fixture failures came from reading the unannotated SDK package rather
+than the current production header and from missing ABI-only include/SAL
+setup; those fixture inputs were corrected without weakening assertions.
+The complete production parse, semantic controls and exact API accounting
+then passed. The earlier residual input/reader boundaries remain; unattempted
+handle/enum closures are not reclassified as failures. Future cohorts should
+continue separating genuine native identity from producer ownership and
+genuine enum definitions from native-integer use-site associations.

@@ -7,70 +7,108 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/avrt.h b/generation/WinSD
  #include <winapifamily.h>
  
  /*++ BUILD Version: 0001    // Increment this if a change has global effects
-@@ -50,6 +51,8 @@
+@@ -50,6 +51,19 @@
  //
  
  #define AVRTAPI DECLSPEC_IMPORT
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsVista_
++
++_Success_(return != FALSE)
++AVRTAPI
++BOOL
++WINAPI
++AvRevertMmThreadCharacteristics (
++    _In_ HANDLE AvrtHandle
++    );
++_Win32_RAIIFree_(AvRevertMmThreadCharacteristics, 0)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
  
  _Success_(return != NULL)
  AVRTAPI
-@@ -59,6 +62,8 @@
+@@ -59,6 +73,9 @@
      _In_ LPCSTR TaskName,
      _Inout_ LPDWORD TaskIndex
      );
++_Win32_RAIIFree_(AvRevertMmThreadCharacteristics, 0)
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsVista_
  _Success_(return != NULL)
  AVRTAPI
  HANDLE
-@@ -72,6 +77,8 @@
+@@ -72,6 +89,9 @@
  #else
  #define AvSetMmThreadCharacteristics  AvSetMmThreadCharacteristicsA
  #endif // !UNICODE
++_Win32_RAIIFree_(AvRevertMmThreadCharacteristics, 0)
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsVista_
  
  _Success_(return != NULL)
  AVRTAPI
-@@ -82,6 +89,8 @@
+@@ -82,6 +102,9 @@
      _In_ LPCSTR SecondTask,
      _Inout_ LPDWORD TaskIndex
      );
++_Win32_RAIIFree_(AvRevertMmThreadCharacteristics, 0)
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsVista_
  _Success_(return != NULL)
  AVRTAPI
  HANDLE
-@@ -96,6 +105,8 @@
+@@ -96,14 +119,8 @@
  #else
  #define AvSetMmMaxThreadCharacteristics  AvSetMmMaxThreadCharacteristicsA
  #endif // !UNICODE
+-
+-_Success_(return != FALSE)
+-AVRTAPI
+-BOOL
+-WINAPI
+-AvRevertMmThreadCharacteristics (
+-    _In_ HANDLE AvrtHandle
+-    );
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsVista_
  
  _Success_(return != FALSE)
  AVRTAPI
-@@ -104,6 +115,8 @@
- AvRevertMmThreadCharacteristics (
-     _In_ HANDLE AvrtHandle
-     );
-+_Win32_SetLastError_
-+_Win32_SupportedOS_WindowsVista_
- 
- _Success_(return != FALSE)
- AVRTAPI
-@@ -119,6 +132,8 @@
+@@ -119,35 +136,61 @@
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsVista_
++
++_Success_(return != FALSE)
++AVRTAPI
++BOOL
++WINAPI
++AvRtLeaveThreadOrderingGroup (
++    _In_ HANDLE Context
++    );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
++
++_Success_(return != FALSE)
++AVRTAPI
++BOOL
++WINAPI
++AvRtDeleteThreadOrderingGroup (
++    _In_ HANDLE Context
++    );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
  
  _Success_(return != FALSE)
  AVRTAPI
-@@ -130,6 +145,8 @@
+ BOOL
+ WINAPI
+ AvRtCreateThreadOrderingGroup (
+-    _Out_ PHANDLE Context,
++    _Out_ _Win32_RAIIFree_(AvRtDeleteThreadOrderingGroup, 0) PHANDLE Context,
+     _In_ PLARGE_INTEGER Period,
      _Inout_ GUID *ThreadOrderingGuid,
      _In_opt_ PLARGE_INTEGER Timeout
      );
@@ -79,7 +117,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/avrt.h b/generation/WinSD
  
  _Success_(return != FALSE)
  AVRTAPI
-@@ -142,6 +159,8 @@
+ BOOL
+ WINAPI
+ AvRtCreateThreadOrderingGroupExA (
+-    _Out_ PHANDLE Context,
++    _Out_ _Win32_RAIIFree_(AvRtDeleteThreadOrderingGroup, 0) PHANDLE Context,
+     _In_ PLARGE_INTEGER Period,
+     _Inout_ GUID *ThreadOrderingGuid,
      _In_opt_ PLARGE_INTEGER Timeout,
      _In_ LPCSTR TaskName
      );
@@ -88,7 +132,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/avrt.h b/generation/WinSD
  _Success_(return != FALSE)
  AVRTAPI
  BOOL
-@@ -158,6 +177,8 @@
+ WINAPI
+ AvRtCreateThreadOrderingGroupExW (
+-    _Out_ PHANDLE Context,
++    _Out_ _Win32_RAIIFree_(AvRtDeleteThreadOrderingGroup, 0) PHANDLE Context,
+     _In_ PLARGE_INTEGER Period,
+     _Inout_ GUID *ThreadOrderingGuid,
+     _In_opt_ PLARGE_INTEGER Timeout,
+@@ -158,16 +201,20 @@
  #else
  #define AvRtCreateThreadOrderingGroupEx  AvRtCreateThreadOrderingGroupExA
  #endif // !UNICODE
@@ -97,7 +148,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/avrt.h b/generation/WinSD
  
  _Success_(return != FALSE)
  AVRTAPI
-@@ -168,6 +189,8 @@
+ BOOL
+ WINAPI
+ AvRtJoinThreadOrderingGroup (
+-    _Out_ PHANDLE Context,
++    _Out_ _Win32_RAIIFree_(AvRtLeaveThreadOrderingGroup, 0) PHANDLE Context,
      _In_ GUID *ThreadOrderingGuid,
      _In_ BOOL Before
      );
@@ -106,28 +161,26 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/avrt.h b/generation/WinSD
  
  _Success_(return != FALSE)
  AVRTAPI
-@@ -176,6 +199,8 @@
+@@ -176,22 +223,8 @@
  AvRtWaitOnThreadOrderingGroup (
      _In_ HANDLE Context
      );
-+_Win32_SetLastError_
-+_Win32_SupportedOS_WindowsVista_
- 
- _Success_(return != FALSE)
- AVRTAPI
-@@ -184,6 +209,8 @@
- AvRtLeaveThreadOrderingGroup (
-     _In_ HANDLE Context
-     );
-+_Win32_SetLastError_
-+_Win32_SupportedOS_WindowsVista_
- 
- _Success_(return != FALSE)
- AVRTAPI
-@@ -192,6 +219,8 @@
- AvRtDeleteThreadOrderingGroup (
-     _In_ HANDLE Context
-     );
+-
+-_Success_(return != FALSE)
+-AVRTAPI
+-BOOL
+-WINAPI
+-AvRtLeaveThreadOrderingGroup (
+-    _In_ HANDLE Context
+-    );
+-
+-_Success_(return != FALSE)
+-AVRTAPI
+-BOOL
+-WINAPI
+-AvRtDeleteThreadOrderingGroup (
+-    _In_ HANDLE Context
+-    );
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsVista_
  

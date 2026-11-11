@@ -202,7 +202,7 @@ PathCchCanonicalizeEx(
     _Out_writes_(cchPathOut) PWSTR pszPathOut,
     _In_ size_t cchPathOut,
     _In_ PCWSTR pszPathIn,
-    _In_ ULONG dwFlags
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags
     );
 
 WINPATHCCHAPI
@@ -224,7 +224,7 @@ PathCchCombineEx(
     _In_ size_t cchPathOut,
     _In_opt_ PCWSTR pszPathIn,
     _In_opt_ PCWSTR pszMore,
-    _In_ ULONG dwFlags
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags
     );
 
 WINPATHCCHAPI
@@ -246,7 +246,7 @@ PathCchAppendEx(
     _Inout_updates_(cchPath) PWSTR pszPath,
     _In_ size_t cchPath,
     _In_opt_ PCWSTR pszMore,
-    _In_ ULONG dwFlags
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags
     );
 
 WINPATHCCHAPI
@@ -275,7 +275,7 @@ APIENTRY
 PathAllocCombine(
     _In_opt_ PCWSTR pszPathIn,
     _In_opt_ PCWSTR pszMore,
-    _In_ ULONG dwFlags,
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags,
     _Outptr_ PWSTR* ppszPathOut
     );
 _Win32_SupportedOS_Windows8_
@@ -286,7 +286,7 @@ HRESULT
 APIENTRY
 PathAllocCanonicalize(
     _In_ PCWSTR pszPathIn,
-    _In_ ULONG dwFlags,
+    _In_ _Win32_AssociatedEnum_(PATHCCH_OPTIONS) ULONG dwFlags,
     _Outptr_ PWSTR* ppszPathOut
     );
 
