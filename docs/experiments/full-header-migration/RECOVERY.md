@@ -850,3 +850,104 @@ fixtures, strict patch receipts, and `manual-group-six-api-accounting.json`
 remain in session evidence. Reader/helper/converter/CI and all lower layers
 are unchanged. STGM and the residual CLR record remain for the next exact
 owner/use-site subdivision, not classified globally as unsupported.
+
+## Structured-storage subdivision and final native-enum control
+
+The six-group working source is preserved at
+`67e02a702cf454986b13300341d5332d1e7da905`. Work continued beyond that
+checkpoint through an actual STGM production trial, not only a proposed
+cohort. All rejected inputs and diagnostics are retained in
+`files\sidecar-reduction\stgm-rejected-inputs` and the adjacent logs.
+
+The STGM trial transported 18 actual SDK constants and 13 unique uses:
+six free APIs in `coml2api.h`, five methods in `ObjIdl.Idl`, the STATSTG
+field in `ObjIdlbase.Idl`, and one method in `mmdeviceapi.idl`.
+The three unannotated native-MIDL controls compile, and all 498 existing
+instance-method contracts remain textually unchanged after adding their
+carriers and regenerating those owners. The remaining
+`IFunctionInstance::OpenPropertyStore::dwStgAccess` use was kept as one exact
+legacy RSP remap during the trial, not represented as migrated coverage.
+Its untouched `functiondiscoveryapi.idl` control already changes 18 of 31
+methods, including returned-pointer retval SAL and unique-pointer
+optionality. This is another owning-input/current-converter regeneration
+boundary, not 18 independent enum-reader failures.
+
+An initial partial legacy STGM definition conflicted with the complete
+header definition; that was corrected as an input-authoring mistake.
+The corrected scrape/constants stage then passed in **1m18.71s**.
+Actual production emission failed after **3m10.66s** with `CS0246` for
+`DocumentationAttribute`/`Documentation`: the relocated
+`Com.StructuredStorage.headerEnums.modified.cs` does not import
+`Windows.Win32.Foundation.Metadata`, while the unchanged, explicitly
+allowed documentation mapping adds:
+
+```text
+STGM=[Documentation("https://learn.microsoft.com/windows/win32/Stg/stgm-constants")]
+```
+
+Qualifying the same attribute with `global::` was not a supported
+workaround: that attempt decoded to `[global]` and failed after
+**3m15.08s**. No production global using, dropped documentation fact,
+reader repair, or assertion weakening was introduced. All 14 trial files
+were saved and completely restored to the accepted six-group inputs.
+**No STGM WinMD was emitted, no STGM JSON retirement remains enabled, and
+the one-row trial fallback is not part of the working state.**
+
+`StructuredStorageGroup_DocumentationSidecarNeedsMetadataNamespaceImport`
+is a self-contained, three-target real-SDK repro: the 18-member UInt32
+group emits without the remap, while adding the exact documentation
+remap must report CS0246. Its first fixture configuration accidentally
+installed a SAL-fixture-only global metadata using, masking the actual
+production failure; that fixture setup was corrected, not the assertion.
+The corrected three cases pass, followed by a single complete related
+run of **156 passed, zero failed, zero skipped**. This does not rewrite
+the historical 147/3 result and six-case retry from the earlier checkpoint.
+
+The final CLR control removes only the redundant JSON use selector
+`ICLRHostProtectionManager::SetProtectedCategories::categories`.
+The native declaration already takes the genuine `EApiCategories` enum;
+its native type is preserved, not converted to integer AssociatedEnum
+storage. The separate `flags: true` record remains pending qualification;
+it is neither silently discarded nor added to the nine CLR exceptions.
+This is one fewer legacy use selector, not another retired enum definition.
+The CLR owner and constants were freshly regenerated in **1m12.66s**,
+then a fresh complete production union emitted in **4m46.66s**. Only
+accepted six-group generated sources supplied the unchanged partitions;
+no rejected STGM source, qualified output binary, or rebuilt reference
+was substituted.
+
+| Final output | Identity |
+|---|---|
+| Actual new WinMD | `files\sidecar-reduction\manual-group-final-candidate\Windows.Win32.winmd` |
+| Size / SHA-256 | 24,176,640 bytes / `BD4281F64397B9DC842154DAC19848BC4C7046354227CCA6C4D0B0A55942A12A` |
+| Complete dump / types | `1F4F38395D602095972A5095C4A25EF6C117BE5E1D716DAB5C3108BE6AC589BA` / 35,379 |
+| Unmasked comparer against accepted 6d44 | Exit **0** |
+| Complete raw declaration accounting | **Byte-identical**, zero unmatched changes |
+| Unmasked original-parent comparison | Exit **-1**, preserving only previously accounted structural changes |
+
+The deterministic new binary is byte-identical to the six-group output,
+confirming that the deleted native-enum override was redundant. It is
+also installed at workspace `bin\Windows.Win32.winmd`. The actual final
+output passes all **54/54 integrity cases**; the complete related suite
+above passed **156/156**. The previously accepted strict **343/343**
+post-MIDL replay still binds the unchanged native headers and patches.
+Reader/helper/converter/CI, the 28 pre-MIDL selections, genuine native
+types, and all 90,502 allowed documentation mappings remain unchanged.
+`manual-group-final-api-accounting.json`, full dumps, unmasked logs,
+production logs, and original TRX retain the exact evidence.
+
+The current 995 enum records are not 995 independently demonstrated
+reader gaps. Of these, 971 have explicit members and/or auto-population
+definitions. The other 24 are 23 additional-use records with 55 selector
+rows, plus the retained CLR flags request. Those 55 rows belong to the
+specific retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud policy
+closures documented here; definition-bearing records have not all been
+independently subdivided. This remains a measured working reduction,
+**not a mathematical minimum or a blanket unsupported-inventory claim**.
+
+The narrow next fixes are to preserve the metadata-attribute namespace
+when rewriting header enum sources, qualify the actual native-MIDL
+regeneration differences before retiring those owner closures, resolve
+SNMP storage intent, and isolate dependent-constant integration for the
+four restored groups. Documentation URL rows remain allowed; no such
+allowance is inferred for DLL mappings or other API metadata.

@@ -25,6 +25,45 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void StructuredStorageGroup_DocumentationSidecarNeedsMetadataNamespaceImport(string target)
+        {
+            string header = File.ReadAllText(Sdk("um", "coml2api.h"));
+            var constants = Regex.Matches(header, @"(?m)^#define (STGM_\w+)\s+[^\r\n]+")
+                .Cast<Match>().ToArray();
+            Assert.AreEqual(18, constants.Length);
+            string source = string.Join("\n", constants.Select(match => match.Value)) +
+                "\n_Win32_FlagsEnum_(STGM, unsigned long, " +
+                string.Join(", ", constants.Select(match => match.Groups[1].Value)) + ");\n";
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source, target);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            // SAL fixtures install a global metadata using absent from production enum files.
+            File.Copy(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "manual", "Metadata.cs"),
+                Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "Attributes.manual.cs"));
+            var namespaces = new Dictionary<string, string> { ["STGM"] = "Windows.Win32.System.Com" };
+            using (var pe = new PEReader(File.OpenRead(fixture.Emit(requiredNamespaces: namespaces))))
+            {
+                var reader = pe.GetMetadataReader();
+                var type = NativeTypedefHeaderTests.Type(reader, "STGM");
+                Assert.AreEqual(19, type.GetFields().Count);
+                var storage = type.GetFields().Select(reader.GetFieldDefinition)
+                    .Single(field => reader.GetString(field.Name) == "value__");
+                EnumAssociationHeaderTests.AssertSignature(reader, storage.Signature, 0, SignatureTypeCode.UInt32);
+            }
+            var remaps = new Dictionary<string, string>
+            {
+                ["STGM"] = "[Documentation(\"https://learn.microsoft.com/windows/win32/Stg/stgm-constants\")]",
+            };
+            var error = Assert.ThrowsException<AssertFailedException>(() => fixture.Emit(remaps, namespaces));
+            TestContext.WriteLine(error.Message);
+            StringAssert.Contains(error.Message, "CS0246");
+            StringAssert.Contains(error.Message, "Documentation");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void SnmpGroup_UnsignedLegacyStorageCannotBackSignedNativeParameters(string target)
         {
             string header = File.ReadAllText(Sdk("um", "WinSnmp.h"));

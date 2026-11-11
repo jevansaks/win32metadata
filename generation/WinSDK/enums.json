@@ -34119,14 +34119,7 @@
   {
     "namespace": "Windows.Win32.System.ClrHosting",
     "name": "EApiCategories",
-    "flags": true,
-    "uses": [
-      {
-        "interface": "ICLRHostProtectionManager",
-        "method": "SetProtectedCategories",
-        "parameter": "categories"
-      }
-    ]
+    "flags": true
   },
   {
     "name": "COMPARESTRING_RESULT",
